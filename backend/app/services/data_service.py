@@ -37,6 +37,24 @@ def load_potions() -> list[dict]:
         return json.load(f)
 
 
+@lru_cache(maxsize=1)
+def load_enchantments() -> list[dict]:
+    with open(DATA_DIR / "enchantments.json", "r", encoding="utf-8") as f:
+        return json.load(f)
+
+
+@lru_cache(maxsize=1)
+def load_encounters() -> list[dict]:
+    with open(DATA_DIR / "encounters.json", "r", encoding="utf-8") as f:
+        return json.load(f)
+
+
+@lru_cache(maxsize=1)
+def load_events() -> list[dict]:
+    with open(DATA_DIR / "events.json", "r", encoding="utf-8") as f:
+        return json.load(f)
+
+
 def get_stats() -> dict:
     return {
         "cards": len(load_cards()),
@@ -44,4 +62,7 @@ def get_stats() -> dict:
         "relics": len(load_relics()),
         "monsters": len(load_monsters()),
         "potions": len(load_potions()),
+        "enchantments": len(load_enchantments()),
+        "encounters": len(load_encounters()),
+        "events": len(load_events()),
     }

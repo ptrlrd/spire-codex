@@ -40,9 +40,14 @@ export default function AboutPage() {
           <li className="flex gap-3">
             <span className="text-[var(--accent-gold)] flex-shrink-0">-</span>
             <span>
-              Display Enchantments, encounters, and events — this is all data that lives in the game
-              files but I didn&apos;t want to spend a significant amount of time on this project. I was
-              mostly curious about the cards and monsters
+              Powers/buffs/debuffs — there are 262 power models in the game files waiting to be parsed
+            </span>
+          </li>
+          <li className="flex gap-3">
+            <span className="text-[var(--accent-gold)] flex-shrink-0">-</span>
+            <span>
+              More images — card art, enchantment icons, and encounter scene images from the
+              game&apos;s extracted assets
             </span>
           </li>
         </ul>

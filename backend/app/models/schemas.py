@@ -93,9 +93,54 @@ class Potion(BaseModel):
     image_url: str | None = None
 
 
+class Enchantment(BaseModel):
+    id: str
+    name: str
+    description: str
+    description_raw: str | None = None
+    extra_card_text: str | None = None
+    card_type: str | None = None
+    is_stackable: bool = False
+    image_url: str | None = None
+
+
+class EncounterMonster(BaseModel):
+    id: str
+    name: str
+
+
+class Encounter(BaseModel):
+    id: str
+    name: str
+    room_type: str
+    is_weak: bool = False
+    act: str | None = None
+    tags: list[str] | None = None
+    monsters: list[EncounterMonster] | None = None
+    loss_text: str | None = None
+
+
+class EventOption(BaseModel):
+    id: str
+    title: str
+    description: str
+
+
+class Event(BaseModel):
+    id: str
+    name: str
+    type: str
+    act: str | None = None
+    description: str | None = None
+    options: list[EventOption] | None = None
+
+
 class StatsResponse(BaseModel):
     cards: int
     characters: int
     relics: int
     monsters: int
     potions: int
+    enchantments: int
+    encounters: int
+    events: int

@@ -56,6 +56,30 @@ export default function Home() {
       gradient: "from-blue-900/30 to-transparent",
       accent: "text-blue-400",
     },
+    {
+      href: "/enchantments",
+      title: "Enchantments",
+      count: stats?.enchantments ?? "–",
+      desc: "View card enchantments and their effects",
+      gradient: "from-cyan-900/30 to-transparent",
+      accent: "text-cyan-400",
+    },
+    {
+      href: "/encounters",
+      title: "Encounters",
+      count: stats?.encounters ?? "–",
+      desc: "Browse combat encounters across all acts",
+      gradient: "from-rose-900/30 to-transparent",
+      accent: "text-rose-400",
+    },
+    {
+      href: "/events",
+      title: "Events",
+      count: stats?.events ?? "–",
+      desc: "Explore non-combat events and their choices",
+      gradient: "from-indigo-900/30 to-transparent",
+      accent: "text-indigo-400",
+    },
   ];
 
   return (
@@ -78,7 +102,8 @@ export default function Home() {
               <p className="text-sm text-[var(--text-muted)]">
                 {stats.cards} cards · {stats.characters} characters ·{" "}
                 {stats.relics} relics · {stats.monsters} monsters ·{" "}
-                {stats.potions} potions
+                {stats.potions} potions · {stats.enchantments} enchantments ·{" "}
+                {stats.encounters} encounters · {stats.events} events
               </p>
             )}
           </div>

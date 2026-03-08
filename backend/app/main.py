@@ -7,7 +7,7 @@ from pathlib import Path
 from slowapi import Limiter, _rate_limit_exceeded_handler
 from slowapi.util import get_remote_address
 from slowapi.errors import RateLimitExceeded
-from .routers import cards, characters, relics, monsters, potions
+from .routers import cards, characters, relics, monsters, potions, enchantments, encounters, events
 from .services.data_service import get_stats
 
 limiter = Limiter(key_func=get_remote_address, default_limits=["60/minute"])
@@ -43,6 +43,9 @@ app.include_router(characters.router)
 app.include_router(relics.router)
 app.include_router(monsters.router)
 app.include_router(potions.router)
+app.include_router(enchantments.router)
+app.include_router(encounters.router)
+app.include_router(events.router)
 
 
 @app.get("/api/stats", tags=["Stats"])
@@ -63,6 +66,9 @@ def root(request: Request):
             "relics": "/api/relics",
             "monsters": "/api/monsters",
             "potions": "/api/potions",
+            "enchantments": "/api/enchantments",
+            "encounters": "/api/encounters",
+            "events": "/api/events",
             "stats": "/api/stats",
         },
     }

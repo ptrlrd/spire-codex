@@ -81,12 +81,57 @@ export interface Potion {
   image_url: string | null;
 }
 
+export interface Enchantment {
+  id: string;
+  name: string;
+  description: string;
+  description_raw: string | null;
+  extra_card_text: string | null;
+  card_type: string | null;
+  is_stackable: boolean;
+  image_url: string | null;
+}
+
+export interface EncounterMonster {
+  id: string;
+  name: string;
+}
+
+export interface Encounter {
+  id: string;
+  name: string;
+  room_type: string;
+  is_weak: boolean;
+  act: string | null;
+  tags: string[] | null;
+  monsters: EncounterMonster[] | null;
+  loss_text: string | null;
+}
+
+export interface EventOption {
+  id: string;
+  title: string;
+  description: string;
+}
+
+export interface GameEvent {
+  id: string;
+  name: string;
+  type: string;
+  act: string | null;
+  description: string | null;
+  options: EventOption[] | null;
+}
+
 export interface Stats {
   cards: number;
   characters: number;
   relics: number;
   monsters: number;
   potions: number;
+  enchantments: number;
+  encounters: number;
+  events: number;
 }
 
 export const api = {
@@ -101,4 +146,10 @@ export const api = {
   getMonster: (id: string) => fetchApi<Monster>(`/api/monsters/${id}`),
   getPotions: (params?: string) => fetchApi<Potion[]>(`/api/potions${params ? `?${params}` : ""}`),
   getPotion: (id: string) => fetchApi<Potion>(`/api/potions/${id}`),
+  getEnchantments: (params?: string) => fetchApi<Enchantment[]>(`/api/enchantments${params ? `?${params}` : ""}`),
+  getEnchantment: (id: string) => fetchApi<Enchantment>(`/api/enchantments/${id}`),
+  getEncounters: (params?: string) => fetchApi<Encounter[]>(`/api/encounters${params ? `?${params}` : ""}`),
+  getEncounter: (id: string) => fetchApi<Encounter>(`/api/encounters/${id}`),
+  getEvents: (params?: string) => fetchApi<GameEvent[]>(`/api/events${params ? `?${params}` : ""}`),
+  getEvent: (id: string) => fetchApi<GameEvent>(`/api/events/${id}`),
 };
