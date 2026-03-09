@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import type { Monster } from "@/lib/api";
 import SearchFilter from "../components/SearchFilter";
 
@@ -69,11 +70,12 @@ export default function MonstersPage() {
       ) : (
         <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
           {monsters.map((monster) => (
-            <div
+            <Link
               key={monster.id}
+              href={`/monsters/${monster.id}`}
               className={`bg-[var(--bg-card)] rounded-lg border ${
                 typeColors[monster.type] || "border-[var(--border-subtle)]"
-              } p-4 hover:bg-[var(--bg-card-hover)] transition-all`}
+              } p-4 hover:bg-[var(--bg-card-hover)] transition-all cursor-pointer`}
             >
               {monster.image_url && (
                 <div className="mb-3 -mx-4 -mt-4">
@@ -169,7 +171,7 @@ export default function MonstersPage() {
                     </div>
                   </div>
                 )}
-            </div>
+            </Link>
           ))}
         </div>
       )}

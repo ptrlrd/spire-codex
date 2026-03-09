@@ -14,57 +14,6 @@ const CHARACTERS = [
   { id: "regent", name: "Regent", color: "from-amber-900/40" },
 ];
 
-const GALLERY_SECTIONS = [
-  {
-    title: "Rest Site",
-    images: [
-      ...CHARACTERS.map((c) => ({
-        src: `/static/images/characters/rest_${c.id}.png`,
-        label: c.name,
-      })),
-      { src: "/static/images/characters/rest_osty.png", label: "Osty" },
-    ],
-  },
-  {
-    title: "Ancients",
-    images: [
-      { src: "/static/images/misc/ancients/neow.png", label: "Neow" },
-      { src: "/static/images/misc/ancients/tezcatara.png", label: "Tezcatara" },
-      { src: "/static/images/misc/ancients/darv.png", label: "Darv" },
-      { src: "/static/images/misc/ancients/orobas.png", label: "Orobas" },
-      { src: "/static/images/misc/ancients/pael.png", label: "Pael" },
-      { src: "/static/images/misc/ancients/tanx.png", label: "Tanx" },
-      { src: "/static/images/misc/ancients/vakuu.png", label: "Vakuu" },
-      { src: "/static/images/misc/ancients/nonupeipe.png", label: "Nonupeipe" },
-    ],
-  },
-  {
-    title: "NPCs",
-    images: [
-      { src: "/static/images/misc/neow.png", label: "Neow" },
-      { src: "/static/images/misc/tezcatara.png", label: "Tezcatara" },
-      { src: "/static/images/misc/merchant.png", label: "Merchant" },
-      { src: "/static/images/misc/fake_merchant.png", label: "Fake Merchant" },
-    ],
-  },
-  {
-    title: "Bosses",
-    images: [
-      { src: "/static/images/misc/bosses/ceremonial_beast_boss.png", label: "Ceremonial Beast" },
-      { src: "/static/images/misc/bosses/doormaker_boss.png", label: "Doormaker" },
-      { src: "/static/images/misc/bosses/kaiser_crab_boss.png", label: "Kaiser Crab" },
-      { src: "/static/images/misc/bosses/knowledge_demon_boss.png", label: "Knowledge Demon" },
-      { src: "/static/images/misc/bosses/lagavulin_matriarch_boss.png", label: "Lagavulin Matriarch" },
-      { src: "/static/images/misc/bosses/queen_boss.png", label: "Queen" },
-      { src: "/static/images/misc/bosses/soul_fysh_boss.png", label: "Soul Fysh" },
-      { src: "/static/images/misc/bosses/test_subject_boss.png", label: "Test Subject" },
-      { src: "/static/images/misc/bosses/the_insatiable_boss.png", label: "The Insatiable" },
-      { src: "/static/images/misc/bosses/the_kin_boss.png", label: "The Kin" },
-      { src: "/static/images/misc/bosses/vantom_boss.png", label: "Vantom" },
-      { src: "/static/images/misc/bosses/waterfall_giant_boss.png", label: "Waterfall Giant" },
-    ],
-  },
-];
 
 export default function Home() {
   const [stats, setStats] = useState<Stats | null>(null);
@@ -270,38 +219,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Gallery */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
-        {GALLERY_SECTIONS.map((section) => (
-          <div key={section.title} className="mb-12">
-            <h2 className="text-xl font-semibold text-[var(--text-primary)] mb-4 border-b border-[var(--border-subtle)] pb-2">
-              {section.title}
-            </h2>
-            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3 sm:gap-4">
-              {section.images.map((img) => (
-                <div
-                  key={img.src}
-                  className="group relative overflow-hidden rounded-xl bg-[var(--bg-card)] border border-[var(--border-subtle)] hover:border-[var(--border-accent)] transition-all"
-                >
-                  <div className="aspect-square flex items-center justify-center p-2">
-                    <img
-                      src={`${API}${img.src}`}
-                      alt={img.label}
-                      className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
-                      crossOrigin="anonymous"
-                    />
-                  </div>
-                  <div className="text-center pb-2">
-                    <span className="text-xs text-[var(--text-muted)]">
-                      {img.label}
-                    </span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        ))}
-      </section>
     </div>
   );
 }

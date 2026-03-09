@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import type { Relic } from "@/lib/api";
+import Link from "next/link";
 import SearchFilter from "../components/SearchFilter";
 import RichDescription from "../components/RichDescription";
 
@@ -93,9 +94,10 @@ export default function RelicsPage() {
               rarityColors[relic.rarity] ||
               "border-[var(--border-subtle)] text-gray-400";
             return (
-              <div
+              <Link
                 key={relic.id}
-                className={`bg-[var(--bg-card)] rounded-lg border ${style.split(" ")[0]} p-4 hover:bg-[var(--bg-card-hover)] transition-all`}
+                href={`/relics/${relic.id}`}
+                className={`bg-[var(--bg-card)] rounded-lg border ${style.split(" ")[0]} p-4 hover:bg-[var(--bg-card-hover)] transition-all cursor-pointer block`}
               >
                 <div className="flex gap-3">
                   {relic.image_url && (
@@ -127,7 +129,7 @@ export default function RelicsPage() {
                     </p>
                   </div>
                 </div>
-              </div>
+              </Link>
             );
           })}
         </div>

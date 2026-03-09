@@ -1,0 +1,388 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import { useParams } from "next/navigation";
+import Link from "next/link";
+import type { Card } from "@/lib/api";
+import RichDescription from "@/app/components/RichDescription";
+
+const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
+
+const colorMapSolid: Record<string, string> = {
+  ironclad: "border-red-700",
+  silent: "border-green-700",
+  defect: "border-blue-700",
+  necrobinder: "border-purple-700",
+  regent: "border-orange-600",
+  colorless: "border-gray-500",
+  curse: "border-red-900",
+  status: "border-gray-600",
+};
+
+const rarityColors: Record<string, string> = {
+  Basic: "text-gray-400",
+  Common: "text-gray-300",
+  Uncommon: "text-blue-400",
+  Rare: "text-[var(--accent-gold)]",
+  Ancient: "text-purple-400",
+  Curse: "text-red-400",
+  Status: "text-gray-500",
+  Event: "text-emerald-400",
+  Token: "text-gray-500",
+  Quest: "text-amber-400",
+};
+
+const typeIcons: Record<string, string> = {
+  Attack: "\u2694",
+  Skill: "\uD83D\uDEE1",
+  Power: "\u2726",
+  Status: "\u25C6",
+  Curse: "\u2620",
+  Quest: "\u2605",
+};
+
+const keywordTooltips: Record<string, string> = {
+  Exhaust: "Remove this card from your deck when played.",
+  Ethereal: "If this card is in your hand at end of turn, discard it.",
+  Innate: "Always appears in your opening hand.",
+  Unplayable: "Cannot be played from your hand.",
+  Retain: "Keep this card in your hand at end of turn.",
+  Sly: "Can be played from the discard pile.",
+  Eternal: "Cannot be removed from your deck.",
+};
+
+const energyIconMap: Record<string, string> = {
+  ironclad: "ironclad",
+  silent: "silent",
+  defect: "defect",
+  necrobinder: "necrobinder",
+  regent: "regent",
+  colorless: "colorless",
+};
+
+function getUpgradedValue(
+  base: number | null,
+  upgradeVal: string | number | null | undefined
+): number | null {
+  if (base == null || upgradeVal == null) return base;
+  if (typeof upgradeVal === "number") return upgradeVal;
+  if (typeof upgradeVal === "string" && upgradeVal.startsWith("+"))
+    return base + parseInt(upgradeVal);
+  return base;
+}
+
+function getUpgradedDescription(card: Card, upgraded: boolean): string {
+  let desc = (card.description || "").replace(/\n/g, " ");
+  const u = upgraded && card.upgrade ? card.upgrade : null;
+  const vars = card.vars || {};
+
+  if (u) {
+    for (const [key, upVal] of Object.entries(u)) {
+      if (upVal == null) continue;
+      const varKey = Object.keys(vars).find(
+        (k) => k.toLowerCase() === key.toLowerCase()
+      );
+      if (varKey && vars[varKey] != null) {
+        const base = vars[varKey];
+        const upgradedVal = getUpgradedValue(base, upVal);
+        if (upgradedVal !== null && upgradedVal !== base) {
+          const baseStr = String(base);
+          const upgradedStr = String(upgradedVal);
+          desc = desc.replace(new RegExp(`\\b${baseStr}\\b`), upgradedStr);
+        }
+      }
+      if (key.toLowerCase() === "energy") {
+        const baseEnergy = vars["Energy"] ?? 1;
+        const upEnergy = getUpgradedValue(baseEnergy, upVal) ?? baseEnergy;
+        desc = desc.replace(/\[energy:(\d+)\]/, `[energy:${upEnergy}]`);
+      }
+    }
+  }
+
+  return desc;
+}
+
+export default function CardDetailPage() {
+  const params = useParams();
+  const id = params.id as string;
+
+  const [card, setCard] = useState<Card | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [notFound, setNotFound] = useState(false);
+  const [upgraded, setUpgraded] = useState(false);
+  const [betaArt, setBetaArt] = useState(false);
+
+  useEffect(() => {
+    if (!id) return;
+    setLoading(true);
+    setNotFound(false);
+    fetch(`${API}/api/cards/${id}`)
+      .then((r) => {
+        if (!r.ok) {
+          setNotFound(true);
+          return null;
+        }
+        return r.json();
+      })
+      .then((data) => {
+        if (data) setCard(data);
+      })
+      .catch(() => setNotFound(true))
+      .finally(() => setLoading(false));
+  }, [id]);
+
+  if (loading) {
+    return (
+      <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="text-center py-12 text-[var(--text-muted)]">
+          Loading...
+        </div>
+      </div>
+    );
+  }
+
+  if (notFound || !card) {
+    return (
+      <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <Link
+          href="/cards"
+          className="inline-flex items-center gap-1 text-sm text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors mb-6"
+        >
+          &larr; Back to Cards
+        </Link>
+        <div className="text-center py-12">
+          <h1 className="text-2xl font-bold text-[var(--text-primary)] mb-2">
+            Card Not Found
+          </h1>
+          <p className="text-[var(--text-muted)]">
+            No card exists with ID &ldquo;{id}&rdquo;.
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  const u = upgraded && card.upgrade ? card.upgrade : null;
+  const dmg = u ? getUpgradedValue(card.damage, u.damage) : card.damage;
+  const blk = u ? getUpgradedValue(card.block, u.block) : card.block;
+  const cost = u && u.cost != null ? (u.cost as number) : card.cost;
+  const isUpgraded = upgraded && card.upgrade != null;
+  const hasBetaArt = !!card.beta_image_url;
+  const hasUpgrade = !!card.upgrade;
+
+  const imgUrl =
+    betaArt && card.beta_image_url
+      ? card.beta_image_url
+      : card.image_url || card.beta_image_url;
+
+  const descText = getUpgradedDescription(card, upgraded);
+  const energyIcon = energyIconMap[card.color] || "colorless";
+
+  return (
+    <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <Link
+        href="/cards"
+        className="inline-flex items-center gap-1 text-sm text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors mb-6"
+      >
+        &larr; Back to Cards
+      </Link>
+
+      <div
+        className={`bg-[var(--bg-card)] rounded-2xl border-2 ${
+          isUpgraded
+            ? "border-emerald-600"
+            : colorMapSolid[card.color] || "border-[var(--border-subtle)]"
+        } shadow-2xl shadow-black/50 overflow-hidden`}
+      >
+        {/* Image */}
+        {imgUrl && (
+          <div className="bg-black/40">
+            <img
+              src={`${API}${imgUrl}`}
+              alt={card.name}
+              className="w-full object-contain max-h-80"
+              crossOrigin="anonymous"
+            />
+          </div>
+        )}
+
+        <div className="p-5 sm:p-6">
+          {/* Header: Name + Cost */}
+          <div className="flex items-start justify-between mb-4">
+            <h1 className="text-2xl font-bold text-[var(--text-primary)] leading-tight">
+              {card.name}
+              {isUpgraded && <span className="text-emerald-400">+</span>}
+            </h1>
+            <div className="ml-3 flex-shrink-0 flex items-center gap-1.5">
+              <span
+                className={`inline-flex items-center justify-center w-10 h-10 rounded-full bg-[var(--bg-primary)] border text-xl font-bold ${
+                  isUpgraded && u?.cost != null
+                    ? "border-emerald-700/50 text-emerald-400"
+                    : "border-[var(--border-subtle)] text-[var(--accent-gold)]"
+                }`}
+              >
+                {card.is_x_cost ? "X" : cost}
+              </span>
+              {(card.star_cost != null || card.is_x_star_cost) && (
+                <span className="inline-flex items-center gap-0.5 px-2 py-1 rounded-full bg-[var(--bg-primary)] border border-amber-700/40 text-sm font-bold text-amber-300">
+                  {card.is_x_star_cost ? "X" : card.star_cost}
+                  <img
+                    src={`${API}/static/images/icons/star_icon.png`}
+                    alt="star"
+                    className="w-4 h-4"
+                    crossOrigin="anonymous"
+                  />
+                </span>
+              )}
+            </div>
+          </div>
+
+          {/* Metadata: Type / Rarity / Color / Target */}
+          <div className="flex items-center gap-2 mb-5 text-sm">
+            <span className="text-[var(--text-secondary)]">
+              {typeIcons[card.type] || ""} {card.type}
+            </span>
+            <span className="text-[var(--text-muted)]">&middot;</span>
+            <span className={rarityColors[card.rarity] || "text-gray-400"}>
+              {card.rarity}
+            </span>
+            <span className="text-[var(--text-muted)]">&middot;</span>
+            <span className="text-[var(--text-muted)] capitalize">
+              {card.color}
+            </span>
+            {card.target && card.target !== "None" && card.target !== "Self" && (
+              <>
+                <span className="text-[var(--text-muted)]">&middot;</span>
+                <span className="text-[var(--text-muted)]">
+                  {card.target.replace(/([A-Z])/g, " $1").trim()}
+                </span>
+              </>
+            )}
+          </div>
+
+          {/* Stats: DMG / BLK */}
+          {(dmg || blk) && (
+            <div className="flex gap-3 mb-5">
+              {dmg && (
+                <span
+                  className={`text-sm px-3 py-1 rounded border ${
+                    isUpgraded && u?.damage
+                      ? "bg-emerald-950/40 text-emerald-300 border-emerald-900/30"
+                      : "bg-red-950/50 text-red-300 border-red-900/30"
+                  }`}
+                >
+                  {dmg}
+                  {card.hit_count && card.hit_count > 1
+                    ? ` x${card.hit_count}`
+                    : ""}{" "}
+                  DMG
+                </span>
+              )}
+              {blk && (
+                <span
+                  className={`text-sm px-3 py-1 rounded border ${
+                    isUpgraded && u?.block
+                      ? "bg-emerald-950/40 text-emerald-300 border-emerald-900/30"
+                      : "bg-blue-950/50 text-blue-300 border-blue-900/30"
+                  }`}
+                >
+                  {blk} BLK
+                </span>
+              )}
+            </div>
+          )}
+
+          {/* Description */}
+          <div className="text-sm text-[var(--text-secondary)] leading-relaxed mb-5">
+            <RichDescription text={descText} energyIcon={energyIcon} />
+          </div>
+
+          {/* Powers Applied */}
+          {card.powers_applied && card.powers_applied.length > 0 && (
+            <div className="mb-5">
+              <h3 className="text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)] mb-2">
+                Powers Applied
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {card.powers_applied.map((pa) => (
+                  <span
+                    key={pa.power}
+                    className="text-xs px-2.5 py-1 rounded bg-purple-950/40 text-purple-300 border border-purple-900/30"
+                  >
+                    {pa.power.replace(/([A-Z])/g, " $1").trim()}
+                    {pa.amount ? ` ${pa.amount}` : ""}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Keywords */}
+          {card.keywords && card.keywords.length > 0 && (
+            <div className="flex flex-wrap gap-1.5 mb-5">
+              {card.keywords.map((kw) => (
+                <span
+                  key={kw}
+                  className="text-xs px-2 py-1 rounded bg-[var(--bg-primary)] text-[var(--accent-gold-light)] border border-[var(--accent-gold)]/20"
+                >
+                  {kw}
+                  {keywordTooltips[kw] && (
+                    <span className="text-[var(--text-muted)] ml-1.5">
+                      &mdash; {keywordTooltips[kw]}
+                    </span>
+                  )}
+                </span>
+              ))}
+            </div>
+          )}
+
+          {/* Tags */}
+          {card.tags && card.tags.length > 0 && (
+            <div className="flex flex-wrap gap-1.5 mb-5">
+              {card.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="text-[11px] px-2 py-0.5 rounded bg-[var(--bg-primary)] text-[var(--text-muted)] border border-[var(--border-subtle)]"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
+
+          {/* Toggle buttons */}
+          {(hasBetaArt || hasUpgrade) && (
+            <div className="flex justify-end gap-2 pt-4 border-t border-[var(--border-subtle)]">
+              {hasBetaArt && (
+                <button
+                  onClick={() => setBetaArt(!betaArt)}
+                  className={`text-base w-9 h-9 flex items-center justify-center rounded transition-colors ${
+                    betaArt
+                      ? "bg-amber-950/60 border border-amber-700/50"
+                      : "bg-[var(--bg-primary)] border border-[var(--border-subtle)] opacity-50 hover:opacity-100"
+                  }`}
+                  title={betaArt ? "Show normal art" : "Show beta art"}
+                >
+                  ✏️
+                </button>
+              )}
+              {hasUpgrade && (
+                <button
+                  onClick={() => setUpgraded(!upgraded)}
+                  className={`text-base w-9 h-9 flex items-center justify-center rounded transition-colors ${
+                    upgraded
+                      ? "bg-emerald-950/60 border border-emerald-700/50"
+                      : "bg-[var(--bg-primary)] border border-[var(--border-subtle)] opacity-50 hover:opacity-100"
+                  }`}
+                  title={upgraded ? "Show base card" : "Show upgraded"}
+                >
+                  🔨
+                </button>
+              )}
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}

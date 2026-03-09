@@ -63,6 +63,19 @@ export default function Navbar() {
             </span>
           </Link>
 
+          <div className="flex items-center gap-2">
+            {/* Search trigger */}
+            <button
+              onClick={() => document.dispatchEvent(new KeyboardEvent("keydown", { key: ".", bubbles: true }))}
+              className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] text-sm text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:border-[var(--border-accent)] transition-colors"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+              <span className="hidden sm:inline">Press</span>
+              <kbd className="text-xs border border-[var(--border-subtle)] rounded px-1.5 py-0.5">.</kbd>
+            </button>
+
           {/* Burger button — always visible */}
           <div className="relative">
             <button
@@ -109,6 +122,7 @@ export default function Navbar() {
                 </div>
               </div>
             )}
+          </div>
           </div>
         </div>
       </div>

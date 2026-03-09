@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import type { Potion } from "@/lib/api";
+import Link from "next/link";
 import SearchFilter from "../components/SearchFilter";
 import RichDescription from "../components/RichDescription";
 
@@ -68,9 +69,10 @@ export default function PotionsPage() {
               rarityColors[potion.rarity] ||
               "border-[var(--border-subtle)] text-gray-400";
             return (
-              <div
+              <Link
                 key={potion.id}
-                className={`bg-[var(--bg-card)] rounded-lg border ${style.split(" ")[0]} p-4 hover:bg-[var(--bg-card-hover)] transition-all`}
+                href={`/potions/${potion.id}`}
+                className={`bg-[var(--bg-card)] rounded-lg border ${style.split(" ")[0]} p-4 hover:bg-[var(--bg-card-hover)] transition-all cursor-pointer block`}
               >
                 <div className="flex gap-3">
                   {potion.image_url && (
@@ -98,7 +100,7 @@ export default function PotionsPage() {
                     </p>
                   </div>
                 </div>
-              </div>
+              </Link>
             );
           })}
         </div>
