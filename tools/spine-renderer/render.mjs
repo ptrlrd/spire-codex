@@ -46,12 +46,24 @@ class NodeTexture extends Texture {
   dispose() {}
 }
 
-async function renderMonster(monsterDir, monsterName) {
-  const skelPath = path.join(monsterDir, `${monsterName}.skel`);
-  const atlasPath = path.join(monsterDir, `${monsterName}.atlas`);
-  const pngPath = path.join(monsterDir, `${monsterName}.png`);
+function findFile(dir, name, ext) {
+  const exact = path.join(dir, `${name}${ext}`);
+  if (fs.existsSync(exact)) return exact;
+  // Fallback: find any file with matching extension (handles filename mismatches/typos)
+  const files = fs.readdirSync(dir).filter(f => f.endsWith(ext) && !f.endsWith(".import"));
+  if (files.length > 0) {
+    console.log(`  Using fallback ${ext}: ${files[0]}`);
+    return path.join(dir, files[0]);
+  }
+  return null;
+}
 
-  if (!fs.existsSync(skelPath) || !fs.existsSync(atlasPath) || !fs.existsSync(pngPath)) {
+async function renderMonster(monsterDir, monsterName) {
+  const skelPath = findFile(monsterDir, monsterName, ".skel");
+  const atlasPath = findFile(monsterDir, monsterName, ".atlas");
+  const pngPath = findFile(monsterDir, monsterName, ".png");
+
+  if (!skelPath || !atlasPath || !pngPath) {
     console.warn(`  Skipping ${monsterName}: missing files`);
     return false;
   }
@@ -103,8 +115,16 @@ async function renderMonster(monsterDir, monsterName) {
 
   skeleton.updateWorldTransform(Physics.reset);
 
-  // Compute bounds (exclude shadow/ground slots for tighter framing)
-  const SHADOW_NAMES = new Set(["shadow", "shadow2", "ground", "ground_shadow"]);
+  // Compute bounds (exclude shadow/ground/VFX slots for tighter framing)
+  const EXCLUDE_EXACT = new Set(["shadow", "shadow2", "ground", "ground_shadow", "main shadow", "sword shadow"]);
+  const EXCLUDE_PATTERNS = [/path/i, /whoosh/i, /windpath/i, /vulnerable/i, /projectile/i];
+  function shouldExcludeSlot(slotName, attName) {
+    if (EXCLUDE_EXACT.has(slotName) || EXCLUDE_EXACT.has(attName)) return true;
+    for (const pat of EXCLUDE_PATTERNS) {
+      if (pat.test(slotName) || pat.test(attName)) return true;
+    }
+    return false;
+  }
   let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
   const slots = skeleton.slots;
   for (const slot of slots) {
@@ -112,7 +132,7 @@ async function renderMonster(monsterDir, monsterName) {
     if (!attachment) continue;
     const slotName = slot.data.name.toLowerCase();
     const attName = (attachment.name || "").toLowerCase();
-    if (SHADOW_NAMES.has(slotName) || SHADOW_NAMES.has(attName)) continue;
+    if (shouldExcludeSlot(slotName, attName)) continue;
     if (attachment.computeWorldVertices) {
       const verts = new Float32Array(1000);
       let numFloats = 0;
