@@ -86,8 +86,13 @@ async function renderMonster(monsterDir, monsterName) {
   const skelBytes = fs.readFileSync(skelPath);
   const skelData = skelBinary.readSkeletonData(new Uint8Array(skelBytes));
 
-  // Create skeleton and set to setup pose
+  // Create skeleton, apply default skin, and set to setup pose
   const skeleton = new Skeleton(skelData);
+  const defaultSkin = skelData.findSkin("default");
+  if (defaultSkin) {
+    skeleton.setSkin(defaultSkin);
+    skeleton.setSlotsToSetupPose();
+  }
   skeleton.setToSetupPose();
 
   // Try to apply idle animation

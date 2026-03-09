@@ -65,6 +65,11 @@ async function renderSkel(skelPath, outPath) {
   }
 
   const skeleton = new Skeleton(skelData);
+  const defaultSkin = skelData.findSkin("default");
+  if (defaultSkin) {
+    skeleton.setSkin(defaultSkin);
+    skeleton.setSlotsToSetupPose();
+  }
   skeleton.setToSetupPose();
 
   // Apply idle animation
