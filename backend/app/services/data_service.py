@@ -97,6 +97,18 @@ def load_achievements() -> list[dict]:
         return json.load(f)
 
 
+@lru_cache(maxsize=1)
+def load_epochs() -> list[dict]:
+    with open(DATA_DIR / "epochs.json", "r", encoding="utf-8") as f:
+        return json.load(f)
+
+
+@lru_cache(maxsize=1)
+def load_stories() -> list[dict]:
+    with open(DATA_DIR / "stories.json", "r", encoding="utf-8") as f:
+        return json.load(f)
+
+
 def get_stats() -> dict:
     return {
         "cards": len(load_cards()),
@@ -114,4 +126,5 @@ def get_stats() -> dict:
         "afflictions": len(load_afflictions()),
         "modifiers": len(load_modifiers()),
         "achievements": len(load_achievements()),
+        "epochs": len(load_epochs()),
     }

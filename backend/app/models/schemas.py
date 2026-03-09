@@ -203,6 +203,28 @@ class Achievement(BaseModel):
     description: str
 
 
+class Epoch(BaseModel):
+    id: str
+    title: str
+    description: str | None = None
+    era: str
+    era_position: int
+    sort_order: int
+    story_id: str | None = None
+    unlock_info: str | None = None
+    unlock_text: str | None = None
+    unlocks_cards: list[str] | None = None
+    unlocks_relics: list[str] | None = None
+    unlocks_potions: list[str] | None = None
+    expands_timeline: list[str] | None = None
+
+
+class Story(BaseModel):
+    id: str
+    name: str
+    epochs: list[str]
+
+
 class StatsResponse(BaseModel):
     cards: int
     characters: int
@@ -219,3 +241,4 @@ class StatsResponse(BaseModel):
     afflictions: int
     modifiers: int
     achievements: int
+    epochs: int

@@ -9,6 +9,7 @@ from encounter_parser import main as parse_encounters
 from event_parser import main as parse_events
 from power_parser import main as parse_powers
 from keyword_parser import main as parse_keywords_etc
+from epoch_parser import main as parse_epochs
 
 if __name__ == "__main__":
     print("=== Parsing Slay the Spire 2 Game Data ===\n")
@@ -22,4 +23,5 @@ if __name__ == "__main__":
     parse_events()
     parse_powers()
     parse_keywords_etc()
+    parse_epochs()
     print("\n=== Done! ===")

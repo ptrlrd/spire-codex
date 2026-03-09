@@ -191,6 +191,28 @@ export interface Achievement {
   description: string;
 }
 
+export interface Epoch {
+  id: string;
+  title: string;
+  description: string | null;
+  era: string;
+  era_position: number;
+  sort_order: number;
+  story_id: string | null;
+  unlock_info: string | null;
+  unlock_text: string | null;
+  unlocks_cards: string[] | null;
+  unlocks_relics: string[] | null;
+  unlocks_potions: string[] | null;
+  expands_timeline: string[] | null;
+}
+
+export interface Story {
+  id: string;
+  name: string;
+  epochs: string[];
+}
+
 export interface Stats {
   cards: number;
   characters: number;
@@ -207,6 +229,7 @@ export interface Stats {
   afflictions: number;
   modifiers: number;
   achievements: number;
+  epochs: number;
 }
 
 export const api = {
@@ -235,4 +258,8 @@ export const api = {
   getAfflictions: () => fetchApi<Affliction[]>("/api/afflictions"),
   getModifiers: () => fetchApi<Modifier[]>("/api/modifiers"),
   getAchievements: () => fetchApi<Achievement[]>("/api/achievements"),
+  getEpochs: (params?: string) => fetchApi<Epoch[]>(`/api/epochs${params ? `?${params}` : ""}`),
+  getEpoch: (id: string) => fetchApi<Epoch>(`/api/epochs/${id}`),
+  getStories: () => fetchApi<Story[]>("/api/stories"),
+  getStory: (id: string) => fetchApi<Story>(`/api/stories/${id}`),
 };
