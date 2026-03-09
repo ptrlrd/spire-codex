@@ -206,6 +206,46 @@ function renderNode(
  * - Icons: [energy:N], [star:N]
  * - Placeholders: [Card], [Relic], [Potion] (runtime-dynamic)
  */
+// Valid rich text tags that should NOT be cleaned
+const VALID_TAGS = new Set([
+  "gold", "red", "blue", "green", "purple", "orange", "pink", "aqua",
+  "sine", "jitter", "b",
+  "/gold", "/red", "/blue", "/green", "/purple", "/orange", "/pink", "/aqua",
+  "/sine", "/jitter", "/b",
+]);
+
+/**
+ * Clean SmartFormat template variables and dynamic bracket vars
+ * that can't be resolved statically.
+ */
+function cleanTemplateVars(text: string): string {
+  // Handle {Var:plural:singular|plural} → plural
+  text = text.replace(/\{(\w+):plural:([^|}]*)\|([^}]*)\}/g, (_m, _v, _s, p) => p);
+  // Handle {IsMultiplayer:A|B} → B (second option)
+  text = text.replace(/\{IsMultiplayer:([^|}]*)\|([^}]*)\}/g, (_m, _a, b) => b);
+  // Handle {Repeat:plural:|...} → ""
+  text = text.replace(/\{Repeat:plural:\|[^}]*\}/g, "");
+  // Handle remaining {VarName} → "X"
+  text = text.replace(/\{\w+\}/g, "X");
+  // Handle dynamic [Var] square bracket vars — but preserve valid rich text tags and icons
+  text = text.replace(/\[([^\]]+)\]/g, (match, inner) => {
+    // Preserve valid tags and icon tags like energy:2, star:1
+    if (VALID_TAGS.has(inner) || /^(energy|star):\d+$/.test(inner)) return match;
+    // Numeric vars → "X"
+    if (/^(Amount|Passive|Evoke|Damage Decrease|Damage Increase)$/i.test(inner)) return "X";
+    // Context-dependent names → strip
+    if (/^(Owner Name|OwnerName|On Player|Applier|Covering|Is Multiplayer)$/i.test(inner)) return "";
+    // Dotted property access like [Applier Name.String Value] → strip
+    if (inner.includes(".")) return "";
+    // Any other capitalized bracket content → strip
+    if (/^[A-Z]/.test(inner)) return "";
+    return match;
+  });
+  // Clean up extra spaces
+  text = text.replace(/  +/g, " ").trim();
+  return text;
+}
+
 export default function RichDescription({
   text,
   energyIcon = "colorless",
@@ -214,7 +254,8 @@ export default function RichDescription({
   energyIcon?: string;
 }) {
   keyCounter = 0;
-  const tokens = tokenize(text);
+  const cleaned = cleanTemplateVars(text);
+  const tokens = tokenize(cleaned);
   const tree = buildTree(tokens);
   return <>{renderNode(tree, energyIcon)}</>;
 }

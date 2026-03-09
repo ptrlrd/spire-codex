@@ -34,7 +34,9 @@ function ReferenceSection<T extends { id: string }>({
       .then(setData);
   }, [endpoint]);
 
-  if (data.length === 0) return null;
+  const filtered = data.filter((item) => !item.id.startsWith("MOCK_") && item.id !== "PERIOD");
+
+  if (filtered.length === 0) return null;
 
   return (
     <div className="mb-12">
@@ -43,11 +45,11 @@ function ReferenceSection<T extends { id: string }>({
       >
         {title}{" "}
         <span className="text-sm text-[var(--text-muted)] font-normal">
-          ({data.length})
+          ({filtered.length})
         </span>
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-        {data.map((item) => (
+        {filtered.map((item) => (
           <div
             key={item.id}
             className="bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] p-4 hover:bg-[var(--bg-card-hover)] transition-all"

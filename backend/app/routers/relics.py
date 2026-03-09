@@ -13,7 +13,7 @@ def get_relics(
     pool: str | None = Query(None, description="Filter by character pool (ironclad, silent, defect, necrobinder, regent, shared)"),
     search: str | None = Query(None, description="Search by name"),
 ):
-    relics = load_relics()
+    relics = [r for r in load_relics() if not r["id"].startswith("VAKUU_CARD")]
     if rarity:
         relics = [r for r in relics if r["rarity"].lower() == rarity.lower()]
     if pool:
