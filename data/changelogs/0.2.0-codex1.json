@@ -1,0 +1,1016 @@
+{
+  "app_id": 2868840,
+  "game_version": "0.2.0",
+  "build_id": "22238966",
+  "codex_version": 1,
+  "tag": "0.2.0-codex1",
+  "date": "2026-03-10",
+  "title": "v1.0.0 — Feature Complete",
+  "from_ref": "15e24ff",
+  "to_ref": "current",
+  "summary": {
+    "added": 0,
+    "removed": 0,
+    "changed": 79
+  },
+  "categories": [
+    {
+      "id": "characters",
+      "name": "Characters",
+      "old_count": 5,
+      "new_count": 5,
+      "changed": [
+        {
+          "id": "DEFECT",
+          "name": "The Defect",
+          "changes": [
+            {
+              "field": "quotes",
+              "old": "none",
+              "new": "8 fields"
+            },
+            {
+              "field": "dialogue_color",
+              "old": "none",
+              "new": "new"
+            },
+            {
+              "field": "dialogues",
+              "old": "none",
+              "new": "27 items"
+            }
+          ]
+        },
+        {
+          "id": "IRONCLAD",
+          "name": "The Ironclad",
+          "changes": [
+            {
+              "field": "quotes",
+              "old": "none",
+              "new": "7 fields"
+            },
+            {
+              "field": "dialogue_color",
+              "old": "none",
+              "new": "new"
+            },
+            {
+              "field": "dialogues",
+              "old": "none",
+              "new": "27 items"
+            }
+          ]
+        },
+        {
+          "id": "NECROBINDER",
+          "name": "The Necrobinder",
+          "changes": [
+            {
+              "field": "quotes",
+              "old": "none",
+              "new": "8 fields"
+            },
+            {
+              "field": "dialogue_color",
+              "old": "none",
+              "new": "new"
+            },
+            {
+              "field": "dialogues",
+              "old": "none",
+              "new": "28 items"
+            }
+          ]
+        },
+        {
+          "id": "REGENT",
+          "name": "The Regent",
+          "changes": [
+            {
+              "field": "quotes",
+              "old": "none",
+              "new": "8 fields"
+            },
+            {
+              "field": "dialogue_color",
+              "old": "none",
+              "new": "new"
+            },
+            {
+              "field": "dialogues",
+              "old": "none",
+              "new": "27 items"
+            }
+          ]
+        },
+        {
+          "id": "SILENT",
+          "name": "The Silent",
+          "changes": [
+            {
+              "field": "quotes",
+              "old": "none",
+              "new": "8 fields"
+            },
+            {
+              "field": "dialogue_color",
+              "old": "none",
+              "new": "new"
+            },
+            {
+              "field": "dialogues",
+              "old": "none",
+              "new": "28 items"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "potions",
+      "name": "Potions",
+      "old_count": 63,
+      "new_count": 63,
+      "changed": [
+        {
+          "id": "ASHWATER",
+          "name": "Ashwater",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "none",
+              "new": "ironclad"
+            }
+          ]
+        },
+        {
+          "id": "ATTACK_POTION",
+          "name": "Attack Potion",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "none",
+              "new": "shared"
+            }
+          ]
+        },
+        {
+          "id": "BEETLE_JUICE",
+          "name": "Beetle Juice",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "none",
+              "new": "shared"
+            }
+          ]
+        },
+        {
+          "id": "BLESSING_OF_THE_FORGE",
+          "name": "Blessing of the Forge",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "none",
+              "new": "shared"
+            }
+          ]
+        },
+        {
+          "id": "BLOCK_POTION",
+          "name": "Block Potion",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "none",
+              "new": "shared"
+            }
+          ]
+        },
+        {
+          "id": "BLOOD_POTION",
+          "name": "Blood Potion",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "none",
+              "new": "ironclad"
+            }
+          ]
+        },
+        {
+          "id": "BONE_BREW",
+          "name": "Bone Brew",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "none",
+              "new": "necrobinder"
+            }
+          ]
+        },
+        {
+          "id": "BOTTLED_POTENTIAL",
+          "name": "Bottled Potential",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "none",
+              "new": "shared"
+            }
+          ]
+        },
+        {
+          "id": "CLARITY",
+          "name": "Clarity Extract",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "none",
+              "new": "shared"
+            }
+          ]
+        },
+        {
+          "id": "COLORLESS_POTION",
+          "name": "Colorless Potion",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "none",
+              "new": "shared"
+            }
+          ]
+        },
+        {
+          "id": "COSMIC_CONCOCTION",
+          "name": "Cosmic Concoction",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "none",
+              "new": "regent"
+            }
+          ]
+        },
+        {
+          "id": "CUNNING_POTION",
+          "name": "Cunning Potion",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "none",
+              "new": "silent"
+            }
+          ]
+        },
+        {
+          "id": "CURE_ALL",
+          "name": "Cure All",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "none",
+              "new": "shared"
+            }
+          ]
+        },
+        {
+          "id": "DEXTERITY_POTION",
+          "name": "Dexterity Potion",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "none",
+              "new": "shared"
+            }
+          ]
+        },
+        {
+          "id": "DISTILLED_CHAOS",
+          "name": "Distilled Chaos",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "none",
+              "new": "shared"
+            }
+          ]
+        },
+        {
+          "id": "DROPLET_OF_PRECOGNITION",
+          "name": "Droplet of Precognition",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "none",
+              "new": "shared"
+            }
+          ]
+        },
+        {
+          "id": "DUPLICATOR",
+          "name": "Duplicator",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "none",
+              "new": "shared"
+            }
+          ]
+        },
+        {
+          "id": "ENERGY_POTION",
+          "name": "Energy Potion",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "none",
+              "new": "shared"
+            }
+          ]
+        },
+        {
+          "id": "ENTROPIC_BREW",
+          "name": "Entropic Brew",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "none",
+              "new": "shared"
+            }
+          ]
+        },
+        {
+          "id": "ESSENCE_OF_DARKNESS",
+          "name": "Essence of Darkness",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "none",
+              "new": "defect"
+            }
+          ]
+        },
+        {
+          "id": "EXPLOSIVE_AMPOULE",
+          "name": "Explosive Ampoule",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "none",
+              "new": "shared"
+            }
+          ]
+        },
+        {
+          "id": "FAIRY_IN_A_BOTTLE",
+          "name": "Fairy in a Bottle",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "none",
+              "new": "shared"
+            }
+          ]
+        },
+        {
+          "id": "FIRE_POTION",
+          "name": "Fire Potion",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "none",
+              "new": "shared"
+            }
+          ]
+        },
+        {
+          "id": "FLEX_POTION",
+          "name": "Flex Potion",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "none",
+              "new": "shared"
+            }
+          ]
+        },
+        {
+          "id": "FOCUS_POTION",
+          "name": "Focus Potion",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "none",
+              "new": "defect"
+            }
+          ]
+        },
+        {
+          "id": "FORTIFIER",
+          "name": "Fortifier",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "none",
+              "new": "shared"
+            }
+          ]
+        },
+        {
+          "id": "FOUL_POTION",
+          "name": "Foul Potion",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "none",
+              "new": "event"
+            }
+          ]
+        },
+        {
+          "id": "FRUIT_JUICE",
+          "name": "Fruit Juice",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "none",
+              "new": "shared"
+            }
+          ]
+        },
+        {
+          "id": "FYSH_OIL",
+          "name": "Fysh Oil",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "none",
+              "new": "shared"
+            }
+          ]
+        },
+        {
+          "id": "GAMBLERS_BREW",
+          "name": "Gambler's Brew",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "none",
+              "new": "shared"
+            }
+          ]
+        },
+        {
+          "id": "GHOST_IN_A_JAR",
+          "name": "Ghost in a Jar",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "none",
+              "new": "silent"
+            }
+          ]
+        },
+        {
+          "id": "GIGANTIFICATION_POTION",
+          "name": "Gigantification Potion",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "none",
+              "new": "shared"
+            }
+          ]
+        },
+        {
+          "id": "GLOWWATER_POTION",
+          "name": "Glowwater Potion",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "none",
+              "new": "event"
+            }
+          ]
+        },
+        {
+          "id": "HEART_OF_IRON",
+          "name": "Heart of Iron",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "none",
+              "new": "shared"
+            }
+          ]
+        },
+        {
+          "id": "KINGS_COURAGE",
+          "name": "King's Courage",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "none",
+              "new": "regent"
+            }
+          ]
+        },
+        {
+          "id": "LIQUID_BRONZE",
+          "name": "Liquid Bronze",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "none",
+              "new": "shared"
+            }
+          ]
+        },
+        {
+          "id": "LIQUID_MEMORIES",
+          "name": "Liquid Memories",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "none",
+              "new": "shared"
+            }
+          ]
+        },
+        {
+          "id": "LUCKY_TONIC",
+          "name": "Lucky Tonic",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "none",
+              "new": "shared"
+            }
+          ]
+        },
+        {
+          "id": "MAZALETHS_GIFT",
+          "name": "Mazaleth's Gift",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "none",
+              "new": "shared"
+            }
+          ]
+        },
+        {
+          "id": "OROBIC_ACID",
+          "name": "Orobic Acid",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "none",
+              "new": "shared"
+            }
+          ]
+        },
+        {
+          "id": "POISON_POTION",
+          "name": "Poison Potion",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "none",
+              "new": "silent"
+            }
+          ]
+        },
+        {
+          "id": "POTION_OF_BINDING",
+          "name": "Potion of Binding",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "none",
+              "new": "shared"
+            }
+          ]
+        },
+        {
+          "id": "POTION_OF_CAPACITY",
+          "name": "Potion of Capacity",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "none",
+              "new": "defect"
+            }
+          ]
+        },
+        {
+          "id": "POTION_OF_DOOM",
+          "name": "Potion of Doom",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "none",
+              "new": "necrobinder"
+            }
+          ]
+        },
+        {
+          "id": "POTION_SHAPED_ROCK",
+          "name": "Potion-Shaped Rock",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "none",
+              "new": "shared"
+            }
+          ]
+        },
+        {
+          "id": "POT_OF_GHOULS",
+          "name": "Pot of Ghouls",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "none",
+              "new": "necrobinder"
+            }
+          ]
+        },
+        {
+          "id": "POWDERED_DEMISE",
+          "name": "Powdered Demise",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "none",
+              "new": "shared"
+            }
+          ]
+        },
+        {
+          "id": "POWER_POTION",
+          "name": "Power Potion",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "none",
+              "new": "shared"
+            }
+          ]
+        },
+        {
+          "id": "RADIANT_TINCTURE",
+          "name": "Radiant Tincture",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "none",
+              "new": "shared"
+            }
+          ]
+        },
+        {
+          "id": "REGEN_POTION",
+          "name": "Regen Potion",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "none",
+              "new": "shared"
+            }
+          ]
+        },
+        {
+          "id": "SHACKLING_POTION",
+          "name": "Shackling Potion",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "none",
+              "new": "shared"
+            }
+          ]
+        },
+        {
+          "id": "SHIP_IN_A_BOTTLE",
+          "name": "Ship in a Bottle",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "none",
+              "new": "shared"
+            }
+          ]
+        },
+        {
+          "id": "SKILL_POTION",
+          "name": "Skill Potion",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "none",
+              "new": "shared"
+            }
+          ]
+        },
+        {
+          "id": "SNECKO_OIL",
+          "name": "Snecko Oil",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "none",
+              "new": "shared"
+            }
+          ]
+        },
+        {
+          "id": "SOLDIERS_STEW",
+          "name": "Soldier's Stew",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "none",
+              "new": "ironclad"
+            }
+          ]
+        },
+        {
+          "id": "SPEED_POTION",
+          "name": "Speed Potion",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "none",
+              "new": "shared"
+            }
+          ]
+        },
+        {
+          "id": "STABLE_SERUM",
+          "name": "Stable Serum",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "none",
+              "new": "shared"
+            }
+          ]
+        },
+        {
+          "id": "STAR_POTION",
+          "name": "Star Potion",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "none",
+              "new": "regent"
+            }
+          ]
+        },
+        {
+          "id": "STRENGTH_POTION",
+          "name": "Strength Potion",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "none",
+              "new": "shared"
+            }
+          ]
+        },
+        {
+          "id": "SWIFT_POTION",
+          "name": "Swift Potion",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "none",
+              "new": "shared"
+            }
+          ]
+        },
+        {
+          "id": "TOUCH_OF_INSANITY",
+          "name": "Touch of Insanity",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "none",
+              "new": "shared"
+            }
+          ]
+        },
+        {
+          "id": "VULNERABLE_POTION",
+          "name": "Vulnerable Potion",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "none",
+              "new": "shared"
+            }
+          ]
+        },
+        {
+          "id": "WEAK_POTION",
+          "name": "Weak Potion",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "none",
+              "new": "shared"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "epochs",
+      "name": "Epochs",
+      "old_count": 57,
+      "new_count": 57,
+      "changed": [
+        {
+          "id": "ACT3_B_EPOCH",
+          "name": "Elsewhere",
+          "changes": [
+            {
+              "field": "era_name",
+              "old": "none",
+              "new": "Seeds"
+            },
+            {
+              "field": "era_year",
+              "old": "none",
+              "new": "0"
+            }
+          ]
+        },
+        {
+          "id": "COLORLESS1_EPOCH",
+          "name": "Preon",
+          "changes": [
+            {
+              "field": "era_name",
+              "old": "none",
+              "new": "Prehistoria"
+            },
+            {
+              "field": "era_year",
+              "old": "none",
+              "new": "???"
+            }
+          ]
+        },
+        {
+          "id": "CUSTOM_AND_SEEDS_EPOCH",
+          "name": "Seeds",
+          "changes": [
+            {
+              "field": "era_name",
+              "old": "none",
+              "new": "Seeds"
+            },
+            {
+              "field": "era_year",
+              "old": "none",
+              "new": "0"
+            }
+          ]
+        },
+        {
+          "id": "NECROBINDER2_EPOCH",
+          "name": "The Twelve",
+          "changes": [
+            {
+              "field": "era_name",
+              "old": "none",
+              "new": "Doors"
+            },
+            {
+              "field": "era_year",
+              "old": "none",
+              "new": "2,733"
+            }
+          ]
+        },
+        {
+          "id": "NEOW_EPOCH",
+          "name": "Neow",
+          "changes": [
+            {
+              "field": "era_name",
+              "old": "none",
+              "new": "Doors"
+            },
+            {
+              "field": "era_year",
+              "old": "none",
+              "new": "2,733"
+            }
+          ]
+        },
+        {
+          "id": "OROBAS_EPOCH",
+          "name": "Orobas",
+          "changes": [
+            {
+              "field": "era_name",
+              "old": "none",
+              "new": "Flourish"
+            },
+            {
+              "field": "era_year",
+              "old": "none",
+              "new": "1,800"
+            }
+          ]
+        },
+        {
+          "id": "POTION1_EPOCH",
+          "name": "Open",
+          "changes": [
+            {
+              "field": "era_name",
+              "old": "none",
+              "new": "Doors"
+            },
+            {
+              "field": "era_year",
+              "old": "none",
+              "new": "2,733"
+            }
+          ]
+        },
+        {
+          "id": "POTION2_EPOCH",
+          "name": "The Calm",
+          "changes": [
+            {
+              "field": "era_name",
+              "old": "none",
+              "new": "Flourish"
+            },
+            {
+              "field": "era_year",
+              "old": "none",
+              "new": "1,800"
+            }
+          ]
+        },
+        {
+          "id": "RELIC4_EPOCH",
+          "name": "Consequences",
+          "changes": [
+            {
+              "field": "era_name",
+              "old": "none",
+              "new": "Infection"
+            },
+            {
+              "field": "era_year",
+              "old": "none",
+              "new": "1,201"
+            }
+          ]
+        },
+        {
+          "id": "SILENT1_EPOCH",
+          "name": "Fog Rolls In",
+          "changes": [
+            {
+              "field": "era_name",
+              "old": "none",
+              "new": "Doors"
+            },
+            {
+              "field": "era_year",
+              "old": "none",
+              "new": "2,733"
+            }
+          ]
+        },
+        {
+          "id": "SILENT2_EPOCH",
+          "name": "Bigger Prey",
+          "changes": [
+            {
+              "field": "era_name",
+              "old": "none",
+              "new": "Flourish"
+            },
+            {
+              "field": "era_year",
+              "old": "none",
+              "new": "1,800"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
