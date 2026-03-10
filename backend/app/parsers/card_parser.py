@@ -138,6 +138,11 @@ def parse_single_card(filepath: Path, localization: dict, card_pools: dict) -> d
     cost_up = re.search(r'UpgradeEnergyCost\((\d+)\)', content)
     if cost_up:
         cost_upgrade = int(cost_up.group(1))
+    # Alternative pattern: base.EnergyCost.UpgradeBy(-1)
+    if cost_upgrade is None:
+        cost_up2 = re.search(r'EnergyCost\.UpgradeBy\((-?\d+)\)', content)
+        if cost_up2:
+            cost_upgrade = cost + int(cost_up2.group(1))
 
     # Keywords from CanonicalKeywords array (most common pattern)
     canonical_kw_match = re.search(r'CanonicalKeywords\s*=>', content)
@@ -246,18 +251,36 @@ def parse_single_card(filepath: Path, localization: dict, card_pools: dict) -> d
         card["upgrade"]["cost"] = cost_upgrade
 
     # Upgrade power vars — property access: Xxx.UpgradeValueBy(Nm)
-    for pm in re.finditer(r'(\w+)\.UpgradeValueBy\((\d+)m\)', content):
+    for pm in re.finditer(r'(\w+)\.UpgradeValueBy\((-?\d+)m\)', content):
         var_name = pm.group(1)
         val = int(pm.group(2))
         if var_name not in ("Damage", "Block"):
-            card["upgrade"][var_name.lower()] = f"+{val}"
+            card["upgrade"][var_name.lower()] = f"{val:+d}"
 
     # Upgrade vars — dictionary access: ["VarName"].UpgradeValueBy(Nm)
-    for pm in re.finditer(r'\["(\w+)"\]\.UpgradeValueBy\((\d+)m\)', content):
+    for pm in re.finditer(r'\["(\w+)"\]\.UpgradeValueBy\((-?\d+)m\)', content):
         var_name = pm.group(1)
         val = int(pm.group(2))
         if var_name.lower() not in card["upgrade"]:
-            card["upgrade"][var_name.lower()] = f"+{val}"
+            card["upgrade"][var_name.lower()] = f"{val:+d}"
+
+    # Keyword upgrades: AddKeyword/RemoveKeyword inside OnUpgrade
+    upgrade_block_match = re.search(r'void\s+OnUpgrade\(\)\s*\{', content)
+    if upgrade_block_match:
+        start = upgrade_block_match.end()
+        depth = 1
+        i = start
+        while i < len(content) and depth > 0:
+            if content[i] == '{':
+                depth += 1
+            elif content[i] == '}':
+                depth -= 1
+            i += 1
+        upgrade_body = content[start:i - 1]
+        for km in re.finditer(r'AddKeyword\(CardKeyword\.(\w+)\)', upgrade_body):
+            card["upgrade"][f"add_{km.group(1).lower()}"] = True
+        for km in re.finditer(r'RemoveKeyword\(CardKeyword\.(\w+)\)', upgrade_body):
+            card["upgrade"][f"remove_{km.group(1).lower()}"] = True
 
     if not card["upgrade"]:
         card["upgrade"] = None

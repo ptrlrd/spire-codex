@@ -241,7 +241,9 @@
       "AfterimagePower": 1,
       "Afterimage": 1
     },
-    "upgrade": null,
+    "upgrade": {
+      "add_innate": true
+    },
     "image_url": "/static/images/cards/afterimage.png",
     "beta_image_url": null
   },
@@ -301,7 +303,9 @@
     "keywords": null,
     "tags": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "add_innate": true
+    },
     "image_url": "/static/images/cards/aggression.png",
     "beta_image_url": null
   },
@@ -330,7 +334,9 @@
     ],
     "tags": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "cost": 0
+    },
     "image_url": "/static/images/cards/alchemize.png",
     "beta_image_url": null
   },
@@ -453,7 +459,9 @@
     ],
     "tags": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "add_retain": true
+    },
     "image_url": "/static/images/cards/anointed.png",
     "beta_image_url": null
   },
@@ -520,7 +528,9 @@
     ],
     "tags": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "cost": 1
+    },
     "image_url": "/static/images/cards/apotheosis.png",
     "beta_image_url": null
   },
@@ -558,7 +568,9 @@
       "IntangiblePower": 1,
       "Intangible": 1
     },
-    "upgrade": null,
+    "upgrade": {
+      "remove_ethereal": true
+    },
     "image_url": "/static/images/cards/apparition.png",
     "beta_image_url": "/static/images/cards/beta/apparition.png"
   },
@@ -794,7 +806,9 @@
     "vars": {
       "Energy": 1
     },
-    "upgrade": null,
+    "upgrade": {
+      "cost": 0
+    },
     "image_url": "/static/images/cards/automation.png",
     "beta_image_url": "/static/images/cards/beta/automation.png"
   },
@@ -1015,7 +1029,9 @@
     "keywords": null,
     "tags": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "cost": 2
+    },
     "image_url": "/static/images/cards/barricade.png",
     "beta_image_url": null
   },
@@ -1112,7 +1128,9 @@
     "keywords": null,
     "tags": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "add_innate": true
+    },
     "image_url": "/static/images/cards/beacon_of_hope.png",
     "beta_image_url": "/static/images/cards/beta/beacon_of_hope.png"
   },
@@ -1385,7 +1403,9 @@
       "Stars": 1,
       "Forge": 5
     },
-    "upgrade": null,
+    "upgrade": {
+      "add_innate": true
+    },
     "image_url": "/static/images/cards/big_bang.png",
     "beta_image_url": "/static/images/cards/beta/big_bang.png"
   },
@@ -1683,7 +1703,9 @@
       "ExtraDamage": 1,
       "CalculatedDamage": 1
     },
-    "upgrade": null,
+    "upgrade": {
+      "cost": 0
+    },
     "image_url": "/static/images/cards/body_slam.png",
     "beta_image_url": null
   },
@@ -2245,7 +2267,9 @@
     "keywords": null,
     "tags": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "cost": 2
+    },
     "image_url": "/static/images/cards/bullet_time.png",
     "beta_image_url": null
   },
@@ -2556,7 +2580,9 @@
     "keywords": null,
     "tags": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "cost": 2
+    },
     "image_url": "/static/images/cards/calamity.png",
     "beta_image_url": "/static/images/cards/beta/calamity.png"
   },
@@ -2622,7 +2648,9 @@
     ],
     "tags": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "add_retain": true
+    },
     "image_url": "/static/images/cards/calculated_gamble.png",
     "beta_image_url": null
   },
@@ -2651,7 +2679,9 @@
     "vars": {
       "Cards": 1
     },
-    "upgrade": null,
+    "upgrade": {
+      "add_innate": true
+    },
     "image_url": "/static/images/cards/call_of_the_void.png",
     "beta_image_url": "/static/images/cards/beta/call_of_the_void.png"
   },
@@ -2994,7 +3024,9 @@
     ],
     "tags": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "remove_exhaust": true
+    },
     "image_url": "/static/images/cards/chill.png",
     "beta_image_url": null
   },
@@ -3719,7 +3751,9 @@
     "vars": {
       "Power": 1
     },
-    "upgrade": null,
+    "upgrade": {
+      "cost": 2
+    },
     "image_url": "/static/images/cards/corruption.png",
     "beta_image_url": null
   },
@@ -3847,7 +3881,9 @@
     "vars": {
       "CreativeAi": 1
     },
-    "upgrade": null,
+    "upgrade": {
+      "cost": 2
+    },
     "image_url": "/static/images/cards/creative_ai.png",
     "beta_image_url": null
   },
@@ -4146,7 +4182,9 @@
     "keywords": null,
     "tags": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "cost": 1
+    },
     "image_url": "/static/images/cards/dark_embrace.png",
     "beta_image_url": null
   },
@@ -4953,7 +4991,9 @@
       "Energy": 1,
       "Cards": 1
     },
-    "upgrade": null,
+    "upgrade": {
+      "cost": 2
+    },
     "image_url": "/static/images/cards/demesne.png",
     "beta_image_url": "/static/images/cards/beta/demesne.png"
   },
@@ -5023,7 +5063,9 @@
       "HpLoss": 1,
       "CalculationExtra": 1
     },
-    "upgrade": null,
+    "upgrade": {
+      "remove_exhaust": true
+    },
     "image_url": "/static/images/cards/demonic_shield.png",
     "beta_image_url": "/static/images/cards/beta/demonic_shield.png"
   },
@@ -5152,7 +5194,9 @@
     ],
     "tags": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "remove_exhaust": true
+    },
     "image_url": "/static/images/cards/discovery.png",
     "beta_image_url": null
   },
@@ -5247,7 +5291,9 @@
     ],
     "tags": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "cost": 0
+    },
     "image_url": "/static/images/cards/distraction.png",
     "beta_image_url": "/static/images/cards/beta/distraction.png"
   },
@@ -5309,7 +5355,9 @@
     "vars": {
       "StrengthPerVulnerable": 1
     },
-    "upgrade": null,
+    "upgrade": {
+      "remove_exhaust": true
+    },
     "image_url": "/static/images/cards/dominate.png",
     "beta_image_url": null
   },
@@ -5338,7 +5386,9 @@
     ],
     "tags": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "cost": 0
+    },
     "image_url": "/static/images/cards/double_energy.png",
     "beta_image_url": null
   },
@@ -5473,7 +5523,9 @@
     "vars": {
       "Cards": 3
     },
-    "upgrade": null,
+    "upgrade": {
+      "add_retain": true
+    },
     "image_url": "/static/images/cards/dredge.png",
     "beta_image_url": "/static/images/cards/beta/dredge.png"
   },
@@ -5569,7 +5621,9 @@
     "keywords": null,
     "tags": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "cost": 0
+    },
     "image_url": "/static/images/cards/dualcast.png",
     "beta_image_url": null
   },
@@ -5636,7 +5690,9 @@
     "vars": {
       "EchoForm": 1
     },
-    "upgrade": null,
+    "upgrade": {
+      "remove_ethereal": true
+    },
     "image_url": "/static/images/cards/echo_form.png",
     "beta_image_url": null
   },
@@ -5696,7 +5752,9 @@
     "vars": {
       "intangibleThreshold": 9
     },
-    "upgrade": null,
+    "upgrade": {
+      "cost": 1
+    },
     "image_url": "/static/images/cards/eidolon.png",
     "beta_image_url": "/static/images/cards/beta/eidolon.png"
   },
@@ -5884,7 +5942,9 @@
     "keywords": null,
     "tags": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "cost": 1
+    },
     "image_url": "/static/images/cards/entrench.png",
     "beta_image_url": "/static/images/cards/beta/entrench.png"
   },
@@ -5913,7 +5973,9 @@
     "vars": {
       "Cards": 1
     },
-    "upgrade": null,
+    "upgrade": {
+      "add_innate": true
+    },
     "image_url": "/static/images/cards/entropy.png",
     "beta_image_url": "/static/images/cards/beta/entropy.png"
   },
@@ -6145,7 +6207,9 @@
       "CalculationBase": 0,
       "CalculationExtra": 1
     },
-    "upgrade": null,
+    "upgrade": {
+      "cost": 1
+    },
     "image_url": "/static/images/cards/expect_a_fight.png",
     "beta_image_url": null
   },
@@ -6529,7 +6593,9 @@
       "FeralPower": 1,
       "Feral": 1
     },
-    "upgrade": null,
+    "upgrade": {
+      "cost": 1
+    },
     "image_url": "/static/images/cards/feral.png",
     "beta_image_url": "/static/images/cards/beta/feral.png"
   },
@@ -6859,7 +6925,9 @@
     "keywords": null,
     "tags": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "cost": 1
+    },
     "image_url": "/static/images/cards/flanking.png",
     "beta_image_url": null
   },
@@ -7169,7 +7237,9 @@
     ],
     "tags": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "cost": 1
+    },
     "image_url": "/static/images/cards/forbidden_grimoire.png",
     "beta_image_url": "/static/images/cards/beta/forbidden_grimoire.png"
   },
@@ -7294,7 +7364,9 @@
       "StrengthPower": 2,
       "Strength": 2
     },
-    "upgrade": null,
+    "upgrade": {
+      "strengthpower": "-1"
+    },
     "image_url": "/static/images/cards/friendship.png",
     "beta_image_url": null
   },
@@ -7420,7 +7492,9 @@
     "keywords": null,
     "tags": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "cost": 1
+    },
     "image_url": "/static/images/cards/fusion.png",
     "beta_image_url": null
   },
@@ -7889,7 +7963,9 @@
       "ExtraDamage": 1,
       "CalculatedDamage": 1
     },
-    "upgrade": null,
+    "upgrade": {
+      "add_retain": true
+    },
     "image_url": "/static/images/cards/gold_axe.png",
     "beta_image_url": null
   },
@@ -8023,7 +8099,8 @@
       "Damage": 4
     },
     "upgrade": {
-      "damage": "+2"
+      "damage": "+2",
+      "remove_exhaust": true
     },
     "image_url": "/static/images/cards/graveblast.png",
     "beta_image_url": "/static/images/cards/beta/graveblast.png"
@@ -8244,7 +8321,9 @@
     "keywords": null,
     "tags": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "cost": 1
+    },
     "image_url": "/static/images/cards/hammer_time.png",
     "beta_image_url": "/static/images/cards/beta/hammer_time.png"
   },
@@ -8397,7 +8476,9 @@
     "keywords": null,
     "tags": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "cost": 0
+    },
     "image_url": "/static/images/cards/havoc.png",
     "beta_image_url": null
   },
@@ -8624,7 +8705,9 @@
     "keywords": null,
     "tags": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "add_innate": true
+    },
     "image_url": "/static/images/cards/hello_world.png",
     "beta_image_url": "/static/images/cards/beta/hello_world.png"
   },
@@ -8651,7 +8734,9 @@
     "keywords": null,
     "tags": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "cost": 1
+    },
     "image_url": "/static/images/cards/hellraiser.png",
     "beta_image_url": null
   },
@@ -8857,7 +8942,8 @@
       "Block": 3
     },
     "upgrade": {
-      "block": "+2"
+      "block": "+2",
+      "remove_exhaust": true
     },
     "image_url": "/static/images/cards/hologram.png",
     "beta_image_url": null
@@ -9087,7 +9173,9 @@
     ],
     "tags": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "remove_exhaust": true
+    },
     "image_url": "/static/images/cards/ignition.png",
     "beta_image_url": "/static/images/cards/beta/ignition.png"
   },
@@ -9211,7 +9299,9 @@
     ],
     "tags": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "cost": 0
+    },
     "image_url": "/static/images/cards/infernal_blade.png",
     "beta_image_url": null
   },
@@ -9275,7 +9365,9 @@
     "keywords": null,
     "tags": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "add_innate": true
+    },
     "image_url": "/static/images/cards/infinite_blades.png",
     "beta_image_url": null
   },
@@ -9604,7 +9696,9 @@
     "keywords": null,
     "tags": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "add_innate": true
+    },
     "image_url": "/static/images/cards/juggling.png",
     "beta_image_url": "/static/images/cards/beta/juggling.png"
   },
@@ -9813,7 +9907,9 @@
       "VulnerablePower": 1,
       "Vulnerable": 1
     },
-    "upgrade": null,
+    "upgrade": {
+      "remove_exhaust": true
+    },
     "image_url": "/static/images/cards/know_thy_place.png",
     "beta_image_url": "/static/images/cards/beta/know_thy_place.png"
   },
@@ -10243,7 +10339,9 @@
     "vars": {
       "Cards": 1
     },
-    "upgrade": null,
+    "upgrade": {
+      "add_innate": true
+    },
     "image_url": "/static/images/cards/machine_learning.png",
     "beta_image_url": null
   },
@@ -10277,7 +10375,9 @@
       "Damage": 12,
       "Block": 8
     },
-    "upgrade": null,
+    "upgrade": {
+      "add_innate": true
+    },
     "image_url": null,
     "beta_image_url": null
   },
@@ -10462,7 +10562,9 @@
     "keywords": null,
     "tags": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "cost": 1
+    },
     "image_url": "/static/images/cards/master_planner.png",
     "beta_image_url": null
   },
@@ -10522,7 +10624,9 @@
     "keywords": null,
     "tags": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "cost": 1
+    },
     "image_url": "/static/images/cards/mayhem.png",
     "beta_image_url": null
   },
@@ -10732,7 +10836,9 @@
       "CalculationBase": 0,
       "CalculationExtra": 1
     },
-    "upgrade": null,
+    "upgrade": {
+      "remove_exhaust": true
+    },
     "image_url": "/static/images/cards/mimic.png",
     "beta_image_url": "/static/images/cards/beta/mimic.png"
   },
@@ -10765,7 +10871,9 @@
       "ExtraDamage": 1,
       "CalculatedDamage": 1
     },
-    "upgrade": null,
+    "upgrade": {
+      "cost": 0
+    },
     "image_url": "/static/images/cards/mind_blast.png",
     "beta_image_url": null
   },
@@ -10939,7 +11047,9 @@
       "CalculationBase": 0,
       "CalculationExtra": 1
     },
-    "upgrade": null,
+    "upgrade": {
+      "cost": 0
+    },
     "image_url": "/static/images/cards/mirage.png",
     "beta_image_url": null
   },
@@ -10969,7 +11079,8 @@
       "Damage": 7
     },
     "upgrade": {
-      "damage": "+2"
+      "damage": "+2",
+      "add_retain": true
     },
     "image_url": "/static/images/cards/misery.png",
     "beta_image_url": "/static/images/cards/beta/misery.png"
@@ -11097,7 +11208,9 @@
     "vars": {
       "StrengthLoss": 1
     },
-    "upgrade": null,
+    "upgrade": {
+      "cost": 2
+    },
     "image_url": "/static/images/cards/monarchs_gaze.png",
     "beta_image_url": null
   },
@@ -11126,7 +11239,9 @@
     "vars": {
       "Power": 1
     },
-    "upgrade": null,
+    "upgrade": {
+      "add_retain": true
+    },
     "image_url": "/static/images/cards/monologue.png",
     "beta_image_url": "/static/images/cards/beta/monologue.png"
   },
@@ -11184,7 +11299,9 @@
       "ExtraDamage": 1,
       "CalculatedDamage": 2
     },
-    "upgrade": null,
+    "upgrade": {
+      "cost": 2
+    },
     "image_url": "/static/images/cards/murder.png",
     "beta_image_url": "/static/images/cards/beta/murder.png"
   },
@@ -11433,7 +11550,9 @@
     ],
     "tags": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "cost": 2
+    },
     "image_url": "/static/images/cards/nightmare.png",
     "beta_image_url": null
   },
@@ -11525,7 +11644,9 @@
     "keywords": null,
     "tags": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "cost": 0
+    },
     "image_url": "/static/images/cards/nostalgia.png",
     "beta_image_url": "/static/images/cards/beta/nostalgia.png"
   },
@@ -11758,7 +11879,9 @@
     "vars": {
       "Energy": 1
     },
-    "upgrade": null,
+    "upgrade": {
+      "cost": 1
+    },
     "image_url": "/static/images/cards/orbit.png",
     "beta_image_url": null
   },
@@ -11919,7 +12042,9 @@
     "vars": {
       "Cards": 1
     },
-    "upgrade": null,
+    "upgrade": {
+      "cost": 0
+    },
     "image_url": "/static/images/cards/pagestorm.png",
     "beta_image_url": "/static/images/cards/beta/pagestorm.png"
   },
@@ -12782,7 +12907,9 @@
     "vars": {
       "Energy": 2
     },
-    "upgrade": null,
+    "upgrade": {
+      "remove_exhaust": true
+    },
     "image_url": "/static/images/cards/production.png",
     "beta_image_url": "/static/images/cards/beta/production.png"
   },
@@ -12811,7 +12938,9 @@
     ],
     "tags": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "remove_exhaust": true
+    },
     "image_url": "/static/images/cards/prolong.png",
     "beta_image_url": null
   },
@@ -12876,6 +13005,7 @@
       "CalculatedDamage": 11
     },
     "upgrade": {
+      "cost": 0,
       "calculationbase": "+5"
     },
     "image_url": "/static/images/cards/protector.png",
@@ -13114,7 +13244,9 @@
     "vars": {
       "Repeat": 4
     },
-    "upgrade": null,
+    "upgrade": {
+      "cost": 0
+    },
     "image_url": "/static/images/cards/quadcast.png",
     "beta_image_url": "/static/images/cards/beta/quadcast.png"
   },
@@ -13237,7 +13369,9 @@
     ],
     "tags": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "remove_exhaust": true
+    },
     "image_url": "/static/images/cards/rainbow.png",
     "beta_image_url": null
   },
@@ -13430,7 +13564,9 @@
     "keywords": null,
     "tags": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "add_retain": true
+    },
     "image_url": "/static/images/cards/reaper_form.png",
     "beta_image_url": "/static/images/cards/beta/reaper_form.png"
   },
@@ -14033,7 +14169,9 @@
       "Stars": 9,
       "StarCost": 5
     },
-    "upgrade": null,
+    "upgrade": {
+      "add_retain": true
+    },
     "image_url": "/static/images/cards/royal_gamble.png",
     "beta_image_url": "/static/images/cards/beta/royal_gamble.png"
   },
@@ -14130,7 +14268,9 @@
     ],
     "tags": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "cost": 0
+    },
     "image_url": "/static/images/cards/sacrifice.png",
     "beta_image_url": null
   },
@@ -14293,7 +14433,9 @@
     ],
     "tags": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "add_retain": true
+    },
     "image_url": "/static/images/cards/scrawl.png",
     "beta_image_url": "/static/images/cards/beta/scrawl.png"
   },
@@ -14417,7 +14559,9 @@
     ],
     "tags": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "remove_exhaust": true
+    },
     "image_url": "/static/images/cards/secret_technique.png",
     "beta_image_url": null
   },
@@ -14446,7 +14590,9 @@
     ],
     "tags": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "remove_exhaust": true
+    },
     "image_url": "/static/images/cards/secret_weapon.png",
     "beta_image_url": null
   },
@@ -14546,7 +14692,9 @@
       "SentryModePower": 1,
       "SentryMode": 1
     },
-    "upgrade": null,
+    "upgrade": {
+      "cost": 1
+    },
     "image_url": "/static/images/cards/sentry_mode.png",
     "beta_image_url": null
   },
@@ -14655,7 +14803,9 @@
       "Repeat": 7,
       "StarCost": 7
     },
-    "upgrade": null,
+    "upgrade": {
+      "cost": 1
+    },
     "image_url": "/static/images/cards/seven_stars.png",
     "beta_image_url": "/static/images/cards/beta/seven_stars.png"
   },
@@ -14746,7 +14896,9 @@
     "vars": {
       "Cards": 3
     },
-    "upgrade": null,
+    "upgrade": {
+      "cost": 0
+    },
     "image_url": "/static/images/cards/shadow_step.png",
     "beta_image_url": null
   },
@@ -14775,7 +14927,9 @@
     "vars": {
       "Power": 1
     },
-    "upgrade": null,
+    "upgrade": {
+      "cost": 0
+    },
     "image_url": "/static/images/cards/shadowmeld.png",
     "beta_image_url": null
   },
@@ -15118,7 +15272,9 @@
       "SignalBoostPower": 1,
       "SignalBoost": 1
     },
-    "upgrade": null,
+    "upgrade": {
+      "cost": 0
+    },
     "image_url": "/static/images/cards/signal_boost.png",
     "beta_image_url": null
   },
@@ -15630,7 +15786,9 @@
       "Repeat": 1,
       "baseDamage": 10
     },
-    "upgrade": null,
+    "upgrade": {
+      "cost": 1
+    },
     "image_url": "/static/images/cards/sovereign_blade.png",
     "beta_image_url": "/static/images/cards/beta/sovereign_blade.png"
   },
@@ -15692,7 +15850,9 @@
     "vars": {
       "Cards": 1
     },
-    "upgrade": null,
+    "upgrade": {
+      "cost": 1
+    },
     "image_url": "/static/images/cards/spectrum_shift.png",
     "beta_image_url": "/static/images/cards/beta/spectrum_shift.png"
   },
@@ -16117,7 +16277,9 @@
     "vars": {
       "Power": 1
     },
-    "upgrade": null,
+    "upgrade": {
+      "cost": 1
+    },
     "image_url": "/static/images/cards/stampede.png",
     "beta_image_url": null
   },
@@ -16177,7 +16339,9 @@
     ],
     "tags": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "cost": 0
+    },
     "image_url": "/static/images/cards/stoke.png",
     "beta_image_url": null
   },
@@ -16375,7 +16539,9 @@
     "keywords": null,
     "tags": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "cost": 0
+    },
     "image_url": "/static/images/cards/stratagem.png",
     "beta_image_url": "/static/images/cards/beta/stratagem.png"
   },
@@ -16567,7 +16733,9 @@
     "keywords": null,
     "tags": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "cost": 0
+    },
     "image_url": "/static/images/cards/subroutine.png",
     "beta_image_url": "/static/images/cards/beta/subroutine.png"
   },
@@ -16945,7 +17113,9 @@
       "SwordSagePower": 1,
       "SwordSage": 1
     },
-    "upgrade": null,
+    "upgrade": {
+      "cost": 1
+    },
     "image_url": "/static/images/cards/sword_sage.png",
     "beta_image_url": "/static/images/cards/beta/sword_sage.png"
   },
@@ -16977,7 +17147,9 @@
       "CalculationBase": 0,
       "CalculationExtra": 2
     },
-    "upgrade": null,
+    "upgrade": {
+      "remove_exhaust": true
+    },
     "image_url": "/static/images/cards/synchronize.png",
     "beta_image_url": "/static/images/cards/beta/synchronize.png"
   },
@@ -17099,7 +17271,9 @@
     "keywords": null,
     "tags": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "cost": 0
+    },
     "image_url": "/static/images/cards/tank.png",
     "beta_image_url": "/static/images/cards/beta/tank.png"
   },
@@ -17427,7 +17601,9 @@
     "vars": {
       "StarCost": 3
     },
-    "upgrade": null,
+    "upgrade": {
+      "add_innate": true
+    },
     "image_url": "/static/images/cards/the_sealed_throne.png",
     "beta_image_url": "/static/images/cards/beta/the_sealed_throne.png"
   },
@@ -17490,7 +17666,9 @@
     "vars": {
       "Cards": 2
     },
-    "upgrade": null,
+    "upgrade": {
+      "remove_exhaust": true
+    },
     "image_url": "/static/images/cards/thinking_ahead.png",
     "beta_image_url": null
   },
@@ -17660,7 +17838,9 @@
       "ExtraDamage": 1,
       "CalculatedDamage": 1
     },
-    "upgrade": null,
+    "upgrade": {
+      "add_retain": true
+    },
     "image_url": "/static/images/cards/times_up.png",
     "beta_image_url": null
   },
@@ -17687,7 +17867,9 @@
     "keywords": null,
     "tags": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "cost": 0
+    },
     "image_url": "/static/images/cards/tools_of_the_trade.png",
     "beta_image_url": null
   },
@@ -17777,7 +17959,9 @@
     "keywords": null,
     "tags": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "cost": 1
+    },
     "image_url": "/static/images/cards/tracking.png",
     "beta_image_url": "/static/images/cards/beta/tracking.png"
   },
@@ -17808,7 +17992,9 @@
     "vars": {
       "Energy": 1
     },
-    "upgrade": null,
+    "upgrade": {
+      "remove_exhaust": true
+    },
     "image_url": "/static/images/cards/transfigure.png",
     "beta_image_url": "/static/images/cards/beta/transfigure.png"
   },
@@ -17835,7 +18021,9 @@
     "keywords": null,
     "tags": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "add_innate": true
+    },
     "image_url": "/static/images/cards/trash_to_treasure.png",
     "beta_image_url": "/static/images/cards/beta/trash_to_treasure.png"
   },
@@ -17996,7 +18184,9 @@
     ],
     "tags": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "add_innate": true
+    },
     "image_url": "/static/images/cards/tyranny.png",
     "beta_image_url": "/static/images/cards/beta/tyranny.png"
   },
@@ -18155,7 +18345,9 @@
     "keywords": null,
     "tags": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "cost": 1
+    },
     "image_url": "/static/images/cards/unmovable.png",
     "beta_image_url": "/static/images/cards/beta/unmovable.png"
   },
@@ -18538,7 +18730,9 @@
       "CalculationBase": 0,
       "CalculationExtra": 1
     },
-    "upgrade": null,
+    "upgrade": {
+      "remove_exhaust": true
+    },
     "image_url": "/static/images/cards/voltaic.png",
     "beta_image_url": "/static/images/cards/beta/voltaic.png"
   },
@@ -18697,7 +18891,9 @@
     ],
     "tags": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "cost": 0
+    },
     "image_url": "/static/images/cards/white_noise.png",
     "beta_image_url": null
   },
@@ -18726,7 +18922,9 @@
     ],
     "tags": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "add_retain": true
+    },
     "image_url": "/static/images/cards/wish.png",
     "beta_image_url": null
   },
@@ -18757,7 +18955,9 @@
     "vars": {
       "Energy": 1
     },
-    "upgrade": null,
+    "upgrade": {
+      "add_retain": true
+    },
     "image_url": "/static/images/cards/wisp.png",
     "beta_image_url": "/static/images/cards/beta/wisp.png"
   },
@@ -18919,7 +19119,9 @@
     "keywords": null,
     "tags": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "cost": 0
+    },
     "image_url": "/static/images/cards/zap.png",
     "beta_image_url": null
   }
