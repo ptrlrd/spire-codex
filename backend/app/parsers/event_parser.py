@@ -174,21 +174,44 @@ def extract_event_vars(content: str) -> dict[str, int | str]:
         vars_dict[m.group(1)] = m.group(2)
 
     # Empty StringVar (runtime-populated): new StringVar("RandomRelic")
-    # Mark these with descriptive placeholders
-    for m in re.finditer(r'new\s+StringVar\("(\w+)"\)(?!\s*,\s*["\w])', content):
+    # The closing ) is already matched, so no lookahead needed — the two-arg form
+    # new StringVar("Name", value) won't match because "Name") requires ) right after "
+    for m in re.finditer(r'new\s+StringVar\("(\w+)"\)', content):
         name = m.group(1)
         if name not in vars_dict:
-            # Generate a readable placeholder
-            readable = re.sub(r'(?<=[a-z])(?=[A-Z])', ' ', name)
-            readable = re.sub(r'\d+', '', readable).strip()
+            # Generate descriptive placeholders based on var name
             if 'relic' in name.lower():
-                vars_dict[name] = "a random Relic"
+                if 'owned' in name.lower():
+                    vars_dict[name] = "one of your Relics"
+                else:
+                    vars_dict[name] = "a random Relic"
             elif 'card' in name.lower():
                 vars_dict[name] = "a random Card"
             elif 'potion' in name.lower():
                 vars_dict[name] = "a random Potion"
             else:
+                readable = re.sub(r'(?<=[a-z])(?=[A-Z])', ' ', name)
+                readable = re.sub(r'\d+', '', readable).strip()
                 vars_dict[name] = readable
+
+    # Dynamically-added vars via LocString.Add("VarName", value) — runtime-populated
+    # These appear in GenerateInitialOptions/GameInfoOptions for events like TheFutureOfPotions
+    # Only set values for vars we can provide meaningful placeholders for;
+    # leave others unset so description_resolver produces [VarName] placeholders
+    # (rendered as styled italic text by the frontend)
+    for m in re.finditer(r'\.Add\(\s*"(\w+)"\s*,', content):
+        name = m.group(1)
+        if name not in vars_dict:
+            nl = name.lower()
+            if nl == 'potion':
+                vars_dict[name] = "a Potion"
+            elif 'relic' in nl:
+                vars_dict[name] = "a random Relic"
+            elif 'card' in nl:
+                vars_dict[name] = "a random Card"
+            elif 'potion' in nl:
+                vars_dict[name] = "a random Potion"
+            # Vars like Rarity, Type left unresolved → [Rarity], [Type] placeholder tags
 
     # RelicOption patterns: RelicOption<ClassName>() — extract relic names for options
     for m in re.finditer(r'RelicOption<(\w+)>', content):

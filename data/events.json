@@ -925,7 +925,7 @@
           {
             "id": "TAKE",
             "title": "TAKE",
-            "description": "Receive [gold][Relic Name][/gold]."
+            "description": "Receive [gold]a random Relic[/gold]."
           }
         ]
       },
@@ -2498,17 +2498,17 @@
       {
         "id": "BOTTOM",
         "title": "Take the Bottom One",
-        "description": "Trade [gold][Bottom Relic Owned][/gold] for [gold]a random Relic[/gold]."
+        "description": "Trade [gold]one of your Relics[/gold] for [gold]a random Relic[/gold]."
       },
       {
         "id": "MIDDLE",
         "title": "Take the Middle One",
-        "description": "Trade [gold][Middle Relic Owned][/gold] for [gold][Middle Relic New][/gold]."
+        "description": "Trade [gold]one of your Relics[/gold] for [gold]a random Relic[/gold]."
       },
       {
         "id": "TOP",
         "title": "Take the Top One",
-        "description": "Trade [gold][Top Relic Owned][/gold] for [gold][Top Relic New][/gold]."
+        "description": "Trade [gold]one of your Relics[/gold] for [gold]a random Relic[/gold]."
       }
     ],
     "pages": [
@@ -2523,17 +2523,17 @@
           {
             "id": "BOTTOM",
             "title": "Take the Bottom One",
-            "description": "Trade [gold][Bottom Relic Owned][/gold] for [gold]a random Relic[/gold]."
+            "description": "Trade [gold]one of your Relics[/gold] for [gold]a random Relic[/gold]."
           },
           {
             "id": "MIDDLE",
             "title": "Take the Middle One",
-            "description": "Trade [gold][Middle Relic Owned][/gold] for [gold][Middle Relic New][/gold]."
+            "description": "Trade [gold]one of your Relics[/gold] for [gold]a random Relic[/gold]."
           },
           {
             "id": "TOP",
             "title": "Take the Top One",
-            "description": "Trade [gold][Top Relic Owned][/gold] for [gold][Top Relic New][/gold]."
+            "description": "Trade [gold]one of your Relics[/gold] for [gold]a random Relic[/gold]."
           }
         ]
       }
@@ -2807,7 +2807,7 @@
       {
         "id": "OVERCOME",
         "title": "Overcome",
-        "description": "[red][Random Card][/red] is removed from your [gold]Deck[/gold]."
+        "description": "[red]a random Card[/red] is removed from your [gold]Deck[/gold]."
       }
     ],
     "pages": [
@@ -2911,7 +2911,7 @@
           {
             "id": "OVERCOME",
             "title": "Overcome",
-            "description": "[red][Random Card][/red] is removed from your [gold]Deck[/gold]."
+            "description": "[red]a random Card[/red] is removed from your [gold]Deck[/gold]."
           }
         ]
       },
@@ -3035,7 +3035,7 @@
       {
         "id": "LIFT",
         "title": "Drink and Lift",
-        "description": "Lose [red][Drink Random Potion][/red]. Gain [blue]10[/blue] Max HP."
+        "description": "Lose [red]a random Potion[/red]. Gain [blue]10[/blue] Max HP."
       },
       {
         "id": "LIFT_LOCKED",
@@ -3061,7 +3061,7 @@
           {
             "id": "LIFT",
             "title": "Drink and Lift",
-            "description": "Lose [red][Drink Random Potion][/red]. Gain [blue]10[/blue] Max HP."
+            "description": "Lose [red]a random Potion[/red]. Gain [blue]10[/blue] Max HP."
           },
           {
             "id": "LIFT_LOCKED",
@@ -3082,7 +3082,7 @@
       },
       {
         "id": "LIFT",
-        "description": "You slam the [gold][Drink Random Potion][/gold] down and [jitter]lift with all your might[/jitter]!!\n\nNothing happens."
+        "description": "You slam the [gold]a random Potion[/gold] down and [jitter]lift with all your might[/jitter]!!\n\nNothing happens."
       },
       {
         "id": "PUSH",
@@ -3836,7 +3836,7 @@
       {
         "id": "POTION",
         "title": "Insert [Rarity] Potion",
-        "description": "Lose [gold][Potion][/gold]. Obtain an [gold]Upgraded[/gold] [gold][Rarity] [Type][/gold]."
+        "description": "Lose [gold]a Potion[/gold]. Obtain an [gold]Upgraded[/gold] [gold][Rarity] [Type][/gold]."
       }
     ],
     "pages": [
@@ -3851,7 +3851,7 @@
           {
             "id": "POTION",
             "title": "Insert [Rarity] Potion",
-            "description": "Lose [gold][Potion][/gold]. Obtain an [gold]Upgraded[/gold] [gold][Rarity] [Type][/gold]."
+            "description": "Lose [gold]a Potion[/gold]. Obtain an [gold]Upgraded[/gold] [gold][Rarity] [Type][/gold]."
           }
         ]
       }
