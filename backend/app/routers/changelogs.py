@@ -10,13 +10,14 @@ DATA_DIR = Path(__file__).resolve().parents[3] / "data" / "changelogs"
 
 
 def _load_changelogs() -> list[dict]:
-    """Load all changelog JSON files, sorted newest first."""
+    """Load all changelog JSON files, sorted newest first by date then codex version."""
     if not DATA_DIR.exists():
         return []
     logs = []
-    for f in sorted(DATA_DIR.glob("*.json"), reverse=True):
+    for f in DATA_DIR.glob("*.json"):
         with open(f, "r", encoding="utf-8") as fh:
             logs.append(json.load(fh))
+    logs.sort(key=lambda l: (l.get("date", ""), l.get("codex_version") or 0), reverse=True)
     return logs
 
 
