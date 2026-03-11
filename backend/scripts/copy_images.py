@@ -23,6 +23,8 @@ ICONS_DST = STATIC_IMAGES / "icons"
 ANCIENTS_SRC = RAW_IMAGES / "ui" / "run_history"
 ANCIENTS_DST = STATIC_IMAGES / "misc" / "ancients"
 BOSSES_DST = STATIC_IMAGES / "misc" / "bosses"
+POWERS_SRC = RAW_IMAGES / "powers"
+POWERS_DST = STATIC_IMAGES / "powers"
 AUDIO_SRC = BASE / "extraction" / "raw" / "debug_audio"
 AUDIO_DST = STATIC_IMAGES.parent / "audio"
 
@@ -163,6 +165,17 @@ def copy_bosses():
     print(f"Copied {count} boss icons -> static/images/misc/bosses/")
 
 
+def copy_powers():
+    POWERS_DST.mkdir(parents=True, exist_ok=True)
+    count = 0
+    for png in POWERS_SRC.glob("*.png"):
+        if png.name.endswith(".import"):
+            continue
+        shutil.copy2(png, POWERS_DST / png.name)
+        count += 1
+    print(f"Copied {count} power icons -> static/images/powers/")
+
+
 def copy_audio():
     AUDIO_DST.mkdir(parents=True, exist_ok=True)
     count = 0
@@ -181,6 +194,7 @@ def main():
     copy_characters()
     copy_monsters()
     copy_icons()
+    copy_powers()
     copy_ancients()
     copy_bosses()
     copy_audio()

@@ -8,7 +8,13 @@ BASE = Path(__file__).resolve().parents[3]
 DECOMPILED = BASE / "extraction" / "decompiled"
 LOCALIZATION = BASE / "extraction" / "raw" / "localization" / "eng"
 POWERS_DIR = DECOMPILED / "MegaCrit.Sts2.Core.Models.Powers"
+POWERS_IMAGES = BASE / "extraction" / "raw" / "images" / "powers"
 OUTPUT = BASE / "data"
+
+# Aliases for powers whose icon filename doesn't match the ID pattern
+IMAGE_ALIASES: dict[str, str] = {
+    "TEMPORARY_DEXTERITY": "dexterity_down_power.png",
+}
 
 
 def class_name_to_id(name: str) -> str:
@@ -98,6 +104,15 @@ def parse_single_power(filepath: Path, localization: dict) -> dict | None:
 
     desc_clean = description_resolved
 
+    # Resolve image URL
+    image_url = None
+    if power_id in IMAGE_ALIASES:
+        icon_file = POWERS_IMAGES / IMAGE_ALIASES[power_id]
+    else:
+        icon_file = POWERS_IMAGES / f"{power_id.lower()}_power.png"
+    if icon_file.exists():
+        image_url = f"/static/images/powers/{icon_file.name}"
+
     return {
         "id": power_id,
         "name": title,
@@ -106,6 +121,7 @@ def parse_single_power(filepath: Path, localization: dict) -> dict | None:
         "type": power_type,
         "stack_type": stack_type,
         "allow_negative": allow_negative if allow_negative else None,
+        "image_url": image_url,
     }
 
 

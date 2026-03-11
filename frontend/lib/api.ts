@@ -183,6 +183,7 @@ export interface Power {
   type: string;
   stack_type: string;
   allow_negative: boolean | null;
+  image_url: string | null;
 }
 
 export interface Keyword {

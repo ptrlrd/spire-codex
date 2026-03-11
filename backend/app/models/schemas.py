@@ -195,6 +195,7 @@ class Power(BaseModel):
     type: str
     stack_type: str
     allow_negative: bool | None = None
+    image_url: str | None = None
 
 
 class Keyword(BaseModel):

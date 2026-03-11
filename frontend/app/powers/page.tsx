@@ -85,9 +85,19 @@ export default function PowersPage() {
                 className={`bg-[var(--bg-card)] rounded-lg border ${style.split(" ")[0]} p-4 hover:bg-[var(--bg-card-hover)] transition-all`}
               >
                 <div className="flex items-start justify-between mb-2">
-                  <h3 className="font-semibold text-[var(--text-primary)] leading-tight">
-                    {power.name}
-                  </h3>
+                  <div className="flex items-center gap-2">
+                    {power.image_url && (
+                      <img
+                        src={`${API}${power.image_url}`}
+                        alt=""
+                        className="w-8 h-8 object-contain flex-shrink-0"
+                        crossOrigin="anonymous"
+                      />
+                    )}
+                    <h3 className="font-semibold text-[var(--text-primary)] leading-tight">
+                      {power.name}
+                    </h3>
+                  </div>
                   <div className="flex gap-1.5 flex-shrink-0 ml-2">
                     <span
                       className={`text-[10px] px-1.5 py-0.5 rounded ${style.split(" ").slice(1).join(" ")} bg-[var(--bg-primary)]`}
