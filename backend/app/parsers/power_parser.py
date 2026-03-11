@@ -92,12 +92,12 @@ def parse_single_power(filepath: Path, localization: dict) -> dict | None:
         ))
         if (amount_missing or has_artifacts) and plain_raw:
             description_raw = plain_raw
-            description_resolved = plain_raw
+            description_resolved = resolve_description(plain_raw, all_vars)
         else:
             description_raw = smart_raw
     elif plain_raw:
         description_raw = plain_raw
-        description_resolved = plain_raw
+        description_resolved = resolve_description(plain_raw, all_vars)
     else:
         description_raw = ""
         description_resolved = ""
