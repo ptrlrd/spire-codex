@@ -411,8 +411,8 @@ def parse_single_event(filepath: Path, localization: dict, act_mapping: dict) ->
     desc_resolved = resolve_description(desc_raw, vars_dict) if desc_raw else ""
     desc_clean = strip_rich_tags(desc_resolved)
 
-    # Options (choices)
-    options = parse_options_from_localization(event_id, localization, vars_dict)
+    # Options (choices) — skip for Ancient events, their offerings are in the relics list
+    options = [] if is_ancient else parse_options_from_localization(event_id, localization, vars_dict)
 
     # Act mapping
     act = act_mapping.get(class_name)

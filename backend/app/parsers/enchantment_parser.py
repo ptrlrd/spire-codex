@@ -46,12 +46,14 @@ def parse_single_enchantment(filepath: Path, localization: dict) -> dict | None:
     # Extract variable values from source
     all_vars = extract_vars_from_source(content)
 
-    # Extract Amount if referenced
-    amount_match = re.search(r'base\.Amount', content)
-    if amount_match and "Amount" not in all_vars:
-        # Try to find amount from DynamicVar declarations or default
-        for m in re.finditer(r'new\s+DynamicVar\("(\w+)",\s*(\d+)m?\)', content):
-            all_vars[m.group(1)] = int(m.group(2))
+    # Enchantments using base.Amount: the value equals the enchantment level,
+    # which is set at application time (e.g. "Adroit 5"). Use "X" as placeholder.
+    if re.search(r'base\.Amount', content):
+        all_vars["Amount"] = "X"
+        # If RecalculateValues sets a var from base.Amount, that var also = Amount
+        for rm in re.finditer(r'DynamicVars\.(\w+)\.BaseValue\s*=\s*base\.Amount', content):
+            var_name = rm.group(1)
+            all_vars[var_name] = "X"
 
     # Localization
     title = localization.get(f"{ench_id}.title", class_name)

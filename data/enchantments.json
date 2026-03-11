@@ -2,9 +2,9 @@
   {
     "id": "ADROIT",
     "name": "Adroit",
-    "description": "Gain [blue]0[/blue] [gold]Block[/gold].",
+    "description": "Gain [blue]X[/blue] [gold]Block[/gold].",
     "description_raw": "Gain [blue]{Block:diff()}[/blue] [gold]Block[/gold].",
-    "extra_card_text": "Gain 0 [gold]Block[/gold].",
+    "extra_card_text": "Gain X [gold]Block[/gold].",
     "card_type": null,
     "is_stackable": false,
     "image_url": null
@@ -82,9 +82,9 @@
   {
     "id": "MOMENTUM",
     "name": "Momentum",
-    "description": "Increase this card's attack damage by [blue][Amount][/blue] this combat when played.",
+    "description": "Increase this card's attack damage by [blue]X[/blue] this combat when played.",
     "description_raw": "Increase this card's attack damage by [blue]{Amount}[/blue] this combat when played.",
-    "extra_card_text": "Increase this card's damage by [Amount] this combat.",
+    "extra_card_text": "Increase this card's damage by X this combat.",
     "card_type": "Attack",
     "is_stackable": false,
     "image_url": null
@@ -92,7 +92,7 @@
   {
     "id": "NIMBLE",
     "name": "Nimble",
-    "description": "Increases [gold]Block[/gold] gained from this card by [blue][Amount][/blue].",
+    "description": "Increases [gold]Block[/gold] gained from this card by [blue]X[/blue].",
     "description_raw": "Increases [gold]Block[/gold] gained from this card by [blue]{Amount}[/blue].",
     "extra_card_text": null,
     "card_type": null,
@@ -122,7 +122,7 @@
   {
     "id": "SHARP",
     "name": "Sharp",
-    "description": "Increases damage on this card by [blue][Amount][/blue].",
+    "description": "Increases damage on this card by [blue]X[/blue].",
     "description_raw": "Increases damage on this card by [blue]{Amount}[/blue].",
     "extra_card_text": null,
     "card_type": "Attack",
@@ -162,9 +162,9 @@
   {
     "id": "SOWN",
     "name": "Sown",
-    "description": "The first time you play this card each combat, gain [energy:1].",
+    "description": "The first time you play this card each combat, gain [energy:X].",
     "description_raw": "The first time you play this card each combat, gain {Amount:energyIcons()}.",
-    "extra_card_text": "Gain [energy:1].",
+    "extra_card_text": "Gain [energy:X].",
     "card_type": null,
     "is_stackable": false,
     "image_url": null
@@ -192,9 +192,9 @@
   {
     "id": "SWIFT",
     "name": "Swift",
-    "description": "The first time you play this card, draw [blue][Amount][/blue] cards.",
+    "description": "The first time you play this card, draw [blue]X[/blue] cards.",
     "description_raw": "The first time you play this card, draw [blue]{Amount}[/blue] {Amount:plural:card|cards}.",
-    "extra_card_text": "Draw [Amount] cards the first time this is played.",
+    "extra_card_text": "Draw X cards the first time this is played.",
     "card_type": null,
     "is_stackable": false,
     "image_url": null
@@ -212,7 +212,7 @@
   {
     "id": "VIGOROUS",
     "name": "Vigorous",
-    "description": "The first time this card is played, it deals [blue][Amount][/blue] additional damage.",
+    "description": "The first time this card is played, it deals [blue]X[/blue] additional damage.",
     "description_raw": "The first time this card is played, it deals [blue]{Amount}[/blue] additional damage.",
     "extra_card_text": null,
     "card_type": "Attack",

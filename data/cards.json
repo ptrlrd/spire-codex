@@ -11826,7 +11826,7 @@
   {
     "id": "ONE_TWO_PUNCH",
     "name": "One-Two Punch",
-    "description": "This turn, your next 1 played an extra time.",
+    "description": "This turn, your next Attack is played an extra time.",
     "description_raw": "This turn, your next {Attacks:cond:>1?{Attacks:diff()} Attacks are|Attack is} played an extra time.",
     "cost": 1,
     "is_x_cost": null,

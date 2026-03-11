@@ -1919,13 +1919,7 @@
     "type": "Ancient",
     "act": "Act 2 - Hive",
     "description": "Puppet puppet!! All the way up here?! Take these, take take!",
-    "options": [
-      {
-        "id": "OPTION_POOL_3_LOCKED",
-        "title": "Locked",
-        "description": "You have no starter relics or cards."
-      }
-    ],
+    "options": null,
     "pages": null,
     "epithet": "Living Rainbow",
     "dialogue": {

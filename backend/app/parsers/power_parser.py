@@ -52,6 +52,9 @@ def parse_single_power(filepath: Path, localization: dict) -> dict | None:
     # Extract variable values from source
     all_vars = extract_vars_from_source(content)
 
+    # Default runtime vars — OwnerName is the creature that has the power
+    all_vars.setdefault("OwnerName", "this creature")
+
     # Localization — try both with and without POWER suffix
     title = localization.get(f"{power_id}.title")
     if title is None:
@@ -62,16 +65,37 @@ def parse_single_power(filepath: Path, localization: dict) -> dict | None:
         full_id = class_name_to_id(class_name)
         title = localization.get(f"{full_id}.title", class_name)
 
-    # Description — prefer smartDescription for resolved text
+    # Description — try smartDescription first, fall back to plain description
+    # if smartDescription has unresolvable vars like {Amount}
     desc_key = power_id
     if f"{power_id}.smartDescription" not in localization and f"{power_id}.description" not in localization:
         desc_key = f"{power_id}_POWER" if f"{power_id}_POWER.smartDescription" in localization else class_name_to_id(class_name)
 
-    description_raw = localization.get(f"{desc_key}.smartDescription", "")
-    if not description_raw:
-        description_raw = localization.get(f"{desc_key}.description", "")
+    smart_raw = localization.get(f"{desc_key}.smartDescription", "")
+    plain_raw = localization.get(f"{desc_key}.description", "")
 
-    description_resolved = resolve_description(description_raw, all_vars) if description_raw else ""
+    if smart_raw:
+        description_resolved = resolve_description(smart_raw, all_vars)
+        # If the smart template uses {Amount} but we couldn't extract it,
+        # prefer the plain description (Amount is the stack count, set at runtime).
+        # Also fall back for any remaining template artifacts.
+        amount_missing = "{Amount" in smart_raw and "Amount" not in all_vars
+        has_artifacts = bool(re.search(
+            r'\[Amount\]|\[Applier|:cond:|==\d+\?|>\d+\?',
+            description_resolved
+        ))
+        if (amount_missing or has_artifacts) and plain_raw:
+            description_raw = plain_raw
+            description_resolved = plain_raw
+        else:
+            description_raw = smart_raw
+    elif plain_raw:
+        description_raw = plain_raw
+        description_resolved = plain_raw
+    else:
+        description_raw = ""
+        description_resolved = ""
+
     desc_clean = description_resolved
 
     return {

@@ -52,7 +52,7 @@
   {
     "id": "ARCHAIC_TOOTH",
     "name": "Archaic Tooth",
-    "description": "Upon pickup, [gold]Transform[/gold] [StarterCard.StringValue].",
+    "description": "Upon pickup, [gold]Transform[/gold] a starter card with an ancient version.",
     "description_raw": "Upon pickup, [gold]Transform[/gold] {StarterCard.StringValue:cond:[gold]{StarterCard}[/gold] into [gold]{AncientCard}[/gold]|a starter card with an ancient version}.",
     "flavor": "[red]Details for this relic will be revealed in the future...[/red]",
     "rarity": "Ancient",
@@ -682,7 +682,7 @@
   {
     "id": "DUSTY_TOME",
     "name": "Dusty Tome",
-    "description": "Upon pickup, obtain [AncientCard.StringValue][/gold]|an [gold]Ancient Card[/gold]}.",
+    "description": "Upon pickup, obtain an [gold]Ancient Card[/gold].",
     "description_raw": "Upon pickup, obtain {AncientCard.StringValue:cond:[gold]{}[/gold]|an [gold]Ancient Card[/gold]}.",
     "flavor": "[red]Details for this relic will be revealed in the future...[/red]",
     "rarity": "Ancient",
@@ -1772,7 +1772,7 @@
   {
     "id": "PAELS_TOOTH",
     "name": "Pael's Tooth",
-    "description": "Upon pickup, remove [blue]5[/blue] cards from your [gold]Deck[/gold]. After each combat, randomly add [blue]1[/blue] back [gold]Upgraded[/gold].[CardTitles.StringValue]|}",
+    "description": "Upon pickup, remove [blue]5[/blue] cards from your [gold]Deck[/gold]. After each combat, randomly add [blue]1[/blue] back [gold]Upgraded[/gold].",
     "description_raw": "Upon pickup, remove [blue]{Cards}[/blue] {Cards:plural:card|cards} from your [gold]Deck[/gold]. After each combat, randomly add [blue]1[/blue] back [gold]Upgraded[/gold].{CardTitles.StringValue:cond:\n\nCards in the Pot:\n{}|}",
     "flavor": "[red]Details for this relic will be revealed in the future...[/red]",
     "rarity": "Ancient",
@@ -2252,7 +2252,7 @@
   {
     "id": "SEA_GLASS",
     "name": "Sea Glass",
-    "description": "See [blue]15[/blue] cards from [Character.StringValue][/gold]|another character}. Choose any number of them to add to your [gold]Deck[/gold].",
+    "description": "See [blue]15[/blue] cards from another character. Choose any number of them to add to your [gold]Deck[/gold].",
     "description_raw": "See [blue]{Cards}[/blue] cards from {Character.StringValue:cond:[gold]{}[/gold]|another character}. Choose any number of them to add to your [gold]Deck[/gold].",
     "flavor": "[red]Details for this relic will be revealed in the future...[/red]",
     "rarity": "Ancient",
@@ -2602,7 +2602,7 @@
   {
     "id": "TOUCH_OF_OROBAS",
     "name": "Touch of Orobas",
-    "description": "Upon pickup, replace [StarterRelic.StringValue].",
+    "description": "Upon pickup, replace your starter [gold]Relic[/gold] with an [gold]Ancient[/gold] version.",
     "description_raw": "Upon pickup, replace {StarterRelic.StringValue:cond:[gold]{StarterRelic}[/gold] with [gold]{UpgradedRelic}[/gold]|your starter [gold]Relic[/gold] with an [gold]Ancient[/gold] version}.",
     "flavor": "[red]Details for this relic will be revealed in the future...[/red]",
     "rarity": "Ancient",

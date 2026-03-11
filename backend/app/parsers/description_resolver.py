@@ -77,6 +77,91 @@ def resolve_description(raw: str, vars_dict: dict[str, int | str], is_upgraded: 
         return text
     text = resolve_all_plurals(text)
 
+    # Handle SmartFormat :cond: conditionals with nested braces:
+    # {Var.Property:cond:trueVal|falseVal} or {Var:cond:>N?result|==N?result|default}
+    # e.g. {StarterRelic.StringValue:cond:[gold]{StarterRelic}[/gold]|generic text}
+    # e.g. {Attacks:cond:>1?{Attacks:diff()} Attacks are|Attack is}
+    def _split_pipes_at_depth0(s):
+        """Split string on | at brace depth 0."""
+        parts = []
+        depth = 0
+        current = []
+        for ch in s:
+            if ch == '{':
+                depth += 1
+            elif ch == '}':
+                depth -= 1
+            elif ch == '|' and depth == 0:
+                parts.append(''.join(current))
+                current = []
+                continue
+            current.append(ch)
+        parts.append(''.join(current))
+        return parts
+
+    def _eval_cond(op_str, val):
+        """Evaluate a SmartFormat condition like >1, ==1, >=5 against a numeric value."""
+        m = re.match(r'(>=|<=|!=|>|<|==)\s*(\d+)', op_str)
+        if not m or not isinstance(val, (int, float)):
+            return False
+        op, threshold = m.group(1), int(m.group(2))
+        if op == '>': return val > threshold
+        if op == '<': return val < threshold
+        if op == '>=': return val >= threshold
+        if op == '<=': return val <= threshold
+        if op == '==': return val == threshold
+        if op == '!=': return val != threshold
+        return False
+
+    def resolve_all_cond(text):
+        while True:
+            m = re.search(r'\{([\w.]+):cond:', text)
+            if not m:
+                break
+            start = m.start()
+            var_name = m.group(1)
+            rest_start = m.end()
+            # Find matching closing } by counting braces
+            depth = 1
+            i = rest_start
+            while i < len(text) and depth > 0:
+                if text[i] == '{':
+                    depth += 1
+                elif text[i] == '}':
+                    depth -= 1
+                i += 1
+            if depth != 0:
+                break
+            inner = text[rest_start:i - 1]
+            parts = _split_pipes_at_depth0(inner)
+            base_var = var_name.split('.')[0]
+            val = _lookup(base_var, vars_dict)
+
+            # Check if parts use comparison operators (>N?, ==N?, etc.)
+            result = ""
+            if any(re.match(r'[><=!]+\d+\?', p) for p in parts):
+                # Comparison-based conditionals
+                matched = False
+                for part in parts:
+                    cond_m = re.match(r'([><=!]+\d+)\?(.*)', part, re.DOTALL)
+                    if cond_m:
+                        if not matched and _eval_cond(cond_m.group(1), val if isinstance(val, (int, float)) else 0):
+                            result = cond_m.group(2)
+                            matched = True
+                    elif not matched:
+                        # Default branch (no condition prefix)
+                        result = part
+                        matched = True
+            else:
+                # Simple truthy/falsy: trueVal|falseVal
+                true_val = parts[0] if parts else ""
+                false_val = parts[1] if len(parts) > 1 else ""
+                result = true_val if (val is not None and val) else false_val
+
+            text = text[:start] + result + text[i:]
+        return text
+    text = resolve_all_cond(text)
+
     # Handle SmartFormat conditionals: {Var: trueValue|falseValue}
     # e.g. {IsMultiplayer: by any player|} -> "" (single player default)
     def resolve_conditional(m):
