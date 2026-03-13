@@ -227,7 +227,10 @@ def extract_event_vars(content: str) -> dict[str, int | str]:
                 vars_dict[name] = "a random Card"
             elif 'potion' in nl:
                 vars_dict[name] = "a random Potion"
-            # Vars like Rarity, Type left unresolved → [Rarity], [Type] placeholder tags
+            elif nl == 'rarity':
+                vars_dict[name] = "Common"
+            elif nl == 'type':
+                vars_dict[name] = "Skill"
 
     # RelicOption patterns: RelicOption<ClassName>() — extract relic names for options
     for m in re.finditer(r'RelicOption<(\w+)>', content):

@@ -3829,8 +3829,8 @@
     "options": [
       {
         "id": "POTION",
-        "title": "Insert [Rarity] Potion",
-        "description": "Lose [gold]a Potion[/gold]. Obtain an [gold]Upgraded[/gold] [gold][Rarity] [Type][/gold]."
+        "title": "Insert Common Potion",
+        "description": "Lose [gold]a Potion[/gold]. Obtain an [gold]Upgraded[/gold] [gold]Common Skill[/gold]."
       }
     ],
     "pages": [
@@ -3844,8 +3844,8 @@
         "options": [
           {
             "id": "POTION",
-            "title": "Insert [Rarity] Potion",
-            "description": "Lose [gold]a Potion[/gold]. Obtain an [gold]Upgraded[/gold] [gold][Rarity] [Type][/gold]."
+            "title": "Insert Common Potion",
+            "description": "Lose [gold]a Potion[/gold]. Obtain an [gold]Upgraded[/gold] [gold]Common Skill[/gold]."
           }
         ]
       }
