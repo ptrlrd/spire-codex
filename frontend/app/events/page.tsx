@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import type { GameEvent, EventPage, DialogueLine } from "@/lib/api";
 import SearchFilter from "../components/SearchFilter";
@@ -111,6 +112,7 @@ export default function EventsPage() {
     Record<string, { id: string; name: string; description: string; image_url: string | null }>
   >({});
   const [expandedDesc, setExpandedDesc] = useState<Record<string, boolean>>({});
+  const router = useRouter();
 
   const toggleDialogue = (eventId: string, group: string) => {
     setExpandedDialogue((prev) => ({
@@ -188,9 +190,10 @@ export default function EventsPage() {
             return (
               <div
                 key={event.id}
+                onClick={() => router.push(`/events/${event.id.toLowerCase()}`)}
                 className={`bg-[var(--bg-card)] rounded-lg border ${
                   typeColors[event.type] || "border-[var(--border-subtle)]"
-                } p-4 hover:bg-[var(--bg-card-hover)] transition-all`}
+                } p-4 hover:bg-[var(--bg-card-hover)] transition-all cursor-pointer`}
               >
                 <div className="flex items-start justify-between mb-2">
                   <div className="flex items-start gap-3">
@@ -203,12 +206,9 @@ export default function EventsPage() {
                       />
                     )}
                     <div>
-                      <Link
-                        href={`/events/${event.id.toLowerCase()}`}
-                        className="font-semibold text-[var(--text-primary)] hover:text-[var(--accent-gold)] transition-colors"
-                      >
+                      <h3 className="font-semibold text-[var(--text-primary)]">
                         {event.name}
-                      </Link>
+                      </h3>
                       {event.epithet && (
                         <p className="text-xs text-purple-400 italic">
                           {event.epithet}
@@ -249,7 +249,7 @@ export default function EventsPage() {
                     </p>
                     {event.description.length > 150 && (
                       <button
-                        onClick={() => setExpandedDesc((prev) => ({ ...prev, [event.id]: !prev[event.id] }))}
+                        onClick={(e) => { e.stopPropagation(); setExpandedDesc((prev) => ({ ...prev, [event.id]: !prev[event.id] })); }}
                         className="text-[10px] text-[var(--text-muted)] hover:text-[var(--text-secondary)] cursor-pointer mt-0.5 transition-colors"
                       >
                         {expandedDesc[event.id] ? "Show less" : "Show more..."}
@@ -286,7 +286,7 @@ export default function EventsPage() {
                 {event.pages && event.pages.length > 1 && (
                   <div className="mt-3">
                     <button
-                      onClick={() => togglePages(event.id)}
+                      onClick={(e) => { e.stopPropagation(); togglePages(event.id); }}
                       className="text-[10px] uppercase tracking-wider text-[var(--text-muted)] hover:text-[var(--text-secondary)] cursor-pointer transition-colors flex items-center gap-1"
                     >
                       <span
@@ -324,6 +324,7 @@ export default function EventsPage() {
                           <Link
                             key={relicId}
                             href={`/relics/${relicId.toLowerCase()}`}
+                            onClick={(e) => e.stopPropagation()}
                             className="flex items-center gap-2.5 px-2.5 py-2 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] hover:border-[var(--accent-gold)]/50 transition-colors"
                           >
                             {relic?.image_url && (
@@ -365,7 +366,7 @@ export default function EventsPage() {
                         {Object.keys(event.dialogue).map((group) => (
                           <button
                             key={group}
-                            onClick={() => toggleDialogue(event.id, group)}
+                            onClick={(e) => { e.stopPropagation(); toggleDialogue(event.id, group); }}
                             className={`text-[11px] px-2 py-0.5 rounded border transition-colors cursor-pointer ${
                               expandedDialogue[event.id] === group
                                 ? "bg-purple-950/60 text-purple-300 border-purple-800/50"
