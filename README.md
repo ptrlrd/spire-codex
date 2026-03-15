@@ -349,11 +349,6 @@ python3 tools/diff_data.py HEAD~1 --format json \
     --game-version "0.98.2" --build-id "22238966" \
     --title "March Update"
 
-# Codex-only update (parser improvements, same game version):
-python3 tools/diff_data.py HEAD~1 --format json \
-    --game-version "0.98.2" --build-id "22238966" \
-    --codex-version 2 --title "Improved card descriptions"
-
 # Preview as text or markdown:
 python3 tools/diff_data.py HEAD~1 --format text
 python3 tools/diff_data.py HEAD~1 --format md
@@ -368,8 +363,7 @@ Each changelog JSON file contains:
 | `app_id` | Steam App ID (2868840) |
 | `game_version` | Steam game version (e.g. `"0.98.2"`) |
 | `build_id` | Steam build ID |
-| `codex_version` | Codex revision number (`null` for game updates, `1`/`2`/... for parser updates) |
-| `tag` | Unique key: `"0.98.2"` or `"0.98.2-codex2"` |
+| `tag` | Unique version key (e.g. `"1.0.3"`) |
 | `date` | Date of the update |
 | `title` | Human-readable title |
 | `summary` | Counts: `{ added, removed, changed }` |

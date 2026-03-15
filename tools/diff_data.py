@@ -20,17 +20,9 @@ Usage:
       --game-version "0.98.2" --build-id "22238966" \\
       --date "2026-03-09" --title "March Update"
 
-  # Save as JSON changelog for a Codex parser/feature update (same game version):
-  python3 diff_data.py v0.9.1 --format json \\
-      --game-version "0.98.2" --build-id "22238966" \\
-      --codex-version 2 --title "Improved card descriptions"
-
 Options:
   --game-version    The game's version string from Steam (e.g. "0.98.2")
   --build-id        Steam build ID (e.g. "22238966") — changes with each depot update
-  --codex-version   Codex revision number for parser/feature updates on the same game
-                    version. Omit for game updates, set to 1/2/3/... for codex updates.
-                    Output filename becomes {game_version}-codex{N}.json
   --date            Date of the update (defaults to today)
   --title           Human-readable title for this changelog entry
 
@@ -300,7 +292,7 @@ def print_markdown(results: dict, old_label: str, new_label: str):
     print(f"---\n**Summary:** +{total_added} added, -{total_removed} removed, ~{total_changed} changed")
 
 
-def build_json_output(results: dict, game_version: str, build_id: str, codex_version: str, date: str, title: str, old_label: str, new_label: str) -> dict:
+def build_json_output(results: dict, game_version: str, build_id: str, date: str, title: str, old_label: str, new_label: str) -> dict:
     """Build a JSON-serializable changelog object."""
     categories = []
     total_added = total_removed = total_changed = 0
@@ -360,15 +352,11 @@ def build_json_output(results: dict, game_version: str, build_id: str, codex_ver
 
         categories.append(cat_entry)
 
-    # Build the tag: "0.98.2" for game updates, "0.98.2-codex2" for codex updates
-    tag = f"{game_version}-codex{codex_version}" if codex_version else game_version
-
     return {
         "app_id": STEAM_APP_ID,
         "game_version": game_version,
         "build_id": build_id,
-        "codex_version": int(codex_version) if codex_version else None,
-        "tag": tag,
+        "tag": game_version,
         "date": date,
         "title": title,
         "from_ref": old_label,
@@ -398,7 +386,6 @@ def main():
     fmt, argv = parse_named_arg(argv, "--format", "text")
     game_version, argv = parse_named_arg(argv, "--game-version", "")
     build_id, argv = parse_named_arg(argv, "--build-id", "")
-    codex_version, argv = parse_named_arg(argv, "--codex-version", "")
     date, argv = parse_named_arg(argv, "--date", "")
     title, argv = parse_named_arg(argv, "--title", "")
     args = [a for a in argv if not a.startswith("--")]
@@ -431,7 +418,7 @@ def main():
             old_label = args[0]
             new_label = args[1]
     else:
-        print("Usage: diff_data.py <old_ref> [new_ref] [--format text|md|json] [--game-version X] [--build-id Y] [--codex-version N] [--date Z] [--title T]", file=sys.stderr)
+        print("Usage: diff_data.py <old_ref> [new_ref] [--format text|md|json] [--game-version X] [--build-id Y] [--date Z] [--title T]", file=sys.stderr)
         sys.exit(1)
 
     try:
@@ -453,8 +440,8 @@ def main():
                 from datetime import date as d
                 date = d.today().isoformat()
             if not title:
-                title = f"Update {game_version}" + (f" (Codex {codex_version})" if codex_version else "")
-            changelog = build_json_output(results, game_version, build_id, codex_version, date, title, old_label, new_label)
+                title = f"Update {game_version}"
+            changelog = build_json_output(results, game_version, build_id, date, title, old_label, new_label)
             # Save to changelogs directory — keyed by tag
             tag = changelog["tag"]
             out_path = DATA_DIR / "changelogs" / f"{tag}.json"

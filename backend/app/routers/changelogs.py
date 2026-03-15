@@ -10,14 +10,14 @@ DATA_DIR = Path(__file__).resolve().parents[3] / "data" / "changelogs"
 
 
 def _load_changelogs() -> list[dict]:
-    """Load all changelog JSON files, sorted newest first by date then codex version."""
+    """Load all changelog JSON files, sorted newest first by date then tag."""
     if not DATA_DIR.exists():
         return []
     logs = []
     for f in DATA_DIR.glob("*.json"):
         with open(f, "r", encoding="utf-8") as fh:
             logs.append(json.load(fh))
-    logs.sort(key=lambda l: (l.get("date", ""), l.get("codex_version") or 0), reverse=True)
+    logs.sort(key=lambda l: (l.get("date", ""), l.get("tag", "")), reverse=True)
     return logs
 
 
@@ -30,7 +30,6 @@ def list_changelogs(request: Request):
             "app_id": log.get("app_id"),
             "game_version": log.get("game_version", log.get("version", "")),
             "build_id": log.get("build_id", ""),
-            "codex_version": log.get("codex_version"),
             "tag": log.get("tag", log.get("game_version", log.get("version", ""))),
             "date": log["date"],
             "title": log["title"],
@@ -42,7 +41,7 @@ def list_changelogs(request: Request):
 
 @router.get("/{tag:path}", tags=["Changelogs"])
 def get_changelog(tag: str, request: Request):
-    """Return full changelog for a specific tag (e.g. '0.98.2' or '0.98.2-codex2')."""
+    """Return full changelog for a specific tag (e.g. '1.0.3')."""
     path = DATA_DIR / f"{tag}.json"
     if not path.exists():
         raise HTTPException(status_code=404, detail=f"Changelog '{tag}' not found")

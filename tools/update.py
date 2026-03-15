@@ -207,7 +207,7 @@ def step_render_sprites():
     run([node, "render_skins2.mjs"], cwd=SPINE_DIR)
 
 
-def step_changelog(game_version: str, build_id: str, codex_version: str, title: str):
+def step_changelog(game_version: str, build_id: str, title: str):
     """Generate a changelog by diffing against the previous data snapshot."""
     info("Step 5: Generating changelog")
 
@@ -219,8 +219,6 @@ def step_changelog(game_version: str, build_id: str, codex_version: str, title: 
     ]
     if build_id:
         cmd += ["--build-id", build_id]
-    if codex_version:
-        cmd += ["--codex-version", codex_version]
     if title:
         cmd += ["--title", title]
 
@@ -268,9 +266,8 @@ Examples:
         action="store_true",
         help="Generate a changelog after updating",
     )
-    parser.add_argument("--game-version", default="", help="Game version for changelog (e.g. '0.98.2')")
+    parser.add_argument("--game-version", default="", help="Game version for changelog (e.g. '1.0.3')")
     parser.add_argument("--build-id", default="", help="Steam build ID for changelog")
-    parser.add_argument("--codex-version", default="", help="Codex revision number for changelog")
     parser.add_argument("--title", default="", help="Changelog title")
 
     args = parser.parse_args()
@@ -322,7 +319,7 @@ Examples:
         if not args.game_version:
             print("\n  WARNING: --changelog requires --game-version. Skipping.")
         else:
-            step_changelog(args.game_version, args.build_id, args.codex_version, args.title)
+            step_changelog(args.game_version, args.build_id, args.title)
 
     info("Update complete!")
     print(f"  Data:   {DATA_DIR}")

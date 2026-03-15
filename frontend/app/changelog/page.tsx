@@ -8,7 +8,6 @@ interface ChangelogSummary {
   app_id: number | null;
   game_version: string;
   build_id: string;
-  codex_version: number | null;
   tag: string;
   date: string;
   title: string;
@@ -40,6 +39,9 @@ interface CategoryDiff {
 interface ChangelogDetail extends ChangelogSummary {
   from_ref: string;
   to_ref: string;
+  features?: string[];
+  fixes?: string[];
+  api_changes?: string[];
   categories: CategoryDiff[];
 }
 
@@ -234,11 +236,6 @@ export default function ChangelogPage() {
                   <div className="flex items-baseline justify-between">
                     <span className="font-medium text-sm">
                       v{log.game_version}
-                      {log.codex_version != null && (
-                        <span className="text-[var(--text-muted)] font-normal ml-1">
-                          codex {log.codex_version}
-                        </span>
-                      )}
                     </span>
                     <span className="text-[10px] text-[var(--text-muted)]">{log.date}</span>
                   </div>
@@ -256,11 +253,6 @@ export default function ChangelogPage() {
                   <div className="flex items-baseline gap-3 mb-1">
                     <h2 className="text-xl font-bold text-[var(--text-primary)]">
                       v{selected.game_version}
-                      {selected.codex_version != null && (
-                        <span className="text-base font-normal text-[var(--text-muted)] ml-2">
-                          codex {selected.codex_version}
-                        </span>
-                      )}
                     </h2>
                     <span className="text-sm text-[var(--text-muted)]">{selected.date}</span>
                   </div>
@@ -284,6 +276,60 @@ export default function ChangelogPage() {
                 </div>
 
                 <div className="space-y-3">
+                  {selected.features && selected.features.length > 0 && (
+                    <div className="border border-[var(--border-subtle)] rounded-lg overflow-hidden">
+                      <div className="px-4 py-2.5">
+                        <span className="font-semibold text-emerald-400">Features</span>
+                      </div>
+                      <div className="border-t border-[var(--border-subtle)] px-4 py-3">
+                        <ul className="space-y-1.5">
+                          {selected.features.map((f, i) => (
+                            <li key={i} className="text-sm text-[var(--text-secondary)] flex gap-2">
+                              <span className="text-emerald-400 shrink-0">+</span>
+                              {f}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  )}
+
+                  {selected.fixes && selected.fixes.length > 0 && (
+                    <div className="border border-[var(--border-subtle)] rounded-lg overflow-hidden">
+                      <div className="px-4 py-2.5">
+                        <span className="font-semibold text-amber-400">Fixes</span>
+                      </div>
+                      <div className="border-t border-[var(--border-subtle)] px-4 py-3">
+                        <ul className="space-y-1.5">
+                          {selected.fixes.map((f, i) => (
+                            <li key={i} className="text-sm text-[var(--text-secondary)] flex gap-2">
+                              <span className="text-amber-400 shrink-0">~</span>
+                              {f}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  )}
+
+                  {selected.api_changes && selected.api_changes.length > 0 && (
+                    <div className="border border-[var(--border-subtle)] rounded-lg overflow-hidden">
+                      <div className="px-4 py-2.5">
+                        <span className="font-semibold text-cyan-400">API Changes</span>
+                      </div>
+                      <div className="border-t border-[var(--border-subtle)] px-4 py-3">
+                        <ul className="space-y-1.5">
+                          {selected.api_changes.map((f, i) => (
+                            <li key={i} className="text-sm text-[var(--text-secondary)] flex gap-2">
+                              <span className="text-cyan-400 shrink-0">&gt;</span>
+                              {f}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  )}
+
                   {selected.categories.map((cat) => (
                     <CategorySection key={cat.id} cat={cat} />
                   ))}

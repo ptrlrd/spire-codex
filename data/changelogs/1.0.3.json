@@ -1,0 +1,34 @@
+{
+  "app_id": 2868840,
+  "game_version": "1.0.3",
+  "build_id": "",
+  "tag": "1.0.3",
+  "date": "2026-03-15",
+  "title": "14-language localization support",
+  "from_ref": "v1.0.2",
+  "to_ref": "current",
+  "summary": {
+    "added": 0,
+    "removed": 0,
+    "changed": 0
+  },
+  "features": [
+    "Full localization support for 14 languages: German, English, Spanish (ES/LA), French, Italian, Japanese, Korean, Polish, Portuguese (BR), Russian, Thai, Turkish, Chinese (Simplified)",
+    "Language selector in the navigation bar — persists across sessions via localStorage",
+    "Home page section titles, descriptions, and character names fully localized",
+    "All entity names, descriptions, and display fields localized across 19 categories",
+    "Encounter monster names now use localized names from game data"
+  ],
+  "fixes": [
+    "Encounter monster names displayed as PascalCase-split English instead of localized names",
+    "Tea Master, Dense Vegetation, and Spiraling Whirlpool events now resolve description templates correctly"
+  ],
+  "api_changes": [
+    "All API endpoints now accept `?lang=` query parameter (default: `eng`)",
+    "New endpoint: GET /api/languages — returns available languages with display names",
+    "New endpoint: GET /api/translations — returns translation maps for UI strings",
+    "GZip compression enabled (77-89% payload reduction)",
+    "Cache-Control headers on all API GET responses (5-minute browser cache)"
+  ],
+  "categories": []
+}
