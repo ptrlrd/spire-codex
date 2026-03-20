@@ -186,7 +186,7 @@
     "description_raw": "Savaşın sonunda [green]{Heal}[/green] CP iyileş.",
     "flavor": "[red]Bu kalıntının detayları ileride ortaya çıkacak...[/red]",
     "rarity": "Başlangıç Kalıntısı",
-    "pool": "shared",
+    "pool": "ironclad",
     "image_url": "/static/images/relics/black_blood.png"
   },
   {
@@ -626,7 +626,7 @@
     "description_raw": "Her savaşın başında {Stars:starIcons()} elde et.",
     "flavor": "[red]Bu kalıntının detayları ileride ortaya çıkacak...[/red]",
     "rarity": "Başlangıç Kalıntısı",
-    "pool": "shared",
+    "pool": "regent",
     "image_url": "/static/images/relics/divine_destiny.png"
   },
   {
@@ -1136,7 +1136,7 @@
     "description_raw": "Her savaşın başında [blue]{Lightning}[/blue] [gold]Yıldırım[/gold] [gold]Oluştur[/gold].",
     "flavor": "[red]Bu kalıntının detayları ileride ortaya çıkacak...[/red]",
     "rarity": "Başlangıç Kalıntısı",
-    "pool": "shared",
+    "pool": "defect",
     "image_url": "/static/images/relics/infused_core.png"
   },
   {
@@ -1906,7 +1906,7 @@
     "description_raw": "Her savaşın başında [blue]{StartOfCombat}[/blue] [gold]Çağır[/gold]. Turunun başında [blue]{StartOfTurn}[/blue] [gold]Çağır[/gold].",
     "flavor": "[red]Bu kalıntının detayları ileride ortaya çıkacak...[/red]",
     "rarity": "Başlangıç Kalıntısı",
-    "pool": "shared",
+    "pool": "necrobinder",
     "image_url": "/static/images/relics/phylactery_unbound.png"
   },
   {
@@ -2126,7 +2126,7 @@
     "description_raw": "İlk {Turns:plural:turunun|[blue]{}[/blue] turunun} başında fazladan [blue]{Cards}[/blue] {Cards:plural:kart|kart} çek.",
     "flavor": "[red]Bu kalıntının detayları ileride ortaya çıkacak...[/red]",
     "rarity": "Başlangıç Kalıntısı",
-    "pool": "shared",
+    "pool": "silent",
     "image_url": "/static/images/relics/ring_of_the_drake.png"
   },
   {

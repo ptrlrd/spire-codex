@@ -186,7 +186,7 @@
     "description_raw": "At the end of combat, heal [green]{Heal}[/green] HP.",
     "flavor": "[red]Details for this relic will be revealed in the future...[/red]",
     "rarity": "Starter Relic",
-    "pool": "shared",
+    "pool": "ironclad",
     "image_url": "/static/images/relics/black_blood.png"
   },
   {
@@ -626,7 +626,7 @@
     "description_raw": "At the start of each combat, gain {Stars:starIcons()}.",
     "flavor": "[red]Details for this relic will be revealed in the future...[/red]",
     "rarity": "Starter Relic",
-    "pool": "shared",
+    "pool": "regent",
     "image_url": "/static/images/relics/divine_destiny.png"
   },
   {
@@ -1136,7 +1136,7 @@
     "description_raw": "At the start of each combat, [gold]Channel[/gold] [blue]{Lightning}[/blue] [gold]Lightning[/gold].",
     "flavor": "[red]Details for this relic will be revealed in the future...[/red]",
     "rarity": "Starter Relic",
-    "pool": "shared",
+    "pool": "defect",
     "image_url": "/static/images/relics/infused_core.png"
   },
   {
@@ -1906,7 +1906,7 @@
     "description_raw": "At the start of each combat, [gold]Summon[/gold] [blue]{StartOfCombat}[/blue]. At the start of your turn, [gold]Summon[/gold] [blue]{StartOfTurn}[/blue].",
     "flavor": "[red]Details for this relic will be revealed in the future...[/red]",
     "rarity": "Starter Relic",
-    "pool": "shared",
+    "pool": "necrobinder",
     "image_url": "/static/images/relics/phylactery_unbound.png"
   },
   {
@@ -2126,7 +2126,7 @@
     "description_raw": "At the start of your first {Turns:plural:turn|[blue]{}[/blue] turns}, draw [blue]{Cards}[/blue] additional {Cards:plural:card|cards}.",
     "flavor": "[red]Details for this relic will be revealed in the future...[/red]",
     "rarity": "Starter Relic",
-    "pool": "shared",
+    "pool": "silent",
     "image_url": "/static/images/relics/ring_of_the_drake.png"
   },
   {

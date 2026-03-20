@@ -186,7 +186,7 @@
     "description_raw": "Восполняет [green]{Heal}[/green] ОЗ в конце боя.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Начальная реликвия",
-    "pool": "shared",
+    "pool": "ironclad",
     "image_url": "/static/images/relics/black_blood.png"
   },
   {
@@ -626,7 +626,7 @@
     "description_raw": "Дает {Stars:starIcons()} в начале боя.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Начальная реликвия",
-    "pool": "shared",
+    "pool": "regent",
     "image_url": "/static/images/relics/divine_destiny.png"
   },
   {
@@ -1136,7 +1136,7 @@
     "description_raw": "[gold]Заряжает[/gold] [blue]{Lightning}[/blue] [gold]сферы молнии[/gold] в начале боя.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Начальная реликвия",
-    "pool": "shared",
+    "pool": "defect",
     "image_url": "/static/images/relics/infused_core.png"
   },
   {
@@ -1906,7 +1906,7 @@
     "description_raw": "[gold]Призывает[/gold] [blue]{StartOfCombat}[/blue] в начале боя. [gold]Призывает[/gold] [blue]{StartOfTurn}[/blue] в начале хода.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Начальная реликвия",
-    "pool": "shared",
+    "pool": "necrobinder",
     "image_url": "/static/images/relics/phylactery_unbound.png"
   },
   {
@@ -2126,7 +2126,7 @@
     "description_raw": "",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Начальная реликвия",
-    "pool": "shared",
+    "pool": "silent",
     "image_url": "/static/images/relics/ring_of_the_drake.png"
   },
   {

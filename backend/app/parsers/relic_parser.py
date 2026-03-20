@@ -25,6 +25,25 @@ def load_localization(loc_dir: Path) -> dict:
     return {}
 
 
+def parse_starter_upgrades() -> dict[str, str]:
+    """Map upgraded starter relic class names to their base relic class names.
+
+    Extracted from TouchOfOrobas.RefinementUpgrades: { base.Id -> upgraded }.
+    """
+    touch_file = RELICS_DIR / "TouchOfOrobas.cs"
+    upgrades = {}
+    if touch_file.exists():
+        content = touch_file.read_text(encoding="utf-8")
+        # Pattern: { ModelDb.Relic<Base>().Id, ModelDb.Relic<Upgraded>() }
+        for m in re.finditer(
+            r'ModelDb\.Relic<(\w+)>\(\)\.Id,\s*ModelDb\.Relic<(\w+)>\(\)',
+            content
+        ):
+            base, upgraded = m.group(1), m.group(2)
+            upgrades[upgraded] = base
+    return upgrades
+
+
 def parse_relic_pools() -> dict[str, str]:
     """Map relic class names to character pools."""
     relic_to_pool = {}
@@ -43,6 +62,13 @@ def parse_relic_pools() -> dict[str, str]:
         content = filepath.read_text(encoding="utf-8")
         for m in re.finditer(r'ModelDb\.Relic<(\w+)>\(\)', content):
             relic_to_pool[m.group(1)] = pool_name
+
+    # Assign upgraded starter relics to their base relic's character pool
+    starter_upgrades = parse_starter_upgrades()
+    for upgraded, base in starter_upgrades.items():
+        if base in relic_to_pool and upgraded not in relic_to_pool:
+            relic_to_pool[upgraded] = relic_to_pool[base]
+
     return relic_to_pool
 
 

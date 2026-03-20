@@ -186,7 +186,7 @@
     "description_raw": "No final do combate, cure [green]{Heal}[/green] PV.",
     "flavor": "[red]Detalhes sobre esta relíquia serão revelados no futuro...[/red]",
     "rarity": "Relíquia Inicial",
-    "pool": "shared",
+    "pool": "ironclad",
     "image_url": "/static/images/relics/black_blood.png"
   },
   {
@@ -626,7 +626,7 @@
     "description_raw": "No início de cada combate, receba {Stars:starIcons()}.",
     "flavor": "[red]Detalhes sobre esta relíquia serão revelados no futuro...[/red]",
     "rarity": "Relíquia Inicial",
-    "pool": "shared",
+    "pool": "regent",
     "image_url": "/static/images/relics/divine_destiny.png"
   },
   {
@@ -1136,7 +1136,7 @@
     "description_raw": "No início de cada combate, [gold]Canalize[/gold] [blue]{Lightning}[/blue] [gold]Relâmpago[/gold].",
     "flavor": "[red]Detalhes sobre esta relíquia serão revelados no futuro...[/red]",
     "rarity": "Relíquia Inicial",
-    "pool": "shared",
+    "pool": "defect",
     "image_url": "/static/images/relics/infused_core.png"
   },
   {
@@ -1906,7 +1906,7 @@
     "description_raw": "No início do combate, [gold]Vincule[/gold] [blue]{StartOfCombat}[/blue]. No início do seu turno, [gold]Vincule[/gold] [blue]{StartOfTurn}[/blue].",
     "flavor": "[red]Detalhes sobre esta relíquia serão revelados no futuro...[/red]",
     "rarity": "Relíquia Inicial",
-    "pool": "shared",
+    "pool": "necrobinder",
     "image_url": "/static/images/relics/phylactery_unbound.png"
   },
   {
@@ -2126,7 +2126,7 @@
     "description_raw": "No início {Turns:plural:do seu primeiro turno|dos seus primeiros [blue]{}[/blue] turnos}, compre [blue]{Cards}[/blue] {Cards:plural:carta adicional|cartas adicionais}.",
     "flavor": "[red]Detalhes sobre esta relíquia serão revelados no futuro...[/red]",
     "rarity": "Relíquia Inicial",
-    "pool": "shared",
+    "pool": "silent",
     "image_url": "/static/images/relics/ring_of_the_drake.png"
   },
   {

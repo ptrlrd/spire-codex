@@ -186,7 +186,7 @@
     "description_raw": "매 전투 종료 시, 체력을 [green]{Heal}[/green] 회복합니다.",
     "flavor": "[red]이 유물에 관한 자세한 내용은 추후 공개될 예정입니다...[/red]",
     "rarity": "시작 유물",
-    "pool": "shared",
+    "pool": "ironclad",
     "image_url": "/static/images/relics/black_blood.png"
   },
   {
@@ -626,7 +626,7 @@
     "description_raw": "매 전투 시작 시, {Stars:starIcons()}을 얻습니다.",
     "flavor": "[red]이 유물에 관한 자세한 내용은 추후 공개될 예정입니다...[/red]",
     "rarity": "시작 유물",
-    "pool": "shared",
+    "pool": "regent",
     "image_url": "/static/images/relics/divine_destiny.png"
   },
   {
@@ -1136,7 +1136,7 @@
     "description_raw": "매 전투 시작 시, [gold]전기[/gold]를 [blue]{Lightning}[/blue]번 [gold]영창[/gold]합니다.",
     "flavor": "[red]이 유물에 관한 자세한 내용은 추후 공개될 예정입니다...[/red]",
     "rarity": "시작 유물",
-    "pool": "shared",
+    "pool": "defect",
     "image_url": "/static/images/relics/infused_core.png"
   },
   {
@@ -1906,7 +1906,7 @@
     "description_raw": "매 전투 시작 시, [gold]소환[/gold] [blue]{StartOfCombat}[/blue]. 내 턴 시작 시, [gold]소환[/gold] [blue]{StartOfTurn}[/blue].",
     "flavor": "[red]이 유물에 관한 자세한 내용은 추후 공개될 예정입니다...[/red]",
     "rarity": "시작 유물",
-    "pool": "shared",
+    "pool": "necrobinder",
     "image_url": "/static/images/relics/phylactery_unbound.png"
   },
   {
@@ -2126,7 +2126,7 @@
     "description_raw": "{Turns:choose(1):첫 번째 턴|첫 [blue]{}[/blue] 턴} 시작 시, 카드를 추가로 [blue]{Cards}[/blue]장 뽑습니다.",
     "flavor": "[red]이 유물에 관한 자세한 내용은 추후 공개될 예정입니다...[/red]",
     "rarity": "시작 유물",
-    "pool": "shared",
+    "pool": "silent",
     "image_url": "/static/images/relics/ring_of_the_drake.png"
   },
   {

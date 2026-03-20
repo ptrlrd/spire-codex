@@ -186,7 +186,7 @@
     "description_raw": "ตอนจบการต่อสู้ ฟื้นฟู [green]{Heal}[/green] HP",
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเริ่มต้น",
-    "pool": "shared",
+    "pool": "ironclad",
     "image_url": "/static/images/relics/black_blood.png"
   },
   {
@@ -626,7 +626,7 @@
     "description_raw": "",
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเริ่มต้น",
-    "pool": "shared",
+    "pool": "regent",
     "image_url": "/static/images/relics/divine_destiny.png"
   },
   {
@@ -1136,7 +1136,7 @@
     "description_raw": "ตอนเริ่มต้นแต่ละการต่อสู้ [gold]ปลุกเสก[/gold] [blue]{Lightning}[/blue] [gold]สายฟ้า[/gold]",
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเริ่มต้น",
-    "pool": "shared",
+    "pool": "defect",
     "image_url": "/static/images/relics/infused_core.png"
   },
   {
@@ -1906,7 +1906,7 @@
     "description_raw": "ตอนเริ่มต้นการต่อสู้ [gold]อัญเชิญ[/gold] [blue]{StartOfCombat}[/blue] และตอนเริ่มต้นเทิร์น [gold]อัญเชิญ[/gold] [blue]{StartOfTurn}[/blue]",
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเริ่มต้น",
-    "pool": "shared",
+    "pool": "necrobinder",
     "image_url": "/static/images/relics/phylactery_unbound.png"
   },
   {
@@ -2126,7 +2126,7 @@
     "description_raw": "ตอนเริ่มต้นของ {Turns:plural:1|[blue]{}[/blue]} เทิร์นแรก จั่วการ์ดเพิ่ม [blue]{Cards}[/blue] ใบ",
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเริ่มต้น",
-    "pool": "shared",
+    "pool": "silent",
     "image_url": "/static/images/relics/ring_of_the_drake.png"
   },
   {
