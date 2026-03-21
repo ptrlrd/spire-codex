@@ -118,6 +118,13 @@ export default function Footer() {
         </a>
         <span className="text-[var(--border-subtle)]" aria-hidden>·</span>
         <a
+          href="/developers"
+          className="hover:text-[var(--accent-gold)] transition-colors"
+        >
+          Developers
+        </a>
+        <span className="text-[var(--border-subtle)]" aria-hidden>·</span>
+        <a
           href="https://github.com/ptrlrd/spire-codex"
           target="_blank"
           rel="noopener noreferrer"

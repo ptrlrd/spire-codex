@@ -20,6 +20,8 @@ const STATIC_PAGES = [
   { path: "/events", priority: 0.7, changeFrequency: "weekly" as const },
   { path: "/timeline", priority: 0.6, changeFrequency: "weekly" as const },
   { path: "/reference", priority: 0.6, changeFrequency: "weekly" as const },
+  { path: "/compare", priority: 0.6, changeFrequency: "weekly" as const },
+  { path: "/developers", priority: 0.5, changeFrequency: "monthly" as const },
   { path: "/images", priority: 0.5, changeFrequency: "monthly" as const },
   { path: "/changelog", priority: 0.5, changeFrequency: "weekly" as const },
   { path: "/about", priority: 0.4, changeFrequency: "monthly" as const },

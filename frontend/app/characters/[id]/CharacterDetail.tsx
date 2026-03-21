@@ -36,9 +36,13 @@ export default function CharacterDetail() {
   const [char, setChar] = useState<Character | null>(null);
   const [cards, setCards] = useState<Record<string, Card>>({});
   const [relics, setRelics] = useState<Record<string, Relic>>({});
+  const [allCards, setAllCards] = useState<Card[]>([]);
+  const [poolRelics, setPoolRelics] = useState<Relic[]>([]);
   const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
   const [expandedAncient, setExpandedAncient] = useState<string | null>(null);
+  const [cardsExpanded, setCardsExpanded] = useState(true);
+  const [relicsExpanded, setRelicsExpanded] = useState(true);
 
   useEffect(() => {
     if (!id) return;
@@ -50,8 +54,10 @@ export default function CharacterDetail() {
       }),
       cachedFetch<Card[]>(`${API}/api/cards?lang=${lang}`),
       cachedFetch<Relic[]>(`${API}/api/relics?lang=${lang}`),
+      cachedFetch<Card[]>(`${API}/api/cards?color=${id}&lang=${lang}`).catch(() => [] as Card[]),
+      cachedFetch<Relic[]>(`${API}/api/relics?pool=${id}&lang=${lang}`).catch(() => [] as Relic[]),
     ])
-      .then(([charData, cardsData, relicsData]: [Character | null, Card[], Relic[]]) => {
+      .then(([charData, cardsData, relicsData, charCards, charRelics]: [Character | null, Card[], Relic[], Card[], Relic[]]) => {
         if (charData) setChar(charData);
         const cm: Record<string, Card> = {};
         for (const c of cardsData ?? []) cm[c.id] = c;
@@ -59,6 +65,8 @@ export default function CharacterDetail() {
         const rm: Record<string, Relic> = {};
         for (const r of relicsData ?? []) rm[r.id] = r;
         setRelics(rm);
+        setAllCards(charCards ?? []);
+        setPoolRelics(charRelics ?? []);
       })
       .finally(() => setLoading(false));
   }, [id, lang]);
@@ -92,6 +100,45 @@ export default function CharacterDetail() {
       dialoguesByAncient[d.ancient]!.push(d);
     }
   }
+
+  // Group all character cards by rarity
+  const rarityOrder = ["Common", "Uncommon", "Rare", "Basic"];
+  const cardsByRarity: Record<string, Card[]> = {};
+  for (const card of allCards) {
+    const r = card.rarity || "Other";
+    if (!cardsByRarity[r]) cardsByRarity[r] = [];
+    cardsByRarity[r].push(card);
+  }
+  // Sort each group by name
+  for (const r of Object.keys(cardsByRarity)) {
+    cardsByRarity[r].sort((a, b) => a.name.localeCompare(b.name));
+  }
+  const sortedRarities = Object.keys(cardsByRarity).sort((a, b) => {
+    const ai = rarityOrder.indexOf(a);
+    const bi = rarityOrder.indexOf(b);
+    return (ai === -1 ? 999 : ai) - (bi === -1 ? 999 : bi);
+  });
+
+  // Sort pool relics by rarity then name
+  const relicRarityOrder = ["Common", "Uncommon", "Rare", "Shop", "Event", "Starter"];
+  const sortedPoolRelics = [...poolRelics].sort((a, b) => {
+    const ai = relicRarityOrder.indexOf(a.rarity);
+    const bi = relicRarityOrder.indexOf(b.rarity);
+    const rarityDiff = (ai === -1 ? 999 : ai) - (bi === -1 ? 999 : bi);
+    if (rarityDiff !== 0) return rarityDiff;
+    return a.name.localeCompare(b.name);
+  });
+
+  const rarityBadgeColors: Record<string, string> = {
+    Common: "bg-gray-600/30 text-gray-300",
+    Uncommon: "bg-blue-600/30 text-blue-300",
+    Rare: "bg-amber-600/30 text-amber-300",
+    Basic: "bg-gray-700/30 text-gray-400",
+    Shop: "bg-green-600/30 text-green-300",
+    Event: "bg-purple-600/30 text-purple-300",
+    Starter: "bg-yellow-600/30 text-yellow-300",
+    Ancient: "bg-red-600/30 text-red-300",
+  };
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
@@ -230,6 +277,115 @@ export default function CharacterDetail() {
           })}
         </div>
       </div>
+
+      {/* All Character Cards */}
+      {allCards.length > 0 && (
+        <div className="bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] mb-6 overflow-hidden">
+          <button
+            onClick={() => setCardsExpanded(!cardsExpanded)}
+            className="w-full flex items-center justify-between p-6 hover:bg-[var(--bg-card-hover)] transition-colors text-left"
+          >
+            <h2 className="text-lg font-semibold text-[var(--text-primary)]">
+              All {char.name} Cards
+              <span className="text-sm font-normal text-[var(--text-muted)] ml-2">
+                ({allCards.length} cards)
+              </span>
+            </h2>
+            <span className="text-[var(--text-muted)]">{cardsExpanded ? "\u25B2" : "\u25BC"}</span>
+          </button>
+          {cardsExpanded && (
+            <div className="px-6 pb-6 space-y-6">
+              {sortedRarities.map((rarity) => (
+                <div key={rarity}>
+                  <h3 className="text-sm font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-3 flex items-center gap-2">
+                    <span className={`inline-block px-2 py-0.5 rounded text-xs ${rarityBadgeColors[rarity] ?? "bg-gray-600/30 text-gray-300"}`}>
+                      {rarity}
+                    </span>
+                    <span className="text-xs font-normal">({cardsByRarity[rarity].length})</span>
+                  </h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
+                    {cardsByRarity[rarity].map((card) => (
+                      <Link
+                        key={card.id}
+                        href={`/cards/${card.id.toLowerCase()}`}
+                        className="flex items-center gap-3 p-2 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] hover:border-[var(--border-accent)] transition-colors"
+                      >
+                        {card.image_url && (
+                          <img
+                            src={`${API}${card.image_url}`}
+                            alt={`${card.name} - Slay the Spire 2 Card`}
+                            className="w-8 h-8 object-contain flex-shrink-0"
+                            crossOrigin="anonymous"
+                          />
+                        )}
+                        <div className="min-w-0 flex-1">
+                          <div className="text-sm font-medium text-[var(--text-primary)] truncate">
+                            {card.name}
+                          </div>
+                          <div className="text-xs text-[var(--text-muted)]">
+                            {card.type}{card.cost !== null && card.cost !== undefined ? ` · Cost ${card.is_x_cost ? "X" : card.cost}` : ""}
+                          </div>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Character Relics */}
+      {sortedPoolRelics.length > 0 && (
+        <div className="bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] mb-6 overflow-hidden">
+          <button
+            onClick={() => setRelicsExpanded(!relicsExpanded)}
+            className="w-full flex items-center justify-between p-6 hover:bg-[var(--bg-card-hover)] transition-colors text-left"
+          >
+            <h2 className="text-lg font-semibold text-[var(--text-primary)]">
+              {char.name} Relics
+              <span className="text-sm font-normal text-[var(--text-muted)] ml-2">
+                ({sortedPoolRelics.length} relics)
+              </span>
+            </h2>
+            <span className="text-[var(--text-muted)]">{relicsExpanded ? "\u25B2" : "\u25BC"}</span>
+          </button>
+          {relicsExpanded && (
+            <div className="px-6 pb-6 space-y-2">
+              {sortedPoolRelics.map((relic) => (
+                <Link
+                  key={relic.id}
+                  href={`/relics/${relic.id.toLowerCase()}`}
+                  className="flex items-center gap-3 p-3 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] hover:border-[var(--border-accent)] transition-colors"
+                >
+                  {relic.image_url && (
+                    <img
+                      src={`${API}${relic.image_url}`}
+                      alt={`${relic.name} - Slay the Spire 2 Relic`}
+                      className="w-10 h-10 object-contain flex-shrink-0"
+                      crossOrigin="anonymous"
+                    />
+                  )}
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-center gap-2">
+                      <span className="text-sm font-medium text-[var(--text-primary)]">
+                        {relic.name}
+                      </span>
+                      <span className={`inline-block px-1.5 py-0.5 rounded text-[10px] ${rarityBadgeColors[relic.rarity] ?? "bg-gray-600/30 text-gray-300"}`}>
+                        {relic.rarity}
+                      </span>
+                    </div>
+                    <div className="text-xs text-[var(--text-secondary)] line-clamp-1 mt-0.5">
+                      <RichDescription text={relic.description} />
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
 
       {/* Quotes */}
       {char.quotes && Object.keys(char.quotes).some((k) => k in QUOTE_LABELS) && (
