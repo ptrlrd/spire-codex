@@ -64,7 +64,7 @@ async function fetchCharacterAndCards(
   try {
     const [charRes, cardsRes] = await Promise.all([
       fetch(`${API_INTERNAL}/api/characters/${charId}`, { next: { revalidate: 300 } }),
-      fetch(`${API_INTERNAL}/api/cards?color=${CHAR_COLORS[charId]}&lang=eng`, {
+      fetch(`${API_INTERNAL}/api/cards?color=${charId}&lang=eng`, {
         next: { revalidate: 300 },
       }),
     ]);

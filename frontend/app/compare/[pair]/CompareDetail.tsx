@@ -200,8 +200,8 @@ export default function CompareDetail({
     Promise.all([
       cachedFetch<Character>(`${API}/api/characters/${parsed.a}?lang=${lang}`),
       cachedFetch<Character>(`${API}/api/characters/${parsed.b}?lang=${lang}`),
-      cachedFetch<Card[]>(`${API}/api/cards?color=${CHAR_COLORS[parsed.a]}&lang=${lang}`),
-      cachedFetch<Card[]>(`${API}/api/cards?color=${CHAR_COLORS[parsed.b]}&lang=${lang}`),
+      cachedFetch<Card[]>(`${API}/api/cards?color=${parsed.a}&lang=${lang}`),
+      cachedFetch<Card[]>(`${API}/api/cards?color=${parsed.b}&lang=${lang}`),
     ])
       .then(([cA, cB, crdsA, crdsB]) => {
         setCharA(cA);
