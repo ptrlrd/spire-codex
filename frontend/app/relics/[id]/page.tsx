@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import RelicDetail from "./RelicDetail";
 import { stripTags } from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
-import { buildDetailPageJsonLd } from "@/lib/jsonld";
+import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 
 const API_INTERNAL = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 const API_PUBLIC = process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_API_URL || "";
@@ -41,7 +41,7 @@ export default async function Page({ params }: Props) {
     if (res.ok) {
       const relic = await res.json();
       const desc = stripTags(relic.description || "");
-      jsonLd = buildDetailPageJsonLd({
+      const detailJsonLd = buildDetailPageJsonLd({
         name: relic.name,
         description: desc || `${relic.name} relic from Slay the Spire 2`,
         path: `/relics/${id}`,
@@ -53,6 +53,12 @@ export default async function Page({ params }: Props) {
           { name: relic.name, href: `/relics/${id}` },
         ],
       });
+      const faqQuestions = [
+        { question: `What does ${relic.name} do in Slay the Spire 2?`, answer: desc || `${relic.name} is a relic in Slay the Spire 2.` },
+        { question: `How rare is ${relic.name}?`, answer: `${relic.name} is a ${relic.rarity} relic.` },
+        { question: `Which characters can find ${relic.name}?`, answer: `${relic.name} belongs to the ${relic.pool} pool.` },
+      ];
+      jsonLd = [...detailJsonLd, buildFAQPageJsonLd(faqQuestions)];
     }
   } catch {}
   return (

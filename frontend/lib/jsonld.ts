@@ -106,3 +106,37 @@ export function buildWebSiteJsonLd() {
       "The complete Slay the Spire 2 database. Browse all cards, relics, characters, monsters, potions, events, powers, and more.",
   };
 }
+
+export function buildVideoGameJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "VideoGame",
+    name: "Slay the Spire 2",
+    description:
+      "A roguelike deck-building game where you craft a unique deck, encounter bizarre creatures, discover relics of immense power, and slay the Spire.",
+    genre: ["Roguelike", "Deck-building", "Strategy"],
+    gamePlatform: ["PC"],
+    operatingSystem: "Windows",
+    applicationCategory: "Game",
+    publisher: { "@type": "Organization", name: "Mega Crit Games" },
+    developer: { "@type": "Organization", name: "Mega Crit Games" },
+    url: "https://store.steampowered.com/app/2868840/Slay_the_Spire_2/",
+  };
+}
+
+export function buildFAQPageJsonLd(
+  questions: { question: string; answer: string }[]
+) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: questions.map((q) => ({
+      "@type": "Question",
+      name: q.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: q.answer,
+      },
+    })),
+  };
+}

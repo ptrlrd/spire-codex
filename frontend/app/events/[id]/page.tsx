@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import EventDetail from "./EventDetail";
 import { stripTags } from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
-import { buildDetailPageJsonLd } from "@/lib/jsonld";
+import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 
 const API_INTERNAL = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 const API_PUBLIC = process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_API_URL || "";
@@ -41,7 +41,7 @@ export default async function Page({ params }: Props) {
     if (res.ok) {
       const event = await res.json();
       const desc = stripTags(event.description || "");
-      jsonLd = buildDetailPageJsonLd({
+      const detailJsonLd = buildDetailPageJsonLd({
         name: event.name,
         description: desc || `${event.name} event from Slay the Spire 2`,
         path: `/events/${id}`,
@@ -53,6 +53,14 @@ export default async function Page({ params }: Props) {
           { name: event.name, href: `/events/${id}` },
         ],
       });
+      const faqQuestions = [
+        { question: `What happens in the ${event.name} event in Slay the Spire 2?`, answer: desc || `${event.name} is an event in Slay the Spire 2.` },
+        { question: `What type of event is ${event.name}?`, answer: `${event.name} is a ${event.type} event${event.act ? ` found in ${event.act}` : ""}.` },
+      ];
+      if (event.options?.length) {
+        faqQuestions.push({ question: `What choices does ${event.name} offer?`, answer: `${event.name} offers ${event.options.length} choice(s): ${event.options.map((o: { title: string }) => o.title).join(", ")}.` });
+      }
+      jsonLd = [...detailJsonLd, buildFAQPageJsonLd(faqQuestions)];
     }
   } catch {}
   return (

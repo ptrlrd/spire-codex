@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import CardDetail from "./CardDetail";
 import { stripTags } from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
-import { buildDetailPageJsonLd } from "@/lib/jsonld";
+import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 
 const API_INTERNAL = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 const API_PUBLIC = process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_API_URL || "";
@@ -41,7 +41,7 @@ export default async function Page({ params }: Props) {
     if (res.ok) {
       const card = await res.json();
       const desc = stripTags(card.description || "");
-      jsonLd = buildDetailPageJsonLd({
+      const detailJsonLd = buildDetailPageJsonLd({
         name: card.name,
         description: desc || `${card.name} card from Slay the Spire 2`,
         path: `/cards/${id}`,
@@ -53,6 +53,16 @@ export default async function Page({ params }: Props) {
           { name: card.name, href: `/cards/${id}` },
         ],
       });
+      const costText = card.is_x_cost ? "X energy" : card.is_x_star_cost ? "X stars" : card.star_cost ? `${card.star_cost} star(s)` : `${card.cost} energy`;
+      const faqQuestions = [
+        { question: `What does ${card.name} do in Slay the Spire 2?`, answer: desc || `${card.name} is a card in Slay the Spire 2.` },
+        { question: `How much does ${card.name} cost?`, answer: `${card.name} costs ${costText}.` },
+        { question: `What type of card is ${card.name}?`, answer: `${card.name} is a ${card.rarity} ${card.type} card for ${card.color}.` },
+      ];
+      if (card.keywords?.length) {
+        faqQuestions.push({ question: `Does ${card.name} have any keywords?`, answer: `Yes, ${card.name} has: ${card.keywords.join(", ")}.` });
+      }
+      jsonLd = [...detailJsonLd, buildFAQPageJsonLd(faqQuestions)];
     }
   } catch {}
   return (

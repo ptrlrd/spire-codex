@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import MonsterDetail from "./MonsterDetail";
 import JsonLd from "@/app/components/JsonLd";
-import { buildDetailPageJsonLd } from "@/lib/jsonld";
+import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 
 const API_INTERNAL = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 const API_PUBLIC = process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_API_URL || "";
@@ -42,7 +42,7 @@ export default async function Page({ params }: Props) {
       const monster = await res.json();
       const hpText = monster.min_hp ? `${monster.min_hp}${monster.max_hp && monster.max_hp !== monster.min_hp ? `\u2013${monster.max_hp}` : ""} HP` : "";
       const desc = `${monster.type} monster${hpText ? ` \u00b7 ${hpText}` : ""}`;
-      jsonLd = buildDetailPageJsonLd({
+      const detailJsonLd = buildDetailPageJsonLd({
         name: monster.name,
         description: desc,
         path: `/monsters/${id}`,
@@ -54,6 +54,11 @@ export default async function Page({ params }: Props) {
           { name: monster.name, href: `/monsters/${id}` },
         ],
       });
+      const faqQuestions = [
+        { question: `How much HP does ${monster.name} have in Slay the Spire 2?`, answer: hpText || `${monster.name}'s HP varies.` },
+        { question: `What type of enemy is ${monster.name}?`, answer: `${monster.name} is a ${monster.type} type monster.` },
+      ];
+      jsonLd = [...detailJsonLd, buildFAQPageJsonLd(faqQuestions)];
     }
   } catch {}
   return (

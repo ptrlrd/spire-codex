@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import type { Stats } from "@/lib/api";
 import HomeClient from "./HomeClient";
 import JsonLd from "./components/JsonLd";
-import { buildWebSiteJsonLd } from "@/lib/jsonld";
+import { buildWebSiteJsonLd, buildVideoGameJsonLd } from "@/lib/jsonld";
 
 const API = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
@@ -56,7 +56,7 @@ export default async function Home() {
 
   return (
     <div className="min-h-screen">
-      <JsonLd data={buildWebSiteJsonLd()} />
+      <JsonLd data={[buildWebSiteJsonLd(), buildVideoGameJsonLd()]} />
       {/* Hero */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-[var(--accent-red)]/8 via-transparent to-transparent" />
