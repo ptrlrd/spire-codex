@@ -378,7 +378,7 @@ export default function CardDetail() {
 
           {/* Toggle buttons */}
           {(hasBetaArt || hasUpgrade) && (
-            <div className="flex justify-end gap-2 pt-4 border-t border-[var(--border-subtle)]">
+            <div className="flex justify-end gap-2 pt-4">
               {hasBetaArt && (
                 <button
                   onClick={() => setBetaArt(!betaArt)}
