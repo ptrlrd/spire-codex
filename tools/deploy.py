@@ -22,9 +22,12 @@ Usage:
   python3 tools/deploy.py --tag v0.98.2
 """
 import argparse
+import json
 import platform
 import subprocess
 import sys
+import urllib.request
+import urllib.error
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -182,7 +185,67 @@ def main():
         if build_frontend:
             for t in tags:
                 print(f"    {FRONTEND_IMAGE}:{t}")
+
+        # Notify search engines about updated pages
+        ping_indexnow()
     print()
+
+
+INDEXNOW_KEY = "aa3ad0f073dc4f08b0264001b60cb3d5"
+SITE_HOST = "spire-codex.com"
+
+# Key pages to notify search engines about on every deploy
+INDEXNOW_URLS = [
+    f"https://{SITE_HOST}/",
+    f"https://{SITE_HOST}/cards",
+    f"https://{SITE_HOST}/characters",
+    f"https://{SITE_HOST}/relics",
+    f"https://{SITE_HOST}/monsters",
+    f"https://{SITE_HOST}/potions",
+    f"https://{SITE_HOST}/powers",
+    f"https://{SITE_HOST}/enchantments",
+    f"https://{SITE_HOST}/encounters",
+    f"https://{SITE_HOST}/events",
+    f"https://{SITE_HOST}/merchant",
+    f"https://{SITE_HOST}/keywords",
+    f"https://{SITE_HOST}/compare",
+    f"https://{SITE_HOST}/timeline",
+    f"https://{SITE_HOST}/reference",
+    f"https://{SITE_HOST}/images",
+    f"https://{SITE_HOST}/developers",
+    f"https://{SITE_HOST}/showcase",
+    f"https://{SITE_HOST}/changelog",
+    f"https://{SITE_HOST}/sitemap.xml",
+]
+
+
+def ping_indexnow():
+    """Notify Bing, Yandex, and other IndexNow-participating engines about updated pages."""
+    print(f"\n{'='*60}")
+    print(f"  Pinging IndexNow ({len(INDEXNOW_URLS)} URLs)")
+    print(f"{'='*60}")
+
+    payload = json.dumps({
+        "host": SITE_HOST,
+        "key": INDEXNOW_KEY,
+        "keyLocation": f"https://{SITE_HOST}/{INDEXNOW_KEY}.txt",
+        "urlList": INDEXNOW_URLS,
+    }).encode("utf-8")
+
+    req = urllib.request.Request(
+        "https://api.indexnow.org/indexnow",
+        data=payload,
+        headers={"Content-Type": "application/json"},
+        method="POST",
+    )
+
+    try:
+        resp = urllib.request.urlopen(req, timeout=10)
+        print(f"  ✓ IndexNow responded: {resp.status}")
+    except urllib.error.HTTPError as e:
+        print(f"  ✗ IndexNow error: {e.code} {e.reason}")
+    except Exception as e:
+        print(f"  ✗ IndexNow failed: {e}")
 
 
 if __name__ == "__main__":
