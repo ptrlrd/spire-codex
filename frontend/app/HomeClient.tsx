@@ -2,9 +2,12 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import type { Stats } from "@/lib/api";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { useLanguage } from "./contexts/LanguageContext";
+
+const LANG_CODES = new Set(["deu", "esp", "fra", "ita", "jpn", "kor", "pol", "ptb", "rus", "spa", "tha", "tur", "zhs"]);
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -47,6 +50,9 @@ export default function HomeClient({ initialStats, initialTranslations }: HomeCl
   const [t, setT] = useState<Translations>(initialTranslations);
   const { lang } = useLanguage();
   const initialRender = useRef(true);
+  const pathname = usePathname();
+  const pathLang = pathname.split("/")[1];
+  const langPrefix = LANG_CODES.has(pathLang) ? `/${pathLang}` : lang !== "eng" ? `/${lang}` : "";
 
   useEffect(() => {
     if (initialRender.current) {
@@ -168,7 +174,7 @@ export default function HomeClient({ initialStats, initialTranslations }: HomeCl
             return (
               <Link
                 key={char.id}
-                href={`/characters/${char.id.toLowerCase()}`}
+                href={`${langPrefix}/characters/${char.id.toLowerCase()}`}
                 className="group relative overflow-hidden rounded-xl bg-[var(--bg-card)] border border-[var(--border-subtle)] hover:border-[var(--border-accent)] transition-all"
               >
                 <div
@@ -199,7 +205,7 @@ export default function HomeClient({ initialStats, initialTranslations }: HomeCl
           {sections.map((s) => (
             <Link
               key={s.href}
-              href={s.href}
+              href={`${langPrefix}${s.href}`}
               className="group relative overflow-hidden rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-card)] hover:bg-[var(--bg-card-hover)] transition-all hover:border-[var(--border-accent)] hover:shadow-xl hover:shadow-black/20"
             >
               <div
