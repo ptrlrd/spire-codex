@@ -1,7 +1,10 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import { useRouter, usePathname } from "next/navigation";
 import { useLanguage, LANGUAGES } from "../contexts/LanguageContext";
+
+const LANG_CODES = new Set(["deu", "esp", "fra", "ita", "jpn", "kor", "pol", "ptb", "rus", "spa", "tha", "tur", "zhs"]);
 
 const CODE_TO_SHORT: Record<string, string> = {
   deu: "DE",
@@ -20,11 +23,52 @@ const CODE_TO_SHORT: Record<string, string> = {
   zhs: "CN",
 };
 
+/**
+ * Get the current language from the URL path.
+ * Returns the lang code if on a /{lang}/ route, or "eng" for English pages.
+ */
+function getLangFromPath(pathname: string): string {
+  const first = pathname.split("/")[1];
+  if (first && LANG_CODES.has(first)) return first;
+  return "eng";
+}
+
+/**
+ * Convert a path to its equivalent in another language.
+ * /cards/bash → /jpn/cards/bash
+ * /jpn/cards/bash → /fra/cards/bash
+ * /jpn/cards/bash → /cards/bash (for English)
+ */
+function switchLangInPath(pathname: string, newLang: string): string {
+  const parts = pathname.split("/").filter(Boolean);
+
+  // Strip current lang prefix if present
+  if (parts.length > 0 && LANG_CODES.has(parts[0])) {
+    parts.shift();
+  }
+
+  // Add new lang prefix (unless English)
+  if (newLang === "eng") {
+    return "/" + parts.join("/") || "/";
+  }
+  return `/${newLang}/${parts.join("/")}`;
+}
+
 export default function LanguageSelector() {
   const { lang, setLang } = useLanguage();
   const [open, setOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
+  const router = useRouter();
+  const pathname = usePathname();
+
+  // Sync language state from URL on mount and navigation
+  const urlLang = getLangFromPath(pathname);
+  useEffect(() => {
+    if (urlLang !== lang) {
+      setLang(urlLang);
+    }
+  }, [urlLang]);
 
   useEffect(() => {
     function handleClick(e: MouseEvent) {
@@ -41,6 +85,13 @@ export default function LanguageSelector() {
     document.addEventListener("mousedown", handleClick);
     return () => document.removeEventListener("mousedown", handleClick);
   }, [open]);
+
+  function handleLangChange(newLang: string) {
+    setLang(newLang);
+    setOpen(false);
+    const newPath = switchLangInPath(pathname, newLang);
+    router.push(newPath);
+  }
 
   return (
     <div className="relative">
@@ -65,10 +116,7 @@ export default function LanguageSelector() {
             {LANGUAGES.map((l) => (
               <button
                 key={l.code}
-                onClick={() => {
-                  setLang(l.code);
-                  setOpen(false);
-                }}
+                onClick={() => handleLangChange(l.code)}
                 className={`w-full text-left px-4 py-2 text-sm transition-colors ${
                   l.code === lang
                     ? "text-[var(--accent-gold)] bg-[var(--bg-card)]"

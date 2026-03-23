@@ -5,6 +5,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import LanguageSelector from "./LanguageSelector";
 
+const LANG_CODES = new Set(["deu", "esp", "fra", "ita", "jpn", "kor", "pol", "ptb", "rus", "spa", "tha", "tur", "zhs"]);
+
 interface NavGroup {
   label: string;
   links: { href: string; label: string }[];
@@ -50,6 +52,10 @@ const NAV_GROUPS: NavGroup[] = [
 
 export default function Navbar() {
   const pathname = usePathname();
+  const pathLang = pathname.split("/")[1];
+  const currentLang = LANG_CODES.has(pathLang) ? pathLang : null;
+  const langPrefix = currentLang ? `/${currentLang}` : "";
+  const strippedPath = currentLang ? pathname.replace(`/${currentLang}`, "") || "/" : pathname;
   const [open, setOpen] = useState(false);
   const [expandedGroups, setExpandedGroups] = useState<Set<string>>(new Set());
   const menuRef = useRef<HTMLDivElement>(null);
@@ -58,7 +64,7 @@ export default function Navbar() {
   // Auto-expand the group containing the active page
   useEffect(() => {
     for (const group of NAV_GROUPS) {
-      if (group.links.some((link) => pathname.startsWith(link.href))) {
+      if (group.links.some((link) => strippedPath.startsWith(link.href))) {
         setExpandedGroups((prev) => new Set(prev).add(group.label));
         break;
       }
@@ -100,7 +106,7 @@ export default function Navbar() {
     <nav className="fixed top-0 left-0 right-0 z-50 border-b border-[var(--border-subtle)] bg-[var(--bg-primary)]/95 backdrop-blur-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          <Link href="/" className="flex items-center gap-2">
+          <Link href={`${langPrefix}/`} className="flex items-center gap-2">
             <span className="text-xl font-bold text-[var(--accent-gold)]">
               SPIRE
             </span>
@@ -150,9 +156,9 @@ export default function Navbar() {
                 {/* Home link */}
                 <div className="py-1">
                   <Link
-                    href="/"
+                    href={`${langPrefix}/`}
                     className={`block px-4 py-2 text-sm font-medium transition-colors ${
-                      pathname === "/"
+                      strippedPath === "/"
                         ? "text-[var(--accent-gold)] bg-[var(--bg-card)]"
                         : "text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-card)]"
                     }`}
@@ -164,7 +170,7 @@ export default function Navbar() {
                 {/* Collapsible groups */}
                 {NAV_GROUPS.map((group) => {
                   const isExpanded = expandedGroups.has(group.label);
-                  const hasActive = group.links.some((link) => pathname.startsWith(link.href));
+                  const hasActive = group.links.some((link) => strippedPath.startsWith(link.href));
                   return (
                     <div key={group.label} className="border-t border-[var(--border-subtle)]">
                       <button
@@ -184,7 +190,8 @@ export default function Navbar() {
                         <div className="pb-1">
                           {group.links.map((link) => {
                             const isExternal = link.href.startsWith("http");
-                            const isActive = !isExternal && pathname.startsWith(link.href);
+                            const fullHref = isExternal ? link.href : `${langPrefix}${link.href}`;
+                            const isActive = !isExternal && strippedPath.startsWith(link.href);
                             const className = `block px-6 py-1.5 text-sm font-medium transition-colors ${
                               isActive
                                 ? "text-[var(--accent-gold)] bg-[var(--bg-card)]"
@@ -193,7 +200,7 @@ export default function Navbar() {
                             return isExternal ? (
                               <a
                                 key={link.href}
-                                href={link.href}
+                                href={fullHref}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className={className}
@@ -203,7 +210,7 @@ export default function Navbar() {
                             ) : (
                               <Link
                                 key={link.href}
-                                href={link.href}
+                                href={fullHref}
                                 className={className}
                               >
                                 {link.label}

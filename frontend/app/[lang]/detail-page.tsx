@@ -236,15 +236,19 @@ export async function LocalizedDetailPage({
             </div>
           )}
 
-          {/* Link to full English page */}
-          <div className="pt-4 border-t border-[var(--border-subtle)]">
-            <Link
-              href={`/${entityType}/${id}`}
-              className="text-sm text-[var(--accent-gold)] hover:underline"
-            >
-              View full details (English) &rarr;
-            </Link>
-          </div>
+          {/* Card-specific stats */}
+          {entityType === "cards" && entity.damage && (
+            <div className="flex gap-3 mb-4">
+              <span className="text-sm px-3 py-1 rounded border bg-red-950/50 text-red-300 border-red-900/30">
+                {entity.damage}{entity.hit_count && entity.hit_count > 1 ? ` × ${entity.hit_count}` : ""} DMG
+              </span>
+              {entity.block && (
+                <span className="text-sm px-3 py-1 rounded border bg-blue-950/50 text-blue-300 border-blue-900/30">
+                  {entity.block} BLK
+                </span>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </div>
