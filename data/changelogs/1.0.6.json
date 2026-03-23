@@ -19,12 +19,15 @@
     "Tabbed detail pages for cards, relics, and potions — Overview (stats/description), Details (merchant price, powers, related cards), Info (localized names, version history)",
     "Collapsible grouped navigation menu — Database (12), Game Info (3), About the Site (5) with auto-expand for active section",
     "High-res WebGL renders of Neow and Tezcatara at 2048x2048 with transparent backgrounds",
-    "Reusable WebGL render tools: render_webgl.mjs (single skeleton) and render_all_webgl.mjs (batch all)"
+    "Reusable WebGL render tools: render_webgl.mjs (single skeleton) and render_all_webgl.mjs (batch all)",
+    "Shareable changelog URLs — /changelog#1.0.6 auto-selects the version, Share button copies direct link"
   ],
   "fixes": [
     "Removed deprecated Next.js 16 middleware that broke client-side URL updates on mobile",
     "Merchant page: restocking only occurs with The Courier relic, not by default (credit: U77654)",
-    "Removed unnecessary horizontal rule above card detail toggle buttons"
+    "Removed unnecessary horizontal rule above card detail toggle buttons",
+    "Merchant prices now display correctly in all 14 languages (added rarity_key/type_key fields to preserve English values)",
+    "Power links on card detail pages now work in all languages (added power_key field — Espinas correctly links to /powers/THORNS)"
   ],
   "api_changes": []
 }
