@@ -193,43 +193,93 @@ def main():
 
 INDEXNOW_KEY = "aa3ad0f073dc4f08b0264001b60cb3d5"
 SITE_HOST = "spire-codex.com"
+SITE_URL = f"https://{SITE_HOST}"
+DATA_DIR = ROOT / "data"
 
-# Key pages to notify search engines about on every deploy
-INDEXNOW_URLS = [
-    f"https://{SITE_HOST}/",
-    f"https://{SITE_HOST}/cards",
-    f"https://{SITE_HOST}/characters",
-    f"https://{SITE_HOST}/relics",
-    f"https://{SITE_HOST}/monsters",
-    f"https://{SITE_HOST}/potions",
-    f"https://{SITE_HOST}/powers",
-    f"https://{SITE_HOST}/enchantments",
-    f"https://{SITE_HOST}/encounters",
-    f"https://{SITE_HOST}/events",
-    f"https://{SITE_HOST}/merchant",
-    f"https://{SITE_HOST}/keywords",
-    f"https://{SITE_HOST}/compare",
-    f"https://{SITE_HOST}/timeline",
-    f"https://{SITE_HOST}/reference",
-    f"https://{SITE_HOST}/images",
-    f"https://{SITE_HOST}/developers",
-    f"https://{SITE_HOST}/showcase",
-    f"https://{SITE_HOST}/changelog",
-    f"https://{SITE_HOST}/sitemap.xml",
-]
+
+def build_indexnow_urls() -> list[str]:
+    """Build the full list of URLs to submit to IndexNow from parsed data."""
+    urls = [
+        # Static pages
+        f"{SITE_URL}/",
+        f"{SITE_URL}/cards",
+        f"{SITE_URL}/characters",
+        f"{SITE_URL}/relics",
+        f"{SITE_URL}/monsters",
+        f"{SITE_URL}/potions",
+        f"{SITE_URL}/powers",
+        f"{SITE_URL}/enchantments",
+        f"{SITE_URL}/encounters",
+        f"{SITE_URL}/events",
+        f"{SITE_URL}/merchant",
+        f"{SITE_URL}/keywords",
+        f"{SITE_URL}/compare",
+        f"{SITE_URL}/timeline",
+        f"{SITE_URL}/reference",
+        f"{SITE_URL}/images",
+        f"{SITE_URL}/developers",
+        f"{SITE_URL}/showcase",
+        f"{SITE_URL}/changelog",
+        f"{SITE_URL}/about",
+        f"{SITE_URL}/sitemap.xml",
+    ]
+
+    # Detail pages from parsed JSON data
+    entity_routes = {
+        "cards": "cards",
+        "characters": "characters",
+        "relics": "relics",
+        "monsters": "monsters",
+        "potions": "potions",
+        "powers": "powers",
+        "events": "events",
+        "encounters": "encounters",
+        "enchantments": "enchantments",
+        "keywords": "keywords",
+    }
+
+    for filename, route in entity_routes.items():
+        data_file = DATA_DIR / "eng" / f"{filename}.json"
+        if not data_file.exists():
+            data_file = DATA_DIR / f"{filename}.json"
+        if data_file.exists():
+            try:
+                with open(data_file, "r") as f:
+                    entities = json.load(f)
+                for entity in entities:
+                    entity_id = entity.get("id", "").lower()
+                    if entity_id:
+                        urls.append(f"{SITE_URL}/{route}/{entity_id}")
+            except Exception:
+                pass
+
+    # Comparison pages
+    chars = ["ironclad", "silent", "defect", "necrobinder", "regent"]
+    for i, a in enumerate(chars):
+        for b in chars[i + 1:]:
+            urls.append(f"{SITE_URL}/compare/{a}-vs-{b}")
+
+    # Keyword detail pages
+    for kw in ["exhaust", "ethereal", "innate", "retain", "sly", "eternal", "unplayable"]:
+        urls.append(f"{SITE_URL}/keywords/{kw}")
+
+    # Cap at 10,000 (IndexNow limit)
+    return urls[:10000]
 
 
 def ping_indexnow():
     """Notify Bing, Yandex, and other IndexNow-participating engines about updated pages."""
+    urls = build_indexnow_urls()
+
     print(f"\n{'='*60}")
-    print(f"  Pinging IndexNow ({len(INDEXNOW_URLS)} URLs)")
+    print(f"  Pinging IndexNow ({len(urls)} URLs)")
     print(f"{'='*60}")
 
     payload = json.dumps({
         "host": SITE_HOST,
         "key": INDEXNOW_KEY,
-        "keyLocation": f"https://{SITE_HOST}/{INDEXNOW_KEY}.txt",
-        "urlList": INDEXNOW_URLS,
+        "keyLocation": f"{SITE_URL}/{INDEXNOW_KEY}.txt",
+        "urlList": urls,
     }).encode("utf-8")
 
     req = urllib.request.Request(
@@ -240,7 +290,7 @@ def ping_indexnow():
     )
 
     try:
-        resp = urllib.request.urlopen(req, timeout=10)
+        resp = urllib.request.urlopen(req, timeout=30)
         print(f"  ✓ IndexNow responded: {resp.status}")
     except urllib.error.HTTPError as e:
         print(f"  ✗ IndexNow error: {e.code} {e.reason}")
