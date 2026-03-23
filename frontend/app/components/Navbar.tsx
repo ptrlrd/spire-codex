@@ -5,25 +5,50 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import LanguageSelector from "./LanguageSelector";
 
-const links = [
-  { href: "/", label: "Home" },
-  { href: "/cards", label: "Card Library" },
-  { href: "/characters", label: "Characters" },
-  { href: "/relics", label: "Relic Collection" },
-  { href: "/monsters", label: "Bestiary" },
-  { href: "/potions", label: "Potion Lab" },
-  { href: "/enchantments", label: "Enchantments" },
-  { href: "/encounters", label: "Encounters" },
-  { href: "/events", label: "Events" },
-  { href: "/powers", label: "Powers" },
-  { href: "/merchant", label: "Merchant" },
-  { href: "/keywords", label: "Keywords" },
-  { href: "/timeline", label: "Timeline" },
-  { href: "/reference", label: "Reference" },
-  { href: "/compare", label: "Compare" },
-  { href: "/images", label: "Images" },
-  { href: "/changelog", label: "Changelog" },
-  { href: "/about", label: "About" },
+interface NavGroup {
+  label: string;
+  links: { href: string; label: string }[];
+}
+
+const NAV_GROUPS: NavGroup[] = [
+  {
+    label: "Database",
+    links: [
+      { href: "/cards", label: "Card Library" },
+      { href: "/characters", label: "Characters" },
+      { href: "/relics", label: "Relic Collection" },
+      { href: "/monsters", label: "Bestiary" },
+      { href: "/potions", label: "Potion Lab" },
+      { href: "/enchantments", label: "Enchantments" },
+      { href: "/powers", label: "Powers" },
+    ],
+  },
+  {
+    label: "Game Info",
+    links: [
+      { href: "/encounters", label: "Encounters" },
+      { href: "/events", label: "Events" },
+      { href: "/merchant", label: "Merchant" },
+      { href: "/keywords", label: "Keywords" },
+    ],
+  },
+  {
+    label: "Tools",
+    links: [
+      { href: "/compare", label: "Compare" },
+      { href: "/timeline", label: "Timeline" },
+      { href: "/reference", label: "Reference" },
+      { href: "/images", label: "Images" },
+    ],
+  },
+  {
+    label: "Site",
+    links: [
+      { href: "/showcase", label: "Showcase" },
+      { href: "/changelog", label: "Changelog" },
+      { href: "/about", label: "About" },
+    ],
+  },
 ];
 
 export default function Navbar() {
@@ -82,7 +107,7 @@ export default function Navbar() {
 
             <LanguageSelector />
 
-          {/* Burger button — always visible */}
+          {/* Burger button */}
           <div className="relative">
             <button
               ref={buttonRef}
@@ -103,29 +128,48 @@ export default function Navbar() {
             {open && (
               <div
                 ref={menuRef}
-                className="absolute right-0 top-full mt-2 w-48 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] shadow-xl shadow-black/30"
+                className="absolute right-0 top-full mt-2 w-48 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] shadow-xl shadow-black/30 max-h-[calc(100vh-5rem)] overflow-y-auto"
               >
-                <div className="py-2">
-                  {links.map((link) => {
-                    const isActive =
-                      link.href === "/"
-                        ? pathname === "/"
-                        : pathname.startsWith(link.href);
-                    return (
-                      <Link
-                        key={link.href}
-                        href={link.href}
-                        className={`block px-4 py-2 text-sm font-medium transition-colors ${
-                          isActive
-                            ? "text-[var(--accent-gold)] bg-[var(--bg-card)]"
-                            : "text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-card)]"
-                        }`}
-                      >
-                        {link.label}
-                      </Link>
-                    );
-                  })}
+                {/* Home link */}
+                <div className="py-1">
+                  <Link
+                    href="/"
+                    className={`block px-4 py-2 text-sm font-medium transition-colors ${
+                      pathname === "/"
+                        ? "text-[var(--accent-gold)] bg-[var(--bg-card)]"
+                        : "text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-card)]"
+                    }`}
+                  >
+                    Home
+                  </Link>
                 </div>
+
+                {/* Grouped sections */}
+                {NAV_GROUPS.map((group) => (
+                  <div key={group.label} className="border-t border-[var(--border-subtle)]">
+                    <div className="px-4 pt-2 pb-1">
+                      <span className="text-[10px] font-semibold uppercase tracking-wider text-[var(--text-muted)]">
+                        {group.label}
+                      </span>
+                    </div>
+                    {group.links.map((link) => {
+                      const isActive = pathname.startsWith(link.href);
+                      return (
+                        <Link
+                          key={link.href}
+                          href={link.href}
+                          className={`block px-4 py-1.5 text-sm font-medium transition-colors ${
+                            isActive
+                              ? "text-[var(--accent-gold)] bg-[var(--bg-card)]"
+                              : "text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-card)]"
+                          }`}
+                        >
+                          {link.label}
+                        </Link>
+                      );
+                    })}
+                  </div>
+                ))}
               </div>
             )}
           </div>
