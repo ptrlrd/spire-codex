@@ -39,9 +39,11 @@ const NAV_GROUPS: NavGroup[] = [
   {
     label: "About the Site",
     links: [
+      { href: "/developers", label: "Developers" },
       { href: "/showcase", label: "Showcase" },
       { href: "/changelog", label: "Changelog" },
       { href: "/about", label: "About" },
+      { href: "https://discord.gg/xMsTBeh", label: "Discord" },
     ],
   },
 ];
@@ -181,16 +183,28 @@ export default function Navbar() {
                       {isExpanded && (
                         <div className="pb-1">
                           {group.links.map((link) => {
-                            const isActive = pathname.startsWith(link.href);
-                            return (
+                            const isExternal = link.href.startsWith("http");
+                            const isActive = !isExternal && pathname.startsWith(link.href);
+                            const className = `block px-6 py-1.5 text-sm font-medium transition-colors ${
+                              isActive
+                                ? "text-[var(--accent-gold)] bg-[var(--bg-card)]"
+                                : "text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-card)]"
+                            }`;
+                            return isExternal ? (
+                              <a
+                                key={link.href}
+                                href={link.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className={className}
+                              >
+                                {link.label}
+                              </a>
+                            ) : (
                               <Link
                                 key={link.href}
                                 href={link.href}
-                                className={`block px-6 py-1.5 text-sm font-medium transition-colors ${
-                                  isActive
-                                    ? "text-[var(--accent-gold)] bg-[var(--bg-card)]"
-                                    : "text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-card)]"
-                                }`}
+                                className={className}
                               >
                                 {link.label}
                               </Link>
