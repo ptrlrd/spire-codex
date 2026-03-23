@@ -172,24 +172,21 @@ export default function MonsterDetail() {
                   <span className="text-sm text-[var(--text-secondary)]">
                     {name}
                   </span>
-                  <div className="flex items-center gap-4">
-                    <span className="text-sm font-medium text-red-400">
-                      {val.normal}{val.hit_count ? ` × ${val.hit_count}` : ""}
+                  <div className="flex items-center gap-3 text-sm">
+                    <span className="font-medium text-red-400">
+                      {val.normal}
+                      {val.hit_count ? ` × ${val.hit_count}` : ""}
+                      {val.hit_count ? <span className="text-xs text-[var(--text-muted)] font-normal ml-1">= {val.normal * val.hit_count}</span> : null}
                     </span>
-                    {val.hit_count && (
-                      <span className="text-xs text-[var(--text-muted)]">
-                        ({val.normal * val.hit_count} total)
-                      </span>
-                    )}
                     {val.ascension !== undefined && (
-                      <span className="text-sm font-medium text-orange-400">
-                        A: {val.ascension}{val.hit_count ? ` × ${val.hit_count}` : ""}
-                      </span>
-                    )}
-                    {val.ascension !== undefined && val.hit_count && (
-                      <span className="text-xs text-[var(--text-muted)]">
-                        ({val.ascension * val.hit_count})
-                      </span>
+                      <>
+                        <span className="text-[var(--text-muted)]">|</span>
+                        <span className="font-medium text-orange-400">
+                          A: {val.ascension}
+                          {val.hit_count ? ` × ${val.hit_count}` : ""}
+                          {val.hit_count ? <span className="text-xs text-[var(--text-muted)] font-normal ml-1">= {val.ascension * val.hit_count}</span> : null}
+                        </span>
+                      </>
                     )}
                   </div>
                 </div>
