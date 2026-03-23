@@ -285,7 +285,7 @@ export default function MerchantPage() {
             The shop randomly picks one of the 5 character cards to put on sale (50% off). The sale slot is determined by <code className="text-[var(--accent-gold)] text-xs">PlayerRng.Shops.NextInt(5)</code>.
           </p>
           <p>
-            When you buy an item, it restocks immediately with a new random item (excluding duplicates of what&apos;s already in the shop).
+            When you buy an item, the slot is emptied. Items only restock if you have <strong>The Courier</strong> relic, which refills purchased slots with new random items (excluding duplicates already in the shop).
           </p>
         </div>
       </section>
