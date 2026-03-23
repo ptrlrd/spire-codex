@@ -97,27 +97,40 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }));
 
-  // Localized landing pages (13 languages x 3 pages each: home, cards, relics)
-  const langEntries: MetadataRoute.Sitemap = SUPPORTED_LANGS.flatMap((lang) => [
+  // Localized pages: landing pages + list pages + detail pages
+  const LANG_ENTITY_ROUTES = ["cards", "relics", "potions", "monsters", "powers", "events", "characters"];
+  const langListEntries: MetadataRoute.Sitemap = SUPPORTED_LANGS.flatMap((lang) => [
     {
       url: `${SITE_URL}/${lang}`,
       lastModified: now,
       changeFrequency: "weekly" as const,
       priority: 0.6,
     },
-    {
-      url: `${SITE_URL}/${lang}/cards`,
+    ...LANG_ENTITY_ROUTES.map((route) => ({
+      url: `${SITE_URL}/${lang}/${route}`,
       lastModified: now,
       changeFrequency: "weekly" as const,
       priority: 0.5,
-    },
-    {
-      url: `${SITE_URL}/${lang}/relics`,
-      lastModified: now,
-      changeFrequency: "weekly" as const,
-      priority: 0.5,
-    },
+    })),
   ]);
 
-  return [...staticEntries, ...browseEntries, ...langEntries, ...dynamicResults.flat()];
+  // Localized detail pages: 13 langs × all entities from dynamic routes
+  const allEntityIds = await Promise.all(
+    DYNAMIC_ROUTES.map(async (route) => {
+      const entities = await fetchEntities(route.endpoint);
+      return entities.map((e) => ({ prefix: route.prefix, id: e.id.toLowerCase() }));
+    })
+  );
+  const flatEntityIds = allEntityIds.flat();
+
+  const langDetailEntries: MetadataRoute.Sitemap = SUPPORTED_LANGS.flatMap((lang) =>
+    flatEntityIds.map((e) => ({
+      url: `${SITE_URL}/${lang}${e.prefix}/${e.id}`,
+      lastModified: now,
+      changeFrequency: "weekly" as const,
+      priority: 0.4,
+    }))
+  );
+
+  return [...staticEntries, ...browseEntries, ...langListEntries, ...langDetailEntries, ...dynamicResults.flat()];
 }
