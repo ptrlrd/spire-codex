@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import type { GameEvent } from "@/lib/api";
 import JsonLd from "@/app/components/JsonLd";
 import { buildCollectionPageJsonLd, buildBreadcrumbJsonLd } from "@/lib/jsonld";
+import EventsClient from "@/app/events/EventsClient";
 import {
   isValidLang,
   LANG_GAME_NAME,
@@ -11,7 +12,6 @@ import {
   type LangCode,
 } from "@/lib/languages";
 import { SITE_URL } from "@/lib/seo";
-import type { GameEvent } from "@/lib/api";
 
 export const dynamic = "force-dynamic";
 
@@ -54,25 +54,6 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   };
 }
 
-/** Group events by type */
-function groupByType(events: GameEvent[]): Record<string, GameEvent[]> {
-  const groups: Record<string, GameEvent[]> = {};
-  for (const event of events) {
-    const type = event.type || "Unknown";
-    if (!groups[type]) groups[type] = [];
-    groups[type].push(event);
-  }
-  return groups;
-}
-
-const TYPE_ACCENTS: Record<string, string> = {
-  Event: "text-gray-400",
-  Ancient: "text-purple-400",
-  Shrine: "text-amber-400",
-};
-
-const TYPE_ORDER = ["Event", "Shrine", "Ancient"];
-
 export default async function LangEventsPage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
   if (!isValidLang(lang)) return null;
@@ -83,15 +64,9 @@ export default async function LangEventsPage({ params }: { params: Promise<{ lan
 
   let events: GameEvent[] = [];
   try {
-    const res = await fetch(`${API}/api/events?lang=${lang}`, { next: { revalidate: 300 } });
+    const res = await fetch(`${API}/api/${CATEGORY}?lang=${lang}`, { next: { revalidate: 300 } });
     if (res.ok) events = await res.json();
-  } catch { /* API unavailable */ }
-
-  const grouped = groupByType(events);
-  const sortedTypes = Object.keys(grouped).sort(
-    (a, b) => (TYPE_ORDER.indexOf(a) === -1 ? 99 : TYPE_ORDER.indexOf(a)) -
-              (TYPE_ORDER.indexOf(b) === -1 ? 99 : TYPE_ORDER.indexOf(b))
-  );
+  } catch {}
 
   const jsonLd = [
     buildBreadcrumbJsonLd([
@@ -101,69 +76,23 @@ export default async function LangEventsPage({ params }: { params: Promise<{ lan
     ]),
     buildCollectionPageJsonLd({
       name: `${gameName} ${CATEGORY_LABEL}`,
-      description: `${gameName} ${CATEGORY_LABEL} — Spire Codex. ${nativeName}.`,
+      description: `Browse every event in Slay the Spire 2.`,
       path: `/${lang}/${CATEGORY}`,
-      items: events.map((e) => ({
-        name: e.name,
-        path: `/${CATEGORY}/${e.id.toLowerCase()}`,
-      })),
+      items: events.map((e) => ({ name: e.name, path: `/${CATEGORY}/${e.id.toLowerCase()}` })),
     }),
   ];
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <JsonLd data={jsonLd} />
-
-      {/* Breadcrumb */}
-      <nav className="text-sm text-[var(--text-muted)] mb-4">
-        <Link href={`/${lang}`} className="hover:text-[var(--text-secondary)]">
-          {nativeName}
-        </Link>
-        <span className="mx-2">/</span>
-        <span className="text-[var(--text-secondary)]">{CATEGORY_LABEL}</span>
-      </nav>
-
       <h1 className="text-3xl font-bold mb-2">
-        <span className="text-[var(--accent-gold)]">{gameName} {CATEGORY_LABEL}</span>
+        <span className="text-[var(--accent-gold)]">Slay the Spire 2 {CATEGORY_LABEL}</span>
       </h1>
       <p className="text-sm text-[var(--text-muted)] mb-6">
-        {events.length > 0 ? `${events.length} ${CATEGORY_LABEL.toLowerCase()}` : CATEGORY_LABEL}
-        {" "}&mdash;{" "}
-        <Link href={`/${CATEGORY}`} className="text-[var(--text-secondary)] hover:underline">
-          View in English
-        </Link>
+        Browse every Slay the Spire 2 event including shrine events, Ancient encounters, and story events. View choices, dialogue, and outcomes.
       </p>
 
-      {events.length === 0 ? (
-        <p className="text-[var(--text-muted)]">No data available.</p>
-      ) : (
-        <div className="space-y-8">
-          {sortedTypes.map((type) => {
-            const group = grouped[type];
-            if (!group || group.length === 0) return null;
-            const accent = TYPE_ACCENTS[type] || "text-gray-400";
-            return (
-              <section key={type}>
-                <h2 className={`text-xl font-semibold mb-3 ${accent}`}>
-                  {type} ({group.length})
-                </h2>
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2">
-                  {group.map((event) => (
-                    <Link
-                      key={event.id}
-                      href={`/${CATEGORY}/${event.id.toLowerCase()}`}
-                      className="px-3 py-2 rounded border border-[var(--border-primary)] bg-[var(--bg-secondary)] hover:border-[var(--border-hover)] transition-colors text-sm text-[var(--text-primary)] truncate"
-                      title={event.name}
-                    >
-                      {event.name}
-                    </Link>
-                  ))}
-                </div>
-              </section>
-            );
-          })}
-        </div>
-      )}
+      <EventsClient initialEvents={events} />
     </div>
   );
 }

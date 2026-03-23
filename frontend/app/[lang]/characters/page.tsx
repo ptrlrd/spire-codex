@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import type { Character } from "@/lib/api";
 import JsonLd from "@/app/components/JsonLd";
 import { buildCollectionPageJsonLd, buildBreadcrumbJsonLd } from "@/lib/jsonld";
+import CharactersClient from "@/app/characters/CharactersClient";
 import {
   isValidLang,
   LANG_GAME_NAME,
@@ -11,7 +12,6 @@ import {
   type LangCode,
 } from "@/lib/languages";
 import { SITE_URL } from "@/lib/seo";
-import type { Character } from "@/lib/api";
 
 export const dynamic = "force-dynamic";
 
@@ -64,9 +64,9 @@ export default async function LangCharactersPage({ params }: { params: Promise<{
 
   let characters: Character[] = [];
   try {
-    const res = await fetch(`${API}/api/characters?lang=${lang}`, { next: { revalidate: 300 } });
+    const res = await fetch(`${API}/api/${CATEGORY}?lang=${lang}`, { next: { revalidate: 300 } });
     if (res.ok) characters = await res.json();
-  } catch { /* API unavailable */ }
+  } catch {}
 
   const jsonLd = [
     buildBreadcrumbJsonLd([
@@ -76,55 +76,23 @@ export default async function LangCharactersPage({ params }: { params: Promise<{
     ]),
     buildCollectionPageJsonLd({
       name: `${gameName} ${CATEGORY_LABEL}`,
-      description: `${gameName} ${CATEGORY_LABEL} — Spire Codex. ${nativeName}.`,
+      description: `All playable characters in Slay the Spire 2.`,
       path: `/${lang}/${CATEGORY}`,
-      items: characters.map((c) => ({
-        name: c.name,
-        path: `/${CATEGORY}/${c.id.toLowerCase()}`,
-      })),
+      items: characters.map((c) => ({ name: c.name, path: `/${CATEGORY}/${c.id.toLowerCase()}` })),
     }),
   ];
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <JsonLd data={jsonLd} />
-
-      {/* Breadcrumb */}
-      <nav className="text-sm text-[var(--text-muted)] mb-4">
-        <Link href={`/${lang}`} className="hover:text-[var(--text-secondary)]">
-          {nativeName}
-        </Link>
-        <span className="mx-2">/</span>
-        <span className="text-[var(--text-secondary)]">{CATEGORY_LABEL}</span>
-      </nav>
-
       <h1 className="text-3xl font-bold mb-2">
-        <span className="text-[var(--accent-gold)]">{gameName} {CATEGORY_LABEL}</span>
+        <span className="text-[var(--accent-gold)]">Slay the Spire 2 {CATEGORY_LABEL}</span>
       </h1>
       <p className="text-sm text-[var(--text-muted)] mb-6">
-        {characters.length > 0 ? `${characters.length} ${CATEGORY_LABEL.toLowerCase()}` : CATEGORY_LABEL}
-        {" "}&mdash;{" "}
-        <Link href={`/${CATEGORY}`} className="text-[var(--text-secondary)] hover:underline">
-          View in English
-        </Link>
+        All playable characters in Slay the Spire 2 — view starting decks, relics, HP, gold, energy, and more.
       </p>
 
-      {characters.length === 0 ? (
-        <p className="text-[var(--text-muted)]">No data available.</p>
-      ) : (
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2">
-          {characters.map((character) => (
-            <Link
-              key={character.id}
-              href={`/${CATEGORY}/${character.id.toLowerCase()}`}
-              className="px-3 py-2 rounded border border-[var(--border-primary)] bg-[var(--bg-secondary)] hover:border-[var(--border-hover)] transition-colors text-sm text-[var(--text-primary)] truncate"
-              title={character.name}
-            >
-              {character.name}
-            </Link>
-          ))}
-        </div>
-      )}
+      <CharactersClient initialCharacters={characters} />
     </div>
   );
 }
