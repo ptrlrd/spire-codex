@@ -21,11 +21,6 @@ const NAV_GROUPS: NavGroup[] = [
       { href: "/potions", label: "Potion Lab" },
       { href: "/enchantments", label: "Enchantments" },
       { href: "/powers", label: "Powers" },
-    ],
-  },
-  {
-    label: "Game Info",
-    links: [
       { href: "/encounters", label: "Encounters" },
       { href: "/events", label: "Events" },
       { href: "/merchant", label: "Merchant" },
