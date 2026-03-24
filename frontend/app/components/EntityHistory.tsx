@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { cachedFetch } from "@/lib/fetch-cache";
+import { useLanguage } from "@/app/contexts/LanguageContext";
+import { t } from "@/lib/ui-translations";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -42,6 +44,7 @@ const dotColors: Record<string, string> = {
 };
 
 export default function EntityHistory({ entityType, entityId }: EntityHistoryProps) {
+  const { lang } = useLanguage();
   const [history, setHistory] = useState<HistoryEntry[] | null>(null);
   const [open, setOpen] = useState(false);
 
@@ -59,7 +62,7 @@ export default function EntityHistory({ entityType, entityId }: EntityHistoryPro
         className="text-xs text-[var(--text-muted)] hover:text-[var(--text-secondary)] transition-colors flex items-center gap-1"
       >
         <span className="text-sm">{open ? "\u25BE" : "\u25B8"}</span>
-        Version History
+        {t("version_history", lang)}
       </button>
       {open && history && history.length > 0 && (
         <div className="mt-3 relative ml-2">

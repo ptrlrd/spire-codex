@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { cachedFetch } from "@/lib/fetch-cache";
+import { useLanguage } from "@/app/contexts/LanguageContext";
+import { t } from "@/lib/ui-translations";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -11,6 +13,7 @@ interface LocalizedNamesProps {
 }
 
 export default function LocalizedNames({ entityType, entityId }: LocalizedNamesProps) {
+  const { lang } = useLanguage();
   const [names, setNames] = useState<Record<string, string> | null>(null);
   const [open, setOpen] = useState(false);
 
@@ -28,7 +31,7 @@ export default function LocalizedNames({ entityType, entityId }: LocalizedNamesP
         className="text-xs text-[var(--text-muted)] hover:text-[var(--text-secondary)] transition-colors flex items-center gap-1"
       >
         <span className="text-sm">{open ? "▾" : "▸"}</span>
-        Other languages
+        {t("other_languages", lang)}
       </button>
       {open && names && (
         <div className="grid grid-cols-2 gap-x-4 gap-y-1 mt-2 text-xs">

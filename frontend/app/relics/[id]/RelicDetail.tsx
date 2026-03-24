@@ -7,6 +7,7 @@ import type { Relic } from "@/lib/api";
 import RichDescription from "@/app/components/RichDescription";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { useLanguage } from "../../contexts/LanguageContext";
+import { t } from "@/lib/ui-translations";
 import LocalizedNames from "@/app/components/LocalizedNames";
 import EntityHistory from "@/app/components/EntityHistory";
 
@@ -70,7 +71,7 @@ export default function RelicDetail() {
       <div className="max-w-2xl mx-auto px-4 py-12 text-center">
         <p className="text-[var(--text-muted)] mb-4">Relic not found.</p>
         <Link href="/relics" className="text-[var(--accent-gold)] hover:underline">
-          &larr; Back to Relics
+          &larr; {t("back_to", lang)} Relics
         </Link>
       </div>
     );
@@ -80,9 +81,9 @@ export default function RelicDetail() {
   const priceRange = getRelicMerchantPriceRange(relic.rarity_key || relic.rarity);
 
   const tabs: { key: Tab; label: string }[] = [
-    { key: "overview", label: "Overview" },
-    { key: "details", label: "Details" },
-    { key: "info", label: "Info" },
+    { key: "overview", label: t("overview", lang) },
+    { key: "details", label: t("details", lang) },
+    { key: "info", label: t("info", lang) },
   ];
 
   return (
@@ -91,7 +92,7 @@ export default function RelicDetail() {
         href="/relics"
         className="text-sm text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors mb-6 inline-block"
       >
-        &larr; Back to Relics
+        &larr; {t("back_to", lang)} Relics
       </Link>
 
       <div className="bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] p-6">
@@ -118,17 +119,17 @@ export default function RelicDetail() {
 
         {/* Tabs */}
         <div className="flex gap-1 mb-5 border-b border-[var(--border-subtle)]">
-          {tabs.map((t) => (
+          {tabs.map((tb) => (
             <button
-              key={t.key}
-              onClick={() => setTab(t.key)}
+              key={tb.key}
+              onClick={() => setTab(tb.key)}
               className={`px-3 py-2 text-sm font-medium transition-colors border-b-2 -mb-px ${
-                tab === t.key
+                tab === tb.key
                   ? "border-[var(--accent-gold)] text-[var(--accent-gold)]"
                   : "border-transparent text-[var(--text-muted)] hover:text-[var(--text-secondary)]"
               }`}
             >
-              {t.label}
+              {tb.label}
             </button>
           ))}
         </div>
@@ -154,7 +155,7 @@ export default function RelicDetail() {
             {priceRange ? (
               <div className="mb-5">
                 <h3 className="text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)] mb-2">
-                  Merchant Price
+                  {t("merchant_price", lang)}
                 </h3>
                 <span className="text-sm px-3 py-1 rounded border bg-amber-950/30 text-[var(--accent-gold)] border-amber-900/30">
                   {priceRange.min}–{priceRange.max} Gold

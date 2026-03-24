@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import type { Card } from "@/lib/api";
 import { cachedFetch } from "@/lib/fetch-cache";
+import { useLanguage } from "@/app/contexts/LanguageContext";
+import { t } from "@/lib/ui-translations";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -20,6 +22,7 @@ interface RelatedGroup {
 }
 
 export default function RelatedCards({ currentId, keywords, tags, color }: RelatedCardsProps) {
+  const { lang } = useLanguage();
   const [groups, setGroups] = useState<RelatedGroup[]>([]);
   const [open, setOpen] = useState(false);
 
@@ -70,7 +73,7 @@ export default function RelatedCards({ currentId, keywords, tags, color }: Relat
         className="text-sm text-[var(--text-muted)] hover:text-[var(--text-secondary)] transition-colors flex items-center gap-1"
       >
         <span>{open ? "▾" : "▸"}</span>
-        Related Cards
+        {t("related_cards", lang)}
       </button>
       {open && groups.length > 0 && (
         <div className="mt-3 space-y-4">

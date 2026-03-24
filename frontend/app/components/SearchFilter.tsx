@@ -1,5 +1,8 @@
 "use client";
 
+import { useLanguage } from "@/app/contexts/LanguageContext";
+import { t } from "@/lib/ui-translations";
+
 interface FilterOption {
   label: string;
   value: string;
@@ -38,6 +41,7 @@ export default function SearchFilter({
   placeholder = "Search...",
   extra,
 }: SearchFilterProps) {
+  const { lang } = useLanguage();
   return (
     <div className="flex flex-wrap gap-2 items-center mb-6">
       <div className="relative flex-1 min-w-[140px]">
@@ -79,7 +83,7 @@ export default function SearchFilter({
       )}
       {resultCount !== undefined && (
         <span className="text-sm text-[var(--text-muted)] whitespace-nowrap">
-          {resultCount} results
+          {resultCount} {t("results", lang)}
         </span>
       )}
       {extra && (
