@@ -176,7 +176,7 @@ export default function CardDetail() {
           href="/cards"
           className="inline-flex items-center gap-1 text-sm text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors mb-6"
         >
-          &larr; {t("back_to", lang)} Cards
+          &larr; {t("Back to", lang)} {t("Cards", lang)}
         </Link>
         <div className="text-center py-12">
           <h1 className="text-2xl font-bold text-[var(--text-primary)] mb-2">
@@ -208,9 +208,9 @@ export default function CardDetail() {
   const priceRange = getMerchantPriceRange(card.rarity_key || card.rarity, card.color);
 
   const tabs: { key: Tab; label: string }[] = [
-    { key: "overview", label: t("overview", lang) },
-    { key: "details", label: t("details", lang) },
-    { key: "info", label: t("info", lang) },
+    { key: "overview", label: t("Overview", lang) },
+    { key: "details", label: t("Details", lang) },
+    { key: "info", label: t("Info", lang) },
   ];
 
   return (
@@ -219,7 +219,7 @@ export default function CardDetail() {
         href="/cards"
         className="inline-flex items-center gap-1 text-sm text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors mb-6"
       >
-        &larr; {t("back_to", lang)} Cards
+        &larr; {t("Back to", lang)} {t("Cards", lang)}
       </Link>
 
       <div
@@ -436,7 +436,7 @@ export default function CardDetail() {
               {priceRange && (
                 <div className="mb-5">
                   <h3 className="text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)] mb-2">
-                    {t("merchant_price", lang)}
+                    {t("Merchant Price", lang)}
                   </h3>
                   <span className="text-sm px-3 py-1 rounded border bg-amber-950/30 text-[var(--accent-gold)] border-amber-900/30">
                     {priceRange.min}–{priceRange.max} Gold
@@ -453,7 +453,7 @@ export default function CardDetail() {
               {card.powers_applied && card.powers_applied.length > 0 && (
                 <div className="mb-5">
                   <h3 className="text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)] mb-2">
-                    {t("powers_applied", lang)}
+                    {t("Powers Applied", lang)}
                   </h3>
                   <div className="flex flex-wrap gap-2">
                     {card.powers_applied.map((pa) => {

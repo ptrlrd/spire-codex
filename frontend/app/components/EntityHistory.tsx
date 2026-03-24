@@ -62,7 +62,7 @@ export default function EntityHistory({ entityType, entityId }: EntityHistoryPro
         className="text-xs text-[var(--text-muted)] hover:text-[var(--text-secondary)] transition-colors flex items-center gap-1"
       >
         <span className="text-sm">{open ? "\u25BE" : "\u25B8"}</span>
-        {t("version_history", lang)}
+        {t("Version History", lang)}
       </button>
       {open && history && history.length > 0 && (
         <div className="mt-3 relative ml-2">

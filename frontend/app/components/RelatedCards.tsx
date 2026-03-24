@@ -73,7 +73,7 @@ export default function RelatedCards({ currentId, keywords, tags, color }: Relat
         className="text-sm text-[var(--text-muted)] hover:text-[var(--text-secondary)] transition-colors flex items-center gap-1"
       >
         <span>{open ? "▾" : "▸"}</span>
-        {t("related_cards", lang)}
+        {t("Related Cards", lang)}
       </button>
       {open && groups.length > 0 && (
         <div className="mt-3 space-y-4">

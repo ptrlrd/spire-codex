@@ -71,7 +71,7 @@ export default function RelicDetail() {
       <div className="max-w-2xl mx-auto px-4 py-12 text-center">
         <p className="text-[var(--text-muted)] mb-4">Relic not found.</p>
         <Link href="/relics" className="text-[var(--accent-gold)] hover:underline">
-          &larr; {t("back_to", lang)} Relics
+          &larr; {t("Back to", lang)} {t("Relics", lang)}
         </Link>
       </div>
     );
@@ -81,9 +81,9 @@ export default function RelicDetail() {
   const priceRange = getRelicMerchantPriceRange(relic.rarity_key || relic.rarity);
 
   const tabs: { key: Tab; label: string }[] = [
-    { key: "overview", label: t("overview", lang) },
-    { key: "details", label: t("details", lang) },
-    { key: "info", label: t("info", lang) },
+    { key: "overview", label: t("Overview", lang) },
+    { key: "details", label: t("Details", lang) },
+    { key: "info", label: t("Info", lang) },
   ];
 
   return (
@@ -92,7 +92,7 @@ export default function RelicDetail() {
         href="/relics"
         className="text-sm text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors mb-6 inline-block"
       >
-        &larr; {t("back_to", lang)} Relics
+        &larr; {t("Back to", lang)} {t("Relics", lang)}
       </Link>
 
       <div className="bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] p-6">
@@ -155,7 +155,7 @@ export default function RelicDetail() {
             {priceRange ? (
               <div className="mb-5">
                 <h3 className="text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)] mb-2">
-                  {t("merchant_price", lang)}
+                  {t("Merchant Price", lang)}
                 </h3>
                 <span className="text-sm px-3 py-1 rounded border bg-amber-950/30 text-[var(--accent-gold)] border-amber-900/30">
                   {priceRange.min}–{priceRange.max} Gold

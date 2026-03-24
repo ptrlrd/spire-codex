@@ -4,6 +4,8 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import LanguageSelector from "./LanguageSelector";
+import { useLanguage } from "@/app/contexts/LanguageContext";
+import { t } from "@/lib/ui-translations";
 
 const LANG_CODES = new Set(["deu", "esp", "fra", "ita", "jpn", "kor", "pol", "ptb", "rus", "spa", "tha", "tur", "zhs"]);
 
@@ -52,6 +54,7 @@ const NAV_GROUPS: NavGroup[] = [
 
 export default function Navbar() {
   const pathname = usePathname();
+  const { lang } = useLanguage();
   const pathLang = pathname.split("/")[1];
   const currentLang = LANG_CODES.has(pathLang) ? pathLang : null;
   const langPrefix = currentLang ? `/${currentLang}` : "";
@@ -163,7 +166,7 @@ export default function Navbar() {
                         : "text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-card)]"
                     }`}
                   >
-                    Home
+                    {t("Home", lang)}
                   </Link>
                 </div>
 
@@ -181,7 +184,7 @@ export default function Navbar() {
                             : "text-[var(--text-muted)] hover:text-[var(--text-secondary)]"
                         }`}
                       >
-                        {group.label}
+                        {t(group.label, lang)}
                         <span className={`text-[10px] transition-transform ${isExpanded ? "rotate-90" : ""}`}>
                           ▸
                         </span>

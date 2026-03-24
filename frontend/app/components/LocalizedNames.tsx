@@ -31,7 +31,7 @@ export default function LocalizedNames({ entityType, entityId }: LocalizedNamesP
         className="text-xs text-[var(--text-muted)] hover:text-[var(--text-secondary)] transition-colors flex items-center gap-1"
       >
         <span className="text-sm">{open ? "▾" : "▸"}</span>
-        {t("other_languages", lang)}
+        {t("Other languages", lang)}
       </button>
       {open && names && (
         <div className="grid grid-cols-2 gap-x-4 gap-y-1 mt-2 text-xs">
