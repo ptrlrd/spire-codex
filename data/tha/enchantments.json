@@ -7,7 +7,7 @@
     "extra_card_text": "ได้รับ X [gold]บล็อก[/gold]",
     "card_type": null,
     "is_stackable": false,
-    "image_url": null
+    "image_url": "/static/images/enchantments/adroit.png"
   },
   {
     "id": "CLONE",
@@ -17,7 +17,7 @@
     "extra_card_text": null,
     "card_type": null,
     "is_stackable": false,
-    "image_url": null
+    "image_url": "/static/images/enchantments/clone.png"
   },
   {
     "id": "CORRUPTED",
@@ -27,7 +27,7 @@
     "extra_card_text": "เสีย 2 HP",
     "card_type": "Attack",
     "is_stackable": false,
-    "image_url": null
+    "image_url": "/static/images/enchantments/corrupted.png"
   },
   {
     "id": "FAVORED",
@@ -37,7 +37,7 @@
     "extra_card_text": null,
     "card_type": "Attack",
     "is_stackable": false,
-    "image_url": null
+    "image_url": "/static/images/enchantments/favored.png"
   },
   {
     "id": "GLAM",
@@ -47,7 +47,7 @@
     "extra_card_text": null,
     "card_type": null,
     "is_stackable": false,
-    "image_url": null
+    "image_url": "/static/images/enchantments/glam.png"
   },
   {
     "id": "GOOPY",
@@ -57,7 +57,7 @@
     "extra_card_text": "เพิ่ม[gold]บล็อก[/gold]ให้การ์ดนี้ [blue]1[/blue] แบบถาวร",
     "card_type": null,
     "is_stackable": false,
-    "image_url": null
+    "image_url": "/static/images/enchantments/goopy.png"
   },
   {
     "id": "IMBUED",
@@ -67,7 +67,7 @@
     "extra_card_text": "มนตร์อัดฉีด",
     "card_type": "Skill",
     "is_stackable": false,
-    "image_url": null
+    "image_url": "/static/images/enchantments/imbued.png"
   },
   {
     "id": "INSTINCT",
@@ -77,7 +77,7 @@
     "extra_card_text": null,
     "card_type": "Attack",
     "is_stackable": false,
-    "image_url": null
+    "image_url": "/static/images/enchantments/instinct.png"
   },
   {
     "id": "MOMENTUM",
@@ -87,7 +87,7 @@
     "extra_card_text": "เพิ่มพลังโจมตีให้การ์ดนี้ X ในการต่อสู้นี้",
     "card_type": "Attack",
     "is_stackable": false,
-    "image_url": null
+    "image_url": "/static/images/enchantments/momentum.png"
   },
   {
     "id": "NIMBLE",
@@ -97,7 +97,7 @@
     "extra_card_text": null,
     "card_type": null,
     "is_stackable": false,
-    "image_url": null
+    "image_url": "/static/images/enchantments/nimble.png"
   },
   {
     "id": "PERFECT_FIT",
@@ -107,7 +107,7 @@
     "extra_card_text": "มนตร์เหมาะเหม็ง",
     "card_type": null,
     "is_stackable": false,
-    "image_url": null
+    "image_url": "/static/images/enchantments/perfect_fit.png"
   },
   {
     "id": "ROYALLY_APPROVED",
@@ -117,7 +117,7 @@
     "extra_card_text": null,
     "card_type": null,
     "is_stackable": false,
-    "image_url": null
+    "image_url": "/static/images/enchantments/royally_approved.png"
   },
   {
     "id": "SHARP",
@@ -127,7 +127,7 @@
     "extra_card_text": null,
     "card_type": "Attack",
     "is_stackable": false,
-    "image_url": null
+    "image_url": "/static/images/enchantments/sharp.png"
   },
   {
     "id": "SLITHER",
@@ -137,7 +137,7 @@
     "extra_card_text": null,
     "card_type": null,
     "is_stackable": false,
-    "image_url": null
+    "image_url": "/static/images/enchantments/slither.png"
   },
   {
     "id": "SLUMBERING_ESSENCE",
@@ -147,7 +147,7 @@
     "extra_card_text": null,
     "card_type": null,
     "is_stackable": false,
-    "image_url": null
+    "image_url": "/static/images/enchantments/slumbering_essence.png"
   },
   {
     "id": "SOULS_POWER",
@@ -157,7 +157,7 @@
     "extra_card_text": null,
     "card_type": null,
     "is_stackable": false,
-    "image_url": null
+    "image_url": "/static/images/enchantments/souls_power.png"
   },
   {
     "id": "SOWN",
@@ -167,7 +167,7 @@
     "extra_card_text": "ได้รับ [energy:X]",
     "card_type": null,
     "is_stackable": false,
-    "image_url": null
+    "image_url": "/static/images/enchantments/sown.png"
   },
   {
     "id": "SPIRAL",
@@ -177,7 +177,7 @@
     "extra_card_text": null,
     "card_type": null,
     "is_stackable": false,
-    "image_url": null
+    "image_url": "/static/images/enchantments/spiral.png"
   },
   {
     "id": "STEADY",
@@ -187,7 +187,7 @@
     "extra_card_text": null,
     "card_type": null,
     "is_stackable": false,
-    "image_url": null
+    "image_url": "/static/images/enchantments/steady.png"
   },
   {
     "id": "SWIFT",
@@ -197,7 +197,7 @@
     "extra_card_text": "จั่ว X การ์ดตอนที่คุณเล่นการ์ดนี้ครั้งแรก",
     "card_type": null,
     "is_stackable": false,
-    "image_url": null
+    "image_url": "/static/images/enchantments/swift.png"
   },
   {
     "id": "TEZCATARAS_EMBER",
@@ -207,7 +207,7 @@
     "extra_card_text": null,
     "card_type": null,
     "is_stackable": false,
-    "image_url": null
+    "image_url": "/static/images/enchantments/tezcataras_ember.png"
   },
   {
     "id": "VIGOROUS",
@@ -217,6 +217,6 @@
     "extra_card_text": null,
     "card_type": "Attack",
     "is_stackable": false,
-    "image_url": null
+    "image_url": "/static/images/enchantments/vigorous.png"
   }
 ]
