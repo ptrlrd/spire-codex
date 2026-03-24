@@ -72,7 +72,7 @@ export default async function LangDevelopersPage({ params }: { params: Promise<{
         Developers
       </h1>
       <p className="text-[var(--text-secondary)] mb-8">
-        Build tools, bots, and content with Spire Codex data. Everything is free and open.
+        {t("developers_tagline", lang)}
       </p>
 
       {/* Tooltip Widget */}

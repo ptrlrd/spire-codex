@@ -3,6 +3,7 @@ import type { Stats } from "@/lib/api";
 import HomeClient from "@/app/HomeClient";
 import JsonLd from "@/app/components/JsonLd";
 import { buildWebSiteJsonLd, buildVideoGameJsonLd } from "@/lib/jsonld";
+import { t } from "@/lib/ui-translations";
 import { SITE_URL } from "@/lib/seo";
 import {
   isValidLang,
@@ -93,7 +94,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
               </span>
             </h1>
             <p className="text-lg text-[var(--text-secondary)] max-w-2xl mx-auto mb-2">
-              The complete database for Slay the Spire 2
+              {t("The complete database for Slay the Spire 2", lang)}
             </p>
             {total > 0 && (
               <p className="text-sm text-[var(--text-muted)]">

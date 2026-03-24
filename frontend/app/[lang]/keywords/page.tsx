@@ -93,10 +93,10 @@ export default async function LangKeywordsPage({ params }: { params: Promise<{ l
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <JsonLd data={jsonLd} />
       <h1 className="text-3xl font-bold text-[var(--text-primary)] mb-2">
-        Card Keywords
+        {t("Card Keywords", lang)}
       </h1>
       <p className="text-[var(--text-secondary)] mb-8">
-        Keywords define special behaviors for cards in {gameName}. Click a keyword to see all cards with that keyword.
+        {t("keywords_tagline", lang)}
       </p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">

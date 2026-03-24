@@ -121,8 +121,7 @@ export default async function LangComparePage({ params }: { params: Promise<{ la
         <span className="text-[var(--accent-gold)]">{t(CATEGORY_LABEL, lang)}</span>
       </h1>
       <p className="text-sm text-[var(--text-muted)] mb-6">
-        Compare Slay the Spire 2 characters side by side — stats, card pool breakdowns, keyword
-        distributions, and starting decks.
+        {t("compare_tagline", lang)}
       </p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">

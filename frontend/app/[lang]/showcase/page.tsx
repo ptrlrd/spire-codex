@@ -90,16 +90,7 @@ export default async function LangShowcasePage({ params }: { params: Promise<{ l
         Community Showcase
       </h1>
       <p className="text-[var(--text-secondary)] mb-8">
-        Projects and tools built with the Spire Codex API. Want to add yours?{" "}
-        <a
-          href="https://github.com/ptrlrd/spire-codex"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-[var(--accent-gold)] hover:underline"
-        >
-          Open a PR on GitHub
-        </a>
-        .
+        {t("showcase_tagline", lang)}
       </p>
 
       {projects.length === 0 ? (

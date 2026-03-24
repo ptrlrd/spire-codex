@@ -14,6 +14,8 @@ import { t } from "@/lib/ui-translations";
 
 export const dynamic = "force-dynamic";
 
+const API = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+
 const CATEGORY = "merchant";
 const CATEGORY_LABEL = "Merchant Guide";
 
@@ -57,6 +59,17 @@ export default async function LangMerchantPage({ params }: { params: Promise<{ l
   const langCode = lang as LangCode;
   const gameName = LANG_GAME_NAME[langCode];
 
+  // Fetch game translations for rarity/type names
+  interface Translations { card_types?: Record<string, string>; card_rarities?: Record<string, string>; relic_rarities?: Record<string, string>; potion_rarities?: Record<string, string>; }
+  let tr: Translations = {};
+  try {
+    const res = await fetch(`${API}/api/translations?lang=${lang}`, { next: { revalidate: 3600 } });
+    if (res.ok) tr = await res.json();
+  } catch {}
+  const cr = (r: string) => tr.card_rarities?.[r] ?? r;
+  const rr = (r: string) => tr.relic_rarities?.[r] ?? r;
+  const pr = (r: string) => tr.potion_rarities?.[r] ?? r;
+
   const jsonLd = [
     ...buildDetailPageJsonLd({
       name: "Merchant Guide",
@@ -81,10 +94,10 @@ export default async function LangMerchantPage({ params }: { params: Promise<{ l
       <JsonLd data={jsonLd} />
 
       <h1 className="text-3xl font-bold text-[var(--text-primary)] mb-2">
-        Merchant Guide
+        {t("Merchant Guide", lang)}
       </h1>
       <p className="text-[var(--text-secondary)] mb-8">
-        All merchant pricing extracted from the game source code. Prices vary within the listed ranges due to a per-seed random multiplier.
+        {t("merchant_tagline", lang)}
       </p>
 
       {/* Shop Inventory Structure */}
@@ -139,21 +152,21 @@ export default async function LangMerchantPage({ params }: { params: Promise<{ l
             </thead>
             <tbody>
               <tr className="border-b border-[var(--border-subtle)]/50">
-                <td className="p-3 text-gray-300">Common</td>
+                <td className="p-3 text-gray-300">{cr("Common")}</td>
                 <td className="p-3 text-right text-[var(--text-primary)]">50</td>
                 <td className="p-3 text-right text-[var(--accent-gold)]">48–53</td>
                 <td className="p-3 text-right text-[var(--text-secondary)]">55–60</td>
                 <td className="p-3 text-right text-emerald-400">24–27</td>
               </tr>
               <tr className="border-b border-[var(--border-subtle)]/50">
-                <td className="p-3 text-blue-400">Uncommon</td>
+                <td className="p-3 text-blue-400">{cr("Uncommon")}</td>
                 <td className="p-3 text-right text-[var(--text-primary)]">75</td>
                 <td className="p-3 text-right text-[var(--accent-gold)]">71–79</td>
                 <td className="p-3 text-right text-[var(--text-secondary)]">82–90</td>
                 <td className="p-3 text-right text-emerald-400">36–40</td>
               </tr>
               <tr>
-                <td className="p-3 text-[var(--accent-gold)]">Rare</td>
+                <td className="p-3 text-[var(--accent-gold)]">{cr("Rare")}</td>
                 <td className="p-3 text-right text-[var(--text-primary)]">150</td>
                 <td className="p-3 text-right text-[var(--accent-gold)]">143–158</td>
                 <td className="p-3 text-right text-[var(--text-secondary)]">164–181</td>
@@ -184,25 +197,25 @@ export default async function LangMerchantPage({ params }: { params: Promise<{ l
             </thead>
             <tbody>
               <tr className="border-b border-[var(--border-subtle)]/50">
-                <td className="p-3 text-gray-300">Common</td>
+                <td className="p-3 text-gray-300">{rr("Common")}</td>
                 <td className="p-3 text-right text-[var(--text-primary)]">200</td>
                 <td className="p-3 text-right text-[var(--accent-gold)]">170–230</td>
                 <td className="p-3 text-right text-[var(--text-muted)]">x0.85–1.15</td>
               </tr>
               <tr className="border-b border-[var(--border-subtle)]/50">
-                <td className="p-3 text-emerald-400">Shop</td>
+                <td className="p-3 text-emerald-400">{rr("Shop")}</td>
                 <td className="p-3 text-right text-[var(--text-primary)]">225</td>
                 <td className="p-3 text-right text-[var(--accent-gold)]">191–259</td>
                 <td className="p-3 text-right text-[var(--text-muted)]">x0.85–1.15</td>
               </tr>
               <tr className="border-b border-[var(--border-subtle)]/50">
-                <td className="p-3 text-blue-400">Uncommon</td>
+                <td className="p-3 text-blue-400">{rr("Uncommon")}</td>
                 <td className="p-3 text-right text-[var(--text-primary)]">250</td>
                 <td className="p-3 text-right text-[var(--accent-gold)]">213–288</td>
                 <td className="p-3 text-right text-[var(--text-muted)]">x0.85–1.15</td>
               </tr>
               <tr>
-                <td className="p-3 text-[var(--accent-gold)]">Rare</td>
+                <td className="p-3 text-[var(--accent-gold)]">{rr("Rare")}</td>
                 <td className="p-3 text-right text-[var(--text-primary)]">300</td>
                 <td className="p-3 text-right text-[var(--accent-gold)]">255–345</td>
                 <td className="p-3 text-right text-[var(--text-muted)]">x0.85–1.15</td>
@@ -231,17 +244,17 @@ export default async function LangMerchantPage({ params }: { params: Promise<{ l
             </thead>
             <tbody>
               <tr className="border-b border-[var(--border-subtle)]/50">
-                <td className="p-3 text-gray-300">Common</td>
+                <td className="p-3 text-gray-300">{pr("Common")}</td>
                 <td className="p-3 text-right text-[var(--text-primary)]">50</td>
                 <td className="p-3 text-right text-[var(--accent-gold)]">48–53</td>
               </tr>
               <tr className="border-b border-[var(--border-subtle)]/50">
-                <td className="p-3 text-blue-400">Uncommon</td>
+                <td className="p-3 text-blue-400">{pr("Uncommon")}</td>
                 <td className="p-3 text-right text-[var(--text-primary)]">75</td>
                 <td className="p-3 text-right text-[var(--accent-gold)]">71–79</td>
               </tr>
               <tr>
-                <td className="p-3 text-[var(--accent-gold)]">Rare</td>
+                <td className="p-3 text-[var(--accent-gold)]">{pr("Rare")}</td>
                 <td className="p-3 text-right text-[var(--text-primary)]">100</td>
                 <td className="p-3 text-right text-[var(--accent-gold)]">95–105</td>
               </tr>
