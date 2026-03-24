@@ -34,7 +34,8 @@
     "HomeClient no longer falls back to English for sections the game returns untranslated (Characters, Enchantments, etc.)",
     "Monster damage display cleaned up — pipe separator between normal/ascension, = for totals",
     "Fixed small/placeholder monster sprites (fuzzy_wurm_crawler, gas_bomb, living_smog, thieving_hopper, etc.)",
-    "WebGL renderers now hide smokeTex/smoke_placeholder slots (removes Smoke Placeholder text)"
+    "WebGL renderers now hide smokeTex/smoke_placeholder slots (removes Smoke Placeholder text)",
+    "Language context no longer defaults to English during navigation — URL path takes priority over localStorage on every render"
   ],
   "api_changes": [
     "New field: keywords_key on Card schema — preserves English keyword names alongside localized keywords",
