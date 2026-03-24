@@ -10,6 +10,7 @@ import {
   type LangCode,
 } from "@/lib/languages";
 import { SITE_URL } from "@/lib/seo";
+import { t } from "@/lib/ui-translations";
 
 export const dynamic = "force-dynamic";
 

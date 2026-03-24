@@ -9,6 +9,7 @@ import {
   type LangCode,
 } from "@/lib/languages";
 import { SITE_URL } from "@/lib/seo";
+import { t } from "@/lib/ui-translations";
 
 export const dynamic = "force-dynamic";
 
@@ -23,7 +24,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   const gameName = LANG_GAME_NAME[langCode];
   const nativeName = LANG_NAMES[langCode];
 
-  const title = `${CATEGORY_LABEL} Spire Codex - ${gameName} | (${nativeName})`;
+  const title = `${t(CATEGORY_LABEL, lang)} Spire Codex - ${gameName} | (${nativeName})`;
   const description = `Spire Codex — ${gameName} database. ${nativeName}.`;
 
   const languages: Record<string, string> = {

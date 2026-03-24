@@ -107,12 +107,13 @@ export default async function Page({ params }: Props) {
   const nameA = CHAR_NAMES[parsed.a];
   const nameB = CHAR_NAMES[parsed.b];
   const langCode = lang as LangCode;
+  const gameName = LANG_GAME_NAME[langCode];
 
   let jsonLd = null;
   if (dataA && dataB) {
     jsonLd = buildDetailPageJsonLd({
       name: `${nameA} vs ${nameB}`,
-      description: `Side-by-side comparison of ${nameA} and ${nameB} in Slay the Spire 2.`,
+      description: `Side-by-side comparison of ${nameA} and ${nameB} in ${gameName}.`,
       path: `/${lang}/compare/${pair}`,
       category: "Character Comparison",
       breadcrumbs: [

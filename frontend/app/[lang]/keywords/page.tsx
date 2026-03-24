@@ -12,6 +12,7 @@ import {
   type LangCode,
 } from "@/lib/languages";
 import { SITE_URL } from "@/lib/seo";
+import { t } from "@/lib/ui-translations";
 
 export const dynamic = "force-dynamic";
 
@@ -34,8 +35,8 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   const gameName = LANG_GAME_NAME[langCode];
   const nativeName = LANG_NAMES[langCode];
 
-  const title = `${gameName} Card ${CATEGORY_LABEL} | Spire Codex (${nativeName})`;
-  const description = `${gameName} Card ${CATEGORY_LABEL} — Spire Codex. ${nativeName}.`;
+  const title = `${gameName} Card ${t(CATEGORY_LABEL, lang)} | Spire Codex (${nativeName})`;
+  const description = `${gameName} Card ${t(CATEGORY_LABEL, lang)} — Spire Codex. ${nativeName}.`;
 
   const languages: Record<string, string> = {
     "en": `${SITE_URL}/${CATEGORY}`,
@@ -78,11 +79,11 @@ export default async function LangKeywordsPage({ params }: { params: Promise<{ l
     buildBreadcrumbJsonLd([
       { name: "Home", href: "/" },
       { name: nativeName, href: `/${lang}` },
-      { name: `Card ${CATEGORY_LABEL}`, href: `/${lang}/${CATEGORY}` },
+      { name: `Card ${t(CATEGORY_LABEL, lang)}`, href: `/${lang}/${CATEGORY}` },
     ]),
     buildCollectionPageJsonLd({
-      name: `${gameName} Card ${CATEGORY_LABEL}`,
-      description: `All card keywords in Slay the Spire 2.`,
+      name: `${gameName} Card ${t(CATEGORY_LABEL, lang)}`,
+      description: `All card keywords in ${gameName}.`,
       path: `/${lang}/${CATEGORY}`,
       items: keywords.map((k) => ({ name: k.name, path: `/keywords/${k.id.toLowerCase()}` })),
     }),
@@ -95,7 +96,7 @@ export default async function LangKeywordsPage({ params }: { params: Promise<{ l
         Card Keywords
       </h1>
       <p className="text-[var(--text-secondary)] mb-8">
-        Keywords define special behaviors for cards in Slay the Spire 2. Click a keyword to see all cards with that keyword.
+        Keywords define special behaviors for cards in ${gameName}. Click a keyword to see all cards with that keyword.
       </p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">

@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import type { Stats } from "@/lib/api";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { useLanguage } from "./contexts/LanguageContext";
+import { t } from "@/lib/ui-translations";
 
 const LANG_CODES = new Set(["deu", "esp", "fra", "ita", "jpn", "kor", "pol", "ptb", "rus", "spa", "tha", "tur", "zhs"]);
 
@@ -47,7 +48,7 @@ interface HomeClientProps {
 
 export default function HomeClient({ initialStats, initialTranslations }: HomeClientProps) {
   const [stats, setStats] = useState<Stats | null>(initialStats);
-  const [t, setT] = useState<Translations>(initialTranslations);
+  const [translations, setTranslations] = useState<Translations>(initialTranslations);
   const { lang } = useLanguage();
   const initialRender = useRef(true);
   const pathname = usePathname();
@@ -62,11 +63,24 @@ export default function HomeClient({ initialStats, initialTranslations }: HomeCl
     cachedFetch<Stats>(`${API}/api/stats?lang=${lang}`)
       .then(setStats);
     cachedFetch<Translations>(`${API}/api/translations?lang=${lang}`)
-      .then(setT);
+      .then(setTranslations);
   }, [lang]);
 
-  const sectionKey = (key: string) => t.sections?.[key] ?? key.charAt(0).toUpperCase() + key.slice(1);
-  const sectionDesc = (key: string) => t.section_descs?.[key] ?? FALLBACK_DESCS[key] ?? "";
+  // Section name: use game translations first, then our UI translations, then capitalize
+  const SECTION_LABEL_MAP: Record<string, string> = {
+    cards: "Card Library", characters: "Characters", relics: "Relic Collection",
+    monsters: "Bestiary", potions: "Potion Lab", enchantments: "Enchantments",
+    encounters: "Encounters", events: "Events", powers: "Powers",
+    timeline: "Timeline", images: "Images", reference: "Reference",
+  };
+  const sectionKey = (key: string) => {
+    const gameT = translations.sections?.[key];
+    if (gameT) return gameT;
+    const uiKey = SECTION_LABEL_MAP[key];
+    if (uiKey) return t(uiKey, lang);
+    return key.charAt(0).toUpperCase() + key.slice(1);
+  };
+  const sectionDesc = (key: string) => translations.section_descs?.[key] ?? FALLBACK_DESCS[key] ?? "";
 
   const sections = [
     {
@@ -170,7 +184,7 @@ export default function HomeClient({ initialStats, initialTranslations }: HomeCl
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
         <div className="grid grid-cols-5 gap-2 sm:gap-4">
           {CHARACTERS.map((char) => {
-            const charName = t.character_names?.[char.id] ?? char.id.charAt(0).toUpperCase() + char.id.slice(1);
+            const charName = translations.character_names?.[char.id] ?? char.id.charAt(0).toUpperCase() + char.id.slice(1);
             return (
               <Link
                 key={char.id}

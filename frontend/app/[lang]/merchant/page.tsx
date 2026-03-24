@@ -10,6 +10,7 @@ import {
   type LangCode,
 } from "@/lib/languages";
 import { SITE_URL } from "@/lib/seo";
+import { t } from "@/lib/ui-translations";
 
 export const dynamic = "force-dynamic";
 
@@ -24,7 +25,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   const gameName = LANG_GAME_NAME[langCode];
   const nativeName = LANG_NAMES[langCode];
 
-  const title = `${gameName} ${CATEGORY_LABEL} | Spire Codex (${nativeName})`;
+  const title = `${gameName} ${t(CATEGORY_LABEL, lang)} | Spire Codex (${nativeName})`;
   const description = `Complete ${gameName} merchant price guide with card, relic, and potion costs, card removal pricing, and Fake Merchant relic details. ${nativeName}.`;
 
   const languages: Record<string, string> = {
@@ -66,10 +67,10 @@ export default async function LangMerchantPage({ params }: { params: Promise<{ l
       ],
     }),
     buildFAQPageJsonLd([
-      { question: "How much do cards cost at the merchant in Slay the Spire 2?", answer: "Common cards cost 48-53 gold, Uncommon 71-79 gold, Rare 143-158 gold. Colorless cards have a 15% markup. One random card is on sale for half price." },
-      { question: "How much do relics cost at the shop in Slay the Spire 2?", answer: "Common relics cost 170-230 gold, Uncommon 213-288 gold, Rare 255-345 gold, and Shop relics 191-259 gold." },
-      { question: "How much does card removal cost in Slay the Spire 2?", answer: "Card removal starts at 75 gold and increases by 25 gold each time you use it (75, 100, 125, 150, etc.)." },
-      { question: "What is the Fake Merchant in Slay the Spire 2?", answer: "The Fake Merchant is an event that sells counterfeit versions of popular relics for only 50 gold each. These fakes have weaker effects than the originals." },
+      { question: "How much do cards cost at the merchant in ${gameName}?", answer: "Common cards cost 48-53 gold, Uncommon 71-79 gold, Rare 143-158 gold. Colorless cards have a 15% markup. One random card is on sale for half price." },
+      { question: "How much do relics cost at the shop in ${gameName}?", answer: "Common relics cost 170-230 gold, Uncommon 213-288 gold, Rare 255-345 gold, and Shop relics 191-259 gold." },
+      { question: "How much does card removal cost in ${gameName}?", answer: "Card removal starts at 75 gold and increases by 25 gold each time you use it (75, 100, 125, 150, etc.)." },
+      { question: "What is the Fake Merchant in ${gameName}?", answer: "The Fake Merchant is an event that sells counterfeit versions of popular relics for only 50 gold each. These fakes have weaker effects than the originals." },
     ]),
   ];
 

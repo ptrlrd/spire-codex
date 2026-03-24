@@ -12,6 +12,7 @@ import {
   type LangCode,
 } from "@/lib/languages";
 import { SITE_URL } from "@/lib/seo";
+import { t } from "@/lib/ui-translations";
 
 export const dynamic = "force-dynamic";
 
@@ -28,8 +29,8 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   const gameName = LANG_GAME_NAME[langCode];
   const nativeName = LANG_NAMES[langCode];
 
-  const title = `${gameName} ${CATEGORY_LABEL} | Spire Codex (${nativeName})`;
-  const description = `${gameName} ${CATEGORY_LABEL} — Spire Codex. ${nativeName}.`;
+  const title = `${gameName} ${t(CATEGORY_LABEL, lang)} | Spire Codex (${nativeName})`;
+  const description = `${gameName} ${t(CATEGORY_LABEL, lang)} — Spire Codex. ${nativeName}.`;
 
   const languages: Record<string, string> = {
     "en": `${SITE_URL}/${CATEGORY}`,
@@ -75,7 +76,7 @@ export default async function LangPotionsPage({ params }: { params: Promise<{ la
       { name: CATEGORY_LABEL, href: `/${lang}/${CATEGORY}` },
     ]),
     buildCollectionPageJsonLd({
-      name: `${gameName} ${CATEGORY_LABEL}`,
+      name: `${gameName} ${t(CATEGORY_LABEL, lang)}`,
       description: `Browse every potion across all character pools.`,
       path: `/${lang}/${CATEGORY}`,
       items: potions.map((p) => ({ name: p.name, path: `/${CATEGORY}/${p.id.toLowerCase()}` })),
@@ -86,7 +87,7 @@ export default async function LangPotionsPage({ params }: { params: Promise<{ la
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <JsonLd data={jsonLd} />
       <h1 className="text-3xl font-bold mb-2">
-        <span className="text-[var(--accent-gold)]">Slay the Spire 2 {CATEGORY_LABEL}</span>
+        <span className="text-[var(--accent-gold)]">{gameName} {t(CATEGORY_LABEL, lang)}</span>
       </h1>
       <p className="text-sm text-[var(--text-muted)] mb-6">
         Browse every potion across Ironclad, Silent, Defect, Necrobinder, and Regent. Filter by rarity and character pool.

@@ -26,10 +26,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     for (const code of SUPPORTED_LANGS) languages[LANG_HREFLANG[code]] = `${SITE_URL}/${code}/keywords/${id}`;
     return {
       title,
-      description: `${desc} Browse all ${kw.name} cards in Slay the Spire 2.`,
+      description: `${desc} Browse all ${kw.name} cards in ${gameName}.`,
       openGraph: {
         title: `${gameName} ${kw.name} Cards | Spire Codex (${LANG_NAMES[langCode]})`,
-        description: `${desc} Browse all ${kw.name} cards in Slay the Spire 2.`,
+        description: `${desc} Browse all ${kw.name} cards in ${gameName}.`,
         locale: LANG_HREFLANG[langCode],
       },
       twitter: { card: "summary_large_image" },
@@ -50,9 +50,10 @@ export default async function Page({ params }: Props) {
       const kw = await res.json();
       const desc = stripTags(kw.description);
       const langCode = lang as LangCode;
+      const gameName = LANG_GAME_NAME[langCode];
       const detailJsonLd = buildDetailPageJsonLd({
         name: `${kw.name} Cards`,
-        description: `${desc} All cards with the ${kw.name} keyword in Slay the Spire 2.`,
+        description: `${desc} All cards with the ${kw.name} keyword in ${gameName}.`,
         path: `/${lang}/keywords/${id}`,
         category: "Keyword",
         breadcrumbs: [
@@ -62,7 +63,7 @@ export default async function Page({ params }: Props) {
         ],
       });
       const faqJsonLd = buildFAQPageJsonLd([
-        { question: `What does ${kw.name} do in Slay the Spire 2?`, answer: desc },
+        { question: `What does ${kw.name} do in ${gameName}?`, answer: desc },
         { question: `Which cards have ${kw.name}?`, answer: `View the full list of ${kw.name} cards on this page.` },
       ]);
       jsonLd = [...detailJsonLd, faqJsonLd];
