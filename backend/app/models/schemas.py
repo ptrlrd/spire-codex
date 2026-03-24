@@ -82,6 +82,7 @@ class Relic(BaseModel):
     rarity_key: str | None = None
     pool: str
     image_url: str | None = None
+    image_variants: dict[str, str] | None = None
     compendium_order: int = 0
 
 

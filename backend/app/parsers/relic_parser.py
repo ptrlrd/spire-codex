@@ -105,6 +105,20 @@ def parse_single_relic(filepath: Path, localization: dict, relic_pools: dict) ->
     image_file = STATIC_IMAGES / f"{relic_id.lower()}.png"
     image_url = f"/static/images/relics/{relic_id.lower()}.png" if image_file.exists() else None
 
+    # Character-specific image variants (e.g., Yummy Cookie has 5 variants)
+    VARIANT_SUFFIXES = {
+        "ironclad": "Ironclad",
+        "silent": "Silent",
+        "defect": "Defect",
+        "necro": "Necrobinder",
+        "regent": "Regent",
+    }
+    image_variants = {}
+    for suffix, char_name in VARIANT_SUFFIXES.items():
+        variant_file = STATIC_IMAGES / f"{relic_id.lower()}_{suffix}.png"
+        if variant_file.exists():
+            image_variants[char_name] = f"/static/images/relics/{relic_id.lower()}_{suffix}.png"
+
     return {
         "id": relic_id,
         "name": title,
@@ -114,6 +128,7 @@ def parse_single_relic(filepath: Path, localization: dict, relic_pools: dict) ->
         "rarity": rarity,
         "pool": pool,
         "image_url": image_url,
+        "image_variants": image_variants if image_variants else None,
     }
 
 

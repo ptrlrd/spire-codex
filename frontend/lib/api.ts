@@ -80,6 +80,7 @@ export interface Relic {
   rarity_key: string | null;
   pool: string;
   image_url: string | null;
+  image_variants: Record<string, string> | null;
   compendium_order: number;
 }
 

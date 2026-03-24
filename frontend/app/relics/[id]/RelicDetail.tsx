@@ -47,6 +47,8 @@ export default function RelicDetail() {
   const { lang } = useLanguage();
     const lp = useLangPrefix();
 const [relic, setRelic] = useState<Relic | null>(null);
+  const [selectedVariant, setSelectedVariant] = useState<string | null>(null);
+  const [selectedChar, setSelectedChar] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
   const [tab, setTab] = useState<Tab>("overview");
@@ -99,13 +101,40 @@ const [relic, setRelic] = useState<Relic | null>(null);
 
       <div className="bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] p-6">
         {relic.image_url && (
-          <div className="flex justify-center mb-6">
+          <div className="flex flex-col items-center mb-6">
             <img
-              src={`${API}${relic.image_url}`}
-              alt={`${relic.name} - Slay the Spire 2 Relic`}
+              src={`${API}${selectedVariant || relic.image_url}`}
+              alt={`${relic.name}${selectedChar ? ` (${selectedChar})` : ""} - Slay the Spire 2 Relic`}
               className="w-24 h-24 object-contain"
               crossOrigin="anonymous"
             />
+            {relic.image_variants && Object.keys(relic.image_variants).length > 0 && (
+              <div className="flex gap-1.5 mt-3">
+                <button
+                  onClick={() => { setSelectedVariant(null); setSelectedChar(null); }}
+                  className={`text-xs px-2 py-1 rounded border transition-colors ${
+                    !selectedVariant
+                      ? "border-[var(--accent-gold)]/50 text-[var(--accent-gold)] bg-[var(--accent-gold)]/10"
+                      : "border-[var(--border-subtle)] text-[var(--text-muted)] hover:text-[var(--text-secondary)]"
+                  }`}
+                >
+                  Default
+                </button>
+                {Object.entries(relic.image_variants).map(([char, url]) => (
+                  <button
+                    key={char}
+                    onClick={() => { setSelectedVariant(url); setSelectedChar(char); }}
+                    className={`text-xs px-2 py-1 rounded border transition-colors ${
+                      selectedVariant === url
+                        ? "border-[var(--accent-gold)]/50 text-[var(--accent-gold)] bg-[var(--accent-gold)]/10"
+                        : "border-[var(--border-subtle)] text-[var(--text-muted)] hover:text-[var(--text-secondary)]"
+                    }`}
+                  >
+                    {char}
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
         )}
 
