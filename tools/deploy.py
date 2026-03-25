@@ -265,7 +265,7 @@ def build_indexnow_urls() -> list[str]:
 
     # Localized pages (13 languages)
     LANGS = ["deu", "esp", "fra", "ita", "jpn", "kor", "pol", "ptb", "rus", "spa", "tha", "tur", "zhs"]
-    LANG_ENTITY_ROUTES = ["cards", "relics", "potions", "monsters", "powers", "events", "characters"]
+    LANG_ENTITY_ROUTES = ["cards", "relics", "potions", "monsters", "powers", "events", "characters", "enchantments", "encounters"]
 
     for lang in LANGS:
         # Landing + list pages
