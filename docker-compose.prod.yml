@@ -17,6 +17,8 @@ services:
     container_name: spire-codex-frontend
     depends_on:
       - backend
+    volumes:
+      - ./data:/data:ro
     environment:
       - API_INTERNAL_URL=http://backend:8000
       - NEXT_PUBLIC_SITE_URL=https://spire-codex.com
