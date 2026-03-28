@@ -142,6 +142,15 @@ export default function Footer() {
           Discord
         </a>
         <span className="text-[var(--border-subtle)]" aria-hidden>·</span>
+        <a
+          href="https://ko-fi.com/yitsy"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:text-[var(--accent-gold)] transition-colors"
+        >
+          Ko-Fi
+        </a>
+        <span className="text-[var(--border-subtle)]" aria-hidden>·</span>
         <button
           onClick={() => setShowFeedback(true)}
           className="hover:text-[var(--accent-gold)] transition-colors"
