@@ -55,6 +55,7 @@ def init_db():
                 killed_by TEXT,
                 deck_size INTEGER NOT NULL DEFAULT 0,
                 relic_count INTEGER NOT NULL DEFAULT 0,
+                username TEXT,
                 submitted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             );
 
@@ -94,9 +95,9 @@ def init_db():
         """)
 
         # Migrations — add columns to existing tables
-        for col, default in [("was_abandoned", "0"), ("player_count", "1")]:
+        for col, coltype in [("was_abandoned", "INTEGER NOT NULL DEFAULT 0"), ("player_count", "INTEGER NOT NULL DEFAULT 1"), ("username", "TEXT")]:
             try:
-                conn.execute(f"ALTER TABLE runs ADD COLUMN {col} INTEGER NOT NULL DEFAULT {default}")
+                conn.execute(f"ALTER TABLE runs ADD COLUMN {col} {coltype}")
             except Exception:
                 pass  # column already exists
         try:
@@ -119,7 +120,7 @@ def clean_id(raw_id: str) -> str:
     return raw_id
 
 
-def submit_run(data: dict) -> dict:
+def submit_run(data: dict, username: str | None = None) -> dict:
     """Parse and store a run. Returns status dict."""
     # Validate structure
     if not data.get("players") or not data.get("map_point_history") or not isinstance(data.get("acts"), list):
@@ -151,13 +152,13 @@ def submit_run(data: dict) -> dict:
         cursor = conn.execute("""
             INSERT INTO runs (run_hash, seed, character, win, was_abandoned, ascension, game_mode,
                               player_count, run_time, floors_reached, acts_completed, killed_by,
-                              deck_size, relic_count)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                              deck_size, relic_count, username)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """, (
             run_hash, data.get("seed", ""), character, int(data.get("win", False)),
             was_abandoned, data.get("ascension", 0), data.get("game_mode", "standard"),
             player_count, data.get("run_time", 0), total_floors, len(data.get("acts", [])),
-            killed_by, len(player["deck"]), len(player["relics"]),
+            killed_by, len(player["deck"]), len(player["relics"]), username,
         ))
         run_id = cursor.lastrowid
 

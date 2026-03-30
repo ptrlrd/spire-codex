@@ -13,8 +13,8 @@ MAX_BODY_SIZE = 512 * 1024  # 512 KB
 
 
 @router.post("", tags=["Runs"])
-async def submit_run_endpoint(request: Request):
-    """Submit a run for community stats. Paste the .run file JSON content."""
+async def submit_run_endpoint(request: Request, username: str | None = None):
+    """Submit a run for community stats. Paste the .run file JSON content. Optional ?username= param."""
     body = await request.body()
     if len(body) > MAX_BODY_SIZE:
         raise HTTPException(status_code=413, detail=f"Request too large. Max {MAX_BODY_SIZE // 1024} KB.")
@@ -23,7 +23,12 @@ async def submit_run_endpoint(request: Request):
     except Exception:
         raise HTTPException(status_code=400, detail="Invalid JSON body")
 
-    result = submit_run(data)
+    # Sanitize username
+    clean_username = None
+    if username:
+        clean_username = username.strip()[:25] or None
+
+    result = submit_run(data, username=clean_username)
     if result.get("error"):
         if result.get("duplicate"):
             return {"success": True, "duplicate": True, "run_hash": result.get("run_hash")}
@@ -49,7 +54,7 @@ def list_runs(request: Request, character: str | None = None, win: str | None = 
         params.append(min(limit, 100))
         rows = conn.execute(f"""
             SELECT run_hash, character, win, was_abandoned, ascension, game_mode,
-                   run_time, floors_reached, deck_size, relic_count, killed_by, submitted_at
+                   run_time, floors_reached, deck_size, relic_count, killed_by, username, submitted_at
             FROM runs {where}
             ORDER BY submitted_at DESC LIMIT ?
         """, params).fetchall()
