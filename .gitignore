@@ -21,5 +21,10 @@ frontend/.env.local
 # OS
 .DS_Store
 
+# Runtime data
+data/runs.db
+data/runs/
+history-of-runs/
+
 #Analysis Docs
 Spire_Codex_Growth_Strategy*
