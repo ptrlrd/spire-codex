@@ -399,6 +399,7 @@ export default function RunsClient() {
   const [runHash, setRunHash] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
   const [username, setUsername] = useState("");
+  const [uploadProgress, setUploadProgress] = useState<{ total: number; done: number; dupes: number; errors: number } | null>(null);
   const [tab, setTab] = useState<"submit" | "browse">("submit");
   const [runList, setRunList] = useState<any[]>([]);
   const [browseChar, setBrowseChar] = useState("");
@@ -429,6 +430,63 @@ export default function RunsClient() {
       .then(setRunList)
       .catch(() => {});
   }, [tab, browseChar, browseWin]);
+
+  function isValidRunFile(data: any): boolean {
+    return data && typeof data === "object" && data.players && data.acts && data.map_point_history && "win" in data && "schema_version" in data;
+  }
+
+  async function handleFileUpload(files: FileList) {
+    const total = files.length;
+    if (total === 0) return;
+    setUploadProgress({ total, done: 0, dupes: 0, errors: 0 });
+
+    let done = 0, dupes = 0, errors = 0;
+    const submitUrl = username.trim() ? `${API}/api/runs?username=${encodeURIComponent(username.trim())}` : `${API}/api/runs`;
+
+    for (const file of Array.from(files)) {
+      try {
+        const text = await file.text();
+        const data = JSON.parse(text);
+        if (!isValidRunFile(data)) {
+          errors++;
+        } else {
+          const res = await fetch(submitUrl, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: text,
+          });
+          const result = await res.json().catch(() => null);
+          if (result?.duplicate) dupes++;
+        }
+      } catch {
+        errors++;
+      }
+      done++;
+      setUploadProgress({ total, done, dupes, errors });
+    }
+
+    // If only one file, also show the run detail
+    if (total === 1 && errors === 0) {
+      try {
+        const text = await files[0].text();
+        const data = JSON.parse(text);
+        if (isValidRunFile(data)) {
+          setRun(data);
+          // Get the hash for sharing
+          const res = await fetch(submitUrl, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: text,
+          });
+          const result = await res.json().catch(() => null);
+          if (result?.run_hash) {
+            setRunHash(result.run_hash);
+            window.history.replaceState(null, "", `/runs/${result.run_hash}`);
+          }
+        }
+      } catch {}
+    }
+  }
 
   function parseRun() {
     setError("");
@@ -490,34 +548,77 @@ export default function RunsClient() {
 
       {/* Submit Tab */}
       {tab === "submit" && !run && (
-        <div className="space-y-3">
+        <div className="space-y-4">
           <p className="text-xs text-[var(--text-muted)]">
-            Run files are located at <code className="bg-[var(--bg-primary)] px-1 py-0.5 rounded">%appdata%/Roaming/SlayTheSpire2/steam/&lt;steamid&gt;/profile#/saves/</code> — open the <code>.run</code> file in a text editor and paste the contents below.
+            Run files are located at <code className="bg-[var(--bg-primary)] px-1 py-0.5 rounded">%appdata%/Roaming/SlayTheSpire2/steam/&lt;steamid&gt;/profile#/saves/</code>
           </p>
-          <textarea
-            value={jsonInput}
-            onChange={(e) => setJsonInput(e.target.value)}
-            placeholder='{"acts":["ACT.OVERGROWTH"...],"ascension":0,...}'
-            rows={10}
-            className="w-full px-4 py-3 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] text-sm font-mono focus:outline-none focus:border-[var(--accent-gold)] resize-none"
+
+          {/* Username */}
+          <input
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value.slice(0, 25))}
+            placeholder="Username (optional)"
+            maxLength={25}
+            className="px-3 py-2 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] text-sm focus:outline-none focus:border-[var(--accent-gold)] w-48"
           />
-          <div className="flex items-center gap-3">
-            <input
-              type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value.slice(0, 25))}
-              placeholder="Username (optional)"
-              maxLength={25}
-              className="px-3 py-2 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] text-sm focus:outline-none focus:border-[var(--accent-gold)] w-48"
+
+          {/* File Upload */}
+          <div className="bg-[var(--bg-card)] rounded-xl border border-dashed border-[var(--border-accent)] p-6 text-center">
+            <p className="text-sm text-[var(--text-secondary)] mb-3">
+              Upload .run files — select one or multiple
+            </p>
+            <label className="inline-block px-5 py-2 rounded-lg text-sm font-medium bg-[var(--accent-gold)] text-[var(--bg-primary)] hover:opacity-90 transition-opacity cursor-pointer">
+              Choose Files
+              <input
+                type="file"
+                multiple
+                accept=".run,.json"
+                className="hidden"
+                onChange={(e) => e.target.files && handleFileUpload(e.target.files)}
+              />
+            </label>
+            {uploadProgress && (
+              <div className="mt-4">
+                <div className="w-full bg-[var(--bg-primary)] rounded-full h-2 mb-2">
+                  <div className="h-2 rounded-full bg-[var(--accent-gold)] transition-all" style={{ width: `${(uploadProgress.done / uploadProgress.total) * 100}%` }} />
+                </div>
+                <p className="text-xs text-[var(--text-muted)]">
+                  {uploadProgress.done === uploadProgress.total ? (
+                    <>
+                      Done! {uploadProgress.total - uploadProgress.dupes - uploadProgress.errors} submitted
+                      {uploadProgress.dupes > 0 && <>, {uploadProgress.dupes} duplicates skipped</>}
+                      {uploadProgress.errors > 0 && <>, {uploadProgress.errors} invalid</>}
+                    </>
+                  ) : (
+                    <>Processing {uploadProgress.done} of {uploadProgress.total}...</>
+                  )}
+                </p>
+              </div>
+            )}
+          </div>
+
+          {/* Or paste JSON */}
+          <div className="relative">
+            <div className="absolute inset-x-0 top-0 flex items-center justify-center -mt-2">
+              <span className="bg-[var(--bg-primary)] px-3 text-xs text-[var(--text-muted)]">or paste JSON</span>
+            </div>
+            <textarea
+              value={jsonInput}
+              onChange={(e) => setJsonInput(e.target.value)}
+              placeholder='{"acts":["ACT.OVERGROWTH"...],"ascension":0,...}'
+              rows={6}
+              className="w-full px-4 py-3 pt-5 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] text-sm font-mono focus:outline-none focus:border-[var(--accent-gold)] resize-none"
             />
             <button
               onClick={parseRun}
               disabled={!jsonInput.trim()}
-              className="px-5 py-2 rounded-lg text-sm font-medium bg-[var(--accent-gold)] text-[var(--bg-primary)] hover:opacity-90 transition-opacity disabled:opacity-50"
+              className="mt-2 px-5 py-2 rounded-lg text-sm font-medium bg-[var(--accent-gold)] text-[var(--bg-primary)] hover:opacity-90 transition-opacity disabled:opacity-50"
             >
               Analyze Run
             </button>
           </div>
+
           {error && <p className="text-[var(--color-ironclad)] text-sm">{error}</p>}
         </div>
       )}
