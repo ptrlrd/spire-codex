@@ -176,71 +176,106 @@ def submit_run(data: dict) -> dict:
     return {"success": True, "run_id": run_id, "run_hash": run_hash}
 
 
-def get_stats() -> dict:
-    """Compute aggregate community stats from all submitted runs."""
+def get_stats(character: str | None = None, win: str | None = None) -> dict:
+    """Compute aggregate community stats. Optionally filter by character and win/loss."""
     with get_conn() as conn:
-        total = conn.execute("SELECT COUNT(*) as c FROM runs").fetchone()["c"]
+        # Build WHERE clause
+        conditions = []
+        params: list = []
+        if character:
+            conditions.append("r.character = ?")
+            params.append(character.upper())
+        if win == "true":
+            conditions.append("r.win = 1")
+        elif win == "false":
+            conditions.append("r.win = 0")
+        where = ("WHERE " + " AND ".join(conditions)) if conditions else ""
+        where_runs = where.replace("r.", "")  # for queries on runs table directly
+
+        total = conn.execute(f"SELECT COUNT(*) as c FROM runs r {where}", params).fetchone()["c"]
         if total == 0:
-            return {"total_runs": 0}
+            return {"total_runs": 0, "filters": {"character": character, "win": win}}
 
-        wins = conn.execute("SELECT COUNT(*) as c FROM runs WHERE win = 1").fetchone()["c"]
+        wins = conn.execute(f"SELECT COUNT(*) as c FROM runs r {where} AND r.win = 1" if where else "SELECT COUNT(*) as c FROM runs WHERE win = 1", params).fetchone()["c"]
 
-        # Win rate by character
+        # Win rate by character (always unfiltered by character for the overview)
         char_stats = conn.execute("""
             SELECT character, COUNT(*) as total, SUM(win) as wins
             FROM runs GROUP BY character ORDER BY total DESC
         """).fetchall()
 
-        # Most common cards in winning decks
-        win_cards = conn.execute("""
+        # Card pick rates — ALL cards, not just top N
+        pick_rates = conn.execute(f"""
+            SELECT cc.card_id,
+                   COUNT(*) as offered,
+                   SUM(cc.was_picked) as picked,
+                   ROUND(100.0 * SUM(cc.was_picked) / COUNT(*), 1) as pick_rate
+            FROM run_card_choices cc
+            JOIN runs r ON cc.run_id = r.id
+            {where}
+            GROUP BY cc.card_id
+            ORDER BY pick_rate DESC
+        """, params).fetchall()
+
+        # Cards in winning decks (filtered)
+        win_params = list(params)
+        win_where = where + (" AND " if where else "WHERE ") + "r.win = 1"
+        win_cards = conn.execute(f"""
             SELECT rc.card_id, COUNT(*) as count
             FROM run_cards rc JOIN runs r ON rc.run_id = r.id
-            WHERE r.win = 1
-            GROUP BY rc.card_id ORDER BY count DESC LIMIT 20
-        """).fetchall()
+            {win_where}
+            GROUP BY rc.card_id ORDER BY count DESC
+        """, win_params).fetchall()
 
-        # Most common cards overall
-        all_cards = conn.execute("""
-            SELECT card_id, COUNT(*) as count
-            FROM run_cards GROUP BY card_id ORDER BY count DESC LIMIT 20
-        """).fetchall()
+        # Cards in losing decks (filtered)
+        loss_where = where + (" AND " if where else "WHERE ") + "r.win = 0"
+        loss_cards = conn.execute(f"""
+            SELECT rc.card_id, COUNT(*) as count
+            FROM run_cards rc JOIN runs r ON rc.run_id = r.id
+            {loss_where}
+            GROUP BY rc.card_id ORDER BY count DESC
+        """, params).fetchall()
 
-        # Card pick rates (offered 3+ times)
-        pick_rates = conn.execute("""
-            SELECT card_id,
-                   COUNT(*) as offered,
-                   SUM(was_picked) as picked,
-                   ROUND(100.0 * SUM(was_picked) / COUNT(*), 1) as pick_rate
-            FROM run_card_choices
-            GROUP BY card_id
-            HAVING offered >= 3
-            ORDER BY pick_rate DESC
-            LIMIT 20
-        """).fetchall()
+        # All cards in decks (filtered)
+        all_cards = conn.execute(f"""
+            SELECT rc.card_id, COUNT(*) as count
+            FROM run_cards rc JOIN runs r ON rc.run_id = r.id
+            {where}
+            GROUP BY rc.card_id ORDER BY count DESC
+        """, params).fetchall()
 
-        # Most common relics
-        top_relics = conn.execute("""
-            SELECT relic_id, COUNT(*) as count
-            FROM run_relics GROUP BY relic_id ORDER BY count DESC LIMIT 20
-        """).fetchall()
+        # Most common relics (filtered)
+        top_relics = conn.execute(f"""
+            SELECT rr.relic_id, COUNT(*) as count
+            FROM run_relics rr JOIN runs r ON rr.run_id = r.id
+            {where}
+            GROUP BY rr.relic_id ORDER BY count DESC LIMIT 20
+        """, params).fetchall()
 
-        # Most deadly encounters
-        deaths = conn.execute("""
-            SELECT killed_by, COUNT(*) as count
-            FROM runs WHERE win = 0 AND killed_by IS NOT NULL
-            GROUP BY killed_by ORDER BY count DESC LIMIT 10
-        """).fetchall()
+        # Most deadly encounters (filtered, losses only)
+        death_where = where + (" AND " if where else "WHERE ") + "r.win = 0 AND r.killed_by IS NOT NULL"
+        deaths = conn.execute(f"""
+            SELECT r.killed_by, COUNT(*) as count
+            FROM runs r
+            {death_where}
+            GROUP BY r.killed_by ORDER BY count DESC LIMIT 10
+        """, params).fetchall()
 
-        # Ascension distribution
-        asc_stats = conn.execute("""
-            SELECT ascension, COUNT(*) as total, SUM(win) as wins
-            FROM runs GROUP BY ascension ORDER BY ascension
-        """).fetchall()
+        # Ascension distribution (filtered)
+        asc_stats = conn.execute(f"""
+            SELECT r.ascension, COUNT(*) as total, SUM(r.win) as wins
+            FROM runs r {where} GROUP BY r.ascension ORDER BY r.ascension
+        """, params).fetchall()
+
+        # Build win/loss card maps for comparison
+        win_card_map = {r["card_id"]: r["count"] for r in win_cards}
+        loss_card_map = {r["card_id"]: r["count"] for r in loss_cards}
 
         return {
             "total_runs": total,
             "total_wins": wins,
             "win_rate": round(wins / total * 100, 1) if total > 0 else 0,
+            "filters": {"character": character, "win": win},
             "characters": [
                 {"character": r["character"], "total": r["total"], "wins": r["wins"],
                  "win_rate": round(r["wins"] / r["total"] * 100, 1) if r["total"] > 0 else 0}
@@ -251,8 +286,10 @@ def get_stats() -> dict:
                  "win_rate": round(r["wins"] / r["total"] * 100, 1) if r["total"] > 0 else 0}
                 for r in asc_stats
             ],
-            "top_cards": [{"card_id": r["card_id"], "count": r["count"]} for r in all_cards],
-            "win_cards": [{"card_id": r["card_id"], "count": r["count"]} for r in win_cards],
+            "top_cards": [{"card_id": r["card_id"], "count": r["count"],
+                           "in_wins": win_card_map.get(r["card_id"], 0),
+                           "in_losses": loss_card_map.get(r["card_id"], 0)}
+                          for r in all_cards],
             "pick_rates": [
                 {"card_id": r["card_id"], "offered": r["offered"], "picked": r["picked"], "pick_rate": r["pick_rate"]}
                 for r in pick_rates
