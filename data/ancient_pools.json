@@ -155,7 +155,7 @@
           { "id": "BLACK_STAR", "condition": null },
           { "id": "CALLING_BELL", "condition": null },
           { "id": "EMPTY_CAGE", "condition": null },
-          { "id": "PANDORAS_BOX", "condition": "No active modifier that clears the starter deck" },
+          { "id": "PANDORAS_BOX", "condition": "Excluded with Draft, Sealed Deck, or Insanity modifiers" },
           { "id": "RUNIC_PYRAMID", "condition": null },
           { "id": "SNECKO_EYE", "condition": null },
           { "id": "ECTOPLASM", "condition": "Act 2 only; 50% chance (vs Sozu)" },
