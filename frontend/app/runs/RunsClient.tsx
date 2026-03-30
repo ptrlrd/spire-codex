@@ -689,7 +689,7 @@ export default function RunsClient() {
               onClick={() => { setRun(null); setJsonInput(""); setRunHash(null); setCopied(false); window.history.replaceState(null, "", "/runs"); }}
               className="text-sm text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors"
             >
-              &larr; Back
+              &larr; Back to browsing runs
             </button>
             {runHash && (
               <button
