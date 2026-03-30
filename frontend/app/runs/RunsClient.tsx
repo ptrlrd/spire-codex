@@ -429,7 +429,12 @@ export default function RunsClient() {
         headers: { "Content-Type": "application/json" },
         body: jsonInput,
       }).then((r) => r.json().catch(() => null))
-        .then((d) => { if (d?.run_hash) setRunHash(d.run_hash); })
+        .then((d) => {
+          if (d?.run_hash) {
+            setRunHash(d.run_hash);
+            window.history.replaceState(null, "", `/runs/${d.run_hash}`);
+          }
+        })
         .catch(() => {});
     } catch {
       setError("Invalid JSON. Make sure you pasted the full contents of the .run file.");
@@ -470,7 +475,7 @@ export default function RunsClient() {
         <div>
           <div className="flex items-center justify-between mb-4">
             <button
-              onClick={() => { setRun(null); setJsonInput(""); setRunHash(null); setCopied(false); }}
+              onClick={() => { setRun(null); setJsonInput(""); setRunHash(null); setCopied(false); window.history.replaceState(null, "", "/runs"); }}
               className="text-sm text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors"
             >
               &larr; Analyze another run
