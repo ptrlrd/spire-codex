@@ -390,128 +390,10 @@ function RunOverview({ run, cardData, relicData }: { run: RunData; cardData: Rec
   );
 }
 
-interface CommunityStats {
-  total_runs: number;
-  total_wins: number;
-  win_rate: number;
-  characters: { character: string; total: number; wins: number; win_rate: number }[];
-  ascensions: { level: number; total: number; wins: number; win_rate: number }[];
-  top_cards: { card_id: string; count: number }[];
-  win_cards: { card_id: string; count: number }[];
-  pick_rates: { card_id: string; offered: number; picked: number; pick_rate: number }[];
-  top_relics: { relic_id: string; count: number }[];
-  deadliest: { encounter: string; count: number }[];
-}
-
-function CommunityStatsPanel({ stats, cardData, relicData }: { stats: CommunityStats; cardData: Record<string, CardInfo>; relicData: Record<string, RelicInfo> }) {
-  const lp = useLangPrefix();
-
-  if (stats.total_runs === 0) {
-    return (
-      <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5 text-center text-[var(--text-muted)]">
-        No runs submitted yet. Be the first!
-      </div>
-    );
-  }
-
-  return (
-    <div className="space-y-4">
-      {/* Overview */}
-      <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5">
-        <h2 className="text-lg font-semibold text-[var(--text-primary)] mb-3">Community Stats</h2>
-        <div className="grid grid-cols-3 gap-3 text-center mb-4">
-          <div className="bg-[var(--bg-primary)] rounded-lg p-3">
-            <div className="text-2xl font-bold text-[var(--text-primary)]">{stats.total_runs}</div>
-            <div className="text-xs text-[var(--text-muted)]">Runs</div>
-          </div>
-          <div className="bg-[var(--bg-primary)] rounded-lg p-3">
-            <div className="text-2xl font-bold text-emerald-400">{stats.total_wins}</div>
-            <div className="text-xs text-[var(--text-muted)]">Wins</div>
-          </div>
-          <div className="bg-[var(--bg-primary)] rounded-lg p-3">
-            <div className="text-2xl font-bold text-[var(--accent-gold)]">{stats.win_rate}%</div>
-            <div className="text-xs text-[var(--text-muted)]">Win Rate</div>
-          </div>
-        </div>
-
-        {/* Character win rates */}
-        {stats.characters.length > 0 && (
-          <div className="space-y-1.5">
-            {stats.characters.map((c) => (
-              <div key={c.character} className="flex items-center justify-between text-sm">
-                <Link href={`${lp}/characters/${c.character.toLowerCase()}`} className="text-[var(--text-secondary)] hover:text-[var(--accent-gold)]">
-                  {displayName(`CHARACTER.${c.character}`)}
-                </Link>
-                <div className="flex items-center gap-3 text-xs">
-                  <span className="text-[var(--text-muted)]">{c.total} runs</span>
-                  <span className={c.win_rate > 50 ? "text-emerald-400" : "text-[var(--text-secondary)]"}>{c.win_rate}%</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
-
-      {/* Pick Rates */}
-      {stats.pick_rates.length > 0 && (
-        <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5">
-          <h2 className="text-lg font-semibold text-[var(--text-primary)] mb-3">Highest Pick Rates</h2>
-          <div className="space-y-1">
-            {stats.pick_rates.slice(0, 10).map((c) => (
-              <div key={c.card_id} className="flex items-center justify-between text-sm py-1 border-b border-[var(--border-subtle)] last:border-0">
-                <CardPill cardId={c.card_id} cardData={cardData} lp={lp} className="text-[var(--text-secondary)] hover:text-[var(--accent-gold)]" />
-                <div className="flex items-center gap-2 text-xs">
-                  <span className="text-[var(--text-muted)]">{c.picked}/{c.offered}</span>
-                  <span className="text-emerald-400 font-medium">{c.pick_rate}%</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* Top Relics */}
-      {stats.top_relics.length > 0 && (
-        <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5">
-          <h2 className="text-lg font-semibold text-[var(--text-primary)] mb-3">Most Common Relics</h2>
-          <div className="flex flex-wrap gap-1.5">
-            {stats.top_relics.slice(0, 15).map((r) => (
-              <RelicPill key={r.relic_id} relicId={r.relic_id} relicData={relicData} lp={lp}
-                className="text-xs px-2 py-1 rounded bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--accent-gold)] hover:bg-[var(--bg-card-hover)]">
-                {displayName(`RELIC.${r.relic_id}`)} <span className="text-[var(--text-muted)]">({r.count})</span>
-              </RelicPill>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* Deadliest Encounters */}
-      {stats.deadliest.length > 0 && (
-        <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5">
-          <h2 className="text-lg font-semibold text-[var(--text-primary)] mb-3">Most Deadly Encounters</h2>
-          <div className="space-y-1">
-            {stats.deadliest.map((d) => (
-              <div key={d.encounter} className="flex items-center justify-between text-sm py-1 border-b border-[var(--border-subtle)] last:border-0">
-                <Link href={`${lp}/encounters/${d.encounter.toLowerCase()}`} className="text-red-300 hover:text-red-200">
-                  {displayName(`ENCOUNTER.${d.encounter}`)}
-                </Link>
-                <span className="text-xs text-[var(--text-muted)]">{d.count} deaths</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
-    </div>
-  );
-}
-
 export default function RunsClient() {
   const [jsonInput, setJsonInput] = useState("");
   const [run, setRun] = useState<RunData | null>(null);
   const [error, setError] = useState("");
-  const [submitStatus, setSubmitStatus] = useState<"idle" | "submitting" | "submitted" | "duplicate" | "error">("idle");
-  const [stats, setStats] = useState<CommunityStats | null>(null);
-  const [tab, setTab] = useState<"paste" | "stats">("paste");
   const [cardData, setCardData] = useState<Record<string, CardInfo>>({});
   const [relicData, setRelicData] = useState<Record<string, RelicInfo>>({});
 
@@ -529,18 +411,9 @@ export default function RunsClient() {
     });
   }, []);
 
-  // Load community stats
-  useEffect(() => {
-    fetch(`${API}/api/runs/stats`)
-      .then((r) => r.ok ? r.json() : null)
-      .then((d) => d && setStats(d))
-      .catch(() => {});
-  }, [submitStatus]);
-
   function parseRun() {
     setError("");
     setRun(null);
-    setSubmitStatus("idle");
     try {
       const data = JSON.parse(jsonInput);
       if (!data.players || !data.map_point_history || !Array.isArray(data.acts)) {
@@ -548,29 +421,14 @@ export default function RunsClient() {
         return;
       }
       setRun(data);
-    } catch {
-      setError("Invalid JSON. Make sure you pasted the full contents of the .run file.");
-    }
-  }
-
-  async function submitToCommunity() {
-    if (!run) return;
-    setSubmitStatus("submitting");
-    try {
-      const res = await fetch(`${API}/api/runs`, {
+      // Auto-submit to community stats (fire-and-forget)
+      fetch(`${API}/api/runs`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: jsonInput,
-      });
-      if (res.status === 409) {
-        setSubmitStatus("duplicate");
-      } else if (res.ok) {
-        setSubmitStatus("submitted");
-      } else {
-        setSubmitStatus("error");
-      }
+      }).catch(() => {});
     } catch {
-      setSubmitStatus("error");
+      setError("Invalid JSON. Make sure you pasted the full contents of the .run file.");
     }
   }
 
@@ -579,97 +437,41 @@ export default function RunsClient() {
       <h1 className="text-3xl font-bold text-[var(--text-primary)] mb-2">
         Run Viewer
       </h1>
-      <p className="text-[var(--text-secondary)] mb-4">
-        Paste your run history JSON to see a detailed breakdown, or view community stats from submitted runs.
+      <p className="text-[var(--text-secondary)] mb-6">
+        Paste your run history JSON to see a detailed breakdown of your run.
       </p>
 
-      {/* Tabs */}
-      <div className="flex gap-1 mb-6 border-b border-[var(--border-subtle)]">
-        <button
-          onClick={() => setTab("paste")}
-          className={`px-4 py-2 text-sm font-medium transition-colors border-b-2 -mb-px ${
-            tab === "paste" ? "border-[var(--accent-gold)] text-[var(--accent-gold)]" : "border-transparent text-[var(--text-muted)] hover:text-[var(--text-secondary)]"
-          }`}
-        >
-          Analyze Run
-        </button>
-        <button
-          onClick={() => setTab("stats")}
-          className={`px-4 py-2 text-sm font-medium transition-colors border-b-2 -mb-px ${
-            tab === "stats" ? "border-[var(--accent-gold)] text-[var(--accent-gold)]" : "border-transparent text-[var(--text-muted)] hover:text-[var(--text-secondary)]"
-          }`}
-        >
-          Community Stats
-          {stats && stats.total_runs > 0 && (
-            <span className="ml-1.5 text-xs text-[var(--text-muted)]">({stats.total_runs})</span>
-          )}
-        </button>
-      </div>
-
-      {tab === "paste" && (
-        <>
-          {!run ? (
-            <div className="space-y-3">
-              <p className="text-xs text-[var(--text-muted)]">
-                Run files are located at <code className="bg-[var(--bg-primary)] px-1 py-0.5 rounded">%appdata%/Roaming/SlayTheSpire2/steam/&lt;steamid&gt;/profile#/saves/</code> — open the <code>.run</code> file in a text editor and paste the contents below.
-              </p>
-              <textarea
-                value={jsonInput}
-                onChange={(e) => setJsonInput(e.target.value)}
-                placeholder='{"acts":["ACT.OVERGROWTH"...],"ascension":0,...}'
-                rows={10}
-                className="w-full px-4 py-3 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] text-sm font-mono focus:outline-none focus:border-[var(--accent-gold)] resize-none"
-              />
-              {error && <p className="text-red-400 text-sm">{error}</p>}
-              <button
-                onClick={parseRun}
-                disabled={!jsonInput.trim()}
-                className="px-5 py-2 rounded-lg text-sm font-medium bg-[var(--accent-gold)] text-[var(--bg-primary)] hover:opacity-90 transition-opacity disabled:opacity-50"
-              >
-                Analyze Run
-              </button>
-            </div>
-          ) : (
-            <div>
-              <div className="flex items-center gap-3 mb-4">
-                <button
-                  onClick={() => { setRun(null); setJsonInput(""); setSubmitStatus("idle"); }}
-                  className="text-sm text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors"
-                >
-                  &larr; Analyze another run
-                </button>
-                <div className="ml-auto">
-                  {submitStatus === "idle" && (
-                    <button
-                      onClick={submitToCommunity}
-                      className="px-4 py-1.5 rounded-lg text-xs font-medium bg-emerald-900/40 text-emerald-300 border border-emerald-800/30 hover:bg-emerald-900/60 transition-colors"
-                    >
-                      Submit to Community Stats
-                    </button>
-                  )}
-                  {submitStatus === "submitting" && (
-                    <span className="text-xs text-[var(--text-muted)]">Submitting...</span>
-                  )}
-                  {submitStatus === "submitted" && (
-                    <span className="text-xs text-emerald-400">Submitted! Thanks for contributing.</span>
-                  )}
-                  {submitStatus === "duplicate" && (
-                    <span className="text-xs text-amber-400">This run was already submitted.</span>
-                  )}
-                  {submitStatus === "error" && (
-                    <span className="text-xs text-red-400">Failed to submit. Try again later.</span>
-                  )}
-                </div>
-              </div>
-              <RunOverview run={run} cardData={cardData} relicData={relicData} />
-            </div>
-          )}
-        </>
-      )}
-
-      {tab === "stats" && stats && <CommunityStatsPanel stats={stats} cardData={cardData} relicData={relicData} />}
-      {tab === "stats" && !stats && (
-        <div className="text-center py-12 text-[var(--text-muted)]">Loading...</div>
+      {!run ? (
+        <div className="space-y-3">
+          <p className="text-xs text-[var(--text-muted)]">
+            Run files are located at <code className="bg-[var(--bg-primary)] px-1 py-0.5 rounded">%appdata%/Roaming/SlayTheSpire2/steam/&lt;steamid&gt;/profile#/saves/</code> — open the <code>.run</code> file in a text editor and paste the contents below.
+          </p>
+          <textarea
+            value={jsonInput}
+            onChange={(e) => setJsonInput(e.target.value)}
+            placeholder='{"acts":["ACT.OVERGROWTH"...],"ascension":0,...}'
+            rows={10}
+            className="w-full px-4 py-3 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] text-sm font-mono focus:outline-none focus:border-[var(--accent-gold)] resize-none"
+          />
+          {error && <p className="text-red-400 text-sm">{error}</p>}
+          <button
+            onClick={parseRun}
+            disabled={!jsonInput.trim()}
+            className="px-5 py-2 rounded-lg text-sm font-medium bg-[var(--accent-gold)] text-[var(--bg-primary)] hover:opacity-90 transition-opacity disabled:opacity-50"
+          >
+            Analyze Run
+          </button>
+        </div>
+      ) : (
+        <div>
+          <button
+            onClick={() => { setRun(null); setJsonInput(""); }}
+            className="text-sm text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors mb-4 inline-block"
+          >
+            &larr; Analyze another run
+          </button>
+          <RunOverview run={run} cardData={cardData} relicData={relicData} />
+        </div>
       )}
     </div>
   );
