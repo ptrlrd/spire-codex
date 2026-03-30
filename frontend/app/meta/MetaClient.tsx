@@ -143,9 +143,9 @@ export default function MetaClient() {
 
   // Merge pick rates with deck counts into a unified card table
   const cardTable = (() => {
-    if (!stats) return [];
-    const pickMap = new Map(stats.pick_rates.map((p) => [p.card_id, p]));
-    const deckMap = new Map(stats.top_cards.map((c) => [c.card_id, c]));
+    if (!stats || stats.total_runs === 0) return [];
+    const pickMap = new Map((stats.pick_rates || []).map((p) => [p.card_id, p]));
+    const deckMap = new Map((stats.top_cards || []).map((c) => [c.card_id, c]));
     const allIds = new Set([...pickMap.keys(), ...deckMap.keys()]);
     const rows = [...allIds].map((id) => {
       const pick = pickMap.get(id);
@@ -241,7 +241,7 @@ export default function MetaClient() {
                 <div className="text-xs text-[var(--text-muted)]">Wins</div>
               </div>
               <div className="bg-[var(--bg-primary)] rounded-lg p-3">
-                <div className="text-2xl font-bold text-red-400">{stats.total_runs - stats.total_wins - (stats.total_abandoned || 0)}</div>
+                <div className="text-2xl font-bold text-red-400">{(stats.total_runs || 0) - (stats.total_wins || 0) - (stats.total_abandoned || 0)}</div>
                 <div className="text-xs text-[var(--text-muted)]">Losses</div>
               </div>
               <div className="bg-[var(--bg-primary)] rounded-lg p-3">
@@ -250,7 +250,7 @@ export default function MetaClient() {
               </div>
             </div>
 
-            {!character && stats.characters.length > 0 && (
+            {!character && stats.characters && stats.characters.length > 0 && (
               <>
                 <h2 className="text-sm font-semibold text-[var(--text-muted)] uppercase tracking-wide mb-2">Win Rate by Character</h2>
                 <div className="space-y-1.5">
@@ -327,7 +327,7 @@ export default function MetaClient() {
           )}
 
           {/* Top Relics */}
-          {stats.top_relics.length > 0 && (
+          {stats.top_relics && stats.top_relics.length > 0 && (
             <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5">
               <h2 className="text-lg font-semibold text-[var(--text-primary)] mb-3">Most Common Relics</h2>
               <div className="flex flex-wrap gap-1.5">
@@ -342,7 +342,7 @@ export default function MetaClient() {
           )}
 
           {/* Deadliest Encounters */}
-          {stats.deadliest.length > 0 && (
+          {stats.deadliest && stats.deadliest.length > 0 && (
             <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5">
               <h2 className="text-lg font-semibold text-[var(--text-primary)] mb-3">Most Deadly Encounters</h2>
               <div className="space-y-1">
@@ -359,7 +359,7 @@ export default function MetaClient() {
           )}
 
           {/* Ascension Distribution */}
-          {stats.ascensions.length > 1 && (
+          {stats.ascensions && stats.ascensions.length > 1 && (
             <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5">
               <h2 className="text-lg font-semibold text-[var(--text-primary)] mb-3">Ascension Distribution</h2>
               <div className="space-y-1">
