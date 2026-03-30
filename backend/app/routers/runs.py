@@ -27,6 +27,8 @@ async def submit_run_endpoint(request: Request):
 
 
 @router.get("/stats", tags=["Runs"])
-def get_community_stats(request: Request, character: str | None = None, win: str | None = None):
-    """Get aggregated community run stats. Filter by character and/or win (true/false)."""
-    return get_stats(character=character, win=win)
+def get_community_stats(request: Request, character: str | None = None, win: str | None = None,
+                        ascension: str | None = None, game_mode: str | None = None,
+                        players: str | None = None):
+    """Get aggregated community run stats. Filter by character, win/loss/abandoned, ascension, game_mode, players."""
+    return get_stats(character=character, win=win, ascension=ascension, game_mode=game_mode, players=players)

@@ -30,8 +30,9 @@ interface RelicInfo {
 interface CommunityStats {
   total_runs: number;
   total_wins: number;
+  total_abandoned: number;
   win_rate: number;
-  filters: { character: string | null; win: string | null };
+  filters: { character: string | null; win: string | null; ascension: string | null; game_mode: string | null; players: string | null };
   characters: { character: string; total: number; wins: number; win_rate: number }[];
   ascensions: { level: number; total: number; wins: number; win_rate: number }[];
   top_cards: { card_id: string; count: number; in_wins: number; in_losses: number }[];
@@ -107,6 +108,9 @@ export default function MetaClient() {
   const [loading, setLoading] = useState(true);
   const [character, setCharacter] = useState("");
   const [winFilter, setWinFilter] = useState("");
+  const [ascension, setAscension] = useState("");
+  const [gameMode, setGameMode] = useState("");
+  const [playerMode, setPlayerMode] = useState("");
   const [cardSort, setCardSort] = useState<SortKey>("pick_rate");
   const [showAllCards, setShowAllCards] = useState(false);
 
@@ -128,11 +132,14 @@ export default function MetaClient() {
     const params = new URLSearchParams();
     if (character) params.set("character", character);
     if (winFilter) params.set("win", winFilter);
+    if (ascension) params.set("ascension", ascension);
+    if (gameMode) params.set("game_mode", gameMode);
+    if (playerMode) params.set("players", playerMode);
     fetch(`${API}/api/runs/stats?${params}`)
       .then((r) => r.ok ? r.json() : null)
       .then((d) => setStats(d))
       .finally(() => setLoading(false));
-  }, [character, winFilter]);
+  }, [character, winFilter, ascension, gameMode, playerMode]);
 
   // Merge pick rates with deck counts into a unified card table
   const cardTable = (() => {
@@ -179,11 +186,8 @@ export default function MetaClient() {
 
       {/* Filters */}
       <div className="flex flex-wrap gap-2 mb-6">
-        <select
-          value={character}
-          onChange={(e) => setCharacter(e.target.value)}
-          className="text-sm px-3 py-1.5 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)]"
-        >
+        <select value={character} onChange={(e) => setCharacter(e.target.value)}
+          className="text-sm px-3 py-1.5 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)]">
           <option value="">All Characters</option>
           <option value="IRONCLAD">Ironclad</option>
           <option value="SILENT">Silent</option>
@@ -191,14 +195,32 @@ export default function MetaClient() {
           <option value="NECROBINDER">Necrobinder</option>
           <option value="REGENT">Regent</option>
         </select>
-        <select
-          value={winFilter}
-          onChange={(e) => setWinFilter(e.target.value)}
-          className="text-sm px-3 py-1.5 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)]"
-        >
+        <select value={winFilter} onChange={(e) => setWinFilter(e.target.value)}
+          className="text-sm px-3 py-1.5 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)]">
           <option value="">All Runs</option>
-          <option value="true">Wins Only</option>
-          <option value="false">Losses Only</option>
+          <option value="true">Wins</option>
+          <option value="false">Losses</option>
+          <option value="abandoned">Abandoned</option>
+        </select>
+        <select value={ascension} onChange={(e) => setAscension(e.target.value)}
+          className="text-sm px-3 py-1.5 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)]">
+          <option value="">All Ascensions</option>
+          {Array.from({ length: 11 }, (_, i) => (
+            <option key={i} value={String(i)}>Ascension {i}</option>
+          ))}
+        </select>
+        <select value={gameMode} onChange={(e) => setGameMode(e.target.value)}
+          className="text-sm px-3 py-1.5 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)]">
+          <option value="">All Game Types</option>
+          <option value="standard">Standard</option>
+          <option value="daily">Daily</option>
+          <option value="custom">Custom</option>
+        </select>
+        <select value={playerMode} onChange={(e) => setPlayerMode(e.target.value)}
+          className="text-sm px-3 py-1.5 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)]">
+          <option value="">All Players</option>
+          <option value="single">Single Player</option>
+          <option value="multi">Multiplayer</option>
         </select>
         {loading && <span className="text-xs text-[var(--text-muted)] self-center">Updating...</span>}
       </div>
@@ -209,7 +231,7 @@ export default function MetaClient() {
         <div className="space-y-4">
           {/* Overview */}
           <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5">
-            <div className="grid grid-cols-3 gap-3 text-center mb-4">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center mb-4">
               <div className="bg-[var(--bg-primary)] rounded-lg p-3">
                 <div className="text-2xl font-bold text-[var(--text-primary)]">{stats.total_runs}</div>
                 <div className="text-xs text-[var(--text-muted)]">Runs</div>
@@ -217,6 +239,10 @@ export default function MetaClient() {
               <div className="bg-[var(--bg-primary)] rounded-lg p-3">
                 <div className="text-2xl font-bold text-emerald-400">{stats.total_wins}</div>
                 <div className="text-xs text-[var(--text-muted)]">Wins</div>
+              </div>
+              <div className="bg-[var(--bg-primary)] rounded-lg p-3">
+                <div className="text-2xl font-bold text-red-400">{stats.total_runs - stats.total_wins - (stats.total_abandoned || 0)}</div>
+                <div className="text-xs text-[var(--text-muted)]">Losses</div>
               </div>
               <div className="bg-[var(--bg-primary)] rounded-lg p-3">
                 <div className="text-2xl font-bold text-[var(--accent-gold)]">{stats.win_rate}%</div>

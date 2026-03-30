@@ -45,8 +45,10 @@ def init_db():
                 seed TEXT NOT NULL,
                 character TEXT NOT NULL,
                 win INTEGER NOT NULL,
+                was_abandoned INTEGER NOT NULL DEFAULT 0,
                 ascension INTEGER NOT NULL DEFAULT 0,
                 game_mode TEXT NOT NULL DEFAULT 'standard',
+                player_count INTEGER NOT NULL DEFAULT 1,
                 run_time INTEGER NOT NULL DEFAULT 0,
                 floors_reached INTEGER NOT NULL DEFAULT 0,
                 acts_completed INTEGER NOT NULL DEFAULT 0,
@@ -83,6 +85,8 @@ def init_db():
             CREATE INDEX IF NOT EXISTS idx_runs_character ON runs(character);
             CREATE INDEX IF NOT EXISTS idx_runs_win ON runs(win);
             CREATE INDEX IF NOT EXISTS idx_runs_ascension ON runs(ascension);
+            CREATE INDEX IF NOT EXISTS idx_runs_game_mode ON runs(game_mode);
+            CREATE INDEX IF NOT EXISTS idx_runs_player_count ON runs(player_count);
             CREATE INDEX IF NOT EXISTS idx_run_cards_card ON run_cards(card_id);
             CREATE INDEX IF NOT EXISTS idx_run_cards_run ON run_cards(run_id);
             CREATE INDEX IF NOT EXISTS idx_run_relics_relic ON run_relics(relic_id);
@@ -111,15 +115,14 @@ def submit_run(data: dict) -> dict:
     if not data.get("players") or not data.get("map_point_history") or not isinstance(data.get("acts"), list):
         return {"error": "Invalid run data — missing required fields"}
 
-    if data.get("was_abandoned"):
-        return {"error": "Abandoned runs are not included in stats"}
-
     run_hash = compute_run_hash(data)
     player = data["players"][0]
     character = clean_id(player["character"])
+    was_abandoned = int(data.get("was_abandoned", False))
 
     total_floors = sum(len(act) for act in data.get("map_point_history", []))
     killed_by = clean_id(data["killed_by_encounter"]) if data.get("killed_by_encounter") else None
+    player_count = len(data.get("players", []))
 
     with get_conn() as conn:
         # Check for duplicate
@@ -127,15 +130,26 @@ def submit_run(data: dict) -> dict:
         if existing:
             return {"error": "This run has already been submitted", "duplicate": True}
 
+        # Migrate: add columns if they don't exist (for existing DBs)
+        try:
+            conn.execute("ALTER TABLE runs ADD COLUMN was_abandoned INTEGER NOT NULL DEFAULT 0")
+        except Exception:
+            pass
+        try:
+            conn.execute("ALTER TABLE runs ADD COLUMN player_count INTEGER NOT NULL DEFAULT 1")
+        except Exception:
+            pass
+
         # Insert run
         cursor = conn.execute("""
-            INSERT INTO runs (run_hash, seed, character, win, ascension, game_mode, run_time,
-                              floors_reached, acts_completed, killed_by, deck_size, relic_count)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            INSERT INTO runs (run_hash, seed, character, win, was_abandoned, ascension, game_mode,
+                              player_count, run_time, floors_reached, acts_completed, killed_by,
+                              deck_size, relic_count)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """, (
-            run_hash, data.get("seed", ""), character, int(data["win"]),
-            data.get("ascension", 0), data.get("game_mode", "standard"),
-            data.get("run_time", 0), total_floors, len(data.get("acts", [])),
+            run_hash, data.get("seed", ""), character, int(data.get("win", False)),
+            was_abandoned, data.get("ascension", 0), data.get("game_mode", "standard"),
+            player_count, data.get("run_time", 0), total_floors, len(data.get("acts", [])),
             killed_by, len(player["deck"]), len(player["relics"]),
         ))
         run_id = cursor.lastrowid
@@ -176,9 +190,21 @@ def submit_run(data: dict) -> dict:
     return {"success": True, "run_id": run_id, "run_hash": run_hash}
 
 
-def get_stats(character: str | None = None, win: str | None = None) -> dict:
-    """Compute aggregate community stats. Optionally filter by character and win/loss."""
+def get_stats(character: str | None = None, win: str | None = None,
+              ascension: str | None = None, game_mode: str | None = None,
+              players: str | None = None) -> dict:
+    """Compute aggregate community stats with optional filters."""
     with get_conn() as conn:
+        # Migrate columns if needed
+        try:
+            conn.execute("ALTER TABLE runs ADD COLUMN was_abandoned INTEGER NOT NULL DEFAULT 0")
+        except Exception:
+            pass
+        try:
+            conn.execute("ALTER TABLE runs ADD COLUMN player_count INTEGER NOT NULL DEFAULT 1")
+        except Exception:
+            pass
+
         # Build WHERE clause
         conditions = []
         params: list = []
@@ -188,15 +214,29 @@ def get_stats(character: str | None = None, win: str | None = None) -> dict:
         if win == "true":
             conditions.append("r.win = 1")
         elif win == "false":
-            conditions.append("r.win = 0")
+            conditions.append("r.win = 0 AND r.was_abandoned = 0")
+        elif win == "abandoned":
+            conditions.append("r.was_abandoned = 1")
+        if ascension is not None and ascension != "":
+            conditions.append("r.ascension = ?")
+            params.append(int(ascension))
+        if game_mode:
+            conditions.append("r.game_mode = ?")
+            params.append(game_mode)
+        if players == "single":
+            conditions.append("r.player_count = 1")
+        elif players == "multi":
+            conditions.append("r.player_count > 1")
         where = ("WHERE " + " AND ".join(conditions)) if conditions else ""
-        where_runs = where.replace("r.", "")  # for queries on runs table directly
 
         total = conn.execute(f"SELECT COUNT(*) as c FROM runs r {where}", params).fetchone()["c"]
         if total == 0:
-            return {"total_runs": 0, "filters": {"character": character, "win": win}}
+            return {"total_runs": 0, "filters": {"character": character, "win": win, "ascension": ascension, "game_mode": game_mode, "players": players}}
 
-        wins = conn.execute(f"SELECT COUNT(*) as c FROM runs r {where} AND r.win = 1" if where else "SELECT COUNT(*) as c FROM runs WHERE win = 1", params).fetchone()["c"]
+        win_where = where + (" AND " if where else "WHERE ") + "r.win = 1"
+        wins = conn.execute(f"SELECT COUNT(*) as c FROM runs r {win_where}", params).fetchone()["c"]
+        abandoned_where = where + (" AND " if where else "WHERE ") + "r.was_abandoned = 1"
+        abandoned = conn.execute(f"SELECT COUNT(*) as c FROM runs r {abandoned_where}", params).fetchone()["c"]
 
         # Win rate by character (always unfiltered by character for the overview)
         char_stats = conn.execute("""
@@ -274,8 +314,9 @@ def get_stats(character: str | None = None, win: str | None = None) -> dict:
         return {
             "total_runs": total,
             "total_wins": wins,
+            "total_abandoned": abandoned,
             "win_rate": round(wins / total * 100, 1) if total > 0 else 0,
-            "filters": {"character": character, "win": win},
+            "filters": {"character": character, "win": win, "ascension": ascension, "game_mode": game_mode, "players": players},
             "characters": [
                 {"character": r["character"], "total": r["total"], "wins": r["wins"],
                  "win_rate": round(r["wins"] / r["total"] * 100, 1) if r["total"] > 0 else 0}
