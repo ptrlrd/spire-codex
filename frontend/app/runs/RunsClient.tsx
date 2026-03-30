@@ -205,26 +205,10 @@ function displayName(id: string): string {
   return cleanId(id).replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
-function RunOverview({ run }: { run: RunData }) {
+function RunOverview({ run, cardData, relicData }: { run: RunData; cardData: Record<string, CardInfo>; relicData: Record<string, RelicInfo> }) {
   const lp = useLangPrefix();
-  const [cardData, setCardData] = useState<Record<string, CardInfo>>({});
-  const [relicData, setRelicData] = useState<Record<string, RelicInfo>>({});
   const player = run.players[0];
   const charId = cleanId(player.character);
-
-  // Load card and relic data for tooltips
-  useEffect(() => {
-    cachedFetch<CardInfo[]>(`${API}/api/cards`).then((cards) => {
-      const map: Record<string, CardInfo> = {};
-      for (const c of cards) map[c.id] = c;
-      setCardData(map);
-    });
-    cachedFetch<RelicInfo[]>(`${API}/api/relics`).then((relics) => {
-      const map: Record<string, RelicInfo> = {};
-      for (const r of relics) map[r.id] = r;
-      setRelicData(map);
-    });
-  }, []);
   const charName = displayName(player.character);
 
   // Count non-starter cards
@@ -419,7 +403,7 @@ interface CommunityStats {
   deadliest: { encounter: string; count: number }[];
 }
 
-function CommunityStatsPanel({ stats }: { stats: CommunityStats }) {
+function CommunityStatsPanel({ stats, cardData, relicData }: { stats: CommunityStats; cardData: Record<string, CardInfo>; relicData: Record<string, RelicInfo> }) {
   const lp = useLangPrefix();
 
   if (stats.total_runs === 0) {
@@ -475,9 +459,7 @@ function CommunityStatsPanel({ stats }: { stats: CommunityStats }) {
           <div className="space-y-1">
             {stats.pick_rates.slice(0, 10).map((c) => (
               <div key={c.card_id} className="flex items-center justify-between text-sm py-1 border-b border-[var(--border-subtle)] last:border-0">
-                <Link href={`${lp}/cards/${c.card_id.toLowerCase()}`} className="text-[var(--text-secondary)] hover:text-[var(--accent-gold)]">
-                  {displayName(`CARD.${c.card_id}`)}
-                </Link>
+                <CardPill cardId={c.card_id} cardData={cardData} lp={lp} className="text-[var(--text-secondary)] hover:text-[var(--accent-gold)]" />
                 <div className="flex items-center gap-2 text-xs">
                   <span className="text-[var(--text-muted)]">{c.picked}/{c.offered}</span>
                   <span className="text-emerald-400 font-medium">{c.pick_rate}%</span>
@@ -494,10 +476,10 @@ function CommunityStatsPanel({ stats }: { stats: CommunityStats }) {
           <h2 className="text-lg font-semibold text-[var(--text-primary)] mb-3">Most Common Relics</h2>
           <div className="flex flex-wrap gap-1.5">
             {stats.top_relics.slice(0, 15).map((r) => (
-              <Link key={r.relic_id} href={`${lp}/relics/${r.relic_id.toLowerCase()}`}
+              <RelicPill key={r.relic_id} relicId={r.relic_id} relicData={relicData} lp={lp}
                 className="text-xs px-2 py-1 rounded bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--accent-gold)] hover:bg-[var(--bg-card-hover)]">
                 {displayName(`RELIC.${r.relic_id}`)} <span className="text-[var(--text-muted)]">({r.count})</span>
-              </Link>
+              </RelicPill>
             ))}
           </div>
         </div>
@@ -530,6 +512,22 @@ export default function RunsClient() {
   const [submitStatus, setSubmitStatus] = useState<"idle" | "submitting" | "submitted" | "duplicate" | "error">("idle");
   const [stats, setStats] = useState<CommunityStats | null>(null);
   const [tab, setTab] = useState<"paste" | "stats">("paste");
+  const [cardData, setCardData] = useState<Record<string, CardInfo>>({});
+  const [relicData, setRelicData] = useState<Record<string, RelicInfo>>({});
+
+  // Load card/relic data for tooltips
+  useEffect(() => {
+    cachedFetch<CardInfo[]>(`${API}/api/cards`).then((cards) => {
+      const map: Record<string, CardInfo> = {};
+      for (const c of cards) map[c.id] = c;
+      setCardData(map);
+    });
+    cachedFetch<RelicInfo[]>(`${API}/api/relics`).then((relics) => {
+      const map: Record<string, RelicInfo> = {};
+      for (const r of relics) map[r.id] = r;
+      setRelicData(map);
+    });
+  }, []);
 
   // Load community stats
   useEffect(() => {
@@ -663,13 +661,13 @@ export default function RunsClient() {
                   )}
                 </div>
               </div>
-              <RunOverview run={run} />
+              <RunOverview run={run} cardData={cardData} relicData={relicData} />
             </div>
           )}
         </>
       )}
 
-      {tab === "stats" && stats && <CommunityStatsPanel stats={stats} />}
+      {tab === "stats" && stats && <CommunityStatsPanel stats={stats} cardData={cardData} relicData={relicData} />}
       {tab === "stats" && !stats && (
         <div className="text-center py-12 text-[var(--text-muted)]">Loading...</div>
       )}
