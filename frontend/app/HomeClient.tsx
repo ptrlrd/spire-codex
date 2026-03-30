@@ -19,11 +19,11 @@ interface Translations {
 }
 
 const CHARACTERS = [
-  { id: "ironclad", color: "from-red-900/40" },
-  { id: "silent", color: "from-emerald-900/40" },
-  { id: "defect", color: "from-blue-900/40" },
-  { id: "necrobinder", color: "from-purple-900/40" },
-  { id: "regent", color: "from-amber-900/40" },
+  { id: "ironclad", cssColor: "var(--color-ironclad)" },
+  { id: "silent", cssColor: "var(--color-silent)" },
+  { id: "defect", cssColor: "var(--color-defect)" },
+  { id: "necrobinder", cssColor: "var(--color-necrobinder)" },
+  { id: "regent", cssColor: "var(--color-regent)" },
 ];
 
 const FALLBACK_DESCS: Record<string, string> = {
@@ -100,78 +100,67 @@ export default function HomeClient({ initialStats, initialTranslations }: HomeCl
       href: "/cards",
       key: "cards",
       count: stats?.cards ?? "–",
-      gradient: "from-red-900/30 to-transparent",
-      accent: "text-red-400",
+      color: "#d53b27",  // ironclad red
     },
     {
       href: "/characters",
       key: "characters",
       count: stats?.characters ?? "–",
-      gradient: "from-amber-900/30 to-transparent",
-      accent: "text-amber-400",
+      color: "#e8b830",  // gold
     },
     {
       href: "/relics",
       key: "relics",
       count: stats?.relics ?? "–",
-      gradient: "from-purple-900/30 to-transparent",
-      accent: "text-purple-400",
+      color: "#bf5a85",  // necrobinder rose
     },
     {
       href: "/monsters",
       key: "monsters",
       count: stats?.monsters ?? "–",
-      gradient: "from-emerald-900/30 to-transparent",
-      accent: "text-emerald-400",
+      color: "#23935b",  // silent green
     },
     {
       href: "/potions",
       key: "potions",
       count: stats?.potions ?? "–",
-      gradient: "from-blue-900/30 to-transparent",
-      accent: "text-blue-400",
+      color: "#3873a9",  // defect blue
     },
     {
       href: "/enchantments",
       key: "enchantments",
       count: stats?.enchantments ?? "–",
-      gradient: "from-cyan-900/30 to-transparent",
-      accent: "text-cyan-400",
+      color: "#45cfd8",  // teal
     },
     {
       href: "/encounters",
       key: "encounters",
       count: stats?.encounters ?? "–",
-      gradient: "from-rose-900/30 to-transparent",
-      accent: "text-rose-400",
+      color: "#ac6345",  // spire orange
     },
     {
       href: "/events",
       key: "events",
       count: stats?.events ?? "–",
-      gradient: "from-indigo-900/30 to-transparent",
-      accent: "text-indigo-400",
+      color: "#6b5b8a",  // atmosphere purple
     },
     {
       href: "/powers",
       key: "powers",
       count: stats?.powers ?? "–",
-      gradient: "from-teal-900/30 to-transparent",
-      accent: "text-teal-400",
+      color: "#45cfd8",  // teal
     },
     {
       href: "/timeline",
       key: "timeline",
       count: stats?.epochs ?? "–",
-      gradient: "from-violet-900/30 to-transparent",
-      accent: "text-violet-400",
+      color: "#8a6b3a",  // warm brown
     },
     {
       href: "/images",
       key: "images",
       count: stats?.images ?? "–",
-      gradient: "from-pink-900/30 to-transparent",
-      accent: "text-pink-400",
+      color: "#f07c1e",  // regent orange
     },
     {
       href: "/reference",
@@ -186,8 +175,7 @@ export default function HomeClient({ initialStats, initialTranslations }: HomeCl
           (stats.acts ?? 0) +
           (stats.ascensions ?? 0)
         : "–",
-      gradient: "from-slate-800/30 to-transparent",
-      accent: "text-slate-400",
+      color: "#596068",  // muted
     },
   ];
 
@@ -205,7 +193,8 @@ export default function HomeClient({ initialStats, initialTranslations }: HomeCl
                 className="group relative overflow-hidden rounded-xl bg-[var(--bg-card)] border border-[var(--border-subtle)] hover:border-[var(--border-accent)] transition-all"
               >
                 <div
-                  className={`absolute inset-0 bg-gradient-to-t ${char.color} to-transparent opacity-60`}
+                  className="absolute inset-0 opacity-60"
+                  style={{ background: `linear-gradient(to top, ${char.cssColor}66, transparent)` }}
                 />
                 <div className="relative aspect-square flex items-end justify-center">
                   <img
@@ -236,14 +225,15 @@ export default function HomeClient({ initialStats, initialTranslations }: HomeCl
               className="group relative overflow-hidden rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-card)] hover:bg-[var(--bg-card-hover)] transition-all hover:border-[var(--border-accent)] hover:shadow-xl hover:shadow-black/20"
             >
               <div
-                className={`absolute inset-0 bg-gradient-to-br ${s.gradient} opacity-0 group-hover:opacity-100 transition-opacity`}
+                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity"
+                style={{ background: `linear-gradient(to bottom right, ${s.color}4d, transparent)` }}
               />
               <div className="relative p-6">
                 <div className="flex items-baseline justify-between mb-3">
                   <h2 className="text-xl font-semibold text-[var(--text-primary)] group-hover:text-[var(--accent-gold)] transition-colors">
                     {sectionKey(s.key)}
                   </h2>
-                  <span className={`text-2xl font-bold ${s.accent}`}>
+                  <span className="text-2xl font-bold" style={{ color: s.color }}>
                     {s.count}
                   </span>
                 </div>
