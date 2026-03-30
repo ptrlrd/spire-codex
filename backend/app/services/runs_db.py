@@ -138,7 +138,8 @@ def submit_run(data: dict, username: str | None = None) -> dict:
     was_abandoned = int(data.get("was_abandoned", False))
 
     total_floors = sum(len(act) for act in data.get("map_point_history", []))
-    killed_by = clean_id(data["killed_by_encounter"]) if data.get("killed_by_encounter") else None
+    killed_by_raw = data.get("killed_by_encounter", "")
+    killed_by = clean_id(killed_by_raw) if killed_by_raw and killed_by_raw != "NONE.NONE" else None
     player_count = len(data.get("players", []))
 
     with get_conn() as conn:

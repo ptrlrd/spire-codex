@@ -192,7 +192,7 @@ export default function SharedRunClient() {
           </div>
         </div>
 
-        {!run.win && run.killed_by_encounter && (
+        {!run.win && !run.was_abandoned && run.killed_by_encounter && run.killed_by_encounter !== "NONE.NONE" && (
           <div className="mt-3 text-sm" style={{ color: "var(--color-ironclad)" }}>
             Killed by{" "}
             <Link href={`${lp}/encounters/${cleanId(run.killed_by_encounter).toLowerCase()}`} className="hover:underline font-medium">
