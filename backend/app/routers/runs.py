@@ -39,7 +39,8 @@ async def submit_run_endpoint(request: Request, username: str | None = None):
 
 
 @router.get("/list", tags=["Runs"])
-def list_runs(request: Request, character: str | None = None, win: str | None = None, limit: int = 50):
+def list_runs(request: Request, character: str | None = None, win: str | None = None,
+              username: str | None = None, limit: int = 50):
     """List submitted runs with optional filters."""
     from ..services.runs_db import get_conn
     with get_conn() as conn:
@@ -52,6 +53,9 @@ def list_runs(request: Request, character: str | None = None, win: str | None = 
             conditions.append("win = 1")
         elif win == "false":
             conditions.append("win = 0 AND was_abandoned = 0")
+        if username:
+            conditions.append("username LIKE ?")
+            params.append(f"%{username}%")
         where = ("WHERE " + " AND ".join(conditions)) if conditions else ""
         params.append(min(limit, 100))
         rows = conn.execute(f"""

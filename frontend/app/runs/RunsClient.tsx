@@ -404,6 +404,7 @@ export default function RunsClient() {
   const [runList, setRunList] = useState<any[]>([]);
   const [browseChar, setBrowseChar] = useState("");
   const [browseWin, setBrowseWin] = useState("");
+  const [browseUser, setBrowseUser] = useState("");
 
   // Load card/relic data for tooltips
   useEffect(() => {
@@ -425,11 +426,12 @@ export default function RunsClient() {
     const params = new URLSearchParams();
     if (browseChar) params.set("character", browseChar);
     if (browseWin) params.set("win", browseWin);
+    if (browseUser) params.set("username", browseUser);
     fetch(`${API}/api/runs/list?${params}`)
       .then((r) => r.ok ? r.json() : [])
       .then(setRunList)
       .catch(() => {});
-  }, [tab, browseChar, browseWin]);
+  }, [tab, browseChar, browseWin, browseUser]);
 
   function isValidRunFile(data: any): boolean {
     return data && typeof data === "object" && data.players && data.acts && data.map_point_history && "win" in data && "schema_version" in data;
@@ -642,6 +644,13 @@ export default function RunsClient() {
               <option value="true">Wins</option>
               <option value="false">Losses</option>
             </select>
+            <input
+              type="text"
+              value={browseUser}
+              onChange={(e) => setBrowseUser(e.target.value)}
+              placeholder="Search username..."
+              className="text-sm px-3 py-1.5 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)] w-44"
+            />
           </div>
 
           {runList.length === 0 ? (
