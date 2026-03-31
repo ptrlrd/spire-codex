@@ -1,0 +1,57 @@
+{
+  "app_id": 2868840,
+  "game_version": "1.0.13",
+  "build_id": "",
+  "tag": "1.0.13",
+  "date": "2026-03-31",
+  "title": "Glossary, Card UX Overhaul, The Architect Fix",
+  "from_ref": "v1.0.12",
+  "to_ref": "current",
+  "summary": {
+    "added": 0,
+    "removed": 0,
+    "changed": 2
+  },
+  "categories": [
+    {
+      "id": "events",
+      "name": "Events",
+      "old_count": 66,
+      "new_count": 66,
+      "changed": [
+        {
+          "id": "THE_ARCHITECT",
+          "name": "The Architect",
+          "changes": [
+            {
+              "field": "dialogue",
+              "old": "none",
+              "new": "5 fields"
+            },
+            {
+              "field": "type",
+              "old": "Shared",
+              "new": "Ancient"
+            },
+            {
+              "field": "description",
+              "old": "none",
+              "new": "So the arch demon’s thrall has arrived?"
+            }
+          ]
+        },
+        {
+          "id": "TINKER_TIME",
+          "name": "Tinker Time",
+          "changes": [
+            {
+              "field": "pages",
+              "old": "{'id': 'CHOOSE_CARD_TYPE', 'description': '“What kind of tool will help you [red][jitter]kill everyone[/jitter][/red]?”', 'options': [{'id': 'ATTACK', 'title': 'Weapon', 'description': 'Make an Attack.'}, {'id': 'SKILL', 'title': 'Protector', 'description': 'Make a Skill.'}, {'id': 'POWER', 'title': 'Gadget', 'description': 'Make a Power.'}]}, {'id': 'CHOOSE_RIDER', 'description': '“Excellent choice! Now what should it [sine]DO[/sine]?”\\nThe [orange]scientist[/orange] rubs her hands together with glee.', 'options': [{'id': 'SAPPING', 'title': 'Sapping', 'description': 'Apply [blue][SappingWeak][/blue] [gold]Weak[/gold]. Apply [blue][SappingVulnerable][/blue] [gold]Vulnerable[/gold].'}, {'id': 'VIOLENCE', 'title': 'Violence', 'description': 'Hits [blue]2[/blue] additional times.'}, {'id': 'CHOKING', 'title': 'Choking', 'description': 'Whenever you play a card this turn, the enemy loses [blue][ChokingDamage][/blue] HP.'}, {'id': 'ENERGIZED', 'title': 'Energized', 'description': 'Gain [energy:2].'}, {'id': 'WISDOM', 'title': 'Wisdom', 'description': 'Draw [blue]3[/blue] cards.'}, {'id': 'CHAOS', 'title': 'Chaos', 'description': 'Add a random card into your [gold]Hand[/gold]. It costs [blue]0[/blue] [energy:1] this turn.'}, {'id': 'EXPERTISE', 'title': 'Expertise', 'description': 'Gain [blue][ExpertiseStrength][/blue] [gold]Strength[/gold]. Gain [blue][ExpertiseDexterity][/blue] [gold]Dexterity[/gold].'}, {'id': 'CURIOUS', 'title': 'Curious', 'description': 'Powers cost [blue]1[/blue] [energy:1] less.'}, {'id': 'IMPROVEMENT', 'title': 'Improvement', 'description': 'At the end of combat, [gold]Upgrade[/gold] a random card.'}]}, {'id': 'DONE', 'description': '“Whew! All done. This is for you! Now get out there and [red][jitter]slaughter[/jitter][/red]!!”\\n\\nLittle did you know, that [orange]scientist[/orange] went on to create hundreds of weapons, resulting in several thousand deaths within the Spire.'}, {'id': 'INITIAL', 'description': 'Navigating through an [red][sine]endless sea of corpses[/sine][/red], you find a [orange]mad scientist[/orange] scavenging for various scraps.\\n\\n“Yes. Hi, hello! You look like a capable fighter... I need a tester for my next [green]atrocity device[/green]! How about it?”', 'options': [{'id': 'CHOOSE_CARD_TYPE', 'title': 'Accept', 'description': 'Create a custom card to add to your [gold]Deck[/gold].'}]}",
+              "new": "{'id': 'CHOOSE_CARD_TYPE', 'description': '“What kind of tool will help you [red][jitter]kill everyone[/jitter][/red]?”', 'options': [{'id': 'ATTACK', 'title': 'Weapon', 'description': 'Make an Attack.'}, {'id': 'SKILL', 'title': 'Protector', 'description': 'Make a Skill.'}, {'id': 'POWER', 'title': 'Gadget', 'description': 'Make a Power.'}]}, {'id': 'CHOOSE_RIDER', 'description': '“Excellent choice! Now what should it [sine]DO[/sine]?”\\nThe [orange]scientist[/orange] rubs her hands together with glee.', 'options': [{'id': 'SAPPING', 'title': 'Sapping', 'description': 'Apply [blue]2[/blue] [gold]Weak[/gold]. Apply [blue]2[/blue] [gold]Vulnerable[/gold].'}, {'id': 'VIOLENCE', 'title': 'Violence', 'description': 'Hits [blue]2[/blue] additional times.'}, {'id': 'CHOKING', 'title': 'Choking', 'description': 'Whenever you play a card this turn, the enemy loses [blue]6[/blue] HP.'}, {'id': 'ENERGIZED', 'title': 'Energized', 'description': 'Gain [energy:2].'}, {'id': 'WISDOM', 'title': 'Wisdom', 'description': 'Draw [blue]3[/blue] cards.'}, {'id': 'CHAOS', 'title': 'Chaos', 'description': 'Add a random card into your [gold]Hand[/gold]. It costs [blue]0[/blue] [energy:1] this turn.'}, {'id': 'EXPERTISE', 'title': 'Expertise', 'description': 'Gain [blue]2[/blue] [gold]Strength[/gold]. Gain [blue]2[/blue] [gold]Dexterity[/gold].'}, {'id': 'CURIOUS', 'title': 'Curious', 'description': 'Powers cost [blue]1[/blue] [energy:1] less.'}, {'id': 'IMPROVEMENT', 'title': 'Improvement', 'description': 'At the end of combat, [gold]Upgrade[/gold] a random card.'}]}, {'id': 'DONE', 'description': '“Whew! All done. This is for you! Now get out there and [red][jitter]slaughter[/jitter][/red]!!”\\n\\nLittle did you know, that [orange]scientist[/orange] went on to create hundreds of weapons, resulting in several thousand deaths within the Spire.'}, {'id': 'INITIAL', 'description': 'Navigating through an [red][sine]endless sea of corpses[/sine][/red], you find a [orange]mad scientist[/orange] scavenging for various scraps.\\n\\n“Yes. Hi, hello! You look like a capable fighter... I need a tester for my next [green]atrocity device[/green]! How about it?”', 'options': [{'id': 'CHOOSE_CARD_TYPE', 'title': 'Accept', 'description': 'Create a custom card to add to your [gold]Deck[/gold].'}]}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
