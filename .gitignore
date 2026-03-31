@@ -21,6 +21,9 @@ frontend/.env.local
 # OS
 .DS_Store
 
+# Local overrides
+docker-compose.override.yml
+
 # Runtime data
 data/runs.db
 data/runs/

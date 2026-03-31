@@ -59,6 +59,28 @@ const keywordTooltips: Record<string, string> = {
   Eternal: "Cannot be removed from your deck.",
 };
 
+function buildInteractiveWords(
+  card: Card,
+  powerData: Record<string, { id: string; name: string; description: string; type: string; image_url: string | null }>,
+  keywordData: Record<string, { id: string; name: string; description: string }>,
+  lp: string,
+): Record<string, { tooltip: string; href: string }> {
+  const words: Record<string, { tooltip: string; href: string }> = {};
+  // Add keyword names (Sly, Exhaust, Ethereal, etc.)
+  if (card.keywords) {
+    for (const kw of card.keywords) {
+      const data = keywordData[kw.toLowerCase()];
+      const desc = data?.description || keywordTooltips[kw] || "";
+      words[kw] = { tooltip: desc, href: `${lp}/keywords/${kw.toLowerCase()}` };
+    }
+  }
+  // Add power names from [gold] tagged text (Dexterity, Thorns, Block, Strength, etc.)
+  for (const [name, data] of Object.entries(powerData)) {
+    words[data.name] = { tooltip: data.description, href: `${lp}/powers/${data.id.toLowerCase()}` };
+  }
+  return words;
+}
+
 function InlineTooltip({ label, tooltip, href, color, image }: {
   label: string; tooltip: string; href?: string; color: string; image?: string;
 }) {
@@ -508,71 +530,8 @@ const [card, setCard] = useState<Card | null>(null);
                       rarity: sc.rarity,
                       cost: sc.cost,
                     }))}
+                    interactiveWords={buildInteractiveWords(card, powerData, keywordData, lp)}
                   />
-
-                  {/* Inline keywords after description */}
-                  {card.keywords && card.keywords.length > 0 && (
-                    <div className="mt-3 space-y-1">
-                      {card.keywords.map((kw) => {
-                        const removed = isUpgraded && u?.remove_exhaust && kw === "Exhaust";
-                        const kwData = keywordData[kw.toLowerCase()];
-                        if (removed) {
-                          return (
-                            <div key={kw} className="text-[var(--text-muted)] line-through">
-                              {kw}
-                            </div>
-                          );
-                        }
-                        return (
-                          <InlineTooltip
-                            key={kw}
-                            label={kw}
-                            tooltip={kwData ? kwData.description : keywordTooltips[kw] || ""}
-                            href={`${lp}/keywords/${kw.toLowerCase()}`}
-                            color="var(--accent-gold)"
-                          />
-                        );
-                      })}
-                      {isUpgraded && u?.add_innate && !card.keywords?.includes("Innate") && (
-                        <InlineTooltip
-                          label="+Innate"
-                          tooltip="Always appears in your opening hand."
-                          href={`${lp}/keywords/innate`}
-                          color="var(--color-silent)"
-                        />
-                      )}
-                    </div>
-                  )}
-                  {isUpgraded && u?.add_innate && (!card.keywords || card.keywords.length === 0) && (
-                    <div className="mt-3">
-                      <InlineTooltip
-                        label="+Innate"
-                        tooltip="Always appears in your opening hand."
-                        href={`${lp}/keywords/innate`}
-                        color="var(--color-silent)"
-                      />
-                    </div>
-                  )}
-
-                  {/* Inline powers applied */}
-                  {card.powers_applied && card.powers_applied.length > 0 && (
-                    <div className="mt-3 space-y-1">
-                      {card.powers_applied.map((pa) => {
-                        const powerName = pa.power_key || pa.power;
-                        const pData = powerData[powerName.toLowerCase()];
-                        return (
-                          <InlineTooltip
-                            key={pa.power}
-                            label={`${pa.power} ${pa.amount}`}
-                            tooltip={pData?.description || ""}
-                            href={pData ? `${lp}/powers/${pData.id.toLowerCase()}` : undefined}
-                            color={pData?.type === "Debuff" ? "var(--color-ironclad)" : "var(--color-silent)"}
-                            image={pData?.image_url ? `${API}${pData.image_url}` : undefined}
-                          />
-                        );
-                      })}
-                    </div>
-                  )}
                 </div>
               )}
 

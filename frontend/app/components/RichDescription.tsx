@@ -369,18 +369,141 @@ function splitWithCardRefs(
   return segments;
 }
 
+export interface InteractiveWord {
+  tooltip: string;
+  href: string;
+}
+
+function WordTooltip({ word, info, children }: { word: string; info: InteractiveWord; children: React.ReactNode }) {
+  const [show, setShow] = useState(false);
+  return (
+    <span className="relative inline" onMouseEnter={() => setShow(true)} onMouseLeave={() => setShow(false)}>
+      <Link href={info.href} className="underline decoration-dotted underline-offset-2 decoration-[var(--text-muted)] hover:decoration-[var(--accent-gold)] transition-colors">
+        {children}
+      </Link>
+      {show && info.tooltip && (
+        <span className="absolute z-[100] bottom-full left-0 mb-2 w-52 p-2.5 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] shadow-xl pointer-events-none">
+          <span className="font-semibold text-xs text-[var(--text-primary)] block">{word}</span>
+          <span className="text-[10px] text-[var(--text-secondary)] leading-relaxed block mt-0.5">
+            <RichDescriptionSimple text={info.tooltip} />
+          </span>
+        </span>
+      )}
+    </span>
+  );
+}
+
+/** Simple renderer without interactive words (for tooltips to avoid infinite recursion) */
+function RichDescriptionSimple({ text }: { text: string }) {
+  keyCounter = 0;
+  const cleaned = cleanTemplateVars(text);
+  const tokens = tokenize(cleaned);
+  const tree = buildTree(tokens);
+  return <>{renderNode(tree, "colorless")}</>;
+}
+
+function splitWithInteractiveWords(text: string, words: Record<string, InteractiveWord>): { text: string; word?: string; info?: InteractiveWord }[] {
+  const entries = Object.entries(words).sort((a, b) => b[0].length - a[0].length);
+  if (entries.length === 0) return [{ text }];
+
+  const pattern = new RegExp(`\\b(${entries.map(([w]) => w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|")})\\b`, "g");
+  const segments: { text: string; word?: string; info?: InteractiveWord }[] = [];
+  let last = 0;
+  let m: RegExpExecArray | null;
+  const matched = new Set<string>();
+  while ((m = pattern.exec(text)) !== null) {
+    const matchedWord = m[1];
+    // Find the original case-sensitive key
+    const key = entries.find(([w]) => w.toLowerCase() === matchedWord.toLowerCase())?.[0];
+    if (!key || matched.has(key.toLowerCase())) {
+      continue; // only match each word once
+    }
+    matched.add(key.toLowerCase());
+    if (m.index > last) segments.push({ text: text.slice(last, m.index) });
+    segments.push({ text: matchedWord, word: key, info: words[key] });
+    last = m.index + m[0].length;
+  }
+  if (last < text.length) segments.push({ text: text.slice(last) });
+  return segments;
+}
+
 export default function RichDescription({
   text,
   energyIcon = "colorless",
   relatedCards,
+  interactiveWords,
 }: {
   text: string;
   energyIcon?: string;
   relatedCards?: RelatedCard[];
+  interactiveWords?: Record<string, InteractiveWord>;
 }) {
   keyCounter = 0;
   const cleaned = cleanTemplateVars(text);
   const tokens = tokenize(cleaned);
   const tree = buildTree(tokens);
+
+  function renderWithInteractive(node: StyledNode): React.ReactNode {
+    const key = keyCounter++;
+
+    if (node.isEnergy || node.isStar || node.isPlaceholder) {
+      return renderNode(node, energyIcon, relatedCards);
+    }
+
+    if (node.text !== undefined && interactiveWords && Object.keys(interactiveWords).length > 0) {
+      const segments = splitWithInteractiveWords(node.text, interactiveWords);
+      if (segments.some((s) => s.info)) {
+        return (
+          <React.Fragment key={key}>
+            {segments.map((seg, i) =>
+              seg.info ? (
+                <WordTooltip key={i} word={seg.word!} info={seg.info}>{seg.text}</WordTooltip>
+              ) : (
+                <React.Fragment key={i}>{seg.text}</React.Fragment>
+              )
+            )}
+          </React.Fragment>
+        );
+      }
+      // Also check related cards
+      if (relatedCards?.length) {
+        const cardSegs = splitWithCardRefs(node.text, relatedCards);
+        if (cardSegs.some((s) => s.card)) {
+          return (
+            <React.Fragment key={key}>
+              {cardSegs.map((seg, i) =>
+                seg.card ? <CardHoverTip key={i} card={seg.card}>{seg.text}</CardHoverTip> : <React.Fragment key={i}>{seg.text}</React.Fragment>
+              )}
+            </React.Fragment>
+          );
+        }
+      }
+      return node.text;
+    }
+
+    if (node.text !== undefined) {
+      if (relatedCards?.length) {
+        const segments = splitWithCardRefs(node.text, relatedCards);
+        if (segments.some((s) => s.card)) {
+          return (
+            <React.Fragment key={key}>
+              {segments.map((seg, i) =>
+                seg.card ? <CardHoverTip key={i} card={seg.card}>{seg.text}</CardHoverTip> : <React.Fragment key={i}>{seg.text}</React.Fragment>
+              )}
+            </React.Fragment>
+          );
+        }
+      }
+      return node.text;
+    }
+
+    const children = (node.children ?? []).map((child) => renderWithInteractive(child));
+    if (node.classes.length === 0) return <React.Fragment key={key}>{children}</React.Fragment>;
+    return <span key={key} className={node.classes.join(" ")}>{children}</span>;
+  }
+
+  if (interactiveWords && Object.keys(interactiveWords).length > 0) {
+    return <>{renderWithInteractive(tree)}</>;
+  }
   return <>{renderNode(tree, energyIcon, relatedCards)}</>;
 }
