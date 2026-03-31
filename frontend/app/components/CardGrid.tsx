@@ -258,8 +258,24 @@ function CardItem({ card }: { card: Card }) {
       </div>
 
       {/* Description */}
-      <p className="text-sm text-[var(--text-secondary)] leading-relaxed line-clamp-3">
+      <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
         {renderDescription(card, upgraded)}
+        {card.keywords && card.keywords.length > 0 && (
+          <>
+            {" "}
+            {card.keywords
+              .filter((kw) => !(isUpgraded && u?.remove_exhaust && kw === "Exhaust"))
+              .map((kw, i) => (
+                <span key={kw}>
+                  <span className="text-[var(--accent-gold)]">{kw}</span>
+                  {i < card.keywords!.filter((k) => !(isUpgraded && u?.remove_exhaust && k === "Exhaust")).length - 1 ? ". " : "."}
+                </span>
+              ))}
+            {isUpgraded && u?.add_innate && !card.keywords?.includes("Innate") && (
+              <span> <span className="text-emerald-400">Innate</span>.</span>
+            )}
+          </>
+        )}
       </p>
 
 
