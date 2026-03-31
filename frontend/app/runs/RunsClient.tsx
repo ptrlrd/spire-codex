@@ -405,6 +405,9 @@ export default function RunsClient() {
   const [browseChar, setBrowseChar] = useState("");
   const [browseWin, setBrowseWin] = useState("");
   const [browseUser, setBrowseUser] = useState("");
+  const [browsePage, setBrowsePage] = useState(1);
+  const [browseTotal, setBrowseTotal] = useState(0);
+  const [browseTotalPages, setBrowseTotalPages] = useState(0);
 
   // Load card/relic data for tooltips
   useEffect(() => {
@@ -420,6 +423,9 @@ export default function RunsClient() {
     });
   }, []);
 
+  // Reset page when filters change
+  useEffect(() => { setBrowsePage(1); }, [browseChar, browseWin, browseUser]);
+
   // Load run list for browse tab
   useEffect(() => {
     if (tab !== "browse") return;
@@ -427,11 +433,16 @@ export default function RunsClient() {
     if (browseChar) params.set("character", browseChar);
     if (browseWin) params.set("win", browseWin);
     if (browseUser) params.set("username", browseUser);
+    params.set("page", String(browsePage));
     fetch(`${API}/api/runs/list?${params}&_t=${Date.now()}`)
-      .then((r) => r.ok ? r.json() : [])
-      .then(setRunList)
+      .then((r) => r.ok ? r.json() : { runs: [], total: 0, total_pages: 0 })
+      .then((data) => {
+        setRunList(data.runs || []);
+        setBrowseTotal(data.total || 0);
+        setBrowseTotalPages(data.total_pages || 0);
+      })
       .catch(() => {});
-  }, [tab, browseChar, browseWin, browseUser]);
+  }, [tab, browseChar, browseWin, browseUser, browsePage]);
 
   function isValidRunFile(data: any): boolean {
     return data && typeof data === "object" && data.players && data.acts && data.map_point_history && "win" in data && "schema_version" in data;
@@ -653,30 +664,58 @@ export default function RunsClient() {
             />
           </div>
 
+          {/* Total count */}
+          <p className="text-xs text-[var(--text-muted)] mb-3">{browseTotal} runs total</p>
+
           {runList.length === 0 ? (
             <p className="text-center py-8 text-[var(--text-muted)]">No runs found.</p>
           ) : (
-            <div className="space-y-2">
-              {runList.map((r) => (
-                <Link key={r.run_hash} href={`${lp}/runs/${r.run_hash}`}
-                  className="flex items-center justify-between bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] px-4 py-3 hover:bg-[var(--bg-card-hover)] transition-colors">
-                  <div className="flex items-center gap-3">
-                    <span className={`text-sm font-medium ${r.win ? "text-[var(--color-silent)]" : "text-[var(--color-ironclad)]"}`}>
-                      {r.win ? "W" : r.was_abandoned ? "A" : "L"}
-                    </span>
-                    <span className="text-sm text-[var(--text-primary)]">{displayName(`CHARACTER.${r.character}`)}</span>
-                    <span className="text-xs text-[var(--text-muted)]">A{r.ascension}</span>
-                    {r.username && <span className="text-xs text-[var(--accent-gold)]">{r.username}</span>}
-                  </div>
-                  <div className="flex items-center gap-4 text-xs text-[var(--text-muted)]">
-                    <span>{r.deck_size} cards</span>
-                    <span>{r.relic_count} relics</span>
-                    <span>{r.floors_reached} floors</span>
-                    <span>{formatTimeShort(r.run_time)}</span>
-                  </div>
-                </Link>
-              ))}
-            </div>
+            <>
+              <div className="space-y-2">
+                {runList.map((r) => (
+                  <Link key={r.run_hash} href={`${lp}/runs/${r.run_hash}`}
+                    className="flex items-center justify-between bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] px-4 py-3 hover:bg-[var(--bg-card-hover)] transition-colors">
+                    <div className="flex items-center gap-3">
+                      <span className={`text-sm font-medium ${r.win ? "text-[var(--color-silent)]" : "text-[var(--color-ironclad)]"}`}>
+                        {r.win ? "W" : r.was_abandoned ? "A" : "L"}
+                      </span>
+                      <span className="text-sm text-[var(--text-primary)]">{displayName(`CHARACTER.${r.character}`)}</span>
+                      <span className="text-xs text-[var(--text-muted)]">A{r.ascension}</span>
+                      {r.username && <span className="text-xs text-[var(--accent-gold)]">{r.username}</span>}
+                    </div>
+                    <div className="flex items-center gap-4 text-xs text-[var(--text-muted)]">
+                      <span>{r.deck_size} cards</span>
+                      <span>{r.relic_count} relics</span>
+                      <span>{r.floors_reached} floors</span>
+                      <span>{formatTimeShort(r.run_time)}</span>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+
+              {/* Pagination */}
+              {browseTotalPages > 1 && (
+                <div className="flex items-center justify-center gap-2 mt-4">
+                  <button
+                    onClick={() => setBrowsePage(browsePage - 1)}
+                    disabled={browsePage <= 1}
+                    className="text-xs px-3 py-1.5 rounded-lg border border-[var(--border-subtle)] text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:border-[var(--border-accent)] transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+                  >
+                    &larr; Prev
+                  </button>
+                  <span className="text-xs text-[var(--text-muted)]">
+                    Page {browsePage} of {browseTotalPages}
+                  </span>
+                  <button
+                    onClick={() => setBrowsePage(browsePage + 1)}
+                    disabled={browsePage >= browseTotalPages}
+                    className="text-xs px-3 py-1.5 rounded-lg border border-[var(--border-subtle)] text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:border-[var(--border-accent)] transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+                  >
+                    Next &rarr;
+                  </button>
+                </div>
+              )}
+            </>
           )}
         </div>
       )}

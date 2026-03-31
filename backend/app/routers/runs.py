@@ -40,8 +40,8 @@ async def submit_run_endpoint(request: Request, username: str | None = None):
 
 @router.get("/list", tags=["Runs"])
 def list_runs(request: Request, character: str | None = None, win: str | None = None,
-              username: str | None = None, limit: int = 50):
-    """List submitted runs with optional filters."""
+              username: str | None = None, page: int = 1, limit: int = 50):
+    """List submitted runs with optional filters and pagination."""
     from ..services.runs_db import get_conn
     with get_conn() as conn:
         conditions = []
@@ -57,14 +57,26 @@ def list_runs(request: Request, character: str | None = None, win: str | None = 
             conditions.append("username LIKE ?")
             params.append(f"%{username}%")
         where = ("WHERE " + " AND ".join(conditions)) if conditions else ""
-        params.append(min(limit, 100))
+
+        total = conn.execute(f"SELECT COUNT(*) as c FROM runs {where}", params).fetchone()["c"]
+
+        per_page = min(limit, 100)
+        offset = (max(page, 1) - 1) * per_page
+        query_params = list(params) + [per_page, offset]
         rows = conn.execute(f"""
             SELECT run_hash, character, win, was_abandoned, ascension, game_mode,
                    run_time, floors_reached, deck_size, relic_count, killed_by, username, submitted_at
             FROM runs {where}
-            ORDER BY submitted_at DESC LIMIT ?
-        """, params).fetchall()
-        return [dict(r) for r in rows]
+            ORDER BY submitted_at DESC LIMIT ? OFFSET ?
+        """, query_params).fetchall()
+
+        return {
+            "runs": [dict(r) for r in rows],
+            "total": total,
+            "page": max(page, 1),
+            "per_page": per_page,
+            "total_pages": (total + per_page - 1) // per_page,
+        }
 
 
 @router.get("/shared/{run_hash}", tags=["Runs"])
