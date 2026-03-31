@@ -15,7 +15,8 @@
     "Green upgrade highlighting — upgraded card values render in emerald green so you can instantly see what changed",
     "Contextual upgrade replacement with pluralization (e.g. 'Draw 1 card' → 'Draw 2 cards')",
     "Keywords shown inline in card descriptions (gold text, matching in-game appearance)",
-    "Back button on all 17 detail pages preserves filter state via router.back()"
+    "Filter state persisted in URL across all list pages (cards, relics, monsters, potions, enchantments, encounters, events) — filters survive back navigation, refresh, and are shareable as links",
+    "Back button on all 17 detail pages preserves navigation history"
   ],
   "fixes": [
     "The Architect event page now shows content — detected as Ancient event, populated with per-character dialogue and monster sprite",
