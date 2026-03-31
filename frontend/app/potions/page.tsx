@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import type { Potion } from "@/lib/api";
 import JsonLd from "@/app/components/JsonLd";
 import { buildCollectionPageJsonLd, buildBreadcrumbJsonLd } from "@/lib/jsonld";
@@ -35,7 +36,9 @@ export default async function PotionsPage() {
         Browse every potion across Ironclad, Silent, Defect, Necrobinder, and Regent. Filter by rarity and character pool.
       </p>
 
-      <PotionsClient initialPotions={potions} />
+      <Suspense>
+        <PotionsClient initialPotions={potions} />
+      </Suspense>
     </div>
   );
 }

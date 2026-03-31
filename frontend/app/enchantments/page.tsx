@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import type { Enchantment } from "@/lib/api";
 import JsonLd from "@/app/components/JsonLd";
 import { buildCollectionPageJsonLd, buildBreadcrumbJsonLd } from "@/lib/jsonld";
@@ -34,7 +35,9 @@ export default async function EnchantmentsPage() {
         Browse every enchantment in Slay the Spire 2. Filter by card type and view effects, stackability, and extra card text.
       </p>
 
-      <EnchantmentsClient initialEnchantments={enchantments} />
+      <Suspense>
+        <EnchantmentsClient initialEnchantments={enchantments} />
+      </Suspense>
     </div>
   );
 }

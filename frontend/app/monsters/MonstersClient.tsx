@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import type { Monster } from "@/lib/api";
 import { cachedFetch } from "@/lib/fetch-cache";
@@ -39,11 +40,29 @@ const actOptions = [
 export default function MonstersClient({ initialMonsters }: { initialMonsters: Monster[] }) {
   const { lang } = useLanguage();
     const lp = useLangPrefix();
+  const searchParams = useSearchParams();
+  const router = useRouter();
 const [monsters, setMonsters] = useState<Monster[]>(initialMonsters);
-  const [search, setSearch] = useState("");
-  const [type, setType] = useState("");
-  const [act, setAct] = useState("");
+  const [search, setSearch] = useState(searchParams.get("search") || "");
+  const [type, setType] = useState(searchParams.get("type") || "");
+  const [act, setAct] = useState(searchParams.get("act") || "");
   const initialRender = useRef(true);
+
+  const updateUrl = useCallback((newState: Record<string, string>) => {
+    const params = new URLSearchParams();
+    for (const [k, v] of Object.entries(newState)) {
+      if (v) params.set(k, v);
+    }
+    const qs = params.toString();
+    router.replace(`/monsters${qs ? `?${qs}` : ""}`, { scroll: false });
+  }, [router]);
+
+  const setFilterAndUrl = useCallback((key: string, value: string, setter: (v: string) => void) => {
+    setter(value);
+    const current: Record<string, string> = { search, type, act };
+    current[key] = value;
+    updateUrl(current);
+  }, [search, type, act, updateUrl]);
 
   useEffect(() => {
     // Skip the first fetch if we have server data and lang is English with no filters
@@ -74,7 +93,7 @@ const [monsters, setMonsters] = useState<Monster[]>(initialMonsters);
     <>
       <SearchFilter
         search={search}
-        onSearchChange={setSearch}
+        onSearchChange={(v) => setFilterAndUrl("search", v, setSearch)}
         placeholder="Search monsters..."
         resultCount={filtered.length}
         filters={[
@@ -82,13 +101,13 @@ const [monsters, setMonsters] = useState<Monster[]>(initialMonsters);
             label: "All Types",
             value: type,
             options: typeOptions,
-            onChange: setType,
+            onChange: (v) => setFilterAndUrl("type", v, setType),
           },
           {
             label: "All Acts",
             value: act,
             options: actOptions,
-            onChange: setAct,
+            onChange: (v) => setFilterAndUrl("act", v, setAct),
           },
         ]}
       />

@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import type { Encounter } from "@/lib/api";
 import { cachedFetch } from "@/lib/fetch-cache";
@@ -39,12 +40,30 @@ const actOptions = [
 
 export default function EncountersClient({ initialEncounters }: { initialEncounters: Encounter[] }) {
     const lp = useLangPrefix();
+  const searchParams = useSearchParams();
+  const router = useRouter();
 const [encounters, setEncounters] = useState<Encounter[]>(initialEncounters);
-  const [search, setSearch] = useState("");
-  const [roomType, setRoomType] = useState("");
-  const [act, setAct] = useState("");
+  const [search, setSearch] = useState(searchParams.get("search") || "");
+  const [roomType, setRoomType] = useState(searchParams.get("roomType") || "");
+  const [act, setAct] = useState(searchParams.get("act") || "");
   const { lang } = useLanguage();
   const initialRender = useRef(true);
+
+  const updateUrl = useCallback((newState: Record<string, string>) => {
+    const params = new URLSearchParams();
+    for (const [k, v] of Object.entries(newState)) {
+      if (v) params.set(k, v);
+    }
+    const qs = params.toString();
+    router.replace(`/encounters${qs ? `?${qs}` : ""}`, { scroll: false });
+  }, [router]);
+
+  const setFilterAndUrl = useCallback((key: string, value: string, setter: (v: string) => void) => {
+    setter(value);
+    const current: Record<string, string> = { search, roomType, act };
+    current[key] = value;
+    updateUrl(current);
+  }, [search, roomType, act, updateUrl]);
 
   useEffect(() => {
     // Skip the first fetch if we have server data and lang is English with no filters
@@ -71,7 +90,7 @@ const [encounters, setEncounters] = useState<Encounter[]>(initialEncounters);
     <>
       <SearchFilter
         search={search}
-        onSearchChange={setSearch}
+        onSearchChange={(v) => setFilterAndUrl("search", v, setSearch)}
         placeholder="Search encounters..."
         resultCount={filtered.length}
         filters={[
@@ -79,13 +98,13 @@ const [encounters, setEncounters] = useState<Encounter[]>(initialEncounters);
             label: "All Types",
             value: roomType,
             options: roomTypeOptions,
-            onChange: setRoomType,
+            onChange: (v) => setFilterAndUrl("roomType", v, setRoomType),
           },
           {
             label: "All Acts",
             value: act,
             options: actOptions,
-            onChange: setAct,
+            onChange: (v) => setFilterAndUrl("act", v, setAct),
           },
         ]}
       />

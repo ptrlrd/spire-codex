@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
-import { useRouter } from "next/navigation";
+import { useState, useEffect, useRef, useCallback } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import type { GameEvent, EventPage, DialogueLine } from "@/lib/api";
 import { cachedFetch } from "@/lib/fetch-cache";
@@ -101,10 +101,12 @@ function PageBlock({
 
 export default function EventsClient({ initialEvents }: { initialEvents: GameEvent[] }) {
     const lp = useLangPrefix();
+  const searchParams = useSearchParams();
+  const router = useRouter();
 const [events, setEvents] = useState<GameEvent[]>(initialEvents);
-  const [search, setSearch] = useState("");
-  const [type, setType] = useState("");
-  const [act, setAct] = useState("");
+  const [search, setSearch] = useState(searchParams.get("search") || "");
+  const [type, setType] = useState(searchParams.get("type") || "");
+  const [act, setAct] = useState(searchParams.get("act") || "");
   const [expandedDialogue, setExpandedDialogue] = useState<
     Record<string, string | null>
   >({});
@@ -115,9 +117,24 @@ const [events, setEvents] = useState<GameEvent[]>(initialEvents);
     Record<string, { id: string; name: string; description: string; image_url: string | null }>
   >({});
   const [expandedDesc, setExpandedDesc] = useState<Record<string, boolean>>({});
-  const router = useRouter();
   const { lang } = useLanguage();
   const initialRender = useRef(true);
+
+  const updateUrl = useCallback((newState: Record<string, string>) => {
+    const params = new URLSearchParams();
+    for (const [k, v] of Object.entries(newState)) {
+      if (v) params.set(k, v);
+    }
+    const qs = params.toString();
+    router.replace(`/events${qs ? `?${qs}` : ""}`, { scroll: false });
+  }, [router]);
+
+  const setFilterAndUrl = useCallback((key: string, value: string, setter: (v: string) => void) => {
+    setter(value);
+    const current: Record<string, string> = { search, type, act };
+    current[key] = value;
+    updateUrl(current);
+  }, [search, type, act, updateUrl]);
 
   const toggleDialogue = (eventId: string, group: string) => {
     setExpandedDialogue((prev) => ({
@@ -163,7 +180,7 @@ const [events, setEvents] = useState<GameEvent[]>(initialEvents);
     <>
       <SearchFilter
         search={search}
-        onSearchChange={setSearch}
+        onSearchChange={(v) => setFilterAndUrl("search", v, setSearch)}
         placeholder="Search events..."
         resultCount={events.length}
         filters={[
@@ -171,13 +188,13 @@ const [events, setEvents] = useState<GameEvent[]>(initialEvents);
             label: "All Types",
             value: type,
             options: typeOptions,
-            onChange: setType,
+            onChange: (v) => setFilterAndUrl("type", v, setType),
           },
           {
             label: "All Acts",
             value: act,
             options: actOptions,
-            onChange: setAct,
+            onChange: (v) => setFilterAndUrl("act", v, setAct),
           },
         ]}
       />

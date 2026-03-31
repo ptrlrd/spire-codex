@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect, useRef, useMemo } from "react";
+import { useState, useEffect, useRef, useMemo, useCallback } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
 import type { Relic } from "@/lib/api";
 import { cachedFetch } from "@/lib/fetch-cache";
 import Link from "next/link";
@@ -48,13 +49,31 @@ const sortOptions = [
 
 export default function RelicsClient({ initialRelics }: { initialRelics: Relic[] }) {
     const lp = useLangPrefix();
+  const searchParams = useSearchParams();
+  const router = useRouter();
 const [relics, setRelics] = useState<Relic[]>(initialRelics);
-  const [search, setSearch] = useState("");
-  const [rarity, setRarity] = useState("");
-  const [pool, setPool] = useState("");
-  const [sort, setSort] = useState("az");
+  const [search, setSearch] = useState(searchParams.get("search") || "");
+  const [rarity, setRarity] = useState(searchParams.get("rarity") || "");
+  const [pool, setPool] = useState(searchParams.get("pool") || "");
+  const [sort, setSort] = useState(searchParams.get("sort") || "az");
   const { lang } = useLanguage();
   const initialRender = useRef(true);
+
+  const updateUrl = useCallback((newState: Record<string, string>) => {
+    const params = new URLSearchParams();
+    for (const [k, v] of Object.entries(newState)) {
+      if (v && v !== "az") params.set(k, v);
+    }
+    const qs = params.toString();
+    router.replace(`/relics${qs ? `?${qs}` : ""}`, { scroll: false });
+  }, [router]);
+
+  const setFilterAndUrl = useCallback((key: string, value: string, setter: (v: string) => void) => {
+    setter(value);
+    const current: Record<string, string> = { search, rarity, pool, sort };
+    current[key] = value;
+    updateUrl(current);
+  }, [search, rarity, pool, sort, updateUrl]);
 
   useEffect(() => {
     // Skip the first fetch if we have server data and lang is English with no filters
@@ -85,24 +104,24 @@ const [relics, setRelics] = useState<Relic[]>(initialRelics);
     <>
       <SearchFilter
         search={search}
-        onSearchChange={setSearch}
+        onSearchChange={(v) => setFilterAndUrl("search", v, setSearch)}
         placeholder="Search relics..."
         resultCount={sortedRelics.length}
         sortOptions={sortOptions}
         sortValue={sort}
-        onSortChange={setSort}
+        onSortChange={(v) => setFilterAndUrl("sort", v, setSort)}
         filters={[
           {
             label: "All Rarities",
             value: rarity,
             options: rarityOptions,
-            onChange: setRarity,
+            onChange: (v) => setFilterAndUrl("rarity", v, setRarity),
           },
           {
             label: "All Pools",
             value: pool,
             options: poolOptions,
-            onChange: setPool,
+            onChange: (v) => setFilterAndUrl("pool", v, setPool),
           },
         ]}
       />

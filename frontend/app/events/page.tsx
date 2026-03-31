@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import type { GameEvent } from "@/lib/api";
 import JsonLd from "@/app/components/JsonLd";
 import { buildCollectionPageJsonLd, buildBreadcrumbJsonLd } from "@/lib/jsonld";
@@ -35,7 +36,9 @@ export default async function EventsPage() {
         Browse every Slay the Spire 2 event including shrine events, Ancient encounters, and story events. View choices, dialogue, and outcomes.
       </p>
 
-      <EventsClient initialEvents={events} />
+      <Suspense>
+        <EventsClient initialEvents={events} />
+      </Suspense>
     </div>
   );
 }
