@@ -1,0 +1,129 @@
+# Contributing to Spire Codex
+
+Thanks for your interest in contributing! This project is open to community contributions — bug fixes, data corrections, new features, and improvements are all welcome.
+
+## Getting Started
+
+1. **Fork the repo** on [GitHub](https://github.com/ptrlrd/spire-codex)
+2. **Clone your fork** locally
+3. **Set up the dev environment** (see below)
+4. **Create a branch** for your changes
+5. **Submit a PR** — the GitHub repo is downstream of where the project is hosted, so it may take a bit before your PR gets reviewed and merged
+
+## Dev Environment
+
+### Prerequisites
+- Docker
+
+### Running Locally
+```bash
+docker compose up --build
+```
+
+Backend runs at `http://localhost:8000`, frontend at `http://localhost:3000`.
+
+## Project Structure
+
+```
+backend/          Python FastAPI backend
+  app/
+    routers/      API endpoints
+    services/     Data loading, SQLite runs DB
+    parsers/      C# source → JSON parsers
+    models/       Pydantic schemas
+  static/images/  Game images (not committed)
+frontend/         Next.js 16 + TypeScript + Tailwind
+  app/            Pages and components
+  lib/            API client, utilities, i18n
+data/             Parsed JSON data (per-language)
+  changelogs/     Version changelogs
+  ancient_pools.json
+tools/            Spine renderer, diff tool, deploy script
+```
+
+## What to Contribute
+
+### Bug Reports
+- Use the **Submit Feedback** button on the site, or open a GitHub issue
+- Include the URL, what you expected, and what you saw
+- Screenshots help and if you're experiencing a bug provide the exact steps you took
+
+### Data Corrections
+If a card description, damage value, or relic effect is wrong:
+- Check the parsed JSON in `data/eng/` first
+- If the data is wrong, the fix is usually in `backend/app/parsers/`
+- The parsers extract data from decompiled C# in `extraction/decompiled/` (not committed — see README for extraction instructions)
+
+### Frontend Changes
+- Pages are in `frontend/app/` using Next.js App Router
+- Components are in `frontend/app/components/`
+- API client and types are in `frontend/lib/api.ts`
+- Colors use CSS variables defined in `frontend/app/globals.css` — character colors are sampled from the game's energy icons
+
+### New API Endpoints
+- Routers go in `backend/app/routers/`
+- Register them in `backend/app/main.py`
+- Pydantic models in `backend/app/models/schemas.py`
+
+### Run Data / Meta
+- Run submission and stats use SQLite (`data/runs.db`, not committed)
+- Schema and queries are in `backend/app/services/runs_db.py`
+- The meta page is at `frontend/app/meta/`
+
+## Code Style
+
+- **Python**: Standard formatting, type hints where practical
+- **TypeScript**: Strict mode, prefer `const`, use our CSS variables for colors
+- **No unnecessary dependencies**: Keep it lean
+- **No AI-generated comments**: Don't add docstrings or comments to code you didn't change
+
+## Colors
+
+We use game-accurate colors sampled from the actual game assets. Don't use generic Tailwind colors for character-specific UI:
+
+| Character   | Color     | Source            |
+|-------------|-----------|-------------------|
+| Ironclad    | `#d53b27` | Energy icon       |
+| Silent      | `#23935b` | Energy icon       |
+| Defect      | `#3873a9` | Energy icon       |
+| Necrobinder | `#bf5a85` | Energy icon       |
+| Regent      | `#f07c1e` | Energy icon       |
+
+These are defined as CSS variables (`--color-ironclad`, etc.) in `globals.css`.
+
+## Localization
+
+- Game entity data (names, descriptions) comes from the game's localization files in 14 languages
+- UI chrome translations are in `frontend/lib/ui-translations.ts`
+- All parsers run per-language via `backend/app/parsers/parse_all.py`
+- Filter parameters always use English values regardless of display language
+
+## Testing Your Changes
+
+```bash
+docker compose up --build
+```
+
+- Frontend: `http://localhost:3000`
+- Backend API: `http://localhost:8000`
+- API docs: `http://localhost:8000/docs`
+
+## Community
+
+- **Discord**: [discord.gg/xMsTBeh](https://discord.gg/xMsTBeh) — discuss changes before big PRs
+- **Showcase**: Built something with the API? Share it in Discord and we'll add it to `/showcase`
+
+## Reference Docs
+
+- **[Architecture](contributing/ARCHITECTURE.md)** — how the project is structured, backend/frontend patterns, color system, Spine rendering
+- **[Data Guide](contributing/DATA_GUIDE.md)** — what data is parsed, file structure, parsing commands, rich text tags, merchant pricing
+- **[API Reference](contributing/API_REFERENCE.md)** — all endpoints with filters and descriptions
+
+## AI Tools and IDE
+- This project is OK with using AI tools and assistance via the IDE. It's up to you to validate that the fix works and read the code you're submitted. Code that is not tested or validated will be denied.
+- The `contributing/` folder includes sample Claude & Codex files that you can use as context.
+- Ideally I would prefer to keep AI files within the contributing folder.
+
+## License
+
+This project is for educational purposes. Game data belongs to Mega Crit Games.
