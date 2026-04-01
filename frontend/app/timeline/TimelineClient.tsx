@@ -315,7 +315,7 @@ export default function TimelineClient({
                                   </Link>
                                 </h3>
                                 <p className="text-[10px] text-[var(--text-muted)]">
-                                  {epoch.era.replace(/(\d+)$/, " $1")}
+                                  {epoch.era_name}{epoch.era_year && epoch.era_year !== "???" ? ` · ${epoch.era_year}` : ""}
                                   {epoch.unlock_info && (
                                     <span className="ml-2">
                                       · <RichDescription text={epoch.unlock_info} />
