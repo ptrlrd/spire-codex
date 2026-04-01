@@ -10,7 +10,7 @@
   "features": [
     "Card upgrade data for 18 previously missing cards — Armaments, Storm of Steel, Multi-Cast, Malaise, Darkness, Spinner, Enlightenment, Cascade, and more now show correct upgraded descriptions",
     "Upgraded descriptions for all 403 upgradable cards — parser resolves description text with upgraded var values for accurate plurals, icons, and text",
-    "Spawned card names with + suffix (e.g. Minion Strike+, Soul+, Shiv+) now link and show hover tooltips in upgraded descriptions",
+    "Spawned card names with + suffix (e.g. Minion Strike+, Soul+, Shiv+) link and show hover tooltips with upgraded card name in descriptions",
     "Timeline epoch detail pages at /timeline/{id} with clean slug-based URLs",
     "Timeline unlock badges are now clickable links to detail pages",
     "URL filter persistence — filters, search, and sort are saved in URL params across all list pages for shareable/back-navigable filtered views"
@@ -21,6 +21,7 @@
     "Energy icon corruption on Convergence+ — star upgrade no longer breaks [energy:N] tag (was showing \"2]\" instead of energy icon)",
     "Capacitor+ and Chaos+ now show upgraded Orb values (repeat upgrade was silently skipped)",
     "Bulk Up+ and Capture Spirit+ now show upgraded values when multiple stats share the same base number",
+    "Text-only upgrade cards (Darkness, Armaments, etc.) no longer regress to missing upgrades after parser refactor",
     "Timeline era display uses proper era names instead of raw era with position number",
     "Era year 0 hidden on timeline list and detail pages",
     "Encounter loss text placeholders resolved with encounter name and 'The adventurer'"
@@ -33,7 +34,7 @@
   "summary": {
     "added": 0,
     "removed": 0,
-    "changed": 546
+    "changed": 564
   },
   "categories": [
     {
@@ -149,6 +150,22 @@
               "field": "upgrade_description",
               "old": "none",
               "new": "Deal 8 damage.\nAdd a copy of this card into your [gold]Discard Pile[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "ARMAMENTS",
+          "name": "Armaments",
+          "changes": [
+            {
+              "field": "upgrade",
+              "old": "none",
+              "new": "1 fields"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "Gain 5 [gold]Block[/gold].\n[gold]Upgrade[/gold] ALL cards in your [gold]Hand[..."
             }
           ]
         },
@@ -670,6 +687,22 @@
           ]
         },
         {
+          "id": "CASCADE",
+          "name": "Cascade",
+          "changes": [
+            {
+              "field": "upgrade",
+              "old": "none",
+              "new": "1 fields"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "Play the top X+1 cards of your [gold]Draw Pile[/gold]."
+            }
+          ]
+        },
+        {
           "id": "CATASTROPHE",
           "name": "Catastrophe",
           "changes": [
@@ -699,6 +732,22 @@
               "field": "upgrade_description",
               "old": "none",
               "new": "[gold]Channel[/gold] 2 random Orbs."
+            }
+          ]
+        },
+        {
+          "id": "CHARGE",
+          "name": "CHARGE!!",
+          "changes": [
+            {
+              "field": "upgrade",
+              "old": "none",
+              "new": "1 fields"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "Choose 2 cards in your [gold]Draw Pile[/gold] to [gold]Transform[/gold] into\n..."
             }
           ]
         },
@@ -1044,6 +1093,22 @@
           ]
         },
         {
+          "id": "DARKNESS",
+          "name": "Darkness",
+          "changes": [
+            {
+              "field": "upgrade",
+              "old": "none",
+              "new": "1 fields"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "[gold]Channel[/gold] 1 [gold]Dark[/gold].\nTrigger the passive ability of all ..."
+            }
+          ]
+        },
+        {
           "id": "DARK_SHACKLES",
           "name": "Dark Shackles",
           "changes": [
@@ -1370,6 +1435,22 @@
               "field": "upgrade_description",
               "old": "none",
               "new": "Enemy loses 11 [gold]Strength[/gold] this turn."
+            }
+          ]
+        },
+        {
+          "id": "ENLIGHTENMENT",
+          "name": "Enlightenment",
+          "changes": [
+            {
+              "field": "upgrade",
+              "old": "none",
+              "new": "1 fields"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "Reduce the cost of ALL cards in your [gold]Hand[/gold] to 1 this combat."
             }
           ]
         },
@@ -1946,6 +2027,22 @@
           ]
         },
         {
+          "id": "GUARDS",
+          "name": "GUARDS!!!",
+          "changes": [
+            {
+              "field": "upgrade",
+              "old": "none",
+              "new": "1 fields"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "[gold]Transform[/gold] any number of cards in your [gold]Hand[/gold] into [go..."
+            }
+          ]
+        },
+        {
           "id": "GUIDING_STAR",
           "name": "Guiding Star",
           "changes": [
@@ -2096,6 +2193,22 @@
               "field": "upgrade_description",
               "old": "none",
               "new": "Gain [star:1].\nNext turn, gain [star:4]."
+            }
+          ]
+        },
+        {
+          "id": "HIDDEN_DAGGERS",
+          "name": "Hidden Daggers",
+          "changes": [
+            {
+              "field": "upgrade",
+              "old": "none",
+              "new": "1 fields"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "Discard 2 cards.\nAdd 2 [gold]Shivs+[/gold] into your [gold]Hand[/gold]."
             }
           ]
         },
@@ -2342,6 +2455,22 @@
           ]
         },
         {
+          "id": "KNIFE_TRAP",
+          "name": "Knife Trap",
+          "changes": [
+            {
+              "field": "upgrade",
+              "old": "none",
+              "new": "1 fields"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "[gold]Upgrade[/gold] and play every [gold]Shiv[/gold] in your [gold]Exhaust P..."
+            }
+          ]
+        },
+        {
           "id": "KNOCKDOWN",
           "name": "Knockdown",
           "changes": [
@@ -2360,6 +2489,22 @@
               "field": "upgrade_description",
               "old": "none",
               "new": "Deal 38 damage.\nIf this kills an enemy, gain [star:5]."
+            }
+          ]
+        },
+        {
+          "id": "LARGESSE",
+          "name": "Largesse",
+          "changes": [
+            {
+              "field": "upgrade",
+              "old": "none",
+              "new": "1 fields"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "Another player adds 1 random [gold]Upgraded[/gold] Colorless card to their [g..."
             }
           ]
         },
@@ -2481,6 +2626,22 @@
               "field": "upgrade_description",
               "old": "none",
               "new": "Deal 9 damage.\nEvery 3 Skills you play in a turn, put this into your [gold]Ha..."
+            }
+          ]
+        },
+        {
+          "id": "MALAISE",
+          "name": "Malaise",
+          "changes": [
+            {
+              "field": "upgrade",
+              "old": "none",
+              "new": "1 fields"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "Enemy loses X+1 [gold]Strength[/gold]. Apply X+1 [gold]Weak[/gold]."
             }
           ]
         },
@@ -2657,6 +2818,22 @@
               "field": "upgrade_description",
               "old": "none",
               "new": "Deal 13 damage.\nReduce this card's cost to 0 [energy:1]."
+            }
+          ]
+        },
+        {
+          "id": "MULTI_CAST",
+          "name": "Multi-Cast",
+          "changes": [
+            {
+              "field": "upgrade",
+              "old": "none",
+              "new": "1 fields"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "[gold]Evoke[/gold] your rightmost Orb X+1 times."
             }
           ]
         },
@@ -3079,6 +3256,22 @@
           ]
         },
         {
+          "id": "PRIMAL_FORCE",
+          "name": "Primal Force",
+          "changes": [
+            {
+              "field": "upgrade",
+              "old": "none",
+              "new": "1 fields"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "Transform all Attacks in your [gold]Hand[/gold] into [gold]Giant Rock+[/gold]."
+            }
+          ]
+        },
+        {
           "id": "PROPHESIZE",
           "name": "Prophesize",
           "changes": [
@@ -3141,6 +3334,22 @@
               "field": "upgrade_description",
               "old": "none",
               "new": "Gain [energy:2] at the start of each turn."
+            }
+          ]
+        },
+        {
+          "id": "QUASAR",
+          "name": "Quasar",
+          "changes": [
+            {
+              "field": "upgrade",
+              "old": "none",
+              "new": "1 fields"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "Choose 1 of 3 random [gold]Upgraded[/gold] Colorless cards to add into your [..."
             }
           ]
         },
@@ -3464,6 +3673,22 @@
           ]
         },
         {
+          "id": "SEANCE",
+          "name": "Seance",
+          "changes": [
+            {
+              "field": "upgrade",
+              "old": "none",
+              "new": "1 fields"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "Transform a card in your [gold]Draw Pile[/gold] into [gold]Soul+[/gold]."
+            }
+          ]
+        },
+        {
           "id": "SECOND_WIND",
           "name": "Second Wind",
           "changes": [
@@ -3761,6 +3986,22 @@
           ]
         },
         {
+          "id": "SPINNER",
+          "name": "Spinner",
+          "changes": [
+            {
+              "field": "upgrade",
+              "old": "none",
+              "new": "1 fields"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "[gold]Channel[/gold] 1 [gold]Glass[/gold].\nAt the start of your turn, [gold]C..."
+            }
+          ]
+        },
+        {
           "id": "SPIRIT_OF_ASH",
           "name": "Spirit of Ash",
           "changes": [
@@ -3779,6 +4020,22 @@
               "field": "upgrade_description",
               "old": "none",
               "new": "Deal 9 damage.\nIf you lost HP this turn, draw 1 card."
+            }
+          ]
+        },
+        {
+          "id": "SPLASH",
+          "name": "Splash",
+          "changes": [
+            {
+              "field": "upgrade",
+              "old": "none",
+              "new": "1 fields"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "Choose 1 of 3 random [gold]Upgraded[/gold] Attacks from another character to ..."
             }
           ]
         },
@@ -3878,6 +4135,22 @@
               "field": "upgrade_description",
               "old": "none",
               "new": "Whenever you play a Power, [gold]Channel[/gold] 2 [gold]Lightning[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "STORM_OF_STEEL",
+          "name": "Storm of Steel",
+          "changes": [
+            {
+              "field": "upgrade",
+              "old": "none",
+              "new": "1 fields"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "Discard your [gold]Hand[/gold].\nAdd 1 [gold]Shiv+[/gold] into your [gold]Hand..."
             }
           ]
         },
@@ -4109,6 +4382,22 @@
               "field": "upgrade_description",
               "old": "none",
               "new": "Deal 7 damage.\nHits an additional time for each time you lost HP this combat."
+            }
+          ]
+        },
+        {
+          "id": "TEMPEST",
+          "name": "Tempest",
+          "changes": [
+            {
+              "field": "upgrade",
+              "old": "none",
+              "new": "1 fields"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "[gold]Channel[/gold] X+1 [gold]Lightning[/gold]."
             }
           ]
         },
