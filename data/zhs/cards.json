@@ -70,7 +70,7 @@
     "image_url": "/static/images/cards/omnislice.png",
     "beta_image_url": "/static/images/cards/beta/omnislice.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成11点伤害。\n对所有其他敌人造成等量的伤害。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 475
@@ -107,7 +107,7 @@
     "image_url": "/static/images/cards/all_for_one.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成14点伤害。\n将你[gold]弃牌堆[/gold]中的所有0[energy:1]牌放入你的[gold]手牌[/gold]。",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 352
@@ -145,7 +145,7 @@
     "image_url": "/static/images/cards/uppercut.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成13点伤害。\n给予2层[gold]虚弱[/gold]。\n给予2层[gold]易伤[/gold]。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 84
@@ -184,7 +184,7 @@
     "image_url": "/static/images/cards/begone.png",
     "beta_image_url": "/static/images/cards/beta/begone.png",
     "type_variants": null,
-    "upgrade_description": "造成4点伤害。\n选择你[gold]手牌[/gold]中的一张牌，将其[gold]变化[/gold]为[gold]仆从俯冲+[/gold]。",
+    "upgrade_description": "造成5点伤害。\n选择你[gold]手牌[/gold]中的一张牌，将其[gold]变化[/gold]为[gold]仆从俯冲+[/gold]。",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 179
@@ -223,7 +223,7 @@
     "image_url": "/static/images/cards/crush_under.png",
     "beta_image_url": "/static/images/cards/beta/crush_under.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "对所有敌人造成8点伤害。所有敌人在本回合失去2点[gold]力量[/gold]。",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 196
@@ -260,7 +260,7 @@
     "image_url": "/static/images/cards/undeath.png",
     "beta_image_url": "/static/images/cards/beta/undeath.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得9点[gold]格挡[/gold]。\n在[gold]弃牌堆[/gold]放入一张此牌的复制品。",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 347
@@ -308,7 +308,7 @@
     "image_url": "/static/images/cards/fight_me.png",
     "beta_image_url": "/static/images/cards/beta/fight_me.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成6点伤害两次。\n获得2点[gold]力量[/gold]。\n该敌人获得1点[gold]力量[/gold]。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 35
@@ -354,7 +354,7 @@
     "image_url": "/static/images/cards/neutralize.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成4点伤害。\n给予1层[gold]虚弱[/gold]。",
     "type_key": "Attack",
     "rarity_key": "Basic",
     "compendium_order": 139
@@ -399,7 +399,7 @@
     "image_url": "/static/images/cards/neutron_aegis.png",
     "beta_image_url": "/static/images/cards/beta/neutron_aegis.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得11层[gold]覆甲[/gold]。",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 229
@@ -436,7 +436,7 @@
     "image_url": "/static/images/cards/skewer.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成10点伤害X次。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 156
@@ -587,7 +587,7 @@
     "image_url": "/static/images/cards/necro_mastery.png",
     "beta_image_url": "/static/images/cards/beta/necro_mastery.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]召唤[/gold]8。\n每当[gold]奥斯提[/gold]失去生命值时，\n所有敌人失去等量生命值。",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 309
@@ -626,7 +626,7 @@
     "image_url": "/static/images/cards/pull_from_below.png",
     "beta_image_url": "/static/images/cards/beta/pull_from_below.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "本场战斗中每打出过一张[gold]虚无[/gold]牌，此牌就造成7点伤害一次。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 319
@@ -663,7 +663,7 @@
     "image_url": "/static/images/cards/clash.png",
     "beta_image_url": "/static/images/cards/beta/clash.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "只有在[gold]手牌[/gold]中每一张牌都是攻击牌时才能被打出。\n造成18点伤害。",
     "type_key": "Attack",
     "rarity_key": "Event",
     "compendium_order": 526
@@ -701,7 +701,7 @@
     "image_url": "/static/images/cards/flash_of_steel.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成8点伤害。\n抽1张牌。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 458
@@ -738,7 +738,7 @@
     "image_url": "/static/images/cards/synthesis.png",
     "beta_image_url": "/static/images/cards/beta/synthesis.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成18点伤害。\n你打出的下一张能力牌耗能变为0[energy:1]。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 429
@@ -779,7 +779,7 @@
     "image_url": "/static/images/cards/minion_dive_bomb.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成16点伤害。",
     "type_key": "Attack",
     "rarity_key": "Token",
     "keywords_key": [
@@ -825,7 +825,7 @@
     "image_url": "/static/images/cards/minion_strike.png",
     "beta_image_url": "/static/images/cards/beta/minion_strike.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成10点伤害。\n抽1张牌。",
     "type_key": "Attack",
     "rarity_key": "Token",
     "keywords_key": [
@@ -869,7 +869,7 @@
     "image_url": "/static/images/cards/minion_sacrifice.png",
     "beta_image_url": "/static/images/cards/beta/minion_sacrifice.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得12点[gold]格挡[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Token",
     "keywords_key": [
@@ -910,7 +910,7 @@
     "image_url": "/static/images/cards/heirloom_hammer.png",
     "beta_image_url": "/static/images/cards/beta/heirloom_hammer.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成22点伤害。\n选择你[gold]手牌[/gold]中的一张无色牌。将这张牌的一张复制品放入你的[gold]手牌[/gold]。",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 215
@@ -1001,7 +1001,7 @@
     "image_url": "/static/images/cards/gamma_blast.png",
     "beta_image_url": "/static/images/cards/beta/gamma_blast.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成18点伤害。\n给予2层[gold]虚弱[/gold]。\n给予2层[gold]易伤[/gold]。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 204
@@ -1139,7 +1139,7 @@
     "image_url": "/static/images/cards/cinder.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成22点伤害。\n[gold]消耗[/gold]你的[gold]抽牌堆[/gold]顶部的牌。",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 17
@@ -1267,7 +1267,7 @@
     "image_url": "/static/images/cards/countdown.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "在你的回合开始时，给予随机敌人9点[gold]灾厄[/gold]。",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 274
@@ -1305,7 +1305,7 @@
     "image_url": "/static/images/cards/reflect.png",
     "beta_image_url": "/static/images/cards/beta/reflect.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得21点[gold]格挡[/gold]。\n在本回合将你格挡掉的攻击伤害反弹给攻击者。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 241
@@ -1374,13 +1374,11 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/cascade.png",
     "beta_image_url": "/static/images/cards/beta/cascade.png",
     "type_variants": null,
-    "upgrade_description": "打出你[gold]抽牌堆[/gold]顶部的X+1张牌。",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 16
@@ -1431,7 +1429,7 @@
     "image_url": "/static/images/cards/biased_cognition.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得5点[gold]集中[/gold]。\n在你的回合开始时，失去1点[gold]集中[/gold]。",
     "type_key": "Power",
     "rarity_key": "Ancient",
     "compendium_order": 356
@@ -1468,7 +1466,7 @@
     "image_url": "/static/images/cards/deflect.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得7点[gold]格挡[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 112
@@ -1506,7 +1504,7 @@
     "image_url": "/static/images/cards/charge_battery.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得10点[gold]格挡[/gold]。\n在下个回合获得[energy:1]。",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 363
@@ -1548,7 +1546,7 @@
     "image_url": "/static/images/cards/leading_strike.png",
     "beta_image_url": "/static/images/cards/beta/leading_strike.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成10点伤害。\n将1张[gold]小刀[/gold]加入你的[gold]手牌[/gold]。",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 132
@@ -1588,7 +1586,7 @@
     "image_url": "/static/images/cards/photon_cut.png",
     "beta_image_url": "/static/images/cards/beta/photon_cut.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成13点伤害。\n抽2张牌。\n将[gold]手牌[/gold]中的一张牌放到[gold]抽牌堆[/gold]顶部。",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 235
@@ -1634,7 +1632,7 @@
     "image_url": "/static/images/cards/beam_cell.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成4点伤害。\n给予1层[gold]易伤[/gold]。",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 355
@@ -1711,7 +1709,7 @@
     "image_url": "/static/images/cards/hologram.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得5点[gold]格挡[/gold]。\n将[gold]弃牌堆[/gold]中的一张牌放入你的[gold]手牌[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Common",
     "keywords_key": [
@@ -1798,7 +1796,7 @@
     "image_url": "/static/images/cards/resonance.png",
     "beta_image_url": "/static/images/cards/beta/resonance.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得2点[gold]力量[/gold]。所有敌人失去1点[gold]力量[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 242
@@ -1837,7 +1835,7 @@
     "image_url": "/static/images/cards/turbo.png",
     "beta_image_url": "/static/images/cards/beta/turbo.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得[energy:3]。\n将一张[gold]虚空[/gold]加入你的[gold]弃牌堆[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 434
@@ -1874,7 +1872,7 @@
     "image_url": "/static/images/cards/scavenge.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]消耗[/gold]一张牌。\n在下个回合获得[energy:3]。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 414
@@ -1912,7 +1910,7 @@
     "image_url": "/static/images/cards/ice_lance.png",
     "beta_image_url": "/static/images/cards/beta/ice_lance.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成24点伤害。\n[gold]生成[/gold]3个[gold]冰霜[/gold]充能球。",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 396
@@ -1989,7 +1987,7 @@
     "image_url": "/static/images/cards/glacier.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得9点[gold]格挡[/gold]。\n[gold]生成[/gold]2个[gold]冰霜[/gold]充能球。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 387
@@ -2033,7 +2031,7 @@
     "image_url": "/static/images/cards/hailstorm.png",
     "beta_image_url": "/static/images/cards/beta/hailstorm.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "在你的回合结束时，如果你有[gold]冰霜[/gold]充能球，则对所有敌人造成8点伤害。",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 391
@@ -2072,7 +2070,7 @@
     "image_url": "/static/images/cards/dash.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得13点[gold]格挡[/gold]。\n造成13点伤害。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 109
@@ -2105,13 +2103,11 @@
     "vars": {
       "Cards": 2
     },
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/charge.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "选择你[gold]抽牌堆[/gold]中的2张 牌，将其[gold]变化[/gold]为\n[gold]仆从打击+[/gold]。",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 186
@@ -2149,7 +2145,7 @@
     "image_url": "/static/images/cards/knockout_blow.png",
     "beta_image_url": "/static/images/cards/beta/knockout_blow.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成38点伤害。\n如果此牌击杀了敌人，获得[star:5]。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 220
@@ -2189,7 +2185,7 @@
     "image_url": "/static/images/cards/luminesce.png",
     "beta_image_url": "/static/images/cards/beta/luminesce.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得[energy:3]。",
     "type_key": "Skill",
     "rarity_key": "Token",
     "keywords_key": [
@@ -2237,7 +2233,7 @@
     "image_url": "/static/images/cards/coolant.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "在你的回合开始时，你每有一种不同的充能球，就获得3点[gold]格挡[/gold]。",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 370
@@ -2274,7 +2270,7 @@
     "image_url": "/static/images/cards/coolheaded.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]生成[/gold]1个[gold]冰霜[/gold]充能球。\n抽2张牌。",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 371
@@ -2314,7 +2310,7 @@
     "image_url": "/static/images/cards/purity.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "从[gold]手牌[/gold]中选择最多5张牌消耗。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -2362,7 +2358,7 @@
     "image_url": "/static/images/cards/prep_time.png",
     "beta_image_url": "/static/images/cards/beta/prep_time.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "在你的回合开始时，获得6点[gold]活力[/gold]。",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 478
@@ -2401,7 +2397,7 @@
     "image_url": "/static/images/cards/mangle.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成20点伤害。\n敌人在本回合失去15点[gold]力量[/gold]。",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 51
@@ -2479,7 +2475,7 @@
     "image_url": "/static/images/cards/vicious.png",
     "beta_image_url": "/static/images/cards/beta/vicious.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "每当你给予[gold]易伤[/gold]时，抽2张牌。",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 85
@@ -2566,7 +2562,7 @@
     "image_url": "/static/images/cards/knockdown.png",
     "beta_image_url": "/static/images/cards/beta/knockdown.png",
     "type_variants": null,
-    "upgrade_description": "造成10点伤害。\n该敌人在本回合受到的来自其他玩家的伤害翻三倍。",
+    "upgrade_description": "造成14点伤害。\n该敌人在本回合受到的来自其他玩家的伤害翻三倍。",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 468
@@ -2616,7 +2612,7 @@
     "image_url": "/static/images/cards/high_five.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]奥斯提[/gold]造成13点伤害\n并且给予所有敌人\n2层[gold]易伤[/gold]。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 303
@@ -2657,7 +2653,7 @@
     "image_url": "/static/images/cards/blade_dance.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "添加4张[gold]小刀[/gold]到你的[gold]手牌[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Common",
     "keywords_key": [
@@ -2696,13 +2692,11 @@
       "CalculationBase": 0,
       "CalculationExtra": 1
     },
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/knife_trap.png",
     "beta_image_url": "/static/images/cards/beta/knife_trap.png",
     "type_variants": null,
-    "upgrade_description": "将你[gold]消耗牌堆[/gold]中的所有[gold]小刀[/gold][gold]升级[/gold]然后对一名敌人打出。",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 131
@@ -2741,7 +2735,7 @@
     "image_url": "/static/images/cards/fan_of_knives.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]小刀[/gold]现在会攻击所有敌人。\n将5张[gold]小刀[/gold]添加到你的[gold]手牌[/gold]。",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 119
@@ -2779,7 +2773,7 @@
     "image_url": "/static/images/cards/sunder.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成32点伤害。\n如果这张牌击杀了敌人，则获得[energy:3]。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 425
@@ -2816,7 +2810,7 @@
     "image_url": "/static/images/cards/slice.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成9点伤害。",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 157
@@ -2855,7 +2849,7 @@
     "image_url": "/static/images/cards/severance.png",
     "beta_image_url": "/static/images/cards/beta/severance.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成18点伤害。\n将一张[gold]灵魂[/gold]分别加入你的[gold]抽牌堆[/gold]，[gold]手牌[/gold]和[gold]弃牌堆[/gold]中。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 332
@@ -2892,7 +2886,7 @@
     "image_url": "/static/images/cards/pillar_of_creation.png",
     "beta_image_url": "/static/images/cards/beta/pillar_of_creation.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "每当你生成一张卡牌, 就获得4点[gold]格挡[/gold]。",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 236
@@ -2929,7 +2923,7 @@
     "image_url": "/static/images/cards/genesis.png",
     "beta_image_url": "/static/images/cards/beta/genesis.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "在你的回合开始时，获得[star:3]。",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 206
@@ -3005,7 +2999,7 @@
     "image_url": "/static/images/cards/scrape.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成10点伤害。\n抽5张牌。\n丢弃抽到的牌中耗能不为0[energy:1]的牌。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 415
@@ -3054,7 +3048,7 @@
     "image_url": "/static/images/cards/assassinate.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成13点伤害。\n给予1层[gold]易伤[/gold]。",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -3095,7 +3089,7 @@
     "image_url": "/static/images/cards/veilpiercer.png",
     "beta_image_url": "/static/images/cards/beta/veilpiercer.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成13点伤害。\n你打出的下一张[gold]虚无[/gold]牌耗能变为0[energy:1]。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 349
@@ -3182,7 +3176,7 @@
     "image_url": "/static/images/cards/pommel_strike.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成10点伤害。\n抽2张牌。",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 58
@@ -3222,7 +3216,7 @@
     "image_url": "/static/images/cards/reave.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "造成9点伤害。\n将一张[gold]灵魂+[/gold]加入你的[gold]抽牌堆[/gold]。",
+    "upgrade_description": "造成11点伤害。\n将一张[gold]灵魂+[/gold]加入你的[gold]抽牌堆[/gold]。",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 325
@@ -3259,7 +3253,7 @@
     "image_url": "/static/images/cards/pillage.png",
     "beta_image_url": "/static/images/cards/beta/pillage.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成9点伤害。\n抽牌直到你抽到一张非攻击牌。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 57
@@ -3303,7 +3297,7 @@
     "image_url": "/static/images/cards/juggernaut.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "每当你获得[gold]格挡[/gold]时，对随机敌人造成7点伤害。",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 49
@@ -3342,7 +3336,7 @@
     "image_url": "/static/images/cards/fasten.png",
     "beta_image_url": "/static/images/cards/beta/fasten.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "从“防御”牌中额外获得7点[gold]格挡[/gold]。",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 455
@@ -3379,7 +3373,7 @@
     "image_url": "/static/images/cards/dagger_spray.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "对所有敌人造成6点伤害两次。",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 107
@@ -3451,7 +3445,7 @@
     "image_url": "/static/images/cards/grand_finale.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "只有当你的[gold]抽牌堆[/gold]中没有牌时才能打出。对所有敌人造成60点伤害。",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 126
@@ -3532,7 +3526,7 @@
     "image_url": "/static/images/cards/shroud.png",
     "beta_image_url": "/static/images/cards/beta/shroud.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "每当你给予[gold]灾厄[/gold]时，获得3点[gold]格挡[/gold]。",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 334
@@ -3580,7 +3574,7 @@
     "image_url": "/static/images/cards/suppress.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成17点伤害。\n给予3层[gold]虚弱[/gold]。",
     "type_key": "Attack",
     "rarity_key": "Ancient",
     "keywords_key": [
@@ -3629,7 +3623,7 @@
     "image_url": "/static/images/cards/squash.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成12点伤害。\n给予2层[gold]易伤[/gold]。",
     "type_key": "Attack",
     "rarity_key": "Event",
     "compendium_order": 543
@@ -3668,7 +3662,7 @@
     "image_url": "/static/images/cards/compact.png",
     "beta_image_url": "/static/images/cards/beta/compact.png",
     "type_variants": null,
-    "upgrade_description": "获得6点[gold]格挡[/gold]。\n将你[gold]手牌[/gold]中的全部状态牌[gold]变化[/gold]为[gold]燃料+[/gold]。",
+    "upgrade_description": "获得7点[gold]格挡[/gold]。\n将你[gold]手牌[/gold]中的全部状态牌[gold]变化[/gold]为[gold]燃料+[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 367
@@ -3699,13 +3693,11 @@
       "GIANT_ROCK"
     ],
     "vars": null,
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/primal_force.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "将[gold]手牌[/gold]中的所有攻击牌变化为[gold]巨石+[/gold]。",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 59
@@ -3827,7 +3819,7 @@
     "image_url": "/static/images/cards/tag_team.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成15点伤害。\n其他玩家的下一张攻击牌将在该名敌人身上额外生效一次。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 495
@@ -3903,7 +3895,7 @@
     "image_url": "/static/images/cards/twin_strike.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成7点伤害两次。",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 81
@@ -4020,7 +4012,7 @@
     "image_url": "/static/images/cards/fetch.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]奥斯提[/gold]造成6点伤害。\n如果这是这张牌第一次在本回合被打出，则抽1张牌。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 294
@@ -4095,7 +4087,7 @@
     "image_url": "/static/images/cards/hang.png",
     "beta_image_url": "/static/images/cards/beta/hang.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成13点伤害。\n让所有“吊杀”牌对这名敌人造成的伤害翻倍。",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 301
@@ -4176,7 +4168,7 @@
     "image_url": "/static/images/cards/backflip.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得8点[gold]格挡[/gold]。\n抽2张牌。",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 95
@@ -4213,7 +4205,7 @@
     "image_url": "/static/images/cards/manifest_authority.png",
     "beta_image_url": "/static/images/cards/beta/manifest_authority.png",
     "type_variants": null,
-    "upgrade_description": "获得7点[gold]格挡[/gold]。\n将一张随机[gold]升级过的[/gold]无色牌加入你的[gold]手牌[/gold]。",
+    "upgrade_description": "获得8点[gold]格挡[/gold]。\n将一张随机[gold]升级过的[/gold]无色牌加入你的[gold]手牌[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 225
@@ -4304,7 +4296,7 @@
     "image_url": "/static/images/cards/consuming_shadow.png",
     "beta_image_url": "/static/images/cards/beta/consuming_shadow.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]生成[/gold]3个[gold]黑暗[/gold]充能球。\n在你的回合结束时，[gold]激发[/gold]你最左侧的充能球。",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 369
@@ -4350,7 +4342,7 @@
     "image_url": "/static/images/cards/devour_life.png",
     "beta_image_url": "/static/images/cards/beta/devour_life.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "每当你打出一张[gold]灵魂[/gold]时，[gold]召唤[/gold]2。",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 285
@@ -4390,7 +4382,7 @@
     "image_url": "/static/images/cards/boot_sequence.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得13点[gold]格挡[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -4433,7 +4425,7 @@
     "image_url": "/static/images/cards/pull_aggro.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]召唤[/gold]5。\n获得9点[gold]格挡[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 318
@@ -4472,7 +4464,7 @@
     "image_url": "/static/images/cards/whistle.png",
     "beta_image_url": "/static/images/cards/beta/whistle.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成44点伤害。\n[gold]眩晕[/gold]该敌人",
     "type_key": "Attack",
     "rarity_key": "Ancient",
     "keywords_key": [
@@ -4550,7 +4542,7 @@
     "image_url": "/static/images/cards/shared_fate.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "失去2点[gold]力量[/gold]。\n敌人失去3点[gold]力量[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -4682,7 +4674,7 @@
     "image_url": "/static/images/cards/invoke.png",
     "beta_image_url": "/static/images/cards/beta/invoke.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "在下个回合[gold]召唤[/gold]3并获得[energy:3]。",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 304
@@ -4720,7 +4712,7 @@
     "image_url": "/static/images/cards/peck.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成2点伤害4次。",
     "type_key": "Attack",
     "rarity_key": "Event",
     "compendium_order": 539
@@ -4836,7 +4828,7 @@
     "image_url": "/static/images/cards/echoing_slash.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "对所有敌人造成13点伤害。\n每有一名敌人被击杀，就重复此效果。",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 114
@@ -4880,7 +4872,7 @@
     "image_url": "/static/images/cards/terraforming.png",
     "beta_image_url": "/static/images/cards/beta/terraforming.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得8点[gold]活力[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 256
@@ -4993,7 +4985,7 @@
     "image_url": "/static/images/cards/equilibrium.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得16点[gold]格挡[/gold]。\n在本回合[gold]保留[/gold]你的[gold]手牌[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 453
@@ -5065,7 +5057,7 @@
     "image_url": "/static/images/cards/true_grit.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "获得7点[gold]格挡[/gold]。\n[gold]消耗[/gold]1张牌。",
+    "upgrade_description": "获得9点[gold]格挡[/gold]。\n[gold]消耗[/gold]1张牌。",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 80
@@ -5103,7 +5095,7 @@
     "image_url": "/static/images/cards/toric_toughness.png",
     "beta_image_url": "/static/images/cards/beta/toric_toughness.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得7点[gold]格挡[/gold]。\n在接下来的2个回合开始时，获得7点[gold]格挡[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Event",
     "compendium_order": 545
@@ -5143,7 +5135,7 @@
     "image_url": "/static/images/cards/graveblast.png",
     "beta_image_url": "/static/images/cards/beta/graveblast.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成6点伤害。\n将[gold]弃牌堆[/gold]中的一张牌放入你的[gold]手牌[/gold]。",
     "type_key": "Attack",
     "rarity_key": "Common",
     "keywords_key": [
@@ -5183,7 +5175,7 @@
     "image_url": "/static/images/cards/bury.png",
     "beta_image_url": "/static/images/cards/beta/bury.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成63点伤害。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 269
@@ -5262,7 +5254,7 @@
     "image_url": "/static/images/cards/spur.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]召唤[/gold]5。\n[gold]奥斯提[/gold]回复7点生命。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -5451,13 +5443,11 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/multi_cast.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "[gold]激发[/gold]你最右侧的充能球X+1次。",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 406
@@ -5535,7 +5525,7 @@
     "image_url": "/static/images/cards/jackpot.png",
     "beta_image_url": "/static/images/cards/beta/jackpot.png",
     "type_variants": null,
-    "upgrade_description": "造成25点伤害。\n将3张随机[gold]升级过[/gold]的0[energy:1]的牌加入你的[gold]手牌[/gold]。",
+    "upgrade_description": "造成30点伤害。\n将3张随机[gold]升级过[/gold]的0[energy:1]的牌加入你的[gold]手牌[/gold]。",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 466
@@ -5662,7 +5652,7 @@
     "image_url": "/static/images/cards/celestial_might.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成8点伤害3次。",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 185
@@ -5740,7 +5730,7 @@
     "image_url": "/static/images/cards/heavenly_drill.png",
     "beta_image_url": "/static/images/cards/beta/heavenly_drill.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成10点伤害X次。\n如果X的最终数值为4或以上，则将X的数值翻倍。",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 213
@@ -5781,7 +5771,7 @@
     "image_url": "/static/images/cards/solar_strike.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成9点伤害。\n获得[star:2]。",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 248
@@ -5818,7 +5808,7 @@
     "image_url": "/static/images/cards/headbutt.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成12点伤害。\n将你[gold]弃牌堆[/gold]中的一张牌放到[gold]抽牌堆[/gold]顶部。",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 40
@@ -5891,7 +5881,7 @@
     "image_url": "/static/images/cards/pacts_end.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "只有在你的[gold]消耗牌堆[/gold]拥有大于等于3张牌的时候才能被打出。\n对所有敌人造成23点伤害。",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 55
@@ -5929,7 +5919,7 @@
     "image_url": "/static/images/cards/banshees_cry.png",
     "beta_image_url": "/static/images/cards/beta/banshees_cry.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "对所有敌人造成39点伤害。\n本场战斗中每打出过一张[gold]虚无[/gold]牌，此牌费用就减少[energy:2]。",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 264
@@ -6002,7 +5992,7 @@
     "image_url": "/static/images/cards/make_it_so.png",
     "beta_image_url": "/static/images/cards/beta/make_it_so.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成9点伤害。\n你每在一回合内打出3张技能牌，就将这张牌放入你的[gold]手牌[/gold]。",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 224
@@ -6040,7 +6030,7 @@
     "image_url": "/static/images/cards/finesse.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得7点[gold]格挡[/gold]。\n抽1张牌。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 456
@@ -6185,7 +6175,7 @@
     "image_url": "/static/images/cards/the_gambit.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得75点[gold]格挡[/gold]。\n如果你在本场战斗中受到未被格挡的伤害，则立刻死亡。",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 497
@@ -6222,7 +6212,7 @@
     "image_url": "/static/images/cards/cosmic_indifference.png",
     "beta_image_url": "/static/images/cards/beta/cosmic_indifference.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得9点[gold]格挡[/gold]。\n将[gold]弃牌堆[/gold]中的一张牌放到你的[gold]抽牌堆[/gold]的顶部。",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 193
@@ -6262,7 +6252,7 @@
     "image_url": "/static/images/cards/grave_warden.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "获得8点[gold]格挡[/gold]。\n将一张[gold]灵魂+[/gold]放入你的[gold]抽牌堆[/gold]中。",
+    "upgrade_description": "获得10点[gold]格挡[/gold]。\n将一张[gold]灵魂+[/gold]放入你的[gold]抽牌堆[/gold]中。",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 300
@@ -6346,7 +6336,7 @@
     "image_url": "/static/images/cards/perfected_strike.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成6点伤害。\n你每有一张名字中含有“打击”的牌，伤害+3。",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 56
@@ -6383,7 +6373,7 @@
     "image_url": "/static/images/cards/cold_snap.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成9点伤害。\n[gold]生成[/gold]1个[gold]冰霜[/gold]充能球。",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 366
@@ -6463,7 +6453,7 @@
     "image_url": "/static/images/cards/shiv.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成6点伤害。",
     "type_key": "Attack",
     "rarity_key": "Token",
     "keywords_key": [
@@ -6505,7 +6495,7 @@
     "image_url": "/static/images/cards/piercing_wail.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "所有敌人在本回合失去8点[gold]力量[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Common",
     "keywords_key": [
@@ -6552,7 +6542,7 @@
     "image_url": "/static/images/cards/stone_armor.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得6层[gold]覆甲[/gold]。",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 71
@@ -6591,7 +6581,7 @@
     "image_url": "/static/images/cards/impervious.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得40点[gold]格挡[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -6631,7 +6621,7 @@
     "image_url": "/static/images/cards/venerate.png",
     "beta_image_url": "/static/images/cards/beta/venerate.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得[star:3]。",
     "type_key": "Skill",
     "rarity_key": "Basic",
     "compendium_order": 260
@@ -6669,7 +6659,7 @@
     "image_url": "/static/images/cards/colossus.png",
     "beta_image_url": "/static/images/cards/beta/colossus.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得8点[gold]格挡[/gold]。\n在本回合中，有[gold]易伤[/gold]状态的敌人对你造成的伤害降低50%。",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 18
@@ -6706,7 +6696,7 @@
     "image_url": "/static/images/cards/giant_rock.png",
     "beta_image_url": "/static/images/cards/beta/giant_rock.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成20点伤害。",
     "type_key": "Attack",
     "rarity_key": "Token",
     "compendium_order": 564
@@ -6747,7 +6737,7 @@
     "image_url": "/static/images/cards/the_scythe.png",
     "beta_image_url": "/static/images/cards/beta/the_scythe.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成13点伤害。\n这张牌在本局游戏中的伤害永久性增加4。",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -6866,7 +6856,7 @@
     "image_url": "/static/images/cards/poisoned_stab.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成8点伤害。\n给予3层[gold]中毒[/gold]。",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 146
@@ -6912,7 +6902,7 @@
     "image_url": "/static/images/cards/phantom_blades.png",
     "beta_image_url": "/static/images/cards/beta/phantom_blades.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]小刀[/gold]获得[gold]保留[/gold]。\n你在每回合打出的第一张[gold]小刀[/gold]额外造成12点伤害。",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 143
@@ -7000,7 +6990,7 @@
     "image_url": "/static/images/cards/wraith_form.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得3[gold]无实体[/gold]。\n在你的回合开始时，失去1点[gold]敏捷[/gold]。",
     "type_key": "Power",
     "rarity_key": "Ancient",
     "compendium_order": 174
@@ -7040,7 +7030,7 @@
     "image_url": "/static/images/cards/panic_button.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得40点[gold]格挡[/gold]。\n你在接下来的2回合内无法再从卡牌中获得[gold]格挡[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -7114,13 +7104,11 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/enlightenment.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "在这场战斗，你当前[gold]手牌[/gold]中所有牌的耗能降低至1。",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Event",
     "keywords_key": [
@@ -7160,7 +7148,7 @@
     "image_url": "/static/images/cards/byrd_swoop.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成18点伤害。",
     "type_key": "Attack",
     "rarity_key": "Event",
     "compendium_order": 524
@@ -7200,7 +7188,7 @@
     "image_url": "/static/images/cards/guiding_star.png",
     "beta_image_url": "/static/images/cards/beta/guiding_star.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成13点伤害。\n在下一回合抽3张牌。",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 211
@@ -7285,7 +7273,7 @@
     "image_url": "/static/images/cards/lightning_rod.png",
     "beta_image_url": "/static/images/cards/beta/lightning_rod.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得7点[gold]格挡[/gold]。\n在下2个回合开始时,[gold]生成[/gold]1个[gold]闪电[/gold]充能球。",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 400
@@ -7324,7 +7312,7 @@
     "image_url": "/static/images/cards/enfeebling_touch.png",
     "beta_image_url": "/static/images/cards/beta/enfeebling_touch.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "让一名敌人在本回合内失去11点[gold]力量[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -7364,7 +7352,7 @@
     "image_url": "/static/images/cards/rebound.png",
     "beta_image_url": "/static/images/cards/beta/rebound.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成12点伤害。\n将你在本回合打出的下一张牌放置到你的[gold]抽牌堆[/gold]顶部。",
     "type_key": "Attack",
     "rarity_key": "Event",
     "compendium_order": 540
@@ -7403,7 +7391,7 @@
     "image_url": "/static/images/cards/barrage.png",
     "beta_image_url": "/static/images/cards/beta/barrage.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "当前每有一个[gold]充能球[/gold]，造成7点伤害。",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 354
@@ -7448,7 +7436,7 @@
     "image_url": "/static/images/cards/bouncing_flask.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "随机给予敌人3层[gold]中毒[/gold]4次。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 100
@@ -7487,7 +7475,7 @@
     "image_url": "/static/images/cards/fight_through.png",
     "beta_image_url": "/static/images/cards/beta/fight_through.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得17点[gold]格挡[/gold]。\n将2张[gold]伤口[/gold]加入你的[gold]弃牌堆[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 381
@@ -7540,7 +7528,7 @@
     "image_url": "/static/images/cards/comet.png",
     "beta_image_url": "/static/images/cards/beta/comet.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成44点伤害。\n给予3层[gold]虚弱[/gold]。\n给予3层[gold]易伤[/gold]。",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 190
@@ -7621,7 +7609,7 @@
     "image_url": "/static/images/cards/glimpse_beyond.png",
     "beta_image_url": "/static/images/cards/beta/glimpse_beyond.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "在所有玩家的[gold]抽牌堆[/gold]中加入4张[gold]灵魂[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -7661,7 +7649,7 @@
     "image_url": "/static/images/cards/howl_from_beyond.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "对所有敌人造成21点伤害。\n在你的回合开始时，从[gold]消耗牌堆[/gold]将此牌打出。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 43
@@ -7700,7 +7688,7 @@
     "image_url": "/static/images/cards/summon_forth.png",
     "beta_image_url": "/static/images/cards/beta/summon_forth.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]铸造[/gold]11。\n不论何处，将[gold]君王之剑[/gold]放入你的[gold]手牌[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 253
@@ -7737,7 +7725,7 @@
     "image_url": "/static/images/cards/conqueror.png",
     "beta_image_url": "/static/images/cards/beta/conqueror.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]铸造[/gold]5。\n[gold]君王之剑[/gold]在本回合对敌人造成双倍伤害。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 191
@@ -7779,7 +7767,7 @@
     "image_url": "/static/images/cards/right_hand_hand.png",
     "beta_image_url": "/static/images/cards/beta/right_hand_hand.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]奥斯提[/gold]造成6点伤害。\n每当你打出耗能为[energy:2]或以上的牌，将此牌从[gold]弃牌堆[/gold]放回你的[gold]手牌[/gold]。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 326
@@ -7817,7 +7805,7 @@
     "image_url": "/static/images/cards/hemokinesis.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "失去2点生命。\n造成19点伤害。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 42
@@ -7892,7 +7880,7 @@
     "image_url": "/static/images/cards/glimmer.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "抽4张牌。\n将你[gold]手牌[/gold]中的1张牌放到[gold]抽牌堆[/gold]顶部。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 207
@@ -8019,7 +8007,7 @@
     "image_url": "/static/images/cards/restlessness.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "如果你的[gold]手牌[/gold]为空，则抽3张牌并获得[energy:3]。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -8095,7 +8083,7 @@
     "image_url": "/static/images/cards/melancholy.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得17点[gold]格挡[/gold]。\n每当有任何生物死亡时，这张牌的耗能减少[energy:1]。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 307
@@ -8132,7 +8120,7 @@
     "image_url": "/static/images/cards/skim.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "抽4张牌。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 419
@@ -8204,7 +8192,7 @@
     "image_url": "/static/images/cards/impatience.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "如果你的[gold]手牌[/gold]中没有攻击牌，抽3张牌。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 464
@@ -8242,7 +8230,7 @@
     "image_url": "/static/images/cards/spite.png",
     "beta_image_url": "/static/images/cards/beta/spite.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成9点伤害。\n如果你在本回合失去过生命值，则抽1张牌。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 67
@@ -8290,7 +8278,7 @@
     "image_url": "/static/images/cards/fear.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成8点伤害。\n给予1层[gold]易伤[/gold]。",
     "type_key": "Attack",
     "rarity_key": "Common",
     "keywords_key": [
@@ -8332,7 +8320,7 @@
     "image_url": "/static/images/cards/fiend_fire.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]消耗[/gold]所有[gold]手牌[/gold]。\n每张被[gold]消耗[/gold]的牌造成10点伤害。",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -8379,7 +8367,7 @@
     "image_url": "/static/images/cards/demon_form.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "在你的回合开始时，获得3点[gold]力量[/gold]。",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 26
@@ -8617,7 +8605,7 @@
     "image_url": "/static/images/cards/anger.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成8点伤害。\n将一张此牌的复制品加入你的[gold]弃牌堆[/gold]。",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 1
@@ -8686,13 +8674,11 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/largesse.png",
     "beta_image_url": "/static/images/cards/beta/largesse.png",
     "type_variants": null,
-    "upgrade_description": "将一张随机的[gold]升级过的[/gold]无色牌添加至一位其他玩家的[gold]手牌[/gold]中。",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 222
@@ -8771,7 +8757,7 @@
     "image_url": "/static/images/cards/spoils_of_battle.png",
     "beta_image_url": "/static/images/cards/beta/spoils_of_battle.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]铸造[/gold]15。",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 250
@@ -8808,7 +8794,7 @@
     "image_url": "/static/images/cards/battle_trance.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "抽4张牌。\n你在本回合内不能再抽任何牌。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 6
@@ -8847,7 +8833,7 @@
     "image_url": "/static/images/cards/tactician.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得[energy:2]。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -8933,7 +8919,7 @@
     "image_url": "/static/images/cards/wrought_in_war.png",
     "beta_image_url": "/static/images/cards/beta/wrought_in_war.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成9点伤害。\n[gold]铸造[/gold]7。",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 262
@@ -8972,7 +8958,7 @@
     "image_url": "/static/images/cards/master_of_strategy.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "抽4张牌。",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -9020,7 +9006,7 @@
     "image_url": "/static/images/cards/drum_of_battle.png",
     "beta_image_url": "/static/images/cards/beta/drum_of_battle.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "抽3张牌。\n在你的回合开始时，[gold]消耗[/gold]你的[gold]抽牌堆[/gold]顶部的牌。",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 29
@@ -9061,7 +9047,7 @@
     "image_url": "/static/images/cards/poke.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]奥斯提[/gold]造成9点伤害。",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 316
@@ -9098,7 +9084,7 @@
     "image_url": "/static/images/cards/i_am_invincible.png",
     "beta_image_url": "/static/images/cards/beta/i_am_invincible.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得12点[gold]格挡[/gold]。\n在你的回合结束时，如果这张牌位于[gold]抽牌堆[/gold]顶部，则将其打出。",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 217
@@ -9135,7 +9121,7 @@
     "image_url": "/static/images/cards/hand_trick.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得10点[gold]格挡[/gold]。\n在本回合给你[gold]手牌[/gold]中的一张技能牌添加[gold]奇巧[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 127
@@ -9174,7 +9160,7 @@
     "image_url": "/static/images/cards/strike_ironclad.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成9点伤害。",
     "type_key": "Attack",
     "rarity_key": "Basic",
     "compendium_order": 72
@@ -9213,7 +9199,7 @@
     "image_url": "/static/images/cards/strike_silent.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成9点伤害。",
     "type_key": "Attack",
     "rarity_key": "Basic",
     "compendium_order": 163
@@ -9252,7 +9238,7 @@
     "image_url": "/static/images/cards/strike_regent.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成9点伤害。",
     "type_key": "Attack",
     "rarity_key": "Basic",
     "compendium_order": 252
@@ -9291,7 +9277,7 @@
     "image_url": "/static/images/cards/strike_necrobinder.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成9点伤害。",
     "type_key": "Attack",
     "rarity_key": "Basic",
     "compendium_order": 343
@@ -9330,7 +9316,7 @@
     "image_url": "/static/images/cards/strike_defect.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成9点伤害。",
     "type_key": "Attack",
     "rarity_key": "Basic",
     "compendium_order": 423
@@ -9367,7 +9353,7 @@
     "image_url": "/static/images/cards/shatter.png",
     "beta_image_url": "/static/images/cards/beta/shatter.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "对所有敌人造成15点伤害。\n[gold]激发[/gold]所有充能球。",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 417
@@ -9404,7 +9390,7 @@
     "image_url": "/static/images/cards/lift.png",
     "beta_image_url": "/static/images/cards/beta/lift.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "给另一名玩家16点[gold]格挡[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 469
@@ -9479,7 +9465,7 @@
     "image_url": "/static/images/cards/capacitor.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得3个充能球栏位。",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 361
@@ -9525,7 +9511,7 @@
     "image_url": "/static/images/cards/leg_sweep.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "给予2层[gold]虚弱[/gold]。\n获得14点[gold]格挡[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 133
@@ -9569,7 +9555,7 @@
     "image_url": "/static/images/cards/sweeping_gaze.png",
     "beta_image_url": "/static/images/cards/beta/sweeping_gaze.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]奥斯提[/gold]对随机一名敌人造成15点伤害。",
     "type_key": "Attack",
     "rarity_key": "Token",
     "keywords_key": [
@@ -9611,7 +9597,7 @@
     "image_url": "/static/images/cards/sweeping_beam.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "对所有敌人造成9点伤害。\n抽1张牌。",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 427
@@ -9651,7 +9637,7 @@
     "image_url": "/static/images/cards/tear_asunder.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成7点伤害。\n在本场战斗中，你每失去过一次生命值，这张牌就额外造成一次伤害。",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 76
@@ -9692,7 +9678,7 @@
     "image_url": "/static/images/cards/decisions_decisions.png",
     "beta_image_url": "/static/images/cards/beta/decisions_decisions.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "抽5张牌。\n选择你[gold]手牌[/gold]中的一张技能牌，并将其打出3次。",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -9736,7 +9722,7 @@
     "image_url": "/static/images/cards/snap.png",
     "beta_image_url": "/static/images/cards/beta/snap.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]奥斯提[/gold]造成10点伤害。\n给[gold]手牌[/gold]中的一张牌添加[gold]保留[/gold]。",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 337
@@ -9773,7 +9759,7 @@
     "image_url": "/static/images/cards/dagger_throw.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成12点伤害。\n抽1张牌。\n丢弃一张牌。",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 108
@@ -9811,7 +9797,7 @@
     "image_url": "/static/images/cards/refract.png",
     "beta_image_url": "/static/images/cards/beta/refract.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成12点伤害两次。\n[gold]生成[/gold]2个[gold]玻璃[/gold]充能球。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 412
@@ -9848,7 +9834,7 @@
     "image_url": "/static/images/cards/outmaneuver.png",
     "beta_image_url": "/static/images/cards/beta/outmaneuver.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "在下个回合获得[energy:3]。",
     "type_key": "Skill",
     "rarity_key": "Event",
     "compendium_order": 538
@@ -9885,7 +9871,7 @@
     "image_url": "/static/images/cards/bodyguard.png",
     "beta_image_url": "/static/images/cards/beta/bodyguard.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]召唤[/gold]7。",
     "type_key": "Skill",
     "rarity_key": "Basic",
     "compendium_order": 266
@@ -9918,13 +9904,11 @@
       "MINION_SACRIFICE"
     ],
     "vars": null,
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/guards.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "将你[gold]手牌[/gold]中的任意张牌[gold]变化[/gold]为[gold]仆从捐躯+[/gold]。",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -9964,7 +9948,7 @@
     "image_url": "/static/images/cards/huddle_up.png",
     "beta_image_url": "/static/images/cards/beta/huddle_up.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "所有玩家抽3张牌。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 463
@@ -10001,7 +9985,7 @@
     "image_url": "/static/images/cards/dismantle.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成10点伤害。\n如果该敌人有[gold]易伤[/gold]状态，则攻击两次。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 27
@@ -10040,7 +10024,7 @@
     "image_url": "/static/images/cards/delay.png",
     "beta_image_url": "/static/images/cards/beta/delay.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得13点[gold]格挡[/gold]。\n在下个回合，\n获得[energy:2]。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 283
@@ -10086,7 +10070,7 @@
     "image_url": "/static/images/cards/parry.png",
     "beta_image_url": "/static/images/cards/beta/parry.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "每当你打出[gold]君王之剑[/gold]时，获得9点[gold]格挡[/gold]。",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 232
@@ -10166,7 +10150,7 @@
     "image_url": "/static/images/cards/intercept.png",
     "beta_image_url": "/static/images/cards/beta/intercept.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得13点[gold]格挡[/gold]。\n将本回合所有要对另一名玩家发起的攻击转移到你的身上。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 465
@@ -10203,7 +10187,7 @@
     "image_url": "/static/images/cards/fisticuffs.png",
     "beta_image_url": "/static/images/cards/beta/fisticuffs.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成9点伤害。\n获得等量于所造成伤害的[gold]格挡[/gold]。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 457
@@ -10249,7 +10233,7 @@
     "image_url": "/static/images/cards/taunt.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得8点[gold]格挡[/gold]。\n给予1层[gold]易伤[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 75
@@ -10288,7 +10272,7 @@
     "image_url": "/static/images/cards/dirge.png",
     "beta_image_url": "/static/images/cards/beta/dirge.png",
     "type_variants": null,
-    "upgrade_description": "[gold]召唤[/gold]3X次。\n将X张[gold]灵魂+[/gold]添加到你的[gold]抽牌堆[/gold]中。",
+    "upgrade_description": "[gold]召唤[/gold]4X次。\n将X张[gold]灵魂+[/gold]添加到你的[gold]抽牌堆[/gold]中。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 286
@@ -10329,7 +10313,7 @@
     "image_url": "/static/images/cards/capture_spirit.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "敌人失去4点生命。\n将4张[gold]灵魂[/gold]加入你的[gold]抽牌堆[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 272
@@ -10369,7 +10353,7 @@
     "image_url": "/static/images/cards/seeker_strike.png",
     "beta_image_url": "/static/images/cards/beta/seeker_strike.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成9点伤害。\n从[gold]抽牌堆[/gold]的随机3张牌中选择一张加入你的[gold]手牌[/gold]。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 491
@@ -10415,7 +10399,7 @@
     "image_url": "/static/images/cards/debilitate.png",
     "beta_image_url": "/static/images/cards/beta/debilitate.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成9点伤害。\n在接下来的4回合内，该敌人身上的[gold]易伤[/gold]与[gold]虚弱[/gold]效率翻倍。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 279
@@ -10454,7 +10438,7 @@
     "image_url": "/static/images/cards/maul.png",
     "beta_image_url": "/static/images/cards/beta/maul.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成6点伤害两次。\n在这场战斗中，将所有“撕咬”牌的伤害增加2。",
     "type_key": "Attack",
     "rarity_key": "Ancient",
     "compendium_order": 535
@@ -10495,7 +10479,7 @@
     "image_url": "/static/images/cards/rend.png",
     "beta_image_url": "/static/images/cards/beta/rend.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成15点伤害。\n该名敌人身上每有一种负面效果，就额外造成8点伤害。",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 484
@@ -10578,7 +10562,7 @@
     "image_url": "/static/images/cards/sow.png",
     "beta_image_url": "/static/images/cards/beta/sow.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "对所有敌人造成11点伤害。",
     "type_key": "Attack",
     "rarity_key": "Common",
     "keywords_key": [
@@ -10627,7 +10611,7 @@
     "image_url": "/static/images/cards/grapple.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成9点伤害。\n当你在本回合获得[gold]格挡[/gold]时，对该敌人造成7点伤害。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 38
@@ -10666,7 +10650,7 @@
     "image_url": "/static/images/cards/reap.png",
     "beta_image_url": "/static/images/cards/beta/reap.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成33点伤害。",
     "type_key": "Attack",
     "rarity_key": "Common",
     "keywords_key": [
@@ -10707,7 +10691,7 @@
     "image_url": "/static/images/cards/gather_light.png",
     "beta_image_url": "/static/images/cards/beta/gather_light.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得10点[gold]格挡[/gold]。\n获得[star:1]。",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 205
@@ -10750,7 +10734,7 @@
     "image_url": "/static/images/cards/relax.png",
     "beta_image_url": "/static/images/cards/beta/relax.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得17点[gold]格挡[/gold]。\n下个回合，抽3张牌并获得[energy:3]。",
     "type_key": "Skill",
     "rarity_key": "Ancient",
     "keywords_key": [
@@ -10791,7 +10775,7 @@
     "image_url": "/static/images/cards/bloodletting.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "失去3点生命。\n获得[energy:3]。",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 7
@@ -10830,7 +10814,7 @@
     "image_url": "/static/images/cards/flak_cannon.png",
     "beta_image_url": "/static/images/cards/beta/flak_cannon.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]消耗[/gold]你所有的[gold]状态[/gold]牌。\n每有一张被[gold]消耗[/gold]的牌，就随机对敌人造成11点伤害。",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 382
@@ -10870,7 +10854,7 @@
     "image_url": "/static/images/cards/cloak_and_dagger.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得6点[gold]格挡[/gold]。\n将2张[gold]小刀[/gold]添加到你的[gold]手牌[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 105
@@ -10911,7 +10895,7 @@
     "image_url": "/static/images/cards/crescent_spear.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成6点伤害。\n你每有一张拥有[star:1]耗能的卡牌，这张牌就额外造成3点伤害。",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 195
@@ -10950,7 +10934,7 @@
     "image_url": "/static/images/cards/bundle_of_joy.png",
     "beta_image_url": "/static/images/cards/beta/bundle_of_joy.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "将4张随机无色牌添加到你的[gold]手牌[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -10991,13 +10975,11 @@
       "SpinnerPower": 1,
       "Spinner": 1
     },
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/spinner.png",
     "beta_image_url": "/static/images/cards/beta/spinner.png",
     "type_variants": null,
-    "upgrade_description": "[gold]生成[/gold]1个[gold]玻璃[/gold]充能球。\n在你的回合开始时，[gold]生成[/gold]1个[gold]玻璃[/gold]充能球。",
+    "upgrade_description": null,
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 421
@@ -11034,7 +11016,7 @@
     "image_url": "/static/images/cards/whirlwind.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "对所有敌人造成8点伤害X次。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 86
@@ -11071,7 +11053,7 @@
     "image_url": "/static/images/cards/thrumming_hatchet.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成14点伤害。\n在你的下个回合开始时，将此卡返回你的[gold]手牌[/gold]。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 499
@@ -11110,7 +11092,7 @@
     "image_url": "/static/images/cards/no_escape.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "给予15层[gold]灾厄[/gold]，敌人身上每有10层[gold]灾厄[/gold]，则额外给予这名敌人5层[gold]灾厄[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 312
@@ -11184,7 +11166,7 @@
     "image_url": "/static/images/cards/unrelenting.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成18点伤害。\n你打出的下一张攻击牌耗能变为0[energy:1]。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 83
@@ -11221,7 +11203,7 @@
     "image_url": "/static/images/cards/feel_no_pain.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "每当有一张牌被[gold]消耗[/gold]时，获得4点[gold]格挡[/gold]。",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 33
@@ -11258,7 +11240,7 @@
     "image_url": "/static/images/cards/foregone_conclusion.png",
     "beta_image_url": "/static/images/cards/beta/foregone_conclusion.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "在下个回合，从你的[gold]抽牌堆[/gold]中选择3张牌放入你的[gold]手牌[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 202
@@ -11295,7 +11277,7 @@
     "image_url": "/static/images/cards/prepared.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "抽2张牌。\n丢弃2张牌。",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 150
@@ -11335,7 +11317,7 @@
     "image_url": "/static/images/cards/shining_strike.png",
     "beta_image_url": "/static/images/cards/beta/shining_strike.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成11点伤害。\n获得[star:2]。\n将这张牌放置于你的[gold]抽牌堆[/gold]顶部。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 247
@@ -11373,7 +11355,7 @@
     "image_url": "/static/images/cards/alignment.png",
     "beta_image_url": "/static/images/cards/beta/alignment.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得[energy:3]。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 175
@@ -11410,7 +11392,7 @@
     "image_url": "/static/images/cards/stardust.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "随机对敌人造成7点伤害X次。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 251
@@ -11456,7 +11438,7 @@
     "image_url": "/static/images/cards/patter.png",
     "beta_image_url": "/static/images/cards/beta/patter.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得10点[gold]格挡[/gold]。\n获得3点[gold]活力[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 234
@@ -11498,7 +11480,7 @@
     "image_url": "/static/images/cards/dying_star.png",
     "beta_image_url": "/static/images/cards/beta/dying_star.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "对所有敌人造成11点伤害。所有敌人在本回合中失去11点[gold]力量[/gold]。",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -11539,7 +11521,7 @@
     "image_url": "/static/images/cards/astral_pulse.png",
     "beta_image_url": "/static/images/cards/beta/astral_pulse.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "对所有敌人造成18点伤害。",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 177
@@ -11616,7 +11598,7 @@
     "image_url": "/static/images/cards/shadow_shield.png",
     "beta_image_url": "/static/images/cards/beta/shadow_shield.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得15点[gold]格挡[/gold]。\n[gold]生成[/gold]1个[gold]黑暗[/gold]充能球。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 416
@@ -11691,7 +11673,7 @@
     "image_url": "/static/images/cards/pale_blue_dot.png",
     "beta_image_url": "/static/images/cards/beta/pale_blue_dot.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "如果你在一回合内打出了大于等于5张牌，在下个回合开始时抽2张牌。",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 231
@@ -11822,7 +11804,7 @@
     "image_url": "/static/images/cards/rampage.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成9点伤害。\n将这张牌在本场战斗中的伤害增加9。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 62
@@ -11861,7 +11843,7 @@
     "image_url": "/static/images/cards/expose.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "去除敌人身上的所有[gold]格挡[/gold]值和[gold]人工制品[/gold]。\n并给予3层[gold]易伤[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -11893,13 +11875,11 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/tempest.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "[gold]生成[/gold]X+1个[gold]闪电[/gold]充能球。",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 430
@@ -11938,7 +11918,7 @@
     "image_url": "/static/images/cards/lunar_blast.png",
     "beta_image_url": "/static/images/cards/beta/lunar_blast.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "本回合中每打出过一张技能牌，此牌额外造成5点伤害一次。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 223
@@ -11975,7 +11955,7 @@
     "image_url": "/static/images/cards/hidden_gem.png",
     "beta_image_url": "/static/images/cards/beta/hidden_gem.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "你[gold]抽牌堆[/gold]中的一张随机牌获得3层[gold]重放[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 462
@@ -12058,7 +12038,7 @@
     "image_url": "/static/images/cards/reflex.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "抽3张牌。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -12136,7 +12116,7 @@
     "image_url": "/static/images/cards/exterminate.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "对所有敌人造成4点伤害4次。",
     "type_key": "Attack",
     "rarity_key": "Event",
     "compendium_order": 531
@@ -12173,7 +12153,7 @@
     "image_url": "/static/images/cards/acrobatics.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "抽4张牌。\n丢弃1张牌。",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 90
@@ -12247,7 +12227,7 @@
     "image_url": "/static/images/cards/afterlife.png",
     "beta_image_url": "/static/images/cards/beta/afterlife.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]召唤[/gold]9。",
     "type_key": "Skill",
     "rarity_key": "Common",
     "keywords_key": [
@@ -12289,7 +12269,7 @@
     "image_url": "/static/images/cards/eradicate.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成14点伤害X次。",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -12335,7 +12315,7 @@
     "image_url": "/static/images/cards/squeeze.png",
     "beta_image_url": "/static/images/cards/beta/squeeze.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]奥斯提[/gold]造成25点伤害。\n你每有一张[gold]奥斯提[/gold]的攻击牌，这张牌就额外造成6点伤害。",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 342
@@ -12373,7 +12353,7 @@
     "image_url": "/static/images/cards/modded.png",
     "beta_image_url": "/static/images/cards/beta/modded.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得1个充能球栏位。\n抽2张牌。这张牌的耗能加1。",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 404
@@ -12410,7 +12390,7 @@
     "image_url": "/static/images/cards/catastrophe.png",
     "beta_image_url": "/static/images/cards/beta/catastrophe.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "从你的[gold]抽牌堆[/gold]中随机打出3张牌。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 447
@@ -12450,7 +12430,7 @@
     "image_url": "/static/images/cards/bully.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成4点伤害。\n该敌人身上每有一层[gold]易伤[/gold]就额外造成3点伤害。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 14
@@ -12494,7 +12474,7 @@
     "image_url": "/static/images/cards/arsenal.png",
     "beta_image_url": "/static/images/cards/beta/arsenal.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "你每打出一张无色牌，都获得2点[gold]力量[/gold]。",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 176
@@ -12525,13 +12505,11 @@
     "vars": {
       "Block": 5
     },
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/armaments.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "获得5点[gold]格挡[/gold]。\n[gold]升级[/gold]你[gold]手牌[/gold]中的所有牌。",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 2
@@ -12576,7 +12554,7 @@
     "image_url": "/static/images/cards/danse_macabre.png",
     "beta_image_url": "/static/images/cards/beta/danse_macabre.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "每当你打出一张耗能大于等于[energy:2]的牌时，获得4点[gold]格挡[/gold]。",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 275
@@ -12614,7 +12592,7 @@
     "image_url": "/static/images/cards/deaths_door.png",
     "beta_image_url": "/static/images/cards/beta/deaths_door.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得7点[gold]格挡[/gold]。\n如果你在本回合中曾给予过[gold]灾厄[/gold]，则额外获得2次[gold]格挡[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 277
@@ -12706,7 +12684,7 @@
     "image_url": "/static/images/cards/death_march.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成8点伤害。\n你在回合进行中每抽到一张牌，都会使其额外造成4点伤害。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 278
@@ -12780,7 +12758,7 @@
     "image_url": "/static/images/cards/reanimate.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]召唤[/gold]25。",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -12821,7 +12799,7 @@
     "image_url": "/static/images/cards/blur.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得8点[gold]格挡[/gold]。\n你的下一回合开始时[gold]格挡[/gold]不会消失。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 99
@@ -12865,7 +12843,7 @@
     "image_url": "/static/images/cards/cruelty.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "有[gold]易伤[/gold]状态的敌人额外受到50%的伤害。",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 22
@@ -12910,7 +12888,7 @@
     "image_url": "/static/images/cards/outbreak.png",
     "beta_image_url": "/static/images/cards/beta/outbreak.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "每当你给予3次[gold]中毒[/gold]，就对所有敌人造成15点伤害。",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 142
@@ -12987,7 +12965,7 @@
     "image_url": "/static/images/cards/noxious_fumes.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "在你的回合开始时，给予所有敌人3层[gold]中毒[/gold]。",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 141
@@ -13031,7 +13009,7 @@
     "image_url": "/static/images/cards/eternal_armor.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得9层[gold]覆甲[/gold]。",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 454
@@ -13069,7 +13047,7 @@
     "image_url": "/static/images/cards/convergence.png",
     "beta_image_url": "/static/images/cards/beta/convergence.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "在本回合[gold]保留[/gold]你的[gold]手牌[/gold]。\n在下个回合，\n获得[energy:1]与[star:2]。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 192
@@ -13109,7 +13087,7 @@
     "image_url": "/static/images/cards/gunk_up.png",
     "beta_image_url": "/static/images/cards/beta/gunk_up.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成5点伤害3次。\n在你的[gold]弃牌堆[/gold]中加入一张[gold]黏液[/gold]。",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 390
@@ -13146,7 +13124,7 @@
     "image_url": "/static/images/cards/cleanse.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]召唤[/gold]5。\n从你的[gold]抽牌堆[/gold]中选一张牌[gold]消耗[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 273
@@ -13185,7 +13163,7 @@
     "image_url": "/static/images/cards/glitterstream.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得13点[gold]格挡[/gold]。\n在下一回合获得6点[gold]格挡[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 208
@@ -13222,7 +13200,7 @@
     "image_url": "/static/images/cards/bolas.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成4点伤害。\n在你的下个回合开始时，将此卡返回你的[gold]手牌[/gold]。",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 445
@@ -13275,7 +13253,7 @@
     "image_url": "/static/images/cards/meteor_shower.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "对所有敌人造成21点伤害。\n给予所有敌人2层[gold]虚弱[/gold]和[gold]易伤[/gold]。",
     "type_key": "Attack",
     "rarity_key": "Ancient",
     "compendium_order": 226
@@ -13319,7 +13297,7 @@
     "image_url": "/static/images/cards/envenom.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "每有一次攻击造成未被格挡的伤害，就给予2层[gold]中毒[/gold]。",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 115
@@ -13359,7 +13337,7 @@
     "image_url": "/static/images/cards/neows_fury.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成14点伤害。\n将你[gold]弃牌堆[/gold]中的2张随机牌放入你的[gold]手牌[/gold]。",
     "type_key": "Attack",
     "rarity_key": "Ancient",
     "keywords_key": [
@@ -13400,7 +13378,7 @@
     "image_url": "/static/images/cards/refine_blade.png",
     "beta_image_url": "/static/images/cards/beta/refine_blade.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]铸造[/gold]10。\n在下个回合获得[energy:1]。",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 240
@@ -13479,7 +13457,7 @@
     "image_url": "/static/images/cards/chaos.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]生成[/gold]2个随机充能球。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 362
@@ -13650,7 +13628,7 @@
     "image_url": "/static/images/cards/rolling_boulder.png",
     "beta_image_url": "/static/images/cards/beta/rolling_boulder.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "在你的回合开始时，对所有敌人造成10点伤害，然后将该伤害增加5点。",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 486
@@ -13679,13 +13657,11 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/darkness.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "[gold]生成[/gold]1[gold]黑暗[/gold]充能球。\n触发所有[gold]黑暗[/gold]充能球的被动两次。",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 373
@@ -13764,7 +13740,7 @@
     "image_url": "/static/images/cards/flame_barrier.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得16点[gold]格挡[/gold]。\n你在这个回合每受到一次攻击，都会对攻击者造成6点伤害。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 36
@@ -13803,7 +13779,7 @@
     "image_url": "/static/images/cards/rocket_punch.png",
     "beta_image_url": "/static/images/cards/beta/rocket_punch.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成14点伤害。\n抽2张牌。\n当有一张状态被生成时，将此牌的耗能在本回合降为0[energy:1]。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 413
@@ -13880,7 +13856,7 @@
     "image_url": "/static/images/cards/spirit_of_ash.png",
     "beta_image_url": "/static/images/cards/beta/spirit_of_ash.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "每当你打出一张[gold]虚无[/gold]牌时，获得5点[gold]格挡[/gold]。",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 340
@@ -13922,7 +13898,7 @@
     "image_url": "/static/images/cards/ashen_strike.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成6点伤害。\n你的[gold]消耗牌堆[/gold]中每有一张牌，伤害增加4。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 3
@@ -14056,7 +14032,7 @@
     "image_url": "/static/images/cards/soul.png",
     "beta_image_url": "/static/images/cards/beta/soul.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "抽3张牌。",
     "type_key": "Skill",
     "rarity_key": "Token",
     "keywords_key": [
@@ -14101,7 +14077,7 @@
     "image_url": "/static/images/cards/soul_storm.png",
     "beta_image_url": "/static/images/cards/beta/soul_storm.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成9点伤害。\n你的[gold]消耗牌堆[/gold]中每有一张[gold]灵魂[/gold]，伤害增加3。",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 338
@@ -14214,7 +14190,7 @@
     "image_url": "/static/images/cards/the_bomb.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "在3回合结束后，对所有敌人造成50点伤害。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 496
@@ -14343,7 +14319,7 @@
     "image_url": "/static/images/cards/smokestack.png",
     "beta_image_url": "/static/images/cards/beta/smokestack.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "每当你生成一张状态牌时，对所有敌人造成7点伤害。",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 420
@@ -14387,7 +14363,7 @@
     "image_url": "/static/images/cards/hotfix.png",
     "beta_image_url": "/static/images/cards/beta/hotfix.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "在本回合获得3点[gold]集中[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 394
@@ -14428,7 +14404,7 @@
     "image_url": "/static/images/cards/conflagration.png",
     "beta_image_url": "/static/images/cards/beta/conflagration.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "对所有敌人造成8点伤害。\n你在本回合中每打出过一张其他攻击牌，这张牌的伤害就提升3点。",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 19
@@ -14503,7 +14479,7 @@
     "image_url": "/static/images/cards/furnace.png",
     "beta_image_url": "/static/images/cards/beta/furnace.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "在你的回合开始时，[gold]铸造[/gold]6。",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 203
@@ -14542,7 +14518,7 @@
     "image_url": "/static/images/cards/molten_fist.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成14点伤害。\n将该敌人身上的[gold]易伤[/gold]层数翻倍。",
     "type_key": "Attack",
     "rarity_key": "Common",
     "keywords_key": [
@@ -14622,7 +14598,7 @@
     "image_url": "/static/images/cards/fuel.png",
     "beta_image_url": "/static/images/cards/beta/fuel.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得[energy:1]。\n抽2张牌。",
     "type_key": "Skill",
     "rarity_key": "Token",
     "keywords_key": [
@@ -14669,7 +14645,7 @@
     "image_url": "/static/images/cards/inflame.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得3点[gold]力量[/gold]。",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 47
@@ -14706,7 +14682,7 @@
     "image_url": "/static/images/cards/burning_pact.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]消耗[/gold]1张牌。\n抽3张牌。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 15
@@ -14782,7 +14758,7 @@
     "image_url": "/static/images/cards/claw.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成4点伤害。\n本场战斗中所有爪击卡牌的伤害增加3点。",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 365
@@ -14819,7 +14795,7 @@
     "image_url": "/static/images/cards/tesla_coil.png",
     "beta_image_url": "/static/images/cards/beta/tesla_coil.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成6点伤害。\n对该敌人触发你的所有[gold]闪电[/gold]充能球的被动。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 431
@@ -14896,7 +14872,7 @@
     "image_url": "/static/images/cards/rip_and_tear.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "随机对敌人造成9点伤害两次。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 542
@@ -14970,7 +14946,7 @@
     "image_url": "/static/images/cards/feed.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成12点伤害。\n[gold]斩杀[/gold]时，永久获得4点最大生命值。",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -15010,7 +14986,7 @@
     "image_url": "/static/images/cards/rage.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "打出此牌后，你在这个回合内每打出一张攻击牌，获得5点[gold]格挡[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 61
@@ -15047,7 +15023,7 @@
     "image_url": "/static/images/cards/beat_down.png",
     "beta_image_url": "/static/images/cards/beta/beat_down.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "打出你[gold]弃牌堆[/gold]中的4张随机攻击牌。",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 443
@@ -15086,7 +15062,7 @@
     "image_url": "/static/images/cards/the_hunt.png",
     "beta_image_url": "/static/images/cards/beta/the_hunt.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成15点伤害。\n[gold]斩杀[/gold]时，额外获得一组卡牌奖励。",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -15163,7 +15139,7 @@
     "image_url": "/static/images/cards/expertise.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "抽牌直至你的[gold]手牌[/gold]有7张牌。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 117
@@ -15207,7 +15183,7 @@
     "image_url": "/static/images/cards/inferno.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "在你的回合开始时，失去1点生命。\n每当你在你的回合内失去生命时，对所有敌人造成9点伤害。",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 46
@@ -15244,7 +15220,7 @@
     "image_url": "/static/images/cards/predator.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成20点伤害。\n在下个回合抽2张牌。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 149
@@ -15281,7 +15257,7 @@
     "image_url": "/static/images/cards/pounce.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成18点伤害。\n你的下一张技能牌耗能变为0[energy:1]。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 147
@@ -15324,7 +15300,7 @@
     "image_url": "/static/images/cards/rattle.png",
     "beta_image_url": "/static/images/cards/beta/rattle.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]奥斯提[/gold]造成9点伤害。\n他在本回合每攻击过一次，此牌就额外造成一次伤害。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 321
@@ -15398,7 +15374,7 @@
     "image_url": "/static/images/cards/royalties.png",
     "beta_image_url": "/static/images/cards/beta/royalties.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "在战斗结束时，获得35[gold]金币[/gold]。",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 243
@@ -15436,7 +15412,7 @@
     "image_url": "/static/images/cards/kingly_punch.png",
     "beta_image_url": "/static/images/cards/beta/kingly_punch.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成8点伤害。\n每当你抽到这张牌时，在这场战斗中其伤害增加5。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 219
@@ -15473,7 +15449,7 @@
     "image_url": "/static/images/cards/kingly_kick.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成30点伤害。\n每当你抽到这张牌时，这张牌的耗能减少1。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 218
@@ -15549,7 +15525,7 @@
     "image_url": "/static/images/cards/defile.png",
     "beta_image_url": "/static/images/cards/beta/defile.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成17点伤害。",
     "type_key": "Attack",
     "rarity_key": "Common",
     "keywords_key": [
@@ -15589,7 +15565,7 @@
     "image_url": "/static/images/cards/glasswork.png",
     "beta_image_url": "/static/images/cards/beta/glasswork.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得8点[gold]格挡[/gold]。\n[gold]生成[/gold]1个[gold]玻璃[/gold]充能球。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 388
@@ -15626,7 +15602,7 @@
     "image_url": "/static/images/cards/ball_lightning.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成10点伤害。\n[gold]生成[/gold]1个[gold]闪电[/gold]充能球。",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 353
@@ -15747,7 +15723,7 @@
     "image_url": "/static/images/cards/survivor.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得11点[gold]格挡[/gold]。\n丢弃1张牌。",
     "type_key": "Skill",
     "rarity_key": "Basic",
     "compendium_order": 166
@@ -16078,7 +16054,7 @@
     "image_url": "/static/images/cards/bash.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成10点伤害。\n给予2层[gold]易伤[/gold]。",
     "type_key": "Attack",
     "rarity_key": "Basic",
     "compendium_order": 5
@@ -16115,7 +16091,7 @@
     "image_url": "/static/images/cards/thrash.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成6点伤害两次。\n[gold]消耗[/gold]你的[gold]手牌[/gold]中随机一张攻击牌，并将它的伤害添加给这张牌。",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 77
@@ -16192,7 +16168,7 @@
     "image_url": "/static/images/cards/believe_in_you.png",
     "beta_image_url": "/static/images/cards/beta/believe_in_you.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "另一名玩家获得[energy:4]。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 444
@@ -16238,7 +16214,7 @@
     "image_url": "/static/images/cards/go_for_the_eyes.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成4点伤害。\n如果敌人的意图是攻击，则给予1层[gold]虚弱[/gold]。",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 389
@@ -16324,7 +16300,7 @@
     "image_url": "/static/images/cards/break.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成25点伤害。\n给予5层[gold]易伤[/gold]。",
     "type_key": "Attack",
     "rarity_key": "Ancient",
     "compendium_order": 12
@@ -16441,7 +16417,7 @@
     "image_url": "/static/images/cards/defragment.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得2点[gold]集中[/gold]。",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 375
@@ -16484,7 +16460,7 @@
     "image_url": "/static/images/cards/bone_shards.png",
     "beta_image_url": "/static/images/cards/beta/bone_shards.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "如果[gold]奥斯提[/gold]存活，则他对所有敌人造成12点伤害并且你获得12点[gold]格挡[/gold]。\n然后[gold]奥斯提[/gold]死去。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 267
@@ -16523,7 +16499,7 @@
     "image_url": "/static/images/cards/collision_course.png",
     "beta_image_url": "/static/images/cards/beta/collision_course.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成12点伤害。\n将一张[gold]碎屑[/gold]添加至你的[gold]手牌[/gold]。",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 189
@@ -16576,7 +16552,7 @@
     "image_url": "/static/images/cards/abrasive.png",
     "beta_image_url": "/static/images/cards/beta/abrasive.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得1点[gold]敏捷[/gold]。\n获得6点[gold]荆棘[/gold]。",
     "type_key": "Power",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -16658,7 +16634,7 @@
     "image_url": "/static/images/cards/panache.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "每当你在一回合内打出五张牌时，对所有敌人造成14点伤害。",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 476
@@ -16699,7 +16675,7 @@
     "image_url": "/static/images/cards/offering.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "失去6点生命。\n获得[energy:2]。\n抽5张牌。",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -16861,7 +16837,7 @@
     "image_url": "/static/images/cards/ultimate_strike.png",
     "beta_image_url": "/static/images/cards/beta/ultimate_strike.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成20点伤害。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 501
@@ -16900,7 +16876,7 @@
     "image_url": "/static/images/cards/ultimate_defend.png",
     "beta_image_url": "/static/images/cards/beta/ultimate_defend.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得15点[gold]格挡[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 500
@@ -16946,7 +16922,7 @@
     "image_url": "/static/images/cards/null.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成13点伤害。\n给予2层[gold]虚弱[/gold]。\n[gold]生成[/gold]1个[gold]黑暗[/gold]充能球。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 407
@@ -16992,7 +16968,7 @@
     "image_url": "/static/images/cards/sucker_punch.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成10点伤害。\n给予1层[gold]虚弱[/gold]。",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 164
@@ -17030,7 +17006,7 @@
     "image_url": "/static/images/cards/breakthrough.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "失去1点生命。\n对所有敌人造成13点伤害。",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 13
@@ -17107,7 +17083,7 @@
     "image_url": "/static/images/cards/salvo.png",
     "beta_image_url": "/static/images/cards/beta/salvo.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成16点伤害。\n在本回合[gold]保留[/gold]你的[gold]手牌[/gold]。",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 487
@@ -17138,13 +17114,11 @@
     "vars": {
       "StarCost": 2
     },
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/quasar.png",
     "beta_image_url": "/static/images/cards/beta/quasar.png",
     "type_variants": null,
-    "upgrade_description": "从3张随机[gold]升级过[/gold]的无色牌中选择1张加入你的[gold]手牌[/gold]。",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 238
@@ -17182,7 +17156,7 @@
     "image_url": "/static/images/cards/particle_wall.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得12点[gold]格挡[/gold]。\n将此牌返回你的[gold]手牌[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 233
@@ -17228,7 +17202,7 @@
     "image_url": "/static/images/cards/accuracy.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]小刀[/gold]额外造成6点伤害。",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 89
@@ -17265,7 +17239,7 @@
     "image_url": "/static/images/cards/pinpoint.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成22点伤害。\n你在本回合中每打出过一张技能牌，其耗能减少1[energy:1]。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 145
@@ -17350,7 +17324,7 @@
     "image_url": "/static/images/cards/neurosurge.png",
     "beta_image_url": "/static/images/cards/beta/neurosurge.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得[energy:4]。\n抽2张牌。\n在你的回合开始时，给予自身3层[gold]灾厄[/gold]。",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 311
@@ -17396,7 +17370,7 @@
     "image_url": "/static/images/cards/strangle.png",
     "beta_image_url": "/static/images/cards/beta/strangle.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成10点伤害。\n你在这个回合内每出一张牌，该名敌人都会失去3点生命。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 162
@@ -17446,7 +17420,7 @@
     "image_url": "/static/images/cards/sic_em.png",
     "beta_image_url": "/static/images/cards/beta/sic_em.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]奥斯提[/gold]造成6点伤害。\n在本回合内，每当[gold]奥斯提[/gold]攻击这名敌人时，[gold]召唤[/gold]3。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 335
@@ -17485,7 +17459,7 @@
     "image_url": "/static/images/cards/haunt.png",
     "beta_image_url": "/static/images/cards/beta/haunt.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "每当你打出一张[gold]灵魂[/gold]时，随机一名敌人失去8点生命。",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 302
@@ -17524,7 +17498,7 @@
     "image_url": "/static/images/cards/finisher.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "在这个回合内每打出过一张攻击牌，就造成8点伤害一次。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 120
@@ -17568,7 +17542,7 @@
     "image_url": "/static/images/cards/crimson_mantle.png",
     "beta_image_url": "/static/images/cards/beta/crimson_mantle.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "在你的回合开始时，失去1点生命并获得10点[gold]格挡[/gold]。",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 21
@@ -17612,7 +17586,7 @@
     "image_url": "/static/images/cards/buffer.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "阻止下2次你受到的生命值损伤。",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 359
@@ -17651,7 +17625,7 @@
     "image_url": "/static/images/cards/compile_driver.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成10点伤害。\n你每有一种不同的充能球，就抽一张牌。",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 368
@@ -17728,7 +17702,7 @@
     "image_url": "/static/images/cards/child_of_the_stars.png",
     "beta_image_url": "/static/images/cards/beta/child_of_the_stars.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "每当你花费[star:1]时，每花费一点[star:1]，获得3点[gold]格挡[/gold]。",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 187
@@ -17766,7 +17740,7 @@
     "image_url": "/static/images/cards/cloak_of_stars.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得10点[gold]格挡[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 188
@@ -17810,7 +17784,7 @@
     "image_url": "/static/images/cards/serpent_form.png",
     "beta_image_url": "/static/images/cards/beta/serpent_form.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "你每打出一张牌，就对随机一名敌人造成5点伤害。",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 153
@@ -17850,7 +17824,7 @@
     "image_url": "/static/images/cards/gang_up.png",
     "beta_image_url": "/static/images/cards/beta/gang_up.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成5点伤害。\n本回合其他玩家攻击该敌人时，该牌就造成7点伤害。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 459
@@ -17889,7 +17863,7 @@
     "image_url": "/static/images/cards/metamorphosis.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "在你的[gold]抽牌堆[/gold]中加入5张随机攻击牌。它们在本场战斗中可以被免费打出。",
     "type_key": "Skill",
     "rarity_key": "Event",
     "keywords_key": [
@@ -17931,7 +17905,7 @@
     "image_url": "/static/images/cards/flick_flack.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "对所有敌人造成9点伤害。",
     "type_key": "Attack",
     "rarity_key": "Common",
     "keywords_key": [
@@ -17972,7 +17946,7 @@
     "image_url": "/static/images/cards/shrug_it_off.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得11点[gold]格挡[/gold]。\n抽1张牌。",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 66
@@ -18082,7 +18056,7 @@
     "image_url": "/static/images/cards/adrenaline.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得[energy:2]。\n抽2张牌。",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -18125,7 +18099,7 @@
     "image_url": "/static/images/cards/backstab.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成15点伤害。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -18211,7 +18185,7 @@
     "image_url": "/static/images/cards/drain_power.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成12点伤害。\n随机[gold]升级[/gold]你[gold]弃牌堆[/gold]中的3张牌。",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 287
@@ -18250,7 +18224,7 @@
     "image_url": "/static/images/cards/energy_surge.png",
     "beta_image_url": "/static/images/cards/beta/energy_surge.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "所有玩家获得[energy:3]。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -18367,7 +18341,7 @@
     "image_url": "/static/images/cards/corrosive_wave.png",
     "beta_image_url": "/static/images/cards/beta/corrosive_wave.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "打出此牌后，你在本回合每抽到一张牌，就给予所有敌人4层[gold]中毒[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 106
@@ -18406,7 +18380,7 @@
     "image_url": "/static/images/cards/putrefy.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "给予3层[gold]虚弱[/gold]。\n给予3层[gold]易伤[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -18486,7 +18460,7 @@
     "image_url": "/static/images/cards/brightest_flame.png",
     "beta_image_url": "/static/images/cards/beta/brightest_flame.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得[energy:3]。\n抽3张牌。\n失去1点最大生命。",
     "type_key": "Skill",
     "rarity_key": "Ancient",
     "compendium_order": 523
@@ -18576,7 +18550,7 @@
     "image_url": "/static/images/cards/lethality.png",
     "beta_image_url": "/static/images/cards/beta/lethality.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "每回合的第一张攻击牌会造成75%额外伤害。",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -18618,7 +18592,7 @@
     "image_url": "/static/images/cards/jack_of_all_trades.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "将2张随机无色牌加入你的[gold]手牌[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -18699,7 +18673,7 @@
     "image_url": "/static/images/cards/misery.png",
     "beta_image_url": "/static/images/cards/beta/misery.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成9点伤害。\n给予其他敌人该名敌人身上的所有负面效果。",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 308
@@ -18738,7 +18712,7 @@
     "image_url": "/static/images/cards/blight_strike.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成10点伤害。\n给予等量于所造成伤害的[gold]灾厄[/gold]。",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 265
@@ -18769,13 +18743,11 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/malaise.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "敌人失去X+1点[gold]力量[/gold]。给予X+1层[gold]虚弱[/gold]。",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -18816,7 +18788,7 @@
     "image_url": "/static/images/cards/devastate.png",
     "beta_image_url": "/static/images/cards/beta/devastate.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成40点伤害。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 199
@@ -18853,7 +18825,7 @@
     "image_url": "/static/images/cards/pyre.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "在回合开始时，获得[energy:2]。",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 60
@@ -19016,7 +18988,7 @@
     "image_url": "/static/images/cards/void_form.png",
     "beta_image_url": "/static/images/cards/beta/void_form.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "结束你的回合。\n你可以免费打出每回合的前3张牌。",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 261
@@ -19184,7 +19156,7 @@
     "image_url": "/static/images/cards/helix_drill.png",
     "beta_image_url": "/static/images/cards/beta/helix_drill.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "在本回合中，每个被使用的[energy:1]，都会使此牌造成5点伤害一次。",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 392
@@ -19222,7 +19194,7 @@
     "image_url": "/static/images/cards/blood_wall.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "失去2点生命。\n获得20点[gold]格挡[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 8
@@ -19266,7 +19238,7 @@
     "image_url": "/static/images/cards/sleight_of_flesh.png",
     "beta_image_url": "/static/images/cards/beta/sleight_of_flesh.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "每当你给予一个敌人负面状态时，使其受到13点伤害。",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 336
@@ -19347,7 +19319,7 @@
     "image_url": "/static/images/cards/up_my_sleeve.png",
     "beta_image_url": "/static/images/cards/beta/up_my_sleeve.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "将4张[gold]小刀[/gold]加入你的[gold]手牌[/gold]。\n这张牌的耗能减少1。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 172
@@ -19384,7 +19356,7 @@
     "image_url": "/static/images/cards/forgotten_ritual.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "如果你在本回合[gold]消耗过[/gold]卡牌，则获得[energy:4]。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 37
@@ -19423,7 +19395,7 @@
     "image_url": "/static/images/cards/untouchable.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得12点[gold]格挡[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Common",
     "keywords_key": [
@@ -19463,7 +19435,7 @@
     "image_url": "/static/images/cards/accelerant.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]中毒[/gold]会额外触发2次。",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 88
@@ -19500,7 +19472,7 @@
     "image_url": "/static/images/cards/well_laid_plans.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "在你的回合结束时，[gold]保留[/gold]最多2张牌。",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 173
@@ -19735,7 +19707,7 @@
     "image_url": "/static/images/cards/negative_pulse.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得6点[gold]格挡[/gold]。\n给予所有敌人7层[gold]灾厄[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 310
@@ -19814,7 +19786,7 @@
     "image_url": "/static/images/cards/hand_of_greed.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成25点伤害。\n[gold]斩杀[/gold]时，获得25[gold]金币[/gold]。",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 461
@@ -19853,7 +19825,7 @@
     "image_url": "/static/images/cards/momentum_strike.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成13点伤害。\n这张牌的耗能降为0[energy:1]。",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 405
@@ -19892,7 +19864,7 @@
     "image_url": "/static/images/cards/supercritical.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得[energy:6]。",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -19940,7 +19912,7 @@
     "image_url": "/static/images/cards/hyperbeam.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "对所有敌人造成34点伤害。\n失去3点[gold]集中[/gold]。",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 395
@@ -19980,7 +19952,7 @@
     "image_url": "/static/images/cards/supermassive.png",
     "beta_image_url": "/static/images/cards/beta/supermassive.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成5点伤害。\n你在本场战斗中每生成过一张牌，这张牌就额外造成4点伤害。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 254
@@ -20020,7 +19992,7 @@
     "image_url": "/static/images/cards/ftl.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成6点伤害。\n如果你在这回合打出的牌数小于4张，抽1张牌。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 384
@@ -20059,7 +20031,7 @@
     "image_url": "/static/images/cards/overclock.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "抽3张牌。\n将一张[gold]灼伤[/gold]加入你的[gold]弃牌堆[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 408
@@ -20179,7 +20151,7 @@
     "image_url": "/static/images/cards/follow_through.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "对所有敌人造成8点伤害。\n如果在本回合，你打出的上一张牌是技能牌，则给予所有敌人1层[gold]虚弱[/gold]。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 124
@@ -20216,7 +20188,7 @@
     "image_url": "/static/images/cards/stomp.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "对所有敌人造成15点伤害。\n你在本回合中每打出过一张攻击牌，其耗能减少1[energy:1]。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 70
@@ -20255,7 +20227,7 @@
     "image_url": "/static/images/cards/bombardment.png",
     "beta_image_url": "/static/images/cards/beta/bombardment.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成24点伤害。\n在你的回合开始时，从[gold]消耗牌堆[/gold]打出这张牌。",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -20296,7 +20268,7 @@
     "image_url": "/static/images/cards/glow.png",
     "beta_image_url": "/static/images/cards/beta/glow.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得[star:2]。\n抽2张牌。",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 209
@@ -20336,7 +20308,7 @@
     "image_url": "/static/images/cards/radiate.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "你在本回合每获得一点[star:1]，则此牌就所有敌人造成4点伤害一次。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 239
@@ -20426,7 +20398,7 @@
     "image_url": "/static/images/cards/defy.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得7点[gold]格挡[/gold]。\n给予1层[gold]虚弱[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Common",
     "keywords_key": [
@@ -20466,7 +20438,7 @@
     "image_url": "/static/images/cards/volley.png",
     "beta_image_url": "/static/images/cards/beta/volley.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "随机对敌人造成14点伤害X次。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 502
@@ -20503,7 +20475,7 @@
     "image_url": "/static/images/cards/one_two_punch.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "在这个回合，你打出的下2张攻击牌会被额外打出一次。",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 54
@@ -20543,7 +20515,7 @@
     "image_url": "/static/images/cards/ricochet.png",
     "beta_image_url": "/static/images/cards/beta/ricochet.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "随机对敌人造成3点伤害5次。",
     "type_key": "Attack",
     "rarity_key": "Common",
     "keywords_key": [
@@ -20585,7 +20557,7 @@
     "image_url": "/static/images/cards/crash_landing.png",
     "beta_image_url": "/static/images/cards/beta/crash_landing.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "对所有敌人造成26点伤害。\n用[gold]碎屑[/gold]填满你的[gold]手牌[/gold]。",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 194
@@ -20629,7 +20601,7 @@
     "image_url": "/static/images/cards/iteration.png",
     "beta_image_url": "/static/images/cards/beta/iteration.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "每回合你第一次抽到状态牌时，抽3张牌。",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 398
@@ -20715,7 +20687,7 @@
     "image_url": "/static/images/cards/seeking_edge.png",
     "beta_image_url": "/static/images/cards/beta/seeking_edge.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]铸造[/gold]11。\n[gold]君王之剑[/gold]现在会对所有敌人造成伤害。",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 245
@@ -20754,7 +20726,7 @@
     "image_url": "/static/images/cards/adaptive_strike.png",
     "beta_image_url": "/static/images/cards/beta/adaptive_strike.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成23点伤害。\n将这张牌的一张0[energy:1]复制品添加到你的[gold]弃牌堆[/gold]。",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 351
@@ -20791,7 +20763,7 @@
     "image_url": "/static/images/cards/escape_plan.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "抽1张牌。\n如果抽到的是技能牌，则获得5点[gold]格挡[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 116
@@ -20835,7 +20807,7 @@
     "image_url": "/static/images/cards/speedster.png",
     "beta_image_url": "/static/images/cards/beta/speedster.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "每当你在回合进行中抽到一张牌时，对所有敌人造成3点伤害。",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 160
@@ -20875,7 +20847,7 @@
     "image_url": "/static/images/cards/genetic_algorithm.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得1点[gold]格挡[/gold]。\n每打出一次，这张牌在本局游戏中的[gold]格挡[/gold]值永久增加4点。",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -20915,7 +20887,7 @@
     "image_url": "/static/images/cards/evil_eye.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得11点[gold]格挡[/gold]。\n如果你在本回合获得[gold]消耗过[/gold]卡牌，则额外获得11点[gold]格挡[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 30
@@ -20956,7 +20928,7 @@
     "image_url": "/static/images/cards/flatten.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]奥斯提[/gold]造成16点伤害。\n如果[gold]奥斯提[/gold]本回合攻击过，则这张牌的费用变为0[energy:1]。",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 295
@@ -20995,7 +20967,7 @@
     "image_url": "/static/images/cards/reboot.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "将你的所有未消耗的卡牌重新洗牌放入[gold]抽牌堆[/gold]。\n抽6张牌。",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -21035,7 +21007,7 @@
     "image_url": "/static/images/cards/second_wind.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]消耗[/gold][gold]手牌[/gold]中所有非攻击牌，每张获得7点[gold]格挡[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 64
@@ -21114,7 +21086,7 @@
     "image_url": "/static/images/cards/bludgeon.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成42点伤害。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 9
@@ -21241,7 +21213,7 @@
     "image_url": "/static/images/cards/calcify.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]奥斯提[/gold]的攻击额外造成6点伤害。",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 270
@@ -21272,13 +21244,11 @@
       "SHIV"
     ],
     "vars": null,
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/storm_of_steel.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "丢弃所有[gold]手牌[/gold]。\n每丢弃一张牌，就将一张[gold]小刀+[/gold]添加至你的[gold]手牌[/gold]。",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 161
@@ -21317,7 +21287,7 @@
     "image_url": "/static/images/cards/iron_wave.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得7点[gold]格挡[/gold]。\n造成7点伤害。",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 48
@@ -21361,7 +21331,7 @@
     "image_url": "/static/images/cards/caltrops.png",
     "beta_image_url": "/static/images/cards/beta/caltrops.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "每当你被攻击时，对攻击者造成5点伤害。",
     "type_key": "Power",
     "rarity_key": "Event",
     "compendium_order": 525
@@ -21442,7 +21412,7 @@
     "image_url": "/static/images/cards/memento_mori.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成8点伤害。\n本回合每丢弃过一张牌，则增加5点额外伤害。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 136
@@ -21480,7 +21450,7 @@
     "image_url": "/static/images/cards/the_smith.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]铸造[/gold]40。",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 258
@@ -21519,7 +21489,7 @@
     "image_url": "/static/images/cards/bulwark.png",
     "beta_image_url": "/static/images/cards/beta/bulwark.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得16点[gold]格挡[/gold]。\n[gold]铸造[/gold]13。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 183
@@ -21595,7 +21565,7 @@
     "image_url": "/static/images/cards/beat_into_shape.png",
     "beta_image_url": "/static/images/cards/beta/beat_into_shape.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成7点伤害。\n[gold]铸造[/gold]X。\n本回合此前你击中过该敌人几次，就额外[gold]铸造[/gold]7。",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 178
@@ -21635,7 +21605,7 @@
     "image_url": "/static/images/cards/dramatic_entrance.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "对所有敌人造成15点伤害。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -21684,7 +21654,7 @@
     "image_url": "/static/images/cards/thunderclap.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "对所有敌人造成7点伤害，给予1层[gold]易伤[/gold]。",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 78
@@ -21721,7 +21691,7 @@
     "image_url": "/static/images/cards/dodge_and_roll.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得6点[gold]格挡[/gold]。\n在下个回合，获得6点[gold]格挡[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 113
@@ -21760,7 +21730,7 @@
     "image_url": "/static/images/cards/defend_ironclad.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得8点[gold]格挡[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Basic",
     "compendium_order": 24
@@ -21799,7 +21769,7 @@
     "image_url": "/static/images/cards/defend_silent.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得8点[gold]格挡[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Basic",
     "compendium_order": 111
@@ -21838,7 +21808,7 @@
     "image_url": "/static/images/cards/defend_regent.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得8点[gold]格挡[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Basic",
     "compendium_order": 198
@@ -21877,7 +21847,7 @@
     "image_url": "/static/images/cards/defend_necrobinder.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得8点[gold]格挡[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Basic",
     "compendium_order": 280
@@ -21916,7 +21886,7 @@
     "image_url": "/static/images/cards/defend_defect.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得8点[gold]格挡[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Basic",
     "compendium_order": 374
@@ -21951,13 +21921,11 @@
     "vars": {
       "Cards": 1
     },
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/seance.png",
     "beta_image_url": "/static/images/cards/beta/seance.png",
     "type_variants": null,
-    "upgrade_description": "将你[gold]抽牌堆[/gold]中的一张牌变化为[gold]灵魂+[/gold]。",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -22013,7 +21981,7 @@
     "image_url": "/static/images/cards/falling_star.png",
     "beta_image_url": "/static/images/cards/beta/falling_star.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成11点伤害。\n给予1层[gold]虚弱[/gold]。\n给予1层[gold]易伤[/gold]。",
     "type_key": "Attack",
     "rarity_key": "Basic",
     "compendium_order": 201
@@ -22052,7 +22020,7 @@
     "image_url": "/static/images/cards/meteor_strike.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成30点伤害。\n[gold]生成[/gold]3个[gold]等离子[/gold]充能球。",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 403
@@ -22086,13 +22054,11 @@
       "Shivs": 2,
       "Cards": 2
     },
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/hidden_daggers.png",
     "beta_image_url": "/static/images/cards/beta/hidden_daggers.png",
     "type_variants": null,
-    "upgrade_description": "丢弃2张牌。\n将2张[gold]小刀+[/gold]加入你的[gold]手牌[/gold]。",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 129
@@ -22137,7 +22103,7 @@
     "image_url": "/static/images/cards/hidden_cache.png",
     "beta_image_url": "/static/images/cards/beta/hidden_cache.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得[star:1]。\n在下个回合获得[star:4]。",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 216
@@ -22185,7 +22151,7 @@
     "image_url": "/static/images/cards/focused_strike.png",
     "beta_image_url": "/static/images/cards/beta/focused_strike.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成11点伤害。\n在本回合获得2点[gold]集中[/gold]。",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 383
@@ -22222,7 +22188,7 @@
     "image_url": "/static/images/cards/rally.png",
     "beta_image_url": "/static/images/cards/beta/rally.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "所有玩家获得17点[gold]格挡[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 483
@@ -22261,7 +22227,7 @@
     "image_url": "/static/images/cards/sculpting_strike.png",
     "beta_image_url": "/static/images/cards/beta/sculpting_strike.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成11点伤害。\n将[gold]虚无[/gold]添加至一张[gold]手牌[/gold]。",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 329
@@ -22305,7 +22271,7 @@
     "image_url": "/static/images/cards/storm.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "每当你打出一张能力牌时，[gold]生成[/gold]2个[gold]闪电[/gold]充能球。",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 422
@@ -22349,7 +22315,7 @@
     "image_url": "/static/images/cards/thunder.png",
     "beta_image_url": "/static/images/cards/beta/thunder.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "每当你[gold]激发闪电[/gold]充能球时，对被命中的敌人造成8点伤害。",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 432
@@ -22388,7 +22354,7 @@
     "image_url": "/static/images/cards/shockwave.png",
     "beta_image_url": "/static/images/cards/beta/shockwave.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "给予所有敌人5层[gold]虚弱[/gold]和[gold]易伤[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -22472,7 +22438,7 @@
     "image_url": "/static/images/cards/hegemony.png",
     "beta_image_url": "/static/images/cards/beta/hegemony.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成18点伤害。\n在下个回合获得[energy:3]。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 214
@@ -22570,7 +22536,7 @@
     "image_url": "/static/images/cards/scourge.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "给予13层[gold]灾厄[/gold]。\n抽2张牌。",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 328
@@ -22615,7 +22581,7 @@
     "image_url": "/static/images/cards/borrowed_time.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "给予自身3层[gold]灾厄[/gold]。\n获得[energy:2]。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 268
@@ -22707,7 +22673,7 @@
     "image_url": "/static/images/cards/setup_strike.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成9点伤害。\n在本回合内获得2点[gold]力量[/gold]。",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 65
@@ -22744,7 +22710,7 @@
     "image_url": "/static/images/cards/prophesize.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "抽9张牌。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 237
@@ -22783,7 +22749,7 @@
     "image_url": "/static/images/cards/parse.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "抽4张牌。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -22867,7 +22833,7 @@
     "image_url": "/static/images/cards/sword_boomerang.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "随机对敌人造成3点伤害4次。",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 73
@@ -22896,13 +22862,11 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/splash.png",
     "beta_image_url": "/static/images/cards/beta/splash.png",
     "type_variants": null,
-    "upgrade_description": "从3张其他角色的[gold]升级过的[/gold]攻击牌中选择1张加入你的[gold]手牌[/gold]。这张牌在本回合免费打出。",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 493
@@ -22939,7 +22903,7 @@
     "image_url": "/static/images/cards/leap.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得12点[gold]格挡[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 399
@@ -22978,7 +22942,7 @@
     "image_url": "/static/images/cards/flechettes.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]手牌[/gold]中每有一张技能牌，造成7点伤害。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 122
@@ -23015,7 +22979,7 @@
     "image_url": "/static/images/cards/uproar.png",
     "beta_image_url": "/static/images/cards/beta/uproar.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "造成7点伤害两次。\n随机打出你的[gold]抽牌堆[/gold]中的1张攻击牌。",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 435
@@ -23054,7 +23018,7 @@
     "image_url": "/static/images/cards/legion_of_bone.png",
     "beta_image_url": "/static/images/cards/beta/legion_of_bone.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "所有玩家[gold]召唤[/gold]8。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -23096,7 +23060,7 @@
     "image_url": "/static/images/cards/boost_away.png",
     "beta_image_url": "/static/images/cards/beta/boost_away.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得9点[gold]格挡[/gold]。\n将一张[gold]眩晕[/gold]添加到你的[gold]弃牌堆[/gold]中。",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 357
@@ -23184,7 +23148,7 @@
     "image_url": "/static/images/cards/sneaky.png",
     "beta_image_url": "/static/images/cards/beta/sneaky.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "每当其他玩家攻击一名敌人时，获得2点[gold]格挡[/gold]。",
     "type_key": "Power",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -23301,7 +23265,7 @@
     "image_url": "/static/images/cards/dark_shackles.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "使一名敌人在本回合失去15点[gold]力量[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -23348,7 +23312,7 @@
     "image_url": "/static/images/cards/black_hole.png",
     "beta_image_url": "/static/images/cards/beta/black_hole.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "每当你使用或获得[star:1]时, 对所有敌人造成4点伤害。",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 181

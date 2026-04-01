@@ -33,7 +33,7 @@
     "image_url": "/static/images/cards/turbo.png",
     "beta_image_url": "/static/images/cards/beta/turbo.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana [energy:3].\nAñade un [gold]Vacío[/gold] a tu [gold]Pila de descarte[/gold].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 434
@@ -105,7 +105,7 @@
     "image_url": "/static/images/cards/fisticuffs.png",
     "beta_image_url": "/static/images/cards/beta/fisticuffs.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 9 de daño.\nGana [gold]Bloqueo[/gold] igual al daño infligido.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 457
@@ -142,7 +142,7 @@
     "image_url": "/static/images/cards/pounce.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 18 de daño.\nLa siguiente Habilidad que juegues cuesta 0 [energy:1].",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 147
@@ -181,7 +181,7 @@
     "image_url": "/static/images/cards/fan_of_knives.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Ahora las [gold]Navajas[/gold] golpean a TODOS los enemigos.\nAñade 5 [gold]Navajas[/gold] a tu [gold]Mano[/gold].",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 119
@@ -234,7 +234,7 @@
     "image_url": "/static/images/cards/abrasive.png",
     "beta_image_url": "/static/images/cards/beta/abrasive.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 1 de [gold]Destreza[/gold].\nGana 6 [gold]Espinas[/gold].",
     "type_key": "Power",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -316,7 +316,7 @@
     "image_url": "/static/images/cards/caltrops.png",
     "beta_image_url": "/static/images/cards/beta/caltrops.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Cuando te ataquen, inflige 5 de daño al atacante.",
     "type_key": "Power",
     "rarity_key": "Event",
     "compendium_order": 525
@@ -353,7 +353,7 @@
     "image_url": "/static/images/cards/accelerant.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "El [gold]Veneno[/gold] se activa 2 veces más.",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 88
@@ -391,7 +391,7 @@
     "image_url": "/static/images/cards/gather_light.png",
     "beta_image_url": "/static/images/cards/beta/gather_light.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 10 de [gold]Bloqueo[/gold].\nGana [star:1].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 205
@@ -428,7 +428,7 @@
     "image_url": "/static/images/cards/acrobatics.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Roba 4 cartas.\nDescarta 1 carta.",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 90
@@ -465,7 +465,7 @@
     "image_url": "/static/images/cards/huddle_up.png",
     "beta_image_url": "/static/images/cards/beta/huddle_up.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "TODOS los aliados roban 3 cartas.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 463
@@ -505,7 +505,7 @@
     "image_url": "/static/images/cards/adrenaline.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana [energy:2].\nRoba 2 cartas.",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -545,7 +545,7 @@
     "image_url": "/static/images/cards/skim.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Roba 4 cartas.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 419
@@ -591,7 +591,7 @@
     "image_url": "/static/images/cards/grapple.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 9 de daño.\nCuando ganes [gold]Bloqueo[/gold] este turno, inflige 7 de daño al enemigo.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 38
@@ -630,7 +630,7 @@
     "image_url": "/static/images/cards/pull_from_below.png",
     "beta_image_url": "/static/images/cards/beta/pull_from_below.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 7 de daño por cada carta [gold]Etérea[/gold] jugada durante este combate.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 319
@@ -744,7 +744,7 @@
     "image_url": "/static/images/cards/black_hole.png",
     "beta_image_url": "/static/images/cards/beta/black_hole.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Siempre que gastes u obtengas [star:1], inflige 4 de daño a TODOS los enemigos.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 181
@@ -781,7 +781,7 @@
     "image_url": "/static/images/cards/uproar.png",
     "beta_image_url": "/static/images/cards/beta/uproar.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 7 de daño dos veces.\nJuega un Ataque aleatorio de tu [gold]Pila de robo[/gold].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 435
@@ -821,7 +821,7 @@
     "image_url": "/static/images/cards/genetic_algorithm.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 1 de [gold]Bloqueo[/gold].\nAumenta el [gold]Bloqueo[/gold] de esta carta en 4.",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -865,7 +865,7 @@
     "image_url": "/static/images/cards/feed.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 12 de daño.\nSi el daño es [gold]Letal[/gold], aumenta tus PV máx. en 4.",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -906,7 +906,7 @@
     "image_url": "/static/images/cards/alignment.png",
     "beta_image_url": "/static/images/cards/beta/alignment.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana [energy:3].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 175
@@ -947,7 +947,7 @@
     "image_url": "/static/images/cards/flatten.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Nudillos[/gold] inflige 16 de daño.\nEsta carta cuesta 0 [energy:1] si [gold]Nudillos[/gold] ha atacado este turno.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 295
@@ -986,7 +986,7 @@
     "image_url": "/static/images/cards/soul.png",
     "beta_image_url": "/static/images/cards/beta/soul.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Roba 3 cartas.",
     "type_key": "Skill",
     "rarity_key": "Token",
     "keywords_key": [
@@ -1068,7 +1068,7 @@
     "image_url": "/static/images/cards/overclock.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Roba 3 cartas.\nAñade una [gold]Quemadura[/gold] a tu [gold]Pila de descarte[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 408
@@ -1105,7 +1105,7 @@
     "image_url": "/static/images/cards/volley.png",
     "beta_image_url": "/static/images/cards/beta/volley.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 14 de daño a un enemigo aleatorio X veces.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 502
@@ -1144,7 +1144,7 @@
     "image_url": "/static/images/cards/energy_surge.png",
     "beta_image_url": "/static/images/cards/beta/energy_surge.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "TODOS los jugadores ganan [energy:3].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -1236,7 +1236,7 @@
     "image_url": "/static/images/cards/buffer.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Evita perder PV las siguientes 2 veces que fueras a recibir daño.",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 359
@@ -1275,7 +1275,7 @@
     "image_url": "/static/images/cards/parse.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Roba 4 cartas.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -1359,7 +1359,7 @@
     "image_url": "/static/images/cards/beat_down.png",
     "beta_image_url": "/static/images/cards/beta/beat_down.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Juega 4 Ataques aleatorios de tu [gold]Pila de descarte[/gold].",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 443
@@ -1398,7 +1398,7 @@
     "image_url": "/static/images/cards/haunt.png",
     "beta_image_url": "/static/images/cards/beta/haunt.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Cuando juegues un [gold]Alma[/gold], un enemigo aleatorio pierde 8 PV.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 302
@@ -1495,7 +1495,7 @@
     "image_url": "/static/images/cards/devour_life.png",
     "beta_image_url": "/static/images/cards/beta/devour_life.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Cuando juegues un [gold]Alma[/gold], [gold]Vincula[/gold] 2.",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 285
@@ -1572,7 +1572,7 @@
     "image_url": "/static/images/cards/crush_under.png",
     "beta_image_url": "/static/images/cards/beta/crush_under.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 8 de daño a TODOS los enemigos. Pierden 2 de [gold]Fuerza[/gold] este turno.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 196
@@ -1694,7 +1694,7 @@
     "image_url": "/static/images/cards/squeeze.png",
     "beta_image_url": "/static/images/cards/beta/squeeze.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Nudillos[/gold] inflige 25 de daño.\nInflige 6 de daño adicional por CADA UNO de tus otros Ataques de [gold]Nudillos[/gold].",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 342
@@ -1816,7 +1816,7 @@
     "image_url": "/static/images/cards/scrape.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 10 de daño.\nRoba 5 cartas.\nDescarta todas las cartas robadas de esta manera que no cuesten 0 [energy:1].",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 415
@@ -1940,7 +1940,7 @@
     "image_url": "/static/images/cards/eternal_armor.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 9 de [gold]Blindaje[/gold].",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 454
@@ -1984,7 +1984,7 @@
     "image_url": "/static/images/cards/stone_armor.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 6 de [gold]Blindaje[/gold].",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 71
@@ -2015,13 +2015,11 @@
     "vars": {
       "Block": 5
     },
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/armaments.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Gana 5 de [gold]Bloqueo[/gold].\n[gold]Mejora[/gold] TODAS las cartas de tu [gold]Mano[/gold].",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 2
@@ -2058,7 +2056,7 @@
     "image_url": "/static/images/cards/stomp.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 15 de daño a TODOS los enemigos.\nCuesta 1 [energy:1] menos por cada Ataque jugado este turno.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 70
@@ -2102,7 +2100,7 @@
     "image_url": "/static/images/cards/arsenal.png",
     "beta_image_url": "/static/images/cards/beta/arsenal.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Cuando juegues una carta incolora, gana 2 de [gold]Fuerza[/gold].",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 176
@@ -2141,7 +2139,7 @@
     "image_url": "/static/images/cards/flak_cannon.png",
     "beta_image_url": "/static/images/cards/beta/flak_cannon.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Agota[/gold] TODAS tus cartas de [gold]Estado[/gold].\nInflige 11 de daño a un enemigo aleatorio por cada carta [gold]Agotada[/gold].",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 382
@@ -2178,7 +2176,7 @@
     "image_url": "/static/images/cards/hand_trick.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 10 de [gold]Bloqueo[/gold].\nOtorga [gold]Astucia[/gold] a una Habilidad de tu [gold]Mano[/gold] durante este turno.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 127
@@ -2217,7 +2215,7 @@
     "image_url": "/static/images/cards/up_my_sleeve.png",
     "beta_image_url": "/static/images/cards/beta/up_my_sleeve.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Añade 4 [gold]Navajas[/gold] a tu [gold]Mano[/gold].\nReduce el coste de esta carta en 1.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 172
@@ -2255,7 +2253,7 @@
     "image_url": "/static/images/cards/cinder.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 22 de daño.\n[gold]Agota[/gold] la primera carta de tu [gold]Pila de robo[/gold].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 17
@@ -2304,7 +2302,7 @@
     "image_url": "/static/images/cards/assassinate.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 13 de daño.\nAplica 1 de [gold]Vulnerabilidad[/gold].",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -2386,7 +2384,7 @@
     "image_url": "/static/images/cards/fasten.png",
     "beta_image_url": "/static/images/cards/beta/fasten.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 7 de [gold]Bloqueo[/gold] adicional de las cartas de Defender.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 455
@@ -2425,7 +2423,7 @@
     "image_url": "/static/images/cards/crash_landing.png",
     "beta_image_url": "/static/images/cards/beta/crash_landing.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 26 de daño a TODOS los enemigos.\nLlena tu [gold]Mano[/gold] de [gold]Escombros[/gold].",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 194
@@ -2466,7 +2464,7 @@
     "image_url": "/static/images/cards/glimpse_beyond.png",
     "beta_image_url": "/static/images/cards/beta/glimpse_beyond.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "TODOS los jugadores añaden 4 [gold]Almas[/gold] a su [gold]Pila de robo[/gold].",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -2541,7 +2539,7 @@
     "image_url": "/static/images/cards/howl_from_beyond.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 21 de daño a TODOS los enemigos.\nAl comienzo de tu turno, se juega desde la [gold]Pila de agotamiento[/gold].",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 43
@@ -2615,7 +2613,7 @@
     "image_url": "/static/images/cards/manifest_authority.png",
     "beta_image_url": "/static/images/cards/beta/manifest_authority.png",
     "type_variants": null,
-    "upgrade_description": "Gana 7 de [gold]Bloqueo[/gold].\nAñade una carta incolora [gold]Mejorada[/gold] aleatoria a tu [gold]Mano[/gold].",
+    "upgrade_description": "Gana 8 de [gold]Bloqueo[/gold].\nAñade una carta incolora [gold]Mejorada[/gold] aleatoria a tu [gold]Mano[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 225
@@ -2653,7 +2651,7 @@
     "image_url": "/static/images/cards/breakthrough.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Pierde 1 PV.\nInflige 13 de daño a TODOS los enemigos.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 13
@@ -2690,7 +2688,7 @@
     "image_url": "/static/images/cards/outmaneuver.png",
     "beta_image_url": "/static/images/cards/beta/outmaneuver.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Al siguiente turno, gana [energy:3].",
     "type_key": "Skill",
     "rarity_key": "Event",
     "compendium_order": 538
@@ -2734,7 +2732,7 @@
     "image_url": "/static/images/cards/inflame.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 3 de [gold]Fuerza[/gold].",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 47
@@ -2820,7 +2818,7 @@
     "image_url": "/static/images/cards/patter.png",
     "beta_image_url": "/static/images/cards/beta/patter.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 10 de [gold]Bloqueo[/gold].\nGana 3 de [gold]Vigor[/gold].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 234
@@ -2859,7 +2857,7 @@
     "image_url": "/static/images/cards/flame_barrier.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 16 de [gold]Bloqueo[/gold].\nCuando te ataquen durante este turno, inflige 6 de daño al atacante.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 36
@@ -2896,7 +2894,7 @@
     "image_url": "/static/images/cards/shadow_shield.png",
     "beta_image_url": "/static/images/cards/beta/shadow_shield.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 15 de [gold]Bloqueo[/gold].\n[gold]Invoca[/gold] 1 [gold]Oscuridad[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 416
@@ -2969,7 +2967,7 @@
     "image_url": "/static/images/cards/sweeping_beam.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 9 de daño a TODOS los enemigos.\nRoba 1 carta.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 427
@@ -3015,7 +3013,7 @@
     "image_url": "/static/images/cards/leg_sweep.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Aplica 2 de [gold]Debilidad[/gold].\nGana 14 de [gold]Bloqueo[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 133
@@ -3059,7 +3057,7 @@
     "image_url": "/static/images/cards/sweeping_gaze.png",
     "beta_image_url": "/static/images/cards/beta/sweeping_gaze.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Nudillos[/gold] inflige 15 de daño a un enemigo aleatorio.",
     "type_key": "Attack",
     "rarity_key": "Token",
     "keywords_key": [
@@ -3100,7 +3098,7 @@
     "image_url": "/static/images/cards/tesla_coil.png",
     "beta_image_url": "/static/images/cards/beta/tesla_coil.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 6 de daño.\nActiva todos los [gold]Relámpagos[/gold] contra el enemigo.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 431
@@ -3137,7 +3135,7 @@
     "image_url": "/static/images/cards/ball_lightning.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 10 de daño.\n[gold]Invoca[/gold] 1 [gold]Relámpago[/gold].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 353
@@ -3174,7 +3172,7 @@
     "image_url": "/static/images/cards/bolas.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 4 de daño.\nAl comienzo de tu siguiente turno, devuelve esta carta a tu [gold]Mano[/gold].",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 445
@@ -3213,7 +3211,7 @@
     "image_url": "/static/images/cards/bombardment.png",
     "beta_image_url": "/static/images/cards/beta/bombardment.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 24 de daño.\nAl comienzo de tu turno, se juega desde la [gold]Pila de agotamiento[/gold].",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -3255,7 +3253,7 @@
     "image_url": "/static/images/cards/barrage.png",
     "beta_image_url": "/static/images/cards/beta/barrage.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 7 de daño por cada Orbe [gold]Invocado[/gold].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 354
@@ -3296,7 +3294,7 @@
     "image_url": "/static/images/cards/minion_dive_bomb.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 16 de daño.",
     "type_key": "Attack",
     "rarity_key": "Token",
     "keywords_key": [
@@ -3336,7 +3334,7 @@
     "image_url": "/static/images/cards/spoils_of_battle.png",
     "beta_image_url": "/static/images/cards/beta/spoils_of_battle.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Forja[/gold] 15.",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 250
@@ -3376,7 +3374,7 @@
     "image_url": "/static/images/cards/panic_button.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 40 de [gold]Bloqueo[/gold].\nNo puedes ganar [gold]Bloqueo[/gold] mediante cartas durante 2 turnos.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -3417,7 +3415,7 @@
     "image_url": "/static/images/cards/glow.png",
     "beta_image_url": "/static/images/cards/beta/glow.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana [star:2].\nRoba 2 cartas.",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 209
@@ -3456,7 +3454,7 @@
     "image_url": "/static/images/cards/helix_drill.png",
     "beta_image_url": "/static/images/cards/beta/helix_drill.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 5 de daño por cada [energy:1] que hayas gastado este turno.",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 392
@@ -3501,7 +3499,7 @@
     "image_url": "/static/images/cards/outbreak.png",
     "beta_image_url": "/static/images/cards/beta/outbreak.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Cada 3 veces que apliques [gold]Veneno[/gold], inflige 15 de daño a TODOS los enemigos.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 142
@@ -3575,7 +3573,7 @@
     "image_url": "/static/images/cards/headbutt.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 12 de daño.\nColoca una carta de tu [gold]Pila de descarte[/gold] en la parte superior de tu [gold]Pila de robo[/gold].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 40
@@ -3689,7 +3687,7 @@
     "image_url": "/static/images/cards/calcify.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Los ataques de [gold]Nudillos[/gold] infligen 6 de daño adicional.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 270
@@ -3771,7 +3769,7 @@
     "image_url": "/static/images/cards/rolling_boulder.png",
     "beta_image_url": "/static/images/cards/beta/rolling_boulder.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Al comienzo de tu turno, inflige 10 de daño a TODOS los enemigos y aumenta esta daño en 5.",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 486
@@ -3808,7 +3806,7 @@
     "image_url": "/static/images/cards/chaos.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Invoca[/gold] 2 Orbes aleatorios.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 362
@@ -3846,7 +3844,7 @@
     "image_url": "/static/images/cards/cloak_of_stars.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 10 de [gold]Bloqueo[/gold].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 188
@@ -3886,7 +3884,7 @@
     "image_url": "/static/images/cards/cloak_and_dagger.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 6 de [gold]Bloqueo[/gold].\nAñade 2 [gold]Navajas[/gold] a tu [gold]Mano[/gold].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 105
@@ -3932,7 +3930,7 @@
     "image_url": "/static/images/cards/beam_cell.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 4 de daño.\nAplica 1 de [gold]Vulnerabilidad[/gold].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 355
@@ -3970,7 +3968,7 @@
     "image_url": "/static/images/cards/charge_battery.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 10 de [gold]Bloqueo[/gold].\nAl siguiente turno, gana [energy:1].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 363
@@ -3999,13 +3997,11 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/cascade.png",
     "beta_image_url": "/static/images/cards/beta/cascade.png",
     "type_variants": null,
-    "upgrade_description": "Juega las X+1 primeras cartas de tu [gold]Pila de robo[/gold].",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 16
@@ -4042,7 +4038,7 @@
     "image_url": "/static/images/cards/catastrophe.png",
     "beta_image_url": "/static/images/cards/beta/catastrophe.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Juega 3 cartas aleatorias de tu [gold]Pila de robo[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 447
@@ -4083,7 +4079,7 @@
     "image_url": "/static/images/cards/snap.png",
     "beta_image_url": "/static/images/cards/beta/snap.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Nudillos[/gold] inflige 10 de daño.\nAñade [gold]Retención[/gold] a una carta de tu [gold]Mano[/gold].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 337
@@ -4127,7 +4123,7 @@
     "image_url": "/static/images/cards/smokestack.png",
     "beta_image_url": "/static/images/cards/beta/smokestack.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Cuando crees una carta de Estado, inflige 7 de daño a TODOS los enemigos.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 420
@@ -4177,7 +4173,7 @@
     "image_url": "/static/images/cards/high_five.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Nudillos[/gold] inflige 13 de daño\ny aplica 2 de [gold]Vulnerabilidad[/gold]\na TODOS los enemigos.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 303
@@ -4214,7 +4210,7 @@
     "image_url": "/static/images/cards/clash.png",
     "beta_image_url": "/static/images/cards/beta/clash.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Solo se puede jugar si todas las cartas de tu [gold]Mano[/gold] son Ataques.\nInflige 18 daño.",
     "type_key": "Attack",
     "rarity_key": "Event",
     "compendium_order": 526
@@ -4407,7 +4403,7 @@
     "image_url": "/static/images/cards/hang.png",
     "beta_image_url": "/static/images/cards/beta/hang.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 13 de daño.\nDuplica el daño que el enemigo recibe de las cartas de Colgar.",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 301
@@ -4445,7 +4441,7 @@
     "image_url": "/static/images/cards/colossus.png",
     "beta_image_url": "/static/images/cards/beta/colossus.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 8 de [gold]Bloqueo[/gold].\nRecibes un 50 % menos de daño de enemigos [gold]Vulnerables[/gold] durante este turno.",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 18
@@ -4489,7 +4485,7 @@
     "image_url": "/static/images/cards/juggernaut.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Cuando ganes [gold]Bloqueo[/gold], inflige 7 de daño a un enemigo aleatorio.",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 49
@@ -4529,7 +4525,7 @@
     "image_url": "/static/images/cards/fuel.png",
     "beta_image_url": "/static/images/cards/beta/fuel.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana [energy:1].\nRoba 2 cartas.",
     "type_key": "Skill",
     "rarity_key": "Token",
     "keywords_key": [
@@ -4585,7 +4581,7 @@
     "image_url": "/static/images/cards/comet.png",
     "beta_image_url": "/static/images/cards/beta/comet.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 44 de daño.\nAplica 3 de [gold]Debilidad[/gold].\nAplica 3 de [gold]Vulnerabilidad[/gold].",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 190
@@ -4624,7 +4620,7 @@
     "image_url": "/static/images/cards/compile_driver.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 10 de daño.\nRoba 1 carta por cada Orbe único que tengas.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 368
@@ -4663,7 +4659,7 @@
     "image_url": "/static/images/cards/compact.png",
     "beta_image_url": "/static/images/cards/beta/compact.png",
     "type_variants": null,
-    "upgrade_description": "Gana 6 de [gold]Bloqueo[/gold].\n[gold]Transforma[/gold] todas las cartas de Estado de tu [gold]Mano[/gold] en [gold]Combustible+[/gold].",
+    "upgrade_description": "Gana 7 de [gold]Bloqueo[/gold].\n[gold]Transforma[/gold] todas las cartas de Estado de tu [gold]Mano[/gold] en [gold]Combustible+[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 367
@@ -4700,7 +4696,7 @@
     "image_url": "/static/images/cards/foregone_conclusion.png",
     "beta_image_url": "/static/images/cards/beta/foregone_conclusion.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Al siguiente turno, coloca 3 cartas de tu [gold]Pila de robo[/gold] en tu [gold]Mano[/gold].",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 202
@@ -4737,7 +4733,7 @@
     "image_url": "/static/images/cards/capacitor.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 3 espacios de Orbe.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 361
@@ -4778,7 +4774,7 @@
     "image_url": "/static/images/cards/conflagration.png",
     "beta_image_url": "/static/images/cards/beta/conflagration.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 8 de daño a TODOS los enemigos.\nInflige 3 de daño adicional por cada otro Ataque que hayas jugado este turno.",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 19
@@ -4850,7 +4846,7 @@
     "image_url": "/static/images/cards/believe_in_you.png",
     "beta_image_url": "/static/images/cards/beta/believe_in_you.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Otro jugador gana [energy:4].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 444
@@ -4901,7 +4897,7 @@
     "image_url": "/static/images/cards/biased_cognition.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 5 de [gold]Concentración[/gold].\nAl comienzo de tu turno, pierde 1 de [gold]Concentración[/gold].",
     "type_key": "Power",
     "rarity_key": "Ancient",
     "compendium_order": 356
@@ -4938,7 +4934,7 @@
     "image_url": "/static/images/cards/conqueror.png",
     "beta_image_url": "/static/images/cards/beta/conqueror.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Forja[/gold] 5.\n[gold]Espada del soberano[/gold] inflige el doble de daño al enemigo este turno.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 191
@@ -5018,7 +5014,7 @@
     "image_url": "/static/images/cards/convergence.png",
     "beta_image_url": "/static/images/cards/beta/convergence.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Al siguiente turno,\ngana [energy:1] y [star:2].\n[gold]Retén[/gold] tu [gold]Mano[/gold] este turno.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 192
@@ -5101,7 +5097,7 @@
     "image_url": "/static/images/cards/dash.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 13 de [gold]Bloqueo[/gold].\nInflige 13 de daño.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 109
@@ -5214,7 +5210,7 @@
     "image_url": "/static/images/cards/echoing_slash.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 13 de daño a TODOS los enemigos.\nRepite este efecto por cada enemigo que mates.",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 114
@@ -5251,7 +5247,7 @@
     "image_url": "/static/images/cards/glasswork.png",
     "beta_image_url": "/static/images/cards/beta/glasswork.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 8 de [gold]Bloqueo[/gold].\n[gold]Invoca[/gold] 1 [gold]Cristal[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 388
@@ -5295,7 +5291,7 @@
     "image_url": "/static/images/cards/cruelty.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Los enemigos [gold]Vulnerables[/gold] reciben un 50 % de daño adicional.",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 22
@@ -5338,7 +5334,7 @@
     "image_url": "/static/images/cards/rattle.png",
     "beta_image_url": "/static/images/cards/beta/rattle.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Nudillos[/gold] inflige 9 de daño.\nGolpea una vez más por cada otra vez que haya atacado este turno.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 321
@@ -5419,7 +5415,7 @@
     "image_url": "/static/images/cards/countdown.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Al comienzo de tu turno, aplica 9 de [gold]Condena[/gold] a un enemigo aleatorio.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 274
@@ -5490,13 +5486,11 @@
     "vars": {
       "StarCost": 2
     },
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/quasar.png",
     "beta_image_url": "/static/images/cards/beta/quasar.png",
     "type_variants": null,
-    "upgrade_description": "Elige 1 de entre 3 cartas incoloras [gold]Mejoradas[/gold] y añádelas a tu [gold]Mano[/gold].",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 238
@@ -5530,13 +5524,11 @@
       "Shivs": 2,
       "Cards": 2
     },
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/hidden_daggers.png",
     "beta_image_url": "/static/images/cards/beta/hidden_daggers.png",
     "type_variants": null,
-    "upgrade_description": "Descarta 2 cartas.\nAñade 2 [gold]Navajas+[/gold] a tu [gold]Mano[/gold].",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 129
@@ -5577,7 +5569,7 @@
     "image_url": "/static/images/cards/blade_dance.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Añade 4 [gold]Navajas[/gold] a tu [gold]Mano[/gold].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "keywords_key": [
@@ -5625,7 +5617,7 @@
     "image_url": "/static/images/cards/danse_macabre.png",
     "beta_image_url": "/static/images/cards/beta/danse_macabre.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Cuando juegues una carta que cueste [energy:2] o más, gana 4 de [gold]Bloqueo[/gold].",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 275
@@ -5664,7 +5656,7 @@
     "image_url": "/static/images/cards/flechettes.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 7 de daño por cada Habilidad en tu [gold]Mano[/gold].",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 122
@@ -5710,7 +5702,7 @@
     "image_url": "/static/images/cards/debilitate.png",
     "beta_image_url": "/static/images/cards/beta/debilitate.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 9 de daño.\n[gold]Vulnerabilidad[/gold] y [gold]Debilidad[/gold] son el doble de efectivos en enemigos durante los siguientes 4 turnos.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 279
@@ -5751,7 +5743,7 @@
     "image_url": "/static/images/cards/poke.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Nudillos[/gold] inflige 9 de daño.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 316
@@ -5790,7 +5782,7 @@
     "image_url": "/static/images/cards/pull_aggro.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Vincula[/gold] 5.\nGana 9 de [gold]Bloqueo[/gold].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 318
@@ -5829,7 +5821,7 @@
     "image_url": "/static/images/cards/defend_ironclad.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 8 de [gold]Bloqueo[/gold].",
     "type_key": "Skill",
     "rarity_key": "Basic",
     "compendium_order": 24
@@ -5868,7 +5860,7 @@
     "image_url": "/static/images/cards/defend_silent.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 8 de [gold]Bloqueo[/gold].",
     "type_key": "Skill",
     "rarity_key": "Basic",
     "compendium_order": 111
@@ -5907,7 +5899,7 @@
     "image_url": "/static/images/cards/defend_regent.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 8 de [gold]Bloqueo[/gold].",
     "type_key": "Skill",
     "rarity_key": "Basic",
     "compendium_order": 198
@@ -5946,7 +5938,7 @@
     "image_url": "/static/images/cards/defend_necrobinder.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 8 de [gold]Bloqueo[/gold].",
     "type_key": "Skill",
     "rarity_key": "Basic",
     "compendium_order": 280
@@ -5985,7 +5977,7 @@
     "image_url": "/static/images/cards/defend_defect.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 8 de [gold]Bloqueo[/gold].",
     "type_key": "Skill",
     "rarity_key": "Basic",
     "compendium_order": 374
@@ -6024,7 +6016,7 @@
     "image_url": "/static/images/cards/ultimate_defend.png",
     "beta_image_url": "/static/images/cards/beta/ultimate_defend.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 15 de [gold]Bloqueo[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 500
@@ -6063,7 +6055,7 @@
     "image_url": "/static/images/cards/delay.png",
     "beta_image_url": "/static/images/cards/beta/delay.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 13 de [gold]Bloqueo[/gold].\nAl siguiente turno,\ngana [energy:2].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 283
@@ -6109,7 +6101,7 @@
     "image_url": "/static/images/cards/null.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 13 de daño.\nAplica 2 de [gold]Debilidad[/gold].\n[gold]Invoca[/gold] 1 [gold]Oscuridad[/gold].",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 407
@@ -6146,7 +6138,7 @@
     "image_url": "/static/images/cards/predator.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 20 de daño.\nAl siguiente turno, roba 2 cartas.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 149
@@ -6194,7 +6186,7 @@
     "image_url": "/static/images/cards/defy.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 7 de [gold]Bloqueo[/gold].\nAplica 1 de [gold]Debilidad[/gold].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "keywords_key": [
@@ -6433,7 +6425,7 @@
     "image_url": "/static/images/cards/defragment.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 2 de [gold]Concentración[/gold].",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 375
@@ -6512,7 +6504,7 @@
     "image_url": "/static/images/cards/dismantle.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 10 de daño.\nSi el enemigo es [gold]Vulnerable[/gold], golpea dos veces.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 27
@@ -6591,7 +6583,7 @@
     "image_url": "/static/images/cards/mangle.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 20 de daño.\nEl enemigo pierde 15 de [gold]Fuerza[/gold] este turno.",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 51
@@ -6628,7 +6620,7 @@
     "image_url": "/static/images/cards/vicious.png",
     "beta_image_url": "/static/images/cards/beta/vicious.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Cuando apliques [gold]Vulnerabilidad[/gold], roba 2 cartas.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 85
@@ -6668,7 +6660,7 @@
     "image_url": "/static/images/cards/reave.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Inflige 9 de daño.\nAñade un [gold]Alma+[/gold] a tu [gold]Pila de robo[/gold].",
+    "upgrade_description": "Inflige 11 de daño.\nAñade un [gold]Alma+[/gold] a tu [gold]Pila de robo[/gold].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 325
@@ -6706,7 +6698,7 @@
     "image_url": "/static/images/cards/glimmer.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Roba 4 cartas.\nColoca 1 carta de tu [gold]Mano[/gold] en la parte superior de tu [gold]Pila de robo[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 207
@@ -6744,7 +6736,7 @@
     "image_url": "/static/images/cards/flash_of_steel.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 8 de daño.\nRoba 1 carta.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 458
@@ -6784,7 +6776,7 @@
     "image_url": "/static/images/cards/shared_fate.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Pierde 2 de [gold]Fuerza[/gold].\nEl enemigo pierde 3 de [gold]Fuerza[/gold].",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -6824,7 +6816,7 @@
     "image_url": "/static/images/cards/deflect.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 7 de [gold]Bloqueo[/gold].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 112
@@ -6902,7 +6894,7 @@
     "image_url": "/static/images/cards/devastate.png",
     "beta_image_url": "/static/images/cards/beta/devastate.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 40 de daño.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 199
@@ -6939,7 +6931,7 @@
     "image_url": "/static/images/cards/venerate.png",
     "beta_image_url": "/static/images/cards/beta/venerate.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana [star:3].",
     "type_key": "Skill",
     "rarity_key": "Basic",
     "compendium_order": 260
@@ -6976,7 +6968,7 @@
     "image_url": "/static/images/cards/royalties.png",
     "beta_image_url": "/static/images/cards/beta/royalties.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Al final del combate, gana 35 de [gold]Oro[/gold].",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 243
@@ -7014,7 +7006,7 @@
     "image_url": "/static/images/cards/blur.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 8 de [gold]Bloqueo[/gold].\nEl [gold]Bloqueo[/gold] no se pierde al comienzo de tu siguiente turno.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 99
@@ -7055,7 +7047,7 @@
     "image_url": "/static/images/cards/decisions_decisions.png",
     "beta_image_url": "/static/images/cards/beta/decisions_decisions.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Roba 5 cartas.\nElige una Habilidad de tu [gold]Mano[/gold] y juégala 3 veces.",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -7095,7 +7087,7 @@
     "image_url": "/static/images/cards/pinpoint.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 22 de daño.\nCuesta 1 [energy:1] menos por cada Habilidad jugada este turno.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 145
@@ -7338,7 +7330,7 @@
     "image_url": "/static/images/cards/drain_power.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 12 de daño.\n[gold]Mejora[/gold] 3 cartas de tu [gold]Pila de descarte[/gold].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 287
@@ -7548,7 +7540,7 @@
     "image_url": "/static/images/cards/the_smith.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Forja[/gold] 40.",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 258
@@ -7742,7 +7734,7 @@
     "image_url": "/static/images/cards/skewer.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 10 de daño X veces.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 156
@@ -7782,7 +7774,7 @@
     "image_url": "/static/images/cards/dramatic_entrance.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 15 de daño a TODOS los enemigos.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -7867,7 +7859,7 @@
     "image_url": "/static/images/cards/envenom.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Cuando un Ataque hace daño sin ser bloqueado, aplica 2 de [gold]Veneno[/gold].",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 115
@@ -7905,7 +7897,7 @@
     "image_url": "/static/images/cards/equilibrium.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 16 de [gold]Bloqueo[/gold].\n[gold]Retén[/gold] tu [gold]Mano[/gold] este turno.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 453
@@ -7944,7 +7936,7 @@
     "image_url": "/static/images/cards/eradicate.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 14 de daño X veces.",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -8019,7 +8011,7 @@
     "image_url": "/static/images/cards/severance.png",
     "beta_image_url": "/static/images/cards/beta/severance.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 18 de daño.\nAñade un [gold]Alma[/gold] a tu [gold]Pila de robo[/gold], a tu [gold]Mano[/gold], y a tu [gold]Pila de descarte[/gold].",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 332
@@ -8147,7 +8139,7 @@
     "image_url": "/static/images/cards/squash.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 12 de daño.\nAplica 2 de [gold]Vulnerabilidad[/gold].",
     "type_key": "Attack",
     "rarity_key": "Event",
     "compendium_order": 543
@@ -8185,7 +8177,7 @@
     "image_url": "/static/images/cards/sword_boomerang.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 3 de daño a un enemigo aleatorio 4 veces.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 73
@@ -8393,7 +8385,7 @@
     "image_url": "/static/images/cards/capture_spirit.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "El enemigo pierde 4 PV.\nAñade 4 [gold]Almas[/gold] a tu [gold]Pila de robo[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 272
@@ -8430,7 +8422,7 @@
     "image_url": "/static/images/cards/spirit_of_ash.png",
     "beta_image_url": "/static/images/cards/beta/spirit_of_ash.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Cuando juegues una carta [gold]Etérea[/gold], gana 5 de [gold]Bloqueo[/gold].",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 340
@@ -8467,7 +8459,7 @@
     "image_url": "/static/images/cards/dodge_and_roll.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 6 de [gold]Bloqueo[/gold].\nAl siguiente turno, gana 6 de [gold]Bloqueo[/gold].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 113
@@ -8507,7 +8499,7 @@
     "image_url": "/static/images/cards/graveblast.png",
     "beta_image_url": "/static/images/cards/beta/graveblast.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 6 de daño.\nColoca una carta de tu [gold]Pila de descarte[/gold] en tu [gold]Mano[/gold].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "keywords_key": [
@@ -8584,7 +8576,7 @@
     "image_url": "/static/images/cards/panache.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Cada vez que juegues 5 cartas en un solo turno, inflige 14 de daño a TODOS los enemigos.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 476
@@ -8630,7 +8622,7 @@
     "image_url": "/static/images/cards/strangle.png",
     "beta_image_url": "/static/images/cards/beta/strangle.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 10 de daño.\nCuando juegues una carta este turno, el enemigo pierde 3 PV.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 162
@@ -8704,7 +8696,7 @@
     "image_url": "/static/images/cards/tactician.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana [energy:2].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -8760,7 +8752,7 @@
     "image_url": "/static/images/cards/falling_star.png",
     "beta_image_url": "/static/images/cards/beta/falling_star.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 11 de daño.\nAplica 1 de [gold]Debilidad[/gold].\nAplica 1 de [gold]Vulnerabilidad[/gold].",
     "type_key": "Attack",
     "rarity_key": "Basic",
     "compendium_order": 201
@@ -8800,7 +8792,7 @@
     "image_url": "/static/images/cards/guiding_star.png",
     "beta_image_url": "/static/images/cards/beta/guiding_star.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 13 de daño.\nAl siguiente turno, roba 3 cartas.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 211
@@ -8853,7 +8845,7 @@
     "image_url": "/static/images/cards/gamma_blast.png",
     "beta_image_url": "/static/images/cards/beta/gamma_blast.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 18 de daño\nAplica 2 de [gold]Debilidad[/gold].\nAplica 2 de [gold]Vulnerabilidad[/gold].",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 204
@@ -8936,7 +8928,7 @@
     "image_url": "/static/images/cards/expose.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Elimina todos los [gold]Artefactos[/gold] y el [gold]Bloqueo[/gold] del enemigo.\nAplica 3 de [gold]Vulnerabilidad[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -8977,7 +8969,7 @@
     "image_url": "/static/images/cards/exterminate.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 4 de daño 4 veces a TODOS los enemigos.",
     "type_key": "Attack",
     "rarity_key": "Event",
     "compendium_order": 531
@@ -9014,7 +9006,7 @@
     "image_url": "/static/images/cards/seeking_edge.png",
     "beta_image_url": "/static/images/cards/beta/seeking_edge.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Forja[/gold] 11.\nAhora [gold]Espada del soberano[/gold] inflige daño a TODOS los enemigos.",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 245
@@ -9052,7 +9044,7 @@
     "image_url": "/static/images/cards/pacts_end.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Solo puede jugarse si tienes 3 cartas o más en tu [gold]Pila de agotamiento[/gold].\nInflige 23 de daño a TODOS los enemigos.",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 55
@@ -9098,7 +9090,7 @@
     "image_url": "/static/images/cards/scourge.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Aplica 13 de [gold]Condena[/gold].\nRoba 2 cartas.",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 328
@@ -9171,7 +9163,7 @@
     "image_url": "/static/images/cards/bloodletting.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Pierde 3 PV.\nGana [energy:3].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 7
@@ -9252,7 +9244,7 @@
     "image_url": "/static/images/cards/wrought_in_war.png",
     "beta_image_url": "/static/images/cards/beta/wrought_in_war.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 9 de daño.\n[gold]Forja[/gold] 7.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 262
@@ -9331,7 +9323,7 @@
     "image_url": "/static/images/cards/void_form.png",
     "beta_image_url": "/static/images/cards/beta/void_form.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Termina tu turno.\nPuedes jugar las primeras 3 cartas de cada turno gratis.",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 261
@@ -9375,7 +9367,7 @@
     "image_url": "/static/images/cards/demon_form.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Al comienzo de tu turno, gana 3 de [gold]Fuerza[/gold].",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 26
@@ -9426,7 +9418,7 @@
     "image_url": "/static/images/cards/wraith_form.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 3 [gold]Intangible[/gold].\nAl comienzo de tu turno, pierde 1 de [gold]Destreza[/gold].",
     "type_key": "Power",
     "rarity_key": "Ancient",
     "compendium_order": 174
@@ -9470,7 +9462,7 @@
     "image_url": "/static/images/cards/serpent_form.png",
     "beta_image_url": "/static/images/cards/beta/serpent_form.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Cuando juegues una carta, inflige 5 de daño a un enemigo aleatorio.",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 153
@@ -9602,7 +9594,7 @@
     "image_url": "/static/images/cards/furnace.png",
     "beta_image_url": "/static/images/cards/beta/furnace.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Al comienzo de tu turno, [gold]Forja[/gold] 6.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 203
@@ -9647,7 +9639,7 @@
     "image_url": "/static/images/cards/bouncing_flask.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Aplica 3 de [gold]Veneno[/gold] a un enemigo aleatorio 4 veces.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 100
@@ -9728,7 +9720,7 @@
     "image_url": "/static/images/cards/cold_snap.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 9 de daño.\n[gold]Invoca[/gold] 1 [gold]Escarcha[/gold].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 366
@@ -9767,7 +9759,7 @@
     "image_url": "/static/images/cards/fiend_fire.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Agota[/gold] tu [gold]Mano[/gold].\nInflige 10 de daño por cada carta [gold]Agotada[/gold].",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -9843,13 +9835,11 @@
       "GIANT_ROCK"
     ],
     "vars": null,
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/primal_force.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Transforma todos los Ataques de tu [gold]Mano[/gold] en [gold]Roca gigantesca+[/gold].",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 59
@@ -9923,7 +9913,7 @@
     "image_url": "/static/images/cards/rage.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Cuando juegues un Ataque este turno, gana 5 de [gold]Bloqueo[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 61
@@ -9963,7 +9953,7 @@
     "image_url": "/static/images/cards/neows_fury.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 14 de daño.\nColoca 2 cartas aleatorias de tu [gold]Pila de descarte[/gold] en tu [gold]Mano[/gold].",
     "type_key": "Attack",
     "rarity_key": "Ancient",
     "keywords_key": [
@@ -10081,7 +10071,7 @@
     "image_url": "/static/images/cards/uppercut.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 13 de daño.\nAplica 2 de [gold]Debilidad[/gold].\nAplica 2 de [gold]Vulnerabilidad[/gold].",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 84
@@ -10158,7 +10148,7 @@
     "image_url": "/static/images/cards/noxious_fumes.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Al comienzo de tu turno, aplica 3 de [gold]Veneno[/gold] a TODOS los enemigos.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 141
@@ -10195,7 +10185,7 @@
     "image_url": "/static/images/cards/hidden_gem.png",
     "beta_image_url": "/static/images/cards/beta/hidden_gem.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Una carta aleatoria de tu [gold]Pila de descarte[/gold] gana [gold]Repetición[/gold] 3.",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 462
@@ -10224,13 +10214,11 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/largesse.png",
     "beta_image_url": "/static/images/cards/beta/largesse.png",
     "type_variants": null,
-    "upgrade_description": "Otro jugador añade 1 carta incolora [gold]Mejorada[/gold] a su [gold]Mano[/gold].",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 222
@@ -10267,7 +10255,7 @@
     "image_url": "/static/images/cards/glacier.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 9 de [gold]Bloqueo[/gold].\n[gold]Invoca[/gold] 2 [gold]Escarcha[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 387
@@ -10306,7 +10294,7 @@
     "image_url": "/static/images/cards/strike_ironclad.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 9 de daño.",
     "type_key": "Attack",
     "rarity_key": "Basic",
     "compendium_order": 72
@@ -10345,7 +10333,7 @@
     "image_url": "/static/images/cards/strike_silent.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 9 de daño.",
     "type_key": "Attack",
     "rarity_key": "Basic",
     "compendium_order": 163
@@ -10384,7 +10372,7 @@
     "image_url": "/static/images/cards/strike_regent.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 9 de daño.",
     "type_key": "Attack",
     "rarity_key": "Basic",
     "compendium_order": 252
@@ -10423,7 +10411,7 @@
     "image_url": "/static/images/cards/strike_necrobinder.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 9 de daño.",
     "type_key": "Attack",
     "rarity_key": "Basic",
     "compendium_order": 343
@@ -10462,7 +10450,7 @@
     "image_url": "/static/images/cards/strike_defect.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 9 de daño.",
     "type_key": "Attack",
     "rarity_key": "Basic",
     "compendium_order": 423
@@ -10501,7 +10489,7 @@
     "image_url": "/static/images/cards/adaptive_strike.png",
     "beta_image_url": "/static/images/cards/beta/adaptive_strike.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 23 de daño.\nAñade una copia de esta carta con coste 0 [energy:1] a tu [gold]Pila de descarte[/gold].",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 351
@@ -10541,7 +10529,7 @@
     "image_url": "/static/images/cards/seeker_strike.png",
     "beta_image_url": "/static/images/cards/beta/seeker_strike.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 9 de daño.\nElige 1 de entre 3 cartas de tu [gold]Pila de robo[/gold] y añádela a tu [gold]Mano[/gold].",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 491
@@ -10581,7 +10569,7 @@
     "image_url": "/static/images/cards/shining_strike.png",
     "beta_image_url": "/static/images/cards/beta/shining_strike.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 11 de daño.\nGana [star:2].\nColoca esta carta en la parte superior de tu [gold]Pila de robo[/gold].",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 247
@@ -10623,7 +10611,7 @@
     "image_url": "/static/images/cards/ashen_strike.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 6 de daño.\nInflige 4 de daño adicional por cada carta en tu [gold]Pila de agotamiento[/gold].",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 3
@@ -10662,7 +10650,7 @@
     "image_url": "/static/images/cards/sculpting_strike.png",
     "beta_image_url": "/static/images/cards/beta/sculpting_strike.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 11 de daño.\nAñade [gold]Etérea[/gold] a una carta de tu [gold]Mano[/gold].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 329
@@ -10703,7 +10691,7 @@
     "image_url": "/static/images/cards/pommel_strike.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 10 de daño.\nRoba 2 cartas.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 58
@@ -10746,7 +10734,7 @@
     "image_url": "/static/images/cards/minion_strike.png",
     "beta_image_url": "/static/images/cards/beta/minion_strike.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 10 de daño.\nRoba 1 carta.",
     "type_key": "Attack",
     "rarity_key": "Token",
     "keywords_key": [
@@ -10788,7 +10776,7 @@
     "image_url": "/static/images/cards/blight_strike.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 10 de daño.\nAplica [gold]Condena[/gold] igual al daño infligido.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 265
@@ -10836,7 +10824,7 @@
     "image_url": "/static/images/cards/setup_strike.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 9 de daño.\nGana 2 de [gold]Fuerza[/gold] este turno.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 65
@@ -10875,7 +10863,7 @@
     "image_url": "/static/images/cards/ultimate_strike.png",
     "beta_image_url": "/static/images/cards/beta/ultimate_strike.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 20 de daño.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 501
@@ -10914,7 +10902,7 @@
     "image_url": "/static/images/cards/twin_strike.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 7 de daño dos veces.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 81
@@ -10953,7 +10941,7 @@
     "image_url": "/static/images/cards/momentum_strike.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 13 de daño.\nReduce el coste de esta carta a 0 [energy:1].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 405
@@ -10995,7 +10983,7 @@
     "image_url": "/static/images/cards/leading_strike.png",
     "beta_image_url": "/static/images/cards/beta/leading_strike.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 10 de daño.\nAñade 1 [gold]Navaja[/gold] a tu [gold]Mano[/gold].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 132
@@ -11034,7 +11022,7 @@
     "image_url": "/static/images/cards/meteor_strike.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 30 de daño.\n[gold]Invoca[/gold] 3 [gold]Plasma[/gold].",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 403
@@ -11076,7 +11064,7 @@
     "image_url": "/static/images/cards/perfected_strike.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 6 de daño.\nInflige 3 de daño adicional por CADA UNA de tus cartas que contengan «Golpe».",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 56
@@ -11124,7 +11112,7 @@
     "image_url": "/static/images/cards/focused_strike.png",
     "beta_image_url": "/static/images/cards/beta/focused_strike.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 11 de daño.\nGana 2 de [gold]Concentración[/gold] este turno.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 383
@@ -11165,7 +11153,7 @@
     "image_url": "/static/images/cards/solar_strike.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 9 de daño.\nGana [star:2].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 248
@@ -11247,7 +11235,7 @@
     "image_url": "/static/images/cards/grand_finale.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Solo puede jugarse si no tienes cartas en la [gold]Pila de robo[/gold]. Inflige 60 de daño a TODOS los enemigos.",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 126
@@ -11291,7 +11279,7 @@
     "image_url": "/static/images/cards/hailstorm.png",
     "beta_image_url": "/static/images/cards/beta/hailstorm.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Al final de tu turno, si tienes [gold]Escarcha[/gold] , inflige 8 de daño a TODOS los enemigos.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 391
@@ -11330,7 +11318,7 @@
     "image_url": "/static/images/cards/dark_shackles.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "El enemigo pierde 15 de [gold]Fuerza[/gold] este turno.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -11412,7 +11400,7 @@
     "image_url": "/static/images/cards/reap.png",
     "beta_image_url": "/static/images/cards/beta/reap.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 33 de daño.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "keywords_key": [
@@ -11452,7 +11440,7 @@
     "image_url": "/static/images/cards/bodyguard.png",
     "beta_image_url": "/static/images/cards/beta/bodyguard.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Vincula[/gold] 7.",
     "type_key": "Skill",
     "rarity_key": "Basic",
     "compendium_order": 266
@@ -11492,7 +11480,7 @@
     "image_url": "/static/images/cards/grave_warden.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Gana 8 de [gold]Bloqueo[/gold].\nAñade un [gold]Alma+[/gold] a tu [gold]Pila de robo[/gold].",
+    "upgrade_description": "Gana 10 de [gold]Bloqueo[/gold].\nAñade un [gold]Alma+[/gold] a tu [gold]Pila de robo[/gold].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 300
@@ -11529,7 +11517,7 @@
     "image_url": "/static/images/cards/genesis.png",
     "beta_image_url": "/static/images/cards/beta/genesis.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Al comienzo de tu turno, gana [star:3].",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 206
@@ -11614,7 +11602,7 @@
     "image_url": "/static/images/cards/rend.png",
     "beta_image_url": "/static/images/cards/beta/rend.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 15 de daño.\nInflige 8 de daño adicional por cada efecto negativo único en el enemigo.",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 484
@@ -11736,7 +11724,7 @@
     "image_url": "/static/images/cards/hegemony.png",
     "beta_image_url": "/static/images/cards/beta/hegemony.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 18 de daño.\nAl siguiente turno, gana [energy:3].",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 214
@@ -11774,7 +11762,7 @@
     "image_url": "/static/images/cards/hemokinesis.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Pierde 2 PV.\nInflige 19 de daño.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 42
@@ -11857,7 +11845,7 @@
     "image_url": "/static/images/cards/hyperbeam.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 34 de daño a TODOS los enemigos.\nPierde 3 de [gold]Concentración[/gold].",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 395
@@ -11947,7 +11935,7 @@
     "image_url": "/static/images/cards/phantom_blades.png",
     "beta_image_url": "/static/images/cards/beta/phantom_blades.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Las [gold]Navajas[/gold] ganan [gold]Retención[/gold].\nLa primera [gold]Navaja[/gold] que juegues cada turno inflige 12 de daño adicional.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 143
@@ -12060,7 +12048,7 @@
     "image_url": "/static/images/cards/hologram.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 5 de [gold]Bloqueo[/gold].\nColoca una carta de tu [gold]Pila de descarte[/gold] en tu [gold]Mano[/gold].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "keywords_key": [
@@ -12209,13 +12197,11 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/enlightenment.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Reduce el coste de TODAS las cartas de tu [gold]Mano[/gold] a 1 durante este combate.",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Event",
     "keywords_key": [
@@ -12299,7 +12285,7 @@
     "image_url": "/static/images/cards/impatience.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Si no tienes Ataques en tu [gold]Mano[/gold], roba 3 cartas.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 464
@@ -12336,7 +12322,7 @@
     "image_url": "/static/images/cards/unrelenting.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 18 de daño.\nEl siguiente Ataque que juegues cuesta 0 [energy:1].",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 83
@@ -12375,7 +12361,7 @@
     "image_url": "/static/images/cards/impervious.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 40 de [gold]Bloqueo[/gold].",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -12416,7 +12402,7 @@
     "image_url": "/static/images/cards/shrug_it_off.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 11 de [gold]Bloqueo[/gold].\nRoba 1 carta.",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 66
@@ -12455,7 +12441,7 @@
     "image_url": "/static/images/cards/boost_away.png",
     "beta_image_url": "/static/images/cards/beta/boost_away.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 9 de [gold]Bloqueo[/gold].\nAñade 1 [gold]Desorientación[/gold] a tu [gold]Pila de descarte[/gold].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 357
@@ -12531,7 +12517,7 @@
     "image_url": "/static/images/cards/spur.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Vincula[/gold] 5.\n[gold]Nudillos[/gold] recupera 7 PV.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -12571,7 +12557,7 @@
     "image_url": "/static/images/cards/cosmic_indifference.png",
     "beta_image_url": "/static/images/cards/beta/cosmic_indifference.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 9 de [gold]Bloqueo[/gold].\nColoca una carta de tu [gold]Pila de descarte[/gold] en la parte superior de tu [gold]Pila de robo[/gold].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 193
@@ -12655,7 +12641,7 @@
     "image_url": "/static/images/cards/inferno.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Al comienzo de tu turno, pierde 1 PV.\nCuando pierdas PV durante tu turno, inflige 9 de daño a TODOS los enemigos.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 46
@@ -12696,7 +12682,7 @@
     "image_url": "/static/images/cards/restlessness.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Si tu [gold]Mano[/gold] está vacía, roba 3 cartas y gana [energy:3].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -12776,7 +12762,7 @@
     "image_url": "/static/images/cards/intercept.png",
     "beta_image_url": "/static/images/cards/beta/intercept.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 13 de [gold]Bloqueo[/gold].\nRedirige todos los ataques que otro jugador fuera a recibir este turno hacia ti.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 465
@@ -12815,7 +12801,7 @@
     "image_url": "/static/images/cards/untouchable.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 12 de [gold]Bloqueo[/gold].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "keywords_key": [
@@ -12857,7 +12843,7 @@
     "image_url": "/static/images/cards/invoke.png",
     "beta_image_url": "/static/images/cards/beta/invoke.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Al siguiente turno, [gold]Vincula[/gold] 3 y gana [energy:3].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 304
@@ -12903,7 +12889,7 @@
     "image_url": "/static/images/cards/go_for_the_eyes.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 4 de daño.\nSi el enemigo tiene intención de atacar, aplica 1 de [gold]Debilidad[/gold].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 389
@@ -12940,7 +12926,7 @@
     "image_url": "/static/images/cards/anger.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 8 de daño.\nAñade una copia de esta carta a tu [gold]Pila de descarte[/gold].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 1
@@ -12980,7 +12966,7 @@
     "image_url": "/static/images/cards/radiate.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 4 de daño a TODOS los enemigos por cada [star:1] ganada este turno.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 239
@@ -13024,7 +13010,7 @@
     "image_url": "/static/images/cards/iteration.png",
     "beta_image_url": "/static/images/cards/beta/iteration.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "La primera vez que robes una carta de Estado durante tu turno, roba 3 cartas.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 398
@@ -13105,7 +13091,7 @@
     "image_url": "/static/images/cards/the_gambit.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 75 de [gold]Bloqueo[/gold].\nSi recibes daño de ataque no bloqueado durante este combate, mueres.",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 497
@@ -13188,7 +13174,7 @@
     "image_url": "/static/images/cards/the_hunt.png",
     "beta_image_url": "/static/images/cards/beta/the_hunt.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 15 de daño.\nSi el daño es [gold]Letal[/gold], obtén una carta adicional en las recompensas.",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -13232,7 +13218,7 @@
     "image_url": "/static/images/cards/the_scythe.png",
     "beta_image_url": "/static/images/cards/beta/the_scythe.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 13 de daño.\nAumenta permanentemente el daño de esta carta en 4.",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -13273,7 +13259,7 @@
     "image_url": "/static/images/cards/the_bomb.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Tras 3 turnos, inflige 50 de daño a TODOS los enemigos.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 496
@@ -13346,7 +13332,7 @@
     "image_url": "/static/images/cards/ice_lance.png",
     "beta_image_url": "/static/images/cards/beta/ice_lance.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 24 de daño.\n[gold]Invoca[/gold] 3 [gold]Escarcha[/gold].",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 396
@@ -13387,7 +13373,7 @@
     "image_url": "/static/images/cards/crescent_spear.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 6 de daño.\nInflige 3 de daño adicional por CADA UNA de tus cartas que cuesten [star:1].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 195
@@ -13424,7 +13410,7 @@
     "image_url": "/static/images/cards/dagger_throw.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 12 de daño.\nRoba 1 carta.\nDescarta 1 carta.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 108
@@ -13461,7 +13447,7 @@
     "image_url": "/static/images/cards/thrumming_hatchet.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 14 de daño.\nAl comienzo de tu siguiente turno, devuelve esto a tu [gold]Mano[/gold].",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 499
@@ -13500,7 +13486,7 @@
     "image_url": "/static/images/cards/legion_of_bone.png",
     "beta_image_url": "/static/images/cards/beta/legion_of_bone.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "TODOS los jugadores [gold]Vinculan[/gold] 8.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -13587,7 +13573,7 @@
     "image_url": "/static/images/cards/lethality.png",
     "beta_image_url": "/static/images/cards/beta/lethality.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "El primer Ataque de cada turno inflige un 75 % de daño adicional.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -13627,7 +13613,7 @@
     "image_url": "/static/images/cards/lift.png",
     "beta_image_url": "/static/images/cards/beta/lift.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Otorga 16 de [gold]Bloqueo[/gold] a otro jugador.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 469
@@ -13706,7 +13692,7 @@
     "image_url": "/static/images/cards/brightest_flame.png",
     "beta_image_url": "/static/images/cards/beta/brightest_flame.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana [energy:3].\nRoba 3 cartas.\nPierde 1 PV máx.",
     "type_key": "Skill",
     "rarity_key": "Ancient",
     "compendium_order": 523
@@ -13816,7 +13802,7 @@
     "image_url": "/static/images/cards/banshees_cry.png",
     "beta_image_url": "/static/images/cards/beta/banshees_cry.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 39 de daño a TODOS los enemigos.\nCuesta [energy:2] menos por cada carta [gold]Etérea[/gold] jugada durante este combate.",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 264
@@ -13855,7 +13841,7 @@
     "image_url": "/static/images/cards/piercing_wail.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "TODOS los enemigos pierden 8 de [gold]Fuerza[/gold] este turno.",
     "type_key": "Skill",
     "rarity_key": "Common",
     "keywords_key": [
@@ -13935,7 +13921,7 @@
     "image_url": "/static/images/cards/dagger_spray.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 6 de daño a TODOS los enemigos dos veces.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 107
@@ -13988,7 +13974,7 @@
     "image_url": "/static/images/cards/meteor_shower.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 21 de daño a TODOS los enemigos.\nAplica 2 de [gold]Debilidad[/gold] y [gold]Vulnerabilidad[/gold] a TODOS los enemigos.",
     "type_key": "Attack",
     "rarity_key": "Ancient",
     "compendium_order": 226
@@ -14028,7 +14014,7 @@
     "image_url": "/static/images/cards/luminesce.png",
     "beta_image_url": "/static/images/cards/beta/luminesce.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana [energy:3].",
     "type_key": "Skill",
     "rarity_key": "Token",
     "keywords_key": [
@@ -14071,7 +14057,7 @@
     "image_url": "/static/images/cards/master_of_strategy.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Roba 4 cartas.",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -14157,7 +14143,7 @@
     "image_url": "/static/images/cards/necro_mastery.png",
     "beta_image_url": "/static/images/cards/beta/necro_mastery.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Vincula[/gold] 8.\nCuando [gold]Nudillos[/gold] pierde PV,\nTODOS los enemigos pierden los mismos PV.",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 309
@@ -14305,13 +14291,11 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/malaise.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "El enemigo pierde X+1 de [gold]Fuerza[/gold]. Aplica X+1 de [gold]Debilidad[/gold].",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -14351,7 +14335,7 @@
     "image_url": "/static/images/cards/tag_team.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 15 de daño.\nEl siguiente Ataque que otro jugador juegue contra el enemigo se activa otra vez.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 495
@@ -14390,7 +14374,7 @@
     "image_url": "/static/images/cards/hand_of_greed.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 25 de daño.\nSi el daño es [gold]Letal[/gold], gana 25 de [gold]Oro[/gold].",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 461
@@ -14432,7 +14416,7 @@
     "image_url": "/static/images/cards/right_hand_hand.png",
     "beta_image_url": "/static/images/cards/beta/right_hand_hand.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Nudillos[/gold] inflige 6 de daño.\nCuando juegues una carta que cueste [energy:2] o más, devuelve esta carta a tu [gold]Mano[/gold] desde la [gold]Pila de descarte[/gold].",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 326
@@ -14476,7 +14460,7 @@
     "image_url": "/static/images/cards/crimson_mantle.png",
     "beta_image_url": "/static/images/cards/beta/crimson_mantle.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Al comienzo de tu turno, pierde 1 PV y gana 10 de [gold]Bloqueo[/gold].",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 21
@@ -14600,7 +14584,7 @@
     "image_url": "/static/images/cards/summon_forth.png",
     "beta_image_url": "/static/images/cards/beta/summon_forth.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Forja[/gold] 11.\nColoca [gold]Espada del soberano[/gold] en tu [gold]Mano[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 253
@@ -14641,7 +14625,7 @@
     "image_url": "/static/images/cards/death_march.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 8 de daño.\nInflige 4 de daño adicional por cada carta que hayas robado este turno.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 278
@@ -14679,7 +14663,7 @@
     "image_url": "/static/images/cards/heirloom_hammer.png",
     "beta_image_url": "/static/images/cards/beta/heirloom_hammer.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 22 de daño.\nElige una carta incolora de tu [gold]Mano[/gold]. Añade una copa de esa carta a tu [gold]Mano[/gold].",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 215
@@ -14717,7 +14701,7 @@
     "image_url": "/static/images/cards/rampage.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 9 de daño.\nAumenta el daño de esta carta en 9 durante este combate.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 62
@@ -14763,7 +14747,7 @@
     "image_url": "/static/images/cards/knockdown.png",
     "beta_image_url": "/static/images/cards/beta/knockdown.png",
     "type_variants": null,
-    "upgrade_description": "Inflige 10 de daño.\nEl enemigo recibe el triple de daño de otros jugadores este turno.",
+    "upgrade_description": "Inflige 14 de daño.\nEl enemigo recibe el triple de daño de otros jugadores este turno.",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 468
@@ -14803,7 +14787,7 @@
     "image_url": "/static/images/cards/bully.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 4 de daño.\nInflige 3 de daño adicional por cada [gold]Vulnerabilidad[/gold] que tenga el enemigo.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 14
@@ -14840,7 +14824,7 @@
     "image_url": "/static/images/cards/bludgeon.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 42 de daño.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 9
@@ -14878,7 +14862,7 @@
     "image_url": "/static/images/cards/melancholy.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 17 de [gold]Bloqueo[/gold].\nCuando alguien muera, reduce el coste de esta carta en [energy:1].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 307
@@ -14917,7 +14901,7 @@
     "image_url": "/static/images/cards/dirge.png",
     "beta_image_url": "/static/images/cards/beta/dirge.png",
     "type_variants": null,
-    "upgrade_description": "[gold]Vincula[/gold] 3 X veces.\nAñade X [gold]Almas+[/gold] a tu [gold]Pila de robo[/gold].",
+    "upgrade_description": "[gold]Vincula[/gold] 4 X veces.\nAñade X [gold]Almas+[/gold] a tu [gold]Pila de robo[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 286
@@ -14958,7 +14942,7 @@
     "image_url": "/static/images/cards/memento_mori.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 8 de daño.\nInflige 5 de daño adicional por cada carta descartada este turno.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 136
@@ -14995,7 +14979,7 @@
     "image_url": "/static/images/cards/coolheaded.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Invoca[/gold] 1 [gold]Escarcha[/gold].\nRoba 2 cartas.",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 371
@@ -15034,7 +15018,7 @@
     "image_url": "/static/images/cards/metamorphosis.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Añade 5 Ataques aleatorios a tu [gold]Pila de robo[/gold]. Puedes jugarlos gratis durante este combate.",
     "type_key": "Skill",
     "rarity_key": "Event",
     "keywords_key": [
@@ -15080,7 +15064,7 @@
     "image_url": "/static/images/cards/bone_shards.png",
     "beta_image_url": "/static/images/cards/beta/bone_shards.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Si [gold]Nudillos[/gold] está vivo, inflige 12 de daño a TODOS los enemigos y ganas 12 de [gold]Bloqueo[/gold].\n[gold]Nudillos[/gold] muere.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 267
@@ -15155,7 +15139,7 @@
     "image_url": "/static/images/cards/misery.png",
     "beta_image_url": "/static/images/cards/beta/misery.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 9 de daño.\nAplica cualquier efecto negativo del enemigo a TODOS los demás enemigos.",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 308
@@ -15193,7 +15177,7 @@
     "image_url": "/static/images/cards/modded.png",
     "beta_image_url": "/static/images/cards/beta/modded.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 1 Espacio de Orbe.\nRoba 2 cartas. Aumenta el coste de esta carta en 1.",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 404
@@ -15280,7 +15264,7 @@
     "image_url": "/static/images/cards/beat_into_shape.png",
     "beta_image_url": "/static/images/cards/beta/beat_into_shape.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 7 de daño.\n[gold]Forja[/gold] X.\n[gold]Forja[/gold] 7 más por cada otra vez que hayas golpeado al enemigo este turno.",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 178
@@ -15366,7 +15350,7 @@
     "image_url": "/static/images/cards/shroud.png",
     "beta_image_url": "/static/images/cards/beta/shroud.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Cuando apliques [gold]Condena[/gold], gana 3 de [gold]Bloqueo[/gold].",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 334
@@ -15395,13 +15379,11 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/multi_cast.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "[gold]Descarga[/gold] el Orbe situado más a la derecha X+1 veces.",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 406
@@ -15439,7 +15421,7 @@
     "image_url": "/static/images/cards/particle_wall.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 12 de [gold]Bloqueo[/gold].\nDevuelve esta carta a tu [gold]Mano[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 233
@@ -15477,7 +15459,7 @@
     "image_url": "/static/images/cards/blood_wall.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Pierde 2 PV.\nGana 20 de [gold]Bloqueo[/gold].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 8
@@ -15563,7 +15545,7 @@
     "image_url": "/static/images/cards/shiv.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 6 de daño.",
     "type_key": "Attack",
     "rarity_key": "Token",
     "keywords_key": [
@@ -15605,7 +15587,7 @@
     "image_url": "/static/images/cards/jack_of_all_trades.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Añade 2 cartas incoloras aleatorias a tu [gold]Mano[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -15703,7 +15685,7 @@
     "image_url": "/static/images/cards/neutralize.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 4 de daño.\nAplica 1 de [gold]Debilidad[/gold].",
     "type_key": "Attack",
     "rarity_key": "Basic",
     "compendium_order": 139
@@ -15748,7 +15730,7 @@
     "image_url": "/static/images/cards/neutron_aegis.png",
     "beta_image_url": "/static/images/cards/beta/neutron_aegis.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 11 de [gold]Blindaje[/gold].",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 229
@@ -15785,7 +15767,7 @@
     "image_url": "/static/images/cards/feel_no_pain.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Cuando una carta sea [gold]Agotada[/gold], gana 4 de [gold]Bloqueo[/gold].",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 33
@@ -15822,7 +15804,7 @@
     "image_url": "/static/images/cards/undeath.png",
     "beta_image_url": "/static/images/cards/beta/undeath.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 9 de [gold]Bloqueo[/gold].\nAñade una copia de esta carta a tu [gold]Pila de descarte[/gold].",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 347
@@ -15860,7 +15842,7 @@
     "image_url": "/static/images/cards/knockout_blow.png",
     "beta_image_url": "/static/images/cards/beta/knockout_blow.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 38 de daño.\nSi esto mata a un enemigo, gana [star:5].",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 220
@@ -15977,7 +15959,7 @@
     "image_url": "/static/images/cards/offering.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Pierde 6 PV.\nGana [energy:2].\nRoba 5 cartas.",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -16017,7 +15999,7 @@
     "image_url": "/static/images/cards/evil_eye.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 11 de [gold]Bloqueo[/gold].\nGana 11 más de [gold]Bloqueo[/gold] si has [gold]Agotado[/gold] una carta este turno.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 30
@@ -16054,7 +16036,7 @@
     "image_url": "/static/images/cards/corrosive_wave.png",
     "beta_image_url": "/static/images/cards/beta/corrosive_wave.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Cuando robes una carta este turno, aplica 4 de [gold]Veneno[/gold] a TODOS los enemigos.",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 106
@@ -16135,7 +16117,7 @@
     "image_url": "/static/images/cards/omnislice.png",
     "beta_image_url": "/static/images/cards/beta/omnislice.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 11 de daño.\nInflige el mismo daño a TODOS los enemigos.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 475
@@ -16174,7 +16156,7 @@
     "image_url": "/static/images/cards/shockwave.png",
     "beta_image_url": "/static/images/cards/beta/shockwave.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Aplica 5 de [gold]Debilidad[/gold] y [gold]Vulnerabilidad[/gold] a TODOS los enemigos.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -16216,7 +16198,7 @@
     "image_url": "/static/images/cards/iron_wave.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 7 de [gold]Bloqueo[/gold].\nInflige 7 de daño.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 48
@@ -16255,7 +16237,7 @@
     "image_url": "/static/images/cards/glitterstream.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 13 de [gold]Bloqueo[/gold].\nAl siguiente turno, gana 6 de [gold]Bloqueo[/gold].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 208
@@ -16284,13 +16266,11 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/darkness.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "[gold]Invoca[/gold] 1 [gold]Oscuridad[/gold].\nActiva la habilidad pasiva de todos tus Orbes de [gold]Oscuridad[/gold] dos veces.",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 373
@@ -16327,7 +16307,7 @@
     "image_url": "/static/images/cards/burning_pact.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Agota[/gold] 1 carta.\nRoba 3 cartas.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 15
@@ -16364,7 +16344,7 @@
     "image_url": "/static/images/cards/thrash.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 6 de daño dos veces.\n[gold]Agota[/gold] un Ataque aleatorio de tu [gold]Mano[/gold] y añade su daño a esta carta.",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 77
@@ -16447,7 +16427,7 @@
     "image_url": "/static/images/cards/parry.png",
     "beta_image_url": "/static/images/cards/beta/parry.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Cuando juegues [gold]Espada del soberano[/gold], gana 9 de [gold]Bloqueo[/gold].",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 232
@@ -16492,7 +16472,7 @@
     "image_url": "/static/images/cards/lightning_rod.png",
     "beta_image_url": "/static/images/cards/beta/lightning_rod.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 7 de [gold]Bloqueo[/gold].\nAl comienzo de tus siguientes 2 turnos, [gold]Invoca[/gold] 1 [gold]Relámpago[/gold].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 400
@@ -16536,7 +16516,7 @@
     "image_url": "/static/images/cards/hotfix.png",
     "beta_image_url": "/static/images/cards/beta/hotfix.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 3 de [gold]Concentración[/gold] este turno.",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 394
@@ -16576,7 +16556,7 @@
     "image_url": "/static/images/cards/tear_asunder.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 7 de daño.\nGolpea una vez adicional por cada vez que pierdas PV durante este combate.",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 76
@@ -16650,7 +16630,7 @@
     "image_url": "/static/images/cards/kingly_kick.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 30 de daño.\nCuando robes esta carta, reduce su coste en 1.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 218
@@ -16689,7 +16669,7 @@
     "image_url": "/static/images/cards/bundle_of_joy.png",
     "beta_image_url": "/static/images/cards/beta/bundle_of_joy.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Añade 4 cartas incoloras aleatorias a tu [gold]Mano[/gold].",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -16772,7 +16752,7 @@
     "image_url": "/static/images/cards/heavenly_drill.png",
     "beta_image_url": "/static/images/cards/beta/heavenly_drill.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 10 de daño X veces.\nSi X es 4 o más, duplica X.",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 213
@@ -16809,7 +16789,7 @@
     "image_url": "/static/images/cards/veilpiercer.png",
     "beta_image_url": "/static/images/cards/beta/veilpiercer.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 13 de daño.\nLa siguiente carta [gold]Etérea[/gold] que juegues cuesta 0 [energy:1].",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 349
@@ -16846,7 +16826,7 @@
     "image_url": "/static/images/cards/expertise.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Roba cartas hasta que tengas 7 en tu [gold]Mano[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 117
@@ -16890,7 +16870,7 @@
     "image_url": "/static/images/cards/sleight_of_flesh.png",
     "beta_image_url": "/static/images/cards/beta/sleight_of_flesh.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Cuando apliques un efecto negativo a un enemigo, este recibe 13 de daño.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 336
@@ -16968,7 +16948,7 @@
     "image_url": "/static/images/cards/peck.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 2 de daño 4 veces.",
     "type_key": "Attack",
     "rarity_key": "Event",
     "compendium_order": 539
@@ -17005,7 +16985,7 @@
     "image_url": "/static/images/cards/pillar_of_creation.png",
     "beta_image_url": "/static/images/cards/beta/pillar_of_creation.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Cuando crees una carta, gana 4 de [gold]Bloqueo[/gold].",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 236
@@ -17042,7 +17022,7 @@
     "image_url": "/static/images/cards/pyre.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana [energy:2] al comienzo de cada turno.",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 60
@@ -17079,7 +17059,7 @@
     "image_url": "/static/images/cards/escape_plan.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Roba 1 carta.\nSi robas una Habilidad, gana 5 de [gold]Bloqueo[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 116
@@ -17151,7 +17131,7 @@
     "image_url": "/static/images/cards/well_laid_plans.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Al final de tu turno, [gold]Retén[/gold] hasta 2 cartas.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 173
@@ -17230,7 +17210,7 @@
     "image_url": "/static/images/cards/stardust.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 7 de daño a enemigos aleatorios X veces.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 251
@@ -17320,7 +17300,7 @@
     "image_url": "/static/images/cards/bash.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 10 de daño.\nAplica 2 de [gold]Vulnerabilidad[/gold].",
     "type_key": "Attack",
     "rarity_key": "Basic",
     "compendium_order": 5
@@ -17407,7 +17387,7 @@
     "image_url": "/static/images/cards/celestial_might.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 8 de daño 3 veces.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 185
@@ -17453,7 +17433,7 @@
     "image_url": "/static/images/cards/accuracy.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Las [gold]Navajas[/gold] infligen 6 de daño adicional.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 89
@@ -17491,7 +17471,7 @@
     "image_url": "/static/images/cards/jackpot.png",
     "beta_image_url": "/static/images/cards/beta/jackpot.png",
     "type_variants": null,
-    "upgrade_description": "Inflige 25 de daño.\nAñade 3 cartas aleatorias [gold]Mejoradas[/gold] de coste 0 [energy:1] a tu [gold]Mano[/gold].",
+    "upgrade_description": "Inflige 30 de daño.\nAñade 3 cartas aleatorias [gold]Mejoradas[/gold] de coste 0 [energy:1] a tu [gold]Mano[/gold].",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 466
@@ -17528,7 +17508,7 @@
     "image_url": "/static/images/cards/prepared.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Roba 2 cartas.\nDescarta 2 cartas.",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 150
@@ -17572,7 +17552,7 @@
     "image_url": "/static/images/cards/prep_time.png",
     "beta_image_url": "/static/images/cards/beta/prep_time.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Al comienzo de tu siguiente turno, gana 6 de [gold]Vigor[/gold].",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 478
@@ -17653,7 +17633,7 @@
     "image_url": "/static/images/cards/defile.png",
     "beta_image_url": "/static/images/cards/beta/defile.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 17 de daño.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "keywords_key": [
@@ -17693,7 +17673,7 @@
     "image_url": "/static/images/cards/prophesize.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Roba 9 cartas.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 237
@@ -17821,7 +17801,7 @@
     "image_url": "/static/images/cards/taunt.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 8 de [gold]Bloqueo[/gold].\nAplica 1 de [gold]Vulnerabilidad[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 75
@@ -17860,7 +17840,7 @@
     "image_url": "/static/images/cards/putrefy.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Aplica 3 de [gold]Debilidad[/gold].\nAplica 3 de [gold]Vulnerabilidad[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -17901,7 +17881,7 @@
     "image_url": "/static/images/cards/deaths_door.png",
     "beta_image_url": "/static/images/cards/beta/deaths_door.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 7 de [gold]Bloqueo[/gold].\nSi has aplicado [gold]Condena[/gold] este turno, gana [gold]Bloqueo[/gold] 2 veces más.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 277
@@ -17939,7 +17919,7 @@
     "image_url": "/static/images/cards/astral_pulse.png",
     "beta_image_url": "/static/images/cards/beta/astral_pulse.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 18 de daño a TODOS los enemigos.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 177
@@ -17985,7 +17965,7 @@
     "image_url": "/static/images/cards/negative_pulse.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 6 de [gold]Bloqueo[/gold].\nAplica 7 de [gold]Condena[/gold] a TODOS los enemigos.",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 310
@@ -18025,7 +18005,7 @@
     "image_url": "/static/images/cards/purity.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Agota hasta 5 cartas de tu [gold]Mano[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -18066,7 +18046,7 @@
     "image_url": "/static/images/cards/cleanse.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Vincula[/gold] 5.\n[gold]Agota[/gold] 1 carta de tu [gold]Pila de robo[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 273
@@ -18106,7 +18086,7 @@
     "image_url": "/static/images/cards/backstab.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 15 de daño.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -18156,7 +18136,7 @@
     "image_url": "/static/images/cards/poisoned_stab.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 8 de daño.\nAplica 3 de [gold]Veneno[/gold].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 146
@@ -18202,7 +18182,7 @@
     "image_url": "/static/images/cards/sucker_punch.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 10 de daño.\nAplica 1 de [gold]Debilidad[/gold].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 164
@@ -18240,7 +18220,7 @@
     "image_url": "/static/images/cards/kingly_punch.png",
     "beta_image_url": "/static/images/cards/beta/kingly_punch.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 8 de daño.\nCuando robes esta carta, aumenta su daño en 5 durante este combate.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 219
@@ -18277,7 +18257,7 @@
     "image_url": "/static/images/cards/one_two_punch.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Este turno, tus siguientes 2 Ataques se juegan una vez más.",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 54
@@ -18316,7 +18296,7 @@
     "image_url": "/static/images/cards/molten_fist.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 14 de daño.\nDuplica la [gold]Vulnerabilidad[/gold] del enemigo.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "keywords_key": [
@@ -18358,7 +18338,7 @@
     "image_url": "/static/images/cards/rocket_punch.png",
     "beta_image_url": "/static/images/cards/beta/rocket_punch.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 14 de daño.\nRoba 2 cartas.\nCuando se cree una carta de Estado, reduce el coste de esta carta a 0 [energy:1] este turno.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 413
@@ -18396,7 +18376,7 @@
     "image_url": "/static/images/cards/make_it_so.png",
     "beta_image_url": "/static/images/cards/beta/make_it_so.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 9 de daño.\nCada 3 Habilidades que juegues en un turno, coloca esta carta en tu [gold]Mano[/gold].",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 224
@@ -18433,7 +18413,7 @@
     "image_url": "/static/images/cards/shatter.png",
     "beta_image_url": "/static/images/cards/beta/shatter.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 15 de daño a TODOS los enemigos.\n[gold]Descarga[/gold] todos tus Orbes.",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 417
@@ -18479,7 +18459,7 @@
     "image_url": "/static/images/cards/break.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 25 de daño.\nAplica 5 de [gold]Vulnerabilidad[/gold].",
     "type_key": "Attack",
     "rarity_key": "Ancient",
     "compendium_order": 12
@@ -18556,7 +18536,7 @@
     "image_url": "/static/images/cards/rip_and_tear.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 9 de daño a un enemigo aleatorio.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 542
@@ -18630,7 +18610,7 @@
     "image_url": "/static/images/cards/lunar_blast.png",
     "beta_image_url": "/static/images/cards/beta/lunar_blast.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 5 de daño por cada Habilidad jugada este turno.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 223
@@ -18669,7 +18649,7 @@
     "image_url": "/static/images/cards/reanimate.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Vincula[/gold] 25.",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -18709,7 +18689,7 @@
     "image_url": "/static/images/cards/slice.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 9 de daño.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 157
@@ -18746,7 +18726,7 @@
     "image_url": "/static/images/cards/rebound.png",
     "beta_image_url": "/static/images/cards/beta/rebound.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 12 de daño.\nColoca la siguiente carta que juegues este turno en la parte superior de tu [gold]Pila de robo[/gold].",
     "type_key": "Attack",
     "rarity_key": "Event",
     "compendium_order": 540
@@ -18783,7 +18763,7 @@
     "image_url": "/static/images/cards/scavenge.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Agota[/gold] una carta.\nAl siguiente turno, gana [energy:3].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 414
@@ -18877,7 +18857,7 @@
     "image_url": "/static/images/cards/reflect.png",
     "beta_image_url": "/static/images/cards/beta/reflect.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 21 de [gold]Bloqueo[/gold].\nEl daño de ataque bloqueado durante este turno se devuelve al atacante.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 241
@@ -18916,7 +18896,7 @@
     "image_url": "/static/images/cards/reflex.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Roba 3 cartas.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -18957,7 +18937,7 @@
     "image_url": "/static/images/cards/refract.png",
     "beta_image_url": "/static/images/cards/beta/refract.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 12 de daño dos veces.\n[gold]Invoca[/gold] 2 [gold]Cristal[/gold].",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 412
@@ -19001,7 +18981,7 @@
     "image_url": "/static/images/cards/coolant.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Al comienzo de tu turno, gana 3 de [gold]Bloqueo[/gold] por cada Orbe único que tengas.",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 370
@@ -19040,7 +19020,7 @@
     "image_url": "/static/images/cards/reboot.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Baraja TODAS tus cartas en tu [gold]Pila de robo[/gold].\nRoba 6 cartas.",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -19086,7 +19066,7 @@
     "image_url": "/static/images/cards/relax.png",
     "beta_image_url": "/static/images/cards/beta/relax.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 17 de [gold]Bloqueo[/gold].\nRoba 3 cartas y gana [energy:3] al comienzo de tu siguiente turno.",
     "type_key": "Skill",
     "rarity_key": "Ancient",
     "keywords_key": [
@@ -19128,7 +19108,7 @@
     "image_url": "/static/images/cards/finisher.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 8 de daño por cada Ataque que hayas jugado este turno.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 120
@@ -19204,7 +19184,7 @@
     "image_url": "/static/images/cards/spite.png",
     "beta_image_url": "/static/images/cards/beta/spite.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 9 de daño.\nSi pierdes PV este turno, roba 1 carta.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 67
@@ -19241,7 +19221,7 @@
     "image_url": "/static/images/cards/rally.png",
     "beta_image_url": "/static/images/cards/beta/rally.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "TODOS los jugadores ganan 17 de [gold]Bloqueo[/gold].",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 483
@@ -19279,7 +19259,7 @@
     "image_url": "/static/images/cards/toric_toughness.png",
     "beta_image_url": "/static/images/cards/beta/toric_toughness.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 7 de [gold]Bloqueo[/gold].\nGana 7 de [gold]Bloqueo[/gold] al comienzo de tus siguientes 2 turnos.",
     "type_key": "Skill",
     "rarity_key": "Event",
     "compendium_order": 545
@@ -19324,7 +19304,7 @@
     "image_url": "/static/images/cards/resonance.png",
     "beta_image_url": "/static/images/cards/beta/resonance.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 2 de [gold]Fuerza[/gold]. TODOS los enemigos pierden 1 de [gold]Fuerza[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 242
@@ -19475,13 +19455,11 @@
     "vars": {
       "Cards": 1
     },
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/seance.png",
     "beta_image_url": "/static/images/cards/beta/seance.png",
     "type_variants": null,
-    "upgrade_description": "Transforma una carta de tu [gold]Pila de robo[/gold] en un [gold]Alma+[/gold].",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -19521,7 +19499,7 @@
     "image_url": "/static/images/cards/forgotten_ritual.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Si has [gold]Agotado[/gold] una carta este turno, gana [energy:4].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 37
@@ -19558,7 +19536,7 @@
     "image_url": "/static/images/cards/giant_rock.png",
     "beta_image_url": "/static/images/cards/beta/giant_rock.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 20 de daño.",
     "type_key": "Attack",
     "rarity_key": "Token",
     "compendium_order": 564
@@ -19596,7 +19574,7 @@
     "image_url": "/static/images/cards/sunder.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 32 de daño.\nSi esto mata a un enemigo, gana [energy:3].",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 425
@@ -19717,7 +19695,7 @@
     "image_url": "/static/images/cards/burst.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Este turno, puedes jugar las siguientes 2 cartas de Habilidad otra vez.",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 103
@@ -19757,7 +19735,7 @@
     "image_url": "/static/images/cards/photon_cut.png",
     "beta_image_url": "/static/images/cards/beta/photon_cut.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 13 de daño.\nRoba 2 cartas.\nColoca 1 carta de tu [gold]Mano[/gold] en la parte superior de tu [gold]Pila de robo[/gold].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 235
@@ -19838,7 +19816,7 @@
     "image_url": "/static/images/cards/minion_sacrifice.png",
     "beta_image_url": "/static/images/cards/beta/minion_sacrifice.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 12 de [gold]Bloqueo[/gold].",
     "type_key": "Skill",
     "rarity_key": "Token",
     "keywords_key": [
@@ -19870,13 +19848,11 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/splash.png",
     "beta_image_url": "/static/images/cards/beta/splash.png",
     "type_variants": null,
-    "upgrade_description": "Elige 1 de entre 3 Ataques aleatorios [gold]Mejorados[/gold] de otro personaje y añádelo a tu [gold]Mano[/gold]. Puedes jugarlo gratis este turno.",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 493
@@ -19913,7 +19889,7 @@
     "image_url": "/static/images/cards/leap.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 12 de [gold]Bloqueo[/gold].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 399
@@ -19952,7 +19928,7 @@
     "image_url": "/static/images/cards/flick_flack.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 9 de daño a TODOS los enemigos.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "keywords_key": [
@@ -19992,7 +19968,7 @@
     "image_url": "/static/images/cards/salvo.png",
     "beta_image_url": "/static/images/cards/beta/salvo.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 16 de daño.\n[gold]Retén[/gold] tu [gold]Mano[/gold] este turno.",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 487
@@ -20073,7 +20049,7 @@
     "image_url": "/static/images/cards/pillage.png",
     "beta_image_url": "/static/images/cards/beta/pillage.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 9 de daño.\nRoba cartas hasta que robes una que no sea un Ataque.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 57
@@ -20113,7 +20089,7 @@
     "image_url": "/static/images/cards/boot_sequence.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 13 de [gold]Bloqueo[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -20156,7 +20132,7 @@
     "image_url": "/static/images/cards/sow.png",
     "beta_image_url": "/static/images/cards/beta/sow.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 11 de daño a TODOS los enemigos.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "keywords_key": [
@@ -20196,7 +20172,7 @@
     "image_url": "/static/images/cards/second_wind.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Agota[/gold] todas las cartas que no sean Ataques de tu [gold]Mano[/gold]. Gana 7 de [gold]Bloqueo[/gold] por cada carta [gold]Agotada[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 64
@@ -20233,7 +20209,7 @@
     "image_url": "/static/images/cards/bury.png",
     "beta_image_url": "/static/images/cards/beta/bury.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 63 de daño.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 269
@@ -20318,7 +20294,7 @@
     "image_url": "/static/images/cards/sneaky.png",
     "beta_image_url": "/static/images/cards/beta/sneaky.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Cuando otro jugador ataque a un enemigo, ganas 2 de [gold]Bloqueo[/gold].",
     "type_key": "Power",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -20360,7 +20336,7 @@
     "image_url": "/static/images/cards/whistle.png",
     "beta_image_url": "/static/images/cards/beta/whistle.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 44 de daño.\n[gold]Aturde[/gold] al enemigo.",
     "type_key": "Attack",
     "rarity_key": "Ancient",
     "keywords_key": [
@@ -20402,7 +20378,7 @@
     "image_url": "/static/images/cards/no_escape.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Aplica 15 de [gold]Condena[/gold] más 5 de [gold]Condena[/gold] adicional por cada 10 de [gold]Condena[/gold] que tenga el enemigo.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 312
@@ -20491,7 +20467,7 @@
     "image_url": "/static/images/cards/neurosurge.png",
     "beta_image_url": "/static/images/cards/beta/neurosurge.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana [energy:4].\nRoba 2 cartas.\nAl comienzo de tu turno, te aplicas 3 de [gold]Condena[/gold].",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 311
@@ -20625,7 +20601,7 @@
     "image_url": "/static/images/cards/consuming_shadow.png",
     "beta_image_url": "/static/images/cards/beta/consuming_shadow.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Invoca[/gold] 3 [gold]Oscuridad[/gold].\nAl final de tu turno, [gold]Descarga[/gold] el Orbe situado más a la izquierda.",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 369
@@ -20664,7 +20640,7 @@
     "image_url": "/static/images/cards/fight_through.png",
     "beta_image_url": "/static/images/cards/beta/fight_through.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 17 de [gold]Bloqueo[/gold].\nAñade 2 [gold]Heridas[/gold] a tu [gold]Pila de descarte[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 381
@@ -20702,13 +20678,11 @@
       "SpinnerPower": 1,
       "Spinner": 1
     },
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/spinner.png",
     "beta_image_url": "/static/images/cards/beta/spinner.png",
     "type_variants": null,
-    "upgrade_description": "[gold]Invoca[/gold] 1 [gold]Cristal[/gold].\nAl comienzo de tu turno, [gold]Invoca[/gold] 1 [gold]Cristal[/gold].",
+    "upgrade_description": null,
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 421
@@ -20782,7 +20756,7 @@
     "image_url": "/static/images/cards/supercritical.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana [energy:6].",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -20825,7 +20799,7 @@
     "image_url": "/static/images/cards/supermassive.png",
     "beta_image_url": "/static/images/cards/beta/supermassive.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 5 de daño.\nInflige 4 de daño adicional por cada carta que hayas creado este combate.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 254
@@ -20867,7 +20841,7 @@
     "image_url": "/static/images/cards/dying_star.png",
     "beta_image_url": "/static/images/cards/beta/dying_star.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 11 de daño a TODOS los enemigos. TODOS los enemigos pierden 11 de [gold]Fuerza[/gold] este turno.",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -20907,7 +20881,7 @@
     "image_url": "/static/images/cards/survivor.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 11 de [gold]Bloqueo[/gold].\nDescarta 1 carta.",
     "type_key": "Skill",
     "rarity_key": "Basic",
     "compendium_order": 166
@@ -20955,7 +20929,7 @@
     "image_url": "/static/images/cards/suppress.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 17 de daño.\nAplica 3 de [gold]Debilidad[/gold].",
     "type_key": "Attack",
     "rarity_key": "Ancient",
     "keywords_key": [
@@ -20996,7 +20970,7 @@
     "image_url": "/static/images/cards/finesse.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 7 de [gold]Bloqueo[/gold].\nRoba 1 carta.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 456
@@ -21033,7 +21007,7 @@
     "image_url": "/static/images/cards/synthesis.png",
     "beta_image_url": "/static/images/cards/beta/synthesis.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 18 de daño.\nEl siguiente Poder que juegues cuesta 0 [energy:1].",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 429
@@ -21072,7 +21046,7 @@
     "image_url": "/static/images/cards/claw.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 4 de daño.\nAumenta el daño de TODAS las cartas de Tajo en 3 durante este combate.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 365
@@ -21118,7 +21092,7 @@
     "image_url": "/static/images/cards/follow_through.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 8 de daño a TODOS los enemigos.\nSi la última carta que has jugado este turno es una Habilidad, aplica 1 de [gold]Debilidad[/gold] a TODOS los enemigos.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 124
@@ -21163,7 +21137,7 @@
     "image_url": "/static/images/cards/drum_of_battle.png",
     "beta_image_url": "/static/images/cards/beta/drum_of_battle.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Roba 3 cartas.\nAl comienzo de tu turno, [gold]Agota[/gold] la primera carta de tu [gold]Pila de robo[/gold].",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 29
@@ -21227,13 +21201,11 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/tempest.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "[gold]Invoca[/gold] X+1 [gold]Relámpago[/gold].",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 430
@@ -21271,7 +21243,7 @@
     "image_url": "/static/images/cards/refine_blade.png",
     "beta_image_url": "/static/images/cards/beta/refine_blade.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Forja[/gold] 10.\nAl siguiente turno, gana [energy:1].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 240
@@ -21315,7 +21287,7 @@
     "image_url": "/static/images/cards/terraforming.png",
     "beta_image_url": "/static/images/cards/beta/terraforming.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 8 de [gold]Vigor[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 256
@@ -21363,7 +21335,7 @@
     "image_url": "/static/images/cards/fear.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 8 de daño.\nAplica 1 de [gold]Vulnerabilidad[/gold].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "keywords_key": [
@@ -21411,7 +21383,7 @@
     "image_url": "/static/images/cards/hidden_cache.png",
     "beta_image_url": "/static/images/cards/beta/hidden_cache.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana [star:1].\nEl siguiente turno, gana [star:4].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 216
@@ -21491,7 +21463,7 @@
     "image_url": "/static/images/cards/borrowed_time.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Te aplicas 3 de [gold]Condena[/gold].\nGana [energy:2].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 268
@@ -21568,7 +21540,7 @@
     "image_url": "/static/images/cards/all_for_one.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 14 de daño.\nColoca TODAS las cartas de coste 0 [energy:1] de tu [gold]Pila de descarte[/gold] en tu [gold]Mano[/gold].",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 352
@@ -21607,7 +21579,7 @@
     "image_url": "/static/images/cards/enfeebling_touch.png",
     "beta_image_url": "/static/images/cards/beta/enfeebling_touch.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "El enemigo pierde 11 de [gold]Fuerza[/gold] este turno.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -21647,7 +21619,7 @@
     "image_url": "/static/images/cards/whirlwind.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 8 de daño a TODOS los enemigos X veces.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 86
@@ -21691,7 +21663,7 @@
     "image_url": "/static/images/cards/storm.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Cuando juegues un Poder, [gold]Invoca[/gold] 2 [gold]Relámpago[/gold].",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 422
@@ -21722,13 +21694,11 @@
       "SHIV"
     ],
     "vars": null,
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/storm_of_steel.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Descarta tu [gold]Mano[/gold].\nAñade 1 [gold]Navaja+[/gold] a tu [gold]Mano[/gold] por cada carta descartada.",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 161
@@ -21770,7 +21740,7 @@
     "image_url": "/static/images/cards/soul_storm.png",
     "beta_image_url": "/static/images/cards/beta/soul_storm.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 9 de daño.\nInflige 3 de daño adicional por cada [gold]Alma[/gold] en tu [gold]Pila de agotamiento[/gold].",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 338
@@ -21890,7 +21860,7 @@
     "image_url": "/static/images/cards/gang_up.png",
     "beta_image_url": "/static/images/cards/beta/gang_up.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 5 de daño.\nInflige 7 de daño adicional por cada vez que otro jugador haya atacado al enemigo este turno.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 459
@@ -21926,13 +21896,11 @@
       "CalculationBase": 0,
       "CalculationExtra": 1
     },
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/knife_trap.png",
     "beta_image_url": "/static/images/cards/beta/knife_trap.png",
     "type_variants": null,
-    "upgrade_description": "[gold]Mejora[/gold] y juega todas las [gold]Navajas[/gold] de tu [gold]Pila de agotamiento[/gold] contra el enemigo.",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 131
@@ -21969,7 +21937,7 @@
     "image_url": "/static/images/cards/battle_trance.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Roba 4 cartas.\nNo puedes robar más cartas este turno.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 6
@@ -22050,7 +22018,7 @@
     "image_url": "/static/images/cards/collision_course.png",
     "beta_image_url": "/static/images/cards/beta/collision_course.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 12 de daño.\nAñade 1 [gold]Escombros[/gold] a tu [gold]Mano[/gold].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 189
@@ -22095,7 +22063,7 @@
     "image_url": "/static/images/cards/thunderclap.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 7 de daño y aplica 1 de [gold]Vulnerabilidad[/gold] a TODOS los enemigos.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 78
@@ -22139,7 +22107,7 @@
     "image_url": "/static/images/cards/thunder.png",
     "beta_image_url": "/static/images/cards/beta/thunder.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Cuando [gold]Descargues Relámpago[/gold], inflige 8 de daño a cada enemigo golpeado.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 432
@@ -22218,7 +22186,7 @@
     "image_url": "/static/images/cards/afterlife.png",
     "beta_image_url": "/static/images/cards/beta/afterlife.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Vincula[/gold] 9.",
     "type_key": "Skill",
     "rarity_key": "Common",
     "keywords_key": [
@@ -22301,7 +22269,7 @@
     "image_url": "/static/images/cards/pale_blue_dot.png",
     "beta_image_url": "/static/images/cards/beta/pale_blue_dot.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Si juegas 5 cartas o más en un turno, roba 2 cartas al comienzo de tu siguiente turno.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 231
@@ -22422,7 +22390,7 @@
     "image_url": "/static/images/cards/maul.png",
     "beta_image_url": "/static/images/cards/beta/maul.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 6 de daño dos veces.\nAumenta el daño de TODAS las cartas de Vapulear en 2 durante este combate.",
     "type_key": "Attack",
     "rarity_key": "Ancient",
     "compendium_order": 535
@@ -22462,7 +22430,7 @@
     "image_url": "/static/images/cards/ftl.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 6 de daño.\nSi has jugado menos de 4 cartas este turno, roba 1 carta.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 384
@@ -22506,7 +22474,7 @@
     "image_url": "/static/images/cards/speedster.png",
     "beta_image_url": "/static/images/cards/beta/speedster.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Cuando robes una carta durante tu turno, inflige 3 de daño a TODOS los enemigos.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 160
@@ -22587,7 +22555,7 @@
     "image_url": "/static/images/cards/true_grit.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Gana 7 de [gold]Bloqueo[/gold].\n[gold]Agota[/gold] 1 carta.",
+    "upgrade_description": "Gana 9 de [gold]Bloqueo[/gold].\n[gold]Agota[/gold] 1 carta.",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 80
@@ -22667,7 +22635,7 @@
     "image_url": "/static/images/cards/gunk_up.png",
     "beta_image_url": "/static/images/cards/beta/gunk_up.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 5 de daño 3 veces.\nAñade 1 [gold]Viscoso[/gold] a tu [gold]Pila de descarte[/gold].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 390
@@ -22788,7 +22756,7 @@
     "image_url": "/static/images/cards/backflip.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 8 de [gold]Bloqueo[/gold].\nRoba 2 cartas.",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 95
@@ -22825,7 +22793,7 @@
     "image_url": "/static/images/cards/child_of_the_stars.png",
     "beta_image_url": "/static/images/cards/beta/child_of_the_stars.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Siempre que gastes [star:1], gana 3 de [gold]Bloqueo[/gold] por cada [star:1] gastado.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 187
@@ -22862,7 +22830,7 @@
     "image_url": "/static/images/cards/byrd_swoop.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 18 de daño.",
     "type_key": "Attack",
     "rarity_key": "Event",
     "compendium_order": 524
@@ -22902,7 +22870,7 @@
     "image_url": "/static/images/cards/ricochet.png",
     "beta_image_url": "/static/images/cards/beta/ricochet.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 3 de daño a un enemigo aleatorio 5 veces.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "keywords_key": [
@@ -22938,13 +22906,11 @@
     "vars": {
       "Cards": 2
     },
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/charge.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Elige 2 cartas de tu [gold]Pila de robo[/gold] y [gold]Transfórmalas[/gold] en\n[gold]Golpe de esbirro+[/gold].",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 186
@@ -22994,7 +22960,7 @@
     "image_url": "/static/images/cards/sic_em.png",
     "beta_image_url": "/static/images/cards/beta/sic_em.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Nudillos[/gold] inflige 6 de daño.\nCuando [gold]Nudillos[/gold] ataque al enemigo este turno, [gold]Vincula[/gold] 3.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 335
@@ -23042,7 +23008,7 @@
     "image_url": "/static/images/cards/fight_me.png",
     "beta_image_url": "/static/images/cards/beta/fight_me.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inflige 6 de daño dos veces.\nGana 2 de [gold]Fuerza[/gold].\nEl enemigo gana 1 de [gold]Fuerza[/gold].",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 35
@@ -23081,7 +23047,7 @@
     "image_url": "/static/images/cards/begone.png",
     "beta_image_url": "/static/images/cards/beta/begone.png",
     "type_variants": null,
-    "upgrade_description": "Inflige 4 de daño.\nElige una carta de tu [gold]Mano[/gold] y [gold]Transfórmala[/gold] en [gold]Bombardeo de esbirro+[/gold].",
+    "upgrade_description": "Inflige 5 de daño.\nElige una carta de tu [gold]Mano[/gold] y [gold]Transfórmala[/gold] en [gold]Bombardeo de esbirro+[/gold].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 179
@@ -23118,7 +23084,7 @@
     "image_url": "/static/images/cards/i_am_invincible.png",
     "beta_image_url": "/static/images/cards/beta/i_am_invincible.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 12 de [gold]Bloqueo[/gold].\nAl final de tu turno, si esta carta se encuentra en la parte superior de tu [gold]Pila de robo[/gold], juégala.",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 217
@@ -23160,7 +23126,7 @@
     "image_url": "/static/images/cards/fetch.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Nudillos[/gold] inflige 6 de daño.\nSi es la primera vez que juegas esta carta este turno, roba 1 carta.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 294
@@ -23193,13 +23159,11 @@
       "MINION_SACRIFICE"
     ],
     "vars": null,
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/guards.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "[gold]Transforma[/gold] cualquier número de cartas de tu [gold]Mano[/gold] en [gold]Sacrificio de esbirro+[/gold].",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -23241,7 +23205,7 @@
     "image_url": "/static/images/cards/bulwark.png",
     "beta_image_url": "/static/images/cards/beta/bulwark.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 16 de [gold]Bloqueo[/gold].\n[gold]Forja[/gold] 13.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 183

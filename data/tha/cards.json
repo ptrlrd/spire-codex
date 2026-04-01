@@ -85,7 +85,7 @@
     "image_url": "/static/images/cards/break.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 25\nสร้าง 5 [gold]จุดอ่อน[/gold]",
     "type_key": "Attack",
     "rarity_key": "Ancient",
     "compendium_order": 12
@@ -178,7 +178,7 @@
     "image_url": "/static/images/cards/bully.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 4\nสร้างความเสียหายเพิ่ม 3 ตามจำนวน[gold]จุดอ่อน[/gold]บนตัวศัตรู",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 14
@@ -217,7 +217,7 @@
     "image_url": "/static/images/cards/bulwark.png",
     "beta_image_url": "/static/images/cards/beta/bulwark.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ 16 [gold]บล็อก[/gold]\n[gold]หลอมสร้าง[/gold] 13",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 183
@@ -256,7 +256,7 @@
     "image_url": "/static/images/cards/bundle_of_joy.png",
     "beta_image_url": "/static/images/cards/beta/bundle_of_joy.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "เพิ่มการ์ดไม่มีสี 4 ใบแบบสุ่มใส่[gold]มือ[/gold]",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -296,7 +296,7 @@
     "image_url": "/static/images/cards/bury.png",
     "beta_image_url": "/static/images/cards/beta/bury.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 63",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 269
@@ -333,7 +333,7 @@
     "image_url": "/static/images/cards/byrd_swoop.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 18",
     "type_key": "Attack",
     "rarity_key": "Event",
     "compendium_order": 524
@@ -450,7 +450,7 @@
     "image_url": "/static/images/cards/calcify.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "การโจมตีของ[gold]Osty[/gold]สร้างความเสียหายเพิ่ม 6",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 270
@@ -528,7 +528,7 @@
     "image_url": "/static/images/cards/capture_spirit.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ศัตรูเสีย 4 HP\nเพิ่ม[gold]วิญญาณ[/gold] 4 ใบเข้า[gold]กองจั่ว[/gold]",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 272
@@ -557,13 +557,11 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/cascade.png",
     "beta_image_url": "/static/images/cards/beta/cascade.png",
     "type_variants": null,
-    "upgrade_description": "เล่นการ์ดใบบนสุด X+1 ใบของ[gold]กองจั่ว[/gold]",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 16
@@ -600,7 +598,7 @@
     "image_url": "/static/images/cards/catastrophe.png",
     "beta_image_url": "/static/images/cards/beta/catastrophe.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "เล่นการ์ด 3 ใบแบบสุ่มจาก[gold]กองจั่ว[/gold]",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 447
@@ -638,7 +636,7 @@
     "image_url": "/static/images/cards/celestial_might.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 8 จำนวน 3 ครั้ง",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 185
@@ -675,7 +673,7 @@
     "image_url": "/static/images/cards/child_of_the_stars.png",
     "beta_image_url": "/static/images/cards/beta/child_of_the_stars.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ทุกครั้งที่คุณจ่าย [star:1] ได้รับ 3 [gold]บล็อก[/gold]ตามจำนวน [star:1] ที่จ่ายไป",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 187
@@ -713,7 +711,7 @@
     "image_url": "/static/images/cards/cinder.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 22\n[gold]สลาย[/gold]การ์ดใบบนสุดของ[gold]กองจั่ว[/gold]",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 17
@@ -751,7 +749,7 @@
     "image_url": "/static/images/cards/cloak_of_stars.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ 10 [gold]บล็อก[/gold]",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 188
@@ -790,7 +788,7 @@
     "image_url": "/static/images/cards/collision_course.png",
     "beta_image_url": "/static/images/cards/beta/collision_course.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 12\nเพิ่ม[gold]Debris[/gold] 1 ใบใส่[gold]มือ[/gold]",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 189
@@ -828,7 +826,7 @@
     "image_url": "/static/images/cards/colossus.png",
     "beta_image_url": "/static/images/cards/beta/colossus.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ 8 [gold]บล็อก[/gold]\nในเทิร์นนี้ คุณจะได้รับความเสียหายน้อยลง 50% จากศัตรูที่มี[gold]จุดอ่อน[/gold]",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 18
@@ -881,7 +879,7 @@
     "image_url": "/static/images/cards/comet.png",
     "beta_image_url": "/static/images/cards/beta/comet.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 44\nสร้าง 3 [gold]ความอ่อนแอ[/gold]\nสร้าง 3 [gold]จุดอ่อน[/gold]",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 190
@@ -920,7 +918,7 @@
     "image_url": "/static/images/cards/compact.png",
     "beta_image_url": "/static/images/cards/beta/compact.png",
     "type_variants": null,
-    "upgrade_description": "ได้รับ 6 [gold]บล็อก[/gold]\n[gold]แปรสภาพ[/gold]การ์ดสถานะทั้งหมดใน[gold]มือ[/gold]เป็น[gold]เชื้อเพลิง+[/gold]",
+    "upgrade_description": "ได้รับ 7 [gold]บล็อก[/gold]\n[gold]แปรสภาพ[/gold]การ์ดสถานะทั้งหมดใน[gold]มือ[/gold]เป็น[gold]เชื้อเพลิง+[/gold]",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 367
@@ -961,7 +959,7 @@
     "image_url": "/static/images/cards/conflagration.png",
     "beta_image_url": "/static/images/cards/beta/conflagration.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 8 ใส่ศัตรูทั้งหมด\nสร้างความเสียหายเพิ่ม 3 ตามจำนวนการ์ดโจมตีใบอื่นที่คุณเล่นในเทิร์นนี้",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 19
@@ -998,7 +996,7 @@
     "image_url": "/static/images/cards/conqueror.png",
     "beta_image_url": "/static/images/cards/beta/conqueror.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]หลอมสร้าง[/gold] 5\nและในเทิร์นนี้ [gold]พระแสงอาญาสิทธิ์[/gold]สร้างความเสียหายใส่ศัตรูเป็น 2 เท่า",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 191
@@ -1043,7 +1041,7 @@
     "image_url": "/static/images/cards/consuming_shadow.png",
     "beta_image_url": "/static/images/cards/beta/consuming_shadow.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]ปลุกเสก[/gold] 3 [gold]ความมืด[/gold]\nตอนจบเทิร์น [gold]ปล่อยพลัง[/gold]ลูกแก้วลูกซ้ายสุด",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 369
@@ -1081,7 +1079,7 @@
     "image_url": "/static/images/cards/convergence.png",
     "beta_image_url": "/static/images/cards/beta/convergence.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]คงสภาพ[/gold]ทั้ง[gold]มือ[/gold]ในเทิร์นนี้\nเทิร์นถัดไป\nได้รับ [energy:1] และ [star:2]",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 192
@@ -1125,7 +1123,7 @@
     "image_url": "/static/images/cards/coolant.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ตอนเริ่มต้นเทิร์น ได้รับ 3 [gold]บล็อก[/gold]ตามจำนวนลูกแก้วไม่ซ้ำธาตุที่คุณมี",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 370
@@ -1206,7 +1204,7 @@
     "image_url": "/static/images/cards/corrosive_wave.png",
     "beta_image_url": "/static/images/cards/beta/corrosive_wave.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ทุกครั้งที่คุณจั่วการ์ดในเทิร์นนี้ สร้าง 4 [gold]พิษ[/gold]ใส่ศัตรูทั้งหมด",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 106
@@ -1243,7 +1241,7 @@
     "image_url": "/static/images/cards/cosmic_indifference.png",
     "beta_image_url": "/static/images/cards/beta/cosmic_indifference.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ 9 [gold]บล็อก[/gold]\nนำการ์ด 1 ใบจาก[gold]กองทิ้ง[/gold]ไปวางไว้บนสุดของ[gold]กองจั่ว[/gold]",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 193
@@ -1282,7 +1280,7 @@
     "image_url": "/static/images/cards/crash_landing.png",
     "beta_image_url": "/static/images/cards/beta/crash_landing.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 26 ใส่ศัตรูทั้งหมด\nเติมทั้ง[gold]มือ[/gold]ด้วย[gold]Debris[/gold]",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 194
@@ -1323,7 +1321,7 @@
     "image_url": "/static/images/cards/crescent_spear.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 6\nสร้างความเสียหายเพิ่ม 3 ตามจำนวนการ์ดทั้งหมดของคุณที่มีค่าร่าย [star:1]",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 195
@@ -1367,7 +1365,7 @@
     "image_url": "/static/images/cards/crimson_mantle.png",
     "beta_image_url": "/static/images/cards/beta/crimson_mantle.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ตอนเริ่มต้นเทิร์น เสีย 1 HP และได้รับ 10 [gold]บล็อก[/gold]",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 21
@@ -1411,7 +1409,7 @@
     "image_url": "/static/images/cards/cruelty.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ศัตรูที่มี[gold]จุดอ่อน[/gold]ได้รับความเสียหายเพิ่ม 50%",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 22
@@ -1450,7 +1448,7 @@
     "image_url": "/static/images/cards/crush_under.png",
     "beta_image_url": "/static/images/cards/beta/crush_under.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 8 ใส่ศัตรูทั้งหมด ศัตรูทั้งหมดเสีย 2 [gold]ความแข็งแรง[/gold]ในเทิร์นนี้",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 196
@@ -1491,7 +1489,7 @@
     "image_url": "/static/images/cards/death_march.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 8\nสร้างความเสียหายเพิ่ม 4 ตามจำนวนการ์ดที่คุณจั่วในเทิร์นนี้",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 278
@@ -1588,7 +1586,7 @@
     "image_url": "/static/images/cards/debilitate.png",
     "beta_image_url": "/static/images/cards/beta/debilitate.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 9\n[gold]จุดอ่อน[/gold]และ[gold]ความอ่อนแอ[/gold]มีผลกับศัตรูเป็น 2 เท่า เป็นเวลา 4 เทิร์น",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 279
@@ -1627,7 +1625,7 @@
     "image_url": "/static/images/cards/defile.png",
     "beta_image_url": "/static/images/cards/beta/defile.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 17",
     "type_key": "Attack",
     "rarity_key": "Common",
     "keywords_key": [
@@ -1755,7 +1753,7 @@
     "image_url": "/static/images/cards/devastate.png",
     "beta_image_url": "/static/images/cards/beta/devastate.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 40",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 199
@@ -1794,7 +1792,7 @@
     "image_url": "/static/images/cards/dirge.png",
     "beta_image_url": "/static/images/cards/beta/dirge.png",
     "type_variants": null,
-    "upgrade_description": "[gold]อัญเชิญ[/gold] 3 จำนวน X ครั้ง\nเพิ่ม[gold]วิญญาณ+[/gold] X  ใบเข้า[gold]กองจั่ว[/gold]",
+    "upgrade_description": "[gold]อัญเชิญ[/gold] 4 จำนวน X ครั้ง\nเพิ่ม[gold]วิญญาณ+[/gold] X  ใบเข้า[gold]กองจั่ว[/gold]",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 286
@@ -1873,7 +1871,7 @@
     "image_url": "/static/images/cards/dismantle.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 10\nถ้าศัตรูมี[gold]จุดอ่อน[/gold] โจมตี 2 ครั้ง",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 27
@@ -1954,7 +1952,7 @@
     "image_url": "/static/images/cards/drain_power.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 12\n[gold]พัฒนา[/gold]การ์ด 3 ใบแบบสุ่มใน[gold]กองทิ้ง[/gold]",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 287
@@ -2038,7 +2036,7 @@
     "image_url": "/static/images/cards/dying_star.png",
     "beta_image_url": "/static/images/cards/beta/dying_star.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 11 ใส่ศัตรูทั้งหมด ศัตรูทั้งหมดเสีย 11 [gold]ความแข็งแรง[/gold]ในเทิร์นนี้",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -2161,7 +2159,7 @@
     "image_url": "/static/images/cards/energy_surge.png",
     "beta_image_url": "/static/images/cards/beta/energy_surge.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ผู้เล่นทั้งหมดได้รับ [energy:3]",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -2203,7 +2201,7 @@
     "image_url": "/static/images/cards/enfeebling_touch.png",
     "beta_image_url": "/static/images/cards/beta/enfeebling_touch.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ศัตรูเสีย 11 [gold]ความแข็งแรง[/gold]ในเทิร์นนี้",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -2320,7 +2318,7 @@
     "image_url": "/static/images/cards/eradicate.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 14 จำนวน X ครั้ง",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -2367,7 +2365,7 @@
     "image_url": "/static/images/cards/eternal_armor.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ 9 [gold]Plating[/gold]",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 454
@@ -2404,7 +2402,7 @@
     "image_url": "/static/images/cards/evil_eye.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ 11 [gold]บล็อก[/gold]\nได้รับเพิ่ม 11 [gold]บล็อก[/gold]ถ้าคุณ[gold]สลาย[/gold]การ์ดไปในเทิร์นนี้",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 30
@@ -2482,7 +2480,7 @@
     "image_url": "/static/images/cards/expose.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "กำจัด[gold]อาคม[/gold]และ[gold]บล็อก[/gold]ทั้งหมดจากศัตรู\nสร้าง 3 [gold]จุดอ่อน[/gold]",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -2523,7 +2521,7 @@
     "image_url": "/static/images/cards/exterminate.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 4 จำนวน 4 ครั้งใส่ศัตรูทั้งหมด",
     "type_key": "Attack",
     "rarity_key": "Event",
     "compendium_order": 531
@@ -2576,7 +2574,7 @@
     "image_url": "/static/images/cards/falling_star.png",
     "beta_image_url": "/static/images/cards/beta/falling_star.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 11\nสร้าง 1 [gold]ความอ่อนแอ[/gold]\nสร้าง 1 [gold]จุดอ่อน[/gold]",
     "type_key": "Attack",
     "rarity_key": "Basic",
     "compendium_order": 201
@@ -2706,7 +2704,7 @@
     "image_url": "/static/images/cards/fetch.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Osty[/gold]สร้างความเสียหาย 6\nถ้านี่คือครั้งแรกที่เล่นการ์ดนี้ในเทิร์นนี้ จั่วการ์ด 1 ใบ",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 294
@@ -2745,7 +2743,7 @@
     "image_url": "/static/images/cards/fight_through.png",
     "beta_image_url": "/static/images/cards/beta/fight_through.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ 17 [gold]บล็อก[/gold]\nเพิ่ม[gold]Wounds[/gold] 2 ใบเข้า[gold]กองทิ้ง[/gold]",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 381
@@ -2782,7 +2780,7 @@
     "image_url": "/static/images/cards/fisticuffs.png",
     "beta_image_url": "/static/images/cards/beta/fisticuffs.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 9\nได้รับ[gold]บล็อก[/gold]ตามความเสียหายที่ไม่ถูกบล็อกที่ทำได้",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 457
@@ -2821,7 +2819,7 @@
     "image_url": "/static/images/cards/flak_cannon.png",
     "beta_image_url": "/static/images/cards/beta/flak_cannon.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]สลาย[/gold]การ์ด[gold]สถานะ[/gold]ทั้งหมดของคุณ\nสร้างความเสียหาย 11 ใส่ศัตรู 1 ตัวแบบสุ่ม ตามจำนวนการ์ดที่ถูก[gold]สลาย[/gold]",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 382
@@ -2862,7 +2860,7 @@
     "image_url": "/static/images/cards/flatten.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Osty[/gold]สร้างความเสียหาย 16\nการ์ดนี้ค่าร่ายเป็น 0 [energy:1] ถ้า[gold]Osty[/gold]เคยโจมตีในเทิร์นนี้",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 295
@@ -2901,7 +2899,7 @@
     "image_url": "/static/images/cards/flick_flack.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 9 ใส่ศัตรูทั้งหมด",
     "type_key": "Attack",
     "rarity_key": "Common",
     "keywords_key": [
@@ -3023,7 +3021,7 @@
     "image_url": "/static/images/cards/foregone_conclusion.png",
     "beta_image_url": "/static/images/cards/beta/foregone_conclusion.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "เทิร์นถัดไป นำการ์ด 3 ใบจาก[gold]กองจั่ว[/gold]ขึ้น[gold]มือ[/gold]",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 202
@@ -3060,7 +3058,7 @@
     "image_url": "/static/images/cards/forgotten_ritual.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ถ้าคุณเคย[gold]สลาย[/gold]การ์ดในเทิร์นนี้ ได้รับ [energy:4]",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 37
@@ -3146,7 +3144,7 @@
     "image_url": "/static/images/cards/gamma_blast.png",
     "beta_image_url": "/static/images/cards/beta/gamma_blast.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 18\nสร้าง 2 [gold]ความอ่อนแอ[/gold]\nสร้าง 2 [gold]จุดอ่อน[/gold]",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 204
@@ -3186,7 +3184,7 @@
     "image_url": "/static/images/cards/gang_up.png",
     "beta_image_url": "/static/images/cards/beta/gang_up.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 5\nสร้างความเสียหายเพิ่ม 7 ตามจำนวนครั้งที่พันธมิตรเคยโจมตีศัตรูในเทิร์นนี้",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 459
@@ -3224,7 +3222,7 @@
     "image_url": "/static/images/cards/gather_light.png",
     "beta_image_url": "/static/images/cards/beta/gather_light.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ 10 [gold]บล็อก[/gold]\nได้รับ [star:1]",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 205
@@ -3261,7 +3259,7 @@
     "image_url": "/static/images/cards/genesis.png",
     "beta_image_url": "/static/images/cards/beta/genesis.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ตอนเริ่มต้นเทิร์น ได้รับ [star:3]",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 206
@@ -3298,7 +3296,7 @@
     "image_url": "/static/images/cards/giant_rock.png",
     "beta_image_url": "/static/images/cards/beta/giant_rock.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 20",
     "type_key": "Attack",
     "rarity_key": "Token",
     "compendium_order": 564
@@ -3336,7 +3334,7 @@
     "image_url": "/static/images/cards/glimmer.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "จั่วการ์ด 4 ใบ\nนำการ์ด 1 ใบจาก[gold]มือ[/gold]ไปวางไว้บนสุดของ[gold]กองจั่ว[/gold]",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 207
@@ -3377,7 +3375,7 @@
     "image_url": "/static/images/cards/glimpse_beyond.png",
     "beta_image_url": "/static/images/cards/beta/glimpse_beyond.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ผู้เล่นทั้งหมดเพิ่ม[gold]วิญญาณ[/gold] 4 ใบเข้า[gold]กองจั่ว[/gold]",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -3419,7 +3417,7 @@
     "image_url": "/static/images/cards/glitterstream.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ 13 [gold]บล็อก[/gold]\nเทิร์นถัดไป ได้รับ 6 [gold]บล็อก[/gold]",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 208
@@ -3457,7 +3455,7 @@
     "image_url": "/static/images/cards/glow.png",
     "beta_image_url": "/static/images/cards/beta/glow.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ [star:2]\nจั่วการ์ด 2 ใบ",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 209
@@ -3542,7 +3540,7 @@
     "image_url": "/static/images/cards/grapple.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 9\nและทุกครั้งที่คุณได้รับ[gold]บล็อก[/gold]ในเทิร์นนี้ สร้างความเสียหาย 7 ใส่ศัตรูตัวนั้น",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 38
@@ -3582,7 +3580,7 @@
     "image_url": "/static/images/cards/grave_warden.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "ได้รับ 8 [gold]บล็อก[/gold]\nเพิ่ม[gold]วิญญาณ+[/gold] 1 ใบเข้า[gold]กองจั่ว[/gold]",
+    "upgrade_description": "ได้รับ 10 [gold]บล็อก[/gold]\nเพิ่ม[gold]วิญญาณ+[/gold] 1 ใบเข้า[gold]กองจั่ว[/gold]",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 300
@@ -3622,7 +3620,7 @@
     "image_url": "/static/images/cards/graveblast.png",
     "beta_image_url": "/static/images/cards/beta/graveblast.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 6\nนำการ์ด 1 ใบจาก[gold]กองทิ้ง[/gold]ขึ้น[gold]มือ[/gold]",
     "type_key": "Attack",
     "rarity_key": "Common",
     "keywords_key": [
@@ -3658,13 +3656,11 @@
       "MINION_SACRIFICE"
     ],
     "vars": null,
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/guards.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "[gold]แปรสภาพ[/gold]การ์ดกี่ใบก็ได้ใน[gold]มือ[/gold]ให้เป็น[gold]ลูกน้องสละชีพ+[/gold]",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -3707,7 +3703,7 @@
     "image_url": "/static/images/cards/guiding_star.png",
     "beta_image_url": "/static/images/cards/beta/guiding_star.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 13\nเทิร์นถัดไป จั่วการ์ด 3 ใบ",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 211
@@ -3787,7 +3783,7 @@
     "image_url": "/static/images/cards/gunk_up.png",
     "beta_image_url": "/static/images/cards/beta/gunk_up.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 5 จำนวน 3 ครั้ง\nเพิ่ม[gold]Slimed[/gold] 1 ใบเข้า[gold]กองทิ้ง[/gold]",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 390
@@ -3831,7 +3827,7 @@
     "image_url": "/static/images/cards/hailstorm.png",
     "beta_image_url": "/static/images/cards/beta/hailstorm.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ตอนจบเทิร์น ถ้าคุณมี[gold]น้ำแข็ง[/gold] สร้างความเสียหาย 8 ใส่ศัตรูทั้งหมด",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 391
@@ -3903,7 +3899,7 @@
     "image_url": "/static/images/cards/hand_trick.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ 10 [gold]บล็อก[/gold]\nเพิ่ม[gold]เล่ห์เหลี่ยม[/gold]ให้การ์ดทักษะ 1 ใบใน[gold]มือ[/gold]ในเทิร์นนี้",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 127
@@ -3942,7 +3938,7 @@
     "image_url": "/static/images/cards/haunt.png",
     "beta_image_url": "/static/images/cards/beta/haunt.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ทุกครั้งที่คุณเล่น[gold]วิญญาณ[/gold] ศัตรู 1 ตัวแบบสุ่มเสีย 8 HP",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 302
@@ -3980,7 +3976,7 @@
     "image_url": "/static/images/cards/heavenly_drill.png",
     "beta_image_url": "/static/images/cards/beta/heavenly_drill.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 10 จำนวน X ครั้ง\nถ้า X มีค่า 4 ขึ้นไป จะเกิดผล 2 เท่า",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 213
@@ -4019,7 +4015,7 @@
     "image_url": "/static/images/cards/hegemony.png",
     "beta_image_url": "/static/images/cards/beta/hegemony.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 18\nเทิร์นถัดไป ได้รับ [energy:3]",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 214
@@ -4057,7 +4053,7 @@
     "image_url": "/static/images/cards/heirloom_hammer.png",
     "beta_image_url": "/static/images/cards/beta/heirloom_hammer.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 22\nเลือกการ์ดไม่มีสี 1 ใบใน[gold]มือ[/gold] เพิ่มสำเนาของการ์ดนั้น 1 ใบใส่[gold]มือ[/gold]",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 215
@@ -4096,7 +4092,7 @@
     "image_url": "/static/images/cards/helix_drill.png",
     "beta_image_url": "/static/images/cards/beta/helix_drill.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 5 ตามจำนวน [energy:1] ที่เคยจ่ายในเทิร์นนี้",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 392
@@ -4141,7 +4137,7 @@
     "image_url": "/static/images/cards/hidden_cache.png",
     "beta_image_url": "/static/images/cards/beta/hidden_cache.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ [star:1]\nเทิร์นถัดไป ได้รับ [star:4]",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 216
@@ -4175,13 +4171,11 @@
       "Shivs": 2,
       "Cards": 2
     },
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/hidden_daggers.png",
     "beta_image_url": "/static/images/cards/beta/hidden_daggers.png",
     "type_variants": null,
-    "upgrade_description": "ทิ้งการ์ด 2 ใบ\nเพิ่ม[gold]มีดสั้น+[/gold] 2 ใบใส่[gold]มือ[/gold]",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 129
@@ -4218,7 +4212,7 @@
     "image_url": "/static/images/cards/hidden_gem.png",
     "beta_image_url": "/static/images/cards/beta/hidden_gem.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "การ์ดใน[gold]กองจั่ว[/gold] 1 ใบแบบสุ่มได้รับ [gold]เล่นซ้ำ[/gold] 3",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 462
@@ -4268,7 +4262,7 @@
     "image_url": "/static/images/cards/high_five.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Osty[/gold]สร้างความเสียหาย 13\nและสร้าง 2 [gold]จุดอ่อน[/gold]\nใส่ศัตรูทั้งหมด",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 303
@@ -4305,7 +4299,7 @@
     "image_url": "/static/images/cards/i_am_invincible.png",
     "beta_image_url": "/static/images/cards/beta/i_am_invincible.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ 12 [gold]บล็อก[/gold]\nตอนจบเทิร์น ถ้าการ์ดนี้อยู่ใบบนสุดของ[gold]กองจั่ว[/gold] จะเล่นมัน",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 217
@@ -4344,7 +4338,7 @@
     "image_url": "/static/images/cards/invoke.png",
     "beta_image_url": "/static/images/cards/beta/invoke.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "เทิร์นถัดไป [gold]อัญเชิญ[/gold] 3 และได้รับ [energy:3]",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 304
@@ -4388,7 +4382,7 @@
     "image_url": "/static/images/cards/iteration.png",
     "beta_image_url": "/static/images/cards/beta/iteration.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ครั้งแรกที่คุณเล่นการ์ดสถานะในแต่ละเทิร์น จั่วการ์ด 3 ใบ",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 398
@@ -4460,7 +4454,7 @@
     "image_url": "/static/images/cards/kingly_kick.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 30\nทุกครั้งที่คุณจั่วได้การ์ดนี้ ลดค่าร่ายการ์ดนี้ลง 1",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 218
@@ -4498,7 +4492,7 @@
     "image_url": "/static/images/cards/kingly_punch.png",
     "beta_image_url": "/static/images/cards/beta/kingly_punch.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 8\nทุกครั้งที่คุณจั่วได้การ์ดนี้ เพิ่มความเสียหายของมัน 5 จนจบการต่อสู้",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 219
@@ -4584,7 +4578,7 @@
     "image_url": "/static/images/cards/knockdown.png",
     "beta_image_url": "/static/images/cards/beta/knockdown.png",
     "type_variants": null,
-    "upgrade_description": "สร้างความเสียหาย 10\nในเทิร์นนี้ ศัตรูจะได้รับความเสียหายจากผู้เล่นคนอื่นเป็น 3 เท่า",
+    "upgrade_description": "สร้างความเสียหาย 14\nในเทิร์นนี้ ศัตรูจะได้รับความเสียหายจากผู้เล่นคนอื่นเป็น 3 เท่า",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 468
@@ -4622,7 +4616,7 @@
     "image_url": "/static/images/cards/knockout_blow.png",
     "beta_image_url": "/static/images/cards/beta/knockout_blow.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 38\nถ้าฆ่าศัตรูได้ ได้รับ [star:5]",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 220
@@ -4747,13 +4741,11 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/largesse.png",
     "beta_image_url": "/static/images/cards/beta/largesse.png",
     "type_variants": null,
-    "upgrade_description": "ผู้เล่นคนอื่น 1 คนเพิ่มการ์ดไร้สี [gold]แบบพัฒนาแล้ว[/gold] 1 ใบแบบสุ่มใส่[gold]มือ[/gold]",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 222
@@ -4795,7 +4787,7 @@
     "image_url": "/static/images/cards/leading_strike.png",
     "beta_image_url": "/static/images/cards/beta/leading_strike.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 10\nเพิ่ม[gold]มีดสั้น[/gold] 1 ใบใส่[gold]มือ[/gold]",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 132
@@ -4834,7 +4826,7 @@
     "image_url": "/static/images/cards/legion_of_bone.png",
     "beta_image_url": "/static/images/cards/beta/legion_of_bone.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ผู้เล่นทั้งหมด[gold]อัญเชิญ[/gold] 8",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -4883,7 +4875,7 @@
     "image_url": "/static/images/cards/lethality.png",
     "beta_image_url": "/static/images/cards/beta/lethality.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "การโจมตีแรกในแต่ละเทิร์น สร้างความเสียหายเพิ่ม 75%",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -4923,7 +4915,7 @@
     "image_url": "/static/images/cards/lift.png",
     "beta_image_url": "/static/images/cards/beta/lift.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ให้ 16 [gold]บล็อก[/gold]แก่ผู้เล่นคนอื่น 1 คน",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 469
@@ -4963,7 +4955,7 @@
     "image_url": "/static/images/cards/luminesce.png",
     "beta_image_url": "/static/images/cards/beta/luminesce.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ [energy:3]",
     "type_key": "Skill",
     "rarity_key": "Token",
     "keywords_key": [
@@ -5006,7 +4998,7 @@
     "image_url": "/static/images/cards/lunar_blast.png",
     "beta_image_url": "/static/images/cards/beta/lunar_blast.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 5 ตามจำนวนการ์ดทักษะที่เคยเล่นในเทิร์นนี้",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 223
@@ -5091,7 +5083,7 @@
     "image_url": "/static/images/cards/make_it_so.png",
     "beta_image_url": "/static/images/cards/beta/make_it_so.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 9\nการ์ดทักษะทุก 3 ใบที่คุณเล่นในเทิร์นเดียวกัน นำการ์ดนี้ขึ้น[gold]มือ[/gold]",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 224
@@ -5130,7 +5122,7 @@
     "image_url": "/static/images/cards/mangle.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 20\nศัตรูเสีย 15 [gold]ความแข็งแรง[/gold]ในเทิร์นนี้",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 51
@@ -5167,7 +5159,7 @@
     "image_url": "/static/images/cards/manifest_authority.png",
     "beta_image_url": "/static/images/cards/beta/manifest_authority.png",
     "type_variants": null,
-    "upgrade_description": "ได้รับ 7 [gold]บล็อก[/gold]\nเพิ่มการ์ดไร้สี [gold]แบบพัฒนาแล้ว[/gold] 1 ใบแบบสุ่มใส่[gold]มือ[/gold]",
+    "upgrade_description": "ได้รับ 8 [gold]บล็อก[/gold]\nเพิ่มการ์ดไร้สี [gold]แบบพัฒนาแล้ว[/gold] 1 ใบแบบสุ่มใส่[gold]มือ[/gold]",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 225
@@ -5206,7 +5198,7 @@
     "image_url": "/static/images/cards/maul.png",
     "beta_image_url": "/static/images/cards/beta/maul.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาน 6 จำนวน 2 ครั้ง\nการ์ด Maul ทั้งหมดสร้างความเสียหายเพิ่ม 2 ในการต่อสู้นี้",
     "type_key": "Attack",
     "rarity_key": "Ancient",
     "compendium_order": 535
@@ -5285,7 +5277,7 @@
     "image_url": "/static/images/cards/memento_mori.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 8\nสร้างความเสียหายเพิ่ม 5 ตามจำนวนการ์ดที่เคยถูกทิ้งในเทิร์นนี้",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 136
@@ -5365,7 +5357,7 @@
     "image_url": "/static/images/cards/misery.png",
     "beta_image_url": "/static/images/cards/beta/misery.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 9\nสร้างผลผิดปกติใส่ศัตรูตัวอื่นทั้งหมด ตามผลผิดปกติทั้งหมดบนศัตรูตัวนี้",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 308
@@ -5403,7 +5395,7 @@
     "image_url": "/static/images/cards/modded.png",
     "beta_image_url": "/static/images/cards/beta/modded.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับช่องเก็บลูกแก้ว 1 ช่อง\nจั่วการ์ด 2 ใบ เพิ่มค่าร่ายของการ์ดนี้ 1",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 404
@@ -5442,7 +5434,7 @@
     "image_url": "/static/images/cards/molten_fist.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 14\nเพิ่ม[gold]จุดอ่อน[/gold]บนตัวศัตรูเป็น 2 เท่า",
     "type_key": "Attack",
     "rarity_key": "Common",
     "keywords_key": [
@@ -5595,7 +5587,7 @@
     "image_url": "/static/images/cards/necro_mastery.png",
     "beta_image_url": "/static/images/cards/beta/necro_mastery.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]อัญเชิญ[/gold] 8\nทุกครั้งที่[gold]Osty[/gold]เสีย HP\nศัตรูทั้งหมดเสีย HP ตามจำนวนนั้นด้วย",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 309
@@ -5641,7 +5633,7 @@
     "image_url": "/static/images/cards/negative_pulse.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ 6 [gold]บล็อก[/gold]\nสร้าง 7 [gold]อายุขัย[/gold]ใส่ศัตรูทั้งหมด",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 310
@@ -5681,7 +5673,7 @@
     "image_url": "/static/images/cards/neows_fury.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 14\nนำการ์ด 2 ใบแบบสุ่มจาก[gold]กองทิ้ง[/gold]ขึ้น[gold]มือ[/gold]",
     "type_key": "Attack",
     "rarity_key": "Ancient",
     "keywords_key": [
@@ -5730,7 +5722,7 @@
     "image_url": "/static/images/cards/neurosurge.png",
     "beta_image_url": "/static/images/cards/beta/neurosurge.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ [energy:4]\nจั่วการ์ด 2 ใบ\nตอนเริ่มต้นเทิร์น สร้าง 3 [gold]อายุขัย[/gold]ใส่ตัวคุณ",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 311
@@ -5775,7 +5767,7 @@
     "image_url": "/static/images/cards/neutron_aegis.png",
     "beta_image_url": "/static/images/cards/beta/neutron_aegis.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ 11 [gold]Plating[/gold]",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 229
@@ -5814,7 +5806,7 @@
     "image_url": "/static/images/cards/no_escape.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้าง 15 [gold]อายุขัย[/gold] บวกอีก 5 [gold]อายุขัย[/gold]ต่อทุก 10 [gold]อายุขัย[/gold]บนตัวศัตรู",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 312
@@ -5895,7 +5887,7 @@
     "image_url": "/static/images/cards/null.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 13\nสร้าง 2 [gold]ความอ่อนแอ[/gold]\n[gold]ปลุกเสก[/gold] 1 [gold]ความมืด[/gold]",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 407
@@ -5976,7 +5968,7 @@
     "image_url": "/static/images/cards/omnislice.png",
     "beta_image_url": "/static/images/cards/beta/omnislice.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 11\nศัตรูตัวอื่นทั้งหมดได้รับความเสียหายตามความเสียหายที่ทำได้",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 475
@@ -6013,7 +6005,7 @@
     "image_url": "/static/images/cards/one_two_punch.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ในเทิร์นนี้ การ์ดโจมตีอีก 2 ใบจะถูกเล่นอีกครั้ง",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 54
@@ -6095,7 +6087,7 @@
     "image_url": "/static/images/cards/outbreak.png",
     "beta_image_url": "/static/images/cards/beta/outbreak.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ทุก 3 ครั้งที่คุณสร้าง[gold]พิษ[/gold] สร้างความเสียหาย 15 ใส่ศัตรูทั้งหมด",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 142
@@ -6133,7 +6125,7 @@
     "image_url": "/static/images/cards/pacts_end.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "จะเล่นได้ก็ต่อเมื่อคุณมีการ์ด 3 ใบขึ้นไปใน[gold]กองทิ้ง[/gold]\nสร้างความเสียหาย 23 ใส่ศัตรูทั้งหมด",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 55
@@ -6208,7 +6200,7 @@
     "image_url": "/static/images/cards/pale_blue_dot.png",
     "beta_image_url": "/static/images/cards/beta/pale_blue_dot.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ถ้าคุณเล่นการ์ด 5 ใบขึ้นไปในเทิร์นเดียว ตอนเริ่มเทิร์นถัดไป จั่วการ์ด 2 ใบ",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 231
@@ -6254,7 +6246,7 @@
     "image_url": "/static/images/cards/parry.png",
     "beta_image_url": "/static/images/cards/beta/parry.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ทุกครั้งที่คุณเล่น[gold]Sovereign Blade[/gold] ได้รับ 9 [gold]บล็อก[/gold]",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 232
@@ -6293,7 +6285,7 @@
     "image_url": "/static/images/cards/parse.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "จั่วการ์ด 4 ใบ",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -6334,7 +6326,7 @@
     "image_url": "/static/images/cards/particle_wall.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ 12 [gold]บล็อก[/gold]\nนำการ์ดนี้กลับขึ้น[gold]มือ[/gold]",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 233
@@ -6380,7 +6372,7 @@
     "image_url": "/static/images/cards/patter.png",
     "beta_image_url": "/static/images/cards/beta/patter.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ 10 [gold]บล็อก[/gold]\nได้รับ 3 [gold]ความกำยำ[/gold]",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 234
@@ -6418,7 +6410,7 @@
     "image_url": "/static/images/cards/peck.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 2 จำนวน 4 ครั้ง",
     "type_key": "Attack",
     "rarity_key": "Event",
     "compendium_order": 539
@@ -6464,7 +6456,7 @@
     "image_url": "/static/images/cards/phantom_blades.png",
     "beta_image_url": "/static/images/cards/beta/phantom_blades.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]มีดสั้น[/gold]ได้รับ[gold]คงสภาพ[/gold]\n[gold]มีดสั้น[/gold]ใบแรกที่คุณเล่นในแต่ละเทิร์นสร้างความเสียหายเพิ่ม 12",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 143
@@ -6504,7 +6496,7 @@
     "image_url": "/static/images/cards/photon_cut.png",
     "beta_image_url": "/static/images/cards/beta/photon_cut.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 13\nจั่วการ์ด 2 ใบ\nนำการ์ด 1 ใบจาก[gold]มือ[/gold]ไปวางไว้บนสุดของ[gold]กองจั่ว[/gold]",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 235
@@ -6541,7 +6533,7 @@
     "image_url": "/static/images/cards/pillage.png",
     "beta_image_url": "/static/images/cards/beta/pillage.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 9\nจั่วการ์ดจนกว่าจะจั่วได้การ์ดที่ไม่ใช่การ์ดโจมตี",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 57
@@ -6578,7 +6570,7 @@
     "image_url": "/static/images/cards/pillar_of_creation.png",
     "beta_image_url": "/static/images/cards/beta/pillar_of_creation.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ทุกครั้งที่คุณสร้างการ์ด ได้รับ 4 [gold]บล็อก[/gold]",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 236
@@ -6615,7 +6607,7 @@
     "image_url": "/static/images/cards/pinpoint.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 22\nค่าร่ายลดลง 1 [energy:1] ตามจำนวนการ์ดทักษะที่เคยเล่นในเทิร์นนี้",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 145
@@ -6656,7 +6648,7 @@
     "image_url": "/static/images/cards/poke.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Osty[/gold]สร้างความเสียหาย 9",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 316
@@ -6733,7 +6725,7 @@
     "image_url": "/static/images/cards/pounce.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 18\nการ์ดทักษะใบต่อไปค่าร่ายเหลือ 0 [energy:1]",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 147
@@ -6816,7 +6808,7 @@
     "image_url": "/static/images/cards/prep_time.png",
     "beta_image_url": "/static/images/cards/beta/prep_time.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ตอนเริ่มต้นเทิร์น ได้รับ 6 [gold]ความกำยำ[/gold]",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 478
@@ -6847,13 +6839,11 @@
       "GIANT_ROCK"
     ],
     "vars": null,
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/primal_force.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "แปรสภาพการ์ดโจมตีทั้งหมดใน[gold]มือ[/gold]ให้เป็น[gold]หินยักษ์+[/gold]",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 59
@@ -6972,7 +6962,7 @@
     "image_url": "/static/images/cards/prophesize.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "จั่วการ์ด 9 ใบ",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 237
@@ -7105,7 +7095,7 @@
     "image_url": "/static/images/cards/pull_aggro.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]อัญเชิญ[/gold] 5\nได้รับ 9 [gold]บล็อก[/gold]",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 318
@@ -7144,7 +7134,7 @@
     "image_url": "/static/images/cards/pull_from_below.png",
     "beta_image_url": "/static/images/cards/beta/pull_from_below.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 7 ตามจำนวนการ์ด[gold]กึ่งสลาย[/gold]ที่เล่นในการต่อสู้นี้",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 319
@@ -7183,7 +7173,7 @@
     "image_url": "/static/images/cards/putrefy.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้าง 3 [gold]ความอ่อนแอ[/gold]\nสร้าง 3 [gold]จุดอ่อน[/gold]",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -7223,7 +7213,7 @@
     "image_url": "/static/images/cards/pyre.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ตอนเริ่มต้นเทิร์น ได้รับ [energy:2]",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 60
@@ -7254,13 +7244,11 @@
     "vars": {
       "StarCost": 2
     },
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/quasar.png",
     "beta_image_url": "/static/images/cards/beta/quasar.png",
     "type_variants": null,
-    "upgrade_description": "เลือกการ์ดไร้สีแบบพัฒนาแล้ว 1 จากที่สุ่มมา 3 ใบเพื่อเพิ่มใส่[gold]มือ[/gold]",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 238
@@ -7300,7 +7288,7 @@
     "image_url": "/static/images/cards/radiate.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 4 ใส่ศัตรูทั้งหมด ตามจำนวน [star:1] ที่ได้รับในเทิร์นนี้",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 239
@@ -7337,7 +7325,7 @@
     "image_url": "/static/images/cards/rally.png",
     "beta_image_url": "/static/images/cards/beta/rally.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ผู้เล่นทั้งหมดได้รับ 17 [gold]บล็อก[/gold]",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 483
@@ -7380,7 +7368,7 @@
     "image_url": "/static/images/cards/rattle.png",
     "beta_image_url": "/static/images/cards/beta/rattle.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Osty[/gold]สร้างความเสียหาย 9\nโจมตีเพิ่มอีกครั้งต่อทุก 2 ครั้งที่เขาโจมตีในเทิร์นนี้",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 321
@@ -7419,7 +7407,7 @@
     "image_url": "/static/images/cards/reanimate.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]อัญเชิญ[/gold] 25",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -7461,7 +7449,7 @@
     "image_url": "/static/images/cards/reap.png",
     "beta_image_url": "/static/images/cards/beta/reap.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 33",
     "type_key": "Attack",
     "rarity_key": "Common",
     "keywords_key": [
@@ -7539,7 +7527,7 @@
     "image_url": "/static/images/cards/reave.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "สร้างความเสียหาย 9\nเพิ่ม[gold]วิญญาณ+[/gold] 1 ใบเข้า[gold]กองจั่ว[/gold]",
+    "upgrade_description": "สร้างความเสียหาย 11\nเพิ่ม[gold]วิญญาณ+[/gold] 1 ใบเข้า[gold]กองจั่ว[/gold]",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 325
@@ -7577,7 +7565,7 @@
     "image_url": "/static/images/cards/refine_blade.png",
     "beta_image_url": "/static/images/cards/beta/refine_blade.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]หลอมสร้าง[/gold] 10\nเทิร์นถูกไป ได้รับ [energy:1]",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 240
@@ -7615,7 +7603,7 @@
     "image_url": "/static/images/cards/reflect.png",
     "beta_image_url": "/static/images/cards/beta/reflect.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ 21 [gold]บล็อก[/gold]\nสะท้อนความเสียหายจากการโจมตีที่บล็อกได้กลับไปหาผู้โจมตีในเทิร์นนี้",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 241
@@ -7653,7 +7641,7 @@
     "image_url": "/static/images/cards/refract.png",
     "beta_image_url": "/static/images/cards/beta/refract.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 12 จำนวน 2 ครั้ง\n[gold]ปลุกเสก[/gold] 2 [gold]แก้ว[/gold]",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 412
@@ -7696,7 +7684,7 @@
     "image_url": "/static/images/cards/relax.png",
     "beta_image_url": "/static/images/cards/beta/relax.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ 17 [gold]บล็อก[/gold]\nเทิร์นถัดไป จั่วการ์ด 3 ใบและได้รับ [energy:3]",
     "type_key": "Skill",
     "rarity_key": "Ancient",
     "keywords_key": [
@@ -7740,7 +7728,7 @@
     "image_url": "/static/images/cards/rend.png",
     "beta_image_url": "/static/images/cards/beta/rend.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 15\nสร้างความเสียหายเพิ่ม 8 ตามจำนวนผลผิดปกติที่ไม่ซ้ำกันบนตัวศัตรูตัวนั้น",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 484
@@ -7785,7 +7773,7 @@
     "image_url": "/static/images/cards/resonance.png",
     "beta_image_url": "/static/images/cards/beta/resonance.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ 2 [gold]ความแข็งแรง[/gold] ศัตรูทั้งหมดเสีย 1 [gold]ความแข็งแรง[/gold]",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 242
@@ -7826,7 +7814,7 @@
     "image_url": "/static/images/cards/restlessness.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ถ้า[gold]มือ[/gold]ว่าง จั่วการ์ด 3 ใบและได้รับ [energy:3]",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -7869,7 +7857,7 @@
     "image_url": "/static/images/cards/ricochet.png",
     "beta_image_url": "/static/images/cards/beta/ricochet.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 3 ใส่ศัตรู 1 ตัวแบบสุ่ม จำนวน 5 ครั้ง",
     "type_key": "Attack",
     "rarity_key": "Common",
     "keywords_key": [
@@ -7956,7 +7944,7 @@
     "image_url": "/static/images/cards/rolling_boulder.png",
     "beta_image_url": "/static/images/cards/beta/rolling_boulder.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ตอนต้นเทิร์น สร้างความเสียหาย 10 ใส่ศัตรูทั้งหมด และเพิ่มความเสียหายนี้อีก 5",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 486
@@ -8036,7 +8024,7 @@
     "image_url": "/static/images/cards/royalties.png",
     "beta_image_url": "/static/images/cards/beta/royalties.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ตอนจบการต่อสู้ ได้รับ 35 [gold]ทอง[/gold]",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 243
@@ -8073,7 +8061,7 @@
     "image_url": "/static/images/cards/salvo.png",
     "beta_image_url": "/static/images/cards/beta/salvo.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 16\n[gold]คงสภาพ[/gold]ทั้ง[gold]มือ[/gold]ในเทิร์นนี้",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 487
@@ -8110,7 +8098,7 @@
     "image_url": "/static/images/cards/scavenge.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]สลาย[/gold]การ์ด 1 ใบ\nเทิร์นถัดไป ได้รับ [energy:3]",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 414
@@ -8156,7 +8144,7 @@
     "image_url": "/static/images/cards/scourge.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้าง 13 [gold]อายุขัย[/gold]\nจั่วการ์ด 2 ใบ",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 328
@@ -8195,7 +8183,7 @@
     "image_url": "/static/images/cards/sculpting_strike.png",
     "beta_image_url": "/static/images/cards/beta/sculpting_strike.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 11\nเพิ่ม[gold]กึ่งสลาย[/gold]ให้การ์ด 1 ใบใน[gold]มือ[/gold]",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 329
@@ -8230,13 +8218,11 @@
     "vars": {
       "Cards": 1
     },
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/seance.png",
     "beta_image_url": "/static/images/cards/beta/seance.png",
     "type_variants": null,
-    "upgrade_description": "แปรสภาพการ์ด 1 ใบใน[gold]กองจั่ว[/gold]ให้เป็น[gold]วิญญาณ+[/gold]",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -8279,7 +8265,7 @@
     "image_url": "/static/images/cards/seeker_strike.png",
     "beta_image_url": "/static/images/cards/beta/seeker_strike.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 9\nเลือกการ์ด 1 จาก 3 ใบใน[gold]กองจั่ว[/gold]เพื่อนำขึ้น[gold]มือ[/gold]",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 491
@@ -8316,7 +8302,7 @@
     "image_url": "/static/images/cards/seeking_edge.png",
     "beta_image_url": "/static/images/cards/beta/seeking_edge.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]หลอมสร้าง[/gold] 11\nต่อไปนี้[gold]Sovereign Blade[/gold]จะสร้างความเสียหายใส่ศัตรูทั้งหมด",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 245
@@ -8410,7 +8396,7 @@
     "image_url": "/static/images/cards/setup_strike.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 9\nได้รับ 2 [gold]ความแข็งแรง[/gold]ในเทิร์นนี้",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 65
@@ -8488,7 +8474,7 @@
     "image_url": "/static/images/cards/severance.png",
     "beta_image_url": "/static/images/cards/beta/severance.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 18\nเพิ่ม[gold]วิญญาณ[/gold]เข้า[gold]กองการ์ด[/gold], [gold]มือ[/gold], และ[gold]กองทิ้ง[/gold] อย่างละ 1 ใบ",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 332
@@ -8525,7 +8511,7 @@
     "image_url": "/static/images/cards/shadow_shield.png",
     "beta_image_url": "/static/images/cards/beta/shadow_shield.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ 15 [gold]บล็อก[/gold]\n[gold]ปลุกเสก[/gold] 1 [gold]ความมืด[/gold]",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 416
@@ -8639,7 +8625,7 @@
     "image_url": "/static/images/cards/shared_fate.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "เสีย 2 [gold]ความแข็งแรง[/gold]\nศัตรูเสีย 3 [gold]ความแข็งแรง[/gold]",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -8679,7 +8665,7 @@
     "image_url": "/static/images/cards/shatter.png",
     "beta_image_url": "/static/images/cards/beta/shatter.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 15 ใส่ศัตรูทั้งหมด\n[gold]ปล่อยพลัง[/gold]ลูกแก้วทั้งหมดของคุณ",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 417
@@ -8719,7 +8705,7 @@
     "image_url": "/static/images/cards/shining_strike.png",
     "beta_image_url": "/static/images/cards/beta/shining_strike.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 11\nได้รับ [star:2]\nนำการ์ดนี้ไปไว้บนสุดของ[gold]กองจั่ว[/gold]",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 247
@@ -8756,7 +8742,7 @@
     "image_url": "/static/images/cards/shroud.png",
     "beta_image_url": "/static/images/cards/beta/shroud.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ทุกครั้งที่คุณสร้าง[gold]อายุขัย[/gold] ได้รับ 3 [gold]บล็อก[/gold]",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 334
@@ -8806,7 +8792,7 @@
     "image_url": "/static/images/cards/sic_em.png",
     "beta_image_url": "/static/images/cards/beta/sic_em.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Osty[/gold]สร้างความเสียหาย 6\nทุกครั้งที่[gold]Osty[/gold]โจมตีศัตรูตัวนี้ในเทิร์นนี้ [gold]อัญเชิญ[/gold] 3",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 335
@@ -8899,7 +8885,7 @@
     "image_url": "/static/images/cards/sleight_of_flesh.png",
     "beta_image_url": "/static/images/cards/beta/sleight_of_flesh.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ทุกครั้งที่คุณสร้างผลผิดปกติใส่ศัตรู มันจะได้รับความเสียหาย 13",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 336
@@ -8943,7 +8929,7 @@
     "image_url": "/static/images/cards/smokestack.png",
     "beta_image_url": "/static/images/cards/beta/smokestack.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ทุกครั้งที่คุณสร้างการ์ดสถานะ สร้างความเสียหาย 7 ใส่ศัตรูทั้งหมด",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 420
@@ -9033,7 +9019,7 @@
     "image_url": "/static/images/cards/snap.png",
     "beta_image_url": "/static/images/cards/beta/snap.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Osty[/gold]สร้างความเสียหาย 10\nเพิ่ม[gold]คงสภาพ[/gold]ให้การ์ด 1 ใบใน[gold]มือ[/gold]",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 337
@@ -9079,7 +9065,7 @@
     "image_url": "/static/images/cards/sneaky.png",
     "beta_image_url": "/static/images/cards/beta/sneaky.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ทุกครั้งที่พันธมิตรโจมตีศัตรู ได้รับ 2 [gold]บล็อก[/gold]",
     "type_key": "Power",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -9123,7 +9109,7 @@
     "image_url": "/static/images/cards/solar_strike.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 9\nได้รับ [star:2]",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 248
@@ -9200,7 +9186,7 @@
     "image_url": "/static/images/cards/sow.png",
     "beta_image_url": "/static/images/cards/beta/sow.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 11 ใส่ศัตรูทั้งหมด",
     "type_key": "Attack",
     "rarity_key": "Common",
     "keywords_key": [
@@ -9278,13 +9264,11 @@
       "SpinnerPower": 1,
       "Spinner": 1
     },
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/spinner.png",
     "beta_image_url": "/static/images/cards/beta/spinner.png",
     "type_variants": null,
-    "upgrade_description": "[gold]ปลุกเสก[/gold] 1 [gold]แก้ว[/gold]\nตอนเริ่มต้นเทิร์น [gold]ปลุกเสก[/gold] 1 [gold]แก้ว[/gold]",
+    "upgrade_description": null,
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 421
@@ -9321,7 +9305,7 @@
     "image_url": "/static/images/cards/spirit_of_ash.png",
     "beta_image_url": "/static/images/cards/beta/spirit_of_ash.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ทุกครั้งที่คุณเล่นการ์ด[gold]กึ่งสลาย[/gold] ได้รับ 5 [gold]บล็อก[/gold]",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 340
@@ -9359,7 +9343,7 @@
     "image_url": "/static/images/cards/spite.png",
     "beta_image_url": "/static/images/cards/beta/spite.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 9\nถ้าคุณเคยเสีย HP ในเทิร์นนี้ จั่วการ์ด 1 ใบ",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 67
@@ -9388,13 +9372,11 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/splash.png",
     "beta_image_url": "/static/images/cards/beta/splash.png",
     "type_variants": null,
-    "upgrade_description": "เลือกการ์ดโจมตี [gold]แบบพัฒนาแล้ว[/gold] 1 จาก 3 ใบแบบสุ่มจากตัวละครอื่นเพื่อเพิ่มใส่[gold]มือ[/gold] มันเล่นฟรีในเทิร์นนี้",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 493
@@ -9471,7 +9453,7 @@
     "image_url": "/static/images/cards/spoils_of_battle.png",
     "beta_image_url": "/static/images/cards/beta/spoils_of_battle.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]หลอมสร้าง[/gold] 15",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 250
@@ -9550,7 +9532,7 @@
     "image_url": "/static/images/cards/spur.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]อัญเชิญ[/gold] 5\n[gold]Osty[/gold]ฟื้นฟู 7 HP",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -9599,7 +9581,7 @@
     "image_url": "/static/images/cards/squash.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 12\nสร้าง 2 [gold]จุดอ่อน[/gold]",
     "type_key": "Attack",
     "rarity_key": "Event",
     "compendium_order": 543
@@ -9642,7 +9624,7 @@
     "image_url": "/static/images/cards/squeeze.png",
     "beta_image_url": "/static/images/cards/beta/squeeze.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Osty[/gold]สร้างความเสียหาย 25\nสร้างความเสียหายเพิ่ม 6 ตามจำนวนการโจมตีครั้งอื่นของ[gold]Osty[/gold]",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 342
@@ -9716,7 +9698,7 @@
     "image_url": "/static/images/cards/stardust.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 7 ใส่ศัตรู 1 ตัวแบบสุ่ม จำนวน X ครั้ง",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 251
@@ -9793,7 +9775,7 @@
     "image_url": "/static/images/cards/stomp.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 15 ใส่ศัตรูทั้งหมด\nค่าร่ายลดลง 1 [energy:1] ตามจำนวนการ์ดโจมตีที่เล่นในเทิร์นนี้",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 70
@@ -9837,7 +9819,7 @@
     "image_url": "/static/images/cards/stone_armor.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ 6 [gold]Plating[/gold]",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 71
@@ -9883,7 +9865,7 @@
     "image_url": "/static/images/cards/strangle.png",
     "beta_image_url": "/static/images/cards/beta/strangle.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 10\nทุกครั้งที่คุณเล่นการ์ดในเทิร์นนี้ ศัตรูเสีย 3 HP",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 162
@@ -9992,7 +9974,7 @@
     "image_url": "/static/images/cards/summon_forth.png",
     "beta_image_url": "/static/images/cards/beta/summon_forth.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]หลอมสร้าง[/gold] 11\nนำ[gold]Sovereign Blade[/gold]จากที่ไหนก็ได้ขึ้น[gold]มือ[/gold]",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 253
@@ -10031,7 +10013,7 @@
     "image_url": "/static/images/cards/supercritical.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ [energy:6]",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -10074,7 +10056,7 @@
     "image_url": "/static/images/cards/supermassive.png",
     "beta_image_url": "/static/images/cards/beta/supermassive.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 5\nสร้างความเสียหายเพิ่ม 4 ตามจำนวนการ์ดที่คุณสร้างในการต่อสู้นี้",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 254
@@ -10122,7 +10104,7 @@
     "image_url": "/static/images/cards/suppress.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 17\nสร้าง 3 [gold]ความอ่อนแอ[/gold]",
     "type_key": "Attack",
     "rarity_key": "Ancient",
     "keywords_key": [
@@ -10169,7 +10151,7 @@
     "image_url": "/static/images/cards/sweeping_gaze.png",
     "beta_image_url": "/static/images/cards/beta/sweeping_gaze.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Osty[/gold]สร้างความเสียหาย 15 ใส่ศัตรู 1 ตัวแบบสุ่ม",
     "type_key": "Attack",
     "rarity_key": "Token",
     "keywords_key": [
@@ -10299,7 +10281,7 @@
     "image_url": "/static/images/cards/synthesis.png",
     "beta_image_url": "/static/images/cards/beta/synthesis.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 18\nการ์ดพลังใบถัดไปมีค่าร่าย 0 [energy:1]",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 429
@@ -10336,7 +10318,7 @@
     "image_url": "/static/images/cards/tag_team.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 15\nการ์ดโจมตีใบถัดไปของพันธมิตร 1 คนที่เล่นใส่ศัตรูตัวนี้จะถูกเล่นซ้ำอีกครั้ง",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 495
@@ -10417,7 +10399,7 @@
     "image_url": "/static/images/cards/taunt.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ 8 [gold]บล็อก[/gold]\nสร้าง 1 [gold]จุดอ่อน[/gold]",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 75
@@ -10457,7 +10439,7 @@
     "image_url": "/static/images/cards/tear_asunder.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 7\nโจมตีเพิ่มอีกตามจำนวนครั้งที่คุณเสีย HP ในการต่อสู้นี้",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 76
@@ -10501,7 +10483,7 @@
     "image_url": "/static/images/cards/terraforming.png",
     "beta_image_url": "/static/images/cards/beta/terraforming.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ 8 [gold]ความกำยำ[/gold]",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 256
@@ -10538,7 +10520,7 @@
     "image_url": "/static/images/cards/tesla_coil.png",
     "beta_image_url": "/static/images/cards/beta/tesla_coil.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 6\nผลของ[gold]สายฟ้า[/gold]ทั้งผลทำงานใส่ศัตรูตัวนี้",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 431
@@ -10577,7 +10559,7 @@
     "image_url": "/static/images/cards/the_hunt.png",
     "beta_image_url": "/static/images/cards/beta/the_hunt.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 15\nถ้า[gold]สังหาร[/gold] ได้รับรางวัลการ์ดเพิ่ม 1 รางวัล",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -10621,7 +10603,7 @@
     "image_url": "/static/images/cards/the_scythe.png",
     "beta_image_url": "/static/images/cards/beta/the_scythe.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 13\nเพิ่มความเสียหายให้การ์ดนี้ 4 แบบถาวร",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -10699,7 +10681,7 @@
     "image_url": "/static/images/cards/the_smith.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]หลอมสร้าง[/gold] 40",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 258
@@ -10736,7 +10718,7 @@
     "image_url": "/static/images/cards/thrash.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 6 จำนวน 2 ครั้ง\n[gold]สลาย[/gold]การ์ดโจมตี 1 ใบแบบสุ่มใน[gold]มือ[/gold]และนำความเสียหายของมันมาเพิ่มให้การ์ดนี้แทน",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 77
@@ -10773,7 +10755,7 @@
     "image_url": "/static/images/cards/thrumming_hatchet.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 14\nตอนเริ่มต้นเทิร์น นำการ์ดนี้กลับขึ้น[gold]มือ[/gold]",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 499
@@ -10855,7 +10837,7 @@
     "image_url": "/static/images/cards/toric_toughness.png",
     "beta_image_url": "/static/images/cards/beta/toric_toughness.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ 7 [gold]บล็อก[/gold]\nได้รับ 7 [gold]บล็อก[/gold]ตอนเริ่มต้นเทิร์น เป็นเวลา 2 เทิร์น",
     "type_key": "Skill",
     "rarity_key": "Event",
     "compendium_order": 545
@@ -11130,7 +11112,7 @@
     "image_url": "/static/images/cards/ultimate_defend.png",
     "beta_image_url": "/static/images/cards/beta/ultimate_defend.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ 15 [gold]บล็อก[/gold]",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 500
@@ -11169,7 +11151,7 @@
     "image_url": "/static/images/cards/ultimate_strike.png",
     "beta_image_url": "/static/images/cards/beta/ultimate_strike.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 20",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 501
@@ -11206,7 +11188,7 @@
     "image_url": "/static/images/cards/undeath.png",
     "beta_image_url": "/static/images/cards/beta/undeath.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ 9 [gold]บล็อก[/gold]\nเพิ่มสำเนา 1 ใบของการ์ดนี้เข้า[gold]กองทิ้ง[/gold]",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 347
@@ -11319,7 +11301,7 @@
     "image_url": "/static/images/cards/unrelenting.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 18\nการ์ดโจมตีใบถัดไปมีค่าร่าย 0 [energy:1]",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 83
@@ -11358,7 +11340,7 @@
     "image_url": "/static/images/cards/untouchable.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ 12 [gold]บล็อก[/gold]",
     "type_key": "Skill",
     "rarity_key": "Common",
     "keywords_key": [
@@ -11400,7 +11382,7 @@
     "image_url": "/static/images/cards/up_my_sleeve.png",
     "beta_image_url": "/static/images/cards/beta/up_my_sleeve.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "เพิ่ม[gold]มีดสั้น[/gold] 4 ใบใส่[gold]มือ[/gold]\nลดค่าร่ายของการ์ดนี้ลง 1",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 172
@@ -11437,7 +11419,7 @@
     "image_url": "/static/images/cards/uproar.png",
     "beta_image_url": "/static/images/cards/beta/uproar.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 7 จำนวน 2 ครั้ง\nเล่นการ์ดโจมตี 1 ใบแบบสุ่มจาก[gold]กองจั่ว[/gold]",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 435
@@ -11474,7 +11456,7 @@
     "image_url": "/static/images/cards/veilpiercer.png",
     "beta_image_url": "/static/images/cards/beta/veilpiercer.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 13\nการ์ด[gold]กึ่งสลาย[/gold]ใบถัดไปมีค่าร่าย 0 [energy:1]",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 349
@@ -11511,7 +11493,7 @@
     "image_url": "/static/images/cards/venerate.png",
     "beta_image_url": "/static/images/cards/beta/venerate.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ [star:3]",
     "type_key": "Skill",
     "rarity_key": "Basic",
     "compendium_order": 260
@@ -11548,7 +11530,7 @@
     "image_url": "/static/images/cards/vicious.png",
     "beta_image_url": "/static/images/cards/beta/vicious.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ทุกครั้งที่คุณสร้าง[gold]จุดอ่อน[/gold] จั่วการ์ด 2 ใบ",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 85
@@ -11629,7 +11611,7 @@
     "image_url": "/static/images/cards/volley.png",
     "beta_image_url": "/static/images/cards/beta/volley.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 14 ใส่ศัตรู 1 ตัวแบบสุ่ม จำนวน X ครั้ง",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 502
@@ -11753,7 +11735,7 @@
     "image_url": "/static/images/cards/whistle.png",
     "beta_image_url": "/static/images/cards/beta/whistle.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 44\n[gold]สตัน[/gold]ศัตรูตัวนั้น",
     "type_key": "Attack",
     "rarity_key": "Ancient",
     "keywords_key": [
@@ -11837,7 +11819,7 @@
     "image_url": "/static/images/cards/wrought_in_war.png",
     "beta_image_url": "/static/images/cards/beta/wrought_in_war.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 9\n[gold]หลอมสร้าง[/gold] 7",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 262
@@ -11882,7 +11864,7 @@
     "image_url": "/static/images/cards/bouncing_flask.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้าง 3 [gold]พิษ[/gold] ใส่ศัตรู 1 ตัวแบบสุ่ม จำนวน 4 ครั้ง",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 100
@@ -11968,7 +11950,7 @@
     "image_url": "/static/images/cards/follow_through.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 8 ใส่ศัตรูทั้งหมด\nถ้าการ์ดใบล่าสุดที่คุณเล่นในเทิร์นนี้เป็นการ์ดทักษะ สร้าง 1 [gold]ความอ่อนแอ[/gold] ใส่ศัตรูทั้งหมด",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 124
@@ -12005,7 +11987,7 @@
     "image_url": "/static/images/cards/bludgeon.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 42",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 9
@@ -12042,7 +12024,7 @@
     "image_url": "/static/images/cards/leap.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ 12 [gold]บล็อก[/gold]",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 399
@@ -12080,7 +12062,7 @@
     "image_url": "/static/images/cards/bloodletting.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "เสีย 3 HP\nได้รับ [energy:3]",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 7
@@ -12119,7 +12101,7 @@
     "image_url": "/static/images/cards/scrape.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 10\nจั่วการ์ด 5 ใบ\nทิ้งการ์ดทั้งหมดที่ไม่ใช่ค่าร่าย 0 [energy:1] ที่จั่วมาด้วยวิธีนี้",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 415
@@ -12156,7 +12138,7 @@
     "image_url": "/static/images/cards/dodge_and_roll.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ 6 [gold]บล็อก[/gold]\nเทิร์นถัดไปได้รับ 6 [gold]บล็อก[/gold]",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 113
@@ -12202,7 +12184,7 @@
     "image_url": "/static/images/cards/devour_life.png",
     "beta_image_url": "/static/images/cards/beta/devour_life.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ทุกครั้งที่คุณเล่น[gold]วิญญาณ[/gold] [gold]อัญเชิญ[/gold] 2",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 285
@@ -12285,7 +12267,7 @@
     "image_url": "/static/images/cards/leg_sweep.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้าง 2 [gold]ความอ่อนแอ[/gold]\nได้รับ 14 [gold]บล็อก[/gold]",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 133
@@ -12323,7 +12305,7 @@
     "image_url": "/static/images/cards/sweeping_beam.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 9 ใส่ศัตรูทั้งหมด\nจั่วการ์ด 1 ใบ",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 427
@@ -12364,7 +12346,7 @@
     "image_url": "/static/images/cards/feed.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 12\nถ้า[gold]สังหาร[/gold] เพิ่ม 4 HP สูงสุด",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -12579,7 +12561,7 @@
     "image_url": "/static/images/cards/acrobatics.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "จั่ว 4 การ์ด\nทิ้ง 1 การ์ด",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 90
@@ -12623,7 +12605,7 @@
     "image_url": "/static/images/cards/juggernaut.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ทุกครั้งที่ได้รับ[gold]บล็อก[/gold] สร้างความเสียหาย 7 ใส่ศัตรู 1 ตัวแบบสุ่ม",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 49
@@ -12662,7 +12644,7 @@
     "image_url": "/static/images/cards/flame_barrier.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ 16 [gold]บล็อก[/gold]\nทุกครั้งที่คุณถูกโจมตีในเทิร์นนี้ สร้างความเสียหายกลับไป 6",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 36
@@ -12700,7 +12682,7 @@
     "image_url": "/static/images/cards/blood_wall.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "เสีย 2 HP\nได้รับ 20 [gold]บล็อก[/gold]",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 8
@@ -12745,7 +12727,7 @@
     "image_url": "/static/images/cards/borrowed_time.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้าง 3 [gold]อายุขัย[/gold]ใส่ตัวคุณ\nได้รับ [energy:2]",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 268
@@ -12789,7 +12771,7 @@
     "image_url": "/static/images/cards/caltrops.png",
     "beta_image_url": "/static/images/cards/beta/caltrops.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ทุกครั้งที่คุณถูกโจมตี สร้างความเสียหาย 5 กลับไป",
     "type_key": "Power",
     "rarity_key": "Event",
     "compendium_order": 525
@@ -12826,7 +12808,7 @@
     "image_url": "/static/images/cards/dagger_throw.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 12\nจั่วการ์ด 1 ใบ\nทิ้งการ์ด 1 ใบ",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 108
@@ -12874,7 +12856,7 @@
     "image_url": "/static/images/cards/defy.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ 7 [gold]บล็อก[/gold]\nสร้าง 1 [gold]ความอ่อนแอ[/gold]",
     "type_key": "Skill",
     "rarity_key": "Common",
     "keywords_key": [
@@ -12951,7 +12933,7 @@
     "image_url": "/static/images/cards/claw.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 4\nเพิ่มพลังโจมตีให้การ์ดข่วนทั้งหมด 3 ในการต่อสู้นี้",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 365
@@ -13026,7 +13008,7 @@
     "image_url": "/static/images/cards/flash_of_steel.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 8\nจั่วการ์ด 1 ใบ",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 458
@@ -13070,7 +13052,7 @@
     "image_url": "/static/images/cards/arsenal.png",
     "beta_image_url": "/static/images/cards/beta/arsenal.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ทุกครั้งที่เล่นการ์ดไร้สี ได้รับ 2 [gold]ความแข็งแรง[/gold]",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 176
@@ -13109,7 +13091,7 @@
     "image_url": "/static/images/cards/shockwave.png",
     "beta_image_url": "/static/images/cards/beta/shockwave.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้าง 5 [gold]ความอ่อนแอ[/gold]และ[gold]จุดอ่อน[/gold]ใส่ศัตรูทั้งหมด",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -13151,7 +13133,7 @@
     "image_url": "/static/images/cards/iron_wave.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ 7 [gold]บล็อก[/gold]\nสร้างความเสียหาย 7",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 48
@@ -13189,7 +13171,7 @@
     "image_url": "/static/images/cards/astral_pulse.png",
     "beta_image_url": "/static/images/cards/beta/astral_pulse.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 18 ใส่ศัตรูทั้งหมด",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 177
@@ -13277,7 +13259,7 @@
     "image_url": "/static/images/cards/fear.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 8\nสร้าง 1 [gold]จุดอ่อน[/gold]",
     "type_key": "Attack",
     "rarity_key": "Common",
     "keywords_key": [
@@ -13352,7 +13334,7 @@
     "image_url": "/static/images/cards/expertise.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "จั่วการ์ดจนมี 7 ใบใน[gold]มือ[/gold]",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 117
@@ -13432,7 +13414,7 @@
     "image_url": "/static/images/cards/purity.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สลายการ์ดได้สูงสุด 5 ใบใน[gold]มือ[/gold]",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -13505,13 +13487,11 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/darkness.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "[gold]ปลุกเสก[/gold] 1 [gold]ความมืด[/gold]\nผลต่อเนื่องของลูกแก้ว[gold]ความมืด[/gold]ทั้งหมดทำงาน 2 ครั้ง",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 373
@@ -13623,7 +13603,7 @@
     "image_url": "/static/images/cards/chaos.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]ปลุกเสก[/gold]ลูกแก้ว 2 ลูกแบบสุ่ม",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 362
@@ -13791,7 +13771,7 @@
     "image_url": "/static/images/cards/cold_snap.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 9\n[gold]ปลุกเสก[/gold] 1 [gold]น้ำแข็ง[/gold]",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 366
@@ -13915,7 +13895,7 @@
     "image_url": "/static/images/cards/accuracy.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]มีดสั้น[/gold]สร้างความเสียหายเพิ่มขึ้น 6",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 89
@@ -13952,7 +13932,7 @@
     "image_url": "/static/images/cards/anger.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 8\nเพิ่มสำเนาของการ์ดนี้ 1 ใบใส่[gold]กองทิ้ง[/gold]",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 1
@@ -14064,7 +14044,7 @@
     "image_url": "/static/images/cards/impatience.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ถ้าไม่มีการ์ดโจมตีใน[gold]มือ[/gold] จั่วการ์ด 3 ใบ",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 464
@@ -14102,7 +14082,7 @@
     "image_url": "/static/images/cards/hemokinesis.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "เสีย 2 HP\nสร้างความเสียหาย 19",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 42
@@ -14141,7 +14121,7 @@
     "image_url": "/static/images/cards/piercing_wail.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ศัตรูทั้งหมดเสีย 8 [gold]ความแข็งแรง[/gold]ในเทิร์นนี้",
     "type_key": "Skill",
     "rarity_key": "Common",
     "keywords_key": [
@@ -14346,7 +14326,7 @@
     "image_url": "/static/images/cards/decisions_decisions.png",
     "beta_image_url": "/static/images/cards/beta/decisions_decisions.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "จั่วการ์ด 5 ใบ\nเลือกการ์ดทักษะ 1 ใบใน[gold]มือ[/gold]แล้วเล่น 3 ครั้ง",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -14386,7 +14366,7 @@
     "image_url": "/static/images/cards/glasswork.png",
     "beta_image_url": "/static/images/cards/beta/glasswork.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ 8 [gold]บล็อก[/gold]\n[gold]ปลุกเสก[/gold] 1 [gold]แก้ว[/gold]",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 388
@@ -14425,7 +14405,7 @@
     "image_url": "/static/images/cards/master_of_strategy.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "จั่วการ์ด 4 ใบ",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -14551,7 +14531,7 @@
     "image_url": "/static/images/cards/defragment.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ 2 [gold]โฟกัส[/gold]",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 375
@@ -14589,7 +14569,7 @@
     "image_url": "/static/images/cards/alignment.png",
     "beta_image_url": "/static/images/cards/beta/alignment.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ [energy:3]",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 175
@@ -14626,7 +14606,7 @@
     "image_url": "/static/images/cards/huddle_up.png",
     "beta_image_url": "/static/images/cards/beta/huddle_up.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "พันธมิตรทั้งหมดจั่วการ์ด 3 ใบ",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 463
@@ -14792,7 +14772,7 @@
     "image_url": "/static/images/cards/inflame.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ 3 [gold]ความแข็งแรง[/gold]",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 47
@@ -14831,7 +14811,7 @@
     "image_url": "/static/images/cards/strike_ironclad.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 9",
     "type_key": "Attack",
     "rarity_key": "Basic",
     "compendium_order": 72
@@ -14870,7 +14850,7 @@
     "image_url": "/static/images/cards/strike_silent.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 9",
     "type_key": "Attack",
     "rarity_key": "Basic",
     "compendium_order": 163
@@ -14909,7 +14889,7 @@
     "image_url": "/static/images/cards/strike_regent.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 9",
     "type_key": "Attack",
     "rarity_key": "Basic",
     "compendium_order": 252
@@ -14948,7 +14928,7 @@
     "image_url": "/static/images/cards/strike_necrobinder.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 9",
     "type_key": "Attack",
     "rarity_key": "Basic",
     "compendium_order": 343
@@ -14987,7 +14967,7 @@
     "image_url": "/static/images/cards/strike_defect.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 9",
     "type_key": "Attack",
     "rarity_key": "Basic",
     "compendium_order": 423
@@ -15028,7 +15008,7 @@
     "image_url": "/static/images/cards/pommel_strike.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 10\nจั่วการ์ด 2 ใบ",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 58
@@ -15067,7 +15047,7 @@
     "image_url": "/static/images/cards/twin_strike.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 7 จำนวน 2 ครั้ง",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 81
@@ -15145,7 +15125,7 @@
     "image_url": "/static/images/cards/adaptive_strike.png",
     "beta_image_url": "/static/images/cards/beta/adaptive_strike.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 23\nทำสำเนาของการ์ดนี้แบบ 0[energy:1] เพิ่มใน[gold]กองทิ้ง[/gold]",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 351
@@ -15187,7 +15167,7 @@
     "image_url": "/static/images/cards/perfected_strike.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 6\nสร้างความเสียหายเพิ่ม 3 ตามจำนวนการ์ดที่มีคำว่า “จู่โจม”",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 56
@@ -15229,7 +15209,7 @@
     "image_url": "/static/images/cards/ashen_strike.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 6\nสร้างความเสียหายเพิ่ม 4 ต่อการ์ดใน[gold]กองสลาย[/gold]",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 3
@@ -15268,7 +15248,7 @@
     "image_url": "/static/images/cards/blight_strike.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 10\nสร้าง[gold]อายุขัย[/gold]ตามจำนวนความเสียหายที่ทำได้",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 265
@@ -15316,7 +15296,7 @@
     "image_url": "/static/images/cards/focused_strike.png",
     "beta_image_url": "/static/images/cards/beta/focused_strike.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 11\nได้รับ 2 [gold]โฟกัส[/gold]ในเทิร์นนี้",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 383
@@ -15353,7 +15333,7 @@
     "image_url": "/static/images/cards/rip_and_tear.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 9 ใส่ศัตรู 1 ตัวแบบสุ่ม จำนวน 2 ครั้ง",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 542
@@ -15390,7 +15370,7 @@
     "image_url": "/static/images/cards/cleanse.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]อัญเชิญ[/gold] 5\n[gold]สลาย[/gold]การ์ด 1 ใบใน[gold]กองจั่ว[/gold]",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 273
@@ -15429,7 +15409,7 @@
     "image_url": "/static/images/cards/afterlife.png",
     "beta_image_url": "/static/images/cards/beta/afterlife.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]อัญเชิญ[/gold] 9",
     "type_key": "Skill",
     "rarity_key": "Common",
     "keywords_key": [
@@ -15505,7 +15485,7 @@
     "image_url": "/static/images/cards/sword_boomerang.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 3 ใส่ศัตรู 1 ตัวแบบสุ่ม จำนวน 4 ครั้ง",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 73
@@ -15542,7 +15522,7 @@
     "image_url": "/static/images/cards/rebound.png",
     "beta_image_url": "/static/images/cards/beta/rebound.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 12\nนำการ์ดที่คุณเล่นใบต่อไปกลับไปวางไว้บนสุดของ[gold]กองจั่ว[/gold]",
     "type_key": "Attack",
     "rarity_key": "Event",
     "compendium_order": 540
@@ -15580,7 +15560,7 @@
     "image_url": "/static/images/cards/equilibrium.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ 16 [gold]Block[/gold]\n[gold]คงสภาพ[/gold]ทั้ง[gold]มือ[/gold]ในเทิร์นนี้",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 453
@@ -15652,7 +15632,7 @@
     "image_url": "/static/images/cards/capacitor.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับช่องเก็บลูกแก้ว 3 ช่อง",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 361
@@ -15733,7 +15713,7 @@
     "image_url": "/static/images/cards/beat_into_shape.png",
     "beta_image_url": "/static/images/cards/beta/beat_into_shape.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 7\n[gold]หลอมสร้าง[/gold] X\n[gold]หลอมสร้าง[/gold]อีก 7 ต่อการโจมตีศัตรูในเทิร์นนี้ (ครั้งเว้นครั้ง)",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 178
@@ -15771,7 +15751,7 @@
     "image_url": "/static/images/cards/backflip.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ 8 [gold]บล็อก[/gold]\nจั่ว 2 การ์ด",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 95
@@ -15846,7 +15826,7 @@
     "image_url": "/static/images/cards/escape_plan.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "จั่วการ์ด 1 ใบ\nถ้าจั่วได้การ์ดทักษะ ได้รับ 5 [gold]บล็อก[/gold]",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 116
@@ -15892,7 +15872,7 @@
     "image_url": "/static/images/cards/neutralize.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 4\nสร้าง 1 [gold]ความอ่อนแอ[/gold]",
     "type_key": "Attack",
     "rarity_key": "Basic",
     "compendium_order": 139
@@ -15938,7 +15918,7 @@
     "image_url": "/static/images/cards/bash.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 10\nสร้าง 2 [gold]จุดอ่อน[/gold]",
     "type_key": "Attack",
     "rarity_key": "Basic",
     "compendium_order": 5
@@ -15975,7 +15955,7 @@
     "image_url": "/static/images/cards/glacier.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ 9 [gold]บล็อก[/gold]\n[gold]ปลุกเสก[/gold] 2 [gold]น้ำแข็ง[/gold]",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 387
@@ -16059,7 +16039,7 @@
     "image_url": "/static/images/cards/countdown.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ตอนเริ่มต้นเทิร์น สร้าง 9 [gold]อายุขัย[/gold]ใส่ศัตรู 1 ตัวแบบสุ่ม",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 274
@@ -16131,7 +16111,7 @@
     "image_url": "/static/images/cards/ball_lightning.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 10\n[gold]ปลุกเสก[/gold] 1 [gold]สายฟ้า[/gold]",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 353
@@ -16168,7 +16148,7 @@
     "image_url": "/static/images/cards/rage.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ทุกครั้งที่คุณเล่นการ์ดโจมตีในเทิร์นนี้ ได้รับ 5 [gold]บล็อก[/gold]",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 61
@@ -16332,7 +16312,7 @@
     "image_url": "/static/images/cards/clash.png",
     "beta_image_url": "/static/images/cards/beta/clash.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "จะใช้ได้ก็ต่อเมื่อทั้ง[gold]มือ[/gold]เป็นการ์ดโจมตี\nสร้างความเสียหาย 18",
     "type_key": "Attack",
     "rarity_key": "Event",
     "compendium_order": 526
@@ -16370,7 +16350,7 @@
     "image_url": "/static/images/cards/deaths_door.png",
     "beta_image_url": "/static/images/cards/beta/deaths_door.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ 7 [gold]บล็อก[/gold]\nถ้าคุณเคยสร้าง[gold]อายุขัย[/gold]ในเทิร์นนี้ ได้รับ[gold]บล็อก[/gold]เพิ่ม 2 ครั้ง",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 277
@@ -16409,7 +16389,7 @@
     "image_url": "/static/images/cards/compile_driver.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 10\nจั่วการ์ด 1 ใบตามจำนวนลูกแก้วที่ไม่ซ้ำธาตุ",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 368
@@ -16602,7 +16582,7 @@
     "image_url": "/static/images/cards/deflect.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ 7 [gold]บล็อก[/gold]",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 112
@@ -16642,7 +16622,7 @@
     "image_url": "/static/images/cards/panic_button.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ 40 [gold]บล็อก[/gold]\nคุณไม่สามารถได้รับ[gold]บล็อก[/gold]จากการ์ดเป็นเวลา2 เทิร์น",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -16684,7 +16664,7 @@
     "image_url": "/static/images/cards/defend_ironclad.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ 8 [gold]บล็อก[/gold]",
     "type_key": "Skill",
     "rarity_key": "Basic",
     "compendium_order": 24
@@ -16723,7 +16703,7 @@
     "image_url": "/static/images/cards/defend_silent.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ 8 [gold]บล็อก[/gold]",
     "type_key": "Skill",
     "rarity_key": "Basic",
     "compendium_order": 111
@@ -16762,7 +16742,7 @@
     "image_url": "/static/images/cards/defend_regent.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ 8 [gold]บล็อก[/gold]",
     "type_key": "Skill",
     "rarity_key": "Basic",
     "compendium_order": 198
@@ -16801,7 +16781,7 @@
     "image_url": "/static/images/cards/defend_necrobinder.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ 8 [gold]บล็อก[/gold]",
     "type_key": "Skill",
     "rarity_key": "Basic",
     "compendium_order": 280
@@ -16840,7 +16820,7 @@
     "image_url": "/static/images/cards/defend_defect.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ 8 [gold]บล็อก[/gold]",
     "type_key": "Skill",
     "rarity_key": "Basic",
     "compendium_order": 374
@@ -16877,7 +16857,7 @@
     "image_url": "/static/images/cards/survivor.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ 11 [gold]บล็อก[/gold]\nทิ้งการ์ด 1 ใบ",
     "type_key": "Skill",
     "rarity_key": "Basic",
     "compendium_order": 166
@@ -16914,7 +16894,7 @@
     "image_url": "/static/images/cards/the_gambit.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ 75 [gold]บล็อก[/gold]\nถ้าคุณได้รับความเสียหายที่บล็อกไม่ได้ในการต่อสู้นี้ จะตายทันที",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 497
@@ -16958,7 +16938,7 @@
     "image_url": "/static/images/cards/speedster.png",
     "beta_image_url": "/static/images/cards/beta/speedster.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ทุกครั้งที่คุณจั่วการ์ดในเทิร์นของคุณ สร้างความเสียหาย 3 ใส่ศัตรูทั้งหมด",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 160
@@ -16998,7 +16978,7 @@
     "image_url": "/static/images/cards/cloak_and_dagger.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ 6 [gold]บล็อก[/gold]\nเพิ่ม[gold]มีดสั้น[/gold] 2 ใบใส่[gold]มือ[/gold]",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 105
@@ -17051,7 +17031,7 @@
     "image_url": "/static/images/cards/meteor_shower.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 21 ใส่ศัตรูทั้งหมด\nสร้าง 2 [gold]ความอ่อนแอ[/gold]และ[gold]จุดอ่อน[/gold]ใส่ศัตรูทั้งหมด",
     "type_key": "Attack",
     "rarity_key": "Ancient",
     "compendium_order": 226
@@ -17088,7 +17068,7 @@
     "image_url": "/static/images/cards/dagger_spray.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 6 ใส่ศัตรูทั้งหมด จำนวน 2 ครั้ง",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 107
@@ -17166,7 +17146,7 @@
     "image_url": "/static/images/cards/breakthrough.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "เสีย 1 HP\nสร้างความเสียหาย 13 ใส่ศัตรูทั้งหมด",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 13
@@ -17291,7 +17271,7 @@
     "image_url": "/static/images/cards/fan_of_knives.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ต่อไปนี้[gold]มีดสั้น[/gold]จะโจมตีศัตรูทั้งหมด\nเพิ่ม[gold]มีดสั้น[/gold] 5 ใบใส่[gold]มือ[/gold]",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 119
@@ -17330,7 +17310,7 @@
     "image_url": "/static/images/cards/dark_shackles.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ศัตรูเสีย 15 [gold]ความแข็งแรง[/gold]ในเทิร์นนี้",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -17364,13 +17344,11 @@
       "SHIV"
     ],
     "vars": null,
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/storm_of_steel.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "ทิ้งการ์ดทั้ง[gold]มือ[/gold]\nเพิ่ม[gold]มีดสั้น+[/gold] 1 ใบใส่[gold]มือ[/gold]ตามจำนวนการ์ดที่ถูกทิ้ง",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 161
@@ -17407,7 +17385,7 @@
     "image_url": "/static/images/cards/whirlwind.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 8 ใส่ศัตรูทั้งหมด จำนวน X ครั้ง",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 86
@@ -17449,7 +17427,7 @@
     "image_url": "/static/images/cards/soul_storm.png",
     "beta_image_url": "/static/images/cards/beta/soul_storm.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 9\nสร้างความเสียหายเพิ่ม 3 ตามจำนวน[gold]วิญญาณ[/gold]ใน[gold]กองสลาย[/gold]",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 338
@@ -17572,7 +17550,7 @@
     "image_url": "/static/images/cards/boost_away.png",
     "beta_image_url": "/static/images/cards/beta/boost_away.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ 9 [gold]บล็อก[/gold]\nเพิ่ม[gold]ความมึนงง[/gold] 1 ใบเข้า[gold]กองทิ้ง[/gold]",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 357
@@ -17650,7 +17628,7 @@
     "image_url": "/static/images/cards/dash.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ 13 [gold]บล็อก[/gold]\nสร้างความเสียหาย 13",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 109
@@ -17696,7 +17674,7 @@
     "image_url": "/static/images/cards/go_for_the_eyes.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 4\nถ้าศัตรูตั้งใจจะโจมตี สร้าง 1 [gold]ความอ่อนแอ[/gold]",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 389
@@ -17735,7 +17713,7 @@
     "image_url": "/static/images/cards/impervious.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ 40 [gold]บล็อก[/gold]",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -17782,7 +17760,7 @@
     "image_url": "/static/images/cards/thunder.png",
     "beta_image_url": "/static/images/cards/beta/thunder.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ทุกครั้งที่คุณ[gold]ปล่อยพลังสายฟ้า[/gold] สร้างความเสียหาย 8 ใส่ศัตรูแต่ละตัวที่ถูกสายฟ้าโจมตี",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 432
@@ -17827,7 +17805,7 @@
     "image_url": "/static/images/cards/thunderclap.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 7 และสร้าง 1 [gold]จุดอ่อน[/gold]ใส่ศัตรูทั้งหมด",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 78
@@ -17902,7 +17880,7 @@
     "image_url": "/static/images/cards/hologram.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ 5 [gold]บล็อก[/gold]\nนำการ์ด 1 ใบจาก[gold]กองทิ้ง[/gold]ขึ้น[gold]มือ[/gold]",
     "type_key": "Skill",
     "rarity_key": "Common",
     "keywords_key": [
@@ -17987,7 +17965,7 @@
     "image_url": "/static/images/cards/blur.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ 8 [gold]บล็อก[/gold]\nสามารถสะสม[gold]บล็อก[/gold]ไปยังเทิร์นต่อไปได้",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 99
@@ -18074,7 +18052,7 @@
     "image_url": "/static/images/cards/storm.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ทุกครั้งที่คุณเล่นการ์ดพลัง [gold]ปลุกเสก[/gold] 2 [gold]สายฟ้า[/gold]",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 422
@@ -18112,7 +18090,7 @@
     "image_url": "/static/images/cards/sunder.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 32\nถ้าฆ่าศัตรูได้ ได้รับ [energy:3]",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 425
@@ -18160,7 +18138,7 @@
     "image_url": "/static/images/cards/fight_me.png",
     "beta_image_url": "/static/images/cards/beta/fight_me.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 6 จำนวน 2 ครั้ง\nได้รับ 2 [gold]ความแข็งแรง[/gold]\nศัตรูได้รับ 1 [gold]ความแข็งแรง[/gold]",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 35
@@ -18248,7 +18226,7 @@
     "image_url": "/static/images/cards/shiv.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 6",
     "type_key": "Attack",
     "rarity_key": "Token",
     "keywords_key": [
@@ -18341,7 +18319,7 @@
     "image_url": "/static/images/cards/poisoned_stab.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 8\nสร้าง 3 [gold]พิษ[/gold]",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 146
@@ -18383,7 +18361,7 @@
     "image_url": "/static/images/cards/right_hand_hand.png",
     "beta_image_url": "/static/images/cards/beta/right_hand_hand.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Osty[/gold]สร้างความเสียหาย 6\nทุกครั้งที่คุณเล่นการ์ดค่าร่าย [energy:2] ขึ้นไป นำการ์ดนี้จาก[gold]กองทิ้ง[/gold]กลับขึ้น[gold]มือ[/gold]",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 326
@@ -18422,7 +18400,7 @@
     "image_url": "/static/images/cards/hand_of_greed.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 25\nถ้า[gold]สังหาร[/gold] ได้รับ 25 [gold]ทอง[/gold]",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 461
@@ -18466,7 +18444,7 @@
     "image_url": "/static/images/cards/buffer.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ป้องกันการเสีย HP ของคุณในอีก 2 ครั้ง",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 359
@@ -18497,13 +18475,11 @@
     "vars": {
       "Block": 5
     },
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/armaments.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "ได้รับ 5 [gold]บล็อก[/gold]\n[gold]พัฒนา[/gold] การ์ดทั้งหมดใน[gold]มือ[/gold]",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 2
@@ -18540,7 +18516,7 @@
     "image_url": "/static/images/cards/noxious_fumes.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ตอนเริ่มต้นเทิร์น สร้าง 3 [gold]พิษ[/gold]ใส่ศัตรูทั้งหมด",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 141
@@ -18612,7 +18588,7 @@
     "image_url": "/static/images/cards/all_for_one.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 14\nนำการ์ด 0[energy:1] ทั้งหมดจาก[gold]กองทิ้ง[/gold]ขึ้น[gold]มือ[/gold]",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 352
@@ -18651,7 +18627,7 @@
     "image_url": "/static/images/cards/barrage.png",
     "beta_image_url": "/static/images/cards/beta/barrage.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 7 ต่อลูกแก้วที่ถูก[gold]ปลุกเสก[/gold]",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 354
@@ -18688,7 +18664,7 @@
     "image_url": "/static/images/cards/skewer.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 10 จำนวน X ครั้ง",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 156
@@ -18733,7 +18709,7 @@
     "image_url": "/static/images/cards/danse_macabre.png",
     "beta_image_url": "/static/images/cards/beta/danse_macabre.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ทุกครั้งที่คุณเล่นการ์ดค่าร่าย [energy:2] ขึ้นไป ได้รับ 4 [gold]บล็อก[/gold]",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 275
@@ -18774,7 +18750,7 @@
     "image_url": "/static/images/cards/blade_dance.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "เพิ่ม 4 [gold]มีดสั้น[/gold]ใส่[gold]มือ[/gold]",
     "type_key": "Skill",
     "rarity_key": "Common",
     "keywords_key": [
@@ -18815,7 +18791,7 @@
     "image_url": "/static/images/cards/the_bomb.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "เมื่อผ่านไป 3 เทิร์น สร้างความเสียหาย 50 ใส่ศัตรูทั้งหมด",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 496
@@ -18854,7 +18830,7 @@
     "image_url": "/static/images/cards/bombardment.png",
     "beta_image_url": "/static/images/cards/beta/bombardment.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 24\nตอนเริ่มต้นเทิร์น เล่นจาก[gold]กองสลาย[/gold]",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -18933,7 +18909,7 @@
     "image_url": "/static/images/cards/fasten.png",
     "beta_image_url": "/static/images/cards/beta/fasten.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับเพิ่ม 7 [gold]บล็อก[/gold]จากการ์ดป้องกัน",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 455
@@ -18970,7 +18946,7 @@
     "image_url": "/static/images/cards/beat_down.png",
     "beta_image_url": "/static/images/cards/beta/beat_down.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "เล่นการ์ดโจมตี 4 ใบแบบสุ่มจาก[gold]กองทิ้ง[/gold]",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 443
@@ -19009,7 +18985,7 @@
     "image_url": "/static/images/cards/jack_of_all_trades.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "เพิ่มการ์ดไม่มีสี 2 ใบแบบสุ่มใส่[gold]มือ[/gold]",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -19043,13 +19019,11 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/enlightenment.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "ลดค่าร่ายการ์ดใน[gold]มือ[/gold]ทั้งหมดเหลือ 1 ในการต่อสู้นี้",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Event",
     "keywords_key": [
@@ -19138,7 +19112,7 @@
     "image_url": "/static/images/cards/demon_form.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ตอนเริ่มต้นเทิร์น ได้รับ 3 [gold]ความแข็งแรง[/gold]",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 26
@@ -19189,7 +19163,7 @@
     "image_url": "/static/images/cards/wraith_form.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ 3 [gold]ไร้ตัวตน[/gold]\nตอนเริ่มต้นเทิร์น เสีย 1 [gold]ความชำนาญ[/gold]",
     "type_key": "Power",
     "rarity_key": "Ancient",
     "compendium_order": 174
@@ -19233,7 +19207,7 @@
     "image_url": "/static/images/cards/serpent_form.png",
     "beta_image_url": "/static/images/cards/beta/serpent_form.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ทุกครั้งที่คุณเล่นการ์ด สร้างความเสียหาย 5 ใส่ศัตรู 1 ตัวแบบสุ่ม",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 153
@@ -19334,13 +19308,11 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/multi_cast.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "[gold]ปล่อยพลัง[/gold]ลูกแก้วลูกขวาสุด X+1 ครั้ง",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 406
@@ -19389,7 +19361,7 @@
     "image_url": "/static/images/cards/assassinate.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 13\nสร้าง 1 [gold]จุดอ่อน[/gold]",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -19433,7 +19405,7 @@
     "image_url": "/static/images/cards/backstab.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 15",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -19482,7 +19454,7 @@
     "image_url": "/static/images/cards/drum_of_battle.png",
     "beta_image_url": "/static/images/cards/beta/drum_of_battle.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "จั่วการ์ด 3 ใบ\nตอนเริ่มต้นเทิร์น [gold]สลาย[/gold]การ์ดใบบนสุดของ[gold]กองจั่ว[/gold]",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 29
@@ -19522,7 +19494,7 @@
     "image_url": "/static/images/cards/boot_sequence.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ 13 [gold]บล็อก[/gold]",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -19571,7 +19543,7 @@
     "image_url": "/static/images/cards/hyperbeam.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 34 ใส่ศัตรูทั้งหมด\nเสีย 3 [gold]โฟกัส[/gold]",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 395
@@ -19617,7 +19589,7 @@
     "image_url": "/static/images/cards/beam_cell.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 4\nสร้าง 1 [gold]จุดอ่อน[/gold]",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 355
@@ -19650,13 +19622,11 @@
     "vars": {
       "Cards": 2
     },
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/charge.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "เลือกการ์ด 2 ใบใน[gold]กองจั่ว[/gold]เพื่อ[gold]แปรสภาพ[/gold]เป็น[gold]ลูกน้องจู่โจม+[/gold]",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 186
@@ -19695,7 +19665,7 @@
     "image_url": "/static/images/cards/flechettes.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 7 ตามจำนวนการ์ดทักษะใน[gold]มือ[/gold]",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 122
@@ -19738,7 +19708,7 @@
     "image_url": "/static/images/cards/minion_strike.png",
     "beta_image_url": "/static/images/cards/beta/minion_strike.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 10\nจั่วการ์ด 1 ใบ",
     "type_key": "Attack",
     "rarity_key": "Token",
     "keywords_key": [
@@ -19782,7 +19752,7 @@
     "image_url": "/static/images/cards/minion_sacrifice.png",
     "beta_image_url": "/static/images/cards/beta/minion_sacrifice.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ 12 [gold]บล็อก[/gold]",
     "type_key": "Skill",
     "rarity_key": "Token",
     "keywords_key": [
@@ -19823,7 +19793,7 @@
     "image_url": "/static/images/cards/finesse.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ 7 [gold]บล็อก[/gold]\nจั่ว 1 การ์ด",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 456
@@ -19860,7 +19830,7 @@
     "image_url": "/static/images/cards/panache.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ทุกครั้งที่คุณเล่นการ์ด 5 ใบในเทิร์นเดียว สร้างความเสียหาย 14 ใส่ศัตรูทั้งหมด",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 476
@@ -19899,7 +19869,7 @@
     "image_url": "/static/images/cards/soul.png",
     "beta_image_url": "/static/images/cards/beta/soul.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "จั่วการ์ด 3 ใบ",
     "type_key": "Skill",
     "rarity_key": "Token",
     "keywords_key": [
@@ -19975,7 +19945,7 @@
     "image_url": "/static/images/cards/rampage.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 9\nเพิ่มพลังให้การ์ดนี้อีก 9 ในการต่อสู้นี้",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 62
@@ -20012,7 +19982,7 @@
     "image_url": "/static/images/cards/intercept.png",
     "beta_image_url": "/static/images/cards/beta/intercept.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ 13 [gold]บล็อก[/gold]\nดึงการโจมตีทั้งหมดในเทิร์นนี้ที่เล็งผู้เล่นอื่นมาที่คุณแทน",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 465
@@ -20049,7 +20019,7 @@
     "image_url": "/static/images/cards/feel_no_pain.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ทุกครั้งที่การ์ด[gold]สลาย[/gold] ได้รับ 4 [gold]บล็อก[/gold]",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 33
@@ -20239,7 +20209,7 @@
     "image_url": "/static/images/cards/charge_battery.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ 10 [gold]บล็อก[/gold]\nและเทิร์นถัดไป ได้รับ [energy:1]",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 363
@@ -20278,7 +20248,7 @@
     "image_url": "/static/images/cards/reflex.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "จั่วการ์ด 3 ใบ",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -20318,7 +20288,7 @@
     "image_url": "/static/images/cards/burning_pact.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]สลาย[/gold]การ์ด 1 ใบ\nจั่วการ์ด 3 ใบ",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 15
@@ -20349,13 +20319,11 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/malaise.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "ศัตรูเสีย X+1 [gold]ความแข็งแรง[/gold] สร้าง X+1 [gold]ความอ่อนแอ[/gold]",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -20443,7 +20411,7 @@
     "image_url": "/static/images/cards/lightning_rod.png",
     "beta_image_url": "/static/images/cards/beta/lightning_rod.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ 7 [gold]บล็อก[/gold]\nตอนเริ่มต้นเทิร์นในอีก 2 เทิร์น [gold]ปลุกเสก[/gold] 1 [gold]สายฟ้า[/gold]",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 400
@@ -20480,7 +20448,7 @@
     "image_url": "/static/images/cards/accelerant.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]พิษ[/gold]ทำงานเพิ่มอีก 2 ครั้ง",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 88
@@ -20559,7 +20527,7 @@
     "image_url": "/static/images/cards/delay.png",
     "beta_image_url": "/static/images/cards/beta/delay.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ 13 [gold]บล็อก[/gold]\nและเทิร์นถัดไป\nได้รับ [energy:2]",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 283
@@ -20654,7 +20622,7 @@
     "image_url": "/static/images/cards/sucker_punch.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 10\nสร้าง 1 [gold]ความอ่อนแอ[/gold]",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 164
@@ -20692,7 +20660,7 @@
     "image_url": "/static/images/cards/uppercut.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 13\nสร้าง 2 [gold]ความอ่อนแอ[/gold]\nสร้าง 2 [gold]จุดอ่อน[/gold]",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 84
@@ -20729,7 +20697,7 @@
     "image_url": "/static/images/cards/battle_trance.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "จั่ว 4 การ์ด\nในเทิร์นนี้ คุณจะจั่วการ์ดไม่ได้อีก",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 6
@@ -20773,7 +20741,7 @@
     "image_url": "/static/images/cards/black_hole.png",
     "beta_image_url": "/static/images/cards/beta/black_hole.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ทุกครั้งที่คุณจ่ายหรือได้รับ [star:1] สร้างความเสียหาย 4 ใส่ศัตรูทั้งหมด",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 181
@@ -20811,7 +20779,7 @@
     "image_url": "/static/images/cards/ice_lance.png",
     "beta_image_url": "/static/images/cards/beta/ice_lance.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 24\n[gold]ปลุกเสก[/gold] 3 [gold]น้ำแข็ง[/gold]",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 396
@@ -20848,7 +20816,7 @@
     "image_url": "/static/images/cards/slice.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 9",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 157
@@ -20887,7 +20855,7 @@
     "image_url": "/static/images/cards/begone.png",
     "beta_image_url": "/static/images/cards/beta/begone.png",
     "type_variants": null,
-    "upgrade_description": "สร้างความเสียหาย 4\nเลือก 1 การ์ดใน[gold]มือ[/gold]เพื่อ[gold]แปรสภาพ[/gold]เป็น [gold]อุกกาบาตลูกน้อง+[/gold]",
+    "upgrade_description": "สร้างความเสียหาย 5\nเลือก 1 การ์ดใน[gold]มือ[/gold]เพื่อ[gold]แปรสภาพ[/gold]เป็น [gold]อุกกาบาตลูกน้อง+[/gold]",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 179
@@ -20938,7 +20906,7 @@
     "image_url": "/static/images/cards/biased_cognition.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ 5 [gold]โฟกัส[/gold]\nตอนเริ่มต้นเทิร์น เสีย 1 [gold]โฟกัส[/gold]",
     "type_key": "Power",
     "rarity_key": "Ancient",
     "compendium_order": 356
@@ -20975,7 +20943,7 @@
     "image_url": "/static/images/cards/bodyguard.png",
     "beta_image_url": "/static/images/cards/beta/bodyguard.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]อัญเชิญ[/gold] 7",
     "type_key": "Skill",
     "rarity_key": "Basic",
     "compendium_order": 266
@@ -21052,7 +21020,7 @@
     "image_url": "/static/images/cards/grand_finale.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "จะเล่นได้ก็ต่อเมื่อไม่มีการ์ดใน[gold]กองจั่ว[/gold] สร้างความเสียหาย 60 ใส่ศัตรูทั้งหมด",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 126
@@ -21081,13 +21049,11 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/tempest.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "[gold]ปลุกเสก[/gold] X+1 [gold]สายฟ้า[/gold]",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 430
@@ -21124,7 +21090,7 @@
     "image_url": "/static/images/cards/predator.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 20\nเทิร์นถัดไป จั่วการ์ด 2 ใบ",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 149
@@ -21164,7 +21130,7 @@
     "image_url": "/static/images/cards/adrenaline.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ [energy:2]\nจั่ว 2 การ์ด",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -21207,7 +21173,7 @@
     "image_url": "/static/images/cards/genetic_algorithm.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ 1 [gold]บล็อก[/gold]\n[gold]บล็อก[/gold]ของการ์ดนี้เพิ่มขึ้น 4 แบบถาวร",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -21294,7 +21260,7 @@
     "image_url": "/static/images/cards/envenom.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ทุกครั้งที่โจมตีแบบไม่ถูกบล็อกได้ สร้าง 2 [gold]พิษ[/gold]",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 115
@@ -21373,7 +21339,7 @@
     "image_url": "/static/images/cards/meteor_strike.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 30\n[gold]ปลุกเสก[/gold] 3 [gold]พลาสมา[/gold]",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 403
@@ -21414,7 +21380,7 @@
     "image_url": "/static/images/cards/minion_dive_bomb.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 16",
     "type_key": "Attack",
     "rarity_key": "Token",
     "keywords_key": [
@@ -21456,7 +21422,7 @@
     "image_url": "/static/images/cards/tactician.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ [energy:2]",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -21496,7 +21462,7 @@
     "image_url": "/static/images/cards/skim.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "จั่วการ์ด 4 ใบ",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 419
@@ -21533,7 +21499,7 @@
     "image_url": "/static/images/cards/second_wind.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]สลาย[/gold]การ์ดที่ไม่ใช่การ์ดโจมตีทั้งหมดใน[gold]มือ[/gold] ได้รับ 7 [gold]บล็อก[/gold]ตามจำนวนการ์ดที่[gold]สลาย[/gold]",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 64
@@ -21570,7 +21536,7 @@
     "image_url": "/static/images/cards/echoing_slash.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 13 ใส่ศัตรูทั้งหมด\nทำงานซ้ำตามจำนวนศัตรูที่ฆ่าได้",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 114
@@ -21607,7 +21573,7 @@
     "image_url": "/static/images/cards/believe_in_you.png",
     "beta_image_url": "/static/images/cards/beta/believe_in_you.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ผู้เล่นคนอื่น 1 คนได้รับ [energy:4]",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 444
@@ -21647,7 +21613,7 @@
     "image_url": "/static/images/cards/fuel.png",
     "beta_image_url": "/static/images/cards/beta/fuel.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ [energy:1]\nจั่วการ์ด 2 ใบ",
     "type_key": "Skill",
     "rarity_key": "Token",
     "keywords_key": [
@@ -21691,7 +21657,7 @@
     "image_url": "/static/images/cards/offering.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "เสีย 6 HP\nได้รับ [energy:2]\nจั่วการ์ด 5 ใบ",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -21771,7 +21737,7 @@
     "image_url": "/static/images/cards/prepared.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "จั่วการ์ด 2 ใบ\nทิ้งการ์ด 2 ใบ",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 150
@@ -21808,7 +21774,7 @@
     "image_url": "/static/images/cards/furnace.png",
     "beta_image_url": "/static/images/cards/beta/furnace.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ตอนเริ่มต้นเทิร์น [gold]หลอมสร้าง[/gold] 6",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 203
@@ -21847,7 +21813,7 @@
     "image_url": "/static/images/cards/turbo.png",
     "beta_image_url": "/static/images/cards/beta/turbo.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ [energy:3]\nเพิ่ม[gold]ความว่างเปล่า[/gold] 1 ใบเข้า[gold]กองทิ้ง[/gold]",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 434
@@ -21927,7 +21893,7 @@
     "image_url": "/static/images/cards/dramatic_entrance.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 15 ใส่ศัตรูทั้งหมด",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -21970,7 +21936,7 @@
     "image_url": "/static/images/cards/reboot.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สับการ์ดทั้งหมดของคุณเข้า[gold]กองจั่ว[/gold]\nจั่วการ์ด 6 ใบ",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -22090,7 +22056,7 @@
     "image_url": "/static/images/cards/brightest_flame.png",
     "beta_image_url": "/static/images/cards/beta/brightest_flame.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ [energy:3]\nจั่วการ์ด 3 ใบ\nเสีย 1 HP สูงสุด",
     "type_key": "Skill",
     "rarity_key": "Ancient",
     "compendium_order": 523
@@ -22129,7 +22095,7 @@
     "image_url": "/static/images/cards/fiend_fire.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]สลาย[/gold]ทั้ง[gold]มือ[/gold]\nสร้างความเสียหาย 10 ตามจำนวนการ์ดที่[gold]สลาย[/gold]",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -22176,7 +22142,7 @@
     "image_url": "/static/images/cards/inferno.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ตอนเริ่มต้นเทิร์น เสีย 1 HP\nทุกครั้งที่คุณเสีย HP ในเทิร์นของคุณ สร้างความเสียหาย 9 ใส่ศัตรูทั้งหมด",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 46
@@ -22331,7 +22297,7 @@
     "image_url": "/static/images/cards/ftl.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 6\nถ้าคุณใช้การ์ดไม่เกิน 4 ใบในเทิร์นนี้ จั่ว 1 การ์ด",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 384
@@ -22457,7 +22423,7 @@
     "image_url": "/static/images/cards/bone_shards.png",
     "beta_image_url": "/static/images/cards/beta/bone_shards.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ถ้า[gold]Osty[/gold]มีชีวิตอยู่ เขาจะสร้างความเสียหาย 12 ใส่ศัตรูทั้งหมด และคุณได้รับ 12 [gold]บล็อก[/gold]\nจากนั้น[gold]Osty[/gold]จะตาย",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 267
@@ -22533,7 +22499,7 @@
     "image_url": "/static/images/cards/banshees_cry.png",
     "beta_image_url": "/static/images/cards/beta/banshees_cry.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 39 ใส่ศัตรูทั้งหมด\nค่าร่ายลดลง [energy:2] ต่อการ์ด[gold]กึ่งสลาย[/gold]ที่เล่นไปในการต่อสู้นี้",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 264
@@ -22570,7 +22536,7 @@
     "image_url": "/static/images/cards/howl_from_beyond.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 21 ใส่ศัตรูทั้งหมด\nตอนเริ่มต้นเทิร์น เล่นจาก[gold]กองทิ้ง[/gold]",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 43
@@ -22623,7 +22589,7 @@
     "image_url": "/static/images/cards/abrasive.png",
     "beta_image_url": "/static/images/cards/beta/abrasive.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ 1 [gold]ความชำนาญ[/gold]\nได้รับ 6 [gold]หนาม[/gold]",
     "type_key": "Power",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -22708,7 +22674,7 @@
     "image_url": "/static/images/cards/hotfix.png",
     "beta_image_url": "/static/images/cards/beta/hotfix.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ 3 [gold]โฟกัส[/gold]ในเทิร์นนี้",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 394
@@ -22745,7 +22711,7 @@
     "image_url": "/static/images/cards/hang.png",
     "beta_image_url": "/static/images/cards/beta/hang.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 13\nการ์ดแขวนคอทั้งหมดสร้างความเสียหายใส่ศัตรูตัวนี้เป็น 2 เท่า",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 301
@@ -22822,7 +22788,7 @@
     "image_url": "/static/images/cards/metamorphosis.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "เพิ่มการ์ดโจมตี 5 ใบแบบสุ่มเข้า[gold]กองจั่ว[/gold] มันเล่นฟรีในการตอนสู้นี้",
     "type_key": "Skill",
     "rarity_key": "Event",
     "keywords_key": [
@@ -22862,7 +22828,7 @@
     "image_url": "/static/images/cards/well_laid_plans.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ตอนจบเทิร์น [gold]คงสภาพ[/gold]การ์ดได้สูงสุด 2 ใบ",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 173
@@ -22937,7 +22903,7 @@
     "image_url": "/static/images/cards/shrug_it_off.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ได้รับ 11 [gold]บล็อก[/gold]\nจั่วการ์ด 1 ใบ",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 66
@@ -22974,7 +22940,7 @@
     "image_url": "/static/images/cards/headbutt.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 12\nนำการ์ด 1 ใบจาก[gold]กองทิ้ง[/gold]ไปวางไว้บนสุดของ[gold]กองจั่ว[/gold]",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 40
@@ -23048,7 +23014,7 @@
     "image_url": "/static/images/cards/finisher.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 8 ตามจำนวนการ์ดโจมตีที่เล่นในเทิร์นนี้",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 120
@@ -23127,7 +23093,7 @@
     "image_url": "/static/images/cards/bolas.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "สร้างความเสียหาย 4\nตอนเริ่มต้นเทิร์น นำการ์ดนี้กลับขึ้น[gold]มือ[/gold]",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 445
@@ -23166,7 +23132,7 @@
     "image_url": "/static/images/cards/overclock.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "จั่วการ์ด 3 ใบ\nเพิ่ม[gold]เผาไหม้[/gold] 1 ใบเข้า[gold]กองทิ้ง[/gold]",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 408
@@ -23203,7 +23169,7 @@
     "image_url": "/static/images/cards/true_grit.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "ได้รับ 7 [gold]บล็อก[/gold]\n[gold]สลาย[/gold]การ์ด 1 ใบ",
+    "upgrade_description": "ได้รับ 9 [gold]บล็อก[/gold]\n[gold]สลาย[/gold]การ์ด 1 ใบ",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 80
@@ -23240,7 +23206,7 @@
     "image_url": "/static/images/cards/coolheaded.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]ปลุกเสก[/gold] 1 [gold]น้ำแข็ง[/gold]\nจั่วการ์ด 2 ใบ",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 371
@@ -23277,7 +23243,7 @@
     "image_url": "/static/images/cards/outmaneuver.png",
     "beta_image_url": "/static/images/cards/beta/outmaneuver.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "เทิร์นถัดไป ได้รับ [energy:3]",
     "type_key": "Skill",
     "rarity_key": "Event",
     "compendium_order": 538

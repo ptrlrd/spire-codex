@@ -254,12 +254,7 @@ def parse_single_card(filepath: Path, localization: dict, card_pools: dict, even
     resolve_vars = {**all_vars, "CardType": card_type}
     desc_rendered = shared_resolve_description(description, resolve_vars)
 
-    # Generate upgraded description for cards with text-based upgrade changes
     upgrade_description = None
-    if "{IfUpgraded:show:" in description:
-        upgrade_description = shared_resolve_description(description, resolve_vars, is_upgraded=True)
-        if upgrade_description == desc_rendered:
-            upgrade_description = None
 
     # Generate type variants for cards with choose() conditionals (e.g. Mad Science)
     # Mad Science has 9 variants: 3 types × 3 riders per type
@@ -376,10 +371,28 @@ def parse_single_card(filepath: Path, localization: dict, card_pools: dict, even
             card["upgrade"][f"remove_{km.group(1).lower()}"] = True
 
     if not card["upgrade"]:
-        if upgrade_description:
-            card["upgrade"] = {"description_changed": True}
-        else:
-            card["upgrade"] = None
+        card["upgrade"] = None
+
+    # Generate upgrade_description with upgraded var values (correct plurals, icons, text)
+    if card["upgrade"]:
+        upgraded_vars = dict(resolve_vars)
+        for key, val in card["upgrade"].items():
+            if isinstance(val, str) and (val[0] == '+' or val[0] == '-'):
+                try:
+                    diff = int(val)
+                except ValueError:
+                    continue
+                for vk in upgraded_vars:
+                    if vk.lower() == key.lower() and isinstance(upgraded_vars[vk], (int, float)):
+                        upgraded_vars[vk] += diff
+                        break
+        up_desc = shared_resolve_description(description, upgraded_vars, is_upgraded=True)
+        if up_desc != desc_rendered:
+            card["upgrade_description"] = up_desc
+
+    # Mark cards with text-only upgrades (no numeric changes, only IfUpgraded patterns)
+    if not card["upgrade"] and card["upgrade_description"]:
+        card["upgrade"] = {"description_changed": True}
 
     return card
 

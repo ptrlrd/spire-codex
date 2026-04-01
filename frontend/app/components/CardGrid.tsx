@@ -66,7 +66,22 @@ function renderDescription(card: Card, upgraded: boolean): React.ReactNode {
 
     for (const [key, upVal] of Object.entries(u)) {
       if (upVal == null) continue;
-      if (key.toLowerCase() === "repeat" && vars["Repeat"] != null) {
+      const kl = key.toLowerCase();
+      // Handle icon tag upgrades first — skip general replacement to avoid corrupting tags
+      if (kl === "energy") {
+        const baseEnergy = vars["Energy"] ?? 1;
+        const upEnergy = getUpgradedValue(baseEnergy, upVal) ?? baseEnergy;
+        if (upEnergy !== baseEnergy) text = text.replace(/\[energy:(\d+)\]/, `[energy:${upEnergy}]`);
+        continue;
+      }
+      if (kl === "stars" || kl === "starnextturnpower") {
+        const starVar = kl === "stars" ? "Stars" : "StarNextTurnPower";
+        const baseStar = vars[starVar] ?? 1;
+        const upStar = getUpgradedValue(baseStar, upVal) ?? baseStar;
+        if (upStar !== baseStar) text = text.replace(`[star:${baseStar}]`, `[star:${upStar}]`);
+        continue;
+      }
+      if (kl === "repeat" && vars["Repeat"] != null) {
         const base = vars["Repeat"];
         const upgradedVal = getUpgradedValue(base, upVal);
         if (upgradedVal !== null && upgradedVal !== base) {
@@ -74,33 +89,17 @@ function renderDescription(card: Card, upgraded: boolean): React.ReactNode {
             text = text.replace(new RegExp(`\\b${base}\\b(\\s*times)`, "i"), `[green]${upgradedVal}[/green]$1`);
             continue;
           }
-          // Fall through to general replacement for non-"times" repeat vars (e.g. "2 Orb Slots", "1 random Orb")
         } else {
           continue;
         }
       }
-      const varKey = Object.keys(vars).find(k => k.toLowerCase() === key.toLowerCase());
+      const varKey = Object.keys(vars).find(k => k.toLowerCase() === kl);
       if (varKey && vars[varKey] != null) {
         const base = vars[varKey];
         const upgradedVal = getUpgradedValue(base, upVal);
         if (upgradedVal !== null && upgradedVal !== base) {
           replacements.push({ base: String(base), upgraded: String(upgradedVal), varKey });
         }
-      }
-      if (key.toLowerCase() === "energy") {
-        const baseEnergy = vars["Energy"] ?? 1;
-        const upEnergy = getUpgradedValue(baseEnergy, upVal) ?? baseEnergy;
-        text = text.replace(/\[energy:(\d+)\]/, `[energy:${upEnergy}]`);
-      }
-      // Handle star icon upgrades — replace [star:N] tags directly like energy
-      if (key.toLowerCase() === "stars" || key.toLowerCase() === "starnextturnpower") {
-        const starVar = key.toLowerCase() === "stars" ? "Stars" : "StarNextTurnPower";
-        const baseStar = vars[starVar] ?? 1;
-        const upStar = getUpgradedValue(baseStar, upVal) ?? baseStar;
-        if (upStar !== baseStar) {
-          text = text.replace(`[star:${baseStar}]`, `[star:${upStar}]`);
-        }
-        continue;
       }
     }
 

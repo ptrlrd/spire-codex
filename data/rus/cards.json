@@ -105,7 +105,7 @@
     "image_url": "/static/images/cards/adaptive_strike.png",
     "beta_image_url": "/static/images/cards/beta/adaptive_strike.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 23 урона.\nДобавляет в [gold]стопку сброса[/gold] копию, которая стоит 0[energy:1].",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 351
@@ -145,7 +145,7 @@
     "image_url": "/static/images/cards/adrenaline.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает [energy:2].\nВы добираете 2 карты.",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -227,7 +227,7 @@
     "image_url": "/static/images/cards/fiend_fire.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Сжигает[/gold] все карты в [gold]руке[/gold].\nНаносит 10 урона за каждую карту, которую [gold]сжигает[/gold].",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -268,7 +268,7 @@
     "image_url": "/static/images/cards/charge_battery.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 10 [gold]защиты[/gold].\nДаст [energy:1] в следующем ходу.",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 363
@@ -305,7 +305,7 @@
     "image_url": "/static/images/cards/acrobatics.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Вы добираете 4 plural(ru):карту, затем сбрасываете 1 карту.",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 90
@@ -349,7 +349,7 @@
     "image_url": "/static/images/cards/crimson_mantle.png",
     "beta_image_url": "/static/images/cards/beta/crimson_mantle.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Вы теряете 1 ОЗ и получаете 10 [gold]защиты[/gold] в начале хода.",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 21
@@ -503,7 +503,7 @@
     "image_url": "/static/images/cards/hand_of_greed.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 25 урона.\nЕсли враг [gold]погибает[/gold], дает 25 [gold]золота[/gold].",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 461
@@ -542,7 +542,7 @@
     "image_url": "/static/images/cards/parse.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Вы добираете 4 plural(ru):карту.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -583,7 +583,7 @@
     "image_url": "/static/images/cards/heavenly_drill.png",
     "beta_image_url": "/static/images/cards/beta/heavenly_drill.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 10 урона X раз.\nX удваивается, если он не ниже 4.",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 213
@@ -663,7 +663,7 @@
     "image_url": "/static/images/cards/uppercut.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 13 урона.\nНакладывает 2 [gold]слабости[/gold].\nНакладывает 2 [gold]уязвимости[/gold].",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 84
@@ -707,7 +707,7 @@
     "image_url": "/static/images/cards/arsenal.png",
     "beta_image_url": "/static/images/cards/beta/arsenal.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 2 [gold]силы[/gold], когда вы разыгрываете бесцветную карту.",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 176
@@ -745,7 +745,7 @@
     "image_url": "/static/images/cards/astral_pulse.png",
     "beta_image_url": "/static/images/cards/beta/astral_pulse.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 18 урона ВСЕМ врагам.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 177
@@ -791,7 +791,7 @@
     "image_url": "/static/images/cards/strangle.png",
     "beta_image_url": "/static/images/cards/beta/strangle.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 10 урона.\nОтнимает у цели 3 ОЗ, когда вы разыгрываете карту в этом ходу.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 162
@@ -865,7 +865,7 @@
     "image_url": "/static/images/cards/bulwark.png",
     "beta_image_url": "/static/images/cards/beta/bulwark.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 16 [gold]защиты[/gold].\n[gold]Закаляет[/gold] 13.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 183
@@ -944,7 +944,7 @@
     "image_url": "/static/images/cards/vicious.png",
     "beta_image_url": "/static/images/cards/beta/vicious.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Вы добираете 2 plural(ru):карту, когда накладываете [gold]уязвимость[/gold].",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 85
@@ -1097,7 +1097,7 @@
     "image_url": "/static/images/cards/unrelenting.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 18 урона.\nСледующая Атака стоит 0 [energy:1].",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 83
@@ -1295,7 +1295,7 @@
     "image_url": "/static/images/cards/scourge.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Накладывает 13 [gold]злого рока[/gold].\nВы добираете 2 plural(ru):карту.",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 328
@@ -1334,7 +1334,7 @@
     "image_url": "/static/images/cards/glitterstream.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 13 [gold]защиты[/gold].\nДаcт 6 [gold]защиты[/gold] в следующем ходу.",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 208
@@ -1372,7 +1372,7 @@
     "image_url": "/static/images/cards/glimmer.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Вы добираете 4 plural(ru):карту.\nПоложите 1 plural(ru):карту из [gold]руки[/gold] на верх [gold]стопки добора[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 207
@@ -1453,7 +1453,7 @@
     "image_url": "/static/images/cards/wrought_in_war.png",
     "beta_image_url": "/static/images/cards/beta/wrought_in_war.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 9 урона.\n[gold]Закаляет[/gold] 7.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 262
@@ -1490,7 +1490,7 @@
     "image_url": "/static/images/cards/rally.png",
     "beta_image_url": "/static/images/cards/beta/rally.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 17 [gold]защиты[/gold] ВСЕМ игрокам.",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 483
@@ -1527,7 +1527,7 @@
     "image_url": "/static/images/cards/battle_trance.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Вы добираете 4 plural(ru):карту, после чего не сможете добирать карты до конца хода.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 6
@@ -1601,7 +1601,7 @@
     "image_url": "/static/images/cards/bolas.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 4 урона.\nВы берете эту карту в начале следующего хода.",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 445
@@ -1723,7 +1723,7 @@
     "image_url": "/static/images/cards/bombardment.png",
     "beta_image_url": "/static/images/cards/beta/bombardment.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 24 урона.\nРазыгрывается из [gold]стопки пепла[/gold] в начале хода.",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -1763,7 +1763,7 @@
     "image_url": "/static/images/cards/manifest_authority.png",
     "beta_image_url": "/static/images/cards/beta/manifest_authority.png",
     "type_variants": null,
-    "upgrade_description": "Дает 7 [gold]защиты[/gold].\nДобавляет в [gold]руку[/gold] 1 случайную [gold] улучшенную[/gold] бесцветную карту.",
+    "upgrade_description": "Дает 8 [gold]защиты[/gold].\nДобавляет в [gold]руку[/gold] 1 случайную [gold] улучшенную[/gold] бесцветную карту.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 225
@@ -1883,7 +1883,7 @@
     "image_url": "/static/images/cards/giant_rock.png",
     "beta_image_url": "/static/images/cards/beta/giant_rock.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 20 урона.",
     "type_key": "Attack",
     "rarity_key": "Token",
     "compendium_order": 564
@@ -1912,13 +1912,11 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/tempest.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "[gold]Заряжает[/gold] X+1 [gold]сфер молнии[/gold].",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 430
@@ -1962,7 +1960,7 @@
     "image_url": "/static/images/cards/buffer.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Предотвращает потерю ОЗ plural(ru):2 раз.",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 359
@@ -1999,7 +1997,7 @@
     "image_url": "/static/images/cards/genesis.png",
     "beta_image_url": "/static/images/cards/beta/genesis.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает [star:3] в начале хода.",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 206
@@ -2076,7 +2074,7 @@
     "image_url": "/static/images/cards/tear_asunder.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 7 урона.\nНаносит урон повторно за каждый раз, когда вы теряли ОЗ в этом бою.",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 76
@@ -2117,7 +2115,7 @@
     "image_url": "/static/images/cards/flatten.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Костя[/gold] наносит 16 урона.\nСтоит 0 [energy:1], если [gold]Костя[/gold] уже атаковал в этом ходу.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 295
@@ -2159,7 +2157,7 @@
     "image_url": "/static/images/cards/leading_strike.png",
     "beta_image_url": "/static/images/cards/beta/leading_strike.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 10 урона.\nДобавляет в [gold]руку[/gold] 1 [gold]plural(ru):«Заточку»[/gold].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 132
@@ -2198,7 +2196,7 @@
     "image_url": "/static/images/cards/fan_of_knives.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]«Заточки»[/gold] наносят урон ВСЕМ врагам.\nДобавляет в [gold]руку[/gold] 5 [gold]plural(ru):заточку[/gold].",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 119
@@ -2237,7 +2235,7 @@
     "image_url": "/static/images/cards/the_hunt.png",
     "beta_image_url": "/static/images/cards/beta/the_hunt.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 15 урона.\nЕсли враг [gold]погибает[/gold], вы получите дополнительную наградную карту.",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -2269,13 +2267,11 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/largesse.png",
     "beta_image_url": "/static/images/cards/beta/largesse.png",
     "type_variants": null,
-    "upgrade_description": "Добавляет в [gold]руку[/gold] другому игроку случайную [gold]улучшенную[/gold] бесцветную карту.",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 222
@@ -2314,7 +2310,7 @@
     "image_url": "/static/images/cards/master_of_strategy.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Вы добираете 4 plural(ru):карту.",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -2354,7 +2350,7 @@
     "image_url": "/static/images/cards/believe_in_you.png",
     "beta_image_url": "/static/images/cards/beta/believe_in_you.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает [energy:4] другому игроку.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 444
@@ -2487,7 +2483,7 @@
     "image_url": "/static/images/cards/uproar.png",
     "beta_image_url": "/static/images/cards/beta/uproar.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 7 урона 2 раза.\nВы разыгрываете случайную Атаку из [gold]стопки добора[/gold].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 435
@@ -2537,7 +2533,7 @@
     "image_url": "/static/images/cards/sic_em.png",
     "beta_image_url": "/static/images/cards/beta/sic_em.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Костя[/gold] наносит 6 урона.\n[gold]Призывает[/gold] 3, когда [gold]Костя[/gold] атакует врага в этом ходу.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 335
@@ -2574,7 +2570,7 @@
     "image_url": "/static/images/cards/whirlwind.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 8 урона ВСЕМ врагам X раз.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 86
@@ -2620,7 +2616,7 @@
     "image_url": "/static/images/cards/bash.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 10 урона.\nНакладывает 2 [gold]уязвимости[/gold].",
     "type_key": "Attack",
     "rarity_key": "Basic",
     "compendium_order": 5
@@ -2657,7 +2653,7 @@
     "image_url": "/static/images/cards/thrumming_hatchet.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 14 урона.\nВозвращается в руку в начале следующего хода.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 499
@@ -2695,7 +2691,7 @@
     "image_url": "/static/images/cards/banshees_cry.png",
     "beta_image_url": "/static/images/cards/beta/banshees_cry.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 39 урона ВСЕМ врагам.\nСтоит на [energy:2] меньше за каждую разыгранную в этом бою [gold]эфирную[/gold] карту.",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 264
@@ -2739,7 +2735,7 @@
     "image_url": "/static/images/cards/inflame.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 3 [gold]силы[/gold].",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 47
@@ -2820,7 +2816,7 @@
     "image_url": "/static/images/cards/all_for_one.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 14 урона.\nВы берете ВСЕ карты стоимостью 0[energy:1] из [gold]стопки сброса[/gold].",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 352
@@ -2894,7 +2890,7 @@
     "image_url": "/static/images/cards/prepared.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Вы добираете 2 plural(ru):карту.\nВы сбрасываете 2 plural(ru):карту.",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 150
@@ -2938,7 +2934,7 @@
     "image_url": "/static/images/cards/sweeping_gaze.png",
     "beta_image_url": "/static/images/cards/beta/sweeping_gaze.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Костя[/gold] наносит 15 урона случайному врагу.",
     "type_key": "Attack",
     "rarity_key": "Token",
     "keywords_key": [
@@ -2979,7 +2975,7 @@
     "image_url": "/static/images/cards/omnislice.png",
     "beta_image_url": "/static/images/cards/beta/omnislice.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 11 урона.\nНаносит ВСЕМ врагам урон, равный нанесенному по цели.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 475
@@ -3018,7 +3014,7 @@
     "image_url": "/static/images/cards/energy_surge.png",
     "beta_image_url": "/static/images/cards/beta/energy_surge.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает [energy:3] ВСЕМ игрокам.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -3058,7 +3054,7 @@
     "image_url": "/static/images/cards/shatter.png",
     "beta_image_url": "/static/images/cards/beta/shatter.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 15 урона ВСЕМ врагам.\n[gold]Разряжает[/gold] все сферы.",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 417
@@ -3130,7 +3126,7 @@
     "image_url": "/static/images/cards/second_wind.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Сжигает[/gold] все карты в [gold]руке[/gold], кроме Атак. Дает 7 [gold]защиты[/gold] за каждую, которую [gold]сжигает[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 64
@@ -3167,7 +3163,7 @@
     "image_url": "/static/images/cards/survivor.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 11 [gold]защиты[/gold].\nВы сбрасываете 1 карту.",
     "type_key": "Skill",
     "rarity_key": "Basic",
     "compendium_order": 166
@@ -3215,7 +3211,7 @@
     "image_url": "/static/images/cards/fight_me.png",
     "beta_image_url": "/static/images/cards/beta/fight_me.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 6 урона 2 раза.\nДает 2 [gold]силы[/gold].\nВраг получает 1 [gold]силы[/gold].",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 35
@@ -3254,7 +3250,7 @@
     "image_url": "/static/images/cards/sculpting_strike.png",
     "beta_image_url": "/static/images/cards/beta/sculpting_strike.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 11 урона.\nДелает карту в [gold]руке[/gold] [gold]эфирной[/gold].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 329
@@ -3291,7 +3287,7 @@
     "image_url": "/static/images/cards/necro_mastery.png",
     "beta_image_url": "/static/images/cards/beta/necro_mastery.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Призывает[/gold] 8.\nКогда [gold]Костя[/gold] теряет ОЗ,\nвсе враги теряют столько же.",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 309
@@ -3344,7 +3340,7 @@
     "image_url": "/static/images/cards/gamma_blast.png",
     "beta_image_url": "/static/images/cards/beta/gamma_blast.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 18 урона.\nНакладывает 2 [gold]слабости[/gold].\nНакладывает 2 [gold]уязвимости[/gold].",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 204
@@ -3383,7 +3379,7 @@
     "image_url": "/static/images/cards/hegemony.png",
     "beta_image_url": "/static/images/cards/beta/hegemony.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 18 урона.\nДаст [energy:3] в следующем ходу.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 214
@@ -3421,7 +3417,7 @@
     "image_url": "/static/images/cards/hemokinesis.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Вы теряете 2 ОЗ.\nНаносит 19 урона.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 42
@@ -3461,7 +3457,7 @@
     "image_url": "/static/images/cards/genetic_algorithm.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 1 [gold]защиты[/gold].\nДаваемая [gold]защита[/gold] повышается на 4 до конца вылазки.",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -3509,7 +3505,7 @@
     "image_url": "/static/images/cards/hyperbeam.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 34 урона ВСЕМ врагам.\nВы теряете 3 [gold]фокуса[/gold].",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 395
@@ -3629,7 +3625,7 @@
     "image_url": "/static/images/cards/hologram.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 5 [gold]защиты[/gold].\nВы берете карту из [gold]стопки сброса[/gold].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "keywords_key": [
@@ -3676,7 +3672,7 @@
     "image_url": "/static/images/cards/speedster.png",
     "beta_image_url": "/static/images/cards/beta/speedster.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 3 урона ВСЕМ врагам, когда вы добираете карту в свой ход.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 160
@@ -3720,7 +3716,7 @@
     "image_url": "/static/images/cards/hailstorm.png",
     "beta_image_url": "/static/images/cards/beta/hailstorm.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 8 урона ВСЕМ врагам, если у вас есть заряженная [gold]сфера льда[/gold] в конце хода.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 391
@@ -3808,7 +3804,7 @@
     "image_url": "/static/images/cards/thunder.png",
     "beta_image_url": "/static/images/cards/beta/thunder.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 8 урона каждой цели, по которой попадает [gold]разряженная молния[/gold].",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 432
@@ -3896,7 +3892,7 @@
     "image_url": "/static/images/cards/rattle.png",
     "beta_image_url": "/static/images/cards/beta/rattle.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Костя[/gold] наносит 9 урона.\nПосле этого он наносит урон за каждый раз, когда атаковал в этом ходу.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 321
@@ -3934,7 +3930,7 @@
     "image_url": "/static/images/cards/make_it_so.png",
     "beta_image_url": "/static/images/cards/beta/make_it_so.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 9 урона.\nВозвращается в [gold]руку[/gold], когда вы разыгрываете 3 plural(ru):Навык.",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 224
@@ -3971,7 +3967,7 @@
     "image_url": "/static/images/cards/stomp.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 15 урона ВСЕМ врагам.\nСтоит на 1 [energy:1] меньше за каждую разыгранную в этом ходу Атаку.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 70
@@ -4017,7 +4013,7 @@
     "image_url": "/static/images/cards/squash.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 12 урона.\nНакладывает 2 [gold]уязвимости[/gold].",
     "type_key": "Attack",
     "rarity_key": "Event",
     "compendium_order": 543
@@ -4067,7 +4063,7 @@
     "image_url": "/static/images/cards/high_five.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Костя[/gold] наносит 13 урона\nи накладывает 2 [gold]уязвимости[/gold]\nна ВСЕХ врагов.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 303
@@ -4104,7 +4100,7 @@
     "image_url": "/static/images/cards/royalties.png",
     "beta_image_url": "/static/images/cards/beta/royalties.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 35 [gold]золота[/gold] в конце боя.",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 243
@@ -4183,7 +4179,7 @@
     "image_url": "/static/images/cards/twin_strike.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 7 урона 2 раза.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 81
@@ -4341,7 +4337,7 @@
     "image_url": "/static/images/cards/right_hand_hand.png",
     "beta_image_url": "/static/images/cards/beta/right_hand_hand.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Костя[/gold] наносит 6 урона.\nВы берете эту карту из [gold]стопки сброса[/gold], когда разыгрывается карта с ценой [energy:2] или более.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 326
@@ -4385,7 +4381,7 @@
     "image_url": "/static/images/cards/defragment.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 2 [gold]фокуса[/gold].",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 375
@@ -4423,7 +4419,7 @@
     "image_url": "/static/images/cards/jackpot.png",
     "beta_image_url": "/static/images/cards/beta/jackpot.png",
     "type_variants": null,
-    "upgrade_description": "Наносит 25 урона.\nДобавляет 3 plural(ru):случайную [gold]улучшенную[/gold] карту стоимостью 0[energy:1] в [gold]руку[/gold].",
+    "upgrade_description": "Наносит 30 урона.\nДобавляет 3 plural(ru):случайную [gold]улучшенную[/gold] карту стоимостью 0[energy:1] в [gold]руку[/gold].",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 466
@@ -4476,7 +4472,7 @@
     "image_url": "/static/images/cards/abrasive.png",
     "beta_image_url": "/static/images/cards/beta/abrasive.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 1 [gold]ловкости[/gold].\nДает 6 [gold]шипов[/gold].",
     "type_key": "Power",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -4560,7 +4556,7 @@
     "image_url": "/static/images/cards/child_of_the_stars.png",
     "beta_image_url": "/static/images/cards/beta/child_of_the_stars.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает по 3 [gold]защиты[/gold] за потраченную [star:1], когда вы тратите [star:1].",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 187
@@ -4606,7 +4602,7 @@
     "image_url": "/static/images/cards/follow_through.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 8 урона ВСЕМ врагам.\nНакладывает 1 [gold]слабости[/gold] на ВСЕХ врагов, если последняя разыгранная карта — Навык.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 124
@@ -4645,7 +4641,7 @@
     "image_url": "/static/images/cards/finisher.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит по 8 урона за каждую разыгранную в этом ходу Атаку.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 120
@@ -4771,7 +4767,7 @@
     "image_url": "/static/images/cards/dramatic_entrance.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 15 урона ВСЕМ врагам.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -4814,7 +4810,7 @@
     "image_url": "/static/images/cards/flechettes.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 7 урона за каждый Навык в [gold]руке[/gold].",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 122
@@ -4851,7 +4847,7 @@
     "image_url": "/static/images/cards/spirit_of_ash.png",
     "beta_image_url": "/static/images/cards/beta/spirit_of_ash.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 5 [gold]защиты[/gold], когда вы разыгрываете [gold]эфирную[/gold] карту.",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 340
@@ -4890,7 +4886,7 @@
     "image_url": "/static/images/cards/soul.png",
     "beta_image_url": "/static/images/cards/beta/soul.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Вы добираете 3 plural(ru):карту.",
     "type_key": "Skill",
     "rarity_key": "Token",
     "keywords_key": [
@@ -4986,7 +4982,7 @@
     "image_url": "/static/images/cards/smokestack.png",
     "beta_image_url": "/static/images/cards/beta/smokestack.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 7 урона ВСЕМ врагам, когда вы создаете Статус.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 420
@@ -5024,7 +5020,7 @@
     "image_url": "/static/images/cards/convergence.png",
     "beta_image_url": "/static/images/cards/beta/convergence.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Даст [energy:1] и [star:2]\nв следующем ходу.\nВ этом ходу вы [gold]оставляете[/gold] карты в [gold]руке[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 192
@@ -5061,7 +5057,7 @@
     "image_url": "/static/images/cards/noxious_fumes.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Накладывает 3 [gold]яда[/gold] на ВСЕХ врагов в начале хода.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 141
@@ -5105,7 +5101,7 @@
     "image_url": "/static/images/cards/caltrops.png",
     "beta_image_url": "/static/images/cards/beta/caltrops.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 5 урона в ответ на каждую атаку.",
     "type_key": "Power",
     "rarity_key": "Event",
     "compendium_order": 525
@@ -5143,7 +5139,7 @@
     "image_url": "/static/images/cards/shrug_it_off.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 11 [gold]защиты[/gold].\nВы добираете 1 plural(ru):карту.",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 66
@@ -5180,7 +5176,7 @@
     "image_url": "/static/images/cards/seeking_edge.png",
     "beta_image_url": "/static/images/cards/beta/seeking_edge.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Закаляет[/gold] 11.\n[gold]Клинок монарха[/gold] наносит урон ВСЕМ игрокам.",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 245
@@ -5219,7 +5215,7 @@
     "image_url": "/static/images/cards/reap.png",
     "beta_image_url": "/static/images/cards/beta/reap.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 33 урона.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "keywords_key": [
@@ -5299,7 +5295,7 @@
     "image_url": "/static/images/cards/true_grit.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Дает 7 [gold]защиты[/gold].\n[gold]Сжигает[/gold] 1 карту.",
+    "upgrade_description": "Дает 9 [gold]защиты[/gold].\n[gold]Сжигает[/gold] 1 карту.",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 80
@@ -5378,7 +5374,7 @@
     "image_url": "/static/images/cards/crash_landing.png",
     "beta_image_url": "/static/images/cards/beta/crash_landing.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 26 урона ВСЕМ врагам.\nЗаполняет [gold]руку[/gold] [gold]«Обломками»[/gold].",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 194
@@ -5422,7 +5418,7 @@
     "image_url": "/static/images/cards/cruelty.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Уязвимые[/gold] враги получают на 50% больше урона.",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 22
@@ -5462,7 +5458,7 @@
     "image_url": "/static/images/cards/bully.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 4 урона.\nНаносит 3 дополнительного урона за каждую [gold]уязвимость[/gold] на цели.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 14
@@ -5499,7 +5495,7 @@
     "image_url": "/static/images/cards/undeath.png",
     "beta_image_url": "/static/images/cards/beta/undeath.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 9 [gold]защиты[/gold].\nДобавляет свою копию в [gold]стопку сброса[/gold].",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 347
@@ -5615,7 +5611,7 @@
     "image_url": "/static/images/cards/forgotten_ritual.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает [energy:4], если вы [gold]сжигали[/gold] карты в этом ходу.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 37
@@ -5652,7 +5648,7 @@
     "image_url": "/static/images/cards/conqueror.png",
     "beta_image_url": "/static/images/cards/beta/conqueror.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Закаляет[/gold] 5.\nВ этом ходу [gold]Клинок монарха[/gold] наносит врагам двойной урон.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 191
@@ -5733,7 +5729,7 @@
     "image_url": "/static/images/cards/afterlife.png",
     "beta_image_url": "/static/images/cards/beta/afterlife.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Призывает[/gold] 9.",
     "type_key": "Skill",
     "rarity_key": "Common",
     "keywords_key": [
@@ -5775,7 +5771,7 @@
     "image_url": "/static/images/cards/pull_from_below.png",
     "beta_image_url": "/static/images/cards/beta/pull_from_below.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит по 7 урона за каждую разыгранную за бой [gold]эфирную[/gold] карту.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 319
@@ -5815,7 +5811,7 @@
     "image_url": "/static/images/cards/gunk_up.png",
     "beta_image_url": "/static/images/cards/beta/gunk_up.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 5 урона 3 plural(ru):раз.\nДобавляет [gold]«Слизь»[/gold] в [gold]стопку сброса[/gold].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 390
@@ -5854,7 +5850,7 @@
     "image_url": "/static/images/cards/delay.png",
     "beta_image_url": "/static/images/cards/beta/delay.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 13 [gold]защиты[/gold].\nДаст [energy:2]\nв следующем ходу.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 283
@@ -5933,7 +5929,7 @@
     "image_url": "/static/images/cards/invoke.png",
     "beta_image_url": "/static/images/cards/beta/invoke.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Даст [energy:3] и [gold]призовет[/gold] 3 в следующем ходу.",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 304
@@ -5970,7 +5966,7 @@
     "image_url": "/static/images/cards/salvo.png",
     "beta_image_url": "/static/images/cards/beta/salvo.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 16 урона.\nВ этом ходу вы [gold]оставляете[/gold] карты в [gold]руке[/gold].",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 487
@@ -6044,7 +6040,7 @@
     "image_url": "/static/images/cards/no_escape.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Накладывает 15 [gold]злого рока[/gold] и еще 5 [gold]злого рока[/gold] за каждые 10 [gold]злого рока[/gold] на цели.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 312
@@ -6127,7 +6123,7 @@
     "image_url": "/static/images/cards/sucker_punch.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 10 урона.\nНакладывает 1 [gold]слабости[/gold].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 164
@@ -6170,7 +6166,7 @@
     "image_url": "/static/images/cards/shiv.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 6 урона.",
     "type_key": "Attack",
     "rarity_key": "Token",
     "keywords_key": [
@@ -6212,7 +6208,7 @@
     "image_url": "/static/images/cards/up_my_sleeve.png",
     "beta_image_url": "/static/images/cards/beta/up_my_sleeve.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Добавляет 4 [gold]plural(ru):«Заточку»[/gold] в [gold]руку[/gold].\nСтоимость понижается на 1.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 172
@@ -6258,7 +6254,7 @@
     "image_url": "/static/images/cards/grapple.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 9 урона.\nНаносит цели 7 урона, когда вы получаете [gold]защиту[/gold] в этом ходу.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 38
@@ -6372,7 +6368,7 @@
     "image_url": "/static/images/cards/stardust.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 7 урона случайному врагу X раз.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 251
@@ -6410,7 +6406,7 @@
     "image_url": "/static/images/cards/cloak_of_stars.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 10 [gold]защиты[/gold].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 188
@@ -6448,7 +6444,7 @@
     "image_url": "/static/images/cards/pale_blue_dot.png",
     "beta_image_url": "/static/images/cards/beta/pale_blue_dot.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Вы добираете 2 plural(ru):карту в начале следующего хода, если разыгрываете не менее 5 plural(ru):карты в текущем.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 231
@@ -6487,7 +6483,7 @@
     "image_url": "/static/images/cards/flak_cannon.png",
     "beta_image_url": "/static/images/cards/beta/flak_cannon.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Сжигает[/gold] ВСЕ [gold]Статусы[/gold].\nНаносит 11 урона случайному врагу за каждую карту, которую [gold]сжигает[/gold].",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 382
@@ -6524,7 +6520,7 @@
     "image_url": "/static/images/cards/anger.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 8 урона.\nДобавляет копию в [gold]стопку сброса[/gold].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 1
@@ -6732,13 +6728,11 @@
       "GIANT_ROCK"
     ],
     "vars": null,
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/primal_force.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "[gold]Преобразует[/gold] все Атаки в [gold]руке[/gold] в [gold]«Булыжники+»[/gold].",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 59
@@ -6814,7 +6808,7 @@
     "image_url": "/static/images/cards/the_gambit.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 75 [gold]защиты[/gold].\nВы умрете, если получите урон по ОЗ от атак в этом бою.",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 497
@@ -6851,7 +6845,7 @@
     "image_url": "/static/images/cards/beat_down.png",
     "beta_image_url": "/static/images/cards/beta/beat_down.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Вы разыгрываете 4 plural(ru):случайную Атаку из [gold]стопки сброса[/gold].",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 443
@@ -6930,7 +6924,7 @@
     "image_url": "/static/images/cards/drain_power.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 12 урона.\n[gold]Улучшает[/gold] 3 plural(ru):случайную карту в [gold]стопке сброса[/gold].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 287
@@ -6976,7 +6970,7 @@
     "image_url": "/static/images/cards/debilitate.png",
     "beta_image_url": "/static/images/cards/beta/debilitate.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 9 урона.\n[gold]Уязвимость[/gold] и [gold]слабость[/gold] в 2 раза эффективнее против цели на 4 plural(ru):ход.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 279
@@ -7014,7 +7008,7 @@
     "image_url": "/static/images/cards/finesse.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 7 [gold]защиты[/gold].\nВы добираете 1 карту.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 456
@@ -7054,7 +7048,7 @@
     "image_url": "/static/images/cards/boot_sequence.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 13 [gold]защиты[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -7135,7 +7129,7 @@
     "image_url": "/static/images/cards/panache.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 14 урона ВСЕМ врагам за каждые 5 разыгранных в ходу карт.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 476
@@ -7174,7 +7168,7 @@
     "image_url": "/static/images/cards/enfeebling_touch.png",
     "beta_image_url": "/static/images/cards/beta/enfeebling_touch.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Враг теряет 11 [gold]силы[/gold] в этом ходу.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -7256,7 +7250,7 @@
     "image_url": "/static/images/cards/spur.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Призывает[/gold] 5.\n[gold]Костя[/gold] восполняет 7 ОЗ.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -7303,7 +7297,7 @@
     "image_url": "/static/images/cards/stone_armor.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 6 [gold]панциря[/gold].",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 71
@@ -7348,7 +7342,7 @@
     "image_url": "/static/images/cards/rolling_boulder.png",
     "beta_image_url": "/static/images/cards/beta/rolling_boulder.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 10 урона ВСЕМ врагам в начале хода, затем урон повышается на 5.",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 486
@@ -7384,13 +7378,11 @@
       "CalculationBase": 0,
       "CalculationExtra": 1
     },
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/knife_trap.png",
     "beta_image_url": "/static/images/cards/beta/knife_trap.png",
     "type_variants": null,
-    "upgrade_description": "[gold]Улучшает[/gold] и разыгрывает все [gold]сожженные[/gold] [gold]«Заточки»[/gold] по цели.",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 131
@@ -7419,13 +7411,11 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/splash.png",
     "beta_image_url": "/static/images/cards/beta/splash.png",
     "type_variants": null,
-    "upgrade_description": "Добавляет в [gold]руку[/gold] выбранную из 3 случайных  [gold]улучшенных[/gold] Атак другого персонажа. В этом ходу она бесплатная.",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 493
@@ -7494,13 +7484,11 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/cascade.png",
     "beta_image_url": "/static/images/cards/beta/cascade.png",
     "type_variants": null,
-    "upgrade_description": "Вы разыгрываете X+1 карт с верха [gold]стопки добора[/gold].",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 16
@@ -7537,7 +7525,7 @@
     "image_url": "/static/images/cards/accelerant.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Яд[/gold] срабатывает 2 plural(ru):дополнительный раз.",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 88
@@ -7574,7 +7562,7 @@
     "image_url": "/static/images/cards/catastrophe.png",
     "beta_image_url": "/static/images/cards/beta/catastrophe.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Вы разыгрываете 3 plural(ru):случайную карту из [gold]стопки добора[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 447
@@ -7605,13 +7593,11 @@
     "vars": {
       "StarCost": 2
     },
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/quasar.png",
     "beta_image_url": "/static/images/cards/beta/quasar.png",
     "type_variants": null,
-    "upgrade_description": "Добавляет выбранную из 3 случайных [gold]улучшенных[/gold] бесцветных карт в [gold]руку[/gold].",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 238
@@ -7651,7 +7637,7 @@
     "image_url": "/static/images/cards/photon_cut.png",
     "beta_image_url": "/static/images/cards/beta/photon_cut.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 13 урона.\nВы добираете 2 plural(ru):карту.\nКладет 1 карту из [gold]руки[/gold] на верх [gold]стопки добора[/gold].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 235
@@ -7780,7 +7766,7 @@
     "image_url": "/static/images/cards/peck.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 2 урона 4 plural(ru):раз.",
     "type_key": "Attack",
     "rarity_key": "Event",
     "compendium_order": 539
@@ -7859,7 +7845,7 @@
     "image_url": "/static/images/cards/claw.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 4 урона.\nПовышает урон ВСЕХ «Когтей» на 3 на этот бой.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 365
@@ -7897,7 +7883,7 @@
     "image_url": "/static/images/cards/colossus.png",
     "beta_image_url": "/static/images/cards/beta/colossus.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 8 [gold]защиты[/gold].\nВы получаете на 50% меньше урона от [gold]уязвимых[/gold] врагов в этом ходу.",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 18
@@ -7934,7 +7920,7 @@
     "image_url": "/static/images/cards/tag_team.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 15 урона.\nСледующая Атака другого игрока по цели разыгрывается 1 дополнительный раз.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 495
@@ -7971,7 +7957,7 @@
     "image_url": "/static/images/cards/one_two_punch.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "В этом ходу 2 следующие Атаки разыгрываются еще 1 раз.",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 54
@@ -8024,7 +8010,7 @@
     "image_url": "/static/images/cards/comet.png",
     "beta_image_url": "/static/images/cards/beta/comet.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 44 урона.\nНакладывает 3 [gold]слабости[/gold].\nНакладывает 3 [gold]уязвимости[/gold].",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 190
@@ -8063,7 +8049,7 @@
     "image_url": "/static/images/cards/compile_driver.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 10 урона.\nВы добираете по 1 карте за каждую уникальную заряженную сферу.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 368
@@ -8100,7 +8086,7 @@
     "image_url": "/static/images/cards/capacitor.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 3 слота.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 361
@@ -8182,7 +8168,7 @@
     "image_url": "/static/images/cards/gather_light.png",
     "beta_image_url": "/static/images/cards/beta/gather_light.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 10 [gold]защиты[/gold].\nДает [star:1].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 205
@@ -8263,7 +8249,7 @@
     "image_url": "/static/images/cards/kingly_punch.png",
     "beta_image_url": "/static/images/cards/beta/kingly_punch.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 8 урона.\nКогда вы добираете эту карту, ее урон повышается на 5 до конца боя.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 219
@@ -8337,7 +8323,7 @@
     "image_url": "/static/images/cards/kingly_kick.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 30 урона.\nКогда вы добираете эту карту, ее цена понижается на 1 до конца боя.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 218
@@ -8374,7 +8360,7 @@
     "image_url": "/static/images/cards/corrosive_wave.png",
     "beta_image_url": "/static/images/cards/beta/corrosive_wave.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Накладывает 4 [gold]яда[/gold] на ВСЕХ врагов, когда вы добираете карты в этом ходу.",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 106
@@ -8415,7 +8401,7 @@
     "image_url": "/static/images/cards/the_scythe.png",
     "beta_image_url": "/static/images/cards/beta/the_scythe.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 13 урона.\nУрон повышается на 4 до конца вылазки.",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -8455,7 +8441,7 @@
     "image_url": "/static/images/cards/pyre.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает [energy:2] в начале хода.",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 60
@@ -8492,7 +8478,7 @@
     "image_url": "/static/images/cards/bludgeon.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 42 урона.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 9
@@ -8531,7 +8517,7 @@
     "image_url": "/static/images/cards/legion_of_bone.png",
     "beta_image_url": "/static/images/cards/beta/legion_of_bone.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ВСЕ игроки [gold]призывают[/gold] 8.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -8577,7 +8563,7 @@
     "image_url": "/static/images/cards/bone_shards.png",
     "beta_image_url": "/static/images/cards/beta/bone_shards.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Если [gold]Костя[/gold] призван, он наносит 12 урона ВСЕМ врагам, а вы получаете 12 [gold]защиты[/gold],\nпосле чего [gold]Костя[/gold] погибает.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 267
@@ -8657,7 +8643,7 @@
     "image_url": "/static/images/cards/panic_button.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 40 [gold]защиты[/gold].\nВы не сможете получать [gold]защиту[/gold] от карт в течение 2 plural(ru):хода.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -8698,7 +8684,7 @@
     "image_url": "/static/images/cards/bloodletting.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Вы теряете 3 ОЗ.\nДает [energy:3].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 7
@@ -8742,7 +8728,7 @@
     "image_url": "/static/images/cards/inferno.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Вы теряете 1 ОЗ в начале хода.\nНаносит 9 урона ВСЕМ врагам, когда вы теряете ОЗ в свой ход.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 46
@@ -8780,7 +8766,7 @@
     "image_url": "/static/images/cards/the_smith.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Закаляет[/gold] 40.",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 258
@@ -8854,7 +8840,7 @@
     "image_url": "/static/images/cards/flick_flack.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 9 урона ВСЕМ врагам.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "keywords_key": [
@@ -8894,7 +8880,7 @@
     "image_url": "/static/images/cards/grand_finale.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Можно разыграть, только если в [gold]стопке добора[/gold] нет карт. Наносит 60 урона ВСЕМ врагам.",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 126
@@ -8934,7 +8920,7 @@
     "image_url": "/static/images/cards/gang_up.png",
     "beta_image_url": "/static/images/cards/beta/gang_up.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 5 урона.\nНаносит 7 дополнительного урона за каждую атаку другого игрока по цели.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 459
@@ -8971,7 +8957,7 @@
     "image_url": "/static/images/cards/glacier.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 9 [gold]защиты[/gold].\n[gold]Заряжает[/gold] 2 [gold]сферы льда[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 387
@@ -9009,7 +8995,7 @@
     "image_url": "/static/images/cards/ice_lance.png",
     "beta_image_url": "/static/images/cards/beta/ice_lance.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 24 урона.\n[gold]Заряжает[/gold] 3 [gold]plural(ru):сферу льда[/gold].",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 396
@@ -9088,7 +9074,7 @@
     "image_url": "/static/images/cards/dagger_throw.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 12 урона.\nВы добираете 1 карту\nи сбрасываете 1 карту.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 108
@@ -9127,7 +9113,7 @@
     "image_url": "/static/images/cards/dirge.png",
     "beta_image_url": "/static/images/cards/beta/dirge.png",
     "type_variants": null,
-    "upgrade_description": "[gold]Призывает[/gold] 3 X раз.\nДобавляет X [gold]«Душ+»[/gold] в [gold]стопку добора[/gold].",
+    "upgrade_description": "[gold]Призывает[/gold] 4 X раз.\nДобавляет X [gold]«Душ+»[/gold] в [gold]стопку добора[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 286
@@ -9168,7 +9154,7 @@
     "image_url": "/static/images/cards/capture_spirit.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Отнимает 4 ОЗ.\nДобавляет 4 [gold]plural(ru):«Душу»[/gold] в [gold]стопку добора[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 272
@@ -9205,7 +9191,7 @@
     "image_url": "/static/images/cards/hand_trick.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 10 [gold]защиты[/gold].\nВыбранный в [gold]руке[/gold] Навык становится [gold]коварным[/gold] на этот ход.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 127
@@ -9244,7 +9230,7 @@
     "image_url": "/static/images/cards/lunar_blast.png",
     "beta_image_url": "/static/images/cards/beta/lunar_blast.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит по 5 урона за каждый разыгранный в этом бою Навык.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 223
@@ -9285,7 +9271,7 @@
     "image_url": "/static/images/cards/crescent_spear.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 6 урона.\nНаносит 3 дополнительного урона за КАЖДУЮ вашу карту, которая тратит [star:1].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 195
@@ -9366,7 +9352,7 @@
     "image_url": "/static/images/cards/beam_cell.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 4 урона.\nНакладывает 1 [gold]уязвимости[/gold].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 355
@@ -9406,7 +9392,7 @@
     "image_url": "/static/images/cards/radiate.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит по 4 урона ВСЕМ врагам за каждую полученную за ход [star:1].",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 239
@@ -9445,7 +9431,7 @@
     "image_url": "/static/images/cards/bundle_of_joy.png",
     "beta_image_url": "/static/images/cards/beta/bundle_of_joy.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Добавляет 4 plural(ru):случайную бесцветную карту в [gold]руку[/gold].",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -9533,7 +9519,7 @@
     "image_url": "/static/images/cards/jack_of_all_trades.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Добавляет 2 plural(ru):случайную бесцветную карту в [gold]руку[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -9573,7 +9559,7 @@
     "image_url": "/static/images/cards/expertise.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Вы добираете карты, пока в [gold]руке[/gold] не будет 7 карт.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 117
@@ -9617,7 +9603,7 @@
     "image_url": "/static/images/cards/juggernaut.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 7 урона случайному врагу, когда вы получаете [gold]защиту[/gold].",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 49
@@ -9692,7 +9678,7 @@
     "image_url": "/static/images/cards/melancholy.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 17 [gold]защиты[/gold].\nСтоимость карты снижается на [energy:1], когда кто-то на поле боя погибает.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 307
@@ -9733,7 +9719,7 @@
     "image_url": "/static/images/cards/memento_mori.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 8 урона.\nНаносит 5 дополнительного урона за каждую сброшенную в этом ходу карту.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 136
@@ -9816,7 +9802,7 @@
     "image_url": "/static/images/cards/metamorphosis.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Добавляет 5 plural(ru):случайную Атаку в [gold]стопку добора[/gold]. В этом бою они бесплатные.",
     "type_key": "Skill",
     "rarity_key": "Event",
     "keywords_key": [
@@ -9872,7 +9858,7 @@
     "image_url": "/static/images/cards/meteor_shower.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 21 урона ВСЕМ врагам.\nНакладывает 2 [gold]слабости[/gold] и [gold]уязвимости[/gold] на ВСЕХ врагов.",
     "type_key": "Attack",
     "rarity_key": "Ancient",
     "compendium_order": 226
@@ -9911,7 +9897,7 @@
     "image_url": "/static/images/cards/meteor_strike.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 30 урона.\n[gold]Заряжает[/gold] 3 [gold]сферы плазмы[/gold].",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 403
@@ -9957,7 +9943,7 @@
     "image_url": "/static/images/cards/accuracy.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]«Заточки»[/gold] наносят 6 дополнительного урона.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 89
@@ -9995,7 +9981,7 @@
     "image_url": "/static/images/cards/sword_boomerang.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 3 урона случайному врагу 4 раза.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 73
@@ -10078,7 +10064,7 @@
     "image_url": "/static/images/cards/graveblast.png",
     "beta_image_url": "/static/images/cards/beta/graveblast.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 6 урона.\nВы берете карту из [gold]стопки сброса[/gold].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "keywords_key": [
@@ -10119,7 +10105,7 @@
     "image_url": "/static/images/cards/modded.png",
     "beta_image_url": "/static/images/cards/beta/modded.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 1 plural(ru):слот.\nВы добираете 2 plural(ru):карту. Цена повышается на 1.",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 404
@@ -10165,7 +10151,7 @@
     "image_url": "/static/images/cards/neurosurge.png",
     "beta_image_url": "/static/images/cards/beta/neurosurge.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает [energy:4].\nВы добираете 2 plural(ru):карту.\nВы получаете 3 [gold]злого рока[/gold] в начале хода.",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 311
@@ -10206,7 +10192,7 @@
     "image_url": "/static/images/cards/beat_into_shape.png",
     "beta_image_url": "/static/images/cards/beta/beat_into_shape.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 7 урона.\n[gold]Закаляет[/gold] X.\n[gold]Закаляет[/gold] еще 7 за каждый ваш второй удар по цели в этом ходу.",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 178
@@ -10328,7 +10314,7 @@
     "image_url": "/static/images/cards/borrowed_time.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Вы получаете 3 [gold]злого рока[/gold].\nДает [energy:2].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 268
@@ -10442,7 +10428,7 @@
     "image_url": "/static/images/cards/lift.png",
     "beta_image_url": "/static/images/cards/beta/lift.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает другому игроку 16 [gold]защиты[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 469
@@ -10481,7 +10467,7 @@
     "image_url": "/static/images/cards/crush_under.png",
     "beta_image_url": "/static/images/cards/beta/crush_under.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 8 урона ВСЕМ врагам. В этом ходу враги теряют 2 [gold]силы[/gold].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 196
@@ -10601,7 +10587,7 @@
     "image_url": "/static/images/cards/byrd_swoop.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 18 урона.",
     "type_key": "Attack",
     "rarity_key": "Event",
     "compendium_order": 524
@@ -10647,7 +10633,7 @@
     "image_url": "/static/images/cards/knockdown.png",
     "beta_image_url": "/static/images/cards/beta/knockdown.png",
     "type_variants": null,
-    "upgrade_description": "Наносит 10 урона.\nВ этом ходу цель получает тройной урон от других игроков.",
+    "upgrade_description": "Наносит 14 урона.\nВ этом ходу цель получает тройной урон от других игроков.",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 468
@@ -10684,7 +10670,7 @@
     "image_url": "/static/images/cards/pounce.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 18 урона.\nСледующий Навык стоит 0 [energy:1].",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 147
@@ -10730,7 +10716,7 @@
     "image_url": "/static/images/cards/taunt.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 8 [gold]защиты[/gold].\nНакладывает 1 [gold]уязвимости[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 75
@@ -10882,7 +10868,7 @@
     "image_url": "/static/images/cards/celestial_might.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 8 урона 3 plural(ru):раз.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 185
@@ -11000,7 +10986,7 @@
     "image_url": "/static/images/cards/thrash.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 6 урона 2 раза.\n[gold]Сжигает[/gold] случайную Атаку в [gold]руке[/gold] и добавляет ее урон к своему.",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 77
@@ -11045,7 +11031,7 @@
     "image_url": "/static/images/cards/neutron_aegis.png",
     "beta_image_url": "/static/images/cards/beta/neutron_aegis.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 11 [gold]панциря[/gold].",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 229
@@ -11090,7 +11076,7 @@
     "image_url": "/static/images/cards/consuming_shadow.png",
     "beta_image_url": "/static/images/cards/beta/consuming_shadow.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Заряжает[/gold] 3 [gold]сферы тьмы[/gold].\n[gold]Разряжает[/gold] левую сферу в конце хода.",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 369
@@ -11173,7 +11159,7 @@
     "image_url": "/static/images/cards/defy.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 7 [gold]защиты[/gold].\nНакладывает 1 [gold]слабости[/gold].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "keywords_key": [
@@ -11216,7 +11202,7 @@
     "image_url": "/static/images/cards/purity.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Сжигает[/gold] до 5 карт в [gold]руке[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -11259,7 +11245,7 @@
     "image_url": "/static/images/cards/untouchable.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 12 [gold]защиты[/gold].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "keywords_key": [
@@ -11301,7 +11287,7 @@
     "image_url": "/static/images/cards/impervious.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 40 [gold]защиты[/gold].",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -11333,13 +11319,11 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/darkness.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "[gold]Заряжает[/gold] 1 [gold]сферу тьмы[/gold].\nАктивирует пассивный эффект всех [gold]сфер тьмы[/gold]  2 раза.",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 373
@@ -11383,7 +11367,7 @@
     "image_url": "/static/images/cards/eternal_armor.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 9 [gold]панциря[/gold].",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 454
@@ -11424,7 +11408,7 @@
     "image_url": "/static/images/cards/restlessness.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Вы добираете 3 plural(ru):карту и получаете [energy:3], если в [gold]руке[/gold] нет карт.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -11464,7 +11448,7 @@
     "image_url": "/static/images/cards/impatience.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Вы добираете 3 plural(ru):карту, если в [gold]руке[/gold] нет Атак.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 464
@@ -11542,7 +11526,7 @@
     "image_url": "/static/images/cards/blur.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 8 [gold]защиты[/gold].\n[gold]Защита[/gold] не пропадет в начале следующего хода.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 99
@@ -11623,7 +11607,7 @@
     "image_url": "/static/images/cards/i_am_invincible.png",
     "beta_image_url": "/static/images/cards/beta/i_am_invincible.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 12 [gold]защиты[/gold].\nРазыгрывается, если находится на верху [gold]стопки добора[/gold] в конце хода.",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 217
@@ -11663,7 +11647,7 @@
     "image_url": "/static/images/cards/backstab.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 15 урона.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -11705,7 +11689,7 @@
     "image_url": "/static/images/cards/knockout_blow.png",
     "beta_image_url": "/static/images/cards/beta/knockout_blow.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 38 урона.\nДает [star:5], если убивает цель.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 220
@@ -11786,7 +11770,7 @@
     "image_url": "/static/images/cards/null.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 13 урона.\nНакладывает 2 [gold]слабости[/gold].\n[gold]Заряжает[/gold] 1 [gold]сферу тьмы[/gold].",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 407
@@ -11823,7 +11807,7 @@
     "image_url": "/static/images/cards/feel_no_pain.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 4 [gold]защиты[/gold], когда [gold]сжигается[/gold] карта.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 33
@@ -11869,7 +11853,7 @@
     "image_url": "/static/images/cards/neutralize.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 4 урона.\nНакладывает 1 [gold]слабости[/gold].",
     "type_key": "Attack",
     "rarity_key": "Basic",
     "compendium_order": 139
@@ -12000,7 +11984,7 @@
     "image_url": "/static/images/cards/demon_form.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 3 [gold]силы[/gold] в начале хода.",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 26
@@ -12079,7 +12063,7 @@
     "image_url": "/static/images/cards/serpent_form.png",
     "beta_image_url": "/static/images/cards/beta/serpent_form.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 5 урона случайному врагу, когда вы разыгрываете карту.",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 153
@@ -12130,7 +12114,7 @@
     "image_url": "/static/images/cards/wraith_form.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 3 [gold]неосязаемости[/gold].\nВы теряете 1 [gold]ловкости[/gold] в начале хода.",
     "type_key": "Power",
     "rarity_key": "Ancient",
     "compendium_order": 174
@@ -12254,7 +12238,7 @@
     "image_url": "/static/images/cards/hotfix.png",
     "beta_image_url": "/static/images/cards/beta/hotfix.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 3 [gold]фокуса[/gold] на этот ход.",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 394
@@ -12293,7 +12277,7 @@
     "image_url": "/static/images/cards/defend_ironclad.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 8 [gold]защиты[/gold].",
     "type_key": "Skill",
     "rarity_key": "Basic",
     "compendium_order": 24
@@ -12332,7 +12316,7 @@
     "image_url": "/static/images/cards/defend_silent.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 8 [gold]защиты[/gold].",
     "type_key": "Skill",
     "rarity_key": "Basic",
     "compendium_order": 111
@@ -12371,7 +12355,7 @@
     "image_url": "/static/images/cards/defend_regent.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 8 [gold]защиты[/gold].",
     "type_key": "Skill",
     "rarity_key": "Basic",
     "compendium_order": 198
@@ -12410,7 +12394,7 @@
     "image_url": "/static/images/cards/defend_necrobinder.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 8 [gold]защиты[/gold].",
     "type_key": "Skill",
     "rarity_key": "Basic",
     "compendium_order": 280
@@ -12449,7 +12433,7 @@
     "image_url": "/static/images/cards/defend_defect.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 8 [gold]защиты[/gold].",
     "type_key": "Skill",
     "rarity_key": "Basic",
     "compendium_order": 374
@@ -12493,7 +12477,7 @@
     "image_url": "/static/images/cards/countdown.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "В начале хода накладывает 9 [gold]злого рока[/gold] на случайного врага.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 274
@@ -12528,13 +12512,11 @@
     "vars": {
       "Cards": 1
     },
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/seance.png",
     "beta_image_url": "/static/images/cards/beta/seance.png",
     "type_variants": null,
-    "upgrade_description": "[gold]Преобразует[/gold] карту в [gold]стопке добора[/gold] в [gold]«Душу+»[/gold].",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -12576,7 +12558,7 @@
     "image_url": "/static/images/cards/barrage.png",
     "beta_image_url": "/static/images/cards/beta/barrage.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит по 7 урона за каждую [gold]заряженную[/gold] сферу.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 354
@@ -12691,7 +12673,7 @@
     "image_url": "/static/images/cards/flame_barrier.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 16 [gold]защиты[/gold].\nНаносит 6 урона в ответ на каждую атаку до следующего хода.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 36
@@ -12728,7 +12710,7 @@
     "image_url": "/static/images/cards/burning_pact.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Сжигает[/gold] 1 карту.\nВы добираете 3 plural(ru):карту.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 15
@@ -12765,7 +12747,7 @@
     "image_url": "/static/images/cards/volley.png",
     "beta_image_url": "/static/images/cards/beta/volley.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 14 урона случайному врагу X раз.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 502
@@ -12844,7 +12826,7 @@
     "image_url": "/static/images/cards/dark_shackles.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Враг теряет 15 [gold]силы[/gold] в этом ходу.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -12964,7 +12946,7 @@
     "image_url": "/static/images/cards/calcify.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Атаки [gold]Кости[/gold] наносят 6 дополнительного урона.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 270
@@ -13073,7 +13055,7 @@
     "image_url": "/static/images/cards/pinpoint.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 22 урона.\nСтоит на 1 [energy:1] меньше за каждый разыгранный в этом ходу Навык.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 145
@@ -13112,7 +13094,7 @@
     "image_url": "/static/images/cards/scrape.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 10 урона.\nВы добираете 5 карты.\nВы сбрасываете все добранные карты с ценой более 0 [energy:1].",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 415
@@ -13149,7 +13131,7 @@
     "image_url": "/static/images/cards/pillar_of_creation.png",
     "beta_image_url": "/static/images/cards/beta/pillar_of_creation.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 4 [gold]защиты[/gold], когда создается карта.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 236
@@ -13187,7 +13169,7 @@
     "image_url": "/static/images/cards/flash_of_steel.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 8 урона.\nВы добираете 1 карту.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 458
@@ -13226,7 +13208,7 @@
     "image_url": "/static/images/cards/pull_aggro.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Призывает[/gold] 5.\nДает 9 [gold]защиты[/gold].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 318
@@ -13263,7 +13245,7 @@
     "image_url": "/static/images/cards/rebound.png",
     "beta_image_url": "/static/images/cards/beta/rebound.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 12 урона.\nПоложите следующую разыгранную в этом ходу карту на верх [gold]стопки добора[/gold].",
     "type_key": "Attack",
     "rarity_key": "Event",
     "compendium_order": 540
@@ -13307,7 +13289,7 @@
     "image_url": "/static/images/cards/envenom.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Накладывает на врага 2 [gold]яда[/gold], когда Атака наносит урон по его ОЗ.",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 115
@@ -13353,7 +13335,7 @@
     "image_url": "/static/images/cards/poisoned_stab.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 8 урона.\nНакладывает 3 [gold]яда[/gold].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 146
@@ -13391,7 +13373,7 @@
     "image_url": "/static/images/cards/reflect.png",
     "beta_image_url": "/static/images/cards/beta/reflect.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 21 [gold]защиты[/gold].\nНаносит полученный по [gold]защите[/gold] урон в ответ до следующего хода.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 241
@@ -13430,7 +13412,7 @@
     "image_url": "/static/images/cards/severance.png",
     "beta_image_url": "/static/images/cards/beta/severance.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 18 урона.\nДобавляет [gold]«Душу»[/gold] в [gold]стопку добора[/gold], [gold]руку[/gold] и [gold]стопку сброса[/gold].",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 332
@@ -13476,7 +13458,7 @@
     "image_url": "/static/images/cards/negative_pulse.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 6 [gold]защиты[/gold].\nНакладывает 7 [gold]злого рока[/gold] на ВСЕХ врагов.",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 310
@@ -13515,7 +13497,7 @@
     "image_url": "/static/images/cards/boost_away.png",
     "beta_image_url": "/static/images/cards/beta/boost_away.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 9 [gold]защиты[/gold].\nДобавляет [gold]«Головокружение»[/gold] в [gold]стопку сброса[/gold].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 357
@@ -13553,7 +13535,7 @@
     "image_url": "/static/images/cards/refine_blade.png",
     "beta_image_url": "/static/images/cards/beta/refine_blade.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Закаляет[/gold] 10.\nДаст [energy:1] в следующем ходу.",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 240
@@ -13595,7 +13577,7 @@
     "image_url": "/static/images/cards/perfected_strike.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 6 урона.\nНаносит 3 дополнительного урона за каждую карту с «Ударом» в названии.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 56
@@ -13672,7 +13654,7 @@
     "image_url": "/static/images/cards/coolant.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 3 [gold]защиты[/gold] в начале хода за каждую уникальную заряженную сферу.",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 370
@@ -13709,7 +13691,7 @@
     "image_url": "/static/images/cards/cleanse.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Призывает[/gold] 5.\n[gold]Сжигает[/gold] 1 карту в [gold]стопке добора[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 273
@@ -13748,7 +13730,7 @@
     "image_url": "/static/images/cards/begone.png",
     "beta_image_url": "/static/images/cards/beta/begone.png",
     "type_variants": null,
-    "upgrade_description": "Наносит 4 урона.\n[gold]Преобразует[/gold] карту в [gold]руке[/gold] в [gold]«Слугу-бомбочку+»[/gold].",
+    "upgrade_description": "Наносит 5 урона.\n[gold]Преобразует[/gold] карту в [gold]руке[/gold] в [gold]«Слугу-бомбочку+»[/gold].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 179
@@ -13801,7 +13783,7 @@
     "image_url": "/static/images/cards/falling_star.png",
     "beta_image_url": "/static/images/cards/beta/falling_star.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 11 урона.\nНакладывает 1 [gold]слабости[/gold].\nНакладывает 1 [gold]уязвимости[/gold].",
     "type_key": "Attack",
     "rarity_key": "Basic",
     "compendium_order": 201
@@ -13839,7 +13821,7 @@
     "image_url": "/static/images/cards/alignment.png",
     "beta_image_url": "/static/images/cards/beta/alignment.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает [energy:3].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 175
@@ -13885,7 +13867,7 @@
     "image_url": "/static/images/cards/parry.png",
     "beta_image_url": "/static/images/cards/beta/parry.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 9 [gold]защиты[/gold], когда вы разыгрываете [gold]Клинок монарха[/gold].",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 232
@@ -13960,7 +13942,7 @@
     "image_url": "/static/images/cards/cinder.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 22 урона.\n[gold]Сжигает[/gold] карту на верху [gold]стопки добора[/gold].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 17
@@ -14002,7 +13984,7 @@
     "image_url": "/static/images/cards/ashen_strike.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 6 урона.\nНаносит 4 дополнительного урона за каждую карту в [gold]стопке пепла[/gold].",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 3
@@ -14041,7 +14023,7 @@
     "image_url": "/static/images/cards/overclock.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Вы добираете 3 plural(ru):карту.\nДобавляет [gold]«Ожог»[/gold] в [gold]стопку сброса[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 408
@@ -14084,7 +14066,7 @@
     "image_url": "/static/images/cards/relax.png",
     "beta_image_url": "/static/images/cards/beta/relax.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 17 [gold]защиты[/gold].\nВы доберете 3 plural(ru):дополнительную карту и получите [energy:3] в начале следующего хода.",
     "type_key": "Skill",
     "rarity_key": "Ancient",
     "keywords_key": [
@@ -14126,7 +14108,7 @@
     "image_url": "/static/images/cards/reboot.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Замешивает ВСЕ карты в [gold]стопку добора[/gold].\nВы добираете 6 plural(ru):карту.",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -14203,7 +14185,7 @@
     "image_url": "/static/images/cards/scavenge.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Сжигает[/gold] карту.\nДаст [energy:3] в следующем ходу.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 414
@@ -14249,7 +14231,7 @@
     "image_url": "/static/images/cards/patter.png",
     "beta_image_url": "/static/images/cards/beta/patter.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 10 [gold]защиты[/gold].\nДает 3 [gold]бодрости[/gold].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 234
@@ -14286,7 +14268,7 @@
     "image_url": "/static/images/cards/intercept.png",
     "beta_image_url": "/static/images/cards/beta/intercept.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 13 [gold]защиты[/gold].\nПеренаправляет все атаки с другого игрока на вас в этом ходу.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 465
@@ -14323,7 +14305,7 @@
     "image_url": "/static/images/cards/furnace.png",
     "beta_image_url": "/static/images/cards/beta/furnace.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Закаляет[/gold] 6 в начале хода.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 203
@@ -14400,7 +14382,7 @@
     "image_url": "/static/images/cards/escape_plan.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Вы добираете 1 карту.\nДает 5 [gold]защиты[/gold], если вы добрали Навык.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 116
@@ -14440,7 +14422,7 @@
     "image_url": "/static/images/cards/cloak_and_dagger.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 6 [gold]защиты[/gold].\nДобавляет 2 [gold]plural(ru):«Заточку»[/gold] в [gold]руку[/gold].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 105
@@ -14485,7 +14467,7 @@
     "image_url": "/static/images/cards/danse_macabre.png",
     "beta_image_url": "/static/images/cards/beta/danse_macabre.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 4 [gold]защиты[/gold], когда вы разыгрываете карту стоимостью не ниже [energy:2].",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 275
@@ -14524,7 +14506,7 @@
     "image_url": "/static/images/cards/summon_forth.png",
     "beta_image_url": "/static/images/cards/beta/summon_forth.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Закаляет[/gold] 11.\nВы берете [gold]Клинок монарха[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 253
@@ -14563,7 +14545,7 @@
     "image_url": "/static/images/cards/maul.png",
     "beta_image_url": "/static/images/cards/beta/maul.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 6 урона 2 раза.\nПовышает урон ВСЕХ «Побоев» на 2 до конца боя.",
     "type_key": "Attack",
     "rarity_key": "Ancient",
     "compendium_order": 535
@@ -14600,7 +14582,7 @@
     "image_url": "/static/images/cards/hang.png",
     "beta_image_url": "/static/images/cards/beta/hang.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 13 урона.\nУдваивает урон ВСЕХ «Повешений» против цели.",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 301
@@ -14637,7 +14619,7 @@
     "image_url": "/static/images/cards/bury.png",
     "beta_image_url": "/static/images/cards/beta/bury.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 63 урона.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 269
@@ -14681,7 +14663,7 @@
     "image_url": "/static/images/cards/sleight_of_flesh.png",
     "beta_image_url": "/static/images/cards/beta/sleight_of_flesh.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит врагу 13 урона, когда вы накладываете на него отрицательный эффект.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 336
@@ -14725,7 +14707,7 @@
     "image_url": "/static/images/cards/prep_time.png",
     "beta_image_url": "/static/images/cards/beta/prep_time.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 6 [gold]бодрости[/gold] в начале хода.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 478
@@ -14766,7 +14748,7 @@
     "image_url": "/static/images/cards/offering.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Вы теряете 6 ОЗ.\nДает [energy:2].\nВы добираете 5 карты.",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -14858,7 +14840,7 @@
     "image_url": "/static/images/cards/leg_sweep.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Накладывает 2 [gold]слабости[/gold].\nДает 14 [gold]защиты[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 133
@@ -14899,7 +14881,7 @@
     "image_url": "/static/images/cards/conflagration.png",
     "beta_image_url": "/static/images/cards/beta/conflagration.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 8 урона ВСЕМ врагам.\nНаносит 3 дополнительного урона за каждую вторую Атаку, разыгранную в этом ходу.",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 19
@@ -14940,7 +14922,7 @@
     "image_url": "/static/images/cards/feed.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 12 урона.\nЕсли враг [gold]погибает[/gold], вы получаете 4 макс. ОЗ.",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -14989,7 +14971,7 @@
     "image_url": "/static/images/cards/devour_life.png",
     "beta_image_url": "/static/images/cards/beta/devour_life.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Призывает[/gold] 2, когда вы разыгрываете [gold]«Душу»[/gold].",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 285
@@ -15065,7 +15047,7 @@
     "image_url": "/static/images/cards/deaths_door.png",
     "beta_image_url": "/static/images/cards/beta/deaths_door.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 7 [gold]защиты[/gold].\nДает [gold]защиты[/gold] еще 2 plural(ru):раз, если вы накладывали [gold]злой рок[/gold] в этом ходу.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 277
@@ -15181,7 +15163,7 @@
     "image_url": "/static/images/cards/sow.png",
     "beta_image_url": "/static/images/cards/beta/sow.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 11 урона ВСЕМ врагам.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "keywords_key": [
@@ -15221,7 +15203,7 @@
     "image_url": "/static/images/cards/fisticuffs.png",
     "beta_image_url": "/static/images/cards/beta/fisticuffs.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 9 урона.\nДает [gold]защиту[/gold], равную нанесенному урону.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 457
@@ -15258,7 +15240,7 @@
     "image_url": "/static/images/cards/howl_from_beyond.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 21 урона ВСЕМ врагам.\nРазыгрывается из [gold]стопки пепла[/gold] в начале хода.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 43
@@ -15299,7 +15281,7 @@
     "image_url": "/static/images/cards/death_march.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 8 урона.\nНаносит 4 дополнительного урона за каждую карту, которую вы добирали в этом ходу.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 278
@@ -15338,7 +15320,7 @@
     "image_url": "/static/images/cards/eradicate.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 14 урона X раз.",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -15380,7 +15362,7 @@
     "image_url": "/static/images/cards/fight_through.png",
     "beta_image_url": "/static/images/cards/beta/fight_through.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 17 [gold]защиты[/gold].\nКладет 2 [gold]«Раны»[/gold] в [gold]стопку сброса[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 381
@@ -15419,7 +15401,7 @@
     "image_url": "/static/images/cards/ultimate_defend.png",
     "beta_image_url": "/static/images/cards/beta/ultimate_defend.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 15 [gold]защиты[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 500
@@ -15458,7 +15440,7 @@
     "image_url": "/static/images/cards/ultimate_strike.png",
     "beta_image_url": "/static/images/cards/beta/ultimate_strike.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 20 урона.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 501
@@ -15593,7 +15575,7 @@
     "image_url": "/static/images/cards/biased_cognition.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 5 [gold]фокуса[/gold].\nВы теряете 1 [gold]фокуса[/gold] в начале хода.",
     "type_key": "Power",
     "rarity_key": "Ancient",
     "compendium_order": 356
@@ -15632,7 +15614,7 @@
     "image_url": "/static/images/cards/fasten.png",
     "beta_image_url": "/static/images/cards/beta/fasten.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Карты «Оборона» дают 7 дополнительной [gold]защиты[/gold].",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 455
@@ -15669,7 +15651,7 @@
     "image_url": "/static/images/cards/foregone_conclusion.png",
     "beta_image_url": "/static/images/cards/beta/foregone_conclusion.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "В следующем ходу вы возьмете 3 plural(ru):карту из [gold]стопки добора[/gold].",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 202
@@ -15707,7 +15689,7 @@
     "image_url": "/static/images/cards/spite.png",
     "beta_image_url": "/static/images/cards/beta/spite.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 9 урона.\nВы добираете 1 plural(ru):карту, если теряли ОЗ в этом ходу.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 67
@@ -15744,7 +15726,7 @@
     "image_url": "/static/images/cards/venerate.png",
     "beta_image_url": "/static/images/cards/beta/venerate.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает [star:3].",
     "type_key": "Skill",
     "rarity_key": "Basic",
     "compendium_order": 260
@@ -15782,7 +15764,7 @@
     "image_url": "/static/images/cards/refract.png",
     "beta_image_url": "/static/images/cards/beta/refract.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 12 урона 2 раза.\n[gold]Заряжает[/gold] 2 [gold]plural(ru):сферу стекла[/gold].",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 412
@@ -15949,7 +15931,7 @@
     "image_url": "/static/images/cards/phantom_blades.png",
     "beta_image_url": "/static/images/cards/beta/phantom_blades.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]«Заточки»[/gold] [gold]оставляются[/gold].\nПервая разыгранная в ходу [gold]«Заточка»[/gold] наносит 12 дополнительного урона.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 143
@@ -16030,7 +16012,7 @@
     "image_url": "/static/images/cards/iteration.png",
     "beta_image_url": "/static/images/cards/beta/iteration.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Вы добираете 3 plural(ru):карту, когда добираете Статус первый раз за ход.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 398
@@ -16232,7 +16214,7 @@
     "image_url": "/static/images/cards/skim.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Вы добираете 4 plural(ru):карту.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 419
@@ -16278,7 +16260,7 @@
     "image_url": "/static/images/cards/break.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 25 урона.\nНакладывает 5 [gold]уязвимости[/gold].",
     "type_key": "Attack",
     "rarity_key": "Ancient",
     "compendium_order": 12
@@ -16317,7 +16299,7 @@
     "image_url": "/static/images/cards/piercing_wail.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ВСЕ враги теряют 8 [gold]силы[/gold] в этом ходу.",
     "type_key": "Skill",
     "rarity_key": "Common",
     "keywords_key": [
@@ -16357,7 +16339,7 @@
     "image_url": "/static/images/cards/prophesize.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Вы добираете 9 plural(ru):карту.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 237
@@ -16395,7 +16377,7 @@
     "image_url": "/static/images/cards/breakthrough.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Вы теряете 1 ОЗ.\nНаносит 13 урона ВСЕМ врагам.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 13
@@ -16426,13 +16408,11 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/enlightenment.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Понижает стоимость ВСЕХ карт в [gold]руке[/gold] до 1 на этот бой.",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Event",
     "keywords_key": [
@@ -16512,7 +16492,7 @@
     "image_url": "/static/images/cards/leap.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 12 [gold]защиты[/gold].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 399
@@ -16550,7 +16530,7 @@
     "image_url": "/static/images/cards/devastate.png",
     "beta_image_url": "/static/images/cards/beta/devastate.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 40 урона.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 199
@@ -16590,7 +16570,7 @@
     "image_url": "/static/images/cards/guiding_star.png",
     "beta_image_url": "/static/images/cards/beta/guiding_star.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 13 урона.\nВы доберете 3 plural(ru):дополнительную карту в следующем ходу.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 211
@@ -16668,7 +16648,7 @@
     "image_url": "/static/images/cards/rampage.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 9 урона.\nУрон повышается на 9 до конца боя.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 62
@@ -16705,7 +16685,7 @@
     "image_url": "/static/images/cards/pillage.png",
     "beta_image_url": "/static/images/cards/beta/pillage.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 9 урона.\nВы добираете карты до тех пор, пока не возьмете что-то кроме Атаки.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 57
@@ -16744,7 +16724,7 @@
     "image_url": "/static/images/cards/putrefy.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Накладывает 3 [gold]слабости[/gold].\nНакладывает 3 [gold]уязвимости[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -16785,7 +16765,7 @@
     "image_url": "/static/images/cards/sunder.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 32 урона.\nДает [energy:3], если цель погибает.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 425
@@ -16822,7 +16802,7 @@
     "image_url": "/static/images/cards/dismantle.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 10 урона.\nЕсли враг [gold]уязвим[/gold], наносит урон еще раз.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 27
@@ -16859,7 +16839,7 @@
     "image_url": "/static/images/cards/veilpiercer.png",
     "beta_image_url": "/static/images/cards/beta/veilpiercer.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 13 урона.\nСледующая [gold]эфирная[/gold] карта стоит 0 [energy:1].",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 349
@@ -16896,7 +16876,7 @@
     "image_url": "/static/images/cards/slice.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 9 урона.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 157
@@ -16933,7 +16913,7 @@
     "image_url": "/static/images/cards/rip_and_tear.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 9 урона случайному врагу 2 раза.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 542
@@ -16972,7 +16952,7 @@
     "image_url": "/static/images/cards/rocket_punch.png",
     "beta_image_url": "/static/images/cards/beta/rocket_punch.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 14 урона.\nВы добираете 2 plural(ru):карту.\nЦена понижается до 0 [energy:1] на ход, когда создается Статус.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 413
@@ -17049,7 +17029,7 @@
     "image_url": "/static/images/cards/molten_fist.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 14 урона.\nУдваивает [gold]уязвимость[/gold] на цели.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "keywords_key": [
@@ -17097,7 +17077,7 @@
     "image_url": "/static/images/cards/thunderclap.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 7 урона и накладывает 1 [gold]уязвимости[/gold] на ВСЕХ врагов.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 78
@@ -17138,7 +17118,7 @@
     "image_url": "/static/images/cards/rend.png",
     "beta_image_url": "/static/images/cards/beta/rend.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 15 урона.\nНаносит 8 дополнительного урона за каждый отрицательный эффект на цели.",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 484
@@ -17175,7 +17155,7 @@
     "image_url": "/static/images/cards/echoing_slash.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 13 урона ВСЕМ врагам.\nНаносит урон снова за каждого убитого врага.",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 114
@@ -17215,7 +17195,7 @@
     "image_url": "/static/images/cards/reave.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Наносит 9 урона.\nДобавляет [gold]«Душу+»[/gold] в [gold]стопку добора[/gold].",
+    "upgrade_description": "Наносит 11 урона.\nДобавляет [gold]«Душу+»[/gold] в [gold]стопку добора[/gold].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 325
@@ -17296,7 +17276,7 @@
     "image_url": "/static/images/cards/reanimate.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Призывает[/gold] 25.",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -17344,7 +17324,7 @@
     "image_url": "/static/images/cards/resonance.png",
     "beta_image_url": "/static/images/cards/beta/resonance.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 2 [gold]силы[/gold]. ВСЕ враги теряют 1 [gold]силы[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 242
@@ -17383,7 +17363,7 @@
     "image_url": "/static/images/cards/reflex.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Вы добираете 3 plural(ru):карту.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -17426,7 +17406,7 @@
     "image_url": "/static/images/cards/ricochet.png",
     "beta_image_url": "/static/images/cards/beta/ricochet.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 3 урона случайному врагу 5 plural(ru):раз.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "keywords_key": [
@@ -17474,7 +17454,7 @@
     "image_url": "/static/images/cards/drum_of_battle.png",
     "beta_image_url": "/static/images/cards/beta/drum_of_battle.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Вы добираете 3 plural(ru):карту.\n[gold]Сжигает[/gold] карту на верху [gold]стопки добора[/gold] в начале хода.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 29
@@ -17513,7 +17493,7 @@
     "image_url": "/static/images/cards/blight_strike.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 10 урона.\nНакладывает столько же [gold]злого рока[/gold].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 265
@@ -17552,7 +17532,7 @@
     "image_url": "/static/images/cards/dash.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 13 [gold]защиты[/gold].\nНаносит 13 урона.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 109
@@ -17585,13 +17565,11 @@
       "MINION_SACRIFICE"
     ],
     "vars": null,
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/guards.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "[gold]Преобразует[/gold] выбранное количество карт в [gold]руке[/gold] в карты [gold]«Слуга-щит+»[/gold].",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -17670,7 +17648,7 @@
     "image_url": "/static/images/cards/backflip.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 8 [gold]защиты[/gold].\nВы добираете 2 карты.",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 95
@@ -17709,7 +17687,7 @@
     "image_url": "/static/images/cards/supercritical.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает [energy:6].",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -17752,7 +17730,7 @@
     "image_url": "/static/images/cards/supermassive.png",
     "beta_image_url": "/static/images/cards/beta/supermassive.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 5 урона.\nНаносит 4 дополнительного урона за каждую созданную за бой карту.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 254
@@ -17792,7 +17770,7 @@
     "image_url": "/static/images/cards/luminesce.png",
     "beta_image_url": "/static/images/cards/beta/luminesce.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает [energy:3].",
     "type_key": "Skill",
     "rarity_key": "Token",
     "keywords_key": [
@@ -17835,7 +17813,7 @@
     "image_url": "/static/images/cards/whistle.png",
     "beta_image_url": "/static/images/cards/beta/whistle.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 44 урона.\n[gold]Оглушает[/gold] цель.",
     "type_key": "Attack",
     "rarity_key": "Ancient",
     "keywords_key": [
@@ -17877,7 +17855,7 @@
     "image_url": "/static/images/cards/momentum_strike.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 13 урона.\nЦена понижается до 0 [energy:1].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 405
@@ -17914,7 +17892,7 @@
     "image_url": "/static/images/cards/evil_eye.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 11 [gold]защиты[/gold].\nДает 11 дополнительной [gold]защиты[/gold], если вы [gold]сжигали[/gold] карты в этом ходу.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 30
@@ -18027,7 +18005,7 @@
     "image_url": "/static/images/cards/shockwave.png",
     "beta_image_url": "/static/images/cards/beta/shockwave.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Накладывает 5 [gold]слабости[/gold] и [gold]уязвимости[/gold] на ВСЕХ врагов.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -18068,7 +18046,7 @@
     "image_url": "/static/images/cards/particle_wall.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 12 [gold]защиты[/gold].\nВозвращается в [gold]руку[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 233
@@ -18105,7 +18083,7 @@
     "image_url": "/static/images/cards/synthesis.png",
     "beta_image_url": "/static/images/cards/beta/synthesis.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 18 урона.\nСледующий Талант стоит 0 [energy:1].",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 429
@@ -18186,7 +18164,7 @@
     "image_url": "/static/images/cards/glow.png",
     "beta_image_url": "/static/images/cards/beta/glow.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает [star:2].\nВы добираете 2 plural(ru):карту.",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 209
@@ -18226,7 +18204,7 @@
     "image_url": "/static/images/cards/shining_strike.png",
     "beta_image_url": "/static/images/cards/beta/shining_strike.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 11 урона.\nДает [star:2].\nКладется на верх [gold]стопки добора[/gold].",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 247
@@ -18310,7 +18288,7 @@
     "image_url": "/static/images/cards/bouncing_flask.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Накладывает 3 [gold]яда[/gold] на случайного врага 4 раза.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 100
@@ -18349,7 +18327,7 @@
     "image_url": "/static/images/cards/defile.png",
     "beta_image_url": "/static/images/cards/beta/defile.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 17 урона.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "keywords_key": [
@@ -18392,7 +18370,7 @@
     "image_url": "/static/images/cards/ftl.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 6 урона.\nВы добираете 1 карту, если разыграли меньше 4 карт в этом ходу.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 384
@@ -18429,7 +18407,7 @@
     "image_url": "/static/images/cards/hidden_gem.png",
     "beta_image_url": "/static/images/cards/beta/hidden_gem.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Случайная карта в [gold]стопке добора[/gold] получает [gold]повтор[/gold] 3.",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 462
@@ -18475,7 +18453,7 @@
     "image_url": "/static/images/cards/sneaky.png",
     "beta_image_url": "/static/images/cards/beta/sneaky.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 2 [gold]защиты[/gold], когда другой игрок атакует врага.",
     "type_key": "Power",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -18512,13 +18490,11 @@
       "Shivs": 2,
       "Cards": 2
     },
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/hidden_daggers.png",
     "beta_image_url": "/static/images/cards/beta/hidden_daggers.png",
     "type_variants": null,
-    "upgrade_description": "Вы сбрасываете 2 plural(ru):карту.\nДобавляет 2 [gold]plural(ru):«Заточку+»[/gold] в [gold]руку[/gold].",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 129
@@ -18557,7 +18533,7 @@
     "image_url": "/static/images/cards/expose.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Снимает все [gold]артефакты[/gold] и [gold]защиту[/gold] с врага.\nНакладывает 3 [gold]уязвимости[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -18799,7 +18775,7 @@
     "image_url": "/static/images/cards/decisions_decisions.png",
     "beta_image_url": "/static/images/cards/beta/decisions_decisions.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Вы добираете 5 plural(ru):карта.\nРазыграйте Навык из [gold]руки[/gold] 3 plural(ru):раз.",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -18843,7 +18819,7 @@
     "image_url": "/static/images/cards/minion_dive_bomb.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 16 урона.",
     "type_key": "Attack",
     "rarity_key": "Token",
     "keywords_key": [
@@ -18887,7 +18863,7 @@
     "image_url": "/static/images/cards/minion_sacrifice.png",
     "beta_image_url": "/static/images/cards/beta/minion_sacrifice.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 12 [gold]защиты[/gold].",
     "type_key": "Skill",
     "rarity_key": "Token",
     "keywords_key": [
@@ -18980,7 +18956,7 @@
     "image_url": "/static/images/cards/lethality.png",
     "beta_image_url": "/static/images/cards/beta/lethality.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Первая Атака за ход наносит 75% дополнительного урона.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -19056,7 +19032,7 @@
     "image_url": "/static/images/cards/sweeping_beam.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 9 урона ВСЕМ врагам.\nВы добираете 1 plural(ru):карту.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 427
@@ -19087,13 +19063,11 @@
     "vars": {
       "Block": 5
     },
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/armaments.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Дает 5 [gold]защиты[/gold].\n[gold]Улучшает[/gold] ВСЕ карты в [gold]руке[/gold].",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 2
@@ -19172,7 +19146,7 @@
     "image_url": "/static/images/cards/solar_strike.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 9 урона.\nДает [star:2].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 248
@@ -19294,13 +19268,11 @@
       "SpinnerPower": 1,
       "Spinner": 1
     },
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/spinner.png",
     "beta_image_url": "/static/images/cards/beta/spinner.png",
     "type_variants": null,
-    "upgrade_description": "[gold]Заряжает[/gold] 1 [gold]сферу стекла[/gold].\n[gold]Заряжает[/gold] 1 [gold]сферу стекла[/gold] в начале хода.",
+    "upgrade_description": null,
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 421
@@ -19339,7 +19311,7 @@
     "image_url": "/static/images/cards/helix_drill.png",
     "beta_image_url": "/static/images/cards/beta/helix_drill.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит по 5 урона за каждую [energy:1], потраченную в этом ходу.",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 392
@@ -19379,7 +19351,7 @@
     "image_url": "/static/images/cards/shared_fate.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Вы теряете 2 [gold]силы[/gold].\nЦель теряет 3 [gold]силы[/gold].",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -19419,7 +19391,7 @@
     "image_url": "/static/images/cards/huddle_up.png",
     "beta_image_url": "/static/images/cards/beta/huddle_up.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ВСЕ игроки добирают по 3 plural(ru):карте.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 463
@@ -19496,7 +19468,7 @@
     "image_url": "/static/images/cards/iron_wave.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 7 [gold]защиты[/gold].\nНаносит 7 урона.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 48
@@ -19571,7 +19543,7 @@
     "image_url": "/static/images/cards/glasswork.png",
     "beta_image_url": "/static/images/cards/beta/glasswork.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 8 [gold]защиты[/gold].\n[gold]Заряжает[/gold] 1 [gold]сферу стекла[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 388
@@ -19609,7 +19581,7 @@
     "image_url": "/static/images/cards/blood_wall.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Вы теряете 2 ОЗ.\nДает 20 [gold]защиты[/gold].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 8
@@ -19648,7 +19620,7 @@
     "image_url": "/static/images/cards/collision_course.png",
     "beta_image_url": "/static/images/cards/beta/collision_course.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 12 урона.\nДобавляет [gold]«Обломок»[/gold] в [gold]руку[/gold].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 189
@@ -19686,7 +19658,7 @@
     "image_url": "/static/images/cards/misery.png",
     "beta_image_url": "/static/images/cards/beta/misery.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 9 урона.\nНакладывает отрицательные эффекты цели на ВСЕХ врагов.",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 308
@@ -19769,7 +19741,7 @@
     "image_url": "/static/images/cards/fear.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 8 урона.\nНакладывает 1 [gold]уязвимости[/gold].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "keywords_key": [
@@ -19809,7 +19781,7 @@
     "image_url": "/static/images/cards/cold_snap.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 9 урона.\n[gold]Заряжает[/gold] 1 [gold]сферу льда[/gold].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 366
@@ -19886,7 +19858,7 @@
     "image_url": "/static/images/cards/clash.png",
     "beta_image_url": "/static/images/cards/beta/clash.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Можно разыграть, если в [gold]руке[/gold] есть только Атаки.\nНаносит 18 урона.",
     "type_key": "Attack",
     "rarity_key": "Event",
     "compendium_order": 526
@@ -19923,7 +19895,7 @@
     "image_url": "/static/images/cards/shroud.png",
     "beta_image_url": "/static/images/cards/beta/shroud.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 3 [gold]защиты[/gold], когда вы накладываете [gold]злой рок[/gold].",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 334
@@ -19962,7 +19934,7 @@
     "image_url": "/static/images/cards/turbo.png",
     "beta_image_url": "/static/images/cards/beta/turbo.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает [energy:3].\nДобавляет [gold]«Бездну»[/gold] в [gold]стопку сброса[/gold].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 434
@@ -20047,7 +20019,7 @@
     "image_url": "/static/images/cards/hidden_cache.png",
     "beta_image_url": "/static/images/cards/beta/hidden_cache.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает [star:1].\nДаст [star:4]\nв следующем ходу.",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 216
@@ -20126,7 +20098,7 @@
     "image_url": "/static/images/cards/tactician.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает [energy:2].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -20170,7 +20142,7 @@
     "image_url": "/static/images/cards/blade_dance.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Добавляет 4 [gold]plural(ru):«Заточку»[/gold] в [gold]руку[/gold].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "keywords_key": [
@@ -20245,7 +20217,7 @@
     "image_url": "/static/images/cards/headbutt.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 12 урона.\nКладет карту из [gold]стопки сброса[/gold] на верх [gold]стопки добора[/gold].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 40
@@ -20282,7 +20254,7 @@
     "image_url": "/static/images/cards/bodyguard.png",
     "beta_image_url": "/static/images/cards/beta/bodyguard.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Призывает[/gold] 7.",
     "type_key": "Skill",
     "rarity_key": "Basic",
     "compendium_order": 266
@@ -20319,7 +20291,7 @@
     "image_url": "/static/images/cards/shadow_shield.png",
     "beta_image_url": "/static/images/cards/beta/shadow_shield.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 15 [gold]защиты[/gold].\n[gold]Заряжает[/gold] 1 [gold]сферу тьмы[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 416
@@ -20358,7 +20330,7 @@
     "image_url": "/static/images/cards/haunt.png",
     "beta_image_url": "/static/images/cards/beta/haunt.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Отнимает 8 ОЗ у случайного врага, когда вы разыгрываете [gold]«Душу»[/gold].",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 302
@@ -20402,7 +20374,7 @@
     "image_url": "/static/images/cards/terraforming.png",
     "beta_image_url": "/static/images/cards/beta/terraforming.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 8 [gold]бодрости[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 256
@@ -20485,7 +20457,7 @@
     "image_url": "/static/images/cards/squeeze.png",
     "beta_image_url": "/static/images/cards/beta/squeeze.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Костя[/gold] наносит 25 урона.\nНаносит 6 дополнительного урона за КАЖДУЮ Атаку [gold]Кости[/gold], кроме этой.",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 342
@@ -20604,7 +20576,7 @@
     "image_url": "/static/images/cards/fuel.png",
     "beta_image_url": "/static/images/cards/beta/fuel.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает [energy:1].\nВы добираете 2 plural(ru):карту.",
     "type_key": "Skill",
     "rarity_key": "Token",
     "keywords_key": [
@@ -20764,7 +20736,7 @@
     "image_url": "/static/images/cards/tesla_coil.png",
     "beta_image_url": "/static/images/cards/beta/tesla_coil.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 6 урона.\nАктивирует эффект всех [gold]сфер молнии[/gold] против цели.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 431
@@ -20845,7 +20817,7 @@
     "image_url": "/static/images/cards/spoils_of_battle.png",
     "beta_image_url": "/static/images/cards/beta/spoils_of_battle.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Закаляет[/gold] 15.",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 250
@@ -20928,7 +20900,7 @@
     "image_url": "/static/images/cards/poke.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Костя[/gold] наносит 9 урона.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 316
@@ -20977,7 +20949,7 @@
     "image_url": "/static/images/cards/assassinate.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 13 урона.\nНакладывает 1 [gold]уязвимости[/gold].",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -21020,7 +20992,7 @@
     "image_url": "/static/images/cards/mangle.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 20 урона.\nОтнимает 15 [gold]силы[/gold] на этот ход.",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 51
@@ -21057,7 +21029,7 @@
     "image_url": "/static/images/cards/dodge_and_roll.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 6 [gold]защиты[/gold].\nДаст 6 [gold]защиты[/gold] в следующем ходу.",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 113
@@ -21188,7 +21160,7 @@
     "image_url": "/static/images/cards/strike_ironclad.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 9 урона.",
     "type_key": "Attack",
     "rarity_key": "Basic",
     "compendium_order": 72
@@ -21227,7 +21199,7 @@
     "image_url": "/static/images/cards/strike_silent.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 9 урона.",
     "type_key": "Attack",
     "rarity_key": "Basic",
     "compendium_order": 163
@@ -21266,7 +21238,7 @@
     "image_url": "/static/images/cards/strike_regent.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 9 урона.",
     "type_key": "Attack",
     "rarity_key": "Basic",
     "compendium_order": 252
@@ -21305,7 +21277,7 @@
     "image_url": "/static/images/cards/strike_necrobinder.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 9 урона.",
     "type_key": "Attack",
     "rarity_key": "Basic",
     "compendium_order": 343
@@ -21344,7 +21316,7 @@
     "image_url": "/static/images/cards/strike_defect.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 9 урона.",
     "type_key": "Attack",
     "rarity_key": "Basic",
     "compendium_order": 423
@@ -21392,7 +21364,7 @@
     "image_url": "/static/images/cards/setup_strike.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 9 урона.\nДает 2 [gold]силы[/gold] на этот ход.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 65
@@ -21432,7 +21404,7 @@
     "image_url": "/static/images/cards/seeker_strike.png",
     "beta_image_url": "/static/images/cards/beta/seeker_strike.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 9 урона.\nВыберите и возьмите 1 из 3 карт из [gold]стопки добора[/gold].",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 491
@@ -21475,7 +21447,7 @@
     "image_url": "/static/images/cards/minion_strike.png",
     "beta_image_url": "/static/images/cards/beta/minion_strike.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 10 урона.\nВы добираете 1 plural(ru):карту.",
     "type_key": "Attack",
     "rarity_key": "Token",
     "keywords_key": [
@@ -21519,7 +21491,7 @@
     "image_url": "/static/images/cards/pommel_strike.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 10 урона.\nВы добираете 2 plural(ru):карту.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 58
@@ -21609,7 +21581,7 @@
     "image_url": "/static/images/cards/deflect.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 7 [gold]защиты[/gold].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 112
@@ -21691,7 +21663,7 @@
     "image_url": "/static/images/cards/dying_star.png",
     "beta_image_url": "/static/images/cards/beta/dying_star.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 11 урона ВСЕМ врагам. В этом ходу ВСЕ враги теряют 11 [gold]силы[/gold].",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -21725,13 +21697,11 @@
       "SHIV"
     ],
     "vars": null,
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/storm_of_steel.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Вы сбрасываете все карты.\nДобавляет [gold]«Заточку+»[/gold] в [gold]руку[/gold] за каждую сброшенную карту.",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 161
@@ -21828,7 +21798,7 @@
     "image_url": "/static/images/cards/suppress.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 17 урона.\nНакладывает 3 [gold]слабости[/gold].",
     "type_key": "Attack",
     "rarity_key": "Ancient",
     "keywords_key": [
@@ -21870,7 +21840,7 @@
     "image_url": "/static/images/cards/compact.png",
     "beta_image_url": "/static/images/cards/beta/compact.png",
     "type_variants": null,
-    "upgrade_description": "Дает 6 [gold]защиты[/gold].\n[gold]Преобразует[/gold] каждый Статус в [gold]руке[/gold] в [gold]«Топливо+»[/gold].",
+    "upgrade_description": "Дает 7 [gold]защиты[/gold].\n[gold]Преобразует[/gold] каждый Статус в [gold]руке[/gold] в [gold]«Топливо+»[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 367
@@ -21908,7 +21878,7 @@
     "image_url": "/static/images/cards/heirloom_hammer.png",
     "beta_image_url": "/static/images/cards/beta/heirloom_hammer.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 22 урона.\nДобавляет в [gold]руку[/gold] копию выбранной в [gold]руке[/gold] бесцветной карты.",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 215
@@ -21993,7 +21963,7 @@
     "image_url": "/static/images/cards/focused_strike.png",
     "beta_image_url": "/static/images/cards/beta/focused_strike.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 11 урона.\nДает 2 [gold]фокуса[/gold] на этот ход.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 383
@@ -22030,7 +22000,7 @@
     "image_url": "/static/images/cards/chaos.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Заряжает[/gold] 2 plural(ru):случайную сферу.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 362
@@ -22072,7 +22042,7 @@
     "image_url": "/static/images/cards/fetch.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Костя[/gold] наносит 6 урона.\nЕсли это первая карта, разыгранная за ход, вы добираете 1 plural(ru):карту.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 294
@@ -22143,13 +22113,11 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/malaise.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Отнимает X+1 [gold]силы[/gold]. Накладывает X+1 [gold]слабости[/gold].",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -22189,7 +22157,7 @@
     "image_url": "/static/images/cards/outmaneuver.png",
     "beta_image_url": "/static/images/cards/beta/outmaneuver.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Даст [energy:3] в следующем ходу.",
     "type_key": "Skill",
     "rarity_key": "Event",
     "compendium_order": 538
@@ -22226,7 +22194,7 @@
     "image_url": "/static/images/cards/predator.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 20 урона.\nВы доберете 2 дополнительные карты в следующем ходу.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 149
@@ -22303,7 +22271,7 @@
     "image_url": "/static/images/cards/cosmic_indifference.png",
     "beta_image_url": "/static/images/cards/beta/cosmic_indifference.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 9 [gold]защиты[/gold].\nКладет карту из [gold]стопки сброса[/gold] на верх [gold]стопки добора[/gold].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 193
@@ -22340,7 +22308,7 @@
     "image_url": "/static/images/cards/coolheaded.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Заряжает[/gold] 1 [gold]сферу льда[/gold].\nВы добираете 2 plural(ru):карту.",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 371
@@ -22380,7 +22348,7 @@
     "image_url": "/static/images/cards/grave_warden.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Дает 8 [gold]защиты[/gold].\nДобавляет [gold]«Душу+»[/gold] в [gold]стопку добора[/gold].",
+    "upgrade_description": "Дает 10 [gold]защиты[/gold].\nДобавляет [gold]«Душу+»[/gold] в [gold]стопку добора[/gold].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 300
@@ -22426,7 +22394,7 @@
     "image_url": "/static/images/cards/go_for_the_eyes.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 4 урона.\nНакладывает 1 [gold]слабости[/gold], если враг планирует атаковать.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 389
@@ -22455,13 +22423,11 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": {
-      "description_changed": true
-    },
+    "upgrade": null,
     "image_url": "/static/images/cards/multi_cast.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "[gold]Разряжает[/gold] правую сферу X+1 раз.",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 406
@@ -22542,7 +22508,7 @@
     "image_url": "/static/images/cards/black_hole.png",
     "beta_image_url": "/static/images/cards/beta/black_hole.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 4 урона ВСЕМ врагам, когда вы получаете или тратите [star:1].",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 181
@@ -22702,7 +22668,7 @@
     "image_url": "/static/images/cards/skewer.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 10 урона X раз.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 156
@@ -22739,7 +22705,7 @@
     "image_url": "/static/images/cards/ball_lightning.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 10 урона.\n[gold]Заряжает[/gold] 1 [gold]сферу молнии[/gold].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 353
@@ -22825,7 +22791,7 @@
     "image_url": "/static/images/cards/soul_storm.png",
     "beta_image_url": "/static/images/cards/beta/soul_storm.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 9 урона.\nНаносит 3 дополнительного урона за каждую [gold]«Душу»[/gold] в [gold]стопке пепла[/gold].",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 338
@@ -22862,7 +22828,7 @@
     "image_url": "/static/images/cards/dagger_spray.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 6 урона ВСЕМ врагам 2 раза.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 107
@@ -22941,7 +22907,7 @@
     "image_url": "/static/images/cards/storm.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Заряжает[/gold] 2 [gold]plural(ru):сферу молнии[/gold], когда вы разыгрываете Талант.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 422
@@ -22982,7 +22948,7 @@
     "image_url": "/static/images/cards/snap.png",
     "beta_image_url": "/static/images/cards/beta/snap.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Костя[/gold] наносит 10 урона.\nВыбранная в [gold]руке[/gold] карта [gold]оставляется[/gold].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 337
@@ -23020,7 +22986,7 @@
     "image_url": "/static/images/cards/equilibrium.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 16 [gold]защиты[/gold].\nВ этом ходу вы [gold]оставляете[/gold] карты в [gold]руке[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 453
@@ -23219,7 +23185,7 @@
     "image_url": "/static/images/cards/rage.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 5 [gold]защиты[/gold], когда в этом ходу разыгрываются Атаки.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 61
@@ -23259,7 +23225,7 @@
     "image_url": "/static/images/cards/neows_fury.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Наносит 14 урона.\nПереносит plural(ru):случайную карту из [gold]стопки сброса[/gold] в [gold]руку[/gold].",
     "type_key": "Attack",
     "rarity_key": "Ancient",
     "keywords_key": [
@@ -23302,7 +23268,7 @@
     "image_url": "/static/images/cards/brightest_flame.png",
     "beta_image_url": "/static/images/cards/beta/brightest_flame.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает [energy:3].\nВы добираете 3 plural(ru):карту.\nВы теряете 1 макс. ОЗ.",
     "type_key": "Skill",
     "rarity_key": "Ancient",
     "compendium_order": 523
@@ -23343,7 +23309,7 @@
     "image_url": "/static/images/cards/glimpse_beyond.png",
     "beta_image_url": "/static/images/cards/beta/glimpse_beyond.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Добавляет ВСЕМ игрокам 4 [gold]plural(ru):«Душу»[/gold] в [gold]стопку добора[/gold].",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
