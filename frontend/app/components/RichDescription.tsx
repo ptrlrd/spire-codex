@@ -202,7 +202,7 @@ function renderNode(
           <React.Fragment key={key}>
             {segments.map((seg, i) =>
               seg.card ? (
-                <CardHoverTip key={i} card={seg.card}>
+                <CardHoverTip key={i} card={seg.card} isUpgraded={seg.isUpgraded}>
                   {seg.text}
                 </CardHoverTip>
               ) : (
@@ -282,8 +282,9 @@ function cleanTemplateVars(text: string): string {
   return text;
 }
 
-function CardHoverTip({ card, children }: { card: RelatedCard; children: React.ReactNode }) {
+function CardHoverTip({ card, isUpgraded, children }: { card: RelatedCard; isUpgraded?: boolean; children: React.ReactNode }) {
   const [show, setShow] = useState(false);
+  const displayName = isUpgraded ? `${card.name}+` : card.name;
 
   return (
     <span
@@ -304,7 +305,7 @@ function CardHoverTip({ card, children }: { card: RelatedCard; children: React.R
               <span className="block bg-black/40">
                 <img
                   src={`${API_BASE}${card.image_url}`}
-                  alt={`${card.name} - Slay the Spire 2 Card`}
+                  alt={`${displayName} - Slay the Spire 2 Card`}
                   className="w-full h-24 object-contain"
                   crossOrigin="anonymous"
                 />
@@ -312,7 +313,7 @@ function CardHoverTip({ card, children }: { card: RelatedCard; children: React.R
             )}
             <span className="block px-2.5 py-2">
               <span className="block text-xs font-semibold text-[var(--text-primary)]">
-                {card.name}
+                {displayName}
               </span>
               <span className="block text-[10px] text-[var(--text-muted)] mt-0.5">
                 {card.type} · {card.rarity} · Cost {card.cost}
@@ -329,7 +330,7 @@ function CardHoverTip({ card, children }: { card: RelatedCard; children: React.R
 function splitWithCardRefs(
   text: string,
   cards: RelatedCard[]
-): { text: string; card?: RelatedCard }[] {
+): { text: string; card?: RelatedCard; isUpgraded?: boolean }[] {
   if (!cards.length) return [{ text }];
 
   // Build patterns sorted by name length desc (longer names match first)
@@ -337,13 +338,13 @@ function splitWithCardRefs(
   const patterns = sorted.flatMap((c) => {
     // Match exact name, common plural forms, and upgraded suffix (+)
     const escaped = c.name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    return [{ re: new RegExp(`(${escaped}(?:s|es)?\\+?)`, "gi"), card: c }];
+    return [{ re: new RegExp(`(${escaped}(?:s|es)?(\\+)?)`, "gi"), card: c }];
   });
 
-  let segments: { text: string; card?: RelatedCard }[] = [{ text }];
+  let segments: { text: string; card?: RelatedCard; isUpgraded?: boolean }[] = [{ text }];
 
   for (const { re, card } of patterns) {
-    const next: { text: string; card?: RelatedCard }[] = [];
+    const next: { text: string; card?: RelatedCard; isUpgraded?: boolean }[] = [];
     for (const seg of segments) {
       if (seg.card) {
         next.push(seg);
@@ -356,7 +357,7 @@ function splitWithCardRefs(
         if (m.index > last) {
           next.push({ text: seg.text.slice(last, m.index) });
         }
-        next.push({ text: m[1], card });
+        next.push({ text: m[1], card, isUpgraded: !!m[2] });
         last = m.index + m[0].length;
       }
       if (last < seg.text.length) {
@@ -472,7 +473,7 @@ export default function RichDescription({
           return (
             <React.Fragment key={key}>
               {cardSegs.map((seg, i) =>
-                seg.card ? <CardHoverTip key={i} card={seg.card}>{seg.text}</CardHoverTip> : <React.Fragment key={i}>{seg.text}</React.Fragment>
+                seg.card ? <CardHoverTip key={i} card={seg.card} isUpgraded={seg.isUpgraded}>{seg.text}</CardHoverTip> : <React.Fragment key={i}>{seg.text}</React.Fragment>
               )}
             </React.Fragment>
           );
@@ -488,7 +489,7 @@ export default function RichDescription({
           return (
             <React.Fragment key={key}>
               {segments.map((seg, i) =>
-                seg.card ? <CardHoverTip key={i} card={seg.card}>{seg.text}</CardHoverTip> : <React.Fragment key={i}>{seg.text}</React.Fragment>
+                seg.card ? <CardHoverTip key={i} card={seg.card} isUpgraded={seg.isUpgraded}>{seg.text}</CardHoverTip> : <React.Fragment key={i}>{seg.text}</React.Fragment>
               )}
             </React.Fragment>
           );
