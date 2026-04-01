@@ -1912,11 +1912,13 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/tempest.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Заряжает[/gold] X+1 [gold]сфер молнии[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 430
@@ -2267,11 +2269,13 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/largesse.png",
     "beta_image_url": "/static/images/cards/beta/largesse.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Добавляет в [gold]руку[/gold] другому игроку случайную [gold]улучшенную[/gold] бесцветную карту.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 222
@@ -6728,11 +6732,13 @@
       "GIANT_ROCK"
     ],
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/primal_force.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Преобразует[/gold] все Атаки в [gold]руке[/gold] в [gold]«Булыжники+»[/gold].",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 59
@@ -7378,11 +7384,13 @@
       "CalculationBase": 0,
       "CalculationExtra": 1
     },
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/knife_trap.png",
     "beta_image_url": "/static/images/cards/beta/knife_trap.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Улучшает[/gold] и разыгрывает все [gold]сожженные[/gold] [gold]«Заточки»[/gold] по цели.",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 131
@@ -7411,11 +7419,13 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/splash.png",
     "beta_image_url": "/static/images/cards/beta/splash.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Добавляет в [gold]руку[/gold] выбранную из 3 случайных  [gold]улучшенных[/gold] Атак другого персонажа. В этом ходу она бесплатная.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 493
@@ -7484,11 +7494,13 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/cascade.png",
     "beta_image_url": "/static/images/cards/beta/cascade.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Вы разыгрываете X+1 карт с верха [gold]стопки добора[/gold].",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 16
@@ -7593,11 +7605,13 @@
     "vars": {
       "StarCost": 2
     },
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/quasar.png",
     "beta_image_url": "/static/images/cards/beta/quasar.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Добавляет выбранную из 3 случайных [gold]улучшенных[/gold] бесцветных карт в [gold]руку[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 238
@@ -11319,11 +11333,13 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/darkness.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Заряжает[/gold] 1 [gold]сферу тьмы[/gold].\nАктивирует пассивный эффект всех [gold]сфер тьмы[/gold]  2 раза.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 373
@@ -12512,11 +12528,13 @@
     "vars": {
       "Cards": 1
     },
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/seance.png",
     "beta_image_url": "/static/images/cards/beta/seance.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Преобразует[/gold] карту в [gold]стопке добора[/gold] в [gold]«Душу+»[/gold].",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -16408,11 +16426,13 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/enlightenment.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Понижает стоимость ВСЕХ карт в [gold]руке[/gold] до 1 на этот бой.",
     "type_key": "Skill",
     "rarity_key": "Event",
     "keywords_key": [
@@ -17565,11 +17585,13 @@
       "MINION_SACRIFICE"
     ],
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/guards.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Преобразует[/gold] выбранное количество карт в [gold]руке[/gold] в карты [gold]«Слуга-щит+»[/gold].",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -18490,11 +18512,13 @@
       "Shivs": 2,
       "Cards": 2
     },
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/hidden_daggers.png",
     "beta_image_url": "/static/images/cards/beta/hidden_daggers.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Вы сбрасываете 2 plural(ru):карту.\nДобавляет 2 [gold]plural(ru):«Заточку+»[/gold] в [gold]руку[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 129
@@ -19063,11 +19087,13 @@
     "vars": {
       "Block": 5
     },
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/armaments.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Дает 5 [gold]защиты[/gold].\n[gold]Улучшает[/gold] ВСЕ карты в [gold]руке[/gold].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 2
@@ -19268,11 +19294,13 @@
       "SpinnerPower": 1,
       "Spinner": 1
     },
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/spinner.png",
     "beta_image_url": "/static/images/cards/beta/spinner.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Заряжает[/gold] 1 [gold]сферу стекла[/gold].\n[gold]Заряжает[/gold] 1 [gold]сферу стекла[/gold] в начале хода.",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 421
@@ -21697,11 +21725,13 @@
       "SHIV"
     ],
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/storm_of_steel.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Вы сбрасываете все карты.\nДобавляет [gold]«Заточку+»[/gold] в [gold]руку[/gold] за каждую сброшенную карту.",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 161
@@ -22113,11 +22143,13 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/malaise.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Отнимает X+1 [gold]силы[/gold]. Накладывает X+1 [gold]слабости[/gold].",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -22423,11 +22455,13 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/multi_cast.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Разряжает[/gold] правую сферу X+1 раз.",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 406

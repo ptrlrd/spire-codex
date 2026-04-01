@@ -374,8 +374,8 @@ def parse_single_card(filepath: Path, localization: dict, card_pools: dict, even
         card["upgrade"] = None
 
     # Generate upgrade_description with upgraded var values (correct plurals, icons, text)
+    upgraded_vars = dict(resolve_vars)
     if card["upgrade"]:
-        upgraded_vars = dict(resolve_vars)
         for key, val in card["upgrade"].items():
             if isinstance(val, str) and (val[0] == '+' or val[0] == '-'):
                 try:
@@ -386,9 +386,9 @@ def parse_single_card(filepath: Path, localization: dict, card_pools: dict, even
                     if vk.lower() == key.lower() and isinstance(upgraded_vars[vk], (int, float)):
                         upgraded_vars[vk] += diff
                         break
-        up_desc = shared_resolve_description(description, upgraded_vars, is_upgraded=True)
-        if up_desc != desc_rendered:
-            card["upgrade_description"] = up_desc
+    up_desc = shared_resolve_description(description, upgraded_vars, is_upgraded=True)
+    if up_desc != desc_rendered:
+        card["upgrade_description"] = up_desc
 
     # Mark cards with text-only upgrades (no numeric changes, only IfUpgraded patterns)
     if not card["upgrade"] and card["upgrade_description"]:

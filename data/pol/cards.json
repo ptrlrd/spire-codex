@@ -1429,11 +1429,13 @@
       "SHIV"
     ],
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/storm_of_steel.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Odrzuć swoją [gold]rękę[/gold].\nDodaj 1 [gold]Nóż+[/gold] do [gold]ręki[/gold] za każdą odrzuconą kartę.",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 161
@@ -2091,11 +2093,13 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/darkness.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Załaduj[/gold] 1 [gold]Sferę Ciemności[/gold].\nAktywuj umiejętność bierną wszystkich [gold]Sfer Ciemności[/gold] dwukrotnie.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 373
@@ -5031,11 +5035,13 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/largesse.png",
     "beta_image_url": "/static/images/cards/beta/largesse.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Inny gracz dodaje losową  [gold]Ulepszoną[/gold] bezbarwną kartę do [gold]ręki[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 222
@@ -5538,11 +5544,13 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/cascade.png",
     "beta_image_url": "/static/images/cards/beta/cascade.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Zagraj kartę ze szczytu [gold]stosu rozgrywającego[/gold] X+1 razy.",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 16
@@ -6816,11 +6824,13 @@
     "vars": {
       "StarCost": 2
     },
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/quasar.png",
     "beta_image_url": "/static/images/cards/beta/quasar.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Wybierz 1 z 3 losowych [gold]Ulepszonych[/gold] kart i dodaj ją do [gold]ręki[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 238
@@ -7212,11 +7222,13 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/malaise.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Przeciwnik traci X+1 pkt. [gold]Siły[/gold]. Nałóż X+1 pkt. [gold]Słabości[/gold].",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -8133,11 +8145,13 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/tempest.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Załaduj[/gold] [gold]Sferę Gromu[/gold] X+1 razy.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 430
@@ -10463,11 +10477,13 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/enlightenment.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Zredukuj koszt WSZYSTKICH kart w [gold]ręce[/gold] do 1 w tej walce.",
     "type_key": "Skill",
     "rarity_key": "Event",
     "keywords_key": [
@@ -11210,11 +11226,13 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/splash.png",
     "beta_image_url": "/static/images/cards/beta/splash.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Wybierz 1 z 3 losowych [gold]Ulepszonych[/gold] Ataków od innej postaci i dodaj go do [gold]ręki[/gold]. W tej turze kosztuje 0.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 493
@@ -12080,11 +12098,13 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/multi_cast.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Wyładuj[/gold] pierwszą Sferę X+1 razy.",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 406
@@ -12857,11 +12877,13 @@
       "GIANT_ROCK"
     ],
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/primal_force.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Zmień wszystkie Ataki w [gold]ręce[/gold] w [gold]Dużą skałę+[/gold].",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 59
@@ -15361,11 +15383,13 @@
       "MINION_SACRIFICE"
     ],
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/guards.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Zmień[/gold] dowoloną liczbę kart w [gold]ręce[/gold] w [gold]Poświęcenie służby+[/gold]",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -15590,11 +15614,13 @@
     "vars": {
       "Cards": 1
     },
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/seance.png",
     "beta_image_url": "/static/images/cards/beta/seance.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Zmień kartę ze [gold]stosu rozgrywającego[/gold] w [gold]Duszę+[/gold].",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -16609,11 +16635,13 @@
       "SpinnerPower": 1,
       "Spinner": 1
     },
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/spinner.png",
     "beta_image_url": "/static/images/cards/beta/spinner.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Załaduj[/gold] 1 [gold]Sferę Szkła[/gold].\nNa początku tury [gold]Załaduj[/gold] 1 [gold]Sferę Szkła[/gold].",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 421
@@ -18965,11 +18993,13 @@
     "vars": {
       "Block": 5
     },
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/armaments.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Zyskaj 5 pkt. [gold]Bloku[/gold].\n[gold]Ulepsz[/gold] WSZYSTKIE karty w [gold]ręce[/gold].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 2

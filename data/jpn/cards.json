@@ -1552,11 +1552,13 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/cascade.png",
     "beta_image_url": "/static/images/cards/beta/cascade.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]山札[/gold]の上からX+1枚のカードをプレイする。",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 16
@@ -1792,11 +1794,13 @@
     "vars": {
       "StarCost": 2
     },
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/quasar.png",
     "beta_image_url": "/static/images/cards/beta/quasar.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "ランダムな[gold]アップグレード[/gold]済みの無色カード3枚の中から1枚選び、[gold]手札[/gold]に加える。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 238
@@ -3085,11 +3089,13 @@
       "SpinnerPower": 1,
       "Spinner": 1
     },
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/spinner.png",
     "beta_image_url": "/static/images/cards/beta/spinner.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]グラス[/gold]1を[gold]生成[/gold]する。\nターン開始時、[gold]グラス[/gold]1を[gold]生成[/gold]する。",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 421
@@ -3162,11 +3168,13 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/splash.png",
     "beta_image_url": "/static/images/cards/beta/splash.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "他のキャラクターのランダムな[gold]アップグレード[/gold]済みのアタックを3枚見て1枚を選び、[gold]手札[/gold]に加える。このターン、それはコストを支払わずにプレイできる。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 493
@@ -3910,11 +3918,13 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/tempest.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]ライトニング[/gold]X+1を[gold]生成[/gold]する。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 430
@@ -4277,11 +4287,13 @@
       "CalculationBase": 0,
       "CalculationExtra": 1
     },
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/knife_trap.png",
     "beta_image_url": "/static/images/cards/beta/knife_trap.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]廃棄札[/gold]にあるすべての[gold]ナイフ[/gold]を[gold]アップグレード[/gold]してプレイする。",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 131
@@ -7036,11 +7048,13 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/multi_cast.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "右端のオーブをX+1回[gold]解放[/gold]する。",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 406
@@ -8191,11 +8205,13 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/malaise.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "敵は[gold]筋力[/gold]X+1を失う。[gold]脱力[/gold]X+1を付与する。",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -10029,11 +10045,13 @@
       "GIANT_ROCK"
     ],
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/primal_force.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]手札[/gold]にあるすべてのアタックを[gold]巨大な岩+[/gold]に変化させる。",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 59
@@ -10556,11 +10574,13 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/enlightenment.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "この戦闘中、[gold]手札[/gold]のすべてのカードのコストを1にする。",
     "type_key": "Skill",
     "rarity_key": "Event",
     "keywords_key": [
@@ -11778,11 +11798,13 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/largesse.png",
     "beta_image_url": "/static/images/cards/beta/largesse.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "他のプレイヤー1人は、ランダムな[gold]アップグレード[/gold]済みの無色カードを1枚[gold]手札[/gold]に加える。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 222
@@ -14687,11 +14709,13 @@
       "Shivs": 2,
       "Cards": 2
     },
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/hidden_daggers.png",
     "beta_image_url": "/static/images/cards/beta/hidden_daggers.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "カードを2枚捨てる。\n[gold]ナイフ+[/gold]を2枚[gold]手札[/gold]に加える。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 129
@@ -14773,11 +14797,13 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/darkness.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]ダーク[/gold]1を[gold]生成[/gold]する。\nすべての[gold]ダーク[/gold]オーブの自動効果を2回発動する。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 373
@@ -15303,11 +15329,13 @@
     "vars": {
       "Block": 5
     },
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/armaments.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "5[gold]ブロック[/gold]を得る。\n戦闘終了まで、[gold]手札[/gold]のカードをすべて[gold]アップグレード[/gold]する。",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 2
@@ -17947,11 +17975,13 @@
       "MINION_SACRIFICE"
     ],
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/guards.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]手札[/gold]からカードを任意の枚数選び、[gold]ミニオンの盾+[/gold]に[gold]変化[/gold]させる。",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -18383,11 +18413,13 @@
     "vars": {
       "Cards": 2
     },
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/charge.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]山札[/gold]からカードを2枚選び、\n[gold]ミニオンストライク+[/gold]に[gold]変化[/gold]させる",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 186
@@ -21932,11 +21964,13 @@
       "SHIV"
     ],
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/storm_of_steel.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]手札[/gold]をすべて捨てる。\n捨てたカード1枚につき、[gold]ナイフ+[/gold]を1枚[gold]手札[/gold]に加える。",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 161
@@ -22396,11 +22430,13 @@
     "vars": {
       "Cards": 1
     },
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/seance.png",
     "beta_image_url": "/static/images/cards/beta/seance.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]山札[/gold]のカード1枚を[gold]ソウル+[/gold]に変化させる。",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [

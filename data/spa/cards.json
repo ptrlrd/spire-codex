@@ -2015,11 +2015,13 @@
     "vars": {
       "Block": 5
     },
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/armaments.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gana 5 de [gold]Bloqueo[/gold].\n[gold]Mejora[/gold] TODAS las cartas de tu [gold]Mano[/gold].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 2
@@ -3997,11 +3999,13 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/cascade.png",
     "beta_image_url": "/static/images/cards/beta/cascade.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Juega las X+1 primeras cartas de tu [gold]Pila de robo[/gold].",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 16
@@ -5486,11 +5490,13 @@
     "vars": {
       "StarCost": 2
     },
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/quasar.png",
     "beta_image_url": "/static/images/cards/beta/quasar.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Elige 1 de entre 3 cartas incoloras [gold]Mejoradas[/gold] y añádelas a tu [gold]Mano[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 238
@@ -5524,11 +5530,13 @@
       "Shivs": 2,
       "Cards": 2
     },
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/hidden_daggers.png",
     "beta_image_url": "/static/images/cards/beta/hidden_daggers.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Descarta 2 cartas.\nAñade 2 [gold]Navajas+[/gold] a tu [gold]Mano[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 129
@@ -9835,11 +9843,13 @@
       "GIANT_ROCK"
     ],
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/primal_force.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Transforma todos los Ataques de tu [gold]Mano[/gold] en [gold]Roca gigantesca+[/gold].",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 59
@@ -10214,11 +10224,13 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/largesse.png",
     "beta_image_url": "/static/images/cards/beta/largesse.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Otro jugador añade 1 carta incolora [gold]Mejorada[/gold] a su [gold]Mano[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 222
@@ -12197,11 +12209,13 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/enlightenment.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Reduce el coste de TODAS las cartas de tu [gold]Mano[/gold] a 1 durante este combate.",
     "type_key": "Skill",
     "rarity_key": "Event",
     "keywords_key": [
@@ -14291,11 +14305,13 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/malaise.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "El enemigo pierde X+1 de [gold]Fuerza[/gold]. Aplica X+1 de [gold]Debilidad[/gold].",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -15379,11 +15395,13 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/multi_cast.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Descarga[/gold] el Orbe situado más a la derecha X+1 veces.",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 406
@@ -16266,11 +16284,13 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/darkness.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Invoca[/gold] 1 [gold]Oscuridad[/gold].\nActiva la habilidad pasiva de todos tus Orbes de [gold]Oscuridad[/gold] dos veces.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 373
@@ -19455,11 +19475,13 @@
     "vars": {
       "Cards": 1
     },
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/seance.png",
     "beta_image_url": "/static/images/cards/beta/seance.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Transforma una carta de tu [gold]Pila de robo[/gold] en un [gold]Alma+[/gold].",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -19848,11 +19870,13 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/splash.png",
     "beta_image_url": "/static/images/cards/beta/splash.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Elige 1 de entre 3 Ataques aleatorios [gold]Mejorados[/gold] de otro personaje y añádelo a tu [gold]Mano[/gold]. Puedes jugarlo gratis este turno.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 493
@@ -20678,11 +20702,13 @@
       "SpinnerPower": 1,
       "Spinner": 1
     },
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/spinner.png",
     "beta_image_url": "/static/images/cards/beta/spinner.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Invoca[/gold] 1 [gold]Cristal[/gold].\nAl comienzo de tu turno, [gold]Invoca[/gold] 1 [gold]Cristal[/gold].",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 421
@@ -21201,11 +21227,13 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/tempest.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Invoca[/gold] X+1 [gold]Relámpago[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 430
@@ -21694,11 +21722,13 @@
       "SHIV"
     ],
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/storm_of_steel.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Descarta tu [gold]Mano[/gold].\nAñade 1 [gold]Navaja+[/gold] a tu [gold]Mano[/gold] por cada carta descartada.",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 161
@@ -21896,11 +21926,13 @@
       "CalculationBase": 0,
       "CalculationExtra": 1
     },
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/knife_trap.png",
     "beta_image_url": "/static/images/cards/beta/knife_trap.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Mejora[/gold] y juega todas las [gold]Navajas[/gold] de tu [gold]Pila de agotamiento[/gold] contra el enemigo.",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 131
@@ -22906,11 +22938,13 @@
     "vars": {
       "Cards": 2
     },
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/charge.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Elige 2 cartas de tu [gold]Pila de robo[/gold] y [gold]Transfórmalas[/gold] en\n[gold]Golpe de esbirro+[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 186
@@ -23159,11 +23193,13 @@
       "MINION_SACRIFICE"
     ],
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/guards.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Transforma[/gold] cualquier número de cartas de tu [gold]Mano[/gold] en [gold]Sacrificio de esbirro+[/gold].",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [

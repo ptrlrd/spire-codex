@@ -1374,11 +1374,13 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/cascade.png",
     "beta_image_url": "/static/images/cards/beta/cascade.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "打出你[gold]抽牌堆[/gold]顶部的X+1张牌。",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 16
@@ -2103,11 +2105,13 @@
     "vars": {
       "Cards": 2
     },
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/charge.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "选择你[gold]抽牌堆[/gold]中的2张 牌，将其[gold]变化[/gold]为\n[gold]仆从打击+[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 186
@@ -2692,11 +2696,13 @@
       "CalculationBase": 0,
       "CalculationExtra": 1
     },
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/knife_trap.png",
     "beta_image_url": "/static/images/cards/beta/knife_trap.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "将你[gold]消耗牌堆[/gold]中的所有[gold]小刀[/gold][gold]升级[/gold]然后对一名敌人打出。",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 131
@@ -3693,11 +3699,13 @@
       "GIANT_ROCK"
     ],
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/primal_force.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "将[gold]手牌[/gold]中的所有攻击牌变化为[gold]巨石+[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 59
@@ -5443,11 +5451,13 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/multi_cast.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]激发[/gold]你最右侧的充能球X+1次。",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 406
@@ -7104,11 +7114,13 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/enlightenment.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "在这场战斗，你当前[gold]手牌[/gold]中所有牌的耗能降低至1。",
     "type_key": "Skill",
     "rarity_key": "Event",
     "keywords_key": [
@@ -8674,11 +8686,13 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/largesse.png",
     "beta_image_url": "/static/images/cards/beta/largesse.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "将一张随机的[gold]升级过的[/gold]无色牌添加至一位其他玩家的[gold]手牌[/gold]中。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 222
@@ -9904,11 +9918,13 @@
       "MINION_SACRIFICE"
     ],
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/guards.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "将你[gold]手牌[/gold]中的任意张牌[gold]变化[/gold]为[gold]仆从捐躯+[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -10975,11 +10991,13 @@
       "SpinnerPower": 1,
       "Spinner": 1
     },
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/spinner.png",
     "beta_image_url": "/static/images/cards/beta/spinner.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]生成[/gold]1个[gold]玻璃[/gold]充能球。\n在你的回合开始时，[gold]生成[/gold]1个[gold]玻璃[/gold]充能球。",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 421
@@ -11875,11 +11893,13 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/tempest.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]生成[/gold]X+1个[gold]闪电[/gold]充能球。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 430
@@ -12505,11 +12525,13 @@
     "vars": {
       "Block": 5
     },
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/armaments.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得5点[gold]格挡[/gold]。\n[gold]升级[/gold]你[gold]手牌[/gold]中的所有牌。",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 2
@@ -13657,11 +13679,13 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/darkness.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]生成[/gold]1[gold]黑暗[/gold]充能球。\n触发所有[gold]黑暗[/gold]充能球的被动两次。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 373
@@ -17114,11 +17138,13 @@
     "vars": {
       "StarCost": 2
     },
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/quasar.png",
     "beta_image_url": "/static/images/cards/beta/quasar.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "从3张随机[gold]升级过[/gold]的无色牌中选择1张加入你的[gold]手牌[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 238
@@ -18743,11 +18769,13 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/malaise.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "敌人失去X+1点[gold]力量[/gold]。给予X+1层[gold]虚弱[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -21244,11 +21272,13 @@
       "SHIV"
     ],
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/storm_of_steel.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "丢弃所有[gold]手牌[/gold]。\n每丢弃一张牌，就将一张[gold]小刀+[/gold]添加至你的[gold]手牌[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 161
@@ -21921,11 +21951,13 @@
     "vars": {
       "Cards": 1
     },
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/seance.png",
     "beta_image_url": "/static/images/cards/beta/seance.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "将你[gold]抽牌堆[/gold]中的一张牌变化为[gold]灵魂+[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -22054,11 +22086,13 @@
       "Shivs": 2,
       "Cards": 2
     },
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/hidden_daggers.png",
     "beta_image_url": "/static/images/cards/beta/hidden_daggers.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "丢弃2张牌。\n将2张[gold]小刀+[/gold]加入你的[gold]手牌[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 129
@@ -22862,11 +22896,13 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/splash.png",
     "beta_image_url": "/static/images/cards/beta/splash.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "从3张其他角色的[gold]升级过的[/gold]攻击牌中选择1张加入你的[gold]手牌[/gold]。这张牌在本回合免费打出。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 493

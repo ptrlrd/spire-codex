@@ -433,11 +433,13 @@
     "vars": {
       "Cards": 1
     },
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/seance.png",
     "beta_image_url": "/static/images/cards/beta/seance.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]뽑을 카드 더미[/gold]의 카드를 1장 [gold]영혼+[/gold]으로 변화시킵니다.",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -509,11 +511,13 @@
       "SHIV"
     ],
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/storm_of_steel.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]손[/gold]에 있는 모든 카드를 버립니다.\n버린 카드의 수만큼 [gold]단도+[/gold]를 [gold]손[/gold]으로 가져옵니다.",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 161
@@ -1117,11 +1121,13 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/enlightenment.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "이번 전투 동안, [gold]손[/gold]에 있는 모든 카드의 비용이 1로 감소합니다.",
     "type_key": "Skill",
     "rarity_key": "Event",
     "keywords_key": [
@@ -3987,11 +3993,13 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/tempest.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]전기[/gold]를 X+1번 [gold]영창[/gold]합니다.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 430
@@ -4235,11 +4243,13 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/multi_cast.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "가장 오른쪽의 구체를 X+1번 [gold]발현[/gold]합니다.",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 406
@@ -5213,11 +5223,13 @@
     "vars": {
       "Cards": 2
     },
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/charge.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]뽑을 카드 더미[/gold]에서 카드를 2장 선택해\n[gold]하수인 타격+[/gold]으로 [gold]변화[/gold]시킵니다.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 186
@@ -6041,11 +6053,13 @@
       "MINION_SACRIFICE"
     ],
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/guards.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]손[/gold]에 있는 카드를 원하는 만큼 [gold]하수인 희생+[/gold]으로 [gold]변화[/gold]시킵니다.",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -9449,11 +9463,13 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/malaise.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "적이 [gold]힘[/gold]을 X+1 잃습니다. [gold]약화[/gold]를 X+1 부여합니다.",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -11984,11 +12000,13 @@
       "Shivs": 2,
       "Cards": 2
     },
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/hidden_daggers.png",
     "beta_image_url": "/static/images/cards/beta/hidden_daggers.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "카드를 2장 버립니다.\n[gold]단도+[/gold]를 2장 [gold]손[/gold]으로 가져옵니다.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 129
@@ -12138,11 +12156,13 @@
       "SpinnerPower": 1,
       "Spinner": 1
     },
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/spinner.png",
     "beta_image_url": "/static/images/cards/beta/spinner.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]유리[/gold]를 1번 [gold]영창[/gold]합니다.\n내 턴 시작 시, [gold]유리[/gold]를 1번 [gold]영창[/gold]합니다.",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 421
@@ -13026,11 +13046,13 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/darkness.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]암흑[/gold]을 1번 [gold]영창[/gold]합니다.\n모든 [gold]암흑[/gold] 구체의 지속 효과를 2번 발동시킵니다.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 373
@@ -13680,11 +13702,13 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/cascade.png",
     "beta_image_url": "/static/images/cards/beta/cascade.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]뽑을 카드 더미[/gold] 맨 위의 무작위 카드를 X+1장 사용합니다.",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 16
@@ -14612,11 +14636,13 @@
       "GIANT_ROCK"
     ],
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/primal_force.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]손[/gold]에 있는 모든 공격 카드를 [gold]거대한 바위+[/gold]로 변화시킵니다.",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 59
@@ -16589,11 +16615,13 @@
     "vars": {
       "Block": 5
     },
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/armaments.png",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]방어도[/gold]를 5 얻습니다.\n[gold]손[/gold]에 있는 모든 카드를 [gold]강화[/gold]합니다.",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 2
@@ -17795,11 +17823,13 @@
     "vars": {
       "StarCost": 2
     },
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/quasar.png",
     "beta_image_url": "/static/images/cards/beta/quasar.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "무작위 [gold]강화[/gold]된 무색 카드 3장 중 1장을 선택해 [gold]손[/gold]으로 가져옵니다.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 238
@@ -18610,11 +18640,13 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/splash.png",
     "beta_image_url": "/static/images/cards/beta/splash.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "다른 캐릭터의 무작위 [gold]강화[/gold]된 공격 카드 3장 중 1장을 선택해 [gold]손[/gold]으로 가져옵니다. 이번 턴 동안 그 카드를 비용 없이 사용할 수 있습니다.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 493
@@ -19795,11 +19827,13 @@
       "CalculationBase": 0,
       "CalculationExtra": 1
     },
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/knife_trap.png",
     "beta_image_url": "/static/images/cards/beta/knife_trap.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "대상 적에게 [gold]소멸된 카드 더미[/gold]에 있는 모든 [gold]단도[/gold]를 [gold]강화[/gold]한 뒤 사용합니다.",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 131
@@ -21835,11 +21869,13 @@
     "tags": null,
     "spawns_cards": null,
     "vars": null,
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/largesse.png",
     "beta_image_url": "/static/images/cards/beta/largesse.png",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "다른 플레이어가 무작위 [gold]강화[/gold]된 무색 카드를 1장 [gold]손[/gold]으로 가져옵니다.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 222
