@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import Link from "next/link";
 import type { Epoch, Story, Card, Relic, Potion } from "@/lib/api";
 import { cachedFetch } from "@/lib/fetch-cache";
 import SearchFilter from "../components/SearchFilter";
@@ -90,10 +91,12 @@ function UnlockBadge({
           type === "cards" ? cardMap[id] :
           type === "relics" ? relicMap[id] :
           potionMap[id];
+        const href = `/${type}/${id.toLowerCase()}`;
         return (
-          <span
+          <Link
             key={id}
-            className={`relative text-[10px] px-1.5 py-0.5 rounded border ${colors[type]} ${data ? "cursor-help" : ""} group/badge`}
+            href={href}
+            className={`relative text-[10px] px-1.5 py-0.5 rounded border ${colors[type]} hover:brightness-125 transition-all group/badge`}
           >
             {data?.name || id.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())}
             {data && (
@@ -119,7 +122,7 @@ function UnlockBadge({
                 </span>
               </span>
             )}
-          </span>
+          </Link>
         );
       })}
     </div>
