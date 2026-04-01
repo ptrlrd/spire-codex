@@ -1,0 +1,2064 @@
+{
+  "app_id": 2868840,
+  "game_version": "1.0.14",
+  "build_id": "",
+  "tag": "1.0.14",
+  "date": "2026-04-01",
+  "title": "Card upgrades, timeline pages & URL filters",
+  "from_ref": "v1.0.13",
+  "to_ref": "current",
+  "features": [
+    "Card upgrade data for 18 previously missing cards — Armaments, Storm of Steel, Multi-Cast, Malaise, Darkness, Spinner, Enlightenment, Cascade, and more now show correct upgraded descriptions",
+    "Timeline epoch detail pages at /timeline/{id} with clean slug-based URLs",
+    "Timeline unlock badges are now clickable links to detail pages",
+    "URL filter persistence — filters, search, and sort are saved in URL params across all list pages for shareable/back-navigable filtered views"
+  ],
+  "fixes": [
+    "Star icon rendering in upgraded card descriptions — Glow+, Hidden Cache+, Solar Strike+, Venerate+ no longer show broken [star:N] tags",
+    "Capacitor+ and Chaos+ now show upgraded Orb values (repeat upgrade was silently skipped)",
+    "Bulk Up+ and Capture Spirit+ now show upgraded values when multiple stats share the same base number",
+    "Timeline era display uses proper era names instead of raw era with position number",
+    "Era year 0 hidden on timeline list and detail pages",
+    "Encounter loss text placeholders resolved with encounter name and 'The adventurer'"
+  ],
+  "api_changes": [
+    "Cards now include upgrade_description field — the fully resolved description text when upgraded",
+    "Epochs now include slug field for URL-friendly lookups (e.g. /api/epochs/the-architect)",
+    "Epoch lookup accepts both ID and slug"
+  ],
+  "summary": {
+    "added": 0,
+    "removed": 0,
+    "changed": 174
+  },
+  "categories": [
+    {
+      "id": "cards",
+      "name": "Cards",
+      "old_count": 576,
+      "new_count": 576,
+      "changed": [
+        {
+          "id": "ARMAMENTS",
+          "name": "Armaments",
+          "changes": [
+            {
+              "field": "upgrade",
+              "old": "none",
+              "new": "1 fields"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "Gain 5 [gold]Block[/gold].\n[gold]Upgrade[/gold] ALL cards in your [gold]Hand[..."
+            }
+          ]
+        },
+        {
+          "id": "BEGONE",
+          "name": "BEGONE!",
+          "changes": [
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "Deal 4 damage.\nChoose a card in your [gold]Hand[/gold] to [gold]Transform[/go..."
+            }
+          ]
+        },
+        {
+          "id": "BURST",
+          "name": "Burst",
+          "changes": [
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "This turn, your next 2 Skill is played an extra time."
+            }
+          ]
+        },
+        {
+          "id": "CASCADE",
+          "name": "Cascade",
+          "changes": [
+            {
+              "field": "upgrade",
+              "old": "none",
+              "new": "1 fields"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "Play the top X+1 cards of your [gold]Draw Pile[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "CHARGE",
+          "name": "CHARGE!!",
+          "changes": [
+            {
+              "field": "upgrade",
+              "old": "none",
+              "new": "1 fields"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "Choose 2 cards in your [gold]Draw Pile[/gold] to [gold]Transform[/gold] into\n..."
+            }
+          ]
+        },
+        {
+          "id": "COMPACT",
+          "name": "Compact",
+          "changes": [
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "Gain 6 [gold]Block[/gold].\n[gold]Transform[/gold] all Status cards in your [g..."
+            }
+          ]
+        },
+        {
+          "id": "DARKNESS",
+          "name": "Darkness",
+          "changes": [
+            {
+              "field": "upgrade",
+              "old": "none",
+              "new": "1 fields"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "[gold]Channel[/gold] 1 [gold]Dark[/gold].\nTrigger the passive ability of all ..."
+            }
+          ]
+        },
+        {
+          "id": "DIRGE",
+          "name": "Dirge",
+          "changes": [
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "[gold]Summon[/gold] 3 X times.\nAdd X [gold]Souls+[/gold] into your [gold]Draw..."
+            }
+          ]
+        },
+        {
+          "id": "DUAL_WIELD",
+          "name": "Dual Wield",
+          "changes": [
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "Choose an Attack or Power card. Add [Cards copies|a copy] of that card into y..."
+            }
+          ]
+        },
+        {
+          "id": "ENLIGHTENMENT",
+          "name": "Enlightenment",
+          "changes": [
+            {
+              "field": "upgrade",
+              "old": "none",
+              "new": "1 fields"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "Reduce the cost of ALL cards in your [gold]Hand[/gold] to 1 this combat."
+            }
+          ]
+        },
+        {
+          "id": "GRAVE_WARDEN",
+          "name": "Grave Warden",
+          "changes": [
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "Gain 8 [gold]Block[/gold].\nAdd a [gold]Soul+[/gold] into your [gold]Draw Pile..."
+            }
+          ]
+        },
+        {
+          "id": "GUARDS",
+          "name": "GUARDS!!!",
+          "changes": [
+            {
+              "field": "upgrade",
+              "old": "none",
+              "new": "1 fields"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "[gold]Transform[/gold] any number of cards in your [gold]Hand[/gold] into [go..."
+            }
+          ]
+        },
+        {
+          "id": "HIDDEN_DAGGERS",
+          "name": "Hidden Daggers",
+          "changes": [
+            {
+              "field": "upgrade",
+              "old": "none",
+              "new": "1 fields"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "Discard 2 cards.\nAdd 2 [gold]Shivs+[/gold] into your [gold]Hand[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "JACKPOT",
+          "name": "Jackpot",
+          "changes": [
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "Deal 25 damage.\nAdd 3 random [gold]Upgraded[/gold] 0[energy:1] cards into you..."
+            }
+          ]
+        },
+        {
+          "id": "KNIFE_TRAP",
+          "name": "Knife Trap",
+          "changes": [
+            {
+              "field": "upgrade",
+              "old": "none",
+              "new": "1 fields"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "[gold]Upgrade[/gold] and play every [gold]Shiv[/gold] in your [gold]Exhaust P..."
+            }
+          ]
+        },
+        {
+          "id": "KNOCKDOWN",
+          "name": "Knockdown",
+          "changes": [
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "Deal 10 damage.\nThe enemy takes triple damage from other players this turn."
+            }
+          ]
+        },
+        {
+          "id": "LARGESSE",
+          "name": "Largesse",
+          "changes": [
+            {
+              "field": "upgrade",
+              "old": "none",
+              "new": "1 fields"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "Another player adds 1 random [gold]Upgraded[/gold] Colorless card to their [g..."
+            }
+          ]
+        },
+        {
+          "id": "LOOP",
+          "name": "Loop",
+          "changes": [
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "At the start of your turn, trigger the passive ability of your rightmost Orb ..."
+            }
+          ]
+        },
+        {
+          "id": "MALAISE",
+          "name": "Malaise",
+          "changes": [
+            {
+              "field": "upgrade",
+              "old": "none",
+              "new": "1 fields"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "Enemy loses X+1 [gold]Strength[/gold]. Apply X+1 [gold]Weak[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "MANIFEST_AUTHORITY",
+          "name": "Manifest Authority",
+          "changes": [
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "Gain 7 [gold]Block[/gold].\nAdd 1 random [gold]Upgraded[/gold] Colorless card ..."
+            }
+          ]
+        },
+        {
+          "id": "MULTI_CAST",
+          "name": "Multi-Cast",
+          "changes": [
+            {
+              "field": "upgrade",
+              "old": "none",
+              "new": "1 fields"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "[gold]Evoke[/gold] your rightmost Orb X+1 times."
+            }
+          ]
+        },
+        {
+          "id": "PRIMAL_FORCE",
+          "name": "Primal Force",
+          "changes": [
+            {
+              "field": "upgrade",
+              "old": "none",
+              "new": "1 fields"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "Transform all Attacks in your [gold]Hand[/gold] into [gold]Giant Rock+[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "QUASAR",
+          "name": "Quasar",
+          "changes": [
+            {
+              "field": "upgrade",
+              "old": "none",
+              "new": "1 fields"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "Choose 1 of 3 random [gold]Upgraded[/gold] Colorless cards to add into your [..."
+            }
+          ]
+        },
+        {
+          "id": "REAVE",
+          "name": "Reave",
+          "changes": [
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "Deal 9 damage.\nAdd a [gold]Soul+[/gold] into your [gold]Draw Pile[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "SEANCE",
+          "name": "Seance",
+          "changes": [
+            {
+              "field": "upgrade",
+              "old": "none",
+              "new": "1 fields"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "Transform a card in your [gold]Draw Pile[/gold] into [gold]Soul+[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "SPINNER",
+          "name": "Spinner",
+          "changes": [
+            {
+              "field": "upgrade",
+              "old": "none",
+              "new": "1 fields"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "[gold]Channel[/gold] 1 [gold]Glass[/gold].\nAt the start of your turn, [gold]C..."
+            }
+          ]
+        },
+        {
+          "id": "SPLASH",
+          "name": "Splash",
+          "changes": [
+            {
+              "field": "upgrade",
+              "old": "none",
+              "new": "1 fields"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "Choose 1 of 3 random [gold]Upgraded[/gold] Attacks from another character to ..."
+            }
+          ]
+        },
+        {
+          "id": "STACK",
+          "name": "Stack",
+          "changes": [
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "Gain [gold]Block[/gold] equal to the number of cards in your [gold]Discard Pi..."
+            }
+          ]
+        },
+        {
+          "id": "STORM_OF_STEEL",
+          "name": "Storm of Steel",
+          "changes": [
+            {
+              "field": "upgrade",
+              "old": "none",
+              "new": "1 fields"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "Discard your [gold]Hand[/gold].\nAdd 1 [gold]Shiv+[/gold] into your [gold]Hand..."
+            }
+          ]
+        },
+        {
+          "id": "TEMPEST",
+          "name": "Tempest",
+          "changes": [
+            {
+              "field": "upgrade",
+              "old": "none",
+              "new": "1 fields"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "[gold]Channel[/gold] X+1 [gold]Lightning[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "TRUE_GRIT",
+          "name": "True Grit",
+          "changes": [
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "Gain 7 [gold]Block[/gold].\n[gold]Exhaust[/gold] 1 card."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "encounters",
+      "name": "Encounters",
+      "old_count": 87,
+      "new_count": 87,
+      "changed": [
+        {
+          "id": "AXEBOTS_NORMAL",
+          "name": "Bot Buddies",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "{character} was dismembered by some [gold]{encounter}[/gold].",
+              "new": "The adventurer was dismembered by some [gold]Bot Buddies[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "BATTLEWORN_DUMMY_EVENT_ENCOUNTER",
+          "name": "Battleworn Dummy",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "{character} was somehow killed by [gold]{encounter}[/gold]???",
+              "new": "The adventurer was somehow killed by [gold]Battleworn Dummy[/gold]???"
+            }
+          ]
+        },
+        {
+          "id": "BOWLBUGS_NORMAL",
+          "name": "Bowlbug Swarm",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "{character} got in the way of a busy [gold]{encounter}[/gold].",
+              "new": "The adventurer got in the way of a busy [gold]Bowlbug Swarm[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "BOWLBUGS_WEAK",
+          "name": "Bowlbugs",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "{character} got in the way of some busy [gold]{encounter}[/gold].",
+              "new": "The adventurer got in the way of some busy [gold]Bowlbugs[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "BYGONE_EFFIGY_ELITE",
+          "name": "Bygone Effigy",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "{character} was sliced in half by a [gold]{encounter}[/gold].",
+              "new": "The adventurer was sliced in half by a [gold]Bygone Effigy[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "BYRDONIS_ELITE",
+          "name": "Byrdonis",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "[gold]{encounter}[/gold] protected its children from {character}.",
+              "new": "[gold]Byrdonis[/gold] protected its children from The adventurer."
+            }
+          ]
+        },
+        {
+          "id": "CEREMONIAL_BEAST_BOSS",
+          "name": "Ceremonial Beast",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "{character} was put to rest by the [gold]{encounter}[/gold].",
+              "new": "The adventurer was put to rest by the [gold]Ceremonial Beast[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "CHOMPERS_NORMAL",
+          "name": "An Automaton Pair",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "{character} was chomped to death by [gold]{encounter}[/gold].",
+              "new": "The adventurer was chomped to death by [gold]An Automaton Pair[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "CONSTRUCT_MENAGERIE_NORMAL",
+          "name": "Construct Menagerie",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "The [gold]{encounter}[/gold] crushed {character}.",
+              "new": "The [gold]Construct Menagerie[/gold] crushed The adventurer."
+            }
+          ]
+        },
+        {
+          "id": "CORPSE_SLUGS_NORMAL",
+          "name": "Many Corpse Slugs",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "[gold]{encounter}[/gold] feasted on {character}.",
+              "new": "[gold]Many Corpse Slugs[/gold] feasted on The adventurer."
+            }
+          ]
+        },
+        {
+          "id": "CORPSE_SLUGS_WEAK",
+          "name": "Corpse Slugs",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "[gold]{encounter}[/gold] feasted on {character}.",
+              "new": "[gold]Corpse Slugs[/gold] feasted on The adventurer."
+            }
+          ]
+        },
+        {
+          "id": "CUBEX_CONSTRUCT_NORMAL",
+          "name": "Cubex Construct",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "{character} was lasered to death by a [gold]{encounter}[/gold].",
+              "new": "The adventurer was lasered to death by a [gold]Cubex Construct[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "CULTISTS_NORMAL",
+          "name": "Cultists",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "{character} was slain by some [gold]{encounter}[/gold]. [sine]Caaaaw[/sine]...",
+              "new": "The adventurer was slain by some [gold]Cultists[/gold]. [sine]Caaaaw[/sine]..."
+            }
+          ]
+        },
+        {
+          "id": "DECIMILLIPEDE_ELITE",
+          "name": "The Decimillipede",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "{character} couldn't survive [gold]{encounter}[/gold]'s domain.",
+              "new": "The adventurer couldn't survive [gold]The Decimillipede[/gold]'s domain."
+            }
+          ]
+        },
+        {
+          "id": "DENSE_VEGETATION_EVENT_ENCOUNTER",
+          "name": "Wrigglers",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "{character} was infested by [gold]{encounter}[/gold].",
+              "new": "The adventurer was infested by [gold]Wrigglers[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "DEVOTED_SCULPTOR_WEAK",
+          "name": "Devoted Sculptor",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "{character} was smashed to pieces by [gold]{encounter}[/gold].",
+              "new": "The adventurer was smashed to pieces by [gold]Devoted Sculptor[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "DOORMAKER_BOSS",
+          "name": "The Doormaker",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "[gold]{encounter}[/gold] didn't take kindly to {character}'s disturbance.",
+              "new": "[gold]The Doormaker[/gold] didn't take kindly to The adventurer's disturbance."
+            }
+          ]
+        },
+        {
+          "id": "ENTOMANCER_ELITE",
+          "name": "Entomancer",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "{character} was stung to death by an [gold]{encounter}[/gold].",
+              "new": "The adventurer was stung to death by an [gold]Entomancer[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "EXOSKELETONS_NORMAL",
+          "name": "Many Exoskeletons",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "{character} was eviscerated by [gold]{encounter}[/gold].",
+              "new": "The adventurer was eviscerated by [gold]Many Exoskeletons[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "EXOSKELETONS_WEAK",
+          "name": "Exoskeletons",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "{character} was eviscerated by some [gold]{encounter}[/gold].",
+              "new": "The adventurer was eviscerated by some [gold]Exoskeletons[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "FABRICATOR_NORMAL",
+          "name": "Fabricator",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "{character} was zapped by a [gold]{encounter}[/gold]'s bots.",
+              "new": "The adventurer was zapped by a [gold]Fabricator[/gold]'s bots."
+            }
+          ]
+        },
+        {
+          "id": "FAKE_MERCHANT_EVENT_ENCOUNTER",
+          "name": "The Merchant???",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "{character} faced the wrath of [gold]{encounter}[/gold]",
+              "new": "The adventurer faced the wrath of [gold]The Merchant???[/gold]"
+            }
+          ]
+        },
+        {
+          "id": "FLYCONID_NORMAL",
+          "name": "Shroom and Slime",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "{character} was absorbed by a [gold]{encounter}[/gold].",
+              "new": "The adventurer was absorbed by a [gold]Shroom and Slime[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "FOGMOG_NORMAL",
+          "name": "Fogmog",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "{character} was distracted by a [gold]{encounter}[/gold]'s illusions.",
+              "new": "The adventurer was distracted by a [gold]Fogmog[/gold]'s illusions."
+            }
+          ]
+        },
+        {
+          "id": "FOSSIL_STALKER_NORMAL",
+          "name": "Fossil Stalker",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "{character} was ambushed by a [gold]{encounter}[/gold].",
+              "new": "The adventurer was ambushed by a [gold]Fossil Stalker[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "FROG_KNIGHT_NORMAL",
+          "name": "Frog Knight",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "A valiant [gold]{encounter}[/gold] triumphed over {character}.",
+              "new": "A valiant [gold]Frog Knight[/gold] triumphed over The adventurer."
+            }
+          ]
+        },
+        {
+          "id": "FUZZY_WURM_CRAWLER_WEAK",
+          "name": "Fuzzy Wurm Crawler",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "A [gold]{encounter}[/gold] spat on {character}.",
+              "new": "A [gold]Fuzzy Wurm Crawler[/gold] spat on The adventurer."
+            }
+          ]
+        },
+        {
+          "id": "GLOBE_HEAD_NORMAL",
+          "name": "A Lone Globe Head",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "[gold]{encounter}[/gold] zapped {character}.",
+              "new": "[gold]A Lone Globe Head[/gold] zapped The adventurer."
+            }
+          ]
+        },
+        {
+          "id": "GREMLIN_MERC_NORMAL",
+          "name": "Two Gremlins in a Trenchcoat",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "{character} got mugged by [gold]{encounter}[/gold].",
+              "new": "The adventurer got mugged by [gold]Two Gremlins in a Trenchcoat[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "HAUNTED_SHIP_NORMAL",
+          "name": "Haunted Ship",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "A [gold]{encounter}[/gold] stomped all over {character}.",
+              "new": "A [gold]Haunted Ship[/gold] stomped all over The adventurer."
+            }
+          ]
+        },
+        {
+          "id": "HUNTER_KILLER_NORMAL",
+          "name": "Hunter Killer",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "{character} was disemboweled by a [gold]{encounter}[/gold].",
+              "new": "The adventurer was disemboweled by a [gold]Hunter Killer[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "INFESTED_PRISMS_ELITE",
+          "name": "Infested Prism",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "{character} was stopped by an [gold]{encounter}[/gold].",
+              "new": "The adventurer was stopped by an [gold]Infested Prism[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "INKLETS_NORMAL",
+          "name": "Inklets",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "Some [gold]{encounter}[/gold] wouldn't let {character} pass.",
+              "new": "Some [gold]Inklets[/gold] wouldn't let The adventurer pass."
+            }
+          ]
+        },
+        {
+          "id": "KAISER_CRAB_BOSS",
+          "name": "Kaiser Crab",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "The [gold]{encounter}[/gold] struck {character} from all sides.",
+              "new": "The [gold]Kaiser Crab[/gold] struck The adventurer from all sides."
+            }
+          ]
+        },
+        {
+          "id": "KNIGHTS_ELITE",
+          "name": "Knight Gang",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "{character} was slain by a [gold]{encounter}[/gold].",
+              "new": "The adventurer was slain by a [gold]Knight Gang[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "KNOWLEDGE_DEMON_BOSS",
+          "name": "Knowledge Demon",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "The [gold]{encounter}[/gold] cursed {character} with overwhelming knowledge.",
+              "new": "The [gold]Knowledge Demon[/gold] cursed The adventurer with overwhelming know..."
+            }
+          ]
+        },
+        {
+          "id": "LAGAVULIN_MATRIARCH_BOSS",
+          "name": "Lagavulin Matriarch",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "{character} was cut in half by the [gold]{encounter}[/gold].",
+              "new": "The adventurer was cut in half by the [gold]Lagavulin Matriarch[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "LIVING_FOG_NORMAL",
+          "name": "Evil Gas",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "{character} couldn't bear the stench of some [gold]{encounter}[/gold].",
+              "new": "The adventurer couldn't bear the stench of some [gold]Evil Gas[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "LOUSE_PROGENITOR_NORMAL",
+          "name": "Louse Progenitor",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "{character} was paralyzed by a [gold]{encounter}[/gold].",
+              "new": "The adventurer was paralyzed by a [gold]Louse Progenitor[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "MAWLER_NORMAL",
+          "name": "Mawler",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "{character} became a delicious meal for a [gold]{encounter}[/gold].",
+              "new": "The adventurer became a delicious meal for a [gold]Mawler[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "MECHA_KNIGHT_ELITE",
+          "name": "Mecha Knight",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "{character} was stabbed and burned by a [gold]{encounter}[/gold].",
+              "new": "The adventurer was stabbed and burned by a [gold]Mecha Knight[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "MYSTERIOUS_KNIGHT_EVENT_ENCOUNTER",
+          "name": "Mysterious Knight",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "{character} tried to take a [gold]{encounter}[/gold]'s key.",
+              "new": "The adventurer tried to take a [gold]Mysterious Knight[/gold]'s key."
+            }
+          ]
+        },
+        {
+          "id": "MYTES_NORMAL",
+          "name": "Mass of Mytes",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "{character} was swarmed by a [gold]{encounter}[/gold].",
+              "new": "The adventurer was swarmed by a [gold]Mass of Mytes[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "NIBBITS_NORMAL",
+          "name": "A Pair of Nibbits",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "[gold]{encounter}[/gold] beat up {character}.",
+              "new": "[gold]A Pair of Nibbits[/gold] beat up The adventurer."
+            }
+          ]
+        },
+        {
+          "id": "NIBBITS_WEAK",
+          "name": "A Lone Nibbit",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "[gold]{encounter}[/gold] beat up {character}.",
+              "new": "[gold]A Lone Nibbit[/gold] beat up The adventurer."
+            }
+          ]
+        },
+        {
+          "id": "OVERGROWTH_CRAWLERS",
+          "name": "Overgrowth Crawlers",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "Some [gold]{encounter}[/gold] feasted on {character}.",
+              "new": "Some [gold]Overgrowth Crawlers[/gold] feasted on The adventurer."
+            }
+          ]
+        },
+        {
+          "id": "OVICOPTER_NORMAL",
+          "name": "Ovicopter",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "{character} became food for an [gold]{encounter}[/gold]'s children.",
+              "new": "The adventurer became food for an [gold]Ovicopter[/gold]'s children."
+            }
+          ]
+        },
+        {
+          "id": "OWL_MAGISTRATE_NORMAL",
+          "name": "Owl Magistrate",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "{character} was sentenced to death by an [gold]{encounter}[/gold].",
+              "new": "The adventurer was sentenced to death by an [gold]Owl Magistrate[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "PHANTASMAL_GARDENERS_ELITE",
+          "name": "Phantasmal Gardeners",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "{character} was put to rest by the [gold]{encounter}[/gold].",
+              "new": "The adventurer was put to rest by the [gold]Phantasmal Gardeners[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "PHROG_PARASITE_ELITE",
+          "name": "Phrog Parasite",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "A [gold]{encounter}[/gold] spread its colony to {character}.",
+              "new": "A [gold]Phrog Parasite[/gold] spread its colony to The adventurer."
+            }
+          ]
+        },
+        {
+          "id": "PUNCH_CONSTRUCT_NORMAL",
+          "name": "Punch Construct",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "{character} engaged in fisticuffs with a [gold]{encounter}[/gold].",
+              "new": "The adventurer engaged in fisticuffs with a [gold]Punch Construct[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "PUNCH_OFF_EVENT_ENCOUNTER",
+          "name": "Punch Constructs",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "{character} interrupted a bout between two [gold]{encounter}[/gold].",
+              "new": "The adventurer interrupted a bout between two [gold]Punch Constructs[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "QUEEN_BOSS",
+          "name": "Queen",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "The [gold]{encounter}[/gold] added a piece of {character} to her collection.",
+              "new": "The [gold]Queen[/gold] added a piece of The adventurer to her collection."
+            }
+          ]
+        },
+        {
+          "id": "RUBY_RAIDERS_NORMAL",
+          "name": "Ruby Raiders",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "{character} got jumped by a group of [gold]{encounter}[/gold].",
+              "new": "The adventurer got jumped by a group of [gold]Ruby Raiders[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "SCROLLS_OF_BITING_NORMAL",
+          "name": "Many Scrolls of Biting",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "[gold]{encounter}[/gold] tore {character} to shreds.",
+              "new": "[gold]Many Scrolls of Biting[/gold] tore The adventurer to shreds."
+            }
+          ]
+        },
+        {
+          "id": "SCROLLS_OF_BITING_WEAK",
+          "name": "Scrolls of Biting",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "Some [gold]{encounter}[/gold] tore {character} to shreds.",
+              "new": "Some [gold]Scrolls of Biting[/gold] tore The adventurer to shreds."
+            }
+          ]
+        },
+        {
+          "id": "SEAPUNK_WEAK",
+          "name": "Seapunk",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "A [gold]{encounter}[/gold] clobbered {character}.",
+              "new": "A [gold]Seapunk[/gold] clobbered The adventurer."
+            }
+          ]
+        },
+        {
+          "id": "SEWER_CLAM_NORMAL",
+          "name": "Sewer Clam",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "{character} was gobbled up by a [gold]{encounter}[/gold].",
+              "new": "The adventurer was gobbled up by a [gold]Sewer Clam[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "SHRINKER_BEETLE_WEAK",
+          "name": "Shrinker Beetle",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "A [gold]{encounter}[/gold] snacked on {character}.",
+              "new": "A [gold]Shrinker Beetle[/gold] snacked on The adventurer."
+            }
+          ]
+        },
+        {
+          "id": "SKULKING_COLONY_ELITE",
+          "name": "Skulking Colony",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "{character} was absorbed by a [gold]{encounter}[/gold]",
+              "new": "The adventurer was absorbed by a [gold]Skulking Colony[/gold]"
+            }
+          ]
+        },
+        {
+          "id": "SLIMED_BERSERKER_NORMAL",
+          "name": "Slimed Berserker",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "{character} was absorbed into a [gold]{encounter}[/gold].",
+              "new": "The adventurer was absorbed into a [gold]Slimed Berserker[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "SLIMES_NORMAL",
+          "name": "Swarm of Slimes",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "{character} was felled by a [gold]{encounter}[/gold].",
+              "new": "The adventurer was felled by a [gold]Swarm of Slimes[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "SLIMES_WEAK",
+          "name": "Group of Slimes",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "{character} was felled by a [gold]{encounter}[/gold].",
+              "new": "The adventurer was felled by a [gold]Group of Slimes[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "SLITHERING_STRANGLER_NORMAL",
+          "name": "Strangler and Friend",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "{character} was suffocated by a [gold]{encounter}[/gold].",
+              "new": "The adventurer was suffocated by a [gold]Strangler and Friend[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "SLUDGE_SPINNER_WEAK",
+          "name": "Sludge Spinner",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "{character} couldn't defeat a [gold]{encounter}[/gold].",
+              "new": "The adventurer couldn't defeat a [gold]Sludge Spinner[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "SLUMBERING_BEETLE_NORMAL",
+          "name": "Slumber Party",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "{character} interrupted a [gold]{encounter}[/gold].",
+              "new": "The adventurer interrupted a [gold]Slumber Party[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "SNAPPING_JAXFRUIT_NORMAL",
+          "name": "Overgrowth Flora",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "{character} ran afoul of some [gold]{encounter}[/gold].",
+              "new": "The adventurer ran afoul of some [gold]Overgrowth Flora[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "SOUL_FYSH_BOSS",
+          "name": "Soul Fysh",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "A [gold]{encounter}[/gold] beckoned {character} to their doom.",
+              "new": "A [gold]Soul Fysh[/gold] beckoned The adventurer to their doom."
+            }
+          ]
+        },
+        {
+          "id": "SOUL_NEXUS_ELITE",
+          "name": "Soul Nexus",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "{character} died to a [gold]{encounter}[/gold] on a forgotten battlefield.",
+              "new": "The adventurer died to a [gold]Soul Nexus[/gold] on a forgotten battlefield."
+            }
+          ]
+        },
+        {
+          "id": "SPINY_TOAD_NORMAL",
+          "name": "Spiny Toad",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "{character} couldn't pierce the [gold]{encounter}[/gold]'s spikes.",
+              "new": "The adventurer couldn't pierce the [gold]Spiny Toad[/gold]'s spikes."
+            }
+          ]
+        },
+        {
+          "id": "TERROR_EEL_ELITE",
+          "name": "Terror Eel",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "A [gold]{encounter}[/gold] was too terrifying for {character}.",
+              "new": "A [gold]Terror Eel[/gold] was too terrifying for The adventurer."
+            }
+          ]
+        },
+        {
+          "id": "TEST_SUBJECT_BOSS",
+          "name": "Test Subject",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "A [gold]{encounter}[/gold] loyally guarded its masters from {character}.",
+              "new": "A [gold]Test Subject[/gold] loyally guarded its masters from The adventurer."
+            }
+          ]
+        },
+        {
+          "id": "THE_INSATIABLE_BOSS",
+          "name": "The Insatiable",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "[gold]{encounter}[/gold] devoured {character}. And yet, it still hungers...",
+              "new": "[gold]The Insatiable[/gold] devoured The adventurer. And yet, it still hunger..."
+            }
+          ]
+        },
+        {
+          "id": "THE_KIN_BOSS",
+          "name": "The Kin",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "{character} was annihilated by [gold]{encounter}[/gold]'s superior strategy.",
+              "new": "The adventurer was annihilated by [gold]The Kin[/gold]'s superior strategy."
+            }
+          ]
+        },
+        {
+          "id": "THE_LOST_AND_FORGOTTEN_NORMAL",
+          "name": "Lost and Forgotten",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "The [gold]{encounter}[/gold] stole {character}'s will to live.",
+              "new": "The [gold]Lost and Forgotten[/gold] stole The adventurer's will to live."
+            }
+          ]
+        },
+        {
+          "id": "THE_OBSCURA_NORMAL",
+          "name": "The Obscura",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "[gold]{encounter}[/gold] and its illusion smashed {character}.",
+              "new": "[gold]The Obscura[/gold] and its illusion smashed The adventurer."
+            }
+          ]
+        },
+        {
+          "id": "THIEVING_HOPPER_WEAK",
+          "name": "Thieving Hopper",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "A [gold]{encounter}[/gold] mugged {character}.",
+              "new": "A [gold]Thieving Hopper[/gold] mugged The adventurer."
+            }
+          ]
+        },
+        {
+          "id": "TOADPOLES_NORMAL",
+          "name": "Underdocks Wildlife",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "{character} was defeated by some [gold]{encounter}[/gold].",
+              "new": "The adventurer was defeated by some [gold]Underdocks Wildlife[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "TOADPOLES_WEAK",
+          "name": "Toadpoles",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "{character} couldn't deal with some [gold]{encounter}[/gold].",
+              "new": "The adventurer couldn't deal with some [gold]Toadpoles[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "TUNNELER_NORMAL",
+          "name": "Tunneling Twosome",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "A [gold]{encounter}[/gold] finished off {character}.",
+              "new": "A [gold]Tunneling Twosome[/gold] finished off The adventurer."
+            }
+          ]
+        },
+        {
+          "id": "TUNNELER_WEAK",
+          "name": "Tunneler",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "{character} got whacked by a [gold]{encounter}[/gold].",
+              "new": "The adventurer got whacked by a [gold]Tunneler[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "TURRET_OPERATOR_WEAK",
+          "name": "Turret Operator",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "A [gold]{encounter}[/gold] riddled {character} full of holes.",
+              "new": "A [gold]Turret Operator[/gold] riddled The adventurer full of holes."
+            }
+          ]
+        },
+        {
+          "id": "TWO_TAILED_RATS_NORMAL",
+          "name": "Two-Tailed Rats",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "{character} was swarmed by some [gold]{encounter}[/gold].",
+              "new": "The adventurer was swarmed by some [gold]Two-Tailed Rats[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "VANTOM_BOSS",
+          "name": "Vantom",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "{character} was turned into an Inklet by the [gold]{encounter}[/gold].",
+              "new": "The adventurer was turned into an Inklet by the [gold]Vantom[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "VINE_SHAMBLER_NORMAL",
+          "name": "Vine Shambler",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "{character} couldn't escape a [gold]{encounter}[/gold].",
+              "new": "The adventurer couldn't escape a [gold]Vine Shambler[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "WATERFALL_GIANT_BOSS",
+          "name": "Waterfall Giant",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "The [gold]{encounter}[/gold] cleansed the Underdocks of {character}.",
+              "new": "The [gold]Waterfall Giant[/gold] cleansed the Underdocks of The adventurer."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "epochs",
+      "name": "Epochs",
+      "old_count": 57,
+      "new_count": 57,
+      "changed": [
+        {
+          "id": "ACT2_B_EPOCH",
+          "name": "Somewhere",
+          "changes": [
+            {
+              "field": "slug",
+              "old": "none",
+              "new": "somewhere"
+            }
+          ]
+        },
+        {
+          "id": "ACT3_B_EPOCH",
+          "name": "Elsewhere",
+          "changes": [
+            {
+              "field": "slug",
+              "old": "none",
+              "new": "elsewhere"
+            }
+          ]
+        },
+        {
+          "id": "COLORLESS1_EPOCH",
+          "name": "Preon",
+          "changes": [
+            {
+              "field": "slug",
+              "old": "none",
+              "new": "preon"
+            }
+          ]
+        },
+        {
+          "id": "COLORLESS2_EPOCH",
+          "name": "The Architect",
+          "changes": [
+            {
+              "field": "slug",
+              "old": "none",
+              "new": "the-architect"
+            }
+          ]
+        },
+        {
+          "id": "COLORLESS3_EPOCH",
+          "name": "Traitors",
+          "changes": [
+            {
+              "field": "slug",
+              "old": "none",
+              "new": "traitors"
+            }
+          ]
+        },
+        {
+          "id": "COLORLESS4_EPOCH",
+          "name": "Slumber",
+          "changes": [
+            {
+              "field": "slug",
+              "old": "none",
+              "new": "slumber"
+            }
+          ]
+        },
+        {
+          "id": "COLORLESS5_EPOCH",
+          "name": "Buy Something!",
+          "changes": [
+            {
+              "field": "slug",
+              "old": "none",
+              "new": "buy-something"
+            }
+          ]
+        },
+        {
+          "id": "CUSTOM_AND_SEEDS_EPOCH",
+          "name": "Seeds",
+          "changes": [
+            {
+              "field": "slug",
+              "old": "none",
+              "new": "seeds"
+            }
+          ]
+        },
+        {
+          "id": "DAILY_RUN_EPOCH",
+          "name": "The Daily",
+          "changes": [
+            {
+              "field": "slug",
+              "old": "none",
+              "new": "the-daily"
+            }
+          ]
+        },
+        {
+          "id": "DARV_EPOCH",
+          "name": "Darv",
+          "changes": [
+            {
+              "field": "slug",
+              "old": "none",
+              "new": "darv"
+            }
+          ]
+        },
+        {
+          "id": "DEFECT1_EPOCH",
+          "name": "Booting Up",
+          "changes": [
+            {
+              "field": "slug",
+              "old": "none",
+              "new": "booting-up"
+            }
+          ]
+        },
+        {
+          "id": "DEFECT2_EPOCH",
+          "name": "Tricked",
+          "changes": [
+            {
+              "field": "slug",
+              "old": "none",
+              "new": "tricked"
+            }
+          ]
+        },
+        {
+          "id": "DEFECT3_EPOCH",
+          "name": "Hello! Hello!",
+          "changes": [
+            {
+              "field": "slug",
+              "old": "none",
+              "new": "hello-hello"
+            }
+          ]
+        },
+        {
+          "id": "DEFECT4_EPOCH",
+          "name": "Resolving Bugs",
+          "changes": [
+            {
+              "field": "slug",
+              "old": "none",
+              "new": "resolving-bugs"
+            }
+          ]
+        },
+        {
+          "id": "DEFECT5_EPOCH",
+          "name": "Confrontation",
+          "changes": [
+            {
+              "field": "slug",
+              "old": "none",
+              "new": "confrontation"
+            }
+          ]
+        },
+        {
+          "id": "DEFECT6_EPOCH",
+          "name": "Laser Beams",
+          "changes": [
+            {
+              "field": "slug",
+              "old": "none",
+              "new": "laser-beams"
+            }
+          ]
+        },
+        {
+          "id": "DEFECT7_EPOCH",
+          "name": "Ooh Shiny!",
+          "changes": [
+            {
+              "field": "slug",
+              "old": "none",
+              "new": "ooh-shiny"
+            }
+          ]
+        },
+        {
+          "id": "EVENT1_EPOCH",
+          "name": "Cultists",
+          "changes": [
+            {
+              "field": "slug",
+              "old": "none",
+              "new": "cultists"
+            }
+          ]
+        },
+        {
+          "id": "EVENT2_EPOCH",
+          "name": "They Return",
+          "changes": [
+            {
+              "field": "slug",
+              "old": "none",
+              "new": "they-return"
+            }
+          ]
+        },
+        {
+          "id": "EVENT3_EPOCH",
+          "name": "The Spire",
+          "changes": [
+            {
+              "field": "slug",
+              "old": "none",
+              "new": "the-spire"
+            }
+          ]
+        },
+        {
+          "id": "IRONCLAD2_EPOCH",
+          "name": "The Ironclad",
+          "changes": [
+            {
+              "field": "slug",
+              "old": "none",
+              "new": "the-ironclad"
+            }
+          ]
+        },
+        {
+          "id": "IRONCLAD3_EPOCH",
+          "name": "Devastation",
+          "changes": [
+            {
+              "field": "slug",
+              "old": "none",
+              "new": "devastation"
+            }
+          ]
+        },
+        {
+          "id": "IRONCLAD4_EPOCH",
+          "name": "The Pact",
+          "changes": [
+            {
+              "field": "slug",
+              "old": "none",
+              "new": "the-pact"
+            }
+          ]
+        },
+        {
+          "id": "IRONCLAD5_EPOCH",
+          "name": "Ablaze",
+          "changes": [
+            {
+              "field": "slug",
+              "old": "none",
+              "new": "ablaze"
+            }
+          ]
+        },
+        {
+          "id": "IRONCLAD6_EPOCH",
+          "name": "Snuffed",
+          "changes": [
+            {
+              "field": "slug",
+              "old": "none",
+              "new": "snuffed"
+            }
+          ]
+        },
+        {
+          "id": "IRONCLAD7_EPOCH",
+          "name": "My Face",
+          "changes": [
+            {
+              "field": "slug",
+              "old": "none",
+              "new": "my-face"
+            }
+          ]
+        },
+        {
+          "id": "NECROBINDER1_EPOCH",
+          "name": "Life and Death",
+          "changes": [
+            {
+              "field": "slug",
+              "old": "none",
+              "new": "life-and-death"
+            }
+          ]
+        },
+        {
+          "id": "NECROBINDER2_EPOCH",
+          "name": "The Twelve",
+          "changes": [
+            {
+              "field": "slug",
+              "old": "none",
+              "new": "the-twelve"
+            }
+          ]
+        },
+        {
+          "id": "NECROBINDER3_EPOCH",
+          "name": "Futility",
+          "changes": [
+            {
+              "field": "slug",
+              "old": "none",
+              "new": "futility"
+            }
+          ]
+        },
+        {
+          "id": "NECROBINDER4_EPOCH",
+          "name": "Spireborn",
+          "changes": [
+            {
+              "field": "slug",
+              "old": "none",
+              "new": "spireborn"
+            }
+          ]
+        },
+        {
+          "id": "NECROBINDER5_EPOCH",
+          "name": "The Giant",
+          "changes": [
+            {
+              "field": "slug",
+              "old": "none",
+              "new": "the-giant"
+            }
+          ]
+        },
+        {
+          "id": "NECROBINDER6_EPOCH",
+          "name": "Annihilation",
+          "changes": [
+            {
+              "field": "slug",
+              "old": "none",
+              "new": "annihilation"
+            }
+          ]
+        },
+        {
+          "id": "NECROBINDER7_EPOCH",
+          "name": "To Kill",
+          "changes": [
+            {
+              "field": "slug",
+              "old": "none",
+              "new": "to-kill"
+            }
+          ]
+        },
+        {
+          "id": "NEOW_EPOCH",
+          "name": "Neow",
+          "changes": [
+            {
+              "field": "slug",
+              "old": "none",
+              "new": "neow"
+            }
+          ]
+        },
+        {
+          "id": "OROBAS_EPOCH",
+          "name": "Orobas",
+          "changes": [
+            {
+              "field": "slug",
+              "old": "none",
+              "new": "orobas"
+            }
+          ]
+        },
+        {
+          "id": "POTION1_EPOCH",
+          "name": "Open",
+          "changes": [
+            {
+              "field": "slug",
+              "old": "none",
+              "new": "open"
+            }
+          ]
+        },
+        {
+          "id": "POTION2_EPOCH",
+          "name": "The Calm",
+          "changes": [
+            {
+              "field": "slug",
+              "old": "none",
+              "new": "the-calm"
+            }
+          ]
+        },
+        {
+          "id": "REGENT1_EPOCH",
+          "name": "Anomalous Planet",
+          "changes": [
+            {
+              "field": "slug",
+              "old": "none",
+              "new": "anomalous-planet"
+            }
+          ]
+        },
+        {
+          "id": "REGENT2_EPOCH",
+          "name": "I Arrive",
+          "changes": [
+            {
+              "field": "slug",
+              "old": "none",
+              "new": "i-arrive"
+            }
+          ]
+        },
+        {
+          "id": "REGENT3_EPOCH",
+          "name": "We Need a Hero!",
+          "changes": [
+            {
+              "field": "slug",
+              "old": "none",
+              "new": "we-need-a-hero"
+            }
+          ]
+        },
+        {
+          "id": "REGENT4_EPOCH",
+          "name": "Grand Strategy",
+          "changes": [
+            {
+              "field": "slug",
+              "old": "none",
+              "new": "grand-strategy"
+            }
+          ]
+        },
+        {
+          "id": "REGENT5_EPOCH",
+          "name": "Friends",
+          "changes": [
+            {
+              "field": "slug",
+              "old": "none",
+              "new": "friends"
+            }
+          ]
+        },
+        {
+          "id": "REGENT6_EPOCH",
+          "name": "Discontent",
+          "changes": [
+            {
+              "field": "slug",
+              "old": "none",
+              "new": "discontent"
+            }
+          ]
+        },
+        {
+          "id": "REGENT7_EPOCH",
+          "name": "Little King",
+          "changes": [
+            {
+              "field": "slug",
+              "old": "none",
+              "new": "little-king"
+            }
+          ]
+        },
+        {
+          "id": "RELIC1_EPOCH",
+          "name": "Scribbles",
+          "changes": [
+            {
+              "field": "slug",
+              "old": "none",
+              "new": "scribbles"
+            }
+          ]
+        },
+        {
+          "id": "RELIC2_EPOCH",
+          "name": "Ancients",
+          "changes": [
+            {
+              "field": "slug",
+              "old": "none",
+              "new": "ancients"
+            }
+          ]
+        },
+        {
+          "id": "RELIC3_EPOCH",
+          "name": "Civilization",
+          "changes": [
+            {
+              "field": "slug",
+              "old": "none",
+              "new": "civilization"
+            }
+          ]
+        },
+        {
+          "id": "RELIC4_EPOCH",
+          "name": "Consequences",
+          "changes": [
+            {
+              "field": "slug",
+              "old": "none",
+              "new": "consequences"
+            }
+          ]
+        },
+        {
+          "id": "RELIC5_EPOCH",
+          "name": "Arise",
+          "changes": [
+            {
+              "field": "slug",
+              "old": "none",
+              "new": "arise"
+            }
+          ]
+        },
+        {
+          "id": "SILENT1_EPOCH",
+          "name": "Fog Rolls In",
+          "changes": [
+            {
+              "field": "slug",
+              "old": "none",
+              "new": "fog-rolls-in"
+            }
+          ]
+        },
+        {
+          "id": "SILENT2_EPOCH",
+          "name": "Bigger Prey",
+          "changes": [
+            {
+              "field": "slug",
+              "old": "none",
+              "new": "bigger-prey"
+            }
+          ]
+        },
+        {
+          "id": "SILENT3_EPOCH",
+          "name": "Ill",
+          "changes": [
+            {
+              "field": "slug",
+              "old": "none",
+              "new": "ill"
+            }
+          ]
+        },
+        {
+          "id": "SILENT4_EPOCH",
+          "name": "Trophies",
+          "changes": [
+            {
+              "field": "slug",
+              "old": "none",
+              "new": "trophies"
+            }
+          ]
+        },
+        {
+          "id": "SILENT5_EPOCH",
+          "name": "Poisoner",
+          "changes": [
+            {
+              "field": "slug",
+              "old": "none",
+              "new": "poisoner"
+            }
+          ]
+        },
+        {
+          "id": "SILENT6_EPOCH",
+          "name": "Nemesis",
+          "changes": [
+            {
+              "field": "slug",
+              "old": "none",
+              "new": "nemesis"
+            }
+          ]
+        },
+        {
+          "id": "SILENT7_EPOCH",
+          "name": "Soup",
+          "changes": [
+            {
+              "field": "slug",
+              "old": "none",
+              "new": "soup"
+            }
+          ]
+        },
+        {
+          "id": "UNDERDOCKS_EPOCH",
+          "name": "Underdocks",
+          "changes": [
+            {
+              "field": "slug",
+              "old": "none",
+              "new": "underdocks"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
