@@ -3299,7 +3299,7 @@
           {
             "id": "DECIPHER",
             "title": "모든 것을 잃는다",
-            "description": "최대 체력을 [red]3[/red] 잃습니다. 모든 카드를 [gold]강화[/gold]합니다."
+            "description": "Set Max HP to [red]1[/red]. [gold]Upgrade ALL[/gold] cards."
           }
         ]
       },

@@ -505,6 +505,25 @@ def parse_single_event(filepath: Path, localization: dict, act_mapping: dict, ti
     return result
 
 
+def _fix_tablet_of_truth(event: dict) -> dict:
+    """Fix Tablet of Truth escalating decipher costs (runtime-computed in GetDecipherCost)."""
+    if event["id"] != "TABLET_OF_TRUTH":
+        return event
+    # Costs per page: DECIPHER_1 shows cost for step 2, DECIPHER_2 for step 3, etc.
+    # Step 1 (initial) = 3, step 2 = 6, step 3 = 12, step 4 = 24, step 5 = MaxHP-1
+    page_costs = {"DECIPHER_1": "6", "DECIPHER_2": "12", "DECIPHER_3": "24"}
+    for page in (event.get("pages") or []):
+        page_id = page.get("id", "")
+        for opt in (page.get("options") or []):
+            if opt.get("id") != "DECIPHER":
+                continue
+            if page_id in page_costs:
+                opt["description"] = re.sub(r'Lose \[red\]\d+\[/red\]', f'Lose [red]{page_costs[page_id]}[/red]', opt["description"])
+            elif page_id == "DECIPHER_4":
+                opt["description"] = 'Set Max HP to [red]1[/red]. [gold]Upgrade ALL[/gold] cards.'
+    return event
+
+
 def parse_all_events(loc_dir: Path, data_dir: Path) -> list[dict]:
     localization = load_localization(loc_dir)
     act_mapping = build_act_mapping()
@@ -514,6 +533,7 @@ def parse_all_events(loc_dir: Path, data_dir: Path) -> list[dict]:
     for filepath in sorted(EVENTS_DIR.glob("*.cs")):
         event = parse_single_event(filepath, localization, act_mapping, title_map, relic_descs)
         if event:
+            event = _fix_tablet_of_truth(event)
             events.append(event)
     return events
 

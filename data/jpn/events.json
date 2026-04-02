@@ -3299,7 +3299,7 @@
           {
             "id": "DECIPHER",
             "title": "すべてを失う",
-            "description": "最大HPを[red]3[/red]失う。 すべてのカードを[gold]アップグレード[/gold]する。"
+            "description": "Set Max HP to [red]1[/red]. [gold]Upgrade ALL[/gold] cards."
           }
         ]
       },

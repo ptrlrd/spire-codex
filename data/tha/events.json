@@ -1626,7 +1626,7 @@
           {
             "id": "DECIPHER",
             "title": "DECIPHER",
-            "description": "เสีย [red]3[/red] HP สูงสุด [gold]พัฒนา[/gold]การ์ดทั้งหมด"
+            "description": "Set Max HP to [red]1[/red]. [gold]Upgrade ALL[/gold] cards."
           }
         ]
       },

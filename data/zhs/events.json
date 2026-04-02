@@ -3299,7 +3299,7 @@
           {
             "id": "DECIPHER",
             "title": "抛下一切",
-            "description": "失去[red]3[/red]点最大生命。[gold]升级[/gold]你的所有卡牌。"
+            "description": "Set Max HP to [red]1[/red]. [gold]Upgrade ALL[/gold] cards."
           }
         ]
       },

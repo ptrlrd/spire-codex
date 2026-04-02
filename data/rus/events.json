@@ -3295,7 +3295,7 @@
           {
             "id": "DECIPHER",
             "title": "Потерять все",
-            "description": "Снизить макс. ОЗ на [red]3[/red] и [gold]улучшить[/gold] ВСЕ карты."
+            "description": "Set Max HP to [red]1[/red]. [gold]Upgrade ALL[/gold] cards."
           }
         ]
       },

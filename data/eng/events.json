@@ -3266,7 +3266,7 @@
           {
             "id": "DECIPHER",
             "title": "Continue Deciphering",
-            "description": "Lose [red]3[/red] Max HP. [gold]Upgrade[/gold] a random card."
+            "description": "Lose [red]6[/red] Max HP. [gold]Upgrade[/gold] a random card."
           }
         ]
       },
@@ -3277,7 +3277,7 @@
           {
             "id": "DECIPHER",
             "title": "Keep Deciphering",
-            "description": "Lose [red]3[/red] Max HP. [gold]Upgrade[/gold] a random card."
+            "description": "Lose [red]12[/red] Max HP. [gold]Upgrade[/gold] a random card."
           }
         ]
       },
@@ -3288,7 +3288,7 @@
           {
             "id": "DECIPHER",
             "title": "KEEP DECIPHERING",
-            "description": "Lose [red]3[/red] Max HP. [gold]Upgrade[/gold] a random card."
+            "description": "Lose [red]24[/red] Max HP. [gold]Upgrade[/gold] a random card."
           }
         ]
       },
@@ -3299,7 +3299,7 @@
           {
             "id": "DECIPHER",
             "title": "Lose Everything",
-            "description": "Lose [red]3[/red] Max HP. [gold]Upgrade[/gold] ALL of your cards."
+            "description": "Set Max HP to [red]1[/red]. [gold]Upgrade ALL[/gold] cards."
           }
         ]
       },
