@@ -120,11 +120,40 @@ async def submit_guide(request: Request, body: GuideSubmission):
     twitch_val = _validate_url(body.twitch)
 
     socials = [s for s in [website, bluesky_val, twitter_val, twitch_val] if s]
+    slug = re.sub(r'[^a-z0-9]+', '-', title.lower()).strip('-')
+
+    # Build frontmatter for the .md file attachment
+    fm_lines = [
+        "---",
+        f'title: "{title}"',
+        f'slug: "{slug}"',
+        f'author: "{author}"',
+        f'date: "{__import__("datetime").date.today().isoformat()}"',
+        f'category: "{category}"',
+        'tags: [{}]'.format(", ".join(f'"{t.strip()}"' for t in tags.split(",") if t.strip())) if tags else 'tags: []',
+        f'summary: "{summary}"',
+        f'difficulty: "{difficulty}"',
+    ]
+    if character:
+        fm_lines.append(f'character: "{character}"')
+    if website:
+        fm_lines.append(f'website: "{website}"')
+    if bluesky_val:
+        fm_lines.append(f'bluesky: "{bluesky_val}"')
+    if twitter_val:
+        fm_lines.append(f'twitter: "{twitter_val}"')
+    if twitch_val:
+        fm_lines.append(f'twitch: "{twitch_val}"')
+    fm_lines.append("---")
+    fm_lines.append("")
+    md_file = "\n".join(fm_lines) + content
+
+    # Embed with metadata only (no content — it's in the attached file)
     payload = {
         "content": "<@99656376954916864>",
         "embeds": [{
             "title": f"Guide Submission: {title}",
-            "description": summary or "(no summary)",
+            "description": summary[:500] if summary else "(no summary)",
             "color": 0x44CC44,
             "fields": [
                 {"name": "Author", "value": author, "inline": True},
@@ -134,14 +163,20 @@ async def submit_guide(request: Request, body: GuideSubmission):
                 {"name": "Character", "value": character or "None", "inline": True},
                 {"name": "Tags", "value": tags or "None", "inline": True},
                 *([{"name": "Socials", "value": " | ".join(socials), "inline": False}] if socials else []),
-                {"name": "Content Preview", "value": content[:1000] + ("..." if len(content) > 1000 else ""), "inline": False},
+                {"name": "Length", "value": f"{len(content)} chars", "inline": True},
             ],
             "footer": {"text": "Spire Codex Guide Submission"},
         }],
     }
 
+    import json as _json
     async with httpx.AsyncClient() as client:
-        resp = await client.post(WEBHOOK_URL, json=payload)
+        # Send embed + .md file attachment via multipart
+        resp = await client.post(
+            WEBHOOK_URL,
+            data={"payload_json": _json.dumps(payload)},
+            files={"file": (f"{slug}.md", md_file.encode("utf-8"), "text/markdown")},
+        )
         if resp.status_code >= 400:
             raise HTTPException(status_code=502, detail="Failed to send submission")
 
