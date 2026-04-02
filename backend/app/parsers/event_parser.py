@@ -506,20 +506,39 @@ def parse_single_event(filepath: Path, localization: dict, act_mapping: dict, ti
 
 
 def _fix_abyssal_baths(event: dict) -> dict:
-    """Fix Abyssal Baths — damage increases by 1 each Linger (3, 4, 5, ...)."""
+    """Fix Abyssal Baths — damage starts at 3 and increases by 1 after each immerse."""
     if event["id"] != "ABYSSAL_BATHS":
         return event
-    # The damage var starts at 3 and increments by 1 after each immerse/linger.
-    # In-game {Damage} updates dynamically. We show all steps explicitly.
-    # Step 1 (Immerse) = 3 dmg, Step 2 (Linger 1) = 4, Step 3 = 5, ... Step 9 = 11, Step 10 = 12
-    for page in (event.get("pages") or []):
+    # Immerse = 3 dmg, then OnImmerse increments damage by 1.
+    # LINGER1 = 4, LINGER2 = 5, ... LINGER9 = 12
+    # The ALL page has a single Linger option reused across all LINGER pages,
+    # so we duplicate it into each LINGER page with the correct damage value.
+    pages = event.get("pages") or []
+    all_page = next((p for p in pages if p.get("id") == "ALL"), None)
+    if not all_page:
+        return event
+
+    for page in pages:
         page_id = page.get("id", "")
-        for opt in (page.get("options") or []):
-            if opt.get("id") == "LINGER":
-                opt["description"] = "Gain [green]2[/green] Max HP. Take damage ([red]4[/red], [red]5[/red], [red]6[/red]... increases by [red]+1[/red] each time)."
-            elif opt.get("id") == "IMMERSE" and page_id == "INITIAL":
-                # First immerse is always 3
-                opt["description"] = "Gain [green]2[/green] Max HP. Take [red]3[/red] damage."
+        if page_id.startswith("LINGER") and page_id[6:].isdigit():
+            step = int(page_id[6:])  # LINGER1=1, LINGER2=2, ...
+            dmg = 3 + step  # damage after step immersions
+            page["options"] = [
+                {"id": "LINGER", "title": "Linger", "description": f"Gain [green]2[/green] Max HP. Take [red]{dmg + 1}[/red] damage."},
+                {"id": "EXIT_BATHS", "title": "Exit Baths", "description": ""},
+            ]
+        elif page_id == "DEATH_WARNING":
+            page["options"] = [
+                {"id": "LINGER", "title": "Linger", "description": "Gain [green]2[/green] Max HP. This will kill you."},
+                {"id": "EXIT_BATHS", "title": "Exit Baths", "description": ""},
+            ]
+        elif page_id == "IMMERSE":
+            # After first immerse, damage is now 4 for next linger
+            page["options"] = [
+                {"id": "LINGER", "title": "Linger", "description": "Gain [green]2[/green] Max HP. Take [red]4[/red] damage."},
+                {"id": "EXIT_BATHS", "title": "Exit Baths", "description": ""},
+            ]
+
     return event
 
 

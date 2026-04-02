@@ -25,7 +25,7 @@
           {
             "id": "LINGER",
             "title": "LINGER",
-            "description": "Gain [green]2[/green] Max HP. Take damage ([red]4[/red], [red]5[/red], [red]6[/red]... increases by [red]+1[/red] each time)."
+            "description": "ได้รับ [green]2[/green] HP สูงสุด ได้รับความเสียหาย [red]3[/red]"
           }
         ]
       },
@@ -36,7 +36,7 @@
           {
             "id": "IMMERSE",
             "title": "IMMERSE",
-            "description": "Gain [green]2[/green] Max HP. Take [red]3[/red] damage."
+            "description": "ได้รับ [green]2[/green] HP สูงสุด ได้รับความเสียหาย [red]3[/red]"
           },
           {
             "id": "ABSTAIN",

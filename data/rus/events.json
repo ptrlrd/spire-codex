@@ -29,7 +29,7 @@
           {
             "id": "LINGER",
             "title": "Остаться",
-            "description": "Gain [green]2[/green] Max HP. Take damage ([red]4[/red], [red]5[/red], [red]6[/red]... increases by [red]+1[/red] each time)."
+            "description": "Повысить макс. ОЗ на [green]2[/green] и получить [red]3[/red] урона."
           },
           {
             "id": "EXIT_BATHS",
@@ -40,7 +40,19 @@
       },
       {
         "id": "DEATH_WARNING",
-        "description": "[sine][red]Если вы не выйдете из воды, вы погибнете.[/red][/sine]"
+        "description": "[sine][red]Если вы не выйдете из воды, вы погибнете.[/red][/sine]",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "Linger",
+            "description": "Gain [green]2[/green] Max HP. This will kill you."
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "Exit Baths",
+            "description": ""
+          }
+        ]
       },
       {
         "id": "EXIT_BATHS",
@@ -48,7 +60,19 @@
       },
       {
         "id": "IMMERSE",
-        "description": "Вода одновременно обжигает вашу кожу одновременно. Вам становится одновременно [blue][jitter]жутко холодно[/jitter][/blue] и [red][jitter]невыносимо жарко[/jitter][/red].\n\nВы чувствуете что-то под ногами. Что это такое? Щупальца? Течение? Боль отступает, и вы чувствуете себя… сильнее. Крепче. Вода начинает приятно бурлить."
+        "description": "Вода одновременно обжигает вашу кожу одновременно. Вам становится одновременно [blue][jitter]жутко холодно[/jitter][/blue] и [red][jitter]невыносимо жарко[/jitter][/red].\n\nВы чувствуете что-то под ногами. Что это такое? Щупальца? Течение? Боль отступает, и вы чувствуете себя… сильнее. Крепче. Вода начинает приятно бурлить.",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "Linger",
+            "description": "Gain [green]2[/green] Max HP. Take [red]4[/red] damage."
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "Exit Baths",
+            "description": ""
+          }
+        ]
       },
       {
         "id": "INITIAL",
@@ -57,7 +81,7 @@
           {
             "id": "IMMERSE",
             "title": "Окунуться",
-            "description": "Gain [green]2[/green] Max HP. Take [red]3[/red] damage."
+            "description": "Повысить макс. ОЗ на [green]2[/green] и получить [red]3[/red] урона."
           },
           {
             "id": "ABSTAIN",
@@ -68,39 +92,147 @@
       },
       {
         "id": "LINGER1",
-        "description": "[jitter]Вода все горячее![/jitter]\n\nЕсли так будет продолжаться, вы сваритесь заживо!"
+        "description": "[jitter]Вода все горячее![/jitter]\n\nЕсли так будет продолжаться, вы сваритесь заживо!",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "Linger",
+            "description": "Gain [green]2[/green] Max HP. Take [red]5[/red] damage."
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "Exit Baths",
+            "description": ""
+          }
+        ]
       },
       {
         "id": "LINGER2",
-        "description": "[jitter][orange]Вода все горячее![/orange][/jitter]\n\nБурлящая вода как будто смеется над вами."
+        "description": "[jitter][orange]Вода все горячее![/orange][/jitter]\n\nБурлящая вода как будто смеется над вами.",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "Linger",
+            "description": "Gain [green]2[/green] Max HP. Take [red]6[/red] damage."
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "Exit Baths",
+            "description": ""
+          }
+        ]
       },
       {
         "id": "LINGER3",
-        "description": "[jitter][red]КАК ЖЕ ГОРЯЧО![/red][/jitter]\n\nНаверное, в деревне демонов каждый день так?"
+        "description": "[jitter][red]КАК ЖЕ ГОРЯЧО![/red][/jitter]\n\nНаверное, в деревне демонов каждый день так?",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "Linger",
+            "description": "Gain [green]2[/green] Max HP. Take [red]7[/red] damage."
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "Exit Baths",
+            "description": ""
+          }
+        ]
       },
       {
         "id": "LINGER4",
-        "description": "[sine][purple]Вы столько времени провели в воде, что потеряли счет времени и медленно сходите с ума…[/purple][/sine]"
+        "description": "[sine][purple]Вы столько времени провели в воде, что потеряли счет времени и медленно сходите с ума…[/purple][/sine]",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "Linger",
+            "description": "Gain [green]2[/green] Max HP. Take [red]8[/red] damage."
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "Exit Baths",
+            "description": ""
+          }
+        ]
       },
       {
         "id": "LINGER5",
-        "description": "Как здесь приятно."
+        "description": "Как здесь приятно.",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "Linger",
+            "description": "Gain [green]2[/green] Max HP. Take [red]9[/red] damage."
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "Exit Baths",
+            "description": ""
+          }
+        ]
       },
       {
         "id": "LINGER6",
-        "description": "Просто превосходно."
+        "description": "Просто превосходно.",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "Linger",
+            "description": "Gain [green]2[/green] Max HP. Take [red]10[/red] damage."
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "Exit Baths",
+            "description": ""
+          }
+        ]
       },
       {
         "id": "LINGER7",
-        "description": "Вы отлично себя чувствуете."
+        "description": "Вы отлично себя чувствуете.",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "Linger",
+            "description": "Gain [green]2[/green] Max HP. Take [red]11[/red] damage."
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "Exit Baths",
+            "description": ""
+          }
+        ]
       },
       {
         "id": "LINGER8",
-        "description": "[sine]М-м-м…[/sine]"
+        "description": "[sine]М-м-м…[/sine]",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "Linger",
+            "description": "Gain [green]2[/green] Max HP. Take [red]12[/red] damage."
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "Exit Baths",
+            "description": ""
+          }
+        ]
       },
       {
         "id": "LINGER9",
-        "description": "[sine]Хр-р-р…\nХр-р-р…[/sine]"
+        "description": "[sine]Хр-р-р…\nХр-р-р…[/sine]",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "Linger",
+            "description": "Gain [green]2[/green] Max HP. Take [red]13[/red] damage."
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "Exit Baths",
+            "description": ""
+          }
+        ]
       }
     ]
   },

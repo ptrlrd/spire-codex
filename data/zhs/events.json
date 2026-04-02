@@ -29,7 +29,7 @@
           {
             "id": "LINGER",
             "title": "沉溺",
-            "description": "Gain [green]2[/green] Max HP. Take damage ([red]4[/red], [red]5[/red], [red]6[/red]... increases by [red]+1[/red] each time)."
+            "description": "获得[green]2[/green]点最大生命值。受到[red]3[/red]点伤害。"
           },
           {
             "id": "EXIT_BATHS",
@@ -40,7 +40,19 @@
       },
       {
         "id": "DEATH_WARNING",
-        "description": "[sine][red]再泡下去，你就死定了。[/red][/sine]"
+        "description": "[sine][red]再泡下去，你就死定了。[/red][/sine]",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "Linger",
+            "description": "Gain [green]2[/green] Max HP. This will kill you."
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "Exit Baths",
+            "description": ""
+          }
+        ]
       },
       {
         "id": "EXIT_BATHS",
@@ -48,7 +60,19 @@
       },
       {
         "id": "IMMERSE",
-        "description": "池水如烈焰般灼烧着你的每一寸肌肤，那竟是[blue][jitter]彻骨严寒[/jitter][/blue]与[red][jitter]沸腾炽热[/jitter][/red]的诡异交织。\n\n在水面之下，好像有什么东西掠过了你的双腿——是某种触须？还是带有意志的暗流？然而，当剧痛渐渐平息，你感到身体变得…更加凝实，更具质感。同时池水此时似乎正发出一阵满意的低鸣。"
+        "description": "池水如烈焰般灼烧着你的每一寸肌肤，那竟是[blue][jitter]彻骨严寒[/jitter][/blue]与[red][jitter]沸腾炽热[/jitter][/red]的诡异交织。\n\n在水面之下，好像有什么东西掠过了你的双腿——是某种触须？还是带有意志的暗流？然而，当剧痛渐渐平息，你感到身体变得…更加凝实，更具质感。同时池水此时似乎正发出一阵满意的低鸣。",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "Linger",
+            "description": "Gain [green]2[/green] Max HP. Take [red]4[/red] damage."
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "Exit Baths",
+            "description": ""
+          }
+        ]
       },
       {
         "id": "INITIAL",
@@ -57,7 +81,7 @@
           {
             "id": "IMMERSE",
             "title": "投身其中",
-            "description": "Gain [green]2[/green] Max HP. Take [red]3[/red] damage."
+            "description": "获得[green]2[/green]点最大生命值。受到[red]3[/red]点伤害。"
           },
           {
             "id": "ABSTAIN",
@@ -68,39 +92,147 @@
       },
       {
         "id": "LINGER1",
-        "description": "[jitter]温度仍在疯狂攀升！[/jitter]\n\n在这股蒸汽将你由内而外彻底蒸熟之前，你还能支撑多久？"
+        "description": "[jitter]温度仍在疯狂攀升！[/jitter]\n\n在这股蒸汽将你由内而外彻底蒸熟之前，你还能支撑多久？",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "Linger",
+            "description": "Gain [green]2[/green] Max HP. Take [red]5[/red] damage."
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "Exit Baths",
+            "description": ""
+          }
+        ]
       },
       {
         "id": "LINGER2",
-        "description": "[jitter][orange]祂的温度仍在飙升！[/orange][/jitter]\n\n池子的咕嘟声，此刻听来竟像是某种狞笑。"
+        "description": "[jitter][orange]祂的温度仍在飙升！[/orange][/jitter]\n\n池子的咕嘟声，此刻听来竟像是某种狞笑。",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "Linger",
+            "description": "Gain [green]2[/green] Max HP. Take [red]6[/red] damage."
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "Exit Baths",
+            "description": ""
+          }
+        ]
       },
       {
         "id": "LINGER3",
-        "description": "[b][jitter][red]好烫！！！[/red][/jitter][/b]\n\n你开始好奇这是否就是生活在恶魔之村里的感觉？"
+        "description": "[b][jitter][red]好烫！！！[/red][/jitter][/b]\n\n你开始好奇这是否就是生活在恶魔之村里的感觉？",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "Linger",
+            "description": "Gain [green]2[/green] Max HP. Take [red]7[/red] damage."
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "Exit Baths",
+            "description": ""
+          }
+        ]
       },
       {
         "id": "LINGER4",
-        "description": "[sine][purple]你浸泡了太久，已经忘却了时间的流逝，意识也开始模糊…[/purple][/sine]"
+        "description": "[sine][purple]你浸泡了太久，已经忘却了时间的流逝，意识也开始模糊…[/purple][/sine]",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "Linger",
+            "description": "Gain [green]2[/green] Max HP. Take [red]8[/red] damage."
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "Exit Baths",
+            "description": ""
+          }
+        ]
       },
       {
         "id": "LINGER5",
-        "description": "这里很好。"
+        "description": "这里很好。",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "Linger",
+            "description": "Gain [green]2[/green] Max HP. Take [red]9[/red] damage."
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "Exit Baths",
+            "description": ""
+          }
+        ]
       },
       {
         "id": "LINGER6",
-        "description": "真的很棒。"
+        "description": "真的很棒。",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "Linger",
+            "description": "Gain [green]2[/green] Max HP. Take [red]10[/red] damage."
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "Exit Baths",
+            "description": ""
+          }
+        ]
       },
       {
         "id": "LINGER7",
-        "description": "你感到舒适"
+        "description": "你感到舒适",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "Linger",
+            "description": "Gain [green]2[/green] Max HP. Take [red]11[/red] damage."
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "Exit Baths",
+            "description": ""
+          }
+        ]
       },
       {
         "id": "LINGER8",
-        "description": "[sine]唔…[/sine]"
+        "description": "[sine]唔…[/sine]",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "Linger",
+            "description": "Gain [green]2[/green] Max HP. Take [red]12[/red] damage."
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "Exit Baths",
+            "description": ""
+          }
+        ]
       },
       {
         "id": "LINGER9",
-        "description": "[sine]呼...\n...呼噜...[/sine]"
+        "description": "[sine]呼...\n...呼噜...[/sine]",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "Linger",
+            "description": "Gain [green]2[/green] Max HP. Take [red]13[/red] damage."
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "Exit Baths",
+            "description": ""
+          }
+        ]
       }
     ]
   },

@@ -24,7 +24,7 @@
           {
             "id": "LINGER",
             "title": "Rimani",
-            "description": "Gain [green]2[/green] Max HP. Take damage ([red]4[/red], [red]5[/red], [red]6[/red]... increases by [red]+1[/red] each time)."
+            "description": "Ottieni [green]2[/green] PV massimi. Subisci [red]3[/red] di danno."
           },
           {
             "id": "EXIT_BATHS",
@@ -35,7 +35,19 @@
       },
       {
         "id": "DEATH_WARNING",
-        "description": "[sine][red]Se resti ancora nell'acqua, morirai.[/red][/sine]"
+        "description": "[sine][red]Se resti ancora nell'acqua, morirai.[/red][/sine]",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "Linger",
+            "description": "Gain [green]2[/green] Max HP. This will kill you."
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "Exit Baths",
+            "description": ""
+          }
+        ]
       },
       {
         "id": "EXIT_BATHS",
@@ -43,7 +55,19 @@
       },
       {
         "id": "IMMERSE",
-        "description": "Il liquido brucia sulla pelle, gelando [blue][jitter]congelando[/jitter][/blue] e [red][jitter]scottando[/jitter][/red].\n\nSotto la superficie, qualcosa ti sfiora le gambe: viticci? Correnti con uno scopo? Ma quando il dolore si placa, ti senti... in qualche modo più denso. Più consistente. Le acque sembrano mormorare di soddisfazione."
+        "description": "Il liquido brucia sulla pelle, gelando [blue][jitter]congelando[/jitter][/blue] e [red][jitter]scottando[/jitter][/red].\n\nSotto la superficie, qualcosa ti sfiora le gambe: viticci? Correnti con uno scopo? Ma quando il dolore si placa, ti senti... in qualche modo più denso. Più consistente. Le acque sembrano mormorare di soddisfazione.",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "Linger",
+            "description": "Gain [green]2[/green] Max HP. Take [red]4[/red] damage."
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "Exit Baths",
+            "description": ""
+          }
+        ]
       },
       {
         "id": "INITIAL",

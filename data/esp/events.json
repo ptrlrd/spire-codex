@@ -29,7 +29,7 @@
           {
             "id": "LINGER",
             "title": "Quedarse",
-            "description": "Gain [green]2[/green] Max HP. Take damage ([red]4[/red], [red]5[/red], [red]6[/red]... increases by [red]+1[/red] each time)."
+            "description": "Obtienes [green]2[/green] PV máx. Recibes [red]3[/red] de daño."
           },
           {
             "id": "EXIT_BATHS",
@@ -40,7 +40,19 @@
       },
       {
         "id": "DEATH_WARNING",
-        "description": "[sine][red]Si permaneces en el agua, morirás.[/red][/sine]"
+        "description": "[sine][red]Si permaneces en el agua, morirás.[/red][/sine]",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "Linger",
+            "description": "Gain [green]2[/green] Max HP. This will kill you."
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "Exit Baths",
+            "description": ""
+          }
+        ]
       },
       {
         "id": "EXIT_BATHS",
@@ -48,7 +60,19 @@
       },
       {
         "id": "IMMERSE",
-        "description": "El líquido quema tu piel; de hecho, la [blue][jitter]congela[/jitter][/blue] y [red][jitter]escalda[/jitter][/red] al mismo tiempo.\n\nBajo la superficie, algo te roza las piernas: ¿zarcillos? ¿Corrientes acuáticas? Sin embargo, cuando el dolor se disipa, sientes tu cuerpo... más denso que de costumbre, más corpulento. Las aguas parecen vibrar, complacidas."
+        "description": "El líquido quema tu piel; de hecho, la [blue][jitter]congela[/jitter][/blue] y [red][jitter]escalda[/jitter][/red] al mismo tiempo.\n\nBajo la superficie, algo te roza las piernas: ¿zarcillos? ¿Corrientes acuáticas? Sin embargo, cuando el dolor se disipa, sientes tu cuerpo... más denso que de costumbre, más corpulento. Las aguas parecen vibrar, complacidas.",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "Linger",
+            "description": "Gain [green]2[/green] Max HP. Take [red]4[/red] damage."
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "Exit Baths",
+            "description": ""
+          }
+        ]
       },
       {
         "id": "INITIAL",
@@ -57,7 +81,7 @@
           {
             "id": "IMMERSE",
             "title": "Sumergirse",
-            "description": "Gain [green]2[/green] Max HP. Take [red]3[/red] damage."
+            "description": "Obtienes [green]2[/green] PV máx. Recibes [red]3[/red] de daño."
           },
           {
             "id": "ABSTAIN",
@@ -68,39 +92,147 @@
       },
       {
         "id": "LINGER1",
-        "description": "[jitter]¡La temperatura sigue subiendo![/jitter]\n\n¿Cuánto tiempo aguantarás antes de que el vapor te cocine?"
+        "description": "[jitter]¡La temperatura sigue subiendo![/jitter]\n\n¿Cuánto tiempo aguantarás antes de que el vapor te cocine?",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "Linger",
+            "description": "Gain [green]2[/green] Max HP. Take [red]5[/red] damage."
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "Exit Baths",
+            "description": ""
+          }
+        ]
       },
       {
         "id": "LINGER2",
-        "description": "[jitter][orange]¡Cada vez hace más calor![/orange][/jitter]\n\nEl burbujeo de la poza simula unas carcajadas."
+        "description": "[jitter][orange]¡Cada vez hace más calor![/orange][/jitter]\n\nEl burbujeo de la poza simula unas carcajadas.",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "Linger",
+            "description": "Gain [green]2[/green] Max HP. Take [red]6[/red] damage."
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "Exit Baths",
+            "description": ""
+          }
+        ]
       },
       {
         "id": "LINGER3",
-        "description": "[jitter][red]¡Hace mucho calor![/red][/jitter]\n\n¿Así se sentirá vivir en la Aldea de los Demonios?"
+        "description": "[jitter][red]¡Hace mucho calor![/red][/jitter]\n\n¿Así se sentirá vivir en la Aldea de los Demonios?",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "Linger",
+            "description": "Gain [green]2[/green] Max HP. Take [red]7[/red] damage."
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "Exit Baths",
+            "description": ""
+          }
+        ]
       },
       {
         "id": "LINGER4",
-        "description": "[sine][purple]Estuviste tanto tiempo en el balneario que perdiste la noción del tiempo y de tu mente...[/purple][/sine]"
+        "description": "[sine][purple]Estuviste tanto tiempo en el balneario que perdiste la noción del tiempo y de tu mente...[/purple][/sine]",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "Linger",
+            "description": "Gain [green]2[/green] Max HP. Take [red]8[/red] damage."
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "Exit Baths",
+            "description": ""
+          }
+        ]
       },
       {
         "id": "LINGER5",
-        "description": "Qué lugar tan relajante..."
+        "description": "Qué lugar tan relajante...",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "Linger",
+            "description": "Gain [green]2[/green] Max HP. Take [red]9[/red] damage."
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "Exit Baths",
+            "description": ""
+          }
+        ]
       },
       {
         "id": "LINGER6",
-        "description": "Es un lugar fantástico, de verdad."
+        "description": "Es un lugar fantástico, de verdad.",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "Linger",
+            "description": "Gain [green]2[/green] Max HP. Take [red]10[/red] damage."
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "Exit Baths",
+            "description": ""
+          }
+        ]
       },
       {
         "id": "LINGER7",
-        "description": "Te sientes genial."
+        "description": "Te sientes genial.",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "Linger",
+            "description": "Gain [green]2[/green] Max HP. Take [red]11[/red] damage."
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "Exit Baths",
+            "description": ""
+          }
+        ]
       },
       {
         "id": "LINGER8",
-        "description": "[sine]Mmm...[/sine]"
+        "description": "[sine]Mmm...[/sine]",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "Linger",
+            "description": "Gain [green]2[/green] Max HP. Take [red]12[/red] damage."
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "Exit Baths",
+            "description": ""
+          }
+        ]
       },
       {
         "id": "LINGER9",
-        "description": "[sine]Zzz...\n... Zzzz...[/sine]"
+        "description": "[sine]Zzz...\n... Zzzz...[/sine]",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "Linger",
+            "description": "Gain [green]2[/green] Max HP. Take [red]13[/red] damage."
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "Exit Baths",
+            "description": ""
+          }
+        ]
       }
     ]
   },
