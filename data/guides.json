@@ -22,29 +22,6 @@
     "content": "## Welcome to the Spire\n\nSlay the Spire 2 is a roguelike deck-building game where you craft a unique deck, encounter bizarre creatures, and discover powerful relics as you climb the Spire. Each run is different, and learning from failure is part of the journey.\n\n## Core Mechanics\n\n### Energy and Cards\n\nEach turn you receive a set amount of energy (usually 3) to play cards from your hand. Cards cost energy to play, and understanding how to efficiently spend your energy is key to success.\n\n- **Attacks** deal damage to enemies\n- **Skills** provide defensive options like Block, or utility effects\n- **Powers** like [[Demon Form]] or [[Noxious Fumes]] give lasting effects for the rest of combat\n\n### Block and Damage\n\nBlock prevents incoming damage on a per-turn basis. Unspent Block disappears at the start of your next turn (unless you have the [[keyword:Retain]] keyword). Balancing offense and defense is the core decision of every turn.\n\n### Keywords\n\nCards can have special keywords that change how they behave:\n\n- [[keyword:Exhaust]] — Card is removed from your deck for the rest of combat after playing\n- [[keyword:Ethereal]] — Card is exhausted if still in your hand at end of turn\n- [[keyword:Innate]] — Card is always in your opening hand\n- [[keyword:Retain]] — Card stays in your hand instead of being discarded at end of turn\n\n### Relics\n\nRelics are passive items that provide ongoing bonuses throughout your run. You'll find them after elite fights, in shops, and from events. Building synergies between your relics and your deck is a major part of strategy.\n\n## The Characters\n\n- [[character:Ironclad]] — A warrior with high HP and [[relic:Burning Blood]] for healing. Great for beginners.\n- [[character:Silent]] — A rogue who uses [[power:Poison]] and [[Shiv]]s for damage. More complex but very powerful.\n- [[character:Defect]] — A robot that uses Orbs ([[orb:Lightning]], [[orb:Frost]], [[orb:Dark]]) for passive effects.\n- [[character:Necrobinder]] — Summons minions and uses Souls for dark strategies.\n- [[character:Regent]] — Uses Stars as an alternative resource alongside energy.\n\n## Tips for New Players\n\n1. **Don't take every card** — A smaller, focused deck is usually better than a large unfocused one\n2. **Block is important** — Don't neglect defense. Dying is the worst outcome\n3. **Read your relics** — Many relics change how you should play. Adapt your strategy\n4. **Elite fights are worth it** — The relics from elites are powerful, but know your limits\n5. **Learn enemy patterns** — Enemies telegraph their moves with intents. Use this information\n6. **Visit the shop** — The merchant sells cards, relics, and [[potion:Fruit Juice]]. Card removal costs 75 gold and goes up by 25 each time"
   },
   {
-    "id": "ironclad-starter",
-    "slug": "ironclad-starter",
-    "title": "Ironclad Starter Guide",
-    "author": "Yitsy",
-    "date": "2026-04-01",
-    "updated": null,
-    "category": "character",
-    "tags": [
-      "ironclad",
-      "beginner",
-      "strength",
-      "exhaust"
-    ],
-    "summary": "Learn the fundamentals of playing Ironclad in Slay the Spire 2. Covers key cards, archetypes, and how to build a winning deck.",
-    "difficulty": "beginner",
-    "character": "ironclad",
-    "website": null,
-    "bluesky": "ptrlrd",
-    "twitter": "ptrlrd",
-    "twitch": "yitsy",
-    "content": "## Ironclad Overview\n\nThe [[character:Ironclad]] is the starting character in Slay the Spire 2 and the most straightforward to learn. With high base HP and the [[relic:Burning Blood]] relic that heals 6 HP after every fight, the Ironclad can afford to take some hits while building up powerful offensive strategies.\n\n## Key Archetypes\n\n### Strength Build\n\nStack [[power:Strength]] to amplify all your attacks. Cards like [[Inflame]] and [[Demon Form]] provide scaling Strength that makes even basic [[Strike]]s hit hard.\n\n**Key cards:** [[Inflame]], [[Heavy Blade]], [[Demon Form]], [[Limit Break]]\n\n### Exhaust Build\n\nUse cards that [[keyword:Exhaust]] other cards for powerful effects. This archetype thins your deck mid-combat and can trigger powerful synergies with [[Feel No Pain]].\n\n**Key cards:** [[Feel No Pain]], [[Corruption]], [[Dark Embrace]], [[Fiend Fire]]\n\n### Block Build\n\nFocus on generating massive amounts of [[keyword:Block]] to become nearly invincible. Works well with [[Barricade]] to [[keyword:Retain]] Block between turns.\n\n**Key cards:** [[Barricade]], [[Entrench]], [[Body Slam]], [[Impervious]]\n\n## Starter Deck\n\nYour starting deck contains 5 [[Strike]]s and 4 [[Defend]]s plus [[Bash]]. [[Bash]] applies [[power:Vulnerable]] which increases damage taken by 50% — always use it before your big attacks.\n\n## General Tips\n\n- [[relic:Burning Blood]] heals HP after every fight — use this to be more aggressive in early fights\n- [[power:Strength]] scaling is one of the most powerful strategies in the game\n- Don't underestimate [[keyword:Exhaust]] synergies — they can carry entire runs\n- [[Body Slam]] converts Block into damage, bridging offense and defense\n- [[potion:Fire Potion]] is great for bursting down elites in Act 1"
-  },
-  {
     "id": "new-players-guide",
     "slug": "new-players-guide",
     "title": "A New Players Guide to Slay the Spire, too",
