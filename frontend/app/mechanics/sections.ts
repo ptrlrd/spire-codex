@@ -27,7 +27,7 @@ export const MECHANIC_SECTIONS: MechanicSection[] = [
 
   { slug: "reflections", title: "The Reflections Event Can Double Your Deck", description: "The Shatter option clones every card in your deck 1:1, doubling its size. The catch: a Bad Luck curse.", category: "secrets" },
   { slug: "the-architect", title: "The Architect Can't Fight You", description: "The final encounter has 9,999 HP but can't attack. It's a dialogue scene where your score determines the visual damage.", category: "secrets" },
-  { slug: "orobas-prismatic", title: "Orobas Has a 33% Prismatic Gem Chance", description: "The Ancient Orobas in Act 2 has a 33% chance to offer the Prismatic Gem, making card rewards include ALL character pools.", category: "secrets" },
+  { slug: "orobas-prismatic", title: "Orobas and the Prismatic Gem", description: "The Ancient Orobas in Act 2 has a ~8% chance to offer the Prismatic Gem — 33% chance it enters the pool, then 1-in-4 to be picked.", category: "secrets" },
   { slug: "byrdpip", title: "Byrdpip Is Invincible and Does Nothing", description: "The Byrdpip pet has 9,999 HP, a hidden health bar, and its only move is NOTHING_MOVE. It has 4 random skins.", category: "secrets" },
   { slug: "merchant-blacklist", title: "Two Relics Are Banned From Shops", description: "The Courier and Old Coin are hardcoded into the merchant blacklist — they can never appear in shops.", category: "secrets" },
   { slug: "autoslay", title: "The Game Has a Built-In AI Player", description: "AutoSlay is a full automated player for CI testing — picks a random character, plays to floor 49 with a 25-minute timeout.", category: "secrets" },

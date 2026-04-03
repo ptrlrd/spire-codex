@@ -447,7 +447,7 @@ export default function MechanicContent({ slug }: { slug: string }) {
       return (
         <div className={card}>
           <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
-            When visiting the Ancient Orobas in Act 2, there&apos;s a <strong className={bold}>33.3% chance</strong> of being offered the <strong className={bold}>Prismatic Gem</strong>. This relic makes card rewards include cards from ALL character pools, not just your own. Orobas also offers starter relic upgrades: Burning Blood becomes Black Blood, Ring of the Snake becomes Ring of the Drake, and so on.
+            When visiting the Ancient Orobas in Act 2, there&apos;s a <strong className={bold}>33% chance</strong> the Prismatic Gem is added to Orobas&apos;s first relic pool (alongside Electric Shrymp, Glass Eye, and Sand Castle). If it doesn&apos;t appear, Sea Glass (from another character&apos;s pool) takes its slot instead. Since one relic is randomly picked from the pool of 4, the actual chance of being <em>offered</em> Prismatic Gem is <strong className={bold}>~8.3%</strong> (33% &times; 25%). This relic makes card rewards include cards from ALL character pools. Orobas also offers starter relic upgrades: Burning Blood becomes Black Blood, Ring of the Snake becomes Ring of the Drake, and so on.
           </p>
         </div>
       );
