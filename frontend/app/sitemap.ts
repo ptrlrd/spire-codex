@@ -108,6 +108,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })
   );
 
+  // Mechanics detail pages
+  const { MECHANIC_SECTIONS } = await import("./mechanics/sections");
+  const mechanicsEntries: MetadataRoute.Sitemap = MECHANIC_SECTIONS.map((s) => ({
+    url: `${SITE_URL}/mechanics/${s.slug}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.6,
+  }));
+
   // Card browse pages (programmatic SEO)
   const browseEntries: MetadataRoute.Sitemap = ALL_BROWSE_SLUGS.map((slug) => ({
     url: `${SITE_URL}/cards/browse/${slug}`,
@@ -151,5 +160,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }))
   );
 
-  return [...staticEntries, ...browseEntries, ...langListEntries, ...langDetailEntries, ...dynamicResults.flat()];
+  return [...staticEntries, ...mechanicsEntries, ...browseEntries, ...langListEntries, ...langDetailEntries, ...dynamicResults.flat()];
 }
