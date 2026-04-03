@@ -24,7 +24,7 @@ export const MECHANIC_SECTIONS: MechanicSection[] = [
   { slug: "foul-potion", title: "The Foul Potion Has 3 Uses", description: "The most context-sensitive item in the game — combat damage, merchant gold, and Fake Merchant boss trigger.", category: "secrets" },
   { slug: "wongo-loyalty", title: "Wongo's Cross-Run Loyalty Points", description: "A hidden loyalty system that persists across runs. Earn points toward a badge relic, but leaving without buying downgrades a card.", category: "secrets" },
   { slug: "crystal-sphere", title: "Crystal Sphere Minesweeper", description: "The Crystal Sphere event is a hidden-object minigame on an 11x11 grid with relics, potions, cards, and a hidden curse.", category: "secrets" },
-  { slug: "fake-merchant", title: "The Fake Merchant Sells STS1 Relics", description: "9 counterfeit relics referencing Slay the Spire 1 — and the Fake Snecko Eye actually works.", category: "secrets" },
+
   { slug: "reflections", title: "The Reflections Event Can Double Your Deck", description: "The Shatter option clones every card in your deck 1:1, doubling its size. The catch: a Bad Luck curse.", category: "secrets" },
   { slug: "the-architect", title: "The Architect Can't Fight You", description: "The final encounter has 9,999 HP but can't attack. It's a dialogue scene where your score determines the visual damage.", category: "secrets" },
   { slug: "orobas-prismatic", title: "Orobas Has a 33% Prismatic Gem Chance", description: "The Ancient Orobas in Act 2 has a 33% chance to offer the Prismatic Gem, making card rewards include ALL character pools.", category: "secrets" },

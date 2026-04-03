@@ -425,15 +425,6 @@ export default function MechanicContent({ slug }: { slug: string }) {
         </div>
       );
 
-    case "fake-merchant":
-      return (
-        <div className={card}>
-          <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
-            The 9 counterfeit relics sold by the Fake Merchant are all references to beloved Slay the Spire 1 relics: Fake Anchor, Fake Blood Vial, Fake Happy Flower, Fake Lee&apos;s Waffle, Fake Mango, Fake Orichalcum, Fake Snecko Eye, Fake Strike Dummy, and Fake Venerable Tea Set. The Fake Snecko Eye actually works &mdash; it gives you the Confused power, randomizing your card costs. Only 6 of the 9 are shown per visit.
-          </p>
-        </div>
-      );
-
     case "reflections":
       return (
         <div className={card}>
