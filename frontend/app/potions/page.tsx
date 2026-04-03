@@ -64,7 +64,7 @@ export default async function PotionsPage() {
               </tbody>
             </table>
             <p className="text-xs text-[var(--text-muted)] mt-3">
-              Uses a pity system: +10% on miss, &minus;10% on drop. Effective rate trends toward 50% over time.
+              <strong className="text-[var(--text-secondary)]">Pity system:</strong> Drop chance starts at 40% and adjusts after each combat &mdash; +10% when no potion drops, &minus;10% when one does. This causes the effective rate to oscillate around 50% over a run. Elite fights add a flat 12.5% bonus to the roll without affecting the pity counter, so getting a potion from the elite bonus alone won&apos;t reset your accumulated chance.
             </p>
           </div>
 
