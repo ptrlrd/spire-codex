@@ -4,14 +4,14 @@ import JsonLd from "@/app/components/JsonLd";
 import { buildBreadcrumbJsonLd, buildDetailPageJsonLd } from "@/lib/jsonld";
 
 export const metadata: Metadata = {
-  title: `Slay the Spire 2 Drop Rates & Game Mechanics | ${SITE_NAME}`,
+  title: `Slay the Spire 2 Game Mechanics | ${SITE_NAME}`,
   description:
     "Complete drop rate data and game mechanics for Slay the Spire 2. Card rarity odds, relic distribution, potion chances, gold rewards, map generation, combat formulas, and more — all extracted from the game's source code.",
-  alternates: { canonical: `${SITE_URL}/drop-rates` },
+  alternates: { canonical: `${SITE_URL}/mechanics` },
   openGraph: {
-    title: `Slay the Spire 2 Drop Rates & Game Mechanics | ${SITE_NAME}`,
+    title: `Slay the Spire 2 Game Mechanics | ${SITE_NAME}`,
     description: "Every drop rate, reward chance, and game formula extracted from the source code.",
-    url: `${SITE_URL}/drop-rates`,
+    url: `${SITE_URL}/mechanics`,
     siteName: SITE_NAME,
     type: "website",
   },
@@ -35,16 +35,16 @@ export default function DropRatesPage() {
   const jsonLd = [
     buildBreadcrumbJsonLd([
       { name: "Home", href: "/" },
-      { name: "Drop Rates", href: "/drop-rates" },
+      { name: "Mechanics", href: "/mechanics" },
     ]),
     ...buildDetailPageJsonLd({
-      name: "Slay the Spire 2 Drop Rates & Game Mechanics",
+      name: "Slay the Spire 2 Game Mechanics",
       description: "Complete drop rate data and game mechanics extracted from the source code.",
-      path: "/drop-rates",
+      path: "/mechanics",
       category: "Game Data",
       breadcrumbs: [
         { name: "Home", href: "/" },
-        { name: "Drop Rates", href: "/drop-rates" },
+        { name: "Mechanics", href: "/mechanics" },
       ],
     }),
   ];
@@ -53,7 +53,7 @@ export default function DropRatesPage() {
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <JsonLd data={jsonLd} />
       <h1 className="text-3xl font-bold mb-2">
-        <span className="text-[var(--accent-gold)]">Drop Rates &amp; Game Mechanics</span>
+        <span className="text-[var(--accent-gold)]">Game Mechanics</span>
       </h1>
       <p className="text-sm text-[var(--text-muted)] mb-2">
         Every drop rate, reward chance, and game formula extracted from Slay the Spire 2&apos;s decompiled source code. All values are exact.

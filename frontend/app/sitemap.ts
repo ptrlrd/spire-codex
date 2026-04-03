@@ -33,7 +33,7 @@ const STATIC_PAGES = [
   { path: "/images", priority: 0.5, changeFrequency: "monthly" as const },
   { path: "/changelog", priority: 0.5, changeFrequency: "weekly" as const },
   { path: "/about", priority: 0.4, changeFrequency: "monthly" as const },
-  { path: "/drop-rates", priority: 0.7, changeFrequency: "monthly" as const },
+  { path: "/mechanics", priority: 0.7, changeFrequency: "monthly" as const },
   { path: "/guides", priority: 0.7, changeFrequency: "weekly" as const },
   { path: "/guides/submit", priority: 0.3, changeFrequency: "monthly" as const },
   { path: "/cards/browse", priority: 0.8, changeFrequency: "daily" as const },
