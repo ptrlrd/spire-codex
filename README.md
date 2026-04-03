@@ -14,14 +14,14 @@ Slay the Spire 2 is built with Godot 4 but all game logic lives in a C#/.NET 8 D
 
 2. **DLL Decompilation** — [ILSpy](https://github.com/icsharpcode/ILSpy) decompiles `sts2.dll` into ~3,300 readable C# source files containing all game models.
 
-3. **Data Parsing** — 20 Python regex-based parsers extract structured data from the decompiled C# source, outputting per-language JSON to `data/{lang}/`:
+3. **Data Parsing** — 22 Python regex-based parsers extract structured data from the decompiled C# source, outputting per-language JSON to `data/{lang}/`:
    - **Cards**: `base(cost, CardType, CardRarity, TargetType)` constructors + `DamageVar`, `BlockVar`, `PowerVar<T>` for stats
    - **Characters**: `StartingHp`, `StartingGold`, `MaxEnergy`, `StartingDeck`, `StartingRelics`
    - **Relics/Potions**: Rarity, pool, descriptions resolved from SmartFormat templates
-   - **Monsters**: HP ranges, ascension scaling via `AscensionHelper`, move state machines with per-move intents (Attack/Defend/Buff/Debuff/Status/Summon/Heal), damage values, powers applied per move (target + amount from `PowerCmd.Apply<T>`), block, healing, encounter context (act, room type)
+   - **Monsters**: HP ranges, ascension scaling via `AscensionHelper`, move state machines with per-move intents (Attack/Defend/Buff/Debuff/Status/Summon/Heal), damage values, multi-hit counts (including AscensionHelper patterns), innate powers from `AfterAddedToRoom` (42 monsters), powers applied per move (target + amount from `PowerCmd.Apply<T>`), block, healing, encounter context (act, room type)
    - **Enchantments**: Card type restrictions, stackability, Amount-based scaling
    - **Encounters**: Monster compositions, room type (Boss/Elite/Monster), act placement, tags
-   - **Events**: Multi-page decision trees (56 of 66 events), choices with outcomes, act placement, `StringVar` model references resolved to display names
+   - **Events**: Multi-page decision trees (56 of 66 events), choices with outcomes, act placement, `StringVar` model references resolved to display names, runtime-computed values (escalating costs via `GetDecipherCost()`, gold ranges via `CalculateVars` with `NextInt`/`NextFloat`, heal-to-full patterns)
    - **Ancients**: 8 Ancient NPCs with epithets, character-specific dialogue, relic offerings, portrait icons
    - **Powers**: PowerType (Buff/Debuff), PowerStackType (Counter/Single), DynamicVars, descriptions
    - **Epochs/Stories**: Timeline progression data with unlock requirements
@@ -30,7 +30,7 @@ Slay the Spire 2 is built with Godot 4 but all game logic lives in a C#/.NET 8 D
    - **Modifiers**: Run modifier descriptions
    - **Keywords**: Card keyword definitions (Exhaust, Ethereal, Innate, etc.)
    - **Intents**: Monster intent descriptions with icons
-   - **Achievements**: Unlock conditions, descriptions
+   - **Achievements**: Unlock conditions, descriptions, categories, character association, thresholds from C# source (33 achievements)
    - **Acts**: Boss discovery order, encounters, events, ancients, room counts
    - **Ascension Levels**: 11 levels (0–10) with descriptions from localization
    - **Potion Pools**: Character-specific pools parsed from pool classes and epoch references
@@ -52,7 +52,7 @@ spire-codex/
 │   ├── app/
 │   │   ├── main.py             # App entry, CORS, GZip, rate limiting, static files
 │   │   ├── dependencies.py     # Shared deps (lang validation, language names)
-│   │   ├── routers/            # API endpoints (22 routers)
+│   │   ├── routers/            # API endpoints (25+ routers)
 │   │   ├── models/schemas.py   # Pydantic models
 │   │   ├── services/           # JSON data loading (LRU cached, 14-lang support)
 │   │   └── parsers/            # C# source → JSON parsers
@@ -65,7 +65,8 @@ spire-codex/
 │   │       ├── encounter_parser.py
 │   │       ├── event_parser.py
 │   │       ├── power_parser.py
-│   │       ├── keyword_parser.py        # Keywords, intents, orbs, afflictions, modifiers, achievements
+│   │       ├── keyword_parser.py        # Keywords, intents, orbs, afflictions, modifiers, achievements (with unlock conditions)
+│   │       ├── guide_parser.py          # Markdown guides with YAML frontmatter
 │   │       ├── epoch_parser.py
 │   │       ├── act_parser.py
 │   │       ├── ascension_parser.py
@@ -84,7 +85,8 @@ spire-codex/
 │   │   │                       #   GlobalSearch, Navbar, Footer, LanguageSelector
 │   │   └── ...                 # Pages: cards, characters, relics, monsters, potions,
 │   │                           #   enchantments, encounters, events, powers, timeline,
-│   │                           #   reference, images, changelog, about, merchant, compare
+│   │                           #   reference, images, changelog, about, merchant, compare,
+│   │                           #   mechanics/[slug], guides/[slug], guides/submit, runs, meta
 │   │                           #   Detail pages: cards/[id], characters/[id], relics/[id],
 │   │                           #   monsters/[id], potions/[id], enchantments/[id],
 │   │                           #   encounters/[id], events/[id], powers/[id], keywords/[id],
@@ -114,7 +116,11 @@ spire-codex/
 │   └── deploy.py               # Local Docker build + push to Docker Hub
 ├── data/                       # Parsed JSON data files
 │   ├── {lang}/                 # Per-language directories (eng, kor, jpn, fra, etc.)
-│   └── changelogs/             # Changelog JSON files (keyed by game version)
+│   ├── changelogs/             # Changelog JSON files (keyed by game version)
+│   ├── guides/                 # Markdown guide files with YAML frontmatter
+│   ├── guides.json             # Parsed guide data
+│   ├── runs/                   # Submitted run JSON files (per player hash)
+│   └── runs.db                 # SQLite database for run metadata
 ├── extraction/                 # Raw game files (not committed)
 │   ├── raw/                    # GDRE extracted Godot project
 │   └── decompiled/             # ILSpy output
@@ -162,6 +168,13 @@ spire-codex/
 | Affliction Detail | `/afflictions/[id]` | Affliction description, stackability |
 | Modifier Detail | `/modifiers/[id]` | Run modifier description |
 | Achievement Detail | `/achievements/[id]` | Achievement description |
+| Mechanics | `/mechanics` | Game mechanics hub — 27 clickable sections with individual SEO pages |
+| Mechanic Detail | `/mechanics/[slug]` | Card odds, relic distribution, potion drops, map generation, boss pools, combat, secrets & trivia |
+| Guides | `/guides` | Community strategy guides with search/filter |
+| Guide Detail | `/guides/[slug]` | Full guide with markdown rendering + tooltip widget |
+| Submit Guide | `/guides/submit` | Guide submission form (Discord webhook) |
+| Runs | `/runs` | Community run browser with character/win filters |
+| Meta | `/meta` | Live community stats from submitted runs |
 | Reference | `/reference` | All items clickable — acts, ascensions, keywords, orbs, afflictions, intents, modifiers, achievements |
 | Images | `/images` | Browsable game assets with ZIP download per category |
 | Changelog | `/changelog` | Data diffs between game updates |
@@ -218,9 +231,16 @@ All data endpoints accept an optional `?lang=` query parameter (default: `eng`).
 | `GET /api/images/{category}/download` | ZIP download of image category | — |
 | `GET /api/changelogs` | Changelog summaries (all versions) | — |
 | `GET /api/changelogs/{tag}` | Full changelog for a version tag | — |
+| `GET /api/guides` | Community guides | `category`, `difficulty`, `tag`, `search` |
+| `GET /api/guides/{slug}` | Single guide (with markdown content) | — |
+| `POST /api/guides` | Submit guide (proxied to Discord) | — |
+| `POST /api/runs` | Submit a run (.run file JSON) | `username` |
+| `GET /api/runs/list` | List submitted runs | `character`, `win`, `username`, `page`, `limit` |
+| `GET /api/runs/shared/{hash}` | Full run data by hash | — |
+| `GET /api/runs/stats` | Aggregated community stats | `character`, `win`, `ascension`, `game_mode`, `players` |
 | `POST /api/feedback` | Submit feedback (proxied to Discord) | — |
 
-Rate limited to **60 requests per minute** per IP. Feedback endpoint limited to **5 per minute** per IP. Interactive docs at `/docs` (Swagger UI).
+Rate limited to **60 requests per minute** per IP. Feedback and guide submission limited to **3-5 per minute** per IP. Interactive docs at `/docs` (Swagger UI).
 
 ### Localization
 
@@ -557,6 +577,12 @@ Full docs: [spire-codex.com/developers](https://spire-codex.com/developers)
 - ~~Developer docs + data exports~~ ✅
 - ~~International SEO (13 language landing pages)~~ ✅
 - ~~Card browse matrix (41 programmatic SEO pages)~~ ✅
+- ~~Community guides~~ ✅ — Markdown with YAML frontmatter, submission form, tooltip widget, author socials
+- ~~Game mechanics page~~ ✅ — 27 individual SEO pages: drop rates, combat, map, bosses, secrets & trivia
+- ~~Community runs~~ ✅ — Run submission, browser, shared runs, live stats
+- ~~Card upgrade descriptions~~ ✅ — upgrade_description for all 403 upgradable cards
+- ~~Monster innate powers~~ ✅ — 42 monsters with powers from AfterAddedToRoom
+- ~~Achievement unlock conditions~~ ✅ — Category, character, threshold from C# source
 - **Discord bot** — Card lookup, patch alerts
 - **Deck builder** — Interactive deck theorycrafting
 - **Database backend** — Replace JSON loading with SQLite/PostgreSQL
