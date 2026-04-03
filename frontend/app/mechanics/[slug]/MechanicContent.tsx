@@ -260,7 +260,7 @@ export default function MechanicContent({ slug }: { slug: string }) {
               </ul>
             </div>
           </div>
-          <p className={`${note} mt-2`}>Underdocks replaces Overgrowth 50% of the time (once unlocked). On A10, two bosses are fought at the end of each act.</p>
+          <p className={`${note} mt-2`}>Underdocks replaces Overgrowth 50% of the time (once unlocked). On A10, two bosses are fought at the end of the final act.</p>
         </>
       );
 
@@ -377,7 +377,7 @@ export default function MechanicContent({ slug }: { slug: string }) {
             <tr className={tr}><td className={td}>7</td><td className={td}>Scarcity</td><td className={tdr}>~50% rarer cards, slower pity</td></tr>
             <tr className={tr}><td className={td}>8</td><td className={td}>Tough Enemies</td><td className={tdr}>Enemy HP increases (per-enemy)</td></tr>
             <tr className={tr}><td className={td}>9</td><td className={td}>Deadly Enemies</td><td className={tdr}>Enemy damage increases (per-enemy)</td></tr>
-            <tr><td className={td}>10</td><td className={td}>Double Boss</td><td className={tdr}>Two bosses at end of each act</td></tr>
+            <tr><td className={td}>10</td><td className={td}>Double Boss</td><td className={tdr}>Two bosses at end of the final act</td></tr>
           </tbody></table>
         </div>
       );
