@@ -16,35 +16,14 @@
   {
     "id": "GALVANIZED",
     "name": "Galvanique",
-    "description": "Subissez [blue][Amount][/blue] dégâts quand cette carte est jouée.",
-    "extra_card_text": "Subissez [Amount] dégâts.",
+    "description": "Subissez [blue]X[/blue] dégâts quand cette carte est jouée.",
+    "extra_card_text": "Subissez X dégâts.",
     "is_stackable": true
   },
   {
     "id": "HEXED",
     "name": "Ensorcelé",
     "description": "Ajoutez [gold]Éthéré[/gold] à cette carte.",
-    "extra_card_text": null,
-    "is_stackable": false
-  },
-  {
-    "id": "MOCK_NO_UNPLAYABLE_AFFLICTION",
-    "name": "Pas d'affliction injouable (simulé)",
-    "description": "",
-    "extra_card_text": null,
-    "is_stackable": false
-  },
-  {
-    "id": "MOCK_SELF_DAMAGE_AFFLICTION",
-    "name": "Affliction dégâts à soi-même (simulé)",
-    "description": "",
-    "extra_card_text": null,
-    "is_stackable": false
-  },
-  {
-    "id": "MOCK_USELESS_AFFLICTION",
-    "name": "Affliction sans effet (simulé)",
-    "description": "",
     "extra_card_text": null,
     "is_stackable": false
   },

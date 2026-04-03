@@ -16,35 +16,14 @@
   {
     "id": "GALVANIZED",
     "name": "Galvanização",
-    "description": "Sofra [blue][Amount][/blue] de dano quando esta carta é jogada.",
-    "extra_card_text": "Sofra [Amount] de dano.",
+    "description": "Sofra [blue]X[/blue] de dano quando esta carta é jogada.",
+    "extra_card_text": "Sofra X de dano.",
     "is_stackable": true
   },
   {
     "id": "HEXED",
     "name": "Enfeitiçada",
     "description": "Adiciona [gold]Etérea[/gold] a esta carta.",
-    "extra_card_text": null,
-    "is_stackable": false
-  },
-  {
-    "id": "MOCK_NO_UNPLAYABLE_AFFLICTION",
-    "name": "Mock No Unplayable Affliction",
-    "description": "",
-    "extra_card_text": null,
-    "is_stackable": false
-  },
-  {
-    "id": "MOCK_SELF_DAMAGE_AFFLICTION",
-    "name": "Mock Self Damage Affliction",
-    "description": "",
-    "extra_card_text": null,
-    "is_stackable": false
-  },
-  {
-    "id": "MOCK_USELESS_AFFLICTION",
-    "name": "Mock Useless Affliction",
-    "description": "",
     "extra_card_text": null,
     "is_stackable": false
   },

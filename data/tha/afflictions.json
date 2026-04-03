@@ -16,35 +16,14 @@
   {
     "id": "GALVANIZED",
     "name": "กัดกร่อน",
-    "description": "ได้รับความเสียหาย [blue][Amount][/blue] เมื่อเล่นการ์ดนี้",
-    "extra_card_text": "ได้รับความเสียหาย [Amount]",
+    "description": "ได้รับความเสียหาย [blue]X[/blue] เมื่อเล่นการ์ดนี้",
+    "extra_card_text": "ได้รับความเสียหาย X",
     "is_stackable": true
   },
   {
     "id": "HEXED",
     "name": "สาปสลาย",
     "description": "เพิ่ม[gold]กึ่งสลาย[/gold]ใส่การ์ดนี้",
-    "extra_card_text": null,
-    "is_stackable": false
-  },
-  {
-    "id": "MOCK_NO_UNPLAYABLE_AFFLICTION",
-    "name": "Mock No Unplayable Affliction",
-    "description": "",
-    "extra_card_text": null,
-    "is_stackable": false
-  },
-  {
-    "id": "MOCK_SELF_DAMAGE_AFFLICTION",
-    "name": "Mock Self Damage Affliction",
-    "description": "",
-    "extra_card_text": null,
-    "is_stackable": false
-  },
-  {
-    "id": "MOCK_USELESS_AFFLICTION",
-    "name": "Mock Useless Affliction",
-    "description": "",
     "extra_card_text": null,
     "is_stackable": false
   },

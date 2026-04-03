@@ -16,35 +16,14 @@
   {
     "id": "GALVANIZED",
     "name": "Гальванизация",
-    "description": "Вы получите [blue][Amount][/blue] урона, если разыграете эту карту.",
-    "extra_card_text": "Вы получите [Amount] урона.",
+    "description": "Вы получите [blue]X[/blue] урона, если разыграете эту карту.",
+    "extra_card_text": "Вы получите X урона.",
     "is_stackable": true
   },
   {
     "id": "HEXED",
     "name": "Сглаз",
     "description": "Карта становится [gold]эфирной[/gold].",
-    "extra_card_text": null,
-    "is_stackable": false
-  },
-  {
-    "id": "MOCK_NO_UNPLAYABLE_AFFLICTION",
-    "name": "Mock No Unplayable Affliction",
-    "description": "",
-    "extra_card_text": null,
-    "is_stackable": false
-  },
-  {
-    "id": "MOCK_SELF_DAMAGE_AFFLICTION",
-    "name": "Mock Self Damage Affliction",
-    "description": "",
-    "extra_card_text": null,
-    "is_stackable": false
-  },
-  {
-    "id": "MOCK_USELESS_AFFLICTION",
-    "name": "Mock Useless Affliction",
-    "description": "",
     "extra_card_text": null,
     "is_stackable": false
   },

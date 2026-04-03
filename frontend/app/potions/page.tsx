@@ -36,6 +36,70 @@ export default async function PotionsPage() {
         Browse every potion across Ironclad, Silent, Defect, Necrobinder, and Regent. Filter by rarity and character pool.
       </p>
 
+      {/* Drop Rates */}
+      <section className="mb-8">
+        <h2 className="text-xl font-semibold text-[var(--accent-gold)] mb-4">
+          Potion Drop Rates
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-2">
+          {/* Combat Drops */}
+          <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5">
+            <h3 className="font-semibold text-[var(--text-primary)] mb-3">Combat Rewards</h3>
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b border-[var(--border-subtle)]">
+                  <th className="text-left pb-2 text-[var(--text-muted)] font-semibold">Encounter</th>
+                  <th className="text-right pb-2 text-[var(--text-muted)] font-semibold">Base Chance</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b border-[var(--border-subtle)]/50">
+                  <td className="py-2 text-[var(--text-secondary)]">Normal</td>
+                  <td className="py-2 text-right text-[var(--text-primary)]">40%</td>
+                </tr>
+                <tr>
+                  <td className="py-2 text-[var(--text-secondary)]">Elite</td>
+                  <td className="py-2 text-right text-[var(--text-primary)]">~52.5%</td>
+                </tr>
+              </tbody>
+            </table>
+            <p className="text-xs text-[var(--text-muted)] mt-3">
+              Uses a pity system: +10% on miss, &minus;10% on drop. Effective rate trends toward 50% over time.
+            </p>
+          </div>
+
+          {/* Rarity Distribution */}
+          <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5">
+            <h3 className="font-semibold text-[var(--text-primary)] mb-3">Rarity Distribution</h3>
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b border-[var(--border-subtle)]">
+                  <th className="text-left pb-2 text-[var(--text-muted)] font-semibold">Rarity</th>
+                  <th className="text-right pb-2 text-[var(--text-muted)] font-semibold">Chance</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b border-[var(--border-subtle)]/50">
+                  <td className="py-2 text-gray-300">Common</td>
+                  <td className="py-2 text-right text-[var(--text-primary)]">65%</td>
+                </tr>
+                <tr className="border-b border-[var(--border-subtle)]/50">
+                  <td className="py-2 text-blue-400">Uncommon</td>
+                  <td className="py-2 text-right text-[var(--text-primary)]">25%</td>
+                </tr>
+                <tr>
+                  <td className="py-2 text-[var(--accent-gold)]">Rare</td>
+                  <td className="py-2 text-right text-[var(--text-primary)]">10%</td>
+                </tr>
+              </tbody>
+            </table>
+            <p className="text-xs text-[var(--text-muted)] mt-3">
+              Applies to all potion generation including combat rewards and Alchemize.
+            </p>
+          </div>
+        </div>
+      </section>
+
       <Suspense>
         <PotionsClient initialPotions={potions} />
       </Suspense>

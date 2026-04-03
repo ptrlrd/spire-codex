@@ -16,35 +16,14 @@
   {
     "id": "GALVANIZED",
     "name": "Galvanismo",
-    "description": "Recibes [blue][Amount][/blue] de daño cuando juegas esta carta.",
-    "extra_card_text": "Recibes [Amount] de daño.",
+    "description": "Recibes [blue]X[/blue] de daño cuando juegas esta carta.",
+    "extra_card_text": "Recibes X de daño.",
     "is_stackable": true
   },
   {
     "id": "HEXED",
     "name": "Maleficio",
     "description": "Agrega [gold]Evanescencia[/gold] a esta carta.",
-    "extra_card_text": null,
-    "is_stackable": false
-  },
-  {
-    "id": "MOCK_NO_UNPLAYABLE_AFFLICTION",
-    "name": "Mock No Unplayable Affliction",
-    "description": "",
-    "extra_card_text": null,
-    "is_stackable": false
-  },
-  {
-    "id": "MOCK_SELF_DAMAGE_AFFLICTION",
-    "name": "Mock Self Damage Affliction",
-    "description": "",
-    "extra_card_text": null,
-    "is_stackable": false
-  },
-  {
-    "id": "MOCK_USELESS_AFFLICTION",
-    "name": "Mock Useless Affliction",
-    "description": "",
     "extra_card_text": null,
     "is_stackable": false
   },

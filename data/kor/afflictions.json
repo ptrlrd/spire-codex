@@ -16,35 +16,14 @@
   {
     "id": "GALVANIZED",
     "name": "전기 자극",
-    "description": "이 카드를 사용 시 피해를 [blue][Amount][/blue] 입습니다.",
-    "extra_card_text": "피해를 [Amount] 입습니다.",
+    "description": "이 카드를 사용 시 피해를 [blue]X[/blue] 입습니다.",
+    "extra_card_text": "피해를 X 입습니다.",
     "is_stackable": true
   },
   {
     "id": "HEXED",
     "name": "주박",
     "description": "이 카드에 [gold]휘발성[/gold]을 추가합니다.",
-    "extra_card_text": null,
-    "is_stackable": false
-  },
-  {
-    "id": "MOCK_NO_UNPLAYABLE_AFFLICTION",
-    "name": "가짜 비사용불가 고난",
-    "description": "",
-    "extra_card_text": null,
-    "is_stackable": false
-  },
-  {
-    "id": "MOCK_SELF_DAMAGE_AFFLICTION",
-    "name": "가짜 자가 피해 고난",
-    "description": "",
-    "extra_card_text": null,
-    "is_stackable": false
-  },
-  {
-    "id": "MOCK_USELESS_AFFLICTION",
-    "name": "가짜 무쓸모 고난",
-    "description": "",
     "extra_card_text": null,
     "is_stackable": false
   },

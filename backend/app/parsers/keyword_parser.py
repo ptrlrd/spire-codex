@@ -154,7 +154,7 @@ def parse_afflictions(loc_dir: Path) -> list[dict]:
     for key in loc:
         parts = key.split(".")
         aff_id = parts[0]
-        if aff_id in seen:
+        if aff_id in seen or aff_id.startswith("MOCK"):
             continue
         seen.add(aff_id)
 
@@ -178,6 +178,9 @@ def parse_afflictions(loc_dir: Path) -> list[dict]:
             desc_raw = loc.get(f"{aff_id}.description", "")
         extra_text_raw = loc.get(f"{aff_id}.extraCardText", "")
 
+        # For stackable afflictions, {Amount} refers to the stack count (dynamic)
+        if is_stackable and "Amount" not in all_vars:
+            all_vars["Amount"] = "X"
         desc_resolved = resolve_description(desc_raw, all_vars) if desc_raw else ""
         desc_clean = clean_description(desc_resolved)
         extra_resolved = resolve_description(extra_text_raw, all_vars) if extra_text_raw else None

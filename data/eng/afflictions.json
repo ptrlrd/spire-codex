@@ -16,35 +16,14 @@
   {
     "id": "GALVANIZED",
     "name": "Galvanized",
-    "description": "Take [blue][Amount][/blue] damage when this card is played.",
-    "extra_card_text": "Take [Amount] damage.",
+    "description": "Take [blue]X[/blue] damage when this card is played.",
+    "extra_card_text": "Take X damage.",
     "is_stackable": true
   },
   {
     "id": "HEXED",
     "name": "Hexed",
     "description": "Add [gold]Ethereal[/gold] to this card.",
-    "extra_card_text": null,
-    "is_stackable": false
-  },
-  {
-    "id": "MOCK_NO_UNPLAYABLE_AFFLICTION",
-    "name": "Mock No Unplayable Affliction",
-    "description": "",
-    "extra_card_text": null,
-    "is_stackable": false
-  },
-  {
-    "id": "MOCK_SELF_DAMAGE_AFFLICTION",
-    "name": "Mock Self Damage Affliction",
-    "description": "",
-    "extra_card_text": null,
-    "is_stackable": false
-  },
-  {
-    "id": "MOCK_USELESS_AFFLICTION",
-    "name": "Mock Useless Affliction",
-    "description": "",
     "extra_card_text": null,
     "is_stackable": false
   },

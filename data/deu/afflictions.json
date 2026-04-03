@@ -16,35 +16,14 @@
   {
     "id": "GALVANIZED",
     "name": "Galvanisiert",
-    "description": "Nimm [blue][Amount][/blue] Schaden, wenn diese Karte ausgespielt wird.",
-    "extra_card_text": "Nimm [Amount] Schaden.",
+    "description": "Nimm [blue]X[/blue] Schaden, wenn diese Karte ausgespielt wird.",
+    "extra_card_text": "Nimm X Schaden.",
     "is_stackable": true
   },
   {
     "id": "HEXED",
     "name": "Verflucht",
     "description": "Gibt dieser Karte [gold]Flüchtig[/gold].",
-    "extra_card_text": null,
-    "is_stackable": false
-  },
-  {
-    "id": "MOCK_NO_UNPLAYABLE_AFFLICTION",
-    "name": "Test",
-    "description": "",
-    "extra_card_text": null,
-    "is_stackable": false
-  },
-  {
-    "id": "MOCK_SELF_DAMAGE_AFFLICTION",
-    "name": "Test",
-    "description": "",
-    "extra_card_text": null,
-    "is_stackable": false
-  },
-  {
-    "id": "MOCK_USELESS_AFFLICTION",
-    "name": "Test",
-    "description": "",
     "extra_card_text": null,
     "is_stackable": false
   },

@@ -16,35 +16,14 @@
   {
     "id": "GALVANIZED",
     "name": "流电",
-    "description": "打出这张牌时受到[blue][Amount][/blue]点伤害。",
-    "extra_card_text": "受到[Amount]点伤害。",
+    "description": "打出这张牌时受到[blue]X[/blue]点伤害。",
+    "extra_card_text": "受到X点伤害。",
     "is_stackable": true
   },
   {
     "id": "HEXED",
     "name": "邪咒",
     "description": "这张牌获得[gold]虚无[/gold]。",
-    "extra_card_text": null,
-    "is_stackable": false
-  },
-  {
-    "id": "MOCK_NO_UNPLAYABLE_AFFLICTION",
-    "name": "临时不可打出苦痛",
-    "description": "",
-    "extra_card_text": null,
-    "is_stackable": false
-  },
-  {
-    "id": "MOCK_SELF_DAMAGE_AFFLICTION",
-    "name": "临时自伤苦痛",
-    "description": "",
-    "extra_card_text": null,
-    "is_stackable": false
-  },
-  {
-    "id": "MOCK_USELESS_AFFLICTION",
-    "name": "临时无用苦痛",
-    "description": "",
     "extra_card_text": null,
     "is_stackable": false
   },

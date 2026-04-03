@@ -16,35 +16,14 @@
   {
     "id": "GALVANIZED",
     "name": "Zelektryzowanie",
-    "description": "Otrzymaj [blue][Amount][/blue] pkt. obrażeń, gdy ta karta zostanie zagrana.",
-    "extra_card_text": "Otrzymaj [Amount] pkt. obrażeń.",
+    "description": "Otrzymaj [blue]X[/blue] pkt. obrażeń, gdy ta karta zostanie zagrana.",
+    "extra_card_text": "Otrzymaj X pkt. obrażeń.",
     "is_stackable": true
   },
   {
     "id": "HEXED",
     "name": "Zaczarowanie",
     "description": "Dodaj [gold]Eteryczna[/gold] do tej karty.",
-    "extra_card_text": null,
-    "is_stackable": false
-  },
-  {
-    "id": "MOCK_NO_UNPLAYABLE_AFFLICTION",
-    "name": "Mock No Unplayable Affliction",
-    "description": "",
-    "extra_card_text": null,
-    "is_stackable": false
-  },
-  {
-    "id": "MOCK_SELF_DAMAGE_AFFLICTION",
-    "name": "Mock Self Damage Affliction",
-    "description": "",
-    "extra_card_text": null,
-    "is_stackable": false
-  },
-  {
-    "id": "MOCK_USELESS_AFFLICTION",
-    "name": "Mock Useless Affliction",
-    "description": "",
     "extra_card_text": null,
     "is_stackable": false
   },

@@ -16,35 +16,14 @@
   {
     "id": "GALVANIZED",
     "name": "帯電",
-    "description": "このカードをプレイした時、[blue][Amount][/blue]ダメージを受ける。",
-    "extra_card_text": "[Amount]ダメージを受ける。",
+    "description": "このカードをプレイした時、[blue]X[/blue]ダメージを受ける。",
+    "extra_card_text": "Xダメージを受ける。",
     "is_stackable": true
   },
   {
     "id": "HEXED",
     "name": "呪詛",
     "description": "このカードに[gold]エセリアル[/gold]を付与する。",
-    "extra_card_text": null,
-    "is_stackable": false
-  },
-  {
-    "id": "MOCK_NO_UNPLAYABLE_AFFLICTION",
-    "name": "[テスト用]プレイ不可の災禍なし",
-    "description": "",
-    "extra_card_text": null,
-    "is_stackable": false
-  },
-  {
-    "id": "MOCK_SELF_DAMAGE_AFFLICTION",
-    "name": "[テスト用] 自傷の災禍",
-    "description": "",
-    "extra_card_text": null,
-    "is_stackable": false
-  },
-  {
-    "id": "MOCK_USELESS_AFFLICTION",
-    "name": "[テスト用] 無用な災禍",
-    "description": "",
     "extra_card_text": null,
     "is_stackable": false
   },
