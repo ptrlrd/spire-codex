@@ -163,7 +163,7 @@ export default function MechanicContent({ slug }: { slug: string }) {
               <tr className={tr}><td className={td}>Hive (Act 2)</td><td className={tdr}>16</td><td className={tdr}>2</td></tr>
               <tr><td className={td}>Glory (Act 3)</td><td className={tdr}>15</td><td className={tdr}>2</td></tr>
             </tbody></table>
-            <p className={note}>Map is a 7-column grid. First row is always fights, second-to-last is treasure, last is a rest site. Boss sits above.</p>
+            <p className={note}>Map is a 7-column grid. First row is always fights, row 7 from the top is a guaranteed treasure room (or elite if replaced), last row is always a rest site. Boss sits above.</p>
           </div>
           <div className={card}>
             <h3 className={h3}>Room Distribution</h3>
