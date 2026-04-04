@@ -288,15 +288,18 @@ function CardItem({ card }: { card: Card }) {
           <>
             {" "}
             {card.keywords
-              .filter((kw) => !(isUpgraded && u?.remove_exhaust && kw === "Exhaust"))
+              .filter((kw) => !(isUpgraded && u?.remove_exhaust && kw === "Exhaust") && !(isUpgraded && u?.remove_ethereal && kw === "Ethereal"))
               .map((kw, i) => (
                 <span key={kw}>
                   <span className="text-[var(--accent-gold)]">{kw}</span>
-                  {i < card.keywords!.filter((k) => !(isUpgraded && u?.remove_exhaust && k === "Exhaust")).length - 1 ? ". " : "."}
+                  {i < card.keywords!.filter((k) => !(isUpgraded && u?.remove_exhaust && k === "Exhaust") && !(isUpgraded && u?.remove_ethereal && k === "Ethereal")).length - 1 ? ". " : "."}
                 </span>
               ))}
             {isUpgraded && u?.add_innate && !card.keywords?.includes("Innate") && (
               <span> <span className="text-emerald-400">Innate</span>.</span>
+            )}
+            {isUpgraded && u?.add_retain && !card.keywords?.includes("Retain") && (
+              <span> <span className="text-emerald-400">Retain</span>.</span>
             )}
           </>
         )}

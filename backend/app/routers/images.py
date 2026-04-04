@@ -28,6 +28,7 @@ CATEGORIES: dict[str, tuple[str, str, bool, list[str] | None]] = {
     "relics-beta": ("Relics (Beta Art)", "relics/beta", False, None),
     "monsters-beta": ("Monsters (Beta Art)", "monsters/beta", False, None),
     "backgrounds": ("Backgrounds", "misc", False, ["main_menu.png", "main_menu_bg.png", "sts2_logo.png", "neow.png", "tezcatara.png", "merchant.png"]),
+    "intents": ("Intent Icons", "intents", False, None),
     "ui-icons": ("UI Icons", "ui/icons", False, None),
     "ui-energy": ("Energy Icons", "ui/energy", False, None),
     "ui-boss": ("Boss Icons", "ui/boss", False, None),

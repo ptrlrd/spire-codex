@@ -575,7 +575,7 @@ const [card, setCard] = useState<Card | null>(null);
               ) : (
                 <div className="text-sm text-[var(--text-secondary)] leading-relaxed mb-5">
                   <RichDescription
-                    text={descText + (card.keywords && card.keywords.length > 0 ? "\n" + card.keywords.filter((kw) => !(isUpgraded && u?.remove_exhaust && kw === "Exhaust")).map((kw) => `[gold]${kw}[/gold]`).join(". ") + "." : "") + (isUpgraded && u?.add_innate && !card.keywords?.includes("Innate") ? "\n[green]Innate[/green]." : "")}
+                    text={descText + (card.keywords && card.keywords.length > 0 ? "\n" + card.keywords.filter((kw) => !(isUpgraded && u?.remove_exhaust && kw === "Exhaust") && !(isUpgraded && u?.remove_ethereal && kw === "Ethereal")).map((kw) => `[gold]${kw}[/gold]`).join(". ") + "." : "") + (isUpgraded && u?.add_innate && !card.keywords?.includes("Innate") ? "\n[green]Innate[/green]." : "") + (isUpgraded && u?.add_retain && !card.keywords?.includes("Retain") ? "\n[green]Retain[/green]." : "")}
                     energyIcon={energyIcon}
                     relatedCards={spawnedCards.map((sc): RelatedCard => ({
                       id: sc.id,
