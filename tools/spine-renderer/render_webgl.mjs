@@ -22,9 +22,14 @@ async function main() {
   const skelDir = path.resolve(process.argv[2] || "");
   const outputPath = path.resolve(process.argv[3] || "output.png");
   const outputSize = parseInt(process.argv[4] || "2048");
+  // Optional: --only-slots=stroke to only render slots matching a pattern
+  const onlySlotsArg = process.argv.find(a => a.startsWith("--only-slots="));
+  const onlySlots = onlySlotsArg ? onlySlotsArg.split("=")[1] : null;
+  // Optional: --white to convert output to white silhouette
+  const whiteMode = process.argv.includes("--white");
 
   if (!skelDir || !fs.existsSync(skelDir)) {
-    console.error("Usage: node render_webgl.mjs <skel_dir> <output_path> [size]");
+    console.error("Usage: node render_webgl.mjs <skel_dir> <output_path> [size] [--only-slots=pattern] [--white]");
     process.exit(1);
   }
 
@@ -71,7 +76,7 @@ async function main() {
   const spineCoreCode = fs.readFileSync(spineCorePath, "utf-8");
 
   const result = await page.evaluate(async (params) => {
-    const { skelB64, atlasB64, textureData, outputSize, idleNames, shadowNames, hiddenSlots, spineCoreCode } = params;
+    const { skelB64, atlasB64, textureData, outputSize, idleNames, shadowNames, hiddenSlots, onlySlots, whiteMode, spineCoreCode } = params;
 
     // Load spine-webgl — IIFE uses `var spine = (...)()`, make it global
     eval(spineCoreCode.replace(/^"use strict";\s*var spine\s*=/, "window.spine ="));
@@ -169,6 +174,7 @@ async function main() {
       const sn = slot.data.name.toLowerCase();
       const an = (att.name || "").toLowerCase();
       if (shadowNames.includes(sn) || shadowNames.includes(an)) continue;
+      // Don't filter bounds by onlySlots — use full skeleton bounds for camera
 
       const verts = new Float32Array(1000);
       try {
@@ -234,6 +240,10 @@ async function main() {
       if (hiddenSlots.some(h => sn.includes(h) || an.includes(h))) {
         slot.setAttachment(null);
       }
+      // If --only-slots is set, hide anything that doesn't match the pattern
+      if (onlySlots && !sn.includes(onlySlots.toLowerCase())) {
+        slot.setAttachment(null);
+      }
     }
 
     batcher.begin(shader);
@@ -271,6 +281,8 @@ async function main() {
     idleNames: IDLE_NAMES,
     shadowNames: SHADOW_NAMES,
     hiddenSlots: HIDDEN_SLOTS,
+    onlySlots: onlySlots || null,
+    whiteMode: whiteMode || false,
     spineCoreCode: spineCoreCode,
   });
 
@@ -288,7 +300,18 @@ async function main() {
   const pngCanvas = createCanvas(outputSize, outputSize);
   const pngCtx = pngCanvas.getContext("2d");
   const imgData = pngCtx.createImageData(outputSize, outputSize);
-  imgData.data.set(new Uint8ClampedArray(result.pixels));
+  const pixelData = new Uint8ClampedArray(result.pixels);
+  // If --white mode, convert all visible pixels to white (RGB=255), keep alpha
+  if (whiteMode) {
+    for (let i = 0; i < pixelData.length; i += 4) {
+      if (pixelData[i + 3] > 0) {
+        pixelData[i] = 255;     // R
+        pixelData[i + 1] = 255; // G
+        pixelData[i + 2] = 255; // B
+      }
+    }
+  }
+  imgData.data.set(pixelData);
   pngCtx.putImageData(imgData, 0, 0);
   const buffer = pngCanvas.toBuffer("image/png");
   fs.mkdirSync(path.dirname(outputPath), { recursive: true });

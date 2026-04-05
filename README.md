@@ -106,6 +106,7 @@ spire-codex/
 │   ├── spine-renderer/         # Headless Spine skeleton renderer
 │   │   ├── render_webgl.mjs     # WebGL renderer (single skeleton) — no seam artifacts
 │   │   ├── render_all_webgl.mjs # WebGL batch renderer (all .skel files)
+│   │   ├── render_gif.mjs      # GIF animation renderer (boss map nodes)
 │   │   ├── render.mjs           # Legacy canvas renderer (has triangle seams)
 │   │   ├── render_all.mjs       # Legacy canvas batch renderer
 │   │   ├── render_skins2.mjs    # Skin variant renderer
@@ -495,6 +496,25 @@ node render_all_webgl.mjs  # Renders 138 skeletons to backend/static/images/rend
 | VFX/UI | 9 | 22 | Most VFX need specific animation frames |
 | **Total** | **138** | **158** | 20 skipped (no atlas, VFX-only, blank) |
 
+### GIF Animation Renderer
+
+The GIF renderer (`render_gif.mjs`) renders Spine idle animations as animated GIFs with transparency. Used for boss map node icons (Ceremonial Beast, Queen, The Insatiable) whose map icons are Spine skeletons rather than static PNGs.
+
+**Boss map node shader:** The game uses `boss_map_point.gdshader` which treats RGB channels as masks:
+- **Red channel** × `map_color` (default: beige `0.671, 0.58, 0.478`) → fill color
+- **Blue channel** × `black_layer_color` (default: black `0, 0, 0`) → outline color
+- **Green channel** × white `1, 1, 1` → highlights
+
+For white placeholder-style icons, apply the shader in post-processing with `map_color=(1,1,1)`.
+
+```bash
+# Render animated GIF (raw colors)
+NODE_OPTIONS="--max-old-space-size=8192" node render_gif.mjs <skel_dir> <output.gif> [size] [--fps=N]
+
+# Apply shader colors via Python post-processing
+# See tools/spine-renderer/render_gif.mjs header comments for full workflow
+```
+
 ### Legacy Canvas Renderer
 
 The canvas renderer (`render.mjs`, `render_all.mjs`) uses `spine-canvas` with `triangleRendering = true`. This produces **visible wireframe mesh artifacts** due to canvas `clip()` path anti-aliasing between adjacent triangles. Use the WebGL renderer instead.
@@ -503,6 +523,7 @@ The canvas renderer (`render.mjs`, `render_all.mjs`) uses `spine-canvas` with `t
 
 - `@esotericsoftware/spine-webgl` ^4.2.107 — Spine runtime for WebGL (current)
 - `playwright` — Headless Chrome for WebGL rendering
+- `gif-encoder-2` — GIF encoding for animation renderer
 - `@esotericsoftware/spine-canvas` ^4.2.106 — Spine runtime for Canvas (legacy)
 - `canvas` ^3.1.0 — Node.js Canvas implementation
 

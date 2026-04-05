@@ -43,6 +43,7 @@ CATEGORIES: dict[str, tuple[str, str, bool, list[str] | None]] = {
     "ui-cursors": ("Cursors", "ui/cursors", False, None),
     "ui-crystal-sphere": ("Crystal Sphere", "ui/crystal_sphere", False, None),
     "ui-top-bar": ("Top Bar Icons", "ui/top_bar", False, None),
+    "ui-animations": ("Animations", "ui/animations", False, None),
     "ui-misc": ("Misc UI", "ui/misc", False, None),
 }
 
@@ -62,9 +63,9 @@ def _get_images_for_category(category_id: str) -> list[dict[str, str]]:
         # Only specific files from the directory
         png_files = [dir_path / f for f in explicit_files if (dir_path / f).exists()]
     elif recursive:
-        png_files = sorted(dir_path.rglob("*.png"))
+        png_files = sorted([f for ext in ("*.png", "*.gif") for f in dir_path.rglob(ext)])
     else:
-        png_files = sorted(dir_path.glob("*.png"))
+        png_files = sorted([f for ext in ("*.png", "*.gif") for f in dir_path.glob(ext)])
 
     images = []
     for f in png_files:
