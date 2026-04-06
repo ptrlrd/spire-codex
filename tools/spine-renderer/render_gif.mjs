@@ -48,9 +48,13 @@ async function main() {
   const fpsArg = process.argv.find(a => a.startsWith("--fps="));
   const fps = fpsArg ? parseInt(fpsArg.split("=")[1]) : 20;
   const whiteMode = process.argv.includes("--white");
+  const skinArg = process.argv.find(a => a.startsWith("--skin="));
+  const skinName = skinArg ? skinArg.split("=")[1] : null;
+  const animArg = process.argv.find(a => a.startsWith("--anim="));
+  const animOverride = animArg ? animArg.split("=")[1] : null;
 
   if (!skelDir || !fs.existsSync(skelDir)) {
-    console.error("Usage: node render_gif.mjs <skel_dir> <output_path> [size] [--fps=N] [--white]");
+    console.error("Usage: node render_gif.mjs <skel_dir> <output_path> [size] [--fps=N] [--white] [--skin=name] [--anim=name]");
     process.exit(1);
   }
 
@@ -80,7 +84,7 @@ async function main() {
   const spineCoreCode = fs.readFileSync(spineCorePath, "utf-8");
 
   const result = await page.evaluate(async (params) => {
-    const { skelB64, atlasB64, textureData, outputSize, fps, idleNames, shadowNames, hiddenSlots, whiteMode, spineCoreCode } = params;
+    const { skelB64, atlasB64, textureData, outputSize, fps, idleNames, shadowNames, hiddenSlots, whiteMode, skinName, animOverride, spineCoreCode } = params;
 
     eval(spineCoreCode.replace(/^"use strict";\s*var spine\s*=/, "window.spine ="));
     const spine = window.spine;
@@ -119,14 +123,33 @@ async function main() {
     const skeleton = new spine.Skeleton(skelData);
     const state = new spine.AnimationState(new spine.AnimationStateData(skelData));
 
-    // Find idle animation
-    let animName = null;
-    for (const name of idleNames) {
-      if (skelData.findAnimation(name)) { state.setAnimation(0, name, true); animName = name; break; }
+    // Set skin — combine default + named skin for full rendering
+    if (skinName) {
+      const combined = new spine.Skin("combined");
+      const defSkin = skelData.findSkin("default");
+      const varSkin = skelData.findSkin(skinName);
+      if (defSkin) combined.addSkin(defSkin);
+      if (varSkin) combined.addSkin(varSkin);
+      skeleton.setSkin(combined);
+      skeleton.setSlotsToSetupPose();
+    } else {
+      const defSkin = skelData.findSkin("default");
+      if (defSkin) { skeleton.setSkin(defSkin); skeleton.setSlotsToSetupPose(); }
     }
-    if (!animName && skelData.animations.length > 0) {
-      state.setAnimation(0, skelData.animations[0].name, true);
-      animName = skelData.animations[0].name;
+
+    // Find animation — use override if specified, otherwise idle
+    let animName = null;
+    if (animOverride && skelData.findAnimation(animOverride)) {
+      state.setAnimation(0, animOverride, true);
+      animName = animOverride;
+    } else {
+      for (const name of idleNames) {
+        if (skelData.findAnimation(name)) { state.setAnimation(0, name, true); animName = name; break; }
+      }
+      if (!animName && skelData.animations.length > 0) {
+        state.setAnimation(0, skelData.animations[0].name, true);
+        animName = skelData.animations[0].name;
+      }
     }
 
     const anim = skelData.findAnimation(animName);
@@ -230,32 +253,63 @@ async function main() {
   }, {
     skelB64, atlasB64, textureData, outputSize, fps,
     idleNames: IDLE_NAMES, shadowNames: SHADOW_NAMES, hiddenSlots: HIDDEN_SLOTS,
-    whiteMode, spineCoreCode,
+    whiteMode, skinName, animOverride, spineCoreCode,
   });
 
   await browser.close();
 
-  // Encode GIF
-  const encoder = new GIFEncoder(outputSize, outputSize, "neuquant", true);
-  encoder.setDelay(Math.round(1000 / fps));
-  encoder.setRepeat(0);
-  encoder.setTransparent(0x000000);
-  encoder.start();
-
-  const gifCanvas = createCanvas(outputSize, outputSize);
-  const ctx = gifCanvas.getContext("2d");
-
-  for (let f = 0; f < result.frameCount; f++) {
-    const imgData = ctx.createImageData(outputSize, outputSize);
-    imgData.data.set(new Uint8ClampedArray(result.frames[f]));
-    ctx.putImageData(imgData, 0, 0);
-    encoder.addFrame(ctx);
-  }
-
-  encoder.finish();
-  const buffer = encoder.out.getData();
+  const isApng = outputPath.endsWith(".apng") || outputPath.endsWith(".png") && process.argv.includes("--apng");
   fs.mkdirSync(path.dirname(outputPath), { recursive: true });
-  fs.writeFileSync(outputPath, buffer);
+
+  if (isApng) {
+    // Save individual frame PNGs to temp dir, then assemble via Python
+    const tmpDir = outputPath + "_frames";
+    fs.mkdirSync(tmpDir, { recursive: true });
+    const pngCanvas = createCanvas(outputSize, outputSize);
+    const pCtx = pngCanvas.getContext("2d");
+    for (let f = 0; f < result.frameCount; f++) {
+      const imgData = pCtx.createImageData(outputSize, outputSize);
+      imgData.data.set(new Uint8ClampedArray(result.frames[f]));
+      pCtx.putImageData(imgData, 0, 0);
+      fs.writeFileSync(path.join(tmpDir, `frame_${String(f).padStart(4, "0")}.png`), pngCanvas.toBuffer("image/png"));
+    }
+    // Assemble APNG via Python
+    const { execSync } = await import("child_process");
+    const delay = Math.round(1000 / fps);
+    execSync(`arch -arm64 python3 -c "
+from PIL import Image
+from pathlib import Path
+import sys
+frames_dir = Path('${tmpDir}')
+frames = sorted(frames_dir.glob('frame_*.png'))
+imgs = [Image.open(f).convert('RGBA') for f in frames]
+imgs[0].save('${outputPath}', save_all=True, append_images=imgs[1:], duration=${delay}, loop=0, disposal=2)
+"`, { stdio: "inherit" });
+    // Cleanup temp frames
+    for (const f of fs.readdirSync(tmpDir)) fs.unlinkSync(path.join(tmpDir, f));
+    fs.rmdirSync(tmpDir);
+  } else {
+    // Encode GIF
+    const encoder = new GIFEncoder(outputSize, outputSize, "neuquant", true);
+    encoder.setDelay(Math.round(1000 / fps));
+    encoder.setRepeat(0);
+    encoder.setTransparent(0x000000);
+    encoder.start();
+
+    const gifCanvas = createCanvas(outputSize, outputSize);
+    const ctx = gifCanvas.getContext("2d");
+
+    for (let f = 0; f < result.frameCount; f++) {
+      const imgData = ctx.createImageData(outputSize, outputSize);
+      imgData.data.set(new Uint8ClampedArray(result.frames[f]));
+      ctx.putImageData(imgData, 0, 0);
+      encoder.addFrame(ctx);
+    }
+
+    encoder.finish();
+    const buffer = encoder.out.getData();
+    fs.writeFileSync(outputPath, buffer);
+  }
 
   const fileSize = fs.statSync(outputPath).size;
   console.log(`  Saved: ${outputPath} (${Math.round(fileSize / 1024)} KB, ${result.frameCount} frames, ${result.duration.toFixed(2)}s)`);

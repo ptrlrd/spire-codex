@@ -43,7 +43,8 @@ CATEGORIES: dict[str, tuple[str, str, bool, list[str] | None]] = {
     "ui-cursors": ("Cursors", "ui/cursors", False, None),
     "ui-crystal-sphere": ("Crystal Sphere", "ui/crystal_sphere", False, None),
     "ui-top-bar": ("Top Bar Icons", "ui/top_bar", False, None),
-    "ui-animations": ("Animations", "ui/animations", False, None),
+    "ui-animations": ("Idle Animations", "ui/animations", True, None),
+    "ui-animations-attack": ("Attack Animations", "ui/animations/monsters_attack", False, None),
     "ui-misc": ("Misc UI", "ui/misc", False, None),
 }
 
