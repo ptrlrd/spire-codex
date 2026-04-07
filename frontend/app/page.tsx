@@ -3,24 +3,20 @@ import type { Stats } from "@/lib/api";
 import HomeClient from "./HomeClient";
 import JsonLd from "./components/JsonLd";
 import { buildWebSiteJsonLd, buildVideoGameJsonLd } from "@/lib/jsonld";
+import { SITE_NAME, IS_BETA } from "@/lib/seo";
 
 const API = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
+const title = `${SITE_NAME} - Slay the Spire 2 ${IS_BETA ? "Beta " : ""}Database, Wiki & Guide`;
+const description = IS_BETA
+  ? "Beta preview of upcoming Slay the Spire 2 content. Browse new cards, relics, characters, monsters, potions, events, powers, and more."
+  : "The complete Slay the Spire 2 database. Browse all cards, relics, characters, monsters, potions, events, powers, and more. Filter by character, rarity, and type.";
+
 export const metadata: Metadata = {
-  title: "Spire Codex - Slay the Spire 2 Database, Wiki & Guide",
-  description:
-    "The complete Slay the Spire 2 database. Browse all cards, relics, characters, monsters, potions, events, powers, and more. Filter by character, rarity, and type.",
-  openGraph: {
-    title: "Spire Codex - Slay the Spire 2 Database, Wiki & Guide",
-    description:
-      "The complete Slay the Spire 2 database. Browse all cards, relics, characters, monsters, potions, events, powers, and more.",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Spire Codex - Slay the Spire 2 Database, Wiki & Guide",
-    description:
-      "The complete Slay the Spire 2 database. Browse all cards, relics, characters, monsters, potions, events, powers, and more.",
-  },
+  title,
+  description,
+  openGraph: { title, description },
+  twitter: { card: "summary_large_image", title, description },
   alternates: {
     canonical: "/",
   },
@@ -67,9 +63,16 @@ export default async function Home() {
               <span className="text-[var(--text-primary)] font-light">
                 CODEX
               </span>
+              {IS_BETA && (
+                <span className="ml-3 text-sm font-medium px-2 py-1 rounded bg-[var(--accent-gold)]/20 text-[var(--accent-gold)] align-middle">
+                  BETA
+                </span>
+              )}
             </h1>
             <p className="text-lg text-[var(--text-secondary)] max-w-2xl mx-auto mb-2">
-              The complete database for Slay the Spire 2
+              {IS_BETA
+                ? "Preview of upcoming Slay the Spire 2 content"
+                : "The complete database for Slay the Spire 2"}
             </p>
             {total > 0 && (
               <p className="text-sm text-[var(--text-muted)]">

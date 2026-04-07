@@ -6,6 +6,7 @@ import DonationBanner from "./components/DonationBanner";
 import Footer from "./components/Footer";
 import GlobalSearch from "./components/GlobalSearch";
 import { LanguageProvider } from "./contexts/LanguageContext";
+import { SITE_NAME, SITE_URL } from "@/lib/seo";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,8 +19,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://spire-codex.com"),
-  title: "Spire Codex - Slay the Spire 2 Database",
+  metadataBase: new URL(SITE_URL),
+  title: `${SITE_NAME} - Slay the Spire 2 Database`,
   description:
     "A comprehensive database for Slay the Spire 2 — browse cards, relics, characters, monsters, and potions.",
   icons: {
