@@ -158,19 +158,15 @@ export default function Footer() {
         >
           Submit Feedback
         </button>
-        {!IS_BETA && (
-          <>
-            <span className="text-[var(--border-subtle)]" aria-hidden>·</span>
-            <a
-              href="https://beta.spire-codex.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-[var(--accent-gold)] transition-colors"
-            >
-              Beta Site
-            </a>
-          </>
-        )}
+        <span className="text-[var(--border-subtle)]" aria-hidden>·</span>
+        <a
+          href={IS_BETA ? "https://spire-codex.com" : "https://beta.spire-codex.com"}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:text-[var(--accent-gold)] transition-colors"
+        >
+          {IS_BETA ? "Stable Site" : "Beta Site"}
+        </a>
       </div>
       {showFeedback && <FeedbackModal onClose={() => setShowFeedback(false)} />}
     </footer>

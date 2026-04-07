@@ -138,7 +138,16 @@ export default function Navbar() {
               <kbd className="text-xs border border-[var(--border-subtle)] rounded px-1.5 py-0.5">.</kbd>
             </button>
 
-            {!IS_BETA && (
+            {IS_BETA ? (
+              <a
+                href="https://spire-codex.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hidden sm:inline-flex items-center px-2 py-1 rounded text-xs font-semibold bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 hover:bg-emerald-500/25 transition-colors"
+              >
+                STABLE
+              </a>
+            ) : (
               <a
                 href="https://beta.spire-codex.com"
                 target="_blank"
