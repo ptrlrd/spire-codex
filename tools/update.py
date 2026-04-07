@@ -237,6 +237,7 @@ Examples:
   python3 tools/update.py --skip-extract           # Parse + render only
   python3 tools/update.py --parse-only             # Parse data only
   python3 tools/update.py --render-only            # Render sprites only
+  python3 tools/update.py --beta-diff              # Show what's different in beta vs stable
   python3 tools/update.py --game-dir "C:/Games/StS2"  # Custom game path
         """,
     )
@@ -262,6 +263,11 @@ Examples:
         help="Only render Spine sprites (no extraction or parsing)",
     )
     parser.add_argument(
+        "--beta-diff",
+        action="store_true",
+        help="Show differences between stable (data/) and beta (data-beta/) — added, removed, and changed entities",
+    )
+    parser.add_argument(
         "--changelog",
         action="store_true",
         help="Generate a changelog after updating",
@@ -277,6 +283,17 @@ Examples:
     print(f"  OS: {system} ({platform.machine()})")
     print(f"  Python: {sys.version.split()[0]}")
     print(f"  Project: {ROOT}")
+
+    # ── Beta diff (standalone) ──
+    if args.beta_diff:
+        stable_dir = DATA_DIR / "eng"
+        beta_dir = ROOT / "data-beta" / "eng"
+        if not beta_dir.exists():
+            print(f"\n  ERROR: {beta_dir} not found. Parse beta data first:")
+            print(f"  cd backend/app/parsers && EXTRACTION_DIR=extraction/beta DATA_DIR=data-beta python3 parse_all.py")
+            sys.exit(1)
+        run([sys.executable, str(ROOT / "tools" / "diff_data.py"), str(stable_dir), str(beta_dir), "--format", "md"], cwd=ROOT)
+        return
 
     # ── Extraction ──
     if not args.skip_extract and not args.parse_only and not args.render_only:
