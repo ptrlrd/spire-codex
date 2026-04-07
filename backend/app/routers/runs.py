@@ -15,6 +15,8 @@ MAX_BODY_SIZE = 512 * 1024  # 512 KB
 @router.post("", tags=["Runs"])
 async def submit_run_endpoint(request: Request, username: str | None = None):
     """Submit a run for community stats. Paste the .run file JSON content. Optional ?username= param."""
+    if os.environ.get("DISABLE_RUN_SUBMISSIONS"):
+        raise HTTPException(status_code=403, detail="Run submissions are disabled on the beta site. Submit to spire-codex.com instead.")
     body = await request.body()
     if len(body) > MAX_BODY_SIZE:
         raise HTTPException(status_code=413, detail=f"Request too large. Max {MAX_BODY_SIZE // 1024} KB.")
