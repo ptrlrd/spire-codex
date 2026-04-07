@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import LanguageSelector from "./LanguageSelector";
 import { useLanguage } from "@/app/contexts/LanguageContext";
 import { t } from "@/lib/ui-translations";
+import { IS_BETA } from "@/lib/seo";
 
 const LANG_CODES = new Set(["deu", "esp", "fra", "ita", "jpn", "kor", "pol", "ptb", "rus", "spa", "tha", "tur", "zhs"]);
 
@@ -136,6 +137,17 @@ export default function Navbar() {
               <span className="hidden sm:inline">Press</span>
               <kbd className="text-xs border border-[var(--border-subtle)] rounded px-1.5 py-0.5">.</kbd>
             </button>
+
+            {!IS_BETA && (
+              <a
+                href="https://beta.spire-codex.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hidden sm:inline-flex items-center px-2 py-1 rounded text-xs font-semibold bg-[var(--accent-gold)]/15 text-[var(--accent-gold)] border border-[var(--accent-gold)]/30 hover:bg-[var(--accent-gold)]/25 transition-colors"
+              >
+                BETA
+              </a>
+            )}
 
             <LanguageSelector />
 

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { IS_BETA } from "@/lib/seo";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -157,6 +158,19 @@ export default function Footer() {
         >
           Submit Feedback
         </button>
+        {!IS_BETA && (
+          <>
+            <span className="text-[var(--border-subtle)]" aria-hidden>·</span>
+            <a
+              href="https://beta.spire-codex.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-[var(--accent-gold)] transition-colors"
+            >
+              Beta Site
+            </a>
+          </>
+        )}
       </div>
       {showFeedback && <FeedbackModal onClose={() => setShowFeedback(false)} />}
     </footer>
