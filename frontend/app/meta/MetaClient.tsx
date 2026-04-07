@@ -11,6 +11,8 @@ import {
 } from "recharts";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
+const BETA_SITE = "https://beta.spire-codex.com";
+const BETA_API = BETA_SITE;
 
 const CHART_COLORS = {
   gold: "#d4a843",
@@ -78,78 +80,97 @@ function displayName(id: string): string {
     .replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
-function CardPill({ cardId, cardData, lp, className }: {
-  cardId: string; cardData: Record<string, CardInfo>; lp: string; className?: string;
+function BetaBadge() {
+  return <span className="ml-1 text-[9px] font-semibold px-1 py-0.5 rounded bg-[var(--accent-gold)]/20 text-[var(--accent-gold)]">BETA</span>;
+}
+
+function CardPill({ cardId, cardData, lp, className, betaIds }: {
+  cardId: string; cardData: Record<string, CardInfo>; lp: string; className?: string; betaIds?: Set<string>;
 }) {
   const [show, setShow] = useState(false);
   const info = cardData[cardId];
+  const isBeta = betaIds?.has(cardId);
+  const href = isBeta ? `${BETA_SITE}/cards/${cardId.toLowerCase()}` : `${lp}/cards/${cardId.toLowerCase()}`;
+  const imgBase = isBeta ? BETA_API : API;
+  const El = isBeta ? "a" as const : Link;
+  const linkProps = isBeta ? { href, target: "_blank" as const, rel: "noopener noreferrer" } : { href };
   return (
-    <Link href={`${lp}/cards/${cardId.toLowerCase()}`} className={`relative ${className || ""}`}
+    <El {...linkProps} className={`relative ${className || ""}`}
       onMouseEnter={() => setShow(true)} onMouseLeave={() => setShow(false)}>
-      {info?.name || displayName(`CARD.${cardId}`)}
+      {info?.name || displayName(`CARD.${cardId}`)}{isBeta && <BetaBadge />}
       {show && info && (
         <div className="absolute z-[100] bottom-full left-0 mb-2 w-56 p-3 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] shadow-xl pointer-events-none">
           <div className="flex items-start gap-2 mb-1.5">
-            {info.image_url && <img src={`${API}${info.image_url}`} alt="" className="w-10 h-10 object-cover rounded" crossOrigin="anonymous" />}
+            {info.image_url && <img src={`${imgBase}${info.image_url}`} alt="" className="w-10 h-10 object-cover rounded" crossOrigin="anonymous" />}
             <div className="min-w-0">
-              <div className="font-semibold text-xs text-[var(--text-primary)] truncate">{info.name}</div>
+              <div className="font-semibold text-xs text-[var(--text-primary)] truncate">{info.name}{isBeta && <BetaBadge />}</div>
               <div className="text-[10px] text-[var(--text-muted)]">{info.type} · {info.rarity} · {info.cost}</div>
             </div>
           </div>
           <div className="text-[10px] text-[var(--text-secondary)] leading-relaxed"><RichDescription text={info.description} /></div>
         </div>
       )}
-    </Link>
+    </El>
   );
 }
 
-function RelicPill({ relicId, relicData, lp, className, children }: {
-  relicId: string; relicData: Record<string, RelicInfo>; lp: string; className?: string; children?: React.ReactNode;
+function RelicPill({ relicId, relicData, lp, className, children, betaIds }: {
+  relicId: string; relicData: Record<string, RelicInfo>; lp: string; className?: string; children?: React.ReactNode; betaIds?: Set<string>;
 }) {
   const [show, setShow] = useState(false);
   const info = relicData[relicId];
+  const isBeta = betaIds?.has(relicId);
+  const href = isBeta ? `${BETA_SITE}/relics/${relicId.toLowerCase()}` : `${lp}/relics/${relicId.toLowerCase()}`;
+  const imgBase = isBeta ? BETA_API : API;
+  const El = isBeta ? "a" as const : Link;
+  const linkProps = isBeta ? { href, target: "_blank" as const, rel: "noopener noreferrer" } : { href };
   return (
-    <Link href={`${lp}/relics/${relicId.toLowerCase()}`} className={`relative ${className || ""}`}
+    <El {...linkProps} className={`relative ${className || ""}`}
       onMouseEnter={() => setShow(true)} onMouseLeave={() => setShow(false)}>
-      {children || (info?.name || displayName(`RELIC.${relicId}`))}
+      {children || (info?.name || displayName(`RELIC.${relicId}`))}{isBeta && !children && <BetaBadge />}
       {show && info && (
         <div className="absolute z-[100] bottom-full left-0 mb-2 w-56 p-3 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] shadow-xl pointer-events-none">
           <div className="flex items-start gap-2 mb-1.5">
-            {info.image_url && <img src={`${API}${info.image_url}`} alt="" className="w-8 h-8 object-contain" crossOrigin="anonymous" />}
+            {info.image_url && <img src={`${imgBase}${info.image_url}`} alt="" className="w-8 h-8 object-contain" crossOrigin="anonymous" />}
             <div className="min-w-0">
-              <div className="font-semibold text-xs text-[var(--text-primary)] truncate">{info.name}</div>
+              <div className="font-semibold text-xs text-[var(--text-primary)] truncate">{info.name}{isBeta && <BetaBadge />}</div>
               <div className="text-[10px] text-[var(--text-muted)]">{info.rarity}</div>
             </div>
           </div>
           <div className="text-[10px] text-[var(--text-secondary)] leading-relaxed"><RichDescription text={info.description} /></div>
         </div>
       )}
-    </Link>
+    </El>
   );
 }
 
-function PotionPill({ potionId, potionData, lp, className }: {
-  potionId: string; potionData: Record<string, PotionInfo>; lp: string; className?: string;
+function PotionPill({ potionId, potionData, lp, className, betaIds }: {
+  potionId: string; potionData: Record<string, PotionInfo>; lp: string; className?: string; betaIds?: Set<string>;
 }) {
   const [show, setShow] = useState(false);
   const info = potionData[potionId];
+  const isBeta = betaIds?.has(potionId);
+  const href = isBeta ? `${BETA_SITE}/potions/${potionId.toLowerCase()}` : `${lp}/potions/${potionId.toLowerCase()}`;
+  const imgBase = isBeta ? BETA_API : API;
+  const El = isBeta ? "a" as const : Link;
+  const linkProps = isBeta ? { href, target: "_blank" as const, rel: "noopener noreferrer" } : { href };
   return (
-    <Link href={`${lp}/potions/${potionId.toLowerCase()}`} className={`relative ${className || ""}`}
+    <El {...linkProps} className={`relative ${className || ""}`}
       onMouseEnter={() => setShow(true)} onMouseLeave={() => setShow(false)}>
-      {info?.name || displayName(`POTION.${potionId}`)}
+      {info?.name || displayName(`POTION.${potionId}`)}{isBeta && <BetaBadge />}
       {show && info && (
         <div className="absolute z-[100] bottom-full left-0 mb-2 w-56 p-3 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] shadow-xl pointer-events-none">
           <div className="flex items-start gap-2 mb-1.5">
-            {info.image_url && <img src={`${API}${info.image_url}`} alt="" className="w-8 h-8 object-contain" crossOrigin="anonymous" />}
+            {info.image_url && <img src={`${imgBase}${info.image_url}`} alt="" className="w-8 h-8 object-contain" crossOrigin="anonymous" />}
             <div className="min-w-0">
-              <div className="font-semibold text-xs text-[var(--text-primary)] truncate">{info.name}</div>
+              <div className="font-semibold text-xs text-[var(--text-primary)] truncate">{info.name}{isBeta && <BetaBadge />}</div>
               <div className="text-[10px] text-[var(--text-muted)]">{info.rarity}</div>
             </div>
           </div>
           <div className="text-[10px] text-[var(--text-secondary)] leading-relaxed"><RichDescription text={info.description} /></div>
         </div>
       )}
-    </Link>
+    </El>
   );
 }
 
@@ -161,6 +182,7 @@ export default function MetaClient() {
   const [cardData, setCardData] = useState<Record<string, CardInfo>>({});
   const [relicData, setRelicData] = useState<Record<string, RelicInfo>>({});
   const [potionData, setPotionData] = useState<Record<string, PotionInfo>>({});
+  const [betaIds, setBetaIds] = useState<Set<string>>(new Set());
   const [loading, setLoading] = useState(true);
   const [character, setCharacter] = useState("");
   const [winFilter, setWinFilter] = useState("");
@@ -175,21 +197,46 @@ export default function MetaClient() {
   const [relicView, setRelicView] = useState<"chart" | "table">("table");
 
   useEffect(() => {
-    cachedFetch<CardInfo[]>(`${API}/api/cards`).then((cards) => {
+    // Fetch stable data, then fill gaps from beta API
+    async function loadEntityData() {
+      const [cards, relics, potions] = await Promise.all([
+        cachedFetch<CardInfo[]>(`${API}/api/cards`),
+        cachedFetch<RelicInfo[]>(`${API}/api/relics`),
+        cachedFetch<PotionInfo[]>(`${API}/api/potions`),
+      ]);
       const cm: Record<string, CardInfo> = {};
       for (const c of cards) cm[c.id] = c;
       setCardData(cm);
-    });
-    cachedFetch<RelicInfo[]>(`${API}/api/relics`).then((relics) => {
       const rm: Record<string, RelicInfo> = {};
       for (const r of relics) rm[r.id] = r;
       setRelicData(rm);
-    });
-    cachedFetch<PotionInfo[]>(`${API}/api/potions`).then((potions) => {
       const pm: Record<string, PotionInfo> = {};
       for (const p of potions) pm[p.id] = p;
       setPotionData(pm);
-    });
+
+      // Fetch beta data and merge items not in stable
+      try {
+        const [betaCards, betaRelics, betaPotions] = await Promise.all([
+          cachedFetch<CardInfo[]>(`${BETA_API}/api/cards`),
+          cachedFetch<RelicInfo[]>(`${BETA_API}/api/relics`),
+          cachedFetch<PotionInfo[]>(`${BETA_API}/api/potions`),
+        ]);
+        const newBetaIds = new Set<string>();
+        const cmMerged = { ...cm };
+        for (const c of betaCards) { if (!cmMerged[c.id]) { cmMerged[c.id] = c; newBetaIds.add(c.id); } }
+        setCardData(cmMerged);
+        const rmMerged = { ...rm };
+        for (const r of betaRelics) { if (!rmMerged[r.id]) { rmMerged[r.id] = r; newBetaIds.add(r.id); } }
+        setRelicData(rmMerged);
+        const pmMerged = { ...pm };
+        for (const p of betaPotions) { if (!pmMerged[p.id]) { pmMerged[p.id] = p; newBetaIds.add(p.id); } }
+        setPotionData(pmMerged);
+        setBetaIds(newBetaIds);
+      } catch {
+        // Beta API unavailable — no problem, stable data is sufficient
+      }
+    }
+    loadEntityData();
   }, []);
 
   useEffect(() => {
@@ -461,7 +508,7 @@ export default function MetaClient() {
                     {(showAllCards ? cardTable : cardTable.slice(0, 20)).map((row) => (
                       <tr key={row.card_id} className="border-b border-[var(--border-subtle)] last:border-0 hover:bg-[var(--bg-primary)]/50">
                         <td className="py-1.5">
-                          <CardPill cardId={row.card_id} cardData={cardData} lp={lp} className="text-[var(--text-secondary)] hover:text-[var(--accent-gold)]" />
+                          <CardPill cardId={row.card_id} cardData={cardData} lp={lp} betaIds={betaIds} className="text-[var(--text-secondary)] hover:text-[var(--accent-gold)]" />
                         </td>
                         <td className="text-right text-[var(--text-muted)]">{row.offered || "—"}</td>
                         <td className="text-right text-[var(--text-muted)]">{row.picked || "—"}</td>
@@ -553,7 +600,7 @@ export default function MetaClient() {
                           {(showAllRelics ? relicRows : relicRows.slice(0, 20)).map((r) => (
                             <tr key={r.relic_id} className="border-b border-[var(--border-subtle)] last:border-0 hover:bg-[var(--bg-primary)]/50">
                               <td className="py-1.5">
-                                <RelicPill relicId={r.relic_id} relicData={relicData} lp={lp} className="text-[var(--text-secondary)] hover:text-[var(--accent-gold)]" />
+                                <RelicPill relicId={r.relic_id} relicData={relicData} lp={lp} betaIds={betaIds} className="text-[var(--text-secondary)] hover:text-[var(--accent-gold)]" />
                               </td>
                               <td className="text-right text-[var(--text-muted)]">{r.total_runs_with}</td>
                               <td className={`text-right font-medium ${r.win_pct >= 50 ? "text-[var(--color-silent)]" : r.win_pct > 0 ? "text-[var(--text-secondary)]" : "text-[var(--text-muted)]"}`}>
@@ -592,7 +639,7 @@ export default function MetaClient() {
                       return (
                         <tr key={p.potion_id} className="border-b border-[var(--border-subtle)] last:border-0 hover:bg-[var(--bg-primary)]/50">
                           <td className="py-1.5">
-                            <PotionPill potionId={p.potion_id} potionData={potionData} lp={lp} className="text-[var(--text-secondary)] hover:text-[var(--accent-gold)]" />
+                            <PotionPill potionId={p.potion_id} potionData={potionData} lp={lp} betaIds={betaIds} className="text-[var(--text-secondary)] hover:text-[var(--accent-gold)]" />
                           </td>
                           <td className="text-right text-[var(--text-muted)]">{p.offered}</td>
                           <td className="text-right text-[var(--text-muted)]">{p.picked}</td>
