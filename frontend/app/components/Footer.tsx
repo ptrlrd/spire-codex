@@ -1,11 +1,12 @@
 "use client";
 
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import { IS_BETA } from "@/lib/seo";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
-function FeedbackModal({ onClose }: { onClose: () => void }) {
+function FeedbackModal({ onClose, page }: { onClose: () => void; page: string }) {
   const [type, setType] = useState("Bug");
   const [contact, setContact] = useState("");
   const [contents, setContents] = useState("");
@@ -24,7 +25,7 @@ function FeedbackModal({ onClose }: { onClose: () => void }) {
         body: JSON.stringify({
           type,
           contact: contact.trim(),
-          contents: contents.trim(),
+          contents: `[Page: ${page}]\n\n${contents.trim()}`,
         }),
       });
       if (!res.ok) throw new Error("Failed to send");
@@ -50,6 +51,14 @@ function FeedbackModal({ onClose }: { onClose: () => void }) {
           <p className="text-emerald-400 text-sm py-4">Sent successfully. Thank you!</p>
         ) : (
           <>
+            <label className="block text-sm text-[var(--text-secondary)] mb-1">Page</label>
+            <input
+              type="text"
+              value={page}
+              readOnly
+              className="w-full mb-4 px-3 py-2 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-muted)] text-sm cursor-default"
+            />
+
             <label className="block text-sm text-[var(--text-secondary)] mb-1">Type</label>
             <select
               value={type}
@@ -104,6 +113,7 @@ function FeedbackModal({ onClose }: { onClose: () => void }) {
 }
 
 export default function Footer() {
+  const pathname = usePathname();
   const [showFeedback, setShowFeedback] = useState(false);
 
   return (
@@ -168,7 +178,7 @@ export default function Footer() {
           {IS_BETA ? "Stable Site" : "Beta Site"}
         </a>
       </div>
-      {showFeedback && <FeedbackModal onClose={() => setShowFeedback(false)} />}
+      {showFeedback && <FeedbackModal onClose={() => setShowFeedback(false)} page={pathname} />}
     </footer>
   );
 }
