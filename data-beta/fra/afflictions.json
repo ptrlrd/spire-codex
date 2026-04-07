@@ -1,0 +1,58 @@
+[
+  {
+    "id": "BOUND",
+    "name": "Entrave",
+    "description": "Seule [blue]1[/blue] carte [gold]Entravée[/gold] peut être jouée chaque tour. Les cartes de votre main perdent [gold]Entrave[/gold] à la fin du tour.",
+    "extra_card_text": "Entravé",
+    "is_stackable": false
+  },
+  {
+    "id": "DEVOURED",
+    "name": "Dévorée",
+    "description": "Ajoutez [gold]Épuisement[/gold] à cette carte.",
+    "extra_card_text": null,
+    "is_stackable": false
+  },
+  {
+    "id": "ENTANGLED",
+    "name": "Enchevêtrer",
+    "description": "Coûte [energy:1] supplémentaire.",
+    "extra_card_text": "Enchevêtré",
+    "is_stackable": false
+  },
+  {
+    "id": "GALVANIZED",
+    "name": "Galvanique",
+    "description": "Subissez [blue]X[/blue] dégâts quand cette carte est jouée.",
+    "extra_card_text": "Subissez X dégâts.",
+    "is_stackable": true
+  },
+  {
+    "id": "HEXED",
+    "name": "Ensorcelé",
+    "description": "Ajoutez [gold]Éthéré[/gold] à cette carte.",
+    "extra_card_text": null,
+    "is_stackable": false
+  },
+  {
+    "id": "RINGING",
+    "name": "Résonance",
+    "description": "Vous ne pouvez jouer qu'[blue]1[/blue] carte ce tour.",
+    "extra_card_text": "Résonnante",
+    "is_stackable": false
+  },
+  {
+    "id": "SMOG",
+    "name": "Brouillard",
+    "description": "Vous ne pouvez plus jouer de [gold]Compétences[/gold] ce tour. Se dissipe à la fin du tour.",
+    "extra_card_text": null,
+    "is_stackable": false
+  },
+  {
+    "id": "WEIGHTED",
+    "name": "Lestée",
+    "description": "Perdez [energy:1] quand cette carte est jouée.",
+    "extra_card_text": "Perdez [energy:1].",
+    "is_stackable": false
+  }
+]

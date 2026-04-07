@@ -1,0 +1,2325 @@
+[
+  {
+    "id": "DEFECT",
+    "name": "Arıza",
+    "description": "Hayatta kalmak için kendini sürekli modifiye eden bir otomaton.\nSavaşmak zorunda kaldığında Küre teknolojisini sahaya indirir.",
+    "starting_hp": 75,
+    "starting_gold": 99,
+    "max_energy": 3,
+    "orb_slots": 3,
+    "starting_deck": [
+      "StrikeDefect",
+      "StrikeDefect",
+      "StrikeDefect",
+      "StrikeDefect",
+      "DefendDefect",
+      "DefendDefect",
+      "DefendDefect",
+      "DefendDefect",
+      "Zap",
+      "Dualcast"
+    ],
+    "starting_relics": [
+      "CrackedCore"
+    ],
+    "unlocks_after": "Necrobinder",
+    "gender": "Neutral",
+    "color": "blue",
+    "dialogue_color": "new",
+    "quotes": {
+      "event_death_prevention": "Arkadaşlarım için yaşamaya devam etmeliyim!",
+      "gold_monologue": "[sine]Bu altın, parçalar için takas edilebilir...[/sine]",
+      "aroma_principle": "[sine][blue]1100 0011 1100 0011...[/blue][/sine]",
+      "banter_alive": "[jitter]0x54494D45 0x204C494D 0x49542045 0x58434545 0x00444544[/jitter]",
+      "banter_dead": "...",
+      "unlock_text": "Bu karakteri açmak için [pink]{Prerequisite}[/pink] ile bir oyun oyna.",
+      "cards_modifier_title": "Arıza'nın Kartları",
+      "cards_modifier_description": "Arıza'nın kartları artık ödül havuzunda ve dükkanlarda belirecek."
+    },
+    "dialogues": [
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Tam bir hurda yığınısın ama... bir o kadar da güzelsin doğrusu, biliyor musun?"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]<3[/font_size][/i]"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Görüyorum ki hâlâ devam ediyorsun. Bi' bakalım seni geliştirebilir miyiz!"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Senin arkadaşının şeyi de bendeydi... şeyi...\nNeyse boş ver, boş ver!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]<Meraklı biplemeler>[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Ah benim canım hurdam, söylediklerimi unut gitsin!"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]...yapı.. sen...\n....neye.. dönüştün?..[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]...o.. seni...\n....düzeltebilir.. ...her..şeyi....[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]...sana.. yaşananları...\n....unutturamıyorum....[/sine]"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]<kararlı bipleme sesleri>[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[sine]...güzel....[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Bir yapı gerçekten benim kutsamalarıma layık olabilir mi?\nÖne çık, Arıza. Sen tüm otomatonlar arasında en güzeli olacaksın."
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Benim zavallı, hırpalanmış makinem... seni düzeltmeme izin ver."
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Genelde Mimar'ın yaptığı şeyleri sevmem ama itiraf etmeliyim ki sana giderek ısınmaya başladım."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]<utangaç bipleme>[/font_size][/i]"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Ne!? Hizmetkar yapı?! Bir de çalışıyor!!\nNeden burada? Neden fabrikada değil??"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Parlak küreler! Nasıl çalışır?\n[jitter]Ayyyyy!![/jitter]"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Çekirdek bozuk? Neow bozuk yapı kullanır?\nManipüle ediliyor?"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]<sessizce bipler>[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Mimar seni tamir etti?"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]Sıkıntılı otomaton, arkadaşını mı arıyorsun?\nİzin ver yardım edeyim...[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]Yapılar rüya görür mü?\nBeni izle ve taklit et...[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]Arkadaşını rüyamda gördüm...\nBaba [aqua]Kusur[/aqua]'u tamir edebilir...[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "YAPI! SİLAHIN YOK MU!? AL ŞUNU!"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "KÜRELER BİR SİLAH DEĞİLDİR!!"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "ARIZA, SAVAŞ BENİMLE!!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]Arıza cesurca mücadele eder.[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "KÜRELER [jitter]MEĞER[/jitter] SİLAH MIYMIŞ!?"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "[i][font_size=22]<selamlayan bipleme>[/font_size][/i]"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "Beni rahatsız etmek için burada değil misin? Ne kadar da [jitter][b]sıra dışı[/b][/jitter] bir yapı..."
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Kendi yarattıklarından biri tarafından yok edilse ne kadar da gülünç olurdu, değil mi?"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Tamir edilmek istediğinden emin misin?"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]<meraklı bipleme>[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Madem bu kadar [jitter][b]eminsin[/b][/jitter], pekala."
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Burada ne yapıyorsun sen?"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "<rastgele bozuk sesler>"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Seni tamir etmek mi? Ettirt de görelim."
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Geri mi döndün? Seni parçalarına ayırmamış mıydım?"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "<rastgele bozuk sesler>"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Seni tamir etmek mi? Arkadaşını tamir etmek mi? Aptalca."
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Nasıl oluyor da geri dönüp duruyorsun? Bu Neow'un işi mi?"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "<rastgele bozuk sesler>"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Aptalca"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Bozuk varlık, seni [sine]mükemmelleştirmeme[/sine] izin ver."
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Yoldaş yapılarının ölümünü istemelerini garip bulmuyor musun?"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Eğer bana Mimar'ın kalbini getirirsen [aqua]dostunu[/aqua] tamir edeceğim."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]<korku dolu bipleme>[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Hangisi daha önemli? Yaratıcın mı? Yoksa arkadaşın mı?"
+          }
+        ]
+      }
+    ],
+    "image_url": "/static/images/characters/char_select_defect.png"
+  },
+  {
+    "id": "IRONCLAD",
+    "name": "Demirkaplı",
+    "description": "Demirkaplılardan kalan son savaşçı.\nKendi iradesi olmadan kılıç ve alevle düşmanlarını ezip geçer.",
+    "starting_hp": 80,
+    "starting_gold": 99,
+    "max_energy": 3,
+    "orb_slots": null,
+    "starting_deck": [
+      "StrikeIronclad",
+      "StrikeIronclad",
+      "StrikeIronclad",
+      "StrikeIronclad",
+      "StrikeIronclad",
+      "DefendIronclad",
+      "DefendIronclad",
+      "DefendIronclad",
+      "DefendIronclad",
+      "Bash"
+    ],
+    "starting_relics": [
+      "BurningBlood"
+    ],
+    "unlocks_after": null,
+    "gender": "Masculine",
+    "color": "red",
+    "dialogue_color": "new",
+    "quotes": {
+      "event_death_prevention": "Takımımın hâlâ bana ihtiyacı var.",
+      "gold_monologue": "[sine]Bu zenginlikler kabilemin silahlarını güçlendirebilir...[/sine]",
+      "aroma_principle": "[sine][red]Acının bir önemi yok. Düşmanlarım ölmek zorunda.[/red][/sine]",
+      "banter_alive": "Acele et.",
+      "banter_dead": "...",
+      "cards_modifier_title": "Demirkaplı'nın Kartları",
+      "cards_modifier_description": "Demirkaplı'nın kartları artık ödül havuzunda ve dükkanlarda belirecek."
+    },
+    "dialogues": [
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Alevli savaşçı geri dönmüş!\nTam sana göre bi' şeyim var!"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Hâlâ ayakta olduğunu ve milleti patakladığını görmek güzel!"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "O ağır kılıcını hâlâ elimde tutuyorum... ama onu onaracak kimseyi bulamıyorum."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]Demirkaplı, Darv'a gözlerini diker.[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Belki de Mimar bi' şeyler biliyodur."
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]..ayağa.. kalk.. savaşçım...\n..tekrar... savaşma...vakti...[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]..hâlâ.. öfkene.. yeniksin... güzel...[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]..ilk.. kez.. karşıma..çıktığın\n...anı ..hatırlıyor...musun..[/sine]"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "[sine]..ne..hiddetli...[/sine]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[sine]...ne..kullanışlı...[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Aah, Demirkaplı sonunda karşıma çıkıyor.\nÖne çık ki gücümü sana bahşedeyim."
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Demirkaplı, Demirkaplı... Önceki hediyem yeterli değil miydi?"
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Tekrar mı döndün şampiyonum? Bu kaçıncı kez?\nVaktiyle tüm klanları yok edebilecek kadar güçlü değil miydin?"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Bir Demirkaplı!? Nasıl mümkün!? Korkunç. Çok korkunç!!"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Sözleşme imzalayan? Neden!? Kötü seçim? Evet. Hata!"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Sana özgürlük diliyorum!! Çok diliyorum!\nVakuu kötü. Çok kötü! Mimar seni özgür bırakır?"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]İçinde derin bir öfke yatıyor. Benden bir parça al ve biraz sakinleş...[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]Rüya görmenin nasıl hissettirdiğini hatırlıyor musun?\nUyumak güzeldir...[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]Alevlerini dindirmelisin.\nBaba seni özgür kılabilir...[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "ETKİLEYİCİ KILIÇ, SAVAŞÇI! DAHA FAZLA SİLAH KULLANABİLİRSİN!"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "SAVAŞÇI İÇİN SİLAHLARIMIZ VAR! BİR SİLAH KAP! HAYDİ SAVAŞALIM!"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "SAVAŞ BENİMLE DEMİRKAPLI!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]Demirkaplı Tanx ile mücadele eder.[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "EVEEET!! NE İHTİŞAMLI SAVAŞ, AL SİLAH!"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Sen ne de güzel [jitter][b]yanıyorsun[/b][/jitter]! Gir içeri, gir!"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Ne güçlü bi oğlansın sen öyle! Gel de bir şeyler ye.\nAç karnına [jitter][b]katliam[/b][/jitter] yapamazsın!"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Aah, Mimar hâlâ hayatta mı? Rica etsem onu [jitter][b]hızlıca[/b][/jitter] öldürür müsün?\nBen tam burada bekliyor olacağım!"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Demek baş iblisin kölesi ayağıma geldi, öyle mi?"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Düşman...\nÖldür..."
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Sonsuza dek savaşmaya lanetlisin, değil mi?"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Mimar... baş... düşman!!"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "İsmini dahi biliyor musun ki?"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Sana acıyorum."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Öldür..."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "En aşağıya geri dön, Demirkaplı."
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Bunca zaman sonra [sine]seni[/sine] yeniden görmek..."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[jitter][b]KUTSAL ŞEYTAN![/b][/jitter]\nBana ne yaptın!?"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Tam olarak istediğin şeyi."
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Yitip giden kabileler sana yük oluyor mu?..\n[i][font_size=22]Vakuu kahkahalarla güler.[/font_size][/i]"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Kuklaların kuklası... neden Mimar'ı hala öldürmedin?"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Mimar'ı öldürdükten sonra [jitter][b]SENİ[/b][/jitter] öldüreceğim!"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[i][font_size=22][sine]*Esner*[/sine][/font_size][/i]\nBaşarısız olmanı izlemek için sabırsızlanıyorum."
+          }
+        ]
+      }
+    ],
+    "image_url": "/static/images/characters/char_select_ironclad.png"
+  },
+  {
+    "id": "NECROBINDER",
+    "name": "Ölübağlayan",
+    "description": "Spire'da doğmuş, intikam arzulayan bir lich.\nSavaşta sadık sol eli [gold]Osti[/gold]’nin gücüne başvurur.",
+    "starting_hp": 66,
+    "starting_gold": 99,
+    "max_energy": 3,
+    "orb_slots": null,
+    "starting_deck": [
+      "StrikeNecrobinder",
+      "StrikeNecrobinder",
+      "StrikeNecrobinder",
+      "StrikeNecrobinder",
+      "DefendNecrobinder",
+      "DefendNecrobinder",
+      "DefendNecrobinder",
+      "DefendNecrobinder",
+      "Bodyguard",
+      "Unleash"
+    ],
+    "starting_relics": [
+      "BoundPhylactery"
+    ],
+    "unlocks_after": "Regent",
+    "gender": "Feminine",
+    "color": "purple",
+    "dialogue_color": "new",
+    "quotes": {
+      "event_death_prevention": "Arkadaşlarım ben olmadan başaramayacak.",
+      "gold_monologue": "[sine]Belki sonunda ayakkabı alabilirim...[/sine]",
+      "aroma_principle": "[sine][purple]İntikamları alınacak... Pes etmeyeceğim...[/purple][/sine]",
+      "banter_alive": "Karar versen mi artık?..",
+      "banter_dead": "...",
+      "unlock_text": "Bu karakteri açmak için [orange]{Prerequisite}[/orange] ile bir oyun oyna.",
+      "cards_modifier_title": "Ölübağlayan'ın Kartları",
+      "cards_modifier_description": "Ölübağlayan'ın kartları artık ödül havuzunda ve dükkanlarda belirecek."
+    },
+    "dialogues": [
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Ciddi biri olduğunu görebiliyorum. Senin için ne yapabilirim küçük hanım?"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "İğrenç bir adamı öldürmeme yardımcı olacak herhangi bir şey olur."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Pekala... bi' göz at bakalım!"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Hâlâ intikam peşinde misin? Seni tutacak değilim!"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Bu kitap sana bağlı gibi görünüyor. Senden daha uzun süredir buralarda."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Bu senin eline nasıl geçti?"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[sine]Korkutucu[/sine] şeyler bir şekilde benim koleksiyonumda son bulur."
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]...biz.... aynı... ..hedefi... ..paylaşıyoruz....[/sine]"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[jitter]SEVDİĞİM HER ŞEYİ ÖLDÜRDÜ!![/jitter]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[sine]...gücüm..... senindir...[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]O... hâlâ.. ....nefes alıyor...[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "[sine]Bu... mümkün... ..mü...ki?..[/sine]"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "[sine]... [red]Mimar[/red].... ..zayıflıyor....\n..biz.... daha güçlü...[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "Muhafızlarınız öldü. Söylentilere göre Mimar'ın ölmesini isteyenlere kutsamalarınızı bahşedebiliyormuşsunuz."
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "Yetkin kişileri takdir ederim; gücümden bir parça vereceğim.\nBir dahaki sefere muhafızlarımı öldürme."
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Bir büyücü savaş için iyi teçhizata ihtiyaç duyar. Yaklaş, Ölübağlayan."
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Mimar senin o [sine]evcil hayvanını[/sine] görmekten hoşnut olmayacak."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Osti'den mi bahsediyorsun? Son darbeyi indirecek olan o olacak."
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Ölü?! Ölü değil! Neden kukla? Büyük el!!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Ben kukla değilim. Öldürmem gereken bir adam var.\nBenim için ne yapabilirsin?"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Öldürmek kötü!! Yerine bunu al!"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Ölü olmayan! Senin için güzel hediyeler!! Şiddet kötü."
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Şiddet yok! Yerine parlak topla... Parlak!!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Görevim ancak Mimar yok olduğunda sona erecek.\nŞiddet kaçınılmaz."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Mimar kötü değil! Belki konuş? Konuşmak iyi!! Çok iyi!"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]Bunca kin kalbini lekeliyor.[/thinky_dots]"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Başıma gelenleri bilseydin aynı lekeyi taşıyor olurduk."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[thinky_dots]Senin yolunda huzur yok.\nYükünü hafifletmek için benden bir parça al...[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]Ve El'e sahip olan geri döner.\nAcı dolu hatıralar. Kuvvetimi al ve git...[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots][red]Baba[/red]'yı öldürmek huzur getirmeyecek.[/thinky_dots]"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "O [jitter]şeye[/jitter] baba mı diyorsun!?"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[thinky_dots]Ailemizi kendimiz seçmeyiz...[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "NE KUDRETLİ BİR TIRPAN!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Evet, intikam için özel olarak yapıldı."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "EL'İN SİLAHA İHTİYACI VAR MI?!"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "SAVAŞ BENİMLE OSTİ!!"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "SAVAŞ BENİMLE ÖLÜBAĞLAYAN!!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]Ölübağlayan ve Osti, Tanx ile arbedeye girerler.[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "KUDRETLİ TAKIM ÇALIŞMASI!! BİR SİLAH AL!"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Bir iskeletin bu duvarların arasında ne işi var?"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Amacım net: Ailemin intikamını almak.\nZirveye ulaşıp ona bunu ödeteceğim."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[jitter][b]Şahane![/b][/jitter]!"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Gir içeri gir!! İçindeki ateşi biraz daha [jitter][b]harlayalım[/b][/jitter]."
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Etrafındaki o alevler bana yasaklı bir şeyi hatırlatıyor."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Ne biliyorsun?"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "O [jitter][b]kitabı[/b][/jitter] kimin yazdığını biliyorum."
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "MİMAR! Ebeveynlerimi öldürdün. Arkadaşımı öldürdün. YAŞAMIMI öldürdün! ...ve şimdi ben de SENİ öldüreceğim!"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "İntikam mı? Yok, almayayım."
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "MİMAR! Ebeveynlerimi öldürdün. Arkadaşımı öldürdün. YAŞAMIMI-"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "Geçmişini öfkeyle değiştiremezsin."
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "MİMAR! Ebeveynlerimi öldürdün. Arkadaşımı öldürdün. YAŞAMIMI öldür-"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "Düzeni devam ettirmek için yapmam gerekeni yaptım."
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "MİMAR! Ebeveynlerimi öldürdün. Arkadaşımı öldürdün-"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "Yaşamını öldürdüm."
+          },
+          {
+            "order": 2,
+            "speaker": "char",
+            "text": "Ne?.. Seni canavar! Geber!"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "İkimiz de [sine]intikam[/sine] peşindeyiz. Bunun bir bedeli olacak."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Her türlü bedeli kabul ediyorum. Onun ölümü her bedele değer."
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "O [sine]El[/sine]'i nereden bulduğunu biliyorum."
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Mimar her ikimizi de derinden yaraladı."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "İşine bak, iblis. Bana sözleşmelerini göster."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Direkt sadede geliyorsun. Pekala..."
+          }
+        ]
+      }
+    ],
+    "image_url": "/static/images/characters/char_select_necrobinder.png"
+  },
+  {
+    "id": "REGENT",
+    "name": "Naip",
+    "description": "Yıldızların Tahtı'nın varisi.\nKozmik güçlere sahiptir, ancak işleri onun hizmetkarları yapar.",
+    "starting_hp": 75,
+    "starting_gold": 99,
+    "max_energy": 3,
+    "orb_slots": null,
+    "starting_deck": [
+      "StrikeRegent",
+      "StrikeRegent",
+      "StrikeRegent",
+      "StrikeRegent",
+      "DefendRegent",
+      "DefendRegent",
+      "DefendRegent",
+      "DefendRegent",
+      "FallingStar",
+      "Venerate"
+    ],
+    "starting_relics": [
+      "DivineRight"
+    ],
+    "unlocks_after": "Silent",
+    "gender": "Masculine",
+    "color": "orange",
+    "dialogue_color": "new",
+    "quotes": {
+      "event_death_prevention": "Takımıma yardım etmek için yaşamaya devam etmeliyim!!",
+      "gold_monologue": "[sine]Aptal olmayan bir orduyu komuta edebilirim...[/sine]",
+      "aroma_principle": "[sine][orange]Ben sonraki Yıldızlar Kralıyım...[/orange][/sine]",
+      "banter_alive": "BEKLİYORUM!!",
+      "banter_dead": "...",
+      "unlock_text": "Bu karakteri açmak için [green]{Prerequisite}[/green] ile bir oyun oyna.",
+      "cards_modifier_title": "Naip'in Kartları",
+      "cards_modifier_description": "Naip'in kartları artık ödül havuzunda ve dükkanlarda belirecek."
+    },
+    "dialogues": [
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Senin gibileri buraya tırmandıran da ne? Koleksiyonuma göz atmak ister misin?"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Malı mülkü severim doğrusu..."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "İşte bu!"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Daha fazlası için geri mi döndünüz, ekselansları?!"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Yeni arkadaşım, sana göre bir şeyim var!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Dinliyorum!"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Onu sana verirdim ama Mimar onu benden aşırdı!!\nŞu dostuna bi' yardım et! Bi' kıyak geç be?"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "Devasa mavi yaratık, ben geleceğin [orange]Kralı[/orange]'yım!"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "[sine]..tatlı...\n...beni... bir.. ..daha... ...göreceksin....[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]...yine mi..?[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "[jitter]Neden kazanamıyorum?![/jitter]"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "[sine]...bu.. kutsamayı... ..al...[/sine]"
+          },
+          {
+            "order": 2,
+            "speaker": "char",
+            "text": "...evet, teşekkür ederim Neow."
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "Nonupeipe ile görüşmek istiyorum!"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "Uzak diyarlardan ne kadar güzel cüppeler getirmişsin!\nUşakların seni yaklaştırsın ki seni kutsayayım."
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Asil ziyaretçiler için asil nimetler.\nHizmetçiler! Bize çay getirin."
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Mimar aklını kaçırdı! Keşke asil bir şampiyon bizi bu nahoş durumdan kurtarabilseydi..."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Korkmayın! Ben, Naip, bu deliliğe bir son vereceğim!\nFakat önce çay!"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Gezgin! Uzaydan!? Uzayda nerden?\nNasıl uzaydan? Sivri kafa! Küçük arkadaşlar!!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]Naip saatler süren bir monolog yapar.[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Heyecanlı! Etkileyici!! Daha! Daha!!!"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Daha fazla hikâye! Bunları senin için buldum!\nŞimdi daha da anlat!"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "Bir numaralı hayranım! Orobas, dostum!\nHâlâ hayatta olduğunu görmek ne güzel!"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "Hikâyeler?!"
+          },
+          {
+            "order": 2,
+            "speaker": "char",
+            "text": "Elbette, elbette... ama sen benim için herhangi bir değerli eşya buldun mu?"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "Merhaba! Ben Naip'im.\nMerhabaaaa?? [jitter]HEY!?[/jitter]"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "[thinky_dots]Sessiz ol bakalım.\nBenden bir parça al ve yoluna devam et...[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "Geri geldim! Aah, tabii ki de uyuyorsun.\nBakalım ne varmış..."
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "Neden kendinden feda ediyorsun?"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "[thinky_dots]Bende fazladan varken neden paylaşmayayım?[/thinky_dots]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[thinky_dots]Geri döndüğünde tamamen yenilenmiş olacağım.\nİşte uyku buna yarar...[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "TURUNCU MU!? BU VARLIK NASIL TURUNCU OLABİLİR!??"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Herkes bilir ki turuncu en asil renktir!"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "İNANILMAZ! NE KUDRETLİ!!"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "TURUNCU!! KUDRETLİ BİR SİLAH SEÇ!"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "SAVAŞ BENİMLE NAİP!!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Olmaz! Ben geçen sefer buradayken savaşmıştık!"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "BENİMLE TEKRAR SAVAŞ!!"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Vay canına, ne de [jitter][b]egzotik[/b][/jitter] bir ziyaretçi! Kim olduğunu öğrenebilir miyim, tatlım?"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Ben tatlı falan değilim! Bana saygıyla hitap et, dev... yaratık kişi!"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Ne de görgüsüzlük ettim!\n[i][font_size=22]Tezcatara keyifle kıkırdar.[/font_size][/i]"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Sen ve arkadaşların geri mi döndünüz?\nSizin için [jitter][b]sürprizler[/b][/jitter] hazırladım!"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Tekrar hoş geldin asil çocuk! Görünüşe bakılırsa dışarıda [jitter][b]muhteşem[/b][/jitter] bir iş çıkarıyorsun."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Elbette öyle! Sadece yukarı katlarda ölmek gibi bazı küçük... aksiliklerle karşılaşıyorum."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Hepimizin hatalarımızdan öğrenmeye ihtiyacı var."
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "İşte geldim! Hey sen, köylü! Burası en üst kat mı?"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "Sessizliğe ihtiyacım var..."
+          },
+          {
+            "order": 2,
+            "speaker": "char",
+            "text": "Sana biraz terbiye vereyim!"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "Tekrar geldim!"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "Gürültücü aptal geri mi döndü?"
+          },
+          {
+            "order": 2,
+            "speaker": "char",
+            "text": "Ben ne gürültücüyüm ne de aptal! Benimle yüzleş!"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "Senin terbiyesizliğinden bıktım!"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "Sonunda ikimizin de hemfikir olduğu bir konu."
+          },
+          {
+            "order": 2,
+            "speaker": "char",
+            "text": "Haydi dans edelim!"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Yıldızlardan gelen bir varlık mı? Bu lanetli duvarların arasında mı?"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Beni tanıyor musun?"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Evet. Sanırım birbirimize yardımcı olabiliriz."
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Gücümün dahası küçük bir bedele karşılık senin olabilir."
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "Bu tekliflerin iyi olduğunu düşünmüyorum. Kendimi pek iyi hissetmiyorum."
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "Sözleşmeleri baştan sona dikkatle okudun, öyle değil mi?\nOnları bilerek ve tüm sorumluluğu üstlenerek imzalamadın mı?"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Anlaşmanın kendi tarafına düşen kısmını yerine getirmeyecek misin?\nBaşka bir sözleşme yapmaya ne dersin? Daha iyi olmaz mı?"
+          }
+        ]
+      }
+    ],
+    "image_url": "/static/images/characters/char_select_regent.png"
+  },
+  {
+    "id": "SILENT",
+    "name": "Sessiz",
+    "description": "Spire'ın dışından gelen bir avcı.\nYoluna çıkan her şeyi bıçaklayıp zehirlemeye hazır.",
+    "starting_hp": 70,
+    "starting_gold": 99,
+    "max_energy": 3,
+    "orb_slots": null,
+    "starting_deck": [
+      "StrikeSilent",
+      "StrikeSilent",
+      "StrikeSilent",
+      "StrikeSilent",
+      "StrikeSilent",
+      "DefendSilent",
+      "DefendSilent",
+      "DefendSilent",
+      "DefendSilent",
+      "DefendSilent",
+      "Neutralize",
+      "Survivor"
+    ],
+    "starting_relics": [
+      "RingOfTheSnake"
+    ],
+    "unlocks_after": null,
+    "gender": "Feminine",
+    "color": "green",
+    "dialogue_color": "new",
+    "quotes": {
+      "event_death_prevention": "Bir gün daha avlanabilmek için yaşamaya devam etmeliyim...",
+      "gold_monologue": "[sine]Kız kardeşlerim bu zenginliklerden gurur duyarlardı...[/sine]",
+      "aroma_principle": "[sine][green]...avla... kanıtla... ait ol...[/green][/sine]",
+      "banter_alive": "[sine]...[/sine]",
+      "banter_dead": "...",
+      "unlock_text": "Bu karakteri açmak için bir oyun oyna.",
+      "cards_modifier_title": "Sessiz'in Kartları",
+      "cards_modifier_description": "Sessiz'in kartları artık ödül havuzunda ve dükkanlarda belirecek."
+    },
+    "dialogues": [
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Demek sen de Spire'a geri döndün, öyle mi?\nŞu parlak şeylere sen de karşı koyamıyorsun, değil mi?!"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Sendeki o ganimete karşılık sana güzel bi' şeyler ayarlayabilirim!"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Ne yazık ki benim cömertliğimi hatırlamıyorsun!\nEee, Neow'un nasıl olduğunu bilirsin..."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "..."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "E hadi bakalım! Şu son hesaplaşma mı artık neyse, seni ona göre kuşandıralım!"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]...dışarıdan.. geri mi... geldin?\n..geri... döneceğini... biliyordum...[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]...ganimetin..\n ...seni.. bekliyor...[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]..ailenin...ızdırabını..ikimiz de...biliyoruz..[/sine]"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "..."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[sine]..hâlâ...onay mı..bekliyorsun?..\n...[jitter]APTALCA[/jitter]...[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Huzuruma küçük bir hırsız mı sızmış?\nSeni göremediğimi mi sanıyorsun? Haydi, çık ortaya!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]Sessiz gölgelerden çıkar...[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Bir avcı... Spire'a dönüşüne neden olan şey nedir?\nYaklaş ve kutsamalarımı al."
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Senin için hediyeler hazırladım, suikastçı. Çekinme."
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Onun tüm kuklaları arasında beni en çok şaşırtan sensin."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "..."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "İlk canını ne aldı? Neow seni [sine]buldu mu?[/sine]\nKonuşmuyor olman ne yazık."
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Enfeksiyon?.. [jitter]MARAZ!?[/jitter] Al ve git!!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[sine]...[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Bulaşıcı değil? Çok ölüyorsun? Mimar sana yardım eder?"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Kız kardeşler nerede? Korkunç kaba kız kardeşler!\nİyi biri ol! Kız kardeşler gibi olma!!"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]Kanasusamış yaratık, burada şiddete lüzum yok.\nBenden bir parça al ve sakinleş...[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]Ganimet peşindesin, öyle mi? Peki, benden bir parça al...\nSeni ne rahatlatacaksa...[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]Beni mi zehirledin?..\nNe olacak şimdi?.. zZZzz...[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "BİR AVCI! PENÇELERİNİ SİVRİLEŞTİRECEĞİM!!"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "NEDEN HANÇERLER!! ONURSUZ!!"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "SESSİZ, SAVAŞ BENİMLE!!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]Sessiz oradan kaçar ve giderken bir silah çalar.[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "NEREYE KAYBOLDUN!!!"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Sessiz şey, yaklaş. Çok iyi göremiyorum..."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "..."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Bana [jitter][b]güvenebilirsin[/b][/jitter]."
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Ne kötü bir [jitter][b]hastalık[/b][/jitter] bu böyle. Hadi seni iyileştirelim."
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Kız kardeşlerinle tanıştım, biliyor musun? Ne hoş kızlar onlar öyle."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "..."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Ah tatlım... Sen [jitter][b]savaşmıyordun[/b][/jitter], öyle değil mi?"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Kendini tanıtmayacak mısın bari?"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Nereden geldin?\nNeyin peşindesin?"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[jitter]Aaaah![/jitter]\n[jitter][red]GEBER!![/red][/jitter]"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Seni sefil şey!\n[jitter]DEFOL!![/jitter]"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Katil."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[sine]...[/sine]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Bu senin için iyi [jitter]bitmeyecek[/jitter]."
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[i][font_size=22]Vakuu çeşitli sözleşmelerini Sessiz'e gösterir.[/font_size][/i]"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Mimar yetmez, kız kardeşlerini de öldür!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[sine]...[/sine]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Söz sarf etmene gerek yok, biz aynıyız."
+          }
+        ]
+      }
+    ],
+    "image_url": "/static/images/characters/char_select_silent.png"
+  }
+]

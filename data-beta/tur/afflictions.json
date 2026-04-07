@@ -1,0 +1,51 @@
+[
+  {
+    "id": "BOUND",
+    "name": "Bağlı",
+    "description": "Her tur yalnızca [blue]1[/blue] [gold]Bağlı[/gold] kart oynanabilir. Kartlar tur sonunda [gold]Bağlı[/gold] durumundan çıkar.",
+    "extra_card_text": "Bağlı",
+    "is_stackable": false
+  },
+  {
+    "id": "DEVOURED",
+    "name": "Yutulmuş",
+    "description": "Bu karta [gold]Tüket[/gold] ekle.",
+    "extra_card_text": null,
+    "is_stackable": false
+  },
+  {
+    "id": "ENTANGLED",
+    "name": "Dolanmış",
+    "description": "Fazladan [energy:1] Enerji gerektirir.",
+    "extra_card_text": "Dolanmış",
+    "is_stackable": false
+  },
+  {
+    "id": "GALVANIZED",
+    "name": "Uyarıcı",
+    "description": "Bu kart oynandığında [blue]X[/blue] hasar al.",
+    "extra_card_text": "X hasar al.",
+    "is_stackable": true
+  },
+  {
+    "id": "HEXED",
+    "name": "Büyülenmiş",
+    "description": "Bu karta [gold]Ruhani[/gold] ekle.",
+    "extra_card_text": null,
+    "is_stackable": false
+  },
+  {
+    "id": "RINGING",
+    "name": "Çınlama",
+    "description": "Bu tur sadece [blue]1[/blue] kart oynayabilirsin.",
+    "extra_card_text": "Çınlama.",
+    "is_stackable": false
+  },
+  {
+    "id": "SMOG",
+    "name": "Duman",
+    "description": "Bu tur ilave [gold]Beceri[/gold] kartları oynayamazsın. Tur sonunda kaldırılır.",
+    "extra_card_text": null,
+    "is_stackable": false
+  }
+]

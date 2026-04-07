@@ -1,0 +1,86 @@
+[
+  {
+    "id": "ATTACK",
+    "name": "Агрессия",
+    "description": "Этот враг планирует [gold]атаковать[/gold] {IsMultiplayer:всех |}и нанести [blue]{Damage}[/blue] урона{Repeat:plural(ru):| [blue]{}[/blue] раза| [blue]{}[/blue] раз}.",
+    "image_url": "/static/images/intents/attack.png"
+  },
+  {
+    "id": "BUFF",
+    "name": "Усиление",
+    "description": "Этот враг собирается наложить на себя [gold]положительный эффект[/gold].",
+    "image_url": "/static/images/intents/buff.png"
+  },
+  {
+    "id": "CARD_DEBUFF",
+    "name": "Коварство",
+    "description": "Этот враг собирается наложить [gold]порчу[/gold] на ваши карты.",
+    "image_url": "/static/images/intents/card_debuff.png"
+  },
+  {
+    "id": "DEATH_BLOW",
+    "name": "Предсмертный рывок",
+    "description": "Этот враг из последних сил нанесет вам [blue]{Damage}[/blue] урона перед смертью, чтобы утащить вас за собой в могилу.",
+    "image_url": "/static/images/intents/death_blow.png"
+  },
+  {
+    "id": "DEBUFF",
+    "name": "Находчивость",
+    "description": "Этот враг собирается наложить на вас [gold]отрицательный эффект[/gold].",
+    "image_url": "/static/images/intents/debuff.png"
+  },
+  {
+    "id": "DEBUFF_STRONG",
+    "name": "Находчивость",
+    "description": "Этот враг собирается наложить на вас мощный [gold]отрицательный эффект[/gold].",
+    "image_url": "/static/images/intents/debuff_strong.png"
+  },
+  {
+    "id": "DEFEND",
+    "name": "Самооборона",
+    "description": "Этот враг собирается [gold]защититься[/gold].",
+    "image_url": "/static/images/intents/defend.png"
+  },
+  {
+    "id": "ESCAPE",
+    "name": "Трусость",
+    "description": "Этот враг собирается [gold]сбежать[/gold].",
+    "image_url": "/static/images/intents/escape.png"
+  },
+  {
+    "id": "HEAL",
+    "name": "Лечение",
+    "description": "Этот враг собирается [gold]восполнить ОЗ[/gold].",
+    "image_url": "/static/images/intents/heal.png"
+  },
+  {
+    "id": "SLEEP",
+    "name": "Сон",
+    "description": "Этот враг не собирается ничего делать.",
+    "image_url": "/static/images/intents/sleep.png"
+  },
+  {
+    "id": "STATUS",
+    "name": "Находчивость",
+    "description": "Этот враг собирается подбросить вам [blue]{CardCount}[/blue] {CardCount:plural(ru):[gold]Статус[/gold]|[gold]Статуса[/gold]|[gold]Статусов[/gold]}.",
+    "image_url": "/static/images/intents/status.png"
+  },
+  {
+    "id": "STUN",
+    "name": "Оглушение",
+    "description": "Этот враг пропускает следующий ход.",
+    "image_url": "/static/images/intents/stun.png"
+  },
+  {
+    "id": "SUMMON",
+    "name": "Призыв",
+    "description": "Этот враг собирается призвать [gold]монстров[/gold].",
+    "image_url": "/static/images/intents/summon.png"
+  },
+  {
+    "id": "UNKNOWN",
+    "name": "Неизвестность",
+    "description": "Намерения этого врага [gold]неизвестны[/gold].",
+    "image_url": "/static/images/intents/unknown.png"
+  }
+]

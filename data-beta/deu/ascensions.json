@@ -1,0 +1,68 @@
+[
+  {
+    "id": "LEVEL_00",
+    "level": 0,
+    "name": "Kein Aufstieg",
+    "description": "Spiele ohne Aufstiegs-Modifikatoren."
+  },
+  {
+    "id": "LEVEL_01",
+    "level": 1,
+    "name": "Eliten-Gewimmel",
+    "description": "[gold]Eliten[/gold] tauchen häufiger auf."
+  },
+  {
+    "id": "LEVEL_02",
+    "level": 2,
+    "name": "Ermüdende Reise",
+    "description": "Ahnen heilen nur [blue]80%[/blue] deiner fehlenden TP."
+  },
+  {
+    "id": "LEVEL_03",
+    "level": 3,
+    "name": "Armut",
+    "description": "Gegner und Schatztruhen geben [blue]25%[/blue] weniger [gold]Gold[/gold]."
+  },
+  {
+    "id": "LEVEL_04",
+    "level": 4,
+    "name": "Enger Gürtel",
+    "description": "Beginne jeden Run mit 1 Trankslot weniger."
+  },
+  {
+    "id": "LEVEL_05",
+    "level": 5,
+    "name": "Aufstiegsfluch",
+    "description": "Beginne jeden Run [red]Verflucht[/red]."
+  },
+  {
+    "id": "LEVEL_06",
+    "level": 6,
+    "name": "Düsternis",
+    "description": "Weniger Lagerfeuer."
+  },
+  {
+    "id": "LEVEL_07",
+    "level": 7,
+    "name": "Knappheit",
+    "description": "Seltene und verbesserte Karten erscheinen weniger häufig."
+  },
+  {
+    "id": "LEVEL_08",
+    "level": 8,
+    "name": "Harte Gegner",
+    "description": "Alle Gegner sind schwerer zu töten."
+  },
+  {
+    "id": "LEVEL_09",
+    "level": 9,
+    "name": "Tödliche Gegner",
+    "description": "Alle Gegner haben tödlichere Angriffe."
+  },
+  {
+    "id": "LEVEL_10",
+    "level": 10,
+    "name": "Doppelter Boss",
+    "description": "Bekämpfe zwei Bosse am Ende von Akt 3."
+  }
+]

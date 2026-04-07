@@ -1,0 +1,86 @@
+[
+  {
+    "id": "ATTACK",
+    "name": "Agressivo",
+    "description": "Este inimigo tem intenção de [gold]Atacar[/gold] {IsMultiplayer:todos |}por [blue]{Damage}[/blue] de dano{Repeat:plural:| [blue]{}[/blue] vezes}.",
+    "image_url": "/static/images/intents/attack.png"
+  },
+  {
+    "id": "BUFF",
+    "name": "Fortalecer",
+    "description": "Este inimigo tem intenção de usar um [gold]Efeito Positivo[/gold].",
+    "image_url": "/static/images/intents/buff.png"
+  },
+  {
+    "id": "CARD_DEBUFF",
+    "name": "Malicioso",
+    "description": "Este inimigo tem intenção de aplicar [gold]Aflições[/gold] nas suas cartas.",
+    "image_url": "/static/images/intents/card_debuff.png"
+  },
+  {
+    "id": "DEATH_BLOW",
+    "name": "Golpe Mortal",
+    "description": "Esta criatura está tentando te derrubar junto com ela. Ao se sacrificar, ela ataca causando [blue]{Damage}[/blue] de dano.",
+    "image_url": "/static/images/intents/death_blow.png"
+  },
+  {
+    "id": "DEBUFF",
+    "name": "Estratégico",
+    "description": "Este inimigo tem intenção de aplicar um [gold]Efeito Negativo[/gold] em você.",
+    "image_url": "/static/images/intents/debuff.png"
+  },
+  {
+    "id": "DEBUFF_STRONG",
+    "name": "Estratégico",
+    "description": "Este inimigo tem intenção de aplicar um [gold]Efeito Negativo[/gold] potente em você.",
+    "image_url": "/static/images/intents/debuff_strong.png"
+  },
+  {
+    "id": "DEFEND",
+    "name": "Defensivo",
+    "description": "Este inimigo tem intenção de [gold]Proteger[/gold] no turno dele.",
+    "image_url": "/static/images/intents/defend.png"
+  },
+  {
+    "id": "ESCAPE",
+    "name": "Covardia",
+    "description": "Este inimigo tem intenção de [gold]Escapar[/gold].",
+    "image_url": "/static/images/intents/escape.png"
+  },
+  {
+    "id": "HEAL",
+    "name": "Cura",
+    "description": "Este inimigo tem intenção de [gold]Curar[/gold].",
+    "image_url": "/static/images/intents/heal.png"
+  },
+  {
+    "id": "SLEEP",
+    "name": "Dormindo",
+    "description": "Este inimigo não fará nada neste turno.",
+    "image_url": "/static/images/intents/sleep.png"
+  },
+  {
+    "id": "STATUS",
+    "name": "Estratégico",
+    "description": "Este inimigo tem intenção de lhe dar [blue]{CardCount}[/blue] {CardCount:plural:carta|cartas} de [gold]Condição[/gold].",
+    "image_url": "/static/images/intents/status.png"
+  },
+  {
+    "id": "STUN",
+    "name": "Atordoado",
+    "description": "Este inimigo não poderá agir no próximo turno dele.",
+    "image_url": "/static/images/intents/stun.png"
+  },
+  {
+    "id": "SUMMON",
+    "name": "Invocação",
+    "description": "Este inimigo tem intenção de invocar [gold]Monstros[/gold].",
+    "image_url": "/static/images/intents/summon.png"
+  },
+  {
+    "id": "UNKNOWN",
+    "name": "Desconhecido",
+    "description": "As intenções deste inimigo são [gold]Desconhecidas[/gold].",
+    "image_url": "/static/images/intents/unknown.png"
+  }
+]

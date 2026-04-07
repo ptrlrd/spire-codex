@@ -1,0 +1,68 @@
+[
+  {
+    "id": "LEVEL_00",
+    "level": 0,
+    "name": "无进阶",
+    "description": "在没有任何进阶调整的影响下游玩。"
+  },
+  {
+    "id": "LEVEL_01",
+    "level": 1,
+    "name": "精英蜂拥",
+    "description": "[gold]精英[/gold]敌人出现更加频繁。"
+  },
+  {
+    "id": "LEVEL_02",
+    "level": 2,
+    "name": "旅途劳顿",
+    "description": "先古之民只会回复你已损失生命值的[blue]80%[/blue]。"
+  },
+  {
+    "id": "LEVEL_03",
+    "level": 3,
+    "name": "贫穷",
+    "description": "敌人和宝箱掉落的[gold]金币[/gold]减少[blue]25%[/blue]。"
+  },
+  {
+    "id": "LEVEL_04",
+    "level": 4,
+    "name": "收紧腰带",
+    "description": "游戏开始时药水栏位减少1。"
+  },
+  {
+    "id": "LEVEL_05",
+    "level": 5,
+    "name": "进阶之灾",
+    "description": "游戏开始时被[red]诅咒[/red]。"
+  },
+  {
+    "id": "LEVEL_06",
+    "level": 6,
+    "name": "阴郁",
+    "description": "休息处变少。"
+  },
+  {
+    "id": "LEVEL_07",
+    "level": 7,
+    "name": "稀缺",
+    "description": "稀有和已升级卡牌更少出现。"
+  },
+  {
+    "id": "LEVEL_08",
+    "level": 8,
+    "name": "强韧敌人",
+    "description": "所有的敌人变得更难杀死。"
+  },
+  {
+    "id": "LEVEL_09",
+    "level": 9,
+    "name": "致命敌人",
+    "description": "所有的敌人变得更加致命。"
+  },
+  {
+    "id": "LEVEL_10",
+    "level": 10,
+    "name": "双重Boss",
+    "description": "在第3幕末尾与两名首领战斗。"
+  }
+]

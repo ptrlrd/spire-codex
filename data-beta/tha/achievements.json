@@ -1,0 +1,299 @@
+[
+  {
+    "id": "ALL_CARDS_UPGRADED",
+    "name": "กองการ์ดสมบูรณ์แบบ",
+    "description": "ชนะการเดินทางโดยพัฒนาทั้งกองการ์ด",
+    "category": "run",
+    "character": null,
+    "threshold": null,
+    "condition": "Win with a fully-upgraded deck"
+  },
+  {
+    "id": "ALL_OTHER_ACHIEVEMENTS",
+    "name": "ผู้เป็นนิรันดร์",
+    "description": "ปลดล็อกความสำเร็จอื่นทั้งหมด",
+    "category": "meta",
+    "character": null,
+    "threshold": null,
+    "condition": "Complete all other achievements"
+  },
+  {
+    "id": "CHARACTER_SKILL_IRONCLAD1",
+    "name": "บรรลุสัญญา",
+    "description": "สลาย 20 การ์ดในการต่อสู้เดียว",
+    "category": "character_skill",
+    "character": "Ironclad",
+    "threshold": 20,
+    "condition": "Exhaust 20 cards in a single combat"
+  },
+  {
+    "id": "CHARACTER_SKILL_IRONCLAD2",
+    "name": "คมดาบที่หนักที่สุด",
+    "description": "สร้างความเสียหาย 999 ในการโจมตีครั้งเดียว",
+    "category": "character_skill",
+    "character": "Ironclad",
+    "threshold": 999,
+    "condition": "Deal 999+ damage in a single hit"
+  },
+  {
+    "id": "CHARACTER_SKILL_NECROBINDER1",
+    "name": "แกน่ะได้ตายไปแล้ว",
+    "description": "",
+    "category": "character_skill",
+    "character": "Necrobinder",
+    "threshold": 999,
+    "condition": "Apply 999+ Doom to a single enemy"
+  },
+  {
+    "id": "CHARACTER_SKILL_NECROBINDER2",
+    "name": "นมสด",
+    "description": "",
+    "category": "character_skill",
+    "character": "Necrobinder",
+    "threshold": 50,
+    "condition": "Apply 50+ Strength to Osty"
+  },
+  {
+    "id": "CHARACTER_SKILL_REGENT1",
+    "name": "Character Skill Regent1",
+    "description": "หลอมสร้างพระแสงอาญาสิทธิ์ที่สร้างความเสียหายอย่างน้อย 999",
+    "category": "character_skill",
+    "character": "Regent",
+    "threshold": 999,
+    "condition": "Forge a Sovereign Blade with 999+ base damage"
+  },
+  {
+    "id": "CHARACTER_SKILL_REGENT2",
+    "name": "หมู่ดาวฤกษ์กลางนภา",
+    "description": "มี 20 ดาวในคราวเดียว",
+    "category": "character_skill",
+    "character": "Regent",
+    "threshold": 20,
+    "condition": "Have 20+ Stars at once"
+  },
+  {
+    "id": "CHARACTER_SKILL_SILENT1",
+    "name": "ร้อยเล่ห์เพทุบาย",
+    "description": "ใช้การ์ดเพียงใบเดียวในการเล่นการ์ดเล่ห์เหลี่ยม 5 ใบ",
+    "category": "character_skill",
+    "character": "Silent",
+    "threshold": 5,
+    "condition": "Play 5 cards via Sly off a single card play"
+  },
+  {
+    "id": "CHARACTER_SKILL_SILENT2",
+    "name": "แค่ไม่กี่หยด",
+    "description": "สร้าง 99 พิษใส่ศัตรูตัวเดียว",
+    "category": "character_skill",
+    "character": "Silent",
+    "threshold": 99,
+    "condition": "Apply 99+ Poison to a single enemy"
+  },
+  {
+    "id": "COMPLETE_ACT4",
+    "name": "ฉากจบที่แท้จริง",
+    "description": "สำเร็จองก์ 4",
+    "category": "run",
+    "character": null,
+    "threshold": null,
+    "condition": "Complete Act 4"
+  },
+  {
+    "id": "COMPLETE_TIMELINE",
+    "name": "นักประวัติศาสตร์",
+    "description": "สำเร็จเส้นเวลา",
+    "category": "collection",
+    "character": null,
+    "threshold": null,
+    "condition": "Complete the Timeline"
+  },
+  {
+    "id": "DEFEAT_GLORY_ENEMIES",
+    "name": "ความรุ่งโรจน์",
+    "description": "กำจัดศัตรูทุกตัวในองก์ความรุ่งโรจน์",
+    "category": "combat",
+    "character": null,
+    "threshold": null,
+    "condition": "Defeat every enemy in the Glory"
+  },
+  {
+    "id": "DEFEAT_HIVE_ENEMIES",
+    "name": "รังผึ้ง",
+    "description": "กำจัดศัตรูทุกตัวในองก์รังผึ้ง",
+    "category": "combat",
+    "character": null,
+    "threshold": null,
+    "condition": "Defeat every enemy in the Hive"
+  },
+  {
+    "id": "DEFEAT_ONE_BOSS",
+    "name": "ตัวแรกจากอีกหลาย",
+    "description": "กำจัดบอส",
+    "category": "combat",
+    "character": null,
+    "threshold": null,
+    "condition": "Defeat a boss"
+  },
+  {
+    "id": "DEFEAT_OVERGROWTH_ENEMIES",
+    "name": "รกชัฏ",
+    "description": "กำจัดศัตรูทุกตัวในองก์รกชัฏ",
+    "category": "combat",
+    "character": null,
+    "threshold": null,
+    "condition": "Defeat every enemy in the Overgrowth"
+  },
+  {
+    "id": "DEFEAT_UNDERDOCKS_ENEMIES",
+    "name": "ท่าเรือเบื้องล่าง",
+    "description": "กำจัดศัตรูทุกตัวในองก์ท่าเรือเบื้องล่าง",
+    "category": "combat",
+    "character": null,
+    "threshold": null,
+    "condition": "Defeat every enemy in the Underdocks"
+  },
+  {
+    "id": "DEFECT_ASCENSION10",
+    "name": "ก้องกังวาน",
+    "description": "สำเร็จผู้บรรลุ 10 ในฐานะนักเวทแปรพักตร์",
+    "category": "character_ascension",
+    "character": "Defect",
+    "threshold": null,
+    "condition": null
+  },
+  {
+    "id": "DEFECT_WIN",
+    "name": "นักเวทแปรพักตร์",
+    "description": "ชนะในฐานะนักเวทแปรพักตร์",
+    "category": "character_win",
+    "character": "Defect",
+    "threshold": null,
+    "condition": null
+  },
+  {
+    "id": "DISCOVER_ALL_CARDS",
+    "name": "นักสะสม",
+    "description": "ค้นพบการ์ดทั้งหมด",
+    "category": "collection",
+    "character": null,
+    "threshold": null,
+    "condition": "Discover all cards"
+  },
+  {
+    "id": "DISCOVER_ALL_EVENTS",
+    "name": "นักสำรวจ",
+    "description": "เผชิญทุกเหตุการณ์",
+    "category": "collection",
+    "character": null,
+    "threshold": null,
+    "condition": "Encounter all events"
+  },
+  {
+    "id": "DISCOVER_ALL_RELICS",
+    "name": "นักโบราณคดี",
+    "description": "ค้นพบเครื่องรางทั้งหมด",
+    "category": "collection",
+    "character": null,
+    "threshold": null,
+    "condition": "Discover all relics"
+  },
+  {
+    "id": "FLOOR_TEN_THOUSAND",
+    "name": "บันไดนานาขั้น",
+    "description": "ปีน 10,000 ชั้น",
+    "category": "collection",
+    "character": null,
+    "threshold": 10000,
+    "condition": "Climb 10,000 floors total"
+  },
+  {
+    "id": "IRONCLAD_ASCENSION10",
+    "name": "ปีศาจ",
+    "description": "สำเร็จผู้บรรลุ 10 ในฐานะนักรบเกราะเหล็ก",
+    "category": "character_ascension",
+    "character": "Ironclad",
+    "threshold": null,
+    "condition": null
+  },
+  {
+    "id": "IRONCLAD_WIN",
+    "name": "นักรบเกราะเหล็ก",
+    "description": "ชนะในฐานะนักรบเกราะเหล็ก",
+    "category": "character_win",
+    "character": "Ironclad",
+    "threshold": null,
+    "condition": null
+  },
+  {
+    "id": "NECROBINDER_ASCENSION10",
+    "name": "ลิช",
+    "description": "สำเร็จผู้บรรลุ 10 ในฐานะนัก Necrobinder",
+    "category": "character_ascension",
+    "character": "Necrobinder",
+    "threshold": null,
+    "condition": null
+  },
+  {
+    "id": "NECROBINDER_WIN",
+    "name": "Necrobinder Win",
+    "description": "ชนะในฐานะนัก Necrobinder",
+    "category": "character_win",
+    "character": "Necrobinder",
+    "threshold": null,
+    "condition": null
+  },
+  {
+    "id": "NO_RELIC_WIN",
+    "name": "ฮาวทูทิ้ง",
+    "description": "ชนะการเดินทางโดยไม่ได้รับเครื่องรางใดๆ",
+    "category": "run",
+    "character": null,
+    "threshold": null,
+    "condition": "Win without obtaining any relics"
+  },
+  {
+    "id": "PLAY20_CARDS_SINGLE_TURN",
+    "name": "เล่นการ์ดนี่สนุกจังเลย",
+    "description": "เล่น 20 การ์ดในเทิร์นเดียว",
+    "category": "combat",
+    "character": null,
+    "threshold": 20,
+    "condition": "Play 20 cards in a single turn"
+  },
+  {
+    "id": "REGENT_ASCENSION10",
+    "name": "มหาราช",
+    "description": "สำเร็จผู้บรรลุ 10 ในฐานะนัก Regent",
+    "category": "character_ascension",
+    "character": "Regent",
+    "threshold": null,
+    "condition": null
+  },
+  {
+    "id": "REGENT_WIN",
+    "name": "Regent Win",
+    "description": "ชนะในฐานะ Regent",
+    "category": "character_win",
+    "character": "Regent",
+    "threshold": null,
+    "condition": null
+  },
+  {
+    "id": "SILENT_ASCENSION10",
+    "name": "มายา",
+    "description": "สำเร็จผู้บรรลุ 10 ในฐานะนักฆ่าแห่งความเงียบ",
+    "category": "character_ascension",
+    "character": "Silent",
+    "threshold": null,
+    "condition": null
+  },
+  {
+    "id": "SILENT_WIN",
+    "name": "นักฆ่าแห่งความเงียบ",
+    "description": "ชนะในฐานะนักฆ่าแห่งความเงียบ",
+    "category": "character_win",
+    "character": "Silent",
+    "threshold": null,
+    "condition": null
+  }
+]

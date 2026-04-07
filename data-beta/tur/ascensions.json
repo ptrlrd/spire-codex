@@ -1,0 +1,68 @@
+[
+  {
+    "id": "LEVEL_00",
+    "level": 0,
+    "name": "Yükseliş Kapalı",
+    "description": "Yükseliş kuralları olmadan oyna."
+  },
+  {
+    "id": "LEVEL_01",
+    "level": 1,
+    "name": "Elit Yağmuru",
+    "description": "[gold]Elitler[/gold] daha sık ortaya çıkar."
+  },
+  {
+    "id": "LEVEL_02",
+    "level": 2,
+    "name": "Yorgun Yolcu",
+    "description": "Kadimler eksik canının sadece [blue]%80[/blue]'ini iyileştirir."
+  },
+  {
+    "id": "LEVEL_03",
+    "level": 3,
+    "name": "Yoksulluk",
+    "description": "Düşmanlar ve Hazine Sandıkları [blue]%25[/blue] daha az [gold]Altın[/gold] düşürür."
+  },
+  {
+    "id": "LEVEL_04",
+    "level": 4,
+    "name": "Dar Kemer",
+    "description": "Her oyuna 1 eksik iksir yuvası ile başla."
+  },
+  {
+    "id": "LEVEL_05",
+    "level": 5,
+    "name": "Yükselenin Belası",
+    "description": "Her oyuna [red]Lanetli[/red] başla."
+  },
+  {
+    "id": "LEVEL_06",
+    "level": 6,
+    "name": "Kasvet",
+    "description": "Daha az Dinlenme Yeri."
+  },
+  {
+    "id": "LEVEL_07",
+    "level": 7,
+    "name": "Kıtlık",
+    "description": "Nadir ve Geliştirilmiş kartlar daha az sıklıkla belirir."
+  },
+  {
+    "id": "LEVEL_08",
+    "level": 8,
+    "name": "Dayanıklı Düşmanlar",
+    "description": "Tüm düşmanları öldürmek daha zor hale gelir."
+  },
+  {
+    "id": "LEVEL_09",
+    "level": 9,
+    "name": "Ölümcül Düşmanlar",
+    "description": "Tüm düşmanların saldırıları daha ölümcül olur."
+  },
+  {
+    "id": "LEVEL_10",
+    "level": 10,
+    "name": "Çifte Boss",
+    "description": "3. Sahne'nin sonunda iki boss ile yüzleş."
+  }
+]

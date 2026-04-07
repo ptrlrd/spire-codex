@@ -1,0 +1,82 @@
+[
+  {
+    "id": "ALL_STAR",
+    "name": "Seleção Especial",
+    "description": "Inicie com [blue]5[/blue] [gold]cartas incolores[/gold]."
+  },
+  {
+    "id": "BIG_GAME_HUNTER",
+    "name": "Grande Caçada",
+    "description": "Elites se aglomeram no Pináculo e concedem recompensas melhores."
+  },
+  {
+    "id": "BINARY",
+    "name": "Binário",
+    "description": "[gold]Recompensas de Cartas[/gold] agora contém somente [blue]2[/blue] cartas."
+  },
+  {
+    "id": "CURSED_RUN",
+    "name": "Partida Amaldiçoada",
+    "description": "No início de cada Ato, uma [red]Maldição[/red] aleatória é adicionada ao seu baralho."
+  },
+  {
+    "id": "DEADLY_EVENTS",
+    "name": "Eventos Mortais",
+    "description": "Salas desconhecidas agora podem conter Elites, mas também têm maior chance de conter Tesouros."
+  },
+  {
+    "id": "DRAFT",
+    "name": "Draft",
+    "description": "Escolha [blue]10[/blue] [gold]recompensas de cartas[/gold] para substituir seu baralho inicial."
+  },
+  {
+    "id": "FLIGHT",
+    "name": "Voo",
+    "description": "Você pode ignorar caminhos ao escolher a próxima sala no mapa."
+  },
+  {
+    "id": "HOARDER",
+    "name": "Acúmulo",
+    "description": "Sempre que você adicionar uma carta ao seu baralho, adicione [blue]2[/blue] cópias adicionais. Você não pode mais remover cartas do seu baralho na loja do Mercador."
+  },
+  {
+    "id": "INSANITY",
+    "name": "Insanidade",
+    "description": "Inicie a partida com um baralho de [blue]30[/blue] cartas aleatórias."
+  },
+  {
+    "id": "MIDAS",
+    "name": "Midas",
+    "description": "Inimigos concedem [blue]200%[/blue] mais ouro, mas você não pode mais Forjar em [gold]Locais de Descanso[/gold]."
+  },
+  {
+    "id": "MURDEROUS",
+    "name": "Violência",
+    "description": "Você inicia cada combate com [blue]3[/blue] de [gold]Força[/gold]. Todos os inimigos iniciam o combate com [blue]3[/blue] de [gold]Força[/gold]."
+  },
+  {
+    "id": "NIGHT_TERRORS",
+    "name": "Terrores Noturnos",
+    "description": "Descansar em [gold]Locais de Descanso[/gold] cura todos os seus PV, mas custa [red]5[/red] PV Máximos."
+  },
+  {
+    "id": "SEALED_DECK",
+    "name": "Baralho Selado",
+    "description": "Escolha [blue]10[/blue] entre [blue]30[/blue] cartas para substituir seu baralho inicial."
+  },
+  {
+    "id": "SPECIALIZED",
+    "name": "Especialização",
+    "description": "Inicie a partida com [blue]5[/blue] cópias de uma única carta."
+  },
+  {
+    "id": "TERMINAL",
+    "name": "Terminal",
+    "description": "Sempre que você entrar em uma nova sala, perca [red]1[/red] PV Máximo. Inicie cada combate com [blue]5[/blue] de [gold]Blindagem[/gold]."
+  },
+  {
+    "id": "VINTAGE",
+    "name": "Vintage",
+    "description": "Inimigos comuns concedem relíquias no lugar de cartas."
+  }
+]

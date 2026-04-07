@@ -24,9 +24,6 @@ frontend/.env.local
 # Local overrides
 docker-compose.override.yml
 
-# Beta data (parsed from beta game branch)
-data-beta/
-
 # Runtime data
 data/runs.db
 data/runs/
