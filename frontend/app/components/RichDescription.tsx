@@ -60,9 +60,9 @@ function tokenize(text: string): Token[] {
     if (STRIP_TAGS.has(tag)) {
       // Silently strip these tags (both open and close)
     } else if (tag === "energy" && num) {
-      tokens.push({ type: "energy", value: m[0], count: parseInt(num) });
+      tokens.push({ type: "energy", value: m[0], count: num === "X" ? -1 : parseInt(num) });
     } else if (tag === "star" && num) {
-      tokens.push({ type: "star", value: m[0], count: parseInt(num) });
+      tokens.push({ type: "star", value: m[0], count: num === "X" ? -1 : parseInt(num) });
     } else if (
       !isClose &&
       !COLOR_CLASSES[tag] &&
@@ -155,6 +155,9 @@ function renderNode(
   const key = keyCounter++;
 
   if (node.isEnergy) {
+    if (node.count === -1) {
+      return <span key={key}><img src={`${API_BASE}/static/images/icons/${energyIcon}_energy_icon.png`} alt="energy" className="inline-block w-4 h-4 align-text-bottom" crossOrigin="anonymous" />X</span>;
+    }
     const icons = [];
     for (let i = 0; i < (node.count ?? 1); i++) {
       icons.push(
@@ -265,7 +268,7 @@ function cleanTemplateVars(text: string): string {
   // Handle dynamic [Var] square bracket vars — but preserve valid rich text tags and icons
   text = text.replace(/\[([^\]]+)\]/g, (match, inner) => {
     // Preserve valid tags, icon tags, and parameterized tags like font_size=22
-    if (VALID_TAGS.has(inner) || /^(energy|star):\d+$/.test(inner)) return match;
+    if (VALID_TAGS.has(inner) || /^(energy|star):(\d+|X)$/.test(inner)) return match;
     if (/^\/?(font_size|thinky_dots|rainbow)(=\d+)?$/.test(inner)) return match;
     // Numeric vars → "X"
     if (/^(Amount|Passive|Evoke|Damage Decrease|Damage Increase)$/i.test(inner)) return "X";
