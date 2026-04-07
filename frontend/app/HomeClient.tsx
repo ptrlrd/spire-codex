@@ -7,6 +7,7 @@ import type { Stats } from "@/lib/api";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { useLanguage } from "./contexts/LanguageContext";
 import { t } from "@/lib/ui-translations";
+import { IS_BETA } from "@/lib/seo";
 
 const LANG_CODES = new Set(["deu", "esp", "fra", "ita", "jpn", "kor", "pol", "ptb", "rus", "spa", "tha", "tur", "zhs"]);
 
@@ -192,24 +193,26 @@ export default function HomeClient({ initialStats, initialTranslations }: HomeCl
         : "–",
       color: "#596068",  // muted
     },
-    {
-      href: "/guides",
-      key: "guides",
-      count: guideCount ?? "–",
-      color: "#44CC44",  // guide green
-    },
-    {
-      href: "/runs",
-      key: "runs",
-      count: runCount ?? "–",
-      color: "#e8b830",  // gold
-    },
-    {
-      href: "/meta",
-      key: "meta",
-      count: null,
-      color: "#d53b27",  // red
-    },
+    ...(!IS_BETA ? [
+      {
+        href: "/guides",
+        key: "guides",
+        count: guideCount ?? "–",
+        color: "#44CC44",  // guide green
+      },
+      {
+        href: "/runs",
+        key: "runs",
+        count: runCount ?? "–",
+        color: "#e8b830",  // gold
+      },
+      {
+        href: "/meta",
+        key: "meta",
+        count: null as number | string | null,
+        color: "#d53b27",  // red
+      },
+    ] : []),
   ];
 
   return (
