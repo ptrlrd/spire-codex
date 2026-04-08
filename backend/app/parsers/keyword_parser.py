@@ -110,13 +110,20 @@ def parse_orbs(loc_dir: Path) -> list[dict]:
         orb_class = orb_id.replace("_", "").title().replace(" ", "") + "Orb"
         # Try common names
         for cs_file in ORBS_DIR.glob("*.cs"):
-            if cs_file.stem.upper().replace("ORB", "").replace("_", "") == orb_id.replace("_", ""):
+            if cs_file.stem.upper().replace("ORB", "").replace("_", "") == orb_id.replace("_ORB", "").replace("_", ""):
                 content = cs_file.read_text(encoding="utf-8")
                 all_vars = extract_vars_from_source(content)
-                # Also extract PassiveVal/EvokeVal
-                for m in re.finditer(r'(\w+)Val\s*(?:=>|=)\s*(\d+)', content):
-                    var_name = m.group(1)
+                # Extract PassiveVal/EvokeVal from patterns like:
+                #   PassiveVal => ModifyOrbValue(3m)
+                #   _passiveVal = 4m
+                #   _evokeVal = 6m
+                for m in re.finditer(r'(?:override\s+decimal\s+)?(\w+)Val\s*(?:=>|=)\s*(?:ModifyOrbValue\()?(\d+)m', content):
+                    var_name = m.group(1).lstrip("_").capitalize()
                     all_vars[var_name] = int(m.group(2))
+                # Handle computed evoke (e.g. GlassOrb: EvokeVal => PassiveVal * 2m)
+                m_computed = re.search(r'EvokeVal\s*=>\s*PassiveVal\s*\*\s*(\d+)m', content)
+                if m_computed and "Passive" in all_vars:
+                    all_vars["Evoke"] = all_vars["Passive"] * int(m_computed.group(1))
                 break
 
         desc_raw = loc.get(f"{orb_id}.smartDescription", "")

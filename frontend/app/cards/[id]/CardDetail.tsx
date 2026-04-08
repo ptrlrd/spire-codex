@@ -64,6 +64,7 @@ function buildInteractiveWords(
   powerData: Record<string, { id: string; name: string; description: string; type: string; image_url: string | null }>,
   keywordData: Record<string, { id: string; name: string; description: string }>,
   glossaryData: Record<string, { id: string; name: string; description: string }>,
+  orbData: Record<string, { id: string; name: string; description: string }>,
   lp: string,
 ): Record<string, { tooltip: string; href: string }> {
   const words: Record<string, { tooltip: string; href: string }> = {};
@@ -83,6 +84,12 @@ function buildInteractiveWords(
   for (const [name, data] of Object.entries(glossaryData)) {
     if (!words[data.name]) {
       words[data.name] = { tooltip: data.description.replace(/\n/g, " "), href: `${lp}/keywords/${data.id.toLowerCase()}` };
+    }
+  }
+  // Add orb names (Lightning, Frost, Dark, Glass, Plasma)
+  for (const [name, data] of Object.entries(orbData)) {
+    if (!words[data.name]) {
+      words[data.name] = { tooltip: data.description.replace(/\n/g, " "), href: `${lp}/orbs/${data.id.toLowerCase()}` };
     }
   }
   return words;
@@ -275,6 +282,7 @@ const [card, setCard] = useState<Card | null>(null);
   const [powerData, setPowerData] = useState<Record<string, { id: string; name: string; description: string; type: string; image_url: string | null }>>({});
   const [keywordData, setKeywordData] = useState<Record<string, { id: string; name: string; description: string }>>({});
   const [glossaryData, setGlossaryData] = useState<Record<string, { id: string; name: string; description: string }>>({});
+  const [orbData, setOrbData] = useState<Record<string, { id: string; name: string; description: string }>>({});
 
   useEffect(() => {
     if (!id) return;
@@ -316,6 +324,12 @@ const [card, setCard] = useState<Card | null>(null);
         const m: Record<string, typeof terms[0]> = {};
         for (const t of terms) m[t.name.toLowerCase()] = t;
         setGlossaryData(m);
+      });
+    cachedFetch<{ id: string; name: string; description: string }[]>(`${API}/api/orbs?lang=${lang}`)
+      .then((orbs) => {
+        const m: Record<string, typeof orbs[0]> = {};
+        for (const o of orbs) m[o.name.toLowerCase()] = o;
+        setOrbData(m);
       });
   }, [lang]);
 
@@ -585,7 +599,7 @@ const [card, setCard] = useState<Card | null>(null);
                       rarity: sc.rarity,
                       cost: sc.cost,
                     }))}
-                    interactiveWords={buildInteractiveWords(card, powerData, keywordData, glossaryData, lp)}
+                    interactiveWords={buildInteractiveWords(card, powerData, keywordData, glossaryData, orbData, lp)}
                   />
                 </div>
               )}
