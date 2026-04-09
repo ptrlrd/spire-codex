@@ -107,10 +107,8 @@ export default function Navbar() {
 
   function toggleGroup(label: string) {
     setExpandedGroups((prev) => {
-      const next = new Set(prev);
-      if (next.has(label)) next.delete(label);
-      else next.add(label);
-      return next;
+      if (prev.has(label)) return new Set();
+      return new Set([label]);
     });
   }
 
@@ -145,14 +143,14 @@ export default function Navbar() {
                 href="https://spire-codex.com"
                 className="hidden sm:inline-flex items-center px-2 py-1 rounded text-xs font-semibold bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 hover:bg-emerald-500/25 transition-colors"
               >
-                STABLE
+                View Stable Site
               </a>
             ) : (
               <a
                 href="https://beta.spire-codex.com"
                 className="hidden sm:inline-flex items-center px-2 py-1 rounded text-xs font-semibold bg-[var(--accent-gold)]/15 text-[var(--accent-gold)] border border-[var(--accent-gold)]/30 hover:bg-[var(--accent-gold)]/25 transition-colors"
               >
-                BETA
+                View Beta Site
               </a>
             )}
 

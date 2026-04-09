@@ -106,7 +106,7 @@ def parse_single_encounter(filepath: Path, localization: dict, act_mapping: dict
     title = localization.get(f"{enc_id}.title", monster_class_to_name(class_name))
     loss_text = localization.get(f"{enc_id}.loss", "")
     # Resolve {encounter} with the encounter title, {character} with generic noun
-    loss_clean = loss_text.replace("{encounter}", title).replace("{character}", "The adventurer")
+    loss_clean = loss_text.replace("{encounter}", title).replace("{character}", "[b]The Adventurer[/b]")
 
     # Act mapping
     act = act_mapping.get(class_name)

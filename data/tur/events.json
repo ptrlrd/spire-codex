@@ -5,6 +5,7 @@
     "type": "Event",
     "act": "Underdocks",
     "description": "Gözlerden uzak bir oda keşfedersin.\n\nBuhar, kaynar havuzlarda hipnotik bir ritimle renk değiştiren sıcak bir sıvının üzerinden yükselir. Tavandan sarkan midyemsi oluşumlar, yüzeye değdiğinde tıslayıp kıvranan, koyu, yapışkan bir sıvı damlatır. Hava ağırdır; [blue]tuz[/blue] ve [green]şüphesiz derecede organik[/green] bir kokuyla doludur.\n\nEn büyük havuzun kenarına yaklaştığında sıvı dalgalanır. Sular, sanki girişini bekliyormuşçasına daha şiddetli kabarmaya başlar.",
+    "preconditions": null,
     "options": [
       {
         "id": "IMMERSE",
@@ -242,6 +243,10 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": "[b][jitter]ÇIN! ÇIN!!![/jitter][/b]\n\nBir duvarın öte yanında, metalin metalle temasının yankılarını duyarsın...\n\nDinlemek için başını duvara yasladığında duvar açılır ve içeride, harıl harıl çalışan [orange]iri, altı kollu bir figür[/orange] ortaya çıkar.\n[gold][sine]Parıldayan mühürlerden oluşan ve dönüp duran bir girdabı[/sine][/gold] andıran \"yüzü,\" sürekli şekil değiştiriyordu.\n\n“[aqua]Yükselen Ruh[/aqua]’a sahip biri atölyemi mi buldu? Hadi [jitter]KAYNAŞTIRALIM[/jitter]!”",
+    "preconditions": [
+      "Requires 2+ Strikes in deck",
+      "Requires 2+ Defends in deck"
+    ],
     "options": [
       {
         "id": "COMBINE_STRIKES",
@@ -287,6 +292,7 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "Sık bir çalılığın arasından güçlükle ilerleyip bir açıklığa çıktığında adını koyamadığın bir nostalji duygusu seni sarar.\n\n[purple]Çiçeksi kokuların[/purple], [green]iğrenç bir çürümenin[/green] ve [orange]tamamen farklı bir şeyin[/orange] karışımı... Attığın her adımda koku daha da yoğunlaşır ve çevrendeki dünyanın [sine]eğilip büküldüğünü[/sine] hissedersin.\n\n[sine]Değişken bir kaos[/sine] hissiyle kuşatıldığında benlik duygunu yavaş yavaş kaybetmeye başlarsın.",
+    "preconditions": null,
     "options": [
       {
         "id": "LET_GO",
@@ -332,6 +338,7 @@
     "type": "Event",
     "act": "Act 3 - Glory",
     "description": "Yaklaştığında, titremeye ve cızırdamaya başlar; ardından göz kamaştırıcı bir şekilde ışıldar!\n\n“[jitter]BZZZT![/jitter] TALİM VAKTİ!!! BENİ YENMEK İÇİN [blue]3 TURUN[/blue] VAR!\nBİR AYAR SEÇ YA DA [red]ÖLÜMCÜL AŞAĞILAMAYLA[/red] YÜZLEŞ.\nİşte seçenekler:”\n\nBu dehşet verici mesajın ardından, manken ayrıntılı talimatları büyük bir özenle okumaya başlar.\n\nNe seçeceksin?",
+    "preconditions": null,
     "options": [
       {
         "id": "SETTING_1",
@@ -387,6 +394,9 @@
     "type": "Shared",
     "act": null,
     "description": "[jitter]*tak*[/jitter]\n\nBaşının tepesinde keskin bir acı hissedersin ve bir düşünce zihnine saplanır.\n\n[purple][sine]“BİLGİYİ PAYLAŞ???”[/sine][/purple]\n\nNasıl devam edeceğinden emin değilsin...",
+    "preconditions": [
+      "Act 1–2 only"
+    ],
     "options": [
       {
         "id": "SHARE_KNOWLEDGE",
@@ -432,6 +442,7 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": "[jitter][red]Agresif böceklerden oluşan bir sürüyle[/red][/jitter] boğuşurken, bir anda fark edersin ki tüm bu süre boyunca yanında [gold]Heybetli, Çetin bir Savaşçı[/gold] da savaşıyordur!\n\nYenilgiyi sezen böcekler sağa sola dağılıp kaçar. Sen de silah arkadaşına dönersin.\n“Bu haşereleri yok etmeye dair birkaç ipucu ister misin?”\n\nNe kadar da kibar. Başını sallayıp teklifini kabul edersin.",
+    "preconditions": null,
     "options": [
       {
         "id": "EXTERMINATION",
@@ -481,6 +492,9 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "[jitter][red]Sendeleyen Devasa Bir Yaratığın[/red][/jitter], yaralı bir [green][sine]Yeşil Guş[/sine][/green]'u kovalayıp gittiğini görürsün.\n\nGuşun kaçıp gittiği oyukta, [gold]korunmasız tek bir yumurta[/gold], terk edilmiş hâlde durmaktadır.\n\n[sine]Miden guruldar...[/sine]",
+    "preconditions": [
+      "Cannot have an event pet"
+    ],
     "options": [
       {
         "id": "EAT",
@@ -526,6 +540,7 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": "Karşında hayli epik bir manzara duruyor.\nBir platformun üzerinde yükselen üç farklı renkteki heykelin, rengin felsefi sonuçları üzerine [jitter][red]hararetli bir tartışmaya[/red][/jitter] girdiğini görüyorsun.\n\nKulak kabarttıkça, ortadaki en önemli sorunun aslında hangisinin gerçekten [gold]EN İYİ[/gold] renk olduğu üzerine olduğunu anlıyorsun.\n\nSen de fikirlerinle lafa karışırsın.",
+    "preconditions": null,
     "options": [
       {
         "id": "DEFECT",
@@ -597,6 +612,9 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": "[red][jitter]Kemiklerden oluşan bir dağın[/jitter][/red] tepesinde [green]devasa bir çiçek[/green] büyümektedir.\n\n[sine]Renk değiştiren taç yaprakları[/sine] nabız gibi atarken, merkezinde [aqua]Güçlü Bir Polen Kümesi[/aqua] olduğunu sezersin; ancak dalgalanan yapraklar [red]ustura keskinliğindedir[/red] ve son derece öngörülemezdir.\n\nBiraz [gold]altın nektar[/gold] alabilirsin... ama merkezdeki ödüle uzanmak da fazlasıyla cezbedicidir.",
+    "preconditions": [
+      "Requires 19+ HP"
+    ],
     "options": [
       {
         "id": "EXTRACT_CURRENT_PRIZE_1",
@@ -678,6 +696,10 @@
     "type": "Shared",
     "act": null,
     "description": "[sine][blue]“İçeri gireceğini öngörmüştüm!..”[/blue][/sine]\n\n[jitter]Hırıltılı[/jitter] bir ses, [purple]mistik bir kulübeye[/purple] adım attığında yankılanır.\n\n[sine][blue]“Kaderin seni buraya getirdi. HEPİMİZİ KURTARABİLMEN için geleceğini ve talihini açığa çıkarmalıyız!!”[/blue][/sine]\n“Pekâlâ, işte [gold]Kristal Küre okuması[/gold] için seçenekler. Şunu da imzalamayı unutma,” derken kalemle parşömeni ortaya çıkarır.",
+    "preconditions": [
+      "Requires 100+ gold",
+      "Act 2+"
+    ],
     "options": [
       {
         "id": "UNCOVER_FUTURE",
@@ -727,6 +749,7 @@
     "type": "Ancient",
     "act": null,
     "description": "Nereye koymuştum şunu... Ah!\nKoleksiyonumu görmeye mi geldin!? Şuradaki yığından istediğini al ve layıkıyla kullan!",
+    "preconditions": null,
     "options": null,
     "pages": null,
     "epithet": "İstifçi",
@@ -933,6 +956,7 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "Bir süredir yanlış yoldan ilerledikten sonra, kendini [green]eğrelti otları[/green], [green]çalılıklar[/green] ve [green]sarmaşıklarla[/green] dolu sık bir ormanda bulursun. Özellikle de [green]sarmaşıklarla[/green] dolup taşmaktadır burası. Üstüne bir yorgunluk çöker ve aklına iç karartıcı bir fikir gelir:\n\n[sine][purple]“Kayboldun, hazırlıksızsın ve ölümün kaçınılmazlığı yaklaşıyor.”[/purple][/sine]\n\nNe yapacaksın?",
+    "preconditions": null,
     "options": [
       {
         "id": "TRUDGE_ON",
@@ -985,6 +1009,9 @@
     "type": "Shared",
     "act": null,
     "description": "Gizli bir odaya girersin...\n\nOda, sayısız bebekle tıka basa doludur. Her biri benzersizdir; yüz ifadeleri [green]neşeden[/green] [purple]kedere[/purple] değişir, kıyafetleri ise yüzyılları ve bildiğin diyarları aşar.\n\n[sine][blue]Fısıltılardan oluşan bir koronun sesi[/blue][/sine] giderek yükselir; ta ki [jitter][red]bebekler birbirlerinin üzerine bağırmaya[/red][/jitter] ve seni çağırmaya başlayana dek...\n\nBirini seçmeli ve derhâl çıkmalısın.",
+    "preconditions": [
+      "Act 2 only"
+    ],
     "options": [
       {
         "id": "RANDOM",
@@ -1063,6 +1090,7 @@
     "type": "Event",
     "act": "Underdocks",
     "description": "Az önce hiçbir şeyin olmadığı yerde bir kapı beliriverir...\n\nİçeri girdiğinde iki parıldayan kapı ve [gold]şık giyimli bir kapıcı[/gold] ile karşılaşırsın.\n“Sonunda, bir ziyaretçi! Lütfen, lütfen! Bir kapı seçin. Herhangi bir kapı olabilir!”\n\n[blue]Hâlâ [gold]Spire[/gold]’da mıyız? Burası nasıl bu kadar temiz?[/blue]",
+    "preconditions": null,
     "options": [
       {
         "id": "LIGHT",
@@ -1108,6 +1136,7 @@
     "type": "Event",
     "act": "Underdocks",
     "description": "Kayalar ve durgun sulardan oluşan bir düş manzarasını aşarak ilerler, [sine]batmakta olan bir deniz feneriyle[/sine] yüz yüze gelirsin. Fener, [purple]anti-ışık[/purple] saçmaktadır.\n\nBurada birikmiş olan [aqua][sine]tekinsizce parlayan suyu[/sine][/aqua] şişeye doldurabilirsin ya da harap yapıya tırmanıp [gold]merceği[/gold] ele geçirebilirsin.",
+    "preconditions": null,
     "options": [
       {
         "id": "BOTTLE",
@@ -1153,6 +1182,9 @@
     "type": "Event",
     "act": "Underdocks",
     "description": "Parlak ama eğri büğrü bir tabelası olan bir kulübeye ağır adımlarla girersin. Tabelada şunlar yazar:\n[aqua]“SONSUZ ZİYAFET - NE KADAR AÇSAN O KADAR ÖDE!”[/aqua]\n\nİçeride, [orange]ince yapılı, çok kollu bir aşçı[/orange] ustalıkla [green]lokmalık yiyecekler[/green] hazırlar ve bunları [sine]kıvrıla kıvrıla uzanan kitinsi bir banda[/sine] yerleştirir.\n\nAşçının kollarından biri bir tabelayı işaret eder:\nTanesi [blue]35[/blue] [gold]Altın[/gold]",
+    "preconditions": [
+      "Requires 105+ gold"
+    ],
     "options": [
       {
         "id": "OBSERVE_CHEF",
@@ -1250,6 +1282,11 @@
     "type": "Shared",
     "act": null,
     "description": "Geçici",
+    "preconditions": [
+      "Act 2+",
+      "Single player only",
+      "Requires 100+ gold or a Foul Potion"
+    ],
     "options": null,
     "pages": null
   },
@@ -1259,6 +1296,7 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": "Bir anda karşına çıkan, [jitter]devasa beden hatlarıyla oyulmuş[/jitter] uçsuz bucaksız bir alan, adımlarını olduğu yerde dondurur.\n\nBu siluetlerden biri seninkiyle birebir örtüşür.\n\n[sine][orange]Bu mükemmel...[/orange][/sine]",
+    "preconditions": null,
     "options": [
       {
         "id": "RESIST",
@@ -1304,6 +1342,7 @@
     "type": "Event",
     "act": "Act 3 - Glory",
     "description": "[jitter][aqua]Kaynayıp duran mavi bir alevle[/aqua][/jitter] işaretlenmiş tek bir mezar vardır...\n\nGururlu bir savaşçı savaşta ölmüştür; fakat ruhu huzursuzdur. Savaşmaya devam etmek ister. Seninle birlikte yolculuk etmeyi [sine]yalvarırcasına[/sine] dilediğini hissedersin.\n\nBelki de onun için en iyisi [red]gerçekle[/red] yüzleşmektir.",
+    "preconditions": null,
     "options": [
       {
         "id": "CONFRONT_LOCKED",
@@ -1359,6 +1398,7 @@
     "type": "Event",
     "act": "Act 3 - Glory",
     "description": "[sine]En son ne zaman bir şey yemiştin?\n...dur, bu muhteşem koku da ne?[/sine]\n\nKokunun peşine düşersin ve her türden [green]lezzetli mantarın[/green] pişirildiği, sıcak ve sevimli bir kamp alanına ulaşırsın! O kadar açsındır ki bu mantarları yemenin güvenli olup olmadığını hiç düşünmezsin.\n(Hatta o kadar açsındır ki ölü maceracıyı fark etmezsin bile.)",
+    "preconditions": null,
     "options": [
       {
         "id": "BIG_MUSHROOM",
@@ -1408,6 +1448,7 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": "[red]Ölü robotlarla[/red] dolu bir odadasındır.\n\nYalnız bir otomatonun [sine][aqua]hafifçe parıldayan bir çekirdeği[/aqua][/sine] hâlâ duruyor; ancak iğrenç, organik bir oluşum tarafından sarılmış ve hiçbir tepki vermiyor.",
+    "preconditions": null,
     "options": [
       {
         "id": "STUDY",
@@ -1453,6 +1494,7 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "Bir açıklıkta, bakışlarını aşağıya dikmiş ve [purple]devasa bir labirenti[/purple] işaret eden [green]derme çatma bir maceracı grubuyla[/green] karşılaşırsın.\n\nLabirentin zenginliklerini yağmalamak için seni [b]Destansı bir Göreve[/b] birlikte atılmaya davet ederler. Deneyimli bir maceracı olarak bu labirentin [red][jitter]ölümcül tuzaklarla[/jitter][/red] ve [orange][sine]muhafızlarla[/sine][/orange] dolu olduğu gerçeği, senin için apaçıktır.\n\nBirlikte çalışmak işleri kolaylaştırırdı... ama öyle yaparsan ganimeti paylaşmak zorunda kalırsın.",
+    "preconditions": null,
     "options": [
       {
         "id": "SOLO_QUEST",
@@ -1498,6 +1540,7 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": "Uzakta tuhaf bir manzara göze çarpar. [sine][red]Ölü böceklerden[/red][/sine] oluşan yığınlar, ortasında [orange]küçük, parıldayan bir zerreyi[/orange] andıran bir şeyin çevresini sarmıştır.\nHer türden böcek için son derece etkili bir çekici gibi görünür; ama alevler savurduğunu da fark edersin!\n\nİncelemek için daha da yaklaşırsın.",
+    "preconditions": null,
     "options": [
       {
         "id": "CLAIM",
@@ -1543,6 +1586,9 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "Doğal olmayan mavi bir parıltıya bulanmış bir açıklığa rastlarsın. Devasa mantarlar ışık üreterek nabız gibi atar; şapkaları şişkindir ve ıslaktır. Yaklaştıkça, mantarlar [sine][purple]ürkütücü, melodik tonlar[/purple][/sine] yaymaya başlar ve bu sesler göğsünün derinliklerinde yankılanır.\n\nEn büyük mantarın etli dokusunun içine gömülü, parıldayan bir şey fark edersin. Bu şey, mantarların şarkısıyla aynı ritimde [sine]atarak[/sine] titreşmektedir.",
+    "preconditions": [
+      "Requires 100-149 gold"
+    ],
     "options": [
       {
         "id": "REACH_INTO_THE_FLESH",
@@ -1598,6 +1644,9 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "[green]Kristal ağaçlardan[/green] oluşan bir koruya girersin. Ağaçlar [jitter]heyecanla titreşmeye[/jitter] başlar!\n[sine]Selamlar ve hoş geldinler[/sine]den oluşan bir koro seni adeta bombardımana tutarken bir grup [aqua]Şekillenen[/aqua], ağaçlardan[jitter]fırlayarak[/jitter] ortaya çıkar.\n\n[aqua]Şekillenenlerden[/aqua] biri köşede huzursuzca kıpırdanmaktadır. Diğerleri kadar sosyal olmadığı bellidir.\n\nGruba mı yaklaşacaksın, yoksa yalnız olana mı?",
+    "preconditions": [
+      "Requires 100+ gold"
+    ],
     "options": [
       {
         "id": "GROUP",
@@ -1643,6 +1692,7 @@
     "type": "Ancient",
     "act": "Act 1 - Overgrowth / Underdocks",
     "description": "[sine]Seni... yeniden... yarattım....\n...tırman.....[/sine]",
+    "preconditions": null,
     "options": null,
     "pages": null,
     "epithet": "Yeniden Doğuşun Annesi (Sürgün Edilmiş)",
@@ -1857,6 +1907,7 @@
     "type": "Ancient",
     "act": "Act 3 - Glory",
     "description": "Bin yıldır hiç ziyaretçim olmamıştı!\nOldukça renksiz görünüyorsun. Gel sana giyecek hoş bir şeyler bulalım.",
+    "preconditions": null,
     "options": null,
     "pages": null,
     "epithet": "Tesadüfün Vücut Bulmuş Hali",
@@ -2031,6 +2082,7 @@
     "type": "Ancient",
     "act": "Act 2 - Hive",
     "description": "Kukla kukla!! Bu kadar yüksekte?! Al şunları! Al, al!",
+    "preconditions": null,
     "options": null,
     "pages": null,
     "epithet": "Canlı Gökkuşağı",
@@ -2215,6 +2267,7 @@
     "type": "Ancient",
     "act": "Act 2 - Hive",
     "description": "Bir kukla mı geldi?\nBaba'yı kontrol eder misin? Çok yorgunum...",
+    "preconditions": null,
     "options": null,
     "pages": null,
     "epithet": "Eriyen Ejderha",
@@ -2379,6 +2432,9 @@
     "type": "Shared",
     "act": null,
     "description": "Havada [sine]ekşi[/sine] bir koku vardır ve kısa bir süre sonra yerde yığılmış bir [gold]İksir Kuryesi[/gold] bulursun.\nKıpırdamaz. Cansızdır. [jitter]Ölmüş mü!?[/jitter]\nEşyaları talan edilmiş olsa da üzerinde şu notun iliştirildiği bir paket [green][sine]İğrenç Kokulu İksir[/sine][/green] durmaktadır: “Alıcı: Tüccar”",
+    "preconditions": [
+      "Act 2+"
+    ],
     "options": [
       {
         "id": "GRAB_POTIONS",
@@ -2424,6 +2480,7 @@
     "type": "Event",
     "act": "Underdocks",
     "description": "İki [gold]Yumruklayan Yapı[/gold] birbirine girişmiş durumdadır ve aralarında biraz ganimet görürsün...\n\nOnu kapmaya çalışmalı mısın?",
+    "preconditions": null,
     "options": [
       {
         "id": "NAB",
@@ -2476,6 +2533,10 @@
     "type": "Shared",
     "act": null,
     "description": "[purple]Hayatında gördüğün en yaşlı kişi[/purple] sana doğru yaklaşır.\n[sine]“Bir kez daha karşılaştık... Benim, Ranwid!”[/sine]\n\nBu adamı tanımıyorsun.",
+    "preconditions": [
+      "Act 2+",
+      "Requires at least one potion"
+    ],
     "options": [
       {
         "id": "POTION",
@@ -2555,6 +2616,7 @@
     "type": "Event",
     "act": "Act 3 - Glory",
     "description": "Bu da ne? Burada bir şey yanlış gibi...\n[sine]...ibig şılnay yeş rib adaruB ?en ad uB[/sine]",
+    "preconditions": null,
     "options": [
       {
         "id": "TOUCH_A_MIRROR",
@@ -2600,6 +2662,10 @@
     "type": "Shared",
     "act": null,
     "description": "Bir köşeyi dönersin ve bir anda, gölgeler içinden bir figür karşında öylece durmaktadır. Sana dönerek yüzünü sana çevirir:\n\n“Hoş geldin! Ne alıp satıyorsun?”\nFigür, soruyu sorarken pelerinini bir anda savurarak [sine][purple]şüpheli mallardan[/purple][/sine] oluşan bir koleksiyon sergiler.",
+    "preconditions": [
+      "Act 2+",
+      "Requires 5+ tradeable relics"
+    ],
     "options": [
       {
         "id": "TOP",
@@ -2651,6 +2717,9 @@
     "type": "Shared",
     "act": null,
     "description": "Bu oda [b][jitter]peynirle[/jitter][/b] dolu!!!\n\nEtrafta tuzak var mı diye bakınırsın. Başının üzerinde de... daha fazla [b]peynir[/b] vardır. Bu odadaki mumlar [b]peynirden[/b] yapılmış gibi görünmektedir. Mobilyalar da [b]peynirdir[/b].\nBir anda, arkandaki kapı gürültüyle kapanır.\n\nKapı da [b]peynirdendir[/b].",
+    "preconditions": [
+      "Act 1–2 only"
+    ],
     "options": [
       {
         "id": "GORGE",
@@ -2696,6 +2765,7 @@
     "type": "Event",
     "act": "Act 3 - Glory",
     "description": "[blue]\"Beyefendi Galalot\"[/blue] adına gönderilmiş bir çay partisi [orange]davetiyesi[/orange] bulur ve onun yerine gitmeye karar verirsin.\n\nMütevazı görünen bir rotundaya adım attığında kendini [gold]komutanlar[/gold], [aqua]generaller[/aqua], [red]savaş beyleri[/red] ve [blue]paralı askerlerin[/blue] arasında bulursun... Çay mı içiyorlar?\nBaşında [gold]altın bir taç[/gold] taşıyan devasa şövalye konuşur:\n\n[jitter]“[b]Çay[/b] vaktine teşrifte geciktin mi!?”[/jitter]",
+    "preconditions": null,
     "options": [
       {
         "id": "ENJOY_TEA",
@@ -2756,6 +2826,7 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "Parlak ve keskin bir şeye basmaktan son anda kaçınırsın. Bu bir tohum mu? Ayırt edici rengi, onun bir [aqua]Safir Tohumu[/aqua] olduğunu ele verir! Bu inanılmaz tohumların nesli tükenmemiş miydi!?\n\nEfsaneler der ki bir tanesini tüketmek, [gold]dayanıklılığını büyük ölçüde artırır[/gold]... ama ya onu ekip büyütmeyi seçersen?",
+    "preconditions": null,
     "options": [
       {
         "id": "EAT",
@@ -2801,6 +2872,7 @@
     "type": "Shared",
     "act": null,
     "description": "Yerde büyük bir kitap durmaktadır:\n“Spire’ı Fethetmenin En İyi 3 Yolu”\n\nKitap [red]kana bulanmıştır[/red]; bu yüzden bu el yazmasını son derece şüpheli bulursun.\n\nOkuyacak mısın?",
+    "preconditions": null,
     "options": [
       {
         "id": "READ_THE_BACK",
@@ -2904,6 +2976,10 @@
     "type": "Shared",
     "act": null,
     "description": "Derme çatma bir ahşap köprüden geçerken bir anda [blue][jitter]sağanak bir yağmur[/jitter][/blue] bastırır. [purple][sine]Şiddetli rüzgârlar[/sine][/purple] seni savurur; yolculuğunu sona erdirecek bir tehdit doğurur.",
+    "preconditions": [
+      "Floor 7+",
+      "Requires removable cards in deck"
+    ],
     "options": [
       {
         "id": "OVERCOME",
@@ -3033,6 +3109,7 @@
     "type": "Event",
     "act": "Underdocks",
     "description": "[aqua][sine]Devasa, Sarmal Bir Girdap[/sine][/aqua] ile karşılaşırsın. Sular kusursuz bir zarafetle döner; çevresindeki duvarlar sarmal desenlerle bezenmiştir.\n\n[purple][sine]Döne döne... döne...\n...ve yine döne... ne manzara ama...[/sine][/purple]\n\nNe yapacaksın?",
+    "preconditions": null,
     "options": [
       {
         "id": "OBSERVE",
@@ -3078,6 +3155,7 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": "Yukarıda bir koza [jitter]sarsılıp kıvranır[/jitter]; açılmak üzeredir!\n\nKıpırdanma bir anda durur. [orange][sine]Koza tutuşur[/sine][/orange]! [jitter]Neler oluyor?[/jitter]\n[gold]Işık[/gold] ve [red]alev[/red]den oluşan bir parıltı içinde, bir [orange]Ruh Yamalayan[/orange] sana doğru atılır; bütünleşmek için varlığınla birleşmekle tehdit eder.",
+    "preconditions": null,
     "options": [
       {
         "id": "LET_IT_IN",
@@ -3123,6 +3201,10 @@
     "type": "Shared",
     "act": null,
     "description": "Terk edilmiş bir avlunun tam ortasında devasa bir kaya durmaktadır.\n\nBir levhada şunlar yazar:\n[gold][b]Tüm Zamanların Taşı[/b][/gold].\n\nVarlığı, biçimi ve üzerindeki süslemeler bu avlunun [blue]Taş[/blue]'ın etrafına inşa edildiğini ve onun bu noktadan hiç kıpırdamadığını gösterir.",
+    "preconditions": [
+      "Act 2 only",
+      "Requires at least one potion"
+    ],
     "options": [
       {
         "id": "LIFT",
@@ -3188,6 +3270,7 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth / Underdocks",
     "description": "Bir göletin içinde yarı yarıya batmış eski bir heykel fark edersin. Elleri nazikçe [blue]taş bir kılıcın[/blue] üzerinde durmaktadır.\n\nAyrıca göletin dibinde [gold][sine]parıldayan[/sine][/gold] bir şey de gözüne çarpar.\nBunlar para mı acaba?\n\nGerçekten de biraz paraya ihtiyacın vardı...",
+    "preconditions": null,
     "options": [
       {
         "id": "GRAB_SWORD",
@@ -3233,6 +3316,7 @@
     "type": "Event",
     "act": "Underdocks",
     "description": "Bir yol seni kısmen suya gömülmüş bir mahzene götürür.\nİçeride [blue]2[/blue] adet [gold]sandık[/gold] bulunmaktadır fakat yalnızca [blue]1[/blue] tane [jitter][purple]kırılgan anahtar[/purple][/jitter] bulursun.\n\n[gold]Birinci Sandık:[/gold] Salladığında şıngır mıngır sesler gelir. Biraz altın var gibi.\n[gold]İkinci Sandık:[/gold] Devasa, süslü ve apaçık [red]lanetli[/red]. Bir sürü altını var!",
+    "preconditions": null,
     "options": [
       {
         "id": "FIRST_CHEST",
@@ -3278,6 +3362,9 @@
     "type": "Shared",
     "act": null,
     "description": "Yolculuğun sırasında karanlık, biçimsiz bir poliple karşılaşırsın. Onun çok yaşlı, ve son derece kötü olduğunu hissedebiliyorsundur.\n\n[sine]Yaklaş...[/sine]",
+    "preconditions": [
+      "Act 2+"
+    ],
     "options": [
       {
         "id": "APPROACH_LOCKED",
@@ -3333,6 +3420,7 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "Bir çift [blue]Soydaş Muhafız[/blue]'ı alt eder ve koruma altındaki bir mahzene ilerlersin.\n\nİçeride [purple][sine]tanıdık yazıtlarla bezeli bir tablet[/sine][/purple] durmaktadır. Sezgilerin, bu dilin oldukça kolay çözülebileceğini söyler... ancak çözmeye başladığında geri dönüş olmayacaktır.\n\nTablet yatıştırıcı bir enerji yayar; dilersen onu parçalayıp [green]iyileştirici enerjilerini[/green] alabilirsin.",
+    "preconditions": null,
     "options": [
       {
         "id": "DECIPHER_1",
@@ -3437,6 +3525,7 @@
     "type": "Ancient",
     "act": "Act 3 - Glory",
     "description": "ÇOK ZAYIFSIN AMA POTANSİYELİN VAR!\nBU SİLAHI KULLAN!!",
+    "preconditions": null,
     "options": null,
     "pages": null,
     "epithet": "Kimera Kral",
@@ -3636,6 +3725,10 @@
     "type": "Shared",
     "act": null,
     "description": "Loş ışıkla aydınlanan bir kulübeye rastlarsın ve kendini, takıntılı denecek kadar çeşitli çaylarla dolu son derece huzurlu bir ortamın içinde bulursun.\n\nİçerideki adam, her biri [gold]yüksek bir fiyat etiketiyle[/gold] özenle etiketlenmiş [green]çaylardan[/green] oluşan bir seçkiye işaret eder.",
+    "preconditions": [
+      "Requires 150+ gold",
+      "Act 1–2 only"
+    ],
     "options": [
       {
         "id": "BONE_TEA",
@@ -3711,6 +3804,7 @@
     "type": "Ancient",
     "act": "Act 2 - Hive",
     "description": "Ah, bir ziyaretçi! İçeri gel tatlım!\nTezcatara senin için ne yapabilir?",
+    "preconditions": null,
     "options": null,
     "pages": null,
     "epithet": "Ateşi Besleyen Varlık",
@@ -3915,6 +4009,7 @@
     "type": "Ancient",
     "act": null,
     "description": "Demek baş iblisin kölesi ayağıma geldi, öyle mi?",
+    "preconditions": null,
     "options": null,
     "pages": null,
     "dialogue": {
@@ -4132,6 +4227,7 @@
     "type": "Shared",
     "act": null,
     "description": "Köşeyi döndüğünde hafif bir sarsıntı hissedersin ve devasa, dönen bir aygıtla karşılaşırsın!\nÜzerindeki birkaç yuva vardır; bu yuvaların sıvıları son derece sıkıştırılmış ve yenilebilir tabletlere dönüştürdüğü anlaşılmaktadır.\n\nBu sağlık iksirlerini minicik bir lokmaya dönüştürme fikri rahatsız edici olabilir. Yine de yeni bir şeyler denemek iyi olabilir mi?",
+    "preconditions": null,
     "options": [
       {
         "id": "POTION",
@@ -4163,6 +4259,7 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": "Hafifçe parıldayan bir anahtarla karşılaşırsın ve onu almak için eğilirsin.\n\n“Her yerde bu anahtarı arıyordum! Müsaade edersen alayım...”\n\nBu kişi pek hayra alamet gibi görünmüyor; ama belki de peşin hükümlü olmamak gerekir.",
+    "preconditions": null,
     "options": [
       {
         "id": "RETURN_THE_KEY",
@@ -4222,6 +4319,10 @@
     "type": "Shared",
     "act": null,
     "description": "Zifiri karanlık bir odaya adım attığın anda kapı arkandan sertçe kapanırken yukarıdan gelen ani bir ışık, karanlığı yarar.\n\nÜzerinde bir harita bulunan bir kürsü, önünde aydınlanır. Onu almak için güçlü bir dürtü hissedersin.\n\nŞüpheli duruyor.",
+    "preconditions": [
+      "Requires 10+ HP",
+      "Act 1 only"
+    ],
     "options": [
       {
         "id": "NAB_THE_MAP",
@@ -4267,6 +4368,7 @@
     "type": "Shared",
     "act": null,
     "description": "Yakındaki bir delikten kollar aniden fırlar. Bir elinde [gold]bol zenginliklerle dolu, şüpheli bir torba[/gold], diğerinde ise apaçık [purple]lanetli bir kalıntı[/purple] tutar.\n\nAşağıdan kısık bir ses fısıldar:\n[jitter][blue]“Bu mu? Şu mu?”[/blue][/jitter]",
+    "preconditions": null,
     "options": [
       {
         "id": "PLAIN",
@@ -4312,6 +4414,7 @@
     "type": "Event",
     "act": "Act 3 - Glory",
     "description": "[red][sine]Sonsuz bir ceset denizinin[/sine][/red] içinde yolunu bulmaya çalışırken, çeşitli hurdalar toplayan [orange]çılgın bir bilim insanına[/orange] rastlarsın.\n\n“Evet. Şey... merhaba! Güçlü bir savaşçıya benziyorsun... Bir sonraki [green]vahşet aygıtım[/green] için bir deneğe ihtiyacım var! Ne dersin?”",
+    "preconditions": null,
     "options": [
       {
         "id": "CHOOSE_CARD_TYPE",
@@ -4415,6 +4518,7 @@
     "type": "Event",
     "act": "Underdocks",
     "description": "[red][jitter]Hurdaya ayrılmış silahlardan[/jitter][/red], [orange]atılmış ıvır zıvırlardan[/orange] ve [purple][sine]diğer tuhaf şeylerden[/sine][/purple] oluşan devasa bir yığın keşfedersin. Bu koca yığın, sanki içten içe büyüyormuş gibi hareket eder ve gürültü çıkarır.\n\nYığını yüzeyden karıştırırsan çok da fena olmayan birkaç şey bulabilirsin; fakat gerçekten içine dalarsan, [gold]egzotik hazinelere[/gold] de rastlayabilirsin.",
+    "preconditions": null,
     "options": [
       {
         "id": "DIVE_IN",
@@ -4460,6 +4564,7 @@
     "type": "Event",
     "act": "Act 3 - Glory",
     "description": "Devasa bir binaya giren insanların oluşturduğu sıraya katılırsın.\n\n[gold]Altın bir kemerin[/gold] altından geçerken borazanlar çalar, [jitter]konfetiler patlar[/jitter] ve tavandan [sine]şeritler süzülür[/sine]!\n\n“[blue][EntrantNumber][/blue] numaralı katılımcı, bugünkü [gold]Dava[/gold] için [green]KARAR VERİCİ[/green] sensin.”",
+    "preconditions": null,
     "options": [
       {
         "id": "ACCEPT",
@@ -4585,6 +4690,9 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "Gözlerden uzak bir [gold]Dinlenme Alanı[/gold] bulur ve biraz soluklanmak için bir [orange]ateş[/orange] yakarsın...\nya da en azından öyle sanırsın.\n\nAteş yakıldıktan sonra kabarıp büyümeye başlar; yukarı doğru değil, [purple]yağ sızdıran ağaçlardan[/purple] oluşan bir koruluğa uzanarak [sine]yanlara doğru[/sine] hareket eder.\n\nYine de dinlenmeyi denemeli misin?",
+    "preconditions": [
+      "Requires ≤70% HP"
+    ],
     "options": [
       {
         "id": "REST",
@@ -4630,6 +4738,7 @@
     "type": "Ancient",
     "act": "Act 3 - Glory",
     "description": "Kendini bana teslim et ki benim kadar korkulan biri olabilesin.",
+    "preconditions": null,
     "options": null,
     "pages": null,
     "epithet": "İlk Şeytan",
@@ -4849,6 +4958,7 @@
     "type": "Shared",
     "act": null,
     "description": "Bir akademisyen, bir [gold]hazine sandığının[/gold] yanında duran [purple]asılı bir kafeste[/purple] mahsur kalmıştır.\n\nAkademisyen, bir yandan hararetle bir şeyler karalarken [sine][orange]“Tek Kullanımlık Anahtarlar”[/orange][/sine] hakkında söylenip durur.\n\nGörünüşe göre ya sadece [purple]kafesi[/purple] ya da sadece [gold]sandığı[/gold] açabilirsin.",
+    "preconditions": null,
     "options": [
       {
         "id": "UNLOCK_CAGE",
@@ -4894,6 +5004,9 @@
     "type": "Event",
     "act": "Underdocks",
     "description": "Bulanık geçitlerde yolunu bulmaya çalışırken, küçük bir dükkân işleten [aqua]solmuş bir figüre[/aqua] rastlarsın. Sayısız raflar, nemli tomarlar ve parşömenlerle [sine]tıka basa doludur[/sine].\n\nBir müşterinin içeri girdiğini fark eden [aqua]dükkan sahibi kâtip[/aqua], bir anda toparlanır ve masanın üzerine dizilmiş [gold]edevatları[/gold] işaret eder.",
+    "preconditions": [
+      "Requires 65+ gold"
+    ],
     "options": [
       {
         "id": "BLOODY_INK",
@@ -4973,6 +5086,10 @@
     "type": "Shared",
     "act": null,
     "description": "“Wongo’ya hoş geldiniz. İstediğiniz her şey Wongo-tastik fiyatlarla burada,” der hayatında gördüğün en hevessiz kasiyer.\n\n“Ürünlerimize göz atın ve Wongo’da zamanın tadını çıkarın,” diye başını bile kaldırmadan devam eder.",
+    "preconditions": [
+      "Requires 100+ gold",
+      "Act 2 only"
+    ],
     "options": [
       {
         "id": "BARGAIN_BIN",
@@ -5076,6 +5193,7 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "[jitter]Alçak bir uğultunun[/jitter] kaynağını takip eder ve kendini sakin bir pınarın huzuruna kapılmış hâlde bulursun. Su, [sine][aqua]zümrüt yeşili[/aqua][/sine] bir tona sahiptir ve içinde [sine][gold]ışıldayan zerrecik kümeleri[/gold][/sine] dolaşmaktadır.\n\nİnsanı içine çağırıyor gibi. Ne ters gidebilir ki?",
+    "preconditions": null,
     "options": [
       {
         "id": "BOTTLE",
@@ -5121,6 +5239,9 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "[red]Ölü bir ağaçlıktan[/red] geçerken kemik gibi bembeyaz bir ağaca rastlarsın. Dalları, kaburgalar gibi içe doğru kıvrılmıştır. Üzerlerinden kil süsler sarkar.\n\nNe [purple]ürkütücü bir ağaç[/purple]. Fısıldıyor.\n\n[sine][blue]...takas yap.....[/blue][/sine]",
+    "preconditions": [
+      "Requires 50+ gold"
+    ],
     "options": [
       {
         "id": "GOLD",
@@ -5166,6 +5287,9 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "Tozlu bir sandığı açtığında üç adet özenle oyulmuş ahşap figürle karşılaşırsın:\n\nBir kuş, bir yılan ve... galiba bir simit.\n\nYakındaki bir kaidede, oymaların tabanlarıyla birebir uyuşan girintiler vardır. Kaideye hangisini yerleştireceksin?",
+    "preconditions": [
+      "Requires a removable basic card"
+    ],
     "options": [
       {
         "id": "BIRD",
@@ -5235,6 +5359,9 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": "Bir örümcek ağından geçerken [jitter][red]PANİKLERSİN[/red][/jitter]!\nSonrasında, [sine][blue]bir sakinlik hissi[/blue][/sine] üzerine yayılır...\n\n[sine]“Sakin ol. Ağımı böyle telaşla bozmayı bırakman lazım.”[/sine]\n\nBu kadar çabuk nasıl sakinleştiğini merak edersin.\n[orange]Ufacık tefecik[/orange] bir örümcek ipini salarak yanına iner. Görünüşe göre [gold]altın[/gold] karşılığında sana bazı teknikler öğretmeye niyetlidir.",
+    "preconditions": [
+      "Requires 125+ gold"
+    ],
     "options": [
       {
         "id": "BREATHING_TECHNIQUES",

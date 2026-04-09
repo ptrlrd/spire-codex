@@ -400,6 +400,144 @@ def is_ancient_event(content: str) -> bool:
     return "AncientEventModel" in content or 'LocTable => "ancients"' in content
 
 
+def extract_preconditions(content: str, vars_dict: dict) -> list[str] | None:
+    """Extract event preconditions from IsAllowed() method in C# source.
+
+    Returns a list of human-readable condition strings, or None if no conditions.
+    """
+    # Find IsAllowed override
+    m = re.search(r'override\s+bool\s+IsAllowed\s*\(\s*RunState\s+\w+\s*\)', content)
+    if not m:
+        return None
+    # Extract method body
+    start = content.find('{', m.end())
+    if start == -1:
+        return None
+    depth = 1
+    i = start + 1
+    while i < len(content) and depth > 0:
+        if content[i] == '{':
+            depth += 1
+        elif content[i] == '}':
+            depth -= 1
+        i += 1
+    body = content[start + 1:i - 1]
+
+    # If body is just "return true;" there are no conditions
+    if re.match(r'\s*return\s+true\s*;\s*$', body):
+        return None
+
+    conditions: list[str] = []
+
+    # Detect negated patterns: "if (condition) { return false; }" or "if (condition) return false;"
+    # These invert the meaning — e.g., "if (ActIndex == 0) return false" means "NOT Act 1"
+    negated_body = ""
+    for nm in re.finditer(
+        r'if\s*\(([^{]+?)\)\s*(?:\{[^}]*return\s+false\s*;[^}]*\}|return\s+false\s*;)',
+        body, re.DOTALL
+    ):
+        negated_body += nm.group(1) + "\n"
+
+    # The positive body is the return statement (non-negated conditions)
+    positive_body = body
+
+    # --- Gold conditions (from positive/return context) ---
+    # Match p.Gold >= N (literal), including (decimal) cast
+    gold_seen = set()
+    for gm in re.finditer(r'(?:\(decimal\)\s*)?p(?:layer)?\.Gold\s*>=\s*(\d+)', positive_body):
+        val = gm.group(1)
+        if val not in gold_seen:
+            gold_seen.add(val)
+            conditions.append(f"Requires {val}+ gold")
+    # DynamicVars reference for gold: p.Gold >= DynamicVars["X"].BaseValue
+    for gm in re.finditer(r'(?:\(decimal\)\s*)?p(?:layer)?\.Gold\s*>=\s*(?:base\.)?DynamicVars(?:\["(\w+)"\]|\.(\w+))\.(?:BaseValue|IntValue)', positive_body):
+        var_name = gm.group(1) or gm.group(2)
+        if var_name not in gold_seen:
+            gold_seen.add(var_name)
+            val = vars_dict.get(var_name)
+            if val is not None:
+                # If val is a range like "100-149", show as "100-149 gold"
+                val_str = str(val)
+                if '-' in val_str and not val_str.startswith('-'):
+                    conditions.append(f"Requires {val_str} gold")
+                else:
+                    conditions.append(f"Requires {val}+ gold")
+            else:
+                conditions.append(f"Requires enough gold ({var_name})")
+
+    # --- HP conditions ---
+    for hm in re.finditer(r'p\.Creature\.CurrentHp\s*>=\s*(\d+)', positive_body):
+        conditions.append(f"Requires {hm.group(1)}+ HP")
+    for hm in re.finditer(r'p\.Creature\.CurrentHp\s*<=.*?MaxHp\s*\*\s*([\d.]+)m?', positive_body):
+        pct = int(float(hm.group(1)) * 100)
+        conditions.append(f"Requires ≤{pct}% HP")
+
+    # --- Act conditions ---
+    # Negated: "if (ActIndex == 0) return false" → Act 2+
+    for am in re.finditer(r'CurrentActIndex\s*==\s*(\d+)', negated_body):
+        act_num = int(am.group(1))
+        conditions.append(f"Act {act_num + 2}+")
+    # Negated: "if (ActIndex < 1) return false" → Act 2+
+    for am in re.finditer(r'CurrentActIndex\s*<\s*(\d+)', negated_body):
+        act_num = int(am.group(1))
+        conditions.append(f"Act {act_num + 1}+")
+    # Positive: "return ActIndex == 1" → Act 2 only
+    for am in re.finditer(r'CurrentActIndex\s*==\s*(\d+)', positive_body):
+        # Skip if also in negated body
+        act_num = int(am.group(1))
+        if f'CurrentActIndex == {act_num}' not in negated_body:
+            conditions.append(f"Act {act_num + 1} only")
+    # Positive: "return ActIndex > 0" → Act 2+
+    for am in re.finditer(r'CurrentActIndex\s*>\s*(\d+)', positive_body):
+        act_num = int(am.group(1))
+        conditions.append(f"Act {act_num + 2}+")
+    # Positive: "return ActIndex < 2" → Act 1-2 only
+    for am in re.finditer(r'CurrentActIndex\s*<\s*(\d+)', positive_body):
+        if f'CurrentActIndex < {am.group(1)}' not in negated_body:
+            act_num = int(am.group(1))
+            conditions.append(f"Act 1–{act_num} only")
+
+    # --- Floor conditions ---
+    for fm in re.finditer(r'TotalFloor\s*>\s*(\d+)', body):
+        conditions.append(f"Floor {int(fm.group(1)) + 1}+")
+
+    # --- Deck conditions ---
+    if re.search(r'CardTag\.Strike.*>=\s*(\d+)', body):
+        count = re.search(r'CardTag\.Strike.*>=\s*(\d+)', body).group(1)
+        conditions.append(f"Requires {count}+ Strikes in deck")
+    if re.search(r'CardTag\.Defend.*>=\s*(\d+)', body):
+        count = re.search(r'CardTag\.Defend.*>=\s*(\d+)', body).group(1)
+        conditions.append(f"Requires {count}+ Defends in deck")
+    if re.search(r'Rarity\s*==\s*CardRarity\.Basic.*?IsRemovable', body):
+        conditions.append("Requires a removable basic card")
+    elif re.search(r'IsRemovable', body) and not re.search(r'CardTag', body):
+        conditions.append("Requires removable cards in deck")
+
+    # --- Relic conditions ---
+    for rm in re.finditer(r'GetValidRelics.*?Count\(\)\s*>=\s*(\d+)', body):
+        conditions.append(f"Requires {rm.group(1)}+ tradeable relics")
+    if 'HasEventPet' in body:
+        conditions.append("Cannot have an event pet")
+
+    # --- Potion conditions ---
+    if re.search(r'player\.Potions\.Any\(\)', body) or re.search(r'p\.Potions\.Any\(\)', body):
+        conditions.append("Requires at least one potion")
+    if 'HasOpenPotionSlots' in body:
+        conditions.append("Requires an empty potion slot")
+
+    # --- Player count ---
+    if re.search(r'Players\.Count\s*>\s*1.*?return\s+false', body, re.DOTALL):
+        conditions.append("Single player only")
+
+    # --- FoulPotion ---
+    if 'FoulPotion' in body:
+        conditions.append("Requires 100+ gold or a Foul Potion")
+        # Remove the simpler gold condition if we have the compound one
+        conditions = [c for c in conditions if c != "Requires 100+ gold"]
+
+    return conditions if conditions else None
+
+
 CHARACTERS = ["IRONCLAD", "SILENT", "DEFECT", "NECROBINDER", "REGENT"]
 
 
@@ -505,12 +643,16 @@ def parse_single_event(filepath: Path, localization: dict, act_mapping: dict, ti
     # Parse all pages (multi-page events)
     pages = parse_all_pages(event_id, localization, vars_dict, relic_descs, source_order)
 
+    # Event preconditions (IsAllowed)
+    preconditions = extract_preconditions(content, vars_dict)
+
     result = {
         "id": event_id,
         "name": title,
         "type": event_type,
         "act": act,
         "description": desc_clean if desc_clean else None,
+        "preconditions": preconditions,
         "options": options if options else None,
         "pages": pages,
     }

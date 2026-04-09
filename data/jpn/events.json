@@ -5,6 +5,7 @@
     "type": "Event",
     "act": "Underdocks",
     "description": "あなたは隠された小部屋を見つけた。\n\n不可思議なリズムで変色する、煮えたぎる液体の池から蒸気が立ち昇っている。 天井から垂れ下がるフジツボのような塊から粘性の体液が滴り、水面に落ちると身悶えするようにシューッと音を立てた。 空気は重く、[blue]塩気[/blue]と[green]生々しい有機物[/green]の臭いが充満している。\n\n最も大きな池の縁に近づくと、水面が波打ち、液体はより一層激しく泡立ち始めた。 まるであなたの入浴を待ちわびているかのようだ。",
+    "preconditions": null,
     "options": [
       {
         "id": "IMMERSE",
@@ -242,6 +243,10 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": "[b][jitter]ガァン！ ガァン！！！ [/jitter][/b]\n\n壁の向こうから、金属が激しくぶつかり合う音が響いてくる……\n\n様子をうかがおうと壁に耳を当てた途端、壁が開き、せわしなく働く[orange]六本腕を持つ巨人[/orange]が姿を現した。\nその「顔」の部分には、[gold][sine]発光する印の渦[/sine][/gold]がうごめいている。\n\n「[aqua]高みへと昇る[/aqua]志を持つ者よ、我が工房を見つけおったか。 さあ、[jitter]融合[/jitter]の時間だ！」",
+    "preconditions": [
+      "Requires 2+ Strikes in deck",
+      "Requires 2+ Defends in deck"
+    ],
     "options": [
       {
         "id": "COMBINE_STRIKES",
@@ -287,6 +292,7 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "うっそうとした茂みをかき分け、開けた場所に出ると、どこからともなく郷愁の念に駆られた。\n\n[purple]花の香り[/purple]、[green]腐敗臭[/green]、そして[orange]全く別の何か[/orange]が混ざり合っている。 一歩進むごとに香りは強くなり、周囲の世界が[sine]歪み、ねじ曲がっている[/sine]ように感じられる。\n\n[sine]うつろう混沌[/sine]の感覚に圧倒され、あなたは自我を失い始めた。",
+    "preconditions": null,
     "options": [
       {
         "id": "LET_GO",
@@ -332,6 +338,7 @@
     "type": "Event",
     "act": "Act 3 - Glory",
     "description": "近づくと、そいつは駆動音と火花を散らしながら、まばゆい光を放ち起動した！\n\n「[jitter]ビビーッ！ [/jitter]訓練ノ時間ダ！！！ ワタシヲ[blue]3ターン[/blue]以内に倒セ！\n設定ヲ選ベ。 サモナクバ[red]死ヨリモ恐ロシイ屈辱[/red]ヲ与エル。\n選択肢ハ次ノ通リダ。」\n\n恐ろしいメッセージを放った後、訓練人形は丁寧な口調で詳細な説明を読み上げた。\n\nどの設定を選ぶ？",
+    "preconditions": null,
     "options": [
       {
         "id": "SETTING_1",
@@ -387,6 +394,9 @@
     "type": "Shared",
     "act": null,
     "description": "[jitter]*ブスッ*[/jitter]\n\n頭のてっぺんに鋭い痛みが走ったかと思うと、脳内に直接、奇妙な声が響いてきた。\n\n[purple][sine]「知識ヲ、共有スル？？」[/sine][/purple]\n\nさて、どうしたものか……",
+    "preconditions": [
+      "Act 1–2 only"
+    ],
     "options": [
       {
         "id": "SHARE_KNOWLEDGE",
@@ -432,6 +442,7 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": "[jitter][red]凶暴な虫の群れ[/red][/jitter]を追い払っていたあなたは、隣で[gold]屈強で無骨な戦士[/gold]がずっと一緒に戦ってくれていたことにようやく気が付いた！\n\n旗色が悪いと悟った虫たちは、散り散りに逃げていく。 隣の戦士の方を振り返ると、彼が口を開いた。\n「害虫どもを駆除する極意、知りたくはないか？」\n\nなんと親切な男だろう。 あなたは頷き、彼の申し出を受けた。",
+    "preconditions": null,
     "options": [
       {
         "id": "EXTERMINATION",
@@ -481,6 +492,9 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "巨大な[jitter][red]よろよろ歩く獣[/red][/jitter]が、傷ついた[green][sine]グリーン・ビャード[/sine][/green]を追い散らす場面に遭遇した。\n\nビャードが逃げ去ったあとの窪みには、[gold]無防備な卵がひとつ[/gold]、ぽつんと残されている。\n\n[sine]あなたのお腹がぐうと鳴った……。 [/sine]",
+    "preconditions": [
+      "Cannot have an event pet"
+    ],
     "options": [
       {
         "id": "EAT",
@@ -526,6 +540,7 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": "目の前に、なんとも壮大な光景が広がっている。\n演台にそびえ立つ3色の彫像が、色彩の持つ哲学的意味について[jitter][red]白熱した議論[/red][/jitter]を交わしている。\n\n話に耳を傾けてみると、彼らにとっての最大の争点は「果たしてどの色が真に[gold]“至高”[/gold]であるか」ということらしい。\n\nあなたは議論に割って入り、自説を披露することにした。",
+    "preconditions": null,
     "options": [
       {
         "id": "DEFECT",
@@ -597,6 +612,9 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": "[red][jitter]骨の山[/jitter][/red]の上に、[green]巨大な花[/green]が咲き誇っている。\n\n[sine]さまざまに色を変える花びら[/sine]が脈動し、あなたはその中心部に[aqua]強大な力を持つ花粉の塊[/aqua]があるのを感じ取った。 だが、うねる花びらは[red]カミソリのように鋭く[/red]、動きが読めない。\n\n[gold]黄金の蜜[/gold]を採取するだけで良しとすべきだろう。 だが、中心にあるお宝にも心を惹かれる……",
+    "preconditions": [
+      "Requires 19+ HP"
+    ],
     "options": [
       {
         "id": "EXTRACT_CURRENT_PRIZE_1",
@@ -678,6 +696,10 @@
     "type": "Shared",
     "act": null,
     "description": "[sine][blue]「来ることは、視えておったぞ……！」[/blue][/sine]\n\n[purple]神秘的な小屋[/purple]に入ると、[jitter]しわがれた[/jitter]声が響いてきた。\n\n[sine][blue]「お主の運命がここへ導いたのじゃ。 お主の未来と運勢を明らかにせねばならん。 我らすべてを救うために！！」[/blue][/sine]\n「さあ、[gold]水晶占い[/gold]のコースを選んでおくれ。 この免責事項にもサインを頼むぞい」老婆はそう言って、ペンと羊皮紙を取り出した。",
+    "preconditions": [
+      "Requires 100+ gold",
+      "Act 2+"
+    ],
     "options": [
       {
         "id": "UNCOVER_FUTURE",
@@ -727,6 +749,7 @@
     "type": "Ancient",
     "act": null,
     "description": "…… どこに置いたっけな…… おお！オレのコレクションを見に来たのか！？\nあの山から好きなモンを持ってってくれ！きっと役に立つぜ！",
+    "preconditions": null,
     "options": null,
     "pages": null,
     "epithet": "収集家",
@@ -933,6 +956,7 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "ずいぶんと長い間、道を間違えていたようだ。 [green]シダ[/green]や[green]低木[/green]、そして[green]ツタ[/green]が生い茂る、鬱蒼としたジャングルに迷い込んでしまった。 特に[green]ツタ[/green]がひどい。 疲労困憊の中、暗い幻聴が頭をよぎる。\n\n[sine][purple]「お前は道に迷い、備えもなく、逃れられぬ死が近づいている。」[/purple][/sine]\n\nどうするべきか？",
+    "preconditions": null,
     "options": [
       {
         "id": "TRUDGE_ON",
@@ -985,6 +1009,9 @@
     "type": "Shared",
     "act": null,
     "description": "あなたは隠し部屋に足を踏み入れた……\n\n部屋中が人形で埋め尽くされている。 一つとして同じものはなく、その表情は[green]喜び[/green]から[purple]悲哀[/purple]まで様々だ。 着ている服は時代が数世紀に渡ってバラバラで、異界の物とすら思われるものもある。\n\n次第に、[sine][blue]合唱のようなささやき声[/blue][/sine]は大きくなり、やがて[jitter][red]絶叫[/red][/jitter]となって、我先にとあなたを求めるようになった……\n\nどれか一つを選び、一刻も早く立ち去らなければ。",
+    "preconditions": [
+      "Act 2 only"
+    ],
     "options": [
       {
         "id": "RANDOM",
@@ -1063,6 +1090,7 @@
     "type": "Event",
     "act": "Underdocks",
     "description": "さっきまで何もなかったはずの場所に、入り口が現れた……\n\n中に入ると、二つの輝く扉と[gold]身なりの良いドアマン[/gold]が待っていた。\n「やっと、お客様がいらした！ どうぞどうぞ！ お好きな扉をお選びください！」\n\n[blue]ここは本当にスパイアの中なのか？ それにしてはあまりに綺麗すぎる…… [/blue]",
+    "preconditions": null,
     "options": [
       {
         "id": "LIGHT",
@@ -1108,6 +1136,7 @@
     "type": "Event",
     "act": "Underdocks",
     "description": "岩石と静かな水辺が広がる幻想的な風景を抜けると、[purple]空虚な光[/purple]を放つ、[sine]沈みゆく灯台[/sine]が現れた。\n\n足元に溜まっている[aqua][sine]不気味に発光する水[/sine][/aqua]を瓶に汲むか、崩れかけた灯台をよじ登って[gold]レンズ[/gold]を回収するか。 二つに一つだ。",
+    "preconditions": null,
     "options": [
       {
         "id": "BOTTLE",
@@ -1153,6 +1182,9 @@
     "type": "Event",
     "act": "Underdocks",
     "description": "あなたは派手な看板を掲げた小屋に足を踏み入れた。 傾いた看板にはこう書いてある――\n[aqua]「大食い食堂『無限の宴』――お代は空腹に応じて」[/aqua]\n\n中に入ると、[orange]すらっとした多腕のシェフ[/orange]が、器用に[green]一口サイズの料理[/green]を作り、[sine]うねうね動く甲殻でできたベルト[/sine]に乗せている。\n\nシェフの腕の1本が、看板を指差した。\n全品 1皿 [blue]35[/blue][gold]ゴールド[/gold]",
+    "preconditions": [
+      "Requires 105+ gold"
+    ],
     "options": [
       {
         "id": "OBSERVE_CHEF",
@@ -1250,6 +1282,11 @@
     "type": "Shared",
     "act": null,
     "description": "（仮）",
+    "preconditions": [
+      "Act 2+",
+      "Single player only",
+      "Requires 100+ gold or a Foul Potion"
+    ],
     "options": null,
     "pages": null
   },
@@ -1259,6 +1296,7 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": "[jitter]巨大な人型の穴が無数にうがたれた[/jitter]広大な野原が突如として眼前に現れ、あなたは足を止めた。\n\n無数にある穴のうちの一つが、あなたの体格や輪郭と寸分違わず一致している。\n\n[sine][orange]ぴったりだ…… [/orange][/sine]",
+    "preconditions": null,
     "options": [
       {
         "id": "RESIST",
@@ -1304,6 +1342,7 @@
     "type": "Event",
     "act": "Act 3 - Glory",
     "description": "[jitter][aqua]青い炎が揺らめく[/aqua][/jitter]墓が一つある……\n\n誇り高き戦士が戦死したが、その魂は安らぐことなく彷徨っているようだ。 魂は戦い続けることを望み、共に連れて行ってくれと[sine]懇願[/sine]しているようだ。\n\nだが、[red]真実[/red]と向き合わせるほうが、彼のためではないだろうか？",
+    "preconditions": null,
     "options": [
       {
         "id": "CONFRONT_LOCKED",
@@ -1359,6 +1398,7 @@
     "type": "Event",
     "act": "Act 3 - Glory",
     "description": "[sine]最後に食事をしたのはいつだったか……\n…… ん？ なんだ、このたまらなくいい匂いは？ [/sine]\n\n匂いをたどっていくと、こじんまりとしたキャンプ場にたどりついた。 そこには、おいしそうに調理された[green]色とりどりのキノコ[/green]が残されている！ あまりにも空腹なあなたは、食べて大丈夫なキノコかどうか考える余裕もない。\n(腹が減りすぎていて、横に冒険者の死体が転がっていることすら目に入らなかった)",
+    "preconditions": null,
     "options": [
       {
         "id": "BIG_MUSHROOM",
@@ -1408,6 +1448,7 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": "[red]壊れたオートマトンたち[/red]で埋め尽くされた部屋がある。\n\nその中の一体は、まだ[sine][aqua]かすかに光るコア[/aqua][/sine] を残している。 だが、グロテスクな生体組織に侵食されており、反応はない。",
+    "preconditions": null,
     "options": [
       {
         "id": "STUDY",
@@ -1453,6 +1494,7 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "開けた場所で、[green]寄せ集めの冒険者パーティ[/green]に出会った。 [purple]巨大な迷宮[/purple]を見下ろしながら、身振り手振りを交えて話している、\n\n彼らはこの迷宮の財宝を狙う[b]壮大なクエスト[/b]に、一緒に挑まないかと持ちかけてきた。 経験豊かなあなたには、この迷宮に[red][jitter]致命的な罠[/jitter][/red]と[orange][sine]ガーディアン[/sine][/orange]がひしめいていることが手に取るようにわかる。\n\n協力すれば楽にはなるだろう。 だがその分、戦利品は山分けになってしまう。",
+    "preconditions": null,
     "options": [
       {
         "id": "SOLO_QUEST",
@@ -1498,6 +1540,7 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": "遠くに奇妙な光景が見える。 [sine][red]死んだ虫[/red][/sine]の山がいくつもあり、それが[orange]小さく光る塵[/orange]のようなものを囲んでいるのだ。\nあらゆる虫を引き寄せているようだ。 時折そこから炎が噴き出しているのが見える！\n\nあなたは調査のため近づいてみた。",
+    "preconditions": null,
     "options": [
       {
         "id": "CLAIM",
@@ -1543,6 +1586,9 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "不自然な青い光に包まれた空き地に足を踏み入れた。 そびえ立つキノコたちが発光して脈打ち、その傘は膨れ上がりテカテカと光っている。 近づくと、菌類たちは胸の奥まで響くような[sine][purple]心をかき乱すメロディ[/purple][/sine]を奏で始めた。\n\nあなたは一番大きなキノコの中に何かが埋まっていることに気づいた。 それは菌類の歌のリズムに合わせて[sine]脈動しながら[/sine]光っている。",
+    "preconditions": [
+      "Requires 100-149 gold"
+    ],
     "options": [
       {
         "id": "REACH_INTO_THE_FLESH",
@@ -1598,6 +1644,9 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "[green]水晶の木々[/green]が生い茂る木立ちに入ると、木々が[jitter]興奮したように震え[/jitter]始めた！\n木々の中から[aqua]モーフィック[/aqua]の群れが[jitter]飛び出し[/jitter]、[sine]挨拶と歓迎の言葉[/sine]の声であなたを迎える。\n\nその中の一体の[aqua]モーフィック[/aqua]だけが隅でそわそわしており、明らかに他の者たちほど社交的ではないようだ。\n\n群れの方に向かうか、それとも独りぼっちの方に近づこうか？",
+    "preconditions": [
+      "Requires 100+ gold"
+    ],
     "options": [
       {
         "id": "GROUP",
@@ -1643,6 +1692,7 @@
     "type": "Ancient",
     "act": "Act 1 - Overgrowth / Underdocks",
     "description": "[sine]私が…… お前を…… “作り直した”……\n…… 行け…… 上へ………… [/sine]",
+    "preconditions": null,
     "options": null,
     "pages": null,
     "epithet": "復活の母（追放されし者）",
@@ -1857,6 +1907,7 @@
     "type": "Ancient",
     "act": "Act 3 - Glory",
     "description": "お客さんなんて千年ぶりかしら！\n随分と地味な格好じゃん。 ほら、カワイイ服を着せてあげる。",
+    "preconditions": null,
     "options": null,
     "pages": null,
     "epithet": "美と幸運の化身",
@@ -2031,6 +2082,7 @@
     "type": "Ancient",
     "act": "Act 2 - Hive",
     "description": "ニンギョウ！ ニンギョウ！！ コンナウエマデキタ！？ コレモッテケ、モッテケ！",
+    "preconditions": null,
     "options": null,
     "pages": null,
     "epithet": "生きた虹",
@@ -2215,6 +2267,7 @@
     "type": "Ancient",
     "act": "Act 2 - Hive",
     "description": "操り人形が来たのか。\n父様の様子を見てきてくれないか？ 私はもう眠くて…… ",
+    "preconditions": null,
     "options": null,
     "pages": null,
     "epithet": "溶けゆくドラゴン",
@@ -2379,6 +2432,9 @@
     "type": "Shared",
     "act": null,
     "description": "あたりに[sine]酸っぱい[/sine]臭いが漂う中、すぐ近くの床に[gold]ポーションの運び屋[/gold]が倒れているのを発見した。\n動かないし、息もしていない。 [jitter]死んでる！？ [/jitter]\n所持品は物色された後だったが、[green][sine]悪臭を放つポーション[/sine][/green]のセットが残されていた。 メモにはこうある――「受取人: 商人」。",
+    "preconditions": [
+      "Act 2+"
+    ],
     "options": [
       {
         "id": "GRAB_POTIONS",
@@ -2424,6 +2480,7 @@
     "type": "Event",
     "act": "Underdocks",
     "description": "2体の[gold]パンチ・コンストラクト[/gold]が殴り合っており、その間にいくつかのお宝が落ちているのが見える……\n\n盗み取ってみるか？",
+    "preconditions": null,
     "options": [
       {
         "id": "NAB",
@@ -2476,6 +2533,10 @@
     "type": "Shared",
     "act": null,
     "description": "[purple]これまで見たこともないぐらいに年老いた人物[/purple]が、あなたに近づいてきた。\n[sine]「また会ったな…… 私だ、ランウィッドだ！」[/sine]\n\nあなたはこの男に全く見覚えがない。",
+    "preconditions": [
+      "Act 2+",
+      "Requires at least one potion"
+    ],
     "options": [
       {
         "id": "POTION",
@@ -2555,6 +2616,7 @@
     "type": "Event",
     "act": "Act 3 - Glory",
     "description": "これは何だ？ この場所は何かがおかしい……\n[sine]…… いしかおがか何は所場のこ ？ だ何はれこ[/sine]",
+    "preconditions": null,
     "options": [
       {
         "id": "TOUCH_A_MIRROR",
@@ -2600,6 +2662,10 @@
     "type": "Shared",
     "act": null,
     "description": "角を曲がると、影を纏った人影に出くわした。 男はこちらへ向き直る。\n\n「ウェルカム！ 何が必要だ？」\n男がそう言って上着を広げると、[sine][purple]怪しげな品々[/purple][/sine]がズラリと並んでいた。",
+    "preconditions": [
+      "Act 2+",
+      "Requires 5+ tradeable relics"
+    ],
     "options": [
       {
         "id": "TOP",
@@ -2651,6 +2717,9 @@
     "type": "Shared",
     "act": null,
     "description": "この部屋は[b][jitter]チーズ[/jitter][/b]だらけだ！！！\n\n罠がないか周囲を見渡すと、天井には…… そう、[b]チーズ[/b]だ。 どうやら部屋のロウソクも[b]チーズ[/b]らしい。 家具も[b]チーズ[/b]だ。\n突然、背後のドアがバタンと閉まった。\n\nもちろんそれも[b]チーズ[/b]だ。",
+    "preconditions": [
+      "Act 1–2 only"
+    ],
     "options": [
       {
         "id": "GORGE",
@@ -2696,6 +2765,7 @@
     "type": "Event",
     "act": "Act 3 - Glory",
     "description": "[blue]「ガラロット卿」[/blue]に宛てたティーパーティーへの[orange]招待状[/orange]を拾ったあなたは、彼の代わりに顔を出してみることにした。\n\n質素な円形ホールに入ると、そこには[gold]指揮官[/gold]、[aqua]将軍[/aqua]、[red]武将[/red]、そして[blue]傭兵[/blue]たちが集まり…… 紅茶を楽しんでいるようだ。\n[gold]黄金の冠[/gold]をかぶった巨大な騎士が口を開く。\n\n[jitter]「貴殿よ、[b]ティータイム[/b]に遅刻するとは何事だ！！」[/jitter]",
+    "preconditions": null,
     "options": [
       {
         "id": "ENJOY_TEA",
@@ -2756,6 +2826,7 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "あなたは鋭く光る…… 種？ を踏みそうになるのを間一髪で避ける。 その見紛うことなき輝きは、[aqua]サファイアの種[/aqua]に違いない！\nこの驚くべき種は、もう絶滅したはずでは！？\n\n伝説によれば、これを食べると[gold]耐久力が劇的に跳ね上がる[/gold]という。\nだが、食べずに土に植えてみるというのはどうだ？ 育てれば一体どうなるのだろうか？",
+    "preconditions": null,
     "options": [
       {
         "id": "EAT",
@@ -2801,6 +2872,7 @@
     "type": "Shared",
     "act": null,
     "description": "床に一冊の本が落ちている。\n「スパイアを攻略する3つの極意」\n\n本は[red]血まみれ[/red]で、どうみても胡散臭いシロモノだ。\n\n読んでみるか？",
+    "preconditions": null,
     "options": [
       {
         "id": "READ_THE_BACK",
@@ -2904,6 +2976,10 @@
     "type": "Shared",
     "act": null,
     "description": "ぐらつく木の橋を渡っていると、突然[blue][jitter]どしゃぶりの雨[/jitter][/blue]に見舞われた。 [purple][sine]すさまじい突風[/sine][/purple]が容赦なく吹き付け、旅の終わりへ誘おうとしている。",
+    "preconditions": [
+      "Floor 7+",
+      "Requires removable cards in deck"
+    ],
     "options": [
       {
         "id": "OVERCOME",
@@ -3033,6 +3109,7 @@
     "type": "Event",
     "act": "Underdocks",
     "description": "あなたは[aqua][sine]巨大ならせんの渦巻き[/sine][/aqua]に偶然出くわした。 水は美しいバランスで渦を巻き、周囲の壁は螺旋模様で彩られている。\n\n[purple][sine]ぐるぐると…… ぐるぐると……\n…… ぐるぐると…… なんて光景だ…… [/sine][/purple]\n\nどうする？",
+    "preconditions": null,
     "options": [
       {
         "id": "OBSERVE",
@@ -3078,6 +3155,7 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": "頭上で、繭が今にも破裂しそうに、[jitter]揺れてうごめいている[/jitter]！\n\n…… 不意に動きが止まった。 突如、[orange][sine]繭が燃え上がる[/sine][/orange]！ [jitter]何が起きているんだ？ [/jitter]\n[gold]光[/gold]と[red]炎[/red]の閃光とともに、[orange]スピリット・グラフター[/orange]があなたに突進してきた。 完全な存在となるため、あなたの肉体と融合しようとしているのだ。",
+    "preconditions": null,
     "options": [
       {
         "id": "LET_IT_IN",
@@ -3123,6 +3201,10 @@
     "type": "Shared",
     "act": null,
     "description": "廃墟と化した中庭の真ん中に、巨大な岩が鎮座している。\n\n銘板にはこう書かれている：\n[gold][b]悠久の石[/b][/gold]。\n\nその存在感や形、装飾から察するに、この中庭はこの[blue]石[/blue]を中心に造られたのだろう。 石はここから一度も動いたことがないことが伺える。",
+    "preconditions": [
+      "Act 2 only",
+      "Requires at least one potion"
+    ],
     "options": [
       {
         "id": "LIFT",
@@ -3188,6 +3270,7 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth / Underdocks",
     "description": "池に半ば沈みかけた古い石像を見つけた。 その手は[blue]石の剣[/blue]の上に静かに添えられている。\n\n池の底では、何かが[gold][sine]きらきらと光って[/sine][/gold]いる。\nお供え物だろうか？\n\n切実にゴールドを必要としているんだが……",
+    "preconditions": null,
     "options": [
       {
         "id": "GRAB_SWORD",
@@ -3233,6 +3316,7 @@
     "type": "Event",
     "act": "Underdocks",
     "description": "道なりに進むと、あなたは一部が水没している宝物庫へと辿り着いた。\nそこには[blue]2[/blue]つの[gold]宝箱[/gold]があるが、手元にある[jitter][purple]脆い鍵[/purple][/jitter]は[blue]1[/blue]つしかない。\n\n[gold]1つ目の宝箱: [/gold]振ってみると、チャリンチャリンと音がする。 少しはゴールドが入っていそうだ。\n[gold]2つ目の宝箱:[/gold] 巨大で装飾が施され、明らかに[red]呪われている[/red]。 大量のゴールドが入っているに違いない！",
+    "preconditions": null,
     "options": [
       {
         "id": "FIRST_CHEST",
@@ -3278,6 +3362,9 @@
     "type": "Shared",
     "act": null,
     "description": "冒険の途中、暗くて形を成していない肉塊に遭遇した。 そこからは、途方もない時を経た、邪悪な気配が漂っている。\n\n[sine]こっちに来い…… [/sine]",
+    "preconditions": [
+      "Act 2+"
+    ],
     "options": [
       {
         "id": "APPROACH_LOCKED",
@@ -3333,6 +3420,7 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "2体の[blue]ガーディアン・キン[/blue]を打ち倒し、奴らが守っていた金庫室へと進む。\n\n中には[purple][sine]見覚えのある碑文が刻まれた石板[/sine][/purple]が安置されていた。 直感が告げている。 この言語なら比較的簡単に解読できるはずだ…… しかし、一度解読を始めれば、あなたはここに閉じ込められるだろう。\n\n石板は穏やかなエネルギーを放っており、これを叩き割ることで[green]癒やしのエネルギー[/green]を受け取ることもできそうだ。",
+    "preconditions": null,
     "options": [
       {
         "id": "DECIPHER_1",
@@ -3437,6 +3525,7 @@
     "type": "Ancient",
     "act": "Act 3 - Glory",
     "description": "弱すぎる！ だが見込みはあるな！\nこの武器を使え！！",
+    "preconditions": null,
     "options": null,
     "pages": null,
     "epithet": "キメラ王",
@@ -3636,6 +3725,10 @@
     "type": "Shared",
     "act": null,
     "description": "薄暗い小屋に足を踏み入れると、そこは静謐な空間だった。 異様なまでに多種多様な茶葉が並んでいる。\n\n中にいた男が、[green]茶葉[/green]の数々を無言で指し示した。 それぞれに[gold]高額な値段[/gold]が書かれたラベルが貼られている。",
+    "preconditions": [
+      "Requires 150+ gold",
+      "Act 1–2 only"
+    ],
     "options": [
       {
         "id": "BONE_TEA",
@@ -3711,6 +3804,7 @@
     "type": "Ancient",
     "act": "Act 2 - Hive",
     "description": "あら、お客様ね！ さあ入ってちょうだい、愛しい子！\n今日はテスカタラに何をしてほしいの？",
+    "preconditions": null,
     "options": null,
     "pages": null,
     "epithet": "炎を育むもの",
@@ -3915,6 +4009,7 @@
     "type": "Ancient",
     "act": null,
     "description": "大悪魔の奴隷がご到着か。",
+    "preconditions": null,
     "options": null,
     "pages": null,
     "dialogue": {
@@ -4132,6 +4227,7 @@
     "type": "Shared",
     "act": null,
     "description": "角を曲がると、かすかな地響きを感じる。 そこには、巨大な回転する装置があった！\nいくつかの投入口を備えており、液体を高度に圧縮し、服用可能な錠剤に変換するようだ。\n\nポーションを、ほんの小さな一口サイズに変えてしまうというアイデアには不安を覚える。 だが、何事もまずは試してみるべきか？",
+    "preconditions": null,
     "options": [
       {
         "id": "POTION",
@@ -4163,6 +4259,7 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": "かすかに発光する鍵を見つけ、拾い上げようとしたその時。\n\n「その鍵、ずっと探してたんだ！ 悪いけど、返してくれないか？」\n\nどう見ても関わらない方がよさそうな人物だが、決めつけも良くないかもしれない。",
+    "preconditions": null,
     "options": [
       {
         "id": "RETURN_THE_KEY",
@@ -4222,6 +4319,10 @@
     "type": "Shared",
     "act": null,
     "description": "真っ暗な部屋に入ると、背後で扉が勢いよく閉まった。 同時に、頭上から一筋の光が差し込む。\n\n光に照らされた台座の上には、一枚の地図が置かれている。 まるでそれを手に取れと言っているかのようだ。\n\n実に怪しい。",
+    "preconditions": [
+      "Requires 10+ HP",
+      "Act 1 only"
+    ],
     "options": [
       {
         "id": "NAB_THE_MAP",
@@ -4267,6 +4368,7 @@
     "type": "Shared",
     "act": null,
     "description": "近くの穴から突如として腕が2本突き出てきた。 一方の手には[gold]怪しげな財宝の袋[/gold]、もう一方には明らかに[purple]呪われたレリック[/purple]が握られている。\n\n[jitter][blue]「こっちか…… そっちか？」[/blue][/jitter]\n穴の奥底から、しゃがれた声がささやく。",
+    "preconditions": null,
     "options": [
       {
         "id": "PLAIN",
@@ -4312,6 +4414,7 @@
     "type": "Event",
     "act": "Act 3 - Glory",
     "description": "[red][sine]見渡す限りの死体の海[/sine][/red]をかき分けて進むと、ガラクタを漁っている[orange]マッドサイエンティスト[/orange]に出くわした。\n\n「よし。 やあ、ごきげんよう！ キミ、なかなか腕の立つ戦士のようだね…… ちょうど、次に作る[green]凶悪兵器[/green]のテスト役を探していたんだ！ どうだ、やってみないか？」",
+    "preconditions": null,
     "options": [
       {
         "id": "CHOOSE_CARD_TYPE",
@@ -4415,6 +4518,7 @@
     "type": "Event",
     "act": "Underdocks",
     "description": "そびえ立つ[red][jitter]壊れた武器[/jitter][/red]、[orange]捨てられた装身具[/orange]、そして[purple][sine]奇妙な得体のしれない物[/sine][/purple]が山積みになっているのを発見した。 巨大な山は、まるで内側から成長しているかのようにうごめき、不気味な音を立てている……\n\n表面を漁るだけでも、そこそこの戦利品が手に入るだろう。 しかし中まで潜り込めば、[gold]珍しい宝物[/gold]が見つかるかもしれない。",
+    "preconditions": null,
     "options": [
       {
         "id": "DIVE_IN",
@@ -4460,6 +4564,7 @@
     "type": "Event",
     "act": "Act 3 - Glory",
     "description": "巨大な建造物へと続く人だかりの列に、あなたは紛れ込んだ。\n\n[gold]黄金のアーチ[/gold]をくぐり抜けた途端、角笛が鳴り響き、[jitter]紙吹雪が舞い散り[/jitter]、天井から[sine]テープが降り注いできた！ [/sine]\n\n「入場番号[blue][EntrantNumber][/blue]番！ あなたが本日の[gold]裁判[/gold]における[green]裁判官[/green]です！」",
+    "preconditions": null,
     "options": [
       {
         "id": "ACCEPT",
@@ -4585,6 +4690,9 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "人里離れた[gold]休憩所[/gold]を見つけ、少し休もうと[orange]火[/orange]をおこすことにした。\n…… そう思ったのも束の間だ。\n\n火は燃え上がると、上ではなく[sine]横[/sine]へと大きくなり、[purple]油が滲み出る木々[/purple]の木立ちへと向かっていく。\n\nそれでも休んで大丈夫だろうか？",
+    "preconditions": [
+      "Requires ≤70% HP"
+    ],
     "options": [
       {
         "id": "REST",
@@ -4630,6 +4738,7 @@
     "type": "Ancient",
     "act": "Act 3 - Glory",
     "description": "私に身を委ねなさい。 そうすれば、私と同じくらい恐れられる存在になれますよ。",
+    "preconditions": null,
     "options": null,
     "pages": null,
     "epithet": "最初の悪魔",
@@ -4849,6 +4958,7 @@
     "type": "Shared",
     "act": null,
     "description": "[gold]宝箱[/gold]の隣に[purple]吊り下げられた檻[/purple]があり、中に学者が閉じ込められている。\n\n学者は何やら猛烈な勢いで書き物をしながら、[sine][orange]「使い捨ての鍵」[/orange][/sine]について呟いている。\n\nどうやら手持ちの鍵で[purple]檻[/purple]か[gold]宝箱[/gold]のどちらかを開けられるようだ。",
+    "preconditions": null,
     "options": [
       {
         "id": "UNLOCK_CAGE",
@@ -4894,6 +5004,9 @@
     "type": "Event",
     "act": "Underdocks",
     "description": "暗い通路を進んでいくと、小さな店で働く[aqua]しわがれた人物[/aqua]に出くわした。 たくさんの棚には、湿気を帯びた巻物や羊皮紙が[sine]詰め込まれている[/sine]。\n\n客の来店に気づいた[aqua]筆写人[/aqua]は、ぴしっと姿勢を正し、机の上に並べられたいくつかの[gold]道具[/gold]を指し示した。",
+    "preconditions": [
+      "Requires 65+ gold"
+    ],
     "options": [
       {
         "id": "BLOODY_INK",
@@ -4973,6 +5086,10 @@
     "type": "Shared",
     "act": null,
     "description": "「ウォンゴズへようこそ。 お求めの商品をウォンタスティックな価格で取り揃えております」――これまで見たこともないほど無気力な店員が言った。\n\n「どうぞ商品をご覧になって、当店でのお買い物をお楽しみください」店員は顔を上げることもなく、棒読みで続けた。",
+    "preconditions": [
+      "Requires 100+ gold",
+      "Act 2 only"
+    ],
     "options": [
       {
         "id": "BARGAIN_BIN",
@@ -5076,6 +5193,7 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "[jitter]低い地鳴り[/jitter]のような音をたどっていくと、静かに水をたたえる泉に行き当たり、あなたはその美しさに目を奪われた。 [sine][aqua]エメラルドグリーン[/aqua][/sine]に澄み渡り、中では[sine][gold]光り輝く粒子[/gold][/sine]が集まっている。\n\n泉はまるでこちらを誘っているかのようだ。 何か悪いことが起きるはずもないだろう。",
+    "preconditions": null,
     "options": [
       {
         "id": "BOTTLE",
@@ -5121,6 +5239,9 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "[red]枯れ木が立ち並ぶ窪地[/red]を抜けていくと、一本の骨のように白い木に行き当たった。 まるで肋骨のように内側へ湾曲した枝には、粘土でできた飾りがぶら下がっている。\n\nこの[purple]おぞましい木[/purple]が、あなたに向かって囁きかけてきた。\n\n[sine][blue]…… 取引を…… しよう…… [/blue][/sine]",
+    "preconditions": [
+      "Requires 50+ gold"
+    ],
     "options": [
       {
         "id": "GOLD",
@@ -5166,6 +5287,9 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "ほこりまみれの箱を開けると、中には精巧な3つの木彫りが入っていた。\n\n鳥、ヘビ、そして…… ドーナツ型？\n\nすぐそばにある台座には、木彫りの底の形とぴったり合うくぼみが空いている。 どの木彫りを台座に置こうか？",
+    "preconditions": [
+      "Requires a removable basic card"
+    ],
     "options": [
       {
         "id": "BIRD",
@@ -5235,6 +5359,9 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": "顔にクモの巣が引っかかり、あなたは[jitter][red]パニック[/red][/jitter]に陥った！\nしかし次の瞬間、不思議な[sine][blue]静寂の波[/blue][/sine]が、あなたの心をスッと落ち着かせる……。\n\n[sine]「落ち着き給え。 私の巣を荒らすのはよしてくれないか」[/sine]\n\nなぜこんなにすぐ冷静になれたのだろう？\n見ると、[orange]小さな[/orange]クモが糸を伝ってスルスルと降りてきた。 どうやら[gold]ゴールド[/gold]を支払えば、彼が特別な“ゼン”の技術を授けてくれるようだ。",
+    "preconditions": [
+      "Requires 125+ gold"
+    ],
     "options": [
       {
         "id": "BREATHING_TECHNIQUES",

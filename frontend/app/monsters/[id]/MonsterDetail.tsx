@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
-import type { Monster, MonsterMove, MonsterMovePower, Power } from "@/lib/api";
+import type { Monster, MonsterMove, MonsterMovePower, Power, AttackPattern } from "@/lib/api";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { useLanguage } from "../../contexts/LanguageContext";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
@@ -381,21 +381,31 @@ export default function MonsterDetail() {
           </h2>
           <p className="text-xs text-[var(--text-muted)] mb-2">Applied at the start of combat</p>
           <div className="flex flex-wrap gap-1.5">
-            {monster.innate_powers.map((p, i) => {
-              const power = powerData[p.power_id];
-              const displayName = power
-                ? power.name
-                : p.power_id.replace(/_/g, " ").toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase());
-              return (
+            {monster.innate_powers.map((p, i) => (
+              <span key={i} className="flex items-center gap-1">
                 <PowerPill
-                  key={i}
                   p={{ power_id: p.power_id, target: "self", amount: p.amount }}
                   powerData={powerData}
                   lp={lp}
                 />
-              );
-            })}
+                {p.amount_ascension != null && p.amount_ascension !== p.amount && (
+                  <span className="text-xs text-orange-400">(A: {p.amount_ascension})</span>
+                )}
+              </span>
+            ))}
           </div>
+        </div>
+      )}
+
+      {/* Attack Pattern */}
+      {monster.attack_pattern && (
+        <div className="bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] p-4 mb-4">
+          <h2 className="text-sm font-semibold text-[var(--text-muted)] uppercase tracking-wide mb-3">
+            Attack Pattern
+          </h2>
+          <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
+            {monster.attack_pattern.description}
+          </p>
         </div>
       )}
 

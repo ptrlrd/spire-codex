@@ -142,6 +142,31 @@ class MonsterEncounter(BaseModel):
 class MonsterInnatePower(BaseModel):
     power_id: str
     amount: int
+    amount_ascension: int | None = None
+
+
+class AttackPatternBranch(BaseModel):
+    move_id: str
+    weight: float | None = None
+    repeat: str | None = None
+    max_times: int | None = None
+    condition: str | None = None
+
+
+class AttackPatternState(BaseModel):
+    id: str
+    type: str
+    move_id: str | None = None
+    must_perform_once: bool | None = None
+    next: str | None = None
+    branches: list[AttackPatternBranch] | None = None
+
+
+class AttackPattern(BaseModel):
+    type: str
+    initial_move: str | None = None
+    states: list[AttackPatternState]
+    description: str
 
 
 class Monster(BaseModel):
@@ -157,6 +182,7 @@ class Monster(BaseModel):
     block_values: dict[str, int] | None = None
     encounters: list[MonsterEncounter] | None = None
     innate_powers: list[MonsterInnatePower] | None = None
+    attack_pattern: AttackPattern | None = None
     image_url: str | None = None
     beta_image_url: str | None = None
 
@@ -242,6 +268,7 @@ class Event(BaseModel):
     type: str
     act: str | None = None
     description: str | None = None
+    preconditions: list[str] | None = None
     options: list[EventOption] | None = None
     pages: list[EventPage] | None = None
     epithet: str | None = None

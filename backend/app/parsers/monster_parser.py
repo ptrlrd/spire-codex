@@ -288,6 +288,348 @@ def extract_move_effects(content: str) -> dict[str, dict]:
     return move_effects
 
 
+def _extract_method_body(content: str, method_sig: str) -> str | None:
+    """Extract a method body by matching its signature and brace-counting."""
+    m = re.search(method_sig, content)
+    if not m:
+        return None
+    # Find the opening brace (may be on next line)
+    start = content.find('{', m.end())
+    if start == -1:
+        return None
+    depth = 1
+    i = start + 1
+    while i < len(content) and depth > 0:
+        if content[i] == '{':
+            depth += 1
+        elif content[i] == '}':
+            depth -= 1
+        i += 1
+    return content[start + 1:i - 1]
+
+
+def extract_attack_pattern(content: str, localization: dict, monster_id: str) -> dict | None:
+    """Extract attack pattern / move AI from GenerateMoveStateMachine() in C# source.
+
+    Returns a structured dict describing the state machine:
+    {
+        "type": "cycle" | "random" | "conditional" | "mixed",
+        "initial_move": "MOVE_ID",
+        "states": [...],
+        "description": "Human-readable summary"
+    }
+    """
+    body = _extract_method_body(content, r'GenerateMoveStateMachine\(\)')
+    if not body:
+        return None
+
+    # --- Parse all state declarations ---
+    # MoveState: local vars (moveState, moveState2, ...) and class properties (DeadState, BeastCryState)
+    states: dict[str, dict] = {}  # var_name -> {id, type, ...}
+
+    # Local MoveState: MoveState moveState = new MoveState("ID", ...)
+    for m in re.finditer(r'MoveState\s+(\w+)\s*=\s*new\s+MoveState\(\s*"(\w+)"', body):
+        states[m.group(1)] = {"id": m.group(2), "type": "move"}
+
+    # Class property MoveState: PropertyName = new MoveState("ID", ...)
+    for m in re.finditer(r'(\w+)\s*=\s*new\s+MoveState\(\s*"(\w+)"', body):
+        var_name = m.group(1)
+        if var_name not in states and var_name[0].isupper():
+            states[var_name] = {"id": m.group(2), "type": "move"}
+
+    # MustPerformOnceBeforeTransitioning
+    for m in re.finditer(r'MustPerformOnceBeforeTransitioning\s*=\s*true', body):
+        # Find which state this belongs to — it's in an initializer block
+        preceding = body[:m.start()]
+        # Find the last MoveState declaration before this
+        last_state = None
+        for sm in re.finditer(r'(?:MoveState\s+)?(\w+)\s*=\s*new\s+MoveState\(\s*"(\w+)"', preceding):
+            last_state = sm.group(1)
+        if last_state and last_state in states:
+            states[last_state]["must_perform_once"] = True
+
+    # RandomBranchState
+    for m in re.finditer(r'(?:RandomBranchState\s+)?(\w+)\s*=\s*(?:\(RandomBranchState\))?\s*(?:\([^)]*\)\s*=\s*)*new\s+RandomBranchState\(\s*"(\w+)"', body):
+        states[m.group(1)] = {"id": m.group(2), "type": "random", "branches": []}
+
+    # Chained assignment pattern: randomBranchState = (RandomBranchState)(x.FollowUpState = (y.FollowUpState = new RandomBranchState(...)))
+    for m in re.finditer(r'(\w+)\s*=\s*\(RandomBranchState\)\((.+?)new\s+RandomBranchState\(\s*"(\w+)"\s*\)', body, re.DOTALL):
+        var_name = m.group(1)
+        if var_name not in states:
+            states[var_name] = {"id": m.group(3), "type": "random", "branches": []}
+        # Also extract chained FollowUpState assignments
+        chain_text = m.group(2)
+        for fm in re.finditer(r'(\w+)\.FollowUpState', chain_text):
+            chained_var = fm.group(1)
+            if chained_var in states:
+                states[chained_var]["follow_up"] = var_name
+
+    # ConditionalBranchState
+    for m in re.finditer(r'(?:ConditionalBranchState\s+)?(\w+)\s*=\s*new\s+ConditionalBranchState\(\s*"(\w+)"', body):
+        states[m.group(1)] = {"id": m.group(2), "type": "conditional", "branches": []}
+
+    if not states:
+        return None
+
+    # --- Parse FollowUpState assignments ---
+    for m in re.finditer(r'(\w+)\.FollowUpState\s*=\s*(\w+)\s*;', body):
+        src_var = m.group(1)
+        tgt_var = m.group(2)
+        if src_var in states and tgt_var in states:
+            states[src_var]["follow_up"] = tgt_var
+
+    # --- Parse AddBranch calls (RandomBranchState) ---
+    # Patterns:
+    #   .AddBranch(moveState, MoveRepeatType.X, 1f)
+    #   .AddBranch(moveState, MoveRepeatType.X, () => 0.4f)
+    #   .AddBranch(moveState, 2, 1f)  — int is CanRepeatXTimes maxTimes
+    for m in re.finditer(
+        r'(\w+)\.AddBranch\(\s*(\w+)\s*,\s*(?:MoveRepeatType\.(\w+)|(\d+))\s*,\s*(?:\(\)\s*=>\s*)?(\d+(?:\.\d+)?)f?\s*\)',
+        body
+    ):
+        branch_state_var = m.group(1)
+        move_var = m.group(2)
+        repeat_type = m.group(3)  # Named enum
+        repeat_count = m.group(4)  # Int (CanRepeatXTimes)
+        weight = float(m.group(5))
+
+        if branch_state_var in states and states[branch_state_var]["type"] == "random":
+            branch = {
+                "move_var": move_var,
+                "move_id": states[move_var]["id"] if move_var in states else move_var,
+                "weight": weight,
+            }
+            if repeat_type:
+                branch["repeat"] = repeat_type
+            elif repeat_count:
+                branch["repeat"] = "CanRepeatXTimes"
+                branch["max_times"] = int(repeat_count)
+            states[branch_state_var]["branches"].append(branch)
+
+    # --- Parse AddState calls (ConditionalBranchState) ---
+    for m in re.finditer(
+        r'(\w+)\.AddState\(\s*(\w+)\s*,\s*\(\)\s*=>\s*([^)]+)\)',
+        body
+    ):
+        cond_state_var = m.group(1)
+        move_var = m.group(2)
+        condition = m.group(3).strip()
+
+        if cond_state_var in states and states[cond_state_var]["type"] == "conditional":
+            states[cond_state_var]["branches"].append({
+                "move_var": move_var,
+                "move_id": states[move_var]["id"] if move_var in states else move_var,
+                "condition": condition,
+            })
+
+    # --- Determine initial state ---
+    initial_var = None
+    # Conditional initial: (condition ? stateA : stateB)
+    cond_init = re.search(r'(\w+)\s*=\s*\(.*?\?\s*(\w+)\s*:\s*(\w+)\s*\)', body)
+    if cond_init:
+        # Use the first option as default
+        initial_var = cond_init.group(2)
+    # Standard: return new MonsterMoveStateMachine(list, moveState);
+    ret_match = re.search(r'return\s+new\s+MonsterMoveStateMachine\(\s*\w+\s*,\s*(\w+)\s*\)', body)
+    if ret_match:
+        ret_var = ret_match.group(1)
+        if ret_var in states:
+            initial_var = ret_var
+        elif not initial_var:
+            initial_var = ret_var
+
+    # --- Determine pattern type ---
+    has_random = any(s["type"] == "random" for s in states.values())
+    has_conditional = any(s["type"] == "conditional" for s in states.values())
+    move_states = [s for s in states.values() if s["type"] == "move"]
+
+    if has_random and has_conditional:
+        pattern_type = "mixed"
+    elif has_random:
+        pattern_type = "random"
+    elif has_conditional:
+        pattern_type = "conditional"
+    else:
+        pattern_type = "cycle"
+
+    # --- Build move name lookup ---
+    def _move_name(move_id: str) -> str:
+        loc_move = re.sub(r'_MOVE$', '', move_id)
+        loc_key = f"{monster_id}.moves.{loc_move}.title"
+        return localization.get(loc_key, loc_move.replace("_", " ").title())
+
+    # --- Generate human-readable description ---
+    description = _build_pattern_description(states, initial_var, _move_name)
+
+    # --- Build output ---
+    initial_move_id = None
+    if initial_var and initial_var in states:
+        s = states[initial_var]
+        initial_move_id = re.sub(r'_MOVE$', '', s["id"]) if s["type"] == "move" else s["id"]
+
+    output_states = []
+    for var_name, state in states.items():
+        entry: dict = {"id": state["id"], "type": state["type"]}
+        if state["type"] == "move":
+            entry["move_id"] = re.sub(r'_MOVE$', '', state["id"])
+            if state.get("must_perform_once"):
+                entry["must_perform_once"] = True
+            if "follow_up" in state:
+                follow = states.get(state["follow_up"])
+                if follow:
+                    entry["next"] = follow["id"]
+        elif state["type"] == "random":
+            entry["branches"] = []
+            for b in state.get("branches", []):
+                branch_entry = {
+                    "move_id": re.sub(r'_MOVE$', '', b["move_id"]),
+                    "weight": b["weight"],
+                }
+                if b.get("repeat"):
+                    branch_entry["repeat"] = b["repeat"]
+                if b.get("max_times"):
+                    branch_entry["max_times"] = b["max_times"]
+                entry["branches"].append(branch_entry)
+        elif state["type"] == "conditional":
+            entry["branches"] = []
+            for b in state.get("branches", []):
+                entry["branches"].append({
+                    "move_id": re.sub(r'_MOVE$', '', b["move_id"]),
+                    "condition": b["condition"],
+                })
+        output_states.append(entry)
+
+    return {
+        "type": pattern_type,
+        "initial_move": initial_move_id,
+        "states": output_states,
+        "description": description,
+    }
+
+
+def _build_pattern_description(states: dict, initial_var: str | None, move_name_fn) -> str:
+    """Generate a human-readable attack pattern description from the state graph."""
+    if not initial_var or initial_var not in states:
+        return ""
+
+    move_states = {k: v for k, v in states.items() if v["type"] == "move"}
+    random_states = {k: v for k, v in states.items() if v["type"] == "random"}
+    conditional_states = {k: v for k, v in states.items() if v["type"] == "conditional"}
+
+    # --- Pure cycle ---
+    if not random_states and not conditional_states:
+        # Follow the chain from initial state
+        chain = []
+        visited = set()
+        current = initial_var
+        while current and current in states and current not in visited:
+            visited.add(current)
+            s = states[current]
+            if s["type"] == "move":
+                move_id = re.sub(r'_MOVE$', '', s["id"])
+                chain.append(move_name_fn(move_id))
+            current = s.get("follow_up")
+        if len(chain) > 1:
+            return " → ".join(chain) + " → repeat"
+        elif chain:
+            return f"Always uses {chain[0]}"
+        return ""
+
+    # --- Pure random ---
+    if random_states and not conditional_states and len(random_states) == 1:
+        rand_state = list(random_states.values())[0]
+        branches = rand_state.get("branches", [])
+        if branches:
+            # Check if all weights are equal
+            weights = [b["weight"] for b in branches]
+            all_equal = len(set(weights)) == 1
+            parts = []
+            for b in branches:
+                move_id = re.sub(r'_MOVE$', '', b["move_id"])
+                name = move_name_fn(move_id)
+                qualifiers = []
+                repeat = b.get("repeat", "")
+                if repeat == "CannotRepeat":
+                    qualifiers.append("no repeat")
+                elif repeat == "UseOnlyOnce":
+                    qualifiers.append("once")
+                elif repeat == "CanRepeatXTimes":
+                    qualifiers.append(f"max {b.get('max_times', '?')}×")
+                if not all_equal:
+                    total = sum(weights)
+                    pct = int(b["weight"] / total * 100)
+                    qualifiers.append(f"{pct}%")
+                if qualifiers:
+                    name += f" ({', '.join(qualifiers)})"
+                parts.append(name)
+
+            # Check if there's an initial move before the random
+            init_state = states.get(initial_var, {})
+            if init_state.get("type") == "move":
+                init_name = move_name_fn(re.sub(r'_MOVE$', '', init_state["id"]))
+                return f"Starts with {init_name}, then random: " + ", ".join(parts)
+            return "Random: " + ", ".join(parts)
+
+    # --- Mixed / complex patterns ---
+    parts = []
+    # Describe initial move or sequence before branching
+    visited = set()
+    current = initial_var
+    pre_branch = []
+    while current and current in states and current not in visited:
+        visited.add(current)
+        s = states[current]
+        if s["type"] == "move":
+            move_id = re.sub(r'_MOVE$', '', s["id"])
+            pre_branch.append(move_name_fn(move_id))
+            current = s.get("follow_up")
+        else:
+            break  # Hit a branch state
+
+    if pre_branch:
+        if len(pre_branch) == 1:
+            parts.append(f"Starts with {pre_branch[0]}")
+        else:
+            parts.append("Starts: " + " → ".join(pre_branch))
+
+    # Describe branch states
+    for var_name, s in random_states.items():
+        branches = s.get("branches", [])
+        weights = [b["weight"] for b in branches]
+        all_equal = len(set(weights)) <= 1
+        branch_parts = []
+        for b in branches:
+            move_id = re.sub(r'_MOVE$', '', b["move_id"])
+            name = move_name_fn(move_id)
+            quals = []
+            repeat = b.get("repeat", "")
+            if repeat == "CannotRepeat":
+                quals.append("no repeat")
+            elif repeat == "UseOnlyOnce":
+                quals.append("once")
+            if not all_equal:
+                total = sum(weights)
+                pct = int(b["weight"] / total * 100)
+                quals.append(f"{pct}%")
+            if quals:
+                name += f" ({', '.join(quals)})"
+            branch_parts.append(name)
+        if branch_parts:
+            parts.append("then random: " + ", ".join(branch_parts))
+
+    for var_name, s in conditional_states.items():
+        branches = s.get("branches", [])
+        cond_parts = []
+        for b in branches:
+            move_id = re.sub(r'_MOVE$', '', b["move_id"])
+            name = move_name_fn(move_id)
+            cond_parts.append(f"{name} (if {b['condition']})")
+        if cond_parts:
+            parts.append("then conditional: " + " / ".join(cond_parts))
+
+    return "; ".join(parts) if parts else ""
+
+
 def parse_single_monster(filepath: Path, localization: dict, encounter_types: dict,
                          monster_encounters: dict) -> dict | None:
     content = filepath.read_text(encoding="utf-8")
@@ -446,10 +788,38 @@ def parse_single_monster(filepath: Path, localization: dict, encounter_types: di
                 depth -= 1
             i += 1
         init_block = content[start:i - 1]
-    for pm in re.finditer(r'PowerCmd\.Apply<(\w+)>\([\w.]+\s*,\s*(\d+)m?', init_block):
+    for pm in re.finditer(r'PowerCmd\.Apply<(\w+)>\([\w.]+\s*,\s*(\w+)m?\b', init_block):
         power_name = pm.group(1).replace("Power", "")
-        amount = int(pm.group(2))
-        innate_powers.append({"power_id": class_name_to_id(power_name), "amount": amount})
+        amount_ref = pm.group(2)
+        amount = None
+        amount_asc = None
+        if amount_ref.isdigit():
+            amount = int(amount_ref)
+        else:
+            # Resolve variable — check for AscensionHelper pattern
+            asc_match = re.search(
+                rf'{amount_ref}\s*=>\s*AscensionHelper\.GetValueIfAscension\(\w+\.\w+,\s*(\d+),\s*(\d+)\)',
+                content
+            )
+            if asc_match:
+                amount = int(asc_match.group(2))
+                amount_asc = int(asc_match.group(1))
+            else:
+                simple = re.search(rf'{amount_ref}\s*=>\s*(\d+)\s*;', content)
+                if simple:
+                    amount = int(simple.group(1))
+                else:
+                    const = re.search(rf'const\s+int\s+\w*{amount_ref}\w*\s*=\s*(\d+)', content, re.IGNORECASE)
+                    if const:
+                        amount = int(const.group(1))
+        if amount is not None:
+            entry = {"power_id": class_name_to_id(power_name), "amount": amount}
+            if amount_asc is not None and amount_asc != amount:
+                entry["amount_ascension"] = amount_asc
+            innate_powers.append(entry)
+
+    # Attack pattern / move AI
+    attack_pattern = extract_attack_pattern(content, localization, monster_id)
 
     # Skip monsters with no meaningful data (segments, stubs)
     if not min_hp and not move_details and not damage_values:
@@ -509,6 +879,7 @@ def parse_single_monster(filepath: Path, localization: dict, encounter_types: di
         "block_values": block_values if block_values else None,
         "encounters": encounters if encounters else None,
         "innate_powers": innate_powers if innate_powers else None,
+        "attack_pattern": attack_pattern,
         "image_url": image_url,
         "beta_image_url": beta_image_url,
     }

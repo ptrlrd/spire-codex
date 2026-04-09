@@ -5,6 +5,7 @@
     "type": "Event",
     "act": "Underdocks",
     "description": "당신은 후미진 곳에 있는 방을 발견했습니다.\n\n최면을 거는 듯한 리듬으로 색이 변하는 뜨거운 액체 웅덩이에서는 증기가 피어오르고 있습니다. 천장에는 따개비처럼 매달린 증식물들로부터, 바닥에 닿는 순간 치익 소리를 내며 부글거리는 끈적한 액체가 떨어지고 있습니다. 주변의 공기는 [blue]소금기[/blue]와 함께 [green]명백하게 유기적인[/green] 무언가로 가득 찬 채로, 무겁게 가라앉아 있습니다.\n\n가장 큰 웅덩이의 가장자리로 다가가니, 액체에 파동이 일기 시작합니다. 당신이 들어올 것을 기대하기라도 한 듯 더 맹렬하게 거품이 일어납니다.",
+    "preconditions": null,
     "options": [
       {
         "id": "IMMERSE",
@@ -242,6 +243,10 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": "[b][jitter]깡! 깡!!![/jitter][/b]\n\n벽 건너편에서 금속과 금속이 부딪히는 소리가 울려 퍼집니다...\n\n당신이 벽에 머리를 기대고 귀를 기울이려는 찰나—벽이 갈라지듯 열렸고, [orange]여섯 개의 팔을 지닌 거구의 인물[/orange]이 작업에 몰두하고 있는 광경이 드러납니다.\n그의 “얼굴”이라 불릴 만한 곳에는, [gold][sine]빛나는 문양들이 뒤엉켜 소용돌이[/sine][/gold]치고 있습니다.\n\n“[aqua]승천하는 영혼[/aqua]을 지닌 자가 내 공방에 찾아온 건가? 좋아, [jitter]결합이다[/jitter]!”",
+    "preconditions": [
+      "Requires 2+ Strikes in deck",
+      "Requires 2+ Defends in deck"
+    ],
     "options": [
       {
         "id": "COMBINE_STRIKES",
@@ -287,6 +292,7 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "울창한 덤불을 헤치고 나와 공터에 다다른 당신은, 정체를 알 수 없는 그리움에 사로잡힙니다.\n\n[purple]꽃 향기[/purple]와 [green]썩은 냄새[/green], 그리고 [orange]전혀 다른 어떤 향기[/orange]가 한데 뒤섞여 풍겨옵니다. 걸음을 옮길 때마다 향기는 점점 더 진해지고, 주변 세상이 [sine]일그러지고 뒤틀리는[/sine] 듯한 느낌이 듭니다.\n\n[sine]변화하는 혼돈[/sine]의 감각에 압도당한 채, 당신은 점점 자신을 잃어가는 듯한 느낌에 사로잡힙니다.",
+    "preconditions": null,
     "options": [
       {
         "id": "LET_GO",
@@ -332,6 +338,7 @@
     "type": "Event",
     "act": "Act 3 - Glory",
     "description": "당신이 가까이 다가가자, 인형은 덜거덕거리며 지직대는 소리와 함께 강렬한 빛을 뿜기 시작합니다!\n\n“[jitter]찌리릿![/jitter] 훈련 시간!!! 나를 쓰러뜨리기 위한 [blue]3번의 턴[/blue]이 주어진다!\n설정을 조절하지 않으면 [red]치명적인 굴욕[/red]을 마주하게 된다.\n선택지는 다음과 같습니다:”\n\n섬뜩한 메시지가 끝난 뒤, 훈련 인형은 상세한 설명 사항을 차분하게 읽어 내려갑니다.\n\n어떤 것을 선택할까요?",
+    "preconditions": null,
     "options": [
       {
         "id": "SETTING_1",
@@ -387,6 +394,9 @@
     "type": "Shared",
     "act": null,
     "description": "[jitter]*푹*[/jitter]\n\n당신의 머리 위쪽에 날카로운 통증이 스치고, 한 생각이 당신의 마음을 파고듭니다.\n\n[purple][sine]“지식을 공유하겠나???”[/sine][/purple]\n\n당신은 어떻게 해야 할지 확신이 서지 않습니다...",
+    "preconditions": [
+      "Act 1–2 only"
+    ],
     "options": [
       {
         "id": "SHARE_KNOWLEDGE",
@@ -432,6 +442,7 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": "당신은 [jitter][red]난폭한 곤충 무리[/red][/jitter]를 정신없이 상대하던 와중, 당신의 옆에서 내내 함께 싸우고 있었던 [gold]강인하고 거친 한 전사 사내[/gold]를 뒤늦게 발견했습니다!\n\n곤충들은 패배했다는 것을 깨닫고 흩어집니다. 당신은 곁에서 함께 싸웠던 전우를 돌아봅니다.\n“이 해충들을 박멸하기 위한 요령 하나 알려드릴까요?”\n\n정말 정중하군요. 당신은 고개를 끄덕이고 그의 제안을 받아들였습니다.",
+    "preconditions": null,
     "options": [
       {
         "id": "EXTERMINATION",
@@ -481,6 +492,9 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "당신은 거대한 [jitter][red]비틀거리는 야수[/red][/jitter]가 부상을 입은 [green][sine]초록 섀[/sine][/green]를 쫓아내는 모습을 목격합니다.\n\n섀가 도망친 오목한 공간 안에는, [gold]무방비한 상태의 알 하나[/gold]가 버려져 있습니다.\n\n[sine]당신의 배가 꼬르륵거립니다…[/sine]",
+    "preconditions": [
+      "Cannot have an event pet"
+    ],
     "options": [
       {
         "id": "EAT",
@@ -526,6 +540,7 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": "당신의 눈앞에 꽤나 멋진 광경이 펼쳐집니다.\n당신은 우뚝 서있는 세 가지 색의 동상들이 단상에 서서, 색채의 철학적 의미에 관해 [jitter][red]열띤 토론[/red][/jitter]을 벌이고 있는 모습을 목격합니다.\n\n논쟁을 듣고 있자니, 현재 그들에게 있어 가장 중요한 의문은 진실로 [gold]가장 위대한[/gold] 색은 어떤 색인가에 관한 것으로 보입니다.\n\n당신도 스스로 생각하는 바를 그들에게 말합니다.",
+    "preconditions": null,
     "options": [
       {
         "id": "DEFECT",
@@ -597,6 +612,9 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": "[red][jitter]산처럼 쌓인 뼈무더기[/jitter][/red] 꼭대기에, [green]거대한 꽃[/green] 하나가 자라나 있습니다.\n\n[sine]색을 바꾸는 꽃잎들[/sine]의 맥동 사이 중심부에 [aqua]막대한 힘을 지닌 꽃가루 덩어리[/aqua]가 존재한다는 것이 느껴지지만, 요동치는 꽃잎들은 [red]아주 날카롭고[/red], 그 움직임을 도저히 예측할 수 없습니다.\n\n[gold]황금빛 꿀[/gold]만 조금 집어갈 수도 있겠지만, 중심부에 있는 값진 보상에 손을 뻗고 싶다는 마음이 가라앉지 않습니다...",
+    "preconditions": [
+      "Requires 19+ HP"
+    ],
     "options": [
       {
         "id": "EXTRACT_CURRENT_PRIZE_1",
@@ -678,6 +696,10 @@
     "type": "Shared",
     "act": null,
     "description": "[sine][blue]“당신이 올 것을 알고 있었습니다...!”[/blue][/sine]\n\n[purple]신비로운 오두막[/purple]에 들어서자 [jitter]탁한[/jitter] 목소리의 존재가 당신을 부릅니다.\n\n[sine][blue]“당신의 운명이 당신을 이곳으로 이끌었습니다. 당신의 미래와 운명을 밝혀내야만 우리 모두가 구원받을 수 있습니다!!”[/blue][/sine]\n“좋아요, 여기가 [gold]수정구 점술[/gold]에서 고를 수 있는 항목들입니다. 여기 면책 서류에도 서명해주시고.” 점술가는 펜과 양피지를 꺼내며 말합니다.",
+    "preconditions": [
+      "Requires 100+ gold",
+      "Act 2+"
+    ],
     "options": [
       {
         "id": "UNCOVER_FUTURE",
@@ -727,6 +749,7 @@
     "type": "Ancient",
     "act": null,
     "description": "...그걸 어디에 뒀더라... 오!\n내 수집품을 보러 온 건가!? 저기 쌓여있는 것들 중에서 아무거나 가져가서 잘 쓰도록 하라고!",
+    "preconditions": null,
     "options": null,
     "pages": null,
     "epithet": "수집광",
@@ -933,6 +956,7 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "한참 동안 길을 잘못 든 채로 헤매다 보니, 당신은 [green]양치류[/green]와 [green]관목[/green], [green]덩굴[/green]이 뒤엉킨 울창한 정글에 들어왔다는 것을 깨닫습니다. 특히 [green]덩굴[/green]이 많네요. 피로가 몰려오고, 불길한 생각 하나가 머리를 스칩니다:\n\n[sine][purple]“너는 길을 잃었고, 무방비하며, 피할 수 없는 죽음이 가까워지고 있다.”[/purple][/sine]\n\n무엇을 할까요?",
+    "preconditions": null,
     "options": [
       {
         "id": "TRUDGE_ON",
@@ -985,6 +1009,9 @@
     "type": "Shared",
     "act": null,
     "description": "당신은 숨겨진 방에 들어섭니다...\n\n방 안은 다양한 인형들로 가득합니다. 모든 인형들은 저마다 [green]기쁨[/green]부터 [purple]슬픔[/purple]까지 다양한 표정을 띄고 있으며, 수세기의 시간과 당신이 알지 못하는 영역까지 아우르는 복장을 입고 있습니다.\n\n인형들이 [sine][blue]입을 모아 속삭이는 소리[/blue][/sine]는 점점 커지더니, 이윽고 다른 인형보다 [jitter][red]더 크게 소리치려 하며[/red][/jitter] 당신을 부르기 시작합니다...\n\n인형 중 하나를 선택하고 즉시 자리를 떠야 합니다.",
+    "preconditions": [
+      "Act 2 only"
+    ],
     "options": [
       {
         "id": "RANDOM",
@@ -1063,6 +1090,7 @@
     "type": "Event",
     "act": "Underdocks",
     "description": "방금 전까지만 해도 존재하지 않았던 출입구가 어느새 생겨나 있습니다...\n\n안으로 들어서자, 희미하게 빛나는 두 개의 문과 [gold]잘 차려입은 문지기[/gold]가 보입니다.\n“드디어, 방문객이시군요! 제발 부디! 문을 선택해주세요, 아무거나요!”\n\n[blue]여긴 아직 첨탑 안인 걸까요? 어떻게 이렇게 깨끗할 수가 있죠?[/blue]",
+    "preconditions": null,
     "options": [
       {
         "id": "LIGHT",
@@ -1108,6 +1136,7 @@
     "type": "Event",
     "act": "Underdocks",
     "description": "바위와 잔잔한 물로 이루어진 초현실적인 풍경을 지나자, 당신은 [purple]빛과 반대되는 무언가[/purple]를 뿜어대고 있는 [sine]가라앉은 등대[/sine]를 마주합니다.\n\n당신은 이곳에서 [aqua]기분 나쁘게 빛나고 있는[/aqua] 물을 병에 담거나, 낡고 허름한 구조물을 타고 올라가 등대의 [gold]렌즈[/gold]를 수거할 수 있습니다.",
+    "preconditions": null,
     "options": [
       {
         "id": "BOTTLE",
@@ -1153,6 +1182,9 @@
     "type": "Event",
     "act": "Underdocks",
     "description": "당신은 한 오두막집에 들어섭니다. 밝지만 뒤틀린 표지판에는 다음과 같은 내용이 적혀 있습니다:\n[aqua]“끝없는 만찬 - 배고픈 만큼 계산하세요!”[/aqua]\n\n오두막의 안쪽에는, [orange]가늘고 길쭉한 팔을 여럿 드리우고 있는 요리사[/orange]가 능숙한 솜씨로 [green]한 입 크기의 음식[/green]을 준비해, [sine]구불구불한 키틴질 벨트[/sine] 위에 올려놓고 있습니다.\n\n요리사의 팔 중 하나가 표지판을 가리킵니다:\n접시당 [blue]35[/blue] [gold]골드[/gold]",
+    "preconditions": [
+      "Requires 105+ gold"
+    ],
     "options": [
       {
         "id": "OBSERVE_CHEF",
@@ -1250,6 +1282,11 @@
     "type": "Shared",
     "act": null,
     "description": "플레이스홀더",
+    "preconditions": [
+      "Act 2+",
+      "Single player only",
+      "Requires 100+ gold or a Foul Potion"
+    ],
     "options": null,
     "pages": null
   },
@@ -1259,6 +1296,7 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": "거대한 들판이 갑작스럽게 눈앞에 펼쳐지고, 당신은 [jitter]사람들의 윤곽이 선명하게 새겨진 흔적들[/jitter]을 발견하고 걸음을 멈춥니다.\n\n새겨진 윤곽 중 하나는 당신의 것과 일치합니다.\n\n[sine][orange]완벽하네요...[/orange][/sine]",
+    "preconditions": null,
     "options": [
       {
         "id": "RESIST",
@@ -1304,6 +1342,7 @@
     "type": "Event",
     "act": "Act 3 - Glory",
     "description": "[jitter][aqua]푸른 불꽃이 거세게 일렁이는[/aqua][/jitter] 무덤 하나가 있습니다...\n\n긍지 높은 한 전사는 전투 중 사망했지만, 영혼은 아직 안식을 얻지 못했습니다. 그 영혼은 계속 싸우고 싶어하고, 당신과 함께 여행을 떠나고 싶다 [sine]애원하는[/sine] 듯합니다.\n\n하지만 어쩌면, 이제는 그가 [red]진실[/red]을 마주해야 할 때일지도 모릅니다.",
+    "preconditions": null,
     "options": [
       {
         "id": "CONFRONT_LOCKED",
@@ -1359,6 +1398,7 @@
     "type": "Event",
     "act": "Act 3 - Glory",
     "description": "[sine]마지막으로 뭔가 먹었던 게 언제였을까요?\n...잠깐, 이 환상적인 냄새는 뭐죠?[/sine]\n\n향기를 따라가다 보니, 당신은 온갖 종류의 [green]맛있는 버섯들[/green]이 익어가고 있는 아늑한 야영지에 도착했습니다! 당신은 배가 너무 고픈 나머지, 이 버섯들을 먹어도 안전할지는 고려하지도 않습니다.\n(배가 너무 고파서 모험가의 시체가 있다는 건 깨닫지도 못했습니다)",
+    "preconditions": null,
     "options": [
       {
         "id": "BIG_MUSHROOM",
@@ -1408,6 +1448,7 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": "[red]작동을 멈춘 로봇들[/red]로 가득한 방이 있습니다.\n\n고독한 자동인형 하나가 [sine][aqua]희미하게 빛나는 핵[/aqua][/sine]을 유지하고 있지만, 기괴한 유기적 증식체에 휩싸여 아무런 반응도 보이지 않습니다.",
+    "preconditions": null,
     "options": [
       {
         "id": "STUDY",
@@ -1453,6 +1494,7 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "당신은 공터에서 [purple]거대한 미로[/purple]를 내려다보며 손짓하고 있는 [green]오합지졸 모험가 무리[/green]를 만났습니다.\n\n모험가들은 당신에게, 이 미로의 전리품을 차지하기 위한 [b]장대한 모험[/b]에 함께 협력할 것을 제안합니다. 경험 많은 모험가인 당신은, 이 미로가 [red][jitter]치명적인 함정[/jitter][/red]과 [orange][sine]수호자[/sine][/orange]들로 가득 차 있음을 곧바로 깨닫습니다.\n\n함께 나아가면 더 수월하겠지만, 얻는 전리품은 나눠야 할 것입니다.",
+    "preconditions": null,
     "options": [
       {
         "id": "SOLO_QUEST",
@@ -1498,6 +1540,7 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": "저 멀리 기이한 광경이 보입니다. [sine][red]죽은 곤충들의 사체[/red][/sine]가 산더미처럼 쌓여 있고, 그 한가운데에는 [orange]작은 빛나는 먼지[/orange]처럼 보이는 무언가가 있습니다.\n그 먼지는 온갖 벌레를 효과적으로 유인하고 있는 것처럼 보였으나, 돌연 불꽃을 내뿜어대고 있습니다!\n\n당신은 조사를 위해 더 가까이 다가갑니다.",
+    "preconditions": null,
     "options": [
       {
         "id": "CLAIM",
@@ -1543,6 +1586,9 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "당신은 우연히 부자연스러운 푸른 빛에 휩싸인 공터를 발견합니다. 높게 치솟은 버섯들은 마치 살아있는 듯이 빛나고 맥동하며, 볼록해진 갓은 반짝거리고 있습니다. 가까이 다가가자 버섯들은 [sine][purple]섬뜩하면서도 감미로운 선율[/purple][/sine]을 노래하기 시작하고, 그 울림은 당신의 가슴 속에 깊게 울려 퍼집니다.\n\n당신은 가장 거대한 버섯의 살 속에 박혀 반짝이는 무언가를 발견했고, 그것은 버섯의 노랫소리에 박자를 맞추듯이 [sine]맥동하고[/sine] 있습니다.",
+    "preconditions": [
+      "Requires 100-149 gold"
+    ],
     "options": [
       {
         "id": "REACH_INTO_THE_FLESH",
@@ -1598,6 +1644,9 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "당신은 [green]결정화된 나무들[/green]로 가득한 숲에 들어갔고, 나무들이 [jitter]격렬하게 떨기[/jitter] 시작합니다!\n나무 사이에서 한 무리의 [aqua]변성체들[/aqua]이 [jitter]튀어나오며[/jitter], 당신에게 [sine]인사와 환영[/sine]의 말을 쏟아냅니다.\n\n[aqua]변성체들[/aqua] 중 한 마리는 구석에서 불안해하고 있는 것으로 보아, 다른 개체만큼 사교적이지는 않은 것 같습니다.\n\n무리와 외톨이 중 누구에게 다가갈까요?",
+    "preconditions": [
+      "Requires 100+ gold"
+    ],
     "options": [
       {
         "id": "GROUP",
@@ -1643,6 +1692,7 @@
     "type": "Ancient",
     "act": "Act 1 - Overgrowth / Underdocks",
     "description": "[sine]내가 너를... 다시 빚어냈다....\n...위로... ..올라가라.....[/sine]",
+    "preconditions": null,
     "options": null,
     "pages": null,
     "epithet": "부활의 어머니 (추방자)",
@@ -1857,6 +1907,7 @@
     "type": "Ancient",
     "act": "Act 3 - Glory",
     "description": "방문객이 찾아온 건 거의 천 년만이군요!\n조금 단조로운 차림이시네요. 자, 그대에게 어울릴 아름다운 옷을 찾아 보죠.",
+    "preconditions": null,
     "options": null,
     "pages": null,
     "epithet": "우연한 행운의 화신",
@@ -2031,6 +2082,7 @@
     "type": "Ancient",
     "act": "Act 2 - Hive",
     "description": "꼭두각시 꼭두각시!! 여기까지 올라왔다?! 이거 받는다, 다 받는다!",
+    "preconditions": null,
     "options": null,
     "pages": null,
     "epithet": "살아있는 무지개",
@@ -2215,6 +2267,7 @@
     "type": "Ancient",
     "act": "Act 2 - Hive",
     "description": "꼭두각시가 도착한 건가?\n내 아버지를 확인해줄 수 있겠나? 나는 너무 피곤하군...",
+    "preconditions": null,
     "options": null,
     "pages": null,
     "epithet": "녹아내리는 용",
@@ -2379,6 +2432,9 @@
     "type": "Shared",
     "act": null,
     "description": "공기 중에 퍼진 [sine]시큼한[/sine] 냄새를 깨달은 당신은, 이내 땅에 쓰러진 [gold]포션 배달원[/gold]을 발견했습니다.\n미동도 하지 않고, 생기도 없습니다. [jitter]죽은 걸까요!?[/jitter]\n그의 소지품은 이미 전부 빼앗긴 상태였지만, [green][sine]역겨운 악취를 풍기는 포션[/sine][/green] 한 묶음과 함께 쪽지 하나가 남아 있습니다: \"수령인: 상인\".",
+    "preconditions": [
+      "Act 2+"
+    ],
     "options": [
       {
         "id": "GRAB_POTIONS",
@@ -2424,6 +2480,7 @@
     "type": "Event",
     "act": "Underdocks",
     "description": "[gold]권투형 구조체[/gold] 두 마리가 서로 격렬하게 치고받고 있는 가운데, 둘 사이에 보물이 놓여 있는 모습이 보입니다...\n\n슬쩍 낚아채 볼까요?",
+    "preconditions": null,
     "options": [
       {
         "id": "NAB",
@@ -2476,6 +2533,10 @@
     "type": "Shared",
     "act": null,
     "description": "당신이 [purple]지금까지 본 사람 중 가장 나이가 많은 사람[/purple]이 당신에게 다가옵니다.\n[sine]“또 만났네요... 저잖아요, 랜위드!”[/sine]\n\n당신은 이 사람을 모릅니다.",
+    "preconditions": [
+      "Act 2+",
+      "Requires at least one potion"
+    ],
     "options": [
       {
         "id": "POTION",
@@ -2555,6 +2616,7 @@
     "type": "Event",
     "act": "Act 3 - Glory",
     "description": "이건 뭘까요? 이곳은 뭔가 이상한 느낌이 듭니다...\n[sine]...다니듭 이낌느 한상이 가뭔 은곳이 ?요까뭘 건이[/sine]",
+    "preconditions": null,
     "options": [
       {
         "id": "TOUCH_A_MIRROR",
@@ -2600,6 +2662,10 @@
     "type": "Shared",
     "act": null,
     "description": "당신이 모퉁이를 도는 순간, 바로 앞에 수상한 인물이 서 있습니다. 그는 당신을 향해 돌아서며 말합니다.\n\n“어서 오세요! 뭔가 거래하실 건가요?”\n그는 질문과 동시에 망토를 펼치며, 당신에게 대량의 [sine][purple]수상한 물건들[/purple][/sine]을 선보입니다.",
+    "preconditions": [
+      "Act 2+",
+      "Requires 5+ tradeable relics"
+    ],
     "options": [
       {
         "id": "TOP",
@@ -2651,6 +2717,9 @@
     "type": "Shared",
     "act": null,
     "description": "이 방은 [b][jitter]치즈[/jitter][/b]로 가득 차 있습니다!!!\n\n함정이 없는지 주변을 살펴보다 위를 올려다보니...더 많은 [b]치즈[/b]가 있습니다. 이 방의 양초는 [b]치즈[/b]로 만들어져 있는 것으로 보입니다. 방의 가구도 [b]치즈[/b]로 만들어져 있습니다.\n갑자기, 당신의 뒤에 있던 문이 쾅 하고 닫힙니다.\n\n문도 [b]치즈[/b]로 만들어져 있습니다.",
+    "preconditions": [
+      "Act 1–2 only"
+    ],
     "options": [
       {
         "id": "GORGE",
@@ -2696,6 +2765,7 @@
     "type": "Event",
     "act": "Act 3 - Glory",
     "description": "당신은 [blue]“갤러롯 경”[/blue]에게 온 다과회의 [orange]초대장[/orange]을 발견했고, 그를 대신해 파티에 참석하기로 했습니다.\n\n비교적 소박해 보이는 원형 홀에 들어서자, 당신은 [gold]지휘관[/gold]과 [aqua]장군[/aqua], [red]군벌[/red], [blue]용병[/blue]들이 함께... 홍차를 마시고 있는 곳 한복판에 있다는 것을 알게 됐습니다.\n[gold]황금 왕관[/gold]을 쓴 거대한 기사 한 명이 입을 엽니다.\n\n[jitter]“[b]차[/b] 모임에 조금 늦으셨군요?!”[/jitter]",
+    "preconditions": null,
     "options": [
       {
         "id": "ENJOY_TEA",
@@ -2756,6 +2826,7 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "당신은 빛나는 날카로운 물체를 밟으려던 것을 가까스로 피합니다 ...씨앗? 특유의 색깔로 짐작해봤을 때, 분명 [aqua]사파이어 씨앗[/aqua]입니다! 이 엄청난 씨앗들은 분명 멸종했던 거 아니었나요!?\n\n전설에 따르면 씨앗을 먹을 시 [gold]지구력이 크게 상승[/gold]한다고 합니다만, 씨앗을 먹는 대신 심고서 정성껏 기른다면 어떤 일이 벌어질까요?",
+    "preconditions": null,
     "options": [
       {
         "id": "EAT",
@@ -2801,6 +2872,7 @@
     "type": "Shared",
     "act": null,
     "description": "바닥에는 책 한 권이 놓여있습니다.\n“첨탑을 정복하기 위한 3가지 방법”\n\n책의 표면은 [red]피로 뒤덮여[/red] 있었기 때문에, 굉장히 수상쩍은 느낌이 듭니다.\n\n읽어보시겠습니까?",
+    "preconditions": null,
     "options": [
       {
         "id": "READ_THE_BACK",
@@ -2904,6 +2976,10 @@
     "type": "Shared",
     "act": null,
     "description": "무너져 내릴 듯한 나무 다리를 건너던 도중, [blue][jitter]갑작스럽게 폭우[/jitter][/blue]가 쏟아집니다. [purple][sine]거대한 돌풍[/sine][/purple]이, 마치 당신의 여정을 끝내려는 듯이 위협적으로 휘몰아칩니다.",
+    "preconditions": [
+      "Floor 7+",
+      "Requires removable cards in deck"
+    ],
     "options": [
       {
         "id": "OVERCOME",
@@ -3033,6 +3109,7 @@
     "type": "Event",
     "act": "Underdocks",
     "description": "당신은 우연히 [aqua][sine]거대한 나선형 소용돌이[/sine][/aqua]를 발견했습니다. 물은 아름답게 소용돌이치고, 나선형 무늬가 주변 벽을 수놓고 있습니다.\n\n[purple][sine]빙글빙글 돌고...돌고...\n또 돌고...정말 멋진 광경입니다......[/sine][/purple]\n\n무엇을 할까요?",
+    "preconditions": null,
     "options": [
       {
         "id": "OBSERVE",
@@ -3078,6 +3155,7 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": "위쪽에서 고치가 [jitter]흔들리며 꿈틀거리고[/jitter], 금방이라도 터져 나올 것 같습니다!\n\n...이윽고 꿈틀거림이 멈춥니다. [orange][sine]고치가 타오르기 시작합니다[/sine][/orange]! [jitter]무슨 일이 일어나고 있는 거죠?[/jitter]\n번쩍이는 [gold]빛[/gold]과 [red]불꽃[/red] 속에서, [orange]정령 접합자[/orange]가 당신에게 뛰어들어 당신과 하나가 되어 완전해지려고 합니다.",
+    "preconditions": null,
     "options": [
       {
         "id": "LET_IT_IN",
@@ -3123,6 +3201,10 @@
     "type": "Shared",
     "act": null,
     "description": "버려진 안뜰 한복판에 거대한 바위 하나가 놓여 있습니다.\n\n명판에는 이렇게 적혀 있습니다:\n[gold][b]영원의 돌[/b][/gold].\n\n바위의 존재감과 형태, 그리고 장식들은, 이 안뜰이 돌의 주변을 따라 지어졌으며, [blue]돌[/blue]은 이곳에서 단 한 번도 움직인 적이 없음을 나타냅니다.",
+    "preconditions": [
+      "Act 2 only",
+      "Requires at least one potion"
+    ],
     "options": [
       {
         "id": "LIFT",
@@ -3188,6 +3270,7 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth / Underdocks",
     "description": "당신은 연못에 반쯤 잠겨 있는 오래된 석상을 발견했습니다. 석상의 두 손은 [blue]돌 검[/blue] 위에 조심스레 얹혀 있습니다.\n\n연못 바닥에는 무언가가 [gold][sine]반짝거리고[/sine][/gold] 있습니다.\n누군가에게 바치기 위한 것들일까요?\n\n저 돈들은 꽤나 도움이 될 것 같습니다...",
+    "preconditions": null,
     "options": [
       {
         "id": "GRAB_SWORD",
@@ -3233,6 +3316,7 @@
     "type": "Event",
     "act": "Underdocks",
     "description": "길을 따라가던 당신은, 일부가 물에 잠긴 저장고를 발견합니다.\n[gold]상자[/gold]는 [blue]2[/blue]개가 있지만, 금방이라도 [jitter][purple]망가져버릴 듯한 열쇠[/purple][/jitter]는 [blue]1[/blue]개 뿐입니다.\n\n[gold]첫 번째 상자:[/gold] 흔들어보니 딸랑거리는 소리가 납니다. 약간의 골드가 들어 있습니다.\n[gold]두 번째 상자:[/gold] 거대하고 화려한 상자로, 명백히 [red]저주받았습니다[/red]. 많은 골드가 있습니다!",
+    "preconditions": null,
     "options": [
       {
         "id": "FIRST_CHEST",
@@ -3278,6 +3362,9 @@
     "type": "Shared",
     "act": null,
     "description": "당신은 길을 나아가던 도중 우연히, 형태가 일정치 않은 한 검은색 덩어리를 발견합니다. 당신은 그 덩어리가 굉장히 오래되었고, 극도로 사악한 존재라는 것을 느낄 수 있었습니다.\n\n[sine]가까이 다가갑니다...[/sine]",
+    "preconditions": [
+      "Act 2+"
+    ],
     "options": [
       {
         "id": "APPROACH_LOCKED",
@@ -3333,6 +3420,7 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "당신은 두 명의 [blue]혈족 수호자[/blue]를 쓰러뜨리고, 그들이 지키고 있던 보관실 안으로 들어갑니다.\n\n방 안에는 [purple][sine]익숙한 문양이 새겨진 석판[/sine][/purple]이 놓여 있습니다. 직감적으로, 이 언어를 그리 어렵지 않게 해독할 수 있을 것 같은 느낌이 듭니다... 하지만, 한 번 해독을 시작하면 멈출 수 없을 것입니다.\n\n석판에서는 차분한 기운이 흘러나오고 있으며, 해독하는 대신 부숴 석판의 [green]치유의 기운[/green]을 얻을 수도 있습니다.",
+    "preconditions": null,
     "options": [
       {
         "id": "DECIPHER_1",
@@ -3437,6 +3525,7 @@
     "type": "Ancient",
     "act": "Act 3 - Glory",
     "description": "약해빠졌군! 하지만 자질은 있다!\n이 무기를 사용해라!!",
+    "preconditions": null,
     "options": null,
     "pages": null,
     "epithet": "키메라 왕",
@@ -3636,6 +3725,10 @@
     "type": "Shared",
     "act": null,
     "description": "불빛이 희미하게 비치는 오두막에 우연히 들어간 당신은, 기이할 정도로 다양한 차들로 가득 찬 너무나도 평온한 공간에 빠져듭니다.\n\n오두막 안에 있던 남자는 아무 말 없이 하나 같이 [gold]고가[/gold]의 가격표가 붙어있는 다양한 [green]차[/green]들을 가리킵니다.",
+    "preconditions": [
+      "Requires 150+ gold",
+      "Act 1–2 only"
+    ],
     "options": [
       {
         "id": "BONE_TEA",
@@ -3711,6 +3804,7 @@
     "type": "Ancient",
     "act": "Act 2 - Hive",
     "description": "어머, 방문객이구나! 들어오렴, 얘야!\n이 테즈카타라가 도울 일이 있을까?",
+    "preconditions": null,
     "options": null,
     "pages": null,
     "epithet": "불을 키우는 자",
@@ -3915,6 +4009,7 @@
     "type": "Ancient",
     "act": null,
     "description": "대악마의 노예가 드디어 행차하신 건가?",
+    "preconditions": null,
     "options": null,
     "pages": null,
     "dialogue": {
@@ -4132,6 +4227,7 @@
     "type": "Shared",
     "act": null,
     "description": "모퉁이를 도는 순간 희미한 진동이 느껴지고, 거대한 회전 장치가 당신의 눈앞에 모습을 드러냅니다!\n여러 개의 투입구가 있어, 액체를 고도로 압축해 섭취할 수 있는 알약으로 바꾸는 구조의 장치인 것으로 보입니다.\n\n이 건강 음료들을 작은 알약 한 알로 바꾼다는 발상은 영 꺼림칙하지만, 가끔은 새로운 시도를 해보는 것도 나쁘지 않을지도 모릅니다.",
+    "preconditions": null,
     "options": [
       {
         "id": "POTION",
@@ -4163,6 +4259,7 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": "당신은 희미하게 빛나는 열쇠를 발견하고, 열쇠를 집어 들기 위해 다가갑니다.\n\n“그 열쇠를 찾으러 사방팔방 뒤지고 있었다네! 혹시 실례가 아니라면...”\n\n조금 귀찮아 보이는 사람이긴 하지만, 함부로 단정 짓는 건 좋지 않을 것 같습니다.",
+    "preconditions": null,
     "options": [
       {
         "id": "RETURN_THE_KEY",
@@ -4222,6 +4319,10 @@
     "type": "Shared",
     "act": null,
     "description": "칠흑 같이 어두운 방 안으로 들어서자, 위에서 한 줄기 빛이 갑자기 어둠을 가르며 내려오는 동시에, 당신의 뒤쪽에서 문이 쾅하고 닫힙니다.\n\n빛 속에서, 지도가 놓여있는 연단이 당신의 눈앞에 모습을 드러냅니다. 왜인지 강제로 가져가야 할 듯한 느낌이 듭니다.\n\n수상하네요.",
+    "preconditions": [
+      "Requires 10+ HP",
+      "Act 1 only"
+    ],
     "options": [
       {
         "id": "NAB_THE_MAP",
@@ -4267,6 +4368,7 @@
     "type": "Shared",
     "act": null,
     "description": "근처의 구멍에서 갑자기, [gold]보물이 담긴 수상한 자루[/gold]와 명백히 [purple]저주받은 유물[/purple]을 움켜진 손이 튀어나옵니다.\n\n[jitter][blue]\"이거... 아님 저거?\"[/blue][/jitter]\n날카롭게 긁어대는 목소리가 아래쪽에서 속삭입니다.",
+    "preconditions": null,
     "options": [
       {
         "id": "PLAIN",
@@ -4312,6 +4414,7 @@
     "type": "Event",
     "act": "Act 3 - Glory",
     "description": "당신은 [red][sine]끝도 없이 넘쳐나는 시체들[/sine][/red]을 헤쳐나가던 도중, 각양각색의 잔해를 뒤적거리고 있는 [orange]괴짜 과학자[/orange]를 발견했습니다.\n\n“어. 네, 안녕하세요! 꽤 실력이 있는 전사이신 것 같네요... 제 다음 [green]포악 장치[/green]의 테스터가 필요했거든요! 한 번 어때요?”",
+    "preconditions": null,
     "options": [
       {
         "id": "CHOOSE_CARD_TYPE",
@@ -4415,6 +4518,7 @@
     "type": "Event",
     "act": "Underdocks",
     "description": "당신은 [red][jitter]고철이 된 무기[/jitter][/red]와 [orange]버려진 장신구[/orange], 그리고 [purple][sine]다른 기묘한 물건들[/sine][/purple]이 산처럼 쌓여있는 거대한 더미를 발견합니다. 거대한 더미는 안쪽에서부터 커지고 있는 듯이 움직이며 진동합니다...\n\n쓰레기 더미의 표면을 뒤져보면 쓸 만한 물건 몇 개는 건질 수도 있습니다. 하지만 저 더미 안으로 들어간다면, [gold]신기한 보물[/gold]을 찾아낼 수 있을지도 모릅니다.",
+    "preconditions": null,
     "options": [
       {
         "id": "DIVE_IN",
@@ -4460,6 +4564,7 @@
     "type": "Event",
     "act": "Act 3 - Glory",
     "description": "당신은 거대한 건물로 들어가는 사람들의 줄에 합류합니다.\n\n[gold]황금빛 아치[/gold]를 지나자 나팔 소리가 요란하게 울려 퍼지고 [jitter]색종이가 터져 나오며[/jitter], 천장에서는 [sine]장식용 리본이 흩날립니다[/sine]!\n\n“참가 번호 [blue][EntrantNumber][/blue]번, 오늘 [gold]재판[/gold]의 [green]결정자[/green]는 당신입니다.”",
+    "preconditions": null,
     "options": [
       {
         "id": "ACCEPT",
@@ -4585,6 +4690,9 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "한적한 [gold]휴식 장소[/gold]를 발견한 당신은 [orange]불[/orange]을 피우고 잠시 휴식을 취합니다.\n적어도, 그렇게 믿고 있었습니다.\n\n불을 피우자 불길은 위로 치솟는 대신 [sine]옆으로[/sine] 퍼져가며, [purple]기름이 스며 나오는 나무들[/purple]이 모인 숲을 향해 번져 갑니다.\n\n그럼에도 불구하고 휴식을 취할까요?",
+    "preconditions": [
+      "Requires ≤70% HP"
+    ],
     "options": [
       {
         "id": "REST",
@@ -4630,6 +4738,7 @@
     "type": "Ancient",
     "act": "Act 3 - Glory",
     "description": "나에게 몸을 맡기면, 너 또한 나만큼 두려움의 대상이 될 거다.",
+    "preconditions": null,
     "options": null,
     "pages": null,
     "epithet": "최초의 악마",
@@ -4849,6 +4958,7 @@
     "type": "Shared",
     "act": null,
     "description": "[gold]보물 상자[/gold] 옆에 있는 [purple]매달린 철창[/purple] 안에, 한 학자가 갇혀 있습니다.\n\n그 학자는 미친듯이 무언가를 써 내려가며, [sine][orange]“일회용 열쇠”[/orange][/sine]라는 말을 끊임없이 중얼대고 있습니다.\n\n[purple]철창[/purple]이나 [gold]상자[/gold] 중 하나를 열 수 있을 것 같습니다.",
+    "preconditions": null,
     "options": [
       {
         "id": "UNLOCK_CAGE",
@@ -4894,6 +5004,9 @@
     "type": "Event",
     "act": "Underdocks",
     "description": "당신은 어두컴컴한 통로를 헤쳐 나아가던 중, 작은 가게에서 일하고 있는 [aqua]수척한 인물[/aqua]을 우연히 발견합니다. 무수히 많은 선반에는 눅눅한 두루마리와 양피지가 [sine]빽빽하게[/sine] 쌓여 있습니다.\n\n손님이 들어왔다는 것을 알아차린 [aqua]필경사 상인[/aqua]은 잽싸게 자세를 고쳐 앉고, 책상 위에 놓인 몇몇 [gold]도구들[/gold]을 가리킵니다.",
+    "preconditions": [
+      "Requires 65+ gold"
+    ],
     "options": [
       {
         "id": "BLOODY_INK",
@@ -4973,6 +5086,10 @@
     "type": "Shared",
     "act": null,
     "description": "“웡고스에 오신 걸 환영합니다. 원하시는 상품을 웡타스틱한 가격으로 제공합니다.” 당신이 여태 만난 점원 중 가장 무기력한 점원이 말합니다.\n\n“상품들을 둘러보시고 웡고스에서의 시간을 즐겨주세요.” 그는 고개조차 들지 않은 채 말을 이어갑니다.",
+    "preconditions": [
+      "Requires 100+ gold",
+      "Act 2 only"
+    ],
     "options": [
       {
         "id": "BARGAIN_BIN",
@@ -5076,6 +5193,7 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "[jitter]낮게 울리는 소리[/jitter]의 근원을 따라가던 당신은 고요한 샘 앞에 이르렀고, 그 샘의 모습에 매료됩니다. [sine][aqua]에메랄드빛 녹색[/aqua][/sine]의 물에는 [sine][gold]빛나는 알갱이[/gold][/sine]들이 모여 있습니다.\n\n샘이 당신을 유혹하고 있는 듯합니다. 설마 무슨 문제라도 있겠어요?",
+    "preconditions": null,
     "options": [
       {
         "id": "BOTTLE",
@@ -5121,6 +5239,9 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "당신은 [red]죽은 나무들로 이뤄진 골짜기[/red]를 지나던 중, 우연히 뼈처럼 새하얀 색의 나무 한 그루를 발견합니다. 무언가를 보호하는 갈비뼈처럼 안쪽으로 휘어진 가지에는, 점토 장식이 매달려 있습니다.\n\n정말 [purple]소름끼치는 나무[/purple]입니다. 나무는 속삭입니다.\n\n[sine][blue]...거래하라.....[/blue][/sine]",
+    "preconditions": [
+      "Requires 50+ gold"
+    ],
     "options": [
       {
         "id": "GOLD",
@@ -5166,6 +5287,9 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "당신은 먼지가 쌓인 상자를 열고, 정교한 형태의 나무 조각 3개를 발견했습니다:\n\n새, 뱀, 그리고... 고리?\n\n근처에 있던 받침대에는 조각의 바닥 부분과 일치하는 움푹 들어간 흔적이 있습니다. 받침대 위에 어떤 조각을 올려놓을까요?",
+    "preconditions": [
+      "Requires a removable basic card"
+    ],
     "options": [
       {
         "id": "BIRD",
@@ -5235,6 +5359,9 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": "당신은 거미줄에 걸려, [jitter][red]공황[/red][/jitter] 상태에 빠졌습니다!\n하지만 곧, [sine][blue]평온의 파도[/blue][/sine]가 당신을 덮쳐옵니다...\n\n[sine]“진정하세요. 제 거미줄을 어지럽히지 말아주시죠.”[/sine]\n\n어떻게 이렇게 빨리 진정할 수 있었던 걸까요?\n[orange]아주 작은[/orange] 거미가 당신을 보기 위해 아래로 내려옵니다. [gold]골드[/gold]를 준다면 몇 가지 기술을 기꺼이 전수해 줄 것 같습니다.",
+    "preconditions": [
+      "Requires 125+ gold"
+    ],
     "options": [
       {
         "id": "BREATHING_TECHNIQUES",

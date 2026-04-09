@@ -165,6 +165,20 @@ export default function EventDetail() {
           )}
         </div>
 
+        {/* Preconditions */}
+        {event.preconditions && event.preconditions.length > 0 && (
+          <div className="flex flex-wrap gap-1.5 mb-4 justify-center">
+            {event.preconditions.map((cond, i) => (
+              <span
+                key={i}
+                className="text-xs px-2.5 py-1 rounded-full border border-amber-800/40 bg-amber-950/30 text-amber-300"
+              >
+                {cond}
+              </span>
+            ))}
+          </div>
+        )}
+
         {/* Description */}
         {event.description && (
           <div className="text-sm text-[var(--text-secondary)] leading-relaxed mb-6 whitespace-pre-line">

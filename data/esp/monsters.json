@@ -26,6 +26,19 @@
       }
     ],
     "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": "NOTHING",
+      "states": [
+        {
+          "id": "NOTHING",
+          "type": "move",
+          "move_id": "NOTHING",
+          "next": "NOTHING"
+        }
+      ],
+      "description": "Always uses Nada"
+    },
     "image_url": "/static/images/monsters/architect.png",
     "beta_image_url": null
   },
@@ -65,6 +78,19 @@
       }
     ],
     "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": "KILLSHOT",
+      "states": [
+        {
+          "id": "KILLSHOT_MOVE",
+          "type": "move",
+          "move_id": "KILLSHOT",
+          "next": "KILLSHOT_MOVE"
+        }
+      ],
+      "description": "Always uses Ejecutor"
+    },
     "image_url": "/static/images/monsters/assassin_ruby_raider.png",
     "beta_image_url": null
   },
@@ -128,6 +154,31 @@
       }
     ],
     "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": "SWING_1",
+      "states": [
+        {
+          "id": "SWING_1",
+          "type": "move",
+          "move_id": "SWING_1",
+          "next": "SWING_2"
+        },
+        {
+          "id": "SWING_2",
+          "type": "move",
+          "move_id": "SWING_2",
+          "next": "BIG_SWING"
+        },
+        {
+          "id": "BIG_SWING",
+          "type": "move",
+          "move_id": "BIG_SWING",
+          "next": "SWING_1"
+        }
+      ],
+      "description": "Cycle: Swing 1 → Swing 2 → Gran cruzado → repeat"
+    },
     "image_url": "/static/images/monsters/axe_ruby_raider.png",
     "beta_image_url": null
   },
@@ -221,6 +272,42 @@
       }
     ],
     "innate_powers": null,
+    "attack_pattern": {
+      "type": "random",
+      "initial_move": "BOOT_UP",
+      "states": [
+        {
+          "id": "BOOT_UP_MOVE",
+          "type": "move",
+          "move_id": "BOOT_UP",
+          "next": "RAND_MOVE"
+        },
+        {
+          "id": "ONE_TWO_MOVE",
+          "type": "move",
+          "move_id": "ONE_TWO",
+          "next": "RAND_MOVE"
+        },
+        {
+          "id": "SHARPEN_MOVE",
+          "type": "move",
+          "move_id": "SHARPEN",
+          "next": "RAND_MOVE"
+        },
+        {
+          "id": "HAMMER_UPPERCUT_MOVE",
+          "type": "move",
+          "move_id": "HAMMER_UPPERCUT",
+          "next": "RAND_MOVE"
+        },
+        {
+          "id": "RAND_MOVE",
+          "type": "random",
+          "branches": []
+        }
+      ],
+      "description": "Starts with Reinicio"
+    },
     "image_url": "/static/images/monsters/axebot.png",
     "beta_image_url": null
   },
@@ -250,12 +337,20 @@
         "is_weak": false
       }
     ],
-    "innate_powers": [
-      {
-        "power_id": "BATTLEWORN_DUMMY_TIME_LIMIT",
-        "amount": 3
-      }
-    ],
+    "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": null,
+      "states": [
+        {
+          "id": "NOTHING_MOVE",
+          "type": "move",
+          "move_id": "NOTHING",
+          "next": "NOTHING_MOVE"
+        }
+      ],
+      "description": ""
+    },
     "image_url": "/static/images/monsters/battle_friend_v1.png",
     "beta_image_url": null
   },
@@ -285,12 +380,20 @@
         "is_weak": false
       }
     ],
-    "innate_powers": [
-      {
-        "power_id": "BATTLEWORN_DUMMY_TIME_LIMIT",
-        "amount": 3
-      }
-    ],
+    "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": null,
+      "states": [
+        {
+          "id": "NOTHING_MOVE",
+          "type": "move",
+          "move_id": "NOTHING",
+          "next": "NOTHING_MOVE"
+        }
+      ],
+      "description": ""
+    },
     "image_url": "/static/images/monsters/battle_friend_v2.png",
     "beta_image_url": null
   },
@@ -320,12 +423,20 @@
         "is_weak": false
       }
     ],
-    "innate_powers": [
-      {
-        "power_id": "BATTLEWORN_DUMMY_TIME_LIMIT",
-        "amount": 3
-      }
-    ],
+    "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": null,
+      "states": [
+        {
+          "id": "NOTHING_MOVE",
+          "type": "move",
+          "move_id": "NOTHING",
+          "next": "NOTHING_MOVE"
+        }
+      ],
+      "description": ""
+    },
     "image_url": "/static/images/monsters/battle_friend_v3.png",
     "beta_image_url": null
   },
@@ -380,6 +491,19 @@
       }
     ],
     "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": "BITE",
+      "states": [
+        {
+          "id": "BITE_MOVE",
+          "type": "move",
+          "move_id": "BITE",
+          "next": "BITE_MOVE"
+        }
+      ],
+      "description": "Always uses Mordida"
+    },
     "image_url": "/static/images/monsters/bowlbug_egg.png",
     "beta_image_url": null
   },
@@ -444,6 +568,31 @@
       }
     ],
     "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": "THRASH",
+      "states": [
+        {
+          "id": "THRASH_MOVE",
+          "type": "move",
+          "move_id": "THRASH",
+          "next": "BUFF_MOVE"
+        },
+        {
+          "id": "BUFF_MOVE",
+          "type": "move",
+          "move_id": "BUFF",
+          "next": "THRASH2_MOVE"
+        },
+        {
+          "id": "THRASH2_MOVE",
+          "type": "move",
+          "move_id": "THRASH2",
+          "next": "THRASH2_MOVE"
+        }
+      ],
+      "description": "Cycle: Despedazar → Mejora → Despedazar → repeat"
+    },
     "image_url": "/static/images/monsters/bowlbug_nectar.png",
     "beta_image_url": null
   },
@@ -501,12 +650,30 @@
         "is_weak": false
       }
     ],
-    "innate_powers": [
-      {
-        "power_id": "IMBALANCED",
-        "amount": 1
-      }
-    ],
+    "innate_powers": null,
+    "attack_pattern": {
+      "type": "conditional",
+      "initial_move": "HEADBUTT",
+      "states": [
+        {
+          "id": "HEADBUTT_MOVE",
+          "type": "move",
+          "move_id": "HEADBUTT"
+        },
+        {
+          "id": "DIZZY_MOVE",
+          "type": "move",
+          "move_id": "DIZZY",
+          "next": "HEADBUTT_MOVE"
+        },
+        {
+          "id": "POST_HEADBUTT",
+          "type": "conditional",
+          "branches": []
+        }
+      ],
+      "description": "Starts with Cabezazo"
+    },
     "image_url": "/static/images/monsters/bowlbug_rock.png",
     "beta_image_url": null
   },
@@ -574,6 +741,23 @@
       }
     ],
     "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": null,
+      "states": [
+        {
+          "id": "TRASH_MOVE",
+          "type": "move",
+          "move_id": "TRASH"
+        },
+        {
+          "id": "TOXIC_SPIT_MOVE",
+          "type": "move",
+          "move_id": "TOXIC_SPIT"
+        }
+      ],
+      "description": ""
+    },
     "image_url": "/static/images/monsters/bowlbug_silk.png",
     "beta_image_url": null
   },
@@ -625,6 +809,23 @@
       }
     ],
     "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": "BEAT",
+      "states": [
+        {
+          "id": "BEAT_MOVE",
+          "type": "move",
+          "move_id": "BEAT"
+        },
+        {
+          "id": "ROAR_MOVE",
+          "type": "move",
+          "move_id": "ROAR"
+        }
+      ],
+      "description": "Always uses Golpe"
+    },
     "image_url": "/static/images/monsters/brute_ruby_raider.png",
     "beta_image_url": null
   },
@@ -685,12 +886,38 @@
         "is_weak": false
       }
     ],
-    "innate_powers": [
-      {
-        "power_id": "SLOW",
-        "amount": 1
-      }
-    ],
+    "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": "INITIAL_SLEEP",
+      "states": [
+        {
+          "id": "INITIAL_SLEEP_MOVE",
+          "type": "move",
+          "move_id": "INITIAL_SLEEP",
+          "next": "WAKE_MOVE"
+        },
+        {
+          "id": "WAKE_MOVE",
+          "type": "move",
+          "move_id": "WAKE",
+          "next": "SLASHES_MOVE"
+        },
+        {
+          "id": "SLEEP_MOVE",
+          "type": "move",
+          "move_id": "SLEEP",
+          "next": "SLASHES_MOVE"
+        },
+        {
+          "id": "SLASHES_MOVE",
+          "type": "move",
+          "move_id": "SLASHES",
+          "next": "SLASHES_MOVE"
+        }
+      ],
+      "description": "Cycle: Initial Sleep → Wake → Siega → repeat"
+    },
     "image_url": "/static/images/monsters/bygone_effigy.png",
     "beta_image_url": null
   },
@@ -745,12 +972,26 @@
         "is_weak": false
       }
     ],
-    "innate_powers": [
-      {
-        "power_id": "TERRITORIAL",
-        "amount": 1
-      }
-    ],
+    "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": "SWOOP",
+      "states": [
+        {
+          "id": "PECK_MOVE",
+          "type": "move",
+          "move_id": "PECK",
+          "next": "SWOOP_MOVE"
+        },
+        {
+          "id": "SWOOP_MOVE",
+          "type": "move",
+          "move_id": "SWOOP",
+          "next": "PECK_MOVE"
+        }
+      ],
+      "description": "Cycle: Swoop → Picotazo → repeat"
+    },
     "image_url": "/static/images/monsters/byrdonis.png",
     "beta_image_url": null
   },
@@ -773,6 +1014,19 @@
     "block_values": null,
     "encounters": null,
     "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": null,
+      "states": [
+        {
+          "id": "NOTHING_MOVE",
+          "type": "move",
+          "move_id": "NOTHING",
+          "next": "NOTHING_MOVE"
+        }
+      ],
+      "description": ""
+    },
     "image_url": "/static/images/monsters/byrdpip.png",
     "beta_image_url": null
   },
@@ -831,6 +1085,23 @@
       }
     ],
     "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": "INCANTATION",
+      "states": [
+        {
+          "id": "INCANTATION_MOVE",
+          "type": "move",
+          "move_id": "INCANTATION"
+        },
+        {
+          "id": "DARK_STRIKE_MOVE",
+          "type": "move",
+          "move_id": "DARK_STRIKE"
+        }
+      ],
+      "description": "Always uses Encantamiento"
+    },
     "image_url": "/static/images/monsters/calcified_cultist.png",
     "beta_image_url": null
   },
@@ -939,6 +1210,50 @@
       }
     ],
     "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": "STAMP",
+      "states": [
+        {
+          "id": "STAMP_MOVE",
+          "type": "move",
+          "move_id": "STAMP",
+          "next": "PLOW_MOVE"
+        },
+        {
+          "id": "PLOW_MOVE",
+          "type": "move",
+          "move_id": "PLOW",
+          "next": "PLOW_MOVE"
+        },
+        {
+          "id": "STUN_MOVE",
+          "type": "move",
+          "move_id": "STUN",
+          "must_perform_once": true,
+          "next": "BEAST_CRY_MOVE"
+        },
+        {
+          "id": "STOMP_MOVE",
+          "type": "move",
+          "move_id": "STOMP",
+          "next": "CRUSH_MOVE"
+        },
+        {
+          "id": "CRUSH_MOVE",
+          "type": "move",
+          "move_id": "CRUSH",
+          "next": "BEAST_CRY_MOVE"
+        },
+        {
+          "id": "BEAST_CRY_MOVE",
+          "type": "move",
+          "move_id": "BEAST_CRY",
+          "next": "STOMP_MOVE"
+        }
+      ],
+      "description": "Cycle: Pisada → Cornada → repeat"
+    },
     "image_url": "/static/images/monsters/ceremonial_beast.png",
     "beta_image_url": null
   },
@@ -984,12 +1299,24 @@
         "is_weak": false
       }
     ],
-    "innate_powers": [
-      {
-        "power_id": "ARTIFACT",
-        "amount": 2
-      }
-    ],
+    "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": null,
+      "states": [
+        {
+          "id": "CLAMP_MOVE",
+          "type": "move",
+          "move_id": "CLAMP"
+        },
+        {
+          "id": "SCREECH_MOVE",
+          "type": "move",
+          "move_id": "SCREECH"
+        }
+      ],
+      "description": ""
+    },
     "image_url": "/static/images/monsters/chomper.png",
     "beta_image_url": null
   },
@@ -1060,7 +1387,38 @@
         "is_weak": true
       }
     ],
-    "innate_powers": null,
+    "innate_powers": [
+      {
+        "power_id": "RAVENOUS",
+        "amount": 4,
+        "amount_ascension": 5
+      }
+    ],
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": null,
+      "states": [
+        {
+          "id": "WHIP_SLAP_MOVE",
+          "type": "move",
+          "move_id": "WHIP_SLAP",
+          "next": "GLOMP_MOVE"
+        },
+        {
+          "id": "GLOMP_MOVE",
+          "type": "move",
+          "move_id": "GLOMP",
+          "next": "GOOP_MOVE"
+        },
+        {
+          "id": "GOOP_MOVE",
+          "type": "move",
+          "move_id": "GOOP",
+          "next": "WHIP_SLAP_MOVE"
+        }
+      ],
+      "description": ""
+    },
     "image_url": "/static/images/monsters/corpse_slug.png",
     "beta_image_url": null
   },
@@ -1106,6 +1464,23 @@
       }
     ],
     "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": null,
+      "states": [
+        {
+          "id": "FIRE_MOVE",
+          "type": "move",
+          "move_id": "FIRE"
+        },
+        {
+          "id": "RELOAD_MOVE",
+          "type": "move",
+          "move_id": "RELOAD"
+        }
+      ],
+      "description": ""
+    },
     "image_url": "/static/images/monsters/crossbow_ruby_raider.png",
     "beta_image_url": null
   },
@@ -1210,16 +1585,44 @@
         "is_weak": false
       }
     ],
-    "innate_powers": [
-      {
-        "power_id": "BACK_ATTACK_LEFT",
-        "amount": 1
-      },
-      {
-        "power_id": "CRAB_RAGE",
-        "amount": 1
-      }
-    ],
+    "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": "THRASH",
+      "states": [
+        {
+          "id": "THRASH_MOVE",
+          "type": "move",
+          "move_id": "THRASH",
+          "next": "ENLARGING_STRIKE_MOVE"
+        },
+        {
+          "id": "ENLARGING_STRIKE_MOVE",
+          "type": "move",
+          "move_id": "ENLARGING_STRIKE",
+          "next": "BUG_STING_MOVE"
+        },
+        {
+          "id": "BUG_STING_MOVE",
+          "type": "move",
+          "move_id": "BUG_STING",
+          "next": "ADAPT_MOVE"
+        },
+        {
+          "id": "ADAPT_MOVE",
+          "type": "move",
+          "move_id": "ADAPT",
+          "next": "GUARDED_STRIKE_MOVE"
+        },
+        {
+          "id": "GUARDED_STRIKE_MOVE",
+          "type": "move",
+          "move_id": "GUARDED_STRIKE",
+          "next": "THRASH_MOVE"
+        }
+      ],
+      "description": "Cycle: Despedazar → Golpe creciente → Picadura → Adaptación → Golpe defensivo → repeat"
+    },
     "image_url": "/static/images/monsters/crusher.png",
     "beta_image_url": null
   },
@@ -1321,12 +1724,44 @@
         "is_weak": false
       }
     ],
-    "innate_powers": [
-      {
-        "power_id": "ARTIFACT",
-        "amount": 1
-      }
-    ],
+    "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": "CHARGE_UP",
+      "states": [
+        {
+          "id": "CHARGE_UP_MOVE",
+          "type": "move",
+          "move_id": "CHARGE_UP",
+          "next": "REPEATER_MOVE"
+        },
+        {
+          "id": "REPEATER_MOVE",
+          "type": "move",
+          "move_id": "REPEATER",
+          "next": "REPEATER_MOVE_2"
+        },
+        {
+          "id": "REPEATER_MOVE_2",
+          "type": "move",
+          "move_id": "REPEATER_MOVE_2",
+          "next": "EXPEL_BLAST"
+        },
+        {
+          "id": "EXPEL_BLAST",
+          "type": "move",
+          "move_id": "EXPEL_BLAST",
+          "next": "REPEATER_MOVE"
+        },
+        {
+          "id": "SUBMERGE_MOVE",
+          "type": "move",
+          "move_id": "SUBMERGE",
+          "next": "CHARGE_UP_MOVE"
+        }
+      ],
+      "description": "Cycle: Acometida → Repeater → Repeater Move 2 → Expel Blast → repeat"
+    },
     "image_url": "/static/images/monsters/cubex_construct.png",
     "beta_image_url": null
   },
@@ -1378,6 +1813,23 @@
       }
     ],
     "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": "INCANTATION",
+      "states": [
+        {
+          "id": "INCANTATION_MOVE",
+          "type": "move",
+          "move_id": "INCANTATION"
+        },
+        {
+          "id": "DARK_STRIKE_MOVE",
+          "type": "move",
+          "move_id": "DARK_STRIKE"
+        }
+      ],
+      "description": "Always uses Encantamiento"
+    },
     "image_url": "/static/images/monsters/damp_cultist.png",
     "beta_image_url": null
   },
@@ -1460,12 +1912,50 @@
     },
     "block_values": null,
     "encounters": null,
-    "innate_powers": [
-      {
-        "power_id": "REATTACH",
-        "amount": 25
-      }
-    ],
+    "innate_powers": null,
+    "attack_pattern": {
+      "type": "random",
+      "initial_move": null,
+      "states": [
+        {
+          "id": "WRITHE_MOVE",
+          "type": "move",
+          "move_id": "WRITHE",
+          "next": "CONSTRICT_MOVE"
+        },
+        {
+          "id": "BULK_MOVE",
+          "type": "move",
+          "move_id": "BULK",
+          "next": "WRITHE_MOVE"
+        },
+        {
+          "id": "CONSTRICT_MOVE",
+          "type": "move",
+          "move_id": "CONSTRICT",
+          "next": "BULK_MOVE"
+        },
+        {
+          "id": "REATTACH_MOVE",
+          "type": "move",
+          "move_id": "REATTACH",
+          "must_perform_once": true,
+          "next": "RAND"
+        },
+        {
+          "id": "DEAD_MOVE",
+          "type": "move",
+          "move_id": "DEAD",
+          "next": "REATTACH_MOVE"
+        },
+        {
+          "id": "RAND",
+          "type": "random",
+          "branches": []
+        }
+      ],
+      "description": ""
+    },
     "image_url": "/static/images/monsters/decimillipede.png",
     "beta_image_url": null
   },
@@ -1510,6 +2000,23 @@
       }
     ],
     "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": "FORBIDDEN_INCANTATION",
+      "states": [
+        {
+          "id": "FORBIDDEN_INCANTATION_MOVE",
+          "type": "move",
+          "move_id": "FORBIDDEN_INCANTATION"
+        },
+        {
+          "id": "SAVAGE_MOVE",
+          "type": "move",
+          "move_id": "SAVAGE"
+        }
+      ],
+      "description": "Always uses Forbidden Incantation"
+    },
     "image_url": "/static/images/monsters/devoted_sculptor.png",
     "beta_image_url": null
   },
@@ -1586,12 +2093,31 @@
         "is_weak": false
       }
     ],
-    "innate_powers": [
-      {
-        "power_id": "DOOR_REVIVAL",
-        "amount": 1
-      }
-    ],
+    "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": null,
+      "states": [
+        {
+          "id": "ENFORCE_MOVE",
+          "type": "move",
+          "move_id": "ENFORCE"
+        },
+        {
+          "id": "DOOR_SLAM_MOVE",
+          "type": "move",
+          "move_id": "DOOR_SLAM",
+          "next": "ENFORCE_MOVE"
+        },
+        {
+          "id": "DEAD_MOVE",
+          "type": "move",
+          "move_id": "DEAD",
+          "next": "DEAD_MOVE"
+        }
+      ],
+      "description": ""
+    },
     "image_url": "/static/images/monsters/door.png",
     "beta_image_url": "/static/images/monsters/beta/door.png"
   },
@@ -1656,6 +2182,31 @@
       }
     ],
     "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": "WHAT_IS_IT",
+      "states": [
+        {
+          "id": "WHAT_IS_IT_MOVE",
+          "type": "move",
+          "move_id": "WHAT_IS_IT",
+          "next": "BEAM_MOVE"
+        },
+        {
+          "id": "BEAM_MOVE",
+          "type": "move",
+          "move_id": "BEAM",
+          "next": "GET_BACK_IN_MOVE"
+        },
+        {
+          "id": "GET_BACK_IN_MOVE",
+          "type": "move",
+          "move_id": "GET_BACK_IN",
+          "next": "GET_BACK_IN_MOVE"
+        }
+      ],
+      "description": "Cycle: What Is It → Beam → Get Back In → repeat"
+    },
     "image_url": "/static/images/monsters/doormaker.png",
     "beta_image_url": "/static/images/monsters/beta/door_maker_placeholder_2.png"
   },
@@ -1732,12 +2283,30 @@
         "is_weak": false
       }
     ],
-    "innate_powers": [
-      {
-        "power_id": "PERSONAL_HIVE",
-        "amount": 1
-      }
-    ],
+    "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": "BEES",
+      "states": [
+        {
+          "id": "PHEROMONE_SPIT_MOVE",
+          "type": "move",
+          "move_id": "PHEROMONE_SPIT",
+          "next": "BEES_MOVE"
+        },
+        {
+          "id": "BEES_MOVE",
+          "type": "move",
+          "move_id": "BEES"
+        },
+        {
+          "id": "SPEAR_MOVE",
+          "type": "move",
+          "move_id": "SPEAR"
+        }
+      ],
+      "description": "Always uses ¡Abeeeejas!"
+    },
     "image_url": "/static/images/monsters/entomancer.png",
     "beta_image_url": null
   },
@@ -1808,12 +2377,70 @@
         "is_weak": true
       }
     ],
-    "innate_powers": [
-      {
-        "power_id": "HARD_TO_KILL",
-        "amount": 9
-      }
-    ],
+    "innate_powers": null,
+    "attack_pattern": {
+      "type": "mixed",
+      "initial_move": "INIT_MOVE",
+      "states": [
+        {
+          "id": "SKITTER_MOVE",
+          "type": "move",
+          "move_id": "SKITTER",
+          "next": "RAND"
+        },
+        {
+          "id": "MANDIBLE_MOVE",
+          "type": "move",
+          "move_id": "MANDIBLE",
+          "next": "ENRAGE_MOVE"
+        },
+        {
+          "id": "ENRAGE_MOVE",
+          "type": "move",
+          "move_id": "ENRAGE",
+          "next": "RAND"
+        },
+        {
+          "id": "RAND",
+          "type": "random",
+          "branches": [
+            {
+              "move_id": "SKITTER",
+              "weight": 1.0,
+              "repeat": "CannotRepeat"
+            },
+            {
+              "move_id": "MANDIBLE",
+              "weight": 1.0,
+              "repeat": "CannotRepeat"
+            }
+          ]
+        },
+        {
+          "id": "INIT_MOVE",
+          "type": "conditional",
+          "branches": [
+            {
+              "move_id": "SKITTER",
+              "condition": "base.Creature.SlotName == \"first\""
+            },
+            {
+              "move_id": "MANDIBLE",
+              "condition": "base.Creature.SlotName == \"second\""
+            },
+            {
+              "move_id": "ENRAGE",
+              "condition": "base.Creature.SlotName == \"third\""
+            },
+            {
+              "move_id": "RAND",
+              "condition": "base.Creature.SlotName == \"fourth\""
+            }
+          ]
+        }
+      ],
+      "description": "then random: Escabullirse (no repeat), Mandible (no repeat); then conditional: Escabullirse (if base.Creature.SlotName == \"first\") / Mandible (if base.Creature.SlotName == \"second\") / Cólera (if base.Creature.SlotName == \"third\") / Rand (if base.Creature.SlotName == \"fourth\")"
+    },
     "image_url": "/static/images/monsters/exoskeleton.png",
     "beta_image_url": null
   },
@@ -1843,12 +2470,20 @@
         "is_weak": false
       }
     ],
-    "innate_powers": [
-      {
-        "power_id": "ILLUSION",
-        "amount": 1
-      }
-    ],
+    "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": "DISTRACT",
+      "states": [
+        {
+          "id": "DISTRACT_MOVE",
+          "type": "move",
+          "move_id": "DISTRACT",
+          "next": "DISTRACT_MOVE"
+        }
+      ],
+      "description": "Always uses Distracción"
+    },
     "image_url": "/static/images/monsters/eye_with_teeth.png",
     "beta_image_url": null
   },
@@ -1906,6 +2541,61 @@
       }
     ],
     "innate_powers": null,
+    "attack_pattern": {
+      "type": "mixed",
+      "initial_move": "fabricateBranch",
+      "states": [
+        {
+          "id": "FABRICATE_MOVE",
+          "type": "move",
+          "move_id": "FABRICATE",
+          "next": "fabricateBranch"
+        },
+        {
+          "id": "FABRICATING_STRIKE_MOVE",
+          "type": "move",
+          "move_id": "FABRICATING_STRIKE",
+          "next": "fabricateBranch"
+        },
+        {
+          "id": "DISINTEGRATE_MOVE",
+          "type": "move",
+          "move_id": "DISINTEGRATE",
+          "next": "fabricateBranch"
+        },
+        {
+          "id": "RAND",
+          "type": "random",
+          "branches": [
+            {
+              "move_id": "FABRICATE",
+              "weight": 1.0,
+              "repeat": "CanRepeatForever"
+            },
+            {
+              "move_id": "FABRICATING_STRIKE",
+              "weight": 1.0,
+              "repeat": "CanRepeatForever"
+            }
+          ]
+        },
+        {
+          "id": "fabricateBranch",
+          "type": "conditional",
+          "branches": [
+            {
+              "move_id": "RAND",
+              "condition": "CanFabricate"
+            },
+            {
+              "move_id": "DISINTEGRATE",
+              "condition": "!CanFabricate"
+            }
+          ]
+        }
+      ],
+      "description": "then random: Fabricar, Fabricating Strike; then conditional: Rand (if CanFabricate) / Desintegrar (if !CanFabricate)"
+    },
     "image_url": "/static/images/monsters/fabricator.png",
     "beta_image_url": null
   },
@@ -1988,6 +2678,47 @@
       }
     ],
     "innate_powers": null,
+    "attack_pattern": {
+      "type": "random",
+      "initial_move": "SWIPE",
+      "states": [
+        {
+          "id": "SWIPE_MOVE",
+          "type": "move",
+          "move_id": "SWIPE",
+          "next": "RAND_MOVE"
+        },
+        {
+          "id": "SPEW_COINS_MOVE",
+          "type": "move",
+          "move_id": "SPEW_COINS",
+          "next": "RAND_MOVE"
+        },
+        {
+          "id": "THROW_RELIC_MOVE",
+          "type": "move",
+          "move_id": "THROW_RELIC",
+          "next": "RAND_ATTACK_MOVE"
+        },
+        {
+          "id": "ENRAGE_MOVE",
+          "type": "move",
+          "move_id": "ENRAGE",
+          "next": "RAND_MOVE"
+        },
+        {
+          "id": "RAND_MOVE",
+          "type": "random",
+          "branches": []
+        },
+        {
+          "id": "RAND_ATTACK_MOVE",
+          "type": "random",
+          "branches": []
+        }
+      ],
+      "description": "Starts with Robo"
+    },
     "image_url": "/static/images/monsters/fake_merchant.png",
     "beta_image_url": null
   },
@@ -2023,6 +2754,23 @@
       }
     ],
     "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": "SPAWNED",
+      "states": [
+        {
+          "id": "SPAWNED_MOVE",
+          "type": "move",
+          "move_id": "SPAWNED"
+        },
+        {
+          "id": "FLEE_MOVE",
+          "type": "move",
+          "move_id": "FLEE"
+        }
+      ],
+      "description": "Always uses Spawned"
+    },
     "image_url": "/static/images/monsters/fat_gremlin.png",
     "beta_image_url": null
   },
@@ -2089,6 +2837,41 @@
       }
     ],
     "innate_powers": null,
+    "attack_pattern": {
+      "type": "random",
+      "initial_move": "RAM",
+      "states": [
+        {
+          "id": "WAR_CHANT",
+          "type": "move",
+          "move_id": "WAR_CHANT",
+          "next": "RAND"
+        },
+        {
+          "id": "FLAIL_MOVE",
+          "type": "move",
+          "move_id": "FLAIL",
+          "next": "RAND"
+        },
+        {
+          "id": "RAM_MOVE",
+          "type": "move",
+          "move_id": "RAM",
+          "next": "RAND"
+        },
+        {
+          "id": "RAND",
+          "type": "random",
+          "branches": []
+        },
+        {
+          "id": "RAND",
+          "type": "random",
+          "branches": []
+        }
+      ],
+      "description": "Starts with Embestir"
+    },
     "image_url": "/static/images/monsters/flail_knight.png",
     "beta_image_url": null
   },
@@ -2171,6 +2954,41 @@
       }
     ],
     "innate_powers": null,
+    "attack_pattern": {
+      "type": "random",
+      "initial_move": "INITIAL",
+      "states": [
+        {
+          "id": "VULNERABLE_SPORES_MOVE",
+          "type": "move",
+          "move_id": "VULNERABLE_SPORES",
+          "next": "RAND"
+        },
+        {
+          "id": "FRAIL_SPORES_MOVE",
+          "type": "move",
+          "move_id": "FRAIL_SPORES",
+          "next": "RAND"
+        },
+        {
+          "id": "SMASH_MOVE",
+          "type": "move",
+          "move_id": "SMASH",
+          "next": "RAND"
+        },
+        {
+          "id": "RAND",
+          "type": "random",
+          "branches": []
+        },
+        {
+          "id": "INITIAL",
+          "type": "random",
+          "branches": []
+        }
+      ],
+      "description": ""
+    },
     "image_url": "/static/images/monsters/flyconid.png",
     "beta_image_url": null
   },
@@ -2251,6 +3069,53 @@
       }
     ],
     "innate_powers": null,
+    "attack_pattern": {
+      "type": "random",
+      "initial_move": "ILLUSION",
+      "states": [
+        {
+          "id": "ILLUSION_MOVE",
+          "type": "move",
+          "move_id": "ILLUSION",
+          "next": "SWIPE_MOVE"
+        },
+        {
+          "id": "SWIPE_MOVE",
+          "type": "move",
+          "move_id": "SWIPE",
+          "next": "BRANCH"
+        },
+        {
+          "id": "SWIPE_RANDOM_MOVE",
+          "type": "move",
+          "move_id": "SWIPE_RANDOM",
+          "next": "HEADBUTT_MOVE"
+        },
+        {
+          "id": "HEADBUTT_MOVE",
+          "type": "move",
+          "move_id": "HEADBUTT",
+          "next": "SWIPE_MOVE"
+        },
+        {
+          "id": "BRANCH",
+          "type": "random",
+          "branches": [
+            {
+              "move_id": "SWIPE_RANDOM",
+              "weight": 0.4,
+              "repeat": "CannotRepeat"
+            },
+            {
+              "move_id": "HEADBUTT",
+              "weight": 0.6,
+              "repeat": "CannotRepeat"
+            }
+          ]
+        }
+      ],
+      "description": "Starts with Illusion, then random: Swipe Random (no repeat, 40%), Headbutt (no repeat, 60%)"
+    },
     "image_url": "/static/images/monsters/fogmog.png",
     "beta_image_url": null
   },
@@ -2324,12 +3189,42 @@
         "is_weak": false
       }
     ],
-    "innate_powers": [
-      {
-        "power_id": "SUCK",
-        "amount": 3
-      }
-    ],
+    "innate_powers": null,
+    "attack_pattern": {
+      "type": "random",
+      "initial_move": "LATCH",
+      "states": [
+        {
+          "id": "TACKLE_MOVE",
+          "type": "move",
+          "move_id": "TACKLE",
+          "next": "RAND"
+        },
+        {
+          "id": "LATCH_MOVE",
+          "type": "move",
+          "move_id": "LATCH",
+          "next": "RAND"
+        },
+        {
+          "id": "LASH_MOVE",
+          "type": "move",
+          "move_id": "LASH",
+          "next": "RAND"
+        },
+        {
+          "id": "RAND",
+          "type": "random",
+          "branches": []
+        },
+        {
+          "id": "RAND",
+          "type": "random",
+          "branches": []
+        }
+      ],
+      "description": "Starts with Aferrarse"
+    },
     "image_url": "/static/images/monsters/fossil_stalker.png",
     "beta_image_url": null
   },
@@ -2413,7 +3308,58 @@
         "is_weak": false
       }
     ],
-    "innate_powers": null,
+    "innate_powers": [
+      {
+        "power_id": "PLATING",
+        "amount": 15,
+        "amount_ascension": 19
+      }
+    ],
+    "attack_pattern": {
+      "type": "conditional",
+      "initial_move": "TONGUE_LASH",
+      "states": [
+        {
+          "id": "FOR_THE_QUEEN",
+          "type": "move",
+          "move_id": "FOR_THE_QUEEN",
+          "next": "HALF_HEALTH"
+        },
+        {
+          "id": "STRIKE_DOWN_EVIL",
+          "type": "move",
+          "move_id": "STRIKE_DOWN_EVIL",
+          "next": "FOR_THE_QUEEN"
+        },
+        {
+          "id": "TONGUE_LASH",
+          "type": "move",
+          "move_id": "TONGUE_LASH",
+          "next": "STRIKE_DOWN_EVIL"
+        },
+        {
+          "id": "BEETLE_CHARGE",
+          "type": "move",
+          "move_id": "BEETLE_CHARGE",
+          "next": "TONGUE_LASH"
+        },
+        {
+          "id": "HALF_HEALTH",
+          "type": "conditional",
+          "branches": [
+            {
+              "move_id": "TONGUE_LASH",
+              "condition": "HasBeetleCharged || base.Creature.CurrentHp >= base.Creature.MaxHp / 2"
+            },
+            {
+              "move_id": "BEETLE_CHARGE",
+              "condition": "!HasBeetleCharged && base.Creature.CurrentHp < base.Creature.MaxHp / 2"
+            }
+          ]
+        }
+      ],
+      "description": "Starts: Látigo lengua → Expiar el mal → Por la reina; then conditional: Látigo lengua (if HasBeetleCharged || base.Creature.CurrentHp >= base.Creature.MaxHp / 2) / Carga de escarabajo (if !HasBeetleCharged && base.Creature.CurrentHp < base.Creature.MaxHp / 2)"
+    },
     "image_url": "/static/images/monsters/frog_knight.png",
     "beta_image_url": null
   },
@@ -2481,6 +3427,29 @@
       }
     ],
     "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": "FIRST_ACID_GOOP",
+      "states": [
+        {
+          "id": "FIRST_ACID_GOOP",
+          "type": "move",
+          "move_id": "FIRST_ACID_GOOP"
+        },
+        {
+          "id": "ACID_GOOP",
+          "type": "move",
+          "move_id": "ACID_GOOP",
+          "next": "FIRST_ACID_GOOP"
+        },
+        {
+          "id": "INHALE",
+          "type": "move",
+          "move_id": "INHALE"
+        }
+      ],
+      "description": "Always uses First Acid Goop"
+    },
     "image_url": "/static/images/monsters/fuzzy_wurm_crawler.png",
     "beta_image_url": null
   },
@@ -2519,12 +3488,19 @@
         "is_weak": false
       }
     ],
-    "innate_powers": [
-      {
-        "power_id": "MINION",
-        "amount": 1
-      }
-    ],
+    "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": "EXPLODE",
+      "states": [
+        {
+          "id": "EXPLODE_MOVE",
+          "type": "move",
+          "move_id": "EXPLODE"
+        }
+      ],
+      "description": "Always uses Explosión"
+    },
     "image_url": "/static/images/monsters/gas_bomb.png",
     "beta_image_url": null
   },
@@ -2605,12 +3581,32 @@
         "is_weak": false
       }
     ],
-    "innate_powers": [
-      {
-        "power_id": "GALVANIC",
-        "amount": 6
-      }
-    ],
+    "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": "SHOCKING_SLAP",
+      "states": [
+        {
+          "id": "THUNDER_STRIKE",
+          "type": "move",
+          "move_id": "THUNDER_STRIKE",
+          "next": "GALVANIC_BURST"
+        },
+        {
+          "id": "SHOCKING_SLAP",
+          "type": "move",
+          "move_id": "SHOCKING_SLAP",
+          "next": "THUNDER_STRIKE"
+        },
+        {
+          "id": "GALVANIC_BURST",
+          "type": "move",
+          "move_id": "GALVANIC_BURST",
+          "next": "SHOCKING_SLAP"
+        }
+      ],
+      "description": "Cycle: Golpe electrizante → Thunder Strike → Galvanic Burst → repeat"
+    },
     "image_url": "/static/images/monsters/orb_head.png",
     "beta_image_url": null
   },
@@ -2693,12 +3689,32 @@
         "is_weak": false
       }
     ],
-    "innate_powers": [
-      {
-        "power_id": "SURPRISE",
-        "amount": 1
-      }
-    ],
+    "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": "GIMME",
+      "states": [
+        {
+          "id": "GIMME_MOVE",
+          "type": "move",
+          "move_id": "GIMME",
+          "next": "DOUBLE_SMASH_MOVE"
+        },
+        {
+          "id": "DOUBLE_SMASH_MOVE",
+          "type": "move",
+          "move_id": "DOUBLE_SMASH",
+          "next": "HEHE_MOVE"
+        },
+        {
+          "id": "HEHE_MOVE",
+          "type": "move",
+          "move_id": "HEHE",
+          "next": "GIMME_MOVE"
+        }
+      ],
+      "description": "Cycle: Dame → Doble remate → Jeje → repeat"
+    },
     "image_url": "/static/images/monsters/gremlin_merc.png",
     "beta_image_url": null
   },
@@ -2722,6 +3738,19 @@
     "block_values": null,
     "encounters": null,
     "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": "GUARD",
+      "states": [
+        {
+          "id": "GUARD_MOVE",
+          "type": "move",
+          "move_id": "GUARD",
+          "next": "GUARD_MOVE"
+        }
+      ],
+      "description": "Always uses Guardia"
+    },
     "image_url": "/static/images/monsters/guardbot.png",
     "beta_image_url": null
   },
@@ -2811,6 +3840,47 @@
       }
     ],
     "innate_powers": null,
+    "attack_pattern": {
+      "type": "random",
+      "initial_move": "RAMMING_SPEED",
+      "states": [
+        {
+          "id": "RAMMING_SPEED_MOVE",
+          "type": "move",
+          "move_id": "RAMMING_SPEED",
+          "next": "RAND"
+        },
+        {
+          "id": "SWIPE_MOVE",
+          "type": "move",
+          "move_id": "SWIPE",
+          "next": "RAND"
+        },
+        {
+          "id": "STOMP_MOVE",
+          "type": "move",
+          "move_id": "STOMP",
+          "next": "RAND"
+        },
+        {
+          "id": "HAUNT_MOVE",
+          "type": "move",
+          "move_id": "HAUNT",
+          "next": "RAND"
+        },
+        {
+          "id": "RAND",
+          "type": "random",
+          "branches": []
+        },
+        {
+          "id": "RAND",
+          "type": "random",
+          "branches": []
+        }
+      ],
+      "description": "Starts with Embestida rápida"
+    },
     "image_url": "/static/images/monsters/haunted_ship.png",
     "beta_image_url": null
   },
@@ -2877,6 +3947,41 @@
       }
     ],
     "innate_powers": null,
+    "attack_pattern": {
+      "type": "random",
+      "initial_move": "TENDERIZING_GOOP",
+      "states": [
+        {
+          "id": "TENDERIZING_GOOP_MOVE",
+          "type": "move",
+          "move_id": "TENDERIZING_GOOP",
+          "next": "RAND"
+        },
+        {
+          "id": "BITE_MOVE",
+          "type": "move",
+          "move_id": "BITE",
+          "next": "RAND"
+        },
+        {
+          "id": "PUNCTURE_MOVE",
+          "type": "move",
+          "move_id": "PUNCTURE",
+          "next": "RAND"
+        },
+        {
+          "id": "RAND",
+          "type": "random",
+          "branches": []
+        },
+        {
+          "id": "RAND",
+          "type": "random",
+          "branches": []
+        }
+      ],
+      "description": "Starts with Jugo de descomposición"
+    },
     "image_url": "/static/images/monsters/hunter_killer.png",
     "beta_image_url": null
   },
@@ -2957,12 +4062,38 @@
         "is_weak": false
       }
     ],
-    "innate_powers": [
-      {
-        "power_id": "VITAL_SPARK",
-        "amount": 1
-      }
-    ],
+    "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": "JAB",
+      "states": [
+        {
+          "id": "JAB_MOVE",
+          "type": "move",
+          "move_id": "JAB",
+          "next": "RADIATE_MOVE"
+        },
+        {
+          "id": "RADIATE_MOVE",
+          "type": "move",
+          "move_id": "RADIATE",
+          "next": "WHIRLWIND_MOVE"
+        },
+        {
+          "id": "WHIRLWIND_MOVE",
+          "type": "move",
+          "move_id": "WHIRLWIND",
+          "next": "PULSATE_MOVE"
+        },
+        {
+          "id": "PULSATE_MOVE",
+          "type": "move",
+          "move_id": "PULSATE",
+          "next": "JAB_MOVE"
+        }
+      ],
+      "description": "Cycle: Golpe recto → Radiación → Vórtice → Pulso → repeat"
+    },
     "image_url": "/static/images/monsters/infested_prism.png",
     "beta_image_url": null
   },
@@ -3029,12 +4160,70 @@
         "is_weak": false
       }
     ],
-    "innate_powers": [
-      {
-        "power_id": "SLIPPERY",
-        "amount": 1
-      }
-    ],
+    "innate_powers": null,
+    "attack_pattern": {
+      "type": "random",
+      "initial_move": "WHIRLWIND",
+      "states": [
+        {
+          "id": "JAB_MOVE",
+          "type": "move",
+          "move_id": "JAB",
+          "next": "RAND"
+        },
+        {
+          "id": "WHIRLWIND_MOVE",
+          "type": "move",
+          "move_id": "WHIRLWIND",
+          "next": "JAB_MOVE"
+        },
+        {
+          "id": "PIERCING_GAZE_MOVE",
+          "type": "move",
+          "move_id": "PIERCING_GAZE",
+          "next": "JAB_MOVE"
+        },
+        {
+          "id": "INIT_RAND",
+          "type": "random",
+          "branches": [
+            {
+              "move_id": "JAB",
+              "weight": 1.0,
+              "repeat": "CanRepeatXTimes",
+              "max_times": 2
+            },
+            {
+              "move_id": "WHIRLWIND",
+              "weight": 1.0,
+              "repeat": "CannotRepeat"
+            }
+          ]
+        },
+        {
+          "id": "RAND",
+          "type": "random",
+          "branches": []
+        },
+        {
+          "id": "RAND",
+          "type": "random",
+          "branches": [
+            {
+              "move_id": "PIERCING_GAZE",
+              "weight": 1.0,
+              "repeat": "CannotRepeat"
+            },
+            {
+              "move_id": "WHIRLWIND",
+              "weight": 1.0,
+              "repeat": "CannotRepeat"
+            }
+          ]
+        }
+      ],
+      "description": "Starts: Whirlwind → Golpe recto; then random: Golpe recto, Whirlwind (no repeat); then random: Mirada penetrante (no repeat), Whirlwind (no repeat)"
+    },
     "image_url": "/static/images/monsters/inklet.png",
     "beta_image_url": null
   },
@@ -3100,12 +4289,32 @@
         "is_weak": false
       }
     ],
-    "innate_powers": [
-      {
-        "power_id": "MINION",
-        "amount": 1
-      }
-    ],
+    "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": "POWER_DANCE",
+      "states": [
+        {
+          "id": "QUICK_SLASH_MOVE",
+          "type": "move",
+          "move_id": "QUICK_SLASH",
+          "next": "BOOMERANG_MOVE"
+        },
+        {
+          "id": "BOOMERANG_MOVE",
+          "type": "move",
+          "move_id": "BOOMERANG",
+          "next": "POWER_DANCE_MOVE"
+        },
+        {
+          "id": "POWER_DANCE_MOVE",
+          "type": "move",
+          "move_id": "POWER_DANCE",
+          "next": "QUICK_SLASH_MOVE"
+        }
+      ],
+      "description": "Cycle: Power Dance → Quick Slash → Boomerang → repeat"
+    },
     "image_url": "/static/images/monsters/kin_follower.png",
     "beta_image_url": null
   },
@@ -3199,6 +4408,37 @@
       }
     ],
     "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": "ORB_OF_FRAILTY",
+      "states": [
+        {
+          "id": "ORB_OF_FRAILTY_MOVE",
+          "type": "move",
+          "move_id": "ORB_OF_FRAILTY",
+          "next": "ORB_OF_WEAKNESS_MOVE"
+        },
+        {
+          "id": "ORB_OF_WEAKNESS_MOVE",
+          "type": "move",
+          "move_id": "ORB_OF_WEAKNESS",
+          "next": "BEAM_MOVE"
+        },
+        {
+          "id": "BEAM_MOVE",
+          "type": "move",
+          "move_id": "BEAM",
+          "next": "RITUAL_MOVE"
+        },
+        {
+          "id": "RITUAL_MOVE",
+          "type": "move",
+          "move_id": "RITUAL",
+          "next": "ORB_OF_FRAILTY_MOVE"
+        }
+      ],
+      "description": "Cycle: Orb Of Frailty → Orb Of Weakness → Beam → Ritual → repeat"
+    },
     "image_url": "/static/images/monsters/kin_priest.png",
     "beta_image_url": null
   },
@@ -3279,6 +4519,51 @@
       }
     ],
     "innate_powers": null,
+    "attack_pattern": {
+      "type": "conditional",
+      "initial_move": "CURSE_OF_KNOWLEDGE",
+      "states": [
+        {
+          "id": "CURSE_OF_KNOWLEDGE_MOVE",
+          "type": "move",
+          "move_id": "CURSE_OF_KNOWLEDGE",
+          "next": "SLAP_MOVE"
+        },
+        {
+          "id": "SLAP_MOVE",
+          "type": "move",
+          "move_id": "SLAP",
+          "next": "KNOWLEDGE_OVERWHELMING_MOVE"
+        },
+        {
+          "id": "KNOWLEDGE_OVERWHELMING_MOVE",
+          "type": "move",
+          "move_id": "KNOWLEDGE_OVERWHELMING",
+          "next": "PONDER_MOVE"
+        },
+        {
+          "id": "PONDER_MOVE",
+          "type": "move",
+          "move_id": "PONDER",
+          "next": "CurseOfKnowledgeBranch"
+        },
+        {
+          "id": "CurseOfKnowledgeBranch",
+          "type": "conditional",
+          "branches": [
+            {
+              "move_id": "CURSE_OF_KNOWLEDGE",
+              "condition": "_curseOfKnowledgeCounter < 3"
+            },
+            {
+              "move_id": "SLAP",
+              "condition": "_curseOfKnowledgeCounter >= 3"
+            }
+          ]
+        }
+      ],
+      "description": "Starts: Maldición del saber → Slap → Conocimiento abrumador → Reflexión; then conditional: Maldición del saber (if _curseOfKnowledgeCounter < 3) / Slap (if _curseOfKnowledgeCounter >= 3)"
+    },
     "image_url": "/static/images/monsters/knowledge_demon.png",
     "beta_image_url": null
   },
@@ -3363,16 +4648,48 @@
         "is_weak": false
       }
     ],
-    "innate_powers": [
-      {
-        "power_id": "PLATING",
-        "amount": 12
-      },
-      {
-        "power_id": "ASLEEP",
-        "amount": 3
-      }
-    ],
+    "innate_powers": null,
+    "attack_pattern": {
+      "type": "conditional",
+      "initial_move": "SLEEP",
+      "states": [
+        {
+          "id": "SLEEP_MOVE",
+          "type": "move",
+          "move_id": "SLEEP"
+        },
+        {
+          "id": "SLASH_MOVE",
+          "type": "move",
+          "move_id": "SLASH",
+          "next": "DISEMBOWEL_MOVE"
+        },
+        {
+          "id": "SLASH2_MOVE",
+          "type": "move",
+          "move_id": "SLASH2",
+          "next": "SOUL_SIPHON_MOVE"
+        },
+        {
+          "id": "DISEMBOWEL_MOVE",
+          "type": "move",
+          "move_id": "DISEMBOWEL",
+          "next": "SLASH2_MOVE"
+        },
+        {
+          "id": "SOUL_SIPHON_MOVE",
+          "type": "move",
+          "move_id": "SOUL_SIPHON",
+          "next": "SLASH_MOVE"
+        },
+        {
+          "id": "SLEEP_BRANCH",
+          "type": "conditional",
+          "branches": []
+        }
+      ],
+      "description": "Starts with Letargo"
+    },
     "image_url": "/static/images/monsters/lagavulin_matriarch.png",
     "beta_image_url": null
   },
@@ -3438,6 +4755,25 @@
       }
     ],
     "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": "STICKY_SHOT",
+      "states": [
+        {
+          "id": "CLUMP_SHOT",
+          "type": "move",
+          "move_id": "CLUMP_SHOT",
+          "next": "STICKY_SHOT"
+        },
+        {
+          "id": "STICKY_SHOT",
+          "type": "move",
+          "move_id": "STICKY_SHOT",
+          "next": "CLUMP_SHOT"
+        }
+      ],
+      "description": "Cycle: Disparo pegajoso → Disparo grupal → repeat"
+    },
     "image_url": "/static/images/monsters/leaf_slime_m.png",
     "beta_image_url": null
   },
@@ -3496,6 +4832,35 @@
       }
     ],
     "innate_powers": null,
+    "attack_pattern": {
+      "type": "random",
+      "initial_move": "RAND",
+      "states": [
+        {
+          "id": "BUTT_MOVE",
+          "type": "move",
+          "move_id": "BUTT",
+          "next": "RAND"
+        },
+        {
+          "id": "GOOP_MOVE",
+          "type": "move",
+          "move_id": "GOOP",
+          "next": "RAND"
+        },
+        {
+          "id": "RAND",
+          "type": "random",
+          "branches": []
+        },
+        {
+          "id": "RAND",
+          "type": "random",
+          "branches": []
+        }
+      ],
+      "description": ""
+    },
     "image_url": "/static/images/monsters/leaf_slime_s.png",
     "beta_image_url": null
   },
@@ -3568,6 +4933,31 @@
       }
     ],
     "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": "ADVANCED_GAS",
+      "states": [
+        {
+          "id": "ADVANCED_GAS_MOVE",
+          "type": "move",
+          "move_id": "ADVANCED_GAS",
+          "next": "BLOAT_MOVE"
+        },
+        {
+          "id": "BLOAT_MOVE",
+          "type": "move",
+          "move_id": "BLOAT",
+          "next": "SUPER_GAS_BLAST_MOVE"
+        },
+        {
+          "id": "SUPER_GAS_BLAST_MOVE",
+          "type": "move",
+          "move_id": "SUPER_GAS_BLAST",
+          "next": "BLOAT_MOVE"
+        }
+      ],
+      "description": "Cycle: Advanced Gas → Hinchazón → Super Gas Blast → repeat"
+    },
     "image_url": "/static/images/monsters/living_smog.png",
     "beta_image_url": null
   },
@@ -3624,12 +5014,40 @@
         "is_weak": true
       }
     ],
-    "innate_powers": [
-      {
-        "power_id": "RAMPART",
-        "amount": 25
-      }
-    ],
+    "innate_powers": null,
+    "attack_pattern": {
+      "type": "conditional",
+      "initial_move": "SHIELD_SLAM",
+      "states": [
+        {
+          "id": "SHIELD_SLAM_MOVE",
+          "type": "move",
+          "move_id": "SHIELD_SLAM",
+          "next": "SHIELD_SLAM_BRANCH"
+        },
+        {
+          "id": "SMASH_MOVE",
+          "type": "move",
+          "move_id": "SMASH",
+          "next": "SMASH_MOVE"
+        },
+        {
+          "id": "SHIELD_SLAM_BRANCH",
+          "type": "conditional",
+          "branches": [
+            {
+              "move_id": "SHIELD_SLAM",
+              "condition": "GetAllyCount("
+            },
+            {
+              "move_id": "SMASH",
+              "condition": "GetAllyCount("
+            }
+          ]
+        }
+      ],
+      "description": "Starts with Escudazo; then conditional: Escudazo (if GetAllyCount() / Smash (if GetAllyCount()"
+    },
     "image_url": "/static/images/monsters/living_shield.png",
     "beta_image_url": null
   },
@@ -3701,7 +5119,36 @@
         "is_weak": false
       }
     ],
-    "innate_powers": null,
+    "innate_powers": [
+      {
+        "power_id": "CURL_UP",
+        "amount": 14,
+        "amount_ascension": 18
+      }
+    ],
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": "WEB_CANNON",
+      "states": [
+        {
+          "id": "WEB_CANNON_MOVE",
+          "type": "move",
+          "move_id": "WEB_CANNON"
+        },
+        {
+          "id": "POUNCE_MOVE",
+          "type": "move",
+          "move_id": "POUNCE",
+          "next": "WEB_CANNON_MOVE"
+        },
+        {
+          "id": "CURL_AND_GROW_MOVE",
+          "type": "move",
+          "move_id": "CURL_AND_GROW"
+        }
+      ],
+      "description": "Always uses Cañón de telaraña"
+    },
     "image_url": "/static/images/monsters/louse_progenitor.png",
     "beta_image_url": null
   },
@@ -3779,6 +5226,43 @@
       }
     ],
     "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": "FIRST_POWER_SHIELD",
+      "states": [
+        {
+          "id": "FIRST_POWER_SHIELD_MOVE",
+          "type": "move",
+          "move_id": "FIRST_POWER_SHIELD",
+          "next": "DAMPEN_MOVE"
+        },
+        {
+          "id": "DAMPEN_MOVE",
+          "type": "move",
+          "move_id": "DAMPEN",
+          "next": "RAM_MOVE"
+        },
+        {
+          "id": "PREP_MOVE",
+          "type": "move",
+          "move_id": "PREP",
+          "next": "MAGIC_BOMB"
+        },
+        {
+          "id": "MAGIC_BOMB",
+          "type": "move",
+          "move_id": "MAGIC_BOMB",
+          "next": "RAM_MOVE"
+        },
+        {
+          "id": "RAM_MOVE",
+          "type": "move",
+          "move_id": "RAM",
+          "next": "PREP_MOVE"
+        }
+      ],
+      "description": "Cycle: First Power Shield → Dampen → Embestir → Prep → Bomba mágica → repeat"
+    },
     "image_url": "/static/images/monsters/magi_knight.png",
     "beta_image_url": null
   },
@@ -3845,6 +5329,57 @@
       }
     ],
     "innate_powers": null,
+    "attack_pattern": {
+      "type": "random",
+      "initial_move": "CLAW",
+      "states": [
+        {
+          "id": "RIP_AND_TEAR_MOVE",
+          "type": "move",
+          "move_id": "RIP_AND_TEAR",
+          "next": "RAND"
+        },
+        {
+          "id": "ROAR_MOVE",
+          "type": "move",
+          "move_id": "ROAR",
+          "next": "RAND"
+        },
+        {
+          "id": "CLAW_MOVE",
+          "type": "move",
+          "move_id": "CLAW",
+          "next": "RAND"
+        },
+        {
+          "id": "RAND",
+          "type": "random",
+          "branches": []
+        },
+        {
+          "id": "RAND",
+          "type": "random",
+          "branches": [
+            {
+              "move_id": "RIP_AND_TEAR",
+              "weight": 1.0,
+              "repeat": "CannotRepeat"
+            },
+            {
+              "move_id": "ROAR",
+              "weight": 1.0,
+              "repeat": "UseOnlyOnce"
+            },
+            {
+              "move_id": "CLAW",
+              "weight": 1.0,
+              "repeat": "CannotRepeat"
+            }
+          ]
+        }
+      ],
+      "description": "Starts with Garras; then random: Desgarrar (no repeat), Rugido (once), Garras (no repeat)"
+    },
     "image_url": "/static/images/monsters/mawler.png",
     "beta_image_url": null
   },
@@ -3916,12 +5451,38 @@
         "is_weak": false
       }
     ],
-    "innate_powers": [
-      {
-        "power_id": "ARTIFACT",
-        "amount": 3
-      }
-    ],
+    "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": "CHARGE",
+      "states": [
+        {
+          "id": "CHARGE_MOVE",
+          "type": "move",
+          "move_id": "CHARGE",
+          "next": "FLAMETHROWER_MOVE"
+        },
+        {
+          "id": "FLAMETHROWER_MOVE",
+          "type": "move",
+          "move_id": "FLAMETHROWER",
+          "next": "WINDUP_MOVE"
+        },
+        {
+          "id": "WINDUP_MOVE",
+          "type": "move",
+          "move_id": "WINDUP",
+          "next": "HEAVY_CLEAVE_MOVE"
+        },
+        {
+          "id": "HEAVY_CLEAVE_MOVE",
+          "type": "move",
+          "move_id": "HEAVY_CLEAVE",
+          "next": "FLAMETHROWER_MOVE"
+        }
+      ],
+      "description": "Cycle: Carga → Lanzallamas → Dar cuerda → Tajo pesado → repeat"
+    },
     "image_url": "/static/images/monsters/mecha_knight.png",
     "beta_image_url": null
   },
@@ -3986,6 +5547,45 @@
       }
     ],
     "innate_powers": null,
+    "attack_pattern": {
+      "type": "conditional",
+      "initial_move": "INIT_MOVE",
+      "states": [
+        {
+          "id": "TOXIC_MOVE",
+          "type": "move",
+          "move_id": "TOXIC",
+          "next": "BITE_MOVE"
+        },
+        {
+          "id": "BITE_MOVE",
+          "type": "move",
+          "move_id": "BITE",
+          "next": "SUCK_MOVE"
+        },
+        {
+          "id": "SUCK_MOVE",
+          "type": "move",
+          "move_id": "SUCK",
+          "next": "TOXIC_MOVE"
+        },
+        {
+          "id": "INIT_MOVE",
+          "type": "conditional",
+          "branches": [
+            {
+              "move_id": "TOXIC",
+              "condition": "base.Creature.SlotName == \"first\""
+            },
+            {
+              "move_id": "SUCK",
+              "condition": "base.Creature.SlotName == \"second\""
+            }
+          ]
+        }
+      ],
+      "description": "then conditional: Cornada tóxica (if base.Creature.SlotName == \"first\") / Succión (if base.Creature.SlotName == \"second\")"
+    },
     "image_url": "/static/images/monsters/myte.png",
     "beta_image_url": null
   },
@@ -4058,6 +5658,49 @@
       }
     ],
     "innate_powers": null,
+    "attack_pattern": {
+      "type": "conditional",
+      "initial_move": "INIT_MOVE",
+      "states": [
+        {
+          "id": "BUTT_MOVE",
+          "type": "move",
+          "move_id": "BUTT",
+          "next": "SLICE_MOVE"
+        },
+        {
+          "id": "SLICE_MOVE",
+          "type": "move",
+          "move_id": "SLICE",
+          "next": "HISS_MOVE"
+        },
+        {
+          "id": "HISS_MOVE",
+          "type": "move",
+          "move_id": "HISS",
+          "next": "BUTT_MOVE"
+        },
+        {
+          "id": "INIT_MOVE",
+          "type": "conditional",
+          "branches": [
+            {
+              "move_id": "BUTT",
+              "condition": "((Nibbit"
+            },
+            {
+              "move_id": "HISS",
+              "condition": "!((Nibbit"
+            },
+            {
+              "move_id": "SLICE",
+              "condition": "((Nibbit"
+            }
+          ]
+        }
+      ],
+      "description": "then conditional: Golpetazo (if ((Nibbit) / Bufar (if !((Nibbit) / Slice (if ((Nibbit)"
+    },
     "image_url": "/static/images/monsters/nibbit.png",
     "beta_image_url": null
   },
@@ -4080,6 +5723,19 @@
     "block_values": null,
     "encounters": null,
     "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": "NOISE",
+      "states": [
+        {
+          "id": "NOISE_MOVE",
+          "type": "move",
+          "move_id": "NOISE",
+          "next": "NOISE_MOVE"
+        }
+      ],
+      "description": "Always uses Ruido"
+    },
     "image_url": "/static/images/monsters/noisebot.png",
     "beta_image_url": null
   },
@@ -4102,6 +5758,19 @@
     "block_values": null,
     "encounters": null,
     "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": null,
+      "states": [
+        {
+          "id": "NOTHING_MOVE",
+          "type": "move",
+          "move_id": "NOTHING",
+          "next": "NOTHING_MOVE"
+        }
+      ],
+      "description": ""
+    },
     "image_url": "/static/images/monsters/osty.png",
     "beta_image_url": null
   },
@@ -4178,6 +5847,51 @@
       }
     ],
     "innate_powers": null,
+    "attack_pattern": {
+      "type": "conditional",
+      "initial_move": "LAY_EGGS",
+      "states": [
+        {
+          "id": "LAY_EGGS_MOVE",
+          "type": "move",
+          "move_id": "LAY_EGGS",
+          "next": "SMASH_MOVE"
+        },
+        {
+          "id": "SMASH_MOVE",
+          "type": "move",
+          "move_id": "SMASH",
+          "next": "TENDERIZER_MOVE"
+        },
+        {
+          "id": "TENDERIZER_MOVE",
+          "type": "move",
+          "move_id": "TENDERIZER",
+          "next": "SUMMON_BRANCH_STATE"
+        },
+        {
+          "id": "NUTRITIONAL_PASTE_MOVE",
+          "type": "move",
+          "move_id": "NUTRITIONAL_PASTE",
+          "next": "SMASH_MOVE"
+        },
+        {
+          "id": "SUMMON_BRANCH_STATE",
+          "type": "conditional",
+          "branches": [
+            {
+              "move_id": "LAY_EGGS",
+              "condition": "CanLay"
+            },
+            {
+              "move_id": "NUTRITIONAL_PASTE",
+              "condition": "!CanLay"
+            }
+          ]
+        }
+      ],
+      "description": "Starts: Desovar → Remate → Ablandador; then conditional: Desovar (if CanLay) / Pasta nutritiva (if !CanLay)"
+    },
     "image_url": "/static/images/monsters/ovicopter.png",
     "beta_image_url": null
   },
@@ -4264,6 +5978,37 @@
       }
     ],
     "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": "MAGISTRATE_SCRUTINY",
+      "states": [
+        {
+          "id": "MAGISTRATE_SCRUTINY",
+          "type": "move",
+          "move_id": "MAGISTRATE_SCRUTINY",
+          "next": "PECK_ASSAULT"
+        },
+        {
+          "id": "PECK_ASSAULT",
+          "type": "move",
+          "move_id": "PECK_ASSAULT",
+          "next": "JUDICIAL_FLIGHT"
+        },
+        {
+          "id": "JUDICIAL_FLIGHT",
+          "type": "move",
+          "move_id": "JUDICIAL_FLIGHT",
+          "next": "VERDICT"
+        },
+        {
+          "id": "VERDICT",
+          "type": "move",
+          "move_id": "VERDICT",
+          "next": "MAGISTRATE_SCRUTINY"
+        }
+      ],
+      "description": "Cycle: Escrutinio del juez → Picotazo furioso → Vuelo judicial → Veredicto → repeat"
+    },
     "image_url": "/static/images/monsters/owl_magistrate.png",
     "beta_image_url": null
   },
@@ -4286,6 +6031,19 @@
     "block_values": null,
     "encounters": null,
     "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": null,
+      "states": [
+        {
+          "id": "NOTHING_MOVE",
+          "type": "move",
+          "move_id": "NOTHING",
+          "next": "NOTHING_MOVE"
+        }
+      ],
+      "description": ""
+    },
     "image_url": "/static/images/monsters/paels_legion.png",
     "beta_image_url": "/static/images/monsters/beta/paels_legion.png"
   },
@@ -4316,12 +6074,20 @@
     },
     "block_values": null,
     "encounters": null,
-    "innate_powers": [
-      {
-        "power_id": "ILLUSION",
-        "amount": 1
-      }
-    ],
+    "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": "SLAM",
+      "states": [
+        {
+          "id": "SLAM_MOVE",
+          "type": "move",
+          "move_id": "SLAM",
+          "next": "SLAM_MOVE"
+        }
+      ],
+      "description": "Always uses Golpazo"
+    },
     "image_url": "/static/images/monsters/parafright.png",
     "beta_image_url": null
   },
@@ -4399,7 +6165,66 @@
         "is_weak": false
       }
     ],
-    "innate_powers": null,
+    "innate_powers": [
+      {
+        "power_id": "SKITTISH",
+        "amount": 6,
+        "amount_ascension": 7
+      }
+    ],
+    "attack_pattern": {
+      "type": "conditional",
+      "initial_move": "INIT_MOVE",
+      "states": [
+        {
+          "id": "BITE_MOVE",
+          "type": "move",
+          "move_id": "BITE",
+          "next": "LASH_MOVE"
+        },
+        {
+          "id": "LASH_MOVE",
+          "type": "move",
+          "move_id": "LASH",
+          "next": "FLAIL_MOVE"
+        },
+        {
+          "id": "FLAIL_MOVE",
+          "type": "move",
+          "move_id": "FLAIL",
+          "next": "ENLARGE_MOVE"
+        },
+        {
+          "id": "ENLARGE_MOVE",
+          "type": "move",
+          "move_id": "ENLARGE",
+          "next": "BITE_MOVE"
+        },
+        {
+          "id": "INIT_MOVE",
+          "type": "conditional",
+          "branches": [
+            {
+              "move_id": "FLAIL",
+              "condition": "base.Creature.SlotName == \"first\""
+            },
+            {
+              "move_id": "BITE",
+              "condition": "base.Creature.SlotName == \"second\""
+            },
+            {
+              "move_id": "LASH",
+              "condition": "base.Creature.SlotName == \"third\""
+            },
+            {
+              "move_id": "ENLARGE",
+              "condition": "base.Creature.SlotName == \"fourth\""
+            }
+          ]
+        }
+      ],
+      "description": "then conditional: Flagelo (if base.Creature.SlotName == \"first\") / Mordida (if base.Creature.SlotName == \"second\") / Latigazo (if base.Creature.SlotName == \"third\") / Crecimiento (if base.Creature.SlotName == \"fourth\")"
+    },
     "image_url": "/static/images/monsters/phantasmal_gardener.png",
     "beta_image_url": null
   },
@@ -4445,12 +6270,31 @@
         "is_weak": false
       }
     ],
-    "innate_powers": [
-      {
-        "power_id": "INFESTED",
-        "amount": 4
-      }
-    ],
+    "innate_powers": null,
+    "attack_pattern": {
+      "type": "random",
+      "initial_move": "INFECT",
+      "states": [
+        {
+          "id": "INFECT_MOVE",
+          "type": "move",
+          "move_id": "INFECT",
+          "next": "LASH_MOVE"
+        },
+        {
+          "id": "LASH_MOVE",
+          "type": "move",
+          "move_id": "LASH",
+          "next": "INFECT_MOVE"
+        },
+        {
+          "id": "RAND",
+          "type": "random",
+          "branches": []
+        }
+      ],
+      "description": "Starts: Infección → Latigazo"
+    },
     "image_url": "/static/images/monsters/phrog_parasite.png",
     "beta_image_url": null
   },
@@ -4531,12 +6375,32 @@
         "is_weak": false
       }
     ],
-    "innate_powers": [
-      {
-        "power_id": "ARTIFACT",
-        "amount": 1
-      }
-    ],
+    "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": null,
+      "states": [
+        {
+          "id": "READY_MOVE",
+          "type": "move",
+          "move_id": "READY",
+          "next": "STRONG_PUNCH_MOVE"
+        },
+        {
+          "id": "STRONG_PUNCH_MOVE",
+          "type": "move",
+          "move_id": "STRONG_PUNCH",
+          "next": "FAST_PUNCH_MOVE"
+        },
+        {
+          "id": "FAST_PUNCH_MOVE",
+          "type": "move",
+          "move_id": "FAST_PUNCH",
+          "next": "READY_MOVE"
+        }
+      ],
+      "description": ""
+    },
     "image_url": "/static/images/monsters/punch_construct.png",
     "beta_image_url": null
   },
@@ -4643,6 +6507,77 @@
       }
     ],
     "innate_powers": null,
+    "attack_pattern": {
+      "type": "conditional",
+      "initial_move": "PUPPET_STRINGS",
+      "states": [
+        {
+          "id": "PUPPET_STRINGS_MOVE",
+          "type": "move",
+          "move_id": "PUPPET_STRINGS",
+          "next": "YOUR_MINE_MOVE"
+        },
+        {
+          "id": "YOUR_MINE_MOVE",
+          "type": "move",
+          "move_id": "YOUR_MINE",
+          "next": "YOURE_MINE_NOW_BRANCH"
+        },
+        {
+          "id": "OFF_WITH_YOUR_HEAD_MOVE",
+          "type": "move",
+          "move_id": "OFF_WITH_YOUR_HEAD",
+          "next": "EXECUTION_MOVE"
+        },
+        {
+          "id": "EXECUTION_MOVE",
+          "type": "move",
+          "move_id": "EXECUTION",
+          "next": "ENRAGE_MOVE"
+        },
+        {
+          "id": "BURN_BRIGHT_FOR_ME_MOVE",
+          "type": "move",
+          "move_id": "BURN_BRIGHT_FOR_ME",
+          "next": "BURN_BRIGHT_FOR_ME_BRANCH"
+        },
+        {
+          "id": "ENRAGE_MOVE",
+          "type": "move",
+          "move_id": "ENRAGE",
+          "next": "OFF_WITH_YOUR_HEAD_MOVE"
+        },
+        {
+          "id": "YOURE_MINE_NOW_BRANCH",
+          "type": "conditional",
+          "branches": [
+            {
+              "move_id": "BURN_BRIGHT_FOR_ME",
+              "condition": "!HasAmalgamDied"
+            },
+            {
+              "move_id": "OFF_WITH_YOUR_HEAD",
+              "condition": "HasAmalgamDied"
+            }
+          ]
+        },
+        {
+          "id": "BURN_BRIGHT_FOR_ME_BRANCH",
+          "type": "conditional",
+          "branches": [
+            {
+              "move_id": "BURN_BRIGHT_FOR_ME",
+              "condition": "!HasAmalgamDied"
+            },
+            {
+              "move_id": "OFF_WITH_YOUR_HEAD",
+              "condition": "HasAmalgamDied"
+            }
+          ]
+        }
+      ],
+      "description": "Starts: Puppet Strings → Your Mine; then conditional: Llama regia (if !HasAmalgamDied) / ¡Córtenle la cabeza! (if HasAmalgamDied); then conditional: Llama regia (if !HasAmalgamDied) / ¡Córtenle la cabeza! (if HasAmalgamDied)"
+    },
     "image_url": "/static/images/monsters/queen.png",
     "beta_image_url": null
   },
@@ -4724,16 +6659,44 @@
         "is_weak": false
       }
     ],
-    "innate_powers": [
-      {
-        "power_id": "BACK_ATTACK_RIGHT",
-        "amount": 1
-      },
-      {
-        "power_id": "CRAB_RAGE",
-        "amount": 1
-      }
-    ],
+    "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": "TARGETING_RETICLE",
+      "states": [
+        {
+          "id": "TARGETING_RETICLE_MOVE",
+          "type": "move",
+          "move_id": "TARGETING_RETICLE",
+          "next": "PRECISION_BEAM_MOVE"
+        },
+        {
+          "id": "PRECISION_BEAM_MOVE",
+          "type": "move",
+          "move_id": "PRECISION_BEAM",
+          "next": "CHARGE_UP_MOVE"
+        },
+        {
+          "id": "CHARGE_UP_MOVE",
+          "type": "move",
+          "move_id": "CHARGE_UP",
+          "next": "LASER_MOVE"
+        },
+        {
+          "id": "LASER_MOVE",
+          "type": "move",
+          "move_id": "LASER",
+          "next": "RECHARGE_MOVE"
+        },
+        {
+          "id": "RECHARGE_MOVE",
+          "type": "move",
+          "move_id": "RECHARGE",
+          "next": "TARGETING_RETICLE_MOVE"
+        }
+      ],
+      "description": "Cycle: Mira → Rayo preciso → Acometida → Láser → Recarga → repeat"
+    },
     "image_url": "/static/images/monsters/rocket.png",
     "beta_image_url": null
   },
@@ -4806,12 +6769,37 @@
         "is_weak": true
       }
     ],
-    "innate_powers": [
-      {
-        "power_id": "PAPER_CUTS",
-        "amount": 2
-      }
-    ],
+    "innate_powers": null,
+    "attack_pattern": {
+      "type": "random",
+      "initial_move": null,
+      "states": [
+        {
+          "id": "CHOMP",
+          "type": "move",
+          "move_id": "CHOMP",
+          "next": "MORE_TEETH"
+        },
+        {
+          "id": "CHEW",
+          "type": "move",
+          "move_id": "CHEW",
+          "next": "rand"
+        },
+        {
+          "id": "MORE_TEETH",
+          "type": "move",
+          "move_id": "MORE_TEETH",
+          "next": "CHEW"
+        },
+        {
+          "id": "rand",
+          "type": "random",
+          "branches": []
+        }
+      ],
+      "description": ""
+    },
     "image_url": "/static/images/monsters/scroll_of_biting.png",
     "beta_image_url": null
   },
@@ -4877,6 +6865,31 @@
       }
     ],
     "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": "SEA_KICK",
+      "states": [
+        {
+          "id": "SEA_KICK_MOVE",
+          "type": "move",
+          "move_id": "SEA_KICK",
+          "next": "SPINNING_KICK_MOVE"
+        },
+        {
+          "id": "SPINNING_KICK_MOVE",
+          "type": "move",
+          "move_id": "SPINNING_KICK",
+          "next": "BUBBLE_BURP_MOVE"
+        },
+        {
+          "id": "BUBBLE_BURP_MOVE",
+          "type": "move",
+          "move_id": "BUBBLE_BURP",
+          "next": "SEA_KICK_MOVE"
+        }
+      ],
+      "description": "Cycle: Patada marina → Patada giratoria → Lanzaburbujas → repeat"
+    },
     "image_url": "/static/images/monsters/seapunk.png",
     "beta_image_url": null
   },
@@ -4928,6 +6941,23 @@
       }
     ],
     "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": null,
+      "states": [
+        {
+          "id": "PRESSURIZE_MOVE",
+          "type": "move",
+          "move_id": "PRESSURIZE"
+        },
+        {
+          "id": "JET_MOVE",
+          "type": "move",
+          "move_id": "JET"
+        }
+      ],
+      "description": ""
+    },
     "image_url": "/static/images/monsters/sewer_clam.png",
     "beta_image_url": null
   },
@@ -4992,6 +7022,31 @@
       }
     ],
     "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": "SHRINKER",
+      "states": [
+        {
+          "id": "SHRINKER_MOVE",
+          "type": "move",
+          "move_id": "SHRINKER",
+          "next": "CHOMP_MOVE"
+        },
+        {
+          "id": "CHOMP_MOVE",
+          "type": "move",
+          "move_id": "CHOMP",
+          "next": "STOMP_MOVE"
+        },
+        {
+          "id": "STOMP_MOVE",
+          "type": "move",
+          "move_id": "STOMP",
+          "next": "CHOMP_MOVE"
+        }
+      ],
+      "description": "Cycle: Decrecimiento → Mordida → Pisotón → repeat"
+    },
     "image_url": "/static/images/monsters/shrinker_beetle.png",
     "beta_image_url": null
   },
@@ -5071,12 +7126,38 @@
         "is_weak": false
       }
     ],
-    "innate_powers": [
-      {
-        "power_id": "HARDENED_SHELL",
-        "amount": 20
-      }
-    ],
+    "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": "SMASH",
+      "states": [
+        {
+          "id": "INERTIA_MOVE",
+          "type": "move",
+          "move_id": "INERTIA",
+          "next": "SUPER_CRAB_MOVE"
+        },
+        {
+          "id": "ZOOM_MOVE",
+          "type": "move",
+          "move_id": "ZOOM",
+          "next": "INERTIA_MOVE"
+        },
+        {
+          "id": "SUPER_CRAB_MOVE",
+          "type": "move",
+          "move_id": "SUPER_CRAB",
+          "next": "SMASH_MOVE"
+        },
+        {
+          "id": "SMASH_MOVE",
+          "type": "move",
+          "move_id": "SMASH",
+          "next": "ZOOM_MOVE"
+        }
+      ],
+      "description": "Cycle: Smash → Zoom → Inercia → Supercangrejo → repeat"
+    },
     "image_url": "/static/images/monsters/skulkling_colomy.png",
     "beta_image_url": null
   },
@@ -5153,6 +7234,35 @@
       }
     ],
     "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": "VOMIT_ICHOR",
+      "states": [
+        {
+          "id": "VOMIT_ICHOR_MOVE",
+          "type": "move",
+          "move_id": "VOMIT_ICHOR"
+        },
+        {
+          "id": "LEECHING_HUG_MOVE",
+          "type": "move",
+          "move_id": "LEECHING_HUG",
+          "next": "SMOTHER_MOVE"
+        },
+        {
+          "id": "SMOTHER_MOVE",
+          "type": "move",
+          "move_id": "SMOTHER",
+          "next": "VOMIT_ICHOR_MOVE"
+        },
+        {
+          "id": "FURIOUS_PUMMELING_MOVE",
+          "type": "move",
+          "move_id": "FURIOUS_PUMMELING"
+        }
+      ],
+      "description": "Always uses Vomit Ichor"
+    },
     "image_url": "/static/images/monsters/slimed_berserker.png",
     "beta_image_url": null
   },
@@ -5218,6 +7328,41 @@
       }
     ],
     "innate_powers": null,
+    "attack_pattern": {
+      "type": "random",
+      "initial_move": "CONSTRICT",
+      "states": [
+        {
+          "id": "CONSTRICT",
+          "type": "move",
+          "move_id": "CONSTRICT",
+          "next": "rand"
+        },
+        {
+          "id": "TWACK",
+          "type": "move",
+          "move_id": "TWACK",
+          "next": "CONSTRICT"
+        },
+        {
+          "id": "LASH",
+          "type": "move",
+          "move_id": "LASH",
+          "next": "CONSTRICT"
+        },
+        {
+          "id": "rand",
+          "type": "random",
+          "branches": []
+        },
+        {
+          "id": "rand",
+          "type": "random",
+          "branches": []
+        }
+      ],
+      "description": "Starts with Constricción"
+    },
     "image_url": "/static/images/monsters/slithering_strangler.png",
     "beta_image_url": null
   },
@@ -5297,6 +7442,41 @@
       }
     ],
     "innate_powers": null,
+    "attack_pattern": {
+      "type": "random",
+      "initial_move": "OIL_SPRAY",
+      "states": [
+        {
+          "id": "OIL_SPRAY_MOVE",
+          "type": "move",
+          "move_id": "OIL_SPRAY",
+          "next": "RAND"
+        },
+        {
+          "id": "SLAM_MOVE",
+          "type": "move",
+          "move_id": "SLAM",
+          "next": "RAND"
+        },
+        {
+          "id": "RAGE_MOVE",
+          "type": "move",
+          "move_id": "RAGE",
+          "next": "RAND"
+        },
+        {
+          "id": "RAND",
+          "type": "random",
+          "branches": []
+        },
+        {
+          "id": "RAND",
+          "type": "random",
+          "branches": []
+        }
+      ],
+      "description": "Starts with Aerosol oleoso"
+    },
     "image_url": "/static/images/monsters/sludge_spinner.png",
     "beta_image_url": null
   },
@@ -5349,10 +7529,34 @@
     ],
     "innate_powers": [
       {
-        "power_id": "SLUMBER",
-        "amount": 3
+        "power_id": "PLATING",
+        "amount": 15,
+        "amount_ascension": 18
       }
     ],
+    "attack_pattern": {
+      "type": "conditional",
+      "initial_move": "SNORE",
+      "states": [
+        {
+          "id": "SNORE_MOVE",
+          "type": "move",
+          "move_id": "SNORE"
+        },
+        {
+          "id": "ROLL_OUT_MOVE",
+          "type": "move",
+          "move_id": "ROLL_OUT",
+          "next": "ROLL_OUT_MOVE"
+        },
+        {
+          "id": "SNORE_NEXT",
+          "type": "conditional",
+          "branches": []
+        }
+      ],
+      "description": "Starts with Ronquido"
+    },
     "image_url": "/static/images/monsters/slumbering_beetle.png",
     "beta_image_url": null
   },
@@ -5406,6 +7610,19 @@
       }
     ],
     "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": "ENERGY_ORB",
+      "states": [
+        {
+          "id": "ENERGY_ORB_MOVE",
+          "type": "move",
+          "move_id": "ENERGY_ORB",
+          "next": "ENERGY_ORB_MOVE"
+        }
+      ],
+      "description": "Always uses Orbe de energía"
+    },
     "image_url": "/static/images/monsters/snapping_jaxfruit.png",
     "beta_image_url": null
   },
@@ -5450,6 +7667,23 @@
       }
     ],
     "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": "SPAWNED",
+      "states": [
+        {
+          "id": "SPAWNED_MOVE",
+          "type": "move",
+          "move_id": "SPAWNED"
+        },
+        {
+          "id": "TACKLE_MOVE",
+          "type": "move",
+          "move_id": "TACKLE"
+        }
+      ],
+      "description": "Always uses Spawned"
+    },
     "image_url": "/static/images/monsters/sneaky_gremlin.png",
     "beta_image_url": null
   },
@@ -5539,6 +7773,43 @@
       }
     ],
     "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": "BECKON",
+      "states": [
+        {
+          "id": "BECKON_MOVE",
+          "type": "move",
+          "move_id": "BECKON",
+          "next": "DE_GAS_MOVE"
+        },
+        {
+          "id": "DE_GAS_MOVE",
+          "type": "move",
+          "move_id": "DE_GAS",
+          "next": "GAZE_MOVE"
+        },
+        {
+          "id": "GAZE_MOVE",
+          "type": "move",
+          "move_id": "GAZE",
+          "next": "FADE_MOVE"
+        },
+        {
+          "id": "FADE_MOVE",
+          "type": "move",
+          "move_id": "FADE",
+          "next": "SCREAM_MOVE"
+        },
+        {
+          "id": "SCREAM_MOVE",
+          "type": "move",
+          "move_id": "SCREAM",
+          "next": "BECKON_MOVE"
+        }
+      ],
+      "description": "Cycle: Beckon → Fuga de gas → Gaze → Fade → Grito → repeat"
+    },
     "image_url": "/static/images/monsters/soul_fysh.png",
     "beta_image_url": null
   },
@@ -5619,6 +7890,57 @@
       }
     ],
     "innate_powers": null,
+    "attack_pattern": {
+      "type": "random",
+      "initial_move": "SOUL_BURN",
+      "states": [
+        {
+          "id": "SOUL_BURN_MOVE",
+          "type": "move",
+          "move_id": "SOUL_BURN",
+          "next": "RAND"
+        },
+        {
+          "id": "MAELSTROM_MOVE",
+          "type": "move",
+          "move_id": "MAELSTROM",
+          "next": "RAND"
+        },
+        {
+          "id": "DRAIN_LIFE_MOVE",
+          "type": "move",
+          "move_id": "DRAIN_LIFE",
+          "next": "RAND"
+        },
+        {
+          "id": "RAND",
+          "type": "random",
+          "branches": []
+        },
+        {
+          "id": "RAND",
+          "type": "random",
+          "branches": [
+            {
+              "move_id": "SOUL_BURN",
+              "weight": 1.0,
+              "repeat": "CannotRepeat"
+            },
+            {
+              "move_id": "MAELSTROM",
+              "weight": 1.0,
+              "repeat": "CannotRepeat"
+            },
+            {
+              "move_id": "DRAIN_LIFE",
+              "weight": 1.0,
+              "repeat": "CannotRepeat"
+            }
+          ]
+        }
+      ],
+      "description": "Starts with Quemadura de alma; then random: Quemadura de alma (no repeat), Torbellino (no repeat), Drenaje vital (no repeat)"
+    },
     "image_url": "/static/images/monsters/soul_nexus.png",
     "beta_image_url": null
   },
@@ -5685,6 +8007,36 @@
       }
     ],
     "innate_powers": null,
+    "attack_pattern": {
+      "type": "random",
+      "initial_move": "HEX",
+      "states": [
+        {
+          "id": "HEX",
+          "type": "move",
+          "move_id": "HEX",
+          "next": "SOUL_SLASH"
+        },
+        {
+          "id": "SOUL_SLASH",
+          "type": "move",
+          "move_id": "SOUL_SLASH",
+          "next": "RAND"
+        },
+        {
+          "id": "SOUL_FLAME",
+          "type": "move",
+          "move_id": "SOUL_FLAME",
+          "next": "RAND"
+        },
+        {
+          "id": "RAND",
+          "type": "random",
+          "branches": []
+        }
+      ],
+      "description": "Starts: Maleficio → Corte espiritual"
+    },
     "image_url": "/static/images/monsters/spectral_knight.png",
     "beta_image_url": null
   },
@@ -5749,6 +8101,31 @@
       }
     ],
     "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": "PROTRUDING_SPIKES",
+      "states": [
+        {
+          "id": "PROTRUDING_SPIKES_MOVE",
+          "type": "move",
+          "move_id": "PROTRUDING_SPIKES",
+          "next": "SPIKE_EXPLOSION_MOVE"
+        },
+        {
+          "id": "SPIKE_EXPLOSION_MOVE",
+          "type": "move",
+          "move_id": "SPIKE_EXPLOSION",
+          "next": "TONGUE_LASH_MOVE"
+        },
+        {
+          "id": "TONGUE_LASH_MOVE",
+          "type": "move",
+          "move_id": "TONGUE_LASH",
+          "next": "PROTRUDING_SPIKES_MOVE"
+        }
+      ],
+      "description": "Cycle: Púas protuberantes → Explosión espinosa → Látigo lengua → repeat"
+    },
     "image_url": "/static/images/monsters/spiny_toad.png",
     "beta_image_url": null
   },
@@ -5787,6 +8164,19 @@
     "block_values": null,
     "encounters": null,
     "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": "STAB",
+      "states": [
+        {
+          "id": "STAB_MOVE",
+          "type": "move",
+          "move_id": "STAB",
+          "next": "STAB_MOVE"
+        }
+      ],
+      "description": "Always uses Puñalada"
+    },
     "image_url": "/static/images/monsters/stabbot.png",
     "beta_image_url": null
   },
@@ -5864,7 +8254,44 @@
         "is_weak": false
       }
     ],
-    "innate_powers": null,
+    "innate_powers": [
+      {
+        "power_id": "SHRIEK",
+        "amount": 70,
+        "amount_ascension": 75
+      }
+    ],
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": "CRASH",
+      "states": [
+        {
+          "id": "CRASH_MOVE",
+          "type": "move",
+          "move_id": "CRASH",
+          "next": "ThrashMove"
+        },
+        {
+          "id": "ThrashMove",
+          "type": "move",
+          "move_id": "ThrashMove",
+          "next": "CRASH_MOVE"
+        },
+        {
+          "id": "STUN_MOVE",
+          "type": "move",
+          "move_id": "STUN",
+          "next": "TERROR_MOVE"
+        },
+        {
+          "id": "TERROR_MOVE",
+          "type": "move",
+          "move_id": "TERROR",
+          "next": "CRASH_MOVE"
+        }
+      ],
+      "description": "Cycle: Crash → Thrashmove → repeat"
+    },
     "image_url": "/static/images/monsters/terror_eel.png",
     "beta_image_url": null
   },
@@ -6006,10 +8433,81 @@
     ],
     "innate_powers": [
       {
-        "power_id": "ADAPTABLE",
-        "amount": 1
+        "power_id": "ENRAGE",
+        "amount": 2,
+        "amount_ascension": 3
       }
     ],
+    "attack_pattern": {
+      "type": "conditional",
+      "initial_move": "BITE",
+      "states": [
+        {
+          "id": "BITE_MOVE",
+          "type": "move",
+          "move_id": "BITE",
+          "next": "SKULL_BASH_MOVE"
+        },
+        {
+          "id": "SKULL_BASH_MOVE",
+          "type": "move",
+          "move_id": "SKULL_BASH",
+          "next": "BITE_MOVE"
+        },
+        {
+          "id": "POUNCE_MOVE",
+          "type": "move",
+          "move_id": "POUNCE",
+          "next": "MULTI_CLAW_MOVE"
+        },
+        {
+          "id": "MULTI_CLAW_MOVE",
+          "type": "move",
+          "move_id": "MULTI_CLAW",
+          "next": "POUNCE_MOVE"
+        },
+        {
+          "id": "PHASE3_LACERATE_MOVE",
+          "type": "move",
+          "move_id": "PHASE3_LACERATE",
+          "next": "BIG_POUNCE_MOVE"
+        },
+        {
+          "id": "BIG_POUNCE_MOVE",
+          "type": "move",
+          "move_id": "BIG_POUNCE",
+          "next": "BURNING_GROWL_MOVE"
+        },
+        {
+          "id": "BURNING_GROWL_MOVE",
+          "type": "move",
+          "move_id": "BURNING_GROWL",
+          "next": "PHASE3_LACERATE_MOVE"
+        },
+        {
+          "id": "RESPAWN_MOVE",
+          "type": "move",
+          "move_id": "RESPAWN",
+          "must_perform_once": true,
+          "next": "REVIVE_BRANCH"
+        },
+        {
+          "id": "REVIVE_BRANCH",
+          "type": "conditional",
+          "branches": [
+            {
+              "move_id": "MULTI_CLAW",
+              "condition": "Respawns < 2"
+            },
+            {
+              "move_id": "PHASE3_LACERATE",
+              "condition": "Respawns >= 2"
+            }
+          ]
+        }
+      ],
+      "description": "Starts: Bite → Skull Bash; then conditional: Multi Claw (if Respawns < 2) / Phase3 Lacerate (if Respawns >= 2)"
+    },
     "image_url": "/static/images/monsters/test_subject.png",
     "beta_image_url": null
   },
@@ -6069,12 +8567,32 @@
     },
     "block_values": null,
     "encounters": null,
-    "innate_powers": [
-      {
-        "power_id": "ARTIFACT",
-        "amount": 0
-      }
-    ],
+    "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": "SMASH",
+      "states": [
+        {
+          "id": "SMASH_MOVE",
+          "type": "move",
+          "move_id": "SMASH",
+          "next": "BEAM_MOVE"
+        },
+        {
+          "id": "BEAM_MOVE",
+          "type": "move",
+          "move_id": "BEAM",
+          "next": "BARRAGE_MOVE"
+        },
+        {
+          "id": "BARRAGE_MOVE",
+          "type": "move",
+          "move_id": "BARRAGE",
+          "next": "SMASH_MOVE"
+        }
+      ],
+      "description": "Cycle: Remate → Rayo → Descarga → repeat"
+    },
     "image_url": "/static/images/monsters/the_adversary_placeholder.png",
     "beta_image_url": null
   },
@@ -6134,12 +8652,32 @@
     },
     "block_values": null,
     "encounters": null,
-    "innate_powers": [
-      {
-        "power_id": "ARTIFACT",
-        "amount": 2
-      }
-    ],
+    "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": "CRASH",
+      "states": [
+        {
+          "id": "CRASH_MOVE",
+          "type": "move",
+          "move_id": "CRASH",
+          "next": "FLAME_BEAM_MOVE"
+        },
+        {
+          "id": "FLAME_BEAM_MOVE",
+          "type": "move",
+          "move_id": "FLAME_BEAM",
+          "next": "BARRAGE_MOVE"
+        },
+        {
+          "id": "BARRAGE_MOVE",
+          "type": "move",
+          "move_id": "BARRAGE",
+          "next": "CRASH_MOVE"
+        }
+      ],
+      "description": "Cycle: Colisión → Rayo ígneo → Descarga → repeat"
+    },
     "image_url": "/static/images/monsters/the_adversary_placeholder.png",
     "beta_image_url": null
   },
@@ -6199,12 +8737,32 @@
     },
     "block_values": null,
     "encounters": null,
-    "innate_powers": [
-      {
-        "power_id": "ARTIFACT",
-        "amount": 1
-      }
-    ],
+    "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": "BASH",
+      "states": [
+        {
+          "id": "BASH_MOVE",
+          "type": "move",
+          "move_id": "BASH",
+          "next": "FLAME_BEAM_MOVE"
+        },
+        {
+          "id": "FLAME_BEAM_MOVE",
+          "type": "move",
+          "move_id": "FLAME_BEAM",
+          "next": "BARRAGE_MOVE"
+        },
+        {
+          "id": "BARRAGE_MOVE",
+          "type": "move",
+          "move_id": "BARRAGE",
+          "next": "BASH_MOVE"
+        }
+      ],
+      "description": "Cycle: Mazazo → Rayo ígneo → Descarga → repeat"
+    },
     "image_url": "/static/images/monsters/the_adversary_placeholder.png",
     "beta_image_url": null
   },
@@ -6256,12 +8814,24 @@
         "is_weak": false
       }
     ],
-    "innate_powers": [
-      {
-        "power_id": "POSSESS_SPEED",
-        "amount": 1
-      }
-    ],
+    "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": "MIASMA",
+      "states": [
+        {
+          "id": "MIASMA",
+          "type": "move",
+          "move_id": "MIASMA"
+        },
+        {
+          "id": "DREAD",
+          "type": "move",
+          "move_id": "DREAD"
+        }
+      ],
+      "description": "Always uses Miasma"
+    },
     "image_url": "/static/images/monsters/the_forgotten.png",
     "beta_image_url": null
   },
@@ -6343,6 +8913,43 @@
       }
     ],
     "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": "LIQUIFY_GROUND",
+      "states": [
+        {
+          "id": "LIQUIFY_GROUND_MOVE",
+          "type": "move",
+          "move_id": "LIQUIFY_GROUND",
+          "next": "THRASH_MOVE_1"
+        },
+        {
+          "id": "THRASH_MOVE_1",
+          "type": "move",
+          "move_id": "THRASH_MOVE_1",
+          "next": "LUNGING_BITE_MOVE"
+        },
+        {
+          "id": "THRASH_MOVE_2",
+          "type": "move",
+          "move_id": "THRASH_MOVE_2",
+          "next": "THRASH_MOVE_1"
+        },
+        {
+          "id": "LUNGING_BITE_MOVE",
+          "type": "move",
+          "move_id": "LUNGING_BITE",
+          "next": "SALIVATE_MOVE"
+        },
+        {
+          "id": "SALIVATE_MOVE",
+          "type": "move",
+          "move_id": "SALIVATE",
+          "next": "THRASH_MOVE_2"
+        }
+      ],
+      "description": "Cycle: Licuar el suelo → Thrash Move 1 → Mordida brusca → Salivar → Thrash Move 2 → repeat"
+    },
     "image_url": "/static/images/monsters/the_insatiable.png",
     "beta_image_url": null
   },
@@ -6395,12 +9002,24 @@
         "is_weak": false
       }
     ],
-    "innate_powers": [
-      {
-        "power_id": "POSSESS_STRENGTH",
-        "amount": 1
-      }
-    ],
+    "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": "DEBILITATING_SMOG",
+      "states": [
+        {
+          "id": "DEBILITATING_SMOG",
+          "type": "move",
+          "move_id": "DEBILITATING_SMOG"
+        },
+        {
+          "id": "EYE_LASERS",
+          "type": "move",
+          "move_id": "EYE_LASERS"
+        }
+      ],
+      "description": "Always uses Niebla debilitante"
+    },
     "image_url": "/static/images/monsters/the_lost.png",
     "beta_image_url": null
   },
@@ -6464,6 +9083,47 @@
       }
     ],
     "innate_powers": null,
+    "attack_pattern": {
+      "type": "random",
+      "initial_move": "ILLUSION",
+      "states": [
+        {
+          "id": "ILLUSION_MOVE",
+          "type": "move",
+          "move_id": "ILLUSION",
+          "next": "RAND"
+        },
+        {
+          "id": "PIERCING_GAZE_MOVE",
+          "type": "move",
+          "move_id": "PIERCING_GAZE",
+          "next": "RAND"
+        },
+        {
+          "id": "SAIL_MOVE",
+          "type": "move",
+          "move_id": "SAIL",
+          "next": "RAND"
+        },
+        {
+          "id": "HARDENING_STRIKE_MOVE",
+          "type": "move",
+          "move_id": "HARDENING_STRIKE",
+          "next": "RAND"
+        },
+        {
+          "id": "RAND",
+          "type": "random",
+          "branches": []
+        },
+        {
+          "id": "RAND",
+          "type": "random",
+          "branches": []
+        }
+      ],
+      "description": "Starts with Ilusión"
+    },
     "image_url": "/static/images/monsters/the_obscura.png",
     "beta_image_url": null
   },
@@ -6545,12 +9205,44 @@
         "is_weak": true
       }
     ],
-    "innate_powers": [
-      {
-        "power_id": "ESCAPE_ARTIST",
-        "amount": 5
-      }
-    ],
+    "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": "THIEVERY",
+      "states": [
+        {
+          "id": "THIEVERY_MOVE",
+          "type": "move",
+          "move_id": "THIEVERY",
+          "next": "FLUTTER_MOVE"
+        },
+        {
+          "id": "NAB_MOVE",
+          "type": "move",
+          "move_id": "NAB",
+          "next": "ESCAPE_MOVE"
+        },
+        {
+          "id": "HAT_TRICK_MOVE",
+          "type": "move",
+          "move_id": "HAT_TRICK",
+          "next": "NAB_MOVE"
+        },
+        {
+          "id": "FLUTTER_MOVE",
+          "type": "move",
+          "move_id": "FLUTTER",
+          "next": "HAT_TRICK_MOVE"
+        },
+        {
+          "id": "ESCAPE_MOVE",
+          "type": "move",
+          "move_id": "ESCAPE",
+          "next": "ESCAPE_MOVE"
+        }
+      ],
+      "description": "Cycle: Hurto → Aleteo → Triplete → Robo → Escape → repeat"
+    },
     "image_url": "/static/images/monsters/thieving_hopper.png",
     "beta_image_url": null
   },
@@ -6624,6 +9316,45 @@
       }
     ],
     "innate_powers": null,
+    "attack_pattern": {
+      "type": "conditional",
+      "initial_move": "INIT_MOVE",
+      "states": [
+        {
+          "id": "SPIKE_SPIT_MOVE",
+          "type": "move",
+          "move_id": "SPIKE_SPIT",
+          "next": "WHIRL_MOVE"
+        },
+        {
+          "id": "WHIRL_MOVE",
+          "type": "move",
+          "move_id": "WHIRL",
+          "next": "SPIKEN_MOVE"
+        },
+        {
+          "id": "SPIKEN_MOVE",
+          "type": "move",
+          "move_id": "SPIKEN",
+          "next": "SPIKE_SPIT_MOVE"
+        },
+        {
+          "id": "INIT_MOVE",
+          "type": "conditional",
+          "branches": [
+            {
+              "move_id": "WHIRL",
+              "condition": "!((Toadpole"
+            },
+            {
+              "move_id": "SPIKEN",
+              "condition": "((Toadpole"
+            }
+          ]
+        }
+      ],
+      "description": "then conditional: Remolino (if !((Toadpole) / Espina (if ((Toadpole)"
+    },
     "image_url": "/static/images/monsters/toadpole.png",
     "beta_image_url": null
   },
@@ -6708,12 +9439,44 @@
         "is_weak": false
       }
     ],
-    "innate_powers": [
-      {
-        "power_id": "MINION",
-        "amount": 1
-      }
-    ],
+    "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": "TACKLE_1",
+      "states": [
+        {
+          "id": "TACKLE_1_MOVE",
+          "type": "move",
+          "move_id": "TACKLE_1",
+          "next": "TACKLE_2_MOVE"
+        },
+        {
+          "id": "TACKLE_2_MOVE",
+          "type": "move",
+          "move_id": "TACKLE_2",
+          "next": "BEAM_MOVE"
+        },
+        {
+          "id": "BEAM_MOVE",
+          "type": "move",
+          "move_id": "BEAM",
+          "next": "TACKLE_3_MOVE"
+        },
+        {
+          "id": "TACKLE_3_MOVE",
+          "type": "move",
+          "move_id": "TACKLE_3",
+          "next": "TACKLE_4_MOVE"
+        },
+        {
+          "id": "TACKLE_4_MOVE",
+          "type": "move",
+          "move_id": "TACKLE_4",
+          "next": "BEAM_MOVE"
+        }
+      ],
+      "description": "Cycle: Tackle 1 → Tackle 2 → Beam → Tackle 3 → Tackle 4 → repeat"
+    },
     "image_url": "/static/images/monsters/amalgam.png",
     "beta_image_url": null
   },
@@ -6758,6 +9521,23 @@
       }
     ],
     "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": "HATCH",
+      "states": [
+        {
+          "id": "HATCH_MOVE",
+          "type": "move",
+          "move_id": "HATCH"
+        },
+        {
+          "id": "NIBBLE_MOVE",
+          "type": "move",
+          "move_id": "NIBBLE"
+        }
+      ],
+      "description": "Always uses ECLOSIÓN"
+    },
     "image_url": "/static/images/monsters/tough_egg.png",
     "beta_image_url": null
   },
@@ -6812,6 +9592,23 @@
       }
     ],
     "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": "TRACK",
+      "states": [
+        {
+          "id": "TRACK_MOVE",
+          "type": "move",
+          "move_id": "TRACK"
+        },
+        {
+          "id": "HOUNDS_MOVE",
+          "type": "move",
+          "move_id": "HOUNDS"
+        }
+      ],
+      "description": "Always uses Rastrear"
+    },
     "image_url": "/static/images/monsters/tracker_ruby_raider.png",
     "beta_image_url": null
   },
@@ -6889,6 +9686,37 @@
       }
     ],
     "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": "BITE",
+      "states": [
+        {
+          "id": "BITE_MOVE",
+          "type": "move",
+          "move_id": "BITE",
+          "next": "BURROW_MOVE"
+        },
+        {
+          "id": "BURROW_MOVE",
+          "type": "move",
+          "move_id": "BURROW",
+          "next": "BELOW_MOVE_1"
+        },
+        {
+          "id": "BELOW_MOVE_1",
+          "type": "move",
+          "move_id": "BELOW_MOVE_1",
+          "next": "BELOW_MOVE_1"
+        },
+        {
+          "id": "DIZZY_MOVE",
+          "type": "move",
+          "move_id": "DIZZY",
+          "next": "BITE_MOVE"
+        }
+      ],
+      "description": "Cycle: Mordida → Madriguera → Below Move 1 → repeat"
+    },
     "image_url": "/static/images/monsters/tunneler.png",
     "beta_image_url": null
   },
@@ -6952,6 +9780,31 @@
       }
     ],
     "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": "UNLOAD_MOVE_1",
+      "states": [
+        {
+          "id": "UNLOAD_MOVE_1",
+          "type": "move",
+          "move_id": "UNLOAD_MOVE_1",
+          "next": "UNLOAD_MOVE_2"
+        },
+        {
+          "id": "UNLOAD_MOVE_2",
+          "type": "move",
+          "move_id": "UNLOAD_MOVE_2",
+          "next": "RELOAD_MOVE"
+        },
+        {
+          "id": "RELOAD_MOVE",
+          "type": "move",
+          "move_id": "RELOAD",
+          "next": "UNLOAD_MOVE_1"
+        }
+      ],
+      "description": "Cycle: Unload Move 1 → Unload Move 2 → Reload → repeat"
+    },
     "image_url": "/static/images/monsters/turret_operator.png",
     "beta_image_url": null
   },
@@ -7017,6 +9870,35 @@
       }
     ],
     "innate_powers": null,
+    "attack_pattern": {
+      "type": "random",
+      "initial_move": "STICKY_SHOT",
+      "states": [
+        {
+          "id": "CLUMP_SHOT_MOVE",
+          "type": "move",
+          "move_id": "CLUMP_SHOT",
+          "next": "RAND"
+        },
+        {
+          "id": "STICKY_SHOT_MOVE",
+          "type": "move",
+          "move_id": "STICKY_SHOT",
+          "next": "RAND"
+        },
+        {
+          "id": "RAND",
+          "type": "random",
+          "branches": []
+        },
+        {
+          "id": "RAND",
+          "type": "random",
+          "branches": []
+        }
+      ],
+      "description": "Starts with Disparo pegajoso"
+    },
     "image_url": "/static/images/monsters/twig_slime_m.png",
     "beta_image_url": null
   },
@@ -7070,6 +9952,19 @@
       }
     ],
     "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": "BUTT",
+      "states": [
+        {
+          "id": "BUTT_MOVE",
+          "type": "move",
+          "move_id": "BUTT",
+          "next": "BUTT_MOVE"
+        }
+      ],
+      "description": "Always uses Butt"
+    },
     "image_url": "/static/images/monsters/twig_slime_s.png",
     "beta_image_url": null
   },
@@ -7139,6 +10034,47 @@
       }
     ],
     "innate_powers": null,
+    "attack_pattern": {
+      "type": "random",
+      "initial_move": "RAND",
+      "states": [
+        {
+          "id": "SCRATCH_MOVE",
+          "type": "move",
+          "move_id": "SCRATCH",
+          "next": "RAND"
+        },
+        {
+          "id": "DISEASE_BITE_MOVE",
+          "type": "move",
+          "move_id": "DISEASE_BITE",
+          "next": "RAND"
+        },
+        {
+          "id": "SCREECH_MOVE",
+          "type": "move",
+          "move_id": "SCREECH",
+          "next": "RAND"
+        },
+        {
+          "id": "CALL_FOR_BACKUP_MOVE",
+          "type": "move",
+          "move_id": "CALL_FOR_BACKUP",
+          "next": "RAND"
+        },
+        {
+          "id": "RAND",
+          "type": "random",
+          "branches": []
+        },
+        {
+          "id": "RAND",
+          "type": "random",
+          "branches": []
+        }
+      ],
+      "description": ""
+    },
     "image_url": "/static/images/monsters/two_tailed_rat.png",
     "beta_image_url": null
   },
@@ -7217,12 +10153,38 @@
         "is_weak": false
       }
     ],
-    "innate_powers": [
-      {
-        "power_id": "SLIPPERY",
-        "amount": 9
-      }
-    ],
+    "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": "INK_BLOT",
+      "states": [
+        {
+          "id": "INK_BLOT_MOVE",
+          "type": "move",
+          "move_id": "INK_BLOT",
+          "next": "INKY_LANCE_MOVE"
+        },
+        {
+          "id": "INKY_LANCE_MOVE",
+          "type": "move",
+          "move_id": "INKY_LANCE",
+          "next": "DISMEMBER_MOVE"
+        },
+        {
+          "id": "DISMEMBER_MOVE",
+          "type": "move",
+          "move_id": "DISMEMBER",
+          "next": "PREPARE_MOVE"
+        },
+        {
+          "id": "PREPARE_MOVE",
+          "type": "move",
+          "move_id": "PREPARE",
+          "next": "INK_BLOT_MOVE"
+        }
+      ],
+      "description": "Cycle: Mancha → Lanza de tinta → Desmembrar → Preparación → repeat"
+    },
     "image_url": "/static/images/monsters/vantom.png",
     "beta_image_url": null
   },
@@ -7297,6 +10259,31 @@
       }
     ],
     "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": "SWIPE",
+      "states": [
+        {
+          "id": "GRASPING_VINES_MOVE",
+          "type": "move",
+          "move_id": "GRASPING_VINES",
+          "next": "CHOMP_MOVE"
+        },
+        {
+          "id": "SWIPE_MOVE",
+          "type": "move",
+          "move_id": "SWIPE",
+          "next": "GRASPING_VINES_MOVE"
+        },
+        {
+          "id": "CHOMP_MOVE",
+          "type": "move",
+          "move_id": "CHOMP",
+          "next": "SWIPE_MOVE"
+        }
+      ],
+      "description": "Cycle: Robo → Lianas inmovilizantes → Mordida → repeat"
+    },
     "image_url": "/static/images/monsters/vine_shambler.png",
     "beta_image_url": null
   },
@@ -7438,6 +10425,62 @@
       }
     ],
     "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": "PRESSURIZE",
+      "states": [
+        {
+          "id": "PRESSURIZE_MOVE",
+          "type": "move",
+          "move_id": "PRESSURIZE",
+          "next": "STOMP_MOVE"
+        },
+        {
+          "id": "STOMP_MOVE",
+          "type": "move",
+          "move_id": "STOMP",
+          "next": "RAM_MOVE"
+        },
+        {
+          "id": "RAM_MOVE",
+          "type": "move",
+          "move_id": "RAM",
+          "next": "SIPHON_MOVE"
+        },
+        {
+          "id": "SIPHON_MOVE",
+          "type": "move",
+          "move_id": "SIPHON",
+          "next": "PRESSURE_GUN_MOVE"
+        },
+        {
+          "id": "PRESSURE_GUN_MOVE",
+          "type": "move",
+          "move_id": "PRESSURE_GUN",
+          "next": "PRESSURE_UP_MOVE"
+        },
+        {
+          "id": "PRESSURE_UP_MOVE",
+          "type": "move",
+          "move_id": "PRESSURE_UP",
+          "next": "STOMP_MOVE"
+        },
+        {
+          "id": "EXPLODE_MOVE",
+          "type": "move",
+          "move_id": "EXPLODE",
+          "next": "EXPLODE_MOVE"
+        },
+        {
+          "id": "ABOUT_TO_BLOW_MOVE",
+          "type": "move",
+          "move_id": "ABOUT_TO_BLOW",
+          "must_perform_once": true,
+          "next": "EXPLODE_MOVE"
+        }
+      ],
+      "description": "Cycle: Presurizar → Pisotón → Embestir → Sifón → Pistola a presión → Pressure Up → repeat"
+    },
     "image_url": "/static/images/monsters/waterfall_giant.png",
     "beta_image_url": null
   },
@@ -7501,6 +10544,53 @@
       }
     ],
     "innate_powers": null,
+    "attack_pattern": {
+      "type": "conditional",
+      "initial_move": null,
+      "states": [
+        {
+          "id": "NASTY_BITE_MOVE",
+          "type": "move",
+          "move_id": "NASTY_BITE",
+          "next": "WRIGGLE_MOVE"
+        },
+        {
+          "id": "WRIGGLE_MOVE",
+          "type": "move",
+          "move_id": "WRIGGLE",
+          "next": "NASTY_BITE_MOVE"
+        },
+        {
+          "id": "SPAWNED_MOVE",
+          "type": "move",
+          "move_id": "SPAWNED",
+          "next": "INIT_MOVE"
+        },
+        {
+          "id": "INIT_MOVE",
+          "type": "conditional",
+          "branches": [
+            {
+              "move_id": "NASTY_BITE",
+              "condition": "base.Creature.SlotName == \"wriggler1\""
+            },
+            {
+              "move_id": "WRIGGLE",
+              "condition": "base.Creature.SlotName == \"wriggler2\""
+            },
+            {
+              "move_id": "NASTY_BITE",
+              "condition": "base.Creature.SlotName == \"wriggler3\""
+            },
+            {
+              "move_id": "WRIGGLE",
+              "condition": "base.Creature.SlotName == \"wriggler4\""
+            }
+          ]
+        }
+      ],
+      "description": ""
+    },
     "image_url": "/static/images/monsters/wriggler.png",
     "beta_image_url": null
   },
@@ -7531,12 +10621,20 @@
     },
     "block_values": null,
     "encounters": null,
-    "innate_powers": [
-      {
-        "power_id": "HIGH_VOLTAGE",
-        "amount": 2
-      }
-    ],
+    "innate_powers": null,
+    "attack_pattern": {
+      "type": "cycle",
+      "initial_move": "ZAP",
+      "states": [
+        {
+          "id": "ZAP",
+          "type": "move",
+          "move_id": "ZAP",
+          "next": "ZAP"
+        }
+      ],
+      "description": "Always uses Chispa"
+    },
     "image_url": "/static/images/monsters/zapbot.png",
     "beta_image_url": null
   },

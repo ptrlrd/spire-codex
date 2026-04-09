@@ -134,6 +134,31 @@ export interface MonsterEncounter {
 export interface MonsterInnatePower {
   power_id: string;
   amount: number;
+  amount_ascension?: number;
+}
+
+export interface AttackPatternBranch {
+  move_id: string;
+  weight?: number;
+  repeat?: string;
+  max_times?: number;
+  condition?: string;
+}
+
+export interface AttackPatternState {
+  id: string;
+  type: "move" | "random" | "conditional";
+  move_id?: string;
+  must_perform_once?: boolean;
+  next?: string;
+  branches?: AttackPatternBranch[];
+}
+
+export interface AttackPattern {
+  type: "cycle" | "random" | "conditional" | "mixed";
+  initial_move: string | null;
+  states: AttackPatternState[];
+  description: string;
 }
 
 export interface Monster {
@@ -149,6 +174,7 @@ export interface Monster {
   block_values: Record<string, number> | null;
   encounters: MonsterEncounter[] | null;
   innate_powers: MonsterInnatePower[] | null;
+  attack_pattern: AttackPattern | null;
   image_url: string | null;
   beta_image_url: string | null;
 }
@@ -233,6 +259,7 @@ export interface GameEvent {
   type: string;
   act: string | null;
   description: string | null;
+  preconditions: string[] | null;
   options: EventOption[] | null;
   pages: EventPage[] | null;
   epithet: string | null;

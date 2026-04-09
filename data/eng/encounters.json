@@ -12,7 +12,7 @@
         "name": "Axebot"
       }
     ],
-    "loss_text": "The adventurer was dismembered by some [gold]Bot Buddies[/gold]."
+    "loss_text": "[b]The Adventurer[/b] was dismembered by some [gold]Bot Buddies[/gold]."
   },
   {
     "id": "BATTLEWORN_DUMMY_EVENT_ENCOUNTER",
@@ -35,7 +35,7 @@
         "name": "Battle Friend V3.0"
       }
     ],
-    "loss_text": "The adventurer was somehow killed by [gold]Battleworn Dummy[/gold]???"
+    "loss_text": "[b]The Adventurer[/b] was somehow killed by [gold]Battleworn Dummy[/gold]???"
   },
   {
     "id": "BOWLBUGS_NORMAL",
@@ -64,7 +64,7 @@
         "name": "Bowlbug (Silk)"
       }
     ],
-    "loss_text": "The adventurer got in the way of a busy [gold]Bowlbug Swarm[/gold]."
+    "loss_text": "[b]The Adventurer[/b] got in the way of a busy [gold]Bowlbug Swarm[/gold]."
   },
   {
     "id": "BOWLBUGS_WEAK",
@@ -89,7 +89,7 @@
         "name": "Bowlbug (Rock)"
       }
     ],
-    "loss_text": "The adventurer got in the way of some busy [gold]Bowlbugs[/gold]."
+    "loss_text": "[b]The Adventurer[/b] got in the way of some busy [gold]Bowlbugs[/gold]."
   },
   {
     "id": "BYGONE_EFFIGY_ELITE",
@@ -104,7 +104,7 @@
         "name": "Bygone Effigy"
       }
     ],
-    "loss_text": "The adventurer was sliced in half by a [gold]Bygone Effigy[/gold]."
+    "loss_text": "[b]The Adventurer[/b] was sliced in half by a [gold]Bygone Effigy[/gold]."
   },
   {
     "id": "BYRDONIS_ELITE",
@@ -119,7 +119,7 @@
         "name": "Byrdonis"
       }
     ],
-    "loss_text": "[gold]Byrdonis[/gold] protected its children from The adventurer."
+    "loss_text": "[gold]Byrdonis[/gold] protected its children from [b]The Adventurer[/b]."
   },
   {
     "id": "CEREMONIAL_BEAST_BOSS",
@@ -134,7 +134,7 @@
         "name": "Ceremonial Beast"
       }
     ],
-    "loss_text": "The adventurer was put to rest by the [gold]Ceremonial Beast[/gold]."
+    "loss_text": "[b]The Adventurer[/b] was put to rest by the [gold]Ceremonial Beast[/gold]."
   },
   {
     "id": "CHOMPERS_NORMAL",
@@ -151,7 +151,7 @@
         "name": "Chomper"
       }
     ],
-    "loss_text": "The adventurer was chomped to death by [gold]An Automaton Pair[/gold]."
+    "loss_text": "[b]The Adventurer[/b] was chomped to death by [gold]An Automaton Pair[/gold]."
   },
   {
     "id": "CONSTRUCT_MENAGERIE_NORMAL",
@@ -170,7 +170,7 @@
         "name": "Punch Construct"
       }
     ],
-    "loss_text": "The [gold]Construct Menagerie[/gold] crushed The adventurer."
+    "loss_text": "The [gold]Construct Menagerie[/gold] crushed [b]The Adventurer[/b]."
   },
   {
     "id": "CORPSE_SLUGS_NORMAL",
@@ -187,7 +187,7 @@
         "name": "Corpse Slug"
       }
     ],
-    "loss_text": "[gold]Many Corpse Slugs[/gold] feasted on The adventurer."
+    "loss_text": "[gold]Many Corpse Slugs[/gold] feasted on [b]The Adventurer[/b]."
   },
   {
     "id": "CORPSE_SLUGS_WEAK",
@@ -204,7 +204,7 @@
         "name": "Corpse Slug"
       }
     ],
-    "loss_text": "[gold]Corpse Slugs[/gold] feasted on The adventurer."
+    "loss_text": "[gold]Corpse Slugs[/gold] feasted on [b]The Adventurer[/b]."
   },
   {
     "id": "CUBEX_CONSTRUCT_NORMAL",
@@ -219,7 +219,7 @@
         "name": "Cubex Construct"
       }
     ],
-    "loss_text": "The adventurer was lasered to death by a [gold]Cubex Construct[/gold]."
+    "loss_text": "[b]The Adventurer[/b] was lasered to death by a [gold]Cubex Construct[/gold]."
   },
   {
     "id": "CULTISTS_NORMAL",
@@ -238,7 +238,7 @@
         "name": "Damp Cultist"
       }
     ],
-    "loss_text": "The adventurer was slain by some [gold]Cultists[/gold]. [sine]Caaaaw[/sine]..."
+    "loss_text": "[b]The Adventurer[/b] was slain by some [gold]Cultists[/gold]. [sine]Caaaaw[/sine]..."
   },
   {
     "id": "DECIMILLIPEDE_ELITE",
@@ -261,7 +261,7 @@
         "name": "Decimillipede Segment Middle"
       }
     ],
-    "loss_text": "The adventurer couldn't survive [gold]The Decimillipede[/gold]'s domain."
+    "loss_text": "[b]The Adventurer[/b] couldn't survive [gold]The Decimillipede[/gold]'s domain."
   },
   {
     "id": "DENSE_VEGETATION_EVENT_ENCOUNTER",
@@ -276,7 +276,7 @@
         "name": "Wriggler"
       }
     ],
-    "loss_text": "The adventurer was infested by [gold]Wrigglers[/gold]."
+    "loss_text": "[b]The Adventurer[/b] was infested by [gold]Wrigglers[/gold]."
   },
   {
     "id": "DEVOTED_SCULPTOR_WEAK",
@@ -291,7 +291,7 @@
         "name": "Devoted Sculptor"
       }
     ],
-    "loss_text": "The adventurer was smashed to pieces by [gold]Devoted Sculptor[/gold]."
+    "loss_text": "[b]The Adventurer[/b] was smashed to pieces by [gold]Devoted Sculptor[/gold]."
   },
   {
     "id": "DOORMAKER_BOSS",
@@ -310,7 +310,7 @@
         "name": "Doormaker"
       }
     ],
-    "loss_text": "[gold]The Doormaker[/gold] didn't take kindly to The adventurer's disturbance."
+    "loss_text": "[gold]The Doormaker[/gold] didn't take kindly to [b]The Adventurer[/b]'s disturbance."
   },
   {
     "id": "ENTOMANCER_ELITE",
@@ -325,7 +325,7 @@
         "name": "Entomancer"
       }
     ],
-    "loss_text": "The adventurer was stung to death by an [gold]Entomancer[/gold]."
+    "loss_text": "[b]The Adventurer[/b] was stung to death by an [gold]Entomancer[/gold]."
   },
   {
     "id": "EXOSKELETONS_NORMAL",
@@ -342,7 +342,7 @@
         "name": "Exoskeleton"
       }
     ],
-    "loss_text": "The adventurer was eviscerated by [gold]Many Exoskeletons[/gold]."
+    "loss_text": "[b]The Adventurer[/b] was eviscerated by [gold]Many Exoskeletons[/gold]."
   },
   {
     "id": "EXOSKELETONS_WEAK",
@@ -359,7 +359,7 @@
         "name": "Exoskeleton"
       }
     ],
-    "loss_text": "The adventurer was eviscerated by some [gold]Exoskeletons[/gold]."
+    "loss_text": "[b]The Adventurer[/b] was eviscerated by some [gold]Exoskeletons[/gold]."
   },
   {
     "id": "FABRICATOR_NORMAL",
@@ -374,7 +374,7 @@
         "name": "Fabricator"
       }
     ],
-    "loss_text": "The adventurer was zapped by a [gold]Fabricator[/gold]'s bots."
+    "loss_text": "[b]The Adventurer[/b] was zapped by a [gold]Fabricator[/gold]'s bots."
   },
   {
     "id": "FAKE_MERCHANT_EVENT_ENCOUNTER",
@@ -389,7 +389,7 @@
         "name": "The Merchant???"
       }
     ],
-    "loss_text": "The adventurer faced the wrath of [gold]The Merchant???[/gold]"
+    "loss_text": "[b]The Adventurer[/b] faced the wrath of [gold]The Merchant???[/gold]"
   },
   {
     "id": "FLYCONID_NORMAL",
@@ -415,7 +415,7 @@
         "name": "Twig Slime (M)"
       }
     ],
-    "loss_text": "The adventurer was absorbed by a [gold]Shroom and Slime[/gold]."
+    "loss_text": "[b]The Adventurer[/b] was absorbed by a [gold]Shroom and Slime[/gold]."
   },
   {
     "id": "FOGMOG_NORMAL",
@@ -434,7 +434,7 @@
         "name": "Fogmog"
       }
     ],
-    "loss_text": "The adventurer was distracted by a [gold]Fogmog[/gold]'s illusions."
+    "loss_text": "[b]The Adventurer[/b] was distracted by a [gold]Fogmog[/gold]'s illusions."
   },
   {
     "id": "FOSSIL_STALKER_NORMAL",
@@ -449,7 +449,7 @@
         "name": "Fossil Stalker"
       }
     ],
-    "loss_text": "The adventurer was ambushed by a [gold]Fossil Stalker[/gold]."
+    "loss_text": "[b]The Adventurer[/b] was ambushed by a [gold]Fossil Stalker[/gold]."
   },
   {
     "id": "FROG_KNIGHT_NORMAL",
@@ -464,7 +464,7 @@
         "name": "Frog Knight"
       }
     ],
-    "loss_text": "A valiant [gold]Frog Knight[/gold] triumphed over The adventurer."
+    "loss_text": "A valiant [gold]Frog Knight[/gold] triumphed over [b]The Adventurer[/b]."
   },
   {
     "id": "FUZZY_WURM_CRAWLER_WEAK",
@@ -481,7 +481,7 @@
         "name": "Fuzzy Wurm Crawler"
       }
     ],
-    "loss_text": "A [gold]Fuzzy Wurm Crawler[/gold] spat on The adventurer."
+    "loss_text": "A [gold]Fuzzy Wurm Crawler[/gold] spat on [b]The Adventurer[/b]."
   },
   {
     "id": "GLOBE_HEAD_NORMAL",
@@ -496,7 +496,7 @@
         "name": "Globe Head"
       }
     ],
-    "loss_text": "[gold]A Lone Globe Head[/gold] zapped The adventurer."
+    "loss_text": "[gold]A Lone Globe Head[/gold] zapped [b]The Adventurer[/b]."
   },
   {
     "id": "GREMLIN_MERC_NORMAL",
@@ -519,7 +519,7 @@
         "name": "Sneaky Gremlin"
       }
     ],
-    "loss_text": "The adventurer got mugged by [gold]Two Gremlins in a Trenchcoat[/gold]."
+    "loss_text": "[b]The Adventurer[/b] got mugged by [gold]Two Gremlins in a Trenchcoat[/gold]."
   },
   {
     "id": "HAUNTED_SHIP_NORMAL",
@@ -534,7 +534,7 @@
         "name": "Haunted Ship"
       }
     ],
-    "loss_text": "A [gold]Haunted Ship[/gold] stomped all over The adventurer."
+    "loss_text": "A [gold]Haunted Ship[/gold] stomped all over [b]The Adventurer[/b]."
   },
   {
     "id": "HUNTER_KILLER_NORMAL",
@@ -549,7 +549,7 @@
         "name": "Hunter Killer"
       }
     ],
-    "loss_text": "The adventurer was disemboweled by a [gold]Hunter Killer[/gold]."
+    "loss_text": "[b]The Adventurer[/b] was disemboweled by a [gold]Hunter Killer[/gold]."
   },
   {
     "id": "INFESTED_PRISMS_ELITE",
@@ -564,7 +564,7 @@
         "name": "Infested Prism"
       }
     ],
-    "loss_text": "The adventurer was stopped by an [gold]Infested Prism[/gold]."
+    "loss_text": "[b]The Adventurer[/b] was stopped by an [gold]Infested Prism[/gold]."
   },
   {
     "id": "INKLETS_NORMAL",
@@ -579,7 +579,7 @@
         "name": "Inklet"
       }
     ],
-    "loss_text": "Some [gold]Inklets[/gold] wouldn't let The adventurer pass."
+    "loss_text": "Some [gold]Inklets[/gold] wouldn't let [b]The Adventurer[/b] pass."
   },
   {
     "id": "KAISER_CRAB_BOSS",
@@ -598,7 +598,7 @@
         "name": "Rocket"
       }
     ],
-    "loss_text": "The [gold]Kaiser Crab[/gold] struck The adventurer from all sides."
+    "loss_text": "The [gold]Kaiser Crab[/gold] struck [b]The Adventurer[/b] from all sides."
   },
   {
     "id": "KNIGHTS_ELITE",
@@ -623,7 +623,7 @@
         "name": "Spectral Knight"
       }
     ],
-    "loss_text": "The adventurer was slain by a [gold]Knight Gang[/gold]."
+    "loss_text": "[b]The Adventurer[/b] was slain by a [gold]Knight Gang[/gold]."
   },
   {
     "id": "KNOWLEDGE_DEMON_BOSS",
@@ -638,7 +638,7 @@
         "name": "Knowledge Demon"
       }
     ],
-    "loss_text": "The [gold]Knowledge Demon[/gold] cursed The adventurer with overwhelming knowledge."
+    "loss_text": "The [gold]Knowledge Demon[/gold] cursed [b]The Adventurer[/b] with overwhelming knowledge."
   },
   {
     "id": "LAGAVULIN_MATRIARCH_BOSS",
@@ -653,7 +653,7 @@
         "name": "Lagavulin Matriarch"
       }
     ],
-    "loss_text": "The adventurer was cut in half by the [gold]Lagavulin Matriarch[/gold]."
+    "loss_text": "[b]The Adventurer[/b] was cut in half by the [gold]Lagavulin Matriarch[/gold]."
   },
   {
     "id": "LIVING_FOG_NORMAL",
@@ -672,7 +672,7 @@
         "name": "Living Fog"
       }
     ],
-    "loss_text": "The adventurer couldn't bear the stench of some [gold]Evil Gas[/gold]."
+    "loss_text": "[b]The Adventurer[/b] couldn't bear the stench of some [gold]Evil Gas[/gold]."
   },
   {
     "id": "LOUSE_PROGENITOR_NORMAL",
@@ -687,7 +687,7 @@
         "name": "Louse Progenitor"
       }
     ],
-    "loss_text": "The adventurer was paralyzed by a [gold]Louse Progenitor[/gold]."
+    "loss_text": "[b]The Adventurer[/b] was paralyzed by a [gold]Louse Progenitor[/gold]."
   },
   {
     "id": "MAWLER_NORMAL",
@@ -702,7 +702,7 @@
         "name": "Mawler"
       }
     ],
-    "loss_text": "The adventurer became a delicious meal for a [gold]Mawler[/gold]."
+    "loss_text": "[b]The Adventurer[/b] became a delicious meal for a [gold]Mawler[/gold]."
   },
   {
     "id": "MECHA_KNIGHT_ELITE",
@@ -717,7 +717,7 @@
         "name": "Mecha Knight"
       }
     ],
-    "loss_text": "The adventurer was stabbed and burned by a [gold]Mecha Knight[/gold]."
+    "loss_text": "[b]The Adventurer[/b] was stabbed and burned by a [gold]Mecha Knight[/gold]."
   },
   {
     "id": "MYSTERIOUS_KNIGHT_EVENT_ENCOUNTER",
@@ -732,7 +732,7 @@
         "name": "Mysterious Knight"
       }
     ],
-    "loss_text": "The adventurer tried to take a [gold]Mysterious Knight[/gold]'s key."
+    "loss_text": "[b]The Adventurer[/b] tried to take a [gold]Mysterious Knight[/gold]'s key."
   },
   {
     "id": "MYTES_NORMAL",
@@ -747,7 +747,7 @@
         "name": "Myte"
       }
     ],
-    "loss_text": "The adventurer was swarmed by a [gold]Mass of Mytes[/gold]."
+    "loss_text": "[b]The Adventurer[/b] was swarmed by a [gold]Mass of Mytes[/gold]."
   },
   {
     "id": "NIBBITS_NORMAL",
@@ -762,7 +762,7 @@
         "name": "Nibbit"
       }
     ],
-    "loss_text": "[gold]A Pair of Nibbits[/gold] beat up The adventurer."
+    "loss_text": "[gold]A Pair of Nibbits[/gold] beat up [b]The Adventurer[/b]."
   },
   {
     "id": "NIBBITS_WEAK",
@@ -779,7 +779,7 @@
         "name": "Nibbit"
       }
     ],
-    "loss_text": "[gold]A Lone Nibbit[/gold] beat up The adventurer."
+    "loss_text": "[gold]A Lone Nibbit[/gold] beat up [b]The Adventurer[/b]."
   },
   {
     "id": "OVERGROWTH_CRAWLERS",
@@ -801,7 +801,7 @@
         "name": "Shrinker Beetle"
       }
     ],
-    "loss_text": "Some [gold]Overgrowth Crawlers[/gold] feasted on The adventurer."
+    "loss_text": "Some [gold]Overgrowth Crawlers[/gold] feasted on [b]The Adventurer[/b]."
   },
   {
     "id": "OVICOPTER_NORMAL",
@@ -820,7 +820,7 @@
         "name": "Tough Egg"
       }
     ],
-    "loss_text": "The adventurer became food for an [gold]Ovicopter[/gold]'s children."
+    "loss_text": "[b]The Adventurer[/b] became food for an [gold]Ovicopter[/gold]'s children."
   },
   {
     "id": "OWL_MAGISTRATE_NORMAL",
@@ -835,7 +835,7 @@
         "name": "Owl Magistrate"
       }
     ],
-    "loss_text": "The adventurer was sentenced to death by an [gold]Owl Magistrate[/gold]."
+    "loss_text": "[b]The Adventurer[/b] was sentenced to death by an [gold]Owl Magistrate[/gold]."
   },
   {
     "id": "PHANTASMAL_GARDENERS_ELITE",
@@ -850,7 +850,7 @@
         "name": "Phantasmal Gardener"
       }
     ],
-    "loss_text": "The adventurer was put to rest by the [gold]Phantasmal Gardeners[/gold]."
+    "loss_text": "[b]The Adventurer[/b] was put to rest by the [gold]Phantasmal Gardeners[/gold]."
   },
   {
     "id": "PHROG_PARASITE_ELITE",
@@ -869,7 +869,7 @@
         "name": "Wriggler"
       }
     ],
-    "loss_text": "A [gold]Phrog Parasite[/gold] spread its colony to The adventurer."
+    "loss_text": "A [gold]Phrog Parasite[/gold] spread its colony to [b]The Adventurer[/b]."
   },
   {
     "id": "PUNCH_CONSTRUCT_NORMAL",
@@ -884,7 +884,7 @@
         "name": "Punch Construct"
       }
     ],
-    "loss_text": "The adventurer engaged in fisticuffs with a [gold]Punch Construct[/gold]."
+    "loss_text": "[b]The Adventurer[/b] engaged in fisticuffs with a [gold]Punch Construct[/gold]."
   },
   {
     "id": "PUNCH_OFF_EVENT_ENCOUNTER",
@@ -899,7 +899,7 @@
         "name": "Punch Construct"
       }
     ],
-    "loss_text": "The adventurer interrupted a bout between two [gold]Punch Constructs[/gold]."
+    "loss_text": "[b]The Adventurer[/b] interrupted a bout between two [gold]Punch Constructs[/gold]."
   },
   {
     "id": "QUEEN_BOSS",
@@ -918,7 +918,7 @@
         "name": "Torch Head Amalgam"
       }
     ],
-    "loss_text": "The [gold]Queen[/gold] added a piece of The adventurer to her collection."
+    "loss_text": "The [gold]Queen[/gold] added a piece of [b]The Adventurer[/b] to her collection."
   },
   {
     "id": "RUBY_RAIDERS_NORMAL",
@@ -949,7 +949,7 @@
         "name": "Tracker Raider"
       }
     ],
-    "loss_text": "The adventurer got jumped by a group of [gold]Ruby Raiders[/gold]."
+    "loss_text": "[b]The Adventurer[/b] got jumped by a group of [gold]Ruby Raiders[/gold]."
   },
   {
     "id": "SCROLLS_OF_BITING_NORMAL",
@@ -966,7 +966,7 @@
         "name": "Scroll of Biting"
       }
     ],
-    "loss_text": "[gold]Many Scrolls of Biting[/gold] tore The adventurer to shreds."
+    "loss_text": "[gold]Many Scrolls of Biting[/gold] tore [b]The Adventurer[/b] to shreds."
   },
   {
     "id": "SCROLLS_OF_BITING_WEAK",
@@ -983,7 +983,7 @@
         "name": "Scroll of Biting"
       }
     ],
-    "loss_text": "Some [gold]Scrolls of Biting[/gold] tore The adventurer to shreds."
+    "loss_text": "Some [gold]Scrolls of Biting[/gold] tore [b]The Adventurer[/b] to shreds."
   },
   {
     "id": "SEAPUNK_WEAK",
@@ -1000,7 +1000,7 @@
         "name": "Seapunk"
       }
     ],
-    "loss_text": "A [gold]Seapunk[/gold] clobbered The adventurer."
+    "loss_text": "A [gold]Seapunk[/gold] clobbered [b]The Adventurer[/b]."
   },
   {
     "id": "SEWER_CLAM_NORMAL",
@@ -1015,7 +1015,7 @@
         "name": "Sewer Clam"
       }
     ],
-    "loss_text": "The adventurer was gobbled up by a [gold]Sewer Clam[/gold]."
+    "loss_text": "[b]The Adventurer[/b] was gobbled up by a [gold]Sewer Clam[/gold]."
   },
   {
     "id": "SHRINKER_BEETLE_WEAK",
@@ -1032,7 +1032,7 @@
         "name": "Shrinker Beetle"
       }
     ],
-    "loss_text": "A [gold]Shrinker Beetle[/gold] snacked on The adventurer."
+    "loss_text": "A [gold]Shrinker Beetle[/gold] snacked on [b]The Adventurer[/b]."
   },
   {
     "id": "SKULKING_COLONY_ELITE",
@@ -1047,7 +1047,7 @@
         "name": "Skulking Colony"
       }
     ],
-    "loss_text": "The adventurer was absorbed by a [gold]Skulking Colony[/gold]"
+    "loss_text": "[b]The Adventurer[/b] was absorbed by a [gold]Skulking Colony[/gold]"
   },
   {
     "id": "SLIMED_BERSERKER_NORMAL",
@@ -1062,7 +1062,7 @@
         "name": "Slimed Berserker"
       }
     ],
-    "loss_text": "The adventurer was absorbed into a [gold]Slimed Berserker[/gold]."
+    "loss_text": "[b]The Adventurer[/b] was absorbed into a [gold]Slimed Berserker[/gold]."
   },
   {
     "id": "SLIMES_NORMAL",
@@ -1091,7 +1091,7 @@
         "name": "Twig Slime (S)"
       }
     ],
-    "loss_text": "The adventurer was felled by a [gold]Swarm of Slimes[/gold]."
+    "loss_text": "[b]The Adventurer[/b] was felled by a [gold]Swarm of Slimes[/gold]."
   },
   {
     "id": "SLIMES_WEAK",
@@ -1120,7 +1120,7 @@
         "name": "Twig Slime (S)"
       }
     ],
-    "loss_text": "The adventurer was felled by a [gold]Group of Slimes[/gold]."
+    "loss_text": "[b]The Adventurer[/b] was felled by a [gold]Group of Slimes[/gold]."
   },
   {
     "id": "SLITHERING_STRANGLER_NORMAL",
@@ -1155,7 +1155,7 @@
         "name": "Twig Slime (S)"
       }
     ],
-    "loss_text": "The adventurer was suffocated by a [gold]Strangler and Friend[/gold]."
+    "loss_text": "[b]The Adventurer[/b] was suffocated by a [gold]Strangler and Friend[/gold]."
   },
   {
     "id": "SLUDGE_SPINNER_WEAK",
@@ -1170,7 +1170,7 @@
         "name": "Sludge Spinner"
       }
     ],
-    "loss_text": "The adventurer couldn't defeat a [gold]Sludge Spinner[/gold]."
+    "loss_text": "[b]The Adventurer[/b] couldn't defeat a [gold]Sludge Spinner[/gold]."
   },
   {
     "id": "SLUMBERING_BEETLE_NORMAL",
@@ -1195,7 +1195,7 @@
         "name": "Slumbering Beetle"
       }
     ],
-    "loss_text": "The adventurer interrupted a [gold]Slumber Party[/gold]."
+    "loss_text": "[b]The Adventurer[/b] interrupted a [gold]Slumber Party[/gold]."
   },
   {
     "id": "SNAPPING_JAXFRUIT_NORMAL",
@@ -1216,7 +1216,7 @@
         "name": "Snapping Jaxfruit"
       }
     ],
-    "loss_text": "The adventurer ran afoul of some [gold]Overgrowth Flora[/gold]."
+    "loss_text": "[b]The Adventurer[/b] ran afoul of some [gold]Overgrowth Flora[/gold]."
   },
   {
     "id": "SOUL_FYSH_BOSS",
@@ -1231,7 +1231,7 @@
         "name": "Soul Fysh"
       }
     ],
-    "loss_text": "A [gold]Soul Fysh[/gold] beckoned The adventurer to their doom."
+    "loss_text": "A [gold]Soul Fysh[/gold] beckoned [b]The Adventurer[/b] to their doom."
   },
   {
     "id": "SOUL_NEXUS_ELITE",
@@ -1246,7 +1246,7 @@
         "name": "Soul Nexus"
       }
     ],
-    "loss_text": "The adventurer died to a [gold]Soul Nexus[/gold] on a forgotten battlefield."
+    "loss_text": "[b]The Adventurer[/b] died to a [gold]Soul Nexus[/gold] on a forgotten battlefield."
   },
   {
     "id": "SPINY_TOAD_NORMAL",
@@ -1261,7 +1261,7 @@
         "name": "Spiny Toad"
       }
     ],
-    "loss_text": "The adventurer couldn't pierce the [gold]Spiny Toad[/gold]'s spikes."
+    "loss_text": "[b]The Adventurer[/b] couldn't pierce the [gold]Spiny Toad[/gold]'s spikes."
   },
   {
     "id": "TERROR_EEL_ELITE",
@@ -1276,7 +1276,7 @@
         "name": "Terror Eel"
       }
     ],
-    "loss_text": "A [gold]Terror Eel[/gold] was too terrifying for The adventurer."
+    "loss_text": "A [gold]Terror Eel[/gold] was too terrifying for [b]The Adventurer[/b]."
   },
   {
     "id": "TEST_SUBJECT_BOSS",
@@ -1291,7 +1291,7 @@
         "name": "Test Subject #C{Count}"
       }
     ],
-    "loss_text": "A [gold]Test Subject[/gold] loyally guarded its masters from The adventurer."
+    "loss_text": "A [gold]Test Subject[/gold] loyally guarded its masters from [b]The Adventurer[/b]."
   },
   {
     "id": "THE_ARCHITECT_EVENT_ENCOUNTER",
@@ -1321,7 +1321,7 @@
         "name": "The Insatiable"
       }
     ],
-    "loss_text": "[gold]The Insatiable[/gold] devoured The adventurer. And yet, it still hungers..."
+    "loss_text": "[gold]The Insatiable[/gold] devoured [b]The Adventurer[/b]. And yet, it still hungers..."
   },
   {
     "id": "THE_KIN_BOSS",
@@ -1340,7 +1340,7 @@
         "name": "Kin Priest"
       }
     ],
-    "loss_text": "The adventurer was annihilated by [gold]The Kin[/gold]'s superior strategy."
+    "loss_text": "[b]The Adventurer[/b] was annihilated by [gold]The Kin[/gold]'s superior strategy."
   },
   {
     "id": "THE_LOST_AND_FORGOTTEN_NORMAL",
@@ -1359,7 +1359,7 @@
         "name": "The Lost"
       }
     ],
-    "loss_text": "The [gold]Lost and Forgotten[/gold] stole The adventurer's will to live."
+    "loss_text": "The [gold]Lost and Forgotten[/gold] stole [b]The Adventurer[/b]'s will to live."
   },
   {
     "id": "THE_OBSCURA_NORMAL",
@@ -1374,7 +1374,7 @@
         "name": "The Obscura"
       }
     ],
-    "loss_text": "[gold]The Obscura[/gold] and its illusion smashed The adventurer."
+    "loss_text": "[gold]The Obscura[/gold] and its illusion smashed [b]The Adventurer[/b]."
   },
   {
     "id": "THIEVING_HOPPER_WEAK",
@@ -1391,7 +1391,7 @@
         "name": "Thieving Hopper"
       }
     ],
-    "loss_text": "A [gold]Thieving Hopper[/gold] mugged The adventurer."
+    "loss_text": "A [gold]Thieving Hopper[/gold] mugged [b]The Adventurer[/b]."
   },
   {
     "id": "TOADPOLES_NORMAL",
@@ -1410,7 +1410,7 @@
         "name": "Toadpole"
       }
     ],
-    "loss_text": "The adventurer was defeated by some [gold]Underdocks Wildlife[/gold]."
+    "loss_text": "[b]The Adventurer[/b] was defeated by some [gold]Underdocks Wildlife[/gold]."
   },
   {
     "id": "TOADPOLES_WEAK",
@@ -1425,7 +1425,7 @@
         "name": "Toadpole"
       }
     ],
-    "loss_text": "The adventurer couldn't deal with some [gold]Toadpoles[/gold]."
+    "loss_text": "[b]The Adventurer[/b] couldn't deal with some [gold]Toadpoles[/gold]."
   },
   {
     "id": "TUNNELER_NORMAL",
@@ -1451,7 +1451,7 @@
         "name": "Tunneler"
       }
     ],
-    "loss_text": "A [gold]Tunneling Twosome[/gold] finished off The adventurer."
+    "loss_text": "A [gold]Tunneling Twosome[/gold] finished off [b]The Adventurer[/b]."
   },
   {
     "id": "TUNNELER_WEAK",
@@ -1468,7 +1468,7 @@
         "name": "Tunneler"
       }
     ],
-    "loss_text": "The adventurer got whacked by a [gold]Tunneler[/gold]."
+    "loss_text": "[b]The Adventurer[/b] got whacked by a [gold]Tunneler[/gold]."
   },
   {
     "id": "TURRET_OPERATOR_WEAK",
@@ -1487,7 +1487,7 @@
         "name": "Turret Operator"
       }
     ],
-    "loss_text": "A [gold]Turret Operator[/gold] riddled The adventurer full of holes."
+    "loss_text": "A [gold]Turret Operator[/gold] riddled [b]The Adventurer[/b] full of holes."
   },
   {
     "id": "TWO_TAILED_RATS_NORMAL",
@@ -1502,7 +1502,7 @@
         "name": "Two-Tailed Rat"
       }
     ],
-    "loss_text": "The adventurer was swarmed by some [gold]Two-Tailed Rats[/gold]."
+    "loss_text": "[b]The Adventurer[/b] was swarmed by some [gold]Two-Tailed Rats[/gold]."
   },
   {
     "id": "VANTOM_BOSS",
@@ -1517,7 +1517,7 @@
         "name": "Vantom"
       }
     ],
-    "loss_text": "The adventurer was turned into an Inklet by the [gold]Vantom[/gold]."
+    "loss_text": "[b]The Adventurer[/b] was turned into an Inklet by the [gold]Vantom[/gold]."
   },
   {
     "id": "VINE_SHAMBLER_NORMAL",
@@ -1532,7 +1532,7 @@
         "name": "Vine Shambler"
       }
     ],
-    "loss_text": "The adventurer couldn't escape a [gold]Vine Shambler[/gold]."
+    "loss_text": "[b]The Adventurer[/b] couldn't escape a [gold]Vine Shambler[/gold]."
   },
   {
     "id": "WATERFALL_GIANT_BOSS",
@@ -1547,6 +1547,6 @@
         "name": "Waterfall Giant"
       }
     ],
-    "loss_text": "The [gold]Waterfall Giant[/gold] cleansed the Underdocks of The adventurer."
+    "loss_text": "The [gold]Waterfall Giant[/gold] cleansed the Underdocks of [b]The Adventurer[/b]."
   }
 ]

@@ -5,6 +5,7 @@
     "type": "Event",
     "act": "Underdocks",
     "description": null,
+    "preconditions": null,
     "options": [
       {
         "id": "IMMERSE",
@@ -53,6 +54,10 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": null,
+    "preconditions": [
+      "Requires 2+ Strikes in deck",
+      "Requires 2+ Defends in deck"
+    ],
     "options": [
       {
         "id": "COMBINE_STRIKES",
@@ -73,6 +78,7 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": null,
+    "preconditions": null,
     "options": [
       {
         "id": "LET_GO",
@@ -88,6 +94,7 @@
     "type": "Event",
     "act": "Act 3 - Glory",
     "description": "พอคุณเข้าใกล้ มันก็เริ่มสั่นและประกายไฟก็สว่างวาบขึ้นทันที!\n\n“[jitter]ตืดดด![/jitter] ได้เวลาซ้อม!!! คุณมีเวลา [blue]3 เทิร์น[/blue]ในการเอาชนะฉัน!\nเลือกการตั้งค่า ไม่งั้นเจอ[red]ความอัปยศถึงตาย[/red]\nมีตัวเลือกดังต่อไปนี้:”\n\nหลังจบข้อความน่ากลัวแล้ว หุ่นก็บรรจงอ่านคำชี้แจงให้ฟังอย่างละเอียด\n\nคุณจะเลือกอะไร?",
+    "preconditions": null,
     "options": [
       {
         "id": "SETTING_1",
@@ -143,6 +150,9 @@
     "type": "Shared",
     "act": null,
     "description": "[jitter]*จี๊ด*[/jitter]\n\nคุณรู้สึกถึงความเจ็บแปลบบริเวณศีรษะ และมีความคิดพุ่งเข้าหัวคุณ\n\n[purple][sine]“แบ่งปันความรู้กันไหม???”[/sine][/purple]\n\nคุณไม่แน่ใจว่าควรทำอย่างไร...",
+    "preconditions": [
+      "Act 1–2 only"
+    ],
     "options": [
       {
         "id": "SHARE_KNOWLEDGE",
@@ -188,6 +198,7 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": "ขณะที่คุณจัดการกับ[jitter][red]ฝูงแมลงก้าวร้าว[/red][/jitter] ทันใดนั้นคุณก็สังเกตเห็น[gold]นักรบแข็งแกร่งทรงพลัง[/gold]ซึ่งต่อสู้ร่วมกับคุณมาโดยตลอด!\n\nฝูงแมลงสัมผัสได้ถึงความพ่ายแพ้ จึงกระจายตัวไป คุณหันไปหาสหายร่วมรบ\n“เจ้าอยากได้คำแนะนำในการกำจัดแมลงชั้นต่ำพวกนี้หรือไม่?”\n\nช่างสุภาพอะไรเช่นนี้ คุณพยักหน้าตอบรับข้อเสนอของเขา",
+    "preconditions": null,
     "options": [
       {
         "id": "EXTERMINATION",
@@ -237,6 +248,9 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": null,
+    "preconditions": [
+      "Cannot have an event pet"
+    ],
     "options": [
       {
         "id": "EAT",
@@ -282,6 +296,7 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": "เบื้องหน้าของคุณเป็นทัศนียภาพแสนอลังการ\nคุณเห็นรูปปั้น 3 สีไม่ซ้ำกันตั้งอยู่บนแท่น กำลัง[jitter][red]ถกเถียงกันอย่างดุเดือด[/red][/jitter]เกี่ยวกับนัยยะเชิงปรัชญาของสีสัน\n\nพอฟังดู คุณก็พอจับประเด็นได้ว่า คำถามที่สำคัญที่สุดคือ สีไหน[gold]ดีที่สุด[/gold]\n\nคุณจึงแทรกความคิดเห็นของตัวเองเข้าไป",
+    "preconditions": null,
     "options": [
       {
         "id": "DEFECT",
@@ -353,6 +368,9 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": "มี[green]ดอกไม้มหึมา[/green]เติบโตอยู่บน[red][jitter]กองภูเขากระดูก[/jitter][/red]\n\nในขณะที่[sine]กลีบดอกเปลี่ยนสีได้[/sine]กำลังขยับเป็นช่วงๆ คุณก็สัมผัสได้ว่ามี[aqua]กองเกสรทรงพลัง[/aqua]อยู่ใจกลาง แต่กลีบดอกที่ขยับขึ้นลงอยู่นั้น[red]แหลมคมมาก[/red]และคาดเดาไม่ได้\n\nคุณสามารถเก็บ[gold]น้ำหวานทองคำ[/gold]ได้ แต่รางวัล ณ ใจกลางก็เย้ายวนใจเหลือเกิน...",
+    "preconditions": [
+      "Requires 19+ HP"
+    ],
     "options": [
       {
         "id": "EXTRACT_CURRENT_PRIZE_1",
@@ -425,6 +443,10 @@
     "type": "Shared",
     "act": null,
     "description": null,
+    "preconditions": [
+      "Requires 100+ gold",
+      "Act 2+"
+    ],
     "options": null,
     "pages": null
   },
@@ -434,6 +456,7 @@
     "type": "Ancient",
     "act": null,
     "description": null,
+    "preconditions": null,
     "options": null,
     "pages": null,
     "dialogue": {
@@ -481,6 +504,7 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": null,
+    "preconditions": null,
     "options": [
       {
         "id": "TRUDGE_ON",
@@ -529,6 +553,9 @@
     "type": "Shared",
     "act": null,
     "description": null,
+    "preconditions": [
+      "Act 2 only"
+    ],
     "options": [
       {
         "id": "RANDOM",
@@ -587,6 +614,7 @@
     "type": "Event",
     "act": "Underdocks",
     "description": null,
+    "preconditions": null,
     "options": [
       {
         "id": "LIGHT",
@@ -607,6 +635,7 @@
     "type": "Event",
     "act": "Underdocks",
     "description": null,
+    "preconditions": null,
     "options": [
       {
         "id": "BOTTLE",
@@ -627,6 +656,9 @@
     "type": "Event",
     "act": "Underdocks",
     "description": null,
+    "preconditions": [
+      "Requires 105+ gold"
+    ],
     "options": [
       {
         "id": "OBSERVE_CHEF",
@@ -642,6 +674,11 @@
     "type": "Shared",
     "act": null,
     "description": null,
+    "preconditions": [
+      "Act 2+",
+      "Single player only",
+      "Requires 100+ gold or a Foul Potion"
+    ],
     "options": null,
     "pages": null
   },
@@ -651,6 +688,7 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": null,
+    "preconditions": null,
     "options": [
       {
         "id": "RESIST",
@@ -671,6 +709,7 @@
     "type": "Event",
     "act": "Act 3 - Glory",
     "description": null,
+    "preconditions": null,
     "options": [
       {
         "id": "CONFRONT_LOCKED",
@@ -696,6 +735,7 @@
     "type": "Event",
     "act": "Act 3 - Glory",
     "description": null,
+    "preconditions": null,
     "options": null,
     "pages": null
   },
@@ -705,6 +745,7 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": null,
+    "preconditions": null,
     "options": [
       {
         "id": "STUDY",
@@ -725,6 +766,7 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": null,
+    "preconditions": null,
     "options": [
       {
         "id": "SOLO_QUEST",
@@ -745,6 +787,7 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": null,
+    "preconditions": null,
     "options": [
       {
         "id": "CLAIM",
@@ -765,6 +808,9 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": null,
+    "preconditions": [
+      "Requires 100-149 gold"
+    ],
     "options": [
       {
         "id": "REACH_INTO_THE_FLESH",
@@ -790,6 +836,9 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": null,
+    "preconditions": [
+      "Requires 100+ gold"
+    ],
     "options": [
       {
         "id": "GROUP",
@@ -810,6 +859,7 @@
     "type": "Ancient",
     "act": "Act 1 - Overgrowth / Underdocks",
     "description": null,
+    "preconditions": null,
     "options": null,
     "pages": null,
     "dialogue": {
@@ -878,6 +928,7 @@
     "type": "Ancient",
     "act": "Act 3 - Glory",
     "description": null,
+    "preconditions": null,
     "options": null,
     "pages": null,
     "dialogue": {
@@ -909,6 +960,7 @@
     "type": "Ancient",
     "act": "Act 2 - Hive",
     "description": null,
+    "preconditions": null,
     "options": null,
     "pages": null,
     "dialogue": {
@@ -940,6 +992,7 @@
     "type": "Ancient",
     "act": "Act 2 - Hive",
     "description": null,
+    "preconditions": null,
     "options": null,
     "pages": null,
     "image_url": "/static/images/misc/ancients/pael.png",
@@ -962,6 +1015,9 @@
     "type": "Shared",
     "act": null,
     "description": null,
+    "preconditions": [
+      "Act 2+"
+    ],
     "options": [
       {
         "id": "RANSACK",
@@ -977,6 +1033,7 @@
     "type": "Event",
     "act": "Underdocks",
     "description": null,
+    "preconditions": null,
     "options": [
       {
         "id": "NAB",
@@ -1025,6 +1082,10 @@
     "type": "Shared",
     "act": null,
     "description": null,
+    "preconditions": [
+      "Act 2+",
+      "Requires at least one potion"
+    ],
     "options": [
       {
         "id": "POTION",
@@ -1060,6 +1121,7 @@
     "type": "Event",
     "act": "Act 3 - Glory",
     "description": null,
+    "preconditions": null,
     "options": [
       {
         "id": "TOUCH_A_MIRROR",
@@ -1080,6 +1142,10 @@
     "type": "Shared",
     "act": null,
     "description": null,
+    "preconditions": [
+      "Act 2+",
+      "Requires 5+ tradeable relics"
+    ],
     "options": [
       {
         "id": "TOP",
@@ -1105,6 +1171,9 @@
     "type": "Shared",
     "act": null,
     "description": null,
+    "preconditions": [
+      "Act 1–2 only"
+    ],
     "options": [
       {
         "id": "GORGE",
@@ -1146,6 +1215,7 @@
     "type": "Event",
     "act": "Act 3 - Glory",
     "description": null,
+    "preconditions": null,
     "options": [
       {
         "id": "ENJOY_TEA",
@@ -1166,6 +1236,7 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": null,
+    "preconditions": null,
     "options": [
       {
         "id": "EAT",
@@ -1186,6 +1257,7 @@
     "type": "Shared",
     "act": null,
     "description": null,
+    "preconditions": null,
     "options": [
       {
         "id": "READ_THE_BACK",
@@ -1289,6 +1361,10 @@
     "type": "Shared",
     "act": null,
     "description": null,
+    "preconditions": [
+      "Floor 7+",
+      "Requires removable cards in deck"
+    ],
     "options": [
       {
         "id": "OVERCOME",
@@ -1418,6 +1494,7 @@
     "type": "Event",
     "act": "Underdocks",
     "description": null,
+    "preconditions": null,
     "options": [
       {
         "id": "OBSERVE",
@@ -1438,6 +1515,7 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": null,
+    "preconditions": null,
     "options": [
       {
         "id": "LET_IT_IN",
@@ -1458,6 +1536,10 @@
     "type": "Shared",
     "act": null,
     "description": null,
+    "preconditions": [
+      "Act 2 only",
+      "Requires at least one potion"
+    ],
     "options": [
       {
         "id": "LIFT",
@@ -1488,6 +1570,7 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth / Underdocks",
     "description": null,
+    "preconditions": null,
     "options": [
       {
         "id": "GRAB_SWORD",
@@ -1508,6 +1591,7 @@
     "type": "Event",
     "act": "Underdocks",
     "description": null,
+    "preconditions": null,
     "options": [
       {
         "id": "FIRST_CHEST",
@@ -1549,6 +1633,9 @@
     "type": "Shared",
     "act": null,
     "description": null,
+    "preconditions": [
+      "Act 2+"
+    ],
     "options": [
       {
         "id": "APPROACH_LOCKED",
@@ -1574,6 +1661,7 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": null,
+    "preconditions": null,
     "options": [
       {
         "id": "DECIPHER_1",
@@ -1666,6 +1754,7 @@
     "type": "Ancient",
     "act": "Act 3 - Glory",
     "description": null,
+    "preconditions": null,
     "options": null,
     "pages": null,
     "image_url": "/static/images/misc/ancients/tanx.png",
@@ -1688,6 +1777,10 @@
     "type": "Shared",
     "act": null,
     "description": null,
+    "preconditions": [
+      "Requires 150+ gold",
+      "Act 1–2 only"
+    ],
     "options": [
       {
         "id": "BONE_TEA",
@@ -1723,6 +1816,7 @@
     "type": "Ancient",
     "act": "Act 2 - Hive",
     "description": null,
+    "preconditions": null,
     "options": null,
     "pages": null,
     "image_url": "/static/images/misc/ancients/tezcatara.png",
@@ -1745,6 +1839,7 @@
     "type": "Ancient",
     "act": null,
     "description": null,
+    "preconditions": null,
     "options": null,
     "pages": null,
     "image_url": "/static/images/monsters/architect.png"
@@ -1755,6 +1850,7 @@
     "type": "Shared",
     "act": null,
     "description": null,
+    "preconditions": null,
     "options": [
       {
         "id": "POTION",
@@ -1770,6 +1866,7 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": null,
+    "preconditions": null,
     "options": [
       {
         "id": "RETURN_THE_KEY",
@@ -1818,6 +1915,10 @@
     "type": "Shared",
     "act": null,
     "description": null,
+    "preconditions": [
+      "Requires 10+ HP",
+      "Act 1 only"
+    ],
     "options": [
       {
         "id": "SLOWLY_FIND_AN_EXIT",
@@ -1833,6 +1934,7 @@
     "type": "Shared",
     "act": null,
     "description": null,
+    "preconditions": null,
     "options": [
       {
         "id": "PLAIN",
@@ -1853,6 +1955,7 @@
     "type": "Event",
     "act": "Act 3 - Glory",
     "description": null,
+    "preconditions": null,
     "options": [
       {
         "id": "CHOOSE_CARD_TYPE",
@@ -1952,6 +2055,7 @@
     "type": "Event",
     "act": "Underdocks",
     "description": null,
+    "preconditions": null,
     "options": null,
     "pages": null
   },
@@ -1961,6 +2065,7 @@
     "type": "Event",
     "act": "Act 3 - Glory",
     "description": null,
+    "preconditions": null,
     "options": [
       {
         "id": "REJECT",
@@ -2036,6 +2141,9 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": null,
+    "preconditions": [
+      "Requires ≤70% HP"
+    ],
     "options": [
       {
         "id": "REST",
@@ -2056,6 +2164,7 @@
     "type": "Ancient",
     "act": "Act 3 - Glory",
     "description": null,
+    "preconditions": null,
     "options": null,
     "pages": null,
     "image_url": "/static/images/misc/ancients/vakuu.png",
@@ -2078,6 +2187,7 @@
     "type": "Shared",
     "act": null,
     "description": null,
+    "preconditions": null,
     "options": [
       {
         "id": "UNLOCK_CAGE",
@@ -2098,6 +2208,9 @@
     "type": "Event",
     "act": "Underdocks",
     "description": null,
+    "preconditions": [
+      "Requires 65+ gold"
+    ],
     "options": [
       {
         "id": "BLOODY_INK",
@@ -2133,6 +2246,10 @@
     "type": "Shared",
     "act": null,
     "description": null,
+    "preconditions": [
+      "Requires 100+ gold",
+      "Act 2 only"
+    ],
     "options": [
       {
         "id": "BARGAIN_BIN",
@@ -2178,6 +2295,7 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": null,
+    "preconditions": null,
     "options": [
       {
         "id": "BOTTLE",
@@ -2198,6 +2316,9 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": null,
+    "preconditions": [
+      "Requires 50+ gold"
+    ],
     "options": [
       {
         "id": "GOLD",
@@ -2218,6 +2339,9 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": null,
+    "preconditions": [
+      "Requires a removable basic card"
+    ],
     "options": [
       {
         "id": "BIRD",
@@ -2248,6 +2372,9 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": null,
+    "preconditions": [
+      "Requires 125+ gold"
+    ],
     "options": [
       {
         "id": "BREATHING_TECHNIQUES",
