@@ -1,0 +1,82 @@
+[
+  {
+    "id": "ALL_STAR",
+    "name": "オールスター",
+    "description": "[blue]5[/blue]枚の[gold]無色カード[/gold]を所持して開始する。"
+  },
+  {
+    "id": "BIG_GAME_HUNTER",
+    "name": "大物狙い",
+    "description": "エリートがスパイアに多数出現し、より良い報酬をドロップする。"
+  },
+  {
+    "id": "BINARY",
+    "name": "二者択一",
+    "description": "[gold]カード報酬[/gold]の選択肢が[blue]2[/blue]枚のみになる。"
+  },
+  {
+    "id": "CURSED_RUN",
+    "name": "呪われし旅路",
+    "description": "各層の開始時、ランダムな[red]呪い[/red]を1枚デッキに追加する。"
+  },
+  {
+    "id": "DEADLY_EVENTS",
+    "name": "命がけのイベント",
+    "description": "？部屋にエリートが出現するようになるが、宝箱の部屋である確率も上がる。"
+  },
+  {
+    "id": "DRAFT",
+    "name": "ドラフト",
+    "description": "[gold]カード報酬[/gold]を[blue]10[/blue]枚選択し、開始デッキと入れ替える。"
+  },
+  {
+    "id": "FLIGHT",
+    "name": "飛翔",
+    "description": "次に進む部屋を選ぶ際、道を無視できる。"
+  },
+  {
+    "id": "HOARDER",
+    "name": "収集癖",
+    "description": "デッキにカードを追加するたび、そのコピーを[blue]2[/blue]枚加える。商人でカードの削除ができない。"
+  },
+  {
+    "id": "INSANITY",
+    "name": "狂気の沙汰",
+    "description": "ランダムな[blue]30[/blue]枚のカードで構成されたデッキで開始する。"
+  },
+  {
+    "id": "MIDAS",
+    "name": "ミダス",
+    "description": "敵のドロップするゴールドが[blue]200%[/blue]増加するが、[gold]休憩所[/gold]で鍛冶が行えなくなる。"
+  },
+  {
+    "id": "MURDEROUS",
+    "name": "殺意",
+    "description": "戦闘開始時、[gold]筋力[/gold][blue]3[/blue]を得る。すべての敵は[gold]筋力[/gold][blue]3[/blue]を得る。"
+  },
+  {
+    "id": "NIGHT_TERRORS",
+    "name": "夜の恐怖",
+    "description": "[gold]休憩所[/gold]で休憩するとHPが全回復するが、最大HPを[red]5[/red]失う。"
+  },
+  {
+    "id": "SEALED_DECK",
+    "name": "シールドデッキ",
+    "description": "[blue]30[/blue]枚のカードの中から[blue]10[/blue]枚を選び、開始デッキと入れ替える。"
+  },
+  {
+    "id": "SPECIALIZED",
+    "name": "特化",
+    "description": "1種類のカード[blue]5[/blue]枚を所持して開始する。"
+  },
+  {
+    "id": "TERMINAL",
+    "name": "ターミナル",
+    "description": "新たな部屋に入るたび、最大HPを[red]1[/red]失う。 戦闘開始時、[gold]プレート[/gold][blue]5[/blue]を得る。"
+  },
+  {
+    "id": "VINTAGE",
+    "name": "ヴィンテージ",
+    "description": "通常の敵がカードの代わりにレリックをドロップする。"
+  }
+]

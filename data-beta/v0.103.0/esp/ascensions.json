@@ -1,0 +1,68 @@
+[
+  {
+    "id": "LEVEL_00",
+    "level": 0,
+    "name": "Sin ascensión",
+    "description": "Juega sin modificadores de ascensión."
+  },
+  {
+    "id": "LEVEL_01",
+    "level": 1,
+    "name": "Plaga de élites",
+    "description": "Los enemigos [gold]élite[/gold] aparecen más a menudo."
+  },
+  {
+    "id": "LEVEL_02",
+    "level": 2,
+    "name": "Viaje agotador",
+    "description": "Los Ancestrales solo curan un [blue]80 %[/blue] de los PV que perdiste."
+  },
+  {
+    "id": "LEVEL_03",
+    "level": 3,
+    "name": "Pobreza",
+    "description": "Los enemigos y los cofres sueltan un [blue]25 %[/blue] menos de [gold]oro[/gold]."
+  },
+  {
+    "id": "LEVEL_04",
+    "level": 4,
+    "name": "Recorte de presupuesto",
+    "description": "Comienzas la partida con un espacio menos para tus pociones."
+  },
+  {
+    "id": "LEVEL_05",
+    "level": 5,
+    "name": "Ascensión maldita",
+    "description": "Comienzas cada partida con una [red]maldición[/red]."
+  },
+  {
+    "id": "LEVEL_06",
+    "level": 6,
+    "name": "Viaje extenuante",
+    "description": "Habrá menos puntos de descanso."
+  },
+  {
+    "id": "LEVEL_07",
+    "level": 7,
+    "name": "Escasez",
+    "description": "Las cartas raras y mejoradas aparecen con menos frecuencia."
+  },
+  {
+    "id": "LEVEL_08",
+    "level": 8,
+    "name": "Enemigos férreos",
+    "description": "Los enemigos son más resistentes."
+  },
+  {
+    "id": "LEVEL_09",
+    "level": 9,
+    "name": "Enemigos letales",
+    "description": "Los ataques de los enemigos son más poderosos."
+  },
+  {
+    "id": "LEVEL_10",
+    "level": 10,
+    "name": "Jefes dobles",
+    "description": "Te entrentarás a dos jefes al final del acto 3."
+  }
+]

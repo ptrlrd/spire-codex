@@ -1,0 +1,1546 @@
+[
+  {
+    "id": "AXEBOTS_NORMAL",
+    "name": "Bot Ahbaplar",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "AXEBOT",
+        "name": "Baltabot"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], [gold]Bot Ahbaplar[/gold] tarafından parçalara ayrıldı."
+  },
+  {
+    "id": "BATTLEWORN_DUMMY_EVENT_ENCOUNTER",
+    "name": "Savaşta Yıpranmış Manken",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
+      {
+        "id": "BATTLE_FRIEND_V1",
+        "name": "Savaş Dostu V1.0"
+      },
+      {
+        "id": "BATTLE_FRIEND_V2",
+        "name": "Savaş Dostu V2.0"
+      },
+      {
+        "id": "BATTLE_FRIEND_V3",
+        "name": "Savaş Dostu V3.0"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], nasıl olduysa [gold]Savaşta Yıpranmış Manken[/gold] tarafından mı öldürüldü???"
+  },
+  {
+    "id": "BOWLBUGS_NORMAL",
+    "name": "Çanakböceği Sürüsü",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Workers"
+    ],
+    "monsters": [
+      {
+        "id": "BOWLBUG_EGG",
+        "name": "Çanakböceği (Yumurta)"
+      },
+      {
+        "id": "BOWLBUG_NECTAR",
+        "name": "Çanakböceği (Nektar)"
+      },
+      {
+        "id": "BOWLBUG_ROCK",
+        "name": "Çanakböceği (Taş)"
+      },
+      {
+        "id": "BOWLBUG_SILK",
+        "name": "Çanakböceği (İpek)"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], kalabalık bir [gold]Çanakböceği Sürüsü[/gold]'nün yoluna çıktı."
+  },
+  {
+    "id": "BOWLBUGS_WEAK",
+    "name": "Çanakböcekleri",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Workers"
+    ],
+    "monsters": [
+      {
+        "id": "BOWLBUG_EGG",
+        "name": "Çanakböceği (Yumurta)"
+      },
+      {
+        "id": "BOWLBUG_NECTAR",
+        "name": "Çanakböceği (Nektar)"
+      },
+      {
+        "id": "BOWLBUG_ROCK",
+        "name": "Çanakböceği (Taş)"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], iş başındaki [gold]Çanakböcekleri[/gold]'nin yoluna çıktı."
+  },
+  {
+    "id": "BYGONE_EFFIGY_ELITE",
+    "name": "Mazinin Heykeli",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "BYGONE_EFFIGY",
+        "name": "Mazinin Heykeli"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], [gold]Mazinin Heykeli[/gold] tarafından ortadan ikiye ayrıldı."
+  },
+  {
+    "id": "BYRDONIS_ELITE",
+    "name": "Guşdeniz",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "BYRDONIS",
+        "name": "Guşdeniz"
+      }
+    ],
+    "loss_text": "[gold]Guşdeniz[/gold], yavrularını [b]The Adventurer[/b] karşısında korudu."
+  },
+  {
+    "id": "CEREMONIAL_BEAST_BOSS",
+    "name": "Mukaddes Yaratık",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "CEREMONIAL_BEAST",
+        "name": "Mukaddes Yaratık"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], [gold]Mukaddes Yaratık[/gold] karşısında son nefesini verdi."
+  },
+  {
+    "id": "CHOMPERS_NORMAL",
+    "name": "Bir Otomaton İkilisi",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Chomper"
+    ],
+    "monsters": [
+      {
+        "id": "CHOMPER",
+        "name": "Çiğneyici"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], [gold]Bir Otomaton İkilisi[/gold] tarafından ısırılarak öldürüldü."
+  },
+  {
+    "id": "CONSTRUCT_MENAGERIE_NORMAL",
+    "name": "Yapı Koleksiyonu",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "CUBEX_CONSTRUCT",
+        "name": "Kübiks Yapı"
+      },
+      {
+        "id": "PUNCH_CONSTRUCT",
+        "name": "Yumruklayan Yapı"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], [gold]Yapı Koleksiyonu[/gold] tarafından ezildi."
+  },
+  {
+    "id": "CORPSE_SLUGS_NORMAL",
+    "name": "Birçok Ceset Yiyen Sümüklü Böcek",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": [
+      "Slugs"
+    ],
+    "monsters": [
+      {
+        "id": "CORPSE_SLUG",
+        "name": "Ceset Yiyen Sümüklü Böcek"
+      }
+    ],
+    "loss_text": "[gold]Birçok Ceset Yiyen Sümüklü Böcek[/gold], [b]The Adventurer[/b] üzerinde ziyafet çekti."
+  },
+  {
+    "id": "CORPSE_SLUGS_WEAK",
+    "name": "Ceset Yiyen Sümüklü Böcekler",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Underdocks",
+    "tags": [
+      "Slugs"
+    ],
+    "monsters": [
+      {
+        "id": "CORPSE_SLUG",
+        "name": "Ceset Yiyen Sümüklü Böcek"
+      }
+    ],
+    "loss_text": "[gold]Ceset Yiyen Sümüklü Böcekler[/gold], [b]The Adventurer[/b] üzerinde ziyafet çekti."
+  },
+  {
+    "id": "CUBEX_CONSTRUCT_NORMAL",
+    "name": "Kübiks Yapı",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "CUBEX_CONSTRUCT",
+        "name": "Kübiks Yapı"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], [gold]Kübiks Yapı[/gold] tarafından lazerle infaz edildi."
+  },
+  {
+    "id": "CULTISTS_NORMAL",
+    "name": "Tarikatçılar",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "CALCIFIED_CULTIST",
+        "name": "Taşlaşmış Tarikatçı"
+      },
+      {
+        "id": "DAMP_CULTIST",
+        "name": "Islak Tarikatçi"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], bazı [gold]Tarikatçılar[/gold] tarafından öldürüldü. [sine]Gak gaaaak[/sine]..."
+  },
+  {
+    "id": "DECIMILLIPEDE_ELITE",
+    "name": "Ondabirayak",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "DECIMILLIPEDE_SEGMENT_BACK",
+        "name": "Decimillipede Segment Back"
+      },
+      {
+        "id": "DECIMILLIPEDE_SEGMENT_FRONT",
+        "name": "Decimillipede Segment Front"
+      },
+      {
+        "id": "DECIMILLIPEDE_SEGMENT_MIDDLE",
+        "name": "Decimillipede Segment Middle"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], [gold]Ondabirayak[/gold]'ın bölgesinde hayatta kalamadı."
+  },
+  {
+    "id": "DENSE_VEGETATION_EVENT_ENCOUNTER",
+    "name": "Kımıldaklar",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
+      {
+        "id": "WRIGGLER",
+        "name": "Kımıldak"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], [gold]Kımıldaklar[/gold] tarafından istilaya uğradı."
+  },
+  {
+    "id": "DEVOTED_SCULPTOR_WEAK",
+    "name": "Kendini Adamış Heykeltıraş",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "DEVOTED_SCULPTOR",
+        "name": "Kendini Adamış Heykeltıraş"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], [gold]Kendini Adamış Heykeltıraş[/gold] tarafından küçük parçalara ayrıldı."
+  },
+  {
+    "id": "DOORMAKER_BOSS",
+    "name": "Kapı Ustası",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "DOORMAKER",
+        "name": "Kapı Ustası"
+      }
+    ],
+    "loss_text": "[gold]Kapı Ustası[/gold], [b]The Adventurer[/b] tarafından verilen rahatsızlığı hoş karşılamadı."
+  },
+  {
+    "id": "ENTOMANCER_ELITE",
+    "name": "Böcek Büyücüsü",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "ENTOMANCER",
+        "name": "Böcek Büyücüsü"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], [gold]Böcek Büyücüsü[/gold] tarafından sokularak öldürüldü."
+  },
+  {
+    "id": "EXOSKELETONS_NORMAL",
+    "name": "Birçok Zırhkabuk",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Exoskeletons"
+    ],
+    "monsters": [
+      {
+        "id": "EXOSKELETON",
+        "name": "Zırhkabuk"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], [gold]Birçok Zırhkabuk[/gold] tarafından iç organları sökülerek öldürüldü."
+  },
+  {
+    "id": "EXOSKELETONS_WEAK",
+    "name": "Zırhkabuklar",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Exoskeletons"
+    ],
+    "monsters": [
+      {
+        "id": "EXOSKELETON",
+        "name": "Zırhkabuk"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], bazı [gold]Zırhkabuklar[/gold] tarafından iç organları sökülerek öldürüldü."
+  },
+  {
+    "id": "FABRICATOR_NORMAL",
+    "name": "İmalatçı",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "FABRICATOR",
+        "name": "İmalatçı"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], [gold]İmalatçı[/gold]'nın botları tarafından çarpıldı."
+  },
+  {
+    "id": "FAKE_MERCHANT_EVENT_ENCOUNTER",
+    "name": "Tüccar???",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
+      {
+        "id": "FAKE_MERCHANT_MONSTER",
+        "name": "Tüccar???"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], [gold]Tüccar???[/gold] tarafından katledildi."
+  },
+  {
+    "id": "FLYCONID_NORMAL",
+    "name": "Mantar ve Balçık",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Mushroom",
+      "Slimes"
+    ],
+    "monsters": [
+      {
+        "id": "FLYCONID",
+        "name": "Sinekonyum"
+      },
+      {
+        "id": "LEAF_SLIME_M",
+        "name": "Yaprak Balçık (O)"
+      },
+      {
+        "id": "TWIG_SLIME_M",
+        "name": "Dal Balçığı (O)"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], bir [gold]Mantar ve Balçık[/gold] tarafından özümlendi."
+  },
+  {
+    "id": "FOGMOG_NORMAL",
+    "name": "Gaztar",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "EYE_WITH_TEETH",
+        "name": "Dişli Göz"
+      },
+      {
+        "id": "FOGMOG",
+        "name": "Gaztar"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], bir [gold]Gaztar[/gold] tarafından yaratılan ilüzyonlar yüzünden dikkatini kaybetti."
+  },
+  {
+    "id": "FOSSIL_STALKER_NORMAL",
+    "name": "Pusan Fosil",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "FOSSIL_STALKER",
+        "name": "Pusan Fosil"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], bir [gold]Pusan Fosil[/gold] tarafından pusuya düşürüldü."
+  },
+  {
+    "id": "FROG_KNIGHT_NORMAL",
+    "name": "Kurbağa Şövalye",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "FROG_KNIGHT",
+        "name": "Kurbağa Şövalye"
+      }
+    ],
+    "loss_text": "Yiğit bir [gold]Kurbağa Şövalye[/gold], [b]The Adventurer[/b] karşısında galip geldi."
+  },
+  {
+    "id": "FUZZY_WURM_CRAWLER_WEAK",
+    "name": "Tüylü Müylü Sürüngen",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Crawler"
+    ],
+    "monsters": [
+      {
+        "id": "FUZZY_WURM_CRAWLER",
+        "name": "Tüylü Müylü Sürüngen"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], bir [gold]Tüylü Müylü Sürüngen[/gold]'in tükürüklerine maruz kaldı."
+  },
+  {
+    "id": "GLOBE_HEAD_NORMAL",
+    "name": "Yalnız Küre Kafa",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "GLOBE_HEAD",
+        "name": "Küre Kafa"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], [gold]Yalnız Küre Kafa[/gold] tarafından çarpıldı."
+  },
+  {
+    "id": "GREMLIN_MERC_NORMAL",
+    "name": "Paltolu İki Gremlin",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "FAT_GREMLIN",
+        "name": "Şişko Gremlin"
+      },
+      {
+        "id": "GREMLIN_MERC",
+        "name": "Gremlin Paralı Asker"
+      },
+      {
+        "id": "SNEAKY_GREMLIN",
+        "name": "Sinsi Gremlin"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], [gold]Paltolu İki Gremlin[/gold] tarafından gasp edildi."
+  },
+  {
+    "id": "HAUNTED_SHIP_NORMAL",
+    "name": "Lanetli Gemi",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "HAUNTED_SHIP",
+        "name": "Lanetli Gemi"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], bir [gold]Lanetli Gemi[/gold] tarafından ezilip geçildi."
+  },
+  {
+    "id": "HUNTER_KILLER_NORMAL",
+    "name": "Avcı Katili",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "HUNTER_KILLER",
+        "name": "Avcı Katili"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], bir [gold]Avcı Katili[/gold] tarafından deşildi."
+  },
+  {
+    "id": "INFESTED_PRISMS_ELITE",
+    "name": "İstila Edilmiş Prizma",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "INFESTED_PRISM",
+        "name": "İstila Edilmiş Prizma"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], bir [gold]İstila Edilmiş Prizma[/gold] tarafından durduruldu."
+  },
+  {
+    "id": "INKLETS_NORMAL",
+    "name": "Mürekkepçikler",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "INKLET",
+        "name": "Mürekkepçik"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] ilerlemek isterken bazı [gold]Mürekkepçikler[/gold] tarafından yolu kesildi."
+  },
+  {
+    "id": "KAISER_CRAB_BOSS",
+    "name": "Kayzer Yengeç",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "CRUSHER",
+        "name": "Ezici"
+      },
+      {
+        "id": "ROCKET",
+        "name": "Roket"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], [gold]Kayzer Yengeç[/gold] tarafından dört bir yanından saldırıldı."
+  },
+  {
+    "id": "KNIGHTS_ELITE",
+    "name": "Şövalye Çetesi",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": [
+      "Knights"
+    ],
+    "monsters": [
+      {
+        "id": "FLAIL_KNIGHT",
+        "name": "Gürzlü Şövalye"
+      },
+      {
+        "id": "MAGI_KNIGHT",
+        "name": "Büyücü Şövalye"
+      },
+      {
+        "id": "SPECTRAL_KNIGHT",
+        "name": "Hayalet Şövalye"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], bir [gold]Şövalye Çetesi[/gold] tarafından öldürüldü."
+  },
+  {
+    "id": "KNOWLEDGE_DEMON_BOSS",
+    "name": "Bilgi Şeytanı",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "KNOWLEDGE_DEMON",
+        "name": "Bilgi Şeytanı"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], [gold]Bilgi Şeytanı[/gold] tarafından dayanılamaz bilgilerle lanetlendi."
+  },
+  {
+    "id": "LAGAVULIN_MATRIARCH_BOSS",
+    "name": "Anne Lagavulin",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "LAGAVULIN_MATRIARCH",
+        "name": "Anne Lagavulin"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], [gold]Anne Lagavulin[/gold] tarafından ortadan ikiye ayrıldı."
+  },
+  {
+    "id": "LIVING_FOG_NORMAL",
+    "name": "Kötü Bir Gaz",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "GAS_BOMB",
+        "name": "Gaz Bombası"
+      },
+      {
+        "id": "LIVING_FOG",
+        "name": "Yaşayan Sis"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], [gold]Kötü Bir Gaz[/gold] tarafından salınan kokuya dayanamadı."
+  },
+  {
+    "id": "LOUSE_PROGENITOR_NORMAL",
+    "name": "Bitlerin Atası",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "LOUSE_PROGENITOR",
+        "name": "Bitlerin Atası"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], [gold]Bitlerin Atası[/gold] tarafından felç edildi."
+  },
+  {
+    "id": "MAWLER_NORMAL",
+    "name": "Yırtançene",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "MAWLER",
+        "name": "Yırtançene"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], bir [gold]Yırtançene[/gold] için leziz bir yemeğe dönüştü."
+  },
+  {
+    "id": "MECHA_KNIGHT_ELITE",
+    "name": "Meka Şövalye",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "MECHA_KNIGHT",
+        "name": "Meka Şövalye"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], bir [gold]Meka Şövalye[/gold] tarafından kesildi ve yakıldı."
+  },
+  {
+    "id": "MYSTERIOUS_KNIGHT_EVENT_ENCOUNTER",
+    "name": "Gizemli Şövalye",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
+      {
+        "id": "MYSTERIOUS_KNIGHT",
+        "name": "Gizemli Şövalye"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], bir [gold]Gizemli Şövalye[/gold]'nin anahtarını almaya çalıştı."
+  },
+  {
+    "id": "MYTES_NORMAL",
+    "name": "Mayt Sürüsü",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "MYTE",
+        "name": "Mayt"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], bir [gold]Mayt Sürüsü[/gold] tarafından kuşatıldı."
+  },
+  {
+    "id": "NIBBITS_NORMAL",
+    "name": "Bir Çift Kemirbağa",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "NIBBIT",
+        "name": "Kemirbağa"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], [gold]Bir Çift Kemirbağa[/gold] tarafından pataklandı."
+  },
+  {
+    "id": "NIBBITS_WEAK",
+    "name": "Yalnız Bir Kemirbağa",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Nibbit"
+    ],
+    "monsters": [
+      {
+        "id": "NIBBIT",
+        "name": "Kemirbağa"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], [gold]Yalnız Bir Kemirbağa[/gold] tarafından pataklandı."
+  },
+  {
+    "id": "OVERGROWTH_CRAWLERS",
+    "name": "Aşırı Yeşerme Böcekleri",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Shrinker",
+      "Crawler"
+    ],
+    "monsters": [
+      {
+        "id": "FUZZY_WURM_CRAWLER",
+        "name": "Tüylü Müylü Sürüngen"
+      },
+      {
+        "id": "SHRINKER_BEETLE",
+        "name": "Küçültücü Böcek"
+      }
+    ],
+    "loss_text": "Bazı [gold]Aşırı Yeşerme Böcekleri[/gold], [b]The Adventurer[/b] üzerinde ziyafet çekti."
+  },
+  {
+    "id": "OVICOPTER_NORMAL",
+    "name": "Kuluçkopter",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "OVICOPTER",
+        "name": "Kuluçkopter"
+      },
+      {
+        "id": "TOUGH_EGG",
+        "name": "Dayanıklı Yumurta"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], bir [gold]Kuluçkopter[/gold]'in çocukları için yemek oldu."
+  },
+  {
+    "id": "OWL_MAGISTRATE_NORMAL",
+    "name": "Yargıç Baykuş",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "OWL_MAGISTRATE",
+        "name": "Yargıç Baykuş"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], [gold]Yargıç Baykuş[/gold] tarafından ölüme mahkum edildi."
+  },
+  {
+    "id": "PHANTASMAL_GARDENERS_ELITE",
+    "name": "Bahçe Yılan Balıkları",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "PHANTASMAL_GARDENER",
+        "name": "Bahçe Yılan Balığı"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], [gold]Bahçe Yılan Balıkları[/gold] tarafından öldürüldü."
+  },
+  {
+    "id": "PHROG_PARASITE_ELITE",
+    "name": "Parazitli Gurbağa",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "PHROG_PARASITE",
+        "name": "Parazitli Gurbağa"
+      },
+      {
+        "id": "WRIGGLER",
+        "name": "Kımıldak"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], [gold]Parazitli Gurbağa[/gold] tarafından kolonisine dahil edildi."
+  },
+  {
+    "id": "PUNCH_CONSTRUCT_NORMAL",
+    "name": "Yumruklayan Yapı",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "PUNCH_CONSTRUCT",
+        "name": "Yumruklayan Yapı"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], bir [gold]Yumruklayan Yapı[/gold] ile yumruk savaşına girdi."
+  },
+  {
+    "id": "PUNCH_OFF_EVENT_ENCOUNTER",
+    "name": "Yumruklayan Yapılar",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
+      {
+        "id": "PUNCH_CONSTRUCT",
+        "name": "Yumruklayan Yapı"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], maalesef [gold]Yumruklayan Yapılar[/gold]'ın kavgasına müdahale etti."
+  },
+  {
+    "id": "QUEEN_BOSS",
+    "name": "Kraliçe",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "QUEEN",
+        "name": "Kraliçe"
+      },
+      {
+        "id": "TORCH_HEAD_AMALGAM",
+        "name": "Meşale Kafalı Bileşim"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], [gold]Kraliçe[/gold]'nin koleksiyonuna eklendi."
+  },
+  {
+    "id": "RUBY_RAIDERS_NORMAL",
+    "name": "Yakut Yağmacıları",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "ASSASSIN_RUBY_RAIDER",
+        "name": "Suikastçı Yağmacı"
+      },
+      {
+        "id": "AXE_RUBY_RAIDER",
+        "name": "Baltalı Yağmacı"
+      },
+      {
+        "id": "BRUTE_RUBY_RAIDER",
+        "name": "Vahşi Yağmacı"
+      },
+      {
+        "id": "CROSSBOW_RUBY_RAIDER",
+        "name": "Arbaletli Yağmacı"
+      },
+      {
+        "id": "TRACKER_RUBY_RAIDER",
+        "name": "İz Süren Yağmacı"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], [gold]Yakut Yağmacıları[/gold] tarafından ansızın saldırıya uğradı."
+  },
+  {
+    "id": "SCROLLS_OF_BITING_NORMAL",
+    "name": "Birçok Isırma Parşömeni",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": [
+      "Scrolls"
+    ],
+    "monsters": [
+      {
+        "id": "SCROLL_OF_BITING",
+        "name": "Isırma Parşömeni"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], [gold]Birçok Isırma Parşömeni[/gold] tarafından paramparça edildi."
+  },
+  {
+    "id": "SCROLLS_OF_BITING_WEAK",
+    "name": "Isırma Parşömenleri",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 3 - Glory",
+    "tags": [
+      "Scrolls"
+    ],
+    "monsters": [
+      {
+        "id": "SCROLL_OF_BITING",
+        "name": "Isırma Parşömeni"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], bazı [gold]Isırma Parşömenleri[/gold] tarafından paramparça edildi."
+  },
+  {
+    "id": "SEAPUNK_NORMAL",
+    "name": "Dip Rıhtımlar'ın Yaban Hayatı",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": [
+      "Seapunk"
+    ],
+    "monsters": [
+      {
+        "id": "CALCIFIED_CULTIST",
+        "name": "Taşlaşmış Tarikatçı"
+      },
+      {
+        "id": "SEAPUNK",
+        "name": "Deniz Haydutu"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], [gold]Dip Rıhtımlar'ın Yaban Hayatı[/gold] tarafından yenilgiye uğratıldı."
+  },
+  {
+    "id": "SEAPUNK_WEAK",
+    "name": "Deniz Haydutu",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Underdocks",
+    "tags": [
+      "Seapunk"
+    ],
+    "monsters": [
+      {
+        "id": "SEAPUNK",
+        "name": "Deniz Haydutu"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], [gold]Deniz Haydutu[/gold] tarafından pataklandı."
+  },
+  {
+    "id": "SEWER_CLAM_NORMAL",
+    "name": "Kanalizasyon İstiridyesi",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SEWER_CLAM",
+        "name": "Kanalizasyon İstiridyesi"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], bir [gold]Kanalizasyon İstiridyesi[/gold] tarafından mideye indirildi."
+  },
+  {
+    "id": "SHRINKER_BEETLE_WEAK",
+    "name": "Küçültücü Böcek",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Shrinker"
+    ],
+    "monsters": [
+      {
+        "id": "SHRINKER_BEETLE",
+        "name": "Küçültücü Böcek"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], bir [gold]Küçültücü Böcek[/gold] için atıştırmalık oldu."
+  },
+  {
+    "id": "SKULKING_COLONY_ELITE",
+    "name": "Saklanan Koloni",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SKULKING_COLONY",
+        "name": "Saklanan Koloni"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], [gold]Saklanan Koloni[/gold] tarafından özümlendi."
+  },
+  {
+    "id": "SLIMED_BERSERKER_NORMAL",
+    "name": "Balçıklanmış Vahşi Savaşçı",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SLIMED_BERSERKER",
+        "name": "Balçıklanmış Vahşi Savaşçı"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], [gold]Balçıklanmış Vahşi Savaşçı[/gold] tarafından yutuldu."
+  },
+  {
+    "id": "SLIMES_NORMAL",
+    "name": "Balçık Sürüsü",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Slimes"
+    ],
+    "monsters": [
+      {
+        "id": "LEAF_SLIME_M",
+        "name": "Yaprak Balçık (O)"
+      },
+      {
+        "id": "LEAF_SLIME_S",
+        "name": "Yaprak Balçık (K)"
+      },
+      {
+        "id": "TWIG_SLIME_M",
+        "name": "Dal Balçığı (O)"
+      },
+      {
+        "id": "TWIG_SLIME_S",
+        "name": "Dal Balçığı (K)"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], bir [gold]Balçık Sürüsü[/gold] tarafından yere serildi."
+  },
+  {
+    "id": "SLIMES_WEAK",
+    "name": "Bir Grup Balçık",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Slimes"
+    ],
+    "monsters": [
+      {
+        "id": "LEAF_SLIME_M",
+        "name": "Yaprak Balçık (O)"
+      },
+      {
+        "id": "LEAF_SLIME_S",
+        "name": "Yaprak Balçık (K)"
+      },
+      {
+        "id": "TWIG_SLIME_M",
+        "name": "Dal Balçığı (O)"
+      },
+      {
+        "id": "TWIG_SLIME_S",
+        "name": "Dal Balçığı (K)"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], [gold]Bir Grup Balçık[/gold] tarafından yere serildi."
+  },
+  {
+    "id": "SLITHERING_STRANGLER_NORMAL",
+    "name": "Boğucu ve Dostu",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "LEAF_SLIME_M",
+        "name": "Yaprak Balçık (O)"
+      },
+      {
+        "id": "LEAF_SLIME_S",
+        "name": "Yaprak Balçık (K)"
+      },
+      {
+        "id": "SLITHERING_STRANGLER",
+        "name": "Dikenli Boğucu"
+      },
+      {
+        "id": "SNAPPING_JAXFRUIT",
+        "name": "Isıran Meyve"
+      },
+      {
+        "id": "TWIG_SLIME_M",
+        "name": "Dal Balçığı (O)"
+      },
+      {
+        "id": "TWIG_SLIME_S",
+        "name": "Dal Balçığı (K)"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], [gold]Boğucu ve Dostu[/gold] tarafından boğuldu."
+  },
+  {
+    "id": "SLUDGE_SPINNER_WEAK",
+    "name": "Çamurdöner",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SLUDGE_SPINNER",
+        "name": "Çamurdöner"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], bir [gold]Çamurdöner[/gold]'i yenemedi."
+  },
+  {
+    "id": "SLUMBERING_BEETLE_NORMAL",
+    "name": "Uyku Partisi",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Workers"
+    ],
+    "monsters": [
+      {
+        "id": "BOWLBUG_ROCK",
+        "name": "Çanakböceği (Taş)"
+      },
+      {
+        "id": "BOWLBUG_SILK",
+        "name": "Çanakböceği (İpek)"
+      },
+      {
+        "id": "SLUMBERING_BEETLE",
+        "name": "Uyuyan Böcek"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], bir [gold]Uyku Partisi[/gold]'ni bastı."
+  },
+  {
+    "id": "SNAPPING_JAXFRUIT_NORMAL",
+    "name": "Aşırı Yeşerme Bitkileri",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Mushroom"
+    ],
+    "monsters": [
+      {
+        "id": "FLYCONID",
+        "name": "Sinekonyum"
+      },
+      {
+        "id": "SNAPPING_JAXFRUIT",
+        "name": "Isıran Meyve"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], bazı [gold]Aşırı Yeşerme Bitkileri[/gold] tarafından alt edildi."
+  },
+  {
+    "id": "SOUL_FYSH_BOSS",
+    "name": "Ruh Baluğu",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SOUL_FYSH",
+        "name": "Ruh Baluğu"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], [gold]Ruh Baluğu[/gold] tarafından ölümüne çağrıldı."
+  },
+  {
+    "id": "SOUL_NEXUS_ELITE",
+    "name": "Ruh Bileşiği",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SOUL_NEXUS",
+        "name": "Ruh Bileşiği"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], unutulmuş bir savaş alanında [gold]Ruh Bileşiği[/gold] karşısında can verdi."
+  },
+  {
+    "id": "SPINY_TOAD_NORMAL",
+    "name": "Dikenli Kurbağa",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SPINY_TOAD",
+        "name": "Dikenli Kurbağa"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], [gold]Dikenli Kurbağa[/gold]'nın dikenlerini delip geçemedi."
+  },
+  {
+    "id": "TERROR_EEL_ELITE",
+    "name": "Korkunç Yılan Balığı",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "TERROR_EEL",
+        "name": "Korkunç Yılan Balığı"
+      }
+    ],
+    "loss_text": "[gold]Korkunç Yılan Balığı[/gold], [b]The Adventurer[/b] için fazla korkutucuydu."
+  },
+  {
+    "id": "TEST_SUBJECT_BOSS",
+    "name": "Denek",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "TEST_SUBJECT",
+        "name": "Denek #C{Count}"
+      }
+    ],
+    "loss_text": "Bir [gold]Denek[/gold], efendilerini [b]The Adventurer[/b] karşısında sadakatle korudu."
+  },
+  {
+    "id": "THE_ARCHITECT_EVENT_ENCOUNTER",
+    "name": "Mimar",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
+      {
+        "id": "ARCHITECT",
+        "name": "Mimar"
+      }
+    ],
+    "loss_text": "Bunu görmemen gerekiyordu."
+  },
+  {
+    "id": "THE_INSATIABLE_BOSS",
+    "name": "Doyumsuz",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "THE_INSATIABLE",
+        "name": "Doyumsuz"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], [gold]Doyumsuz[/gold] tarafından yutuldu; ancak o hâlâ aç..."
+  },
+  {
+    "id": "THE_KIN_BOSS",
+    "name": "Kabile",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "KIN_FOLLOWER",
+        "name": "Kabile Üyesi"
+      },
+      {
+        "id": "KIN_PRIEST",
+        "name": "Kabile Şamanı"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], [gold]Kabile[/gold]'nin üstün stratejisiyle yok edildi."
+  },
+  {
+    "id": "THE_LOST_AND_FORGOTTEN_NORMAL",
+    "name": "Kayıp ve Unutulmuş",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "THE_FORGOTTEN",
+        "name": "Unutulmuş Olan"
+      },
+      {
+        "id": "THE_LOST",
+        "name": "Kayıp Olan"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] ve onun yaşam arzusu, [gold]Kayıp ve Unutulmuş[/gold] tarafından söndürüldü."
+  },
+  {
+    "id": "THE_OBSCURA_NORMAL",
+    "name": "Belirsiz",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "THE_OBSCURA",
+        "name": "Belirsiz"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], [gold]Belirsiz[/gold] ve ilüzyonları tarafından ezildi."
+  },
+  {
+    "id": "THIEVING_HOPPER_WEAK",
+    "name": "Hırsız Çekirge",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Thieves"
+    ],
+    "monsters": [
+      {
+        "id": "THIEVING_HOPPER",
+        "name": "Hırsız Çekirge"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], [gold]Hırsız Çekirge[/gold] tarafından gasp edildi."
+  },
+  {
+    "id": "TOADPOLES_WEAK",
+    "name": "İribaşlar",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "TOADPOLE",
+        "name": "İribaş"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], bazı [gold]İribaşlar[/gold] ile başa çıkamadı."
+  },
+  {
+    "id": "TUNNELER_NORMAL",
+    "name": "Tünel Kazan İkili",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Burrower",
+      "Chomper"
+    ],
+    "monsters": [
+      {
+        "id": "CHOMPER",
+        "name": "Çiğneyici"
+      },
+      {
+        "id": "TUNNELER",
+        "name": "Tünelci"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], bir [gold]Tünel Kazan İkili[/gold] tarafından saf dışı bırakıldı."
+  },
+  {
+    "id": "TUNNELER_WEAK",
+    "name": "Tünelci",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Burrower"
+    ],
+    "monsters": [
+      {
+        "id": "TUNNELER",
+        "name": "Tünelci"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], [gold]Tünelci[/gold] tarafından fena halde dövüldü."
+  },
+  {
+    "id": "TURRET_OPERATOR_WEAK",
+    "name": "Taret Operatörü",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "LIVING_SHIELD",
+        "name": "Yaşayan Kalkan"
+      },
+      {
+        "id": "TURRET_OPERATOR",
+        "name": "Taret Operatörü"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], bir [gold]Taret Operatörü[/gold] tarafından delik deşik edildi."
+  },
+  {
+    "id": "TWO_TAILED_RATS_NORMAL",
+    "name": "İki Kuyruklu Fareler",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "TWO_TAILED_RAT",
+        "name": "İki Kuyruklu Fare"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], bazı [gold]İki Kuyruklu Fareler[/gold] tarafından kuşatıldı."
+  },
+  {
+    "id": "VANTOM_BOSS",
+    "name": "Vantom",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "VANTOM",
+        "name": "Vantom"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], [gold]Vantom[/gold] tarafından bir Mürekkepçik'e dönüştürüldü."
+  },
+  {
+    "id": "VINE_SHAMBLER_NORMAL",
+    "name": "Sarmaşık Yığını",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "VINE_SHAMBLER",
+        "name": "Sarmaşık Yığını"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], [gold]Sarmaşık Yığını[/gold]'ndan kaçamadı."
+  },
+  {
+    "id": "WATERFALL_GIANT_BOSS",
+    "name": "Akarsu Devi",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "WATERFALL_GIANT",
+        "name": "Akarsu Devi"
+      }
+    ],
+    "loss_text": "[gold]Akarsu Devi[/gold], Dip Rıhtımlar'ı [b]The Adventurer[/b] ile ilgili her şeyden temizledi."
+  }
+]

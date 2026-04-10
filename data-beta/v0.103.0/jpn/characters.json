@@ -1,0 +1,2325 @@
+[
+  {
+    "id": "DEFECT",
+    "name": "ディフェクト",
+    "description": "生き延びるため、永遠に自身を改造し続けるオートマトン。\n戦わざるを得ない時は、オーブ機能を展開する。",
+    "starting_hp": 75,
+    "starting_gold": 99,
+    "max_energy": 3,
+    "orb_slots": 3,
+    "starting_deck": [
+      "StrikeDefect",
+      "StrikeDefect",
+      "StrikeDefect",
+      "StrikeDefect",
+      "DefendDefect",
+      "DefendDefect",
+      "DefendDefect",
+      "DefendDefect",
+      "Zap",
+      "Dualcast"
+    ],
+    "starting_relics": [
+      "CrackedCore"
+    ],
+    "unlocks_after": "Necrobinder",
+    "gender": "Neutral",
+    "color": "blue",
+    "dialogue_color": "new",
+    "quotes": {
+      "event_death_prevention": "トモダチのために、生きナケレバ！",
+      "gold_monologue": "[sine]このゴールドはパーツと交換カノウ……[/sine]",
+      "aroma_principle": "[sine][blue]1100 0011 1100 0011……[/blue][/sine]",
+      "banter_alive": "[jitter]0x54494D45 0x204C494D 0x49542045 0x58434545 0x00444544[/jitter]",
+      "banter_dead": "……",
+      "unlock_text": "[pink]{Prerequisite}[/pink]で1回プレイして、このキャラクターをアンロック。",
+      "cards_modifier_title": "ディフェクトのカード",
+      "cards_modifier_description": "報酬やショップにディフェクトのカードが出現するようになる。"
+    },
+    "dialogues": [
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "お前さん、美しいガラクタの塊だな。 言ってる意味、分かるか？"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]<3[/font_size][/i]"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "まだ頑張ってんのか…… お前さんをアップグレードできるか見てみようぜ！"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "お前さんのダチの、えーっと…… うーん。\nいや、気にすんな！ なんでもねぇ！！"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]<問い詰めるような電子音>[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "オレの可愛いガラクタちゃん、今言ったことは全部忘れな！"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]…… 造られし者よ…… お前は……\n…… 何になったと…… いうのだ……？ [/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]…… 奴なら…… お前を……\n…… 直せる…… すべてを………… [/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]…… 私は…… お前を……\n…… 忘れさせることは…… できぬ………… [/sine]"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]<断固とした電子音>[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[sine]…… よかろう………… [/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "造られた機械風情が、ホントにあたしの祝福に釣り合うのかなー？\n前においでよ、ディフェクト。 あんたをオートマトンの中で一番カワイくしてあげる。"
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "かわいそう、ボロボロじゃん。 あたしがキレイにしてあげる。"
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "普段はアーキテクトの物なんて好きじゃないんだけど。 あんたのこと、ちょっと気に入ってきたかも。"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]<照れるような音>[/font_size][/i]"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "ナンダ！ オツカイノキカイ！？ マダウゴイテル！！\nナンデココ？ ナンデ、コウジョウジャナイ？？"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "ピカピカノオーブ！ ドウヤッテウゴク？\n[jitter]イテッ！！ [/jitter]"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "コア、コワレテル？ ネオー、コワレタキカイ、ツカッテル？\nアヤツラレテル？"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]<静かな電子音>[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "アーキテクト、キミヲナオス？"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]悩めるオートマトンよ、友を探しているのか？\n手伝ってやろう…… [/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]機械も夢を見るのだろうか？\n私を見て、真似るといい…… [/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]君の友の夢を見た……\n父様なら、[aqua]フロウ[/aqua]を直せるだろう…… [/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "造り物！ 武器がねえだと！？ コレを持ってけ！"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "オーブなんざ武器じゃねぇ！！"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "オレと戦え、ディフェクト！！"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]ディフェクトは勇敢に戦った。 [/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "オーブは[jitter]武器[/jitter]なのか！？"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "[i][font_size=22]<挨拶の電子音>[/font_size][/i]"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "私をからかいに来たわけじゃないのね？ なんて[jitter][b]珍しい[/b][/jitter]、小さな機械の坊や……"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "自分が作ったものに壊されるなんて、滑稽だとは思わない？"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "本当に直してもらいたいの？"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]<問い詰めるような電子音>[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "まあ、あなたが本当に[jitter][b]そうしたい[/b][/jitter]なら。"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "ここで何をしている？"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "<ランダムな文字化けしたセリフ>"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "お前を直せだと？ 命令するな。"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "戻ってきたのか？ 解体したはずだが。"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "<ランダムな文字化けしたセリフ>"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "お前を直せ？ お前の友を直せだと？ くだらん。"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "なぜ何度も戻ってくる？ ネオーの仕業か？"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "<ランダムな文字化けしたセリフ>"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "愚かな。"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "壊れたお方、私があなたを[sine]完璧[/sine]にしてさしあげましょう。"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "仲間の機械があなたの死を望んでいること、奇妙だとは思いませんか？"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "アーキテクトの心臓を持ってくるなら、あなたの[aqua]お友達[/aqua]を修復してさしあげましょう。"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]<恐怖の電子音>[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "どちらが大切ですか？ あなたの創造主？それともお友達？"
+          }
+        ]
+      }
+    ],
+    "image_url": "/static/images/characters/char_select_defect.png"
+  },
+  {
+    "id": "IRONCLAD",
+    "name": "アイアンクラッド",
+    "description": "アイアンクラッド族、最後の兵士。\n己が意志に反し、剣と炎で敵を粉砕する。",
+    "starting_hp": 80,
+    "starting_gold": 99,
+    "max_energy": 3,
+    "orb_slots": null,
+    "starting_deck": [
+      "StrikeIronclad",
+      "StrikeIronclad",
+      "StrikeIronclad",
+      "StrikeIronclad",
+      "StrikeIronclad",
+      "DefendIronclad",
+      "DefendIronclad",
+      "DefendIronclad",
+      "DefendIronclad",
+      "Bash"
+    ],
+    "starting_relics": [
+      "BurningBlood"
+    ],
+    "unlocks_after": null,
+    "gender": "Masculine",
+    "color": "red",
+    "dialogue_color": "new",
+    "quotes": {
+      "event_death_prevention": "仲間には、まだ俺が必要だ。",
+      "gold_monologue": "[sine]この金があれば、我が一族の武具を強化できる……[/sine]",
+      "aroma_principle": "[sine][red]痛みなど感じない。眼前の敵を屠るのみ。[/red][/sine]",
+      "banter_alive": "急げ。",
+      "banter_dead": "……",
+      "cards_modifier_title": "アイアンクラッドのカード",
+      "cards_modifier_description": "報酬やショップにアイアンクラッドのカードが出現するようになる。"
+    },
+    "dialogues": [
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "炎の戦士がお戻りだな！\nお前さんにぴったりのモンがあるぜ！"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "手あたり次第、頭をカチ割ってるらしいな。\n元気そうで何よりだ！"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "お前さんのあの重い剣、まだオレが預かってるぜ…… だが、修復できるヤツが誰一人見つからねぇんだ。"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]アイアンクラッドはダーヴをじっと見つめた。 [/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "もしかしたら、アーキテクトが何か知ってるかもしれねぇな。"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]…… 立ち上がれ…… 我が戦士よ……\n…… 再び…… 戦いの時…… [/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]…… まだ怒りに…… 飲まれているか…… 素晴らしい…… [/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]…… 覚えているか…… 初めて……\n…… 私の前に…… 現れた時のこと…… [/sine]"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "[sine]…… あんなにも…… 怒り狂っていて…… [/sine]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[sine]…… あんなにも…… 利用価値があった………… [/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "あ、アイアンクラッドじゃん。 やっとあたしのとこ来たんだ。\n前に出なよ、チカラを授けてあげる。"
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "アイアンクラッド、アイアンクラッド…… 前のプレゼントじゃ足りなかった感じ？"
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "また戻ってきたのね？ あたしの英雄さん。\nこれで何回目？ 前はもっと強かったじゃん？ 一族を丸ごと滅しちゃうぐらいに。"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "アイアンクラッド！？ ドウシテ？？ コワイ。 トテモコワイ！！"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "ケイヤク、サインシタ？ ナンデ！？ ワルイセンタク？ ウン。 マチガイ！"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "ジユウニナアレ！ ジユウニナアレ！\nヴァクー、ワルイ。 トテモワルイ！ アーキテクト、キミヲジユウニスル？"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]凄まじい怒りを抱えているな。 私の一部を持っていき、安らぎとしたまえ…… [/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]夢を見る感覚を覚えているか？\n眠るのは良いぞ…… [/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]炎を鎮めるのだ。\n父様なら、君を自由にできるだろう…… [/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "見事な剣だな、戦士よ！ もっとたくさん武器を使え！"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "戦士に武器を！ さあ武器を取れ！戦ろうぜ！"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "オレと戦え、アイアンクラッド！！"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]アイアンクラッドはタンクスと戦った。 [/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "ウオオオオ！！ 最高の戦いだったぜ！ さあ 武器を持っていけ！"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "とっても綺麗に[jitter][b]燃える[/b][/jitter]のね！ さあ入って、入って！"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "なんて強い子なんでしょう！ さあこっちへ来て、何か食べていきなさい。\nお腹が空いてたら[jitter][b]殺戮[/b][/jitter]なんてできないでしょう？"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "あらら、アーキテクトったらまだ生きてるの？ [jitter][b]さっさと[/b][/jitter]殺してきてくれないかしら？\nここで待ってるからねえ！"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "大悪魔の奴隷がご到着か。"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "敵……\n殺す……"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "永遠に戦い続ける呪い、だろう？"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "アーキテクト…… 最大の…… 敵！！"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "自分の名前すら分からないのか？"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "哀れだな。"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "殺す……"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "塔の底へと帰れ、アイアンクラッド。"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "こんなにも長い時を経て、再び[sine]あなた[/sine]に会えるとは。"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[jitter][b]『聖なる悪魔』め！ [/b][/jitter]\n俺に何をした！？"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "あなたが契約した通りに、ですよ。"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "滅んだ一族のことが気がかりですか……？\n[i][font_size=22]ヴァクーは笑い声を上げる。 [/font_size][/i]"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "私の最高の操り人形よ…… なぜまだアーキテクトを殺していないのですか？"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "アーキテクトを殺した後、次はお前の番だ。 [jitter][b]悪魔め！ [/b][/jitter]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[i][font_size=22][sine]あくび[/sine][/font_size][/i]\nあなたが失敗する様…… 楽しみにしていますよ。"
+          }
+        ]
+      }
+    ],
+    "image_url": "/static/images/characters/char_select_ironclad.png"
+  },
+  {
+    "id": "NECROBINDER",
+    "name": "ネクロバインダー",
+    "description": "復讐を誓うスパイア生まれのリッチ。\n戦闘では頼れる相棒、左手の[gold]オスティ[/gold]を呼び出す。",
+    "starting_hp": 66,
+    "starting_gold": 99,
+    "max_energy": 3,
+    "orb_slots": null,
+    "starting_deck": [
+      "StrikeNecrobinder",
+      "StrikeNecrobinder",
+      "StrikeNecrobinder",
+      "StrikeNecrobinder",
+      "DefendNecrobinder",
+      "DefendNecrobinder",
+      "DefendNecrobinder",
+      "DefendNecrobinder",
+      "Bodyguard",
+      "Unleash"
+    ],
+    "starting_relics": [
+      "BoundPhylactery"
+    ],
+    "unlocks_after": "Regent",
+    "gender": "Feminine",
+    "color": "purple",
+    "dialogue_color": "new",
+    "quotes": {
+      "event_death_prevention": "私がいなくなったら、仲間たちはどうなるの？",
+      "gold_monologue": "[sine]これでやっと靴が買えるかも……[/sine]",
+      "aroma_principle": "[sine][purple]必ず無念を晴らす……私は挫けない……[/purple][/sine]",
+      "banter_alive": "早くしてよ……",
+      "banter_dead": "……",
+      "unlock_text": "[orange]{Prerequisite}[/orange] で1回プレイして、このキャラクターをアンロック。",
+      "cards_modifier_title": "ネクロバインダーのカード",
+      "cards_modifier_description": "報酬やショップにネクロバインダーのカードが出現するようになる。"
+    },
+    "dialogues": [
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "お嬢ちゃん、マジな顔してんな。 何かオレに手伝えることはあるかい？"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "あの忌まわしい男を殺すための助けなら、なんだって。"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "そうかい…… なら、ちょっと見ていきな！"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "まだ復讐の道を歩んでるのか？ 俺は止めねぇけどよ！"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "この本はお嬢ちゃんと繋がってるみたいだな。お前さんが生まれる前からあったんだけどな。"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "どうやってそれを手に入れたの？"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[sine]恐ろしい[/sine]モンってのは、なぜか俺のコレクションに集まるのさ。"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]…… 私たちの…… 目的は…… 同じだ…… [/sine]"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[jitter]奴は私の愛するすべてを奪った！！ [/jitter]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[sine]…… 私の力を…… お前に授けよう…… [/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]奴は…… まだ…… 息をしている………… [/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "[sine]それは…… 果たして…… 可能なの……？ [/sine]"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "[sine]…… [red]アーキテクト[/red]は…… 弱っている……\n…… 私たちは…… 強くなっている…… [/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "あなたの護衛は死んだわ。 噂では、アーキテクトの死を望む者に祝福を授けてくれるそうね。"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "デキる子は嫌いじゃないわ。 あたしの力を分けてあげる。\n次は、あたしの衛兵を殺すのやめてよね。"
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "魔術師にはバトるのに相応しい、上質なアクセが必要でしょ？ 前へ出なさい、ネクロバインダー。"
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "あんたのその[sine]ペット[/sine]、アーキテクトは嫌がりそう。"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "オスティのこと？ 最後にあいつにトドメを刺すのは彼よ。"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "シンデル！？ シンデナイ！ ナンデ、ニンギョウ？ オオキナ、テ！！"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "私は「ニンギョウ」じゃない。 殺さなきゃいけない奴がいるの。\nあなたは私に何をしてくれる？"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "コロス、ワルイ！！ カワリニ、コレモッテケ！"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "シンデナイヒト！ イイオクリモノ、アゲル！！ ボウリョク、ワルイ。"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "ボウリョクダメ！ カワリニ、ピカピカアツメテ…… ピカピカ！！"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "私の挑戦は、アーキテクトが消える日まで終わらない。\n「ボウリョク」は避けられないわ。"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "アーキテクト、ワルクナイ！ タブン、オハナシ？ オハナシ、イイ！！ トテモイイ！"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]君の心は、酷い悪意に染まっているな。 [/thinky_dots]"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "俺の身に起きたことを知れば、お前も同じ色に染まるさ。"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[thinky_dots]君の道に安らぎはない。\n私の一部を持っていき、重荷を和らげなさい…… [/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]「手」を持つ者が戻ってきたか。\n痛ましい記憶だ。 私の力を受け取りなさい…… [/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots][red]父様[/red]を殺しても、そこに安らぎはないぞ。 [/thinky_dots]"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[jitter]あんな奴[/jitter]を父親と呼ぶの！？"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[thinky_dots]家族は選べないものだ…… [/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "なんて強ェ大鎌だ！"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "ええ、復讐のための特注品よ。"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "その「手」にも武器がいるんじゃねえか！？"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "オレと戦え、オスティ！！"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "オレと戦え、ネクロバインダー！！"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]ネクロバインダーとオスティはタンクスと乱闘した。 [/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "いいチームワークじゃねか！！ 武器を持っていけ！！"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "あら。こんな壁の中で、ガイコツちゃんが何をしているの？"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "私の目的は単純よ。 家族の復讐。\n頂上へ辿り着き、奴に報いを受けさせる。"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[jitter][b]すばらしいわぁ！[/b][/jitter]"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "さあ入って、入って！ あなたの炎を、もっと[jitter][b]明るく[/b][/jitter]してあげましょうねえ。"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "あなたを包むその炎、何か禁じられたものを思い出させるわねえ。"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "あなたは何を知っているの？"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "誰があの[jitter][b]本[/b][/jitter]を書いたか、わたしは知っているわ。"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "アーキテクト！ 貴様は私の両親を奪った。 私の友を奪った。 私の“人生すべて”を奪った！…… 次は私が貴様を殺す番だ！"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "復讐だと？ まっぴら御免だな。"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "アーキテクト！ お前は私の両親を奪った。 私の友を奪った。 私の――"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "怒りで過去を変えることはできん。"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "アーキテクト！ 貴様は私の両親を奪った。 私の友を奪った。 私の“人生すべて”を――"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "必要なことをしたまでだ。秩序を保つためにな。"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "アーキテクト！ 貴様は私の両親を奪った。 私の友を奪った。 私の――"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "「人生すべてを」、かね？"
+          },
+          {
+            "order": 2,
+            "speaker": "char",
+            "text": "なっ……！？死ね、化け物！"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "私たちはどちらも[sine]復讐[/sine]を求めています。 それには支払うべき代償が伴いますよ。"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "どんな代償でも受け入れるわ。 奴の死のためなら、あらゆる代償を。"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "あなたがその[sine]手[/sine]をどこで手に入れたのか、私は知っていますよ。"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "アーキテクトは私たち双方に深い傷を負わせました。"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "さっさと進めて、悪魔。 あなたの契約内容を見せなさい。"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "話が早くて助かります。 それでは……"
+          }
+        ]
+      }
+    ],
+    "image_url": "/static/images/characters/char_select_necrobinder.png"
+  },
+  {
+    "id": "REGENT",
+    "name": "リージェント",
+    "description": "星の王座の継承者。\n宇宙の力を行使するが、面倒はミニオン任せ。",
+    "starting_hp": 75,
+    "starting_gold": 99,
+    "max_energy": 3,
+    "orb_slots": null,
+    "starting_deck": [
+      "StrikeRegent",
+      "StrikeRegent",
+      "StrikeRegent",
+      "StrikeRegent",
+      "DefendRegent",
+      "DefendRegent",
+      "DefendRegent",
+      "DefendRegent",
+      "FallingStar",
+      "Venerate"
+    ],
+    "starting_relics": [
+      "DivineRight"
+    ],
+    "unlocks_after": "Silent",
+    "gender": "Masculine",
+    "color": "orange",
+    "dialogue_color": "new",
+    "quotes": {
+      "event_death_prevention": "臣下共を導くため、余は生きねばならん！",
+      "gold_monologue": "[sine]これで少しはマシな軍勢を徴用できよう……[/sine]",
+      "aroma_principle": "[sine][orange]余こそが次なる星の王……[/orange][/sine]",
+      "banter_alive": "余を待たせるか！",
+      "banter_dead": "……",
+      "unlock_text": "[green]{Prerequisite}[/green]で1回プレイして、このキャラクターをアンロック。",
+      "cards_modifier_title": "リージェントのカード",
+      "cards_modifier_description": "報酬やショップにリージェントのカードが出現するようになる。"
+    },
+    "dialogues": [
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "お前さんみたいなのが、こんな上まで何しに来たんだ？ 俺のコレクションを見ていくかい？"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "見事な品を愛でるのが、余の趣味でな……"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "いいねェ！"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "また来たのかい、殿下！"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "新しいダチに、ピッタリのモンを用意してるぜ！"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "見せてもらおうではないか！"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "渡してやりたいんだが、アーキテクトの野郎にパクられちまったんだ！！\nダチを助けると思ってさ！ 頼みを聞いてくれねぇか？"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "デカくて青い生き物よ！ 余こそが未来の[orange]王[/orange]であるぞ！"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "[sine]…… 可愛らしいこと……\n…… お前とは…… また…… 会うことに…… なる…… [/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]…… まだやるか……？ [/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "[jitter]なぜ余は勝てぬのだ！？ [/jitter]"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "[sine]…… 受け取れ…… この…… 祝福を…… [/sine]"
+          },
+          {
+            "order": 2,
+            "speaker": "char",
+            "text": "…… うむ。 大儀である、ネオー。"
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "ノヌペイペに謁見を求める！"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "すっごいキレイなローブじゃん！ 遠い国から来たって？\nミニオンたちに担がせて、もっとこっちに来なよ。 あんたを祝福してあげる。"
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "お偉いさんが来たなら、それなりの対応をしないとね。\n誰か！ お茶を持ってきて。"
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "アーキテクトってば、狂っちゃったワケ！ 誰か高貴なヒーロー様が、このピンチから救ってくれたりしないかなー……"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "恐れるな！ このリージェントが、奴の狂気に終止符を打ってやろう！\nだがその前に…… 茶だ！"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "タビビト！ ウチュウカラ！？ ウチュウノドコ？\nドウヤッテ、ウチュウカラ？ トガッタアタマ！ チイサナトモダチ！！"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]リージェントは自身のこれまでの冒険譚を語った。 何時間もかけて。[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "ワクワク！ スゴイ！！ モット！ モット！！！"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "モットオハナシ！ コレ、キミノタメニミツケタ！\nサア、モットオハナシシテ！！"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "余の一番の忠臣！ オロバス、我が友よ！\n息災で何よりだ！"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "オハナシ！？"
+          },
+          {
+            "order": 2,
+            "speaker": "char",
+            "text": "もちろんだ、もちろんだとも…… だが、余への貢物は用意しているだろうな？"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "もしもし！ 余はリージェントだ。\nおおーい？？ [jitter]聞こえているか！？ [/jitter]"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "[thinky_dots]静かにしなさい。\n私の一部をやるから、もう行ってくれ…… [/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "余が戻ってきたぞ！ ああ、やはり寝ているか。\nさて、どれにしようか……"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "なぜ己の身を削ってまで与えるのだ？"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "[thinky_dots]有り余るほどの肉があるのだ。それを与えない理由はあるまい。[/thinky_dots]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[thinky_dots]君が戻ってくる頃には、私は新たに満たされている。\n眠るとはそういうことだ…… [/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "オレンジ！？ どうやったらオレンジになれる！！？"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "オレンジこそ、最も王にふさわしき色。 常識であろう！"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "すげぇ！！ 超強そうだ！！"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "オレンジのヤツ！！ 強ェ武器を選べ！"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "オレと戦え、リージェント！！"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "断る！ 前に来た時にも戦ったではないか！"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "もう一回だ、戦るぞ！！"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "あらまあ、なんて[jitter][b]珍しい[/b][/jitter]お客様！ あなたは何者かしら、可愛い坊や？"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "余は坊やではない！ 口の利き方に気をつけよ、この巨大な…… なんだかよく分からんヤツめ！"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "あらあら、これはとんだ御無礼を。\n[i][font_size=22]テスカタラはうれしそうに高笑いした。 [/font_size][/i]"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "また戻ってきてくれたの？お友達も一緒ねえ。\nあなたたちのために[jitter][b]おやつ[/b][/jitter]を作ったのよ！"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "おかえりなさい、王様坊や！ 外では[jitter][b]上手く[/b][/jitter]やっているようねえ。"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "ああ、もちろんだ！ 上の階でちょっとした失敗はあったがな…… その…… 死ぬとか。"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "誰だって間違いから学ぶものよ。"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "到着したぞ！ そこの平民！ ここが頂上か？"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "五月蠅くて敵わんな……"
+          },
+          {
+            "order": 2,
+            "speaker": "char",
+            "text": "余が礼儀というものを教えてやろう！"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "またもや余が到着したぞ！"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "騒々しい愚か者が戻ってきたか。"
+          },
+          {
+            "order": 2,
+            "speaker": "char",
+            "text": "余は騒々しくも愚かでもない！ さあ勝負しろ！"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "貴様の無礼な態度にはもううんざりだ！"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "それについては、同意見だ。"
+          },
+          {
+            "order": 2,
+            "speaker": "char",
+            "text": "さあ、ダンスの時間だ！"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "星々からの来訪者ですか？ この忌まわしい壁の中に？"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "余のことを知っているのか？"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "ええ、お互いに助け合えると思いますよ。"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "ちょっとした対価をいただければ、私の力をさらに授けましょう。"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "この取引が良いものだとは思えん。 気分が優れぬのだ。"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "契約書は隅々まで読みましたよね？\n十分な意思と責任を持って署名したはずですよ。"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "取引の義務を果たさないおつもりで？\nならば、別の契約はいかがでしょう？ そちらもオススメですよ。"
+          }
+        ]
+      }
+    ],
+    "image_url": "/static/images/characters/char_select_regent.png"
+  },
+  {
+    "id": "SILENT",
+    "name": "サイレント",
+    "description": "塔の外から来た狩人。\n立ちはだかる者はすべて、ナイフと毒で仕留める。",
+    "starting_hp": 70,
+    "starting_gold": 99,
+    "max_energy": 3,
+    "orb_slots": null,
+    "starting_deck": [
+      "StrikeSilent",
+      "StrikeSilent",
+      "StrikeSilent",
+      "StrikeSilent",
+      "StrikeSilent",
+      "DefendSilent",
+      "DefendSilent",
+      "DefendSilent",
+      "DefendSilent",
+      "DefendSilent",
+      "Neutralize",
+      "Survivor"
+    ],
+    "starting_relics": [
+      "RingOfTheSnake"
+    ],
+    "unlocks_after": null,
+    "gender": "Feminine",
+    "color": "green",
+    "dialogue_color": "new",
+    "quotes": {
+      "event_death_prevention": "生き延びて、また狩りをしなければ……",
+      "gold_monologue": "[sine]同胞たちも、この「証」を認めてくれるはず……[/sine]",
+      "aroma_principle": "[sine][green]……狩り……証明……居場所……[/green][/sine]",
+      "banter_alive": "[sine]……[/sine]",
+      "banter_dead": "……",
+      "unlock_text": "1回プレイして、このキャラクターをアンロック。",
+      "cards_modifier_title": "サイレントのカード",
+      "cards_modifier_description": "報酬やショップにサイレントのカードが出現するようになる。"
+    },
+    "dialogues": [
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "お前さんもスパイアに戻ってきたのかい？\n光り輝くモンには目がねえってか！？"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "お前さんが持ってるその「狩りの証」、何かいいモンと交換してやろうか！"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "オレ様の寛大さを覚えてねぇとは残念だぜ！\nまあ、ネオーのやり方は知ってるけどよ……"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "……"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "最後の決戦か何からしいな。よし、お前さんの装備を整えてやろう！"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]……帰ってきたのだな…… 外から……\n…… 戻ってくると…… 分かっていた…… [/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]…… お前の……\n…… 「狩りの証」が…… 待っている…… [/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]…… 私たちは…… 知っている…… 家族による痛み…… [/sine]"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "……"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[sine]…… まだ…… 認めてほしいと…… 思っているのか……？\n…… [jitter]愚かな[/jitter]…… [/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "あたしの領域に、小さい泥棒さんが忍び込んだみたいね。\n隠れられるとでも思ってんの？ 出てきなよ！"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]サイレントが影から姿を現す…… [/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "女狩人さん、何があんたをスパイアに呼び戻したのかしら？\nこっちに来て。 あたしの祝福をまといなさい。"
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "あんたのために贈り物を用意したわ、暗殺者さん。 恥ずかしがらないでよ。"
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "ネオーのオモチャの中でも、あんたが一番オドロキだわ。"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "……"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "何があんたの最初の命を奪ったの？ ネオーがあんたを[sine]見つけた[/sine]って？\nだんまりなんて、つまんないわね"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "カンセン……？ [jitter]ビョーキ！？ [/jitter] コレモッテ、アッチイケ！！"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[sine]…… [/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "ウツラナイ？ トテモ、シニソウ？ アーキテクト、キミヲタスケル？"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "シマイタチ、ドコ？ コワクテイジワルナ、シマイタチ！\nイイヒトニナレ！ シマイタチニ、ナルナ！！"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]殺意に満ちた生き物よ、ここで暴力を振るう必要はない。\n私の一部を持っていき、安らぎを見つけなさい…… [/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]「狩りの証」を探しているのか？ いいとも、私の一部を持っていきなさい……\n君の慰めになるのなら…… [/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]私に毒を盛ったのか……？\nこれは一体どう……？ むにゃ…… zZZzz…… [/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "狩人か！ お前のその“爪”を研ぎ澄ましてやろう！！"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "なぜダガーなんぞを！！ 弱ェ！"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "オレと戦え、サイレント！！"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]サイレントは逃げ出した。 ついでに武器もいただいた。 [/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "どこへ行きやがった！！！"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "近くにいらっしゃい、無口な子。 あんまりよく見えないわね……"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "……"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "私を[jitter][b]信用[/b][/jitter]していいのよ。"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "ひどく厄介な[jitter][b]病気[/b][/jitter]にかかっているのね。 さあ、手当てをしてあげましょう。"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "私、あなたの姉妹に会ったことがあるのよ？ とってもかわいい子たちだったわあ。"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "……"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "あらやだ…… [jitter][b]ケンカ[/b][/jitter]なんてしてないわよね？"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "挨拶もなしか？"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "どこから来た？\n何が狙いだ？"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[jitter]ぐっ！ [/jitter]\n[jitter][red]死ね！！ [/red][/jitter]"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "鬱陶しいクズめ！\n[jitter]消え失せろ！！ [/jitter]"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "殺し屋の方ですね。"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[sine]…… [/sine]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "これはあなたにとって良い[jitter]結末[/jitter]にはならないでしょうね。"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[i][font_size=22]ヴァクーはサイレントに様々な契約書を見せた。 [/font_size][/i]"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "アーキテクトだけでは不十分です。 あなたの姉妹たちも殺してしまいなさい！"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[sine]…… [/sine]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "言葉は不要です。私たちは“同じ”なのですから。"
+          }
+        ]
+      }
+    ],
+    "image_url": "/static/images/characters/char_select_silent.png"
+  }
+]

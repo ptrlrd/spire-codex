@@ -1,0 +1,299 @@
+[
+  {
+    "id": "ALL_CARDS_UPGRADED",
+    "name": "Perfekcyjna talia",
+    "description": "Wygraj talią składającą się wyłącznie z ulepszonych kart.",
+    "category": "run",
+    "character": null,
+    "threshold": null,
+    "condition": "Win with a fully-upgraded deck"
+  },
+  {
+    "id": "ALL_OTHER_ACHIEVEMENTS",
+    "name": "Wiekopomny",
+    "description": "Ukończ wszystkie pozostałe osiągnięcia.",
+    "category": "meta",
+    "character": null,
+    "threshold": null,
+    "condition": "Complete all other achievements"
+  },
+  {
+    "id": "CHARACTER_SKILL_IRONCLAD1",
+    "name": "Pakt spełniony",
+    "description": "Wyczerp 20 kart w jednej walce.",
+    "category": "character_skill",
+    "character": "Ironclad",
+    "threshold": 20,
+    "condition": "Exhaust 20 cards in a single combat"
+  },
+  {
+    "id": "CHARACTER_SKILL_IRONCLAD2",
+    "name": "Najcięższe ostrze",
+    "description": "Zadaj 999 pkt. obrażeń jednym atakiem.",
+    "category": "character_skill",
+    "character": "Ironclad",
+    "threshold": 999,
+    "condition": "Deal 999+ damage in a single hit"
+  },
+  {
+    "id": "CHARACTER_SKILL_NECROBINDER1",
+    "name": "Już nie żyjesz",
+    "description": "Nałóż 999 pkt. Zagłady na jednego przeciwnika.",
+    "category": "character_skill",
+    "character": "Necrobinder",
+    "threshold": 999,
+    "condition": "Apply 999+ Doom to a single enemy"
+  },
+  {
+    "id": "CHARACTER_SKILL_NECROBINDER2",
+    "name": "Pij mleko! Będziesz wielki",
+    "description": "Dodaj Kostkowi 50 pkt. Siły.",
+    "category": "character_skill",
+    "character": "Necrobinder",
+    "threshold": 50,
+    "condition": "Apply 50+ Strength to Osty"
+  },
+  {
+    "id": "CHARACTER_SKILL_REGENT1",
+    "name": "Ostrze godne króla",
+    "description": "Wykuj Niebiańskie Ostrze, które zadaje co najmniej 999 pkt. obrażeń.",
+    "category": "character_skill",
+    "character": "Regent",
+    "threshold": 999,
+    "condition": "Forge a Sovereign Blade with 999+ base damage"
+  },
+  {
+    "id": "CHARACTER_SKILL_REGENT2",
+    "name": "Gwiazdy na niebie",
+    "description": "Miej 20 Gwiazd naraz.",
+    "category": "character_skill",
+    "character": "Regent",
+    "threshold": 20,
+    "condition": "Have 20+ Stars at once"
+  },
+  {
+    "id": "CHARACTER_SKILL_SILENT1",
+    "name": "Chytry jak wonsz rzeczny",
+    "description": "Zagraj 5 Chytrych kart za pomocą jednej karty.",
+    "category": "character_skill",
+    "character": "Silent",
+    "threshold": 5,
+    "condition": "Play 5 cards via Sly off a single card play"
+  },
+  {
+    "id": "CHARACTER_SKILL_SILENT2",
+    "name": "Wystarczy kilka kropli",
+    "description": "Nałóż 99 pkt. Trucizny na jednego przeciwnika.",
+    "category": "character_skill",
+    "character": "Silent",
+    "threshold": 99,
+    "condition": "Apply 99+ Poison to a single enemy"
+  },
+  {
+    "id": "COMPLETE_ACT4",
+    "name": "Prawdziwe zakończenie",
+    "description": "Ukończ Akt 4.",
+    "category": "run",
+    "character": null,
+    "threshold": null,
+    "condition": "Complete Act 4"
+  },
+  {
+    "id": "COMPLETE_TIMELINE",
+    "name": "Historyk",
+    "description": "Ukończ Oś Czasu.",
+    "category": "collection",
+    "character": null,
+    "threshold": null,
+    "condition": "Complete the Timeline"
+  },
+  {
+    "id": "DEFEAT_GLORY_ENEMIES",
+    "name": "Splendor",
+    "description": "Pokonaj każdego przeciwnika w Splendorze.",
+    "category": "combat",
+    "character": null,
+    "threshold": null,
+    "condition": "Defeat every enemy in the Glory"
+  },
+  {
+    "id": "DEFEAT_HIVE_ENEMIES",
+    "name": "Rój",
+    "description": "Pokonaj każdego przeciwnika w Roju.",
+    "category": "combat",
+    "character": null,
+    "threshold": null,
+    "condition": "Defeat every enemy in the Hive"
+  },
+  {
+    "id": "DEFEAT_ONE_BOSS",
+    "name": "Jeden z wielu",
+    "description": "Pokonaj Bossa.",
+    "category": "combat",
+    "character": null,
+    "threshold": null,
+    "condition": "Defeat a boss"
+  },
+  {
+    "id": "DEFEAT_OVERGROWTH_ENEMIES",
+    "name": "Zarośla",
+    "description": "Pokonaj każdego przeciwnika w Zaroślach.",
+    "category": "combat",
+    "character": null,
+    "threshold": null,
+    "condition": "Defeat every enemy in the Overgrowth"
+  },
+  {
+    "id": "DEFEAT_UNDERDOCKS_ENEMIES",
+    "name": "Nabrzeże",
+    "description": "Pokonaj każdego przeciwnika w Nabrzeżu.",
+    "category": "combat",
+    "character": null,
+    "threshold": null,
+    "condition": "Defeat every enemy in the Underdocks"
+  },
+  {
+    "id": "DEFECT_ASCENSION10",
+    "name": "Echo",
+    "description": "Ukończ grę na 10. poziomie Wyniesienia Defektem.",
+    "category": "character_ascension",
+    "character": "Defect",
+    "threshold": null,
+    "condition": null
+  },
+  {
+    "id": "DEFECT_WIN",
+    "name": "The Defect",
+    "description": "Wygraj Defektem.",
+    "category": "character_win",
+    "character": "Defect",
+    "threshold": null,
+    "condition": null
+  },
+  {
+    "id": "DISCOVER_ALL_CARDS",
+    "name": "Kolekcjoner",
+    "description": "Odkryj wszystkie karty.",
+    "category": "collection",
+    "character": null,
+    "threshold": null,
+    "condition": "Discover all cards"
+  },
+  {
+    "id": "DISCOVER_ALL_EVENTS",
+    "name": "Podróżnik",
+    "description": "Napotkaj się na wszystkie wydarzenia.",
+    "category": "collection",
+    "character": null,
+    "threshold": null,
+    "condition": "Encounter all events"
+  },
+  {
+    "id": "DISCOVER_ALL_RELICS",
+    "name": "Archeolog",
+    "description": "Odkryj wszystkie Artefakty.",
+    "category": "collection",
+    "character": null,
+    "threshold": null,
+    "condition": "Discover all relics"
+  },
+  {
+    "id": "FLOOR_TEN_THOUSAND",
+    "name": "Dużo schodów",
+    "description": "Pokonaj 10 000 pięter.",
+    "category": "collection",
+    "character": null,
+    "threshold": 10000,
+    "condition": "Climb 10,000 floors total"
+  },
+  {
+    "id": "IRONCLAD_ASCENSION10",
+    "name": "Demon",
+    "description": "Ukończ grę na 10. poziomie Wyniesienia Pancernikiem.",
+    "category": "character_ascension",
+    "character": "Ironclad",
+    "threshold": null,
+    "condition": null
+  },
+  {
+    "id": "IRONCLAD_WIN",
+    "name": "The Ironclad",
+    "description": "Wygraj Pancernikiem.",
+    "category": "character_win",
+    "character": "Ironclad",
+    "threshold": null,
+    "condition": null
+  },
+  {
+    "id": "NECROBINDER_ASCENSION10",
+    "name": "Licz",
+    "description": "Ukończ grę na 10. poziomie Wyniesienia Nekromantką.",
+    "category": "character_ascension",
+    "character": "Necrobinder",
+    "threshold": null,
+    "condition": null
+  },
+  {
+    "id": "NECROBINDER_WIN",
+    "name": "Nekromantka",
+    "description": "Wygraj Nekromantką.",
+    "category": "character_win",
+    "character": "Necrobinder",
+    "threshold": null,
+    "condition": null
+  },
+  {
+    "id": "NO_RELIC_WIN",
+    "name": "Niepotrzebne klamoty",
+    "description": "Wygraj bez zdobywania żadnych Artefaktów.",
+    "category": "run",
+    "character": null,
+    "threshold": null,
+    "condition": "Win without obtaining any relics"
+  },
+  {
+    "id": "PLAY20_CARDS_SINGLE_TURN",
+    "name": "Gry karciane to wielka frajda",
+    "description": "Zagraj 20 kart w jednej turze.",
+    "category": "combat",
+    "character": null,
+    "threshold": 20,
+    "condition": "Play 20 cards in a single turn"
+  },
+  {
+    "id": "REGENT_ASCENSION10",
+    "name": "Władca",
+    "description": "Ukończ grę na 10. poziomie Wyniesienia Monarchą.",
+    "category": "character_ascension",
+    "character": "Regent",
+    "threshold": null,
+    "condition": null
+  },
+  {
+    "id": "REGENT_WIN",
+    "name": "Monarcha",
+    "description": "Wygraj Monarchą.",
+    "category": "character_win",
+    "character": "Regent",
+    "threshold": null,
+    "condition": null
+  },
+  {
+    "id": "SILENT_ASCENSION10",
+    "name": "Duch",
+    "description": "Ukończ grę na 10. poziomie Wyniesienia Zjawą.",
+    "category": "character_ascension",
+    "character": "Silent",
+    "threshold": null,
+    "condition": null
+  },
+  {
+    "id": "SILENT_WIN",
+    "name": "Zjawa",
+    "description": "Wygraj Zjawą.",
+    "category": "character_win",
+    "character": "Silent",
+    "threshold": null,
+    "condition": null
+  }
+]

@@ -1,0 +1,86 @@
+[
+  {
+    "id": "ATTACK",
+    "name": "攻撃的",
+    "description": "{IsMultiplayer:全員に|}[blue]{Damage}[/blue]ダメージの[gold]アタック[/gold]を[blue]{Repeat}[/blue]回行う。",
+    "image_url": "/static/images/intents/attack.png"
+  },
+  {
+    "id": "BUFF",
+    "name": "強化",
+    "description": "[gold]バフ[/gold]を使用する。",
+    "image_url": "/static/images/intents/buff.png"
+  },
+  {
+    "id": "CARD_DEBUFF",
+    "name": "悪意",
+    "description": "カードに[gold]災禍[/gold]を付与する。",
+    "image_url": "/static/images/intents/card_debuff.png"
+  },
+  {
+    "id": "DEATH_BLOW",
+    "name": "死に際の一撃",
+    "description": "道連れを狙っている。倒される前に[blue]{Damage}[/blue]ダメージのアタックを行う。",
+    "image_url": "/static/images/intents/death_blow.png"
+  },
+  {
+    "id": "DEBUFF",
+    "name": "戦略的",
+    "description": "[gold]デバフ[/gold]を付与する。",
+    "image_url": "/static/images/intents/debuff.png"
+  },
+  {
+    "id": "DEBUFF_STRONG",
+    "name": "戦略的",
+    "description": "強力な[gold]デバフ[/gold]を付与する。",
+    "image_url": "/static/images/intents/debuff_strong.png"
+  },
+  {
+    "id": "DEFEND",
+    "name": "守備的",
+    "description": "[gold]ブロック[/gold]を得る。",
+    "image_url": "/static/images/intents/defend.png"
+  },
+  {
+    "id": "ESCAPE",
+    "name": "臆病",
+    "description": "[gold]逃走[/gold]する。",
+    "image_url": "/static/images/intents/escape.png"
+  },
+  {
+    "id": "HEAL",
+    "name": "回復",
+    "description": "[gold]回復[/gold]する。",
+    "image_url": "/static/images/intents/heal.png"
+  },
+  {
+    "id": "SLEEP",
+    "name": "睡眠",
+    "description": "このターン何もしない。",
+    "image_url": "/static/images/intents/sleep.png"
+  },
+  {
+    "id": "STATUS",
+    "name": "戦略的",
+    "description": "[gold]状態異常[/gold]カードを[blue]{CardCount}[/blue]枚混ぜる。",
+    "image_url": "/static/images/intents/status.png"
+  },
+  {
+    "id": "STUN",
+    "name": "スタン",
+    "description": "次のターン行動できない。",
+    "image_url": "/static/images/intents/stun.png"
+  },
+  {
+    "id": "SUMMON",
+    "name": "召喚",
+    "description": "[gold]モンスター[/gold]を召喚する。",
+    "image_url": "/static/images/intents/summon.png"
+  },
+  {
+    "id": "UNKNOWN",
+    "name": "不明",
+    "description": "この敵の行動予定は[gold]不明[/gold]だ。",
+    "image_url": "/static/images/intents/unknown.png"
+  }
+]

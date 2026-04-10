@@ -1,0 +1,86 @@
+[
+  {
+    "id": "ATTACK",
+    "name": "Agresja",
+    "description": "Ten przeciwnik zamierza [gold]zaatakować[/gold]. Zada {IsMultiplayer:wszystkim |}[blue]{Damage}[/blue] pkt. obrażeń{Repeat:plural:| [blue]{}[/blue] razy| [blue]{}[/blue] razy}.",
+    "image_url": "/static/images/intents/attack.png"
+  },
+  {
+    "id": "BUFF",
+    "name": "Wzmocnienie",
+    "description": "Ten przeciwnik zamierza użyć [gold]Wzmocnienia[/gold].",
+    "image_url": "/static/images/intents/buff.png"
+  },
+  {
+    "id": "CARD_DEBUFF",
+    "name": "Złośliwość",
+    "description": "Ten przeciwnik zamierza nałożyć [gold]Przekleństwo[/gold] na twoje karty.",
+    "image_url": "/static/images/intents/card_debuff.png"
+  },
+  {
+    "id": "DEATH_BLOW",
+    "name": "Gwałtowna eksplozja",
+    "description": "To stworzenie wysadzi cię w powietrze. Zada ci [blue]{Damage}[/blue] pkt. obrażeń, jeżeli nie zostanie zabite.",
+    "image_url": "/static/images/intents/death_blow.png"
+  },
+  {
+    "id": "DEBUFF",
+    "name": "Strategia",
+    "description": "Ten przeciwnik zamierza nałożyć na ciebie [gold]Osłabienie[/gold].",
+    "image_url": "/static/images/intents/debuff.png"
+  },
+  {
+    "id": "DEBUFF_STRONG",
+    "name": "Strategia",
+    "description": "Ten przeciwnik zamierza nałożyć na ciebie potężne [gold]Osłabienie[/gold].",
+    "image_url": "/static/images/intents/debuff_strong.png"
+  },
+  {
+    "id": "DEFEND",
+    "name": "Defensywa",
+    "description": "Ten przeciwnik zamierza się [gold]bronić[/gold].",
+    "image_url": "/static/images/intents/defend.png"
+  },
+  {
+    "id": "ESCAPE",
+    "name": "Tchórzliwa ucieczka",
+    "description": "Ten przeciwnik zamierza [gold]uciec[/gold].",
+    "image_url": "/static/images/intents/escape.png"
+  },
+  {
+    "id": "HEAL",
+    "name": "Leczenie",
+    "description": "Ten przeciwnik zamierza [gold]przywrócić[/gold] swoje PŻ.",
+    "image_url": "/static/images/intents/heal.png"
+  },
+  {
+    "id": "SLEEP",
+    "name": "Sen",
+    "description": "Ten przeciwnik nic nie zrobi w tej turze.",
+    "image_url": "/static/images/intents/sleep.png"
+  },
+  {
+    "id": "STATUS",
+    "name": "Strategia",
+    "description": "Ten przeciwnik zamierza ci dać {CardCount:plural:[blue]{CardCount}[/blue] kartę|[blue]{CardCount}[/blue] karty|[blue]{CardCount}[/blue] kart} [gold]Stanu[/gold].",
+    "image_url": "/static/images/intents/status.png"
+  },
+  {
+    "id": "STUN",
+    "name": "Ogłuszenie",
+    "description": "Ten przeciwnik nie może wykonać akcji w swojej następnej turze.",
+    "image_url": "/static/images/intents/stun.png"
+  },
+  {
+    "id": "SUMMON",
+    "name": "Przywołanie",
+    "description": "Ten przeciwnik zamierza przywołać [gold]potwory[/gold].",
+    "image_url": "/static/images/intents/summon.png"
+  },
+  {
+    "id": "UNKNOWN",
+    "name": "Nieznane",
+    "description": "Zamiary tego przeciwnika są [gold]nieznane[/gold].",
+    "image_url": "/static/images/intents/unknown.png"
+  }
+]

@@ -1,0 +1,74 @@
+{
+  "card_types": {
+    "Attack": "Атака",
+    "Skill": "Навык",
+    "Power": "Талант",
+    "Status": "Статус",
+    "Curse": "Проклятие",
+    "Quest": "Задание"
+  },
+  "card_rarities": {
+    "Basic": "Начальная",
+    "Common": "Обычная",
+    "Uncommon": "Необычная",
+    "Rare": "Редкая",
+    "Ancient": "Древняя",
+    "Event": "Карта события",
+    "Token": "Обозначение",
+    "Status": "Статус",
+    "Curse": "Проклятие",
+    "Quest": "Задание"
+  },
+  "relic_rarities": {
+    "Starter": "Начальная реликвия",
+    "Common": "Обычная реликвия",
+    "Uncommon": "Необычная реликвия",
+    "Rare": "Редкая реликвия",
+    "Ancient": "Древняя реликвия",
+    "Event": "Реликвия за событие",
+    "Shop": "Реликвия из магазина"
+  },
+  "potion_rarities": {
+    "Common": "Обычное",
+    "Uncommon": "Необычное",
+    "Rare": "Редкое",
+    "Event": "Особое",
+    "Token": "Обозначение"
+  },
+  "keywords": {
+    "ETERNAL": "Вечная",
+    "ETHEREAL": "Эфирная",
+    "EXHAUST": "Сжигается",
+    "INNATE": "Начальная",
+    "RETAIN": "Оставляется",
+    "SLY": "Коварная",
+    "UNPLAYABLE": "Неиграбельная"
+  },
+  "sections": {
+    "cards": "Библиотека карт",
+    "characters": "Characters",
+    "relics": "Коллекция реликвий",
+    "monsters": "Бестиарий",
+    "potions": "Лаборатория",
+    "enchantments": "Enchantments",
+    "encounters": "Encounters",
+    "events": "Events",
+    "powers": "Powers",
+    "timeline": "Летопись",
+    "images": "Images",
+    "reference": "Reference"
+  },
+  "section_descs": {
+    "cards": "Список всех карт, которые попались вам в Шпиле.",
+    "relics": "Список различных талисманов и артефактов, которые вы заполучили в Шпиле.",
+    "monsters": "Список всех врагов, которых вам довелось встретить в Шпиле.",
+    "potions": "Список многообразных зелий, которые вы нашли в Шпиле."
+  },
+  "character_names": {
+    "ironclad": "Латоносец",
+    "silent": "Безмолвная",
+    "defect": "Дефект",
+    "necrobinder": "Призывающая",
+    "regent": "Наследник"
+  }
+}

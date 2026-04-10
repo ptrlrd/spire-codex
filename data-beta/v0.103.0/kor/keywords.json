@@ -1,0 +1,42 @@
+[
+  {
+    "id": "ETERNAL",
+    "name": "영구",
+    "description": "[gold]덱[/gold]에서 제거하거나 변화시킬 수 없습니다."
+  },
+  {
+    "id": "ETHEREAL",
+    "name": "휘발성",
+    "description": "이 카드는 이번 턴 종료 시 [gold]손[/gold]에 있다면, [gold]소멸[/gold]합니다."
+  },
+  {
+    "id": "EXHAUST",
+    "name": "소멸",
+    "description": "전투가 끝날 때까지 제거됩니다."
+  },
+  {
+    "id": "INNATE",
+    "name": "선천성",
+    "description": "매 전투마다 이 카드를 [gold]손[/gold]에 든 상태로 시작합니다."
+  },
+  {
+    "id": "PERIOD",
+    "name": "Period",
+    "description": ""
+  },
+  {
+    "id": "RETAIN",
+    "name": "보존",
+    "description": "보존된 카드는 턴 종료 시 버려지지 않습니다."
+  },
+  {
+    "id": "SLY",
+    "name": "교활",
+    "description": "내 턴이 끝나기 전에 이 카드가 [gold]손[/gold]에서 버려진다면, 비용 없이 사용합니다."
+  },
+  {
+    "id": "UNPLAYABLE",
+    "name": "사용불가",
+    "description": "사용불가 카드는 낼 수 없습니다."
+  }
+]

@@ -1,0 +1,42 @@
+[
+  {
+    "id": "ETERNAL",
+    "name": "Perpétua",
+    "description": "Não pode ser transformada ou removida do seu [gold]Baralho[/gold]."
+  },
+  {
+    "id": "ETHEREAL",
+    "name": "Etérea",
+    "description": "Se esta carta estiver na sua [gold]Mão[/gold] no final deste turno, ela é [gold]Exaurida[/gold]."
+  },
+  {
+    "id": "EXHAUST",
+    "name": "Exaurir",
+    "description": "Remova a carta até o final do combate."
+  },
+  {
+    "id": "INNATE",
+    "name": "Inata",
+    "description": "Inicie cada combate com esta carta na sua [gold]Mão[/gold]."
+  },
+  {
+    "id": "PERIOD",
+    "name": "Period",
+    "description": ""
+  },
+  {
+    "id": "RETAIN",
+    "name": "Manter",
+    "description": "Cartas mantidas não são descartadas no final do seu turno."
+  },
+  {
+    "id": "SLY",
+    "name": "Sagaz",
+    "description": "Se esta carta for descartada da sua [gold]Mão[/gold] antes do final do seu turno, jogue-a de graça."
+  },
+  {
+    "id": "UNPLAYABLE",
+    "name": "Injogável",
+    "description": "Cartas Injogáveis não podem ser jogadas."
+  }
+]

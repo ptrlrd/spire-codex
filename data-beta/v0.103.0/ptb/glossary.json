@@ -1,0 +1,170 @@
+[
+  {
+    "id": "BLOCK",
+    "name": "Proteção",
+    "description": "Previne dano até o próximo turno.",
+    "category": "combat"
+  },
+  {
+    "id": "CARD_REWARD",
+    "name": "Cartas de Recompensa",
+    "description": "Um conjunto de [blue]3[/blue] cartas aleatórias. Você pode escolher [blue]1[/blue] para adicionar ao seu [gold]Baralho[/gold].",
+    "category": "progression"
+  },
+  {
+    "id": "CHANNELING",
+    "name": "Canalizar",
+    "description": "Canalizar uma Orbe a coloca no seu primeiro espaço vazio. Se não houver espaços vazios, sua primeira Orbe é automaticamente [gold]Evocada[/gold] para liberar espaço.",
+    "category": "combat"
+  },
+  {
+    "id": "COOK",
+    "name": "Cozinhar",
+    "description": "[gold]Remova[/gold] [blue]2[/blue] cartas do seu [gold]Baralho[/gold] e receba [green]9[/green] PV Máximos em um [gold]Local de Descanso[/gold].",
+    "category": "mechanics"
+  },
+  {
+    "id": "DECK",
+    "name": "Baralho",
+    "description": "Exibe todas as cartas no seu baralho.",
+    "category": "zones"
+  },
+  {
+    "id": "DISCARD_PILE",
+    "name": "Pilha de Descarte",
+    "description": "Se a sua pilha de compra estiver vazia, a pilha de descarte é embaralhada na pilha de compra.\n\nClique para exibir as cartas na sua pilha de descarte.",
+    "category": "zones"
+  },
+  {
+    "id": "DRAW_PILE",
+    "name": "Pilha de Compra",
+    "description": "No início de cada turno\n[blue]5[/blue] cartas são compradas daqui.\n\nClique para exibir as cartas na sua pilha de compra (embaralhadas).",
+    "category": "zones"
+  },
+  {
+    "id": "ENERGY",
+    "name": "Energia",
+    "description": "Energia é usada para jogar cartas da sua [gold]Mão[/gold].",
+    "category": "combat"
+  },
+  {
+    "id": "EVOKE",
+    "name": "Evocar",
+    "description": "Consome sua Orbe mais a direita e usa seu efeito de Evocação.",
+    "category": "combat"
+  },
+  {
+    "id": "EXHAUST_PILE",
+    "name": "Cartas Exauridas",
+    "description": "Clique para exibir as cartas Exauridas neste combate.",
+    "category": "zones"
+  },
+  {
+    "id": "FATAL",
+    "name": "Fatal",
+    "description": "Ativa quando esta carta derrota um inimigo que não seja lacaio.",
+    "category": "combat"
+  },
+  {
+    "id": "FORGE",
+    "name": "Forjar",
+    "description": "Na primeira vez que você [gold]Forjar[/gold] a cada combate, adicione [gold]Espada Soberana[/gold] na sua [gold]Mão[/gold]. Acumula dano adicional na [gold]Espada Soberana[/gold].",
+    "category": "mechanics"
+  },
+  {
+    "id": "HIT_POINTS",
+    "name": "Pontos de Vida",
+    "description": "Se os seus PV acabarem, você perde a partida.",
+    "category": "progression"
+  },
+  {
+    "id": "LINKED_REWARDS",
+    "name": "Recompensas Interligadas",
+    "description": "Você só pode escolher [blue]1[/blue] recompensa deste conjunto.",
+    "category": "progression"
+  },
+  {
+    "id": "MONEY_POUCH",
+    "name": "Ouro",
+    "description": "A quantidade de Ouro que você possui. Ouro é a moeda de troca dentro do Pináculo.",
+    "category": "progression"
+  },
+  {
+    "id": "POTION_SLOT",
+    "name": "Espaço de Poções",
+    "description": "Utilize poções durante o combate para receber [green]bônus[/green] ou [red]prejudicar[/red] inimigos.",
+    "category": "progression"
+  },
+  {
+    "id": "REPLAY",
+    "name": "Repetir",
+    "description": "Jogue esta carta uma vez adicional.",
+    "category": "mechanics"
+  },
+  {
+    "id": "ROOM_ANCIENT",
+    "name": "Ancestral",
+    "description": "Ancestrais residem nestas salas.\n\nPodem conceder incríveis gratificações, tesouros e conhecimento.",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_BOSS",
+    "name": "Chefe",
+    "description": "O oponente mais letal desta área.\n\nDerrotá-los permite que você prossiga para o próximo Ato.",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_ELITE",
+    "name": "Elite",
+    "description": "Inimigos poderosos residem nestas salas.\n\nAo derrotá-los, você encontrará uma [gold]Relíquia[/gold] como recompensa.",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_ENEMY",
+    "name": "Inimigo",
+    "description": "Inimigos hostis residem nestas salas.",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_EVENT",
+    "name": "Evento",
+    "description": "Algo misterioso acontece nestas salas...",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_MERCHANT",
+    "name": "Loja",
+    "description": "O misterioso Mercador vende suas mercadorias nestas salas.\n\nGaste seu [gold]Ouro[/gold] aqui!",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_REST",
+    "name": "Local de Descanso",
+    "description": "Passe por estas salas para [green]Curar[/green] um pouco de PV ou [gold]Aprimorar[/gold] uma carta.",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_TREASURE",
+    "name": "Sala de Tesouros",
+    "description": "[gold]Relíquias[/gold] e [gold]Ouro[/gold] podem ser encontrados nestas salas cobiçadas.",
+    "category": "rooms"
+  },
+  {
+    "id": "STUN",
+    "name": "Atordoar",
+    "description": "Impede o inimigo de realizar uma ação no próximo turno dele.",
+    "category": "combat"
+  },
+  {
+    "id": "SUMMON",
+    "name": "Vincular",
+    "description": "Invoca [gold]Ostheo[/gold].\nSe já estiver sido invocado, aumenta seus PV Máximos neste combate.",
+    "category": "mechanics"
+  },
+  {
+    "id": "TRANSFORM",
+    "name": "Transformar",
+    "description": "Transformar uma carta a converte em uma carta aleatória de qualquer raridade.",
+    "category": "mechanics"
+  }
+]

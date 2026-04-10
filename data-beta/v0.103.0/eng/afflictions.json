@@ -1,0 +1,58 @@
+[
+  {
+    "id": "BOUND",
+    "name": "Bound",
+    "description": "Only [blue]1[/blue] [gold]Bound[/gold] card can be played each turn. Cards are un-[gold]Bound[/gold] at end of turn.",
+    "extra_card_text": "Bound",
+    "is_stackable": false
+  },
+  {
+    "id": "DEVOURED",
+    "name": "Devoured",
+    "description": "Add [gold]Exhaust[/gold] to this card.",
+    "extra_card_text": null,
+    "is_stackable": false
+  },
+  {
+    "id": "ENTANGLED",
+    "name": "Entangled",
+    "description": "Costs an additional [energy:1].",
+    "extra_card_text": "Entangled",
+    "is_stackable": false
+  },
+  {
+    "id": "GALVANIZED",
+    "name": "Galvanized",
+    "description": "Take [blue]X[/blue] damage when this card is played.",
+    "extra_card_text": "Take X damage.",
+    "is_stackable": true
+  },
+  {
+    "id": "HEXED",
+    "name": "Hexed",
+    "description": "Add [gold]Ethereal[/gold] to this card.",
+    "extra_card_text": null,
+    "is_stackable": false
+  },
+  {
+    "id": "RINGING",
+    "name": "Ringing",
+    "description": "You can only play [blue]1[/blue] card this turn.",
+    "extra_card_text": "Ringing.",
+    "is_stackable": false
+  },
+  {
+    "id": "SMOG",
+    "name": "Smog",
+    "description": "You cannot play additional [gold]Skills[/gold] this turn. Clears at the end of the turn.",
+    "extra_card_text": null,
+    "is_stackable": false
+  },
+  {
+    "id": "WEIGHTED",
+    "name": "Weighted",
+    "description": "Lose [energy:1] when this card is played.",
+    "extra_card_text": "Lose [energy:1].",
+    "is_stackable": false
+  }
+]
