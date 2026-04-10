@@ -4,11 +4,11 @@
   "build_id": "",
   "tag": "0.103.0",
   "date": "2026-04-09",
-  "title": "Beta v0.103.0",
+  "title": "Beta v0.103.0 — RIP DeprecatedCharacter (1000 HP, 100 energy, empty deck. Gone but not forgotten.)",
   "from_ref": "data-beta/v0.102.0/eng",
   "to_ref": "data-beta/v0.103.0/eng",
   "summary": {
-    "added": 6,
+    "added": 5,
     "removed": 0,
     "changed": 150
   },
@@ -33,11 +33,6 @@
           "name": "Acrobatics",
           "changes": [
             {
-              "field": "compendium_order",
-              "old": "91",
-              "new": "112"
-            },
-            {
               "field": "rarity",
               "old": "Common",
               "new": "Uncommon"
@@ -46,6 +41,11 @@
               "field": "rarity_key",
               "old": "Common",
               "new": "Uncommon"
+            },
+            {
+              "field": "compendium_order",
+              "old": "91",
+              "new": "112"
             }
           ]
         },
@@ -153,11 +153,6 @@
           "name": "Colossus",
           "changes": [
             {
-              "field": "compendium_order",
-              "old": "63",
-              "new": "28"
-            },
-            {
               "field": "rarity",
               "old": "Rare",
               "new": "Uncommon"
@@ -166,6 +161,11 @@
               "field": "rarity_key",
               "old": "Rare",
               "new": "Uncommon"
+            },
+            {
+              "field": "compendium_order",
+              "old": "63",
+              "new": "28"
             }
           ]
         },
@@ -449,9 +449,9 @@
           "name": "Flak Cannon",
           "changes": [
             {
-              "field": "description",
-              "old": "[gold]Exhaust[/gold] ALL your [gold]Status[/gold] cards.\nDeal 8 damage to a r...",
-              "new": "[gold]Exhaust[/gold] ALL your Status cards.\nDeal 8 damage to a random enemy f..."
+              "field": "upgrade_description",
+              "old": "[gold]Exhaust[/gold] ALL your [gold]Status[/gold] cards.\nDeal 11 damage to a ...",
+              "new": "[gold]Exhaust[/gold] ALL your Status cards.\nDeal 11 damage to a random enemy ..."
             },
             {
               "field": "description_raw",
@@ -459,9 +459,9 @@
               "new": "[gold]Exhaust[/gold] ALL your Status cards.\nDeal {Damage:diff()} damage to a ..."
             },
             {
-              "field": "upgrade_description",
-              "old": "[gold]Exhaust[/gold] ALL your [gold]Status[/gold] cards.\nDeal 11 damage to a ...",
-              "new": "[gold]Exhaust[/gold] ALL your Status cards.\nDeal 11 damage to a random enemy ..."
+              "field": "description",
+              "old": "[gold]Exhaust[/gold] ALL your [gold]Status[/gold] cards.\nDeal 8 damage to a r...",
+              "new": "[gold]Exhaust[/gold] ALL your Status cards.\nDeal 8 damage to a random enemy f..."
             }
           ]
         },
@@ -481,9 +481,9 @@
           "name": "Flanking",
           "changes": [
             {
-              "field": "compendium_order",
-              "old": "122",
-              "new": "123"
+              "field": "description_raw",
+              "old": "The enemy takes double damage from other players this turn.",
+              "new": "The enemy takes double attack damage from other players this turn."
             },
             {
               "field": "description",
@@ -491,9 +491,9 @@
               "new": "The enemy takes double attack damage from other players this turn."
             },
             {
-              "field": "description_raw",
-              "old": "The enemy takes double damage from other players this turn.",
-              "new": "The enemy takes double attack damage from other players this turn."
+              "field": "compendium_order",
+              "old": "122",
+              "new": "123"
             }
           ]
         },
@@ -524,34 +524,9 @@
           "name": "Follow Through",
           "changes": [
             {
-              "field": "compendium_order",
-              "old": "124",
-              "new": "101"
-            },
-            {
-              "field": "description",
-              "old": "Deal 6 damage to ALL enemies.\nIf the last card you played this turn was a Ski...",
-              "new": "Deal 7 damage.\nIf you have 5 or more other cards in your [gold]Hand[/gold], h..."
-            },
-            {
-              "field": "description_raw",
-              "old": "Deal {Damage:diff()} damage to ALL enemies.\nIf the last card you played this ...",
-              "new": "Deal {Damage:diff()} damage.\nIf you have {CardCount} or more other {CardCount..."
-            },
-            {
-              "field": "rarity",
-              "old": "Uncommon",
-              "new": "Common"
-            },
-            {
               "field": "vars",
               "old": "3 fields",
               "new": "2 fields"
-            },
-            {
-              "field": "rarity_key",
-              "old": "Uncommon",
-              "new": "Common"
             },
             {
               "field": "upgrade_description",
@@ -559,14 +534,9 @@
               "new": "Deal 9 damage.\nIf you have 5 or more other cards in your [gold]Hand[/gold], h..."
             },
             {
-              "field": "damage",
-              "old": "6",
-              "new": "7"
-            },
-            {
-              "field": "powers_applied",
-              "old": "{'power': 'Weak', 'amount': 1, 'power_key': 'Weak'}",
-              "new": "none"
+              "field": "rarity",
+              "old": "Uncommon",
+              "new": "Common"
             },
             {
               "field": "upgrade",
@@ -574,9 +544,39 @@
               "new": "1 fields"
             },
             {
+              "field": "damage",
+              "old": "6",
+              "new": "7"
+            },
+            {
+              "field": "rarity_key",
+              "old": "Uncommon",
+              "new": "Common"
+            },
+            {
               "field": "target",
               "old": "AllEnemies",
               "new": "AnyEnemy"
+            },
+            {
+              "field": "description_raw",
+              "old": "Deal {Damage:diff()} damage to ALL enemies.\nIf the last card you played this ...",
+              "new": "Deal {Damage:diff()} damage.\nIf you have {CardCount} or more other {CardCount..."
+            },
+            {
+              "field": "description",
+              "old": "Deal 6 damage to ALL enemies.\nIf the last card you played this turn was a Ski...",
+              "new": "Deal 7 damage.\nIf you have 5 or more other cards in your [gold]Hand[/gold], h..."
+            },
+            {
+              "field": "compendium_order",
+              "old": "124",
+              "new": "101"
+            },
+            {
+              "field": "powers_applied",
+              "old": "{'power': 'Weak', 'amount': 1, 'power_key': 'Weak'}",
+              "new": "none"
             }
           ]
         },
@@ -596,9 +596,9 @@
           "name": "Grapple",
           "changes": [
             {
-              "field": "compendium_order",
-              "old": "38",
-              "new": "576"
+              "field": "upgrade_description",
+              "old": "Deal 9 damage.\nWhenever you gain [gold]Block[/gold] this turn, deal 7 damage ...",
+              "new": "none"
             },
             {
               "field": "color",
@@ -606,19 +606,19 @@
               "new": "unknown"
             },
             {
-              "field": "description",
-              "old": "Deal 7 damage.\nWhenever you gain [gold]Block[/gold] this turn, deal 5 damage ...",
-              "new": ""
-            },
-            {
               "field": "description_raw",
               "old": "Deal {Damage:diff()} damage.\nWhenever you gain [gold]Block[/gold] this turn, ...",
               "new": ""
             },
             {
-              "field": "upgrade_description",
-              "old": "Deal 9 damage.\nWhenever you gain [gold]Block[/gold] this turn, deal 7 damage ...",
-              "new": "none"
+              "field": "description",
+              "old": "Deal 7 damage.\nWhenever you gain [gold]Block[/gold] this turn, deal 5 damage ...",
+              "new": ""
+            },
+            {
+              "field": "compendium_order",
+              "old": "38",
+              "new": "576"
             }
           ]
         },
@@ -649,9 +649,9 @@
           "name": "Iteration",
           "changes": [
             {
-              "field": "description",
-              "old": "The first time you draw a Status card each turn, draw 2 cards.",
-              "new": "The first time you draw a Status each turn, draw 2 cards."
+              "field": "upgrade_description",
+              "old": "The first time you draw a Status card each turn, draw 3 cards.",
+              "new": "The first time you draw a Status each turn, draw 3 cards."
             },
             {
               "field": "description_raw",
@@ -659,9 +659,9 @@
               "new": "The first time you draw a Status each turn, draw {IterationPower:diff()} {Ite..."
             },
             {
-              "field": "upgrade_description",
-              "old": "The first time you draw a Status card each turn, draw 3 cards.",
-              "new": "The first time you draw a Status each turn, draw 3 cards."
+              "field": "description",
+              "old": "The first time you draw a Status card each turn, draw 2 cards.",
+              "new": "The first time you draw a Status each turn, draw 2 cards."
             }
           ]
         },
@@ -692,11 +692,6 @@
           "name": "Memento Mori",
           "changes": [
             {
-              "field": "description",
-              "old": "Deal 8 damage.\nDeals 4 additional damage for each card discarded this turn.",
-              "new": "Deal 9 damage.\nDeals 4 additional damage for each card discarded this turn."
-            },
-            {
               "field": "vars",
               "old": "3 fields",
               "new": "3 fields"
@@ -710,6 +705,11 @@
               "field": "damage",
               "old": "8",
               "new": "9"
+            },
+            {
+              "field": "description",
+              "old": "Deal 8 damage.\nDeals 4 additional damage for each card discarded this turn.",
+              "new": "Deal 9 damage.\nDeals 4 additional damage for each card discarded this turn."
             }
           ]
         },
@@ -718,9 +718,9 @@
           "name": "Rocket Punch",
           "changes": [
             {
-              "field": "description",
-              "old": "Deal 13 damage.\nDraw 1 card.\nWhen you create a Status card, reduce this card'...",
-              "new": "Deal 13 damage.\nDraw 1 card.\nWhenever you create a Status, reduce this card's..."
+              "field": "upgrade_description",
+              "old": "Deal 14 damage.\nDraw 2 cards.\nWhen you create a Status card, reduce this card...",
+              "new": "Deal 14 damage.\nDraw 2 cards.\nWhenever you create a Status, reduce this card'..."
             },
             {
               "field": "description_raw",
@@ -728,9 +728,9 @@
               "new": "Deal {Damage:diff()} damage.\nDraw {Cards:diff()} {Cards:plural:card|cards}.\nW..."
             },
             {
-              "field": "upgrade_description",
-              "old": "Deal 14 damage.\nDraw 2 cards.\nWhen you create a Status card, reduce this card...",
-              "new": "Deal 14 damage.\nDraw 2 cards.\nWhenever you create a Status, reduce this card'..."
+              "field": "description",
+              "old": "Deal 13 damage.\nDraw 1 card.\nWhen you create a Status card, reduce this card'...",
+              "new": "Deal 13 damage.\nDraw 1 card.\nWhenever you create a Status, reduce this card's..."
             }
           ]
         },
@@ -738,11 +738,6 @@
           "id": "SPEEDSTER",
           "name": "Speedster",
           "changes": [
-            {
-              "field": "description",
-              "old": "Whenever you draw a card during your turn, deal 1 damage to ALL enemies.",
-              "new": "Whenever you draw a card during your turn, deal 2 damage to ALL enemies."
-            },
             {
               "field": "vars",
               "old": "2 fields",
@@ -754,14 +749,19 @@
               "new": "none"
             },
             {
-              "field": "powers_applied",
-              "old": "{'power': 'Speedster', 'amount': 1, 'power_key': 'Speedster'}",
-              "new": "{'power': 'Speedster', 'amount': 2, 'power_key': 'Speedster'}"
-            },
-            {
               "field": "upgrade",
               "old": "1 fields",
               "new": "1 fields"
+            },
+            {
+              "field": "description",
+              "old": "Whenever you draw a card during your turn, deal 1 damage to ALL enemies.",
+              "new": "Whenever you draw a card during your turn, deal 2 damage to ALL enemies."
+            },
+            {
+              "field": "powers_applied",
+              "old": "{'power': 'Speedster', 'amount': 1, 'power_key': 'Speedster'}",
+              "new": "{'power': 'Speedster', 'amount': 2, 'power_key': 'Speedster'}"
             }
           ]
         },
@@ -770,28 +770,16 @@
           "name": "Trash to Treasure",
           "changes": [
             {
-              "field": "description",
+              "field": "description_raw",
               "old": "Whenever you create a Status card, [gold]Channel[/gold] 1 random Orb.",
               "new": "Whenever you create a Status, [gold]Channel[/gold] 1 random Orb."
             },
             {
-              "field": "description_raw",
+              "field": "description",
               "old": "Whenever you create a Status card, [gold]Channel[/gold] 1 random Orb.",
               "new": "Whenever you create a Status, [gold]Channel[/gold] 1 random Orb."
             }
           ]
-        }
-      ]
-    },
-    {
-      "id": "characters",
-      "name": "Characters",
-      "old_count": 5,
-      "new_count": 6,
-      "added": [
-        {
-          "id": "DEPRECATED_CHARACTER",
-          "name": "Deprecated Character"
         }
       ]
     },
@@ -823,14 +811,14 @@
           "name": "Archaic Tooth",
           "changes": [
             {
-              "field": "description",
-              "old": "Upon pickup, [gold]Transform[/gold] a starter card with an ancient version.",
-              "new": "Upon pickup, [gold]Transform[/gold] a starter card into an ancient version."
-            },
-            {
               "field": "description_raw",
               "old": "Upon pickup, [gold]Transform[/gold] {StarterCard.StringValue:cond:[gold]{Star...",
               "new": "Upon pickup, [gold]Transform[/gold] {StarterCard.StringValue:cond:[gold]{Star..."
+            },
+            {
+              "field": "description",
+              "old": "Upon pickup, [gold]Transform[/gold] a starter card with an ancient version.",
+              "new": "Upon pickup, [gold]Transform[/gold] a starter card into an ancient version."
             }
           ]
         },
@@ -1290,14 +1278,14 @@
           "name": "Pael's Tooth",
           "changes": [
             {
-              "field": "compendium_order",
-              "old": "217",
-              "new": "218"
-            },
-            {
               "field": "description_raw",
               "old": "Upon pickup, remove [blue]{Cards}[/blue] {Cards:plural:card|cards} from your ...",
               "new": "Upon pickup, remove [blue]{Cards}[/blue] {Cards:plural:card|cards} from your ..."
+            },
+            {
+              "field": "compendium_order",
+              "old": "217",
+              "new": "218"
             }
           ]
         },
@@ -1427,14 +1415,14 @@
           "name": "Regalite",
           "changes": [
             {
-              "field": "description",
-              "old": "Whenever you create a Colorless card, gain [blue]2[/blue] [gold]Block[/gold].",
-              "new": "Whenever you create a card, gain [blue]2[/blue] [gold]Block[/gold]."
-            },
-            {
               "field": "description_raw",
               "old": "Whenever you create a Colorless card, gain [blue]{Block}[/blue] [gold]Block[/...",
               "new": "Whenever you create a card, gain [blue]{Block}[/blue] [gold]Block[/gold]."
+            },
+            {
+              "field": "description",
+              "old": "Whenever you create a Colorless card, gain [blue]2[/blue] [gold]Block[/gold].",
+              "new": "Whenever you create a card, gain [blue]2[/blue] [gold]Block[/gold]."
             }
           ]
         },
@@ -1814,9 +1802,9 @@
           "name": "Byrdonis",
           "changes": [
             {
-              "field": "max_hp",
-              "old": "94",
-              "new": "84"
+              "field": "min_hp_ascension",
+              "old": "99",
+              "new": "90"
             },
             {
               "field": "min_hp",
@@ -1824,14 +1812,14 @@
               "new": "81"
             },
             {
-              "field": "min_hp_ascension",
+              "field": "max_hp_ascension",
               "old": "99",
               "new": "90"
             },
             {
-              "field": "max_hp_ascension",
-              "old": "99",
-              "new": "90"
+              "field": "max_hp",
+              "old": "94",
+              "new": "84"
             }
           ]
         },
@@ -1856,14 +1844,14 @@
           "name": "Skulking Colony",
           "changes": [
             {
-              "field": "min_hp",
-              "old": "74",
-              "new": "70"
-            },
-            {
               "field": "min_hp_ascension",
               "old": "79",
               "new": "75"
+            },
+            {
+              "field": "min_hp",
+              "old": "74",
+              "new": "70"
             }
           ]
         }
@@ -1910,14 +1898,14 @@
           "name": "Spiraling Whirlpool",
           "changes": [
             {
-              "field": "options",
-              "old": "{'id': 'OBSERVE', 'title': 'Observe', 'description': '[gold]Enchant[/gold] a [gold]Strike[/gold] or [gold]Defend[/gold] with [purple]Spiral[/purple].'}, {'id': 'DRINK', 'title': 'Drink', 'description': 'Heal [green]33% Max[/green] HP.'}",
-              "new": "{'id': 'OBSERVE', 'title': 'Observe', 'description': '[gold]Enchant[/gold] a Basic [gold]Strike[/gold] or [gold]Defend[/gold] with [purple]Spiral[/purple].'}, {'id': 'DRINK', 'title': 'Drink', 'description': 'Heal [green]33% Max[/green] HP.'}"
-            },
-            {
               "field": "pages",
               "old": "{'id': 'DRINK', 'description': 'You cup your hands and dip it into the [sine][aqua]Spiraling Whirlpool[/aqua][/sine].\\n\\nIts waters fill your hands at a gentle rate as you take small sips with your eyes closed.\\n\\nDelicious water [sine]spirals[/sine] through you to your [gold]Center[/gold], washing away harmful thoughts and physical ailments...'}, {'id': 'INITIAL', 'description': 'You happen upon a [aqua][sine]Massive Spiraling Whirlpool[/sine][/aqua]. The water swirls with beautiful precision and its surrounding walls are adorned with spiral patterns.\\n\\n[purple][sine]Around and around... around...\\n....and around.... what a sight......[/sine][/purple]\\n\\nWhat do you do?', 'options': [{'id': 'OBSERVE', 'title': 'Observe', 'description': '[gold]Enchant[/gold] a [gold]Strike[/gold] or [gold]Defend[/gold] with [purple]Spiral[/purple].'}, {'id': 'DRINK', 'title': 'Drink', 'description': 'Heal [green]33% Max[/green] HP.'}]}, {'id': 'OBSERVE', 'description': \"[sine][purple]...ah-   so beautiful.....\\nSo it spins... still spinning around. Yes...\\nOh! Was that..... a little splash...?\\n....of course. You deserve some fun, too[/purple] [aqua]Mr. Spiral[/aqua][purple]... haha...\\n... .......   ...[/purple][/sine]\\n\\nIt's time to go now.\\nYou whisper something as you take your leave.\\n\\n[gold]“Thank you, Spiral.”[/gold]\"}",
               "new": "{'id': 'DRINK', 'description': 'You cup your hands and dip it into the [sine][aqua]Spiraling Whirlpool[/aqua][/sine].\\n\\nIts waters fill your hands at a gentle rate as you take small sips with your eyes closed.\\n\\nDelicious water [sine]spirals[/sine] through you to your [gold]Center[/gold], washing away harmful thoughts and physical ailments...'}, {'id': 'INITIAL', 'description': 'You happen upon a [aqua][sine]Massive Spiraling Whirlpool[/sine][/aqua]. The water swirls with beautiful precision and its surrounding walls are adorned with spiral patterns.\\n\\n[purple][sine]Around and around... around...\\n....and around.... what a sight......[/sine][/purple]\\n\\nWhat do you do?', 'options': [{'id': 'OBSERVE', 'title': 'Observe', 'description': '[gold]Enchant[/gold] a Basic [gold]Strike[/gold] or [gold]Defend[/gold] with [purple]Spiral[/purple].'}, {'id': 'DRINK', 'title': 'Drink', 'description': 'Heal [green]33% Max[/green] HP.'}]}, {'id': 'OBSERVE', 'description': \"[sine][purple]...ah-   so beautiful.....\\nSo it spins... still spinning around. Yes...\\nOh! Was that..... a little splash...?\\n....of course. You deserve some fun, too[/purple] [aqua]Mr. Spiral[/aqua][purple]... haha...\\n... .......   ...[/purple][/sine]\\n\\nIt's time to go now.\\nYou whisper something as you take your leave.\\n\\n[gold]“Thank you, Spiral.”[/gold]\"}"
+            },
+            {
+              "field": "options",
+              "old": "{'id': 'OBSERVE', 'title': 'Observe', 'description': '[gold]Enchant[/gold] a [gold]Strike[/gold] or [gold]Defend[/gold] with [purple]Spiral[/purple].'}, {'id': 'DRINK', 'title': 'Drink', 'description': 'Heal [green]33% Max[/green] HP.'}",
+              "new": "{'id': 'OBSERVE', 'title': 'Observe', 'description': '[gold]Enchant[/gold] a Basic [gold]Strike[/gold] or [gold]Defend[/gold] with [purple]Spiral[/purple].'}, {'id': 'DRINK', 'title': 'Drink', 'description': 'Heal [green]33% Max[/green] HP.'}"
             }
           ]
         }
@@ -1945,11 +1933,6 @@
           "name": "GrapplePower",
           "changes": [
             {
-              "field": "description",
-              "old": "Whenever you gain [gold]Block[/gold] this turn, deal [blue][Amount][/blue] da...",
-              "new": ""
-            },
-            {
               "field": "description_raw",
               "old": "Whenever you gain [gold]Block[/gold] this turn, deal [blue]{Amount}[/blue] da...",
               "new": "none"
@@ -1958,6 +1941,11 @@
               "field": "name",
               "old": "Grapple",
               "new": "GrapplePower"
+            },
+            {
+              "field": "description",
+              "old": "Whenever you gain [gold]Block[/gold] this turn, deal [blue][Amount][/blue] da...",
+              "new": ""
             }
           ]
         },

@@ -76,7 +76,7 @@ def parse_character(filepath: Path, localization: dict, ancients_loc: dict) -> d
     content = filepath.read_text(encoding="utf-8")
     class_name = filepath.stem
 
-    if class_name in ("RandomCharacter", "Deprived"):
+    if class_name in ("RandomCharacter", "Deprived", "DeprecatedCharacter"):
         return None
 
     char_id = class_name_to_id(class_name)
