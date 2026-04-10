@@ -87,6 +87,12 @@ export interface Character {
   image_url: string | null;
 }
 
+export interface MerchantPrice {
+  base: number;
+  min: number;
+  max: number;
+}
+
 export interface Relic {
   id: string;
   name: string;
@@ -96,6 +102,7 @@ export interface Relic {
   rarity: string;
   rarity_key: string | null;
   pool: string;
+  merchant_price: MerchantPrice | null;
   image_url: string | null;
   image_variants: Record<string, string> | null;
   compendium_order: number;

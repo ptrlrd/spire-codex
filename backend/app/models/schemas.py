@@ -89,6 +89,12 @@ class Character(BaseModel):
     image_url: str | None = None
 
 
+class MerchantPrice(BaseModel):
+    base: int
+    min: int
+    max: int
+
+
 class Relic(BaseModel):
     id: str
     name: str
@@ -98,6 +104,7 @@ class Relic(BaseModel):
     rarity: str
     rarity_key: str | None = None
     pool: str
+    merchant_price: MerchantPrice | None = None
     image_url: str | None = None
     image_variants: dict[str, str] | None = None
     compendium_order: int = 0

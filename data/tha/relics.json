@@ -7,6 +7,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางไม่ธรรมดา",
     "pool": "shared",
+    "merchant_price": {
+      "base": 250,
+      "min": 212,
+      "max": 288
+    },
     "image_url": "/static/images/relics/akabeko.png",
     "image_variants": null,
     "rarity_key": "Uncommon",
@@ -20,6 +25,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/alchemical_coffer.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -33,6 +39,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางธรรมดา",
     "pool": "shared",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
     "image_url": "/static/images/relics/amethyst_aubergine.png",
     "image_variants": null,
     "rarity_key": "Common",
@@ -46,6 +57,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางธรรมดา",
     "pool": "shared",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
     "image_url": "/static/images/relics/anchor.png",
     "image_variants": null,
     "rarity_key": "Common",
@@ -59,6 +75,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/arcane_scroll.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -72,6 +89,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/archaic_tooth.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -85,6 +103,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/astrolabe.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -98,6 +117,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางไม่ธรรมดา",
     "pool": "shared",
+    "merchant_price": {
+      "base": 250,
+      "min": 212,
+      "max": 288
+    },
     "image_url": "/static/images/relics/bag_of_marbles.png",
     "image_variants": null,
     "rarity_key": "Uncommon",
@@ -111,6 +135,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางธรรมดา",
     "pool": "shared",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
     "image_url": "/static/images/relics/bag_of_preparation.png",
     "image_variants": null,
     "rarity_key": "Common",
@@ -124,6 +153,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางหายาก",
     "pool": "shared",
+    "merchant_price": {
+      "base": 300,
+      "min": 255,
+      "max": 345
+    },
     "image_url": "/static/images/relics/beating_remnant.png",
     "image_variants": null,
     "rarity_key": "Rare",
@@ -137,6 +171,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/beautiful_bracelet.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -150,6 +185,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางไม่ธรรมดา",
     "pool": "shared",
+    "merchant_price": {
+      "base": 250,
+      "min": 212,
+      "max": 288
+    },
     "image_url": "/static/images/relics/bellows.png",
     "image_variants": null,
     "rarity_key": "Uncommon",
@@ -163,6 +203,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางร้านค้า",
     "pool": "shared",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
     "image_url": "/static/images/relics/belt_buckle.png",
     "image_variants": null,
     "rarity_key": "Shop",
@@ -176,6 +221,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางหายาก",
     "pool": "necrobinder",
+    "merchant_price": {
+      "base": 300,
+      "min": 255,
+      "max": 345
+    },
     "image_url": "/static/images/relics/big_hat.png",
     "image_variants": null,
     "rarity_key": "Rare",
@@ -189,6 +239,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเหตุการณ์",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/big_mushroom.png",
     "image_variants": null,
     "rarity_key": "Event",
@@ -202,6 +253,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/biiig_hug.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -215,6 +267,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเหตุการณ์",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/bing_bong.png",
     "image_variants": null,
     "rarity_key": "Event",
@@ -228,6 +281,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเริ่มต้น",
     "pool": "ironclad",
+    "merchant_price": null,
     "image_url": "/static/images/relics/black_blood.png",
     "image_variants": null,
     "rarity_key": "Starter",
@@ -241,6 +295,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/black_star.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -254,6 +309,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/blessed_antler.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -267,6 +323,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/blood_soaked_rose.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -280,6 +337,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางธรรมดา",
     "pool": "shared",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
     "image_url": "/static/images/relics/blood_vial.png",
     "image_variants": null,
     "rarity_key": "Common",
@@ -293,6 +355,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางธรรมดา",
     "pool": "necrobinder",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
     "image_url": "/static/images/relics/bone_flute.png",
     "image_variants": null,
     "rarity_key": "Common",
@@ -306,6 +373,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเหตุการณ์",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/bone_tea.png",
     "image_variants": null,
     "rarity_key": "Event",
@@ -319,6 +387,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางธรรมดา",
     "pool": "shared",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
     "image_url": "/static/images/relics/book_of_five_rings.png",
     "image_variants": null,
     "rarity_key": "Common",
@@ -332,6 +405,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางไม่ธรรมดา",
     "pool": "necrobinder",
+    "merchant_price": {
+      "base": 250,
+      "min": 212,
+      "max": 288
+    },
     "image_url": "/static/images/relics/book_repair_knife.png",
     "image_variants": null,
     "rarity_key": "Uncommon",
@@ -345,6 +423,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/booming_conch.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -358,6 +437,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเริ่มต้น",
     "pool": "necrobinder",
+    "merchant_price": null,
     "image_url": "/static/images/relics/bound_phylactery.png",
     "image_variants": null,
     "rarity_key": "Starter",
@@ -371,6 +451,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางไม่ธรรมดา",
     "pool": "shared",
+    "merchant_price": {
+      "base": 250,
+      "min": 212,
+      "max": 288
+    },
     "image_url": "/static/images/relics/bowler_hat.png",
     "image_variants": null,
     "rarity_key": "Uncommon",
@@ -384,6 +469,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/brilliant_scarf.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -397,6 +483,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางร้านค้า",
     "pool": "ironclad",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
     "image_url": "/static/images/relics/brimstone.png",
     "image_variants": null,
     "rarity_key": "Shop",
@@ -410,6 +501,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางธรรมดา",
     "pool": "shared",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
     "image_url": "/static/images/relics/bronze_scales.png",
     "image_variants": null,
     "rarity_key": "Common",
@@ -423,6 +519,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเริ่มต้น",
     "pool": "ironclad",
+    "merchant_price": null,
     "image_url": "/static/images/relics/burning_blood.png",
     "image_variants": null,
     "rarity_key": "Starter",
@@ -436,6 +533,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางร้านค้า",
     "pool": "shared",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
     "image_url": "/static/images/relics/burning_sticks.png",
     "image_variants": null,
     "rarity_key": "Shop",
@@ -449,6 +551,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเหตุการณ์",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/byrdpip.png",
     "image_variants": null,
     "rarity_key": "Event",
@@ -462,6 +565,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/calling_bell.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -475,6 +579,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางไม่ธรรมดา",
     "pool": "shared",
+    "merchant_price": {
+      "base": 250,
+      "min": 212,
+      "max": 288
+    },
     "image_url": "/static/images/relics/candelabra.png",
     "image_variants": null,
     "rarity_key": "Uncommon",
@@ -488,6 +597,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางหายาก",
     "pool": "shared",
+    "merchant_price": {
+      "base": 300,
+      "min": 255,
+      "max": 345
+    },
     "image_url": "/static/images/relics/captains_wheel.png",
     "image_variants": null,
     "rarity_key": "Rare",
@@ -501,6 +615,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางธรรมดา",
     "pool": "shared",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
     "image_url": "/static/images/relics/centennial_puzzle.png",
     "image_variants": null,
     "rarity_key": "Common",
@@ -514,6 +633,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางหายาก",
     "pool": "shared",
+    "merchant_price": {
+      "base": 300,
+      "min": 255,
+      "max": 345
+    },
     "image_url": "/static/images/relics/chandelier.png",
     "image_variants": null,
     "rarity_key": "Rare",
@@ -527,6 +651,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางหายาก",
     "pool": "ironclad",
+    "merchant_price": {
+      "base": 300,
+      "min": 255,
+      "max": 345
+    },
     "image_url": "/static/images/relics/charons_ashes.png",
     "image_variants": null,
     "rarity_key": "Rare",
@@ -540,6 +669,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/choices_paradox.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -553,6 +683,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/claws.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -566,6 +697,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางหายาก",
     "pool": "shared",
+    "merchant_price": {
+      "base": 300,
+      "min": 255,
+      "max": 345
+    },
     "image_url": "/static/images/relics/cloak_clasp.png",
     "image_variants": null,
     "rarity_key": "Rare",
@@ -579,6 +715,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเริ่มต้น",
     "pool": "defect",
+    "merchant_price": null,
     "image_url": "/static/images/relics/cracked_core.png",
     "image_variants": null,
     "rarity_key": "Starter",
@@ -592,6 +729,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/cursed_pearl.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -605,6 +743,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเหตุการณ์",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/darkstone_periapt.png",
     "image_variants": null,
     "rarity_key": "Event",
@@ -618,6 +757,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเหตุการณ์",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/daughter_of_the_wind.png",
     "image_variants": null,
     "rarity_key": "Event",
@@ -631,6 +771,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/delicate_frond.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -644,6 +785,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางหายาก",
     "pool": "ironclad",
+    "merchant_price": {
+      "base": 300,
+      "min": 255,
+      "max": 345
+    },
     "image_url": "/static/images/relics/demon_tongue.png",
     "image_variants": null,
     "rarity_key": "Rare",
@@ -657,6 +803,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/diamond_diadem.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -670,6 +817,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางร้านค้า",
     "pool": "shared",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
     "image_url": "/static/images/relics/dingy_rug.png",
     "image_variants": null,
     "rarity_key": "Shop",
@@ -683,6 +835,7 @@
     "flavor": "",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/distinguished_cape.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -696,6 +849,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเริ่มต้น",
     "pool": "regent",
+    "merchant_price": null,
     "image_url": "/static/images/relics/divine_destiny.png",
     "image_variants": null,
     "rarity_key": "Starter",
@@ -709,6 +863,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเริ่มต้น",
     "pool": "regent",
+    "merchant_price": null,
     "image_url": "/static/images/relics/divine_right.png",
     "image_variants": null,
     "rarity_key": "Starter",
@@ -722,6 +877,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางร้านค้า",
     "pool": "shared",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
     "image_url": "/static/images/relics/dollys_mirror.png",
     "image_variants": null,
     "rarity_key": "Shop",
@@ -735,6 +895,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/driftwood.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -748,6 +909,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/ectoplasm.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -761,6 +923,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/electric_shrymp.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -774,6 +937,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเหตุการณ์",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/ember_tea.png",
     "image_variants": null,
     "rarity_key": "Event",
@@ -787,6 +951,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/empty_cage.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -800,6 +965,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางไม่ธรรมดา",
     "pool": "shared",
+    "merchant_price": {
+      "base": 250,
+      "min": 212,
+      "max": 288
+    },
     "image_url": "/static/images/relics/eternal_feather.png",
     "image_variants": null,
     "rarity_key": "Uncommon",
@@ -813,6 +983,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเหตุการณ์",
     "pool": "shared",
+    "merchant_price": {
+      "base": 50,
+      "min": 42,
+      "max": 57
+    },
     "image_url": "/static/images/relics/fake_anchor.png",
     "image_variants": null,
     "rarity_key": "Event",
@@ -826,6 +1001,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเหตุการณ์",
     "pool": "shared",
+    "merchant_price": {
+      "base": 50,
+      "min": 42,
+      "max": 57
+    },
     "image_url": "/static/images/relics/fake_blood_vial.png",
     "image_variants": null,
     "rarity_key": "Event",
@@ -839,6 +1019,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเหตุการณ์",
     "pool": "shared",
+    "merchant_price": {
+      "base": 50,
+      "min": 42,
+      "max": 57
+    },
     "image_url": "/static/images/relics/fake_happy_flower.png",
     "image_variants": null,
     "rarity_key": "Event",
@@ -852,6 +1037,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเหตุการณ์",
     "pool": "shared",
+    "merchant_price": {
+      "base": 50,
+      "min": 42,
+      "max": 57
+    },
     "image_url": "/static/images/relics/fake_lees_waffle.png",
     "image_variants": null,
     "rarity_key": "Event",
@@ -865,6 +1055,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเหตุการณ์",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/fake_merchants_rug.png",
     "image_variants": null,
     "rarity_key": "Event",
@@ -878,6 +1069,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเหตุการณ์",
     "pool": "shared",
+    "merchant_price": {
+      "base": 50,
+      "min": 42,
+      "max": 57
+    },
     "image_url": "/static/images/relics/fake_orichalcum.png",
     "image_variants": null,
     "rarity_key": "Event",
@@ -891,6 +1087,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเหตุการณ์",
     "pool": "shared",
+    "merchant_price": {
+      "base": 50,
+      "min": 42,
+      "max": 57
+    },
     "image_url": "/static/images/relics/fake_snecko_eye.png",
     "image_variants": null,
     "rarity_key": "Event",
@@ -904,6 +1105,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเหตุการณ์",
     "pool": "shared",
+    "merchant_price": {
+      "base": 50,
+      "min": 42,
+      "max": 57
+    },
     "image_url": "/static/images/relics/fake_strike_dummy.png",
     "image_variants": null,
     "rarity_key": "Event",
@@ -917,6 +1123,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเหตุการณ์",
     "pool": "shared",
+    "merchant_price": {
+      "base": 50,
+      "min": 42,
+      "max": 57
+    },
     "image_url": "/static/images/relics/fake_venerable_tea_set.png",
     "image_variants": null,
     "rarity_key": "Event",
@@ -930,6 +1141,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางธรรมดา",
     "pool": "regent",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
     "image_url": "/static/images/relics/fencing_manual.png",
     "image_variants": null,
     "rarity_key": "Common",
@@ -943,6 +1159,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางธรรมดา",
     "pool": "shared",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
     "image_url": "/static/images/relics/festive_popper.png",
     "image_variants": null,
     "rarity_key": "Common",
@@ -956,6 +1177,7 @@
     "flavor": "",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/fiddle.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -969,6 +1191,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเหตุการณ์",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/forgotten_soul.png",
     "image_variants": null,
     "rarity_key": "Event",
@@ -982,6 +1205,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเหตุการณ์",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/fragrant_mushroom.png",
     "image_variants": null,
     "rarity_key": "Event",
@@ -995,6 +1219,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเหตุการณ์",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/fresnel_lens.png",
     "image_variants": null,
     "rarity_key": "Event",
@@ -1008,6 +1233,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางไม่ธรรมดา",
     "pool": "necrobinder",
+    "merchant_price": {
+      "base": 250,
+      "min": 212,
+      "max": 288
+    },
     "image_url": "/static/images/relics/funerary_mask.png",
     "image_variants": null,
     "rarity_key": "Uncommon",
@@ -1021,6 +1251,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/fur_coat.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -1034,6 +1265,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางไม่ธรรมดา",
     "pool": "regent",
+    "merchant_price": {
+      "base": 250,
+      "min": 212,
+      "max": 288
+    },
     "image_url": "/static/images/relics/galactic_dust.png",
     "image_variants": null,
     "rarity_key": "Uncommon",
@@ -1047,6 +1283,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางหายาก",
     "pool": "shared",
+    "merchant_price": {
+      "base": 300,
+      "min": 255,
+      "max": 345
+    },
     "image_url": "/static/images/relics/gambling_chip.png",
     "image_variants": null,
     "rarity_key": "Rare",
@@ -1060,6 +1301,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางหายาก",
     "pool": "shared",
+    "merchant_price": {
+      "base": 300,
+      "min": 255,
+      "max": 345
+    },
     "image_url": "/static/images/relics/game_piece.png",
     "image_variants": null,
     "rarity_key": "Rare",
@@ -1073,6 +1319,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางร้านค้า",
     "pool": "shared",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
     "image_url": "/static/images/relics/ghost_seed.png",
     "image_variants": null,
     "rarity_key": "Shop",
@@ -1086,6 +1337,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางหายาก",
     "pool": "shared",
+    "merchant_price": {
+      "base": 300,
+      "min": 255,
+      "max": 345
+    },
     "image_url": "/static/images/relics/girya.png",
     "image_variants": null,
     "rarity_key": "Rare",
@@ -1099,6 +1355,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/glass_eye.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -1112,6 +1369,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางร้านค้า",
     "pool": "shared",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
     "image_url": "/static/images/relics/gnarled_hammer.png",
     "image_variants": null,
     "rarity_key": "Shop",
@@ -1125,6 +1387,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางไม่ธรรมดา",
     "pool": "defect",
+    "merchant_price": {
+      "base": 250,
+      "min": 212,
+      "max": 288
+    },
     "image_url": "/static/images/relics/gold_plated_cables.png",
     "image_variants": null,
     "rarity_key": "Uncommon",
@@ -1138,6 +1405,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางธรรมดา",
     "pool": "shared",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
     "image_url": "/static/images/relics/gorget.png",
     "image_variants": null,
     "rarity_key": "Common",
@@ -1151,6 +1423,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางไม่ธรรมดา",
     "pool": "shared",
+    "merchant_price": {
+      "base": 250,
+      "min": 212,
+      "max": 288
+    },
     "image_url": "/static/images/relics/gremlin_horn.png",
     "image_variants": null,
     "rarity_key": "Uncommon",
@@ -1164,6 +1441,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเหตุการณ์",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/hand_drill.png",
     "image_variants": null,
     "rarity_key": "Event",
@@ -1177,6 +1455,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางธรรมดา",
     "pool": "shared",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
     "image_url": "/static/images/relics/happy_flower.png",
     "image_variants": null,
     "rarity_key": "Common",
@@ -1190,6 +1473,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางหายาก",
     "pool": "silent",
+    "merchant_price": {
+      "base": 300,
+      "min": 255,
+      "max": 345
+    },
     "image_url": "/static/images/relics/helical_dart.png",
     "image_variants": null,
     "rarity_key": "Rare",
@@ -1203,6 +1491,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเหตุการณ์",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/history_course.png",
     "image_variants": null,
     "rarity_key": "Event",
@@ -1216,6 +1505,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางไม่ธรรมดา",
     "pool": "shared",
+    "merchant_price": {
+      "base": 250,
+      "min": 212,
+      "max": 288
+    },
     "image_url": "/static/images/relics/horn_cleat.png",
     "image_variants": null,
     "rarity_key": "Uncommon",
@@ -1229,6 +1523,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเริ่มต้น",
     "pool": "defect",
+    "merchant_price": null,
     "image_url": "/static/images/relics/infused_core.png",
     "image_variants": null,
     "rarity_key": "Starter",
@@ -1242,6 +1537,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางหายาก",
     "pool": "shared",
+    "merchant_price": {
+      "base": 300,
+      "min": 255,
+      "max": 345
+    },
     "image_url": "/static/images/relics/intimidating_helmet.png",
     "image_variants": null,
     "rarity_key": "Rare",
@@ -1255,6 +1555,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/iron_club.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -1268,6 +1569,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางหายาก",
     "pool": "necrobinder",
+    "merchant_price": {
+      "base": 300,
+      "min": 255,
+      "max": 345
+    },
     "image_url": "/static/images/relics/ivory_tile.png",
     "image_variants": null,
     "rarity_key": "Rare",
@@ -1281,6 +1587,7 @@
     "flavor": "",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/jeweled_mask.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -1294,6 +1601,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/jewelry_box.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -1307,6 +1615,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางไม่ธรรมดา",
     "pool": "shared",
+    "merchant_price": {
+      "base": 250,
+      "min": 212,
+      "max": 288
+    },
     "image_url": "/static/images/relics/joss_paper.png",
     "image_variants": null,
     "rarity_key": "Uncommon",
@@ -1320,6 +1633,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางธรรมดา",
     "pool": "shared",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
     "image_url": "/static/images/relics/juzu_bracelet.png",
     "image_variants": null,
     "rarity_key": "Common",
@@ -1333,6 +1651,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางร้านค้า",
     "pool": "shared",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
     "image_url": "/static/images/relics/kifuda.png",
     "image_variants": null,
     "rarity_key": "Shop",
@@ -1346,6 +1669,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางหายาก",
     "pool": "shared",
+    "merchant_price": {
+      "base": 300,
+      "min": 255,
+      "max": 345
+    },
     "image_url": "/static/images/relics/kunai.png",
     "image_variants": null,
     "rarity_key": "Rare",
@@ -1359,6 +1687,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางไม่ธรรมดา",
     "pool": "shared",
+    "merchant_price": {
+      "base": 250,
+      "min": 212,
+      "max": 288
+    },
     "image_url": "/static/images/relics/kusarigama.png",
     "image_variants": null,
     "rarity_key": "Uncommon",
@@ -1372,6 +1705,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/large_capsule.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -1385,6 +1719,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางหายาก",
     "pool": "shared",
+    "merchant_price": {
+      "base": 300,
+      "min": 255,
+      "max": 345
+    },
     "image_url": "/static/images/relics/lasting_candy.png",
     "image_variants": null,
     "rarity_key": "Rare",
@@ -1398,6 +1737,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางร้านค้า",
     "pool": "shared",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
     "image_url": "/static/images/relics/lava_lamp.png",
     "image_variants": null,
     "rarity_key": "Shop",
@@ -1411,6 +1755,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/leafy_poultice.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -1424,6 +1769,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางร้านค้า",
     "pool": "shared",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
     "image_url": "/static/images/relics/lees_waffle.png",
     "image_variants": null,
     "rarity_key": "Shop",
@@ -1437,6 +1787,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางไม่ธรรมดา",
     "pool": "shared",
+    "merchant_price": {
+      "base": 250,
+      "min": 212,
+      "max": 288
+    },
     "image_url": "/static/images/relics/letter_opener.png",
     "image_variants": null,
     "rarity_key": "Uncommon",
@@ -1450,6 +1805,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางหายาก",
     "pool": "shared",
+    "merchant_price": {
+      "base": 300,
+      "min": 255,
+      "max": 345
+    },
     "image_url": "/static/images/relics/lizard_tail.png",
     "image_variants": null,
     "rarity_key": "Rare",
@@ -1463,6 +1823,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/looming_fruit.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -1476,6 +1837,7 @@
     "flavor": "",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/lords_parasol.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -1489,6 +1851,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/lost_coffer.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -1502,6 +1865,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเหตุการณ์",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/lost_wisp.png",
     "image_variants": null,
     "rarity_key": "Event",
@@ -1515,6 +1879,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางไม่ธรรมดา",
     "pool": "shared",
+    "merchant_price": {
+      "base": 250,
+      "min": 212,
+      "max": 288
+    },
     "image_url": "/static/images/relics/lucky_fysh.png",
     "image_variants": null,
     "rarity_key": "Uncommon",
@@ -1528,6 +1897,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางหายาก",
     "pool": "regent",
+    "merchant_price": {
+      "base": 300,
+      "min": 255,
+      "max": 345
+    },
     "image_url": "/static/images/relics/lunar_pastry.png",
     "image_variants": null,
     "rarity_key": "Rare",
@@ -1541,6 +1915,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/massive_scroll.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -1554,6 +1929,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเหตุการณ์",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/maw_bank.png",
     "image_variants": null,
     "rarity_key": "Event",
@@ -1567,6 +1943,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางธรรมดา",
     "pool": "shared",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
     "image_url": "/static/images/relics/meal_ticket.png",
     "image_variants": null,
     "rarity_key": "Common",
@@ -1580,6 +1961,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/meat_cleaver.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -1593,6 +1975,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางหายาก",
     "pool": "shared",
+    "merchant_price": {
+      "base": 300,
+      "min": 255,
+      "max": 345
+    },
     "image_url": "/static/images/relics/meat_on_the_bone.png",
     "image_variants": null,
     "rarity_key": "Rare",
@@ -1606,6 +1993,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางไม่ธรรมดา",
     "pool": "shared",
+    "merchant_price": {
+      "base": 250,
+      "min": 212,
+      "max": 288
+    },
     "image_url": "/static/images/relics/mercury_hourglass.png",
     "image_variants": null,
     "rarity_key": "Uncommon",
@@ -1619,6 +2011,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางหายาก",
     "pool": "defect",
+    "merchant_price": {
+      "base": 300,
+      "min": 255,
+      "max": 345
+    },
     "image_url": "/static/images/relics/metronome.png",
     "image_variants": null,
     "rarity_key": "Rare",
@@ -1632,6 +2029,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางหายาก",
     "pool": "regent",
+    "merchant_price": {
+      "base": 300,
+      "min": 255,
+      "max": 345
+    },
     "image_url": "/static/images/relics/mini_regent.png",
     "image_variants": null,
     "rarity_key": "Rare",
@@ -1645,6 +2047,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางไม่ธรรมดา",
     "pool": "shared",
+    "merchant_price": {
+      "base": 250,
+      "min": 212,
+      "max": 288
+    },
     "image_url": "/static/images/relics/miniature_cannon.png",
     "image_variants": null,
     "rarity_key": "Uncommon",
@@ -1658,6 +2065,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางร้านค้า",
     "pool": "shared",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
     "image_url": "/static/images/relics/miniature_tent.png",
     "image_variants": null,
     "rarity_key": "Shop",
@@ -1671,6 +2083,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางหายาก",
     "pool": "shared",
+    "merchant_price": {
+      "base": 300,
+      "min": 255,
+      "max": 345
+    },
     "image_url": "/static/images/relics/molten_egg.png",
     "image_variants": null,
     "rarity_key": "Rare",
@@ -1684,6 +2101,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเหตุการณ์",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/mr_struggles.png",
     "image_variants": null,
     "rarity_key": "Event",
@@ -1697,6 +2115,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางหายาก",
     "pool": "shared",
+    "merchant_price": {
+      "base": 300,
+      "min": 255,
+      "max": 345
+    },
     "image_url": "/static/images/relics/mummified_hand.png",
     "image_variants": null,
     "rarity_key": "Rare",
@@ -1710,6 +2133,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางร้านค้า",
     "pool": "shared",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
     "image_url": "/static/images/relics/mystic_lighter.png",
     "image_variants": null,
     "rarity_key": "Shop",
@@ -1723,6 +2151,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/neows_torment.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -1736,6 +2165,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/new_leaf.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -1749,6 +2179,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางไม่ธรรมดา",
     "pool": "shared",
+    "merchant_price": {
+      "base": 250,
+      "min": 212,
+      "max": 288
+    },
     "image_url": "/static/images/relics/nunchaku.png",
     "image_variants": null,
     "rarity_key": "Uncommon",
@@ -1762,6 +2197,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/nutritious_oyster.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -1775,6 +2211,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/nutritious_soup.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -1788,6 +2225,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางธรรมดา",
     "pool": "shared",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
     "image_url": "/static/images/relics/oddly_smooth_stone.png",
     "image_variants": null,
     "rarity_key": "Common",
@@ -1801,6 +2243,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางหายาก",
     "pool": "regent",
+    "merchant_price": {
+      "base": 300,
+      "min": 255,
+      "max": 345
+    },
     "image_url": "/static/images/relics/orange_dough.png",
     "image_variants": null,
     "rarity_key": "Rare",
@@ -1814,6 +2261,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางไม่ธรรมดา",
     "pool": "shared",
+    "merchant_price": {
+      "base": 250,
+      "min": 212,
+      "max": 288
+    },
     "image_url": "/static/images/relics/orichalcum.png",
     "image_variants": null,
     "rarity_key": "Uncommon",
@@ -1827,6 +2279,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางไม่ธรรมดา",
     "pool": "shared",
+    "merchant_price": {
+      "base": 250,
+      "min": 212,
+      "max": 288
+    },
     "image_url": "/static/images/relics/ornamental_fan.png",
     "image_variants": null,
     "rarity_key": "Uncommon",
@@ -1840,6 +2297,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางร้านค้า",
     "pool": "shared",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
     "image_url": "/static/images/relics/orrery.png",
     "image_variants": null,
     "rarity_key": "Shop",
@@ -1853,6 +2315,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/paels_blood.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -1866,6 +2329,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/paels_claw.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -1879,6 +2343,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/paels_eye.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -1892,6 +2357,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/paels_flesh.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -1905,6 +2371,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/paels_growth.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -1918,6 +2385,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/paels_horn.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -1931,6 +2399,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/paels_legion.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -1944,6 +2413,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/paels_tears.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -1957,6 +2427,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/paels_tooth.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -1970,6 +2441,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/paels_wing.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -1983,6 +2455,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางไม่ธรรมดา",
     "pool": "shared",
+    "merchant_price": {
+      "base": 250,
+      "min": 212,
+      "max": 288
+    },
     "image_url": "/static/images/relics/pantograph.png",
     "image_variants": null,
     "rarity_key": "Uncommon",
@@ -1996,6 +2473,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางหายาก",
     "pool": "silent",
+    "merchant_price": {
+      "base": 300,
+      "min": 255,
+      "max": 345
+    },
     "image_url": "/static/images/relics/paper_krane.png",
     "image_variants": null,
     "rarity_key": "Rare",
@@ -2009,6 +2491,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางไม่ธรรมดา",
     "pool": "ironclad",
+    "merchant_price": {
+      "base": 250,
+      "min": 212,
+      "max": 288
+    },
     "image_url": "/static/images/relics/paper_phrog.png",
     "image_variants": null,
     "rarity_key": "Uncommon",
@@ -2022,6 +2509,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางไม่ธรรมดา",
     "pool": "shared",
+    "merchant_price": {
+      "base": 250,
+      "min": 212,
+      "max": 288
+    },
     "image_url": "/static/images/relics/parrying_shield.png",
     "image_variants": null,
     "rarity_key": "Uncommon",
@@ -2035,6 +2527,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางไม่ธรรมดา",
     "pool": "shared",
+    "merchant_price": {
+      "base": 250,
+      "min": 212,
+      "max": 288
+    },
     "image_url": "/static/images/relics/pear.png",
     "image_variants": null,
     "rarity_key": "Uncommon",
@@ -2048,6 +2545,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางไม่ธรรมดา",
     "pool": "shared",
+    "merchant_price": {
+      "base": 250,
+      "min": 212,
+      "max": 288
+    },
     "image_url": "/static/images/relics/pen_nib.png",
     "image_variants": null,
     "rarity_key": "Uncommon",
@@ -2061,6 +2563,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางธรรมดา",
     "pool": "shared",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
     "image_url": "/static/images/relics/pendulum.png",
     "image_variants": null,
     "rarity_key": "Common",
@@ -2074,6 +2581,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางธรรมดา",
     "pool": "shared",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
     "image_url": "/static/images/relics/permafrost.png",
     "image_variants": null,
     "rarity_key": "Common",
@@ -2087,6 +2599,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางไม่ธรรมดา",
     "pool": "shared",
+    "merchant_price": {
+      "base": 250,
+      "min": 212,
+      "max": 288
+    },
     "image_url": "/static/images/relics/petrified_toad.png",
     "image_variants": null,
     "rarity_key": "Uncommon",
@@ -2100,6 +2617,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเริ่มต้น",
     "pool": "necrobinder",
+    "merchant_price": null,
     "image_url": "/static/images/relics/phylactery_unbound.png",
     "image_variants": null,
     "rarity_key": "Starter",
@@ -2113,6 +2631,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางไม่ธรรมดา",
     "pool": "shared",
+    "merchant_price": {
+      "base": 250,
+      "min": 212,
+      "max": 288
+    },
     "image_url": "/static/images/relics/planisphere.png",
     "image_variants": null,
     "rarity_key": "Uncommon",
@@ -2126,6 +2649,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางหายาก",
     "pool": "shared",
+    "merchant_price": {
+      "base": 300,
+      "min": 255,
+      "max": 345
+    },
     "image_url": "/static/images/relics/pocketwatch.png",
     "image_variants": null,
     "rarity_key": "Rare",
@@ -2139,6 +2667,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเหตุการณ์",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/pollinous_core.png",
     "image_variants": null,
     "rarity_key": "Event",
@@ -2152,6 +2681,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/pomander.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -2165,6 +2695,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางธรรมดา",
     "pool": "shared",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
     "image_url": "/static/images/relics/potion_belt.png",
     "image_variants": null,
     "rarity_key": "Common",
@@ -2178,6 +2713,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางหายาก",
     "pool": "defect",
+    "merchant_price": {
+      "base": 300,
+      "min": 255,
+      "max": 345
+    },
     "image_url": "/static/images/relics/power_cell.png",
     "image_variants": null,
     "rarity_key": "Rare",
@@ -2191,6 +2731,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางหายาก",
     "pool": "shared",
+    "merchant_price": {
+      "base": 300,
+      "min": 255,
+      "max": 345
+    },
     "image_url": "/static/images/relics/prayer_wheel.png",
     "image_variants": null,
     "rarity_key": "Rare",
@@ -2204,6 +2749,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/precarious_shears.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -2217,6 +2763,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/precise_scissors.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -2230,6 +2777,7 @@
     "flavor": "",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/preserved_fog.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -2243,6 +2791,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/prismatic_gem.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -2256,6 +2805,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางร้านค้า",
     "pool": "shared",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
     "image_url": "/static/images/relics/punch_dagger.png",
     "image_variants": null,
     "rarity_key": "Shop",
@@ -2269,6 +2823,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/radiant_pearl.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -2282,6 +2837,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางหายาก",
     "pool": "shared",
+    "merchant_price": {
+      "base": 300,
+      "min": 255,
+      "max": 345
+    },
     "image_url": "/static/images/relics/rainbow_ring.png",
     "image_variants": null,
     "rarity_key": "Rare",
@@ -2295,6 +2855,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางหายาก",
     "pool": "shared",
+    "merchant_price": {
+      "base": 300,
+      "min": 255,
+      "max": 345
+    },
     "image_url": "/static/images/relics/razor_tooth.png",
     "image_variants": null,
     "rarity_key": "Rare",
@@ -2308,6 +2873,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางไม่ธรรมดา",
     "pool": "shared",
+    "merchant_price": {
+      "base": 250,
+      "min": 212,
+      "max": 288
+    },
     "image_url": "/static/images/relics/red_mask.png",
     "image_variants": null,
     "rarity_key": "Uncommon",
@@ -2321,6 +2891,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางธรรมดา",
     "pool": "ironclad",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
     "image_url": "/static/images/relics/red_skull.png",
     "image_variants": null,
     "rarity_key": "Common",
@@ -2334,6 +2909,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางธรรมดา",
     "pool": "shared",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
     "image_url": "/static/images/relics/regal_pillow.png",
     "image_variants": null,
     "rarity_key": "Common",
@@ -2347,6 +2927,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางไม่ธรรมดา",
     "pool": "regent",
+    "merchant_price": {
+      "base": 250,
+      "min": 212,
+      "max": 288
+    },
     "image_url": "/static/images/relics/regalite.png",
     "image_variants": null,
     "rarity_key": "Uncommon",
@@ -2360,6 +2945,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางไม่ธรรมดา",
     "pool": "shared",
+    "merchant_price": {
+      "base": 250,
+      "min": 212,
+      "max": 288
+    },
     "image_url": "/static/images/relics/reptile_trinket.png",
     "image_variants": null,
     "rarity_key": "Uncommon",
@@ -2373,6 +2963,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเริ่มต้น",
     "pool": "silent",
+    "merchant_price": null,
     "image_url": "/static/images/relics/ring_of_the_drake.png",
     "image_variants": null,
     "rarity_key": "Starter",
@@ -2386,6 +2977,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเริ่มต้น",
     "pool": "silent",
+    "merchant_price": null,
     "image_url": "/static/images/relics/ring_of_the_snake.png",
     "image_variants": null,
     "rarity_key": "Starter",
@@ -2399,6 +2991,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางร้านค้า",
     "pool": "shared",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
     "image_url": "/static/images/relics/ringing_triangle.png",
     "image_variants": null,
     "rarity_key": "Shop",
@@ -2412,6 +3009,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางไม่ธรรมดา",
     "pool": "shared",
+    "merchant_price": {
+      "base": 250,
+      "min": 212,
+      "max": 288
+    },
     "image_url": "/static/images/relics/ripple_basin.png",
     "image_variants": null,
     "rarity_key": "Uncommon",
@@ -2425,6 +3027,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเหตุการณ์",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/royal_poison.png",
     "image_variants": null,
     "rarity_key": "Event",
@@ -2438,6 +3041,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางร้านค้า",
     "pool": "shared",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
     "image_url": "/static/images/relics/royal_stamp.png",
     "image_variants": null,
     "rarity_key": "Shop",
@@ -2451,6 +3059,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางหายาก",
     "pool": "ironclad",
+    "merchant_price": {
+      "base": 300,
+      "min": 255,
+      "max": 345
+    },
     "image_url": "/static/images/relics/ruined_helmet.png",
     "image_variants": null,
     "rarity_key": "Rare",
@@ -2464,6 +3077,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางร้านค้า",
     "pool": "defect",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
     "image_url": "/static/images/relics/runic_capacitor.png",
     "image_variants": null,
     "rarity_key": "Shop",
@@ -2477,6 +3095,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/runic_pyramid.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -2490,6 +3109,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/sai.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -2503,6 +3123,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางร้านค้า",
     "pool": "shared",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
     "image_url": "/static/images/relics/screaming_flagon.png",
     "image_variants": null,
     "rarity_key": "Shop",
@@ -2516,6 +3141,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/scroll_boxes.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -2529,6 +3155,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/sea_glass.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -2542,6 +3169,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/seal_of_gold.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -2555,6 +3183,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางไม่ธรรมดา",
     "pool": "ironclad",
+    "merchant_price": {
+      "base": 250,
+      "min": 212,
+      "max": 288
+    },
     "image_url": "/static/images/relics/self_forming_clay.png",
     "image_variants": null,
     "rarity_key": "Uncommon",
@@ -2568,6 +3201,7 @@
     "flavor": "",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/sere_talon.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -2581,6 +3215,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางหายาก",
     "pool": "shared",
+    "merchant_price": {
+      "base": 300,
+      "min": 255,
+      "max": 345
+    },
     "image_url": "/static/images/relics/shuriken.png",
     "image_variants": null,
     "rarity_key": "Rare",
@@ -2594,6 +3233,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/signet_ring.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -2607,6 +3247,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/silver_crucible.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -2620,6 +3261,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางร้านค้า",
     "pool": "shared",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
     "image_url": "/static/images/relics/sling_of_courage.png",
     "image_variants": null,
     "rarity_key": "Shop",
@@ -2633,6 +3279,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/small_capsule.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -2646,6 +3293,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/snecko_eye.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -2659,6 +3307,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางธรรมดา",
     "pool": "silent",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
     "image_url": "/static/images/relics/snecko_skull.png",
     "image_variants": null,
     "rarity_key": "Common",
@@ -2672,6 +3325,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/sozu.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -2685,6 +3339,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางไม่ธรรมดา",
     "pool": "shared",
+    "merchant_price": {
+      "base": 250,
+      "min": 212,
+      "max": 288
+    },
     "image_url": "/static/images/relics/sparkling_rouge.png",
     "image_variants": null,
     "rarity_key": "Uncommon",
@@ -2698,6 +3357,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/spiked_gauntlets.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -2711,6 +3371,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางหายาก",
     "pool": "shared",
+    "merchant_price": {
+      "base": 300,
+      "min": 255,
+      "max": 345
+    },
     "image_url": "/static/images/relics/stone_calendar.png",
     "image_variants": null,
     "rarity_key": "Rare",
@@ -2724,6 +3389,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางไม่ธรรมดา",
     "pool": "shared",
+    "merchant_price": {
+      "base": 250,
+      "min": 212,
+      "max": 288
+    },
     "image_url": "/static/images/relics/stone_cracker.png",
     "image_variants": null,
     "rarity_key": "Uncommon",
@@ -2737,6 +3407,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/stone_humidifier.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -2750,6 +3421,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/storybook.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -2763,6 +3435,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางธรรมดา",
     "pool": "shared",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
     "image_url": "/static/images/relics/strawberry.png",
     "image_variants": null,
     "rarity_key": "Common",
@@ -2776,6 +3453,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางธรรมดา",
     "pool": "shared",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
     "image_url": "/static/images/relics/strike_dummy.png",
     "image_variants": null,
     "rarity_key": "Common",
@@ -2789,6 +3471,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางหายาก",
     "pool": "shared",
+    "merchant_price": {
+      "base": 300,
+      "min": 255,
+      "max": 345
+    },
     "image_url": "/static/images/relics/sturdy_clamp.png",
     "image_variants": null,
     "rarity_key": "Rare",
@@ -2802,6 +3489,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเหตุการณ์",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/sword_of_jade.png",
     "image_variants": null,
     "rarity_key": "Event",
@@ -2815,6 +3503,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเหตุการณ์",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/sword_of_stone.png",
     "image_variants": null,
     "rarity_key": "Event",
@@ -2828,6 +3517,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางไม่ธรรมดา",
     "pool": "defect",
+    "merchant_price": {
+      "base": 250,
+      "min": 212,
+      "max": 288
+    },
     "image_url": "/static/images/relics/symbiotic_virus.png",
     "image_variants": null,
     "rarity_key": "Uncommon",
@@ -2841,6 +3535,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/tanxs_whistle.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -2854,6 +3549,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเหตุการณ์",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/tea_of_discourtesy.png",
     "image_variants": null,
     "rarity_key": "Event",
@@ -2867,6 +3563,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางร้านค้า",
     "pool": "shared",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
     "image_url": "/static/images/relics/the_abacus.png",
     "image_variants": null,
     "rarity_key": "Shop",
@@ -2880,6 +3581,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเหตุการณ์",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/the_boot.png",
     "image_variants": null,
     "rarity_key": "Event",
@@ -2893,6 +3595,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางหายาก",
     "pool": "shared",
+    "merchant_price": {
+      "base": 300,
+      "min": 255,
+      "max": 345
+    },
     "image_url": "/static/images/relics/the_courier.png",
     "image_variants": null,
     "rarity_key": "Rare",
@@ -2906,6 +3613,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/throwing_axe.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -2919,6 +3627,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางไม่ธรรมดา",
     "pool": "silent",
+    "merchant_price": {
+      "base": 250,
+      "min": 212,
+      "max": 288
+    },
     "image_url": "/static/images/relics/tingsha.png",
     "image_variants": null,
     "rarity_key": "Uncommon",
@@ -2932,6 +3645,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางธรรมดา",
     "pool": "shared",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
     "image_url": "/static/images/relics/tiny_mailbox.png",
     "image_variants": null,
     "rarity_key": "Common",
@@ -2945,6 +3663,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/toasty_mittens.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -2958,6 +3677,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/touch_of_orobas.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -2971,6 +3691,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางหายาก",
     "pool": "silent",
+    "merchant_price": {
+      "base": 300,
+      "min": 255,
+      "max": 345
+    },
     "image_url": "/static/images/relics/tough_bandages.png",
     "image_variants": null,
     "rarity_key": "Rare",
@@ -2984,6 +3709,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางหายาก",
     "pool": "shared",
+    "merchant_price": {
+      "base": 300,
+      "min": 255,
+      "max": 345
+    },
     "image_url": "/static/images/relics/toxic_egg.png",
     "image_variants": null,
     "rarity_key": "Rare",
@@ -2997,6 +3727,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/tri_boomerang.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -3010,6 +3741,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางหายาก",
     "pool": "shared",
+    "merchant_price": {
+      "base": 300,
+      "min": 255,
+      "max": 345
+    },
     "image_url": "/static/images/relics/tungsten_rod.png",
     "image_variants": null,
     "rarity_key": "Rare",
@@ -3023,6 +3759,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางไม่ธรรมดา",
     "pool": "shared",
+    "merchant_price": {
+      "base": 250,
+      "min": 212,
+      "max": 288
+    },
     "image_url": "/static/images/relics/tuning_fork.png",
     "image_variants": null,
     "rarity_key": "Uncommon",
@@ -3036,6 +3777,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางไม่ธรรมดา",
     "pool": "silent",
+    "merchant_price": {
+      "base": 250,
+      "min": 212,
+      "max": 288
+    },
     "image_url": "/static/images/relics/twisted_funnel.png",
     "image_variants": null,
     "rarity_key": "Uncommon",
@@ -3049,6 +3795,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางหายาก",
     "pool": "shared",
+    "merchant_price": {
+      "base": 300,
+      "min": 255,
+      "max": 345
+    },
     "image_url": "/static/images/relics/unceasing_top.png",
     "image_variants": null,
     "rarity_key": "Rare",
@@ -3062,6 +3813,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางร้านค้า",
     "pool": "necrobinder",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
     "image_url": "/static/images/relics/undying_sigil.png",
     "image_variants": null,
     "rarity_key": "Shop",
@@ -3075,6 +3831,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางหายาก",
     "pool": "shared",
+    "merchant_price": {
+      "base": 300,
+      "min": 255,
+      "max": 345
+    },
     "image_url": "/static/images/relics/unsettling_lamp.png",
     "image_variants": null,
     "rarity_key": "Rare",
@@ -3088,6 +3849,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางไม่ธรรมดา",
     "pool": "shared",
+    "merchant_price": {
+      "base": 250,
+      "min": 212,
+      "max": 288
+    },
     "image_url": "/static/images/relics/vambrace.png",
     "image_variants": null,
     "rarity_key": "Uncommon",
@@ -3101,6 +3867,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/velvet_choker.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -3114,6 +3881,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางธรรมดา",
     "pool": "shared",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
     "image_url": "/static/images/relics/venerable_tea_set.png",
     "image_variants": null,
     "rarity_key": "Common",
@@ -3127,6 +3899,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางหายาก",
     "pool": "shared",
+    "merchant_price": {
+      "base": 300,
+      "min": 255,
+      "max": 345
+    },
     "image_url": "/static/images/relics/vexing_puzzlebox.png",
     "image_variants": null,
     "rarity_key": "Rare",
@@ -3140,6 +3917,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางร้านค้า",
     "pool": "regent",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
     "image_url": "/static/images/relics/vitruvian_minion.png",
     "image_variants": null,
     "rarity_key": "Shop",
@@ -3153,6 +3935,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/war_hammer.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -3166,6 +3949,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางธรรมดา",
     "pool": "shared",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
     "image_url": "/static/images/relics/war_paint.png",
     "image_variants": null,
     "rarity_key": "Common",
@@ -3179,6 +3967,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางธรรมดา",
     "pool": "shared",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
     "image_url": "/static/images/relics/whetstone.png",
     "image_variants": null,
     "rarity_key": "Common",
@@ -3192,6 +3985,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/whispering_earring.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -3205,6 +3999,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางหายาก",
     "pool": "shared",
+    "merchant_price": {
+      "base": 300,
+      "min": 255,
+      "max": 345
+    },
     "image_url": "/static/images/relics/white_beast_statue.png",
     "image_variants": null,
     "rarity_key": "Rare",
@@ -3218,6 +4017,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางหายาก",
     "pool": "shared",
+    "merchant_price": {
+      "base": 300,
+      "min": 255,
+      "max": 345
+    },
     "image_url": "/static/images/relics/white_star.png",
     "image_variants": null,
     "rarity_key": "Rare",
@@ -3231,6 +4035,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางร้านค้า",
     "pool": "shared",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
     "image_url": "/static/images/relics/wing_charm.png",
     "image_variants": null,
     "rarity_key": "Shop",
@@ -3244,6 +4053,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเหตุการณ์",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/wongo_customer_appreciation_badge.png",
     "image_variants": null,
     "rarity_key": "Event",
@@ -3257,6 +4067,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเหตุการณ์",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/wongos_mystery_ticket.png",
     "image_variants": null,
     "rarity_key": "Event",
@@ -3270,6 +4081,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/toy_box.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -3283,6 +4095,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/music_box.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -3296,6 +4109,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางร้านค้า",
     "pool": "shared",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
     "image_url": "/static/images/relics/toolbox.png",
     "image_variants": null,
     "rarity_key": "Shop",
@@ -3309,6 +4127,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/pandoras_box.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -3322,6 +4141,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/glitter.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -3335,6 +4155,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางร้านค้า",
     "pool": "shared",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
     "image_url": "/static/images/relics/bread.png",
     "image_variants": null,
     "rarity_key": "Shop",
@@ -3348,6 +4173,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางร้านค้า",
     "pool": "silent",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
     "image_url": "/static/images/relics/ninja_scroll.png",
     "image_variants": null,
     "rarity_key": "Shop",
@@ -3361,6 +4191,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/yummy_cookie.png",
     "image_variants": {
       "Ironclad": "/static/images/relics/yummy_cookie_ironclad.png",
@@ -3380,6 +4211,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางหายาก",
     "pool": "defect",
+    "merchant_price": {
+      "base": 300,
+      "min": 255,
+      "max": 345
+    },
     "image_url": "/static/images/relics/emotion_chip.png",
     "image_variants": null,
     "rarity_key": "Rare",
@@ -3393,6 +4229,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเหตุการณ์",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/chosen_cheese.png",
     "image_variants": null,
     "rarity_key": "Event",
@@ -3406,6 +4243,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางธรรมดา",
     "pool": "defect",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
     "image_url": "/static/images/relics/data_disk.png",
     "image_variants": null,
     "rarity_key": "Common",
@@ -3419,6 +4261,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/lead_paperweight.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -3432,6 +4275,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางธรรมดา",
     "pool": "shared",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
     "image_url": "/static/images/relics/lantern.png",
     "image_variants": null,
     "rarity_key": "Common",
@@ -3445,6 +4293,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเหตุการณ์",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/dream_catcher.png",
     "image_variants": null,
     "rarity_key": "Event",
@@ -3458,6 +4307,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/dusty_tome.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -3471,6 +4321,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางหายาก",
     "pool": "shared",
+    "merchant_price": {
+      "base": 300,
+      "min": 255,
+      "max": 345
+    },
     "image_url": "/static/images/relics/art_of_war.png",
     "image_variants": null,
     "rarity_key": "Rare",
@@ -3484,6 +4339,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางหายาก",
     "pool": "necrobinder",
+    "merchant_price": {
+      "base": 300,
+      "min": 255,
+      "max": 345
+    },
     "image_url": "/static/images/relics/bookmark.png",
     "image_variants": null,
     "rarity_key": "Rare",
@@ -3497,6 +4357,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางร้านค้า",
     "pool": "shared",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
     "image_url": "/static/images/relics/membership_card.png",
     "image_variants": null,
     "rarity_key": "Shop",
@@ -3510,6 +4375,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/sand_castle.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -3523,6 +4389,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางหายาก",
     "pool": "shared",
+    "merchant_price": {
+      "base": 300,
+      "min": 255,
+      "max": 345
+    },
     "image_url": "/static/images/relics/shovel.png",
     "image_variants": null,
     "rarity_key": "Rare",
@@ -3536,6 +4407,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางหายาก",
     "pool": "shared",
+    "merchant_price": {
+      "base": 300,
+      "min": 255,
+      "max": 345
+    },
     "image_url": "/static/images/relics/mango.png",
     "image_variants": null,
     "rarity_key": "Rare",
@@ -3549,6 +4425,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเหตุการณ์",
     "pool": "shared",
+    "merchant_price": {
+      "base": 50,
+      "min": 42,
+      "max": 57
+    },
     "image_url": "/static/images/relics/fake_mango.png",
     "image_variants": null,
     "rarity_key": "Event",
@@ -3562,6 +4443,7 @@
     "flavor": "",
     "rarity": "เครื่องราง",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/circlet.png",
     "image_variants": null,
     "rarity_key": "None",
@@ -3575,6 +4457,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางธรรมดา",
     "pool": "shared",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
     "image_url": "/static/images/relics/vajra.png",
     "image_variants": null,
     "rarity_key": "Common",
@@ -3588,6 +4475,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/philosophers_stone.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -3601,6 +4489,11 @@
     "flavor": "คำเตือน: อย่าผสมกับน้ำตาล, เครื่องเทศ, และสารพัดของกุ๊กกิ๊ก",
     "rarity": "เครื่องรางร้านค้า",
     "pool": "shared",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
     "image_url": "/static/images/relics/chemical_x.png",
     "image_variants": null,
     "rarity_key": "Shop",
@@ -3614,6 +4507,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/crossbow.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -3627,6 +4521,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางร้านค้า",
     "pool": "shared",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
     "image_url": "/static/images/relics/cauldron.png",
     "image_variants": null,
     "rarity_key": "Shop",
@@ -3640,6 +4539,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/lava_rock.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -3653,6 +4553,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/golden_compass.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -3666,6 +4567,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/pumpkin_candle.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -3679,6 +4581,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางหายาก",
     "pool": "shared",
+    "merchant_price": {
+      "base": 300,
+      "min": 255,
+      "max": 345
+    },
     "image_url": "/static/images/relics/old_coin.png",
     "image_variants": null,
     "rarity_key": "Rare",
@@ -3692,6 +4599,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางร้านค้า",
     "pool": "shared",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
     "image_url": "/static/images/relics/dragon_fruit.png",
     "image_variants": null,
     "rarity_key": "Shop",
@@ -3705,6 +4617,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/very_hot_cocoa.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -3718,6 +4631,7 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางเทพโบราณ",
     "pool": "shared",
+    "merchant_price": null,
     "image_url": "/static/images/relics/golden_pearl.png",
     "image_variants": null,
     "rarity_key": "Ancient",
@@ -3731,6 +4645,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางหายาก",
     "pool": "shared",
+    "merchant_price": {
+      "base": 300,
+      "min": 255,
+      "max": 345
+    },
     "image_url": "/static/images/relics/frozen_egg.png",
     "image_variants": null,
     "rarity_key": "Rare",
@@ -3744,6 +4663,11 @@
     "flavor": "[red]รายละเอียดของเครื่องรางนี้จะถูกเปิดเผยในอนาคต...[/red]",
     "rarity": "เครื่องรางหายาก",
     "pool": "shared",
+    "merchant_price": {
+      "base": 300,
+      "min": 255,
+      "max": 345
+    },
     "image_url": "/static/images/relics/ice_cream.png",
     "image_variants": null,
     "rarity_key": "Rare",

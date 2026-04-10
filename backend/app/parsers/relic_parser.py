@@ -114,6 +114,26 @@ def parse_single_relic(filepath: Path, localization: dict, relic_pools: dict, en
     desc_clean = description_resolved
     flavor_clean = flavor
 
+    # Merchant cost — base price from rarity or MerchantCost override, with ×0.85–1.15 variance
+    RARITY_BASE_COST = {
+        "Common": 200,
+        "Uncommon": 250,
+        "Rare": 300,
+        "Shop": 225,
+    }
+    merchant_cost_override = re.search(r'override\s+int\s+MerchantCost\s*=>\s*(\d+)', content)
+    if merchant_cost_override:
+        base_cost = int(merchant_cost_override.group(1))
+    else:
+        base_cost = RARITY_BASE_COST.get(rarity)
+
+    if base_cost is not None:
+        cost_min = round(base_cost * 0.85)
+        cost_max = round(base_cost * 1.15)
+        merchant_price = {"base": base_cost, "min": cost_min, "max": cost_max}
+    else:
+        merchant_price = None
+
     # Pool/character
     pool = relic_pools.get(class_name, "shared")
 
@@ -143,6 +163,7 @@ def parse_single_relic(filepath: Path, localization: dict, relic_pools: dict, en
         "flavor": flavor_clean,
         "rarity": rarity,
         "pool": pool,
+        "merchant_price": merchant_price,
         "image_url": image_url,
         "image_variants": image_variants if image_variants else None,
     }

@@ -24,21 +24,6 @@ const rarityColorMap: Record<string, string> = {
   Ancient: "text-purple-400",
 };
 
-// Merchant price ranges for relics (from C#)
-// Common: base 200, range x0.85-1.15 = 170-230
-// Uncommon: base 250, range = 213-288
-// Rare: base 300, range = 255-345
-// Shop: base 225, range = 191-259
-// Starter, Event, Ancient: not sold at merchant
-function getRelicMerchantPriceRange(rarity: string): { min: number; max: number } | null {
-  switch (rarity) {
-    case "Common": return { min: 170, max: 230 };
-    case "Uncommon": return { min: 213, max: 288 };
-    case "Rare": return { min: 255, max: 345 };
-    case "Shop": return { min: 191, max: 259 };
-    default: return null;
-  }
-}
 
 type Tab = "overview" | "details" | "info";
 
@@ -92,7 +77,6 @@ const [relic, setRelic] = useState<Relic | null>(null);
   }
 
   const rarityColor = rarityColorMap[relic.rarity] || "text-gray-400";
-  const priceRange = getRelicMerchantPriceRange(relic.rarity_key || relic.rarity);
 
   const tabs: { key: Tab; label: string }[] = [
     { key: "overview", label: t("Overview", lang) },
@@ -183,13 +167,13 @@ const [relic, setRelic] = useState<Relic | null>(null);
         {/* ===== Details Tab ===== */}
         {tab === "details" && (
           <>
-            {priceRange ? (
+            {relic.merchant_price ? (
               <div className="mb-5">
                 <h3 className="text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)] mb-2">
                   {t("Merchant Price", lang)}
                 </h3>
                 <span className="text-sm px-3 py-1 rounded border bg-amber-950/30 text-[var(--accent-gold)] border-amber-900/30">
-                  {priceRange.min}–{priceRange.max} Gold
+                  {relic.merchant_price.min}–{relic.merchant_price.max} Gold
                 </span>
               </div>
             ) : (
