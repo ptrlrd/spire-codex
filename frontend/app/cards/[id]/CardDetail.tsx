@@ -212,11 +212,17 @@ function getUpgradedDescription(card: Card, upgraded: boolean): string {
       }
     }
 
+    // When using upgrade_description, the text already has upgraded values —
+    // find them and wrap in [green] instead of replacing base values
+    const usingUpgradeDesc = upgraded && !!card.upgrade_description;
+
     // Apply replacements in a single pass — skip ambiguous values (same number appears multiple times)
     if (replacements.length > 0) {
-      const replMap = new Map(replacements.map((r) => [r.base, r.upgraded]));
+      const replMap = usingUpgradeDesc
+        ? new Map(replacements.map((r) => [r.upgraded, r.upgraded]))
+        : new Map(replacements.map((r) => [r.base, r.upgraded]));
       const pattern = replacements
-        .map((r) => r.base)
+        .map((r) => usingUpgradeDesc ? r.upgraded : r.base)
         .sort((a, b) => b.length - a.length)
         .map((s) => `\\b${s}\\b`)
         .join("|");
