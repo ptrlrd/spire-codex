@@ -16,13 +16,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     if (!res.ok) return { title: "Card Not Found - Spire Codex" };
     const card = await res.json();
     const desc = stripTags(card.description || "");
-    const title = `Slay the Spire 2 ${card.name} - Card | Spire Codex`;
+    const color = (card.color || "").replace(/^\w/, (c: string) => c.toUpperCase());
+    const title = `Slay the Spire 2 ${card.type} - ${card.name} - ${card.rarity} | Spire Codex`;
+    const metaDesc = `${card.name} is a ${card.cost ?? "X"} cost ${card.rarity} ${card.type} used by ${color}: ${desc}`;
     return {
       title,
-      description: desc || `${card.name} card from Slay the Spire 2`,
+      description: metaDesc,
       openGraph: {
-        title: `Slay the Spire 2 ${card.name} - Card | Spire Codex`,
-        description: desc || `${card.name} card from Slay the Spire 2`,
+        title,
+        description: metaDesc,
         images: card.image_url ? [{ url: `${API_PUBLIC}${card.image_url}` }] : [],
       },
       twitter: { card: "summary_large_image" },

@@ -23,13 +23,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const desc = stripTags(card.description || "");
     const langCode = lang as LangCode;
     const gameName = LANG_GAME_NAME[langCode];
-    const title = `${gameName} ${card.name} - Card | Spire Codex (${LANG_NAMES[langCode]})`;
+    const color = (card.color || "").replace(/^\w/, (c: string) => c.toUpperCase());
+    const title = `${gameName} ${card.type} - ${card.name} - ${card.rarity} | Spire Codex (${LANG_NAMES[langCode]})`;
+    const metaDesc = `${card.name} is a ${card.cost ?? "X"} cost ${card.rarity} ${card.type} used by ${color}: ${desc}`;
     const languages: Record<string, string> = { "en": `${SITE_URL}/cards/${id}`, "x-default": `${SITE_URL}/cards/${id}` };
     for (const code of SUPPORTED_LANGS) languages[LANG_HREFLANG[code]] = `${SITE_URL}/${code}/cards/${id}`;
     return {
       title,
-      description: desc || `${card.name} - ${gameName}`,
-      openGraph: { title, description: desc || `${card.name} - ${gameName}`, locale: LANG_HREFLANG[langCode], images: card.image_url ? [{ url: `${API_PUBLIC}${card.image_url}` }] : [] },
+      description: metaDesc,
+      openGraph: { title, description: metaDesc, locale: LANG_HREFLANG[langCode], images: card.image_url ? [{ url: `${API_PUBLIC}${card.image_url}` }] : [] },
       twitter: { card: "summary_large_image" },
       alternates: { canonical: `/${lang}/cards/${id}`, languages },
     };
