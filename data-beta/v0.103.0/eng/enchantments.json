@@ -74,7 +74,7 @@
     "card_type": null,
     "applicable_to": null,
     "is_stackable": false,
-    "image_url": null
+    "image_url": "/static/images/enchantments/inky.png"
   },
   {
     "id": "INSTINCT",
