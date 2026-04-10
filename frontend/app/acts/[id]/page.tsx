@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const res = await fetch(`${API_INTERNAL}/api/acts/${id}`);
     if (!res.ok) return { title: "Act Not Found - Spire Codex" };
     const act = await res.json();
-    const title = `Slay the Spire 2 ${act.name} - Act Guide | Spire Codex`;
+    const title = `Slay the Spire 2 Act - ${act.name} | Spire Codex`;
     const desc = `${act.name} in Slay the Spire 2: ${act.num_rooms || "?"} rooms, ${act.bosses.length} bosses, ${act.encounters.length} encounters, ${act.events.length} events.`;
     return {
       title,

@@ -16,13 +16,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     if (!res.ok) return { title: "Relic Not Found - Spire Codex" };
     const relic = await res.json();
     const desc = stripTags(relic.description || "");
-    const title = `Slay the Spire 2 ${relic.name} - Relic | Spire Codex`;
+    const title = `Slay the Spire 2 Relic - ${relic.name} - ${relic.rarity} | Spire Codex`;
+    const metaDesc = `${relic.name} is a ${relic.rarity} relic in Slay the Spire 2: ${desc}`;
     return {
       title,
-      description: desc || `${relic.name} relic from Slay the Spire 2`,
+      description: metaDesc,
       openGraph: {
-        title: `Slay the Spire 2 ${relic.name} - Relic | Spire Codex`,
-        description: desc || `${relic.name} relic from Slay the Spire 2`,
+        title,
+        description: metaDesc,
         images: relic.image_url ? [{ url: `${API_PUBLIC}${relic.image_url}` }] : [],
       },
       twitter: { card: "summary_large_image" },

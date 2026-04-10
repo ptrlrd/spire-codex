@@ -15,13 +15,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     if (!res.ok) return { title: "Orb Not Found - Spire Codex" };
     const orb = await res.json();
     const desc = stripTags(orb.description || "");
-    const title = `Slay the Spire 2 ${orb.name} - Orb | Spire Codex`;
+    const title = `Slay the Spire 2 Orb - ${orb.name} | Spire Codex`;
+    const metaDesc = `${orb.name} is an orb in Slay the Spire 2: ${desc}`;
     return {
       title,
-      description: desc || `${orb.name} orb from Slay the Spire 2`,
+      description: metaDesc,
       openGraph: {
-        title: `Slay the Spire 2 ${orb.name} - Orb | Spire Codex`,
-        description: desc || `${orb.name} orb from Slay the Spire 2`,
+        title,
+        description: metaDesc,
       },
       twitter: { card: "summary_large_image" },
       alternates: { canonical: `/orbs/${id}` },

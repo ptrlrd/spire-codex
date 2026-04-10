@@ -17,13 +17,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     if (!res.ok) return { title: "Epoch Not Found - Spire Codex" };
     const epoch = await res.json();
     const desc = stripTags(epoch.description || "");
-    const title = `${epoch.title} - Slay the Spire 2 Timeline | Spire Codex`;
+    const title = `Slay the Spire 2 Timeline - ${epoch.title} | Spire Codex`;
+    const metaDesc = `${epoch.title} is a timeline epoch in Slay the Spire 2: ${desc.slice(0, 150)}`;
     return {
       title,
-      description: `${desc.slice(0, 150)} Explore the ${epoch.title} epoch in Slay the Spire 2.`,
+      description: metaDesc,
       openGraph: {
-        title: `${epoch.title} - Slay the Spire 2 Timeline | Spire Codex`,
-        description: `${desc.slice(0, 150)}`,
+        title,
+        description: metaDesc,
       },
       twitter: { card: "summary_large_image" },
       alternates: { canonical: `/timeline/${id}` },

@@ -15,13 +15,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     if (!res.ok) return { title: "Affliction Not Found - Spire Codex" };
     const affliction = await res.json();
     const desc = stripTags(affliction.description || "");
-    const title = `Slay the Spire 2 ${affliction.name} - Affliction | Spire Codex`;
+    const title = `Slay the Spire 2 Affliction - ${affliction.name} | Spire Codex`;
+    const metaDesc = `${affliction.name} is an affliction in Slay the Spire 2: ${desc}`;
     return {
       title,
-      description: desc || `${affliction.name} affliction from Slay the Spire 2`,
+      description: metaDesc,
       openGraph: {
-        title: `Slay the Spire 2 ${affliction.name} - Affliction | Spire Codex`,
-        description: desc || `${affliction.name} affliction from Slay the Spire 2`,
+        title,
+        description: metaDesc,
       },
       twitter: { card: "summary_large_image" },
       alternates: { canonical: `/afflictions/${id}` },

@@ -16,13 +16,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     if (!res.ok) return { title: "Enchantment Not Found - Spire Codex" };
     const enchantment = await res.json();
     const desc = stripTags(enchantment.description || "");
-    const title = `Slay the Spire 2 ${enchantment.name} - Enchantment | Spire Codex`;
+    const title = `Slay the Spire 2 Enchantment - ${enchantment.name} | Spire Codex`;
+    const metaDesc = `${enchantment.name} is an enchantment in Slay the Spire 2: ${desc}`;
     return {
       title,
-      description: desc || `${enchantment.name} enchantment from Slay the Spire 2`,
+      description: metaDesc,
       openGraph: {
-        title: `Slay the Spire 2 ${enchantment.name} - Enchantment | Spire Codex`,
-        description: desc || `${enchantment.name} enchantment from Slay the Spire 2`,
+        title,
+        description: metaDesc,
         images: enchantment.image_url ? [{ url: `${API_PUBLIC}${enchantment.image_url}` }] : [],
       },
       twitter: { card: "summary_large_image" },

@@ -16,13 +16,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     if (!res.ok) return { title: "Event Not Found - Spire Codex" };
     const event = await res.json();
     const desc = stripTags(event.description || "");
-    const title = `Slay the Spire 2 ${event.name} - Event | Spire Codex`;
+    const title = `Slay the Spire 2 Event - ${event.name} - ${event.type} | Spire Codex`;
+    const metaDesc = `${event.name} is a ${event.type} event in Slay the Spire 2${event.act ? ` (${event.act})` : ""}: ${desc}`;
     return {
       title,
-      description: desc || `${event.name} event from Slay the Spire 2`,
+      description: metaDesc,
       openGraph: {
-        title: `Slay the Spire 2 ${event.name} - Event | Spire Codex`,
-        description: desc || `${event.name} event from Slay the Spire 2`,
+        title,
+        description: metaDesc,
         images: event.image_url ? [{ url: `${API_PUBLIC}${event.image_url}` }] : [],
       },
       twitter: { card: "summary_large_image" },

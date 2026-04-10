@@ -16,13 +16,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     if (!res.ok) return { title: "Potion Not Found - Spire Codex" };
     const potion = await res.json();
     const desc = stripTags(potion.description || "");
-    const title = `Slay the Spire 2 ${potion.name} - Potion | Spire Codex`;
+    const title = `Slay the Spire 2 Potion - ${potion.name} - ${potion.rarity} | Spire Codex`;
+    const metaDesc = `${potion.name} is a ${potion.rarity} potion in Slay the Spire 2: ${desc}`;
     return {
       title,
-      description: desc || `${potion.name} potion from Slay the Spire 2`,
+      description: metaDesc,
       openGraph: {
-        title: `Slay the Spire 2 ${potion.name} - Potion | Spire Codex`,
-        description: desc || `${potion.name} potion from Slay the Spire 2`,
+        title,
+        description: metaDesc,
         images: potion.image_url ? [{ url: `${API_PUBLIC}${potion.image_url}` }] : [],
       },
       twitter: { card: "summary_large_image" },

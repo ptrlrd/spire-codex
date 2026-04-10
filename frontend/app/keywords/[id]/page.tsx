@@ -33,26 +33,28 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const desc = stripTags(data.description);
 
   if (type === "keyword") {
-    const title = `Slay the Spire 2 ${data.name} Cards - All ${data.name} Cards | Spire Codex`;
+    const title = `Slay the Spire 2 Keyword - ${data.name} | Spire Codex`;
+    const metaDesc = `${data.name} is a card keyword in Slay the Spire 2: ${desc}`;
     return {
       title,
-      description: `${desc} Browse all ${data.name} cards in Slay the Spire 2.`,
+      description: metaDesc,
       openGraph: {
-        title: `Slay the Spire 2 ${data.name} Cards | Spire Codex`,
-        description: `${desc} Browse all ${data.name} cards in Slay the Spire 2.`,
+        title,
+        description: metaDesc,
       },
       twitter: { card: "summary_large_image" },
       alternates: { canonical: `/keywords/${id}` },
     };
   }
 
-  const title = `${data.name} - Slay the Spire 2 Game Term | Spire Codex`;
+  const title = `Slay the Spire 2 Term - ${data.name} | Spire Codex`;
+  const metaDesc = `${data.name} is a game term in Slay the Spire 2: ${desc}`;
   return {
     title,
-    description: `${desc} Learn what ${data.name} means in Slay the Spire 2.`,
+    description: metaDesc,
     openGraph: {
-      title: `${data.name} - Slay the Spire 2 | Spire Codex`,
-      description: `${desc} Learn what ${data.name} means in Slay the Spire 2.`,
+      title,
+      description: metaDesc,
     },
     twitter: { card: "summary_large_image" },
     alternates: { canonical: `/keywords/${id}` },

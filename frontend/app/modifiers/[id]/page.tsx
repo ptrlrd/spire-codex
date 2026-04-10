@@ -15,13 +15,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     if (!res.ok) return { title: "Modifier Not Found - Spire Codex" };
     const modifier = await res.json();
     const desc = stripTags(modifier.description || "");
-    const title = `Slay the Spire 2 ${modifier.name} - Modifier | Spire Codex`;
+    const title = `Slay the Spire 2 Modifier - ${modifier.name} | Spire Codex`;
+    const metaDesc = `${modifier.name} is a run modifier in Slay the Spire 2: ${desc}`;
     return {
       title,
-      description: desc || `${modifier.name} modifier from Slay the Spire 2`,
+      description: metaDesc,
       openGraph: {
-        title: `Slay the Spire 2 ${modifier.name} - Modifier | Spire Codex`,
-        description: desc || `${modifier.name} modifier from Slay the Spire 2`,
+        title,
+        description: metaDesc,
       },
       twitter: { card: "summary_large_image" },
       alternates: { canonical: `/modifiers/${id}` },

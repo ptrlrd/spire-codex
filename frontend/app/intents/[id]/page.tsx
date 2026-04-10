@@ -15,13 +15,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     if (!res.ok) return { title: "Intent Not Found - Spire Codex" };
     const intent = await res.json();
     const desc = stripTags(intent.description || "");
-    const title = `Slay the Spire 2 ${intent.name} - Intent | Spire Codex`;
+    const title = `Slay the Spire 2 Intent - ${intent.name} | Spire Codex`;
+    const metaDesc = `${intent.name} is a monster intent in Slay the Spire 2: ${desc}`;
     return {
       title,
-      description: desc || `${intent.name} intent from Slay the Spire 2`,
+      description: metaDesc,
       openGraph: {
-        title: `Slay the Spire 2 ${intent.name} - Intent | Spire Codex`,
-        description: desc || `${intent.name} intent from Slay the Spire 2`,
+        title,
+        description: metaDesc,
       },
       twitter: { card: "summary_large_image" },
       alternates: { canonical: `/intents/${id}` },

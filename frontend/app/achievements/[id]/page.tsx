@@ -15,13 +15,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     if (!res.ok) return { title: "Achievement Not Found - Spire Codex" };
     const achievement = await res.json();
     const desc = stripTags(achievement.description || "");
-    const title = `Slay the Spire 2 ${achievement.name} - Achievement | Spire Codex`;
+    const title = `Slay the Spire 2 Achievement - ${achievement.name} | Spire Codex`;
+    const metaDesc = `${achievement.name} is an achievement in Slay the Spire 2: ${desc}`;
     return {
       title,
-      description: desc || `${achievement.name} achievement from Slay the Spire 2`,
+      description: metaDesc,
       openGraph: {
-        title: `Slay the Spire 2 ${achievement.name} - Achievement | Spire Codex`,
-        description: desc || `${achievement.name} achievement from Slay the Spire 2`,
+        title,
+        description: metaDesc,
       },
       twitter: { card: "summary_large_image" },
       alternates: { canonical: `/achievements/${id}` },
