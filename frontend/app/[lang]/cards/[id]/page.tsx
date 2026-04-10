@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const langCode = lang as LangCode;
     const gameName = LANG_GAME_NAME[langCode];
     const color = (card.color || "").replace(/^\w/, (c: string) => c.toUpperCase());
-    const title = `${gameName} ${card.type} - ${card.name} - ${card.rarity} | Spire Codex (${LANG_NAMES[langCode]})`;
+    const title = `${gameName} Card - ${card.name} - ${card.rarity} ${card.type} | Spire Codex (${LANG_NAMES[langCode]})`;
     const metaDesc = `${card.name} is a ${card.cost ?? "X"} cost ${card.rarity} ${card.type} used by ${color}: ${desc}`;
     const languages: Record<string, string> = { "en": `${SITE_URL}/cards/${id}`, "x-default": `${SITE_URL}/cards/${id}` };
     for (const code of SUPPORTED_LANGS) languages[LANG_HREFLANG[code]] = `${SITE_URL}/${code}/cards/${id}`;
