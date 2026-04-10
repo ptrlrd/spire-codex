@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { useLanguage } from "../contexts/LanguageContext";
+import { buildApiUrl } from "@/lib/fetch-cache";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -180,7 +181,7 @@ export default function GlobalSearch() {
       const encoded = encodeURIComponent(query.trim());
       Promise.all(
         CATEGORIES.map((cat) =>
-          fetch(`${API}${cat.endpoint}?search=${encoded}&lang=${lang}`, {
+          fetch(buildApiUrl(`${API}${cat.endpoint}?search=${encoded}&lang=${lang}`), {
             signal: controller.signal,
           })
             .then((r) => (r.ok ? r.json() : []))

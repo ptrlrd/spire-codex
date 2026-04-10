@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { IS_BETA } from "@/lib/seo";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -234,10 +235,12 @@ export default function ChangelogPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <h1 className="text-3xl font-bold mb-2">
-        <span className="text-[var(--accent-gold)]">Changelog</span>
+        <span className="text-[var(--accent-gold)]">{IS_BETA ? "Beta Changelog" : "Changelog"}</span>
       </h1>
       <p className="text-sm text-[var(--text-muted)] mb-8">
-        Track what changes between game updates — new cards, balance tweaks, removed content, and more.
+        {IS_BETA
+          ? "Track what changes between beta updates — compare patches and see what's new."
+          : "Track what changes between game updates — new cards, balance tweaks, removed content, and more."}
       </p>
 
       {loading ? (

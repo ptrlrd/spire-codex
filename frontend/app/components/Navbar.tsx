@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import LanguageSelector from "./LanguageSelector";
+import VersionSelector from "./VersionSelector";
 import { useLanguage } from "@/app/contexts/LanguageContext";
 import { t } from "@/lib/ui-translations";
 import { IS_BETA } from "@/lib/seo";
@@ -15,7 +16,7 @@ interface NavGroup {
   links: { href: string; label: string }[];
 }
 
-const BETA_HIDDEN = new Set(["/runs", "/guides", "/meta", "/showcase", "/changelog"]);
+const BETA_HIDDEN = new Set(["/runs", "/guides", "/meta", "/showcase"]);
 
 const NAV_GROUPS: NavGroup[] = [
   {
@@ -154,6 +155,7 @@ export default function Navbar() {
               </a>
             )}
 
+            {IS_BETA && <VersionSelector />}
             <LanguageSelector />
 
           {/* Burger button */}

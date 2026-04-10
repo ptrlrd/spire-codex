@@ -1,21 +1,52 @@
 """Service layer that loads and serves parsed game data from JSON files."""
 import json
 import os
+import re
 from pathlib import Path
 from functools import lru_cache
+from contextvars import ContextVar
 
 DATA_DIR = Path(os.environ.get("DATA_DIR", Path(__file__).resolve().parents[3] / "data"))
 DEFAULT_LANG = "eng"
 
+# ContextVar set by VersionMiddleware — allows version-aware loading without changing router signatures
+current_version: ContextVar[str | None] = ContextVar("current_version", default=None)
 
-@lru_cache(maxsize=512)
-def _load_json(lang: str, entity: str) -> list[dict]:
-    """Load a parsed JSON data file for the given language and entity."""
-    filepath = DATA_DIR / lang / f"{entity}.json"
+
+def _resolve_base(version: str | None = None) -> Path:
+    """Resolve the base data directory for a given version.
+
+    - version="v0.103.0" → DATA_DIR/v0.103.0/
+    - version=None → DATA_DIR/latest/ (if symlink exists) or DATA_DIR/ (flat, stable site)
+    """
+    if version:
+        return DATA_DIR / version
+    latest = DATA_DIR / "latest"
+    if latest.exists():
+        return latest
+    return DATA_DIR
+
+
+def _get_version() -> str | None:
+    return current_version.get(None)
+
+
+@lru_cache(maxsize=2048)
+def _load_json_versioned(lang: str, entity: str, version: str | None) -> list[dict]:
+    """Load a parsed JSON data file, keyed by (lang, entity, version) for caching."""
+    base = _resolve_base(version)
+    filepath = base / lang / f"{entity}.json"
     if not filepath.exists():
-        filepath = DATA_DIR / DEFAULT_LANG / f"{entity}.json"
+        filepath = base / DEFAULT_LANG / f"{entity}.json"
+    if not filepath.exists():
+        return []
     with open(filepath, "r", encoding="utf-8") as f:
         return json.load(f)
+
+
+def _load_json(lang: str, entity: str) -> list[dict]:
+    """Load JSON using the version from the current request context."""
+    return _load_json_versioned(lang, entity, _get_version())
 
 
 def load_cards(lang: str = DEFAULT_LANG) -> list[dict]:
@@ -98,9 +129,10 @@ def load_ascensions(lang: str = DEFAULT_LANG) -> list[dict]:
     return _load_json(lang, "ascensions")
 
 
-@lru_cache(maxsize=1)
-def _load_guides() -> list[dict]:
-    filepath = DATA_DIR / "guides.json"
+@lru_cache(maxsize=16)
+def _load_guides_versioned(version: str | None) -> list[dict]:
+    base = _resolve_base(version)
+    filepath = base / "guides.json"
     if not filepath.exists():
         return []
     with open(filepath, "r", encoding="utf-8") as f:
@@ -108,17 +140,17 @@ def _load_guides() -> list[dict]:
 
 
 def load_guides() -> list[dict]:
-    return _load_guides()
+    return _load_guides_versioned(_get_version())
 
 
-@lru_cache(maxsize=16)
-def load_translation_maps(lang: str = DEFAULT_LANG) -> dict:
+@lru_cache(maxsize=128)
+def _load_translation_maps_versioned(lang: str, version: str | None) -> dict:
     """Load translation maps for filter values (English -> localized)."""
-    filepath = DATA_DIR / lang / "translations.json"
+    base = _resolve_base(version)
+    filepath = base / lang / "translations.json"
     if not filepath.exists():
-        filepath = DATA_DIR / DEFAULT_LANG / "translations.json"
+        filepath = base / DEFAULT_LANG / "translations.json"
     if not filepath.exists():
-        # Fallback: identity maps
         return {
             "card_types": {},
             "card_rarities": {},
@@ -130,12 +162,35 @@ def load_translation_maps(lang: str = DEFAULT_LANG) -> dict:
         return json.load(f)
 
 
+def load_translation_maps(lang: str = DEFAULT_LANG) -> dict:
+    return _load_translation_maps_versioned(lang, _get_version())
+
+
 @lru_cache(maxsize=1)
 def count_images() -> int:
     images_dir = Path(os.environ.get("STATIC_DIR", Path(__file__).resolve().parents[2] / "static")) / "images"
     if not images_dir.exists():
         return 0
     return sum(1 for _ in images_dir.rglob("*.png"))
+
+
+def get_available_versions() -> list[dict]:
+    """Scan DATA_DIR for versioned subdirectories (v0.102.0, v0.103.0, etc.)."""
+    versions = []
+    latest_target = None
+    latest_link = DATA_DIR / "latest"
+    if latest_link.is_symlink():
+        latest_target = Path(os.readlink(latest_link)).name
+
+    for d in sorted(DATA_DIR.iterdir(), reverse=True):
+        if d.is_dir() and re.match(r'^v?\d+\.\d+', d.name):
+            # Verify it has at least an eng/ subdirectory
+            if (d / "eng").is_dir():
+                versions.append({
+                    "version": d.name,
+                    "is_latest": d.name == latest_target,
+                })
+    return versions
 
 
 def get_stats(lang: str = DEFAULT_LANG) -> dict:

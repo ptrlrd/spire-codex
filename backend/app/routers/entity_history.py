@@ -4,17 +4,18 @@ from pathlib import Path
 
 from fastapi import APIRouter
 
-router = APIRouter(prefix="/api/history", tags=["Entity History"])
+from ..services.data_service import _resolve_base, _get_version
 
-DATA_DIR = Path(__file__).resolve().parents[3] / "data" / "changelogs"
+router = APIRouter(prefix="/api/history", tags=["Entity History"])
 
 
 def _load_changelogs() -> list[dict]:
     """Load all changelog JSON files, sorted oldest first by date then tag."""
-    if not DATA_DIR.exists():
+    d = _resolve_base(_get_version()) / "changelogs"
+    if not d.exists():
         return []
     logs = []
-    for f in DATA_DIR.glob("*.json"):
+    for f in d.glob("*.json"):
         with open(f, "r", encoding="utf-8") as fh:
             logs.append(json.load(fh))
     logs.sort(key=lambda l: (l.get("date", ""), l.get("tag", "")))

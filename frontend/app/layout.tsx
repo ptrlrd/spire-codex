@@ -6,6 +6,7 @@ import DonationBanner from "./components/DonationBanner";
 import Footer from "./components/Footer";
 import GlobalSearch from "./components/GlobalSearch";
 import { LanguageProvider } from "./contexts/LanguageContext";
+import { BetaVersionProvider } from "./contexts/BetaVersionContext";
 import { SITE_NAME, SITE_URL } from "@/lib/seo";
 
 const geistSans = Geist({
@@ -52,13 +53,15 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen`}
       >
         <LanguageProvider>
-          <Navbar />
-          <div className="pt-16">
-            <DonationBanner />
-            <main>{children}</main>
-          </div>
-          <Footer />
-          <GlobalSearch />
+          <BetaVersionProvider>
+            <Navbar />
+            <div className="pt-16">
+              <DonationBanner />
+              <main>{children}</main>
+            </div>
+            <Footer />
+            <GlobalSearch />
+          </BetaVersionProvider>
         </LanguageProvider>
       </body>
     </html>

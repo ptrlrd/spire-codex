@@ -25,6 +25,9 @@ Options:
   --build-id        Steam build ID (e.g. "22238966") — changes with each depot update
   --date            Date of the update (defaults to today)
   --title           Human-readable title for this changelog entry
+  --data-dir        Data directory to diff (default: "data") — use "data-beta" for beta
+  --output-dir      Where to save JSON changelogs (default: {data-dir}/changelogs)
+  --beta            Shortcut for --data-dir data-beta --output-dir data-beta/changelogs
 
   The Steam App ID for Slay the Spire 2 is 2868840 (hardcoded).
   Build IDs can be found on SteamDB or via Steam's app info API.
@@ -38,7 +41,6 @@ from pathlib import Path
 from collections import defaultdict
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-DATA_DIR = BASE_DIR / "data" / "eng"
 
 # Slay the Spire 2 Steam App ID (fixed)
 STEAM_APP_ID = 2868840
@@ -88,13 +90,14 @@ def load_json_file(path: Path) -> list[dict]:
         return json.load(f)
 
 
-def extract_git_data(ref: str, tmp_dir: Path) -> Path:
-    """Extract data/ files from a git ref into a temp directory."""
+def extract_git_data(ref: str, tmp_dir: Path, data_dir: str = "data") -> Path:
+    """Extract data files from a git ref into a temp directory."""
     out = tmp_dir / ref.replace("/", "_")
     out.mkdir(parents=True, exist_ok=True)
     # List data files at that ref
+    git_data_path = f"{data_dir}/eng/"
     result = subprocess.run(
-        ["git", "ls-tree", "-r", "--name-only", ref, "data/eng/"],
+        ["git", "ls-tree", "-r", "--name-only", ref, git_data_path],
         capture_output=True, text=True, cwd=BASE_DIR
     )
     if result.returncode != 0:
@@ -389,7 +392,21 @@ def main():
     build_id, argv = parse_named_arg(argv, "--build-id", "")
     date, argv = parse_named_arg(argv, "--date", "")
     title, argv = parse_named_arg(argv, "--title", "")
+    data_dir_arg, argv = parse_named_arg(argv, "--data-dir", "")
+    output_dir_arg, argv = parse_named_arg(argv, "--output-dir", "")
+    is_beta = "--beta" in argv
+    if is_beta:
+        argv = [a for a in argv if a != "--beta"]
     args = [a for a in argv if not a.startswith("--")]
+
+    # Resolve data dir and output dir
+    if is_beta:
+        data_dir_rel = data_dir_arg or "data-beta"
+        output_dir = Path(output_dir_arg) if output_dir_arg else BASE_DIR / "data-beta" / "changelogs"
+    else:
+        data_dir_rel = data_dir_arg or "data"
+        output_dir = Path(output_dir_arg) if output_dir_arg else BASE_DIR / data_dir_rel / "changelogs"
+    data_dir = BASE_DIR / data_dir_rel / "eng"
 
     if len(args) == 0:
         print(__doc__)
@@ -399,10 +416,10 @@ def main():
 
     if len(args) == 1:
         old_ref = args[0]
-        new_dir = DATA_DIR
+        new_dir = data_dir
         new_label = "current"
         tmp_dir = Path(tempfile.mkdtemp())
-        old_dir = extract_git_data(old_ref, tmp_dir)
+        old_dir = extract_git_data(old_ref, tmp_dir, data_dir_rel)
         old_label = old_ref
     elif len(args) == 2:
         old_path = Path(args[0])
@@ -414,12 +431,12 @@ def main():
             new_label = str(new_path)
         else:
             tmp_dir = Path(tempfile.mkdtemp())
-            old_dir = extract_git_data(args[0], tmp_dir)
-            new_dir = extract_git_data(args[1], tmp_dir)
+            old_dir = extract_git_data(args[0], tmp_dir, data_dir_rel)
+            new_dir = extract_git_data(args[1], tmp_dir, data_dir_rel)
             old_label = args[0]
             new_label = args[1]
     else:
-        print("Usage: diff_data.py <old_ref> [new_ref] [--format text|md|json] [--game-version X] [--build-id Y] [--date Z] [--title T]", file=sys.stderr)
+        print("Usage: diff_data.py <old_ref> [new_ref] [--format text|md|json] [--game-version X] [--build-id Y] [--date Z] [--title T] [--beta] [--data-dir DIR] [--output-dir DIR]", file=sys.stderr)
         sys.exit(1)
 
     try:
@@ -445,7 +462,7 @@ def main():
             changelog = build_json_output(results, game_version, build_id, date, title, old_label, new_label)
             # Save to changelogs directory — keyed by tag
             tag = changelog["tag"]
-            out_path = BASE_DIR / "data" / "changelogs" / f"{tag}.json"
+            out_path = output_dir / f"{tag}.json"
             out_path.parent.mkdir(parents=True, exist_ok=True)
             with open(out_path, "w", encoding="utf-8") as f:
                 json.dump(changelog, f, indent=2, ensure_ascii=False)

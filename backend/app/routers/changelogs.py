@@ -4,17 +4,22 @@ from pathlib import Path
 
 from fastapi import APIRouter, HTTPException, Request
 
+from ..services.data_service import _resolve_base, _get_version
+
 router = APIRouter(prefix="/api/changelogs", tags=["Changelogs"])
 
-DATA_DIR = Path(__file__).resolve().parents[3] / "data" / "changelogs"
+
+def _changelogs_dir() -> Path:
+    return _resolve_base(_get_version()) / "changelogs"
 
 
 def _load_changelogs() -> list[dict]:
     """Load all changelog JSON files, sorted newest first by date then tag."""
-    if not DATA_DIR.exists():
+    d = _changelogs_dir()
+    if not d.exists():
         return []
     logs = []
-    for f in DATA_DIR.glob("*.json"):
+    for f in d.glob("*.json"):
         with open(f, "r", encoding="utf-8") as fh:
             logs.append(json.load(fh))
     logs.sort(key=lambda l: (l.get("date", ""), l.get("tag", "")), reverse=True)
@@ -42,7 +47,7 @@ def list_changelogs(request: Request):
 @router.get("/{tag:path}", tags=["Changelogs"])
 def get_changelog(tag: str, request: Request):
     """Return full changelog for a specific tag (e.g. '1.0.3')."""
-    path = DATA_DIR / f"{tag}.json"
+    path = _changelogs_dir() / f"{tag}.json"
     if not path.exists():
         raise HTTPException(status_code=404, detail=f"Changelog '{tag}' not found")
     with open(path, "r", encoding="utf-8") as f:
