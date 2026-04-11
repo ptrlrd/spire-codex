@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { Stats } from "@/lib/api";
-import { cachedFetch } from "@/lib/fetch-cache";
+import { cachedFetch, getBetaVersion } from "@/lib/fetch-cache";
 import { useLanguage } from "./contexts/LanguageContext";
 import { t } from "@/lib/ui-translations";
 import { IS_BETA } from "@/lib/seo";
@@ -64,7 +64,7 @@ export default function HomeClient({ initialStats, initialTranslations }: HomeCl
   useEffect(() => {
     if (initialRender.current) {
       initialRender.current = false;
-      if (lang === "eng" && initialStats) return;
+      if (lang === "eng" && initialStats && !getBetaVersion()) return;
     }
     cachedFetch<Stats>(`${API}/api/stats?lang=${lang}`)
       .then(setStats);
