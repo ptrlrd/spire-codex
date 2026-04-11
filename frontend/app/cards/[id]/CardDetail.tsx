@@ -189,10 +189,12 @@ function getUpgradedDescription(card: Card, upgraded: boolean): string {
       // Handle repeat/hit count upgrades with contextual replacement ("N times")
       if (kl === "repeat" && vars["Repeat"] != null) {
         const base = vars["Repeat"];
-        const upgraded = getUpgradedValue(base, upVal);
-        if (upgraded !== null && upgraded !== base) {
-          if (new RegExp(`\\b${base}\\b\\s*times`, "i").test(desc)) {
-            desc = desc.replace(new RegExp(`\\b${base}\\b(\\s*times)`, "i"), `[green]${upgraded}[/green]$1`);
+        const upgradedRepeat = getUpgradedValue(base, upVal);
+        if (upgradedRepeat !== null && upgradedRepeat !== base) {
+          // When using upgrade_description, search for the upgraded value instead of base
+          const searchVal = (upgraded && card.upgrade_description) ? upgradedRepeat : base;
+          if (new RegExp(`\\b${searchVal}\\b\\s*times`, "i").test(desc)) {
+            desc = desc.replace(new RegExp(`\\b${searchVal}\\b(\\s*times)`, "i"), `[green]${upgradedRepeat}[/green]$1`);
             continue;
           }
           // Fall through to general replacement for non-"times" repeat vars (e.g. "2 Orb Slots", "1 random Orb")
@@ -442,7 +444,7 @@ const [card, setCard] = useState<Card | null>(null);
                     : "border-[var(--border-subtle)] text-[var(--accent-gold)]"
                 }`}
               >
-                {card.is_x_cost ? "X" : cost}
+                {card.is_x_cost ? "X" : cost != null && cost < 0 ? "U" : cost}
               </span>
               {(card.star_cost != null || card.is_x_star_cost) && (
                 <span className="inline-flex items-center gap-0.5 px-2 py-1 rounded-full bg-[var(--bg-primary)] border border-amber-700/40 text-sm font-bold text-amber-300">

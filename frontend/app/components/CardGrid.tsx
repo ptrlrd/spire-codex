@@ -254,7 +254,7 @@ function CardItem({ card }: { card: Card }) {
           <span className={`inline-flex items-center justify-center w-7 h-7 rounded-full bg-[var(--bg-primary)] border text-sm font-bold ${
             isUpgraded && u?.cost != null ? "border-emerald-700/50 text-emerald-400" : "border-[var(--border-subtle)] text-[var(--accent-gold)]"
           }`}>
-            {card.is_x_cost ? "X" : cost}
+            {card.is_x_cost ? "X" : cost != null && cost < 0 ? "U" : cost}
           </span>
           {(card.star_cost != null || card.is_x_star_cost) && (
             <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-full bg-[var(--bg-primary)] border border-amber-700/40 text-xs font-bold text-amber-300">
