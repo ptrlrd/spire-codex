@@ -14,6 +14,12 @@ CHARACTER_UNLOCK_EPOCHS = {
     "NECROBINDER": "NECROBINDER1_EPOCH",
 }
 
+# Score thresholds from GetScoreThreshold() — 18 score-based unlocks
+SCORE_THRESHOLDS = [
+    200, 500, 750, 1000, 1250, 1500, 1600, 1700, 1800,
+    1900, 2000, 2100, 2200, 2300, 2400, 2500, 2500, 2500,
+]
+
 
 @router.get("")
 def get_unlocks(request: Request, lang: str = Depends(get_lang)):
@@ -29,6 +35,16 @@ def get_unlocks(request: Request, lang: str = Depends(get_lang)):
     chars_map = {c["id"]: c for c in load_characters(lang)}
 
     result = {"characters": [], "cards": [], "relics": [], "potions": [], "events": []}
+
+    # Build score threshold map — score-based epochs sorted by sort_order
+    score_epochs = sorted(
+        [e for e in epochs if "accumulating score" in (e.get("unlock_info") or "").lower()],
+        key=lambda e: e.get("sort_order", 0),
+    )
+    score_threshold_map = {}
+    for i, ep in enumerate(score_epochs):
+        threshold = SCORE_THRESHOLDS[i] if i < len(SCORE_THRESHOLDS) else 2500
+        score_threshold_map[ep["id"]] = f"Reach [blue]{threshold:,}[/blue] cumulative score (unlock #{i + 1} of {len(score_epochs)})."
 
     # Characters (only those that require unlocking)
     for char_id, epoch_id in CHARACTER_UNLOCK_EPOCHS.items():
@@ -52,7 +68,7 @@ def get_unlocks(request: Request, lang: str = Depends(get_lang)):
         era = epoch.get("era_name", epoch.get("era", ""))
         sort_order = epoch.get("sort_order", 0)
         story = epoch.get("story_id", "")
-        unlock_info = epoch.get("unlock_info", "")
+        unlock_info = score_threshold_map.get(epoch_id, epoch.get("unlock_info", ""))
 
         # Determine character association from story
         story_lower = story.lower() if story else ""
