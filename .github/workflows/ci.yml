@@ -17,9 +17,9 @@ jobs:
           fetch-depth: 0
 
       - name: TruffleHog secret scan
-        uses: trufflesecurity/trufflehog@main
-        with:
-          extra_args: --only-verified
+        run: |
+          docker run --rm -v "$GITHUB_WORKSPACE:/repo" ghcr.io/trufflesecurity/trufflehog:latest \
+            git file:///repo --only-verified --fail
 
   # ── Frontend checks ────────────────────────────────────
   frontend-lint:
