@@ -12,7 +12,6 @@ const eslintConfig = defineConfig([
       "@typescript-eslint/no-unused-vars": "warn",
       "react-hooks/exhaustive-deps": "warn",
       "@next/next/no-img-element": "warn",
-      // React compiler rules — pre-existing, need larger refactor
       "react-compiler/react-compiler": "warn",
     },
   },
