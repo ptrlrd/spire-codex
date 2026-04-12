@@ -25,7 +25,6 @@ export default function ModifierDetail() {
 
   useEffect(() => {
     if (!id) return;
-    setLoading(true);
     cachedFetch<Modifier>(`${API}/api/modifiers/${id}?lang=${lang}`)
       .then((data) => setModifier(data))
       .catch(() => setNotFound(true))

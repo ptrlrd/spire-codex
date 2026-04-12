@@ -1,29 +1,95 @@
 """Parse card data from decompiled C# files and localization JSON."""
+
 import json
-import os
 import re
 from pathlib import Path
-from description_resolver import resolve_description as shared_resolve_description, extract_vars_from_source
+from description_resolver import (
+    resolve_description as shared_resolve_description,
+    extract_vars_from_source,
+)
 
 from parser_paths import BASE, DECOMPILED, loc_dir as _loc_dir, data_dir as _data_dir
+
 CARDS_DIR = DECOMPILED / "MegaCrit.Sts2.Core.Models.Cards"
 POOLS_DIR = DECOMPILED / "MegaCrit.Sts2.Core.Models.CardPools"
 STATIC_IMAGES = BASE / "backend" / "static" / "images" / "cards"
 
-CARD_TYPE_MAP = {0: "None", 1: "Attack", 2: "Skill", 3: "Power", 4: "Status", 5: "Curse", 6: "Quest"}
-CARD_RARITY_MAP = {0: "None", 1: "Basic", 2: "Common", 3: "Uncommon", 4: "Rare", 5: "Ancient", 6: "Event", 7: "Token", 8: "Status", 9: "Curse", 10: "Quest"}
-TARGET_TYPE_MAP = {0: "None", 1: "Self", 2: "AnyEnemy", 3: "AllEnemies", 4: "RandomEnemy", 5: "AnyPlayer", 6: "AnyAlly", 7: "AllAllies", 8: "TargetedNoCreature", 9: "Osty"}
+CARD_TYPE_MAP = {
+    0: "None",
+    1: "Attack",
+    2: "Skill",
+    3: "Power",
+    4: "Status",
+    5: "Curse",
+    6: "Quest",
+}
+CARD_RARITY_MAP = {
+    0: "None",
+    1: "Basic",
+    2: "Common",
+    3: "Uncommon",
+    4: "Rare",
+    5: "Ancient",
+    6: "Event",
+    7: "Token",
+    8: "Status",
+    9: "Curse",
+    10: "Quest",
+}
+TARGET_TYPE_MAP = {
+    0: "None",
+    1: "Self",
+    2: "AnyEnemy",
+    3: "AllEnemies",
+    4: "RandomEnemy",
+    5: "AnyPlayer",
+    6: "AnyAlly",
+    7: "AllAllies",
+    8: "TargetedNoCreature",
+    9: "Osty",
+}
 
 # Map enum names to values for when code uses named enums
-CARD_TYPE_NAME = {"Attack": "Attack", "Skill": "Skill", "Power": "Power", "Status": "Status", "Curse": "Curse", "Quest": "Quest", "None": "None"}
-CARD_RARITY_NAME = {"Basic": "Basic", "Common": "Common", "Uncommon": "Uncommon", "Rare": "Rare", "Ancient": "Ancient", "Event": "Event", "Token": "Token", "Status": "Status", "Curse": "Curse", "Quest": "Quest", "None": "None"}
-TARGET_TYPE_NAME = {"None": "None", "Self": "Self", "AnyEnemy": "AnyEnemy", "AllEnemies": "AllEnemies", "RandomEnemy": "RandomEnemy", "AnyPlayer": "AnyPlayer", "AnyAlly": "AnyAlly", "AllAllies": "AllAllies", "TargetedNoCreature": "TargetedNoCreature", "Osty": "Osty"}
+CARD_TYPE_NAME = {
+    "Attack": "Attack",
+    "Skill": "Skill",
+    "Power": "Power",
+    "Status": "Status",
+    "Curse": "Curse",
+    "Quest": "Quest",
+    "None": "None",
+}
+CARD_RARITY_NAME = {
+    "Basic": "Basic",
+    "Common": "Common",
+    "Uncommon": "Uncommon",
+    "Rare": "Rare",
+    "Ancient": "Ancient",
+    "Event": "Event",
+    "Token": "Token",
+    "Status": "Status",
+    "Curse": "Curse",
+    "Quest": "Quest",
+    "None": "None",
+}
+TARGET_TYPE_NAME = {
+    "None": "None",
+    "Self": "Self",
+    "AnyEnemy": "AnyEnemy",
+    "AllEnemies": "AllEnemies",
+    "RandomEnemy": "RandomEnemy",
+    "AnyPlayer": "AnyPlayer",
+    "AnyAlly": "AnyAlly",
+    "AllAllies": "AllAllies",
+    "TargetedNoCreature": "TargetedNoCreature",
+    "Osty": "Osty",
+}
 
 
 def class_name_to_id(name: str) -> str:
     """Convert PascalCase class name to SNAKE_CASE id."""
-    s = re.sub(r'(?<=[a-z0-9])(?=[A-Z])', '_', name)
-    s = re.sub(r'(?<=[A-Z])(?=[A-Z][a-z])', '_', s)
+    s = re.sub(r"(?<=[a-z0-9])(?=[A-Z])", "_", name)
+    s = re.sub(r"(?<=[A-Z])(?=[A-Z][a-z])", "_", s)
     return s.upper()
 
 
@@ -37,13 +103,35 @@ def load_localization(loc_dir: Path) -> dict:
 
 # Compendium pool order (matches AllCharacterCardPools + AllSharedCardPools in ModelDb.cs)
 POOL_ORDER = [
-    "ironclad", "silent", "regent", "necrobinder", "defect",
-    "colorless", "curse", "deprecated", "event", "quest", "status", "token",
+    "ironclad",
+    "silent",
+    "regent",
+    "necrobinder",
+    "defect",
+    "colorless",
+    "curse",
+    "deprecated",
+    "event",
+    "quest",
+    "status",
+    "token",
 ]
 POOL_INDEX = {p: i for i, p in enumerate(POOL_ORDER)}
 
 # Compendium rarity order within each pool
-RARITY_ORDER = ["Basic", "Common", "Uncommon", "Rare", "Ancient", "Event", "Token", "Status", "Curse", "Quest", "None"]
+RARITY_ORDER = [
+    "Basic",
+    "Common",
+    "Uncommon",
+    "Rare",
+    "Ancient",
+    "Event",
+    "Token",
+    "Status",
+    "Curse",
+    "Quest",
+    "None",
+]
 RARITY_INDEX = {r: i for i, r in enumerate(RARITY_ORDER)}
 
 
@@ -68,24 +156,28 @@ def parse_card_pools() -> dict[str, str]:
         if not filepath.exists():
             continue
         content = filepath.read_text(encoding="utf-8")
-        for match in re.finditer(r'ModelDb\.Card<(\w+)>\(\)', content):
+        for match in re.finditer(r"ModelDb\.Card<(\w+)>\(\)", content):
             card_to_color[match.group(1)] = color
     return card_to_color
 
 
-def parse_single_card(filepath: Path, localization: dict, card_pools: dict, event_loc: dict | None = None) -> dict | None:
+def parse_single_card(
+    filepath: Path, localization: dict, card_pools: dict, event_loc: dict | None = None
+) -> dict | None:
     """Parse a single card C# file."""
     content = filepath.read_text(encoding="utf-8")
     class_name = filepath.stem
 
     # Extract constructor: base(cost, CardType.X, CardRarity.Y, TargetType.Z)
     base_match = re.search(
-        r':\s*base\(\s*(-?\d+)\s*,\s*CardType\.(\w+)\s*,\s*CardRarity\.(\w+)\s*,\s*TargetType\.(\w+)',
-        content
+        r":\s*base\(\s*(-?\d+)\s*,\s*CardType\.(\w+)\s*,\s*CardRarity\.(\w+)\s*,\s*TargetType\.(\w+)",
+        content,
     )
     if not base_match:
         # Some cards use numeric enum values
-        base_match = re.search(r':\s*base\(\s*(-?\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)', content)
+        base_match = re.search(
+            r":\s*base\(\s*(-?\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)", content
+        )
         if base_match:
             cost = int(base_match.group(1))
             card_type = CARD_TYPE_MAP.get(int(base_match.group(2)), "Unknown")
@@ -104,16 +196,17 @@ def parse_single_card(filepath: Path, localization: dict, card_pools: dict, even
     # Extract dynamic vars using shared extractor first
     damage = None
     block = None
-    magic_number = None
     keywords = []
     all_vars: dict[str, int] = extract_vars_from_source(content)
 
     # PowerVar patterns - collect for structured output
     powers_applied = []
-    for pm in re.finditer(r'new PowerVar<(\w+)>\((\d+)m\)', content):
+    for pm in re.finditer(r"new PowerVar<(\w+)>\((\d+)m\)", content):
         power_name = pm.group(1)
         power_val = int(pm.group(2))
-        powers_applied.append({"power": power_name.replace("Power", ""), "amount": power_val})
+        powers_applied.append(
+            {"power": power_name.replace("Power", ""), "amount": power_val}
+        )
 
     # Extract explicit Damage/Block from vars
     damage = all_vars.get("Damage")
@@ -130,7 +223,7 @@ def parse_single_card(filepath: Path, localization: dict, card_pools: dict, even
         damage = all_vars["CalculatedDamage"]
 
     # Star cost: CanonicalStarCost => N means the card costs stars
-    star_cost_match = re.search(r'CanonicalStarCost\s*=>\s*(\d+)', content)
+    star_cost_match = re.search(r"CanonicalStarCost\s*=>\s*(\d+)", content)
     if star_cost_match:
         all_vars["StarCost"] = int(star_cost_match.group(1))
 
@@ -141,26 +234,26 @@ def parse_single_card(filepath: Path, localization: dict, card_pools: dict, even
     # Upgrade info
     upgrade_damage = None
     upgrade_block = None
-    dmg_up = re.search(r'(?<!\w)Damage\.UpgradeValueBy\((\d+)m\)', content)
+    dmg_up = re.search(r"(?<!\w)Damage\.UpgradeValueBy\((\d+)m\)", content)
     if dmg_up:
         upgrade_damage = int(dmg_up.group(1))
-    blk_up = re.search(r'(?<!\w)Block\.UpgradeValueBy\((\d+)m\)', content)
+    blk_up = re.search(r"(?<!\w)Block\.UpgradeValueBy\((\d+)m\)", content)
     if blk_up:
         upgrade_block = int(blk_up.group(1))
 
     # Cost upgrade
     cost_upgrade = None
-    cost_up = re.search(r'UpgradeEnergyCost\((\d+)\)', content)
+    cost_up = re.search(r"UpgradeEnergyCost\((\d+)\)", content)
     if cost_up:
         cost_upgrade = int(cost_up.group(1))
     # Alternative pattern: base.EnergyCost.UpgradeBy(-1)
     if cost_upgrade is None:
-        cost_up2 = re.search(r'EnergyCost\.UpgradeBy\((-?\d+)\)', content)
+        cost_up2 = re.search(r"EnergyCost\.UpgradeBy\((-?\d+)\)", content)
         if cost_up2:
             cost_upgrade = cost + int(cost_up2.group(1))
 
     # Keywords from CanonicalKeywords array (most common pattern)
-    canonical_kw_match = re.search(r'CanonicalKeywords\s*=>', content)
+    canonical_kw_match = re.search(r"CanonicalKeywords\s*=>", content)
     canonical_keywords_block = ""
     if canonical_kw_match:
         # Extract the block after CanonicalKeywords =>
@@ -169,59 +262,82 @@ def parse_single_card(filepath: Path, localization: dict, card_pools: dict, even
         depth = 0
         end = start
         for i in range(start, len(content)):
-            if content[i] == '{':
+            if content[i] == "{":
                 depth += 1
-            elif content[i] == '}':
+            elif content[i] == "}":
                 depth -= 1
-            elif content[i] == ';' and depth <= 0:
+            elif content[i] == ";" and depth <= 0:
                 end = i
                 break
         canonical_keywords_block = content[start:end]
 
-    for kw in ("Exhaust", "Innate", "Ethereal", "Retain", "Unplayable", "Sly", "Eternal"):
+    for kw in (
+        "Exhaust",
+        "Innate",
+        "Ethereal",
+        "Retain",
+        "Unplayable",
+        "Sly",
+        "Eternal",
+    ):
         if f"CardKeyword.{kw}" in canonical_keywords_block:
             keywords.append(kw)
 
     # Keywords from property overrides (additional patterns)
-    if "Ethereal" not in keywords and re.search(r'IsEthereal\s*=>\s*true', content):
+    if "Ethereal" not in keywords and re.search(r"IsEthereal\s*=>\s*true", content):
         keywords.append("Ethereal")
-    if "Innate" not in keywords and re.search(r'IsInnate\s*=>\s*true', content):
+    if "Innate" not in keywords and re.search(r"IsInnate\s*=>\s*true", content):
         keywords.append("Innate")
     if "Exhaust" not in keywords:
-        if re.search(r'ExhaustOnPlay\s*=>\s*true', content) or re.search(r'ShouldExhaust\s*=>\s*true', content):
+        if re.search(r"ExhaustOnPlay\s*=>\s*true", content) or re.search(
+            r"ShouldExhaust\s*=>\s*true", content
+        ):
             keywords.append("Exhaust")
-        if re.search(r'CardKeyword\.Exhaust', content) and 'AddKeyword' in content:
+        if re.search(r"CardKeyword\.Exhaust", content) and "AddKeyword" in content:
             keywords.append("Exhaust")
-    if "Retain" not in keywords and (re.search(r'IsRetain\s*=>\s*true', content) or re.search(r'IsRetainable\s*=>\s*true', content)):
+    if "Retain" not in keywords and (
+        re.search(r"IsRetain\s*=>\s*true", content)
+        or re.search(r"IsRetainable\s*=>\s*true", content)
+    ):
         keywords.append("Retain")
-    if "Unplayable" not in keywords and re.search(r'IsUnplayable\s*=>\s*true', content):
+    if "Unplayable" not in keywords and re.search(r"IsUnplayable\s*=>\s*true", content):
         keywords.append("Unplayable")
-    if "Sly" not in keywords and re.search(r'CardKeyword\.Sly', content) and 'AddKeyword' in content:
+    if (
+        "Sly" not in keywords
+        and re.search(r"CardKeyword\.Sly", content)
+        and "AddKeyword" in content
+    ):
         keywords.append("Sly")
-    if "Eternal" not in keywords and re.search(r'CardKeyword\.Eternal', content) and 'AddKeyword' in content:
+    if (
+        "Eternal" not in keywords
+        and re.search(r"CardKeyword\.Eternal", content)
+        and "AddKeyword" in content
+    ):
         keywords.append("Eternal")
 
     # Tags (Strike, Defend, Minion, OstyAttack, Shiv)
     tags = []
     for tag in ("Strike", "Defend", "Minion", "OstyAttack", "Shiv"):
-        if re.search(rf'CardTag\.{tag}', content):
+        if re.search(rf"CardTag\.{tag}", content):
             tags.append(tag)
 
     # Related/spawned cards — detect via multiple patterns
     related = set()
     all_card_files = {f.stem for f in CARDS_DIR.glob("*.cs")}
     # HoverTipFactory.FromCard<X> — the game's own "related card" system
-    for m in re.finditer(r'HoverTipFactory\.FromCard(?:WithCardHoverTips)?<(\w+)>', content):
+    for m in re.finditer(
+        r"HoverTipFactory\.FromCard(?:WithCardHoverTips)?<(\w+)>", content
+    ):
         related.add(m.group(1))
     # CreateCard<X> — direct card creation
-    for m in re.finditer(r'CreateCard<(\w+)>', content):
+    for m in re.finditer(r"CreateCard<(\w+)>", content):
         related.add(m.group(1))
     # CardClass.Create( — static factory, only if it's a known card
-    for m in re.finditer(r'(\w+)\.Create\(', content):
+    for m in re.finditer(r"(\w+)\.Create\(", content):
         if m.group(1) in all_card_files:
             related.add(m.group(1))
     # .OfType<X>() — type-based card references, only if it's a known card
-    for m in re.finditer(r'\.OfType<(\w+)>\(\)', content):
+    for m in re.finditer(r"\.OfType<(\w+)>\(\)", content):
         if m.group(1) in all_card_files:
             related.add(m.group(1))
     # Remove self-references
@@ -229,15 +345,18 @@ def parse_single_card(filepath: Path, localization: dict, card_pools: dict, even
     spawns_cards = sorted(class_name_to_id(s) for s in related) if related else None
 
     # X-cost detection
-    is_x_cost = bool(re.search(r'HasEnergyCostX\s*=>\s*true', content) or re.search(r'override.*CostsX\s*=>\s*true', content))
-    is_x_star_cost = bool(re.search(r'HasStarCostX\s*=>\s*true', content))
+    is_x_cost = bool(
+        re.search(r"HasEnergyCostX\s*=>\s*true", content)
+        or re.search(r"override.*CostsX\s*=>\s*true", content)
+    )
+    is_x_star_cost = bool(re.search(r"HasStarCostX\s*=>\s*true", content))
 
     # Multi-hit — check literal WithHitCount(N) or DynamicVar Repeat
     hit_count = None
-    hit_match = re.search(r'WithHitCount\((\d+)\)', content)
+    hit_match = re.search(r"WithHitCount\((\d+)\)", content)
     if hit_match:
         hit_count = int(hit_match.group(1))
-    elif re.search(r'WithHitCount\(', content) and all_vars.get("Repeat"):
+    elif re.search(r"WithHitCount\(", content) and all_vars.get("Repeat"):
         hit_count = all_vars["Repeat"]
 
     # Get localization
@@ -283,15 +402,25 @@ def parse_single_card(filepath: Path, localization: dict, card_pools: dict, even
             for rider in RIDERS.get(vtype, []):
                 # Resolve rider description from localization
                 rider_loc_key = f"TINKER_TIME.pages.CHOOSE_RIDER.options.{rider.upper()}.description"
-                rider_title_key = f"TINKER_TIME.pages.CHOOSE_RIDER.options.{rider.upper()}.title"
+                rider_title_key = (
+                    f"TINKER_TIME.pages.CHOOSE_RIDER.options.{rider.upper()}.title"
+                )
                 rider_desc_raw = event_loc.get(rider_loc_key, "") if event_loc else ""
-                rider_title = event_loc.get(rider_title_key, rider) if event_loc else rider
-                rider_desc = shared_resolve_description(rider_desc_raw, all_vars) if rider_desc_raw else ""
-                riders.append({
-                    "id": rider.upper(),
-                    "name": rider_title,
-                    "description": rider_desc,
-                })
+                rider_title = (
+                    event_loc.get(rider_title_key, rider) if event_loc else rider
+                )
+                rider_desc = (
+                    shared_resolve_description(rider_desc_raw, all_vars)
+                    if rider_desc_raw
+                    else ""
+                )
+                riders.append(
+                    {
+                        "id": rider.upper(),
+                        "name": rider_title,
+                        "description": rider_desc,
+                    }
+                )
             if riders:
                 v_entry["riders"] = riders
             type_variants[vtype.lower()] = v_entry
@@ -323,9 +452,16 @@ def parse_single_card(filepath: Path, localization: dict, card_pools: dict, even
         "spawns_cards": spawns_cards,
         "vars": all_vars if all_vars else None,
         "upgrade": {},
-        "image_url": f"/static/images/cards/{card_id.lower()}.png" if (STATIC_IMAGES / f"{card_id.lower()}.png").exists()
-            else (type_variants[card_type.lower()].get("image_url") if type_variants and card_type.lower() in type_variants else None),
-        "beta_image_url": f"/static/images/cards/beta/{card_id.lower()}.png" if (STATIC_IMAGES / "beta" / f"{card_id.lower()}.png").exists() else None,
+        "image_url": f"/static/images/cards/{card_id.lower()}.png"
+        if (STATIC_IMAGES / f"{card_id.lower()}.png").exists()
+        else (
+            type_variants[card_type.lower()].get("image_url")
+            if type_variants and card_type.lower() in type_variants
+            else None
+        ),
+        "beta_image_url": f"/static/images/cards/beta/{card_id.lower()}.png"
+        if (STATIC_IMAGES / "beta" / f"{card_id.lower()}.png").exists()
+        else None,
         "type_variants": type_variants,
         "upgrade_description": upgrade_description,
     }
@@ -338,7 +474,7 @@ def parse_single_card(filepath: Path, localization: dict, card_pools: dict, even
         card["upgrade"]["cost"] = cost_upgrade
 
     # Upgrade power vars — property access: Xxx.UpgradeValueBy(Nm)
-    for pm in re.finditer(r'(\w+)\.UpgradeValueBy\((-?\d+)m\)', content):
+    for pm in re.finditer(r"(\w+)\.UpgradeValueBy\((-?\d+)m\)", content):
         var_name = pm.group(1)
         val = int(pm.group(2))
         if var_name not in ("Damage", "Block"):
@@ -352,21 +488,21 @@ def parse_single_card(filepath: Path, localization: dict, card_pools: dict, even
             card["upgrade"][var_name.lower()] = f"{val:+d}"
 
     # Keyword upgrades: AddKeyword/RemoveKeyword inside OnUpgrade
-    upgrade_block_match = re.search(r'void\s+OnUpgrade\(\)\s*\{', content)
+    upgrade_block_match = re.search(r"void\s+OnUpgrade\(\)\s*\{", content)
     if upgrade_block_match:
         start = upgrade_block_match.end()
         depth = 1
         i = start
         while i < len(content) and depth > 0:
-            if content[i] == '{':
+            if content[i] == "{":
                 depth += 1
-            elif content[i] == '}':
+            elif content[i] == "}":
                 depth -= 1
             i += 1
-        upgrade_body = content[start:i - 1]
-        for km in re.finditer(r'AddKeyword\(CardKeyword\.(\w+)\)', upgrade_body):
+        upgrade_body = content[start : i - 1]
+        for km in re.finditer(r"AddKeyword\(CardKeyword\.(\w+)\)", upgrade_body):
             card["upgrade"][f"add_{km.group(1).lower()}"] = True
-        for km in re.finditer(r'RemoveKeyword\(CardKeyword\.(\w+)\)', upgrade_body):
+        for km in re.finditer(r"RemoveKeyword\(CardKeyword\.(\w+)\)", upgrade_body):
             card["upgrade"][f"remove_{km.group(1).lower()}"] = True
 
     if not card["upgrade"]:
@@ -376,13 +512,15 @@ def parse_single_card(filepath: Path, localization: dict, card_pools: dict, even
     upgraded_vars = dict(resolve_vars)
     if card["upgrade"]:
         for key, val in card["upgrade"].items():
-            if isinstance(val, str) and (val[0] == '+' or val[0] == '-'):
+            if isinstance(val, str) and (val[0] == "+" or val[0] == "-"):
                 try:
                     diff = int(val)
                 except ValueError:
                     continue
                 for vk in upgraded_vars:
-                    if vk.lower() == key.lower() and isinstance(upgraded_vars[vk], (int, float)):
+                    if vk.lower() == key.lower() and isinstance(
+                        upgraded_vars[vk], (int, float)
+                    ):
                         upgraded_vars[vk] += diff
                         break
     up_desc = shared_resolve_description(description, upgraded_vars, is_upgraded=True)
@@ -480,8 +618,9 @@ def build_rarity_map(gameplay_ui: dict) -> dict[str, str]:
     }
 
 
-def localize_card(card: dict, type_map: dict, rarity_map: dict,
-                  kw_names: dict, power_names: dict) -> dict:
+def localize_card(
+    card: dict, type_map: dict, rarity_map: dict, kw_names: dict, power_names: dict
+) -> dict:
     """Localize display fields on a card."""
     card["type_key"] = card["type"]
     card["rarity_key"] = card["rarity"]
@@ -522,11 +661,13 @@ def parse_all_cards(loc_dir: Path) -> list[dict]:
             cards.append(card)
 
     # Assign compendium_order: pool index → rarity → ID (matches in-game card library)
-    cards.sort(key=lambda c: (
-        POOL_INDEX.get(c.get("color", ""), 99),
-        RARITY_INDEX.get(c.get("rarity", ""), 99),
-        c["id"],
-    ))
+    cards.sort(
+        key=lambda c: (
+            POOL_INDEX.get(c.get("color", ""), 99),
+            RARITY_INDEX.get(c.get("rarity", ""), 99),
+            c["id"],
+        )
+    )
     for i, card in enumerate(cards):
         card["compendium_order"] = i
 

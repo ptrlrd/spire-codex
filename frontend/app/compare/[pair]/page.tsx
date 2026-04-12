@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import type { Character, Card } from "@/lib/api";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd } from "@/lib/jsonld";
@@ -91,9 +92,9 @@ export default async function Page({ params }: Props) {
         </h1>
         <p className="text-[var(--text-muted)]">
           Invalid comparison pair. Please choose a valid character pair from the{" "}
-          <a href="/compare" className="text-[var(--accent-gold)] underline">
+          <Link href="/compare" className="text-[var(--accent-gold)] underline">
             comparisons page
-          </a>
+          </Link>
           .
         </p>
       </div>

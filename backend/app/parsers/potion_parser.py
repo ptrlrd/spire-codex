@@ -1,17 +1,19 @@
 """Parse potion data from decompiled C# files and localization JSON."""
+
 import json
 import re
 from pathlib import Path
 from description_resolver import resolve_description, extract_vars_from_source
 
 from parser_paths import BASE, DECOMPILED, loc_dir as _loc_dir, data_dir as _data_dir
+
 POTIONS_DIR = DECOMPILED / "MegaCrit.Sts2.Core.Models.Potions"
 STATIC_IMAGES = BASE / "backend" / "static" / "images" / "potions"
 
 
 def class_name_to_id(name: str) -> str:
-    s = re.sub(r'(?<=[a-z0-9])(?=[A-Z])', '_', name)
-    s = re.sub(r'(?<=[A-Z])(?=[A-Z][a-z])', '_', s)
+    s = re.sub(r"(?<=[a-z0-9])(?=[A-Z])", "_", name)
+    s = re.sub(r"(?<=[A-Z])(?=[A-Z][a-z])", "_", s)
     return s.upper()
 
 
@@ -33,7 +35,7 @@ def parse_single_potion(filepath: Path, localization: dict) -> dict | None:
     potion_id = class_name_to_id(class_name)
 
     # Rarity
-    rarity_match = re.search(r'Rarity\s*=>\s*PotionRarity\.(\w+)', content)
+    rarity_match = re.search(r"Rarity\s*=>\s*PotionRarity\.(\w+)", content)
     rarity = rarity_match.group(1) if rarity_match else "Common"
 
     # Extract variable values from source
@@ -49,7 +51,11 @@ def parse_single_potion(filepath: Path, localization: dict) -> dict | None:
 
     # Image URL
     image_file = STATIC_IMAGES / f"{potion_id.lower()}.png"
-    image_url = f"/static/images/potions/{potion_id.lower()}.png" if image_file.exists() else None
+    image_url = (
+        f"/static/images/potions/{potion_id.lower()}.png"
+        if image_file.exists()
+        else None
+    )
 
     return {
         "id": potion_id,

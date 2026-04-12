@@ -200,7 +200,6 @@ export default function CompareDetail({
 
     if (!parsed) return;
 
-    setLoading(true);
     Promise.all([
       cachedFetch<Character>(`${API}/api/characters/${parsed.a}?lang=${lang}`),
       cachedFetch<Character>(`${API}/api/characters/${parsed.b}?lang=${lang}`),

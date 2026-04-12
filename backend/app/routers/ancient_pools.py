@@ -1,4 +1,5 @@
 """Ancient relic pool API endpoints."""
+
 import json
 from pathlib import Path
 

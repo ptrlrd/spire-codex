@@ -34,7 +34,6 @@ export default function EncounterDetail() {
 
   useEffect(() => {
     if (!id) return;
-    setLoading(true);
     cachedFetch<Encounter>(`${API}/api/encounters/${id}?lang=${lang}`)
       .then((data) => setEncounter(data))
       .catch(() => setNotFound(true))

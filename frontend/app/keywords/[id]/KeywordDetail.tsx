@@ -58,9 +58,6 @@ export default function KeywordDetail() {
 
   useEffect(() => {
     if (!id) return;
-    setLoading(true);
-    setNotFound(false);
-    setKeyword(null);
     setGlossary(null);
     setCards([]);
 

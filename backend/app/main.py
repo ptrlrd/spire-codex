@@ -1,6 +1,7 @@
 """Spire Codex API - FastAPI Application."""
+
 import re
-from fastapi import Depends, FastAPI, Request, Response
+from fastapi import Depends, FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.gzip import GZipMiddleware
 from fastapi.staticfiles import StaticFiles
@@ -9,7 +10,39 @@ from pathlib import Path
 from slowapi import Limiter, _rate_limit_exceeded_handler
 from slowapi.util import get_remote_address
 from slowapi.errors import RateLimitExceeded
-from .routers import cards, characters, relics, monsters, potions, enchantments, encounters, events, powers, keywords, intents, orbs, afflictions, modifiers, achievements, epochs, stories, images, changelogs, feedback, acts, ascensions, names, exports, entity_history, ancient_pools, runs, glossary, guides, versions, unlocks
+from .routers import (
+    cards,
+    characters,
+    relics,
+    monsters,
+    potions,
+    enchantments,
+    encounters,
+    events,
+    powers,
+    keywords,
+    intents,
+    orbs,
+    afflictions,
+    modifiers,
+    achievements,
+    epochs,
+    stories,
+    images,
+    changelogs,
+    feedback,
+    acts,
+    ascensions,
+    names,
+    exports,
+    entity_history,
+    ancient_pools,
+    runs,
+    glossary,
+    guides,
+    versions,
+    unlocks,
+)
 from .services.data_service import get_stats, load_translation_maps, current_version
 from .dependencies import get_lang, VALID_LANGUAGES, LANGUAGE_NAMES
 
@@ -25,11 +58,12 @@ app.state.limiter = limiter
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
 
-_VERSION_RE = re.compile(r'^v?\d+\.\d+')
+_VERSION_RE = re.compile(r"^v?\d+\.\d+")
 
 
 class VersionMiddleware(BaseHTTPMiddleware):
     """Extract ?version= from query params and set the contextvar for data_service."""
+
     async def dispatch(self, request: Request, call_next):
         version = request.query_params.get("version")
         if version and version != "latest" and _VERSION_RE.match(version):
@@ -45,6 +79,7 @@ class VersionMiddleware(BaseHTTPMiddleware):
 
 class CORSStaticMiddleware(BaseHTTPMiddleware):
     """Add CORS headers and cache headers to all responses."""
+
     async def dispatch(self, request: Request, call_next):
         response = await call_next(request)
         response.headers["Access-Control-Allow-Origin"] = "*"

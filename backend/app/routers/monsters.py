@@ -1,4 +1,5 @@
 """Monster API endpoints."""
+
 from fastapi import APIRouter, Depends, HTTPException, Query, Request
 from ..models.schemas import Monster
 from ..services.data_service import load_monsters

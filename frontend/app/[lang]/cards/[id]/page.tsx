@@ -19,7 +19,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const res = await fetch(`${API_INTERNAL}/api/cards/${id}?lang=${lang}`);
     if (!res.ok) return { title: "Card Not Found - Spire Codex" };
     const card = await res.json();
-    const desc = stripTags(card.description || "");
     const langCode = lang as LangCode;
     const gameName = LANG_GAME_NAME[langCode];
     const color = (card.color || "").replace(/^\w/, (c: string) => c.toUpperCase());

@@ -1,4 +1,5 @@
 """Guides API — community strategy guides."""
+
 import json as _json
 import os
 import re
@@ -33,10 +34,19 @@ def get_guides(
         guides = [g for g in guides if g["difficulty"].lower() == difficulty.lower()]
     if tag:
         tag_lower = tag.lower()
-        guides = [g for g in guides if any(t.lower() == tag_lower for t in g.get("tags", []))]
+        guides = [
+            g for g in guides if any(t.lower() == tag_lower for t in g.get("tags", []))
+        ]
     if search:
         q = search.lower()
-        guides = [g for g in guides if q in g["title"].lower() or q in g.get("summary", "").lower() or q in g.get("author", "").lower() or any(q in t.lower() for t in g.get("tags", []))]
+        guides = [
+            g
+            for g in guides
+            if q in g["title"].lower()
+            or q in g.get("summary", "").lower()
+            or q in g.get("author", "").lower()
+            or any(q in t.lower() for t in g.get("tags", []))
+        ]
     # Strip content from list responses
     return [{k: v for k, v in g.items() if k != "content"} for g in guides]
 
@@ -66,7 +76,15 @@ class GuideSubmission(BaseModel):
     twitch: str | None = None
 
 
-VALID_CATEGORIES = {"general", "character", "strategy", "mechanic", "boss", "event", "advanced"}
+VALID_CATEGORIES = {
+    "general",
+    "character",
+    "strategy",
+    "mechanic",
+    "boss",
+    "event",
+    "advanced",
+}
 VALID_DIFFICULTIES = {"beginner", "intermediate", "advanced"}
 VALID_CHARACTERS = {"ironclad", "silent", "defect", "necrobinder", "regent", ""}
 MAX_TITLE = 200
@@ -77,8 +95,8 @@ MAX_FIELD = 200
 
 def _sanitize(text: str, max_len: int = MAX_FIELD) -> str:
     """Strip HTML tags and control chars, truncate."""
-    text = re.sub(r'<[^>]+>', '', text)  # strip HTML tags
-    text = re.sub(r'[\x00-\x08\x0b\x0c\x0e-\x1f]', '', text)  # strip control chars
+    text = re.sub(r"<[^>]+>", "", text)  # strip HTML tags
+    text = re.sub(r"[\x00-\x08\x0b\x0c\x0e-\x1f]", "", text)  # strip control chars
     return text.strip()[:max_len]
 
 
@@ -90,7 +108,7 @@ def _validate_url(url: str | None) -> str | None:
     if url.startswith(("http://", "https://")):
         return url
     # Treat as username — alphanumeric, dots, underscores, hyphens only
-    if re.match(r'^[\w.\-]+$', url):
+    if re.match(r"^[\w.\-]+$", url):
         return url
     return None
 
@@ -111,9 +129,21 @@ async def submit_guide(request: Request, body: GuideSubmission):
     if not author or not contact:
         raise HTTPException(status_code=422, detail="Author and contact are required")
 
-    category = body.category.lower() if body.category.lower() in VALID_CATEGORIES else "general"
-    difficulty = body.difficulty.lower() if body.difficulty.lower() in VALID_DIFFICULTIES else "beginner"
-    character = body.character if body.character and body.character.lower() in VALID_CHARACTERS else None
+    category = (
+        body.category.lower()
+        if body.category.lower() in VALID_CATEGORIES
+        else "general"
+    )
+    difficulty = (
+        body.difficulty.lower()
+        if body.difficulty.lower() in VALID_DIFFICULTIES
+        else "beginner"
+    )
+    character = (
+        body.character
+        if body.character and body.character.lower() in VALID_CHARACTERS
+        else None
+    )
     tags = _sanitize(body.tags, MAX_SUMMARY)
     summary = _sanitize(body.summary, MAX_SUMMARY)
     website = _validate_url(body.website)
@@ -122,7 +152,7 @@ async def submit_guide(request: Request, body: GuideSubmission):
     twitch_val = _validate_url(body.twitch)
 
     socials = [s for s in [website, bluesky_val, twitter_val, twitch_val] if s]
-    slug = re.sub(r'[^a-z0-9]+', '-', title.lower()).strip('-')
+    slug = re.sub(r"[^a-z0-9]+", "-", title.lower()).strip("-")
 
     # Build frontmatter for the .md file attachment
     fm_lines = [
@@ -132,7 +162,11 @@ async def submit_guide(request: Request, body: GuideSubmission):
         f'author: "{author}"',
         f'date: "{date.today().isoformat()}"',
         f'category: "{category}"',
-        'tags: [{}]'.format(", ".join(f'"{t.strip()}"' for t in tags.split(",") if t.strip())) if tags else 'tags: []',
+        "tags: [{}]".format(
+            ", ".join(f'"{t.strip()}"' for t in tags.split(",") if t.strip())
+        )
+        if tags
+        else "tags: []",
         f'summary: "{summary}"',
         f'difficulty: "{difficulty}"',
     ]
@@ -153,22 +187,38 @@ async def submit_guide(request: Request, body: GuideSubmission):
     # Embed with metadata only (no content — it's in the attached file)
     payload = {
         "content": "<@99656376954916864>",
-        "embeds": [{
-            "title": f"Guide Submission: {title}",
-            "description": summary[:500] if summary else "(no summary)",
-            "color": 0x44CC44,
-            "fields": [
-                {"name": "Author", "value": author, "inline": True},
-                {"name": "Contact", "value": contact, "inline": True},
-                {"name": "Category", "value": category, "inline": True},
-                {"name": "Difficulty", "value": difficulty, "inline": True},
-                {"name": "Character", "value": character or "None", "inline": True},
-                {"name": "Tags", "value": tags or "None", "inline": True},
-                *([{"name": "Socials", "value": " | ".join(socials), "inline": False}] if socials else []),
-                {"name": "Length", "value": f"{len(content)} chars", "inline": True},
-            ],
-            "footer": {"text": "Spire Codex Guide Submission"},
-        }],
+        "embeds": [
+            {
+                "title": f"Guide Submission: {title}",
+                "description": summary[:500] if summary else "(no summary)",
+                "color": 0x44CC44,
+                "fields": [
+                    {"name": "Author", "value": author, "inline": True},
+                    {"name": "Contact", "value": contact, "inline": True},
+                    {"name": "Category", "value": category, "inline": True},
+                    {"name": "Difficulty", "value": difficulty, "inline": True},
+                    {"name": "Character", "value": character or "None", "inline": True},
+                    {"name": "Tags", "value": tags or "None", "inline": True},
+                    *(
+                        [
+                            {
+                                "name": "Socials",
+                                "value": " | ".join(socials),
+                                "inline": False,
+                            }
+                        ]
+                        if socials
+                        else []
+                    ),
+                    {
+                        "name": "Length",
+                        "value": f"{len(content)} chars",
+                        "inline": True,
+                    },
+                ],
+                "footer": {"text": "Spire Codex Guide Submission"},
+            }
+        ],
     }
 
     async with httpx.AsyncClient() as client:

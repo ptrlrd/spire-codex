@@ -79,7 +79,6 @@ export default async function LangReferencePage({ params }: { params: Promise<{ 
 
   const langCode = lang as LangCode;
   const gameName = LANG_GAME_NAME[langCode];
-  const nativeName = LANG_NAMES[langCode];
 
   const [acts, ascensions, keywords, orbs, afflictions, intents, modifiers, achievements] =
     await Promise.all([

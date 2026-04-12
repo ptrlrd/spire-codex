@@ -25,7 +25,6 @@ export default function OrbDetail() {
 
   useEffect(() => {
     if (!id) return;
-    setLoading(true);
     cachedFetch<Orb>(`${API}/api/orbs/${id}?lang=${lang}`)
       .then((data) => setOrb(data))
       .catch(() => setNotFound(true))

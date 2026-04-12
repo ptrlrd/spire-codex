@@ -1,4 +1,5 @@
 """Power/buff/debuff API endpoints."""
+
 from fastapi import APIRouter, Depends, HTTPException, Query, Request
 from ..models.schemas import Power
 from ..services.data_service import load_powers
@@ -11,7 +12,9 @@ router = APIRouter(prefix="/api/powers", tags=["Powers"])
 def get_powers(
     request: Request,
     type: str | None = Query(None, description="Filter by type (Buff/Debuff)"),
-    stack_type: str | None = Query(None, description="Filter by stack type (Counter/Single/None)"),
+    stack_type: str | None = Query(
+        None, description="Filter by stack type (Counter/Single/None)"
+    ),
     search: str | None = Query(None, description="Search by name or description"),
     lang: str = Depends(get_lang),
 ):
@@ -19,9 +22,15 @@ def get_powers(
     if type:
         powers = [p for p in powers if p["type"].lower() == type.lower()]
     if stack_type:
-        powers = [p for p in powers if p.get("stack_type", "").lower() == stack_type.lower()]
+        powers = [
+            p for p in powers if p.get("stack_type", "").lower() == stack_type.lower()
+        ]
     if search:
-        powers = [p for p in powers if matches_search(p, search, ["name", "description", "type"])]
+        powers = [
+            p
+            for p in powers
+            if matches_search(p, search, ["name", "description", "type"])
+        ]
     return powers
 
 

@@ -25,7 +25,6 @@ export default function AscensionDetail() {
 
   useEffect(() => {
     if (!id) return;
-    setLoading(true);
     Promise.all([
       cachedFetch<Ascension>(`${API}/api/ascensions/${id}?lang=${lang}`),
       cachedFetch<Ascension[]>(`${API}/api/ascensions?lang=${lang}`),

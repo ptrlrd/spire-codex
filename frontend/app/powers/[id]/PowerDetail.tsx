@@ -31,7 +31,6 @@ const [power, setPower] = useState<Power | null>(null);
 
   useEffect(() => {
     if (!id) return;
-    setLoading(true);
     cachedFetch<Power>(`${API}/api/powers/${id}?lang=${lang}`)
       .then((data) => setPower(data))
       .catch(() => setNotFound(true))

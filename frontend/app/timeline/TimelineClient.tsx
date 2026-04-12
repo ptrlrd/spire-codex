@@ -208,7 +208,6 @@ export default function TimelineClient({
         return;
       }
     }
-    setLoading(true);
     const params = new URLSearchParams();
     if (storyFilter) params.set("story", storyFilter);
     if (search) params.set("search", search);

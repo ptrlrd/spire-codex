@@ -34,7 +34,6 @@ export default function EnchantmentDetail() {
 
   useEffect(() => {
     if (!id) return;
-    setLoading(true);
     cachedFetch<Enchantment>(`${API}/api/enchantments/${id}?lang=${lang}`)
       .then((data) => setEnchantment(data))
       .catch(() => setNotFound(true))

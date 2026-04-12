@@ -25,7 +25,6 @@ export default function IntentDetail() {
 
   useEffect(() => {
     if (!id) return;
-    setLoading(true);
     cachedFetch<Intent>(`${API}/api/intents/${id}?lang=${lang}`)
       .then((data) => setIntent(data))
       .catch(() => setNotFound(true))

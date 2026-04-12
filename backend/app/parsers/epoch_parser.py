@@ -1,9 +1,11 @@
 """Parse epoch and story/timeline data from decompiled C# files and localization JSON."""
+
 import json
 import re
 from pathlib import Path
 
-from parser_paths import BASE, DECOMPILED, loc_dir as _loc_dir, data_dir as _data_dir
+from parser_paths import DECOMPILED, loc_dir as _loc_dir, data_dir as _data_dir
+
 EPOCHS_DIR = DECOMPILED / "MegaCrit.Sts2.Core.Timeline.Epochs"
 STORIES_DIR = DECOMPILED / "MegaCrit.Sts2.Core.Timeline.Stories"
 
@@ -38,8 +40,8 @@ ERA_VALUES = {
 
 
 def class_name_to_id(name: str) -> str:
-    s = re.sub(r'(?<=[a-z0-9])(?=[A-Z])', '_', name)
-    s = re.sub(r'(?<=[A-Z])(?=[A-Z][a-z])', '_', s)
+    s = re.sub(r"(?<=[a-z0-9])(?=[A-Z])", "_", name)
+    s = re.sub(r"(?<=[A-Z])(?=[A-Z][a-z])", "_", s)
     return s.upper()
 
 
@@ -65,15 +67,15 @@ def load_eras_localization(loc_dir: Path) -> dict:
 
 
 def strip_rich_tags(text: str) -> str:
-    text = re.sub(r'\[rainbow[^\]]*\]', '', text)
-    text = re.sub(r'\[font_size=\d+\]', '', text)
-    text = re.sub(r'\[/?(?:thinky_dots|i|font_size|rainbow)\]', '', text)
+    text = re.sub(r"\[rainbow[^\]]*\]", "", text)
+    text = re.sub(r"\[font_size=\d+\]", "", text)
+    text = re.sub(r"\[/?(?:thinky_dots|i|font_size|rainbow)\]", "", text)
     return text
 
 
 def resolve_unlock_info(text: str) -> str:
     """Resolve {IsRevealed:A|B} conditionals — use the second option (requirement text)."""
-    text = re.sub(r'\{IsRevealed:([^|]*)\|([^}]*)\}', r'\2', text)
+    text = re.sub(r"\{IsRevealed:([^|]*)\|([^}]*)\}", r"\2", text)
     return text
 
 
@@ -88,13 +90,13 @@ def extract_field(content: str, field: str) -> str | None:
 
 def extract_era(content: str) -> str | None:
     """Extract era enum name from: override EpochEra Era => EpochEra.Prehistoria0"""
-    m = re.search(r'override\s+EpochEra\s+Era\s*=>\s*EpochEra\.(\w+)', content)
+    m = re.search(r"override\s+EpochEra\s+Era\s*=>\s*EpochEra\.(\w+)", content)
     return m.group(1) if m else None
 
 
 def extract_era_position(content: str) -> int | None:
     """Extract era position from: override int EraPosition => 0"""
-    m = re.search(r'override\s+int\s+EraPosition\s*=>\s*(\d+)', content)
+    m = re.search(r"override\s+int\s+EraPosition\s*=>\s*(\d+)", content)
     return int(m.group(1)) if m else None
 
 
@@ -106,22 +108,34 @@ def extract_story_id(content: str) -> str | None:
 
 def extract_unlocks_cards(content: str) -> list[str]:
     """Extract card class names from ModelDb.Card<ClassName>() patterns."""
-    return [class_name_to_id(m.group(1)) for m in re.finditer(r'ModelDb\.Card<(\w+)>\(\)', content)]
+    return [
+        class_name_to_id(m.group(1))
+        for m in re.finditer(r"ModelDb\.Card<(\w+)>\(\)", content)
+    ]
 
 
 def extract_unlocks_relics(content: str) -> list[str]:
     """Extract relic class names from ModelDb.Relic<ClassName>() patterns."""
-    return [class_name_to_id(m.group(1)) for m in re.finditer(r'ModelDb\.Relic<(\w+)>\(\)', content)]
+    return [
+        class_name_to_id(m.group(1))
+        for m in re.finditer(r"ModelDb\.Relic<(\w+)>\(\)", content)
+    ]
 
 
 def extract_unlocks_potions(content: str) -> list[str]:
     """Extract potion class names from ModelDb.Potion<ClassName>() patterns."""
-    return [class_name_to_id(m.group(1)) for m in re.finditer(r'ModelDb\.Potion<(\w+)>\(\)', content)]
+    return [
+        class_name_to_id(m.group(1))
+        for m in re.finditer(r"ModelDb\.Potion<(\w+)>\(\)", content)
+    ]
 
 
 def extract_unlocks_events(content: str) -> list[str]:
     """Extract event class names from ModelDb.Event<ClassName>() patterns."""
-    return [class_name_to_id(m.group(1)) for m in re.finditer(r'ModelDb\.Event<(\w+)>\(\)', content)]
+    return [
+        class_name_to_id(m.group(1))
+        for m in re.finditer(r"ModelDb\.Event<(\w+)>\(\)", content)
+    ]
 
 
 def load_all_titles(loc_dir: Path) -> dict[str, str]:
@@ -143,46 +157,62 @@ def load_all_titles(loc_dir: Path) -> dict[str, str]:
 def resolve_unlock_text(text: str, content: str, title_map: dict[str, str]) -> str:
     """Resolve placeholders like {Event}, {Potion1}, {Card1}, {Relic1} in unlock_text."""
     # Extract model references for numbered vars
-    potions = [class_name_to_id(m.group(1)) for m in re.finditer(r'ModelDb\.Potion<(\w+)>\(\)', content)]
-    cards = [class_name_to_id(m.group(1)) for m in re.finditer(r'ModelDb\.Card<(\w+)>\(\)', content)]
-    relics = [class_name_to_id(m.group(1)) for m in re.finditer(r'ModelDb\.Relic<(\w+)>\(\)', content)]
-    events = [class_name_to_id(m.group(1)) for m in re.finditer(r'ModelDb\.Event<(\w+)>\(\)', content)]
+    potions = [
+        class_name_to_id(m.group(1))
+        for m in re.finditer(r"ModelDb\.Potion<(\w+)>\(\)", content)
+    ]
+    cards = [
+        class_name_to_id(m.group(1))
+        for m in re.finditer(r"ModelDb\.Card<(\w+)>\(\)", content)
+    ]
+    relics = [
+        class_name_to_id(m.group(1))
+        for m in re.finditer(r"ModelDb\.Relic<(\w+)>\(\)", content)
+    ]
+    events = [
+        class_name_to_id(m.group(1))
+        for m in re.finditer(r"ModelDb\.Event<(\w+)>\(\)", content)
+    ]
 
     # Build replacement map
     replacements = {}
     for i, eid in enumerate(events):
-        replacements[f"Event{i+1}" if len(events) > 1 else "Event"] = title_map.get(eid, eid)
-        replacements[f"Event{i+1}"] = title_map.get(eid, eid)
+        replacements[f"Event{i + 1}" if len(events) > 1 else "Event"] = title_map.get(
+            eid, eid
+        )
+        replacements[f"Event{i + 1}"] = title_map.get(eid, eid)
     for i, pid in enumerate(potions):
-        replacements[f"Potion{i+1}"] = title_map.get(pid, pid)
+        replacements[f"Potion{i + 1}"] = title_map.get(pid, pid)
     for i, cid in enumerate(cards):
-        replacements[f"Card{i+1}"] = title_map.get(cid, cid)
+        replacements[f"Card{i + 1}"] = title_map.get(cid, cid)
     for i, rid in enumerate(relics):
-        replacements[f"Relic{i+1}"] = title_map.get(rid, rid)
+        replacements[f"Relic{i + 1}"] = title_map.get(rid, rid)
 
     # Replace {VarName} placeholders
     def replace_var(m):
         var_name = m.group(1)
         return replacements.get(var_name, m.group(0))
 
-    return re.sub(r'\{(\w+)\}', replace_var, text)
+    return re.sub(r"\{(\w+)\}", replace_var, text)
 
 
 def extract_timeline_expansion(content: str) -> list[str]:
     """Extract epoch IDs from GetTimelineExpansion() method."""
     # Find the GetTimelineExpansion method body
-    m = re.search(r'GetTimelineExpansion\(\)\s*\{(.*?)\}', content, re.DOTALL)
+    m = re.search(r"GetTimelineExpansion\(\)\s*\{(.*?)\}", content, re.DOTALL)
     if not m:
         return []
     body = m.group(1)
     # Pattern: EpochModel.Get(EpochModel.GetId<XxxEpoch>())
     ids = []
-    for match in re.finditer(r'EpochModel\.GetId<(\w+)>\(\)', body):
+    for match in re.finditer(r"EpochModel\.GetId<(\w+)>\(\)", body):
         ids.append(epoch_class_to_id(match.group(1)))
     return ids
 
 
-def parse_single_epoch(filepath: Path, localization: dict, title_map: dict[str, str]) -> dict | None:
+def parse_single_epoch(
+    filepath: Path, localization: dict, title_map: dict[str, str]
+) -> dict | None:
     content = filepath.read_text(encoding="utf-8")
 
     epoch_id = extract_field(content, "Id")
@@ -211,16 +241,28 @@ def parse_single_epoch(filepath: Path, localization: dict, title_map: dict[str, 
     description = strip_rich_tags(description_raw) if description_raw else None
 
     unlock_info_raw = localization.get(f"{epoch_id}.unlockInfo", "")
-    unlock_info = strip_rich_tags(resolve_unlock_info(unlock_info_raw)) if unlock_info_raw else None
+    unlock_info = (
+        strip_rich_tags(resolve_unlock_info(unlock_info_raw))
+        if unlock_info_raw
+        else None
+    )
 
     unlock_text_raw = localization.get(f"{epoch_id}.unlockText", "")
-    unlock_text = strip_rich_tags(resolve_unlock_text(unlock_text_raw, content, title_map)) if unlock_text_raw else None
+    unlock_text = (
+        strip_rich_tags(resolve_unlock_text(unlock_text_raw, content, title_map))
+        if unlock_text_raw
+        else None
+    )
 
     # Sort order
     era_value = ERA_VALUES.get(era, 0) if era else 0
     sort_order = era_value * 100 + (era_position if era_position is not None else 0)
 
-    slug = re.sub(r'[^a-z0-9]+', '-', title.lower()).strip('-') if title else epoch_id.lower()
+    slug = (
+        re.sub(r"[^a-z0-9]+", "-", title.lower()).strip("-")
+        if title
+        else epoch_id.lower()
+    )
 
     result = {
         "id": epoch_id,
@@ -274,11 +316,15 @@ def extract_story_epochs(content: str) -> list[str]:
     """Extract ordered epoch IDs from the Epochs array property using EpochModel.Get<XxxEpoch>()."""
     ids = []
     # Find the Epochs property body
-    m = re.search(r'override\s+EpochModel\[\]\s+Epochs\s*=>\s*new\s+EpochModel\[\d+\]\s*\{(.*?)\}', content, re.DOTALL)
+    m = re.search(
+        r"override\s+EpochModel\[\]\s+Epochs\s*=>\s*new\s+EpochModel\[\d+\]\s*\{(.*?)\}",
+        content,
+        re.DOTALL,
+    )
     if not m:
         return ids
     body = m.group(1)
-    for match in re.finditer(r'EpochModel\.Get<(\w+)>\(\)', body):
+    for match in re.finditer(r"EpochModel\.Get<(\w+)>\(\)", body):
         ids.append(epoch_class_to_id(match.group(1)))
     return ids
 

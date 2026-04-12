@@ -56,7 +56,6 @@ const [characters, setCharacters] = useState<Character[]>(initialCharacters);
       }
     }
 
-    setLoading(true);
     Promise.all([
       cachedFetch<Character[]>(`${API}/api/characters?lang=${lang}`),
       cachedFetch<Relic[]>(`${API}/api/relics?lang=${lang}`),

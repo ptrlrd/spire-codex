@@ -1,15 +1,17 @@
 """Parse act data from decompiled C# files and localization JSON."""
+
 import json
 import re
 from pathlib import Path
 
-from parser_paths import BASE, DECOMPILED, loc_dir as _loc_dir, data_dir as _data_dir
+from parser_paths import DECOMPILED, loc_dir as _loc_dir, data_dir as _data_dir
+
 ACTS_DIR = DECOMPILED / "MegaCrit.Sts2.Core.Models.Acts"
 
 
 def class_name_to_id(name: str) -> str:
-    s = re.sub(r'(?<=[a-z0-9])(?=[A-Z])', '_', name)
-    s = re.sub(r'(?<=[A-Z])(?=[A-Z][a-z])', '_', s)
+    s = re.sub(r"(?<=[a-z0-9])(?=[A-Z])", "_", name)
+    s = re.sub(r"(?<=[A-Z])(?=[A-Z][a-z])", "_", s)
     return s.upper()
 
 
@@ -30,24 +32,26 @@ def parse_act(filepath: Path, localization: dict) -> dict:
 
     # Boss encounters from BossDiscoveryOrder property
     boss_list = []
-    if 'BossDiscoveryOrder' in content:
-        boss_section = content.split('BossDiscoveryOrder')[1].split(';')[0]
-        boss_list = re.findall(r'ModelDb\.Encounter<(\w+)>\(\)', boss_section)
+    if "BossDiscoveryOrder" in content:
+        boss_section = content.split("BossDiscoveryOrder")[1].split(";")[0]
+        boss_list = re.findall(r"ModelDb\.Encounter<(\w+)>\(\)", boss_section)
 
     # All encounters from GenerateAllEncounters
     encounters = []
-    gen_match = re.search(r'GenerateAllEncounters\(\)(.*?)(?:\n\t\})', content, re.DOTALL)
+    gen_match = re.search(
+        r"GenerateAllEncounters\(\)(.*?)(?:\n\t\})", content, re.DOTALL
+    )
     if gen_match:
-        encounters = re.findall(r'ModelDb\.Encounter<(\w+)>\(\)', gen_match.group(1))
+        encounters = re.findall(r"ModelDb\.Encounter<(\w+)>\(\)", gen_match.group(1))
 
     # Ancients
-    ancients = re.findall(r'ModelDb\.AncientEvent<(\w+)>\(\)', content)
+    ancients = re.findall(r"ModelDb\.AncientEvent<(\w+)>\(\)", content)
 
     # Events
-    events = re.findall(r'ModelDb\.Event<(\w+)>\(\)', content)
+    events = re.findall(r"ModelDb\.Event<(\w+)>\(\)", content)
 
     # Number of rooms
-    rooms_match = re.search(r'BaseNumberOfRooms\s*=>\s*(\d+)', content)
+    rooms_match = re.search(r"BaseNumberOfRooms\s*=>\s*(\d+)", content)
     num_rooms = int(rooms_match.group(1)) if rooms_match else None
 
     return {

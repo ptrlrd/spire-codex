@@ -1,4 +1,5 @@
 """Affliction API endpoints."""
+
 from fastapi import APIRouter, Depends, HTTPException, Request
 from ..models.schemas import Affliction
 from ..services.data_service import load_afflictions
@@ -18,4 +19,6 @@ def get_affliction(request: Request, affliction_id: str, lang: str = Depends(get
     for aff in afflictions:
         if aff["id"] == affliction_id.upper():
             return aff
-    raise HTTPException(status_code=404, detail=f"Affliction '{affliction_id}' not found")
+    raise HTTPException(
+        status_code=404, detail=f"Affliction '{affliction_id}' not found"
+    )

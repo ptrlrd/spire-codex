@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { IS_BETA } from "@/lib/seo";
 
@@ -128,12 +129,12 @@ export default function Footer() {
           API
         </a>
         <span className="text-[var(--border-subtle)]" aria-hidden>·</span>
-        <a
+        <Link
           href="/developers"
           className="hover:text-[var(--accent-gold)] transition-colors"
         >
           Developers
-        </a>
+        </Link>
         <span className="text-[var(--border-subtle)]" aria-hidden>·</span>
         <a
           href="https://github.com/ptrlrd/spire-codex"

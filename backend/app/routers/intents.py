@@ -1,4 +1,5 @@
 """Intent API endpoints."""
+
 from fastapi import APIRouter, Depends, HTTPException, Request
 from ..models.schemas import Intent
 from ..services.data_service import load_intents

@@ -1,4 +1,5 @@
 """Image browsing and download API endpoints."""
+
 import io
 import zipfile
 from pathlib import Path
@@ -22,12 +23,29 @@ CATEGORIES: dict[str, tuple[str, str, bool, list[str] | None]] = {
     "icons": ("Icons", "icons", False, None),
     "ancients": ("Ancients", "misc/ancients", False, None),
     "bosses": ("Bosses", "misc/bosses", False, None),
-    "npcs": ("NPCs", "misc", False, ["neow.png", "tezcatara.png", "merchant.png", "fake_merchant.png"]),
+    "npcs": (
+        "NPCs",
+        "misc",
+        False,
+        ["neow.png", "tezcatara.png", "merchant.png", "fake_merchant.png"],
+    ),
     "renders": ("Spine Renders", "renders", True, None),
     "cards-beta": ("Cards (Beta Art)", "cards/beta", False, None),
     "relics-beta": ("Relics (Beta Art)", "relics/beta", False, None),
     "monsters-beta": ("Monsters (Beta Art)", "monsters/beta", False, None),
-    "backgrounds": ("Backgrounds", "misc", False, ["main_menu.png", "main_menu_bg.png", "sts2_logo.png", "neow.png", "tezcatara.png", "merchant.png"]),
+    "backgrounds": (
+        "Backgrounds",
+        "misc",
+        False,
+        [
+            "main_menu.png",
+            "main_menu_bg.png",
+            "sts2_logo.png",
+            "neow.png",
+            "tezcatara.png",
+            "merchant.png",
+        ],
+    ),
     "intents": ("Intent Icons", "intents", False, None),
     "ui-icons": ("UI Icons", "ui/icons", False, None),
     "ui-energy": ("Energy Icons", "ui/energy", False, None),
@@ -44,7 +62,12 @@ CATEGORIES: dict[str, tuple[str, str, bool, list[str] | None]] = {
     "ui-crystal-sphere": ("Crystal Sphere", "ui/crystal_sphere", False, None),
     "ui-top-bar": ("Top Bar Icons", "ui/top_bar", False, None),
     "ui-animations": ("Idle Animations", "ui/animations", True, None),
-    "ui-animations-attack": ("Attack Animations", "ui/animations/monsters_attack", False, None),
+    "ui-animations-attack": (
+        "Attack Animations",
+        "ui/animations/monsters_attack",
+        False,
+        None,
+    ),
     "ui-compendium": ("Compendium UI", "ui/compendium", True, None),
     "ui-achievements": ("Achievement Icons", "ui/achievements", False, None),
     "ui-modifiers": ("Custom Mode Modifiers", "ui/modifiers", False, None),
@@ -70,17 +93,23 @@ def _get_images_for_category(category_id: str) -> list[dict[str, str]]:
         # Only specific files from the directory
         png_files = [dir_path / f for f in explicit_files if (dir_path / f).exists()]
     elif recursive:
-        png_files = sorted([f for ext in ("*.png", "*.gif", "*.webp") for f in dir_path.rglob(ext)])
+        png_files = sorted(
+            [f for ext in ("*.png", "*.gif", "*.webp") for f in dir_path.rglob(ext)]
+        )
     else:
-        png_files = sorted([f for ext in ("*.png", "*.gif", "*.webp") for f in dir_path.glob(ext)])
+        png_files = sorted(
+            [f for ext in ("*.png", "*.gif", "*.webp") for f in dir_path.glob(ext)]
+        )
 
     images = []
     for f in png_files:
         rel = f.relative_to(STATIC_DIR)
-        images.append({
-            "filename": f.name,
-            "url": f"/static/{rel}",
-        })
+        images.append(
+            {
+                "filename": f.name,
+                "url": f"/static/{rel}",
+            }
+        )
     return images
 
 
@@ -90,12 +119,14 @@ def list_image_categories(request: Request):
     result = []
     for cat_id, (display_name, *_) in CATEGORIES.items():
         images = _get_images_for_category(cat_id)
-        result.append({
-            "id": cat_id,
-            "name": display_name,
-            "count": len(images),
-            "images": images,
-        })
+        result.append(
+            {
+                "id": cat_id,
+                "name": display_name,
+                "count": len(images),
+                "images": images,
+            }
+        )
     return result
 
 
@@ -107,7 +138,9 @@ def download_category_zip(category: str, request: Request):
 
     images = _get_images_for_category(category)
     if not images:
-        raise HTTPException(status_code=404, detail=f"No images found for category '{category}'")
+        raise HTTPException(
+            status_code=404, detail=f"No images found for category '{category}'"
+        )
 
     buf = io.BytesIO()
     with zipfile.ZipFile(buf, "w", zipfile.ZIP_DEFLATED) as zf:

@@ -1,6 +1,6 @@
 """Generate translations.json for each language — maps English filter values to localized display names."""
+
 import json
-from pathlib import Path
 
 from parser_paths import loc_dir as _loc_dir, data_dir as _data_dir
 

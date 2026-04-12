@@ -1,6 +1,6 @@
 """Entity version history API — scans changelogs for references to a specific entity."""
+
 import json
-from pathlib import Path
 
 from fastapi import APIRouter
 
@@ -18,7 +18,7 @@ def _load_changelogs() -> list[dict]:
     for f in d.glob("*.json"):
         with open(f, "r", encoding="utf-8") as fh:
             logs.append(json.load(fh))
-    logs.sort(key=lambda l: (l.get("date", ""), l.get("tag", "")))
+    logs.sort(key=lambda log: (log.get("date", ""), log.get("tag", "")))
     return logs
 
 
@@ -43,34 +43,40 @@ def get_entity_history(entity_type: str, entity_id: str):
             # Check added
             for item in category.get("added", []):
                 if item.get("id") == entity_id:
-                    history.append({
-                        "version": version,
-                        "date": date,
-                        "action": "added",
-                        "changes": [],
-                    })
+                    history.append(
+                        {
+                            "version": version,
+                            "date": date,
+                            "action": "added",
+                            "changes": [],
+                        }
+                    )
                     break
 
             # Check removed
             for item in category.get("removed", []):
                 if item.get("id") == entity_id:
-                    history.append({
-                        "version": version,
-                        "date": date,
-                        "action": "removed",
-                        "changes": [],
-                    })
+                    history.append(
+                        {
+                            "version": version,
+                            "date": date,
+                            "action": "removed",
+                            "changes": [],
+                        }
+                    )
                     break
 
             # Check changed
             for item in category.get("changed", []):
                 if item.get("id") == entity_id:
-                    history.append({
-                        "version": version,
-                        "date": date,
-                        "action": "changed",
-                        "changes": item.get("changes", []),
-                    })
+                    history.append(
+                        {
+                            "version": version,
+                            "date": date,
+                            "action": "changed",
+                            "changes": item.get("changes", []),
+                        }
+                    )
                     break
 
     return history

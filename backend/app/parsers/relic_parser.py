@@ -1,18 +1,20 @@
 """Parse relic data from decompiled C# files and localization JSON."""
+
 import json
 import re
 from pathlib import Path
 from description_resolver import resolve_description, extract_vars_from_source
 
 from parser_paths import BASE, DECOMPILED, loc_dir as _loc_dir, data_dir as _data_dir
+
 RELICS_DIR = DECOMPILED / "MegaCrit.Sts2.Core.Models.Relics"
 RELIC_POOLS_DIR = DECOMPILED / "MegaCrit.Sts2.Core.Models.RelicPools"
 STATIC_IMAGES = BASE / "backend" / "static" / "images" / "relics"
 
 
 def class_name_to_id(name: str) -> str:
-    s = re.sub(r'(?<=[a-z0-9])(?=[A-Z])', '_', name)
-    s = re.sub(r'(?<=[A-Z])(?=[A-Z][a-z])', '_', s)
+    s = re.sub(r"(?<=[a-z0-9])(?=[A-Z])", "_", name)
+    s = re.sub(r"(?<=[A-Z])(?=[A-Z][a-z])", "_", s)
     return s.upper()
 
 
@@ -35,8 +37,7 @@ def parse_starter_upgrades() -> dict[str, str]:
         content = touch_file.read_text(encoding="utf-8")
         # Pattern: { ModelDb.Relic<Base>().Id, ModelDb.Relic<Upgraded>() }
         for m in re.finditer(
-            r'ModelDb\.Relic<(\w+)>\(\)\.Id,\s*ModelDb\.Relic<(\w+)>\(\)',
-            content
+            r"ModelDb\.Relic<(\w+)>\(\)\.Id,\s*ModelDb\.Relic<(\w+)>\(\)", content
         ):
             base, upgraded = m.group(1), m.group(2)
             upgrades[upgraded] = base
@@ -59,7 +60,7 @@ def parse_relic_pools() -> dict[str, str]:
         if not filepath.exists():
             continue
         content = filepath.read_text(encoding="utf-8")
-        for m in re.finditer(r'ModelDb\.Relic<(\w+)>\(\)', content):
+        for m in re.finditer(r"ModelDb\.Relic<(\w+)>\(\)", content):
             relic_to_pool[m.group(1)] = pool_name
 
     # Assign upgraded starter relics to their base relic's character pool
@@ -71,7 +72,9 @@ def parse_relic_pools() -> dict[str, str]:
     return relic_to_pool
 
 
-def parse_single_relic(filepath: Path, localization: dict, relic_pools: dict, ench_loc: dict | None = None) -> dict | None:
+def parse_single_relic(
+    filepath: Path, localization: dict, relic_pools: dict, ench_loc: dict | None = None
+) -> dict | None:
     content = filepath.read_text(encoding="utf-8")
     class_name = filepath.stem
 
@@ -79,13 +82,13 @@ def parse_single_relic(filepath: Path, localization: dict, relic_pools: dict, en
         return None
 
     # Skip non-relic classes that happen to live in the Relics directory
-    if not re.search(r'class\s+\w+\s*:\s*RelicModel\b', content):
+    if not re.search(r"class\s+\w+\s*:\s*RelicModel\b", content):
         return None
 
     relic_id = class_name_to_id(class_name)
 
     # Rarity
-    rarity_match = re.search(r'Rarity\s*=>\s*RelicRarity\.(\w+)', content)
+    rarity_match = re.search(r"Rarity\s*=>\s*RelicRarity\.(\w+)", content)
     rarity = rarity_match.group(1) if rarity_match else "Unknown"
 
     # Extract variable values from source
@@ -93,11 +96,13 @@ def parse_single_relic(filepath: Path, localization: dict, relic_pools: dict, en
 
     # Resolve StringVar references to enchantment names
     # Pattern: StringVar("EnchantmentName", ModelDb.Enchantment<Goopy>().Title.GetFormattedText())
-    for sv in re.finditer(r'StringVar\(\s*"(\w+)"\s*,\s*ModelDb\.Enchantment<(\w+)>\(\)', content):
+    for sv in re.finditer(
+        r'StringVar\(\s*"(\w+)"\s*,\s*ModelDb\.Enchantment<(\w+)>\(\)', content
+    ):
         var_name = sv.group(1)
         enchant_class = sv.group(2)
         enchant_id = class_name_to_id(enchant_class)
-        enchant_name = re.sub(r'(?<=[a-z])(?=[A-Z])', ' ', enchant_class)
+        enchant_name = re.sub(r"(?<=[a-z])(?=[A-Z])", " ", enchant_class)
         if ench_loc:
             loc_name = ench_loc.get(f"{enchant_id}.title")
             if loc_name:
@@ -121,7 +126,9 @@ def parse_single_relic(filepath: Path, localization: dict, relic_pools: dict, en
         "Rare": 300,
         "Shop": 225,
     }
-    merchant_cost_override = re.search(r'override\s+int\s+MerchantCost\s*=>\s*(\d+)', content)
+    merchant_cost_override = re.search(
+        r"override\s+int\s+MerchantCost\s*=>\s*(\d+)", content
+    )
     if merchant_cost_override:
         base_cost = int(merchant_cost_override.group(1))
     else:
@@ -139,7 +146,9 @@ def parse_single_relic(filepath: Path, localization: dict, relic_pools: dict, en
 
     # Image URL
     image_file = STATIC_IMAGES / f"{relic_id.lower()}.png"
-    image_url = f"/static/images/relics/{relic_id.lower()}.png" if image_file.exists() else None
+    image_url = (
+        f"/static/images/relics/{relic_id.lower()}.png" if image_file.exists() else None
+    )
 
     # Character-specific image variants (e.g., Yummy Cookie has 5 variants)
     VARIANT_SUFFIXES = {
@@ -153,7 +162,9 @@ def parse_single_relic(filepath: Path, localization: dict, relic_pools: dict, en
     for suffix, char_name in VARIANT_SUFFIXES.items():
         variant_file = STATIC_IMAGES / f"{relic_id.lower()}_{suffix}.png"
         if variant_file.exists():
-            image_variants[char_name] = f"/static/images/relics/{relic_id.lower()}_{suffix}.png"
+            image_variants[char_name] = (
+                f"/static/images/relics/{relic_id.lower()}_{suffix}.png"
+            )
 
     return {
         "id": relic_id,
@@ -191,7 +202,15 @@ def build_relic_rarity_map(gameplay_ui: dict) -> dict[str, str]:
 
 
 # Compendium rarity order for relics (matches in-game relic collection)
-RELIC_RARITY_ORDER = ["Starter", "Common", "Uncommon", "Rare", "Shop", "Ancient", "Event"]
+RELIC_RARITY_ORDER = [
+    "Starter",
+    "Common",
+    "Uncommon",
+    "Rare",
+    "Shop",
+    "Ancient",
+    "Event",
+]
 
 
 def parse_all_relics(loc_dir: Path) -> list[dict]:

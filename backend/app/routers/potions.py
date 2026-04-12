@@ -1,4 +1,5 @@
 """Potion API endpoints."""
+
 from fastapi import APIRouter, Depends, HTTPException, Query, Request
 from ..models.schemas import Potion
 from ..services.data_service import load_potions, load_translation_maps
@@ -23,7 +24,11 @@ def get_potions(
     if pool:
         potions = [p for p in potions if p.get("pool", "").lower() == pool.lower()]
     if search:
-        potions = [p for p in potions if matches_search(p, search, ["name", "description", "rarity", "pool"])]
+        potions = [
+            p
+            for p in potions
+            if matches_search(p, search, ["name", "description", "rarity", "pool"])
+        ]
     return potions
 
 

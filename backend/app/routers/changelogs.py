@@ -1,4 +1,5 @@
 """Changelog API endpoints."""
+
 import json
 from pathlib import Path
 
@@ -22,7 +23,7 @@ def _load_changelogs() -> list[dict]:
     for f in d.glob("*.json"):
         with open(f, "r", encoding="utf-8") as fh:
             logs.append(json.load(fh))
-    logs.sort(key=lambda l: (l.get("date", ""), l.get("tag", "")), reverse=True)
+    logs.sort(key=lambda log: (log.get("date", ""), log.get("tag", "")), reverse=True)
     return logs
 
 

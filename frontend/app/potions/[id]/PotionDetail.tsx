@@ -47,7 +47,6 @@ const [potion, setPotion] = useState<Potion | null>(null);
 
   useEffect(() => {
     if (!id) return;
-    setLoading(true);
     cachedFetch<Potion>(`${API}/api/potions/${id}?lang=${lang}`)
       .then((data) => setPotion(data))
       .catch(() => setNotFound(true))

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import ActDetail from "@/app/acts/[id]/ActDetail";
-import { stripTags, SITE_URL } from "@/lib/seo";
+import { SITE_URL } from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd } from "@/lib/jsonld";
 import { isValidLang, LANG_HREFLANG, LANG_NAMES, LANG_GAME_NAME, SUPPORTED_LANGS, type LangCode } from "@/lib/languages";

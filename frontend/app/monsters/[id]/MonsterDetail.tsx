@@ -205,7 +205,6 @@ export default function MonsterDetail() {
 
   useEffect(() => {
     if (!id) return;
-    setLoading(true);
     cachedFetch<Monster>(`${API}/api/monsters/${id}?lang=${lang}`)
       .then((data) => setMonster(data))
       .catch(() => setNotFound(true))

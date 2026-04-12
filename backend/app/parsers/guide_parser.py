@@ -1,10 +1,11 @@
 """Parse guide markdown files with YAML frontmatter into JSON."""
+
 import json
-from pathlib import Path
 
 import frontmatter
 
 from parser_paths import DATA_DIR
+
 GUIDES_DIR = DATA_DIR / "guides"
 
 
