@@ -7,8 +7,9 @@ Thanks for your interest in contributing! This project is open to community cont
 1. **Fork the repo** on [GitHub](https://github.com/ptrlrd/spire-codex)
 2. **Clone your fork** locally
 3. **Set up the dev environment** (see below)
-4. **Create a branch** for your changes
-5. **Submit a PR** — the GitHub repo is downstream of where the project is hosted, so it may take a bit before your PR gets reviewed and merged
+4. **Create a branch** for your changes (never commit directly to `main`)
+5. **Submit a PR** against `main` — CI will run lint, type-check, format check, and secret scanning automatically
+6. **Once approved and merged**, CI builds Docker images and deploys to production
 
 ## Dev Environment
 

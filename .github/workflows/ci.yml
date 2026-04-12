@@ -86,7 +86,8 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USER }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build & push backend
+      # Stable images
+      - name: Build & push backend (stable)
         uses: docker/build-push-action@v6
         with:
           context: ./backend
@@ -95,7 +96,7 @@ jobs:
             ptrlrd/spire-codex-backend:latest
             ptrlrd/spire-codex-backend:${{ github.sha }}
 
-      - name: Build & push frontend
+      - name: Build & push frontend (stable)
         uses: docker/build-push-action@v6
         with:
           context: ./frontend
@@ -107,6 +108,29 @@ jobs:
           tags: |
             ptrlrd/spire-codex-frontend:latest
             ptrlrd/spire-codex-frontend:${{ github.sha }}
+
+      # Beta images (same code, different SITE_URL)
+      - name: Build & push backend (beta)
+        uses: docker/build-push-action@v6
+        with:
+          context: ./backend
+          push: true
+          tags: |
+            ptrlrd/spire-codex-backend:beta
+            ptrlrd/spire-codex-backend:beta-${{ github.sha }}
+
+      - name: Build & push frontend (beta)
+        uses: docker/build-push-action@v6
+        with:
+          context: ./frontend
+          file: ./frontend/Dockerfile
+          push: true
+          build-args: |
+            NEXT_PUBLIC_API_URL=
+            NEXT_PUBLIC_SITE_URL=https://beta.spire-codex.com
+          tags: |
+            ptrlrd/spire-codex-frontend:beta
+            ptrlrd/spire-codex-frontend:beta-${{ github.sha }}
 
   # ── Deploy stable + beta ────────────────────────────────
   deploy:
