@@ -1,0 +1,109 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  # ── Secrets check ──────────────────────────────────────
+  secrets-check:
+    name: Scan for secrets
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: TruffleHog secret scan
+        uses: trufflesecurity/trufflehog@main
+        with:
+          extra_args: --only-verified
+
+  # ── Frontend checks ────────────────────────────────────
+  frontend-lint:
+    name: Frontend lint & type-check
+    runs-on: self-hosted
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - run: npm ci
+
+      - name: ESLint
+        run: npm run lint
+
+      - name: TypeScript type-check
+        run: npx tsc --noEmit
+
+  # ── Backend checks ─────────────────────────────────────
+  backend-lint:
+    name: Backend lint
+    runs-on: self-hosted
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt ruff
+
+      - name: Ruff lint
+        run: ruff check app/
+
+      - name: Ruff format check
+        run: ruff format --check app/
+
+  # ── Build & Push (main only) ───────────────────────────
+  build-and-push:
+    name: Build & push Docker images
+    runs-on: self-hosted
+    needs: [secrets-check, frontend-lint, backend-lint]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USER }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build & push backend
+        uses: docker/build-push-action@v6
+        with:
+          context: ./backend
+          push: true
+          tags: |
+            ptrlrd/spire-codex-backend:latest
+            ptrlrd/spire-codex-backend:${{ github.sha }}
+
+      - name: Build & push frontend
+        uses: docker/build-push-action@v6
+        with:
+          context: ./frontend
+          file: ./frontend/Dockerfile
+          push: true
+          build-args: |
+            NEXT_PUBLIC_API_URL=
+            NEXT_PUBLIC_SITE_URL=https://spire-codex.com
+          tags: |
+            ptrlrd/spire-codex-frontend:latest
+            ptrlrd/spire-codex-frontend:${{ github.sha }}
