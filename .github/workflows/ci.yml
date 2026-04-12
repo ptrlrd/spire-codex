@@ -108,9 +108,9 @@ jobs:
             ptrlrd/spire-codex-frontend:latest
             ptrlrd/spire-codex-frontend:${{ github.sha }}
 
-  # ── Deploy to production ───────────────────────────────
+  # ── Deploy stable + beta ────────────────────────────────
   deploy:
-    name: Deploy to production
+    name: Deploy stable + beta
     runs-on: self-hosted
     needs: [build-and-push]
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
@@ -123,6 +123,5 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd ~/spire-codex
-            docker compose -f docker-compose.prod.yml pull
-            docker compose -f docker-compose.prod.yml up -d
-            echo "Stable deployed at $(date)"
+            ./tools/startup.sh --beta
+            echo "Stable + beta deployed at $(date)"
