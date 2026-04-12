@@ -18,8 +18,8 @@ jobs:
 
       - name: TruffleHog secret scan
         run: |
-          docker run --rm -v "$GITHUB_WORKSPACE:/repo" ghcr.io/trufflesecurity/trufflehog:latest \
-            git file:///repo --only-verified --fail
+          docker run --rm -v "$GITHUB_WORKSPACE:/repo:ro" ghcr.io/trufflesecurity/trufflehog:latest \
+            filesystem /repo --only-verified --fail
 
   # ── Frontend checks ────────────────────────────────────
   frontend-lint:
