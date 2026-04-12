@@ -12,7 +12,7 @@ def get_powers(
     request: Request,
     type: str | None = Query(None, description="Filter by type (Buff/Debuff)"),
     stack_type: str | None = Query(None, description="Filter by stack type (Counter/Single/None)"),
-    search: str | None = Query(None, description="Search by name"),
+    search: str | None = Query(None, description="Search by name or description"),
     lang: str = Depends(get_lang),
 ):
     powers = load_powers(lang)

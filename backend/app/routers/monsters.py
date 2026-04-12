@@ -11,14 +11,15 @@ router = APIRouter(prefix="/api/monsters", tags=["Monsters"])
 def get_monsters(
     request: Request,
     type: str | None = Query(None, description="Filter by type (Normal, Elite, Boss)"),
-    search: str | None = Query(None, description="Search by name"),
+    search: str | None = Query(None, description="Search by name or description"),
     lang: str = Depends(get_lang),
 ):
     monsters = load_monsters(lang)
     if type:
         monsters = [m for m in monsters if m["type"].lower() == type.lower()]
     if search:
-        monsters = [m for m in monsters if search.lower() in m["name"].lower()]
+        q = search.lower()
+        monsters = [m for m in monsters if q in m["name"].lower() or q in m.get("type", "").lower() or any(q in mv.get("name", "").lower() for mv in (m.get("moves") or []))]
     return monsters
 
 

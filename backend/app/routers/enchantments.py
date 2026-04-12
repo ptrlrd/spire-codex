@@ -11,14 +11,15 @@ router = APIRouter(prefix="/api/enchantments", tags=["Enchantments"])
 def get_enchantments(
     request: Request,
     card_type: str | None = Query(None, description="Filter by card type restriction (Attack, Skill, Power)"),
-    search: str | None = Query(None, description="Search by name"),
+    search: str | None = Query(None, description="Search by name or description"),
     lang: str = Depends(get_lang),
 ):
     enchantments = load_enchantments(lang)
     if card_type:
         enchantments = [e for e in enchantments if e.get("card_type") and e["card_type"].lower() == card_type.lower()]
     if search:
-        enchantments = [e for e in enchantments if search.lower() in e["name"].lower()]
+        q = search.lower()
+        enchantments = [e for e in enchantments if q in e["name"].lower() or q in e.get("description", "").lower() or q in e.get("card_type", "").lower()]
     return enchantments
 
 

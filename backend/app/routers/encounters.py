@@ -12,7 +12,7 @@ def get_encounters(
     request: Request,
     room_type: str | None = Query(None, description="Filter by room type (Monster, Elite, Boss)"),
     act: str | None = Query(None, description="Filter by act name"),
-    search: str | None = Query(None, description="Search by name"),
+    search: str | None = Query(None, description="Search by name or description"),
     lang: str = Depends(get_lang),
 ):
     encounters = load_encounters(lang)
@@ -21,7 +21,8 @@ def get_encounters(
     if act:
         encounters = [e for e in encounters if e.get("act") and act.lower() in e["act"].lower()]
     if search:
-        encounters = [e for e in encounters if search.lower() in e["name"].lower()]
+        q = search.lower()
+        encounters = [e for e in encounters if q in e["name"].lower() or q in e.get("room_type", "").lower() or any(q in m.get("name", "").lower() for m in (e.get("monsters") or []))]
     return encounters
 
 

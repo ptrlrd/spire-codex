@@ -12,7 +12,7 @@ def get_relics(
     request: Request,
     rarity: str | None = Query(None, description="Filter by rarity (Starter, Common, Uncommon, Rare, Shop, Event, Ancient)"),
     pool: str | None = Query(None, description="Filter by character pool (ironclad, silent, defect, necrobinder, regent, shared)"),
-    search: str | None = Query(None, description="Search by name"),
+    search: str | None = Query(None, description="Search by name or description"),
     lang: str = Depends(get_lang),
 ):
     relics = [r for r in load_relics(lang) if not r["id"].startswith("VAKUU_CARD")]
@@ -23,7 +23,8 @@ def get_relics(
     if pool:
         relics = [r for r in relics if r["pool"].lower() == pool.lower()]
     if search:
-        relics = [r for r in relics if search.lower() in r["name"].lower()]
+        q = search.lower()
+        relics = [r for r in relics if q in r["name"].lower() or q in r.get("description", "").lower() or q in r.get("rarity", "").lower() or q in r.get("pool", "").lower()]
     return relics
 
 

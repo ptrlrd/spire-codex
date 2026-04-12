@@ -12,7 +12,7 @@ def get_potions(
     request: Request,
     rarity: str | None = Query(None, description="Filter by rarity"),
     pool: str | None = Query(None, description="Filter by character pool"),
-    search: str | None = Query(None, description="Search by name"),
+    search: str | None = Query(None, description="Search by name or description"),
     lang: str = Depends(get_lang),
 ):
     potions = load_potions(lang)
@@ -23,7 +23,8 @@ def get_potions(
     if pool:
         potions = [p for p in potions if p.get("pool", "").lower() == pool.lower()]
     if search:
-        potions = [p for p in potions if search.lower() in p["name"].lower()]
+        q = search.lower()
+        potions = [p for p in potions if q in p["name"].lower() or q in p.get("description", "").lower() or q in p.get("rarity", "").lower() or q in p.get("pool", "").lower()]
     return potions
 
 

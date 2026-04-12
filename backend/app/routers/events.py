@@ -12,7 +12,7 @@ def get_events(
     request: Request,
     type: str | None = Query(None, description="Filter by type (Event, Ancient, Shared)"),
     act: str | None = Query(None, description="Filter by act name"),
-    search: str | None = Query(None, description="Search by name"),
+    search: str | None = Query(None, description="Search by name or description"),
     lang: str = Depends(get_lang),
 ):
     events = load_events(lang)
@@ -21,7 +21,8 @@ def get_events(
     if act:
         events = [e for e in events if e.get("act") and act.lower() in e["act"].lower()]
     if search:
-        events = [e for e in events if search.lower() in e["name"].lower()]
+        q = search.lower()
+        events = [e for e in events if q in e["name"].lower() or q in e.get("description", "").lower() or q in e.get("type", "").lower() or q in e.get("act", "").lower()]
     return events
 
 

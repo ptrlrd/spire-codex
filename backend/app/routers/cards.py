@@ -15,7 +15,7 @@ def get_cards(
     rarity: str | None = Query(None, description="Filter by rarity (Basic, Common, Uncommon, Rare, Ancient)"),
     keyword: str | None = Query(None, description="Filter by keyword (Exhaust, Innate, Ethereal, Retain, Unplayable, Sly, Eternal)"),
     tag: str | None = Query(None, description="Filter by tag (Strike, Defend, Minion, etc.)"),
-    search: str | None = Query(None, description="Search by name"),
+    search: str | None = Query(None, description="Search by name or description"),
     lang: str = Depends(get_lang),
 ):
     cards = load_cards(lang)
@@ -35,7 +35,8 @@ def get_cards(
     if tag:
         cards = [c for c in cards if c.get("tags") and tag in c["tags"]]
     if search:
-        cards = [c for c in cards if search.lower() in c["name"].lower()]
+        q = search.lower()
+        cards = [c for c in cards if q in c["name"].lower() or q in c.get("description", "").lower() or q in c.get("upgrade_description", "").lower() or q in c.get("type", "").lower() or q in c.get("rarity", "").lower() or q in c.get("color", "").lower() or any(q in kw.lower() for kw in (c.get("keywords") or []))]
     return cards
 
 
