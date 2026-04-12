@@ -1,0 +1,4531 @@
+{
+  "app_id": 2868840,
+  "game_version": "1.0.19",
+  "build_id": "",
+  "tag": "1.0.19",
+  "date": "2026-04-11",
+  "title": "Unlocks page, multi-version beta, attack patterns, enhanced search, relic pricing",
+  "from_ref": "v1.0.18",
+  "to_ref": "current",
+  "summary": {
+    "added": 0,
+    "removed": 0,
+    "changed": 384
+  },
+  "categories": [
+    {
+      "id": "relics",
+      "name": "Relics",
+      "old_count": 288,
+      "new_count": 288,
+      "changed": [
+        {
+          "id": "AKABEKO",
+          "name": "Akabeko",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "AMETHYST_AUBERGINE",
+          "name": "Amethyst Aubergine",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "ANCHOR",
+          "name": "Anchor",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "ART_OF_WAR",
+          "name": "Art of War",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "BAG_OF_MARBLES",
+          "name": "Bag of Marbles",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "BAG_OF_PREPARATION",
+          "name": "Bag of Preparation",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "BEATING_REMNANT",
+          "name": "Beating Remnant",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "BELLOWS",
+          "name": "Bellows",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "BELT_BUCKLE",
+          "name": "Belt Buckle",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "BIG_HAT",
+          "name": "Big Hat",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "BLOOD_VIAL",
+          "name": "Blood Vial",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "BONE_FLUTE",
+          "name": "Bone Flute",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "BOOKMARK",
+          "name": "Bookmark",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "BOOK_OF_FIVE_RINGS",
+          "name": "Book of Five Rings",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "BOOK_REPAIR_KNIFE",
+          "name": "Book Repair Knife",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "BOWLER_HAT",
+          "name": "Bowler Hat",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "BREAD",
+          "name": "Bread",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "BRIMSTONE",
+          "name": "Brimstone",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "BRONZE_SCALES",
+          "name": "Bronze Scales",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "BURNING_STICKS",
+          "name": "Burning Sticks",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "CANDELABRA",
+          "name": "Candelabra",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "CAPTAINS_WHEEL",
+          "name": "Captain's Wheel",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "CAULDRON",
+          "name": "Cauldron",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "CENTENNIAL_PUZZLE",
+          "name": "Centennial Puzzle",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "CHANDELIER",
+          "name": "Chandelier",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "CHARONS_ASHES",
+          "name": "Charon's Ashes",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "CHEMICAL_X",
+          "name": "Chemical X",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "CLOAK_CLASP",
+          "name": "Cloak Clasp",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "DATA_DISK",
+          "name": "Data Disk",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "DEMON_TONGUE",
+          "name": "Demon Tongue",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "DINGY_RUG",
+          "name": "Dingy Rug",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "DOLLYS_MIRROR",
+          "name": "Dolly's Mirror",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "DRAGON_FRUIT",
+          "name": "Dragon Fruit",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "EMOTION_CHIP",
+          "name": "Emotion Chip",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "ETERNAL_FEATHER",
+          "name": "Eternal Feather",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "FAKE_ANCHOR",
+          "name": "Anchor???",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "FAKE_BLOOD_VIAL",
+          "name": "Blood Vial???",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "FAKE_HAPPY_FLOWER",
+          "name": "Happy Flower???",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "FAKE_LEES_WAFFLE",
+          "name": "Lee's Waffle???",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "FAKE_MANGO",
+          "name": "Mango???",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "FAKE_ORICHALCUM",
+          "name": "Orichalcum???",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "FAKE_SNECKO_EYE",
+          "name": "Snecko Eye???",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "FAKE_STRIKE_DUMMY",
+          "name": "Strike Dummy???",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "FAKE_VENERABLE_TEA_SET",
+          "name": "Venerable Tea Set???",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "FENCING_MANUAL",
+          "name": "Fencing Manual",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "FESTIVE_POPPER",
+          "name": "Festive Popper",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "FROZEN_EGG",
+          "name": "Frozen Egg",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "FUNERARY_MASK",
+          "name": "Funerary Mask",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "GALACTIC_DUST",
+          "name": "Galactic Dust",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "GAMBLING_CHIP",
+          "name": "Gambling Chip",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "GAME_PIECE",
+          "name": "Game Piece",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "GHOST_SEED",
+          "name": "Ghost Seed",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "GIRYA",
+          "name": "Girya",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "GNARLED_HAMMER",
+          "name": "Gnarled Hammer",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "GOLD_PLATED_CABLES",
+          "name": "Gold-Plated Cables",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "GORGET",
+          "name": "Gorget",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "GREMLIN_HORN",
+          "name": "Gremlin Horn",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "HAPPY_FLOWER",
+          "name": "Happy Flower",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "HELICAL_DART",
+          "name": "Helical Dart",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "HORN_CLEAT",
+          "name": "Horn Cleat",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "ICE_CREAM",
+          "name": "Ice Cream",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "INTIMIDATING_HELMET",
+          "name": "Intimidating Helmet",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "IVORY_TILE",
+          "name": "Ivory Tile",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "JOSS_PAPER",
+          "name": "Joss Paper",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "JUZU_BRACELET",
+          "name": "Juzu Bracelet",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "KIFUDA",
+          "name": "Kifuda",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "KUNAI",
+          "name": "Kunai",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "KUSARIGAMA",
+          "name": "Kusarigama",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "LANTERN",
+          "name": "Lantern",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "LASTING_CANDY",
+          "name": "Lasting Candy",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "LAVA_LAMP",
+          "name": "Lava Lamp",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "LEES_WAFFLE",
+          "name": "Lee's Waffle",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "LETTER_OPENER",
+          "name": "Letter Opener",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "LIZARD_TAIL",
+          "name": "Lizard Tail",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "LUCKY_FYSH",
+          "name": "Lucky Fysh",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "LUNAR_PASTRY",
+          "name": "Lunar Pastry",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "MANGO",
+          "name": "Mango",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "MEAL_TICKET",
+          "name": "Meal Ticket",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "MEAT_ON_THE_BONE",
+          "name": "Meat on the Bone",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "MEMBERSHIP_CARD",
+          "name": "Membership Card",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "MERCURY_HOURGLASS",
+          "name": "Mercury Hourglass",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "METRONOME",
+          "name": "Metronome",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "MINIATURE_CANNON",
+          "name": "Miniature Cannon",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "MINIATURE_TENT",
+          "name": "Miniature Tent",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "MINI_REGENT",
+          "name": "Mini Regent",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "MOLTEN_EGG",
+          "name": "Molten Egg",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "MUMMIFIED_HAND",
+          "name": "Mummified Hand",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "MYSTIC_LIGHTER",
+          "name": "Mystic Lighter",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "NINJA_SCROLL",
+          "name": "Ninja Scroll",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "NUNCHAKU",
+          "name": "Nunchaku",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "ODDLY_SMOOTH_STONE",
+          "name": "Oddly Smooth Stone",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "OLD_COIN",
+          "name": "Old Coin",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "ORANGE_DOUGH",
+          "name": "Orange Dough",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "ORICHALCUM",
+          "name": "Orichalcum",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "ORNAMENTAL_FAN",
+          "name": "Ornamental Fan",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "ORRERY",
+          "name": "Orrery",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "PANTOGRAPH",
+          "name": "Pantograph",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "PAPER_KRANE",
+          "name": "Paper Krane",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "PAPER_PHROG",
+          "name": "Paper Phrog",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "PARRYING_SHIELD",
+          "name": "Parrying Shield",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "PEAR",
+          "name": "Pear",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "PENDULUM",
+          "name": "Pendulum",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "PEN_NIB",
+          "name": "Pen Nib",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "PERMAFROST",
+          "name": "Permafrost",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "PETRIFIED_TOAD",
+          "name": "Petrified Toad",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "PLANISPHERE",
+          "name": "Planisphere",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "POCKETWATCH",
+          "name": "Pocketwatch",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "POTION_BELT",
+          "name": "Potion Belt",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "POWER_CELL",
+          "name": "Power Cell",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "PRAYER_WHEEL",
+          "name": "Prayer Wheel",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "PUNCH_DAGGER",
+          "name": "Punch Dagger",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "RAINBOW_RING",
+          "name": "Rainbow Ring",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "RAZOR_TOOTH",
+          "name": "Razor Tooth",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "RED_MASK",
+          "name": "Red Mask",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "RED_SKULL",
+          "name": "Red Skull",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "REGALITE",
+          "name": "Regalite",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "REGAL_PILLOW",
+          "name": "Regal Pillow",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "REPTILE_TRINKET",
+          "name": "Reptile Trinket",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "RINGING_TRIANGLE",
+          "name": "Ringing Triangle",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "RIPPLE_BASIN",
+          "name": "Ripple Basin",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "ROYAL_STAMP",
+          "name": "Royal Stamp",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "RUINED_HELMET",
+          "name": "Ruined Helmet",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "RUNIC_CAPACITOR",
+          "name": "Runic Capacitor",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "SCREAMING_FLAGON",
+          "name": "Screaming Flagon",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "SELF_FORMING_CLAY",
+          "name": "Self-Forming Clay",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "SHOVEL",
+          "name": "Shovel",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "SHURIKEN",
+          "name": "Shuriken",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "SLING_OF_COURAGE",
+          "name": "Sling of Courage",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "SNECKO_SKULL",
+          "name": "Snecko Skull",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "SPARKLING_ROUGE",
+          "name": "Sparkling Rouge",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "STONE_CALENDAR",
+          "name": "Stone Calendar",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "STONE_CRACKER",
+          "name": "Stone Cracker",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "STRAWBERRY",
+          "name": "Strawberry",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "STRIKE_DUMMY",
+          "name": "Strike Dummy",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "STURDY_CLAMP",
+          "name": "Sturdy Clamp",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "SYMBIOTIC_VIRUS",
+          "name": "Symbiotic Virus",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "THE_ABACUS",
+          "name": "The Abacus",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "THE_COURIER",
+          "name": "The Courier",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "TINGSHA",
+          "name": "Tingsha",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "TINY_MAILBOX",
+          "name": "Tiny Mailbox",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "TOOLBOX",
+          "name": "Toolbox",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "TOUGH_BANDAGES",
+          "name": "Tough Bandages",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "TOXIC_EGG",
+          "name": "Toxic Egg",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "TUNGSTEN_ROD",
+          "name": "Tungsten Rod",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "TUNING_FORK",
+          "name": "Tuning Fork",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "TWISTED_FUNNEL",
+          "name": "Twisted Funnel",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "UNCEASING_TOP",
+          "name": "Unceasing Top",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "UNDYING_SIGIL",
+          "name": "Undying Sigil",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "UNSETTLING_LAMP",
+          "name": "Unsettling Lamp",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "VAJRA",
+          "name": "Vajra",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "VAMBRACE",
+          "name": "Vambrace",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "VENERABLE_TEA_SET",
+          "name": "Venerable Tea Set",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "VEXING_PUZZLEBOX",
+          "name": "Vexing Puzzlebox",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "VITRUVIAN_MINION",
+          "name": "Vitruvian Minion",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "WAR_PAINT",
+          "name": "War Paint",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "WHETSTONE",
+          "name": "Whetstone",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "WHITE_BEAST_STATUE",
+          "name": "White Beast Statue",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "WHITE_STAR",
+          "name": "White Star",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "WING_CHARM",
+          "name": "Wing Charm",
+          "changes": [
+            {
+              "field": "merchant_price",
+              "old": "none",
+              "new": "3 fields"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "monsters",
+      "name": "Monsters",
+      "old_count": 116,
+      "new_count": 116,
+      "changed": [
+        {
+          "id": "ARCHITECT",
+          "name": "The Architect",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            }
+          ]
+        },
+        {
+          "id": "ASSASSIN_RUBY_RAIDER",
+          "name": "Assassin Raider",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            }
+          ]
+        },
+        {
+          "id": "AXEBOT",
+          "name": "Axebot",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            }
+          ]
+        },
+        {
+          "id": "AXE_RUBY_RAIDER",
+          "name": "Axe Raider",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            }
+          ]
+        },
+        {
+          "id": "BATTLE_FRIEND_V1",
+          "name": "Battle Friend V1.0",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            },
+            {
+              "field": "innate_powers",
+              "old": "{'power_id': 'BATTLEWORN_DUMMY_TIME_LIMIT', 'amount': 3}",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "BATTLE_FRIEND_V2",
+          "name": "Battle Friend V2.0",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            },
+            {
+              "field": "innate_powers",
+              "old": "{'power_id': 'BATTLEWORN_DUMMY_TIME_LIMIT', 'amount': 3}",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "BATTLE_FRIEND_V3",
+          "name": "Battle Friend V3.0",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            },
+            {
+              "field": "innate_powers",
+              "old": "{'power_id': 'BATTLEWORN_DUMMY_TIME_LIMIT', 'amount': 3}",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "BOWLBUG_EGG",
+          "name": "Bowlbug (Egg)",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            }
+          ]
+        },
+        {
+          "id": "BOWLBUG_NECTAR",
+          "name": "Bowlbug (Nectar)",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            }
+          ]
+        },
+        {
+          "id": "BOWLBUG_ROCK",
+          "name": "Bowlbug (Rock)",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            },
+            {
+              "field": "innate_powers",
+              "old": "{'power_id': 'IMBALANCED', 'amount': 1}",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "BOWLBUG_SILK",
+          "name": "Bowlbug (Silk)",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            }
+          ]
+        },
+        {
+          "id": "BRUTE_RUBY_RAIDER",
+          "name": "Brute Raider",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            }
+          ]
+        },
+        {
+          "id": "BYGONE_EFFIGY",
+          "name": "Bygone Effigy",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            },
+            {
+              "field": "innate_powers",
+              "old": "{'power_id': 'SLOW', 'amount': 1}",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "BYRDONIS",
+          "name": "Byrdonis",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            },
+            {
+              "field": "innate_powers",
+              "old": "{'power_id': 'TERRITORIAL', 'amount': 1}",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "BYRDPIP",
+          "name": "Byrdpip",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            }
+          ]
+        },
+        {
+          "id": "CALCIFIED_CULTIST",
+          "name": "Calcified Cultist",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            }
+          ]
+        },
+        {
+          "id": "CEREMONIAL_BEAST",
+          "name": "Ceremonial Beast",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            }
+          ]
+        },
+        {
+          "id": "CHOMPER",
+          "name": "Chomper",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            },
+            {
+              "field": "innate_powers",
+              "old": "{'power_id': 'ARTIFACT', 'amount': 2}",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "CORPSE_SLUG",
+          "name": "Corpse Slug",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            },
+            {
+              "field": "innate_powers",
+              "old": "none",
+              "new": "{'power_id': 'RAVENOUS', 'amount': 4, 'amount_ascension': 5}"
+            }
+          ]
+        },
+        {
+          "id": "CROSSBOW_RUBY_RAIDER",
+          "name": "Crossbow Raider",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            }
+          ]
+        },
+        {
+          "id": "CRUSHER",
+          "name": "Crusher",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            },
+            {
+              "field": "innate_powers",
+              "old": "{'power_id': 'BACK_ATTACK_LEFT', 'amount': 1}, {'power_id': 'CRAB_RAGE', 'amount': 1}",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "CUBEX_CONSTRUCT",
+          "name": "Cubex Construct",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            },
+            {
+              "field": "innate_powers",
+              "old": "{'power_id': 'ARTIFACT', 'amount': 1}",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "DAMP_CULTIST",
+          "name": "Damp Cultist",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            }
+          ]
+        },
+        {
+          "id": "DECIMILLIPEDE_SEGMENT",
+          "name": "Decimillipede",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            },
+            {
+              "field": "innate_powers",
+              "old": "{'power_id': 'REATTACH', 'amount': 25}",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "DEVOTED_SCULPTOR",
+          "name": "Devoted Sculptor",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            }
+          ]
+        },
+        {
+          "id": "DOOR",
+          "name": "Door",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            },
+            {
+              "field": "innate_powers",
+              "old": "{'power_id': 'DOOR_REVIVAL', 'amount': 1}",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "DOORMAKER",
+          "name": "Doormaker",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            }
+          ]
+        },
+        {
+          "id": "ENTOMANCER",
+          "name": "Entomancer",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            },
+            {
+              "field": "innate_powers",
+              "old": "{'power_id': 'PERSONAL_HIVE', 'amount': 1}",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "EXOSKELETON",
+          "name": "Exoskeleton",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            },
+            {
+              "field": "innate_powers",
+              "old": "{'power_id': 'HARD_TO_KILL', 'amount': 9}",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "EYE_WITH_TEETH",
+          "name": "Eye With Teeth",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            },
+            {
+              "field": "innate_powers",
+              "old": "{'power_id': 'ILLUSION', 'amount': 1}",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "FABRICATOR",
+          "name": "Fabricator",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            }
+          ]
+        },
+        {
+          "id": "FAKE_MERCHANT_MONSTER",
+          "name": "The Merchant???",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            }
+          ]
+        },
+        {
+          "id": "FAT_GREMLIN",
+          "name": "Fat Gremlin",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            }
+          ]
+        },
+        {
+          "id": "FLAIL_KNIGHT",
+          "name": "Flail Knight",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            }
+          ]
+        },
+        {
+          "id": "FLYCONID",
+          "name": "Flyconid",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            }
+          ]
+        },
+        {
+          "id": "FOGMOG",
+          "name": "Fogmog",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            }
+          ]
+        },
+        {
+          "id": "FOSSIL_STALKER",
+          "name": "Fossil Stalker",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            },
+            {
+              "field": "innate_powers",
+              "old": "{'power_id': 'SUCK', 'amount': 3}",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "FROG_KNIGHT",
+          "name": "Frog Knight",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            },
+            {
+              "field": "innate_powers",
+              "old": "none",
+              "new": "{'power_id': 'PLATING', 'amount': 15, 'amount_ascension': 19}"
+            }
+          ]
+        },
+        {
+          "id": "FUZZY_WURM_CRAWLER",
+          "name": "Fuzzy Wurm Crawler",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            }
+          ]
+        },
+        {
+          "id": "GAS_BOMB",
+          "name": "Gas Bomb",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            },
+            {
+              "field": "innate_powers",
+              "old": "{'power_id': 'MINION', 'amount': 1}",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "GLOBE_HEAD",
+          "name": "Globe Head",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            },
+            {
+              "field": "innate_powers",
+              "old": "{'power_id': 'GALVANIC', 'amount': 6}",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "GREMLIN_MERC",
+          "name": "Gremlin Merc",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            },
+            {
+              "field": "innate_powers",
+              "old": "{'power_id': 'SURPRISE', 'amount': 1}",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "GUARDBOT",
+          "name": "Guardbot",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            }
+          ]
+        },
+        {
+          "id": "HAUNTED_SHIP",
+          "name": "Haunted Ship",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            }
+          ]
+        },
+        {
+          "id": "HUNTER_KILLER",
+          "name": "Hunter Killer",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            }
+          ]
+        },
+        {
+          "id": "INFESTED_PRISM",
+          "name": "Infested Prism",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            },
+            {
+              "field": "innate_powers",
+              "old": "{'power_id': 'VITAL_SPARK', 'amount': 1}",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "INKLET",
+          "name": "Inklet",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            },
+            {
+              "field": "innate_powers",
+              "old": "{'power_id': 'SLIPPERY', 'amount': 1}",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "KIN_FOLLOWER",
+          "name": "Kin Follower",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            },
+            {
+              "field": "innate_powers",
+              "old": "{'power_id': 'MINION', 'amount': 1}",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "KIN_PRIEST",
+          "name": "Kin Priest",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            }
+          ]
+        },
+        {
+          "id": "KNOWLEDGE_DEMON",
+          "name": "Knowledge Demon",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            }
+          ]
+        },
+        {
+          "id": "LAGAVULIN_MATRIARCH",
+          "name": "Lagavulin Matriarch",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            },
+            {
+              "field": "innate_powers",
+              "old": "{'power_id': 'PLATING', 'amount': 12}, {'power_id': 'ASLEEP', 'amount': 3}",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "LEAF_SLIME_M",
+          "name": "Leaf Slime (M)",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            }
+          ]
+        },
+        {
+          "id": "LEAF_SLIME_S",
+          "name": "Leaf Slime (S)",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            }
+          ]
+        },
+        {
+          "id": "LIVING_FOG",
+          "name": "Living Fog",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            }
+          ]
+        },
+        {
+          "id": "LIVING_SHIELD",
+          "name": "Living Shield",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            },
+            {
+              "field": "innate_powers",
+              "old": "{'power_id': 'RAMPART', 'amount': 25}",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "LOUSE_PROGENITOR",
+          "name": "Louse Progenitor",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            },
+            {
+              "field": "innate_powers",
+              "old": "none",
+              "new": "{'power_id': 'CURL_UP', 'amount': 14, 'amount_ascension': 18}"
+            }
+          ]
+        },
+        {
+          "id": "MAGI_KNIGHT",
+          "name": "Magi Knight",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            }
+          ]
+        },
+        {
+          "id": "MAWLER",
+          "name": "Mawler",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            }
+          ]
+        },
+        {
+          "id": "MECHA_KNIGHT",
+          "name": "Mecha Knight",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            },
+            {
+              "field": "innate_powers",
+              "old": "{'power_id': 'ARTIFACT', 'amount': 3}",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "MYTE",
+          "name": "Myte",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            }
+          ]
+        },
+        {
+          "id": "NIBBIT",
+          "name": "Nibbit",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            }
+          ]
+        },
+        {
+          "id": "NOISEBOT",
+          "name": "Noisebot",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            }
+          ]
+        },
+        {
+          "id": "OSTY",
+          "name": "Osty",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            }
+          ]
+        },
+        {
+          "id": "OVICOPTER",
+          "name": "Ovicopter",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            }
+          ]
+        },
+        {
+          "id": "OWL_MAGISTRATE",
+          "name": "Owl Magistrate",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            }
+          ]
+        },
+        {
+          "id": "PAELS_LEGION",
+          "name": "Pael's Legion",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            }
+          ]
+        },
+        {
+          "id": "PARAFRIGHT",
+          "name": "Parafright",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            },
+            {
+              "field": "innate_powers",
+              "old": "{'power_id': 'ILLUSION', 'amount': 1}",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "PHANTASMAL_GARDENER",
+          "name": "Phantasmal Gardener",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            },
+            {
+              "field": "innate_powers",
+              "old": "none",
+              "new": "{'power_id': 'SKITTISH', 'amount': 6, 'amount_ascension': 7}"
+            }
+          ]
+        },
+        {
+          "id": "PHROG_PARASITE",
+          "name": "Phrog Parasite",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            },
+            {
+              "field": "innate_powers",
+              "old": "{'power_id': 'INFESTED', 'amount': 4}",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "PUNCH_CONSTRUCT",
+          "name": "Punch Construct",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            },
+            {
+              "field": "innate_powers",
+              "old": "{'power_id': 'ARTIFACT', 'amount': 1}",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "QUEEN",
+          "name": "Queen",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            }
+          ]
+        },
+        {
+          "id": "ROCKET",
+          "name": "Rocket",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            },
+            {
+              "field": "innate_powers",
+              "old": "{'power_id': 'BACK_ATTACK_RIGHT', 'amount': 1}, {'power_id': 'CRAB_RAGE', 'amount': 1}",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "SCROLL_OF_BITING",
+          "name": "Scroll of Biting",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            },
+            {
+              "field": "innate_powers",
+              "old": "{'power_id': 'PAPER_CUTS', 'amount': 2}",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "SEAPUNK",
+          "name": "Seapunk",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            }
+          ]
+        },
+        {
+          "id": "SEWER_CLAM",
+          "name": "Sewer Clam",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            }
+          ]
+        },
+        {
+          "id": "SHRINKER_BEETLE",
+          "name": "Shrinker Beetle",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            }
+          ]
+        },
+        {
+          "id": "SKULKING_COLONY",
+          "name": "Skulking Colony",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            },
+            {
+              "field": "innate_powers",
+              "old": "{'power_id': 'HARDENED_SHELL', 'amount': 20}",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "SLIMED_BERSERKER",
+          "name": "Slimed Berserker",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            }
+          ]
+        },
+        {
+          "id": "SLITHERING_STRANGLER",
+          "name": "Slithering Strangler",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            }
+          ]
+        },
+        {
+          "id": "SLUDGE_SPINNER",
+          "name": "Sludge Spinner",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            }
+          ]
+        },
+        {
+          "id": "SLUMBERING_BEETLE",
+          "name": "Slumbering Beetle",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            },
+            {
+              "field": "innate_powers",
+              "old": "{'power_id': 'SLUMBER', 'amount': 3}",
+              "new": "{'power_id': 'PLATING', 'amount': 15, 'amount_ascension': 18}"
+            }
+          ]
+        },
+        {
+          "id": "SNAPPING_JAXFRUIT",
+          "name": "Snapping Jaxfruit",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            }
+          ]
+        },
+        {
+          "id": "SNEAKY_GREMLIN",
+          "name": "Sneaky Gremlin",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            }
+          ]
+        },
+        {
+          "id": "SOUL_FYSH",
+          "name": "Soul Fysh",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            }
+          ]
+        },
+        {
+          "id": "SOUL_NEXUS",
+          "name": "Soul Nexus",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            }
+          ]
+        },
+        {
+          "id": "SPECTRAL_KNIGHT",
+          "name": "Spectral Knight",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            }
+          ]
+        },
+        {
+          "id": "SPINY_TOAD",
+          "name": "Spiny Toad",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            }
+          ]
+        },
+        {
+          "id": "STABBOT",
+          "name": "Stabbot",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            }
+          ]
+        },
+        {
+          "id": "TERROR_EEL",
+          "name": "Terror Eel",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            },
+            {
+              "field": "innate_powers",
+              "old": "none",
+              "new": "{'power_id': 'SHRIEK', 'amount': 70, 'amount_ascension': 75}"
+            }
+          ]
+        },
+        {
+          "id": "TEST_SUBJECT",
+          "name": "Test Subject #C14",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            },
+            {
+              "field": "name",
+              "old": "Test Subject #C{Count}",
+              "new": "Test Subject #C14"
+            },
+            {
+              "field": "innate_powers",
+              "old": "{'power_id': 'ADAPTABLE', 'amount': 1}",
+              "new": "{'power_id': 'ENRAGE', 'amount': 2, 'amount_ascension': 3}"
+            }
+          ]
+        },
+        {
+          "id": "THE_ADVERSARY_MK_ONE",
+          "name": "The Adversary Mk 1",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            },
+            {
+              "field": "innate_powers",
+              "old": "{'power_id': 'ARTIFACT', 'amount': 0}",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "THE_ADVERSARY_MK_THREE",
+          "name": "The Adversary Mk 3",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            },
+            {
+              "field": "innate_powers",
+              "old": "{'power_id': 'ARTIFACT', 'amount': 2}",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "THE_ADVERSARY_MK_TWO",
+          "name": "The Adversary Mk 2",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            },
+            {
+              "field": "innate_powers",
+              "old": "{'power_id': 'ARTIFACT', 'amount': 1}",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "THE_FORGOTTEN",
+          "name": "The Forgotten",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            },
+            {
+              "field": "innate_powers",
+              "old": "{'power_id': 'POSSESS_SPEED', 'amount': 1}",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "THE_INSATIABLE",
+          "name": "The Insatiable",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            }
+          ]
+        },
+        {
+          "id": "THE_LOST",
+          "name": "The Lost",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            },
+            {
+              "field": "innate_powers",
+              "old": "{'power_id': 'POSSESS_STRENGTH', 'amount': 1}",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "THE_OBSCURA",
+          "name": "The Obscura",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            }
+          ]
+        },
+        {
+          "id": "THIEVING_HOPPER",
+          "name": "Thieving Hopper",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            },
+            {
+              "field": "innate_powers",
+              "old": "{'power_id': 'ESCAPE_ARTIST', 'amount': 5}",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "TOADPOLE",
+          "name": "Toadpole",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            }
+          ]
+        },
+        {
+          "id": "TORCH_HEAD_AMALGAM",
+          "name": "Torch Head Amalgam",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            },
+            {
+              "field": "innate_powers",
+              "old": "{'power_id': 'MINION', 'amount': 1}",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "TOUGH_EGG",
+          "name": "Tough Egg",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            }
+          ]
+        },
+        {
+          "id": "TRACKER_RUBY_RAIDER",
+          "name": "Tracker Raider",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            }
+          ]
+        },
+        {
+          "id": "TUNNELER",
+          "name": "Tunneler",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            }
+          ]
+        },
+        {
+          "id": "TURRET_OPERATOR",
+          "name": "Turret Operator",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            }
+          ]
+        },
+        {
+          "id": "TWIG_SLIME_M",
+          "name": "Twig Slime (M)",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            }
+          ]
+        },
+        {
+          "id": "TWIG_SLIME_S",
+          "name": "Twig Slime (S)",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            }
+          ]
+        },
+        {
+          "id": "TWO_TAILED_RAT",
+          "name": "Two-Tailed Rat",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            }
+          ]
+        },
+        {
+          "id": "VANTOM",
+          "name": "Vantom",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            },
+            {
+              "field": "innate_powers",
+              "old": "{'power_id': 'SLIPPERY', 'amount': 9}",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "VINE_SHAMBLER",
+          "name": "Vine Shambler",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            }
+          ]
+        },
+        {
+          "id": "WATERFALL_GIANT",
+          "name": "Waterfall Giant",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            }
+          ]
+        },
+        {
+          "id": "WRIGGLER",
+          "name": "Wriggler",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            }
+          ]
+        },
+        {
+          "id": "ZAPBOT",
+          "name": "Zapbot",
+          "changes": [
+            {
+              "field": "attack_pattern",
+              "old": "none",
+              "new": "4 fields"
+            },
+            {
+              "field": "innate_powers",
+              "old": "{'power_id': 'HIGH_VOLTAGE', 'amount': 2}",
+              "new": "none"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "encounters",
+      "name": "Encounters",
+      "old_count": 87,
+      "new_count": 87,
+      "changed": [
+        {
+          "id": "AXEBOTS_NORMAL",
+          "name": "Bot Buddies",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "The adventurer was dismembered by some [gold]Bot Buddies[/gold].",
+              "new": "[b]The Adventurer[/b] was dismembered by some [gold]Bot Buddies[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "BATTLEWORN_DUMMY_EVENT_ENCOUNTER",
+          "name": "Battleworn Dummy",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "The adventurer was somehow killed by [gold]Battleworn Dummy[/gold]???",
+              "new": "[b]The Adventurer[/b] was somehow killed by [gold]Battleworn Dummy[/gold]???"
+            }
+          ]
+        },
+        {
+          "id": "BOWLBUGS_NORMAL",
+          "name": "Bowlbug Swarm",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "The adventurer got in the way of a busy [gold]Bowlbug Swarm[/gold].",
+              "new": "[b]The Adventurer[/b] got in the way of a busy [gold]Bowlbug Swarm[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "BOWLBUGS_WEAK",
+          "name": "Bowlbugs",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "The adventurer got in the way of some busy [gold]Bowlbugs[/gold].",
+              "new": "[b]The Adventurer[/b] got in the way of some busy [gold]Bowlbugs[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "BYGONE_EFFIGY_ELITE",
+          "name": "Bygone Effigy",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "The adventurer was sliced in half by a [gold]Bygone Effigy[/gold].",
+              "new": "[b]The Adventurer[/b] was sliced in half by a [gold]Bygone Effigy[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "BYRDONIS_ELITE",
+          "name": "Byrdonis",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "[gold]Byrdonis[/gold] protected its children from The adventurer.",
+              "new": "[gold]Byrdonis[/gold] protected its children from [b]The Adventurer[/b]."
+            }
+          ]
+        },
+        {
+          "id": "CEREMONIAL_BEAST_BOSS",
+          "name": "Ceremonial Beast",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "The adventurer was put to rest by the [gold]Ceremonial Beast[/gold].",
+              "new": "[b]The Adventurer[/b] was put to rest by the [gold]Ceremonial Beast[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "CHOMPERS_NORMAL",
+          "name": "An Automaton Pair",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "The adventurer was chomped to death by [gold]An Automaton Pair[/gold].",
+              "new": "[b]The Adventurer[/b] was chomped to death by [gold]An Automaton Pair[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "CONSTRUCT_MENAGERIE_NORMAL",
+          "name": "Construct Menagerie",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "The [gold]Construct Menagerie[/gold] crushed The adventurer.",
+              "new": "The [gold]Construct Menagerie[/gold] crushed [b]The Adventurer[/b]."
+            }
+          ]
+        },
+        {
+          "id": "CORPSE_SLUGS_NORMAL",
+          "name": "Many Corpse Slugs",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "[gold]Many Corpse Slugs[/gold] feasted on The adventurer.",
+              "new": "[gold]Many Corpse Slugs[/gold] feasted on [b]The Adventurer[/b]."
+            }
+          ]
+        },
+        {
+          "id": "CORPSE_SLUGS_WEAK",
+          "name": "Corpse Slugs",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "[gold]Corpse Slugs[/gold] feasted on The adventurer.",
+              "new": "[gold]Corpse Slugs[/gold] feasted on [b]The Adventurer[/b]."
+            }
+          ]
+        },
+        {
+          "id": "CUBEX_CONSTRUCT_NORMAL",
+          "name": "Cubex Construct",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "The adventurer was lasered to death by a [gold]Cubex Construct[/gold].",
+              "new": "[b]The Adventurer[/b] was lasered to death by a [gold]Cubex Construct[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "CULTISTS_NORMAL",
+          "name": "Cultists",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "The adventurer was slain by some [gold]Cultists[/gold]. [sine]Caaaaw[/sine]...",
+              "new": "[b]The Adventurer[/b] was slain by some [gold]Cultists[/gold]. [sine]Caaaaw[/..."
+            }
+          ]
+        },
+        {
+          "id": "DECIMILLIPEDE_ELITE",
+          "name": "The Decimillipede",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "The adventurer couldn't survive [gold]The Decimillipede[/gold]'s domain.",
+              "new": "[b]The Adventurer[/b] couldn't survive [gold]The Decimillipede[/gold]'s domain."
+            }
+          ]
+        },
+        {
+          "id": "DENSE_VEGETATION_EVENT_ENCOUNTER",
+          "name": "Wrigglers",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "The adventurer was infested by [gold]Wrigglers[/gold].",
+              "new": "[b]The Adventurer[/b] was infested by [gold]Wrigglers[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "DEVOTED_SCULPTOR_WEAK",
+          "name": "Devoted Sculptor",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "The adventurer was smashed to pieces by [gold]Devoted Sculptor[/gold].",
+              "new": "[b]The Adventurer[/b] was smashed to pieces by [gold]Devoted Sculptor[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "DOORMAKER_BOSS",
+          "name": "The Doormaker",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "[gold]The Doormaker[/gold] didn't take kindly to The adventurer's disturbance.",
+              "new": "[gold]The Doormaker[/gold] didn't take kindly to [b]The Adventurer[/b]'s dist..."
+            }
+          ]
+        },
+        {
+          "id": "ENTOMANCER_ELITE",
+          "name": "Entomancer",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "The adventurer was stung to death by an [gold]Entomancer[/gold].",
+              "new": "[b]The Adventurer[/b] was stung to death by an [gold]Entomancer[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "EXOSKELETONS_NORMAL",
+          "name": "Many Exoskeletons",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "The adventurer was eviscerated by [gold]Many Exoskeletons[/gold].",
+              "new": "[b]The Adventurer[/b] was eviscerated by [gold]Many Exoskeletons[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "EXOSKELETONS_WEAK",
+          "name": "Exoskeletons",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "The adventurer was eviscerated by some [gold]Exoskeletons[/gold].",
+              "new": "[b]The Adventurer[/b] was eviscerated by some [gold]Exoskeletons[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "FABRICATOR_NORMAL",
+          "name": "Fabricator",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "The adventurer was zapped by a [gold]Fabricator[/gold]'s bots.",
+              "new": "[b]The Adventurer[/b] was zapped by a [gold]Fabricator[/gold]'s bots."
+            }
+          ]
+        },
+        {
+          "id": "FAKE_MERCHANT_EVENT_ENCOUNTER",
+          "name": "The Merchant???",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "The adventurer faced the wrath of [gold]The Merchant???[/gold]",
+              "new": "[b]The Adventurer[/b] faced the wrath of [gold]The Merchant???[/gold]"
+            }
+          ]
+        },
+        {
+          "id": "FLYCONID_NORMAL",
+          "name": "Shroom and Slime",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "The adventurer was absorbed by a [gold]Shroom and Slime[/gold].",
+              "new": "[b]The Adventurer[/b] was absorbed by a [gold]Shroom and Slime[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "FOGMOG_NORMAL",
+          "name": "Fogmog",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "The adventurer was distracted by a [gold]Fogmog[/gold]'s illusions.",
+              "new": "[b]The Adventurer[/b] was distracted by a [gold]Fogmog[/gold]'s illusions."
+            }
+          ]
+        },
+        {
+          "id": "FOSSIL_STALKER_NORMAL",
+          "name": "Fossil Stalker",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "The adventurer was ambushed by a [gold]Fossil Stalker[/gold].",
+              "new": "[b]The Adventurer[/b] was ambushed by a [gold]Fossil Stalker[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "FROG_KNIGHT_NORMAL",
+          "name": "Frog Knight",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "A valiant [gold]Frog Knight[/gold] triumphed over The adventurer.",
+              "new": "A valiant [gold]Frog Knight[/gold] triumphed over [b]The Adventurer[/b]."
+            }
+          ]
+        },
+        {
+          "id": "FUZZY_WURM_CRAWLER_WEAK",
+          "name": "Fuzzy Wurm Crawler",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "A [gold]Fuzzy Wurm Crawler[/gold] spat on The adventurer.",
+              "new": "A [gold]Fuzzy Wurm Crawler[/gold] spat on [b]The Adventurer[/b]."
+            }
+          ]
+        },
+        {
+          "id": "GLOBE_HEAD_NORMAL",
+          "name": "A Lone Globe Head",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "[gold]A Lone Globe Head[/gold] zapped The adventurer.",
+              "new": "[gold]A Lone Globe Head[/gold] zapped [b]The Adventurer[/b]."
+            }
+          ]
+        },
+        {
+          "id": "GREMLIN_MERC_NORMAL",
+          "name": "Two Gremlins in a Trenchcoat",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "The adventurer got mugged by [gold]Two Gremlins in a Trenchcoat[/gold].",
+              "new": "[b]The Adventurer[/b] got mugged by [gold]Two Gremlins in a Trenchcoat[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "HAUNTED_SHIP_NORMAL",
+          "name": "Haunted Ship",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "A [gold]Haunted Ship[/gold] stomped all over The adventurer.",
+              "new": "A [gold]Haunted Ship[/gold] stomped all over [b]The Adventurer[/b]."
+            }
+          ]
+        },
+        {
+          "id": "HUNTER_KILLER_NORMAL",
+          "name": "Hunter Killer",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "The adventurer was disemboweled by a [gold]Hunter Killer[/gold].",
+              "new": "[b]The Adventurer[/b] was disemboweled by a [gold]Hunter Killer[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "INFESTED_PRISMS_ELITE",
+          "name": "Infested Prism",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "The adventurer was stopped by an [gold]Infested Prism[/gold].",
+              "new": "[b]The Adventurer[/b] was stopped by an [gold]Infested Prism[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "INKLETS_NORMAL",
+          "name": "Inklets",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "Some [gold]Inklets[/gold] wouldn't let The adventurer pass.",
+              "new": "Some [gold]Inklets[/gold] wouldn't let [b]The Adventurer[/b] pass."
+            }
+          ]
+        },
+        {
+          "id": "KAISER_CRAB_BOSS",
+          "name": "Kaiser Crab",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "The [gold]Kaiser Crab[/gold] struck The adventurer from all sides.",
+              "new": "The [gold]Kaiser Crab[/gold] struck [b]The Adventurer[/b] from all sides."
+            }
+          ]
+        },
+        {
+          "id": "KNIGHTS_ELITE",
+          "name": "Knight Gang",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "The adventurer was slain by a [gold]Knight Gang[/gold].",
+              "new": "[b]The Adventurer[/b] was slain by a [gold]Knight Gang[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "KNOWLEDGE_DEMON_BOSS",
+          "name": "Knowledge Demon",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "The [gold]Knowledge Demon[/gold] cursed The adventurer with overwhelming know...",
+              "new": "The [gold]Knowledge Demon[/gold] cursed [b]The Adventurer[/b] with overwhelmi..."
+            }
+          ]
+        },
+        {
+          "id": "LAGAVULIN_MATRIARCH_BOSS",
+          "name": "Lagavulin Matriarch",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "The adventurer was cut in half by the [gold]Lagavulin Matriarch[/gold].",
+              "new": "[b]The Adventurer[/b] was cut in half by the [gold]Lagavulin Matriarch[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "LIVING_FOG_NORMAL",
+          "name": "Evil Gas",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "The adventurer couldn't bear the stench of some [gold]Evil Gas[/gold].",
+              "new": "[b]The Adventurer[/b] couldn't bear the stench of some [gold]Evil Gas[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "LOUSE_PROGENITOR_NORMAL",
+          "name": "Louse Progenitor",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "The adventurer was paralyzed by a [gold]Louse Progenitor[/gold].",
+              "new": "[b]The Adventurer[/b] was paralyzed by a [gold]Louse Progenitor[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "MAWLER_NORMAL",
+          "name": "Mawler",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "The adventurer became a delicious meal for a [gold]Mawler[/gold].",
+              "new": "[b]The Adventurer[/b] became a delicious meal for a [gold]Mawler[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "MECHA_KNIGHT_ELITE",
+          "name": "Mecha Knight",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "The adventurer was stabbed and burned by a [gold]Mecha Knight[/gold].",
+              "new": "[b]The Adventurer[/b] was stabbed and burned by a [gold]Mecha Knight[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "MYSTERIOUS_KNIGHT_EVENT_ENCOUNTER",
+          "name": "Mysterious Knight",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "The adventurer tried to take a [gold]Mysterious Knight[/gold]'s key.",
+              "new": "[b]The Adventurer[/b] tried to take a [gold]Mysterious Knight[/gold]'s key."
+            }
+          ]
+        },
+        {
+          "id": "MYTES_NORMAL",
+          "name": "Mass of Mytes",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "The adventurer was swarmed by a [gold]Mass of Mytes[/gold].",
+              "new": "[b]The Adventurer[/b] was swarmed by a [gold]Mass of Mytes[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "NIBBITS_NORMAL",
+          "name": "A Pair of Nibbits",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "[gold]A Pair of Nibbits[/gold] beat up The adventurer.",
+              "new": "[gold]A Pair of Nibbits[/gold] beat up [b]The Adventurer[/b]."
+            }
+          ]
+        },
+        {
+          "id": "NIBBITS_WEAK",
+          "name": "A Lone Nibbit",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "[gold]A Lone Nibbit[/gold] beat up The adventurer.",
+              "new": "[gold]A Lone Nibbit[/gold] beat up [b]The Adventurer[/b]."
+            }
+          ]
+        },
+        {
+          "id": "OVERGROWTH_CRAWLERS",
+          "name": "Overgrowth Crawlers",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "Some [gold]Overgrowth Crawlers[/gold] feasted on The adventurer.",
+              "new": "Some [gold]Overgrowth Crawlers[/gold] feasted on [b]The Adventurer[/b]."
+            }
+          ]
+        },
+        {
+          "id": "OVICOPTER_NORMAL",
+          "name": "Ovicopter",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "The adventurer became food for an [gold]Ovicopter[/gold]'s children.",
+              "new": "[b]The Adventurer[/b] became food for an [gold]Ovicopter[/gold]'s children."
+            }
+          ]
+        },
+        {
+          "id": "OWL_MAGISTRATE_NORMAL",
+          "name": "Owl Magistrate",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "The adventurer was sentenced to death by an [gold]Owl Magistrate[/gold].",
+              "new": "[b]The Adventurer[/b] was sentenced to death by an [gold]Owl Magistrate[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "PHANTASMAL_GARDENERS_ELITE",
+          "name": "Phantasmal Gardeners",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "The adventurer was put to rest by the [gold]Phantasmal Gardeners[/gold].",
+              "new": "[b]The Adventurer[/b] was put to rest by the [gold]Phantasmal Gardeners[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "PHROG_PARASITE_ELITE",
+          "name": "Phrog Parasite",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "A [gold]Phrog Parasite[/gold] spread its colony to The adventurer.",
+              "new": "A [gold]Phrog Parasite[/gold] spread its colony to [b]The Adventurer[/b]."
+            }
+          ]
+        },
+        {
+          "id": "PUNCH_CONSTRUCT_NORMAL",
+          "name": "Punch Construct",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "The adventurer engaged in fisticuffs with a [gold]Punch Construct[/gold].",
+              "new": "[b]The Adventurer[/b] engaged in fisticuffs with a [gold]Punch Construct[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "PUNCH_OFF_EVENT_ENCOUNTER",
+          "name": "Punch Constructs",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "The adventurer interrupted a bout between two [gold]Punch Constructs[/gold].",
+              "new": "[b]The Adventurer[/b] interrupted a bout between two [gold]Punch Constructs[/..."
+            }
+          ]
+        },
+        {
+          "id": "QUEEN_BOSS",
+          "name": "Queen",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "The [gold]Queen[/gold] added a piece of The adventurer to her collection.",
+              "new": "The [gold]Queen[/gold] added a piece of [b]The Adventurer[/b] to her collection."
+            }
+          ]
+        },
+        {
+          "id": "RUBY_RAIDERS_NORMAL",
+          "name": "Ruby Raiders",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "The adventurer got jumped by a group of [gold]Ruby Raiders[/gold].",
+              "new": "[b]The Adventurer[/b] got jumped by a group of [gold]Ruby Raiders[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "SCROLLS_OF_BITING_NORMAL",
+          "name": "Many Scrolls of Biting",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "[gold]Many Scrolls of Biting[/gold] tore The adventurer to shreds.",
+              "new": "[gold]Many Scrolls of Biting[/gold] tore [b]The Adventurer[/b] to shreds."
+            }
+          ]
+        },
+        {
+          "id": "SCROLLS_OF_BITING_WEAK",
+          "name": "Scrolls of Biting",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "Some [gold]Scrolls of Biting[/gold] tore The adventurer to shreds.",
+              "new": "Some [gold]Scrolls of Biting[/gold] tore [b]The Adventurer[/b] to shreds."
+            }
+          ]
+        },
+        {
+          "id": "SEAPUNK_WEAK",
+          "name": "Seapunk",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "A [gold]Seapunk[/gold] clobbered The adventurer.",
+              "new": "A [gold]Seapunk[/gold] clobbered [b]The Adventurer[/b]."
+            }
+          ]
+        },
+        {
+          "id": "SEWER_CLAM_NORMAL",
+          "name": "Sewer Clam",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "The adventurer was gobbled up by a [gold]Sewer Clam[/gold].",
+              "new": "[b]The Adventurer[/b] was gobbled up by a [gold]Sewer Clam[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "SHRINKER_BEETLE_WEAK",
+          "name": "Shrinker Beetle",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "A [gold]Shrinker Beetle[/gold] snacked on The adventurer.",
+              "new": "A [gold]Shrinker Beetle[/gold] snacked on [b]The Adventurer[/b]."
+            }
+          ]
+        },
+        {
+          "id": "SKULKING_COLONY_ELITE",
+          "name": "Skulking Colony",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "The adventurer was absorbed by a [gold]Skulking Colony[/gold]",
+              "new": "[b]The Adventurer[/b] was absorbed by a [gold]Skulking Colony[/gold]"
+            }
+          ]
+        },
+        {
+          "id": "SLIMED_BERSERKER_NORMAL",
+          "name": "Slimed Berserker",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "The adventurer was absorbed into a [gold]Slimed Berserker[/gold].",
+              "new": "[b]The Adventurer[/b] was absorbed into a [gold]Slimed Berserker[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "SLIMES_NORMAL",
+          "name": "Swarm of Slimes",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "The adventurer was felled by a [gold]Swarm of Slimes[/gold].",
+              "new": "[b]The Adventurer[/b] was felled by a [gold]Swarm of Slimes[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "SLIMES_WEAK",
+          "name": "Group of Slimes",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "The adventurer was felled by a [gold]Group of Slimes[/gold].",
+              "new": "[b]The Adventurer[/b] was felled by a [gold]Group of Slimes[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "SLITHERING_STRANGLER_NORMAL",
+          "name": "Strangler and Friend",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "The adventurer was suffocated by a [gold]Strangler and Friend[/gold].",
+              "new": "[b]The Adventurer[/b] was suffocated by a [gold]Strangler and Friend[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "SLUDGE_SPINNER_WEAK",
+          "name": "Sludge Spinner",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "The adventurer couldn't defeat a [gold]Sludge Spinner[/gold].",
+              "new": "[b]The Adventurer[/b] couldn't defeat a [gold]Sludge Spinner[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "SLUMBERING_BEETLE_NORMAL",
+          "name": "Slumber Party",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "The adventurer interrupted a [gold]Slumber Party[/gold].",
+              "new": "[b]The Adventurer[/b] interrupted a [gold]Slumber Party[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "SNAPPING_JAXFRUIT_NORMAL",
+          "name": "Overgrowth Flora",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "The adventurer ran afoul of some [gold]Overgrowth Flora[/gold].",
+              "new": "[b]The Adventurer[/b] ran afoul of some [gold]Overgrowth Flora[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "SOUL_FYSH_BOSS",
+          "name": "Soul Fysh",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "A [gold]Soul Fysh[/gold] beckoned The adventurer to their doom.",
+              "new": "A [gold]Soul Fysh[/gold] beckoned [b]The Adventurer[/b] to their doom."
+            }
+          ]
+        },
+        {
+          "id": "SOUL_NEXUS_ELITE",
+          "name": "Soul Nexus",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "The adventurer died to a [gold]Soul Nexus[/gold] on a forgotten battlefield.",
+              "new": "[b]The Adventurer[/b] died to a [gold]Soul Nexus[/gold] on a forgotten battle..."
+            }
+          ]
+        },
+        {
+          "id": "SPINY_TOAD_NORMAL",
+          "name": "Spiny Toad",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "The adventurer couldn't pierce the [gold]Spiny Toad[/gold]'s spikes.",
+              "new": "[b]The Adventurer[/b] couldn't pierce the [gold]Spiny Toad[/gold]'s spikes."
+            }
+          ]
+        },
+        {
+          "id": "TERROR_EEL_ELITE",
+          "name": "Terror Eel",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "A [gold]Terror Eel[/gold] was too terrifying for The adventurer.",
+              "new": "A [gold]Terror Eel[/gold] was too terrifying for [b]The Adventurer[/b]."
+            }
+          ]
+        },
+        {
+          "id": "TEST_SUBJECT_BOSS",
+          "name": "Test Subject",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "A [gold]Test Subject[/gold] loyally guarded its masters from The adventurer.",
+              "new": "A [gold]Test Subject[/gold] loyally guarded its masters from [b]The Adventure..."
+            }
+          ]
+        },
+        {
+          "id": "THE_INSATIABLE_BOSS",
+          "name": "The Insatiable",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "[gold]The Insatiable[/gold] devoured The adventurer. And yet, it still hunger...",
+              "new": "[gold]The Insatiable[/gold] devoured [b]The Adventurer[/b]. And yet, it still..."
+            }
+          ]
+        },
+        {
+          "id": "THE_KIN_BOSS",
+          "name": "The Kin",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "The adventurer was annihilated by [gold]The Kin[/gold]'s superior strategy.",
+              "new": "[b]The Adventurer[/b] was annihilated by [gold]The Kin[/gold]'s superior stra..."
+            }
+          ]
+        },
+        {
+          "id": "THE_LOST_AND_FORGOTTEN_NORMAL",
+          "name": "Lost and Forgotten",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "The [gold]Lost and Forgotten[/gold] stole The adventurer's will to live.",
+              "new": "The [gold]Lost and Forgotten[/gold] stole [b]The Adventurer[/b]'s will to live."
+            }
+          ]
+        },
+        {
+          "id": "THE_OBSCURA_NORMAL",
+          "name": "The Obscura",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "[gold]The Obscura[/gold] and its illusion smashed The adventurer.",
+              "new": "[gold]The Obscura[/gold] and its illusion smashed [b]The Adventurer[/b]."
+            }
+          ]
+        },
+        {
+          "id": "THIEVING_HOPPER_WEAK",
+          "name": "Thieving Hopper",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "A [gold]Thieving Hopper[/gold] mugged The adventurer.",
+              "new": "A [gold]Thieving Hopper[/gold] mugged [b]The Adventurer[/b]."
+            }
+          ]
+        },
+        {
+          "id": "TOADPOLES_NORMAL",
+          "name": "Underdocks Wildlife",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "The adventurer was defeated by some [gold]Underdocks Wildlife[/gold].",
+              "new": "[b]The Adventurer[/b] was defeated by some [gold]Underdocks Wildlife[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "TOADPOLES_WEAK",
+          "name": "Toadpoles",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "The adventurer couldn't deal with some [gold]Toadpoles[/gold].",
+              "new": "[b]The Adventurer[/b] couldn't deal with some [gold]Toadpoles[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "TUNNELER_NORMAL",
+          "name": "Tunneling Twosome",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "A [gold]Tunneling Twosome[/gold] finished off The adventurer.",
+              "new": "A [gold]Tunneling Twosome[/gold] finished off [b]The Adventurer[/b]."
+            }
+          ]
+        },
+        {
+          "id": "TUNNELER_WEAK",
+          "name": "Tunneler",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "The adventurer got whacked by a [gold]Tunneler[/gold].",
+              "new": "[b]The Adventurer[/b] got whacked by a [gold]Tunneler[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "TURRET_OPERATOR_WEAK",
+          "name": "Turret Operator",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "A [gold]Turret Operator[/gold] riddled The adventurer full of holes.",
+              "new": "A [gold]Turret Operator[/gold] riddled [b]The Adventurer[/b] full of holes."
+            }
+          ]
+        },
+        {
+          "id": "TWO_TAILED_RATS_NORMAL",
+          "name": "Two-Tailed Rats",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "The adventurer was swarmed by some [gold]Two-Tailed Rats[/gold].",
+              "new": "[b]The Adventurer[/b] was swarmed by some [gold]Two-Tailed Rats[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "VANTOM_BOSS",
+          "name": "Vantom",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "The adventurer was turned into an Inklet by the [gold]Vantom[/gold].",
+              "new": "[b]The Adventurer[/b] was turned into an Inklet by the [gold]Vantom[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "VINE_SHAMBLER_NORMAL",
+          "name": "Vine Shambler",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "The adventurer couldn't escape a [gold]Vine Shambler[/gold].",
+              "new": "[b]The Adventurer[/b] couldn't escape a [gold]Vine Shambler[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "WATERFALL_GIANT_BOSS",
+          "name": "Waterfall Giant",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "The [gold]Waterfall Giant[/gold] cleansed the Underdocks of The adventurer.",
+              "new": "The [gold]Waterfall Giant[/gold] cleansed the Underdocks of [b]The Adventurer..."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "events",
+      "name": "Events",
+      "old_count": 66,
+      "new_count": 66,
+      "changed": [
+        {
+          "id": "AMALGAMATOR",
+          "name": "Amalgamator",
+          "changes": [
+            {
+              "field": "preconditions",
+              "old": "none",
+              "new": "Requires 2+ Strikes in deck, Requires 2+ Defends in deck"
+            }
+          ]
+        },
+        {
+          "id": "BRAIN_LEECH",
+          "name": "Brain Leech",
+          "changes": [
+            {
+              "field": "preconditions",
+              "old": "none",
+              "new": "Act 1–2 only"
+            }
+          ]
+        },
+        {
+          "id": "BYRDONIS_NEST",
+          "name": "Byrdonis Nest",
+          "changes": [
+            {
+              "field": "preconditions",
+              "old": "none",
+              "new": "Cannot have an event pet"
+            }
+          ]
+        },
+        {
+          "id": "COLOSSAL_FLOWER",
+          "name": "Colossal Flower",
+          "changes": [
+            {
+              "field": "preconditions",
+              "old": "none",
+              "new": "Requires 19+ HP"
+            }
+          ]
+        },
+        {
+          "id": "CRYSTAL_SPHERE",
+          "name": "Crystal Sphere",
+          "changes": [
+            {
+              "field": "preconditions",
+              "old": "none",
+              "new": "Requires 100+ gold, Act 2+"
+            }
+          ]
+        },
+        {
+          "id": "DOLL_ROOM",
+          "name": "Doll Room",
+          "changes": [
+            {
+              "field": "preconditions",
+              "old": "none",
+              "new": "Act 2 only"
+            }
+          ]
+        },
+        {
+          "id": "ENDLESS_CONVEYOR",
+          "name": "Endless Conveyor",
+          "changes": [
+            {
+              "field": "preconditions",
+              "old": "none",
+              "new": "Requires 105+ gold"
+            }
+          ]
+        },
+        {
+          "id": "FAKE_MERCHANT",
+          "name": "The Merchant???",
+          "changes": [
+            {
+              "field": "preconditions",
+              "old": "none",
+              "new": "Act 2+, Single player only, Requires 100+ gold or a Foul Potion"
+            },
+            {
+              "field": "description",
+              "old": "Placeholder",
+              "new": "A suspicious merchant offers 9 fake relics at 42–58 gold each. Throwing a [go..."
+            }
+          ]
+        },
+        {
+          "id": "LUMINOUS_CHOIR",
+          "name": "Luminous Choir",
+          "changes": [
+            {
+              "field": "preconditions",
+              "old": "none",
+              "new": "Requires 100-149 gold"
+            }
+          ]
+        },
+        {
+          "id": "MORPHIC_GROVE",
+          "name": "Morphic Grove",
+          "changes": [
+            {
+              "field": "preconditions",
+              "old": "none",
+              "new": "Requires 100+ gold"
+            }
+          ]
+        },
+        {
+          "id": "POTION_COURIER",
+          "name": "Potion Courier",
+          "changes": [
+            {
+              "field": "preconditions",
+              "old": "none",
+              "new": "Act 2+"
+            }
+          ]
+        },
+        {
+          "id": "RANWID_THE_ELDER",
+          "name": "Ranwid the Elder",
+          "changes": [
+            {
+              "field": "preconditions",
+              "old": "none",
+              "new": "Act 2+, Requires at least one potion"
+            }
+          ]
+        },
+        {
+          "id": "RELIC_TRADER",
+          "name": "Relic Trader",
+          "changes": [
+            {
+              "field": "preconditions",
+              "old": "none",
+              "new": "Act 2+, Requires 5+ tradeable relics"
+            }
+          ]
+        },
+        {
+          "id": "ROOM_FULL_OF_CHEESE",
+          "name": "Room Full of Cheese",
+          "changes": [
+            {
+              "field": "preconditions",
+              "old": "none",
+              "new": "Act 1–2 only"
+            }
+          ]
+        },
+        {
+          "id": "SLIPPERY_BRIDGE",
+          "name": "Slippery Bridge",
+          "changes": [
+            {
+              "field": "preconditions",
+              "old": "none",
+              "new": "Floor 7+, Requires removable cards in deck"
+            }
+          ]
+        },
+        {
+          "id": "STONE_OF_ALL_TIME",
+          "name": "Stone of All Time",
+          "changes": [
+            {
+              "field": "preconditions",
+              "old": "none",
+              "new": "Act 2 only, Requires at least one potion"
+            }
+          ]
+        },
+        {
+          "id": "SYMBIOTE",
+          "name": "Symbiote",
+          "changes": [
+            {
+              "field": "preconditions",
+              "old": "none",
+              "new": "Act 2+"
+            }
+          ]
+        },
+        {
+          "id": "TEA_MASTER",
+          "name": "Tea Master",
+          "changes": [
+            {
+              "field": "preconditions",
+              "old": "none",
+              "new": "Requires 150+ gold, Act 1–2 only"
+            }
+          ]
+        },
+        {
+          "id": "THE_LEGENDS_WERE_TRUE",
+          "name": "The Legends Were True",
+          "changes": [
+            {
+              "field": "preconditions",
+              "old": "none",
+              "new": "Requires 10+ HP, Act 1 only"
+            }
+          ]
+        },
+        {
+          "id": "UNREST_SITE",
+          "name": "Unrest Site",
+          "changes": [
+            {
+              "field": "preconditions",
+              "old": "none",
+              "new": "Requires ≤70% HP"
+            }
+          ]
+        },
+        {
+          "id": "WATERLOGGED_SCRIPTORIUM",
+          "name": "Waterlogged Scriptorium",
+          "changes": [
+            {
+              "field": "preconditions",
+              "old": "none",
+              "new": "Requires 65+ gold"
+            }
+          ]
+        },
+        {
+          "id": "WELCOME_TO_WONGOS",
+          "name": "Welcome to Wongo's",
+          "changes": [
+            {
+              "field": "preconditions",
+              "old": "none",
+              "new": "Requires 100+ gold, Act 2 only"
+            }
+          ]
+        },
+        {
+          "id": "WHISPERING_HOLLOW",
+          "name": "Whispering Hollow",
+          "changes": [
+            {
+              "field": "preconditions",
+              "old": "none",
+              "new": "Requires 50+ gold"
+            }
+          ]
+        },
+        {
+          "id": "WOOD_CARVINGS",
+          "name": "Wood Carvings",
+          "changes": [
+            {
+              "field": "preconditions",
+              "old": "none",
+              "new": "Requires a removable basic card"
+            }
+          ]
+        },
+        {
+          "id": "ZEN_WEAVER",
+          "name": "Zen Weaver",
+          "changes": [
+            {
+              "field": "preconditions",
+              "old": "none",
+              "new": "Requires 125+ gold"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "powers",
+      "name": "Powers",
+      "old_count": 257,
+      "new_count": 257,
+      "changed": [
+        {
+          "id": "COLOSSUS",
+          "name": "Colossus",
+          "changes": [
+            {
+              "field": "description",
+              "old": "You receive [blue]50%[/blue] less damage from [gold]Vulnerable[/gold] enemies...",
+              "new": "You receive [blue]50%[/blue] less damage from [gold]Vulnerable[/gold] enemies..."
+            },
+            {
+              "field": "description_raw",
+              "old": "none",
+              "new": "You receive [blue]{DamageDecrease:percentLess()}%[/blue] less damage from [go..."
+            }
+          ]
+        },
+        {
+          "id": "VULNERABLE",
+          "name": "Vulnerable",
+          "changes": [
+            {
+              "field": "description",
+              "old": "Vulnerable creatures take [blue]50%[/blue] more damage from Attacks.",
+              "new": "Receive [blue]50%[/blue] more damage from Attacks for [blue][Amount][/blue] t..."
+            },
+            {
+              "field": "description_raw",
+              "old": "none",
+              "new": "Receive [blue]{DamageIncrease:percentMore()}%[/blue] more damage from Attacks..."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
