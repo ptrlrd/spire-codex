@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import EncounterDetail from "@/app/encounters/[id]/EncounterDetail";
-import { stripTags, SITE_URL } from "@/lib/seo";
+import { SITE_URL } from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 import { isValidLang, LANG_HREFLANG, LANG_NAMES, LANG_GAME_NAME, SUPPORTED_LANGS, type LangCode } from "@/lib/languages";

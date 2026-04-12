@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { useLanguage } from "../contexts/LanguageContext";
 
@@ -92,9 +93,9 @@ export default function AboutPage() {
             </a>
             . This repo is downstream of where the project is hosted, so it may take a bit before
             your PR gets fully merged. The project has an{" "}
-            <a href="/developers" className="text-[var(--accent-gold)] hover:underline">
+            <Link href="/developers" className="text-[var(--accent-gold)] hover:underline">
               open API
-            </a>
+            </Link>
             {" "}that is free to use and self-hostable. And if you&apos;re wanting to chat about the
             project, come visit the{" "}
             <a
