@@ -41,7 +41,6 @@ const [relic, setRelic] = useState<Relic | null>(null);
 
   useEffect(() => {
     if (!id) return;
-    setLoading(true);
     cachedFetch<Relic>(`${API}/api/relics/${id}?lang=${lang}`)
       .then((data) => {
         setRelic(data);

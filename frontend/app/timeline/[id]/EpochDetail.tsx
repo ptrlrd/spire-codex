@@ -56,8 +56,6 @@ export default function EpochDetail() {
 
   useEffect(() => {
     if (!id) return;
-    setLoading(true);
-    setNotFound(false);
     cachedFetch<Epoch>(`${API}/api/epochs/${id}?lang=${lang}`)
       .then(setEpoch)
       .catch(() => setNotFound(true))

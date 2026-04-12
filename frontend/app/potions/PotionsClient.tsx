@@ -77,7 +77,6 @@ const [potions, setPotions] = useState<Potion[]>(initialPotions);
         return;
       }
     }
-    setLoading(true);
     const params = new URLSearchParams();
     if (rarity) params.set("rarity", rarity);
     if (search) params.set("search", search);

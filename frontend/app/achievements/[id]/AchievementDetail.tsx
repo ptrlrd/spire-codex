@@ -25,7 +25,6 @@ export default function AchievementDetail() {
 
   useEffect(() => {
     if (!id) return;
-    setLoading(true);
     cachedFetch<Achievement>(`${API}/api/achievements/${id}?lang=${lang}`)
       .then((data) => setAchievement(data))
       .catch(() => setNotFound(true))

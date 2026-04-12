@@ -47,7 +47,6 @@ export default function CharacterDetail() {
 
   useEffect(() => {
     if (!id) return;
-    setLoading(true);
     Promise.all([
       cachedFetch<Character>(`${API}/api/characters/${id}?lang=${lang}`).catch(() => {
         setNotFound(true);

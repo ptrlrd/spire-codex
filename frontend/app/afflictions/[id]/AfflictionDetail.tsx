@@ -25,7 +25,6 @@ export default function AfflictionDetail() {
 
   useEffect(() => {
     if (!id) return;
-    setLoading(true);
     cachedFetch<Affliction>(`${API}/api/afflictions/${id}?lang=${lang}`)
       .then((data) => setAffliction(data))
       .catch(() => setNotFound(true))

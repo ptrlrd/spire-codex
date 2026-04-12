@@ -240,7 +240,6 @@ export default function MetaClient() {
   }, []);
 
   useEffect(() => {
-    setLoading(true);
     const params = new URLSearchParams();
     if (character) params.set("character", character);
     if (winFilter) params.set("win", winFilter);

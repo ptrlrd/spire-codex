@@ -82,7 +82,6 @@ export default function EventDetail() {
 
   useEffect(() => {
     if (!id) return;
-    setLoading(true);
     cachedFetch<GameEvent>(`${API}/api/events/${id}?lang=${lang}`)
       .then((data) => setEvent(data))
       .catch(() => setNotFound(true))

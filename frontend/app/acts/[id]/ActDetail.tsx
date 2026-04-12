@@ -23,7 +23,6 @@ export default function ActDetail() {
 
   useEffect(() => {
     if (!id) return;
-    setLoading(true);
     cachedFetch<Act>(`${API}/api/acts/${id}?lang=${lang}`)
       .then((data) => setAct(data))
       .catch(() => setNotFound(true))

@@ -192,7 +192,6 @@ export default function GlobalSearch() {
       return;
     }
 
-    setLoading(true);
     const timer = setTimeout(() => {
       // Abort previous requests
       if (abortRef.current) abortRef.current.abort();

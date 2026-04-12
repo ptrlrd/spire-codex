@@ -294,8 +294,6 @@ const [card, setCard] = useState<Card | null>(null);
 
   useEffect(() => {
     if (!id) return;
-    setLoading(true);
-    setNotFound(false);
     cachedFetch<Card>(`${API}/api/cards/${id}?lang=${lang}`)
       .then((data) => {
         setCard(data);
