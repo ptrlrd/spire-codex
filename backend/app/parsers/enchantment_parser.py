@@ -1,17 +1,19 @@
 """Parse enchantment data from decompiled C# files and localization JSON."""
+
 import json
 import re
 from pathlib import Path
 from description_resolver import resolve_description, extract_vars_from_source
 
 from parser_paths import BASE, DECOMPILED, loc_dir as _loc_dir, data_dir as _data_dir
+
 ENCHANTMENTS_DIR = DECOMPILED / "MegaCrit.Sts2.Core.Models.Enchantments"
 STATIC_IMAGES = BASE / "backend" / "static" / "images" / "enchantments"
 
 
 def class_name_to_id(name: str) -> str:
-    s = re.sub(r'(?<=[a-z0-9])(?=[A-Z])', '_', name)
-    s = re.sub(r'(?<=[A-Z])(?=[A-Z][a-z])', '_', s)
+    s = re.sub(r"(?<=[a-z0-9])(?=[A-Z])", "_", name)
+    s = re.sub(r"(?<=[A-Z])(?=[A-Z][a-z])", "_", s)
     return s.upper()
 
 
@@ -26,11 +28,19 @@ def load_localization(loc_dir: Path) -> dict:
 def parse_card_type_restriction(content: str) -> str | None:
     """Extract which card types this enchantment can be applied to."""
     # Simple equality: cardType == CardType.Attack
-    m = re.search(r'CanEnchantCardType\(CardType\s+\w+\)\s*\{[^}]*cardType\s*==\s*CardType\.(\w+)', content, re.DOTALL)
+    m = re.search(
+        r"CanEnchantCardType\(CardType\s+\w+\)\s*\{[^}]*cardType\s*==\s*CardType\.(\w+)",
+        content,
+        re.DOTALL,
+    )
     if m:
         return m.group(1)
     # Decompiled range check: (uint)(cardType - 1) <= 1u → Attack (1) or Skill (2)
-    if re.search(r'CanEnchantCardType.*\(uint\)\(cardType\s*-\s*1\)\s*<=\s*1u', content, re.DOTALL):
+    if re.search(
+        r"CanEnchantCardType.*\(uint\)\(cardType\s*-\s*1\)\s*<=\s*1u",
+        content,
+        re.DOTALL,
+    ):
         return "Attack, Skill"
     return None
 
@@ -38,7 +48,11 @@ def parse_card_type_restriction(content: str) -> str | None:
 def parse_applicable_to(content: str) -> str | None:
     """Extract CanEnchant restrictions beyond card type (tags, keywords, properties)."""
     # Extract CanEnchant(CardModel ...) method body up to next method declaration
-    m = re.search(r'override\s+bool\s+CanEnchant\(CardModel\s+\w+\)\s*\{(.*?)(?=\n\t(?:public|protected|private)\s|\n\})', content, re.DOTALL)
+    m = re.search(
+        r"override\s+bool\s+CanEnchant\(CardModel\s+\w+\)\s*\{(.*?)(?=\n\t(?:public|protected|private)\s|\n\})",
+        content,
+        re.DOTALL,
+    )
     if not m:
         return None
     body = m.group(1)
@@ -46,17 +60,17 @@ def parse_applicable_to(content: str) -> str | None:
     restrictions = []
 
     # Tag checks: card.Tags.Contains(CardTag.Strike)
-    tags = re.findall(r'Tags\.Contains\(CardTag\.(\w+)\)', body)
+    tags = re.findall(r"Tags\.Contains\(CardTag\.(\w+)\)", body)
     if tags:
         restrictions.append(", ".join(tags) + " cards")
 
     # Rarity checks: card.Rarity == CardRarity.Basic
-    rarity_m = re.search(r'Rarity\s*==\s*CardRarity\.(\w+)', body)
+    rarity_m = re.search(r"Rarity\s*==\s*CardRarity\.(\w+)", body)
     if rarity_m:
         restrictions.insert(0, rarity_m.group(1))
 
     # Keyword checks: card.Keywords.Contains(CardKeyword.Exhaust)
-    keywords = re.findall(r'Keywords\.Contains\(CardKeyword\.(\w+)\)', body)
+    keywords = re.findall(r"Keywords\.Contains\(CardKeyword\.(\w+)\)", body)
     if keywords:
         kw_names = [k for k in keywords if k != "Unplayable"]
         if kw_names:
@@ -85,10 +99,12 @@ def parse_single_enchantment(filepath: Path, localization: dict) -> dict | None:
 
     # Enchantments using base.Amount: the value equals the enchantment level,
     # which is set at application time (e.g. "Adroit 5"). Use "X" as placeholder.
-    if re.search(r'base\.Amount', content):
+    if re.search(r"base\.Amount", content):
         all_vars["Amount"] = "X"
         # If RecalculateValues sets a var from base.Amount, that var also = Amount
-        for rm in re.finditer(r'DynamicVars\.(\w+)\.BaseValue\s*=\s*base\.Amount', content):
+        for rm in re.finditer(
+            r"DynamicVars\.(\w+)\.BaseValue\s*=\s*base\.Amount", content
+        ):
             var_name = rm.group(1)
             all_vars[var_name] = "X"
 
@@ -101,7 +117,11 @@ def parse_single_enchantment(filepath: Path, localization: dict) -> dict | None:
     description_resolved = resolve_description(description_raw, all_vars)
     desc_clean = description_resolved
 
-    extra_text_resolved = resolve_description(extra_card_text_raw, all_vars) if extra_card_text_raw else None
+    extra_text_resolved = (
+        resolve_description(extra_card_text_raw, all_vars)
+        if extra_card_text_raw
+        else None
+    )
 
     # Card type restriction
     card_type = parse_card_type_restriction(content)
@@ -111,11 +131,14 @@ def parse_single_enchantment(filepath: Path, localization: dict) -> dict | None:
 
     # Boolean properties
     is_stackable = "IsStackable => true" in content
-    show_amount = "ShowAmount => true" in content
 
     # Image URL
     image_file = STATIC_IMAGES / f"{ench_id.lower()}.png"
-    image_url = f"/static/images/enchantments/{ench_id.lower()}.png" if image_file.exists() else None
+    image_url = (
+        f"/static/images/enchantments/{ench_id.lower()}.png"
+        if image_file.exists()
+        else None
+    )
 
     return {
         "id": ench_id,

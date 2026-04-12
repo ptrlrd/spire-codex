@@ -1,4 +1,5 @@
 """Modifier API endpoints."""
+
 from fastapi import APIRouter, Depends, HTTPException, Request
 from ..models.schemas import Modifier
 from ..services.data_service import load_modifiers

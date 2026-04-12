@@ -1,10 +1,12 @@
 """Parse keywords, intents, orbs, and afflictions from localization JSON and C# source."""
+
 import json
 import re
 from pathlib import Path
 from description_resolver import resolve_description, extract_vars_from_source
 
 from parser_paths import BASE, DECOMPILED, loc_dir as _loc_dir, data_dir as _data_dir
+
 ORBS_DIR = DECOMPILED / "MegaCrit.Sts2.Core.Models.Orbs"
 AFFLICTIONS_DIR = DECOMPILED / "MegaCrit.Sts2.Core.Models.Afflictions"
 STATIC_IMAGES = BASE / "backend" / "static" / "images"
@@ -12,16 +14,16 @@ MODIFIERS_DIR = DECOMPILED / "MegaCrit.Sts2.Core.Models.Modifiers"
 
 
 def class_name_to_id(name: str) -> str:
-    s = re.sub(r'(?<=[a-z0-9])(?=[A-Z])', '_', name)
-    s = re.sub(r'(?<=[A-Z])(?=[A-Z][a-z])', '_', s)
+    s = re.sub(r"(?<=[a-z0-9])(?=[A-Z])", "_", name)
+    s = re.sub(r"(?<=[A-Z])(?=[A-Z][a-z])", "_", s)
     return s.upper()
 
 
 def clean_description(text: str) -> str:
     """Strip only non-renderable tags, keep colors and effects for frontend."""
-    text = re.sub(r'\[/?(?:thinky_dots|i|font_size|rainbow)\]', '', text)
-    text = re.sub(r'\[rainbow[^\]]*\]', '', text)
-    text = re.sub(r'\[font_size=\d+\]', '', text)
+    text = re.sub(r"\[/?(?:thinky_dots|i|font_size|rainbow)\]", "", text)
+    text = re.sub(r"\[rainbow[^\]]*\]", "", text)
+    text = re.sub(r"\[font_size=\d+\]", "", text)
     return text
 
 
@@ -44,11 +46,13 @@ def parse_keywords(loc_dir: Path) -> list[dict]:
         title = loc.get(f"{kw_id}.title", kw_id.replace("_", " ").title())
         desc = loc.get(f"{kw_id}.description", "")
         desc_clean = clean_description(desc)
-        keywords.append({
-            "id": kw_id,
-            "name": title,
-            "description": desc_clean,
-        })
+        keywords.append(
+            {
+                "id": kw_id,
+                "name": title,
+                "description": desc_clean,
+            }
+        )
     return keywords
 
 
@@ -74,14 +78,18 @@ def parse_intents(loc_dir: Path) -> list[dict]:
         # Image URL — check for intent icon
         img_name = intent_id.lower()
         image_file = STATIC_IMAGES / "intents" / f"{img_name}.png"
-        image_url = f"/static/images/intents/{img_name}.png" if image_file.exists() else None
+        image_url = (
+            f"/static/images/intents/{img_name}.png" if image_file.exists() else None
+        )
 
-        intents.append({
-            "id": intent_id,
-            "name": title,
-            "description": desc_clean,
-            "image_url": image_url,
-        })
+        intents.append(
+            {
+                "id": intent_id,
+                "name": title,
+                "description": desc_clean,
+                "image_url": image_url,
+            }
+        )
     return intents
 
 
@@ -107,21 +115,27 @@ def parse_orbs(loc_dir: Path) -> list[dict]:
         # Try to get vars from C# source
         all_vars: dict[str, int] = {}
         # Map localization ID back to class name
-        orb_class = orb_id.replace("_", "").title().replace(" ", "") + "Orb"
         # Try common names
         for cs_file in ORBS_DIR.glob("*.cs"):
-            if cs_file.stem.upper().replace("ORB", "").replace("_", "") == orb_id.replace("_ORB", "").replace("_", ""):
+            if cs_file.stem.upper().replace("ORB", "").replace(
+                "_", ""
+            ) == orb_id.replace("_ORB", "").replace("_", ""):
                 content = cs_file.read_text(encoding="utf-8")
                 all_vars = extract_vars_from_source(content)
                 # Extract PassiveVal/EvokeVal from patterns like:
                 #   PassiveVal => ModifyOrbValue(3m)
                 #   _passiveVal = 4m
                 #   _evokeVal = 6m
-                for m in re.finditer(r'(?:override\s+decimal\s+)?(\w+)Val\s*(?:=>|=)\s*(?:ModifyOrbValue\()?(\d+)m', content):
+                for m in re.finditer(
+                    r"(?:override\s+decimal\s+)?(\w+)Val\s*(?:=>|=)\s*(?:ModifyOrbValue\()?(\d+)m",
+                    content,
+                ):
                     var_name = m.group(1).lstrip("_").capitalize()
                     all_vars[var_name] = int(m.group(2))
                 # Handle computed evoke (e.g. GlassOrb: EvokeVal => PassiveVal * 2m)
-                m_computed = re.search(r'EvokeVal\s*=>\s*PassiveVal\s*\*\s*(\d+)m', content)
+                m_computed = re.search(
+                    r"EvokeVal\s*=>\s*PassiveVal\s*\*\s*(\d+)m", content
+                )
                 if m_computed and "Passive" in all_vars:
                     all_vars["Evoke"] = all_vars["Passive"] * int(m_computed.group(1))
                 break
@@ -135,15 +149,19 @@ def parse_orbs(loc_dir: Path) -> list[dict]:
         # Image URL
         img_name = orb_id.lower()
         image_file = STATIC_IMAGES / "orbs" / f"{img_name}.png"
-        image_url = f"/static/images/orbs/{img_name}.png" if image_file.exists() else None
+        image_url = (
+            f"/static/images/orbs/{img_name}.png" if image_file.exists() else None
+        )
 
-        orbs.append({
-            "id": orb_id,
-            "name": title,
-            "description": desc_clean,
-            "description_raw": desc_raw if desc_raw != desc_clean else None,
-            "image_url": image_url,
-        })
+        orbs.append(
+            {
+                "id": orb_id,
+                "name": title,
+                "description": desc_clean,
+                "description_raw": desc_raw if desc_raw != desc_clean else None,
+                "image_url": image_url,
+            }
+        )
     return orbs
 
 
@@ -169,14 +187,14 @@ def parse_afflictions(loc_dir: Path) -> list[dict]:
         # Try to get C# source data
         all_vars: dict[str, int] = {}
         is_stackable = False
-        has_extra_card_text = False
         for cs_file in AFFLICTIONS_DIR.glob("*.cs"):
             cs_id = class_name_to_id(cs_file.stem)
             if cs_id == aff_id:
                 content = cs_file.read_text(encoding="utf-8")
                 all_vars = extract_vars_from_source(content)
-                is_stackable = "IsStackable => true" in content or "IsStackable = true" in content
-                has_extra_card_text = "HasExtraCardText => true" in content or "HasExtraCardText = true" in content
+                is_stackable = (
+                    "IsStackable => true" in content or "IsStackable = true" in content
+                )
                 break
 
         desc_raw = loc.get(f"{aff_id}.smartDescription", "")
@@ -189,17 +207,21 @@ def parse_afflictions(loc_dir: Path) -> list[dict]:
             all_vars["Amount"] = "X"
         desc_resolved = resolve_description(desc_raw, all_vars) if desc_raw else ""
         desc_clean = clean_description(desc_resolved)
-        extra_resolved = resolve_description(extra_text_raw, all_vars) if extra_text_raw else None
+        extra_resolved = (
+            resolve_description(extra_text_raw, all_vars) if extra_text_raw else None
+        )
         if extra_resolved:
             extra_resolved = clean_description(extra_resolved)
 
-        afflictions.append({
-            "id": aff_id,
-            "name": title,
-            "description": desc_clean,
-            "extra_card_text": extra_resolved,
-            "is_stackable": is_stackable,
-        })
+        afflictions.append(
+            {
+                "id": aff_id,
+                "name": title,
+                "description": desc_clean,
+                "extra_card_text": extra_resolved,
+                "is_stackable": is_stackable,
+            }
+        )
     return afflictions
 
 
@@ -235,11 +257,13 @@ def parse_modifiers(loc_dir: Path) -> list[dict]:
         desc_resolved = resolve_description(desc_raw, all_vars) if desc_raw else ""
         desc_clean = clean_description(desc_resolved)
 
-        modifiers.append({
-            "id": mod_id,
-            "name": title,
-            "description": desc_clean,
-        })
+        modifiers.append(
+            {
+                "id": mod_id,
+                "name": title,
+                "description": desc_clean,
+            }
+        )
     return modifiers
 
 
@@ -258,34 +282,130 @@ def parse_achievements(loc_dir: Path) -> list[dict]:
         "REGENT_WIN": {"category": "character_win", "character": "Regent"},
         "NECROBINDER_WIN": {"category": "character_win", "character": "Necrobinder"},
         "DEFECT_WIN": {"category": "character_win", "character": "Defect"},
-        "IRONCLAD_ASCENSION10": {"category": "character_ascension", "character": "Ironclad"},
-        "SILENT_ASCENSION10": {"category": "character_ascension", "character": "Silent"},
-        "REGENT_ASCENSION10": {"category": "character_ascension", "character": "Regent"},
-        "NECROBINDER_ASCENSION10": {"category": "character_ascension", "character": "Necrobinder"},
-        "DEFECT_ASCENSION10": {"category": "character_ascension", "character": "Defect"},
-        "CHARACTER_SKILL_IRONCLAD1": {"category": "character_skill", "character": "Ironclad", "threshold": 20, "condition": "Exhaust 20 cards in a single combat"},
-        "CHARACTER_SKILL_IRONCLAD2": {"category": "character_skill", "character": "Ironclad", "threshold": 999, "condition": "Deal 999+ damage in a single hit"},
-        "CHARACTER_SKILL_SILENT1": {"category": "character_skill", "character": "Silent", "threshold": 5, "condition": "Play 5 cards via Sly off a single card play"},
-        "CHARACTER_SKILL_SILENT2": {"category": "character_skill", "character": "Silent", "threshold": 99, "condition": "Apply 99+ Poison to a single enemy"},
-        "CHARACTER_SKILL_NECROBINDER1": {"category": "character_skill", "character": "Necrobinder", "threshold": 999, "condition": "Apply 999+ Doom to a single enemy"},
-        "CHARACTER_SKILL_NECROBINDER2": {"category": "character_skill", "character": "Necrobinder", "threshold": 50, "condition": "Apply 50+ Strength to Osty"},
-        "CHARACTER_SKILL_REGENT1": {"category": "character_skill", "character": "Regent", "threshold": 999, "condition": "Forge a Sovereign Blade with 999+ base damage"},
-        "CHARACTER_SKILL_REGENT2": {"category": "character_skill", "character": "Regent", "threshold": 20, "condition": "Have 20+ Stars at once"},
-        "PLAY20_CARDS_SINGLE_TURN": {"category": "combat", "threshold": 20, "condition": "Play 20 cards in a single turn"},
+        "IRONCLAD_ASCENSION10": {
+            "category": "character_ascension",
+            "character": "Ironclad",
+        },
+        "SILENT_ASCENSION10": {
+            "category": "character_ascension",
+            "character": "Silent",
+        },
+        "REGENT_ASCENSION10": {
+            "category": "character_ascension",
+            "character": "Regent",
+        },
+        "NECROBINDER_ASCENSION10": {
+            "category": "character_ascension",
+            "character": "Necrobinder",
+        },
+        "DEFECT_ASCENSION10": {
+            "category": "character_ascension",
+            "character": "Defect",
+        },
+        "CHARACTER_SKILL_IRONCLAD1": {
+            "category": "character_skill",
+            "character": "Ironclad",
+            "threshold": 20,
+            "condition": "Exhaust 20 cards in a single combat",
+        },
+        "CHARACTER_SKILL_IRONCLAD2": {
+            "category": "character_skill",
+            "character": "Ironclad",
+            "threshold": 999,
+            "condition": "Deal 999+ damage in a single hit",
+        },
+        "CHARACTER_SKILL_SILENT1": {
+            "category": "character_skill",
+            "character": "Silent",
+            "threshold": 5,
+            "condition": "Play 5 cards via Sly off a single card play",
+        },
+        "CHARACTER_SKILL_SILENT2": {
+            "category": "character_skill",
+            "character": "Silent",
+            "threshold": 99,
+            "condition": "Apply 99+ Poison to a single enemy",
+        },
+        "CHARACTER_SKILL_NECROBINDER1": {
+            "category": "character_skill",
+            "character": "Necrobinder",
+            "threshold": 999,
+            "condition": "Apply 999+ Doom to a single enemy",
+        },
+        "CHARACTER_SKILL_NECROBINDER2": {
+            "category": "character_skill",
+            "character": "Necrobinder",
+            "threshold": 50,
+            "condition": "Apply 50+ Strength to Osty",
+        },
+        "CHARACTER_SKILL_REGENT1": {
+            "category": "character_skill",
+            "character": "Regent",
+            "threshold": 999,
+            "condition": "Forge a Sovereign Blade with 999+ base damage",
+        },
+        "CHARACTER_SKILL_REGENT2": {
+            "category": "character_skill",
+            "character": "Regent",
+            "threshold": 20,
+            "condition": "Have 20+ Stars at once",
+        },
+        "PLAY20_CARDS_SINGLE_TURN": {
+            "category": "combat",
+            "threshold": 20,
+            "condition": "Play 20 cards in a single turn",
+        },
         "DEFEAT_ONE_BOSS": {"category": "combat", "condition": "Defeat a boss"},
-        "DEFEAT_OVERGROWTH_ENEMIES": {"category": "combat", "condition": "Defeat every enemy in the Overgrowth"},
-        "DEFEAT_UNDERDOCKS_ENEMIES": {"category": "combat", "condition": "Defeat every enemy in the Underdocks"},
-        "DEFEAT_HIVE_ENEMIES": {"category": "combat", "condition": "Defeat every enemy in the Hive"},
-        "DEFEAT_GLORY_ENEMIES": {"category": "combat", "condition": "Defeat every enemy in the Glory"},
-        "NO_RELIC_WIN": {"category": "run", "condition": "Win without obtaining any relics"},
-        "ALL_CARDS_UPGRADED": {"category": "run", "condition": "Win with a fully-upgraded deck"},
+        "DEFEAT_OVERGROWTH_ENEMIES": {
+            "category": "combat",
+            "condition": "Defeat every enemy in the Overgrowth",
+        },
+        "DEFEAT_UNDERDOCKS_ENEMIES": {
+            "category": "combat",
+            "condition": "Defeat every enemy in the Underdocks",
+        },
+        "DEFEAT_HIVE_ENEMIES": {
+            "category": "combat",
+            "condition": "Defeat every enemy in the Hive",
+        },
+        "DEFEAT_GLORY_ENEMIES": {
+            "category": "combat",
+            "condition": "Defeat every enemy in the Glory",
+        },
+        "NO_RELIC_WIN": {
+            "category": "run",
+            "condition": "Win without obtaining any relics",
+        },
+        "ALL_CARDS_UPGRADED": {
+            "category": "run",
+            "condition": "Win with a fully-upgraded deck",
+        },
         "COMPLETE_ACT4": {"category": "run", "condition": "Complete Act 4"},
-        "FLOOR_TEN_THOUSAND": {"category": "collection", "threshold": 10000, "condition": "Climb 10,000 floors total"},
-        "DISCOVER_ALL_CARDS": {"category": "collection", "condition": "Discover all cards"},
-        "DISCOVER_ALL_RELICS": {"category": "collection", "condition": "Discover all relics"},
-        "DISCOVER_ALL_EVENTS": {"category": "collection", "condition": "Encounter all events"},
-        "COMPLETE_TIMELINE": {"category": "collection", "condition": "Complete the Timeline"},
-        "ALL_OTHER_ACHIEVEMENTS": {"category": "meta", "condition": "Complete all other achievements"},
+        "FLOOR_TEN_THOUSAND": {
+            "category": "collection",
+            "threshold": 10000,
+            "condition": "Climb 10,000 floors total",
+        },
+        "DISCOVER_ALL_CARDS": {
+            "category": "collection",
+            "condition": "Discover all cards",
+        },
+        "DISCOVER_ALL_RELICS": {
+            "category": "collection",
+            "condition": "Discover all relics",
+        },
+        "DISCOVER_ALL_EVENTS": {
+            "category": "collection",
+            "condition": "Encounter all events",
+        },
+        "COMPLETE_TIMELINE": {
+            "category": "collection",
+            "condition": "Complete the Timeline",
+        },
+        "ALL_OTHER_ACHIEVEMENTS": {
+            "category": "meta",
+            "condition": "Complete all other achievements",
+        },
     }
 
     achievements = []
@@ -303,25 +423,42 @@ def parse_achievements(loc_dir: Path) -> list[dict]:
         desc_clean = clean_description(desc)
 
         meta = ACHIEVEMENT_META.get(ach_id, {})
-        achievements.append({
-            "id": ach_id,
-            "name": title,
-            "description": desc_clean,
-            "category": meta.get("category"),
-            "character": meta.get("character"),
-            "threshold": meta.get("threshold"),
-            "condition": meta.get("condition"),
-        })
+        achievements.append(
+            {
+                "id": ach_id,
+                "name": title,
+                "description": desc_clean,
+                "category": meta.get("category"),
+                "character": meta.get("character"),
+                "threshold": meta.get("threshold"),
+                "condition": meta.get("condition"),
+            }
+        )
     return achievements
 
 
 # --- Glossary (Static Hover Tips) ---
 SKIP_GLOSSARY = {
-    "BOSS", "DOUBLE_BOSS", "NETWORK_PROBLEM_CLIENT", "NETWORK_PROBLEM_HOST",
-    "SETTINGS", "COMPENDIUM", "REPLAY_DYNAMIC", "SUMMON_DYNAMIC",
-    "ENERGY_COUNT", "STAR_COUNT", "END_TURN", "TURN_NUMBER", "MAP", "FLOOR",
-    "ROOM_UNKNOWN_ELITE", "ROOM_UNKNOWN_ENEMY", "ROOM_UNKNOWN_EVENT",
-    "ROOM_UNKNOWN_MERCHANT", "ROOM_UNKNOWN_TREASURE", "ROOM_MAP",
+    "BOSS",
+    "DOUBLE_BOSS",
+    "NETWORK_PROBLEM_CLIENT",
+    "NETWORK_PROBLEM_HOST",
+    "SETTINGS",
+    "COMPENDIUM",
+    "REPLAY_DYNAMIC",
+    "SUMMON_DYNAMIC",
+    "ENERGY_COUNT",
+    "STAR_COUNT",
+    "END_TURN",
+    "TURN_NUMBER",
+    "MAP",
+    "FLOOR",
+    "ROOM_UNKNOWN_ELITE",
+    "ROOM_UNKNOWN_ENEMY",
+    "ROOM_UNKNOWN_EVENT",
+    "ROOM_UNKNOWN_MERCHANT",
+    "ROOM_UNKNOWN_TREASURE",
+    "ROOM_MAP",
 }
 
 RENAME_GLOSSARY = {
@@ -330,16 +467,34 @@ RENAME_GLOSSARY = {
 }
 
 GLOSSARY_CATEGORIES = {
-    "BLOCK": "combat", "ENERGY": "combat", "STUN": "combat", "FATAL": "combat",
-    "CHANNELING": "combat", "EVOKE": "combat",
-    "FORGE": "mechanics", "REPLAY": "mechanics", "SUMMON": "mechanics",
-    "TRANSFORM": "mechanics", "COOK": "mechanics",
-    "DISCARD_PILE": "zones", "DRAW_PILE": "zones", "EXHAUST_PILE": "zones", "DECK": "zones",
-    "CARD_REWARD": "progression", "LINKED_REWARDS": "progression",
-    "POTION_SLOT": "progression", "HIT_POINTS": "progression", "MONEY_POUCH": "progression",
-    "ROOM_ANCIENT": "rooms", "ROOM_BOSS": "rooms", "ROOM_ELITE": "rooms",
-    "ROOM_ENEMY": "rooms", "ROOM_EVENT": "rooms", "ROOM_MERCHANT": "rooms",
-    "ROOM_REST": "rooms", "ROOM_TREASURE": "rooms",
+    "BLOCK": "combat",
+    "ENERGY": "combat",
+    "STUN": "combat",
+    "FATAL": "combat",
+    "CHANNELING": "combat",
+    "EVOKE": "combat",
+    "FORGE": "mechanics",
+    "REPLAY": "mechanics",
+    "SUMMON": "mechanics",
+    "TRANSFORM": "mechanics",
+    "COOK": "mechanics",
+    "DISCARD_PILE": "zones",
+    "DRAW_PILE": "zones",
+    "EXHAUST_PILE": "zones",
+    "DECK": "zones",
+    "CARD_REWARD": "progression",
+    "LINKED_REWARDS": "progression",
+    "POTION_SLOT": "progression",
+    "HIT_POINTS": "progression",
+    "MONEY_POUCH": "progression",
+    "ROOM_ANCIENT": "rooms",
+    "ROOM_BOSS": "rooms",
+    "ROOM_ELITE": "rooms",
+    "ROOM_ENEMY": "rooms",
+    "ROOM_EVENT": "rooms",
+    "ROOM_MERCHANT": "rooms",
+    "ROOM_REST": "rooms",
+    "ROOM_TREASURE": "rooms",
 }
 
 
@@ -364,22 +519,24 @@ def parse_glossary(loc_dir: Path) -> list[dict]:
         if not title or not desc:
             continue
         # Strip keyboard shortcut hints like "(D)", "(ESC)"
-        title = re.sub(r'\s*\([A-Z]+\)\s*$', '', title)
+        title = re.sub(r"\s*\([A-Z]+\)\s*$", "", title)
         desc = clean_description(desc)
         # Clean unresolvable template variables
-        desc = re.sub(r'\{[^}]+\}', '', desc).strip()
+        desc = re.sub(r"\{[^}]+\}", "", desc).strip()
         # Normalize whitespace
-        desc = re.sub(r'  +', ' ', desc)
+        desc = re.sub(r"  +", " ", desc)
 
         term_id = RENAME_GLOSSARY.get(raw_id, raw_id)
         category = GLOSSARY_CATEGORIES.get(term_id, "other")
 
-        glossary.append({
-            "id": term_id,
-            "name": title,
-            "description": desc,
-            "category": category,
-        })
+        glossary.append(
+            {
+                "id": term_id,
+                "name": title,
+                "description": desc,
+                "category": category,
+            }
+        )
     return glossary
 
 

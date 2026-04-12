@@ -3,6 +3,7 @@
 Supports env var overrides for beta/alternate extraction sources:
   EXTRACTION_DIR=extraction/beta DATA_DIR=data-beta python3 parse_all.py
 """
+
 import os
 from pathlib import Path
 
@@ -12,7 +13,11 @@ BASE = Path(__file__).resolve().parents[3]
 # Extraction source — override with EXTRACTION_DIR env var (relative to BASE or absolute)
 _extraction_env = os.environ.get("EXTRACTION_DIR")
 if _extraction_env:
-    EXTRACTION_DIR = Path(_extraction_env) if Path(_extraction_env).is_absolute() else BASE / _extraction_env
+    EXTRACTION_DIR = (
+        Path(_extraction_env)
+        if Path(_extraction_env).is_absolute()
+        else BASE / _extraction_env
+    )
 else:
     EXTRACTION_DIR = BASE / "extraction"
 

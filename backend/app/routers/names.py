@@ -1,4 +1,5 @@
 """Cross-language entity name lookup."""
+
 from fastapi import APIRouter
 
 from ..services.data_service import _load_json

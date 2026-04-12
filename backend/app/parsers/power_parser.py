@@ -1,12 +1,13 @@
 """Parse power/buff/debuff data from decompiled C# files and localization JSON."""
+
 import json
 import re
 from pathlib import Path
 from description_resolver import resolve_description, extract_vars_from_source
 
-from parser_paths import BASE, DECOMPILED, loc_dir as _loc_dir, data_dir as _data_dir
+from parser_paths import DECOMPILED, RAW_DIR, loc_dir as _loc_dir, data_dir as _data_dir
+
 POWERS_DIR = DECOMPILED / "MegaCrit.Sts2.Core.Models.Powers"
-from parser_paths import RAW_DIR
 POWERS_IMAGES = RAW_DIR / "images" / "powers"
 
 # Aliases for powers whose icon filename doesn't match the ID pattern
@@ -16,8 +17,8 @@ IMAGE_ALIASES: dict[str, str] = {
 
 
 def class_name_to_id(name: str) -> str:
-    s = re.sub(r'(?<=[a-z0-9])(?=[A-Z])', '_', name)
-    s = re.sub(r'(?<=[A-Z])(?=[A-Z][a-z])', '_', s)
+    s = re.sub(r"(?<=[a-z0-9])(?=[A-Z])", "_", name)
+    s = re.sub(r"(?<=[A-Z])(?=[A-Z][a-z])", "_", s)
     return s.upper()
 
 
@@ -29,24 +30,37 @@ def load_localization(loc_dir: Path) -> dict:
     return {}
 
 
-
 # Map parent class -> { stat, positive_key, negative_key }
 TEMPORARY_POWER_BASES = {
-    "TemporaryStrengthPower":  { "stat": "Strength",  "pos_key": "TEMPORARY_STRENGTH_POWER", "neg_key": "TEMPORARY_STRENGTH_DOWN" },
-    "TemporaryDexterityPower": { "stat": "Dexterity",  "pos_key": "TEMPORARY_DEXTERITY_POWER", "neg_key": "TEMPORARY_DEXTERITY_DOWN" },
-    "TemporaryFocusPower":     { "stat": "Focus",      "pos_key": "TEMPORARY_FOCUS_POWER",     "neg_key": "TEMPORARY_FOCUS_DOWN" },
+    "TemporaryStrengthPower": {
+        "stat": "Strength",
+        "pos_key": "TEMPORARY_STRENGTH_POWER",
+        "neg_key": "TEMPORARY_STRENGTH_DOWN",
+    },
+    "TemporaryDexterityPower": {
+        "stat": "Dexterity",
+        "pos_key": "TEMPORARY_DEXTERITY_POWER",
+        "neg_key": "TEMPORARY_DEXTERITY_DOWN",
+    },
+    "TemporaryFocusPower": {
+        "stat": "Focus",
+        "pos_key": "TEMPORARY_FOCUS_POWER",
+        "neg_key": "TEMPORARY_FOCUS_DOWN",
+    },
 }
 
 
 def detect_parent_power(content: str) -> tuple[str | None, bool]:
     """Detect if a power inherits from a Temporary*Power base class.
     Returns (parent_class_name, is_positive)."""
-    m = re.search(r'class\s+\w+\s*:\s*(\w+)', content)
+    m = re.search(r"class\s+\w+\s*:\s*(\w+)", content)
     if not m or m.group(1) not in TEMPORARY_POWER_BASES:
         return None, True
     parent = m.group(1)
-    pos = re.search(r'IsPositive\s*=>\s*(true|false)', content)
-    is_positive = pos.group(1) == "true" if pos else True  # default is true in base classes
+    pos = re.search(r"IsPositive\s*=>\s*(true|false)", content)
+    is_positive = (
+        pos.group(1) == "true" if pos else True
+    )  # default is true in base classes
     return parent, is_positive
 
 
@@ -58,7 +72,7 @@ def parse_single_power(filepath: Path, localization: dict) -> dict | None:
         return None
 
     # Skip abstract base classes — their children are the real powers
-    if re.search(r'\babstract\s+class\b', content):
+    if re.search(r"\babstract\s+class\b", content):
         return None
 
     # Strip "Power" suffix for ID if present
@@ -72,7 +86,9 @@ def parse_single_power(filepath: Path, localization: dict) -> dict | None:
     parent_info = TEMPORARY_POWER_BASES.get(parent_class) if parent_class else None
 
     # PowerType: Buff, Debuff, or None/neutral
-    type_match = re.search(r'(?:override\s+)?PowerType\s+Type\s*(?:=>|=)\s*PowerType\.(\w+)', content)
+    type_match = re.search(
+        r"(?:override\s+)?PowerType\s+Type\s*(?:=>|=)\s*PowerType\.(\w+)", content
+    )
     if type_match:
         power_type = type_match.group(1)
     elif parent_info:
@@ -81,7 +97,10 @@ def parse_single_power(filepath: Path, localization: dict) -> dict | None:
         power_type = "None"
 
     # StackType: Counter, Single, None
-    stack_match = re.search(r'(?:override\s+)?PowerStackType\s+StackType\s*(?:=>|=)\s*PowerStackType\.(\w+)', content)
+    stack_match = re.search(
+        r"(?:override\s+)?PowerStackType\s+StackType\s*(?:=>|=)\s*PowerStackType\.(\w+)",
+        content,
+    )
     if stack_match:
         stack_type = stack_match.group(1)
     elif parent_info:
@@ -90,7 +109,7 @@ def parse_single_power(filepath: Path, localization: dict) -> dict | None:
         stack_type = "None"
 
     # AllowNegative
-    allow_negative = bool(re.search(r'AllowNegative\s*(?:=>|=)\s*true', content))
+    allow_negative = bool(re.search(r"AllowNegative\s*(?:=>|=)\s*true", content))
 
     # Extract variable values from source
     all_vars = extract_vars_from_source(content)
@@ -117,11 +136,22 @@ def parse_single_power(filepath: Path, localization: dict) -> dict | None:
     # Description — try smartDescription first, fall back to plain description
     # if smartDescription has unresolvable vars like {Amount}
     desc_key = power_id
-    if f"{power_id}.smartDescription" not in localization and f"{power_id}.description" not in localization:
-        desc_key = f"{power_id}_POWER" if f"{power_id}_POWER.smartDescription" in localization else class_name_to_id(class_name)
+    if (
+        f"{power_id}.smartDescription" not in localization
+        and f"{power_id}.description" not in localization
+    ):
+        desc_key = (
+            f"{power_id}_POWER"
+            if f"{power_id}_POWER.smartDescription" in localization
+            else class_name_to_id(class_name)
+        )
 
     # For inherited powers with no own localization, use parent's localization
-    if parent_info and f"{desc_key}.smartDescription" not in localization and f"{desc_key}.description" not in localization:
+    if (
+        parent_info
+        and f"{desc_key}.smartDescription" not in localization
+        and f"{desc_key}.description" not in localization
+    ):
         desc_key = parent_info["neg_key"] if not is_positive else parent_info["pos_key"]
 
     smart_raw = localization.get(f"{desc_key}.smartDescription", "")
@@ -133,22 +163,28 @@ def parse_single_power(filepath: Path, localization: dict) -> dict | None:
         # prefer the plain description (Amount is the stack count, set at runtime).
         # Also fall back for any remaining template artifacts.
         amount_missing = "{Amount" in smart_raw and "Amount" not in all_vars
-        has_artifacts = bool(re.search(
-            r'\[Amount\]|\[Applier|:cond:|==\d+\?|>\d+\?',
-            description_resolved
-        ))
+        has_artifacts = bool(
+            re.search(
+                r"\[Amount\]|\[Applier|:cond:|==\d+\?|>\d+\?", description_resolved
+            )
+        )
         # Only fall back to plain if:
         # 1. Plain is actually useful (not "TODO" or empty)
         # 2. Smart description ONLY has {Amount} issues (no other resolved vars that plain would lose)
         plain_is_useful = plain_raw and plain_raw.strip() not in ("", "TODO")
         # Check if smart description resolved any non-Amount vars that plain would lose
         smart_has_resolved_vars = any(
-            f"{{{v}" in smart_raw and v != "Amount" and v in all_vars
-            for v in all_vars
+            f"{{{v}" in smart_raw and v != "Amount" and v in all_vars for v in all_vars
         )
         # Also check for unresolved StringVar placeholders like [AfflictionTitle]
-        has_unresolved_stringvars = bool(re.search(r'\[(?:AfflictionTitle|Covering)\]', description_resolved))
-        if ((amount_missing or has_artifacts) and plain_is_useful and not smart_has_resolved_vars) or (has_unresolved_stringvars and plain_is_useful):
+        has_unresolved_stringvars = bool(
+            re.search(r"\[(?:AfflictionTitle|Covering)\]", description_resolved)
+        )
+        if (
+            (amount_missing or has_artifacts)
+            and plain_is_useful
+            and not smart_has_resolved_vars
+        ) or (has_unresolved_stringvars and plain_is_useful):
             description_raw = plain_raw
             description_resolved = resolve_description(plain_raw, all_vars)
         else:

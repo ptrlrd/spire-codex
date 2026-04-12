@@ -1,4 +1,5 @@
 """Run all parsers and generate structured JSON data files."""
+
 import sys
 from card_parser import main as parse_cards
 from character_parser import main as parse_characters
@@ -17,8 +18,20 @@ from pool_parser import main as parse_pools
 from translation_parser import main as parse_translations
 
 LANGUAGES = [
-    "deu", "eng", "esp", "fra", "ita", "jpn",
-    "kor", "pol", "ptb", "rus", "spa", "tha", "tur", "zhs",
+    "deu",
+    "eng",
+    "esp",
+    "fra",
+    "ita",
+    "jpn",
+    "kor",
+    "pol",
+    "ptb",
+    "rus",
+    "spa",
+    "tha",
+    "tur",
+    "zhs",
 ]
 
 
@@ -60,6 +73,7 @@ if __name__ == "__main__":
         parse_language(lang)
     # Guides are language-independent
     from guide_parser import main as parse_guides
+
     parse_guides()
 
     print("\n=== Done! ===")

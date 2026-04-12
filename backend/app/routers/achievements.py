@@ -1,4 +1,5 @@
 """Achievement API endpoints."""
+
 from fastapi import APIRouter, Depends, HTTPException, Request
 from ..models.schemas import Achievement
 from ..services.data_service import load_achievements
@@ -13,9 +14,13 @@ def get_achievements(request: Request, lang: str = Depends(get_lang)):
 
 
 @router.get("/{achievement_id}", response_model=Achievement)
-def get_achievement(request: Request, achievement_id: str, lang: str = Depends(get_lang)):
+def get_achievement(
+    request: Request, achievement_id: str, lang: str = Depends(get_lang)
+):
     achievements = load_achievements(lang)
     for ach in achievements:
         if ach["id"] == achievement_id.upper():
             return ach
-    raise HTTPException(status_code=404, detail=f"Achievement '{achievement_id}' not found")
+    raise HTTPException(
+        status_code=404, detail=f"Achievement '{achievement_id}' not found"
+    )

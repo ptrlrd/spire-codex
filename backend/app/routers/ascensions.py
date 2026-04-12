@@ -1,4 +1,5 @@
 """Ascension API endpoints."""
+
 from fastapi import APIRouter, Depends, HTTPException, Request
 from ..models.schemas import Ascension
 from ..services.data_service import load_ascensions

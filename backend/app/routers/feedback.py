@@ -1,4 +1,5 @@
 """Feedback proxy endpoint — forwards to Discord webhook without exposing the URL."""
+
 import os
 import httpx
 from fastapi import APIRouter, HTTPException, Request
@@ -31,13 +32,17 @@ async def submit_feedback(request: Request, body: FeedbackRequest):
     color = 0xFF4444 if body.type == "Bug" else 0x44AAFF
     payload = {
         "content": "<@99656376954916864>",
-        "embeds": [{
-            "title": f"{body.type} Report",
-            "description": body.contents.strip(),
-            "color": color,
-            "fields": [{"name": "Contact", "value": body.contact.strip(), "inline": True}],
-            "footer": {"text": "Spire Codex Feedback"},
-        }],
+        "embeds": [
+            {
+                "title": f"{body.type} Report",
+                "description": body.contents.strip(),
+                "color": color,
+                "fields": [
+                    {"name": "Contact", "value": body.contact.strip(), "inline": True}
+                ],
+                "footer": {"text": "Spire Codex Feedback"},
+            }
+        ],
     }
 
     async with httpx.AsyncClient() as client:

@@ -1,4 +1,5 @@
 """Character API endpoints."""
+
 from fastapi import APIRouter, Depends, HTTPException, Query, Request
 from ..models.schemas import Character
 from ..services.data_service import load_characters
@@ -15,7 +16,9 @@ def get_characters(
 ):
     characters = load_characters(lang)
     if search:
-        characters = [c for c in characters if matches_search(c, search, ["name", "description"])]
+        characters = [
+            c for c in characters if matches_search(c, search, ["name", "description"])
+        ]
     return characters
 
 

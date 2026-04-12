@@ -1,4 +1,5 @@
 """SQLite database for community run data."""
+
 import json
 import hashlib
 import sqlite3
@@ -8,7 +9,9 @@ from contextlib import contextmanager
 import os
 
 # Use DATA_DIR env var (Docker) or fall back to project data/
-_data_dir = Path(os.environ.get("DATA_DIR", Path(__file__).resolve().parents[3] / "data"))
+_data_dir = Path(
+    os.environ.get("DATA_DIR", Path(__file__).resolve().parents[3] / "data")
+)
 DB_PATH = _data_dir / "runs.db"
 
 
@@ -106,44 +109,73 @@ def init_db():
         """)
 
         # Migrations — add columns to existing tables
-        for col, coltype in [("was_abandoned", "INTEGER NOT NULL DEFAULT 0"), ("player_count", "INTEGER NOT NULL DEFAULT 1"), ("username", "TEXT")]:
+        for col, coltype in [
+            ("was_abandoned", "INTEGER NOT NULL DEFAULT 0"),
+            ("player_count", "INTEGER NOT NULL DEFAULT 1"),
+            ("username", "TEXT"),
+        ]:
             try:
                 conn.execute(f"ALTER TABLE runs ADD COLUMN {col} {coltype}")
             except Exception:
                 pass  # column already exists
         try:
-            conn.execute("CREATE INDEX IF NOT EXISTS idx_runs_player_count ON runs(player_count)")
+            conn.execute(
+                "CREATE INDEX IF NOT EXISTS idx_runs_player_count ON runs(player_count)"
+            )
         except Exception:
             pass
 
 
-
-
 def clean_id(raw_id: str) -> str:
     """Strip prefixes like CARD., RELIC., etc."""
-    for prefix in ("CARD.", "RELIC.", "ENCHANTMENT.", "MONSTER.", "ENCOUNTER.", "CHARACTER.", "ACT.", "POTION."):
+    for prefix in (
+        "CARD.",
+        "RELIC.",
+        "ENCHANTMENT.",
+        "MONSTER.",
+        "ENCOUNTER.",
+        "CHARACTER.",
+        "ACT.",
+        "POTION.",
+    ):
         if raw_id.startswith(prefix):
-            return raw_id[len(prefix):]
+            return raw_id[len(prefix) :]
     return raw_id
 
 
 def submit_run(data: dict, username: str | None = None) -> dict:
     """Parse and store a run. Returns status dict."""
     # Validate structure
-    if not data.get("players") or not data.get("map_point_history") or not isinstance(data.get("acts"), list):
+    if (
+        not data.get("players")
+        or not data.get("map_point_history")
+        or not isinstance(data.get("acts"), list)
+    ):
         return {"error": "Invalid run data — missing required fields"}
 
     was_abandoned = int(data.get("was_abandoned", False))
     total_floors = sum(len(act) for act in data.get("map_point_history", []))
     killed_by_raw = data.get("killed_by_encounter", "")
-    killed_by = clean_id(killed_by_raw) if killed_by_raw and killed_by_raw != "NONE.NONE" else None
+    killed_by = (
+        clean_id(killed_by_raw)
+        if killed_by_raw and killed_by_raw != "NONE.NONE"
+        else None
+    )
     player_count = len(data.get("players", []))
 
     # Process each player as a separate run entry (multiplayer support)
     results = []
     for player_idx, player in enumerate(data["players"]):
-        result = _submit_player_run(data, player, player_idx, was_abandoned, total_floors,
-                                     killed_by, player_count, username)
+        result = _submit_player_run(
+            data,
+            player,
+            player_idx,
+            was_abandoned,
+            total_floors,
+            killed_by,
+            player_count,
+            username,
+        )
         results.append(result)
 
     # Save full run JSON for sharing (for every player's hash, so multiplayer detail pages work)
@@ -165,9 +197,16 @@ def submit_run(data: dict, username: str | None = None) -> dict:
     return results[0]
 
 
-def _submit_player_run(data: dict, player: dict, player_idx: int,
-                        was_abandoned: int, total_floors: int, killed_by: str | None,
-                        player_count: int, username: str | None) -> dict:
+def _submit_player_run(
+    data: dict,
+    player: dict,
+    player_idx: int,
+    was_abandoned: int,
+    total_floors: int,
+    killed_by: str | None,
+    player_count: int,
+    username: str | None,
+) -> dict:
     """Submit a single player's data from a run."""
     # Hash includes player index for multiplayer dedup
     seed = data.get("seed", "")
@@ -181,28 +220,50 @@ def _submit_player_run(data: dict, player: dict, player_idx: int,
     character = clean_id(player["character"])
 
     with get_conn() as conn:
-        existing = conn.execute("SELECT id FROM runs WHERE run_hash = ?", (run_hash,)).fetchone()
+        existing = conn.execute(
+            "SELECT id FROM runs WHERE run_hash = ?", (run_hash,)
+        ).fetchone()
         if existing:
-            return {"error": "This run has already been submitted", "duplicate": True, "run_hash": run_hash}
+            return {
+                "error": "This run has already been submitted",
+                "duplicate": True,
+                "run_hash": run_hash,
+            }
 
-        cursor = conn.execute("""
+        cursor = conn.execute(
+            """
             INSERT INTO runs (run_hash, seed, character, win, was_abandoned, ascension, game_mode,
                               player_count, run_time, floors_reached, acts_completed, killed_by,
                               deck_size, relic_count, username)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-        """, (
-            run_hash, data.get("seed", ""), character, int(data.get("win", False)),
-            was_abandoned, data.get("ascension", 0), data.get("game_mode", "standard"),
-            player_count, data.get("run_time", 0), total_floors, len(data.get("acts", [])),
-            killed_by, len(player["deck"]), len(player["relics"]), username,
-        ))
+        """,
+            (
+                run_hash,
+                data.get("seed", ""),
+                character,
+                int(data.get("win", False)),
+                was_abandoned,
+                data.get("ascension", 0),
+                data.get("game_mode", "standard"),
+                player_count,
+                data.get("run_time", 0),
+                total_floors,
+                len(data.get("acts", [])),
+                killed_by,
+                len(player["deck"]),
+                len(player["relics"]),
+                username,
+            ),
+        )
         run_id = cursor.lastrowid
 
         # Insert cards
         for card in player["deck"]:
             card_id = clean_id(card["id"])
             upgraded = card.get("current_upgrade_level", 0)
-            enchantment = clean_id(card["enchantment"]["id"]) if card.get("enchantment") else None
+            enchantment = (
+                clean_id(card["enchantment"]["id"]) if card.get("enchantment") else None
+            )
             floor_added = card.get("floor_added_to_deck")
             conn.execute(
                 "INSERT INTO run_cards (run_id, card_id, upgraded, enchantment, floor_added) VALUES (?, ?, ?, ?, ?)",
@@ -240,7 +301,9 @@ def _submit_player_run(data: dict, player: dict, player_idx: int,
                         pid = clean_id(pc.get("choice", ""))
                         if pid:
                             picked = int(pc.get("was_picked", False))
-                            potion_seen[pid] = potion_seen.get(pid, False) or bool(picked)
+                            potion_seen[pid] = potion_seen.get(pid, False) or bool(
+                                picked
+                            )
                     for pu in ps.get("potion_used", []):
                         pid = clean_id(pu)
                         if pid:
@@ -256,9 +319,13 @@ def _submit_player_run(data: dict, player: dict, player_idx: int,
     return {"success": True, "run_id": run_id, "run_hash": run_hash}
 
 
-def get_stats(character: str | None = None, win: str | None = None,
-              ascension: str | None = None, game_mode: str | None = None,
-              players: str | None = None) -> dict:
+def get_stats(
+    character: str | None = None,
+    win: str | None = None,
+    ascension: str | None = None,
+    game_mode: str | None = None,
+    players: str | None = None,
+) -> dict:
     """Compute aggregate community stats with optional filters."""
     with get_conn() as conn:
         # Build WHERE clause
@@ -285,14 +352,31 @@ def get_stats(character: str | None = None, win: str | None = None,
             conditions.append("r.player_count > 1")
         where = ("WHERE " + " AND ".join(conditions)) if conditions else ""
 
-        total = conn.execute(f"SELECT COUNT(*) as c FROM runs r {where}", params).fetchone()["c"]
+        total = conn.execute(
+            f"SELECT COUNT(*) as c FROM runs r {where}", params
+        ).fetchone()["c"]
         if total == 0:
-            return {"total_runs": 0, "filters": {"character": character, "win": win, "ascension": ascension, "game_mode": game_mode, "players": players}}
+            return {
+                "total_runs": 0,
+                "filters": {
+                    "character": character,
+                    "win": win,
+                    "ascension": ascension,
+                    "game_mode": game_mode,
+                    "players": players,
+                },
+            }
 
         win_where = where + (" AND " if where else "WHERE ") + "r.win = 1"
-        wins = conn.execute(f"SELECT COUNT(*) as c FROM runs r {win_where}", params).fetchone()["c"]
-        abandoned_where = where + (" AND " if where else "WHERE ") + "r.was_abandoned = 1"
-        abandoned = conn.execute(f"SELECT COUNT(*) as c FROM runs r {abandoned_where}", params).fetchone()["c"]
+        wins = conn.execute(
+            f"SELECT COUNT(*) as c FROM runs r {win_where}", params
+        ).fetchone()["c"]
+        abandoned_where = (
+            where + (" AND " if where else "WHERE ") + "r.was_abandoned = 1"
+        )
+        abandoned = conn.execute(
+            f"SELECT COUNT(*) as c FROM runs r {abandoned_where}", params
+        ).fetchone()["c"]
 
         # Win rate by character (always unfiltered by character for the overview)
         char_stats = conn.execute("""
@@ -301,7 +385,8 @@ def get_stats(character: str | None = None, win: str | None = None,
         """).fetchall()
 
         # Card pick rates — ALL cards, not just top N
-        pick_rates = conn.execute(f"""
+        pick_rates = conn.execute(
+            f"""
             SELECT cc.card_id,
                    COUNT(*) as offered,
                    SUM(cc.was_picked) as picked,
@@ -311,37 +396,49 @@ def get_stats(character: str | None = None, win: str | None = None,
             {where}
             GROUP BY cc.card_id
             ORDER BY pick_rate DESC
-        """, params).fetchall()
+        """,
+            params,
+        ).fetchall()
 
         # Cards in winning decks (filtered)
         win_params = list(params)
         win_where = where + (" AND " if where else "WHERE ") + "r.win = 1"
-        win_cards = conn.execute(f"""
+        win_cards = conn.execute(
+            f"""
             SELECT rc.card_id, COUNT(*) as count
             FROM run_cards rc JOIN runs r ON rc.run_id = r.id
             {win_where}
             GROUP BY rc.card_id ORDER BY count DESC
-        """, win_params).fetchall()
+        """,
+            win_params,
+        ).fetchall()
 
         # Cards in losing decks (filtered)
         loss_where = where + (" AND " if where else "WHERE ") + "r.win = 0"
-        loss_cards = conn.execute(f"""
+        loss_cards = conn.execute(
+            f"""
             SELECT rc.card_id, COUNT(*) as count
             FROM run_cards rc JOIN runs r ON rc.run_id = r.id
             {loss_where}
             GROUP BY rc.card_id ORDER BY count DESC
-        """, params).fetchall()
+        """,
+            params,
+        ).fetchall()
 
         # All cards in decks (filtered)
-        all_cards = conn.execute(f"""
+        all_cards = conn.execute(
+            f"""
             SELECT rc.card_id, COUNT(*) as count
             FROM run_cards rc JOIN runs r ON rc.run_id = r.id
             {where}
             GROUP BY rc.card_id ORDER BY count DESC
-        """, params).fetchall()
+        """,
+            params,
+        ).fetchall()
 
         # Relic stats (filtered) — all relics, not just top 20
-        top_relics = conn.execute(f"""
+        top_relics = conn.execute(
+            f"""
             SELECT rr.relic_id,
                    COUNT(*) as count,
                    COUNT(DISTINCT rr.run_id) as total_runs_with,
@@ -349,39 +446,57 @@ def get_stats(character: str | None = None, win: str | None = None,
             FROM run_relics rr JOIN runs r ON rr.run_id = r.id
             {where}
             GROUP BY rr.relic_id ORDER BY count DESC
-        """, params).fetchall()
+        """,
+            params,
+        ).fetchall()
 
         # Most deadly encounters (filtered, losses only)
-        death_where = where + (" AND " if where else "WHERE ") + "r.win = 0 AND r.killed_by IS NOT NULL"
-        deaths = conn.execute(f"""
+        death_where = (
+            where
+            + (" AND " if where else "WHERE ")
+            + "r.win = 0 AND r.killed_by IS NOT NULL"
+        )
+        deaths = conn.execute(
+            f"""
             SELECT r.killed_by, COUNT(*) as count
             FROM runs r
             {death_where}
             GROUP BY r.killed_by ORDER BY count DESC LIMIT 10
-        """, params).fetchall()
+        """,
+            params,
+        ).fetchall()
 
         # Ascension distribution (filtered)
-        asc_stats = conn.execute(f"""
+        asc_stats = conn.execute(
+            f"""
             SELECT r.ascension, COUNT(*) as total, SUM(r.win) as wins
             FROM runs r {where} GROUP BY r.ascension ORDER BY r.ascension
-        """, params).fetchall()
+        """,
+            params,
+        ).fetchall()
 
         # Win runs per card (distinct runs, not copies)
-        win_runs_query = conn.execute(f"""
+        win_runs_query = conn.execute(
+            f"""
             SELECT rc.card_id, COUNT(DISTINCT rc.run_id) as run_count
             FROM run_cards rc JOIN runs r ON rc.run_id = r.id
             {win_where}
             GROUP BY rc.card_id
-        """, win_params).fetchall()
+        """,
+            win_params,
+        ).fetchall()
         win_runs_map = {r["card_id"]: r["run_count"] for r in win_runs_query}
 
         # Total runs per card (distinct)
-        all_runs_query = conn.execute(f"""
+        all_runs_query = conn.execute(
+            f"""
             SELECT rc.card_id, COUNT(DISTINCT rc.run_id) as run_count
             FROM run_cards rc JOIN runs r ON rc.run_id = r.id
             {where}
             GROUP BY rc.card_id
-        """, params).fetchall()
+        """,
+            params,
+        ).fetchall()
         all_runs_map = {r["card_id"]: r["run_count"] for r in all_runs_query}
 
         win_card_map = {r["card_id"]: r["count"] for r in win_cards}
@@ -389,7 +504,8 @@ def get_stats(character: str | None = None, win: str | None = None,
 
         # Potion stats (filtered)
         try:
-            potion_stats = conn.execute(f"""
+            potion_stats = conn.execute(
+                f"""
                 SELECT rp.potion_id,
                        SUM(rp.was_picked) as picked,
                        COUNT(*) as offered,
@@ -399,7 +515,9 @@ def get_stats(character: str | None = None, win: str | None = None,
                 FROM run_potions rp JOIN runs r ON rp.run_id = r.id
                 {where}
                 GROUP BY rp.potion_id ORDER BY offered DESC
-            """, params).fetchall()
+            """,
+                params,
+            ).fetchall()
         except Exception:
             potion_stats = []
 
@@ -408,37 +526,81 @@ def get_stats(character: str | None = None, win: str | None = None,
             "total_wins": wins,
             "total_abandoned": abandoned,
             "win_rate": round(wins / total * 100, 1) if total > 0 else 0,
-            "filters": {"character": character, "win": win, "ascension": ascension, "game_mode": game_mode, "players": players},
+            "filters": {
+                "character": character,
+                "win": win,
+                "ascension": ascension,
+                "game_mode": game_mode,
+                "players": players,
+            },
             "characters": [
-                {"character": r["character"], "total": r["total"], "wins": r["wins"],
-                 "win_rate": round(r["wins"] / r["total"] * 100, 1) if r["total"] > 0 else 0}
+                {
+                    "character": r["character"],
+                    "total": r["total"],
+                    "wins": r["wins"],
+                    "win_rate": round(r["wins"] / r["total"] * 100, 1)
+                    if r["total"] > 0
+                    else 0,
+                }
                 for r in char_stats
             ],
             "ascensions": [
-                {"level": r["ascension"], "total": r["total"], "wins": r["wins"],
-                 "win_rate": round(r["wins"] / r["total"] * 100, 1) if r["total"] > 0 else 0}
+                {
+                    "level": r["ascension"],
+                    "total": r["total"],
+                    "wins": r["wins"],
+                    "win_rate": round(r["wins"] / r["total"] * 100, 1)
+                    if r["total"] > 0
+                    else 0,
+                }
                 for r in asc_stats
             ],
-            "top_cards": [{"card_id": r["card_id"], "count": r["count"],
-                           "in_wins": win_card_map.get(r["card_id"], 0),
-                           "in_losses": loss_card_map.get(r["card_id"], 0),
-                           "win_runs": win_runs_map.get(r["card_id"], 0),
-                           "total_runs_with": all_runs_map.get(r["card_id"], 0)}
-                          for r in all_cards],
+            "top_cards": [
+                {
+                    "card_id": r["card_id"],
+                    "count": r["count"],
+                    "in_wins": win_card_map.get(r["card_id"], 0),
+                    "in_losses": loss_card_map.get(r["card_id"], 0),
+                    "win_runs": win_runs_map.get(r["card_id"], 0),
+                    "total_runs_with": all_runs_map.get(r["card_id"], 0),
+                }
+                for r in all_cards
+            ],
             "pick_rates": [
-                {"card_id": r["card_id"], "offered": r["offered"], "picked": r["picked"], "pick_rate": r["pick_rate"]}
+                {
+                    "card_id": r["card_id"],
+                    "offered": r["offered"],
+                    "picked": r["picked"],
+                    "pick_rate": r["pick_rate"],
+                }
                 for r in pick_rates
             ],
-            "top_relics": [{"relic_id": r["relic_id"], "count": r["count"],
-                           "total_runs_with": r["total_runs_with"], "win_runs": r["win_runs"]}
-                          for r in top_relics],
+            "top_relics": [
+                {
+                    "relic_id": r["relic_id"],
+                    "count": r["count"],
+                    "total_runs_with": r["total_runs_with"],
+                    "win_runs": r["win_runs"],
+                }
+                for r in top_relics
+            ],
             "top_potions": [
-                {"potion_id": r["potion_id"], "offered": r["offered"], "picked": r["picked"],
-                 "used": r["used"], "total_runs_with": r["total_runs_with"], "win_runs": r["win_runs"],
-                 "pick_rate": round(r["picked"] / r["offered"] * 100, 1) if r["offered"] > 0 else 0}
+                {
+                    "potion_id": r["potion_id"],
+                    "offered": r["offered"],
+                    "picked": r["picked"],
+                    "used": r["used"],
+                    "total_runs_with": r["total_runs_with"],
+                    "win_runs": r["win_runs"],
+                    "pick_rate": round(r["picked"] / r["offered"] * 100, 1)
+                    if r["offered"] > 0
+                    else 0,
+                }
                 for r in potion_stats
             ],
-            "deadliest": [{"encounter": r["killed_by"], "count": r["count"]} for r in deaths],
+            "deadliest": [
+                {"encounter": r["killed_by"], "count": r["count"]} for r in deaths
+            ],
         }
 
 

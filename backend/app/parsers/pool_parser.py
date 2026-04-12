@@ -3,11 +3,13 @@
 Adds 'pool' field to potions (cards/relics already have character association).
 Also outputs pool membership data for cross-referencing.
 """
+
 import json
 import re
 from pathlib import Path
 
-from parser_paths import BASE, DECOMPILED, loc_dir as _loc_dir, data_dir as _data_dir
+from parser_paths import DECOMPILED, data_dir as _data_dir
+
 CARD_POOLS_DIR = DECOMPILED / "MegaCrit.Sts2.Core.Models.CardPools"
 RELIC_POOLS_DIR = DECOMPILED / "MegaCrit.Sts2.Core.Models.RelicPools"
 POTION_POOLS_DIR = DECOMPILED / "MegaCrit.Sts2.Core.Models.PotionPools"
@@ -15,8 +17,8 @@ EPOCHS_DIR = DECOMPILED / "MegaCrit.Sts2.Core.Timeline.Epochs"
 
 
 def class_name_to_id(name: str) -> str:
-    s = re.sub(r'(?<=[a-z0-9])(?=[A-Z])', '_', name)
-    s = re.sub(r'(?<=[A-Z])(?=[A-Z][a-z])', '_', s)
+    s = re.sub(r"(?<=[a-z0-9])(?=[A-Z])", "_", name)
+    s = re.sub(r"(?<=[A-Z])(?=[A-Z][a-z])", "_", s)
     return s.upper()
 
 
@@ -37,7 +39,7 @@ def extract_epoch_potions(epoch_name: str) -> list[str]:
     if not epoch_file.exists():
         return []
     content = epoch_file.read_text(encoding="utf-8")
-    return extract_model_refs(content, r'ModelDb\.Potion<(\w+)>\(\)')
+    return extract_model_refs(content, r"ModelDb\.Potion<(\w+)>\(\)")
 
 
 def parse_potion_pools() -> dict[str, str]:
@@ -52,10 +54,10 @@ def parse_potion_pools() -> dict[str, str]:
         content = filepath.read_text(encoding="utf-8")
 
         # Direct potion references
-        potions = extract_model_refs(content, r'ModelDb\.Potion<(\w+)>\(\)')
+        potions = extract_model_refs(content, r"ModelDb\.Potion<(\w+)>\(\)")
 
         # Epoch references (e.g., "return Ironclad4Epoch.Potions;")
-        for m in re.finditer(r'(\w+Epoch)\.Potions', content):
+        for m in re.finditer(r"(\w+Epoch)\.Potions", content):
             potions.extend(extract_epoch_potions(m.group(1)))
 
         for potion_id in potions:

@@ -1,4 +1,5 @@
 """Story API endpoints."""
+
 from fastapi import APIRouter, Depends, HTTPException, Request
 from ..models.schemas import Story
 from ..services.data_service import load_stories

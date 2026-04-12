@@ -1,15 +1,17 @@
 """Parse character data from decompiled C# files and localization JSON."""
+
 import json
 import re
 from pathlib import Path
 
-from parser_paths import BASE, DECOMPILED, loc_dir as _loc_dir, data_dir as _data_dir
+from parser_paths import DECOMPILED, loc_dir as _loc_dir, data_dir as _data_dir
+
 CHARS_DIR = DECOMPILED / "MegaCrit.Sts2.Core.Models.Characters"
 
 
 def class_name_to_id(name: str) -> str:
-    s = re.sub(r'(?<=[a-z0-9])(?=[A-Z])', '_', name)
-    s = re.sub(r'(?<=[A-Z])(?=[A-Z][a-z])', '_', s)
+    s = re.sub(r"(?<=[a-z0-9])(?=[A-Z])", "_", name)
+    s = re.sub(r"(?<=[A-Z])(?=[A-Z][a-z])", "_", s)
     return s.upper()
 
 
@@ -34,9 +36,7 @@ def parse_ancient_dialogues(ancients_loc: dict, char_id: str) -> list[dict]:
     dialogues = []
     # Group by ancient -> conversation index
     convos: dict[str, dict[str, list]] = {}
-    prefix_pattern = re.compile(
-        rf'^(\w+)\.talk\.{char_id}\.(\d+)-(\d+)(r?)\.(\w+)$'
-    )
+    prefix_pattern = re.compile(rf"^(\w+)\.talk\.{char_id}\.(\d+)-(\d+)(r?)\.(\w+)$")
     for key, value in ancients_loc.items():
         m = prefix_pattern.match(key)
         if not m:
@@ -52,27 +52,38 @@ def parse_ancient_dialogues(ancients_loc: dict, char_id: str) -> list[dict]:
 
         convo_key = f"{ancient}.{convo_idx}"
         if convo_key not in convos:
-            convos[convo_key] = {"ancient": ancient, "index": convo_idx, "random": is_random, "lines": []}
-        convos[convo_key]["lines"].append({
-            "order": line_idx,
-            "speaker": speaker_type,
-            "text": value,
-        })
+            convos[convo_key] = {
+                "ancient": ancient,
+                "index": convo_idx,
+                "random": is_random,
+                "lines": [],
+            }
+        convos[convo_key]["lines"].append(
+            {
+                "order": line_idx,
+                "speaker": speaker_type,
+                "text": value,
+            }
+        )
 
     for convo_key in sorted(convos.keys()):
         convo = convos[convo_key]
         convo["lines"].sort(key=lambda x: x["order"])
         ancient_name = convo["ancient"].replace("_", " ").title()
-        dialogues.append({
-            "ancient": convo["ancient"],
-            "ancient_name": ancient_name,
-            "lines": convo["lines"],
-        })
+        dialogues.append(
+            {
+                "ancient": convo["ancient"],
+                "ancient_name": ancient_name,
+                "lines": convo["lines"],
+            }
+        )
 
     return dialogues
 
 
-def parse_character(filepath: Path, localization: dict, ancients_loc: dict) -> dict | None:
+def parse_character(
+    filepath: Path, localization: dict, ancients_loc: dict
+) -> dict | None:
     content = filepath.read_text(encoding="utf-8")
     class_name = filepath.stem
 
@@ -82,45 +93,49 @@ def parse_character(filepath: Path, localization: dict, ancients_loc: dict) -> d
     char_id = class_name_to_id(class_name)
 
     # Starting HP
-    hp_match = re.search(r'StartingHp\s*=>\s*(\d+)', content)
+    hp_match = re.search(r"StartingHp\s*=>\s*(\d+)", content)
     starting_hp = int(hp_match.group(1)) if hp_match else None
 
     # Starting Gold
-    gold_match = re.search(r'StartingGold\s*=>\s*(\d+)', content)
+    gold_match = re.search(r"StartingGold\s*=>\s*(\d+)", content)
     starting_gold = int(gold_match.group(1)) if gold_match else None
 
     # Starting deck
     starting_deck = []
-    for m in re.finditer(r'ModelDb\.Card<(\w+)>\(\)', content):
+    for m in re.finditer(r"ModelDb\.Card<(\w+)>\(\)", content):
         starting_deck.append(m.group(1))
 
     # Starting relics
     starting_relics = []
-    for m in re.finditer(r'ModelDb\.Relic<(\w+)>\(\)', content):
+    for m in re.finditer(r"ModelDb\.Relic<(\w+)>\(\)", content):
         starting_relics.append(m.group(1))
 
     # Gender
-    gender_match = re.search(r'Gender\s*=>\s*CharacterGender\.(\w+)', content)
+    gender_match = re.search(r"Gender\s*=>\s*CharacterGender\.(\w+)", content)
     gender = gender_match.group(1) if gender_match else None
 
     # Color
-    color_match = re.search(r'NameColor\s*=>\s*StsColors\.(\w+)', content)
+    color_match = re.search(r"NameColor\s*=>\s*StsColors\.(\w+)", content)
     color = color_match.group(1) if color_match else None
 
     # Max Energy
-    energy_match = re.search(r'MaxEnergy\s*=>\s*(\d+)', content)
+    energy_match = re.search(r"MaxEnergy\s*=>\s*(\d+)", content)
     max_energy = int(energy_match.group(1)) if energy_match else 3
 
     # Orb slots (Defect)
-    orb_match = re.search(r'BaseOrbSlotCount\s*=>\s*(\d+)', content)
+    orb_match = re.search(r"BaseOrbSlotCount\s*=>\s*(\d+)", content)
     orb_slots = int(orb_match.group(1)) if orb_match else None
 
     # Unlocks after
-    unlock_match = re.search(r'UnlocksAfterRunAs\s*=>\s*ModelDb\.Character<(\w+)>', content)
+    unlock_match = re.search(
+        r"UnlocksAfterRunAs\s*=>\s*ModelDb\.Character<(\w+)>", content
+    )
     unlocks_after = unlock_match.group(1) if unlock_match else None
 
     # Dialogue color
-    dialogue_color_match = re.search(r'DialogueColor\s*=>\s*(?:StsColors\.)?(\w+)', content)
+    dialogue_color_match = re.search(
+        r"DialogueColor\s*=>\s*(?:StsColors\.)?(\w+)", content
+    )
     dialogue_color = dialogue_color_match.group(1) if dialogue_color_match else None
 
     # Localization

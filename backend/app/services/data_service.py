@@ -1,4 +1,5 @@
 """Service layer that loads and serves parsed game data from JSON files."""
+
 import json
 import os
 import re
@@ -6,7 +7,9 @@ from pathlib import Path
 from functools import lru_cache
 from contextvars import ContextVar
 
-DATA_DIR = Path(os.environ.get("DATA_DIR", Path(__file__).resolve().parents[3] / "data"))
+DATA_DIR = Path(
+    os.environ.get("DATA_DIR", Path(__file__).resolve().parents[3] / "data")
+)
 DEFAULT_LANG = "eng"
 
 # ContextVar set by VersionMiddleware — allows version-aware loading without changing router signatures
@@ -168,7 +171,12 @@ def load_translation_maps(lang: str = DEFAULT_LANG) -> dict:
 
 @lru_cache(maxsize=1)
 def count_images() -> int:
-    images_dir = Path(os.environ.get("STATIC_DIR", Path(__file__).resolve().parents[2] / "static")) / "images"
+    images_dir = (
+        Path(
+            os.environ.get("STATIC_DIR", Path(__file__).resolve().parents[2] / "static")
+        )
+        / "images"
+    )
     if not images_dir.exists():
         return 0
     return sum(1 for _ in images_dir.rglob("*.png"))
@@ -184,19 +192,21 @@ def get_available_versions() -> list[dict]:
 
     def _version_key(d: Path) -> tuple:
         """Parse version string into tuple for proper numeric sorting."""
-        m = re.match(r'^v?(\d+)\.(\d+)(?:\.(\d+))?', d.name)
+        m = re.match(r"^v?(\d+)\.(\d+)(?:\.(\d+))?", d.name)
         if m:
             return (int(m.group(1)), int(m.group(2)), int(m.group(3) or 0))
         return (0, 0, 0)
 
     for d in sorted(DATA_DIR.iterdir(), key=_version_key, reverse=True):
-        if d.is_dir() and re.match(r'^v?\d+\.\d+', d.name):
+        if d.is_dir() and re.match(r"^v?\d+\.\d+", d.name):
             # Verify it has at least an eng/ subdirectory
             if (d / "eng").is_dir():
-                versions.append({
-                    "version": d.name,
-                    "is_latest": d.name == latest_target,
-                })
+                versions.append(
+                    {
+                        "version": d.name,
+                        "is_latest": d.name == latest_target,
+                    }
+                )
     return versions
 
 

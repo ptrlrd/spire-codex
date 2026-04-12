@@ -1,23 +1,25 @@
 """Parse encounter data from decompiled C# files and localization JSON."""
+
 import json
 import re
 from pathlib import Path
 
-from parser_paths import BASE, DECOMPILED, loc_dir as _loc_dir, data_dir as _data_dir
+from parser_paths import DECOMPILED, loc_dir as _loc_dir, data_dir as _data_dir
+
 ENCOUNTERS_DIR = DECOMPILED / "MegaCrit.Sts2.Core.Models.Encounters"
 ACTS_DIR = DECOMPILED / "MegaCrit.Sts2.Core.Models.Acts"
 
 
 def class_name_to_id(name: str) -> str:
-    s = re.sub(r'(?<=[a-z0-9])(?=[A-Z])', '_', name)
-    s = re.sub(r'(?<=[A-Z])(?=[A-Z][a-z])', '_', s)
+    s = re.sub(r"(?<=[a-z0-9])(?=[A-Z])", "_", name)
+    s = re.sub(r"(?<=[A-Z])(?=[A-Z][a-z])", "_", s)
     return s.upper()
 
 
 def monster_class_to_name(class_name: str) -> str:
     """Convert PascalCase monster class to readable name."""
-    s = re.sub(r'(?<=[a-z0-9])(?=[A-Z])', ' ', class_name)
-    s = re.sub(r'(?<=[A-Z])(?=[A-Z][a-z])', ' ', s)
+    s = re.sub(r"(?<=[a-z0-9])(?=[A-Z])", " ", class_name)
+    s = re.sub(r"(?<=[A-Z])(?=[A-Z][a-z])", " ", s)
     return s
 
 
@@ -58,21 +60,21 @@ def build_act_mapping() -> dict[str, str]:
         if not filepath.exists():
             continue
         content = filepath.read_text(encoding="utf-8")
-        for m in re.finditer(r'ModelDb\.Encounter<(\w+)>\(\)', content):
+        for m in re.finditer(r"ModelDb\.Encounter<(\w+)>\(\)", content):
             encounter_to_act[m.group(1)] = act_name
     return encounter_to_act
 
 
 def parse_room_type(content: str) -> str:
     """Extract room type: Monster, Elite, or Boss."""
-    m = re.search(r'RoomType\s*=>\s*RoomType\.(\w+)', content)
+    m = re.search(r"RoomType\s*=>\s*RoomType\.(\w+)", content)
     return m.group(1) if m else "Monster"
 
 
 def parse_tags(content: str) -> list[str]:
     """Extract encounter tags."""
     tags = []
-    for m in re.finditer(r'EncounterTag\.(\w+)', content):
+    for m in re.finditer(r"EncounterTag\.(\w+)", content):
         tag = m.group(1)
         if tag != "None":
             tags.append(tag)
@@ -82,12 +84,17 @@ def parse_tags(content: str) -> list[str]:
 def parse_monsters(content: str) -> list[str]:
     """Extract all possible monster class names from AllPossibleMonsters and GenerateMonsters."""
     monsters = set()
-    for m in re.finditer(r'ModelDb\.Monster<(\w+)>\(\)', content):
+    for m in re.finditer(r"ModelDb\.Monster<(\w+)>\(\)", content):
         monsters.add(m.group(1))
     return sorted(monsters)
 
 
-def parse_single_encounter(filepath: Path, localization: dict, act_mapping: dict, monster_names: dict[str, str] = {}) -> dict | None:
+def parse_single_encounter(
+    filepath: Path,
+    localization: dict,
+    act_mapping: dict,
+    monster_names: dict[str, str] = {},
+) -> dict | None:
     content = filepath.read_text(encoding="utf-8")
     class_name = filepath.stem
 
@@ -106,7 +113,9 @@ def parse_single_encounter(filepath: Path, localization: dict, act_mapping: dict
     title = localization.get(f"{enc_id}.title", monster_class_to_name(class_name))
     loss_text = localization.get(f"{enc_id}.loss", "")
     # Resolve {encounter} with the encounter title, {character} with generic noun
-    loss_clean = loss_text.replace("{encounter}", title).replace("{character}", "[b]The Adventurer[/b]")
+    loss_clean = loss_text.replace("{encounter}", title).replace(
+        "{character}", "[b]The Adventurer[/b]"
+    )
 
     # Act mapping
     act = act_mapping.get(class_name)
@@ -115,10 +124,12 @@ def parse_single_encounter(filepath: Path, localization: dict, act_mapping: dict
     monsters = []
     for mc in monster_classes:
         mid = class_name_to_id(mc)
-        monsters.append({
-            "id": mid,
-            "name": monster_names.get(mid, monster_class_to_name(mc)),
-        })
+        monsters.append(
+            {
+                "id": mid,
+                "name": monster_names.get(mid, monster_class_to_name(mc)),
+            }
+        )
 
     return {
         "id": enc_id,

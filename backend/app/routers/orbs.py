@@ -1,4 +1,5 @@
 """Orb API endpoints."""
+
 from fastapi import APIRouter, Depends, HTTPException, Request
 from ..models.schemas import Orb
 from ..services.data_service import load_orbs

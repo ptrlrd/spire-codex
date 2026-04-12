@@ -1,9 +1,22 @@
 """Shared FastAPI dependencies."""
+
 from fastapi import Query
 
 VALID_LANGUAGES = {
-    "deu", "eng", "esp", "fra", "ita", "jpn",
-    "kor", "pol", "ptb", "rus", "spa", "tha", "tur", "zhs",
+    "deu",
+    "eng",
+    "esp",
+    "fra",
+    "ita",
+    "jpn",
+    "kor",
+    "pol",
+    "ptb",
+    "rus",
+    "spa",
+    "tha",
+    "tur",
+    "zhs",
 }
 
 LANGUAGE_NAMES = {

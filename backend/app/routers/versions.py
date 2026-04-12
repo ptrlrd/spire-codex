@@ -1,4 +1,5 @@
 """Version listing API endpoint — returns available data versions (beta only)."""
+
 from fastapi import APIRouter
 
 from ..services.data_service import get_available_versions
