@@ -213,12 +213,6 @@ app.include_router(versions.router)
 app.include_router(unlocks.router)
 
 
-@app.get("/sentry-test")
-def sentry_test():
-    """Temporary endpoint to verify Sentry. Remove after confirming."""
-    1 / 0
-
-
 @app.get("/api/languages", tags=["Languages"])
 def languages(request: Request):
     """Get list of available languages."""
