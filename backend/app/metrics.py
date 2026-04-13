@@ -21,6 +21,12 @@ run_outcome = Counter(
     ["outcome"],  # win, loss, abandoned
 )
 
+run_errors = Counter(
+    "spire_codex_run_errors_total",
+    "Run submission errors by reason",
+    ["reason"],  # invalid_json, too_large, missing_fields, disabled, db_error
+)
+
 # ── Guide submissions ────────────────────────────────────────
 guide_submissions = Counter(
     "spire_codex_guide_submissions_total",

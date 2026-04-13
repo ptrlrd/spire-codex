@@ -5,7 +5,7 @@ import os
 from pathlib import Path
 from fastapi import APIRouter, HTTPException, Request
 from ..services.runs_db import submit_run, get_stats
-from ..metrics import run_submissions, run_character, run_outcome
+from ..metrics import run_submissions, run_character, run_outcome, run_errors
 
 _data_dir = Path(
     os.environ.get("DATA_DIR", Path(__file__).resolve().parents[3] / "data")
@@ -20,12 +20,14 @@ MAX_BODY_SIZE = 512 * 1024  # 512 KB
 async def submit_run_endpoint(request: Request, username: str | None = None):
     """Submit a run for community stats. Paste the .run file JSON content. Optional ?username= param."""
     if os.environ.get("DISABLE_RUN_SUBMISSIONS"):
+        run_errors.labels(reason="disabled").inc()
         raise HTTPException(
             status_code=403,
             detail="Run submissions are disabled on the beta site. Submit to spire-codex.com instead.",
         )
     body = await request.body()
     if len(body) > MAX_BODY_SIZE:
+        run_errors.labels(reason="too_large").inc()
         raise HTTPException(
             status_code=413,
             detail=f"Request too large. Max {MAX_BODY_SIZE // 1024} KB.",
@@ -33,6 +35,7 @@ async def submit_run_endpoint(request: Request, username: str | None = None):
     try:
         data = await request.json()
     except Exception:
+        run_errors.labels(reason="invalid_json").inc()
         raise HTTPException(status_code=400, detail="Invalid JSON body")
 
     # Sanitize username — alphanumeric, underscores, hyphens, spaces only
@@ -53,6 +56,7 @@ async def submit_run_endpoint(request: Request, username: str | None = None):
                 "run_hash": result.get("run_hash"),
             }
         run_submissions.labels(status="error").inc()
+        run_errors.labels(reason="missing_fields").inc()
         raise HTTPException(status_code=400, detail=result["error"])
 
     # Track successful submission metrics

@@ -52,6 +52,8 @@ from .services.data_service import get_stats, load_translation_maps, current_ver
 from .dependencies import get_lang, VALID_LANGUAGES, LANGUAGE_NAMES
 from prometheus_fastapi_instrumentator import Instrumentator
 
+from .metrics import api_errors
+
 # ── Structured logging ────────────────────────────────────────
 LOG_LEVEL = os.environ.get("LOG_LEVEL", "INFO").upper()
 logging.basicConfig(
@@ -137,13 +139,26 @@ class RequestLoggingMiddleware(BaseHTTPMiddleware):
         response = await call_next(request)
         elapsed_ms = (time.perf_counter() - start) * 1000
 
-        logger.info(
-            "%s %s %d %.0fms",
-            request.method,
-            request.url.path,
-            response.status_code,
-            elapsed_ms,
-        )
+        if response.status_code >= 400:
+            api_errors.labels(
+                status_code=str(response.status_code),
+                path=request.url.path,
+            ).inc()
+            logger.warning(
+                "%s %s %d %.0fms",
+                request.method,
+                request.url.path,
+                response.status_code,
+                elapsed_ms,
+            )
+        else:
+            logger.info(
+                "%s %s %d %.0fms",
+                request.method,
+                request.url.path,
+                response.status_code,
+                elapsed_ms,
+            )
         return response
 
 
