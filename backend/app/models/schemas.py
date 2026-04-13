@@ -108,6 +108,7 @@ class Relic(BaseModel):
     merchant_price: MerchantPrice | None = None
     image_url: str | None = None
     image_variants: dict[str, str] | None = None
+    notes: list[str] | None = None
     compendium_order: int = 0
 
 

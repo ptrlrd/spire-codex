@@ -105,6 +105,7 @@ export interface Relic {
   merchant_price: MerchantPrice | null;
   image_url: string | null;
   image_variants: Record<string, string> | null;
+  notes: string[] | null;
   compendium_order: number;
 }
 

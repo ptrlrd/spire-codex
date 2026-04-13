@@ -180,6 +180,22 @@ export default function RelicDetail({ initialRelic }: { initialRelic?: Relic | n
                 This relic is not sold at the merchant.
               </p>
             )}
+
+            {relic.notes && relic.notes.length > 0 && (
+              <div className="mt-5">
+                <h3 className="text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)] mb-2">
+                  {t("Mechanics", lang)}
+                </h3>
+                <ul className="space-y-1.5">
+                  {relic.notes.map((note, i) => (
+                    <li key={i} className="text-sm text-[var(--text-secondary)] flex gap-2">
+                      <span className="text-[var(--text-muted)] select-none">•</span>
+                      <span>{note}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </>
         )}
 

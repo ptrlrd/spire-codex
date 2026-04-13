@@ -169,6 +169,15 @@ def parse_single_relic(
         if variant_file.exists():
             image_variants[char_name] = f"/static/images/relics/{variant_file.name}"
 
+    # Relic-specific notes extracted from C# source
+    notes = None
+    if class_name == "ToyBox":
+        notes = [
+            "Wax Relics are pulled from the normal relic pool — any non-Ancient relic can be waxed.",
+            "Wax Relic rarity: 50% Common, 33% Uncommon, 17% Rare (standard relic rarity roll).",
+            "All wax relics melt after 12 total combats, then Toy Box is used up.",
+        ]
+
     return {
         "id": relic_id,
         "name": title,
@@ -180,6 +189,7 @@ def parse_single_relic(
         "merchant_price": merchant_price,
         "image_url": image_url,
         "image_variants": image_variants if image_variants else None,
+        "notes": notes,
     }
 
 
