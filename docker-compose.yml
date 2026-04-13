@@ -12,6 +12,7 @@ services:
       - DATA_DIR=/data
       - FEEDBACK_WEBHOOK_URL=${FEEDBACK_WEBHOOK_URL:-}
       - GUIDE_WEBHOOK_URL=${GUIDE_WEBHOOK_URL:-}
+      - SENTRY_DSN=${SENTRY_DSN:-}
     logging:
       driver: json-file
       options:

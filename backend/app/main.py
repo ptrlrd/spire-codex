@@ -77,6 +77,8 @@ if SENTRY_DSN:
         logger.info("Sentry initialized")
     except ImportError:
         logger.warning("SENTRY_DSN set but sentry-sdk not installed")
+    except Exception as e:
+        logger.warning("Sentry init failed: %s", e)
 
 limiter = Limiter(key_func=get_remote_address, default_limits=["60/minute"])
 
@@ -209,6 +211,12 @@ app.include_router(glossary.router)
 app.include_router(guides.router)
 app.include_router(versions.router)
 app.include_router(unlocks.router)
+
+
+@app.get("/sentry-test")
+def sentry_test():
+    """Temporary endpoint to verify Sentry. Remove after confirming."""
+    1 / 0
 
 
 @app.get("/api/languages", tags=["Languages"])
