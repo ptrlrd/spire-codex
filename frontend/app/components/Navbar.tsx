@@ -16,7 +16,7 @@ interface NavGroup {
   links: { href: string; label: string }[];
 }
 
-const BETA_HIDDEN = new Set(["/runs", "/guides", "/meta", "/showcase"]);
+const BETA_HIDDEN = new Set(["/runs", "/guides", "/meta", "/showcase", "/card-builder"]);
 
 const NAV_GROUPS: NavGroup[] = [
   {
@@ -49,6 +49,7 @@ const NAV_GROUPS: NavGroup[] = [
       { href: "/mechanics", label: "Mechanics" },
       { href: "/guides", label: "Guides" },
       { href: "/meta", label: "Meta" },
+      { href: "/card-builder", label: "Card Builder" },
     ],
   },
   {

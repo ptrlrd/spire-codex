@@ -42,6 +42,7 @@ from .routers import (
     guides,
     versions,
     unlocks,
+    card_builder,
 )
 from .services.data_service import get_stats, load_translation_maps, current_version
 from .dependencies import get_lang, VALID_LANGUAGES, LANGUAGE_NAMES
@@ -130,6 +131,7 @@ app.include_router(glossary.router)
 app.include_router(guides.router)
 app.include_router(versions.router)
 app.include_router(unlocks.router)
+app.include_router(card_builder.router)
 
 
 @app.get("/api/languages", tags=["Languages"])
@@ -183,6 +185,7 @@ def root(request: Request):
             "runs": "/api/runs",
             "run_stats": "/api/runs/stats",
             "glossary": "/api/glossary",
+            "card_builder": "/api/card-builder",
             "images": "/api/images",
             "changelogs": "/api/changelogs",
             "stats": "/api/stats",
