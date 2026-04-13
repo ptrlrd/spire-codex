@@ -52,7 +52,18 @@ from .services.data_service import get_stats, load_translation_maps, current_ver
 from .dependencies import get_lang, VALID_LANGUAGES, LANGUAGE_NAMES
 from prometheus_fastapi_instrumentator import Instrumentator
 
-from .metrics import api_errors
+from .metrics import (
+    api_errors,
+    requests_in_flight,
+    response_size,
+    entity_views,
+    entity_list_views,
+    search_queries,
+    language_usage,
+    version_usage,
+    widget_loads,
+    compare_views,
+)
 
 # ── Structured logging ────────────────────────────────────────
 LOG_LEVEL = os.environ.get("LOG_LEVEL", "INFO").upper()
@@ -123,33 +134,112 @@ class CORSStaticMiddleware(BaseHTTPMiddleware):
         return response
 
 
+_SKIP_PATHS = frozenset(
+    ("/health", "/metrics", "/docs", "/openapi.json", "/favicon.ico")
+)
+
+# Entity types that have detail routes: /api/{type}/{id}
+_ENTITY_TYPES = frozenset(
+    (
+        "cards",
+        "characters",
+        "relics",
+        "monsters",
+        "potions",
+        "powers",
+        "events",
+        "encounters",
+        "enchantments",
+        "keywords",
+        "intents",
+        "orbs",
+        "afflictions",
+        "modifiers",
+        "achievements",
+        "epochs",
+        "stories",
+        "acts",
+        "ascensions",
+        "guides",
+    )
+)
+
+
 class RequestLoggingMiddleware(BaseHTTPMiddleware):
-    """Log every request with method, path, status code, and response time."""
+    """Log every request and track detailed metrics."""
 
     async def dispatch(self, request: Request, call_next):
-        # Skip noisy paths
-        if request.url.path in (
-            "/health",
-            "/metrics",
-            "/docs",
-            "/openapi.json",
-            "/favicon.ico",
-        ):
+        if request.url.path in _SKIP_PATHS:
             return await call_next(request)
 
+        requests_in_flight.inc()
         start = time.perf_counter()
-        response = await call_next(request)
+        try:
+            response = await call_next(request)
+        finally:
+            requests_in_flight.dec()
         elapsed_ms = (time.perf_counter() - start) * 1000
 
+        # Response size tracking
+        content_length = response.headers.get("content-length")
+        if content_length:
+            path = request.url.path
+            # Normalize detail paths: /api/cards/BASH -> /api/cards/{id}
+            parts = path.strip("/").split("/")
+            if len(parts) >= 3 and parts[0] == "api" and parts[1] in _ENTITY_TYPES:
+                endpoint = f"/api/{parts[1]}/{{id}}"
+            else:
+                endpoint = path
+            response_size.labels(
+                method=request.method,
+                endpoint=endpoint,
+            ).observe(int(content_length))
+
+        # Track language and version usage
+        lang = request.query_params.get("lang")
+        if lang:
+            language_usage.labels(lang=lang).inc()
+        version = request.query_params.get("version")
+        if version:
+            version_usage.labels(version=version).inc()
+
+        # Track entity views and searches from API paths
+        path = request.url.path
+        if path.startswith("/api/") and request.method == "GET":
+            parts = path.strip("/").split("/")
+            if len(parts) >= 2 and parts[1] in _ENTITY_TYPES:
+                etype = parts[1]
+                if len(parts) == 3:
+                    # Detail view: /api/cards/{id}
+                    entity_views.labels(entity_type=etype).inc()
+                elif len(parts) == 2:
+                    # List view: /api/cards
+                    entity_list_views.labels(entity_type=etype).inc()
+                    if request.query_params.get("search"):
+                        search_queries.labels(entity_type=etype).inc()
+
+            # Compare views
+            if len(parts) == 3 and parts[1] == "compare":
+                compare_views.labels(pair=parts[2]).inc()
+
+        # Widget script loads
+        if path.startswith("/widget/"):
+            if "tooltip" in path:
+                widget_loads.labels(widget_type="tooltip").inc()
+            elif "changelog" in path:
+                widget_loads.labels(widget_type="changelog").inc()
+
+        # Error tracking and logging
         if response.status_code >= 400:
             api_errors.labels(
                 status_code=str(response.status_code),
-                path=request.url.path,
+                method=request.method,
+                path=path,
             ).inc()
             logger.warning(
                 "%s %s %d %.0fms",
                 request.method,
-                request.url.path,
+                path,
                 response.status_code,
                 elapsed_ms,
             )
@@ -157,7 +247,7 @@ class RequestLoggingMiddleware(BaseHTTPMiddleware):
             logger.info(
                 "%s %s %d %.0fms",
                 request.method,
-                request.url.path,
+                path,
                 response.status_code,
                 elapsed_ms,
             )

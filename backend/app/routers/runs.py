@@ -5,7 +5,14 @@ import os
 from pathlib import Path
 from fastapi import APIRouter, HTTPException, Request
 from ..services.runs_db import submit_run, get_stats
-from ..metrics import run_submissions, run_character, run_outcome, run_errors
+from ..metrics import (
+    run_submissions,
+    run_character,
+    run_outcome,
+    run_errors,
+    run_ascension,
+    run_duration,
+)
 
 _data_dir = Path(
     os.environ.get("DATA_DIR", Path(__file__).resolve().parents[3] / "data")
@@ -71,6 +78,13 @@ async def submit_run_endpoint(request: Request, username: str | None = None):
         run_outcome.labels(outcome="win").inc()
     else:
         run_outcome.labels(outcome="loss").inc()
+
+    ascension = data.get("ascension", 0)
+    run_ascension.labels(ascension=str(ascension)).inc()
+
+    run_time = data.get("run_time", 0)
+    if run_time > 0:
+        run_duration.observe(run_time)
 
     return result
 
