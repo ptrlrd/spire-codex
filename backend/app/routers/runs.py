@@ -5,6 +5,7 @@ import os
 from pathlib import Path
 from fastapi import APIRouter, HTTPException, Request
 from ..services.runs_db import submit_run, get_stats
+from ..metrics import run_submissions, run_character, run_outcome
 
 _data_dir = Path(
     os.environ.get("DATA_DIR", Path(__file__).resolve().parents[3] / "data")
@@ -45,12 +46,28 @@ async def submit_run_endpoint(request: Request, username: str | None = None):
     result = submit_run(data, username=clean_username)
     if result.get("error"):
         if result.get("duplicate"):
+            run_submissions.labels(status="duplicate").inc()
             return {
                 "success": True,
                 "duplicate": True,
                 "run_hash": result.get("run_hash"),
             }
+        run_submissions.labels(status="error").inc()
         raise HTTPException(status_code=400, detail=result["error"])
+
+    # Track successful submission metrics
+    run_submissions.labels(status="success").inc()
+    player = data.get("players", [{}])[0]
+    char = player.get("character", "").replace("CHARACTER.", "")
+    if char:
+        run_character.labels(character=char).inc()
+    if data.get("was_abandoned"):
+        run_outcome.labels(outcome="abandoned").inc()
+    elif data.get("win"):
+        run_outcome.labels(outcome="win").inc()
+    else:
+        run_outcome.labels(outcome="loss").inc()
+
     return result
 
 

@@ -50,6 +50,7 @@ from .routers import (
 )
 from .services.data_service import get_stats, load_translation_maps, current_version
 from .dependencies import get_lang, VALID_LANGUAGES, LANGUAGE_NAMES
+from prometheus_fastapi_instrumentator import Instrumentator
 
 # ── Structured logging ────────────────────────────────────────
 LOG_LEVEL = os.environ.get("LOG_LEVEL", "INFO").upper()
@@ -123,7 +124,13 @@ class RequestLoggingMiddleware(BaseHTTPMiddleware):
 
     async def dispatch(self, request: Request, call_next):
         # Skip noisy paths
-        if request.url.path in ("/health", "/docs", "/openapi.json", "/favicon.ico"):
+        if request.url.path in (
+            "/health",
+            "/metrics",
+            "/docs",
+            "/openapi.json",
+            "/favicon.ico",
+        ):
             return await call_next(request)
 
         start = time.perf_counter()
@@ -150,6 +157,11 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# ── Prometheus metrics ────────────────────────────────────────
+Instrumentator(
+    excluded_handlers=["/health", "/metrics", "/docs", "/openapi.json"],
+).instrument(app).expose(app, endpoint="/metrics", include_in_schema=False)
 
 app.include_router(cards.router)
 app.include_router(characters.router)

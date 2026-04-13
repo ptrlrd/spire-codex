@@ -6,6 +6,7 @@ from fastapi import APIRouter, HTTPException, Request
 from pydantic import BaseModel
 from slowapi import Limiter
 from slowapi.util import get_remote_address
+from ..metrics import feedback_submissions
 
 router = APIRouter(prefix="/api/feedback", tags=["Feedback"])
 
@@ -50,4 +51,5 @@ async def submit_feedback(request: Request, body: FeedbackRequest):
         if resp.status_code >= 400:
             raise HTTPException(status_code=502, detail="Failed to send feedback")
 
+    feedback_submissions.labels(type=body.type).inc()
     return {"ok": True}

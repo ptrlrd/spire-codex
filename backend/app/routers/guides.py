@@ -12,6 +12,7 @@ from slowapi import Limiter
 from slowapi.util import get_remote_address
 from ..models.schemas import GuideSummary, Guide
 from ..services.data_service import load_guides
+from ..metrics import guide_submissions
 
 router = APIRouter(prefix="/api/guides", tags=["Guides"])
 
@@ -229,6 +230,8 @@ async def submit_guide(request: Request, body: GuideSubmission):
             files={"file": (f"{slug}.md", md_file.encode("utf-8"), "text/markdown")},
         )
         if resp.status_code >= 400:
+            guide_submissions.labels(status="error").inc()
             raise HTTPException(status_code=502, detail="Failed to send submission")
 
+    guide_submissions.labels(status="success").inc()
     return {"ok": True}

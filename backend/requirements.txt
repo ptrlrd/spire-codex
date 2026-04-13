@@ -7,3 +7,4 @@ slowapi==0.1.9
 httpx==0.28.1
 python-frontmatter==1.1.0
 sentry-sdk[fastapi]==2.19.2
+prometheus-fastapi-instrumentator==7.0.2
