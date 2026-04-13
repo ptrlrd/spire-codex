@@ -131,8 +131,10 @@ spire-codex/
 ├── docker-compose.yml          # Local dev
 ├── docker-compose.prod.yml     # Production
 ├── docker-compose.beta.yml     # Beta site (beta.spire-codex.com)
+├── .github/workflows/
+│   └── ci.yml                  # GitHub Actions CI: lint, type-check, secret scan, Docker build+push, SSH deploy
 └── .forgejo/workflows/
-    └── build.yml               # CI: builds + pushes to Docker Hub
+    └── build.yml               # Retained Forgejo CI fallback (buildah-based, not active)
 ```
 
 ## Website Pages
@@ -426,9 +428,11 @@ Each changelog JSON file contains:
 
 ## Deploying
 
-### CI/CD (Forgejo)
+### CI/CD (GitHub Actions)
 
-Pushes to `main` trigger `.forgejo/workflows/build.yml` which builds and pushes both images to Docker Hub via buildah.
+Pushes to `main` trigger `.github/workflows/ci.yml` which runs secret scanning, linting (ESLint, TypeScript, ruff), builds Docker images, pushes to Docker Hub, and deploys to production via SSH. Self-hosted K8s runner.
+
+> **Note:** `.forgejo/workflows/build.yml` is retained as a fallback CI config (buildah-based) but is not currently active.
 
 ### Local Build + Push
 
@@ -683,7 +687,7 @@ Thanks to **vesper-arch**, **terracubist**, **U77654**, **Purple Aspired Dreamin
 - **Backend**: Python, FastAPI, Pydantic, slowapi, GZip compression
 - **Frontend**: Next.js 16 (App Router), TypeScript, Tailwind CSS, 14-language support
 - **Spine Renderer**: Node.js, Playwright, @esotericsoftware/spine-webgl (WebGL via headless Chrome)
-- **Infrastructure**: Docker, Forgejo CI, buildah
+- **Infrastructure**: Docker, GitHub Actions CI (self-hosted K8s runner), SSH deploy
 - **Tools**: Python (update pipeline, changelog diffing, image copying)
 
 ## Disclaimer
