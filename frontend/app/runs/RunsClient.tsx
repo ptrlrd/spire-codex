@@ -581,16 +581,11 @@ export default function RunsClient() {
             <p className="text-sm text-[var(--text-secondary)] mb-1">
               Upload .run files — select one or multiple
             </p>
-            <details className="text-left mb-3">
-              <summary className="text-xs text-[var(--text-muted)] cursor-pointer hover:text-[var(--text-secondary)]">
-                Where are my .run files?
-              </summary>
-              <div className="mt-2 space-y-1 text-xs text-[var(--text-muted)]">
-                <p><strong className="text-[var(--text-secondary)]">Windows:</strong> <code className="bg-[var(--bg-primary)] px-1 rounded">%AppData%\SlayTheSpire2\runs</code></p>
-                <p><strong className="text-[var(--text-secondary)]">macOS:</strong> <code className="bg-[var(--bg-primary)] px-1 rounded">~/Library/Application Support/SlayTheSpire2/runs</code></p>
-                <p><strong className="text-[var(--text-secondary)]">Linux / Steam Deck:</strong> <code className="bg-[var(--bg-primary)] px-1 rounded">~/.local/share/SlayTheSpire2/runs</code></p>
-              </div>
-            </details>
+            <div className="text-left mb-3 space-y-1 text-xs text-[var(--text-muted)]">
+              <p><strong className="text-[var(--text-secondary)]">Windows:</strong> <code className="bg-[var(--bg-primary)] px-1 rounded">%AppData%\SlayTheSpire2\runs</code></p>
+              <p><strong className="text-[var(--text-secondary)]">macOS:</strong> <code className="bg-[var(--bg-primary)] px-1 rounded">~/Library/Application Support/SlayTheSpire2/runs</code></p>
+              <p><strong className="text-[var(--text-secondary)]">Linux / Steam Deck:</strong> <code className="bg-[var(--bg-primary)] px-1 rounded">~/.local/share/SlayTheSpire2/runs</code></p>
+            </div>
             <label className="inline-block px-5 py-2 rounded-lg text-sm font-medium bg-[var(--accent-gold)] text-[var(--bg-primary)] hover:opacity-90 transition-opacity cursor-pointer">
               Choose Files
               <input
