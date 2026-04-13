@@ -146,6 +146,6 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd ~/spire-codex
+            cd /var/www/spire-codex
             ./tools/startup.sh --beta
             echo "Stable + beta deployed at $(date)"
