@@ -563,7 +563,7 @@ export default function RunsClient() {
       {tab === "submit" && !run && (
         <div className="space-y-4">
           <p className="text-xs text-[var(--text-muted)]">
-            Run files are located at <code className="bg-[var(--bg-primary)] px-1 py-0.5 rounded">%appdata%/Roaming/SlayTheSpire2/steam/&lt;steamid&gt;/profile#/saves/</code>
+            Submit your run data or browse community-submitted runs.
           </p>
 
           {/* Username */}
