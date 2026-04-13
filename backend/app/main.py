@@ -1,6 +1,10 @@
 """Spire Codex API - FastAPI Application."""
 
+import logging
+import os
 import re
+import time
+
 from fastapi import Depends, FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.gzip import GZipMiddleware
@@ -10,6 +14,7 @@ from pathlib import Path
 from slowapi import Limiter, _rate_limit_exceeded_handler
 from slowapi.util import get_remote_address
 from slowapi.errors import RateLimitExceeded
+
 from .routers import (
     cards,
     characters,
@@ -45,6 +50,30 @@ from .routers import (
 )
 from .services.data_service import get_stats, load_translation_maps, current_version
 from .dependencies import get_lang, VALID_LANGUAGES, LANGUAGE_NAMES
+
+# ── Structured logging ────────────────────────────────────────
+LOG_LEVEL = os.environ.get("LOG_LEVEL", "INFO").upper()
+logging.basicConfig(
+    level=getattr(logging, LOG_LEVEL, logging.INFO),
+    format="%(asctime)s %(levelname)s %(name)s — %(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S",
+)
+logger = logging.getLogger("spire-codex")
+
+# ── Sentry (optional — set SENTRY_DSN env var to enable) ──────
+SENTRY_DSN = os.environ.get("SENTRY_DSN", "")
+if SENTRY_DSN:
+    try:
+        import sentry_sdk
+
+        sentry_sdk.init(
+            dsn=SENTRY_DSN,
+            traces_sample_rate=0.1,
+            environment=os.environ.get("SENTRY_ENV", "production"),
+        )
+        logger.info("Sentry initialized")
+    except ImportError:
+        logger.warning("SENTRY_DSN set but sentry-sdk not installed")
 
 limiter = Limiter(key_func=get_remote_address, default_limits=["60/minute"])
 
@@ -89,7 +118,30 @@ class CORSStaticMiddleware(BaseHTTPMiddleware):
         return response
 
 
+class RequestLoggingMiddleware(BaseHTTPMiddleware):
+    """Log every request with method, path, status code, and response time."""
+
+    async def dispatch(self, request: Request, call_next):
+        # Skip noisy paths
+        if request.url.path in ("/health", "/docs", "/openapi.json", "/favicon.ico"):
+            return await call_next(request)
+
+        start = time.perf_counter()
+        response = await call_next(request)
+        elapsed_ms = (time.perf_counter() - start) * 1000
+
+        logger.info(
+            "%s %s %d %.0fms",
+            request.method,
+            request.url.path,
+            response.status_code,
+            elapsed_ms,
+        )
+        return response
+
+
 app.add_middleware(VersionMiddleware)
+app.add_middleware(RequestLoggingMiddleware)
 app.add_middleware(CORSStaticMiddleware)
 app.add_middleware(GZipMiddleware, minimum_size=1000)
 app.add_middleware(
@@ -153,6 +205,20 @@ def stats(request: Request, lang: str = Depends(get_lang)):
     return get_stats(lang)
 
 
+@app.get("/health", tags=["Health"])
+def health(request: Request):
+    """Health check — verifies the API is running and data is accessible."""
+    data_dir = Path(
+        os.environ.get("DATA_DIR", Path(__file__).resolve().parents[1] / "data")
+    )
+    eng_dir = data_dir / "eng"
+    data_ok = eng_dir.exists() and any(eng_dir.glob("*.json"))
+    return {
+        "status": "ok" if data_ok else "degraded",
+        "data_available": data_ok,
+    }
+
+
 @app.get("/", tags=["Root"])
 def root(request: Request):
     return {
@@ -195,3 +261,5 @@ def root(request: Request):
 STATIC_DIR = Path(__file__).resolve().parents[1] / "static"
 if STATIC_DIR.exists():
     app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")
+
+logger.info("Spire Codex API ready")

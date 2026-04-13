@@ -11,8 +11,14 @@ services:
       - FEEDBACK_WEBHOOK_URL=${FEEDBACK_WEBHOOK_URL:-}
       - GUIDE_WEBHOOK_URL=${GUIDE_WEBHOOK_URL:-}
       - DISABLE_RUN_SUBMISSIONS=1
+      - SENTRY_DSN=${SENTRY_DSN:-}
     networks:
       - nginx_web-network
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "5"
 
   frontend:
     image: ptrlrd/spire-codex-frontend:beta
@@ -26,6 +32,11 @@ services:
       - NEXT_PUBLIC_SITE_URL=https://beta.spire-codex.com
     networks:
       - nginx_web-network
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "5"
 
 networks:
   nginx_web-network:

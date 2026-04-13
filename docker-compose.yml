@@ -12,6 +12,11 @@ services:
       - DATA_DIR=/data
       - FEEDBACK_WEBHOOK_URL=${FEEDBACK_WEBHOOK_URL:-}
       - GUIDE_WEBHOOK_URL=${GUIDE_WEBHOOK_URL:-}
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
 
   frontend:
     build:
@@ -26,3 +31,8 @@ services:
       - HOSTNAME=0.0.0.0
     depends_on:
       - backend
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
