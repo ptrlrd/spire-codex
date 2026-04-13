@@ -641,8 +641,8 @@ export default function RunsClient() {
             </p>
             <div className="text-left mb-3 space-y-1 text-xs text-[var(--text-muted)]">
               <p><strong className="text-[var(--text-secondary)]">Windows:</strong> <code className="bg-[var(--bg-primary)] px-1 rounded">%AppData%/Roaming/SlayTheSpire2/steam/&lt;steamid&gt;/profile1/saves/history</code></p>
-              <p><strong className="text-[var(--text-secondary)]">macOS:</strong> <code className="bg-[var(--bg-primary)] px-1 rounded">~/Library/Application Support/SlayTheSpire2/steam/&lt;steamid&gt;/profile/saves</code></p>
-              <p><strong className="text-[var(--text-secondary)]">Linux / Steam Deck:</strong> <code className="bg-[var(--bg-primary)] px-1 rounded">~/.local/share/SlayTheSpire2/steam/&lt;steamid&gt;/profile/saves/history</code></p>
+              <p><strong className="text-[var(--text-secondary)]">macOS:</strong> <code className="bg-[var(--bg-primary)] px-1 rounded">~/Library/Application Support/SlayTheSpire2/steam/&lt;steamid&gt;/profile1/saves/history</code></p>
+              <p><strong className="text-[var(--text-secondary)]">Linux / Steam Deck:</strong> <code className="bg-[var(--bg-primary)] px-1 rounded">~/.local/share/SlayTheSpire2/steam/&lt;steamid&gt;/profile1/saves/history</code></p>
             </div>
             <label className="inline-block px-5 py-2 rounded-lg text-sm font-medium bg-[var(--accent-gold)] text-[var(--bg-primary)] hover:opacity-90 transition-opacity cursor-pointer">
               Choose Files
