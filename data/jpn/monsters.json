@@ -39,7 +39,7 @@
       ],
       "description": "Always uses 何もしない"
     },
-    "image_url": "/static/images/monsters/architect.png",
+    "image_url": "/static/images/monsters/architect.webp",
     "beta_image_url": null
   },
   {
@@ -91,7 +91,7 @@
       ],
       "description": "Always uses キルショット"
     },
-    "image_url": "/static/images/monsters/assassin_ruby_raider.png",
+    "image_url": "/static/images/monsters/assassin_ruby_raider.webp",
     "beta_image_url": null
   },
   {
@@ -179,7 +179,7 @@
       ],
       "description": "Swing 1 → Swing 2 → 大振り → repeat"
     },
-    "image_url": "/static/images/monsters/axe_ruby_raider.png",
+    "image_url": "/static/images/monsters/axe_ruby_raider.webp",
     "beta_image_url": null
   },
   {
@@ -308,7 +308,7 @@
       ],
       "description": "Starts with 起動"
     },
-    "image_url": "/static/images/monsters/axebot.png",
+    "image_url": "/static/images/monsters/axebot.webp",
     "beta_image_url": null
   },
   {
@@ -351,7 +351,7 @@
       ],
       "description": ""
     },
-    "image_url": "/static/images/monsters/battle_friend_v1.png",
+    "image_url": "/static/images/monsters/battle_friend_v1.webp",
     "beta_image_url": null
   },
   {
@@ -394,7 +394,7 @@
       ],
       "description": ""
     },
-    "image_url": "/static/images/monsters/battle_friend_v2.png",
+    "image_url": "/static/images/monsters/battle_friend_v2.webp",
     "beta_image_url": null
   },
   {
@@ -437,7 +437,7 @@
       ],
       "description": ""
     },
-    "image_url": "/static/images/monsters/battle_friend_v3.png",
+    "image_url": "/static/images/monsters/battle_friend_v3.webp",
     "beta_image_url": null
   },
   {
@@ -504,7 +504,7 @@
       ],
       "description": "Always uses 噛みつき"
     },
-    "image_url": "/static/images/monsters/bowlbug_egg.png",
+    "image_url": "/static/images/monsters/bowlbug_egg.webp",
     "beta_image_url": null
   },
   {
@@ -593,7 +593,7 @@
       ],
       "description": "強打 → 強化 → 強打 → repeat"
     },
-    "image_url": "/static/images/monsters/bowlbug_nectar.png",
+    "image_url": "/static/images/monsters/bowlbug_nectar.webp",
     "beta_image_url": null
   },
   {
@@ -674,7 +674,7 @@
       ],
       "description": "Starts with 頭突き"
     },
-    "image_url": "/static/images/monsters/bowlbug_rock.png",
+    "image_url": "/static/images/monsters/bowlbug_rock.webp",
     "beta_image_url": null
   },
   {
@@ -758,7 +758,7 @@
       ],
       "description": ""
     },
-    "image_url": "/static/images/monsters/bowlbug_silk.png",
+    "image_url": "/static/images/monsters/bowlbug_silk.webp",
     "beta_image_url": null
   },
   {
@@ -826,7 +826,7 @@
       ],
       "description": "Always uses ビート"
     },
-    "image_url": "/static/images/monsters/brute_ruby_raider.png",
+    "image_url": "/static/images/monsters/brute_ruby_raider.webp",
     "beta_image_url": null
   },
   {
@@ -918,7 +918,7 @@
       ],
       "description": "Initial Sleep → Wake → 切り裂き → repeat"
     },
-    "image_url": "/static/images/monsters/bygone_effigy.png",
+    "image_url": "/static/images/monsters/bygone_effigy.webp",
     "beta_image_url": null
   },
   {
@@ -992,7 +992,7 @@
       ],
       "description": "Swoop → つつく → repeat"
     },
-    "image_url": "/static/images/monsters/byrdonis.png",
+    "image_url": "/static/images/monsters/byrdonis.webp",
     "beta_image_url": null
   },
   {
@@ -1027,7 +1027,7 @@
       ],
       "description": ""
     },
-    "image_url": "/static/images/monsters/byrdpip.png",
+    "image_url": "/static/images/monsters/byrdpip.webp",
     "beta_image_url": null
   },
   {
@@ -1102,7 +1102,7 @@
       ],
       "description": "Always uses 祈祷"
     },
-    "image_url": "/static/images/monsters/calcified_cultist.png",
+    "image_url": "/static/images/monsters/calcified_cultist.webp",
     "beta_image_url": null
   },
   {
@@ -1254,7 +1254,7 @@
       ],
       "description": "スタンプ → 突進 → repeat"
     },
-    "image_url": "/static/images/monsters/ceremonial_beast.png",
+    "image_url": "/static/images/monsters/ceremonial_beast.webp",
     "beta_image_url": null
   },
   {
@@ -1317,7 +1317,7 @@
       ],
       "description": ""
     },
-    "image_url": "/static/images/monsters/chomper.png",
+    "image_url": "/static/images/monsters/chomper.webp",
     "beta_image_url": null
   },
   {
@@ -1419,7 +1419,7 @@
       ],
       "description": ""
     },
-    "image_url": "/static/images/monsters/corpse_slug.png",
+    "image_url": "/static/images/monsters/corpse_slug.webp",
     "beta_image_url": null
   },
   {
@@ -1481,7 +1481,7 @@
       ],
       "description": ""
     },
-    "image_url": "/static/images/monsters/crossbow_ruby_raider.png",
+    "image_url": "/static/images/monsters/crossbow_ruby_raider.webp",
     "beta_image_url": null
   },
   {
@@ -1623,7 +1623,7 @@
       ],
       "description": "強打 → 巨大化攻撃 → 虫刺し → 適応 → ガードストライク → repeat"
     },
-    "image_url": "/static/images/monsters/crusher.png",
+    "image_url": "/static/images/monsters/crusher.webp",
     "beta_image_url": null
   },
   {
@@ -1762,7 +1762,7 @@
       ],
       "description": "チャージアップ → Repeater → Repeater Move 2 → Expel Blast → repeat"
     },
-    "image_url": "/static/images/monsters/cubex_construct.png",
+    "image_url": "/static/images/monsters/cubex_construct.webp",
     "beta_image_url": null
   },
   {
@@ -1830,7 +1830,7 @@
       ],
       "description": "Always uses 祈祷"
     },
-    "image_url": "/static/images/monsters/damp_cultist.png",
+    "image_url": "/static/images/monsters/damp_cultist.webp",
     "beta_image_url": null
   },
   {
@@ -1956,7 +1956,7 @@
       ],
       "description": ""
     },
-    "image_url": "/static/images/monsters/decimillipede.png",
+    "image_url": "/static/images/monsters/decimillipede.webp",
     "beta_image_url": null
   },
   {
@@ -2017,7 +2017,7 @@
       ],
       "description": "Always uses Forbidden Incantation"
     },
-    "image_url": "/static/images/monsters/devoted_sculptor.png",
+    "image_url": "/static/images/monsters/devoted_sculptor.webp",
     "beta_image_url": null
   },
   {
@@ -2118,7 +2118,7 @@
       ],
       "description": ""
     },
-    "image_url": "/static/images/monsters/door.png",
+    "image_url": "/static/images/monsters/door.webp",
     "beta_image_url": "/static/images/monsters/beta/door.png"
   },
   {
@@ -2207,7 +2207,7 @@
       ],
       "description": "What Is It → Beam → Get Back In → repeat"
     },
-    "image_url": "/static/images/monsters/doormaker.png",
+    "image_url": "/static/images/monsters/doormaker.webp",
     "beta_image_url": "/static/images/monsters/beta/door_maker_placeholder_2.png"
   },
   {
@@ -2307,7 +2307,7 @@
       ],
       "description": "Always uses ハチだ！"
     },
-    "image_url": "/static/images/monsters/entomancer.png",
+    "image_url": "/static/images/monsters/entomancer.webp",
     "beta_image_url": null
   },
   {
@@ -2441,7 +2441,7 @@
       ],
       "description": "then random: 這い回る (no repeat), Mandible (no repeat); then conditional: 這い回る (if base.Creature.SlotName == \"first\") / Mandible (if base.Creature.SlotName == \"second\") / 激怒 (if base.Creature.SlotName == \"third\") / Rand (if base.Creature.SlotName == \"fourth\")"
     },
-    "image_url": "/static/images/monsters/exoskeleton.png",
+    "image_url": "/static/images/monsters/exoskeleton.webp",
     "beta_image_url": null
   },
   {
@@ -2484,7 +2484,7 @@
       ],
       "description": "Always uses 目くらまし"
     },
-    "image_url": "/static/images/monsters/eye_with_teeth.png",
+    "image_url": "/static/images/monsters/eye_with_teeth.webp",
     "beta_image_url": null
   },
   {
@@ -2596,7 +2596,7 @@
       ],
       "description": "then random: 製造, Fabricating Strike; then conditional: Rand (if CanFabricate) / 崩壊 (if !CanFabricate)"
     },
-    "image_url": "/static/images/monsters/fabricator.png",
+    "image_url": "/static/images/monsters/fabricator.webp",
     "beta_image_url": null
   },
   {
@@ -2719,7 +2719,7 @@
       ],
       "description": "Starts with なぎ払い"
     },
-    "image_url": "/static/images/monsters/fake_merchant.png",
+    "image_url": "/static/images/monsters/fake_merchant.webp",
     "beta_image_url": null
   },
   {
@@ -2771,7 +2771,7 @@
       ],
       "description": "Always uses Spawned"
     },
-    "image_url": "/static/images/monsters/fat_gremlin.png",
+    "image_url": "/static/images/monsters/fat_gremlin.webp",
     "beta_image_url": null
   },
   {
@@ -2872,7 +2872,7 @@
       ],
       "description": "Starts with 打ち込み"
     },
-    "image_url": "/static/images/monsters/flail_knight.png",
+    "image_url": "/static/images/monsters/flail_knight.webp",
     "beta_image_url": null
   },
   {
@@ -2989,7 +2989,7 @@
       ],
       "description": ""
     },
-    "image_url": "/static/images/monsters/flyconid.png",
+    "image_url": "/static/images/monsters/flyconid.webp",
     "beta_image_url": null
   },
   {
@@ -3116,7 +3116,7 @@
       ],
       "description": "Starts with Illusion, then random: Swipe Random (no repeat, 40%), Headbutt (no repeat, 60%)"
     },
-    "image_url": "/static/images/monsters/fogmog.png",
+    "image_url": "/static/images/monsters/fogmog.webp",
     "beta_image_url": null
   },
   {
@@ -3225,7 +3225,7 @@
       ],
       "description": "Starts with ラッチ"
     },
-    "image_url": "/static/images/monsters/fossil_stalker.png",
+    "image_url": "/static/images/monsters/fossil_stalker.webp",
     "beta_image_url": null
   },
   {
@@ -3360,7 +3360,7 @@
       ],
       "description": "Starts: ベロラッシュ → 悪を討つ → 女王のために; then conditional: ベロラッシュ (if HasBeetleCharged || base.Creature.CurrentHp >= base.Creature.MaxHp / 2) / ビートルチャージ (if !HasBeetleCharged && base.Creature.CurrentHp < base.Creature.MaxHp / 2)"
     },
-    "image_url": "/static/images/monsters/frog_knight.png",
+    "image_url": "/static/images/monsters/frog_knight.webp",
     "beta_image_url": null
   },
   {
@@ -3450,7 +3450,7 @@
       ],
       "description": "Always uses First Acid Goop"
     },
-    "image_url": "/static/images/monsters/fuzzy_wurm_crawler.png",
+    "image_url": "/static/images/monsters/fuzzy_wurm_crawler.webp",
     "beta_image_url": null
   },
   {
@@ -3501,7 +3501,7 @@
       ],
       "description": "Always uses 爆発"
     },
-    "image_url": "/static/images/monsters/gas_bomb.png",
+    "image_url": "/static/images/monsters/gas_bomb.webp",
     "beta_image_url": null
   },
   {
@@ -3607,7 +3607,7 @@
       ],
       "description": "ショッキングスラップ → Thunder Strike → Galvanic Burst → repeat"
     },
-    "image_url": "/static/images/monsters/orb_head.png",
+    "image_url": "/static/images/monsters/orb_head.webp",
     "beta_image_url": null
   },
   {
@@ -3715,7 +3715,7 @@
       ],
       "description": "よこせ → ダブルスマッシュ → ヘヘッ → repeat"
     },
-    "image_url": "/static/images/monsters/gremlin_merc.png",
+    "image_url": "/static/images/monsters/gremlin_merc.webp",
     "beta_image_url": null
   },
   {
@@ -3751,7 +3751,7 @@
       ],
       "description": "Always uses ガード"
     },
-    "image_url": "/static/images/monsters/guardbot.png",
+    "image_url": "/static/images/monsters/guardbot.webp",
     "beta_image_url": null
   },
   {
@@ -3881,7 +3881,7 @@
       ],
       "description": "Starts with 衝突"
     },
-    "image_url": "/static/images/monsters/haunted_ship.png",
+    "image_url": "/static/images/monsters/haunted_ship.webp",
     "beta_image_url": null
   },
   {
@@ -3982,7 +3982,7 @@
       ],
       "description": "Starts with 軟化の粘液"
     },
-    "image_url": "/static/images/monsters/hunter_killer.png",
+    "image_url": "/static/images/monsters/hunter_killer.webp",
     "beta_image_url": null
   },
   {
@@ -4094,7 +4094,7 @@
       ],
       "description": "ジャブ → 放射 → 旋風 → 脈動 → repeat"
     },
-    "image_url": "/static/images/monsters/infested_prism.png",
+    "image_url": "/static/images/monsters/infested_prism.webp",
     "beta_image_url": null
   },
   {
@@ -4224,7 +4224,7 @@
       ],
       "description": "Starts: Whirlwind → ジャブ; then random: ジャブ, Whirlwind (no repeat); then random: 鋭い視線 (no repeat), Whirlwind (no repeat)"
     },
-    "image_url": "/static/images/monsters/inklet.png",
+    "image_url": "/static/images/monsters/inklet.webp",
     "beta_image_url": null
   },
   {
@@ -4315,7 +4315,7 @@
       ],
       "description": "Power Dance → Quick Slash → Boomerang → repeat"
     },
-    "image_url": "/static/images/monsters/kin_follower.png",
+    "image_url": "/static/images/monsters/kin_follower.webp",
     "beta_image_url": null
   },
   {
@@ -4439,7 +4439,7 @@
       ],
       "description": "Orb Of Frailty → Orb Of Weakness → Beam → Ritual → repeat"
     },
-    "image_url": "/static/images/monsters/kin_priest.png",
+    "image_url": "/static/images/monsters/kin_priest.webp",
     "beta_image_url": null
   },
   {
@@ -4564,7 +4564,7 @@
       ],
       "description": "Starts: 知識の呪い → Slap → 知識の本流 → 熟考; then conditional: 知識の呪い (if _curseOfKnowledgeCounter < 3) / Slap (if _curseOfKnowledgeCounter >= 3)"
     },
-    "image_url": "/static/images/monsters/knowledge_demon.png",
+    "image_url": "/static/images/monsters/knowledge_demon.webp",
     "beta_image_url": null
   },
   {
@@ -4690,7 +4690,7 @@
       ],
       "description": "Starts with 睡眠"
     },
-    "image_url": "/static/images/monsters/lagavulin_matriarch.png",
+    "image_url": "/static/images/monsters/lagavulin_matriarch.webp",
     "beta_image_url": null
   },
   {
@@ -4774,7 +4774,7 @@
       ],
       "description": "粘着ショット → 塊ショット → repeat"
     },
-    "image_url": "/static/images/monsters/leaf_slime_m.png",
+    "image_url": "/static/images/monsters/leaf_slime_m.webp",
     "beta_image_url": null
   },
   {
@@ -4861,7 +4861,7 @@
       ],
       "description": ""
     },
-    "image_url": "/static/images/monsters/leaf_slime_s.png",
+    "image_url": "/static/images/monsters/leaf_slime_s.webp",
     "beta_image_url": null
   },
   {
@@ -4958,7 +4958,7 @@
       ],
       "description": "Advanced Gas → 膨張 → Super Gas Blast → repeat"
     },
-    "image_url": "/static/images/monsters/living_smog.png",
+    "image_url": "/static/images/monsters/living_smog.webp",
     "beta_image_url": null
   },
   {
@@ -5048,7 +5048,7 @@
       ],
       "description": "Starts with シールドスラム; then conditional: シールドスラム (if GetAllyCount() / Smash (if GetAllyCount()"
     },
-    "image_url": "/static/images/monsters/living_shield.png",
+    "image_url": "/static/images/monsters/living_shield.webp",
     "beta_image_url": null
   },
   {
@@ -5149,7 +5149,7 @@
       ],
       "description": "Always uses ウェブ・キャノン"
     },
-    "image_url": "/static/images/monsters/louse_progenitor.png",
+    "image_url": "/static/images/monsters/louse_progenitor.webp",
     "beta_image_url": null
   },
   {
@@ -5263,7 +5263,7 @@
       ],
       "description": "First Power Shield → Dampen → 打ち込み → Prep → マジックボム → repeat"
     },
-    "image_url": "/static/images/monsters/magi_knight.png",
+    "image_url": "/static/images/monsters/magi_knight.webp",
     "beta_image_url": null
   },
   {
@@ -5380,7 +5380,7 @@
       ],
       "description": "Starts with 爪; then random: 引き裂き (no repeat), 咆哮 (once), 爪 (no repeat)"
     },
-    "image_url": "/static/images/monsters/mawler.png",
+    "image_url": "/static/images/monsters/mawler.webp",
     "beta_image_url": null
   },
   {
@@ -5483,7 +5483,7 @@
       ],
       "description": "突撃 → 火炎放射 → ワインドアップ → ヘビークリーブ → repeat"
     },
-    "image_url": "/static/images/monsters/mecha_knight.png",
+    "image_url": "/static/images/monsters/mecha_knight.webp",
     "beta_image_url": null
   },
   {
@@ -5586,7 +5586,7 @@
       ],
       "description": "then conditional: 毒角 (if base.Creature.SlotName == \"first\") / 吸い取る (if base.Creature.SlotName == \"second\")"
     },
-    "image_url": "/static/images/monsters/myte.png",
+    "image_url": "/static/images/monsters/myte.webp",
     "beta_image_url": null
   },
   {
@@ -5701,7 +5701,7 @@
       ],
       "description": "then conditional: バット (if ((Nibbit) / 威嚇 (if !((Nibbit) / Slice (if ((Nibbit)"
     },
-    "image_url": "/static/images/monsters/nibbit.png",
+    "image_url": "/static/images/monsters/nibbit.webp",
     "beta_image_url": null
   },
   {
@@ -5736,7 +5736,7 @@
       ],
       "description": "Always uses ノイズ"
     },
-    "image_url": "/static/images/monsters/noisebot.png",
+    "image_url": "/static/images/monsters/noisebot.webp",
     "beta_image_url": null
   },
   {
@@ -5771,7 +5771,7 @@
       ],
       "description": ""
     },
-    "image_url": "/static/images/monsters/osty.png",
+    "image_url": "/static/images/monsters/osty.webp",
     "beta_image_url": null
   },
   {
@@ -5892,7 +5892,7 @@
       ],
       "description": "Starts: 産卵 → スマッシュ → テンダライザー; then conditional: 産卵 (if CanLay) / 栄養ペースト (if !CanLay)"
     },
-    "image_url": "/static/images/monsters/ovicopter.png",
+    "image_url": "/static/images/monsters/ovicopter.webp",
     "beta_image_url": null
   },
   {
@@ -6009,7 +6009,7 @@
       ],
       "description": "判事の監視 → 強襲つっつき → 司法の飛行 → 評決 → repeat"
     },
-    "image_url": "/static/images/monsters/owl_magistrate.png",
+    "image_url": "/static/images/monsters/owl_magistrate.webp",
     "beta_image_url": null
   },
   {
@@ -6044,7 +6044,7 @@
       ],
       "description": ""
     },
-    "image_url": "/static/images/monsters/paels_legion.png",
+    "image_url": "/static/images/monsters/paels_legion.webp",
     "beta_image_url": "/static/images/monsters/beta/paels_legion.png"
   },
   {
@@ -6088,7 +6088,7 @@
       ],
       "description": "Always uses スラム"
     },
-    "image_url": "/static/images/monsters/parafright.png",
+    "image_url": "/static/images/monsters/parafright.webp",
     "beta_image_url": null
   },
   {
@@ -6225,7 +6225,7 @@
       ],
       "description": "then conditional: フレイル (if base.Creature.SlotName == \"first\") / 噛みつき (if base.Creature.SlotName == \"second\") / ムチ打ち (if base.Creature.SlotName == \"third\") / 巨大化 (if base.Creature.SlotName == \"fourth\")"
     },
-    "image_url": "/static/images/monsters/phantasmal_gardener.png",
+    "image_url": "/static/images/monsters/phantasmal_gardener.webp",
     "beta_image_url": null
   },
   {
@@ -6295,7 +6295,7 @@
       ],
       "description": "Starts: 感染 → ムチ打ち"
     },
-    "image_url": "/static/images/monsters/phrog_parasite.png",
+    "image_url": "/static/images/monsters/phrog_parasite.webp",
     "beta_image_url": null
   },
   {
@@ -6401,7 +6401,7 @@
       ],
       "description": ""
     },
-    "image_url": "/static/images/monsters/punch_construct.png",
+    "image_url": "/static/images/monsters/punch_construct.webp",
     "beta_image_url": null
   },
   {
@@ -6578,7 +6578,7 @@
       ],
       "description": "Starts: Puppet Strings → Your Mine; then conditional: 燃え上がれ (if !HasAmalgamDied) / 首を刎ねよ (if HasAmalgamDied); then conditional: 燃え上がれ (if !HasAmalgamDied) / 首を刎ねよ (if HasAmalgamDied)"
     },
-    "image_url": "/static/images/monsters/queen.png",
+    "image_url": "/static/images/monsters/queen.webp",
     "beta_image_url": null
   },
   {
@@ -6697,7 +6697,7 @@
       ],
       "description": "ターゲットを照準 → 精密ビーム → チャージアップ → レーザー → リチャージ → repeat"
     },
-    "image_url": "/static/images/monsters/rocket.png",
+    "image_url": "/static/images/monsters/rocket.webp",
     "beta_image_url": null
   },
   {
@@ -6800,7 +6800,7 @@
       ],
       "description": ""
     },
-    "image_url": "/static/images/monsters/scroll_of_biting.png",
+    "image_url": "/static/images/monsters/scroll_of_biting.webp",
     "beta_image_url": null
   },
   {
@@ -6890,7 +6890,7 @@
       ],
       "description": "シーキック → スピニングキック → バブルゲップ → repeat"
     },
-    "image_url": "/static/images/monsters/seapunk.png",
+    "image_url": "/static/images/monsters/seapunk.webp",
     "beta_image_url": null
   },
   {
@@ -6958,7 +6958,7 @@
       ],
       "description": ""
     },
-    "image_url": "/static/images/monsters/sewer_clam.png",
+    "image_url": "/static/images/monsters/sewer_clam.webp",
     "beta_image_url": null
   },
   {
@@ -7047,7 +7047,7 @@
       ],
       "description": "シュリンカー → 噛み砕く → 踏みつけ → repeat"
     },
-    "image_url": "/static/images/monsters/shrinker_beetle.png",
+    "image_url": "/static/images/monsters/shrinker_beetle.webp",
     "beta_image_url": null
   },
   {
@@ -7158,7 +7158,7 @@
       ],
       "description": "Smash → ズーム → 慣性 → スーパークラブ → repeat"
     },
-    "image_url": "/static/images/monsters/skulkling_colomy.png",
+    "image_url": "/static/images/monsters/skulkling_colomy.webp",
     "beta_image_url": null
   },
   {
@@ -7263,7 +7263,7 @@
       ],
       "description": "Always uses Vomit Ichor"
     },
-    "image_url": "/static/images/monsters/slimed_berserker.png",
+    "image_url": "/static/images/monsters/slimed_berserker.webp",
     "beta_image_url": null
   },
   {
@@ -7363,7 +7363,7 @@
       ],
       "description": "Starts with 締め付け"
     },
-    "image_url": "/static/images/monsters/slithering_strangler.png",
+    "image_url": "/static/images/monsters/slithering_strangler.webp",
     "beta_image_url": null
   },
   {
@@ -7477,7 +7477,7 @@
       ],
       "description": "Starts with オイルスプレー"
     },
-    "image_url": "/static/images/monsters/sludge_spinner.png",
+    "image_url": "/static/images/monsters/sludge_spinner.webp",
     "beta_image_url": null
   },
   {
@@ -7557,7 +7557,7 @@
       ],
       "description": "Starts with いびき"
     },
-    "image_url": "/static/images/monsters/slumbering_beetle.png",
+    "image_url": "/static/images/monsters/slumbering_beetle.webp",
     "beta_image_url": null
   },
   {
@@ -7623,7 +7623,7 @@
       ],
       "description": "Always uses エナジーオーブ"
     },
-    "image_url": "/static/images/monsters/snapping_jaxfruit.png",
+    "image_url": "/static/images/monsters/snapping_jaxfruit.webp",
     "beta_image_url": null
   },
   {
@@ -7684,7 +7684,7 @@
       ],
       "description": "Always uses Spawned"
     },
-    "image_url": "/static/images/monsters/sneaky_gremlin.png",
+    "image_url": "/static/images/monsters/sneaky_gremlin.webp",
     "beta_image_url": null
   },
   {
@@ -7810,7 +7810,7 @@
       ],
       "description": "Beckon → ガス抜き → Gaze → Fade → スクリーム → repeat"
     },
-    "image_url": "/static/images/monsters/soul_fysh.png",
+    "image_url": "/static/images/monsters/soul_fysh.webp",
     "beta_image_url": null
   },
   {
@@ -7941,7 +7941,7 @@
       ],
       "description": "Starts with ソウルバーン; then random: ソウルバーン (no repeat), メイルシュトローム (no repeat), 生命吸収 (no repeat)"
     },
-    "image_url": "/static/images/monsters/soul_nexus.png",
+    "image_url": "/static/images/monsters/soul_nexus.webp",
     "beta_image_url": null
   },
   {
@@ -8037,7 +8037,7 @@
       ],
       "description": "Starts: 呪術 → ソウルスラッシュ"
     },
-    "image_url": "/static/images/monsters/spectral_knight.png",
+    "image_url": "/static/images/monsters/spectral_knight.webp",
     "beta_image_url": null
   },
   {
@@ -8126,7 +8126,7 @@
       ],
       "description": "突き出るスパイク → スパイク爆発 → 舌打ち → repeat"
     },
-    "image_url": "/static/images/monsters/spiny_toad.png",
+    "image_url": "/static/images/monsters/spiny_toad.webp",
     "beta_image_url": null
   },
   {
@@ -8177,7 +8177,7 @@
       ],
       "description": "Always uses 突き"
     },
-    "image_url": "/static/images/monsters/stabbot.png",
+    "image_url": "/static/images/monsters/stabbot.webp",
     "beta_image_url": null
   },
   {
@@ -8292,12 +8292,12 @@
       ],
       "description": "Crash → Thrashmove → repeat"
     },
-    "image_url": "/static/images/monsters/terror_eel.png",
+    "image_url": "/static/images/monsters/terror_eel.webp",
     "beta_image_url": null
   },
   {
     "id": "TEST_SUBJECT",
-    "name": "実験体 #C{Count}",
+    "name": "実験体 #C14",
     "type": "Boss",
     "min_hp": null,
     "max_hp": null,
@@ -8508,7 +8508,7 @@
       ],
       "description": "Starts: Bite → Skull Bash; then conditional: Multi Claw (if Respawns < 2) / Phase3 Lacerate (if Respawns >= 2)"
     },
-    "image_url": "/static/images/monsters/test_subject.png",
+    "image_url": "/static/images/monsters/test_subject.webp",
     "beta_image_url": null
   },
   {
@@ -8593,7 +8593,7 @@
       ],
       "description": "スマッシュ → ビーム → 一斉発射 → repeat"
     },
-    "image_url": "/static/images/monsters/the_adversary_placeholder.png",
+    "image_url": "/static/images/monsters/the_adversary_placeholder.webp",
     "beta_image_url": null
   },
   {
@@ -8678,7 +8678,7 @@
       ],
       "description": "クラッシュ → フレイムビーム → 一斉発射 → repeat"
     },
-    "image_url": "/static/images/monsters/the_adversary_placeholder.png",
+    "image_url": "/static/images/monsters/the_adversary_placeholder.webp",
     "beta_image_url": null
   },
   {
@@ -8763,7 +8763,7 @@
       ],
       "description": "バッシュ → フレイムビーム → 一斉発射 → repeat"
     },
-    "image_url": "/static/images/monsters/the_adversary_placeholder.png",
+    "image_url": "/static/images/monsters/the_adversary_placeholder.webp",
     "beta_image_url": null
   },
   {
@@ -8832,7 +8832,7 @@
       ],
       "description": "Always uses 瘴気"
     },
-    "image_url": "/static/images/monsters/the_forgotten.png",
+    "image_url": "/static/images/monsters/the_forgotten.webp",
     "beta_image_url": null
   },
   {
@@ -8950,7 +8950,7 @@
       ],
       "description": "大地の溶解 → Thrash Move 1 → 突進噛みつき → よだれ → Thrash Move 2 → repeat"
     },
-    "image_url": "/static/images/monsters/the_insatiable.png",
+    "image_url": "/static/images/monsters/the_insatiable.webp",
     "beta_image_url": null
   },
   {
@@ -9020,7 +9020,7 @@
       ],
       "description": "Always uses 衰弱スモッグ"
     },
-    "image_url": "/static/images/monsters/the_lost.png",
+    "image_url": "/static/images/monsters/the_lost.webp",
     "beta_image_url": null
   },
   {
@@ -9124,7 +9124,7 @@
       ],
       "description": "Starts with イリュージョン"
     },
-    "image_url": "/static/images/monsters/the_obscura.png",
+    "image_url": "/static/images/monsters/the_obscura.webp",
     "beta_image_url": null
   },
   {
@@ -9243,7 +9243,7 @@
       ],
       "description": "泥棒 → 羽ばたき → ハットトリック → ひったくり → 逃走 → repeat"
     },
-    "image_url": "/static/images/monsters/thieving_hopper.png",
+    "image_url": "/static/images/monsters/thieving_hopper.webp",
     "beta_image_url": null
   },
   {
@@ -9355,7 +9355,7 @@
       ],
       "description": "then conditional: 旋回 (if !((Toadpole) / トゲトゲ (if ((Toadpole)"
     },
-    "image_url": "/static/images/monsters/toadpole.png",
+    "image_url": "/static/images/monsters/toadpole.webp",
     "beta_image_url": null
   },
   {
@@ -9477,7 +9477,7 @@
       ],
       "description": "Tackle 1 → Tackle 2 → Beam → Tackle 3 → Tackle 4 → repeat"
     },
-    "image_url": "/static/images/monsters/amalgam.png",
+    "image_url": "/static/images/monsters/amalgam.webp",
     "beta_image_url": null
   },
   {
@@ -9538,7 +9538,7 @@
       ],
       "description": "Always uses ふ化"
     },
-    "image_url": "/static/images/monsters/tough_egg.png",
+    "image_url": "/static/images/monsters/tough_egg.webp",
     "beta_image_url": null
   },
   {
@@ -9609,7 +9609,7 @@
       ],
       "description": "Always uses 追跡"
     },
-    "image_url": "/static/images/monsters/tracker_ruby_raider.png",
+    "image_url": "/static/images/monsters/tracker_ruby_raider.webp",
     "beta_image_url": null
   },
   {
@@ -9717,7 +9717,7 @@
       ],
       "description": "噛みつき → 潜伏 → Below Move 1 → repeat"
     },
-    "image_url": "/static/images/monsters/tunneler.png",
+    "image_url": "/static/images/monsters/tunneler.webp",
     "beta_image_url": null
   },
   {
@@ -9805,7 +9805,7 @@
       ],
       "description": "Unload Move 1 → Unload Move 2 → Reload → repeat"
     },
-    "image_url": "/static/images/monsters/turret_operator.png",
+    "image_url": "/static/images/monsters/turret_operator.webp",
     "beta_image_url": null
   },
   {
@@ -9899,7 +9899,7 @@
       ],
       "description": "Starts with 粘着ショット"
     },
-    "image_url": "/static/images/monsters/twig_slime_m.png",
+    "image_url": "/static/images/monsters/twig_slime_m.webp",
     "beta_image_url": null
   },
   {
@@ -9965,7 +9965,7 @@
       ],
       "description": "Always uses Butt"
     },
-    "image_url": "/static/images/monsters/twig_slime_s.png",
+    "image_url": "/static/images/monsters/twig_slime_s.webp",
     "beta_image_url": null
   },
   {
@@ -10075,7 +10075,7 @@
       ],
       "description": ""
     },
-    "image_url": "/static/images/monsters/two_tailed_rat.png",
+    "image_url": "/static/images/monsters/two_tailed_rat.webp",
     "beta_image_url": null
   },
   {
@@ -10185,7 +10185,7 @@
       ],
       "description": "インクの染み → インクの槍 → 切断 → 準備 → repeat"
     },
-    "image_url": "/static/images/monsters/vantom.png",
+    "image_url": "/static/images/monsters/vantom.webp",
     "beta_image_url": null
   },
   {
@@ -10284,7 +10284,7 @@
       ],
       "description": "なぎ払い → 掴みかかるツタ → 噛み砕く → repeat"
     },
-    "image_url": "/static/images/monsters/vine_shambler.png",
+    "image_url": "/static/images/monsters/vine_shambler.webp",
     "beta_image_url": null
   },
   {
@@ -10481,7 +10481,7 @@
       ],
       "description": "加圧 → 踏みつけ → 打ち込み → サイフォン → プレッシャーガン → Pressure Up → repeat"
     },
-    "image_url": "/static/images/monsters/waterfall_giant.png",
+    "image_url": "/static/images/monsters/waterfall_giant.webp",
     "beta_image_url": null
   },
   {
@@ -10591,7 +10591,7 @@
       ],
       "description": ""
     },
-    "image_url": "/static/images/monsters/wriggler.png",
+    "image_url": "/static/images/monsters/wriggler.webp",
     "beta_image_url": null
   },
   {
@@ -10635,7 +10635,7 @@
       ],
       "description": "Always uses ザップ"
     },
-    "image_url": "/static/images/monsters/zapbot.png",
+    "image_url": "/static/images/monsters/zapbot.webp",
     "beta_image_url": null
   },
   {
@@ -10725,7 +10725,7 @@
         "is_weak": false
       }
     ],
-    "image_url": "/static/images/monsters/decimillipede_segment_back.png"
+    "image_url": "/static/images/monsters/decimillipede_segment_back.webp"
   },
   {
     "id": "DECIMILLIPEDE_SEGMENT_FRONT",
@@ -10814,7 +10814,7 @@
         "is_weak": false
       }
     ],
-    "image_url": "/static/images/monsters/decimillipede_segment_front.png"
+    "image_url": "/static/images/monsters/decimillipede_segment_front.webp"
   },
   {
     "id": "DECIMILLIPEDE_SEGMENT_MIDDLE",
@@ -10903,7 +10903,7 @@
         "is_weak": false
       }
     ],
-    "image_url": "/static/images/monsters/decimillipede_segment_middle.png"
+    "image_url": "/static/images/monsters/decimillipede_segment_middle.webp"
   },
   {
     "id": "MYSTERIOUS_KNIGHT",
@@ -10967,7 +10967,7 @@
         "is_weak": false
       }
     ],
-    "image_url": "/static/images/monsters/flail_knight.png",
+    "image_url": "/static/images/monsters/flail_knight.webp",
     "innate_powers": [
       {
         "power_id": "STRENGTH",

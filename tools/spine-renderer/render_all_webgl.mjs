@@ -6,6 +6,7 @@
  */
 import { chromium } from "playwright";
 import { createCanvas } from "canvas";
+import sharp from "sharp";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -240,15 +241,23 @@ async function renderSkel(page, skelPath, outPath, outputSize) {
 
   if (result.error) return { status: "skip", reason: result.error };
 
+  const rawBuffer = Buffer.from(new Uint8ClampedArray(result.pixels));
+  fs.mkdirSync(path.dirname(outPath), { recursive: true });
+
   // Write PNG via node-canvas
   const pngCanvas = createCanvas(outputSize, outputSize);
   const pngCtx = pngCanvas.getContext("2d");
   const imgData = pngCtx.createImageData(outputSize, outputSize);
-  imgData.data.set(new Uint8ClampedArray(result.pixels));
+  imgData.data.set(rawBuffer);
   pngCtx.putImageData(imgData, 0, 0);
-  const buffer = pngCanvas.toBuffer("image/png");
-  fs.mkdirSync(path.dirname(outPath), { recursive: true });
-  fs.writeFileSync(outPath, buffer);
+  fs.writeFileSync(outPath, pngCanvas.toBuffer("image/png"));
+
+  // Write WebP via sharp
+  const webpPath = outPath.replace(/\.png$/, ".webp");
+  const webpBuffer = await sharp(rawBuffer, {
+    raw: { width: outputSize, height: outputSize, channels: 4 },
+  }).webp({ quality: 90 }).toBuffer();
+  fs.writeFileSync(webpPath, webpBuffer);
 
   return { status: "ok", size: result.size };
 }

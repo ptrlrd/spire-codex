@@ -8,6 +8,7 @@
  */
 import { chromium } from "playwright";
 import { createCanvas } from "canvas";
+import sharp from "sharp";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -296,10 +297,6 @@ async function main() {
   console.log(`  Animation: ${result.animName}`);
   console.log(`  Bounds: ${result.bounds}, scale: ${result.scale}`);
 
-  // Convert raw pixels to PNG via node-canvas (preserves transparency)
-  const pngCanvas = createCanvas(outputSize, outputSize);
-  const pngCtx = pngCanvas.getContext("2d");
-  const imgData = pngCtx.createImageData(outputSize, outputSize);
   const pixelData = new Uint8ClampedArray(result.pixels);
   // If --white mode, convert all visible pixels to white (RGB=255), keep alpha
   if (whiteMode) {
@@ -311,12 +308,27 @@ async function main() {
       }
     }
   }
-  imgData.data.set(pixelData);
-  pngCtx.putImageData(imgData, 0, 0);
-  const buffer = pngCanvas.toBuffer("image/png");
+
   fs.mkdirSync(path.dirname(outputPath), { recursive: true });
-  fs.writeFileSync(outputPath, buffer);
-  console.log(`  Saved: ${outputPath} (${(buffer.length / 1024).toFixed(0)} KB)`);
+  const rawBuffer = Buffer.from(pixelData);
+  const isWebp = outputPath.endsWith(".webp");
+
+  if (isWebp) {
+    const buffer = await sharp(rawBuffer, {
+      raw: { width: outputSize, height: outputSize, channels: 4 },
+    }).webp({ quality: 90 }).toBuffer();
+    fs.writeFileSync(outputPath, buffer);
+    console.log(`  Saved: ${outputPath} (${(buffer.length / 1024).toFixed(0)} KB)`);
+  } else {
+    const pngCanvas = createCanvas(outputSize, outputSize);
+    const pngCtx = pngCanvas.getContext("2d");
+    const imgData = pngCtx.createImageData(outputSize, outputSize);
+    imgData.data.set(pixelData);
+    pngCtx.putImageData(imgData, 0, 0);
+    const buffer = pngCanvas.toBuffer("image/png");
+    fs.writeFileSync(outputPath, buffer);
+    console.log(`  Saved: ${outputPath} (${(buffer.length / 1024).toFixed(0)} KB)`);
+  }
 }
 
 main().catch(console.error);

@@ -1281,7 +1281,7 @@
     "name": "Торговец?!",
     "type": "Shared",
     "act": null,
-    "description": "Заглушка",
+    "description": "A suspicious merchant offers 9 fake relics at 42–58 gold each. Throwing a [gold]Foul Potion[/gold] starts a fight against The Merchant??? (165 HP). Winning rewards [gold]Fake Merchant's Rug[/gold] plus all unsold relics.",
     "preconditions": [
       "Act 2+",
       "Single player only",
@@ -4219,7 +4219,7 @@
         }
       ]
     },
-    "image_url": "/static/images/monsters/architect.png"
+    "image_url": "/static/images/monsters/architect.webp"
   },
   {
     "id": "THE_FUTURE_OF_POTIONS",

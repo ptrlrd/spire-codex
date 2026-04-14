@@ -8,6 +8,7 @@
     "canvas": "^3.1.0",
     "gif-encoder-2": "^1.0.5",
     "playwright": "^1.58.2",
-    "puppeteer": "^24.40.0"
+    "puppeteer": "^24.40.0",
+    "sharp": "^0.34.5"
   }
 }

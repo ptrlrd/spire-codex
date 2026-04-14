@@ -987,9 +987,11 @@ def parse_single_monster(
         "MYSTERIOUS_KNIGHT": "flail_knight",
     }
     img_name = IMAGE_ALIASES.get(monster_id, monster_id.lower())
-    image_file = IMAGES_DIR / f"{img_name}.png"
+    image_file = IMAGES_DIR / f"{img_name}.webp"
+    if not image_file.exists():
+        image_file = IMAGES_DIR / f"{img_name}.png"
     image_url = (
-        f"/static/images/monsters/{img_name}.png" if image_file.exists() else None
+        f"/static/images/monsters/{image_file.name}" if image_file.exists() else None
     )
 
     # Beta/concept art — check beta/ subdirectory
@@ -1156,9 +1158,11 @@ def parse_all_monsters(loc_dir: Path, data_dir: Path) -> list[dict]:
             img_name = IMAGE_ALIASES_LOCAL.get(
                 child_monster_id, child_monster_id.lower()
             )
-            image_file = IMAGES_DIR / f"{img_name}.png"
+            image_file = IMAGES_DIR / f"{img_name}.webp"
+            if not image_file.exists():
+                image_file = IMAGES_DIR / f"{img_name}.png"
             image_url = (
-                f"/static/images/monsters/{img_name}.png"
+                f"/static/images/monsters/{image_file.name}"
                 if image_file.exists()
                 else None
             )
