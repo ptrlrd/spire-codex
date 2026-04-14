@@ -178,7 +178,7 @@ def parse_character(
         "dialogue_color": dialogue_color,
         "quotes": quotes if quotes else None,
         "dialogues": dialogues if dialogues else None,
-        "image_url": f"/static/images/characters/char_select_{char_id.lower()}.png",
+        "image_url": f"/static/images/characters/char_select_{char_id.lower()}.webp",
     }
 
 

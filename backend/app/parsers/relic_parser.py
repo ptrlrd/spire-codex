@@ -144,10 +144,13 @@ def parse_single_relic(
     # Pool/character
     pool = relic_pools.get(class_name, "shared")
 
-    # Image URL
-    image_file = STATIC_IMAGES / f"{relic_id.lower()}.png"
+    # Image URL — prefer WebP, fall back to PNG
+    relic_base = relic_id.lower()
+    image_file = STATIC_IMAGES / f"{relic_base}.webp"
+    if not image_file.exists():
+        image_file = STATIC_IMAGES / f"{relic_base}.png"
     image_url = (
-        f"/static/images/relics/{relic_id.lower()}.png" if image_file.exists() else None
+        f"/static/images/relics/{image_file.name}" if image_file.exists() else None
     )
 
     # Character-specific image variants (e.g., Yummy Cookie has 5 variants)
@@ -160,10 +163,12 @@ def parse_single_relic(
     }
     image_variants = {}
     for suffix, char_name in VARIANT_SUFFIXES.items():
-        variant_file = STATIC_IMAGES / f"{relic_id.lower()}_{suffix}.png"
+        variant_file = STATIC_IMAGES / f"{relic_base}_{suffix}.webp"
+        if not variant_file.exists():
+            variant_file = STATIC_IMAGES / f"{relic_base}_{suffix}.png"
         if variant_file.exists():
             image_variants[char_name] = (
-                f"/static/images/relics/{relic_id.lower()}_{suffix}.png"
+                f"/static/images/relics/{variant_file.name}"
             )
 
     return {

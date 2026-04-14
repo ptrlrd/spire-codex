@@ -3,84 +3,84 @@
     "id": "ATTACK",
     "name": "Agressif",
     "description": "Cet ennemi s'apprête à [gold]Attaquer[/gold] {IsMultiplayer:tous les joueurs |}pour [blue]{Damage}[/blue] dégâts{Repeat:plural:| [blue]{}[/blue] fois}.",
-    "image_url": "/static/images/intents/attack.png"
+    "image_url": "/static/images/intents/attack.webp"
   },
   {
     "id": "BUFF",
     "name": "Amélioration",
     "description": "Cet ennemi s'apprête à lancer un [gold]Effet bénéfique[/gold].",
-    "image_url": "/static/images/intents/buff.png"
+    "image_url": "/static/images/intents/buff.webp"
   },
   {
     "id": "CARD_DEBUFF",
     "name": "Maléfique",
     "description": "Cet ennemi s'apprête à lancer des [gold]Afflictions[/gold] sur vos cartes.",
-    "image_url": "/static/images/intents/card_debuff.png"
+    "image_url": "/static/images/intents/card_debuff.webp"
   },
   {
     "id": "DEATH_BLOW",
     "name": "Râle d'agonie",
     "description": "Cette créature tente de vous entraîner dans sa chute. Elle vous infligera [blue]{Damage}[/blue] dégâts d'Attaque avant d'être éliminée.",
-    "image_url": "/static/images/intents/death_blow.png"
+    "image_url": "/static/images/intents/death_blow.webp"
   },
   {
     "id": "DEBUFF",
     "name": "Stratégique",
     "description": "Cet ennemi s'apprête à appliquer un [gold]Effet néfaste[/gold] sur vous.",
-    "image_url": "/static/images/intents/debuff.png"
+    "image_url": "/static/images/intents/debuff.webp"
   },
   {
     "id": "DEBUFF_STRONG",
     "name": "Stratégique",
     "description": "Cet ennemi s'apprête à appliquer un puissant [gold]Effet néfaste[/gold] sur vous.",
-    "image_url": "/static/images/intents/debuff_strong.png"
+    "image_url": "/static/images/intents/debuff_strong.webp"
   },
   {
     "id": "DEFEND",
     "name": "Défensif",
     "description": "Cet ennemi s'apprête à [gold]Bloquer[/gold] pendant son tour.",
-    "image_url": "/static/images/intents/defend.png"
+    "image_url": "/static/images/intents/defend.webp"
   },
   {
     "id": "ESCAPE",
     "name": "Lâche",
     "description": "Cet ennemi s'apprête à [gold]Fuir[/gold].",
-    "image_url": "/static/images/intents/escape.png"
+    "image_url": "/static/images/intents/escape.webp"
   },
   {
     "id": "HEAL",
     "name": "Soins",
     "description": "Cet ennemi s'apprête à prodiguer des [gold]Soins[/gold].",
-    "image_url": "/static/images/intents/heal.png"
+    "image_url": "/static/images/intents/heal.webp"
   },
   {
     "id": "SLEEP",
     "name": "Léthargique",
     "description": "Cet ennemi ne fera rien ce tour.",
-    "image_url": "/static/images/intents/sleep.png"
+    "image_url": "/static/images/intents/sleep.webp"
   },
   {
     "id": "STATUS",
     "name": "Stratégique",
     "description": "Cet ennemi s'apprête à vous donner [blue]{CardCount}[/blue] {CardCount:plural:carte|cartes} [gold]Statut[/gold].",
-    "image_url": "/static/images/intents/status.png"
+    "image_url": "/static/images/intents/status.webp"
   },
   {
     "id": "STUN",
     "name": "Étourdi",
     "description": "Cet ennemi ne peut pas agir pendant son prochain tour.",
-    "image_url": "/static/images/intents/stun.png"
+    "image_url": "/static/images/intents/stun.webp"
   },
   {
     "id": "SUMMON",
     "name": "Invocation",
     "description": "Cet ennemi s'apprête à appeler des [gold]Monstres[/gold] à ses côtés.",
-    "image_url": "/static/images/intents/summon.png"
+    "image_url": "/static/images/intents/summon.webp"
   },
   {
     "id": "UNKNOWN",
     "name": "Inconnu",
     "description": "Les intentions de cet ennemi sont [gold]Inconnues[/gold].",
-    "image_url": "/static/images/intents/unknown.png"
+    "image_url": "/static/images/intents/unknown.webp"
   }
 ]

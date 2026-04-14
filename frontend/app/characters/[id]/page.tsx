@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       openGraph: {
         title,
         description: metaDesc,
-        images: [{ url: `${API_PUBLIC}/static/images/characters/combat_${char.id.toLowerCase()}.png` }],
+        images: [{ url: `${API_PUBLIC}/static/images/characters/combat_${char.id.toLowerCase()}.webp` }],
       },
       twitter: { card: "summary_large_image" },
       alternates: { canonical: `/characters/${id}` },
@@ -46,7 +46,7 @@ export default async function Page({ params }: Props) {
         name: char.name,
         description: desc || `${char.name} from Slay the Spire 2`,
         path: `/characters/${id}`,
-        imageUrl: `${API_PUBLIC}/static/images/characters/combat_${char.id.toLowerCase()}.png`,
+        imageUrl: `${API_PUBLIC}/static/images/characters/combat_${char.id.toLowerCase()}.webp`,
         category: "Character",
         breadcrumbs: [
           { name: "Home", href: "/" },

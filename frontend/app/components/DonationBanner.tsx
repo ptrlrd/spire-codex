@@ -137,7 +137,7 @@ function KofiBanner({ onDismiss }: { onDismiss: () => void }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex items-center justify-between gap-4">
         <div className="flex items-center gap-3">
           <img
-            src={`${API}/static/images/misc/ancients/nonupeipe.png`}
+            src={`${API}/static/images/misc/ancients/nonupeipe.webp`}
             alt="Nonupeipe"
             className="w-8 h-8 object-contain flex-shrink-0 hidden sm:block"
             crossOrigin="anonymous"

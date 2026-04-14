@@ -394,7 +394,8 @@ def parse_single_card(
             elif vtype == "Skill" and block:
                 v_entry["block"] = block
             # Variant-specific image
-            variant_img = f"{card_id.lower()}_{vtype.lower()}.png"
+            variant_base = f"{card_id.lower()}_{vtype.lower()}"
+            variant_img = f"{variant_base}.webp" if (STATIC_IMAGES / f"{variant_base}.webp").exists() else f"{variant_base}.png"
             if (STATIC_IMAGES / variant_img).exists():
                 v_entry["image_url"] = f"/static/images/cards/{variant_img}"
             # Rider sub-variants
@@ -452,12 +453,16 @@ def parse_single_card(
         "spawns_cards": spawns_cards,
         "vars": all_vars if all_vars else None,
         "upgrade": {},
-        "image_url": f"/static/images/cards/{card_id.lower()}.png"
-        if (STATIC_IMAGES / f"{card_id.lower()}.png").exists()
+        "image_url": f"/static/images/cards/{card_id.lower()}.webp"
+        if (STATIC_IMAGES / f"{card_id.lower()}.webp").exists()
         else (
-            type_variants[card_type.lower()].get("image_url")
-            if type_variants and card_type.lower() in type_variants
-            else None
+            f"/static/images/cards/{card_id.lower()}.png"
+            if (STATIC_IMAGES / f"{card_id.lower()}.png").exists()
+            else (
+                type_variants[card_type.lower()].get("image_url")
+                if type_variants and card_type.lower() in type_variants
+                else None
+            )
         ),
         "beta_image_url": f"/static/images/cards/beta/{card_id.lower()}.png"
         if (STATIC_IMAGES / "beta" / f"{card_id.lower()}.png").exists()

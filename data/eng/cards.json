@@ -44,7 +44,7 @@
     "upgrade": {
       "thornspower": "+2"
     },
-    "image_url": "/static/images/cards/abrasive.png",
+    "image_url": "/static/images/cards/abrasive.webp",
     "beta_image_url": "/static/images/cards/beta/abrasive.png",
     "type_variants": null,
     "upgrade_description": "Gain 1 [gold]Dexterity[/gold].\nGain 6 [gold]Thorns[/gold].",
@@ -84,7 +84,7 @@
     "upgrade": {
       "accelerant": "+1"
     },
-    "image_url": "/static/images/cards/accelerant.png",
+    "image_url": "/static/images/cards/accelerant.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]Poison[/gold] is triggered 2 additional times.",
@@ -130,7 +130,7 @@
     "upgrade": {
       "accuracypower": "+2"
     },
-    "image_url": "/static/images/cards/accuracy.png",
+    "image_url": "/static/images/cards/accuracy.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]Shivs[/gold] deal 6 additional damage.",
@@ -167,7 +167,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/acrobatics.png",
+    "image_url": "/static/images/cards/acrobatics.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Draw 4 cards.\nDiscard 1 card.",
@@ -206,7 +206,7 @@
     "upgrade": {
       "damage": "+5"
     },
-    "image_url": "/static/images/cards/adaptive_strike.png",
+    "image_url": "/static/images/cards/adaptive_strike.webp",
     "beta_image_url": "/static/images/cards/beta/adaptive_strike.png",
     "type_variants": null,
     "upgrade_description": "Deal 23 damage.\nAdd a 0[energy:1] copy of this card into your [gold]Discard Pile[/gold].",
@@ -246,7 +246,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/adrenaline.png",
+    "image_url": "/static/images/cards/adrenaline.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Gain [energy:2].\nDraw 2 cards.",
@@ -293,7 +293,7 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": "/static/images/cards/afterimage.png",
+    "image_url": "/static/images/cards/afterimage.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -332,7 +332,7 @@
     "upgrade": {
       "summon": "+3"
     },
-    "image_url": "/static/images/cards/afterlife.png",
+    "image_url": "/static/images/cards/afterlife.webp",
     "beta_image_url": "/static/images/cards/beta/afterlife.png",
     "type_variants": null,
     "upgrade_description": "[gold]Summon[/gold] 9.",
@@ -370,7 +370,7 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": "/static/images/cards/aggression.png",
+    "image_url": "/static/images/cards/aggression.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -407,7 +407,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/alchemize.png",
+    "image_url": "/static/images/cards/alchemize.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -448,7 +448,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/alignment.png",
+    "image_url": "/static/images/cards/alignment.webp",
     "beta_image_url": "/static/images/cards/beta/alignment.png",
     "type_variants": null,
     "upgrade_description": "Gain [energy:3].",
@@ -485,7 +485,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/all_for_one.png",
+    "image_url": "/static/images/cards/all_for_one.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 14 damage.\nPut ALL 0[energy:1] cards from your [gold]Discard Pile[/gold] into your [gold]Hand[/gold].",
@@ -522,7 +522,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/anger.png",
+    "image_url": "/static/images/cards/anger.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 8 damage.\nAdd a copy of this card into your [gold]Discard Pile[/gold].",
@@ -559,7 +559,7 @@
     "upgrade": {
       "add_retain": true
     },
-    "image_url": "/static/images/cards/anointed.png",
+    "image_url": "/static/images/cards/anointed.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -606,7 +606,7 @@
     "upgrade": {
       "dexterity": "+2"
     },
-    "image_url": "/static/images/cards/anticipate.png",
+    "image_url": "/static/images/cards/anticipate.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -644,7 +644,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/apotheosis.png",
+    "image_url": "/static/images/cards/apotheosis.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -695,7 +695,7 @@
     "upgrade": {
       "remove_ethereal": true
     },
-    "image_url": "/static/images/cards/apparition.png",
+    "image_url": "/static/images/cards/apparition.webp",
     "beta_image_url": "/static/images/cards/beta/apparition.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -736,7 +736,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/armaments.png",
+    "image_url": "/static/images/cards/armaments.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Gain 5 [gold]Block[/gold].\n[gold]Upgrade[/gold] ALL cards in your [gold]Hand[/gold].",
@@ -780,7 +780,7 @@
     "upgrade": {
       "arsenalpower": "+1"
     },
-    "image_url": "/static/images/cards/arsenal.png",
+    "image_url": "/static/images/cards/arsenal.webp",
     "beta_image_url": "/static/images/cards/beta/arsenal.png",
     "type_variants": null,
     "upgrade_description": "Whenever you play a Colorless card, gain 2 [gold]Strength[/gold].",
@@ -817,7 +817,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/ascenders_bane.png",
+    "image_url": "/static/images/cards/ascenders_bane.webp",
     "beta_image_url": "/static/images/cards/beta/ascenders_bane.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -863,7 +863,7 @@
     "upgrade": {
       "extradamage": "+1"
     },
-    "image_url": "/static/images/cards/ashen_strike.png",
+    "image_url": "/static/images/cards/ashen_strike.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 6 damage.\nDeals 4 additional damage for each card in your [gold]Exhaust Pile[/gold].",
@@ -912,7 +912,7 @@
       "damage": "+3",
       "vulnerable": "+1"
     },
-    "image_url": "/static/images/cards/assassinate.png",
+    "image_url": "/static/images/cards/assassinate.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 13 damage.\nApply 1 [gold]Vulnerable[/gold].",
@@ -954,7 +954,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/astral_pulse.png",
+    "image_url": "/static/images/cards/astral_pulse.webp",
     "beta_image_url": "/static/images/cards/beta/astral_pulse.png",
     "type_variants": null,
     "upgrade_description": "Deal 18 damage to ALL enemies.",
@@ -991,7 +991,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/automation.png",
+    "image_url": "/static/images/cards/automation.webp",
     "beta_image_url": "/static/images/cards/beta/automation.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -1030,7 +1030,7 @@
     "upgrade": {
       "damage": "+1"
     },
-    "image_url": "/static/images/cards/begone.png",
+    "image_url": "/static/images/cards/begone.webp",
     "beta_image_url": "/static/images/cards/beta/begone.png",
     "type_variants": null,
     "upgrade_description": "Deal 5 damage.\nChoose a card in your [gold]Hand[/gold] to [gold]Transform[/gold] into [gold]Minion Dive Bomb+[/gold].",
@@ -1068,7 +1068,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/backflip.png",
+    "image_url": "/static/images/cards/backflip.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Gain 8 [gold]Block[/gold].\nDraw 2 cards.",
@@ -1108,7 +1108,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/backstab.png",
+    "image_url": "/static/images/cards/backstab.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 15 damage.",
@@ -1150,7 +1150,7 @@
       "HpLoss": 13
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/bad_luck.png",
+    "image_url": "/static/images/cards/bad_luck.webp",
     "beta_image_url": "/static/images/cards/beta/bad_luck.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -1191,7 +1191,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/ball_lightning.png",
+    "image_url": "/static/images/cards/ball_lightning.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 10 damage.\n[gold]Channel[/gold] 1 [gold]Lightning[/gold].",
@@ -1229,7 +1229,7 @@
     "upgrade": {
       "damage": "+6"
     },
-    "image_url": "/static/images/cards/banshees_cry.png",
+    "image_url": "/static/images/cards/banshees_cry.webp",
     "beta_image_url": "/static/images/cards/beta/banshees_cry.png",
     "type_variants": null,
     "upgrade_description": "Deal 39 damage to ALL enemies.\nCosts [energy:2] less for each [gold]Ethereal[/gold] card played this combat.",
@@ -1268,7 +1268,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/barrage.png",
+    "image_url": "/static/images/cards/barrage.webp",
     "beta_image_url": "/static/images/cards/beta/barrage.png",
     "type_variants": null,
     "upgrade_description": "Deal 7 damage for each [gold]Channeled[/gold] Orb.",
@@ -1303,7 +1303,7 @@
     "upgrade": {
       "cost": 2
     },
-    "image_url": "/static/images/cards/barricade.png",
+    "image_url": "/static/images/cards/barricade.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -1349,7 +1349,7 @@
       "damage": "+2",
       "vulnerable": "+1"
     },
-    "image_url": "/static/images/cards/bash.png",
+    "image_url": "/static/images/cards/bash.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 10 damage.\nApply 2 [gold]Vulnerable[/gold].",
@@ -1386,7 +1386,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/battle_trance.png",
+    "image_url": "/static/images/cards/battle_trance.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Draw 4 cards.\nYou cannot draw additional cards this turn.",
@@ -1421,7 +1421,7 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": "/static/images/cards/beacon_of_hope.png",
+    "image_url": "/static/images/cards/beacon_of_hope.webp",
     "beta_image_url": "/static/images/cards/beta/beacon_of_hope.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -1467,7 +1467,7 @@
       "damage": "+1",
       "vulnerable": "+1"
     },
-    "image_url": "/static/images/cards/beam_cell.png",
+    "image_url": "/static/images/cards/beam_cell.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 4 damage.\nApply 1 [gold]Vulnerable[/gold].",
@@ -1504,7 +1504,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/beat_down.png",
+    "image_url": "/static/images/cards/beat_down.webp",
     "beta_image_url": "/static/images/cards/beta/beat_down.png",
     "type_variants": null,
     "upgrade_description": "Play 4 random Attacks from your [gold]Discard Pile[/gold].",
@@ -1545,7 +1545,7 @@
       "calculationbase": "+2",
       "calculationextra": "+2"
     },
-    "image_url": "/static/images/cards/beat_into_shape.png",
+    "image_url": "/static/images/cards/beat_into_shape.webp",
     "beta_image_url": "/static/images/cards/beta/beat_into_shape.png",
     "type_variants": null,
     "upgrade_description": "Deal 7 damage.\n[gold]Forge[/gold] X.\n[gold]Forges[/gold] an additional 7 for every other time you've hit the enemy this turn.",
@@ -1580,7 +1580,7 @@
       "HpLoss": 6
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/beckon.png",
+    "image_url": "/static/images/cards/beckon.webp",
     "beta_image_url": "/static/images/cards/beta/beckon.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -1617,7 +1617,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/believe_in_you.png",
+    "image_url": "/static/images/cards/believe_in_you.webp",
     "beta_image_url": "/static/images/cards/beta/believe_in_you.png",
     "type_variants": null,
     "upgrade_description": "Another player gains [energy:4].",
@@ -1668,7 +1668,7 @@
     "upgrade": {
       "focuspower": "+1"
     },
-    "image_url": "/static/images/cards/biased_cognition.png",
+    "image_url": "/static/images/cards/biased_cognition.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Gain 5 [gold]Focus[/gold].\nAt the start of your turn, lose 1 [gold]Focus[/gold].",
@@ -1710,7 +1710,7 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": "/static/images/cards/big_bang.png",
+    "image_url": "/static/images/cards/big_bang.webp",
     "beta_image_url": "/static/images/cards/beta/big_bang.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -1757,7 +1757,7 @@
     "upgrade": {
       "blackholepower": "+1"
     },
-    "image_url": "/static/images/cards/black_hole.png",
+    "image_url": "/static/images/cards/black_hole.webp",
     "beta_image_url": "/static/images/cards/beta/black_hole.png",
     "type_variants": null,
     "upgrade_description": "Whenever you spend or gain [star:1], deal 4 damage to ALL enemies.",
@@ -1798,7 +1798,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/blade_dance.png",
+    "image_url": "/static/images/cards/blade_dance.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Add 4 [gold]Shivs[/gold] into your [gold]Hand[/gold].",
@@ -1845,7 +1845,7 @@
     "upgrade": {
       "strength": "+1"
     },
-    "image_url": "/static/images/cards/blade_of_ink.png",
+    "image_url": "/static/images/cards/blade_of_ink.webp",
     "beta_image_url": "/static/images/cards/beta/blade_of_ink.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -1884,7 +1884,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/blight_strike.png",
+    "image_url": "/static/images/cards/blight_strike.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 10 damage.\nApply [gold]Doom[/gold] equal to damage dealt.",
@@ -1922,7 +1922,7 @@
     "upgrade": {
       "block": "+4"
     },
-    "image_url": "/static/images/cards/blood_wall.png",
+    "image_url": "/static/images/cards/blood_wall.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Lose 2 HP.\nGain 20 [gold]Block[/gold].",
@@ -1960,7 +1960,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/bloodletting.png",
+    "image_url": "/static/images/cards/bloodletting.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Lose 3 HP.\nGain [energy:3].",
@@ -1997,7 +1997,7 @@
     "upgrade": {
       "damage": "+10"
     },
-    "image_url": "/static/images/cards/bludgeon.png",
+    "image_url": "/static/images/cards/bludgeon.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 42 damage.",
@@ -2035,7 +2035,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/blur.png",
+    "image_url": "/static/images/cards/blur.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Gain 8 [gold]Block[/gold].\n[gold]Block[/gold] is not removed at the start of your next turn.",
@@ -2074,7 +2074,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/body_slam.png",
+    "image_url": "/static/images/cards/body_slam.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -2111,7 +2111,7 @@
     "upgrade": {
       "summon": "+2"
     },
-    "image_url": "/static/images/cards/bodyguard.png",
+    "image_url": "/static/images/cards/bodyguard.webp",
     "beta_image_url": "/static/images/cards/beta/bodyguard.png",
     "type_variants": null,
     "upgrade_description": "[gold]Summon[/gold] 7.",
@@ -2148,7 +2148,7 @@
     "upgrade": {
       "damage": "+1"
     },
-    "image_url": "/static/images/cards/bolas.png",
+    "image_url": "/static/images/cards/bolas.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 4 damage.\nAt the start of your next turn, return this to your [gold]Hand[/gold].",
@@ -2187,7 +2187,7 @@
     "upgrade": {
       "damage": "+6"
     },
-    "image_url": "/static/images/cards/bombardment.png",
+    "image_url": "/static/images/cards/bombardment.webp",
     "beta_image_url": "/static/images/cards/beta/bombardment.png",
     "type_variants": null,
     "upgrade_description": "Deal 24 damage.\nAt the start of your turn, plays from the [gold]Exhaust Pile[/gold].",
@@ -2232,7 +2232,7 @@
       "block": "+3",
       "ostydamage": "+3"
     },
-    "image_url": "/static/images/cards/bone_shards.png",
+    "image_url": "/static/images/cards/bone_shards.webp",
     "beta_image_url": "/static/images/cards/beta/bone_shards.png",
     "type_variants": null,
     "upgrade_description": "If [gold]Osty[/gold] is alive, he deals 12 damage to ALL enemies and you gain 12 [gold]Block[/gold].\n[gold]Osty[/gold] dies.",
@@ -2271,7 +2271,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/boost_away.png",
+    "image_url": "/static/images/cards/boost_away.webp",
     "beta_image_url": "/static/images/cards/beta/boost_away.png",
     "type_variants": null,
     "upgrade_description": "Gain 9 [gold]Block[/gold].\nAdd a [gold]Dazed[/gold] into your [gold]Discard Pile[/gold].",
@@ -2311,7 +2311,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/boot_sequence.png",
+    "image_url": "/static/images/cards/boot_sequence.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Gain 13 [gold]Block[/gold].",
@@ -2360,7 +2360,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/borrowed_time.png",
+    "image_url": "/static/images/cards/borrowed_time.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Apply 3 [gold]Doom[/gold] to yourself.\nGain [energy:2].",
@@ -2405,7 +2405,7 @@
     "upgrade": {
       "repeat": "+1"
     },
-    "image_url": "/static/images/cards/bouncing_flask.png",
+    "image_url": "/static/images/cards/bouncing_flask.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Apply 3 [gold]Poison[/gold] to a random enemy 4 times.",
@@ -2450,7 +2450,7 @@
     "upgrade": {
       "strength": "+1"
     },
-    "image_url": "/static/images/cards/brand.png",
+    "image_url": "/static/images/cards/brand.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -2496,7 +2496,7 @@
       "damage": "+5",
       "vulnerable": "+2"
     },
-    "image_url": "/static/images/cards/break.png",
+    "image_url": "/static/images/cards/break.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 25 damage.\nApply 5 [gold]Vulnerable[/gold].",
@@ -2534,7 +2534,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/breakthrough.png",
+    "image_url": "/static/images/cards/breakthrough.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Lose 1 HP.\nDeal 13 damage to ALL enemies.",
@@ -2574,7 +2574,7 @@
       "energy": "+1",
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/brightest_flame.png",
+    "image_url": "/static/images/cards/brightest_flame.webp",
     "beta_image_url": "/static/images/cards/beta/brightest_flame.png",
     "type_variants": null,
     "upgrade_description": "Gain [energy:3].\nDraw 3 cards.\nLose 1 Max HP.",
@@ -2618,7 +2618,7 @@
     "upgrade": {
       "poison": "+3"
     },
-    "image_url": "/static/images/cards/bubble_bubble.png",
+    "image_url": "/static/images/cards/bubble_bubble.webp",
     "beta_image_url": "/static/images/cards/beta/bubble_bubble.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -2662,7 +2662,7 @@
     "upgrade": {
       "bufferpower": "+1"
     },
-    "image_url": "/static/images/cards/buffer.png",
+    "image_url": "/static/images/cards/buffer.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Prevent the next 2 times you would lose HP.",
@@ -2715,7 +2715,7 @@
       "strength": "+1",
       "dexterity": "+1"
     },
-    "image_url": "/static/images/cards/bulk_up.png",
+    "image_url": "/static/images/cards/bulk_up.webp",
     "beta_image_url": "/static/images/cards/beta/bulk_up.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -2750,7 +2750,7 @@
     "upgrade": {
       "cost": 2
     },
-    "image_url": "/static/images/cards/bullet_time.png",
+    "image_url": "/static/images/cards/bullet_time.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -2789,7 +2789,7 @@
     "upgrade": {
       "extradamage": "+1"
     },
-    "image_url": "/static/images/cards/bully.png",
+    "image_url": "/static/images/cards/bully.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 4 damage.\nDeals 3 additional damage for each [gold]Vulnerable[/gold] on the enemy.",
@@ -2828,7 +2828,7 @@
       "block": "+3",
       "forge": "+3"
     },
-    "image_url": "/static/images/cards/bulwark.png",
+    "image_url": "/static/images/cards/bulwark.webp",
     "beta_image_url": "/static/images/cards/beta/bulwark.png",
     "type_variants": null,
     "upgrade_description": "Gain 16 [gold]Block[/gold].\n[gold]Forge[/gold] 13.",
@@ -2867,7 +2867,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/bundle_of_joy.png",
+    "image_url": "/static/images/cards/bundle_of_joy.webp",
     "beta_image_url": "/static/images/cards/beta/bundle_of_joy.png",
     "type_variants": null,
     "upgrade_description": "Add 4 random Colorless cards into your [gold]Hand[/gold].",
@@ -2907,7 +2907,7 @@
       "Damage": 2
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/burn.png",
+    "image_url": "/static/images/cards/burn.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -2947,7 +2947,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/burning_pact.png",
+    "image_url": "/static/images/cards/burning_pact.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]Exhaust[/gold] 1 card.\nDraw 3 cards.",
@@ -2984,7 +2984,7 @@
     "upgrade": {
       "skills": "+1"
     },
-    "image_url": "/static/images/cards/burst.png",
+    "image_url": "/static/images/cards/burst.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "This turn, your next 2 Skills are played an extra time.",
@@ -3021,7 +3021,7 @@
     "upgrade": {
       "damage": "+11"
     },
-    "image_url": "/static/images/cards/bury.png",
+    "image_url": "/static/images/cards/bury.webp",
     "beta_image_url": "/static/images/cards/beta/bury.png",
     "type_variants": null,
     "upgrade_description": "Deal 63 damage.",
@@ -3058,7 +3058,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/byrd_swoop.png",
+    "image_url": "/static/images/cards/byrd_swoop.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 18 damage.",
@@ -3093,7 +3093,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/byrdonis_egg.png",
+    "image_url": "/static/images/cards/byrdonis_egg.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -3135,7 +3135,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/charge.png",
+    "image_url": "/static/images/cards/charge.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Choose 2 cards in your [gold]Draw Pile[/gold] to [gold]Transform[/gold] into\n[gold]Minion Strikes+[/gold].",
@@ -3170,7 +3170,7 @@
     "upgrade": {
       "cost": 2
     },
-    "image_url": "/static/images/cards/calamity.png",
+    "image_url": "/static/images/cards/calamity.webp",
     "beta_image_url": "/static/images/cards/beta/calamity.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -3214,7 +3214,7 @@
     "upgrade": {
       "calcifypower": "+2"
     },
-    "image_url": "/static/images/cards/calcify.png",
+    "image_url": "/static/images/cards/calcify.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]Osty's[/gold] attacks deal 6 additional damage.",
@@ -3251,7 +3251,7 @@
     "upgrade": {
       "add_retain": true
     },
-    "image_url": "/static/images/cards/calculated_gamble.png",
+    "image_url": "/static/images/cards/calculated_gamble.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -3291,7 +3291,7 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": "/static/images/cards/call_of_the_void.png",
+    "image_url": "/static/images/cards/call_of_the_void.webp",
     "beta_image_url": "/static/images/cards/beta/call_of_the_void.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -3335,7 +3335,7 @@
     "upgrade": {
       "thornspower": "+2"
     },
-    "image_url": "/static/images/cards/caltrops.png",
+    "image_url": "/static/images/cards/caltrops.webp",
     "beta_image_url": "/static/images/cards/beta/caltrops.png",
     "type_variants": null,
     "upgrade_description": "Whenever you are attacked, deal 5 damage back.",
@@ -3372,7 +3372,7 @@
     "upgrade": {
       "repeat": "+1"
     },
-    "image_url": "/static/images/cards/capacitor.png",
+    "image_url": "/static/images/cards/capacitor.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Gain 3 Orb Slots.",
@@ -3413,7 +3413,7 @@
       "damage": "+1",
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/capture_spirit.png",
+    "image_url": "/static/images/cards/capture_spirit.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Enemy loses 4 HP.\nAdd 4 [gold]Souls[/gold] into your [gold]Draw Pile[/gold].",
@@ -3448,7 +3448,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/cascade.png",
+    "image_url": "/static/images/cards/cascade.webp",
     "beta_image_url": "/static/images/cards/beta/cascade.png",
     "type_variants": null,
     "upgrade_description": "Play the top X+1 cards of your [gold]Draw Pile[/gold].",
@@ -3485,7 +3485,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/catastrophe.png",
+    "image_url": "/static/images/cards/catastrophe.webp",
     "beta_image_url": "/static/images/cards/beta/catastrophe.png",
     "type_variants": null,
     "upgrade_description": "Play 3 random cards from your [gold]Draw Pile[/gold].",
@@ -3523,7 +3523,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/celestial_might.png",
+    "image_url": "/static/images/cards/celestial_might.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 8 damage 3 times.",
@@ -3560,7 +3560,7 @@
     "upgrade": {
       "repeat": "+1"
     },
-    "image_url": "/static/images/cards/chaos.png",
+    "image_url": "/static/images/cards/chaos.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]Channel[/gold] 2 random Orbs.",
@@ -3598,7 +3598,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/charge_battery.png",
+    "image_url": "/static/images/cards/charge_battery.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Gain 10 [gold]Block[/gold].\nNext turn, gain [energy:1].",
@@ -3635,7 +3635,7 @@
     "upgrade": {
       "blockforstars": "+1"
     },
-    "image_url": "/static/images/cards/child_of_the_stars.png",
+    "image_url": "/static/images/cards/child_of_the_stars.webp",
     "beta_image_url": "/static/images/cards/beta/child_of_the_stars.png",
     "type_variants": null,
     "upgrade_description": "Whenever you spend [star:1], gain 3 [gold]Block[/gold] for each [star:1] spent.",
@@ -3672,7 +3672,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/chill.png",
+    "image_url": "/static/images/cards/chill.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -3713,7 +3713,7 @@
     "upgrade": {
       "damage": "+5"
     },
-    "image_url": "/static/images/cards/cinder.png",
+    "image_url": "/static/images/cards/cinder.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 22 damage.\n[gold]Exhaust[/gold] the top card of your [gold]Draw Pile[/gold].",
@@ -3750,7 +3750,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/clash.png",
+    "image_url": "/static/images/cards/clash.webp",
     "beta_image_url": "/static/images/cards/beta/clash.png",
     "type_variants": null,
     "upgrade_description": "Can only be played if every card in your [gold]Hand[/gold] is an Attack.\nDeal 18 damage.",
@@ -3789,7 +3789,7 @@
       "damage": "+1",
       "increase": "+1"
     },
-    "image_url": "/static/images/cards/claw.png",
+    "image_url": "/static/images/cards/claw.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 4 damage.\nIncrease the damage of ALL Claw cards by 3 this combat.",
@@ -3826,7 +3826,7 @@
     "upgrade": {
       "summon": "+2"
     },
-    "image_url": "/static/images/cards/cleanse.png",
+    "image_url": "/static/images/cards/cleanse.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]Summon[/gold] 5.\n[gold]Exhaust[/gold] 1 card from your [gold]Draw Pile[/gold].",
@@ -3866,7 +3866,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/cloak_and_dagger.png",
+    "image_url": "/static/images/cards/cloak_and_dagger.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Gain 6 [gold]Block[/gold].\nAdd 2 [gold]Shivs[/gold] into your [gold]Hand[/gold].",
@@ -3904,7 +3904,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/cloak_of_stars.png",
+    "image_url": "/static/images/cards/cloak_of_stars.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Gain 10 [gold]Block[/gold].",
@@ -3940,7 +3940,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/clumsy.png",
+    "image_url": "/static/images/cards/clumsy.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -3981,7 +3981,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/cold_snap.png",
+    "image_url": "/static/images/cards/cold_snap.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 9 damage.\n[gold]Channel[/gold] 1 [gold]Frost[/gold].",
@@ -4020,7 +4020,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/collision_course.png",
+    "image_url": "/static/images/cards/collision_course.webp",
     "beta_image_url": "/static/images/cards/beta/collision_course.png",
     "type_variants": null,
     "upgrade_description": "Deal 12 damage.\nAdd a [gold]Debris[/gold] into your [gold]Hand[/gold].",
@@ -4058,7 +4058,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/colossus.png",
+    "image_url": "/static/images/cards/colossus.webp",
     "beta_image_url": "/static/images/cards/beta/colossus.png",
     "type_variants": null,
     "upgrade_description": "Gain 8 [gold]Block[/gold].\nYou receive 50% less damage from [gold]Vulnerable[/gold] enemies this turn.",
@@ -4111,7 +4111,7 @@
     "upgrade": {
       "damage": "+11"
     },
-    "image_url": "/static/images/cards/comet.png",
+    "image_url": "/static/images/cards/comet.webp",
     "beta_image_url": "/static/images/cards/beta/comet.png",
     "type_variants": null,
     "upgrade_description": "Deal 44 damage.\nApply 3 [gold]Weak[/gold].\nApply 3 [gold]Vulnerable[/gold].",
@@ -4150,7 +4150,7 @@
     "upgrade": {
       "block": "+1"
     },
-    "image_url": "/static/images/cards/compact.png",
+    "image_url": "/static/images/cards/compact.webp",
     "beta_image_url": "/static/images/cards/beta/compact.png",
     "type_variants": null,
     "upgrade_description": "Gain 7 [gold]Block[/gold].\n[gold]Transform[/gold] all Status cards in your [gold]Hand[/gold] into [gold]Fuel+[/gold].",
@@ -4189,7 +4189,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/compile_driver.png",
+    "image_url": "/static/images/cards/compile_driver.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 10 damage.\nDraw 1 card for each unique Orb you have.",
@@ -4229,7 +4229,7 @@
       "calculationbase": "+1",
       "extradamage": "+1"
     },
-    "image_url": "/static/images/cards/conflagration.png",
+    "image_url": "/static/images/cards/conflagration.webp",
     "beta_image_url": "/static/images/cards/beta/conflagration.png",
     "type_variants": null,
     "upgrade_description": "Deal 8 damage to ALL enemies.\nDeals 3 additional damage for each other Attack you've played this turn.",
@@ -4266,7 +4266,7 @@
     "upgrade": {
       "forge": "+2"
     },
-    "image_url": "/static/images/cards/conqueror.png",
+    "image_url": "/static/images/cards/conqueror.webp",
     "beta_image_url": "/static/images/cards/beta/conqueror.png",
     "type_variants": null,
     "upgrade_description": "[gold]Forge[/gold] 5.\n[gold]Sovereign Blade[/gold] deals double damage to the enemy this turn.",
@@ -4311,7 +4311,7 @@
     "upgrade": {
       "repeat": "+1"
     },
-    "image_url": "/static/images/cards/consuming_shadow.png",
+    "image_url": "/static/images/cards/consuming_shadow.webp",
     "beta_image_url": "/static/images/cards/beta/consuming_shadow.png",
     "type_variants": null,
     "upgrade_description": "[gold]Channel[/gold] 3 [gold]Dark[/gold].\nAt the end of your turn, [gold]Evoke[/gold] your leftmost Orb.",
@@ -4349,7 +4349,7 @@
     "upgrade": {
       "stars": "+1"
     },
-    "image_url": "/static/images/cards/convergence.png",
+    "image_url": "/static/images/cards/convergence.webp",
     "beta_image_url": "/static/images/cards/beta/convergence.png",
     "type_variants": null,
     "upgrade_description": "Next turn,\ngain [energy:1] and [star:2].\n[gold]Retain[/gold] your [gold]Hand[/gold] this turn.",
@@ -4393,7 +4393,7 @@
     "upgrade": {
       "coolantpower": "+1"
     },
-    "image_url": "/static/images/cards/coolant.png",
+    "image_url": "/static/images/cards/coolant.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "At the start of your turn, gain 3 [gold]Block[/gold] for each unique Orb you have.",
@@ -4430,7 +4430,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/coolheaded.png",
+    "image_url": "/static/images/cards/coolheaded.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]Channel[/gold] 1 [gold]Frost[/gold].\nDraw 2 cards.",
@@ -4474,7 +4474,7 @@
     "upgrade": {
       "strength": "+3"
     },
-    "image_url": "/static/images/cards/coordinate.png",
+    "image_url": "/static/images/cards/coordinate.webp",
     "beta_image_url": "/static/images/cards/beta/coordinate.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -4511,7 +4511,7 @@
     "upgrade": {
       "corrosivewave": "+1"
     },
-    "image_url": "/static/images/cards/corrosive_wave.png",
+    "image_url": "/static/images/cards/corrosive_wave.webp",
     "beta_image_url": "/static/images/cards/beta/corrosive_wave.png",
     "type_variants": null,
     "upgrade_description": "Whenever you draw a card this turn, apply 4 [gold]Poison[/gold] to ALL enemies.",
@@ -4548,7 +4548,7 @@
     "upgrade": {
       "cost": 2
     },
-    "image_url": "/static/images/cards/corruption.png",
+    "image_url": "/static/images/cards/corruption.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -4585,7 +4585,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/cosmic_indifference.png",
+    "image_url": "/static/images/cards/cosmic_indifference.webp",
     "beta_image_url": "/static/images/cards/beta/cosmic_indifference.png",
     "type_variants": null,
     "upgrade_description": "Gain 9 [gold]Block[/gold].\nPut a card from your [gold]Discard Pile[/gold] on top of your [gold]Draw Pile[/gold].",
@@ -4629,7 +4629,7 @@
     "upgrade": {
       "countdownpower": "+3"
     },
-    "image_url": "/static/images/cards/countdown.png",
+    "image_url": "/static/images/cards/countdown.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "At the start of your turn, apply 9 [gold]Doom[/gold] to a random enemy.",
@@ -4668,7 +4668,7 @@
     "upgrade": {
       "damage": "+5"
     },
-    "image_url": "/static/images/cards/crash_landing.png",
+    "image_url": "/static/images/cards/crash_landing.webp",
     "beta_image_url": "/static/images/cards/beta/crash_landing.png",
     "type_variants": null,
     "upgrade_description": "Deal 26 damage to ALL enemies.\nFill your [gold]Hand[/gold] with [gold]Debris[/gold].",
@@ -4705,7 +4705,7 @@
     "upgrade": {
       "cost": 2
     },
-    "image_url": "/static/images/cards/creative_ai.png",
+    "image_url": "/static/images/cards/creative_ai.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -4745,7 +4745,7 @@
     "upgrade": {
       "extradamage": "+1"
     },
-    "image_url": "/static/images/cards/crescent_spear.png",
+    "image_url": "/static/images/cards/crescent_spear.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 6 damage.\nDeals 3 additional damage for ALL your cards that have a [star:1] cost.",
@@ -4789,7 +4789,7 @@
     "upgrade": {
       "crimsonmantlepower": "+2"
     },
-    "image_url": "/static/images/cards/crimson_mantle.png",
+    "image_url": "/static/images/cards/crimson_mantle.webp",
     "beta_image_url": "/static/images/cards/beta/crimson_mantle.png",
     "type_variants": null,
     "upgrade_description": "At the start of your turn, lose 1 HP and gain 10 [gold]Block[/gold].",
@@ -4833,7 +4833,7 @@
     "upgrade": {
       "crueltypower": "+25"
     },
-    "image_url": "/static/images/cards/cruelty.png",
+    "image_url": "/static/images/cards/cruelty.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]Vulnerable[/gold] enemies take an additional 50% damage.",
@@ -4872,7 +4872,7 @@
       "damage": "+1",
       "strengthloss": "+1"
     },
-    "image_url": "/static/images/cards/crush_under.png",
+    "image_url": "/static/images/cards/crush_under.webp",
     "beta_image_url": "/static/images/cards/beta/crush_under.png",
     "type_variants": null,
     "upgrade_description": "Deal 8 damage to ALL enemies. All enemies lose 2 [gold]Strength[/gold] this turn.",
@@ -4908,7 +4908,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/curse_of_the_bell.png",
+    "image_url": "/static/images/cards/curse_of_the_bell.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -4949,7 +4949,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/dagger_spray.png",
+    "image_url": "/static/images/cards/dagger_spray.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 6 damage to ALL enemies twice.",
@@ -4986,7 +4986,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/dagger_throw.png",
+    "image_url": "/static/images/cards/dagger_throw.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 12 damage.\nDraw 1 card.\nDiscard 1 card.",
@@ -5031,7 +5031,7 @@
     "upgrade": {
       "dansemacabrepower": "+1"
     },
-    "image_url": "/static/images/cards/danse_macabre.png",
+    "image_url": "/static/images/cards/danse_macabre.webp",
     "beta_image_url": "/static/images/cards/beta/danse_macabre.png",
     "type_variants": null,
     "upgrade_description": "Whenever you play a card that costs [energy:2] or more, gain 4 [gold]Block[/gold].",
@@ -5066,7 +5066,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/dark_embrace.png",
+    "image_url": "/static/images/cards/dark_embrace.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -5105,7 +5105,7 @@
     "upgrade": {
       "strengthloss": "+6"
     },
-    "image_url": "/static/images/cards/dark_shackles.png",
+    "image_url": "/static/images/cards/dark_shackles.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Enemy loses 15 [gold]Strength[/gold] this turn.",
@@ -5143,7 +5143,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/darkness.png",
+    "image_url": "/static/images/cards/darkness.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]Channel[/gold] 1 [gold]Dark[/gold].\nTrigger the passive ability of all [gold]Dark[/gold] Orbs twice.",
@@ -5182,7 +5182,7 @@
       "damage": "+3",
       "block": "+3"
     },
-    "image_url": "/static/images/cards/dash.png",
+    "image_url": "/static/images/cards/dash.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Gain 13 [gold]Block[/gold].\nDeal 13 damage.",
@@ -5218,7 +5218,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/dazed.png",
+    "image_url": "/static/images/cards/dazed.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -5266,7 +5266,7 @@
     "upgrade": {
       "poison": "+2"
     },
-    "image_url": "/static/images/cards/deadly_poison.png",
+    "image_url": "/static/images/cards/deadly_poison.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -5306,7 +5306,7 @@
       "calculationbase": "+1",
       "extradamage": "+1"
     },
-    "image_url": "/static/images/cards/death_march.png",
+    "image_url": "/static/images/cards/death_march.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 8 damage.\nDeals 4 additional damage for each card drawn during your turn.",
@@ -5344,7 +5344,7 @@
     "upgrade": {
       "block": "+1"
     },
-    "image_url": "/static/images/cards/deaths_door.png",
+    "image_url": "/static/images/cards/deaths_door.webp",
     "beta_image_url": "/static/images/cards/beta/deaths_door.png",
     "type_variants": null,
     "upgrade_description": "Gain 7 [gold]Block[/gold].\nIf you applied [gold]Doom[/gold] this turn, gain [gold]Block[/gold] 2 additional times.",
@@ -5395,7 +5395,7 @@
     "upgrade": {
       "doom": "+5"
     },
-    "image_url": "/static/images/cards/deathbringer.png",
+    "image_url": "/static/images/cards/deathbringer.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -5441,7 +5441,7 @@
       "damage": "+2",
       "debilitatepower": "+1"
     },
-    "image_url": "/static/images/cards/debilitate.png",
+    "image_url": "/static/images/cards/debilitate.webp",
     "beta_image_url": "/static/images/cards/beta/debilitate.png",
     "type_variants": null,
     "upgrade_description": "Deal 9 damage.\n[gold]Vulnerable[/gold] and [gold]Weak[/gold] are twice as effective against the enemy for the next 4 turns.",
@@ -5476,7 +5476,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/debris.png",
+    "image_url": "/static/images/cards/debris.webp",
     "beta_image_url": "/static/images/cards/beta/debris.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -5516,7 +5516,7 @@
       "Gold": 10
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/debt.png",
+    "image_url": "/static/images/cards/debt.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -5556,7 +5556,7 @@
       "Damage": 2
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/decay.png",
+    "image_url": "/static/images/cards/decay.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -5600,7 +5600,7 @@
     "upgrade": {
       "cards": "+2"
     },
-    "image_url": "/static/images/cards/decisions_decisions.png",
+    "image_url": "/static/images/cards/decisions_decisions.webp",
     "beta_image_url": "/static/images/cards/beta/decisions_decisions.png",
     "type_variants": null,
     "upgrade_description": "Draw 5 cards.\nChoose a Skill in your [gold]Hand[/gold] and play it 3 times.",
@@ -5642,7 +5642,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/defend_ironclad.png",
+    "image_url": "/static/images/cards/defend_ironclad.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Gain 8 [gold]Block[/gold].",
@@ -5681,7 +5681,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/defend_silent.png",
+    "image_url": "/static/images/cards/defend_silent.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Gain 8 [gold]Block[/gold].",
@@ -5720,7 +5720,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/defend_regent.png",
+    "image_url": "/static/images/cards/defend_regent.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Gain 8 [gold]Block[/gold].",
@@ -5759,7 +5759,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/defend_necrobinder.png",
+    "image_url": "/static/images/cards/defend_necrobinder.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Gain 8 [gold]Block[/gold].",
@@ -5798,7 +5798,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/defend_defect.png",
+    "image_url": "/static/images/cards/defend_defect.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Gain 8 [gold]Block[/gold].",
@@ -5837,7 +5837,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/defile.png",
+    "image_url": "/static/images/cards/defile.webp",
     "beta_image_url": "/static/images/cards/beta/defile.png",
     "type_variants": null,
     "upgrade_description": "Deal 17 damage.",
@@ -5877,7 +5877,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/deflect.png",
+    "image_url": "/static/images/cards/deflect.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Gain 7 [gold]Block[/gold].",
@@ -5921,7 +5921,7 @@
     "upgrade": {
       "focuspower": "+1"
     },
-    "image_url": "/static/images/cards/defragment.png",
+    "image_url": "/static/images/cards/defragment.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Gain 2 [gold]Focus[/gold].",
@@ -5969,7 +5969,7 @@
       "block": "+1",
       "weak": "+1"
     },
-    "image_url": "/static/images/cards/defy.png",
+    "image_url": "/static/images/cards/defy.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Gain 7 [gold]Block[/gold].\nApply 1 [gold]Weak[/gold].",
@@ -6011,7 +6011,7 @@
       "block": "+2",
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/delay.png",
+    "image_url": "/static/images/cards/delay.webp",
     "beta_image_url": "/static/images/cards/beta/delay.png",
     "type_variants": null,
     "upgrade_description": "Gain 13 [gold]Block[/gold].\nNext turn,\ngain [energy:2].",
@@ -6051,7 +6051,7 @@
     "upgrade": {
       "cost": 2
     },
-    "image_url": "/static/images/cards/demesne.png",
+    "image_url": "/static/images/cards/demesne.webp",
     "beta_image_url": "/static/images/cards/beta/demesne.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -6098,7 +6098,7 @@
     "upgrade": {
       "strengthpower": "+1"
     },
-    "image_url": "/static/images/cards/demon_form.png",
+    "image_url": "/static/images/cards/demon_form.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "At the start of your turn, gain 3 [gold]Strength[/gold].",
@@ -6139,7 +6139,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/demonic_shield.png",
+    "image_url": "/static/images/cards/demonic_shield.webp",
     "beta_image_url": "/static/images/cards/beta/demonic_shield.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -6180,7 +6180,7 @@
     "upgrade": {
       "damage": "+10"
     },
-    "image_url": "/static/images/cards/devastate.png",
+    "image_url": "/static/images/cards/devastate.webp",
     "beta_image_url": "/static/images/cards/beta/devastate.png",
     "type_variants": null,
     "upgrade_description": "Deal 40 damage.",
@@ -6226,7 +6226,7 @@
     "upgrade": {
       "devourlifepower": "+1"
     },
-    "image_url": "/static/images/cards/devour_life.png",
+    "image_url": "/static/images/cards/devour_life.webp",
     "beta_image_url": "/static/images/cards/beta/devour_life.png",
     "type_variants": null,
     "upgrade_description": "Whenever you play a [gold]Soul[/gold], [gold]Summon[/gold] 2.",
@@ -6265,7 +6265,7 @@
     "upgrade": {
       "summon": "+1"
     },
-    "image_url": "/static/images/cards/dirge.png",
+    "image_url": "/static/images/cards/dirge.webp",
     "beta_image_url": "/static/images/cards/beta/dirge.png",
     "type_variants": null,
     "upgrade_description": "[gold]Summon[/gold] 4 X times.\nAdd X [gold]Souls+[/gold] into your [gold]Draw Pile[/gold].",
@@ -6302,7 +6302,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/discovery.png",
+    "image_url": "/static/images/cards/discovery.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -6347,7 +6347,7 @@
       "Disintegration": 6
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/disintegration.png",
+    "image_url": "/static/images/cards/disintegration.webp",
     "beta_image_url": "/static/images/cards/beta/disintegration.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -6384,7 +6384,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/dismantle.png",
+    "image_url": "/static/images/cards/dismantle.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 10 damage.\nIf the enemy is [gold]Vulnerable[/gold], hits twice.",
@@ -6421,7 +6421,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/distraction.png",
+    "image_url": "/static/images/cards/distraction.webp",
     "beta_image_url": "/static/images/cards/beta/distraction.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -6461,7 +6461,7 @@
     "upgrade": {
       "block": "+2"
     },
-    "image_url": "/static/images/cards/dodge_and_roll.png",
+    "image_url": "/static/images/cards/dodge_and_roll.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Gain 6 [gold]Block[/gold].\nNext turn, gain 6 [gold]Block[/gold].",
@@ -6500,7 +6500,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/dominate.png",
+    "image_url": "/static/images/cards/dominate.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -6540,7 +6540,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/double_energy.png",
+    "image_url": "/static/images/cards/double_energy.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -6587,7 +6587,7 @@
       "Weak": 1
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/doubt.png",
+    "image_url": "/static/images/cards/doubt.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -6629,7 +6629,7 @@
       "damage": "+2",
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/drain_power.png",
+    "image_url": "/static/images/cards/drain_power.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 12 damage.\n[gold]Upgrade[/gold] 3 random cards in your [gold]Discard Pile[/gold].",
@@ -6669,7 +6669,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/dramatic_entrance.png",
+    "image_url": "/static/images/cards/dramatic_entrance.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 15 damage to ALL enemies.",
@@ -6712,7 +6712,7 @@
     "upgrade": {
       "add_retain": true
     },
-    "image_url": "/static/images/cards/dredge.png",
+    "image_url": "/static/images/cards/dredge.webp",
     "beta_image_url": "/static/images/cards/beta/dredge.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -6760,7 +6760,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/drum_of_battle.png",
+    "image_url": "/static/images/cards/drum_of_battle.webp",
     "beta_image_url": "/static/images/cards/beta/drum_of_battle.png",
     "type_variants": null,
     "upgrade_description": "Draw 3 cards.\nAt the start of your turn, [gold]Exhaust[/gold] the top card of your [gold]Draw Pile[/gold].",
@@ -6797,7 +6797,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/dual_wield.png",
+    "image_url": "/static/images/cards/dual_wield.webp",
     "beta_image_url": "/static/images/cards/beta/dual_wield.png",
     "type_variants": null,
     "upgrade_description": "Choose an Attack or Power card. Add [Cards copies|a copy] of that card into your [gold]Hand[/gold].",
@@ -6832,7 +6832,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/dualcast.png",
+    "image_url": "/static/images/cards/dualcast.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -6874,7 +6874,7 @@
       "damage": "+2",
       "strengthloss": "+2"
     },
-    "image_url": "/static/images/cards/dying_star.png",
+    "image_url": "/static/images/cards/dying_star.webp",
     "beta_image_url": "/static/images/cards/beta/dying_star.png",
     "type_variants": null,
     "upgrade_description": "Deal 11 damage to ALL enemies. ALL enemies lose 11 [gold]Strength[/gold] this turn.",
@@ -6916,7 +6916,7 @@
     "upgrade": {
       "remove_ethereal": true
     },
-    "image_url": "/static/images/cards/echo_form.png",
+    "image_url": "/static/images/cards/echo_form.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -6956,7 +6956,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/echoing_slash.png",
+    "image_url": "/static/images/cards/echoing_slash.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 13 damage to ALL enemies.\nRepeat this effect for each enemy killed.",
@@ -6993,7 +6993,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/eidolon.png",
+    "image_url": "/static/images/cards/eidolon.webp",
     "beta_image_url": "/static/images/cards/beta/eidolon.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -7037,7 +7037,7 @@
     "upgrade": {
       "doom": "+8"
     },
-    "image_url": "/static/images/cards/end_of_days.png",
+    "image_url": "/static/images/cards/end_of_days.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -7076,7 +7076,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/energy_surge.png",
+    "image_url": "/static/images/cards/energy_surge.webp",
     "beta_image_url": "/static/images/cards/beta/energy_surge.png",
     "type_variants": null,
     "upgrade_description": "ALL players gain [energy:3].",
@@ -7118,7 +7118,7 @@
     "upgrade": {
       "strengthloss": "+3"
     },
-    "image_url": "/static/images/cards/enfeebling_touch.png",
+    "image_url": "/static/images/cards/enfeebling_touch.webp",
     "beta_image_url": "/static/images/cards/beta/enfeebling_touch.png",
     "type_variants": null,
     "upgrade_description": "Enemy loses 11 [gold]Strength[/gold] this turn.",
@@ -7158,7 +7158,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/enlightenment.png",
+    "image_url": "/static/images/cards/enlightenment.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Reduce the cost of ALL cards in your [gold]Hand[/gold] to 1 this combat.",
@@ -7196,7 +7196,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/enthralled.png",
+    "image_url": "/static/images/cards/enthralled.webp",
     "beta_image_url": "/static/images/cards/beta/enthralled.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -7234,7 +7234,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/entrench.png",
+    "image_url": "/static/images/cards/entrench.webp",
     "beta_image_url": "/static/images/cards/beta/entrench.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -7271,7 +7271,7 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": "/static/images/cards/entropy.png",
+    "image_url": "/static/images/cards/entropy.webp",
     "beta_image_url": "/static/images/cards/beta/entropy.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -7315,7 +7315,7 @@
     "upgrade": {
       "envenompower": "+1"
     },
-    "image_url": "/static/images/cards/envenom.png",
+    "image_url": "/static/images/cards/envenom.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Whenever an Attack deals unblocked damage, apply 2 [gold]Poison[/gold].",
@@ -7353,7 +7353,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/equilibrium.png",
+    "image_url": "/static/images/cards/equilibrium.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Gain 16 [gold]Block[/gold].\n[gold]Retain[/gold] your [gold]Hand[/gold] this turn.",
@@ -7392,7 +7392,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/eradicate.png",
+    "image_url": "/static/images/cards/eradicate.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 14 damage X times.",
@@ -7432,7 +7432,7 @@
     "upgrade": {
       "block": "+2"
     },
-    "image_url": "/static/images/cards/escape_plan.png",
+    "image_url": "/static/images/cards/escape_plan.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Draw 1 card.\nIf you draw a Skill, gain 5 [gold]Block[/gold].",
@@ -7476,7 +7476,7 @@
     "upgrade": {
       "platingpower": "+2"
     },
-    "image_url": "/static/images/cards/eternal_armor.png",
+    "image_url": "/static/images/cards/eternal_armor.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Gain 9 [gold]Plating[/gold].",
@@ -7513,7 +7513,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/evil_eye.png",
+    "image_url": "/static/images/cards/evil_eye.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Gain 11 [gold]Block[/gold].\nGain another 11 [gold]Block[/gold] if you have [gold]Exhausted[/gold] a card this turn.",
@@ -7552,7 +7552,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/expect_a_fight.png",
+    "image_url": "/static/images/cards/expect_a_fight.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -7589,7 +7589,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/expertise.png",
+    "image_url": "/static/images/cards/expertise.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Draw cards until you have 7 in your [gold]Hand[/gold].",
@@ -7628,7 +7628,7 @@
     "upgrade": {
       "power": "+1"
     },
-    "image_url": "/static/images/cards/expose.png",
+    "image_url": "/static/images/cards/expose.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Remove all [gold]Artifact[/gold] and [gold]Block[/gold] from the enemy.\nApply 3 [gold]Vulnerable[/gold].",
@@ -7669,7 +7669,7 @@
     "upgrade": {
       "damage": "+1"
     },
-    "image_url": "/static/images/cards/exterminate.png",
+    "image_url": "/static/images/cards/exterminate.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 4 damage 4 times to ALL enemies.",
@@ -7709,7 +7709,7 @@
       "damage": "+1",
       "playmax": "+1"
     },
-    "image_url": "/static/images/cards/ftl.png",
+    "image_url": "/static/images/cards/ftl.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 6 damage.\nIf you have played fewer than 4 cards this turn, draw 1 card.",
@@ -7762,7 +7762,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/falling_star.png",
+    "image_url": "/static/images/cards/falling_star.webp",
     "beta_image_url": "/static/images/cards/beta/falling_star.png",
     "type_variants": null,
     "upgrade_description": "Deal 11 damage.\nApply 1 [gold]Weak[/gold].\nApply 1 [gold]Vulnerable[/gold].",
@@ -7801,7 +7801,7 @@
     "upgrade": {
       "shivs": "+1"
     },
-    "image_url": "/static/images/cards/fan_of_knives.png",
+    "image_url": "/static/images/cards/fan_of_knives.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]Shivs[/gold] now hit ALL enemies.\nAdd 5 [gold]Shivs[/gold] into your [gold]Hand[/gold].",
@@ -7840,7 +7840,7 @@
     "upgrade": {
       "extrablock": "+2"
     },
-    "image_url": "/static/images/cards/fasten.png",
+    "image_url": "/static/images/cards/fasten.webp",
     "beta_image_url": "/static/images/cards/beta/fasten.png",
     "type_variants": null,
     "upgrade_description": "Gain an additional 7 [gold]Block[/gold] from Defend cards.",
@@ -7888,7 +7888,7 @@
       "damage": "+1",
       "vulnerable": "+1"
     },
-    "image_url": "/static/images/cards/fear.png",
+    "image_url": "/static/images/cards/fear.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 8 damage.\nApply 1 [gold]Vulnerable[/gold].",
@@ -7932,7 +7932,7 @@
       "damage": "+2",
       "maxhp": "+1"
     },
-    "image_url": "/static/images/cards/feed.png",
+    "image_url": "/static/images/cards/feed.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 12 damage.\nIf [gold]Fatal[/gold], raise your Max HP by 4.",
@@ -7979,7 +7979,7 @@
     "upgrade": {
       "strength": "+2"
     },
-    "image_url": "/static/images/cards/feeding_frenzy.png",
+    "image_url": "/static/images/cards/feeding_frenzy.webp",
     "beta_image_url": "/static/images/cards/beta/feeding_frenzy.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -8016,7 +8016,7 @@
     "upgrade": {
       "power": "+1"
     },
-    "image_url": "/static/images/cards/feel_no_pain.png",
+    "image_url": "/static/images/cards/feel_no_pain.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Whenever a card is [gold]Exhausted[/gold], gain 4 [gold]Block[/gold].",
@@ -8060,7 +8060,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/feral.png",
+    "image_url": "/static/images/cards/feral.webp",
     "beta_image_url": "/static/images/cards/beta/feral.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -8101,7 +8101,7 @@
     "upgrade": {
       "ostydamage": "+3"
     },
-    "image_url": "/static/images/cards/fetch.png",
+    "image_url": "/static/images/cards/fetch.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]Osty[/gold] deals 6 damage.\nIf this is the first time this card has been played this turn, draw 1 card.",
@@ -8140,7 +8140,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/fiend_fire.png",
+    "image_url": "/static/images/cards/fiend_fire.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]Exhaust[/gold] your [gold]Hand[/gold].\nDeal 10 damage for each card [gold]Exhausted[/gold].",
@@ -8191,7 +8191,7 @@
       "damage": "+1",
       "strength": "+1"
     },
-    "image_url": "/static/images/cards/fight_me.png",
+    "image_url": "/static/images/cards/fight_me.webp",
     "beta_image_url": "/static/images/cards/beta/fight_me.png",
     "type_variants": null,
     "upgrade_description": "Deal 6 damage twice.\nGain 2 [gold]Strength[/gold].\nThe enemy gains 1 [gold]Strength[/gold].",
@@ -8230,7 +8230,7 @@
     "upgrade": {
       "block": "+4"
     },
-    "image_url": "/static/images/cards/fight_through.png",
+    "image_url": "/static/images/cards/fight_through.webp",
     "beta_image_url": "/static/images/cards/beta/fight_through.png",
     "type_variants": null,
     "upgrade_description": "Gain 17 [gold]Block[/gold].\nAdd 2 [gold]Wounds[/gold] into your [gold]Discard Pile[/gold].",
@@ -8268,7 +8268,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/finesse.png",
+    "image_url": "/static/images/cards/finesse.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Gain 7 [gold]Block[/gold].\nDraw 1 card.",
@@ -8307,7 +8307,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/finisher.png",
+    "image_url": "/static/images/cards/finisher.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 8 damage for each Attack already played this turn.",
@@ -8344,7 +8344,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/fisticuffs.png",
+    "image_url": "/static/images/cards/fisticuffs.webp",
     "beta_image_url": "/static/images/cards/beta/fisticuffs.png",
     "type_variants": null,
     "upgrade_description": "Deal 9 damage.\nGain [gold]Block[/gold] equal to damage dealt.",
@@ -8383,7 +8383,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/flak_cannon.png",
+    "image_url": "/static/images/cards/flak_cannon.webp",
     "beta_image_url": "/static/images/cards/beta/flak_cannon.png",
     "type_variants": null,
     "upgrade_description": "[gold]Exhaust[/gold] ALL your [gold]Status[/gold] cards.\nDeal 11 damage to a random enemy for each card [gold]Exhausted[/gold].",
@@ -8422,7 +8422,7 @@
       "block": "+4",
       "damageback": "+2"
     },
-    "image_url": "/static/images/cards/flame_barrier.png",
+    "image_url": "/static/images/cards/flame_barrier.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Gain 16 [gold]Block[/gold].\nWhenever you are attacked this turn, deal 6 damage back.",
@@ -8457,7 +8457,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/flanking.png",
+    "image_url": "/static/images/cards/flanking.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -8495,7 +8495,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/flash_of_steel.png",
+    "image_url": "/static/images/cards/flash_of_steel.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 8 damage.\nDraw 1 card.",
@@ -8535,7 +8535,7 @@
     "upgrade": {
       "ostydamage": "+4"
     },
-    "image_url": "/static/images/cards/flatten.png",
+    "image_url": "/static/images/cards/flatten.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]Osty[/gold] deals 16 damage.\nThis card costs 0 [energy:1] if [gold]Osty[/gold] has attacked this turn.",
@@ -8574,7 +8574,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/flechettes.png",
+    "image_url": "/static/images/cards/flechettes.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 7 damage for each Skill in your [gold]Hand[/gold].",
@@ -8613,7 +8613,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/flick_flack.png",
+    "image_url": "/static/images/cards/flick_flack.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 9 damage to ALL enemies.",
@@ -8664,7 +8664,7 @@
       "damage": "+2",
       "focuspower": "+1"
     },
-    "image_url": "/static/images/cards/focused_strike.png",
+    "image_url": "/static/images/cards/focused_strike.webp",
     "beta_image_url": "/static/images/cards/beta/focused_strike.png",
     "type_variants": null,
     "upgrade_description": "Deal 11 damage.\nGain 2 [gold]Focus[/gold] this turn.",
@@ -8710,7 +8710,7 @@
       "damage": "+2",
       "weak": "+1"
     },
-    "image_url": "/static/images/cards/follow_through.png",
+    "image_url": "/static/images/cards/follow_through.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 8 damage to ALL enemies.\nIf the last card you played this turn was a Skill, apply 1 [gold]Weak[/gold] to ALL enemies.",
@@ -8747,7 +8747,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/folly.png",
+    "image_url": "/static/images/cards/folly.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -8796,7 +8796,7 @@
     "upgrade": {
       "dexterity": "+1"
     },
-    "image_url": "/static/images/cards/footwork.png",
+    "image_url": "/static/images/cards/footwork.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -8833,7 +8833,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/forbidden_grimoire.png",
+    "image_url": "/static/images/cards/forbidden_grimoire.webp",
     "beta_image_url": "/static/images/cards/beta/forbidden_grimoire.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -8873,7 +8873,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/foregone_conclusion.png",
+    "image_url": "/static/images/cards/foregone_conclusion.webp",
     "beta_image_url": "/static/images/cards/beta/foregone_conclusion.png",
     "type_variants": null,
     "upgrade_description": "Next turn, put 3 cards from your [gold]Draw Pile[/gold] into your [gold]Hand[/gold].",
@@ -8910,7 +8910,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/forgotten_ritual.png",
+    "image_url": "/static/images/cards/forgotten_ritual.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "If you [gold]Exhausted[/gold] a card this turn, gain [energy:4].",
@@ -8943,7 +8943,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/frantic_escape.png",
+    "image_url": "/static/images/cards/frantic_escape.webp",
     "beta_image_url": "/static/images/cards/beta/frantic_escape.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -8988,7 +8988,7 @@
     "upgrade": {
       "strengthpower": "-1"
     },
-    "image_url": "/static/images/cards/friendship.png",
+    "image_url": "/static/images/cards/friendship.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -9028,7 +9028,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/fuel.png",
+    "image_url": "/static/images/cards/fuel.webp",
     "beta_image_url": "/static/images/cards/beta/fuel.png",
     "type_variants": null,
     "upgrade_description": "Gain [energy:1].\nDraw 2 cards.",
@@ -9068,7 +9068,7 @@
     "upgrade": {
       "forge": "+2"
     },
-    "image_url": "/static/images/cards/furnace.png",
+    "image_url": "/static/images/cards/furnace.webp",
     "beta_image_url": "/static/images/cards/beta/furnace.png",
     "type_variants": null,
     "upgrade_description": "At the start of your turn, [gold]Forge[/gold] 6.",
@@ -9103,7 +9103,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/fusion.png",
+    "image_url": "/static/images/cards/fusion.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -9142,7 +9142,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/guards.png",
+    "image_url": "/static/images/cards/guards.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]Transform[/gold] any number of cards in your [gold]Hand[/gold] into [gold]Minion Sacrifice+[/gold].",
@@ -9198,7 +9198,7 @@
     "upgrade": {
       "damage": "+5"
     },
-    "image_url": "/static/images/cards/gamma_blast.png",
+    "image_url": "/static/images/cards/gamma_blast.webp",
     "beta_image_url": "/static/images/cards/beta/gamma_blast.png",
     "type_variants": null,
     "upgrade_description": "Deal 18 damage.\nApply 2 [gold]Weak[/gold].\nApply 2 [gold]Vulnerable[/gold].",
@@ -9237,7 +9237,7 @@
     "upgrade": {
       "extradamage": "+2"
     },
-    "image_url": "/static/images/cards/gang_up.png",
+    "image_url": "/static/images/cards/gang_up.webp",
     "beta_image_url": "/static/images/cards/beta/gang_up.png",
     "type_variants": null,
     "upgrade_description": "Deal 5 damage.\nDeals 7 additional damage for each time another player has attacked the enemy this turn.",
@@ -9275,7 +9275,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/gather_light.png",
+    "image_url": "/static/images/cards/gather_light.webp",
     "beta_image_url": "/static/images/cards/beta/gather_light.png",
     "type_variants": null,
     "upgrade_description": "Gain 10 [gold]Block[/gold].\nGain [star:1].",
@@ -9312,7 +9312,7 @@
     "upgrade": {
       "starsperturn": "+1"
     },
-    "image_url": "/static/images/cards/genesis.png",
+    "image_url": "/static/images/cards/genesis.webp",
     "beta_image_url": "/static/images/cards/beta/genesis.png",
     "type_variants": null,
     "upgrade_description": "At the start of your turn, gain [star:3].",
@@ -9352,7 +9352,7 @@
     "upgrade": {
       "increase": "+1"
     },
-    "image_url": "/static/images/cards/genetic_algorithm.png",
+    "image_url": "/static/images/cards/genetic_algorithm.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Gain 1 [gold]Block[/gold].\nPermanently increase this card's [gold]Block[/gold] by 4.",
@@ -9392,7 +9392,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/giant_rock.png",
+    "image_url": "/static/images/cards/giant_rock.webp",
     "beta_image_url": "/static/images/cards/beta/giant_rock.png",
     "type_variants": null,
     "upgrade_description": "Deal 20 damage.",
@@ -9429,7 +9429,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/glacier.png",
+    "image_url": "/static/images/cards/glacier.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Gain 9 [gold]Block[/gold].\n[gold]Channel[/gold] 2 [gold]Frost[/gold].",
@@ -9466,7 +9466,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/glasswork.png",
+    "image_url": "/static/images/cards/glasswork.webp",
     "beta_image_url": "/static/images/cards/beta/glasswork.png",
     "type_variants": null,
     "upgrade_description": "Gain 8 [gold]Block[/gold].\n[gold]Channel[/gold] 1 [gold]Glass[/gold].",
@@ -9504,7 +9504,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/glimmer.png",
+    "image_url": "/static/images/cards/glimmer.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Draw 4 cards.\nPut 1 card from your [gold]Hand[/gold] on top of your [gold]Draw Pile[/gold].",
@@ -9545,7 +9545,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/glimpse_beyond.png",
+    "image_url": "/static/images/cards/glimpse_beyond.webp",
     "beta_image_url": "/static/images/cards/beta/glimpse_beyond.png",
     "type_variants": null,
     "upgrade_description": "ALL players add 4 [gold]Souls[/gold] into their [gold]Draw Pile[/gold].",
@@ -9587,7 +9587,7 @@
       "block": "+2",
       "blocknextturn": "+2"
     },
-    "image_url": "/static/images/cards/glitterstream.png",
+    "image_url": "/static/images/cards/glitterstream.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Gain 13 [gold]Block[/gold].\nNext turn, gain 6 [gold]Block[/gold].",
@@ -9625,7 +9625,7 @@
     "upgrade": {
       "stars": "+1"
     },
-    "image_url": "/static/images/cards/glow.png",
+    "image_url": "/static/images/cards/glow.webp",
     "beta_image_url": "/static/images/cards/beta/glow.png",
     "type_variants": null,
     "upgrade_description": "Gain [star:2].\nDraw 2 cards.",
@@ -9671,7 +9671,7 @@
       "damage": "+1",
       "weak": "+1"
     },
-    "image_url": "/static/images/cards/go_for_the_eyes.png",
+    "image_url": "/static/images/cards/go_for_the_eyes.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 4 damage.\nIf the enemy intends to attack, apply 1 [gold]Weak[/gold].",
@@ -9710,7 +9710,7 @@
     "upgrade": {
       "add_retain": true
     },
-    "image_url": "/static/images/cards/gold_axe.png",
+    "image_url": "/static/images/cards/gold_axe.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -9747,7 +9747,7 @@
     "upgrade": {
       "damage": "+10"
     },
-    "image_url": "/static/images/cards/grand_finale.png",
+    "image_url": "/static/images/cards/grand_finale.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Can only be played if there are no cards in your [gold]Draw Pile[/gold]. Deal 60 damage to ALL enemies.",
@@ -9793,7 +9793,7 @@
       "damage": "+2",
       "grapplepower": "+2"
     },
-    "image_url": "/static/images/cards/grapple.png",
+    "image_url": "/static/images/cards/grapple.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 9 damage.\nWhenever you gain [gold]Block[/gold] this turn, deal 7 damage to the enemy.",
@@ -9833,7 +9833,7 @@
     "upgrade": {
       "block": "+2"
     },
-    "image_url": "/static/images/cards/grave_warden.png",
+    "image_url": "/static/images/cards/grave_warden.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Gain 10 [gold]Block[/gold].\nAdd a [gold]Soul+[/gold] into your [gold]Draw Pile[/gold].",
@@ -9873,7 +9873,7 @@
       "damage": "+2",
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/graveblast.png",
+    "image_url": "/static/images/cards/graveblast.webp",
     "beta_image_url": "/static/images/cards/beta/graveblast.png",
     "type_variants": null,
     "upgrade_description": "Deal 6 damage.\nPut a card from your [gold]Discard Pile[/gold] into your [gold]Hand[/gold].",
@@ -9912,7 +9912,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/greed.png",
+    "image_url": "/static/images/cards/greed.webp",
     "beta_image_url": "/static/images/cards/beta/greed.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -9956,7 +9956,7 @@
       "damage": "+1",
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/guiding_star.png",
+    "image_url": "/static/images/cards/guiding_star.webp",
     "beta_image_url": "/static/images/cards/beta/guiding_star.png",
     "type_variants": null,
     "upgrade_description": "Deal 13 damage.\nNext turn, draw 3 cards.",
@@ -9993,7 +9993,7 @@
       "Combats": 5
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/guilty.png",
+    "image_url": "/static/images/cards/guilty.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -10036,7 +10036,7 @@
     "upgrade": {
       "damage": "+1"
     },
-    "image_url": "/static/images/cards/gunk_up.png",
+    "image_url": "/static/images/cards/gunk_up.webp",
     "beta_image_url": "/static/images/cards/beta/gunk_up.png",
     "type_variants": null,
     "upgrade_description": "Deal 5 damage 3 times.\nAdd a [gold]Slimed[/gold] into your [gold]Discard Pile[/gold].",
@@ -10080,7 +10080,7 @@
     "upgrade": {
       "hailstormpower": "+2"
     },
-    "image_url": "/static/images/cards/hailstorm.png",
+    "image_url": "/static/images/cards/hailstorm.webp",
     "beta_image_url": "/static/images/cards/beta/hailstorm.png",
     "type_variants": null,
     "upgrade_description": "At the end of your turn, if you have [gold]Frost[/gold], deal 8 damage to ALL enemies.",
@@ -10115,7 +10115,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/hammer_time.png",
+    "image_url": "/static/images/cards/hammer_time.webp",
     "beta_image_url": "/static/images/cards/beta/hammer_time.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -10152,7 +10152,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/hand_trick.png",
+    "image_url": "/static/images/cards/hand_trick.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Gain 10 [gold]Block[/gold].\nAdd [gold]Sly[/gold] to a Skill in your [gold]Hand[/gold] this turn.",
@@ -10191,7 +10191,7 @@
       "damage": "+5",
       "gold": "+5"
     },
-    "image_url": "/static/images/cards/hand_of_greed.png",
+    "image_url": "/static/images/cards/hand_of_greed.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 25 damage.\nIf [gold]Fatal[/gold], gain 25 [gold]Gold[/gold].",
@@ -10228,7 +10228,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/hang.png",
+    "image_url": "/static/images/cards/hang.webp",
     "beta_image_url": "/static/images/cards/beta/hang.png",
     "type_variants": null,
     "upgrade_description": "Deal 13 damage.\nDouble the damage ALL Hang cards deal to this enemy.",
@@ -10267,7 +10267,7 @@
     "upgrade": {
       "hploss": "+2"
     },
-    "image_url": "/static/images/cards/haunt.png",
+    "image_url": "/static/images/cards/haunt.webp",
     "beta_image_url": "/static/images/cards/beta/haunt.png",
     "type_variants": null,
     "upgrade_description": "Whenever you play a [gold]Soul[/gold], a random enemy loses 8 HP.",
@@ -10302,7 +10302,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/havoc.png",
+    "image_url": "/static/images/cards/havoc.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -10348,7 +10348,7 @@
     "upgrade": {
       "poison": "+2"
     },
-    "image_url": "/static/images/cards/haze.png",
+    "image_url": "/static/images/cards/haze.webp",
     "beta_image_url": "/static/images/cards/beta/haze.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -10388,7 +10388,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/headbutt.png",
+    "image_url": "/static/images/cards/headbutt.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 12 damage.\nPut a card from your [gold]Discard Pile[/gold] on top of your [gold]Draw Pile[/gold].",
@@ -10426,7 +10426,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/heavenly_drill.png",
+    "image_url": "/static/images/cards/heavenly_drill.webp",
     "beta_image_url": "/static/images/cards/beta/heavenly_drill.png",
     "type_variants": null,
     "upgrade_description": "Deal 10 damage X times.\nDouble X if it's 4 or more.",
@@ -10465,7 +10465,7 @@
       "damage": "+3",
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/hegemony.png",
+    "image_url": "/static/images/cards/hegemony.webp",
     "beta_image_url": "/static/images/cards/beta/hegemony.png",
     "type_variants": null,
     "upgrade_description": "Deal 18 damage.\nNext turn, gain [energy:3].",
@@ -10503,7 +10503,7 @@
     "upgrade": {
       "damage": "+5"
     },
-    "image_url": "/static/images/cards/heirloom_hammer.png",
+    "image_url": "/static/images/cards/heirloom_hammer.webp",
     "beta_image_url": "/static/images/cards/beta/heirloom_hammer.png",
     "type_variants": null,
     "upgrade_description": "Deal 22 damage.\nChoose a Colorless card in your [gold]Hand[/gold]. Add a copy of that card into your [gold]Hand[/gold].",
@@ -10542,7 +10542,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/helix_drill.png",
+    "image_url": "/static/images/cards/helix_drill.webp",
     "beta_image_url": "/static/images/cards/beta/helix_drill.png",
     "type_variants": null,
     "upgrade_description": "Deal 5 damage for each [energy:1] previously spent this turn.",
@@ -10577,7 +10577,7 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": "/static/images/cards/hello_world.png",
+    "image_url": "/static/images/cards/hello_world.webp",
     "beta_image_url": "/static/images/cards/beta/hello_world.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -10612,7 +10612,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/hellraiser.png",
+    "image_url": "/static/images/cards/hellraiser.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -10650,7 +10650,7 @@
     "upgrade": {
       "damage": "+5"
     },
-    "image_url": "/static/images/cards/hemokinesis.png",
+    "image_url": "/static/images/cards/hemokinesis.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Lose 2 HP.\nDeal 19 damage.",
@@ -10695,7 +10695,7 @@
     "upgrade": {
       "starnextturnpower": "+1"
     },
-    "image_url": "/static/images/cards/hidden_cache.png",
+    "image_url": "/static/images/cards/hidden_cache.webp",
     "beta_image_url": "/static/images/cards/beta/hidden_cache.png",
     "type_variants": null,
     "upgrade_description": "Gain [star:1].\nNext turn, gain [star:4].",
@@ -10735,7 +10735,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/hidden_daggers.png",
+    "image_url": "/static/images/cards/hidden_daggers.webp",
     "beta_image_url": "/static/images/cards/beta/hidden_daggers.png",
     "type_variants": null,
     "upgrade_description": "Discard 2 cards.\nAdd 2 [gold]Shivs+[/gold] into your [gold]Hand[/gold].",
@@ -10772,7 +10772,7 @@
     "upgrade": {
       "replay": "+1"
     },
-    "image_url": "/static/images/cards/hidden_gem.png",
+    "image_url": "/static/images/cards/hidden_gem.webp",
     "beta_image_url": "/static/images/cards/beta/hidden_gem.png",
     "type_variants": null,
     "upgrade_description": "A random card in your [gold]Draw Pile[/gold] gains [gold]Replay[/gold] 3.",
@@ -10821,7 +10821,7 @@
       "ostydamage": "+2",
       "vulnerable": "+1"
     },
-    "image_url": "/static/images/cards/high_five.png",
+    "image_url": "/static/images/cards/high_five.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]Osty[/gold] deals 13 damage\nand applies 2 [gold]Vulnerable[/gold]\nto ALL enemies.",
@@ -10861,7 +10861,7 @@
       "block": "+2",
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/hologram.png",
+    "image_url": "/static/images/cards/hologram.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Gain 5 [gold]Block[/gold].\nPut a card from your [gold]Discard Pile[/gold] into your [gold]Hand[/gold].",
@@ -10908,7 +10908,7 @@
     "upgrade": {
       "focuspower": "+1"
     },
-    "image_url": "/static/images/cards/hotfix.png",
+    "image_url": "/static/images/cards/hotfix.webp",
     "beta_image_url": "/static/images/cards/beta/hotfix.png",
     "type_variants": null,
     "upgrade_description": "Gain 3 [gold]Focus[/gold] this turn.",
@@ -10945,7 +10945,7 @@
     "upgrade": {
       "damage": "+5"
     },
-    "image_url": "/static/images/cards/howl_from_beyond.png",
+    "image_url": "/static/images/cards/howl_from_beyond.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 21 damage to ALL enemies.\nAt the start of your turn, plays from the [gold]Exhaust Pile[/gold].",
@@ -10982,7 +10982,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/huddle_up.png",
+    "image_url": "/static/images/cards/huddle_up.webp",
     "beta_image_url": "/static/images/cards/beta/huddle_up.png",
     "type_variants": null,
     "upgrade_description": "ALL allies draw 3 cards.",
@@ -11027,7 +11027,7 @@
     "upgrade": {
       "damage": "+8"
     },
-    "image_url": "/static/images/cards/hyperbeam.png",
+    "image_url": "/static/images/cards/hyperbeam.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 34 damage to ALL enemies.\nLose 3 [gold]Focus[/gold].",
@@ -11064,7 +11064,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/i_am_invincible.png",
+    "image_url": "/static/images/cards/i_am_invincible.webp",
     "beta_image_url": "/static/images/cards/beta/i_am_invincible.png",
     "type_variants": null,
     "upgrade_description": "Gain 12 [gold]Block[/gold].\nAt the end of your turn, if this is on top of your [gold]Draw Pile[/gold], play it.",
@@ -11102,7 +11102,7 @@
     "upgrade": {
       "damage": "+5"
     },
-    "image_url": "/static/images/cards/ice_lance.png",
+    "image_url": "/static/images/cards/ice_lance.webp",
     "beta_image_url": "/static/images/cards/beta/ice_lance.png",
     "type_variants": null,
     "upgrade_description": "Deal 24 damage.\n[gold]Channel[/gold] 3 [gold]Frost[/gold].",
@@ -11139,7 +11139,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/ignition.png",
+    "image_url": "/static/images/cards/ignition.webp",
     "beta_image_url": "/static/images/cards/beta/ignition.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -11179,7 +11179,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/impatience.png",
+    "image_url": "/static/images/cards/impatience.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "If you have no Attacks in your [gold]Hand[/gold], draw 3 cards.",
@@ -11218,7 +11218,7 @@
     "upgrade": {
       "block": "+10"
     },
-    "image_url": "/static/images/cards/impervious.png",
+    "image_url": "/static/images/cards/impervious.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Gain 40 [gold]Block[/gold].",
@@ -11258,7 +11258,7 @@
       "Damage": 3
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/infection.png",
+    "image_url": "/static/images/cards/infection.webp",
     "beta_image_url": "/static/images/cards/beta/infection.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -11298,7 +11298,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/infernal_blade.png",
+    "image_url": "/static/images/cards/infernal_blade.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -11345,7 +11345,7 @@
     "upgrade": {
       "infernopower": "+3"
     },
-    "image_url": "/static/images/cards/inferno.png",
+    "image_url": "/static/images/cards/inferno.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "At the start of your turn, lose 1 HP.\nWhenever you lose HP on your turn, deal 9 damage to ALL enemies.",
@@ -11382,7 +11382,7 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": "/static/images/cards/infinite_blades.png",
+    "image_url": "/static/images/cards/infinite_blades.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -11426,7 +11426,7 @@
     "upgrade": {
       "strengthpower": "+1"
     },
-    "image_url": "/static/images/cards/inflame.png",
+    "image_url": "/static/images/cards/inflame.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Gain 3 [gold]Strength[/gold].",
@@ -11461,7 +11461,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/injury.png",
+    "image_url": "/static/images/cards/injury.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -11501,7 +11501,7 @@
     "upgrade": {
       "block": "+4"
     },
-    "image_url": "/static/images/cards/intercept.png",
+    "image_url": "/static/images/cards/intercept.webp",
     "beta_image_url": "/static/images/cards/beta/intercept.png",
     "type_variants": null,
     "upgrade_description": "Gain 13 [gold]Block[/gold].\nRedirect all incoming attacks that would be dealt to another player this turn to you.",
@@ -11540,7 +11540,7 @@
       "summon": "+1",
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/invoke.png",
+    "image_url": "/static/images/cards/invoke.webp",
     "beta_image_url": "/static/images/cards/beta/invoke.png",
     "type_variants": null,
     "upgrade_description": "Next turn, [gold]Summon[/gold] 3 and gain [energy:3].",
@@ -11579,7 +11579,7 @@
       "damage": "+2",
       "block": "+2"
     },
-    "image_url": "/static/images/cards/iron_wave.png",
+    "image_url": "/static/images/cards/iron_wave.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Gain 7 [gold]Block[/gold].\nDeal 7 damage.",
@@ -11623,7 +11623,7 @@
     "upgrade": {
       "iterationpower": "+1"
     },
-    "image_url": "/static/images/cards/iteration.png",
+    "image_url": "/static/images/cards/iteration.webp",
     "beta_image_url": "/static/images/cards/beta/iteration.png",
     "type_variants": null,
     "upgrade_description": "The first time you draw a Status card each turn, draw 3 cards.",
@@ -11662,7 +11662,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/jack_of_all_trades.png",
+    "image_url": "/static/images/cards/jack_of_all_trades.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Add 2 random Colorless cards into your [gold]Hand[/gold].",
@@ -11703,7 +11703,7 @@
     "upgrade": {
       "damage": "+5"
     },
-    "image_url": "/static/images/cards/jackpot.png",
+    "image_url": "/static/images/cards/jackpot.webp",
     "beta_image_url": "/static/images/cards/beta/jackpot.png",
     "type_variants": null,
     "upgrade_description": "Deal 30 damage.\nAdd 3 random [gold]Upgraded[/gold] 0[energy:1] cards into your [gold]Hand[/gold].",
@@ -11747,7 +11747,7 @@
     "upgrade": {
       "juggernautpower": "+2"
     },
-    "image_url": "/static/images/cards/juggernaut.png",
+    "image_url": "/static/images/cards/juggernaut.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Whenever you gain [gold]Block[/gold], deal 7 damage to a random enemy.",
@@ -11782,7 +11782,7 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": "/static/images/cards/juggling.png",
+    "image_url": "/static/images/cards/juggling.webp",
     "beta_image_url": "/static/images/cards/beta/juggling.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -11819,7 +11819,7 @@
     "upgrade": {
       "damage": "+6"
     },
-    "image_url": "/static/images/cards/kingly_kick.png",
+    "image_url": "/static/images/cards/kingly_kick.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 30 damage.\nWhenever you draw this card, reduce its cost by 1.",
@@ -11857,7 +11857,7 @@
     "upgrade": {
       "increase": "+2"
     },
-    "image_url": "/static/images/cards/kingly_punch.png",
+    "image_url": "/static/images/cards/kingly_punch.webp",
     "beta_image_url": "/static/images/cards/beta/kingly_punch.png",
     "type_variants": null,
     "upgrade_description": "Deal 8 damage.\nWhenever you draw this card, increase its damage by 5 this combat.",
@@ -11899,7 +11899,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/knife_trap.png",
+    "image_url": "/static/images/cards/knife_trap.webp",
     "beta_image_url": "/static/images/cards/beta/knife_trap.png",
     "type_variants": null,
     "upgrade_description": "[gold]Upgrade[/gold] and play every [gold]Shiv[/gold] in your [gold]Exhaust Pile[/gold] on the enemy.",
@@ -11945,7 +11945,7 @@
       "damage": "+4",
       "knockdownpower": "+1"
     },
-    "image_url": "/static/images/cards/knockdown.png",
+    "image_url": "/static/images/cards/knockdown.webp",
     "beta_image_url": "/static/images/cards/beta/knockdown.png",
     "type_variants": null,
     "upgrade_description": "Deal 14 damage.\nThe enemy takes triple damage from other players this turn.",
@@ -11983,7 +11983,7 @@
     "upgrade": {
       "damage": "+8"
     },
-    "image_url": "/static/images/cards/knockout_blow.png",
+    "image_url": "/static/images/cards/knockout_blow.webp",
     "beta_image_url": "/static/images/cards/beta/knockout_blow.png",
     "type_variants": null,
     "upgrade_description": "Deal 38 damage.\nIf this kills an enemy, gain [star:5].",
@@ -12036,7 +12036,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/know_thy_place.png",
+    "image_url": "/static/images/cards/know_thy_place.webp",
     "beta_image_url": "/static/images/cards/beta/know_thy_place.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -12076,7 +12076,7 @@
       "gloryActIndex": 2
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/lantern_key.png",
+    "image_url": "/static/images/cards/lantern_key.webp",
     "beta_image_url": "/static/images/cards/beta/lantern_key.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -12114,7 +12114,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/largesse.png",
+    "image_url": "/static/images/cards/largesse.webp",
     "beta_image_url": "/static/images/cards/beta/largesse.png",
     "type_variants": null,
     "upgrade_description": "Another player adds 1 random [gold]Upgraded[/gold] Colorless card to their [gold]Hand[/gold].",
@@ -12156,7 +12156,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/leading_strike.png",
+    "image_url": "/static/images/cards/leading_strike.webp",
     "beta_image_url": "/static/images/cards/beta/leading_strike.png",
     "type_variants": null,
     "upgrade_description": "Deal 10 damage.\nAdd 1 [gold]Shiv[/gold] into your [gold]Hand[/gold].",
@@ -12193,7 +12193,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/leap.png",
+    "image_url": "/static/images/cards/leap.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Gain 12 [gold]Block[/gold].",
@@ -12239,7 +12239,7 @@
       "block": "+3",
       "weak": "+1"
     },
-    "image_url": "/static/images/cards/leg_sweep.png",
+    "image_url": "/static/images/cards/leg_sweep.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Apply 2 [gold]Weak[/gold].\nGain 14 [gold]Block[/gold].",
@@ -12278,7 +12278,7 @@
     "upgrade": {
       "summon": "+2"
     },
-    "image_url": "/static/images/cards/legion_of_bone.png",
+    "image_url": "/static/images/cards/legion_of_bone.webp",
     "beta_image_url": "/static/images/cards/beta/legion_of_bone.png",
     "type_variants": null,
     "upgrade_description": "ALL players [gold]Summon[/gold] 8.",
@@ -12327,7 +12327,7 @@
     "upgrade": {
       "lethalitypower": "+25"
     },
-    "image_url": "/static/images/cards/lethality.png",
+    "image_url": "/static/images/cards/lethality.webp",
     "beta_image_url": "/static/images/cards/beta/lethality.png",
     "type_variants": null,
     "upgrade_description": "The first Attack each turn deals 75% additional damage.",
@@ -12367,7 +12367,7 @@
     "upgrade": {
       "block": "+5"
     },
-    "image_url": "/static/images/cards/lift.png",
+    "image_url": "/static/images/cards/lift.webp",
     "beta_image_url": "/static/images/cards/beta/lift.png",
     "type_variants": null,
     "upgrade_description": "Give another player 16 [gold]Block[/gold].",
@@ -12412,7 +12412,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/lightning_rod.png",
+    "image_url": "/static/images/cards/lightning_rod.webp",
     "beta_image_url": "/static/images/cards/beta/lightning_rod.png",
     "type_variants": null,
     "upgrade_description": "Gain 7 [gold]Block[/gold].\nAt the start of the next 2 turns, [gold]Channel[/gold] 1 [gold]Lightning[/gold].",
@@ -12449,7 +12449,7 @@
     "upgrade": {
       "loop": "+1"
     },
-    "image_url": "/static/images/cards/loop.png",
+    "image_url": "/static/images/cards/loop.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "At the start of your turn, trigger the passive ability of your rightmost Orb 2 times.",
@@ -12489,7 +12489,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/luminesce.png",
+    "image_url": "/static/images/cards/luminesce.webp",
     "beta_image_url": "/static/images/cards/beta/luminesce.png",
     "type_variants": null,
     "upgrade_description": "Gain [energy:3].",
@@ -12532,7 +12532,7 @@
     "upgrade": {
       "damage": "+1"
     },
-    "image_url": "/static/images/cards/lunar_blast.png",
+    "image_url": "/static/images/cards/lunar_blast.webp",
     "beta_image_url": "/static/images/cards/beta/lunar_blast.png",
     "type_variants": null,
     "upgrade_description": "Deal 5 damage for each Skill already played this turn.",
@@ -12569,7 +12569,7 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": "/static/images/cards/machine_learning.png",
+    "image_url": "/static/images/cards/machine_learning.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -12616,14 +12616,14 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": "/static/images/cards/mad_science_attack.png",
+    "image_url": "/static/images/cards/mad_science_attack.webp",
     "beta_image_url": null,
     "type_variants": {
       "attack": {
         "type": "Attack",
         "description": "Deal 12 damage.",
         "damage": 12,
-        "image_url": "/static/images/cards/mad_science_attack.png",
+        "image_url": "/static/images/cards/mad_science_attack.webp",
         "riders": [
           {
             "id": "SAPPING",
@@ -12646,7 +12646,7 @@
         "type": "Skill",
         "description": "Gain 8 [gold]Block[/gold].",
         "block": 8,
-        "image_url": "/static/images/cards/mad_science_skill.png",
+        "image_url": "/static/images/cards/mad_science_skill.webp",
         "riders": [
           {
             "id": "ENERGIZED",
@@ -12668,7 +12668,7 @@
       "power": {
         "type": "Power",
         "description": "",
-        "image_url": "/static/images/cards/mad_science_power.png",
+        "image_url": "/static/images/cards/mad_science_power.webp",
         "riders": [
           {
             "id": "EXPERTISE",
@@ -12723,7 +12723,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/make_it_so.png",
+    "image_url": "/static/images/cards/make_it_so.webp",
     "beta_image_url": "/static/images/cards/beta/make_it_so.png",
     "type_variants": null,
     "upgrade_description": "Deal 9 damage.\nEvery 3 Skills you play in a turn, put this into your [gold]Hand[/gold].",
@@ -12760,7 +12760,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/malaise.png",
+    "image_url": "/static/images/cards/malaise.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Enemy loses X+1 [gold]Strength[/gold]. Apply X+1 [gold]Weak[/gold].",
@@ -12802,7 +12802,7 @@
       "damage": "+5",
       "strengthloss": "+5"
     },
-    "image_url": "/static/images/cards/mangle.png",
+    "image_url": "/static/images/cards/mangle.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 20 damage.\nEnemy loses 15 [gold]Strength[/gold] this turn.",
@@ -12839,7 +12839,7 @@
     "upgrade": {
       "block": "+1"
     },
-    "image_url": "/static/images/cards/manifest_authority.png",
+    "image_url": "/static/images/cards/manifest_authority.webp",
     "beta_image_url": "/static/images/cards/beta/manifest_authority.png",
     "type_variants": null,
     "upgrade_description": "Gain 8 [gold]Block[/gold].\nAdd 1 random [gold]Upgraded[/gold] Colorless card into your [gold]Hand[/gold].",
@@ -12874,7 +12874,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/master_planner.png",
+    "image_url": "/static/images/cards/master_planner.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -12913,7 +12913,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/master_of_strategy.png",
+    "image_url": "/static/images/cards/master_of_strategy.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Draw 4 cards.",
@@ -12955,7 +12955,7 @@
       "damage": "+1",
       "increase": "+1"
     },
-    "image_url": "/static/images/cards/maul.png",
+    "image_url": "/static/images/cards/maul.webp",
     "beta_image_url": "/static/images/cards/beta/maul.png",
     "type_variants": null,
     "upgrade_description": "Deal 6 damage twice.\nIncrease the damage of ALL Maul cards by 2 this combat.",
@@ -12990,7 +12990,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/mayhem.png",
+    "image_url": "/static/images/cards/mayhem.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -13028,7 +13028,7 @@
     "upgrade": {
       "block": "+4"
     },
-    "image_url": "/static/images/cards/melancholy.png",
+    "image_url": "/static/images/cards/melancholy.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Gain 17 [gold]Block[/gold].\nReduce this card's cost by [energy:1] whenever ANYONE dies.",
@@ -13068,7 +13068,7 @@
       "calculationbase": "+2",
       "extradamage": "+1"
     },
-    "image_url": "/static/images/cards/memento_mori.png",
+    "image_url": "/static/images/cards/memento_mori.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 8 damage.\nDeals 5 additional damage for each card discarded this turn.",
@@ -13107,7 +13107,7 @@
     "upgrade": {
       "cards": "+2"
     },
-    "image_url": "/static/images/cards/metamorphosis.png",
+    "image_url": "/static/images/cards/metamorphosis.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Add 5 random Attacks into your [gold]Draw Pile[/gold]. They're free to play this combat.",
@@ -13163,7 +13163,7 @@
     "upgrade": {
       "damage": "+7"
     },
-    "image_url": "/static/images/cards/meteor_shower.png",
+    "image_url": "/static/images/cards/meteor_shower.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 21 damage to ALL enemies.\nApply 2 [gold]Weak[/gold] and [gold]Vulnerable[/gold] to ALL enemies.",
@@ -13202,7 +13202,7 @@
     "upgrade": {
       "damage": "+6"
     },
-    "image_url": "/static/images/cards/meteor_strike.png",
+    "image_url": "/static/images/cards/meteor_strike.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 30 damage.\n[gold]Channel[/gold] 3 [gold]Plasma[/gold].",
@@ -13242,7 +13242,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/mimic.png",
+    "image_url": "/static/images/cards/mimic.webp",
     "beta_image_url": "/static/images/cards/beta/mimic.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -13286,7 +13286,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/mind_blast.png",
+    "image_url": "/static/images/cards/mind_blast.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -13331,7 +13331,7 @@
       "MindRot": 1
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/mind_rot.png",
+    "image_url": "/static/images/cards/mind_rot.webp",
     "beta_image_url": "/static/images/cards/beta/mind_rot.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -13372,7 +13372,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/minion_dive_bomb.png",
+    "image_url": "/static/images/cards/minion_dive_bomb.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 16 damage.",
@@ -13416,7 +13416,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/minion_sacrifice.png",
+    "image_url": "/static/images/cards/minion_sacrifice.webp",
     "beta_image_url": "/static/images/cards/beta/minion_sacrifice.png",
     "type_variants": null,
     "upgrade_description": "Gain 12 [gold]Block[/gold].",
@@ -13462,7 +13462,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/minion_strike.png",
+    "image_url": "/static/images/cards/minion_strike.webp",
     "beta_image_url": "/static/images/cards/beta/minion_strike.png",
     "type_variants": null,
     "upgrade_description": "Deal 10 damage.\nDraw 1 card.",
@@ -13505,7 +13505,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/mirage.png",
+    "image_url": "/static/images/cards/mirage.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -13546,7 +13546,7 @@
       "damage": "+2",
       "add_retain": true
     },
-    "image_url": "/static/images/cards/misery.png",
+    "image_url": "/static/images/cards/misery.webp",
     "beta_image_url": "/static/images/cards/beta/misery.png",
     "type_variants": null,
     "upgrade_description": "Deal 9 damage.\nApply any debuffs on the enemy to ALL other enemies.",
@@ -13584,7 +13584,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/modded.png",
+    "image_url": "/static/images/cards/modded.webp",
     "beta_image_url": "/static/images/cards/beta/modded.png",
     "type_variants": null,
     "upgrade_description": "Gain 1 Orb Slot.\nDraw 2 cards. Increase this card's cost by 1.",
@@ -13623,7 +13623,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/molten_fist.png",
+    "image_url": "/static/images/cards/molten_fist.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 14 damage.\nDouble the enemy's [gold]Vulnerable[/gold].",
@@ -13665,7 +13665,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/momentum_strike.png",
+    "image_url": "/static/images/cards/momentum_strike.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 13 damage.\nReduce this card's cost to 0 [energy:1].",
@@ -13702,7 +13702,7 @@
     "upgrade": {
       "cost": 2
     },
-    "image_url": "/static/images/cards/monarchs_gaze.png",
+    "image_url": "/static/images/cards/monarchs_gaze.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -13739,7 +13739,7 @@
     "upgrade": {
       "add_retain": true
     },
-    "image_url": "/static/images/cards/monologue.png",
+    "image_url": "/static/images/cards/monologue.webp",
     "beta_image_url": "/static/images/cards/beta/monologue.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -13774,7 +13774,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/multi_cast.png",
+    "image_url": "/static/images/cards/multi_cast.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]Evoke[/gold] your rightmost Orb X+1 times.",
@@ -13813,7 +13813,7 @@
     "upgrade": {
       "cost": 2
     },
-    "image_url": "/static/images/cards/murder.png",
+    "image_url": "/static/images/cards/murder.webp",
     "beta_image_url": "/static/images/cards/beta/murder.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -13850,7 +13850,7 @@
     "upgrade": {
       "summon": "+3"
     },
-    "image_url": "/static/images/cards/necro_mastery.png",
+    "image_url": "/static/images/cards/necro_mastery.webp",
     "beta_image_url": "/static/images/cards/beta/necro_mastery.png",
     "type_variants": null,
     "upgrade_description": "[gold]Summon[/gold] 8.\nWhenever [gold]Osty[/gold] loses HP,\nALL enemies lose that much HP as well.",
@@ -13896,7 +13896,7 @@
       "block": "+1",
       "doom": "+4"
     },
-    "image_url": "/static/images/cards/negative_pulse.png",
+    "image_url": "/static/images/cards/negative_pulse.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Gain 6 [gold]Block[/gold].\nApply 7 [gold]Doom[/gold] to ALL enemies.",
@@ -13936,7 +13936,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/neows_fury.png",
+    "image_url": "/static/images/cards/neows_fury.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 14 damage.\nPut 2 random cards from your [gold]Discard Pile[/gold] into your [gold]Hand[/gold].",
@@ -13985,7 +13985,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/neurosurge.png",
+    "image_url": "/static/images/cards/neurosurge.webp",
     "beta_image_url": "/static/images/cards/beta/neurosurge.png",
     "type_variants": null,
     "upgrade_description": "Gain [energy:4].\nDraw 2 cards.\nAt the start of your turn, apply 3 [gold]Doom[/gold] to yourself.",
@@ -14031,7 +14031,7 @@
       "damage": "+1",
       "weak": "+1"
     },
-    "image_url": "/static/images/cards/neutralize.png",
+    "image_url": "/static/images/cards/neutralize.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 4 damage.\nApply 1 [gold]Weak[/gold].",
@@ -14076,7 +14076,7 @@
     "upgrade": {
       "platingpower": "+3"
     },
-    "image_url": "/static/images/cards/neutron_aegis.png",
+    "image_url": "/static/images/cards/neutron_aegis.webp",
     "beta_image_url": "/static/images/cards/beta/neutron_aegis.png",
     "type_variants": null,
     "upgrade_description": "Gain 11 [gold]Plating[/gold].",
@@ -14113,7 +14113,7 @@
     "upgrade": {
       "cost": 2
     },
-    "image_url": "/static/images/cards/nightmare.png",
+    "image_url": "/static/images/cards/nightmare.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -14155,7 +14155,7 @@
     "upgrade": {
       "calculationbase": "+5"
     },
-    "image_url": "/static/images/cards/no_escape.png",
+    "image_url": "/static/images/cards/no_escape.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Apply 15 [gold]Doom[/gold], plus an additional 5 [gold]Doom[/gold] for every 10 [gold]Doom[/gold] already on this enemy.",
@@ -14193,7 +14193,7 @@
       "numOfCardsPerTurn": 3
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/normality.png",
+    "image_url": "/static/images/cards/normality.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -14231,7 +14231,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/nostalgia.png",
+    "image_url": "/static/images/cards/nostalgia.webp",
     "beta_image_url": "/static/images/cards/beta/nostalgia.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -14268,7 +14268,7 @@
     "upgrade": {
       "poisonperturn": "+1"
     },
-    "image_url": "/static/images/cards/noxious_fumes.png",
+    "image_url": "/static/images/cards/noxious_fumes.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "At the start of your turn, apply 3 [gold]Poison[/gold] to ALL enemies.",
@@ -14314,7 +14314,7 @@
       "damage": "+3",
       "weak": "+1"
     },
-    "image_url": "/static/images/cards/null.png",
+    "image_url": "/static/images/cards/null.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 13 damage.\nApply 2 [gold]Weak[/gold].\n[gold]Channel[/gold] 1 [gold]Dark[/gold].",
@@ -14358,7 +14358,7 @@
     "upgrade": {
       "doom": "+1"
     },
-    "image_url": "/static/images/cards/oblivion.png",
+    "image_url": "/static/images/cards/oblivion.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -14399,7 +14399,7 @@
     "upgrade": {
       "cards": "+2"
     },
-    "image_url": "/static/images/cards/offering.png",
+    "image_url": "/static/images/cards/offering.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Lose 6 HP.\nGain [energy:2].\nDraw 5 cards.",
@@ -14439,7 +14439,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/omnislice.png",
+    "image_url": "/static/images/cards/omnislice.webp",
     "beta_image_url": "/static/images/cards/beta/omnislice.png",
     "type_variants": null,
     "upgrade_description": "Deal 11 damage.\nDamage ALL other enemies equal to the damage dealt.",
@@ -14476,7 +14476,7 @@
     "upgrade": {
       "attacks": "+1"
     },
-    "image_url": "/static/images/cards/one_two_punch.png",
+    "image_url": "/static/images/cards/one_two_punch.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "This turn, your next 2 Attacks are played an extra time.",
@@ -14513,7 +14513,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/orbit.png",
+    "image_url": "/static/images/cards/orbit.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -14558,7 +14558,7 @@
     "upgrade": {
       "outbreakpower": "+4"
     },
-    "image_url": "/static/images/cards/outbreak.png",
+    "image_url": "/static/images/cards/outbreak.webp",
     "beta_image_url": "/static/images/cards/beta/outbreak.png",
     "type_variants": null,
     "upgrade_description": "Every 3 times you apply [gold]Poison[/gold], deal 15 damage to ALL enemies.",
@@ -14595,7 +14595,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/outmaneuver.png",
+    "image_url": "/static/images/cards/outmaneuver.webp",
     "beta_image_url": "/static/images/cards/beta/outmaneuver.png",
     "type_variants": null,
     "upgrade_description": "Next turn, gain [energy:3].",
@@ -14634,7 +14634,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/overclock.png",
+    "image_url": "/static/images/cards/overclock.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Draw 3 cards.\nAdd a [gold]Burn[/gold] into your [gold]Discard Pile[/gold].",
@@ -14672,7 +14672,7 @@
     "upgrade": {
       "damage": "+6"
     },
-    "image_url": "/static/images/cards/pacts_end.png",
+    "image_url": "/static/images/cards/pacts_end.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Can only be played if you have 3 or more cards in your [gold]Exhaust Pile[/gold].\nDeal 23 damage to ALL enemies.",
@@ -14709,7 +14709,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/pagestorm.png",
+    "image_url": "/static/images/cards/pagestorm.webp",
     "beta_image_url": "/static/images/cards/beta/pagestorm.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -14747,7 +14747,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/pale_blue_dot.png",
+    "image_url": "/static/images/cards/pale_blue_dot.webp",
     "beta_image_url": "/static/images/cards/beta/pale_blue_dot.png",
     "type_variants": null,
     "upgrade_description": "If you play 5 or more cards in a turn, draw 2 cards at the start of your next turn.",
@@ -14784,7 +14784,7 @@
     "upgrade": {
       "panachedamage": "+4"
     },
-    "image_url": "/static/images/cards/panache.png",
+    "image_url": "/static/images/cards/panache.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Every time you play 5 cards in a single turn, deal 14 damage to ALL enemies.",
@@ -14824,7 +14824,7 @@
     "upgrade": {
       "block": "+10"
     },
-    "image_url": "/static/images/cards/panic_button.png",
+    "image_url": "/static/images/cards/panic_button.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Gain 40 [gold]Block[/gold].\nYou cannot gain [gold]Block[/gold] from cards for 2 turns.",
@@ -14873,7 +14873,7 @@
     "upgrade": {
       "parrypower": "+3"
     },
-    "image_url": "/static/images/cards/parry.png",
+    "image_url": "/static/images/cards/parry.webp",
     "beta_image_url": "/static/images/cards/beta/parry.png",
     "type_variants": null,
     "upgrade_description": "Whenever you play [gold]Sovereign Blade[/gold], gain 9 [gold]Block[/gold].",
@@ -14912,7 +14912,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/parse.png",
+    "image_url": "/static/images/cards/parse.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Draw 4 cards.",
@@ -14953,7 +14953,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/particle_wall.png",
+    "image_url": "/static/images/cards/particle_wall.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Gain 12 [gold]Block[/gold].\nReturn this card to your [gold]Hand[/gold].",
@@ -14999,7 +14999,7 @@
       "block": "+2",
       "vigorpower": "+1"
     },
-    "image_url": "/static/images/cards/patter.png",
+    "image_url": "/static/images/cards/patter.webp",
     "beta_image_url": "/static/images/cards/beta/patter.png",
     "type_variants": null,
     "upgrade_description": "Gain 10 [gold]Block[/gold].\nGain 3 [gold]Vigor[/gold].",
@@ -15037,7 +15037,7 @@
     "upgrade": {
       "repeat": "+1"
     },
-    "image_url": "/static/images/cards/peck.png",
+    "image_url": "/static/images/cards/peck.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 2 damage 4 times.",
@@ -15078,7 +15078,7 @@
     "upgrade": {
       "extradamage": "+1"
     },
-    "image_url": "/static/images/cards/perfected_strike.png",
+    "image_url": "/static/images/cards/perfected_strike.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 6 damage.\nDeals 3 additional damage for ALL your cards containing “Strike”.",
@@ -15124,7 +15124,7 @@
     "upgrade": {
       "phantombladespower": "+3"
     },
-    "image_url": "/static/images/cards/phantom_blades.png",
+    "image_url": "/static/images/cards/phantom_blades.webp",
     "beta_image_url": "/static/images/cards/beta/phantom_blades.png",
     "type_variants": null,
     "upgrade_description": "[gold]Shivs[/gold] gain [gold]Retain[/gold].\nThe first [gold]Shiv[/gold] you play each turn deals 12 additional damage.",
@@ -15164,7 +15164,7 @@
       "damage": "+3",
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/photon_cut.png",
+    "image_url": "/static/images/cards/photon_cut.webp",
     "beta_image_url": "/static/images/cards/beta/photon_cut.png",
     "type_variants": null,
     "upgrade_description": "Deal 13 damage.\nDraw 2 cards.\nPut 1 card from your [gold]Hand[/gold] on top of your [gold]Draw Pile[/gold].",
@@ -15203,7 +15203,7 @@
     "upgrade": {
       "strengthloss": "+2"
     },
-    "image_url": "/static/images/cards/piercing_wail.png",
+    "image_url": "/static/images/cards/piercing_wail.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ALL enemies lose 8 [gold]Strength[/gold] this turn.",
@@ -15243,7 +15243,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/pillage.png",
+    "image_url": "/static/images/cards/pillage.webp",
     "beta_image_url": "/static/images/cards/beta/pillage.png",
     "type_variants": null,
     "upgrade_description": "Deal 9 damage.\nDraw cards until you draw a non-Attack card.",
@@ -15280,7 +15280,7 @@
     "upgrade": {
       "block": "+1"
     },
-    "image_url": "/static/images/cards/pillar_of_creation.png",
+    "image_url": "/static/images/cards/pillar_of_creation.webp",
     "beta_image_url": "/static/images/cards/beta/pillar_of_creation.png",
     "type_variants": null,
     "upgrade_description": "Whenever you create a card, gain 4 [gold]Block[/gold].",
@@ -15317,7 +15317,7 @@
     "upgrade": {
       "damage": "+5"
     },
-    "image_url": "/static/images/cards/pinpoint.png",
+    "image_url": "/static/images/cards/pinpoint.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 22 damage.\nCosts 1 less [energy:1] for each Skill played this turn.",
@@ -15363,7 +15363,7 @@
       "damage": "+2",
       "poison": "+1"
     },
-    "image_url": "/static/images/cards/poisoned_stab.png",
+    "image_url": "/static/images/cards/poisoned_stab.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 8 damage.\nApply 3 [gold]Poison[/gold].",
@@ -15403,7 +15403,7 @@
     "upgrade": {
       "ostydamage": "+3"
     },
-    "image_url": "/static/images/cards/poke.png",
+    "image_url": "/static/images/cards/poke.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]Osty[/gold] deals 9 damage.",
@@ -15444,7 +15444,7 @@
       "damage": "+1",
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/pommel_strike.png",
+    "image_url": "/static/images/cards/pommel_strike.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 10 damage.\nDraw 2 cards.",
@@ -15480,7 +15480,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/poor_sleep.png",
+    "image_url": "/static/images/cards/poor_sleep.webp",
     "beta_image_url": "/static/images/cards/beta/poor_sleep.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -15521,7 +15521,7 @@
     "upgrade": {
       "damage": "+6"
     },
-    "image_url": "/static/images/cards/pounce.png",
+    "image_url": "/static/images/cards/pounce.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 18 damage.\nThe next Skill you play costs 0 [energy:1].",
@@ -15560,7 +15560,7 @@
     "upgrade": {
       "calculationbase": "+3"
     },
-    "image_url": "/static/images/cards/precise_cut.png",
+    "image_url": "/static/images/cards/precise_cut.webp",
     "beta_image_url": "/static/images/cards/beta/precise_cut.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -15597,7 +15597,7 @@
     "upgrade": {
       "damage": "+5"
     },
-    "image_url": "/static/images/cards/predator.png",
+    "image_url": "/static/images/cards/predator.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 20 damage.\nNext turn, draw 2 cards.",
@@ -15641,7 +15641,7 @@
     "upgrade": {
       "preptimepower": "+2"
     },
-    "image_url": "/static/images/cards/prep_time.png",
+    "image_url": "/static/images/cards/prep_time.webp",
     "beta_image_url": "/static/images/cards/beta/prep_time.png",
     "type_variants": null,
     "upgrade_description": "At the start of your turn, gain 6 [gold]Vigor[/gold].",
@@ -15678,7 +15678,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/prepared.png",
+    "image_url": "/static/images/cards/prepared.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Draw 2 cards.\nDiscard 2 cards.",
@@ -15715,7 +15715,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/primal_force.png",
+    "image_url": "/static/images/cards/primal_force.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Transform all Attacks in your [gold]Hand[/gold] into [gold]Giant Rock+[/gold].",
@@ -15754,7 +15754,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/production.png",
+    "image_url": "/static/images/cards/production.webp",
     "beta_image_url": "/static/images/cards/beta/production.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -15794,7 +15794,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/prolong.png",
+    "image_url": "/static/images/cards/prolong.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -15834,7 +15834,7 @@
     "upgrade": {
       "cards": "+3"
     },
-    "image_url": "/static/images/cards/prophesize.png",
+    "image_url": "/static/images/cards/prophesize.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Draw 9 cards.",
@@ -15876,7 +15876,7 @@
       "cost": 0,
       "calculationbase": "+5"
     },
-    "image_url": "/static/images/cards/protector.png",
+    "image_url": "/static/images/cards/protector.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -15928,7 +15928,7 @@
       "dexterity": "+1",
       "strength": "+1"
     },
-    "image_url": "/static/images/cards/prowess.png",
+    "image_url": "/static/images/cards/prowess.webp",
     "beta_image_url": "/static/images/cards/beta/prowess.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -15967,7 +15967,7 @@
       "block": "+2",
       "summon": "+1"
     },
-    "image_url": "/static/images/cards/pull_aggro.png",
+    "image_url": "/static/images/cards/pull_aggro.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]Summon[/gold] 5.\nGain 9 [gold]Block[/gold].",
@@ -16006,7 +16006,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/pull_from_below.png",
+    "image_url": "/static/images/cards/pull_from_below.webp",
     "beta_image_url": "/static/images/cards/beta/pull_from_below.png",
     "type_variants": null,
     "upgrade_description": "Deal 7 damage for each [gold]Ethereal[/gold] card played this combat.",
@@ -16046,7 +16046,7 @@
     "upgrade": {
       "cards": "+2"
     },
-    "image_url": "/static/images/cards/purity.png",
+    "image_url": "/static/images/cards/purity.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Exhaust up to 5 cards in your [gold]Hand[/gold].",
@@ -16089,7 +16089,7 @@
     "upgrade": {
       "power": "+1"
     },
-    "image_url": "/static/images/cards/putrefy.png",
+    "image_url": "/static/images/cards/putrefy.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Apply 3 [gold]Weak[/gold].\nApply 3 [gold]Vulnerable[/gold].",
@@ -16129,7 +16129,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/pyre.png",
+    "image_url": "/static/images/cards/pyre.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Gain [energy:2] at the start of each turn.",
@@ -16166,7 +16166,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/quadcast.png",
+    "image_url": "/static/images/cards/quadcast.webp",
     "beta_image_url": "/static/images/cards/beta/quadcast.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -16203,7 +16203,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/quasar.png",
+    "image_url": "/static/images/cards/quasar.webp",
     "beta_image_url": "/static/images/cards/beta/quasar.png",
     "type_variants": null,
     "upgrade_description": "Choose 1 of 3 random [gold]Upgraded[/gold] Colorless cards to add into your [gold]Hand[/gold].",
@@ -16243,7 +16243,7 @@
     "upgrade": {
       "damage": "+1"
     },
-    "image_url": "/static/images/cards/radiate.png",
+    "image_url": "/static/images/cards/radiate.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 4 damage to ALL enemies for each [star:1] gained this turn.",
@@ -16280,7 +16280,7 @@
     "upgrade": {
       "power": "+2"
     },
-    "image_url": "/static/images/cards/rage.png",
+    "image_url": "/static/images/cards/rage.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Whenever you play an Attack this turn, gain 5 [gold]Block[/gold].",
@@ -16317,7 +16317,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/rainbow.png",
+    "image_url": "/static/images/cards/rainbow.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -16357,7 +16357,7 @@
     "upgrade": {
       "block": "+5"
     },
-    "image_url": "/static/images/cards/rally.png",
+    "image_url": "/static/images/cards/rally.webp",
     "beta_image_url": "/static/images/cards/beta/rally.png",
     "type_variants": null,
     "upgrade_description": "ALL players gain 17 [gold]Block[/gold].",
@@ -16395,7 +16395,7 @@
     "upgrade": {
       "increase": "+4"
     },
-    "image_url": "/static/images/cards/rampage.png",
+    "image_url": "/static/images/cards/rampage.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 9 damage.\nIncrease this card's damage by 9 this combat.",
@@ -16437,7 +16437,7 @@
     "upgrade": {
       "ostydamage": "+2"
     },
-    "image_url": "/static/images/cards/rattle.png",
+    "image_url": "/static/images/cards/rattle.webp",
     "beta_image_url": "/static/images/cards/beta/rattle.png",
     "type_variants": null,
     "upgrade_description": "[gold]Osty[/gold] deals 9 damage.\nHits an additional time for each other time he has attacked this turn.",
@@ -16476,7 +16476,7 @@
     "upgrade": {
       "summon": "+5"
     },
-    "image_url": "/static/images/cards/reanimate.png",
+    "image_url": "/static/images/cards/reanimate.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]Summon[/gold] 25.",
@@ -16518,7 +16518,7 @@
     "upgrade": {
       "damage": "+6"
     },
-    "image_url": "/static/images/cards/reap.png",
+    "image_url": "/static/images/cards/reap.webp",
     "beta_image_url": "/static/images/cards/beta/reap.png",
     "type_variants": null,
     "upgrade_description": "Deal 33 damage.",
@@ -16556,7 +16556,7 @@
     "upgrade": {
       "add_retain": true
     },
-    "image_url": "/static/images/cards/reaper_form.png",
+    "image_url": "/static/images/cards/reaper_form.webp",
     "beta_image_url": "/static/images/cards/beta/reaper_form.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -16596,7 +16596,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/reave.png",
+    "image_url": "/static/images/cards/reave.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 11 damage.\nAdd a [gold]Soul+[/gold] into your [gold]Draw Pile[/gold].",
@@ -16635,7 +16635,7 @@
     "upgrade": {
       "cards": "+2"
     },
-    "image_url": "/static/images/cards/reboot.png",
+    "image_url": "/static/images/cards/reboot.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Shuffle ALL your cards into your [gold]Draw Pile[/gold].\nDraw 6 cards.",
@@ -16675,7 +16675,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/rebound.png",
+    "image_url": "/static/images/cards/rebound.webp",
     "beta_image_url": "/static/images/cards/beta/rebound.png",
     "type_variants": null,
     "upgrade_description": "Deal 12 damage.\nPut the next card you play this turn on top of your [gold]Draw Pile[/gold].",
@@ -16713,7 +16713,7 @@
     "upgrade": {
       "forge": "+4"
     },
-    "image_url": "/static/images/cards/refine_blade.png",
+    "image_url": "/static/images/cards/refine_blade.webp",
     "beta_image_url": "/static/images/cards/beta/refine_blade.png",
     "type_variants": null,
     "upgrade_description": "[gold]Forge[/gold] 10.\nNext turn, gain [energy:1].",
@@ -16751,7 +16751,7 @@
     "upgrade": {
       "block": "+4"
     },
-    "image_url": "/static/images/cards/reflect.png",
+    "image_url": "/static/images/cards/reflect.webp",
     "beta_image_url": "/static/images/cards/beta/reflect.png",
     "type_variants": null,
     "upgrade_description": "Gain 21 [gold]Block[/gold].\nBlocked attack damage is reflected to your attacker this turn.",
@@ -16790,7 +16790,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/reflex.png",
+    "image_url": "/static/images/cards/reflex.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Draw 3 cards.",
@@ -16831,7 +16831,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/refract.png",
+    "image_url": "/static/images/cards/refract.webp",
     "beta_image_url": "/static/images/cards/beta/refract.png",
     "type_variants": null,
     "upgrade_description": "Deal 12 damage twice.\n[gold]Channel[/gold] 2 [gold]Glass[/gold].",
@@ -16866,7 +16866,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/regret.png",
+    "image_url": "/static/images/cards/regret.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -16912,7 +16912,7 @@
       "cards": "+1",
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/relax.png",
+    "image_url": "/static/images/cards/relax.webp",
     "beta_image_url": "/static/images/cards/beta/relax.png",
     "type_variants": null,
     "upgrade_description": "Gain 17 [gold]Block[/gold].\nNext turn, draw 3 cards and gain [energy:3].",
@@ -16955,7 +16955,7 @@
       "extradamage": "+3",
       "calculationbase": "+3"
     },
-    "image_url": "/static/images/cards/rend.png",
+    "image_url": "/static/images/cards/rend.webp",
     "beta_image_url": "/static/images/cards/beta/rend.png",
     "type_variants": null,
     "upgrade_description": "Deal 15 damage.\nDeals 8 additional damage for each unique debuff on the enemy.",
@@ -17000,7 +17000,7 @@
     "upgrade": {
       "strengthpower": "+1"
     },
-    "image_url": "/static/images/cards/resonance.png",
+    "image_url": "/static/images/cards/resonance.webp",
     "beta_image_url": "/static/images/cards/beta/resonance.png",
     "type_variants": null,
     "upgrade_description": "Gain 2 [gold]Strength[/gold]. ALL enemies lose 1 [gold]Strength[/gold].",
@@ -17041,7 +17041,7 @@
       "cards": "+1",
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/restlessness.png",
+    "image_url": "/static/images/cards/restlessness.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "If your [gold]Hand[/gold] is empty, draw 3 cards and gain [energy:3].",
@@ -17084,7 +17084,7 @@
     "upgrade": {
       "repeat": "+1"
     },
-    "image_url": "/static/images/cards/ricochet.png",
+    "image_url": "/static/images/cards/ricochet.webp",
     "beta_image_url": "/static/images/cards/beta/ricochet.png",
     "type_variants": null,
     "upgrade_description": "Deal 3 damage to a random enemy 5 times.",
@@ -17128,7 +17128,7 @@
     "upgrade": {
       "ostydamage": "+2"
     },
-    "image_url": "/static/images/cards/right_hand_hand.png",
+    "image_url": "/static/images/cards/right_hand_hand.webp",
     "beta_image_url": "/static/images/cards/beta/right_hand_hand.png",
     "type_variants": null,
     "upgrade_description": "[gold]Osty[/gold] deals 6 damage.\nWhenever you play a card that costs [energy:2] or more, return this to your [gold]Hand[/gold] from the [gold]Discard Pile[/gold].",
@@ -17165,7 +17165,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/rip_and_tear.png",
+    "image_url": "/static/images/cards/rip_and_tear.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 9 damage to a random enemy twice.",
@@ -17204,7 +17204,7 @@
       "damage": "+1",
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/rocket_punch.png",
+    "image_url": "/static/images/cards/rocket_punch.webp",
     "beta_image_url": "/static/images/cards/beta/rocket_punch.png",
     "type_variants": null,
     "upgrade_description": "Deal 14 damage.\nDraw 2 cards.\nWhen a Status card is created, reduce this card's cost to 0 [energy:1] this turn.",
@@ -17249,7 +17249,7 @@
     "upgrade": {
       "rollingboulderpower": "+5"
     },
-    "image_url": "/static/images/cards/rolling_boulder.png",
+    "image_url": "/static/images/cards/rolling_boulder.webp",
     "beta_image_url": "/static/images/cards/beta/rolling_boulder.png",
     "type_variants": null,
     "upgrade_description": "At the start of your turn, deal 10 damage to ALL enemies and increase this damage by 5.",
@@ -17289,7 +17289,7 @@
     "upgrade": {
       "add_retain": true
     },
-    "image_url": "/static/images/cards/royal_gamble.png",
+    "image_url": "/static/images/cards/royal_gamble.webp",
     "beta_image_url": "/static/images/cards/beta/royal_gamble.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -17329,7 +17329,7 @@
     "upgrade": {
       "gold": "+5"
     },
-    "image_url": "/static/images/cards/royalties.png",
+    "image_url": "/static/images/cards/royalties.webp",
     "beta_image_url": "/static/images/cards/beta/royalties.png",
     "type_variants": null,
     "upgrade_description": "At the end of combat, gain 35 [gold]Gold[/gold].",
@@ -17373,7 +17373,7 @@
     "upgrade": {
       "strength": "+1"
     },
-    "image_url": "/static/images/cards/rupture.png",
+    "image_url": "/static/images/cards/rupture.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -17410,7 +17410,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/sacrifice.png",
+    "image_url": "/static/images/cards/sacrifice.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -17450,7 +17450,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/salvo.png",
+    "image_url": "/static/images/cards/salvo.webp",
     "beta_image_url": "/static/images/cards/beta/salvo.png",
     "type_variants": null,
     "upgrade_description": "Deal 16 damage.\n[gold]Retain[/gold] your [gold]Hand[/gold] this turn.",
@@ -17487,7 +17487,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/scavenge.png",
+    "image_url": "/static/images/cards/scavenge.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]Exhaust[/gold] a card.\nNext turn, gain [energy:3].",
@@ -17533,7 +17533,7 @@
       "doom": "+3",
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/scourge.png",
+    "image_url": "/static/images/cards/scourge.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Apply 13 [gold]Doom[/gold].\nDraw 2 cards.",
@@ -17572,7 +17572,7 @@
       "damage": "+3",
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/scrape.png",
+    "image_url": "/static/images/cards/scrape.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 10 damage.\nDraw 5 cards.\nDiscard all cards drawn this way that do not cost 0 [energy:1].",
@@ -17609,7 +17609,7 @@
     "upgrade": {
       "add_retain": true
     },
-    "image_url": "/static/images/cards/scrawl.png",
+    "image_url": "/static/images/cards/scrawl.webp",
     "beta_image_url": "/static/images/cards/beta/scrawl.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -17651,7 +17651,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/sculpting_strike.png",
+    "image_url": "/static/images/cards/sculpting_strike.webp",
     "beta_image_url": "/static/images/cards/beta/sculpting_strike.png",
     "type_variants": null,
     "upgrade_description": "Deal 11 damage.\nAdd [gold]Ethereal[/gold] to a card in your [gold]Hand[/gold].",
@@ -17692,7 +17692,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/seance.png",
+    "image_url": "/static/images/cards/seance.webp",
     "beta_image_url": "/static/images/cards/beta/seance.png",
     "type_variants": null,
     "upgrade_description": "Transform a card in your [gold]Draw Pile[/gold] into [gold]Soul+[/gold].",
@@ -17732,7 +17732,7 @@
     "upgrade": {
       "block": "+2"
     },
-    "image_url": "/static/images/cards/second_wind.png",
+    "image_url": "/static/images/cards/second_wind.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]Exhaust[/gold] all non-Attack cards in your [gold]Hand[/gold]. Gain 7 [gold]Block[/gold] for each card [gold]Exhausted[/gold].",
@@ -17769,7 +17769,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/secret_technique.png",
+    "image_url": "/static/images/cards/secret_technique.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -17809,7 +17809,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/secret_weapon.png",
+    "image_url": "/static/images/cards/secret_weapon.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -17852,7 +17852,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/seeker_strike.png",
+    "image_url": "/static/images/cards/seeker_strike.webp",
     "beta_image_url": "/static/images/cards/beta/seeker_strike.png",
     "type_variants": null,
     "upgrade_description": "Deal 9 damage.\nChoose 1 of 3 cards in your [gold]Draw Pile[/gold] to add into your [gold]Hand[/gold].",
@@ -17889,7 +17889,7 @@
     "upgrade": {
       "forge": "+4"
     },
-    "image_url": "/static/images/cards/seeking_edge.png",
+    "image_url": "/static/images/cards/seeking_edge.webp",
     "beta_image_url": "/static/images/cards/beta/seeking_edge.png",
     "type_variants": null,
     "upgrade_description": "[gold]Forge[/gold] 11.\n[gold]Sovereign Blade[/gold] now deals damage to ALL enemies.",
@@ -17935,7 +17935,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/sentry_mode.png",
+    "image_url": "/static/images/cards/sentry_mode.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -17979,7 +17979,7 @@
     "upgrade": {
       "serpentformpower": "+1"
     },
-    "image_url": "/static/images/cards/serpent_form.png",
+    "image_url": "/static/images/cards/serpent_form.webp",
     "beta_image_url": "/static/images/cards/beta/serpent_form.png",
     "type_variants": null,
     "upgrade_description": "Whenever you play a card, deal 5 damage to a random enemy.",
@@ -18027,7 +18027,7 @@
       "damage": "+2",
       "strength": "+1"
     },
-    "image_url": "/static/images/cards/setup_strike.png",
+    "image_url": "/static/images/cards/setup_strike.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 9 damage.\nGain 2 [gold]Strength[/gold] this turn.",
@@ -18066,7 +18066,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/seven_stars.png",
+    "image_url": "/static/images/cards/seven_stars.webp",
     "beta_image_url": "/static/images/cards/beta/seven_stars.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -18105,7 +18105,7 @@
     "upgrade": {
       "damage": "+5"
     },
-    "image_url": "/static/images/cards/severance.png",
+    "image_url": "/static/images/cards/severance.webp",
     "beta_image_url": "/static/images/cards/beta/severance.png",
     "type_variants": null,
     "upgrade_description": "Deal 18 damage.\nAdd a [gold]Soul[/gold] into your [gold]Draw Pile[/gold], [gold]Hand[/gold], and [gold]Discard Pile[/gold].",
@@ -18142,7 +18142,7 @@
     "upgrade": {
       "block": "+4"
     },
-    "image_url": "/static/images/cards/shadow_shield.png",
+    "image_url": "/static/images/cards/shadow_shield.webp",
     "beta_image_url": "/static/images/cards/beta/shadow_shield.png",
     "type_variants": null,
     "upgrade_description": "Gain 15 [gold]Block[/gold].\n[gold]Channel[/gold] 1 [gold]Dark[/gold].",
@@ -18179,7 +18179,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/shadow_step.png",
+    "image_url": "/static/images/cards/shadow_step.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -18216,7 +18216,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/shadowmeld.png",
+    "image_url": "/static/images/cards/shadowmeld.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -18253,7 +18253,7 @@
       "Frail": 1
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/shame.png",
+    "image_url": "/static/images/cards/shame.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -18296,7 +18296,7 @@
     "upgrade": {
       "enemystrengthloss": "+1"
     },
-    "image_url": "/static/images/cards/shared_fate.png",
+    "image_url": "/static/images/cards/shared_fate.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Lose 2 [gold]Strength[/gold].\nEnemy loses 3 [gold]Strength[/gold].",
@@ -18336,7 +18336,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/shatter.png",
+    "image_url": "/static/images/cards/shatter.webp",
     "beta_image_url": "/static/images/cards/beta/shatter.png",
     "type_variants": null,
     "upgrade_description": "Deal 15 damage to ALL enemies.\n[gold]Evoke[/gold] all of your Orbs.",
@@ -18376,7 +18376,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/shining_strike.png",
+    "image_url": "/static/images/cards/shining_strike.webp",
     "beta_image_url": "/static/images/cards/beta/shining_strike.png",
     "type_variants": null,
     "upgrade_description": "Deal 11 damage.\nGain [star:2].\nPut this card on top of your [gold]Draw Pile[/gold].",
@@ -18419,7 +18419,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/shiv.png",
+    "image_url": "/static/images/cards/shiv.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 6 damage.",
@@ -18461,7 +18461,7 @@
     "upgrade": {
       "power": "+2"
     },
-    "image_url": "/static/images/cards/shockwave.png",
+    "image_url": "/static/images/cards/shockwave.webp",
     "beta_image_url": "/static/images/cards/beta/shockwave.png",
     "type_variants": null,
     "upgrade_description": "Apply 5 [gold]Weak[/gold] and [gold]Vulnerable[/gold] to ALL enemies.",
@@ -18501,7 +18501,7 @@
     "upgrade": {
       "block": "+1"
     },
-    "image_url": "/static/images/cards/shroud.png",
+    "image_url": "/static/images/cards/shroud.webp",
     "beta_image_url": "/static/images/cards/beta/shroud.png",
     "type_variants": null,
     "upgrade_description": "Whenever you apply [gold]Doom[/gold], gain 3 [gold]Block[/gold].",
@@ -18539,7 +18539,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/shrug_it_off.png",
+    "image_url": "/static/images/cards/shrug_it_off.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Gain 11 [gold]Block[/gold].\nDraw 1 card.",
@@ -18588,7 +18588,7 @@
       "ostydamage": "+1",
       "sicempower": "+1"
     },
-    "image_url": "/static/images/cards/sic_em.png",
+    "image_url": "/static/images/cards/sic_em.webp",
     "beta_image_url": "/static/images/cards/beta/sic_em.png",
     "type_variants": null,
     "upgrade_description": "[gold]Osty[/gold] deals 6 damage.\nWhenever [gold]Osty[/gold] hits this enemy this turn, [gold]Summon[/gold] 3.",
@@ -18634,7 +18634,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/signal_boost.png",
+    "image_url": "/static/images/cards/signal_boost.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -18674,7 +18674,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/skewer.png",
+    "image_url": "/static/images/cards/skewer.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 10 damage X times.",
@@ -18711,7 +18711,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/skim.png",
+    "image_url": "/static/images/cards/skim.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Draw 4 cards.",
@@ -18755,7 +18755,7 @@
     "upgrade": {
       "sleightoffleshpower": "+4"
     },
-    "image_url": "/static/images/cards/sleight_of_flesh.png",
+    "image_url": "/static/images/cards/sleight_of_flesh.webp",
     "beta_image_url": "/static/images/cards/beta/sleight_of_flesh.png",
     "type_variants": null,
     "upgrade_description": "Whenever you apply a debuff to an enemy, they take 13 damage.",
@@ -18792,7 +18792,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/slice.png",
+    "image_url": "/static/images/cards/slice.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 9 damage.",
@@ -18829,7 +18829,7 @@
       "Cards": 1
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/slimed.png",
+    "image_url": "/static/images/cards/slimed.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -18874,7 +18874,7 @@
       "Sloth": 3
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/sloth.png",
+    "image_url": "/static/images/cards/sloth.webp",
     "beta_image_url": "/static/images/cards/beta/sloth.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -18918,7 +18918,7 @@
     "upgrade": {
       "smokestackpower": "+2"
     },
-    "image_url": "/static/images/cards/smokestack.png",
+    "image_url": "/static/images/cards/smokestack.webp",
     "beta_image_url": "/static/images/cards/beta/smokestack.png",
     "type_variants": null,
     "upgrade_description": "Whenever you create a Status, deal 7 damage to ALL enemies.",
@@ -18964,7 +18964,7 @@
     "upgrade": {
       "poison": "+3"
     },
-    "image_url": "/static/images/cards/snakebite.png",
+    "image_url": "/static/images/cards/snakebite.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -19007,7 +19007,7 @@
     "upgrade": {
       "ostydamage": "+3"
     },
-    "image_url": "/static/images/cards/snap.png",
+    "image_url": "/static/images/cards/snap.webp",
     "beta_image_url": "/static/images/cards/beta/snap.png",
     "type_variants": null,
     "upgrade_description": "[gold]Osty[/gold] deals 10 damage.\nAdd [gold]Retain[/gold] to a card in your [gold]Hand[/gold].",
@@ -19053,7 +19053,7 @@
     "upgrade": {
       "sneakypower": "+1"
     },
-    "image_url": "/static/images/cards/sneaky.png",
+    "image_url": "/static/images/cards/sneaky.webp",
     "beta_image_url": "/static/images/cards/beta/sneaky.png",
     "type_variants": null,
     "upgrade_description": "Whenever another player attacks an enemy, gain 2 [gold]Block[/gold].",
@@ -19097,7 +19097,7 @@
       "damage": "+1",
       "stars": "+1"
     },
-    "image_url": "/static/images/cards/solar_strike.png",
+    "image_url": "/static/images/cards/solar_strike.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 9 damage.\nGain [star:2].",
@@ -19132,7 +19132,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/soot.png",
+    "image_url": "/static/images/cards/soot.webp",
     "beta_image_url": "/static/images/cards/beta/soot.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -19174,7 +19174,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/soul.png",
+    "image_url": "/static/images/cards/soul.webp",
     "beta_image_url": "/static/images/cards/beta/soul.png",
     "type_variants": null,
     "upgrade_description": "Draw 3 cards.",
@@ -19218,7 +19218,7 @@
     "upgrade": {
       "extradamage": "+1"
     },
-    "image_url": "/static/images/cards/soul_storm.png",
+    "image_url": "/static/images/cards/soul_storm.webp",
     "beta_image_url": "/static/images/cards/beta/soul_storm.png",
     "type_variants": null,
     "upgrade_description": "Deal 9 damage.\nDeals 3 additional damage for each [gold]Soul[/gold] in your [gold]Exhaust Pile[/gold].",
@@ -19261,7 +19261,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/sovereign_blade.png",
+    "image_url": "/static/images/cards/sovereign_blade.webp",
     "beta_image_url": "/static/images/cards/beta/sovereign_blade.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -19303,7 +19303,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/sow.png",
+    "image_url": "/static/images/cards/sow.webp",
     "beta_image_url": "/static/images/cards/beta/sow.png",
     "type_variants": null,
     "upgrade_description": "Deal 11 damage to ALL enemies.",
@@ -19343,7 +19343,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/spectrum_shift.png",
+    "image_url": "/static/images/cards/spectrum_shift.webp",
     "beta_image_url": "/static/images/cards/beta/spectrum_shift.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -19387,7 +19387,7 @@
     "upgrade": {
       "speedsterpower": "+1"
     },
-    "image_url": "/static/images/cards/speedster.png",
+    "image_url": "/static/images/cards/speedster.webp",
     "beta_image_url": "/static/images/cards/beta/speedster.png",
     "type_variants": null,
     "upgrade_description": "Whenever you draw a card during your turn, deal 3 damage to ALL enemies.",
@@ -19431,7 +19431,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/spinner.png",
+    "image_url": "/static/images/cards/spinner.webp",
     "beta_image_url": "/static/images/cards/beta/spinner.png",
     "type_variants": null,
     "upgrade_description": "[gold]Channel[/gold] 1 [gold]Glass[/gold].\nAt the start of your turn, [gold]Channel[/gold] 1 [gold]Glass[/gold].",
@@ -19468,7 +19468,7 @@
     "upgrade": {
       "blockonexhaust": "+1"
     },
-    "image_url": "/static/images/cards/spirit_of_ash.png",
+    "image_url": "/static/images/cards/spirit_of_ash.webp",
     "beta_image_url": "/static/images/cards/beta/spirit_of_ash.png",
     "type_variants": null,
     "upgrade_description": "Whenever you play an [gold]Ethereal[/gold] card, gain 5 [gold]Block[/gold].",
@@ -19506,7 +19506,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/spite.png",
+    "image_url": "/static/images/cards/spite.webp",
     "beta_image_url": "/static/images/cards/beta/spite.png",
     "type_variants": null,
     "upgrade_description": "Deal 9 damage.\nIf you lost HP this turn, draw 1 card.",
@@ -19541,7 +19541,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/splash.png",
+    "image_url": "/static/images/cards/splash.webp",
     "beta_image_url": "/static/images/cards/beta/splash.png",
     "type_variants": null,
     "upgrade_description": "Choose 1 of 3 random [gold]Upgraded[/gold] Attacks from another character to add into your [gold]Hand[/gold]. It's free to play this turn.",
@@ -19578,7 +19578,7 @@
       "Gold": 600
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/spoils_map.png",
+    "image_url": "/static/images/cards/spoils_map.webp",
     "beta_image_url": "/static/images/cards/beta/spoils_map.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -19618,7 +19618,7 @@
     "upgrade": {
       "forge": "+5"
     },
-    "image_url": "/static/images/cards/spoils_of_battle.png",
+    "image_url": "/static/images/cards/spoils_of_battle.webp",
     "beta_image_url": "/static/images/cards/beta/spoils_of_battle.png",
     "type_variants": null,
     "upgrade_description": "[gold]Forge[/gold] 15.",
@@ -19653,7 +19653,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/spore_mind.png",
+    "image_url": "/static/images/cards/spore_mind.webp",
     "beta_image_url": "/static/images/cards/beta/spore_mind.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -19697,7 +19697,7 @@
       "summon": "+2",
       "heal": "+2"
     },
-    "image_url": "/static/images/cards/spur.png",
+    "image_url": "/static/images/cards/spur.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]Summon[/gold] 5.\n[gold]Osty[/gold] heals 7 HP.",
@@ -19746,7 +19746,7 @@
       "damage": "+2",
       "vulnerable": "+1"
     },
-    "image_url": "/static/images/cards/squash.png",
+    "image_url": "/static/images/cards/squash.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 12 damage.\nApply 2 [gold]Vulnerable[/gold].",
@@ -19788,7 +19788,7 @@
       "calculationbase": "+5",
       "extradamage": "+1"
     },
-    "image_url": "/static/images/cards/squeeze.png",
+    "image_url": "/static/images/cards/squeeze.webp",
     "beta_image_url": "/static/images/cards/beta/squeeze.png",
     "type_variants": null,
     "upgrade_description": "[gold]Osty[/gold] deals 25 damage.\nDeals 6 additional damage for ALL your other [gold]Osty[/gold] Attacks.",
@@ -19826,7 +19826,7 @@
     "upgrade": {
       "calculationbase": "+3"
     },
-    "image_url": "/static/images/cards/stack.png",
+    "image_url": "/static/images/cards/stack.webp",
     "beta_image_url": "/static/images/cards/beta/stack.png",
     "type_variants": null,
     "upgrade_description": "Gain [gold]Block[/gold] equal to the number of cards in your [gold]Discard Pile[/gold] +[CalculationBase|].",
@@ -19863,7 +19863,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/stampede.png",
+    "image_url": "/static/images/cards/stampede.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -19900,7 +19900,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/stardust.png",
+    "image_url": "/static/images/cards/stardust.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 7 damage to a random enemy X times.",
@@ -19937,7 +19937,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/stoke.png",
+    "image_url": "/static/images/cards/stoke.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -19977,7 +19977,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/stomp.png",
+    "image_url": "/static/images/cards/stomp.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 15 damage to ALL enemies.\nCosts 1 less [energy:1] for each Attack played this turn.",
@@ -20021,7 +20021,7 @@
     "upgrade": {
       "platingpower": "+2"
     },
-    "image_url": "/static/images/cards/stone_armor.png",
+    "image_url": "/static/images/cards/stone_armor.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Gain 6 [gold]Plating[/gold].",
@@ -20065,7 +20065,7 @@
     "upgrade": {
       "stormpower": "+1"
     },
-    "image_url": "/static/images/cards/storm.png",
+    "image_url": "/static/images/cards/storm.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Whenever you play a Power, [gold]Channel[/gold] 2 [gold]Lightning[/gold].",
@@ -20102,7 +20102,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/storm_of_steel.png",
+    "image_url": "/static/images/cards/storm_of_steel.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Discard your [gold]Hand[/gold].\nAdd 1 [gold]Shiv+[/gold] into your [gold]Hand[/gold] for each card discarded.",
@@ -20148,7 +20148,7 @@
       "damage": "+2",
       "stranglepower": "+1"
     },
-    "image_url": "/static/images/cards/strangle.png",
+    "image_url": "/static/images/cards/strangle.webp",
     "beta_image_url": "/static/images/cards/beta/strangle.png",
     "type_variants": null,
     "upgrade_description": "Deal 10 damage.\nWhenever you play a card this turn, the enemy loses 3 HP.",
@@ -20183,7 +20183,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/stratagem.png",
+    "image_url": "/static/images/cards/stratagem.webp",
     "beta_image_url": "/static/images/cards/beta/stratagem.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -20222,7 +20222,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/strike_ironclad.png",
+    "image_url": "/static/images/cards/strike_ironclad.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 9 damage.",
@@ -20261,7 +20261,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/strike_silent.png",
+    "image_url": "/static/images/cards/strike_silent.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 9 damage.",
@@ -20300,7 +20300,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/strike_regent.png",
+    "image_url": "/static/images/cards/strike_regent.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 9 damage.",
@@ -20339,7 +20339,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/strike_necrobinder.png",
+    "image_url": "/static/images/cards/strike_necrobinder.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 9 damage.",
@@ -20378,7 +20378,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/strike_defect.png",
+    "image_url": "/static/images/cards/strike_defect.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 9 damage.",
@@ -20413,7 +20413,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/subroutine.png",
+    "image_url": "/static/images/cards/subroutine.webp",
     "beta_image_url": "/static/images/cards/beta/subroutine.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -20459,7 +20459,7 @@
       "damage": "+2",
       "weak": "+1"
     },
-    "image_url": "/static/images/cards/sucker_punch.png",
+    "image_url": "/static/images/cards/sucker_punch.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 10 damage.\nApply 1 [gold]Weak[/gold].",
@@ -20498,7 +20498,7 @@
     "upgrade": {
       "forge": "+3"
     },
-    "image_url": "/static/images/cards/summon_forth.png",
+    "image_url": "/static/images/cards/summon_forth.webp",
     "beta_image_url": "/static/images/cards/beta/summon_forth.png",
     "type_variants": null,
     "upgrade_description": "[gold]Forge[/gold] 11.\nPut [gold]Sovereign Blade[/gold] into your [gold]Hand[/gold] from anywhere.",
@@ -20536,7 +20536,7 @@
     "upgrade": {
       "damage": "+8"
     },
-    "image_url": "/static/images/cards/sunder.png",
+    "image_url": "/static/images/cards/sunder.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 32 damage.\nIf this kills an enemy, gain [energy:3].",
@@ -20575,7 +20575,7 @@
     "upgrade": {
       "energy": "+2"
     },
-    "image_url": "/static/images/cards/supercritical.png",
+    "image_url": "/static/images/cards/supercritical.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Gain [energy:6].",
@@ -20617,7 +20617,7 @@
     "upgrade": {
       "extradamage": "+1"
     },
-    "image_url": "/static/images/cards/supermassive.png",
+    "image_url": "/static/images/cards/supermassive.webp",
     "beta_image_url": "/static/images/cards/beta/supermassive.png",
     "type_variants": null,
     "upgrade_description": "Deal 5 damage.\nDeals 4 additional damage for each card you created this combat.",
@@ -20665,7 +20665,7 @@
       "damage": "+6",
       "weak": "+2"
     },
-    "image_url": "/static/images/cards/suppress.png",
+    "image_url": "/static/images/cards/suppress.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 17 damage.\nApply 3 [gold]Weak[/gold].",
@@ -20705,7 +20705,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/survivor.png",
+    "image_url": "/static/images/cards/survivor.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Gain 11 [gold]Block[/gold].\nDiscard 1 card.",
@@ -20743,7 +20743,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/sweeping_beam.png",
+    "image_url": "/static/images/cards/sweeping_beam.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 9 damage to ALL enemies.\nDraw 1 card.",
@@ -20786,7 +20786,7 @@
     "upgrade": {
       "ostydamage": "+5"
     },
-    "image_url": "/static/images/cards/sweeping_gaze.png",
+    "image_url": "/static/images/cards/sweeping_gaze.webp",
     "beta_image_url": "/static/images/cards/beta/sweeping_gaze.png",
     "type_variants": null,
     "upgrade_description": "[gold]Osty[/gold] deals 15 damage to a random enemy.",
@@ -20828,7 +20828,7 @@
     "upgrade": {
       "repeat": "+1"
     },
-    "image_url": "/static/images/cards/sword_boomerang.png",
+    "image_url": "/static/images/cards/sword_boomerang.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 3 damage to a random enemy 4 times.",
@@ -20874,7 +20874,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/sword_sage.png",
+    "image_url": "/static/images/cards/sword_sage.webp",
     "beta_image_url": "/static/images/cards/beta/sword_sage.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -20914,7 +20914,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/synchronize.png",
+    "image_url": "/static/images/cards/synchronize.webp",
     "beta_image_url": "/static/images/cards/beta/synchronize.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -20954,7 +20954,7 @@
     "upgrade": {
       "damage": "+6"
     },
-    "image_url": "/static/images/cards/synthesis.png",
+    "image_url": "/static/images/cards/synthesis.webp",
     "beta_image_url": "/static/images/cards/beta/synthesis.png",
     "type_variants": null,
     "upgrade_description": "Deal 18 damage.\nThe next Power you play costs 0 [energy:1].",
@@ -20993,7 +20993,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/turbo.png",
+    "image_url": "/static/images/cards/turbo.webp",
     "beta_image_url": "/static/images/cards/beta/turbo.png",
     "type_variants": null,
     "upgrade_description": "Gain [energy:3].\nAdd a [gold]Void[/gold] into your [gold]Discard Pile[/gold].",
@@ -21032,7 +21032,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/tactician.png",
+    "image_url": "/static/images/cards/tactician.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Gain [energy:2].",
@@ -21072,7 +21072,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/tag_team.png",
+    "image_url": "/static/images/cards/tag_team.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 15 damage.\nThe next Attack another player plays on the enemy is played an extra time.",
@@ -21107,7 +21107,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/tank.png",
+    "image_url": "/static/images/cards/tank.webp",
     "beta_image_url": "/static/images/cards/beta/tank.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -21153,7 +21153,7 @@
       "block": "+1",
       "vulnerable": "+1"
     },
-    "image_url": "/static/images/cards/taunt.png",
+    "image_url": "/static/images/cards/taunt.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Gain 8 [gold]Block[/gold].\nApply 1 [gold]Vulnerable[/gold].",
@@ -21193,7 +21193,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/tear_asunder.png",
+    "image_url": "/static/images/cards/tear_asunder.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 7 damage.\nHits an additional time for each time you lost HP this combat.",
@@ -21228,7 +21228,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/tempest.png",
+    "image_url": "/static/images/cards/tempest.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]Channel[/gold] X+1 [gold]Lightning[/gold].",
@@ -21272,7 +21272,7 @@
     "upgrade": {
       "vigorpower": "+2"
     },
-    "image_url": "/static/images/cards/terraforming.png",
+    "image_url": "/static/images/cards/terraforming.webp",
     "beta_image_url": "/static/images/cards/beta/terraforming.png",
     "type_variants": null,
     "upgrade_description": "Gain 8 [gold]Vigor[/gold].",
@@ -21309,7 +21309,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/tesla_coil.png",
+    "image_url": "/static/images/cards/tesla_coil.webp",
     "beta_image_url": "/static/images/cards/beta/tesla_coil.png",
     "type_variants": null,
     "upgrade_description": "Deal 6 damage.\nTrigger all [gold]Lightning[/gold] against the enemy.",
@@ -21347,7 +21347,7 @@
     "upgrade": {
       "bombdamage": "+10"
     },
-    "image_url": "/static/images/cards/the_bomb.png",
+    "image_url": "/static/images/cards/the_bomb.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "At the end of 3 turns, deal 50 damage to ALL enemies.",
@@ -21384,7 +21384,7 @@
     "upgrade": {
       "block": "+25"
     },
-    "image_url": "/static/images/cards/the_gambit.png",
+    "image_url": "/static/images/cards/the_gambit.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Gain 75 [gold]Block[/gold].\nIf you take unblocked attack damage this combat, die.",
@@ -21423,7 +21423,7 @@
     "upgrade": {
       "damage": "+5"
     },
-    "image_url": "/static/images/cards/the_hunt.png",
+    "image_url": "/static/images/cards/the_hunt.webp",
     "beta_image_url": "/static/images/cards/beta/the_hunt.png",
     "type_variants": null,
     "upgrade_description": "Deal 15 damage.\nIf [gold]Fatal[/gold], gain an additional card reward.",
@@ -21467,7 +21467,7 @@
     "upgrade": {
       "increase": "+1"
     },
-    "image_url": "/static/images/cards/the_scythe.png",
+    "image_url": "/static/images/cards/the_scythe.webp",
     "beta_image_url": "/static/images/cards/beta/the_scythe.png",
     "type_variants": null,
     "upgrade_description": "Deal 13 damage.\nPermanently increase this card's damage by 4.",
@@ -21507,7 +21507,7 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": "/static/images/cards/the_sealed_throne.png",
+    "image_url": "/static/images/cards/the_sealed_throne.webp",
     "beta_image_url": "/static/images/cards/beta/the_sealed_throne.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -21545,7 +21545,7 @@
     "upgrade": {
       "forge": "+10"
     },
-    "image_url": "/static/images/cards/the_smith.png",
+    "image_url": "/static/images/cards/the_smith.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]Forge[/gold] 40.",
@@ -21584,7 +21584,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/thinking_ahead.png",
+    "image_url": "/static/images/cards/thinking_ahead.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -21624,7 +21624,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/thrash.png",
+    "image_url": "/static/images/cards/thrash.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 6 damage twice.\n[gold]Exhaust[/gold] a random Attack in your [gold]Hand[/gold] and add its damage to this card.",
@@ -21661,7 +21661,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/thrumming_hatchet.png",
+    "image_url": "/static/images/cards/thrumming_hatchet.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 14 damage.\nAt the start of your next turn, return this to your [gold]Hand[/gold].",
@@ -21705,7 +21705,7 @@
     "upgrade": {
       "thunderpower": "+2"
     },
-    "image_url": "/static/images/cards/thunder.png",
+    "image_url": "/static/images/cards/thunder.webp",
     "beta_image_url": "/static/images/cards/beta/thunder.png",
     "type_variants": null,
     "upgrade_description": "Whenever you [gold]Evoke Lightning[/gold], deal 8 damage to each enemy hit.",
@@ -21750,7 +21750,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/thunderclap.png",
+    "image_url": "/static/images/cards/thunderclap.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 7 damage and apply 1 [gold]Vulnerable[/gold] to ALL enemies.",
@@ -21791,7 +21791,7 @@
     "upgrade": {
       "add_retain": true
     },
-    "image_url": "/static/images/cards/times_up.png",
+    "image_url": "/static/images/cards/times_up.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -21829,7 +21829,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/tools_of_the_trade.png",
+    "image_url": "/static/images/cards/tools_of_the_trade.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -21867,7 +21867,7 @@
     "upgrade": {
       "block": "+2"
     },
-    "image_url": "/static/images/cards/toric_toughness.png",
+    "image_url": "/static/images/cards/toric_toughness.webp",
     "beta_image_url": "/static/images/cards/beta/toric_toughness.png",
     "type_variants": null,
     "upgrade_description": "Gain 7 [gold]Block[/gold].\nGain 7 [gold]Block[/gold] at the start of the next 2 turns.",
@@ -21904,7 +21904,7 @@
       "Damage": 5
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/toxic.png",
+    "image_url": "/static/images/cards/toxic.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -21942,7 +21942,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/tracking.png",
+    "image_url": "/static/images/cards/tracking.webp",
     "beta_image_url": "/static/images/cards/beta/tracking.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -21981,7 +21981,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/transfigure.png",
+    "image_url": "/static/images/cards/transfigure.webp",
     "beta_image_url": "/static/images/cards/beta/transfigure.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -22019,7 +22019,7 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": "/static/images/cards/trash_to_treasure.png",
+    "image_url": "/static/images/cards/trash_to_treasure.webp",
     "beta_image_url": "/static/images/cards/beta/trash_to_treasure.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -22063,7 +22063,7 @@
     "upgrade": {
       "vulnerable": "+1"
     },
-    "image_url": "/static/images/cards/tremble.png",
+    "image_url": "/static/images/cards/tremble.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -22100,7 +22100,7 @@
     "upgrade": {
       "block": "+2"
     },
-    "image_url": "/static/images/cards/true_grit.png",
+    "image_url": "/static/images/cards/true_grit.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Gain 9 [gold]Block[/gold].\n[gold]Exhaust[/gold] 1 card.",
@@ -22139,7 +22139,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/twin_strike.png",
+    "image_url": "/static/images/cards/twin_strike.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 7 damage twice.",
@@ -22176,7 +22176,7 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": "/static/images/cards/tyranny.png",
+    "image_url": "/static/images/cards/tyranny.webp",
     "beta_image_url": "/static/images/cards/beta/tyranny.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -22218,7 +22218,7 @@
     "upgrade": {
       "block": "+4"
     },
-    "image_url": "/static/images/cards/ultimate_defend.png",
+    "image_url": "/static/images/cards/ultimate_defend.webp",
     "beta_image_url": "/static/images/cards/beta/ultimate_defend.png",
     "type_variants": null,
     "upgrade_description": "Gain 15 [gold]Block[/gold].",
@@ -22257,7 +22257,7 @@
     "upgrade": {
       "damage": "+6"
     },
-    "image_url": "/static/images/cards/ultimate_strike.png",
+    "image_url": "/static/images/cards/ultimate_strike.webp",
     "beta_image_url": "/static/images/cards/beta/ultimate_strike.png",
     "type_variants": null,
     "upgrade_description": "Deal 20 damage.",
@@ -22294,7 +22294,7 @@
     "upgrade": {
       "block": "+2"
     },
-    "image_url": "/static/images/cards/undeath.png",
+    "image_url": "/static/images/cards/undeath.webp",
     "beta_image_url": "/static/images/cards/beta/undeath.png",
     "type_variants": null,
     "upgrade_description": "Gain 9 [gold]Block[/gold].\nAdd a copy of this card into your [gold]Discard Pile[/gold].",
@@ -22335,7 +22335,7 @@
     "upgrade": {
       "calculationbase": "+3"
     },
-    "image_url": "/static/images/cards/unleash.png",
+    "image_url": "/static/images/cards/unleash.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -22370,7 +22370,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/unmovable.png",
+    "image_url": "/static/images/cards/unmovable.webp",
     "beta_image_url": "/static/images/cards/beta/unmovable.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -22407,7 +22407,7 @@
     "upgrade": {
       "damage": "+6"
     },
-    "image_url": "/static/images/cards/unrelenting.png",
+    "image_url": "/static/images/cards/unrelenting.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 18 damage.\nThe next Attack you play costs 0 [energy:1].",
@@ -22446,7 +22446,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/untouchable.png",
+    "image_url": "/static/images/cards/untouchable.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Gain 12 [gold]Block[/gold].",
@@ -22488,7 +22488,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/up_my_sleeve.png",
+    "image_url": "/static/images/cards/up_my_sleeve.webp",
     "beta_image_url": "/static/images/cards/beta/up_my_sleeve.png",
     "type_variants": null,
     "upgrade_description": "Add 4 [gold]Shivs[/gold] into your [gold]Hand[/gold].\nReduce this card's cost by 1.",
@@ -22526,7 +22526,7 @@
     "upgrade": {
       "power": "+1"
     },
-    "image_url": "/static/images/cards/uppercut.png",
+    "image_url": "/static/images/cards/uppercut.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 13 damage.\nApply 2 [gold]Weak[/gold].\nApply 2 [gold]Vulnerable[/gold].",
@@ -22563,7 +22563,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/uproar.png",
+    "image_url": "/static/images/cards/uproar.webp",
     "beta_image_url": "/static/images/cards/beta/uproar.png",
     "type_variants": null,
     "upgrade_description": "Deal 7 damage twice.\nPlay a random Attack from your [gold]Draw Pile[/gold].",
@@ -22600,7 +22600,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/veilpiercer.png",
+    "image_url": "/static/images/cards/veilpiercer.webp",
     "beta_image_url": "/static/images/cards/beta/veilpiercer.png",
     "type_variants": null,
     "upgrade_description": "Deal 13 damage.\nThe next [gold]Ethereal[/gold] card you play costs 0 [energy:1].",
@@ -22637,7 +22637,7 @@
     "upgrade": {
       "stars": "+1"
     },
-    "image_url": "/static/images/cards/venerate.png",
+    "image_url": "/static/images/cards/venerate.webp",
     "beta_image_url": "/static/images/cards/beta/venerate.png",
     "type_variants": null,
     "upgrade_description": "Gain [star:3].",
@@ -22674,7 +22674,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/vicious.png",
+    "image_url": "/static/images/cards/vicious.webp",
     "beta_image_url": "/static/images/cards/beta/vicious.png",
     "type_variants": null,
     "upgrade_description": "Whenever you apply [gold]Vulnerable[/gold], draw 2 cards.",
@@ -22712,7 +22712,7 @@
       "Energy": 1
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/void.png",
+    "image_url": "/static/images/cards/void.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -22760,7 +22760,7 @@
     "upgrade": {
       "voidformpower": "+1"
     },
-    "image_url": "/static/images/cards/void_form.png",
+    "image_url": "/static/images/cards/void_form.webp",
     "beta_image_url": "/static/images/cards/beta/void_form.png",
     "type_variants": null,
     "upgrade_description": "End your turn.\nThe first 3 cards you play each turn are free to play.",
@@ -22797,7 +22797,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/volley.png",
+    "image_url": "/static/images/cards/volley.webp",
     "beta_image_url": "/static/images/cards/beta/volley.png",
     "type_variants": null,
     "upgrade_description": "Deal 14 damage to a random enemy X times.",
@@ -22837,7 +22837,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/voltaic.png",
+    "image_url": "/static/images/cards/voltaic.webp",
     "beta_image_url": "/static/images/cards/beta/voltaic.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -22882,7 +22882,7 @@
       "WasteAway": 1
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/waste_away.png",
+    "image_url": "/static/images/cards/waste_away.webp",
     "beta_image_url": "/static/images/cards/beta/waste_away.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -22919,7 +22919,7 @@
     "upgrade": {
       "retainamount": "+1"
     },
-    "image_url": "/static/images/cards/well_laid_plans.png",
+    "image_url": "/static/images/cards/well_laid_plans.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "At the end of your turn, [gold]Retain[/gold] up to 2 cards.",
@@ -22956,7 +22956,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/whirlwind.png",
+    "image_url": "/static/images/cards/whirlwind.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Deal 8 damage to ALL enemies X times.",
@@ -22995,7 +22995,7 @@
     "upgrade": {
       "damage": "+11"
     },
-    "image_url": "/static/images/cards/whistle.png",
+    "image_url": "/static/images/cards/whistle.webp",
     "beta_image_url": "/static/images/cards/beta/whistle.png",
     "type_variants": null,
     "upgrade_description": "Deal 44 damage.\n[gold]Stun[/gold] the enemy.",
@@ -23035,7 +23035,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/white_noise.png",
+    "image_url": "/static/images/cards/white_noise.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -23075,7 +23075,7 @@
     "upgrade": {
       "add_retain": true
     },
-    "image_url": "/static/images/cards/wish.png",
+    "image_url": "/static/images/cards/wish.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -23117,7 +23117,7 @@
     "upgrade": {
       "add_retain": true
     },
-    "image_url": "/static/images/cards/wisp.png",
+    "image_url": "/static/images/cards/wisp.webp",
     "beta_image_url": "/static/images/cards/beta/wisp.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -23155,7 +23155,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/wound.png",
+    "image_url": "/static/images/cards/wound.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -23209,7 +23209,7 @@
     "upgrade": {
       "intangiblepower": "+1"
     },
-    "image_url": "/static/images/cards/wraith_form.png",
+    "image_url": "/static/images/cards/wraith_form.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Gain 3 [gold]Intangible[/gold].\nAt the start of your turn, lose 1 [gold]Dexterity[/gold].",
@@ -23245,7 +23245,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/writhe.png",
+    "image_url": "/static/images/cards/writhe.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -23288,7 +23288,7 @@
       "damage": "+2",
       "forge": "+2"
     },
-    "image_url": "/static/images/cards/wrought_in_war.png",
+    "image_url": "/static/images/cards/wrought_in_war.webp",
     "beta_image_url": "/static/images/cards/beta/wrought_in_war.png",
     "type_variants": null,
     "upgrade_description": "Deal 9 damage.\n[gold]Forge[/gold] 7.",
@@ -23323,7 +23323,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/zap.png",
+    "image_url": "/static/images/cards/zap.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,

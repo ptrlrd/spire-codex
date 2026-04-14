@@ -5,7 +5,7 @@
     "description": "[gold]手札[/gold]のカードを1枚選び、この戦闘中コストを支払わずにプレイしてもよい。",
     "description_raw": "[gold]手札[/gold]のカードを1枚選び、この戦闘中コストを支払わずにプレイしてもよい。",
     "rarity": "ポーション（アンコモン）",
-    "image_url": "/static/images/potions/touch_of_insanity.png",
+    "image_url": "/static/images/potions/touch_of_insanity.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 20,
     "pool": "shared"
@@ -16,7 +16,7 @@
     "description": "ランダムな[blue]3[/blue]枚のアタックから[blue]1[/blue]枚を選び、[gold]手札[/gold]に加える。このターン、それはコストを支払わずにプレイできる。",
     "description_raw": "ランダムな[blue]3[/blue]枚のアタックから[blue]1[/blue]枚を選び、[gold]手札[/gold]に加える。このターン、それはコストを支払わずにプレイできる。",
     "rarity": "ポーション（コモン）",
-    "image_url": "/static/images/potions/attack_potion.png",
+    "image_url": "/static/images/potions/attack_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 0,
     "pool": "shared"
@@ -27,7 +27,7 @@
     "description": "[gold]手札[/gold]から任意の枚数のカードを[gold]廃棄[/gold]する。",
     "description_raw": "[gold]手札[/gold]から任意の枚数のカードを[gold]廃棄[/gold]する。",
     "rarity": "ポーション（アンコモン）",
-    "image_url": "/static/images/potions/ashwater.png",
+    "image_url": "/static/images/potions/ashwater.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 21,
     "pool": "ironclad"
@@ -38,7 +38,7 @@
     "description": "[energy:2]を得る。",
     "description_raw": "{Energy:energyIcons()}を得る。",
     "rarity": "ポーション（コモン）",
-    "image_url": "/static/images/potions/energy_potion.png",
+    "image_url": "/static/images/potions/energy_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 1,
     "pool": "shared"
@@ -49,7 +49,7 @@
     "description": "すべての空きポーションスロットをランダムなポーションで満たす。",
     "description_raw": "すべての空きポーションスロットをランダムなポーションで満たす。",
     "rarity": "ポーション（レア）",
-    "image_url": "/static/images/potions/entropic_brew.png",
+    "image_url": "/static/images/potions/entropic_brew.webp",
     "rarity_key": "Rare",
     "compendium_order": 40,
     "pool": "shared"
@@ -60,7 +60,7 @@
     "description": "ランダムなアタック、スキル、パワーを1枚ずつ[gold]手札[/gold]に加える。このターン、それらをコストを支払わずにプレイできる。",
     "description_raw": "ランダムなアタック、スキル、パワーを1枚ずつ[gold]手札[/gold]に加える。このターン、それらをコストを支払わずにプレイできる。",
     "rarity": "ポーション（レア）",
-    "image_url": "/static/images/potions/orobic_acid.png",
+    "image_url": "/static/images/potions/orobic_acid.webp",
     "rarity_key": "Rare",
     "compendium_order": 41,
     "pool": "shared"
@@ -71,7 +71,7 @@
     "description": "任意の枚数のカードを捨て、同じ数だけカードを引く。",
     "description_raw": "任意の枚数のカードを捨て、同じ数だけカードを引く。",
     "rarity": "ポーション（アンコモン）",
-    "image_url": "/static/images/potions/gamblers_brew.png",
+    "image_url": "/static/images/potions/gamblers_brew.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 22,
     "pool": "shared"
@@ -82,7 +82,7 @@
     "description": "[gold]ソウル[/gold]を[blue]2[/blue]枚、[gold]手札[/gold]に加える。",
     "description_raw": "[gold]ソウル[/gold]を[blue]{Cards}[/blue]枚、[gold]手札[/gold]に加える。",
     "rarity": "ポーション（レア）",
-    "image_url": "/static/images/potions/pot_of_ghouls.png",
+    "image_url": "/static/images/potions/pot_of_ghouls.webp",
     "rarity_key": "Rare",
     "compendium_order": 42,
     "pool": "necrobinder"
@@ -93,7 +93,7 @@
     "description": "ランダムな[blue]3[/blue]枚のスキルから[blue]1[/blue]枚を選び、[gold]手札[/gold]に加える。このターン、それはコストを支払わずにプレイできる。",
     "description_raw": "ランダムな[blue]3[/blue]枚のスキルから[blue]1[/blue]枚を選び、[gold]手札[/gold]に加える。このターン、それはコストを支払わずにプレイできる。",
     "rarity": "ポーション（コモン）",
-    "image_url": "/static/images/potions/skill_potion.png",
+    "image_url": "/static/images/potions/skill_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 2,
     "pool": "shared"
@@ -104,7 +104,7 @@
     "description": "[star:3]を得る。",
     "description_raw": "{Stars:starIcons()}を得る。",
     "rarity": "ポーション（コモン）",
-    "image_url": "/static/images/potions/star_potion.png",
+    "image_url": "/static/images/potions/star_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 3,
     "pool": "regent"
@@ -115,7 +115,7 @@
     "description": "カードを[blue]7[/blue]枚引く。このターン、[gold]手札[/gold]のカードのコストがランダムに変化する。",
     "description_raw": "カードを[blue]{Cards}[/blue]枚引く。このターン、[gold]手札[/gold]のカードのコストがランダムに変化する。",
     "rarity": "ポーション（レア）",
-    "image_url": "/static/images/potions/snecko_oil.png",
+    "image_url": "/static/images/potions/snecko_oil.webp",
     "rarity_key": "Rare",
     "compendium_order": 43,
     "pool": "shared"
@@ -126,7 +126,7 @@
     "description": "[gold]敏捷[/gold][blue]5[/blue]を得る。ターン終了時、[gold]敏捷[/gold][blue]5[/blue]を失う。",
     "description_raw": "[gold]敏捷[/gold][blue]{DexterityPower}[/blue]を得る。ターン終了時、[gold]敏捷[/gold][blue]{DexterityPower}[/blue]を失う。",
     "rarity": "ポーション（コモン）",
-    "image_url": "/static/images/potions/speed_potion.png",
+    "image_url": "/static/images/potions/speed_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 4,
     "pool": "shared"
@@ -137,7 +137,7 @@
     "description": "ランダムな[blue]3[/blue]枚のパワーから[blue]1[/blue]枚を選び、[gold]手札[/gold]に加える。このターン、それはコストを支払わずにプレイできる。",
     "description_raw": "ランダムな[blue]3[/blue]枚のパワーから[blue]1[/blue]枚を選び、[gold]手札[/gold]に加える。このターン、それはコストを支払わずにプレイできる。",
     "rarity": "ポーション（コモン）",
-    "image_url": "/static/images/potions/power_potion.png",
+    "image_url": "/static/images/potions/power_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 5,
     "pool": "shared"
@@ -148,7 +148,7 @@
     "description": "[gold]筋力[/gold][blue]1[/blue]と、[gold]敏捷[/gold][blue]1[/blue]を得る。",
     "description_raw": "[gold]筋力[/gold][blue]{StrengthPower}[/blue]と、[gold]敏捷[/gold][blue]{DexterityPower}[/blue]を得る。",
     "rarity": "ポーション（アンコモン）",
-    "image_url": "/static/images/potions/fysh_oil.png",
+    "image_url": "/static/images/potions/fysh_oil.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 23,
     "pool": "shared"
@@ -159,7 +159,7 @@
     "description": "最大HPが[blue]5[/blue]増加する。",
     "description_raw": "最大HPが[blue]{MaxHp}[/blue]増加する。",
     "rarity": "ポーション（レア）",
-    "image_url": "/static/images/potions/fruit_juice.png",
+    "image_url": "/static/images/potions/fruit_juice.webp",
     "rarity_key": "Rare",
     "compendium_order": 44,
     "pool": "shared"
@@ -170,7 +170,7 @@
     "description": "[gold]筋力[/gold][blue]5[/blue]を得る。ターン終了時、[gold]筋力[/gold][blue]5[/blue]を失う。",
     "description_raw": "[gold]筋力[/gold][blue]{StrengthPower}[/blue]を得る。ターン終了時、[gold]筋力[/gold][blue]{StrengthPower}[/blue]を失う。",
     "rarity": "ポーション（コモン）",
-    "image_url": "/static/images/potions/flex_potion.png",
+    "image_url": "/static/images/potions/flex_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 6,
     "pool": "shared"
@@ -181,7 +181,7 @@
     "description": "最大HPの[green]20%[/green]を回復する。",
     "description_raw": "最大HPの[green]{HealPercent}%[/green]を回復する。",
     "rarity": "ポーション（コモン）",
-    "image_url": "/static/images/potions/blood_potion.png",
+    "image_url": "/static/images/potions/blood_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 7,
     "pool": "ironclad"
@@ -192,7 +192,7 @@
     "description": "[blue]12[/blue][gold]ブロック[/gold]を得る。",
     "description_raw": "[blue]{Block}[/blue][gold]ブロック[/gold]を得る。",
     "rarity": "ポーション（コモン）",
-    "image_url": "/static/images/potions/block_potion.png",
+    "image_url": "/static/images/potions/block_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 8,
     "pool": "shared"
@@ -203,7 +203,7 @@
     "description": "[blue]10[/blue][gold]ブロック[/gold]を得る。次のターン、[blue]10[/blue][gold]ブロック[/gold]を得る。",
     "description_raw": "[blue]{Block:diff()}[/blue][gold]ブロック[/gold]を得る。次のターン、[blue]{Block:diff()}[/blue][gold]ブロック[/gold]を得る。",
     "rarity": "ポーション（レア）",
-    "image_url": "/static/images/potions/ship_in_a_bottle.png",
+    "image_url": "/static/images/potions/ship_in_a_bottle.webp",
     "rarity_key": "Rare",
     "compendium_order": 45,
     "pool": "shared"
@@ -214,7 +214,7 @@
     "description": "[blue]15[/blue]ダメージを与える。",
     "description_raw": "[blue]{Damage}[/blue]ダメージを与える。",
     "rarity": "トークン",
-    "image_url": "/static/images/potions/potion_shaped_rock.png",
+    "image_url": "/static/images/potions/potion_shaped_rock.webp",
     "rarity_key": "Token",
     "compendium_order": 62,
     "pool": "shared"
@@ -225,7 +225,7 @@
     "description": "[gold]儀式[/gold][blue]1[/blue]を得る。",
     "description_raw": "[gold]儀式[/gold][blue]{RitualPower}[/blue]を得る。",
     "rarity": "ポーション（レア）",
-    "image_url": "/static/images/potions/mazaleths_gift.png",
+    "image_url": "/static/images/potions/mazaleths_gift.webp",
     "rarity_key": "Rare",
     "compendium_order": 46,
     "pool": "shared"
@@ -236,7 +236,7 @@
     "description": "[energy:1]を得る。カードを[blue]2[/blue]枚引く。",
     "description_raw": "{Energy:energyIcons()}を得る。カードを[blue]{Cards}[/blue]枚引く。",
     "rarity": "ポーション（アンコモン）",
-    "image_url": "/static/images/potions/cure_all.png",
+    "image_url": "/static/images/potions/cure_all.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 24,
     "pool": "shared"
@@ -247,7 +247,7 @@
     "description": "[energy:1]を得る。次のターン開始時、追加で[energy:1]を得る。（残り[blue]3[/blue]ターン）",
     "description_raw": "{Energy:energyIcons()}を得る。次のターン開始時、追加で{energyPrefix:energyIcons(1)}を得る。（残り[blue]{RadiancePower}[/blue]ターン）",
     "rarity": "ポーション（アンコモン）",
-    "image_url": "/static/images/potions/radiant_tincture.png",
+    "image_url": "/static/images/potions/radiant_tincture.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 25,
     "pool": "shared"
@@ -258,7 +258,7 @@
     "description": "この戦闘中、名前に[gold]ストライク[/gold]を含むすべてのカードが[gold]リプレイ[/gold][blue]1[/blue]を得る。",
     "description_raw": "この戦闘中、名前に[gold]ストライク[/gold]を含むすべてのカードが[gold]リプレイ[/gold][blue]1[/blue]を得る。",
     "rarity": "ポーション（レア）",
-    "image_url": "/static/images/potions/soldiers_stew.png",
+    "image_url": "/static/images/potions/soldiers_stew.webp",
     "rarity_key": "Rare",
     "compendium_order": 47,
     "pool": "ironclad"
@@ -269,7 +269,7 @@
     "description": "[gold]再生[/gold][green]5[/green]を得る。",
     "description_raw": "[gold]再生[/gold][green]{RegenPower}[/green]を得る。",
     "rarity": "ポーション（アンコモン）",
-    "image_url": "/static/images/potions/regen_potion.png",
+    "image_url": "/static/images/potions/regen_potion.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 26,
     "pool": "shared"
@@ -280,7 +280,7 @@
     "description": "カードを[blue]3[/blue]枚引く。",
     "description_raw": "カードを[blue]{Cards}[/blue]枚引く。",
     "rarity": "ポーション（コモン）",
-    "image_url": "/static/images/potions/swift_potion.png",
+    "image_url": "/static/images/potions/swift_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 9,
     "pool": "shared"
@@ -291,7 +291,7 @@
     "description": "すべてのカードを[gold]山札[/gold]に戻してシャッフルする。カードを[blue]5[/blue]枚引く。",
     "description_raw": "すべてのカードを[gold]山札[/gold]に戻してシャッフルする。カードを[blue]{Cards}[/blue]枚引く。",
     "rarity": "ポーション（レア）",
-    "image_url": "/static/images/potions/bottled_potential.png",
+    "image_url": "/static/images/potions/bottled_potential.webp",
     "rarity_key": "Rare",
     "compendium_order": 48,
     "pool": "shared"
@@ -302,7 +302,7 @@
     "description": "[gold]アップグレード[/gold]した無色カードを[blue]3[/blue]枚[gold]手札[/gold]に加える。",
     "description_raw": "[gold]アップグレード[/gold]した無色カードを[blue]{Cards}[/blue]枚[gold]手札[/gold]に加える。",
     "rarity": "ポーション（レア）",
-    "image_url": "/static/images/potions/cosmic_concoction.png",
+    "image_url": "/static/images/potions/cosmic_concoction.webp",
     "rarity_key": "Rare",
     "compendium_order": 49,
     "pool": "regent"
@@ -313,7 +313,7 @@
     "description": "[blue]2[/blue]ターンの間、[gold]手札[/gold]をすべて[gold]保留[/gold]する。",
     "description_raw": "[blue]{Repeat}[/blue]ターンの間、[gold]手札[/gold]をすべて[gold]保留[/gold]する。",
     "rarity": "ポーション（アンコモン）",
-    "image_url": "/static/images/potions/stable_serum.png",
+    "image_url": "/static/images/potions/stable_serum.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 27,
     "pool": "shared"
@@ -324,7 +324,7 @@
     "description": "次にプレイするアタックのダメージが3倍になる。",
     "description_raw": "次にプレイするアタックのダメージが3倍になる。",
     "rarity": "ポーション（レア）",
-    "image_url": "/static/images/potions/gigantification_potion.png",
+    "image_url": "/static/images/potions/gigantification_potion.webp",
     "rarity_key": "Rare",
     "compendium_order": 50,
     "pool": "shared"
@@ -335,7 +335,7 @@
     "description": "[gold]バッファー[/gold][blue]1[/blue]を得る。",
     "description_raw": "[gold]バッファー[/gold][blue]{BufferPower}[/blue]を得る。",
     "rarity": "ポーション（レア）",
-    "image_url": "/static/images/potions/lucky_tonic.png",
+    "image_url": "/static/images/potions/lucky_tonic.webp",
     "rarity_key": "Rare",
     "compendium_order": 51,
     "pool": "shared"
@@ -346,7 +346,7 @@
     "description": "[gold]霊体[/gold][blue]1[/blue]を得る。",
     "description_raw": "[gold]霊体[/gold][blue]1[/blue]を得る。",
     "rarity": "ポーション（レア）",
-    "image_url": "/static/images/potions/ghost_in_a_jar.png",
+    "image_url": "/static/images/potions/ghost_in_a_jar.webp",
     "rarity_key": "Rare",
     "compendium_order": 52,
     "pool": "silent"
@@ -357,7 +357,7 @@
     "description": "[gold]弱体[/gold][blue]3[/blue]を付与する。",
     "description_raw": "[gold]弱体[/gold][blue]{VulnerablePower}[/blue]を付与する。",
     "rarity": "ポーション（コモン）",
-    "image_url": "/static/images/potions/vulnerable_potion.png",
+    "image_url": "/static/images/potions/vulnerable_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 10,
     "pool": "shared"
@@ -368,7 +368,7 @@
     "description": "敵味方全員に[blue]12[/blue]ダメージを与える。\nまたは、[gold]商人[/gold]に投げつけて[blue]100[/blue][gold]ゴールド[/gold]を得る。",
     "description_raw": "敵味方全員に[blue]{Damage}[/blue]ダメージを与える。\nまたは、[gold]商人[/gold]に投げつけて[blue]{Gold}[/blue][gold]ゴールド[/gold]を得る。",
     "rarity": "ポーション（イベント）",
-    "image_url": "/static/images/potions/foul_potion.png",
+    "image_url": "/static/images/potions/foul_potion.webp",
     "rarity_key": "Event",
     "compendium_order": 60,
     "pool": "event"
@@ -379,7 +379,7 @@
     "description": "[gold]山札[/gold]の一番上から[blue]3[/blue]枚のカードをプレイする。",
     "description_raw": "[gold]山札[/gold]の一番上から[blue]{Repeat}[/blue]枚のカードをプレイする。",
     "rarity": "ポーション（レア）",
-    "image_url": "/static/images/potions/distilled_chaos.png",
+    "image_url": "/static/images/potions/distilled_chaos.webp",
     "rarity_key": "Rare",
     "compendium_order": 53,
     "pool": "shared"
@@ -390,7 +390,7 @@
     "description": "[gold]オーブスロット[/gold]を[blue]2[/blue]枠得る。",
     "description_raw": "[gold]オーブスロット[/gold]を[blue]{Repeat}[/blue]枠得る。",
     "rarity": "ポーション（アンコモン）",
-    "image_url": "/static/images/potions/potion_of_capacity.png",
+    "image_url": "/static/images/potions/potion_of_capacity.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 28,
     "pool": "defect"
@@ -401,7 +401,7 @@
     "description": "[gold]敏捷[/gold][blue]2[/blue]を得る。",
     "description_raw": "[gold]敏捷[/gold][blue]{DexterityPower}[/blue]を得る。",
     "rarity": "ポーション（コモン）",
-    "image_url": "/static/images/potions/dexterity_potion.png",
+    "image_url": "/static/images/potions/dexterity_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 11,
     "pool": "shared"
@@ -412,7 +412,7 @@
     "description": "カードを[blue]1[/blue]枚引く。次のターン開始時、カードを追加で[blue]1[/blue]枚引く。（残り[blue]3[/blue]ターン）",
     "description_raw": "カードを[blue]{Cards}[/blue]枚引く。次のターン開始時、カードを追加で[blue]1[/blue]枚引く。（残り[blue]{ClarityPower}[/blue]ターン）",
     "rarity": "ポーション（アンコモン）",
-    "image_url": "/static/images/potions/clarity.png",
+    "image_url": "/static/images/potions/clarity.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 29,
     "pool": "shared"
@@ -423,7 +423,7 @@
     "description": "[gold]山札[/gold]からカードを1枚選び、[gold]手札[/gold]に加える。",
     "description_raw": "[gold]山札[/gold]からカードを1枚選び、[gold]手札[/gold]に加える。",
     "rarity": "ポーション（レア）",
-    "image_url": "/static/images/potions/droplet_of_precognition.png",
+    "image_url": "/static/images/potions/droplet_of_precognition.webp",
     "rarity_key": "Rare",
     "compendium_order": 54,
     "pool": "shared"
@@ -434,7 +434,7 @@
     "description": "すべての敵に[gold]脱力[/gold][blue]1[/blue]と[gold]弱体[/gold][blue]1[/blue]を付与する。",
     "description_raw": "すべての敵に[gold]脱力[/gold][blue]{WeakPower:diff()}[/blue]と[gold]弱体[/gold][blue]{VulnerablePower:diff()}[/blue]を付与する。",
     "rarity": "ポーション（アンコモン）",
-    "image_url": "/static/images/potions/potion_of_binding.png",
+    "image_url": "/static/images/potions/potion_of_binding.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 30,
     "pool": "shared"
@@ -445,7 +445,7 @@
     "description": "ターン終了時まで、すべての敵は[gold]筋力[/gold][blue]7[/blue]を失う。",
     "description_raw": "ターン終了時まで、すべての敵は[gold]筋力[/gold][blue]{StrengthPower}[/blue]を失う。",
     "rarity": "ポーション（レア）",
-    "image_url": "/static/images/potions/shackling_potion.png",
+    "image_url": "/static/images/potions/shackling_potion.webp",
     "rarity_key": "Rare",
     "compendium_order": 55,
     "pool": "shared"
@@ -456,7 +456,7 @@
     "description": "[gold]毒[/gold][blue]6[/blue]を付与する。",
     "description_raw": "[gold]毒[/gold][blue]{PoisonPower}[/blue]を付与する。",
     "rarity": "ポーション（コモン）",
-    "image_url": "/static/images/potions/poison_potion.png",
+    "image_url": "/static/images/potions/poison_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 12,
     "pool": "silent"
@@ -467,7 +467,7 @@
     "description": "[gold]トゲ[/gold][blue]3[/blue]を得る。",
     "description_raw": "[gold]トゲ[/gold][blue]{ThornsPower}[/blue]を得る。",
     "rarity": "ポーション（アンコモン）",
-    "image_url": "/static/images/potions/liquid_bronze.png",
+    "image_url": "/static/images/potions/liquid_bronze.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 31,
     "pool": "shared"
@@ -478,7 +478,7 @@
     "description": "[blue]20[/blue]ダメージを与える。",
     "description_raw": "[blue]{Damage}[/blue]ダメージを与える。",
     "rarity": "ポーション（コモン）",
-    "image_url": "/static/images/potions/fire_potion.png",
+    "image_url": "/static/images/potions/fire_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 13,
     "pool": "shared"
@@ -489,7 +489,7 @@
     "description": "ランダムな[blue]3[/blue]枚の無色カードから[blue]1[/blue]枚を選び、[gold]手札[/gold]に加える。このターン、それはコストを支払わずにプレイできる",
     "description_raw": "ランダムな[blue]3[/blue]枚の無色カードから[blue]1[/blue]枚を選び、[gold]手札[/gold]に加える。このターン、それはコストを支払わずにプレイできる",
     "rarity": "ポーション（コモン）",
-    "image_url": "/static/images/potions/colorless_potion.png",
+    "image_url": "/static/images/potions/colorless_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 14,
     "pool": "shared"
@@ -500,7 +500,7 @@
     "description": "[gold]手札[/gold]をすべて[gold]廃棄[/gold]する。カードを[blue]10[/blue]枚引く。",
     "description_raw": "[gold]手札[/gold]をすべて[gold]廃棄[/gold]する。カードを[blue]{Cards}[/blue]枚引く。",
     "rarity": "ポーション（イベント）",
-    "image_url": "/static/images/potions/glowwater_potion.png",
+    "image_url": "/static/images/potions/glowwater_potion.webp",
     "rarity_key": "Event",
     "compendium_order": 61,
     "pool": "event"
@@ -511,7 +511,7 @@
     "description": "すべての敵に[blue]10[/blue]ダメージを与える。",
     "description_raw": "すべての敵に[blue]{Damage}[/blue]ダメージを与える。",
     "rarity": "ポーション（コモン）",
-    "image_url": "/static/images/potions/explosive_ampoule.png",
+    "image_url": "/static/images/potions/explosive_ampoule.webp",
     "rarity_key": "Common",
     "compendium_order": 15,
     "pool": "shared"
@@ -522,7 +522,7 @@
     "description": "[gold]アップグレードしたナイフ[/gold]を[blue]3[/blue]枚[gold]手札[/gold]に加える。",
     "description_raw": "[gold]アップグレードしたナイフ[/gold]を[blue]{Cards}[/blue]枚[gold]手札[/gold]に加える。",
     "rarity": "ポーション（アンコモン）",
-    "image_url": "/static/images/potions/cunning_potion.png",
+    "image_url": "/static/images/potions/cunning_potion.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 32,
     "pool": "silent"
@@ -533,7 +533,7 @@
     "description": "[gold]鍛造[/gold][blue]15[/blue]。",
     "description_raw": "[gold]鍛造[/gold][blue]{Forge}[/blue]。",
     "rarity": "ポーション（アンコモン）",
-    "image_url": "/static/images/potions/kings_courage.png",
+    "image_url": "/static/images/potions/kings_courage.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 33,
     "pool": "regent"
@@ -544,7 +544,7 @@
     "description": "死亡時、最大HPの[blue]30%[/blue]で復活し、このポーションを失う。",
     "description_raw": "死亡時、最大HPの[blue]30%[/blue]で復活し、このポーションを失う。",
     "rarity": "ポーション（レア）",
-    "image_url": "/static/images/potions/fairy_in_a_bottle.png",
+    "image_url": "/static/images/potions/fairy_in_a_bottle.webp",
     "rarity_key": "Rare",
     "compendium_order": 56,
     "pool": "shared"
@@ -555,7 +555,7 @@
     "description": "[blue]4[/blue]ターンの間、敵のアタックによるダメージが[blue]30%[/blue]減少する。",
     "description_raw": "[blue]{Repeat}[/blue]ターンの間、敵のアタックによるダメージが[blue]{DamageDecrease}%[/blue]減少する。",
     "rarity": "ポーション（レア）",
-    "image_url": "/static/images/potions/beetle_juice.png",
+    "image_url": "/static/images/potions/beetle_juice.webp",
     "rarity_key": "Rare",
     "compendium_order": 57,
     "pool": "shared"
@@ -566,7 +566,7 @@
     "description": "[gold]破滅[/gold][blue]33[/blue]を付与する。",
     "description_raw": "[gold]破滅[/gold][blue]{DoomPower}[/blue]を付与する。",
     "rarity": "ポーション（コモン）",
-    "image_url": "/static/images/potions/potion_of_doom.png",
+    "image_url": "/static/images/potions/potion_of_doom.webp",
     "rarity_key": "Common",
     "compendium_order": 16,
     "pool": "necrobinder"
@@ -577,7 +577,7 @@
     "description": "[gold]筋力[/gold][blue]2[/blue]を得る。",
     "description_raw": "[gold]筋力[/gold][blue]{StrengthPower}[/blue]を得る。",
     "rarity": "ポーション（コモン）",
-    "image_url": "/static/images/potions/strength_potion.png",
+    "image_url": "/static/images/potions/strength_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 17,
     "pool": "shared"
@@ -588,7 +588,7 @@
     "description": "敵のターン終了時、その敵はHPを[blue]9[/blue]失う。",
     "description_raw": "敵のターン終了時、その敵はHPを[blue]{Demise}[/blue]失う。",
     "rarity": "ポーション（アンコモン）",
-    "image_url": "/static/images/potions/powdered_demise.png",
+    "image_url": "/static/images/potions/powdered_demise.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 34,
     "pool": "shared"
@@ -599,7 +599,7 @@
     "description": "[gold]脱力[/gold][blue]3[/blue]を付与する。",
     "description_raw": "[gold]脱力[/gold][blue]{WeakPower}[/blue]を付与する。",
     "rarity": "ポーション（コモン）",
-    "image_url": "/static/images/potions/weak_potion.png",
+    "image_url": "/static/images/potions/weak_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 18,
     "pool": "shared"
@@ -610,7 +610,7 @@
     "description": "このターン、次にプレイするカードを追加でもう1回プレイする。",
     "description_raw": "このターン、次にプレイするカードを追加でもう1回プレイする。",
     "rarity": "ポーション（アンコモン）",
-    "image_url": "/static/images/potions/duplicator.png",
+    "image_url": "/static/images/potions/duplicator.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 35,
     "pool": "shared"
@@ -621,7 +621,7 @@
     "description": "[gold]捨て札[/gold]からカードを1枚[gold]手札[/gold]に加える。このターン、そのコストは[blue]0[/blue][energy:1]。",
     "description_raw": "[gold]捨て札[/gold]からカードを1枚[gold]手札[/gold]に加える。このターン、そのコストは[blue]0[/blue]{energyPrefix:energyIcons(1)}。",
     "rarity": "ポーション（レア）",
-    "image_url": "/static/images/potions/liquid_memories.png",
+    "image_url": "/static/images/potions/liquid_memories.webp",
     "rarity_key": "Rare",
     "compendium_order": 58,
     "pool": "shared"
@@ -632,7 +632,7 @@
     "description": "[gold]プレート[/gold][blue]7[/blue]を得る。",
     "description_raw": "[gold]プレート[/gold][blue]{PlatingPower}[/blue]を得る。",
     "rarity": "ポーション（アンコモン）",
-    "image_url": "/static/images/potions/heart_of_iron.png",
+    "image_url": "/static/images/potions/heart_of_iron.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 36,
     "pool": "shared"
@@ -643,7 +643,7 @@
     "description": "この戦闘中、[gold]手札[/gold]のすべてのカードを[gold]アップグレード[/gold]する。",
     "description_raw": "この戦闘中、[gold]手札[/gold]のすべてのカードを[gold]アップグレード[/gold]する。",
     "rarity": "ポーション（アンコモン）",
-    "image_url": "/static/images/potions/blessing_of_the_forge.png",
+    "image_url": "/static/images/potions/blessing_of_the_forge.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 37,
     "pool": "shared"
@@ -654,7 +654,7 @@
     "description": "[gold]オーブスロット[/gold]1つにつき、[gold]ダーク[/gold]1を[gold]生成[/gold]する。",
     "description_raw": "[gold]オーブスロット[/gold]1つにつき、[gold]ダーク[/gold]1を[gold]生成[/gold]する。",
     "rarity": "ポーション（レア）",
-    "image_url": "/static/images/potions/essence_of_darkness.png",
+    "image_url": "/static/images/potions/essence_of_darkness.webp",
     "rarity_key": "Rare",
     "compendium_order": 59,
     "pool": "defect"
@@ -665,7 +665,7 @@
     "description": "[gold]ブロック[/gold]の値を3倍にする。",
     "description_raw": "[gold]ブロック[/gold]の値を3倍にする。",
     "rarity": "ポーション（アンコモン）",
-    "image_url": "/static/images/potions/fortifier.png",
+    "image_url": "/static/images/potions/fortifier.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 38,
     "pool": "shared"
@@ -676,7 +676,7 @@
     "description": "[gold]集中力[/gold][blue]2[/blue]を得る。",
     "description_raw": "[gold]集中力[/gold][blue]{FocusPower}[/blue]を得る。",
     "rarity": "ポーション（コモン）",
-    "image_url": "/static/images/potions/focus_potion.png",
+    "image_url": "/static/images/potions/focus_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 19,
     "pool": "defect"
@@ -687,7 +687,7 @@
     "description": "[gold]召喚[/gold][blue]15[/blue]",
     "description_raw": "[gold]召喚[/gold][blue]{Summon}[/blue]",
     "rarity": "ポーション（アンコモン）",
-    "image_url": "/static/images/potions/bone_brew.png",
+    "image_url": "/static/images/potions/bone_brew.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 39,
     "pool": "necrobinder"

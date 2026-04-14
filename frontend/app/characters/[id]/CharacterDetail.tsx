@@ -153,7 +153,7 @@ export default function CharacterDetail() {
       <div className={`rounded-xl border-2 ${style.border} bg-gradient-to-br ${style.bg} to-transparent bg-[var(--bg-card)] p-6 mb-8`}>
         <div className="flex flex-col sm:flex-row items-center gap-6">
           <img
-            src={`${API}/static/images/characters/combat_${char.id.toLowerCase()}.png`}
+            src={`${API}/static/images/characters/combat_${char.id.toLowerCase()}.webp`}
             alt={`${char.name} - Slay the Spire 2 Character`}
             className="w-48 h-48 object-contain"
             crossOrigin="anonymous"

@@ -28,7 +28,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/automation.png",
+    "image_url": "/static/images/cards/automation.webp",
     "beta_image_url": "/static/images/cards/beta/automation.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -63,7 +63,7 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": "/static/images/cards/aggression.png",
+    "image_url": "/static/images/cards/aggression.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -102,7 +102,7 @@
     "upgrade": {
       "damage": "+5"
     },
-    "image_url": "/static/images/cards/adaptive_strike.png",
+    "image_url": "/static/images/cards/adaptive_strike.webp",
     "beta_image_url": "/static/images/cards/beta/adaptive_strike.png",
     "type_variants": null,
     "upgrade_description": "Наносит 23 урона.\nДобавляет копию стоимостью 0 [energy:1] в [gold]стопку сброса[/gold].",
@@ -142,7 +142,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/adrenaline.png",
+    "image_url": "/static/images/cards/adrenaline.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Дает [energy:2].\nВы добираете 2 карты.",
@@ -182,7 +182,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/infernal_blade.png",
+    "image_url": "/static/images/cards/infernal_blade.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -224,7 +224,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/fiend_fire.png",
+    "image_url": "/static/images/cards/fiend_fire.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]Сжигает[/gold] все карты в [gold]руке[/gold].\nНаносит по 10 урона за каждую.",
@@ -265,7 +265,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/charge_battery.png",
+    "image_url": "/static/images/cards/charge_battery.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Дает 10 [gold]защиты[/gold].\nДаст [energy:1] в начале следующего хода.",
@@ -302,7 +302,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/acrobatics.png",
+    "image_url": "/static/images/cards/acrobatics.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Вы добираете 4 plural(ru):карту,\nзатем сбрасываете 1 карту.",
@@ -346,7 +346,7 @@
     "upgrade": {
       "crimsonmantlepower": "+2"
     },
-    "image_url": "/static/images/cards/crimson_mantle.png",
+    "image_url": "/static/images/cards/crimson_mantle.webp",
     "beta_image_url": "/static/images/cards/beta/crimson_mantle.png",
     "type_variants": null,
     "upgrade_description": "Вы теряете 1 ОЗ и получаете 10 [gold]защиты[/gold] в начале хода.",
@@ -381,7 +381,7 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": "/static/images/cards/trash_to_treasure.png",
+    "image_url": "/static/images/cards/trash_to_treasure.webp",
     "beta_image_url": "/static/images/cards/beta/trash_to_treasure.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -418,7 +418,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/alchemize.png",
+    "image_url": "/static/images/cards/alchemize.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -457,7 +457,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/greed.png",
+    "image_url": "/static/images/cards/greed.webp",
     "beta_image_url": "/static/images/cards/beta/greed.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -500,7 +500,7 @@
       "damage": "+5",
       "gold": "+5"
     },
-    "image_url": "/static/images/cards/hand_of_greed.png",
+    "image_url": "/static/images/cards/hand_of_greed.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 25 урона.\nДает 25 [gold]золота[/gold], если [gold]казнит[/gold] врага.",
@@ -539,7 +539,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/parse.png",
+    "image_url": "/static/images/cards/parse.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Вы добираете 4 plural(ru):карту.",
@@ -580,7 +580,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/heavenly_drill.png",
+    "image_url": "/static/images/cards/heavenly_drill.webp",
     "beta_image_url": "/static/images/cards/beta/heavenly_drill.png",
     "type_variants": null,
     "upgrade_description": "Наносит 10 урона X раз.\nX удваивается, если он не ниже 4.",
@@ -618,7 +618,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/apotheosis.png",
+    "image_url": "/static/images/cards/apotheosis.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -660,7 +660,7 @@
     "upgrade": {
       "power": "+1"
     },
-    "image_url": "/static/images/cards/uppercut.png",
+    "image_url": "/static/images/cards/uppercut.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 13 урона.\nНакладывает 2 [gold]слабости[/gold].\nНакладывает 2 [gold]уязвимости[/gold].",
@@ -704,7 +704,7 @@
     "upgrade": {
       "arsenalpower": "+1"
     },
-    "image_url": "/static/images/cards/arsenal.png",
+    "image_url": "/static/images/cards/arsenal.webp",
     "beta_image_url": "/static/images/cards/beta/arsenal.png",
     "type_variants": null,
     "upgrade_description": "Дает 2 [gold]силы[/gold], когда вы разыгрываете бесцветную карту.",
@@ -742,7 +742,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/astral_pulse.png",
+    "image_url": "/static/images/cards/astral_pulse.webp",
     "beta_image_url": "/static/images/cards/beta/astral_pulse.png",
     "type_variants": null,
     "upgrade_description": "Наносит 18 урона ВСЕМ врагам.",
@@ -788,7 +788,7 @@
       "damage": "+2",
       "stranglepower": "+1"
     },
-    "image_url": "/static/images/cards/strangle.png",
+    "image_url": "/static/images/cards/strangle.webp",
     "beta_image_url": "/static/images/cards/beta/strangle.png",
     "type_variants": null,
     "upgrade_description": "Наносит 10 урона.\nОтнимает у врага 3 ОЗ, когда вы разыгрываете карту в этом ходу.",
@@ -823,7 +823,7 @@
     "upgrade": {
       "cost": 2
     },
-    "image_url": "/static/images/cards/barricade.png",
+    "image_url": "/static/images/cards/barricade.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -862,7 +862,7 @@
       "block": "+3",
       "forge": "+3"
     },
-    "image_url": "/static/images/cards/bulwark.png",
+    "image_url": "/static/images/cards/bulwark.webp",
     "beta_image_url": "/static/images/cards/beta/bulwark.png",
     "type_variants": null,
     "upgrade_description": "Дает 16 [gold]защиты[/gold].\n[gold]Закаляет[/gold] 13.",
@@ -900,7 +900,7 @@
       "Energy": 1
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/void.png",
+    "image_url": "/static/images/cards/void.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -941,7 +941,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/vicious.png",
+    "image_url": "/static/images/cards/vicious.webp",
     "beta_image_url": "/static/images/cards/beta/vicious.png",
     "type_variants": null,
     "upgrade_description": "Вы добираете 2 plural(ru):карту, когда накладываете [gold]уязвимость[/gold].",
@@ -988,14 +988,14 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": "/static/images/cards/mad_science_attack.png",
+    "image_url": "/static/images/cards/mad_science_attack.webp",
     "beta_image_url": null,
     "type_variants": {
       "attack": {
         "type": "Attack",
         "description": "Наносит 12 урона.",
         "damage": 12,
-        "image_url": "/static/images/cards/mad_science_attack.png",
+        "image_url": "/static/images/cards/mad_science_attack.webp",
         "riders": [
           {
             "id": "SAPPING",
@@ -1018,7 +1018,7 @@
         "type": "Skill",
         "description": "Дает 8 [gold]защиты[/gold].",
         "block": 8,
-        "image_url": "/static/images/cards/mad_science_skill.png",
+        "image_url": "/static/images/cards/mad_science_skill.webp",
         "riders": [
           {
             "id": "ENERGIZED",
@@ -1040,7 +1040,7 @@
       "power": {
         "type": "Power",
         "description": "",
-        "image_url": "/static/images/cards/mad_science_power.png",
+        "image_url": "/static/images/cards/mad_science_power.webp",
         "riders": [
           {
             "id": "EXPERTISE",
@@ -1094,7 +1094,7 @@
     "upgrade": {
       "damage": "+6"
     },
-    "image_url": "/static/images/cards/unrelenting.png",
+    "image_url": "/static/images/cards/unrelenting.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 18 урона.\nСледующая Атака стоит 0 [energy:1].",
@@ -1131,7 +1131,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/white_noise.png",
+    "image_url": "/static/images/cards/white_noise.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -1171,7 +1171,7 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": "/static/images/cards/infinite_blades.png",
+    "image_url": "/static/images/cards/infinite_blades.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -1206,7 +1206,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/mayhem.png",
+    "image_url": "/static/images/cards/mayhem.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -1242,7 +1242,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/poor_sleep.png",
+    "image_url": "/static/images/cards/poor_sleep.webp",
     "beta_image_url": "/static/images/cards/beta/poor_sleep.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -1292,7 +1292,7 @@
       "doom": "+3",
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/scourge.png",
+    "image_url": "/static/images/cards/scourge.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Накладывает 13 [gold]злого рока[/gold].\nВы добираете 2 plural(ru):карту.",
@@ -1331,7 +1331,7 @@
       "block": "+2",
       "blocknextturn": "+2"
     },
-    "image_url": "/static/images/cards/glitterstream.png",
+    "image_url": "/static/images/cards/glitterstream.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Дает 13 [gold]защиты[/gold].\nДаcт 6 [gold]защиты[/gold] в начале следующего хода.",
@@ -1369,7 +1369,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/glimmer.png",
+    "image_url": "/static/images/cards/glimmer.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Вы добираете 4 plural(ru):карту.\nВы кладете 1 plural(ru):выбранную карту из [gold]руки[/gold] на верх [gold]стопки добора[/gold].",
@@ -1408,7 +1408,7 @@
     "upgrade": {
       "add_retain": true
     },
-    "image_url": "/static/images/cards/wisp.png",
+    "image_url": "/static/images/cards/wisp.webp",
     "beta_image_url": "/static/images/cards/beta/wisp.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -1450,7 +1450,7 @@
       "damage": "+2",
       "forge": "+2"
     },
-    "image_url": "/static/images/cards/wrought_in_war.png",
+    "image_url": "/static/images/cards/wrought_in_war.webp",
     "beta_image_url": "/static/images/cards/beta/wrought_in_war.png",
     "type_variants": null,
     "upgrade_description": "Наносит 9 урона.\n[gold]Закаляет[/gold] 7.",
@@ -1487,7 +1487,7 @@
     "upgrade": {
       "block": "+5"
     },
-    "image_url": "/static/images/cards/rally.png",
+    "image_url": "/static/images/cards/rally.webp",
     "beta_image_url": "/static/images/cards/beta/rally.png",
     "type_variants": null,
     "upgrade_description": "Дает 17 [gold]защиты[/gold] ВСЕМ игрокам.",
@@ -1524,7 +1524,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/battle_trance.png",
+    "image_url": "/static/images/cards/battle_trance.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Вы добираете 4 plural(ru):карту,\nпосле чего не сможете добирать карты до конца хода.",
@@ -1561,7 +1561,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/shadowmeld.png",
+    "image_url": "/static/images/cards/shadowmeld.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -1598,7 +1598,7 @@
     "upgrade": {
       "damage": "+1"
     },
-    "image_url": "/static/images/cards/bolas.png",
+    "image_url": "/static/images/cards/bolas.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 4 урона.\nВозвращается в [gold]руку[/gold] в начале следующего хода.",
@@ -1640,7 +1640,7 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": "/static/images/cards/big_bang.png",
+    "image_url": "/static/images/cards/big_bang.webp",
     "beta_image_url": "/static/images/cards/beta/big_bang.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -1681,7 +1681,7 @@
     "upgrade": {
       "bombdamage": "+10"
     },
-    "image_url": "/static/images/cards/the_bomb.png",
+    "image_url": "/static/images/cards/the_bomb.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Нанесет 50 урона ВСЕМ врагам после 3 plural(ru):хода.",
@@ -1720,7 +1720,7 @@
     "upgrade": {
       "damage": "+6"
     },
-    "image_url": "/static/images/cards/bombardment.png",
+    "image_url": "/static/images/cards/bombardment.webp",
     "beta_image_url": "/static/images/cards/beta/bombardment.png",
     "type_variants": null,
     "upgrade_description": "Наносит 24 урона.\nРазыгрывается из [gold]стопки пепла[/gold] в начале хода.",
@@ -1760,7 +1760,7 @@
     "upgrade": {
       "block": "+1"
     },
-    "image_url": "/static/images/cards/manifest_authority.png",
+    "image_url": "/static/images/cards/manifest_authority.webp",
     "beta_image_url": "/static/images/cards/beta/manifest_authority.png",
     "type_variants": null,
     "upgrade_description": "Дает 8 [gold]защиты[/gold].\nДобавляет в [gold]руку[/gold] 1 случайную [gold] улучшенную[/gold] бесцветную карту.",
@@ -1797,7 +1797,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/ascenders_bane.png",
+    "image_url": "/static/images/cards/ascenders_bane.webp",
     "beta_image_url": "/static/images/cards/beta/ascenders_bane.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -1843,7 +1843,7 @@
     "upgrade": {
       "calculationbase": "+3"
     },
-    "image_url": "/static/images/cards/unleash.png",
+    "image_url": "/static/images/cards/unleash.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -1880,7 +1880,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/giant_rock.png",
+    "image_url": "/static/images/cards/giant_rock.webp",
     "beta_image_url": "/static/images/cards/beta/giant_rock.png",
     "type_variants": null,
     "upgrade_description": "Наносит 20 урона.",
@@ -1915,7 +1915,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/tempest.png",
+    "image_url": "/static/images/cards/tempest.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]Заряжает[/gold] X+1 [gold]сфер молнии[/gold].",
@@ -1959,7 +1959,7 @@
     "upgrade": {
       "bufferpower": "+1"
     },
-    "image_url": "/static/images/cards/buffer.png",
+    "image_url": "/static/images/cards/buffer.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Предотвращает потерю ОЗ plural(ru):2 раз.",
@@ -1996,7 +1996,7 @@
     "upgrade": {
       "starsperturn": "+1"
     },
-    "image_url": "/static/images/cards/genesis.png",
+    "image_url": "/static/images/cards/genesis.webp",
     "beta_image_url": "/static/images/cards/beta/genesis.png",
     "type_variants": null,
     "upgrade_description": "Дает [star:3] в начале хода.",
@@ -2035,7 +2035,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/charge.png",
+    "image_url": "/static/images/cards/charge.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]Преобразует[/gold] 2 plural(ru):карту в [gold]стопке добора[/gold]\nв [gold]plural(ru):«Удар слуги+»[/gold].",
@@ -2075,7 +2075,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/tear_asunder.png",
+    "image_url": "/static/images/cards/tear_asunder.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 7 урона.\nНаносит урон еще раз за каждый раз, когда вы теряли ОЗ в этом бою.",
@@ -2115,7 +2115,7 @@
     "upgrade": {
       "ostydamage": "+4"
     },
-    "image_url": "/static/images/cards/flatten.png",
+    "image_url": "/static/images/cards/flatten.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]Костя[/gold] наносит 16 урона.\nСтоит 0 [energy:1], если [gold]Костя[/gold] атаковал в этом ходу.",
@@ -2157,7 +2157,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/leading_strike.png",
+    "image_url": "/static/images/cards/leading_strike.webp",
     "beta_image_url": "/static/images/cards/beta/leading_strike.png",
     "type_variants": null,
     "upgrade_description": "Наносит 10 урона.\nДобавляет в [gold]руку[/gold] 1 [gold]plural(ru):«Заточку»[/gold].",
@@ -2196,7 +2196,7 @@
     "upgrade": {
       "shivs": "+1"
     },
-    "image_url": "/static/images/cards/fan_of_knives.png",
+    "image_url": "/static/images/cards/fan_of_knives.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]«Заточки»[/gold] наносят урон ВСЕМ врагам.\nДобавляет в [gold]руку[/gold] 5 [gold]plural(ru):«Заточку»[/gold].",
@@ -2235,7 +2235,7 @@
     "upgrade": {
       "damage": "+5"
     },
-    "image_url": "/static/images/cards/the_hunt.png",
+    "image_url": "/static/images/cards/the_hunt.webp",
     "beta_image_url": "/static/images/cards/beta/the_hunt.png",
     "type_variants": null,
     "upgrade_description": "Наносит 15 урона.\nЕсли [gold]казнит[/gold] врага, вы получите дополнительный наградной набор.",
@@ -2273,7 +2273,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/largesse.png",
+    "image_url": "/static/images/cards/largesse.webp",
     "beta_image_url": "/static/images/cards/beta/largesse.png",
     "type_variants": null,
     "upgrade_description": "Добавляет в [gold]руку[/gold] другому игроку случайную [gold]улучшенную[/gold] бесцветную карту.",
@@ -2312,7 +2312,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/master_of_strategy.png",
+    "image_url": "/static/images/cards/master_of_strategy.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Вы добираете 4 plural(ru):карту.",
@@ -2352,7 +2352,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/believe_in_you.png",
+    "image_url": "/static/images/cards/believe_in_you.webp",
     "beta_image_url": "/static/images/cards/beta/believe_in_you.png",
     "type_variants": null,
     "upgrade_description": "Дает [energy:4] другому игроку.",
@@ -2403,7 +2403,7 @@
     "upgrade": {
       "doom": "+5"
     },
-    "image_url": "/static/images/cards/deathbringer.png",
+    "image_url": "/static/images/cards/deathbringer.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -2448,7 +2448,7 @@
     "upgrade": {
       "strengthpower": "-1"
     },
-    "image_url": "/static/images/cards/friendship.png",
+    "image_url": "/static/images/cards/friendship.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -2485,7 +2485,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/uproar.png",
+    "image_url": "/static/images/cards/uproar.webp",
     "beta_image_url": "/static/images/cards/beta/uproar.png",
     "type_variants": null,
     "upgrade_description": "Наносит 7 урона 2 раза.\nВы разыгрываете случайную Атаку из [gold]стопки добора[/gold].",
@@ -2534,7 +2534,7 @@
       "ostydamage": "+1",
       "sicempower": "+1"
     },
-    "image_url": "/static/images/cards/sic_em.png",
+    "image_url": "/static/images/cards/sic_em.webp",
     "beta_image_url": "/static/images/cards/beta/sic_em.png",
     "type_variants": null,
     "upgrade_description": "[gold]Костя[/gold] наносит 6 урона.\n[gold]Призывает[/gold] 3, когда [gold]Костя[/gold] атакует врага в этом ходу.",
@@ -2571,7 +2571,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/whirlwind.png",
+    "image_url": "/static/images/cards/whirlwind.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 8 урона ВСЕМ врагам X раз.",
@@ -2617,7 +2617,7 @@
       "damage": "+2",
       "vulnerable": "+1"
     },
-    "image_url": "/static/images/cards/bash.png",
+    "image_url": "/static/images/cards/bash.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 10 урона.\nНакладывает 2 [gold]уязвимости[/gold].",
@@ -2654,7 +2654,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/thrumming_hatchet.png",
+    "image_url": "/static/images/cards/thrumming_hatchet.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 14 урона.\nВозвращается в [gold]руку[/gold] в начале следующего хода.",
@@ -2692,7 +2692,7 @@
     "upgrade": {
       "damage": "+6"
     },
-    "image_url": "/static/images/cards/banshees_cry.png",
+    "image_url": "/static/images/cards/banshees_cry.webp",
     "beta_image_url": "/static/images/cards/beta/banshees_cry.png",
     "type_variants": null,
     "upgrade_description": "Наносит 39 урона ВСЕМ врагам.\nСтоит на [energy:2] меньше за каждую разыгранную в этом бою [gold]эфирную[/gold] карту.",
@@ -2736,7 +2736,7 @@
     "upgrade": {
       "strengthpower": "+1"
     },
-    "image_url": "/static/images/cards/inflame.png",
+    "image_url": "/static/images/cards/inflame.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Дает 3 [gold]силы[/gold].",
@@ -2777,7 +2777,7 @@
     "upgrade": {
       "add_retain": true
     },
-    "image_url": "/static/images/cards/times_up.png",
+    "image_url": "/static/images/cards/times_up.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -2817,7 +2817,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/all_for_one.png",
+    "image_url": "/static/images/cards/all_for_one.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 14 урона.\nВы берете ВСЕ карты стоимостью 0 [energy:1] из [gold]стопки сброса[/gold].",
@@ -2854,7 +2854,7 @@
     "upgrade": {
       "retainamount": "+1"
     },
-    "image_url": "/static/images/cards/well_laid_plans.png",
+    "image_url": "/static/images/cards/well_laid_plans.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Вы [gold]оставляете[/gold] до 2 plural(ru):карты в конце хода.",
@@ -2891,7 +2891,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/prepared.png",
+    "image_url": "/static/images/cards/prepared.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Вы добираете 2 plural(ru):карту,\nзатем сбрасываете 2 plural(ru):карту.",
@@ -2934,7 +2934,7 @@
     "upgrade": {
       "ostydamage": "+5"
     },
-    "image_url": "/static/images/cards/sweeping_gaze.png",
+    "image_url": "/static/images/cards/sweeping_gaze.webp",
     "beta_image_url": "/static/images/cards/beta/sweeping_gaze.png",
     "type_variants": null,
     "upgrade_description": "[gold]Костя[/gold] наносит 15 урона случайному врагу.",
@@ -2975,7 +2975,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/omnislice.png",
+    "image_url": "/static/images/cards/omnislice.webp",
     "beta_image_url": "/static/images/cards/beta/omnislice.png",
     "type_variants": null,
     "upgrade_description": "Наносит 11 урона.\nНаносит остальным врагам урон, равный нанесенному.",
@@ -3014,7 +3014,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/energy_surge.png",
+    "image_url": "/static/images/cards/energy_surge.webp",
     "beta_image_url": "/static/images/cards/beta/energy_surge.png",
     "type_variants": null,
     "upgrade_description": "Дает [energy:3] ВСЕМ игрокам.",
@@ -3054,7 +3054,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/shatter.png",
+    "image_url": "/static/images/cards/shatter.webp",
     "beta_image_url": "/static/images/cards/beta/shatter.png",
     "type_variants": null,
     "upgrade_description": "Наносит 15 урона ВСЕМ врагам.\n[gold]Разряжает[/gold] все сферы.",
@@ -3089,7 +3089,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/subroutine.png",
+    "image_url": "/static/images/cards/subroutine.webp",
     "beta_image_url": "/static/images/cards/beta/subroutine.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -3126,7 +3126,7 @@
     "upgrade": {
       "block": "+2"
     },
-    "image_url": "/static/images/cards/second_wind.png",
+    "image_url": "/static/images/cards/second_wind.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]Сжигает[/gold] все карты в [gold]руке[/gold], кроме Атак. Дает по 7 [gold]защиты[/gold] за каждую.",
@@ -3163,7 +3163,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/survivor.png",
+    "image_url": "/static/images/cards/survivor.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Дает 11 [gold]защиты[/gold].\nВы сбрасываете 1 карту.",
@@ -3211,7 +3211,7 @@
       "damage": "+1",
       "strength": "+1"
     },
-    "image_url": "/static/images/cards/fight_me.png",
+    "image_url": "/static/images/cards/fight_me.webp",
     "beta_image_url": "/static/images/cards/beta/fight_me.png",
     "type_variants": null,
     "upgrade_description": "Наносит 6 урона 2 раза.\nДает 2 [gold]силы[/gold].\nВраг получает 1 [gold]силы[/gold].",
@@ -3250,7 +3250,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/sculpting_strike.png",
+    "image_url": "/static/images/cards/sculpting_strike.webp",
     "beta_image_url": "/static/images/cards/beta/sculpting_strike.png",
     "type_variants": null,
     "upgrade_description": "Наносит 11 урона.\nВыбранная в [gold]руке[/gold] карта становится [gold]эфирной[/gold].",
@@ -3287,7 +3287,7 @@
     "upgrade": {
       "summon": "+3"
     },
-    "image_url": "/static/images/cards/necro_mastery.png",
+    "image_url": "/static/images/cards/necro_mastery.webp",
     "beta_image_url": "/static/images/cards/beta/necro_mastery.png",
     "type_variants": null,
     "upgrade_description": "[gold]Призывает[/gold] 8.\nКогда [gold]Костя[/gold] теряет ОЗ,\nвсе враги теряют столько же.",
@@ -3340,7 +3340,7 @@
     "upgrade": {
       "damage": "+5"
     },
-    "image_url": "/static/images/cards/gamma_blast.png",
+    "image_url": "/static/images/cards/gamma_blast.webp",
     "beta_image_url": "/static/images/cards/beta/gamma_blast.png",
     "type_variants": null,
     "upgrade_description": "Наносит 18 урона.\nНакладывает 2 [gold]слабости[/gold].\nНакладывает 2 [gold]уязвимости[/gold].",
@@ -3379,7 +3379,7 @@
       "damage": "+3",
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/hegemony.png",
+    "image_url": "/static/images/cards/hegemony.webp",
     "beta_image_url": "/static/images/cards/beta/hegemony.png",
     "type_variants": null,
     "upgrade_description": "Наносит 18 урона.\nДаст [energy:3] в начале следующего хода.",
@@ -3417,7 +3417,7 @@
     "upgrade": {
       "damage": "+5"
     },
-    "image_url": "/static/images/cards/hemokinesis.png",
+    "image_url": "/static/images/cards/hemokinesis.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Вы теряете 2 ОЗ.\nНаносит 19 урона.",
@@ -3457,7 +3457,7 @@
     "upgrade": {
       "increase": "+1"
     },
-    "image_url": "/static/images/cards/genetic_algorithm.png",
+    "image_url": "/static/images/cards/genetic_algorithm.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Дает 1 [gold]защиты[/gold].\nДаваемая [gold]защита[/gold] повышается на 4 до конца вылазки.",
@@ -3505,7 +3505,7 @@
     "upgrade": {
       "damage": "+8"
     },
-    "image_url": "/static/images/cards/hyperbeam.png",
+    "image_url": "/static/images/cards/hyperbeam.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 34 урона ВСЕМ врагам.\nВы теряете 3 [gold]фокуса[/gold].",
@@ -3542,7 +3542,7 @@
       "Damage": 2
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/decay.png",
+    "image_url": "/static/images/cards/decay.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -3581,7 +3581,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/dazed.png",
+    "image_url": "/static/images/cards/dazed.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -3625,7 +3625,7 @@
       "block": "+2",
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/hologram.png",
+    "image_url": "/static/images/cards/hologram.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Дает 5 [gold]защиты[/gold].\nВы берете карту из [gold]стопки сброса[/gold].",
@@ -3672,7 +3672,7 @@
     "upgrade": {
       "speedsterpower": "+1"
     },
-    "image_url": "/static/images/cards/speedster.png",
+    "image_url": "/static/images/cards/speedster.webp",
     "beta_image_url": "/static/images/cards/beta/speedster.png",
     "type_variants": null,
     "upgrade_description": "Наносит 3 урона ВСЕМ врагам, когда вы добираете карту в свой ход.",
@@ -3716,7 +3716,7 @@
     "upgrade": {
       "hailstormpower": "+2"
     },
-    "image_url": "/static/images/cards/hailstorm.png",
+    "image_url": "/static/images/cards/hailstorm.webp",
     "beta_image_url": "/static/images/cards/beta/hailstorm.png",
     "type_variants": null,
     "upgrade_description": "Наносит 8 урона ВСЕМ врагам, если у вас есть заряженная [gold]сфера льда[/gold] в конце хода.",
@@ -3760,7 +3760,7 @@
     "upgrade": {
       "dexterity": "+1"
     },
-    "image_url": "/static/images/cards/footwork.png",
+    "image_url": "/static/images/cards/footwork.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -3804,7 +3804,7 @@
     "upgrade": {
       "thunderpower": "+2"
     },
-    "image_url": "/static/images/cards/thunder.png",
+    "image_url": "/static/images/cards/thunder.webp",
     "beta_image_url": "/static/images/cards/beta/thunder.png",
     "type_variants": null,
     "upgrade_description": "Наносит 8 урона каждому врагу, по которому попадает [gold]разряженная молния[/gold].",
@@ -3849,7 +3849,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/lightning_rod.png",
+    "image_url": "/static/images/cards/lightning_rod.webp",
     "beta_image_url": "/static/images/cards/beta/lightning_rod.png",
     "type_variants": null,
     "upgrade_description": "Дает 7 [gold]защиты[/gold].\nplural(ru):[gold]Зарядит[/gold] 1 [gold]сферу молнии[/gold] в начале plural(ru):следующего хода.",
@@ -3891,7 +3891,7 @@
     "upgrade": {
       "ostydamage": "+2"
     },
-    "image_url": "/static/images/cards/rattle.png",
+    "image_url": "/static/images/cards/rattle.webp",
     "beta_image_url": "/static/images/cards/beta/rattle.png",
     "type_variants": null,
     "upgrade_description": "[gold]Костя[/gold] наносит 9 урона.\nНаносит урон еще раз за каждую предыдущую атаку [gold]Кости[/gold] в этом ходу.",
@@ -3929,7 +3929,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/make_it_so.png",
+    "image_url": "/static/images/cards/make_it_so.webp",
     "beta_image_url": "/static/images/cards/beta/make_it_so.png",
     "type_variants": null,
     "upgrade_description": "Наносит 9 урона.\nВозвращается в [gold]руку[/gold], когда вы разыгрываете 3 plural(ru):Навык.",
@@ -3966,7 +3966,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/stomp.png",
+    "image_url": "/static/images/cards/stomp.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 15 урона ВСЕМ врагам.\nСтоит на 1 [energy:1] меньше за каждую разыгранную в этом ходу Атаку.",
@@ -4012,7 +4012,7 @@
       "damage": "+2",
       "vulnerable": "+1"
     },
-    "image_url": "/static/images/cards/squash.png",
+    "image_url": "/static/images/cards/squash.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 12 урона.\nНакладывает 2 [gold]уязвимости[/gold].",
@@ -4061,7 +4061,7 @@
       "ostydamage": "+2",
       "vulnerable": "+1"
     },
-    "image_url": "/static/images/cards/high_five.png",
+    "image_url": "/static/images/cards/high_five.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]Костя[/gold] наносит 13 урона\nи накладывает 2 [gold]уязвимости[/gold]\nна ВСЕХ врагов.",
@@ -4098,7 +4098,7 @@
     "upgrade": {
       "gold": "+5"
     },
-    "image_url": "/static/images/cards/royalties.png",
+    "image_url": "/static/images/cards/royalties.webp",
     "beta_image_url": "/static/images/cards/beta/royalties.png",
     "type_variants": null,
     "upgrade_description": "Дает 35 [gold]золота[/gold] в конце боя.",
@@ -4135,7 +4135,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/double_energy.png",
+    "image_url": "/static/images/cards/double_energy.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -4177,7 +4177,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/twin_strike.png",
+    "image_url": "/static/images/cards/twin_strike.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 7 урона 2 раза.",
@@ -4214,7 +4214,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/quadcast.png",
+    "image_url": "/static/images/cards/quadcast.webp",
     "beta_image_url": "/static/images/cards/beta/quadcast.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -4249,7 +4249,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/hellraiser.png",
+    "image_url": "/static/images/cards/hellraiser.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -4290,7 +4290,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/demonic_shield.png",
+    "image_url": "/static/images/cards/demonic_shield.webp",
     "beta_image_url": "/static/images/cards/beta/demonic_shield.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -4334,7 +4334,7 @@
     "upgrade": {
       "ostydamage": "+2"
     },
-    "image_url": "/static/images/cards/right_hand_hand.png",
+    "image_url": "/static/images/cards/right_hand_hand.webp",
     "beta_image_url": "/static/images/cards/beta/right_hand_hand.png",
     "type_variants": null,
     "upgrade_description": "[gold]Костя[/gold] наносит 6 урона.\nВы берете эту карту из [gold]стопки сброса[/gold], когда разыгрываете карту стоимостью [energy:2] или более.",
@@ -4378,7 +4378,7 @@
     "upgrade": {
       "focuspower": "+1"
     },
-    "image_url": "/static/images/cards/defragment.png",
+    "image_url": "/static/images/cards/defragment.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Дает 2 [gold]фокуса[/gold].",
@@ -4416,7 +4416,7 @@
     "upgrade": {
       "damage": "+5"
     },
-    "image_url": "/static/images/cards/jackpot.png",
+    "image_url": "/static/images/cards/jackpot.webp",
     "beta_image_url": "/static/images/cards/beta/jackpot.png",
     "type_variants": null,
     "upgrade_description": "Наносит 30 урона.\nДобавляет в [gold]руку[/gold] 3 plural(ru):случайную [gold]улучшенную[/gold] карту стоимостью 0 [energy:1].",
@@ -4469,7 +4469,7 @@
     "upgrade": {
       "thornspower": "+2"
     },
-    "image_url": "/static/images/cards/abrasive.png",
+    "image_url": "/static/images/cards/abrasive.webp",
     "beta_image_url": "/static/images/cards/beta/abrasive.png",
     "type_variants": null,
     "upgrade_description": "Дает 1 [gold]ловкости[/gold].\nДает 6 [gold]шипов[/gold].",
@@ -4516,7 +4516,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/feral.png",
+    "image_url": "/static/images/cards/feral.webp",
     "beta_image_url": "/static/images/cards/beta/feral.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -4553,7 +4553,7 @@
     "upgrade": {
       "blockforstars": "+1"
     },
-    "image_url": "/static/images/cards/child_of_the_stars.png",
+    "image_url": "/static/images/cards/child_of_the_stars.webp",
     "beta_image_url": "/static/images/cards/beta/child_of_the_stars.png",
     "type_variants": null,
     "upgrade_description": "Дает 3 [gold]защиты[/gold] за каждую потраченную [star:1], когда вы тратите [star:1].",
@@ -4599,7 +4599,7 @@
       "damage": "+2",
       "weak": "+1"
     },
-    "image_url": "/static/images/cards/follow_through.png",
+    "image_url": "/static/images/cards/follow_through.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 8 урона ВСЕМ врагам.\nНакладывает 1 [gold]слабости[/gold] на ВСЕХ врагов, если последняя разыгранная карта — Навык.",
@@ -4638,7 +4638,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/finisher.png",
+    "image_url": "/static/images/cards/finisher.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит по 8 урона за каждую разыгранную в этом ходу Атаку.",
@@ -4684,7 +4684,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/sentry_mode.png",
+    "image_url": "/static/images/cards/sentry_mode.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -4721,7 +4721,7 @@
       "Gold": 10
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/debt.png",
+    "image_url": "/static/images/cards/debt.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -4764,7 +4764,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/dramatic_entrance.png",
+    "image_url": "/static/images/cards/dramatic_entrance.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 15 урона ВСЕМ врагам.",
@@ -4807,7 +4807,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/flechettes.png",
+    "image_url": "/static/images/cards/flechettes.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит по 7 урона за каждый Навык в [gold]руке[/gold].",
@@ -4844,7 +4844,7 @@
     "upgrade": {
       "blockonexhaust": "+1"
     },
-    "image_url": "/static/images/cards/spirit_of_ash.png",
+    "image_url": "/static/images/cards/spirit_of_ash.webp",
     "beta_image_url": "/static/images/cards/beta/spirit_of_ash.png",
     "type_variants": null,
     "upgrade_description": "Дает 5 [gold]защиты[/gold], когда вы разыгрываете [gold]эфирную[/gold] карту.",
@@ -4883,7 +4883,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/soul.png",
+    "image_url": "/static/images/cards/soul.webp",
     "beta_image_url": "/static/images/cards/beta/soul.png",
     "type_variants": null,
     "upgrade_description": "Вы добираете 3 plural(ru):карту.",
@@ -4932,7 +4932,7 @@
     "upgrade": {
       "poison": "+2"
     },
-    "image_url": "/static/images/cards/haze.png",
+    "image_url": "/static/images/cards/haze.webp",
     "beta_image_url": "/static/images/cards/beta/haze.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -4979,7 +4979,7 @@
     "upgrade": {
       "smokestackpower": "+2"
     },
-    "image_url": "/static/images/cards/smokestack.png",
+    "image_url": "/static/images/cards/smokestack.webp",
     "beta_image_url": "/static/images/cards/beta/smokestack.png",
     "type_variants": null,
     "upgrade_description": "Наносит 7 урона ВСЕМ врагам, когда вы создаете Статус.",
@@ -5017,7 +5017,7 @@
     "upgrade": {
       "stars": "+1"
     },
-    "image_url": "/static/images/cards/convergence.png",
+    "image_url": "/static/images/cards/convergence.webp",
     "beta_image_url": "/static/images/cards/beta/convergence.png",
     "type_variants": null,
     "upgrade_description": "Даст [energy:1] и [star:2]\nв следующем ходу.\nВ этом ходу вы [gold]оставляете[/gold] карты в [gold]руке[/gold].",
@@ -5054,7 +5054,7 @@
     "upgrade": {
       "poisonperturn": "+1"
     },
-    "image_url": "/static/images/cards/noxious_fumes.png",
+    "image_url": "/static/images/cards/noxious_fumes.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Накладывает 3 [gold]яда[/gold] на ВСЕХ врагов в начале хода.",
@@ -5098,7 +5098,7 @@
     "upgrade": {
       "thornspower": "+2"
     },
-    "image_url": "/static/images/cards/caltrops.png",
+    "image_url": "/static/images/cards/caltrops.webp",
     "beta_image_url": "/static/images/cards/beta/caltrops.png",
     "type_variants": null,
     "upgrade_description": "Наносит 5 урона в ответ на каждую атаку.",
@@ -5136,7 +5136,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/shrug_it_off.png",
+    "image_url": "/static/images/cards/shrug_it_off.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Дает 11 [gold]защиты[/gold].\nВы добираете 1 plural(ru):карту.",
@@ -5173,7 +5173,7 @@
     "upgrade": {
       "forge": "+4"
     },
-    "image_url": "/static/images/cards/seeking_edge.png",
+    "image_url": "/static/images/cards/seeking_edge.webp",
     "beta_image_url": "/static/images/cards/beta/seeking_edge.png",
     "type_variants": null,
     "upgrade_description": "[gold]Закаляет[/gold] 11.\n[gold]Клинок монарха[/gold] наносит урон ВСЕМ врагам.",
@@ -5212,7 +5212,7 @@
     "upgrade": {
       "damage": "+6"
     },
-    "image_url": "/static/images/cards/reap.png",
+    "image_url": "/static/images/cards/reap.webp",
     "beta_image_url": "/static/images/cards/beta/reap.png",
     "type_variants": null,
     "upgrade_description": "Наносит 33 урона.",
@@ -5252,7 +5252,7 @@
     "upgrade": {
       "add_retain": true
     },
-    "image_url": "/static/images/cards/wish.png",
+    "image_url": "/static/images/cards/wish.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -5292,7 +5292,7 @@
     "upgrade": {
       "block": "+2"
     },
-    "image_url": "/static/images/cards/true_grit.png",
+    "image_url": "/static/images/cards/true_grit.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Дает 9 [gold]защиты[/gold].\n[gold]Сжигает[/gold] 1 выбранную карту.",
@@ -5329,7 +5329,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/sacrifice.png",
+    "image_url": "/static/images/cards/sacrifice.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -5371,7 +5371,7 @@
     "upgrade": {
       "damage": "+5"
     },
-    "image_url": "/static/images/cards/crash_landing.png",
+    "image_url": "/static/images/cards/crash_landing.webp",
     "beta_image_url": "/static/images/cards/beta/crash_landing.png",
     "type_variants": null,
     "upgrade_description": "Наносит 26 урона ВСЕМ врагам.\nЗаполняет [gold]руку[/gold] [gold]«Обломками»[/gold].",
@@ -5415,7 +5415,7 @@
     "upgrade": {
       "crueltypower": "+25"
     },
-    "image_url": "/static/images/cards/cruelty.png",
+    "image_url": "/static/images/cards/cruelty.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]Уязвимые[/gold] враги получают на 50% больше урона.",
@@ -5454,7 +5454,7 @@
     "upgrade": {
       "extradamage": "+1"
     },
-    "image_url": "/static/images/cards/bully.png",
+    "image_url": "/static/images/cards/bully.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 4 урона.\nНаносит на 3 урона больше за каждую [gold]уязвимость[/gold] врага.",
@@ -5491,7 +5491,7 @@
     "upgrade": {
       "block": "+2"
     },
-    "image_url": "/static/images/cards/undeath.png",
+    "image_url": "/static/images/cards/undeath.webp",
     "beta_image_url": "/static/images/cards/beta/undeath.png",
     "type_variants": null,
     "upgrade_description": "Дает 9 [gold]защиты[/gold].\nДобавляет копию в [gold]стопку сброса[/gold].",
@@ -5526,7 +5526,7 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": "/static/images/cards/juggling.png",
+    "image_url": "/static/images/cards/juggling.webp",
     "beta_image_url": "/static/images/cards/beta/juggling.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -5570,7 +5570,7 @@
     "upgrade": {
       "doom": "+1"
     },
-    "image_url": "/static/images/cards/oblivion.png",
+    "image_url": "/static/images/cards/oblivion.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -5607,7 +5607,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/forgotten_ritual.png",
+    "image_url": "/static/images/cards/forgotten_ritual.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Дает [energy:4], если вы [gold]сжигали[/gold] карты в этом ходу.",
@@ -5644,7 +5644,7 @@
     "upgrade": {
       "forge": "+2"
     },
-    "image_url": "/static/images/cards/conqueror.png",
+    "image_url": "/static/images/cards/conqueror.webp",
     "beta_image_url": "/static/images/cards/beta/conqueror.png",
     "type_variants": null,
     "upgrade_description": "[gold]Закаляет[/gold] 5.\nВ этом ходу [gold]Клинок монарха[/gold] наносит врагу двойной урон.",
@@ -5686,7 +5686,7 @@
       "MindRot": 1
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/mind_rot.png",
+    "image_url": "/static/images/cards/mind_rot.webp",
     "beta_image_url": "/static/images/cards/beta/mind_rot.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -5725,7 +5725,7 @@
     "upgrade": {
       "summon": "+3"
     },
-    "image_url": "/static/images/cards/afterlife.png",
+    "image_url": "/static/images/cards/afterlife.webp",
     "beta_image_url": "/static/images/cards/beta/afterlife.png",
     "type_variants": null,
     "upgrade_description": "[gold]Призывает[/gold] 9.",
@@ -5767,7 +5767,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/pull_from_below.png",
+    "image_url": "/static/images/cards/pull_from_below.webp",
     "beta_image_url": "/static/images/cards/beta/pull_from_below.png",
     "type_variants": null,
     "upgrade_description": "Наносит по 7 урона за каждую разыгранную за бой [gold]эфирную[/gold] карту.",
@@ -5807,7 +5807,7 @@
     "upgrade": {
       "damage": "+1"
     },
-    "image_url": "/static/images/cards/gunk_up.png",
+    "image_url": "/static/images/cards/gunk_up.webp",
     "beta_image_url": "/static/images/cards/beta/gunk_up.png",
     "type_variants": null,
     "upgrade_description": "Наносит 5 урона 3 plural(ru):раз.\nДобавляет [gold]«Слизь»[/gold] в [gold]стопку сброса[/gold].",
@@ -5846,7 +5846,7 @@
       "block": "+2",
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/delay.png",
+    "image_url": "/static/images/cards/delay.webp",
     "beta_image_url": "/static/images/cards/beta/delay.png",
     "type_variants": null,
     "upgrade_description": "Дает 13 [gold]защиты[/gold].\nДаст [energy:2]\nв следующем ходу.",
@@ -5883,7 +5883,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/ignition.png",
+    "image_url": "/static/images/cards/ignition.webp",
     "beta_image_url": "/static/images/cards/beta/ignition.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -5925,7 +5925,7 @@
       "summon": "+1",
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/invoke.png",
+    "image_url": "/static/images/cards/invoke.webp",
     "beta_image_url": "/static/images/cards/beta/invoke.png",
     "type_variants": null,
     "upgrade_description": "Даст [energy:3] и [gold]призовет[/gold] 3 в начале следующего хода.",
@@ -5962,7 +5962,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/salvo.png",
+    "image_url": "/static/images/cards/salvo.webp",
     "beta_image_url": "/static/images/cards/beta/salvo.png",
     "type_variants": null,
     "upgrade_description": "Наносит 16 урона.\nВ этом ходу вы [gold]оставляете[/gold] карты в [gold]руке[/gold].",
@@ -5997,7 +5997,7 @@
     "upgrade": {
       "cost": 2
     },
-    "image_url": "/static/images/cards/bullet_time.png",
+    "image_url": "/static/images/cards/bullet_time.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -6036,7 +6036,7 @@
     "upgrade": {
       "calculationbase": "+5"
     },
-    "image_url": "/static/images/cards/no_escape.png",
+    "image_url": "/static/images/cards/no_escape.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Накладывает 15 [gold]злого рока[/gold].\nНакладывает еще 5 [gold]злого рока[/gold] за каждые 10 [gold]злого рока[/gold] врага.",
@@ -6073,7 +6073,7 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": "/static/images/cards/the_sealed_throne.png",
+    "image_url": "/static/images/cards/the_sealed_throne.webp",
     "beta_image_url": "/static/images/cards/beta/the_sealed_throne.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -6119,7 +6119,7 @@
       "damage": "+2",
       "weak": "+1"
     },
-    "image_url": "/static/images/cards/sucker_punch.png",
+    "image_url": "/static/images/cards/sucker_punch.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 10 урона.\nНакладывает 1 [gold]слабости[/gold].",
@@ -6162,7 +6162,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/shiv.png",
+    "image_url": "/static/images/cards/shiv.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 6 урона.",
@@ -6204,7 +6204,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/up_my_sleeve.png",
+    "image_url": "/static/images/cards/up_my_sleeve.webp",
     "beta_image_url": "/static/images/cards/beta/up_my_sleeve.png",
     "type_variants": null,
     "upgrade_description": "Добавляет в [gold]руку[/gold] 4 [gold]plural(ru):«Заточку»[/gold].\nСтоимость понижается на 1.",
@@ -6250,7 +6250,7 @@
       "damage": "+2",
       "grapplepower": "+2"
     },
-    "image_url": "/static/images/cards/grapple.png",
+    "image_url": "/static/images/cards/grapple.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 9 урона.\nНаносит врагу 7 урона, когда вы получаете [gold]защиту[/gold] в этом ходу.",
@@ -6285,7 +6285,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/flanking.png",
+    "image_url": "/static/images/cards/flanking.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -6327,7 +6327,7 @@
       "cost": 0,
       "calculationbase": "+5"
     },
-    "image_url": "/static/images/cards/protector.png",
+    "image_url": "/static/images/cards/protector.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -6364,7 +6364,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/stardust.png",
+    "image_url": "/static/images/cards/stardust.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 7 урона случайному врагу X раз.",
@@ -6402,7 +6402,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/cloak_of_stars.png",
+    "image_url": "/static/images/cards/cloak_of_stars.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Дает 10 [gold]защиты[/gold].",
@@ -6440,7 +6440,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/pale_blue_dot.png",
+    "image_url": "/static/images/cards/pale_blue_dot.webp",
     "beta_image_url": "/static/images/cards/beta/pale_blue_dot.png",
     "type_variants": null,
     "upgrade_description": "Вы добираете еще 2 plural(ru):карту в начале следующего хода, если разыгрываете не менее 5 plural(ru):карты в текущем.",
@@ -6479,7 +6479,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/flak_cannon.png",
+    "image_url": "/static/images/cards/flak_cannon.webp",
     "beta_image_url": "/static/images/cards/beta/flak_cannon.png",
     "type_variants": null,
     "upgrade_description": "[gold]Сжигает[/gold] ВСЕ [gold]Статусы[/gold].\nНаносит по 11 урона случайному врагу за каждый.",
@@ -6516,7 +6516,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/anger.png",
+    "image_url": "/static/images/cards/anger.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 8 урона.\nДобавляет копию в [gold]стопку сброса[/gold].",
@@ -6562,7 +6562,7 @@
     "upgrade": {
       "poison": "+3"
     },
-    "image_url": "/static/images/cards/snakebite.png",
+    "image_url": "/static/images/cards/snakebite.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -6618,7 +6618,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/know_thy_place.png",
+    "image_url": "/static/images/cards/know_thy_place.webp",
     "beta_image_url": "/static/images/cards/beta/know_thy_place.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -6656,7 +6656,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/tools_of_the_trade.png",
+    "image_url": "/static/images/cards/tools_of_the_trade.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -6693,7 +6693,7 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": "/static/images/cards/call_of_the_void.png",
+    "image_url": "/static/images/cards/call_of_the_void.webp",
     "beta_image_url": "/static/images/cards/beta/call_of_the_void.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -6730,7 +6730,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/primal_force.png",
+    "image_url": "/static/images/cards/primal_force.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]Преобразует[/gold] все Атаки в [gold]руке[/gold] в [gold]«Булыжники+»[/gold].",
@@ -6769,7 +6769,7 @@
     "upgrade": {
       "add_retain": true
     },
-    "image_url": "/static/images/cards/gold_axe.png",
+    "image_url": "/static/images/cards/gold_axe.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -6806,7 +6806,7 @@
     "upgrade": {
       "block": "+25"
     },
-    "image_url": "/static/images/cards/the_gambit.png",
+    "image_url": "/static/images/cards/the_gambit.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Дает 75 [gold]защиты[/gold].\nВы умрете, если получите урон по ОЗ от атак в этом бою.",
@@ -6843,7 +6843,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/beat_down.png",
+    "image_url": "/static/images/cards/beat_down.webp",
     "beta_image_url": "/static/images/cards/beta/beat_down.png",
     "type_variants": null,
     "upgrade_description": "Вы разыгрываете 4 plural(ru):случайную Атаку из [gold]стопки сброса[/gold].",
@@ -6880,7 +6880,7 @@
     "upgrade": {
       "add_retain": true
     },
-    "image_url": "/static/images/cards/anointed.png",
+    "image_url": "/static/images/cards/anointed.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -6922,7 +6922,7 @@
       "damage": "+2",
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/drain_power.png",
+    "image_url": "/static/images/cards/drain_power.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 12 урона.\n[gold]Улучшает[/gold] 3 plural(ru):случайную карту в [gold]стопке сброса[/gold].",
@@ -6968,7 +6968,7 @@
       "damage": "+2",
       "debilitatepower": "+1"
     },
-    "image_url": "/static/images/cards/debilitate.png",
+    "image_url": "/static/images/cards/debilitate.webp",
     "beta_image_url": "/static/images/cards/beta/debilitate.png",
     "type_variants": null,
     "upgrade_description": "Наносит 9 урона.\n[gold]Уязвимость[/gold] и [gold]слабость[/gold] в 2 раза эффективнее против врага на 4 plural(ru):ход.",
@@ -7006,7 +7006,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/finesse.png",
+    "image_url": "/static/images/cards/finesse.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Дает 7 [gold]защиты[/gold].\nВы добираете 1 карту.",
@@ -7046,7 +7046,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/boot_sequence.png",
+    "image_url": "/static/images/cards/boot_sequence.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Дает 13 [gold]защиты[/gold].",
@@ -7087,7 +7087,7 @@
       "Damage": 3
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/infection.png",
+    "image_url": "/static/images/cards/infection.webp",
     "beta_image_url": "/static/images/cards/beta/infection.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -7127,7 +7127,7 @@
     "upgrade": {
       "panachedamage": "+4"
     },
-    "image_url": "/static/images/cards/panache.png",
+    "image_url": "/static/images/cards/panache.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 14 урона ВСЕМ врагам за каждые 5 разыгранных за ход карт.",
@@ -7166,7 +7166,7 @@
     "upgrade": {
       "strengthloss": "+3"
     },
-    "image_url": "/static/images/cards/enfeebling_touch.png",
+    "image_url": "/static/images/cards/enfeebling_touch.webp",
     "beta_image_url": "/static/images/cards/beta/enfeebling_touch.png",
     "type_variants": null,
     "upgrade_description": "Отнимает 11 [gold]силы[/gold] на этот ход.",
@@ -7207,7 +7207,7 @@
     "upgrade": {
       "damage": "+1"
     },
-    "image_url": "/static/images/cards/exterminate.png",
+    "image_url": "/static/images/cards/exterminate.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 4 урона ВСЕМ врагам 4 plural(ru):раз.",
@@ -7248,7 +7248,7 @@
       "summon": "+2",
       "heal": "+2"
     },
-    "image_url": "/static/images/cards/spur.png",
+    "image_url": "/static/images/cards/spur.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]Призывает[/gold] 5.\n[gold]Костя[/gold] восполняет 7 ОЗ.",
@@ -7295,7 +7295,7 @@
     "upgrade": {
       "platingpower": "+2"
     },
-    "image_url": "/static/images/cards/stone_armor.png",
+    "image_url": "/static/images/cards/stone_armor.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Дает 6 [gold]панциря[/gold].",
@@ -7340,7 +7340,7 @@
     "upgrade": {
       "rollingboulderpower": "+5"
     },
-    "image_url": "/static/images/cards/rolling_boulder.png",
+    "image_url": "/static/images/cards/rolling_boulder.webp",
     "beta_image_url": "/static/images/cards/beta/rolling_boulder.png",
     "type_variants": null,
     "upgrade_description": "Наносит 10 урона ВСЕМ врагам в начале хода, затем урон повышается на 5.",
@@ -7382,7 +7382,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/knife_trap.png",
+    "image_url": "/static/images/cards/knife_trap.webp",
     "beta_image_url": "/static/images/cards/beta/knife_trap.png",
     "type_variants": null,
     "upgrade_description": "Все [gold]сожженные[/gold] [gold]«Заточки»[/gold] [gold]улучшаются[/gold] и разыгрываются против врага.",
@@ -7417,7 +7417,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/splash.png",
+    "image_url": "/static/images/cards/splash.webp",
     "beta_image_url": "/static/images/cards/beta/splash.png",
     "type_variants": null,
     "upgrade_description": "Добавляет в [gold]руку[/gold] 1 из 3 случайных [gold]улучшенных[/gold] Атак другого персонажа на выбор. В этом ходу она бесплатная.",
@@ -7454,7 +7454,7 @@
       "Gold": 600
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/spoils_map.png",
+    "image_url": "/static/images/cards/spoils_map.webp",
     "beta_image_url": "/static/images/cards/beta/spoils_map.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -7492,7 +7492,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/cascade.png",
+    "image_url": "/static/images/cards/cascade.webp",
     "beta_image_url": "/static/images/cards/beta/cascade.png",
     "type_variants": null,
     "upgrade_description": "Вы разыгрываете X+1 карт с верха [gold]стопки добора[/gold].",
@@ -7529,7 +7529,7 @@
     "upgrade": {
       "accelerant": "+1"
     },
-    "image_url": "/static/images/cards/accelerant.png",
+    "image_url": "/static/images/cards/accelerant.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]Яд[/gold] срабатывает еще 2 plural(ru):раз.",
@@ -7566,7 +7566,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/catastrophe.png",
+    "image_url": "/static/images/cards/catastrophe.webp",
     "beta_image_url": "/static/images/cards/beta/catastrophe.png",
     "type_variants": null,
     "upgrade_description": "Вы разыгрываете 3 plural(ru):случайную карту из [gold]стопки добора[/gold].",
@@ -7603,7 +7603,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/quasar.png",
+    "image_url": "/static/images/cards/quasar.webp",
     "beta_image_url": "/static/images/cards/beta/quasar.png",
     "type_variants": null,
     "upgrade_description": "Добавляет в [gold]руку[/gold] 1 из 3 случайных [gold]улучшенных[/gold] бесцветных карт на выбор.",
@@ -7643,7 +7643,7 @@
       "damage": "+3",
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/photon_cut.png",
+    "image_url": "/static/images/cards/photon_cut.webp",
     "beta_image_url": "/static/images/cards/beta/photon_cut.png",
     "type_variants": null,
     "upgrade_description": "Наносит 13 урона.\nВы добираете 2 plural(ru):карту.\nВы кладете 1 выбранную карту из [gold]руки[/gold] на верх [gold]стопки добора[/gold].",
@@ -7688,7 +7688,7 @@
     "upgrade": {
       "strength": "+1"
     },
-    "image_url": "/static/images/cards/brand.png",
+    "image_url": "/static/images/cards/brand.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -7731,7 +7731,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/sovereign_blade.png",
+    "image_url": "/static/images/cards/sovereign_blade.webp",
     "beta_image_url": "/static/images/cards/beta/sovereign_blade.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -7772,7 +7772,7 @@
     "upgrade": {
       "repeat": "+1"
     },
-    "image_url": "/static/images/cards/peck.png",
+    "image_url": "/static/images/cards/peck.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 2 урона 4 plural(ru):раз.",
@@ -7809,7 +7809,7 @@
       "gloryActIndex": 2
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/lantern_key.png",
+    "image_url": "/static/images/cards/lantern_key.webp",
     "beta_image_url": "/static/images/cards/beta/lantern_key.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -7851,7 +7851,7 @@
       "damage": "+1",
       "increase": "+1"
     },
-    "image_url": "/static/images/cards/claw.png",
+    "image_url": "/static/images/cards/claw.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 4 урона.\nПовышает урон ВСЕХ «Когтей» на 3 на этот бой.",
@@ -7889,7 +7889,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/colossus.png",
+    "image_url": "/static/images/cards/colossus.webp",
     "beta_image_url": "/static/images/cards/beta/colossus.png",
     "type_variants": null,
     "upgrade_description": "Дает 8 [gold]защиты[/gold].\nВ этом ходу вы получаете на 50% меньше урона от [gold]уязвимых[/gold] врагов.",
@@ -7926,7 +7926,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/tag_team.png",
+    "image_url": "/static/images/cards/tag_team.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 15 урона.\nСледующая Атака другого игрока по врагу разыгрывается еще 1 раз.",
@@ -7963,7 +7963,7 @@
     "upgrade": {
       "attacks": "+1"
     },
-    "image_url": "/static/images/cards/one_two_punch.png",
+    "image_url": "/static/images/cards/one_two_punch.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "В этом ходу 2 следующие Атаки разыгрываются еще 1 раз.",
@@ -8016,7 +8016,7 @@
     "upgrade": {
       "damage": "+11"
     },
-    "image_url": "/static/images/cards/comet.png",
+    "image_url": "/static/images/cards/comet.webp",
     "beta_image_url": "/static/images/cards/beta/comet.png",
     "type_variants": null,
     "upgrade_description": "Наносит 44 урона.\nНакладывает 3 [gold]слабости[/gold].\nНакладывает 3 [gold]уязвимости[/gold].",
@@ -8055,7 +8055,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/compile_driver.png",
+    "image_url": "/static/images/cards/compile_driver.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 10 урона.\nВы добираете по 1 карте за каждую уникальную заряженную сферу.",
@@ -8092,7 +8092,7 @@
     "upgrade": {
       "repeat": "+1"
     },
-    "image_url": "/static/images/cards/capacitor.png",
+    "image_url": "/static/images/cards/capacitor.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Дает 3 слота.",
@@ -8136,7 +8136,7 @@
     "upgrade": {
       "doom": "+8"
     },
-    "image_url": "/static/images/cards/end_of_days.png",
+    "image_url": "/static/images/cards/end_of_days.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -8174,7 +8174,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/gather_light.png",
+    "image_url": "/static/images/cards/gather_light.webp",
     "beta_image_url": "/static/images/cards/beta/gather_light.png",
     "type_variants": null,
     "upgrade_description": "Дает 10 [gold]защиты[/gold].\nДает [star:1].",
@@ -8214,7 +8214,7 @@
     "upgrade": {
       "add_retain": true
     },
-    "image_url": "/static/images/cards/royal_gamble.png",
+    "image_url": "/static/images/cards/royal_gamble.webp",
     "beta_image_url": "/static/images/cards/beta/royal_gamble.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -8255,7 +8255,7 @@
     "upgrade": {
       "increase": "+2"
     },
-    "image_url": "/static/images/cards/kingly_punch.png",
+    "image_url": "/static/images/cards/kingly_punch.webp",
     "beta_image_url": "/static/images/cards/beta/kingly_punch.png",
     "type_variants": null,
     "upgrade_description": "Наносит 8 урона.\nКогда эта карта добирается, ее урон повышается на 5 до конца боя.",
@@ -8292,7 +8292,7 @@
     "upgrade": {
       "cost": 2
     },
-    "image_url": "/static/images/cards/monarchs_gaze.png",
+    "image_url": "/static/images/cards/monarchs_gaze.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -8329,7 +8329,7 @@
     "upgrade": {
       "damage": "+6"
     },
-    "image_url": "/static/images/cards/kingly_kick.png",
+    "image_url": "/static/images/cards/kingly_kick.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 30 урона.\nКогда эта карта добирается, она стоит на 1 меньше.",
@@ -8366,7 +8366,7 @@
     "upgrade": {
       "corrosivewave": "+1"
     },
-    "image_url": "/static/images/cards/corrosive_wave.png",
+    "image_url": "/static/images/cards/corrosive_wave.webp",
     "beta_image_url": "/static/images/cards/beta/corrosive_wave.png",
     "type_variants": null,
     "upgrade_description": "Накладывает 4 [gold]яда[/gold] на ВСЕХ врагов за каждую добираемую в этом ходу карту.",
@@ -8407,7 +8407,7 @@
     "upgrade": {
       "increase": "+1"
     },
-    "image_url": "/static/images/cards/the_scythe.png",
+    "image_url": "/static/images/cards/the_scythe.webp",
     "beta_image_url": "/static/images/cards/beta/the_scythe.png",
     "type_variants": null,
     "upgrade_description": "Наносит 13 урона.\nУрон повышается на 4 до конца вылазки.",
@@ -8447,7 +8447,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/pyre.png",
+    "image_url": "/static/images/cards/pyre.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Дает [energy:2] в начале хода.",
@@ -8484,7 +8484,7 @@
     "upgrade": {
       "damage": "+10"
     },
-    "image_url": "/static/images/cards/bludgeon.png",
+    "image_url": "/static/images/cards/bludgeon.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 42 урона.",
@@ -8523,7 +8523,7 @@
     "upgrade": {
       "summon": "+2"
     },
-    "image_url": "/static/images/cards/legion_of_bone.png",
+    "image_url": "/static/images/cards/legion_of_bone.webp",
     "beta_image_url": "/static/images/cards/beta/legion_of_bone.png",
     "type_variants": null,
     "upgrade_description": "ВСЕ игроки [gold]призывают[/gold] 8.",
@@ -8568,7 +8568,7 @@
       "block": "+3",
       "ostydamage": "+3"
     },
-    "image_url": "/static/images/cards/bone_shards.png",
+    "image_url": "/static/images/cards/bone_shards.webp",
     "beta_image_url": "/static/images/cards/beta/bone_shards.png",
     "type_variants": null,
     "upgrade_description": "Если [gold]Костя[/gold] призван, он наносит 12 урона ВСЕМ врагам, вы получаете 12 [gold]защиты[/gold],\nзатем [gold]Костя[/gold] погибает.",
@@ -8605,7 +8605,7 @@
     "upgrade": {
       "cost": 2
     },
-    "image_url": "/static/images/cards/nightmare.png",
+    "image_url": "/static/images/cards/nightmare.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -8648,7 +8648,7 @@
     "upgrade": {
       "block": "+10"
     },
-    "image_url": "/static/images/cards/panic_button.png",
+    "image_url": "/static/images/cards/panic_button.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Дает 40 [gold]защиты[/gold].\nВы не сможете получать [gold]защиту[/gold] от карт в течение 2 plural(ru):хода.",
@@ -8689,7 +8689,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/bloodletting.png",
+    "image_url": "/static/images/cards/bloodletting.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Вы теряете 3 ОЗ.\nДает [energy:3].",
@@ -8733,7 +8733,7 @@
     "upgrade": {
       "infernopower": "+3"
     },
-    "image_url": "/static/images/cards/inferno.png",
+    "image_url": "/static/images/cards/inferno.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Вы теряете 1 ОЗ в начале хода.\nНаносит 9 урона ВСЕМ врагам, когда вы теряете ОЗ в свой ход.",
@@ -8771,7 +8771,7 @@
     "upgrade": {
       "forge": "+10"
     },
-    "image_url": "/static/images/cards/the_smith.png",
+    "image_url": "/static/images/cards/the_smith.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]Закаляет[/gold] 40.",
@@ -8806,7 +8806,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/hammer_time.png",
+    "image_url": "/static/images/cards/hammer_time.webp",
     "beta_image_url": "/static/images/cards/beta/hammer_time.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -8845,7 +8845,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/flick_flack.png",
+    "image_url": "/static/images/cards/flick_flack.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 9 урона ВСЕМ врагам.",
@@ -8885,7 +8885,7 @@
     "upgrade": {
       "damage": "+10"
     },
-    "image_url": "/static/images/cards/grand_finale.png",
+    "image_url": "/static/images/cards/grand_finale.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Можно разыграть, только если в [gold]стопке добора[/gold] нет карт. Наносит 60 урона ВСЕМ врагам.",
@@ -8924,7 +8924,7 @@
     "upgrade": {
       "extradamage": "+2"
     },
-    "image_url": "/static/images/cards/gang_up.png",
+    "image_url": "/static/images/cards/gang_up.webp",
     "beta_image_url": "/static/images/cards/beta/gang_up.png",
     "type_variants": null,
     "upgrade_description": "Наносит 5 урона.\nНаносит на 7 урона больше за каждую атаку другого игрока по врагу.",
@@ -8961,7 +8961,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/glacier.png",
+    "image_url": "/static/images/cards/glacier.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Дает 9 [gold]защиты[/gold].\n[gold]Заряжает[/gold] 2 [gold]сферы льда[/gold].",
@@ -8999,7 +8999,7 @@
     "upgrade": {
       "damage": "+5"
     },
-    "image_url": "/static/images/cards/ice_lance.png",
+    "image_url": "/static/images/cards/ice_lance.webp",
     "beta_image_url": "/static/images/cards/beta/ice_lance.png",
     "type_variants": null,
     "upgrade_description": "Наносит 24 урона.\n[gold]Заряжает[/gold] 3 [gold]plural(ru):сферу льда[/gold].",
@@ -9041,7 +9041,7 @@
       "Sloth": 3
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/sloth.png",
+    "image_url": "/static/images/cards/sloth.webp",
     "beta_image_url": "/static/images/cards/beta/sloth.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -9078,7 +9078,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/dagger_throw.png",
+    "image_url": "/static/images/cards/dagger_throw.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 12 урона.\nВы добираете 1 карту\nи сбрасываете 1 карту.",
@@ -9117,7 +9117,7 @@
     "upgrade": {
       "summon": "+1"
     },
-    "image_url": "/static/images/cards/dirge.png",
+    "image_url": "/static/images/cards/dirge.webp",
     "beta_image_url": "/static/images/cards/beta/dirge.png",
     "type_variants": null,
     "upgrade_description": "[gold]Призывает[/gold] 4 X раз.\nДобавляет X [gold]«Душ+»[/gold] в [gold]стопку добора[/gold].",
@@ -9158,7 +9158,7 @@
       "damage": "+1",
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/capture_spirit.png",
+    "image_url": "/static/images/cards/capture_spirit.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Отнимает 4 ОЗ.\nДобавляет 4 [gold]plural(ru):«Душу»[/gold] в [gold]стопку добора[/gold].",
@@ -9195,7 +9195,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/hand_trick.png",
+    "image_url": "/static/images/cards/hand_trick.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Дает 10 [gold]защиты[/gold].\nВыбранный в [gold]руке[/gold] Навык становится [gold]коварным[/gold] на этот ход.",
@@ -9234,7 +9234,7 @@
     "upgrade": {
       "damage": "+1"
     },
-    "image_url": "/static/images/cards/lunar_blast.png",
+    "image_url": "/static/images/cards/lunar_blast.webp",
     "beta_image_url": "/static/images/cards/beta/lunar_blast.png",
     "type_variants": null,
     "upgrade_description": "Наносит по 5 урона за каждый разыгранный в этом ходу Навык.",
@@ -9274,7 +9274,7 @@
     "upgrade": {
       "extradamage": "+1"
     },
-    "image_url": "/static/images/cards/crescent_spear.png",
+    "image_url": "/static/images/cards/crescent_spear.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 6 урона.\nНаносит на 3 урона больше за КАЖДУЮ вашу карту, требующую [star:1].",
@@ -9309,7 +9309,7 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": "/static/images/cards/beacon_of_hope.png",
+    "image_url": "/static/images/cards/beacon_of_hope.webp",
     "beta_image_url": "/static/images/cards/beta/beacon_of_hope.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -9355,7 +9355,7 @@
       "damage": "+1",
       "vulnerable": "+1"
     },
-    "image_url": "/static/images/cards/beam_cell.png",
+    "image_url": "/static/images/cards/beam_cell.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 4 урона.\nНакладывает 1 [gold]уязвимости[/gold].",
@@ -9395,7 +9395,7 @@
     "upgrade": {
       "damage": "+1"
     },
-    "image_url": "/static/images/cards/radiate.png",
+    "image_url": "/static/images/cards/radiate.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит по 4 урона ВСЕМ врагам за каждую полученную за ход [star:1].",
@@ -9434,7 +9434,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/bundle_of_joy.png",
+    "image_url": "/static/images/cards/bundle_of_joy.webp",
     "beta_image_url": "/static/images/cards/beta/bundle_of_joy.png",
     "type_variants": null,
     "upgrade_description": "Добавляет в [gold]руку[/gold] 4 plural(ru):случайную бесцветную карту.",
@@ -9483,7 +9483,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/sword_sage.png",
+    "image_url": "/static/images/cards/sword_sage.webp",
     "beta_image_url": "/static/images/cards/beta/sword_sage.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -9522,7 +9522,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/jack_of_all_trades.png",
+    "image_url": "/static/images/cards/jack_of_all_trades.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Добавляет в [gold]руку[/gold] 2 plural(ru):случайную бесцветную карту.",
@@ -9562,7 +9562,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/expertise.png",
+    "image_url": "/static/images/cards/expertise.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Вы добираете карты, пока в [gold]руке[/gold] не будет 7 карт.",
@@ -9606,7 +9606,7 @@
     "upgrade": {
       "juggernautpower": "+2"
     },
-    "image_url": "/static/images/cards/juggernaut.png",
+    "image_url": "/static/images/cards/juggernaut.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 7 урона случайному врагу, когда вы получаете [gold]защиту[/gold].",
@@ -9643,7 +9643,7 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": "/static/images/cards/machine_learning.png",
+    "image_url": "/static/images/cards/machine_learning.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -9681,7 +9681,7 @@
     "upgrade": {
       "block": "+4"
     },
-    "image_url": "/static/images/cards/melancholy.png",
+    "image_url": "/static/images/cards/melancholy.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Дает 17 [gold]защиты[/gold].\nСтоит на [energy:1] меньше, когда КТО УГОДНО погибает.",
@@ -9721,7 +9721,7 @@
       "calculationbase": "+2",
       "extradamage": "+1"
     },
-    "image_url": "/static/images/cards/memento_mori.png",
+    "image_url": "/static/images/cards/memento_mori.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 8 урона.\nНаносит на 5 урона больше за каждую сброшенную в этом ходу карту.",
@@ -9762,7 +9762,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/mind_blast.png",
+    "image_url": "/static/images/cards/mind_blast.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -9804,7 +9804,7 @@
     "upgrade": {
       "cards": "+2"
     },
-    "image_url": "/static/images/cards/metamorphosis.png",
+    "image_url": "/static/images/cards/metamorphosis.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Добавляет 5 plural(ru):случайную Атаку в [gold]стопку добора[/gold]. В этом бою они бесплатные.",
@@ -9860,7 +9860,7 @@
     "upgrade": {
       "damage": "+7"
     },
-    "image_url": "/static/images/cards/meteor_shower.png",
+    "image_url": "/static/images/cards/meteor_shower.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 21 урона ВСЕМ врагам.\nНакладывает 2 [gold]слабости[/gold] и [gold]уязвимости[/gold] на ВСЕХ врагов.",
@@ -9899,7 +9899,7 @@
     "upgrade": {
       "damage": "+6"
     },
-    "image_url": "/static/images/cards/meteor_strike.png",
+    "image_url": "/static/images/cards/meteor_strike.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 30 урона.\n[gold]Заряжает[/gold] 3 [gold]сферы плазмы[/gold].",
@@ -9945,7 +9945,7 @@
     "upgrade": {
       "accuracypower": "+2"
     },
-    "image_url": "/static/images/cards/accuracy.png",
+    "image_url": "/static/images/cards/accuracy.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]«Заточки»[/gold] наносят на 6 урона больше.",
@@ -9983,7 +9983,7 @@
     "upgrade": {
       "repeat": "+1"
     },
-    "image_url": "/static/images/cards/sword_boomerang.png",
+    "image_url": "/static/images/cards/sword_boomerang.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 3 урона случайному врагу 4 раза.",
@@ -10023,7 +10023,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/mirage.png",
+    "image_url": "/static/images/cards/mirage.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -10066,7 +10066,7 @@
       "damage": "+2",
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/graveblast.png",
+    "image_url": "/static/images/cards/graveblast.webp",
     "beta_image_url": "/static/images/cards/beta/graveblast.png",
     "type_variants": null,
     "upgrade_description": "Наносит 6 урона.\nВы берете выбранную карту из [gold]стопки сброса[/gold].",
@@ -10107,7 +10107,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/modded.png",
+    "image_url": "/static/images/cards/modded.webp",
     "beta_image_url": "/static/images/cards/beta/modded.png",
     "type_variants": null,
     "upgrade_description": "Дает 1 plural(ru):слот.\nВы добираете 2 plural(ru):карту. Стоимость повышается на 1.",
@@ -10153,7 +10153,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/neurosurge.png",
+    "image_url": "/static/images/cards/neurosurge.webp",
     "beta_image_url": "/static/images/cards/beta/neurosurge.png",
     "type_variants": null,
     "upgrade_description": "Дает [energy:4].\nВы добираете 2 plural(ru):карту.\nВы получаете 3 [gold]злого рока[/gold] в начале хода.",
@@ -10194,7 +10194,7 @@
       "calculationbase": "+2",
       "calculationextra": "+2"
     },
-    "image_url": "/static/images/cards/beat_into_shape.png",
+    "image_url": "/static/images/cards/beat_into_shape.webp",
     "beta_image_url": "/static/images/cards/beta/beat_into_shape.png",
     "type_variants": null,
     "upgrade_description": "Наносит 7 урона.\n[gold]Закаляет[/gold] X.\n[gold]Закаляет[/gold] на 7 больше за каждый второй ваш удар по врагу в этом ходу.",
@@ -10231,7 +10231,7 @@
     "upgrade": {
       "add_retain": true
     },
-    "image_url": "/static/images/cards/monologue.png",
+    "image_url": "/static/images/cards/monologue.webp",
     "beta_image_url": "/static/images/cards/beta/monologue.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -10267,7 +10267,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/writhe.png",
+    "image_url": "/static/images/cards/writhe.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -10316,7 +10316,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/borrowed_time.png",
+    "image_url": "/static/images/cards/borrowed_time.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Вы получаете 3 [gold]злого рока[/gold].\nДает [energy:2].",
@@ -10355,7 +10355,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/thinking_ahead.png",
+    "image_url": "/static/images/cards/thinking_ahead.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -10393,7 +10393,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/master_planner.png",
+    "image_url": "/static/images/cards/master_planner.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -10430,7 +10430,7 @@
     "upgrade": {
       "block": "+5"
     },
-    "image_url": "/static/images/cards/lift.png",
+    "image_url": "/static/images/cards/lift.webp",
     "beta_image_url": "/static/images/cards/beta/lift.png",
     "type_variants": null,
     "upgrade_description": "Дает другому игроку 16 [gold]защиты[/gold].",
@@ -10469,7 +10469,7 @@
       "damage": "+1",
       "strengthloss": "+1"
     },
-    "image_url": "/static/images/cards/crush_under.png",
+    "image_url": "/static/images/cards/crush_under.webp",
     "beta_image_url": "/static/images/cards/beta/crush_under.png",
     "type_variants": null,
     "upgrade_description": "Наносит 8 урона ВСЕМ врагам. Отнимает у ВСЕХ врагов 2 [gold]силы[/gold] на этот ход.",
@@ -10513,7 +10513,7 @@
     "upgrade": {
       "strength": "+1"
     },
-    "image_url": "/static/images/cards/rupture.png",
+    "image_url": "/static/images/cards/rupture.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -10552,7 +10552,7 @@
     "upgrade": {
       "cost": 2
     },
-    "image_url": "/static/images/cards/murder.png",
+    "image_url": "/static/images/cards/murder.webp",
     "beta_image_url": "/static/images/cards/beta/murder.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -10589,7 +10589,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/byrd_swoop.png",
+    "image_url": "/static/images/cards/byrd_swoop.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 18 урона.",
@@ -10635,7 +10635,7 @@
       "damage": "+4",
       "knockdownpower": "+1"
     },
-    "image_url": "/static/images/cards/knockdown.png",
+    "image_url": "/static/images/cards/knockdown.webp",
     "beta_image_url": "/static/images/cards/beta/knockdown.png",
     "type_variants": null,
     "upgrade_description": "Наносит 14 урона.\nВ этом ходу враг получает тройной урон от других игроков.",
@@ -10672,7 +10672,7 @@
     "upgrade": {
       "damage": "+6"
     },
-    "image_url": "/static/images/cards/pounce.png",
+    "image_url": "/static/images/cards/pounce.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 18 урона.\nСледующий Навык стоит 0 [energy:1].",
@@ -10718,7 +10718,7 @@
       "block": "+1",
       "vulnerable": "+1"
     },
-    "image_url": "/static/images/cards/taunt.png",
+    "image_url": "/static/images/cards/taunt.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Дает 8 [gold]защиты[/gold].\nНакладывает 1 [gold]уязвимости[/gold].",
@@ -10755,7 +10755,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/stampede.png",
+    "image_url": "/static/images/cards/stampede.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -10792,7 +10792,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/discovery.png",
+    "image_url": "/static/images/cards/discovery.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -10832,7 +10832,7 @@
     "upgrade": {
       "cost": 2
     },
-    "image_url": "/static/images/cards/creative_ai.png",
+    "image_url": "/static/images/cards/creative_ai.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -10870,7 +10870,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/celestial_might.png",
+    "image_url": "/static/images/cards/celestial_might.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 8 урона 3 plural(ru):раз.",
@@ -10912,7 +10912,7 @@
       "WasteAway": 1
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/waste_away.png",
+    "image_url": "/static/images/cards/waste_away.webp",
     "beta_image_url": "/static/images/cards/beta/waste_away.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -10951,7 +10951,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/expect_a_fight.png",
+    "image_url": "/static/images/cards/expect_a_fight.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -10988,7 +10988,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/thrash.png",
+    "image_url": "/static/images/cards/thrash.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 6 урона 2 раза.\n[gold]Сжигает[/gold] случайную Атаку в [gold]руке[/gold] и добавляет ее урон к своему.",
@@ -11033,7 +11033,7 @@
     "upgrade": {
       "platingpower": "+3"
     },
-    "image_url": "/static/images/cards/neutron_aegis.png",
+    "image_url": "/static/images/cards/neutron_aegis.webp",
     "beta_image_url": "/static/images/cards/beta/neutron_aegis.png",
     "type_variants": null,
     "upgrade_description": "Дает 11 [gold]панциря[/gold].",
@@ -11078,7 +11078,7 @@
     "upgrade": {
       "repeat": "+1"
     },
-    "image_url": "/static/images/cards/consuming_shadow.png",
+    "image_url": "/static/images/cards/consuming_shadow.webp",
     "beta_image_url": "/static/images/cards/beta/consuming_shadow.png",
     "type_variants": null,
     "upgrade_description": "[gold]Заряжает[/gold] 3 [gold]сферы тьмы[/gold].\n[gold]Разряжает[/gold] левую сферу в конце хода.",
@@ -11113,7 +11113,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/unmovable.png",
+    "image_url": "/static/images/cards/unmovable.webp",
     "beta_image_url": "/static/images/cards/beta/unmovable.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -11161,7 +11161,7 @@
       "block": "+1",
       "weak": "+1"
     },
-    "image_url": "/static/images/cards/defy.png",
+    "image_url": "/static/images/cards/defy.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Дает 7 [gold]защиты[/gold].\nНакладывает 1 [gold]слабости[/gold].",
@@ -11204,7 +11204,7 @@
     "upgrade": {
       "cards": "+2"
     },
-    "image_url": "/static/images/cards/purity.png",
+    "image_url": "/static/images/cards/purity.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]Сжигает[/gold] до 5 карт в [gold]руке[/gold].",
@@ -11247,7 +11247,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/untouchable.png",
+    "image_url": "/static/images/cards/untouchable.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Дает 12 [gold]защиты[/gold].",
@@ -11289,7 +11289,7 @@
     "upgrade": {
       "block": "+10"
     },
-    "image_url": "/static/images/cards/impervious.png",
+    "image_url": "/static/images/cards/impervious.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Дает 40 [gold]защиты[/gold].",
@@ -11327,7 +11327,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/darkness.png",
+    "image_url": "/static/images/cards/darkness.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]Заряжает[/gold] 1 [gold]сферу тьмы[/gold].\nАктивирует пассивный эффект всех [gold]сфер тьмы[/gold]  2 раза.",
@@ -11371,7 +11371,7 @@
     "upgrade": {
       "platingpower": "+2"
     },
-    "image_url": "/static/images/cards/eternal_armor.png",
+    "image_url": "/static/images/cards/eternal_armor.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Дает 9 [gold]панциря[/gold].",
@@ -11412,7 +11412,7 @@
       "cards": "+1",
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/restlessness.png",
+    "image_url": "/static/images/cards/restlessness.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Вы добираете 3 plural(ru):карту и получаете [energy:3], если в [gold]руке[/gold] нет карт.",
@@ -11452,7 +11452,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/impatience.png",
+    "image_url": "/static/images/cards/impatience.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Вы добираете 3 plural(ru):карту, если в [gold]руке[/gold] нет Атак.",
@@ -11488,7 +11488,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/clumsy.png",
+    "image_url": "/static/images/cards/clumsy.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -11530,7 +11530,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/blur.png",
+    "image_url": "/static/images/cards/blur.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Дает 8 [gold]защиты[/gold].\n[gold]Защита[/gold] не пропадет в начале следующего хода.",
@@ -11574,7 +11574,7 @@
     "upgrade": {
       "strength": "+2"
     },
-    "image_url": "/static/images/cards/feeding_frenzy.png",
+    "image_url": "/static/images/cards/feeding_frenzy.webp",
     "beta_image_url": "/static/images/cards/beta/feeding_frenzy.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -11611,7 +11611,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/i_am_invincible.png",
+    "image_url": "/static/images/cards/i_am_invincible.webp",
     "beta_image_url": "/static/images/cards/beta/i_am_invincible.png",
     "type_variants": null,
     "upgrade_description": "Дает 12 [gold]защиты[/gold].\nРазыгрывается, если находится на верху [gold]стопки добора[/gold] в конце хода.",
@@ -11651,7 +11651,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/backstab.png",
+    "image_url": "/static/images/cards/backstab.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 15 урона.",
@@ -11693,7 +11693,7 @@
     "upgrade": {
       "damage": "+8"
     },
-    "image_url": "/static/images/cards/knockout_blow.png",
+    "image_url": "/static/images/cards/knockout_blow.webp",
     "beta_image_url": "/static/images/cards/beta/knockout_blow.png",
     "type_variants": null,
     "upgrade_description": "Наносит 38 урона.\nДает [star:5], если убивает врага.",
@@ -11728,7 +11728,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/nostalgia.png",
+    "image_url": "/static/images/cards/nostalgia.webp",
     "beta_image_url": "/static/images/cards/beta/nostalgia.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -11774,7 +11774,7 @@
       "damage": "+3",
       "weak": "+1"
     },
-    "image_url": "/static/images/cards/null.png",
+    "image_url": "/static/images/cards/null.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 13 урона.\nНакладывает 2 [gold]слабости[/gold].\n[gold]Заряжает[/gold] 1 [gold]сферу тьмы[/gold].",
@@ -11811,7 +11811,7 @@
     "upgrade": {
       "power": "+1"
     },
-    "image_url": "/static/images/cards/feel_no_pain.png",
+    "image_url": "/static/images/cards/feel_no_pain.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Дает 4 [gold]защиты[/gold], когда [gold]сжигается[/gold] карта.",
@@ -11857,7 +11857,7 @@
       "damage": "+1",
       "weak": "+1"
     },
-    "image_url": "/static/images/cards/neutralize.png",
+    "image_url": "/static/images/cards/neutralize.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 4 урона.\nНакладывает 1 [gold]слабости[/gold].",
@@ -11897,7 +11897,7 @@
     "upgrade": {
       "cost": 2
     },
-    "image_url": "/static/images/cards/demesne.png",
+    "image_url": "/static/images/cards/demesne.webp",
     "beta_image_url": "/static/images/cards/beta/demesne.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -11944,7 +11944,7 @@
     "upgrade": {
       "voidformpower": "+1"
     },
-    "image_url": "/static/images/cards/void_form.png",
+    "image_url": "/static/images/cards/void_form.webp",
     "beta_image_url": "/static/images/cards/beta/void_form.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -11988,7 +11988,7 @@
     "upgrade": {
       "strengthpower": "+1"
     },
-    "image_url": "/static/images/cards/demon_form.png",
+    "image_url": "/static/images/cards/demon_form.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Дает 3 [gold]силы[/gold] в начале хода.",
@@ -12023,7 +12023,7 @@
     "upgrade": {
       "add_retain": true
     },
-    "image_url": "/static/images/cards/reaper_form.png",
+    "image_url": "/static/images/cards/reaper_form.webp",
     "beta_image_url": "/static/images/cards/beta/reaper_form.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -12067,7 +12067,7 @@
     "upgrade": {
       "serpentformpower": "+1"
     },
-    "image_url": "/static/images/cards/serpent_form.png",
+    "image_url": "/static/images/cards/serpent_form.webp",
     "beta_image_url": "/static/images/cards/beta/serpent_form.png",
     "type_variants": null,
     "upgrade_description": "Наносит 5 урона случайному врагу, когда вы разыгрываете карту.",
@@ -12118,7 +12118,7 @@
     "upgrade": {
       "intangiblepower": "+1"
     },
-    "image_url": "/static/images/cards/wraith_form.png",
+    "image_url": "/static/images/cards/wraith_form.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Дает 3 [gold]неосязаемости[/gold].\nВы теряете 1 [gold]ловкости[/gold] в начале хода.",
@@ -12157,7 +12157,7 @@
     "upgrade": {
       "remove_ethereal": true
     },
-    "image_url": "/static/images/cards/echo_form.png",
+    "image_url": "/static/images/cards/echo_form.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -12195,7 +12195,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/debris.png",
+    "image_url": "/static/images/cards/debris.webp",
     "beta_image_url": "/static/images/cards/beta/debris.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -12242,7 +12242,7 @@
     "upgrade": {
       "focuspower": "+1"
     },
-    "image_url": "/static/images/cards/hotfix.png",
+    "image_url": "/static/images/cards/hotfix.webp",
     "beta_image_url": "/static/images/cards/beta/hotfix.png",
     "type_variants": null,
     "upgrade_description": "Дает 3 [gold]фокуса[/gold] на этот ход.",
@@ -12281,7 +12281,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/defend_ironclad.png",
+    "image_url": "/static/images/cards/defend_ironclad.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Дает 8 [gold]защиты[/gold].",
@@ -12320,7 +12320,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/defend_silent.png",
+    "image_url": "/static/images/cards/defend_silent.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Дает 8 [gold]защиты[/gold].",
@@ -12359,7 +12359,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/defend_regent.png",
+    "image_url": "/static/images/cards/defend_regent.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Дает 8 [gold]защиты[/gold].",
@@ -12398,7 +12398,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/defend_necrobinder.png",
+    "image_url": "/static/images/cards/defend_necrobinder.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Дает 8 [gold]защиты[/gold].",
@@ -12437,7 +12437,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/defend_defect.png",
+    "image_url": "/static/images/cards/defend_defect.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Дает 8 [gold]защиты[/gold].",
@@ -12481,7 +12481,7 @@
     "upgrade": {
       "countdownpower": "+3"
     },
-    "image_url": "/static/images/cards/countdown.png",
+    "image_url": "/static/images/cards/countdown.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Накладывает 9 [gold]злого рока[/gold] на случайного врага в начале хода.",
@@ -12522,7 +12522,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/seance.png",
+    "image_url": "/static/images/cards/seance.webp",
     "beta_image_url": "/static/images/cards/beta/seance.png",
     "type_variants": null,
     "upgrade_description": "[gold]Преобразует[/gold] выбранную в [gold]стопке добора[/gold] карту в [gold]«Душу+»[/gold].",
@@ -12564,7 +12564,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/barrage.png",
+    "image_url": "/static/images/cards/barrage.webp",
     "beta_image_url": "/static/images/cards/beta/barrage.png",
     "type_variants": null,
     "upgrade_description": "Наносит по 7 урона за каждую [gold]заряженную[/gold] сферу.",
@@ -12599,7 +12599,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/dark_embrace.png",
+    "image_url": "/static/images/cards/dark_embrace.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -12637,7 +12637,7 @@
       "numOfCardsPerTurn": 3
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/normality.png",
+    "image_url": "/static/images/cards/normality.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -12679,7 +12679,7 @@
       "block": "+4",
       "damageback": "+2"
     },
-    "image_url": "/static/images/cards/flame_barrier.png",
+    "image_url": "/static/images/cards/flame_barrier.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Дает 16 [gold]защиты[/gold].\nНаносит 6 урона в ответ на каждую атаку до следующего хода.",
@@ -12716,7 +12716,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/burning_pact.png",
+    "image_url": "/static/images/cards/burning_pact.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]Сжигает[/gold] 1 карту.\nВы добираете 3 plural(ru):карту.",
@@ -12753,7 +12753,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/volley.png",
+    "image_url": "/static/images/cards/volley.webp",
     "beta_image_url": "/static/images/cards/beta/volley.png",
     "type_variants": null,
     "upgrade_description": "Наносит 14 урона случайному врагу X раз.",
@@ -12790,7 +12790,7 @@
       "Damage": 2
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/burn.png",
+    "image_url": "/static/images/cards/burn.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -12832,7 +12832,7 @@
     "upgrade": {
       "strengthloss": "+6"
     },
-    "image_url": "/static/images/cards/dark_shackles.png",
+    "image_url": "/static/images/cards/dark_shackles.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Отнимает 15 [gold]силы[/gold] на этот ход.",
@@ -12873,7 +12873,7 @@
     "upgrade": {
       "damage": "+6"
     },
-    "image_url": "/static/images/cards/pacts_end.png",
+    "image_url": "/static/images/cards/pacts_end.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Можно разыграть, только если в [gold]стопке пепла[/gold] не менее 3 plural(ru):карты.\nНаносит 23 урона ВСЕМ врагам.",
@@ -12908,7 +12908,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/entrench.png",
+    "image_url": "/static/images/cards/entrench.webp",
     "beta_image_url": "/static/images/cards/beta/entrench.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -12952,7 +12952,7 @@
     "upgrade": {
       "calcifypower": "+2"
     },
-    "image_url": "/static/images/cards/calcify.png",
+    "image_url": "/static/images/cards/calcify.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Атаки [gold]Кости[/gold] наносят на 6 урона больше.",
@@ -12987,7 +12987,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/havoc.png",
+    "image_url": "/static/images/cards/havoc.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -13024,7 +13024,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/orbit.png",
+    "image_url": "/static/images/cards/orbit.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -13061,7 +13061,7 @@
     "upgrade": {
       "damage": "+5"
     },
-    "image_url": "/static/images/cards/pinpoint.png",
+    "image_url": "/static/images/cards/pinpoint.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 22 урона.\nСтоит на 1 [energy:1] меньше за каждый разыгранный в этом ходу Навык.",
@@ -13100,7 +13100,7 @@
       "damage": "+3",
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/scrape.png",
+    "image_url": "/static/images/cards/scrape.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 10 урона.\nВы добираете 5 карты.\nВы сбрасываете все добранные карты стоимостью более 0 [energy:1].",
@@ -13137,7 +13137,7 @@
     "upgrade": {
       "block": "+1"
     },
-    "image_url": "/static/images/cards/pillar_of_creation.png",
+    "image_url": "/static/images/cards/pillar_of_creation.webp",
     "beta_image_url": "/static/images/cards/beta/pillar_of_creation.png",
     "type_variants": null,
     "upgrade_description": "Дает 4 [gold]защиты[/gold], когда создается карта.",
@@ -13175,7 +13175,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/flash_of_steel.png",
+    "image_url": "/static/images/cards/flash_of_steel.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 8 урона.\nВы добираете 1 карту.",
@@ -13214,7 +13214,7 @@
       "block": "+2",
       "summon": "+1"
     },
-    "image_url": "/static/images/cards/pull_aggro.png",
+    "image_url": "/static/images/cards/pull_aggro.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]Призывает[/gold] 5.\nДает 9 [gold]защиты[/gold].",
@@ -13251,7 +13251,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/rebound.png",
+    "image_url": "/static/images/cards/rebound.webp",
     "beta_image_url": "/static/images/cards/beta/rebound.png",
     "type_variants": null,
     "upgrade_description": "Наносит 12 урона.\nСледующая разыгранная в этом ходу карта кладется на верх [gold]стопки добора[/gold].",
@@ -13295,7 +13295,7 @@
     "upgrade": {
       "envenompower": "+1"
     },
-    "image_url": "/static/images/cards/envenom.png",
+    "image_url": "/static/images/cards/envenom.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Накладывает на врага 2 [gold]яда[/gold], когда Атака наносит урон по его ОЗ.",
@@ -13341,7 +13341,7 @@
       "damage": "+2",
       "poison": "+1"
     },
-    "image_url": "/static/images/cards/poisoned_stab.png",
+    "image_url": "/static/images/cards/poisoned_stab.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 8 урона.\nНакладывает 3 [gold]яда[/gold].",
@@ -13379,7 +13379,7 @@
     "upgrade": {
       "block": "+4"
     },
-    "image_url": "/static/images/cards/reflect.png",
+    "image_url": "/static/images/cards/reflect.webp",
     "beta_image_url": "/static/images/cards/beta/reflect.png",
     "type_variants": null,
     "upgrade_description": "Дает 21 [gold]защиты[/gold].\nНаносит полученный по [gold]защите[/gold] урон в ответ до следующего хода.",
@@ -13418,7 +13418,7 @@
     "upgrade": {
       "damage": "+5"
     },
-    "image_url": "/static/images/cards/severance.png",
+    "image_url": "/static/images/cards/severance.webp",
     "beta_image_url": "/static/images/cards/beta/severance.png",
     "type_variants": null,
     "upgrade_description": "Наносит 18 урона.\nДобавляет [gold]«Душу»[/gold] в [gold]стопку добора[/gold], [gold]руку[/gold] и [gold]стопку сброса[/gold].",
@@ -13464,7 +13464,7 @@
       "block": "+1",
       "doom": "+4"
     },
-    "image_url": "/static/images/cards/negative_pulse.png",
+    "image_url": "/static/images/cards/negative_pulse.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Дает 6 [gold]защиты[/gold].\nНакладывает 7 [gold]злого рока[/gold] на ВСЕХ врагов.",
@@ -13503,7 +13503,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/boost_away.png",
+    "image_url": "/static/images/cards/boost_away.webp",
     "beta_image_url": "/static/images/cards/beta/boost_away.png",
     "type_variants": null,
     "upgrade_description": "Дает 9 [gold]защиты[/gold].\nДобавляет [gold]«Головокружение»[/gold] в [gold]стопку сброса[/gold].",
@@ -13541,7 +13541,7 @@
     "upgrade": {
       "forge": "+4"
     },
-    "image_url": "/static/images/cards/refine_blade.png",
+    "image_url": "/static/images/cards/refine_blade.webp",
     "beta_image_url": "/static/images/cards/beta/refine_blade.png",
     "type_variants": null,
     "upgrade_description": "[gold]Закаляет[/gold] 10.\nДаст [energy:1] в начале следующего хода.",
@@ -13582,7 +13582,7 @@
     "upgrade": {
       "extradamage": "+1"
     },
-    "image_url": "/static/images/cards/perfected_strike.png",
+    "image_url": "/static/images/cards/perfected_strike.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 6 урона.\nНаносит на 3 урона больше за каждую карту с «Ударом» в названии.",
@@ -13615,7 +13615,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/frantic_escape.png",
+    "image_url": "/static/images/cards/frantic_escape.webp",
     "beta_image_url": "/static/images/cards/beta/frantic_escape.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -13659,7 +13659,7 @@
     "upgrade": {
       "coolantpower": "+1"
     },
-    "image_url": "/static/images/cards/coolant.png",
+    "image_url": "/static/images/cards/coolant.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Дает 3 [gold]защиты[/gold] в начале хода за каждую уникальную заряженную сферу.",
@@ -13696,7 +13696,7 @@
     "upgrade": {
       "summon": "+2"
     },
-    "image_url": "/static/images/cards/cleanse.png",
+    "image_url": "/static/images/cards/cleanse.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]Призывает[/gold] 5.\n[gold]Сжигает[/gold] 1 выбранную карту в [gold]стопке добора[/gold].",
@@ -13735,7 +13735,7 @@
     "upgrade": {
       "damage": "+1"
     },
-    "image_url": "/static/images/cards/begone.png",
+    "image_url": "/static/images/cards/begone.webp",
     "beta_image_url": "/static/images/cards/beta/begone.png",
     "type_variants": null,
     "upgrade_description": "Наносит 5 урона.\n[gold]Преобразует[/gold] выбранную в [gold]руке[/gold] карту в [gold]«Слугу-бомбочку+»[/gold].",
@@ -13788,7 +13788,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/falling_star.png",
+    "image_url": "/static/images/cards/falling_star.webp",
     "beta_image_url": "/static/images/cards/beta/falling_star.png",
     "type_variants": null,
     "upgrade_description": "Наносит 11 урона.\nНакладывает 1 [gold]слабости[/gold].\nНакладывает 1 [gold]уязвимости[/gold].",
@@ -13826,7 +13826,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/alignment.png",
+    "image_url": "/static/images/cards/alignment.webp",
     "beta_image_url": "/static/images/cards/beta/alignment.png",
     "type_variants": null,
     "upgrade_description": "Дает [energy:3].",
@@ -13872,7 +13872,7 @@
     "upgrade": {
       "parrypower": "+3"
     },
-    "image_url": "/static/images/cards/parry.png",
+    "image_url": "/static/images/cards/parry.webp",
     "beta_image_url": "/static/images/cards/beta/parry.png",
     "type_variants": null,
     "upgrade_description": "Дает 9 [gold]защиты[/gold], когда вы разыгрываете [gold]Клинок монарха[/gold].",
@@ -13909,7 +13909,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/dual_wield.png",
+    "image_url": "/static/images/cards/dual_wield.webp",
     "beta_image_url": "/static/images/cards/beta/dual_wield.png",
     "type_variants": null,
     "upgrade_description": "Добавляет в [gold]руку[/gold] [Cards копии|копию] выбранной в [gold]руке[/gold] Атаки или Таланта.",
@@ -13947,7 +13947,7 @@
     "upgrade": {
       "damage": "+5"
     },
-    "image_url": "/static/images/cards/cinder.png",
+    "image_url": "/static/images/cards/cinder.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 22 урона.\n[gold]Сжигает[/gold] карту на верху [gold]стопки добора[/gold].",
@@ -13988,7 +13988,7 @@
     "upgrade": {
       "extradamage": "+1"
     },
-    "image_url": "/static/images/cards/ashen_strike.png",
+    "image_url": "/static/images/cards/ashen_strike.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 6 урона.\nНаносит на 4 урона больше за каждую карту в [gold]стопке пепла[/gold].",
@@ -14027,7 +14027,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/overclock.png",
+    "image_url": "/static/images/cards/overclock.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Вы добираете 3 plural(ru):карту.\nДобавляет [gold]«Ожог»[/gold] в [gold]стопку сброса[/gold].",
@@ -14070,7 +14070,7 @@
       "cards": "+1",
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/relax.png",
+    "image_url": "/static/images/cards/relax.webp",
     "beta_image_url": "/static/images/cards/beta/relax.png",
     "type_variants": null,
     "upgrade_description": "Дает 17 [gold]защиты[/gold].\nВы доберете еще 3 plural(ru):карту и получите [energy:3] в начале следующего хода.",
@@ -14112,7 +14112,7 @@
     "upgrade": {
       "cards": "+2"
     },
-    "image_url": "/static/images/cards/reboot.png",
+    "image_url": "/static/images/cards/reboot.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ВСЕ карты замешиваются в [gold]стопку добора[/gold].\nВы добираете 6 plural(ru):карту.",
@@ -14152,7 +14152,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/pagestorm.png",
+    "image_url": "/static/images/cards/pagestorm.webp",
     "beta_image_url": "/static/images/cards/beta/pagestorm.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -14189,7 +14189,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/scavenge.png",
+    "image_url": "/static/images/cards/scavenge.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]Сжигает[/gold] выбранную карту.\nДаст [energy:3] в начале следующего хода.",
@@ -14235,7 +14235,7 @@
       "block": "+2",
       "vigorpower": "+1"
     },
-    "image_url": "/static/images/cards/patter.png",
+    "image_url": "/static/images/cards/patter.webp",
     "beta_image_url": "/static/images/cards/beta/patter.png",
     "type_variants": null,
     "upgrade_description": "Дает 10 [gold]защиты[/gold].\nДает 3 [gold]бодрости[/gold].",
@@ -14272,7 +14272,7 @@
     "upgrade": {
       "block": "+4"
     },
-    "image_url": "/static/images/cards/intercept.png",
+    "image_url": "/static/images/cards/intercept.webp",
     "beta_image_url": "/static/images/cards/beta/intercept.png",
     "type_variants": null,
     "upgrade_description": "Дает 13 [gold]защиты[/gold].\nПеренаправляет все атаки в этом ходу с другого игрока на вас.",
@@ -14309,7 +14309,7 @@
     "upgrade": {
       "forge": "+2"
     },
-    "image_url": "/static/images/cards/furnace.png",
+    "image_url": "/static/images/cards/furnace.webp",
     "beta_image_url": "/static/images/cards/beta/furnace.png",
     "type_variants": null,
     "upgrade_description": "[gold]Закаляет[/gold] 6 в начале хода.",
@@ -14346,7 +14346,7 @@
     "upgrade": {
       "add_retain": true
     },
-    "image_url": "/static/images/cards/scrawl.png",
+    "image_url": "/static/images/cards/scrawl.webp",
     "beta_image_url": "/static/images/cards/beta/scrawl.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -14386,7 +14386,7 @@
     "upgrade": {
       "block": "+2"
     },
-    "image_url": "/static/images/cards/escape_plan.png",
+    "image_url": "/static/images/cards/escape_plan.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Вы добираете 1 карту.\nДает 5 [gold]защиты[/gold], если вы добрали Навык.",
@@ -14426,7 +14426,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/cloak_and_dagger.png",
+    "image_url": "/static/images/cards/cloak_and_dagger.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Дает 6 [gold]защиты[/gold].\nДобавляет в [gold]руку[/gold] 2 [gold]plural(ru):«Заточку»[/gold].",
@@ -14471,7 +14471,7 @@
     "upgrade": {
       "dansemacabrepower": "+1"
     },
-    "image_url": "/static/images/cards/danse_macabre.png",
+    "image_url": "/static/images/cards/danse_macabre.webp",
     "beta_image_url": "/static/images/cards/beta/danse_macabre.png",
     "type_variants": null,
     "upgrade_description": "Дает 4 [gold]защиты[/gold], когда вы разыгрываете карту стоимостью не ниже [energy:2].",
@@ -14510,7 +14510,7 @@
     "upgrade": {
       "forge": "+3"
     },
-    "image_url": "/static/images/cards/summon_forth.png",
+    "image_url": "/static/images/cards/summon_forth.webp",
     "beta_image_url": "/static/images/cards/beta/summon_forth.png",
     "type_variants": null,
     "upgrade_description": "[gold]Закаляет[/gold] 11.\nВы берете [gold]Клинок монарха[/gold].",
@@ -14549,7 +14549,7 @@
       "damage": "+1",
       "increase": "+1"
     },
-    "image_url": "/static/images/cards/maul.png",
+    "image_url": "/static/images/cards/maul.webp",
     "beta_image_url": "/static/images/cards/beta/maul.png",
     "type_variants": null,
     "upgrade_description": "Наносит 6 урона 2 раза.\nПовышает урон ВСЕХ «Побоев» на 2 до конца боя.",
@@ -14586,7 +14586,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/hang.png",
+    "image_url": "/static/images/cards/hang.webp",
     "beta_image_url": "/static/images/cards/beta/hang.png",
     "type_variants": null,
     "upgrade_description": "Наносит 13 урона.\nУдваивает урон ВСЕХ «Повешений» против врага.",
@@ -14623,7 +14623,7 @@
     "upgrade": {
       "damage": "+11"
     },
-    "image_url": "/static/images/cards/bury.png",
+    "image_url": "/static/images/cards/bury.webp",
     "beta_image_url": "/static/images/cards/beta/bury.png",
     "type_variants": null,
     "upgrade_description": "Наносит 63 урона.",
@@ -14667,7 +14667,7 @@
     "upgrade": {
       "sleightoffleshpower": "+4"
     },
-    "image_url": "/static/images/cards/sleight_of_flesh.png",
+    "image_url": "/static/images/cards/sleight_of_flesh.webp",
     "beta_image_url": "/static/images/cards/beta/sleight_of_flesh.png",
     "type_variants": null,
     "upgrade_description": "Наносит врагу 13 урона, когда вы накладываете на него отрицательный эффект.",
@@ -14711,7 +14711,7 @@
     "upgrade": {
       "preptimepower": "+2"
     },
-    "image_url": "/static/images/cards/prep_time.png",
+    "image_url": "/static/images/cards/prep_time.webp",
     "beta_image_url": "/static/images/cards/beta/prep_time.png",
     "type_variants": null,
     "upgrade_description": "Дает 6 [gold]бодрости[/gold] в начале хода.",
@@ -14752,7 +14752,7 @@
     "upgrade": {
       "cards": "+2"
     },
-    "image_url": "/static/images/cards/offering.png",
+    "image_url": "/static/images/cards/offering.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Вы теряете 6 ОЗ.\nДает [energy:2].\nВы добираете 5 карты.",
@@ -14795,7 +14795,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/mimic.png",
+    "image_url": "/static/images/cards/mimic.webp",
     "beta_image_url": "/static/images/cards/beta/mimic.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -14844,7 +14844,7 @@
       "block": "+3",
       "weak": "+1"
     },
-    "image_url": "/static/images/cards/leg_sweep.png",
+    "image_url": "/static/images/cards/leg_sweep.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Накладывает 2 [gold]слабости[/gold].\nДает 14 [gold]защиты[/gold].",
@@ -14884,7 +14884,7 @@
       "calculationbase": "+1",
       "extradamage": "+1"
     },
-    "image_url": "/static/images/cards/conflagration.png",
+    "image_url": "/static/images/cards/conflagration.webp",
     "beta_image_url": "/static/images/cards/beta/conflagration.png",
     "type_variants": null,
     "upgrade_description": "Наносит 8 урона ВСЕМ врагам.\nНаносит на 3 урона больше за каждую вторую Атаку, разыгранную в этом ходу.",
@@ -14925,7 +14925,7 @@
       "damage": "+2",
       "maxhp": "+1"
     },
-    "image_url": "/static/images/cards/feed.png",
+    "image_url": "/static/images/cards/feed.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 12 урона.\nПовышает максимальные ОЗ на 4, если [gold]казнит[/gold] врага.",
@@ -14974,7 +14974,7 @@
     "upgrade": {
       "devourlifepower": "+1"
     },
-    "image_url": "/static/images/cards/devour_life.png",
+    "image_url": "/static/images/cards/devour_life.webp",
     "beta_image_url": "/static/images/cards/beta/devour_life.png",
     "type_variants": null,
     "upgrade_description": "[gold]Призывает[/gold] 2, когда вы разыгрываете [gold]«Душу»[/gold].",
@@ -15009,7 +15009,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/enthralled.png",
+    "image_url": "/static/images/cards/enthralled.webp",
     "beta_image_url": "/static/images/cards/beta/enthralled.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -15050,7 +15050,7 @@
     "upgrade": {
       "block": "+1"
     },
-    "image_url": "/static/images/cards/deaths_door.png",
+    "image_url": "/static/images/cards/deaths_door.webp",
     "beta_image_url": "/static/images/cards/beta/deaths_door.png",
     "type_variants": null,
     "upgrade_description": "Дает 7 [gold]защиты[/gold].\nДает еще 7 [gold]защиты[/gold] 2 plural(ru):раз, если вы накладывали [gold]злой рок[/gold] в этом ходу.",
@@ -15087,7 +15087,7 @@
     "upgrade": {
       "cost": 2
     },
-    "image_url": "/static/images/cards/corruption.png",
+    "image_url": "/static/images/cards/corruption.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -15124,7 +15124,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/forbidden_grimoire.png",
+    "image_url": "/static/images/cards/forbidden_grimoire.webp",
     "beta_image_url": "/static/images/cards/beta/forbidden_grimoire.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -15166,7 +15166,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/sow.png",
+    "image_url": "/static/images/cards/sow.webp",
     "beta_image_url": "/static/images/cards/beta/sow.png",
     "type_variants": null,
     "upgrade_description": "Наносит 11 урона ВСЕМ врагам.",
@@ -15206,7 +15206,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/fisticuffs.png",
+    "image_url": "/static/images/cards/fisticuffs.webp",
     "beta_image_url": "/static/images/cards/beta/fisticuffs.png",
     "type_variants": null,
     "upgrade_description": "Наносит 9 урона.\nДает [gold]защиту[/gold], равную нанесенному урону.",
@@ -15243,7 +15243,7 @@
     "upgrade": {
       "damage": "+5"
     },
-    "image_url": "/static/images/cards/howl_from_beyond.png",
+    "image_url": "/static/images/cards/howl_from_beyond.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 21 урона ВСЕМ врагам.\nРазыгрывается из [gold]стопки пепла[/gold] в начале хода.",
@@ -15283,7 +15283,7 @@
       "calculationbase": "+1",
       "extradamage": "+1"
     },
-    "image_url": "/static/images/cards/death_march.png",
+    "image_url": "/static/images/cards/death_march.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 8 урона.\nНаносит на 4 урона больше за каждую карту, которую вы добирали в этом ходу.",
@@ -15322,7 +15322,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/eradicate.png",
+    "image_url": "/static/images/cards/eradicate.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 14 урона X раз.",
@@ -15364,7 +15364,7 @@
     "upgrade": {
       "block": "+4"
     },
-    "image_url": "/static/images/cards/fight_through.png",
+    "image_url": "/static/images/cards/fight_through.webp",
     "beta_image_url": "/static/images/cards/beta/fight_through.png",
     "type_variants": null,
     "upgrade_description": "Дает 17 [gold]защиты[/gold].\nДобавляет 2 [gold]«Раны»[/gold] в [gold]стопку сброса[/gold].",
@@ -15403,7 +15403,7 @@
     "upgrade": {
       "block": "+4"
     },
-    "image_url": "/static/images/cards/ultimate_defend.png",
+    "image_url": "/static/images/cards/ultimate_defend.webp",
     "beta_image_url": "/static/images/cards/beta/ultimate_defend.png",
     "type_variants": null,
     "upgrade_description": "Дает 15 [gold]защиты[/gold].",
@@ -15442,7 +15442,7 @@
     "upgrade": {
       "damage": "+6"
     },
-    "image_url": "/static/images/cards/ultimate_strike.png",
+    "image_url": "/static/images/cards/ultimate_strike.webp",
     "beta_image_url": "/static/images/cards/beta/ultimate_strike.png",
     "type_variants": null,
     "upgrade_description": "Наносит 20 урона.",
@@ -15481,7 +15481,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/dominate.png",
+    "image_url": "/static/images/cards/dominate.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -15523,7 +15523,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/transfigure.png",
+    "image_url": "/static/images/cards/transfigure.webp",
     "beta_image_url": "/static/images/cards/beta/transfigure.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -15577,7 +15577,7 @@
     "upgrade": {
       "focuspower": "+1"
     },
-    "image_url": "/static/images/cards/biased_cognition.png",
+    "image_url": "/static/images/cards/biased_cognition.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Дает 5 [gold]фокуса[/gold].\nВы теряете 1 [gold]фокуса[/gold] в начале хода.",
@@ -15616,7 +15616,7 @@
     "upgrade": {
       "extrablock": "+2"
     },
-    "image_url": "/static/images/cards/fasten.png",
+    "image_url": "/static/images/cards/fasten.webp",
     "beta_image_url": "/static/images/cards/beta/fasten.png",
     "type_variants": null,
     "upgrade_description": "Повышает [gold]защиту[/gold] от «Оборон» на 7.",
@@ -15653,7 +15653,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/foregone_conclusion.png",
+    "image_url": "/static/images/cards/foregone_conclusion.webp",
     "beta_image_url": "/static/images/cards/beta/foregone_conclusion.png",
     "type_variants": null,
     "upgrade_description": "Вы возьмете 3 plural(ru):карту из [gold]стопки добора[/gold] в начале следующего хода.",
@@ -15691,7 +15691,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/spite.png",
+    "image_url": "/static/images/cards/spite.webp",
     "beta_image_url": "/static/images/cards/beta/spite.png",
     "type_variants": null,
     "upgrade_description": "Наносит 9 урона.\nВы добираете 1 plural(ru):карту, если теряли ОЗ в этом ходу.",
@@ -15728,7 +15728,7 @@
     "upgrade": {
       "stars": "+1"
     },
-    "image_url": "/static/images/cards/venerate.png",
+    "image_url": "/static/images/cards/venerate.webp",
     "beta_image_url": "/static/images/cards/beta/venerate.png",
     "type_variants": null,
     "upgrade_description": "Дает [star:3].",
@@ -15766,7 +15766,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/refract.png",
+    "image_url": "/static/images/cards/refract.webp",
     "beta_image_url": "/static/images/cards/beta/refract.png",
     "type_variants": null,
     "upgrade_description": "Наносит 12 урона 2 раза.\n[gold]Заряжает[/gold] 2 [gold]plural(ru):сферу стекла[/gold].",
@@ -15801,7 +15801,7 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": "/static/images/cards/hello_world.png",
+    "image_url": "/static/images/cards/hello_world.webp",
     "beta_image_url": "/static/images/cards/beta/hello_world.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -15848,7 +15848,7 @@
     "upgrade": {
       "remove_ethereal": true
     },
-    "image_url": "/static/images/cards/apparition.png",
+    "image_url": "/static/images/cards/apparition.webp",
     "beta_image_url": "/static/images/cards/beta/apparition.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -15887,7 +15887,7 @@
       "HpLoss": 6
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/beckon.png",
+    "image_url": "/static/images/cards/beckon.webp",
     "beta_image_url": "/static/images/cards/beta/beckon.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -15933,7 +15933,7 @@
     "upgrade": {
       "phantombladespower": "+3"
     },
-    "image_url": "/static/images/cards/phantom_blades.png",
+    "image_url": "/static/images/cards/phantom_blades.webp",
     "beta_image_url": "/static/images/cards/beta/phantom_blades.png",
     "type_variants": null,
     "upgrade_description": "[gold]«Заточки»[/gold] [gold]оставляются[/gold].\nПервая [gold]«Заточка»[/gold] за ход наносит на 12 урона больше.",
@@ -15970,7 +15970,7 @@
     "upgrade": {
       "skills": "+1"
     },
-    "image_url": "/static/images/cards/burst.png",
+    "image_url": "/static/images/cards/burst.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -16014,7 +16014,7 @@
     "upgrade": {
       "iterationpower": "+1"
     },
-    "image_url": "/static/images/cards/iteration.png",
+    "image_url": "/static/images/cards/iteration.webp",
     "beta_image_url": "/static/images/cards/beta/iteration.png",
     "type_variants": null,
     "upgrade_description": "Вы добираете 3 plural(ru):карту, когда добираете Статус первый раз за ход.",
@@ -16054,7 +16054,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/voltaic.png",
+    "image_url": "/static/images/cards/voltaic.webp",
     "beta_image_url": "/static/images/cards/beta/voltaic.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -16094,7 +16094,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/prolong.png",
+    "image_url": "/static/images/cards/prolong.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -16136,7 +16136,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/production.png",
+    "image_url": "/static/images/cards/production.webp",
     "beta_image_url": "/static/images/cards/beta/production.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -16175,7 +16175,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/curse_of_the_bell.png",
+    "image_url": "/static/images/cards/curse_of_the_bell.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -16216,7 +16216,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/skim.png",
+    "image_url": "/static/images/cards/skim.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Вы добираете 4 plural(ru):карту.",
@@ -16262,7 +16262,7 @@
       "damage": "+5",
       "vulnerable": "+2"
     },
-    "image_url": "/static/images/cards/break.png",
+    "image_url": "/static/images/cards/break.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 25 урона.\nНакладывает 5 [gold]уязвимости[/gold].",
@@ -16301,7 +16301,7 @@
     "upgrade": {
       "strengthloss": "+2"
     },
-    "image_url": "/static/images/cards/piercing_wail.png",
+    "image_url": "/static/images/cards/piercing_wail.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Отнимает у ВСЕХ врагов 8 [gold]силы[/gold] на этот ход.",
@@ -16341,7 +16341,7 @@
     "upgrade": {
       "cards": "+3"
     },
-    "image_url": "/static/images/cards/prophesize.png",
+    "image_url": "/static/images/cards/prophesize.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Вы добираете 9 plural(ru):карту.",
@@ -16379,7 +16379,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/breakthrough.png",
+    "image_url": "/static/images/cards/breakthrough.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Вы теряете 1 ОЗ.\nНаносит 13 урона ВСЕМ врагам.",
@@ -16416,7 +16416,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/enlightenment.png",
+    "image_url": "/static/images/cards/enlightenment.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Понижает стоимость ВСЕХ карт в [gold]руке[/gold] до 1 на этот бой.",
@@ -16456,7 +16456,7 @@
     "upgrade": {
       "add_retain": true
     },
-    "image_url": "/static/images/cards/calculated_gamble.png",
+    "image_url": "/static/images/cards/calculated_gamble.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -16496,7 +16496,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/leap.png",
+    "image_url": "/static/images/cards/leap.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Дает 12 [gold]защиты[/gold].",
@@ -16534,7 +16534,7 @@
     "upgrade": {
       "damage": "+10"
     },
-    "image_url": "/static/images/cards/devastate.png",
+    "image_url": "/static/images/cards/devastate.webp",
     "beta_image_url": "/static/images/cards/beta/devastate.png",
     "type_variants": null,
     "upgrade_description": "Наносит 40 урона.",
@@ -16574,7 +16574,7 @@
       "damage": "+1",
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/guiding_star.png",
+    "image_url": "/static/images/cards/guiding_star.webp",
     "beta_image_url": "/static/images/cards/beta/guiding_star.png",
     "type_variants": null,
     "upgrade_description": "Наносит 13 урона.\nВы доберете еще 3 plural(ru):карту в начале следующего хода.",
@@ -16611,7 +16611,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/rainbow.png",
+    "image_url": "/static/images/cards/rainbow.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -16652,7 +16652,7 @@
     "upgrade": {
       "increase": "+4"
     },
-    "image_url": "/static/images/cards/rampage.png",
+    "image_url": "/static/images/cards/rampage.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 9 урона.\nУрон повышается на 9 до конца боя.",
@@ -16689,7 +16689,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/pillage.png",
+    "image_url": "/static/images/cards/pillage.webp",
     "beta_image_url": "/static/images/cards/beta/pillage.png",
     "type_variants": null,
     "upgrade_description": "Наносит 9 урона.\nВы добираете карты до тех пор, пока не возьмете что-то кроме Атаки.",
@@ -16728,7 +16728,7 @@
     "upgrade": {
       "power": "+1"
     },
-    "image_url": "/static/images/cards/putrefy.png",
+    "image_url": "/static/images/cards/putrefy.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Накладывает 3 [gold]слабости[/gold].\nНакладывает 3 [gold]уязвимости[/gold].",
@@ -16769,7 +16769,7 @@
     "upgrade": {
       "damage": "+8"
     },
-    "image_url": "/static/images/cards/sunder.png",
+    "image_url": "/static/images/cards/sunder.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 32 урона.\nДает [energy:3], если убивает врага.",
@@ -16806,7 +16806,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/dismantle.png",
+    "image_url": "/static/images/cards/dismantle.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 10 урона.\nНаносит урон еще раз, если враг [gold]уязвим[/gold].",
@@ -16843,7 +16843,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/veilpiercer.png",
+    "image_url": "/static/images/cards/veilpiercer.webp",
     "beta_image_url": "/static/images/cards/beta/veilpiercer.png",
     "type_variants": null,
     "upgrade_description": "Наносит 13 урона.\nСледующая [gold]эфирная[/gold] карта стоит 0 [energy:1].",
@@ -16880,7 +16880,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/slice.png",
+    "image_url": "/static/images/cards/slice.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 9 урона.",
@@ -16917,7 +16917,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/rip_and_tear.png",
+    "image_url": "/static/images/cards/rip_and_tear.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 9 урона случайному врагу 2 раза.",
@@ -16956,7 +16956,7 @@
       "damage": "+1",
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/rocket_punch.png",
+    "image_url": "/static/images/cards/rocket_punch.webp",
     "beta_image_url": "/static/images/cards/beta/rocket_punch.png",
     "type_variants": null,
     "upgrade_description": "Наносит 14 урона.\nВы добираете 2 plural(ru):карту.\nСтоит 0 [energy:1] в этом ходу, если создается Статус.",
@@ -16991,7 +16991,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/wound.png",
+    "image_url": "/static/images/cards/wound.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -17033,7 +17033,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/molten_fist.png",
+    "image_url": "/static/images/cards/molten_fist.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 14 урона.\nУдваивает количество [gold]уязвимости[/gold] врага.",
@@ -17081,7 +17081,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/thunderclap.png",
+    "image_url": "/static/images/cards/thunderclap.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 7 урона и накладывает 1 [gold]уязвимости[/gold] на ВСЕХ врагов.",
@@ -17121,7 +17121,7 @@
       "extradamage": "+3",
       "calculationbase": "+3"
     },
-    "image_url": "/static/images/cards/rend.png",
+    "image_url": "/static/images/cards/rend.webp",
     "beta_image_url": "/static/images/cards/beta/rend.png",
     "type_variants": null,
     "upgrade_description": "Наносит 15 урона.\nНаносит на 8 урона больше за каждый отрицательный эффект врага.",
@@ -17158,7 +17158,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/echoing_slash.png",
+    "image_url": "/static/images/cards/echoing_slash.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 13 урона ВСЕМ врагам.\nНаносит урон еще раз за каждого убитого врага.",
@@ -17198,7 +17198,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/reave.png",
+    "image_url": "/static/images/cards/reave.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 11 урона.\nДобавляет [gold]«Душу+»[/gold] в [gold]стопку добора[/gold].",
@@ -17240,7 +17240,7 @@
       "Disintegration": 6
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/disintegration.png",
+    "image_url": "/static/images/cards/disintegration.webp",
     "beta_image_url": "/static/images/cards/beta/disintegration.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -17279,7 +17279,7 @@
     "upgrade": {
       "summon": "+5"
     },
-    "image_url": "/static/images/cards/reanimate.png",
+    "image_url": "/static/images/cards/reanimate.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]Призывает[/gold] 25.",
@@ -17327,7 +17327,7 @@
     "upgrade": {
       "strengthpower": "+1"
     },
-    "image_url": "/static/images/cards/resonance.png",
+    "image_url": "/static/images/cards/resonance.webp",
     "beta_image_url": "/static/images/cards/beta/resonance.png",
     "type_variants": null,
     "upgrade_description": "Дает 2 [gold]силы[/gold]. Отнимает у ВСЕХ врагов 1 [gold]силы[/gold].",
@@ -17366,7 +17366,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/reflex.png",
+    "image_url": "/static/images/cards/reflex.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Вы добираете 3 plural(ru):карту.",
@@ -17409,7 +17409,7 @@
     "upgrade": {
       "repeat": "+1"
     },
-    "image_url": "/static/images/cards/ricochet.png",
+    "image_url": "/static/images/cards/ricochet.webp",
     "beta_image_url": "/static/images/cards/beta/ricochet.png",
     "type_variants": null,
     "upgrade_description": "Наносит 3 урона случайному врагу 5 plural(ru):раз.",
@@ -17457,7 +17457,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/drum_of_battle.png",
+    "image_url": "/static/images/cards/drum_of_battle.webp",
     "beta_image_url": "/static/images/cards/beta/drum_of_battle.png",
     "type_variants": null,
     "upgrade_description": "Вы добираете 3 plural(ru):карту.\n[gold]Сжигает[/gold] карту на верху [gold]стопки добора[/gold] в начале хода.",
@@ -17496,7 +17496,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/blight_strike.png",
+    "image_url": "/static/images/cards/blight_strike.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 10 урона.\nНакладывает [gold]злой рок[/gold], равный нанесенному урону.",
@@ -17535,7 +17535,7 @@
       "damage": "+3",
       "block": "+3"
     },
-    "image_url": "/static/images/cards/dash.png",
+    "image_url": "/static/images/cards/dash.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Дает 13 [gold]защиты[/gold].\nНаносит 13 урона.",
@@ -17574,7 +17574,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/guards.png",
+    "image_url": "/static/images/cards/guards.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]Преобразует[/gold] выбранное количество карт в [gold]руке[/gold] в [gold]«Слуг-щиты+»[/gold].",
@@ -17612,7 +17612,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/soot.png",
+    "image_url": "/static/images/cards/soot.webp",
     "beta_image_url": "/static/images/cards/beta/soot.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -17653,7 +17653,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/backflip.png",
+    "image_url": "/static/images/cards/backflip.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Дает 8 [gold]защиты[/gold].\nВы добираете 2 карты.",
@@ -17692,7 +17692,7 @@
     "upgrade": {
       "energy": "+2"
     },
-    "image_url": "/static/images/cards/supercritical.png",
+    "image_url": "/static/images/cards/supercritical.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Дает [energy:6].",
@@ -17734,7 +17734,7 @@
     "upgrade": {
       "extradamage": "+1"
     },
-    "image_url": "/static/images/cards/supermassive.png",
+    "image_url": "/static/images/cards/supermassive.webp",
     "beta_image_url": "/static/images/cards/beta/supermassive.png",
     "type_variants": null,
     "upgrade_description": "Наносит 5 урона.\nНаносит на 4 урона больше за каждую созданную за бой карту.",
@@ -17774,7 +17774,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/luminesce.png",
+    "image_url": "/static/images/cards/luminesce.webp",
     "beta_image_url": "/static/images/cards/beta/luminesce.png",
     "type_variants": null,
     "upgrade_description": "Дает [energy:3].",
@@ -17817,7 +17817,7 @@
     "upgrade": {
       "damage": "+11"
     },
-    "image_url": "/static/images/cards/whistle.png",
+    "image_url": "/static/images/cards/whistle.webp",
     "beta_image_url": "/static/images/cards/beta/whistle.png",
     "type_variants": null,
     "upgrade_description": "Наносит 44 урона.\n[gold]Оглушает[/gold] врага.",
@@ -17859,7 +17859,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/momentum_strike.png",
+    "image_url": "/static/images/cards/momentum_strike.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 13 урона.\nСтоимость понижается до 0 [energy:1].",
@@ -17896,7 +17896,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/evil_eye.png",
+    "image_url": "/static/images/cards/evil_eye.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Дает 11 [gold]защиты[/gold].\nДает еще 11 [gold]защиты[/gold] , если вы [gold]сжигали[/gold] карты в этом ходу.",
@@ -17931,7 +17931,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/dualcast.png",
+    "image_url": "/static/images/cards/dualcast.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -17970,7 +17970,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/seven_stars.png",
+    "image_url": "/static/images/cards/seven_stars.webp",
     "beta_image_url": "/static/images/cards/beta/seven_stars.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -18009,7 +18009,7 @@
     "upgrade": {
       "power": "+2"
     },
-    "image_url": "/static/images/cards/shockwave.png",
+    "image_url": "/static/images/cards/shockwave.webp",
     "beta_image_url": "/static/images/cards/beta/shockwave.png",
     "type_variants": null,
     "upgrade_description": "Накладывает 5 [gold]слабости[/gold] и [gold]уязвимости[/gold] на ВСЕХ врагов.",
@@ -18050,7 +18050,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/particle_wall.png",
+    "image_url": "/static/images/cards/particle_wall.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Дает 12 [gold]защиты[/gold].\nВозвращается в [gold]руку[/gold].",
@@ -18087,7 +18087,7 @@
     "upgrade": {
       "damage": "+6"
     },
-    "image_url": "/static/images/cards/synthesis.png",
+    "image_url": "/static/images/cards/synthesis.webp",
     "beta_image_url": "/static/images/cards/beta/synthesis.png",
     "type_variants": null,
     "upgrade_description": "Наносит 18 урона.\nСледующий Талант стоит 0 [energy:1].",
@@ -18127,7 +18127,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/synchronize.png",
+    "image_url": "/static/images/cards/synchronize.webp",
     "beta_image_url": "/static/images/cards/beta/synchronize.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -18168,7 +18168,7 @@
     "upgrade": {
       "stars": "+1"
     },
-    "image_url": "/static/images/cards/glow.png",
+    "image_url": "/static/images/cards/glow.webp",
     "beta_image_url": "/static/images/cards/beta/glow.png",
     "type_variants": null,
     "upgrade_description": "Дает [star:2].\nВы добираете 2 plural(ru):карту.",
@@ -18208,7 +18208,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/shining_strike.png",
+    "image_url": "/static/images/cards/shining_strike.webp",
     "beta_image_url": "/static/images/cards/beta/shining_strike.png",
     "type_variants": null,
     "upgrade_description": "Наносит 11 урона.\nДает [star:2].\nКладется на верх [gold]стопки добора[/gold].",
@@ -18247,7 +18247,7 @@
     "upgrade": {
       "calculationbase": "+3"
     },
-    "image_url": "/static/images/cards/precise_cut.png",
+    "image_url": "/static/images/cards/precise_cut.webp",
     "beta_image_url": "/static/images/cards/beta/precise_cut.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -18292,7 +18292,7 @@
     "upgrade": {
       "repeat": "+1"
     },
-    "image_url": "/static/images/cards/bouncing_flask.png",
+    "image_url": "/static/images/cards/bouncing_flask.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Накладывает 3 [gold]яда[/gold] на случайного врага 4 раза.",
@@ -18331,7 +18331,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/defile.png",
+    "image_url": "/static/images/cards/defile.webp",
     "beta_image_url": "/static/images/cards/beta/defile.png",
     "type_variants": null,
     "upgrade_description": "Наносит 17 урона.",
@@ -18374,7 +18374,7 @@
       "damage": "+1",
       "playmax": "+1"
     },
-    "image_url": "/static/images/cards/ftl.png",
+    "image_url": "/static/images/cards/ftl.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 6 урона.\nВы добираете 1 карту, если разыграли меньше 4 карт в этом ходу.",
@@ -18411,7 +18411,7 @@
     "upgrade": {
       "replay": "+1"
     },
-    "image_url": "/static/images/cards/hidden_gem.png",
+    "image_url": "/static/images/cards/hidden_gem.webp",
     "beta_image_url": "/static/images/cards/beta/hidden_gem.png",
     "type_variants": null,
     "upgrade_description": "Случайная карта в [gold]стопке добора[/gold] получает [gold]повтор[/gold] 3.",
@@ -18457,7 +18457,7 @@
     "upgrade": {
       "sneakypower": "+1"
     },
-    "image_url": "/static/images/cards/sneaky.png",
+    "image_url": "/static/images/cards/sneaky.webp",
     "beta_image_url": "/static/images/cards/beta/sneaky.png",
     "type_variants": null,
     "upgrade_description": "Дает 2 [gold]защиты[/gold], когда другой игрок атакует врага.",
@@ -18500,7 +18500,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/hidden_daggers.png",
+    "image_url": "/static/images/cards/hidden_daggers.webp",
     "beta_image_url": "/static/images/cards/beta/hidden_daggers.png",
     "type_variants": null,
     "upgrade_description": "Вы сбрасываете 2 plural(ru):карту.\nДобавляет в [gold]руку[/gold] 2 [gold]plural(ru):«Заточку+»[/gold].",
@@ -18539,7 +18539,7 @@
     "upgrade": {
       "power": "+1"
     },
-    "image_url": "/static/images/cards/expose.png",
+    "image_url": "/static/images/cards/expose.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Снимает все [gold]артефакты[/gold] и [gold]защиту[/gold].\nНакладывает 3 [gold]уязвимости[/gold].",
@@ -18586,7 +18586,7 @@
     "upgrade": {
       "strength": "+3"
     },
-    "image_url": "/static/images/cards/coordinate.png",
+    "image_url": "/static/images/cards/coordinate.webp",
     "beta_image_url": "/static/images/cards/beta/coordinate.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -18630,7 +18630,7 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": "/static/images/cards/afterimage.png",
+    "image_url": "/static/images/cards/afterimage.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -18665,7 +18665,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/tracking.png",
+    "image_url": "/static/images/cards/tracking.webp",
     "beta_image_url": "/static/images/cards/beta/tracking.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -18702,7 +18702,7 @@
       "Cards": 1
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/slimed.png",
+    "image_url": "/static/images/cards/slimed.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -18740,7 +18740,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/fusion.png",
+    "image_url": "/static/images/cards/fusion.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -18781,7 +18781,7 @@
     "upgrade": {
       "cards": "+2"
     },
-    "image_url": "/static/images/cards/decisions_decisions.png",
+    "image_url": "/static/images/cards/decisions_decisions.webp",
     "beta_image_url": "/static/images/cards/beta/decisions_decisions.png",
     "type_variants": null,
     "upgrade_description": "Вы добираете 5 plural(ru):карта.\nВы разыгрываете выбранный в [gold]руке[/gold] Навык 3 plural(ru):раз.",
@@ -18825,7 +18825,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/minion_dive_bomb.png",
+    "image_url": "/static/images/cards/minion_dive_bomb.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 16 урона.",
@@ -18869,7 +18869,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/minion_sacrifice.png",
+    "image_url": "/static/images/cards/minion_sacrifice.webp",
     "beta_image_url": "/static/images/cards/beta/minion_sacrifice.png",
     "type_variants": null,
     "upgrade_description": "Дает 12 [gold]защиты[/gold].",
@@ -18916,7 +18916,7 @@
     "upgrade": {
       "poison": "+2"
     },
-    "image_url": "/static/images/cards/deadly_poison.png",
+    "image_url": "/static/images/cards/deadly_poison.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -18962,7 +18962,7 @@
     "upgrade": {
       "lethalitypower": "+25"
     },
-    "image_url": "/static/images/cards/lethality.png",
+    "image_url": "/static/images/cards/lethality.webp",
     "beta_image_url": "/static/images/cards/beta/lethality.png",
     "type_variants": null,
     "upgrade_description": "Первая Атака за ход наносит на 75% больше урона.",
@@ -19000,7 +19000,7 @@
     "upgrade": {
       "cost": 2
     },
-    "image_url": "/static/images/cards/calamity.png",
+    "image_url": "/static/images/cards/calamity.webp",
     "beta_image_url": "/static/images/cards/beta/calamity.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -19038,7 +19038,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/sweeping_beam.png",
+    "image_url": "/static/images/cards/sweeping_beam.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 9 урона ВСЕМ врагам.\nВы добираете 1 plural(ru):карту.",
@@ -19075,7 +19075,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/armaments.png",
+    "image_url": "/static/images/cards/armaments.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Дает 5 [gold]защиты[/gold].\n[gold]Улучшает[/gold] ВСЕ карты в [gold]руке[/gold].",
@@ -19110,7 +19110,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/regret.png",
+    "image_url": "/static/images/cards/regret.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -19154,7 +19154,7 @@
       "damage": "+1",
       "stars": "+1"
     },
-    "image_url": "/static/images/cards/solar_strike.png",
+    "image_url": "/static/images/cards/solar_strike.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 9 урона.\nДает [star:2].",
@@ -19198,7 +19198,7 @@
       "Weak": 1
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/doubt.png",
+    "image_url": "/static/images/cards/doubt.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -19238,7 +19238,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/spectrum_shift.png",
+    "image_url": "/static/images/cards/spectrum_shift.webp",
     "beta_image_url": "/static/images/cards/beta/spectrum_shift.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -19282,7 +19282,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/spinner.png",
+    "image_url": "/static/images/cards/spinner.webp",
     "beta_image_url": "/static/images/cards/beta/spinner.png",
     "type_variants": null,
     "upgrade_description": "[gold]Заряжает[/gold] 1 [gold]сферу стекла[/gold].\n[gold]Заряжает[/gold] 1 [gold]сферу стекла[/gold] в начале хода.",
@@ -19321,7 +19321,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/helix_drill.png",
+    "image_url": "/static/images/cards/helix_drill.webp",
     "beta_image_url": "/static/images/cards/beta/helix_drill.png",
     "type_variants": null,
     "upgrade_description": "Наносит по 5 урона за каждую [energy:1], потраченную в этом ходу.",
@@ -19361,7 +19361,7 @@
     "upgrade": {
       "enemystrengthloss": "+1"
     },
-    "image_url": "/static/images/cards/shared_fate.png",
+    "image_url": "/static/images/cards/shared_fate.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Вы теряете 2 [gold]силы[/gold].\nОтнимает 3 [gold]силы[/gold].",
@@ -19401,7 +19401,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/huddle_up.png",
+    "image_url": "/static/images/cards/huddle_up.webp",
     "beta_image_url": "/static/images/cards/beta/huddle_up.png",
     "type_variants": null,
     "upgrade_description": "ВСЕ игроки добирают по 3 plural(ru):карте.",
@@ -19436,7 +19436,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/spore_mind.png",
+    "image_url": "/static/images/cards/spore_mind.webp",
     "beta_image_url": "/static/images/cards/beta/spore_mind.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -19478,7 +19478,7 @@
       "damage": "+2",
       "block": "+2"
     },
-    "image_url": "/static/images/cards/iron_wave.png",
+    "image_url": "/static/images/cards/iron_wave.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Дает 7 [gold]защиты[/gold].\nНаносит 7 урона.",
@@ -19516,7 +19516,7 @@
     "upgrade": {
       "calculationbase": "+3"
     },
-    "image_url": "/static/images/cards/stack.png",
+    "image_url": "/static/images/cards/stack.webp",
     "beta_image_url": "/static/images/cards/beta/stack.png",
     "type_variants": null,
     "upgrade_description": "Дает [gold]защиту[/gold], равную количеству карт в [gold]стопке сброса[/gold] +[CalculationBase|].",
@@ -19553,7 +19553,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/glasswork.png",
+    "image_url": "/static/images/cards/glasswork.webp",
     "beta_image_url": "/static/images/cards/beta/glasswork.png",
     "type_variants": null,
     "upgrade_description": "Дает 8 [gold]защиты[/gold].\n[gold]Заряжает[/gold] 1 [gold]сферу стекла[/gold].",
@@ -19591,7 +19591,7 @@
     "upgrade": {
       "block": "+4"
     },
-    "image_url": "/static/images/cards/blood_wall.png",
+    "image_url": "/static/images/cards/blood_wall.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Вы теряете 2 ОЗ.\nДает 20 [gold]защиты[/gold].",
@@ -19630,7 +19630,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/collision_course.png",
+    "image_url": "/static/images/cards/collision_course.webp",
     "beta_image_url": "/static/images/cards/beta/collision_course.png",
     "type_variants": null,
     "upgrade_description": "Наносит 12 урона.\nДобавляет в [gold]руку[/gold] [gold]«Обломок»[/gold].",
@@ -19668,7 +19668,7 @@
       "damage": "+2",
       "add_retain": true
     },
-    "image_url": "/static/images/cards/misery.png",
+    "image_url": "/static/images/cards/misery.webp",
     "beta_image_url": "/static/images/cards/beta/misery.png",
     "type_variants": null,
     "upgrade_description": "Наносит 9 урона.\nНакладывает отрицательные эффекты врага на ВСЕХ врагов.",
@@ -19703,7 +19703,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/stratagem.png",
+    "image_url": "/static/images/cards/stratagem.webp",
     "beta_image_url": "/static/images/cards/beta/stratagem.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -19751,7 +19751,7 @@
       "damage": "+1",
       "vulnerable": "+1"
     },
-    "image_url": "/static/images/cards/fear.png",
+    "image_url": "/static/images/cards/fear.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 8 урона.\nНакладывает 1 [gold]уязвимости[/gold].",
@@ -19791,7 +19791,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/cold_snap.png",
+    "image_url": "/static/images/cards/cold_snap.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 9 урона.\n[gold]Заряжает[/gold] 1 [gold]сферу льда[/gold].",
@@ -19828,7 +19828,7 @@
       "Frail": 1
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/shame.png",
+    "image_url": "/static/images/cards/shame.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -19868,7 +19868,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/clash.png",
+    "image_url": "/static/images/cards/clash.webp",
     "beta_image_url": "/static/images/cards/beta/clash.png",
     "type_variants": null,
     "upgrade_description": "Можно разыграть, если в [gold]руке[/gold] есть только Атаки.\nНаносит 18 урона.",
@@ -19905,7 +19905,7 @@
     "upgrade": {
       "block": "+1"
     },
-    "image_url": "/static/images/cards/shroud.png",
+    "image_url": "/static/images/cards/shroud.webp",
     "beta_image_url": "/static/images/cards/beta/shroud.png",
     "type_variants": null,
     "upgrade_description": "Дает 3 [gold]защиты[/gold], когда вы накладываете [gold]злой рок[/gold].",
@@ -19944,7 +19944,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/turbo.png",
+    "image_url": "/static/images/cards/turbo.webp",
     "beta_image_url": "/static/images/cards/beta/turbo.png",
     "type_variants": null,
     "upgrade_description": "Дает [energy:3].\nДобавляет [gold]«Бездну»[/gold] в [gold]стопку сброса[/gold].",
@@ -19981,7 +19981,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/secret_technique.png",
+    "image_url": "/static/images/cards/secret_technique.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -20029,7 +20029,7 @@
     "upgrade": {
       "starnextturnpower": "+1"
     },
-    "image_url": "/static/images/cards/hidden_cache.png",
+    "image_url": "/static/images/cards/hidden_cache.webp",
     "beta_image_url": "/static/images/cards/beta/hidden_cache.png",
     "type_variants": null,
     "upgrade_description": "Дает [star:1].\nДаст [star:4]\nв начале следующего хода.",
@@ -20066,7 +20066,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/secret_weapon.png",
+    "image_url": "/static/images/cards/secret_weapon.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -20108,7 +20108,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/tactician.png",
+    "image_url": "/static/images/cards/tactician.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Дает [energy:2].",
@@ -20152,7 +20152,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/blade_dance.png",
+    "image_url": "/static/images/cards/blade_dance.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Добавляет в [gold]руку[/gold] 4 [gold]plural(ru):«Заточку»[/gold].",
@@ -20190,7 +20190,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/tank.png",
+    "image_url": "/static/images/cards/tank.webp",
     "beta_image_url": "/static/images/cards/beta/tank.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -20227,7 +20227,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/headbutt.png",
+    "image_url": "/static/images/cards/headbutt.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 12 урона.\nВы перекладываете карту из [gold]стопки сброса[/gold] на верх [gold]стопки добора[/gold].",
@@ -20264,7 +20264,7 @@
     "upgrade": {
       "summon": "+2"
     },
-    "image_url": "/static/images/cards/bodyguard.png",
+    "image_url": "/static/images/cards/bodyguard.webp",
     "beta_image_url": "/static/images/cards/beta/bodyguard.png",
     "type_variants": null,
     "upgrade_description": "[gold]Призывает[/gold] 7.",
@@ -20301,7 +20301,7 @@
     "upgrade": {
       "block": "+4"
     },
-    "image_url": "/static/images/cards/shadow_shield.png",
+    "image_url": "/static/images/cards/shadow_shield.webp",
     "beta_image_url": "/static/images/cards/beta/shadow_shield.png",
     "type_variants": null,
     "upgrade_description": "Дает 15 [gold]защиты[/gold].\n[gold]Заряжает[/gold] 1 [gold]сферу тьмы[/gold].",
@@ -20340,7 +20340,7 @@
     "upgrade": {
       "hploss": "+2"
     },
-    "image_url": "/static/images/cards/haunt.png",
+    "image_url": "/static/images/cards/haunt.webp",
     "beta_image_url": "/static/images/cards/beta/haunt.png",
     "type_variants": null,
     "upgrade_description": "Отнимает 8 ОЗ у случайного врага, когда вы разыгрываете [gold]«Душу»[/gold].",
@@ -20384,7 +20384,7 @@
     "upgrade": {
       "vigorpower": "+2"
     },
-    "image_url": "/static/images/cards/terraforming.png",
+    "image_url": "/static/images/cards/terraforming.webp",
     "beta_image_url": "/static/images/cards/beta/terraforming.png",
     "type_variants": null,
     "upgrade_description": "Дает 8 [gold]бодрости[/gold].",
@@ -20421,7 +20421,7 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": "/static/images/cards/tyranny.png",
+    "image_url": "/static/images/cards/tyranny.webp",
     "beta_image_url": "/static/images/cards/beta/tyranny.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -20466,7 +20466,7 @@
       "calculationbase": "+5",
       "extradamage": "+1"
     },
-    "image_url": "/static/images/cards/squeeze.png",
+    "image_url": "/static/images/cards/squeeze.webp",
     "beta_image_url": "/static/images/cards/beta/squeeze.png",
     "type_variants": null,
     "upgrade_description": "[gold]Костя[/gold] наносит 25 урона.\nНаносит на 6 урона больше за КАЖДУЮ вашу Атаку [gold]Кости[/gold], кроме этой.",
@@ -20503,7 +20503,7 @@
       "Damage": 5
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/toxic.png",
+    "image_url": "/static/images/cards/toxic.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -20545,7 +20545,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/body_slam.png",
+    "image_url": "/static/images/cards/body_slam.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -20585,7 +20585,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/fuel.png",
+    "image_url": "/static/images/cards/fuel.webp",
     "beta_image_url": "/static/images/cards/beta/fuel.png",
     "type_variants": null,
     "upgrade_description": "Дает [energy:1].\nВы добираете 2 plural(ru):карту.",
@@ -20626,7 +20626,7 @@
     "upgrade": {
       "block": "+2"
     },
-    "image_url": "/static/images/cards/toric_toughness.png",
+    "image_url": "/static/images/cards/toric_toughness.webp",
     "beta_image_url": "/static/images/cards/beta/toric_toughness.png",
     "type_variants": null,
     "upgrade_description": "Дает 7 [gold]защиты[/gold].\nДаст 7 [gold]защиты[/gold] в начале plural(ru):следующего хода.",
@@ -20670,7 +20670,7 @@
     "upgrade": {
       "poison": "+3"
     },
-    "image_url": "/static/images/cards/bubble_bubble.png",
+    "image_url": "/static/images/cards/bubble_bubble.webp",
     "beta_image_url": "/static/images/cards/beta/bubble_bubble.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -20705,7 +20705,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/injury.png",
+    "image_url": "/static/images/cards/injury.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -20745,7 +20745,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/tesla_coil.png",
+    "image_url": "/static/images/cards/tesla_coil.webp",
     "beta_image_url": "/static/images/cards/beta/tesla_coil.png",
     "type_variants": null,
     "upgrade_description": "Наносит 6 урона.\nАктивирует пассивный эффект всех [gold]сфер молнии[/gold] против врага.",
@@ -20789,7 +20789,7 @@
     "upgrade": {
       "vulnerable": "+1"
     },
-    "image_url": "/static/images/cards/tremble.png",
+    "image_url": "/static/images/cards/tremble.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -20826,7 +20826,7 @@
     "upgrade": {
       "forge": "+5"
     },
-    "image_url": "/static/images/cards/spoils_of_battle.png",
+    "image_url": "/static/images/cards/spoils_of_battle.webp",
     "beta_image_url": "/static/images/cards/beta/spoils_of_battle.png",
     "type_variants": null,
     "upgrade_description": "[gold]Закаляет[/gold] 15.",
@@ -20863,7 +20863,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/folly.png",
+    "image_url": "/static/images/cards/folly.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -20908,7 +20908,7 @@
     "upgrade": {
       "ostydamage": "+3"
     },
-    "image_url": "/static/images/cards/poke.png",
+    "image_url": "/static/images/cards/poke.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]Костя[/gold] наносит 9 урона.",
@@ -20957,7 +20957,7 @@
       "damage": "+3",
       "vulnerable": "+1"
     },
-    "image_url": "/static/images/cards/assassinate.png",
+    "image_url": "/static/images/cards/assassinate.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 13 урона.\nНакладывает 1 [gold]уязвимости[/gold].",
@@ -21000,7 +21000,7 @@
       "damage": "+5",
       "strengthloss": "+5"
     },
-    "image_url": "/static/images/cards/mangle.png",
+    "image_url": "/static/images/cards/mangle.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 20 урона.\nОтнимает 15 [gold]силы[/gold] на этот ход.",
@@ -21037,7 +21037,7 @@
     "upgrade": {
       "block": "+2"
     },
-    "image_url": "/static/images/cards/dodge_and_roll.png",
+    "image_url": "/static/images/cards/dodge_and_roll.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Дает 6 [gold]защиты[/gold].\nДаст 6 [gold]защиты[/gold] в следующем ходу.",
@@ -21074,7 +21074,7 @@
       "Combats": 5
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/guilty.png",
+    "image_url": "/static/images/cards/guilty.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -21129,7 +21129,7 @@
       "dexterity": "+1",
       "strength": "+1"
     },
-    "image_url": "/static/images/cards/prowess.png",
+    "image_url": "/static/images/cards/prowess.webp",
     "beta_image_url": "/static/images/cards/beta/prowess.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -21168,7 +21168,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/strike_ironclad.png",
+    "image_url": "/static/images/cards/strike_ironclad.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 9 урона.",
@@ -21207,7 +21207,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/strike_silent.png",
+    "image_url": "/static/images/cards/strike_silent.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 9 урона.",
@@ -21246,7 +21246,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/strike_regent.png",
+    "image_url": "/static/images/cards/strike_regent.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 9 урона.",
@@ -21285,7 +21285,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/strike_necrobinder.png",
+    "image_url": "/static/images/cards/strike_necrobinder.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 9 урона.",
@@ -21324,7 +21324,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/strike_defect.png",
+    "image_url": "/static/images/cards/strike_defect.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 9 урона.",
@@ -21372,7 +21372,7 @@
       "damage": "+2",
       "strength": "+1"
     },
-    "image_url": "/static/images/cards/setup_strike.png",
+    "image_url": "/static/images/cards/setup_strike.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 9 урона.\nДает 2 [gold]силы[/gold] на этот ход.",
@@ -21412,7 +21412,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/seeker_strike.png",
+    "image_url": "/static/images/cards/seeker_strike.webp",
     "beta_image_url": "/static/images/cards/beta/seeker_strike.png",
     "type_variants": null,
     "upgrade_description": "Наносит 9 урона.\nВы берете 1 из 3 карт из [gold]стопки добора[/gold] на выбор.",
@@ -21455,7 +21455,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/minion_strike.png",
+    "image_url": "/static/images/cards/minion_strike.webp",
     "beta_image_url": "/static/images/cards/beta/minion_strike.png",
     "type_variants": null,
     "upgrade_description": "Наносит 10 урона.\nВы добираете 1 plural(ru):карту.",
@@ -21499,7 +21499,7 @@
       "damage": "+1",
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/pommel_strike.png",
+    "image_url": "/static/images/cards/pommel_strike.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 10 урона.\nВы добираете 2 plural(ru):карту.",
@@ -21552,7 +21552,7 @@
       "strength": "+1",
       "dexterity": "+1"
     },
-    "image_url": "/static/images/cards/bulk_up.png",
+    "image_url": "/static/images/cards/bulk_up.webp",
     "beta_image_url": "/static/images/cards/beta/bulk_up.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -21589,7 +21589,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/deflect.png",
+    "image_url": "/static/images/cards/deflect.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Дает 7 [gold]защиты[/gold].",
@@ -21626,7 +21626,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/distraction.png",
+    "image_url": "/static/images/cards/distraction.webp",
     "beta_image_url": "/static/images/cards/beta/distraction.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -21671,7 +21671,7 @@
       "damage": "+2",
       "strengthloss": "+2"
     },
-    "image_url": "/static/images/cards/dying_star.png",
+    "image_url": "/static/images/cards/dying_star.webp",
     "beta_image_url": "/static/images/cards/beta/dying_star.png",
     "type_variants": null,
     "upgrade_description": "Наносит 11 урона ВСЕМ врагам. Отнимает у ВСЕХ врагов 11 [gold]силы[/gold] на этот ход.",
@@ -21711,7 +21711,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/storm_of_steel.png",
+    "image_url": "/static/images/cards/storm_of_steel.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Вы сбрасываете все карты.\nДобавляет в [gold]руку[/gold] [gold]«Заточку+»[/gold] за каждую.",
@@ -21757,7 +21757,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/signal_boost.png",
+    "image_url": "/static/images/cards/signal_boost.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -21808,7 +21808,7 @@
       "damage": "+6",
       "weak": "+2"
     },
-    "image_url": "/static/images/cards/suppress.png",
+    "image_url": "/static/images/cards/suppress.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 17 урона.\nНакладывает 3 [gold]слабости[/gold].",
@@ -21850,7 +21850,7 @@
     "upgrade": {
       "block": "+1"
     },
-    "image_url": "/static/images/cards/compact.png",
+    "image_url": "/static/images/cards/compact.webp",
     "beta_image_url": "/static/images/cards/beta/compact.png",
     "type_variants": null,
     "upgrade_description": "Дает 7 [gold]защиты[/gold].\n[gold]Преобразует[/gold] каждый Статус в [gold]руке[/gold] в [gold]«Топливо+»[/gold].",
@@ -21888,7 +21888,7 @@
     "upgrade": {
       "damage": "+5"
     },
-    "image_url": "/static/images/cards/heirloom_hammer.png",
+    "image_url": "/static/images/cards/heirloom_hammer.webp",
     "beta_image_url": "/static/images/cards/beta/heirloom_hammer.png",
     "type_variants": null,
     "upgrade_description": "Наносит 22 урона.\nДобавляет в [gold]руку[/gold] копию выбранной в [gold]руке[/gold] бесцветной карты.",
@@ -21925,7 +21925,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/eidolon.png",
+    "image_url": "/static/images/cards/eidolon.webp",
     "beta_image_url": "/static/images/cards/beta/eidolon.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -21973,7 +21973,7 @@
       "damage": "+2",
       "focuspower": "+1"
     },
-    "image_url": "/static/images/cards/focused_strike.png",
+    "image_url": "/static/images/cards/focused_strike.webp",
     "beta_image_url": "/static/images/cards/beta/focused_strike.png",
     "type_variants": null,
     "upgrade_description": "Наносит 11 урона.\nДает 2 [gold]фокуса[/gold] на этот ход.",
@@ -22010,7 +22010,7 @@
     "upgrade": {
       "repeat": "+1"
     },
-    "image_url": "/static/images/cards/chaos.png",
+    "image_url": "/static/images/cards/chaos.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]Заряжает[/gold] 2 plural(ru):случайную сферу.",
@@ -22051,7 +22051,7 @@
     "upgrade": {
       "ostydamage": "+3"
     },
-    "image_url": "/static/images/cards/fetch.png",
+    "image_url": "/static/images/cards/fetch.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]Костя[/gold] наносит 6 урона.\nВы добираете 1 plural(ru):карту, если разыгрывается первой за ход.",
@@ -22088,7 +22088,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/stoke.png",
+    "image_url": "/static/images/cards/stoke.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -22128,7 +22128,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/malaise.png",
+    "image_url": "/static/images/cards/malaise.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Отнимает X+1 [gold]силы[/gold]. Накладывает X+1 [gold]слабости[/gold].",
@@ -22168,7 +22168,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/outmaneuver.png",
+    "image_url": "/static/images/cards/outmaneuver.webp",
     "beta_image_url": "/static/images/cards/beta/outmaneuver.png",
     "type_variants": null,
     "upgrade_description": "Даст [energy:3] в начале следующего хода.",
@@ -22205,7 +22205,7 @@
     "upgrade": {
       "damage": "+5"
     },
-    "image_url": "/static/images/cards/predator.png",
+    "image_url": "/static/images/cards/predator.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 20 урона.\nВы доберете еще 2 карты в начале следующего хода.",
@@ -22242,7 +22242,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/chill.png",
+    "image_url": "/static/images/cards/chill.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -22282,7 +22282,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/cosmic_indifference.png",
+    "image_url": "/static/images/cards/cosmic_indifference.webp",
     "beta_image_url": "/static/images/cards/beta/cosmic_indifference.png",
     "type_variants": null,
     "upgrade_description": "Дает 9 [gold]защиты[/gold].\nВы перекладываете выбранную из [gold]стопки сброса[/gold] карту на верх [gold]стопки добора[/gold].",
@@ -22319,7 +22319,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/coolheaded.png",
+    "image_url": "/static/images/cards/coolheaded.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]Заряжает[/gold] 1 [gold]сферу льда[/gold].\nВы добираете 2 plural(ru):карту.",
@@ -22359,7 +22359,7 @@
     "upgrade": {
       "block": "+2"
     },
-    "image_url": "/static/images/cards/grave_warden.png",
+    "image_url": "/static/images/cards/grave_warden.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Дает 10 [gold]защиты[/gold].\nДобавляет [gold]«Душу+»[/gold] в [gold]стопку добора[/gold].",
@@ -22405,7 +22405,7 @@
       "damage": "+1",
       "weak": "+1"
     },
-    "image_url": "/static/images/cards/go_for_the_eyes.png",
+    "image_url": "/static/images/cards/go_for_the_eyes.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 4 урона.\nНакладывает 1 [gold]слабости[/gold], если враг планирует атаковать.",
@@ -22440,7 +22440,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/multi_cast.png",
+    "image_url": "/static/images/cards/multi_cast.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]Разряжает[/gold] правую сферу X+1 раз.",
@@ -22477,7 +22477,7 @@
     "upgrade": {
       "loop": "+1"
     },
-    "image_url": "/static/images/cards/loop.png",
+    "image_url": "/static/images/cards/loop.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Активирует пассивный эффект правой сферы в начале хода 2 раза.",
@@ -22521,7 +22521,7 @@
     "upgrade": {
       "blackholepower": "+1"
     },
-    "image_url": "/static/images/cards/black_hole.png",
+    "image_url": "/static/images/cards/black_hole.webp",
     "beta_image_url": "/static/images/cards/beta/black_hole.png",
     "type_variants": null,
     "upgrade_description": "Наносит 4 урона ВСЕМ врагам, когда вы получаете или тратите [star:1].",
@@ -22559,7 +22559,7 @@
       "HpLoss": 13
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/bad_luck.png",
+    "image_url": "/static/images/cards/bad_luck.webp",
     "beta_image_url": "/static/images/cards/beta/bad_luck.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -22607,7 +22607,7 @@
     "upgrade": {
       "strength": "+1"
     },
-    "image_url": "/static/images/cards/blade_of_ink.png",
+    "image_url": "/static/images/cards/blade_of_ink.webp",
     "beta_image_url": "/static/images/cards/beta/blade_of_ink.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -22644,7 +22644,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/shadow_step.png",
+    "image_url": "/static/images/cards/shadow_step.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -22681,7 +22681,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/skewer.png",
+    "image_url": "/static/images/cards/skewer.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 10 урона X раз.",
@@ -22718,7 +22718,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/ball_lightning.png",
+    "image_url": "/static/images/cards/ball_lightning.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 10 урона.\n[gold]Заряжает[/gold] 1 [gold]сферу молнии[/gold].",
@@ -22762,7 +22762,7 @@
     "upgrade": {
       "dexterity": "+2"
     },
-    "image_url": "/static/images/cards/anticipate.png",
+    "image_url": "/static/images/cards/anticipate.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -22803,7 +22803,7 @@
     "upgrade": {
       "extradamage": "+1"
     },
-    "image_url": "/static/images/cards/soul_storm.png",
+    "image_url": "/static/images/cards/soul_storm.webp",
     "beta_image_url": "/static/images/cards/beta/soul_storm.png",
     "type_variants": null,
     "upgrade_description": "Наносит 9 урона.\nНаносит на 3 урона больше за каждую [gold]«Душу»[/gold] в [gold]стопке пепла[/gold].",
@@ -22840,7 +22840,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/dagger_spray.png",
+    "image_url": "/static/images/cards/dagger_spray.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 6 урона ВСЕМ врагам 2 раза.",
@@ -22875,7 +22875,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/zap.png",
+    "image_url": "/static/images/cards/zap.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -22919,7 +22919,7 @@
     "upgrade": {
       "stormpower": "+1"
     },
-    "image_url": "/static/images/cards/storm.png",
+    "image_url": "/static/images/cards/storm.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]Заряжает[/gold] 2 [gold]plural(ru):сферу молнии[/gold], когда вы разыгрываете Талант.",
@@ -22959,7 +22959,7 @@
     "upgrade": {
       "ostydamage": "+3"
     },
-    "image_url": "/static/images/cards/snap.png",
+    "image_url": "/static/images/cards/snap.webp",
     "beta_image_url": "/static/images/cards/beta/snap.png",
     "type_variants": null,
     "upgrade_description": "[gold]Костя[/gold] наносит 10 урона.\nВыбранная в [gold]руке[/gold] карта [gold]оставляется[/gold].",
@@ -22997,7 +22997,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/equilibrium.png",
+    "image_url": "/static/images/cards/equilibrium.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Дает 16 [gold]защиты[/gold].\nВ этом ходу вы [gold]оставляете[/gold] карты в [gold]руке[/gold].",
@@ -23036,7 +23036,7 @@
     "upgrade": {
       "add_retain": true
     },
-    "image_url": "/static/images/cards/dredge.png",
+    "image_url": "/static/images/cards/dredge.webp",
     "beta_image_url": "/static/images/cards/beta/dredge.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -23076,7 +23076,7 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": "/static/images/cards/entropy.png",
+    "image_url": "/static/images/cards/entropy.webp",
     "beta_image_url": "/static/images/cards/beta/entropy.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -23121,7 +23121,7 @@
     "upgrade": {
       "outbreakpower": "+4"
     },
-    "image_url": "/static/images/cards/outbreak.png",
+    "image_url": "/static/images/cards/outbreak.webp",
     "beta_image_url": "/static/images/cards/beta/outbreak.png",
     "type_variants": null,
     "upgrade_description": "Наносит 15 урона ВСЕМ врагам plural(ru):каждый раз, когда вы накладываете [gold]яд[/gold].",
@@ -23156,7 +23156,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/byrdonis_egg.png",
+    "image_url": "/static/images/cards/byrdonis_egg.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -23196,7 +23196,7 @@
     "upgrade": {
       "power": "+2"
     },
-    "image_url": "/static/images/cards/rage.png",
+    "image_url": "/static/images/cards/rage.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Дает 5 [gold]защиты[/gold], когда вы разыгрываете Атаку в этом ходу.",
@@ -23236,7 +23236,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/neows_fury.png",
+    "image_url": "/static/images/cards/neows_fury.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Наносит 14 урона.\nВы берете plural(ru):случайную карту из [gold]стопки сброса[/gold].",
@@ -23279,7 +23279,7 @@
       "energy": "+1",
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/brightest_flame.png",
+    "image_url": "/static/images/cards/brightest_flame.webp",
     "beta_image_url": "/static/images/cards/beta/brightest_flame.png",
     "type_variants": null,
     "upgrade_description": "Дает [energy:3].\nВы добираете 3 plural(ru):карту.\nВы теряете 1 максимальных ОЗ.",
@@ -23320,7 +23320,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/glimpse_beyond.png",
+    "image_url": "/static/images/cards/glimpse_beyond.webp",
     "beta_image_url": "/static/images/cards/beta/glimpse_beyond.png",
     "type_variants": null,
     "upgrade_description": "Добавляет ВСЕМ игрокам 4 [gold]plural(ru):«Душу»[/gold] в [gold]стопку добора[/gold].",

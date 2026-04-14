@@ -9,6 +9,7 @@ from parser_paths import DECOMPILED, RAW_DIR, loc_dir as _loc_dir, data_dir as _
 
 POWERS_DIR = DECOMPILED / "MegaCrit.Sts2.Core.Models.Powers"
 POWERS_IMAGES = RAW_DIR / "images" / "powers"
+POWERS_STATIC = Path(__file__).resolve().parents[2] / "static" / "images" / "powers"
 
 # Aliases for powers whose icon filename doesn't match the ID pattern
 IMAGE_ALIASES: dict[str, str] = {
@@ -198,14 +199,17 @@ def parse_single_power(filepath: Path, localization: dict) -> dict | None:
 
     desc_clean = description_resolved
 
-    # Resolve image URL
+    # Resolve image URL — prefer WebP from static dir, fall back to PNG from raw
     image_url = None
     if power_id in IMAGE_ALIASES:
-        icon_file = POWERS_IMAGES / IMAGE_ALIASES[power_id]
+        icon_name = IMAGE_ALIASES[power_id]
     else:
-        icon_file = POWERS_IMAGES / f"{power_id.lower()}_power.png"
-    if icon_file.exists():
-        image_url = f"/static/images/powers/{icon_file.name}"
+        icon_name = f"{power_id.lower()}_power.png"
+    webp_name = Path(icon_name).with_suffix(".webp").name
+    if (POWERS_STATIC / webp_name).exists():
+        image_url = f"/static/images/powers/{webp_name}"
+    elif (POWERS_IMAGES / icon_name).exists():
+        image_url = f"/static/images/powers/{icon_name}"
 
     return {
         "id": power_id,

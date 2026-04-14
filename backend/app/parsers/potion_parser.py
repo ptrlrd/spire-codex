@@ -49,10 +49,13 @@ def parse_single_potion(filepath: Path, localization: dict) -> dict | None:
     description_resolved = resolve_description(description_raw, all_vars)
     desc_clean = description_resolved
 
-    # Image URL
-    image_file = STATIC_IMAGES / f"{potion_id.lower()}.png"
+    # Image URL — prefer WebP, fall back to PNG
+    potion_base = potion_id.lower()
+    image_file = STATIC_IMAGES / f"{potion_base}.webp"
+    if not image_file.exists():
+        image_file = STATIC_IMAGES / f"{potion_base}.png"
     image_url = (
-        f"/static/images/potions/{potion_id.lower()}.png"
+        f"/static/images/potions/{image_file.name}"
         if image_file.exists()
         else None
     )

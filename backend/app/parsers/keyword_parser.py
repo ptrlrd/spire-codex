@@ -75,11 +75,13 @@ def parse_intents(loc_dir: Path) -> list[dict]:
         title = loc.get(f"{intent_id}.title", intent_id.replace("_", " ").title())
         desc = loc.get(f"{intent_id}.description", "")
         desc_clean = clean_description(desc)
-        # Image URL — check for intent icon
+        # Image URL — check for intent icon, prefer WebP
         img_name = intent_id.lower()
-        image_file = STATIC_IMAGES / "intents" / f"{img_name}.png"
+        image_file = STATIC_IMAGES / "intents" / f"{img_name}.webp"
+        if not image_file.exists():
+            image_file = STATIC_IMAGES / "intents" / f"{img_name}.png"
         image_url = (
-            f"/static/images/intents/{img_name}.png" if image_file.exists() else None
+            f"/static/images/intents/{image_file.name}" if image_file.exists() else None
         )
 
         intents.append(
@@ -146,11 +148,13 @@ def parse_orbs(loc_dir: Path) -> list[dict]:
         desc_resolved = resolve_description(desc_raw, all_vars) if desc_raw else ""
         desc_clean = clean_description(desc_resolved)
 
-        # Image URL
+        # Image URL — prefer WebP
         img_name = orb_id.lower()
-        image_file = STATIC_IMAGES / "orbs" / f"{img_name}.png"
+        image_file = STATIC_IMAGES / "orbs" / f"{img_name}.webp"
+        if not image_file.exists():
+            image_file = STATIC_IMAGES / "orbs" / f"{img_name}.png"
         image_url = (
-            f"/static/images/orbs/{img_name}.png" if image_file.exists() else None
+            f"/static/images/orbs/{image_file.name}" if image_file.exists() else None
         )
 
         orbs.append(

@@ -31,7 +31,7 @@
       "damage": "+1",
       "playmax": "+1"
     },
-    "image_url": "/static/images/cards/ftl.png",
+    "image_url": "/static/images/cards/ftl.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 6 줍니다.\n이번 턴에 카드를 4장보다 적게 사용했다면, 카드를 1장 뽑습니다.",
@@ -66,7 +66,7 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": "/static/images/cards/hello_world.png",
+    "image_url": "/static/images/cards/hello_world.webp",
     "beta_image_url": "/static/images/cards/beta/hello_world.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -112,7 +112,7 @@
       "damage": "+3",
       "weak": "+1"
     },
-    "image_url": "/static/images/cards/null.png",
+    "image_url": "/static/images/cards/null.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 13 줍니다.\n[gold]약화[/gold]를 2 부여합니다.\n[gold]암흑[/gold]을 1번 [gold]영창[/gold]합니다.",
@@ -149,7 +149,7 @@
     "upgrade": {
       "block": "+4"
     },
-    "image_url": "/static/images/cards/intercept.png",
+    "image_url": "/static/images/cards/intercept.webp",
     "beta_image_url": "/static/images/cards/beta/intercept.png",
     "type_variants": null,
     "upgrade_description": "[gold]방어도[/gold]를 13 얻습니다.\n이번 턴 동안 다른 플레이어가 받아야 하는 모든 공격의 목표를 자신으로 변경합니다.",
@@ -188,7 +188,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/boost_away.png",
+    "image_url": "/static/images/cards/boost_away.webp",
     "beta_image_url": "/static/images/cards/beta/boost_away.png",
     "type_variants": null,
     "upgrade_description": "[gold]방어도[/gold]를 9 얻습니다.\n[gold]버린 카드 더미[/gold]에 [gold]어지러움[/gold]을 1장 섞어 넣습니다.",
@@ -228,7 +228,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/tear_asunder.png",
+    "image_url": "/static/images/cards/tear_asunder.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 7 줍니다.\n이번 전투 동안 체력을 잃은 횟수만큼 반복합니다.",
@@ -265,7 +265,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/pillage.png",
+    "image_url": "/static/images/cards/pillage.webp",
     "beta_image_url": "/static/images/cards/beta/pillage.png",
     "type_variants": null,
     "upgrade_description": "피해를 9 줍니다.\n공격이 아닌 카드를 뽑을 때까지 카드를 뽑습니다.",
@@ -318,7 +318,7 @@
     "upgrade": {
       "damage": "+5"
     },
-    "image_url": "/static/images/cards/gamma_blast.png",
+    "image_url": "/static/images/cards/gamma_blast.webp",
     "beta_image_url": "/static/images/cards/beta/gamma_blast.png",
     "type_variants": null,
     "upgrade_description": "피해를 18 줍니다.\n[gold]약화[/gold]를 2 부여합니다.\n[gold]취약[/gold]을 2 부여합니다.",
@@ -355,7 +355,7 @@
       "Damage": 3
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/infection.png",
+    "image_url": "/static/images/cards/infection.webp",
     "beta_image_url": "/static/images/cards/beta/infection.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -395,7 +395,7 @@
     "upgrade": {
       "summon": "+3"
     },
-    "image_url": "/static/images/cards/necro_mastery.png",
+    "image_url": "/static/images/cards/necro_mastery.webp",
     "beta_image_url": "/static/images/cards/beta/necro_mastery.png",
     "type_variants": null,
     "upgrade_description": "[gold]소환[/gold] 8.\n[gold]골골이[/gold]가 체력을 잃을 때마다,\n모든 적이 동일한 만큼의 체력을 잃습니다.",
@@ -436,7 +436,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/seance.png",
+    "image_url": "/static/images/cards/seance.webp",
     "beta_image_url": "/static/images/cards/beta/seance.png",
     "type_variants": null,
     "upgrade_description": "[gold]뽑을 카드 더미[/gold]의 카드를 1장 [gold]영혼+[/gold]으로 변화시킵니다.",
@@ -477,7 +477,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/flash_of_steel.png",
+    "image_url": "/static/images/cards/flash_of_steel.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 8 줍니다.\n카드를 1장 뽑습니다.",
@@ -514,7 +514,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/storm_of_steel.png",
+    "image_url": "/static/images/cards/storm_of_steel.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]손[/gold]에 있는 모든 카드를 버립니다.\n버린 카드의 수만큼 [gold]단도+[/gold]를 [gold]손[/gold]으로 가져옵니다.",
@@ -560,7 +560,7 @@
       "damage": "+2",
       "vulnerable": "+1"
     },
-    "image_url": "/static/images/cards/bash.png",
+    "image_url": "/static/images/cards/bash.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 10 줍니다.\n[gold]취약[/gold]을 2 부여합니다.",
@@ -600,7 +600,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/reave.png",
+    "image_url": "/static/images/cards/reave.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 11 줍니다.\n[gold]뽑을 카드 더미[/gold]에 [gold]영혼+[/gold]을 1장 섞어 넣습니다.",
@@ -639,7 +639,7 @@
     "upgrade": {
       "block": "+4"
     },
-    "image_url": "/static/images/cards/fight_through.png",
+    "image_url": "/static/images/cards/fight_through.webp",
     "beta_image_url": "/static/images/cards/beta/fight_through.png",
     "type_variants": null,
     "upgrade_description": "[gold]방어도[/gold]를 17 얻습니다.\n[gold]버린 카드 더미[/gold]에 [gold]부상[/gold]을 2장 섞어 넣습니다.",
@@ -676,7 +676,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/giant_rock.png",
+    "image_url": "/static/images/cards/giant_rock.webp",
     "beta_image_url": "/static/images/cards/beta/giant_rock.png",
     "type_variants": null,
     "upgrade_description": "피해를 20 줍니다.",
@@ -714,7 +714,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/colossus.png",
+    "image_url": "/static/images/cards/colossus.webp",
     "beta_image_url": "/static/images/cards/beta/colossus.png",
     "type_variants": null,
     "upgrade_description": "[gold]방어도[/gold]를 8 얻습니다.\n이번 턴에 [gold]취약[/gold] 상태의 적에게서 받는 피해량이 50% 감소합니다.",
@@ -751,7 +751,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/skim.png",
+    "image_url": "/static/images/cards/skim.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "카드를 4장 뽑습니다.",
@@ -789,7 +789,7 @@
     "upgrade": {
       "forge": "+4"
     },
-    "image_url": "/static/images/cards/refine_blade.png",
+    "image_url": "/static/images/cards/refine_blade.webp",
     "beta_image_url": "/static/images/cards/beta/refine_blade.png",
     "type_variants": null,
     "upgrade_description": "[gold]단조[/gold] 10.\n다음 턴에, [energy:1]를 얻습니다.",
@@ -830,7 +830,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/blade_dance.png",
+    "image_url": "/static/images/cards/blade_dance.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]단도[/gold]를 4장 [gold]손[/gold]으로 가져옵니다.",
@@ -879,7 +879,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/sword_sage.png",
+    "image_url": "/static/images/cards/sword_sage.webp",
     "beta_image_url": "/static/images/cards/beta/sword_sage.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -916,7 +916,7 @@
     "upgrade": {
       "power": "+2"
     },
-    "image_url": "/static/images/cards/rage.png",
+    "image_url": "/static/images/cards/rage.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "이번 턴에 공격 카드를 사용할 때마다, [gold]방어도[/gold]를 5 얻습니다.",
@@ -953,7 +953,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/clash.png",
+    "image_url": "/static/images/cards/clash.webp",
     "beta_image_url": "/static/images/cards/beta/clash.png",
     "type_variants": null,
     "upgrade_description": "[gold]손[/gold]에 있는 모든 카드가 공격 카드일 때만 사용할 수 있습니다.\n피해를 18 줍니다.",
@@ -994,7 +994,7 @@
       "summon": "+2",
       "heal": "+2"
     },
-    "image_url": "/static/images/cards/spur.png",
+    "image_url": "/static/images/cards/spur.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]소환[/gold] 5.\n[gold]골골이[/gold]가 체력을 7 회복합니다.",
@@ -1038,7 +1038,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/glimpse_beyond.png",
+    "image_url": "/static/images/cards/glimpse_beyond.webp",
     "beta_image_url": "/static/images/cards/beta/glimpse_beyond.png",
     "type_variants": null,
     "upgrade_description": "모든 플레이어의 [gold]뽑을 카드 더미[/gold]에 [gold]영혼[/gold]을 4장 섞어 넣습니다.",
@@ -1087,7 +1087,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/sentry_mode.png",
+    "image_url": "/static/images/cards/sentry_mode.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -1124,7 +1124,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/enlightenment.png",
+    "image_url": "/static/images/cards/enlightenment.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "이번 전투 동안, [gold]손[/gold]에 있는 모든 카드의 비용이 1로 감소합니다.",
@@ -1164,7 +1164,7 @@
     "upgrade": {
       "add_retain": true
     },
-    "image_url": "/static/images/cards/calculated_gamble.png",
+    "image_url": "/static/images/cards/calculated_gamble.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -1204,7 +1204,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/thrumming_hatchet.png",
+    "image_url": "/static/images/cards/thrumming_hatchet.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 14 줍니다.\n다음 턴 시작 시, 이 카드를 [gold]손[/gold]으로 다시 가져옵니다.",
@@ -1242,7 +1242,7 @@
     "upgrade": {
       "block": "+2"
     },
-    "image_url": "/static/images/cards/toric_toughness.png",
+    "image_url": "/static/images/cards/toric_toughness.webp",
     "beta_image_url": "/static/images/cards/beta/toric_toughness.png",
     "type_variants": null,
     "upgrade_description": "[gold]방어도[/gold]를 7 얻습니다.\n다음 2턴 동안, 턴 시작 시 [gold]방어도[/gold]를 7 얻습니다.",
@@ -1281,7 +1281,7 @@
     "upgrade": {
       "extrablock": "+2"
     },
-    "image_url": "/static/images/cards/fasten.png",
+    "image_url": "/static/images/cards/fasten.webp",
     "beta_image_url": "/static/images/cards/beta/fasten.png",
     "type_variants": null,
     "upgrade_description": "수비 카드를 통해 얻는 [gold]방어도[/gold]가 7 증가합니다.",
@@ -1316,7 +1316,7 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": "/static/images/cards/trash_to_treasure.png",
+    "image_url": "/static/images/cards/trash_to_treasure.webp",
     "beta_image_url": "/static/images/cards/beta/trash_to_treasure.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -1353,7 +1353,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/acrobatics.png",
+    "image_url": "/static/images/cards/acrobatics.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "카드를 4장 뽑습니다.\n카드를 1장 버립니다.",
@@ -1388,7 +1388,7 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": "/static/images/cards/aggression.png",
+    "image_url": "/static/images/cards/aggression.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -1426,7 +1426,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/backflip.png",
+    "image_url": "/static/images/cards/backflip.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]방어도[/gold]를 8 얻습니다.\n카드를 2장 뽑습니다.",
@@ -1471,7 +1471,7 @@
     "upgrade": {
       "strengthpower": "+1"
     },
-    "image_url": "/static/images/cards/resonance.png",
+    "image_url": "/static/images/cards/resonance.webp",
     "beta_image_url": "/static/images/cards/beta/resonance.png",
     "type_variants": null,
     "upgrade_description": "[gold]힘[/gold]을 2 얻습니다. 모든 적이 [gold]힘[/gold]을 1 잃습니다.",
@@ -1509,7 +1509,7 @@
       "Energy": 1
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/void.png",
+    "image_url": "/static/images/cards/void.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -1550,7 +1550,7 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": "/static/images/cards/call_of_the_void.png",
+    "image_url": "/static/images/cards/call_of_the_void.webp",
     "beta_image_url": "/static/images/cards/beta/call_of_the_void.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -1594,7 +1594,7 @@
     "upgrade": {
       "voidformpower": "+1"
     },
-    "image_url": "/static/images/cards/void_form.png",
+    "image_url": "/static/images/cards/void_form.webp",
     "beta_image_url": "/static/images/cards/beta/void_form.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -1632,7 +1632,7 @@
     "upgrade": {
       "increase": "+4"
     },
-    "image_url": "/static/images/cards/rampage.png",
+    "image_url": "/static/images/cards/rampage.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 9 줍니다.\n이번 전투 동안 이 카드의 피해량이 9 증가합니다.",
@@ -1676,7 +1676,7 @@
     "upgrade": {
       "strength": "+2"
     },
-    "image_url": "/static/images/cards/feeding_frenzy.png",
+    "image_url": "/static/images/cards/feeding_frenzy.webp",
     "beta_image_url": "/static/images/cards/beta/feeding_frenzy.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -1714,7 +1714,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/sweeping_beam.png",
+    "image_url": "/static/images/cards/sweeping_beam.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "모든 적에게 피해를 9 줍니다.\n카드를 1장 뽑습니다.",
@@ -1754,7 +1754,7 @@
       "damage": "+3",
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/photon_cut.png",
+    "image_url": "/static/images/cards/photon_cut.webp",
     "beta_image_url": "/static/images/cards/beta/photon_cut.png",
     "type_variants": null,
     "upgrade_description": "피해를 13 줍니다.\n카드를 2장 뽑습니다.\n[gold]손[/gold]에 있는 카드 1장을 [gold]뽑을 카드 더미[/gold] 맨 위에 놓습니다.",
@@ -1792,7 +1792,7 @@
     "upgrade": {
       "stars": "+1"
     },
-    "image_url": "/static/images/cards/glow.png",
+    "image_url": "/static/images/cards/glow.webp",
     "beta_image_url": "/static/images/cards/beta/glow.png",
     "type_variants": null,
     "upgrade_description": "[star:2]을 얻습니다.\n카드를 2장 뽑습니다.",
@@ -1829,7 +1829,7 @@
     "upgrade": {
       "retainamount": "+1"
     },
-    "image_url": "/static/images/cards/well_laid_plans.png",
+    "image_url": "/static/images/cards/well_laid_plans.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "내 턴 종료 시, 카드를 최대 2장까지 [gold]보존[/gold]합니다.",
@@ -1876,14 +1876,14 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": "/static/images/cards/mad_science_attack.png",
+    "image_url": "/static/images/cards/mad_science_attack.webp",
     "beta_image_url": null,
     "type_variants": {
       "attack": {
         "type": "Attack",
         "description": "피해를 12 줍니다.",
         "damage": 12,
-        "image_url": "/static/images/cards/mad_science_attack.png",
+        "image_url": "/static/images/cards/mad_science_attack.webp",
         "riders": [
           {
             "id": "SAPPING",
@@ -1906,7 +1906,7 @@
         "type": "Skill",
         "description": "[gold]방어도[/gold]를 8 얻습니다.",
         "block": 8,
-        "image_url": "/static/images/cards/mad_science_skill.png",
+        "image_url": "/static/images/cards/mad_science_skill.webp",
         "riders": [
           {
             "id": "ENERGIZED",
@@ -1928,7 +1928,7 @@
       "power": {
         "type": "Power",
         "description": "",
-        "image_url": "/static/images/cards/mad_science_power.png",
+        "image_url": "/static/images/cards/mad_science_power.webp",
         "riders": [
           {
             "id": "EXPERTISE",
@@ -1989,7 +1989,7 @@
     "upgrade": {
       "serpentformpower": "+1"
     },
-    "image_url": "/static/images/cards/serpent_form.png",
+    "image_url": "/static/images/cards/serpent_form.webp",
     "beta_image_url": "/static/images/cards/beta/serpent_form.png",
     "type_variants": null,
     "upgrade_description": "카드를 사용할 때마다, 무작위 적에게 피해를 5 줍니다.",
@@ -2026,7 +2026,7 @@
     "upgrade": {
       "block": "+2"
     },
-    "image_url": "/static/images/cards/dodge_and_roll.png",
+    "image_url": "/static/images/cards/dodge_and_roll.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]방어도[/gold]를 6 얻습니다.\n다음 턴에, [gold]방어도[/gold]를 6 얻습니다.",
@@ -2063,7 +2063,7 @@
     "upgrade": {
       "cost": 2
     },
-    "image_url": "/static/images/cards/monarchs_gaze.png",
+    "image_url": "/static/images/cards/monarchs_gaze.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -2106,7 +2106,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/sovereign_blade.png",
+    "image_url": "/static/images/cards/sovereign_blade.webp",
     "beta_image_url": "/static/images/cards/beta/sovereign_blade.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -2153,7 +2153,7 @@
     "upgrade": {
       "smokestackpower": "+2"
     },
-    "image_url": "/static/images/cards/smokestack.png",
+    "image_url": "/static/images/cards/smokestack.webp",
     "beta_image_url": "/static/images/cards/beta/smokestack.png",
     "type_variants": null,
     "upgrade_description": "상태이상 카드를 생성할 때마다, 모든 적에게 피해를 7 줍니다.",
@@ -2198,7 +2198,7 @@
     "upgrade": {
       "rollingboulderpower": "+5"
     },
-    "image_url": "/static/images/cards/rolling_boulder.png",
+    "image_url": "/static/images/cards/rolling_boulder.webp",
     "beta_image_url": "/static/images/cards/beta/rolling_boulder.png",
     "type_variants": null,
     "upgrade_description": "내 턴 시작 시, 모든 적에게 피해를 10 주고 이 효과의 피해량이 5 증가합니다.",
@@ -2236,7 +2236,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/refract.png",
+    "image_url": "/static/images/cards/refract.webp",
     "beta_image_url": "/static/images/cards/beta/refract.png",
     "type_variants": null,
     "upgrade_description": "피해를 12만큼 2번 줍니다.\n[gold]유리[/gold]를 2번 [gold]영창[/gold]합니다.",
@@ -2275,7 +2275,7 @@
     "upgrade": {
       "block": "+4"
     },
-    "image_url": "/static/images/cards/ultimate_defend.png",
+    "image_url": "/static/images/cards/ultimate_defend.webp",
     "beta_image_url": "/static/images/cards/beta/ultimate_defend.png",
     "type_variants": null,
     "upgrade_description": "[gold]방어도[/gold]를 15 얻습니다.",
@@ -2314,7 +2314,7 @@
     "upgrade": {
       "damage": "+6"
     },
-    "image_url": "/static/images/cards/ultimate_strike.png",
+    "image_url": "/static/images/cards/ultimate_strike.webp",
     "beta_image_url": "/static/images/cards/beta/ultimate_strike.png",
     "type_variants": null,
     "upgrade_description": "피해를 20 줍니다.",
@@ -2354,7 +2354,7 @@
     "upgrade": {
       "cost": 2
     },
-    "image_url": "/static/images/cards/demesne.png",
+    "image_url": "/static/images/cards/demesne.webp",
     "beta_image_url": "/static/images/cards/beta/demesne.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -2394,7 +2394,7 @@
     "upgrade": {
       "block": "+1"
     },
-    "image_url": "/static/images/cards/manifest_authority.png",
+    "image_url": "/static/images/cards/manifest_authority.webp",
     "beta_image_url": "/static/images/cards/beta/manifest_authority.png",
     "type_variants": null,
     "upgrade_description": "[gold]방어도[/gold]를 8 얻습니다.\n무작위 [gold]강화[/gold]된 무색 카드를 1장 [gold]손[/gold]으로 가져옵니다.",
@@ -2431,7 +2431,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/orbit.png",
+    "image_url": "/static/images/cards/orbit.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -2470,7 +2470,7 @@
     "upgrade": {
       "strengthloss": "+2"
     },
-    "image_url": "/static/images/cards/piercing_wail.png",
+    "image_url": "/static/images/cards/piercing_wail.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "이번 턴 동안 모든 적이 [gold]힘[/gold]을 8 잃습니다.",
@@ -2511,7 +2511,7 @@
       "numOfCardsPerTurn": 3
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/normality.png",
+    "image_url": "/static/images/cards/normality.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -2560,7 +2560,7 @@
       "damage": "+2",
       "grapplepower": "+2"
     },
-    "image_url": "/static/images/cards/grapple.png",
+    "image_url": "/static/images/cards/grapple.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 9 줍니다.\n이번 턴에 [gold]방어도[/gold]를 얻을 때마다, 대상 적에게 피해를 7 줍니다.",
@@ -2598,7 +2598,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/make_it_so.png",
+    "image_url": "/static/images/cards/make_it_so.webp",
     "beta_image_url": "/static/images/cards/beta/make_it_so.png",
     "type_variants": null,
     "upgrade_description": "피해를 9 줍니다.\n한 턴에 스킬 카드를 3장 사용할 때마다, 이 카드를 [gold]손[/gold]으로 가져옵니다.",
@@ -2635,7 +2635,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/shadow_step.png",
+    "image_url": "/static/images/cards/shadow_step.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -2672,7 +2672,7 @@
     "upgrade": {
       "block": "+4"
     },
-    "image_url": "/static/images/cards/shadow_shield.png",
+    "image_url": "/static/images/cards/shadow_shield.webp",
     "beta_image_url": "/static/images/cards/beta/shadow_shield.png",
     "type_variants": null,
     "upgrade_description": "[gold]방어도[/gold]를 15 얻습니다.\n[gold]암흑[/gold]을 1번 [gold]영창[/gold]합니다.",
@@ -2717,7 +2717,7 @@
     "upgrade": {
       "repeat": "+1"
     },
-    "image_url": "/static/images/cards/consuming_shadow.png",
+    "image_url": "/static/images/cards/consuming_shadow.webp",
     "beta_image_url": "/static/images/cards/beta/consuming_shadow.png",
     "type_variants": null,
     "upgrade_description": "[gold]암흑[/gold]을 3번 [gold]영창[/gold]합니다.\n내 턴 종료 시, 가장 왼쪽의 구체를 [gold]발현[/gold]합니다.",
@@ -2754,7 +2754,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/shadowmeld.png",
+    "image_url": "/static/images/cards/shadowmeld.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -2789,7 +2789,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/soot.png",
+    "image_url": "/static/images/cards/soot.webp",
     "beta_image_url": "/static/images/cards/beta/soot.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -2832,7 +2832,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/dramatic_entrance.png",
+    "image_url": "/static/images/cards/dramatic_entrance.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "모든 적에게 피해를 15 줍니다.",
@@ -2875,7 +2875,7 @@
       "damage": "+3",
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/scrape.png",
+    "image_url": "/static/images/cards/scrape.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 10 줍니다.\n카드를 5장 뽑습니다.\n뽑은 카드 중 비용이 0 [energy:1]이 아닌 모든 카드를 버립니다.",
@@ -2912,7 +2912,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/forbidden_grimoire.png",
+    "image_url": "/static/images/cards/forbidden_grimoire.webp",
     "beta_image_url": "/static/images/cards/beta/forbidden_grimoire.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -2952,7 +2952,7 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": "/static/images/cards/machine_learning.png",
+    "image_url": "/static/images/cards/machine_learning.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -3004,7 +3004,7 @@
       "dexterity": "+1",
       "strength": "+1"
     },
-    "image_url": "/static/images/cards/prowess.png",
+    "image_url": "/static/images/cards/prowess.webp",
     "beta_image_url": "/static/images/cards/beta/prowess.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -3043,7 +3043,7 @@
       "damage": "+2",
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/drain_power.png",
+    "image_url": "/static/images/cards/drain_power.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 12 줍니다.\n[gold]버린 카드 더미[/gold]에 있는 무작위 카드를 3장 [gold]강화[/gold]합니다.",
@@ -3082,7 +3082,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/bundle_of_joy.png",
+    "image_url": "/static/images/cards/bundle_of_joy.webp",
     "beta_image_url": "/static/images/cards/beta/bundle_of_joy.png",
     "type_variants": null,
     "upgrade_description": "무작위 무색 카드를 4장 [gold]손[/gold]으로 가져옵니다.",
@@ -3122,7 +3122,7 @@
     "upgrade": {
       "block": "+2"
     },
-    "image_url": "/static/images/cards/second_wind.png",
+    "image_url": "/static/images/cards/second_wind.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]손[/gold]에 있는 공격이 아닌 모든 카드를 [gold]소멸[/gold]시킵니다. [gold]소멸[/gold]시킨 카드 1장당 [gold]방어도[/gold]를 7 얻습니다.",
@@ -3162,7 +3162,7 @@
       "damage": "+1",
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/guiding_star.png",
+    "image_url": "/static/images/cards/guiding_star.webp",
     "beta_image_url": "/static/images/cards/beta/guiding_star.png",
     "type_variants": null,
     "upgrade_description": "피해를 13 줍니다.\n다음 턴에, 카드를 3장 뽑습니다.",
@@ -3199,7 +3199,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/skewer.png",
+    "image_url": "/static/images/cards/skewer.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 10만큼 X번 줍니다.",
@@ -3236,7 +3236,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/cold_snap.png",
+    "image_url": "/static/images/cards/cold_snap.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 9 줍니다.\n[gold]냉기[/gold]를 1번 [gold]영창[/gold]합니다.",
@@ -3275,7 +3275,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/pull_from_below.png",
+    "image_url": "/static/images/cards/pull_from_below.webp",
     "beta_image_url": "/static/images/cards/beta/pull_from_below.png",
     "type_variants": null,
     "upgrade_description": "이번 전투 동안 사용한 [gold]휘발성[/gold] 카드 1장당 피해를 7 줍니다.",
@@ -3312,7 +3312,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/i_am_invincible.png",
+    "image_url": "/static/images/cards/i_am_invincible.webp",
     "beta_image_url": "/static/images/cards/beta/i_am_invincible.png",
     "type_variants": null,
     "upgrade_description": "[gold]방어도[/gold]를 12 얻습니다.\n내 턴 종료 시 이 카드가 [gold]뽑을 카드 더미[/gold] 맨 위에 있다면, 사용합니다.",
@@ -3351,7 +3351,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/helix_drill.png",
+    "image_url": "/static/images/cards/helix_drill.webp",
     "beta_image_url": "/static/images/cards/beta/helix_drill.png",
     "type_variants": null,
     "upgrade_description": "이번 턴 동안 소모한 [energy:1]당 피해를 5 줍니다.",
@@ -3393,7 +3393,7 @@
       "Sloth": 3
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/sloth.png",
+    "image_url": "/static/images/cards/sloth.webp",
     "beta_image_url": "/static/images/cards/beta/sloth.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -3438,7 +3438,7 @@
     "upgrade": {
       "strength": "+1"
     },
-    "image_url": "/static/images/cards/brand.png",
+    "image_url": "/static/images/cards/brand.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -3477,7 +3477,7 @@
       "damage": "+5",
       "strengthloss": "+5"
     },
-    "image_url": "/static/images/cards/mangle.png",
+    "image_url": "/static/images/cards/mangle.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 20 줍니다.\n이번 턴 동안 적이 [gold]힘[/gold]을 15 잃습니다.",
@@ -3514,7 +3514,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/uproar.png",
+    "image_url": "/static/images/cards/uproar.webp",
     "beta_image_url": "/static/images/cards/beta/uproar.png",
     "type_variants": null,
     "upgrade_description": "피해를 7만큼 2번 줍니다.\n[gold]뽑을 카드 더미[/gold]에서 무작위 공격 카드를 1장 사용합니다.",
@@ -3551,7 +3551,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/volley.png",
+    "image_url": "/static/images/cards/volley.webp",
     "beta_image_url": "/static/images/cards/beta/volley.png",
     "type_variants": null,
     "upgrade_description": "무작위 적에게 피해를 14만큼 X번 줍니다.",
@@ -3588,7 +3588,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/thrash.png",
+    "image_url": "/static/images/cards/thrash.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 6만큼 2번 줍니다.\n[gold]손[/gold]에 있는 무작위 공격 카드를 1장 [gold]소멸[/gold]시키고, 그 카드의 피해량을 이 카드에 추가합니다.",
@@ -3625,7 +3625,7 @@
     "upgrade": {
       "forge": "+4"
     },
-    "image_url": "/static/images/cards/seeking_edge.png",
+    "image_url": "/static/images/cards/seeking_edge.webp",
     "beta_image_url": "/static/images/cards/beta/seeking_edge.png",
     "type_variants": null,
     "upgrade_description": "[gold]단조[/gold] 11.\n[gold]군주의 칼날[/gold]이 이제 모든 적을 대상으로 합니다.",
@@ -3662,7 +3662,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/rip_and_tear.png",
+    "image_url": "/static/images/cards/rip_and_tear.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "무작위 적에게 피해를 9만큼 2번 줍니다.",
@@ -3701,7 +3701,7 @@
     "upgrade": {
       "summon": "+3"
     },
-    "image_url": "/static/images/cards/afterlife.png",
+    "image_url": "/static/images/cards/afterlife.webp",
     "beta_image_url": "/static/images/cards/beta/afterlife.png",
     "type_variants": null,
     "upgrade_description": "[gold]소환[/gold] 9.",
@@ -3748,7 +3748,7 @@
     "upgrade": {
       "coolantpower": "+1"
     },
-    "image_url": "/static/images/cards/coolant.png",
+    "image_url": "/static/images/cards/coolant.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "내 턴 시작 시, 영창된 구체의 종류 하나당 [gold]방어도[/gold]를 3 얻습니다.",
@@ -3785,7 +3785,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/coolheaded.png",
+    "image_url": "/static/images/cards/coolheaded.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]냉기[/gold]를 1번 [gold]영창[/gold]합니다.\n카드를 2장 뽑습니다.",
@@ -3822,7 +3822,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/believe_in_you.png",
+    "image_url": "/static/images/cards/believe_in_you.webp",
     "beta_image_url": "/static/images/cards/beta/believe_in_you.png",
     "type_variants": null,
     "upgrade_description": "다른 플레이어가 [energy:4]를 얻습니다.",
@@ -3862,7 +3862,7 @@
     "upgrade": {
       "ostydamage": "+3"
     },
-    "image_url": "/static/images/cards/snap.png",
+    "image_url": "/static/images/cards/snap.webp",
     "beta_image_url": "/static/images/cards/beta/snap.png",
     "type_variants": null,
     "upgrade_description": "[gold]골골이[/gold]가 피해를 10 줍니다.\n[gold]손[/gold]에 있는 카드 1장에 [gold]보존[/gold]을 추가합니다.",
@@ -3915,7 +3915,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/know_thy_place.png",
+    "image_url": "/static/images/cards/know_thy_place.webp",
     "beta_image_url": "/static/images/cards/beta/know_thy_place.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -3957,7 +3957,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/molten_fist.png",
+    "image_url": "/static/images/cards/molten_fist.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 14 줍니다.\n적이 보유한 [gold]취약[/gold]이 2배로 증가합니다.",
@@ -3995,7 +3995,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/tempest.png",
+    "image_url": "/static/images/cards/tempest.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]전기[/gold]를 X+1번 [gold]영창[/gold]합니다.",
@@ -4041,7 +4041,7 @@
       "damage": "+1",
       "weak": "+1"
     },
-    "image_url": "/static/images/cards/go_for_the_eyes.png",
+    "image_url": "/static/images/cards/go_for_the_eyes.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 4 줍니다.\n적이 공격할 의도가 있다면 [gold]약화[/gold]를 1 부여합니다.",
@@ -4079,7 +4079,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/finesse.png",
+    "image_url": "/static/images/cards/finesse.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]방어도[/gold]를 7 얻습니다.\n카드를 1장 뽑습니다.",
@@ -4119,7 +4119,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/neows_fury.png",
+    "image_url": "/static/images/cards/neows_fury.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 14 줍니다.\n[gold]버린 카드 더미[/gold]에서 무작위 카드를 1장 [gold]손[/gold]으로 가져옵니다.",
@@ -4168,7 +4168,7 @@
       "block": "+3",
       "weak": "+1"
     },
-    "image_url": "/static/images/cards/leg_sweep.png",
+    "image_url": "/static/images/cards/leg_sweep.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]약화[/gold]를 2 부여합니다.\n[gold]방어도[/gold]를 14 얻습니다.",
@@ -4207,7 +4207,7 @@
     "upgrade": {
       "cards": "+2"
     },
-    "image_url": "/static/images/cards/reboot.png",
+    "image_url": "/static/images/cards/reboot.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "모든 카드를 [gold]뽑을 카드 더미[/gold]에 섞어 넣습니다.\n카드를 6장 뽑습니다.",
@@ -4245,7 +4245,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/multi_cast.png",
+    "image_url": "/static/images/cards/multi_cast.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "가장 오른쪽의 구체를 X+1번 [gold]발현[/gold]합니다.",
@@ -4282,7 +4282,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/dagger_spray.png",
+    "image_url": "/static/images/cards/dagger_spray.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "모든 적에게 피해를 6만큼 2번 줍니다.",
@@ -4319,7 +4319,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/dagger_throw.png",
+    "image_url": "/static/images/cards/dagger_throw.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 12 줍니다.\n카드를 1장 뽑습니다.\n카드를 1장 버립니다.",
@@ -4356,7 +4356,7 @@
     "upgrade": {
       "block": "+5"
     },
-    "image_url": "/static/images/cards/rally.png",
+    "image_url": "/static/images/cards/rally.webp",
     "beta_image_url": "/static/images/cards/beta/rally.png",
     "type_variants": null,
     "upgrade_description": "모든 플레이어가 [gold]방어도[/gold]를 17 얻습니다.",
@@ -4399,7 +4399,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/shiv.png",
+    "image_url": "/static/images/cards/shiv.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 6 줍니다.",
@@ -4441,7 +4441,7 @@
     "upgrade": {
       "damage": "+1"
     },
-    "image_url": "/static/images/cards/lunar_blast.png",
+    "image_url": "/static/images/cards/lunar_blast.webp",
     "beta_image_url": "/static/images/cards/beta/lunar_blast.png",
     "type_variants": null,
     "upgrade_description": "이번 턴에 사용한 스킬 카드 1장당 피해를 5 줍니다.",
@@ -4480,7 +4480,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/flak_cannon.png",
+    "image_url": "/static/images/cards/flak_cannon.webp",
     "beta_image_url": "/static/images/cards/beta/flak_cannon.png",
     "type_variants": null,
     "upgrade_description": "모든 [gold]상태이상[/gold] 카드를 [gold]소멸[/gold]시킵니다.\n[gold]소멸[/gold]시킨 카드 1장당 무작위 적에게 피해를 11 줍니다.",
@@ -4517,7 +4517,7 @@
     "upgrade": {
       "damage": "+10"
     },
-    "image_url": "/static/images/cards/grand_finale.png",
+    "image_url": "/static/images/cards/grand_finale.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]뽑을 카드 더미[/gold]에 카드가 없을 때만 사용할 수 있습니다. 모든 적에게 피해를 60 줍니다.",
@@ -4556,7 +4556,7 @@
     "upgrade": {
       "forge": "+3"
     },
-    "image_url": "/static/images/cards/summon_forth.png",
+    "image_url": "/static/images/cards/summon_forth.webp",
     "beta_image_url": "/static/images/cards/beta/summon_forth.png",
     "type_variants": null,
     "upgrade_description": "[gold]단조[/gold] 11.\n어디에 있든 [gold]군주의 칼날[/gold]을 [gold]손[/gold]으로 가져옵니다.",
@@ -4591,7 +4591,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/mayhem.png",
+    "image_url": "/static/images/cards/mayhem.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -4631,7 +4631,7 @@
       "calculationbase": "+1",
       "extradamage": "+1"
     },
-    "image_url": "/static/images/cards/conflagration.png",
+    "image_url": "/static/images/cards/conflagration.webp",
     "beta_image_url": "/static/images/cards/beta/conflagration.png",
     "type_variants": null,
     "upgrade_description": "모든 적에게 피해를 8 줍니다.\n이번 턴에 사용한 다른 공격 카드 1장당 피해량이 3 증가합니다.",
@@ -4673,7 +4673,7 @@
     "upgrade": {
       "ostydamage": "+2"
     },
-    "image_url": "/static/images/cards/rattle.png",
+    "image_url": "/static/images/cards/rattle.webp",
     "beta_image_url": "/static/images/cards/beta/rattle.png",
     "type_variants": null,
     "upgrade_description": "[gold]골골이[/gold]가 피해를 9 줍니다.\n이번 턴 동안 골골이가 공격한 횟수만큼 반복합니다.",
@@ -4721,7 +4721,7 @@
       "damage": "+1",
       "strength": "+1"
     },
-    "image_url": "/static/images/cards/fight_me.png",
+    "image_url": "/static/images/cards/fight_me.webp",
     "beta_image_url": "/static/images/cards/beta/fight_me.png",
     "type_variants": null,
     "upgrade_description": "피해를 6만큼 2번 줍니다.\n[gold]힘[/gold]을 2 얻습니다.\n대상 적이 [gold]힘[/gold]을 1 얻습니다.",
@@ -4770,7 +4770,7 @@
       "ostydamage": "+1",
       "sicempower": "+1"
     },
-    "image_url": "/static/images/cards/sic_em.png",
+    "image_url": "/static/images/cards/sic_em.webp",
     "beta_image_url": "/static/images/cards/beta/sic_em.png",
     "type_variants": null,
     "upgrade_description": "[gold]골골이[/gold]가 피해를 6 줍니다.\n이번 턴에 [gold]골골이[/gold]가 이 적을 공격할 때마다, [gold]소환[/gold] 3.",
@@ -4807,7 +4807,7 @@
     "upgrade": {
       "damage": "+6"
     },
-    "image_url": "/static/images/cards/pounce.png",
+    "image_url": "/static/images/cards/pounce.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 18 줍니다.\n다음에 사용하는 스킬 카드의 비용이 0 [energy:1]이 됩니다.",
@@ -4846,7 +4846,7 @@
     "upgrade": {
       "calculationbase": "+5"
     },
-    "image_url": "/static/images/cards/no_escape.png",
+    "image_url": "/static/images/cards/no_escape.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]종말[/gold]을 15 부여하고, 이 적에게 부여된 [gold]종말[/gold] 10당, [gold]종말[/gold]을 추가로 5 부여합니다.",
@@ -4892,7 +4892,7 @@
       "block": "+1",
       "vulnerable": "+1"
     },
-    "image_url": "/static/images/cards/taunt.png",
+    "image_url": "/static/images/cards/taunt.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]방어도[/gold]를 8 얻습니다.\n[gold]취약[/gold]을 1 부여합니다.",
@@ -4929,7 +4929,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/leap.png",
+    "image_url": "/static/images/cards/leap.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]방어도[/gold]를 12 얻습니다.",
@@ -4969,7 +4969,7 @@
     "upgrade": {
       "repeat": "+1"
     },
-    "image_url": "/static/images/cards/ricochet.png",
+    "image_url": "/static/images/cards/ricochet.webp",
     "beta_image_url": "/static/images/cards/beta/ricochet.png",
     "type_variants": null,
     "upgrade_description": "무작위 적에게 피해를 3만큼 5번 줍니다.",
@@ -5016,7 +5016,7 @@
     "upgrade": {
       "envenompower": "+1"
     },
-    "image_url": "/static/images/cards/envenom.png",
+    "image_url": "/static/images/cards/envenom.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "공격 카드가 막히지 않은 피해를 줄 때마다, [gold]중독[/gold]을 2 부여합니다.",
@@ -5062,7 +5062,7 @@
       "damage": "+2",
       "poison": "+1"
     },
-    "image_url": "/static/images/cards/poisoned_stab.png",
+    "image_url": "/static/images/cards/poisoned_stab.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 8 줍니다.\n[gold]중독[/gold]을 3 부여합니다.",
@@ -5099,7 +5099,7 @@
     "upgrade": {
       "add_retain": true
     },
-    "image_url": "/static/images/cards/monologue.png",
+    "image_url": "/static/images/cards/monologue.webp",
     "beta_image_url": "/static/images/cards/beta/monologue.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -5136,7 +5136,7 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": "/static/images/cards/tyranny.png",
+    "image_url": "/static/images/cards/tyranny.webp",
     "beta_image_url": "/static/images/cards/beta/tyranny.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -5183,7 +5183,7 @@
     "upgrade": {
       "platingpower": "+2"
     },
-    "image_url": "/static/images/cards/stone_armor.png",
+    "image_url": "/static/images/cards/stone_armor.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]판금[/gold]을 6 얻습니다.",
@@ -5222,7 +5222,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/charge.png",
+    "image_url": "/static/images/cards/charge.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]뽑을 카드 더미[/gold]에서 카드를 2장 선택해\n[gold]하수인 타격+[/gold]으로 [gold]변화[/gold]시킵니다.",
@@ -5261,7 +5261,7 @@
       "damage": "+3",
       "block": "+3"
     },
-    "image_url": "/static/images/cards/dash.png",
+    "image_url": "/static/images/cards/dash.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]방어도[/gold]를 13 얻습니다.\n피해를 13 줍니다.",
@@ -5301,7 +5301,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/synchronize.png",
+    "image_url": "/static/images/cards/synchronize.webp",
     "beta_image_url": "/static/images/cards/beta/synchronize.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -5344,7 +5344,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/voltaic.png",
+    "image_url": "/static/images/cards/voltaic.webp",
     "beta_image_url": "/static/images/cards/beta/voltaic.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -5384,7 +5384,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/rebound.png",
+    "image_url": "/static/images/cards/rebound.webp",
     "beta_image_url": "/static/images/cards/beta/rebound.png",
     "type_variants": null,
     "upgrade_description": "피해를 12 줍니다.\n이번 턴에 다음으로 사용하는 카드를 [gold]뽑을 카드 더미[/gold] 맨 위에 놓습니다.",
@@ -5421,7 +5421,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/beat_down.png",
+    "image_url": "/static/images/cards/beat_down.webp",
     "beta_image_url": "/static/images/cards/beta/beat_down.png",
     "type_variants": null,
     "upgrade_description": "[gold]버린 카드 더미[/gold]에서 무작위 공격 카드를 4장 사용합니다.",
@@ -5469,7 +5469,7 @@
       "damage": "+1",
       "vulnerable": "+1"
     },
-    "image_url": "/static/images/cards/fear.png",
+    "image_url": "/static/images/cards/fear.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 8 줍니다.\n[gold]취약[/gold]을 1 부여합니다.",
@@ -5511,7 +5511,7 @@
     "upgrade": {
       "power": "+1"
     },
-    "image_url": "/static/images/cards/expose.png",
+    "image_url": "/static/images/cards/expose.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "대상 적의 모든 [gold]인공물[/gold]과 [gold]방어도[/gold]를 제거합니다.\n[gold]취약[/gold]을 3 부여합니다.",
@@ -5551,7 +5551,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/ascenders_bane.png",
+    "image_url": "/static/images/cards/ascenders_bane.webp",
     "beta_image_url": "/static/images/cards/beta/ascenders_bane.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -5596,7 +5596,7 @@
     "upgrade": {
       "ostydamage": "+4"
     },
-    "image_url": "/static/images/cards/flatten.png",
+    "image_url": "/static/images/cards/flatten.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]골골이[/gold]가 피해를 16 줍니다.\n이번 턴에 [gold]골골이[/gold]가 공격했다면, 이 카드의 비용이 0 [energy:1]이 됩니다.",
@@ -5637,7 +5637,7 @@
     "upgrade": {
       "add_retain": true
     },
-    "image_url": "/static/images/cards/times_up.png",
+    "image_url": "/static/images/cards/times_up.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -5686,7 +5686,7 @@
       "damage": "+4",
       "knockdownpower": "+1"
     },
-    "image_url": "/static/images/cards/knockdown.png",
+    "image_url": "/static/images/cards/knockdown.webp",
     "beta_image_url": "/static/images/cards/beta/knockdown.png",
     "type_variants": null,
     "upgrade_description": "피해를 14 줍니다.\n대상 적이 이번 턴에 다른 플레이어에게서 받는 피해량이 3배가 됩니다.",
@@ -5730,7 +5730,7 @@
     "upgrade": {
       "vulnerable": "+1"
     },
-    "image_url": "/static/images/cards/tremble.png",
+    "image_url": "/static/images/cards/tremble.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -5767,7 +5767,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/huddle_up.png",
+    "image_url": "/static/images/cards/huddle_up.webp",
     "beta_image_url": "/static/images/cards/beta/huddle_up.png",
     "type_variants": null,
     "upgrade_description": "모든 아군이 카드를 3장 뽑습니다.",
@@ -5804,7 +5804,7 @@
       "gloryActIndex": 2
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/lantern_key.png",
+    "image_url": "/static/images/cards/lantern_key.webp",
     "beta_image_url": "/static/images/cards/beta/lantern_key.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -5853,7 +5853,7 @@
       "damage": "+1",
       "vulnerable": "+1"
     },
-    "image_url": "/static/images/cards/beam_cell.png",
+    "image_url": "/static/images/cards/beam_cell.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 4 줍니다.\n[gold]취약[/gold]을 1 부여합니다.",
@@ -5890,7 +5890,7 @@
     "upgrade": {
       "gold": "+5"
     },
-    "image_url": "/static/images/cards/royalties.png",
+    "image_url": "/static/images/cards/royalties.webp",
     "beta_image_url": "/static/images/cards/beta/royalties.png",
     "type_variants": null,
     "upgrade_description": "전투 종료 시, [gold]골드[/gold]를 35 얻습니다.",
@@ -5929,7 +5929,7 @@
       "damage": "+1",
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/rocket_punch.png",
+    "image_url": "/static/images/cards/rocket_punch.webp",
     "beta_image_url": "/static/images/cards/beta/rocket_punch.png",
     "type_variants": null,
     "upgrade_description": "피해를 14 줍니다.\n카드를 2장 뽑습니다.\n상태이상 카드를 생성 시, 이번 턴 동안 이 카드의 비용이 0 [energy:1]으로 감소합니다.",
@@ -5973,7 +5973,7 @@
     "upgrade": {
       "thornspower": "+2"
     },
-    "image_url": "/static/images/cards/caltrops.png",
+    "image_url": "/static/images/cards/caltrops.webp",
     "beta_image_url": "/static/images/cards/beta/caltrops.png",
     "type_variants": null,
     "upgrade_description": "공격을 받을 때마다, 공격한 적에게 피해를 5 줍니다.",
@@ -6012,7 +6012,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/finisher.png",
+    "image_url": "/static/images/cards/finisher.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "이번 턴에 사용한 공격 카드 1장당 피해를 8 줍니다.",
@@ -6051,7 +6051,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/guards.png",
+    "image_url": "/static/images/cards/guards.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]손[/gold]에 있는 카드를 원하는 만큼 [gold]하수인 희생+[/gold]으로 [gold]변화[/gold]시킵니다.",
@@ -6091,7 +6091,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/omnislice.png",
+    "image_url": "/static/images/cards/omnislice.webp",
     "beta_image_url": "/static/images/cards/beta/omnislice.png",
     "type_variants": null,
     "upgrade_description": "피해를 11 줍니다.\n가한 피해량만큼 다른 모든 적에게 피해를 줍니다.",
@@ -6135,7 +6135,7 @@
     "upgrade": {
       "doom": "+1"
     },
-    "image_url": "/static/images/cards/oblivion.png",
+    "image_url": "/static/images/cards/oblivion.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -6170,7 +6170,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/hammer_time.png",
+    "image_url": "/static/images/cards/hammer_time.webp",
     "beta_image_url": "/static/images/cards/beta/hammer_time.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -6210,7 +6210,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/cloak_and_dagger.png",
+    "image_url": "/static/images/cards/cloak_and_dagger.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]방어도[/gold]를 6 얻습니다.\n[gold]단도[/gold]를 2장 [gold]손[/gold]으로 가져옵니다.",
@@ -6247,7 +6247,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/hang.png",
+    "image_url": "/static/images/cards/hang.webp",
     "beta_image_url": "/static/images/cards/beta/hang.png",
     "type_variants": null,
     "upgrade_description": "피해를 13 줍니다.\n모든 매달기 카드가 이 적에게 가하는 피해량이 2배로 증가합니다.",
@@ -6282,7 +6282,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/enthralled.png",
+    "image_url": "/static/images/cards/enthralled.webp",
     "beta_image_url": "/static/images/cards/beta/enthralled.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -6322,7 +6322,7 @@
     "upgrade": {
       "damage": "+11"
     },
-    "image_url": "/static/images/cards/bury.png",
+    "image_url": "/static/images/cards/bury.webp",
     "beta_image_url": "/static/images/cards/beta/bury.png",
     "type_variants": null,
     "upgrade_description": "피해를 63 줍니다.",
@@ -6366,7 +6366,7 @@
     "upgrade": {
       "poison": "+2"
     },
-    "image_url": "/static/images/cards/deadly_poison.png",
+    "image_url": "/static/images/cards/deadly_poison.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -6406,7 +6406,7 @@
       "calculationbase": "+2",
       "extradamage": "+1"
     },
-    "image_url": "/static/images/cards/memento_mori.png",
+    "image_url": "/static/images/cards/memento_mori.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 8 줍니다.\n이번 턴에 버린 카드 1장당 피해량이 5 증가합니다.",
@@ -6443,7 +6443,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/echoing_slash.png",
+    "image_url": "/static/images/cards/echoing_slash.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "모든 적에게 피해를 13 줍니다.\n적을 처치할 때마다 이 효과를 반복합니다.",
@@ -6482,7 +6482,7 @@
     "upgrade": {
       "remove_ethereal": true
     },
-    "image_url": "/static/images/cards/echo_form.png",
+    "image_url": "/static/images/cards/echo_form.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -6524,7 +6524,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/defile.png",
+    "image_url": "/static/images/cards/defile.webp",
     "beta_image_url": "/static/images/cards/beta/defile.png",
     "type_variants": null,
     "upgrade_description": "피해를 17 줍니다.",
@@ -6565,7 +6565,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/modded.png",
+    "image_url": "/static/images/cards/modded.webp",
     "beta_image_url": "/static/images/cards/beta/modded.png",
     "type_variants": null,
     "upgrade_description": "구체 슬롯을 1개 얻습니다.\n카드를 2장 뽑습니다. 이 카드의 비용이 1 증가합니다.",
@@ -6611,7 +6611,7 @@
       "damage": "+2",
       "stranglepower": "+1"
     },
-    "image_url": "/static/images/cards/strangle.png",
+    "image_url": "/static/images/cards/strangle.webp",
     "beta_image_url": "/static/images/cards/beta/strangle.png",
     "type_variants": null,
     "upgrade_description": "피해를 10 줍니다.\n이번 턴에 카드를 사용할 때마다, 대상 적이 체력을 3 잃습니다.",
@@ -6647,7 +6647,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/writhe.png",
+    "image_url": "/static/images/cards/writhe.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -6690,7 +6690,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/body_slam.png",
+    "image_url": "/static/images/cards/body_slam.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -6727,7 +6727,7 @@
     "upgrade": {
       "damage": "+10"
     },
-    "image_url": "/static/images/cards/bludgeon.png",
+    "image_url": "/static/images/cards/bludgeon.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 42 줍니다.",
@@ -6764,7 +6764,7 @@
     "upgrade": {
       "power": "+1"
     },
-    "image_url": "/static/images/cards/feel_no_pain.png",
+    "image_url": "/static/images/cards/feel_no_pain.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "카드가 [gold]소멸[/gold]될 때마다, [gold]방어도[/gold]를 4 얻습니다.",
@@ -6808,7 +6808,7 @@
     "upgrade": {
       "arsenalpower": "+1"
     },
-    "image_url": "/static/images/cards/arsenal.png",
+    "image_url": "/static/images/cards/arsenal.webp",
     "beta_image_url": "/static/images/cards/beta/arsenal.png",
     "type_variants": null,
     "upgrade_description": "무색 카드를 사용할 때마다, [gold]힘[/gold]을 2 얻습니다.",
@@ -6848,7 +6848,7 @@
       "damage": "+2",
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/graveblast.png",
+    "image_url": "/static/images/cards/graveblast.webp",
     "beta_image_url": "/static/images/cards/beta/graveblast.png",
     "type_variants": null,
     "upgrade_description": "피해를 6 줍니다.\n[gold]버린 카드 더미[/gold]에서 카드를 1장 [gold]손[/gold]으로 가져옵니다.",
@@ -6891,7 +6891,7 @@
     "upgrade": {
       "block": "+2"
     },
-    "image_url": "/static/images/cards/grave_warden.png",
+    "image_url": "/static/images/cards/grave_warden.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]방어도[/gold]를 10 얻습니다.\n[gold]뽑을 카드 더미[/gold]에 [gold]영혼+[/gold]을 1장 섞어 넣습니다.",
@@ -6937,7 +6937,7 @@
       "damage": "+1",
       "weak": "+1"
     },
-    "image_url": "/static/images/cards/neutralize.png",
+    "image_url": "/static/images/cards/neutralize.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 4 줍니다.\n[gold]약화[/gold]를 1 부여합니다.",
@@ -6974,7 +6974,7 @@
     "upgrade": {
       "damage": "+6"
     },
-    "image_url": "/static/images/cards/unrelenting.png",
+    "image_url": "/static/images/cards/unrelenting.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 18 줍니다.\n다음에 사용하는 공격 카드의 비용이 0 [energy:1]이 됩니다.",
@@ -7013,7 +7013,7 @@
     "upgrade": {
       "block": "+10"
     },
-    "image_url": "/static/images/cards/impervious.png",
+    "image_url": "/static/images/cards/impervious.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]방어도[/gold]를 40 얻습니다.",
@@ -7053,7 +7053,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/rainbow.png",
+    "image_url": "/static/images/cards/rainbow.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -7093,7 +7093,7 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": "/static/images/cards/infinite_blades.png",
+    "image_url": "/static/images/cards/infinite_blades.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -7132,7 +7132,7 @@
     "upgrade": {
       "damage": "+1"
     },
-    "image_url": "/static/images/cards/begone.png",
+    "image_url": "/static/images/cards/begone.webp",
     "beta_image_url": "/static/images/cards/beta/begone.png",
     "type_variants": null,
     "upgrade_description": "피해를 5 줍니다.\n[gold]손[/gold]에 있는 카드를 1장 선택해 [gold]하수인 투하+[/gold]로 [gold]변화[/gold]시킵니다.",
@@ -7171,7 +7171,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/thinking_ahead.png",
+    "image_url": "/static/images/cards/thinking_ahead.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -7222,7 +7222,7 @@
       "damage": "+2",
       "focuspower": "+1"
     },
-    "image_url": "/static/images/cards/focused_strike.png",
+    "image_url": "/static/images/cards/focused_strike.webp",
     "beta_image_url": "/static/images/cards/beta/focused_strike.png",
     "type_variants": null,
     "upgrade_description": "피해를 11 줍니다.\n이번 턴에 [gold]밀집[/gold]을 2 얻습니다.",
@@ -7257,7 +7257,7 @@
     "upgrade": {
       "cost": 2
     },
-    "image_url": "/static/images/cards/barricade.png",
+    "image_url": "/static/images/cards/barricade.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -7295,7 +7295,7 @@
     "upgrade": {
       "damage": "+1"
     },
-    "image_url": "/static/images/cards/exterminate.png",
+    "image_url": "/static/images/cards/exterminate.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "모든 적에게 피해를 4만큼 4번 줍니다.",
@@ -7341,7 +7341,7 @@
       "damage": "+5",
       "vulnerable": "+2"
     },
-    "image_url": "/static/images/cards/break.png",
+    "image_url": "/static/images/cards/break.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 25 줍니다.\n[gold]취약[/gold]을 5 부여합니다.",
@@ -7378,7 +7378,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/headbutt.png",
+    "image_url": "/static/images/cards/headbutt.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 12 줍니다.\n[gold]버린 카드 더미[/gold]에서 카드를 1장 [gold]뽑을 카드 더미[/gold] 맨 위에 놓습니다.",
@@ -7415,7 +7415,7 @@
     "upgrade": {
       "loop": "+1"
     },
-    "image_url": "/static/images/cards/loop.png",
+    "image_url": "/static/images/cards/loop.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "내 턴 시작 시, 가장 오른쪽의 구체의 지속 능력을 2번 발동시킵니다.",
@@ -7453,7 +7453,7 @@
     "upgrade": {
       "block": "+4"
     },
-    "image_url": "/static/images/cards/reflect.png",
+    "image_url": "/static/images/cards/reflect.webp",
     "beta_image_url": "/static/images/cards/beta/reflect.png",
     "type_variants": null,
     "upgrade_description": "[gold]방어도[/gold]를 21 얻습니다.\n이번 턴에 막은 공격 피해는 공격한 적에게 반사됩니다.",
@@ -7492,7 +7492,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/reflex.png",
+    "image_url": "/static/images/cards/reflex.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "카드를 3장 뽑습니다.",
@@ -7543,7 +7543,7 @@
       "block": "+1",
       "weak": "+1"
     },
-    "image_url": "/static/images/cards/defy.png",
+    "image_url": "/static/images/cards/defy.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]방어도[/gold]를 7 얻습니다.\n[gold]약화[/gold]를 1 부여합니다.",
@@ -7583,7 +7583,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/discovery.png",
+    "image_url": "/static/images/cards/discovery.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -7626,7 +7626,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/luminesce.png",
+    "image_url": "/static/images/cards/luminesce.webp",
     "beta_image_url": "/static/images/cards/beta/luminesce.png",
     "type_variants": null,
     "upgrade_description": "[energy:3]를 얻습니다.",
@@ -7674,7 +7674,7 @@
     "upgrade": {
       "dexterity": "+1"
     },
-    "image_url": "/static/images/cards/footwork.png",
+    "image_url": "/static/images/cards/footwork.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -7719,7 +7719,7 @@
     "upgrade": {
       "outbreakpower": "+4"
     },
-    "image_url": "/static/images/cards/outbreak.png",
+    "image_url": "/static/images/cards/outbreak.webp",
     "beta_image_url": "/static/images/cards/beta/outbreak.png",
     "type_variants": null,
     "upgrade_description": "[gold]중독[/gold]을 부여할 때마다, 모든 적에게 피해를 15 줍니다.",
@@ -7763,7 +7763,7 @@
     "upgrade": {
       "strengthpower": "+1"
     },
-    "image_url": "/static/images/cards/inflame.png",
+    "image_url": "/static/images/cards/inflame.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]힘[/gold]을 3 얻습니다.",
@@ -7799,7 +7799,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/curse_of_the_bell.png",
+    "image_url": "/static/images/cards/curse_of_the_bell.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -7843,7 +7843,7 @@
     "upgrade": {
       "damage": "+1"
     },
-    "image_url": "/static/images/cards/radiate.png",
+    "image_url": "/static/images/cards/radiate.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "이번 턴에 얻은 [star:1]의 수만큼 모든 적에게 피해를 4 줍니다.",
@@ -7880,7 +7880,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/distraction.png",
+    "image_url": "/static/images/cards/distraction.webp",
     "beta_image_url": "/static/images/cards/beta/distraction.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -7923,7 +7923,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/backstab.png",
+    "image_url": "/static/images/cards/backstab.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 15 줍니다.",
@@ -7965,7 +7965,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/charge_battery.png",
+    "image_url": "/static/images/cards/charge_battery.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]방어도[/gold]를 10 얻습니다.\n다음 턴에, [energy:1]를 얻습니다.",
@@ -8002,7 +8002,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/white_noise.png",
+    "image_url": "/static/images/cards/white_noise.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -8043,7 +8043,7 @@
     "upgrade": {
       "damage": "+6"
     },
-    "image_url": "/static/images/cards/banshees_cry.png",
+    "image_url": "/static/images/cards/banshees_cry.webp",
     "beta_image_url": "/static/images/cards/beta/banshees_cry.png",
     "type_variants": null,
     "upgrade_description": "모든 적에게 피해를 39 줍니다.\n이번 전투 동안 사용한 [gold]휘발성[/gold] 카드 1장당 비용이 [energy:2] 감소합니다.",
@@ -8089,7 +8089,7 @@
     "upgrade": {
       "poison": "+3"
     },
-    "image_url": "/static/images/cards/snakebite.png",
+    "image_url": "/static/images/cards/snakebite.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -8136,7 +8136,7 @@
     "upgrade": {
       "bufferpower": "+1"
     },
-    "image_url": "/static/images/cards/buffer.png",
+    "image_url": "/static/images/cards/buffer.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -8173,7 +8173,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/ball_lightning.png",
+    "image_url": "/static/images/cards/ball_lightning.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 10 줍니다.\n[gold]전기[/gold]를 1번 [gold]영창[/gold]합니다.",
@@ -8212,7 +8212,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/untouchable.png",
+    "image_url": "/static/images/cards/untouchable.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]방어도[/gold]를 12 얻습니다.",
@@ -8259,7 +8259,7 @@
     "upgrade": {
       "thunderpower": "+2"
     },
-    "image_url": "/static/images/cards/thunder.png",
+    "image_url": "/static/images/cards/thunder.webp",
     "beta_image_url": "/static/images/cards/beta/thunder.png",
     "type_variants": null,
     "upgrade_description": "[gold]전기[/gold]를 [gold]발현[/gold]할 때마다, 적중한 적에게 피해를 8 줍니다.",
@@ -8298,7 +8298,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/transfigure.png",
+    "image_url": "/static/images/cards/transfigure.webp",
     "beta_image_url": "/static/images/cards/beta/transfigure.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -8354,7 +8354,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/falling_star.png",
+    "image_url": "/static/images/cards/falling_star.webp",
     "beta_image_url": "/static/images/cards/beta/falling_star.png",
     "type_variants": null,
     "upgrade_description": "피해를 11 줍니다.\n[gold]약화[/gold]를 1 부여합니다.\n[gold]취약[/gold]을 1 부여합니다.",
@@ -8400,7 +8400,7 @@
       "block": "+2",
       "vigorpower": "+1"
     },
-    "image_url": "/static/images/cards/patter.png",
+    "image_url": "/static/images/cards/patter.webp",
     "beta_image_url": "/static/images/cards/beta/patter.png",
     "type_variants": null,
     "upgrade_description": "[gold]방어도[/gold]를 10 얻습니다.\n[gold]활력[/gold]을 3 얻습니다.",
@@ -8438,7 +8438,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/cloak_of_stars.png",
+    "image_url": "/static/images/cards/cloak_of_stars.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]방어도[/gold]를 10 얻습니다.",
@@ -8475,7 +8475,7 @@
     "upgrade": {
       "blockforstars": "+1"
     },
-    "image_url": "/static/images/cards/child_of_the_stars.png",
+    "image_url": "/static/images/cards/child_of_the_stars.webp",
     "beta_image_url": "/static/images/cards/beta/child_of_the_stars.png",
     "type_variants": null,
     "upgrade_description": "[star:1]을 소모할 때마다, 소모한 [star:1]당 [gold]방어도[/gold]를 3 얻습니다.",
@@ -8513,7 +8513,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/astral_pulse.png",
+    "image_url": "/static/images/cards/astral_pulse.webp",
     "beta_image_url": "/static/images/cards/beta/astral_pulse.png",
     "type_variants": null,
     "upgrade_description": "모든 적에게 피해를 18 줍니다.",
@@ -8552,7 +8552,7 @@
       "block": "+3",
       "forge": "+3"
     },
-    "image_url": "/static/images/cards/bulwark.png",
+    "image_url": "/static/images/cards/bulwark.webp",
     "beta_image_url": "/static/images/cards/beta/bulwark.png",
     "type_variants": null,
     "upgrade_description": "[gold]방어도[/gold]를 16 얻습니다.\n[gold]단조[/gold] 13.",
@@ -8589,7 +8589,7 @@
       "Gold": 600
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/spoils_map.png",
+    "image_url": "/static/images/cards/spoils_map.webp",
     "beta_image_url": "/static/images/cards/beta/spoils_map.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -8629,7 +8629,7 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": "/static/images/cards/the_sealed_throne.png",
+    "image_url": "/static/images/cards/the_sealed_throne.webp",
     "beta_image_url": "/static/images/cards/beta/the_sealed_throne.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -8668,7 +8668,7 @@
       "summon": "+1",
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/invoke.png",
+    "image_url": "/static/images/cards/invoke.webp",
     "beta_image_url": "/static/images/cards/beta/invoke.png",
     "type_variants": null,
     "upgrade_description": "다음 턴에, [gold]소환[/gold] 3 후 [energy:3]를 얻습니다.",
@@ -8706,7 +8706,7 @@
     "upgrade": {
       "repeat": "+1"
     },
-    "image_url": "/static/images/cards/sword_boomerang.png",
+    "image_url": "/static/images/cards/sword_boomerang.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "무작위 적에게 피해를 3만큼 4번 줍니다.",
@@ -8741,7 +8741,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/wound.png",
+    "image_url": "/static/images/cards/wound.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -8783,7 +8783,7 @@
     "upgrade": {
       "power": "+1"
     },
-    "image_url": "/static/images/cards/putrefy.png",
+    "image_url": "/static/images/cards/putrefy.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]약화[/gold]을 3 부여합니다.\n[gold]취약[/gold]을 3 부여합니다.",
@@ -8823,7 +8823,7 @@
     "upgrade": {
       "corrosivewave": "+1"
     },
-    "image_url": "/static/images/cards/corrosive_wave.png",
+    "image_url": "/static/images/cards/corrosive_wave.webp",
     "beta_image_url": "/static/images/cards/beta/corrosive_wave.png",
     "type_variants": null,
     "upgrade_description": "이번 턴에 카드를 뽑을 때마다, 모든 적에게 [gold]중독[/gold]을 4 부여합니다.",
@@ -8860,7 +8860,7 @@
     "upgrade": {
       "block": "+5"
     },
-    "image_url": "/static/images/cards/lift.png",
+    "image_url": "/static/images/cards/lift.webp",
     "beta_image_url": "/static/images/cards/beta/lift.png",
     "type_variants": null,
     "upgrade_description": "다른 플레이어에게 [gold]방어도[/gold]를 16 줍니다.",
@@ -8900,7 +8900,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/boot_sequence.png",
+    "image_url": "/static/images/cards/boot_sequence.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]방어도[/gold]를 13 얻습니다.",
@@ -8941,7 +8941,7 @@
       "Damage": 2
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/decay.png",
+    "image_url": "/static/images/cards/decay.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -8981,7 +8981,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/anger.png",
+    "image_url": "/static/images/cards/anger.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 8 줍니다.\n이 카드의 복사본 1장을 [gold]버린 카드 더미[/gold]에 섞어 넣습니다.",
@@ -9020,7 +9020,7 @@
     "upgrade": {
       "damage": "+5"
     },
-    "image_url": "/static/images/cards/severance.png",
+    "image_url": "/static/images/cards/severance.webp",
     "beta_image_url": "/static/images/cards/beta/severance.png",
     "type_variants": null,
     "upgrade_description": "피해를 18 줍니다.\n[gold]뽑을 카드 더미[/gold], [gold]손[/gold], [gold]버린 카드 더미[/gold]에 [gold]영혼[/gold]을 1장 추가합니다.",
@@ -9059,7 +9059,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/parse.png",
+    "image_url": "/static/images/cards/parse.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "카드를 4장 뽑습니다.",
@@ -9104,7 +9104,7 @@
       "Disintegration": 6
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/disintegration.png",
+    "image_url": "/static/images/cards/disintegration.webp",
     "beta_image_url": "/static/images/cards/beta/disintegration.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -9143,7 +9143,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/collision_course.png",
+    "image_url": "/static/images/cards/collision_course.webp",
     "beta_image_url": "/static/images/cards/beta/collision_course.png",
     "type_variants": null,
     "upgrade_description": "피해를 12 줍니다.\n[gold]잔해[/gold]를 1장 [gold]손[/gold]으로 가져옵니다.",
@@ -9178,7 +9178,7 @@
     "upgrade": {
       "cost": 2
     },
-    "image_url": "/static/images/cards/bullet_time.png",
+    "image_url": "/static/images/cards/bullet_time.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -9222,7 +9222,7 @@
     "upgrade": {
       "infernopower": "+3"
     },
-    "image_url": "/static/images/cards/inferno.png",
+    "image_url": "/static/images/cards/inferno.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "내 턴 시작 시, 체력을 1 잃습니다.\n내 턴 동안 체력을 잃을 때마다, 모든 적에게 피해를 9 줍니다.",
@@ -9259,7 +9259,7 @@
     "upgrade": {
       "block": "+2"
     },
-    "image_url": "/static/images/cards/undeath.png",
+    "image_url": "/static/images/cards/undeath.webp",
     "beta_image_url": "/static/images/cards/beta/undeath.png",
     "type_variants": null,
     "upgrade_description": "[gold]방어도[/gold]를 9 얻습니다.\n이 카드의 복사본을 1장 [gold]버린 카드 더미[/gold]에 섞어 넣습니다.",
@@ -9298,7 +9298,7 @@
     "upgrade": {
       "damage": "+5"
     },
-    "image_url": "/static/images/cards/crash_landing.png",
+    "image_url": "/static/images/cards/crash_landing.webp",
     "beta_image_url": "/static/images/cards/beta/crash_landing.png",
     "type_variants": null,
     "upgrade_description": "모든 적에게 피해를 26 줍니다.\n[gold]손[/gold]을 [gold]잔해[/gold]로 가득 채웁니다.",
@@ -9336,7 +9336,7 @@
       "HpLoss": 13
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/bad_luck.png",
+    "image_url": "/static/images/cards/bad_luck.webp",
     "beta_image_url": "/static/images/cards/beta/bad_luck.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -9377,7 +9377,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/pyre.png",
+    "image_url": "/static/images/cards/pyre.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "매 턴 시작 시, [energy:2]를 얻습니다.",
@@ -9423,7 +9423,7 @@
       "damage": "+2",
       "weak": "+1"
     },
-    "image_url": "/static/images/cards/sucker_punch.png",
+    "image_url": "/static/images/cards/sucker_punch.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 10 줍니다.\n[gold]약화[/gold]를 1 부여합니다.",
@@ -9460,7 +9460,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/malaise.png",
+    "image_url": "/static/images/cards/malaise.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "적이 [gold]힘[/gold]을 X+1 잃습니다. [gold]약화[/gold]를 X+1 부여합니다.",
@@ -9500,7 +9500,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/burning_pact.png",
+    "image_url": "/static/images/cards/burning_pact.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "카드를 1장 [gold]소멸[/gold]시킵니다.\n카드를 3장 뽑습니다.",
@@ -9544,7 +9544,7 @@
     "upgrade": {
       "blackholepower": "+1"
     },
-    "image_url": "/static/images/cards/black_hole.png",
+    "image_url": "/static/images/cards/black_hole.webp",
     "beta_image_url": "/static/images/cards/beta/black_hole.png",
     "type_variants": null,
     "upgrade_description": "[star:1]을 소모하거나 얻을 때마다, 모든 적에게 피해를 4 줍니다.",
@@ -9590,7 +9590,7 @@
       "block": "+1",
       "doom": "+4"
     },
-    "image_url": "/static/images/cards/negative_pulse.png",
+    "image_url": "/static/images/cards/negative_pulse.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]방어도[/gold]를 6 얻습니다.\n모든 적에게 [gold]종말[/gold]을 7 부여합니다.",
@@ -9627,7 +9627,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/secret_technique.png",
+    "image_url": "/static/images/cards/secret_technique.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -9667,7 +9667,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/secret_weapon.png",
+    "image_url": "/static/images/cards/secret_weapon.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -9715,7 +9715,7 @@
     "upgrade": {
       "starnextturnpower": "+1"
     },
-    "image_url": "/static/images/cards/hidden_cache.png",
+    "image_url": "/static/images/cards/hidden_cache.webp",
     "beta_image_url": "/static/images/cards/beta/hidden_cache.png",
     "type_variants": null,
     "upgrade_description": "[star:1]을 얻습니다.\n다음 턴에, [star:4]을 얻습니다.",
@@ -9755,7 +9755,7 @@
     "upgrade": {
       "block": "+10"
     },
-    "image_url": "/static/images/cards/panic_button.png",
+    "image_url": "/static/images/cards/panic_button.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]방어도[/gold]를 40 얻습니다.\n2턴 동안 카드를 통해 [gold]방어도[/gold]를 얻을 수 없습니다.",
@@ -9796,7 +9796,7 @@
     "upgrade": {
       "block": "+4"
     },
-    "image_url": "/static/images/cards/melancholy.png",
+    "image_url": "/static/images/cards/melancholy.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]방어도[/gold]를 17 얻습니다.\n누군가 죽을 때마다 이 카드의 비용이 [energy:1] 감소합니다.",
@@ -9842,7 +9842,7 @@
     "upgrade": {
       "sneakypower": "+1"
     },
-    "image_url": "/static/images/cards/sneaky.png",
+    "image_url": "/static/images/cards/sneaky.webp",
     "beta_image_url": "/static/images/cards/beta/sneaky.png",
     "type_variants": null,
     "upgrade_description": "다른 플레이어가 적을 공격할 때마다, [gold]방어도[/gold]를 2 얻습니다.",
@@ -9883,7 +9883,7 @@
       "damage": "+2",
       "add_retain": true
     },
-    "image_url": "/static/images/cards/misery.png",
+    "image_url": "/static/images/cards/misery.webp",
     "beta_image_url": "/static/images/cards/beta/misery.png",
     "type_variants": null,
     "upgrade_description": "피해를 9 줍니다.\n대상 적에게 부여된 모든 해로운 효과를 다른 모든 적에게 부여합니다.",
@@ -9922,7 +9922,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/up_my_sleeve.png",
+    "image_url": "/static/images/cards/up_my_sleeve.webp",
     "beta_image_url": "/static/images/cards/beta/up_my_sleeve.png",
     "type_variants": null,
     "upgrade_description": "[gold]단도[/gold]를 4장 [gold]손[/gold]으로 가져옵니다.\n이 카드의 비용이 1 감소합니다.",
@@ -9964,7 +9964,7 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": "/static/images/cards/big_bang.png",
+    "image_url": "/static/images/cards/big_bang.webp",
     "beta_image_url": "/static/images/cards/beta/big_bang.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -10004,7 +10004,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/glacier.png",
+    "image_url": "/static/images/cards/glacier.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]방어도[/gold]를 9 얻습니다.\n[gold]냉기[/gold]를 2번 [gold]영창[/gold]합니다.",
@@ -10041,7 +10041,7 @@
       "Gold": 10
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/debt.png",
+    "image_url": "/static/images/cards/debt.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -10082,7 +10082,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/gather_light.png",
+    "image_url": "/static/images/cards/gather_light.webp",
     "beta_image_url": "/static/images/cards/beta/gather_light.png",
     "type_variants": null,
     "upgrade_description": "[gold]방어도[/gold]를 10 얻습니다.\n[star:1]을 얻습니다.",
@@ -10122,7 +10122,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/shining_strike.png",
+    "image_url": "/static/images/cards/shining_strike.webp",
     "beta_image_url": "/static/images/cards/beta/shining_strike.png",
     "type_variants": null,
     "upgrade_description": "피해를 11 줍니다.\n[star:2]을 얻습니다.\n[gold]뽑을 카드 더미[/gold] 맨 위에 이 카드를 놓습니다.",
@@ -10161,7 +10161,7 @@
       "block": "+2",
       "blocknextturn": "+2"
     },
-    "image_url": "/static/images/cards/glitterstream.png",
+    "image_url": "/static/images/cards/glitterstream.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]방어도[/gold]를 13 얻습니다.\n다음 턴에, [gold]방어도[/gold]를 6 얻습니다.",
@@ -10203,7 +10203,7 @@
       "block": "+3",
       "ostydamage": "+3"
     },
-    "image_url": "/static/images/cards/bone_shards.png",
+    "image_url": "/static/images/cards/bone_shards.webp",
     "beta_image_url": "/static/images/cards/beta/bone_shards.png",
     "type_variants": null,
     "upgrade_description": "[gold]골골이[/gold]가 살아있다면, [gold]골골이[/gold]가 모든 적에게 피해를 12 주고 내가 방어도를 12 얻습니다.\n[gold]골골이[/gold]가 죽습니다.",
@@ -10242,7 +10242,7 @@
     "upgrade": {
       "damage": "+5"
     },
-    "image_url": "/static/images/cards/the_hunt.png",
+    "image_url": "/static/images/cards/the_hunt.webp",
     "beta_image_url": "/static/images/cards/beta/the_hunt.png",
     "type_variants": null,
     "upgrade_description": "피해를 15 줍니다.\n[gold]치명타[/gold]라면, 카드 보상을 추가로 얻습니다.",
@@ -10282,7 +10282,7 @@
     "upgrade": {
       "damage": "+1"
     },
-    "image_url": "/static/images/cards/bolas.png",
+    "image_url": "/static/images/cards/bolas.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 4 줍니다.\n다음 턴 시작 시, 이 카드를 [gold]손[/gold]으로 다시 가져옵니다.",
@@ -10323,7 +10323,7 @@
     "upgrade": {
       "increase": "+1"
     },
-    "image_url": "/static/images/cards/the_scythe.png",
+    "image_url": "/static/images/cards/the_scythe.webp",
     "beta_image_url": "/static/images/cards/beta/the_scythe.png",
     "type_variants": null,
     "upgrade_description": "피해를 13 줍니다.\n이 카드의 피해량이 영구적으로 4 증가합니다.",
@@ -10361,7 +10361,7 @@
     "upgrade": {
       "add_retain": true
     },
-    "image_url": "/static/images/cards/reaper_form.png",
+    "image_url": "/static/images/cards/reaper_form.webp",
     "beta_image_url": "/static/images/cards/beta/reaper_form.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -10409,7 +10409,7 @@
       "damage": "+2",
       "strength": "+1"
     },
-    "image_url": "/static/images/cards/setup_strike.png",
+    "image_url": "/static/images/cards/setup_strike.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 9 줍니다.\n이번 턴 동안 [gold]힘[/gold]을 2 얻습니다.",
@@ -10446,7 +10446,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/quadcast.png",
+    "image_url": "/static/images/cards/quadcast.webp",
     "beta_image_url": "/static/images/cards/beta/quadcast.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -10484,7 +10484,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/bloodletting.png",
+    "image_url": "/static/images/cards/bloodletting.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "체력을 3 잃습니다.\n[energy:3]를 얻습니다.",
@@ -10521,7 +10521,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/shatter.png",
+    "image_url": "/static/images/cards/shatter.webp",
     "beta_image_url": "/static/images/cards/beta/shatter.png",
     "type_variants": null,
     "upgrade_description": "모든 적에게 피해를 15 줍니다.\n모든 구체를 [gold]발현[/gold]합니다.",
@@ -10565,7 +10565,7 @@
     "upgrade": {
       "sleightoffleshpower": "+4"
     },
-    "image_url": "/static/images/cards/sleight_of_flesh.png",
+    "image_url": "/static/images/cards/sleight_of_flesh.webp",
     "beta_image_url": "/static/images/cards/beta/sleight_of_flesh.png",
     "type_variants": null,
     "upgrade_description": "적에게 해로운 효과를 부여할 때마다, 대상 적이 피해를 13 받습니다.",
@@ -10604,7 +10604,7 @@
     "upgrade": {
       "cost": 2
     },
-    "image_url": "/static/images/cards/murder.png",
+    "image_url": "/static/images/cards/murder.webp",
     "beta_image_url": "/static/images/cards/beta/murder.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -10639,7 +10639,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/injury.png",
+    "image_url": "/static/images/cards/injury.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -10688,7 +10688,7 @@
     "upgrade": {
       "devourlifepower": "+1"
     },
-    "image_url": "/static/images/cards/devour_life.png",
+    "image_url": "/static/images/cards/devour_life.webp",
     "beta_image_url": "/static/images/cards/beta/devour_life.png",
     "type_variants": null,
     "upgrade_description": "[gold]영혼[/gold]을 사용할 때마다, [gold]소환[/gold] 2.",
@@ -10727,7 +10727,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/production.png",
+    "image_url": "/static/images/cards/production.webp",
     "beta_image_url": "/static/images/cards/beta/production.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -10767,7 +10767,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/survivor.png",
+    "image_url": "/static/images/cards/survivor.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]방어도[/gold]를 11 얻습니다.\n카드를 1장 버립니다.",
@@ -10804,7 +10804,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/byrd_swoop.png",
+    "image_url": "/static/images/cards/byrd_swoop.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 18 줍니다.",
@@ -10839,7 +10839,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/byrdonis_egg.png",
+    "image_url": "/static/images/cards/byrdonis_egg.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -10879,7 +10879,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/pagestorm.png",
+    "image_url": "/static/images/cards/pagestorm.webp",
     "beta_image_url": "/static/images/cards/beta/pagestorm.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -10914,7 +10914,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/subroutine.png",
+    "image_url": "/static/images/cards/subroutine.webp",
     "beta_image_url": "/static/images/cards/beta/subroutine.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -10950,7 +10950,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/clumsy.png",
+    "image_url": "/static/images/cards/clumsy.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -10998,7 +10998,7 @@
     "upgrade": {
       "calcifypower": "+2"
     },
-    "image_url": "/static/images/cards/calcify.png",
+    "image_url": "/static/images/cards/calcify.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]골골이[/gold]가 가하는 공격의 피해량이 6 증가합니다.",
@@ -11040,7 +11040,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/leading_strike.png",
+    "image_url": "/static/images/cards/leading_strike.webp",
     "beta_image_url": "/static/images/cards/beta/leading_strike.png",
     "type_variants": null,
     "upgrade_description": "피해를 10 줍니다.\n[gold]단도[/gold]를 1장 [gold]손[/gold]으로 가져옵니다.",
@@ -11078,7 +11078,7 @@
     "upgrade": {
       "damage": "+5"
     },
-    "image_url": "/static/images/cards/heirloom_hammer.png",
+    "image_url": "/static/images/cards/heirloom_hammer.webp",
     "beta_image_url": "/static/images/cards/beta/heirloom_hammer.png",
     "type_variants": null,
     "upgrade_description": "피해를 22 줍니다.\n[gold]손[/gold]에 있는 무색 카드를 1장 선택합니다. 그 카드의 복사본을 1장 [gold]손[/gold]으로 가져옵니다.",
@@ -11113,7 +11113,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/master_planner.png",
+    "image_url": "/static/images/cards/master_planner.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -11150,7 +11150,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/impatience.png",
+    "image_url": "/static/images/cards/impatience.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]손[/gold]에 공격 카드가 없다면, 카드를 3장 뽑습니다.",
@@ -11190,7 +11190,7 @@
     "upgrade": {
       "add_retain": true
     },
-    "image_url": "/static/images/cards/royal_gamble.png",
+    "image_url": "/static/images/cards/royal_gamble.webp",
     "beta_image_url": "/static/images/cards/beta/royal_gamble.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -11232,7 +11232,7 @@
     "upgrade": {
       "summon": "+5"
     },
-    "image_url": "/static/images/cards/reanimate.png",
+    "image_url": "/static/images/cards/reanimate.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]소환[/gold] 25.",
@@ -11272,7 +11272,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/whirlwind.png",
+    "image_url": "/static/images/cards/whirlwind.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "모든 적에게 피해를 8만큼 X번 줍니다.",
@@ -11309,7 +11309,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/hand_trick.png",
+    "image_url": "/static/images/cards/hand_trick.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]방어도[/gold]를 10 얻습니다.\n이번 턴 동안 [gold]손[/gold]에 있는 스킬 카드 1장에 [gold]교활[/gold]을 추가합니다.",
@@ -11346,7 +11346,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/stampede.png",
+    "image_url": "/static/images/cards/stampede.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -11392,7 +11392,7 @@
       "damage": "+2",
       "debilitatepower": "+1"
     },
-    "image_url": "/static/images/cards/debilitate.png",
+    "image_url": "/static/images/cards/debilitate.webp",
     "beta_image_url": "/static/images/cards/beta/debilitate.png",
     "type_variants": null,
     "upgrade_description": "피해를 9 줍니다.\n다음 4턴 동안 이 적을 대상으로 하는 [gold]취약[/gold]과 [gold]약화[/gold]의 효과가 2배가 됩니다.",
@@ -11431,7 +11431,7 @@
     "upgrade": {
       "strengthloss": "+3"
     },
-    "image_url": "/static/images/cards/enfeebling_touch.png",
+    "image_url": "/static/images/cards/enfeebling_touch.webp",
     "beta_image_url": "/static/images/cards/beta/enfeebling_touch.png",
     "type_variants": null,
     "upgrade_description": "이번 턴 동안 적이 [gold]힘[/gold]을 11 잃습니다.",
@@ -11476,7 +11476,7 @@
       "WasteAway": 1
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/waste_away.png",
+    "image_url": "/static/images/cards/waste_away.webp",
     "beta_image_url": "/static/images/cards/beta/waste_away.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -11514,7 +11514,7 @@
     "upgrade": {
       "stars": "+1"
     },
-    "image_url": "/static/images/cards/convergence.png",
+    "image_url": "/static/images/cards/convergence.webp",
     "beta_image_url": "/static/images/cards/beta/convergence.png",
     "type_variants": null,
     "upgrade_description": "다음 턴에,\n[energy:1]와 [star:2]을 얻습니다.\n이번 턴에 [gold]손[/gold]에 있는 카드를 [gold]보존[/gold]합니다.",
@@ -11550,7 +11550,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/poor_sleep.png",
+    "image_url": "/static/images/cards/poor_sleep.webp",
     "beta_image_url": "/static/images/cards/beta/poor_sleep.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -11593,7 +11593,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/defend_ironclad.png",
+    "image_url": "/static/images/cards/defend_ironclad.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]방어도[/gold]를 8 얻습니다.",
@@ -11632,7 +11632,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/defend_silent.png",
+    "image_url": "/static/images/cards/defend_silent.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]방어도[/gold]를 8 얻습니다.",
@@ -11671,7 +11671,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/defend_regent.png",
+    "image_url": "/static/images/cards/defend_regent.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]방어도[/gold]를 8 얻습니다.",
@@ -11710,7 +11710,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/defend_necrobinder.png",
+    "image_url": "/static/images/cards/defend_necrobinder.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]방어도[/gold]를 8 얻습니다.",
@@ -11749,7 +11749,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/defend_defect.png",
+    "image_url": "/static/images/cards/defend_defect.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]방어도[/gold]를 8 얻습니다.",
@@ -11786,7 +11786,7 @@
     "upgrade": {
       "block": "+1"
     },
-    "image_url": "/static/images/cards/shroud.png",
+    "image_url": "/static/images/cards/shroud.webp",
     "beta_image_url": "/static/images/cards/beta/shroud.png",
     "type_variants": null,
     "upgrade_description": "[gold]종말[/gold]을 부여할 때마다, [gold]방어도[/gold]를 3 얻습니다.",
@@ -11823,7 +11823,7 @@
       "Frail": 1
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/shame.png",
+    "image_url": "/static/images/cards/shame.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -11865,7 +11865,7 @@
     "upgrade": {
       "damage": "+6"
     },
-    "image_url": "/static/images/cards/reap.png",
+    "image_url": "/static/images/cards/reap.webp",
     "beta_image_url": "/static/images/cards/beta/reap.png",
     "type_variants": null,
     "upgrade_description": "피해를 33 줍니다.",
@@ -11908,7 +11908,7 @@
     "upgrade": {
       "cards": "+2"
     },
-    "image_url": "/static/images/cards/purity.png",
+    "image_url": "/static/images/cards/purity.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]손[/gold]에 있는 카드를 최대 5장까지 소멸시킵니다.",
@@ -11956,7 +11956,7 @@
     "upgrade": {
       "iterationpower": "+1"
     },
-    "image_url": "/static/images/cards/iteration.png",
+    "image_url": "/static/images/cards/iteration.webp",
     "beta_image_url": "/static/images/cards/beta/iteration.png",
     "type_variants": null,
     "upgrade_description": "매 턴마다 처음으로 상태이상 카드를 뽑을 시, 카드를 3장 뽑습니다.",
@@ -11996,7 +11996,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/hidden_daggers.png",
+    "image_url": "/static/images/cards/hidden_daggers.webp",
     "beta_image_url": "/static/images/cards/beta/hidden_daggers.png",
     "type_variants": null,
     "upgrade_description": "카드를 2장 버립니다.\n[gold]단도+[/gold]를 2장 [gold]손[/gold]으로 가져옵니다.",
@@ -12033,7 +12033,7 @@
     "upgrade": {
       "replay": "+1"
     },
-    "image_url": "/static/images/cards/hidden_gem.png",
+    "image_url": "/static/images/cards/hidden_gem.webp",
     "beta_image_url": "/static/images/cards/beta/hidden_gem.png",
     "type_variants": null,
     "upgrade_description": "[gold]뽑을 카드 더미[/gold]에 있는 무작위 카드 1장이 [gold]재사용[/gold]을 3 얻습니다.",
@@ -12071,7 +12071,7 @@
     "upgrade": {
       "calculationbase": "+3"
     },
-    "image_url": "/static/images/cards/stack.png",
+    "image_url": "/static/images/cards/stack.webp",
     "beta_image_url": "/static/images/cards/beta/stack.png",
     "type_variants": null,
     "upgrade_description": "[gold]버린 카드 더미[/gold]에 있는 카드의 수 +[CalculationBase|]만큼 [gold]방어도[/gold]를 얻습니다.",
@@ -12108,7 +12108,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/spectrum_shift.png",
+    "image_url": "/static/images/cards/spectrum_shift.webp",
     "beta_image_url": "/static/images/cards/beta/spectrum_shift.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -12152,7 +12152,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/spinner.png",
+    "image_url": "/static/images/cards/spinner.webp",
     "beta_image_url": "/static/images/cards/beta/spinner.png",
     "type_variants": null,
     "upgrade_description": "[gold]유리[/gold]를 1번 [gold]영창[/gold]합니다.\n내 턴 시작 시, [gold]유리[/gold]를 1번 [gold]영창[/gold]합니다.",
@@ -12196,7 +12196,7 @@
     "upgrade": {
       "speedsterpower": "+1"
     },
-    "image_url": "/static/images/cards/speedster.png",
+    "image_url": "/static/images/cards/speedster.webp",
     "beta_image_url": "/static/images/cards/beta/speedster.png",
     "type_variants": null,
     "upgrade_description": "내 턴 동안 카드를 뽑을 때마다, 모든 적에게 피해를 3 줍니다.",
@@ -12235,7 +12235,7 @@
       "block": "+2",
       "summon": "+1"
     },
-    "image_url": "/static/images/cards/pull_aggro.png",
+    "image_url": "/static/images/cards/pull_aggro.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]소환[/gold] 5.\n[gold]방어도[/gold]를 9 얻습니다.",
@@ -12275,7 +12275,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/mirage.png",
+    "image_url": "/static/images/cards/mirage.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -12316,7 +12316,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/apotheosis.png",
+    "image_url": "/static/images/cards/apotheosis.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -12366,7 +12366,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/signal_boost.png",
+    "image_url": "/static/images/cards/signal_boost.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -12408,7 +12408,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/expect_a_fight.png",
+    "image_url": "/static/images/cards/expect_a_fight.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -12448,7 +12448,7 @@
     "upgrade": {
       "ostydamage": "+3"
     },
-    "image_url": "/static/images/cards/poke.png",
+    "image_url": "/static/images/cards/poke.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]골골이[/gold]가 피해를 9 줍니다.",
@@ -12488,7 +12488,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/adrenaline.png",
+    "image_url": "/static/images/cards/adrenaline.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[energy:2]를 얻습니다.\n카드를 2장 뽑습니다.",
@@ -12537,7 +12537,7 @@
     "upgrade": {
       "poison": "+2"
     },
-    "image_url": "/static/images/cards/haze.png",
+    "image_url": "/static/images/cards/haze.webp",
     "beta_image_url": "/static/images/cards/beta/haze.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -12584,7 +12584,7 @@
     "upgrade": {
       "crueltypower": "+25"
     },
-    "image_url": "/static/images/cards/cruelty.png",
+    "image_url": "/static/images/cards/cruelty.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]취약[/gold] 상태의 적이 받는 피해가 50% 증가합니다.",
@@ -12621,7 +12621,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/evil_eye.png",
+    "image_url": "/static/images/cards/evil_eye.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]방어도[/gold]를 11 얻습니다.\n이번 턴 동안 [gold]소멸[/gold]시킨 카드가 있다면 [gold]방어도[/gold]를 추가로 11 얻습니다.",
@@ -12662,7 +12662,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/demonic_shield.png",
+    "image_url": "/static/images/cards/demonic_shield.webp",
     "beta_image_url": "/static/images/cards/beta/demonic_shield.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -12709,7 +12709,7 @@
     "upgrade": {
       "strengthpower": "+1"
     },
-    "image_url": "/static/images/cards/demon_form.png",
+    "image_url": "/static/images/cards/demon_form.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "내 턴 시작 시, [gold]힘[/gold]을 3 얻습니다.",
@@ -12746,7 +12746,7 @@
     "upgrade": {
       "cost": 2
     },
-    "image_url": "/static/images/cards/nightmare.png",
+    "image_url": "/static/images/cards/nightmare.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -12787,7 +12787,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/spite.png",
+    "image_url": "/static/images/cards/spite.webp",
     "beta_image_url": "/static/images/cards/beta/spite.png",
     "type_variants": null,
     "upgrade_description": "피해를 9 줍니다.\n이번 턴 동안 체력을 잃었다면, 카드를 1장 뽑습니다.",
@@ -12830,7 +12830,7 @@
       "cards": "+1",
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/relax.png",
+    "image_url": "/static/images/cards/relax.webp",
     "beta_image_url": "/static/images/cards/beta/relax.png",
     "type_variants": null,
     "upgrade_description": "[gold]방어도[/gold]를 17 얻습니다.\n다음 턴에, 카드를 3장 뽑고 [energy:3]를 얻습니다.",
@@ -12882,7 +12882,7 @@
       "damage": "+3",
       "vulnerable": "+1"
     },
-    "image_url": "/static/images/cards/assassinate.png",
+    "image_url": "/static/images/cards/assassinate.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 13 줍니다.\n[gold]취약[/gold]을 1 부여합니다.",
@@ -12923,7 +12923,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/outmaneuver.png",
+    "image_url": "/static/images/cards/outmaneuver.webp",
     "beta_image_url": "/static/images/cards/beta/outmaneuver.png",
     "type_variants": null,
     "upgrade_description": "다음 턴에, [energy:3]를 얻습니다.",
@@ -12962,7 +12962,7 @@
     "upgrade": {
       "block": "+1"
     },
-    "image_url": "/static/images/cards/compact.png",
+    "image_url": "/static/images/cards/compact.webp",
     "beta_image_url": "/static/images/cards/beta/compact.png",
     "type_variants": null,
     "upgrade_description": "[gold]방어도[/gold]를 7 얻습니다.\n[gold]손[/gold]에 있는 모든 상태이상 카드를 [gold]연료+[/gold]로 [gold]변화[/gold]시킵니다.",
@@ -13006,7 +13006,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/feral.png",
+    "image_url": "/static/images/cards/feral.webp",
     "beta_image_url": "/static/images/cards/beta/feral.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -13041,7 +13041,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/darkness.png",
+    "image_url": "/static/images/cards/darkness.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]암흑[/gold]을 1번 [gold]영창[/gold]합니다.\n모든 [gold]암흑[/gold] 구체의 지속 효과를 2번 발동시킵니다.",
@@ -13080,7 +13080,7 @@
     "upgrade": {
       "strengthloss": "+6"
     },
-    "image_url": "/static/images/cards/dark_shackles.png",
+    "image_url": "/static/images/cards/dark_shackles.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "이번 턴에 적이 [gold]힘[/gold]을 15 잃습니다.",
@@ -13118,7 +13118,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/dark_embrace.png",
+    "image_url": "/static/images/cards/dark_embrace.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -13159,7 +13159,7 @@
     "upgrade": {
       "cards": "+2"
     },
-    "image_url": "/static/images/cards/decisions_decisions.png",
+    "image_url": "/static/images/cards/decisions_decisions.webp",
     "beta_image_url": "/static/images/cards/beta/decisions_decisions.png",
     "type_variants": null,
     "upgrade_description": "카드를 5장 뽑습니다.\n[gold]손[/gold]에 있는 스킬 카드를 선택해 3번 사용합니다.",
@@ -13199,7 +13199,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/folly.png",
+    "image_url": "/static/images/cards/folly.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -13240,7 +13240,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/dazed.png",
+    "image_url": "/static/images/cards/dazed.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -13282,7 +13282,7 @@
     "upgrade": {
       "power": "+1"
     },
-    "image_url": "/static/images/cards/uppercut.png",
+    "image_url": "/static/images/cards/uppercut.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 13 줍니다.\n[gold]약화[/gold]을 2 부여합니다.\n[gold]취약[/gold]을 2 부여합니다.",
@@ -13320,7 +13320,7 @@
     "upgrade": {
       "damage": "+5"
     },
-    "image_url": "/static/images/cards/ice_lance.png",
+    "image_url": "/static/images/cards/ice_lance.webp",
     "beta_image_url": "/static/images/cards/beta/ice_lance.png",
     "type_variants": null,
     "upgrade_description": "피해를 24 줍니다.\n[gold]냉기[/gold]를 3번 [gold]영창[/gold]합니다.",
@@ -13357,7 +13357,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/double_energy.png",
+    "image_url": "/static/images/cards/double_energy.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -13399,7 +13399,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/energy_surge.png",
+    "image_url": "/static/images/cards/energy_surge.webp",
     "beta_image_url": "/static/images/cards/beta/energy_surge.png",
     "type_variants": null,
     "upgrade_description": "모든 플레이어가 [energy:3]를 얻습니다.",
@@ -13439,7 +13439,7 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": "/static/images/cards/entropy.png",
+    "image_url": "/static/images/cards/entropy.webp",
     "beta_image_url": "/static/images/cards/beta/entropy.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -13478,7 +13478,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/blight_strike.png",
+    "image_url": "/static/images/cards/blight_strike.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 10 줍니다.\n가한 피해량만큼 [gold]종말[/gold]을 부여합니다.",
@@ -13515,7 +13515,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/alchemize.png",
+    "image_url": "/static/images/cards/alchemize.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -13558,7 +13558,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/fuel.png",
+    "image_url": "/static/images/cards/fuel.webp",
     "beta_image_url": "/static/images/cards/beta/fuel.png",
     "type_variants": null,
     "upgrade_description": "[energy:1]를 얻습니다.\n카드를 2장 뽑습니다.",
@@ -13614,7 +13614,7 @@
     "upgrade": {
       "thornspower": "+2"
     },
-    "image_url": "/static/images/cards/abrasive.png",
+    "image_url": "/static/images/cards/abrasive.webp",
     "beta_image_url": "/static/images/cards/beta/abrasive.png",
     "type_variants": null,
     "upgrade_description": "[gold]민첩[/gold]을 1 얻습니다.\n[gold]가시[/gold]를 6 얻습니다.",
@@ -13662,7 +13662,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/borrowed_time.png",
+    "image_url": "/static/images/cards/borrowed_time.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "자신에게 [gold]종말[/gold]을 3 부여합니다.\n[energy:2]를 얻습니다.",
@@ -13697,7 +13697,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/cascade.png",
+    "image_url": "/static/images/cards/cascade.webp",
     "beta_image_url": "/static/images/cards/beta/cascade.png",
     "type_variants": null,
     "upgrade_description": "[gold]뽑을 카드 더미[/gold] 맨 위의 무작위 카드를 X+1장 사용합니다.",
@@ -13734,7 +13734,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/prolong.png",
+    "image_url": "/static/images/cards/prolong.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -13774,7 +13774,7 @@
     "upgrade": {
       "add_retain": true
     },
-    "image_url": "/static/images/cards/wish.png",
+    "image_url": "/static/images/cards/wish.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -13821,7 +13821,7 @@
     "upgrade": {
       "platingpower": "+2"
     },
-    "image_url": "/static/images/cards/eternal_armor.png",
+    "image_url": "/static/images/cards/eternal_armor.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]판금[/gold]을 9 얻습니다.",
@@ -13868,7 +13868,7 @@
     "upgrade": {
       "remove_ethereal": true
     },
-    "image_url": "/static/images/cards/apparition.png",
+    "image_url": "/static/images/cards/apparition.webp",
     "beta_image_url": "/static/images/cards/beta/apparition.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -13911,7 +13911,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/soul.png",
+    "image_url": "/static/images/cards/soul.webp",
     "beta_image_url": "/static/images/cards/beta/soul.png",
     "type_variants": null,
     "upgrade_description": "카드를 3장 뽑습니다.",
@@ -13955,7 +13955,7 @@
     "upgrade": {
       "extradamage": "+1"
     },
-    "image_url": "/static/images/cards/soul_storm.png",
+    "image_url": "/static/images/cards/soul_storm.webp",
     "beta_image_url": "/static/images/cards/beta/soul_storm.png",
     "type_variants": null,
     "upgrade_description": "피해를 9 줍니다.\n[gold]소멸된 카드 더미[/gold]에 있는 [gold]영혼[/gold] 1장당 피해량이 3 증가합니다.",
@@ -13992,7 +13992,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/prepared.png",
+    "image_url": "/static/images/cards/prepared.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "카드를 2장 뽑습니다.\n카드를 2장 버립니다.",
@@ -14029,7 +14029,7 @@
     "upgrade": {
       "cards": "+3"
     },
-    "image_url": "/static/images/cards/prophesize.png",
+    "image_url": "/static/images/cards/prophesize.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "카드를 9장 뽑습니다.",
@@ -14073,7 +14073,7 @@
     "upgrade": {
       "dexterity": "+2"
     },
-    "image_url": "/static/images/cards/anticipate.png",
+    "image_url": "/static/images/cards/anticipate.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -14112,7 +14112,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/overclock.png",
+    "image_url": "/static/images/cards/overclock.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "카드를 3장 뽑습니다.\n[gold]버린 카드 더미[/gold]에 [gold]화상[/gold]을 1장 추가합니다.",
@@ -14149,7 +14149,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/chill.png",
+    "image_url": "/static/images/cards/chill.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -14193,7 +14193,7 @@
     "upgrade": {
       "extradamage": "+1"
     },
-    "image_url": "/static/images/cards/perfected_strike.png",
+    "image_url": "/static/images/cards/perfected_strike.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 6 줍니다.\n보유한 카드 중 이름에 “타격”이 포함된 카드 1장당 피해량이 3 증가합니다.",
@@ -14239,7 +14239,7 @@
       "damage": "+2",
       "weak": "+1"
     },
-    "image_url": "/static/images/cards/follow_through.png",
+    "image_url": "/static/images/cards/follow_through.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "모든 적에게 피해를 8 줍니다.\n이번 턴에 가장 최근에 사용한 카드가 스킬 카드라면, 모든 적에게 [gold]약화[/gold]를 1 부여합니다.",
@@ -14276,7 +14276,7 @@
     "upgrade": {
       "damage": "+6"
     },
-    "image_url": "/static/images/cards/kingly_kick.png",
+    "image_url": "/static/images/cards/kingly_kick.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 30 줍니다.\n이 카드를 뽑을 때마다, 이 카드의 비용이 1 감소합니다.",
@@ -14314,7 +14314,7 @@
     "upgrade": {
       "increase": "+2"
     },
-    "image_url": "/static/images/cards/kingly_punch.png",
+    "image_url": "/static/images/cards/kingly_punch.webp",
     "beta_image_url": "/static/images/cards/beta/kingly_punch.png",
     "type_variants": null,
     "upgrade_description": "피해를 8 줍니다.\n이 카드를 뽑을 때마다, 이번 전투 동안 이 카드의 피해량이 5 증가합니다.",
@@ -14349,7 +14349,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/unmovable.png",
+    "image_url": "/static/images/cards/unmovable.webp",
     "beta_image_url": "/static/images/cards/beta/unmovable.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -14386,7 +14386,7 @@
     "upgrade": {
       "forge": "+2"
     },
-    "image_url": "/static/images/cards/furnace.png",
+    "image_url": "/static/images/cards/furnace.webp",
     "beta_image_url": "/static/images/cards/beta/furnace.png",
     "type_variants": null,
     "upgrade_description": "내 턴 시작 시, [gold]단조[/gold] 6.",
@@ -14430,7 +14430,7 @@
     "upgrade": {
       "hailstormpower": "+2"
     },
-    "image_url": "/static/images/cards/hailstorm.png",
+    "image_url": "/static/images/cards/hailstorm.webp",
     "beta_image_url": "/static/images/cards/beta/hailstorm.png",
     "type_variants": null,
     "upgrade_description": "내 턴 종료 시 [gold]냉기[/gold]를 보유하고 있다면, 모든 적에게 피해를 8 줍니다.",
@@ -14475,7 +14475,7 @@
     "upgrade": {
       "strengthpower": "-1"
     },
-    "image_url": "/static/images/cards/friendship.png",
+    "image_url": "/static/images/cards/friendship.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -14512,7 +14512,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/stardust.png",
+    "image_url": "/static/images/cards/stardust.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "무작위 적에게 피해를 7만큼 X번 줍니다.",
@@ -14549,7 +14549,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/cosmic_indifference.png",
+    "image_url": "/static/images/cards/cosmic_indifference.webp",
     "beta_image_url": "/static/images/cards/beta/cosmic_indifference.png",
     "type_variants": null,
     "upgrade_description": "[gold]방어도[/gold]를 9 얻습니다.\n[gold]버린 카드 더미[/gold]의 카드 1장을 [gold]뽑을 카드 더미[/gold] 맨 위에 놓습니다.",
@@ -14589,7 +14589,7 @@
     "upgrade": {
       "enemystrengthloss": "+1"
     },
-    "image_url": "/static/images/cards/shared_fate.png",
+    "image_url": "/static/images/cards/shared_fate.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]힘[/gold]을 2 잃습니다.\n적이 [gold]힘[/gold]을 3 잃습니다.",
@@ -14629,7 +14629,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/primal_force.png",
+    "image_url": "/static/images/cards/primal_force.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]손[/gold]에 있는 모든 공격 카드를 [gold]거대한 바위+[/gold]로 변화시킵니다.",
@@ -14666,7 +14666,7 @@
     "upgrade": {
       "attacks": "+1"
     },
-    "image_url": "/static/images/cards/one_two_punch.png",
+    "image_url": "/static/images/cards/one_two_punch.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "이번 턴에, 다음에 사용하는 공격 카드 2장이 1번 추가로 사용됩니다.",
@@ -14704,7 +14704,7 @@
     "upgrade": {
       "forge": "+10"
     },
-    "image_url": "/static/images/cards/the_smith.png",
+    "image_url": "/static/images/cards/the_smith.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]단조[/gold] 40.",
@@ -14743,7 +14743,7 @@
     "upgrade": {
       "add_retain": true
     },
-    "image_url": "/static/images/cards/wisp.png",
+    "image_url": "/static/images/cards/wisp.webp",
     "beta_image_url": "/static/images/cards/beta/wisp.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -14783,7 +14783,7 @@
     "upgrade": {
       "panachedamage": "+4"
     },
-    "image_url": "/static/images/cards/panache.png",
+    "image_url": "/static/images/cards/panache.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "한 턴에 카드를 5장 사용할 때마다, 모든 적에게 피해를 14 줍니다.",
@@ -14820,7 +14820,7 @@
     "upgrade": {
       "poisonperturn": "+1"
     },
-    "image_url": "/static/images/cards/noxious_fumes.png",
+    "image_url": "/static/images/cards/noxious_fumes.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "내 턴 시작 시, 모든 적에게 [gold]중독[/gold]을 3 부여합니다.",
@@ -14857,7 +14857,7 @@
       "Damage": 5
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/toxic.png",
+    "image_url": "/static/images/cards/toxic.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -14911,7 +14911,7 @@
     "upgrade": {
       "intangiblepower": "+1"
     },
-    "image_url": "/static/images/cards/wraith_form.png",
+    "image_url": "/static/images/cards/wraith_form.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]불가침[/gold]을 3 얻습니다.\n내 턴 시작 시, [gold]민첩[/gold]을 1 잃습니다.",
@@ -14948,7 +14948,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/glasswork.png",
+    "image_url": "/static/images/cards/glasswork.webp",
     "beta_image_url": "/static/images/cards/beta/glasswork.png",
     "type_variants": null,
     "upgrade_description": "[gold]방어도[/gold]를 8 얻습니다.\n[gold]유리[/gold]를 1번 [gold]영창[/gold]합니다.",
@@ -14987,7 +14987,7 @@
     "upgrade": {
       "damage": "+6"
     },
-    "image_url": "/static/images/cards/meteor_strike.png",
+    "image_url": "/static/images/cards/meteor_strike.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 30 줍니다.\n[gold]플라즈마[/gold]를 3번 [gold]영창[/gold]합니다.",
@@ -15040,7 +15040,7 @@
     "upgrade": {
       "damage": "+7"
     },
-    "image_url": "/static/images/cards/meteor_shower.png",
+    "image_url": "/static/images/cards/meteor_shower.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "모든 적에게 피해를 21 줍니다.\n모든 적에게 [gold]약화[/gold]와 [gold]취약[/gold]을 2 부여합니다.",
@@ -15075,7 +15075,7 @@
       "HpLoss": 6
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/beckon.png",
+    "image_url": "/static/images/cards/beckon.webp",
     "beta_image_url": "/static/images/cards/beta/beckon.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -15115,7 +15115,7 @@
     "upgrade": {
       "increase": "+1"
     },
-    "image_url": "/static/images/cards/genetic_algorithm.png",
+    "image_url": "/static/images/cards/genetic_algorithm.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]방어도[/gold]를 1 얻습니다.\n이 카드로 얻는 [gold]방어도[/gold]가 영구적으로 4 증가합니다.",
@@ -15153,7 +15153,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/fusion.png",
+    "image_url": "/static/images/cards/fusion.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -15197,7 +15197,7 @@
       "Weak": 1
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/doubt.png",
+    "image_url": "/static/images/cards/doubt.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -15237,7 +15237,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/dual_wield.png",
+    "image_url": "/static/images/cards/dual_wield.webp",
     "beta_image_url": "/static/images/cards/beta/dual_wield.png",
     "type_variants": null,
     "upgrade_description": "공격이나 파워 카드를 1장 선택합니다. 그 카드의 복사본을 [Cards장|1장] [gold]손[/gold]으로 가져옵니다.",
@@ -15272,7 +15272,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/dualcast.png",
+    "image_url": "/static/images/cards/dualcast.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -15311,7 +15311,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/twin_strike.png",
+    "image_url": "/static/images/cards/twin_strike.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 7만큼 2번 줍니다.",
@@ -15362,7 +15362,7 @@
     "upgrade": {
       "focuspower": "+1"
     },
-    "image_url": "/static/images/cards/biased_cognition.png",
+    "image_url": "/static/images/cards/biased_cognition.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]밀집[/gold]을 5 얻습니다.\n내 턴 시작 시, [gold]밀집[/gold]을 1 잃습니다.",
@@ -15401,7 +15401,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/seven_stars.png",
+    "image_url": "/static/images/cards/seven_stars.webp",
     "beta_image_url": "/static/images/cards/beta/seven_stars.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -15440,7 +15440,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/barrage.png",
+    "image_url": "/static/images/cards/barrage.webp",
     "beta_image_url": "/static/images/cards/beta/barrage.png",
     "type_variants": null,
     "upgrade_description": "[gold]영창[/gold]된 구체 1개당 피해를 7 줍니다.",
@@ -15479,7 +15479,7 @@
     "upgrade": {
       "energy": "+2"
     },
-    "image_url": "/static/images/cards/supercritical.png",
+    "image_url": "/static/images/cards/supercritical.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[energy:6]를 얻습니다.",
@@ -15519,7 +15519,7 @@
     "upgrade": {
       "add_retain": true
     },
-    "image_url": "/static/images/cards/anointed.png",
+    "image_url": "/static/images/cards/anointed.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -15560,7 +15560,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/particle_wall.png",
+    "image_url": "/static/images/cards/particle_wall.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]방어도[/gold]를 12 얻습니다.\n이 카드를 [gold]손[/gold]으로 다시 가져옵니다.",
@@ -15604,7 +15604,7 @@
     "upgrade": {
       "strength": "+1"
     },
-    "image_url": "/static/images/cards/blade_of_ink.png",
+    "image_url": "/static/images/cards/blade_of_ink.webp",
     "beta_image_url": "/static/images/cards/beta/blade_of_ink.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -15641,7 +15641,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/forgotten_ritual.png",
+    "image_url": "/static/images/cards/forgotten_ritual.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "이번 턴에 카드를 [gold]소멸[/gold]시켰다면, [energy:4]를 얻습니다.",
@@ -15678,7 +15678,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/automation.png",
+    "image_url": "/static/images/cards/automation.webp",
     "beta_image_url": "/static/images/cards/beta/automation.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -15713,7 +15713,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/tools_of_the_trade.png",
+    "image_url": "/static/images/cards/tools_of_the_trade.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -15757,7 +15757,7 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": "/static/images/cards/afterimage.png",
+    "image_url": "/static/images/cards/afterimage.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -15792,7 +15792,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/debris.png",
+    "image_url": "/static/images/cards/debris.webp",
     "beta_image_url": "/static/images/cards/beta/debris.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -15832,7 +15832,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/veilpiercer.png",
+    "image_url": "/static/images/cards/veilpiercer.webp",
     "beta_image_url": "/static/images/cards/beta/veilpiercer.png",
     "type_variants": null,
     "upgrade_description": "피해를 13 줍니다.\n다음에 사용하는 [gold]휘발성[/gold] 카드의 비용이 0 [energy:1]이 됩니다.",
@@ -15871,7 +15871,7 @@
     "upgrade": {
       "summon": "+1"
     },
-    "image_url": "/static/images/cards/dirge.png",
+    "image_url": "/static/images/cards/dirge.webp",
     "beta_image_url": "/static/images/cards/beta/dirge.png",
     "type_variants": null,
     "upgrade_description": "X번 [gold]소환[/gold] 4.\n[gold]뽑을 카드 더미[/gold]에 [gold]영혼+[/gold]을 X장 섞어 넣습니다.",
@@ -15908,7 +15908,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/catastrophe.png",
+    "image_url": "/static/images/cards/catastrophe.webp",
     "beta_image_url": "/static/images/cards/beta/catastrophe.png",
     "type_variants": null,
     "upgrade_description": "[gold]뽑을 카드 더미[/gold]에서 무작위 카드를 3장 사용합니다.",
@@ -15949,7 +15949,7 @@
       "calculationbase": "+2",
       "calculationextra": "+2"
     },
-    "image_url": "/static/images/cards/beat_into_shape.png",
+    "image_url": "/static/images/cards/beat_into_shape.webp",
     "beta_image_url": "/static/images/cards/beta/beat_into_shape.png",
     "type_variants": null,
     "upgrade_description": "피해를 7 줍니다.\n[gold]단조[/gold] X.\n이번 턴에 대상 적을 공격한 다른 횟수마다 추가로 [gold]단조[/gold] 7.",
@@ -15984,7 +15984,7 @@
     "upgrade": {
       "cost": 2
     },
-    "image_url": "/static/images/cards/calamity.png",
+    "image_url": "/static/images/cards/calamity.webp",
     "beta_image_url": "/static/images/cards/beta/calamity.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -16023,7 +16023,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/flick_flack.png",
+    "image_url": "/static/images/cards/flick_flack.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "모든 적에게 피해를 9 줍니다.",
@@ -16064,7 +16064,7 @@
     "upgrade": {
       "damage": "+5"
     },
-    "image_url": "/static/images/cards/jackpot.png",
+    "image_url": "/static/images/cards/jackpot.webp",
     "beta_image_url": "/static/images/cards/beta/jackpot.png",
     "type_variants": null,
     "upgrade_description": "피해를 30 줍니다.\n비용이 0[energy:1]인 무작위 [gold]강화[/gold]된 카드를 3장 [gold]손[/gold]으로 가져옵니다.",
@@ -16102,7 +16102,7 @@
     "upgrade": {
       "damage": "+5"
     },
-    "image_url": "/static/images/cards/cinder.png",
+    "image_url": "/static/images/cards/cinder.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 22 줍니다.\n[gold]뽑을 카드 더미[/gold] 맨 위의 카드를 [gold]소멸[/gold]시킵니다.",
@@ -16143,7 +16143,7 @@
     "upgrade": {
       "extradamage": "+1"
     },
-    "image_url": "/static/images/cards/ashen_strike.png",
+    "image_url": "/static/images/cards/ashen_strike.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 6 줍니다.\n[gold]소멸된 카드 더미[/gold]에 있는 카드 1장당 피해량이 4 증가합니다.",
@@ -16180,7 +16180,7 @@
     "upgrade": {
       "blockonexhaust": "+1"
     },
-    "image_url": "/static/images/cards/spirit_of_ash.png",
+    "image_url": "/static/images/cards/spirit_of_ash.webp",
     "beta_image_url": "/static/images/cards/beta/spirit_of_ash.png",
     "type_variants": null,
     "upgrade_description": "[gold]휘발성[/gold] 카드를 사용할 때마다, [gold]방어도[/gold]를 5 얻습니다.",
@@ -16215,7 +16215,7 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": "/static/images/cards/juggling.png",
+    "image_url": "/static/images/cards/juggling.webp",
     "beta_image_url": "/static/images/cards/beta/juggling.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -16252,7 +16252,7 @@
     "upgrade": {
       "damage": "+5"
     },
-    "image_url": "/static/images/cards/howl_from_beyond.png",
+    "image_url": "/static/images/cards/howl_from_beyond.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "모든 적에게 피해를 21 줍니다.\n내 턴 시작 시, [gold]소멸된 카드 더미[/gold]에서 사용됩니다.",
@@ -16291,7 +16291,7 @@
     "upgrade": {
       "damage": "+5"
     },
-    "image_url": "/static/images/cards/adaptive_strike.png",
+    "image_url": "/static/images/cards/adaptive_strike.webp",
     "beta_image_url": "/static/images/cards/beta/adaptive_strike.png",
     "type_variants": null,
     "upgrade_description": "피해를 23 줍니다.\n[gold]버린 카드 더미[/gold]에 비용이 0[energy:1]인 이 카드의 복사본을 1장 추가합니다.",
@@ -16330,7 +16330,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/tactician.png",
+    "image_url": "/static/images/cards/tactician.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[energy:2]를 얻습니다.",
@@ -16372,7 +16372,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/master_of_strategy.png",
+    "image_url": "/static/images/cards/master_of_strategy.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "카드를 4장 뽑습니다.",
@@ -16412,7 +16412,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/expertise.png",
+    "image_url": "/static/images/cards/expertise.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]손[/gold]에 있는 카드가 7장이 될 때까지 카드를 뽑습니다.",
@@ -16451,7 +16451,7 @@
       "damage": "+2",
       "forge": "+2"
     },
-    "image_url": "/static/images/cards/wrought_in_war.png",
+    "image_url": "/static/images/cards/wrought_in_war.webp",
     "beta_image_url": "/static/images/cards/beta/wrought_in_war.png",
     "type_variants": null,
     "upgrade_description": "피해를 9 줍니다.\n[gold]단조[/gold] 7.",
@@ -16488,7 +16488,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/battle_trance.png",
+    "image_url": "/static/images/cards/battle_trance.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "카드를 4장 뽑습니다.\n이번 턴 동안 더 이상 카드를 뽑을 수 없습니다.",
@@ -16533,7 +16533,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/drum_of_battle.png",
+    "image_url": "/static/images/cards/drum_of_battle.webp",
     "beta_image_url": "/static/images/cards/beta/drum_of_battle.png",
     "type_variants": null,
     "upgrade_description": "카드를 3장 뽑습니다.\n내 턴 시작 시, [gold]뽑을 카드 더미[/gold] 맨 위의 카드를 [gold]소멸[/gold]시킵니다.",
@@ -16570,7 +16570,7 @@
     "upgrade": {
       "forge": "+5"
     },
-    "image_url": "/static/images/cards/spoils_of_battle.png",
+    "image_url": "/static/images/cards/spoils_of_battle.webp",
     "beta_image_url": "/static/images/cards/beta/spoils_of_battle.png",
     "type_variants": null,
     "upgrade_description": "[gold]단조[/gold] 15.",
@@ -16607,7 +16607,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/armaments.png",
+    "image_url": "/static/images/cards/armaments.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]방어도[/gold]를 5 얻습니다.\n[gold]손[/gold]에 있는 모든 카드를 [gold]강화[/gold]합니다.",
@@ -16651,7 +16651,7 @@
     "upgrade": {
       "juggernautpower": "+2"
     },
-    "image_url": "/static/images/cards/juggernaut.png",
+    "image_url": "/static/images/cards/juggernaut.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]방어도[/gold]를 얻을 때마다, 무작위 적에게 피해를 7 줍니다.",
@@ -16688,7 +16688,7 @@
       "Cards": 1
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/slimed.png",
+    "image_url": "/static/images/cards/slimed.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -16728,7 +16728,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/ignition.png",
+    "image_url": "/static/images/cards/ignition.webp",
     "beta_image_url": "/static/images/cards/beta/ignition.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -16769,7 +16769,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/alignment.png",
+    "image_url": "/static/images/cards/alignment.webp",
     "beta_image_url": "/static/images/cards/beta/alignment.png",
     "type_variants": null,
     "upgrade_description": "[energy:3]를 얻습니다.",
@@ -16807,7 +16807,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/breakthrough.png",
+    "image_url": "/static/images/cards/breakthrough.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "체력을 1 잃습니다.\n모든 적에게 피해를 13 줍니다.",
@@ -16853,7 +16853,7 @@
     "upgrade": {
       "accuracypower": "+2"
     },
-    "image_url": "/static/images/cards/accuracy.png",
+    "image_url": "/static/images/cards/accuracy.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]단도[/gold]의 피해량이 6 증가합니다.",
@@ -16890,7 +16890,7 @@
     "upgrade": {
       "damage": "+5"
     },
-    "image_url": "/static/images/cards/pinpoint.png",
+    "image_url": "/static/images/cards/pinpoint.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 22 줍니다.\n이번 턴에 스킬 카드를 사용할 때마다 비용이 1 [energy:1] 감소합니다.",
@@ -16929,7 +16929,7 @@
     "upgrade": {
       "calculationbase": "+3"
     },
-    "image_url": "/static/images/cards/precise_cut.png",
+    "image_url": "/static/images/cards/precise_cut.webp",
     "beta_image_url": "/static/images/cards/beta/precise_cut.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -16966,7 +16966,7 @@
     "upgrade": {
       "forge": "+2"
     },
-    "image_url": "/static/images/cards/conqueror.png",
+    "image_url": "/static/images/cards/conqueror.webp",
     "beta_image_url": "/static/images/cards/beta/conqueror.png",
     "type_variants": null,
     "upgrade_description": "[gold]단조[/gold] 5.\n이번 턴 동안 대상 적이 [gold]군주의 칼날[/gold]로 받는 피해량이 2배가 됩니다.",
@@ -17007,7 +17007,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/mind_blast.png",
+    "image_url": "/static/images/cards/mind_blast.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -17052,7 +17052,7 @@
       "MindRot": 1
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/mind_rot.png",
+    "image_url": "/static/images/cards/mind_rot.webp",
     "beta_image_url": "/static/images/cards/beta/mind_rot.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -17098,7 +17098,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/neurosurge.png",
+    "image_url": "/static/images/cards/neurosurge.webp",
     "beta_image_url": "/static/images/cards/beta/neurosurge.png",
     "type_variants": null,
     "upgrade_description": "[energy:4]를 얻습니다.\n카드를 2장 뽑습니다.\n내 턴 시작 시, 자신에게 [gold]종말[/gold]을 3 부여합니다.",
@@ -17135,7 +17135,7 @@
     "upgrade": {
       "summon": "+2"
     },
-    "image_url": "/static/images/cards/cleanse.png",
+    "image_url": "/static/images/cards/cleanse.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]소환[/gold] 5.\n[gold]뽑을 카드 더미[/gold]의 카드를 1장 [gold]소멸[/gold]시킵니다.",
@@ -17176,7 +17176,7 @@
     "upgrade": {
       "cards": "+2"
     },
-    "image_url": "/static/images/cards/offering.png",
+    "image_url": "/static/images/cards/offering.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "체력을 6 잃습니다.\n[energy:2]를 얻습니다.\n카드를 5장 뽑습니다.",
@@ -17218,7 +17218,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/dominate.png",
+    "image_url": "/static/images/cards/dominate.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -17269,7 +17269,7 @@
       "damage": "+6",
       "weak": "+2"
     },
-    "image_url": "/static/images/cards/suppress.png",
+    "image_url": "/static/images/cards/suppress.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 17 줍니다.\n[gold]약화[/gold]를 3 부여합니다.",
@@ -17311,7 +17311,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/sculpting_strike.png",
+    "image_url": "/static/images/cards/sculpting_strike.webp",
     "beta_image_url": "/static/images/cards/beta/sculpting_strike.png",
     "type_variants": null,
     "upgrade_description": "피해를 11 줍니다.\n[gold]손[/gold]에 있는 카드 1장에 [gold]휘발성[/gold]을 추가합니다.",
@@ -17355,7 +17355,7 @@
     "upgrade": {
       "focuspower": "+1"
     },
-    "image_url": "/static/images/cards/defragment.png",
+    "image_url": "/static/images/cards/defragment.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]밀집[/gold]을 2 얻습니다.",
@@ -17393,7 +17393,7 @@
     "upgrade": {
       "damage": "+6"
     },
-    "image_url": "/static/images/cards/pacts_end.png",
+    "image_url": "/static/images/cards/pacts_end.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]소멸된 카드 더미[/gold]에 카드가 3장 이상 있을 때만 사용할 수 있습니다.\n모든 적에게 피해를 23 줍니다.",
@@ -17437,7 +17437,7 @@
     "upgrade": {
       "doom": "+8"
     },
-    "image_url": "/static/images/cards/end_of_days.png",
+    "image_url": "/static/images/cards/end_of_days.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -17474,7 +17474,7 @@
       "Combats": 5
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/guilty.png",
+    "image_url": "/static/images/cards/guilty.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -17514,7 +17514,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/fisticuffs.png",
+    "image_url": "/static/images/cards/fisticuffs.webp",
     "beta_image_url": "/static/images/cards/beta/fisticuffs.png",
     "type_variants": null,
     "upgrade_description": "피해를 9 줍니다.\n가한 피해량만큼 [gold]방어도[/gold]를 얻습니다.",
@@ -17556,7 +17556,7 @@
       "damage": "+2",
       "strengthloss": "+2"
     },
-    "image_url": "/static/images/cards/dying_star.png",
+    "image_url": "/static/images/cards/dying_star.webp",
     "beta_image_url": "/static/images/cards/beta/dying_star.png",
     "type_variants": null,
     "upgrade_description": "모든 적에게 피해를 11 줍니다. 이번 턴 동안 모든 적이 [gold]힘[/gold]을 11 잃습니다.",
@@ -17610,7 +17610,7 @@
     "upgrade": {
       "doom": "+5"
     },
-    "image_url": "/static/images/cards/deathbringer.png",
+    "image_url": "/static/images/cards/deathbringer.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -17655,7 +17655,7 @@
     "upgrade": {
       "dansemacabrepower": "+1"
     },
-    "image_url": "/static/images/cards/danse_macabre.png",
+    "image_url": "/static/images/cards/danse_macabre.webp",
     "beta_image_url": "/static/images/cards/beta/danse_macabre.png",
     "type_variants": null,
     "upgrade_description": "비용이 [energy:2] 이상인 카드를 사용할 때마다, [gold]방어도[/gold]를 4 얻습니다.",
@@ -17693,7 +17693,7 @@
     "upgrade": {
       "block": "+1"
     },
-    "image_url": "/static/images/cards/deaths_door.png",
+    "image_url": "/static/images/cards/deaths_door.webp",
     "beta_image_url": "/static/images/cards/beta/deaths_door.png",
     "type_variants": null,
     "upgrade_description": "[gold]방어도[/gold]를 7 얻습니다.\n이번 턴에 [gold]종말[/gold]을 부여했다면, [gold]방어도[/gold]를 추가로 2번 얻습니다.",
@@ -17733,7 +17733,7 @@
       "calculationbase": "+1",
       "extradamage": "+1"
     },
-    "image_url": "/static/images/cards/death_march.png",
+    "image_url": "/static/images/cards/death_march.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 8 줍니다.\n내 턴 동안 뽑은 카드 1장당 피해량이 4 증가합니다.",
@@ -17777,7 +17777,7 @@
     "upgrade": {
       "preptimepower": "+2"
     },
-    "image_url": "/static/images/cards/prep_time.png",
+    "image_url": "/static/images/cards/prep_time.webp",
     "beta_image_url": "/static/images/cards/beta/prep_time.png",
     "type_variants": null,
     "upgrade_description": "내 턴 시작 시, [gold]활력[/gold]을 6 얻습니다.",
@@ -17814,7 +17814,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/quasar.png",
+    "image_url": "/static/images/cards/quasar.webp",
     "beta_image_url": "/static/images/cards/beta/quasar.png",
     "type_variants": null,
     "upgrade_description": "무작위 [gold]강화[/gold]된 무색 카드 3장 중 1장을 선택해 [gold]손[/gold]으로 가져옵니다.",
@@ -17859,7 +17859,7 @@
     "upgrade": {
       "platingpower": "+3"
     },
-    "image_url": "/static/images/cards/neutron_aegis.png",
+    "image_url": "/static/images/cards/neutron_aegis.webp",
     "beta_image_url": "/static/images/cards/beta/neutron_aegis.png",
     "type_variants": null,
     "upgrade_description": "[gold]판금[/gold]을 11 얻습니다.",
@@ -17899,7 +17899,7 @@
       "extradamage": "+3",
       "calculationbase": "+3"
     },
-    "image_url": "/static/images/cards/rend.png",
+    "image_url": "/static/images/cards/rend.webp",
     "beta_image_url": "/static/images/cards/beta/rend.png",
     "type_variants": null,
     "upgrade_description": "피해를 15 줍니다.\n적이 보유한 해로운 효과의 종류 하나당 피해량이 8 증가합니다.",
@@ -17941,7 +17941,7 @@
       "calculationbase": "+5",
       "extradamage": "+1"
     },
-    "image_url": "/static/images/cards/squeeze.png",
+    "image_url": "/static/images/cards/squeeze.webp",
     "beta_image_url": "/static/images/cards/beta/squeeze.png",
     "type_variants": null,
     "upgrade_description": "[gold]골골이[/gold]가 피해를 25 줍니다.\n다른 모든 [gold]골골이[/gold] 공격 카드 1장당 피해량이 6 증가합니다.",
@@ -17994,7 +17994,7 @@
       "strength": "+1",
       "dexterity": "+1"
     },
-    "image_url": "/static/images/cards/bulk_up.png",
+    "image_url": "/static/images/cards/bulk_up.webp",
     "beta_image_url": "/static/images/cards/beta/bulk_up.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -18033,7 +18033,7 @@
       "damage": "+1",
       "strengthloss": "+1"
     },
-    "image_url": "/static/images/cards/crush_under.png",
+    "image_url": "/static/images/cards/crush_under.webp",
     "beta_image_url": "/static/images/cards/beta/crush_under.png",
     "type_variants": null,
     "upgrade_description": "모든 적에게 피해를 8 줍니다. 모든 적이 이번 턴 동안 [gold]힘[/gold]을 2 잃습니다.",
@@ -18072,7 +18072,7 @@
       "block": "+2",
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/delay.png",
+    "image_url": "/static/images/cards/delay.webp",
     "beta_image_url": "/static/images/cards/beta/delay.png",
     "type_variants": null,
     "upgrade_description": "[gold]방어도[/gold]를 13 얻습니다.\n다음 턴에,\n[energy:2]를 얻습니다.",
@@ -18109,7 +18109,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/infernal_blade.png",
+    "image_url": "/static/images/cards/infernal_blade.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -18147,7 +18147,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/hellraiser.png",
+    "image_url": "/static/images/cards/hellraiser.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -18186,7 +18186,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/fiend_fire.png",
+    "image_url": "/static/images/cards/fiend_fire.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]손[/gold]에 있는 모든 카드를 [gold]소멸[/gold]시킵니다.\n[gold]소멸[/gold]시킨 카드 1장당 피해를 10 줍니다.",
@@ -18226,7 +18226,7 @@
     "upgrade": {
       "block": "+2"
     },
-    "image_url": "/static/images/cards/true_grit.png",
+    "image_url": "/static/images/cards/true_grit.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]방어도[/gold]를 9 얻습니다.\n카드를 1장 [gold]소멸[/gold]시킵니다.",
@@ -18267,7 +18267,7 @@
     "upgrade": {
       "ostydamage": "+2"
     },
-    "image_url": "/static/images/cards/right_hand_hand.png",
+    "image_url": "/static/images/cards/right_hand_hand.webp",
     "beta_image_url": "/static/images/cards/beta/right_hand_hand.png",
     "type_variants": null,
     "upgrade_description": "[gold]골골이[/gold]가 피해를 6 줍니다.\n비용이 [energy:2] 이상인 카드를 사용할 때마다, 이 카드가 [gold]버린 카드 더미[/gold]에서 [gold]손[/gold]으로 돌아옵니다.",
@@ -18306,7 +18306,7 @@
     "upgrade": {
       "extradamage": "+2"
     },
-    "image_url": "/static/images/cards/gang_up.png",
+    "image_url": "/static/images/cards/gang_up.webp",
     "beta_image_url": "/static/images/cards/beta/gang_up.png",
     "type_variants": null,
     "upgrade_description": "피해를 5 줍니다.\n이번 턴에 다른 플레이어가 대상 적을 공격한 횟수당 피해량이 7 증가합니다.",
@@ -18343,7 +18343,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/salvo.png",
+    "image_url": "/static/images/cards/salvo.webp",
     "beta_image_url": "/static/images/cards/beta/salvo.png",
     "type_variants": null,
     "upgrade_description": "피해를 16 줍니다.\n이번 턴에 [gold]손[/gold]에 있는 카드를 [gold]보존[/gold]합니다.",
@@ -18389,7 +18389,7 @@
       "damage": "+2",
       "vulnerable": "+1"
     },
-    "image_url": "/static/images/cards/squash.png",
+    "image_url": "/static/images/cards/squash.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 12 줍니다.\n[gold]취약[/gold]을 2 부여합니다.",
@@ -18426,7 +18426,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/stomp.png",
+    "image_url": "/static/images/cards/stomp.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "모든 적에게 피해를 15 줍니다.\n이번 턴 동안 사용한 공격 카드 1장당 [energy:1] 비용이 1 감소합니다.",
@@ -18472,7 +18472,7 @@
       "doom": "+3",
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/scourge.png",
+    "image_url": "/static/images/cards/scourge.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]종말[/gold]을 13 부여합니다.\n카드를 2장 뽑습니다.",
@@ -18510,7 +18510,7 @@
     "upgrade": {
       "repeat": "+1"
     },
-    "image_url": "/static/images/cards/peck.png",
+    "image_url": "/static/images/cards/peck.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 2만큼 4번 줍니다.",
@@ -18548,7 +18548,7 @@
     "upgrade": {
       "damage": "+8"
     },
-    "image_url": "/static/images/cards/sunder.png",
+    "image_url": "/static/images/cards/sunder.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 32 줍니다.\n이 카드로 적을 처치 시, [energy:3]을 얻습니다.",
@@ -18592,7 +18592,7 @@
     "upgrade": {
       "poison": "+3"
     },
-    "image_url": "/static/images/cards/bubble_bubble.png",
+    "image_url": "/static/images/cards/bubble_bubble.webp",
     "beta_image_url": "/static/images/cards/beta/bubble_bubble.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -18627,7 +18627,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/splash.png",
+    "image_url": "/static/images/cards/splash.webp",
     "beta_image_url": "/static/images/cards/beta/splash.png",
     "type_variants": null,
     "upgrade_description": "다른 캐릭터의 무작위 [gold]강화[/gold]된 공격 카드 3장 중 1장을 선택해 [gold]손[/gold]으로 가져옵니다. 이번 턴 동안 그 카드를 비용 없이 사용할 수 있습니다.",
@@ -18667,7 +18667,7 @@
       "energy": "+1",
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/brightest_flame.png",
+    "image_url": "/static/images/cards/brightest_flame.webp",
     "beta_image_url": "/static/images/cards/beta/brightest_flame.png",
     "type_variants": null,
     "upgrade_description": "[energy:3]를 얻습니다.\n카드를 3장 뽑습니다.\n최대 체력을 1 잃습니다.",
@@ -18702,7 +18702,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/entrench.png",
+    "image_url": "/static/images/cards/entrench.webp",
     "beta_image_url": "/static/images/cards/beta/entrench.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -18740,7 +18740,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/pale_blue_dot.png",
+    "image_url": "/static/images/cards/pale_blue_dot.webp",
     "beta_image_url": "/static/images/cards/beta/pale_blue_dot.png",
     "type_variants": null,
     "upgrade_description": "한 턴에 카드를 5장 이상 사용했다면, 다음 턴 시작 시 카드를 추가로 2장 뽑습니다.",
@@ -18777,7 +18777,7 @@
     "upgrade": {
       "starsperturn": "+1"
     },
-    "image_url": "/static/images/cards/genesis.png",
+    "image_url": "/static/images/cards/genesis.webp",
     "beta_image_url": "/static/images/cards/beta/genesis.png",
     "type_variants": null,
     "upgrade_description": "내 턴 시작 시, [star:3]을 얻습니다.",
@@ -18814,7 +18814,7 @@
     "upgrade": {
       "cost": 2
     },
-    "image_url": "/static/images/cards/creative_ai.png",
+    "image_url": "/static/images/cards/creative_ai.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -18851,7 +18851,7 @@
     "upgrade": {
       "block": "+1"
     },
-    "image_url": "/static/images/cards/pillar_of_creation.png",
+    "image_url": "/static/images/cards/pillar_of_creation.webp",
     "beta_image_url": "/static/images/cards/beta/pillar_of_creation.png",
     "type_variants": null,
     "upgrade_description": "카드를 생성할 때마다, [gold]방어도[/gold]를 4 얻습니다.",
@@ -18886,7 +18886,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/stratagem.png",
+    "image_url": "/static/images/cards/stratagem.webp",
     "beta_image_url": "/static/images/cards/beta/stratagem.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -18925,7 +18925,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/eradicate.png",
+    "image_url": "/static/images/cards/eradicate.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 14만큼 X번 줍니다.",
@@ -18973,7 +18973,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/thunderclap.png",
+    "image_url": "/static/images/cards/thunderclap.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "모든 적에게 피해를 7 주고 [gold]취약[/gold]을 1 부여합니다.",
@@ -19011,7 +19011,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/celestial_might.png",
+    "image_url": "/static/images/cards/celestial_might.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 8만큼 3번 줍니다.",
@@ -19049,7 +19049,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/heavenly_drill.png",
+    "image_url": "/static/images/cards/heavenly_drill.webp",
     "beta_image_url": "/static/images/cards/beta/heavenly_drill.png",
     "type_variants": null,
     "upgrade_description": "피해를 10만큼 X번 줍니다.\nX가 4 이상이라면 X가 2배가 됩니다.",
@@ -19088,7 +19088,7 @@
       "damage": "+2",
       "block": "+2"
     },
-    "image_url": "/static/images/cards/iron_wave.png",
+    "image_url": "/static/images/cards/iron_wave.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]방어도[/gold]를 7 얻습니다.\n피해를 7 줍니다.",
@@ -19134,7 +19134,7 @@
     "upgrade": {
       "parrypower": "+3"
     },
-    "image_url": "/static/images/cards/parry.png",
+    "image_url": "/static/images/cards/parry.webp",
     "beta_image_url": "/static/images/cards/beta/parry.png",
     "type_variants": null,
     "upgrade_description": "[gold]군주의 칼날[/gold]을 사용할 때마다, [gold]방어도[/gold]를 9 얻습니다.",
@@ -19174,7 +19174,7 @@
     "upgrade": {
       "extradamage": "+1"
     },
-    "image_url": "/static/images/cards/crescent_spear.png",
+    "image_url": "/static/images/cards/crescent_spear.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 6 줍니다.\n보유한 카드 중 [star:1] 비용을 지닌 카드 1장당 피해량이 3 증가합니다.",
@@ -19215,7 +19215,7 @@
       "cards": "+1",
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/restlessness.png",
+    "image_url": "/static/images/cards/restlessness.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]손[/gold]에 카드가 없다면, 카드를 3장 뽑고 [energy:3]를 얻습니다.",
@@ -19257,7 +19257,7 @@
     "upgrade": {
       "extradamage": "+1"
     },
-    "image_url": "/static/images/cards/supermassive.png",
+    "image_url": "/static/images/cards/supermassive.webp",
     "beta_image_url": "/static/images/cards/beta/supermassive.png",
     "type_variants": null,
     "upgrade_description": "피해를 5 줍니다.\n이번 전투 동안 생성한 카드 1장당 피해량이 4 증가합니다.",
@@ -19295,7 +19295,7 @@
     "upgrade": {
       "damage": "+10"
     },
-    "image_url": "/static/images/cards/devastate.png",
+    "image_url": "/static/images/cards/devastate.webp",
     "beta_image_url": "/static/images/cards/beta/devastate.png",
     "type_variants": null,
     "upgrade_description": "피해를 40 줍니다.",
@@ -19332,7 +19332,7 @@
     "upgrade": {
       "accelerant": "+1"
     },
-    "image_url": "/static/images/cards/accelerant.png",
+    "image_url": "/static/images/cards/accelerant.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]중독[/gold]이 2번 추가로 발동합니다.",
@@ -19369,7 +19369,7 @@
     "upgrade": {
       "stars": "+1"
     },
-    "image_url": "/static/images/cards/venerate.png",
+    "image_url": "/static/images/cards/venerate.webp",
     "beta_image_url": "/static/images/cards/beta/venerate.png",
     "type_variants": null,
     "upgrade_description": "[star:3]을 얻습니다.",
@@ -19404,7 +19404,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/tracking.png",
+    "image_url": "/static/images/cards/tracking.webp",
     "beta_image_url": "/static/images/cards/beta/tracking.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -19443,7 +19443,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/momentum_strike.png",
+    "image_url": "/static/images/cards/momentum_strike.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 13 줍니다.\n이 카드의 비용이 0 [energy:1]으로 감소합니다.",
@@ -19482,7 +19482,7 @@
     "upgrade": {
       "add_retain": true
     },
-    "image_url": "/static/images/cards/dredge.png",
+    "image_url": "/static/images/cards/dredge.webp",
     "beta_image_url": "/static/images/cards/beta/dredge.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -19522,7 +19522,7 @@
     "upgrade": {
       "repeat": "+1"
     },
-    "image_url": "/static/images/cards/capacitor.png",
+    "image_url": "/static/images/cards/capacitor.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "구체 슬롯을 3개 얻습니다.",
@@ -19561,7 +19561,7 @@
     "upgrade": {
       "hploss": "+2"
     },
-    "image_url": "/static/images/cards/haunt.png",
+    "image_url": "/static/images/cards/haunt.webp",
     "beta_image_url": "/static/images/cards/beta/haunt.png",
     "type_variants": null,
     "upgrade_description": "[gold]영혼[/gold]을 사용할 때마다, 무작위 적이 체력을 8 잃습니다.",
@@ -19600,7 +19600,7 @@
     "upgrade": {
       "power": "+2"
     },
-    "image_url": "/static/images/cards/shockwave.png",
+    "image_url": "/static/images/cards/shockwave.webp",
     "beta_image_url": "/static/images/cards/beta/shockwave.png",
     "type_variants": null,
     "upgrade_description": "모든 적에게 [gold]약화[/gold]와 [gold]취약[/gold]을 5 부여합니다.",
@@ -19638,7 +19638,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/flanking.png",
+    "image_url": "/static/images/cards/flanking.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -19684,7 +19684,7 @@
     "upgrade": {
       "lethalitypower": "+25"
     },
-    "image_url": "/static/images/cards/lethality.png",
+    "image_url": "/static/images/cards/lethality.webp",
     "beta_image_url": "/static/images/cards/beta/lethality.png",
     "type_variants": null,
     "upgrade_description": "매 턴마다 처음으로 사용하는 공격 카드의 피해량이 75% 증가합니다.",
@@ -19731,7 +19731,7 @@
     "upgrade": {
       "countdownpower": "+3"
     },
-    "image_url": "/static/images/cards/countdown.png",
+    "image_url": "/static/images/cards/countdown.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "내 턴 시작 시, 무작위 적에게 [gold]종말[/gold]을 9 부여합니다.",
@@ -19770,7 +19770,7 @@
     "upgrade": {
       "shivs": "+1"
     },
-    "image_url": "/static/images/cards/fan_of_knives.png",
+    "image_url": "/static/images/cards/fan_of_knives.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]단도[/gold]가 이제 모든 적을 대상으로 합니다.\n[gold]단도[/gold]를 5장 [gold]손[/gold]으로 가져옵니다.",
@@ -19812,7 +19812,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/knife_trap.png",
+    "image_url": "/static/images/cards/knife_trap.webp",
     "beta_image_url": "/static/images/cards/beta/knife_trap.png",
     "type_variants": null,
     "upgrade_description": "대상 적에게 [gold]소멸된 카드 더미[/gold]에 있는 모든 [gold]단도[/gold]를 [gold]강화[/gold]한 뒤 사용합니다.",
@@ -19849,7 +19849,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/slice.png",
+    "image_url": "/static/images/cards/slice.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 9 줍니다.",
@@ -19888,7 +19888,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/compile_driver.png",
+    "image_url": "/static/images/cards/compile_driver.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 10 줍니다.\n영창된 구체의 종류 하나당 카드를 1장 뽑습니다.",
@@ -19927,7 +19927,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/strike_ironclad.png",
+    "image_url": "/static/images/cards/strike_ironclad.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 9 줍니다.",
@@ -19966,7 +19966,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/strike_silent.png",
+    "image_url": "/static/images/cards/strike_silent.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 9 줍니다.",
@@ -20005,7 +20005,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/strike_regent.png",
+    "image_url": "/static/images/cards/strike_regent.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 9 줍니다.",
@@ -20044,7 +20044,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/strike_necrobinder.png",
+    "image_url": "/static/images/cards/strike_necrobinder.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 9 줍니다.",
@@ -20083,7 +20083,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/strike_defect.png",
+    "image_url": "/static/images/cards/strike_defect.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 9 줍니다.",
@@ -20120,7 +20120,7 @@
     "upgrade": {
       "cost": 2
     },
-    "image_url": "/static/images/cards/corruption.png",
+    "image_url": "/static/images/cards/corruption.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -20165,7 +20165,7 @@
     "upgrade": {
       "repeat": "+1"
     },
-    "image_url": "/static/images/cards/bouncing_flask.png",
+    "image_url": "/static/images/cards/bouncing_flask.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "무작위 적에게 [gold]중독[/gold]을 3만큼 4번 부여합니다.",
@@ -20204,7 +20204,7 @@
     "upgrade": {
       "cards": "+2"
     },
-    "image_url": "/static/images/cards/metamorphosis.png",
+    "image_url": "/static/images/cards/metamorphosis.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]뽑을 카드 더미[/gold]에 무작위 공격 카드를 5장 추가합니다. 이번 전투 동안 그 카드들을 비용 없이 사용할 수 있습니다.",
@@ -20244,7 +20244,7 @@
     "upgrade": {
       "block": "+2"
     },
-    "image_url": "/static/images/cards/escape_plan.png",
+    "image_url": "/static/images/cards/escape_plan.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "카드를 1장 뽑습니다.\n뽑은 카드가 스킬 카드라면, [gold]방어도[/gold]를 5 얻습니다.",
@@ -20284,7 +20284,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/seeker_strike.png",
+    "image_url": "/static/images/cards/seeker_strike.webp",
     "beta_image_url": "/static/images/cards/beta/seeker_strike.png",
     "type_variants": null,
     "upgrade_description": "피해를 9 줍니다.\n[gold]뽑을 카드 더미[/gold]의 카드 3장 중 1장을 선택해 [gold]손[/gold]으로 가져옵니다.",
@@ -20320,7 +20320,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/greed.png",
+    "image_url": "/static/images/cards/greed.webp",
     "beta_image_url": "/static/images/cards/beta/greed.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -20363,7 +20363,7 @@
       "damage": "+5",
       "gold": "+5"
     },
-    "image_url": "/static/images/cards/hand_of_greed.png",
+    "image_url": "/static/images/cards/hand_of_greed.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 25 줍니다.\n[gold]치명타[/gold]라면, [gold]골드[/gold]를 25 얻습니다.",
@@ -20400,7 +20400,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/tag_team.png",
+    "image_url": "/static/images/cards/tag_team.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 15 줍니다.\n다른 플레이어가 다음에 대상 적에게 사용하는 공격 카드가 1번 추가로 사용됩니다.",
@@ -20441,7 +20441,7 @@
       "damage": "+1",
       "stars": "+1"
     },
-    "image_url": "/static/images/cards/solar_strike.png",
+    "image_url": "/static/images/cards/solar_strike.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 9 줍니다.\n[star:2]을 얻습니다.",
@@ -20476,7 +20476,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/tank.png",
+    "image_url": "/static/images/cards/tank.webp",
     "beta_image_url": "/static/images/cards/beta/tank.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -20515,7 +20515,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/turbo.png",
+    "image_url": "/static/images/cards/turbo.webp",
     "beta_image_url": "/static/images/cards/beta/turbo.png",
     "type_variants": null,
     "upgrade_description": "[energy:3]를 얻습니다.\n[gold]버린 카드 더미[/gold]에 [gold]공허[/gold]를 1장 섞어 넣습니다.",
@@ -20559,7 +20559,7 @@
     "upgrade": {
       "vigorpower": "+2"
     },
-    "image_url": "/static/images/cards/terraforming.png",
+    "image_url": "/static/images/cards/terraforming.webp",
     "beta_image_url": "/static/images/cards/beta/terraforming.png",
     "type_variants": null,
     "upgrade_description": "[gold]활력[/gold]을 8 얻습니다.",
@@ -20596,7 +20596,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/tesla_coil.png",
+    "image_url": "/static/images/cards/tesla_coil.webp",
     "beta_image_url": "/static/images/cards/beta/tesla_coil.png",
     "type_variants": null,
     "upgrade_description": "피해를 6 줍니다.\n대상 적을 상대로 모든 [gold]전기[/gold]를 발동시킵니다.",
@@ -20633,7 +20633,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/deflect.png",
+    "image_url": "/static/images/cards/deflect.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]방어도[/gold]를 7 얻습니다.",
@@ -20673,7 +20673,7 @@
     "upgrade": {
       "damage": "+1"
     },
-    "image_url": "/static/images/cards/gunk_up.png",
+    "image_url": "/static/images/cards/gunk_up.webp",
     "beta_image_url": "/static/images/cards/beta/gunk_up.png",
     "type_variants": null,
     "upgrade_description": "피해를 5만큼 3번 줍니다.\n[gold]버린 카드 더미[/gold]에 [gold]점액투성이[/gold]를 1장 추가합니다.",
@@ -20708,7 +20708,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/havoc.png",
+    "image_url": "/static/images/cards/havoc.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -20753,7 +20753,7 @@
     "upgrade": {
       "damage": "+8"
     },
-    "image_url": "/static/images/cards/hyperbeam.png",
+    "image_url": "/static/images/cards/hyperbeam.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "모든 적에게 피해를 34 줍니다.\n[gold]밀집[/gold]을 3 잃습니다.",
@@ -20795,7 +20795,7 @@
       "cost": 0,
       "calculationbase": "+5"
     },
-    "image_url": "/static/images/cards/protector.png",
+    "image_url": "/static/images/cards/protector.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -20839,7 +20839,7 @@
     "upgrade": {
       "strength": "+1"
     },
-    "image_url": "/static/images/cards/rupture.png",
+    "image_url": "/static/images/cards/rupture.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -20878,7 +20878,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/sow.png",
+    "image_url": "/static/images/cards/sow.webp",
     "beta_image_url": "/static/images/cards/beta/sow.png",
     "type_variants": null,
     "upgrade_description": "모든 적에게 피해를 11 줍니다.",
@@ -20916,7 +20916,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/zap.png",
+    "image_url": "/static/images/cards/zap.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -20955,7 +20955,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/jack_of_all_trades.png",
+    "image_url": "/static/images/cards/jack_of_all_trades.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "무작위 무색 카드를 2장 [gold]손[/gold]으로 가져옵니다.",
@@ -20997,7 +20997,7 @@
       "damage": "+3",
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/hegemony.png",
+    "image_url": "/static/images/cards/hegemony.webp",
     "beta_image_url": "/static/images/cards/beta/hegemony.png",
     "type_variants": null,
     "upgrade_description": "피해를 18 줍니다.\n다음 턴에, [energy:3]를 얻습니다.",
@@ -21035,7 +21035,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/equilibrium.png",
+    "image_url": "/static/images/cards/equilibrium.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]방어도[/gold]를 16 얻습니다.\n이번 턴에 [gold]손[/gold]에 있는 카드를 [gold]보존[/gold]합니다.",
@@ -21074,7 +21074,7 @@
     "upgrade": {
       "damage": "+6"
     },
-    "image_url": "/static/images/cards/bombardment.png",
+    "image_url": "/static/images/cards/bombardment.webp",
     "beta_image_url": "/static/images/cards/beta/bombardment.png",
     "type_variants": null,
     "upgrade_description": "피해를 24 줍니다.\n내 턴 시작 시, [gold]소멸된 카드 더미[/gold]에서 사용됩니다.",
@@ -21114,7 +21114,7 @@
     "upgrade": {
       "block": "+25"
     },
-    "image_url": "/static/images/cards/the_gambit.png",
+    "image_url": "/static/images/cards/the_gambit.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]방어도[/gold]를 75 얻습니다.\n이번 전투 동안 막히지 않은 공격 피해를 받는다면, 죽습니다.",
@@ -21155,7 +21155,7 @@
       "damage": "+2",
       "maxhp": "+1"
     },
-    "image_url": "/static/images/cards/feed.png",
+    "image_url": "/static/images/cards/feed.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 12 줍니다.\n[gold]치명타[/gold]라면, 최대 체력이 4 증가합니다.",
@@ -21195,7 +21195,7 @@
     "upgrade": {
       "damage": "+5"
     },
-    "image_url": "/static/images/cards/predator.png",
+    "image_url": "/static/images/cards/predator.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 20 줍니다.\n다음 턴에, 카드를 2장 뽑습니다.",
@@ -21232,7 +21232,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/vicious.png",
+    "image_url": "/static/images/cards/vicious.webp",
     "beta_image_url": "/static/images/cards/beta/vicious.png",
     "type_variants": null,
     "upgrade_description": "[gold]취약[/gold]을 부여할 때마다, 카드를 2장 뽑습니다.",
@@ -21267,7 +21267,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/spore_mind.png",
+    "image_url": "/static/images/cards/spore_mind.webp",
     "beta_image_url": "/static/images/cards/beta/spore_mind.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -21307,7 +21307,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/scavenge.png",
+    "image_url": "/static/images/cards/scavenge.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "카드를 1장 [gold]소멸[/gold]시킵니다.\n다음 턴에, [energy:3]를 얻습니다.",
@@ -21344,7 +21344,7 @@
     "upgrade": {
       "skills": "+1"
     },
-    "image_url": "/static/images/cards/burst.png",
+    "image_url": "/static/images/cards/burst.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -21382,7 +21382,7 @@
     "upgrade": {
       "bombdamage": "+10"
     },
-    "image_url": "/static/images/cards/the_bomb.png",
+    "image_url": "/static/images/cards/the_bomb.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "3턴 후 턴 종료 시, 모든 적에게 피해를 50 줍니다.",
@@ -21426,7 +21426,7 @@
     "upgrade": {
       "stormpower": "+1"
     },
-    "image_url": "/static/images/cards/storm.png",
+    "image_url": "/static/images/cards/storm.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "파워 카드를 사용할 때마다, [gold]전기[/gold]를 2번 [gold]영창[/gold]합니다.",
@@ -21467,7 +21467,7 @@
       "damage": "+1",
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/pommel_strike.png",
+    "image_url": "/static/images/cards/pommel_strike.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 10 줍니다.\n카드를 2장 뽑습니다.",
@@ -21508,7 +21508,7 @@
     "upgrade": {
       "calculationbase": "+3"
     },
-    "image_url": "/static/images/cards/unleash.png",
+    "image_url": "/static/images/cards/unleash.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -21547,7 +21547,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/flechettes.png",
+    "image_url": "/static/images/cards/flechettes.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]손[/gold]에 있는 스킬 카드 1장당 피해를 7 줍니다.",
@@ -21592,7 +21592,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/lightning_rod.png",
+    "image_url": "/static/images/cards/lightning_rod.webp",
     "beta_image_url": "/static/images/cards/beta/lightning_rod.png",
     "type_variants": null,
     "upgrade_description": "[gold]방어도[/gold]를 7 얻습니다.\n다음 턴 시작 시, [gold]전기[/gold]를 1번 [gold]영창[/gold]합니다.",
@@ -21630,7 +21630,7 @@
     "upgrade": {
       "block": "+4"
     },
-    "image_url": "/static/images/cards/blood_wall.png",
+    "image_url": "/static/images/cards/blood_wall.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "체력을 2 잃습니다.\n[gold]방어도[/gold]를 20 얻습니다.",
@@ -21668,7 +21668,7 @@
     "upgrade": {
       "damage": "+8"
     },
-    "image_url": "/static/images/cards/knockout_blow.png",
+    "image_url": "/static/images/cards/knockout_blow.webp",
     "beta_image_url": "/static/images/cards/beta/knockout_blow.png",
     "type_variants": null,
     "upgrade_description": "피해를 38 줍니다.\n이 카드가 적을 처치 시, [star:5]을 얻습니다.",
@@ -21701,7 +21701,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/frantic_escape.png",
+    "image_url": "/static/images/cards/frantic_escape.webp",
     "beta_image_url": "/static/images/cards/beta/frantic_escape.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -21738,7 +21738,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/foregone_conclusion.png",
+    "image_url": "/static/images/cards/foregone_conclusion.webp",
     "beta_image_url": "/static/images/cards/beta/foregone_conclusion.png",
     "type_variants": null,
     "upgrade_description": "다음 턴에, [gold]뽑을 카드 더미[/gold]에서 카드를 3장 [gold]손[/gold]으로 가져옵니다.",
@@ -21782,7 +21782,7 @@
     "upgrade": {
       "crimsonmantlepower": "+2"
     },
-    "image_url": "/static/images/cards/crimson_mantle.png",
+    "image_url": "/static/images/cards/crimson_mantle.webp",
     "beta_image_url": "/static/images/cards/beta/crimson_mantle.png",
     "type_variants": null,
     "upgrade_description": "내 턴 시작 시, 체력을 1 잃고 [gold]방어도[/gold]를 10 얻습니다.",
@@ -21819,7 +21819,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/all_for_one.png",
+    "image_url": "/static/images/cards/all_for_one.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 14 줍니다.\n[gold]버린 카드 더미[/gold]에서 모든 0[energy:1] 카드를 [gold]손[/gold]으로 가져옵니다.",
@@ -21854,7 +21854,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/largesse.png",
+    "image_url": "/static/images/cards/largesse.webp",
     "beta_image_url": "/static/images/cards/beta/largesse.png",
     "type_variants": null,
     "upgrade_description": "다른 플레이어가 무작위 [gold]강화[/gold]된 무색 카드를 1장 [gold]손[/gold]으로 가져옵니다.",
@@ -21897,7 +21897,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/minion_strike.png",
+    "image_url": "/static/images/cards/minion_strike.webp",
     "beta_image_url": "/static/images/cards/beta/minion_strike.png",
     "type_variants": null,
     "upgrade_description": "피해를 10 줍니다.\n카드를 1장 뽑습니다.",
@@ -21941,7 +21941,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/minion_dive_bomb.png",
+    "image_url": "/static/images/cards/minion_dive_bomb.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 16 줍니다.",
@@ -21985,7 +21985,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/minion_sacrifice.png",
+    "image_url": "/static/images/cards/minion_sacrifice.webp",
     "beta_image_url": "/static/images/cards/beta/minion_sacrifice.png",
     "type_variants": null,
     "upgrade_description": "[gold]방어도[/gold]를 12 얻습니다.",
@@ -22037,7 +22037,7 @@
       "ostydamage": "+2",
       "vulnerable": "+1"
     },
-    "image_url": "/static/images/cards/high_five.png",
+    "image_url": "/static/images/cards/high_five.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]골골이[/gold]가 모든 적에게\n피해를 13 주고\n[gold]취약[/gold]을 2 부여합니다.",
@@ -22076,7 +22076,7 @@
       "damage": "+1",
       "increase": "+1"
     },
-    "image_url": "/static/images/cards/maul.png",
+    "image_url": "/static/images/cards/maul.webp",
     "beta_image_url": "/static/images/cards/beta/maul.png",
     "type_variants": null,
     "upgrade_description": "피해를 6만큼 2번 줍니다.\n이번 전투 동안 모든 할퀴기 카드의 피해량이 2 증가합니다.",
@@ -22113,7 +22113,7 @@
     "upgrade": {
       "damage": "+6"
     },
-    "image_url": "/static/images/cards/synthesis.png",
+    "image_url": "/static/images/cards/synthesis.webp",
     "beta_image_url": "/static/images/cards/beta/synthesis.png",
     "type_variants": null,
     "upgrade_description": "피해를 18 줍니다.\n다음에 사용하는 파워 카드의 비용이 0 [energy:1]이 됩니다.",
@@ -22157,7 +22157,7 @@
     "upgrade": {
       "focuspower": "+1"
     },
-    "image_url": "/static/images/cards/hotfix.png",
+    "image_url": "/static/images/cards/hotfix.webp",
     "beta_image_url": "/static/images/cards/beta/hotfix.png",
     "type_variants": null,
     "upgrade_description": "이번 턴에 [gold]밀집[/gold]을 3 얻습니다.",
@@ -22196,7 +22196,7 @@
     "upgrade": {
       "summon": "+2"
     },
-    "image_url": "/static/images/cards/legion_of_bone.png",
+    "image_url": "/static/images/cards/legion_of_bone.webp",
     "beta_image_url": "/static/images/cards/beta/legion_of_bone.png",
     "type_variants": null,
     "upgrade_description": "모든 플레이어가 [gold]소환[/gold] 8.",
@@ -22236,7 +22236,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/dismantle.png",
+    "image_url": "/static/images/cards/dismantle.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 10 줍니다.\n대상 적이 [gold]취약[/gold] 상태라면, 2번 적중합니다.",
@@ -22271,7 +22271,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/nostalgia.png",
+    "image_url": "/static/images/cards/nostalgia.webp",
     "beta_image_url": "/static/images/cards/beta/nostalgia.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -22308,7 +22308,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/eidolon.png",
+    "image_url": "/static/images/cards/eidolon.webp",
     "beta_image_url": "/static/images/cards/beta/eidolon.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -22346,7 +22346,7 @@
     "upgrade": {
       "damage": "+5"
     },
-    "image_url": "/static/images/cards/hemokinesis.png",
+    "image_url": "/static/images/cards/hemokinesis.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "체력을 2 잃습니다.\n피해를 19 줍니다.",
@@ -22390,7 +22390,7 @@
     "upgrade": {
       "strength": "+3"
     },
-    "image_url": "/static/images/cards/coordinate.png",
+    "image_url": "/static/images/cards/coordinate.webp",
     "beta_image_url": "/static/images/cards/beta/coordinate.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -22429,7 +22429,7 @@
     "upgrade": {
       "extradamage": "+1"
     },
-    "image_url": "/static/images/cards/bully.png",
+    "image_url": "/static/images/cards/bully.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 4 줍니다.\n대상 적이 보유한 [gold]취약[/gold]마다 피해량이 3 증가합니다.",
@@ -22482,7 +22482,7 @@
     "upgrade": {
       "damage": "+11"
     },
-    "image_url": "/static/images/cards/comet.png",
+    "image_url": "/static/images/cards/comet.webp",
     "beta_image_url": "/static/images/cards/beta/comet.png",
     "type_variants": null,
     "upgrade_description": "피해를 44 줍니다.\n[gold]약화[/gold]를 3 부여합니다.\n[gold]취약[/gold]을 3 부여합니다.",
@@ -22521,7 +22521,7 @@
     "upgrade": {
       "damage": "+11"
     },
-    "image_url": "/static/images/cards/whistle.png",
+    "image_url": "/static/images/cards/whistle.webp",
     "beta_image_url": "/static/images/cards/beta/whistle.png",
     "type_variants": null,
     "upgrade_description": "피해를 44 줍니다.\n적을 [gold]기절[/gold]시킵니다.",
@@ -22561,7 +22561,7 @@
     "upgrade": {
       "summon": "+2"
     },
-    "image_url": "/static/images/cards/bodyguard.png",
+    "image_url": "/static/images/cards/bodyguard.webp",
     "beta_image_url": "/static/images/cards/beta/bodyguard.png",
     "type_variants": null,
     "upgrade_description": "[gold]소환[/gold] 7.",
@@ -22598,7 +22598,7 @@
     "upgrade": {
       "repeat": "+1"
     },
-    "image_url": "/static/images/cards/chaos.png",
+    "image_url": "/static/images/cards/chaos.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "무작위 구체를 2번 [gold]영창[/gold]합니다.",
@@ -22639,7 +22639,7 @@
       "damage": "+1",
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/capture_spirit.png",
+    "image_url": "/static/images/cards/capture_spirit.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "적이 체력을 4 잃습니다.\n[gold]뽑을 카드 더미[/gold]에 [gold]영혼[/gold]을 4장 섞어 넣습니다.",
@@ -22679,7 +22679,7 @@
       "block": "+2",
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/hologram.png",
+    "image_url": "/static/images/cards/hologram.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]방어도[/gold]를 5 얻습니다.\n[gold]버린 카드 더미[/gold]에서 카드를 1장 [gold]손[/gold]으로 가져옵니다.",
@@ -22719,7 +22719,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/stoke.png",
+    "image_url": "/static/images/cards/stoke.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -22759,7 +22759,7 @@
       "Damage": 2
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/burn.png",
+    "image_url": "/static/images/cards/burn.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -22801,7 +22801,7 @@
       "block": "+4",
       "damageback": "+2"
     },
-    "image_url": "/static/images/cards/flame_barrier.png",
+    "image_url": "/static/images/cards/flame_barrier.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]방어도[/gold]를 16 얻습니다.\n이번 턴에 공격을 받을 때마다, 공격한 적에게 피해를 6 줍니다.",
@@ -22847,7 +22847,7 @@
     "upgrade": {
       "phantombladespower": "+3"
     },
-    "image_url": "/static/images/cards/phantom_blades.png",
+    "image_url": "/static/images/cards/phantom_blades.webp",
     "beta_image_url": "/static/images/cards/beta/phantom_blades.png",
     "type_variants": null,
     "upgrade_description": "[gold]단도[/gold]가 [gold]보존[/gold]을 얻습니다.\n매 턴마다 처음으로 사용하는 [gold]단도[/gold]의 피해량이 12 증가합니다.",
@@ -22886,7 +22886,7 @@
     "upgrade": {
       "add_retain": true
     },
-    "image_url": "/static/images/cards/gold_axe.png",
+    "image_url": "/static/images/cards/gold_axe.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -22927,7 +22927,7 @@
     "upgrade": {
       "ostydamage": "+3"
     },
-    "image_url": "/static/images/cards/fetch.png",
+    "image_url": "/static/images/cards/fetch.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]골골이[/gold]가 피해를 6 줍니다.\n이번 턴에 이 카드를 처음으로 사용했다면, 카드를 1장 뽑습니다.",
@@ -22966,7 +22966,7 @@
       "damage": "+1",
       "increase": "+1"
     },
-    "image_url": "/static/images/cards/claw.png",
+    "image_url": "/static/images/cards/claw.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "피해를 4 줍니다.\n이번 전투 동안 모든 후벼 파기 카드의 피해량이 3 증가합니다.",
@@ -23001,7 +23001,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/regret.png",
+    "image_url": "/static/images/cards/regret.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -23047,7 +23047,7 @@
     "upgrade": {
       "ostydamage": "+5"
     },
-    "image_url": "/static/images/cards/sweeping_gaze.png",
+    "image_url": "/static/images/cards/sweeping_gaze.webp",
     "beta_image_url": "/static/images/cards/beta/sweeping_gaze.png",
     "type_variants": null,
     "upgrade_description": "[gold]골골이[/gold]가 무작위 적에게 피해를 15 줍니다.",
@@ -23088,7 +23088,7 @@
     "upgrade": {
       "add_retain": true
     },
-    "image_url": "/static/images/cards/scrawl.png",
+    "image_url": "/static/images/cards/scrawl.webp",
     "beta_image_url": "/static/images/cards/beta/scrawl.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -23131,7 +23131,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/mimic.png",
+    "image_url": "/static/images/cards/mimic.webp",
     "beta_image_url": "/static/images/cards/beta/mimic.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -23172,7 +23172,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/blur.png",
+    "image_url": "/static/images/cards/blur.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]방어도[/gold]를 8 얻습니다.\n다음 턴 시작 시 [gold]방어도[/gold]가 사라지지 않습니다.",
@@ -23210,7 +23210,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/shrug_it_off.png",
+    "image_url": "/static/images/cards/shrug_it_off.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]방어도[/gold]를 11 얻습니다.\n카드를 1장 뽑습니다.",
@@ -23245,7 +23245,7 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": "/static/images/cards/beacon_of_hope.png",
+    "image_url": "/static/images/cards/beacon_of_hope.webp",
     "beta_image_url": "/static/images/cards/beta/beacon_of_hope.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -23283,7 +23283,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/glimmer.png",
+    "image_url": "/static/images/cards/glimmer.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "카드를 4장 뽑습니다.\n[gold]손[/gold]에 있는 카드를 1장 [gold]뽑을 카드 더미[/gold] 맨 위에 놓습니다.",
@@ -23320,7 +23320,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/sacrifice.png",
+    "image_url": "/static/images/cards/sacrifice.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,

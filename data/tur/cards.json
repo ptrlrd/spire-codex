@@ -28,7 +28,7 @@
     "upgrade": {
       "power": "+1"
     },
-    "image_url": "/static/images/cards/feel_no_pain.png",
+    "image_url": "/static/images/cards/feel_no_pain.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Bir kart [gold]Tüketildiğinde[/gold] 4 [gold]Blok[/gold] elde et.",
@@ -69,7 +69,7 @@
     "upgrade": {
       "cards": "+2"
     },
-    "image_url": "/static/images/cards/offering.png",
+    "image_url": "/static/images/cards/offering.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "6 CP kaybet.\n[energy:2] elde et.\n5 kart çek.",
@@ -112,7 +112,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/adrenaline.png",
+    "image_url": "/static/images/cards/adrenaline.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[energy:2] elde et.\n2 kart çek.",
@@ -154,7 +154,7 @@
     "upgrade": {
       "summon": "+3"
     },
-    "image_url": "/static/images/cards/afterlife.png",
+    "image_url": "/static/images/cards/afterlife.webp",
     "beta_image_url": "/static/images/cards/beta/afterlife.png",
     "type_variants": null,
     "upgrade_description": "9 [gold]Çağır[/gold].",
@@ -194,7 +194,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/acrobatics.png",
+    "image_url": "/static/images/cards/acrobatics.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "4 kart çek.\n1 kartı elden çıkar.",
@@ -232,7 +232,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/shrug_it_off.png",
+    "image_url": "/static/images/cards/shrug_it_off.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "11 [gold]Blok[/gold] elde et.\n1 kart çek.",
@@ -271,7 +271,7 @@
       "block": "+4",
       "damageback": "+2"
     },
-    "image_url": "/static/images/cards/flame_barrier.png",
+    "image_url": "/static/images/cards/flame_barrier.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "16 [gold]Blok[/gold] elde et.\nBu tur her saldırıldığında geriye 6 hasar ver.",
@@ -315,7 +315,7 @@
     "upgrade": {
       "strengthpower": "+1"
     },
-    "image_url": "/static/images/cards/inflame.png",
+    "image_url": "/static/images/cards/inflame.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "3 [gold]Kuvvet[/gold] elde et.",
@@ -350,7 +350,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/subroutine.png",
+    "image_url": "/static/images/cards/subroutine.webp",
     "beta_image_url": "/static/images/cards/beta/subroutine.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -389,7 +389,7 @@
     "upgrade": {
       "add_retain": true
     },
-    "image_url": "/static/images/cards/gold_axe.png",
+    "image_url": "/static/images/cards/gold_axe.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -426,7 +426,7 @@
     "upgrade": {
       "skills": "+1"
     },
-    "image_url": "/static/images/cards/burst.png",
+    "image_url": "/static/images/cards/burst.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Bu tur oynayacağın sonraki 2 Beceri kartın tekrar oynanır.",
@@ -463,7 +463,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/cold_snap.png",
+    "image_url": "/static/images/cards/cold_snap.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "9 hasar ver.\n1 [gold]Buz[/gold] [gold]Oluştur[/gold].",
@@ -501,7 +501,7 @@
     "upgrade": {
       "damage": "+6"
     },
-    "image_url": "/static/images/cards/pacts_end.png",
+    "image_url": "/static/images/cards/pacts_end.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]Tüketme Deste[/gold]'nde sadece 3 veya daha fazla kart varsa oynanabilir.\nTÜM düşmanlara 23 hasar ver.",
@@ -539,7 +539,7 @@
     "upgrade": {
       "power": "+1"
     },
-    "image_url": "/static/images/cards/uppercut.png",
+    "image_url": "/static/images/cards/uppercut.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "13 hasar ver.\n2 [gold]Zayıf[/gold] uygula.\n2 [gold]Savunmasız[/gold] uygula.",
@@ -576,7 +576,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/folly.png",
+    "image_url": "/static/images/cards/folly.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -618,7 +618,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/veilpiercer.png",
+    "image_url": "/static/images/cards/veilpiercer.webp",
     "beta_image_url": "/static/images/cards/beta/veilpiercer.png",
     "type_variants": null,
     "upgrade_description": "13 hasar ver.\nSonraki oynayacağın [gold]Ruhani[/gold] kartın maliyeti 0 [energy:1] olur.",
@@ -662,7 +662,7 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": "/static/images/cards/afterimage.png",
+    "image_url": "/static/images/cards/afterimage.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -707,7 +707,7 @@
     "upgrade": {
       "strengthpower": "-1"
     },
-    "image_url": "/static/images/cards/friendship.png",
+    "image_url": "/static/images/cards/friendship.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -742,7 +742,7 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": "/static/images/cards/trash_to_treasure.png",
+    "image_url": "/static/images/cards/trash_to_treasure.webp",
     "beta_image_url": "/static/images/cards/beta/trash_to_treasure.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -779,7 +779,7 @@
     "upgrade": {
       "summon": "+2"
     },
-    "image_url": "/static/images/cards/cleanse.png",
+    "image_url": "/static/images/cards/cleanse.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "5 [gold]Çağır[/gold].\n[gold]Çekme Deste[/gold]'nden 1 kartı [gold]Tüket[/gold].",
@@ -816,7 +816,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/hang.png",
+    "image_url": "/static/images/cards/hang.webp",
     "beta_image_url": "/static/images/cards/beta/hang.png",
     "type_variants": null,
     "upgrade_description": "13 hasar ver.\nTÜM As kartlarının bu düşmana vereceği hasarı ikiye katla.",
@@ -854,7 +854,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/astral_pulse.png",
+    "image_url": "/static/images/cards/astral_pulse.webp",
     "beta_image_url": "/static/images/cards/beta/astral_pulse.png",
     "type_variants": null,
     "upgrade_description": "TÜM düşmanlara 18 hasar ver.",
@@ -891,7 +891,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/pyre.png",
+    "image_url": "/static/images/cards/pyre.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Turunun başında [energy:2] elde et.",
@@ -928,7 +928,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/stoke.png",
+    "image_url": "/static/images/cards/stoke.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -968,7 +968,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/ignition.png",
+    "image_url": "/static/images/cards/ignition.webp",
     "beta_image_url": "/static/images/cards/beta/ignition.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -1010,7 +1010,7 @@
       "damage": "+3",
       "block": "+3"
     },
-    "image_url": "/static/images/cards/dash.png",
+    "image_url": "/static/images/cards/dash.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "13 [gold]Blok[/gold] elde et.\n13 hasar ver.",
@@ -1049,7 +1049,7 @@
     "upgrade": {
       "damage": "+5"
     },
-    "image_url": "/static/images/cards/the_hunt.png",
+    "image_url": "/static/images/cards/the_hunt.webp",
     "beta_image_url": "/static/images/cards/beta/the_hunt.png",
     "type_variants": null,
     "upgrade_description": "15 hasar ver.\nEğer [gold]Öldürürse[/gold] fazladan bir kart ödülü elde et.",
@@ -1091,7 +1091,7 @@
     "upgrade": {
       "damage": "+1"
     },
-    "image_url": "/static/images/cards/lunar_blast.png",
+    "image_url": "/static/images/cards/lunar_blast.webp",
     "beta_image_url": "/static/images/cards/beta/lunar_blast.png",
     "type_variants": null,
     "upgrade_description": "Bu tur oynanmış olan her Beceri kartı için 5 hasar ver.",
@@ -1135,7 +1135,7 @@
     "upgrade": {
       "dexterity": "+1"
     },
-    "image_url": "/static/images/cards/footwork.png",
+    "image_url": "/static/images/cards/footwork.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -1172,7 +1172,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/enlightenment.png",
+    "image_url": "/static/images/cards/enlightenment.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]El[/gold]'indeki TÜM kartların maliyetini savaş boyunca 1'e düşür.",
@@ -1215,7 +1215,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/luminesce.png",
+    "image_url": "/static/images/cards/luminesce.webp",
     "beta_image_url": "/static/images/cards/beta/luminesce.png",
     "type_variants": null,
     "upgrade_description": "[energy:3] elde et.",
@@ -1261,7 +1261,7 @@
       "Disintegration": 6
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/disintegration.png",
+    "image_url": "/static/images/cards/disintegration.webp",
     "beta_image_url": "/static/images/cards/beta/disintegration.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -1300,7 +1300,7 @@
     "upgrade": {
       "damage": "+5"
     },
-    "image_url": "/static/images/cards/severance.png",
+    "image_url": "/static/images/cards/severance.webp",
     "beta_image_url": "/static/images/cards/beta/severance.png",
     "type_variants": null,
     "upgrade_description": "18 hasar ver.\n[gold]Çekme Deste[/gold]'ne, [gold]El[/gold]'ine ve [gold]Atık Deste[/gold]'ne bir [gold]Ruh[/gold] ekle.",
@@ -1335,7 +1335,7 @@
     "upgrade": {
       "add_retain": true
     },
-    "image_url": "/static/images/cards/reaper_form.png",
+    "image_url": "/static/images/cards/reaper_form.webp",
     "beta_image_url": "/static/images/cards/beta/reaper_form.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -1371,7 +1371,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/greed.png",
+    "image_url": "/static/images/cards/greed.webp",
     "beta_image_url": "/static/images/cards/beta/greed.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -1414,7 +1414,7 @@
       "damage": "+5",
       "gold": "+5"
     },
-    "image_url": "/static/images/cards/hand_of_greed.png",
+    "image_url": "/static/images/cards/hand_of_greed.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "25 hasar ver.\nEğer [gold]Öldürürse[/gold] 25 [gold]Altın[/gold] elde et.",
@@ -1454,7 +1454,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/boot_sequence.png",
+    "image_url": "/static/images/cards/boot_sequence.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "13 [gold]Blok[/gold] elde et.",
@@ -1497,7 +1497,7 @@
     "upgrade": {
       "power": "+1"
     },
-    "image_url": "/static/images/cards/expose.png",
+    "image_url": "/static/images/cards/expose.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Düşmandaki tüm [gold]Yapıt[/gold] ve [gold]Blok[/gold]'u kaldır.\n3 [gold]Savunmasız[/gold] uygula.",
@@ -1544,7 +1544,7 @@
     "upgrade": {
       "smokestackpower": "+2"
     },
-    "image_url": "/static/images/cards/smokestack.png",
+    "image_url": "/static/images/cards/smokestack.webp",
     "beta_image_url": "/static/images/cards/beta/smokestack.png",
     "type_variants": null,
     "upgrade_description": "Her Durum kartı oluşturduğunda TÜM düşmanlara 7 hasar ver.",
@@ -1583,7 +1583,7 @@
     "upgrade": {
       "summon": "+1"
     },
-    "image_url": "/static/images/cards/dirge.png",
+    "image_url": "/static/images/cards/dirge.webp",
     "beta_image_url": "/static/images/cards/beta/dirge.png",
     "type_variants": null,
     "upgrade_description": "X kez 4 [gold]Çağır[/gold].\n[gold]Çekme Deste[/gold]'ne X adet [gold]Ruh+[/gold] ekle.",
@@ -1622,7 +1622,7 @@
     "upgrade": {
       "block": "+10"
     },
-    "image_url": "/static/images/cards/impervious.png",
+    "image_url": "/static/images/cards/impervious.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "40 [gold]Blok[/gold] elde et.",
@@ -1678,7 +1678,7 @@
     "upgrade": {
       "thornspower": "+2"
     },
-    "image_url": "/static/images/cards/abrasive.png",
+    "image_url": "/static/images/cards/abrasive.webp",
     "beta_image_url": "/static/images/cards/beta/abrasive.png",
     "type_variants": null,
     "upgrade_description": "1 [gold]Çeviklik[/gold] elde et.\n6 [gold]Diken[/gold] elde et.",
@@ -1718,7 +1718,7 @@
     "upgrade": {
       "corrosivewave": "+1"
     },
-    "image_url": "/static/images/cards/corrosive_wave.png",
+    "image_url": "/static/images/cards/corrosive_wave.webp",
     "beta_image_url": "/static/images/cards/beta/corrosive_wave.png",
     "type_variants": null,
     "upgrade_description": "Bu tur her kart çektiğinde TÜM düşmanlara 4 [gold]Zehir[/gold] uygula.",
@@ -1762,7 +1762,7 @@
     "upgrade": {
       "poison": "+3"
     },
-    "image_url": "/static/images/cards/bubble_bubble.png",
+    "image_url": "/static/images/cards/bubble_bubble.webp",
     "beta_image_url": "/static/images/cards/beta/bubble_bubble.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -1800,7 +1800,7 @@
     "upgrade": {
       "damage": "+6"
     },
-    "image_url": "/static/images/cards/banshees_cry.png",
+    "image_url": "/static/images/cards/banshees_cry.webp",
     "beta_image_url": "/static/images/cards/beta/banshees_cry.png",
     "type_variants": null,
     "upgrade_description": "TÜM düşmanlara 39 hasar ver.\nBu savaşta oynanan her [gold]Ruhani[/gold] kart için [energy:2] ucuzlar.",
@@ -1835,7 +1835,7 @@
     "upgrade": {
       "cost": 2
     },
-    "image_url": "/static/images/cards/barricade.png",
+    "image_url": "/static/images/cards/barricade.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -1873,7 +1873,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/charge_battery.png",
+    "image_url": "/static/images/cards/charge_battery.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "10 [gold]Blok[/gold] elde et.\nBir sonraki tur [energy:1] elde et.",
@@ -1912,7 +1912,7 @@
     "upgrade": {
       "extrablock": "+2"
     },
-    "image_url": "/static/images/cards/fasten.png",
+    "image_url": "/static/images/cards/fasten.webp",
     "beta_image_url": "/static/images/cards/beta/fasten.png",
     "type_variants": null,
     "upgrade_description": "Savunma kartlarından fazladan 7 [gold]Blok[/gold] elde et.",
@@ -1951,7 +1951,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/transfigure.png",
+    "image_url": "/static/images/cards/transfigure.webp",
     "beta_image_url": "/static/images/cards/beta/transfigure.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -1993,7 +1993,7 @@
     "upgrade": {
       "cards": "+2"
     },
-    "image_url": "/static/images/cards/metamorphosis.png",
+    "image_url": "/static/images/cards/metamorphosis.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]Çekme Deste[/gold]'ne rastgele 5 Saldırı kartı ekle. Bu savaş boyunca oynanışları ücretsiz olur.",
@@ -2040,7 +2040,7 @@
     "upgrade": {
       "sleightoffleshpower": "+4"
     },
-    "image_url": "/static/images/cards/sleight_of_flesh.png",
+    "image_url": "/static/images/cards/sleight_of_flesh.webp",
     "beta_image_url": "/static/images/cards/beta/sleight_of_flesh.png",
     "type_variants": null,
     "upgrade_description": "Bir düşmana her güçsüzleştirme uyguladığında, düşman 13 hasar alır.",
@@ -2086,7 +2086,7 @@
       "doom": "+3",
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/scourge.png",
+    "image_url": "/static/images/cards/scourge.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "13 [gold]Kader[/gold] uygula.\n2 kart çek.",
@@ -2123,7 +2123,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/i_am_invincible.png",
+    "image_url": "/static/images/cards/i_am_invincible.webp",
     "beta_image_url": "/static/images/cards/beta/i_am_invincible.png",
     "type_variants": null,
     "upgrade_description": "12 [gold]Blok[/gold] elde et.\nTurunun sonunda bu kart [gold]Çekme Deste[/gold]'nin en üstündeyse otomatik olarak oynanır.",
@@ -2163,7 +2163,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/fuel.png",
+    "image_url": "/static/images/cards/fuel.webp",
     "beta_image_url": "/static/images/cards/beta/fuel.png",
     "type_variants": null,
     "upgrade_description": "[energy:1] elde et.\n2 kart çek.",
@@ -2207,7 +2207,7 @@
       "damage": "+2",
       "maxhp": "+1"
     },
-    "image_url": "/static/images/cards/feed.png",
+    "image_url": "/static/images/cards/feed.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "12 hasar ver.\nEğer [gold]Öldürürse[/gold] maksimum CP'ni 4 artır.",
@@ -2254,7 +2254,7 @@
     "upgrade": {
       "strength": "+2"
     },
-    "image_url": "/static/images/cards/feeding_frenzy.png",
+    "image_url": "/static/images/cards/feeding_frenzy.webp",
     "beta_image_url": "/static/images/cards/beta/feeding_frenzy.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -2291,7 +2291,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/white_noise.png",
+    "image_url": "/static/images/cards/white_noise.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -2338,7 +2338,7 @@
     "upgrade": {
       "focuspower": "+1"
     },
-    "image_url": "/static/images/cards/defragment.png",
+    "image_url": "/static/images/cards/defragment.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "2 [gold]Odak[/gold] elde et.",
@@ -2377,7 +2377,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/finisher.png",
+    "image_url": "/static/images/cards/finisher.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Bu tur oynanan her Saldırı için 8 hasar ver.",
@@ -2415,7 +2415,7 @@
     "upgrade": {
       "damage": "+8"
     },
-    "image_url": "/static/images/cards/knockout_blow.png",
+    "image_url": "/static/images/cards/knockout_blow.webp",
     "beta_image_url": "/static/images/cards/beta/knockout_blow.png",
     "type_variants": null,
     "upgrade_description": "38 hasar ver.\nBu kart bir düşmanı öldürürse [star:5] elde et.",
@@ -2461,7 +2461,7 @@
       "damage": "+2",
       "debilitatepower": "+1"
     },
-    "image_url": "/static/images/cards/debilitate.png",
+    "image_url": "/static/images/cards/debilitate.webp",
     "beta_image_url": "/static/images/cards/beta/debilitate.png",
     "type_variants": null,
     "upgrade_description": "9 hasar ver.\nSonraki 4 tur boyunca [gold]Savunmasız[/gold] ve [gold]Zayıf[/gold] düşman üzerinde iki kat daha etkili olur.",
@@ -2498,7 +2498,7 @@
     "upgrade": {
       "damage": "+1"
     },
-    "image_url": "/static/images/cards/bolas.png",
+    "image_url": "/static/images/cards/bolas.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "4 hasar ver.\nBir sonraki turun başında bu kartı [gold]El[/gold]'ine geri koy.",
@@ -2536,7 +2536,7 @@
     "upgrade": {
       "bombdamage": "+10"
     },
-    "image_url": "/static/images/cards/the_bomb.png",
+    "image_url": "/static/images/cards/the_bomb.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "3 tur sonra TÜM düşmanlara 50 hasar ver.",
@@ -2575,7 +2575,7 @@
     "upgrade": {
       "damage": "+6"
     },
-    "image_url": "/static/images/cards/bombardment.png",
+    "image_url": "/static/images/cards/bombardment.webp",
     "beta_image_url": "/static/images/cards/beta/bombardment.png",
     "type_variants": null,
     "upgrade_description": "24 hasar ver.\nTurunun başında [gold]Tüketme Deste[/gold]'nden oynanır.",
@@ -2615,7 +2615,7 @@
       "Gold": 10
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/debt.png",
+    "image_url": "/static/images/cards/debt.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -2664,7 +2664,7 @@
       "damage": "+2",
       "stranglepower": "+1"
     },
-    "image_url": "/static/images/cards/strangle.png",
+    "image_url": "/static/images/cards/strangle.webp",
     "beta_image_url": "/static/images/cards/beta/strangle.png",
     "type_variants": null,
     "upgrade_description": "10 hasar ver.\nBu tur her kart oynadığında düşman 3 CP kaybeder.",
@@ -2702,7 +2702,7 @@
       "Energy": 1
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/void.png",
+    "image_url": "/static/images/cards/void.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -2750,7 +2750,7 @@
     "upgrade": {
       "voidformpower": "+1"
     },
-    "image_url": "/static/images/cards/void_form.png",
+    "image_url": "/static/images/cards/void_form.webp",
     "beta_image_url": "/static/images/cards/beta/void_form.png",
     "type_variants": null,
     "upgrade_description": "Turunu bitir.\nHer tur ilk oynayacağın 3 kart ücretsiz oynanır.",
@@ -2787,7 +2787,7 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": "/static/images/cards/call_of_the_void.png",
+    "image_url": "/static/images/cards/call_of_the_void.webp",
     "beta_image_url": "/static/images/cards/beta/call_of_the_void.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -2825,7 +2825,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/blur.png",
+    "image_url": "/static/images/cards/blur.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "8 [gold]Blok[/gold] elde et.\n[gold]Blok[/gold] sonraki turun başında kalkmaz.",
@@ -2865,7 +2865,7 @@
     "upgrade": {
       "damage": "+1"
     },
-    "image_url": "/static/images/cards/gunk_up.png",
+    "image_url": "/static/images/cards/gunk_up.webp",
     "beta_image_url": "/static/images/cards/beta/gunk_up.png",
     "type_variants": null,
     "upgrade_description": "3 kez 5 hasar ver.\n[gold]Atık Deste[/gold]'ne bir [gold]Yapış Yapış[/gold] ekle.",
@@ -2903,7 +2903,7 @@
     "upgrade": {
       "damage": "+5"
     },
-    "image_url": "/static/images/cards/ice_lance.png",
+    "image_url": "/static/images/cards/ice_lance.webp",
     "beta_image_url": "/static/images/cards/beta/ice_lance.png",
     "type_variants": null,
     "upgrade_description": "24 hasar ver.\n3 [gold]Buz[/gold] [gold]Oluştur[/gold].",
@@ -2940,7 +2940,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/glacier.png",
+    "image_url": "/static/images/cards/glacier.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "9 [gold]Blok[/gold] elde et.\n2 [gold]Buz[/gold] [gold]Oluştur[/gold].",
@@ -2977,7 +2977,7 @@
     "upgrade": {
       "damage": "+10"
     },
-    "image_url": "/static/images/cards/grand_finale.png",
+    "image_url": "/static/images/cards/grand_finale.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Ancak [gold]Çekme Deste[/gold]'nde hiçbir kart yoksa oynanabilir. TÜM düşmanlara 60 hasar ver.",
@@ -3019,7 +3019,7 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": "/static/images/cards/big_bang.png",
+    "image_url": "/static/images/cards/big_bang.webp",
     "beta_image_url": "/static/images/cards/beta/big_bang.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -3062,7 +3062,7 @@
       "calculationbase": "+1",
       "extradamage": "+1"
     },
-    "image_url": "/static/images/cards/conflagration.png",
+    "image_url": "/static/images/cards/conflagration.webp",
     "beta_image_url": "/static/images/cards/beta/conflagration.png",
     "type_variants": null,
     "upgrade_description": "TÜM düşmanlara 8 hasar ver.\nBu tur oynadığın her Saldırı için fazladan 3 hasar verir.",
@@ -3100,7 +3100,7 @@
     "upgrade": {
       "damage": "+5"
     },
-    "image_url": "/static/images/cards/jackpot.png",
+    "image_url": "/static/images/cards/jackpot.webp",
     "beta_image_url": "/static/images/cards/beta/jackpot.png",
     "type_variants": null,
     "upgrade_description": "30 hasar ver.\n[gold]El[/gold]'ine rastgele 3 adet  [gold]Geliştirilmiş[/gold] 0 [energy:1] kart ekle.",
@@ -3141,7 +3141,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/blade_dance.png",
+    "image_url": "/static/images/cards/blade_dance.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]El[/gold]'ine 4 [gold]Kama[/gold] ekle.",
@@ -3186,7 +3186,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/knife_trap.png",
+    "image_url": "/static/images/cards/knife_trap.webp",
     "beta_image_url": "/static/images/cards/beta/knife_trap.png",
     "type_variants": null,
     "upgrade_description": "[gold]Tüketim Deste[/gold]'ndeki tüm [gold]Kamaları[/gold] [gold]Geliştir[/gold] ve düşmana oyna.",
@@ -3225,7 +3225,7 @@
     "upgrade": {
       "shivs": "+1"
     },
-    "image_url": "/static/images/cards/fan_of_knives.png",
+    "image_url": "/static/images/cards/fan_of_knives.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]Kamalar[/gold] artık TÜM düşmanlara vurur.\n[gold]El[/gold]'ine 5 [gold]Kama[/gold] ekle.",
@@ -3262,7 +3262,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/glasswork.png",
+    "image_url": "/static/images/cards/glasswork.webp",
     "beta_image_url": "/static/images/cards/beta/glasswork.png",
     "type_variants": null,
     "upgrade_description": "8 [gold]Blok[/gold] elde et.\n1 [gold]Cam[/gold] [gold]Oluştur[/gold].",
@@ -3302,7 +3302,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/cloak_and_dagger.png",
+    "image_url": "/static/images/cards/cloak_and_dagger.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "6 [gold]Blok[/gold] elde et.\n[gold]El[/gold]'ine 2 [gold]Kama[/gold] ekle.",
@@ -3346,7 +3346,7 @@
     "upgrade": {
       "infernopower": "+3"
     },
-    "image_url": "/static/images/cards/inferno.png",
+    "image_url": "/static/images/cards/inferno.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Turunun başında 1 CP kaybet.\nTurunda her CP kaybettiğinde TÜM düşmanlara 9 hasar ver.",
@@ -3381,7 +3381,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/hellraiser.png",
+    "image_url": "/static/images/cards/hellraiser.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -3418,7 +3418,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/infernal_blade.png",
+    "image_url": "/static/images/cards/infernal_blade.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -3465,7 +3465,7 @@
     "upgrade": {
       "arsenalpower": "+1"
     },
-    "image_url": "/static/images/cards/arsenal.png",
+    "image_url": "/static/images/cards/arsenal.webp",
     "beta_image_url": "/static/images/cards/beta/arsenal.png",
     "type_variants": null,
     "upgrade_description": "Her Renksiz kart oynadığında 2 [gold]Kuvvet[/gold] elde et.",
@@ -3500,7 +3500,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/enthralled.png",
+    "image_url": "/static/images/cards/enthralled.webp",
     "beta_image_url": "/static/images/cards/beta/enthralled.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -3542,7 +3542,7 @@
     "upgrade": {
       "cost": 2
     },
-    "image_url": "/static/images/cards/murder.png",
+    "image_url": "/static/images/cards/murder.webp",
     "beta_image_url": "/static/images/cards/beta/murder.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -3581,7 +3581,7 @@
     "upgrade": {
       "damage": "+1"
     },
-    "image_url": "/static/images/cards/begone.png",
+    "image_url": "/static/images/cards/begone.webp",
     "beta_image_url": "/static/images/cards/beta/begone.png",
     "type_variants": null,
     "upgrade_description": "5 hasar ver.\n[gold]El[/gold]'indeki kartlardan birini seç ve [gold]Uşak Dalışı+[/gold] kartına [gold]Dönüştür[/gold].",
@@ -3626,7 +3626,7 @@
     "upgrade": {
       "strength": "+1"
     },
-    "image_url": "/static/images/cards/brand.png",
+    "image_url": "/static/images/cards/brand.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -3665,7 +3665,7 @@
       "damage": "+2",
       "block": "+2"
     },
-    "image_url": "/static/images/cards/iron_wave.png",
+    "image_url": "/static/images/cards/iron_wave.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "7 [gold]Blok[/gold] elde et.\n7 hasar ver.",
@@ -3709,7 +3709,7 @@
     "upgrade": {
       "thornspower": "+2"
     },
-    "image_url": "/static/images/cards/caltrops.png",
+    "image_url": "/static/images/cards/caltrops.webp",
     "beta_image_url": "/static/images/cards/beta/caltrops.png",
     "type_variants": null,
     "upgrade_description": "Saldırıldığında geri 5 hasar ver.",
@@ -3747,7 +3747,7 @@
     "upgrade": {
       "forge": "+10"
     },
-    "image_url": "/static/images/cards/the_smith.png",
+    "image_url": "/static/images/cards/the_smith.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "40 [gold]Döv[/gold].",
@@ -3784,7 +3784,7 @@
     "upgrade": {
       "forge": "+2"
     },
-    "image_url": "/static/images/cards/furnace.png",
+    "image_url": "/static/images/cards/furnace.webp",
     "beta_image_url": "/static/images/cards/beta/furnace.png",
     "type_variants": null,
     "upgrade_description": "Turunun başında 6 [gold]Döv[/gold].",
@@ -3822,7 +3822,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/equilibrium.png",
+    "image_url": "/static/images/cards/equilibrium.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "16 [gold]Blok[/gold] elde et.\nBu tur [gold]El[/gold]'ini [gold]Sakla[/gold].",
@@ -3868,7 +3868,7 @@
       "damage": "+2",
       "weak": "+1"
     },
-    "image_url": "/static/images/cards/follow_through.png",
+    "image_url": "/static/images/cards/follow_through.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "TÜM düşmanlara 8 hasar ver.\nEğer bu tur son oynadığın kart bir Beceri ise TÜM düşmanlara 1 [gold]Zayıf[/gold] uygula.",
@@ -3906,7 +3906,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/colossus.png",
+    "image_url": "/static/images/cards/colossus.webp",
     "beta_image_url": "/static/images/cards/beta/colossus.png",
     "type_variants": null,
     "upgrade_description": "8 [gold]Blok[/gold] elde et.\nBu tur, [gold]Savunmasız[/gold] olan düşmanlardan %50 daha az hasar al.",
@@ -3943,7 +3943,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/giant_rock.png",
+    "image_url": "/static/images/cards/giant_rock.webp",
     "beta_image_url": "/static/images/cards/beta/giant_rock.png",
     "type_variants": null,
     "upgrade_description": "20 hasar ver.",
@@ -3982,7 +3982,7 @@
       "damage": "+1",
       "increase": "+1"
     },
-    "image_url": "/static/images/cards/maul.png",
+    "image_url": "/static/images/cards/maul.webp",
     "beta_image_url": "/static/images/cards/beta/maul.png",
     "type_variants": null,
     "upgrade_description": "İki kez 6 hasar ver.\nBu savaşta TÜM Deş kartlarının hasarını 2 artır.",
@@ -4019,7 +4019,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/distraction.png",
+    "image_url": "/static/images/cards/distraction.webp",
     "beta_image_url": "/static/images/cards/beta/distraction.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -4061,7 +4061,7 @@
       "block": "+2",
       "summon": "+1"
     },
-    "image_url": "/static/images/cards/pull_aggro.png",
+    "image_url": "/static/images/cards/pull_aggro.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "5 [gold]Çağır[/gold].\n9 [gold]Blok[/gold] elde et.",
@@ -4098,7 +4098,7 @@
     "upgrade": {
       "add_retain": true
     },
-    "image_url": "/static/images/cards/wish.png",
+    "image_url": "/static/images/cards/wish.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -4140,7 +4140,7 @@
     "upgrade": {
       "summon": "+5"
     },
-    "image_url": "/static/images/cards/reanimate.png",
+    "image_url": "/static/images/cards/reanimate.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "25 [gold]Çağır[/gold].",
@@ -4182,7 +4182,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/untouchable.png",
+    "image_url": "/static/images/cards/untouchable.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "12 [gold]Blok[/gold] elde et.",
@@ -4229,7 +4229,7 @@
     "upgrade": {
       "hailstormpower": "+2"
     },
-    "image_url": "/static/images/cards/hailstorm.png",
+    "image_url": "/static/images/cards/hailstorm.webp",
     "beta_image_url": "/static/images/cards/beta/hailstorm.png",
     "type_variants": null,
     "upgrade_description": "Turunun sonunda [gold]Buz[/gold]'a sahipsen TÜM düşmanlara 8 hasar ver.",
@@ -4266,7 +4266,7 @@
     "upgrade": {
       "loop": "+1"
     },
-    "image_url": "/static/images/cards/loop.png",
+    "image_url": "/static/images/cards/loop.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Turunun başında en sağdaki Küre'nin pasif yeteneğini  2 kez aktifleştir.",
@@ -4303,7 +4303,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/quadcast.png",
+    "image_url": "/static/images/cards/quadcast.webp",
     "beta_image_url": "/static/images/cards/beta/quadcast.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -4343,7 +4343,7 @@
     "upgrade": {
       "ostydamage": "+4"
     },
-    "image_url": "/static/images/cards/flatten.png",
+    "image_url": "/static/images/cards/flatten.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]Osti[/gold] 16 hasar verir.\nEğer [gold]Osti[/gold] bu turda saldırmışsa bu kartın maliyeti 0 [energy:1] olur.",
@@ -4387,7 +4387,7 @@
     "upgrade": {
       "vigorpower": "+2"
     },
-    "image_url": "/static/images/cards/terraforming.png",
+    "image_url": "/static/images/cards/terraforming.webp",
     "beta_image_url": "/static/images/cards/beta/terraforming.png",
     "type_variants": null,
     "upgrade_description": "8 [gold]Dinç[/gold] elde et.",
@@ -4427,7 +4427,7 @@
     "upgrade": {
       "ostydamage": "+3"
     },
-    "image_url": "/static/images/cards/poke.png",
+    "image_url": "/static/images/cards/poke.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]Osti[/gold] 9 hasar verir.",
@@ -4471,7 +4471,7 @@
     "upgrade": {
       "platingpower": "+2"
     },
-    "image_url": "/static/images/cards/eternal_armor.png",
+    "image_url": "/static/images/cards/eternal_armor.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "9 [gold]Zırh[/gold] elde et.",
@@ -4510,7 +4510,7 @@
       "summon": "+1",
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/invoke.png",
+    "image_url": "/static/images/cards/invoke.webp",
     "beta_image_url": "/static/images/cards/beta/invoke.png",
     "type_variants": null,
     "upgrade_description": "Sonraki tur 3 [gold]Çağır[/gold] ve [energy:3] elde et.",
@@ -4553,7 +4553,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/sovereign_blade.png",
+    "image_url": "/static/images/cards/sovereign_blade.webp",
     "beta_image_url": "/static/images/cards/beta/sovereign_blade.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -4595,7 +4595,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/sow.png",
+    "image_url": "/static/images/cards/sow.webp",
     "beta_image_url": "/static/images/cards/beta/sow.png",
     "type_variants": null,
     "upgrade_description": "TÜM düşmanlara 11 hasar ver.",
@@ -4635,7 +4635,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/hand_trick.png",
+    "image_url": "/static/images/cards/hand_trick.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "10 [gold]Blok[/gold] elde et.\nBu tur [gold]El[/gold]'indeki bir Beceri'ye [gold]Kurnaz[/gold] ekle.",
@@ -4675,7 +4675,7 @@
       "energy": "+1",
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/brightest_flame.png",
+    "image_url": "/static/images/cards/brightest_flame.webp",
     "beta_image_url": "/static/images/cards/beta/brightest_flame.png",
     "type_variants": null,
     "upgrade_description": "[energy:3] elde et.\n3 kart çek.\n1 Maksimum CP kaybet.",
@@ -4714,7 +4714,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/energy_surge.png",
+    "image_url": "/static/images/cards/energy_surge.webp",
     "beta_image_url": "/static/images/cards/beta/energy_surge.png",
     "type_variants": null,
     "upgrade_description": "TÜM oyuncular [energy:3] elde eder.",
@@ -4754,7 +4754,7 @@
       "Damage": 3
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/infection.png",
+    "image_url": "/static/images/cards/infection.webp",
     "beta_image_url": "/static/images/cards/beta/infection.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -4794,7 +4794,7 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": "/static/images/cards/entropy.png",
+    "image_url": "/static/images/cards/entropy.webp",
     "beta_image_url": "/static/images/cards/beta/entropy.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -4833,7 +4833,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/molten_fist.png",
+    "image_url": "/static/images/cards/molten_fist.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "14 hasar ver.\nDüşmanın [gold]Savunmasız[/gold]'ını ikiye katla.",
@@ -4876,7 +4876,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/dramatic_entrance.png",
+    "image_url": "/static/images/cards/dramatic_entrance.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "TÜM düşmanlara 15 hasar ver.",
@@ -4926,7 +4926,7 @@
       "damage": "+1",
       "weak": "+1"
     },
-    "image_url": "/static/images/cards/neutralize.png",
+    "image_url": "/static/images/cards/neutralize.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "4 hasar ver.\n1 [gold]Zayıf[/gold] uygula.",
@@ -4965,7 +4965,7 @@
       "damage": "+1",
       "strengthloss": "+1"
     },
-    "image_url": "/static/images/cards/crush_under.png",
+    "image_url": "/static/images/cards/crush_under.webp",
     "beta_image_url": "/static/images/cards/beta/crush_under.png",
     "type_variants": null,
     "upgrade_description": "TÜM düşmanlara 8 hasar ver. Bu turda tüm düşmanlar 2 [gold]Kuvvet[/gold] kaybeder.",
@@ -5003,7 +5003,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/breakthrough.png",
+    "image_url": "/static/images/cards/breakthrough.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "1 CP kaybet.\nTÜM düşmanlara 13 hasar ver.",
@@ -5040,7 +5040,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/beat_down.png",
+    "image_url": "/static/images/cards/beat_down.webp",
     "beta_image_url": "/static/images/cards/beta/beat_down.png",
     "type_variants": null,
     "upgrade_description": "[gold]Atık Deste[/gold]'nden rastgele 4 Saldırı kartı oyna.",
@@ -5084,7 +5084,7 @@
     "upgrade": {
       "crueltypower": "+25"
     },
-    "image_url": "/static/images/cards/cruelty.png",
+    "image_url": "/static/images/cards/cruelty.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]Savunmasız[/gold] düşmanlar %50 daha fazla hasar alır.",
@@ -5121,7 +5121,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/catastrophe.png",
+    "image_url": "/static/images/cards/catastrophe.webp",
     "beta_image_url": "/static/images/cards/beta/catastrophe.png",
     "type_variants": null,
     "upgrade_description": "[gold]Çekme Deste[/gold]'nden rastgele 3 kart oyna.",
@@ -5158,7 +5158,7 @@
     "upgrade": {
       "forge": "+2"
     },
-    "image_url": "/static/images/cards/conqueror.png",
+    "image_url": "/static/images/cards/conqueror.webp",
     "beta_image_url": "/static/images/cards/beta/conqueror.png",
     "type_variants": null,
     "upgrade_description": "5 [gold]Döv[/gold].\n[gold]Egemen Kılıcı[/gold] düşmana bu tur iki kat daha fazla hasar verir.",
@@ -5193,7 +5193,7 @@
     "upgrade": {
       "cost": 2
     },
-    "image_url": "/static/images/cards/calamity.png",
+    "image_url": "/static/images/cards/calamity.webp",
     "beta_image_url": "/static/images/cards/beta/calamity.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -5230,7 +5230,7 @@
       "gloryActIndex": 2
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/lantern_key.png",
+    "image_url": "/static/images/cards/lantern_key.webp",
     "beta_image_url": "/static/images/cards/beta/lantern_key.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -5273,7 +5273,7 @@
       "damage": "+3",
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/photon_cut.png",
+    "image_url": "/static/images/cards/photon_cut.webp",
     "beta_image_url": "/static/images/cards/beta/photon_cut.png",
     "type_variants": null,
     "upgrade_description": "13 hasar ver.\n2 kart çek.\n[gold]El[/gold]'indeki 1 kartı [gold]Çekme Deste[/gold]'nin en üstüne koy.",
@@ -5308,7 +5308,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/fusion.png",
+    "image_url": "/static/images/cards/fusion.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -5352,7 +5352,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/spinner.png",
+    "image_url": "/static/images/cards/spinner.webp",
     "beta_image_url": "/static/images/cards/beta/spinner.png",
     "type_variants": null,
     "upgrade_description": "1 [gold]Cam[/gold] [gold]Oluştur[/gold].\nTurunun başında 1 [gold]Cam[/gold] [gold]Oluştur[/gold].",
@@ -5396,7 +5396,7 @@
     "upgrade": {
       "stormpower": "+1"
     },
-    "image_url": "/static/images/cards/storm.png",
+    "image_url": "/static/images/cards/storm.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Her Güç kartı oynadığında 2 [gold]Yıldırım[/gold] [gold]Oluştur[/gold].",
@@ -5433,7 +5433,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/vicious.png",
+    "image_url": "/static/images/cards/vicious.webp",
     "beta_image_url": "/static/images/cards/beta/vicious.png",
     "type_variants": null,
     "upgrade_description": "Her [gold]Savunmasız[/gold] uyguladığında 2 kart çek.",
@@ -5471,7 +5471,7 @@
     "upgrade": {
       "repeat": "+1"
     },
-    "image_url": "/static/images/cards/peck.png",
+    "image_url": "/static/images/cards/peck.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "4 kez 2 hasar ver.",
@@ -5511,7 +5511,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/voltaic.png",
+    "image_url": "/static/images/cards/voltaic.webp",
     "beta_image_url": "/static/images/cards/beta/voltaic.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -5567,7 +5567,7 @@
     "upgrade": {
       "damage": "+5"
     },
-    "image_url": "/static/images/cards/gamma_blast.png",
+    "image_url": "/static/images/cards/gamma_blast.webp",
     "beta_image_url": "/static/images/cards/beta/gamma_blast.png",
     "type_variants": null,
     "upgrade_description": "18 hasar ver.\n2 [gold]Zayıf[/gold] uygula.\n2 [gold]Savunmasız[/gold] uygula.",
@@ -5604,7 +5604,7 @@
       "Gold": 600
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/spoils_map.png",
+    "image_url": "/static/images/cards/spoils_map.webp",
     "beta_image_url": "/static/images/cards/beta/spoils_map.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -5645,7 +5645,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/spite.png",
+    "image_url": "/static/images/cards/spite.webp",
     "beta_image_url": "/static/images/cards/beta/spite.png",
     "type_variants": null,
     "upgrade_description": "9 hasar ver.\nBu turda CP kaybettiysen 1 kart çekersin.",
@@ -5684,7 +5684,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/boost_away.png",
+    "image_url": "/static/images/cards/boost_away.webp",
     "beta_image_url": "/static/images/cards/beta/boost_away.png",
     "type_variants": null,
     "upgrade_description": "9 [gold]Blok[/gold] elde et.\n[gold]Atık Deste[/gold]'ne bir [gold]Sersemlemiş[/gold] ekle.",
@@ -5723,7 +5723,7 @@
       "block": "+2",
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/delay.png",
+    "image_url": "/static/images/cards/delay.webp",
     "beta_image_url": "/static/images/cards/beta/delay.png",
     "type_variants": null,
     "upgrade_description": "13 [gold]Blok[/gold] elde et.\nBir sonraki tur\n[energy:2] elde et.",
@@ -5763,7 +5763,7 @@
     "upgrade": {
       "increase": "+1"
     },
-    "image_url": "/static/images/cards/genetic_algorithm.png",
+    "image_url": "/static/images/cards/genetic_algorithm.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "1 [gold]Blok[/gold] elde et.\nBu kartın [gold]Blok[/gold]'unu kalıcı olarak 4 artır.",
@@ -5803,7 +5803,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/scavenge.png",
+    "image_url": "/static/images/cards/scavenge.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Bir kartı [gold]Tüket[/gold].\nSonraki turda [energy:3] elde et.",
@@ -5842,7 +5842,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/flick_flack.png",
+    "image_url": "/static/images/cards/flick_flack.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "TÜM düşmanlara 9 hasar ver.",
@@ -5889,7 +5889,7 @@
     "upgrade": {
       "countdownpower": "+3"
     },
-    "image_url": "/static/images/cards/countdown.png",
+    "image_url": "/static/images/cards/countdown.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Turunun başında rastgele bir düşmana 9 [gold]Kader[/gold] uygula.",
@@ -5926,7 +5926,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/rebound.png",
+    "image_url": "/static/images/cards/rebound.webp",
     "beta_image_url": "/static/images/cards/beta/rebound.png",
     "type_variants": null,
     "upgrade_description": "12 hasar ver.\nBu tur sonraki oynayacağın kartı [gold]Çekme Deste[/gold]'nin en üstüne koy.",
@@ -5965,7 +5965,7 @@
     "upgrade": {
       "forge": "+3"
     },
-    "image_url": "/static/images/cards/summon_forth.png",
+    "image_url": "/static/images/cards/summon_forth.webp",
     "beta_image_url": "/static/images/cards/beta/summon_forth.png",
     "type_variants": null,
     "upgrade_description": "11 [gold]Döv[/gold].\n[gold]Egemen Kılıcı[/gold]'nı herhangi bir desteden [gold]El[/gold]'ine ekle.",
@@ -6006,7 +6006,7 @@
     "upgrade": {
       "ostydamage": "+3"
     },
-    "image_url": "/static/images/cards/fetch.png",
+    "image_url": "/static/images/cards/fetch.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]Osti[/gold] 6 hasar verir.\nEğer bu kart bu turda ilk kez oynandıysa 1 kart çek.",
@@ -6046,7 +6046,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/hidden_daggers.png",
+    "image_url": "/static/images/cards/hidden_daggers.webp",
     "beta_image_url": "/static/images/cards/beta/hidden_daggers.png",
     "type_variants": null,
     "upgrade_description": "Elinden 2 kartı çıkar.\n[gold]El[/gold]'ine 2 [gold]Kama+[/gold] ekle.",
@@ -6085,7 +6085,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/up_my_sleeve.png",
+    "image_url": "/static/images/cards/up_my_sleeve.webp",
     "beta_image_url": "/static/images/cards/beta/up_my_sleeve.png",
     "type_variants": null,
     "upgrade_description": "[gold]El[/gold]'ine 4 [gold]Kama[/gold] ekle.\nBu kartın maliyetini 1 azalt.",
@@ -6130,7 +6130,7 @@
     "upgrade": {
       "starnextturnpower": "+1"
     },
-    "image_url": "/static/images/cards/hidden_cache.png",
+    "image_url": "/static/images/cards/hidden_cache.webp",
     "beta_image_url": "/static/images/cards/beta/hidden_cache.png",
     "type_variants": null,
     "upgrade_description": "[star:1] elde et.\nSonraki turda [star:4] elde et.",
@@ -6167,7 +6167,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/secret_weapon.png",
+    "image_url": "/static/images/cards/secret_weapon.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -6207,7 +6207,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/secret_technique.png",
+    "image_url": "/static/images/cards/secret_technique.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -6247,7 +6247,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/byrd_swoop.png",
+    "image_url": "/static/images/cards/byrd_swoop.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "18 hasar ver.",
@@ -6282,7 +6282,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/byrdonis_egg.png",
+    "image_url": "/static/images/cards/byrdonis_egg.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -6329,7 +6329,7 @@
     "upgrade": {
       "thunderpower": "+2"
     },
-    "image_url": "/static/images/cards/thunder.png",
+    "image_url": "/static/images/cards/thunder.webp",
     "beta_image_url": "/static/images/cards/beta/thunder.png",
     "type_variants": null,
     "upgrade_description": "Her [gold]Yıldırım Tetiklediğinde[/gold] hasar alan her düşmana ayrıca 8 hasar ver.",
@@ -6366,7 +6366,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/rainbow.png",
+    "image_url": "/static/images/cards/rainbow.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -6406,7 +6406,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/shadow_step.png",
+    "image_url": "/static/images/cards/shadow_step.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -6443,7 +6443,7 @@
     "upgrade": {
       "block": "+4"
     },
-    "image_url": "/static/images/cards/shadow_shield.png",
+    "image_url": "/static/images/cards/shadow_shield.webp",
     "beta_image_url": "/static/images/cards/beta/shadow_shield.png",
     "type_variants": null,
     "upgrade_description": "15 [gold]Blok[/gold] elde et.\n1 [gold]Karanlık[/gold] [gold]Oluştur[/gold].",
@@ -6480,7 +6480,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/shadowmeld.png",
+    "image_url": "/static/images/cards/shadowmeld.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -6517,7 +6517,7 @@
     "upgrade": {
       "damage": "+11"
     },
-    "image_url": "/static/images/cards/bury.png",
+    "image_url": "/static/images/cards/bury.webp",
     "beta_image_url": "/static/images/cards/beta/bury.png",
     "type_variants": null,
     "upgrade_description": "63 hasar ver.",
@@ -6552,7 +6552,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/largesse.png",
+    "image_url": "/static/images/cards/largesse.webp",
     "beta_image_url": "/static/images/cards/beta/largesse.png",
     "type_variants": null,
     "upgrade_description": "Başka bir oyuncunun [gold]El[/gold]'ine  [gold]Geliştirilmiş[/gold] rastgele bir Renksiz kart ekle.",
@@ -6589,7 +6589,7 @@
     "upgrade": {
       "panachedamage": "+4"
     },
-    "image_url": "/static/images/cards/panache.png",
+    "image_url": "/static/images/cards/panache.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Tek turda her 5 kart oynadığında TÜM düşmanlara 14 hasar ver.",
@@ -6626,7 +6626,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/skim.png",
+    "image_url": "/static/images/cards/skim.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "4 kart çek.",
@@ -6672,7 +6672,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/sentry_mode.png",
+    "image_url": "/static/images/cards/sentry_mode.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -6718,7 +6718,7 @@
       "damage": "+1",
       "weak": "+1"
     },
-    "image_url": "/static/images/cards/go_for_the_eyes.png",
+    "image_url": "/static/images/cards/go_for_the_eyes.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "4 hasar ver.\nEğer düşman saldırmayı amaçlıyorsa 1 [gold]Zayıf[/gold] uygula.",
@@ -6764,7 +6764,7 @@
       "damage": "+2",
       "vulnerable": "+1"
     },
-    "image_url": "/static/images/cards/bash.png",
+    "image_url": "/static/images/cards/bash.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "10 hasar ver.\n2 [gold]Savunmasız[/gold] uygula.",
@@ -6803,7 +6803,7 @@
       "damage": "+2",
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/drain_power.png",
+    "image_url": "/static/images/cards/drain_power.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "12 hasar ver.\n[gold]Atık Deste[/gold]'ndeki rastgele 3 kartı [gold]Geliştir[/gold].",
@@ -6843,7 +6843,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/seeker_strike.png",
+    "image_url": "/static/images/cards/seeker_strike.webp",
     "beta_image_url": "/static/images/cards/beta/seeker_strike.png",
     "type_variants": null,
     "upgrade_description": "9 hasar ver.\n[gold]El[/gold]'ine koymak için [gold]Çekme Deste[/gold]'ndeki 3 karttan 1 tanesini seç.",
@@ -6884,7 +6884,7 @@
       "damage": "+1",
       "stars": "+1"
     },
-    "image_url": "/static/images/cards/solar_strike.png",
+    "image_url": "/static/images/cards/solar_strike.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "9 hasar ver.\n[star:2] elde et.",
@@ -6923,7 +6923,7 @@
       "damage": "+3",
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/hegemony.png",
+    "image_url": "/static/images/cards/hegemony.webp",
     "beta_image_url": "/static/images/cards/beta/hegemony.png",
     "type_variants": null,
     "upgrade_description": "18 hasar ver.\nBir sonraki tur [energy:3] elde et.",
@@ -6960,7 +6960,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/malaise.png",
+    "image_url": "/static/images/cards/malaise.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Düşman X+1 [gold]Kuvvet[/gold] kaybeder. X+1 [gold]Zayıf[/gold] uygula.",
@@ -7000,7 +7000,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/dagger_throw.png",
+    "image_url": "/static/images/cards/dagger_throw.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "12 hasar ver.\n1 kart çek.\n1 kartı elinden çıkar.",
@@ -7037,7 +7037,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/dagger_spray.png",
+    "image_url": "/static/images/cards/dagger_spray.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "TÜM düşmanlara iki kez 6 hasar ver.",
@@ -7076,7 +7076,7 @@
     "upgrade": {
       "damage": "+6"
     },
-    "image_url": "/static/images/cards/reap.png",
+    "image_url": "/static/images/cards/reap.webp",
     "beta_image_url": "/static/images/cards/beta/reap.png",
     "type_variants": null,
     "upgrade_description": "33 hasar ver.",
@@ -7118,7 +7118,7 @@
     "upgrade": {
       "calculationbase": "+3"
     },
-    "image_url": "/static/images/cards/precise_cut.png",
+    "image_url": "/static/images/cards/precise_cut.webp",
     "beta_image_url": "/static/images/cards/beta/precise_cut.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -7164,7 +7164,7 @@
     "upgrade": {
       "phantombladespower": "+3"
     },
-    "image_url": "/static/images/cards/phantom_blades.png",
+    "image_url": "/static/images/cards/phantom_blades.webp",
     "beta_image_url": "/static/images/cards/beta/phantom_blades.png",
     "type_variants": null,
     "upgrade_description": "[gold]Kamaların[/gold] [gold]Sakla[/gold] elde eder.\nHer tur oynadığın ilk [gold]Kama[/gold] fazladan 12 hasar verir.",
@@ -7215,7 +7215,7 @@
     "upgrade": {
       "intangiblepower": "+1"
     },
-    "image_url": "/static/images/cards/wraith_form.png",
+    "image_url": "/static/images/cards/wraith_form.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "3 [gold]Soyutluk[/gold] elde et.\nTurunun başında 1 [gold]Çeviklik[/gold] kaybet.",
@@ -7252,7 +7252,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/survivor.png",
+    "image_url": "/static/images/cards/survivor.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "11 [gold]Blok[/gold] elde et.\n1 kartı elinden çıkar.",
@@ -7296,7 +7296,7 @@
     "upgrade": {
       "preptimepower": "+2"
     },
-    "image_url": "/static/images/cards/prep_time.png",
+    "image_url": "/static/images/cards/prep_time.webp",
     "beta_image_url": "/static/images/cards/beta/prep_time.png",
     "type_variants": null,
     "upgrade_description": "Turunun başında 6 [gold]Dinç[/gold] elde et.",
@@ -7333,7 +7333,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/prepared.png",
+    "image_url": "/static/images/cards/prepared.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "2 kart çek.\n2 kartı elinden çıkar.",
@@ -7370,7 +7370,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/uproar.png",
+    "image_url": "/static/images/cards/uproar.webp",
     "beta_image_url": "/static/images/cards/beta/uproar.png",
     "type_variants": null,
     "upgrade_description": "İki kez 7 hasar ver.\n[gold]Çekme Deste[/gold]'nden rastgele bir Saldırı oyna.",
@@ -7407,7 +7407,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/all_for_one.png",
+    "image_url": "/static/images/cards/all_for_one.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "14 hasar ver.\n[gold]Atık Deste[/gold]'ndeki TÜM 0[energy:1] kartlarını [gold]El[/gold]'ine koy.",
@@ -7446,7 +7446,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/jack_of_all_trades.png",
+    "image_url": "/static/images/cards/jack_of_all_trades.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]El[/gold]'ine rastgele 2 Renksiz kart ekle.",
@@ -7486,7 +7486,7 @@
     "upgrade": {
       "add_retain": true
     },
-    "image_url": "/static/images/cards/calculated_gamble.png",
+    "image_url": "/static/images/cards/calculated_gamble.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -7527,7 +7527,7 @@
     "upgrade": {
       "increase": "+4"
     },
-    "image_url": "/static/images/cards/rampage.png",
+    "image_url": "/static/images/cards/rampage.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "9 hasar ver.\nBu savaş boyunca bu kartın hasarını 9 artır.",
@@ -7567,7 +7567,7 @@
     "upgrade": {
       "extradamage": "+1"
     },
-    "image_url": "/static/images/cards/crescent_spear.png",
+    "image_url": "/static/images/cards/crescent_spear.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "6 hasar ver.\n[star:1] bedeli olan TÜM kartlarının sayısı kadar fazladan 3 hasar verir.",
@@ -7602,7 +7602,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/stratagem.png",
+    "image_url": "/static/images/cards/stratagem.webp",
     "beta_image_url": "/static/images/cards/beta/stratagem.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -7647,7 +7647,7 @@
     "upgrade": {
       "damage": "+8"
     },
-    "image_url": "/static/images/cards/hyperbeam.png",
+    "image_url": "/static/images/cards/hyperbeam.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "TÜM düşmanlara 34 hasar ver.\n3 [gold]Odak[/gold] kaybet.",
@@ -7685,7 +7685,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/alignment.png",
+    "image_url": "/static/images/cards/alignment.webp",
     "beta_image_url": "/static/images/cards/beta/alignment.png",
     "type_variants": null,
     "upgrade_description": "[energy:3] elde et.",
@@ -7720,7 +7720,7 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": "/static/images/cards/juggling.png",
+    "image_url": "/static/images/cards/juggling.webp",
     "beta_image_url": "/static/images/cards/beta/juggling.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -7760,7 +7760,7 @@
       "block": "+2",
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/hologram.png",
+    "image_url": "/static/images/cards/hologram.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "5 [gold]Blok[/gold] elde et.\n[gold]Atık Deste[/gold]'nden bir kartı [gold]El[/gold]'ine koy.",
@@ -7800,7 +7800,7 @@
     "upgrade": {
       "cost": 2
     },
-    "image_url": "/static/images/cards/monarchs_gaze.png",
+    "image_url": "/static/images/cards/monarchs_gaze.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -7852,7 +7852,7 @@
       "dexterity": "+1",
       "strength": "+1"
     },
-    "image_url": "/static/images/cards/prowess.png",
+    "image_url": "/static/images/cards/prowess.webp",
     "beta_image_url": "/static/images/cards/beta/prowess.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -7889,7 +7889,7 @@
     "upgrade": {
       "stars": "+1"
     },
-    "image_url": "/static/images/cards/venerate.png",
+    "image_url": "/static/images/cards/venerate.webp",
     "beta_image_url": "/static/images/cards/beta/venerate.png",
     "type_variants": null,
     "upgrade_description": "[star:3] elde et.",
@@ -7926,7 +7926,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/thrash.png",
+    "image_url": "/static/images/cards/thrash.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "İki kez 6 hasar ver.\n[gold]El[/gold]'indeki rastgele bir Saldırı'yı [gold]Tüket[/gold] ve hasarını bu karta ekle.",
@@ -7965,7 +7965,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/overclock.png",
+    "image_url": "/static/images/cards/overclock.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "3 kart çek.\n[gold]Atık Deste[/gold]'ne bir [gold]Yanık[/gold] ekle.",
@@ -8009,7 +8009,7 @@
     "upgrade": {
       "speedsterpower": "+1"
     },
-    "image_url": "/static/images/cards/speedster.png",
+    "image_url": "/static/images/cards/speedster.webp",
     "beta_image_url": "/static/images/cards/beta/speedster.png",
     "type_variants": null,
     "upgrade_description": "Turun sırasında her kart çektiğinde TÜM düşmanlara 3 hasar ver.",
@@ -8048,7 +8048,7 @@
     "upgrade": {
       "damage": "+11"
     },
-    "image_url": "/static/images/cards/whistle.png",
+    "image_url": "/static/images/cards/whistle.webp",
     "beta_image_url": "/static/images/cards/beta/whistle.png",
     "type_variants": null,
     "upgrade_description": "44 hasar ver.\nDüşmanı [gold]Sersemlet[/gold].",
@@ -8091,7 +8091,7 @@
     "upgrade": {
       "damage": "+1"
     },
-    "image_url": "/static/images/cards/radiate.png",
+    "image_url": "/static/images/cards/radiate.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Bu tur elde edilen her [star:1] için TÜM düşmanlara 4 hasar ver.",
@@ -8129,7 +8129,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/gather_light.png",
+    "image_url": "/static/images/cards/gather_light.webp",
     "beta_image_url": "/static/images/cards/beta/gather_light.png",
     "type_variants": null,
     "upgrade_description": "10 [gold]Blok[/gold] elde et.\n[star:1] elde et.",
@@ -8169,7 +8169,7 @@
       "damage": "+1",
       "playmax": "+1"
     },
-    "image_url": "/static/images/cards/ftl.png",
+    "image_url": "/static/images/cards/ftl.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "6 hasar ver.\nEğer bu tur 4 karttan daha az kart oynadıysan 1 kart çek.",
@@ -8215,7 +8215,7 @@
       "damage": "+1",
       "vulnerable": "+1"
     },
-    "image_url": "/static/images/cards/beam_cell.png",
+    "image_url": "/static/images/cards/beam_cell.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "4 hasar ver.\n1 [gold]Savunmasız[/gold] uygula.",
@@ -8253,7 +8253,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/refract.png",
+    "image_url": "/static/images/cards/refract.webp",
     "beta_image_url": "/static/images/cards/beta/refract.png",
     "type_variants": null,
     "upgrade_description": "İki kez 12 hasar ver.\n2 [gold]Cam[/gold] [gold]Oluştur[/gold].",
@@ -8290,7 +8290,7 @@
     "upgrade": {
       "cost": 2
     },
-    "image_url": "/static/images/cards/nightmare.png",
+    "image_url": "/static/images/cards/nightmare.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -8334,7 +8334,7 @@
       "damage": "+1",
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/pommel_strike.png",
+    "image_url": "/static/images/cards/pommel_strike.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "10 hasar ver.\n2 kart çek.",
@@ -8371,7 +8371,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/headbutt.png",
+    "image_url": "/static/images/cards/headbutt.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "12 hasar ver.\n[gold]Atık Deste[/gold]'nden bir kartı [gold]Çekme Deste[/gold]'nin en üstüne koy.",
@@ -8414,7 +8414,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/shiv.png",
+    "image_url": "/static/images/cards/shiv.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "6 hasar ver.",
@@ -8455,7 +8455,7 @@
     "upgrade": {
       "damage": "+5"
     },
-    "image_url": "/static/images/cards/hemokinesis.png",
+    "image_url": "/static/images/cards/hemokinesis.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "2 CP kaybet.\n19 hasar ver.",
@@ -8493,7 +8493,7 @@
     "upgrade": {
       "block": "+4"
     },
-    "image_url": "/static/images/cards/blood_wall.png",
+    "image_url": "/static/images/cards/blood_wall.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "2 CP kaybet.\n20 [gold]Blok[/gold] elde et.",
@@ -8531,7 +8531,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/bloodletting.png",
+    "image_url": "/static/images/cards/bloodletting.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "3 CP kaybet.\n[energy:3] elde et.",
@@ -8568,7 +8568,7 @@
     "upgrade": {
       "repeat": "+1"
     },
-    "image_url": "/static/images/cards/chaos.png",
+    "image_url": "/static/images/cards/chaos.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Rastgele 2 Küre [gold]Oluştur[/gold].",
@@ -8605,7 +8605,7 @@
     "upgrade": {
       "repeat": "+1"
     },
-    "image_url": "/static/images/cards/capacitor.png",
+    "image_url": "/static/images/cards/capacitor.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "3 Küre Yuvası elde et.",
@@ -8649,7 +8649,7 @@
     "upgrade": {
       "blackholepower": "+1"
     },
-    "image_url": "/static/images/cards/black_hole.png",
+    "image_url": "/static/images/cards/black_hole.webp",
     "beta_image_url": "/static/images/cards/beta/black_hole.png",
     "type_variants": null,
     "upgrade_description": "[star:1] harcadığında veya elde ettiğinde, TÜM düşmanlara 4 hasar ver.",
@@ -8688,7 +8688,7 @@
     "upgrade": {
       "strengthloss": "+6"
     },
-    "image_url": "/static/images/cards/dark_shackles.png",
+    "image_url": "/static/images/cards/dark_shackles.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Düşman bu turda 15 [gold]Kuvvet[/gold] kaybeder.",
@@ -8728,7 +8728,7 @@
     "upgrade": {
       "add_retain": true
     },
-    "image_url": "/static/images/cards/scrawl.png",
+    "image_url": "/static/images/cards/scrawl.webp",
     "beta_image_url": "/static/images/cards/beta/scrawl.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -8766,7 +8766,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/darkness.png",
+    "image_url": "/static/images/cards/darkness.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "1 [gold]Karanlık[/gold] [gold]Oluştur[/gold].\nTüm [gold]Karanlık[/gold] Kürelerin pasif yeteneğini  iki kez aktifleştir.",
@@ -8801,7 +8801,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/dark_embrace.png",
+    "image_url": "/static/images/cards/dark_embrace.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -8836,7 +8836,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/mayhem.png",
+    "image_url": "/static/images/cards/mayhem.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -8884,7 +8884,7 @@
       "block": "+1",
       "weak": "+1"
     },
-    "image_url": "/static/images/cards/defy.png",
+    "image_url": "/static/images/cards/defy.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "7 [gold]Blok[/gold] elde et.\n1 [gold]Zayıf[/gold] uygula.",
@@ -8924,7 +8924,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/whirlwind.png",
+    "image_url": "/static/images/cards/whirlwind.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "TÜM düşmanlara X kez 8 hasar ver.",
@@ -8961,7 +8961,7 @@
     "upgrade": {
       "accelerant": "+1"
     },
-    "image_url": "/static/images/cards/accelerant.png",
+    "image_url": "/static/images/cards/accelerant.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]Zehir[/gold] etkisi 2 kez daha tetiklenir.",
@@ -9007,7 +9007,7 @@
       "damage": "+2",
       "grapplepower": "+2"
     },
-    "image_url": "/static/images/cards/grapple.png",
+    "image_url": "/static/images/cards/grapple.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "9 hasar ver.\nBu tur her [gold]Blok[/gold] elde ettiğinde düşmana 7 hasar ver.",
@@ -9060,7 +9060,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/falling_star.png",
+    "image_url": "/static/images/cards/falling_star.webp",
     "beta_image_url": "/static/images/cards/beta/falling_star.png",
     "type_variants": null,
     "upgrade_description": "11 hasar ver.\n1 [gold]Zayıf[/gold] uygula.\n1 [gold]Savunmasız[/gold] uygula.",
@@ -9097,7 +9097,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/foregone_conclusion.png",
+    "image_url": "/static/images/cards/foregone_conclusion.webp",
     "beta_image_url": "/static/images/cards/beta/foregone_conclusion.png",
     "type_variants": null,
     "upgrade_description": "Sonraki turda [gold]Çekme Deste[/gold]'nden 3 kartı [gold]El[/gold]'ine koy.",
@@ -9134,7 +9134,7 @@
     "upgrade": {
       "block": "+2"
     },
-    "image_url": "/static/images/cards/escape_plan.png",
+    "image_url": "/static/images/cards/escape_plan.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "1 kart çek.\nEğer Beceri kartı çekersen 5 [gold]Blok[/gold] elde edersin.",
@@ -9173,7 +9173,7 @@
     "upgrade": {
       "calculationbase": "+5"
     },
-    "image_url": "/static/images/cards/no_escape.png",
+    "image_url": "/static/images/cards/no_escape.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "15 [gold]Kader[/gold] uygula. Ek olarak düşmandaki her 10 [gold]Kader[/gold] için fazladan 5 [gold]Kader[/gold] daha uygula.",
@@ -9210,7 +9210,7 @@
     "upgrade": {
       "block": "+1"
     },
-    "image_url": "/static/images/cards/shroud.png",
+    "image_url": "/static/images/cards/shroud.webp",
     "beta_image_url": "/static/images/cards/beta/shroud.png",
     "type_variants": null,
     "upgrade_description": "Her [gold]Kader[/gold] uyguladığında 3 [gold]Blok[/gold] elde et.",
@@ -9247,7 +9247,7 @@
     "upgrade": {
       "cards": "+3"
     },
-    "image_url": "/static/images/cards/prophesize.png",
+    "image_url": "/static/images/cards/prophesize.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "9 kart çek.",
@@ -9284,7 +9284,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/evil_eye.png",
+    "image_url": "/static/images/cards/evil_eye.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "11 [gold]Blok[/gold] elde et.\nEğer bu tur bir kart [gold]Tükettiysen[/gold] 11 [gold]Blok[/gold] daha elde et.",
@@ -9323,7 +9323,7 @@
     "upgrade": {
       "summon": "+2"
     },
-    "image_url": "/static/images/cards/legion_of_bone.png",
+    "image_url": "/static/images/cards/legion_of_bone.webp",
     "beta_image_url": "/static/images/cards/beta/legion_of_bone.png",
     "type_variants": null,
     "upgrade_description": "TÜM oyuncular 8 [gold]Çağırır[/gold].",
@@ -9368,7 +9368,7 @@
       "block": "+3",
       "ostydamage": "+3"
     },
-    "image_url": "/static/images/cards/bone_shards.png",
+    "image_url": "/static/images/cards/bone_shards.webp",
     "beta_image_url": "/static/images/cards/beta/bone_shards.png",
     "type_variants": null,
     "upgrade_description": "Eğer [gold]Osti[/gold] hayattaysa TÜM düşmanlara 12 hasar verir ve 12 [gold]Blok[/gold] elde edersin.\n[gold]Osti[/gold] ölür.",
@@ -9405,7 +9405,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/slice.png",
+    "image_url": "/static/images/cards/slice.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "9 hasar ver.",
@@ -9443,7 +9443,7 @@
     "upgrade": {
       "stars": "+1"
     },
-    "image_url": "/static/images/cards/convergence.png",
+    "image_url": "/static/images/cards/convergence.webp",
     "beta_image_url": "/static/images/cards/beta/convergence.png",
     "type_variants": null,
     "upgrade_description": "Sonraki turunda\n[energy:1] ve [star:2] elde et.\nBu turda [gold]El[/gold]'ini [gold]Sakla[/gold].",
@@ -9480,7 +9480,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/discovery.png",
+    "image_url": "/static/images/cards/discovery.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -9527,7 +9527,7 @@
     "upgrade": {
       "strength": "+3"
     },
-    "image_url": "/static/images/cards/coordinate.png",
+    "image_url": "/static/images/cards/coordinate.webp",
     "beta_image_url": "/static/images/cards/beta/coordinate.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -9567,7 +9567,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/mimic.png",
+    "image_url": "/static/images/cards/mimic.webp",
     "beta_image_url": "/static/images/cards/beta/mimic.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -9608,7 +9608,7 @@
     "upgrade": {
       "damage": "+5"
     },
-    "image_url": "/static/images/cards/cinder.png",
+    "image_url": "/static/images/cards/cinder.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "22 hasar ver.\n[gold]Çekme Deste[/gold]'nin en üstündeki kartı [gold]Tüket[/gold].",
@@ -9656,7 +9656,7 @@
       "damage": "+1",
       "vulnerable": "+1"
     },
-    "image_url": "/static/images/cards/fear.png",
+    "image_url": "/static/images/cards/fear.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "8 hasar ver.\n1 [gold]Savunmasız[/gold] uygula.",
@@ -9696,7 +9696,7 @@
     "upgrade": {
       "summon": "+2"
     },
-    "image_url": "/static/images/cards/bodyguard.png",
+    "image_url": "/static/images/cards/bodyguard.webp",
     "beta_image_url": "/static/images/cards/beta/bodyguard.png",
     "type_variants": null,
     "upgrade_description": "7 [gold]Çağır[/gold].",
@@ -9738,7 +9738,7 @@
       "cost": 0,
       "calculationbase": "+5"
     },
-    "image_url": "/static/images/cards/protector.png",
+    "image_url": "/static/images/cards/protector.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -9775,7 +9775,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/cosmic_indifference.png",
+    "image_url": "/static/images/cards/cosmic_indifference.webp",
     "beta_image_url": "/static/images/cards/beta/cosmic_indifference.png",
     "type_variants": null,
     "upgrade_description": "9 [gold]Blok[/gold] elde et.\n[gold]Atık Deste[/gold]'nden bir kartı [gold]Çekme Deste[/gold]'nin en üstüne koy.",
@@ -9812,7 +9812,7 @@
     "upgrade": {
       "gold": "+5"
     },
-    "image_url": "/static/images/cards/royalties.png",
+    "image_url": "/static/images/cards/royalties.webp",
     "beta_image_url": "/static/images/cards/beta/royalties.png",
     "type_variants": null,
     "upgrade_description": "Savaşın sonunda 35 [gold]Altın[/gold] elde et.",
@@ -9852,7 +9852,7 @@
     "upgrade": {
       "add_retain": true
     },
-    "image_url": "/static/images/cards/royal_gamble.png",
+    "image_url": "/static/images/cards/royal_gamble.webp",
     "beta_image_url": "/static/images/cards/beta/royal_gamble.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -9892,7 +9892,7 @@
     "upgrade": {
       "damage": "+6"
     },
-    "image_url": "/static/images/cards/kingly_kick.png",
+    "image_url": "/static/images/cards/kingly_kick.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "30 hasar ver.\nBu kartı her çektiğinde maliyetini 1 azalt.",
@@ -9930,7 +9930,7 @@
     "upgrade": {
       "increase": "+2"
     },
-    "image_url": "/static/images/cards/kingly_punch.png",
+    "image_url": "/static/images/cards/kingly_punch.webp",
     "beta_image_url": "/static/images/cards/beta/kingly_punch.png",
     "type_variants": null,
     "upgrade_description": "8 hasar ver.\nBu kartı her çektiğinde kartın hasarını bu savaş için 5 artır.",
@@ -9967,7 +9967,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/quasar.png",
+    "image_url": "/static/images/cards/quasar.webp",
     "beta_image_url": "/static/images/cards/beta/quasar.png",
     "type_variants": null,
     "upgrade_description": "[gold]El[/gold]'ine eklemek için [gold]Geliştirilmiş[/gold] rastgele 3 Renksiz karttan 1 tanesini seç.",
@@ -10004,7 +10004,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/sacrifice.png",
+    "image_url": "/static/images/cards/sacrifice.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -10048,7 +10048,7 @@
     "upgrade": {
       "extradamage": "+1"
     },
-    "image_url": "/static/images/cards/perfected_strike.png",
+    "image_url": "/static/images/cards/perfected_strike.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "6 hasar ver.\nİçinde \"Saldırı\" geçen TÜM kartların için fazladan 3 hasar ver.",
@@ -10086,7 +10086,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/celestial_might.png",
+    "image_url": "/static/images/cards/celestial_might.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "3 kez 8 hasar ver.",
@@ -10123,7 +10123,7 @@
     "upgrade": {
       "add_retain": true
     },
-    "image_url": "/static/images/cards/anointed.png",
+    "image_url": "/static/images/cards/anointed.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -10179,7 +10179,7 @@
     "upgrade": {
       "damage": "+11"
     },
-    "image_url": "/static/images/cards/comet.png",
+    "image_url": "/static/images/cards/comet.webp",
     "beta_image_url": "/static/images/cards/beta/comet.png",
     "type_variants": null,
     "upgrade_description": "44 hasar ver.\n3 [gold]Zayıf[/gold] uygula.\n3 [gold]Savunmasız[/gold] uygula.",
@@ -10216,7 +10216,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/armaments.png",
+    "image_url": "/static/images/cards/armaments.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "5 [gold]Blok[/gold] elde et.\n[gold]El[/gold]'indeki TÜM kartları [gold]Geliştir[/gold].",
@@ -10251,7 +10251,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/flanking.png",
+    "image_url": "/static/images/cards/flanking.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -10295,7 +10295,7 @@
       "Weak": 1
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/doubt.png",
+    "image_url": "/static/images/cards/doubt.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -10337,7 +10337,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/eradicate.png",
+    "image_url": "/static/images/cards/eradicate.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "X kez 14 hasar ver.",
@@ -10378,7 +10378,7 @@
       "HpLoss": 13
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/bad_luck.png",
+    "image_url": "/static/images/cards/bad_luck.webp",
     "beta_image_url": "/static/images/cards/beta/bad_luck.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -10423,7 +10423,7 @@
     "upgrade": {
       "extradamage": "+1"
     },
-    "image_url": "/static/images/cards/ashen_strike.png",
+    "image_url": "/static/images/cards/ashen_strike.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "6 hasar ver.\n[gold]Tüketim Destesi[/gold]'ndeki her kart için fazladan 4 hasar verir.",
@@ -10460,7 +10460,7 @@
     "upgrade": {
       "blockonexhaust": "+1"
     },
-    "image_url": "/static/images/cards/spirit_of_ash.png",
+    "image_url": "/static/images/cards/spirit_of_ash.webp",
     "beta_image_url": "/static/images/cards/beta/spirit_of_ash.png",
     "type_variants": null,
     "upgrade_description": "Her [gold]Ruhani[/gold] bir kart oynadığında 5 [gold]Blok[/gold] elde et.",
@@ -10498,7 +10498,7 @@
     "upgrade": {
       "forge": "+4"
     },
-    "image_url": "/static/images/cards/refine_blade.png",
+    "image_url": "/static/images/cards/refine_blade.webp",
     "beta_image_url": "/static/images/cards/beta/refine_blade.png",
     "type_variants": null,
     "upgrade_description": "10 [gold]Döv[/gold].\nSonraki tur [energy:1] elde et.",
@@ -10536,7 +10536,7 @@
     "upgrade": {
       "repeat": "+1"
     },
-    "image_url": "/static/images/cards/sword_boomerang.png",
+    "image_url": "/static/images/cards/sword_boomerang.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "4 kez rastgele bir düşmana 3 hasar ver.",
@@ -10582,7 +10582,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/sword_sage.png",
+    "image_url": "/static/images/cards/sword_sage.webp",
     "beta_image_url": "/static/images/cards/beta/sword_sage.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -10617,7 +10617,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/unmovable.png",
+    "image_url": "/static/images/cards/unmovable.webp",
     "beta_image_url": "/static/images/cards/beta/unmovable.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -10653,7 +10653,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/writhe.png",
+    "image_url": "/static/images/cards/writhe.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -10701,7 +10701,7 @@
     "upgrade": {
       "doom": "+8"
     },
-    "image_url": "/static/images/cards/end_of_days.png",
+    "image_url": "/static/images/cards/end_of_days.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -10745,7 +10745,7 @@
     "upgrade": {
       "crimsonmantlepower": "+2"
     },
-    "image_url": "/static/images/cards/crimson_mantle.png",
+    "image_url": "/static/images/cards/crimson_mantle.webp",
     "beta_image_url": "/static/images/cards/beta/crimson_mantle.png",
     "type_variants": null,
     "upgrade_description": "Turunun başında 1 CP kaybet ve 10 [gold]Blok[/gold] elde et.",
@@ -10791,7 +10791,7 @@
       "block": "+1",
       "vulnerable": "+1"
     },
-    "image_url": "/static/images/cards/taunt.png",
+    "image_url": "/static/images/cards/taunt.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "8 [gold]Blok[/gold] elde et.\n1 [gold]Savunmasız[/gold] uygula.",
@@ -10830,7 +10830,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/defile.png",
+    "image_url": "/static/images/cards/defile.webp",
     "beta_image_url": "/static/images/cards/beta/defile.png",
     "type_variants": null,
     "upgrade_description": "17 hasar ver.",
@@ -10872,7 +10872,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/guards.png",
+    "image_url": "/static/images/cards/guards.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]El[/gold]'indeki herhangi sayıda kartı [gold]Uşak Fedakarlığı+[/gold] kartına [gold]Dönüştür[/gold].",
@@ -10913,7 +10913,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/finesse.png",
+    "image_url": "/static/images/cards/finesse.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "7 [gold]Blok[/gold] elde et.\n1 kart çek.",
@@ -10950,7 +10950,7 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": "/static/images/cards/machine_learning.png",
+    "image_url": "/static/images/cards/machine_learning.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -10989,7 +10989,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/blight_strike.png",
+    "image_url": "/static/images/cards/blight_strike.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "10 hasar ver.\nVerdiğin hasar kadar [gold]Kader[/gold] uygula.",
@@ -11027,7 +11027,7 @@
     "upgrade": {
       "block": "+4"
     },
-    "image_url": "/static/images/cards/melancholy.png",
+    "image_url": "/static/images/cards/melancholy.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "17 [gold]Blok[/gold] elde et.\nHERHANGİ BİRİ öldüğünde bu kartın maliyetini [energy:1] azalt.",
@@ -11062,7 +11062,7 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": "/static/images/cards/hello_world.png",
+    "image_url": "/static/images/cards/hello_world.webp",
     "beta_image_url": "/static/images/cards/beta/hello_world.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -11099,7 +11099,7 @@
     "upgrade": {
       "damage": "+6"
     },
-    "image_url": "/static/images/cards/unrelenting.png",
+    "image_url": "/static/images/cards/unrelenting.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "18 hasar ver.\nOynayacağın sonraki Saldırı'nın maliyeti 0 [energy:1] olur.",
@@ -11138,7 +11138,7 @@
     "upgrade": {
       "damage": "+6"
     },
-    "image_url": "/static/images/cards/meteor_strike.png",
+    "image_url": "/static/images/cards/meteor_strike.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "30 hasar ver.\n3 [gold]Plazma[/gold] [gold]Oluştur[/gold].",
@@ -11191,7 +11191,7 @@
     "upgrade": {
       "damage": "+7"
     },
-    "image_url": "/static/images/cards/meteor_shower.png",
+    "image_url": "/static/images/cards/meteor_shower.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "TÜM düşmanlara 21 hasar ver.\nTÜM düşmanlara 2 [gold]Zayıf[/gold] ve [gold]Savunmasız[/gold] uygula.",
@@ -11231,7 +11231,7 @@
     "upgrade": {
       "block": "+2"
     },
-    "image_url": "/static/images/cards/grave_warden.png",
+    "image_url": "/static/images/cards/grave_warden.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "10 [gold]Blok[/gold] elde et.\n[gold]Çekme Deste[/gold]'ne bir [gold]Ruh+[/gold] ekle.",
@@ -11271,7 +11271,7 @@
       "damage": "+2",
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/graveblast.png",
+    "image_url": "/static/images/cards/graveblast.webp",
     "beta_image_url": "/static/images/cards/beta/graveblast.png",
     "type_variants": null,
     "upgrade_description": "6 hasar ver.\n[gold]Atık Deste[/gold]'nden bir kartı [gold]El[/gold]'ine koy.",
@@ -11312,7 +11312,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/modded.png",
+    "image_url": "/static/images/cards/modded.webp",
     "beta_image_url": "/static/images/cards/beta/modded.png",
     "type_variants": null,
     "upgrade_description": "1 Küre Yuvası elde et.\n2 kart çek. Bu kartın maliyetini 1 artır.",
@@ -11347,7 +11347,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/debris.png",
+    "image_url": "/static/images/cards/debris.webp",
     "beta_image_url": "/static/images/cards/beta/debris.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -11387,7 +11387,7 @@
     "upgrade": {
       "add_retain": true
     },
-    "image_url": "/static/images/cards/monologue.png",
+    "image_url": "/static/images/cards/monologue.webp",
     "beta_image_url": "/static/images/cards/beta/monologue.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -11426,7 +11426,7 @@
     "upgrade": {
       "hploss": "+2"
     },
-    "image_url": "/static/images/cards/haunt.png",
+    "image_url": "/static/images/cards/haunt.webp",
     "beta_image_url": "/static/images/cards/beta/haunt.png",
     "type_variants": null,
     "upgrade_description": "Her [gold]Ruh[/gold] kartı oynadığında rastgele bir düşman 8 CP kaybeder.",
@@ -11463,7 +11463,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/omnislice.png",
+    "image_url": "/static/images/cards/omnislice.webp",
     "beta_image_url": "/static/images/cards/beta/omnislice.png",
     "type_variants": null,
     "upgrade_description": "11 hasar ver.\nDiğer TÜM düşmanlara aynı miktarda hasar ver.",
@@ -11500,7 +11500,7 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": "/static/images/cards/the_sealed_throne.png",
+    "image_url": "/static/images/cards/the_sealed_throne.webp",
     "beta_image_url": "/static/images/cards/beta/the_sealed_throne.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -11540,7 +11540,7 @@
     "upgrade": {
       "cost": 2
     },
-    "image_url": "/static/images/cards/demesne.png",
+    "image_url": "/static/images/cards/demesne.webp",
     "beta_image_url": "/static/images/cards/beta/demesne.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -11587,7 +11587,7 @@
     "upgrade": {
       "strength": "+1"
     },
-    "image_url": "/static/images/cards/blade_of_ink.png",
+    "image_url": "/static/images/cards/blade_of_ink.webp",
     "beta_image_url": "/static/images/cards/beta/blade_of_ink.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -11628,7 +11628,7 @@
     "upgrade": {
       "cards": "+2"
     },
-    "image_url": "/static/images/cards/decisions_decisions.png",
+    "image_url": "/static/images/cards/decisions_decisions.webp",
     "beta_image_url": "/static/images/cards/beta/decisions_decisions.png",
     "type_variants": null,
     "upgrade_description": "5 kart çek.\n[gold]El[/gold]'inden bir Beceri kartı seç ve 3 kez oyna.",
@@ -11677,7 +11677,7 @@
       "block": "+1",
       "doom": "+4"
     },
-    "image_url": "/static/images/cards/negative_pulse.png",
+    "image_url": "/static/images/cards/negative_pulse.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "6 [gold]Blok[/gold] elde et.\nTÜM düşmanlara 7 [gold]Kader[/gold] uygula.",
@@ -11717,7 +11717,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/neows_fury.png",
+    "image_url": "/static/images/cards/neows_fury.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "14 hasar ver.\n[gold]Atık Destesi[/gold]'nden rastgele 2 kartı [gold]El[/gold]'ine koy.",
@@ -11759,7 +11759,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/bundle_of_joy.png",
+    "image_url": "/static/images/cards/bundle_of_joy.webp",
     "beta_image_url": "/static/images/cards/beta/bundle_of_joy.png",
     "type_variants": null,
     "upgrade_description": "[gold]El[/gold]'ine rastgele 4 Renksiz kart ekle.",
@@ -11801,7 +11801,7 @@
     "upgrade": {
       "damage": "+6"
     },
-    "image_url": "/static/images/cards/ultimate_strike.png",
+    "image_url": "/static/images/cards/ultimate_strike.webp",
     "beta_image_url": "/static/images/cards/beta/ultimate_strike.png",
     "type_variants": null,
     "upgrade_description": "20 hasar ver.",
@@ -11840,7 +11840,7 @@
     "upgrade": {
       "block": "+4"
     },
-    "image_url": "/static/images/cards/ultimate_defend.png",
+    "image_url": "/static/images/cards/ultimate_defend.webp",
     "beta_image_url": "/static/images/cards/beta/ultimate_defend.png",
     "type_variants": null,
     "upgrade_description": "15 [gold]Blok[/gold] elde et.",
@@ -11877,7 +11877,7 @@
     "upgrade": {
       "damage": "+5"
     },
-    "image_url": "/static/images/cards/pinpoint.png",
+    "image_url": "/static/images/cards/pinpoint.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "22 hasar ver.\nBu turda oynanan her Beceri için 1 [energy:1] ucuzlaşır.",
@@ -11912,7 +11912,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/nostalgia.png",
+    "image_url": "/static/images/cards/nostalgia.webp",
     "beta_image_url": "/static/images/cards/beta/nostalgia.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -11958,7 +11958,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/neurosurge.png",
+    "image_url": "/static/images/cards/neurosurge.webp",
     "beta_image_url": "/static/images/cards/beta/neurosurge.png",
     "type_variants": null,
     "upgrade_description": "[energy:4] elde et.\n2 kart çek.\nTurunun başında kendine 3 [gold]Kader[/gold] uygula.",
@@ -12003,7 +12003,7 @@
     "upgrade": {
       "platingpower": "+3"
     },
-    "image_url": "/static/images/cards/neutron_aegis.png",
+    "image_url": "/static/images/cards/neutron_aegis.webp",
     "beta_image_url": "/static/images/cards/beta/neutron_aegis.png",
     "type_variants": null,
     "upgrade_description": "11 [gold]Zırh[/gold] elde et.",
@@ -12051,7 +12051,7 @@
       "damage": "+2",
       "focuspower": "+1"
     },
-    "image_url": "/static/images/cards/focused_strike.png",
+    "image_url": "/static/images/cards/focused_strike.webp",
     "beta_image_url": "/static/images/cards/beta/focused_strike.png",
     "type_variants": null,
     "upgrade_description": "11 hasar ver.\nBu tur 2 [gold]Odak[/gold] elde et.",
@@ -12091,7 +12091,7 @@
     "upgrade": {
       "enemystrengthloss": "+1"
     },
-    "image_url": "/static/images/cards/shared_fate.png",
+    "image_url": "/static/images/cards/shared_fate.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "2 [gold]Kuvvet[/gold] kaybet.\nDüşman 3 [gold]Kuvvet[/gold] kaybeder.",
@@ -12131,7 +12131,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/automation.png",
+    "image_url": "/static/images/cards/automation.webp",
     "beta_image_url": "/static/images/cards/beta/automation.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -12168,7 +12168,7 @@
     "upgrade": {
       "block": "+1"
     },
-    "image_url": "/static/images/cards/manifest_authority.png",
+    "image_url": "/static/images/cards/manifest_authority.webp",
     "beta_image_url": "/static/images/cards/beta/manifest_authority.png",
     "type_variants": null,
     "upgrade_description": "8 [gold]Blok[/gold] elde et.\n[gold]El[/gold]'ine [gold]Geliştirilmiş[/gold] rastgele 1 Renksiz kart ekle.",
@@ -12208,7 +12208,7 @@
     "upgrade": {
       "block": "+10"
     },
-    "image_url": "/static/images/cards/panic_button.png",
+    "image_url": "/static/images/cards/panic_button.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "40 [gold]Blok[/gold] elde et.\n2 tur boyunca kartlardan [gold]Blok[/gold] elde edemezsin.",
@@ -12256,7 +12256,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/lightning_rod.png",
+    "image_url": "/static/images/cards/lightning_rod.webp",
     "beta_image_url": "/static/images/cards/beta/lightning_rod.png",
     "type_variants": null,
     "upgrade_description": "7 [gold]Blok[/gold] elde et.\nSonraki 2 turun başında 1 [gold]Yıldırım[/gold] [gold]Oluştur[/gold].",
@@ -12294,7 +12294,7 @@
     "upgrade": {
       "stars": "+1"
     },
-    "image_url": "/static/images/cards/glow.png",
+    "image_url": "/static/images/cards/glow.webp",
     "beta_image_url": "/static/images/cards/beta/glow.png",
     "type_variants": null,
     "upgrade_description": "[star:2] elde et.\n2 kart çek.",
@@ -12334,7 +12334,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/shining_strike.png",
+    "image_url": "/static/images/cards/shining_strike.webp",
     "beta_image_url": "/static/images/cards/beta/shining_strike.png",
     "type_variants": null,
     "upgrade_description": "11 hasar ver.\n[star:2] elde et.\nBu kartı [gold]Çekme Deste[/gold]'nin en üstüne koy.",
@@ -12372,7 +12372,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/particle_wall.png",
+    "image_url": "/static/images/cards/particle_wall.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "12 [gold]Blok[/gold] elde et.\nBu kartı [gold]El[/gold]'ine geri koy.",
@@ -12411,7 +12411,7 @@
       "damage": "+5",
       "strengthloss": "+5"
     },
-    "image_url": "/static/images/cards/mangle.png",
+    "image_url": "/static/images/cards/mangle.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "20 hasar ver.\nDüşman bu turda 15 [gold]Kuvvet[/gold] kaybeder.",
@@ -12448,7 +12448,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/rip_and_tear.png",
+    "image_url": "/static/images/cards/rip_and_tear.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "İki kez rastgele bir düşmana 9 hasar ver.",
@@ -12486,7 +12486,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/glimmer.png",
+    "image_url": "/static/images/cards/glimmer.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "4 kart çek.\n[gold]El[/gold]'indeki 1 kartı [gold]Çekme Deste[/gold]'nin en üstüne koy.",
@@ -12525,7 +12525,7 @@
       "block": "+2",
       "blocknextturn": "+2"
     },
-    "image_url": "/static/images/cards/glitterstream.png",
+    "image_url": "/static/images/cards/glitterstream.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "13 [gold]Blok[/gold] elde et.\nBir sonraki tur 6 [gold]Blok[/gold] elde et.",
@@ -12562,7 +12562,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/tag_team.png",
+    "image_url": "/static/images/cards/tag_team.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "15 hasar ver.\nBaşka bir oyuncunun düşmana yaptığı bir sonraki Saldırı bir kez daha oynanır.",
@@ -12601,7 +12601,7 @@
       "damage": "+1",
       "increase": "+1"
     },
-    "image_url": "/static/images/cards/claw.png",
+    "image_url": "/static/images/cards/claw.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "4 hasar ver.\nTÜM Pençe kartlarının hasarını bu savaş boyunca 3 artır.",
@@ -12639,7 +12639,7 @@
     "upgrade": {
       "damage": "+10"
     },
-    "image_url": "/static/images/cards/devastate.png",
+    "image_url": "/static/images/cards/devastate.webp",
     "beta_image_url": "/static/images/cards/beta/devastate.png",
     "type_variants": null,
     "upgrade_description": "40 hasar ver.",
@@ -12674,7 +12674,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/regret.png",
+    "image_url": "/static/images/cards/regret.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -12723,7 +12723,7 @@
     "upgrade": {
       "poison": "+2"
     },
-    "image_url": "/static/images/cards/haze.png",
+    "image_url": "/static/images/cards/haze.webp",
     "beta_image_url": "/static/images/cards/beta/haze.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -12769,7 +12769,7 @@
       "cards": "+1",
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/relax.png",
+    "image_url": "/static/images/cards/relax.webp",
     "beta_image_url": "/static/images/cards/beta/relax.png",
     "type_variants": null,
     "upgrade_description": "17 [gold]Blok[/gold] elde et.\nSonraki turda 3 kart çek ve [energy:3] elde et.",
@@ -12811,7 +12811,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/reflex.png",
+    "image_url": "/static/images/cards/reflex.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "3 kart çek.",
@@ -12851,7 +12851,7 @@
     "upgrade": {
       "block": "+25"
     },
-    "image_url": "/static/images/cards/the_gambit.png",
+    "image_url": "/static/images/cards/the_gambit.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "75 [gold]Blok[/gold] elde et.\nEğer bu savaşta engellenmemiş bir hasar alırsan ölürsün.",
@@ -12890,7 +12890,7 @@
       "damage": "+1",
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/rocket_punch.png",
+    "image_url": "/static/images/cards/rocket_punch.webp",
     "beta_image_url": "/static/images/cards/beta/rocket_punch.png",
     "type_variants": null,
     "upgrade_description": "14 hasar ver.\n2 kart çek.\nBir Durum kartı oluşturulduğunda bu kartın maliyeti, bu tur için 0 [energy:1] olur.",
@@ -12929,7 +12929,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/soul.png",
+    "image_url": "/static/images/cards/soul.webp",
     "beta_image_url": "/static/images/cards/beta/soul.png",
     "type_variants": null,
     "upgrade_description": "3 kart çek.",
@@ -12973,7 +12973,7 @@
     "upgrade": {
       "extradamage": "+1"
     },
-    "image_url": "/static/images/cards/soul_storm.png",
+    "image_url": "/static/images/cards/soul_storm.webp",
     "beta_image_url": "/static/images/cards/beta/soul_storm.png",
     "type_variants": null,
     "upgrade_description": "9 hasar ver.\n[gold]Tüketme Deste[/gold]'ndeki her [gold]Ruh[/gold] için fazladan 3 hasar verir.",
@@ -13012,7 +13012,7 @@
     "upgrade": {
       "add_retain": true
     },
-    "image_url": "/static/images/cards/wisp.png",
+    "image_url": "/static/images/cards/wisp.webp",
     "beta_image_url": "/static/images/cards/beta/wisp.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -13056,7 +13056,7 @@
       "damage": "+1",
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/capture_spirit.png",
+    "image_url": "/static/images/cards/capture_spirit.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Düşman 4 CP kaybeder.\n[gold]Çekme Deste[/gold]'ne 4 [gold]Ruh[/gold] ekle.",
@@ -13097,7 +13097,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/seance.png",
+    "image_url": "/static/images/cards/seance.webp",
     "beta_image_url": "/static/images/cards/beta/seance.png",
     "type_variants": null,
     "upgrade_description": "[gold]Çekme Deste[/gold]'nden bir kartı [gold]Ruh+[/gold] kartına Dönüştür.",
@@ -13137,7 +13137,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/eidolon.png",
+    "image_url": "/static/images/cards/eidolon.webp",
     "beta_image_url": "/static/images/cards/beta/eidolon.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -13184,7 +13184,7 @@
     "upgrade": {
       "remove_ethereal": true
     },
-    "image_url": "/static/images/cards/apparition.png",
+    "image_url": "/static/images/cards/apparition.webp",
     "beta_image_url": "/static/images/cards/beta/apparition.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -13228,7 +13228,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/reave.png",
+    "image_url": "/static/images/cards/reave.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "11 hasar ver.\n[gold]Çekme Deste[/gold]'ne bir [gold]Ruh+[/gold] ekle.",
@@ -13265,7 +13265,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/impatience.png",
+    "image_url": "/static/images/cards/impatience.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Eğer [gold]El[/gold]'inde Saldırı kartı yoksa 3 kart çek.",
@@ -13305,7 +13305,7 @@
     "upgrade": {
       "cards": "+2"
     },
-    "image_url": "/static/images/cards/purity.png",
+    "image_url": "/static/images/cards/purity.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]El[/gold]'indeki kartlardan en fazla 5 tanesini Tüket.",
@@ -13345,7 +13345,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/clumsy.png",
+    "image_url": "/static/images/cards/clumsy.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -13386,7 +13386,7 @@
     "upgrade": {
       "replay": "+1"
     },
-    "image_url": "/static/images/cards/hidden_gem.png",
+    "image_url": "/static/images/cards/hidden_gem.webp",
     "beta_image_url": "/static/images/cards/beta/hidden_gem.png",
     "type_variants": null,
     "upgrade_description": "[gold]Çekme Deste[/gold]'ndeki rastgele bir karta 3 [gold]Yeniden Oyna[/gold] ekle.",
@@ -13435,7 +13435,7 @@
       "ostydamage": "+1",
       "sicempower": "+1"
     },
-    "image_url": "/static/images/cards/sic_em.png",
+    "image_url": "/static/images/cards/sic_em.webp",
     "beta_image_url": "/static/images/cards/beta/sic_em.png",
     "type_variants": null,
     "upgrade_description": "[gold]Osti[/gold] 6 hasar verir.\n[gold]Osti[/gold] bu turda bu düşmana her vurduğunda 3 [gold]Çağır[/gold].",
@@ -13470,7 +13470,7 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": "/static/images/cards/aggression.png",
+    "image_url": "/static/images/cards/aggression.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -13509,7 +13509,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/strike_ironclad.png",
+    "image_url": "/static/images/cards/strike_ironclad.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "9 hasar ver.",
@@ -13548,7 +13548,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/strike_silent.png",
+    "image_url": "/static/images/cards/strike_silent.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "9 hasar ver.",
@@ -13587,7 +13587,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/strike_regent.png",
+    "image_url": "/static/images/cards/strike_regent.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "9 hasar ver.",
@@ -13626,7 +13626,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/strike_necrobinder.png",
+    "image_url": "/static/images/cards/strike_necrobinder.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "9 hasar ver.",
@@ -13665,7 +13665,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/strike_defect.png",
+    "image_url": "/static/images/cards/strike_defect.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "9 hasar ver.",
@@ -13710,7 +13710,7 @@
     "upgrade": {
       "outbreakpower": "+4"
     },
-    "image_url": "/static/images/cards/outbreak.png",
+    "image_url": "/static/images/cards/outbreak.webp",
     "beta_image_url": "/static/images/cards/beta/outbreak.png",
     "type_variants": null,
     "upgrade_description": "Her 3 [gold]Zehir[/gold] uygulayışında TÜM düşmanlara 15 hasar ver.",
@@ -13747,7 +13747,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/believe_in_you.png",
+    "image_url": "/static/images/cards/believe_in_you.webp",
     "beta_image_url": "/static/images/cards/beta/believe_in_you.png",
     "type_variants": null,
     "upgrade_description": "Bir diğer oyuncu [energy:4] elde eder.",
@@ -13784,7 +13784,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/deflect.png",
+    "image_url": "/static/images/cards/deflect.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "7 [gold]Blok[/gold] elde et.",
@@ -13823,7 +13823,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/helix_drill.png",
+    "image_url": "/static/images/cards/helix_drill.webp",
     "beta_image_url": "/static/images/cards/beta/helix_drill.png",
     "type_variants": null,
     "upgrade_description": "Bu turda harcadığın her [energy:1] için 5 hasar ver.",
@@ -13865,7 +13865,7 @@
     "upgrade": {
       "ostydamage": "+2"
     },
-    "image_url": "/static/images/cards/rattle.png",
+    "image_url": "/static/images/cards/rattle.webp",
     "beta_image_url": "/static/images/cards/beta/rattle.png",
     "type_variants": null,
     "upgrade_description": "[gold]Osti[/gold] 9 hasar verir.\nBu tur saldırdığı sayı kadar bir kez daha vurur.",
@@ -13913,7 +13913,7 @@
       "damage": "+1",
       "strength": "+1"
     },
-    "image_url": "/static/images/cards/fight_me.png",
+    "image_url": "/static/images/cards/fight_me.webp",
     "beta_image_url": "/static/images/cards/beta/fight_me.png",
     "type_variants": null,
     "upgrade_description": "İki kez 6 hasar ver.\n2 [gold]Kuvvet[/gold] elde et.\nDüşman 1 [gold]Kuvvet[/gold] elde eder.",
@@ -13958,7 +13958,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/drum_of_battle.png",
+    "image_url": "/static/images/cards/drum_of_battle.webp",
     "beta_image_url": "/static/images/cards/beta/drum_of_battle.png",
     "type_variants": null,
     "upgrade_description": "3 kart çek.\nTurunun başında [gold]Çekme Deste[/gold]'nin en üstündeki kartı [gold]Tüket[/gold].",
@@ -13995,7 +13995,7 @@
     "upgrade": {
       "forge": "+5"
     },
-    "image_url": "/static/images/cards/spoils_of_battle.png",
+    "image_url": "/static/images/cards/spoils_of_battle.webp",
     "beta_image_url": "/static/images/cards/beta/spoils_of_battle.png",
     "type_variants": null,
     "upgrade_description": "15 [gold]Döv[/gold].",
@@ -14032,7 +14032,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/battle_trance.png",
+    "image_url": "/static/images/cards/battle_trance.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "4 kart çek.\nBu tur daha fazla kart çekemezsin.",
@@ -14071,7 +14071,7 @@
     "upgrade": {
       "block": "+4"
     },
-    "image_url": "/static/images/cards/fight_through.png",
+    "image_url": "/static/images/cards/fight_through.webp",
     "beta_image_url": "/static/images/cards/beta/fight_through.png",
     "type_variants": null,
     "upgrade_description": "17 [gold]Blok[/gold] elde et.\n[gold]Atık Destene[/gold] 2 [gold]Yara[/gold] ekle.",
@@ -14110,7 +14110,7 @@
       "damage": "+2",
       "forge": "+2"
     },
-    "image_url": "/static/images/cards/wrought_in_war.png",
+    "image_url": "/static/images/cards/wrought_in_war.webp",
     "beta_image_url": "/static/images/cards/beta/wrought_in_war.png",
     "type_variants": null,
     "upgrade_description": "9 hasar ver.\n7 [gold]Döv[/gold].",
@@ -14149,7 +14149,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/defend_ironclad.png",
+    "image_url": "/static/images/cards/defend_ironclad.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "8 [gold]Blok[/gold] elde et.",
@@ -14188,7 +14188,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/defend_silent.png",
+    "image_url": "/static/images/cards/defend_silent.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "8 [gold]Blok[/gold] elde et.",
@@ -14227,7 +14227,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/defend_regent.png",
+    "image_url": "/static/images/cards/defend_regent.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "8 [gold]Blok[/gold] elde et.",
@@ -14266,7 +14266,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/defend_necrobinder.png",
+    "image_url": "/static/images/cards/defend_necrobinder.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "8 [gold]Blok[/gold] elde et.",
@@ -14305,7 +14305,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/defend_defect.png",
+    "image_url": "/static/images/cards/defend_defect.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "8 [gold]Blok[/gold] elde et.",
@@ -14351,7 +14351,7 @@
     "upgrade": {
       "parrypower": "+3"
     },
-    "image_url": "/static/images/cards/parry.png",
+    "image_url": "/static/images/cards/parry.webp",
     "beta_image_url": "/static/images/cards/beta/parry.png",
     "type_variants": null,
     "upgrade_description": "[gold]Egemen Kılıcı[/gold]'nı her oynadığında 9 [gold]Blok[/gold] elde et.",
@@ -14388,7 +14388,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/pagestorm.png",
+    "image_url": "/static/images/cards/pagestorm.webp",
     "beta_image_url": "/static/images/cards/beta/pagestorm.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -14429,7 +14429,7 @@
     "upgrade": {
       "ostydamage": "+2"
     },
-    "image_url": "/static/images/cards/right_hand_hand.png",
+    "image_url": "/static/images/cards/right_hand_hand.webp",
     "beta_image_url": "/static/images/cards/beta/right_hand_hand.png",
     "type_variants": null,
     "upgrade_description": "[gold]Osti[/gold] 6 hasar verir.\nHer [energy:2] veya daha fazla maliyeti olan bir kart oynadığında bu kartı [gold]Atık Deste[/gold]'nden tekrar [gold]El[/gold]'ine koy.",
@@ -14466,7 +14466,7 @@
     "upgrade": {
       "retainamount": "+1"
     },
-    "image_url": "/static/images/cards/well_laid_plans.png",
+    "image_url": "/static/images/cards/well_laid_plans.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Turunun sonunda en fazla 2 kartı [gold]Sakla[/gold].",
@@ -14501,7 +14501,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/entrench.png",
+    "image_url": "/static/images/cards/entrench.webp",
     "beta_image_url": "/static/images/cards/beta/entrench.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -14540,7 +14540,7 @@
     "upgrade": {
       "strengthloss": "+2"
     },
-    "image_url": "/static/images/cards/piercing_wail.png",
+    "image_url": "/static/images/cards/piercing_wail.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Bu turda TÜM düşmanlar 8 [gold]Kuvvet[/gold] kaybeder.",
@@ -14581,7 +14581,7 @@
       "damage": "+2",
       "add_retain": true
     },
-    "image_url": "/static/images/cards/misery.png",
+    "image_url": "/static/images/cards/misery.webp",
     "beta_image_url": "/static/images/cards/beta/misery.png",
     "type_variants": null,
     "upgrade_description": "9 hasar ver.\nBir düşmandaki güçsüzleştirmeleri diğer TÜM düşmanlara uygula.",
@@ -14626,7 +14626,7 @@
     "upgrade": {
       "repeat": "+1"
     },
-    "image_url": "/static/images/cards/bouncing_flask.png",
+    "image_url": "/static/images/cards/bouncing_flask.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "4 kez rastgele bir düşmana 3 [gold]Zehir[/gold] uygula.",
@@ -14666,7 +14666,7 @@
     "upgrade": {
       "repeat": "+1"
     },
-    "image_url": "/static/images/cards/ricochet.png",
+    "image_url": "/static/images/cards/ricochet.webp",
     "beta_image_url": "/static/images/cards/beta/ricochet.png",
     "type_variants": null,
     "upgrade_description": "5 kez rastgele bir düşmana 3 hasar ver.",
@@ -14709,7 +14709,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/synchronize.png",
+    "image_url": "/static/images/cards/synchronize.webp",
     "beta_image_url": "/static/images/cards/beta/synchronize.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -14749,7 +14749,7 @@
     "upgrade": {
       "damage": "+6"
     },
-    "image_url": "/static/images/cards/synthesis.png",
+    "image_url": "/static/images/cards/synthesis.webp",
     "beta_image_url": "/static/images/cards/beta/synthesis.png",
     "type_variants": null,
     "upgrade_description": "18 hasar ver.\nSonraki oynayacağın Güç kartının maliyeti 0 [energy:1] olur.",
@@ -14789,7 +14789,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/mirage.png",
+    "image_url": "/static/images/cards/mirage.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -14833,7 +14833,7 @@
     "upgrade": {
       "calculationbase": "+3"
     },
-    "image_url": "/static/images/cards/unleash.png",
+    "image_url": "/static/images/cards/unleash.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -14870,7 +14870,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/volley.png",
+    "image_url": "/static/images/cards/volley.webp",
     "beta_image_url": "/static/images/cards/beta/volley.png",
     "type_variants": null,
     "upgrade_description": "X kez rastgele bir düşmana 14 hasar ver.",
@@ -14907,7 +14907,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/coolheaded.png",
+    "image_url": "/static/images/cards/coolheaded.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "1 [gold]Buz[/gold] [gold]Oluştur[/gold].\n2 kart çek.",
@@ -14943,7 +14943,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/dazed.png",
+    "image_url": "/static/images/cards/dazed.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -14986,7 +14986,7 @@
     "upgrade": {
       "damage": "+5"
     },
-    "image_url": "/static/images/cards/crash_landing.png",
+    "image_url": "/static/images/cards/crash_landing.webp",
     "beta_image_url": "/static/images/cards/beta/crash_landing.png",
     "type_variants": null,
     "upgrade_description": "TÜM düşmanlara 26 hasar ver.\n[gold]El[/gold]'ini [gold]Moloz[/gold] ile doldur.",
@@ -15030,7 +15030,7 @@
     "upgrade": {
       "calcifypower": "+2"
     },
-    "image_url": "/static/images/cards/calcify.png",
+    "image_url": "/static/images/cards/calcify.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]Osti[/gold]'nin saldırıları 6 daha fazla hasar verir.",
@@ -15067,7 +15067,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/alchemize.png",
+    "image_url": "/static/images/cards/alchemize.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -15107,7 +15107,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/anger.png",
+    "image_url": "/static/images/cards/anger.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "8 hasar ver.\nBu kartın bir kopyasını [gold]Atık Destesi[/gold]'ne ekle.",
@@ -15153,7 +15153,7 @@
     "upgrade": {
       "sneakypower": "+1"
     },
-    "image_url": "/static/images/cards/sneaky.png",
+    "image_url": "/static/images/cards/sneaky.webp",
     "beta_image_url": "/static/images/cards/beta/sneaky.png",
     "type_variants": null,
     "upgrade_description": "Başka bir oyuncu, bir düşmana her saldırdığında 2 [gold]Blok[/gold] elde et.",
@@ -15202,7 +15202,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/signal_boost.png",
+    "image_url": "/static/images/cards/signal_boost.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -15244,7 +15244,7 @@
       "block": "+3",
       "forge": "+3"
     },
-    "image_url": "/static/images/cards/bulwark.png",
+    "image_url": "/static/images/cards/bulwark.webp",
     "beta_image_url": "/static/images/cards/beta/bulwark.png",
     "type_variants": null,
     "upgrade_description": "16 [gold]Blok[/gold] elde et.\n13 [gold]Döv[/gold].",
@@ -15281,7 +15281,7 @@
     "upgrade": {
       "attacks": "+1"
     },
-    "image_url": "/static/images/cards/one_two_punch.png",
+    "image_url": "/static/images/cards/one_two_punch.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Bu tur oynayacağın sonraki 2 Saldırı bir kez daha oynanır.",
@@ -15319,7 +15319,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/pale_blue_dot.png",
+    "image_url": "/static/images/cards/pale_blue_dot.webp",
     "beta_image_url": "/static/images/cards/beta/pale_blue_dot.png",
     "type_variants": null,
     "upgrade_description": "Bir turda 5 veya daha fazla kart oynarsan bir sonraki turunun başında fazladan 2 kart çek.",
@@ -15356,7 +15356,7 @@
     "upgrade": {
       "block": "+2"
     },
-    "image_url": "/static/images/cards/second_wind.png",
+    "image_url": "/static/images/cards/second_wind.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]El[/gold]'indeki tüm Saldırı olmayan kartları [gold]Tüket[/gold]. [gold]Tüketilen[/gold] her kart için 7 [gold]Blok[/gold] elde et.",
@@ -15393,7 +15393,7 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": "/static/images/cards/infinite_blades.png",
+    "image_url": "/static/images/cards/infinite_blades.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -15430,7 +15430,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/chill.png",
+    "image_url": "/static/images/cards/chill.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -15477,7 +15477,7 @@
     "upgrade": {
       "coolantpower": "+1"
     },
-    "image_url": "/static/images/cards/coolant.png",
+    "image_url": "/static/images/cards/coolant.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Turunun başında sahip olduğun her eşsiz Küre için 3 [gold]Blok[/gold] elde et.",
@@ -15514,7 +15514,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/spectrum_shift.png",
+    "image_url": "/static/images/cards/spectrum_shift.webp",
     "beta_image_url": "/static/images/cards/beta/spectrum_shift.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -15553,7 +15553,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/master_of_strategy.png",
+    "image_url": "/static/images/cards/master_of_strategy.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "4 kart çek.",
@@ -15591,7 +15591,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/splash.png",
+    "image_url": "/static/images/cards/splash.webp",
     "beta_image_url": "/static/images/cards/beta/splash.png",
     "type_variants": null,
     "upgrade_description": "Başka bir karaktere ait  [gold]Geliştirilmiş[/gold] rastgele 3 Saldırı kartından 1 tanesini [gold]El[/gold]'ine eklemek için seç. Bu tur oynaması ücretsiz olur.",
@@ -15640,7 +15640,7 @@
       "damage": "+3",
       "vulnerable": "+1"
     },
-    "image_url": "/static/images/cards/assassinate.png",
+    "image_url": "/static/images/cards/assassinate.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "13 hasar ver.\n1 [gold]Savunmasız[/gold] uygula.",
@@ -15681,7 +15681,7 @@
       "Combats": 5
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/guilty.png",
+    "image_url": "/static/images/cards/guilty.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -15721,7 +15721,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/dismantle.png",
+    "image_url": "/static/images/cards/dismantle.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "10 hasar ver.\nEğer düşman [gold]Savunmasız[/gold] ise iki kez vurur.",
@@ -15760,7 +15760,7 @@
     "upgrade": {
       "extradamage": "+1"
     },
-    "image_url": "/static/images/cards/supermassive.png",
+    "image_url": "/static/images/cards/supermassive.webp",
     "beta_image_url": "/static/images/cards/beta/supermassive.png",
     "type_variants": null,
     "upgrade_description": "5 hasar ver.\nBu savaşta oluşturduğun her kart için fazladan 4 hasar verir.",
@@ -15799,7 +15799,7 @@
     "upgrade": {
       "energy": "+2"
     },
-    "image_url": "/static/images/cards/supercritical.png",
+    "image_url": "/static/images/cards/supercritical.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[energy:6] elde et.",
@@ -15840,7 +15840,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/sweeping_beam.png",
+    "image_url": "/static/images/cards/sweeping_beam.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "TÜM düşmanlara 9 hasar ver.\n1 kart çek.",
@@ -15886,7 +15886,7 @@
       "damage": "+2",
       "weak": "+1"
     },
-    "image_url": "/static/images/cards/sucker_punch.png",
+    "image_url": "/static/images/cards/sucker_punch.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "10 hasar ver.\n1 [gold]Zayıf[/gold] uygula.",
@@ -15925,7 +15925,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/compile_driver.png",
+    "image_url": "/static/images/cards/compile_driver.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "10 hasar ver.\nSahip olduğun her eşsiz Küre için 1 kart çek.",
@@ -15971,7 +15971,7 @@
       "damage": "+3",
       "weak": "+1"
     },
-    "image_url": "/static/images/cards/null.png",
+    "image_url": "/static/images/cards/null.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "13 hasar ver.\n2 [gold]Zayıf[/gold] uygula.\n1 [gold]Karanlık[/gold] [gold]Oluştur[/gold].",
@@ -16013,7 +16013,7 @@
       "calculationbase": "+5",
       "extradamage": "+1"
     },
-    "image_url": "/static/images/cards/squeeze.png",
+    "image_url": "/static/images/cards/squeeze.webp",
     "beta_image_url": "/static/images/cards/beta/squeeze.png",
     "type_variants": null,
     "upgrade_description": "[gold]Osti[/gold] 25 hasar verir.\nTÜM diğer [gold]Osti[/gold] Saldırıların için fazladan 6 hasar verir.",
@@ -16052,7 +16052,7 @@
     "upgrade": {
       "block": "+1"
     },
-    "image_url": "/static/images/cards/compact.png",
+    "image_url": "/static/images/cards/compact.webp",
     "beta_image_url": "/static/images/cards/beta/compact.png",
     "type_variants": null,
     "upgrade_description": "7 [gold]Blok[/gold] elde et.\n[gold]El[/gold]'indeki tüm Durum kartlarını [gold]Benzin+[/gold] kartına [gold]Dönüştür[/gold].",
@@ -16090,7 +16090,7 @@
       "numOfCardsPerTurn": 3
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/normality.png",
+    "image_url": "/static/images/cards/normality.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -16130,7 +16130,7 @@
     "upgrade": {
       "block": "+5"
     },
-    "image_url": "/static/images/cards/rally.png",
+    "image_url": "/static/images/cards/rally.webp",
     "beta_image_url": "/static/images/cards/beta/rally.png",
     "type_variants": null,
     "upgrade_description": "TÜM oyuncular 17 [gold]Blok[/gold] elde eder.",
@@ -16170,7 +16170,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/backstab.png",
+    "image_url": "/static/images/cards/backstab.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "15 hasar ver.",
@@ -16211,7 +16211,7 @@
     "upgrade": {
       "block": "+2"
     },
-    "image_url": "/static/images/cards/dodge_and_roll.png",
+    "image_url": "/static/images/cards/dodge_and_roll.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "6 [gold]Blok[/gold] elde et.\nSonraki tur 6 [gold]Blok[/gold] elde et.",
@@ -16250,7 +16250,7 @@
       "damage": "+3",
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/scrape.png",
+    "image_url": "/static/images/cards/scrape.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "10 hasar ver.\n5 kart çek.\nBu yolla çekilip maliyeti 0 [energy:1] olmayan tüm kartları elinden çıkar.",
@@ -16287,7 +16287,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/leap.png",
+    "image_url": "/static/images/cards/leap.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "12 [gold]Blok[/gold] elde et.",
@@ -16326,7 +16326,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/turbo.png",
+    "image_url": "/static/images/cards/turbo.webp",
     "beta_image_url": "/static/images/cards/beta/turbo.png",
     "type_variants": null,
     "upgrade_description": "[energy:3] elde et.\n[gold]Atık Deste[/gold]'ne bir [gold]Boşluk[/gold] ekle.",
@@ -16361,7 +16361,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/havoc.png",
+    "image_url": "/static/images/cards/havoc.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -16396,7 +16396,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/tracking.png",
+    "image_url": "/static/images/cards/tracking.webp",
     "beta_image_url": "/static/images/cards/beta/tracking.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -16435,7 +16435,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/tactician.png",
+    "image_url": "/static/images/cards/tactician.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[energy:2] elde et.",
@@ -16484,7 +16484,7 @@
       "block": "+2",
       "vigorpower": "+1"
     },
-    "image_url": "/static/images/cards/patter.png",
+    "image_url": "/static/images/cards/patter.webp",
     "beta_image_url": "/static/images/cards/beta/patter.png",
     "type_variants": null,
     "upgrade_description": "10 [gold]Blok[/gold] elde et.\n3 [gold]Dinç[/gold] elde et.",
@@ -16528,7 +16528,7 @@
     "upgrade": {
       "bufferpower": "+1"
     },
-    "image_url": "/static/images/cards/buffer.png",
+    "image_url": "/static/images/cards/buffer.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Sonraki 2 sefer CP'ne alacağın hasarı engeller.",
@@ -16563,7 +16563,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/tank.png",
+    "image_url": "/static/images/cards/tank.webp",
     "beta_image_url": "/static/images/cards/beta/tank.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -16601,7 +16601,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/apotheosis.png",
+    "image_url": "/static/images/cards/apotheosis.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -16656,7 +16656,7 @@
     "upgrade": {
       "focuspower": "+1"
     },
-    "image_url": "/static/images/cards/biased_cognition.png",
+    "image_url": "/static/images/cards/biased_cognition.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "5 [gold]Odak[/gold] elde et.\nHer tur başında 1 [gold]Odak[/gold] kaybet.",
@@ -16700,7 +16700,7 @@
     "upgrade": {
       "platingpower": "+2"
     },
-    "image_url": "/static/images/cards/stone_armor.png",
+    "image_url": "/static/images/cards/stone_armor.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "6 [gold]Zırh[/gold] elde et.",
@@ -16733,7 +16733,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/frantic_escape.png",
+    "image_url": "/static/images/cards/frantic_escape.webp",
     "beta_image_url": "/static/images/cards/beta/frantic_escape.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -16775,7 +16775,7 @@
       "Sloth": 3
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/sloth.png",
+    "image_url": "/static/images/cards/sloth.webp",
     "beta_image_url": "/static/images/cards/beta/sloth.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -16813,7 +16813,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/backflip.png",
+    "image_url": "/static/images/cards/backflip.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "8 [gold]Blok[/gold] elde et.\n2 kart çek.",
@@ -16850,7 +16850,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/tesla_coil.png",
+    "image_url": "/static/images/cards/tesla_coil.webp",
     "beta_image_url": "/static/images/cards/beta/tesla_coil.png",
     "type_variants": null,
     "upgrade_description": "6 hasar ver.\nTüm [gold]Yıldırım[/gold] Kürelerini düşmana hasar verdirt.",
@@ -16891,7 +16891,7 @@
       "summon": "+2",
       "heal": "+2"
     },
-    "image_url": "/static/images/cards/spur.png",
+    "image_url": "/static/images/cards/spur.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "5 [gold]Çağır[/gold].\n[gold]Osti[/gold] 7 CP iyileşir.",
@@ -16938,7 +16938,7 @@
     "upgrade": {
       "vulnerable": "+1"
     },
-    "image_url": "/static/images/cards/tremble.png",
+    "image_url": "/static/images/cards/tremble.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -16975,7 +16975,7 @@
     "upgrade": {
       "damage": "+10"
     },
-    "image_url": "/static/images/cards/bludgeon.png",
+    "image_url": "/static/images/cards/bludgeon.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "42 hasar ver.",
@@ -17012,7 +17012,7 @@
       "Damage": 5
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/toxic.png",
+    "image_url": "/static/images/cards/toxic.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -17052,7 +17052,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/huddle_up.png",
+    "image_url": "/static/images/cards/huddle_up.webp",
     "beta_image_url": "/static/images/cards/beta/huddle_up.png",
     "type_variants": null,
     "upgrade_description": "TÜM müttefikler 3 kart çeker.",
@@ -17091,7 +17091,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/pull_from_below.png",
+    "image_url": "/static/images/cards/pull_from_below.webp",
     "beta_image_url": "/static/images/cards/beta/pull_from_below.png",
     "type_variants": null,
     "upgrade_description": "Bu savaşta oynanan her [gold]Ruhani[/gold] kart için 7 hasar ver.",
@@ -17129,7 +17129,7 @@
     "upgrade": {
       "block": "+2"
     },
-    "image_url": "/static/images/cards/toric_toughness.png",
+    "image_url": "/static/images/cards/toric_toughness.webp",
     "beta_image_url": "/static/images/cards/beta/toric_toughness.png",
     "type_variants": null,
     "upgrade_description": "7 [gold]Blok[/gold] elde et.\nSonraki 2 turun başında 7 [gold]Blok[/gold] elde et.",
@@ -17171,7 +17171,7 @@
       "WasteAway": 1
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/waste_away.png",
+    "image_url": "/static/images/cards/waste_away.webp",
     "beta_image_url": "/static/images/cards/beta/waste_away.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -17212,7 +17212,7 @@
     "upgrade": {
       "increase": "+1"
     },
-    "image_url": "/static/images/cards/the_scythe.png",
+    "image_url": "/static/images/cards/the_scythe.webp",
     "beta_image_url": "/static/images/cards/beta/the_scythe.png",
     "type_variants": null,
     "upgrade_description": "13 hasar ver.\nBu kartın hasarını kalıcı olarak 4 artır.",
@@ -17250,7 +17250,7 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": "/static/images/cards/beacon_of_hope.png",
+    "image_url": "/static/images/cards/beacon_of_hope.webp",
     "beta_image_url": "/static/images/cards/beta/beacon_of_hope.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -17287,7 +17287,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/forgotten_ritual.png",
+    "image_url": "/static/images/cards/forgotten_ritual.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Eğer bu tur bir kartı [gold]Tükettiysen[/gold] [energy:4] elde et.",
@@ -17331,7 +17331,7 @@
     "upgrade": {
       "doom": "+1"
     },
-    "image_url": "/static/images/cards/oblivion.png",
+    "image_url": "/static/images/cards/oblivion.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -17366,7 +17366,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/master_planner.png",
+    "image_url": "/static/images/cards/master_planner.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -17401,7 +17401,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/tools_of_the_trade.png",
+    "image_url": "/static/images/cards/tools_of_the_trade.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -17438,7 +17438,7 @@
       "Frail": 1
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/shame.png",
+    "image_url": "/static/images/cards/shame.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -17480,7 +17480,7 @@
     "upgrade": {
       "damage": "+5"
     },
-    "image_url": "/static/images/cards/adaptive_strike.png",
+    "image_url": "/static/images/cards/adaptive_strike.webp",
     "beta_image_url": "/static/images/cards/beta/adaptive_strike.png",
     "type_variants": null,
     "upgrade_description": "23 hasar ver.\nBu kartın 0[energy:1] kopyasını [gold]Atık Destesi[/gold]'ne ekle.",
@@ -17516,7 +17516,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/poor_sleep.png",
+    "image_url": "/static/images/cards/poor_sleep.webp",
     "beta_image_url": "/static/images/cards/beta/poor_sleep.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -17557,7 +17557,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/prolong.png",
+    "image_url": "/static/images/cards/prolong.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -17597,7 +17597,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/expertise.png",
+    "image_url": "/static/images/cards/expertise.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]El[/gold]'inde 7 kart olana kadar kart çek.",
@@ -17636,7 +17636,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/flak_cannon.png",
+    "image_url": "/static/images/cards/flak_cannon.webp",
     "beta_image_url": "/static/images/cards/beta/flak_cannon.png",
     "type_variants": null,
     "upgrade_description": "TÜM [gold]Durum[/gold] kartlarını [gold]Tüket[/gold].\n[gold]Tüketilen[/gold] her kart için rastgele bir düşmana 11 hasar ver.",
@@ -17673,7 +17673,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/thrumming_hatchet.png",
+    "image_url": "/static/images/cards/thrumming_hatchet.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "14 hasar ver.\nSonraki turunun başında bu kartı [gold]El[/gold]'ine geri koy.",
@@ -17714,7 +17714,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/minion_dive_bomb.png",
+    "image_url": "/static/images/cards/minion_dive_bomb.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "16 hasar ver.",
@@ -17758,7 +17758,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/minion_sacrifice.png",
+    "image_url": "/static/images/cards/minion_sacrifice.webp",
     "beta_image_url": "/static/images/cards/beta/minion_sacrifice.png",
     "type_variants": null,
     "upgrade_description": "12 [gold]Blok[/gold] elde et.",
@@ -17804,7 +17804,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/minion_strike.png",
+    "image_url": "/static/images/cards/minion_strike.webp",
     "beta_image_url": "/static/images/cards/beta/minion_strike.png",
     "type_variants": null,
     "upgrade_description": "10 hasar ver.\n1 kart çek.",
@@ -17851,7 +17851,7 @@
     "upgrade": {
       "strength": "+1"
     },
-    "image_url": "/static/images/cards/rupture.png",
+    "image_url": "/static/images/cards/rupture.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -17895,7 +17895,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/feral.png",
+    "image_url": "/static/images/cards/feral.webp",
     "beta_image_url": "/static/images/cards/beta/feral.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -17934,7 +17934,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/body_slam.png",
+    "image_url": "/static/images/cards/body_slam.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -17972,7 +17972,7 @@
     "upgrade": {
       "damage": "+5"
     },
-    "image_url": "/static/images/cards/heirloom_hammer.png",
+    "image_url": "/static/images/cards/heirloom_hammer.webp",
     "beta_image_url": "/static/images/cards/beta/heirloom_hammer.png",
     "type_variants": null,
     "upgrade_description": "22 hasar ver.\n[gold]El[/gold]'indeki bir Renksiz kartı seç. Bu kartın bir kopyasını [gold]El[/gold]'ine koy.",
@@ -18009,7 +18009,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/burning_pact.png",
+    "image_url": "/static/images/cards/burning_pact.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "1 kart [gold]Tüket[/gold].\n3 kart çek.",
@@ -18053,7 +18053,7 @@
     "upgrade": {
       "focuspower": "+1"
     },
-    "image_url": "/static/images/cards/hotfix.png",
+    "image_url": "/static/images/cards/hotfix.webp",
     "beta_image_url": "/static/images/cards/beta/hotfix.png",
     "type_variants": null,
     "upgrade_description": "Bu turda 3 [gold]Odak[/gold] elde et.",
@@ -18092,7 +18092,7 @@
     "upgrade": {
       "remove_ethereal": true
     },
-    "image_url": "/static/images/cards/echo_form.png",
+    "image_url": "/static/images/cards/echo_form.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -18140,7 +18140,7 @@
     "upgrade": {
       "strengthpower": "+1"
     },
-    "image_url": "/static/images/cards/resonance.png",
+    "image_url": "/static/images/cards/resonance.webp",
     "beta_image_url": "/static/images/cards/beta/resonance.png",
     "type_variants": null,
     "upgrade_description": "2 [gold]Kuvvet[/gold] elde et. TÜM düşmanlar 1 [gold]Kuvvet[/gold] kaybeder.",
@@ -18177,7 +18177,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/echoing_slash.png",
+    "image_url": "/static/images/cards/echoing_slash.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "TÜM düşmanlara 13 hasar ver.\nÖldürülen her düşman için bunu tekrar et.",
@@ -18215,7 +18215,7 @@
     "upgrade": {
       "block": "+4"
     },
-    "image_url": "/static/images/cards/reflect.png",
+    "image_url": "/static/images/cards/reflect.webp",
     "beta_image_url": "/static/images/cards/beta/reflect.png",
     "type_variants": null,
     "upgrade_description": "21 [gold]Blok[/gold] elde et.\nEngellenen saldırı hasarı bu tur düşmanına geri yönlendirilir.",
@@ -18252,7 +18252,7 @@
       "Damage": 2
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/burn.png",
+    "image_url": "/static/images/cards/burn.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -18292,7 +18292,7 @@
       "Cards": 1
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/slimed.png",
+    "image_url": "/static/images/cards/slimed.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -18335,7 +18335,7 @@
       "extradamage": "+3",
       "calculationbase": "+3"
     },
-    "image_url": "/static/images/cards/rend.png",
+    "image_url": "/static/images/cards/rend.webp",
     "beta_image_url": "/static/images/cards/beta/rend.png",
     "type_variants": null,
     "upgrade_description": "15 hasar ver.\nDüşmandaki her eşsiz güçsüzleştirme için fazladan 8 hasar verir.",
@@ -18370,7 +18370,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/wound.png",
+    "image_url": "/static/images/cards/wound.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -18408,7 +18408,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/injury.png",
+    "image_url": "/static/images/cards/injury.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -18448,7 +18448,7 @@
     "upgrade": {
       "cost": 2
     },
-    "image_url": "/static/images/cards/creative_ai.png",
+    "image_url": "/static/images/cards/creative_ai.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -18485,7 +18485,7 @@
     "upgrade": {
       "starsperturn": "+1"
     },
-    "image_url": "/static/images/cards/genesis.png",
+    "image_url": "/static/images/cards/genesis.webp",
     "beta_image_url": "/static/images/cards/beta/genesis.png",
     "type_variants": null,
     "upgrade_description": "Turunun başında [star:3] elde et.",
@@ -18522,7 +18522,7 @@
     "upgrade": {
       "block": "+1"
     },
-    "image_url": "/static/images/cards/pillar_of_creation.png",
+    "image_url": "/static/images/cards/pillar_of_creation.webp",
     "beta_image_url": "/static/images/cards/beta/pillar_of_creation.png",
     "type_variants": null,
     "upgrade_description": "Her kart oluşturduğunda 4 [gold]Blok[/gold] elde et.",
@@ -18565,7 +18565,7 @@
     "upgrade": {
       "ostydamage": "+5"
     },
-    "image_url": "/static/images/cards/sweeping_gaze.png",
+    "image_url": "/static/images/cards/sweeping_gaze.webp",
     "beta_image_url": "/static/images/cards/beta/sweeping_gaze.png",
     "type_variants": null,
     "upgrade_description": "[gold]Osti[/gold] rastgele bir düşmana 15 hasar verir.",
@@ -18607,7 +18607,7 @@
     "upgrade": {
       "damage": "+8"
     },
-    "image_url": "/static/images/cards/sunder.png",
+    "image_url": "/static/images/cards/sunder.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "32 hasar ver.\nEğer bu kart bir düşmanı öldürürse [energy:3] elde et.",
@@ -18644,7 +18644,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/forbidden_grimoire.png",
+    "image_url": "/static/images/cards/forbidden_grimoire.webp",
     "beta_image_url": "/static/images/cards/beta/forbidden_grimoire.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -18682,7 +18682,7 @@
     "upgrade": {
       "cost": 2
     },
-    "image_url": "/static/images/cards/bullet_time.png",
+    "image_url": "/static/images/cards/bullet_time.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -18721,7 +18721,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/barrage.png",
+    "image_url": "/static/images/cards/barrage.webp",
     "beta_image_url": "/static/images/cards/beta/barrage.png",
     "type_variants": null,
     "upgrade_description": "Her [gold]Oluşturulan[/gold] Küre için 7 hasar ver.",
@@ -18758,7 +18758,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/salvo.png",
+    "image_url": "/static/images/cards/salvo.webp",
     "beta_image_url": "/static/images/cards/beta/salvo.png",
     "type_variants": null,
     "upgrade_description": "16 hasar ver.\nBu tur [gold]El[/gold]'ini [gold]Sakla[/gold].",
@@ -18795,7 +18795,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/pillage.png",
+    "image_url": "/static/images/cards/pillage.webp",
     "beta_image_url": "/static/images/cards/beta/pillage.png",
     "type_variants": null,
     "upgrade_description": "9 hasar ver.\nSaldırı olmayan bir kart gelene kadar kart çek.",
@@ -18834,7 +18834,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/seven_stars.png",
+    "image_url": "/static/images/cards/seven_stars.webp",
     "beta_image_url": "/static/images/cards/beta/seven_stars.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -18873,7 +18873,7 @@
     "upgrade": {
       "cards": "+2"
     },
-    "image_url": "/static/images/cards/reboot.png",
+    "image_url": "/static/images/cards/reboot.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "TÜM kartlarını [gold]Çekme Deste[/gold]'ne karıştır.\n6 kart çek.",
@@ -18922,7 +18922,7 @@
       "damage": "+4",
       "knockdownpower": "+1"
     },
-    "image_url": "/static/images/cards/knockdown.png",
+    "image_url": "/static/images/cards/knockdown.webp",
     "beta_image_url": "/static/images/cards/beta/knockdown.png",
     "type_variants": null,
     "upgrade_description": "14 hasar ver.\nDüşman bu turda diğer oyunculardan üç kat daha fazla hasar alır.",
@@ -18963,7 +18963,7 @@
       "cards": "+1",
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/restlessness.png",
+    "image_url": "/static/images/cards/restlessness.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]El[/gold]'in boşsa 3 kart çek ve [energy:3] elde et.",
@@ -19019,7 +19019,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/know_thy_place.png",
+    "image_url": "/static/images/cards/know_thy_place.webp",
     "beta_image_url": "/static/images/cards/beta/know_thy_place.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -19062,7 +19062,7 @@
       "damage": "+1",
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/guiding_star.png",
+    "image_url": "/static/images/cards/guiding_star.webp",
     "beta_image_url": "/static/images/cards/beta/guiding_star.png",
     "type_variants": null,
     "upgrade_description": "13 hasar ver.\nSonraki tur 3 kart çek.",
@@ -19099,7 +19099,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/fisticuffs.png",
+    "image_url": "/static/images/cards/fisticuffs.webp",
     "beta_image_url": "/static/images/cards/beta/fisticuffs.png",
     "type_variants": null,
     "upgrade_description": "9 hasar ver.\nVerdiğin hasarla aynı miktarda [gold]Blok[/gold] elde et.",
@@ -19144,7 +19144,7 @@
     "upgrade": {
       "repeat": "+1"
     },
-    "image_url": "/static/images/cards/consuming_shadow.png",
+    "image_url": "/static/images/cards/consuming_shadow.webp",
     "beta_image_url": "/static/images/cards/beta/consuming_shadow.png",
     "type_variants": null,
     "upgrade_description": "3 [gold]Karanlık[/gold] [gold]Oluştur[/gold].\nTurunun sonunda en soldaki Küre'ni [gold]Tetikle[/gold].",
@@ -19189,7 +19189,7 @@
     "upgrade": {
       "rollingboulderpower": "+5"
     },
-    "image_url": "/static/images/cards/rolling_boulder.png",
+    "image_url": "/static/images/cards/rolling_boulder.webp",
     "beta_image_url": "/static/images/cards/beta/rolling_boulder.png",
     "type_variants": null,
     "upgrade_description": "Turunun başında TÜM düşmanlara 10 hasar ver ve bu hasarı 5 artır.",
@@ -19226,7 +19226,7 @@
     "upgrade": {
       "block": "+4"
     },
-    "image_url": "/static/images/cards/intercept.png",
+    "image_url": "/static/images/cards/intercept.webp",
     "beta_image_url": "/static/images/cards/beta/intercept.png",
     "type_variants": null,
     "upgrade_description": "13 [gold]Blok[/gold] elde et.\nBu tur başka bir oyuncuya verilecek tüm saldırıları üstüne çek.",
@@ -19263,7 +19263,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/orbit.png",
+    "image_url": "/static/images/cards/orbit.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -19300,7 +19300,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/ascenders_bane.png",
+    "image_url": "/static/images/cards/ascenders_bane.webp",
     "beta_image_url": "/static/images/cards/beta/ascenders_bane.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -19342,7 +19342,7 @@
     "upgrade": {
       "block": "+5"
     },
-    "image_url": "/static/images/cards/lift.png",
+    "image_url": "/static/images/cards/lift.webp",
     "beta_image_url": "/static/images/cards/beta/lift.png",
     "type_variants": null,
     "upgrade_description": "Başka bir oyuncuya 16 [gold]Blok[/gold] ver.",
@@ -19381,7 +19381,7 @@
     "upgrade": {
       "add_retain": true
     },
-    "image_url": "/static/images/cards/dredge.png",
+    "image_url": "/static/images/cards/dredge.webp",
     "beta_image_url": "/static/images/cards/beta/dredge.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -19430,7 +19430,7 @@
       "damage": "+5",
       "vulnerable": "+2"
     },
-    "image_url": "/static/images/cards/break.png",
+    "image_url": "/static/images/cards/break.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "25 hasar ver.\n5 [gold]Savunmasız[/gold] uygula.",
@@ -19474,7 +19474,7 @@
     "upgrade": {
       "serpentformpower": "+1"
     },
-    "image_url": "/static/images/cards/serpent_form.png",
+    "image_url": "/static/images/cards/serpent_form.webp",
     "beta_image_url": "/static/images/cards/beta/serpent_form.png",
     "type_variants": null,
     "upgrade_description": "Her kart oynadığında rastgele bir düşmana 5 hasar ver.",
@@ -19520,7 +19520,7 @@
     "upgrade": {
       "poison": "+3"
     },
-    "image_url": "/static/images/cards/snakebite.png",
+    "image_url": "/static/images/cards/snakebite.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -19568,7 +19568,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/thunderclap.png",
+    "image_url": "/static/images/cards/thunderclap.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "TÜM düşmanlara 7 hasar ver ve 1 [gold]Savunmasız[/gold] uygula.",
@@ -19605,7 +19605,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/ball_lightning.png",
+    "image_url": "/static/images/cards/ball_lightning.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "10 hasar ver.\n1 [gold]Yıldırım[/gold] [gold]Oluştur[/gold].",
@@ -19642,7 +19642,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/stardust.png",
+    "image_url": "/static/images/cards/stardust.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "X kez rastgele bir düşmana 7 hasar ver.",
@@ -19679,7 +19679,7 @@
     "upgrade": {
       "blockforstars": "+1"
     },
-    "image_url": "/static/images/cards/child_of_the_stars.png",
+    "image_url": "/static/images/cards/child_of_the_stars.webp",
     "beta_image_url": "/static/images/cards/beta/child_of_the_stars.png",
     "type_variants": null,
     "upgrade_description": "Her [star:1] harcadığında harcadığın her [star:1] için 3 [gold]Blok[/gold] elde et.",
@@ -19717,7 +19717,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/cloak_of_stars.png",
+    "image_url": "/static/images/cards/cloak_of_stars.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "10 [gold]Blok[/gold] elde et.",
@@ -19754,7 +19754,7 @@
     "upgrade": {
       "damage": "+5"
     },
-    "image_url": "/static/images/cards/predator.png",
+    "image_url": "/static/images/cards/predator.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "20 hasar ver.\nSonraki turda 2 kart çek.",
@@ -19794,7 +19794,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/tear_asunder.png",
+    "image_url": "/static/images/cards/tear_asunder.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "7 hasar ver.\nBu savaş boyunca CP kaybettiğin her sefer için ek bir vuruş yapar.",
@@ -19832,7 +19832,7 @@
     "upgrade": {
       "calculationbase": "+3"
     },
-    "image_url": "/static/images/cards/stack.png",
+    "image_url": "/static/images/cards/stack.webp",
     "beta_image_url": "/static/images/cards/beta/stack.png",
     "type_variants": null,
     "upgrade_description": "[gold]Atık Deste[/gold]'ndeki kart sayısı kadar [gold]Blok[/gold] kazan.  +[CalculationBase Blok daha ekle|]",
@@ -19873,7 +19873,7 @@
     "upgrade": {
       "add_retain": true
     },
-    "image_url": "/static/images/cards/times_up.png",
+    "image_url": "/static/images/cards/times_up.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -19924,7 +19924,7 @@
       "damage": "+6",
       "weak": "+2"
     },
-    "image_url": "/static/images/cards/suppress.png",
+    "image_url": "/static/images/cards/suppress.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "17 hasar ver.\n3 [gold]Zayıf[/gold] uygula.",
@@ -19966,7 +19966,7 @@
     "upgrade": {
       "strengthloss": "+3"
     },
-    "image_url": "/static/images/cards/enfeebling_touch.png",
+    "image_url": "/static/images/cards/enfeebling_touch.webp",
     "beta_image_url": "/static/images/cards/beta/enfeebling_touch.png",
     "type_variants": null,
     "upgrade_description": "Düşman bu tur 11 [gold]Kuvvet[/gold] kaybeder.",
@@ -20008,7 +20008,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/fiend_fire.png",
+    "image_url": "/static/images/cards/fiend_fire.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]El[/gold]'ini [gold]Tüket[/gold].\n[gold]Tüketilen[/gold] her kart için 10 hasar ver.",
@@ -20055,7 +20055,7 @@
     "upgrade": {
       "envenompower": "+1"
     },
-    "image_url": "/static/images/cards/envenom.png",
+    "image_url": "/static/images/cards/envenom.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Ne zaman bir Saldırı engellenmeyen bir hasar verirse 2 [gold]Zehir[/gold] uygula.",
@@ -20092,7 +20092,7 @@
     "upgrade": {
       "poisonperturn": "+1"
     },
-    "image_url": "/static/images/cards/noxious_fumes.png",
+    "image_url": "/static/images/cards/noxious_fumes.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Turunun başında TÜM düşmanlara 3 [gold]Zehir[/gold] uygula.",
@@ -20138,7 +20138,7 @@
       "damage": "+2",
       "poison": "+1"
     },
-    "image_url": "/static/images/cards/poisoned_stab.png",
+    "image_url": "/static/images/cards/poisoned_stab.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "8 hasar ver.\n3 [gold]Zehir[/gold] uygula.",
@@ -20179,7 +20179,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/mind_blast.png",
+    "image_url": "/static/images/cards/mind_blast.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -20224,7 +20224,7 @@
       "MindRot": 1
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/mind_rot.png",
+    "image_url": "/static/images/cards/mind_rot.webp",
     "beta_image_url": "/static/images/cards/beta/mind_rot.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -20259,7 +20259,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/spore_mind.png",
+    "image_url": "/static/images/cards/spore_mind.webp",
     "beta_image_url": "/static/images/cards/beta/spore_mind.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -20301,7 +20301,7 @@
     "upgrade": {
       "extradamage": "+1"
     },
-    "image_url": "/static/images/cards/bully.png",
+    "image_url": "/static/images/cards/bully.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "4 hasar ver.\nDüşman üzerindeki her [gold]Savunmasız[/gold] için fazladan 3 hasar verir.",
@@ -20338,7 +20338,7 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": "/static/images/cards/tyranny.png",
+    "image_url": "/static/images/cards/tyranny.webp",
     "beta_image_url": "/static/images/cards/beta/tyranny.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -20390,7 +20390,7 @@
       "ostydamage": "+2",
       "vulnerable": "+1"
     },
-    "image_url": "/static/images/cards/high_five.png",
+    "image_url": "/static/images/cards/high_five.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]Osti[/gold] 13 hasar verir\nve TÜM düşmanlara 2 [gold]Savunmasız[/gold] \nuygular.",
@@ -20426,7 +20426,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/curse_of_the_bell.png",
+    "image_url": "/static/images/cards/curse_of_the_bell.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -20465,7 +20465,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/zap.png",
+    "image_url": "/static/images/cards/zap.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -20504,7 +20504,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/collision_course.png",
+    "image_url": "/static/images/cards/collision_course.webp",
     "beta_image_url": "/static/images/cards/beta/collision_course.png",
     "type_variants": null,
     "upgrade_description": "12 hasar ver.\n[gold]El[/gold]'ine 1 [gold]Moloz[/gold] ekle.",
@@ -20541,7 +20541,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/shatter.png",
+    "image_url": "/static/images/cards/shatter.webp",
     "beta_image_url": "/static/images/cards/beta/shatter.png",
     "type_variants": null,
     "upgrade_description": "TÜM düşmanlara 15 hasar ver.\nTüm Kürelerini [gold]Tetikle[/gold].",
@@ -20578,7 +20578,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/clash.png",
+    "image_url": "/static/images/cards/clash.webp",
     "beta_image_url": "/static/images/cards/beta/clash.png",
     "type_variants": null,
     "upgrade_description": "Yalnızca [gold]El[/gold]'indeki tüm kartlar Saldırı ise oynanabilir.\n18 hasar ver.",
@@ -20617,7 +20617,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/expect_a_fight.png",
+    "image_url": "/static/images/cards/expect_a_fight.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -20652,7 +20652,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/cascade.png",
+    "image_url": "/static/images/cards/cascade.webp",
     "beta_image_url": "/static/images/cards/beta/cascade.png",
     "type_variants": null,
     "upgrade_description": "[gold]Çekme Deste[/gold]'nin en üstündeki X+1 kartı oyna.",
@@ -20687,7 +20687,7 @@
       "HpLoss": 6
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/beckon.png",
+    "image_url": "/static/images/cards/beckon.webp",
     "beta_image_url": "/static/images/cards/beta/beckon.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -20722,7 +20722,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/hammer_time.png",
+    "image_url": "/static/images/cards/hammer_time.webp",
     "beta_image_url": "/static/images/cards/beta/hammer_time.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -20759,7 +20759,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/storm_of_steel.png",
+    "image_url": "/static/images/cards/storm_of_steel.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]El[/gold]'indeki kartları at.\nAtılan her kart için [gold]El[/gold]'ine 1 [gold]Kama+[/gold] ekle.",
@@ -20797,7 +20797,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/flash_of_steel.png",
+    "image_url": "/static/images/cards/flash_of_steel.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "8 hasar ver.\n1 kart çek.",
@@ -20834,7 +20834,7 @@
     "upgrade": {
       "block": "+2"
     },
-    "image_url": "/static/images/cards/true_grit.png",
+    "image_url": "/static/images/cards/true_grit.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "9 [gold]Blok[/gold] elde et.\n 1 kart [gold]Tüket[/gold].",
@@ -20880,7 +20880,7 @@
       "block": "+3",
       "weak": "+1"
     },
-    "image_url": "/static/images/cards/leg_sweep.png",
+    "image_url": "/static/images/cards/leg_sweep.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "2 [gold]Zayıf[/gold] uygula.\n14 [gold]Blok[/gold] elde et.",
@@ -20917,7 +20917,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/dual_wield.png",
+    "image_url": "/static/images/cards/dual_wield.webp",
     "beta_image_url": "/static/images/cards/beta/dual_wield.png",
     "type_variants": null,
     "upgrade_description": "Bir Saldırı veya Güç kartı seç. Bu kartın [Cards kopyasını|kopyasını] [gold]El[/gold]'ine ekle.",
@@ -20952,7 +20952,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/dualcast.png",
+    "image_url": "/static/images/cards/dualcast.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -20998,7 +20998,7 @@
       "damage": "+2",
       "vulnerable": "+1"
     },
-    "image_url": "/static/images/cards/squash.png",
+    "image_url": "/static/images/cards/squash.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "12 hasar ver.\n2 [gold]Savunmasız[/gold] uygula.",
@@ -21033,7 +21033,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/multi_cast.png",
+    "image_url": "/static/images/cards/multi_cast.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "En sağdaki Küre'ni X+1 kez [gold]Tetikle[/gold].",
@@ -21070,7 +21070,7 @@
       "Damage": 2
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/decay.png",
+    "image_url": "/static/images/cards/decay.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -21112,7 +21112,7 @@
     "upgrade": {
       "power": "+1"
     },
-    "image_url": "/static/images/cards/putrefy.png",
+    "image_url": "/static/images/cards/putrefy.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "3 [gold]Zayıf[/gold] uygula.\n3 [gold]Savunmasız[/gold] uygula.",
@@ -21152,7 +21152,7 @@
     "upgrade": {
       "cost": 2
     },
-    "image_url": "/static/images/cards/corruption.png",
+    "image_url": "/static/images/cards/corruption.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -21199,14 +21199,14 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": "/static/images/cards/mad_science_attack.png",
+    "image_url": "/static/images/cards/mad_science_attack.webp",
     "beta_image_url": null,
     "type_variants": {
       "attack": {
         "type": "Attack",
         "description": "12 hasar ver.",
         "damage": 12,
-        "image_url": "/static/images/cards/mad_science_attack.png",
+        "image_url": "/static/images/cards/mad_science_attack.webp",
         "riders": [
           {
             "id": "SAPPING",
@@ -21229,7 +21229,7 @@
         "type": "Skill",
         "description": "8 [gold]Blok[/gold] elde et.",
         "block": 8,
-        "image_url": "/static/images/cards/mad_science_skill.png",
+        "image_url": "/static/images/cards/mad_science_skill.webp",
         "riders": [
           {
             "id": "ENERGIZED",
@@ -21251,7 +21251,7 @@
       "power": {
         "type": "Power",
         "description": "",
-        "image_url": "/static/images/cards/mad_science_power.png",
+        "image_url": "/static/images/cards/mad_science_power.webp",
         "riders": [
           {
             "id": "EXPERTISE",
@@ -21313,7 +21313,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/borrowed_time.png",
+    "image_url": "/static/images/cards/borrowed_time.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Kendine 3 [gold]Kader[/gold] uygula.\n[energy:2] elde et.",
@@ -21350,7 +21350,7 @@
     "upgrade": {
       "power": "+2"
     },
-    "image_url": "/static/images/cards/rage.png",
+    "image_url": "/static/images/cards/rage.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Bu tur her Saldırı oynadığında 5 [gold]Blok[/gold] elde et.",
@@ -21390,7 +21390,7 @@
       "calculationbase": "+2",
       "extradamage": "+1"
     },
-    "image_url": "/static/images/cards/memento_mori.png",
+    "image_url": "/static/images/cards/memento_mori.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "8 hasar ver.\nBu tur elinden çıkardığın her kart için fazladan 5 hasar ver.",
@@ -21432,7 +21432,7 @@
       "damage": "+2",
       "strengthloss": "+2"
     },
-    "image_url": "/static/images/cards/dying_star.png",
+    "image_url": "/static/images/cards/dying_star.webp",
     "beta_image_url": "/static/images/cards/beta/dying_star.png",
     "type_variants": null,
     "upgrade_description": "TÜM düşmanlara 11 hasar ver. Bu tur TÜM düşmanlar 11 [gold]Kuvvet[/gold] kaybeder.",
@@ -21480,7 +21480,7 @@
     "upgrade": {
       "dansemacabrepower": "+1"
     },
-    "image_url": "/static/images/cards/danse_macabre.png",
+    "image_url": "/static/images/cards/danse_macabre.webp",
     "beta_image_url": "/static/images/cards/beta/danse_macabre.png",
     "type_variants": null,
     "upgrade_description": "Bedeli en az [energy:2] olan bir kartı her oynadığında 4 [gold]Blok[/gold] elde et.",
@@ -21531,7 +21531,7 @@
     "upgrade": {
       "doom": "+5"
     },
-    "image_url": "/static/images/cards/deathbringer.png",
+    "image_url": "/static/images/cards/deathbringer.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -21568,7 +21568,7 @@
     "upgrade": {
       "summon": "+3"
     },
-    "image_url": "/static/images/cards/necro_mastery.png",
+    "image_url": "/static/images/cards/necro_mastery.webp",
     "beta_image_url": "/static/images/cards/beta/necro_mastery.png",
     "type_variants": null,
     "upgrade_description": "8 [gold]Çağır[/gold].\n[gold]Osti[/gold] her CP kaybettiğinde\nTÜM düşmanlar da aynı miktarda CP kaybeder.",
@@ -21608,7 +21608,7 @@
       "calculationbase": "+1",
       "extradamage": "+1"
     },
-    "image_url": "/static/images/cards/death_march.png",
+    "image_url": "/static/images/cards/death_march.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "8 hasar ver.\nTurun esnasında çekilen her kart için fazladan 4 hasar verir.",
@@ -21645,7 +21645,7 @@
     "upgrade": {
       "block": "+2"
     },
-    "image_url": "/static/images/cards/undeath.png",
+    "image_url": "/static/images/cards/undeath.webp",
     "beta_image_url": "/static/images/cards/beta/undeath.png",
     "type_variants": null,
     "upgrade_description": "9 [gold]Blok[/gold] elde et.\nBu kartın bir kopyasını [gold]Atık Deste[/gold]'ne ekle.",
@@ -21689,7 +21689,7 @@
     "upgrade": {
       "poison": "+2"
     },
-    "image_url": "/static/images/cards/deadly_poison.png",
+    "image_url": "/static/images/cards/deadly_poison.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -21735,7 +21735,7 @@
     "upgrade": {
       "lethalitypower": "+25"
     },
-    "image_url": "/static/images/cards/lethality.png",
+    "image_url": "/static/images/cards/lethality.webp",
     "beta_image_url": "/static/images/cards/beta/lethality.png",
     "type_variants": null,
     "upgrade_description": "Her tur yapacağın ilk Saldırı %75 daha fazla hasar verir.",
@@ -21776,7 +21776,7 @@
     "upgrade": {
       "block": "+1"
     },
-    "image_url": "/static/images/cards/deaths_door.png",
+    "image_url": "/static/images/cards/deaths_door.webp",
     "beta_image_url": "/static/images/cards/beta/deaths_door.png",
     "type_variants": null,
     "upgrade_description": "7 [gold]Blok[/gold] elde et.\nEğer bu tur [gold]Kader[/gold] uyguladıysan 2 kez daha [gold]Blok[/gold] elde et.",
@@ -21822,7 +21822,7 @@
     "upgrade": {
       "devourlifepower": "+1"
     },
-    "image_url": "/static/images/cards/devour_life.png",
+    "image_url": "/static/images/cards/devour_life.webp",
     "beta_image_url": "/static/images/cards/beta/devour_life.png",
     "type_variants": null,
     "upgrade_description": "Her [gold]Ruh[/gold] oynadığında 2 [gold]Çağır[/gold].",
@@ -21870,7 +21870,7 @@
       "damage": "+2",
       "strength": "+1"
     },
-    "image_url": "/static/images/cards/setup_strike.png",
+    "image_url": "/static/images/cards/setup_strike.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "9 hasar ver.\nBu tur 2 [gold]Kuvvet[/gold] elde et.",
@@ -21912,7 +21912,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/leading_strike.png",
+    "image_url": "/static/images/cards/leading_strike.webp",
     "beta_image_url": "/static/images/cards/beta/leading_strike.png",
     "type_variants": null,
     "upgrade_description": "10 hasar ver.\n[gold]El[/gold]'ine 1 [gold]Kama[/gold] ekle.",
@@ -21956,7 +21956,7 @@
     "upgrade": {
       "dexterity": "+2"
     },
-    "image_url": "/static/images/cards/anticipate.png",
+    "image_url": "/static/images/cards/anticipate.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -21993,7 +21993,7 @@
     "upgrade": {
       "damage": "+5"
     },
-    "image_url": "/static/images/cards/howl_from_beyond.png",
+    "image_url": "/static/images/cards/howl_from_beyond.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "TÜM düşmanlara 21 hasar ver.\nTurunun başında [gold]Tüketim Deste[/gold]'nden oynanır.",
@@ -22034,7 +22034,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/glimpse_beyond.png",
+    "image_url": "/static/images/cards/glimpse_beyond.webp",
     "beta_image_url": "/static/images/cards/beta/glimpse_beyond.png",
     "type_variants": null,
     "upgrade_description": "TÜM oyuncular [gold]Çekme Deste[/gold]'lerine 4 [gold]Ruh[/gold] ekler.",
@@ -22075,7 +22075,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/make_it_so.png",
+    "image_url": "/static/images/cards/make_it_so.webp",
     "beta_image_url": "/static/images/cards/beta/make_it_so.png",
     "type_variants": null,
     "upgrade_description": "9 hasar ver.\nHer 3 Beceri kartı oynadığında bu kartı [gold]El[/gold]'ine koy.",
@@ -22114,7 +22114,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/production.png",
+    "image_url": "/static/images/cards/production.webp",
     "beta_image_url": "/static/images/cards/beta/production.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -22154,7 +22154,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/stomp.png",
+    "image_url": "/static/images/cards/stomp.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "TÜM düşmanlara 15 hasar ver.\nBu turda oynanan her Saldırı için maliyeti 1 [energy:1] azalır.",
@@ -22191,7 +22191,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/outmaneuver.png",
+    "image_url": "/static/images/cards/outmaneuver.webp",
     "beta_image_url": "/static/images/cards/beta/outmaneuver.png",
     "type_variants": null,
     "upgrade_description": "Sonraki tur [energy:3] elde et.",
@@ -22230,7 +22230,7 @@
     "upgrade": {
       "extradamage": "+2"
     },
-    "image_url": "/static/images/cards/gang_up.png",
+    "image_url": "/static/images/cards/gang_up.webp",
     "beta_image_url": "/static/images/cards/beta/gang_up.png",
     "type_variants": null,
     "upgrade_description": "5 hasar ver.\nBaşka bir oyuncunun bu turda yaptığı her saldırı için fazladan 7 hasar verir.",
@@ -22269,7 +22269,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/dominate.png",
+    "image_url": "/static/images/cards/dominate.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -22309,7 +22309,7 @@
     "upgrade": {
       "damage": "+6"
     },
-    "image_url": "/static/images/cards/pounce.png",
+    "image_url": "/static/images/cards/pounce.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "18 hasar ver.\nBir sonraki oynayacağın Beceri'nin maliyeti 0 [energy:1] olur.",
@@ -22348,7 +22348,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/charge.png",
+    "image_url": "/static/images/cards/charge.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]Çekme Deste[/gold]'nden 2 kart seç ve onları\n[gold]Uşak Saldırısı+[/gold] kartlarına [gold]Dönüştür[/gold].",
@@ -22385,7 +22385,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/double_energy.png",
+    "image_url": "/static/images/cards/double_energy.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -22427,7 +22427,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/twin_strike.png",
+    "image_url": "/static/images/cards/twin_strike.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "İki kez 7 hasar ver.",
@@ -22465,7 +22465,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/heavenly_drill.png",
+    "image_url": "/static/images/cards/heavenly_drill.webp",
     "beta_image_url": "/static/images/cards/beta/heavenly_drill.png",
     "type_variants": null,
     "upgrade_description": "X kez 10 hasar ver.\nEnerjin 4 veya daha fazlaysa X iki katına çıkar.",
@@ -22504,7 +22504,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/thinking_ahead.png",
+    "image_url": "/static/images/cards/thinking_ahead.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -22544,7 +22544,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/primal_force.png",
+    "image_url": "/static/images/cards/primal_force.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]El[/gold]'indeki tüm Saldırı kartlarını [gold]Devasa Kaya+[/gold] kartına dönüştür.",
@@ -22582,7 +22582,7 @@
     "upgrade": {
       "damage": "+1"
     },
-    "image_url": "/static/images/cards/exterminate.png",
+    "image_url": "/static/images/cards/exterminate.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "TÜM düşmanlara 4 kez 4 hasar ver.",
@@ -22621,7 +22621,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/parse.png",
+    "image_url": "/static/images/cards/parse.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "4 kart çek.",
@@ -22677,7 +22677,7 @@
       "strength": "+1",
       "dexterity": "+1"
     },
-    "image_url": "/static/images/cards/bulk_up.png",
+    "image_url": "/static/images/cards/bulk_up.webp",
     "beta_image_url": "/static/images/cards/beta/bulk_up.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -22712,7 +22712,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/soot.png",
+    "image_url": "/static/images/cards/soot.webp",
     "beta_image_url": "/static/images/cards/beta/soot.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -22761,7 +22761,7 @@
     "upgrade": {
       "accuracypower": "+2"
     },
-    "image_url": "/static/images/cards/accuracy.png",
+    "image_url": "/static/images/cards/accuracy.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]Kamalar[/gold] fazladan 6 hasar verir.",
@@ -22805,7 +22805,7 @@
     "upgrade": {
       "iterationpower": "+1"
     },
-    "image_url": "/static/images/cards/iteration.png",
+    "image_url": "/static/images/cards/iteration.webp",
     "beta_image_url": "/static/images/cards/beta/iteration.png",
     "type_variants": null,
     "upgrade_description": "Her tur ilk Durum kartı çekişinde 3 kart daha çek.",
@@ -22844,7 +22844,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/momentum_strike.png",
+    "image_url": "/static/images/cards/momentum_strike.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "13 hasar ver.\nBu kartın maliyetini 0 [energy:1] yap.",
@@ -22881,7 +22881,7 @@
     "upgrade": {
       "forge": "+4"
     },
-    "image_url": "/static/images/cards/seeking_edge.png",
+    "image_url": "/static/images/cards/seeking_edge.webp",
     "beta_image_url": "/static/images/cards/beta/seeking_edge.png",
     "type_variants": null,
     "upgrade_description": "11 [gold]Döv[/gold].\n[gold]Egemen Kılıcı[/gold] artık TÜM düşmanlara hasar verir.",
@@ -22925,7 +22925,7 @@
     "upgrade": {
       "juggernautpower": "+2"
     },
-    "image_url": "/static/images/cards/juggernaut.png",
+    "image_url": "/static/images/cards/juggernaut.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Bu tur her [gold]Blok[/gold] elde ettiğinde rastgele bir düşmana 7 hasar ver.",
@@ -22962,7 +22962,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/stampede.png",
+    "image_url": "/static/images/cards/stampede.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -23001,7 +23001,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/flechettes.png",
+    "image_url": "/static/images/cards/flechettes.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]El[/gold]'indeki her Beceri için 7 hasar ver.",
@@ -23040,7 +23040,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/sculpting_strike.png",
+    "image_url": "/static/images/cards/sculpting_strike.webp",
     "beta_image_url": "/static/images/cards/beta/sculpting_strike.png",
     "type_variants": null,
     "upgrade_description": "11 hasar ver.\n[gold]El[/gold]'indeki bir karta [gold]Ruhani[/gold] ekle.",
@@ -23081,7 +23081,7 @@
       "calculationbase": "+2",
       "calculationextra": "+2"
     },
-    "image_url": "/static/images/cards/beat_into_shape.png",
+    "image_url": "/static/images/cards/beat_into_shape.webp",
     "beta_image_url": "/static/images/cards/beta/beat_into_shape.png",
     "type_variants": null,
     "upgrade_description": "7 hasar ver.\nX [gold]Döv[/gold].\nBu tur düşmana yaptığın her vuruş için fazladan 7 [gold]Dövme[/gold] uygular.",
@@ -23125,7 +23125,7 @@
     "upgrade": {
       "strengthpower": "+1"
     },
-    "image_url": "/static/images/cards/demon_form.png",
+    "image_url": "/static/images/cards/demon_form.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "Turunun başında 3 [gold]Kuvvet[/gold] elde et.",
@@ -23166,7 +23166,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/demonic_shield.png",
+    "image_url": "/static/images/cards/demonic_shield.webp",
     "beta_image_url": "/static/images/cards/beta/demonic_shield.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -23204,7 +23204,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/tempest.png",
+    "image_url": "/static/images/cards/tempest.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "X+1 [gold]Yıldırım[/gold] [gold]Oluştur[/gold].",
@@ -23241,7 +23241,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/skewer.png",
+    "image_url": "/static/images/cards/skewer.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "X kez 10 hasar ver.",
@@ -23280,7 +23280,7 @@
     "upgrade": {
       "power": "+2"
     },
-    "image_url": "/static/images/cards/shockwave.png",
+    "image_url": "/static/images/cards/shockwave.webp",
     "beta_image_url": "/static/images/cards/beta/shockwave.png",
     "type_variants": null,
     "upgrade_description": "TÜM düşmanlara 5 [gold]Zayıf[/gold] ve [gold]Savunmasız[/gold] uygula.",
@@ -23323,7 +23323,7 @@
     "upgrade": {
       "ostydamage": "+3"
     },
-    "image_url": "/static/images/cards/snap.png",
+    "image_url": "/static/images/cards/snap.webp",
     "beta_image_url": "/static/images/cards/beta/snap.png",
     "type_variants": null,
     "upgrade_description": "[gold]Osti[/gold] 10 hasar verir.\n[gold]El[/gold]'indeki bir karta [gold]Sakla[/gold] ekle.",

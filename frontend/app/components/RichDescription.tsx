@@ -156,14 +156,14 @@ function renderNode(
 
   if (node.isEnergy) {
     if (node.count === -1) {
-      return <span key={key}><img src={`${API_BASE}/static/images/icons/${energyIcon}_energy_icon.png`} alt="energy" className="inline-block w-4 h-4 align-text-bottom" crossOrigin="anonymous" />X</span>;
+      return <span key={key}><img src={`${API_BASE}/static/images/icons/${energyIcon}_energy_icon.webp`} alt="energy" className="inline-block w-4 h-4 align-text-bottom" crossOrigin="anonymous" />X</span>;
     }
     const icons = [];
     for (let i = 0; i < (node.count ?? 1); i++) {
       icons.push(
         <img
           key={i}
-          src={`${API_BASE}/static/images/icons/${energyIcon}_energy_icon.png`}
+          src={`${API_BASE}/static/images/icons/${energyIcon}_energy_icon.webp`}
           alt="energy"
           className="inline-block w-4 h-4 align-text-bottom"
           crossOrigin="anonymous"
@@ -179,7 +179,7 @@ function renderNode(
       icons.push(
         <img
           key={i}
-          src={`${API_BASE}/static/images/icons/star_icon.png`}
+          src={`${API_BASE}/static/images/icons/star_icon.webp`}
           alt="star"
           className="inline-block w-4 h-4 align-text-bottom"
           crossOrigin="anonymous"

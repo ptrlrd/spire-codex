@@ -448,7 +448,7 @@ const [card, setCard] = useState<Card | null>(null);
                 <span className="inline-flex items-center gap-0.5 px-2 py-1 rounded-full bg-[var(--bg-primary)] border border-amber-700/40 text-sm font-bold text-amber-300">
                   {card.is_x_star_cost ? "X" : card.star_cost}
                   <img
-                    src={`${API}/static/images/icons/star_icon.png`}
+                    src={`${API}/static/images/icons/star_icon.webp`}
                     alt="star"
                     className="w-4 h-4"
                     crossOrigin="anonymous"

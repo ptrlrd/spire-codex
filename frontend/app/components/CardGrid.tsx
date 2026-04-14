@@ -175,7 +175,7 @@ function renderDescription(card: Card, upgraded: boolean): React.ReactNode {
       const icons = [];
       for (let i = 0; i < count; i++) {
         icons.push(
-          <img key={i} src={`${API_BASE}/static/images/icons/${iconName}_energy_icon.png`}
+          <img key={i} src={`${API_BASE}/static/images/icons/${iconName}_energy_icon.webp`}
             alt="energy" className="inline-block w-4 h-4 align-text-bottom" crossOrigin="anonymous" />
         );
       }
@@ -185,7 +185,7 @@ function renderDescription(card: Card, upgraded: boolean): React.ReactNode {
       const icons = [];
       for (let i = 0; i < count; i++) {
         icons.push(
-          <img key={i} src={`${API_BASE}/static/images/icons/star_icon.png`}
+          <img key={i} src={`${API_BASE}/static/images/icons/star_icon.webp`}
             alt="star" className="inline-block w-4 h-4 align-text-bottom" crossOrigin="anonymous" />
         );
       }
@@ -259,7 +259,7 @@ function CardItem({ card }: { card: Card }) {
           {(card.star_cost != null || card.is_x_star_cost) && (
             <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-full bg-[var(--bg-primary)] border border-amber-700/40 text-xs font-bold text-amber-300">
               {card.is_x_star_cost ? "X" : card.star_cost}
-              <img src={`${API_BASE}/static/images/icons/star_icon.png`}
+              <img src={`${API_BASE}/static/images/icons/star_icon.webp`}
                 alt="star" className="w-3.5 h-3.5" crossOrigin="anonymous" />
             </span>
           )}

@@ -206,7 +206,7 @@ export default function UnlocksClient() {
                 className="flex items-center gap-3 px-3 py-3 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] hover:border-[var(--accent-gold)]/50 transition-colors group"
               >
                 <img
-                  src={`${API}/static/images/characters/combat_${char.id.toLowerCase()}.png`}
+                  src={`${API}/static/images/characters/combat_${char.id.toLowerCase()}.webp`}
                   alt={char.name}
                   className="w-12 h-12 object-contain flex-shrink-0"
                   crossOrigin="anonymous"

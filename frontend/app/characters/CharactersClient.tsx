@@ -94,7 +94,7 @@ const [characters, setCharacters] = useState<Character[]>(initialCharacters);
                 {char.name}
               </h2>
               <img
-                src={`${API}/static/images/characters/character_icon_${char.id.toLowerCase()}.png`}
+                src={`${API}/static/images/characters/character_icon_${char.id.toLowerCase()}.webp`}
                 alt={`${char.name} - Slay the Spire 2 Character`}
                 className="w-10 h-10 rounded-full object-cover border-2 border-[var(--border-subtle)] ml-auto flex-shrink-0"
                 loading="lazy"

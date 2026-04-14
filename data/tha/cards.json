@@ -36,7 +36,7 @@
     "upgrade": {
       "strength": "+1"
     },
-    "image_url": "/static/images/cards/brand.png",
+    "image_url": "/static/images/cards/brand.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -82,7 +82,7 @@
       "damage": "+5",
       "vulnerable": "+2"
     },
-    "image_url": "/static/images/cards/break.png",
+    "image_url": "/static/images/cards/break.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 25\nสร้าง 5 [gold]จุดอ่อน[/gold]",
@@ -135,7 +135,7 @@
       "strength": "+1",
       "dexterity": "+1"
     },
-    "image_url": "/static/images/cards/bulk_up.png",
+    "image_url": "/static/images/cards/bulk_up.webp",
     "beta_image_url": "/static/images/cards/beta/bulk_up.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -174,7 +174,7 @@
     "upgrade": {
       "extradamage": "+1"
     },
-    "image_url": "/static/images/cards/bully.png",
+    "image_url": "/static/images/cards/bully.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 4\nสร้างความเสียหายเพิ่ม 3 ตามจำนวน[gold]จุดอ่อน[/gold]บนตัวศัตรู",
@@ -213,7 +213,7 @@
       "block": "+3",
       "forge": "+3"
     },
-    "image_url": "/static/images/cards/bulwark.png",
+    "image_url": "/static/images/cards/bulwark.webp",
     "beta_image_url": "/static/images/cards/beta/bulwark.png",
     "type_variants": null,
     "upgrade_description": "ได้รับ 16 [gold]บล็อก[/gold]\n[gold]หลอมสร้าง[/gold] 13",
@@ -252,7 +252,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/bundle_of_joy.png",
+    "image_url": "/static/images/cards/bundle_of_joy.webp",
     "beta_image_url": "/static/images/cards/beta/bundle_of_joy.png",
     "type_variants": null,
     "upgrade_description": "เพิ่มการ์ดไม่มีสี 4 ใบแบบสุ่มใส่[gold]มือ[/gold]",
@@ -292,7 +292,7 @@
     "upgrade": {
       "damage": "+11"
     },
-    "image_url": "/static/images/cards/bury.png",
+    "image_url": "/static/images/cards/bury.webp",
     "beta_image_url": "/static/images/cards/beta/bury.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 63",
@@ -329,7 +329,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/byrd_swoop.png",
+    "image_url": "/static/images/cards/byrd_swoop.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 18",
@@ -364,7 +364,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/byrdonis_egg.png",
+    "image_url": "/static/images/cards/byrdonis_egg.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -402,7 +402,7 @@
     "upgrade": {
       "cost": 2
     },
-    "image_url": "/static/images/cards/calamity.png",
+    "image_url": "/static/images/cards/calamity.webp",
     "beta_image_url": "/static/images/cards/beta/calamity.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -446,7 +446,7 @@
     "upgrade": {
       "calcifypower": "+2"
     },
-    "image_url": "/static/images/cards/calcify.png",
+    "image_url": "/static/images/cards/calcify.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "การโจมตีของ[gold]Osty[/gold]สร้างความเสียหายเพิ่ม 6",
@@ -483,7 +483,7 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": "/static/images/cards/call_of_the_void.png",
+    "image_url": "/static/images/cards/call_of_the_void.webp",
     "beta_image_url": "/static/images/cards/beta/call_of_the_void.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -524,7 +524,7 @@
       "damage": "+1",
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/capture_spirit.png",
+    "image_url": "/static/images/cards/capture_spirit.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ศัตรูเสีย 4 HP\nเพิ่ม[gold]วิญญาณ[/gold] 4 ใบเข้า[gold]กองจั่ว[/gold]",
@@ -559,7 +559,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/cascade.png",
+    "image_url": "/static/images/cards/cascade.webp",
     "beta_image_url": "/static/images/cards/beta/cascade.png",
     "type_variants": null,
     "upgrade_description": "เล่นการ์ดใบบนสุด X+1 ใบของ[gold]กองจั่ว[/gold]",
@@ -596,7 +596,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/catastrophe.png",
+    "image_url": "/static/images/cards/catastrophe.webp",
     "beta_image_url": "/static/images/cards/beta/catastrophe.png",
     "type_variants": null,
     "upgrade_description": "เล่นการ์ด 3 ใบแบบสุ่มจาก[gold]กองจั่ว[/gold]",
@@ -634,7 +634,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/celestial_might.png",
+    "image_url": "/static/images/cards/celestial_might.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 8 จำนวน 3 ครั้ง",
@@ -671,7 +671,7 @@
     "upgrade": {
       "blockforstars": "+1"
     },
-    "image_url": "/static/images/cards/child_of_the_stars.png",
+    "image_url": "/static/images/cards/child_of_the_stars.webp",
     "beta_image_url": "/static/images/cards/beta/child_of_the_stars.png",
     "type_variants": null,
     "upgrade_description": "ทุกครั้งที่คุณจ่าย [star:1] ได้รับ 3 [gold]บล็อก[/gold]ตามจำนวน [star:1] ที่จ่ายไป",
@@ -709,7 +709,7 @@
     "upgrade": {
       "damage": "+5"
     },
-    "image_url": "/static/images/cards/cinder.png",
+    "image_url": "/static/images/cards/cinder.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 22\n[gold]สลาย[/gold]การ์ดใบบนสุดของ[gold]กองจั่ว[/gold]",
@@ -747,7 +747,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/cloak_of_stars.png",
+    "image_url": "/static/images/cards/cloak_of_stars.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ได้รับ 10 [gold]บล็อก[/gold]",
@@ -786,7 +786,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/collision_course.png",
+    "image_url": "/static/images/cards/collision_course.webp",
     "beta_image_url": "/static/images/cards/beta/collision_course.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 12\nเพิ่ม[gold]Debris[/gold] 1 ใบใส่[gold]มือ[/gold]",
@@ -824,7 +824,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/colossus.png",
+    "image_url": "/static/images/cards/colossus.webp",
     "beta_image_url": "/static/images/cards/beta/colossus.png",
     "type_variants": null,
     "upgrade_description": "ได้รับ 8 [gold]บล็อก[/gold]\nในเทิร์นนี้ คุณจะได้รับความเสียหายน้อยลง 50% จากศัตรูที่มี[gold]จุดอ่อน[/gold]",
@@ -877,7 +877,7 @@
     "upgrade": {
       "damage": "+11"
     },
-    "image_url": "/static/images/cards/comet.png",
+    "image_url": "/static/images/cards/comet.webp",
     "beta_image_url": "/static/images/cards/beta/comet.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 44\nสร้าง 3 [gold]ความอ่อนแอ[/gold]\nสร้าง 3 [gold]จุดอ่อน[/gold]",
@@ -916,7 +916,7 @@
     "upgrade": {
       "block": "+1"
     },
-    "image_url": "/static/images/cards/compact.png",
+    "image_url": "/static/images/cards/compact.webp",
     "beta_image_url": "/static/images/cards/beta/compact.png",
     "type_variants": null,
     "upgrade_description": "ได้รับ 7 [gold]บล็อก[/gold]\n[gold]แปรสภาพ[/gold]การ์ดสถานะทั้งหมดใน[gold]มือ[/gold]เป็น[gold]เชื้อเพลิง+[/gold]",
@@ -956,7 +956,7 @@
       "calculationbase": "+1",
       "extradamage": "+1"
     },
-    "image_url": "/static/images/cards/conflagration.png",
+    "image_url": "/static/images/cards/conflagration.webp",
     "beta_image_url": "/static/images/cards/beta/conflagration.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 8 ใส่ศัตรูทั้งหมด\nสร้างความเสียหายเพิ่ม 3 ตามจำนวนการ์ดโจมตีใบอื่นที่คุณเล่นในเทิร์นนี้",
@@ -993,7 +993,7 @@
     "upgrade": {
       "forge": "+2"
     },
-    "image_url": "/static/images/cards/conqueror.png",
+    "image_url": "/static/images/cards/conqueror.webp",
     "beta_image_url": "/static/images/cards/beta/conqueror.png",
     "type_variants": null,
     "upgrade_description": "[gold]หลอมสร้าง[/gold] 5\nและในเทิร์นนี้ [gold]พระแสงอาญาสิทธิ์[/gold]สร้างความเสียหายใส่ศัตรูเป็น 2 เท่า",
@@ -1038,7 +1038,7 @@
     "upgrade": {
       "repeat": "+1"
     },
-    "image_url": "/static/images/cards/consuming_shadow.png",
+    "image_url": "/static/images/cards/consuming_shadow.webp",
     "beta_image_url": "/static/images/cards/beta/consuming_shadow.png",
     "type_variants": null,
     "upgrade_description": "[gold]ปลุกเสก[/gold] 3 [gold]ความมืด[/gold]\nตอนจบเทิร์น [gold]ปล่อยพลัง[/gold]ลูกแก้วลูกซ้ายสุด",
@@ -1076,7 +1076,7 @@
     "upgrade": {
       "stars": "+1"
     },
-    "image_url": "/static/images/cards/convergence.png",
+    "image_url": "/static/images/cards/convergence.webp",
     "beta_image_url": "/static/images/cards/beta/convergence.png",
     "type_variants": null,
     "upgrade_description": "[gold]คงสภาพ[/gold]ทั้ง[gold]มือ[/gold]ในเทิร์นนี้\nเทิร์นถัดไป\nได้รับ [energy:1] และ [star:2]",
@@ -1120,7 +1120,7 @@
     "upgrade": {
       "coolantpower": "+1"
     },
-    "image_url": "/static/images/cards/coolant.png",
+    "image_url": "/static/images/cards/coolant.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ตอนเริ่มต้นเทิร์น ได้รับ 3 [gold]บล็อก[/gold]ตามจำนวนลูกแก้วไม่ซ้ำธาตุที่คุณมี",
@@ -1164,7 +1164,7 @@
     "upgrade": {
       "strength": "+3"
     },
-    "image_url": "/static/images/cards/coordinate.png",
+    "image_url": "/static/images/cards/coordinate.webp",
     "beta_image_url": "/static/images/cards/beta/coordinate.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -1201,7 +1201,7 @@
     "upgrade": {
       "corrosivewave": "+1"
     },
-    "image_url": "/static/images/cards/corrosive_wave.png",
+    "image_url": "/static/images/cards/corrosive_wave.webp",
     "beta_image_url": "/static/images/cards/beta/corrosive_wave.png",
     "type_variants": null,
     "upgrade_description": "ทุกครั้งที่คุณจั่วการ์ดในเทิร์นนี้ สร้าง 4 [gold]พิษ[/gold]ใส่ศัตรูทั้งหมด",
@@ -1238,7 +1238,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/cosmic_indifference.png",
+    "image_url": "/static/images/cards/cosmic_indifference.webp",
     "beta_image_url": "/static/images/cards/beta/cosmic_indifference.png",
     "type_variants": null,
     "upgrade_description": "ได้รับ 9 [gold]บล็อก[/gold]\nนำการ์ด 1 ใบจาก[gold]กองทิ้ง[/gold]ไปวางไว้บนสุดของ[gold]กองจั่ว[/gold]",
@@ -1277,7 +1277,7 @@
     "upgrade": {
       "damage": "+5"
     },
-    "image_url": "/static/images/cards/crash_landing.png",
+    "image_url": "/static/images/cards/crash_landing.webp",
     "beta_image_url": "/static/images/cards/beta/crash_landing.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 26 ใส่ศัตรูทั้งหมด\nเติมทั้ง[gold]มือ[/gold]ด้วย[gold]Debris[/gold]",
@@ -1317,7 +1317,7 @@
     "upgrade": {
       "extradamage": "+1"
     },
-    "image_url": "/static/images/cards/crescent_spear.png",
+    "image_url": "/static/images/cards/crescent_spear.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 6\nสร้างความเสียหายเพิ่ม 3 ตามจำนวนการ์ดทั้งหมดของคุณที่มีค่าร่าย [star:1]",
@@ -1361,7 +1361,7 @@
     "upgrade": {
       "crimsonmantlepower": "+2"
     },
-    "image_url": "/static/images/cards/crimson_mantle.png",
+    "image_url": "/static/images/cards/crimson_mantle.webp",
     "beta_image_url": "/static/images/cards/beta/crimson_mantle.png",
     "type_variants": null,
     "upgrade_description": "ตอนเริ่มต้นเทิร์น เสีย 1 HP และได้รับ 10 [gold]บล็อก[/gold]",
@@ -1405,7 +1405,7 @@
     "upgrade": {
       "crueltypower": "+25"
     },
-    "image_url": "/static/images/cards/cruelty.png",
+    "image_url": "/static/images/cards/cruelty.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ศัตรูที่มี[gold]จุดอ่อน[/gold]ได้รับความเสียหายเพิ่ม 50%",
@@ -1444,7 +1444,7 @@
       "damage": "+1",
       "strengthloss": "+1"
     },
-    "image_url": "/static/images/cards/crush_under.png",
+    "image_url": "/static/images/cards/crush_under.webp",
     "beta_image_url": "/static/images/cards/beta/crush_under.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 8 ใส่ศัตรูทั้งหมด ศัตรูทั้งหมดเสีย 2 [gold]ความแข็งแรง[/gold]ในเทิร์นนี้",
@@ -1484,7 +1484,7 @@
       "calculationbase": "+1",
       "extradamage": "+1"
     },
-    "image_url": "/static/images/cards/death_march.png",
+    "image_url": "/static/images/cards/death_march.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 8\nสร้างความเสียหายเพิ่ม 4 ตามจำนวนการ์ดที่คุณจั่วในเทิร์นนี้",
@@ -1535,7 +1535,7 @@
     "upgrade": {
       "doom": "+5"
     },
-    "image_url": "/static/images/cards/deathbringer.png",
+    "image_url": "/static/images/cards/deathbringer.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -1581,7 +1581,7 @@
       "damage": "+2",
       "debilitatepower": "+1"
     },
-    "image_url": "/static/images/cards/debilitate.png",
+    "image_url": "/static/images/cards/debilitate.webp",
     "beta_image_url": "/static/images/cards/beta/debilitate.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 9\n[gold]จุดอ่อน[/gold]และ[gold]ความอ่อนแอ[/gold]มีผลกับศัตรูเป็น 2 เท่า เป็นเวลา 4 เทิร์น",
@@ -1620,7 +1620,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/defile.png",
+    "image_url": "/static/images/cards/defile.webp",
     "beta_image_url": "/static/images/cards/beta/defile.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 17",
@@ -1663,7 +1663,7 @@
     "upgrade": {
       "cost": 2
     },
-    "image_url": "/static/images/cards/demesne.png",
+    "image_url": "/static/images/cards/demesne.webp",
     "beta_image_url": "/static/images/cards/beta/demesne.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -1707,7 +1707,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/demonic_shield.png",
+    "image_url": "/static/images/cards/demonic_shield.webp",
     "beta_image_url": "/static/images/cards/beta/demonic_shield.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -1748,7 +1748,7 @@
     "upgrade": {
       "damage": "+10"
     },
-    "image_url": "/static/images/cards/devastate.png",
+    "image_url": "/static/images/cards/devastate.webp",
     "beta_image_url": "/static/images/cards/beta/devastate.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 40",
@@ -1787,7 +1787,7 @@
     "upgrade": {
       "summon": "+1"
     },
-    "image_url": "/static/images/cards/dirge.png",
+    "image_url": "/static/images/cards/dirge.webp",
     "beta_image_url": "/static/images/cards/beta/dirge.png",
     "type_variants": null,
     "upgrade_description": "[gold]อัญเชิญ[/gold] 4 จำนวน X ครั้ง\nเพิ่ม[gold]วิญญาณ+[/gold] X  ใบเข้า[gold]กองจั่ว[/gold]",
@@ -1829,7 +1829,7 @@
       "Disintegration": 6
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/disintegration.png",
+    "image_url": "/static/images/cards/disintegration.webp",
     "beta_image_url": "/static/images/cards/beta/disintegration.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -1866,7 +1866,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/dismantle.png",
+    "image_url": "/static/images/cards/dismantle.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 10\nถ้าศัตรูมี[gold]จุดอ่อน[/gold] โจมตี 2 ครั้ง",
@@ -1905,7 +1905,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/dominate.png",
+    "image_url": "/static/images/cards/dominate.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -1947,7 +1947,7 @@
       "damage": "+2",
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/drain_power.png",
+    "image_url": "/static/images/cards/drain_power.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 12\n[gold]พัฒนา[/gold]การ์ด 3 ใบแบบสุ่มใน[gold]กองทิ้ง[/gold]",
@@ -1986,7 +1986,7 @@
     "upgrade": {
       "add_retain": true
     },
-    "image_url": "/static/images/cards/dredge.png",
+    "image_url": "/static/images/cards/dredge.webp",
     "beta_image_url": "/static/images/cards/beta/dredge.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -2031,7 +2031,7 @@
       "damage": "+2",
       "strengthloss": "+2"
     },
-    "image_url": "/static/images/cards/dying_star.png",
+    "image_url": "/static/images/cards/dying_star.webp",
     "beta_image_url": "/static/images/cards/beta/dying_star.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 11 ใส่ศัตรูทั้งหมด ศัตรูทั้งหมดเสีย 11 [gold]ความแข็งแรง[/gold]ในเทิร์นนี้",
@@ -2071,7 +2071,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/eidolon.png",
+    "image_url": "/static/images/cards/eidolon.webp",
     "beta_image_url": "/static/images/cards/beta/eidolon.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -2115,7 +2115,7 @@
     "upgrade": {
       "doom": "+8"
     },
-    "image_url": "/static/images/cards/end_of_days.png",
+    "image_url": "/static/images/cards/end_of_days.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -2154,7 +2154,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/energy_surge.png",
+    "image_url": "/static/images/cards/energy_surge.webp",
     "beta_image_url": "/static/images/cards/beta/energy_surge.png",
     "type_variants": null,
     "upgrade_description": "ผู้เล่นทั้งหมดได้รับ [energy:3]",
@@ -2196,7 +2196,7 @@
     "upgrade": {
       "strengthloss": "+3"
     },
-    "image_url": "/static/images/cards/enfeebling_touch.png",
+    "image_url": "/static/images/cards/enfeebling_touch.webp",
     "beta_image_url": "/static/images/cards/beta/enfeebling_touch.png",
     "type_variants": null,
     "upgrade_description": "ศัตรูเสีย 11 [gold]ความแข็งแรง[/gold]ในเทิร์นนี้",
@@ -2234,7 +2234,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/enthralled.png",
+    "image_url": "/static/images/cards/enthralled.webp",
     "beta_image_url": "/static/images/cards/beta/enthralled.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -2274,7 +2274,7 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": "/static/images/cards/entropy.png",
+    "image_url": "/static/images/cards/entropy.webp",
     "beta_image_url": "/static/images/cards/beta/entropy.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -2313,7 +2313,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/eradicate.png",
+    "image_url": "/static/images/cards/eradicate.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 14 จำนวน X ครั้ง",
@@ -2360,7 +2360,7 @@
     "upgrade": {
       "platingpower": "+2"
     },
-    "image_url": "/static/images/cards/eternal_armor.png",
+    "image_url": "/static/images/cards/eternal_armor.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ได้รับ 9 [gold]Plating[/gold]",
@@ -2397,7 +2397,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/evil_eye.png",
+    "image_url": "/static/images/cards/evil_eye.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ได้รับ 11 [gold]บล็อก[/gold]\nได้รับเพิ่ม 11 [gold]บล็อก[/gold]ถ้าคุณ[gold]สลาย[/gold]การ์ดไปในเทิร์นนี้",
@@ -2436,7 +2436,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/expect_a_fight.png",
+    "image_url": "/static/images/cards/expect_a_fight.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -2475,7 +2475,7 @@
     "upgrade": {
       "power": "+1"
     },
-    "image_url": "/static/images/cards/expose.png",
+    "image_url": "/static/images/cards/expose.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "กำจัด[gold]อาคม[/gold]และ[gold]บล็อก[/gold]ทั้งหมดจากศัตรู\nสร้าง 3 [gold]จุดอ่อน[/gold]",
@@ -2516,7 +2516,7 @@
     "upgrade": {
       "damage": "+1"
     },
-    "image_url": "/static/images/cards/exterminate.png",
+    "image_url": "/static/images/cards/exterminate.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 4 จำนวน 4 ครั้งใส่ศัตรูทั้งหมด",
@@ -2569,7 +2569,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/falling_star.png",
+    "image_url": "/static/images/cards/falling_star.webp",
     "beta_image_url": "/static/images/cards/beta/falling_star.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 11\nสร้าง 1 [gold]ความอ่อนแอ[/gold]\nสร้าง 1 [gold]จุดอ่อน[/gold]",
@@ -2613,7 +2613,7 @@
     "upgrade": {
       "strength": "+2"
     },
-    "image_url": "/static/images/cards/feeding_frenzy.png",
+    "image_url": "/static/images/cards/feeding_frenzy.webp",
     "beta_image_url": "/static/images/cards/beta/feeding_frenzy.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -2657,7 +2657,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/feral.png",
+    "image_url": "/static/images/cards/feral.webp",
     "beta_image_url": "/static/images/cards/beta/feral.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -2698,7 +2698,7 @@
     "upgrade": {
       "ostydamage": "+3"
     },
-    "image_url": "/static/images/cards/fetch.png",
+    "image_url": "/static/images/cards/fetch.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]Osty[/gold]สร้างความเสียหาย 6\nถ้านี่คือครั้งแรกที่เล่นการ์ดนี้ในเทิร์นนี้ จั่วการ์ด 1 ใบ",
@@ -2737,7 +2737,7 @@
     "upgrade": {
       "block": "+4"
     },
-    "image_url": "/static/images/cards/fight_through.png",
+    "image_url": "/static/images/cards/fight_through.webp",
     "beta_image_url": "/static/images/cards/beta/fight_through.png",
     "type_variants": null,
     "upgrade_description": "ได้รับ 17 [gold]บล็อก[/gold]\nเพิ่ม[gold]Wounds[/gold] 2 ใบเข้า[gold]กองทิ้ง[/gold]",
@@ -2774,7 +2774,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/fisticuffs.png",
+    "image_url": "/static/images/cards/fisticuffs.webp",
     "beta_image_url": "/static/images/cards/beta/fisticuffs.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 9\nได้รับ[gold]บล็อก[/gold]ตามความเสียหายที่ไม่ถูกบล็อกที่ทำได้",
@@ -2813,7 +2813,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/flak_cannon.png",
+    "image_url": "/static/images/cards/flak_cannon.webp",
     "beta_image_url": "/static/images/cards/beta/flak_cannon.png",
     "type_variants": null,
     "upgrade_description": "[gold]สลาย[/gold]การ์ด[gold]สถานะ[/gold]ทั้งหมดของคุณ\nสร้างความเสียหาย 11 ใส่ศัตรู 1 ตัวแบบสุ่ม ตามจำนวนการ์ดที่ถูก[gold]สลาย[/gold]",
@@ -2853,7 +2853,7 @@
     "upgrade": {
       "ostydamage": "+4"
     },
-    "image_url": "/static/images/cards/flatten.png",
+    "image_url": "/static/images/cards/flatten.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]Osty[/gold]สร้างความเสียหาย 16\nการ์ดนี้ค่าร่ายเป็น 0 [energy:1] ถ้า[gold]Osty[/gold]เคยโจมตีในเทิร์นนี้",
@@ -2892,7 +2892,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/flick_flack.png",
+    "image_url": "/static/images/cards/flick_flack.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 9 ใส่ศัตรูทั้งหมด",
@@ -2932,7 +2932,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/folly.png",
+    "image_url": "/static/images/cards/folly.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -2974,7 +2974,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/forbidden_grimoire.png",
+    "image_url": "/static/images/cards/forbidden_grimoire.webp",
     "beta_image_url": "/static/images/cards/beta/forbidden_grimoire.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -3014,7 +3014,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/foregone_conclusion.png",
+    "image_url": "/static/images/cards/foregone_conclusion.webp",
     "beta_image_url": "/static/images/cards/beta/foregone_conclusion.png",
     "type_variants": null,
     "upgrade_description": "เทิร์นถัดไป นำการ์ด 3 ใบจาก[gold]กองจั่ว[/gold]ขึ้น[gold]มือ[/gold]",
@@ -3051,7 +3051,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/forgotten_ritual.png",
+    "image_url": "/static/images/cards/forgotten_ritual.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ถ้าคุณเคย[gold]สลาย[/gold]การ์ดในเทิร์นนี้ ได้รับ [energy:4]",
@@ -3084,7 +3084,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/frantic_escape.png",
+    "image_url": "/static/images/cards/frantic_escape.webp",
     "beta_image_url": "/static/images/cards/beta/frantic_escape.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -3137,7 +3137,7 @@
     "upgrade": {
       "damage": "+5"
     },
-    "image_url": "/static/images/cards/gamma_blast.png",
+    "image_url": "/static/images/cards/gamma_blast.webp",
     "beta_image_url": "/static/images/cards/beta/gamma_blast.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 18\nสร้าง 2 [gold]ความอ่อนแอ[/gold]\nสร้าง 2 [gold]จุดอ่อน[/gold]",
@@ -3176,7 +3176,7 @@
     "upgrade": {
       "extradamage": "+2"
     },
-    "image_url": "/static/images/cards/gang_up.png",
+    "image_url": "/static/images/cards/gang_up.webp",
     "beta_image_url": "/static/images/cards/beta/gang_up.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 5\nสร้างความเสียหายเพิ่ม 7 ตามจำนวนครั้งที่พันธมิตรเคยโจมตีศัตรูในเทิร์นนี้",
@@ -3214,7 +3214,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/gather_light.png",
+    "image_url": "/static/images/cards/gather_light.webp",
     "beta_image_url": "/static/images/cards/beta/gather_light.png",
     "type_variants": null,
     "upgrade_description": "ได้รับ 10 [gold]บล็อก[/gold]\nได้รับ [star:1]",
@@ -3251,7 +3251,7 @@
     "upgrade": {
       "starsperturn": "+1"
     },
-    "image_url": "/static/images/cards/genesis.png",
+    "image_url": "/static/images/cards/genesis.webp",
     "beta_image_url": "/static/images/cards/beta/genesis.png",
     "type_variants": null,
     "upgrade_description": "ตอนเริ่มต้นเทิร์น ได้รับ [star:3]",
@@ -3288,7 +3288,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/giant_rock.png",
+    "image_url": "/static/images/cards/giant_rock.webp",
     "beta_image_url": "/static/images/cards/beta/giant_rock.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 20",
@@ -3326,7 +3326,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/glimmer.png",
+    "image_url": "/static/images/cards/glimmer.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "จั่วการ์ด 4 ใบ\nนำการ์ด 1 ใบจาก[gold]มือ[/gold]ไปวางไว้บนสุดของ[gold]กองจั่ว[/gold]",
@@ -3367,7 +3367,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/glimpse_beyond.png",
+    "image_url": "/static/images/cards/glimpse_beyond.webp",
     "beta_image_url": "/static/images/cards/beta/glimpse_beyond.png",
     "type_variants": null,
     "upgrade_description": "ผู้เล่นทั้งหมดเพิ่ม[gold]วิญญาณ[/gold] 4 ใบเข้า[gold]กองจั่ว[/gold]",
@@ -3409,7 +3409,7 @@
       "block": "+2",
       "blocknextturn": "+2"
     },
-    "image_url": "/static/images/cards/glitterstream.png",
+    "image_url": "/static/images/cards/glitterstream.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ได้รับ 13 [gold]บล็อก[/gold]\nเทิร์นถัดไป ได้รับ 6 [gold]บล็อก[/gold]",
@@ -3447,7 +3447,7 @@
     "upgrade": {
       "stars": "+1"
     },
-    "image_url": "/static/images/cards/glow.png",
+    "image_url": "/static/images/cards/glow.webp",
     "beta_image_url": "/static/images/cards/beta/glow.png",
     "type_variants": null,
     "upgrade_description": "ได้รับ [star:2]\nจั่วการ์ด 2 ใบ",
@@ -3486,7 +3486,7 @@
     "upgrade": {
       "add_retain": true
     },
-    "image_url": "/static/images/cards/gold_axe.png",
+    "image_url": "/static/images/cards/gold_axe.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -3532,7 +3532,7 @@
       "damage": "+2",
       "grapplepower": "+2"
     },
-    "image_url": "/static/images/cards/grapple.png",
+    "image_url": "/static/images/cards/grapple.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 9\nและทุกครั้งที่คุณได้รับ[gold]บล็อก[/gold]ในเทิร์นนี้ สร้างความเสียหาย 7 ใส่ศัตรูตัวนั้น",
@@ -3572,7 +3572,7 @@
     "upgrade": {
       "block": "+2"
     },
-    "image_url": "/static/images/cards/grave_warden.png",
+    "image_url": "/static/images/cards/grave_warden.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ได้รับ 10 [gold]บล็อก[/gold]\nเพิ่ม[gold]วิญญาณ+[/gold] 1 ใบเข้า[gold]กองจั่ว[/gold]",
@@ -3612,7 +3612,7 @@
       "damage": "+2",
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/graveblast.png",
+    "image_url": "/static/images/cards/graveblast.webp",
     "beta_image_url": "/static/images/cards/beta/graveblast.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 6\nนำการ์ด 1 ใบจาก[gold]กองทิ้ง[/gold]ขึ้น[gold]มือ[/gold]",
@@ -3654,7 +3654,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/guards.png",
+    "image_url": "/static/images/cards/guards.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]แปรสภาพ[/gold]การ์ดกี่ใบก็ได้ใน[gold]มือ[/gold]ให้เป็น[gold]ลูกน้องสละชีพ+[/gold]",
@@ -3697,7 +3697,7 @@
       "damage": "+1",
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/guiding_star.png",
+    "image_url": "/static/images/cards/guiding_star.webp",
     "beta_image_url": "/static/images/cards/beta/guiding_star.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 13\nเทิร์นถัดไป จั่วการ์ด 3 ใบ",
@@ -3734,7 +3734,7 @@
       "Combats": 5
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/guilty.png",
+    "image_url": "/static/images/cards/guilty.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -3777,7 +3777,7 @@
     "upgrade": {
       "damage": "+1"
     },
-    "image_url": "/static/images/cards/gunk_up.png",
+    "image_url": "/static/images/cards/gunk_up.webp",
     "beta_image_url": "/static/images/cards/beta/gunk_up.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 5 จำนวน 3 ครั้ง\nเพิ่ม[gold]Slimed[/gold] 1 ใบเข้า[gold]กองทิ้ง[/gold]",
@@ -3821,7 +3821,7 @@
     "upgrade": {
       "hailstormpower": "+2"
     },
-    "image_url": "/static/images/cards/hailstorm.png",
+    "image_url": "/static/images/cards/hailstorm.webp",
     "beta_image_url": "/static/images/cards/beta/hailstorm.png",
     "type_variants": null,
     "upgrade_description": "ตอนจบเทิร์น ถ้าคุณมี[gold]น้ำแข็ง[/gold] สร้างความเสียหาย 8 ใส่ศัตรูทั้งหมด",
@@ -3856,7 +3856,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/hammer_time.png",
+    "image_url": "/static/images/cards/hammer_time.webp",
     "beta_image_url": "/static/images/cards/beta/hammer_time.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -3893,7 +3893,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/hand_trick.png",
+    "image_url": "/static/images/cards/hand_trick.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ได้รับ 10 [gold]บล็อก[/gold]\nเพิ่ม[gold]เล่ห์เหลี่ยม[/gold]ให้การ์ดทักษะ 1 ใบใน[gold]มือ[/gold]ในเทิร์นนี้",
@@ -3932,7 +3932,7 @@
     "upgrade": {
       "hploss": "+2"
     },
-    "image_url": "/static/images/cards/haunt.png",
+    "image_url": "/static/images/cards/haunt.webp",
     "beta_image_url": "/static/images/cards/beta/haunt.png",
     "type_variants": null,
     "upgrade_description": "ทุกครั้งที่คุณเล่น[gold]วิญญาณ[/gold] ศัตรู 1 ตัวแบบสุ่มเสีย 8 HP",
@@ -3970,7 +3970,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/heavenly_drill.png",
+    "image_url": "/static/images/cards/heavenly_drill.webp",
     "beta_image_url": "/static/images/cards/beta/heavenly_drill.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 10 จำนวน X ครั้ง\nถ้า X มีค่า 4 ขึ้นไป จะเกิดผล 2 เท่า",
@@ -4009,7 +4009,7 @@
       "damage": "+3",
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/hegemony.png",
+    "image_url": "/static/images/cards/hegemony.webp",
     "beta_image_url": "/static/images/cards/beta/hegemony.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 18\nเทิร์นถัดไป ได้รับ [energy:3]",
@@ -4047,7 +4047,7 @@
     "upgrade": {
       "damage": "+5"
     },
-    "image_url": "/static/images/cards/heirloom_hammer.png",
+    "image_url": "/static/images/cards/heirloom_hammer.webp",
     "beta_image_url": "/static/images/cards/beta/heirloom_hammer.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 22\nเลือกการ์ดไม่มีสี 1 ใบใน[gold]มือ[/gold] เพิ่มสำเนาของการ์ดนั้น 1 ใบใส่[gold]มือ[/gold]",
@@ -4086,7 +4086,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/helix_drill.png",
+    "image_url": "/static/images/cards/helix_drill.webp",
     "beta_image_url": "/static/images/cards/beta/helix_drill.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 5 ตามจำนวน [energy:1] ที่เคยจ่ายในเทิร์นนี้",
@@ -4131,7 +4131,7 @@
     "upgrade": {
       "starnextturnpower": "+1"
     },
-    "image_url": "/static/images/cards/hidden_cache.png",
+    "image_url": "/static/images/cards/hidden_cache.webp",
     "beta_image_url": "/static/images/cards/beta/hidden_cache.png",
     "type_variants": null,
     "upgrade_description": "ได้รับ [star:1]\nเทิร์นถัดไป ได้รับ [star:4]",
@@ -4171,7 +4171,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/hidden_daggers.png",
+    "image_url": "/static/images/cards/hidden_daggers.webp",
     "beta_image_url": "/static/images/cards/beta/hidden_daggers.png",
     "type_variants": null,
     "upgrade_description": "ทิ้งการ์ด 2 ใบ\nเพิ่ม[gold]มีดสั้น+[/gold] 2 ใบใส่[gold]มือ[/gold]",
@@ -4208,7 +4208,7 @@
     "upgrade": {
       "replay": "+1"
     },
-    "image_url": "/static/images/cards/hidden_gem.png",
+    "image_url": "/static/images/cards/hidden_gem.webp",
     "beta_image_url": "/static/images/cards/beta/hidden_gem.png",
     "type_variants": null,
     "upgrade_description": "การ์ดใน[gold]กองจั่ว[/gold] 1 ใบแบบสุ่มได้รับ [gold]เล่นซ้ำ[/gold] 3",
@@ -4257,7 +4257,7 @@
       "ostydamage": "+2",
       "vulnerable": "+1"
     },
-    "image_url": "/static/images/cards/high_five.png",
+    "image_url": "/static/images/cards/high_five.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]Osty[/gold]สร้างความเสียหาย 13\nและสร้าง 2 [gold]จุดอ่อน[/gold]\nใส่ศัตรูทั้งหมด",
@@ -4294,7 +4294,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/i_am_invincible.png",
+    "image_url": "/static/images/cards/i_am_invincible.webp",
     "beta_image_url": "/static/images/cards/beta/i_am_invincible.png",
     "type_variants": null,
     "upgrade_description": "ได้รับ 12 [gold]บล็อก[/gold]\nตอนจบเทิร์น ถ้าการ์ดนี้อยู่ใบบนสุดของ[gold]กองจั่ว[/gold] จะเล่นมัน",
@@ -4333,7 +4333,7 @@
       "summon": "+1",
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/invoke.png",
+    "image_url": "/static/images/cards/invoke.webp",
     "beta_image_url": "/static/images/cards/beta/invoke.png",
     "type_variants": null,
     "upgrade_description": "เทิร์นถัดไป [gold]อัญเชิญ[/gold] 3 และได้รับ [energy:3]",
@@ -4377,7 +4377,7 @@
     "upgrade": {
       "iterationpower": "+1"
     },
-    "image_url": "/static/images/cards/iteration.png",
+    "image_url": "/static/images/cards/iteration.webp",
     "beta_image_url": "/static/images/cards/beta/iteration.png",
     "type_variants": null,
     "upgrade_description": "ครั้งแรกที่คุณเล่นการ์ดสถานะในแต่ละเทิร์น จั่วการ์ด 3 ใบ",
@@ -4412,7 +4412,7 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": "/static/images/cards/juggling.png",
+    "image_url": "/static/images/cards/juggling.webp",
     "beta_image_url": "/static/images/cards/beta/juggling.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -4449,7 +4449,7 @@
     "upgrade": {
       "damage": "+6"
     },
-    "image_url": "/static/images/cards/kingly_kick.png",
+    "image_url": "/static/images/cards/kingly_kick.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 30\nทุกครั้งที่คุณจั่วได้การ์ดนี้ ลดค่าร่ายการ์ดนี้ลง 1",
@@ -4487,7 +4487,7 @@
     "upgrade": {
       "increase": "+2"
     },
-    "image_url": "/static/images/cards/kingly_punch.png",
+    "image_url": "/static/images/cards/kingly_punch.webp",
     "beta_image_url": "/static/images/cards/beta/kingly_punch.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 8\nทุกครั้งที่คุณจั่วได้การ์ดนี้ เพิ่มความเสียหายของมัน 5 จนจบการต่อสู้",
@@ -4527,7 +4527,7 @@
       "CalculationExtra": 1
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/knife_trap.png",
+    "image_url": "/static/images/cards/knife_trap.webp",
     "beta_image_url": "/static/images/cards/beta/knife_trap.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -4573,7 +4573,7 @@
       "damage": "+4",
       "knockdownpower": "+1"
     },
-    "image_url": "/static/images/cards/knockdown.png",
+    "image_url": "/static/images/cards/knockdown.webp",
     "beta_image_url": "/static/images/cards/beta/knockdown.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 14\nในเทิร์นนี้ ศัตรูจะได้รับความเสียหายจากผู้เล่นคนอื่นเป็น 3 เท่า",
@@ -4611,7 +4611,7 @@
     "upgrade": {
       "damage": "+8"
     },
-    "image_url": "/static/images/cards/knockout_blow.png",
+    "image_url": "/static/images/cards/knockout_blow.webp",
     "beta_image_url": "/static/images/cards/beta/knockout_blow.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 38\nถ้าฆ่าศัตรูได้ ได้รับ [star:5]",
@@ -4664,7 +4664,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/know_thy_place.png",
+    "image_url": "/static/images/cards/know_thy_place.webp",
     "beta_image_url": "/static/images/cards/beta/know_thy_place.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -4704,7 +4704,7 @@
       "gloryActIndex": 2
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/lantern_key.png",
+    "image_url": "/static/images/cards/lantern_key.webp",
     "beta_image_url": "/static/images/cards/beta/lantern_key.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -4742,7 +4742,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/largesse.png",
+    "image_url": "/static/images/cards/largesse.webp",
     "beta_image_url": "/static/images/cards/beta/largesse.png",
     "type_variants": null,
     "upgrade_description": "ผู้เล่นคนอื่น 1 คนเพิ่มการ์ดไร้สี [gold]แบบพัฒนาแล้ว[/gold] 1 ใบแบบสุ่มใส่[gold]มือ[/gold]",
@@ -4784,7 +4784,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/leading_strike.png",
+    "image_url": "/static/images/cards/leading_strike.webp",
     "beta_image_url": "/static/images/cards/beta/leading_strike.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 10\nเพิ่ม[gold]มีดสั้น[/gold] 1 ใบใส่[gold]มือ[/gold]",
@@ -4823,7 +4823,7 @@
     "upgrade": {
       "summon": "+2"
     },
-    "image_url": "/static/images/cards/legion_of_bone.png",
+    "image_url": "/static/images/cards/legion_of_bone.webp",
     "beta_image_url": "/static/images/cards/beta/legion_of_bone.png",
     "type_variants": null,
     "upgrade_description": "ผู้เล่นทั้งหมด[gold]อัญเชิญ[/gold] 8",
@@ -4872,7 +4872,7 @@
     "upgrade": {
       "lethalitypower": "+25"
     },
-    "image_url": "/static/images/cards/lethality.png",
+    "image_url": "/static/images/cards/lethality.webp",
     "beta_image_url": "/static/images/cards/beta/lethality.png",
     "type_variants": null,
     "upgrade_description": "การโจมตีแรกในแต่ละเทิร์น สร้างความเสียหายเพิ่ม 75%",
@@ -4912,7 +4912,7 @@
     "upgrade": {
       "block": "+5"
     },
-    "image_url": "/static/images/cards/lift.png",
+    "image_url": "/static/images/cards/lift.webp",
     "beta_image_url": "/static/images/cards/beta/lift.png",
     "type_variants": null,
     "upgrade_description": "ให้ 16 [gold]บล็อก[/gold]แก่ผู้เล่นคนอื่น 1 คน",
@@ -4952,7 +4952,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/luminesce.png",
+    "image_url": "/static/images/cards/luminesce.webp",
     "beta_image_url": "/static/images/cards/beta/luminesce.png",
     "type_variants": null,
     "upgrade_description": "ได้รับ [energy:3]",
@@ -4995,7 +4995,7 @@
     "upgrade": {
       "damage": "+1"
     },
-    "image_url": "/static/images/cards/lunar_blast.png",
+    "image_url": "/static/images/cards/lunar_blast.webp",
     "beta_image_url": "/static/images/cards/beta/lunar_blast.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 5 ตามจำนวนการ์ดทักษะที่เคยเล่นในเทิร์นนี้",
@@ -5080,7 +5080,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/make_it_so.png",
+    "image_url": "/static/images/cards/make_it_so.webp",
     "beta_image_url": "/static/images/cards/beta/make_it_so.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 9\nการ์ดทักษะทุก 3 ใบที่คุณเล่นในเทิร์นเดียวกัน นำการ์ดนี้ขึ้น[gold]มือ[/gold]",
@@ -5119,7 +5119,7 @@
       "damage": "+5",
       "strengthloss": "+5"
     },
-    "image_url": "/static/images/cards/mangle.png",
+    "image_url": "/static/images/cards/mangle.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 20\nศัตรูเสีย 15 [gold]ความแข็งแรง[/gold]ในเทิร์นนี้",
@@ -5156,7 +5156,7 @@
     "upgrade": {
       "block": "+1"
     },
-    "image_url": "/static/images/cards/manifest_authority.png",
+    "image_url": "/static/images/cards/manifest_authority.webp",
     "beta_image_url": "/static/images/cards/beta/manifest_authority.png",
     "type_variants": null,
     "upgrade_description": "ได้รับ 8 [gold]บล็อก[/gold]\nเพิ่มการ์ดไร้สี [gold]แบบพัฒนาแล้ว[/gold] 1 ใบแบบสุ่มใส่[gold]มือ[/gold]",
@@ -5195,7 +5195,7 @@
       "damage": "+1",
       "increase": "+1"
     },
-    "image_url": "/static/images/cards/maul.png",
+    "image_url": "/static/images/cards/maul.webp",
     "beta_image_url": "/static/images/cards/beta/maul.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาน 6 จำนวน 2 ครั้ง\nการ์ด Maul ทั้งหมดสร้างความเสียหายเพิ่ม 2 ในการต่อสู้นี้",
@@ -5233,7 +5233,7 @@
     "upgrade": {
       "block": "+4"
     },
-    "image_url": "/static/images/cards/melancholy.png",
+    "image_url": "/static/images/cards/melancholy.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -5273,7 +5273,7 @@
       "calculationbase": "+2",
       "extradamage": "+1"
     },
-    "image_url": "/static/images/cards/memento_mori.png",
+    "image_url": "/static/images/cards/memento_mori.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 8\nสร้างความเสียหายเพิ่ม 5 ตามจำนวนการ์ดที่เคยถูกทิ้งในเทิร์นนี้",
@@ -5315,7 +5315,7 @@
       "MindRot": 1
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/mind_rot.png",
+    "image_url": "/static/images/cards/mind_rot.webp",
     "beta_image_url": "/static/images/cards/beta/mind_rot.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -5353,7 +5353,7 @@
       "damage": "+2",
       "add_retain": true
     },
-    "image_url": "/static/images/cards/misery.png",
+    "image_url": "/static/images/cards/misery.webp",
     "beta_image_url": "/static/images/cards/beta/misery.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 9\nสร้างผลผิดปกติใส่ศัตรูตัวอื่นทั้งหมด ตามผลผิดปกติทั้งหมดบนศัตรูตัวนี้",
@@ -5391,7 +5391,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/modded.png",
+    "image_url": "/static/images/cards/modded.webp",
     "beta_image_url": "/static/images/cards/beta/modded.png",
     "type_variants": null,
     "upgrade_description": "ได้รับช่องเก็บลูกแก้ว 1 ช่อง\nจั่วการ์ด 2 ใบ เพิ่มค่าร่ายของการ์ดนี้ 1",
@@ -5430,7 +5430,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/molten_fist.png",
+    "image_url": "/static/images/cards/molten_fist.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 14\nเพิ่ม[gold]จุดอ่อน[/gold]บนตัวศัตรูเป็น 2 เท่า",
@@ -5470,7 +5470,7 @@
     "upgrade": {
       "cost": 2
     },
-    "image_url": "/static/images/cards/monarchs_gaze.png",
+    "image_url": "/static/images/cards/monarchs_gaze.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -5507,7 +5507,7 @@
     "upgrade": {
       "add_retain": true
     },
-    "image_url": "/static/images/cards/monologue.png",
+    "image_url": "/static/images/cards/monologue.webp",
     "beta_image_url": "/static/images/cards/beta/monologue.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -5546,7 +5546,7 @@
     "upgrade": {
       "cost": 2
     },
-    "image_url": "/static/images/cards/murder.png",
+    "image_url": "/static/images/cards/murder.webp",
     "beta_image_url": "/static/images/cards/beta/murder.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -5583,7 +5583,7 @@
     "upgrade": {
       "summon": "+3"
     },
-    "image_url": "/static/images/cards/necro_mastery.png",
+    "image_url": "/static/images/cards/necro_mastery.webp",
     "beta_image_url": "/static/images/cards/beta/necro_mastery.png",
     "type_variants": null,
     "upgrade_description": "[gold]อัญเชิญ[/gold] 8\nทุกครั้งที่[gold]Osty[/gold]เสีย HP\nศัตรูทั้งหมดเสีย HP ตามจำนวนนั้นด้วย",
@@ -5629,7 +5629,7 @@
       "block": "+1",
       "doom": "+4"
     },
-    "image_url": "/static/images/cards/negative_pulse.png",
+    "image_url": "/static/images/cards/negative_pulse.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ได้รับ 6 [gold]บล็อก[/gold]\nสร้าง 7 [gold]อายุขัย[/gold]ใส่ศัตรูทั้งหมด",
@@ -5669,7 +5669,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/neows_fury.png",
+    "image_url": "/static/images/cards/neows_fury.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 14\nนำการ์ด 2 ใบแบบสุ่มจาก[gold]กองทิ้ง[/gold]ขึ้น[gold]มือ[/gold]",
@@ -5718,7 +5718,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/neurosurge.png",
+    "image_url": "/static/images/cards/neurosurge.webp",
     "beta_image_url": "/static/images/cards/beta/neurosurge.png",
     "type_variants": null,
     "upgrade_description": "ได้รับ [energy:4]\nจั่วการ์ด 2 ใบ\nตอนเริ่มต้นเทิร์น สร้าง 3 [gold]อายุขัย[/gold]ใส่ตัวคุณ",
@@ -5763,7 +5763,7 @@
     "upgrade": {
       "platingpower": "+3"
     },
-    "image_url": "/static/images/cards/neutron_aegis.png",
+    "image_url": "/static/images/cards/neutron_aegis.webp",
     "beta_image_url": "/static/images/cards/beta/neutron_aegis.png",
     "type_variants": null,
     "upgrade_description": "ได้รับ 11 [gold]Plating[/gold]",
@@ -5802,7 +5802,7 @@
     "upgrade": {
       "calculationbase": "+5"
     },
-    "image_url": "/static/images/cards/no_escape.png",
+    "image_url": "/static/images/cards/no_escape.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้าง 15 [gold]อายุขัย[/gold] บวกอีก 5 [gold]อายุขัย[/gold]ต่อทุก 10 [gold]อายุขัย[/gold]บนตัวศัตรู",
@@ -5837,7 +5837,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/nostalgia.png",
+    "image_url": "/static/images/cards/nostalgia.webp",
     "beta_image_url": "/static/images/cards/beta/nostalgia.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -5883,7 +5883,7 @@
       "damage": "+3",
       "weak": "+1"
     },
-    "image_url": "/static/images/cards/null.png",
+    "image_url": "/static/images/cards/null.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 13\nสร้าง 2 [gold]ความอ่อนแอ[/gold]\n[gold]ปลุกเสก[/gold] 1 [gold]ความมืด[/gold]",
@@ -5927,7 +5927,7 @@
     "upgrade": {
       "doom": "+1"
     },
-    "image_url": "/static/images/cards/oblivion.png",
+    "image_url": "/static/images/cards/oblivion.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -5964,7 +5964,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/omnislice.png",
+    "image_url": "/static/images/cards/omnislice.webp",
     "beta_image_url": "/static/images/cards/beta/omnislice.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 11\nศัตรูตัวอื่นทั้งหมดได้รับความเสียหายตามความเสียหายที่ทำได้",
@@ -6001,7 +6001,7 @@
     "upgrade": {
       "attacks": "+1"
     },
-    "image_url": "/static/images/cards/one_two_punch.png",
+    "image_url": "/static/images/cards/one_two_punch.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ในเทิร์นนี้ การ์ดโจมตีอีก 2 ใบจะถูกเล่นอีกครั้ง",
@@ -6038,7 +6038,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/orbit.png",
+    "image_url": "/static/images/cards/orbit.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -6083,7 +6083,7 @@
     "upgrade": {
       "outbreakpower": "+4"
     },
-    "image_url": "/static/images/cards/outbreak.png",
+    "image_url": "/static/images/cards/outbreak.webp",
     "beta_image_url": "/static/images/cards/beta/outbreak.png",
     "type_variants": null,
     "upgrade_description": "ทุก 3 ครั้งที่คุณสร้าง[gold]พิษ[/gold] สร้างความเสียหาย 15 ใส่ศัตรูทั้งหมด",
@@ -6121,7 +6121,7 @@
     "upgrade": {
       "damage": "+6"
     },
-    "image_url": "/static/images/cards/pacts_end.png",
+    "image_url": "/static/images/cards/pacts_end.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "จะเล่นได้ก็ต่อเมื่อคุณมีการ์ด 3 ใบขึ้นไปใน[gold]กองทิ้ง[/gold]\nสร้างความเสียหาย 23 ใส่ศัตรูทั้งหมด",
@@ -6158,7 +6158,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/pagestorm.png",
+    "image_url": "/static/images/cards/pagestorm.webp",
     "beta_image_url": "/static/images/cards/beta/pagestorm.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -6196,7 +6196,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/pale_blue_dot.png",
+    "image_url": "/static/images/cards/pale_blue_dot.webp",
     "beta_image_url": "/static/images/cards/beta/pale_blue_dot.png",
     "type_variants": null,
     "upgrade_description": "ถ้าคุณเล่นการ์ด 5 ใบขึ้นไปในเทิร์นเดียว ตอนเริ่มเทิร์นถัดไป จั่วการ์ด 2 ใบ",
@@ -6242,7 +6242,7 @@
     "upgrade": {
       "parrypower": "+3"
     },
-    "image_url": "/static/images/cards/parry.png",
+    "image_url": "/static/images/cards/parry.webp",
     "beta_image_url": "/static/images/cards/beta/parry.png",
     "type_variants": null,
     "upgrade_description": "ทุกครั้งที่คุณเล่น[gold]Sovereign Blade[/gold] ได้รับ 9 [gold]บล็อก[/gold]",
@@ -6281,7 +6281,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/parse.png",
+    "image_url": "/static/images/cards/parse.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "จั่วการ์ด 4 ใบ",
@@ -6322,7 +6322,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/particle_wall.png",
+    "image_url": "/static/images/cards/particle_wall.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ได้รับ 12 [gold]บล็อก[/gold]\nนำการ์ดนี้กลับขึ้น[gold]มือ[/gold]",
@@ -6368,7 +6368,7 @@
       "block": "+2",
       "vigorpower": "+1"
     },
-    "image_url": "/static/images/cards/patter.png",
+    "image_url": "/static/images/cards/patter.webp",
     "beta_image_url": "/static/images/cards/beta/patter.png",
     "type_variants": null,
     "upgrade_description": "ได้รับ 10 [gold]บล็อก[/gold]\nได้รับ 3 [gold]ความกำยำ[/gold]",
@@ -6406,7 +6406,7 @@
     "upgrade": {
       "repeat": "+1"
     },
-    "image_url": "/static/images/cards/peck.png",
+    "image_url": "/static/images/cards/peck.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 2 จำนวน 4 ครั้ง",
@@ -6452,7 +6452,7 @@
     "upgrade": {
       "phantombladespower": "+3"
     },
-    "image_url": "/static/images/cards/phantom_blades.png",
+    "image_url": "/static/images/cards/phantom_blades.webp",
     "beta_image_url": "/static/images/cards/beta/phantom_blades.png",
     "type_variants": null,
     "upgrade_description": "[gold]มีดสั้น[/gold]ได้รับ[gold]คงสภาพ[/gold]\n[gold]มีดสั้น[/gold]ใบแรกที่คุณเล่นในแต่ละเทิร์นสร้างความเสียหายเพิ่ม 12",
@@ -6492,7 +6492,7 @@
       "damage": "+3",
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/photon_cut.png",
+    "image_url": "/static/images/cards/photon_cut.webp",
     "beta_image_url": "/static/images/cards/beta/photon_cut.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 13\nจั่วการ์ด 2 ใบ\nนำการ์ด 1 ใบจาก[gold]มือ[/gold]ไปวางไว้บนสุดของ[gold]กองจั่ว[/gold]",
@@ -6529,7 +6529,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/pillage.png",
+    "image_url": "/static/images/cards/pillage.webp",
     "beta_image_url": "/static/images/cards/beta/pillage.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 9\nจั่วการ์ดจนกว่าจะจั่วได้การ์ดที่ไม่ใช่การ์ดโจมตี",
@@ -6566,7 +6566,7 @@
     "upgrade": {
       "block": "+1"
     },
-    "image_url": "/static/images/cards/pillar_of_creation.png",
+    "image_url": "/static/images/cards/pillar_of_creation.webp",
     "beta_image_url": "/static/images/cards/beta/pillar_of_creation.png",
     "type_variants": null,
     "upgrade_description": "ทุกครั้งที่คุณสร้างการ์ด ได้รับ 4 [gold]บล็อก[/gold]",
@@ -6603,7 +6603,7 @@
     "upgrade": {
       "damage": "+5"
     },
-    "image_url": "/static/images/cards/pinpoint.png",
+    "image_url": "/static/images/cards/pinpoint.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 22\nค่าร่ายลดลง 1 [energy:1] ตามจำนวนการ์ดทักษะที่เคยเล่นในเทิร์นนี้",
@@ -6643,7 +6643,7 @@
     "upgrade": {
       "ostydamage": "+3"
     },
-    "image_url": "/static/images/cards/poke.png",
+    "image_url": "/static/images/cards/poke.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]Osty[/gold]สร้างความเสียหาย 9",
@@ -6679,7 +6679,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/poor_sleep.png",
+    "image_url": "/static/images/cards/poor_sleep.webp",
     "beta_image_url": "/static/images/cards/beta/poor_sleep.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -6720,7 +6720,7 @@
     "upgrade": {
       "damage": "+6"
     },
-    "image_url": "/static/images/cards/pounce.png",
+    "image_url": "/static/images/cards/pounce.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 18\nการ์ดทักษะใบต่อไปค่าร่ายเหลือ 0 [energy:1]",
@@ -6759,7 +6759,7 @@
     "upgrade": {
       "calculationbase": "+3"
     },
-    "image_url": "/static/images/cards/precise_cut.png",
+    "image_url": "/static/images/cards/precise_cut.webp",
     "beta_image_url": "/static/images/cards/beta/precise_cut.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -6803,7 +6803,7 @@
     "upgrade": {
       "preptimepower": "+2"
     },
-    "image_url": "/static/images/cards/prep_time.png",
+    "image_url": "/static/images/cards/prep_time.webp",
     "beta_image_url": "/static/images/cards/beta/prep_time.png",
     "type_variants": null,
     "upgrade_description": "ตอนเริ่มต้นเทิร์น ได้รับ 6 [gold]ความกำยำ[/gold]",
@@ -6840,7 +6840,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/primal_force.png",
+    "image_url": "/static/images/cards/primal_force.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "แปรสภาพการ์ดโจมตีทั้งหมดใน[gold]มือ[/gold]ให้เป็น[gold]หินยักษ์+[/gold]",
@@ -6879,7 +6879,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/production.png",
+    "image_url": "/static/images/cards/production.webp",
     "beta_image_url": "/static/images/cards/beta/production.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -6919,7 +6919,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/prolong.png",
+    "image_url": "/static/images/cards/prolong.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -6959,7 +6959,7 @@
     "upgrade": {
       "cards": "+3"
     },
-    "image_url": "/static/images/cards/prophesize.png",
+    "image_url": "/static/images/cards/prophesize.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "จั่วการ์ด 9 ใบ",
@@ -7001,7 +7001,7 @@
       "cost": 0,
       "calculationbase": "+5"
     },
-    "image_url": "/static/images/cards/protector.png",
+    "image_url": "/static/images/cards/protector.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -7053,7 +7053,7 @@
       "dexterity": "+1",
       "strength": "+1"
     },
-    "image_url": "/static/images/cards/prowess.png",
+    "image_url": "/static/images/cards/prowess.webp",
     "beta_image_url": "/static/images/cards/beta/prowess.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -7092,7 +7092,7 @@
       "block": "+2",
       "summon": "+1"
     },
-    "image_url": "/static/images/cards/pull_aggro.png",
+    "image_url": "/static/images/cards/pull_aggro.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]อัญเชิญ[/gold] 5\nได้รับ 9 [gold]บล็อก[/gold]",
@@ -7131,7 +7131,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/pull_from_below.png",
+    "image_url": "/static/images/cards/pull_from_below.webp",
     "beta_image_url": "/static/images/cards/beta/pull_from_below.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 7 ตามจำนวนการ์ด[gold]กึ่งสลาย[/gold]ที่เล่นในการต่อสู้นี้",
@@ -7170,7 +7170,7 @@
     "upgrade": {
       "power": "+1"
     },
-    "image_url": "/static/images/cards/putrefy.png",
+    "image_url": "/static/images/cards/putrefy.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้าง 3 [gold]ความอ่อนแอ[/gold]\nสร้าง 3 [gold]จุดอ่อน[/gold]",
@@ -7210,7 +7210,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/pyre.png",
+    "image_url": "/static/images/cards/pyre.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ตอนเริ่มต้นเทิร์น ได้รับ [energy:2]",
@@ -7247,7 +7247,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/quasar.png",
+    "image_url": "/static/images/cards/quasar.webp",
     "beta_image_url": "/static/images/cards/beta/quasar.png",
     "type_variants": null,
     "upgrade_description": "เลือกการ์ดไร้สีแบบพัฒนาแล้ว 1 จากที่สุ่มมา 3 ใบเพื่อเพิ่มใส่[gold]มือ[/gold]",
@@ -7287,7 +7287,7 @@
     "upgrade": {
       "damage": "+1"
     },
-    "image_url": "/static/images/cards/radiate.png",
+    "image_url": "/static/images/cards/radiate.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 4 ใส่ศัตรูทั้งหมด ตามจำนวน [star:1] ที่ได้รับในเทิร์นนี้",
@@ -7324,7 +7324,7 @@
     "upgrade": {
       "block": "+5"
     },
-    "image_url": "/static/images/cards/rally.png",
+    "image_url": "/static/images/cards/rally.webp",
     "beta_image_url": "/static/images/cards/beta/rally.png",
     "type_variants": null,
     "upgrade_description": "ผู้เล่นทั้งหมดได้รับ 17 [gold]บล็อก[/gold]",
@@ -7366,7 +7366,7 @@
     "upgrade": {
       "ostydamage": "+2"
     },
-    "image_url": "/static/images/cards/rattle.png",
+    "image_url": "/static/images/cards/rattle.webp",
     "beta_image_url": "/static/images/cards/beta/rattle.png",
     "type_variants": null,
     "upgrade_description": "[gold]Osty[/gold]สร้างความเสียหาย 9\nโจมตีเพิ่มอีกครั้งต่อทุก 2 ครั้งที่เขาโจมตีในเทิร์นนี้",
@@ -7405,7 +7405,7 @@
     "upgrade": {
       "summon": "+5"
     },
-    "image_url": "/static/images/cards/reanimate.png",
+    "image_url": "/static/images/cards/reanimate.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]อัญเชิญ[/gold] 25",
@@ -7447,7 +7447,7 @@
     "upgrade": {
       "damage": "+6"
     },
-    "image_url": "/static/images/cards/reap.png",
+    "image_url": "/static/images/cards/reap.webp",
     "beta_image_url": "/static/images/cards/beta/reap.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 33",
@@ -7485,7 +7485,7 @@
     "upgrade": {
       "add_retain": true
     },
-    "image_url": "/static/images/cards/reaper_form.png",
+    "image_url": "/static/images/cards/reaper_form.webp",
     "beta_image_url": "/static/images/cards/beta/reaper_form.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -7525,7 +7525,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/reave.png",
+    "image_url": "/static/images/cards/reave.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 11\nเพิ่ม[gold]วิญญาณ+[/gold] 1 ใบเข้า[gold]กองจั่ว[/gold]",
@@ -7563,7 +7563,7 @@
     "upgrade": {
       "forge": "+4"
     },
-    "image_url": "/static/images/cards/refine_blade.png",
+    "image_url": "/static/images/cards/refine_blade.webp",
     "beta_image_url": "/static/images/cards/beta/refine_blade.png",
     "type_variants": null,
     "upgrade_description": "[gold]หลอมสร้าง[/gold] 10\nเทิร์นถูกไป ได้รับ [energy:1]",
@@ -7601,7 +7601,7 @@
     "upgrade": {
       "block": "+4"
     },
-    "image_url": "/static/images/cards/reflect.png",
+    "image_url": "/static/images/cards/reflect.webp",
     "beta_image_url": "/static/images/cards/beta/reflect.png",
     "type_variants": null,
     "upgrade_description": "ได้รับ 21 [gold]บล็อก[/gold]\nสะท้อนความเสียหายจากการโจมตีที่บล็อกได้กลับไปหาผู้โจมตีในเทิร์นนี้",
@@ -7639,7 +7639,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/refract.png",
+    "image_url": "/static/images/cards/refract.webp",
     "beta_image_url": "/static/images/cards/beta/refract.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 12 จำนวน 2 ครั้ง\n[gold]ปลุกเสก[/gold] 2 [gold]แก้ว[/gold]",
@@ -7682,7 +7682,7 @@
       "cards": "+1",
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/relax.png",
+    "image_url": "/static/images/cards/relax.webp",
     "beta_image_url": "/static/images/cards/beta/relax.png",
     "type_variants": null,
     "upgrade_description": "ได้รับ 17 [gold]บล็อก[/gold]\nเทิร์นถัดไป จั่วการ์ด 3 ใบและได้รับ [energy:3]",
@@ -7725,7 +7725,7 @@
       "extradamage": "+3",
       "calculationbase": "+3"
     },
-    "image_url": "/static/images/cards/rend.png",
+    "image_url": "/static/images/cards/rend.webp",
     "beta_image_url": "/static/images/cards/beta/rend.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 15\nสร้างความเสียหายเพิ่ม 8 ตามจำนวนผลผิดปกติที่ไม่ซ้ำกันบนตัวศัตรูตัวนั้น",
@@ -7770,7 +7770,7 @@
     "upgrade": {
       "strengthpower": "+1"
     },
-    "image_url": "/static/images/cards/resonance.png",
+    "image_url": "/static/images/cards/resonance.webp",
     "beta_image_url": "/static/images/cards/beta/resonance.png",
     "type_variants": null,
     "upgrade_description": "ได้รับ 2 [gold]ความแข็งแรง[/gold] ศัตรูทั้งหมดเสีย 1 [gold]ความแข็งแรง[/gold]",
@@ -7811,7 +7811,7 @@
       "cards": "+1",
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/restlessness.png",
+    "image_url": "/static/images/cards/restlessness.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ถ้า[gold]มือ[/gold]ว่าง จั่วการ์ด 3 ใบและได้รับ [energy:3]",
@@ -7854,7 +7854,7 @@
     "upgrade": {
       "repeat": "+1"
     },
-    "image_url": "/static/images/cards/ricochet.png",
+    "image_url": "/static/images/cards/ricochet.webp",
     "beta_image_url": "/static/images/cards/beta/ricochet.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 3 ใส่ศัตรู 1 ตัวแบบสุ่ม จำนวน 5 ครั้ง",
@@ -7896,7 +7896,7 @@
       "damage": "+1",
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/rocket_punch.png",
+    "image_url": "/static/images/cards/rocket_punch.webp",
     "beta_image_url": "/static/images/cards/beta/rocket_punch.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -7941,7 +7941,7 @@
     "upgrade": {
       "rollingboulderpower": "+5"
     },
-    "image_url": "/static/images/cards/rolling_boulder.png",
+    "image_url": "/static/images/cards/rolling_boulder.webp",
     "beta_image_url": "/static/images/cards/beta/rolling_boulder.png",
     "type_variants": null,
     "upgrade_description": "ตอนต้นเทิร์น สร้างความเสียหาย 10 ใส่ศัตรูทั้งหมด และเพิ่มความเสียหายนี้อีก 5",
@@ -7981,7 +7981,7 @@
     "upgrade": {
       "add_retain": true
     },
-    "image_url": "/static/images/cards/royal_gamble.png",
+    "image_url": "/static/images/cards/royal_gamble.webp",
     "beta_image_url": "/static/images/cards/beta/royal_gamble.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -8021,7 +8021,7 @@
     "upgrade": {
       "gold": "+5"
     },
-    "image_url": "/static/images/cards/royalties.png",
+    "image_url": "/static/images/cards/royalties.webp",
     "beta_image_url": "/static/images/cards/beta/royalties.png",
     "type_variants": null,
     "upgrade_description": "ตอนจบการต่อสู้ ได้รับ 35 [gold]ทอง[/gold]",
@@ -8058,7 +8058,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/salvo.png",
+    "image_url": "/static/images/cards/salvo.webp",
     "beta_image_url": "/static/images/cards/beta/salvo.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 16\n[gold]คงสภาพ[/gold]ทั้ง[gold]มือ[/gold]ในเทิร์นนี้",
@@ -8095,7 +8095,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/scavenge.png",
+    "image_url": "/static/images/cards/scavenge.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]สลาย[/gold]การ์ด 1 ใบ\nเทิร์นถัดไป ได้รับ [energy:3]",
@@ -8141,7 +8141,7 @@
       "doom": "+3",
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/scourge.png",
+    "image_url": "/static/images/cards/scourge.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้าง 13 [gold]อายุขัย[/gold]\nจั่วการ์ด 2 ใบ",
@@ -8180,7 +8180,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/sculpting_strike.png",
+    "image_url": "/static/images/cards/sculpting_strike.webp",
     "beta_image_url": "/static/images/cards/beta/sculpting_strike.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 11\nเพิ่ม[gold]กึ่งสลาย[/gold]ให้การ์ด 1 ใบใน[gold]มือ[/gold]",
@@ -8221,7 +8221,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/seance.png",
+    "image_url": "/static/images/cards/seance.webp",
     "beta_image_url": "/static/images/cards/beta/seance.png",
     "type_variants": null,
     "upgrade_description": "แปรสภาพการ์ด 1 ใบใน[gold]กองจั่ว[/gold]ให้เป็น[gold]วิญญาณ+[/gold]",
@@ -8264,7 +8264,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/seeker_strike.png",
+    "image_url": "/static/images/cards/seeker_strike.webp",
     "beta_image_url": "/static/images/cards/beta/seeker_strike.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 9\nเลือกการ์ด 1 จาก 3 ใบใน[gold]กองจั่ว[/gold]เพื่อนำขึ้น[gold]มือ[/gold]",
@@ -8301,7 +8301,7 @@
     "upgrade": {
       "forge": "+4"
     },
-    "image_url": "/static/images/cards/seeking_edge.png",
+    "image_url": "/static/images/cards/seeking_edge.webp",
     "beta_image_url": "/static/images/cards/beta/seeking_edge.png",
     "type_variants": null,
     "upgrade_description": "[gold]หลอมสร้าง[/gold] 11\nต่อไปนี้[gold]Sovereign Blade[/gold]จะสร้างความเสียหายใส่ศัตรูทั้งหมด",
@@ -8347,7 +8347,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/sentry_mode.png",
+    "image_url": "/static/images/cards/sentry_mode.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -8395,7 +8395,7 @@
       "damage": "+2",
       "strength": "+1"
     },
-    "image_url": "/static/images/cards/setup_strike.png",
+    "image_url": "/static/images/cards/setup_strike.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 9\nได้รับ 2 [gold]ความแข็งแรง[/gold]ในเทิร์นนี้",
@@ -8434,7 +8434,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/seven_stars.png",
+    "image_url": "/static/images/cards/seven_stars.webp",
     "beta_image_url": "/static/images/cards/beta/seven_stars.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -8473,7 +8473,7 @@
     "upgrade": {
       "damage": "+5"
     },
-    "image_url": "/static/images/cards/severance.png",
+    "image_url": "/static/images/cards/severance.webp",
     "beta_image_url": "/static/images/cards/beta/severance.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 18\nเพิ่ม[gold]วิญญาณ[/gold]เข้า[gold]กองการ์ด[/gold], [gold]มือ[/gold], และ[gold]กองทิ้ง[/gold] อย่างละ 1 ใบ",
@@ -8510,7 +8510,7 @@
     "upgrade": {
       "block": "+4"
     },
-    "image_url": "/static/images/cards/shadow_shield.png",
+    "image_url": "/static/images/cards/shadow_shield.webp",
     "beta_image_url": "/static/images/cards/beta/shadow_shield.png",
     "type_variants": null,
     "upgrade_description": "ได้รับ 15 [gold]บล็อก[/gold]\n[gold]ปลุกเสก[/gold] 1 [gold]ความมืด[/gold]",
@@ -8547,7 +8547,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/shadow_step.png",
+    "image_url": "/static/images/cards/shadow_step.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -8584,7 +8584,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/shadowmeld.png",
+    "image_url": "/static/images/cards/shadowmeld.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -8624,7 +8624,7 @@
     "upgrade": {
       "enemystrengthloss": "+1"
     },
-    "image_url": "/static/images/cards/shared_fate.png",
+    "image_url": "/static/images/cards/shared_fate.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "เสีย 2 [gold]ความแข็งแรง[/gold]\nศัตรูเสีย 3 [gold]ความแข็งแรง[/gold]",
@@ -8664,7 +8664,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/shatter.png",
+    "image_url": "/static/images/cards/shatter.webp",
     "beta_image_url": "/static/images/cards/beta/shatter.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 15 ใส่ศัตรูทั้งหมด\n[gold]ปล่อยพลัง[/gold]ลูกแก้วทั้งหมดของคุณ",
@@ -8704,7 +8704,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/shining_strike.png",
+    "image_url": "/static/images/cards/shining_strike.webp",
     "beta_image_url": "/static/images/cards/beta/shining_strike.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 11\nได้รับ [star:2]\nนำการ์ดนี้ไปไว้บนสุดของ[gold]กองจั่ว[/gold]",
@@ -8741,7 +8741,7 @@
     "upgrade": {
       "block": "+1"
     },
-    "image_url": "/static/images/cards/shroud.png",
+    "image_url": "/static/images/cards/shroud.webp",
     "beta_image_url": "/static/images/cards/beta/shroud.png",
     "type_variants": null,
     "upgrade_description": "ทุกครั้งที่คุณสร้าง[gold]อายุขัย[/gold] ได้รับ 3 [gold]บล็อก[/gold]",
@@ -8790,7 +8790,7 @@
       "ostydamage": "+1",
       "sicempower": "+1"
     },
-    "image_url": "/static/images/cards/sic_em.png",
+    "image_url": "/static/images/cards/sic_em.webp",
     "beta_image_url": "/static/images/cards/beta/sic_em.png",
     "type_variants": null,
     "upgrade_description": "[gold]Osty[/gold]สร้างความเสียหาย 6\nทุกครั้งที่[gold]Osty[/gold]โจมตีศัตรูตัวนี้ในเทิร์นนี้ [gold]อัญเชิญ[/gold] 3",
@@ -8836,7 +8836,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/signal_boost.png",
+    "image_url": "/static/images/cards/signal_boost.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -8883,7 +8883,7 @@
     "upgrade": {
       "sleightoffleshpower": "+4"
     },
-    "image_url": "/static/images/cards/sleight_of_flesh.png",
+    "image_url": "/static/images/cards/sleight_of_flesh.webp",
     "beta_image_url": "/static/images/cards/beta/sleight_of_flesh.png",
     "type_variants": null,
     "upgrade_description": "ทุกครั้งที่คุณสร้างผลผิดปกติใส่ศัตรู มันจะได้รับความเสียหาย 13",
@@ -8927,7 +8927,7 @@
     "upgrade": {
       "smokestackpower": "+2"
     },
-    "image_url": "/static/images/cards/smokestack.png",
+    "image_url": "/static/images/cards/smokestack.webp",
     "beta_image_url": "/static/images/cards/beta/smokestack.png",
     "type_variants": null,
     "upgrade_description": "ทุกครั้งที่คุณสร้างการ์ดสถานะ สร้างความเสียหาย 7 ใส่ศัตรูทั้งหมด",
@@ -8973,7 +8973,7 @@
     "upgrade": {
       "poison": "+3"
     },
-    "image_url": "/static/images/cards/snakebite.png",
+    "image_url": "/static/images/cards/snakebite.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -9016,7 +9016,7 @@
     "upgrade": {
       "ostydamage": "+3"
     },
-    "image_url": "/static/images/cards/snap.png",
+    "image_url": "/static/images/cards/snap.webp",
     "beta_image_url": "/static/images/cards/beta/snap.png",
     "type_variants": null,
     "upgrade_description": "[gold]Osty[/gold]สร้างความเสียหาย 10\nเพิ่ม[gold]คงสภาพ[/gold]ให้การ์ด 1 ใบใน[gold]มือ[/gold]",
@@ -9062,7 +9062,7 @@
     "upgrade": {
       "sneakypower": "+1"
     },
-    "image_url": "/static/images/cards/sneaky.png",
+    "image_url": "/static/images/cards/sneaky.webp",
     "beta_image_url": "/static/images/cards/beta/sneaky.png",
     "type_variants": null,
     "upgrade_description": "ทุกครั้งที่พันธมิตรโจมตีศัตรู ได้รับ 2 [gold]บล็อก[/gold]",
@@ -9106,7 +9106,7 @@
       "damage": "+1",
       "stars": "+1"
     },
-    "image_url": "/static/images/cards/solar_strike.png",
+    "image_url": "/static/images/cards/solar_strike.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 9\nได้รับ [star:2]",
@@ -9141,7 +9141,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/soot.png",
+    "image_url": "/static/images/cards/soot.webp",
     "beta_image_url": "/static/images/cards/beta/soot.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -9183,7 +9183,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/sow.png",
+    "image_url": "/static/images/cards/sow.webp",
     "beta_image_url": "/static/images/cards/beta/sow.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 11 ใส่ศัตรูทั้งหมด",
@@ -9223,7 +9223,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/spectrum_shift.png",
+    "image_url": "/static/images/cards/spectrum_shift.webp",
     "beta_image_url": "/static/images/cards/beta/spectrum_shift.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -9267,7 +9267,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/spinner.png",
+    "image_url": "/static/images/cards/spinner.webp",
     "beta_image_url": "/static/images/cards/beta/spinner.png",
     "type_variants": null,
     "upgrade_description": "[gold]ปลุกเสก[/gold] 1 [gold]แก้ว[/gold]\nตอนเริ่มต้นเทิร์น [gold]ปลุกเสก[/gold] 1 [gold]แก้ว[/gold]",
@@ -9304,7 +9304,7 @@
     "upgrade": {
       "blockonexhaust": "+1"
     },
-    "image_url": "/static/images/cards/spirit_of_ash.png",
+    "image_url": "/static/images/cards/spirit_of_ash.webp",
     "beta_image_url": "/static/images/cards/beta/spirit_of_ash.png",
     "type_variants": null,
     "upgrade_description": "ทุกครั้งที่คุณเล่นการ์ด[gold]กึ่งสลาย[/gold] ได้รับ 5 [gold]บล็อก[/gold]",
@@ -9342,7 +9342,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/spite.png",
+    "image_url": "/static/images/cards/spite.webp",
     "beta_image_url": "/static/images/cards/beta/spite.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 9\nถ้าคุณเคยเสีย HP ในเทิร์นนี้ จั่วการ์ด 1 ใบ",
@@ -9377,7 +9377,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/splash.png",
+    "image_url": "/static/images/cards/splash.webp",
     "beta_image_url": "/static/images/cards/beta/splash.png",
     "type_variants": null,
     "upgrade_description": "เลือกการ์ดโจมตี [gold]แบบพัฒนาแล้ว[/gold] 1 จาก 3 ใบแบบสุ่มจากตัวละครอื่นเพื่อเพิ่มใส่[gold]มือ[/gold] มันเล่นฟรีในเทิร์นนี้",
@@ -9414,7 +9414,7 @@
       "Gold": 600
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/spoils_map.png",
+    "image_url": "/static/images/cards/spoils_map.webp",
     "beta_image_url": "/static/images/cards/beta/spoils_map.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -9454,7 +9454,7 @@
     "upgrade": {
       "forge": "+5"
     },
-    "image_url": "/static/images/cards/spoils_of_battle.png",
+    "image_url": "/static/images/cards/spoils_of_battle.webp",
     "beta_image_url": "/static/images/cards/beta/spoils_of_battle.png",
     "type_variants": null,
     "upgrade_description": "[gold]หลอมสร้าง[/gold] 15",
@@ -9489,7 +9489,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/spore_mind.png",
+    "image_url": "/static/images/cards/spore_mind.webp",
     "beta_image_url": "/static/images/cards/beta/spore_mind.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -9533,7 +9533,7 @@
       "summon": "+2",
       "heal": "+2"
     },
-    "image_url": "/static/images/cards/spur.png",
+    "image_url": "/static/images/cards/spur.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]อัญเชิญ[/gold] 5\n[gold]Osty[/gold]ฟื้นฟู 7 HP",
@@ -9582,7 +9582,7 @@
       "damage": "+2",
       "vulnerable": "+1"
     },
-    "image_url": "/static/images/cards/squash.png",
+    "image_url": "/static/images/cards/squash.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 12\nสร้าง 2 [gold]จุดอ่อน[/gold]",
@@ -9624,7 +9624,7 @@
       "calculationbase": "+5",
       "extradamage": "+1"
     },
-    "image_url": "/static/images/cards/squeeze.png",
+    "image_url": "/static/images/cards/squeeze.webp",
     "beta_image_url": "/static/images/cards/beta/squeeze.png",
     "type_variants": null,
     "upgrade_description": "[gold]Osty[/gold]สร้างความเสียหาย 25\nสร้างความเสียหายเพิ่ม 6 ตามจำนวนการโจมตีครั้งอื่นของ[gold]Osty[/gold]",
@@ -9661,7 +9661,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/stampede.png",
+    "image_url": "/static/images/cards/stampede.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -9698,7 +9698,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/stardust.png",
+    "image_url": "/static/images/cards/stardust.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 7 ใส่ศัตรู 1 ตัวแบบสุ่ม จำนวน X ครั้ง",
@@ -9735,7 +9735,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/stoke.png",
+    "image_url": "/static/images/cards/stoke.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -9775,7 +9775,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/stomp.png",
+    "image_url": "/static/images/cards/stomp.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 15 ใส่ศัตรูทั้งหมด\nค่าร่ายลดลง 1 [energy:1] ตามจำนวนการ์ดโจมตีที่เล่นในเทิร์นนี้",
@@ -9819,7 +9819,7 @@
     "upgrade": {
       "platingpower": "+2"
     },
-    "image_url": "/static/images/cards/stone_armor.png",
+    "image_url": "/static/images/cards/stone_armor.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ได้รับ 6 [gold]Plating[/gold]",
@@ -9865,7 +9865,7 @@
       "damage": "+2",
       "stranglepower": "+1"
     },
-    "image_url": "/static/images/cards/strangle.png",
+    "image_url": "/static/images/cards/strangle.webp",
     "beta_image_url": "/static/images/cards/beta/strangle.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 10\nทุกครั้งที่คุณเล่นการ์ดในเทิร์นนี้ ศัตรูเสีย 3 HP",
@@ -9900,7 +9900,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/stratagem.png",
+    "image_url": "/static/images/cards/stratagem.webp",
     "beta_image_url": "/static/images/cards/beta/stratagem.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -9935,7 +9935,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/subroutine.png",
+    "image_url": "/static/images/cards/subroutine.webp",
     "beta_image_url": "/static/images/cards/beta/subroutine.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -9974,7 +9974,7 @@
     "upgrade": {
       "forge": "+3"
     },
-    "image_url": "/static/images/cards/summon_forth.png",
+    "image_url": "/static/images/cards/summon_forth.webp",
     "beta_image_url": "/static/images/cards/beta/summon_forth.png",
     "type_variants": null,
     "upgrade_description": "[gold]หลอมสร้าง[/gold] 11\nนำ[gold]Sovereign Blade[/gold]จากที่ไหนก็ได้ขึ้น[gold]มือ[/gold]",
@@ -10013,7 +10013,7 @@
     "upgrade": {
       "energy": "+2"
     },
-    "image_url": "/static/images/cards/supercritical.png",
+    "image_url": "/static/images/cards/supercritical.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ได้รับ [energy:6]",
@@ -10055,7 +10055,7 @@
     "upgrade": {
       "extradamage": "+1"
     },
-    "image_url": "/static/images/cards/supermassive.png",
+    "image_url": "/static/images/cards/supermassive.webp",
     "beta_image_url": "/static/images/cards/beta/supermassive.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 5\nสร้างความเสียหายเพิ่ม 4 ตามจำนวนการ์ดที่คุณสร้างในการต่อสู้นี้",
@@ -10103,7 +10103,7 @@
       "damage": "+6",
       "weak": "+2"
     },
-    "image_url": "/static/images/cards/suppress.png",
+    "image_url": "/static/images/cards/suppress.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 17\nสร้าง 3 [gold]ความอ่อนแอ[/gold]",
@@ -10149,7 +10149,7 @@
     "upgrade": {
       "ostydamage": "+5"
     },
-    "image_url": "/static/images/cards/sweeping_gaze.png",
+    "image_url": "/static/images/cards/sweeping_gaze.webp",
     "beta_image_url": "/static/images/cards/beta/sweeping_gaze.png",
     "type_variants": null,
     "upgrade_description": "[gold]Osty[/gold]สร้างความเสียหาย 15 ใส่ศัตรู 1 ตัวแบบสุ่ม",
@@ -10199,7 +10199,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/sword_sage.png",
+    "image_url": "/static/images/cards/sword_sage.webp",
     "beta_image_url": "/static/images/cards/beta/sword_sage.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -10239,7 +10239,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/synchronize.png",
+    "image_url": "/static/images/cards/synchronize.webp",
     "beta_image_url": "/static/images/cards/beta/synchronize.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -10279,7 +10279,7 @@
     "upgrade": {
       "damage": "+6"
     },
-    "image_url": "/static/images/cards/synthesis.png",
+    "image_url": "/static/images/cards/synthesis.webp",
     "beta_image_url": "/static/images/cards/beta/synthesis.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 18\nการ์ดพลังใบถัดไปมีค่าร่าย 0 [energy:1]",
@@ -10316,7 +10316,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/tag_team.png",
+    "image_url": "/static/images/cards/tag_team.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 15\nการ์ดโจมตีใบถัดไปของพันธมิตร 1 คนที่เล่นใส่ศัตรูตัวนี้จะถูกเล่นซ้ำอีกครั้ง",
@@ -10351,7 +10351,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/tank.png",
+    "image_url": "/static/images/cards/tank.webp",
     "beta_image_url": "/static/images/cards/beta/tank.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -10397,7 +10397,7 @@
       "block": "+1",
       "vulnerable": "+1"
     },
-    "image_url": "/static/images/cards/taunt.png",
+    "image_url": "/static/images/cards/taunt.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ได้รับ 8 [gold]บล็อก[/gold]\nสร้าง 1 [gold]จุดอ่อน[/gold]",
@@ -10437,7 +10437,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/tear_asunder.png",
+    "image_url": "/static/images/cards/tear_asunder.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 7\nโจมตีเพิ่มอีกตามจำนวนครั้งที่คุณเสีย HP ในการต่อสู้นี้",
@@ -10481,7 +10481,7 @@
     "upgrade": {
       "vigorpower": "+2"
     },
-    "image_url": "/static/images/cards/terraforming.png",
+    "image_url": "/static/images/cards/terraforming.webp",
     "beta_image_url": "/static/images/cards/beta/terraforming.png",
     "type_variants": null,
     "upgrade_description": "ได้รับ 8 [gold]ความกำยำ[/gold]",
@@ -10518,7 +10518,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/tesla_coil.png",
+    "image_url": "/static/images/cards/tesla_coil.webp",
     "beta_image_url": "/static/images/cards/beta/tesla_coil.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 6\nผลของ[gold]สายฟ้า[/gold]ทั้งผลทำงานใส่ศัตรูตัวนี้",
@@ -10557,7 +10557,7 @@
     "upgrade": {
       "damage": "+5"
     },
-    "image_url": "/static/images/cards/the_hunt.png",
+    "image_url": "/static/images/cards/the_hunt.webp",
     "beta_image_url": "/static/images/cards/beta/the_hunt.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 15\nถ้า[gold]สังหาร[/gold] ได้รับรางวัลการ์ดเพิ่ม 1 รางวัล",
@@ -10601,7 +10601,7 @@
     "upgrade": {
       "increase": "+1"
     },
-    "image_url": "/static/images/cards/the_scythe.png",
+    "image_url": "/static/images/cards/the_scythe.webp",
     "beta_image_url": "/static/images/cards/beta/the_scythe.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 13\nเพิ่มความเสียหายให้การ์ดนี้ 4 แบบถาวร",
@@ -10641,7 +10641,7 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": "/static/images/cards/the_sealed_throne.png",
+    "image_url": "/static/images/cards/the_sealed_throne.webp",
     "beta_image_url": "/static/images/cards/beta/the_sealed_throne.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -10679,7 +10679,7 @@
     "upgrade": {
       "forge": "+10"
     },
-    "image_url": "/static/images/cards/the_smith.png",
+    "image_url": "/static/images/cards/the_smith.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]หลอมสร้าง[/gold] 40",
@@ -10716,7 +10716,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/thrash.png",
+    "image_url": "/static/images/cards/thrash.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 6 จำนวน 2 ครั้ง\n[gold]สลาย[/gold]การ์ดโจมตี 1 ใบแบบสุ่มใน[gold]มือ[/gold]และนำความเสียหายของมันมาเพิ่มให้การ์ดนี้แทน",
@@ -10753,7 +10753,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/thrumming_hatchet.png",
+    "image_url": "/static/images/cards/thrumming_hatchet.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 14\nตอนเริ่มต้นเทิร์น นำการ์ดนี้กลับขึ้น[gold]มือ[/gold]",
@@ -10794,7 +10794,7 @@
     "upgrade": {
       "add_retain": true
     },
-    "image_url": "/static/images/cards/times_up.png",
+    "image_url": "/static/images/cards/times_up.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -10835,7 +10835,7 @@
     "upgrade": {
       "block": "+2"
     },
-    "image_url": "/static/images/cards/toric_toughness.png",
+    "image_url": "/static/images/cards/toric_toughness.webp",
     "beta_image_url": "/static/images/cards/beta/toric_toughness.png",
     "type_variants": null,
     "upgrade_description": "ได้รับ 7 [gold]บล็อก[/gold]\nได้รับ 7 [gold]บล็อก[/gold]ตอนเริ่มต้นเทิร์น เป็นเวลา 2 เทิร์น",
@@ -10872,7 +10872,7 @@
       "Damage": 5
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/toxic.png",
+    "image_url": "/static/images/cards/toxic.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -10910,7 +10910,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/tracking.png",
+    "image_url": "/static/images/cards/tracking.webp",
     "beta_image_url": "/static/images/cards/beta/tracking.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -10949,7 +10949,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/transfigure.png",
+    "image_url": "/static/images/cards/transfigure.webp",
     "beta_image_url": "/static/images/cards/beta/transfigure.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -10987,7 +10987,7 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": "/static/images/cards/trash_to_treasure.png",
+    "image_url": "/static/images/cards/trash_to_treasure.webp",
     "beta_image_url": "/static/images/cards/beta/trash_to_treasure.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -11031,7 +11031,7 @@
     "upgrade": {
       "vulnerable": "+1"
     },
-    "image_url": "/static/images/cards/tremble.png",
+    "image_url": "/static/images/cards/tremble.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -11068,7 +11068,7 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": "/static/images/cards/tyranny.png",
+    "image_url": "/static/images/cards/tyranny.webp",
     "beta_image_url": "/static/images/cards/beta/tyranny.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -11110,7 +11110,7 @@
     "upgrade": {
       "block": "+4"
     },
-    "image_url": "/static/images/cards/ultimate_defend.png",
+    "image_url": "/static/images/cards/ultimate_defend.webp",
     "beta_image_url": "/static/images/cards/beta/ultimate_defend.png",
     "type_variants": null,
     "upgrade_description": "ได้รับ 15 [gold]บล็อก[/gold]",
@@ -11149,7 +11149,7 @@
     "upgrade": {
       "damage": "+6"
     },
-    "image_url": "/static/images/cards/ultimate_strike.png",
+    "image_url": "/static/images/cards/ultimate_strike.webp",
     "beta_image_url": "/static/images/cards/beta/ultimate_strike.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 20",
@@ -11186,7 +11186,7 @@
     "upgrade": {
       "block": "+2"
     },
-    "image_url": "/static/images/cards/undeath.png",
+    "image_url": "/static/images/cards/undeath.webp",
     "beta_image_url": "/static/images/cards/beta/undeath.png",
     "type_variants": null,
     "upgrade_description": "ได้รับ 9 [gold]บล็อก[/gold]\nเพิ่มสำเนา 1 ใบของการ์ดนี้เข้า[gold]กองทิ้ง[/gold]",
@@ -11227,7 +11227,7 @@
     "upgrade": {
       "calculationbase": "+3"
     },
-    "image_url": "/static/images/cards/unleash.png",
+    "image_url": "/static/images/cards/unleash.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -11262,7 +11262,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/unmovable.png",
+    "image_url": "/static/images/cards/unmovable.webp",
     "beta_image_url": "/static/images/cards/beta/unmovable.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -11299,7 +11299,7 @@
     "upgrade": {
       "damage": "+6"
     },
-    "image_url": "/static/images/cards/unrelenting.png",
+    "image_url": "/static/images/cards/unrelenting.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 18\nการ์ดโจมตีใบถัดไปมีค่าร่าย 0 [energy:1]",
@@ -11338,7 +11338,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/untouchable.png",
+    "image_url": "/static/images/cards/untouchable.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ได้รับ 12 [gold]บล็อก[/gold]",
@@ -11380,7 +11380,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/up_my_sleeve.png",
+    "image_url": "/static/images/cards/up_my_sleeve.webp",
     "beta_image_url": "/static/images/cards/beta/up_my_sleeve.png",
     "type_variants": null,
     "upgrade_description": "เพิ่ม[gold]มีดสั้น[/gold] 4 ใบใส่[gold]มือ[/gold]\nลดค่าร่ายของการ์ดนี้ลง 1",
@@ -11417,7 +11417,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/uproar.png",
+    "image_url": "/static/images/cards/uproar.webp",
     "beta_image_url": "/static/images/cards/beta/uproar.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 7 จำนวน 2 ครั้ง\nเล่นการ์ดโจมตี 1 ใบแบบสุ่มจาก[gold]กองจั่ว[/gold]",
@@ -11454,7 +11454,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/veilpiercer.png",
+    "image_url": "/static/images/cards/veilpiercer.webp",
     "beta_image_url": "/static/images/cards/beta/veilpiercer.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 13\nการ์ด[gold]กึ่งสลาย[/gold]ใบถัดไปมีค่าร่าย 0 [energy:1]",
@@ -11491,7 +11491,7 @@
     "upgrade": {
       "stars": "+1"
     },
-    "image_url": "/static/images/cards/venerate.png",
+    "image_url": "/static/images/cards/venerate.webp",
     "beta_image_url": "/static/images/cards/beta/venerate.png",
     "type_variants": null,
     "upgrade_description": "ได้รับ [star:3]",
@@ -11528,7 +11528,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/vicious.png",
+    "image_url": "/static/images/cards/vicious.webp",
     "beta_image_url": "/static/images/cards/beta/vicious.png",
     "type_variants": null,
     "upgrade_description": "ทุกครั้งที่คุณสร้าง[gold]จุดอ่อน[/gold] จั่วการ์ด 2 ใบ",
@@ -11572,7 +11572,7 @@
     "upgrade": {
       "voidformpower": "+1"
     },
-    "image_url": "/static/images/cards/void_form.png",
+    "image_url": "/static/images/cards/void_form.webp",
     "beta_image_url": "/static/images/cards/beta/void_form.png",
     "type_variants": null,
     "upgrade_description": "จบเทิร์นทันที แต่หลังจากนี้\nการ์ด3 ใบแรกที่คุณเล่นในแต่ละเทิร์นจะเล่นฟรี",
@@ -11609,7 +11609,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/volley.png",
+    "image_url": "/static/images/cards/volley.webp",
     "beta_image_url": "/static/images/cards/beta/volley.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 14 ใส่ศัตรู 1 ตัวแบบสุ่ม จำนวน X ครั้ง",
@@ -11649,7 +11649,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/voltaic.png",
+    "image_url": "/static/images/cards/voltaic.webp",
     "beta_image_url": "/static/images/cards/beta/voltaic.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -11694,7 +11694,7 @@
       "WasteAway": 1
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/waste_away.png",
+    "image_url": "/static/images/cards/waste_away.webp",
     "beta_image_url": "/static/images/cards/beta/waste_away.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -11733,7 +11733,7 @@
     "upgrade": {
       "damage": "+11"
     },
-    "image_url": "/static/images/cards/whistle.png",
+    "image_url": "/static/images/cards/whistle.webp",
     "beta_image_url": "/static/images/cards/beta/whistle.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 44\n[gold]สตัน[/gold]ศัตรูตัวนั้น",
@@ -11775,7 +11775,7 @@
     "upgrade": {
       "add_retain": true
     },
-    "image_url": "/static/images/cards/wisp.png",
+    "image_url": "/static/images/cards/wisp.webp",
     "beta_image_url": "/static/images/cards/beta/wisp.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -11817,7 +11817,7 @@
       "damage": "+2",
       "forge": "+2"
     },
-    "image_url": "/static/images/cards/wrought_in_war.png",
+    "image_url": "/static/images/cards/wrought_in_war.webp",
     "beta_image_url": "/static/images/cards/beta/wrought_in_war.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 9\n[gold]หลอมสร้าง[/gold] 7",
@@ -11862,7 +11862,7 @@
     "upgrade": {
       "repeat": "+1"
     },
-    "image_url": "/static/images/cards/bouncing_flask.png",
+    "image_url": "/static/images/cards/bouncing_flask.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้าง 3 [gold]พิษ[/gold] ใส่ศัตรู 1 ตัวแบบสุ่ม จำนวน 4 ครั้ง",
@@ -11899,7 +11899,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/secret_technique.png",
+    "image_url": "/static/images/cards/secret_technique.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -11948,7 +11948,7 @@
       "damage": "+2",
       "weak": "+1"
     },
-    "image_url": "/static/images/cards/follow_through.png",
+    "image_url": "/static/images/cards/follow_through.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 8 ใส่ศัตรูทั้งหมด\nถ้าการ์ดใบล่าสุดที่คุณเล่นในเทิร์นนี้เป็นการ์ดทักษะ สร้าง 1 [gold]ความอ่อนแอ[/gold] ใส่ศัตรูทั้งหมด",
@@ -11985,7 +11985,7 @@
     "upgrade": {
       "damage": "+10"
     },
-    "image_url": "/static/images/cards/bludgeon.png",
+    "image_url": "/static/images/cards/bludgeon.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 42",
@@ -12022,7 +12022,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/leap.png",
+    "image_url": "/static/images/cards/leap.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ได้รับ 12 [gold]บล็อก[/gold]",
@@ -12060,7 +12060,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/bloodletting.png",
+    "image_url": "/static/images/cards/bloodletting.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "เสีย 3 HP\nได้รับ [energy:3]",
@@ -12099,7 +12099,7 @@
       "damage": "+3",
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/scrape.png",
+    "image_url": "/static/images/cards/scrape.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 10\nจั่วการ์ด 5 ใบ\nทิ้งการ์ดทั้งหมดที่ไม่ใช่ค่าร่าย 0 [energy:1] ที่จั่วมาด้วยวิธีนี้",
@@ -12136,7 +12136,7 @@
     "upgrade": {
       "block": "+2"
     },
-    "image_url": "/static/images/cards/dodge_and_roll.png",
+    "image_url": "/static/images/cards/dodge_and_roll.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ได้รับ 6 [gold]บล็อก[/gold]\nเทิร์นถัดไปได้รับ 6 [gold]บล็อก[/gold]",
@@ -12182,7 +12182,7 @@
     "upgrade": {
       "devourlifepower": "+1"
     },
-    "image_url": "/static/images/cards/devour_life.png",
+    "image_url": "/static/images/cards/devour_life.webp",
     "beta_image_url": "/static/images/cards/beta/devour_life.png",
     "type_variants": null,
     "upgrade_description": "ทุกครั้งที่คุณเล่น[gold]วิญญาณ[/gold] [gold]อัญเชิญ[/gold] 2",
@@ -12219,7 +12219,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/automation.png",
+    "image_url": "/static/images/cards/automation.webp",
     "beta_image_url": "/static/images/cards/beta/automation.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -12265,7 +12265,7 @@
       "block": "+3",
       "weak": "+1"
     },
-    "image_url": "/static/images/cards/leg_sweep.png",
+    "image_url": "/static/images/cards/leg_sweep.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้าง 2 [gold]ความอ่อนแอ[/gold]\nได้รับ 14 [gold]บล็อก[/gold]",
@@ -12303,7 +12303,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/sweeping_beam.png",
+    "image_url": "/static/images/cards/sweeping_beam.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 9 ใส่ศัตรูทั้งหมด\nจั่วการ์ด 1 ใบ",
@@ -12344,7 +12344,7 @@
       "damage": "+2",
       "maxhp": "+1"
     },
-    "image_url": "/static/images/cards/feed.png",
+    "image_url": "/static/images/cards/feed.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 12\nถ้า[gold]สังหาร[/gold] เพิ่ม 4 HP สูงสุด",
@@ -12394,7 +12394,7 @@
     "upgrade": {
       "remove_ethereal": true
     },
-    "image_url": "/static/images/cards/apparition.png",
+    "image_url": "/static/images/cards/apparition.webp",
     "beta_image_url": "/static/images/cards/beta/apparition.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -12442,7 +12442,7 @@
     "upgrade": {
       "strength": "+1"
     },
-    "image_url": "/static/images/cards/rupture.png",
+    "image_url": "/static/images/cards/rupture.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -12479,7 +12479,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/discovery.png",
+    "image_url": "/static/images/cards/discovery.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -12519,7 +12519,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/ignition.png",
+    "image_url": "/static/images/cards/ignition.webp",
     "beta_image_url": "/static/images/cards/beta/ignition.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -12559,7 +12559,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/acrobatics.png",
+    "image_url": "/static/images/cards/acrobatics.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "จั่ว 4 การ์ด\nทิ้ง 1 การ์ด",
@@ -12603,7 +12603,7 @@
     "upgrade": {
       "juggernautpower": "+2"
     },
-    "image_url": "/static/images/cards/juggernaut.png",
+    "image_url": "/static/images/cards/juggernaut.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ทุกครั้งที่ได้รับ[gold]บล็อก[/gold] สร้างความเสียหาย 7 ใส่ศัตรู 1 ตัวแบบสุ่ม",
@@ -12642,7 +12642,7 @@
       "block": "+4",
       "damageback": "+2"
     },
-    "image_url": "/static/images/cards/flame_barrier.png",
+    "image_url": "/static/images/cards/flame_barrier.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ได้รับ 16 [gold]บล็อก[/gold]\nทุกครั้งที่คุณถูกโจมตีในเทิร์นนี้ สร้างความเสียหายกลับไป 6",
@@ -12680,7 +12680,7 @@
     "upgrade": {
       "block": "+4"
     },
-    "image_url": "/static/images/cards/blood_wall.png",
+    "image_url": "/static/images/cards/blood_wall.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "เสีย 2 HP\nได้รับ 20 [gold]บล็อก[/gold]",
@@ -12725,7 +12725,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/borrowed_time.png",
+    "image_url": "/static/images/cards/borrowed_time.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้าง 3 [gold]อายุขัย[/gold]ใส่ตัวคุณ\nได้รับ [energy:2]",
@@ -12769,7 +12769,7 @@
     "upgrade": {
       "thornspower": "+2"
     },
-    "image_url": "/static/images/cards/caltrops.png",
+    "image_url": "/static/images/cards/caltrops.webp",
     "beta_image_url": "/static/images/cards/beta/caltrops.png",
     "type_variants": null,
     "upgrade_description": "ทุกครั้งที่คุณถูกโจมตี สร้างความเสียหาย 5 กลับไป",
@@ -12806,7 +12806,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/dagger_throw.png",
+    "image_url": "/static/images/cards/dagger_throw.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 12\nจั่วการ์ด 1 ใบ\nทิ้งการ์ด 1 ใบ",
@@ -12854,7 +12854,7 @@
       "block": "+1",
       "weak": "+1"
     },
-    "image_url": "/static/images/cards/defy.png",
+    "image_url": "/static/images/cards/defy.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ได้รับ 7 [gold]บล็อก[/gold]\nสร้าง 1 [gold]ความอ่อนแอ[/gold]",
@@ -12892,7 +12892,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/entrench.png",
+    "image_url": "/static/images/cards/entrench.webp",
     "beta_image_url": "/static/images/cards/beta/entrench.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -12931,7 +12931,7 @@
       "damage": "+1",
       "increase": "+1"
     },
-    "image_url": "/static/images/cards/claw.png",
+    "image_url": "/static/images/cards/claw.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 4\nเพิ่มพลังโจมตีให้การ์ดข่วนทั้งหมด 3 ในการต่อสู้นี้",
@@ -12968,7 +12968,7 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": "/static/images/cards/infinite_blades.png",
+    "image_url": "/static/images/cards/infinite_blades.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -13006,7 +13006,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/flash_of_steel.png",
+    "image_url": "/static/images/cards/flash_of_steel.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 8\nจั่วการ์ด 1 ใบ",
@@ -13050,7 +13050,7 @@
     "upgrade": {
       "arsenalpower": "+1"
     },
-    "image_url": "/static/images/cards/arsenal.png",
+    "image_url": "/static/images/cards/arsenal.webp",
     "beta_image_url": "/static/images/cards/beta/arsenal.png",
     "type_variants": null,
     "upgrade_description": "ทุกครั้งที่เล่นการ์ดไร้สี ได้รับ 2 [gold]ความแข็งแรง[/gold]",
@@ -13089,7 +13089,7 @@
     "upgrade": {
       "power": "+2"
     },
-    "image_url": "/static/images/cards/shockwave.png",
+    "image_url": "/static/images/cards/shockwave.webp",
     "beta_image_url": "/static/images/cards/beta/shockwave.png",
     "type_variants": null,
     "upgrade_description": "สร้าง 5 [gold]ความอ่อนแอ[/gold]และ[gold]จุดอ่อน[/gold]ใส่ศัตรูทั้งหมด",
@@ -13131,7 +13131,7 @@
       "damage": "+2",
       "block": "+2"
     },
-    "image_url": "/static/images/cards/iron_wave.png",
+    "image_url": "/static/images/cards/iron_wave.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ได้รับ 7 [gold]บล็อก[/gold]\nสร้างความเสียหาย 7",
@@ -13169,7 +13169,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/astral_pulse.png",
+    "image_url": "/static/images/cards/astral_pulse.webp",
     "beta_image_url": "/static/images/cards/beta/astral_pulse.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 18 ใส่ศัตรูทั้งหมด",
@@ -13206,7 +13206,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/white_noise.png",
+    "image_url": "/static/images/cards/white_noise.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -13257,7 +13257,7 @@
       "damage": "+1",
       "vulnerable": "+1"
     },
-    "image_url": "/static/images/cards/fear.png",
+    "image_url": "/static/images/cards/fear.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 8\nสร้าง 1 [gold]จุดอ่อน[/gold]",
@@ -13295,7 +13295,7 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": "/static/images/cards/aggression.png",
+    "image_url": "/static/images/cards/aggression.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -13332,7 +13332,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/expertise.png",
+    "image_url": "/static/images/cards/expertise.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "จั่วการ์ดจนมี 7 ใบใน[gold]มือ[/gold]",
@@ -13368,7 +13368,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/clumsy.png",
+    "image_url": "/static/images/cards/clumsy.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -13412,7 +13412,7 @@
     "upgrade": {
       "cards": "+2"
     },
-    "image_url": "/static/images/cards/purity.png",
+    "image_url": "/static/images/cards/purity.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สลายการ์ดได้สูงสุด 5 ใบใน[gold]มือ[/gold]",
@@ -13452,7 +13452,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/dazed.png",
+    "image_url": "/static/images/cards/dazed.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -13491,7 +13491,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/darkness.png",
+    "image_url": "/static/images/cards/darkness.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]ปลุกเสก[/gold] 1 [gold]ความมืด[/gold]\nผลต่อเนื่องของลูกแก้ว[gold]ความมืด[/gold]ทั้งหมดทำงาน 2 ครั้ง",
@@ -13526,7 +13526,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/dark_embrace.png",
+    "image_url": "/static/images/cards/dark_embrace.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -13563,7 +13563,7 @@
       "Frail": 1
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/shame.png",
+    "image_url": "/static/images/cards/shame.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -13603,7 +13603,7 @@
     "upgrade": {
       "repeat": "+1"
     },
-    "image_url": "/static/images/cards/chaos.png",
+    "image_url": "/static/images/cards/chaos.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]ปลุกเสก[/gold]ลูกแก้ว 2 ลูกแบบสุ่ม",
@@ -13641,7 +13641,7 @@
       "Energy": 1
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/void.png",
+    "image_url": "/static/images/cards/void.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -13687,7 +13687,7 @@
       "Sloth": 3
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/sloth.png",
+    "image_url": "/static/images/cards/sloth.webp",
     "beta_image_url": "/static/images/cards/beta/sloth.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -13731,7 +13731,7 @@
       "Weak": 1
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/doubt.png",
+    "image_url": "/static/images/cards/doubt.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -13771,7 +13771,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/cold_snap.png",
+    "image_url": "/static/images/cards/cold_snap.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 9\n[gold]ปลุกเสก[/gold] 1 [gold]น้ำแข็ง[/gold]",
@@ -13806,7 +13806,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/injury.png",
+    "image_url": "/static/images/cards/injury.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -13846,7 +13846,7 @@
       "Damage": 2
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/decay.png",
+    "image_url": "/static/images/cards/decay.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -13895,7 +13895,7 @@
     "upgrade": {
       "accuracypower": "+2"
     },
-    "image_url": "/static/images/cards/accuracy.png",
+    "image_url": "/static/images/cards/accuracy.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]มีดสั้น[/gold]สร้างความเสียหายเพิ่มขึ้น 6",
@@ -13932,7 +13932,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/anger.png",
+    "image_url": "/static/images/cards/anger.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 8\nเพิ่มสำเนาของการ์ดนี้ 1 ใบใส่[gold]กองทิ้ง[/gold]",
@@ -13967,7 +13967,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/mayhem.png",
+    "image_url": "/static/images/cards/mayhem.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -14003,7 +14003,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/greed.png",
+    "image_url": "/static/images/cards/greed.webp",
     "beta_image_url": "/static/images/cards/beta/greed.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -14044,7 +14044,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/impatience.png",
+    "image_url": "/static/images/cards/impatience.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ถ้าไม่มีการ์ดโจมตีใน[gold]มือ[/gold] จั่วการ์ด 3 ใบ",
@@ -14082,7 +14082,7 @@
     "upgrade": {
       "damage": "+5"
     },
-    "image_url": "/static/images/cards/hemokinesis.png",
+    "image_url": "/static/images/cards/hemokinesis.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "เสีย 2 HP\nสร้างความเสียหาย 19",
@@ -14121,7 +14121,7 @@
     "upgrade": {
       "strengthloss": "+2"
     },
-    "image_url": "/static/images/cards/piercing_wail.png",
+    "image_url": "/static/images/cards/piercing_wail.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ศัตรูทั้งหมดเสีย 8 [gold]ความแข็งแรง[/gold]ในเทิร์นนี้",
@@ -14161,7 +14161,7 @@
     "upgrade": {
       "loop": "+1"
     },
-    "image_url": "/static/images/cards/loop.png",
+    "image_url": "/static/images/cards/loop.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ตอนเริ่มต้นเทิร์น ผลต่อเนื่องของลูกแก้วลูกขวาสุดจะทำงาน อีก 2 ครั้ง",
@@ -14197,7 +14197,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/curse_of_the_bell.png",
+    "image_url": "/static/images/cards/curse_of_the_bell.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -14238,7 +14238,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/ascenders_bane.png",
+    "image_url": "/static/images/cards/ascenders_bane.webp",
     "beta_image_url": "/static/images/cards/beta/ascenders_bane.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -14282,7 +14282,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/thinking_ahead.png",
+    "image_url": "/static/images/cards/thinking_ahead.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -14326,7 +14326,7 @@
     "upgrade": {
       "cards": "+2"
     },
-    "image_url": "/static/images/cards/decisions_decisions.png",
+    "image_url": "/static/images/cards/decisions_decisions.webp",
     "beta_image_url": "/static/images/cards/beta/decisions_decisions.png",
     "type_variants": null,
     "upgrade_description": "จั่วการ์ด 5 ใบ\nเลือกการ์ดทักษะ 1 ใบใน[gold]มือ[/gold]แล้วเล่น 3 ครั้ง",
@@ -14366,7 +14366,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/glasswork.png",
+    "image_url": "/static/images/cards/glasswork.webp",
     "beta_image_url": "/static/images/cards/beta/glasswork.png",
     "type_variants": null,
     "upgrade_description": "ได้รับ 8 [gold]บล็อก[/gold]\n[gold]ปลุกเสก[/gold] 1 [gold]แก้ว[/gold]",
@@ -14405,7 +14405,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/master_of_strategy.png",
+    "image_url": "/static/images/cards/master_of_strategy.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "จั่วการ์ด 4 ใบ",
@@ -14443,7 +14443,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/master_planner.png",
+    "image_url": "/static/images/cards/master_planner.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -14487,7 +14487,7 @@
     "upgrade": {
       "dexterity": "+1"
     },
-    "image_url": "/static/images/cards/footwork.png",
+    "image_url": "/static/images/cards/footwork.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -14531,7 +14531,7 @@
     "upgrade": {
       "focuspower": "+1"
     },
-    "image_url": "/static/images/cards/defragment.png",
+    "image_url": "/static/images/cards/defragment.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ได้รับ 2 [gold]โฟกัส[/gold]",
@@ -14569,7 +14569,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/alignment.png",
+    "image_url": "/static/images/cards/alignment.webp",
     "beta_image_url": "/static/images/cards/beta/alignment.png",
     "type_variants": null,
     "upgrade_description": "ได้รับ [energy:3]",
@@ -14606,7 +14606,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/huddle_up.png",
+    "image_url": "/static/images/cards/huddle_up.webp",
     "beta_image_url": "/static/images/cards/beta/huddle_up.png",
     "type_variants": null,
     "upgrade_description": "พันธมิตรทั้งหมดจั่วการ์ด 3 ใบ",
@@ -14643,7 +14643,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/dual_wield.png",
+    "image_url": "/static/images/cards/dual_wield.webp",
     "beta_image_url": "/static/images/cards/beta/dual_wield.png",
     "type_variants": null,
     "upgrade_description": "เลือกการ์ดโจมตีหรือการ์ดพลัง เพิ่มสำเนาการ์ดนั้น [Cards ใบ|1 ใบ]ใส่[gold]มือ[/gold]",
@@ -14681,7 +14681,7 @@
       "numOfCardsPerTurn": 3
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/normality.png",
+    "image_url": "/static/images/cards/normality.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -14725,7 +14725,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/mind_blast.png",
+    "image_url": "/static/images/cards/mind_blast.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -14772,7 +14772,7 @@
     "upgrade": {
       "strengthpower": "+1"
     },
-    "image_url": "/static/images/cards/inflame.png",
+    "image_url": "/static/images/cards/inflame.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ได้รับ 3 [gold]ความแข็งแรง[/gold]",
@@ -14811,7 +14811,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/strike_ironclad.png",
+    "image_url": "/static/images/cards/strike_ironclad.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 9",
@@ -14850,7 +14850,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/strike_silent.png",
+    "image_url": "/static/images/cards/strike_silent.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 9",
@@ -14889,7 +14889,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/strike_regent.png",
+    "image_url": "/static/images/cards/strike_regent.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 9",
@@ -14928,7 +14928,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/strike_necrobinder.png",
+    "image_url": "/static/images/cards/strike_necrobinder.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 9",
@@ -14967,7 +14967,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/strike_defect.png",
+    "image_url": "/static/images/cards/strike_defect.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 9",
@@ -15008,7 +15008,7 @@
       "damage": "+1",
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/pommel_strike.png",
+    "image_url": "/static/images/cards/pommel_strike.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 10\nจั่วการ์ด 2 ใบ",
@@ -15047,7 +15047,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/twin_strike.png",
+    "image_url": "/static/images/cards/twin_strike.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 7 จำนวน 2 ครั้ง",
@@ -15086,7 +15086,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/momentum_strike.png",
+    "image_url": "/static/images/cards/momentum_strike.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -15125,7 +15125,7 @@
     "upgrade": {
       "damage": "+5"
     },
-    "image_url": "/static/images/cards/adaptive_strike.png",
+    "image_url": "/static/images/cards/adaptive_strike.webp",
     "beta_image_url": "/static/images/cards/beta/adaptive_strike.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 23\nทำสำเนาของการ์ดนี้แบบ 0[energy:1] เพิ่มใน[gold]กองทิ้ง[/gold]",
@@ -15166,7 +15166,7 @@
     "upgrade": {
       "extradamage": "+1"
     },
-    "image_url": "/static/images/cards/perfected_strike.png",
+    "image_url": "/static/images/cards/perfected_strike.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 6\nสร้างความเสียหายเพิ่ม 3 ตามจำนวนการ์ดที่มีคำว่า “จู่โจม”",
@@ -15207,7 +15207,7 @@
     "upgrade": {
       "extradamage": "+1"
     },
-    "image_url": "/static/images/cards/ashen_strike.png",
+    "image_url": "/static/images/cards/ashen_strike.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 6\nสร้างความเสียหายเพิ่ม 4 ต่อการ์ดใน[gold]กองสลาย[/gold]",
@@ -15246,7 +15246,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/blight_strike.png",
+    "image_url": "/static/images/cards/blight_strike.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 10\nสร้าง[gold]อายุขัย[/gold]ตามจำนวนความเสียหายที่ทำได้",
@@ -15294,7 +15294,7 @@
       "damage": "+2",
       "focuspower": "+1"
     },
-    "image_url": "/static/images/cards/focused_strike.png",
+    "image_url": "/static/images/cards/focused_strike.webp",
     "beta_image_url": "/static/images/cards/beta/focused_strike.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 11\nได้รับ 2 [gold]โฟกัส[/gold]ในเทิร์นนี้",
@@ -15331,7 +15331,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/rip_and_tear.png",
+    "image_url": "/static/images/cards/rip_and_tear.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 9 ใส่ศัตรู 1 ตัวแบบสุ่ม จำนวน 2 ครั้ง",
@@ -15368,7 +15368,7 @@
     "upgrade": {
       "summon": "+2"
     },
-    "image_url": "/static/images/cards/cleanse.png",
+    "image_url": "/static/images/cards/cleanse.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]อัญเชิญ[/gold] 5\n[gold]สลาย[/gold]การ์ด 1 ใบใน[gold]กองจั่ว[/gold]",
@@ -15407,7 +15407,7 @@
     "upgrade": {
       "summon": "+3"
     },
-    "image_url": "/static/images/cards/afterlife.png",
+    "image_url": "/static/images/cards/afterlife.webp",
     "beta_image_url": "/static/images/cards/beta/afterlife.png",
     "type_variants": null,
     "upgrade_description": "[gold]อัญเชิญ[/gold] 9",
@@ -15445,7 +15445,7 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": "/static/images/cards/beacon_of_hope.png",
+    "image_url": "/static/images/cards/beacon_of_hope.webp",
     "beta_image_url": "/static/images/cards/beta/beacon_of_hope.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -15483,7 +15483,7 @@
     "upgrade": {
       "repeat": "+1"
     },
-    "image_url": "/static/images/cards/sword_boomerang.png",
+    "image_url": "/static/images/cards/sword_boomerang.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 3 ใส่ศัตรู 1 ตัวแบบสุ่ม จำนวน 4 ครั้ง",
@@ -15520,7 +15520,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/rebound.png",
+    "image_url": "/static/images/cards/rebound.webp",
     "beta_image_url": "/static/images/cards/beta/rebound.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 12\nนำการ์ดที่คุณเล่นใบต่อไปกลับไปวางไว้บนสุดของ[gold]กองจั่ว[/gold]",
@@ -15558,7 +15558,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/equilibrium.png",
+    "image_url": "/static/images/cards/equilibrium.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ได้รับ 16 [gold]Block[/gold]\n[gold]คงสภาพ[/gold]ทั้ง[gold]มือ[/gold]ในเทิร์นนี้",
@@ -15593,7 +15593,7 @@
     "upgrade": {
       "cost": 2
     },
-    "image_url": "/static/images/cards/barricade.png",
+    "image_url": "/static/images/cards/barricade.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -15630,7 +15630,7 @@
     "upgrade": {
       "repeat": "+1"
     },
-    "image_url": "/static/images/cards/capacitor.png",
+    "image_url": "/static/images/cards/capacitor.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ได้รับช่องเก็บลูกแก้ว 3 ช่อง",
@@ -15667,7 +15667,7 @@
       "Damage": 3
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/infection.png",
+    "image_url": "/static/images/cards/infection.webp",
     "beta_image_url": "/static/images/cards/beta/infection.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -15711,7 +15711,7 @@
       "calculationbase": "+2",
       "calculationextra": "+2"
     },
-    "image_url": "/static/images/cards/beat_into_shape.png",
+    "image_url": "/static/images/cards/beat_into_shape.webp",
     "beta_image_url": "/static/images/cards/beta/beat_into_shape.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 7\n[gold]หลอมสร้าง[/gold] X\n[gold]หลอมสร้าง[/gold]อีก 7 ต่อการโจมตีศัตรูในเทิร์นนี้ (ครั้งเว้นครั้ง)",
@@ -15749,7 +15749,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/backflip.png",
+    "image_url": "/static/images/cards/backflip.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ได้รับ 8 [gold]บล็อก[/gold]\nจั่ว 2 การ์ด",
@@ -15787,7 +15787,7 @@
     "upgrade": {
       "calculationbase": "+3"
     },
-    "image_url": "/static/images/cards/stack.png",
+    "image_url": "/static/images/cards/stack.webp",
     "beta_image_url": "/static/images/cards/beta/stack.png",
     "type_variants": null,
     "upgrade_description": "ได้รับ[gold]บล็อก[/gold]ตามจำนวนการ์ดใน[gold]กองทิ้ง[/gold] +[CalculationBase|]",
@@ -15824,7 +15824,7 @@
     "upgrade": {
       "block": "+2"
     },
-    "image_url": "/static/images/cards/escape_plan.png",
+    "image_url": "/static/images/cards/escape_plan.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "จั่วการ์ด 1 ใบ\nถ้าจั่วได้การ์ดทักษะ ได้รับ 5 [gold]บล็อก[/gold]",
@@ -15870,7 +15870,7 @@
       "damage": "+1",
       "weak": "+1"
     },
-    "image_url": "/static/images/cards/neutralize.png",
+    "image_url": "/static/images/cards/neutralize.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 4\nสร้าง 1 [gold]ความอ่อนแอ[/gold]",
@@ -15916,7 +15916,7 @@
       "damage": "+2",
       "vulnerable": "+1"
     },
-    "image_url": "/static/images/cards/bash.png",
+    "image_url": "/static/images/cards/bash.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 10\nสร้าง 2 [gold]จุดอ่อน[/gold]",
@@ -15953,7 +15953,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/glacier.png",
+    "image_url": "/static/images/cards/glacier.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ได้รับ 9 [gold]บล็อก[/gold]\n[gold]ปลุกเสก[/gold] 2 [gold]น้ำแข็ง[/gold]",
@@ -15990,7 +15990,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/infernal_blade.png",
+    "image_url": "/static/images/cards/infernal_blade.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -16037,7 +16037,7 @@
     "upgrade": {
       "countdownpower": "+3"
     },
-    "image_url": "/static/images/cards/countdown.png",
+    "image_url": "/static/images/cards/countdown.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ตอนเริ่มต้นเทิร์น สร้าง 9 [gold]อายุขัย[/gold]ใส่ศัตรู 1 ตัวแบบสุ่ม",
@@ -16072,7 +16072,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/havoc.png",
+    "image_url": "/static/images/cards/havoc.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -16109,7 +16109,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/ball_lightning.png",
+    "image_url": "/static/images/cards/ball_lightning.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 10\n[gold]ปลุกเสก[/gold] 1 [gold]สายฟ้า[/gold]",
@@ -16146,7 +16146,7 @@
     "upgrade": {
       "power": "+2"
     },
-    "image_url": "/static/images/cards/rage.png",
+    "image_url": "/static/images/cards/rage.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ทุกครั้งที่คุณเล่นการ์ดโจมตีในเทิร์นนี้ ได้รับ 5 [gold]บล็อก[/gold]",
@@ -16181,7 +16181,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/wound.png",
+    "image_url": "/static/images/cards/wound.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -16226,7 +16226,7 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": "/static/images/cards/big_bang.png",
+    "image_url": "/static/images/cards/big_bang.webp",
     "beta_image_url": "/static/images/cards/beta/big_bang.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -16273,7 +16273,7 @@
     "upgrade": {
       "poison": "+3"
     },
-    "image_url": "/static/images/cards/bubble_bubble.png",
+    "image_url": "/static/images/cards/bubble_bubble.webp",
     "beta_image_url": "/static/images/cards/beta/bubble_bubble.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -16310,7 +16310,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/clash.png",
+    "image_url": "/static/images/cards/clash.webp",
     "beta_image_url": "/static/images/cards/beta/clash.png",
     "type_variants": null,
     "upgrade_description": "จะใช้ได้ก็ต่อเมื่อทั้ง[gold]มือ[/gold]เป็นการ์ดโจมตี\nสร้างความเสียหาย 18",
@@ -16348,7 +16348,7 @@
     "upgrade": {
       "block": "+1"
     },
-    "image_url": "/static/images/cards/deaths_door.png",
+    "image_url": "/static/images/cards/deaths_door.webp",
     "beta_image_url": "/static/images/cards/beta/deaths_door.png",
     "type_variants": null,
     "upgrade_description": "ได้รับ 7 [gold]บล็อก[/gold]\nถ้าคุณเคยสร้าง[gold]อายุขัย[/gold]ในเทิร์นนี้ ได้รับ[gold]บล็อก[/gold]เพิ่ม 2 ครั้ง",
@@ -16387,7 +16387,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/compile_driver.png",
+    "image_url": "/static/images/cards/compile_driver.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 10\nจั่วการ์ด 1 ใบตามจำนวนลูกแก้วที่ไม่ซ้ำธาตุ",
@@ -16431,7 +16431,7 @@
     "upgrade": {
       "dexterity": "+2"
     },
-    "image_url": "/static/images/cards/anticipate.png",
+    "image_url": "/static/images/cards/anticipate.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -16468,7 +16468,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/alchemize.png",
+    "image_url": "/static/images/cards/alchemize.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -16506,7 +16506,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/hellraiser.png",
+    "image_url": "/static/images/cards/hellraiser.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -16543,7 +16543,7 @@
     "upgrade": {
       "cost": 2
     },
-    "image_url": "/static/images/cards/creative_ai.png",
+    "image_url": "/static/images/cards/creative_ai.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -16580,7 +16580,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/deflect.png",
+    "image_url": "/static/images/cards/deflect.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ได้รับ 7 [gold]บล็อก[/gold]",
@@ -16620,7 +16620,7 @@
     "upgrade": {
       "block": "+10"
     },
-    "image_url": "/static/images/cards/panic_button.png",
+    "image_url": "/static/images/cards/panic_button.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ได้รับ 40 [gold]บล็อก[/gold]\nคุณไม่สามารถได้รับ[gold]บล็อก[/gold]จากการ์ดเป็นเวลา2 เทิร์น",
@@ -16662,7 +16662,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/defend_ironclad.png",
+    "image_url": "/static/images/cards/defend_ironclad.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ได้รับ 8 [gold]บล็อก[/gold]",
@@ -16701,7 +16701,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/defend_silent.png",
+    "image_url": "/static/images/cards/defend_silent.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ได้รับ 8 [gold]บล็อก[/gold]",
@@ -16740,7 +16740,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/defend_regent.png",
+    "image_url": "/static/images/cards/defend_regent.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ได้รับ 8 [gold]บล็อก[/gold]",
@@ -16779,7 +16779,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/defend_necrobinder.png",
+    "image_url": "/static/images/cards/defend_necrobinder.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ได้รับ 8 [gold]บล็อก[/gold]",
@@ -16818,7 +16818,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/defend_defect.png",
+    "image_url": "/static/images/cards/defend_defect.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ได้รับ 8 [gold]บล็อก[/gold]",
@@ -16855,7 +16855,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/survivor.png",
+    "image_url": "/static/images/cards/survivor.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ได้รับ 11 [gold]บล็อก[/gold]\nทิ้งการ์ด 1 ใบ",
@@ -16892,7 +16892,7 @@
     "upgrade": {
       "block": "+25"
     },
-    "image_url": "/static/images/cards/the_gambit.png",
+    "image_url": "/static/images/cards/the_gambit.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ได้รับ 75 [gold]บล็อก[/gold]\nถ้าคุณได้รับความเสียหายที่บล็อกไม่ได้ในการต่อสู้นี้ จะตายทันที",
@@ -16936,7 +16936,7 @@
     "upgrade": {
       "speedsterpower": "+1"
     },
-    "image_url": "/static/images/cards/speedster.png",
+    "image_url": "/static/images/cards/speedster.webp",
     "beta_image_url": "/static/images/cards/beta/speedster.png",
     "type_variants": null,
     "upgrade_description": "ทุกครั้งที่คุณจั่วการ์ดในเทิร์นของคุณ สร้างความเสียหาย 3 ใส่ศัตรูทั้งหมด",
@@ -16976,7 +16976,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/cloak_and_dagger.png",
+    "image_url": "/static/images/cards/cloak_and_dagger.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ได้รับ 6 [gold]บล็อก[/gold]\nเพิ่ม[gold]มีดสั้น[/gold] 2 ใบใส่[gold]มือ[/gold]",
@@ -17029,7 +17029,7 @@
     "upgrade": {
       "damage": "+7"
     },
-    "image_url": "/static/images/cards/meteor_shower.png",
+    "image_url": "/static/images/cards/meteor_shower.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 21 ใส่ศัตรูทั้งหมด\nสร้าง 2 [gold]ความอ่อนแอ[/gold]และ[gold]จุดอ่อน[/gold]ใส่ศัตรูทั้งหมด",
@@ -17066,7 +17066,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/dagger_spray.png",
+    "image_url": "/static/images/cards/dagger_spray.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 6 ใส่ศัตรูทั้งหมด จำนวน 2 ครั้ง",
@@ -17103,7 +17103,7 @@
     "upgrade": {
       "cost": 2
     },
-    "image_url": "/static/images/cards/nightmare.png",
+    "image_url": "/static/images/cards/nightmare.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -17144,7 +17144,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/breakthrough.png",
+    "image_url": "/static/images/cards/breakthrough.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "เสีย 1 HP\nสร้างความเสียหาย 13 ใส่ศัตรูทั้งหมด",
@@ -17187,7 +17187,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/sovereign_blade.png",
+    "image_url": "/static/images/cards/sovereign_blade.webp",
     "beta_image_url": "/static/images/cards/beta/sovereign_blade.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -17227,7 +17227,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/double_energy.png",
+    "image_url": "/static/images/cards/double_energy.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -17269,7 +17269,7 @@
     "upgrade": {
       "shivs": "+1"
     },
-    "image_url": "/static/images/cards/fan_of_knives.png",
+    "image_url": "/static/images/cards/fan_of_knives.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ต่อไปนี้[gold]มีดสั้น[/gold]จะโจมตีศัตรูทั้งหมด\nเพิ่ม[gold]มีดสั้น[/gold] 5 ใบใส่[gold]มือ[/gold]",
@@ -17308,7 +17308,7 @@
     "upgrade": {
       "strengthloss": "+6"
     },
-    "image_url": "/static/images/cards/dark_shackles.png",
+    "image_url": "/static/images/cards/dark_shackles.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ศัตรูเสีย 15 [gold]ความแข็งแรง[/gold]ในเทิร์นนี้",
@@ -17348,7 +17348,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/storm_of_steel.png",
+    "image_url": "/static/images/cards/storm_of_steel.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ทิ้งการ์ดทั้ง[gold]มือ[/gold]\nเพิ่ม[gold]มีดสั้น+[/gold] 1 ใบใส่[gold]มือ[/gold]ตามจำนวนการ์ดที่ถูกทิ้ง",
@@ -17385,7 +17385,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/whirlwind.png",
+    "image_url": "/static/images/cards/whirlwind.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 8 ใส่ศัตรูทั้งหมด จำนวน X ครั้ง",
@@ -17426,7 +17426,7 @@
     "upgrade": {
       "extradamage": "+1"
     },
-    "image_url": "/static/images/cards/soul_storm.png",
+    "image_url": "/static/images/cards/soul_storm.webp",
     "beta_image_url": "/static/images/cards/beta/soul_storm.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 9\nสร้างความเสียหายเพิ่ม 3 ตามจำนวน[gold]วิญญาณ[/gold]ใน[gold]กองสลาย[/gold]",
@@ -17463,7 +17463,7 @@
     "upgrade": {
       "add_retain": true
     },
-    "image_url": "/static/images/cards/anointed.png",
+    "image_url": "/static/images/cards/anointed.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -17510,7 +17510,7 @@
     "upgrade": {
       "poison": "+2"
     },
-    "image_url": "/static/images/cards/deadly_poison.png",
+    "image_url": "/static/images/cards/deadly_poison.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -17549,7 +17549,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/boost_away.png",
+    "image_url": "/static/images/cards/boost_away.webp",
     "beta_image_url": "/static/images/cards/beta/boost_away.png",
     "type_variants": null,
     "upgrade_description": "ได้รับ 9 [gold]บล็อก[/gold]\nเพิ่ม[gold]ความมึนงง[/gold] 1 ใบเข้า[gold]กองทิ้ง[/gold]",
@@ -17588,7 +17588,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/body_slam.png",
+    "image_url": "/static/images/cards/body_slam.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -17627,7 +17627,7 @@
       "damage": "+3",
       "block": "+3"
     },
-    "image_url": "/static/images/cards/dash.png",
+    "image_url": "/static/images/cards/dash.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ได้รับ 13 [gold]บล็อก[/gold]\nสร้างความเสียหาย 13",
@@ -17673,7 +17673,7 @@
       "damage": "+1",
       "weak": "+1"
     },
-    "image_url": "/static/images/cards/go_for_the_eyes.png",
+    "image_url": "/static/images/cards/go_for_the_eyes.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 4\nถ้าศัตรูตั้งใจจะโจมตี สร้าง 1 [gold]ความอ่อนแอ[/gold]",
@@ -17712,7 +17712,7 @@
     "upgrade": {
       "block": "+10"
     },
-    "image_url": "/static/images/cards/impervious.png",
+    "image_url": "/static/images/cards/impervious.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ได้รับ 40 [gold]บล็อก[/gold]",
@@ -17759,7 +17759,7 @@
     "upgrade": {
       "thunderpower": "+2"
     },
-    "image_url": "/static/images/cards/thunder.png",
+    "image_url": "/static/images/cards/thunder.webp",
     "beta_image_url": "/static/images/cards/beta/thunder.png",
     "type_variants": null,
     "upgrade_description": "ทุกครั้งที่คุณ[gold]ปล่อยพลังสายฟ้า[/gold] สร้างความเสียหาย 8 ใส่ศัตรูแต่ละตัวที่ถูกสายฟ้าโจมตี",
@@ -17804,7 +17804,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/thunderclap.png",
+    "image_url": "/static/images/cards/thunderclap.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 7 และสร้าง 1 [gold]จุดอ่อน[/gold]ใส่ศัตรูทั้งหมด",
@@ -17839,7 +17839,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/zap.png",
+    "image_url": "/static/images/cards/zap.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -17879,7 +17879,7 @@
       "block": "+2",
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/hologram.png",
+    "image_url": "/static/images/cards/hologram.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ได้รับ 5 [gold]บล็อก[/gold]\nนำการ์ด 1 ใบจาก[gold]กองทิ้ง[/gold]ขึ้น[gold]มือ[/gold]",
@@ -17926,7 +17926,7 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": "/static/images/cards/afterimage.png",
+    "image_url": "/static/images/cards/afterimage.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -17964,7 +17964,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/blur.png",
+    "image_url": "/static/images/cards/blur.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ได้รับ 8 [gold]บล็อก[/gold]\nสามารถสะสม[gold]บล็อก[/gold]ไปยังเทิร์นต่อไปได้",
@@ -18004,7 +18004,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/mirage.png",
+    "image_url": "/static/images/cards/mirage.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -18051,7 +18051,7 @@
     "upgrade": {
       "stormpower": "+1"
     },
-    "image_url": "/static/images/cards/storm.png",
+    "image_url": "/static/images/cards/storm.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ทุกครั้งที่คุณเล่นการ์ดพลัง [gold]ปลุกเสก[/gold] 2 [gold]สายฟ้า[/gold]",
@@ -18089,7 +18089,7 @@
     "upgrade": {
       "damage": "+8"
     },
-    "image_url": "/static/images/cards/sunder.png",
+    "image_url": "/static/images/cards/sunder.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 32\nถ้าฆ่าศัตรูได้ ได้รับ [energy:3]",
@@ -18137,7 +18137,7 @@
       "damage": "+1",
       "strength": "+1"
     },
-    "image_url": "/static/images/cards/fight_me.png",
+    "image_url": "/static/images/cards/fight_me.webp",
     "beta_image_url": "/static/images/cards/beta/fight_me.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 6 จำนวน 2 ครั้ง\nได้รับ 2 [gold]ความแข็งแรง[/gold]\nศัตรูได้รับ 1 [gold]ความแข็งแรง[/gold]",
@@ -18182,7 +18182,7 @@
     "upgrade": {
       "strengthpower": "-1"
     },
-    "image_url": "/static/images/cards/friendship.png",
+    "image_url": "/static/images/cards/friendship.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -18225,7 +18225,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/shiv.png",
+    "image_url": "/static/images/cards/shiv.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 6",
@@ -18272,7 +18272,7 @@
     "upgrade": {
       "strength": "+1"
     },
-    "image_url": "/static/images/cards/blade_of_ink.png",
+    "image_url": "/static/images/cards/blade_of_ink.webp",
     "beta_image_url": "/static/images/cards/beta/blade_of_ink.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -18318,7 +18318,7 @@
       "damage": "+2",
       "poison": "+1"
     },
-    "image_url": "/static/images/cards/poisoned_stab.png",
+    "image_url": "/static/images/cards/poisoned_stab.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 8\nสร้าง 3 [gold]พิษ[/gold]",
@@ -18359,7 +18359,7 @@
     "upgrade": {
       "ostydamage": "+2"
     },
-    "image_url": "/static/images/cards/right_hand_hand.png",
+    "image_url": "/static/images/cards/right_hand_hand.webp",
     "beta_image_url": "/static/images/cards/beta/right_hand_hand.png",
     "type_variants": null,
     "upgrade_description": "[gold]Osty[/gold]สร้างความเสียหาย 6\nทุกครั้งที่คุณเล่นการ์ดค่าร่าย [energy:2] ขึ้นไป นำการ์ดนี้จาก[gold]กองทิ้ง[/gold]กลับขึ้น[gold]มือ[/gold]",
@@ -18398,7 +18398,7 @@
       "damage": "+5",
       "gold": "+5"
     },
-    "image_url": "/static/images/cards/hand_of_greed.png",
+    "image_url": "/static/images/cards/hand_of_greed.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 25\nถ้า[gold]สังหาร[/gold] ได้รับ 25 [gold]ทอง[/gold]",
@@ -18442,7 +18442,7 @@
     "upgrade": {
       "bufferpower": "+1"
     },
-    "image_url": "/static/images/cards/buffer.png",
+    "image_url": "/static/images/cards/buffer.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ป้องกันการเสีย HP ของคุณในอีก 2 ครั้ง",
@@ -18479,7 +18479,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/armaments.png",
+    "image_url": "/static/images/cards/armaments.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ได้รับ 5 [gold]บล็อก[/gold]\n[gold]พัฒนา[/gold] การ์ดทั้งหมดใน[gold]มือ[/gold]",
@@ -18516,7 +18516,7 @@
     "upgrade": {
       "poisonperturn": "+1"
     },
-    "image_url": "/static/images/cards/noxious_fumes.png",
+    "image_url": "/static/images/cards/noxious_fumes.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ตอนเริ่มต้นเทิร์น สร้าง 3 [gold]พิษ[/gold]ใส่ศัตรูทั้งหมด",
@@ -18551,7 +18551,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/fusion.png",
+    "image_url": "/static/images/cards/fusion.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -18588,7 +18588,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/all_for_one.png",
+    "image_url": "/static/images/cards/all_for_one.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 14\nนำการ์ด 0[energy:1] ทั้งหมดจาก[gold]กองทิ้ง[/gold]ขึ้น[gold]มือ[/gold]",
@@ -18627,7 +18627,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/barrage.png",
+    "image_url": "/static/images/cards/barrage.webp",
     "beta_image_url": "/static/images/cards/beta/barrage.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 7 ต่อลูกแก้วที่ถูก[gold]ปลุกเสก[/gold]",
@@ -18664,7 +18664,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/skewer.png",
+    "image_url": "/static/images/cards/skewer.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 10 จำนวน X ครั้ง",
@@ -18709,7 +18709,7 @@
     "upgrade": {
       "dansemacabrepower": "+1"
     },
-    "image_url": "/static/images/cards/danse_macabre.png",
+    "image_url": "/static/images/cards/danse_macabre.webp",
     "beta_image_url": "/static/images/cards/beta/danse_macabre.png",
     "type_variants": null,
     "upgrade_description": "ทุกครั้งที่คุณเล่นการ์ดค่าร่าย [energy:2] ขึ้นไป ได้รับ 4 [gold]บล็อก[/gold]",
@@ -18750,7 +18750,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/blade_dance.png",
+    "image_url": "/static/images/cards/blade_dance.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "เพิ่ม 4 [gold]มีดสั้น[/gold]ใส่[gold]มือ[/gold]",
@@ -18791,7 +18791,7 @@
     "upgrade": {
       "bombdamage": "+10"
     },
-    "image_url": "/static/images/cards/the_bomb.png",
+    "image_url": "/static/images/cards/the_bomb.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "เมื่อผ่านไป 3 เทิร์น สร้างความเสียหาย 50 ใส่ศัตรูทั้งหมด",
@@ -18830,7 +18830,7 @@
     "upgrade": {
       "damage": "+6"
     },
-    "image_url": "/static/images/cards/bombardment.png",
+    "image_url": "/static/images/cards/bombardment.webp",
     "beta_image_url": "/static/images/cards/beta/bombardment.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 24\nตอนเริ่มต้นเทิร์น เล่นจาก[gold]กองสลาย[/gold]",
@@ -18870,7 +18870,7 @@
     "upgrade": {
       "skills": "+1"
     },
-    "image_url": "/static/images/cards/burst.png",
+    "image_url": "/static/images/cards/burst.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -18909,7 +18909,7 @@
     "upgrade": {
       "extrablock": "+2"
     },
-    "image_url": "/static/images/cards/fasten.png",
+    "image_url": "/static/images/cards/fasten.webp",
     "beta_image_url": "/static/images/cards/beta/fasten.png",
     "type_variants": null,
     "upgrade_description": "ได้รับเพิ่ม 7 [gold]บล็อก[/gold]จากการ์ดป้องกัน",
@@ -18946,7 +18946,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/beat_down.png",
+    "image_url": "/static/images/cards/beat_down.webp",
     "beta_image_url": "/static/images/cards/beta/beat_down.png",
     "type_variants": null,
     "upgrade_description": "เล่นการ์ดโจมตี 4 ใบแบบสุ่มจาก[gold]กองทิ้ง[/gold]",
@@ -18985,7 +18985,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/jack_of_all_trades.png",
+    "image_url": "/static/images/cards/jack_of_all_trades.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "เพิ่มการ์ดไม่มีสี 2 ใบแบบสุ่มใส่[gold]มือ[/gold]",
@@ -19025,7 +19025,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/enlightenment.png",
+    "image_url": "/static/images/cards/enlightenment.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ลดค่าร่ายการ์ดใน[gold]มือ[/gold]ทั้งหมดเหลือ 1 ในการต่อสู้นี้",
@@ -19067,7 +19067,7 @@
     "upgrade": {
       "remove_ethereal": true
     },
-    "image_url": "/static/images/cards/echo_form.png",
+    "image_url": "/static/images/cards/echo_form.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -19114,7 +19114,7 @@
     "upgrade": {
       "strengthpower": "+1"
     },
-    "image_url": "/static/images/cards/demon_form.png",
+    "image_url": "/static/images/cards/demon_form.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ตอนเริ่มต้นเทิร์น ได้รับ 3 [gold]ความแข็งแรง[/gold]",
@@ -19165,7 +19165,7 @@
     "upgrade": {
       "intangiblepower": "+1"
     },
-    "image_url": "/static/images/cards/wraith_form.png",
+    "image_url": "/static/images/cards/wraith_form.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ได้รับ 3 [gold]ไร้ตัวตน[/gold]\nตอนเริ่มต้นเทิร์น เสีย 1 [gold]ความชำนาญ[/gold]",
@@ -19209,7 +19209,7 @@
     "upgrade": {
       "serpentformpower": "+1"
     },
-    "image_url": "/static/images/cards/serpent_form.png",
+    "image_url": "/static/images/cards/serpent_form.webp",
     "beta_image_url": "/static/images/cards/beta/serpent_form.png",
     "type_variants": null,
     "upgrade_description": "ทุกครั้งที่คุณเล่นการ์ด สร้างความเสียหาย 5 ใส่ศัตรู 1 ตัวแบบสุ่ม",
@@ -19244,7 +19244,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/dualcast.png",
+    "image_url": "/static/images/cards/dualcast.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -19281,7 +19281,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/quadcast.png",
+    "image_url": "/static/images/cards/quadcast.webp",
     "beta_image_url": "/static/images/cards/beta/quadcast.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -19316,7 +19316,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/multi_cast.png",
+    "image_url": "/static/images/cards/multi_cast.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]ปล่อยพลัง[/gold]ลูกแก้วลูกขวาสุด X+1 ครั้ง",
@@ -19365,7 +19365,7 @@
       "damage": "+3",
       "vulnerable": "+1"
     },
-    "image_url": "/static/images/cards/assassinate.png",
+    "image_url": "/static/images/cards/assassinate.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 13\nสร้าง 1 [gold]จุดอ่อน[/gold]",
@@ -19409,7 +19409,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/backstab.png",
+    "image_url": "/static/images/cards/backstab.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 15",
@@ -19458,7 +19458,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/drum_of_battle.png",
+    "image_url": "/static/images/cards/drum_of_battle.webp",
     "beta_image_url": "/static/images/cards/beta/drum_of_battle.png",
     "type_variants": null,
     "upgrade_description": "จั่วการ์ด 3 ใบ\nตอนเริ่มต้นเทิร์น [gold]สลาย[/gold]การ์ดใบบนสุดของ[gold]กองจั่ว[/gold]",
@@ -19498,7 +19498,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/boot_sequence.png",
+    "image_url": "/static/images/cards/boot_sequence.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ได้รับ 13 [gold]บล็อก[/gold]",
@@ -19547,7 +19547,7 @@
     "upgrade": {
       "damage": "+8"
     },
-    "image_url": "/static/images/cards/hyperbeam.png",
+    "image_url": "/static/images/cards/hyperbeam.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 34 ใส่ศัตรูทั้งหมด\nเสีย 3 [gold]โฟกัส[/gold]",
@@ -19593,7 +19593,7 @@
       "damage": "+1",
       "vulnerable": "+1"
     },
-    "image_url": "/static/images/cards/beam_cell.png",
+    "image_url": "/static/images/cards/beam_cell.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 4\nสร้าง 1 [gold]จุดอ่อน[/gold]",
@@ -19632,7 +19632,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/charge.png",
+    "image_url": "/static/images/cards/charge.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "เลือกการ์ด 2 ใบใน[gold]กองจั่ว[/gold]เพื่อ[gold]แปรสภาพ[/gold]เป็น[gold]ลูกน้องจู่โจม+[/gold]",
@@ -19671,7 +19671,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/flechettes.png",
+    "image_url": "/static/images/cards/flechettes.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 7 ตามจำนวนการ์ดทักษะใน[gold]มือ[/gold]",
@@ -19714,7 +19714,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/minion_strike.png",
+    "image_url": "/static/images/cards/minion_strike.webp",
     "beta_image_url": "/static/images/cards/beta/minion_strike.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 10\nจั่วการ์ด 1 ใบ",
@@ -19758,7 +19758,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/minion_sacrifice.png",
+    "image_url": "/static/images/cards/minion_sacrifice.webp",
     "beta_image_url": "/static/images/cards/beta/minion_sacrifice.png",
     "type_variants": null,
     "upgrade_description": "ได้รับ 12 [gold]บล็อก[/gold]",
@@ -19799,7 +19799,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/finesse.png",
+    "image_url": "/static/images/cards/finesse.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ได้รับ 7 [gold]บล็อก[/gold]\nจั่ว 1 การ์ด",
@@ -19836,7 +19836,7 @@
     "upgrade": {
       "panachedamage": "+4"
     },
-    "image_url": "/static/images/cards/panache.png",
+    "image_url": "/static/images/cards/panache.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ทุกครั้งที่คุณเล่นการ์ด 5 ใบในเทิร์นเดียว สร้างความเสียหาย 14 ใส่ศัตรูทั้งหมด",
@@ -19875,7 +19875,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/soul.png",
+    "image_url": "/static/images/cards/soul.webp",
     "beta_image_url": "/static/images/cards/beta/soul.png",
     "type_variants": null,
     "upgrade_description": "จั่วการ์ด 3 ใบ",
@@ -19913,7 +19913,7 @@
     "upgrade": {
       "cost": 2
     },
-    "image_url": "/static/images/cards/bullet_time.png",
+    "image_url": "/static/images/cards/bullet_time.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -19951,7 +19951,7 @@
     "upgrade": {
       "increase": "+4"
     },
-    "image_url": "/static/images/cards/rampage.png",
+    "image_url": "/static/images/cards/rampage.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 9\nเพิ่มพลังให้การ์ดนี้อีก 9 ในการต่อสู้นี้",
@@ -19988,7 +19988,7 @@
     "upgrade": {
       "block": "+4"
     },
-    "image_url": "/static/images/cards/intercept.png",
+    "image_url": "/static/images/cards/intercept.webp",
     "beta_image_url": "/static/images/cards/beta/intercept.png",
     "type_variants": null,
     "upgrade_description": "ได้รับ 13 [gold]บล็อก[/gold]\nดึงการโจมตีทั้งหมดในเทิร์นนี้ที่เล็งผู้เล่นอื่นมาที่คุณแทน",
@@ -20025,7 +20025,7 @@
     "upgrade": {
       "power": "+1"
     },
-    "image_url": "/static/images/cards/feel_no_pain.png",
+    "image_url": "/static/images/cards/feel_no_pain.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ทุกครั้งที่การ์ด[gold]สลาย[/gold] ได้รับ 4 [gold]บล็อก[/gold]",
@@ -20063,7 +20063,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/apotheosis.png",
+    "image_url": "/static/images/cards/apotheosis.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -20102,7 +20102,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/tools_of_the_trade.png",
+    "image_url": "/static/images/cards/tools_of_the_trade.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -20139,7 +20139,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/sacrifice.png",
+    "image_url": "/static/images/cards/sacrifice.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -20177,7 +20177,7 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": "/static/images/cards/hello_world.png",
+    "image_url": "/static/images/cards/hello_world.webp",
     "beta_image_url": "/static/images/cards/beta/hello_world.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -20215,7 +20215,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/charge_battery.png",
+    "image_url": "/static/images/cards/charge_battery.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ได้รับ 10 [gold]บล็อก[/gold]\nและเทิร์นถัดไป ได้รับ [energy:1]",
@@ -20254,7 +20254,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/reflex.png",
+    "image_url": "/static/images/cards/reflex.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "จั่วการ์ด 3 ใบ",
@@ -20294,7 +20294,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/burning_pact.png",
+    "image_url": "/static/images/cards/burning_pact.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]สลาย[/gold]การ์ด 1 ใบ\nจั่วการ์ด 3 ใบ",
@@ -20331,7 +20331,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/malaise.png",
+    "image_url": "/static/images/cards/malaise.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ศัตรูเสีย X+1 [gold]ความแข็งแรง[/gold] สร้าง X+1 [gold]ความอ่อนแอ[/gold]",
@@ -20371,7 +20371,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/rainbow.png",
+    "image_url": "/static/images/cards/rainbow.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -20419,7 +20419,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/lightning_rod.png",
+    "image_url": "/static/images/cards/lightning_rod.webp",
     "beta_image_url": "/static/images/cards/beta/lightning_rod.png",
     "type_variants": null,
     "upgrade_description": "ได้รับ 7 [gold]บล็อก[/gold]\nตอนเริ่มต้นเทิร์นในอีก 2 เทิร์น [gold]ปลุกเสก[/gold] 1 [gold]สายฟ้า[/gold]",
@@ -20456,7 +20456,7 @@
     "upgrade": {
       "accelerant": "+1"
     },
-    "image_url": "/static/images/cards/accelerant.png",
+    "image_url": "/static/images/cards/accelerant.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]พิษ[/gold]ทำงานเพิ่มอีก 2 ครั้ง",
@@ -20493,7 +20493,7 @@
       "Gold": 10
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/debt.png",
+    "image_url": "/static/images/cards/debt.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -20535,7 +20535,7 @@
       "block": "+2",
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/delay.png",
+    "image_url": "/static/images/cards/delay.webp",
     "beta_image_url": "/static/images/cards/beta/delay.png",
     "type_variants": null,
     "upgrade_description": "ได้รับ 13 [gold]บล็อก[/gold]\nและเทิร์นถัดไป\nได้รับ [energy:2]",
@@ -20581,7 +20581,7 @@
     "upgrade": {
       "poison": "+2"
     },
-    "image_url": "/static/images/cards/haze.png",
+    "image_url": "/static/images/cards/haze.webp",
     "beta_image_url": "/static/images/cards/beta/haze.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -20630,7 +20630,7 @@
       "damage": "+2",
       "weak": "+1"
     },
-    "image_url": "/static/images/cards/sucker_punch.png",
+    "image_url": "/static/images/cards/sucker_punch.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 10\nสร้าง 1 [gold]ความอ่อนแอ[/gold]",
@@ -20668,7 +20668,7 @@
     "upgrade": {
       "power": "+1"
     },
-    "image_url": "/static/images/cards/uppercut.png",
+    "image_url": "/static/images/cards/uppercut.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 13\nสร้าง 2 [gold]ความอ่อนแอ[/gold]\nสร้าง 2 [gold]จุดอ่อน[/gold]",
@@ -20705,7 +20705,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/battle_trance.png",
+    "image_url": "/static/images/cards/battle_trance.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "จั่ว 4 การ์ด\nในเทิร์นนี้ คุณจะจั่วการ์ดไม่ได้อีก",
@@ -20749,7 +20749,7 @@
     "upgrade": {
       "blackholepower": "+1"
     },
-    "image_url": "/static/images/cards/black_hole.png",
+    "image_url": "/static/images/cards/black_hole.webp",
     "beta_image_url": "/static/images/cards/beta/black_hole.png",
     "type_variants": null,
     "upgrade_description": "ทุกครั้งที่คุณจ่ายหรือได้รับ [star:1] สร้างความเสียหาย 4 ใส่ศัตรูทั้งหมด",
@@ -20787,7 +20787,7 @@
     "upgrade": {
       "damage": "+5"
     },
-    "image_url": "/static/images/cards/ice_lance.png",
+    "image_url": "/static/images/cards/ice_lance.webp",
     "beta_image_url": "/static/images/cards/beta/ice_lance.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 24\n[gold]ปลุกเสก[/gold] 3 [gold]น้ำแข็ง[/gold]",
@@ -20824,7 +20824,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/slice.png",
+    "image_url": "/static/images/cards/slice.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 9",
@@ -20863,7 +20863,7 @@
     "upgrade": {
       "damage": "+1"
     },
-    "image_url": "/static/images/cards/begone.png",
+    "image_url": "/static/images/cards/begone.webp",
     "beta_image_url": "/static/images/cards/beta/begone.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 5\nเลือก 1 การ์ดใน[gold]มือ[/gold]เพื่อ[gold]แปรสภาพ[/gold]เป็น [gold]อุกกาบาตลูกน้อง+[/gold]",
@@ -20914,7 +20914,7 @@
     "upgrade": {
       "focuspower": "+1"
     },
-    "image_url": "/static/images/cards/biased_cognition.png",
+    "image_url": "/static/images/cards/biased_cognition.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ได้รับ 5 [gold]โฟกัส[/gold]\nตอนเริ่มต้นเทิร์น เสีย 1 [gold]โฟกัส[/gold]",
@@ -20951,7 +20951,7 @@
     "upgrade": {
       "summon": "+2"
     },
-    "image_url": "/static/images/cards/bodyguard.png",
+    "image_url": "/static/images/cards/bodyguard.webp",
     "beta_image_url": "/static/images/cards/beta/bodyguard.png",
     "type_variants": null,
     "upgrade_description": "[gold]อัญเชิญ[/gold] 7",
@@ -20988,7 +20988,7 @@
     "upgrade": {
       "add_retain": true
     },
-    "image_url": "/static/images/cards/wish.png",
+    "image_url": "/static/images/cards/wish.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -21028,7 +21028,7 @@
     "upgrade": {
       "damage": "+10"
     },
-    "image_url": "/static/images/cards/grand_finale.png",
+    "image_url": "/static/images/cards/grand_finale.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "จะเล่นได้ก็ต่อเมื่อไม่มีการ์ดใน[gold]กองจั่ว[/gold] สร้างความเสียหาย 60 ใส่ศัตรูทั้งหมด",
@@ -21063,7 +21063,7 @@
     "upgrade": {
       "description_changed": true
     },
-    "image_url": "/static/images/cards/tempest.png",
+    "image_url": "/static/images/cards/tempest.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]ปลุกเสก[/gold] X+1 [gold]สายฟ้า[/gold]",
@@ -21100,7 +21100,7 @@
     "upgrade": {
       "damage": "+5"
     },
-    "image_url": "/static/images/cards/predator.png",
+    "image_url": "/static/images/cards/predator.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 20\nเทิร์นถัดไป จั่วการ์ด 2 ใบ",
@@ -21140,7 +21140,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/adrenaline.png",
+    "image_url": "/static/images/cards/adrenaline.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ได้รับ [energy:2]\nจั่ว 2 การ์ด",
@@ -21183,7 +21183,7 @@
     "upgrade": {
       "increase": "+1"
     },
-    "image_url": "/static/images/cards/genetic_algorithm.png",
+    "image_url": "/static/images/cards/genetic_algorithm.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ได้รับ 1 [gold]บล็อก[/gold]\n[gold]บล็อก[/gold]ของการ์ดนี้เพิ่มขึ้น 4 แบบถาวร",
@@ -21222,7 +21222,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/writhe.png",
+    "image_url": "/static/images/cards/writhe.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -21270,7 +21270,7 @@
     "upgrade": {
       "envenompower": "+1"
     },
-    "image_url": "/static/images/cards/envenom.png",
+    "image_url": "/static/images/cards/envenom.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ทุกครั้งที่โจมตีแบบไม่ถูกบล็อกได้ สร้าง 2 [gold]พิษ[/gold]",
@@ -21307,7 +21307,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/secret_weapon.png",
+    "image_url": "/static/images/cards/secret_weapon.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -21349,7 +21349,7 @@
     "upgrade": {
       "damage": "+6"
     },
-    "image_url": "/static/images/cards/meteor_strike.png",
+    "image_url": "/static/images/cards/meteor_strike.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 30\n[gold]ปลุกเสก[/gold] 3 [gold]พลาสมา[/gold]",
@@ -21390,7 +21390,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/minion_dive_bomb.png",
+    "image_url": "/static/images/cards/minion_dive_bomb.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 16",
@@ -21432,7 +21432,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/tactician.png",
+    "image_url": "/static/images/cards/tactician.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ได้รับ [energy:2]",
@@ -21472,7 +21472,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/skim.png",
+    "image_url": "/static/images/cards/skim.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "จั่วการ์ด 4 ใบ",
@@ -21509,7 +21509,7 @@
     "upgrade": {
       "block": "+2"
     },
-    "image_url": "/static/images/cards/second_wind.png",
+    "image_url": "/static/images/cards/second_wind.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]สลาย[/gold]การ์ดที่ไม่ใช่การ์ดโจมตีทั้งหมดใน[gold]มือ[/gold] ได้รับ 7 [gold]บล็อก[/gold]ตามจำนวนการ์ดที่[gold]สลาย[/gold]",
@@ -21546,7 +21546,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/echoing_slash.png",
+    "image_url": "/static/images/cards/echoing_slash.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 13 ใส่ศัตรูทั้งหมด\nทำงานซ้ำตามจำนวนศัตรูที่ฆ่าได้",
@@ -21583,7 +21583,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/believe_in_you.png",
+    "image_url": "/static/images/cards/believe_in_you.webp",
     "beta_image_url": "/static/images/cards/beta/believe_in_you.png",
     "type_variants": null,
     "upgrade_description": "ผู้เล่นคนอื่น 1 คนได้รับ [energy:4]",
@@ -21623,7 +21623,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/fuel.png",
+    "image_url": "/static/images/cards/fuel.webp",
     "beta_image_url": "/static/images/cards/beta/fuel.png",
     "type_variants": null,
     "upgrade_description": "ได้รับ [energy:1]\nจั่วการ์ด 2 ใบ",
@@ -21667,7 +21667,7 @@
     "upgrade": {
       "cards": "+2"
     },
-    "image_url": "/static/images/cards/offering.png",
+    "image_url": "/static/images/cards/offering.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "เสีย 6 HP\nได้รับ [energy:2]\nจั่วการ์ด 5 ใบ",
@@ -21707,7 +21707,7 @@
     "upgrade": {
       "add_retain": true
     },
-    "image_url": "/static/images/cards/calculated_gamble.png",
+    "image_url": "/static/images/cards/calculated_gamble.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -21747,7 +21747,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/prepared.png",
+    "image_url": "/static/images/cards/prepared.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "จั่วการ์ด 2 ใบ\nทิ้งการ์ด 2 ใบ",
@@ -21784,7 +21784,7 @@
     "upgrade": {
       "forge": "+2"
     },
-    "image_url": "/static/images/cards/furnace.png",
+    "image_url": "/static/images/cards/furnace.webp",
     "beta_image_url": "/static/images/cards/beta/furnace.png",
     "type_variants": null,
     "upgrade_description": "ตอนเริ่มต้นเทิร์น [gold]หลอมสร้าง[/gold] 6",
@@ -21823,7 +21823,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/turbo.png",
+    "image_url": "/static/images/cards/turbo.webp",
     "beta_image_url": "/static/images/cards/beta/turbo.png",
     "type_variants": null,
     "upgrade_description": "ได้รับ [energy:3]\nเพิ่ม[gold]ความว่างเปล่า[/gold] 1 ใบเข้า[gold]กองทิ้ง[/gold]",
@@ -21860,7 +21860,7 @@
     "upgrade": {
       "cost": 0
     },
-    "image_url": "/static/images/cards/distraction.png",
+    "image_url": "/static/images/cards/distraction.webp",
     "beta_image_url": "/static/images/cards/beta/distraction.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -21903,7 +21903,7 @@
     "upgrade": {
       "damage": "+4"
     },
-    "image_url": "/static/images/cards/dramatic_entrance.png",
+    "image_url": "/static/images/cards/dramatic_entrance.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 15 ใส่ศัตรูทั้งหมด",
@@ -21946,7 +21946,7 @@
     "upgrade": {
       "cards": "+2"
     },
-    "image_url": "/static/images/cards/reboot.png",
+    "image_url": "/static/images/cards/reboot.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สับการ์ดทั้งหมดของคุณเข้า[gold]กองจั่ว[/gold]\nจั่วการ์ด 6 ใบ",
@@ -21986,7 +21986,7 @@
     "upgrade": {
       "cost": 2
     },
-    "image_url": "/static/images/cards/corruption.png",
+    "image_url": "/static/images/cards/corruption.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -22023,7 +22023,7 @@
       "Damage": 2
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/burn.png",
+    "image_url": "/static/images/cards/burn.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -22066,7 +22066,7 @@
       "energy": "+1",
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/brightest_flame.png",
+    "image_url": "/static/images/cards/brightest_flame.webp",
     "beta_image_url": "/static/images/cards/beta/brightest_flame.png",
     "type_variants": null,
     "upgrade_description": "ได้รับ [energy:3]\nจั่วการ์ด 3 ใบ\nเสีย 1 HP สูงสุด",
@@ -22105,7 +22105,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/fiend_fire.png",
+    "image_url": "/static/images/cards/fiend_fire.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]สลาย[/gold]ทั้ง[gold]มือ[/gold]\nสร้างความเสียหาย 10 ตามจำนวนการ์ดที่[gold]สลาย[/gold]",
@@ -22152,7 +22152,7 @@
     "upgrade": {
       "infernopower": "+3"
     },
-    "image_url": "/static/images/cards/inferno.png",
+    "image_url": "/static/images/cards/inferno.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ตอนเริ่มต้นเทิร์น เสีย 1 HP\nทุกครั้งที่คุณเสีย HP ในเทิร์นของคุณ สร้างความเสียหาย 9 ใส่ศัตรูทั้งหมด",
@@ -22189,7 +22189,7 @@
       "Cards": 1
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/slimed.png",
+    "image_url": "/static/images/cards/slimed.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -22229,7 +22229,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/chill.png",
+    "image_url": "/static/images/cards/chill.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -22267,7 +22267,7 @@
       "HpLoss": 6
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/beckon.png",
+    "image_url": "/static/images/cards/beckon.webp",
     "beta_image_url": "/static/images/cards/beta/beckon.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -22307,7 +22307,7 @@
       "damage": "+1",
       "playmax": "+1"
     },
-    "image_url": "/static/images/cards/ftl.png",
+    "image_url": "/static/images/cards/ftl.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 6\nถ้าคุณใช้การ์ดไม่เกิน 4 ใบในเทิร์นนี้ จั่ว 1 การ์ด",
@@ -22344,7 +22344,7 @@
     "upgrade": {
       "add_retain": true
     },
-    "image_url": "/static/images/cards/scrawl.png",
+    "image_url": "/static/images/cards/scrawl.webp",
     "beta_image_url": "/static/images/cards/beta/scrawl.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -22387,7 +22387,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": "/static/images/cards/mimic.png",
+    "image_url": "/static/images/cards/mimic.webp",
     "beta_image_url": "/static/images/cards/beta/mimic.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -22432,7 +22432,7 @@
       "block": "+3",
       "ostydamage": "+3"
     },
-    "image_url": "/static/images/cards/bone_shards.png",
+    "image_url": "/static/images/cards/bone_shards.webp",
     "beta_image_url": "/static/images/cards/beta/bone_shards.png",
     "type_variants": null,
     "upgrade_description": "ถ้า[gold]Osty[/gold]มีชีวิตอยู่ เขาจะสร้างความเสียหาย 12 ใส่ศัตรูทั้งหมด และคุณได้รับ 12 [gold]บล็อก[/gold]\nจากนั้น[gold]Osty[/gold]จะตาย",
@@ -22467,7 +22467,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/debris.png",
+    "image_url": "/static/images/cards/debris.webp",
     "beta_image_url": "/static/images/cards/beta/debris.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -22508,7 +22508,7 @@
     "upgrade": {
       "damage": "+6"
     },
-    "image_url": "/static/images/cards/banshees_cry.png",
+    "image_url": "/static/images/cards/banshees_cry.webp",
     "beta_image_url": "/static/images/cards/beta/banshees_cry.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 39 ใส่ศัตรูทั้งหมด\nค่าร่ายลดลง [energy:2] ต่อการ์ด[gold]กึ่งสลาย[/gold]ที่เล่นไปในการต่อสู้นี้",
@@ -22545,7 +22545,7 @@
     "upgrade": {
       "damage": "+5"
     },
-    "image_url": "/static/images/cards/howl_from_beyond.png",
+    "image_url": "/static/images/cards/howl_from_beyond.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 21 ใส่ศัตรูทั้งหมด\nตอนเริ่มต้นเทิร์น เล่นจาก[gold]กองสลาย[/gold]",
@@ -22598,7 +22598,7 @@
     "upgrade": {
       "thornspower": "+2"
     },
-    "image_url": "/static/images/cards/abrasive.png",
+    "image_url": "/static/images/cards/abrasive.webp",
     "beta_image_url": "/static/images/cards/beta/abrasive.png",
     "type_variants": null,
     "upgrade_description": "ได้รับ 1 [gold]ความชำนาญ[/gold]\nได้รับ 6 [gold]หนาม[/gold]",
@@ -22636,7 +22636,7 @@
     "spawns_cards": null,
     "vars": null,
     "upgrade": null,
-    "image_url": "/static/images/cards/regret.png",
+    "image_url": "/static/images/cards/regret.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -22683,7 +22683,7 @@
     "upgrade": {
       "focuspower": "+1"
     },
-    "image_url": "/static/images/cards/hotfix.png",
+    "image_url": "/static/images/cards/hotfix.webp",
     "beta_image_url": "/static/images/cards/beta/hotfix.png",
     "type_variants": null,
     "upgrade_description": "ได้รับ 3 [gold]โฟกัส[/gold]ในเทิร์นนี้",
@@ -22720,7 +22720,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/hang.png",
+    "image_url": "/static/images/cards/hang.webp",
     "beta_image_url": "/static/images/cards/beta/hang.png",
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 13\nการ์ดแขวนคอทั้งหมดสร้างความเสียหายใส่ศัตรูตัวนี้เป็น 2 เท่า",
@@ -22758,7 +22758,7 @@
     "upgrade": {
       "damage": "+5"
     },
-    "image_url": "/static/images/cards/jackpot.png",
+    "image_url": "/static/images/cards/jackpot.webp",
     "beta_image_url": "/static/images/cards/beta/jackpot.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -22797,7 +22797,7 @@
     "upgrade": {
       "cards": "+2"
     },
-    "image_url": "/static/images/cards/metamorphosis.png",
+    "image_url": "/static/images/cards/metamorphosis.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "เพิ่มการ์ดโจมตี 5 ใบแบบสุ่มเข้า[gold]กองจั่ว[/gold] มันเล่นฟรีในการตอนสู้นี้",
@@ -22837,7 +22837,7 @@
     "upgrade": {
       "retainamount": "+1"
     },
-    "image_url": "/static/images/cards/well_laid_plans.png",
+    "image_url": "/static/images/cards/well_laid_plans.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ตอนจบเทิร์น [gold]คงสภาพ[/gold]การ์ดได้สูงสุด 2 ใบ",
@@ -22874,7 +22874,7 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": "/static/images/cards/machine_learning.png",
+    "image_url": "/static/images/cards/machine_learning.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -22912,7 +22912,7 @@
     "upgrade": {
       "block": "+3"
     },
-    "image_url": "/static/images/cards/shrug_it_off.png",
+    "image_url": "/static/images/cards/shrug_it_off.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ได้รับ 11 [gold]บล็อก[/gold]\nจั่วการ์ด 1 ใบ",
@@ -22949,7 +22949,7 @@
     "upgrade": {
       "damage": "+3"
     },
-    "image_url": "/static/images/cards/headbutt.png",
+    "image_url": "/static/images/cards/headbutt.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 12\nนำการ์ด 1 ใบจาก[gold]กองทิ้ง[/gold]ไปวางไว้บนสุดของ[gold]กองจั่ว[/gold]",
@@ -22984,7 +22984,7 @@
     "upgrade": {
       "cost": 1
     },
-    "image_url": "/static/images/cards/flanking.png",
+    "image_url": "/static/images/cards/flanking.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": null,
@@ -23023,7 +23023,7 @@
     "upgrade": {
       "damage": "+2"
     },
-    "image_url": "/static/images/cards/finisher.png",
+    "image_url": "/static/images/cards/finisher.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 8 ตามจำนวนการ์ดโจมตีที่เล่นในเทิร์นนี้",
@@ -23061,7 +23061,7 @@
       "HpLoss": 13
     },
     "upgrade": null,
-    "image_url": "/static/images/cards/bad_luck.png",
+    "image_url": "/static/images/cards/bad_luck.webp",
     "beta_image_url": "/static/images/cards/beta/bad_luck.png",
     "type_variants": null,
     "upgrade_description": null,
@@ -23102,7 +23102,7 @@
     "upgrade": {
       "damage": "+1"
     },
-    "image_url": "/static/images/cards/bolas.png",
+    "image_url": "/static/images/cards/bolas.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "สร้างความเสียหาย 4\nตอนเริ่มต้นเทิร์น นำการ์ดนี้กลับขึ้น[gold]มือ[/gold]",
@@ -23141,7 +23141,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/overclock.png",
+    "image_url": "/static/images/cards/overclock.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "จั่วการ์ด 3 ใบ\nเพิ่ม[gold]เผาไหม้[/gold] 1 ใบเข้า[gold]กองทิ้ง[/gold]",
@@ -23178,7 +23178,7 @@
     "upgrade": {
       "block": "+2"
     },
-    "image_url": "/static/images/cards/true_grit.png",
+    "image_url": "/static/images/cards/true_grit.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "ได้รับ 9 [gold]บล็อก[/gold]\n[gold]สลาย[/gold]การ์ด 1 ใบ",
@@ -23215,7 +23215,7 @@
     "upgrade": {
       "cards": "+1"
     },
-    "image_url": "/static/images/cards/coolheaded.png",
+    "image_url": "/static/images/cards/coolheaded.webp",
     "beta_image_url": null,
     "type_variants": null,
     "upgrade_description": "[gold]ปลุกเสก[/gold] 1 [gold]น้ำแข็ง[/gold]\nจั่วการ์ด 2 ใบ",
@@ -23252,7 +23252,7 @@
     "upgrade": {
       "energy": "+1"
     },
-    "image_url": "/static/images/cards/outmaneuver.png",
+    "image_url": "/static/images/cards/outmaneuver.webp",
     "beta_image_url": "/static/images/cards/beta/outmaneuver.png",
     "type_variants": null,
     "upgrade_description": "เทิร์นถัดไป ได้รับ [energy:3]",

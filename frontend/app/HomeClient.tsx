@@ -234,7 +234,7 @@ export default function HomeClient({ initialStats, initialTranslations }: HomeCl
                 />
                 <div className="relative aspect-square flex items-end justify-center overflow-hidden">
                   <img
-                    src={`${API}/static/images/characters/combat_${char.id}.png`}
+                    src={`${API}/static/images/characters/combat_${char.id}.webp`}
                     alt={`${charName} - Slay the Spire 2 Character`}
                     className="w-full h-full object-contain p-1 sm:p-2 group-hover:scale-105 transition-transform duration-300"
                     crossOrigin="anonymous"

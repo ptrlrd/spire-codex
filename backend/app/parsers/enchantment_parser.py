@@ -132,10 +132,13 @@ def parse_single_enchantment(filepath: Path, localization: dict) -> dict | None:
     # Boolean properties
     is_stackable = "IsStackable => true" in content
 
-    # Image URL
-    image_file = STATIC_IMAGES / f"{ench_id.lower()}.png"
+    # Image URL — prefer WebP, fall back to PNG
+    ench_base = ench_id.lower()
+    image_file = STATIC_IMAGES / f"{ench_base}.webp"
+    if not image_file.exists():
+        image_file = STATIC_IMAGES / f"{ench_base}.png"
     image_url = (
-        f"/static/images/enchantments/{ench_id.lower()}.png"
+        f"/static/images/enchantments/{image_file.name}"
         if image_file.exists()
         else None
     )
