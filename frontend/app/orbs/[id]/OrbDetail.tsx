@@ -14,13 +14,13 @@ import { useLangPrefix } from "@/lib/use-lang-prefix";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
-export default function OrbDetail() {
+export default function OrbDetail({ initialOrb }: { initialOrb?: Orb | null } = {}) {
   const { id } = useParams<{ id: string }>();
   const router = useRouter();
   const { lang } = useLanguage();
   const lp = useLangPrefix();
-  const [orb, setOrb] = useState<Orb | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [orb, setOrb] = useState<Orb | null>(initialOrb ?? null);
+  const [loading, setLoading] = useState(!initialOrb);
   const [notFound, setNotFound] = useState(false);
 
   useEffect(() => {

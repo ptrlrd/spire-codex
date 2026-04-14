@@ -34,10 +34,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function Page({ params }: Props) {
   const { id } = await params;
   let jsonLd = null;
+  let asc = null;
   try {
     const res = await fetch(`${API_INTERNAL}/api/ascensions/${id}`);
     if (res.ok) {
-      const asc = await res.json();
+      asc = await res.json();
       const desc = stripTags(asc.description);
       const detailJsonLd = buildDetailPageJsonLd({
         name: `Ascension ${asc.level}: ${asc.name}`,
@@ -59,7 +60,7 @@ export default async function Page({ params }: Props) {
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
-      <AscensionDetail />
+      <AscensionDetail initialAscension={asc} />
     </>
   );
 }

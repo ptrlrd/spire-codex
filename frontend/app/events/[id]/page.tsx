@@ -37,10 +37,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function Page({ params }: Props) {
   const { id } = await params;
   let jsonLd = null;
+  let event = null;
   try {
     const res = await fetch(`${API_INTERNAL}/api/events/${id}`);
     if (res.ok) {
-      const event = await res.json();
+      event = await res.json();
       const desc = stripTags(event.description || "");
       const detailJsonLd = buildDetailPageJsonLd({
         name: event.name,
@@ -67,7 +68,7 @@ export default async function Page({ params }: Props) {
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
-      <EventDetail />
+      <EventDetail initialEvent={event} />
     </>
   );
 }

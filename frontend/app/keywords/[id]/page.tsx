@@ -109,7 +109,7 @@ export default async function Page({ params }: Props) {
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
-      <KeywordDetail />
+      <KeywordDetail initialResult={result} />
     </>
   );
 }

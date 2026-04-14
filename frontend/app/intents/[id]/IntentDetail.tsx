@@ -14,13 +14,13 @@ import { useLangPrefix } from "@/lib/use-lang-prefix";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
-export default function IntentDetail() {
+export default function IntentDetail({ initialIntent }: { initialIntent?: Intent | null } = {}) {
   const { id } = useParams<{ id: string }>();
   const router = useRouter();
   const { lang } = useLanguage();
   const lp = useLangPrefix();
-  const [intent, setIntent] = useState<Intent | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [intent, setIntent] = useState<Intent | null>(initialIntent ?? null);
+  const [loading, setLoading] = useState(!initialIntent);
   const [notFound, setNotFound] = useState(false);
 
   useEffect(() => {

@@ -30,16 +30,16 @@ const QUOTE_LABELS: Record<string, { label: string; icon: string }> = {
   banter_dead: { label: "Last Words", icon: "skull" },
 };
 
-export default function CharacterDetail() {
+export default function CharacterDetail({ initialCharacter }: { initialCharacter?: Character | null } = {}) {
   const { id } = useParams<{ id: string }>();
   const router = useRouter();
   const { lang } = useLanguage();
-  const [char, setChar] = useState<Character | null>(null);
+  const [char, setChar] = useState<Character | null>(initialCharacter ?? null);
   const [cards, setCards] = useState<Record<string, Card>>({});
   const [relics, setRelics] = useState<Record<string, Relic>>({});
   const [allCards, setAllCards] = useState<Card[]>([]);
   const [poolRelics, setPoolRelics] = useState<Relic[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(!initialCharacter);
   const [notFound, setNotFound] = useState(false);
   const [expandedAncient, setExpandedAncient] = useState<string | null>(null);
   const [cardsExpanded, setCardsExpanded] = useState(true);

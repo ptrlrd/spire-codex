@@ -40,14 +40,14 @@ function cleanDescription(desc: string): string {
   return desc.replace(/\{[^}]+\}/g, "X");
 }
 
-export default function EpochDetail() {
+export default function EpochDetail({ initialEpoch }: { initialEpoch?: Epoch | null } = {}) {
   const params = useParams();
   const router = useRouter();
   const id = params.id as string;
   const { lang } = useLanguage();
 
-  const [epoch, setEpoch] = useState<Epoch | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [epoch, setEpoch] = useState<Epoch | null>(initialEpoch ?? null);
+  const [loading, setLoading] = useState(!initialEpoch);
   const [notFound, setNotFound] = useState(false);
   const [cardMap, setCardMap] = useState<Record<string, Card>>({});
   const [relicMap, setRelicMap] = useState<Record<string, Relic>>({});

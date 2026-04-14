@@ -68,12 +68,12 @@ function PageBlock({ page, index }: { page: EventPage; index: number }) {
   );
 }
 
-export default function EventDetail() {
+export default function EventDetail({ initialEvent }: { initialEvent?: GameEvent | null } = {}) {
   const { id } = useParams<{ id: string }>();
   const router = useRouter();
   const { lang } = useLanguage();
-  const [event, setEvent] = useState<GameEvent | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [event, setEvent] = useState<GameEvent | null>(initialEvent ?? null);
+  const [loading, setLoading] = useState(!initialEvent);
   const [notFound, setNotFound] = useState(false);
   const [relicMap, setRelicMap] = useState<
     Record<string, { id: string; name: string; description: string; image_url: string | null }>

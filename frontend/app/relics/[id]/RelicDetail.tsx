@@ -27,15 +27,15 @@ const rarityColorMap: Record<string, string> = {
 
 type Tab = "overview" | "details" | "info";
 
-export default function RelicDetail() {
+export default function RelicDetail({ initialRelic }: { initialRelic?: Relic | null } = {}) {
   const { id } = useParams<{ id: string }>();
   const router = useRouter();
   const { lang } = useLanguage();
-    const lp = useLangPrefix();
-const [relic, setRelic] = useState<Relic | null>(null);
+  const lp = useLangPrefix();
+  const [relic, setRelic] = useState<Relic | null>(initialRelic ?? null);
   const [selectedVariant, setSelectedVariant] = useState<string | null>(null);
   const [selectedChar, setSelectedChar] = useState<string | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(!initialRelic);
   const [notFound, setNotFound] = useState(false);
   const [tab, setTab] = useState<Tab>("overview");
 

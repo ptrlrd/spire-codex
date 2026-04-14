@@ -14,13 +14,13 @@ import { useLangPrefix } from "@/lib/use-lang-prefix";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
-export default function AchievementDetail() {
+export default function AchievementDetail({ initialAchievement }: { initialAchievement?: Achievement | null } = {}) {
   const { id } = useParams<{ id: string }>();
   const router = useRouter();
   const { lang } = useLanguage();
   const lp = useLangPrefix();
-  const [achievement, setAchievement] = useState<Achievement | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [achievement, setAchievement] = useState<Achievement | null>(initialAchievement ?? null);
+  const [loading, setLoading] = useState(!initialAchievement);
   const [notFound, setNotFound] = useState(false);
 
   useEffect(() => {

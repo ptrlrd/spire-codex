@@ -35,10 +35,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function Page({ params }: Props) {
   const { id } = await params;
   let jsonLd = null;
+  let affliction = null;
   try {
     const res = await fetch(`${API_INTERNAL}/api/afflictions/${id}`);
     if (res.ok) {
-      const affliction = await res.json();
+      affliction = await res.json();
       const desc = stripTags(affliction.description || "");
       const detailJsonLd = buildDetailPageJsonLd({
         name: affliction.name,
@@ -61,7 +62,7 @@ export default async function Page({ params }: Props) {
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
-      <AfflictionDetail />
+      <AfflictionDetail initialAffliction={affliction} />
     </>
   );
 }

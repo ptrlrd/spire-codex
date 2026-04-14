@@ -44,12 +44,12 @@ export default async function Page({ params }: Props) {
   const { lang, id } = await params;
   if (!isValidLang(lang)) return null;
   let jsonLd = null;
+  let card = null;
   try {
     const res = await fetch(`${API_INTERNAL}/api/cards/${id}?lang=${lang}`);
     if (res.ok) {
-      const card = await res.json();
+      card = await res.json();
       const desc = stripTags(card.description || "");
-      const langCode = lang as LangCode;
       const detailJsonLd = buildDetailPageJsonLd({
         name: card.name, description: desc || card.name, path: `/${lang}/cards/${id}`,
         imageUrl: card.image_url ? `${API_PUBLIC}${card.image_url}` : undefined, category: "Card",
@@ -61,7 +61,7 @@ export default async function Page({ params }: Props) {
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
-      <CardDetail />
+      <CardDetail initialCard={card} />
     </>
   );
 }

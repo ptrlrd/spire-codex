@@ -13,14 +13,14 @@ import EntityHistory from "@/app/components/EntityHistory";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
-export default function AscensionDetail() {
+export default function AscensionDetail({ initialAscension }: { initialAscension?: Ascension | null } = {}) {
   const { id } = useParams<{ id: string }>();
   const router = useRouter();
   const { lang } = useLanguage();
   const lp = useLangPrefix();
-  const [ascension, setAscension] = useState<Ascension | null>(null);
+  const [ascension, setAscension] = useState<Ascension | null>(initialAscension ?? null);
   const [allAscensions, setAllAscensions] = useState<Ascension[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(!initialAscension);
   const [notFound, setNotFound] = useState(false);
 
   useEffect(() => {

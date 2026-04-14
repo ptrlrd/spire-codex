@@ -22,13 +22,13 @@ const cardTypeColors: Record<string, string> = {
 
 type Tab = "overview" | "info";
 
-export default function EnchantmentDetail() {
+export default function EnchantmentDetail({ initialEnchantment }: { initialEnchantment?: Enchantment | null } = {}) {
   const { id } = useParams<{ id: string }>();
   const router = useRouter();
   const { lang } = useLanguage();
   const lp = useLangPrefix();
-  const [enchantment, setEnchantment] = useState<Enchantment | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [enchantment, setEnchantment] = useState<Enchantment | null>(initialEnchantment ?? null);
+  const [loading, setLoading] = useState(!initialEnchantment);
   const [notFound, setNotFound] = useState(false);
   const [tab, setTab] = useState<Tab>("overview");
 

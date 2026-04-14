@@ -39,10 +39,11 @@ export default async function Page({ params }: Props) {
   const { lang, id } = await params;
   if (!isValidLang(lang)) return null;
   let jsonLd = null;
+  let act = null;
   try {
     const res = await fetch(`${API_INTERNAL}/api/acts/${id}?lang=${lang}`);
     if (res.ok) {
-      const act = await res.json();
+      act = await res.json();
       jsonLd = buildDetailPageJsonLd({
         name: act.name,
         description: `${act.name} act with ${act.encounters.length} encounters and ${act.bosses.length} bosses.`,
@@ -59,7 +60,7 @@ export default async function Page({ params }: Props) {
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
-      <ActDetail />
+      <ActDetail initialAct={act} />
     </>
   );
 }

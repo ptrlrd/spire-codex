@@ -33,10 +33,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function Page({ params }: Props) {
   const { id } = await params;
   let jsonLd = null;
+  let act = null;
   try {
     const res = await fetch(`${API_INTERNAL}/api/acts/${id}`);
     if (res.ok) {
-      const act = await res.json();
+      act = await res.json();
       jsonLd = buildDetailPageJsonLd({
         name: act.name,
         description: `${act.name} act in Slay the Spire 2 with ${act.encounters.length} encounters and ${act.bosses.length} bosses.`,
@@ -53,7 +54,7 @@ export default async function Page({ params }: Props) {
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
-      <ActDetail />
+      <ActDetail initialAct={act} />
     </>
   );
 }

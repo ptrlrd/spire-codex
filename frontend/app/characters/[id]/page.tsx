@@ -37,10 +37,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function Page({ params }: Props) {
   const { id } = await params;
   let jsonLd = null;
+  let char = null;
   try {
     const res = await fetch(`${API_INTERNAL}/api/characters/${id}`);
     if (res.ok) {
-      const char = await res.json();
+      char = await res.json();
       const desc = stripTags(char.description || "");
       jsonLd = buildDetailPageJsonLd({
         name: char.name,
@@ -59,7 +60,7 @@ export default async function Page({ params }: Props) {
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
-      <CharacterDetail />
+      <CharacterDetail initialCharacter={char} />
     </>
   );
 }
