@@ -31,7 +31,7 @@
       "cost": 1
     },
     "image_url": "/static/images/cards/seven_stars.webp",
-    "beta_image_url": "/static/images/cards/beta/seven_stars.png",
+    "beta_image_url": "/static/images/cards/beta/seven_stars.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Attack",
@@ -68,7 +68,7 @@
       "damage": "+3"
     },
     "image_url": "/static/images/cards/omnislice.webp",
-    "beta_image_url": "/static/images/cards/beta/omnislice.png",
+    "beta_image_url": "/static/images/cards/beta/omnislice.webp",
     "type_variants": null,
     "upgrade_description": "造成11点伤害。\n对所有其他敌人造成等量的伤害。",
     "type_key": "Attack",
@@ -182,7 +182,7 @@
       "damage": "+1"
     },
     "image_url": "/static/images/cards/begone.webp",
-    "beta_image_url": "/static/images/cards/beta/begone.png",
+    "beta_image_url": "/static/images/cards/beta/begone.webp",
     "type_variants": null,
     "upgrade_description": "造成5点伤害。\n选择你[gold]手牌[/gold]中的一张牌，将其[gold]变化[/gold]为[gold]仆从俯冲+[/gold]。",
     "type_key": "Attack",
@@ -221,7 +221,7 @@
       "strengthloss": "+1"
     },
     "image_url": "/static/images/cards/crush_under.webp",
-    "beta_image_url": "/static/images/cards/beta/crush_under.png",
+    "beta_image_url": "/static/images/cards/beta/crush_under.webp",
     "type_variants": null,
     "upgrade_description": "对所有敌人造成8点伤害。所有敌人在本回合失去2点[gold]力量[/gold]。",
     "type_key": "Attack",
@@ -258,7 +258,7 @@
       "block": "+2"
     },
     "image_url": "/static/images/cards/undeath.webp",
-    "beta_image_url": "/static/images/cards/beta/undeath.png",
+    "beta_image_url": "/static/images/cards/beta/undeath.webp",
     "type_variants": null,
     "upgrade_description": "获得9点[gold]格挡[/gold]。\n在[gold]弃牌堆[/gold]放入一张此牌的复制品。",
     "type_key": "Skill",
@@ -306,7 +306,7 @@
       "strength": "+1"
     },
     "image_url": "/static/images/cards/fight_me.webp",
-    "beta_image_url": "/static/images/cards/beta/fight_me.png",
+    "beta_image_url": "/static/images/cards/beta/fight_me.webp",
     "type_variants": null,
     "upgrade_description": "造成6点伤害两次。\n获得2点[gold]力量[/gold]。\n该敌人获得1点[gold]力量[/gold]。",
     "type_key": "Attack",
@@ -397,7 +397,7 @@
       "platingpower": "+3"
     },
     "image_url": "/static/images/cards/neutron_aegis.webp",
-    "beta_image_url": "/static/images/cards/beta/neutron_aegis.png",
+    "beta_image_url": "/static/images/cards/beta/neutron_aegis.webp",
     "type_variants": null,
     "upgrade_description": "获得11层[gold]覆甲[/gold]。",
     "type_key": "Power",
@@ -513,7 +513,7 @@
       "cost": 0
     },
     "image_url": "/static/images/cards/pagestorm.webp",
-    "beta_image_url": "/static/images/cards/beta/pagestorm.png",
+    "beta_image_url": "/static/images/cards/beta/pagestorm.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Power",
@@ -585,7 +585,7 @@
       "summon": "+3"
     },
     "image_url": "/static/images/cards/necro_mastery.webp",
-    "beta_image_url": "/static/images/cards/beta/necro_mastery.png",
+    "beta_image_url": "/static/images/cards/beta/necro_mastery.webp",
     "type_variants": null,
     "upgrade_description": "[gold]召唤[/gold]8。\n每当[gold]奥斯提[/gold]失去生命值时，\n所有敌人失去等量生命值。",
     "type_key": "Power",
@@ -624,7 +624,7 @@
       "damage": "+2"
     },
     "image_url": "/static/images/cards/pull_from_below.webp",
-    "beta_image_url": "/static/images/cards/beta/pull_from_below.png",
+    "beta_image_url": "/static/images/cards/beta/pull_from_below.webp",
     "type_variants": null,
     "upgrade_description": "本场战斗中每打出过一张[gold]虚无[/gold]牌，此牌就造成7点伤害一次。",
     "type_key": "Attack",
@@ -661,7 +661,7 @@
       "damage": "+4"
     },
     "image_url": "/static/images/cards/clash.webp",
-    "beta_image_url": "/static/images/cards/beta/clash.png",
+    "beta_image_url": "/static/images/cards/beta/clash.webp",
     "type_variants": null,
     "upgrade_description": "只有在[gold]手牌[/gold]中每一张牌都是攻击牌时才能被打出。\n造成18点伤害。",
     "type_key": "Attack",
@@ -736,7 +736,7 @@
       "damage": "+6"
     },
     "image_url": "/static/images/cards/synthesis.webp",
-    "beta_image_url": "/static/images/cards/beta/synthesis.png",
+    "beta_image_url": "/static/images/cards/beta/synthesis.webp",
     "type_variants": null,
     "upgrade_description": "造成18点伤害。\n你打出的下一张能力牌耗能变为0[energy:1]。",
     "type_key": "Attack",
@@ -823,7 +823,7 @@
       "damage": "+3"
     },
     "image_url": "/static/images/cards/minion_strike.webp",
-    "beta_image_url": "/static/images/cards/beta/minion_strike.png",
+    "beta_image_url": "/static/images/cards/beta/minion_strike.webp",
     "type_variants": null,
     "upgrade_description": "造成10点伤害。\n抽1张牌。",
     "type_key": "Attack",
@@ -867,7 +867,7 @@
       "block": "+3"
     },
     "image_url": "/static/images/cards/minion_sacrifice.webp",
-    "beta_image_url": "/static/images/cards/beta/minion_sacrifice.png",
+    "beta_image_url": "/static/images/cards/beta/minion_sacrifice.webp",
     "type_variants": null,
     "upgrade_description": "获得12点[gold]格挡[/gold]。",
     "type_key": "Skill",
@@ -908,7 +908,7 @@
       "damage": "+5"
     },
     "image_url": "/static/images/cards/heirloom_hammer.webp",
-    "beta_image_url": "/static/images/cards/beta/heirloom_hammer.png",
+    "beta_image_url": "/static/images/cards/beta/heirloom_hammer.webp",
     "type_variants": null,
     "upgrade_description": "造成22点伤害。\n选择你[gold]手牌[/gold]中的一张无色牌。将这张牌的一张复制品放入你的[gold]手牌[/gold]。",
     "type_key": "Attack",
@@ -999,7 +999,7 @@
       "damage": "+5"
     },
     "image_url": "/static/images/cards/gamma_blast.webp",
-    "beta_image_url": "/static/images/cards/beta/gamma_blast.png",
+    "beta_image_url": "/static/images/cards/beta/gamma_blast.webp",
     "type_variants": null,
     "upgrade_description": "造成18点伤害。\n给予2层[gold]虚弱[/gold]。\n给予2层[gold]易伤[/gold]。",
     "type_key": "Attack",
@@ -1052,7 +1052,7 @@
       "remove_exhaust": true
     },
     "image_url": "/static/images/cards/know_thy_place.webp",
-    "beta_image_url": "/static/images/cards/beta/know_thy_place.png",
+    "beta_image_url": "/static/images/cards/beta/know_thy_place.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Skill",
@@ -1172,7 +1172,7 @@
       "add_innate": true
     },
     "image_url": "/static/images/cards/hello_world.webp",
-    "beta_image_url": "/static/images/cards/beta/hello_world.png",
+    "beta_image_url": "/static/images/cards/beta/hello_world.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Power",
@@ -1303,7 +1303,7 @@
       "block": "+4"
     },
     "image_url": "/static/images/cards/reflect.webp",
-    "beta_image_url": "/static/images/cards/beta/reflect.png",
+    "beta_image_url": "/static/images/cards/beta/reflect.webp",
     "type_variants": null,
     "upgrade_description": "获得21点[gold]格挡[/gold]。\n在本回合将你格挡掉的攻击伤害反弹给攻击者。",
     "type_key": "Skill",
@@ -1378,7 +1378,7 @@
       "description_changed": true
     },
     "image_url": "/static/images/cards/cascade.webp",
-    "beta_image_url": "/static/images/cards/beta/cascade.png",
+    "beta_image_url": "/static/images/cards/beta/cascade.webp",
     "type_variants": null,
     "upgrade_description": "打出你[gold]抽牌堆[/gold]顶部的X+1张牌。",
     "type_key": "Skill",
@@ -1546,7 +1546,7 @@
       "damage": "+3"
     },
     "image_url": "/static/images/cards/leading_strike.webp",
-    "beta_image_url": "/static/images/cards/beta/leading_strike.png",
+    "beta_image_url": "/static/images/cards/beta/leading_strike.webp",
     "type_variants": null,
     "upgrade_description": "造成10点伤害。\n将1张[gold]小刀[/gold]加入你的[gold]手牌[/gold]。",
     "type_key": "Attack",
@@ -1586,7 +1586,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/photon_cut.webp",
-    "beta_image_url": "/static/images/cards/beta/photon_cut.png",
+    "beta_image_url": "/static/images/cards/beta/photon_cut.webp",
     "type_variants": null,
     "upgrade_description": "造成13点伤害。\n抽2张牌。\n将[gold]手牌[/gold]中的一张牌放到[gold]抽牌堆[/gold]顶部。",
     "type_key": "Attack",
@@ -1669,7 +1669,7 @@
       "cost": 1
     },
     "image_url": "/static/images/cards/spectrum_shift.webp",
-    "beta_image_url": "/static/images/cards/beta/spectrum_shift.png",
+    "beta_image_url": "/static/images/cards/beta/spectrum_shift.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Power",
@@ -1796,7 +1796,7 @@
       "strengthpower": "+1"
     },
     "image_url": "/static/images/cards/resonance.webp",
-    "beta_image_url": "/static/images/cards/beta/resonance.png",
+    "beta_image_url": "/static/images/cards/beta/resonance.webp",
     "type_variants": null,
     "upgrade_description": "获得2点[gold]力量[/gold]。所有敌人失去1点[gold]力量[/gold]。",
     "type_key": "Skill",
@@ -1835,7 +1835,7 @@
       "energy": "+1"
     },
     "image_url": "/static/images/cards/turbo.webp",
-    "beta_image_url": "/static/images/cards/beta/turbo.png",
+    "beta_image_url": "/static/images/cards/beta/turbo.webp",
     "type_variants": null,
     "upgrade_description": "获得[energy:3]。\n将一张[gold]虚空[/gold]加入你的[gold]弃牌堆[/gold]。",
     "type_key": "Skill",
@@ -1910,7 +1910,7 @@
       "damage": "+5"
     },
     "image_url": "/static/images/cards/ice_lance.webp",
-    "beta_image_url": "/static/images/cards/beta/ice_lance.png",
+    "beta_image_url": "/static/images/cards/beta/ice_lance.webp",
     "type_variants": null,
     "upgrade_description": "造成24点伤害。\n[gold]生成[/gold]3个[gold]冰霜[/gold]充能球。",
     "type_key": "Attack",
@@ -2031,7 +2031,7 @@
       "hailstormpower": "+2"
     },
     "image_url": "/static/images/cards/hailstorm.webp",
-    "beta_image_url": "/static/images/cards/beta/hailstorm.png",
+    "beta_image_url": "/static/images/cards/beta/hailstorm.webp",
     "type_variants": null,
     "upgrade_description": "在你的回合结束时，如果你有[gold]冰霜[/gold]充能球，则对所有敌人造成8点伤害。",
     "type_key": "Power",
@@ -2147,7 +2147,7 @@
       "damage": "+8"
     },
     "image_url": "/static/images/cards/knockout_blow.webp",
-    "beta_image_url": "/static/images/cards/beta/knockout_blow.png",
+    "beta_image_url": "/static/images/cards/beta/knockout_blow.webp",
     "type_variants": null,
     "upgrade_description": "造成38点伤害。\n如果此牌击杀了敌人，获得[star:5]。",
     "type_key": "Attack",
@@ -2187,7 +2187,7 @@
       "energy": "+1"
     },
     "image_url": "/static/images/cards/luminesce.webp",
-    "beta_image_url": "/static/images/cards/beta/luminesce.png",
+    "beta_image_url": "/static/images/cards/beta/luminesce.webp",
     "type_variants": null,
     "upgrade_description": "获得[energy:3]。",
     "type_key": "Skill",
@@ -2360,7 +2360,7 @@
       "preptimepower": "+2"
     },
     "image_url": "/static/images/cards/prep_time.webp",
-    "beta_image_url": "/static/images/cards/beta/prep_time.png",
+    "beta_image_url": "/static/images/cards/beta/prep_time.webp",
     "type_variants": null,
     "upgrade_description": "在你的回合开始时，获得6点[gold]活力[/gold]。",
     "type_key": "Power",
@@ -2477,7 +2477,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/vicious.webp",
-    "beta_image_url": "/static/images/cards/beta/vicious.png",
+    "beta_image_url": "/static/images/cards/beta/vicious.webp",
     "type_variants": null,
     "upgrade_description": "每当你给予[gold]易伤[/gold]时，抽2张牌。",
     "type_key": "Power",
@@ -2564,7 +2564,7 @@
       "knockdownpower": "+1"
     },
     "image_url": "/static/images/cards/knockdown.webp",
-    "beta_image_url": "/static/images/cards/beta/knockdown.png",
+    "beta_image_url": "/static/images/cards/beta/knockdown.webp",
     "type_variants": null,
     "upgrade_description": "造成14点伤害。\n该敌人在本回合受到的来自其他玩家的伤害翻三倍。",
     "type_key": "Attack",
@@ -2699,7 +2699,7 @@
       "description_changed": true
     },
     "image_url": "/static/images/cards/knife_trap.webp",
-    "beta_image_url": "/static/images/cards/beta/knife_trap.png",
+    "beta_image_url": "/static/images/cards/beta/knife_trap.webp",
     "type_variants": null,
     "upgrade_description": "将你[gold]消耗牌堆[/gold]中的所有[gold]小刀[/gold][gold]升级[/gold]然后对一名敌人打出。",
     "type_key": "Skill",
@@ -2852,7 +2852,7 @@
       "damage": "+5"
     },
     "image_url": "/static/images/cards/severance.webp",
-    "beta_image_url": "/static/images/cards/beta/severance.png",
+    "beta_image_url": "/static/images/cards/beta/severance.webp",
     "type_variants": null,
     "upgrade_description": "造成18点伤害。\n将一张[gold]灵魂[/gold]分别加入你的[gold]抽牌堆[/gold]，[gold]手牌[/gold]和[gold]弃牌堆[/gold]中。",
     "type_key": "Attack",
@@ -2889,7 +2889,7 @@
       "block": "+1"
     },
     "image_url": "/static/images/cards/pillar_of_creation.webp",
-    "beta_image_url": "/static/images/cards/beta/pillar_of_creation.png",
+    "beta_image_url": "/static/images/cards/beta/pillar_of_creation.webp",
     "type_variants": null,
     "upgrade_description": "每当你生成一张卡牌, 就获得4点[gold]格挡[/gold]。",
     "type_key": "Power",
@@ -2926,7 +2926,7 @@
       "starsperturn": "+1"
     },
     "image_url": "/static/images/cards/genesis.webp",
-    "beta_image_url": "/static/images/cards/beta/genesis.png",
+    "beta_image_url": "/static/images/cards/beta/genesis.webp",
     "type_variants": null,
     "upgrade_description": "在你的回合开始时，获得[star:3]。",
     "type_key": "Power",
@@ -3092,7 +3092,7 @@
       "damage": "+3"
     },
     "image_url": "/static/images/cards/veilpiercer.webp",
-    "beta_image_url": "/static/images/cards/beta/veilpiercer.png",
+    "beta_image_url": "/static/images/cards/beta/veilpiercer.webp",
     "type_variants": null,
     "upgrade_description": "造成13点伤害。\n你打出的下一张[gold]虚无[/gold]牌耗能变为0[energy:1]。",
     "type_key": "Attack",
@@ -3138,7 +3138,7 @@
       "cost": 1
     },
     "image_url": "/static/images/cards/sword_sage.webp",
-    "beta_image_url": "/static/images/cards/beta/sword_sage.png",
+    "beta_image_url": "/static/images/cards/beta/sword_sage.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Power",
@@ -3256,7 +3256,7 @@
       "damage": "+3"
     },
     "image_url": "/static/images/cards/pillage.webp",
-    "beta_image_url": "/static/images/cards/beta/pillage.png",
+    "beta_image_url": "/static/images/cards/beta/pillage.webp",
     "type_variants": null,
     "upgrade_description": "造成9点伤害。\n抽牌直到你抽到一张非攻击牌。",
     "type_key": "Attack",
@@ -3339,7 +3339,7 @@
       "extrablock": "+2"
     },
     "image_url": "/static/images/cards/fasten.webp",
-    "beta_image_url": "/static/images/cards/beta/fasten.png",
+    "beta_image_url": "/static/images/cards/beta/fasten.webp",
     "type_variants": null,
     "upgrade_description": "从“防御”牌中额外获得7点[gold]格挡[/gold]。",
     "type_key": "Power",
@@ -3411,7 +3411,7 @@
       "add_innate": true
     },
     "image_url": "/static/images/cards/trash_to_treasure.webp",
-    "beta_image_url": "/static/images/cards/beta/trash_to_treasure.png",
+    "beta_image_url": "/static/images/cards/beta/trash_to_treasure.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Power",
@@ -3492,7 +3492,7 @@
       "strength": "+3"
     },
     "image_url": "/static/images/cards/coordinate.webp",
-    "beta_image_url": "/static/images/cards/beta/coordinate.png",
+    "beta_image_url": "/static/images/cards/beta/coordinate.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Skill",
@@ -3529,7 +3529,7 @@
       "block": "+1"
     },
     "image_url": "/static/images/cards/shroud.webp",
-    "beta_image_url": "/static/images/cards/beta/shroud.png",
+    "beta_image_url": "/static/images/cards/beta/shroud.webp",
     "type_variants": null,
     "upgrade_description": "每当你给予[gold]灾厄[/gold]时，获得3点[gold]格挡[/gold]。",
     "type_key": "Power",
@@ -3665,7 +3665,7 @@
       "block": "+1"
     },
     "image_url": "/static/images/cards/compact.webp",
-    "beta_image_url": "/static/images/cards/beta/compact.png",
+    "beta_image_url": "/static/images/cards/beta/compact.webp",
     "type_variants": null,
     "upgrade_description": "获得7点[gold]格挡[/gold]。\n将你[gold]手牌[/gold]中的全部状态牌[gold]变化[/gold]为[gold]燃料+[/gold]。",
     "type_key": "Skill",
@@ -3861,7 +3861,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/dual_wield.webp",
-    "beta_image_url": "/static/images/cards/beta/dual_wield.png",
+    "beta_image_url": "/static/images/cards/beta/dual_wield.webp",
     "type_variants": null,
     "upgrade_description": "选择一张攻击牌或能力牌。将[Cards张此牌的复制品|一张此牌的复制品]加入你的[gold]手牌[/gold]。",
     "type_key": "Skill",
@@ -4091,7 +4091,7 @@
       "damage": "+3"
     },
     "image_url": "/static/images/cards/hang.webp",
-    "beta_image_url": "/static/images/cards/beta/hang.png",
+    "beta_image_url": "/static/images/cards/beta/hang.webp",
     "type_variants": null,
     "upgrade_description": "造成13点伤害。\n让所有“吊杀”牌对这名敌人造成的伤害翻倍。",
     "type_key": "Attack",
@@ -4131,7 +4131,7 @@
       "remove_exhaust": true
     },
     "image_url": "/static/images/cards/synchronize.webp",
-    "beta_image_url": "/static/images/cards/beta/synchronize.png",
+    "beta_image_url": "/static/images/cards/beta/synchronize.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Skill",
@@ -4209,7 +4209,7 @@
       "block": "+1"
     },
     "image_url": "/static/images/cards/manifest_authority.webp",
-    "beta_image_url": "/static/images/cards/beta/manifest_authority.png",
+    "beta_image_url": "/static/images/cards/beta/manifest_authority.webp",
     "type_variants": null,
     "upgrade_description": "获得8点[gold]格挡[/gold]。\n将一张随机[gold]升级过的[/gold]无色牌加入你的[gold]手牌[/gold]。",
     "type_key": "Skill",
@@ -4252,7 +4252,7 @@
       "cost": 1
     },
     "image_url": "/static/images/cards/sovereign_blade.webp",
-    "beta_image_url": "/static/images/cards/beta/sovereign_blade.png",
+    "beta_image_url": "/static/images/cards/beta/sovereign_blade.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Attack",
@@ -4300,7 +4300,7 @@
       "repeat": "+1"
     },
     "image_url": "/static/images/cards/consuming_shadow.webp",
-    "beta_image_url": "/static/images/cards/beta/consuming_shadow.png",
+    "beta_image_url": "/static/images/cards/beta/consuming_shadow.webp",
     "type_variants": null,
     "upgrade_description": "[gold]生成[/gold]3个[gold]黑暗[/gold]充能球。\n在你的回合结束时，[gold]激发[/gold]你最左侧的充能球。",
     "type_key": "Power",
@@ -4346,7 +4346,7 @@
       "devourlifepower": "+1"
     },
     "image_url": "/static/images/cards/devour_life.webp",
-    "beta_image_url": "/static/images/cards/beta/devour_life.png",
+    "beta_image_url": "/static/images/cards/beta/devour_life.webp",
     "type_variants": null,
     "upgrade_description": "每当你打出一张[gold]灵魂[/gold]时，[gold]召唤[/gold]2。",
     "type_key": "Power",
@@ -4468,7 +4468,7 @@
       "damage": "+11"
     },
     "image_url": "/static/images/cards/whistle.webp",
-    "beta_image_url": "/static/images/cards/beta/whistle.png",
+    "beta_image_url": "/static/images/cards/beta/whistle.webp",
     "type_variants": null,
     "upgrade_description": "造成44点伤害。\n[gold]击晕[/gold]该敌人。",
     "type_key": "Attack",
@@ -4506,7 +4506,7 @@
     },
     "upgrade": null,
     "image_url": "/static/images/cards/beckon.webp",
-    "beta_image_url": "/static/images/cards/beta/beckon.png",
+    "beta_image_url": "/static/images/cards/beta/beckon.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Status",
@@ -4593,7 +4593,7 @@
       "poison": "+3"
     },
     "image_url": "/static/images/cards/bubble_bubble.webp",
-    "beta_image_url": "/static/images/cards/beta/bubble_bubble.png",
+    "beta_image_url": "/static/images/cards/beta/bubble_bubble.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Skill",
@@ -4633,7 +4633,7 @@
       "ostydamage": "+3"
     },
     "image_url": "/static/images/cards/snap.webp",
-    "beta_image_url": "/static/images/cards/beta/snap.png",
+    "beta_image_url": "/static/images/cards/beta/snap.webp",
     "type_variants": null,
     "upgrade_description": "[gold]奥斯提[/gold]造成10点伤害。\n给[gold]手牌[/gold]中的一张牌添加[gold]保留[/gold]。",
     "type_key": "Attack",
@@ -4718,7 +4718,7 @@
       "energy": "+1"
     },
     "image_url": "/static/images/cards/invoke.webp",
-    "beta_image_url": "/static/images/cards/beta/invoke.png",
+    "beta_image_url": "/static/images/cards/beta/invoke.webp",
     "type_variants": null,
     "upgrade_description": "在下个回合[gold]召唤[/gold]3并获得[energy:3]。",
     "type_key": "Skill",
@@ -4793,7 +4793,7 @@
       "cost": 0
     },
     "image_url": "/static/images/cards/quadcast.webp",
-    "beta_image_url": "/static/images/cards/beta/quadcast.png",
+    "beta_image_url": "/static/images/cards/beta/quadcast.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Skill",
@@ -4916,7 +4916,7 @@
       "vigorpower": "+2"
     },
     "image_url": "/static/images/cards/terraforming.webp",
-    "beta_image_url": "/static/images/cards/beta/terraforming.png",
+    "beta_image_url": "/static/images/cards/beta/terraforming.webp",
     "type_variants": null,
     "upgrade_description": "获得8点[gold]活力[/gold]。",
     "type_key": "Skill",
@@ -5064,7 +5064,7 @@
       "cost": 1
     },
     "image_url": "/static/images/cards/unmovable.webp",
-    "beta_image_url": "/static/images/cards/beta/unmovable.png",
+    "beta_image_url": "/static/images/cards/beta/unmovable.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Power",
@@ -5139,7 +5139,7 @@
       "block": "+2"
     },
     "image_url": "/static/images/cards/toric_toughness.webp",
-    "beta_image_url": "/static/images/cards/beta/toric_toughness.png",
+    "beta_image_url": "/static/images/cards/beta/toric_toughness.webp",
     "type_variants": null,
     "upgrade_description": "获得7点[gold]格挡[/gold]。\n在接下来的2个回合开始时，获得7点[gold]格挡[/gold]。",
     "type_key": "Skill",
@@ -5179,7 +5179,7 @@
       "remove_exhaust": true
     },
     "image_url": "/static/images/cards/graveblast.webp",
-    "beta_image_url": "/static/images/cards/beta/graveblast.png",
+    "beta_image_url": "/static/images/cards/beta/graveblast.webp",
     "type_variants": null,
     "upgrade_description": "造成6点伤害。\n将[gold]弃牌堆[/gold]中的一张牌放入你的[gold]手牌[/gold]。",
     "type_key": "Attack",
@@ -5219,7 +5219,7 @@
       "damage": "+11"
     },
     "image_url": "/static/images/cards/bury.webp",
-    "beta_image_url": "/static/images/cards/beta/bury.png",
+    "beta_image_url": "/static/images/cards/beta/bury.webp",
     "type_variants": null,
     "upgrade_description": "造成63点伤害。",
     "type_key": "Attack",
@@ -5257,7 +5257,7 @@
       "calculationbase": "+3"
     },
     "image_url": "/static/images/cards/stack.webp",
-    "beta_image_url": "/static/images/cards/beta/stack.png",
+    "beta_image_url": "/static/images/cards/beta/stack.webp",
     "type_variants": null,
     "upgrade_description": "获得等量于与你当前[gold]弃牌堆[/gold]中牌数+[CalculationBase|]的[gold]格挡[/gold]值。",
     "type_key": "Skill",
@@ -5345,7 +5345,7 @@
       "strength": "+1"
     },
     "image_url": "/static/images/cards/blade_of_ink.webp",
-    "beta_image_url": "/static/images/cards/beta/blade_of_ink.png",
+    "beta_image_url": "/static/images/cards/beta/blade_of_ink.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Skill",
@@ -5417,7 +5417,7 @@
       "cost": 0
     },
     "image_url": "/static/images/cards/distraction.webp",
-    "beta_image_url": "/static/images/cards/beta/distraction.png",
+    "beta_image_url": "/static/images/cards/beta/distraction.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Skill",
@@ -5571,7 +5571,7 @@
       "damage": "+5"
     },
     "image_url": "/static/images/cards/jackpot.webp",
-    "beta_image_url": "/static/images/cards/beta/jackpot.png",
+    "beta_image_url": "/static/images/cards/beta/jackpot.webp",
     "type_variants": null,
     "upgrade_description": "造成30点伤害。\n将3张随机[gold]升级过[/gold]的0[energy:1]的牌加入你的[gold]手牌[/gold]。",
     "type_key": "Attack",
@@ -5613,7 +5613,7 @@
       "add_innate": true
     },
     "image_url": "/static/images/cards/big_bang.webp",
-    "beta_image_url": "/static/images/cards/beta/big_bang.png",
+    "beta_image_url": "/static/images/cards/beta/big_bang.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Skill",
@@ -5776,7 +5776,7 @@
       "damage": "+2"
     },
     "image_url": "/static/images/cards/heavenly_drill.webp",
-    "beta_image_url": "/static/images/cards/beta/heavenly_drill.png",
+    "beta_image_url": "/static/images/cards/beta/heavenly_drill.webp",
     "type_variants": null,
     "upgrade_description": "造成10点伤害X次。\n如果X的最终数值为4或以上，则将X的数值翻倍。",
     "type_key": "Attack",
@@ -5965,7 +5965,7 @@
       "damage": "+6"
     },
     "image_url": "/static/images/cards/banshees_cry.webp",
-    "beta_image_url": "/static/images/cards/beta/banshees_cry.png",
+    "beta_image_url": "/static/images/cards/beta/banshees_cry.webp",
     "type_variants": null,
     "upgrade_description": "对所有敌人造成39点伤害。\n本场战斗中每打出过一张[gold]虚无[/gold]牌，此牌费用就减少[energy:2]。",
     "type_key": "Attack",
@@ -6038,7 +6038,7 @@
       "damage": "+3"
     },
     "image_url": "/static/images/cards/make_it_so.webp",
-    "beta_image_url": "/static/images/cards/beta/make_it_so.png",
+    "beta_image_url": "/static/images/cards/beta/make_it_so.webp",
     "type_variants": null,
     "upgrade_description": "造成9点伤害。\n你每在一回合内打出3张技能牌，就将这张牌放入你的[gold]手牌[/gold]。",
     "type_key": "Attack",
@@ -6146,7 +6146,7 @@
       "cost": 0
     },
     "image_url": "/static/images/cards/subroutine.webp",
-    "beta_image_url": "/static/images/cards/beta/subroutine.png",
+    "beta_image_url": "/static/images/cards/beta/subroutine.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Power",
@@ -6181,7 +6181,7 @@
     "vars": null,
     "upgrade": null,
     "image_url": "/static/images/cards/spore_mind.webp",
-    "beta_image_url": "/static/images/cards/beta/spore_mind.png",
+    "beta_image_url": "/static/images/cards/beta/spore_mind.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Curse",
@@ -6258,7 +6258,7 @@
       "block": "+3"
     },
     "image_url": "/static/images/cards/cosmic_indifference.webp",
-    "beta_image_url": "/static/images/cards/beta/cosmic_indifference.png",
+    "beta_image_url": "/static/images/cards/beta/cosmic_indifference.webp",
     "type_variants": null,
     "upgrade_description": "获得9点[gold]格挡[/gold]。\n将[gold]弃牌堆[/gold]中的一张牌放到你的[gold]抽牌堆[/gold]的顶部。",
     "type_key": "Skill",
@@ -6455,7 +6455,7 @@
       "add_innate": true
     },
     "image_url": "/static/images/cards/the_sealed_throne.webp",
-    "beta_image_url": "/static/images/cards/beta/the_sealed_throne.png",
+    "beta_image_url": "/static/images/cards/beta/the_sealed_throne.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Power",
@@ -6666,7 +6666,7 @@
       "stars": "+1"
     },
     "image_url": "/static/images/cards/venerate.webp",
-    "beta_image_url": "/static/images/cards/beta/venerate.png",
+    "beta_image_url": "/static/images/cards/beta/venerate.webp",
     "type_variants": null,
     "upgrade_description": "获得[star:3]。",
     "type_key": "Skill",
@@ -6704,7 +6704,7 @@
       "block": "+3"
     },
     "image_url": "/static/images/cards/colossus.webp",
-    "beta_image_url": "/static/images/cards/beta/colossus.png",
+    "beta_image_url": "/static/images/cards/beta/colossus.webp",
     "type_variants": null,
     "upgrade_description": "获得8点[gold]格挡[/gold]。\n在本回合中，有[gold]易伤[/gold]状态的敌人对你造成的伤害降低50%。",
     "type_key": "Skill",
@@ -6741,7 +6741,7 @@
       "damage": "+4"
     },
     "image_url": "/static/images/cards/giant_rock.webp",
-    "beta_image_url": "/static/images/cards/beta/giant_rock.png",
+    "beta_image_url": "/static/images/cards/beta/giant_rock.webp",
     "type_variants": null,
     "upgrade_description": "造成20点伤害。",
     "type_key": "Attack",
@@ -6782,7 +6782,7 @@
       "increase": "+1"
     },
     "image_url": "/static/images/cards/the_scythe.webp",
-    "beta_image_url": "/static/images/cards/beta/the_scythe.png",
+    "beta_image_url": "/static/images/cards/beta/the_scythe.webp",
     "type_variants": null,
     "upgrade_description": "造成13点伤害。\n这张牌在本局游戏中的伤害永久性增加4。",
     "type_key": "Attack",
@@ -6820,7 +6820,7 @@
       "cost": 1
     },
     "image_url": "/static/images/cards/entrench.webp",
-    "beta_image_url": "/static/images/cards/beta/entrench.png",
+    "beta_image_url": "/static/images/cards/beta/entrench.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Skill",
@@ -6855,7 +6855,7 @@
       "add_innate": true
     },
     "image_url": "/static/images/cards/beacon_of_hope.webp",
-    "beta_image_url": "/static/images/cards/beta/beacon_of_hope.png",
+    "beta_image_url": "/static/images/cards/beta/beacon_of_hope.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Power",
@@ -6947,7 +6947,7 @@
       "phantombladespower": "+3"
     },
     "image_url": "/static/images/cards/phantom_blades.webp",
-    "beta_image_url": "/static/images/cards/beta/phantom_blades.png",
+    "beta_image_url": "/static/images/cards/beta/phantom_blades.webp",
     "type_variants": null,
     "upgrade_description": "[gold]小刀[/gold]获得[gold]保留[/gold]。\n你在每回合打出的第一张[gold]小刀[/gold]额外造成12点伤害。",
     "type_key": "Power",
@@ -6984,7 +6984,7 @@
       "cost": 1
     },
     "image_url": "/static/images/cards/eidolon.webp",
-    "beta_image_url": "/static/images/cards/beta/eidolon.png",
+    "beta_image_url": "/static/images/cards/beta/eidolon.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Skill",
@@ -7235,7 +7235,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/guiding_star.webp",
-    "beta_image_url": "/static/images/cards/beta/guiding_star.png",
+    "beta_image_url": "/static/images/cards/beta/guiding_star.webp",
     "type_variants": null,
     "upgrade_description": "造成13点伤害。\n在下一回合抽3张牌。",
     "type_key": "Attack",
@@ -7272,7 +7272,7 @@
       "remove_exhaust": true
     },
     "image_url": "/static/images/cards/ignition.webp",
-    "beta_image_url": "/static/images/cards/beta/ignition.png",
+    "beta_image_url": "/static/images/cards/beta/ignition.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Skill",
@@ -7320,7 +7320,7 @@
       "block": "+3"
     },
     "image_url": "/static/images/cards/lightning_rod.webp",
-    "beta_image_url": "/static/images/cards/beta/lightning_rod.png",
+    "beta_image_url": "/static/images/cards/beta/lightning_rod.webp",
     "type_variants": null,
     "upgrade_description": "获得7点[gold]格挡[/gold]。\n在下2个回合开始时,[gold]生成[/gold]1个[gold]闪电[/gold]充能球。",
     "type_key": "Skill",
@@ -7359,7 +7359,7 @@
       "strengthloss": "+3"
     },
     "image_url": "/static/images/cards/enfeebling_touch.webp",
-    "beta_image_url": "/static/images/cards/beta/enfeebling_touch.png",
+    "beta_image_url": "/static/images/cards/beta/enfeebling_touch.webp",
     "type_variants": null,
     "upgrade_description": "让一名敌人在本回合内失去11点[gold]力量[/gold]。",
     "type_key": "Skill",
@@ -7399,7 +7399,7 @@
       "damage": "+3"
     },
     "image_url": "/static/images/cards/rebound.webp",
-    "beta_image_url": "/static/images/cards/beta/rebound.png",
+    "beta_image_url": "/static/images/cards/beta/rebound.webp",
     "type_variants": null,
     "upgrade_description": "造成12点伤害。\n将你在本回合打出的下一张牌放置到你的[gold]抽牌堆[/gold]顶部。",
     "type_key": "Attack",
@@ -7438,7 +7438,7 @@
       "damage": "+2"
     },
     "image_url": "/static/images/cards/barrage.webp",
-    "beta_image_url": "/static/images/cards/beta/barrage.png",
+    "beta_image_url": "/static/images/cards/beta/barrage.webp",
     "type_variants": null,
     "upgrade_description": "当前每有一个[gold]充能球[/gold]，造成7点伤害。",
     "type_key": "Attack",
@@ -7522,7 +7522,7 @@
       "block": "+4"
     },
     "image_url": "/static/images/cards/fight_through.webp",
-    "beta_image_url": "/static/images/cards/beta/fight_through.png",
+    "beta_image_url": "/static/images/cards/beta/fight_through.webp",
     "type_variants": null,
     "upgrade_description": "获得17点[gold]格挡[/gold]。\n将2张[gold]伤口[/gold]加入你的[gold]弃牌堆[/gold]。",
     "type_key": "Skill",
@@ -7575,7 +7575,7 @@
       "damage": "+11"
     },
     "image_url": "/static/images/cards/comet.webp",
-    "beta_image_url": "/static/images/cards/beta/comet.png",
+    "beta_image_url": "/static/images/cards/beta/comet.webp",
     "type_variants": null,
     "upgrade_description": "造成44点伤害。\n给予3层[gold]虚弱[/gold]。\n给予3层[gold]易伤[/gold]。",
     "type_key": "Attack",
@@ -7656,7 +7656,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/glimpse_beyond.webp",
-    "beta_image_url": "/static/images/cards/beta/glimpse_beyond.png",
+    "beta_image_url": "/static/images/cards/beta/glimpse_beyond.webp",
     "type_variants": null,
     "upgrade_description": "在所有玩家的[gold]抽牌堆[/gold]中加入4张[gold]灵魂[/gold]。",
     "type_key": "Skill",
@@ -7735,7 +7735,7 @@
       "forge": "+3"
     },
     "image_url": "/static/images/cards/summon_forth.webp",
-    "beta_image_url": "/static/images/cards/beta/summon_forth.png",
+    "beta_image_url": "/static/images/cards/beta/summon_forth.webp",
     "type_variants": null,
     "upgrade_description": "[gold]铸造[/gold]11。\n不论何处，将[gold]君王之剑[/gold]放入你的[gold]手牌[/gold]。",
     "type_key": "Skill",
@@ -7772,7 +7772,7 @@
       "forge": "+2"
     },
     "image_url": "/static/images/cards/conqueror.webp",
-    "beta_image_url": "/static/images/cards/beta/conqueror.png",
+    "beta_image_url": "/static/images/cards/beta/conqueror.webp",
     "type_variants": null,
     "upgrade_description": "[gold]铸造[/gold]5。\n[gold]君王之剑[/gold]在本回合对敌人造成双倍伤害。",
     "type_key": "Skill",
@@ -7813,7 +7813,7 @@
       "ostydamage": "+2"
     },
     "image_url": "/static/images/cards/right_hand_hand.webp",
-    "beta_image_url": "/static/images/cards/beta/right_hand_hand.png",
+    "beta_image_url": "/static/images/cards/beta/right_hand_hand.webp",
     "type_variants": null,
     "upgrade_description": "[gold]奥斯提[/gold]造成6点伤害。\n每当你打出耗能为[energy:2]或以上的牌，将此牌从[gold]弃牌堆[/gold]放回你的[gold]手牌[/gold]。",
     "type_key": "Attack",
@@ -7968,7 +7968,7 @@
     },
     "upgrade": null,
     "image_url": "/static/images/cards/mind_rot.webp",
-    "beta_image_url": "/static/images/cards/beta/mind_rot.png",
+    "beta_image_url": "/static/images/cards/beta/mind_rot.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Status",
@@ -8201,7 +8201,7 @@
       "cost": 0
     },
     "image_url": "/static/images/cards/nostalgia.webp",
-    "beta_image_url": "/static/images/cards/beta/nostalgia.png",
+    "beta_image_url": "/static/images/cards/beta/nostalgia.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Power",
@@ -8276,7 +8276,7 @@
       "damage": "+3"
     },
     "image_url": "/static/images/cards/spite.webp",
-    "beta_image_url": "/static/images/cards/beta/spite.png",
+    "beta_image_url": "/static/images/cards/beta/spite.webp",
     "type_variants": null,
     "upgrade_description": "造成9点伤害。\n如果你在本回合失去过生命值，则抽1张牌。",
     "type_key": "Attack",
@@ -8454,7 +8454,7 @@
       "remove_exhaust": true
     },
     "image_url": "/static/images/cards/demonic_shield.webp",
-    "beta_image_url": "/static/images/cards/beta/demonic_shield.png",
+    "beta_image_url": "/static/images/cards/beta/demonic_shield.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Skill",
@@ -8611,7 +8611,7 @@
     },
     "upgrade": null,
     "image_url": "/static/images/cards/infection.webp",
-    "beta_image_url": "/static/images/cards/beta/infection.png",
+    "beta_image_url": "/static/images/cards/beta/infection.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Status",
@@ -8726,7 +8726,7 @@
       "description_changed": true
     },
     "image_url": "/static/images/cards/largesse.webp",
-    "beta_image_url": "/static/images/cards/beta/largesse.png",
+    "beta_image_url": "/static/images/cards/beta/largesse.webp",
     "type_variants": null,
     "upgrade_description": "将一张随机的[gold]升级过的[/gold]无色牌添加至一位其他玩家的[gold]手牌[/gold]中。",
     "type_key": "Skill",
@@ -8768,7 +8768,7 @@
     },
     "upgrade": null,
     "image_url": "/static/images/cards/sloth.webp",
-    "beta_image_url": "/static/images/cards/beta/sloth.png",
+    "beta_image_url": "/static/images/cards/beta/sloth.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Status",
@@ -8805,7 +8805,7 @@
       "forge": "+5"
     },
     "image_url": "/static/images/cards/spoils_of_battle.webp",
-    "beta_image_url": "/static/images/cards/beta/spoils_of_battle.png",
+    "beta_image_url": "/static/images/cards/beta/spoils_of_battle.webp",
     "type_variants": null,
     "upgrade_description": "[gold]铸造[/gold]15。",
     "type_key": "Skill",
@@ -8967,7 +8967,7 @@
       "forge": "+2"
     },
     "image_url": "/static/images/cards/wrought_in_war.webp",
-    "beta_image_url": "/static/images/cards/beta/wrought_in_war.png",
+    "beta_image_url": "/static/images/cards/beta/wrought_in_war.webp",
     "type_variants": null,
     "upgrade_description": "造成9点伤害。\n[gold]铸造[/gold]7。",
     "type_key": "Attack",
@@ -9054,7 +9054,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/drum_of_battle.webp",
-    "beta_image_url": "/static/images/cards/beta/drum_of_battle.png",
+    "beta_image_url": "/static/images/cards/beta/drum_of_battle.webp",
     "type_variants": null,
     "upgrade_description": "抽3张牌。\n在你的回合开始时，[gold]消耗[/gold]你的[gold]抽牌堆[/gold]顶部的牌。",
     "type_key": "Power",
@@ -9131,7 +9131,7 @@
       "block": "+3"
     },
     "image_url": "/static/images/cards/i_am_invincible.webp",
-    "beta_image_url": "/static/images/cards/beta/i_am_invincible.png",
+    "beta_image_url": "/static/images/cards/beta/i_am_invincible.webp",
     "type_variants": null,
     "upgrade_description": "获得12点[gold]格挡[/gold]。\n在你的回合结束时，如果这张牌位于[gold]抽牌堆[/gold]顶部，则将其打出。",
     "type_key": "Skill",
@@ -9400,7 +9400,7 @@
       "damage": "+4"
     },
     "image_url": "/static/images/cards/shatter.webp",
-    "beta_image_url": "/static/images/cards/beta/shatter.png",
+    "beta_image_url": "/static/images/cards/beta/shatter.webp",
     "type_variants": null,
     "upgrade_description": "对所有敌人造成15点伤害。\n[gold]激发[/gold]所有充能球。",
     "type_key": "Attack",
@@ -9437,7 +9437,7 @@
       "block": "+5"
     },
     "image_url": "/static/images/cards/lift.webp",
-    "beta_image_url": "/static/images/cards/beta/lift.png",
+    "beta_image_url": "/static/images/cards/beta/lift.webp",
     "type_variants": null,
     "upgrade_description": "给另一名玩家16点[gold]格挡[/gold]。",
     "type_key": "Skill",
@@ -9472,7 +9472,7 @@
     "vars": null,
     "upgrade": null,
     "image_url": "/static/images/cards/enthralled.webp",
-    "beta_image_url": "/static/images/cards/beta/enthralled.png",
+    "beta_image_url": "/static/images/cards/beta/enthralled.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Curse",
@@ -9601,7 +9601,7 @@
       "ostydamage": "+5"
     },
     "image_url": "/static/images/cards/sweeping_gaze.webp",
-    "beta_image_url": "/static/images/cards/beta/sweeping_gaze.png",
+    "beta_image_url": "/static/images/cards/beta/sweeping_gaze.webp",
     "type_variants": null,
     "upgrade_description": "[gold]奥斯提[/gold]对随机一名敌人造成15点伤害。",
     "type_key": "Attack",
@@ -9724,7 +9724,7 @@
       "cards": "+2"
     },
     "image_url": "/static/images/cards/decisions_decisions.webp",
-    "beta_image_url": "/static/images/cards/beta/decisions_decisions.png",
+    "beta_image_url": "/static/images/cards/beta/decisions_decisions.webp",
     "type_variants": null,
     "upgrade_description": "抽5张牌。\n选择你[gold]手牌[/gold]中的一张技能牌，并将其打出3次。",
     "type_key": "Skill",
@@ -9802,7 +9802,7 @@
       "damage": "+3"
     },
     "image_url": "/static/images/cards/refract.webp",
-    "beta_image_url": "/static/images/cards/beta/refract.png",
+    "beta_image_url": "/static/images/cards/beta/refract.webp",
     "type_variants": null,
     "upgrade_description": "造成12点伤害两次。\n[gold]生成[/gold]2个[gold]玻璃[/gold]充能球。",
     "type_key": "Attack",
@@ -9839,7 +9839,7 @@
       "energy": "+1"
     },
     "image_url": "/static/images/cards/outmaneuver.webp",
-    "beta_image_url": "/static/images/cards/beta/outmaneuver.png",
+    "beta_image_url": "/static/images/cards/beta/outmaneuver.webp",
     "type_variants": null,
     "upgrade_description": "在下个回合获得[energy:3]。",
     "type_key": "Skill",
@@ -9876,7 +9876,7 @@
       "summon": "+2"
     },
     "image_url": "/static/images/cards/bodyguard.webp",
-    "beta_image_url": "/static/images/cards/beta/bodyguard.png",
+    "beta_image_url": "/static/images/cards/beta/bodyguard.webp",
     "type_variants": null,
     "upgrade_description": "[gold]召唤[/gold]7。",
     "type_key": "Skill",
@@ -9955,7 +9955,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/huddle_up.webp",
-    "beta_image_url": "/static/images/cards/beta/huddle_up.png",
+    "beta_image_url": "/static/images/cards/beta/huddle_up.webp",
     "type_variants": null,
     "upgrade_description": "所有玩家抽3张牌。",
     "type_key": "Skill",
@@ -10031,7 +10031,7 @@
       "energy": "+1"
     },
     "image_url": "/static/images/cards/delay.webp",
-    "beta_image_url": "/static/images/cards/beta/delay.png",
+    "beta_image_url": "/static/images/cards/beta/delay.webp",
     "type_variants": null,
     "upgrade_description": "获得13点[gold]格挡[/gold]。\n在下个回合，\n获得[energy:2]。",
     "type_key": "Skill",
@@ -10077,7 +10077,7 @@
       "parrypower": "+3"
     },
     "image_url": "/static/images/cards/parry.webp",
-    "beta_image_url": "/static/images/cards/beta/parry.png",
+    "beta_image_url": "/static/images/cards/beta/parry.webp",
     "type_variants": null,
     "upgrade_description": "每当你打出[gold]君王之剑[/gold]时，获得9点[gold]格挡[/gold]。",
     "type_key": "Power",
@@ -10117,7 +10117,7 @@
       "remove_exhaust": true
     },
     "image_url": "/static/images/cards/mimic.webp",
-    "beta_image_url": "/static/images/cards/beta/mimic.png",
+    "beta_image_url": "/static/images/cards/beta/mimic.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Skill",
@@ -10157,7 +10157,7 @@
       "block": "+4"
     },
     "image_url": "/static/images/cards/intercept.webp",
-    "beta_image_url": "/static/images/cards/beta/intercept.png",
+    "beta_image_url": "/static/images/cards/beta/intercept.webp",
     "type_variants": null,
     "upgrade_description": "获得13点[gold]格挡[/gold]。\n将本回合所有要对另一名玩家发起的攻击转移到你的身上。",
     "type_key": "Skill",
@@ -10194,7 +10194,7 @@
       "damage": "+2"
     },
     "image_url": "/static/images/cards/fisticuffs.webp",
-    "beta_image_url": "/static/images/cards/beta/fisticuffs.png",
+    "beta_image_url": "/static/images/cards/beta/fisticuffs.webp",
     "type_variants": null,
     "upgrade_description": "造成9点伤害。\n获得等量于所造成伤害的[gold]格挡[/gold]。",
     "type_key": "Attack",
@@ -10279,7 +10279,7 @@
       "summon": "+1"
     },
     "image_url": "/static/images/cards/dirge.webp",
-    "beta_image_url": "/static/images/cards/beta/dirge.png",
+    "beta_image_url": "/static/images/cards/beta/dirge.webp",
     "type_variants": null,
     "upgrade_description": "[gold]召唤[/gold]4X次。\n将X张[gold]灵魂+[/gold]添加到你的[gold]抽牌堆[/gold]中。",
     "type_key": "Skill",
@@ -10360,7 +10360,7 @@
       "damage": "+3"
     },
     "image_url": "/static/images/cards/seeker_strike.webp",
-    "beta_image_url": "/static/images/cards/beta/seeker_strike.png",
+    "beta_image_url": "/static/images/cards/beta/seeker_strike.webp",
     "type_variants": null,
     "upgrade_description": "造成9点伤害。\n从[gold]抽牌堆[/gold]的随机3张牌中选择一张加入你的[gold]手牌[/gold]。",
     "type_key": "Attack",
@@ -10406,7 +10406,7 @@
       "debilitatepower": "+1"
     },
     "image_url": "/static/images/cards/debilitate.webp",
-    "beta_image_url": "/static/images/cards/beta/debilitate.png",
+    "beta_image_url": "/static/images/cards/beta/debilitate.webp",
     "type_variants": null,
     "upgrade_description": "造成9点伤害。\n在接下来的4回合内，该敌人身上的[gold]易伤[/gold]与[gold]虚弱[/gold]效率翻倍。",
     "type_key": "Attack",
@@ -10445,7 +10445,7 @@
       "increase": "+1"
     },
     "image_url": "/static/images/cards/maul.webp",
-    "beta_image_url": "/static/images/cards/beta/maul.png",
+    "beta_image_url": "/static/images/cards/beta/maul.webp",
     "type_variants": null,
     "upgrade_description": "造成6点伤害两次。\n在这场战斗中，将所有“撕咬”牌的伤害增加2。",
     "type_key": "Attack",
@@ -10485,7 +10485,7 @@
       "calculationbase": "+3"
     },
     "image_url": "/static/images/cards/rend.webp",
-    "beta_image_url": "/static/images/cards/beta/rend.png",
+    "beta_image_url": "/static/images/cards/beta/rend.webp",
     "type_variants": null,
     "upgrade_description": "造成15点伤害。\n该名敌人身上每有一种负面效果，就额外造成8点伤害。",
     "type_key": "Attack",
@@ -10568,7 +10568,7 @@
       "damage": "+3"
     },
     "image_url": "/static/images/cards/sow.webp",
-    "beta_image_url": "/static/images/cards/beta/sow.png",
+    "beta_image_url": "/static/images/cards/beta/sow.webp",
     "type_variants": null,
     "upgrade_description": "对所有敌人造成11点伤害。",
     "type_key": "Attack",
@@ -10656,7 +10656,7 @@
       "damage": "+6"
     },
     "image_url": "/static/images/cards/reap.webp",
-    "beta_image_url": "/static/images/cards/beta/reap.png",
+    "beta_image_url": "/static/images/cards/beta/reap.webp",
     "type_variants": null,
     "upgrade_description": "造成33点伤害。",
     "type_key": "Attack",
@@ -10697,7 +10697,7 @@
       "block": "+3"
     },
     "image_url": "/static/images/cards/gather_light.webp",
-    "beta_image_url": "/static/images/cards/beta/gather_light.png",
+    "beta_image_url": "/static/images/cards/beta/gather_light.webp",
     "type_variants": null,
     "upgrade_description": "获得10点[gold]格挡[/gold]。\n获得[star:1]。",
     "type_key": "Skill",
@@ -10740,7 +10740,7 @@
       "energy": "+1"
     },
     "image_url": "/static/images/cards/relax.webp",
-    "beta_image_url": "/static/images/cards/beta/relax.png",
+    "beta_image_url": "/static/images/cards/beta/relax.webp",
     "type_variants": null,
     "upgrade_description": "获得17点[gold]格挡[/gold]。\n下个回合，抽3张牌并获得[energy:3]。",
     "type_key": "Skill",
@@ -10820,7 +10820,7 @@
       "damage": "+3"
     },
     "image_url": "/static/images/cards/flak_cannon.webp",
-    "beta_image_url": "/static/images/cards/beta/flak_cannon.png",
+    "beta_image_url": "/static/images/cards/beta/flak_cannon.webp",
     "type_variants": null,
     "upgrade_description": "[gold]消耗[/gold]你所有的[gold]状态[/gold]牌。\n每有一张被[gold]消耗[/gold]的牌，就随机对敌人造成11点伤害。",
     "type_key": "Attack",
@@ -10939,7 +10939,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/bundle_of_joy.webp",
-    "beta_image_url": "/static/images/cards/beta/bundle_of_joy.png",
+    "beta_image_url": "/static/images/cards/beta/bundle_of_joy.webp",
     "type_variants": null,
     "upgrade_description": "将4张随机无色牌添加到你的[gold]手牌[/gold]。",
     "type_key": "Skill",
@@ -10986,7 +10986,7 @@
       "description_changed": true
     },
     "image_url": "/static/images/cards/spinner.webp",
-    "beta_image_url": "/static/images/cards/beta/spinner.png",
+    "beta_image_url": "/static/images/cards/beta/spinner.webp",
     "type_variants": null,
     "upgrade_description": "[gold]生成[/gold]1个[gold]玻璃[/gold]充能球。\n在你的回合开始时，[gold]生成[/gold]1个[gold]玻璃[/gold]充能球。",
     "type_key": "Power",
@@ -11247,7 +11247,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/foregone_conclusion.webp",
-    "beta_image_url": "/static/images/cards/beta/foregone_conclusion.png",
+    "beta_image_url": "/static/images/cards/beta/foregone_conclusion.webp",
     "type_variants": null,
     "upgrade_description": "在下个回合，从你的[gold]抽牌堆[/gold]中选择3张牌放入你的[gold]手牌[/gold]。",
     "type_key": "Skill",
@@ -11324,7 +11324,7 @@
       "damage": "+3"
     },
     "image_url": "/static/images/cards/shining_strike.webp",
-    "beta_image_url": "/static/images/cards/beta/shining_strike.png",
+    "beta_image_url": "/static/images/cards/beta/shining_strike.webp",
     "type_variants": null,
     "upgrade_description": "造成11点伤害。\n获得[star:2]。\n将这张牌放置于你的[gold]抽牌堆[/gold]顶部。",
     "type_key": "Attack",
@@ -11362,7 +11362,7 @@
       "energy": "+1"
     },
     "image_url": "/static/images/cards/alignment.webp",
-    "beta_image_url": "/static/images/cards/beta/alignment.png",
+    "beta_image_url": "/static/images/cards/beta/alignment.webp",
     "type_variants": null,
     "upgrade_description": "获得[energy:3]。",
     "type_key": "Skill",
@@ -11445,7 +11445,7 @@
       "vigorpower": "+1"
     },
     "image_url": "/static/images/cards/patter.webp",
-    "beta_image_url": "/static/images/cards/beta/patter.png",
+    "beta_image_url": "/static/images/cards/beta/patter.webp",
     "type_variants": null,
     "upgrade_description": "获得10点[gold]格挡[/gold]。\n获得3点[gold]活力[/gold]。",
     "type_key": "Skill",
@@ -11487,7 +11487,7 @@
       "strengthloss": "+2"
     },
     "image_url": "/static/images/cards/dying_star.webp",
-    "beta_image_url": "/static/images/cards/beta/dying_star.png",
+    "beta_image_url": "/static/images/cards/beta/dying_star.webp",
     "type_variants": null,
     "upgrade_description": "对所有敌人造成11点伤害。所有敌人在本回合中失去11点[gold]力量[/gold]。",
     "type_key": "Attack",
@@ -11528,7 +11528,7 @@
       "damage": "+4"
     },
     "image_url": "/static/images/cards/astral_pulse.webp",
-    "beta_image_url": "/static/images/cards/beta/astral_pulse.png",
+    "beta_image_url": "/static/images/cards/beta/astral_pulse.webp",
     "type_variants": null,
     "upgrade_description": "对所有敌人造成18点伤害。",
     "type_key": "Attack",
@@ -11605,7 +11605,7 @@
       "block": "+4"
     },
     "image_url": "/static/images/cards/shadow_shield.webp",
-    "beta_image_url": "/static/images/cards/beta/shadow_shield.png",
+    "beta_image_url": "/static/images/cards/beta/shadow_shield.webp",
     "type_variants": null,
     "upgrade_description": "获得15点[gold]格挡[/gold]。\n[gold]生成[/gold]1个[gold]黑暗[/gold]充能球。",
     "type_key": "Skill",
@@ -11680,7 +11680,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/pale_blue_dot.webp",
-    "beta_image_url": "/static/images/cards/beta/pale_blue_dot.png",
+    "beta_image_url": "/static/images/cards/beta/pale_blue_dot.webp",
     "type_variants": null,
     "upgrade_description": "如果你在一回合内打出了大于等于5张牌，在下个回合开始时抽2张牌。",
     "type_key": "Power",
@@ -11717,7 +11717,7 @@
       "add_innate": true
     },
     "image_url": "/static/images/cards/tyranny.webp",
-    "beta_image_url": "/static/images/cards/beta/tyranny.png",
+    "beta_image_url": "/static/images/cards/beta/tyranny.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Power",
@@ -11773,7 +11773,7 @@
       "dexterity": "+1"
     },
     "image_url": "/static/images/cards/bulk_up.webp",
-    "beta_image_url": "/static/images/cards/beta/bulk_up.png",
+    "beta_image_url": "/static/images/cards/beta/bulk_up.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Power",
@@ -11927,7 +11927,7 @@
       "damage": "+1"
     },
     "image_url": "/static/images/cards/lunar_blast.webp",
-    "beta_image_url": "/static/images/cards/beta/lunar_blast.png",
+    "beta_image_url": "/static/images/cards/beta/lunar_blast.webp",
     "type_variants": null,
     "upgrade_description": "本回合中每打出过一张技能牌，此牌额外造成5点伤害一次。",
     "type_key": "Attack",
@@ -11964,7 +11964,7 @@
       "replay": "+1"
     },
     "image_url": "/static/images/cards/hidden_gem.webp",
-    "beta_image_url": "/static/images/cards/beta/hidden_gem.png",
+    "beta_image_url": "/static/images/cards/beta/hidden_gem.webp",
     "type_variants": null,
     "upgrade_description": "你[gold]抽牌堆[/gold]中的一张随机牌获得3层[gold]重放[/gold]。",
     "type_key": "Skill",
@@ -12197,7 +12197,7 @@
       "add_innate": true
     },
     "image_url": "/static/images/cards/juggling.webp",
-    "beta_image_url": "/static/images/cards/beta/juggling.png",
+    "beta_image_url": "/static/images/cards/beta/juggling.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Power",
@@ -12236,7 +12236,7 @@
       "summon": "+3"
     },
     "image_url": "/static/images/cards/afterlife.webp",
-    "beta_image_url": "/static/images/cards/beta/afterlife.png",
+    "beta_image_url": "/static/images/cards/beta/afterlife.webp",
     "type_variants": null,
     "upgrade_description": "[gold]召唤[/gold]9。",
     "type_key": "Skill",
@@ -12323,7 +12323,7 @@
       "extradamage": "+1"
     },
     "image_url": "/static/images/cards/squeeze.webp",
-    "beta_image_url": "/static/images/cards/beta/squeeze.png",
+    "beta_image_url": "/static/images/cards/beta/squeeze.webp",
     "type_variants": null,
     "upgrade_description": "[gold]奥斯提[/gold]造成25点伤害。\n你每有一张[gold]奥斯提[/gold]的攻击牌，这张牌就额外造成6点伤害。",
     "type_key": "Attack",
@@ -12361,7 +12361,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/modded.webp",
-    "beta_image_url": "/static/images/cards/beta/modded.png",
+    "beta_image_url": "/static/images/cards/beta/modded.webp",
     "type_variants": null,
     "upgrade_description": "获得1个充能球栏位。\n抽2张牌。这张牌的耗能加1。",
     "type_key": "Skill",
@@ -12398,7 +12398,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/catastrophe.webp",
-    "beta_image_url": "/static/images/cards/beta/catastrophe.png",
+    "beta_image_url": "/static/images/cards/beta/catastrophe.webp",
     "type_variants": null,
     "upgrade_description": "从你的[gold]抽牌堆[/gold]中随机打出3张牌。",
     "type_key": "Skill",
@@ -12481,7 +12481,7 @@
       "arsenalpower": "+1"
     },
     "image_url": "/static/images/cards/arsenal.webp",
-    "beta_image_url": "/static/images/cards/beta/arsenal.png",
+    "beta_image_url": "/static/images/cards/beta/arsenal.webp",
     "type_variants": null,
     "upgrade_description": "你每打出一张无色牌，都获得2点[gold]力量[/gold]。",
     "type_key": "Power",
@@ -12563,7 +12563,7 @@
       "dansemacabrepower": "+1"
     },
     "image_url": "/static/images/cards/danse_macabre.webp",
-    "beta_image_url": "/static/images/cards/beta/danse_macabre.png",
+    "beta_image_url": "/static/images/cards/beta/danse_macabre.webp",
     "type_variants": null,
     "upgrade_description": "每当你打出一张耗能大于等于[energy:2]的牌时，获得4点[gold]格挡[/gold]。",
     "type_key": "Power",
@@ -12601,7 +12601,7 @@
       "block": "+1"
     },
     "image_url": "/static/images/cards/deaths_door.webp",
-    "beta_image_url": "/static/images/cards/beta/deaths_door.png",
+    "beta_image_url": "/static/images/cards/beta/deaths_door.webp",
     "type_variants": null,
     "upgrade_description": "获得7点[gold]格挡[/gold]。\n如果你在本回合中曾给予过[gold]灾厄[/gold]，则额外获得2次[gold]格挡[/gold]。",
     "type_key": "Skill",
@@ -12727,7 +12727,7 @@
       "add_retain": true
     },
     "image_url": "/static/images/cards/reaper_form.webp",
-    "beta_image_url": "/static/images/cards/beta/reaper_form.png",
+    "beta_image_url": "/static/images/cards/beta/reaper_form.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Power",
@@ -12896,7 +12896,7 @@
       "outbreakpower": "+4"
     },
     "image_url": "/static/images/cards/outbreak.webp",
-    "beta_image_url": "/static/images/cards/beta/outbreak.png",
+    "beta_image_url": "/static/images/cards/beta/outbreak.webp",
     "type_variants": null,
     "upgrade_description": "每当你给予3次[gold]中毒[/gold]，就对所有敌人造成15点伤害。",
     "type_key": "Power",
@@ -13055,7 +13055,7 @@
       "stars": "+1"
     },
     "image_url": "/static/images/cards/convergence.webp",
-    "beta_image_url": "/static/images/cards/beta/convergence.png",
+    "beta_image_url": "/static/images/cards/beta/convergence.webp",
     "type_variants": null,
     "upgrade_description": "在本回合[gold]保留[/gold]你的[gold]手牌[/gold]。\n在下个回合，\n获得[energy:1]与[star:2]。",
     "type_key": "Skill",
@@ -13095,7 +13095,7 @@
       "damage": "+1"
     },
     "image_url": "/static/images/cards/gunk_up.webp",
-    "beta_image_url": "/static/images/cards/beta/gunk_up.png",
+    "beta_image_url": "/static/images/cards/beta/gunk_up.webp",
     "type_variants": null,
     "upgrade_description": "造成5点伤害3次。\n在你的[gold]弃牌堆[/gold]中加入一张[gold]黏液[/gold]。",
     "type_key": "Attack",
@@ -13386,7 +13386,7 @@
       "forge": "+4"
     },
     "image_url": "/static/images/cards/refine_blade.webp",
-    "beta_image_url": "/static/images/cards/beta/refine_blade.png",
+    "beta_image_url": "/static/images/cards/beta/refine_blade.webp",
     "type_variants": null,
     "upgrade_description": "[gold]铸造[/gold]10。\n在下个回合获得[energy:1]。",
     "type_key": "Skill",
@@ -13544,7 +13544,7 @@
       "add_retain": true
     },
     "image_url": "/static/images/cards/dredge.webp",
-    "beta_image_url": "/static/images/cards/beta/dredge.png",
+    "beta_image_url": "/static/images/cards/beta/dredge.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Skill",
@@ -13636,7 +13636,7 @@
       "rollingboulderpower": "+5"
     },
     "image_url": "/static/images/cards/rolling_boulder.webp",
-    "beta_image_url": "/static/images/cards/beta/rolling_boulder.png",
+    "beta_image_url": "/static/images/cards/beta/rolling_boulder.webp",
     "type_variants": null,
     "upgrade_description": "在你的回合开始时，对所有敌人造成10点伤害，然后将该伤害增加5点。",
     "type_key": "Power",
@@ -13708,7 +13708,7 @@
       "add_retain": true
     },
     "image_url": "/static/images/cards/scrawl.webp",
-    "beta_image_url": "/static/images/cards/beta/scrawl.png",
+    "beta_image_url": "/static/images/cards/beta/scrawl.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Skill",
@@ -13789,7 +13789,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/rocket_punch.webp",
-    "beta_image_url": "/static/images/cards/beta/rocket_punch.png",
+    "beta_image_url": "/static/images/cards/beta/rocket_punch.webp",
     "type_variants": null,
     "upgrade_description": "造成14点伤害。\n抽2张牌。\n当有一张状态被生成时，将此牌的耗能在本回合降为0[energy:1]。",
     "type_key": "Attack",
@@ -13826,7 +13826,7 @@
     },
     "upgrade": null,
     "image_url": "/static/images/cards/lantern_key.webp",
-    "beta_image_url": "/static/images/cards/beta/lantern_key.png",
+    "beta_image_url": "/static/images/cards/beta/lantern_key.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Quest",
@@ -13866,7 +13866,7 @@
       "blockonexhaust": "+1"
     },
     "image_url": "/static/images/cards/spirit_of_ash.webp",
-    "beta_image_url": "/static/images/cards/beta/spirit_of_ash.png",
+    "beta_image_url": "/static/images/cards/beta/spirit_of_ash.webp",
     "type_variants": null,
     "upgrade_description": "每当你打出一张[gold]虚无[/gold]牌时，获得5点[gold]格挡[/gold]。",
     "type_key": "Power",
@@ -13954,7 +13954,7 @@
       "remove_ethereal": true
     },
     "image_url": "/static/images/cards/apparition.webp",
-    "beta_image_url": "/static/images/cards/beta/apparition.png",
+    "beta_image_url": "/static/images/cards/beta/apparition.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Skill",
@@ -14041,7 +14041,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/soul.webp",
-    "beta_image_url": "/static/images/cards/beta/soul.png",
+    "beta_image_url": "/static/images/cards/beta/soul.webp",
     "type_variants": null,
     "upgrade_description": "抽3张牌。",
     "type_key": "Skill",
@@ -14085,7 +14085,7 @@
       "extradamage": "+1"
     },
     "image_url": "/static/images/cards/soul_storm.webp",
-    "beta_image_url": "/static/images/cards/beta/soul_storm.png",
+    "beta_image_url": "/static/images/cards/beta/soul_storm.webp",
     "type_variants": null,
     "upgrade_description": "造成9点伤害。\n你的[gold]消耗牌堆[/gold]中每有一张[gold]灵魂[/gold]，伤害增加3。",
     "type_key": "Attack",
@@ -14160,7 +14160,7 @@
       "cost": 2
     },
     "image_url": "/static/images/cards/calamity.webp",
-    "beta_image_url": "/static/images/cards/beta/calamity.png",
+    "beta_image_url": "/static/images/cards/beta/calamity.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Power",
@@ -14327,7 +14327,7 @@
       "smokestackpower": "+2"
     },
     "image_url": "/static/images/cards/smokestack.webp",
-    "beta_image_url": "/static/images/cards/beta/smokestack.png",
+    "beta_image_url": "/static/images/cards/beta/smokestack.webp",
     "type_variants": null,
     "upgrade_description": "每当你生成一张状态牌时，对所有敌人造成7点伤害。",
     "type_key": "Power",
@@ -14371,7 +14371,7 @@
       "focuspower": "+1"
     },
     "image_url": "/static/images/cards/hotfix.webp",
-    "beta_image_url": "/static/images/cards/beta/hotfix.png",
+    "beta_image_url": "/static/images/cards/beta/hotfix.webp",
     "type_variants": null,
     "upgrade_description": "在本回合获得3点[gold]集中[/gold]。",
     "type_key": "Skill",
@@ -14411,7 +14411,7 @@
       "extradamage": "+1"
     },
     "image_url": "/static/images/cards/conflagration.webp",
-    "beta_image_url": "/static/images/cards/beta/conflagration.png",
+    "beta_image_url": "/static/images/cards/beta/conflagration.webp",
     "type_variants": null,
     "upgrade_description": "对所有敌人造成8点伤害。\n你在本回合中每打出过一张其他攻击牌，这张牌的伤害就提升3点。",
     "type_key": "Attack",
@@ -14446,7 +14446,7 @@
     "vars": null,
     "upgrade": null,
     "image_url": "/static/images/cards/soot.webp",
-    "beta_image_url": "/static/images/cards/beta/soot.png",
+    "beta_image_url": "/static/images/cards/beta/soot.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Status",
@@ -14486,7 +14486,7 @@
       "forge": "+2"
     },
     "image_url": "/static/images/cards/furnace.webp",
-    "beta_image_url": "/static/images/cards/beta/furnace.png",
+    "beta_image_url": "/static/images/cards/beta/furnace.webp",
     "type_variants": null,
     "upgrade_description": "在你的回合开始时，[gold]铸造[/gold]6。",
     "type_key": "Power",
@@ -14565,7 +14565,7 @@
       "add_innate": true
     },
     "image_url": "/static/images/cards/entropy.webp",
-    "beta_image_url": "/static/images/cards/beta/entropy.png",
+    "beta_image_url": "/static/images/cards/beta/entropy.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Power",
@@ -14605,7 +14605,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/fuel.webp",
-    "beta_image_url": "/static/images/cards/beta/fuel.png",
+    "beta_image_url": "/static/images/cards/beta/fuel.webp",
     "type_variants": null,
     "upgrade_description": "获得[energy:1]。\n抽2张牌。",
     "type_key": "Skill",
@@ -14802,7 +14802,7 @@
       "damage": "+3"
     },
     "image_url": "/static/images/cards/tesla_coil.webp",
-    "beta_image_url": "/static/images/cards/beta/tesla_coil.png",
+    "beta_image_url": "/static/images/cards/beta/tesla_coil.webp",
     "type_variants": null,
     "upgrade_description": "造成6点伤害。\n对该敌人触发你的所有[gold]闪电[/gold]充能球的被动。",
     "type_key": "Attack",
@@ -14912,7 +14912,7 @@
     "vars": null,
     "upgrade": null,
     "image_url": "/static/images/cards/frantic_escape.webp",
-    "beta_image_url": "/static/images/cards/beta/frantic_escape.png",
+    "beta_image_url": "/static/images/cards/beta/frantic_escape.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Status",
@@ -15030,7 +15030,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/beat_down.webp",
-    "beta_image_url": "/static/images/cards/beta/beat_down.png",
+    "beta_image_url": "/static/images/cards/beta/beat_down.webp",
     "type_variants": null,
     "upgrade_description": "打出你[gold]弃牌堆[/gold]中的4张随机攻击牌。",
     "type_key": "Skill",
@@ -15069,7 +15069,7 @@
       "damage": "+5"
     },
     "image_url": "/static/images/cards/the_hunt.webp",
-    "beta_image_url": "/static/images/cards/beta/the_hunt.png",
+    "beta_image_url": "/static/images/cards/beta/the_hunt.webp",
     "type_variants": null,
     "upgrade_description": "造成15点伤害。\n[gold]斩杀[/gold]时，额外获得一组卡牌奖励。",
     "type_key": "Attack",
@@ -15109,7 +15109,7 @@
       "add_retain": true
     },
     "image_url": "/static/images/cards/monologue.webp",
-    "beta_image_url": "/static/images/cards/beta/monologue.png",
+    "beta_image_url": "/static/images/cards/beta/monologue.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Skill",
@@ -15306,7 +15306,7 @@
       "ostydamage": "+2"
     },
     "image_url": "/static/images/cards/rattle.webp",
-    "beta_image_url": "/static/images/cards/beta/rattle.png",
+    "beta_image_url": "/static/images/cards/beta/rattle.webp",
     "type_variants": null,
     "upgrade_description": "[gold]奥斯提[/gold]造成9点伤害。\n他在本回合每攻击过一次，此牌就额外造成一次伤害。",
     "type_key": "Attack",
@@ -15380,7 +15380,7 @@
       "gold": "+5"
     },
     "image_url": "/static/images/cards/royalties.webp",
-    "beta_image_url": "/static/images/cards/beta/royalties.png",
+    "beta_image_url": "/static/images/cards/beta/royalties.webp",
     "type_variants": null,
     "upgrade_description": "在战斗结束时，获得35[gold]金币[/gold]。",
     "type_key": "Power",
@@ -15418,7 +15418,7 @@
       "increase": "+2"
     },
     "image_url": "/static/images/cards/kingly_punch.webp",
-    "beta_image_url": "/static/images/cards/beta/kingly_punch.png",
+    "beta_image_url": "/static/images/cards/beta/kingly_punch.webp",
     "type_variants": null,
     "upgrade_description": "造成8点伤害。\n每当你抽到这张牌时，在这场战斗中其伤害增加5。",
     "type_key": "Attack",
@@ -15531,7 +15531,7 @@
       "damage": "+4"
     },
     "image_url": "/static/images/cards/defile.webp",
-    "beta_image_url": "/static/images/cards/beta/defile.png",
+    "beta_image_url": "/static/images/cards/beta/defile.webp",
     "type_variants": null,
     "upgrade_description": "造成17点伤害。",
     "type_key": "Attack",
@@ -15571,7 +15571,7 @@
       "block": "+3"
     },
     "image_url": "/static/images/cards/glasswork.webp",
-    "beta_image_url": "/static/images/cards/beta/glasswork.png",
+    "beta_image_url": "/static/images/cards/beta/glasswork.webp",
     "type_variants": null,
     "upgrade_description": "获得8点[gold]格挡[/gold]。\n[gold]生成[/gold]1个[gold]玻璃[/gold]充能球。",
     "type_key": "Skill",
@@ -15650,7 +15650,7 @@
     },
     "upgrade": null,
     "image_url": "/static/images/cards/disintegration.webp",
-    "beta_image_url": "/static/images/cards/beta/disintegration.png",
+    "beta_image_url": "/static/images/cards/beta/disintegration.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Status",
@@ -15689,7 +15689,7 @@
       "remove_exhaust": true
     },
     "image_url": "/static/images/cards/production.webp",
-    "beta_image_url": "/static/images/cards/beta/production.png",
+    "beta_image_url": "/static/images/cards/beta/production.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Skill",
@@ -15804,7 +15804,7 @@
       "remove_exhaust": true
     },
     "image_url": "/static/images/cards/voltaic.webp",
-    "beta_image_url": "/static/images/cards/beta/voltaic.png",
+    "beta_image_url": "/static/images/cards/beta/voltaic.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Skill",
@@ -16014,7 +16014,7 @@
       "strength": "+2"
     },
     "image_url": "/static/images/cards/feeding_frenzy.webp",
-    "beta_image_url": "/static/images/cards/beta/feeding_frenzy.png",
+    "beta_image_url": "/static/images/cards/beta/feeding_frenzy.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Skill",
@@ -16174,7 +16174,7 @@
       "energy": "+1"
     },
     "image_url": "/static/images/cards/believe_in_you.webp",
-    "beta_image_url": "/static/images/cards/beta/believe_in_you.png",
+    "beta_image_url": "/static/images/cards/beta/believe_in_you.webp",
     "type_variants": null,
     "upgrade_description": "另一名玩家获得[energy:4]。",
     "type_key": "Skill",
@@ -16256,7 +16256,7 @@
     "vars": null,
     "upgrade": null,
     "image_url": "/static/images/cards/poor_sleep.webp",
-    "beta_image_url": "/static/images/cards/beta/poor_sleep.png",
+    "beta_image_url": "/static/images/cards/beta/poor_sleep.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Curse",
@@ -16376,7 +16376,7 @@
     "vars": null,
     "upgrade": null,
     "image_url": "/static/images/cards/debris.webp",
-    "beta_image_url": "/static/images/cards/beta/debris.png",
+    "beta_image_url": "/static/images/cards/beta/debris.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Status",
@@ -16465,7 +16465,7 @@
       "ostydamage": "+3"
     },
     "image_url": "/static/images/cards/bone_shards.webp",
-    "beta_image_url": "/static/images/cards/beta/bone_shards.png",
+    "beta_image_url": "/static/images/cards/beta/bone_shards.webp",
     "type_variants": null,
     "upgrade_description": "如果[gold]奥斯提[/gold]存活，则他对所有敌人造成12点伤害并且你获得12点[gold]格挡[/gold]。\n然后[gold]奥斯提[/gold]死去。",
     "type_key": "Attack",
@@ -16504,7 +16504,7 @@
       "damage": "+3"
     },
     "image_url": "/static/images/cards/collision_course.webp",
-    "beta_image_url": "/static/images/cards/beta/collision_course.png",
+    "beta_image_url": "/static/images/cards/beta/collision_course.webp",
     "type_variants": null,
     "upgrade_description": "造成12点伤害。\n将一张[gold]碎屑[/gold]添加至你的[gold]手牌[/gold]。",
     "type_key": "Attack",
@@ -16557,7 +16557,7 @@
       "thornspower": "+2"
     },
     "image_url": "/static/images/cards/abrasive.webp",
-    "beta_image_url": "/static/images/cards/beta/abrasive.png",
+    "beta_image_url": "/static/images/cards/beta/abrasive.webp",
     "type_variants": null,
     "upgrade_description": "获得1点[gold]敏捷[/gold]。\n获得6点[gold]荆棘[/gold]。",
     "type_key": "Power",
@@ -16720,7 +16720,7 @@
       "cost": 1
     },
     "image_url": "/static/images/cards/forbidden_grimoire.webp",
-    "beta_image_url": "/static/images/cards/beta/forbidden_grimoire.png",
+    "beta_image_url": "/static/images/cards/beta/forbidden_grimoire.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Power",
@@ -16842,7 +16842,7 @@
       "damage": "+6"
     },
     "image_url": "/static/images/cards/ultimate_strike.webp",
-    "beta_image_url": "/static/images/cards/beta/ultimate_strike.png",
+    "beta_image_url": "/static/images/cards/beta/ultimate_strike.webp",
     "type_variants": null,
     "upgrade_description": "造成20点伤害。",
     "type_key": "Attack",
@@ -16881,7 +16881,7 @@
       "block": "+4"
     },
     "image_url": "/static/images/cards/ultimate_defend.webp",
-    "beta_image_url": "/static/images/cards/beta/ultimate_defend.png",
+    "beta_image_url": "/static/images/cards/beta/ultimate_defend.webp",
     "type_variants": null,
     "upgrade_description": "获得15点[gold]格挡[/gold]。",
     "type_key": "Skill",
@@ -17088,7 +17088,7 @@
       "damage": "+4"
     },
     "image_url": "/static/images/cards/salvo.webp",
-    "beta_image_url": "/static/images/cards/beta/salvo.png",
+    "beta_image_url": "/static/images/cards/beta/salvo.webp",
     "type_variants": null,
     "upgrade_description": "造成16点伤害。\n在本回合[gold]保留[/gold]你的[gold]手牌[/gold]。",
     "type_key": "Attack",
@@ -17125,7 +17125,7 @@
       "description_changed": true
     },
     "image_url": "/static/images/cards/quasar.webp",
-    "beta_image_url": "/static/images/cards/beta/quasar.png",
+    "beta_image_url": "/static/images/cards/beta/quasar.webp",
     "type_variants": null,
     "upgrade_description": "从3张随机[gold]升级过[/gold]的无色牌中选择1张加入你的[gold]手牌[/gold]。",
     "type_key": "Skill",
@@ -17285,7 +17285,7 @@
       "calculationbase": "+3"
     },
     "image_url": "/static/images/cards/precise_cut.webp",
-    "beta_image_url": "/static/images/cards/beta/precise_cut.png",
+    "beta_image_url": "/static/images/cards/beta/precise_cut.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Attack",
@@ -17331,7 +17331,7 @@
       "energy": "+1"
     },
     "image_url": "/static/images/cards/neurosurge.webp",
-    "beta_image_url": "/static/images/cards/beta/neurosurge.png",
+    "beta_image_url": "/static/images/cards/beta/neurosurge.webp",
     "type_variants": null,
     "upgrade_description": "获得[energy:4]。\n抽2张牌。\n在你的回合开始时，给予自身3层[gold]灾厄[/gold]。",
     "type_key": "Power",
@@ -17377,7 +17377,7 @@
       "stranglepower": "+1"
     },
     "image_url": "/static/images/cards/strangle.webp",
-    "beta_image_url": "/static/images/cards/beta/strangle.png",
+    "beta_image_url": "/static/images/cards/beta/strangle.webp",
     "type_variants": null,
     "upgrade_description": "造成10点伤害。\n你在这个回合内每出一张牌，该名敌人都会失去3点生命。",
     "type_key": "Attack",
@@ -17426,7 +17426,7 @@
       "sicempower": "+1"
     },
     "image_url": "/static/images/cards/sic_em.webp",
-    "beta_image_url": "/static/images/cards/beta/sic_em.png",
+    "beta_image_url": "/static/images/cards/beta/sic_em.webp",
     "type_variants": null,
     "upgrade_description": "[gold]奥斯提[/gold]造成6点伤害。\n在本回合内，每当[gold]奥斯提[/gold]攻击这名敌人时，[gold]召唤[/gold]3。",
     "type_key": "Attack",
@@ -17465,7 +17465,7 @@
       "hploss": "+2"
     },
     "image_url": "/static/images/cards/haunt.webp",
-    "beta_image_url": "/static/images/cards/beta/haunt.png",
+    "beta_image_url": "/static/images/cards/beta/haunt.webp",
     "type_variants": null,
     "upgrade_description": "每当你打出一张[gold]灵魂[/gold]时，随机一名敌人失去8点生命。",
     "type_key": "Power",
@@ -17548,7 +17548,7 @@
       "crimsonmantlepower": "+2"
     },
     "image_url": "/static/images/cards/crimson_mantle.webp",
-    "beta_image_url": "/static/images/cards/beta/crimson_mantle.png",
+    "beta_image_url": "/static/images/cards/beta/crimson_mantle.webp",
     "type_variants": null,
     "upgrade_description": "在你的回合开始时，失去1点生命并获得10点[gold]格挡[/gold]。",
     "type_key": "Power",
@@ -17708,7 +17708,7 @@
       "blockforstars": "+1"
     },
     "image_url": "/static/images/cards/child_of_the_stars.webp",
-    "beta_image_url": "/static/images/cards/beta/child_of_the_stars.png",
+    "beta_image_url": "/static/images/cards/beta/child_of_the_stars.webp",
     "type_variants": null,
     "upgrade_description": "每当你花费[star:1]时，每花费一点[star:1]，获得3点[gold]格挡[/gold]。",
     "type_key": "Power",
@@ -17790,7 +17790,7 @@
       "serpentformpower": "+1"
     },
     "image_url": "/static/images/cards/serpent_form.webp",
-    "beta_image_url": "/static/images/cards/beta/serpent_form.png",
+    "beta_image_url": "/static/images/cards/beta/serpent_form.webp",
     "type_variants": null,
     "upgrade_description": "你每打出一张牌，就对随机一名敌人造成5点伤害。",
     "type_key": "Power",
@@ -17829,7 +17829,7 @@
       "extradamage": "+2"
     },
     "image_url": "/static/images/cards/gang_up.webp",
-    "beta_image_url": "/static/images/cards/beta/gang_up.png",
+    "beta_image_url": "/static/images/cards/beta/gang_up.webp",
     "type_variants": null,
     "upgrade_description": "造成5点伤害。\n本回合其他玩家每攻击过一次该敌人，该牌造成的伤害就额外增加7点。",
     "type_key": "Attack",
@@ -18021,7 +18021,7 @@
       "cost": 0
     },
     "image_url": "/static/images/cards/tank.webp",
-    "beta_image_url": "/static/images/cards/beta/tank.png",
+    "beta_image_url": "/static/images/cards/beta/tank.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Power",
@@ -18148,7 +18148,7 @@
       "add_retain": true
     },
     "image_url": "/static/images/cards/royal_gamble.webp",
-    "beta_image_url": "/static/images/cards/beta/royal_gamble.png",
+    "beta_image_url": "/static/images/cards/beta/royal_gamble.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Skill",
@@ -18229,7 +18229,7 @@
       "energy": "+1"
     },
     "image_url": "/static/images/cards/energy_surge.webp",
-    "beta_image_url": "/static/images/cards/beta/energy_surge.png",
+    "beta_image_url": "/static/images/cards/beta/energy_surge.webp",
     "type_variants": null,
     "upgrade_description": "所有玩家获得[energy:3]。",
     "type_key": "Skill",
@@ -18346,7 +18346,7 @@
       "corrosivewave": "+1"
     },
     "image_url": "/static/images/cards/corrosive_wave.webp",
-    "beta_image_url": "/static/images/cards/beta/corrosive_wave.png",
+    "beta_image_url": "/static/images/cards/beta/corrosive_wave.webp",
     "type_variants": null,
     "upgrade_description": "打出此牌后，你在本回合每抽到一张牌，就给予所有敌人4层[gold]中毒[/gold]。",
     "type_key": "Skill",
@@ -18425,7 +18425,7 @@
       "cost": 0
     },
     "image_url": "/static/images/cards/automation.webp",
-    "beta_image_url": "/static/images/cards/beta/automation.png",
+    "beta_image_url": "/static/images/cards/beta/automation.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Power",
@@ -18465,7 +18465,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/brightest_flame.webp",
-    "beta_image_url": "/static/images/cards/beta/brightest_flame.png",
+    "beta_image_url": "/static/images/cards/beta/brightest_flame.webp",
     "type_variants": null,
     "upgrade_description": "获得[energy:3]。\n抽3张牌。\n失去1点最大生命。",
     "type_key": "Skill",
@@ -18555,7 +18555,7 @@
       "lethalitypower": "+25"
     },
     "image_url": "/static/images/cards/lethality.webp",
-    "beta_image_url": "/static/images/cards/beta/lethality.png",
+    "beta_image_url": "/static/images/cards/beta/lethality.webp",
     "type_variants": null,
     "upgrade_description": "每回合的第一张攻击牌会造成75%额外伤害。",
     "type_key": "Power",
@@ -18678,7 +18678,7 @@
       "add_retain": true
     },
     "image_url": "/static/images/cards/misery.webp",
-    "beta_image_url": "/static/images/cards/beta/misery.png",
+    "beta_image_url": "/static/images/cards/beta/misery.webp",
     "type_variants": null,
     "upgrade_description": "造成9点伤害。\n给予其他敌人该名敌人身上的所有负面效果。",
     "type_key": "Attack",
@@ -18795,7 +18795,7 @@
       "damage": "+10"
     },
     "image_url": "/static/images/cards/devastate.webp",
-    "beta_image_url": "/static/images/cards/beta/devastate.png",
+    "beta_image_url": "/static/images/cards/beta/devastate.webp",
     "type_variants": null,
     "upgrade_description": "造成40点伤害。",
     "type_key": "Attack",
@@ -18869,7 +18869,7 @@
     },
     "upgrade": null,
     "image_url": "/static/images/cards/spoils_map.webp",
-    "beta_image_url": "/static/images/cards/beta/spoils_map.png",
+    "beta_image_url": "/static/images/cards/beta/spoils_map.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Quest",
@@ -18951,7 +18951,7 @@
       "add_innate": true
     },
     "image_url": "/static/images/cards/call_of_the_void.webp",
-    "beta_image_url": "/static/images/cards/beta/call_of_the_void.png",
+    "beta_image_url": "/static/images/cards/beta/call_of_the_void.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Power",
@@ -18995,7 +18995,7 @@
       "voidformpower": "+1"
     },
     "image_url": "/static/images/cards/void_form.webp",
-    "beta_image_url": "/static/images/cards/beta/void_form.png",
+    "beta_image_url": "/static/images/cards/beta/void_form.webp",
     "type_variants": null,
     "upgrade_description": "结束你的回合。\n你可以免费打出每回合的前3张牌。",
     "type_key": "Power",
@@ -19163,7 +19163,7 @@
       "damage": "+2"
     },
     "image_url": "/static/images/cards/helix_drill.webp",
-    "beta_image_url": "/static/images/cards/beta/helix_drill.png",
+    "beta_image_url": "/static/images/cards/beta/helix_drill.webp",
     "type_variants": null,
     "upgrade_description": "在本回合中，每个被使用的[energy:1]，都会使此牌造成5点伤害一次。",
     "type_key": "Attack",
@@ -19245,7 +19245,7 @@
       "sleightoffleshpower": "+4"
     },
     "image_url": "/static/images/cards/sleight_of_flesh.webp",
-    "beta_image_url": "/static/images/cards/beta/sleight_of_flesh.png",
+    "beta_image_url": "/static/images/cards/beta/sleight_of_flesh.webp",
     "type_variants": null,
     "upgrade_description": "每当你给予一个敌人负面状态时，使其受到13点伤害。",
     "type_key": "Power",
@@ -19287,7 +19287,7 @@
     },
     "upgrade": null,
     "image_url": "/static/images/cards/waste_away.webp",
-    "beta_image_url": "/static/images/cards/beta/waste_away.png",
+    "beta_image_url": "/static/images/cards/beta/waste_away.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Status",
@@ -19326,7 +19326,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/up_my_sleeve.webp",
-    "beta_image_url": "/static/images/cards/beta/up_my_sleeve.png",
+    "beta_image_url": "/static/images/cards/beta/up_my_sleeve.webp",
     "type_variants": null,
     "upgrade_description": "将4张[gold]小刀[/gold]加入你的[gold]手牌[/gold]。\n这张牌的耗能减少1。",
     "type_key": "Skill",
@@ -19514,7 +19514,7 @@
       "cost": 0
     },
     "image_url": "/static/images/cards/stratagem.webp",
-    "beta_image_url": "/static/images/cards/beta/stratagem.png",
+    "beta_image_url": "/static/images/cards/beta/stratagem.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Power",
@@ -19668,7 +19668,7 @@
       "cost": 2
     },
     "image_url": "/static/images/cards/murder.webp",
-    "beta_image_url": "/static/images/cards/beta/murder.png",
+    "beta_image_url": "/static/images/cards/beta/murder.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Attack",
@@ -19750,7 +19750,7 @@
     "vars": null,
     "upgrade": null,
     "image_url": "/static/images/cards/greed.webp",
-    "beta_image_url": "/static/images/cards/beta/greed.png",
+    "beta_image_url": "/static/images/cards/beta/greed.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Curse",
@@ -19958,7 +19958,7 @@
       "extradamage": "+1"
     },
     "image_url": "/static/images/cards/supermassive.webp",
-    "beta_image_url": "/static/images/cards/beta/supermassive.png",
+    "beta_image_url": "/static/images/cards/beta/supermassive.webp",
     "type_variants": null,
     "upgrade_description": "造成5点伤害。\n你在本场战斗中每生成过一张牌，这张牌就额外造成4点伤害。",
     "type_key": "Attack",
@@ -20111,7 +20111,7 @@
       "cost": 1
     },
     "image_url": "/static/images/cards/tracking.webp",
-    "beta_image_url": "/static/images/cards/beta/tracking.png",
+    "beta_image_url": "/static/images/cards/beta/tracking.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Power",
@@ -20233,7 +20233,7 @@
       "damage": "+6"
     },
     "image_url": "/static/images/cards/bombardment.webp",
-    "beta_image_url": "/static/images/cards/beta/bombardment.png",
+    "beta_image_url": "/static/images/cards/beta/bombardment.webp",
     "type_variants": null,
     "upgrade_description": "造成24点伤害。\n在你的回合开始时，从[gold]消耗牌堆[/gold]打出这张牌。",
     "type_key": "Attack",
@@ -20274,7 +20274,7 @@
       "stars": "+1"
     },
     "image_url": "/static/images/cards/glow.webp",
-    "beta_image_url": "/static/images/cards/beta/glow.png",
+    "beta_image_url": "/static/images/cards/beta/glow.webp",
     "type_variants": null,
     "upgrade_description": "获得[star:2]。\n抽2张牌。",
     "type_key": "Skill",
@@ -20351,7 +20351,7 @@
     "vars": null,
     "upgrade": null,
     "image_url": "/static/images/cards/ascenders_bane.webp",
-    "beta_image_url": "/static/images/cards/beta/ascenders_bane.png",
+    "beta_image_url": "/static/images/cards/beta/ascenders_bane.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Curse",
@@ -20444,7 +20444,7 @@
       "damage": "+4"
     },
     "image_url": "/static/images/cards/volley.webp",
-    "beta_image_url": "/static/images/cards/beta/volley.png",
+    "beta_image_url": "/static/images/cards/beta/volley.webp",
     "type_variants": null,
     "upgrade_description": "随机对敌人造成14点伤害X次。",
     "type_key": "Attack",
@@ -20521,7 +20521,7 @@
       "repeat": "+1"
     },
     "image_url": "/static/images/cards/ricochet.webp",
-    "beta_image_url": "/static/images/cards/beta/ricochet.png",
+    "beta_image_url": "/static/images/cards/beta/ricochet.webp",
     "type_variants": null,
     "upgrade_description": "随机对敌人造成3点伤害5次。",
     "type_key": "Attack",
@@ -20563,7 +20563,7 @@
       "damage": "+5"
     },
     "image_url": "/static/images/cards/crash_landing.webp",
-    "beta_image_url": "/static/images/cards/beta/crash_landing.png",
+    "beta_image_url": "/static/images/cards/beta/crash_landing.webp",
     "type_variants": null,
     "upgrade_description": "对所有敌人造成26点伤害。\n用[gold]碎屑[/gold]填满你的[gold]手牌[/gold]。",
     "type_key": "Attack",
@@ -20607,7 +20607,7 @@
       "iterationpower": "+1"
     },
     "image_url": "/static/images/cards/iteration.webp",
-    "beta_image_url": "/static/images/cards/beta/iteration.png",
+    "beta_image_url": "/static/images/cards/beta/iteration.webp",
     "type_variants": null,
     "upgrade_description": "每回合你第一次抽到状态牌时，抽3张牌。",
     "type_key": "Power",
@@ -20653,7 +20653,7 @@
       "poison": "+2"
     },
     "image_url": "/static/images/cards/haze.webp",
-    "beta_image_url": "/static/images/cards/beta/haze.png",
+    "beta_image_url": "/static/images/cards/beta/haze.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Skill",
@@ -20693,7 +20693,7 @@
       "forge": "+4"
     },
     "image_url": "/static/images/cards/seeking_edge.webp",
-    "beta_image_url": "/static/images/cards/beta/seeking_edge.png",
+    "beta_image_url": "/static/images/cards/beta/seeking_edge.webp",
     "type_variants": null,
     "upgrade_description": "[gold]铸造[/gold]11。\n[gold]君王之剑[/gold]现在会对所有敌人造成伤害。",
     "type_key": "Power",
@@ -20732,7 +20732,7 @@
       "damage": "+5"
     },
     "image_url": "/static/images/cards/adaptive_strike.webp",
-    "beta_image_url": "/static/images/cards/beta/adaptive_strike.png",
+    "beta_image_url": "/static/images/cards/beta/adaptive_strike.webp",
     "type_variants": null,
     "upgrade_description": "造成23点伤害。\n将这张牌的一张0[energy:1]复制品添加到你的[gold]弃牌堆[/gold]。",
     "type_key": "Attack",
@@ -20813,7 +20813,7 @@
       "speedsterpower": "+1"
     },
     "image_url": "/static/images/cards/speedster.webp",
-    "beta_image_url": "/static/images/cards/beta/speedster.png",
+    "beta_image_url": "/static/images/cards/beta/speedster.webp",
     "type_variants": null,
     "upgrade_description": "每当你在回合进行中抽到一张牌时，对所有敌人造成3点伤害。",
     "type_key": "Power",
@@ -21051,7 +21051,7 @@
       "remove_exhaust": true
     },
     "image_url": "/static/images/cards/transfigure.webp",
-    "beta_image_url": "/static/images/cards/beta/transfigure.png",
+    "beta_image_url": "/static/images/cards/beta/transfigure.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Skill",
@@ -21135,7 +21135,7 @@
       "cost": 1
     },
     "image_url": "/static/images/cards/feral.webp",
-    "beta_image_url": "/static/images/cards/beta/feral.png",
+    "beta_image_url": "/static/images/cards/beta/feral.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Power",
@@ -21338,7 +21338,7 @@
       "thornspower": "+2"
     },
     "image_url": "/static/images/cards/caltrops.webp",
-    "beta_image_url": "/static/images/cards/beta/caltrops.png",
+    "beta_image_url": "/static/images/cards/beta/caltrops.webp",
     "type_variants": null,
     "upgrade_description": "每当你被攻击时，对攻击者造成5点伤害。",
     "type_key": "Power",
@@ -21495,7 +21495,7 @@
       "forge": "+3"
     },
     "image_url": "/static/images/cards/bulwark.webp",
-    "beta_image_url": "/static/images/cards/beta/bulwark.png",
+    "beta_image_url": "/static/images/cards/beta/bulwark.webp",
     "type_variants": null,
     "upgrade_description": "获得16点[gold]格挡[/gold]。\n[gold]铸造[/gold]13。",
     "type_key": "Skill",
@@ -21530,7 +21530,7 @@
       "cost": 1
     },
     "image_url": "/static/images/cards/hammer_time.webp",
-    "beta_image_url": "/static/images/cards/beta/hammer_time.png",
+    "beta_image_url": "/static/images/cards/beta/hammer_time.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Power",
@@ -21571,7 +21571,7 @@
       "calculationextra": "+2"
     },
     "image_url": "/static/images/cards/beat_into_shape.webp",
-    "beta_image_url": "/static/images/cards/beta/beat_into_shape.png",
+    "beta_image_url": "/static/images/cards/beta/beat_into_shape.webp",
     "type_variants": null,
     "upgrade_description": "造成7点伤害。\n[gold]铸造[/gold]X。\n本回合此前你每击中过该敌人一次，[gold]铸造[/gold]值就上升7。",
     "type_key": "Attack",
@@ -21933,7 +21933,7 @@
       "description_changed": true
     },
     "image_url": "/static/images/cards/seance.webp",
-    "beta_image_url": "/static/images/cards/beta/seance.png",
+    "beta_image_url": "/static/images/cards/beta/seance.webp",
     "type_variants": null,
     "upgrade_description": "将你[gold]抽牌堆[/gold]中的一张牌变化为[gold]灵魂+[/gold]。",
     "type_key": "Skill",
@@ -21989,7 +21989,7 @@
       "damage": "+4"
     },
     "image_url": "/static/images/cards/falling_star.webp",
-    "beta_image_url": "/static/images/cards/beta/falling_star.png",
+    "beta_image_url": "/static/images/cards/beta/falling_star.webp",
     "type_variants": null,
     "upgrade_description": "造成11点伤害。\n给予1层[gold]虚弱[/gold]。\n给予1层[gold]易伤[/gold]。",
     "type_key": "Attack",
@@ -22068,7 +22068,7 @@
       "description_changed": true
     },
     "image_url": "/static/images/cards/hidden_daggers.webp",
-    "beta_image_url": "/static/images/cards/beta/hidden_daggers.png",
+    "beta_image_url": "/static/images/cards/beta/hidden_daggers.webp",
     "type_variants": null,
     "upgrade_description": "丢弃2张牌。\n将2张[gold]小刀+[/gold]加入你的[gold]手牌[/gold]。",
     "type_key": "Skill",
@@ -22113,7 +22113,7 @@
       "starnextturnpower": "+1"
     },
     "image_url": "/static/images/cards/hidden_cache.webp",
-    "beta_image_url": "/static/images/cards/beta/hidden_cache.png",
+    "beta_image_url": "/static/images/cards/beta/hidden_cache.webp",
     "type_variants": null,
     "upgrade_description": "获得[star:1]。\n在下个回合获得[star:4]。",
     "type_key": "Skill",
@@ -22161,7 +22161,7 @@
       "focuspower": "+1"
     },
     "image_url": "/static/images/cards/focused_strike.webp",
-    "beta_image_url": "/static/images/cards/beta/focused_strike.png",
+    "beta_image_url": "/static/images/cards/beta/focused_strike.webp",
     "type_variants": null,
     "upgrade_description": "造成11点伤害。\n在本回合获得2点[gold]集中[/gold]。",
     "type_key": "Attack",
@@ -22198,7 +22198,7 @@
       "block": "+5"
     },
     "image_url": "/static/images/cards/rally.webp",
-    "beta_image_url": "/static/images/cards/beta/rally.png",
+    "beta_image_url": "/static/images/cards/beta/rally.webp",
     "type_variants": null,
     "upgrade_description": "所有玩家获得17点[gold]格挡[/gold]。",
     "type_key": "Skill",
@@ -22237,7 +22237,7 @@
       "damage": "+3"
     },
     "image_url": "/static/images/cards/sculpting_strike.webp",
-    "beta_image_url": "/static/images/cards/beta/sculpting_strike.png",
+    "beta_image_url": "/static/images/cards/beta/sculpting_strike.webp",
     "type_variants": null,
     "upgrade_description": "造成11点伤害。\n为一张[gold]手牌[/gold]添加[gold]虚无[/gold]。",
     "type_key": "Attack",
@@ -22325,7 +22325,7 @@
       "thunderpower": "+2"
     },
     "image_url": "/static/images/cards/thunder.webp",
-    "beta_image_url": "/static/images/cards/beta/thunder.png",
+    "beta_image_url": "/static/images/cards/beta/thunder.webp",
     "type_variants": null,
     "upgrade_description": "每当你[gold]激发闪电[/gold]充能球时，对被命中的敌人造成8点伤害。",
     "type_key": "Power",
@@ -22364,7 +22364,7 @@
       "power": "+2"
     },
     "image_url": "/static/images/cards/shockwave.webp",
-    "beta_image_url": "/static/images/cards/beta/shockwave.png",
+    "beta_image_url": "/static/images/cards/beta/shockwave.webp",
     "type_variants": null,
     "upgrade_description": "给予所有敌人5层[gold]虚弱[/gold]和[gold]易伤[/gold]。",
     "type_key": "Skill",
@@ -22405,7 +22405,7 @@
     },
     "upgrade": null,
     "image_url": "/static/images/cards/bad_luck.webp",
-    "beta_image_url": "/static/images/cards/beta/bad_luck.png",
+    "beta_image_url": "/static/images/cards/beta/bad_luck.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Curse",
@@ -22448,7 +22448,7 @@
       "energy": "+1"
     },
     "image_url": "/static/images/cards/hegemony.webp",
-    "beta_image_url": "/static/images/cards/beta/hegemony.png",
+    "beta_image_url": "/static/images/cards/beta/hegemony.webp",
     "type_variants": null,
     "upgrade_description": "造成18点伤害。\n在下个回合获得[energy:3]。",
     "type_key": "Attack",
@@ -22500,7 +22500,7 @@
       "strength": "+1"
     },
     "image_url": "/static/images/cards/prowess.webp",
-    "beta_image_url": "/static/images/cards/beta/prowess.png",
+    "beta_image_url": "/static/images/cards/beta/prowess.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Power",
@@ -22802,7 +22802,7 @@
       "cost": 2
     },
     "image_url": "/static/images/cards/demesne.webp",
-    "beta_image_url": "/static/images/cards/beta/demesne.png",
+    "beta_image_url": "/static/images/cards/beta/demesne.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Power",
@@ -22878,7 +22878,7 @@
       "description_changed": true
     },
     "image_url": "/static/images/cards/splash.webp",
-    "beta_image_url": "/static/images/cards/beta/splash.png",
+    "beta_image_url": "/static/images/cards/beta/splash.webp",
     "type_variants": null,
     "upgrade_description": "从3张其他角色的[gold]升级过的[/gold]攻击牌中选择1张加入你的[gold]手牌[/gold]。这张牌在本回合免费打出。",
     "type_key": "Skill",
@@ -22991,7 +22991,7 @@
       "damage": "+2"
     },
     "image_url": "/static/images/cards/uproar.webp",
-    "beta_image_url": "/static/images/cards/beta/uproar.png",
+    "beta_image_url": "/static/images/cards/beta/uproar.webp",
     "type_variants": null,
     "upgrade_description": "造成7点伤害两次。\n随机打出你的[gold]抽牌堆[/gold]中的1张攻击牌。",
     "type_key": "Attack",
@@ -23030,7 +23030,7 @@
       "summon": "+2"
     },
     "image_url": "/static/images/cards/legion_of_bone.webp",
-    "beta_image_url": "/static/images/cards/beta/legion_of_bone.png",
+    "beta_image_url": "/static/images/cards/beta/legion_of_bone.webp",
     "type_variants": null,
     "upgrade_description": "所有玩家[gold]召唤[/gold]8。",
     "type_key": "Skill",
@@ -23072,7 +23072,7 @@
       "block": "+3"
     },
     "image_url": "/static/images/cards/boost_away.webp",
-    "beta_image_url": "/static/images/cards/beta/boost_away.png",
+    "beta_image_url": "/static/images/cards/beta/boost_away.webp",
     "type_variants": null,
     "upgrade_description": "获得9点[gold]格挡[/gold]。\n将一张[gold]晕眩[/gold]添加到你的[gold]弃牌堆[/gold]中。",
     "type_key": "Skill",
@@ -23111,7 +23111,7 @@
       "add_retain": true
     },
     "image_url": "/static/images/cards/wisp.webp",
-    "beta_image_url": "/static/images/cards/beta/wisp.png",
+    "beta_image_url": "/static/images/cards/beta/wisp.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Skill",
@@ -23160,7 +23160,7 @@
       "sneakypower": "+1"
     },
     "image_url": "/static/images/cards/sneaky.webp",
-    "beta_image_url": "/static/images/cards/beta/sneaky.png",
+    "beta_image_url": "/static/images/cards/beta/sneaky.webp",
     "type_variants": null,
     "upgrade_description": "每当其他玩家攻击一名敌人时，获得2点[gold]格挡[/gold]。",
     "type_key": "Power",
@@ -23324,7 +23324,7 @@
       "blackholepower": "+1"
     },
     "image_url": "/static/images/cards/black_hole.webp",
-    "beta_image_url": "/static/images/cards/beta/black_hole.png",
+    "beta_image_url": "/static/images/cards/beta/black_hole.webp",
     "type_variants": null,
     "upgrade_description": "每当你花费或获得[star:1]时，对所有敌人造成4点伤害。",
     "type_key": "Power",

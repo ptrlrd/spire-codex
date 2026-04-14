@@ -112,7 +112,7 @@
       "cost": 0
     },
     "image_url": "/static/images/cards/distraction.webp",
-    "beta_image_url": "/static/images/cards/beta/distraction.png",
+    "beta_image_url": "/static/images/cards/beta/distraction.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Skill",
@@ -155,7 +155,7 @@
       "repeat": "+1"
     },
     "image_url": "/static/images/cards/ricochet.webp",
-    "beta_image_url": "/static/images/cards/beta/ricochet.png",
+    "beta_image_url": "/static/images/cards/beta/ricochet.webp",
     "type_variants": null,
     "upgrade_description": "Füge einem zufälligen Gegner 5 Mal 3 Schaden zu.",
     "type_key": "Attack",
@@ -271,7 +271,7 @@
       "damage": "+5"
     },
     "image_url": "/static/images/cards/adaptive_strike.webp",
-    "beta_image_url": "/static/images/cards/beta/adaptive_strike.png",
+    "beta_image_url": "/static/images/cards/beta/adaptive_strike.webp",
     "type_variants": null,
     "upgrade_description": "Füge 23 Schaden zu.\nErhalte eine 0[energy:1]-Kopie dieser Karte in deinen [gold]Abwurfstapel[/gold].",
     "type_key": "Attack",
@@ -620,7 +620,7 @@
       "block": "+5"
     },
     "image_url": "/static/images/cards/lift.webp",
-    "beta_image_url": "/static/images/cards/beta/lift.png",
+    "beta_image_url": "/static/images/cards/beta/lift.webp",
     "type_variants": null,
     "upgrade_description": "Gib einem Verbündeten 16 [gold]Block[/gold].",
     "type_key": "Skill",
@@ -658,7 +658,7 @@
       "energy": "+1"
     },
     "image_url": "/static/images/cards/alignment.webp",
-    "beta_image_url": "/static/images/cards/beta/alignment.png",
+    "beta_image_url": "/static/images/cards/beta/alignment.webp",
     "type_variants": null,
     "upgrade_description": "Erhalte [energy:3].",
     "type_key": "Skill",
@@ -872,7 +872,7 @@
       "remove_ethereal": true
     },
     "image_url": "/static/images/cards/apparition.webp",
-    "beta_image_url": "/static/images/cards/beta/apparition.png",
+    "beta_image_url": "/static/images/cards/beta/apparition.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Skill",
@@ -959,7 +959,7 @@
       "arsenalpower": "+1"
     },
     "image_url": "/static/images/cards/arsenal.webp",
-    "beta_image_url": "/static/images/cards/beta/arsenal.png",
+    "beta_image_url": "/static/images/cards/beta/arsenal.webp",
     "type_variants": null,
     "upgrade_description": "Immer wenn du eine farblose Karte spielst, erhalte 2 [gold]Stärke[/gold].",
     "type_key": "Power",
@@ -1076,7 +1076,7 @@
       "damage": "+4"
     },
     "image_url": "/static/images/cards/astral_pulse.webp",
-    "beta_image_url": "/static/images/cards/beta/astral_pulse.png",
+    "beta_image_url": "/static/images/cards/beta/astral_pulse.webp",
     "type_variants": null,
     "upgrade_description": "Füge ALLEN Gegnern 18 Schaden zu.",
     "type_key": "Attack",
@@ -1178,7 +1178,7 @@
       "sicempower": "+1"
     },
     "image_url": "/static/images/cards/sic_em.webp",
-    "beta_image_url": "/static/images/cards/beta/sic_em.png",
+    "beta_image_url": "/static/images/cards/beta/sic_em.webp",
     "type_variants": null,
     "upgrade_description": "[gold]Osty[/gold] fügt 6 Schaden zu.\nImmer wenn [gold]Osty[/gold] diesen Gegner in diesem Zug trifft, [gold]Beschwöre[/gold] 3.",
     "type_key": "Attack",
@@ -1295,7 +1295,7 @@
       "damage": "+2"
     },
     "image_url": "/static/images/cards/uproar.webp",
-    "beta_image_url": "/static/images/cards/beta/uproar.png",
+    "beta_image_url": "/static/images/cards/beta/uproar.webp",
     "type_variants": null,
     "upgrade_description": "Füge zweimal 7 Schaden zu.\nSpiele einen zufälligen Angriff aus deinem [gold]Nachziehstapel[/gold].",
     "type_key": "Attack",
@@ -1404,7 +1404,7 @@
       "cost": 1
     },
     "image_url": "/static/images/cards/tracking.webp",
-    "beta_image_url": "/static/images/cards/beta/tracking.png",
+    "beta_image_url": "/static/images/cards/beta/tracking.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Power",
@@ -1441,7 +1441,7 @@
     "vars": null,
     "upgrade": null,
     "image_url": "/static/images/cards/ascenders_bane.webp",
-    "beta_image_url": "/static/images/cards/beta/ascenders_bane.png",
+    "beta_image_url": "/static/images/cards/beta/ascenders_bane.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Curse",
@@ -1522,7 +1522,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/up_my_sleeve.webp",
-    "beta_image_url": "/static/images/cards/beta/up_my_sleeve.png",
+    "beta_image_url": "/static/images/cards/beta/up_my_sleeve.webp",
     "type_variants": null,
     "upgrade_description": "Erhalte 4 [gold]Messer[/gold] auf deine [gold]Hand[/gold].\nSenke die Kosten dieser Karte um 1.",
     "type_key": "Skill",
@@ -1567,7 +1567,7 @@
       "outbreakpower": "+4"
     },
     "image_url": "/static/images/cards/outbreak.webp",
-    "beta_image_url": "/static/images/cards/beta/outbreak.png",
+    "beta_image_url": "/static/images/cards/beta/outbreak.webp",
     "type_variants": null,
     "upgrade_description": "Füge immer, wenn du 3 Mal [gold]Gift[/gold] anwendest, ALLEN Gegnern 15 Schaden zu.",
     "type_key": "Power",
@@ -1604,7 +1604,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/foregone_conclusion.webp",
-    "beta_image_url": "/static/images/cards/beta/foregone_conclusion.png",
+    "beta_image_url": "/static/images/cards/beta/foregone_conclusion.webp",
     "type_variants": null,
     "upgrade_description": "Nimm im nächsten Zug 3 Karten aus deinem [gold]Nachziehstapel[/gold] auf deine [gold]Hand[/gold].",
     "type_key": "Skill",
@@ -1679,7 +1679,7 @@
       "energy": "+1"
     },
     "image_url": "/static/images/cards/outmaneuver.webp",
-    "beta_image_url": "/static/images/cards/beta/outmaneuver.png",
+    "beta_image_url": "/static/images/cards/beta/outmaneuver.webp",
     "type_variants": null,
     "upgrade_description": "Erhalte im nächsten Zug [energy:3].",
     "type_key": "Skill",
@@ -1721,7 +1721,7 @@
       "extradamage": "+1"
     },
     "image_url": "/static/images/cards/squeeze.webp",
-    "beta_image_url": "/static/images/cards/beta/squeeze.png",
+    "beta_image_url": "/static/images/cards/beta/squeeze.webp",
     "type_variants": null,
     "upgrade_description": "[gold]Osty[/gold] fügt 25 Schaden zu.\nFügt 6 Schaden mehr zu für ALLE deine anderen [gold]Osty[/gold]-Angriffskarten.",
     "type_key": "Attack",
@@ -1951,7 +1951,7 @@
       "cost": 0
     },
     "image_url": "/static/images/cards/automation.webp",
-    "beta_image_url": "/static/images/cards/beta/automation.png",
+    "beta_image_url": "/static/images/cards/beta/automation.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Power",
@@ -1988,7 +1988,7 @@
       "block": "+1"
     },
     "image_url": "/static/images/cards/manifest_authority.webp",
-    "beta_image_url": "/static/images/cards/beta/manifest_authority.png",
+    "beta_image_url": "/static/images/cards/beta/manifest_authority.webp",
     "type_variants": null,
     "upgrade_description": "Erhalte 8 [gold]Block[/gold].\nErhalte 1 zufällige [gold]verbesserte[/gold] farblose Karte auf deine [gold]Hand[/gold].",
     "type_key": "Skill",
@@ -2100,7 +2100,7 @@
       "extrablock": "+2"
     },
     "image_url": "/static/images/cards/fasten.webp",
-    "beta_image_url": "/static/images/cards/beta/fasten.png",
+    "beta_image_url": "/static/images/cards/beta/fasten.webp",
     "type_variants": null,
     "upgrade_description": "Erhalte 7 [gold]Block[/gold] mehr von Verteidigen-Karten.",
     "type_key": "Power",
@@ -2137,7 +2137,7 @@
       "damage": "+11"
     },
     "image_url": "/static/images/cards/bury.webp",
-    "beta_image_url": "/static/images/cards/beta/bury.png",
+    "beta_image_url": "/static/images/cards/beta/bury.webp",
     "type_variants": null,
     "upgrade_description": "Füge 63 Schaden zu.",
     "type_key": "Attack",
@@ -2377,7 +2377,7 @@
     },
     "upgrade": null,
     "image_url": "/static/images/cards/spoils_map.webp",
-    "beta_image_url": "/static/images/cards/beta/spoils_map.png",
+    "beta_image_url": "/static/images/cards/beta/spoils_map.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Quest",
@@ -2417,7 +2417,7 @@
       "summon": "+2"
     },
     "image_url": "/static/images/cards/bodyguard.webp",
-    "beta_image_url": "/static/images/cards/beta/bodyguard.png",
+    "beta_image_url": "/static/images/cards/beta/bodyguard.webp",
     "type_variants": null,
     "upgrade_description": "[gold]Beschwöre[/gold] 7.",
     "type_key": "Skill",
@@ -2455,7 +2455,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/pale_blue_dot.webp",
-    "beta_image_url": "/static/images/cards/beta/pale_blue_dot.png",
+    "beta_image_url": "/static/images/cards/beta/pale_blue_dot.webp",
     "type_variants": null,
     "upgrade_description": "Falls du 5 oder mehr Karten in einem Zug spielst, ziehe zu Beginn deines nächsten Zuges 2 Karten.",
     "type_key": "Power",
@@ -2533,7 +2533,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/glimpse_beyond.webp",
-    "beta_image_url": "/static/images/cards/beta/glimpse_beyond.png",
+    "beta_image_url": "/static/images/cards/beta/glimpse_beyond.webp",
     "type_variants": null,
     "upgrade_description": "ALLE Spieler erhalten 4 [gold]Seelen[/gold] in ihren [gold]Nachziehstapel[/gold].",
     "type_key": "Skill",
@@ -2661,7 +2661,7 @@
       "block": "+3"
     },
     "image_url": "/static/images/cards/lightning_rod.webp",
-    "beta_image_url": "/static/images/cards/beta/lightning_rod.png",
+    "beta_image_url": "/static/images/cards/beta/lightning_rod.webp",
     "type_variants": null,
     "upgrade_description": "Erhalte 7 [gold]Block[/gold].\n[gold]Erschaffe[/gold] zu Beginn deiner nächsten 2 Züge 1 [gold]Blitz[/gold].",
     "type_key": "Skill",
@@ -2705,7 +2705,7 @@
       "poison": "+3"
     },
     "image_url": "/static/images/cards/bubble_bubble.webp",
-    "beta_image_url": "/static/images/cards/beta/bubble_bubble.png",
+    "beta_image_url": "/static/images/cards/beta/bubble_bubble.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Skill",
@@ -2793,7 +2793,7 @@
       "crimsonmantlepower": "+2"
     },
     "image_url": "/static/images/cards/crimson_mantle.webp",
-    "beta_image_url": "/static/images/cards/beta/crimson_mantle.png",
+    "beta_image_url": "/static/images/cards/beta/crimson_mantle.webp",
     "type_variants": null,
     "upgrade_description": "Verliere immer zu Beginn deines Zuges 1 TP und erhalte 10 [gold]Block[/gold].",
     "type_key": "Power",
@@ -2868,7 +2868,7 @@
       "cost": 0
     },
     "image_url": "/static/images/cards/pagestorm.webp",
-    "beta_image_url": "/static/images/cards/beta/pagestorm.png",
+    "beta_image_url": "/static/images/cards/beta/pagestorm.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Power",
@@ -2983,7 +2983,7 @@
       "forge": "+3"
     },
     "image_url": "/static/images/cards/bulwark.webp",
-    "beta_image_url": "/static/images/cards/beta/bulwark.png",
+    "beta_image_url": "/static/images/cards/beta/bulwark.webp",
     "type_variants": null,
     "upgrade_description": "Erhalte 16 [gold]Block[/gold].\n[gold]Schmiede[/gold] 13.",
     "type_key": "Skill",
@@ -3022,7 +3022,7 @@
       "damage": "+6"
     },
     "image_url": "/static/images/cards/bombardment.webp",
-    "beta_image_url": "/static/images/cards/beta/bombardment.png",
+    "beta_image_url": "/static/images/cards/beta/bombardment.webp",
     "type_variants": null,
     "upgrade_description": "Füge 24 Schaden zu.\nSpielt sich selbst zu Beginn deines Zuges aus dem [gold]Erschöpfungsstapel[/gold].",
     "type_key": "Attack",
@@ -3062,7 +3062,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/vicious.webp",
-    "beta_image_url": "/static/images/cards/beta/vicious.png",
+    "beta_image_url": "/static/images/cards/beta/vicious.webp",
     "type_variants": null,
     "upgrade_description": "Immer wenn du [gold]Verwundbar[/gold] anwendest, ziehe 2 Karten.",
     "type_key": "Power",
@@ -3270,7 +3270,7 @@
       "damage": "+5"
     },
     "image_url": "/static/images/cards/crash_landing.webp",
-    "beta_image_url": "/static/images/cards/beta/crash_landing.png",
+    "beta_image_url": "/static/images/cards/beta/crash_landing.webp",
     "type_variants": null,
     "upgrade_description": "Füge ALLEN Gegnern 26 Schaden zu.\nFülle deine [gold]Hand[/gold] mit [gold]Schutt[/gold].",
     "type_key": "Attack",
@@ -3427,7 +3427,7 @@
       "dansemacabrepower": "+1"
     },
     "image_url": "/static/images/cards/danse_macabre.webp",
-    "beta_image_url": "/static/images/cards/beta/danse_macabre.png",
+    "beta_image_url": "/static/images/cards/beta/danse_macabre.webp",
     "type_variants": null,
     "upgrade_description": "Immer wenn du eine Karte spielst, die [energy:2] oder mehr kostet, erhalte 4 [gold]Block[/gold].",
     "type_key": "Power",
@@ -3501,7 +3501,7 @@
       "block": "+4"
     },
     "image_url": "/static/images/cards/intercept.webp",
-    "beta_image_url": "/static/images/cards/beta/intercept.png",
+    "beta_image_url": "/static/images/cards/beta/intercept.webp",
     "type_variants": null,
     "upgrade_description": "Erhalte 13 [gold]Block[/gold].\nLeite in diesem Zug alle eingehenden Angriffe, die andere Spieler treffen würden, auf dich um.",
     "type_key": "Skill",
@@ -3620,7 +3620,7 @@
       "add_innate": true
     },
     "image_url": "/static/images/cards/the_sealed_throne.webp",
-    "beta_image_url": "/static/images/cards/beta/the_sealed_throne.png",
+    "beta_image_url": "/static/images/cards/beta/the_sealed_throne.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Power",
@@ -3697,7 +3697,7 @@
       "damage": "+5"
     },
     "image_url": "/static/images/cards/the_hunt.webp",
-    "beta_image_url": "/static/images/cards/beta/the_hunt.png",
+    "beta_image_url": "/static/images/cards/beta/the_hunt.webp",
     "type_variants": null,
     "upgrade_description": "Füge 15 Schaden zu.\nFalls [gold]Tödlich[/gold], erhalte eine Kartenbelohnung mehr.",
     "type_key": "Attack",
@@ -3741,7 +3741,7 @@
       "increase": "+1"
     },
     "image_url": "/static/images/cards/the_scythe.webp",
-    "beta_image_url": "/static/images/cards/beta/the_scythe.png",
+    "beta_image_url": "/static/images/cards/beta/the_scythe.webp",
     "type_variants": null,
     "upgrade_description": "Füge 13 Schaden zu.\nErhöhe den Schaden dieser Karte permanent um 4.",
     "type_key": "Attack",
@@ -3785,7 +3785,7 @@
       "block": "+3"
     },
     "image_url": "/static/images/cards/minion_sacrifice.webp",
-    "beta_image_url": "/static/images/cards/beta/minion_sacrifice.png",
+    "beta_image_url": "/static/images/cards/beta/minion_sacrifice.webp",
     "type_variants": null,
     "upgrade_description": "Erhalte 12 [gold]Block[/gold].",
     "type_key": "Skill",
@@ -3831,7 +3831,7 @@
       "damage": "+3"
     },
     "image_url": "/static/images/cards/minion_strike.webp",
-    "beta_image_url": "/static/images/cards/beta/minion_strike.png",
+    "beta_image_url": "/static/images/cards/beta/minion_strike.webp",
     "type_variants": null,
     "upgrade_description": "Füge 10 Schaden zu.\nZiehe 1 Karte.",
     "type_key": "Attack",
@@ -4113,7 +4113,7 @@
       "cost": 2
     },
     "image_url": "/static/images/cards/demesne.webp",
-    "beta_image_url": "/static/images/cards/beta/demesne.png",
+    "beta_image_url": "/static/images/cards/beta/demesne.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Power",
@@ -4160,7 +4160,7 @@
       "thunderpower": "+2"
     },
     "image_url": "/static/images/cards/thunder.webp",
-    "beta_image_url": "/static/images/cards/beta/thunder.png",
+    "beta_image_url": "/static/images/cards/beta/thunder.webp",
     "type_variants": null,
     "upgrade_description": "Immer wenn du einen [gold]Blitz Entlädtst[/gold], füge dem getroffenen Gegner 8 Schaden zu.",
     "type_key": "Power",
@@ -4432,7 +4432,7 @@
       "damage": "+1"
     },
     "image_url": "/static/images/cards/gunk_up.webp",
-    "beta_image_url": "/static/images/cards/beta/gunk_up.png",
+    "beta_image_url": "/static/images/cards/beta/gunk_up.webp",
     "type_variants": null,
     "upgrade_description": "Füge 3 Mal 5 Schaden zu.\nErhalte ein [gold]Verschleimt[/gold] in deinen [gold]Abwurfstapel[/gold].",
     "type_key": "Attack",
@@ -4469,7 +4469,7 @@
       "energy": "+1"
     },
     "image_url": "/static/images/cards/believe_in_you.webp",
-    "beta_image_url": "/static/images/cards/beta/believe_in_you.png",
+    "beta_image_url": "/static/images/cards/beta/believe_in_you.webp",
     "type_variants": null,
     "upgrade_description": "Ein anderer Spieler erhält [energy:4].",
     "type_key": "Skill",
@@ -4627,7 +4627,7 @@
       "poison": "+2"
     },
     "image_url": "/static/images/cards/haze.webp",
-    "beta_image_url": "/static/images/cards/beta/haze.png",
+    "beta_image_url": "/static/images/cards/beta/haze.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Skill",
@@ -4747,7 +4747,7 @@
       "damage": "+3"
     },
     "image_url": "/static/images/cards/veilpiercer.webp",
-    "beta_image_url": "/static/images/cards/beta/veilpiercer.png",
+    "beta_image_url": "/static/images/cards/beta/veilpiercer.webp",
     "type_variants": null,
     "upgrade_description": "Füge 13 Schaden zu.\nDie nächste [gold]Flüchtige[/gold] Karte, die du spielst, kostet 0 [energy:1].",
     "type_key": "Attack",
@@ -4786,7 +4786,7 @@
       "block": "+4"
     },
     "image_url": "/static/images/cards/fight_through.webp",
-    "beta_image_url": "/static/images/cards/beta/fight_through.png",
+    "beta_image_url": "/static/images/cards/beta/fight_through.webp",
     "type_variants": null,
     "upgrade_description": "Erhalte 17 [gold]Block[/gold].\nErhalte 2 [gold]Wunden[/gold] in deinen [gold]Abwurfstapel[/gold].",
     "type_key": "Skill",
@@ -4871,7 +4871,7 @@
       "remove_exhaust": true
     },
     "image_url": "/static/images/cards/demonic_shield.webp",
-    "beta_image_url": "/static/images/cards/beta/demonic_shield.png",
+    "beta_image_url": "/static/images/cards/beta/demonic_shield.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Skill",
@@ -4953,7 +4953,7 @@
       "cost": 1
     },
     "image_url": "/static/images/cards/eidolon.webp",
-    "beta_image_url": "/static/images/cards/beta/eidolon.png",
+    "beta_image_url": "/static/images/cards/beta/eidolon.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Skill",
@@ -5068,7 +5068,7 @@
       "damage": "+5"
     },
     "image_url": "/static/images/cards/ice_lance.webp",
-    "beta_image_url": "/static/images/cards/beta/ice_lance.png",
+    "beta_image_url": "/static/images/cards/beta/ice_lance.webp",
     "type_variants": null,
     "upgrade_description": "Füge 24 Schaden zu.\n[gold]Erschaffe[/gold] 3 [gold]Frost[/gold].",
     "type_key": "Attack",
@@ -5106,7 +5106,7 @@
       "add_retain": true
     },
     "image_url": "/static/images/cards/misery.webp",
-    "beta_image_url": "/static/images/cards/beta/misery.png",
+    "beta_image_url": "/static/images/cards/beta/misery.webp",
     "type_variants": null,
     "upgrade_description": "Füge 9 Schaden zu.\nWende jegliche Debuffs auf dem Gegner auf ALLE anderen Gegner an.",
     "type_key": "Attack",
@@ -5183,7 +5183,7 @@
       "energy": "+1"
     },
     "image_url": "/static/images/cards/energy_surge.webp",
-    "beta_image_url": "/static/images/cards/beta/energy_surge.png",
+    "beta_image_url": "/static/images/cards/beta/energy_surge.webp",
     "type_variants": null,
     "upgrade_description": "ALLE Spieler erhalten [energy:3].",
     "type_key": "Skill",
@@ -5316,7 +5316,7 @@
       "debilitatepower": "+1"
     },
     "image_url": "/static/images/cards/debilitate.webp",
-    "beta_image_url": "/static/images/cards/beta/debilitate.png",
+    "beta_image_url": "/static/images/cards/beta/debilitate.webp",
     "type_variants": null,
     "upgrade_description": "Füge 9 Schaden zu.\n[gold]Verwundbar[/gold] und [gold]Schwach[/gold] sind auf diesem Gegner für die nächsten 4 Züge doppelt so effektiv.",
     "type_key": "Attack",
@@ -5355,7 +5355,7 @@
       "strengthloss": "+3"
     },
     "image_url": "/static/images/cards/enfeebling_touch.webp",
-    "beta_image_url": "/static/images/cards/beta/enfeebling_touch.png",
+    "beta_image_url": "/static/images/cards/beta/enfeebling_touch.webp",
     "type_variants": null,
     "upgrade_description": "Der Gegner verliert für diesen Zug 11 [gold]Stärke[/gold].",
     "type_key": "Skill",
@@ -5437,7 +5437,7 @@
       "add_innate": true
     },
     "image_url": "/static/images/cards/entropy.webp",
-    "beta_image_url": "/static/images/cards/beta/entropy.png",
+    "beta_image_url": "/static/images/cards/beta/entropy.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Power",
@@ -5480,7 +5480,7 @@
       "energy": "+1"
     },
     "image_url": "/static/images/cards/relax.webp",
-    "beta_image_url": "/static/images/cards/beta/relax.png",
+    "beta_image_url": "/static/images/cards/beta/relax.webp",
     "type_variants": null,
     "upgrade_description": "Erhalte 17 [gold]Block[/gold].\nZiehe zu Beginn deines nächsten Zuges 3 Karten und erhalte [energy:3].",
     "type_key": "Skill",
@@ -5520,7 +5520,7 @@
       "damage": "+3"
     },
     "image_url": "/static/images/cards/hang.webp",
-    "beta_image_url": "/static/images/cards/beta/hang.png",
+    "beta_image_url": "/static/images/cards/beta/hang.webp",
     "type_variants": null,
     "upgrade_description": "Füge 13 Schaden zu.\nVerdopple den Schaden ALLER Erhängen-Karten für diesen Gegner.",
     "type_key": "Attack",
@@ -5599,7 +5599,7 @@
       "cost": 2
     },
     "image_url": "/static/images/cards/murder.webp",
-    "beta_image_url": "/static/images/cards/beta/murder.png",
+    "beta_image_url": "/static/images/cards/beta/murder.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Attack",
@@ -5636,7 +5636,7 @@
       "forge": "+2"
     },
     "image_url": "/static/images/cards/conqueror.webp",
-    "beta_image_url": "/static/images/cards/beta/conqueror.png",
+    "beta_image_url": "/static/images/cards/beta/conqueror.webp",
     "type_variants": null,
     "upgrade_description": "[gold]Schmiede[/gold] 5.\n[gold]Hoheitsklinge[/gold] fügt diesem Gegner in diesem Zug doppelten Schaden zu.",
     "type_key": "Skill",
@@ -5682,7 +5682,7 @@
       "stranglepower": "+1"
     },
     "image_url": "/static/images/cards/strangle.webp",
-    "beta_image_url": "/static/images/cards/beta/strangle.png",
+    "beta_image_url": "/static/images/cards/beta/strangle.webp",
     "type_variants": null,
     "upgrade_description": "Füge 10 Schaden zu.\nImmer wenn du in diesem Zug eine Karte spielst, verliert der Gegner 3 TP.",
     "type_key": "Attack",
@@ -5900,7 +5900,7 @@
       "damage": "+4"
     },
     "image_url": "/static/images/cards/falling_star.webp",
-    "beta_image_url": "/static/images/cards/beta/falling_star.png",
+    "beta_image_url": "/static/images/cards/beta/falling_star.webp",
     "type_variants": null,
     "upgrade_description": "Füge 11 Schaden zu.\nWende 1 [gold]Schwach[/gold] an.\nWende 1 [gold]Verwundbar[/gold] an.",
     "type_key": "Attack",
@@ -5983,7 +5983,7 @@
     },
     "upgrade": null,
     "image_url": "/static/images/cards/sloth.webp",
-    "beta_image_url": "/static/images/cards/beta/sloth.png",
+    "beta_image_url": "/static/images/cards/beta/sloth.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Status",
@@ -6020,7 +6020,7 @@
       "damage": "+2"
     },
     "image_url": "/static/images/cards/fisticuffs.webp",
-    "beta_image_url": "/static/images/cards/beta/fisticuffs.png",
+    "beta_image_url": "/static/images/cards/beta/fisticuffs.webp",
     "type_variants": null,
     "upgrade_description": "Füge 9 Schaden zu.\nErhalte [gold]Block[/gold] in Höhe des zugefügten Schadens.",
     "type_key": "Attack",
@@ -6063,7 +6063,7 @@
       "ostydamage": "+5"
     },
     "image_url": "/static/images/cards/sweeping_gaze.webp",
-    "beta_image_url": "/static/images/cards/beta/sweeping_gaze.png",
+    "beta_image_url": "/static/images/cards/beta/sweeping_gaze.webp",
     "type_variants": null,
     "upgrade_description": "[gold]Osty[/gold] fügt einem zufälligen Gegner 15 Schaden zu.",
     "type_key": "Attack",
@@ -6226,7 +6226,7 @@
       "extradamage": "+1"
     },
     "image_url": "/static/images/cards/conflagration.webp",
-    "beta_image_url": "/static/images/cards/beta/conflagration.png",
+    "beta_image_url": "/static/images/cards/beta/conflagration.webp",
     "type_variants": null,
     "upgrade_description": "Füge ALLEN Gegnern 8 Schaden zu.\nFügt 3 Schaden mehr zu pro anderem Angriff, den du in diesem Zug gespielt hast.",
     "type_key": "Attack",
@@ -6302,7 +6302,7 @@
       "damage": "+3"
     },
     "image_url": "/static/images/cards/flak_cannon.webp",
-    "beta_image_url": "/static/images/cards/beta/flak_cannon.png",
+    "beta_image_url": "/static/images/cards/beta/flak_cannon.webp",
     "type_variants": null,
     "upgrade_description": "[gold]Erschöpfe[/gold] ALLE deine [gold]Status[/gold]-Karten.\nFüge für jede [gold]Erschöpfte[/gold] Karte einem zufälligen Gegner 11 Schaden zu.",
     "type_key": "Attack",
@@ -6618,7 +6618,7 @@
       "focuspower": "+1"
     },
     "image_url": "/static/images/cards/focused_strike.webp",
-    "beta_image_url": "/static/images/cards/beta/focused_strike.png",
+    "beta_image_url": "/static/images/cards/beta/focused_strike.webp",
     "type_variants": null,
     "upgrade_description": "Füge 11 Schaden zu.\nErhalte für diesen Zug 2 [gold]Fokus[/gold].",
     "type_key": "Attack",
@@ -6662,7 +6662,7 @@
       "strength": "+2"
     },
     "image_url": "/static/images/cards/feeding_frenzy.webp",
-    "beta_image_url": "/static/images/cards/beta/feeding_frenzy.png",
+    "beta_image_url": "/static/images/cards/beta/feeding_frenzy.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Skill",
@@ -6881,7 +6881,7 @@
       "damage": "+3"
     },
     "image_url": "/static/images/cards/leading_strike.webp",
-    "beta_image_url": "/static/images/cards/beta/leading_strike.png",
+    "beta_image_url": "/static/images/cards/beta/leading_strike.webp",
     "type_variants": null,
     "upgrade_description": "Füge 10 Schaden zu.\nErhalte 1 [gold]Messer[/gold] auf deine [gold]Hand[/gold].",
     "type_key": "Attack",
@@ -6934,7 +6934,7 @@
       "damage": "+5"
     },
     "image_url": "/static/images/cards/gamma_blast.webp",
-    "beta_image_url": "/static/images/cards/beta/gamma_blast.png",
+    "beta_image_url": "/static/images/cards/beta/gamma_blast.webp",
     "type_variants": null,
     "upgrade_description": "Füge 18 Schaden zu.\nWende 2 [gold]Schwach[/gold] an.\nWende 2 [gold]Verwundbar[/gold] an.",
     "type_key": "Attack",
@@ -7016,7 +7016,7 @@
       "damage": "+5"
     },
     "image_url": "/static/images/cards/heirloom_hammer.webp",
-    "beta_image_url": "/static/images/cards/beta/heirloom_hammer.png",
+    "beta_image_url": "/static/images/cards/beta/heirloom_hammer.webp",
     "type_variants": null,
     "upgrade_description": "Füge 22 Schaden zu.\nWähle eine farblose [gold]Handkarte[/gold]. Erhalte eine Kopie dieser Karte auf deine [gold]Hand[/gold].",
     "type_key": "Attack",
@@ -7170,7 +7170,7 @@
       "blockonexhaust": "+1"
     },
     "image_url": "/static/images/cards/spirit_of_ash.webp",
-    "beta_image_url": "/static/images/cards/beta/spirit_of_ash.png",
+    "beta_image_url": "/static/images/cards/beta/spirit_of_ash.webp",
     "type_variants": null,
     "upgrade_description": "Immer wenn du eine [gold]Flüchtige[/gold] Karte spielst, erhalte 5 [gold]Block[/gold].",
     "type_key": "Power",
@@ -7263,7 +7263,7 @@
     },
     "upgrade": null,
     "image_url": "/static/images/cards/mind_rot.webp",
-    "beta_image_url": "/static/images/cards/beta/mind_rot.png",
+    "beta_image_url": "/static/images/cards/beta/mind_rot.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Status",
@@ -7477,7 +7477,7 @@
       "starsperturn": "+1"
     },
     "image_url": "/static/images/cards/genesis.webp",
-    "beta_image_url": "/static/images/cards/beta/genesis.png",
+    "beta_image_url": "/static/images/cards/beta/genesis.webp",
     "type_variants": null,
     "upgrade_description": "Erhalte immer zu Beginn deines Zuges [star:3].",
     "type_key": "Power",
@@ -7557,7 +7557,7 @@
       "add_retain": true
     },
     "image_url": "/static/images/cards/scrawl.webp",
-    "beta_image_url": "/static/images/cards/beta/scrawl.png",
+    "beta_image_url": "/static/images/cards/beta/scrawl.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Skill",
@@ -7649,7 +7649,7 @@
       "sneakypower": "+1"
     },
     "image_url": "/static/images/cards/sneaky.webp",
-    "beta_image_url": "/static/images/cards/beta/sneaky.png",
+    "beta_image_url": "/static/images/cards/beta/sneaky.webp",
     "type_variants": null,
     "upgrade_description": "Immer wenn ein anderer Spieler einen Gegner angreift, erhalte 2 [gold]Block[/gold].",
     "type_key": "Power",
@@ -7723,7 +7723,7 @@
     "vars": null,
     "upgrade": null,
     "image_url": "/static/images/cards/greed.webp",
-    "beta_image_url": "/static/images/cards/beta/greed.png",
+    "beta_image_url": "/static/images/cards/beta/greed.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Curse",
@@ -8043,7 +8043,7 @@
       "remove_exhaust": true
     },
     "image_url": "/static/images/cards/graveblast.webp",
-    "beta_image_url": "/static/images/cards/beta/graveblast.png",
+    "beta_image_url": "/static/images/cards/beta/graveblast.webp",
     "type_variants": null,
     "upgrade_description": "Füge 6 Schaden zu.\nNimm eine Karte aus deinem [gold]Abwurfstapel[/gold] auf deine [gold]Hand[/gold].",
     "type_key": "Attack",
@@ -8178,7 +8178,7 @@
       "strength": "+1"
     },
     "image_url": "/static/images/cards/fight_me.webp",
-    "beta_image_url": "/static/images/cards/beta/fight_me.png",
+    "beta_image_url": "/static/images/cards/beta/fight_me.webp",
     "type_variants": null,
     "upgrade_description": "Füge zweimal 6 Schaden zu.\nErhalte 2 [gold]Stärke[/gold].\nDer Gegner erhält 1 [gold]Stärke[/gold].",
     "type_key": "Attack",
@@ -8217,7 +8217,7 @@
       "damage": "+2"
     },
     "image_url": "/static/images/cards/pull_from_below.webp",
-    "beta_image_url": "/static/images/cards/beta/pull_from_below.png",
+    "beta_image_url": "/static/images/cards/beta/pull_from_below.webp",
     "type_variants": null,
     "upgrade_description": "Füge 7 Schaden zu für jede in diesem Kampf gespielte [gold]Flüchtige[/gold] Karte.",
     "type_key": "Attack",
@@ -8289,7 +8289,7 @@
       "description_changed": true
     },
     "image_url": "/static/images/cards/largesse.webp",
-    "beta_image_url": "/static/images/cards/beta/largesse.png",
+    "beta_image_url": "/static/images/cards/beta/largesse.webp",
     "type_variants": null,
     "upgrade_description": "Ein Verbündeter erhält 1 zufällige [gold]verbesserte[/gold] farblose Karte auf die [gold]Hand[/gold].",
     "type_key": "Skill",
@@ -8365,7 +8365,7 @@
       "damage": "+1"
     },
     "image_url": "/static/images/cards/begone.webp",
-    "beta_image_url": "/static/images/cards/beta/begone.png",
+    "beta_image_url": "/static/images/cards/beta/begone.webp",
     "type_variants": null,
     "upgrade_description": "Füge 5 Schaden zu.\nWähle eine [gold]Handkarte[/gold], die du zu [gold]Diener-Sturzflug+[/gold] [gold]Transformierst[/gold].",
     "type_key": "Attack",
@@ -8409,7 +8409,7 @@
       "hailstormpower": "+2"
     },
     "image_url": "/static/images/cards/hailstorm.webp",
-    "beta_image_url": "/static/images/cards/beta/hailstorm.png",
+    "beta_image_url": "/static/images/cards/beta/hailstorm.webp",
     "type_variants": null,
     "upgrade_description": "Füge immer am Ende deines Zuges ALLEN Gegnern 8 Schaden zu, falls du [gold]Frost[/gold] hast.",
     "type_key": "Power",
@@ -8444,7 +8444,7 @@
       "add_innate": true
     },
     "image_url": "/static/images/cards/hello_world.webp",
-    "beta_image_url": "/static/images/cards/beta/hello_world.png",
+    "beta_image_url": "/static/images/cards/beta/hello_world.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Power",
@@ -8479,7 +8479,7 @@
       "cost": 1
     },
     "image_url": "/static/images/cards/hammer_time.webp",
-    "beta_image_url": "/static/images/cards/beta/hammer_time.png",
+    "beta_image_url": "/static/images/cards/beta/hammer_time.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Power",
@@ -8552,7 +8552,7 @@
       "damage": "+5"
     },
     "image_url": "/static/images/cards/jackpot.webp",
-    "beta_image_url": "/static/images/cards/beta/jackpot.png",
+    "beta_image_url": "/static/images/cards/beta/jackpot.webp",
     "type_variants": null,
     "upgrade_description": "Füge 30 Schaden zu.\nErhalte 3 zufällige [gold]verbesserte[/gold] 0[energy:1]-Karten auf deine [gold]Hand[/gold].",
     "type_key": "Attack",
@@ -8592,7 +8592,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/brightest_flame.webp",
-    "beta_image_url": "/static/images/cards/beta/brightest_flame.png",
+    "beta_image_url": "/static/images/cards/beta/brightest_flame.webp",
     "type_variants": null,
     "upgrade_description": "Erhalte [energy:3].\nZiehe 3 Karten.\nVerliere 1 max. TP.",
     "type_key": "Skill",
@@ -8631,7 +8631,7 @@
       "energy": "+1"
     },
     "image_url": "/static/images/cards/invoke.webp",
-    "beta_image_url": "/static/images/cards/beta/invoke.png",
+    "beta_image_url": "/static/images/cards/beta/invoke.webp",
     "type_variants": null,
     "upgrade_description": "Im nächsten Zug [gold]Beschwöre[/gold] 3 und erhalte [energy:3].",
     "type_key": "Skill",
@@ -8670,7 +8670,7 @@
       "forge": "+3"
     },
     "image_url": "/static/images/cards/summon_forth.webp",
-    "beta_image_url": "/static/images/cards/beta/summon_forth.png",
+    "beta_image_url": "/static/images/cards/beta/summon_forth.webp",
     "type_variants": null,
     "upgrade_description": "[gold]Schmiede[/gold] 11.\nNimm [gold]Hoheitsklinge[/gold] von irgendwoher auf deine [gold]Hand[/gold].",
     "type_key": "Skill",
@@ -8795,7 +8795,7 @@
       "damage": "+2"
     },
     "image_url": "/static/images/cards/heavenly_drill.webp",
-    "beta_image_url": "/static/images/cards/beta/heavenly_drill.png",
+    "beta_image_url": "/static/images/cards/beta/heavenly_drill.webp",
     "type_variants": null,
     "upgrade_description": "Füge X Mal 10 Schaden zu.\nVerdopple X, falls es 4 oder mehr ist.",
     "type_key": "Attack",
@@ -8830,7 +8830,7 @@
       "add_innate": true
     },
     "image_url": "/static/images/cards/beacon_of_hope.webp",
-    "beta_image_url": "/static/images/cards/beta/beacon_of_hope.png",
+    "beta_image_url": "/static/images/cards/beta/beacon_of_hope.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Power",
@@ -8873,7 +8873,7 @@
       "cost": 1
     },
     "image_url": "/static/images/cards/sovereign_blade.webp",
-    "beta_image_url": "/static/images/cards/beta/sovereign_blade.png",
+    "beta_image_url": "/static/images/cards/beta/sovereign_blade.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Attack",
@@ -8963,7 +8963,7 @@
       "focuspower": "+1"
     },
     "image_url": "/static/images/cards/hotfix.webp",
-    "beta_image_url": "/static/images/cards/beta/hotfix.png",
+    "beta_image_url": "/static/images/cards/beta/hotfix.webp",
     "type_variants": null,
     "upgrade_description": "Erhalte für diesen Zug 3 [gold]Fokus[/gold].",
     "type_key": "Skill",
@@ -9118,7 +9118,7 @@
       "block": "+3"
     },
     "image_url": "/static/images/cards/i_am_invincible.webp",
-    "beta_image_url": "/static/images/cards/beta/i_am_invincible.png",
+    "beta_image_url": "/static/images/cards/beta/i_am_invincible.webp",
     "type_variants": null,
     "upgrade_description": "Erhalte 12 [gold]Block[/gold].\nFalls diese Karte am Ende deines Zuges auf deinem [gold]Nachziehstapel[/gold] liegt, spiele sie.",
     "type_key": "Skill",
@@ -9157,7 +9157,7 @@
       "forge": "+2"
     },
     "image_url": "/static/images/cards/wrought_in_war.webp",
-    "beta_image_url": "/static/images/cards/beta/wrought_in_war.png",
+    "beta_image_url": "/static/images/cards/beta/wrought_in_war.webp",
     "type_variants": null,
     "upgrade_description": "Füge 9 Schaden zu.\n[gold]Schmiede[/gold] 7.",
     "type_key": "Attack",
@@ -9235,7 +9235,7 @@
       "calculationextra": "+2"
     },
     "image_url": "/static/images/cards/beat_into_shape.webp",
-    "beta_image_url": "/static/images/cards/beta/beat_into_shape.png",
+    "beta_image_url": "/static/images/cards/beta/beat_into_shape.webp",
     "type_variants": null,
     "upgrade_description": "Füge 7 Schaden zu.\n[gold]Schmiede[/gold] X.\n[gold]Schmiedet[/gold] 7 mehr für jeden vorherigen Treffer auf diesen Gegner in diesem Zug.",
     "type_key": "Attack",
@@ -9318,7 +9318,7 @@
     },
     "upgrade": null,
     "image_url": "/static/images/cards/infection.webp",
-    "beta_image_url": "/static/images/cards/beta/infection.png",
+    "beta_image_url": "/static/images/cards/beta/infection.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Status",
@@ -9404,7 +9404,7 @@
       "add_retain": true
     },
     "image_url": "/static/images/cards/wisp.webp",
-    "beta_image_url": "/static/images/cards/beta/wisp.png",
+    "beta_image_url": "/static/images/cards/beta/wisp.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Skill",
@@ -9451,7 +9451,7 @@
       "iterationpower": "+1"
     },
     "image_url": "/static/images/cards/iteration.webp",
-    "beta_image_url": "/static/images/cards/beta/iteration.png",
+    "beta_image_url": "/static/images/cards/beta/iteration.webp",
     "type_variants": null,
     "upgrade_description": "Immer wenn du die erste Status-Karte in einem Zug ziehst, ziehe 3 Karten.",
     "type_key": "Power",
@@ -9523,7 +9523,7 @@
       "add_innate": true
     },
     "image_url": "/static/images/cards/juggling.webp",
-    "beta_image_url": "/static/images/cards/beta/juggling.png",
+    "beta_image_url": "/static/images/cards/beta/juggling.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Power",
@@ -9605,7 +9605,7 @@
       "damage": "+8"
     },
     "image_url": "/static/images/cards/knockout_blow.webp",
-    "beta_image_url": "/static/images/cards/beta/knockout_blow.png",
+    "beta_image_url": "/static/images/cards/beta/knockout_blow.webp",
     "type_variants": null,
     "upgrade_description": "Füge 38 Schaden zu.\nFalls der Gegner dadurch stirbt, erhalte [star:5].",
     "type_key": "Attack",
@@ -9721,7 +9721,7 @@
       "forge": "+5"
     },
     "image_url": "/static/images/cards/spoils_of_battle.webp",
-    "beta_image_url": "/static/images/cards/beta/spoils_of_battle.png",
+    "beta_image_url": "/static/images/cards/beta/spoils_of_battle.webp",
     "type_variants": null,
     "upgrade_description": "[gold]Schmiede[/gold] 15.",
     "type_key": "Skill",
@@ -9830,7 +9830,7 @@
       "description_changed": true
     },
     "image_url": "/static/images/cards/cascade.webp",
-    "beta_image_url": "/static/images/cards/beta/cascade.png",
+    "beta_image_url": "/static/images/cards/beta/cascade.webp",
     "type_variants": null,
     "upgrade_description": "Spiele die obersten X+1 Karten deines [gold]Nachziehstapels[/gold].",
     "type_key": "Skill",
@@ -9867,7 +9867,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/catastrophe.webp",
-    "beta_image_url": "/static/images/cards/beta/catastrophe.png",
+    "beta_image_url": "/static/images/cards/beta/catastrophe.webp",
     "type_variants": null,
     "upgrade_description": "Spiele 3 zufällige Karten aus deinem [gold]Nachziehstapel[/gold].",
     "type_key": "Skill",
@@ -9959,7 +9959,7 @@
       "remove_exhaust": true
     },
     "image_url": "/static/images/cards/know_thy_place.webp",
-    "beta_image_url": "/static/images/cards/beta/know_thy_place.png",
+    "beta_image_url": "/static/images/cards/beta/know_thy_place.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Skill",
@@ -10038,7 +10038,7 @@
       "forge": "+4"
     },
     "image_url": "/static/images/cards/refine_blade.webp",
-    "beta_image_url": "/static/images/cards/beta/refine_blade.png",
+    "beta_image_url": "/static/images/cards/beta/refine_blade.webp",
     "type_variants": null,
     "upgrade_description": "[gold]Schmiede[/gold] 10.\nErhalte im nächsten Zug [energy:1].",
     "type_key": "Skill",
@@ -10165,7 +10165,7 @@
       "ostydamage": "+3"
     },
     "image_url": "/static/images/cards/bone_shards.webp",
-    "beta_image_url": "/static/images/cards/beta/bone_shards.png",
+    "beta_image_url": "/static/images/cards/beta/bone_shards.webp",
     "type_variants": null,
     "upgrade_description": "Falls [gold]Osty[/gold] lebt, fügt er ALLEN Gegnern 12 Schaden zu und du erhältst 12 [gold]Block[/gold].\n[gold]Osty[/gold] stirbt.",
     "type_key": "Attack",
@@ -10241,7 +10241,7 @@
       "damage": "+3"
     },
     "image_url": "/static/images/cards/collision_course.webp",
-    "beta_image_url": "/static/images/cards/beta/collision_course.png",
+    "beta_image_url": "/static/images/cards/beta/collision_course.webp",
     "type_variants": null,
     "upgrade_description": "Füge 12 Schaden zu.\nErhalte einen [gold]Schutt[/gold] auf deine [gold]Hand[/gold].",
     "type_key": "Attack",
@@ -10279,7 +10279,7 @@
       "block": "+3"
     },
     "image_url": "/static/images/cards/colossus.webp",
-    "beta_image_url": "/static/images/cards/beta/colossus.png",
+    "beta_image_url": "/static/images/cards/beta/colossus.webp",
     "type_variants": null,
     "upgrade_description": "Erhalte 8 [gold]Block[/gold].\nDu nimmst in diesem Zug 50% weniger Schaden von [gold]Verwundbaren[/gold] Gegnern.",
     "type_key": "Skill",
@@ -10332,7 +10332,7 @@
       "damage": "+11"
     },
     "image_url": "/static/images/cards/comet.webp",
-    "beta_image_url": "/static/images/cards/beta/comet.png",
+    "beta_image_url": "/static/images/cards/beta/comet.webp",
     "type_variants": null,
     "upgrade_description": "Füge 44 Schaden zu.\nWende 3 [gold]Schwach[/gold] an.\nWende 3 [gold]Verwundbar[/gold] an.",
     "type_key": "Attack",
@@ -10409,7 +10409,7 @@
       "stars": "+1"
     },
     "image_url": "/static/images/cards/convergence.webp",
-    "beta_image_url": "/static/images/cards/beta/convergence.png",
+    "beta_image_url": "/static/images/cards/beta/convergence.webp",
     "type_variants": null,
     "upgrade_description": "Erhalte im nächsten Zug [energy:1] und [star:2].\n[gold]Behalte[/gold] deine [gold]Hand[/gold] in diesem Zug.",
     "type_key": "Skill",
@@ -10453,7 +10453,7 @@
       "strength": "+3"
     },
     "image_url": "/static/images/cards/coordinate.webp",
-    "beta_image_url": "/static/images/cards/beta/coordinate.png",
+    "beta_image_url": "/static/images/cards/beta/coordinate.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Skill",
@@ -10527,7 +10527,7 @@
       "block": "+3"
     },
     "image_url": "/static/images/cards/cosmic_indifference.webp",
-    "beta_image_url": "/static/images/cards/beta/cosmic_indifference.png",
+    "beta_image_url": "/static/images/cards/beta/cosmic_indifference.webp",
     "type_variants": null,
     "upgrade_description": "Erhalte 9 [gold]Block[/gold].\nLege eine Karte aus deinem [gold]Abwurfstapel[/gold] oben auf deinen [gold]Nachziehstapel[/gold].",
     "type_key": "Skill",
@@ -10638,7 +10638,7 @@
     "vars": null,
     "upgrade": null,
     "image_url": "/static/images/cards/frantic_escape.webp",
-    "beta_image_url": "/static/images/cards/beta/frantic_escape.png",
+    "beta_image_url": "/static/images/cards/beta/frantic_escape.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Status",
@@ -10719,7 +10719,7 @@
       "description_changed": true
     },
     "image_url": "/static/images/cards/spinner.webp",
-    "beta_image_url": "/static/images/cards/beta/spinner.png",
+    "beta_image_url": "/static/images/cards/beta/spinner.webp",
     "type_variants": null,
     "upgrade_description": "[gold]Erschaffe[/gold] 1 [gold]Glas[/gold].\n[gold]Erschaffe[/gold] zu Beginn jedes Zuges 1 [gold]Glas[/gold].",
     "type_key": "Power",
@@ -10764,7 +10764,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/drum_of_battle.webp",
-    "beta_image_url": "/static/images/cards/beta/drum_of_battle.png",
+    "beta_image_url": "/static/images/cards/beta/drum_of_battle.webp",
     "type_variants": null,
     "upgrade_description": "Ziehe 3 Karten.\n[gold]Erschöpfe[/gold] immer zu Beginn deines Zuges die oberste Karte deines [gold]Nachziehstapels[/gold].",
     "type_key": "Power",
@@ -10845,7 +10845,7 @@
       "thornspower": "+2"
     },
     "image_url": "/static/images/cards/caltrops.webp",
-    "beta_image_url": "/static/images/cards/beta/caltrops.png",
+    "beta_image_url": "/static/images/cards/beta/caltrops.webp",
     "type_variants": null,
     "upgrade_description": "Immer wenn du angegriffen wirst, füge dem Angreifer 5 Schaden zu.",
     "type_key": "Power",
@@ -10919,7 +10919,7 @@
       "damage": "+4"
     },
     "image_url": "/static/images/cards/volley.webp",
-    "beta_image_url": "/static/images/cards/beta/volley.png",
+    "beta_image_url": "/static/images/cards/beta/volley.webp",
     "type_variants": null,
     "upgrade_description": "Füge X Mal einem zufälligen Gegner 14 Schaden zu.",
     "type_key": "Attack",
@@ -11034,7 +11034,7 @@
       "increase": "+2"
     },
     "image_url": "/static/images/cards/kingly_punch.webp",
-    "beta_image_url": "/static/images/cards/beta/kingly_punch.png",
+    "beta_image_url": "/static/images/cards/beta/kingly_punch.webp",
     "type_variants": null,
     "upgrade_description": "Füge 8 Schaden zu.\nImmer wenn du diese Karte ziehst, erhöhe ihren Schaden für diesen Kampf um 5.",
     "type_key": "Attack",
@@ -11123,7 +11123,7 @@
       "strength": "+1"
     },
     "image_url": "/static/images/cards/prowess.webp",
-    "beta_image_url": "/static/images/cards/beta/prowess.png",
+    "beta_image_url": "/static/images/cards/beta/prowess.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Power",
@@ -11241,7 +11241,7 @@
     },
     "upgrade": null,
     "image_url": "/static/images/cards/lantern_key.webp",
-    "beta_image_url": "/static/images/cards/beta/lantern_key.png",
+    "beta_image_url": "/static/images/cards/beta/lantern_key.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Quest",
@@ -11290,7 +11290,7 @@
       "devourlifepower": "+1"
     },
     "image_url": "/static/images/cards/devour_life.webp",
-    "beta_image_url": "/static/images/cards/beta/devour_life.png",
+    "beta_image_url": "/static/images/cards/beta/devour_life.webp",
     "type_variants": null,
     "upgrade_description": "Immer wenn du eine [gold]Seele[/gold] spielst, [gold]Beschwöre[/gold] 2.",
     "type_key": "Power",
@@ -11376,7 +11376,7 @@
       "voidformpower": "+1"
     },
     "image_url": "/static/images/cards/void_form.webp",
-    "beta_image_url": "/static/images/cards/beta/void_form.png",
+    "beta_image_url": "/static/images/cards/beta/void_form.webp",
     "type_variants": null,
     "upgrade_description": "Beende deinen Zug.\nDie ersten 3 Karten, die du in jedem Zug spielst, sind kostenlos spielbar.",
     "type_key": "Power",
@@ -11415,7 +11415,7 @@
       "summon": "+2"
     },
     "image_url": "/static/images/cards/legion_of_bone.webp",
-    "beta_image_url": "/static/images/cards/beta/legion_of_bone.png",
+    "beta_image_url": "/static/images/cards/beta/legion_of_bone.webp",
     "type_variants": null,
     "upgrade_description": "ALLE Spieler [gold]Beschwören[/gold] 8.",
     "type_key": "Skill",
@@ -11462,7 +11462,7 @@
       "sleightoffleshpower": "+4"
     },
     "image_url": "/static/images/cards/sleight_of_flesh.webp",
-    "beta_image_url": "/static/images/cards/beta/sleight_of_flesh.png",
+    "beta_image_url": "/static/images/cards/beta/sleight_of_flesh.webp",
     "type_variants": null,
     "upgrade_description": "Immer wenn du einen Debuff auf einen Gegner anwendest, füge ihm 13 Schaden zu.",
     "type_key": "Power",
@@ -11499,7 +11499,7 @@
       "block": "+1"
     },
     "image_url": "/static/images/cards/shroud.webp",
-    "beta_image_url": "/static/images/cards/beta/shroud.png",
+    "beta_image_url": "/static/images/cards/beta/shroud.webp",
     "type_variants": null,
     "upgrade_description": "Immer wenn du [gold]Verderben[/gold] anwendest, erhalte 3 [gold]Block[/gold].",
     "type_key": "Power",
@@ -11579,7 +11579,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/guiding_star.webp",
-    "beta_image_url": "/static/images/cards/beta/guiding_star.png",
+    "beta_image_url": "/static/images/cards/beta/guiding_star.webp",
     "type_variants": null,
     "upgrade_description": "Füge 13 Schaden zu.\nZiehe im nächsten Zug 3 Karten.",
     "type_key": "Attack",
@@ -11698,7 +11698,7 @@
       "stars": "+1"
     },
     "image_url": "/static/images/cards/glow.webp",
-    "beta_image_url": "/static/images/cards/beta/glow.png",
+    "beta_image_url": "/static/images/cards/beta/glow.webp",
     "type_variants": null,
     "upgrade_description": "Erhalte [star:2].\nZiehe 2 Karten.",
     "type_key": "Skill",
@@ -11738,7 +11738,7 @@
       "energy": "+1"
     },
     "image_url": "/static/images/cards/luminesce.webp",
-    "beta_image_url": "/static/images/cards/beta/luminesce.png",
+    "beta_image_url": "/static/images/cards/beta/luminesce.webp",
     "type_variants": null,
     "upgrade_description": "Erhalte [energy:3].",
     "type_key": "Skill",
@@ -11780,7 +11780,7 @@
       "block": "+3"
     },
     "image_url": "/static/images/cards/gather_light.webp",
-    "beta_image_url": "/static/images/cards/beta/gather_light.png",
+    "beta_image_url": "/static/images/cards/beta/gather_light.webp",
     "type_variants": null,
     "upgrade_description": "Erhalte 10 [gold]Block[/gold].\nErhalte [star:1].",
     "type_key": "Skill",
@@ -11818,7 +11818,7 @@
       "damage": "+3"
     },
     "image_url": "/static/images/cards/refract.webp",
-    "beta_image_url": "/static/images/cards/beta/refract.png",
+    "beta_image_url": "/static/images/cards/beta/refract.webp",
     "type_variants": null,
     "upgrade_description": "Füge zweimal 12 Schaden zu.\n[gold]Erschaffe[/gold] 2 [gold]Glas[/gold].",
     "type_key": "Attack",
@@ -11853,7 +11853,7 @@
     },
     "upgrade": null,
     "image_url": "/static/images/cards/beckon.webp",
-    "beta_image_url": "/static/images/cards/beta/beckon.png",
+    "beta_image_url": "/static/images/cards/beta/beckon.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Status",
@@ -11928,7 +11928,7 @@
       "damage": "+3"
     },
     "image_url": "/static/images/cards/make_it_so.webp",
-    "beta_image_url": "/static/images/cards/beta/make_it_so.png",
+    "beta_image_url": "/static/images/cards/beta/make_it_so.webp",
     "type_variants": null,
     "upgrade_description": "Füge 9 Schaden zu.\nNimm diese Karte nach je 3 in einem Zug gespielten Fertigkeiten auf deine [gold]Hand[/gold].",
     "type_key": "Attack",
@@ -12009,7 +12009,7 @@
       "damage": "+3"
     },
     "image_url": "/static/images/cards/sculpting_strike.webp",
-    "beta_image_url": "/static/images/cards/beta/sculpting_strike.png",
+    "beta_image_url": "/static/images/cards/beta/sculpting_strike.webp",
     "type_variants": null,
     "upgrade_description": "Füge 11 Schaden zu.\nGib einer deiner [gold]Handkarten[/gold] [gold]Flüchtig[/gold].",
     "type_key": "Attack",
@@ -12175,7 +12175,7 @@
       "description_changed": true
     },
     "image_url": "/static/images/cards/knife_trap.webp",
-    "beta_image_url": "/static/images/cards/beta/knife_trap.png",
+    "beta_image_url": "/static/images/cards/beta/knife_trap.webp",
     "type_variants": null,
     "upgrade_description": "[gold]Verbessere[/gold] und spiele jedes [gold]Messer[/gold] in deinem [gold]Erschöpfungsstapel[/gold] auf diesen Gegner.",
     "type_key": "Skill",
@@ -12435,7 +12435,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/modded.webp",
-    "beta_image_url": "/static/images/cards/beta/modded.png",
+    "beta_image_url": "/static/images/cards/beta/modded.webp",
     "type_variants": null,
     "upgrade_description": "Erhalte 1 Orb-Slot.\nZiehe 2 Karten. Erhöhe die Kosten dieser Karte um 1.",
     "type_key": "Skill",
@@ -12518,7 +12518,7 @@
       "damage": "+1"
     },
     "image_url": "/static/images/cards/lunar_blast.webp",
-    "beta_image_url": "/static/images/cards/beta/lunar_blast.png",
+    "beta_image_url": "/static/images/cards/beta/lunar_blast.webp",
     "type_variants": null,
     "upgrade_description": "Füge 5 Schaden für jede Fertigkeit, die du in diesem Zug bereits gespielt hast.",
     "type_key": "Attack",
@@ -12595,7 +12595,7 @@
       "add_retain": true
     },
     "image_url": "/static/images/cards/monologue.webp",
-    "beta_image_url": "/static/images/cards/beta/monologue.png",
+    "beta_image_url": "/static/images/cards/beta/monologue.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Skill",
@@ -12670,7 +12670,7 @@
       "remove_exhaust": true
     },
     "image_url": "/static/images/cards/mimic.webp",
-    "beta_image_url": "/static/images/cards/beta/mimic.png",
+    "beta_image_url": "/static/images/cards/beta/mimic.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Skill",
@@ -12756,7 +12756,7 @@
       "summon": "+3"
     },
     "image_url": "/static/images/cards/afterlife.webp",
-    "beta_image_url": "/static/images/cards/beta/afterlife.png",
+    "beta_image_url": "/static/images/cards/beta/afterlife.webp",
     "type_variants": null,
     "upgrade_description": "[gold]Beschwöre[/gold] 9.",
     "type_key": "Skill",
@@ -12842,7 +12842,7 @@
       "summon": "+3"
     },
     "image_url": "/static/images/cards/necro_mastery.webp",
-    "beta_image_url": "/static/images/cards/beta/necro_mastery.png",
+    "beta_image_url": "/static/images/cards/beta/necro_mastery.webp",
     "type_variants": null,
     "upgrade_description": "[gold]Beschwöre[/gold] 8.\nImmer wenn [gold]Osty[/gold] TP verliert, verlieren ALLE Gegner ebenso viele TP.",
     "type_key": "Power",
@@ -12931,7 +12931,7 @@
       "energy": "+1"
     },
     "image_url": "/static/images/cards/neurosurge.webp",
-    "beta_image_url": "/static/images/cards/beta/neurosurge.png",
+    "beta_image_url": "/static/images/cards/beta/neurosurge.webp",
     "type_variants": null,
     "upgrade_description": "Erhalte [energy:4].\nZiehe 2 Karten.\nWende immer zu Beginn deines Zuges 3 [gold]Verderben[/gold] auf dich selbst an.",
     "type_key": "Power",
@@ -13064,7 +13064,7 @@
       "platingpower": "+3"
     },
     "image_url": "/static/images/cards/neutron_aegis.webp",
-    "beta_image_url": "/static/images/cards/beta/neutron_aegis.png",
+    "beta_image_url": "/static/images/cards/beta/neutron_aegis.webp",
     "type_variants": null,
     "upgrade_description": "Erhalte 11 [gold]Panzerung[/gold].",
     "type_key": "Power",
@@ -13147,7 +13147,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/beat_down.webp",
-    "beta_image_url": "/static/images/cards/beta/beat_down.png",
+    "beta_image_url": "/static/images/cards/beta/beat_down.webp",
     "type_variants": null,
     "upgrade_description": "Spiele 4 zufällige Angriffe aus deinem [gold]Abwurfstapel[/gold].",
     "type_key": "Skill",
@@ -13186,7 +13186,7 @@
       "damage": "+6"
     },
     "image_url": "/static/images/cards/reap.webp",
-    "beta_image_url": "/static/images/cards/beta/reap.png",
+    "beta_image_url": "/static/images/cards/beta/reap.webp",
     "type_variants": null,
     "upgrade_description": "Füge 33 Schaden zu.",
     "type_key": "Attack",
@@ -13303,7 +13303,7 @@
       "cost": 0
     },
     "image_url": "/static/images/cards/nostalgia.webp",
-    "beta_image_url": "/static/images/cards/beta/nostalgia.png",
+    "beta_image_url": "/static/images/cards/beta/nostalgia.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Power",
@@ -13340,7 +13340,7 @@
       "damage": "+3"
     },
     "image_url": "/static/images/cards/omnislice.webp",
-    "beta_image_url": "/static/images/cards/beta/omnislice.png",
+    "beta_image_url": "/static/images/cards/beta/omnislice.webp",
     "type_variants": null,
     "upgrade_description": "Füge 11 Schaden zu.\nFüge ALLEN anderen Gegnern ebenso viel Schaden zu.",
     "type_key": "Attack",
@@ -13500,7 +13500,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/bundle_of_joy.webp",
-    "beta_image_url": "/static/images/cards/beta/bundle_of_joy.png",
+    "beta_image_url": "/static/images/cards/beta/bundle_of_joy.webp",
     "type_variants": null,
     "upgrade_description": "Erhalte 4 zufällige farblose Karten auf deine [gold]Hand[/gold].",
     "type_key": "Skill",
@@ -13592,7 +13592,7 @@
       "parrypower": "+3"
     },
     "image_url": "/static/images/cards/parry.webp",
-    "beta_image_url": "/static/images/cards/beta/parry.png",
+    "beta_image_url": "/static/images/cards/beta/parry.webp",
     "type_variants": null,
     "upgrade_description": "Immer wenn du [gold]Hoheitsklinge[/gold] spielst, erhalte 9 [gold]Block[/gold].",
     "type_key": "Power",
@@ -13711,7 +13711,7 @@
       "damage": "+11"
     },
     "image_url": "/static/images/cards/whistle.webp",
-    "beta_image_url": "/static/images/cards/beta/whistle.png",
+    "beta_image_url": "/static/images/cards/beta/whistle.webp",
     "type_variants": null,
     "upgrade_description": "Füge 44 Schaden zu.\n[gold]Betäube[/gold] den Gegner.",
     "type_key": "Attack",
@@ -13760,7 +13760,7 @@
       "phantombladespower": "+3"
     },
     "image_url": "/static/images/cards/phantom_blades.webp",
-    "beta_image_url": "/static/images/cards/beta/phantom_blades.png",
+    "beta_image_url": "/static/images/cards/beta/phantom_blades.webp",
     "type_variants": null,
     "upgrade_description": "[gold]Messer[/gold] werden [gold]behalten[/gold].\nDas erste [gold]Messer[/gold], das du jeden Zug spielst, fügt 12 Schaden mehr zu.",
     "type_key": "Power",
@@ -13800,7 +13800,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/photon_cut.webp",
-    "beta_image_url": "/static/images/cards/beta/photon_cut.png",
+    "beta_image_url": "/static/images/cards/beta/photon_cut.webp",
     "type_variants": null,
     "upgrade_description": "Füge 13 Schaden zu.\nZiehe 2 Karten.\nLege 1 [gold]Handkarte[/gold] auf deinen [gold]Nachziehstapel[/gold].",
     "type_key": "Attack",
@@ -13990,7 +13990,7 @@
       "damage": "+3"
     },
     "image_url": "/static/images/cards/pillage.webp",
-    "beta_image_url": "/static/images/cards/beta/pillage.png",
+    "beta_image_url": "/static/images/cards/beta/pillage.webp",
     "type_variants": null,
     "upgrade_description": "Füge 9 Schaden zu.\nZiehe Karten, bis du eine Karte außer Angriffen ziehst.",
     "type_key": "Attack",
@@ -14036,7 +14036,7 @@
       "vigorpower": "+1"
     },
     "image_url": "/static/images/cards/patter.webp",
-    "beta_image_url": "/static/images/cards/beta/patter.png",
+    "beta_image_url": "/static/images/cards/beta/patter.webp",
     "type_variants": null,
     "upgrade_description": "Erhalte 10 [gold]Block[/gold].\nErhalte 3 [gold]Elan[/gold].",
     "type_key": "Skill",
@@ -14075,7 +14075,7 @@
       "remove_exhaust": true
     },
     "image_url": "/static/images/cards/production.webp",
-    "beta_image_url": "/static/images/cards/beta/production.png",
+    "beta_image_url": "/static/images/cards/beta/production.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Skill",
@@ -14154,7 +14154,7 @@
       "calculationbase": "+3"
     },
     "image_url": "/static/images/cards/precise_cut.webp",
-    "beta_image_url": "/static/images/cards/beta/precise_cut.png",
+    "beta_image_url": "/static/images/cards/beta/precise_cut.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Attack",
@@ -14235,7 +14235,7 @@
       "cost": 0
     },
     "image_url": "/static/images/cards/quadcast.webp",
-    "beta_image_url": "/static/images/cards/beta/quadcast.png",
+    "beta_image_url": "/static/images/cards/beta/quadcast.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Skill",
@@ -14276,7 +14276,7 @@
       "cards": "+2"
     },
     "image_url": "/static/images/cards/decisions_decisions.webp",
-    "beta_image_url": "/static/images/cards/beta/decisions_decisions.png",
+    "beta_image_url": "/static/images/cards/beta/decisions_decisions.webp",
     "type_variants": null,
     "upgrade_description": "Ziehe 5 Karten.\nWähle eine Fertigkeit aus deiner [gold]Hand[/gold] und spiele sie 3 Mal.",
     "type_key": "Skill",
@@ -14316,7 +14316,7 @@
       "description_changed": true
     },
     "image_url": "/static/images/cards/quasar.webp",
-    "beta_image_url": "/static/images/cards/beta/quasar.png",
+    "beta_image_url": "/static/images/cards/beta/quasar.webp",
     "type_variants": null,
     "upgrade_description": "Wähle 1 aus 3 zufälligen [gold]verbesserten[/gold] farblosen Karten, die du auf deine [gold]Hand[/gold] erhältst.",
     "type_key": "Skill",
@@ -14355,7 +14355,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/rocket_punch.webp",
-    "beta_image_url": "/static/images/cards/beta/rocket_punch.png",
+    "beta_image_url": "/static/images/cards/beta/rocket_punch.webp",
     "type_variants": null,
     "upgrade_description": "Füge 14 Schaden zu.\nZiehe 2 Karten.\nWenn eine Status-Karte erzeugt wird, senke die Kosten dieser Karte für diesen Zug auf 0 [energy:1].",
     "type_key": "Attack",
@@ -14475,7 +14475,7 @@
       "ostydamage": "+2"
     },
     "image_url": "/static/images/cards/right_hand_hand.webp",
-    "beta_image_url": "/static/images/cards/beta/right_hand_hand.png",
+    "beta_image_url": "/static/images/cards/beta/right_hand_hand.webp",
     "type_variants": null,
     "upgrade_description": "[gold]Osty[/gold] fügt 6 Schaden zu.\nImmer wenn du eine Karte spielst, die [energy:2] oder mehr kostet, nimm diese Karte vom [gold]Abwurfstapel[/gold] auf deine [gold]Hand[/gold].",
     "type_key": "Attack",
@@ -14513,7 +14513,7 @@
       "block": "+4"
     },
     "image_url": "/static/images/cards/reflect.webp",
-    "beta_image_url": "/static/images/cards/beta/reflect.png",
+    "beta_image_url": "/static/images/cards/beta/reflect.webp",
     "type_variants": null,
     "upgrade_description": "Erhalte 21 [gold]Block[/gold].\nGeblockter Angriffsschaden wird in diesem Zug auf deinen Angreifer zurückgeworfen.",
     "type_key": "Skill",
@@ -14684,7 +14684,7 @@
       "strengthpower": "+1"
     },
     "image_url": "/static/images/cards/resonance.webp",
-    "beta_image_url": "/static/images/cards/beta/resonance.png",
+    "beta_image_url": "/static/images/cards/beta/resonance.webp",
     "type_variants": null,
     "upgrade_description": "Erhalte 2 [gold]Stärke[/gold]. ALLE Gegner verlieren 1 [gold]Stärke[/gold].",
     "type_key": "Skill",
@@ -14759,7 +14759,7 @@
       "damage": "+4"
     },
     "image_url": "/static/images/cards/giant_rock.webp",
-    "beta_image_url": "/static/images/cards/beta/giant_rock.png",
+    "beta_image_url": "/static/images/cards/beta/giant_rock.webp",
     "type_variants": null,
     "upgrade_description": "Füge 20 Schaden zu.",
     "type_key": "Attack",
@@ -14850,7 +14850,7 @@
       "rollingboulderpower": "+5"
     },
     "image_url": "/static/images/cards/rolling_boulder.webp",
-    "beta_image_url": "/static/images/cards/beta/rolling_boulder.png",
+    "beta_image_url": "/static/images/cards/beta/rolling_boulder.webp",
     "type_variants": null,
     "upgrade_description": "Füge immer zu Beginn deines Zuges ALLEN Gegnern 10 Schaden zu und erhöhe diesen Schaden um 5.",
     "type_key": "Power",
@@ -14890,7 +14890,7 @@
       "add_retain": true
     },
     "image_url": "/static/images/cards/royal_gamble.webp",
-    "beta_image_url": "/static/images/cards/beta/royal_gamble.png",
+    "beta_image_url": "/static/images/cards/beta/royal_gamble.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Skill",
@@ -14930,7 +14930,7 @@
       "add_innate": true
     },
     "image_url": "/static/images/cards/call_of_the_void.webp",
-    "beta_image_url": "/static/images/cards/beta/call_of_the_void.png",
+    "beta_image_url": "/static/images/cards/beta/call_of_the_void.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Power",
@@ -14983,7 +14983,7 @@
       "thornspower": "+2"
     },
     "image_url": "/static/images/cards/abrasive.webp",
-    "beta_image_url": "/static/images/cards/beta/abrasive.png",
+    "beta_image_url": "/static/images/cards/beta/abrasive.webp",
     "type_variants": null,
     "upgrade_description": "Erhalte 1 [gold]Geschicklichkeit[/gold].\nErhalte 6 [gold]Stacheln[/gold].",
     "type_key": "Power",
@@ -15021,7 +15021,7 @@
     "vars": null,
     "upgrade": null,
     "image_url": "/static/images/cards/soot.webp",
-    "beta_image_url": "/static/images/cards/beta/soot.png",
+    "beta_image_url": "/static/images/cards/beta/soot.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Status",
@@ -15061,7 +15061,7 @@
       "damage": "+3"
     },
     "image_url": "/static/images/cards/rebound.webp",
-    "beta_image_url": "/static/images/cards/beta/rebound.png",
+    "beta_image_url": "/static/images/cards/beta/rebound.webp",
     "type_variants": null,
     "upgrade_description": "Füge 12 Schaden zu.\nLege die nächste Karte, die du in diesem Zug spielst, auf deinen [gold]Nachziehstapel[/gold].",
     "type_key": "Attack",
@@ -15136,7 +15136,7 @@
       "damage": "+4"
     },
     "image_url": "/static/images/cards/salvo.webp",
-    "beta_image_url": "/static/images/cards/beta/salvo.png",
+    "beta_image_url": "/static/images/cards/beta/salvo.webp",
     "type_variants": null,
     "upgrade_description": "Füge 16 Schaden zu.\n[gold]Behalte[/gold] in diesem Zug deine [gold]Hand[/gold].",
     "type_key": "Attack",
@@ -15221,7 +15221,7 @@
       "repeat": "+1"
     },
     "image_url": "/static/images/cards/consuming_shadow.webp",
-    "beta_image_url": "/static/images/cards/beta/consuming_shadow.png",
+    "beta_image_url": "/static/images/cards/beta/consuming_shadow.webp",
     "type_variants": null,
     "upgrade_description": "[gold]Erschaffe[/gold] 3 [gold]Schatten[/gold].\n[gold]Entlade[/gold] immer am Ende deines Zuges deinen hintersten Orb.",
     "type_key": "Power",
@@ -15258,7 +15258,7 @@
       "block": "+4"
     },
     "image_url": "/static/images/cards/shadow_shield.webp",
-    "beta_image_url": "/static/images/cards/beta/shadow_shield.png",
+    "beta_image_url": "/static/images/cards/beta/shadow_shield.webp",
     "type_variants": null,
     "upgrade_description": "Erhalte 15 [gold]Block[/gold].\n[gold]Erschaffe[/gold] 1 [gold]Schatten[/gold].",
     "type_key": "Skill",
@@ -15620,7 +15620,7 @@
       "serpentformpower": "+1"
     },
     "image_url": "/static/images/cards/serpent_form.webp",
-    "beta_image_url": "/static/images/cards/beta/serpent_form.png",
+    "beta_image_url": "/static/images/cards/beta/serpent_form.webp",
     "type_variants": null,
     "upgrade_description": "Immer wenn du eine Karte spielst, füge einem zufälligen Gegner 5 Schaden zu.",
     "type_key": "Power",
@@ -15656,7 +15656,7 @@
     "vars": null,
     "upgrade": null,
     "image_url": "/static/images/cards/poor_sleep.webp",
-    "beta_image_url": "/static/images/cards/beta/poor_sleep.png",
+    "beta_image_url": "/static/images/cards/beta/poor_sleep.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Curse",
@@ -15741,7 +15741,7 @@
       "smokestackpower": "+2"
     },
     "image_url": "/static/images/cards/smokestack.webp",
-    "beta_image_url": "/static/images/cards/beta/smokestack.png",
+    "beta_image_url": "/static/images/cards/beta/smokestack.webp",
     "type_variants": null,
     "upgrade_description": "Immer wenn du einen Status erschaffst, füge ALLEN Gegnern 7 Schaden zu.",
     "type_key": "Power",
@@ -15778,7 +15778,7 @@
       "forge": "+2"
     },
     "image_url": "/static/images/cards/furnace.webp",
-    "beta_image_url": "/static/images/cards/beta/furnace.png",
+    "beta_image_url": "/static/images/cards/beta/furnace.webp",
     "type_variants": null,
     "upgrade_description": "Immer zu Beginn deines Zuges [gold]Schmiede[/gold] 6.",
     "type_key": "Power",
@@ -15901,7 +15901,7 @@
       "ostydamage": "+3"
     },
     "image_url": "/static/images/cards/snap.webp",
-    "beta_image_url": "/static/images/cards/beta/snap.png",
+    "beta_image_url": "/static/images/cards/beta/snap.webp",
     "type_variants": null,
     "upgrade_description": "[gold]Osty[/gold] fügt 10 Schaden zu.\nGib einer deiner [gold]Handkarten[/gold] [gold]Behalten[/gold].",
     "type_key": "Attack",
@@ -15938,7 +15938,7 @@
       "forge": "+4"
     },
     "image_url": "/static/images/cards/seeking_edge.webp",
-    "beta_image_url": "/static/images/cards/beta/seeking_edge.png",
+    "beta_image_url": "/static/images/cards/beta/seeking_edge.webp",
     "type_variants": null,
     "upgrade_description": "[gold]Schmiede[/gold] 11.\n[gold]Hoheitsklinge[/gold] fügt jetzt ALLEN Gegnern Schaden zu.",
     "type_key": "Power",
@@ -15982,7 +15982,7 @@
       "speedsterpower": "+1"
     },
     "image_url": "/static/images/cards/speedster.webp",
-    "beta_image_url": "/static/images/cards/beta/speedster.png",
+    "beta_image_url": "/static/images/cards/beta/speedster.webp",
     "type_variants": null,
     "upgrade_description": "Immer wenn du während deines Zuges eine Karte ziehst, füge ALLEN Gegnern 3 Schaden zu.",
     "type_key": "Power",
@@ -16054,7 +16054,7 @@
       "add_retain": true
     },
     "image_url": "/static/images/cards/reaper_form.webp",
-    "beta_image_url": "/static/images/cards/beta/reaper_form.png",
+    "beta_image_url": "/static/images/cards/beta/reaper_form.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Power",
@@ -16093,7 +16093,7 @@
       "power": "+2"
     },
     "image_url": "/static/images/cards/shockwave.webp",
-    "beta_image_url": "/static/images/cards/beta/shockwave.png",
+    "beta_image_url": "/static/images/cards/beta/shockwave.webp",
     "type_variants": null,
     "upgrade_description": "Wende auf ALLE Gegner 5 [gold]Schwach[/gold] und [gold]Verwundbar[/gold] an.",
     "type_key": "Skill",
@@ -16134,7 +16134,7 @@
       "damage": "+6"
     },
     "image_url": "/static/images/cards/banshees_cry.webp",
-    "beta_image_url": "/static/images/cards/beta/banshees_cry.png",
+    "beta_image_url": "/static/images/cards/beta/banshees_cry.webp",
     "type_variants": null,
     "upgrade_description": "Füge ALLEN Gegnern 39 Schaden zu.\nKostet [energy:2] weniger für jede [gold]flüchtige[/gold] Karte, die in diesem Kampf gespielt wurde.",
     "type_key": "Attack",
@@ -16211,7 +16211,7 @@
       "add_innate": true
     },
     "image_url": "/static/images/cards/trash_to_treasure.webp",
-    "beta_image_url": "/static/images/cards/beta/trash_to_treasure.png",
+    "beta_image_url": "/static/images/cards/beta/trash_to_treasure.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Power",
@@ -16326,7 +16326,7 @@
     "vars": null,
     "upgrade": null,
     "image_url": "/static/images/cards/debris.webp",
-    "beta_image_url": "/static/images/cards/beta/debris.png",
+    "beta_image_url": "/static/images/cards/beta/debris.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Status",
@@ -16373,7 +16373,7 @@
       "blackholepower": "+1"
     },
     "image_url": "/static/images/cards/black_hole.webp",
-    "beta_image_url": "/static/images/cards/beta/black_hole.png",
+    "beta_image_url": "/static/images/cards/beta/black_hole.webp",
     "type_variants": null,
     "upgrade_description": "Immer wenn du [star:1] ausgibst oder erhältst, füge ALLEN Gegnern 4 Schaden zu.",
     "type_key": "Power",
@@ -16411,7 +16411,7 @@
       "block": "+1"
     },
     "image_url": "/static/images/cards/deaths_door.webp",
-    "beta_image_url": "/static/images/cards/beta/deaths_door.png",
+    "beta_image_url": "/static/images/cards/beta/deaths_door.webp",
     "type_variants": null,
     "upgrade_description": "Erhalte 7 [gold]Block[/gold].\nFalls du in diesem Zug [gold]Verderben[/gold] angewandt hast, erhalte 2 weitere Male [gold]Block[/gold].",
     "type_key": "Skill",
@@ -16457,7 +16457,7 @@
       "cost": 1
     },
     "image_url": "/static/images/cards/sword_sage.webp",
-    "beta_image_url": "/static/images/cards/beta/sword_sage.png",
+    "beta_image_url": "/static/images/cards/beta/sword_sage.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Power",
@@ -16535,7 +16535,7 @@
       "damage": "+4"
     },
     "image_url": "/static/images/cards/defile.webp",
-    "beta_image_url": "/static/images/cards/beta/defile.png",
+    "beta_image_url": "/static/images/cards/beta/defile.webp",
     "type_variants": null,
     "upgrade_description": "Füge 17 Schaden zu.",
     "type_key": "Attack",
@@ -16580,7 +16580,7 @@
       "ostydamage": "+2"
     },
     "image_url": "/static/images/cards/rattle.webp",
-    "beta_image_url": "/static/images/cards/beta/rattle.png",
+    "beta_image_url": "/static/images/cards/beta/rattle.webp",
     "type_variants": null,
     "upgrade_description": "[gold]Osty[/gold] fügt 9 Schaden zu.\nTrifft ein weiteres Mal für jeden seiner Angriffe in diesem Zug.",
     "type_key": "Attack",
@@ -16619,7 +16619,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/soul.webp",
-    "beta_image_url": "/static/images/cards/beta/soul.png",
+    "beta_image_url": "/static/images/cards/beta/soul.webp",
     "type_variants": null,
     "upgrade_description": "Ziehe 3 Karten.",
     "type_key": "Skill",
@@ -16702,7 +16702,7 @@
       "damage": "+5"
     },
     "image_url": "/static/images/cards/severance.webp",
-    "beta_image_url": "/static/images/cards/beta/severance.png",
+    "beta_image_url": "/static/images/cards/beta/severance.webp",
     "type_variants": null,
     "upgrade_description": "Füge 18 Schaden zu.\nErhalte eine [gold]Seele[/gold] auf deinen [gold]Nachziehstapel[/gold], [gold]Abwurfstapel[/gold] und deine [gold]Hand[/gold].",
     "type_key": "Attack",
@@ -16743,7 +16743,7 @@
       "extradamage": "+1"
     },
     "image_url": "/static/images/cards/soul_storm.webp",
-    "beta_image_url": "/static/images/cards/beta/soul_storm.png",
+    "beta_image_url": "/static/images/cards/beta/soul_storm.webp",
     "type_variants": null,
     "upgrade_description": "Füge 9 Schaden zu.\nFügt 3 Schaden mehr zu pro [gold]Seele[/gold] in deinem [gold]Erschöpfungsstapel[/gold].",
     "type_key": "Attack",
@@ -16782,7 +16782,7 @@
       "cost": 1
     },
     "image_url": "/static/images/cards/seven_stars.webp",
-    "beta_image_url": "/static/images/cards/beta/seven_stars.png",
+    "beta_image_url": "/static/images/cards/beta/seven_stars.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Attack",
@@ -16909,7 +16909,7 @@
       "cost": 1
     },
     "image_url": "/static/images/cards/spectrum_shift.webp",
-    "beta_image_url": "/static/images/cards/beta/spectrum_shift.png",
+    "beta_image_url": "/static/images/cards/beta/spectrum_shift.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Power",
@@ -16948,7 +16948,7 @@
       "damage": "+2"
     },
     "image_url": "/static/images/cards/barrage.webp",
-    "beta_image_url": "/static/images/cards/beta/barrage.png",
+    "beta_image_url": "/static/images/cards/beta/barrage.webp",
     "type_variants": null,
     "upgrade_description": "Füge 7 Schaden zu für jeden [gold]Erschaffenen[/gold] Orb.",
     "type_key": "Attack",
@@ -16987,7 +16987,7 @@
       "damage": "+2"
     },
     "image_url": "/static/images/cards/helix_drill.webp",
-    "beta_image_url": "/static/images/cards/beta/helix_drill.png",
+    "beta_image_url": "/static/images/cards/beta/helix_drill.webp",
     "type_variants": null,
     "upgrade_description": "Füge 5 Schaden zu pro [energy:1], die du vorher in diesem Zug ausgegeben hast.",
     "type_key": "Attack",
@@ -17022,7 +17022,7 @@
     "vars": null,
     "upgrade": null,
     "image_url": "/static/images/cards/spore_mind.webp",
-    "beta_image_url": "/static/images/cards/beta/spore_mind.png",
+    "beta_image_url": "/static/images/cards/beta/spore_mind.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Curse",
@@ -17142,7 +17142,7 @@
       "description_changed": true
     },
     "image_url": "/static/images/cards/splash.webp",
-    "beta_image_url": "/static/images/cards/beta/splash.png",
+    "beta_image_url": "/static/images/cards/beta/splash.webp",
     "type_variants": null,
     "upgrade_description": "Wähle 1 aus 3 zufälligen [gold]verbesserten[/gold] Angriffen eines anderen Charakters, den du auf deine [gold]Hand[/gold] erhältst. Er ist in diesem Zug kostenlos spielbar.",
     "type_key": "Skill",
@@ -17218,7 +17218,7 @@
       "hploss": "+2"
     },
     "image_url": "/static/images/cards/haunt.webp",
-    "beta_image_url": "/static/images/cards/beta/haunt.png",
+    "beta_image_url": "/static/images/cards/beta/haunt.webp",
     "type_variants": null,
     "upgrade_description": "Immer wenn du eine [gold]Seele[/gold] spielst, verliert ein zufälliger Gegner 8 TP.",
     "type_key": "Power",
@@ -17328,7 +17328,7 @@
       "cost": 1
     },
     "image_url": "/static/images/cards/unmovable.webp",
-    "beta_image_url": "/static/images/cards/beta/unmovable.png",
+    "beta_image_url": "/static/images/cards/beta/unmovable.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Power",
@@ -17366,7 +17366,7 @@
       "calculationbase": "+3"
     },
     "image_url": "/static/images/cards/stack.webp",
-    "beta_image_url": "/static/images/cards/beta/stack.png",
+    "beta_image_url": "/static/images/cards/beta/stack.webp",
     "type_variants": null,
     "upgrade_description": "Erhalte [gold]Block[/gold] in Höhe der Kartenzahl in deinem [gold]Abwurfstapel[/gold] +[CalculationBase|].",
     "type_key": "Skill",
@@ -17403,7 +17403,7 @@
       "stars": "+1"
     },
     "image_url": "/static/images/cards/venerate.webp",
-    "beta_image_url": "/static/images/cards/beta/venerate.png",
+    "beta_image_url": "/static/images/cards/beta/venerate.webp",
     "type_variants": null,
     "upgrade_description": "Erhalte [star:3].",
     "type_key": "Skill",
@@ -17489,7 +17489,7 @@
       "strengthloss": "+2"
     },
     "image_url": "/static/images/cards/dying_star.webp",
-    "beta_image_url": "/static/images/cards/beta/dying_star.png",
+    "beta_image_url": "/static/images/cards/beta/dying_star.webp",
     "type_variants": null,
     "upgrade_description": "Füge ALLEN Gegnern 11 Schaden zu. ALLE Gegner verlieren für diesen Zug 11 [gold]Stärke[/gold].",
     "type_key": "Attack",
@@ -17529,7 +17529,7 @@
       "blockforstars": "+1"
     },
     "image_url": "/static/images/cards/child_of_the_stars.webp",
-    "beta_image_url": "/static/images/cards/beta/child_of_the_stars.png",
+    "beta_image_url": "/static/images/cards/beta/child_of_the_stars.webp",
     "type_variants": null,
     "upgrade_description": "Immer wenn du [star:1] ausgibst, erhalte 3 [gold]Block[/gold] für jeden ausgegebenen [star:1].",
     "type_key": "Power",
@@ -17641,7 +17641,7 @@
       "gold": "+5"
     },
     "image_url": "/static/images/cards/royalties.webp",
-    "beta_image_url": "/static/images/cards/beta/royalties.png",
+    "beta_image_url": "/static/images/cards/beta/royalties.webp",
     "type_variants": null,
     "upgrade_description": "Erhalte am Ende des Kampfes 35 [gold]Gold[/gold].",
     "type_key": "Power",
@@ -17721,7 +17721,7 @@
       "damage": "+3"
     },
     "image_url": "/static/images/cards/shining_strike.webp",
-    "beta_image_url": "/static/images/cards/beta/shining_strike.png",
+    "beta_image_url": "/static/images/cards/beta/shining_strike.webp",
     "type_variants": null,
     "upgrade_description": "Füge 11 Schaden zu.\nErhalte [star:2].\nLege diese Karte auf deinen [gold]Nachziehstapel[/gold].",
     "type_key": "Attack",
@@ -17802,7 +17802,7 @@
       "cost": 0
     },
     "image_url": "/static/images/cards/stratagem.webp",
-    "beta_image_url": "/static/images/cards/beta/stratagem.png",
+    "beta_image_url": "/static/images/cards/beta/stratagem.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Power",
@@ -17881,7 +17881,7 @@
       "cost": 0
     },
     "image_url": "/static/images/cards/subroutine.webp",
-    "beta_image_url": "/static/images/cards/beta/subroutine.png",
+    "beta_image_url": "/static/images/cards/beta/subroutine.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Power",
@@ -17921,7 +17921,7 @@
       "damage": "+3"
     },
     "image_url": "/static/images/cards/seeker_strike.webp",
-    "beta_image_url": "/static/images/cards/beta/seeker_strike.png",
+    "beta_image_url": "/static/images/cards/beta/seeker_strike.webp",
     "type_variants": null,
     "upgrade_description": "Füge 9 Schaden zu.\nWähle 1 von 3 Karten aus deinem [gold]Nachziehstapel[/gold], die du auf deine [gold]Hand[/gold] nimmst.",
     "type_key": "Attack",
@@ -18002,7 +18002,7 @@
       "extradamage": "+1"
     },
     "image_url": "/static/images/cards/supermassive.webp",
-    "beta_image_url": "/static/images/cards/beta/supermassive.png",
+    "beta_image_url": "/static/images/cards/beta/supermassive.webp",
     "type_variants": null,
     "upgrade_description": "Füge 5 Schaden zu.\nFügt 4 Schaden mehr zu pro Karte, die du in diesem Kampf erzeugt hast.",
     "type_key": "Attack",
@@ -18079,7 +18079,7 @@
       "remove_exhaust": true
     },
     "image_url": "/static/images/cards/synchronize.webp",
-    "beta_image_url": "/static/images/cards/beta/synchronize.png",
+    "beta_image_url": "/static/images/cards/beta/synchronize.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Skill",
@@ -18119,7 +18119,7 @@
       "damage": "+6"
     },
     "image_url": "/static/images/cards/synthesis.webp",
-    "beta_image_url": "/static/images/cards/beta/synthesis.png",
+    "beta_image_url": "/static/images/cards/beta/synthesis.webp",
     "type_variants": null,
     "upgrade_description": "Füge 18 Schaden zu.\nDie nächste Macht, die du spielst, kostet 0 [energy:1].",
     "type_key": "Attack",
@@ -18202,7 +18202,7 @@
       "damage": "+3"
     },
     "image_url": "/static/images/cards/sow.webp",
-    "beta_image_url": "/static/images/cards/beta/sow.png",
+    "beta_image_url": "/static/images/cards/beta/sow.webp",
     "type_variants": null,
     "upgrade_description": "Füge ALLEN Gegnern 11 Schaden zu.",
     "type_key": "Attack",
@@ -18242,7 +18242,7 @@
       "block": "+1"
     },
     "image_url": "/static/images/cards/pillar_of_creation.webp",
-    "beta_image_url": "/static/images/cards/beta/pillar_of_creation.png",
+    "beta_image_url": "/static/images/cards/beta/pillar_of_creation.webp",
     "type_variants": null,
     "upgrade_description": "Immer wenn du eine Karte erzeugst, erhalte 4 [gold]Block[/gold].",
     "type_key": "Power",
@@ -18283,7 +18283,7 @@
       "description_changed": true
     },
     "image_url": "/static/images/cards/seance.webp",
-    "beta_image_url": "/static/images/cards/beta/seance.png",
+    "beta_image_url": "/static/images/cards/beta/seance.webp",
     "type_variants": null,
     "upgrade_description": "Transformiere eine Karte aus deinem [gold]Nachziehstapel[/gold] zu einer [gold]Seele+[/gold].",
     "type_key": "Skill",
@@ -18325,7 +18325,7 @@
       "energy": "+1"
     },
     "image_url": "/static/images/cards/turbo.webp",
-    "beta_image_url": "/static/images/cards/beta/turbo.png",
+    "beta_image_url": "/static/images/cards/beta/turbo.webp",
     "type_variants": null,
     "upgrade_description": "Erhalte [energy:3].\nErhalte eine [gold]Leere[/gold] in deinen [gold]Abwurfstapel[/gold].",
     "type_key": "Skill",
@@ -18402,7 +18402,7 @@
       "cost": 0
     },
     "image_url": "/static/images/cards/tank.webp",
-    "beta_image_url": "/static/images/cards/beta/tank.png",
+    "beta_image_url": "/static/images/cards/beta/tank.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Power",
@@ -18521,7 +18521,7 @@
       "vigorpower": "+2"
     },
     "image_url": "/static/images/cards/terraforming.webp",
-    "beta_image_url": "/static/images/cards/beta/terraforming.png",
+    "beta_image_url": "/static/images/cards/beta/terraforming.webp",
     "type_variants": null,
     "upgrade_description": "Erhalte 8 [gold]Elan[/gold].",
     "type_key": "Skill",
@@ -18558,7 +18558,7 @@
       "damage": "+3"
     },
     "image_url": "/static/images/cards/tesla_coil.webp",
-    "beta_image_url": "/static/images/cards/beta/tesla_coil.png",
+    "beta_image_url": "/static/images/cards/beta/tesla_coil.webp",
     "type_variants": null,
     "upgrade_description": "Füge 6 Schaden zu.\nLöse alle [gold]Blitze[/gold] gegen diesen Gegner aus.",
     "type_key": "Attack",
@@ -18684,7 +18684,7 @@
       "strength": "+1"
     },
     "image_url": "/static/images/cards/blade_of_ink.webp",
-    "beta_image_url": "/static/images/cards/beta/blade_of_ink.png",
+    "beta_image_url": "/static/images/cards/beta/blade_of_ink.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Skill",
@@ -18893,7 +18893,7 @@
       "block": "+2"
     },
     "image_url": "/static/images/cards/toric_toughness.webp",
-    "beta_image_url": "/static/images/cards/beta/toric_toughness.png",
+    "beta_image_url": "/static/images/cards/beta/toric_toughness.webp",
     "type_variants": null,
     "upgrade_description": "Erhalte 7 [gold]Block[/gold].\nErhalte 7 [gold]Block[/gold] zu Beginn der nächsten 2 Züge.",
     "type_key": "Skill",
@@ -18932,7 +18932,7 @@
       "summon": "+1"
     },
     "image_url": "/static/images/cards/dirge.webp",
-    "beta_image_url": "/static/images/cards/beta/dirge.png",
+    "beta_image_url": "/static/images/cards/beta/dirge.webp",
     "type_variants": null,
     "upgrade_description": "[gold]Beschwöre[/gold] 4 X Mal.\nErhalte X [gold]Seelen+[/gold] in deinen [gold]Nachziehstapel[/gold].",
     "type_key": "Skill",
@@ -18985,7 +18985,7 @@
       "dexterity": "+1"
     },
     "image_url": "/static/images/cards/bulk_up.webp",
-    "beta_image_url": "/static/images/cards/beta/bulk_up.png",
+    "beta_image_url": "/static/images/cards/beta/bulk_up.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Power",
@@ -19025,7 +19025,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/fuel.webp",
-    "beta_image_url": "/static/images/cards/beta/fuel.png",
+    "beta_image_url": "/static/images/cards/beta/fuel.webp",
     "type_variants": null,
     "upgrade_description": "Erhalte [energy:1].\nZiehe 2 Karten.",
     "type_key": "Skill",
@@ -19197,7 +19197,7 @@
       "add_innate": true
     },
     "image_url": "/static/images/cards/tyranny.webp",
-    "beta_image_url": "/static/images/cards/beta/tyranny.png",
+    "beta_image_url": "/static/images/cards/beta/tyranny.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Power",
@@ -19290,7 +19290,7 @@
       "lethalitypower": "+25"
     },
     "image_url": "/static/images/cards/lethality.webp",
-    "beta_image_url": "/static/images/cards/beta/lethality.png",
+    "beta_image_url": "/static/images/cards/beta/lethality.webp",
     "type_variants": null,
     "upgrade_description": "Der erste Angriff in jedem Zug fügt 75% mehr Schaden zu.",
     "type_key": "Power",
@@ -19331,7 +19331,7 @@
       "damage": "+3"
     },
     "image_url": "/static/images/cards/spite.webp",
-    "beta_image_url": "/static/images/cards/beta/spite.png",
+    "beta_image_url": "/static/images/cards/beta/spite.webp",
     "type_variants": null,
     "upgrade_description": "Füge 9 Schaden zu.\nFalls du in diesem Zug TP verloren hast, ziehe 1 Karte.",
     "type_key": "Attack",
@@ -19370,7 +19370,7 @@
       "damage": "+6"
     },
     "image_url": "/static/images/cards/ultimate_strike.webp",
-    "beta_image_url": "/static/images/cards/beta/ultimate_strike.png",
+    "beta_image_url": "/static/images/cards/beta/ultimate_strike.webp",
     "type_variants": null,
     "upgrade_description": "Füge 20 Schaden zu.",
     "type_key": "Attack",
@@ -19409,7 +19409,7 @@
       "block": "+4"
     },
     "image_url": "/static/images/cards/ultimate_defend.webp",
-    "beta_image_url": "/static/images/cards/beta/ultimate_defend.png",
+    "beta_image_url": "/static/images/cards/beta/ultimate_defend.webp",
     "type_variants": null,
     "upgrade_description": "Erhalte 15 [gold]Block[/gold].",
     "type_key": "Skill",
@@ -19697,7 +19697,7 @@
       "cost": 1
     },
     "image_url": "/static/images/cards/feral.webp",
-    "beta_image_url": "/static/images/cards/beta/feral.png",
+    "beta_image_url": "/static/images/cards/beta/feral.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Power",
@@ -19735,7 +19735,7 @@
     },
     "upgrade": null,
     "image_url": "/static/images/cards/bad_luck.webp",
-    "beta_image_url": "/static/images/cards/beta/bad_luck.png",
+    "beta_image_url": "/static/images/cards/beta/bad_luck.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Curse",
@@ -19774,7 +19774,7 @@
       "cost": 2
     },
     "image_url": "/static/images/cards/calamity.webp",
-    "beta_image_url": "/static/images/cards/beta/calamity.png",
+    "beta_image_url": "/static/images/cards/beta/calamity.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Power",
@@ -19906,7 +19906,7 @@
       "block": "+2"
     },
     "image_url": "/static/images/cards/undeath.webp",
-    "beta_image_url": "/static/images/cards/beta/undeath.png",
+    "beta_image_url": "/static/images/cards/beta/undeath.webp",
     "type_variants": null,
     "upgrade_description": "Erhalte 9 [gold]Block[/gold].\nErhalte eine Kopie dieser Karte in deinen [gold]Abwurfstapel[/gold].",
     "type_key": "Skill",
@@ -19988,7 +19988,7 @@
       "add_innate": true
     },
     "image_url": "/static/images/cards/big_bang.webp",
-    "beta_image_url": "/static/images/cards/beta/big_bang.png",
+    "beta_image_url": "/static/images/cards/beta/big_bang.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Skill",
@@ -20065,7 +20065,7 @@
       "cost": 1
     },
     "image_url": "/static/images/cards/forbidden_grimoire.webp",
-    "beta_image_url": "/static/images/cards/beta/forbidden_grimoire.png",
+    "beta_image_url": "/static/images/cards/beta/forbidden_grimoire.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Power",
@@ -20144,7 +20144,7 @@
       "block": "+1"
     },
     "image_url": "/static/images/cards/compact.webp",
-    "beta_image_url": "/static/images/cards/beta/compact.png",
+    "beta_image_url": "/static/images/cards/beta/compact.webp",
     "type_variants": null,
     "upgrade_description": "Erhalte 7 [gold]Block[/gold].\n[gold]Transformiere[/gold] alle Status-Karten auf deiner [gold]Hand[/gold] zu [gold]Treibstoff+[/gold].",
     "type_key": "Skill",
@@ -20258,7 +20258,7 @@
       "block": "+3"
     },
     "image_url": "/static/images/cards/glasswork.webp",
-    "beta_image_url": "/static/images/cards/beta/glasswork.png",
+    "beta_image_url": "/static/images/cards/beta/glasswork.webp",
     "type_variants": null,
     "upgrade_description": "Erhalte 8 [gold]Block[/gold].\n[gold]Erschaffe[/gold] 1 [gold]Glas[/gold].",
     "type_key": "Skill",
@@ -20378,7 +20378,7 @@
       "damage": "+10"
     },
     "image_url": "/static/images/cards/devastate.webp",
-    "beta_image_url": "/static/images/cards/beta/devastate.png",
+    "beta_image_url": "/static/images/cards/beta/devastate.webp",
     "type_variants": null,
     "upgrade_description": "Füge 40 Schaden zu.",
     "type_key": "Attack",
@@ -20568,7 +20568,7 @@
       "block": "+5"
     },
     "image_url": "/static/images/cards/rally.webp",
-    "beta_image_url": "/static/images/cards/beta/rally.png",
+    "beta_image_url": "/static/images/cards/beta/rally.webp",
     "type_variants": null,
     "upgrade_description": "ALLE Spieler erhalten 17 [gold]Block[/gold].",
     "type_key": "Skill",
@@ -20603,7 +20603,7 @@
       "cost": 1
     },
     "image_url": "/static/images/cards/entrench.webp",
-    "beta_image_url": "/static/images/cards/beta/entrench.png",
+    "beta_image_url": "/static/images/cards/beta/entrench.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Skill",
@@ -20729,7 +20729,7 @@
     },
     "upgrade": null,
     "image_url": "/static/images/cards/waste_away.webp",
-    "beta_image_url": "/static/images/cards/beta/waste_away.png",
+    "beta_image_url": "/static/images/cards/beta/waste_away.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Status",
@@ -20853,7 +20853,7 @@
       "description_changed": true
     },
     "image_url": "/static/images/cards/hidden_daggers.webp",
-    "beta_image_url": "/static/images/cards/beta/hidden_daggers.png",
+    "beta_image_url": "/static/images/cards/beta/hidden_daggers.webp",
     "type_variants": null,
     "upgrade_description": "Wirf 2 Karten ab.\nErhalte 2 [gold]Messer+[/gold] auf deine [gold]Hand[/gold].",
     "type_key": "Skill",
@@ -20898,7 +20898,7 @@
       "starnextturnpower": "+1"
     },
     "image_url": "/static/images/cards/hidden_cache.webp",
-    "beta_image_url": "/static/images/cards/beta/hidden_cache.png",
+    "beta_image_url": "/static/images/cards/beta/hidden_cache.webp",
     "type_variants": null,
     "upgrade_description": "Erhalte [star:1].\nErhalte im nächsten Zug [star:4].",
     "type_key": "Skill",
@@ -20935,7 +20935,7 @@
       "replay": "+1"
     },
     "image_url": "/static/images/cards/hidden_gem.webp",
-    "beta_image_url": "/static/images/cards/beta/hidden_gem.png",
+    "beta_image_url": "/static/images/cards/beta/hidden_gem.webp",
     "type_variants": null,
     "upgrade_description": "Gib einer zufälligen Karte aus deinem [gold]Nachziehstapel[/gold] [gold]Erneut Spielen[/gold] 3.",
     "type_key": "Skill",
@@ -21208,7 +21208,7 @@
       "remove_exhaust": true
     },
     "image_url": "/static/images/cards/transfigure.webp",
-    "beta_image_url": "/static/images/cards/beta/transfigure.png",
+    "beta_image_url": "/static/images/cards/beta/transfigure.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Skill",
@@ -21415,7 +21415,7 @@
       "energy": "+1"
     },
     "image_url": "/static/images/cards/delay.webp",
-    "beta_image_url": "/static/images/cards/beta/delay.png",
+    "beta_image_url": "/static/images/cards/beta/delay.webp",
     "type_variants": null,
     "upgrade_description": "Erhalte 13 [gold]Block[/gold].\nErhalte im nächsten Zug [energy:2].",
     "type_key": "Skill",
@@ -21450,7 +21450,7 @@
     "vars": null,
     "upgrade": null,
     "image_url": "/static/images/cards/enthralled.webp",
-    "beta_image_url": "/static/images/cards/beta/enthralled.png",
+    "beta_image_url": "/static/images/cards/beta/enthralled.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Curse",
@@ -21532,7 +21532,7 @@
       "remove_exhaust": true
     },
     "image_url": "/static/images/cards/voltaic.webp",
-    "beta_image_url": "/static/images/cards/beta/voltaic.png",
+    "beta_image_url": "/static/images/cards/beta/voltaic.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Skill",
@@ -21706,7 +21706,7 @@
       "preptimepower": "+2"
     },
     "image_url": "/static/images/cards/prep_time.webp",
-    "beta_image_url": "/static/images/cards/beta/prep_time.png",
+    "beta_image_url": "/static/images/cards/beta/prep_time.webp",
     "type_variants": null,
     "upgrade_description": "Erhalte immer zu Beginn deines Zuges 6 [gold]Elan[/gold].",
     "type_key": "Power",
@@ -21745,7 +21745,7 @@
       "energy": "+1"
     },
     "image_url": "/static/images/cards/hegemony.webp",
-    "beta_image_url": "/static/images/cards/beta/hegemony.png",
+    "beta_image_url": "/static/images/cards/beta/hegemony.webp",
     "type_variants": null,
     "upgrade_description": "Füge 18 Schaden zu.\nErhalte im nächsten Zug [energy:3].",
     "type_key": "Attack",
@@ -21902,7 +21902,7 @@
       "block": "+3"
     },
     "image_url": "/static/images/cards/boost_away.webp",
-    "beta_image_url": "/static/images/cards/beta/boost_away.png",
+    "beta_image_url": "/static/images/cards/beta/boost_away.webp",
     "type_variants": null,
     "upgrade_description": "Erhalte 9 [gold]Block[/gold].\nErhalte ein [gold]Benommen[/gold] in deinen [gold]Abwurfstapel[/gold].",
     "type_key": "Skill",
@@ -22416,7 +22416,7 @@
     },
     "upgrade": null,
     "image_url": "/static/images/cards/disintegration.webp",
-    "beta_image_url": "/static/images/cards/beta/disintegration.png",
+    "beta_image_url": "/static/images/cards/beta/disintegration.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Status",
@@ -22492,7 +22492,7 @@
       "increase": "+1"
     },
     "image_url": "/static/images/cards/maul.webp",
-    "beta_image_url": "/static/images/cards/beta/maul.png",
+    "beta_image_url": "/static/images/cards/beta/maul.webp",
     "type_variants": null,
     "upgrade_description": "Füge zweimal 6 Schaden zu.\nErhöhe den Schaden ALLER Zerfleischen-Karten für diesen Kampf um 2.",
     "type_key": "Attack",
@@ -22568,7 +22568,7 @@
       "strengthloss": "+1"
     },
     "image_url": "/static/images/cards/crush_under.webp",
-    "beta_image_url": "/static/images/cards/beta/crush_under.png",
+    "beta_image_url": "/static/images/cards/beta/crush_under.webp",
     "type_variants": null,
     "upgrade_description": "Füge ALLEN Gegnern 8 Schaden zu. Alle Gegner verlieren für diesen Zug 2 [gold]Stärke[/gold].",
     "type_key": "Attack",
@@ -22608,7 +22608,7 @@
       "calculationbase": "+3"
     },
     "image_url": "/static/images/cards/rend.webp",
-    "beta_image_url": "/static/images/cards/beta/rend.png",
+    "beta_image_url": "/static/images/cards/beta/rend.webp",
     "type_variants": null,
     "upgrade_description": "Füge 15 Schaden zu.\nFügt 8 Schaden mehr zu pro unterschiedlichem Debuff auf dem Gegner.",
     "type_key": "Attack",
@@ -22722,7 +22722,7 @@
       "damage": "+4"
     },
     "image_url": "/static/images/cards/shatter.webp",
-    "beta_image_url": "/static/images/cards/beta/shatter.png",
+    "beta_image_url": "/static/images/cards/beta/shatter.webp",
     "type_variants": null,
     "upgrade_description": "Füge ALLEN Gegnern 15 Schaden zu.\n[gold]Entlade[/gold] alle deine Orbs.",
     "type_key": "Attack",
@@ -22886,7 +22886,7 @@
       "knockdownpower": "+1"
     },
     "image_url": "/static/images/cards/knockdown.webp",
-    "beta_image_url": "/static/images/cards/beta/knockdown.png",
+    "beta_image_url": "/static/images/cards/beta/knockdown.webp",
     "type_variants": null,
     "upgrade_description": "Füge 14 Schaden zu.\nDieser Gegner nimmt von Verbündeten in diesem Zug dreifachen Schaden.",
     "type_key": "Attack",
@@ -22971,7 +22971,7 @@
       "add_retain": true
     },
     "image_url": "/static/images/cards/dredge.webp",
-    "beta_image_url": "/static/images/cards/beta/dredge.png",
+    "beta_image_url": "/static/images/cards/beta/dredge.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Skill",
@@ -23011,7 +23011,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/huddle_up.webp",
-    "beta_image_url": "/static/images/cards/beta/huddle_up.png",
+    "beta_image_url": "/static/images/cards/beta/huddle_up.webp",
     "type_variants": null,
     "upgrade_description": "ALLE Verbündeten ziehen 3 Karten.",
     "type_key": "Skill",
@@ -23050,7 +23050,7 @@
       "extradamage": "+2"
     },
     "image_url": "/static/images/cards/gang_up.webp",
-    "beta_image_url": "/static/images/cards/beta/gang_up.png",
+    "beta_image_url": "/static/images/cards/beta/gang_up.webp",
     "type_variants": null,
     "upgrade_description": "Füge 5 Schaden zu.\nFügt 7 Schaden mehr zu für jedes Mal, dass ein anderer Spieler diesen Gegner in diesem Zug angegriffen hat.",
     "type_key": "Attack",
@@ -23087,7 +23087,7 @@
       "damage": "+4"
     },
     "image_url": "/static/images/cards/clash.webp",
-    "beta_image_url": "/static/images/cards/beta/clash.png",
+    "beta_image_url": "/static/images/cards/beta/clash.webp",
     "type_variants": null,
     "upgrade_description": "Nur spielbar, wenn jede deiner [gold]Handkarten[/gold] ein Angriff ist.\nFüge 18 Schaden zu.",
     "type_key": "Attack",
@@ -23171,7 +23171,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/dual_wield.webp",
-    "beta_image_url": "/static/images/cards/beta/dual_wield.png",
+    "beta_image_url": "/static/images/cards/beta/dual_wield.webp",
     "type_variants": null,
     "upgrade_description": "Wähle eine Angriffs- oder Machtkarte. Erhalte [Cards Kopien|eine Kopie] dieser Karte auf deine [gold]Hand[/gold].",
     "type_key": "Skill",
@@ -23208,7 +23208,7 @@
       "remove_exhaust": true
     },
     "image_url": "/static/images/cards/ignition.webp",
-    "beta_image_url": "/static/images/cards/beta/ignition.png",
+    "beta_image_url": "/static/images/cards/beta/ignition.webp",
     "type_variants": null,
     "upgrade_description": null,
     "type_key": "Skill",
@@ -23248,7 +23248,7 @@
       "corrosivewave": "+1"
     },
     "image_url": "/static/images/cards/corrosive_wave.webp",
-    "beta_image_url": "/static/images/cards/beta/corrosive_wave.png",
+    "beta_image_url": "/static/images/cards/beta/corrosive_wave.webp",
     "type_variants": null,
     "upgrade_description": "Immer wenn du in diesem Zug eine Karte ziehst, wende auf ALLE Gegner 4 [gold]Gift[/gold] an.",
     "type_key": "Skill",

@@ -2119,7 +2119,7 @@
       "description": ""
     },
     "image_url": "/static/images/monsters/door.webp",
-    "beta_image_url": "/static/images/monsters/beta/door.png"
+    "beta_image_url": "/static/images/monsters/beta/door.webp"
   },
   {
     "id": "DOORMAKER",
@@ -2208,7 +2208,7 @@
       "description": "What Is It → Beam → Get Back In → repeat"
     },
     "image_url": "/static/images/monsters/doormaker.webp",
-    "beta_image_url": "/static/images/monsters/beta/door_maker_placeholder_2.png"
+    "beta_image_url": "/static/images/monsters/beta/door_maker_placeholder_2.webp"
   },
   {
     "id": "ENTOMANCER",
@@ -6045,7 +6045,7 @@
       "description": ""
     },
     "image_url": "/static/images/monsters/paels_legion.webp",
-    "beta_image_url": "/static/images/monsters/beta/paels_legion.png"
+    "beta_image_url": "/static/images/monsters/beta/paels_legion.webp"
   },
   {
     "id": "PARAFRIGHT",

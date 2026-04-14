@@ -468,9 +468,13 @@ def parse_single_card(
                 else None
             )
         ),
-        "beta_image_url": f"/static/images/cards/beta/{card_id.lower()}.png"
-        if (STATIC_IMAGES / "beta" / f"{card_id.lower()}.png").exists()
-        else None,
+        "beta_image_url": f"/static/images/cards/beta/{card_id.lower()}.webp"
+        if (STATIC_IMAGES / "beta" / f"{card_id.lower()}.webp").exists()
+        else (
+            f"/static/images/cards/beta/{card_id.lower()}.png"
+            if (STATIC_IMAGES / "beta" / f"{card_id.lower()}.png").exists()
+            else None
+        ),
         "type_variants": type_variants,
         "upgrade_description": upgrade_description,
     }

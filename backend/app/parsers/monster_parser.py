@@ -1001,9 +1001,14 @@ def parse_single_monster(
         "PAELS_LEGION": "paels_legion",
     }
     beta_name = BETA_ALIASES.get(monster_id)
-    beta_file = IMAGES_DIR / "beta" / f"{beta_name}.png" if beta_name else None
+    if beta_name:
+        beta_file = IMAGES_DIR / "beta" / f"{beta_name}.webp"
+        if not beta_file.exists():
+            beta_file = IMAGES_DIR / "beta" / f"{beta_name}.png"
+    else:
+        beta_file = None
     beta_image_url = (
-        f"/static/images/monsters/beta/{beta_name}.png"
+        f"/static/images/monsters/beta/{beta_file.name}"
         if beta_file and beta_file.exists()
         else None
     )
