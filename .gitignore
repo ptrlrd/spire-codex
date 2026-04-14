@@ -24,6 +24,10 @@ frontend/.env.local
 # Local overrides
 docker-compose.override.yml
 
+# Secrets (GitHub App private key, etc.)
+.secrets/
+*.pem
+
 # Runtime data
 data/runs.db
 data/runs/

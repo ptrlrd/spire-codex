@@ -16,7 +16,18 @@ GITHUB_API = "https://api.github.com"
 APP_ID = os.environ.get("GITHUB_APP_ID", "")
 INSTALLATION_ID = os.environ.get("GITHUB_APP_INSTALLATION_ID", "")
 REPO = os.environ.get("GITHUB_APP_REPO", "")
-PRIVATE_KEY = os.environ.get("GITHUB_APP_PRIVATE_KEY", "")
+
+
+def _load_private_key() -> str:
+    """Load the App private key from PRIVATE_KEY_PATH (file) or PRIVATE_KEY (inline)."""
+    path = os.environ.get("GITHUB_APP_PRIVATE_KEY_PATH", "")
+    if path and os.path.isfile(path):
+        with open(path, "r") as f:
+            return f.read()
+    return os.environ.get("GITHUB_APP_PRIVATE_KEY", "")
+
+
+PRIVATE_KEY = _load_private_key()
 
 
 def is_configured() -> bool:
