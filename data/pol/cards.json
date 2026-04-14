@@ -12519,7 +12519,7 @@
   {
     "id": "PRECISE_CUT",
     "name": "Precyzyjne cięcie",
-    "description": "Zadaj 13 pkt. obrażeń.\nZadaje inverseDiff() pkt. obrażeń mniej za każdą kartę w [gold]ręce[/gold].",
+    "description": "Zadaj 13 pkt. obrażeń.\nZadaje 2 pkt. obrażeń mniej za każdą kartę w [gold]ręce[/gold].",
     "description_raw": "Zadaj {CalculatedDamage:diff()} pkt. obrażeń.\nZadaje {ExtraDamage:inverseDiff()} pkt. obrażeń mniej za każdą kartę w [gold]ręce[/gold].",
     "cost": 0,
     "is_x_cost": null,
@@ -13579,7 +13579,7 @@
   {
     "id": "FRIENDSHIP",
     "name": "Przyjaźń",
-    "description": "Utrać inverseDiff() pkt. [gold]Siły[/gold].\nZyskaj [energy:1] na początku każdej tury.",
+    "description": "Utrać 2 pkt. [gold]Siły[/gold].\nZyskaj [energy:1] na początku każdej tury.",
     "description_raw": "Utrać {StrengthPower:inverseDiff()} pkt. [gold]Siły[/gold].\nZyskaj {Energy:energyIcons()} na początku każdej tury.",
     "cost": 1,
     "is_x_cost": null,
@@ -13616,7 +13616,7 @@
     "image_url": "/static/images/cards/friendship.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Utrać 1 pkt. [gold]Siły[/gold].\nZyskaj [energy:1] na początku każdej tury.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 297

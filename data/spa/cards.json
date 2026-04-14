@@ -1154,7 +1154,7 @@
   {
     "id": "FRIENDSHIP",
     "name": "Amistad",
-    "description": "Pierde inverseDiff() de [gold]Fuerza[/gold].\nGana [energy:1] al comienzo de cada turno.",
+    "description": "Pierde 2 de [gold]Fuerza[/gold].\nGana [energy:1] al comienzo de cada turno.",
     "description_raw": "Pierde {StrengthPower:inverseDiff()} de [gold]Fuerza[/gold].\nGana {Energy:energyIcons()} al comienzo de cada turno.",
     "cost": 1,
     "is_x_cost": null,
@@ -1191,7 +1191,7 @@
     "image_url": "/static/images/cards/friendship.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Pierde 1 de [gold]Fuerza[/gold].\nGana [energy:1] al comienzo de cada turno.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 297
@@ -5140,7 +5140,7 @@
   {
     "id": "PRECISE_CUT",
     "name": "Corte preciso",
-    "description": "Inflige 13 de daño.\nInflige inverseDiff() de daño menos por cada otra carta en tu [gold]Mano[/gold].",
+    "description": "Inflige 13 de daño.\nInflige 2 de daño menos por cada otra carta en tu [gold]Mano[/gold].",
     "description_raw": "Inflige {CalculatedDamage:diff()} de daño.\nInflige {ExtraDamage:inverseDiff()} de daño menos por cada otra carta en tu [gold]Mano[/gold].",
     "cost": 0,
     "is_x_cost": null,

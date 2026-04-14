@@ -5890,7 +5890,7 @@
   {
     "id": "FRIENDSHIP",
     "name": "フレンドシップ",
-    "description": "[gold]筋力[/gold]inverseDiff()を失う。\nターン開始時、[energy:1]を得る。",
+    "description": "[gold]筋力[/gold]2を失う。\nターン開始時、[energy:1]を得る。",
     "description_raw": "[gold]筋力[/gold]{StrengthPower:inverseDiff()}を失う。\nターン開始時、{Energy:energyIcons()}を得る。",
     "cost": 1,
     "is_x_cost": null,
@@ -5927,7 +5927,7 @@
     "image_url": "/static/images/cards/friendship.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]筋力[/gold]1を失う。\nターン開始時、[energy:1]を得る。",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 297
@@ -17860,7 +17860,7 @@
   {
     "id": "PRECISE_CUT",
     "name": "研ぎ澄まされた刃",
-    "description": "13ダメージを与える。\n[gold]手札[/gold]にある他のカード1枚につき、ダメージがinverseDiff()減少する。",
+    "description": "13ダメージを与える。\n[gold]手札[/gold]にある他のカード1枚につき、ダメージが2減少する。",
     "description_raw": "{CalculatedDamage:diff()}ダメージを与える。\n[gold]手札[/gold]にある他のカード1枚につき、ダメージが{ExtraDamage:inverseDiff()}減少する。",
     "cost": 0,
     "is_x_cost": null,

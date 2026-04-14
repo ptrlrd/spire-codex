@@ -3712,7 +3712,7 @@
   {
     "id": "FRIENDSHIP",
     "name": "友谊",
-    "description": "失去inverseDiff()点[gold]力量[/gold]。\n在每个回合开始时获得[energy:1]。",
+    "description": "失去2点[gold]力量[/gold]。\n在每个回合开始时获得[energy:1]。",
     "description_raw": "失去{StrengthPower:inverseDiff()}点[gold]力量[/gold]。\n在每个回合开始时获得{Energy:energyIcons()}。",
     "cost": 1,
     "is_x_cost": null,
@@ -3749,7 +3749,7 @@
     "image_url": "/static/images/cards/friendship.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "失去1点[gold]力量[/gold]。\n在每个回合开始时获得[energy:1]。",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 297
@@ -17256,7 +17256,7 @@
   {
     "id": "PRECISE_CUT",
     "name": "精确切击",
-    "description": "造成13点伤害。\n你的[gold]手牌[/gold]中每有一张牌，此牌的伤害就降低inverseDiff()点。",
+    "description": "造成13点伤害。\n你的[gold]手牌[/gold]中每有一张牌，此牌的伤害就降低2点。",
     "description_raw": "造成{CalculatedDamage:diff()}点伤害。\n你的[gold]手牌[/gold]中每有一张牌，此牌的伤害就降低{ExtraDamage:inverseDiff()}点。",
     "cost": 0,
     "is_x_cost": null,

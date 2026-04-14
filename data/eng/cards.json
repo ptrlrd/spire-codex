@@ -8954,7 +8954,7 @@
   {
     "id": "FRIENDSHIP",
     "name": "Friendship",
-    "description": "Lose inverseDiff() [gold]Strength[/gold].\nGain [energy:1] at the start of each turn.",
+    "description": "Lose 2 [gold]Strength[/gold].\nGain [energy:1] at the start of each turn.",
     "description_raw": "Lose {StrengthPower:inverseDiff()} [gold]Strength[/gold].\nGain {Energy:energyIcons()} at the start of each turn.",
     "cost": 1,
     "is_x_cost": null,
@@ -8991,7 +8991,7 @@
     "image_url": "/static/images/cards/friendship.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Lose 1 [gold]Strength[/gold].\nGain [energy:1] at the start of each turn.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 304
@@ -15532,7 +15532,7 @@
   {
     "id": "PRECISE_CUT",
     "name": "Precise Cut",
-    "description": "Deal 13 damage.\nDeals inverseDiff() less damage for each other card in your [gold]Hand[/gold].",
+    "description": "Deal 13 damage.\nDeals 2 less damage for each other card in your [gold]Hand[/gold].",
     "description_raw": "Deal {CalculatedDamage:diff()} damage.\nDeals {ExtraDamage:inverseDiff()} less damage for each other card in your [gold]Hand[/gold].",
     "cost": 0,
     "is_x_cost": null,

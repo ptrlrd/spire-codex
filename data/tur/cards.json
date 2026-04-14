@@ -673,7 +673,7 @@
   {
     "id": "FRIENDSHIP",
     "name": "Arkadaşlık",
-    "description": "inverseDiff() [gold]Kuvvet[/gold] kaybet.\nHer turun başında [energy:1] elde et.",
+    "description": "2 [gold]Kuvvet[/gold] kaybet.\nHer turun başında [energy:1] elde et.",
     "description_raw": "{StrengthPower:inverseDiff()} [gold]Kuvvet[/gold] kaybet.\nHer turun başında {Energy:energyIcons()} elde et.",
     "cost": 1,
     "is_x_cost": null,
@@ -710,7 +710,7 @@
     "image_url": "/static/images/cards/friendship.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "1 [gold]Kuvvet[/gold] kaybet.\nHer turun başında [energy:1] elde et.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 297
@@ -7090,7 +7090,7 @@
   {
     "id": "PRECISE_CUT",
     "name": "Hassas Kesim",
-    "description": "13 hasar ver.\n[gold]El[/gold]'indeki diğer her kart için inverseDiff() daha az hasar verir.",
+    "description": "13 hasar ver.\n[gold]El[/gold]'indeki diğer her kart için 2 daha az hasar verir.",
     "description_raw": "{CalculatedDamage:diff()} hasar ver.\n[gold]El[/gold]'indeki diğer her kart için {ExtraDamage:inverseDiff()} daha az hasar verir.",
     "cost": 0,
     "is_x_cost": null,

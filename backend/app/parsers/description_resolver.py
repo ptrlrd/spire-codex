@@ -230,7 +230,7 @@ def resolve_description(
         while True:
             # Match {Word: or {Word. pattern (conditional with nested braces)
             m = re.search(
-                r"\{(\w[\w.]*?)(?::(?!choose\(|cond:|diff\(\)|energyIcons|starIcons|plural:|show:|percentMore\(\)|percentLess\(\)))",
+                r"\{(\w[\w.]*?)(?::(?!choose\(|cond:|diff\(\)|inverseDiff\(\)|energyIcons|starIcons|plural:|show:|percentMore\(\)|percentLess\(\)))",
                 text,
             )
             if not m:
@@ -283,12 +283,13 @@ def resolve_description(
 
     text = re.sub(r"\{(\w+):percentLess\(\)\}", resolve_percent_less, text)
 
-    # Handle {Var:diff()} -> value
+    # Handle {Var:diff()} and {Var:inverseDiff()} -> value
+    # Both formatters just output the value; the difference is only UI highlight direction in-game
     def resolve_diff(m):
         val = _lookup(m.group(1), vars_dict)
         return str(val) if val is not None else "X"
 
-    text = re.sub(r"\{(\w+):diff\(\)\}", resolve_diff, text)
+    text = re.sub(r"\{(\w+):(?:diff|inverseDiff)\(\)\}", resolve_diff, text)
 
     # Strip trailing standalone "???" lines (unresolved rider enchantment slots)
     text = re.sub(r"\n\?\?\?$", "", text.strip())

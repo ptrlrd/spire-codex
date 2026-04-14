@@ -14441,7 +14441,7 @@
   {
     "id": "FRIENDSHIP",
     "name": "우정",
-    "description": "[gold]힘[/gold]을 inverseDiff() 잃습니다.\n매 턴 시작 시 [energy:1]를 얻습니다.",
+    "description": "[gold]힘[/gold]을 2 잃습니다.\n매 턴 시작 시 [energy:1]를 얻습니다.",
     "description_raw": "[gold]힘[/gold]을 {StrengthPower:inverseDiff()} 잃습니다.\n매 턴 시작 시 {Energy:energyIcons()}를 얻습니다.",
     "cost": 1,
     "is_x_cost": null,
@@ -14478,7 +14478,7 @@
     "image_url": "/static/images/cards/friendship.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]힘[/gold]을 1 잃습니다.\n매 턴 시작 시 [energy:1]를 얻습니다.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 297
@@ -16901,7 +16901,7 @@
   {
     "id": "PRECISE_CUT",
     "name": "정밀한 베기",
-    "description": "피해를 13 줍니다.\n[gold]손[/gold]에 있는 다른 카드 1장당 피해량이 inverseDiff() 감소합니다.",
+    "description": "피해를 13 줍니다.\n[gold]손[/gold]에 있는 다른 카드 1장당 피해량이 2 감소합니다.",
     "description_raw": "피해를 {CalculatedDamage:diff()} 줍니다.\n[gold]손[/gold]에 있는 다른 카드 1장당 피해량이 {ExtraDamage:inverseDiff()} 감소합니다.",
     "cost": 0,
     "is_x_cost": null,

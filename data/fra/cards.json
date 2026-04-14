@@ -629,7 +629,7 @@
   {
     "id": "FRIENDSHIP",
     "name": "Amitié",
-    "description": "Perdez inverseDiff() de [gold]Force[/gold].\nGagnez [energy:1] au début de chaque tour.",
+    "description": "Perdez 2 de [gold]Force[/gold].\nGagnez [energy:1] au début de chaque tour.",
     "description_raw": "Perdez {StrengthPower:inverseDiff()} de [gold]Force[/gold].\nGagnez {Energy:energyIcons()} au début de chaque tour.",
     "cost": 1,
     "is_x_cost": null,
@@ -666,7 +666,7 @@
     "image_url": "/static/images/cards/friendship.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Perdez 1 de [gold]Force[/gold].\nGagnez [energy:1] au début de chaque tour.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 316
@@ -7218,7 +7218,7 @@
   {
     "id": "PRECISE_CUT",
     "name": "Entaille",
-    "description": "Infligez 13 dégâts.\nInflige inverseDiff() dégâts en moins pour chaque autre carte dans votre [gold]Main[/gold].",
+    "description": "Infligez 13 dégâts.\nInflige 2 dégâts en moins pour chaque autre carte dans votre [gold]Main[/gold].",
     "description_raw": "Infligez {CalculatedDamage:diff()} dégâts.\nInflige {ExtraDamage:inverseDiff()} dégâts en moins pour chaque autre carte dans votre [gold]Main[/gold].",
     "cost": 0,
     "is_x_cost": null,
