@@ -44,10 +44,11 @@ export default async function Page({ params }: Props) {
   const { lang, id } = await params;
   if (!isValidLang(lang)) return null;
   let jsonLd = null;
+  let kw = null;
   try {
     const res = await fetch(`${API_INTERNAL}/api/keywords/${id}?lang=${lang}`);
     if (res.ok) {
-      const kw = await res.json();
+      kw = await res.json();
       const desc = stripTags(kw.description);
       const langCode = lang as LangCode;
       const gameName = LANG_GAME_NAME[langCode];
@@ -72,7 +73,7 @@ export default async function Page({ params }: Props) {
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
-      <KeywordDetail />
+      <KeywordDetail initialResult={kw ? { type: "keyword", data: kw } : null} />
     </>
   );
 }

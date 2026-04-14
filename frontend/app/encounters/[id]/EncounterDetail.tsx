@@ -22,13 +22,13 @@ const roomTypeBadge: Record<string, string> = {
 
 type Tab = "overview" | "info";
 
-export default function EncounterDetail() {
+export default function EncounterDetail({ initialEncounter }: { initialEncounter?: Encounter | null } = {}) {
   const { id } = useParams<{ id: string }>();
   const router = useRouter();
   const { lang } = useLanguage();
   const lp = useLangPrefix();
-  const [encounter, setEncounter] = useState<Encounter | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [encounter, setEncounter] = useState<Encounter | null>(initialEncounter ?? null);
+  const [loading, setLoading] = useState(!initialEncounter);
   const [notFound, setNotFound] = useState(false);
   const [tab, setTab] = useState<Tab>("overview");
 

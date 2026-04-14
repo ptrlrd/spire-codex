@@ -37,10 +37,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function Page({ params }: Props) {
   const { id } = await params;
   let jsonLd = null;
+  let power = null;
   try {
     const res = await fetch(`${API_INTERNAL}/api/powers/${id}`);
     if (res.ok) {
-      const power = await res.json();
+      power = await res.json();
       const desc = stripTags(power.description || "");
       const detailJsonLd = buildDetailPageJsonLd({
         name: power.name,
@@ -64,7 +65,7 @@ export default async function Page({ params }: Props) {
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
-      <PowerDetail />
+      <PowerDetail initialPower={power} />
     </>
   );
 }

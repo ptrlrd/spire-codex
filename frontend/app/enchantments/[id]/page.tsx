@@ -37,10 +37,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function Page({ params }: Props) {
   const { id } = await params;
   let jsonLd = null;
+  let enchantment = null;
   try {
     const res = await fetch(`${API_INTERNAL}/api/enchantments/${id}`);
     if (res.ok) {
-      const enchantment = await res.json();
+      enchantment = await res.json();
       const desc = stripTags(enchantment.description || "");
       const detailJsonLd = buildDetailPageJsonLd({
         name: enchantment.name,
@@ -64,7 +65,7 @@ export default async function Page({ params }: Props) {
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
-      <EnchantmentDetail />
+      <EnchantmentDetail initialEnchantment={enchantment} />
     </>
   );
 }

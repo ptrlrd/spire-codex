@@ -35,10 +35,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function Page({ params }: Props) {
   const { id } = await params;
   let jsonLd = null;
+  let achievement = null;
   try {
     const res = await fetch(`${API_INTERNAL}/api/achievements/${id}`);
     if (res.ok) {
-      const achievement = await res.json();
+      achievement = await res.json();
       const desc = stripTags(achievement.description || "");
       const detailJsonLd = buildDetailPageJsonLd({
         name: achievement.name,
@@ -60,7 +61,7 @@ export default async function Page({ params }: Props) {
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
-      <AchievementDetail />
+      <AchievementDetail initialAchievement={achievement} />
     </>
   );
 }

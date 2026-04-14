@@ -37,10 +37,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function Page({ params }: Props) {
   const { id } = await params;
   let jsonLd = null;
+  let monster = null;
   try {
     const res = await fetch(`${API_INTERNAL}/api/monsters/${id}`);
     if (res.ok) {
-      const monster = await res.json();
+      monster = await res.json();
       const hpText = monster.min_hp ? `${monster.min_hp}${monster.max_hp && monster.max_hp !== monster.min_hp ? `\u2013${monster.max_hp}` : ""} HP` : "";
       const desc = `${monster.type} monster${hpText ? ` \u00b7 ${hpText}` : ""}`;
       const detailJsonLd = buildDetailPageJsonLd({
@@ -65,7 +66,7 @@ export default async function Page({ params }: Props) {
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
-      <MonsterDetail />
+      <MonsterDetail initialMonster={monster} />
     </>
   );
 }

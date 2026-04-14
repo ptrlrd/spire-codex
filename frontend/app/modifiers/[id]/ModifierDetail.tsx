@@ -14,13 +14,13 @@ import { useLangPrefix } from "@/lib/use-lang-prefix";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
-export default function ModifierDetail() {
+export default function ModifierDetail({ initialModifier }: { initialModifier?: Modifier | null } = {}) {
   const { id } = useParams<{ id: string }>();
   const router = useRouter();
   const { lang } = useLanguage();
   const lp = useLangPrefix();
-  const [modifier, setModifier] = useState<Modifier | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [modifier, setModifier] = useState<Modifier | null>(initialModifier ?? null);
+  const [loading, setLoading] = useState(!initialModifier);
   const [notFound, setNotFound] = useState(false);
 
   useEffect(() => {

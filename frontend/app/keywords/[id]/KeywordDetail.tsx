@@ -42,18 +42,23 @@ const CATEGORY_LABELS: Record<string, string> = {
   rooms: "Map Rooms",
 };
 
-export default function KeywordDetail() {
+type InitialResult =
+  | { type: "keyword"; data: Keyword }
+  | { type: "glossary"; data: GlossaryTerm }
+  | null;
+
+export default function KeywordDetail({ initialResult }: { initialResult?: InitialResult } = {}) {
   const params = useParams();
   const id = params.id as string;
   const router = useRouter();
   const { lang } = useLanguage();
 
-  const [keyword, setKeyword] = useState<Keyword | null>(null);
-  const [glossary, setGlossary] = useState<GlossaryTerm | null>(null);
+  const [keyword, setKeyword] = useState<Keyword | null>(initialResult?.type === "keyword" ? initialResult.data : null);
+  const [glossary, setGlossary] = useState<GlossaryTerm | null>(initialResult?.type === "glossary" ? initialResult.data : null);
   const [cards, setCards] = useState<Card[]>([]);
   const [search, setSearch] = useState("");
   const [color, setColor] = useState("");
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(!initialResult);
   const [notFound, setNotFound] = useState(false);
 
   useEffect(() => {

@@ -12,13 +12,13 @@ import EntityHistory from "@/app/components/EntityHistory";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
-export default function ActDetail() {
+export default function ActDetail({ initialAct }: { initialAct?: Act | null } = {}) {
   const { id } = useParams<{ id: string }>();
   const router = useRouter();
   const { lang } = useLanguage();
   const lp = useLangPrefix();
-  const [act, setAct] = useState<Act | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [act, setAct] = useState<Act | null>(initialAct ?? null);
+  const [loading, setLoading] = useState(!initialAct);
   const [notFound, setNotFound] = useState(false);
 
   useEffect(() => {

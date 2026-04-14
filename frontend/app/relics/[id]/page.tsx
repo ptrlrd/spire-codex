@@ -37,10 +37,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function Page({ params }: Props) {
   const { id } = await params;
   let jsonLd = null;
+  let relic = null;
   try {
     const res = await fetch(`${API_INTERNAL}/api/relics/${id}`);
     if (res.ok) {
-      const relic = await res.json();
+      relic = await res.json();
       const desc = stripTags(relic.description || "");
       const detailJsonLd = buildDetailPageJsonLd({
         name: relic.name,
@@ -65,7 +66,7 @@ export default async function Page({ params }: Props) {
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
-      <RelicDetail />
+      <RelicDetail initialRelic={relic} />
     </>
   );
 }

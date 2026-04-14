@@ -272,16 +272,16 @@ function getUpgradedDescription(card: Card, upgraded: boolean): string {
 
 type Tab = "overview" | "details" | "info";
 
-export default function CardDetail() {
+export default function CardDetail({ initialCard }: { initialCard?: Card | null } = {}) {
   const params = useParams();
   const router = useRouter();
   const id = params.id as string;
   const { lang } = useLanguage();
 
-    const lp = useLangPrefix();
-const [card, setCard] = useState<Card | null>(null);
+  const lp = useLangPrefix();
+  const [card, setCard] = useState<Card | null>(initialCard ?? null);
   const [spawnedCards, setSpawnedCards] = useState<Card[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(!initialCard);
   const [notFound, setNotFound] = useState(false);
   const [upgraded, setUpgraded] = useState(false);
   const [betaArt, setBetaArt] = useState(false);

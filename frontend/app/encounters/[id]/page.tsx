@@ -37,10 +37,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function Page({ params }: Props) {
   const { id } = await params;
   let jsonLd = null;
+  let encounter = null;
   try {
     const res = await fetch(`${API_INTERNAL}/api/encounters/${id}`);
     if (res.ok) {
-      const encounter = await res.json();
+      encounter = await res.json();
       const desc = encounter.monsters?.length
         ? `${encounter.name} is a ${encounter.room_type} encounter featuring ${encounter.monsters.map((m: { name: string }) => m.name).join(", ")}.`
         : `${encounter.name} encounter from Slay the Spire 2`;
@@ -65,7 +66,7 @@ export default async function Page({ params }: Props) {
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
-      <EncounterDetail />
+      <EncounterDetail initialEncounter={encounter} />
     </>
   );
 }

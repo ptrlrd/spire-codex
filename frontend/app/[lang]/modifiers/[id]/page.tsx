@@ -41,10 +41,11 @@ export default async function Page({ params }: Props) {
   const { lang, id } = await params;
   if (!isValidLang(lang)) return null;
   let jsonLd = null;
+  let data = null;
   try {
     const res = await fetch(`${API_INTERNAL}/api/modifiers/${id}?lang=${lang}`);
     if (res.ok) {
-      const data = await res.json();
+      data = await res.json();
       const desc = stripTags(data.description || "");
       const name = data.name || id;
       const detailJsonLd = buildDetailPageJsonLd({
@@ -58,7 +59,7 @@ export default async function Page({ params }: Props) {
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
-      <ModifierDetail />
+      <ModifierDetail initialModifier={data} />
     </>
   );
 }

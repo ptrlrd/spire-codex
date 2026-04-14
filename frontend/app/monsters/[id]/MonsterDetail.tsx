@@ -192,14 +192,14 @@ function MoveCard({
   );
 }
 
-export default function MonsterDetail() {
+export default function MonsterDetail({ initialMonster }: { initialMonster?: Monster | null } = {}) {
   const { id } = useParams<{ id: string }>();
   const router = useRouter();
   const { lang } = useLanguage();
   const lp = useLangPrefix();
-  const [monster, setMonster] = useState<Monster | null>(null);
+  const [monster, setMonster] = useState<Monster | null>(initialMonster ?? null);
   const [powerData, setPowerData] = useState<Record<string, Power>>({});
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(!initialMonster);
   const [notFound, setNotFound] = useState(false);
   const [betaArt, setBetaArt] = useState(false);
 

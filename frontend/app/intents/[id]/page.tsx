@@ -35,10 +35,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function Page({ params }: Props) {
   const { id } = await params;
   let jsonLd = null;
+  let intent = null;
   try {
     const res = await fetch(`${API_INTERNAL}/api/intents/${id}`);
     if (res.ok) {
-      const intent = await res.json();
+      intent = await res.json();
       const desc = stripTags(intent.description || "");
       const detailJsonLd = buildDetailPageJsonLd({
         name: intent.name,
@@ -60,7 +61,7 @@ export default async function Page({ params }: Props) {
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
-      <IntentDetail />
+      <IntentDetail initialIntent={intent} />
     </>
   );
 }

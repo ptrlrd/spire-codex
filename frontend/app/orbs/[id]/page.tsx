@@ -35,10 +35,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function Page({ params }: Props) {
   const { id } = await params;
   let jsonLd = null;
+  let orb = null;
   try {
     const res = await fetch(`${API_INTERNAL}/api/orbs/${id}`);
     if (res.ok) {
-      const orb = await res.json();
+      orb = await res.json();
       const desc = stripTags(orb.description || "");
       const detailJsonLd = buildDetailPageJsonLd({
         name: orb.name,
@@ -60,7 +61,7 @@ export default async function Page({ params }: Props) {
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
-      <OrbDetail />
+      <OrbDetail initialOrb={orb} />
     </>
   );
 }

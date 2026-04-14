@@ -37,10 +37,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function Page({ params }: Props) {
   const { id } = await params;
   let jsonLd = null;
+  let epoch = null;
   try {
     const res = await fetch(`${API_INTERNAL}/api/epochs/${id}`);
     if (res.ok) {
-      const epoch = await res.json();
+      epoch = await res.json();
       const desc = stripTags(epoch.description || "");
       const detailJsonLd = buildDetailPageJsonLd({
         name: epoch.title,
@@ -62,7 +63,7 @@ export default async function Page({ params }: Props) {
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
-      <EpochDetail />
+      <EpochDetail initialEpoch={epoch} />
     </>
   );
 }

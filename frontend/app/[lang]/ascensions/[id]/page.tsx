@@ -39,10 +39,11 @@ export default async function Page({ params }: Props) {
   const { lang, id } = await params;
   if (!isValidLang(lang)) return null;
   let jsonLd = null;
+  let asc = null;
   try {
     const res = await fetch(`${API_INTERNAL}/api/ascensions/${id}?lang=${lang}`);
     if (res.ok) {
-      const asc = await res.json();
+      asc = await res.json();
       const desc = stripTags(asc.description);
       const langCode = lang as LangCode;
       const gameName = LANG_GAME_NAME[langCode];
@@ -66,7 +67,7 @@ export default async function Page({ params }: Props) {
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
-      <AscensionDetail />
+      <AscensionDetail initialAscension={asc} />
     </>
   );
 }
