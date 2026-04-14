@@ -3,6 +3,7 @@ import type { Relic } from "@/lib/api";
 import JsonLd from "@/app/components/JsonLd";
 import { buildCollectionPageJsonLd, buildBreadcrumbJsonLd } from "@/lib/jsonld";
 import RelicsClient from "@/app/relics/RelicsClient";
+import RecentlyAdded from "@/app/components/RecentlyAdded";
 import {
   isValidLang,
   LANG_GAME_NAME,
@@ -92,6 +93,8 @@ export default async function LangRelicsPage({ params }: { params: Promise<{ lan
       <p className="text-sm text-[var(--text-muted)] mb-6">
         {t("relics_tagline", lang)}
       </p>
+
+      <RecentlyAdded entityType="relics" label="Relic" pathPrefix={`/${lang}/relics`} />
 
       <RelicsClient initialRelics={relics} />
     </div>

@@ -3,6 +3,7 @@ import type { Enchantment } from "@/lib/api";
 import JsonLd from "@/app/components/JsonLd";
 import { buildCollectionPageJsonLd, buildBreadcrumbJsonLd } from "@/lib/jsonld";
 import EnchantmentsClient from "@/app/enchantments/EnchantmentsClient";
+import RecentlyAdded from "@/app/components/RecentlyAdded";
 import {
   isValidLang,
   LANG_GAME_NAME,
@@ -91,6 +92,8 @@ export default async function LangEnchantmentsPage({ params }: { params: Promise
       <p className="text-sm text-[var(--text-muted)] mb-6">
         {t("enchantments_tagline", lang)}
       </p>
+
+      <RecentlyAdded entityType="enchantments" label="Enchantment" pathPrefix={`/${lang}/enchantments`} />
 
       <EnchantmentsClient initialEnchantments={enchantments} />
     </div>

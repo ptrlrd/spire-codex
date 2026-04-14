@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import type { Relic } from "@/lib/api";
 import JsonLd from "@/app/components/JsonLd";
 import { buildCollectionPageJsonLd, buildBreadcrumbJsonLd } from "@/lib/jsonld";
+import RecentlyAdded from "@/app/components/RecentlyAdded";
 import RelicsClient from "./RelicsClient";
 
 const API = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
@@ -35,6 +36,8 @@ export default async function RelicsPage() {
       <p className="text-sm text-[var(--text-muted)] mb-6">
         Browse every relic across Ironclad, Silent, Defect, Necrobinder, and Regent. Filter by rarity and character pool.
       </p>
+
+      <RecentlyAdded entityType="relics" label="Relic" pathPrefix="/relics" />
 
       <Suspense>
         <RelicsClient initialRelics={relics} />

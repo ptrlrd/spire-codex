@@ -3,6 +3,7 @@ import type { Monster } from "@/lib/api";
 import JsonLd from "@/app/components/JsonLd";
 import { buildCollectionPageJsonLd, buildBreadcrumbJsonLd } from "@/lib/jsonld";
 import MonstersClient from "@/app/monsters/MonstersClient";
+import RecentlyAdded from "@/app/components/RecentlyAdded";
 import {
   isValidLang,
   LANG_GAME_NAME,
@@ -92,6 +93,8 @@ export default async function LangMonstersPage({ params }: { params: Promise<{ l
       <p className="text-sm text-[var(--text-muted)] mb-6">
         {t("monsters_tagline", lang)}
       </p>
+
+      <RecentlyAdded entityType="monsters" label="Monster" pathPrefix={`/${lang}/monsters`} />
 
       <MonstersClient initialMonsters={monsters} />
     </div>

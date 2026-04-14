@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import type { Enchantment } from "@/lib/api";
 import JsonLd from "@/app/components/JsonLd";
 import { buildCollectionPageJsonLd, buildBreadcrumbJsonLd } from "@/lib/jsonld";
+import RecentlyAdded from "@/app/components/RecentlyAdded";
 import EnchantmentsClient from "./EnchantmentsClient";
 
 const API = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
@@ -34,6 +35,8 @@ export default async function EnchantmentsPage() {
       <p className="text-sm text-[var(--text-muted)] mb-6">
         Browse every enchantment in Slay the Spire 2. Filter by card type and view effects, stackability, and extra card text.
       </p>
+
+      <RecentlyAdded entityType="enchantments" label="Enchantment" pathPrefix="/enchantments" />
 
       <Suspense>
         <EnchantmentsClient initialEnchantments={enchantments} />

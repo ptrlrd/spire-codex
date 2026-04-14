@@ -1,6 +1,7 @@
 import type { Power } from "@/lib/api";
 import JsonLd from "@/app/components/JsonLd";
 import { buildCollectionPageJsonLd, buildBreadcrumbJsonLd } from "@/lib/jsonld";
+import RecentlyAdded from "@/app/components/RecentlyAdded";
 import PowersClient from "./PowersClient";
 
 const API = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
@@ -34,6 +35,8 @@ export default async function PowersPage() {
       <p className="text-sm text-[var(--text-muted)] mb-6">
         Browse every power in Slay the Spire 2 — buffs, debuffs, and neutral effects. Filter by type and stack behavior.
       </p>
+
+      <RecentlyAdded entityType="powers" label="Power" pathPrefix="/powers" />
 
       <PowersClient initialPowers={powers} />
     </div>

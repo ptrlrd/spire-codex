@@ -3,6 +3,7 @@ import type { GameEvent } from "@/lib/api";
 import JsonLd from "@/app/components/JsonLd";
 import { buildCollectionPageJsonLd, buildBreadcrumbJsonLd } from "@/lib/jsonld";
 import EventsClient from "@/app/events/EventsClient";
+import RecentlyAdded from "@/app/components/RecentlyAdded";
 import {
   isValidLang,
   LANG_GAME_NAME,
@@ -92,6 +93,8 @@ export default async function LangEventsPage({ params }: { params: Promise<{ lan
       <p className="text-sm text-[var(--text-muted)] mb-6">
         {t("events_tagline", lang)}
       </p>
+
+      <RecentlyAdded entityType="events" label="Event" pathPrefix={`/${lang}/events`} />
 
       <EventsClient initialEvents={events} />
     </div>

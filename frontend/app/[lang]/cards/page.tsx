@@ -3,6 +3,7 @@ import type { Card } from "@/lib/api";
 import JsonLd from "@/app/components/JsonLd";
 import { buildCollectionPageJsonLd, buildBreadcrumbJsonLd } from "@/lib/jsonld";
 import CardsClient from "@/app/cards/CardsClient";
+import RecentlyAdded from "@/app/components/RecentlyAdded";
 import {
   isValidLang,
   LANG_GAME_NAME,
@@ -92,6 +93,8 @@ export default async function LangCardsPage({ params }: { params: Promise<{ lang
       <p className="text-sm text-[var(--text-muted)] mb-6">
         {t("cards_tagline", lang)}
       </p>
+
+      <RecentlyAdded entityType="cards" label="Card" pathPrefix={`/${lang}/cards`} />
 
       <CardsClient initialCards={cards} />
     </div>

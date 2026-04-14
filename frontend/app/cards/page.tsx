@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import type { Card } from "@/lib/api";
 import JsonLd from "@/app/components/JsonLd";
 import { buildCollectionPageJsonLd, buildBreadcrumbJsonLd } from "@/lib/jsonld";
+import RecentlyAdded from "@/app/components/RecentlyAdded";
 import CardsClient from "./CardsClient";
 
 const API = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
@@ -35,6 +36,8 @@ export default async function CardsPage() {
       <p className="text-sm text-[var(--text-muted)] mb-6">
         Browse every card across Ironclad, Silent, Defect, Necrobinder, and Regent. Filter by character, type, rarity, and keywords.
       </p>
+
+      <RecentlyAdded entityType="cards" label="Card" pathPrefix="/cards" />
 
       <Suspense>
         <CardsClient initialCards={cards} />

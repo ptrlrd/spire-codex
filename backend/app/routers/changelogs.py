@@ -45,6 +45,64 @@ def list_changelogs(request: Request):
     ]
 
 
+@router.get("/recent-additions", tags=["Changelogs"])
+def recent_additions(
+    request: Request,
+    entity_type: str | None = None,
+    limit: int = 12,
+    max_versions: int = 5,
+):
+    """Return the most recent entity additions, scanning newest changelogs first.
+
+    - entity_type: optional filter (e.g. "cards", "relics") — if omitted, returns a
+      dict keyed by entity type.
+    - limit: max items to return per entity type.
+    - max_versions: stop scanning after this many changelogs.
+
+    Each item is enriched with `version`, `version_tag`, and `version_date` so the
+    UI can render a "Added in vX.Y.Z" badge.
+    """
+    logs = _load_changelogs()[:max_versions]
+
+    def _collect(target_type: str) -> list[dict]:
+        items: list[dict] = []
+        for log in logs:
+            tag = log.get("tag") or log.get("game_version", "")
+            date = log.get("date", "")
+            for cat in log.get("categories", []):
+                if cat.get("id") != target_type:
+                    continue
+                for item in cat.get("added", []):
+                    items.append(
+                        {
+                            **item,
+                            "version_tag": tag,
+                            "version_date": date,
+                        }
+                    )
+                    if len(items) >= limit:
+                        return items
+            if len(items) >= limit:
+                return items
+        return items
+
+    if entity_type:
+        return {"items": _collect(entity_type)}
+
+    # Return all common types
+    types = (
+        "cards",
+        "relics",
+        "potions",
+        "monsters",
+        "events",
+        "encounters",
+        "powers",
+        "enchantments",
+    )
+    return {t: _collect(t) for t in types}
+
+
 @router.get("/{tag:path}", tags=["Changelogs"])
 def get_changelog(tag: str, request: Request):
     """Return full changelog for a specific tag (e.g. '1.0.3')."""

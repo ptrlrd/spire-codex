@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import type { Monster } from "@/lib/api";
 import JsonLd from "@/app/components/JsonLd";
 import { buildCollectionPageJsonLd, buildBreadcrumbJsonLd } from "@/lib/jsonld";
+import RecentlyAdded from "@/app/components/RecentlyAdded";
 import MonstersClient from "./MonstersClient";
 
 const API = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
@@ -35,6 +36,8 @@ export default async function MonstersPage() {
       <p className="text-sm text-[var(--text-muted)] mb-6">
         Browse every monster in Slay the Spire 2 — normals, elites, and bosses. View HP values, moves, damage stats, and ascension scaling.
       </p>
+
+      <RecentlyAdded entityType="monsters" label="Monster" pathPrefix="/monsters" />
 
       <Suspense>
         <MonstersClient initialMonsters={monsters} />

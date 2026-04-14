@@ -3,6 +3,7 @@ import type { Power } from "@/lib/api";
 import JsonLd from "@/app/components/JsonLd";
 import { buildCollectionPageJsonLd, buildBreadcrumbJsonLd } from "@/lib/jsonld";
 import PowersClient from "@/app/powers/PowersClient";
+import RecentlyAdded from "@/app/components/RecentlyAdded";
 import {
   isValidLang,
   LANG_GAME_NAME,
@@ -92,6 +93,8 @@ export default async function LangPowersPage({ params }: { params: Promise<{ lan
       <p className="text-sm text-[var(--text-muted)] mb-6">
         {t("powers_tagline", lang)}
       </p>
+
+      <RecentlyAdded entityType="powers" label="Power" pathPrefix={`/${lang}/powers`} />
 
       <PowersClient initialPowers={powers} />
     </div>

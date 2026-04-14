@@ -3,6 +3,7 @@ import type { Encounter } from "@/lib/api";
 import JsonLd from "@/app/components/JsonLd";
 import { buildCollectionPageJsonLd, buildBreadcrumbJsonLd } from "@/lib/jsonld";
 import EncountersClient from "@/app/encounters/EncountersClient";
+import RecentlyAdded from "@/app/components/RecentlyAdded";
 import {
   isValidLang,
   LANG_GAME_NAME,
@@ -91,6 +92,8 @@ export default async function LangEncountersPage({ params }: { params: Promise<{
       <p className="text-sm text-[var(--text-muted)] mb-6">
         {t("encounters_tagline", lang)}
       </p>
+
+      <RecentlyAdded entityType="encounters" label="Encounter" pathPrefix={`/${lang}/encounters`} />
 
       <EncountersClient initialEncounters={encounters} />
     </div>

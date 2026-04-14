@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import type { Encounter } from "@/lib/api";
 import JsonLd from "@/app/components/JsonLd";
 import { buildCollectionPageJsonLd, buildBreadcrumbJsonLd } from "@/lib/jsonld";
+import RecentlyAdded from "@/app/components/RecentlyAdded";
 import EncountersClient from "./EncountersClient";
 
 const API = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
@@ -34,6 +35,8 @@ export default async function EncountersPage() {
       <p className="text-sm text-[var(--text-muted)] mb-6">
         Browse every combat encounter in Slay the Spire 2. Filter by room type (Monster, Elite, Boss) and act to find specific fights and monster compositions.
       </p>
+
+      <RecentlyAdded entityType="encounters" label="Encounter" pathPrefix="/encounters" />
 
       <Suspense>
         <EncountersClient initialEncounters={encounters} />
