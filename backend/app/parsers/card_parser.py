@@ -395,7 +395,11 @@ def parse_single_card(
                 v_entry["block"] = block
             # Variant-specific image
             variant_base = f"{card_id.lower()}_{vtype.lower()}"
-            variant_img = f"{variant_base}.webp" if (STATIC_IMAGES / f"{variant_base}.webp").exists() else f"{variant_base}.png"
+            variant_img = (
+                f"{variant_base}.webp"
+                if (STATIC_IMAGES / f"{variant_base}.webp").exists()
+                else f"{variant_base}.png"
+            )
             if (STATIC_IMAGES / variant_img).exists():
                 v_entry["image_url"] = f"/static/images/cards/{variant_img}"
             # Rider sub-variants

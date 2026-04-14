@@ -55,9 +55,7 @@ def parse_single_potion(filepath: Path, localization: dict) -> dict | None:
     if not image_file.exists():
         image_file = STATIC_IMAGES / f"{potion_base}.png"
     image_url = (
-        f"/static/images/potions/{image_file.name}"
-        if image_file.exists()
-        else None
+        f"/static/images/potions/{image_file.name}" if image_file.exists() else None
     )
 
     return {

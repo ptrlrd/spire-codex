@@ -167,9 +167,7 @@ def parse_single_relic(
         if not variant_file.exists():
             variant_file = STATIC_IMAGES / f"{relic_base}_{suffix}.png"
         if variant_file.exists():
-            image_variants[char_name] = (
-                f"/static/images/relics/{variant_file.name}"
-            )
+            image_variants[char_name] = f"/static/images/relics/{variant_file.name}"
 
     return {
         "id": relic_id,
