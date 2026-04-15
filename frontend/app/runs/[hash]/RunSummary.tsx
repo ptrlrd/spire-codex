@@ -5,29 +5,19 @@
  * Renders three act rows of map node icons + relic strip + card grid.
  */
 
+import { useState, type ReactNode } from "react";
 import Link from "next/link";
-import type { ReactNode } from "react";
+import {
+  CardPill,
+  RelicPill,
+  cleanId,
+  displayName,
+  type CardInfo,
+  type RelicInfo,
+} from "./RunPills";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 const ICON_BASE = `${API}/static/images/ui/run_history`;
-
-interface CardInfo {
-  id: string;
-  name: string;
-  description: string;
-  type: string;
-  rarity: string;
-  cost: number;
-  image_url: string | null;
-}
-
-interface RelicInfo {
-  id: string;
-  name: string;
-  description: string;
-  rarity: string;
-  image_url: string | null;
-}
 
 interface DeckCard {
   id: string;
@@ -44,12 +34,25 @@ interface PlayerStats {
   current_hp?: number;
   max_hp?: number;
   current_gold?: number;
+  damage_taken?: number;
+  hp_healed?: number;
+  gold_gained?: number;
+  gold_spent?: number;
+  card_choices?: Array<{ card: { id: string }; was_picked: boolean }>;
+  cards_gained?: Array<{ id: string }>;
+  cards_removed?: Array<{ id: string }>;
+  upgraded_cards?: string[];
+  rest_site_choices?: string[];
+  potion_used?: string[];
+  relic_choices?: Array<{ choice: string; was_picked: boolean }>;
+  event_choices?: Array<{ title?: { key?: string } }>;
 }
 
 interface Room {
   model_id?: string;
   room_type?: string;
   monster_ids?: string[];
+  turns_taken?: number;
 }
 
 interface MapPoint {
@@ -104,14 +107,6 @@ const TIER_OUTLINE: Record<string, string> = {
   boss: "ring-2 ring-rose-500/60",
 };
 
-function cleanId(id: string): string {
-  return id.replace(/^(CARD|RELIC|ENCHANTMENT|MONSTER|ENCOUNTER|CHARACTER|ACT|POTION|EVENT)\./, "");
-}
-
-function displayName(id: string): string {
-  return cleanId(id).replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
-}
-
 function formatTime(seconds: number): string {
   const m = Math.floor(seconds / 60);
   const s = seconds % 60;
@@ -121,7 +116,13 @@ function formatTime(seconds: number): string {
 function formatDate(epoch?: number): string {
   if (!epoch) return "";
   const d = new Date(epoch * 1000);
-  return d.toLocaleString(undefined, { year: "numeric", month: "long", day: "numeric", hour: "numeric", minute: "2-digit" });
+  return d.toLocaleString(undefined, {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+  });
 }
 
 /** Decide the tier ("weak"|"normal"|"elite"|"boss") for an encounter. */
@@ -140,19 +141,14 @@ function iconFor(mp: MapPoint): { src: string; tier: string; label: string } {
   const modelId = room?.model_id || "";
   const tier = encounterTier(modelId, mp.map_point_type);
 
-  // Boss: use specific boss icon
   if (mp.map_point_type === "boss" && modelId.endsWith("_BOSS")) {
     const slug = cleanId(modelId).toLowerCase();
     return { src: `${ICON_BASE}/${slug}.webp`, tier, label: displayName(modelId) };
   }
-
-  // Ancient: use specific ancient icon
   if (mp.map_point_type === "ancient" && modelId.startsWith("EVENT.")) {
     const slug = cleanId(modelId).toLowerCase();
     return { src: `${ICON_BASE}/${slug}.webp`, tier: "", label: displayName(modelId) };
   }
-
-  // Generic types
   const typeMap: Record<string, string> = {
     monster: "monster",
     elite: "elite",
@@ -184,7 +180,6 @@ export default function RunSummary({ run, player, cardData, relicData, charColor
   const potionSlots = player.max_potion_slot_count ?? 3;
   const filledPotions = (player.potions ?? []).length;
 
-  // Death quote — generic for now; could pull from localization later
   const deathQuote = run.win
     ? `${displayName(player.character)} ascended.`
     : run.was_abandoned
@@ -193,11 +188,9 @@ export default function RunSummary({ run, player, cardData, relicData, charColor
         ? `${displayName(player.character)} fell to ${displayName(run.killed_by_encounter)}.`
         : `${displayName(player.character)} fell.`;
 
-  // Bucket relics by rarity for the count summary
   const relicsByRarity = bucketByRarity(player.relics, (r) => relicData[cleanId(r.id)]?.rarity);
   const cardsByRarity = bucketByRarity(player.deck, (c) => cardData[cleanId(c.id)]?.rarity);
 
-  // Group cards by name+upgrade for "2x" stacking
   const stackedCards = stackCards(player.deck, cardData);
 
   return (
@@ -208,70 +201,57 @@ export default function RunSummary({ run, player, cardData, relicData, charColor
         background: `color-mix(in srgb, ${charColor} 6%, var(--bg-card))`,
       }}
     >
-      {/* Top stats bar */}
-      <div className="flex flex-wrap items-center gap-3 sm:gap-5 text-sm mb-3 pb-3 border-b border-[var(--border-subtle)]">
+      {/* Top stats bar — clean text labels, no emoji */}
+      <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm mb-3 pb-3 border-b border-[var(--border-subtle)]">
         <Link href={`${lp}/characters/${charSlug}`} className="flex-shrink-0">
           <img
             src={charIcon}
             alt={displayName(player.character)}
-            className="w-8 h-8 rounded-full object-cover ring-2"
-            style={{ ["--tw-ring-color" as string]: charColor } as React.CSSProperties}
+            className="w-9 h-9 rounded-full object-cover border-2"
+            style={{ borderColor: charColor }}
             crossOrigin="anonymous"
           />
         </Link>
-        <Stat icon="❤️" value={`${finalStats?.current_hp ?? "?"}/${finalStats?.max_hp ?? "?"}`} color="var(--color-ironclad)" />
-        <Stat icon="🪙" value={`${finalStats?.current_gold ?? "?"}`} color="var(--accent-gold)" />
+        <Stat label="HP" value={`${finalStats?.current_hp ?? "?"}/${finalStats?.max_hp ?? "?"}`} color="var(--color-ironclad)" />
+        <Stat label="Gold" value={finalStats?.current_gold ?? "?"} color="var(--accent-gold)" />
         <PotionSlots filled={filledPotions} total={potionSlots} />
-        <Stat icon="🗺" value={`${totalFloors}`} />
-        <Stat icon="⏱" value={formatTime(run.run_time ?? 0)} />
+        <Stat label="Floor" value={totalFloors} />
+        <Stat label="Time" value={formatTime(run.run_time ?? 0)} />
         <div className="ml-auto text-right text-xs text-[var(--text-muted)] leading-tight">
           {run.start_time && <div>{formatDate(run.start_time)}</div>}
-          {run.seed && <div>Seed: <span className="font-mono">{run.seed}</span></div>}
+          {run.seed && (
+            <div>
+              Seed: <span className="font-mono">{run.seed}</span>
+            </div>
+          )}
           <div>
-            {(player.character ? "Singleplayer" : "Multiplayer")} · {run.game_mode ?? "Standard"}
+            {run.game_mode ?? "Standard"}
             {run.build_id && <span className="ml-1">· {run.build_id}</span>}
           </div>
         </div>
       </div>
 
-      {/* Death/victory quote */}
       <div className="mb-4 italic text-sm text-[var(--text-secondary)]">&ldquo;{deathQuote}&rdquo;</div>
 
-      {/* Act rows */}
+      {/* Act rows with hover popovers */}
       <div className="space-y-2 mb-5">
         {(run.map_point_history ?? []).map((act, i) => {
           const actName = run.acts?.[i] ? displayName(run.acts[i]) : `Act ${i + 1}`;
+          const actStartFloor = (run.map_point_history ?? []).slice(0, i).reduce((sum, a) => sum + a.length, 0) + 1;
           return (
             <div key={i} className="flex items-center gap-2 sm:gap-3">
               <div className="w-20 sm:w-24 text-xs font-medium text-[var(--text-secondary)] flex-shrink-0">{actName}</div>
               <div className="flex flex-wrap items-center gap-1 flex-1">
-                {act.map((mp, j) => {
-                  const { src, tier, label } = iconFor(mp);
-                  return (
-                    <span
-                      key={j}
-                      className={`relative w-7 h-7 sm:w-8 sm:h-8 rounded-md bg-black/30 flex items-center justify-center group ${TIER_OUTLINE[tier] ?? ""}`}
-                      title={label}
-                    >
-                      <img
-                        src={src}
-                        alt={label}
-                        className="w-full h-full object-contain p-0.5"
-                        crossOrigin="anonymous"
-                        onError={(e) => {
-                          (e.currentTarget as HTMLImageElement).style.display = "none";
-                        }}
-                      />
-                    </span>
-                  );
-                })}
+                {act.map((mp, j) => (
+                  <MapNode key={j} mp={mp} floorNum={actStartFloor + j} />
+                ))}
               </div>
             </div>
           );
         })}
       </div>
 
-      {/* Relics row */}
+      {/* Relics row — uses RelicPill tooltip */}
       <div className="mb-4">
         <div className="text-xs text-[var(--text-secondary)] mb-2">
           <span className="font-semibold">Relics ({player.relics.length}):</span>{" "}
@@ -282,11 +262,12 @@ export default function RunSummary({ run, player, cardData, relicData, charColor
             const rid = cleanId(relic.id);
             const info = relicData[rid];
             return (
-              <Link
+              <RelicPill
                 key={`${rid}-${i}`}
-                href={`${lp}/relics/${rid.toLowerCase()}`}
+                relicId={rid}
+                relicData={relicData}
+                lp={lp}
                 className="w-8 h-8 sm:w-9 sm:h-9 rounded-md bg-black/30 flex items-center justify-center hover:bg-black/50 transition-colors"
-                title={info?.name || displayName(relic.id)}
               >
                 {info?.image_url ? (
                   <img
@@ -298,37 +279,47 @@ export default function RunSummary({ run, player, cardData, relicData, charColor
                 ) : (
                   <span className="text-[8px] text-[var(--text-muted)]">{rid.slice(0, 3)}</span>
                 )}
-              </Link>
+              </RelicPill>
             );
           })}
         </div>
       </div>
 
-      {/* Cards grid */}
+      {/* Cards grid — card art thumbnails + CardPill tooltip */}
       <div>
         <div className="text-xs text-[var(--text-secondary)] mb-2">
           <span className="font-semibold">Cards ({player.deck.length}):</span>{" "}
           <RaritySummary buckets={cardsByRarity} />
         </div>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-1">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-3 gap-y-1">
           {stackedCards.map((entry, i) => {
             const info = cardData[entry.id];
             const colorClass = info ? RARITY_TEXT_COLOR[info.rarity] ?? "text-zinc-300" : "text-zinc-300";
             return (
-              <Link
+              <CardPill
                 key={`${entry.id}-${entry.upgraded ? "u" : "n"}-${i}`}
-                href={`${lp}/cards/${entry.id.toLowerCase()}`}
+                cardId={entry.id}
+                upgraded={entry.upgraded}
+                cardData={cardData}
+                lp={lp}
                 className="flex items-center gap-2 text-xs hover:bg-[var(--bg-card-hover)] rounded px-1 py-0.5 transition-colors"
               >
-                <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-black/40 text-[10px] font-bold text-[var(--accent-gold)] flex-shrink-0">
-                  {info?.cost ?? "?"}
-                </span>
+                {info?.image_url ? (
+                  <img
+                    src={`${API}${info.image_url}`}
+                    alt=""
+                    className="w-6 h-6 rounded object-cover flex-shrink-0"
+                    crossOrigin="anonymous"
+                  />
+                ) : (
+                  <span className="w-6 h-6 rounded bg-black/30 flex-shrink-0" />
+                )}
                 <span className={`truncate ${colorClass}`}>
                   {entry.count > 1 && <span className="text-[var(--text-muted)] mr-1">{entry.count}x</span>}
                   {info?.name || displayName(`CARD.${entry.id}`)}
                   {entry.upgraded && "+"}
                 </span>
-              </Link>
+              </CardPill>
             );
           })}
         </div>
@@ -337,28 +328,135 @@ export default function RunSummary({ run, player, cardData, relicData, charColor
   );
 }
 
-function Stat({ icon, value, color }: { icon: string; value: ReactNode; color?: string }) {
+function MapNode({
+  mp,
+  floorNum,
+}: {
+  mp: MapPoint;
+  floorNum: number;
+}) {
+  const [show, setShow] = useState(false);
+  const { src, tier, label } = iconFor(mp);
+  const room = mp.rooms?.[0];
+  const ps = mp.player_stats?.[0];
+
   return (
-    <div className="flex items-center gap-1.5 text-xs sm:text-sm">
-      <span className="text-base" aria-hidden>{icon}</span>
-      <span className="font-semibold" style={color ? { color } : undefined}>{value}</span>
+    <span
+      className={`relative w-7 h-7 sm:w-8 sm:h-8 rounded-md bg-black/30 flex items-center justify-center group ${TIER_OUTLINE[tier] ?? ""}`}
+      onMouseEnter={() => setShow(true)}
+      onMouseLeave={() => setShow(false)}
+    >
+      <img
+        src={src}
+        alt={label}
+        className="w-full h-full object-contain p-0.5"
+        crossOrigin="anonymous"
+        onError={(e) => {
+          (e.currentTarget as HTMLImageElement).style.display = "none";
+        }}
+      />
+      {show && (
+        <div className="absolute z-50 bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 p-3 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] shadow-xl pointer-events-none text-left">
+          <div className="flex items-center justify-between mb-1.5">
+            <div className="text-xs font-semibold text-[var(--text-primary)]">{label}</div>
+            <div className="text-[10px] text-[var(--text-muted)]">Floor {floorNum}</div>
+          </div>
+          <div className="text-[10px] text-[var(--text-muted)] mb-1.5 capitalize">
+            {mp.map_point_type.replace(/_/g, " ")}
+            {tier && ` · ${tier}`}
+            {room?.turns_taken != null && ` · ${room.turns_taken} turns`}
+          </div>
+          {room?.monster_ids && room.monster_ids.length > 0 && (
+            <div className="text-[10px] text-[var(--text-secondary)] mb-1.5">
+              vs {room.monster_ids.map((m) => displayName(m)).join(", ")}
+            </div>
+          )}
+          {ps && (
+            <div className="flex flex-wrap gap-x-2 gap-y-0.5 text-[10px] text-[var(--text-muted)] mb-1.5">
+              <span>HP {ps.current_hp}/{ps.max_hp}</span>
+              {(ps.damage_taken ?? 0) > 0 && (
+                <span style={{ color: "var(--color-ironclad)" }}>-{ps.damage_taken}</span>
+              )}
+              {(ps.hp_healed ?? 0) > 0 && (
+                <span style={{ color: "var(--color-silent)" }}>+{ps.hp_healed} HP</span>
+              )}
+              {(ps.gold_gained ?? 0) > 0 && (
+                <span style={{ color: "var(--accent-gold)" }}>+{ps.gold_gained}g</span>
+              )}
+              {(ps.gold_spent ?? 0) > 0 && (
+                <span style={{ color: "var(--text-muted)" }}>-{ps.gold_spent}g</span>
+              )}
+            </div>
+          )}
+          {ps?.cards_gained && ps.cards_gained.length > 0 && (
+            <div className="text-[10px] text-[var(--color-silent)] mb-0.5">
+              + {ps.cards_gained.map((c) => displayName(c.id)).join(", ")}
+            </div>
+          )}
+          {ps?.cards_removed && ps.cards_removed.length > 0 && (
+            <div className="text-[10px] text-[var(--color-ironclad)] mb-0.5">
+              − {ps.cards_removed.map((c) => displayName(c.id)).join(", ")}
+            </div>
+          )}
+          {ps?.upgraded_cards && ps.upgraded_cards.length > 0 && (
+            <div className="text-[10px] text-[var(--accent-gold)] mb-0.5">
+              ⬆ {ps.upgraded_cards.map((c) => displayName(c)).join(", ")}
+            </div>
+          )}
+          {ps?.relic_choices?.some((r) => r.was_picked) && (
+            <div className="text-[10px] text-[var(--accent-gold)] mb-0.5">
+              + {ps.relic_choices.filter((r) => r.was_picked).map((r) => displayName(r.choice)).join(", ")}
+            </div>
+          )}
+          {ps?.event_choices?.[0]?.title?.key && (
+            <div className="text-[10px] text-[var(--text-secondary)] mt-1 italic">
+              chose {humanizeChoiceKey(ps.event_choices[0].title.key)}
+            </div>
+          )}
+          <div className="absolute left-1/2 -translate-x-1/2 top-full w-2 h-2 bg-[var(--bg-card)] border-r border-b border-[var(--border-subtle)] rotate-45 -mt-1" />
+        </div>
+      )}
+    </span>
+  );
+}
+
+function humanizeChoiceKey(key: string): string {
+  // e.g. "MORPHIC_GROVE.pages.INITIAL.options.LONER.title" → "Loner"
+  const parts = key.split(".");
+  const idx = parts.findIndex((p) => p === "options");
+  if (idx >= 0 && parts[idx + 1]) {
+    return parts[idx + 1].replace(/_/g, " ").toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase());
+  }
+  return key;
+}
+
+function Stat({ label, value, color }: { label: string; value: ReactNode; color?: string }) {
+  return (
+    <div className="flex items-baseline gap-1 text-xs sm:text-sm">
+      <span className="text-[10px] uppercase tracking-wider text-[var(--text-muted)]">{label}</span>
+      <span className="font-semibold" style={color ? { color } : undefined}>
+        {value}
+      </span>
     </div>
   );
 }
 
 function PotionSlots({ filled, total }: { filled: number; total: number }) {
   return (
-    <div className="flex items-center gap-1">
-      {Array.from({ length: total }).map((_, i) => (
-        <span
-          key={i}
-          className={`w-3.5 h-5 rounded-sm border ${
-            i < filled
-              ? "bg-emerald-400/40 border-emerald-400/60"
-              : "bg-black/30 border-[var(--border-subtle)]"
-          }`}
-        />
-      ))}
+    <div className="flex items-center gap-1.5">
+      <span className="text-[10px] uppercase tracking-wider text-[var(--text-muted)]">Potions</span>
+      <div className="flex items-center gap-0.5">
+        {Array.from({ length: total }).map((_, i) => (
+          <span
+            key={i}
+            className={`w-2.5 h-4 rounded-sm border ${
+              i < filled
+                ? "bg-emerald-400/40 border-emerald-400/60"
+                : "bg-black/30 border-[var(--border-subtle)]"
+            }`}
+          />
+        ))}
+      </div>
     </div>
   );
 }
@@ -400,7 +498,6 @@ function stackCards(deck: DeckCard[], cardData: Record<string, CardInfo>): Stack
       map.set(key, { id, upgraded, count: 1 });
     }
   }
-  // Sort: rarity tier (rare→common→starter), then alpha
   const rarityScore: Record<string, number> = { Rare: 5, Uncommon: 4, Common: 3, Starter: 1, Curse: 0, Status: 0 };
   return [...map.values()].sort((a, b) => {
     const ra = rarityScore[cardData[a.id]?.rarity ?? ""] ?? 2;
@@ -410,7 +507,6 @@ function stackCards(deck: DeckCard[], cardData: Record<string, CardInfo>): Stack
   });
 }
 
-/** Find the player_stats from the latest map point that has them. */
 function lastPlayerStats(run: Run): PlayerStats | undefined {
   const acts = run.map_point_history ?? [];
   for (let a = acts.length - 1; a >= 0; a--) {
