@@ -6,6 +6,7 @@ import Link from "next/link";
 import type { Card } from "@/lib/api";
 import RichDescription from "@/app/components/RichDescription";
 import type { RelatedCard } from "@/app/components/RichDescription";
+import { getCardDisplayModel } from "@/lib/card-display";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { useLanguage } from "../../contexts/LanguageContext";
 import { t } from "@/lib/ui-translations";
@@ -60,7 +61,7 @@ const keywordTooltips: Record<string, string> = {
 };
 
 function buildInteractiveWords(
-  card: Card,
+  keywords: string[],
   powerData: Record<string, { id: string; name: string; description: string; type: string; image_url: string | null }>,
   keywordData: Record<string, { id: string; name: string; description: string }>,
   glossaryData: Record<string, { id: string; name: string; description: string }>,
@@ -69,12 +70,10 @@ function buildInteractiveWords(
 ): Record<string, { tooltip: string; href: string }> {
   const words: Record<string, { tooltip: string; href: string }> = {};
   // Add keyword names (Sly, Exhaust, Ethereal, etc.)
-  if (card.keywords) {
-    for (const kw of card.keywords) {
-      const data = keywordData[kw.toLowerCase()];
-      const desc = data?.description || keywordTooltips[kw] || "";
-      words[kw] = { tooltip: desc, href: `${lp}/keywords/${kw.toLowerCase()}` };
-    }
+  for (const kw of keywords) {
+    const data = keywordData[kw.toLowerCase()];
+    const desc = data?.description || keywordTooltips[kw] || "";
+    words[kw] = { tooltip: desc, href: `${lp}/keywords/${kw.toLowerCase()}` };
   }
   // Add power names from [gold] tagged text (Dexterity, Thorns, Block, Strength, etc.)
   for (const [name, data] of Object.entries(powerData)) {
@@ -146,128 +145,6 @@ function getMerchantPriceRange(rarity: string, color: string): { min: number; ma
   }
   if (isColorless) base = Math.round(base * 1.15);
   return { min: Math.floor(base * 0.95), max: Math.ceil(base * 1.05) };
-}
-
-function getUpgradedValue(
-  base: number | null,
-  upgradeVal: string | number | null | undefined
-): number | null {
-  if (base == null || upgradeVal == null) return base;
-  if (typeof upgradeVal === "number") return upgradeVal;
-  if (typeof upgradeVal === "string" && upgradeVal.startsWith("+"))
-    return base + parseInt(upgradeVal);
-  return base;
-}
-
-function getUpgradedDescription(card: Card, upgraded: boolean): string {
-  // Use upgrade_description as base text when upgraded (handles text-based upgrades like "X+1", "ALL cards", etc.)
-  let desc = (upgraded && card.upgrade_description ? card.upgrade_description : card.description || "").replace(/\n/g, " ");
-  const u = upgraded && card.upgrade ? card.upgrade : null;
-  const vars = card.vars || {};
-
-  if (u) {
-    // Collect all replacements first to avoid cascading (e.g. Spur: 3→5 then 5→7)
-    const replacements: { base: string; upgraded: string; varKey: string }[] = [];
-
-    for (const [key, upVal] of Object.entries(u)) {
-      if (upVal == null) continue;
-      const kl = key.toLowerCase();
-      // Handle icon tag upgrades first — skip general replacement to avoid corrupting tags
-      if (kl === "energy") {
-        const baseEnergy = vars["Energy"] ?? 1;
-        const upEnergy = getUpgradedValue(baseEnergy, upVal) ?? baseEnergy;
-        if (upEnergy !== baseEnergy) desc = desc.replace(/\[energy:(\d+)\]/, `[energy:${upEnergy}]`);
-        continue;
-      }
-      if (kl === "stars" || kl === "starnextturnpower") {
-        const starVar = kl === "stars" ? "Stars" : "StarNextTurnPower";
-        const baseStar = vars[starVar] ?? 1;
-        const upStar = getUpgradedValue(baseStar, upVal) ?? baseStar;
-        if (upStar !== baseStar) desc = desc.replace(`[star:${baseStar}]`, `[star:${upStar}]`);
-        continue;
-      }
-      // Handle repeat/hit count upgrades with contextual replacement ("N times")
-      if (kl === "repeat" && vars["Repeat"] != null) {
-        const base = vars["Repeat"];
-        const upgradedRepeat = getUpgradedValue(base, upVal);
-        if (upgradedRepeat !== null && upgradedRepeat !== base) {
-          // When using upgrade_description, search for the upgraded value instead of base
-          const searchVal = (upgraded && card.upgrade_description) ? upgradedRepeat : base;
-          if (new RegExp(`\\b${searchVal}\\b\\s*times`, "i").test(desc)) {
-            desc = desc.replace(new RegExp(`\\b${searchVal}\\b(\\s*times)`, "i"), `[green]${upgradedRepeat}[/green]$1`);
-            continue;
-          }
-          // Fall through to general replacement for non-"times" repeat vars (e.g. "2 Orb Slots", "1 random Orb")
-        } else {
-          continue;
-        }
-      }
-      const varKey = Object.keys(vars).find(
-        (k) => k.toLowerCase() === kl
-      );
-      if (varKey && vars[varKey] != null) {
-        const base = vars[varKey];
-        const upgradedVal = getUpgradedValue(base, upVal);
-        if (upgradedVal !== null && upgradedVal !== base) {
-          replacements.push({ base: String(base), upgraded: String(upgradedVal), varKey });
-        }
-      }
-    }
-
-    // When using upgrade_description, the text already has upgraded values —
-    // find them and wrap in [green] instead of replacing base values
-    const usingUpgradeDesc = upgraded && !!card.upgrade_description;
-
-    // Apply replacements in a single pass — skip ambiguous values (same number appears multiple times)
-    if (replacements.length > 0) {
-      const replMap = usingUpgradeDesc
-        ? new Map(replacements.map((r) => [r.upgraded, r.upgraded]))
-        : new Map(replacements.map((r) => [r.base, r.upgraded]));
-      const pattern = replacements
-        .map((r) => usingUpgradeDesc ? r.upgraded : r.base)
-        .sort((a, b) => b.length - a.length)
-        .map((s) => `\\b${s}\\b`)
-        .join("|");
-      const occurrences = new Map<string, number>();
-      desc.replace(new RegExp(pattern, "g"), (match) => {
-        occurrences.set(match, (occurrences.get(match) || 0) + 1);
-        return match;
-      });
-      const used = new Set<string>();
-      desc = desc.replace(new RegExp(pattern, "g"), (match) => {
-        if (used.has(match)) return match;
-        if ((occurrences.get(match) || 0) > 1) {
-          // Allow replacement when all upgrades for this value are the same
-          // (e.g. Bulk Up: both Strength and Dexterity go 2→3)
-          const allSame = replacements.filter(r => r.base === match).every(r => r.upgraded === replMap.get(match));
-          if (!allSame) return match;
-          return `[green]${replMap.get(match)}[/green]`;
-        }
-        used.add(match);
-        const repl = replMap.get(match);
-        return repl ? `[green]${repl}[/green]` : match;
-      });
-
-      // Contextual replacement for ambiguous values (e.g. Coolheaded: "Channel 1 Frost. Draw 1 card." → only "Draw" changes)
-      for (const r of replacements) {
-        if ((occurrences.get(r.base) || 0) <= 1) continue;
-        if (used.has(r.base)) continue;
-        const context = r.varKey.toLowerCase().replace(/s$/, "");
-        const fwd = new RegExp(`\\b${r.base}\\b(\\s+${context})(s?)`, "i");
-        if (fwd.test(desc)) {
-          const plural = parseInt(r.upgraded) === 1 ? "" : "s";
-          desc = desc.replace(fwd, `[green]${r.upgraded}[/green]$1${plural}`);
-          continue;
-        }
-        const bwd = new RegExp(`(${context}\\s+)\\b${r.base}\\b`, "i");
-        if (bwd.test(desc)) {
-          desc = desc.replace(bwd, `$1[green]${r.upgraded}[/green]`);
-        }
-      }
-    }
-  }
-
-  return desc;
 }
 
 type Tab = "overview" | "details" | "info";
@@ -370,14 +247,14 @@ export default function CardDetail({ initialCard }: { initialCard?: Card | null 
     );
   }
 
-  const u = upgraded && card.upgrade ? card.upgrade : null;
+  const display = getCardDisplayModel(card, upgraded);
   const activeVariant = selectedVariant && card.type_variants ? card.type_variants[selectedVariant] : null;
-  const dmg = activeVariant ? activeVariant.damage : (u ? getUpgradedValue(card.damage, u.damage) : card.damage);
-  const blk = activeVariant ? activeVariant.block : (u ? getUpgradedValue(card.block, u.block) : card.block);
-  const hitCount = u?.repeat ? getUpgradedValue(card.hit_count, u.repeat) : card.hit_count;
-  const cost = u && u.cost != null ? (u.cost as number) : card.cost;
+  const dmg = activeVariant ? activeVariant.damage : display.damage;
+  const blk = activeVariant ? activeVariant.block : display.block;
+  const hitCount = activeVariant ? card.hit_count : display.hitCount;
+  const cost = activeVariant ? card.cost : display.cost;
   const displayType = activeVariant ? activeVariant.type : card.type;
-  const isUpgraded = upgraded && card.upgrade != null;
+  const isUpgraded = display.isUpgraded;
   const hasBetaArt = !!card.beta_image_url;
   const hasUpgrade = !!card.upgrade;
   const hasVariants = !!card.type_variants;
@@ -389,9 +266,11 @@ export default function CardDetail({ initialCard }: { initialCard?: Card | null 
       ? card.beta_image_url
       : card.image_url || card.beta_image_url;
 
-  const descText = activeVariant ? activeVariant.description : getUpgradedDescription(card, upgraded);
+  const descText = activeVariant ? activeVariant.description : display.descriptionText;
+  const keywordText = activeVariant ? "" : display.keywordText;
   const energyIcon = energyIconMap[card.color] || "colorless";
   const priceRange = getMerchantPriceRange(card.rarity_key || card.rarity, card.color);
+  const displayKeywords = [...display.visibleKeywords, ...display.addedKeywords];
 
   const tabs: { key: Tab; label: string }[] = [
     { key: "overview", label: t("Overview", lang) },
@@ -437,7 +316,7 @@ export default function CardDetail({ initialCard }: { initialCard?: Card | null 
             <div className="ml-3 flex-shrink-0 flex items-center gap-1.5">
               <span
                 className={`inline-flex items-center justify-center w-10 h-10 rounded-full bg-[var(--bg-primary)] border text-xl font-bold ${
-                  isUpgraded && u?.cost != null
+                  isUpgraded && display.upgrade?.cost != null
                     ? "border-emerald-700/50 text-emerald-400"
                     : "border-[var(--border-subtle)] text-[var(--accent-gold)]"
                 }`}
@@ -593,20 +472,31 @@ export default function CardDetail({ initialCard }: { initialCard?: Card | null 
                   })}
                 </div>
               ) : (
-                <div className="text-sm text-[var(--text-secondary)] leading-relaxed mb-5">
-                  <RichDescription
-                    text={descText + (card.keywords && card.keywords.length > 0 ? "\n" + card.keywords.filter((kw) => !(isUpgraded && u?.remove_exhaust && kw === "Exhaust") && !(isUpgraded && u?.remove_ethereal && kw === "Ethereal")).map((kw) => `[gold]${kw}[/gold]`).join(". ") + "." : "") + (isUpgraded && u?.add_innate && !card.keywords?.includes("Innate") ? "\n[green]Innate[/green]." : "") + (isUpgraded && u?.add_retain && !card.keywords?.includes("Retain") ? "\n[green]Retain[/green]." : "")}
-                    energyIcon={energyIcon}
-                    relatedCards={spawnedCards.map((sc): RelatedCard => ({
-                      id: sc.id,
-                      name: sc.name,
-                      image_url: sc.image_url,
-                      type: sc.type,
-                      rarity: sc.rarity,
-                      cost: sc.cost,
-                    }))}
-                    interactiveWords={buildInteractiveWords(card, powerData, keywordData, glossaryData, orbData, lp)}
-                  />
+                <div className="text-sm text-[var(--text-secondary)] leading-relaxed mb-5 space-y-2">
+                  <div>
+                    <RichDescription
+                      text={descText}
+                      energyIcon={energyIcon}
+                      relatedCards={spawnedCards.map((sc): RelatedCard => ({
+                        id: sc.id,
+                        name: sc.name,
+                        image_url: sc.image_url,
+                        type: sc.type,
+                        rarity: sc.rarity,
+                        cost: sc.cost,
+                      }))}
+                      interactiveWords={buildInteractiveWords(displayKeywords, powerData, keywordData, glossaryData, orbData, lp)}
+                    />
+                  </div>
+                  {keywordText && (
+                    <div>
+                      <RichDescription
+                        text={keywordText}
+                        energyIcon={energyIcon}
+                        interactiveWords={buildInteractiveWords(displayKeywords, powerData, keywordData, glossaryData, orbData, lp)}
+                      />
+                    </div>
+                  )}
                 </div>
               )}
 
@@ -661,7 +551,7 @@ export default function CardDetail({ initialCard }: { initialCard?: Card | null 
               {/* Related Cards */}
               <RelatedCards
                 currentId={id}
-                keywords={card.keywords}
+                keywords={displayKeywords}
                 tags={card.tags}
                 color={card.color}
               />
