@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -14,6 +14,84 @@ interface Category {
   name: string;
   count: number;
   images: ImageEntry[];
+  formats?: string[];
+}
+
+const FORMAT_LABELS: Record<string, string> = {
+  png: "PNG",
+  webp: "WebP",
+  gif: "GIF",
+  jpg: "JPG",
+  jpeg: "JPEG",
+};
+
+function DownloadSplitButton({ categoryId, formats }: { categoryId: string; formats: string[] }) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function onClickOutside(e: MouseEvent) {
+      if (ref.current && !ref.current.contains(e.target as Node)) {
+        setOpen(false);
+      }
+    }
+    if (open) {
+      document.addEventListener("mousedown", onClickOutside);
+      return () => document.removeEventListener("mousedown", onClickOutside);
+    }
+  }, [open]);
+
+  const hasMultipleFormats = formats.length > 1;
+  const downloadUrl = `${API}/api/images/${categoryId}/download`;
+
+  return (
+    <div ref={ref} className="relative inline-flex" onClick={(e) => e.stopPropagation()}>
+      <a
+        href={downloadUrl}
+        className={`inline-flex items-center gap-1.5 px-3 py-1 text-xs font-medium bg-[var(--accent-gold)] text-[var(--bg-primary)] hover:opacity-90 transition-opacity ${
+          hasMultipleFormats ? "rounded-l-full" : "rounded-full"
+        }`}
+      >
+        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5m0 0l5-5m-5 5V3" />
+        </svg>
+        Download ZIP
+      </a>
+      {hasMultipleFormats && (
+        <>
+          <button
+            type="button"
+            onClick={(e) => {
+              e.preventDefault();
+              setOpen((v) => !v);
+            }}
+            aria-haspopup="true"
+            aria-expanded={open}
+            aria-label="Choose download format"
+            className="inline-flex items-center px-2 py-1 rounded-r-full text-xs font-medium bg-[var(--accent-gold)] text-[var(--bg-primary)] hover:opacity-90 transition-opacity border-l border-[var(--bg-primary)]/20"
+          >
+            <svg className={`w-3 h-3 transition-transform ${open ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          {open && (
+            <div className="absolute right-0 top-full mt-1 z-10 min-w-[140px] rounded-lg bg-[var(--bg-card)] border border-[var(--border-subtle)] shadow-lg py-1">
+              {formats.map((ext) => (
+                <a
+                  key={ext}
+                  href={`${downloadUrl}?format=${ext}`}
+                  onClick={() => setOpen(false)}
+                  className="block px-3 py-1.5 text-xs text-[var(--text-primary)] hover:bg-[var(--bg-card-hover)] transition-colors"
+                >
+                  {FORMAT_LABELS[ext] ?? ext.toUpperCase()} only
+                </a>
+              ))}
+            </div>
+          )}
+        </>
+      )}
+    </div>
+  );
 }
 
 export default function ImagesPage() {
@@ -75,16 +153,19 @@ export default function ImagesPage() {
                     </span>
                   </div>
 
-                  <a
-                    href={`${API}/api/images/${cat.id}/download`}
-                    onClick={(e) => e.stopPropagation()}
-                    className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-[var(--accent-gold)] text-[var(--bg-primary)] hover:opacity-90 transition-opacity"
-                  >
-                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5m0 0l5-5m-5 5V3" />
-                    </svg>
-                    Download ZIP
-                  </a>
+                  <DownloadSplitButton
+                    categoryId={cat.id}
+                    formats={
+                      cat.formats ??
+                      Array.from(
+                        new Set(
+                          cat.images
+                            .map((img) => img.filename.split(".").pop()?.toLowerCase())
+                            .filter((ext): ext is string => Boolean(ext))
+                        )
+                      ).sort()
+                    }
+                  />
                 </div>
 
                 {isOpen && (

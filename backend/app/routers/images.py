@@ -113,6 +113,16 @@ def _get_images_for_category(category_id: str) -> list[dict[str, str]]:
     return images
 
 
+def _extensions_in(images: list[dict[str, str]]) -> list[str]:
+    """Return sorted unique file extensions (lowercase, no dot) present in the list."""
+    exts: set[str] = set()
+    for img in images:
+        name = img.get("filename", "")
+        if "." in name:
+            exts.add(name.rsplit(".", 1)[-1].lower())
+    return sorted(exts)
+
+
 @router.get("", tags=["Images"])
 def list_image_categories(request: Request):
     """Return all image categories with their contents."""
@@ -125,22 +135,34 @@ def list_image_categories(request: Request):
                 "name": display_name,
                 "count": len(images),
                 "images": images,
+                "formats": _extensions_in(images),
             }
         )
     return result
 
 
 @router.get("/{category}/download", tags=["Images"])
-def download_category_zip(category: str, request: Request):
-    """Download all images in a category as a zip file."""
+def download_category_zip(category: str, request: Request, format: str | None = None):
+    """Download all images in a category as a zip file.
+
+    Optional `?format=` query param filters to a single extension (e.g. `png`,
+    `webp`, `gif`). Omit to include every file in the category.
+    """
     if category not in CATEGORIES:
         raise HTTPException(status_code=404, detail=f"Category '{category}' not found")
 
     images = _get_images_for_category(category)
+    fmt = (format or "").lower().lstrip(".")
+    if fmt:
+        images = [img for img in images if img["filename"].lower().endswith(f".{fmt}")]
+
     if not images:
-        raise HTTPException(
-            status_code=404, detail=f"No images found for category '{category}'"
+        detail = (
+            f"No {fmt.upper()} images found for category '{category}'"
+            if fmt
+            else f"No images found for category '{category}'"
         )
+        raise HTTPException(status_code=404, detail=detail)
 
     buf = io.BytesIO()
     with zipfile.ZipFile(buf, "w", zipfile.ZIP_DEFLATED) as zf:
@@ -152,7 +174,8 @@ def download_category_zip(category: str, request: Request):
                 zf.write(file_path, arcname=img["filename"])
     buf.seek(0)
 
-    filename = f"spire-codex-{category}.zip"
+    suffix = f"-{fmt}" if fmt else ""
+    filename = f"spire-codex-{category}{suffix}.zip"
     return StreamingResponse(
         buf,
         media_type="application/zip",
