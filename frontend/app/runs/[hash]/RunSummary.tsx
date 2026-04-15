@@ -201,8 +201,8 @@ export default function RunSummary({ run, player, cardData, relicData, charColor
         background: `color-mix(in srgb, ${charColor} 6%, var(--bg-card))`,
       }}
     >
-      {/* Top stats bar — clean text labels, no emoji */}
-      <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm mb-3 pb-3 border-b border-[var(--border-subtle)]">
+      {/* Top stats bar — game iconography */}
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm mb-3 pb-3 border-b border-[var(--border-subtle)]">
         <Link href={`${lp}/characters/${charSlug}`} className="flex-shrink-0">
           <img
             src={charIcon}
@@ -212,11 +212,14 @@ export default function RunSummary({ run, player, cardData, relicData, charColor
             crossOrigin="anonymous"
           />
         </Link>
-        <Stat label="HP" value={`${finalStats?.current_hp ?? "?"}/${finalStats?.max_hp ?? "?"}`} color="var(--color-ironclad)" />
-        <Stat label="Gold" value={finalStats?.current_gold ?? "?"} color="var(--accent-gold)" />
+        <IconStat icon={`${API}/static/images/ui/top_bar/top_bar_heart.webp`} alt="HP" value={`${finalStats?.current_hp ?? "?"}/${finalStats?.max_hp ?? "?"}`} color="var(--color-ironclad)" />
+        <IconStat icon={`${API}/static/images/ui/top_bar/top_bar_gold.webp`} alt="Gold" value={finalStats?.current_gold ?? "?"} color="var(--accent-gold)" />
         <PotionSlots filled={filledPotions} total={potionSlots} />
-        <Stat label="Floor" value={totalFloors} />
-        <Stat label="Time" value={formatTime(run.run_time ?? 0)} />
+        <IconStat icon={`${API}/static/images/ui/top_bar/top_bar_map.webp`} alt="Floor" value={totalFloors} />
+        <IconStat icon={`${API}/static/images/ui/top_bar/timer_icon.webp`} alt="Time" value={formatTime(run.run_time ?? 0)} />
+        {(run.ascension ?? 0) > 0 && (
+          <IconStat icon={`${API}/static/images/ui/top_bar/top_bar_ascension.webp`} alt="Ascension" value={`A${run.ascension}`} color="var(--accent-gold)" />
+        )}
         <div className="ml-auto text-right text-xs text-[var(--text-muted)] leading-tight">
           {run.start_time && <div>{formatDate(run.start_time)}</div>}
           {run.seed && (
@@ -430,10 +433,10 @@ function humanizeChoiceKey(key: string): string {
   return key;
 }
 
-function Stat({ label, value, color }: { label: string; value: ReactNode; color?: string }) {
+function IconStat({ icon, alt, value, color }: { icon: string; alt: string; value: ReactNode; color?: string }) {
   return (
-    <div className="flex items-baseline gap-1 text-xs sm:text-sm">
-      <span className="text-[10px] uppercase tracking-wider text-[var(--text-muted)]">{label}</span>
+    <div className="flex items-center gap-1.5 text-xs sm:text-sm">
+      <img src={icon} alt={alt} className="w-5 h-5 object-contain" crossOrigin="anonymous" />
       <span className="font-semibold" style={color ? { color } : undefined}>
         {value}
       </span>
@@ -442,21 +445,25 @@ function Stat({ label, value, color }: { label: string; value: ReactNode; color?
 }
 
 function PotionSlots({ filled, total }: { filled: number; total: number }) {
+  const POTION_ICON = `${API}/static/images/ui/icons/potion_icon.webp`;
   return (
-    <div className="flex items-center gap-1.5">
-      <span className="text-[10px] uppercase tracking-wider text-[var(--text-muted)]">Potions</span>
-      <div className="flex items-center gap-0.5">
-        {Array.from({ length: total }).map((_, i) => (
+    <div className="flex items-center gap-1">
+      {Array.from({ length: total }).map((_, i) =>
+        i < filled ? (
+          <img
+            key={i}
+            src={POTION_ICON}
+            alt="Potion"
+            className="w-5 h-5 object-contain"
+            crossOrigin="anonymous"
+          />
+        ) : (
           <span
             key={i}
-            className={`w-2.5 h-4 rounded-sm border ${
-              i < filled
-                ? "bg-emerald-400/40 border-emerald-400/60"
-                : "bg-black/30 border-[var(--border-subtle)]"
-            }`}
+            className="w-4 h-5 rounded-sm border border-dashed border-[var(--border-subtle)]"
           />
-        ))}
-      </div>
+        ),
+      )}
     </div>
   );
 }
