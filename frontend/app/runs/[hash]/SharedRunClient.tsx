@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
 import { cachedFetch } from "@/lib/fetch-cache";
 import RichDescription from "@/app/components/RichDescription";
+import RunSummary from "./RunSummary";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -103,6 +104,7 @@ export default function SharedRunClient() {
   const [copied, setCopied] = useState(false);
   const [cardData, setCardData] = useState<Record<string, CardInfo>>({});
   const [relicData, setRelicData] = useState<Record<string, RelicInfo>>({});
+  const [showDetails, setShowDetails] = useState(false);
 
   useEffect(() => {
     if (!hash) return;
@@ -156,53 +158,55 @@ export default function SharedRunClient() {
         </button>
       </div>
 
-      {/* Header */}
-      <div className="rounded-xl border p-5 mb-4" style={{ borderColor: `color-mix(in srgb, ${charColor} 40%, transparent)`, background: `color-mix(in srgb, ${charColor} 8%, var(--bg-card))` }}>
-        <div className="flex items-center justify-between mb-3">
-          <div className="flex items-center gap-3">
-            <span className="text-2xl font-bold" style={{ color: run.win ? "var(--color-silent)" : run.was_abandoned ? "var(--text-muted)" : "var(--color-ironclad)" }}>
-              {run.win ? "Victory" : run.was_abandoned ? "Abandoned" : "Defeat"}
-            </span>
-            <Link href={`${lp}/characters/${charId.toLowerCase()}`} className="text-lg hover:underline" style={{ color: charColor }}>
-              {displayName(player.character)}
-            </Link>
-          </div>
-          <div className="text-right text-sm text-[var(--text-muted)]">
-            <div>Ascension {run.ascension || 0}</div>
-            <div>{formatTime(run.run_time || 0)}</div>
-          </div>
+      {/* Compact header — Victory/Defeat banner + ascension */}
+      <div
+        className="rounded-xl border px-4 py-3 mb-4 flex items-center justify-between flex-wrap gap-2"
+        style={{ borderColor: `color-mix(in srgb, ${charColor} 40%, transparent)`, background: `color-mix(in srgb, ${charColor} 8%, var(--bg-card))` }}
+      >
+        <div className="flex items-center gap-3">
+          <span
+            className="text-xl font-bold"
+            style={{ color: run.win ? "var(--color-silent)" : run.was_abandoned ? "var(--text-muted)" : "var(--color-ironclad)" }}
+          >
+            {run.win ? "Victory" : run.was_abandoned ? "Abandoned" : "Defeat"}
+          </span>
+          <Link href={`${lp}/characters/${charId.toLowerCase()}`} className="text-base hover:underline" style={{ color: charColor }}>
+            {displayName(player.character)}
+          </Link>
         </div>
-
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
-          <div className="bg-[var(--bg-primary)] rounded-lg p-2">
-            <div className="text-lg font-bold text-[var(--text-primary)]">{player.deck.length}</div>
-            <div className="text-xs text-[var(--text-muted)]">Cards</div>
-          </div>
-          <div className="bg-[var(--bg-primary)] rounded-lg p-2">
-            <div className="text-lg font-bold text-[var(--text-primary)]">{player.relics.length}</div>
-            <div className="text-xs text-[var(--text-muted)]">Relics</div>
-          </div>
-          <div className="bg-[var(--bg-primary)] rounded-lg p-2">
-            <div className="text-lg font-bold text-[var(--text-primary)]">{totalFloors}</div>
-            <div className="text-xs text-[var(--text-muted)]">Floors</div>
-          </div>
-          <div className="bg-[var(--bg-primary)] rounded-lg p-2">
-            <div className="text-lg font-bold text-[var(--text-primary)]">{run.acts?.length || 0}</div>
-            <div className="text-xs text-[var(--text-muted)]">Acts</div>
-          </div>
+        <div className="text-sm text-[var(--text-muted)]">
+          Ascension {run.ascension || 0}
+          {!run.win && !run.was_abandoned && run.killed_by_encounter && run.killed_by_encounter !== "NONE.NONE" && (
+            <>
+              {" · Killed by "}
+              <Link href={`${lp}/encounters/${cleanId(run.killed_by_encounter).toLowerCase()}`} className="hover:underline" style={{ color: "var(--color-ironclad)" }}>
+                {displayName(run.killed_by_encounter)}
+              </Link>
+            </>
+          )}
         </div>
-
-        {!run.win && !run.was_abandoned && run.killed_by_encounter && run.killed_by_encounter !== "NONE.NONE" && (
-          <div className="mt-3 text-sm" style={{ color: "var(--color-ironclad)" }}>
-            Killed by{" "}
-            <Link href={`${lp}/encounters/${cleanId(run.killed_by_encounter).toLowerCase()}`} className="hover:underline font-medium">
-              {displayName(run.killed_by_encounter)}
-            </Link>
-          </div>
-        )}
-        <div className="mt-2 text-xs text-[var(--text-muted)]">Seed: {run.seed} · {run.game_mode}</div>
       </div>
 
+      {/* In-game-style run summary */}
+      <RunSummary
+        run={run}
+        player={player}
+        cardData={cardData}
+        relicData={relicData}
+        charColor={charColor}
+        langPrefix={lp}
+      />
+
+      {/* Detailed history toggle */}
+      <button
+        onClick={() => setShowDetails((v) => !v)}
+        className="w-full text-left text-sm text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors mb-3 flex items-center gap-2"
+      >
+        <span className={`inline-block transition-transform ${showDetails ? "rotate-90" : ""}`}>&gt;</span>
+        {showDetails ? "Hide" : "Show"} detailed history (deck list, relic acquisition floors, floor-by-floor stats)
+      </button>
+
+      {showDetails && <>
       {/* Deck */}
       <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5 mb-4">
         <h2 className="text-lg font-semibold text-[var(--text-primary)] mb-3">Final Deck ({player.deck.length})</h2>
@@ -285,6 +289,7 @@ export default function SharedRunClient() {
           ))}
         </div>
       </div>
+      </>}
     </div>
   );
 }
