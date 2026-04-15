@@ -107,6 +107,19 @@ const TIER_OUTLINE: Record<string, string> = {
   boss: "ring-2 ring-rose-500/60",
 };
 
+const TYPE_ICON: Record<string, string> = {
+  Attack: "type_sort_attack.png",
+  Skill: "type_sort_skill.png",
+  Power: "type_sort_power.png",
+  // Curse / Status / Quest / Token all use the "other" glyph
+};
+
+function typeIconUrl(type: string | undefined): string {
+  const file = (type && TYPE_ICON[type]) || "type_sort_other.png";
+  return `${API}/static/images/ui/compendium/card/${file}`;
+}
+
+
 function formatTime(seconds: number): string {
   const m = Math.floor(seconds / 60);
   const s = seconds % 60;
@@ -305,18 +318,14 @@ export default function RunSummary({ run, player, cardData, relicData, charColor
                 upgraded={entry.upgraded}
                 cardData={cardData}
                 lp={lp}
-                className="flex items-center gap-2 text-xs hover:bg-[var(--bg-card-hover)] rounded px-1 py-0.5 transition-colors"
+                className="flex items-center gap-1.5 text-xs hover:bg-[var(--bg-card-hover)] rounded px-1 py-0.5 transition-colors"
               >
-                {info?.image_url ? (
-                  <img
-                    src={`${API}${info.image_url}`}
-                    alt=""
-                    className="w-6 h-6 rounded object-cover flex-shrink-0"
-                    crossOrigin="anonymous"
-                  />
-                ) : (
-                  <span className="w-6 h-6 rounded bg-black/30 flex-shrink-0" />
-                )}
+                <img
+                  src={typeIconUrl(info?.type)}
+                  alt={info?.type ?? ""}
+                  className="w-5 h-5 flex-shrink-0 object-contain"
+                  crossOrigin="anonymous"
+                />
                 <span className={`truncate ${colorClass}`}>
                   {entry.count > 1 && <span className="text-[var(--text-muted)] mr-1">{entry.count}x</span>}
                   {info?.name || displayName(`CARD.${entry.id}`)}
