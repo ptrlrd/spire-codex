@@ -5,7 +5,7 @@
   "tag": "0.103.1",
   "date": "2026-04-15",
   "title": "Beta v0.103.1",
-  "from_ref": "/tmp/test/reparse-v0.103.0/eng",
+  "from_ref": "data-beta/v0.103.0/eng",
   "to_ref": "data-beta/v0.103.1/eng",
   "summary": {
     "added": 0,

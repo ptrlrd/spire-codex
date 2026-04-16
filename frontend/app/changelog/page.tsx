@@ -384,6 +384,21 @@ export default function ChangelogPage() {
                   {selected.categories.map((cat) => (
                     <CategorySection key={cat.id} cat={cat} />
                   ))}
+
+                  {selected.categories.length === 0 &&
+                    !selected.features?.length &&
+                    !selected.fixes?.length &&
+                    !selected.api_changes?.length &&
+                    selected.summary.added === 0 &&
+                    selected.summary.removed === 0 &&
+                    selected.summary.changed === 0 && (
+                      <div className="border border-[var(--border-subtle)] rounded-lg px-4 py-6 text-center text-sm text-[var(--text-muted)]">
+                        No entity changes detected in this build.
+                        <div className="mt-1 text-xs">
+                          Likely an internal refactor with no gameplay-facing data.
+                        </div>
+                      </div>
+                    )}
                 </div>
               </>
             ) : (
