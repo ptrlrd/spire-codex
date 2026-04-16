@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import type { Stats } from "@/lib/api";
 import HomeClient from "./HomeClient";
 import JsonLd from "./components/JsonLd";
+import SearchTrigger from "./components/SearchTrigger";
 import { buildWebSiteJsonLd, buildVideoGameJsonLd } from "@/lib/jsonld";
 import { SITE_NAME, IS_BETA } from "@/lib/seo";
 
@@ -65,11 +66,14 @@ export default async function Home() {
                 </span>
               )}
             </h1>
-            <p className="text-lg text-[var(--text-secondary)] max-w-2xl mx-auto mb-2">
+            <p className="text-lg text-[var(--text-secondary)] max-w-2xl mx-auto mb-6">
               {IS_BETA
                 ? "Preview of upcoming Slay the Spire 2 content"
                 : "The complete database for Slay the Spire 2"}
             </p>
+            <div className="max-w-xl mx-auto">
+              <SearchTrigger variant="hero" />
+            </div>
           </div>
         </div>
       </section>

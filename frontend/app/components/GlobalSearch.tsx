@@ -271,7 +271,7 @@ export default function GlobalSearch() {
   return (
     <div
       ref={overlayRef}
-      className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-start justify-center pt-[15vh]"
+      className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-start justify-center px-4 sm:px-6 pt-[10vh] sm:pt-[15vh]"
       onClick={(e) => {
         if (e.target === overlayRef.current) setOpen(false);
       }}

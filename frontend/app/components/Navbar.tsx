@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import LanguageSelector from "./LanguageSelector";
+import SearchTrigger from "./SearchTrigger";
 import VersionSelector from "./VersionSelector";
 import { useLanguage } from "@/app/contexts/LanguageContext";
 import { t } from "@/lib/ui-translations";
@@ -84,6 +85,7 @@ export default function Navbar() {
   const currentLang = LANG_CODES.has(pathLang) ? pathLang : null;
   const langPrefix = currentLang ? `/${currentLang}` : "";
   const strippedPath = currentLang ? pathname.replace(`/${currentLang}`, "") || "/" : pathname;
+  const isHome = strippedPath === "/";
   const [open, setOpen] = useState(false);
   const [expandedGroups, setExpandedGroups] = useState<Set<string>>(new Set());
   const menuRef = useRef<HTMLDivElement>(null);
@@ -131,8 +133,8 @@ export default function Navbar() {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 border-b border-[var(--border-subtle)] bg-[var(--bg-primary)]/95 backdrop-blur-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <Link href={`${langPrefix}/`} className="flex items-center gap-2">
+        <div className="flex items-center justify-between gap-3 sm:gap-4 h-16">
+          <Link href={`${langPrefix}/`} className="flex items-center gap-2 shrink-0">
             <span className="text-xl font-bold text-[var(--accent-gold)]">
               SPIRE
             </span>
@@ -141,19 +143,14 @@ export default function Navbar() {
             </span>
           </Link>
 
-          <div className="flex items-center gap-2">
-            {/* Search trigger */}
-            <button
-              onClick={() => document.dispatchEvent(new KeyboardEvent("keydown", { key: ".", bubbles: true }))}
-              className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] text-sm text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:border-[var(--border-accent)] transition-colors"
-            >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
-              <span className="hidden sm:inline">Press</span>
-              <kbd className="text-xs border border-[var(--border-subtle)] rounded px-1.5 py-0.5">.</kbd>
-            </button>
+          {/* Middle search — non-home pages only. Takes ~40% of the bar on desktop. */}
+          {!isHome && (
+            <div className="hidden md:flex flex-1 max-w-md">
+              <SearchTrigger variant="nav" />
+            </div>
+          )}
 
+          <div className="flex items-center gap-2 shrink-0">
             {IS_BETA ? (
               <a
                 href="https://spire-codex.com"
@@ -172,6 +169,13 @@ export default function Navbar() {
 
             {IS_BETA && <VersionSelector />}
             <LanguageSelector />
+
+            {/* Mobile icon-only search — non-home pages only, sits next to the language selector */}
+            {!isHome && (
+              <div className="md:hidden">
+                <SearchTrigger variant="icon" />
+              </div>
+            )}
 
           {/* Burger button */}
           <div className="relative">
