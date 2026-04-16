@@ -87,7 +87,9 @@ spire-codex/
 │   │   └── ...                 # Pages: cards, characters, relics, monsters, potions,
 │   │                           #   enchantments, encounters, events, powers, timeline,
 │   │                           #   reference, images, changelog, about, merchant, compare,
-│   │                           #   mechanics/[slug], guides/[slug], guides/submit, runs, meta
+│   │                           #   mechanics/[slug], guides/[slug], guides/submit,
+│   │                           #   leaderboards, leaderboards/submit, leaderboards/stats,
+│   │                           #   runs/[hash] (shared run view)
 │   │                           #   Detail pages: cards/[id], characters/[id], relics/[id],
 │   │                           #   monsters/[id], potions/[id], enchantments/[id],
 │   │                           #   encounters/[id], events/[id], powers/[id], keywords/[id],
@@ -180,8 +182,10 @@ spire-codex/
 | Guides | `/guides` | Community strategy guides with search/filter |
 | Guide Detail | `/guides/[slug]` | Full guide with markdown rendering + tooltip widget |
 | Submit Guide | `/guides/submit` | Guide submission form (Discord webhook) |
-| Runs | `/runs` | Community run browser with character/win filters |
-| Meta | `/meta` | Live community stats from submitted runs |
+| Leaderboards | `/leaderboards` | Three-tab browser: Fastest Wins, Highest Ascension, Browse Runs (search by seed/username, filter by character/win/loss/game version) |
+| Submit a Run | `/leaderboards/submit` | Drag-and-drop `.run` upload, JSON paste fallback, upload progress |
+| Stats | `/leaderboards/stats` | Ranked tables (pick rate, win rate, count) for cards, relics, potions, encounters. Filter by character / ascension / outcome |
+| Shared Run | `/runs/[hash]` | In-game-style victory/defeat summary with clickable map-node icons, relic strip, and tiny-card grid |
 | Reference | `/reference` | All items clickable — acts, ascensions, keywords, orbs, afflictions, intents, modifiers, achievements |
 | Images | `/images` | Browsable game assets with ZIP download per category |
 | Changelog | `/changelog` | Data diffs between game updates |
@@ -242,9 +246,11 @@ All data endpoints accept an optional `?lang=` query parameter (default: `eng`).
 | `GET /api/guides/{slug}` | Single guide (with markdown content) | — |
 | `POST /api/guides` | Submit guide (proxied to Discord) | — |
 | `POST /api/runs` | Submit a run (.run file JSON) | `username` |
-| `GET /api/runs/list` | List submitted runs | `character`, `win`, `username`, `page`, `limit` |
+| `GET /api/runs/list` | List submitted runs | `character`, `win`, `username`, `seed`, `build_id`, `sort`, `page`, `limit` |
 | `GET /api/runs/shared/{hash}` | Full run data by hash | — |
 | `GET /api/runs/stats` | Aggregated community stats | `character`, `win`, `ascension`, `game_mode`, `players` |
+| `GET /api/runs/leaderboard` | Ranked wins-only leaderboard | `category` (`fastest`, `highest_ascension`), `character`, `page`, `limit` |
+| `GET /api/runs/versions` | Distinct game versions across submitted runs | — |
 | `POST /api/feedback` | Submit feedback (proxied to Discord) | — |
 | `GET /api/versions` | Available data versions (beta multi-version) | — |
 

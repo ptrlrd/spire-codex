@@ -1,0 +1,121 @@
+{
+  "app_id": 2868840,
+  "game_version": "1.0.20",
+  "build_id": "",
+  "tag": "1.0.20",
+  "date": "2026-04-15",
+  "title": "Runs revamp, search redesign, tiny-card primitive",
+  "from_ref": "v1.0.19",
+  "to_ref": "current",
+  "summary": {
+    "added": 0,
+    "removed": 0,
+    "changed": 5
+  },
+  "categories": [
+    {
+      "id": "cards",
+      "name": "Cards",
+      "old_count": 576,
+      "new_count": 576,
+      "changed": [
+        {
+          "id": "FRIENDSHIP",
+          "name": "Friendship",
+          "changes": [
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "Lose 1 [gold]Strength[/gold].\nGain [energy:1] at the start of each turn."
+            },
+            {
+              "field": "description",
+              "old": "Lose inverseDiff() [gold]Strength[/gold].\nGain [energy:1] at the start of eac...",
+              "new": "Lose 2 [gold]Strength[/gold].\nGain [energy:1] at the start of each turn."
+            }
+          ]
+        },
+        {
+          "id": "MAD_SCIENCE",
+          "name": "Mad Science",
+          "changes": [
+            {
+              "field": "type_variants",
+              "old": "3 fields",
+              "new": "3 fields"
+            }
+          ]
+        },
+        {
+          "id": "PRECISE_CUT",
+          "name": "Precise Cut",
+          "changes": [
+            {
+              "field": "description",
+              "old": "Deal 13 damage.\nDeals inverseDiff() less damage for each other card in your [...",
+              "new": "Deal 13 damage.\nDeals 2 less damage for each other card in your [gold]Hand[/g..."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "relics",
+      "name": "Relics",
+      "old_count": 288,
+      "new_count": 288,
+      "changed": [
+        {
+          "id": "TOY_BOX",
+          "name": "Toy Box",
+          "changes": [
+            {
+              "field": "notes",
+              "old": "none",
+              "new": "Wax Relics are pulled from the normal relic pool — any non-Ancient relic can be waxed., Wax Relic rarity: 50% Common, 33% Uncommon, 17% Rare (standard relic rarity roll)., All wax relics melt after 12 total combats, then Toy Box is used up."
+            }
+          ]
+        },
+        {
+          "id": "YUMMY_COOKIE",
+          "name": "Yummy Cookie",
+          "changes": [
+            {
+              "field": "image_variants",
+              "old": "5 fields",
+              "new": "5 fields"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "features": [
+    "Leaderboards: new /leaderboards page with Fastest Wins, Highest Ascension, and Browse Runs tabs — replaces /runs.",
+    "Submit a Run: new /leaderboards/submit with drag-and-drop .run upload; files can be dropped anywhere on the page.",
+    "Stats rebuild: /leaderboards/stats replaces /meta with ranked-table tabs (Overview, Cards, Relics, Potions, Encounters) — sortable columns, per-tab filters, win-rate color coding.",
+    "Browse Runs filters: search by seed or username, filter by character, win/loss, and game version; sort by newest/fastest/slowest/highest ascension.",
+    "Individual run pages rebuilt to match the in-game victory/defeat screen — character portrait, stats bar (HP/gold/floors/time/ascension/potions), three act rows of real map-node icons with tier-colored outlines, relic strip, in-game-accurate card grid.",
+    "Map-node tooltips show floor context, monsters faced, HP/gold delta, card picks, and relic picks; the whole node is a link to the encounter or event detail page.",
+    "Potion slots on run pages now show the actual potion art with a hover tooltip for name, rarity, and description.",
+    "Tiny-card sprite: new shared React component that reproduces the in-game card thumbnail using the real game sprites. Exported as a documented primitive on /developers with a live preview, per-pool and per-rarity color swatches, and copy-pasteable HTML/CSS + React recipes for anyone building third-party tools.",
+    "Search bar redesign: big hero-sized search on the home page below the tagline, 40%-wide inline search in the middle of the navbar on other pages, icon-only search on mobile.",
+    "Home tiles reordered: Leaderboard, Submit a Run (with live run count), Stats, Guides.",
+    "/images gallery now dedupes png+webp pairs (one entry per asset, prefers webp) — split-button download still offers PNG-only ZIPs."
+  ],
+  "fixes": [
+    "Beta /ancients page now correctly loads version-aware ancient pool data.",
+    "Windows run-submission path fixed — dropped the redundant Roaming segment from the AppData instructions.",
+    "Stable backend service discovery fixed by switching the frontend to the backend's container name (eliminates intermittent DNS failures on deploy).",
+    "Card upgrade display parity corrected so upgraded values match the actual in-game behavior (RayaCoo).",
+    "Toy Box wax relic mechanics now documented on its detail page (pool rules, rarity odds, wax melt schedule).",
+    "Search modal on mobile no longer extends edge-to-edge and sits lower in the viewport to stay clear of the keyboard."
+  ],
+  "api_changes": [
+    "New GET /api/runs/leaderboard — ranked wins-only list, params: category (fastest|highest_ascension), character, page, limit.",
+    "New GET /api/runs/versions — returns distinct game versions across submitted runs, used by the version filter dropdown.",
+    "GET /api/runs/list gains seed (LIKE match), sort (date|time_asc|time_desc|ascension_desc), and build_id (exact match) query params; build_id is now returned in results.",
+    "/runs → /leaderboards and /meta → /leaderboards/stats redirects added (old links continue to resolve).",
+    "New /static/images/ui/run_history_card/ sprite assets served CORS-open for third-party tiny-card compositing."
+  ]
+}

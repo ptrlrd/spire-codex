@@ -93,7 +93,7 @@ All endpoints accept `?lang=` (default: `eng`). Responses are GZip-compressed wi
 
 - **List endpoints**: `GET /api/cards`, `GET /api/monsters`, etc. with filters
 - **Detail endpoints**: `GET /api/cards/{id}`, `GET /api/monsters/{id}`, etc.
-- **Runs**: `POST /api/runs` (submit), `GET /api/runs/stats` (aggregated meta), `GET /api/runs/list` (browse)
+- **Runs**: `POST /api/runs` (submit), `GET /api/runs/stats` (aggregated meta), `GET /api/runs/list` (browse — accepts `seed`, `build_id`, `sort` filters), `GET /api/runs/leaderboard` (ranked wins-only), `GET /api/runs/versions` (distinct game versions), `GET /api/runs/shared/{hash}` (shared run detail)
 - **Guides**: `GET /api/guides` (list with filters), `GET /api/guides/{slug}` (detail), `POST /api/guides` (Discord webhook submission)
 - **Docs**: `http://localhost:8000/docs` (Swagger UI)
 
