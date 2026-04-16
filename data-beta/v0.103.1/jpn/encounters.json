@@ -1,0 +1,1546 @@
+[
+  {
+    "id": "AXEBOTS_NORMAL",
+    "name": "マシンの仲間たち",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "AXEBOT",
+        "name": "アックスマシン"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]は[gold]マシンの仲間たち[/gold]によってバラバラに解体された。"
+  },
+  {
+    "id": "BATTLEWORN_DUMMY_EVENT_ENCOUNTER",
+    "name": "歴戦のダミー",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
+      {
+        "id": "BATTLE_FRIEND_V1",
+        "name": "バトルフレンド V1.0"
+      },
+      {
+        "id": "BATTLE_FRIEND_V2",
+        "name": "バトルフレンド V2.0"
+      },
+      {
+        "id": "BATTLE_FRIEND_V3",
+        "name": "バトルフレンド V3.0"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]は[gold]歴戦のダミー[/gold]によって殺された。……なんで？"
+  },
+  {
+    "id": "BOWLBUGS_NORMAL",
+    "name": "ボウルバグの群れ",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Workers"
+    ],
+    "monsters": [
+      {
+        "id": "BOWLBUG_EGG",
+        "name": "ボウルバグ（卵）"
+      },
+      {
+        "id": "BOWLBUG_NECTAR",
+        "name": "ボウルバグ（みつ）"
+      },
+      {
+        "id": "BOWLBUG_ROCK",
+        "name": "ボウルバグ（岩）"
+      },
+      {
+        "id": "BOWLBUG_SILK",
+        "name": "ボウルバグ（糸）"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]は忙しい[gold]ボウルバグの群れ[/gold]の邪魔をした。"
+  },
+  {
+    "id": "BOWLBUGS_WEAK",
+    "name": "ボウルバグ",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Workers"
+    ],
+    "monsters": [
+      {
+        "id": "BOWLBUG_EGG",
+        "name": "ボウルバグ（卵）"
+      },
+      {
+        "id": "BOWLBUG_NECTAR",
+        "name": "ボウルバグ（みつ）"
+      },
+      {
+        "id": "BOWLBUG_ROCK",
+        "name": "ボウルバグ（岩）"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]は忙しい[gold]ボウルバグ[/gold]の邪魔をした。"
+  },
+  {
+    "id": "BYGONE_EFFIGY_ELITE",
+    "name": "古の偶像",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "BYGONE_EFFIGY",
+        "name": "古の偶像"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]は[gold]古の偶像[/gold]によって半分にスライスされた。"
+  },
+  {
+    "id": "BYRDONIS_ELITE",
+    "name": "ビャードニス",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "BYRDONIS",
+        "name": "ビャードニス"
+      }
+    ],
+    "loss_text": "[gold]ビャードニス[/gold]は子供たちを[b]The Adventurer[/b]から守った。"
+  },
+  {
+    "id": "CEREMONIAL_BEAST_BOSS",
+    "name": "儀式の獣",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "CEREMONIAL_BEAST",
+        "name": "儀式の獣"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]は[gold]儀式の獣[/gold]によって休まされた。"
+  },
+  {
+    "id": "CHOMPERS_NORMAL",
+    "name": "オートマトンのコンビ",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Chomper"
+    ],
+    "monsters": [
+      {
+        "id": "CHOMPER",
+        "name": "チョンパー"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]は[gold]オートマトンのコンビ[/gold]によって噛み砕かれて死んだ。"
+  },
+  {
+    "id": "CONSTRUCT_MENAGERIE_NORMAL",
+    "name": "機械兵の動物園",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "CUBEX_CONSTRUCT",
+        "name": "キューベックス"
+      },
+      {
+        "id": "PUNCH_CONSTRUCT",
+        "name": "パンチマシン"
+      }
+    ],
+    "loss_text": "[gold]機械兵の動物園[/gold]は[b]The Adventurer[/b]を押し潰した。"
+  },
+  {
+    "id": "CORPSE_SLUGS_NORMAL",
+    "name": "多数の屍ナメクジ",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": [
+      "Slugs"
+    ],
+    "monsters": [
+      {
+        "id": "CORPSE_SLUG",
+        "name": "屍ナメクジ"
+      }
+    ],
+    "loss_text": "[gold]多数の屍ナメクジ[/gold]は[b]The Adventurer[/b]をごちそうにした。"
+  },
+  {
+    "id": "CORPSE_SLUGS_WEAK",
+    "name": "屍ナメクジ",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Underdocks",
+    "tags": [
+      "Slugs"
+    ],
+    "monsters": [
+      {
+        "id": "CORPSE_SLUG",
+        "name": "屍ナメクジ"
+      }
+    ],
+    "loss_text": "[gold]屍ナメクジ[/gold]は[b]The Adventurer[/b]をごちそうにした。"
+  },
+  {
+    "id": "CUBEX_CONSTRUCT_NORMAL",
+    "name": "キューベックス",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "CUBEX_CONSTRUCT",
+        "name": "キューベックス"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]は[gold]キューベックス[/gold]によってレーザーで殺された。"
+  },
+  {
+    "id": "CULTISTS_NORMAL",
+    "name": "狂信者たち",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "CALCIFIED_CULTIST",
+        "name": "石を纏った狂信者"
+      },
+      {
+        "id": "DAMP_CULTIST",
+        "name": "湿った狂信者"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]は[gold]狂信者たち[/gold]に殺害された。[sine]カァーーーッ[/sine]…"
+  },
+  {
+    "id": "DECIMILLIPEDE_ELITE",
+    "name": "万足ムカデ",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "DECIMILLIPEDE_SEGMENT_BACK",
+        "name": "Decimillipede Segment Back"
+      },
+      {
+        "id": "DECIMILLIPEDE_SEGMENT_FRONT",
+        "name": "Decimillipede Segment Front"
+      },
+      {
+        "id": "DECIMILLIPEDE_SEGMENT_MIDDLE",
+        "name": "Decimillipede Segment Middle"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]は[gold]万足ムカデ[/gold]の縄張りで生き延びられなかった。"
+  },
+  {
+    "id": "DENSE_VEGETATION_EVENT_ENCOUNTER",
+    "name": "リグラー",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
+      {
+        "id": "WRIGGLER",
+        "name": "リグラー"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]は[gold]リグラー[/gold]に寄生された。"
+  },
+  {
+    "id": "DEVOTED_SCULPTOR_WEAK",
+    "name": "狂信の彫刻家",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "DEVOTED_SCULPTOR",
+        "name": "狂信の彫刻家"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]は[gold]狂信の彫刻家[/gold]によって粉々に粉砕された。"
+  },
+  {
+    "id": "DOORMAKER_BOSS",
+    "name": "ドアメーカー",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "DOORMAKER",
+        "name": "ドアメーカー"
+      }
+    ],
+    "loss_text": "[gold]ドアメーカー[/gold]は[b]The Adventurer[/b]の妨害に手荒い対応をした。"
+  },
+  {
+    "id": "ENTOMANCER_ELITE",
+    "name": "エントマンサー",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "ENTOMANCER",
+        "name": "エントマンサー"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]は[gold]エントマンサー[/gold]によって刺し殺された。"
+  },
+  {
+    "id": "EXOSKELETONS_NORMAL",
+    "name": "数多の外骨格蟲",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Exoskeletons"
+    ],
+    "monsters": [
+      {
+        "id": "EXOSKELETON",
+        "name": "外骨格蟲"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]は[gold]数多の外骨格蟲[/gold]に内臓をえぐり出された。"
+  },
+  {
+    "id": "EXOSKELETONS_WEAK",
+    "name": "外骨格蟲",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Exoskeletons"
+    ],
+    "monsters": [
+      {
+        "id": "EXOSKELETON",
+        "name": "外骨格蟲"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]は[gold]外骨格蟲[/gold]に内臓をえぐり出された。"
+  },
+  {
+    "id": "FABRICATOR_NORMAL",
+    "name": "ファブリケーター",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "FABRICATOR",
+        "name": "ファブリケーター"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]は[gold]ファブリケーター[/gold]のマシンに殺された。"
+  },
+  {
+    "id": "FAKE_MERCHANT_EVENT_ENCOUNTER",
+    "name": "商人？",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
+      {
+        "id": "FAKE_MERCHANT_MONSTER",
+        "name": "商人？"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]は[gold]商人？[/gold]の怒りに触れた。"
+  },
+  {
+    "id": "FLYCONID_NORMAL",
+    "name": "キノコとスライム",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Mushroom",
+      "Slimes"
+    ],
+    "monsters": [
+      {
+        "id": "FLYCONID",
+        "name": "フライコニド"
+      },
+      {
+        "id": "LEAF_SLIME_M",
+        "name": "リーフスライム (中)"
+      },
+      {
+        "id": "TWIG_SLIME_M",
+        "name": "細枝スライム (中)"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]は[gold]キノコとスライム[/gold]によって吸収された。"
+  },
+  {
+    "id": "FOGMOG_NORMAL",
+    "name": "フォグモグ",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "EYE_WITH_TEETH",
+        "name": "牙をむく眼"
+      },
+      {
+        "id": "FOGMOG",
+        "name": "フォグモグ"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]は[gold]フォグモグ[/gold]の幻影に気を取られた。"
+  },
+  {
+    "id": "FOSSIL_STALKER_NORMAL",
+    "name": "化石のストーカー",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "FOSSIL_STALKER",
+        "name": "化石のストーカー"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]は[gold]化石のストーカー[/gold]によって待ち伏せされた。"
+  },
+  {
+    "id": "FROG_KNIGHT_NORMAL",
+    "name": "カエルの騎士",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "FROG_KNIGHT",
+        "name": "カエルの騎士"
+      }
+    ],
+    "loss_text": "勇敢な[gold]カエルの騎士[/gold]が[b]The Adventurer[/b]に勝利した。"
+  },
+  {
+    "id": "FUZZY_WURM_CRAWLER_WEAK",
+    "name": "剛毛のワーム",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Crawler"
+    ],
+    "monsters": [
+      {
+        "id": "FUZZY_WURM_CRAWLER",
+        "name": "剛毛のワーム"
+      }
+    ],
+    "loss_text": "[gold]剛毛のワーム[/gold]は[b]The Adventurer[/b]の上にツバを吐いた。"
+  },
+  {
+    "id": "GLOBE_HEAD_NORMAL",
+    "name": "孤独なグローブヘッド",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "GLOBE_HEAD",
+        "name": "グローブヘッド"
+      }
+    ],
+    "loss_text": "[gold]孤独なグローブヘッド[/gold]は[b]The Adventurer[/b]に殺された。"
+  },
+  {
+    "id": "GREMLIN_MERC_NORMAL",
+    "name": "トレンチコートのグレムリン",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "FAT_GREMLIN",
+        "name": "ファットグレムリン"
+      },
+      {
+        "id": "GREMLIN_MERC",
+        "name": "傭兵グレムリン"
+      },
+      {
+        "id": "SNEAKY_GREMLIN",
+        "name": "スニーキーグレムリン"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]は[gold]トレンチコートのグレムリン[/gold]に強盗された。"
+  },
+  {
+    "id": "HAUNTED_SHIP_NORMAL",
+    "name": "幽霊船",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "HAUNTED_SHIP",
+        "name": "幽霊船"
+      }
+    ],
+    "loss_text": "[gold]幽霊船[/gold]は[b]The Adventurer[/b]を轢いた。"
+  },
+  {
+    "id": "HUNTER_KILLER_NORMAL",
+    "name": "ハンターキラー",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "HUNTER_KILLER",
+        "name": "ハンターキラー"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]は[gold]ハンターキラー[/gold]にはらわたを裂かれた。"
+  },
+  {
+    "id": "INFESTED_PRISMS_ELITE",
+    "name": "寄生されたプリズム",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "INFESTED_PRISM",
+        "name": "寄生されたプリズム"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]は[gold]寄生されたプリズム[/gold]によって阻まれた。"
+  },
+  {
+    "id": "INKLETS_NORMAL",
+    "name": "インクレット",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "INKLET",
+        "name": "インクレット"
+      }
+    ],
+    "loss_text": "[gold]インクレット[/gold]は[b]The Adventurer[/b]の行く手をふさいだ。"
+  },
+  {
+    "id": "KAISER_CRAB_BOSS",
+    "name": "カイザークラブ",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "CRUSHER",
+        "name": "クラッシャー"
+      },
+      {
+        "id": "ROCKET",
+        "name": "ロケット"
+      }
+    ],
+    "loss_text": "[gold]カイザークラブ[/gold]は四方八方から[b]The Adventurer[/b]を打ちのめした。"
+  },
+  {
+    "id": "KNIGHTS_ELITE",
+    "name": "騎士のギャング",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": [
+      "Knights"
+    ],
+    "monsters": [
+      {
+        "id": "FLAIL_KNIGHT",
+        "name": "フレイルナイト"
+      },
+      {
+        "id": "MAGI_KNIGHT",
+        "name": "マギ・ナイト"
+      },
+      {
+        "id": "SPECTRAL_KNIGHT",
+        "name": "スペクトルナイト"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]は[gold]騎士のギャング[/gold]に殺害された。"
+  },
+  {
+    "id": "KNOWLEDGE_DEMON_BOSS",
+    "name": "知識の悪魔",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "KNOWLEDGE_DEMON",
+        "name": "知識の悪魔"
+      }
+    ],
+    "loss_text": "[gold]知識の悪魔[/gold]は圧倒的な知識で[b]The Adventurer[/b]を呪った。"
+  },
+  {
+    "id": "LAGAVULIN_MATRIARCH_BOSS",
+    "name": "ラガヴーリン・メイトリアーク",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "LAGAVULIN_MATRIARCH",
+        "name": "ラガヴーリン・メイトリアーク"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]は[gold]ラガヴーリン・メイトリアーク[/gold]によって半分になった。"
+  },
+  {
+    "id": "LIVING_FOG_NORMAL",
+    "name": "邪悪なガス",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "GAS_BOMB",
+        "name": "ガス爆弾"
+      },
+      {
+        "id": "LIVING_FOG",
+        "name": "生きた霧"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]は[gold]邪悪なガス[/gold]の悪臭に耐えられなかった。"
+  },
+  {
+    "id": "LOUSE_PROGENITOR_NORMAL",
+    "name": "始祖ラミー",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "LOUSE_PROGENITOR",
+        "name": "始祖虫"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]は[gold]始祖ラミー[/gold]によって麻痺させられた。"
+  },
+  {
+    "id": "MAWLER_NORMAL",
+    "name": "モーラー",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "MAWLER",
+        "name": "モーラー"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]は[gold]モーラー[/gold]のための美味しい食事になった。"
+  },
+  {
+    "id": "MECHA_KNIGHT_ELITE",
+    "name": "メカナイト",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "MECHA_KNIGHT",
+        "name": "メカナイト"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]は[gold]メカナイト[/gold]に刺され燃やされた。"
+  },
+  {
+    "id": "MYSTERIOUS_KNIGHT_EVENT_ENCOUNTER",
+    "name": "謎の騎士",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
+      {
+        "id": "MYSTERIOUS_KNIGHT",
+        "name": "謎の騎士"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]は[gold]謎の騎士[/gold]の鍵を盗ろうとした。"
+  },
+  {
+    "id": "MYTES_NORMAL",
+    "name": "マイトの群れ",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "MYTE",
+        "name": "マイト"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]は[gold]マイトの群れ[/gold]に呑まれた"
+  },
+  {
+    "id": "NIBBITS_NORMAL",
+    "name": "ニビットのコンビ",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "NIBBIT",
+        "name": "ニビット"
+      }
+    ],
+    "loss_text": "[gold]ニビットのコンビ[/gold]は[b]The Adventurer[/b]を打ちのめした。"
+  },
+  {
+    "id": "NIBBITS_WEAK",
+    "name": "孤独なニビット",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Nibbit"
+    ],
+    "monsters": [
+      {
+        "id": "NIBBIT",
+        "name": "ニビット"
+      }
+    ],
+    "loss_text": "[gold]孤独なニビット[/gold]は[b]The Adventurer[/b]を打ちのめした。"
+  },
+  {
+    "id": "OVERGROWTH_CRAWLERS",
+    "name": "繁茂の地のクローラー",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Shrinker",
+      "Crawler"
+    ],
+    "monsters": [
+      {
+        "id": "FUZZY_WURM_CRAWLER",
+        "name": "剛毛のワーム"
+      },
+      {
+        "id": "SHRINKER_BEETLE",
+        "name": "シュリンカービートル"
+      }
+    ],
+    "loss_text": "[gold]繁茂の地のクローラー[/gold]は[b]The Adventurer[/b]をごちそうにした。"
+  },
+  {
+    "id": "OVICOPTER_NORMAL",
+    "name": "オビコプター",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "OVICOPTER",
+        "name": "オビコプター"
+      },
+      {
+        "id": "TOUGH_EGG",
+        "name": "固い卵"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]は[gold]オビコプター[/gold]の子供たちの食べ物になった。"
+  },
+  {
+    "id": "OWL_MAGISTRATE_NORMAL",
+    "name": "裁きのフクロウ",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "OWL_MAGISTRATE",
+        "name": "フクロウ判事"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]は[gold]裁きのフクロウ[/gold]によって死刑宣告された。"
+  },
+  {
+    "id": "PHANTASMAL_GARDENERS_ELITE",
+    "name": "幻影蟲",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "PHANTASMAL_GARDENER",
+        "name": "幻影蟲"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]は[gold]幻影蟲[/gold]によって休まされた。"
+  },
+  {
+    "id": "PHROG_PARASITE_ELITE",
+    "name": "寄生キャエル",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "PHROG_PARASITE",
+        "name": "寄生カエル"
+      },
+      {
+        "id": "WRIGGLER",
+        "name": "リグラー"
+      }
+    ],
+    "loss_text": "[gold]寄生キャエル[/gold]は[b]The Adventurer[/b]にコロニーを広げた。"
+  },
+  {
+    "id": "PUNCH_CONSTRUCT_NORMAL",
+    "name": "パンチマシーン",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "PUNCH_CONSTRUCT",
+        "name": "パンチマシン"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]は[gold]パンチマシーン[/gold]との殴り合いに突入した。"
+  },
+  {
+    "id": "PUNCH_OFF_EVENT_ENCOUNTER",
+    "name": "パンチマシーン",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
+      {
+        "id": "PUNCH_CONSTRUCT",
+        "name": "パンチマシン"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]は2体の[gold]パンチマシーン[/gold]による試合を妨害した。"
+  },
+  {
+    "id": "QUEEN_BOSS",
+    "name": "クイーン",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "QUEEN",
+        "name": "クイーン"
+      },
+      {
+        "id": "TORCH_HEAD_AMALGAM",
+        "name": "トーチヘッド・アマルガム"
+      }
+    ],
+    "loss_text": "[gold]クイーン[/gold]のコレクションに[b]The Adventurer[/b]が加わった。"
+  },
+  {
+    "id": "RUBY_RAIDERS_NORMAL",
+    "name": "ルビーレイダーズ",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "ASSASSIN_RUBY_RAIDER",
+        "name": "アサシンレイダー"
+      },
+      {
+        "id": "AXE_RUBY_RAIDER",
+        "name": "アックスレイダー"
+      },
+      {
+        "id": "BRUTE_RUBY_RAIDER",
+        "name": "ブルートレイダー"
+      },
+      {
+        "id": "CROSSBOW_RUBY_RAIDER",
+        "name": "クロスボウレイダー"
+      },
+      {
+        "id": "TRACKER_RUBY_RAIDER",
+        "name": "トラッカーレイダー"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]は[gold]ルビーレイダーズ[/gold]のグループに跳びかかられた。"
+  },
+  {
+    "id": "SCROLLS_OF_BITING_NORMAL",
+    "name": "多数の噛みつきの巻物",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": [
+      "Scrolls"
+    ],
+    "monsters": [
+      {
+        "id": "SCROLL_OF_BITING",
+        "name": "噛みつきの巻物"
+      }
+    ],
+    "loss_text": "[gold]多数の噛みつきの巻物[/gold]は[b]The Adventurer[/b]をズタズタに引き裂いた。"
+  },
+  {
+    "id": "SCROLLS_OF_BITING_WEAK",
+    "name": "噛みつきの巻物",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 3 - Glory",
+    "tags": [
+      "Scrolls"
+    ],
+    "monsters": [
+      {
+        "id": "SCROLL_OF_BITING",
+        "name": "噛みつきの巻物"
+      }
+    ],
+    "loss_text": "[gold]噛みつきの巻物[/gold]は[b]The Adventurer[/b]をズタズタに引き裂いた。"
+  },
+  {
+    "id": "SEAPUNK_NORMAL",
+    "name": "地下ドックに生きるものたち",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": [
+      "Seapunk"
+    ],
+    "monsters": [
+      {
+        "id": "CALCIFIED_CULTIST",
+        "name": "石を纏った狂信者"
+      },
+      {
+        "id": "SEAPUNK",
+        "name": "シーパンク"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]は [gold]地下ドックに生きるものたち[/gold]に敗北した。"
+  },
+  {
+    "id": "SEAPUNK_WEAK",
+    "name": "シーパンク",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Underdocks",
+    "tags": [
+      "Seapunk"
+    ],
+    "monsters": [
+      {
+        "id": "SEAPUNK",
+        "name": "シーパンク"
+      }
+    ],
+    "loss_text": "[gold]シーパンク[/gold]は[b]The Adventurer[/b]を打ちのめした。"
+  },
+  {
+    "id": "SEWER_CLAM_NORMAL",
+    "name": "下水貝",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SEWER_CLAM",
+        "name": "下水貝"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]は[gold]下水貝[/gold]によってガツガツ食べられた。"
+  },
+  {
+    "id": "SHRINKER_BEETLE_WEAK",
+    "name": "シュリンカービートル",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Shrinker"
+    ],
+    "monsters": [
+      {
+        "id": "SHRINKER_BEETLE",
+        "name": "シュリンカービートル"
+      }
+    ],
+    "loss_text": "[gold]シュリンカービートル[/gold]は[b]The Adventurer[/b]をおやつにした。"
+  },
+  {
+    "id": "SKULKING_COLONY_ELITE",
+    "name": "蠢く群生体",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SKULKING_COLONY",
+        "name": "蠢く群生体"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]は[gold]蠢く群生体[/gold]によって吸収された。"
+  },
+  {
+    "id": "SLIMED_BERSERKER_NORMAL",
+    "name": "スライムバーサーカー",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SLIMED_BERSERKER",
+        "name": "スライムバーサーカー"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]は[gold]スライムバーサーカー[/gold]の中に吸収された。"
+  },
+  {
+    "id": "SLIMES_NORMAL",
+    "name": "スライムの大群",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Slimes"
+    ],
+    "monsters": [
+      {
+        "id": "LEAF_SLIME_M",
+        "name": "リーフスライム (中)"
+      },
+      {
+        "id": "LEAF_SLIME_S",
+        "name": "リーフスライム (小)"
+      },
+      {
+        "id": "TWIG_SLIME_M",
+        "name": "細枝スライム (中)"
+      },
+      {
+        "id": "TWIG_SLIME_S",
+        "name": "細枝スライム (小)"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]は[gold]スライムの大群[/gold]によって倒された。"
+  },
+  {
+    "id": "SLIMES_WEAK",
+    "name": "スライムの群れ",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Slimes"
+    ],
+    "monsters": [
+      {
+        "id": "LEAF_SLIME_M",
+        "name": "リーフスライム (中)"
+      },
+      {
+        "id": "LEAF_SLIME_S",
+        "name": "リーフスライム (小)"
+      },
+      {
+        "id": "TWIG_SLIME_M",
+        "name": "細枝スライム (中)"
+      },
+      {
+        "id": "TWIG_SLIME_S",
+        "name": "細枝スライム (小)"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]は[gold]スライムの群れ[/gold]によって倒された。"
+  },
+  {
+    "id": "SLITHERING_STRANGLER_NORMAL",
+    "name": "絞蛇と友達",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "LEAF_SLIME_M",
+        "name": "リーフスライム (中)"
+      },
+      {
+        "id": "LEAF_SLIME_S",
+        "name": "リーフスライム (小)"
+      },
+      {
+        "id": "SLITHERING_STRANGLER",
+        "name": "絞蛇"
+      },
+      {
+        "id": "SNAPPING_JAXFRUIT",
+        "name": "暴れジャックフルーツ"
+      },
+      {
+        "id": "TWIG_SLIME_M",
+        "name": "細枝スライム (中)"
+      },
+      {
+        "id": "TWIG_SLIME_S",
+        "name": "細枝スライム (小)"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]は[gold]絞蛇と友達[/gold]によって窒息させられた。"
+  },
+  {
+    "id": "SLUDGE_SPINNER_WEAK",
+    "name": "スラッジスピナー",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SLUDGE_SPINNER",
+        "name": "スラッジスピナー"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]は[gold]スラッジスピナー[/gold]を倒せなかった。"
+  },
+  {
+    "id": "SLUMBERING_BEETLE_NORMAL",
+    "name": "パジャマパーティー",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Workers"
+    ],
+    "monsters": [
+      {
+        "id": "BOWLBUG_ROCK",
+        "name": "ボウルバグ（岩）"
+      },
+      {
+        "id": "BOWLBUG_SILK",
+        "name": "ボウルバグ（糸）"
+      },
+      {
+        "id": "SLUMBERING_BEETLE",
+        "name": "眠れるビートル"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]は[gold]パジャマパーティー[/gold]を妨害した。"
+  },
+  {
+    "id": "SNAPPING_JAXFRUIT_NORMAL",
+    "name": "繁茂の地の植物",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Mushroom"
+    ],
+    "monsters": [
+      {
+        "id": "FLYCONID",
+        "name": "フライコニド"
+      },
+      {
+        "id": "SNAPPING_JAXFRUIT",
+        "name": "暴れジャックフルーツ"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]は[gold]繁茂の地の植物[/gold]と衝突した。"
+  },
+  {
+    "id": "SOUL_FYSH_BOSS",
+    "name": "ソウルフィッシュ",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SOUL_FYSH",
+        "name": "ソウルフィッシュ"
+      }
+    ],
+    "loss_text": "[gold]ソウルフィッシュ[/gold]は[b]The Adventurer[/b]を破滅へと手招きした。"
+  },
+  {
+    "id": "SOUL_NEXUS_ELITE",
+    "name": "ソウルネクサス",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SOUL_NEXUS",
+        "name": "ソウルネクサス"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]は忘れられた戦場で[gold]ソウルネクサス[/gold]に相対して死んだ。"
+  },
+  {
+    "id": "SPINY_TOAD_NORMAL",
+    "name": "トゲヒキガエル",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SPINY_TOAD",
+        "name": "トゲヒキガエル"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]は[gold]トゲヒキガエル[/gold]のトゲを貫けなかった。"
+  },
+  {
+    "id": "TERROR_EEL_ELITE",
+    "name": "テラーウツボ",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "TERROR_EEL",
+        "name": "テラーウツボ"
+      }
+    ],
+    "loss_text": "[gold]テラーウツボ[/gold]は[b]The Adventurer[/b]にとってあまりにも恐ろしすぎた。"
+  },
+  {
+    "id": "TEST_SUBJECT_BOSS",
+    "name": "実験体",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "TEST_SUBJECT",
+        "name": "実験体 #C{Count}"
+      }
+    ],
+    "loss_text": "[gold]実験体[/gold]は忠実にその主人を[b]The Adventurer[/b]から守った。"
+  },
+  {
+    "id": "THE_ARCHITECT_EVENT_ENCOUNTER",
+    "name": "アーキテクト",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
+      {
+        "id": "ARCHITECT",
+        "name": "アーキテクト"
+      }
+    ],
+    "loss_text": "あなたはこれを見るべきではない。"
+  },
+  {
+    "id": "THE_INSATIABLE_BOSS",
+    "name": "貪りの獣",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "THE_INSATIABLE",
+        "name": "貪りの獣"
+      }
+    ],
+    "loss_text": "[gold]貪りの獣[/gold]は[b]The Adventurer[/b]をむさぼり食った。それでもなお、それは飢えている…"
+  },
+  {
+    "id": "THE_KIN_BOSS",
+    "name": "血族",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "KIN_FOLLOWER",
+        "name": "血族の信者"
+      },
+      {
+        "id": "KIN_PRIEST",
+        "name": "血族の司祭"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]は[gold]血族[/gold]らの優れた戦術によって全滅させられた。"
+  },
+  {
+    "id": "THE_LOST_AND_FORGOTTEN_NORMAL",
+    "name": "迷える者と忘れられし者",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "THE_FORGOTTEN",
+        "name": "忘れられし者"
+      },
+      {
+        "id": "THE_LOST",
+        "name": "迷える者"
+      }
+    ],
+    "loss_text": "[gold]迷える者と忘れられし者[/gold]は[b]The Adventurer[/b]の生きる意志を盗んだ。"
+  },
+  {
+    "id": "THE_OBSCURA_NORMAL",
+    "name": "オブスキュラ",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "THE_OBSCURA",
+        "name": "オブスキュラ"
+      }
+    ],
+    "loss_text": "[gold]オブスキュラ[/gold]とその幻影は[b]The Adventurer[/b]を叩きつぶした。"
+  },
+  {
+    "id": "THIEVING_HOPPER_WEAK",
+    "name": "泥棒バッタ",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Thieves"
+    ],
+    "monsters": [
+      {
+        "id": "THIEVING_HOPPER",
+        "name": "泥棒バッタ"
+      }
+    ],
+    "loss_text": "[gold]泥棒バッタ[/gold]は[b]The Adventurer[/b]を強盗した。"
+  },
+  {
+    "id": "TOADPOLES_WEAK",
+    "name": "ヒキジャクシ",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "TOADPOLE",
+        "name": "ヒキジャクシ"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]は[gold]ヒキジャクシ[/gold]に対処できなかった。"
+  },
+  {
+    "id": "TUNNELER_NORMAL",
+    "name": "トンネリング",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": [
+      "Burrower",
+      "Chomper"
+    ],
+    "monsters": [
+      {
+        "id": "CHOMPER",
+        "name": "チョンパー"
+      },
+      {
+        "id": "TUNNELER",
+        "name": "トンネラー"
+      }
+    ],
+    "loss_text": "[gold]トンネリング[/gold]は[b]The Adventurer[/b]を終わらせた。"
+  },
+  {
+    "id": "TUNNELER_WEAK",
+    "name": "トンネラー",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Burrower"
+    ],
+    "monsters": [
+      {
+        "id": "TUNNELER",
+        "name": "トンネラー"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]は[gold]トンネラー[/gold]によって強く打たれた。"
+  },
+  {
+    "id": "TURRET_OPERATOR_WEAK",
+    "name": "タレットオペレーター",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "LIVING_SHIELD",
+        "name": "リビングシールド"
+      },
+      {
+        "id": "TURRET_OPERATOR",
+        "name": "タレットオペレーター"
+      }
+    ],
+    "loss_text": "[gold]タレットオペレーター[/gold]は[b]The Adventurer[/b]を穴だらけにした。"
+  },
+  {
+    "id": "TWO_TAILED_RATS_NORMAL",
+    "name": "双尾のネズミ",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "TWO_TAILED_RAT",
+        "name": "双尾のネズミ"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]は[gold]双尾のネズミ[/gold]に群がられた。"
+  },
+  {
+    "id": "VANTOM_BOSS",
+    "name": "ヴァントム",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "VANTOM",
+        "name": "ヴァントム"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]は[gold]ヴァントム[/gold]によってインクレットに変えられた。"
+  },
+  {
+    "id": "VINE_SHAMBLER_NORMAL",
+    "name": "ヴァインシャンブラー",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "VINE_SHAMBLER",
+        "name": "ヴァインシャンブラー"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]は[gold]ヴァインシャンブラー[/gold]から逃れることができなかった。"
+  },
+  {
+    "id": "WATERFALL_GIANT_BOSS",
+    "name": "滝の巨人",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "WATERFALL_GIANT",
+        "name": "滝の巨人"
+      }
+    ],
+    "loss_text": "[gold]滝の巨人[/gold]は地下水路の[b]The Adventurer[/b]を浄化した。"
+  }
+]

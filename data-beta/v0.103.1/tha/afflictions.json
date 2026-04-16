@@ -1,0 +1,51 @@
+[
+  {
+    "id": "BOUND",
+    "name": "พันธะ",
+    "description": "สามารถเล่นการ์ด[gold]พันธะ[/gold]ได้เพียง [blue]1[/blue] การ์ดต่อเทิร์นเท่านั้น การ์ดทั้งหมดจะถูกปลด[gold]พันธะ[/gold]ตอนจบเทิร์น",
+    "extra_card_text": "พันธะ",
+    "is_stackable": false
+  },
+  {
+    "id": "DEVOURED",
+    "name": "ถูกกลืนกิน",
+    "description": "เพิ่ม[gold]สลาย[/gold]ใส่การ์ดนี้",
+    "extra_card_text": null,
+    "is_stackable": false
+  },
+  {
+    "id": "ENTANGLED",
+    "name": "พัวพัน",
+    "description": "ค่าร่ายเพิ่มอีก 1 [energy:1]",
+    "extra_card_text": "พัวพัน",
+    "is_stackable": false
+  },
+  {
+    "id": "GALVANIZED",
+    "name": "กัดกร่อน",
+    "description": "ได้รับความเสียหาย [blue]X[/blue] เมื่อเล่นการ์ดนี้",
+    "extra_card_text": "ได้รับความเสียหาย X",
+    "is_stackable": true
+  },
+  {
+    "id": "HEXED",
+    "name": "สาปสลาย",
+    "description": "เพิ่ม[gold]กึ่งสลาย[/gold]ใส่การ์ดนี้",
+    "extra_card_text": null,
+    "is_stackable": false
+  },
+  {
+    "id": "RINGING",
+    "name": "หูดับ",
+    "description": "เล่นการ์ดได้แค่ [blue]1[/blue] ใบในเทิร์นนี้",
+    "extra_card_text": "หูดับ",
+    "is_stackable": false
+  },
+  {
+    "id": "SMOG",
+    "name": "ควัน",
+    "description": "ไม่สามารถเล่น[gold]ทักษะ[/gold]เพิ่มได้ในเทิร์นนี้ ผลสิ้นสุดเมื่อจบเทิร์น",
+    "extra_card_text": null,
+    "is_stackable": false
+  }
+]

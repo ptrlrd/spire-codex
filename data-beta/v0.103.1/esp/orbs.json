@@ -1,0 +1,37 @@
+[
+  {
+    "id": "DARK_ORB",
+    "name": "Oscuridad",
+    "description": "[gold]Pasiva:[/gold] al final del turno, aumenta el daño de este orbe en [blue]6[/blue].\n[gold]Descarga:[/gold] infliges [blue]6[/blue] de daño al enemigo con menos PV.",
+    "description_raw": "[gold]Pasiva:[/gold] al final del turno, aumenta el daño de este orbe en [blue]{Passive}[/blue].\n[gold]Descarga:[/gold] infliges [blue]{Evoke}[/blue] de daño al enemigo con menos PV.",
+    "image_url": "/static/images/orbs/dark_orb.webp"
+  },
+  {
+    "id": "FROST_ORB",
+    "name": "Escarcha",
+    "description": "[gold]Pasiva:[/gold] al final del turno, obtienes [blue]2[/blue] de [gold]bloqueo[/gold].\n[gold]Descarga:[/gold] obtienes [blue]5[/blue] de [gold]bloqueo[/gold].",
+    "description_raw": "[gold]Pasiva:[/gold] al final del turno, obtienes [blue]{Passive}[/blue] de [gold]bloqueo[/gold].\n[gold]Descarga:[/gold] obtienes [blue]{Evoke}[/blue] de [gold]bloqueo[/gold].",
+    "image_url": "/static/images/orbs/frost_orb.webp"
+  },
+  {
+    "id": "GLASS_ORB",
+    "name": "Vidrio",
+    "description": "[gold]Pasiva:[/gold] al final del turno, infliges [blue]4[/blue] de daño a TODOS los enemigos y se reduce el valor de este orbe en [blue]1[/blue].\n[gold]Descarga:[/gold] infliges [blue]8[/blue] de daño a TODOS los enemigos.",
+    "description_raw": "[gold]Pasiva:[/gold] al final del turno, infliges [blue]{Passive}[/blue] de daño a TODOS los enemigos y se reduce el valor de este orbe en [blue]1[/blue].\n[gold]Descarga:[/gold] infliges [blue]{Evoke}[/blue] de daño a TODOS los enemigos.",
+    "image_url": "/static/images/orbs/glass_orb.webp"
+  },
+  {
+    "id": "LIGHTNING_ORB",
+    "name": "Electricidad",
+    "description": "[gold]Pasiva:[/gold] al final del turno, infliges [blue]3[/blue] de daño a un enemigo al azar.\n[gold]Descarga:[/gold] infliges [blue]8[/blue] de daño a un enemigo al azar.",
+    "description_raw": "[gold]Pasiva:[/gold] al final del turno, infliges [blue]{Passive}[/blue] de daño a un enemigo al azar.\n[gold]Descarga:[/gold] infliges [blue]{Evoke}[/blue] de daño a un enemigo al azar.",
+    "image_url": "/static/images/orbs/lightning_orb.webp"
+  },
+  {
+    "id": "PLASMA_ORB",
+    "name": "Plasma",
+    "description": "[gold]Pasiva:[/gold] al comienzo del turno,\nobtienes [energy:1].\n[gold]Descarga:[/gold] obtienes [energy:2].\nEl plasma no se ve afectado por [gold]concentración[/gold].",
+    "description_raw": "[gold]Pasiva:[/gold] al comienzo del turno,\nobtienes {energyPrefix:energyIcons(1)}.\n[gold]Descarga:[/gold] obtienes {energyPrefix:energyIcons(2)}.\nEl plasma no se ve afectado por [gold]concentración[/gold].",
+    "image_url": "/static/images/orbs/plasma_orb.webp"
+  }
+]
