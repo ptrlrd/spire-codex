@@ -1,0 +1,16 @@
+{
+  "app_id": 2868840,
+  "game_version": "0.103.1",
+  "build_id": "",
+  "tag": "0.103.1",
+  "date": "2026-04-15",
+  "title": "Beta v0.103.1",
+  "from_ref": "/tmp/test/reparse-v0.103.0/eng",
+  "to_ref": "data-beta/v0.103.1/eng",
+  "summary": {
+    "added": 0,
+    "removed": 0,
+    "changed": 0
+  },
+  "categories": []
+}

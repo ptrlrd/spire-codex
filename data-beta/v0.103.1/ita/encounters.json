@@ -1,0 +1,1546 @@
+[
+  {
+    "id": "AXEBOTS_NORMAL",
+    "name": "Compagnibot",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "AXEBOT",
+        "name": "Affettabot"
+      }
+    ],
+    "loss_text": "Dei [gold]Compagnibot[/gold] hanno smembrato [b]The Adventurer[/b]."
+  },
+  {
+    "id": "BATTLEWORN_DUMMY_EVENT_ENCOUNTER",
+    "name": "Manichino da allenamento martoriato",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
+      {
+        "id": "BATTLE_FRIEND_V1",
+        "name": "Partner da battaglia V1.0"
+      },
+      {
+        "id": "BATTLE_FRIEND_V2",
+        "name": "Partner da battaglia V2.0"
+      },
+      {
+        "id": "BATTLE_FRIEND_V3",
+        "name": "Partner da battaglia V3.0"
+      }
+    ],
+    "loss_text": "In qualche modo, un [gold]Manichino da allenamento martoriato[/gold] ha ucciso [b]The Adventurer[/b]."
+  },
+  {
+    "id": "BOWLBUGS_NORMAL",
+    "name": "sciame di Scaraciotole",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Workers"
+    ],
+    "monsters": [
+      {
+        "id": "BOWLBUG_EGG",
+        "name": "Scaraciotola (uovo)"
+      },
+      {
+        "id": "BOWLBUG_NECTAR",
+        "name": "Scaraciotola (nettare)"
+      },
+      {
+        "id": "BOWLBUG_ROCK",
+        "name": "Scaraciotola (roccia)"
+      },
+      {
+        "id": "BOWLBUG_SILK",
+        "name": "Scaraciotola (seta)"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] ha intralciato il cammino di uno [gold]sciame di Scaraciotole[/gold] indaffarato."
+  },
+  {
+    "id": "BOWLBUGS_WEAK",
+    "name": "Scaraciotole",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Workers"
+    ],
+    "monsters": [
+      {
+        "id": "BOWLBUG_EGG",
+        "name": "Scaraciotola (uovo)"
+      },
+      {
+        "id": "BOWLBUG_NECTAR",
+        "name": "Scaraciotola (nettare)"
+      },
+      {
+        "id": "BOWLBUG_ROCK",
+        "name": "Scaraciotola (roccia)"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] ha intralciato il cammino di alcune [gold]Scaraciotole[/gold] indaffarate."
+  },
+  {
+    "id": "BYGONE_EFFIGY_ELITE",
+    "name": "Effigie antica",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "BYGONE_EFFIGY",
+        "name": "Effigie antica"
+      }
+    ],
+    "loss_text": "Un'[gold]Effigie antica[/gold] ha squarciato in due [b]The Adventurer[/b]."
+  },
+  {
+    "id": "BYRDONIS_ELITE",
+    "name": "Gryfone",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "BYRDONIS",
+        "name": "Gryfone"
+      }
+    ],
+    "loss_text": "Un [gold]Gryfone[/gold] ha protetto i suoi cuccioli da [b]The Adventurer[/b]."
+  },
+  {
+    "id": "CEREMONIAL_BEAST_BOSS",
+    "name": "Bestia solenne",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "CEREMONIAL_BEAST",
+        "name": "Bestia solenne"
+      }
+    ],
+    "loss_text": "Una [gold]Bestia solenne[/gold] ha abbattuto [b]The Adventurer[/b]."
+  },
+  {
+    "id": "CHOMPERS_NORMAL",
+    "name": "Una coppia di automi",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Chomper"
+    ],
+    "monsters": [
+      {
+        "id": "CHOMPER",
+        "name": "Mordicchio"
+      }
+    ],
+    "loss_text": "[gold]Una coppia di automi[/gold] ha sbranato [b]The Adventurer[/b]."
+  },
+  {
+    "id": "CONSTRUCT_MENAGERIE_NORMAL",
+    "name": "gruppo di Assemblaggi",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "CUBEX_CONSTRUCT",
+        "name": "Assemblaggio cubico"
+      },
+      {
+        "id": "PUNCH_CONSTRUCT",
+        "name": "Assemblaggio pugile"
+      }
+    ],
+    "loss_text": "Un [gold]gruppo di Assemblaggi[/gold] ha annientato [b]The Adventurer[/b]."
+  },
+  {
+    "id": "CORPSE_SLUGS_NORMAL",
+    "name": "Molte Lumache cadaveriche",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": [
+      "Slugs"
+    ],
+    "monsters": [
+      {
+        "id": "CORPSE_SLUG",
+        "name": "Lumaca cadaverica"
+      }
+    ],
+    "loss_text": "[gold]Molte Lumache cadaveriche[/gold] hanno sbranato [b]The Adventurer[/b]."
+  },
+  {
+    "id": "CORPSE_SLUGS_WEAK",
+    "name": "Lumache cadaveriche",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Underdocks",
+    "tags": [
+      "Slugs"
+    ],
+    "monsters": [
+      {
+        "id": "CORPSE_SLUG",
+        "name": "Lumaca cadaverica"
+      }
+    ],
+    "loss_text": "Delle [gold]Lumache cadaveriche[/gold] hanno sbranato [b]The Adventurer[/b]."
+  },
+  {
+    "id": "CUBEX_CONSTRUCT_NORMAL",
+    "name": "Assemblaggio cubico",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "CUBEX_CONSTRUCT",
+        "name": "Assemblaggio cubico"
+      }
+    ],
+    "loss_text": "Un [gold]Assemblaggio cubico[/gold] ha usato i suoi laser per polverizzare [b]The Adventurer[/b]."
+  },
+  {
+    "id": "CULTISTS_NORMAL",
+    "name": "Accoliti",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "CALCIFIED_CULTIST",
+        "name": "Accolito calcificato"
+      },
+      {
+        "id": "DAMP_CULTIST",
+        "name": "Accolito zuppo"
+      }
+    ],
+    "loss_text": "Degli [gold]Accoliti[/gold] hanno ucciso [b]The Adventurer[/b]. [sine]Aaah[/sine]..."
+  },
+  {
+    "id": "DECIMILLIPEDE_ELITE",
+    "name": "Il Diecimilapiedi",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "DECIMILLIPEDE_SEGMENT_BACK",
+        "name": "Decimillipede Segment Back"
+      },
+      {
+        "id": "DECIMILLIPEDE_SEGMENT_FRONT",
+        "name": "Decimillipede Segment Front"
+      },
+      {
+        "id": "DECIMILLIPEDE_SEGMENT_MIDDLE",
+        "name": "Decimillipede Segment Middle"
+      }
+    ],
+    "loss_text": "[gold]Il Diecimilapiedi[/gold] non ha lasciato scampo a [b]The Adventurer[/b]."
+  },
+  {
+    "id": "DENSE_VEGETATION_EVENT_ENCOUNTER",
+    "name": "Larve",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
+      {
+        "id": "WRIGGLER",
+        "name": "Larva"
+      }
+    ],
+    "loss_text": "Delle [gold]Larve[/gold] hanno infestato [b]The Adventurer[/b]."
+  },
+  {
+    "id": "DEVOTED_SCULPTOR_WEAK",
+    "name": "Scultore devoto",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "DEVOTED_SCULPTOR",
+        "name": "Scultore devoto"
+      }
+    ],
+    "loss_text": "Lo [gold]Scultore devoto[/gold] ha ridotto [b]The Adventurer[/b] in mille pezzi."
+  },
+  {
+    "id": "DOORMAKER_BOSS",
+    "name": "Il Fabbricaporte",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "DOORMAKER",
+        "name": "Fabbricaporte"
+      }
+    ],
+    "loss_text": "[gold]Il Fabbricaporte[/gold] non ha affatto reagito bene dopo essere stato disturbato da [b]The Adventurer[/b]."
+  },
+  {
+    "id": "ENTOMANCER_ELITE",
+    "name": "Coleomago",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "ENTOMANCER",
+        "name": "Coleomago"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] ha subito una puntura mortale dal [gold]Coleomago[/gold]."
+  },
+  {
+    "id": "EXOSKELETONS_NORMAL",
+    "name": "Molti Esoscheletri",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Exoskeletons"
+    ],
+    "monsters": [
+      {
+        "id": "EXOSKELETON",
+        "name": "Esoscheletro"
+      }
+    ],
+    "loss_text": "[gold]Molti Esoscheletri[/gold] hanno sventrato [b]The Adventurer[/b]."
+  },
+  {
+    "id": "EXOSKELETONS_WEAK",
+    "name": "Esoscheletri",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Exoskeletons"
+    ],
+    "monsters": [
+      {
+        "id": "EXOSKELETON",
+        "name": "Esoscheletro"
+      }
+    ],
+    "loss_text": "Degli [gold]Esoscheletri[/gold] hanno sventrato [b]The Adventurer[/b]."
+  },
+  {
+    "id": "FABRICATOR_NORMAL",
+    "name": "Mechacostruttore",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "FABRICATOR",
+        "name": "Mechacostruttore"
+      }
+    ],
+    "loss_text": "I robot del [gold]Mechacostruttore[/gold] hanno polverizzato [b]The Adventurer[/b]."
+  },
+  {
+    "id": "FAKE_MERCHANT_EVENT_ENCOUNTER",
+    "name": "mercante???",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
+      {
+        "id": "FAKE_MERCHANT_MONSTER",
+        "name": "Il mercante???"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] ha affrontato la furia del... [gold][b]mercante???[/b][/gold]"
+  },
+  {
+    "id": "FLYCONID_NORMAL",
+    "name": "Un fungo e una Melma",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Mushroom",
+      "Slimes"
+    ],
+    "monsters": [
+      {
+        "id": "FLYCONID",
+        "name": "Fungalato"
+      },
+      {
+        "id": "LEAF_SLIME_M",
+        "name": "Melmerba (grande)"
+      },
+      {
+        "id": "TWIG_SLIME_M",
+        "name": "Ramomelma (grande)"
+      }
+    ],
+    "loss_text": "[gold]Un fungo e una Melma[/gold] hanno assorbito [b]The Adventurer[/b]."
+  },
+  {
+    "id": "FOGMOG_NORMAL",
+    "name": "Fungonebbia",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "EYE_WITH_TEETH",
+        "name": "Occhio dentato"
+      },
+      {
+        "id": "FOGMOG",
+        "name": "Fungonebbia"
+      }
+    ],
+    "loss_text": "Le illusioni del [gold]Fungonebbia[/gold] hanno distratto [b]The Adventurer[/b]."
+  },
+  {
+    "id": "FOSSIL_STALKER_NORMAL",
+    "name": "Cacciatore di fossili",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "FOSSIL_STALKER",
+        "name": "Cacciatore di fossili"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] ha subito un'imboscata da parte del [gold]Cacciatore di fossili[/gold]."
+  },
+  {
+    "id": "FROG_KNIGHT_NORMAL",
+    "name": "Rana cavaliere",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "FROG_KNIGHT",
+        "name": "Rana cavaliere"
+      }
+    ],
+    "loss_text": "Una coraggiosa [gold]Rana cavaliere[/gold] ha battuto [b]The Adventurer[/b]."
+  },
+  {
+    "id": "FUZZY_WURM_CRAWLER_WEAK",
+    "name": "Peloverme",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Crawler"
+    ],
+    "monsters": [
+      {
+        "id": "FUZZY_WURM_CRAWLER",
+        "name": "Peloverme"
+      }
+    ],
+    "loss_text": "Un [gold]Peloverme[/gold] ha sputato su [b]The Adventurer[/b]."
+  },
+  {
+    "id": "GLOBE_HEAD_NORMAL",
+    "name": "Una Testaglobo solitaria",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "GLOBE_HEAD",
+        "name": "Testaglobo"
+      }
+    ],
+    "loss_text": "[gold]Una Testaglobo solitaria[/gold] ha folgorato [b]The Adventurer[/b]."
+  },
+  {
+    "id": "GREMLIN_MERC_NORMAL",
+    "name": "Due Gremlin con indosso un impermeabile",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "FAT_GREMLIN",
+        "name": "Gremlin grasso"
+      },
+      {
+        "id": "GREMLIN_MERC",
+        "name": "Gremlin mercenario"
+      },
+      {
+        "id": "SNEAKY_GREMLIN",
+        "name": "Gremlin furtivo"
+      }
+    ],
+    "loss_text": "[gold]Due Gremlin con indosso un impermeabile[/gold] hanno aggredito [b]The Adventurer[/b]."
+  },
+  {
+    "id": "HAUNTED_SHIP_NORMAL",
+    "name": "Nave infestata",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "HAUNTED_SHIP",
+        "name": "Nave infestata"
+      }
+    ],
+    "loss_text": "Una [gold]Nave infestata[/gold] ha schiacciato [b]The Adventurer[/b]."
+  },
+  {
+    "id": "HUNTER_KILLER_NORMAL",
+    "name": "Predatore di cacciatori",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "HUNTER_KILLER",
+        "name": "Predatore di cacciatori"
+      }
+    ],
+    "loss_text": "Il [gold]Predatore di cacciatori[/gold] ha smembrato [b]The Adventurer[/b]."
+  },
+  {
+    "id": "INFESTED_PRISMS_ELITE",
+    "name": "Prisma infestato",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "INFESTED_PRISM",
+        "name": "Prisma infestato"
+      }
+    ],
+    "loss_text": "Un [gold]Prisma infestato[/gold] ha interrotto il cammino di [b]The Adventurer[/b]."
+  },
+  {
+    "id": "INKLETS_NORMAL",
+    "name": "Inchiostrini",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "INKLET",
+        "name": "Inchiostrino"
+      }
+    ],
+    "loss_text": "Degli [gold]Inchiostrini[/gold] non hanno lasciato passare [b]The Adventurer[/b]."
+  },
+  {
+    "id": "KAISER_CRAB_BOSS",
+    "name": "Granchio reale",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "CRUSHER",
+        "name": "Spaccaossa"
+      },
+      {
+        "id": "ROCKET",
+        "name": "Razzo"
+      }
+    ],
+    "loss_text": "Il [gold]Granchio reale[/gold] ha colpito [b]The Adventurer[/b] da ogni lato."
+  },
+  {
+    "id": "KNIGHTS_ELITE",
+    "name": "gruppo di cavalieri",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": [
+      "Knights"
+    ],
+    "monsters": [
+      {
+        "id": "FLAIL_KNIGHT",
+        "name": "Cavaliere flagellatore"
+      },
+      {
+        "id": "MAGI_KNIGHT",
+        "name": "Magicavaliere"
+      },
+      {
+        "id": "SPECTRAL_KNIGHT",
+        "name": "Cavaliere spettrale"
+      }
+    ],
+    "loss_text": "Un [gold]gruppo di cavalieri[/gold] ha ucciso [b]The Adventurer[/b]."
+  },
+  {
+    "id": "KNOWLEDGE_DEMON_BOSS",
+    "name": "Demone onnisciente",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "KNOWLEDGE_DEMON",
+        "name": "Demone onnisciente"
+      }
+    ],
+    "loss_text": "Il [gold]Demone onnisciente[/gold] ha maledetto [b]The Adventurer[/b] con tutto il suo sapere."
+  },
+  {
+    "id": "LAGAVULIN_MATRIARCH_BOSS",
+    "name": "Matriarca Lagavulin",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "LAGAVULIN_MATRIARCH",
+        "name": "Matriarca Lagavulin"
+      }
+    ],
+    "loss_text": "La [gold]Matriarca Lagavulin[/gold] ha squarciato [b]The Adventurer[/b] in due."
+  },
+  {
+    "id": "LIVING_FOG_NORMAL",
+    "name": "Gas maligno",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "GAS_BOMB",
+        "name": "Gasbomba"
+      },
+      {
+        "id": "LIVING_FOG",
+        "name": "Nebbia vivente"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] non ha saputo sopportare il fetore del [gold]Gas maligno[/gold]."
+  },
+  {
+    "id": "LOUSE_PROGENITOR_NORMAL",
+    "name": "Antenato delle pulci",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "LOUSE_PROGENITOR",
+        "name": "Antenato delle pulci"
+      }
+    ],
+    "loss_text": "L'[gold]Antenato delle pulci[/gold] ha paralizzato [b]The Adventurer[/b]."
+  },
+  {
+    "id": "MAWLER_NORMAL",
+    "name": "Laceracarne",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "MAWLER",
+        "name": "Laceracarne"
+      }
+    ],
+    "loss_text": "Il [gold]Laceracarne[/gold] si è fatto un delizioso spuntino divorando [b]The Adventurer[/b]."
+  },
+  {
+    "id": "MECHA_KNIGHT_ELITE",
+    "name": "Cavaliere meccanico",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "MECHA_KNIGHT",
+        "name": "Cavaliere meccanico"
+      }
+    ],
+    "loss_text": "Un [gold]Cavaliere meccanico[/gold] ha pugnalato e bruciato [b]The Adventurer[/b]."
+  },
+  {
+    "id": "MYSTERIOUS_KNIGHT_EVENT_ENCOUNTER",
+    "name": "Cavaliere misterioso",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
+      {
+        "id": "MYSTERIOUS_KNIGHT",
+        "name": "Cavaliere misterioso"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] ha provato a prendere la chiave del [gold]Cavaliere misterioso[/gold]."
+  },
+  {
+    "id": "MYTES_NORMAL",
+    "name": "gruppo di acari",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "MYTE",
+        "name": "Acaro"
+      }
+    ],
+    "loss_text": "Un [gold]gruppo di acari[/gold] ha infestato il corpo di [b]The Adventurer[/b]."
+  },
+  {
+    "id": "NIBBITS_NORMAL",
+    "name": "Degli Sgranocchiatori",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "NIBBIT",
+        "name": "Sgranocchiatore"
+      }
+    ],
+    "loss_text": "[gold]Degli Sgranocchiatori[/gold] hanno pestato [b]The Adventurer[/b]."
+  },
+  {
+    "id": "NIBBITS_WEAK",
+    "name": "Un solo Sgranocchiatore",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Nibbit"
+    ],
+    "monsters": [
+      {
+        "id": "NIBBIT",
+        "name": "Sgranocchiatore"
+      }
+    ],
+    "loss_text": "[gold]Un solo Sgranocchiatore[/gold] ha pestato [b]The Adventurer[/b]."
+  },
+  {
+    "id": "OVERGROWTH_CRAWLERS",
+    "name": "vermi della Proliferazione",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Shrinker",
+      "Crawler"
+    ],
+    "monsters": [
+      {
+        "id": "FUZZY_WURM_CRAWLER",
+        "name": "Peloverme"
+      },
+      {
+        "id": "SHRINKER_BEETLE",
+        "name": "Scarabeo restringente"
+      }
+    ],
+    "loss_text": "Dei [gold]vermi della Proliferazione[/gold] hanno divorato [b]The Adventurer[/b]."
+  },
+  {
+    "id": "OVICOPTER_NORMAL",
+    "name": "Ovicoptero",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "OVICOPTER",
+        "name": "Ovicoptero"
+      },
+      {
+        "id": "TOUGH_EGG",
+        "name": "Uovo forte"
+      }
+    ],
+    "loss_text": "Un [gold]Ovicoptero[/gold] ha dato [b]The Adventurer[/b] in pasto ai suoi cuccioli."
+  },
+  {
+    "id": "OWL_MAGISTRATE_NORMAL",
+    "name": "Giudice gufo",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "OWL_MAGISTRATE",
+        "name": "Giudice gufo"
+      }
+    ],
+    "loss_text": "Il [gold]Giudice gufo[/gold] ha condannato [b]The Adventurer[/b] a morte."
+  },
+  {
+    "id": "PHANTASMAL_GARDENERS_ELITE",
+    "name": "Giardinieri fantasma",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "PHANTASMAL_GARDENER",
+        "name": "Giardiniere spettrale"
+      }
+    ],
+    "loss_text": "Dei [gold]Giardinieri fantasma[/gold] hanno abbattuto [b]The Adventurer[/b]."
+  },
+  {
+    "id": "PHROG_PARASITE_ELITE",
+    "name": "Parassita fungineo",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "PHROG_PARASITE",
+        "name": "Parassita fungineo"
+      },
+      {
+        "id": "WRIGGLER",
+        "name": "Larva"
+      }
+    ],
+    "loss_text": "Un [gold]Parassita fungineo[/gold] ha diffuso la sua colonia nel corpo di [b]The Adventurer[/b]."
+  },
+  {
+    "id": "PUNCH_CONSTRUCT_NORMAL",
+    "name": "Assemblaggio pugile",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "PUNCH_CONSTRUCT",
+        "name": "Assemblaggio pugile"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] ha preso parte a una scazzottata con un [gold]Assemblaggio pugile[/gold]."
+  },
+  {
+    "id": "PUNCH_OFF_EVENT_ENCOUNTER",
+    "name": "Assemblaggi Pugili",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
+      {
+        "id": "PUNCH_CONSTRUCT",
+        "name": "Assemblaggio pugile"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] ha interrotto un incontro tra due [gold]Assemblaggi Pugili[/gold]."
+  },
+  {
+    "id": "QUEEN_BOSS",
+    "name": "Regina funesta",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "QUEEN",
+        "name": "Regina funesta"
+      },
+      {
+        "id": "TORCH_HEAD_AMALGAM",
+        "name": "Torciamostro"
+      }
+    ],
+    "loss_text": "La [gold]Regina funesta[/gold] ha aggiunto la testa di [b]The Adventurer[/b] alla sua collezione."
+  },
+  {
+    "id": "RUBY_RAIDERS_NORMAL",
+    "name": "Razziatori di rubini",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "ASSASSIN_RUBY_RAIDER",
+        "name": "Assassino razziatore"
+      },
+      {
+        "id": "AXE_RUBY_RAIDER",
+        "name": "Affettarazziatore"
+      },
+      {
+        "id": "BRUTE_RUBY_RAIDER",
+        "name": "Bruto razziatore"
+      },
+      {
+        "id": "CROSSBOW_RUBY_RAIDER",
+        "name": "Razziatore con balestra"
+      },
+      {
+        "id": "TRACKER_RUBY_RAIDER",
+        "name": "Razziatore inseguitore"
+      }
+    ],
+    "loss_text": "Un gruppo di [gold]Razziatori di rubini[/gold] ha assalito [b]The Adventurer[/b]."
+  },
+  {
+    "id": "SCROLLS_OF_BITING_NORMAL",
+    "name": "Tante Pergamene mordenti",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": [
+      "Scrolls"
+    ],
+    "monsters": [
+      {
+        "id": "SCROLL_OF_BITING",
+        "name": "Pergamena mordente"
+      }
+    ],
+    "loss_text": "[gold]Tante Pergamene mordenti[/gold] hanno ridotto [b]The Adventurer[/b] in brandelli."
+  },
+  {
+    "id": "SCROLLS_OF_BITING_WEAK",
+    "name": "Pergamene mordenti",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 3 - Glory",
+    "tags": [
+      "Scrolls"
+    ],
+    "monsters": [
+      {
+        "id": "SCROLL_OF_BITING",
+        "name": "Pergamena mordente"
+      }
+    ],
+    "loss_text": "Delle [gold]Pergamene mordenti[/gold] hanno ridotto [b]The Adventurer[/b] in brandelli."
+  },
+  {
+    "id": "SEAPUNK_NORMAL",
+    "name": "fauna dei Moli Funesti",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": [
+      "Seapunk"
+    ],
+    "monsters": [
+      {
+        "id": "CALCIFIED_CULTIST",
+        "name": "Accolito calcificato"
+      },
+      {
+        "id": "SEAPUNK",
+        "name": "Teppista marino"
+      }
+    ],
+    "loss_text": "La [gold]fauna dei Moli Funesti[/gold] ha sconfitto [b]The Adventurer[/b]."
+  },
+  {
+    "id": "SEAPUNK_WEAK",
+    "name": "Teppista marino",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Underdocks",
+    "tags": [
+      "Seapunk"
+    ],
+    "monsters": [
+      {
+        "id": "SEAPUNK",
+        "name": "Teppista marino"
+      }
+    ],
+    "loss_text": "Un [gold]Teppista marino[/gold] ha annientato [b]The Adventurer[/b]."
+  },
+  {
+    "id": "SEWER_CLAM_NORMAL",
+    "name": "Vongola di fogna",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SEWER_CLAM",
+        "name": "Vongola di fogna"
+      }
+    ],
+    "loss_text": "Una [gold]Vongola di fogna[/gold] ha divorato [b]The Adventurer[/b]."
+  },
+  {
+    "id": "SHRINKER_BEETLE_WEAK",
+    "name": "Scarabeo restringente",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Shrinker"
+    ],
+    "monsters": [
+      {
+        "id": "SHRINKER_BEETLE",
+        "name": "Scarabeo restringente"
+      }
+    ],
+    "loss_text": "Uno [gold]Scarabeo restringente[/gold] si è fatto uno spuntino sbranando [b]The Adventurer[/b]."
+  },
+  {
+    "id": "SKULKING_COLONY_ELITE",
+    "name": "Colonia furtiva",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SKULKING_COLONY",
+        "name": "Colonia furtiva"
+      }
+    ],
+    "loss_text": "Una [gold]Colonia furtiva[/gold] ha assorbito [b]The Adventurer[/b]."
+  },
+  {
+    "id": "SLIMED_BERSERKER_NORMAL",
+    "name": "Berseker viscido",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SLIMED_BERSERKER",
+        "name": "Berserker viscido"
+      }
+    ],
+    "loss_text": "Un [gold]Berseker viscido[/gold] ha assorbito [b]The Adventurer[/b]."
+  },
+  {
+    "id": "SLIMES_NORMAL",
+    "name": "esercito di Melme",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Slimes"
+    ],
+    "monsters": [
+      {
+        "id": "LEAF_SLIME_M",
+        "name": "Melmerba (grande)"
+      },
+      {
+        "id": "LEAF_SLIME_S",
+        "name": "Melmerba (piccola)"
+      },
+      {
+        "id": "TWIG_SLIME_M",
+        "name": "Ramomelma (grande)"
+      },
+      {
+        "id": "TWIG_SLIME_S",
+        "name": "Ramomelma (piccola)"
+      }
+    ],
+    "loss_text": "Un [gold]esercito di Melme[/gold] ha sconfitto [b]The Adventurer[/b]."
+  },
+  {
+    "id": "SLIMES_WEAK",
+    "name": "gruppo di Melme",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Slimes"
+    ],
+    "monsters": [
+      {
+        "id": "LEAF_SLIME_M",
+        "name": "Melmerba (grande)"
+      },
+      {
+        "id": "LEAF_SLIME_S",
+        "name": "Melmerba (piccola)"
+      },
+      {
+        "id": "TWIG_SLIME_M",
+        "name": "Ramomelma (grande)"
+      },
+      {
+        "id": "TWIG_SLIME_S",
+        "name": "Ramomelma (piccola)"
+      }
+    ],
+    "loss_text": "Un [gold]gruppo di Melme[/gold] ha sconfitto [b]The Adventurer[/b]."
+  },
+  {
+    "id": "SLITHERING_STRANGLER_NORMAL",
+    "name": "Strangolatore e un suo amico",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "LEAF_SLIME_M",
+        "name": "Melmerba (grande)"
+      },
+      {
+        "id": "LEAF_SLIME_S",
+        "name": "Melmerba (piccola)"
+      },
+      {
+        "id": "SLITHERING_STRANGLER",
+        "name": "Strangolatore strisciante"
+      },
+      {
+        "id": "SNAPPING_JAXFRUIT",
+        "name": "Bulbo azzannatore"
+      },
+      {
+        "id": "TWIG_SLIME_M",
+        "name": "Ramomelma (grande)"
+      },
+      {
+        "id": "TWIG_SLIME_S",
+        "name": "Ramomelma (piccola)"
+      }
+    ],
+    "loss_text": "Uno [gold]Strangolatore e un suo amico[/gold] hanno strangolato [b]The Adventurer[/b]."
+  },
+  {
+    "id": "SLUDGE_SPINNER_WEAK",
+    "name": "Poltiglia rotante",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SLUDGE_SPINNER",
+        "name": "Poltiglia rotante"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] non ha avuto scampo contro una [gold]Poltiglia rotante[/gold]."
+  },
+  {
+    "id": "SLUMBERING_BEETLE_NORMAL",
+    "name": "festa di scarafaggi",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Workers"
+    ],
+    "monsters": [
+      {
+        "id": "BOWLBUG_ROCK",
+        "name": "Scaraciotola (roccia)"
+      },
+      {
+        "id": "BOWLBUG_SILK",
+        "name": "Scaraciotola (seta)"
+      },
+      {
+        "id": "SLUMBERING_BEETLE",
+        "name": "Scarabeo dormiente"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] ha interrotto una [gold]festa di scarafaggi[/gold]."
+  },
+  {
+    "id": "SNAPPING_JAXFRUIT_NORMAL",
+    "name": "flora della Proliferazione",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Mushroom"
+    ],
+    "monsters": [
+      {
+        "id": "FLYCONID",
+        "name": "Fungalato"
+      },
+      {
+        "id": "SNAPPING_JAXFRUIT",
+        "name": "Bulbo azzannatore"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] ha avuto la sfortuna di incontrare la [gold]flora della Proliferazione[/gold]."
+  },
+  {
+    "id": "SOUL_FYSH_BOSS",
+    "name": "Pesce anima",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SOUL_FYSH",
+        "name": "Pesce anima"
+      }
+    ],
+    "loss_text": "Un [gold]Pesce anima[/gold] ha condannato alla morte [b]The Adventurer[/b]."
+  },
+  {
+    "id": "SOUL_NEXUS_ELITE",
+    "name": "Nesso dell'anima",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SOUL_NEXUS",
+        "name": "Nesso dell'anima"
+      }
+    ],
+    "loss_text": "Un [gold]Nesso dell'anima[/gold] ha ucciso [b]The Adventurer[/b] in un campo di battaglia dimenticato."
+  },
+  {
+    "id": "SPINY_TOAD_NORMAL",
+    "name": "Rospo spinoso",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SPINY_TOAD",
+        "name": "Rospo spinoso"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] non ha potuto perforare le spine del [gold]Rospo spinoso[/gold]."
+  },
+  {
+    "id": "TERROR_EEL_ELITE",
+    "name": "Anguilla nefasta",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "TERROR_EEL",
+        "name": "Anguilla nefasta"
+      }
+    ],
+    "loss_text": "L'[gold]Anguilla nefasta[/gold] ha spaventato a morte [b]The Adventurer[/b]."
+  },
+  {
+    "id": "TEST_SUBJECT_BOSS",
+    "name": "Soggetto di prova",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "TEST_SUBJECT",
+        "name": "Soggetto di prova #C{Count}"
+      }
+    ],
+    "loss_text": "Un [gold]Soggetto di prova[/gold] ha protetto con fedeltà i suoi padroni da [b]The Adventurer[/b]."
+  },
+  {
+    "id": "THE_ARCHITECT_EVENT_ENCOUNTER",
+    "name": "L'Architetto",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
+      {
+        "id": "ARCHITECT",
+        "name": "L'Architetto"
+      }
+    ],
+    "loss_text": "Non dovresti vederlo."
+  },
+  {
+    "id": "THE_INSATIABLE_BOSS",
+    "name": "L'Insaziabile",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "THE_INSATIABLE",
+        "name": "L'Insaziabile"
+      }
+    ],
+    "loss_text": "[gold]L'Insaziabile[/gold] ha divorato [b]The Adventurer[/b]. E nonostante ciò, ha ancora fame..."
+  },
+  {
+    "id": "THE_KIN_BOSS",
+    "name": "Tribù",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "KIN_FOLLOWER",
+        "name": "Discepolo della tribù"
+      },
+      {
+        "id": "KIN_PRIEST",
+        "name": "Sacerdote della tribù"
+      }
+    ],
+    "loss_text": "La strategia sopraffina della [gold]Tribù[/gold] ha annichilito [b]The Adventurer[/b]."
+  },
+  {
+    "id": "THE_LOST_AND_FORGOTTEN_NORMAL",
+    "name": "Il Perduto e il Dimenticato",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "THE_FORGOTTEN",
+        "name": "Il Dimenticato"
+      },
+      {
+        "id": "THE_LOST",
+        "name": "Il Perduto"
+      }
+    ],
+    "loss_text": "[gold]Il Perduto e il Dimenticato[/gold] hanno rubato il desiderio di vivere di [b]The Adventurer[/b]."
+  },
+  {
+    "id": "THE_OBSCURA_NORMAL",
+    "name": "L'Oscura",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "THE_OBSCURA",
+        "name": "Tenebra"
+      }
+    ],
+    "loss_text": "[gold]L'Oscura[/gold] e la sua illusione hanno annientato [b]The Adventurer[/b]."
+  },
+  {
+    "id": "THIEVING_HOPPER_WEAK",
+    "name": "Mantide ladra",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Thieves"
+    ],
+    "monsters": [
+      {
+        "id": "THIEVING_HOPPER",
+        "name": "Mantide ladra"
+      }
+    ],
+    "loss_text": "Una [gold]Mantide ladra[/gold] ha derubato [b]The Adventurer[/b]."
+  },
+  {
+    "id": "TOADPOLES_WEAK",
+    "name": "Girini",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "TOADPOLE",
+        "name": "Girino"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] non ha potuto nulla contro dei [gold]Girini[/gold]."
+  },
+  {
+    "id": "TUNNELER_NORMAL",
+    "name": "coppia di Scavatori",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": [
+      "Burrower",
+      "Chomper"
+    ],
+    "monsters": [
+      {
+        "id": "CHOMPER",
+        "name": "Mordicchio"
+      },
+      {
+        "id": "TUNNELER",
+        "name": "Scavatore"
+      }
+    ],
+    "loss_text": "Una [gold]coppia di Scavatori[/gold] ha tolto la vita a [b]The Adventurer[/b]."
+  },
+  {
+    "id": "TUNNELER_WEAK",
+    "name": "Scavatore",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Burrower"
+    ],
+    "monsters": [
+      {
+        "id": "TUNNELER",
+        "name": "Scavatore"
+      }
+    ],
+    "loss_text": "Uno [gold]Scavatore[/gold] ha ucciso [b]The Adventurer[/b]."
+  },
+  {
+    "id": "TURRET_OPERATOR_WEAK",
+    "name": "Operatorretta",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "LIVING_SHIELD",
+        "name": "Scudo vivente"
+      },
+      {
+        "id": "TURRET_OPERATOR",
+        "name": "Operatorretta"
+      }
+    ],
+    "loss_text": "Un'[gold]Operatorretta[/gold] ha crivellato [b]The Adventurer[/b]."
+  },
+  {
+    "id": "TWO_TAILED_RATS_NORMAL",
+    "name": "Topi bicoda",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "TWO_TAILED_RAT",
+        "name": "Topo bicoda"
+      }
+    ],
+    "loss_text": "Dei [gold]Topi bicoda[/gold] hanno assalito [b]The Adventurer[/b]."
+  },
+  {
+    "id": "VANTOM_BOSS",
+    "name": "Vantom",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "VANTOM",
+        "name": "Vantom"
+      }
+    ],
+    "loss_text": "[gold]Vantom[/gold] ha trasformato [b]The Adventurer[/b] in un Inchiostrino."
+  },
+  {
+    "id": "VINE_SHAMBLER_NORMAL",
+    "name": "Groviglio di liane",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "VINE_SHAMBLER",
+        "name": "Groviglio di liane"
+      }
+    ],
+    "loss_text": "Il [gold]Groviglio di liane[/gold] non ha lasciato fuggire [b]The Adventurer[/b]."
+  },
+  {
+    "id": "WATERFALL_GIANT_BOSS",
+    "name": "Gigante della cascata",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "WATERFALL_GIANT",
+        "name": "Gigante della cascata"
+      }
+    ],
+    "loss_text": "Il [gold]Gigante della cascata[/gold] ha spazzato via [b]The Adventurer[/b] dai Moli Funesti."
+  }
+]

@@ -1,0 +1,2325 @@
+[
+  {
+    "id": "DEFECT",
+    "name": "Defect",
+    "description": "Un automa che si modifica in eterno per sopravvivere.\nSfrutta la tecnologia dei Globi per combattere.",
+    "starting_hp": 75,
+    "starting_gold": 99,
+    "max_energy": 3,
+    "orb_slots": 3,
+    "starting_deck": [
+      "StrikeDefect",
+      "StrikeDefect",
+      "StrikeDefect",
+      "StrikeDefect",
+      "DefendDefect",
+      "DefendDefect",
+      "DefendDefect",
+      "DefendDefect",
+      "Zap",
+      "Dualcast"
+    ],
+    "starting_relics": [
+      "CrackedCore"
+    ],
+    "unlocks_after": "Necrobinder",
+    "gender": "Neutral",
+    "color": "blue",
+    "dialogue_color": "new",
+    "quotes": {
+      "event_death_prevention": "Devo sopravvivere per i miei amici!",
+      "gold_monologue": "[sine]Con questo oro posso comprare dei pezzi...[/sine]",
+      "aroma_principle": "[sine][blue]1100 0011 1100 0011...[/blue][/sine]",
+      "banter_alive": "[jitter]0x54494D45 0x204C494D 0x49542045 0x58434545 0x00444544[/jitter]",
+      "banter_dead": "...",
+      "unlock_text": "Gioca una partita con [pink]{Prerequisite}[/pink] per sbloccare questo personaggio.",
+      "cards_modifier_title": "Carte di Defect",
+      "cards_modifier_description": "le carte di Defect ora compariranno nelle ricompense e nei negozi."
+    },
+    "dialogues": [
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Devo ammettere che sei veramente un incantevole assemblaggio di rottami."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]<3[/font_size][/i]"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Sembra che tu sia ancora in vita... Vediamo un po' se posso potenziarti!"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Stavo conversando le cose dell'assemblaggio a cui sei legat... ehm.\nNulla, lascia stare!!!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]<Suoni inquisitori>[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Mio dolcissimo assemblaggio, fa' come se non avessi detto nulla!"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]... Assemblaggio... cosa...\nti... è... successo...?[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]... Lui... può...\nripararti... completamente...[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]... Non... posso...\nfarti... dimenticare...[/sine]"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]<suoni pieni di determinazione>[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[sine]... Bene...[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Un semplice assemblaggio può davvero essere degno della mia benedizione?\nVieni, Defect. Sarai l'automa più affascinante di tutti."
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Mia povero ammasso di ferraglia malridotto, lascia che ti dia una sistemata."
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Di solito non mi piacciono le creazioni dell'Architetto, ma devo ammettere che comincio a trovarti affascinante."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]<suono imbarazzato>[/font_size][/i]"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Cosa! Assemblaggio servitore funzionante?!\nPerché qui? Perché non in fabbrica?"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Globi luccicanti! Come funzionare?\n[jitter]Ahia![/jitter]"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Nucleo rotto? Neow usa assemblaggio rotto?\nManipolato te?"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]<suoni silenziosi>[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Architetto riparato te?"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]Automa dall'aria preoccupata, cerchi l'assemblaggio a cui sei legato?\nLascia che ti aiuti...[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]Anche gli assemblaggi sognano?\nGuardami e imita ciò che faccio...[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]Ho sognato l'assemblaggio a cui sei legato...\nMio padre può riparare [aqua]Flaw[/aqua]...[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "ASSEMBLAGGIO! NON HAI NESSUN'ARMA!? TIENI!"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "I GLOBI NON SONO ARMI!"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "AFFRONTAMI, DEFECT!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]Defect lotta con coraggio.[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "I GLOBI [jitter]SONO[/jitter] ARMI!?"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "[i][font_size=22]<suoni di saluto>[/font_size][/i]"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "Non se qui per infastidirmi? Sei proprio un piccolo assemblaggio [jitter][b]inusuale[/b][/jitter]..."
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Sarebbe veramente divertente se fosse una delle sue creazioni a porre fine alla sua vita."
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Vuoi davvero che ti dia una sistemata?"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]<suoni inquisitori>[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Beh, se proprio lo [jitter][b]desideri[/b][/jitter]."
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Cosa ci fai qui?"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "<frasi illeggibili casuali>"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Vuoi che ti ripari? Dovrai costringermi a farlo."
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Hai fatto ritorno? Credevo di averti smontato in mille pezzi."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "<frasi illeggibili casuali>"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Vuoi che ripari te e l'altro assemblaggio? Ma non farmi ridere."
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Come fai a tornare ogni volta? Sarà opera di Neow?"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "<frasi illeggibili casuali>"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Quanta ingenuità"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Ammasso di ferraglia, lascia che ti rimetta a [sine]nuovo[/sine]."
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Non trovi strano che gli altri assemblaggi ti vogliano morto?"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Se mi porti il cuore dell'Architetto, riparerò [aqua]l'assemblaggio[/aqua] a cui sei tanto legato."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]<suoni pieni di spavento>[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Cos'è più importante? Il tuo creatore o l'assemblaggio a cui sei tanto legato?"
+          }
+        ]
+      }
+    ],
+    "image_url": "/static/images/characters/char_select_defect.webp"
+  },
+  {
+    "id": "IRONCLAD",
+    "name": "Ironclad",
+    "description": "L'ultimo soldato degli Ironclad.\nContro la sua stessa volontà, distrugge gli avversari con spada e fiamme.",
+    "starting_hp": 80,
+    "starting_gold": 99,
+    "max_energy": 3,
+    "orb_slots": null,
+    "starting_deck": [
+      "StrikeIronclad",
+      "StrikeIronclad",
+      "StrikeIronclad",
+      "StrikeIronclad",
+      "StrikeIronclad",
+      "DefendIronclad",
+      "DefendIronclad",
+      "DefendIronclad",
+      "DefendIronclad",
+      "Bash"
+    ],
+    "starting_relics": [
+      "BurningBlood"
+    ],
+    "unlocks_after": null,
+    "gender": "Masculine",
+    "color": "red",
+    "dialogue_color": "new",
+    "quotes": {
+      "event_death_prevention": "La mia squadra ha ancora bisogno di me.",
+      "gold_monologue": "[sine]Con tutto questo sfarzo potrò rafforzare l'armeria della mia tribù...[/sine]",
+      "aroma_principle": "[sine][red]Non mi importa del dolore. I miei nemici devono morire.[/red][/sine]",
+      "banter_alive": "Sbrigati.",
+      "banter_dead": "...",
+      "cards_modifier_title": "Carte dell'Ironclad",
+      "cards_modifier_description": "le carte dell'Ironclad ora compariranno nelle ricompense e nei negozi."
+    },
+    "dialogues": [
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Il guerriero ardente è tornato!\nHo qualcosa cucito su misura per te!"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Adoro vederti ridurre in poltiglia i nemici!"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Custodisco ancora quella tua pesante spada... ma non riesco a trovare nessuno che possa restaurarla."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]Ironclad fissa Darv.[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Forse l'Architetto ne sa qualcosa."
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]... Alzati... mio... guerriero...\nè... ora... di... combattere... di... nuovo...[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]... Sei... ancora... consumato... dalla... rabbia... Ottimo...[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]... ti... ricordi... la... prima... volta...\nche... sei... venuto... qui... davanti... a... me...[/sine]"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "[sine]... Eri... furioso...[/sine]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[sine]... Molto... utile...[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Ah, il famoso Ironclad è finalmente al mio cospetto.\nAvvicinati e ti conferirò il mio potere."
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Ah, Ironclad... Per caso il mio ultimo regalo non è bastato?"
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Quante volte sei già tornato mio campione?\nIn passato non eri così forte da riuscire a spazzare via clan interi?"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Ironclad!? Impossibile! Che paura. Molta paura!"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Contratto firmato? Peché!? Errore! Errore grave!"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Io augurare te libertà!\nVakuu cattivo. Molto cattivo! Architetto liberato te?"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]Percepisco molta rabbia in te. Prendi una parte di me e prova trova un po' di quiete...[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]Ti ricordi la sensazione che si prova quando si sogna?\nÈ bello dormire...[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]Devi placare il tuo fuoco interiore.\nMio padre può liberarti...[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "GUERRIERO, POSSIEDI UNA SPADA INCREDIBILE! PERÒ UN'ARMA IN PIÙ NON TI FAREBBE MALE!"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "ARMI PER IL GUERRIERO! PRENDI UN'ARMA! COMBATTIAMO!"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "AFFRONTAMI, IRONCLAD!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]Ironclad affronta Tanx.[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "WOW! CHE COMBATTIMENTO FANTASTICO! PRENDI UN ARMA!"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Il tuo fuoco interiore [jitter][b]brucia[/b][/jitter] splendidamente! Forza, vieni!"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Come sei forte! Vieni e mangia qualcosa.\nNon puoi mica [jitter][b]uccidere[/b][/jitter] a stomaco vuoto!"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Oh, l'Architetto è ancora vivo? Uccidilo [jitter][b]velocemente[/b][/jitter], ok?\nTi aspetterò qui!"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Quindi lo schiavo dell'arcidemone è finalmente arrivato."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Nemico...\nUccidere..."
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Sei stato maledetto a combattere in eterno, eh?"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Architetto... nemico... giurato!"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Sai almeno come ti chiami?"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Provo tanta pena per te."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Uccidere..."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Ironclad, torna da dove sei venuto."
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Immagina di [sine]rivederti[/sine] dopo tanto tempo."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[jitter][b]DEMONE SACRO![/b][/jitter]\nCosa mi hai fatto!?"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Esattamente ciò che mi avevi chiesto."
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Ti senti in colpa per le tribù perdute...?\n[i][font_size=22]Vakuu ride a crepapelle.[/font_size][/i]"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Mia preziosissima marionetta... Perché non hai ancora ucciso l'Architetto?"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Dopo che avrò ucciso l'Architetto, porrò fine alla [jitter][b]TUA VITA![/b][/jitter]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[i][font_size=22][sine]Vakuu sbadiglia[/sine][/font_size][/i]\nBramo il momento in cui ti vedrò soccombere."
+          }
+        ]
+      }
+    ],
+    "image_url": "/static/images/characters/char_select_ironclad.webp"
+  },
+  {
+    "id": "NECROBINDER",
+    "name": "Necrobinder",
+    "description": "Una lich nata nella Guglia che cerca vendetta.\nIn combattimento si affida alla sua fidata mano sinistra: [gold]Osty[/gold].",
+    "starting_hp": 66,
+    "starting_gold": 99,
+    "max_energy": 3,
+    "orb_slots": null,
+    "starting_deck": [
+      "StrikeNecrobinder",
+      "StrikeNecrobinder",
+      "StrikeNecrobinder",
+      "StrikeNecrobinder",
+      "DefendNecrobinder",
+      "DefendNecrobinder",
+      "DefendNecrobinder",
+      "DefendNecrobinder",
+      "Bodyguard",
+      "Unleash"
+    ],
+    "starting_relics": [
+      "BoundPhylactery"
+    ],
+    "unlocks_after": "Regent",
+    "gender": "Feminine",
+    "color": "purple",
+    "dialogue_color": "new",
+    "quotes": {
+      "event_death_prevention": "I miei amici non ce la faranno senza di me.",
+      "gold_monologue": "[sine]Forse ora posso finalmente comprarmi delle scarpe...[/sine]",
+      "aroma_principle": "[sine][purple]Li vendicherò... Non esiterò...[/purple][/sine]",
+      "banter_alive": "Quando vuoi...",
+      "banter_dead": "...",
+      "unlock_text": "Gioca una partita con [orange]{Prerequisite}[/orange] per sbloccare questo personaggio.",
+      "cards_modifier_title": "Carte della Necrobinder",
+      "cards_modifier_description": "le carte della Necrobinder ora compariranno nelle ricompense e nei negozi."
+    },
+    "dialogues": [
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Sembra che tu faccia sul serio. Come posso aiutarti, signorina?"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Hai qualcosa che mi aiuterà a uccidere un uomo spregevole?"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Beh in tal caso... Dai pure un'occhiata!"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Sei ancora sul piede di guerra? Tranquilla, non cercherò di fermarti!"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Questo libro sembra legato alla tua anima... Ha molti più anni di te."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Come hai fatto a impossessartene?"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Gli oggetti [sine]inquietanti[/sine] tendono a finire nella mia collezione."
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]... Condividiamo... lo... stesso... obiettivo...[/sine]"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[jitter]HA UCCISO TUTTO QUELLI CHE AMAVO![/jitter]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[sine]... Il... mio... potere... è... tuo...[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]... Ancora... respira...[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "[sine]Com'è... possibile...?[/sine]"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "[sine]... [red]L'Architetto[/red]... si... sta... indebolendo...\ne... noi... diventiamo... più... forti...[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "Le tue guardie sono morte. Ho sentito dire che puoi donare benedizioni a chiunque desideri la morte dell'Architetto."
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "Apprezzo gli esseri capaci, pertanto ti donerò una parte del mio potere.\nLa prossima volta, non uccidere le mie guardie."
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Una maga necessita di accessori raffinati da impiegare in battaglia. Avvicinati, Necrobinder."
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "All'Architetto non piacerà vedere quel tuo [sine]animaletto[/sine]."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Ti riferisci a Osty? Sarà lui a sferrare il colpo di grazia."
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Morto?! Non morto! Perché marionetta? Grande mano!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Non sono una marionetta. C'è un uomo che devo uccidere.\nCome puoi aiutarmi?"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Uccidere brutto! Prendi! Così meglio!"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Non morta! Bei regali per te! Violenza brutta."
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "No violenza! Meglio collezionare cose luccicanti... luccicanti!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "La mia missione sarà compiuta solo quando l'Architetto sarà un ammasso di polvere.\nLa violenza è inevitabile."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Architetto no cattivo! Perché non parlare? Parlare bello! Molto bello!"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]Il tuo cuore è avvolto da una grande malvagità.[/thinky_dots]"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Anche il tuo lo sarebbe se sapessi ciò che mi è accaduto."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[thinky_dots]Non c'è pace sul tuo cammino.\nPrendi una parte di me per alleggerire i tuoi fardelli...[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]La creatura con la mano ossuta è tornata.\nMi trasmetti ricordi dolorosi. Prendi la mia forza e vattene...[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]Uccidere mio [red]padre[/red] non allevierà il tuo dolore.[/thinky_dots]"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Quindi quella [jitter]cosa[/jitter] sarebbe tuo padre!?"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[thinky_dots]Non siamo noi a scegliere la nostra famiglia...[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "CHE FALCE MERAVIGLIOSA!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Sì, è stata creata appositamente per placare la mia sete di vendetta."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "ANCHE ALLA MANO SERVE UN'ARMA!?"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "AFFRONTAMI, OSTY!"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "AFFRONTAMI, NECROBINDER!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]Necrobinder e Osty affrontano Tanx.[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "CHE LAVORO DI SQUADRA INCREDIBILE! PRENDI UN'ARMA!"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Cosa ci fa un essere scheletrico da queste parti?"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Il mio obiettivo è semplice: vendicare la mia famiglia.\nRaggiungerò la cima e gliela farò pagare."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[jitter][b]Che meraviglia[/b][/jitter]!"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Vieni, vieni! Facciamo ardere le tue fiamme con ancora più [jitter][b]intensità[/b][/jitter]."
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Quelle fiamme intorno a te mi ricordano qualcosa di proibito."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Cos'è che sai?"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "So chi ha scritto quel [jitter][b]libro[/b][/jitter]."
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "ARCHITETTO! Hai ucciso i miei genitori. Hai ucciso il mio amico. Hai distrutto la mia VITA! E ora sarò io a porre fine alla TUA!"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "Cerchi vendetta? No, grazie, non mi interessa."
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "ARCHITETTO! Hai ucciso i miei genitori. Hai uccico il mio amico. Hai ucciso il mio..."
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "La tua rabbia non cambierà il passato."
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "ARCHITETTO! Hai ucciso i miei genitori. Hai ucciso il mio amico. Hai distrutto la mia VITA!"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "Ho fatto ciò che dovevo per mantenere l'ordine."
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "ARCHITETTO! Hai ucciso i miei genitori. Hai ucciso il mio amico. Hai distrutto la mia..."
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "Vita..."
+          },
+          {
+            "order": 2,
+            "speaker": "char",
+            "text": "Cosa...? Muori, mostro!"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Entrambi desideriamo la [sine]vendetta[/sine]. Tuttavia, questa richiede un prezzo da pagare."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Sono pronta a pagare qualsiasi prezzo pur di farlo morire."
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "So dove hai trovato quella [sine]mano ossuta[/sine]."
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "L'Architetto ci ha ferito gravemente a entrambi."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Vai dritto al punto, demone. Mostrami i tuoi contratti."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Vedo che non ti piace perderti in chiacchiere. Molto bene..."
+          }
+        ]
+      }
+    ],
+    "image_url": "/static/images/characters/char_select_necrobinder.webp"
+  },
+  {
+    "id": "REGENT",
+    "name": "Regent",
+    "description": "L'erede del trono stellare.\nNonostante possieda poteri cosmici, sono i suoi seguaci a fare il lavoro sporco.",
+    "starting_hp": 75,
+    "starting_gold": 99,
+    "max_energy": 3,
+    "orb_slots": null,
+    "starting_deck": [
+      "StrikeRegent",
+      "StrikeRegent",
+      "StrikeRegent",
+      "StrikeRegent",
+      "DefendRegent",
+      "DefendRegent",
+      "DefendRegent",
+      "DefendRegent",
+      "FallingStar",
+      "Venerate"
+    ],
+    "starting_relics": [
+      "DivineRight"
+    ],
+    "unlocks_after": "Silent",
+    "gender": "Masculine",
+    "color": "orange",
+    "dialogue_color": "new",
+    "quotes": {
+      "event_death_prevention": "Devo sopravvivere per aiutare la mia squadra!",
+      "gold_monologue": "[sine]Così potrei comandare un esercito con un po' di sale in zucca...[/sine]",
+      "aroma_principle": "[sine][orange]Sono il nuovo Re delle stelle...[/orange][/sine]",
+      "banter_alive": "STO ASPETTANDO!",
+      "banter_dead": "...",
+      "unlock_text": "Gioca una singola partita con [green]{Prerequisite}[/green] per sbloccare questo personaggio.",
+      "cards_modifier_title": "Carte del Regent",
+      "cards_modifier_description": "le carte del Regent ora compariranno nelle ricompense e nei negozi."
+    },
+    "dialogues": [
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Qual buon vento ti porta qui? Vuoi dare un'occhiata alla mia collezione?"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Volentieri, adoro la merce rara..."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Fantastico!"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Ha bisogno di altro, sua Maestà?!"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Mio nuovo amico, ho qualcosa per te!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Sono tutt'orecchi!"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Vorrei tanto offrirti questo regalo, ma ora è nelle mani dell'Architetto!\nTi andrebbe di aiutare un tuo amico in difficoltà?"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "Gigantesca creatura blu, io sono il futuro [orange]re[/orange]!"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "[sine] Che... simpatico...\nci... vedremo... di... nuovo...[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]... di... nuovo...?[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "[jitter]Perché non riesco a vincere?![/jitter]"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "[sine]... Accetta... questa... benedizione...[/sine]"
+          },
+          {
+            "order": 2,
+            "speaker": "char",
+            "text": "Sì... Grazie, Neow."
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "Esigo un'udienza con Nonupeipe!"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "Che bei vestiti di terre remote che indossi!\nOrdina ai tuoi seguaci di farti avvicinare e ti conferirò la mia benedizione."
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Una benedizione regale per un visitatore della medesima caratura.\nServi, portateci una tazza di tè!"
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "L'Architetto è andato fuori di senno! Se solo un nobile campione potesse salvarci da questa sciagura..."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Non temere! Io, Regent, porrò fine a questa sciagura!\nMa prima, versami il tè!"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Viaggiatore! Dallo spazio!? Dove provenire dallo spazio?\nCome venire dallo spazio? Testa a punta! Piccoli amici!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]Regent fa un monologo lungo svariate ore.[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Bello! Molto bello! Ancora! Ancora!"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Altre storie! Trovato questo per te!\nOra altre storie!"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "Orobas, nessuna entità mi apprezza più di te!\nChe bello vederti ancora in vita!"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "Storie?!"
+          },
+          {
+            "order": 2,
+            "speaker": "char",
+            "text": "Certo, certo... Ma prima, hai trovato qualcosa da darmi?"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "Ehi! Sono Regent.\nEhi? [jitter]EHI!?[/jitter]"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "[thinky_dots]Silenzio.\nPrendi una parte di me e prosegui il tuo cammino...[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "Sono tornato! Ah, come mi immaginavo stai dormendo.\nVediamo..."
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "Perché doni parti del tuo corpo così facilmente?"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "[thinky_dots]Perché non farlo? Ho carne in abbondanza per l'intero universo.[/thinky_dots]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[thinky_dots]Quando sarai ritornato, la mia carne sarà completamente rigenerata.\nÈ per questo che dormo così tanto...[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "ARANCIONE!? COME FA QUESTA CREATURA A ESSERE ARANCIONE?"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Tutti sanno che l'arancione è il colore della regalità!"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "INCREDIBILE! CHE POTENZA!"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "CREATURA ARANCIONE! SCEGLI UN'ARMA POTENTE!"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "AFFRONTAMI, REGENT!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "No! Abbiamo già combattuto l'ultima volta che sono venuto qui!"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "AFFRONTAMI DI NUOVO!"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Oh cielo, che visitatore [jitter][b]esotico[/b][/jitter]! Chi saresti tu, caro?"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Non mi chiamare 'caro'! Devi rivolgerti a me con rispetto, razza di... essere gigantesco!"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Ma come sono sgarbata!\n[i][font_size=22]Tezcatara ride di gioia.[/font_size][/i]"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Tu e i tuoi amici siete già tornati?\nVi ho preparato delle [jitter][b]specialità[/b][/jitter] deliziose!"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Ti do il bentornato, mister regalità! Sembra che tu te la stia cavando alla [jitter][b]grande[/b][/jitter]."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Certo! Ho solo avuto dei contrattempi ai piani superiori... come per esempio... morire."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Tutti noi dobbiamo imparare dai nostri errori."
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "Sono arrivato! Ehi, plebeo! È questa la cima?"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "Ho bisogno di silenzio..."
+          },
+          {
+            "order": 2,
+            "speaker": "char",
+            "text": "Ti insegnerò le buone maniere!"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "Rieccomi qui!"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "Quel fastidioso idiota è già tornato?"
+          },
+          {
+            "order": 2,
+            "speaker": "char",
+            "text": "Non sono né fastidioso né idiota! Affrontami!"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "Ne ho abbastanza della tua maleducazione!"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "Finalmente siamo d'accordo su qualcosa."
+          },
+          {
+            "order": 2,
+            "speaker": "char",
+            "text": "Apriamo le danze!"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Un essere stellare? All'interno di queste mura maledette?"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Mi conosci?"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Sì, e credo che possiamo aiutarci a vicenda."
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Posso donarti una grande quantità del mio potere a un piccolo prezzo."
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "Non credo di aver fatto un buon affare. Non mi sento molto bene."
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "Hai letto attentamente i contratti?\nLi hai firmati sapendo ciò a cui andavi incontro, giusto?"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Rispetterai la tua parte dell'accordo?\nO preferisci firmare un altro contratto?"
+          }
+        ]
+      }
+    ],
+    "image_url": "/static/images/characters/char_select_regent.webp"
+  },
+  {
+    "id": "SILENT",
+    "name": "Silent",
+    "description": "Una cacciatrice proveniente da un luogo remoto.\nÈ pronta a pugnalare e avvelenare qualsiasi cosa ostacoli il suo cammino.",
+    "starting_hp": 70,
+    "starting_gold": 99,
+    "max_energy": 3,
+    "orb_slots": null,
+    "starting_deck": [
+      "StrikeSilent",
+      "StrikeSilent",
+      "StrikeSilent",
+      "StrikeSilent",
+      "StrikeSilent",
+      "DefendSilent",
+      "DefendSilent",
+      "DefendSilent",
+      "DefendSilent",
+      "DefendSilent",
+      "Neutralize",
+      "Survivor"
+    ],
+    "starting_relics": [
+      "RingOfTheSnake"
+    ],
+    "unlocks_after": null,
+    "gender": "Feminine",
+    "color": "green",
+    "dialogue_color": "new",
+    "quotes": {
+      "event_death_prevention": "Devo sopravvivere per continuare a cacciare...",
+      "gold_monologue": "[sine]Le mie sorelle sarebbero orgogliose di tutto questo sfarzo...[/sine]",
+      "aroma_principle": "[sine][green]... Cacciare... Dimostrare... Appartenere...[/green][/sine]",
+      "banter_alive": "[sine]...[/sine]",
+      "banter_dead": "...",
+      "unlock_text": "Gioca una partita per sbloccare questo personaggio.",
+      "cards_modifier_title": "Carte della Silent",
+      "cards_modifier_description": "le carte della Silent ora compariranno nelle ricompense e nei negozi."
+    },
+    "dialogues": [
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Anche tu fai ritorno nella Guglia, eh?\nNon riesci a resistere a quei tesori sbrilluccicanti, vero?!"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Ti regalerò qualcosa di bello se mi dai quel bel trofeo che porti!"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "È un peccato che non ti ricordi della mia generosità!\nSì, sì, lo sai com'è fatta Neow..."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "..."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Bene! Ti darò qualcosa da impiegare per il duello finale o per qualsiasi altra cosa tu voglia fare!"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]... Sei... tornata...?\nSapevo... che... saresti... tornata...[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]... Il... tuo...\n trofeo... ti... aspetta...[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]... Entrambe... sappiamo... cosa... vuol... dire... soffrire.. per... mano... della... propria... famiglia...[/sine]"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "..."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[sine]... Cerchi... ancora... approvazione...?\n...[jitter]CHE INGENUA[/jitter]...[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Una ladruncola si è intrufolata nel mio territorio.\nCredi davvero che non ti abbia visto? Forza, esci allo scoperto!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]Silent emerge dall'oscurità...[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Una cacciatrice... Per quale motivo ritorni nella Guglia?\nAvvicinati e accetta le mie benedizioni."
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Assassina, ho dei regali per te. Non essere timida."
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Di tutte le sue marionette, tu sei quella che più mi attira."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "..."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Come sei morta la prima volta? Per caso Neow ti ha [sine]trovata[/sine]?\nÈ un peccato che non spiccichi parola."
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Infezione...? [jitter]CORRUZIONE!?[/jitter] Prendere e scappare!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[sine]...[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Non contagiosa? Letale? Architetto aiutato te?"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Sorelle dove? Sorelle cattive e spaventose!\nTu comportare bene! Non essere come sorelle!"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]Creatura assassina, qui non c'è posto per la violenza.\nPrendi una parte di me e cerca la quiete...[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]Sei a caccia di trofei? Certo, prendi una parte di me...\nSpero solo che possa darti conforto...[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]Mi hai avvelenato...?\nCosa sta succedendo...? zZZzz...[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "UNA CACCIATRICE! AFFILERÒ I TUOI ARTIGLI!"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "PERCHÉ HAI DEI PUGNALI!? NON SONO AFFATTO POTENTI!"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "AFFRONTAMI, SILENT!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]Silent fugge e sfrutta l'occasione per rubare un'arma.[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "DOVE SEI ANDATA!!!"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Avvicinati, essere silenziosa. Non riesco a vederti bene..."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "..."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Puoi [jitter][b]fidarti[/b][/jitter] di me."
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Oh, hai una [jitter][b]malattia[/b][/jitter] terribile. Lascia che ti aiuti."
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Ho conosciuto le tue sorelle, sai? Sono delle ragazze splendide."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "..."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Oh cara... Per caso hai [jitter][b]combattuto[/b][/jitter]?"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Non ti presenti nemmeno?"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Da dove vieni?\nCosa cerchi?"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[jitter]Aaarg![/jitter]\n[jitter][red]MUORI![/red][/jitter]"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Miserabile insolente!\n[jitter]SPARISCI![/jitter]"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Assassina."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[sine]...[/sine]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Non [jitter]finirà[/jitter] bene per te."
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[i][font_size=22]Vakuu mostra i suoi vari contratti a Silent[/font_size][/i]"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "L'Architetto non basta, uccidi anche le tue sorelle!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[sine]...[/sine]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Non servono le parole, siamo uguali io e te."
+          }
+        ]
+      }
+    ],
+    "image_url": "/static/images/characters/char_select_silent.webp"
+  }
+]

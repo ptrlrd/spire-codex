@@ -1,0 +1,170 @@
+[
+  {
+    "id": "BLOCK",
+    "name": "Blocco",
+    "description": "Ti evita di subire danno fino al prossimo turno.",
+    "category": "combat"
+  },
+  {
+    "id": "CARD_REWARD",
+    "name": "Ricompensa di carte",
+    "description": "Un pacchetto di [blue]3[/blue] carte casuali. Puoi sceglierne [blue]1[/blue] da aggiungere al tuo [gold]mazzo[/gold].",
+    "category": "progression"
+  },
+  {
+    "id": "CHANNELING",
+    "name": "Canalizzazione",
+    "description": "Quando un Globo viene canalizzato, viene posizionato nel tuo primo spazio vuoto. Se non hai nessuno spazio vuoto, il tuo primo Globo viene automaticamente [gold]evocato[/gold] per fare spazio.",
+    "category": "combat"
+  },
+  {
+    "id": "COOK",
+    "name": "Cucina",
+    "description": "[gold]Rimuovi[/gold] [blue]2[/blue] carte dal tuo [gold]mazzo[/gold] e ottieni [green]9[/green] PV massimi presso un [gold]luogo di riposo[/gold].",
+    "category": "mechanics"
+  },
+  {
+    "id": "DECK",
+    "name": "Mazzo",
+    "description": "Vedi tutte le carte del tuo mazzo.",
+    "category": "zones"
+  },
+  {
+    "id": "DISCARD_PILE",
+    "name": "Pila degli scarti",
+    "description": "Se il tuo mazzo di pesca è vuoto, la pila degli scarti viene mischiata nel mazzo di pesca.\n\nFai clic per vedere le carte della tua pila degli scarti.",
+    "category": "zones"
+  },
+  {
+    "id": "DRAW_PILE",
+    "name": "Mazzo di pesca",
+    "description": "All'inizio di ogni turno,\npeschi [blue]5[/blue] carte da questo mazzo.\n\nFai clic per vedere le carte del tuo mazzo di pesca (mischiate).",
+    "category": "zones"
+  },
+  {
+    "id": "ENERGY",
+    "name": "Energia",
+    "description": "L'Energia viene usata per giocare carte dalla tua [gold]mano[/gold].",
+    "category": "combat"
+  },
+  {
+    "id": "EVOKE",
+    "name": "Evocazione",
+    "description": "Consumi il primo Globo a destra e attivi il suo effetto di Evocazione.",
+    "category": "combat"
+  },
+  {
+    "id": "EXHAUST_PILE",
+    "name": "Carte esaurite",
+    "description": "Fai clic per vedere le carte esaurite in questo combattimento.",
+    "category": "zones"
+  },
+  {
+    "id": "FATAL",
+    "name": "Letalità",
+    "description": "Si attiva ogni volta che questa carta uccide un nemico non seguace.",
+    "category": "combat"
+  },
+  {
+    "id": "FORGE",
+    "name": "Forgiatura",
+    "description": "La prima volta che esegui una [gold]Forgiatura[/gold] in un combattimento, aggiungi la carta [gold]Spada Sovrana[/gold] alla tua [gold]mano[/gold]. Forgiatura aggiunge danno extra alla carta [gold]Spada Sovrana[/gold].",
+    "category": "mechanics"
+  },
+  {
+    "id": "HIT_POINTS",
+    "name": "Punti vita",
+    "description": "Quando termini i PV, il tuo personaggio morirà.",
+    "category": "progression"
+  },
+  {
+    "id": "LINKED_REWARDS",
+    "name": "Ricompense collegate",
+    "description": "Puoi selezionare solo [blue]1[/blue] ricompensa da questo set.",
+    "category": "progression"
+  },
+  {
+    "id": "MONEY_POUCH",
+    "name": "Oro",
+    "description": "Mostra quanto oro possiedi. L'oro è la valuta della Guglia.",
+    "category": "progression"
+  },
+  {
+    "id": "POTION_SLOT",
+    "name": "Spazio per pozioni",
+    "description": "Usa le pozioni durante il combattimento per ottenere [green]bonus[/green] od [red]ostacolare[/red] i nemici.",
+    "category": "progression"
+  },
+  {
+    "id": "REPLAY",
+    "name": "Riattivazione",
+    "description": "Giochi questa carta una volta in più.",
+    "category": "mechanics"
+  },
+  {
+    "id": "ROOM_ANCIENT",
+    "name": "Antico",
+    "description": "Gli Antichi risiedono in queste stanze.\n\nOffrono bonus, tesori e informazioni incredibili.",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_BOSS",
+    "name": "Boss",
+    "description": "Il nemico più forte dell'area.\n\nSconfiggerlo ti permetterà di avanzare all'Atto successivo.",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_ELITE",
+    "name": "Nem. Élite",
+    "description": "In queste stanze si trovano nemici potenti.\n\nSconfiggendoli riceverai una [gold]reliquia[/gold].",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_ENEMY",
+    "name": "Nemico",
+    "description": "Dei nemici ostili risiedono in queste stanze.",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_EVENT",
+    "name": "Evento",
+    "description": "Qualcosa di insolito avviene in queste stanze...",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_MERCHANT",
+    "name": "Negozio",
+    "description": "Il misterioso mercante vende la sua merce in queste stanze.\n\nQui puoi spendere l'[gold]oro[/gold] che hai guadagnato con tanta fatica!",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_REST",
+    "name": "Luogo di riposo",
+    "description": "Passa in queste stanze per [green]recuperare[/green] dei PV o [gold]potenziare[/gold] una carta.",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_TREASURE",
+    "name": "Stanza del tesoro",
+    "description": "Le [gold]reliquie[/gold] e l'[gold]oro[/gold] si possono trovare in queste stanze tanto agognate.",
+    "category": "rooms"
+  },
+  {
+    "id": "STUN",
+    "name": "Stordimento",
+    "description": "Impedisce al nemico di agire nel suo prossimo turno.",
+    "category": "combat"
+  },
+  {
+    "id": "SUMMON",
+    "name": "Invocazione",
+    "description": "Invochi [gold]Osty[/gold].\nSe l'hai già invocato, aumenti i suoi PV massimi per questo combattimento.",
+    "category": "mechanics"
+  },
+  {
+    "id": "TRANSFORM",
+    "name": "Trasformazione",
+    "description": "Le carte trasformate diventano una carta casuale di qualsiasi rarità.",
+    "category": "mechanics"
+  }
+]

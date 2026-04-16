@@ -1,0 +1,58 @@
+[
+  {
+    "id": "BOUND",
+    "name": "Vincolo",
+    "description": "Puoi giocare solo [blue]1[/blue] carta con [gold]Vincolo[/gold] in ogni turno. Le carte perdono [gold]Vincolo[/gold] al termine del turno.",
+    "extra_card_text": "Vincolo",
+    "is_stackable": false
+  },
+  {
+    "id": "DEVOURED",
+    "name": "Insaziabilità",
+    "description": "Aggiungi [gold]Esaurimento[/gold] a questa carta.",
+    "extra_card_text": null,
+    "is_stackable": false
+  },
+  {
+    "id": "ENTANGLED",
+    "name": "Aggrovigliamento",
+    "description": "Costa [energy:1] extra.",
+    "extra_card_text": "Aggrovigliamento",
+    "is_stackable": false
+  },
+  {
+    "id": "GALVANIZED",
+    "name": "Galvanizzazione",
+    "description": "Subisci [blue]X[/blue] di danno quando questa carta viene giocata.",
+    "extra_card_text": "Subisci X di danno.",
+    "is_stackable": true
+  },
+  {
+    "id": "HEXED",
+    "name": "Maleficio",
+    "description": "Aggiungi [gold]Evanescenza[/gold] a questa carta.",
+    "extra_card_text": null,
+    "is_stackable": false
+  },
+  {
+    "id": "RINGING",
+    "name": "Rintocco",
+    "description": "Puoi giocare solo [blue]1[/blue] carta in questo turno.",
+    "extra_card_text": "Rintocco.",
+    "is_stackable": false
+  },
+  {
+    "id": "SMOG",
+    "name": "Contaminazione",
+    "description": "Non puoi giocare ulteriori carte [gold]Abilità[/gold] in questo turno. L'effetto si rimuove al termine del turno.",
+    "extra_card_text": null,
+    "is_stackable": false
+  },
+  {
+    "id": "WEIGHTED",
+    "name": "Pesantezza",
+    "description": "Perdi [energy:1] quando questa carta viene giocata.",
+    "extra_card_text": "Perdi [energy:1].",
+    "is_stackable": false
+  }
+]

@@ -1,0 +1,2592 @@
+[
+  {
+    "id": "ACCELERANT",
+    "name": "Катализатор",
+    "description": "[gold]Яд[/gold] срабатывает еще 1 раз.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/accelerant_power.webp"
+  },
+  {
+    "id": "ACCURACY",
+    "name": "Меткость",
+    "description": "[gold]«Заточки»[/gold] наносят больше урона.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/accuracy_power.webp"
+  },
+  {
+    "id": "ADAPTABLE",
+    "name": "Адаптивность",
+    "description": "Вместо того, чтобы погибнуть, [gold]this creature[/gold] восстанет и станет сильнее.",
+    "description_raw": "Вместо того, чтобы погибнуть, [gold]{OwnerName}[/gold] восстанет и станет сильнее.",
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/adaptable_power.webp"
+  },
+  {
+    "id": "AFTERIMAGE",
+    "name": "След в воздухе",
+    "description": "Дает [blue]1[/blue] [gold]защиты[/gold], когда вы разыгрываете карту.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/afterimage_power.webp"
+  },
+  {
+    "id": "AGGRESSION",
+    "name": "Агрессия",
+    "description": "В начале хода вы берете случайную Атаку из [gold]стопки cброса[/gold], она [gold]улучшается[/gold] до конца боя.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/aggression_power.webp"
+  },
+  {
+    "id": "ANTICIPATE",
+    "name": "Temporary Dexterity",
+    "description": "Дает [gold]ловкость[/gold] на этот ход.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/anticipate_power.webp"
+  },
+  {
+    "id": "ARSENAL",
+    "name": "Арсенал",
+    "description": "Дает [blue]1[/blue] [gold]силы[/gold], когда вы создаете бесцветную карту.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/arsenal_power.webp"
+  },
+  {
+    "id": "ARTIFACT",
+    "name": "Артефакт",
+    "description": "[gold]Блокирует[/gold] отрицательный эффект.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/artifact_power.webp"
+  },
+  {
+    "id": "ASLEEP",
+    "name": "Сон",
+    "description": "В РАЗРАБОТКЕ",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/asleep_power.webp"
+  },
+  {
+    "id": "AUTOMATION",
+    "name": "Автоматизация",
+    "description": "Дает [energy:1] за каждыую [blue]10-ю[/blue] добираемую карту.",
+    "description_raw": "Дает {Amount:energyIcons()} за каждыую [blue]{BaseCards}-ю[/blue] добираемую карту.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/automation_power.webp"
+  },
+  {
+    "id": "BACK_ATTACK_LEFT",
+    "name": "Атака в спину",
+    "description": "Наносит на [blue]50%[/blue] больше урона, когда атакует в спину.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/back_attack_left_power.webp"
+  },
+  {
+    "id": "BACK_ATTACK_RIGHT",
+    "name": "Атака в спину",
+    "description": "Наносит на [blue]50%[/blue] больше урона, когда атакует в спину.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/back_attack_right_power.webp"
+  },
+  {
+    "id": "BARRICADE",
+    "name": "Баррикада",
+    "description": "[gold]Защита[/gold] не пропадает в начале вашего хода.",
+    "description_raw": "[gold]Защита[/gold] не пропадает в начале {ApplierName.StringValue:cond:хода игрока [gold]{OwnerName}[/gold]|вашего хода}.",
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/barricade_power.webp"
+  },
+  {
+    "id": "BATTLEWORN_DUMMY_TIME_LIMIT",
+    "name": "Ограничение по времени",
+    "description": "У вас еще [blue]3[/blue] хода, чтобы победить Боевой тренажер.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/battleworn_dummy_time_limit_power.webp"
+  },
+  {
+    "id": "BEACON_OF_HOPE",
+    "name": "Луч надежды",
+    "description": "Когда вы получаете [gold]защиту[/gold] в свой ход, другие игроки получают половину [gold]защиты[/gold] от этого количества.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/beacon_of_hope_power.webp"
+  },
+  {
+    "id": "BIASED_COGNITION",
+    "name": "Предвзятость",
+    "description": "Вы теряете [blue]1[/blue] [gold]фокуса[/gold] в начале хода.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/biased_cognition_power.webp"
+  },
+  {
+    "id": "BLACK_HOLE",
+    "name": "Черная дыра",
+    "description": "Наносит [blue]3[/blue] урона ВСЕМ врагам, когда вы получаете или тратите [star:1].",
+    "description_raw": "Наносит [blue]3[/blue] урона ВСЕМ врагам, когда вы получаете или тратите {singleStarIcon}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/black_hole_power.webp"
+  },
+  {
+    "id": "BLOCK_NEXT_TURN",
+    "name": "Отложенная защита",
+    "description": "Даст [blue]4[/blue] [gold]защиты[/gold] в начале следующего хода.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/block_next_turn_power.webp"
+  },
+  {
+    "id": "BLUR",
+    "name": "Неуловимость",
+    "description": "[gold]Защита[/gold] не пропадет в начале следующего хода.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/blur_power.webp"
+  },
+  {
+    "id": "BORROWED_TIME",
+    "name": "Сверхурочные",
+    "description": "Стоимость карт увеличена на 1 энергию в этом ходу",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/borrowed_time_power.webp"
+  },
+  {
+    "id": "BUFFER",
+    "name": "Буфер",
+    "description": "Предотвращает следующую потерю ОЗ.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/buffer_power.webp"
+  },
+  {
+    "id": "BURROWED",
+    "name": "Под землей",
+    "description": "[gold]this creature[/gold] не теряет [gold]защиту[/gold] в начале своего хода. [gold]Оглушается[/gold], если сбить всю [gold]защиту[/gold].",
+    "description_raw": "[gold]{OwnerName}[/gold] не теряет [gold]защиту[/gold] в начале своего хода. [gold]Оглушается[/gold], если сбить всю [gold]защиту[/gold].",
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/burrowed_power.webp"
+  },
+  {
+    "id": "BURST",
+    "name": "Прилив сил",
+    "description": "Следующий разыгранный в этом ходу Навык разыгрывается дополнительный раз.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/burst_power.webp"
+  },
+  {
+    "id": "CALAMITY",
+    "name": "Смерч",
+    "description": "Добавляет в [gold]руку[/gold] случайную Атаку, когда вы разыгрываете Атаку.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/calamity_power.webp"
+  },
+  {
+    "id": "CALCIFY",
+    "name": "Окостенение",
+    "description": "Атаки [gold]Кости[/gold] наносят дополнительный урон.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/calcify_power.webp"
+  },
+  {
+    "id": "CALL_OF_THE_VOID",
+    "name": "Зов бездны",
+    "description": "Добавляет в [gold]руку[/gold] [blue]1[/blue] случайную карту в начале хода. Эта карта становится [gold]эфирной[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/call_of_the_void_power.webp"
+  },
+  {
+    "id": "CHAINS_OF_BINDING",
+    "name": "Сковывающая печать",
+    "description": "Накладывает порчу на [blue]3[/blue] первые карты, которые вы добираете в начале хода, и [gold]запечатывает[/gold] их.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/chains_of_binding_power.webp"
+  },
+  {
+    "id": "CHILD_OF_THE_STARS",
+    "name": "Дитя звезд",
+    "description": "Дает по [blue]1[/blue] [gold]защиты[/gold] за каждую потраченную [star:1].",
+    "description_raw": "Дает по [blue]1[/blue] [gold]защиты[/gold] за каждую потраченную {singleStarIcon}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/child_of_the_stars_power.webp"
+  },
+  {
+    "id": "CLARITY",
+    "name": "Ясность",
+    "description": "Вы доберете [blue]1[/blue] дополнительную карту в начале следующего хода.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/clarity_power.webp"
+  },
+  {
+    "id": "COLOSSUS",
+    "name": "Колосс",
+    "description": "Вы получаете на [blue]50%[/blue] меньше урона от [gold]уязвимых[/gold] врагов в течение [blue]{}[/blue] ходов.",
+    "description_raw": "Вы получаете на [blue]{DamageDecrease:percentLess()}%[/blue] меньше урона от [gold]уязвимых[/gold] врагов {Amount:plural(ru):в этом ходу|в течение [blue]{}[/blue] ходов|в течение [blue]{}[/blue] ходов}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/colossus_power.webp"
+  },
+  {
+    "id": "CONFUSED",
+    "name": "Замешательство",
+    "description": "Каждая добираемая карта имеет случайную стоимость от [blue]0[/blue] до [blue]3[/blue].",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/confused_power.webp"
+  },
+  {
+    "id": "CONQUEROR",
+    "name": "Завоевание",
+    "description": "[gold]this creature[/gold] получает двойной урон от [gold]Клинка монарха[/gold] в течение [blue]{}[/blue] ходов.",
+    "description_raw": "[gold]{OwnerName}[/gold] получает двойной урон от [gold]Клинка монарха[/gold] {Amount:plural(ru):в этом ходу|в течение [blue]{}[/blue] ходов|в течение [blue]{}[/blue] ходов}.",
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/conqueror_power.webp"
+  },
+  {
+    "id": "CONSTRICT",
+    "name": "Удушье",
+    "description": "Вы получаете [blue]1[/blue] урона в конце хода, пока Ползучий горлодав жив.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/constrict_power.webp"
+  },
+  {
+    "id": "CONSUMING_SHADOW",
+    "name": "Ненасытная тень",
+    "description": "[gold]Разряжает[/gold] левую сферу в конце хода.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/consuming_shadow_power.webp"
+  },
+  {
+    "id": "COOLANT",
+    "name": "Охлаждение",
+    "description": "Дает [blue]3[/blue] [gold]защиты[/gold] за каждую уникальную заряженную сферу в начале хода.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/coolant_power.webp"
+  },
+  {
+    "id": "COORDINATE",
+    "name": "Temporary Strength",
+    "description": "Дает [gold]силу[/gold] на этот ход.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/coordinate_power.webp"
+  },
+  {
+    "id": "CORROSIVE_WAVE",
+    "name": "Коррозия",
+    "description": "Накладывает [blue]2[/blue] [gold]яда[/gold] на ВСЕХ врагов, когда вы разыгрываете карту в этом ходу.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/corrosive_wave_power.webp"
+  },
+  {
+    "id": "CORRUPTION",
+    "name": "Порок",
+    "description": "Навыки стоят [blue]0[/blue].\nРазыгрываемые Навыки [gold]сжигаются[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/corruption_power.webp"
+  },
+  {
+    "id": "COUNTDOWN",
+    "name": "Обратный отсчет",
+    "description": "Накладывает [blue]6[/blue] [gold]злого рока[/gold] на случайного врага в начале хода.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/countdown_power.webp"
+  },
+  {
+    "id": "COVERED",
+    "name": "Прикрытие",
+    "description": "Все атаки против вас перенаправляются на союзника.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/covered_power.webp"
+  },
+  {
+    "id": "CRAB_RAGE",
+    "name": "Гнев краба",
+    "description": "[gold]this creature[/gold] получает [blue]6[/blue] [gold]силы[/gold] и [blue]99[/blue] [gold]защиты[/gold] при гибели союзника.",
+    "description_raw": "[gold]{OwnerName}[/gold] получает [blue]{StrengthPower}[/blue] [gold]силы[/gold] и [blue]{Block}[/blue] [gold]защиты[/gold] при гибели союзника.",
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/crab_rage_power.webp"
+  },
+  {
+    "id": "CREATIVE_AI",
+    "name": "Находчивый ИИ",
+    "description": "Добавляет в [gold]руку[/gold] случайный Талант в начале хода.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/creative_ai_power.webp"
+  },
+  {
+    "id": "CRIMSON_MANTLE",
+    "name": "Алая мантия",
+    "description": "Вы теряете [blue]0[/blue] ОЗ и получаете [blue][Amount][/blue] [gold]защиты[/gold] в начале хода.",
+    "description_raw": "Вы теряете [blue]{SelfDamage}[/blue] ОЗ и получаете [blue]{Amount}[/blue] [gold]защиты[/gold] в начале хода.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/crimson_mantle_power.webp"
+  },
+  {
+    "id": "CRUELTY",
+    "name": "Жестокость",
+    "description": "[gold]Уязвимые[/gold] враги получают дополнительный урон.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/cruelty_power.webp"
+  },
+  {
+    "id": "CRUSH_UNDER",
+    "name": "Temporary Strength Down",
+    "description": "Вы теряете [gold]силу[/gold] в этом ходу.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/crush_under_power.webp"
+  },
+  {
+    "id": "CURIOUS",
+    "name": "Любопытство",
+    "description": "Таланты стоят на [blue]1[/blue] [energy:1] меньше.",
+    "description_raw": "Таланты стоят на [blue]1[/blue] {energyPrefix:energyIcons(1)} меньше.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/curious_power.webp"
+  },
+  {
+    "id": "CURL_UP",
+    "name": "Клубок",
+    "description": "Сворачивается и получает [gold]защиту[/gold] (один раз за бой), когда получает урон.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/curl_up_power.webp"
+  },
+  {
+    "id": "DAMPEN",
+    "name": "Подавление",
+    "description": "ВСЕ ваши карты [gold]ухудшаются[/gold], пока Маг-рыцарь жив.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "None",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/dampen_power.webp"
+  },
+  {
+    "id": "DANSE_MACABRE",
+    "name": "Пляска смерти",
+    "description": "Дает [blue][Amount][/blue] [gold]защиты[/gold], когда вы разыгрываете карту стоимостью не менее [energy:2].",
+    "description_raw": "Дает [blue]{Amount}[/blue] [gold]защиты[/gold], когда вы разыгрываете карту стоимостью не менее {Energy:energyIcons()}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/danse_macabre_power.webp"
+  },
+  {
+    "id": "DARK_EMBRACE",
+    "name": "Объятия тьмы",
+    "description": "Вы добираете [blue]1[/blue] карту, когда одна из карт [gold]сжигается[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/dark_embrace_power.webp"
+  },
+  {
+    "id": "DARK_SHACKLES",
+    "name": "Temporary Strength Down",
+    "description": "Вы теряете [gold]силу[/gold] в этом ходу.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/dark_shackles_power.webp"
+  },
+  {
+    "id": "DEBILITATE",
+    "name": "Изнурение",
+    "description": "[gold]Уязвимость[/gold] и [gold]слабость[/gold] в два раза эффективнее в течение [blue]2[/blue] ходов.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/debilitate_power.webp"
+  },
+  {
+    "id": "DEMESNE",
+    "name": "Обитель",
+    "description": "Вы получаете [blue]1[/blue] [gold]энергии[/gold] и добираете [blue]1[/blue] дополнительную карту в начале хода.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/demesne_power.webp"
+  },
+  {
+    "id": "DEMISE",
+    "name": "Обреченность",
+    "description": "[gold]this creature[/gold] теряет [blue][Amount][/blue] ОЗ в конце хода.",
+    "description_raw": "[gold]{OwnerName}[/gold] теряет [blue]{Amount}[/blue] ОЗ в конце хода.",
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/demise_power.webp"
+  },
+  {
+    "id": "DEMON_FORM",
+    "name": "Облик демона",
+    "description": "Дает [blue]2[/blue] [gold]силы[/gold] в начале хода.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/demon_form_power.webp"
+  },
+  {
+    "id": "DEVOUR_LIFE",
+    "name": "Пожиратель жизни",
+    "description": "[gold]Призвать[/gold] [blue]1[/blue], когда вы разыгрываете [gold]«Душу»[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/devour_life_power.webp"
+  },
+  {
+    "id": "DEXTERITY",
+    "name": "Ловкость",
+    "description": "Ловкость повышает [gold]защиту[/gold], полученную от карт.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": true,
+    "image_url": "/static/images/powers/dexterity_power.webp"
+  },
+  {
+    "id": "DIAMOND_DIADEM",
+    "name": "Алмазная диадема",
+    "description": "Враги наносят на [blue]50%[/blue] меньше урона в этом ходу.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/diamond_diadem_power.webp"
+  },
+  {
+    "id": "DIE_FOR_YOU",
+    "name": "Друзья до гроба",
+    "description": "Когда вы получаете урон от атак, [gold]Костя[/gold] теряет ОЗ вместо вас.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/die_for_you_power.webp"
+  },
+  {
+    "id": "DISINTEGRATION",
+    "name": "Расщепление",
+    "description": "Вы получаете [blue]5[/blue] урона в конце хода.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/disintegration_power.webp"
+  },
+  {
+    "id": "DOOM",
+    "name": "Злой рок",
+    "description": "[gold]this creature[/gold] погибнет в конце своего хода, если имеет не больше [blue][Amount][/blue] ОЗ.",
+    "description_raw": "[gold]{OwnerName}[/gold] погибнет в конце {OnPlayer:своего|своего} хода, если имеет не больше [blue]{Amount}[/blue] ОЗ.",
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/doom_power.webp"
+  },
+  {
+    "id": "DOUBLE_DAMAGE",
+    "name": "Двойной урон",
+    "description": "Атаки наносят двойной урон в этом ходу.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/double_damage_power.webp"
+  },
+  {
+    "id": "DRAW_CARDS_NEXT_TURN",
+    "name": "Отложенный добор",
+    "description": "Вы доберете [blue]1[/blue] дополнительную карту в начале следующего хода.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/draw_cards_next_turn_power.webp"
+  },
+  {
+    "id": "DRUM_OF_BATTLE",
+    "name": "Ритм битвы",
+    "description": "[gold]Сжигает[/gold] [blue]{}[/blue] карты на верху [gold]стопки добора[/gold] в начале хода.",
+    "description_raw": "[gold]Сжигает[/gold] {Amount:plural(ru):карту|[blue]{}[/blue] карты|[blue]{}[/blue] карт} на верху [gold]стопки добора[/gold] в начале хода.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/drum_of_battle_power.webp"
+  },
+  {
+    "id": "DUPLICATION",
+    "name": "Удвоение",
+    "description": "Следующая карта разыгрывается дополнительный раз.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/duplication_power.webp"
+  },
+  {
+    "id": "DYING_STAR",
+    "name": "Temporary Strength Down",
+    "description": "Вы теряете [gold]силу[/gold] в этом ходу.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/dying_star_power.webp"
+  },
+  {
+    "id": "ECHO_FORM",
+    "name": "Облик эхо",
+    "description": "Первая в ходу карта разыгрывается дополнительный раз.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/echo_form_power.webp"
+  },
+  {
+    "id": "ENERGY_NEXT_TURN",
+    "name": "Отложенная энергия",
+    "description": "Даст дополнительную [gold]энергию[/gold] в следующем ходу.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/energy_next_turn_power.webp"
+  },
+  {
+    "id": "ENFEEBLING_TOUCH",
+    "name": "Temporary Strength Down",
+    "description": "Вы теряете [gold]силу[/gold] в этом ходу.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/enfeebling_touch_power.webp"
+  },
+  {
+    "id": "ENRAGE",
+    "name": "Бешенство",
+    "description": "Получает [blue]2[/blue] [gold]силы[/gold], когда вы разыгрываете Навык.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/enrage_power.webp"
+  },
+  {
+    "id": "ENTROPY",
+    "name": "Энтропия",
+    "description": "[gold]Преобразует[/gold] [blue]1[/blue] карту в [gold]руке[/gold] в начале хода.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/entropy_power.webp"
+  },
+  {
+    "id": "ENVENOM",
+    "name": "Отравление",
+    "description": "Накладывает на врага [blue]1[/blue] [gold]яда[/gold], когда вы наносите урон по его ОЗ Атаками.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/envenom_power.webp"
+  },
+  {
+    "id": "ESCAPE_ARTIST",
+    "name": "Побег",
+    "description": "Сбежит из боя в конце 4-го хода.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/escape_artist_power.webp"
+  },
+  {
+    "id": "FAN_OF_KNIVES",
+    "name": "Веер из ножей",
+    "description": "[gold]«Заточки»[/gold] наносят урон ВСЕМ врагам.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/fan_of_knives_power.webp"
+  },
+  {
+    "id": "FASTEN",
+    "name": "Предосторожность",
+    "description": "Вы получаете от карт «Оборона» на [blue]4[/blue] больше [gold]защиты[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/fasten_power.webp"
+  },
+  {
+    "id": "FEEDING_FRENZY",
+    "name": "Temporary Strength",
+    "description": "Дает [gold]силу[/gold] на этот ход.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/feeding_frenzy_power.webp"
+  },
+  {
+    "id": "FEEL_NO_PAIN",
+    "name": "Обезболивание",
+    "description": "Дает [blue]3[/blue] [gold]защиты[/gold], когда сжигается карта.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/feel_no_pain_power.webp"
+  },
+  {
+    "id": "FERAL",
+    "name": "Дикость",
+    "description": "Возвращает первую разыгранную за ход Атаку с ценой 0[energy:1] в [gold]руку[/gold] каждый ход.",
+    "description_raw": "Возвращает первую разыгранную за ход Атаку с ценой 0{energyPrefix:energyIcons(1)} в [gold]руку[/gold] каждый ход.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/feral_power.webp"
+  },
+  {
+    "id": "FLAME_BARRIER",
+    "name": "Огненный барьер",
+    "description": "Наносит [blue]4[/blue] урона в ответ, когда вас атакуют в этом ходу.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/flame_barrier_power.webp"
+  },
+  {
+    "id": "FLANKING",
+    "name": "Заход с фланга",
+    "description": "Напарники наносят врагу [blue]в 2 раза[/blue] больше урона от атак в этом ходу.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/flanking_power.webp"
+  },
+  {
+    "id": "FLEX_POTION",
+    "name": "Temporary Strength",
+    "description": "Дает [gold]силу[/gold] на этот ход.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/flex_potion_power.webp"
+  },
+  {
+    "id": "FLUTTER",
+    "name": "Порхание",
+    "description": "Получает на [gold]50%[/gold] меньше урона от Атак. [gold]Оглушается[/gold], если потеряет ОЗ от Атак еще [blue][Amount][/blue] раза.",
+    "description_raw": "Получает на [gold]{DamageDecrease}%[/gold] меньше урона от Атак. [gold]Оглушается[/gold], если потеряет ОЗ от Атак еще [blue]{Amount}[/blue] {Amount:plural(ru):раз|раза|раз}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/flutter_power.webp"
+  },
+  {
+    "id": "FOCUS",
+    "name": "Фокус",
+    "description": "Повышает эффективность сфер.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": true,
+    "image_url": "/static/images/powers/focus_power.webp"
+  },
+  {
+    "id": "FOCUSED_STRIKE",
+    "name": "Temporary Focus",
+    "description": "Дает [gold]фокус[/gold] на этот ход.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/focused_strike_power.webp"
+  },
+  {
+    "id": "FORBIDDEN_GRIMOIRE",
+    "name": "Запретный гримуар",
+    "description": "Вы сможете удалить карту из [gold]колоды[/gold] в конце хода.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/forbidden_grimoire_power.webp"
+  },
+  {
+    "id": "FOREGONE_CONCLUSION",
+    "name": "Предрешенный исход",
+    "description": "В следующем ходу вы возьмете [blue]3[/blue] карты из [gold]стопки добора[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/foregone_conclusion_power.webp"
+  },
+  {
+    "id": "FRAIL",
+    "name": "Хрупкость",
+    "description": "Хрупкость понижает получаемую от карт [gold]защиту[/gold] на [blue]25%[/blue].",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/frail_power.webp"
+  },
+  {
+    "id": "FREE_ATTACK",
+    "name": "Бесплатная Атака",
+    "description": "Следующая разыгранная Атака стоит [blue]0[/blue] [energy:1].",
+    "description_raw": "Следующая разыгранная Атака стоит [blue]0[/blue] {energyPrefix:energyIcons(1)}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/free_attack_power.webp"
+  },
+  {
+    "id": "FREE_POWER",
+    "name": "Бесплатный Талант",
+    "description": "Следующий разыгранный Талант стоит [blue]0[/blue] [energy:1].",
+    "description_raw": "Следующий разыгранный Талант стоит [blue]0[/blue] {energyPrefix:energyIcons(1)}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/free_power_power.webp"
+  },
+  {
+    "id": "FREE_SKILL",
+    "name": "Бесплатный Навык",
+    "description": "Следующий разыгранный Навык стоит [blue]0[/blue] [energy:1].",
+    "description_raw": "Следующий разыгранный Навык стоит [blue]0[/blue] {energyPrefix:energyIcons(1)}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/free_skill_power.webp"
+  },
+  {
+    "id": "FRIENDSHIP",
+    "name": "Вечная дружба",
+    "description": "Дает [blue]1[/blue] [gold]энергии[/gold] в начале хода.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/friendship_power.webp"
+  },
+  {
+    "id": "FURNACE",
+    "name": "Печь",
+    "description": "Вы [gold]закаляете[/gold] [blue]5[/blue] в начале хода.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/furnace_power.webp"
+  },
+  {
+    "id": "GALVANIC",
+    "name": "Гальванизация",
+    "description": "Таланты становятся [gold]гальваническими[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/galvanic_power.webp"
+  },
+  {
+    "id": "GENESIS",
+    "name": "Бытие",
+    "description": "Дает [star:1] в начале хода.",
+    "description_raw": "Дает {singleStarIcon} в начале хода.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/genesis_power.webp"
+  },
+  {
+    "id": "GIGANTIFICATION",
+    "name": "Гигантизм",
+    "description": "Следующая разыгранная Атака наносит тройной урона.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/gigantification_power.webp"
+  },
+  {
+    "id": "GRASP",
+    "name": "Хватка",
+    "description": "При розыгрыше любой карты вы теряете [blue]1[/blue] энергию.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/grasp_power.webp"
+  },
+  {
+    "id": "GRAVITY",
+    "name": "Гравитация",
+    "description": "Наносит [blue]2[/blue] урона ВСЕМ врагам, когда вы разыгрываете карту в этом ходу.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/gravity_power.webp"
+  },
+  {
+    "id": "GUARDED",
+    "name": "Заступник",
+    "description": "Вы получаете от врагов 50% урона.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/guarded_power.webp"
+  },
+  {
+    "id": "HAILSTORM",
+    "name": "Град",
+    "description": "Наносит [blue]6[/blue] урона ВСЕМ врагам, если в конце хода у вас есть заряженная [gold]сфера льда[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/hailstorm_power.webp"
+  },
+  {
+    "id": "HAMMER_TIME",
+    "name": "Кузница",
+    "description": "Когда вы [gold]закаляете[/gold], все напарники [gold]закаляют[/gold] столько же.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/hammer_time_power.webp"
+  },
+  {
+    "id": "HANG",
+    "name": "Повешение",
+    "description": "Все карты [gold]«Повешение»[/gold] наносят цели [blue]200%[/blue] урона.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/hang_power.webp"
+  },
+  {
+    "id": "HARD_TO_KILL",
+    "name": "Живучесть",
+    "description": "[gold]this creature[/gold] теряет за раз не больше [blue]9[/blue] ОЗ.",
+    "description_raw": "[gold]{OwnerName}[/gold] теряет за раз не больше [blue]9[/blue] ОЗ.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/hard_to_kill_power.webp"
+  },
+  {
+    "id": "HARDENED_SHELL",
+    "name": "Прочный панцирь",
+    "description": "[gold]this creature[/gold] может потерять не больше [blue][Amount][/blue] ОЗ за ход.",
+    "description_raw": "[gold]{OwnerName}[/gold] может потерять не больше [blue]{Amount}[/blue] ОЗ за ход.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/hardened_shell_power.webp"
+  },
+  {
+    "id": "HATCH",
+    "name": "Птенец",
+    "description": "Вылупится в конце X-го хода.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/hatch_power.webp"
+  },
+  {
+    "id": "HAUNT",
+    "name": "Терзания",
+    "description": "Отнимает [blue]3[/blue] ОЗ у случайного врага, когда вы разыгрываете [gold]«Душу»[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/haunt_power.webp"
+  },
+  {
+    "id": "HEIST",
+    "name": "Грабеж",
+    "description": "Возвращает все украденное [gold]золото[/gold], когда погибает.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/heist_power.webp"
+  },
+  {
+    "id": "HELICAL_DART",
+    "name": "Temporary Dexterity",
+    "description": "Дает [gold]ловкость[/gold] на этот ход.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/helical_dart_power.webp"
+  },
+  {
+    "id": "HELLO_WORLD",
+    "name": "Привет, мир",
+    "description": "Добавляет в [gold]руку[/gold] [blue]1[/blue] случайную обычную карту в начале хода.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/hello_world_power.webp"
+  },
+  {
+    "id": "HELLRAISER",
+    "name": "Дебошир",
+    "description": "Когда вы добираете карту с «Ударом» в названии, она разыгрывается против случайного врага.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/hellraiser_power.webp"
+  },
+  {
+    "id": "HEX",
+    "name": "Сглаз",
+    "description": "ВСЕ ваши карты [gold]эфирные[/gold], пока Призрачный рыцарь жив.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/hex_power.webp"
+  },
+  {
+    "id": "HIGH_VOLTAGE",
+    "name": "Высокое напряжение",
+    "description": "[gold]this creature[/gold] получает [blue][Amount][/blue] [gold]силы[/gold] в начале своего хода.",
+    "description_raw": "[gold]{OwnerName}[/gold] получает [blue]{Amount}[/blue] [gold]силы[/gold] в начале своего хода.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/high_voltage_power.webp"
+  },
+  {
+    "id": "HOTFIX",
+    "name": "Temporary Focus",
+    "description": "Дает [gold]фокус[/gold] на этот ход.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/hotfix_power.webp"
+  },
+  {
+    "id": "HUNGER",
+    "name": "Ненасытность",
+    "description": "Разыгрываемые Атаки и Навыки [gold]сжигаются[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/hunger_power.webp"
+  },
+  {
+    "id": "ILLUSION",
+    "name": "Иллюзия",
+    "description": "Воскресает с полными ОЗ в следующем ходу, когда погибает.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/illusion_power.webp"
+  },
+  {
+    "id": "IMBALANCED",
+    "name": "Неповоротливость",
+    "description": "[gold]this creature[/gold] [gold]оглушается[/gold], если вы полностью защищаетесь от его атак.",
+    "description_raw": "[gold]{OwnerName}[/gold] [gold]оглушается[/gold], если {IsMultiplayer:любой игрок полностью защищается|вы полностью защищаетесь} от его атак.",
+    "type": "Debuff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/imbalanced_power.webp"
+  },
+  {
+    "id": "IMPROVEMENT",
+    "name": "Развитие",
+    "description": "[gold]Улучшает[/gold] случайную карту в конце боя.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/improvement_power.webp"
+  },
+  {
+    "id": "INFERNO",
+    "name": "Кромешный ад",
+    "description": "Вы теряете [blue]0[/blue] ОЗ в начале хода. Наносит [blue][Amount][/blue] урона ВСЕМ врагам, когда вы теряете ОЗ в свой ход.",
+    "description_raw": "Вы теряете [blue]{SelfDamage}[/blue] ОЗ в начале хода. Наносит [blue]{Amount}[/blue] урона ВСЕМ врагам, когда вы теряете ОЗ в свой ход.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/inferno_power.webp"
+  },
+  {
+    "id": "INFESTED",
+    "name": "Заражение",
+    "description": "Когда погибает, призывает… нечто.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/infested_power.webp"
+  },
+  {
+    "id": "INFINITE_BLADES",
+    "name": "Бесконечные клинки",
+    "description": "Добавляет в [gold]руку[/gold] [gold]«Заточку»[/gold] в начале хода.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/infinite_blades_power.webp"
+  },
+  {
+    "id": "INTANGIBLE",
+    "name": "Неосязаемость",
+    "description": "Понижает получаемый урон и потерю ОЗ в этом ходу до [blue]1[/blue].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/intangible_power.webp"
+  },
+  {
+    "id": "INTERCEPT",
+    "name": "Перехват",
+    "description": "Все атаки против вашего союзника будут направлены на вас.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/intercept_power.webp"
+  },
+  {
+    "id": "ITERATION",
+    "name": "Пробы и ошибки",
+    "description": "Вы добираете карты, когда добираете Статус первый раз за ход.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/iteration_power.webp"
+  },
+  {
+    "id": "JUGGERNAUT",
+    "name": "Махина",
+    "description": "Наносит [blue]5[/blue] урона случайному врагу, когда вы получаете [gold]защиту[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/juggernaut_power.webp"
+  },
+  {
+    "id": "JUGGLING",
+    "name": "Жонглер",
+    "description": "Добавляет в [gold]руку[/gold] копию каждой 3-й разыгранной за ход Атаки.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/juggling_power.webp"
+  },
+  {
+    "id": "KNOCKDOWN",
+    "name": "Наповал",
+    "description": "Это существо получает [blue]в [Amount] раза[/blue] больше урона от других игроков в этом ходу.",
+    "description_raw": "Это существо получает [blue]в {Amount} {Amount:plural(ru):раз|раза|раз}[/blue] больше урона от других игроков в этом ходу.",
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/knockdown_power.webp"
+  },
+  {
+    "id": "LEADERSHIP",
+    "name": "Руководство",
+    "description": "Все напарники наносят на [blue]1[/blue] урона больше.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/leadership_power.webp"
+  },
+  {
+    "id": "LETHALITY",
+    "name": "Смертоубийство",
+    "description": "Первая за ход Атака наносит 150% урона.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/lethality_power.webp"
+  },
+  {
+    "id": "LIGHTNING_ROD",
+    "name": "Громоотвод",
+    "description": "[gold]Заряжает[/gold] [blue]1[/blue] [gold]сферу молнии[/gold] в начале [blue]2[/blue] следующих ходов.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/lightning_rod_power.webp"
+  },
+  {
+    "id": "LOOP",
+    "name": "Цикл",
+    "description": "Активирует пассивный эффект правой сферы в начале хода.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/loop_power.webp"
+  },
+  {
+    "id": "MACHINE_LEARNING",
+    "name": "Машинное обучение",
+    "description": "Вы добираете [blue]1[/blue] дополнительную карту в начале хода.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/machine_learning_power.webp"
+  },
+  {
+    "id": "MAGIC_BOMB",
+    "name": "Магическая бомба",
+    "description": "Вы получите [blue]20[/blue] урона в конце хода, если Маг-рыцарь жив.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/magic_bomb_power.webp"
+  },
+  {
+    "id": "MANGLE",
+    "name": "Temporary Strength Down",
+    "description": "Вы теряете [gold]силу[/gold] в этом ходу.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/mangle_power.webp"
+  },
+  {
+    "id": "MASTER_PLANNER",
+    "name": "Наготове",
+    "description": "Разыгрываемые навыки становятся [gold]коварными[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/master_planner_power.webp"
+  },
+  {
+    "id": "MAYHEM",
+    "name": "Беспредел",
+    "description": "Вы разыгрываете карту с верха [gold]стопки добора[/gold] в начале хода.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/mayhem_power.webp"
+  },
+  {
+    "id": "MIND_ROT",
+    "name": "Загнивающий рассудок",
+    "description": "Вы добираете на [blue]1[/blue] карту меньше в начале хода.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/mind_rot_power.webp"
+  },
+  {
+    "id": "MINION",
+    "name": "Прислужник",
+    "description": "Прислужники сбегают из боя, когда погибает их лидер.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/minion_power.webp"
+  },
+  {
+    "id": "MONARCHS_GAZE",
+    "name": "Королевский нрав",
+    "description": "Враг теряет [blue]1[/blue] [gold]силы[/gold] в этом ходу, когда вы его атакуете.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/monarchs_gaze_power.webp"
+  },
+  {
+    "id": "MONARCHS_GAZE_STRENGTH_DOWN",
+    "name": "Temporary Strength Down",
+    "description": "Вы теряете [gold]силу[/gold] в этом ходу.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/monarchs_gaze_strength_down_power.webp"
+  },
+  {
+    "id": "MONOLOGUE",
+    "name": "Монолог",
+    "description": "Дает [blue]1[/blue] [gold]силы[/gold] на этот ход, когда вы разыгрываете карту.\nСейчас дает [blue]0[/blue] [gold]силы[/gold].",
+    "description_raw": "Дает [blue]{StrengthPower}[/blue] [gold]силы[/gold] на этот ход, когда вы разыгрываете карту.\nСейчас дает [blue]{StrengthApplied}[/blue] [gold]силы[/gold].",
+    "type": "Buff",
+    "stack_type": "None",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/monologue_power.webp"
+  },
+  {
+    "id": "NECRO_MASTERY",
+    "name": "Высшая некромантия",
+    "description": "Когда [gold]Костя[/gold] теряет ОЗ, ВСЕ враги теряют столько же.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/necro_mastery_power.webp"
+  },
+  {
+    "id": "NEMESIS",
+    "name": "Немезис",
+    "description": "Получает [blue]1[/blue] [gold]неосязаемости[/gold] в конце каждого второго хода.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/nemesis_power.webp"
+  },
+  {
+    "id": "NEUROSURGE",
+    "name": "Мозговой штурм",
+    "description": "Вы накладываете на себя [blue]3[/blue] [gold]злого рока[/gold] в начале хода.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/neurosurge_power.webp"
+  },
+  {
+    "id": "NIGHTMARE",
+    "name": "Кошмар",
+    "description": "Добавит [blue]3[/blue] копии выбранной карты в [gold]руку[/gold] в начале следующего хода.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/nightmare_power.webp"
+  },
+  {
+    "id": "NO_BLOCK",
+    "name": "Без защиты",
+    "description": "Карты не дают [gold]защиту[/gold].",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/no_block_power.webp"
+  },
+  {
+    "id": "NO_DRAW",
+    "name": "Без добора",
+    "description": "Вы не можете добирать карты в этом ходу.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/no_draw_power.webp"
+  },
+  {
+    "id": "NO_ENERGY_GAIN",
+    "name": "Предел энергии",
+    "description": "Вы не можете получать [energy:1] до конца хода.",
+    "description_raw": "Вы не можете получать {energyPrefix:energyIcons(1)} до конца хода.",
+    "type": "Debuff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/no_energy_gain_power.webp"
+  },
+  {
+    "id": "NOSTALGIA",
+    "name": "Ностальгия",
+    "description": "Кладет первую Атаку или первый Навык за ход на верх [gold]стопки добора[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/nostalgia_power.webp"
+  },
+  {
+    "id": "NOXIOUS_FUMES",
+    "name": "Едкие испарения",
+    "description": "Накладывает [blue]2[/blue] [gold]яда[/gold] на ВСЕХ врагов в начале хода.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/noxious_fumes_power.webp"
+  },
+  {
+    "id": "OBLIVION",
+    "name": "Забвение",
+    "description": "Получает [blue]1[/blue] [gold]злого рока[/gold], когда вы разыгрываете карту.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/oblivion_power.webp"
+  },
+  {
+    "id": "ONE_TWO_PUNCH",
+    "name": "Комбо",
+    "description": "Следующая Атака в этом ходу разыгрывается дополнительный раз.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/one_two_punch_power.webp"
+  },
+  {
+    "id": "ORBIT",
+    "name": "Орбита",
+    "description": "Дает [energy:1] за каждые потраченные [energy:4].",
+    "description_raw": "Дает {Amount:energyIcons()} за каждые потраченные {Energy:energyIcons()}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/orbit_power.webp"
+  },
+  {
+    "id": "OUTBREAK",
+    "name": "Эпидемия",
+    "description": "Наносит [blue][Amount][/blue] урона ВСЕМ врагам за каждый [blue]3-й[/blue] раз, когда вы накладываете [gold]яд[/gold].",
+    "description_raw": "Наносит [blue]{Amount}[/blue] урона ВСЕМ врагам за каждый [blue]{Repeat}-й[/blue] раз, когда вы накладываете [gold]яд[/gold].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/outbreak_power.webp"
+  },
+  {
+    "id": "PAGESTORM",
+    "name": "Переплет",
+    "description": "Вы добираете [blue]1[/blue] карту, когда добираете [gold]эфирную[/gold] карту.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/pagestorm_power.webp"
+  },
+  {
+    "id": "PAINFUL_STABS",
+    "name": "Болезненные порезы",
+    "description": "Добавляет [blue]1[/blue] [gold]«Рану»[/gold] в [gold]стопку сброса[/gold], когда вы получаете от атак урон по ОЗ.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/painful_stabs_power.webp"
+  },
+  {
+    "id": "PALE_BLUE_DOT",
+    "name": "Земля в иллюминаторе",
+    "description": "Вы добираете [blue][Amount][/blue] дополнительные карты в следующем ходу, если разыгрываете не менее [blue]5[/blue] карт в текущем.",
+    "description_raw": "Вы добираете [blue]{Amount}[/blue] {Amount:plural(ru):дополнительную карту|дополнительные карты|дополнительных карт} в следующем ходу, если разыгрываете не менее [blue]{CardPlay}[/blue] карт в текущем.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/pale_blue_dot_power.webp"
+  },
+  {
+    "id": "PANACHE",
+    "name": "Искрометность",
+    "description": "Нанесет [blue][Amount][/blue] урона ВСЕМ врагам, если вы разыграете еще [blue]5[/blue] plural(ru):карту в этом ходу.",
+    "description_raw": "Нанесет [blue]{Amount}[/blue] урона ВСЕМ врагам, если вы разыграете еще [blue]{CardsLeft}[/blue] {CardsLeft:plural(ru):карту|карты|карт} в этом ходу.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/panache_power.webp"
+  },
+  {
+    "id": "PAPER_CUTS",
+    "name": "Бумажные порезы",
+    "description": "Вы теряете [blue][Amount][/blue] [gold]макс. ОЗ[/gold], когда [gold]this creature[/gold] наносит атаками урон по ОЗ.",
+    "description_raw": "Вы теряете [blue]{Amount}[/blue] [gold]макс. ОЗ[/gold], когда [gold]{OwnerName}[/gold] наносит атаками урон по ОЗ.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/paper_cuts_power.webp"
+  },
+  {
+    "id": "PARRY",
+    "name": "Парирование",
+    "description": "Дает [blue]8[/blue] [gold]защиты[/gold], когда вы разыгрываете [gold]Клинок монарха[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/parry_power.webp"
+  },
+  {
+    "id": "PERSONAL_HIVE",
+    "name": "Личный улей",
+    "description": "Добавляет в [gold]стопку добора[/gold] [gold]«Головокружение»[/gold], когда получает урон от Атак.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/personal_hive_power.webp"
+  },
+  {
+    "id": "PHANTOM_BLADES",
+    "name": "Призрачные клинки",
+    "description": "[gold]«Заточки»[/gold] [gold]оставляются[/gold].\nПервая [gold]«Заточка»[/gold] за ход наносит [blue]9[/blue] дополнительного урона.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/phantom_blades_power.webp"
+  },
+  {
+    "id": "PIERCING_WAIL",
+    "name": "Temporary Strength Down",
+    "description": "Вы теряете [gold]силу[/gold] в этом ходу.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/piercing_wail_power.webp"
+  },
+  {
+    "id": "PILLAR_OF_CREATION",
+    "name": "Основа мироздания",
+    "description": "Дает [blue]5[/blue] [gold]защиты[/gold], когда вы создаете карту.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/pillar_of_creation_power.webp"
+  },
+  {
+    "id": "PLATING",
+    "name": "Панцирь",
+    "description": "Дает [blue][Amount][/blue] [gold]защиты[/gold] в конце хода. Понижается на [blue]1[/blue] в начале хода.",
+    "description_raw": "Дает [blue]{Amount}[/blue] [gold]защиты[/gold] в конце хода. Понижается на [blue]{Decrement}[/blue] в начале хода.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/plating_power.webp"
+  },
+  {
+    "id": "PLOW",
+    "name": "Крах",
+    "description": "[gold]this creature[/gold] [gold]оглушается[/gold] и теряет всю [gold]силу[/gold], когда ОЗ понижается до [blue][Amount][/blue] или меньше.",
+    "description_raw": "[gold]{OwnerName}[/gold] [gold]оглушается[/gold] и теряет всю [gold]силу[/gold], когда ОЗ понижается до [blue]{Amount}[/blue] или меньше.",
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/plow_power.webp"
+  },
+  {
+    "id": "POISON",
+    "name": "Яд",
+    "description": "Яд отнимает ОЗ в начале хода отравленного существа, затем понижается на [blue]1[/blue].",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/poison_power.webp"
+  },
+  {
+    "id": "POSSESS_SPEED",
+    "name": "Краденая ловкость",
+    "description": "Возвращает похищенную [gold]ловкость[/gold], когда погибает.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/possess_speed_power.webp"
+  },
+  {
+    "id": "POSSESS_STRENGTH",
+    "name": "Похищенная сила",
+    "description": "Возвращает похищенную [gold]силу[/gold], когда погибает.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/possess_strength_power.webp"
+  },
+  {
+    "id": "PREP_TIME",
+    "name": "Подготовка",
+    "description": "Дает [blue]4[/blue] [gold]бодрости[/gold] в начале хода.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/prep_time_power.webp"
+  },
+  {
+    "id": "PYRE",
+    "name": "Костер",
+    "description": "Дает [blue]1[/blue] [gold]энергии[/gold] в начале хода.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/pyre_power.webp"
+  },
+  {
+    "id": "RADIANCE",
+    "name": "Теплота",
+    "description": "Дает [energy:1] в течение [blue]{}[/blue] ходов.",
+    "description_raw": "{Amount:plural(ru):Даст|Дает|Дает} {Energy:energyIcons()} {Amount:plural(ru):в следующем ходу|в течение [blue]{}[/blue] ходов|в течение [blue]{}[/blue] ходов}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/radiance_power.webp"
+  },
+  {
+    "id": "RAGE",
+    "name": "Ярость",
+    "description": "Дает [blue]3[/blue] [gold]защиты[/gold], когда вы разыгрываете Атаку.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/rage_power.webp"
+  },
+  {
+    "id": "RAMPART",
+    "name": "Заслон",
+    "description": "Дает [blue]25[/blue] [gold]защиты[/gold] Наводчику в начале вашего хода.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/rampart_power.webp"
+  },
+  {
+    "id": "RAVENOUS",
+    "name": "Обжора",
+    "description": "Слизень-падальщик сразу съедает погибающих союзников, получая [gold]оглушение[/gold] и [blue]1[/blue] [gold]силы[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/ravenous_power.webp"
+  },
+  {
+    "id": "REAPER_FORM",
+    "name": "Облик жнеца",
+    "description": "Атаки накладывают [gold]злой рок[/gold], равный нанесенному по ОЗ цели урону.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/reaper_form_power.webp"
+  },
+  {
+    "id": "REATTACH",
+    "name": "Восстановление",
+    "description": "Воскресает через [blue]2[/blue] хода с [blue]25[/blue] ОЗ, если хотя бы один сегмент жив.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/reattach_power.webp"
+  },
+  {
+    "id": "REBOUND",
+    "name": "Откат",
+    "description": "Следующая разыгранная карта кладется на верх [gold]стопки добора[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/rebound_power.webp"
+  },
+  {
+    "id": "REFLECT",
+    "name": "Отражение",
+    "description": "Урон, от которого вы [gold]защищаетесь[/gold], наносится врагу.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/reflect_power.webp"
+  },
+  {
+    "id": "REGEN",
+    "name": "Регенерация",
+    "description": "[gold]Регенерация[/gold] восполняет ОЗ в конце хода, затем понижается на [blue]1[/blue].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/regen_power.webp"
+  },
+  {
+    "id": "REPTILE_TRINKET",
+    "name": "Temporary Strength",
+    "description": "Дает [gold]силу[/gold] на этот ход.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/reptile_trinket_power.webp"
+  },
+  {
+    "id": "RETAIN_HAND",
+    "name": "Постоянство",
+    "description": "Вы [gold]оставляете[/gold] карты в [gold]руке[/gold] в течение [blue]2[/blue] ходов.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/retain_hand_power.webp"
+  },
+  {
+    "id": "RINGING",
+    "name": "Звон в ушах",
+    "description": "Вы можете разыграть только [blue]1[/blue] карту в этом ходу.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/ringing_power.webp"
+  },
+  {
+    "id": "RITUAL",
+    "name": "Ритуал",
+    "description": "Дает [gold]силу[/gold] в конце хода.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/ritual_power.webp"
+  },
+  {
+    "id": "ROLLING_BOULDER",
+    "name": "Каменная лавина",
+    "description": "Наносит [blue][Amount][/blue] урона ВСЕМ врагам в начале хода, затем урон повышается на [blue]5[/blue].",
+    "description_raw": "Наносит [blue]{Amount}[/blue] урона ВСЕМ врагам в начале хода, затем урон повышается на [blue]{Damage}[/blue].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/rolling_boulder_power.webp"
+  },
+  {
+    "id": "ROYALTIES",
+    "name": "Дань",
+    "description": "Дает [blue]25[/blue] [gold]золота[/gold] в конце боя.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/royalties_power.webp"
+  },
+  {
+    "id": "RUPTURE",
+    "name": "Надрыв",
+    "description": "Дает [blue]1[/blue] [gold]силы[/gold], когда вы теряете ОЗ в свой ход.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/rupture_power.webp"
+  },
+  {
+    "id": "SANDPIT",
+    "name": "Зыбучие пески",
+    "description": "Способность Проглота.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/sandpit_power.webp"
+  },
+  {
+    "id": "SCRUTINY",
+    "name": "Укоризна",
+    "description": "Вы не можете добирать дополнительные карты в свой ход.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/scrutiny_power.webp"
+  },
+  {
+    "id": "SEEKING_EDGE",
+    "name": "Жаждущий клинок",
+    "description": "[gold]Клинок монарха[/gold] наносит урон ВСЕМ врагам.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/seeking_edge_power.webp"
+  },
+  {
+    "id": "SELF_FORMING_CLAY",
+    "name": "Сам себе скульптор",
+    "description": "Даст [blue]3[/blue] [gold]защиты[/gold] в следующем ходу.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/self_forming_clay_power.webp"
+  },
+  {
+    "id": "SENTRY_MODE",
+    "name": "Дозор",
+    "description": "Добавляет в [gold]руку[/gold] [blue]1[/blue] [gold]«Всевидящее око»[/gold] в начале хода.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/sentry_mode_power.webp"
+  },
+  {
+    "id": "SERPENT_FORM",
+    "name": "Облик змеи",
+    "description": "Наносит [blue]4[/blue] урона случайному врагу, когда вы разыгрываете карту.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/serpent_form_power.webp"
+  },
+  {
+    "id": "SETUP_STRIKE",
+    "name": "Temporary Strength",
+    "description": "Дает [gold]силу[/gold] на этот ход.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/setup_strike_power.webp"
+  },
+  {
+    "id": "SHACKLING_POTION",
+    "name": "Temporary Strength Down",
+    "description": "Вы теряете [gold]силу[/gold] в этом ходу.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/shackling_potion_power.webp"
+  },
+  {
+    "id": "SHADOW_STEP",
+    "name": "Шаг в тень",
+    "description": "В следующем ходу Атаки будут наносить двойной урон.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/shadow_step_power.webp"
+  },
+  {
+    "id": "SHADOWMELD",
+    "name": "Бой с тенью",
+    "description": "Удваивает получаемую в этом ходу [gold]защиту[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/shadowmeld_power.webp"
+  },
+  {
+    "id": "SHRIEK",
+    "name": "Болезненный визг",
+    "description": "[gold]this creature[/gold] [gold]оглушается[/gold], когда ОЗ понижается до [blue][Amount][/blue] или ниже первый раз за бой.",
+    "description_raw": "[gold]{OwnerName}[/gold] [gold]оглушается[/gold], когда ОЗ понижается до [blue]{Amount}[/blue] или ниже первый раз за бой.",
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": true,
+    "image_url": "/static/images/powers/shriek_power.webp"
+  },
+  {
+    "id": "SHRINK",
+    "name": "Уменьшение",
+    "description": "[gold]this creature[/gold] наносит на [blue]30%[/blue] меньше урона.",
+    "description_raw": "{ApplierName.StringValue:cond:Пока {} остается на поле боя, вы наносите|[gold]{OwnerName}[/gold] наносит} на [blue]{DamageDecrease}%[/blue] меньше урона{Amount:cond:==1? в этом ходу|>1? в течение [blue]{}[/blue] ходов|}.",
+    "type": "Debuff",
+    "stack_type": "None",
+    "allow_negative": true,
+    "image_url": "/static/images/powers/shrink_power.webp"
+  },
+  {
+    "id": "SHROUD",
+    "name": "Сумрак",
+    "description": "Дает [blue]3[/blue] [gold]защиты[/gold], когда вы накладываете [gold]злой рок[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/shroud_power.webp"
+  },
+  {
+    "id": "SIC_EM",
+    "name": "Взять",
+    "description": "Вы [gold]призываете[/gold] [blue]3[/blue], когда [gold]Костя[/gold] атакует в этом ходу.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/sic_em_power.webp"
+  },
+  {
+    "id": "SIGNAL_BOOST",
+    "name": "Усиленный сигнал",
+    "description": "Следующий Талант разыгрывается дополнительный раз.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/signal_boost_power.webp"
+  },
+  {
+    "id": "SKITTISH",
+    "name": "Пугливость",
+    "description": "[gold]this creature[/gold] получает [blue][Amount][/blue] [gold]защиты[/gold], когда теряет ОЗ от Атак первый раз за ход.",
+    "description_raw": "[gold]{OwnerName}[/gold] получает [blue]{Amount}[/blue] [gold]защиты[/gold], когда теряет ОЗ от Атак первый раз за ход.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/skittish_power.webp"
+  },
+  {
+    "id": "SLEIGHT_OF_FLESH",
+    "name": "Податливая плоть",
+    "description": "Наносит цели [blue]13[/blue] урона, когда вы накладываете отрицательный эффект.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/sleight_of_flesh_power.webp"
+  },
+  {
+    "id": "SLIPPERY",
+    "name": "Изворотливость",
+    "description": "Следующие [blue]{}[/blue] раза, когда [gold]this creature[/gold] теряет ОЗ, отнимается только [blue]1[/blue] ОЗ.",
+    "description_raw": "{Amount:plural(ru):Следующий раз|Следующие [blue]{}[/blue] раза|Следующие [blue]{}[/blue] раз}, когда [gold]{OwnerName}[/gold] {Amount:plural(ru):потеряет|теряет|теряет} ОЗ, отнимается только [blue]1[/blue] ОЗ.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/slippery_power.webp"
+  },
+  {
+    "id": "SLOTH",
+    "name": "Лень",
+    "description": "Вы можете разыграть не более [blue]3[/blue] карт за ход.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/sloth_power.webp"
+  },
+  {
+    "id": "SLOW",
+    "name": "Медлительность",
+    "description": "Получает на [blue]10%[/blue] больше урона от Атак в этом ходу, когда вы разыгрываете карты.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/slow_power.webp"
+  },
+  {
+    "id": "SLUMBER",
+    "name": "Дремота",
+    "description": "Пробуждается через 3 хода или после того, как 3 раза потеряет ОЗ.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/slumber_power.webp"
+  },
+  {
+    "id": "SMOGGY",
+    "name": "Смог",
+    "description": "Вы можете разыграть не больше [blue]1[/blue] Навыка за ход.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/smoggy_power.webp"
+  },
+  {
+    "id": "SMOKESTACK",
+    "name": "Дымоход",
+    "description": "Наносит урон ВСЕМ врагам, когда вы создаете Статус.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/smokestack_power.webp"
+  },
+  {
+    "id": "SNEAKY",
+    "name": "Скрытность",
+    "description": "Дает [gold]защиту[/gold], когда другой игрок атакует врага.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/sneaky_power.webp"
+  },
+  {
+    "id": "SOAR",
+    "name": "Крылья",
+    "description": "Получает [gold]50%[/gold] урона от Атак, пока не приземлится.",
+    "description_raw": "Получает [gold]{DamageDecrease}%[/gold] урона от Атак, пока не приземлится.",
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/soar_power.webp"
+  },
+  {
+    "id": "SPECTRUM_SHIFT",
+    "name": "Спектральный сдвиг",
+    "description": "Добавляет в [gold]руку[/gold] [blue]1[/blue] случайную бесцветную карту в начале хода.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/spectrum_shift_power.webp"
+  },
+  {
+    "id": "SPEED_POTION",
+    "name": "Temporary Dexterity",
+    "description": "Дает [gold]ловкость[/gold] на этот ход.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/speed_potion_power.webp"
+  },
+  {
+    "id": "SPEEDSTER",
+    "name": "Гонка",
+    "description": "Наносит [blue]1[/blue] урона ВСЕМ врагам, когда вы добираете карту в этом ходу.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/speedster_power.webp"
+  },
+  {
+    "id": "SPINNER",
+    "name": "Спиннер",
+    "description": "[gold]Заряжает[/gold] [blue]1[/blue] [gold]сферу стекла[/gold] в начале хода.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/spinner_power.webp"
+  },
+  {
+    "id": "SPIRIT_OF_ASH",
+    "name": "Дух пепла",
+    "description": "Дает [blue]4[/blue] [gold]защиты[/gold], когда вы разыгрываете [gold]эфирную[/gold] карту.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/spirit_of_ash_power.webp"
+  },
+  {
+    "id": "STAMPEDE",
+    "name": "Натиск",
+    "description": "Вы разыгрываете [blue]1[/blue] случайную Атаку из [gold]руки[/gold] против случайного врага в конце хода.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/stampede_power.webp"
+  },
+  {
+    "id": "STAR_NEXT_TURN",
+    "name": "Отложенная звезда",
+    "description": "Даст 1 [star:1] в следующем ходу.",
+    "description_raw": "Даст 1 {singleStarIcon} в следующем ходу.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/star_next_turn_power.webp"
+  },
+  {
+    "id": "STEAM_ERUPTION",
+    "name": "Извержение пара",
+    "description": "Нанесет урон в следующем ходу после гибели.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/steam_eruption_power.webp"
+  },
+  {
+    "id": "STOCK",
+    "name": "Массовое производство",
+    "description": "Когда этот Рубот погибает, другой занимает его место.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/stock_power.webp"
+  },
+  {
+    "id": "STORM",
+    "name": "Шторм",
+    "description": "[gold]Заряжает[/gold] [blue]1[/blue] [gold]сферу молнии[/gold], когда вы разыгрываете Талант.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/storm_power.webp"
+  },
+  {
+    "id": "STRANGLE",
+    "name": "Асфиксия",
+    "description": "Теряет [blue]2[/blue] ОЗ, когда вы разыгрываете карту в этом ходу.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/strangle_power.webp"
+  },
+  {
+    "id": "STRATAGEM",
+    "name": "Стратагема",
+    "description": "При перемешивании [gold]стопки добора[/gold] переносит в [gold]руку[/gold] [blue]1[/blue] карту на выбор.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/stratagem_power.webp"
+  },
+  {
+    "id": "STRENGTH",
+    "name": "Сила",
+    "description": "Сила повышает наносимый Атаками урон.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": true,
+    "image_url": "/static/images/powers/strength_power.webp"
+  },
+  {
+    "id": "SUBROUTINE",
+    "name": "Вторичный процесс",
+    "description": "Дает [blue]1[/blue] [energy:1], когда вы разыгрываете Талант.",
+    "description_raw": "Дает [blue]1[/blue] {energyPrefix:energyIcons(1)}, когда вы разыгрываете Талант.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/subroutine_power.webp"
+  },
+  {
+    "id": "SUCK",
+    "name": "Кровосос",
+    "description": "[gold]this creature[/gold] получает [blue][Amount][/blue] [gold]силы[/gold], когда наносит атаками урон по ОЗ.",
+    "description_raw": "[gold]{OwnerName}[/gold] получает [blue]{Amount}[/blue] [gold]силы[/gold], когда наносит атаками урон по ОЗ.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/suck_power.webp"
+  },
+  {
+    "id": "SUMMON_NEXT_TURN",
+    "name": "Отложенный призыв",
+    "description": "Вы [gold]призовете[/gold] [blue]2[/blue] в начале следующего хода.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/summon_next_turn_power.webp"
+  },
+  {
+    "id": "SURPRISE",
+    "name": "Сюрприз",
+    "description": "С этим врагом что-то не так…",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/surprise_power.webp"
+  },
+  {
+    "id": "SURROUNDED",
+    "name": "В окружении",
+    "description": "Вы получаете [blue]150%[/blue] урона от атак в спину. Прицельтесь в другую сторону при помощи карты или зелья, чтобы повернуться.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/surrounded_power.webp"
+  },
+  {
+    "id": "SWIPE",
+    "name": "Карманник",
+    "description": "Украденная картa вернется в [gold]руку[/gold], когда этот враг погибнет.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/swipe_power.webp"
+  },
+  {
+    "id": "SWORD_SAGE",
+    "name": "Мастер меча",
+    "description": "[gold]Клинок монарха[/gold] наносит урон еще [blue]1[/blue] раз.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/sword_sage_power.webp"
+  },
+  {
+    "id": "SYNCHRONIZE",
+    "name": "Temporary Focus",
+    "description": "Дает [gold]фокус[/gold] на этот ход.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/synchronize_power.webp"
+  },
+  {
+    "id": "TAG_TEAM",
+    "name": "Командная работа",
+    "description": "Следующая Атака другого игрока против цели разыгрывается дополнительный раз.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/tag_team_power.webp"
+  },
+  {
+    "id": "TANGLED",
+    "name": "Путы",
+    "description": "В этом ходу Атаки стоят на [blue]1[/blue] [gold]энергии[/gold] больше.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/tangled_power.webp"
+  },
+  {
+    "id": "TANK",
+    "name": "Танк",
+    "description": "Вы получаете двойной урон от атак. Другие игроки получают половину урона от атак.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/tank_power.webp"
+  },
+  {
+    "id": "TENDER",
+    "name": "Мягкотелость",
+    "description": "Вы теряете [blue]1[/blue] [gold]силы[/gold] и [blue]1[/blue] [gold]ловкости[/gold], когда разыгрываете карту этом ходу.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/tender_power.webp"
+  },
+  {
+    "id": "TERRITORIAL",
+    "name": "Хранитель очага",
+    "description": "Получает [blue]1[/blue] [gold]силы[/gold] в конце своего хода.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/territorial_power.webp"
+  },
+  {
+    "id": "THE_BOMB",
+    "name": "Бомба",
+    "description": "Нанесет [blue]40[/blue] урона ВСЕМ врагам в конце [blue]{}-го[/blue] хода.",
+    "description_raw": "Нанесет [blue]{Damage}[/blue] урона ВСЕМ врагам в конце {Amount:plural(ru):этого хода|[blue]{}-го[/blue] хода|[blue]{}-го[/blue] хода}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/the_bomb_power.webp"
+  },
+  {
+    "id": "THE_GAMBIT",
+    "name": "Игра стоит свеч",
+    "description": "Вы погибнете, если получите урон по ОЗ от атак в этом бою.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/the_gambit_power.webp"
+  },
+  {
+    "id": "THE_HUNT",
+    "name": "Великая охота",
+    "description": "Дает [blue]1[/blue] дополнительную наградную карту в конце боя.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/the_hunt_power.webp"
+  },
+  {
+    "id": "THE_SEALED_THRONE",
+    "name": "Запечатанный трон",
+    "description": "Дает [star:1], когда вы разыгрываете карту.",
+    "description_raw": "Дает {singleStarIcon}, когда вы разыгрываете карту.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/the_sealed_throne_power.webp"
+  },
+  {
+    "id": "THIEVERY",
+    "name": "Воровство",
+    "description": "Крадет [gold]золото[/gold], когда атакует.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/thievery_power.webp"
+  },
+  {
+    "id": "THORNS",
+    "name": "Шипы",
+    "description": "Наносят урон в ответ, когда вас атакуют.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/thorns_power.webp"
+  },
+  {
+    "id": "THUNDER",
+    "name": "Гром",
+    "description": "Наносит [blue]8[/blue] урона каждой цели, по которой попадает [gold]разряженная сфера молнии[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/thunder_power.webp"
+  },
+  {
+    "id": "TOOLS_OF_THE_TRADE",
+    "name": "Знаток дела",
+    "description": "Вы добираете [blue]1[/blue] карту, затем сбрасываете [blue]1[/blue] карту в начале хода.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/tools_of_the_trade_power.webp"
+  },
+  {
+    "id": "TORIC_TOUGHNESS",
+    "name": "Торическая выдержка",
+    "description": "Даст [blue]0[/blue] [gold]защиты[/gold] в начале [blue]{}[/blue] следующих ходов.",
+    "description_raw": "Даст [blue]{Block:diff()}[/blue] [gold]защиты[/gold] в начале {Amount:plural(ru):следующего хода|[blue]{}[/blue] следующих ходов|[blue]{}[/blue] следующих ходов}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/toric_toughness_power.webp"
+  },
+  {
+    "id": "TRACKING",
+    "name": "Следопыт",
+    "description": "[gold]Слабые[/gold] враги получают от Атак [blue]200%[/blue] урона.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/tracking_power.webp"
+  },
+  {
+    "id": "TRASH_TO_TREASURE",
+    "name": "Алмаз среди камней",
+    "description": "[gold]Заряжает[/gold] [blue]1[/blue] случайную сферу, когда вы создаете Статус.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/trash_to_treasure_power.webp"
+  },
+  {
+    "id": "TYRANNY",
+    "name": "Тирания",
+    "description": "Вы добираете [blue]1[/blue] карту, а затем [gold]сжигаете[/gold] [blue]1[/blue] карту в [gold]руке[/gold] в начале хода.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/tyranny_power.webp"
+  },
+  {
+    "id": "UNMOVABLE",
+    "name": "Непоколебимость",
+    "description": "Удваивает [gold]защиту[/gold] от первой разыгранной за ход карты, дающей [gold]защиту[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/unmovable_power.webp"
+  },
+  {
+    "id": "VEILPIERCER",
+    "name": "Разоблачение",
+    "description": "Следующая [gold]эфирная[/gold] карта стоит [blue]0[/blue].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/veilpiercer_power.webp"
+  },
+  {
+    "id": "VICIOUS",
+    "name": "Безжалостность",
+    "description": "Вы добираете [blue]1[/blue] карту, когда накладываете [gold]уязвимость[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/vicious_power.webp"
+  },
+  {
+    "id": "VIGOR",
+    "name": "Бодрость",
+    "description": "[gold]this creature[/gold] наносит [blue][Amount][/blue] дополнительного урона следующей атакой.",
+    "description_raw": "{OnPlayer:Ваша следующая Атака|[gold]{OwnerName}[/gold]} наносит [blue]{Amount}[/blue] дополнительного урона{OnPlayer:| следующей атакой}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/vigor_power.webp"
+  },
+  {
+    "id": "VITAL_SPARK",
+    "name": "Живительная искра",
+    "description": "Когда [gold]this creature[/gold] теряет ОЗ от Атак первый раз за ход, атакующий получает [energy:1].",
+    "description_raw": "Когда [gold]{OwnerName}[/gold] теряет ОЗ от Атак первый раз за ход, атакующий получает {Energy:energyIcons()}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/vital_spark_power.webp"
+  },
+  {
+    "id": "VOID_FORM",
+    "name": "Облик бездны",
+    "description": "Первые [blue]2[/blue] карты в ходу разыгрываются бесплатно.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/void_form_power.webp"
+  },
+  {
+    "id": "VULNERABLE",
+    "name": "Уязвимость",
+    "description": "Получает на [blue]50%[/blue] больше урона от Атак в течение [blue][Amount][/blue] ходов.",
+    "description_raw": "{OnPlayer:Вы получаете|Получает} на [blue]{DamageIncrease:percentMore()}%[/blue] больше урона от {OnPlayer:атак|Атак} в течение [blue]{Amount}[/blue] {Amount:plural(ru):хода|ходов|ходов}.",
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/vulnerable_power.webp"
+  },
+  {
+    "id": "WASTE_AWAY",
+    "name": "Небытие",
+    "description": "Вы получаете на [blue]1[/blue] [gold]энергии[/gold] меньше в начале хода.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/waste_away_power.webp"
+  },
+  {
+    "id": "WEAK",
+    "name": "Слабость",
+    "description": "Ослабленные враги наносят на [blue]25%[/blue] меньше урона Атаками.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/weak_power.webp"
+  },
+  {
+    "id": "WELL_LAID_PLANS",
+    "name": "Все по плану",
+    "description": "Вы сможете [gold]оставить[/gold] до [blue]1[/blue] карты в конце хода.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/well_laid_plans_power.webp"
+  },
+  {
+    "id": "WRAITH_FORM",
+    "name": "Облик призрака",
+    "description": "Вы теряете [blue]1[/blue] [gold]ловкости[/gold] в начале хода.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/wraith_form_power.webp"
+  }
+]

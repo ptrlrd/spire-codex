@@ -1,0 +1,5435 @@
+[
+  {
+    "id": "ABYSSAL_BATHS",
+    "name": "深渊浴场",
+    "type": "Event",
+    "act": "Underdocks",
+    "description": "你发现了一间僻静的密室。\n\n氤氲的雾气从沸腾的池水中升腾而起，池水的色泽正以一种催眠般的节奏变幻。天花板上垂挂着覆满藤壶的异形生长物，滴落的黏稠液体在触及水面的瞬间，一边发出嘶嘶声，一边如活物般扭动挣扎。空气粘滞沉重，充斥着[blue]盐[/blue]的味道和某种[green]不言而喻的活物的气息[/green]。\n\n当你靠近那口最大的水池时，液面泛起了涟漪。水流翻腾得愈发狂乱，仿佛正期待着你的到来。",
+    "preconditions": null,
+    "options": [
+      {
+        "id": "IMMERSE",
+        "title": "投身其中",
+        "description": "获得[green]2[/green]点最大生命值。受到[red]3[/red]点伤害。"
+      },
+      {
+        "id": "ABSTAIN",
+        "title": "敬而远之",
+        "description": "回复[green]10[/green]点生命。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "ABSTAIN",
+        "description": "你抵御了池水的诱惑，转而收集起池边凝结的晶盐。当你将盐粒涂抹在皮肤上时，池水开始愤怒地翻腾，躁动地翻涌起白沫。周遭的温度骤降，在那一瞬间，房间内所有能映照出人影的表面，都浮现出一个双目空洞、形同枯槁的你。那种异样的感觉挥之不去——你似乎错过了某种脱胎换骨的契机。"
+      },
+      {
+        "id": "ALL",
+        "description": null,
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "沉溺",
+            "description": "获得[green]2[/green]点最大生命值。受到[red]3[/red]点伤害。"
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "离开浴场",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "id": "DEATH_WARNING",
+        "description": "[sine][red]再泡下去，你就死定了。[/red][/sine]",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "沉溺",
+            "description": "[sine][red]再泡下去，你就死定了。[/red][/sine]"
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "离开浴场",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "id": "EXIT_BATHS",
+        "description": "你最终还是没能承受住这股灼热感，急忙从池中抽身而出。"
+      },
+      {
+        "id": "IMMERSE",
+        "description": "池水如烈焰般灼烧着你的每一寸肌肤，那竟是[blue][jitter]彻骨严寒[/jitter][/blue]与[red][jitter]沸腾炽热[/jitter][/red]的诡异交织。\n\n在水面之下，好像有什么东西掠过了你的双腿——是某种触须？还是带有意志的暗流？然而，当剧痛渐渐平息，你感到身体变得…更加凝实，更具质感。同时池水此时似乎正发出一阵满意的低鸣。",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "沉溺",
+            "description": "获得[green]2[/green]点最大生命值。受到[red]4[/red]点伤害。"
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "离开浴场",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "id": "INITIAL",
+        "description": "你发现了一间僻静的密室。\n\n氤氲的雾气从沸腾的池水中升腾而起，池水的色泽正以一种催眠般的节奏变幻。天花板上垂挂着覆满藤壶的异形生长物，滴落的黏稠液体在触及水面的瞬间，一边发出嘶嘶声，一边如活物般扭动挣扎。空气粘滞沉重，充斥着[blue]盐[/blue]的味道和某种[green]不言而喻的活物的气息[/green]。\n\n当你靠近那口最大的水池时，液面泛起了涟漪。水流翻腾得愈发狂乱，仿佛正期待着你的到来。",
+        "options": [
+          {
+            "id": "IMMERSE",
+            "title": "投身其中",
+            "description": "获得[green]2[/green]点最大生命值。受到[red]3[/red]点伤害。"
+          },
+          {
+            "id": "ABSTAIN",
+            "title": "敬而远之",
+            "description": "回复[green]10[/green]点生命。"
+          }
+        ]
+      },
+      {
+        "id": "LINGER1",
+        "description": "[jitter]温度仍在疯狂攀升！[/jitter]\n\n在这股蒸汽将你由内而外彻底蒸熟之前，你还能支撑多久？",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "沉溺",
+            "description": "获得[green]2[/green]点最大生命值。受到[red]5[/red]点伤害。"
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "离开浴场",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "id": "LINGER2",
+        "description": "[jitter][orange]祂的温度仍在飙升！[/orange][/jitter]\n\n池子的咕嘟声，此刻听来竟像是某种狞笑。",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "沉溺",
+            "description": "获得[green]2[/green]点最大生命值。受到[red]6[/red]点伤害。"
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "离开浴场",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "id": "LINGER3",
+        "description": "[b][jitter][red]好烫！！！[/red][/jitter][/b]\n\n你开始好奇这是否就是生活在恶魔之村里的感觉？",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "沉溺",
+            "description": "获得[green]2[/green]点最大生命值。受到[red]7[/red]点伤害。"
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "离开浴场",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "id": "LINGER4",
+        "description": "[sine][purple]你浸泡了太久，已经忘却了时间的流逝，意识也开始模糊…[/purple][/sine]",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "沉溺",
+            "description": "获得[green]2[/green]点最大生命值。受到[red]8[/red]点伤害。"
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "离开浴场",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "id": "LINGER5",
+        "description": "这里很好。",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "沉溺",
+            "description": "获得[green]2[/green]点最大生命值。受到[red]9[/red]点伤害。"
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "离开浴场",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "id": "LINGER6",
+        "description": "真的很棒。",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "沉溺",
+            "description": "获得[green]2[/green]点最大生命值。受到[red]10[/red]点伤害。"
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "离开浴场",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "id": "LINGER7",
+        "description": "你感到舒适",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "沉溺",
+            "description": "获得[green]2[/green]点最大生命值。受到[red]11[/red]点伤害。"
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "离开浴场",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "id": "LINGER8",
+        "description": "[sine]唔…[/sine]",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "沉溺",
+            "description": "获得[green]2[/green]点最大生命值。受到[red]12[/red]点伤害。"
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "离开浴场",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "id": "LINGER9",
+        "description": "[sine]呼...\n...呼噜...[/sine]",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "沉溺",
+            "description": "获得[green]2[/green]点最大生命值。受到[red]13[/red]点伤害。"
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "离开浴场",
+            "description": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "AMALGAMATOR",
+    "name": "熔合者",
+    "type": "Event",
+    "act": "Act 2 - Hive",
+    "description": "[b][jitter]铿！铿！！锵！！！[/jitter][/b]\n\n墙壁的另一侧传来了阵阵金属交击声的回响…\n\n当你把头贴在墙上准备探听一番时——墙壁轰然开启，露出了一个正在埋头苦干的[orange]魁梧六臂身影[/orange]。\n它的“脸部”是一团由[gold][sine]发光符文构成的流转旋涡[/sine][/gold]，正在不断变幻交织。\n\n“一个拥有[aqua]进阶之魂[/aqua]的人竟然找到了我的工坊？那就让我们开始[jitter]融合[/jitter]吧！”",
+    "preconditions": [
+      "Requires 2+ Strikes in deck",
+      "Requires 2+ Defends in deck"
+    ],
+    "options": [
+      {
+        "id": "COMBINE_STRIKES",
+        "title": "融合打击",
+        "description": "移除[blue]2[/blue]张[gold]打击[/gold]。并将一张[gold]究极打击[/gold]添加至你的[gold]牌组[/gold]。"
+      },
+      {
+        "id": "COMBINE_DEFENDS",
+        "title": "融合防御",
+        "description": "移除[blue]2[/blue]张[gold]防御[/gold]。并将一张[gold]究极防御[/gold]添加至你的[gold]牌组[/gold]。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "COMBINE_DEFENDS",
+        "description": "[b][jitter]锵！锵！！！[/jitter][/b]\n\n[orange]熔合者[/orange]重重地锤击着它的骨砧。\n\n关于战斗、守护与防御策略的回忆，在每一次敲击下都磨砺得愈发清晰。\n你那最究极的技艺，已重现于你的心头。"
+      },
+      {
+        "id": "COMBINE_STRIKES",
+        "description": "[b][jitter]锵！锵！！！[/jitter][/b]\n\n[orange]熔合者[/orange]重重地锤击着它的骨砧。\n\n关于战斗、冲锋与进攻策略的回忆，在每一次敲击下都磨砺得愈发尖锐。\n你那最究极的技艺，已重现于你的心头。"
+      },
+      {
+        "id": "INITIAL",
+        "description": "[b][jitter]铿！铿！！锵！！！[/jitter][/b]\n\n墙壁的另一侧传来了阵阵金属交击声的回响…\n\n当你把头贴在墙上准备探听一番时——墙壁轰然开启，露出了一个正在埋头苦干的[orange]魁梧六臂身影[/orange]。\n它的“脸部”是一团由[gold][sine]发光符文构成的流转旋涡[/sine][/gold]，正在不断变幻交织。\n\n“一个拥有[aqua]进阶之魂[/aqua]的人竟然找到了我的工坊？那就让我们开始[jitter]融合[/jitter]吧！”",
+        "options": [
+          {
+            "id": "COMBINE_STRIKES",
+            "title": "融合打击",
+            "description": "移除[blue]2[/blue]张[gold]打击[/gold]。并将一张[gold]究极打击[/gold]添加至你的[gold]牌组[/gold]。"
+          },
+          {
+            "id": "COMBINE_DEFENDS",
+            "title": "融合防御",
+            "description": "移除[blue]2[/blue]张[gold]防御[/gold]。并将一张[gold]究极防御[/gold]添加至你的[gold]牌组[/gold]。"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "AROMA_OF_CHAOS",
+    "name": "混沌芳香",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": "费力地穿过一片厚密的灌木丛并来到空地后，一种莫名的怀旧感突然向你袭来。\n\n那是[purple]花朵的芬芳[/purple]、[green]腐烂的恶臭[/green]以及[orange]某种无法言说的气息[/orange]的混合体。每前进一步，这股气味都变得愈发浓烈。与此同时，你感受到周围的世界正开始[sine]扭曲，旋转[/sine]。\n\n一股[sine]变幻莫测的混沌[/sine]将你淹没，你开始慢慢地丧失了对自我的感知。",
+    "preconditions": null,
+    "options": [
+      {
+        "id": "LET_GO",
+        "title": "放任自流",
+        "description": "[gold]变化[/gold]你[gold]牌组[/gold]中的一张牌。"
+      },
+      {
+        "id": "MAINTAIN_CONTROL",
+        "title": "维持理智",
+        "description": "[gold]升级[/gold]你[gold]牌组[/gold]中的一张牌。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "INITIAL",
+        "description": "费力地穿过一片厚密的灌木丛并来到空地后，一种莫名的怀旧感突然向你袭来。\n\n那是[purple]花朵的芬芳[/purple]、[green]腐烂的恶臭[/green]以及[orange]某种无法言说的气息[/orange]的混合体。每前进一步，这股气味都变得愈发浓烈。与此同时，你感受到周围的世界正开始[sine]扭曲，旋转[/sine]。\n\n一股[sine]变幻莫测的混沌[/sine]将你淹没，你开始慢慢地丧失了对自我的感知。",
+        "options": [
+          {
+            "id": "LET_GO",
+            "title": "放任自流",
+            "description": "[gold]变化[/gold]你[gold]牌组[/gold]中的一张牌。"
+          },
+          {
+            "id": "MAINTAIN_CONTROL",
+            "title": "维持理智",
+            "description": "[gold]升级[/gold]你[gold]牌组[/gold]中的一张牌。"
+          }
+        ]
+      },
+      {
+        "id": "LET_GO",
+        "description": "你选择了屈服，任由你的思绪[sine][purple]渐行渐远…[/purple][/sine]\n你看见了自己正[blue]与朋友们谈笑风生[/blue]，[green]作为团队的一员并肩作战[/green]，[gold]与强敌生死对决[/gold]。这是梦境？还是现实？又或是两者皆有？无数双眼睛正注视着你和你的梦。它们…是谁…？\n\n不知过了多久，你悠悠转醒。\n香气转淡，随着你的意识重归清明，其影响也渐渐消散。当神志彻底稳定时，你感觉头脑从未有如此清醒过。\n\n[sine][red]那些眼睛…究竟是什么？[/red][/sine]"
+      },
+      {
+        "id": "MAINTAIN_CONTROL",
+        "description": "你抵制住了屈服的诱惑，攀上了一棵树的树梢。尽管香气无法触及此处，但其残留的影响仍如利爪般撕扯着你的心智。\n\n维持理智并非易事；你将思绪紧紧维系在你的[blue]信条[/blue]之上。\n\n[AromaPrinciple]\n[AromaPrinciple]\n[AromaPrinciple]\n\n香气逐渐消散。"
+      }
+    ]
+  },
+  {
+    "id": "BATTLEWORN_DUMMY",
+    "name": "战痕累累的训练假人",
+    "type": "Event",
+    "act": "Act 3 - Glory",
+    "description": "当你靠近时，它突然开始轰鸣，滋滋作响，随后爆发出耀眼的光芒！\n\n[b]“[jitter]滋滋！[/jitter] 训练时间到！！！你有[blue]3个回合[/blue]的时间来击败我！\n选择一个档位，否则就准备好面对[red]致命的羞辱[/red]吧。[/b]\n以下是可选方案：”\n\n在发布完这段恐怖的宣言后，假人开始认真地读出详细的指令。\n\n要选哪一个呢？",
+    "preconditions": null,
+    "options": [
+      {
+        "id": "SETTING_1",
+        "title": "第1档",
+        "description": "与一个[blue]75[/blue]点生命值的假人战斗。随机获取[blue]1[/blue]瓶[gold]药水[/gold]。"
+      },
+      {
+        "id": "SETTING_2",
+        "title": "第2档",
+        "description": "与一个[blue]150[/blue]点生命值的假人战斗。随机[gold]升级[/gold][blue]2[/blue]张牌。"
+      },
+      {
+        "id": "SETTING_3",
+        "title": "第3档",
+        "description": "与一个[blue]300[/blue]点生命值的假人战斗。获取一件随机[gold]遗物[/gold]。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "DEFEAT",
+        "description": "[b]“[jitter][red]你真是太弱了！！[/red][/jitter]\n羞辱已执行完毕！”[/b]\n\n假人沉默了片刻后——\n\n“下次请选择较低的档位。祝您今天过得愉快。”"
+      },
+      {
+        "id": "INITIAL",
+        "description": "当你靠近时，它突然开始轰鸣，滋滋作响，随后爆发出耀眼的光芒！\n\n[b]“[jitter]滋滋！[/jitter] 训练时间到！！！你有[blue]3个回合[/blue]的时间来击败我！\n选择一个档位，否则就准备好面对[red]致命的羞辱[/red]吧。[/b]\n以下是可选方案：”\n\n在发布完这段恐怖的宣言后，假人开始认真地读出详细的指令。\n\n要选哪一个呢？",
+        "options": [
+          {
+            "id": "SETTING_1",
+            "title": "第1档",
+            "description": "与一个[blue]75[/blue]点生命值的假人战斗。随机获取[blue]1[/blue]瓶[gold]药水[/gold]。"
+          },
+          {
+            "id": "SETTING_2",
+            "title": "第2档",
+            "description": "与一个[blue]150[/blue]点生命值的假人战斗。随机[gold]升级[/gold][blue]2[/blue]张牌。"
+          },
+          {
+            "id": "SETTING_3",
+            "title": "第3档",
+            "description": "与一个[blue]300[/blue]点生命值的假人战斗。获取一件随机[gold]遗物[/gold]。"
+          }
+        ]
+      },
+      {
+        "id": "VICTORY",
+        "description": "[b]“[jitter]你通过了训练！[/jitter]\n你现在已具备了守护这座[gold]工厂[/gold]，抵御入侵者的能力！！训练结束后，请务必记得补充水分！”[/b]"
+      }
+    ]
+  },
+  {
+    "id": "BRAIN_LEECH",
+    "name": "脑蛭",
+    "type": "Shared",
+    "act": null,
+    "description": "[jitter]咚！[/jitter]\n\n你的头顶传来一阵刺痛，一个念头刺入了你的脑海。\n\n[purple][sine][b]“分享知识吗？？？”[/b][/sine][/purple]\n\n你不知如何是好…",
+    "preconditions": [
+      "Act 1–2 only"
+    ],
+    "options": [
+      {
+        "id": "SHARE_KNOWLEDGE",
+        "title": "分享知识",
+        "description": "从[blue]5[/blue]张随机牌中选择[blue]1[/blue]张加入你的[gold]牌组[/gold]。"
+      },
+      {
+        "id": "RIP",
+        "title": "把它扯下来",
+        "description": "失去[red]5[/red]点生命值。获得一次无色卡牌奖励。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "INITIAL",
+        "description": "[jitter]咚！[/jitter]\n\n你的头顶传来一阵刺痛，一个念头刺入了你的脑海。\n\n[purple][sine][b]“分享知识吗？？？”[/b][/sine][/purple]\n\n你不知如何是好…",
+        "options": [
+          {
+            "id": "SHARE_KNOWLEDGE",
+            "title": "分享知识",
+            "description": "从[blue]5[/blue]张随机牌中选择[blue]1[/blue]张加入你的[gold]牌组[/gold]。"
+          },
+          {
+            "id": "RIP",
+            "title": "把它扯下来",
+            "description": "失去[red]5[/red]点生命值。获得一次无色卡牌奖励。"
+          }
+        ]
+      },
+      {
+        "id": "RIP",
+        "description": "你暴力地将[jitter]它从头上扯了下来[/jitter]，并狠狠地把它丢得远远的！\n\n你的脑海中响起一个声音：\n[purple][sine]“不~~~~~~~~~~~~…”"
+      },
+      {
+        "id": "SHARE_KNOWLEDGE",
+        "description": "[purple][sine][b]“何其浮华博大，迷宫般的头脑！\n这简直是取之不尽的智识珍馐，当真让人大快朵颐啊！”[/b][/sine][/purple]\n\n脑蛭心满意足地弹开了，随后爬向远方。\n你[blue]大受震撼[/blue]。"
+      }
+    ]
+  },
+  {
+    "id": "BUGSLAYER",
+    "name": "害虫杀手",
+    "type": "Event",
+    "act": "Act 2 - Hive",
+    "description": "当你正奋力抵御一群[jitter][red]穷凶极恶的虫群[/red][/jitter]时，你突然注意到，一位[gold]威猛剽悍的战士[/gold]竟然一直就在你身边并肩作战！\n\n虫群们，察觉败局，四散而逃。你转向这位战友。\n“你想要一些消灭这些害虫的建议吗？”\n\n还挺有礼貌。你点了点头，接受了他的提议。",
+    "preconditions": null,
+    "options": [
+      {
+        "id": "EXTERMINATION",
+        "title": "学习杀灭的技巧",
+        "description": "将一张[gold]杀灭[/gold]添加至你的[gold]牌组[/gold]。"
+      },
+      {
+        "id": "SQUASH",
+        "title": "学习压扁的技巧",
+        "description": "将一张[gold]压扁[/gold]添加至你的[gold]牌组[/gold]"
+      }
+    ],
+    "pages": [
+      {
+        "id": "DONE",
+        "description": "那人默默向你点头，然后转身离去。"
+      },
+      {
+        "id": "EXTERMINATION",
+        "description": "“原来如此……你想学习[gold]杀灭的技巧[/gold]。很好…”\n\n他短暂地停顿了一下，思考着如何将这一招传授给你…\n\n[jitter][b]“这就是真传！看好了！！”[/b][/jitter]\n他一边炫耀着，一边举起了一罐[green]杀虫剂[/green]。"
+      },
+      {
+        "id": "INITIAL",
+        "description": "当你正奋力抵御一群[jitter][red]穷凶极恶的虫群[/red][/jitter]时，你突然注意到，一位[gold]威猛剽悍的战士[/gold]竟然一直就在你身边并肩作战！\n\n虫群们，察觉败局，四散而逃。你转向这位战友。\n“你想要一些消灭这些害虫的建议吗？”\n\n还挺有礼貌。你点了点头，接受了他的提议。",
+        "options": [
+          {
+            "id": "EXTERMINATION",
+            "title": "学习杀灭的技巧",
+            "description": "将一张[gold]杀灭[/gold]添加至你的[gold]牌组[/gold]。"
+          },
+          {
+            "id": "SQUASH",
+            "title": "学习压扁的技巧",
+            "description": "将一张[gold]压扁[/gold]添加至你的[gold]牌组[/gold]"
+          }
+        ]
+      },
+      {
+        "id": "SQUASH",
+        "description": "“原来如此…你想学习[gold]压扁技巧[/gold]。很好…”\n\n他短暂地停顿了一下，思考着如何将这一招传授给你…\n\n[jitter][b]“这就是真传！看好了！！”[/b][/jitter]\n他一边炫耀着，一边一脚踩在了一只巨大的虫子身上。"
+      }
+    ]
+  },
+  {
+    "id": "BYRDONIS_NEST",
+    "name": "多尼斯异鸟巢",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": "你看见一只巨大的[jitter][red]蹒跚巨兽[/red][/jitter]正在驱赶一只受伤的[green][sine]绿色异鸟[/sine][/green]。\n\n在那只异鸟逃离的隐蔽角落里，一颗[gold]无人看守的蛋[/gold]被遗弃在了那里。\n\n[sine]你的肚子咕咕作响…[/sine]",
+    "preconditions": [
+      "Cannot have an event pet"
+    ],
+    "options": [
+      {
+        "id": "EAT",
+        "title": "吃掉这颗蛋",
+        "description": "获得[blue]7[/blue]点最大生命值。"
+      },
+      {
+        "id": "TAKE",
+        "title": "带走这颗蛋",
+        "description": "将一张[gold]多尼斯异鸟蛋[/gold]加入你的[gold]牌组[/gold]。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "EAT",
+        "description": "你敲开了蛋壳，将其大口吞下。\n真是顿不错的早餐。"
+      },
+      {
+        "id": "INITIAL",
+        "description": "你看见一只巨大的[jitter][red]蹒跚巨兽[/red][/jitter]正在驱赶一只受伤的[green][sine]绿色异鸟[/sine][/green]。\n\n在那只异鸟逃离的隐蔽角落里，一颗[gold]无人看守的蛋[/gold]被遗弃在了那里。\n\n[sine]你的肚子咕咕作响…[/sine]",
+        "options": [
+          {
+            "id": "EAT",
+            "title": "吃掉这颗蛋",
+            "description": "获得[blue]7[/blue]点最大生命值。"
+          },
+          {
+            "id": "TAKE",
+            "title": "带走这颗蛋",
+            "description": "将一张[gold]多尼斯异鸟蛋[/gold]加入你的[gold]牌组[/gold]。"
+          }
+        ]
+      },
+      {
+        "id": "TAKE",
+        "description": "你小心翼翼地捧起这颗蛋并将其收好，心想着它之后或许能[green]孵化[/green]成什么有用的东西。"
+      }
+    ]
+  },
+  {
+    "id": "COLORFUL_PHILOSOPHERS",
+    "name": "色彩哲学家",
+    "type": "Event",
+    "act": "Act 2 - Hive",
+    "description": "在你面前的是一幕颇为宏伟的景象。\n你看到三座不同颜色的石像耸立在高台之上，正就色彩的哲学内涵展开[jitter][red]激烈的争论[/red][/jitter]。\n\n随着你的倾听，你感觉到眼下最核心的议题是，究竟哪种颜色才是[gold][b]最棒的[/b][/gold]。\n\n你加入其中，表达了你的见解。",
+    "preconditions": null,
+    "options": [
+      {
+        "id": "DEFECT",
+        "title": "蓝色",
+        "description": "获得[blue]3[/blue]张故障机器人的卡牌。"
+      },
+      {
+        "id": "IRONCLAD",
+        "title": "红色",
+        "description": "获得[blue]3[/blue]张铁甲战士的卡牌。"
+      },
+      {
+        "id": "NECROBINDER",
+        "title": "粉色",
+        "description": "获得[blue]3[/blue]张亡灵契约师的卡牌。"
+      },
+      {
+        "id": "REGENT",
+        "title": "橙色",
+        "description": "获得[blue]3[/blue]张储君的卡牌。"
+      },
+      {
+        "id": "SILENT",
+        "title": "绿色",
+        "description": "获得[blue]3[/blue]张静默猎手的卡牌。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "DONE",
+        "description": "你的见解似乎并不怎么受欢迎，石像们再次陷入了那场无休止的辩论之中。"
+      },
+      {
+        "id": "INITIAL",
+        "description": "在你面前的是一幕颇为宏伟的景象。\n你看到三座不同颜色的石像耸立在高台之上，正就色彩的哲学内涵展开[jitter][red]激烈的争论[/red][/jitter]。\n\n随着你的倾听，你感觉到眼下最核心的议题是，究竟哪种颜色才是[gold][b]最棒的[/b][/gold]。\n\n你加入其中，表达了你的见解。",
+        "options": [
+          {
+            "id": "DEFECT",
+            "title": "蓝色",
+            "description": "获得[blue]3[/blue]张故障机器人的卡牌。"
+          },
+          {
+            "id": "IRONCLAD",
+            "title": "红色",
+            "description": "获得[blue]3[/blue]张铁甲战士的卡牌。"
+          },
+          {
+            "id": "NECROBINDER",
+            "title": "粉色",
+            "description": "获得[blue]3[/blue]张亡灵契约师的卡牌。"
+          },
+          {
+            "id": "REGENT",
+            "title": "橙色",
+            "description": "获得[blue]3[/blue]张储君的卡牌。"
+          },
+          {
+            "id": "SILENT",
+            "title": "绿色",
+            "description": "获得[blue]3[/blue]张静默猎手的卡牌。"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "COLOSSAL_FLOWER",
+    "name": "巨大花卉",
+    "type": "Event",
+    "act": "Act 2 - Hive",
+    "description": "一朵[green]巨型花卉[/green]正生长在一座[red][jitter]骸骨堆积而成的山[/jitter][/red]上。\n\n随着它那[sine]变换色彩的花瓣[/sine]不断搏动，你感觉到中心处一定有[aqua]一团强力花粉[/aqua]，但那起伏的花瓣[red]如刀锋般锋利[/red]且捉摸不定。\n\n你本可以只采集一些[gold]金色花蜜[/gold]，但中心处的那个奖赏实在是太诱人了…",
+    "preconditions": [
+      "Requires 19+ HP"
+    ],
+    "options": [
+      {
+        "id": "EXTRACT_CURRENT_PRIZE_1",
+        "title": "采集花蜜",
+        "description": "获得[blue]35[/blue][gold]金币[/gold]。"
+      },
+      {
+        "id": "REACH_DEEPER_1",
+        "title": "深入探索",
+        "description": "深入。失去[red]5[/red]点生命值"
+      }
+    ],
+    "pages": [
+      {
+        "id": "EXTRACT_CURRENT_PRIZE",
+        "description": "你小心翼翼地从花卉的血肉中采集了一些[gold]花蜜[/gold]。\n花瓣愤怒地闪烁着。"
+      },
+      {
+        "id": "EXTRACT_INSTEAD",
+        "description": "在[purple]毒素[/purple]、[red]倒刺[/red]和[green]叶片[/green]的百般折磨下，你全身麻木，状态奇差无比。\n收手吧。\n\n你收起了一团[gold]上等花蜜[/gold]并撤退了。"
+      },
+      {
+        "id": "INITIAL",
+        "description": "一朵[green]巨型花卉[/green]正生长在一座[red][jitter]骸骨堆积而成的山[/jitter][/red]上。\n\n随着它那[sine]变换色彩的花瓣[/sine]不断搏动，你感觉到中心处一定有[aqua]一团强力花粉[/aqua]，但那起伏的花瓣[red]如刀锋般锋利[/red]且捉摸不定。\n\n你本可以只采集一些[gold]金色花蜜[/gold]，但中心处的那个奖赏实在是太诱人了…",
+        "options": [
+          {
+            "id": "EXTRACT_CURRENT_PRIZE_1",
+            "title": "采集花蜜",
+            "description": "获得[blue]35[/blue][gold]金币[/gold]。"
+          },
+          {
+            "id": "REACH_DEEPER_1",
+            "title": "深入探索",
+            "description": "深入。失去[red]5[/red]点生命值"
+          }
+        ]
+      },
+      {
+        "id": "POLLINOUS_CORE",
+        "description": "你纵身一跃，一把抓住了[aqua]花粉核心[/aqua]！\n这株植物剧烈地颤抖起来；它的花瓣变得暗淡无光，那阵[jitter]酥麻感[/jitter]也随之消散。\n\n原本的[gold]金色花蜜[/gold]变成了毫无价值的烂泥。\n你，杀死了它。"
+      },
+      {
+        "id": "REACH_DEEPER_1",
+        "description": "你拨开了一层[red]锋利如刃的[/red]花瓣。它们表面覆盖着一层能让你的皮肤产生[jitter]酥麻感[/jitter]的[purple]物质[/purple]。这似乎能麻痹疼痛？\n\n或许这就是这里为什么会有一堆骸骨…",
+        "options": [
+          {
+            "id": "EXTRACT_CURRENT_PRIZE_2",
+            "title": "采集花蜜",
+            "description": "获得[blue]75[/blue][gold]金币[/gold]。"
+          },
+          {
+            "id": "REACH_DEEPER_2",
+            "title": "深入探索",
+            "description": "再深入一点。失去[red]6[/red]点生命值。"
+          }
+        ]
+      },
+      {
+        "id": "REACH_DEEPER_2",
+        "description": "随着你继续深入，那种酥麻感变成了一阵[jitter][red]阵阵袭来的虚弱感[/red][/jitter]…\n\n[purple]这朵花想吃了我。那我为什么要钻进来？[/purple]",
+        "options": [
+          {
+            "id": "EXTRACT_INSTEAD",
+            "title": "采集花蜜",
+            "description": "获得[blue]135[/blue][gold]金币[/gold]。"
+          },
+          {
+            "id": "POLLINOUS_CORE",
+            "title": "抵达核心",
+            "description": "失去[red]7[/red]点生命值。 获得[gold]花粉核心[/gold]。"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "CRYSTAL_SPHERE",
+    "name": "水晶球",
+    "type": "Shared",
+    "act": null,
+    "description": "[sine][blue]“我预见到了你的到来…！”[/blue][/sine]\n\n当你走进一间[purple]神秘小屋[/purple]时，一个[jitter]沙哑[/jitter]的声音传了过来。\n\n[sine][blue]“你的命运指引你来到此处。我们必须揭开你的未来与运势，这样你才能拯救我们所有人！！”[/blue][/sine]\n“好啦，这是进行[gold]水晶球占卜[/gold]的几个选项。另外，记得把这份免责协议也签了，”她一边说着，一边拿出了笔和羊皮纸。",
+    "preconditions": [
+      "Requires 100+ gold",
+      "Act 2+"
+    ],
+    "options": [
+      {
+        "id": "UNCOVER_FUTURE",
+        "title": "揭幕未来",
+        "description": "支付[red]51-99[/red][gold]金币[/gold]。[purple]占卜[/purple][blue]3[/blue]次。"
+      },
+      {
+        "id": "PAYMENT_PLAN",
+        "title": "分期付款",
+        "description": "获得一张[red]债务[/red]。[purple]占卜[/purple][blue]6[/blue]次。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "FINISH",
+        "description": "我已考虑妥当"
+      },
+      {
+        "id": "INITIAL",
+        "description": "[sine][blue]“我预见到了你的到来…！”[/blue][/sine]\n\n当你走进一间[purple]神秘小屋[/purple]时，一个[jitter]沙哑[/jitter]的声音传了过来。\n\n[sine][blue]“你的命运指引你来到此处。我们必须揭开你的未来与运势，这样你才能拯救我们所有人！！”[/blue][/sine]\n“好啦，这是进行[gold]水晶球占卜[/gold]的几个选项。另外，记得把这份免责协议也签了，”她一边说着，一边拿出了笔和羊皮纸。",
+        "options": [
+          {
+            "id": "UNCOVER_FUTURE",
+            "title": "揭幕未来",
+            "description": "支付[red]51-99[/red][gold]金币[/gold]。[purple]占卜[/purple][blue]3[/blue]次。"
+          },
+          {
+            "id": "PAYMENT_PLAN",
+            "title": "分期付款",
+            "description": "获得一张[red]债务[/red]。[purple]占卜[/purple][blue]6[/blue]次。"
+          }
+        ]
+      },
+      {
+        "id": "PAYMENT_PLAN",
+        "description": "分期付款"
+      },
+      {
+        "id": "UNCOVER_FUTURE",
+        "description": "揭幕未来"
+      }
+    ]
+  },
+  {
+    "id": "DARV",
+    "name": "达弗",
+    "type": "Ancient",
+    "act": null,
+    "description": "……我把那东西放哪儿了……喔！\n来看我的收藏的吗！？那边那堆里随便挑一个吧，得好好用上哦！",
+    "preconditions": null,
+    "options": null,
+    "pages": null,
+    "epithet": "囤积者",
+    "dialogue": {
+      "Returning": [
+        {
+          "order": "0-0r",
+          "speaker": "ancient",
+          "text": "来来，这里有些被遗忘的宝石，拿一块去吧！"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "今天我还挺忙的！\n那堆东西里有啥想要的你就自己拿了吧！！"
+        }
+      ],
+      "Defect": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "你这块大型垃圾还真是挺好看的，你知道吧？"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "<3"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "还在努力吶，我明白了……来看看能不能给你升个级呗！"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "我其实一直留着你那位朋友的，呃……唔。\n当我没说，当我没说！！"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "<好奇的嘀嘀声>"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "我勇敢的小家伙，忘了我刚才说的话吧！"
+        }
+      ],
+      "Ironclad": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "啊，冒火的战士回来啦！\n我这儿有东西正适合你！"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "看到你还活着四处砸人脑壳，感觉真不错啊！"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "我还留着你的那把重刃呢……但没能找到可以修好它的人。"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "铁甲战士盯着达弗。"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "或许建筑师知道些什么呢。"
+        }
+      ],
+      "Necrobinder": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "看得出来你比较严肃，能为你做点什么吗女士？"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "任何能帮我杀死一个最可恶的人的东西。"
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "这样啊……那你看看吧！"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "还在征战不休吶？我不拦着你哈！"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "这本书看起来和你联系很紧密嘛，它可比你存在的时间长多了。"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "你是怎么拿到它的？"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "[sine]可怕[/sine]的东西总会兜兜转转来到我的收藏中。"
+        }
+      ],
+      "Regent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "你这样的人怎么会来这儿呀？想不想来看看我的收藏呀？"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "我确实喜欢赏鉴高品质的东西……"
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "好耶！"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "又来看更多吗，殿下？！"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "我的新朋友，我可有好东西给你呀！"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "我在听！"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "我很想给你，但东西已经被建筑师抢走了！！\n那你帮我这个好伙计一个忙呗！怎么样？"
+        }
+      ],
+      "Silent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "你也回高塔里来啦，嗯？\n还是抵抗不住亮闪闪的东西的诱惑，是吧？！"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "你的那个战利品，我有好东西和你交换！"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "可惜你不记得我过去的慷慨！\n是啦是啦，你也知道涅奥就是这样……"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "……"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "好吧！那我们就给你整点儿适合最终决战之类的装备吧！"
+        }
+      ],
+      "First Visit": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "……我把那东西放哪儿了……喔！\n来看我的收藏的吗！？那边那堆里随便挑一个吧，得好好用上哦！"
+        }
+      ]
+    },
+    "image_url": "/static/images/misc/ancients/darv.webp",
+    "relics": [
+      "DUSTY_TOME",
+      "ASTROLABE",
+      "BLACK_STAR",
+      "CALLING_BELL",
+      "EMPTY_CAGE",
+      "PANDORAS_BOX",
+      "RUNIC_PYRAMID",
+      "SNECKO_EYE",
+      "ECTOPLASM",
+      "SOZU",
+      "PHILOSOPHERS_STONE",
+      "VELVET_CHOKER"
+    ]
+  },
+  {
+    "id": "DENSE_VEGETATION",
+    "name": "茂密的植被",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": "你在错路上走了一段时间之后，你发现自己置身于一片由[green]蕨类[/green]、[green]灌木[/green]和[green]藤蔓[/green]构成的茂密丛林中。尤其是[green]藤蔓[/green]。精疲力竭的感觉油然而生，一个可怕的念头随之浮现在脑海里：\n\n[sine][purple]“你迷路了，毫无防备，而死亡的阴影正悄然逼近。”[/purple][/sine]\n\n你要怎么办呢？",
+    "preconditions": null,
+    "options": [
+      {
+        "id": "TRUDGE_ON",
+        "title": "坚持跋涉",
+        "description": "获得[blue]61-99[/blue] [gold]金币[/gold]。失去[red]8[/red]点生命。"
+      },
+      {
+        "id": "REST",
+        "title": "休息",
+        "description": "回复[green]30% Max[/green]点生命。[red]进入战斗[/red]。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "INITIAL",
+        "description": "你在错路上走了一段时间之后，你发现自己置身于一片由[green]蕨类[/green]、[green]灌木[/green]和[green]藤蔓[/green]构成的茂密丛林中。尤其是[green]藤蔓[/green]。精疲力竭的感觉油然而生，一个可怕的念头随之浮现在脑海里：\n\n[sine][purple]“你迷路了，毫无防备，而死亡的阴影正悄然逼近。”[/purple][/sine]\n\n你要怎么办呢？",
+        "options": [
+          {
+            "id": "TRUDGE_ON",
+            "title": "坚持跋涉",
+            "description": "获得[blue]61-99[/blue] [gold]金币[/gold]。失去[red]8[/red]点生命。"
+          },
+          {
+            "id": "REST",
+            "title": "休息",
+            "description": "回复[green]30% Max[/green]点生命。[red]进入战斗[/red]。"
+          }
+        ]
+      },
+      {
+        "id": "REST",
+        "description": "你精疲力竭，小歇了片刻…\n\n…不料却被[gold][jitter]在你身上蠕动的什么东西[/jitter][/gold]惊醒了！",
+        "options": [
+          {
+            "id": "FIGHT",
+            "title": "战！",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "id": "TRUDGE_ON",
+        "description": "你一路劈砍，在丛林中硬生生砍出一条路来，但它似乎永无止境…\n\n你靠着[green]怪异的果实[/green]和[orange]嘎嘣脆的虫子[/orange]勉强维生，喝着[aqua]发光植物[/aqua]的花蜜，你开始觉得你自己有点[jitter][red]疑神疑鬼的…[/red][/jitter]\n\n不过，随后你发现了一片空地、一条小径，地上还有一些[gold]金币[/gold]。在金币中，还有一些画得相当潦草的地图！\n麻烦解决了。"
+      }
+    ]
+  },
+  {
+    "id": "DOLL_ROOM",
+    "name": "玩偶室",
+    "type": "Shared",
+    "act": null,
+    "description": "你走进了一间隐藏的密室……\n\n这里堆满了琳琅满目的玩偶。每一只都独一无二，它们的表情亦从[green]喜悦[/green]到[purple]悲哀[/purple]各不相同，其服饰跨越了数个世纪，甚至来自你认知之外的领域。\n\n一阵[sine][blue]低语的合唱[/blue][/sine]变得越来越响，直到[jitter][red]那些玩偶互相争吵着大叫起来[/red][/jitter]，放声呼唤着你……\n\n你必须选择一个，并立刻离开这个地方。",
+    "preconditions": [
+      "Act 2 only"
+    ],
+    "options": [
+      {
+        "id": "RANDOM",
+        "title": "随机拿走一尊",
+        "description": "获取一尊[gold]玩偶遗物[/gold]。"
+      },
+      {
+        "id": "TAKE_SOME_TIME",
+        "title": "花点时间慢慢来",
+        "description": "失去[red]5[/red]点生命。从[blue]2[/blue]尊[gold]玩偶遗物[/gold]中选择[blue]1[/blue]尊带走。"
+      },
+      {
+        "id": "EXAMINE",
+        "title": "仔细检查然后挑选最好的那个",
+        "description": "失去[red]15[/red]点生命。从[blue]3[/blue]尊[gold]玩偶遗物[/gold]中选择[blue]1[/blue]尊带走。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "DAUGHTER_OF_WIND",
+        "description": "[blue]“能被我选中，你应当感到庆幸！”[/blue]\n这尊玩偶洋洋得意地宣告道。"
+      },
+      {
+        "id": "EXAMINE",
+        "description": "在做出决定之前，你仔细审视了这里的每一尊玩偶。\n\n那些大叫声已变成了[red][jitter]刺耳的强音[/jitter][/red]，但你还是在彻底陷入疯狂之前，设法做出了选择！"
+      },
+      {
+        "id": "FABLE",
+        "description": "一个温暖的声音欢快地充盈在你的脑海中。\n[orange][sine]“我们要一起去发掘那些最为动人的故事！”[/sine][/orange]"
+      },
+      {
+        "id": "INITIAL",
+        "description": "你走进了一间隐藏的密室……\n\n这里堆满了琳琅满目的玩偶。每一只都独一无二，它们的表情亦从[green]喜悦[/green]到[purple]悲哀[/purple]各不相同，其服饰跨越了数个世纪，甚至来自你认知之外的领域。\n\n一阵[sine][blue]低语的合唱[/blue][/sine]变得越来越响，直到[jitter][red]那些玩偶互相争吵着大叫起来[/red][/jitter]，放声呼唤着你……\n\n你必须选择一个，并立刻离开这个地方。",
+        "options": [
+          {
+            "id": "RANDOM",
+            "title": "随机拿走一尊",
+            "description": "获取一尊[gold]玩偶遗物[/gold]。"
+          },
+          {
+            "id": "TAKE_SOME_TIME",
+            "title": "花点时间慢慢来",
+            "description": "失去[red]5[/red]点生命。从[blue]2[/blue]尊[gold]玩偶遗物[/gold]中选择[blue]1[/blue]尊带走。"
+          },
+          {
+            "id": "EXAMINE",
+            "title": "仔细检查然后挑选最好的那个",
+            "description": "失去[red]15[/red]点生命。从[blue]3[/blue]尊[gold]玩偶遗物[/gold]中选择[blue]1[/blue]尊带走。"
+          }
+        ]
+      },
+      {
+        "id": "MR_STRUGGLES",
+        "description": "当你拾起那尊[sine][purple]破损不堪的玩偶[/purple][/sine]时，所有的喧嚣都戛然而止。\n这一尊，始终缄默。"
+      },
+      {
+        "id": "TAKE",
+        "description": null,
+        "options": [
+          {
+            "id": "TAKE",
+            "title": "TAKE",
+            "description": "获得[gold]a random Relic[/gold]。"
+          }
+        ]
+      },
+      {
+        "id": "TAKE_SOME_TIME",
+        "description": "喧嚣之中，你飞快地审视着这些玩偶。\n\n这两尊里，或许有一尊是不错的选择？\n但在[red]精神的摧残[/red]下，你实在难以集中神志。"
+      }
+    ]
+  },
+  {
+    "id": "DOORS_OF_LIGHT_AND_DARK",
+    "name": "光与暗的门扉",
+    "type": "Event",
+    "act": "Underdocks",
+    "description": "一道门扉突然凭空出现了…\n\n你步入其中，见到了两道散发着微光的门，以及一位[gold]衣着得体的看门人[/gold]。\n“终于有访客了！请，请！选一扇门，任何一扇都可以！”\n\n[blue]我们还在尖塔里吗？这地方为何竟如此洁净？[/blue]",
+    "preconditions": null,
+    "options": [
+      {
+        "id": "LIGHT",
+        "title": "光之门",
+        "description": "随机[gold]升级[/gold][blue]2[/blue]张牌。"
+      },
+      {
+        "id": "DARK",
+        "title": "暗之门",
+        "description": "从你的[gold]牌组[/gold]中选择[blue]1[/blue]张牌移除。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "DARK",
+        "description": "[sine][purple]步入黑暗之中…[/purple][/sine]\n\n所见之处空无一物。\n但这反而帮你集中了思绪…你摒弃了那些[red]多余的杂念[/red]。\n\n你回到了[blue]暗港[/blue]。\n怎么个事儿? 哈…?"
+      },
+      {
+        "id": "INITIAL",
+        "description": "一道门扉突然凭空出现了…\n\n你步入其中，见到了两道散发着微光的门，以及一位[gold]衣着得体的看门人[/gold]。\n“终于有访客了！请，请！选一扇门，任何一扇都可以！”\n\n[blue]我们还在尖塔里吗？这地方为何竟如此洁净？[/blue]",
+        "options": [
+          {
+            "id": "LIGHT",
+            "title": "光之门",
+            "description": "随机[gold]升级[/gold][blue]2[/blue]张牌。"
+          },
+          {
+            "id": "DARK",
+            "title": "暗之门",
+            "description": "从你的[gold]牌组[/gold]中选择[blue]1[/blue]张牌移除。"
+          }
+        ]
+      },
+      {
+        "id": "LIGHT",
+        "description": "[sine][purple]步入光明之中…[/purple][/sine]\n\n[jitter]好刺眼的光！！[/jitter]但这股光流转而[gold]强化[/gold]了你。\n\n你回到了[blue]暗港[/blue]。\n怎么个事儿? 哈…?"
+      }
+    ]
+  },
+  {
+    "id": "DROWNING_BEACON",
+    "name": "淹水灯塔",
+    "type": "Event",
+    "act": "Underdocks",
+    "description": "穿过一片由岩石与静水构成的梦幻之境，你来到了一座散发着[purple]逆流光[/purple]的[sine]沉没灯塔[/sine]前。\n\n你可以把积聚在此的[aqua][sine]诡异发光水[/sine][/aqua]装进瓶子里，或者爬上这座破败的建筑，取下其中的[gold]透镜[/gold]。",
+    "preconditions": null,
+    "options": [
+      {
+        "id": "BOTTLE",
+        "title": "装瓶",
+        "description": "获得一瓶[aqua]发光水[/aqua]。"
+      },
+      {
+        "id": "CLIMB",
+        "title": "攀爬",
+        "description": "获得[gold]菲涅耳透镜[/gold]。失去[red]13[/red]点最大生命。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "BOTTLE",
+        "description": "你顺手拿了个瓶子，一边淡定地舀起了那些[aqua]发光液体[/aqua]，一边看着灯塔安详地沉入了泥沼。\n\n还好你没往里去。"
+      },
+      {
+        "id": "CLIMB",
+        "description": "你爬向灯塔顶端，看着它一直稳步下沉，心里直害怕。\n\n进入到[gold]灯具室[/gold]后，你开始着手撬那块透镜，但与此同时那些[purple]逆流光[/purple]正开始[jitter][red]榨取你的生命[/red][/jitter]！\n\n最后，你总算把它拧了下来；灯塔也停止了下沉。"
+      },
+      {
+        "id": "INITIAL",
+        "description": "穿过一片由岩石与静水构成的梦幻之境，你来到了一座散发着[purple]逆流光[/purple]的[sine]沉没灯塔[/sine]前。\n\n你可以把积聚在此的[aqua][sine]诡异发光水[/sine][/aqua]装进瓶子里，或者爬上这座破败的建筑，取下其中的[gold]透镜[/gold]。",
+        "options": [
+          {
+            "id": "BOTTLE",
+            "title": "装瓶",
+            "description": "获得一瓶[aqua]发光水[/aqua]。"
+          },
+          {
+            "id": "CLIMB",
+            "title": "攀爬",
+            "description": "获得[gold]菲涅耳透镜[/gold]。失去[red]13[/red]点最大生命。"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ENDLESS_CONVEYOR",
+    "name": "无尽传送带",
+    "type": "Event",
+    "act": "Underdocks",
+    "description": "你走进一间挂着歪斜招牌的小木屋，招牌亮得发晃，上面写着：\n[aqua][b]“无尽盛宴—按饿付费！”[/b][/aqua]\n\n屋里，一位[orange]身形修长的多臂大厨[/orange]正熟练地准备着[green]一份份小食[/green]，并将它们摆在一条[sine]蜿蜒的几丁质传送带[/sine]上。\n\n大厨其中的一只手臂指向一块牌子：\n每份[blue]40[/blue][gold]金币[/gold]",
+    "preconditions": [
+      "Requires 120+ gold"
+    ],
+    "options": [
+      {
+        "id": "OBSERVE_CHEF",
+        "title": "观察主厨",
+        "description": "从[gold]牌组[/gold]中随机[gold]升级[/gold]一张牌。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "ALL",
+        "description": null,
+        "options": [
+          {
+            "id": "LOCKED",
+            "title": "破产了",
+            "description": "你还能吃得下更多，但是兜里没[gold]金币[/gold]了。"
+          },
+          {
+            "id": "CAVIAR",
+            "title": "从传送带上拿份鱼子酱",
+            "description": "支付[red]40[/red][gold]金币[/gold]。获得[green]4[/green]点最大生命。接着吃！"
+          },
+          {
+            "id": "CLAM_ROLL",
+            "title": "从传送带上拿份蚌肉卷",
+            "description": "支付[red]40[/red][gold]金币[/gold]。回复[green]10[/green]点生命值。接着吃！"
+          },
+          {
+            "id": "FRIED_EEL",
+            "title": "从传送带上拿份炸鳗鱼",
+            "description": "支付[red]40[/red][gold]金币[/gold]。将一张随机无色牌添加到你的[gold]牌组[/gold]。接着吃！"
+          },
+          {
+            "id": "GOLDEN_FYSH",
+            "title": "从传送带上拿份金色异鱼",
+            "description": "[green]幸运头奖！[/green]获得[blue]75[/blue][gold]金币[/gold]。"
+          },
+          {
+            "id": "JELLY_LIVER",
+            "title": "从传送带上拿份果冻肝",
+            "description": "支付[red]40[/red][gold]金币[/gold]。 [gold]变化[/gold]一张牌。接着吃！"
+          },
+          {
+            "id": "SEAPUNK_SALAD",
+            "title": "从传送带上拿份海洋混混沙拉",
+            "description": "支付[red]40[/red][gold]金币[/gold]。将一张[gold]疯狂进食[/gold]添加到你的[gold]牌组[/gold]。 接着吃！"
+          },
+          {
+            "id": "SPICY_SNAPPY",
+            "title": "从传送带上拿份香辣薄脆",
+            "description": "支付[red]40[/red][gold]金币[/gold]。 随机[gold]升级[/gold]一张牌。接着吃！"
+          },
+          {
+            "id": "SUSPICIOUS_CONDIMENT",
+            "title": "从传送带上拿份可疑调味料",
+            "description": "支付[red]40[/red][gold]金币[/gold]。随机获得一瓶[gold]药水[/gold]。接着吃！"
+          }
+        ]
+      },
+      {
+        "id": "GRAB_SOMETHING_OFF_THE_BELT",
+        "description": "你从传送带上拿了盘[gold]Last Dish Title[/gold]转眼间就吃完了。\n[green]好吃！[/green]",
+        "options": [
+          {
+            "id": "LEAVE",
+            "title": "离开",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "id": "INITIAL",
+        "description": "你走进一间挂着歪斜招牌的小木屋，招牌亮得发晃，上面写着：\n[aqua][b]“无尽盛宴—按饿付费！”[/b][/aqua]\n\n屋里，一位[orange]身形修长的多臂大厨[/orange]正熟练地准备着[green]一份份小食[/green]，并将它们摆在一条[sine]蜿蜒的几丁质传送带[/sine]上。\n\n大厨其中的一只手臂指向一块牌子：\n每份[blue]40[/blue][gold]金币[/gold]",
+        "options": [
+          {
+            "id": "OBSERVE_CHEF",
+            "title": "观察主厨",
+            "description": "从[gold]牌组[/gold]中随机[gold]升级[/gold]一张牌。"
+          }
+        ]
+      },
+      {
+        "id": "LEAVE",
+        "description": "既然已经吃饱喝足了，那就继续上路吧。"
+      },
+      {
+        "id": "OBSERVE_CHEF",
+        "description": "你没去座位上，而是躲在店门口的阴影中观察。\n\n[orange]主厨[/orange]面不改色，手里的活儿一点没停。通过观察这份从容与专注，你学会了如何在战斗中摒除多余的动作和情绪波动。"
+      }
+    ]
+  },
+  {
+    "id": "FAKE_MERCHANT",
+    "name": "商人？？？",
+    "type": "Shared",
+    "act": null,
+    "description": "A suspicious merchant offers 9 fake relics at 42–58 gold each. Throwing a [gold]Foul Potion[/gold] starts a fight against The Merchant??? (165 HP). Winning rewards [gold]Fake Merchant's Rug[/gold] plus all unsold relics.",
+    "preconditions": [
+      "Act 2+",
+      "Single player only",
+      "Requires 100+ gold or a Foul Potion"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "FIELD_OF_MAN_SIZED_HOLES",
+    "name": "人形洞穴之地",
+    "type": "Event",
+    "act": "Act 2 - Hive",
+    "description": "眼前突然出现一大片土地，上面[jitter]凿刻着密密麻麻的人形轮廓[/jitter]，让你不由得停下了脚步。\n\n其中有一个洞的轮廓，竟然和你的体型一模一样。\n\n[sine][orange]完美契合…[/orange][/sine]",
+    "preconditions": null,
+    "options": [
+      {
+        "id": "RESIST",
+        "title": "抵抗诱惑",
+        "description": "从你的[gold]牌组[/gold]中移除[blue]2[/blue]张牌。将一张[red]凡庸[/red]添加到你的[gold]牌组[/gold]中。"
+      },
+      {
+        "id": "ENTER_YOUR_HOLE",
+        "title": "进入你的洞",
+        "description": "为一张牌[gold]附魔[/gold]：[purple]完美契合[/purple]。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "ENTER_YOUR_HOLE",
+        "description": "虽然有些紧，你还是硬把自己塞进了那个洞里……\n\n你越往深处前进，周围就[sine][purple]变得越发黑暗[/purple][/sine]。\n终于，你看到一丝[gold]微光[/gold]逐渐变亮，照亮了另一头的出口。\n\n你走出来时形貌未变，但你已洞悉了[green]生命至极的秘密[/green]。"
+      },
+      {
+        "id": "INITIAL",
+        "description": "眼前突然出现一大片土地，上面[jitter]凿刻着密密麻麻的人形轮廓[/jitter]，让你不由得停下了脚步。\n\n其中有一个洞的轮廓，竟然和你的体型一模一样。\n\n[sine][orange]完美契合…[/orange][/sine]",
+        "options": [
+          {
+            "id": "RESIST",
+            "title": "抵抗诱惑",
+            "description": "从你的[gold]牌组[/gold]中移除[blue]2[/blue]张牌。将一张[red]凡庸[/red]添加到你的[gold]牌组[/gold]中。"
+          },
+          {
+            "id": "ENTER_YOUR_HOLE",
+            "title": "进入你的洞",
+            "description": "为一张牌[gold]附魔[/gold]：[purple]完美契合[/purple]。"
+          }
+        ]
+      },
+      {
+        "id": "RESIST",
+        "description": "你无视了所有这些坑洞，甚至包括轮廓与你[orange]契合得完美无缺[/orange]的哪一个……\n\n我为什么没进去？要是进去了，会发生什么？我过去是否曾经进入过那个洞？这些洞到底是谁挖的？\n\n[sine][red]什么…谁…哪?[/red][/sine]"
+      }
+    ]
+  },
+  {
+    "id": "GRAVE_OF_THE_FORGOTTEN",
+    "name": "遗忘之墓",
+    "type": "Event",
+    "act": "Act 3 - Glory",
+    "description": "一座孤冢上[jitter][aqua]翻腾着汹涌的蓝焰[/aqua][/jitter]…\n\n一名高傲的战士战死于此，灵魂却躁动不安。但它渴望继续战斗，你甚至能感觉到它在[sine]哀求[/sine]你带着它一起踏上征途。\n\n但也许，让它直面[red]真相[/red]才是更好的选择？",
+    "preconditions": null,
+    "options": [
+      {
+        "id": "CONFRONT_LOCKED",
+        "title": "已锁定",
+        "description": "你没有可被[purple]附魔[/purple]的带有[gold]消耗[/gold]的卡牌。"
+      },
+      {
+        "id": "CONFRONT",
+        "title": "让它直面真相",
+        "description": "将一张[red]腐朽[/red]到你的[gold]牌组[/gold]。 为一张带有[gold]消耗[/gold]的牌[gold]附魔[/gold]：[purple]灵魂之力[/purple]。"
+      },
+      {
+        "id": "ACCEPT",
+        "title": "接受这颗遗忘之魂",
+        "description": "获得[gold]遗忘之魂[/gold]。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "ACCEPT",
+        "description": "你将手搭在墓碑上，低声呢喃…\n\n[sine]“随我一同攀升吧…”[/sine]\n\n作为回应，蓝焰从墓中涌出，聚成一团[aqua]燃烧之魂[/aqua]，忠诚地萦绕在你身边。\n它认出了你的本质，并愿护送你前往旅途的终点。"
+      },
+      {
+        "id": "CONFRONT",
+        "description": "你将手搭在墓碑上，低声呢喃…\n\n[sine]“你已经可以不用再战斗了…”[/sine]\n\n作为回应，那灵魂猛然撞入你的意志，一场[jitter][aqua]灵魂之战[/aqua][/jitter]就此爆发！\n它被你经历过的无数次血战所震慑，最终选择了认输。"
+      },
+      {
+        "id": "INITIAL",
+        "description": "一座孤冢上[jitter][aqua]翻腾着汹涌的蓝焰[/aqua][/jitter]…\n\n一名高傲的战士战死于此，灵魂却躁动不安。但它渴望继续战斗，你甚至能感觉到它在[sine]哀求[/sine]你带着它一起踏上征途。\n\n但也许，让它直面[red]真相[/red]才是更好的选择？",
+        "options": [
+          {
+            "id": "CONFRONT_LOCKED",
+            "title": "已锁定",
+            "description": "你没有可被[purple]附魔[/purple]的带有[gold]消耗[/gold]的卡牌。"
+          },
+          {
+            "id": "CONFRONT",
+            "title": "让它直面真相",
+            "description": "将一张[red]腐朽[/red]到你的[gold]牌组[/gold]。 为一张带有[gold]消耗[/gold]的牌[gold]附魔[/gold]：[purple]灵魂之力[/purple]。"
+          },
+          {
+            "id": "ACCEPT",
+            "title": "接受这颗遗忘之魂",
+            "description": "获得[gold]遗忘之魂[/gold]。"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "HUNGRY_FOR_MUSHROOMS",
+    "name": "蘑菇饥渴",
+    "type": "Event",
+    "act": "Act 3 - Glory",
+    "description": "[sine]上一次吃饭是什么时候来着？\n…等等，这股奇妙的香味是怎么回事？[/sine]\n\n循着气味，你来到了一处温馨的营地，各种[green]美味的蘑菇[/green]正在火上烤着！由于实在是太饿了，你甚至完全没想过这些玩意儿安不安全。\n（你饿得甚至连旁边有个死掉的冒险者这事都没注意到）",
+    "preconditions": null,
+    "options": [
+      {
+        "id": "BIG_MUSHROOM",
+        "title": "大蘑菇",
+        "description": "Obtain [gold]大蘑菇[/gold]. 拾起时，将你的最大生命值提升[blue]20[/blue]。在每场战斗开始时，少抽[blue]2[/blue]张牌。"
+      },
+      {
+        "id": "FRAGRANT_MUSHROOM",
+        "title": "芳香蘑菇",
+        "description": "Obtain [gold]芳香蘑菇[/gold]. 拾起时，失去[blue]15[/blue]点生命，然后随机[gold]升级[/gold][blue]2[/blue]张牌。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "BIG_MUSHROOM",
+        "description": "你咬下一口那颗[orange]大蘑菇[/orange]。这蘑菇肉质紧实，口感粉糯，让人十分满足。可你越吃就越觉得饿，仿佛这蘑菇正在以你的饥饿为食。\n\n[sine]太香了…你陷入了[red]饭后昏迷[/red]。[/sine]\n你将为这份贪吃，付出代价。"
+      },
+      {
+        "id": "FRAGRANT_MUSHROOM",
+        "description": "你试吃了一口那颗[green]闻着更香的[/green]，这种木质小蘑菇散发着一种微妙的贝类香气……\n\n一股能量猛然爆发，驱使你奔跑、跳跃，甚至还够你[gold]进行一场特训[/gold]！\n紧接着，一阵突如其来的[red][jitter]剧烈刺痛[/jitter][/red]席卷而来，那是尚且存活的真菌在你体内挣扎着，走完它最后的短暂时刻。"
+      },
+      {
+        "id": "INITIAL",
+        "description": "[sine]上一次吃饭是什么时候来着？\n…等等，这股奇妙的香味是怎么回事？[/sine]\n\n循着气味，你来到了一处温馨的营地，各种[green]美味的蘑菇[/green]正在火上烤着！由于实在是太饿了，你甚至完全没想过这些玩意儿安不安全。\n（你饿得甚至连旁边有个死掉的冒险者这事都没注意到）",
+        "options": [
+          {
+            "id": "BIG_MUSHROOM",
+            "title": "大蘑菇",
+            "description": "Obtain [gold]大蘑菇[/gold]. 拾起时，将你的最大生命值提升[blue]20[/blue]。在每场战斗开始时，少抽[blue]2[/blue]张牌。"
+          },
+          {
+            "id": "FRAGRANT_MUSHROOM",
+            "title": "芳香蘑菇",
+            "description": "Obtain [gold]芳香蘑菇[/gold]. 拾起时，失去[blue]15[/blue]点生命，然后随机[gold]升级[/gold][blue]2[/blue]张牌。"
+          }
+        ]
+      },
+      {
+        "id": "MEDLEY",
+        "description": "那份[green]蘑菇拼盘[/green]看上去最诱人，于是你直接下了手。\n\n[red][jitter][b]“我的蘑菇！！”[/b][/jitter][/red]\n\n那个本以为已经死透了的冒险者居然跳起来攻击你！你顺手把它放倒。最终，在一抹负罪感调味下，你干掉了剩下的美食。"
+      }
+    ]
+  },
+  {
+    "id": "INFESTED_AUTOMATON",
+    "name": "被寄生的自动机械",
+    "type": "Event",
+    "act": "Act 2 - Hive",
+    "description": "这间密室里堆满了[red]报废的机器人[/red]。\n\n其中一台孤零零的自动机械，其[sine][aqua]核心仍在幽幽发光[/aqua][/sine]，但它已被一种诡异的有机增生组织吞没，毫无响应。",
+    "preconditions": null,
+    "options": [
+      {
+        "id": "STUDY",
+        "title": "学习",
+        "description": "随机获得一张[gold]能力牌[/gold]。"
+      },
+      {
+        "id": "TOUCH_CORE",
+        "title": "触碰核心",
+        "description": "随机获得一张[gold]耗能为0的牌[/gold]。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "INITIAL",
+        "description": "这间密室里堆满了[red]报废的机器人[/red]。\n\n其中一台孤零零的自动机械，其[sine][aqua]核心仍在幽幽发光[/aqua][/sine]，但它已被一种诡异的有机增生组织吞没，毫无响应。",
+        "options": [
+          {
+            "id": "STUDY",
+            "title": "学习",
+            "description": "随机获得一张[gold]能力牌[/gold]。"
+          },
+          {
+            "id": "TOUCH_CORE",
+            "title": "触碰核心",
+            "description": "随机获得一张[gold]耗能为0的牌[/gold]。"
+          }
+        ]
+      },
+      {
+        "id": "STUDY",
+        "description": "通过研究这台[aqua]发光的自动机械[/aqua]以及它的内部结构。你意识到，特定的金属排列可以抵抗各种疾苦！\n\n你将这项[blue]技术[/blue]应用到了自己身上。"
+      },
+      {
+        "id": "TOUCH_CORE",
+        "description": "就在触碰[aqua]核心[/aqua]的刹那，你被一股[jitter][gold]电流[/gold]猛烈击中[/jitter]。\n\n你仓皇退开，感觉在那次遭遇之后，自己身上似乎发生了某种[sine][purple]异变[/purple][/sine]。"
+      }
+    ]
+  },
+  {
+    "id": "JUNGLE_MAZE_ADVENTURE",
+    "name": "丛林迷宫奇遇",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": "在一片林间空地上，你撞见了一群[green]寒碜的冒险者小队[/green]，他们正俯瞰着一座[purple]巨型迷宫[/purple]并指手画脚。\n\n他们邀请你入伙，共同开启一场搜刮迷宫财富的[b]史诗级任务[/b]。身为老手，你心知肚明这迷宫里塞满了[red][jitter]致命陷阱[/jitter][/red]和[orange][sine]守卫[/sine][/orange]。\n\n搭伙干活确实容易些，但那样你就得跟人平分战利品了。",
+    "preconditions": null,
+    "options": [
+      {
+        "id": "SOLO_QUEST",
+        "title": "独自挑战",
+        "description": "获得[blue]135-165[/blue][gold]金币[/gold]。失去[red]18[/red]点生命。"
+      },
+      {
+        "id": "JOIN_FORCES",
+        "title": "结伴同行",
+        "description": "获得[blue]35-65[/blue][gold]金币[/gold]。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "INITIAL",
+        "description": "在一片林间空地上，你撞见了一群[green]寒碜的冒险者小队[/green]，他们正俯瞰着一座[purple]巨型迷宫[/purple]并指手画脚。\n\n他们邀请你入伙，共同开启一场搜刮迷宫财富的[b]史诗级任务[/b]。身为老手，你心知肚明这迷宫里塞满了[red][jitter]致命陷阱[/jitter][/red]和[orange][sine]守卫[/sine][/orange]。\n\n搭伙干活确实容易些，但那样你就得跟人平分战利品了。",
+        "options": [
+          {
+            "id": "SOLO_QUEST",
+            "title": "独自挑战",
+            "description": "获得[blue]135-165[/blue][gold]金币[/gold]。失去[red]18[/red]点生命。"
+          },
+          {
+            "id": "JOIN_FORCES",
+            "title": "结伴同行",
+            "description": "获得[blue]35-65[/blue][gold]金币[/gold]。"
+          }
+        ]
+      },
+      {
+        "id": "JOIN_FORCES",
+        "description": "每个人的脸上都乐开了花，包括你自己！\n\n这群人里居然还有个吟游诗人！\n你们迈着轻快的步伐走入迷宫，[aqua]乌贼巫师阿奎德[/aqua]手到擒来地解除了所有陷阱，你和一位[red]格拉索里安战士[/red]则轻轻松松地解决掉了那些[orange]手持狼牙棒的守卫[/orange]。\n\n这是你这辈子最愉快的一次冒险，你也真的留下了[gold][sine]美好的回忆[/sine][/gold]。"
+      },
+      {
+        "id": "SOLO_QUEST",
+        "description": "你带着几分厌烦，无视了他们那此刻紧蹙的眉头，径直走了过去。其中一人甚至还[jitter][purple]对着你挥了挥拳头[/purple][/jitter]。\n\n迷宫里到处都透着恶意。你掉进过地刺陷阱，被带刺的巨型滚木迎头击中，还得一路上和那些[orange]挥舞着狼牙棒的暴躁生物[/orange]缠斗。\n\n你简直受够了这些带刺的玩意，甚至开始考虑下次冒险是不是得向团队协作低头了。"
+      }
+    ]
+  },
+  {
+    "id": "LOST_WISP",
+    "name": "迷失鬼火",
+    "type": "Event",
+    "act": "Act 2 - Hive",
+    "description": "远处有一幕古怪的景象。成堆的[sine][red]昆虫残骸[/red][/sine]层层堆叠，围绕着一个像是[orange]微小的光团[/orange]的东西。\n它似乎对各种虫子都有着不俗的吸引力，但你却目睹了它迸发出火焰！\n\n你走近前去一探究竟。",
+    "preconditions": null,
+    "options": [
+      {
+        "id": "CLAIM",
+        "title": "抓住这团鬼火",
+        "description": "将一张[red]腐朽[/red]添加到你的[gold]牌组[/gold]。获得[gold]迷失鬼火[/gold]。"
+      },
+      {
+        "id": "SEARCH",
+        "title": "搜索附近的区域",
+        "description": "获得[blue]45-75[/blue][gold]金币[/gold]。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "CLAIM",
+        "description": "你小心翼翼地靠近[orange]鬼火[/orange]…\n你离得越近，它对你的反应就越强烈。\n\n在伸手可及的地方，你紧握住了这团[orange]鬼火[/orange]，但它同时也[red][jitter]喷出一股炽热的蒸汽和火焰，将你灼伤！[/jitter][/red]\n\n尽管如此，你还是在一番[jitter]手忙脚乱的缠斗[/jitter]中将其制服。最终，这团[orange]鬼火[/orange]选择了屈服，并认你为它的新主人。"
+      },
+      {
+        "id": "INITIAL",
+        "description": "远处有一幕古怪的景象。成堆的[sine][red]昆虫残骸[/red][/sine]层层堆叠，围绕着一个像是[orange]微小的光团[/orange]的东西。\n它似乎对各种虫子都有着不俗的吸引力，但你却目睹了它迸发出火焰！\n\n你走近前去一探究竟。",
+        "options": [
+          {
+            "id": "CLAIM",
+            "title": "抓住这团鬼火",
+            "description": "将一张[red]腐朽[/red]添加到你的[gold]牌组[/gold]。获得[gold]迷失鬼火[/gold]。"
+          },
+          {
+            "id": "SEARCH",
+            "title": "搜索附近的区域",
+            "description": "获得[blue]45-75[/blue][gold]金币[/gold]。"
+          }
+        ]
+      },
+      {
+        "id": "SEARCH",
+        "description": "你决定不去惊动那个小家伙。小心为上！\n\n这附近没剩下多少东西，不过你在那些昆虫残骸中发现了一些散落的[gold]金币[/gold]。\n你选择了就此收手。"
+      }
+    ]
+  },
+  {
+    "id": "LUMINOUS_CHOIR",
+    "name": "冷光合唱团",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": "你撞入了一片沐浴在诡异蓝光下的林间空地。高耸的蘑菇随着生物荧光起伏脉动，菌盖肿胀而泛着光泽。当你靠近时，真菌们竟开始发出[sine][purple]凄美而婉转的旋律[/purple][/sine]，这旋律在你的胸腔内激荡。\n\n你注意到，在那个体型最大的蘑菇肉质中嵌入了某种闪光的东西，正随着真菌之歌有节奏地[sine]跃动[/sine]。",
+    "preconditions": [
+      "Requires 100-149 gold"
+    ],
+    "options": [
+      {
+        "id": "REACH_INTO_THE_FLESH",
+        "title": "探入菌肉",
+        "description": "从你的[gold]牌组[/gold]移除[blue]2[/blue]张牌。将一张[red]孢子心灵[/red]添加到你的[gold]牌组[/gold]。"
+      },
+      {
+        "id": "OFFER_TRIBUTE",
+        "title": "供奉",
+        "description": "支付[red]100-149[/red][gold]金币[/gold]。获取一件随机[gold]遗物[/gold]。"
+      },
+      {
+        "id": "OFFER_TRIBUTE_LOCKED",
+        "title": "已锁定",
+        "description": "需要[blue]100-149[/blue][gold]金币[/gold]。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "INITIAL",
+        "description": "你撞入了一片沐浴在诡异蓝光下的林间空地。高耸的蘑菇随着生物荧光起伏脉动，菌盖肿胀而泛着光泽。当你靠近时，真菌们竟开始发出[sine][purple]凄美而婉转的旋律[/purple][/sine]，这旋律在你的胸腔内激荡。\n\n你注意到，在那个体型最大的蘑菇肉质中嵌入了某种闪光的东西，正随着真菌之歌有节奏地[sine]跃动[/sine]。",
+        "options": [
+          {
+            "id": "REACH_INTO_THE_FLESH",
+            "title": "探入菌肉",
+            "description": "从你的[gold]牌组[/gold]移除[blue]2[/blue]张牌。将一张[red]孢子心灵[/red]添加到你的[gold]牌组[/gold]。"
+          },
+          {
+            "id": "OFFER_TRIBUTE",
+            "title": "供奉",
+            "description": "支付[red]100-149[/red][gold]金币[/gold]。获取一件随机[gold]遗物[/gold]。"
+          },
+          {
+            "id": "OFFER_TRIBUTE_LOCKED",
+            "title": "已锁定",
+            "description": "需要[blue]100-149[/blue][gold]金币[/gold]。"
+          }
+        ]
+      },
+      {
+        "id": "OFFER_TRIBUTE",
+        "description": "将金币置于绵软的地面。随着金币缓缓沉入，几根卷须温柔地将一件遗物推向地表，让你得以干干净净地将其取走。"
+      },
+      {
+        "id": "REACH_INTO_THE_FLESH",
+        "description": "你直接将手探入那株主导蘑菇的绵软组织中，掏出了其中的遗物。真菌网络因你的侵入而战栗，你的意识也随之一并[sine]震颤[/sine]。"
+      }
+    ]
+  },
+  {
+    "id": "MORPHIC_GROVE",
+    "name": "变形灵林谷",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": "你进入了一片[green]结晶树[/green]的林谷，树木开始[jitter]激动地颤抖起来[/jitter]！\n一阵阵杂乱的[sine]问候与欢迎声[/sine]在你耳边不断响起，原来是一群[aqua]变形灵[/aqua]从树上[jitter]绽放[/jitter]了出来。\n\n有一只[aqua]变形灵[/aqua]在角落里坐立不安的样子，显然不像其他同类那样善于社交。\n\n你是去找一群变形灵，还是去找落单的那个？",
+    "preconditions": [
+      "Requires 100+ gold"
+    ],
+    "options": [
+      {
+        "id": "GROUP",
+        "title": "大群变形灵",
+        "description": "失去[red]所有[/red][gold]金币[/gold]。[gold]变化[/gold][blue]2[/blue]张牌。"
+      },
+      {
+        "id": "LONER",
+        "title": "落单变形灵",
+        "description": "获得[green]5[/green]点最大生命。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "GROUP",
+        "description": "你向那群叽叽喳喳的[aqua]变形灵[/aqua]问好，它们伸出水晶手臂拥抱住了你。\n\n它们将自己共有的知识分享给了你，更为你注入了[sine]拟形魔法[/sine]，改变了你的本质……这些[aqua]变形灵[/aqua]还真是群可爱的小生物啊。\n\n[red]其中一个偷走了你的[/red][gold]金币[/gold][red]。[/red]"
+      },
+      {
+        "id": "INITIAL",
+        "description": "你进入了一片[green]结晶树[/green]的林谷，树木开始[jitter]激动地颤抖起来[/jitter]！\n一阵阵杂乱的[sine]问候与欢迎声[/sine]在你耳边不断响起，原来是一群[aqua]变形灵[/aqua]从树上[jitter]绽放[/jitter]了出来。\n\n有一只[aqua]变形灵[/aqua]在角落里坐立不安的样子，显然不像其他同类那样善于社交。\n\n你是去找一群变形灵，还是去找落单的那个？",
+        "options": [
+          {
+            "id": "GROUP",
+            "title": "大群变形灵",
+            "description": "失去[red]所有[/red][gold]金币[/gold]。[gold]变化[/gold][blue]2[/blue]张牌。"
+          },
+          {
+            "id": "LONER",
+            "title": "落单变形灵",
+            "description": "获得[green]5[/green]点最大生命。"
+          }
+        ]
+      },
+      {
+        "id": "LONER",
+        "description": "你向那只孤单的[aqua]变形灵[/aqua]伸出一只手，同情它内向的天性。\n它送给了你一颗小小的水晶果实，你深知它们的传统，于是当场把果子吃了下去。\n\n水晶果实让你的心智清明、使命感也更加坚定。你道了谢，再次向上方出发。"
+      }
+    ]
+  },
+  {
+    "id": "NEOW",
+    "name": "涅奥",
+    "type": "Ancient",
+    "act": "Act 1 - Overgrowth / Underdocks",
+    "description": "[sine]我又... 重铸了你....\n...上... ..去吧.....[/sine]",
+    "preconditions": null,
+    "options": null,
+    "pages": null,
+    "epithet": "复生之母（被放逐）",
+    "dialogue": {
+      "Returning": [
+        {
+          "order": "0-0r",
+          "speaker": "ancient",
+          "text": "[sine]...再次... ..问好.....[/sine]"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "[sine]...醒来...\n..醒来....[/sine]"
+        },
+        {
+          "order": "2-0r",
+          "speaker": "ancient",
+          "text": "[sine]..收下....这份....\n..祝福.. ...去吧......[/sine]"
+        },
+        {
+          "order": "3-0r",
+          "speaker": "ancient",
+          "text": "[sine]..我把你... ..带回... ..来了...[/sine]"
+        },
+        {
+          "order": "4-0r",
+          "speaker": "ancient",
+          "text": "[sine]...杀.. 死... [red][jitter]建筑师[/jitter][/red][/sine]"
+        }
+      ],
+      "Defect": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "[sine]...构装体.. 你...\n....变成.. 什么了...？[/sine]"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "[sine]...他.. 可以...\n....修好.. 你.. ...和一切....[/sine]"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "[sine]...我.. 不能... ..让...\n...你.. 忘记....[/sine]"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "<坚决的嘀嘀声>"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "[sine]...很好....[/sine]"
+        }
+      ],
+      "Ironclad": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "[sine]..起来吧.. 我的.. 战士...\n..是时候... 继续...战斗了...[/sine]"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "[sine]..依旧.. 深陷.. 狂怒么.. 很好...[/sine]"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "[sine]..记起.. 你.. 第一..次\n...来到 ..我面前...的时候..[/sine]"
+        },
+        {
+          "order": "2-1",
+          "speaker": "ancient",
+          "text": "[sine]..那么..愤怒...[/sine]"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "[sine]...那么..有用...[/sine]"
+        }
+      ],
+      "Necrobinder": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "[sine]...我们的.... 目标... ..是... ..一样的....[/sine]"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "[jitter]他杀死了我爱的一切！！[/jitter]"
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "[sine]...我的力量..... 是你的了...[/sine]"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "[sine]他... 依旧.. ....生存...[/sine]"
+        },
+        {
+          "order": "2-0",
+          "speaker": "character",
+          "text": "[sine]那... 真的.. ...可能... 吗...？[/sine]"
+        },
+        {
+          "order": "2-1",
+          "speaker": "ancient",
+          "text": "[sine]... [red]建筑师[/red].... ..逐渐虚弱....\n..我们.... 变强...[/sine]"
+        }
+      ],
+      "Regent": [
+        {
+          "order": "0-0",
+          "speaker": "character",
+          "text": "巨大蓝色生物，我可是未来的[orange]王[/orange]！"
+        },
+        {
+          "order": "0-1",
+          "speaker": "ancient",
+          "text": "[sine]..可爱...\n...你... 会再次.. ..见到... ...我的....[/sine]"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "[sine]...又一次..？[/sine]"
+        },
+        {
+          "order": "2-0",
+          "speaker": "character",
+          "text": "[jitter]为什么我赢不了？！[/jitter]"
+        },
+        {
+          "order": "2-1",
+          "speaker": "ancient",
+          "text": "[sine]...收下.. 这份... ..赐福...[/sine]"
+        },
+        {
+          "order": "2-2",
+          "speaker": "character",
+          "text": "……好的，谢谢你，涅奥。"
+        }
+      ],
+      "Silent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "[sine]...从.. 外面... 回来了么？\n..我知道... 你会... 回来...[/sine]"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "[sine]...你的..\n ...猎物.. 在等待...[/sine]"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "[sine]..两个...都知道..家族..的..痛苦...[/sine]"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "……"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "[sine]..还在...寻找..认同...？\n...[jitter]愚蠢[/jitter]...[/sine]"
+        }
+      ],
+      "First Visit": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "[sine]我又... 重铸了你....\n...上... ..去吧.....[/sine]"
+        }
+      ]
+    },
+    "image_url": "/static/images/misc/ancients/neow.webp",
+    "relics": [
+      "ARCANE_SCROLL",
+      "BOOMING_CONCH",
+      "GOLDEN_PEARL",
+      "LEAD_PAPERWEIGHT",
+      "LOST_COFFER",
+      "NEOWS_TORMENT",
+      "NEW_LEAF",
+      "PRECISE_SCISSORS",
+      "PHIAL_HOLSTER",
+      "WINGED_BOOTS",
+      "MASSIVE_SCROLL",
+      "LAVA_ROCK",
+      "NEOWS_TALISMAN",
+      "NUTRITIOUS_OYSTER",
+      "POMANDER",
+      "SMALL_CAPSULE",
+      "STONE_HUMIDIFIER",
+      "CURSED_PEARL",
+      "HEFTY_TABLET",
+      "LARGE_CAPSULE",
+      "LEAFY_POULTICE",
+      "PRECARIOUS_SHEARS",
+      "SILVER_CRUCIBLE",
+      "NEOWS_BONES",
+      "SCROLL_BOXES"
+    ]
+  },
+  {
+    "id": "NONUPEIPE",
+    "name": "诺奴佩普",
+    "type": "Ancient",
+    "act": "Act 3 - Glory",
+    "description": "我有几千年都没有接待过访客了！\n哎呀，你的穿搭看起来有些乏味呢，来，我们给你挑些漂亮的穿吧。",
+    "preconditions": null,
+    "options": null,
+    "pages": null,
+    "epithet": "机缘的化身",
+    "dialogue": {
+      "Returning": [
+        {
+          "order": "0-0r",
+          "speaker": "ancient",
+          "text": "塔顶有疯狂在等待。穿上我的力量，消灭一切吧。"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "来到我这里，你走了很远吧！\n过来吧，接受我的赐福。"
+        }
+      ],
+      "Defect": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "构装体也能够配得上我的赐福么？\n过来吧，故障机器人。在所有自动机械里，你将成为最美。"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "可怜的机器呀，如此残破不堪，来让我将你好好改善吧。"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "我通常不会喜欢建筑师的造物，但我承认，你让我有点喜欢上了。"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "<羞赧的鸣叫>"
+        }
+      ],
+      "Ironclad": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "啊，铁甲战士，终于来到了我的面前。\n过来吧，我会赐予你我的力量。"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "铁甲战士，铁甲战士……是我之前的赠礼还不够么？"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "你又回来了么，我的勇士？这是多少次了？\n过去的你，不是强大到可以消灭整个族群么？"
+        }
+      ],
+      "Necrobinder": [
+        {
+          "order": "0-0",
+          "speaker": "character",
+          "text": "你的护卫已经死了。传闻说，你会赐福给想要杀死建筑师的人。"
+        },
+        {
+          "order": "0-1",
+          "speaker": "ancient",
+          "text": "我喜欢有能力的人，所以我会把自己的力量分给你一部分。\n下一次，可别再杀我的护卫了。"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "法师若要战斗，自然需要上好的衣装和饰物。过来吧，亡灵契约师。"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "建筑师见到你的[sine]宠物[/sine]，一定不会高兴的。"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "你是指奥斯提么？我会让他来完成最后一击的。"
+        }
+      ],
+      "Regent": [
+        {
+          "order": "0-0",
+          "speaker": "character",
+          "text": "我要来见诺奴佩普！"
+        },
+        {
+          "order": "0-1",
+          "speaker": "ancient",
+          "text": "你从遥远的地方带来了这么华美的袍子么！\n来，让你的仆从们把你带过来一点，我会给你赐福的。"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "王室的访客，该有王室的赐福。\n仆人们！为我们倒点茶来。"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "建筑师发了疯！只有一位高贵的勇士能拯救我们于此危难了……"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "无需担心！我，储君，将会终止这场疯狂！\n但是首先，喝茶！"
+        }
+      ],
+      "Silent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "一个小小的窃贼溜进了我的领域么？\n别以为我看不见你啊？出来吧！"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "静默猎手从阴影中走了出来……"
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "猎手啊，是什么让你回到了高塔？\n过来吧，穿戴上这些赐福。"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "我为你准备了礼物，刺客，不用害羞。"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "在她的傀儡之中，属你最让我吃惊。"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "……"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "是什么夺走了你的第一次生命？是涅奥[sine]找到[/sine]你的么？\n真可惜啊，你不说话。"
+        }
+      ],
+      "First Visit": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "我有几千年都没有接待过访客了！\n哎呀，你的穿搭看起来有些乏味呢，来，我们给你挑些漂亮的穿吧。"
+        }
+      ]
+    },
+    "image_url": "/static/images/misc/ancients/nonupeipe.webp",
+    "relics": [
+      "BLESSED_ANTLER",
+      "BRILLIANT_SCARF",
+      "DELICATE_FROND",
+      "DIAMOND_DIADEM",
+      "FUR_COAT",
+      "GLITTER",
+      "JEWELRY_BOX",
+      "LOOMING_FRUIT",
+      "SIGNET_RING",
+      "BEAUTIFUL_BRACELET"
+    ]
+  },
+  {
+    "id": "OROBAS",
+    "name": "欧洛巴斯",
+    "type": "Ancient",
+    "act": "Act 2 - Hive",
+    "description": "傀儡傀儡！！一路来到这里？！收下这些，拿去拿去！",
+    "preconditions": null,
+    "options": null,
+    "pages": null,
+    "epithet": "活体虹光",
+    "dialogue": {
+      "Returning": [
+        {
+          "order": "0-0r",
+          "speaker": "ancient",
+          "text": "试试这个！！！"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "找到了很好的东西！！你看，你看！"
+        }
+      ],
+      "Defect": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "什么！构装体仆人？！居然还在运作！！\n为什么在这里？？为什么不在工厂？？"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "闪亮的充能球！怎么运作的？\n[jitter]啊呀！！[/jitter]"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "核心损坏？涅奥驱使着坏了的构装体？\n是利用？"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "<安静的嘀嘀声>"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "建筑师能修你？"
+        }
+      ],
+      "Ironclad": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "一个铁甲战士！？怎么可能？？可怕，真可怕！！"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "签下契约？为什么！？糟糕选择？对，大错误！"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "祝愿你自己！！拼命祝愿！\n瓦库坏，非常坏！建筑师能解放你？"
+        }
+      ],
+      "Necrobinder": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "死了？！没死！为何当傀儡？好大的手！！"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "我不是傀儡。有个人我必须要杀。\n你能帮我点什么？"
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "杀人不好！！带上这个吧！"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "不死者！有好礼物给你！！暴力不好。"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "不要暴力！拿点亮闪闪的吧……亮闪闪！！"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "只有当建筑师不复存在，我的使命才会结束。\n暴力不可避免。"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "建筑师不坏！或许聊聊？聊聊很好！！非常好！"
+        }
+      ],
+      "Regent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "旅行者！太空来的！？太空哪里？\n怎么从太空来？脑袋尖尖！还有小小伙伴！！"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "储君独自说了几个小时。"
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "真有趣！真厉害！！再说说！再说说！！！"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "更多故事！给你找了这些东西！\n所以快来说更多故事！！"
+        },
+        {
+          "order": "2-0",
+          "speaker": "character",
+          "text": "我的头号粉丝！欧洛巴斯，好朋友！\n看到你还活着真是不错！"
+        },
+        {
+          "order": "2-1",
+          "speaker": "ancient",
+          "text": "故事？！"
+        },
+        {
+          "order": "2-2",
+          "speaker": "character",
+          "text": "当然当然……不过你有给我找到更多饰品么？"
+        }
+      ],
+      "Silent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "感染……？[jitter]荒疫！？[/jitter]拿了东西就走吧！！"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "[sine]...[/sine]"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "不传染？很快要死？建筑师能帮你？"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "姐妹们在哪里？吓人又很凶的姐妹们！\n做个好人！别像姐妹们那样！！"
+        }
+      ],
+      "First Visit": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "傀儡傀儡！！一路来到这里？！收下这些，拿去拿去！"
+        }
+      ]
+    },
+    "image_url": "/static/images/misc/ancients/orobas.webp",
+    "relics": [
+      "ELECTRIC_SHRYMP",
+      "GLASS_EYE",
+      "SAND_CASTLE",
+      "ALCHEMICAL_COFFER",
+      "DRIFTWOOD",
+      "RADIANT_PEARL",
+      "SEA_GLASS",
+      "PRISMATIC_GEM",
+      "TOUCH_OF_OROBAS",
+      "ARCHAIC_TOOTH"
+    ]
+  },
+  {
+    "id": "PAEL",
+    "name": "佩尔",
+    "type": "Ancient",
+    "act": "Act 2 - Hive",
+    "description": "有傀儡来了？\n能帮我去看看父亲的状况么？我太累了……",
+    "preconditions": null,
+    "options": null,
+    "pages": null,
+    "epithet": "融化巨龙",
+    "dialogue": {
+      "Returning": [
+        {
+          "order": "0-0r",
+          "speaker": "ancient",
+          "text": "欢迎回来，朋友。让我的血肉帮助你吧……"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "佩尔正在沉睡，它的鼾声让整个房间不停震动着。"
+        }
+      ],
+      "Defect": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "困扰的自动机械，在找你的朋友吗？\n让我来帮忙……"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "构装体会做梦吗？\n看着我，模仿我……"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "我梦见了你的朋友……\n父亲可以将[aqua]缺陷[/aqua]复原……"
+        }
+      ],
+      "Ironclad": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "你心中有着如此多的愤怒。学习我吧，找到一些平静……"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "你还记得做梦的感觉吗？\n睡觉是件好事……"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "你必须平息你的火焰。\n父亲可以让你获得自由……"
+        }
+      ],
+      "Necrobinder": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "有如此的恶意涂满了你的心。"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "如果你知道我的遭遇，你的心也会被涂成相同的颜色。"
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "你的道路上没有安宁。\n拿走我的一部分吧，让它减轻你的重负……"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "带着手的人回来了。\n痛苦的回忆。拿走我的力量然后离开吧……"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "杀死[red]父亲[/red]不会带来安宁。"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "你说那个[jitter]东西[/jitter]是你的父亲！？"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "我们无法选择自己的家人……"
+        }
+      ],
+      "Regent": [
+        {
+          "order": "0-0",
+          "speaker": "character",
+          "text": "你好！我是储君。\n你好？？[jitter]你好！？[/jitter]"
+        },
+        {
+          "order": "0-1",
+          "speaker": "ancient",
+          "text": "安静点吧。\n拿走我的一部分，然后上路吧……"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "character",
+          "text": "我回来了！啊，你当然在睡觉。\n让我看看这里……"
+        },
+        {
+          "order": "2-0",
+          "speaker": "character",
+          "text": "你为什么要把自己的肉体送给别人？"
+        },
+        {
+          "order": "2-1",
+          "speaker": "ancient",
+          "text": "既然我有大量的血肉，为什么不送呢？"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "当你再次归来时，我也会焕然一新。\n那就是睡眠的作用……"
+        }
+      ],
+      "Silent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "杀戮的生物，这里不需要暴力。\n拿走我的一部分，寻找安宁吧……"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "猎取战利品？当然，拿走我的一部分吧……\n只有你安心就好……"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "你给我下了毒……？\n那能有什么作用呢……？zZZzz……"
+        }
+      ],
+      "First Visit": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "有傀儡来了？\n能帮我去看看父亲的状况么？我太累了……"
+        }
+      ]
+    },
+    "image_url": "/static/images/misc/ancients/pael.webp",
+    "relics": [
+      "PAELS_CLAW",
+      "PAELS_TOOTH",
+      "PAELS_GROWTH",
+      "PAELS_LEGION",
+      "PAELS_FLESH",
+      "PAELS_HORN",
+      "PAELS_TEARS",
+      "PAELS_WING",
+      "PAELS_EYE",
+      "PAELS_BLOOD"
+    ]
+  },
+  {
+    "id": "POTION_COURIER",
+    "name": "药水快递员",
+    "type": "Shared",
+    "act": null,
+    "description": "空气中传来一阵[sine]浓浓的酸味[/sine]，不一会儿你在附近找到了一个倒在地上的[gold]药水快递员[/gold]。\n一动不动，已经没了气。[jitter]死了！？[/jitter]\n快递员带着的物品已经被洗劫得差不多了，只有一批[green][sine]很难闻的药水[/sine][/green]好好地放在那里，上面有一张字条：“收件人：商人”。",
+    "preconditions": [
+      "Act 2+"
+    ],
+    "options": [
+      {
+        "id": "GRAB_POTIONS",
+        "title": "拿走这批药水",
+        "description": "获得[blue]3[/blue]瓶[gold]污浊药水[/gold]。"
+      },
+      {
+        "id": "RANSACK",
+        "title": "洗劫",
+        "description": "获得[blue]1[/blue]瓶随机[gold]罕见药水[/gold]。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "GRAB_POTIONS",
+        "description": "[blue]商人[/blue]要这些药水究竟是为了什么呢？"
+      },
+      {
+        "id": "INITIAL",
+        "description": "空气中传来一阵[sine]浓浓的酸味[/sine]，不一会儿你在附近找到了一个倒在地上的[gold]药水快递员[/gold]。\n一动不动，已经没了气。[jitter]死了！？[/jitter]\n快递员带着的物品已经被洗劫得差不多了，只有一批[green][sine]很难闻的药水[/sine][/green]好好地放在那里，上面有一张字条：“收件人：商人”。",
+        "options": [
+          {
+            "id": "GRAB_POTIONS",
+            "title": "拿走这批药水",
+            "description": "获得[blue]3[/blue]瓶[gold]污浊药水[/gold]。"
+          },
+          {
+            "id": "RANSACK",
+            "title": "洗劫",
+            "description": "获得[blue]1[/blue]瓶随机[gold]罕见药水[/gold]。"
+          }
+        ]
+      },
+      {
+        "id": "RANSACK",
+        "description": "只有一瓶药水还完好无损。"
+      }
+    ]
+  },
+  {
+    "id": "PUNCH_OFF",
+    "name": "重拳出击",
+    "type": "Event",
+    "act": "Underdocks",
+    "description": "两个[gold]拳击构装体[/gold]正在挥拳互殴，而你看到在它们两个之间有一些财宝……\n\n要不要把财宝顺走？",
+    "preconditions": null,
+    "options": [
+      {
+        "id": "NAB",
+        "title": "顺走",
+        "description": "将一张[red]受伤[/red]加入到你的[gold]牌组[/gold]。获得一件随机[gold]遗物[/gold]。"
+      },
+      {
+        "id": "I_CAN_TAKE_THEM",
+        "title": "我能打两个",
+        "description": "和它们战斗以得到[gold]更好的奖励[/gold]。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "INITIAL",
+        "description": "两个[gold]拳击构装体[/gold]正在挥拳互殴，而你看到在它们两个之间有一些财宝……\n\n要不要把财宝顺走？",
+        "options": [
+          {
+            "id": "NAB",
+            "title": "顺走",
+            "description": "将一张[red]受伤[/red]加入到你的[gold]牌组[/gold]。获得一件随机[gold]遗物[/gold]。"
+          },
+          {
+            "id": "I_CAN_TAKE_THEM",
+            "title": "我能打两个",
+            "description": "和它们战斗以得到[gold]更好的奖励[/gold]。"
+          }
+        ]
+      },
+      {
+        "id": "I_CAN_TAKE_THEM",
+        "description": "两个[gold]构装体[/gold]恶狠狠地转向了你！\n\n你举起了自己的拳头。",
+        "options": [
+          {
+            "id": "FIGHT",
+            "title": "战斗",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "id": "NAB",
+        "description": "你成功地偷偷顺走了遗物！\n\n……可惜美中不足，一记右勾拳[jitter][red]狠狠地打在了你的脸上[/red][/jitter]。"
+      }
+    ]
+  },
+  {
+    "id": "RANWID_THE_ELDER",
+    "name": "长者兰伟德",
+    "type": "Shared",
+    "act": null,
+    "description": "一个[purple]你至今为止见过最年迈的人[/purple]走到了你的身前。\n[sine]“我们又见面了....是我，兰伟德！”[/sine]\n\n你不认识这个男人。",
+    "preconditions": [
+      "Act 2+",
+      "Requires at least one potion"
+    ],
+    "options": [
+      {
+        "id": "POTION",
+        "title": "给他Potion",
+        "description": "获得一件随机[gold]遗物[/gold]。"
+      },
+      {
+        "id": "POTION_LOCKED",
+        "title": "锁定",
+        "description": "你没有任何可以给他的药水。"
+      },
+      {
+        "id": "GOLD",
+        "title": "给他100金币",
+        "description": "获得一件随机[gold]遗物[/gold]。"
+      },
+      {
+        "id": "RELIC",
+        "title": "给他Relic",
+        "description": "获得[blue]2[/blue]件随机[gold]遗物[/gold]。"
+      },
+      {
+        "id": "RELIC_LOCKED",
+        "title": "锁定",
+        "description": "你没有任何可以给他的遗物。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "GOLD",
+        "description": "[sine]“何等..美妙…”[/sine]\n\n兰伟德一边嚼着[gold]金币[/gold]，一边咕哝着。"
+      },
+      {
+        "id": "INITIAL",
+        "description": "一个[purple]你至今为止见过最年迈的人[/purple]走到了你的身前。\n[sine]“我们又见面了....是我，兰伟德！”[/sine]\n\n你不认识这个男人。",
+        "options": [
+          {
+            "id": "POTION",
+            "title": "给他Potion",
+            "description": "获得一件随机[gold]遗物[/gold]。"
+          },
+          {
+            "id": "POTION_LOCKED",
+            "title": "锁定",
+            "description": "你没有任何可以给他的药水。"
+          },
+          {
+            "id": "GOLD",
+            "title": "给他100金币",
+            "description": "获得一件随机[gold]遗物[/gold]。"
+          },
+          {
+            "id": "RELIC",
+            "title": "给他Relic",
+            "description": "获得[blue]2[/blue]件随机[gold]遗物[/gold]。"
+          },
+          {
+            "id": "RELIC_LOCKED",
+            "title": "锁定",
+            "description": "你没有任何可以给他的遗物。"
+          }
+        ]
+      },
+      {
+        "id": "POTION",
+        "description": "“[sine]多么美味…”[/sine]\n\n[sine][blue]咕嘟咕嘟咕嘟[/blue][/sine]\n\n他一口气就喝下了[gold]Potion[/gold]。"
+      },
+      {
+        "id": "RELIC",
+        "description": "[sine]“真是经典…”[/sine]\n\n兰伟德仔细地观察了这件遗物好几分钟……\n\n然后把[gold]Relic[/gold]吃了下去。"
+      }
+    ]
+  },
+  {
+    "id": "REFLECTIONS",
+    "name": "镜中倒影  影倒中镜",
+    "type": "Event",
+    "act": "Act 3 - Glory",
+    "description": "这是什么？这里感觉不太对劲….\n[sine]….劲对太不觉感里这？么什是这[/sine]",
+    "preconditions": null,
+    "options": [
+      {
+        "id": "TOUCH_A_MIRROR",
+        "title": "触碰镜子",
+        "description": "[red]降级[/red][blue]2[/blue]张随机卡牌。[green]升级[/green][blue]4[/blue]张随机卡牌。"
+      },
+      {
+        "id": "SHATTER",
+        "title": "打碎",
+        "description": "复制你的整个[gold]牌组[/gold]。获得[purple]霉运[/purple]。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "INITIAL",
+        "description": "这是什么？这里感觉不太对劲….\n[sine]….劲对太不觉感里这？么什是这[/sine]",
+        "options": [
+          {
+            "id": "TOUCH_A_MIRROR",
+            "title": "触碰镜子",
+            "description": "[red]降级[/red][blue]2[/blue]张随机卡牌。[green]升级[/green][blue]4[/blue]张随机卡牌。"
+          },
+          {
+            "id": "SHATTER",
+            "title": "打碎",
+            "description": "复制你的整个[gold]牌组[/gold]。获得[purple]霉运[/purple]。"
+          }
+        ]
+      },
+      {
+        "id": "SHATTER",
+        "description": "你集中精神，终于辨识出前方有一面巨大且没有丝毫缝隙的镜子。\n你飞出一脚，把巨大镜子[jitter]踢碎[/jitter]了！\n就在踢碎镜子的那个瞬间，你看到镜中的自己摆出了防御的姿态，然后碎成了千万片美丽闪烁着的碎片。\n\n这样的地方究竟是如何存在的？"
+      },
+      {
+        "id": "TOUCH_A_MIRROR",
+        "description": "你向前伸手，手却与前方倒映出来的影像融在了一起。\n[sine]哪一个才是我？[/sine]"
+      }
+    ]
+  },
+  {
+    "id": "RELIC_TRADER",
+    "name": "遗物交换商",
+    "type": "Shared",
+    "act": null,
+    "description": "你走过一个拐角，一个黑影突然矗立在前方。他转过身来，正对着你。\n\n“欢迎！你想换点什么吶？”\n他开口询问，同时猛地掀开斗篷，露出一大堆[sine][purple]可疑货物[/purple][/sine]。",
+    "preconditions": [
+      "Act 2+",
+      "Requires 5+ tradeable relics"
+    ],
+    "options": [
+      {
+        "id": "TOP",
+        "title": "拿上面那件",
+        "description": "用[gold]one of your Relics[/gold]换[gold]a random Relic[/gold]。"
+      },
+      {
+        "id": "MIDDLE",
+        "title": "拿中间这件",
+        "description": "用[gold]one of your Relics[/gold]换[gold]a random Relic[/gold]。"
+      },
+      {
+        "id": "BOTTOM",
+        "title": "拿下面那件",
+        "description": "用[gold]one of your Relics[/gold]换[gold]a random Relic[/gold]。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "DONE",
+        "description": "“嘿嘿嘿……多谢啦！”"
+      },
+      {
+        "id": "INITIAL",
+        "description": "你走过一个拐角，一个黑影突然矗立在前方。他转过身来，正对着你。\n\n“欢迎！你想换点什么吶？”\n他开口询问，同时猛地掀开斗篷，露出一大堆[sine][purple]可疑货物[/purple][/sine]。",
+        "options": [
+          {
+            "id": "TOP",
+            "title": "拿上面那件",
+            "description": "用[gold]one of your Relics[/gold]换[gold]a random Relic[/gold]。"
+          },
+          {
+            "id": "MIDDLE",
+            "title": "拿中间这件",
+            "description": "用[gold]one of your Relics[/gold]换[gold]a random Relic[/gold]。"
+          },
+          {
+            "id": "BOTTOM",
+            "title": "拿下面那件",
+            "description": "用[gold]one of your Relics[/gold]换[gold]a random Relic[/gold]。"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ROOM_FULL_OF_CHEESE",
+    "name": "满屋芝士",
+    "type": "Shared",
+    "act": null,
+    "description": "这房间里全是[b][jitter]芝士！！！[/jitter][/b]\n\n你环顾四周，想看看有没有陷阱，结果发现头顶上是…更多的[b]芝士[/b]。屋里的蜡烛似乎也是用[b]芝士[/b]做的。家具同样是[b]芝士[/b]。\n突然，你身后的门砰地一声关上了。\n\n也是[b]芝士[/b]做的。",
+    "preconditions": [
+      "Act 1–2 only"
+    ],
+    "options": [
+      {
+        "id": "GORGE",
+        "title": "大快朵颐",
+        "description": "从[blue]8[/blue]张随机[gold]普通[/gold]牌中选择[blue]2[/blue]张加入到你的[gold]牌组[/gold]。"
+      },
+      {
+        "id": "SEARCH",
+        "title": "仔细翻找",
+        "description": "失去[red]14[/red]点生命，获得[gold]天选芝士[/gold]。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "GORGE",
+        "description": "你小尝了一小口[b]芝士[/b]，但这反而勾起了你对[b]芝士[/b]更强烈的食欲。\n\n[sine]时光流逝…[/sine]\n\n你最终吃下了惊人份量的[b]芝士[/b]。\n今晚，大概梦里都全是[b]芝士[/b]了。"
+      },
+      {
+        "id": "INITIAL",
+        "description": "这房间里全是[b][jitter]芝士！！！[/jitter][/b]\n\n你环顾四周，想看看有没有陷阱，结果发现头顶上是…更多的[b]芝士[/b]。屋里的蜡烛似乎也是用[b]芝士[/b]做的。家具同样是[b]芝士[/b]。\n突然，你身后的门砰地一声关上了。\n\n也是[b]芝士[/b]做的。",
+        "options": [
+          {
+            "id": "GORGE",
+            "title": "大快朵颐",
+            "description": "从[blue]8[/blue]张随机[gold]普通[/gold]牌中选择[blue]2[/blue]张加入到你的[gold]牌组[/gold]。"
+          },
+          {
+            "id": "SEARCH",
+            "title": "仔细翻找",
+            "description": "失去[red]14[/red]点生命，获得[gold]天选芝士[/gold]。"
+          }
+        ]
+      },
+      {
+        "id": "SEARCH",
+        "description": "你翻来覆去地找了[sine]几个小时……[/sine]\n\n在这满屋[b]芝士[/b]的浓香包围下，你的意识开始飘向某些诡异的地方，时光悄然流逝，而你，渐渐陷入了昏沉…\n你猛然惊醒，发现手中正攥着什么东西。\n\n[b]那块天选芝士。[/b]"
+      }
+    ]
+  },
+  {
+    "id": "ROUND_TEA_PARTY",
+    "name": "圆桌茶会",
+    "type": "Event",
+    "act": "Act 3 - Glory",
+    "description": "你找到了一份送给[blue]“加拉洛特爵士”的[/blue][orange]请柬[/orange]，邀请他参加一次茶会，于是你决定代他前去。\n\n走进其貌不扬的圆形大厅时，你发现这里有一大群[gold]指挥官[/gold]、[aqua]将军[/aqua]、[red]军阀[/red]和[blue]商人[/blue]们，正在……喝着茶？\n一个头戴[gold]金冠[/gold]的巨人骑士开口说道：\n\n[jitter]“汝来[b]茶会[/b]竟敢迟到？！”[/jitter]",
+    "preconditions": [
+      "Requires 12+ HP"
+    ],
+    "options": [
+      {
+        "id": "ENJOY_TEA",
+        "title": "喝杯好茶",
+        "description": "获得[red]王室猛毒[/red]。[green]回复全部生命。[/green]"
+      },
+      {
+        "id": "PICK_FIGHT",
+        "title": "挑事斗殴",
+        "description": "失去[red]11[/red]点生命。获得一件随机[gold]遗物[/gold]。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "CONTINUE_FIGHT",
+        "description": "众人震惊地望着一位常客的尸体……然后居然[jitter]响起了如雷的掌声！？[/jitter]\n\n“我们早就头疼该怎么处理掉[red]外高尔爵士[/red]了，你干得好啊！”\n\n他们倒掉了你的[green]毒茶[/green]，你们整晚讨论着[orange]战术[/orange]与[purple]秘密[/purple]。真是次开心的茶会啊。"
+      },
+      {
+        "id": "ENJOY_TEA",
+        "description": "你抓起一个茶杯，一口喝了下去。\n茶水[jitter][red]像开水一样滚烫[/red][/jitter]但你忍着没有改变表情，众人都被你如此不顾自身安危的行为给震惊了。\n\n“之前的话，我们绝无意冒犯，[blue]加拉洛特爵士[/blue]。请接受我们最诚挚的道歉。”\n\n你享用了一些茶水和烤面饼，完全没有注意到自己已经喝下了[green]毒药[/green]。"
+      },
+      {
+        "id": "INITIAL",
+        "description": "你找到了一份送给[blue]“加拉洛特爵士”的[/blue][orange]请柬[/orange]，邀请他参加一次茶会，于是你决定代他前去。\n\n走进其貌不扬的圆形大厅时，你发现这里有一大群[gold]指挥官[/gold]、[aqua]将军[/aqua]、[red]军阀[/red]和[blue]商人[/blue]们，正在……喝着茶？\n一个头戴[gold]金冠[/gold]的巨人骑士开口说道：\n\n[jitter]“汝来[b]茶会[/b]竟敢迟到？！”[/jitter]",
+        "options": [
+          {
+            "id": "ENJOY_TEA",
+            "title": "喝杯好茶",
+            "description": "获得[red]王室猛毒[/red]。[green]回复全部生命。[/green]"
+          },
+          {
+            "id": "PICK_FIGHT",
+            "title": "挑事斗殴",
+            "description": "失去[red]11[/red]点生命。获得一件随机[gold]遗物[/gold]。"
+          }
+        ]
+      },
+      {
+        "id": "NOPE",
+        "description": "他们全都将武器指向了你——\n\n“要是想活命，至少也得付下[gold]入场费[/gold]吧。”"
+      },
+      {
+        "id": "PICK_FIGHT",
+        "description": "你跳到桌上，一脚[jitter]踹上[/jitter]了[red]军阀骑士[/red]的面门！\n骑士令人毛骨悚然地惨叫了一声，就这么倒了下去。\n\n[jitter][purple]*所有人都倒吸了一口凉气*[/purple][/jitter]",
+        "options": [
+          {
+            "id": "CONTINUE_FIGHT",
+            "title": "继续",
+            "description": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "SAPPHIRE_SEED",
+    "name": "蓝宝石种子",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": "你走路时差点踩上了一块发光的尖锐……种子？它的颜色非常明确地表明了这是一枚[aqua]蓝宝石种子[/aqua]！这些稀有种子不是应该已经灭绝了吗！？\n\n传说里，只要吃下一粒这个种子，就能大幅[gold]强化你的体能[/gold]，但如果你把它种下然后好好养育它，又会怎么样呢？",
+    "preconditions": null,
+    "options": [
+      {
+        "id": "EAT",
+        "title": "吃下",
+        "description": "回复[green]9[/green]生命。[gold]升级[/gold]你[gold]牌组[/gold]中的一张牌。"
+      },
+      {
+        "id": "PLANT",
+        "title": "种植培育",
+        "description": "给一张牌[gold]附魔[/gold]：[purple]播种[/purple]。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "EAT",
+        "description": "你吃下了[aqua]蓝宝石种子[/aqua]，几乎一瞬间你就感觉到自己的[blue]四肢变得更加灵活[/blue]、[gold]眼中的色彩变得更加鲜艳[/gold]、而且你还能够[purple][sine]感知到附近敌人的灵魂[/sine][/purple]。\n\n幸亏你没踩到它呢。"
+      },
+      {
+        "id": "INITIAL",
+        "description": "你走路时差点踩上了一块发光的尖锐……种子？它的颜色非常明确地表明了这是一枚[aqua]蓝宝石种子[/aqua]！这些稀有种子不是应该已经灭绝了吗！？\n\n传说里，只要吃下一粒这个种子，就能大幅[gold]强化你的体能[/gold]，但如果你把它种下然后好好养育它，又会怎么样呢？",
+        "options": [
+          {
+            "id": "EAT",
+            "title": "吃下",
+            "description": "回复[green]9[/green]生命。[gold]升级[/gold]你[gold]牌组[/gold]中的一张牌。"
+          },
+          {
+            "id": "PLANT",
+            "title": "种植培育",
+            "description": "给一张牌[gold]附魔[/gold]：[purple]播种[/purple]。"
+          }
+        ]
+      },
+      {
+        "id": "PLANT",
+        "description": "你在[green]密林[/green]一番寻觅，总算找到了一个[blue]通风良好[/blue]的花盆。然后你四处跋涉，寻找一个无人侵扰的地点，能让[orange]阳光从墙上的裂缝中倾泻下来[/orange]。你小心翼翼地用树皮和藤蔓将花盆加固，为它提供一些[green]迷彩遮掩[/green]，然后往里面放入了一些肥沃高营养的土壤，接着把[aqua]种子[/aqua]埋了进去。\n\n最后，你从附近的植物上采集到了一些露水，洒在了土上。\n\n[sine]小种子，快长大…[/sine]\n你甚至没有察觉，[aqua]蓝宝石种子[/aqua]已经依附到了你的精神上。\n感谢你的辛勤努力。"
+      }
+    ]
+  },
+  {
+    "id": "SELF_HELP_BOOK",
+    "name": "自助指南",
+    "type": "Shared",
+    "act": null,
+    "description": "地上有一本书：\n《征服高塔的3种最佳方法》\n\n这本书上[red]血迹斑斑[/red]，所以你觉得它非常可疑。\n\n你要读它吗？",
+    "preconditions": null,
+    "options": [
+      {
+        "id": "READ_THE_BACK",
+        "title": "读下封底",
+        "description": "选择一张攻击牌[gold]附魔[/gold]：[purple]锋利[/purple][blue]2[/blue]。"
+      },
+      {
+        "id": "READ_THE_BACK_LOCKED",
+        "title": "锁定",
+        "description": "你没有任何可以[gold]附魔[/gold]的攻击牌。"
+      },
+      {
+        "id": "READ_PASSAGE",
+        "title": "随便读个一段",
+        "description": "选择一张技能牌[gold]附魔[/gold]：[purple]灵巧[/purple][blue]2[/blue]。"
+      },
+      {
+        "id": "READ_PASSAGE_LOCKED",
+        "title": "锁定",
+        "description": "你没有任何可以[gold]附魔[/gold]的技能牌。"
+      },
+      {
+        "id": "READ_ENTIRE_BOOK",
+        "title": "读完整本书",
+        "description": "选择一张能力牌[gold]附魔[/gold]：[purple]迅速[/purple][blue]2[/blue]。"
+      },
+      {
+        "id": "READ_ENTIRE_BOOK_LOCKED",
+        "title": "锁定",
+        "description": "你没有任何可以[gold]附魔[/gold]的能力牌。"
+      },
+      {
+        "id": "NO_OPTIONS",
+        "title": "离开",
+        "description": "你没有任何可以附魔的牌。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "INITIAL",
+        "description": "地上有一本书：\n《征服高塔的3种最佳方法》\n\n这本书上[red]血迹斑斑[/red]，所以你觉得它非常可疑。\n\n你要读它吗？",
+        "options": [
+          {
+            "id": "READ_THE_BACK",
+            "title": "读下封底",
+            "description": "选择一张攻击牌[gold]附魔[/gold]：[purple]锋利[/purple][blue]2[/blue]。"
+          },
+          {
+            "id": "READ_THE_BACK_LOCKED",
+            "title": "锁定",
+            "description": "你没有任何可以[gold]附魔[/gold]的攻击牌。"
+          },
+          {
+            "id": "READ_PASSAGE",
+            "title": "随便读个一段",
+            "description": "选择一张技能牌[gold]附魔[/gold]：[purple]灵巧[/purple][blue]2[/blue]。"
+          },
+          {
+            "id": "READ_PASSAGE_LOCKED",
+            "title": "锁定",
+            "description": "你没有任何可以[gold]附魔[/gold]的技能牌。"
+          },
+          {
+            "id": "READ_ENTIRE_BOOK",
+            "title": "读完整本书",
+            "description": "选择一张能力牌[gold]附魔[/gold]：[purple]迅速[/purple][blue]2[/blue]。"
+          },
+          {
+            "id": "READ_ENTIRE_BOOK_LOCKED",
+            "title": "锁定",
+            "description": "你没有任何可以[gold]附魔[/gold]的能力牌。"
+          },
+          {
+            "id": "NO_OPTIONS",
+            "title": "离开",
+            "description": "你没有任何可以附魔的牌。"
+          }
+        ]
+      },
+      {
+        "id": "NO_OPTIONS",
+        "description": "你本来就不怎么喜欢书籍，更何况是上面血迹斑斑的那种。"
+      },
+      {
+        "id": "READ_ENTIRE_BOOK",
+        "description": "真是本引人入胜的书啊！有几句良言至今深刻在你的脑海之中：\n“避战大怪。”\n“见牌就抓。”\n“懦夫才防。”\n\n你的手上沾满了[red]血[/red]。"
+      },
+      {
+        "id": "READ_PASSAGE",
+        "description": "你随便翻到一页：\n“防御入门：别被打中！”\n\n你读完了这一段，意外地相当给你启发。你决定在作战时用上其中的一些要点。"
+      },
+      {
+        "id": "READ_THE_BACK",
+        "description": "你将书反过来，读了封底上的摘要：\n[blue]“书评家和邪教徒们一致认同，尖尖的锋利武器是施加伤害的最佳途径！”[/blue]\n\n封底还有一张售价标签，原价格被划掉了，改成了一个低得多的价格。"
+      }
+    ]
+  },
+  {
+    "id": "SLIPPERY_BRIDGE",
+    "name": "滑脚木桥",
+    "type": "Shared",
+    "act": null,
+    "description": "当你穿过一座摇摇欲坠的木桥时，忽然间[blue][jitter]暴雨倾盆[/jitter][/blue]。[purple][sine]阵阵狂风[/sine][/purple]不断向你袭来，似乎要将你的旅程终结于此。",
+    "preconditions": [
+      "Floor 7+",
+      "Requires removable cards in deck"
+    ],
+    "options": [
+      {
+        "id": "OVERCOME",
+        "title": "跨越",
+        "description": "[red]a random Card[/red]将从你的[gold]牌组[/gold]中被移除。"
+      },
+      {
+        "id": "HOLD_ON_0",
+        "title": "再撑一会",
+        "description": "失去[red]3[/red]点生命。重新随机上方选项中的卡牌。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "HOLD_ON_0",
+        "description": "[jitter]你正在坚持！[/jitter]",
+        "options": [
+          {
+            "id": "HOLD_ON_1",
+            "title": "再撑一会",
+            "description": "失去[red]4[/red]点生命。重新随机上方选项中的卡牌。"
+          }
+        ]
+      },
+      {
+        "id": "HOLD_ON_1",
+        "description": "还在…坚…[jitter]扌~~寺！！！[/jitter]",
+        "options": [
+          {
+            "id": "HOLD_ON_2",
+            "title": "再撑一会",
+            "description": "失去[red]5[/red]点生命。重新随机上方选项中的卡牌。"
+          }
+        ]
+      },
+      {
+        "id": "HOLD_ON_2",
+        "description": "[sine]口~阝~可~！？！！！[/sine]",
+        "options": [
+          {
+            "id": "HOLD_ON_3",
+            "title": "再撑一会",
+            "description": "失去[red]6[/red]点生命。重新随机上方选项中的卡牌。"
+          }
+        ]
+      },
+      {
+        "id": "HOLD_ON_3",
+        "description": "[jitter][b]我能行！！！[/b][/jitter]",
+        "options": [
+          {
+            "id": "HOLD_ON_4",
+            "title": "再撑一会",
+            "description": "失去[red]7[/red]点生命。重新随机上方选项中的卡牌。"
+          }
+        ]
+      },
+      {
+        "id": "HOLD_ON_4",
+        "description": "[gold][b][jitter][b]不～～～～[/b][/jitter][/b][/gold]",
+        "options": [
+          {
+            "id": "HOLD_ON_5",
+            "title": "再撑一会",
+            "description": "失去[red]8[/red]点生命。重新随机上方选项中的卡牌。"
+          }
+        ]
+      },
+      {
+        "id": "HOLD_ON_5",
+        "description": "[red][b][jitter][b]我在干什么！？[/b][/jitter][/b][/red]",
+        "options": [
+          {
+            "id": "HOLD_ON_6",
+            "title": "再撑一会",
+            "description": "失去[red]9[/red]点生命。重新随机上方选项中的卡牌。"
+          }
+        ]
+      },
+      {
+        "id": "HOLD_ON_6",
+        "description": "[red][b][jitter][b]!!!!!!!!!!!!!... !!!\n\n!!!!!!!! !!!!!!!!!!!?? !!!!!!!!![/b][/jitter][/b][/red]",
+        "options": [
+          {
+            "id": "HOLD_ON_LOOP",
+            "title": "再撑一会",
+            "description": "失去[red]10[/red]点生命。重新随机上方选项中的卡牌。"
+          }
+        ]
+      },
+      {
+        "id": "HOLD_ON_LOOP",
+        "description": "开发者在此告知：对于坚持了这么久的玩家，这里已经没有额外的文本内容了。若有不便，我们对此深表歉意。",
+        "options": [
+          {
+            "id": "HOLD_ON_LOOP",
+            "title": "再撑一会",
+            "description": "失去[red]11+[/red]点生命。重新随机上方选项中的卡牌。"
+          }
+        ]
+      },
+      {
+        "id": "INITIAL",
+        "description": "当你穿过一座摇摇欲坠的木桥时，忽然间[blue][jitter]暴雨倾盆[/jitter][/blue]。[purple][sine]阵阵狂风[/sine][/purple]不断向你袭来，似乎要将你的旅程终结于此。",
+        "options": [
+          {
+            "id": "OVERCOME",
+            "title": "跨越",
+            "description": "[red]a random Card[/red]将从你的[gold]牌组[/gold]中被移除。"
+          },
+          {
+            "id": "HOLD_ON_0",
+            "title": "再撑一会",
+            "description": "失去[red]3[/red]点生命。重新随机上方选项中的卡牌。"
+          }
+        ]
+      },
+      {
+        "id": "OVERCOME",
+        "description": "我恨桥。"
+      }
+    ]
+  },
+  {
+    "id": "SPIRALING_WHIRLPOOL",
+    "name": "螺旋漩涡",
+    "type": "Event",
+    "act": "Underdocks",
+    "description": "你偶遇了一个[aqua][sine]巨大的螺旋漩涡[/sine][/aqua]。水流以精准而优雅的韵律回旋着，四周的墙壁也布满了螺旋纹路。\n\n[purple][sine]转啊，转啊…转…\n…转个不停…何等奇景…[/sine][/purple]\n\n你要做什么呢？？",
+    "preconditions": null,
+    "options": [
+      {
+        "id": "OBSERVE",
+        "title": "观察",
+        "description": "为一张基础“[gold]打击[/gold]”或“[gold]防御[/gold]”[gold]附魔[/gold]：[purple]涡旋[/purple]。"
+      },
+      {
+        "id": "DRINK",
+        "title": "饮用",
+        "description": "回复[green]33% Max[/green]点生命。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "DRINK",
+        "description": "你捧起双手，浸入[sine][aqua]螺旋漩涡[/aqua][/sine]。\n\n泉水徐徐注满掌心，你闭上双眼，小口啜饮。\n\n甘甜的水化作[sine]涡旋[/sine]流经全身，直抵你的[gold]核心[/gold]，涤荡了杂念与痛楚…"
+      },
+      {
+        "id": "INITIAL",
+        "description": "你偶遇了一个[aqua][sine]巨大的螺旋漩涡[/sine][/aqua]。水流以精准而优雅的韵律回旋着，四周的墙壁也布满了螺旋纹路。\n\n[purple][sine]转啊，转啊…转…\n…转个不停…何等奇景…[/sine][/purple]\n\n你要做什么呢？？",
+        "options": [
+          {
+            "id": "OBSERVE",
+            "title": "观察",
+            "description": "为一张基础“[gold]打击[/gold]”或“[gold]防御[/gold]”[gold]附魔[/gold]：[purple]涡旋[/purple]。"
+          },
+          {
+            "id": "DRINK",
+            "title": "饮用",
+            "description": "回复[green]33% Max[/green]点生命。"
+          }
+        ]
+      },
+      {
+        "id": "OBSERVE",
+        "description": "[sine][purple]…啊~ 如此美丽…\n它在旋转…不停地旋转。是啊……\n噢！刚才那是…一点小水花吗…？\n…这也正常。你也要寻点乐子，对吧，[aqua]涡旋先生[/aqua]…哈哈…\n... .......   ...[/purple][/sine]\n\n是时候离开了。\n你低声呢喃，转身离去。\n\n[gold]“谢谢你，涡旋。”[/gold]"
+      }
+    ]
+  },
+  {
+    "id": "SPIRIT_GRAFTER",
+    "name": "灵魂嫁接者",
+    "type": "Event",
+    "act": "Act 2 - Hive",
+    "description": "在你上方，一个茧正在[jitter]颤动扭曲[/jitter]，似乎就要破茧而出了！\n\n……它停止了扭动。[orange][sine]茧燃烧了起来[/sine][/orange]！[jitter]发生什么事了？[/jitter]\n一道[gold]光芒[/gold]与[red]烈焰[/red]闪过，一个[orange]灵魂嫁接者[/orange]向你冲来，试图要与你融为一体，以求完整。",
+    "preconditions": null,
+    "options": [
+      {
+        "id": "LET_IT_IN",
+        "title": "接纳",
+        "description": "回复[green]25[/green]点生命。将一张[gold]羽化[/gold]添加到你的[gold]牌组[/gold]。"
+      },
+      {
+        "id": "REJECTION",
+        "title": "拒绝",
+        "description": "失去[red]10[/red]点生命。[gold]升级[/gold]一张牌。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "INITIAL",
+        "description": "在你上方，一个茧正在[jitter]颤动扭曲[/jitter]，似乎就要破茧而出了！\n\n……它停止了扭动。[orange][sine]茧燃烧了起来[/sine][/orange]！[jitter]发生什么事了？[/jitter]\n一道[gold]光芒[/gold]与[red]烈焰[/red]闪过，一个[orange]灵魂嫁接者[/orange]向你冲来，试图要与你融为一体，以求完整。",
+        "options": [
+          {
+            "id": "LET_IT_IN",
+            "title": "接纳",
+            "description": "回复[green]25[/green]点生命。将一张[gold]羽化[/gold]添加到你的[gold]牌组[/gold]。"
+          },
+          {
+            "id": "REJECTION",
+            "title": "拒绝",
+            "description": "失去[red]10[/red]点生命。[gold]升级[/gold]一张牌。"
+          }
+        ]
+      },
+      {
+        "id": "LET_IT_IN",
+        "description": "[orange]灵魂嫁接者[/orange]与你合二为一。这只契合灵体带来的活力迅速[green]治愈[/green]了你。\n\n你[blue]重获新生[/blue]。"
+      },
+      {
+        "id": "REJECTION",
+        "description": "[orange]灵魂嫁接者[/orange]被你的意志轻松挡下。\n\n然而渴求着宿主的它仍然反复向你冲撞过来。最终它用尽了力量，[purple][sine]噗的一声[/sine][/purple]消散了。\n\n[sine]真是转瞬即逝的灵魂啊。[/sine]"
+      }
+    ]
+  },
+  {
+    "id": "STONE_OF_ALL_TIME",
+    "name": "永恒之石",
+    "type": "Shared",
+    "act": null,
+    "description": "在一个废弃庭院的当中，有一块巨大的石头。\n\n石头边的一块牌子上写着：\n[gold][b]永恒之石[/b][/gold]。\n\n从它的样子、形状和装饰来看，整个庭院都是围绕着这块[blue]石头[/blue]建造出来的，它从来没有离开过那个地点哪怕一次。",
+    "preconditions": [
+      "Act 2 only",
+      "Requires at least one potion"
+    ],
+    "options": [
+      {
+        "id": "LIFT",
+        "title": "喝药抬起",
+        "description": "失去[red]a random Potion[/red]。获得[blue]10[/blue]最大生命。"
+      },
+      {
+        "id": "LIFT_LOCKED",
+        "title": "锁定",
+        "description": "需要药水。"
+      },
+      {
+        "id": "PUSH_LOCKED",
+        "title": "锁定",
+        "description": "需要一张攻击牌。"
+      },
+      {
+        "id": "PUSH",
+        "title": "用力去推",
+        "description": "失去[red]6[/red]点生命。[gold]附魔[/gold]一张攻击牌：[purple]活力[/purple][blue]8[/blue]。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "INITIAL",
+        "description": "在一个废弃庭院的当中，有一块巨大的石头。\n\n石头边的一块牌子上写着：\n[gold][b]永恒之石[/b][/gold]。\n\n从它的样子、形状和装饰来看，整个庭院都是围绕着这块[blue]石头[/blue]建造出来的，它从来没有离开过那个地点哪怕一次。",
+        "options": [
+          {
+            "id": "LIFT",
+            "title": "喝药抬起",
+            "description": "失去[red]a random Potion[/red]。获得[blue]10[/blue]最大生命。"
+          },
+          {
+            "id": "LIFT_LOCKED",
+            "title": "锁定",
+            "description": "需要药水。"
+          },
+          {
+            "id": "PUSH_LOCKED",
+            "title": "锁定",
+            "description": "需要一张攻击牌。"
+          },
+          {
+            "id": "PUSH",
+            "title": "用力去推",
+            "description": "失去[red]6[/red]点生命。[gold]附魔[/gold]一张攻击牌：[purple]活力[/purple][blue]8[/blue]。"
+          }
+        ]
+      },
+      {
+        "id": "LIFT",
+        "description": "你一口闷了[gold]a random Potion[/gold]，然后[jitter]用全身的力气试图抬起那块石头[/jitter]！！\n\n什么也没发生。"
+      },
+      {
+        "id": "PUSH",
+        "description": "你用尽全身的力气[jitter]努力地推了又推[/jitter]！！\n\n什么也没发生。"
+      }
+    ]
+  },
+  {
+    "id": "SUNKEN_STATUE",
+    "name": "沉没雕像",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth / Underdocks",
+    "description": "你看见一尊古老的雕像，一半沉没在池塘的水中。雕像的手放在一把[blue]石剑[/blue]之上。\n\n同时你还看见，池塘的水底似乎有一些东西在[gold][sine]闪烁[/sine][/gold]着光芒。\n或许是人们祈愿投下的金币？\n\n钱可是个好东西……",
+    "preconditions": null,
+    "options": [
+      {
+        "id": "GRAB_SWORD",
+        "title": "拿起石剑",
+        "description": "获得[gold]石之剑[/gold]。"
+      },
+      {
+        "id": "DIVE_INTO_WATER",
+        "title": "潜水",
+        "description": "获得[blue]101-121[/blue][gold]金币[/gold]。失去[red]7[/red]点生命."
+      }
+    ],
+    "pages": [
+      {
+        "id": "DIVE_INTO_WATER",
+        "description": "你一个猛子扎进了水中！\n\n在搜集[gold]祈愿金币[/gold]的时候，你听到上方传来[sine][blue]沉闷的回声[/blue][/sine]，然后你被一些石头给砸到了！\n\n当你浮出水面时，才看见那尊古老的雕像已经因为你的所作所为而崩坏了——看来你不只是在[red]物理[/red]上、也是在[purple]灵性[/purple]上侵扰了这里。"
+      },
+      {
+        "id": "GRAB_SWORD",
+        "description": "你[jitter]用力[/jitter]从雕像的手中取下了[blue]石剑[/blue]，结果雕像整个崩坏了！\n\n现在再潜水去找池底的那些[gold][jitter]闪亮的东西[/jitter][/gold]就有点太危险了……\n\n你看了看[blue]剑[/blue]，感受到其中有着极为强大的[green]沉睡着的力量[/green]。"
+      },
+      {
+        "id": "INITIAL",
+        "description": "你看见一尊古老的雕像，一半沉没在池塘的水中。雕像的手放在一把[blue]石剑[/blue]之上。\n\n同时你还看见，池塘的水底似乎有一些东西在[gold][sine]闪烁[/sine][/gold]着光芒。\n或许是人们祈愿投下的金币？\n\n钱可是个好东西……",
+        "options": [
+          {
+            "id": "GRAB_SWORD",
+            "title": "拿起石剑",
+            "description": "获得[gold]石之剑[/gold]。"
+          },
+          {
+            "id": "DIVE_INTO_WATER",
+            "title": "潜水",
+            "description": "获得[blue]101-121[/blue][gold]金币[/gold]。失去[red]7[/red]点生命."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "SUNKEN_TREASURY",
+    "name": "淹水金库",
+    "type": "Event",
+    "act": "Underdocks",
+    "description": "一条小路让你找到了一个部分淹水的金库。\n你看到里面有[blue]2[/blue]个[gold]箱子[/gold]，但却只有[blue]1[/blue]把[jitter][purple]脆弱的钥匙[/purple][/jitter]。\n\n[gold]第一个箱子：[/gold]你摇晃了一下，能听到叮铃哐啷的轻响，应该是少量金币。\n[gold]第二个箱子：[/gold]巨大、精致、而且显然[red]被诅咒了[/red]。里面有很多金币！",
+    "preconditions": null,
+    "options": [
+      {
+        "id": "FIRST_CHEST",
+        "title": "第一个箱子",
+        "description": "获得[blue]52-67[/blue][gold]金币[/gold]。"
+      },
+      {
+        "id": "SECOND_CHEST",
+        "title": "第二个箱子",
+        "description": "获得[blue]303-363[/blue][gold]金币[/gold]。得到[red]贪婪[/red]。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "FIRST_CHEST",
+        "description": "没错，里面果然有[gold]金币[/gold]。"
+      },
+      {
+        "id": "INITIAL",
+        "description": "一条小路让你找到了一个部分淹水的金库。\n你看到里面有[blue]2[/blue]个[gold]箱子[/gold]，但却只有[blue]1[/blue]把[jitter][purple]脆弱的钥匙[/purple][/jitter]。\n\n[gold]第一个箱子：[/gold]你摇晃了一下，能听到叮铃哐啷的轻响，应该是少量金币。\n[gold]第二个箱子：[/gold]巨大、精致、而且显然[red]被诅咒了[/red]。里面有很多金币！",
+        "options": [
+          {
+            "id": "FIRST_CHEST",
+            "title": "第一个箱子",
+            "description": "获得[blue]52-67[/blue][gold]金币[/gold]。"
+          },
+          {
+            "id": "SECOND_CHEST",
+            "title": "第二个箱子",
+            "description": "获得[blue]303-363[/blue][gold]金币[/gold]。得到[red]贪婪[/red]。"
+          }
+        ]
+      },
+      {
+        "id": "SECOND_CHEST",
+        "description": "你从没有在同一个地方见到过这么多[gold]金币[/gold]！\n\n[sine]恐怕[/sine][blue]商人[/blue][sine]的所有商品都能被买下来…[/sine]\n[Monologue]\n[sine]危险的歹徒也可以用钱收买消灾…[/sine]\n\n这些[red][sine]无比贪婪[/sine][/red]的念头，会永远萦绕在你脑中……"
+      }
+    ]
+  },
+  {
+    "id": "SYMBIOTE",
+    "name": "共生体",
+    "type": "Shared",
+    "act": null,
+    "description": "在你的旅程中，你遇到了一个黑色无定形的肉块状生物，你能感觉到它非常古老、并且非常邪恶。\n\n[sine]过来吧…[/sine]",
+    "preconditions": [
+      "Act 2+"
+    ],
+    "options": [
+      {
+        "id": "APPROACH_LOCKED",
+        "title": "锁定",
+        "description": "你没有可以附魔的攻击牌。"
+      },
+      {
+        "id": "APPROACH",
+        "title": "靠近",
+        "description": "将一张攻击牌[gold]附魔[/gold]：[purple]腐化[/purple]。"
+      },
+      {
+        "id": "KILL_WITH_FIRE",
+        "title": "用火烧杀",
+        "description": "选择一张牌[gold]变化[/gold]。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "APPROACH",
+        "description": "它突然跳到了你的手臂上，这一瞬间，你感觉到灼烧般的疼痛，但很快它就消失不见了。\n\n……？它到哪里去了？"
+      },
+      {
+        "id": "INITIAL",
+        "description": "在你的旅程中，你遇到了一个黑色无定形的肉块状生物，你能感觉到它非常古老、并且非常邪恶。\n\n[sine]过来吧…[/sine]",
+        "options": [
+          {
+            "id": "APPROACH_LOCKED",
+            "title": "锁定",
+            "description": "你没有可以附魔的攻击牌。"
+          },
+          {
+            "id": "APPROACH",
+            "title": "靠近",
+            "description": "将一张攻击牌[gold]附魔[/gold]：[purple]腐化[/purple]。"
+          },
+          {
+            "id": "KILL_WITH_FIRE",
+            "title": "用火烧杀",
+            "description": "选择一张牌[gold]变化[/gold]。"
+          }
+        ]
+      },
+      {
+        "id": "KILL_WITH_FIRE",
+        "description": "你将那黑色生物点燃，它发出尖锐的鸣叫、很快烧成了灰烬。你的脑袋砰砰作响、疼痛难忍，但你最终坚持着没有晕过去。\n那究竟是什么东西？"
+      }
+    ]
+  },
+  {
+    "id": "TABLET_OF_TRUTH",
+    "name": "真理石板",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": "你打败了两只[blue]同族守护者[/blue]，进入了它们守护的藏宝库。\n\n里面有一块[purple][sine]刻着熟悉铭文的石板[/sine][/purple]。你的直觉告诉你，上面的语言可以轻易解读……可是一旦开始解读，你就必须全神贯注。\n\n石板上散发出一种令人安心的能量，你也可以就这样砸碎它，来获取其中的[green]治愈能量[/green]。",
+    "preconditions": null,
+    "options": [
+      {
+        "id": "DECIPHER_1",
+        "title": "解读",
+        "description": "失去[red]3[/red]点最大生命。随机[gold]升级[/gold]一张牌。"
+      },
+      {
+        "id": "SMASH",
+        "title": "砸碎",
+        "description": "回复[green]20[/green]点生命。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "DECIPHER",
+        "description": null,
+        "options": [
+          {
+            "id": "GIVE_UP",
+            "title": "放弃",
+            "description": "停止阅读文字，就这样离开。"
+          }
+        ]
+      },
+      {
+        "id": "DECIPHER_1",
+        "description": "当你开始解读石板时，你的脑海中响起了[blue]同族真言[/blue]。\n\n“[gold]真理[/gold]即是一切……”",
+        "options": [
+          {
+            "id": "DECIPHER",
+            "title": "继续解读",
+            "description": "失去[red]3[/red]点最大生命。随机[gold]升级[/gold]一张牌。"
+          }
+        ]
+      },
+      {
+        "id": "DECIPHER_2",
+        "description": "你一直读到现在，感觉有点头晕目眩！\n\n[purple][sine]英雄可不该一直读书读这么久…[/sine][/purple]",
+        "options": [
+          {
+            "id": "DECIPHER",
+            "title": "继续解读",
+            "description": "失去[red]3[/red]点最大生命。随机[gold]升级[/gold]一张牌。"
+          }
+        ]
+      },
+      {
+        "id": "DECIPHER_3",
+        "description": "[sine][red]你只能勉强坚持住阅读…[/red][/sine]\n石板已经快要被解读完毕了。[blue]真言[/blue]之中，自有真理……\n\n[jitter]真理！！真理究竟是什么！？[/jitter]",
+        "options": [
+          {
+            "id": "DECIPHER",
+            "title": "继 续 解 读",
+            "description": "失去[red]3[/red]点最大生命。随机[gold]升级[/gold]一张牌。"
+          }
+        ]
+      },
+      {
+        "id": "DECIPHER_4",
+        "description": "恍惚之中，你解读完剩余的文本，也抛却了自己的心智与肉体。[purple][sine]对[gold]真理[/gold]之道的追求是唯一重要的事情。[/sine][/purple]\n\n真的是这样吗？还剩下最后一个词……\n[jitter]读懂它的代价，将是一切。[/jitter]",
+        "options": [
+          {
+            "id": "DECIPHER",
+            "title": "抛下一切",
+            "description": "Set Max HP to [red]1[/red]. [gold]Upgrade ALL[/gold] cards."
+          }
+        ]
+      },
+      {
+        "id": "DECIPHER_5",
+        "description": "[red][jitter]你将自己的一切耗尽[/jitter][/red]，试图解读出[gold]最后的词语[/gold]，然后你失去了意识……\n当你苏醒过来时，你发现地板上刻了一个词。\n\n[b]“空气”[/b]"
+      },
+      {
+        "id": "GIVE_UP",
+        "description": "你停止阅读和解读，你的身体恢复了正常，但你依旧无比好奇：[gold]真理[/gold]究竟是什么。"
+      },
+      {
+        "id": "INITIAL",
+        "description": "你打败了两只[blue]同族守护者[/blue]，进入了它们守护的藏宝库。\n\n里面有一块[purple][sine]刻着熟悉铭文的石板[/sine][/purple]。你的直觉告诉你，上面的语言可以轻易解读……可是一旦开始解读，你就必须全神贯注。\n\n石板上散发出一种令人安心的能量，你也可以就这样砸碎它，来获取其中的[green]治愈能量[/green]。",
+        "options": [
+          {
+            "id": "DECIPHER_1",
+            "title": "解读",
+            "description": "失去[red]3[/red]点最大生命。随机[gold]升级[/gold]一张牌。"
+          },
+          {
+            "id": "SMASH",
+            "title": "砸碎",
+            "description": "回复[green]20[/green]点生命。"
+          }
+        ]
+      },
+      {
+        "id": "SMASH",
+        "description": "石板被[jitter][red]砸成了碎片[/red][/jitter]，其中的能量渗入了你的身体。\n\n[green]你觉得自己焕然一新！[/green]"
+      }
+    ]
+  },
+  {
+    "id": "TANX",
+    "name": "坦克斯",
+    "type": "Ancient",
+    "act": "Act 3 - Glory",
+    "description": "[b]太弱小了！但是你很有潜力！[/b]\n[b]用这把武器！！[/b]",
+    "preconditions": null,
+    "options": null,
+    "pages": null,
+    "epithet": "嵌合兽之王",
+    "dialogue": {
+      "Returning": [
+        {
+          "order": "0-0r",
+          "speaker": "ancient",
+          "text": "[b]快点变强，让我们好好战斗一番！！！[/b]"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "[b]武器永远不嫌多！！[/b]"
+        }
+      ],
+      "Defect": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "[b]构装体！没有武器么！？收下这个！[/b]"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "[b]几个球球，算什么武器！[/b]"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "[b]故障机器人，与我一战！！[/b]"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "故障机器人英勇地战斗了。"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "[b]球球[jitter]真是[/jitter]武器！？[/b]"
+        }
+      ],
+      "Ironclad": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "[b]好厉害的剑，战士！你该用上更多武器！[/b]"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "[b]战士该有武器！拿上一把！我们来战斗吧！[/b]"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "[b]铁甲战士，与我一战！！[/b]"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "铁甲战士与坦克斯战斗了。"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "[b]好哇！！豪迈的一战，收下武器！[/b]"
+        }
+      ],
+      "Necrobinder": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "[b]多么强大的巨镰！[/b]"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "是的，它是为复仇而特别打造的。"
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "[b]那只手，是否需要武器！？[/b]"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "[b]奥斯提，与我一战！！[/b]"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "[b]亡灵契约师，与我一战！！[/b]"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "亡灵契约师与奥斯提和坦克斯战作一团。"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "[b]了不起的团队合作！！收下一把武器吧！[/b]"
+        }
+      ],
+      "Regent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "[b]橙色！？这个存在为何会是橙色！？？[/b]"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "众所周知，橙色是最符合帝王的颜色！"
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "[b]了不起！真是强大！！[/b]"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "[b]橙色的！！选一把强大的武器吧！[/b]"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "[b]储君，与我一战！！[/b]"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "不要！上次我来这里我们已经战斗过了！"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "[b]再来与我战斗啊！[/b]"
+        }
+      ],
+      "Silent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "[b]一个猎手！我会把你细小的利爪磨得更利！！[/b]"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "[b]为何用匕首！！它不强大！[/b]"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "[b]静默猎手，与我一战！！[/b]"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "静默猎手逃离了战斗，沿途偷走了一把武器。"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "[b]你去了哪里！！[/b]"
+        }
+      ],
+      "First Visit": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "[b]太弱小了！但是你很有潜力！[/b]\n[b]用这把武器！！[/b]"
+        }
+      ]
+    },
+    "image_url": "/static/images/misc/ancients/tanx.webp",
+    "relics": [
+      "CLAWS",
+      "CROSSBOW",
+      "IRON_CLUB",
+      "MEAT_CLEAVER",
+      "SAI",
+      "SPIKED_GAUNTLETS",
+      "TANXS_WHISTLE",
+      "THROWING_AXE",
+      "WAR_HAMMER",
+      "TRI_BOOMERANG"
+    ]
+  },
+  {
+    "id": "TEA_MASTER",
+    "name": "茶艺大师",
+    "type": "Shared",
+    "act": null,
+    "description": "你不知怎么晃进了一个灯光昏暗的小棚屋，发现里面的空间感觉非常和平，四周摆满了种类繁多的茶叶。\n\n屋子里面的男人做出手势，让你去看一批[green]茶叶[/green]，每一种都有雅致的标签告知你茶叶的[gold]高昂价格[/gold]。",
+    "preconditions": [
+      "Requires 150+ gold",
+      "Act 1–2 only"
+    ],
+    "options": [
+      {
+        "id": "BONE_TEA",
+        "title": "骨茶",
+        "description": "支付[red]50[/red][gold]金币[/gold]。在你接下来的[blue]1[/blue]场战斗开始时，[gold]升级[/gold]你的初始手牌。"
+      },
+      {
+        "id": "BONE_TEA_LOCKED",
+        "title": "锁定",
+        "description": "需要[blue]50[/blue][gold]金币[/gold]。"
+      },
+      {
+        "id": "EMBER_TEA",
+        "title": "余烬茶",
+        "description": "支付[red]150[/red][gold]金币[/gold]。在接下来的[blue]5[/blue]场战斗开始时，获得[blue]2[/blue]点[gold]力量[/gold]。"
+      },
+      {
+        "id": "EMBER_TEA_LOCKED",
+        "title": "锁定",
+        "description": "需要[blue]150[/blue][gold]金币[/gold]。"
+      },
+      {
+        "id": "TEA_OF_DISCOURTESY",
+        "title": "无礼之茶",
+        "description": "在下一场战斗开始时，将[blue]2[/blue]张[gold]晕眩[/gold]放入你的[gold]抽牌堆[/gold]。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "DONE",
+        "description": "[blue]茶艺大师[/blue]认可了你的请求，开始了他的行动。\n\n[gold]1.[/gold] 用勺子将一个装满木炭的玻璃瓶中的水舀到一个水壶里。\n[gold]2.[/gold] 水壶用[purple]紫罗兰色的文火[/purple]慢慢熬煮。\n[gold]3.[/gold] 在水开之前，往壶中放入一勺茶叶。\n[gold]4.[/gold] 将壶从火源上拿下，用有节奏的敲击来计算时间。\n[gold]5.[/gold] 将水壶高高举起，精准地将茶倒入下方极小的茶杯中。\n\n[green][sine]“请用茶。”[/sine][/green]"
+      },
+      {
+        "id": "INITIAL",
+        "description": "你不知怎么晃进了一个灯光昏暗的小棚屋，发现里面的空间感觉非常和平，四周摆满了种类繁多的茶叶。\n\n屋子里面的男人做出手势，让你去看一批[green]茶叶[/green]，每一种都有雅致的标签告知你茶叶的[gold]高昂价格[/gold]。",
+        "options": [
+          {
+            "id": "BONE_TEA",
+            "title": "骨茶",
+            "description": "支付[red]50[/red][gold]金币[/gold]。在你接下来的[blue]1[/blue]场战斗开始时，[gold]升级[/gold]你的初始手牌。"
+          },
+          {
+            "id": "BONE_TEA_LOCKED",
+            "title": "锁定",
+            "description": "需要[blue]50[/blue][gold]金币[/gold]。"
+          },
+          {
+            "id": "EMBER_TEA",
+            "title": "余烬茶",
+            "description": "支付[red]150[/red][gold]金币[/gold]。在接下来的[blue]5[/blue]场战斗开始时，获得[blue]2[/blue]点[gold]力量[/gold]。"
+          },
+          {
+            "id": "EMBER_TEA_LOCKED",
+            "title": "锁定",
+            "description": "需要[blue]150[/blue][gold]金币[/gold]。"
+          },
+          {
+            "id": "TEA_OF_DISCOURTESY",
+            "title": "无礼之茶",
+            "description": "在下一场战斗开始时，将[blue]2[/blue]张[gold]晕眩[/gold]放入你的[gold]抽牌堆[/gold]。"
+          }
+        ]
+      },
+      {
+        "id": "TEA_OF_DISCOURTESY",
+        "description": "你礼貌地拒绝了点茶，然后——\n\n[jitter][red]*砰咚*[/red][/jitter]\n\n你身后的门狠狠地关上了。[blue]茶艺大师[/blue]盯着你看了一会儿，然后拿出了一个很丑的杯子。\n啊，这是专门给无礼之人准备的茶……"
+      }
+    ]
+  },
+  {
+    "id": "TEZCATARA",
+    "name": "特兹卡塔拉",
+    "type": "Ancient",
+    "act": "Act 2 - Hive",
+    "description": "哎呀，有客人！快进来吧，亲爱的！\n特兹卡塔拉能为你做点什么吶？",
+    "preconditions": null,
+    "options": null,
+    "pages": null,
+    "epithet": "饲火者",
+    "dialogue": {
+      "Returning": [
+        {
+          "order": "0-0r",
+          "speaker": "ancient",
+          "text": "欢迎回来，小可爱。让我来[jitter][b]烧掉[/b][/jitter]你的缺点。"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "进来吧，亲爱的！特兹卡特拉今天能为你做些什么呢？"
+        }
+      ],
+      "Defect": [
+        {
+          "order": "0-0",
+          "speaker": "character",
+          "text": "<问候的嘀嘀声>"
+        },
+        {
+          "order": "0-1",
+          "speaker": "ancient",
+          "text": "不是来这里烦扰我的吗？真是个[jitter][b]不同寻常[/b][/jitter]的小小构装体呢……"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "要是他被自己的同类给毁了，那该多荒唐呀？"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "你确定想要被修好么？"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "<好奇的嘀嘀声>"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "哎呀，要是你真的[jitter][b]确定[/b][/jitter]的话。"
+        }
+      ],
+      "Ironclad": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "啊呀，你[jitter][b]燃烧[/b][/jitter]得真漂亮！进来，进来吧！"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "你是个多么强壮的男孩啊！来，吃点东西吧。\n空着肚子可没法[jitter][b]杀戮[/b][/jitter]！"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "哦哦，建筑师还活着吗？那能不能麻烦你[jitter][b]快点[/b][/jitter]去杀了他呢？\n我就在这里等着吧！"
+        }
+      ],
+      "Necrobinder": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "嗯，一具骷髅来到这个地方是要做什么呢？"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "我的目标很单纯，我要为我的家人们复仇。\n我会前往塔顶，让他付出代价。"
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "[jitter][b]真是太棒了[/b][/jitter]！"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "进来吧，进来！我们来让你的火焰燃烧得更[jitter][b]明亮[/b][/jitter]。"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "你周身的这些火焰，倒是让我想起了一样禁忌的东西。"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "你知道些什么？"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "我认得写[jitter][b]那本书[/b][/jitter]的家伙。"
+        }
+      ],
+      "Regent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "啊呀呀，真是位[sine]稀奇[/sine]的访客！你是哪位呀，亲爱的？"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "我不是什么亲爱的！对我说话得尊重一点，巨大的……东西人类！"
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "那我真是礼数不周啦？\n特兹卡塔拉高兴地咯咯笑。"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "你和你的伙伴们又回来啦？\n我给你们做了好些[jitter][b]点心[/b][/jitter]哦！"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "欢迎回来，王室男孩！看起来你在外头表现得[jitter][b]很棒[/b][/jitter]呢。"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "那当然了！只是在上层遇到了一些小小挫折……比如死掉。"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "所有人都是从错误中吸取经验的吶。"
+        }
+      ],
+      "Silent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "过来一点，安静的小家伙。我的眼神可不太好使啦……"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "……"
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "你可以[jitter][b]信任[/b][/jitter]我的。"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "你得了很严重的[jitter][b]疾病[/b][/jitter]呢。让我来照顾你吧。"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "我也见过你的姐妹们，你知道吧？都是很可爱的女孩子呢。"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "……"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "哎呀亲爱的……你不会一直都在[jitter][b]战斗[/b][/jitter]吧？"
+        }
+      ],
+      "First Visit": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "哎呀，有客人！快进来吧，亲爱的！\n特兹卡塔拉能为你做点什么吶？"
+        }
+      ]
+    },
+    "image_url": "/static/images/misc/ancients/tezcatara.webp",
+    "relics": [
+      "NUTRITIOUS_SOUP",
+      "VERY_HOT_COCOA",
+      "YUMMY_COOKIE",
+      "BIIIG_HUG",
+      "STORYBOOK",
+      "SEAL_OF_GOLD",
+      "TOASTY_MITTENS",
+      "GOLDEN_COMPASS",
+      "PUMPKIN_CANDLE",
+      "TOY_BOX"
+    ]
+  },
+  {
+    "id": "THE_ARCHITECT",
+    "name": "建筑师",
+    "type": "Ancient",
+    "act": null,
+    "description": "是大恶魔的走狗来了么？",
+    "preconditions": null,
+    "options": null,
+    "pages": null,
+    "dialogue": {
+      "Defect": [
+        {
+          "order": "0-0r",
+          "speaker": "ancient",
+          "text": "你在这里做什么？"
+        },
+        {
+          "order": "0-1r",
+          "speaker": "character",
+          "text": "<随机混乱的词句>"
+        },
+        {
+          "order": "0-2r",
+          "speaker": "ancient",
+          "text": "修好你？凭什么。"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "你回来了？我不是把你拆解了吗？"
+        },
+        {
+          "order": "1-1r",
+          "speaker": "character",
+          "text": "<随机混乱的词句>"
+        },
+        {
+          "order": "1-2r",
+          "speaker": "ancient",
+          "text": "修好你？还要修好你的朋友？胡言乱语。"
+        },
+        {
+          "order": "2-0r",
+          "speaker": "ancient",
+          "text": "你怎么还能一直回来？这是涅奥做的么？"
+        },
+        {
+          "order": "2-1r",
+          "speaker": "character",
+          "text": "<随机混乱的词句>"
+        },
+        {
+          "order": "2-2r",
+          "speaker": "ancient",
+          "text": "愚蠢"
+        }
+      ],
+      "Ironclad": [
+        {
+          "order": "0-0r",
+          "speaker": "ancient",
+          "text": "是大恶魔的走狗来了么？"
+        },
+        {
+          "order": "0-1r",
+          "speaker": "character",
+          "text": "敌人……\n杀戮……"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "你被诅咒必须永远战斗，是吧？"
+        },
+        {
+          "order": "1-1r",
+          "speaker": "character",
+          "text": "建筑师……最大……敌人！！"
+        },
+        {
+          "order": "1-2r",
+          "speaker": "ancient",
+          "text": "你是不是连自己的名字都不记得了？"
+        },
+        {
+          "order": "2-0r",
+          "speaker": "ancient",
+          "text": "我怜悯你。"
+        },
+        {
+          "order": "2-1r",
+          "speaker": "character",
+          "text": "杀戮……"
+        },
+        {
+          "order": "2-2r",
+          "speaker": "ancient",
+          "text": "回塔底去吧，铁甲战士。"
+        }
+      ],
+      "Necrobinder": [
+        {
+          "order": "0-0",
+          "speaker": "character",
+          "text": "建筑师！你杀死了我的父母，你杀死了我的朋友，你杀死了我的[b]生命[/b]！……所以现在，我要杀死[b]你[/b]！"
+        },
+        {
+          "order": "0-1",
+          "speaker": "ancient",
+          "text": "复仇是么？敬谢不敏。"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "character",
+          "text": "建筑师！你杀死了我的父母，你杀死了我的朋友，你杀死了我的——"
+        },
+        {
+          "order": "1-1r",
+          "speaker": "ancient",
+          "text": "你无法用愤怒改变过去。"
+        },
+        {
+          "order": "2-0r",
+          "speaker": "character",
+          "text": "建筑师！你杀死了我的父母，你杀死了我的朋友，你杀死了我的[b]生命[/b]——"
+        },
+        {
+          "order": "2-1r",
+          "speaker": "ancient",
+          "text": "我只是为了维持秩序，做了我必须做的事情。"
+        },
+        {
+          "order": "3-0r",
+          "speaker": "character",
+          "text": "建筑师！你杀死了我的父母，你杀死了我的朋友，你杀死了我的——"
+        },
+        {
+          "order": "3-1r",
+          "speaker": "ancient",
+          "text": "生命"
+        },
+        {
+          "order": "3-2r",
+          "speaker": "character",
+          "text": "哈……？！死吧，怪物！"
+        }
+      ],
+      "Regent": [
+        {
+          "order": "0-0",
+          "speaker": "character",
+          "text": "我终于到达了！喂，那边的平民！这里就是塔顶么？"
+        },
+        {
+          "order": "0-1",
+          "speaker": "ancient",
+          "text": "我需要安静……"
+        },
+        {
+          "order": "0-2",
+          "speaker": "character",
+          "text": "看来我需要教你一点礼数！"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "character",
+          "text": "我又到这里了！"
+        },
+        {
+          "order": "1-1r",
+          "speaker": "ancient",
+          "text": "聒噪的愚者又来了么？"
+        },
+        {
+          "order": "1-2r",
+          "speaker": "character",
+          "text": "我既不聒噪，也不是愚者！你快来面对着我！"
+        },
+        {
+          "order": "2-0r",
+          "speaker": "character",
+          "text": "我已经受够了你的无礼了！"
+        },
+        {
+          "order": "2-1r",
+          "speaker": "ancient",
+          "text": "这一点，我们倒是意见一致。"
+        },
+        {
+          "order": "2-2r",
+          "speaker": "character",
+          "text": "来起舞吧！"
+        }
+      ],
+      "Silent": [
+        {
+          "order": "0-0r",
+          "speaker": "ancient",
+          "text": "甚至都没有一句自我介绍么？"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "你从何而来？\n所寻何物？"
+        },
+        {
+          "order": "2-0r",
+          "speaker": "ancient",
+          "text": "[jitter]呵啊！[/jitter]\n[jitter][red]死吧！！[/red][/jitter]"
+        },
+        {
+          "order": "3-0r",
+          "speaker": "ancient",
+          "text": "烦人的混蛋！\n[jitter]消失吧！！[/jitter]"
+        }
+      ]
+    },
+    "image_url": "/static/images/monsters/architect.webp"
+  },
+  {
+    "id": "THE_FUTURE_OF_POTIONS",
+    "name": "药水的未来？",
+    "type": "Shared",
+    "act": null,
+    "description": "转过拐角，你感受到一阵轻微的轰鸣，随后发现了一台巨大的旋转装置！\n它带有几个槽位，似乎能将液体转化为高度压缩的易消化药片。\n\n将这些药水炼成一小片的想法令人有些不适，但或许尝试新事物也不错？",
+    "preconditions": null,
+    "options": [
+      {
+        "id": "POTION",
+        "title": "放入Common药水",
+        "description": "失去[gold]a Potion[/gold]。获得一张[gold]升级过[/gold]的[gold]CommonSkill牌[/gold]。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "DONE",
+        "description": "这药片真恶心。这未来简直毫无希望。"
+      },
+      {
+        "id": "INITIAL",
+        "description": "转过拐角，你感受到一阵轻微的轰鸣，随后发现了一台巨大的旋转装置！\n它带有几个槽位，似乎能将液体转化为高度压缩的易消化药片。\n\n将这些药水炼成一小片的想法令人有些不适，但或许尝试新事物也不错？",
+        "options": [
+          {
+            "id": "POTION",
+            "title": "放入Common药水",
+            "description": "失去[gold]a Potion[/gold]。获得一张[gold]升级过[/gold]的[gold]CommonSkill牌[/gold]。"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "THE_LANTERN_KEY",
+    "name": "灯火钥匙",
+    "type": "Event",
+    "act": "Act 2 - Hive",
+    "description": "你发现了一把发出微光的钥匙，于是将它捡了起来。\n\n“我找这把钥匙可把这里翻了个遍！你要是不介意的话……”\n\n这家伙看起来不是什么好人，但或许你也不该以貌取人。",
+    "preconditions": null,
+    "options": [
+      {
+        "id": "RETURN_THE_KEY",
+        "title": "交还钥匙",
+        "description": "获得[blue]100[/blue][gold]金币[/gold]。"
+      },
+      {
+        "id": "KEEP_THE_KEY",
+        "title": "留下钥匙",
+        "description": "战斗来取得钥匙。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "DONE",
+        "description": null,
+        "options": [
+          {
+            "id": "RETURN_THE_KEY",
+            "title": "RETURN_THE_KEY",
+            "description": "陌生人感谢了你的帮助，给了你许多奖赏。"
+          }
+        ]
+      },
+      {
+        "id": "INITIAL",
+        "description": "你发现了一把发出微光的钥匙，于是将它捡了起来。\n\n“我找这把钥匙可把这里翻了个遍！你要是不介意的话……”\n\n这家伙看起来不是什么好人，但或许你也不该以貌取人。",
+        "options": [
+          {
+            "id": "RETURN_THE_KEY",
+            "title": "交还钥匙",
+            "description": "获得[blue]100[/blue][gold]金币[/gold]。"
+          },
+          {
+            "id": "KEEP_THE_KEY",
+            "title": "留下钥匙",
+            "description": "战斗来取得钥匙。"
+          }
+        ]
+      },
+      {
+        "id": "KEEP_THE_KEY",
+        "description": "陌生人恶狠狠地看着你，看起来今天你们之中只有一个人可以带着钥匙离开这里了。",
+        "options": [
+          {
+            "id": "FIGHT",
+            "title": "战斗",
+            "description": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "THE_LEGENDS_WERE_TRUE",
+    "name": "传说是真的",
+    "type": "Shared",
+    "act": null,
+    "description": "踏入漆黑的密室，一道亮光从上方刺破黑暗，与此同时，身后的门砰然关上。\n\n借着光亮，你看到前方的石台上放着一张地图。你有一种强烈的想要拿走它的冲动。\n\n事出反常。",
+    "preconditions": [
+      "Requires 10+ HP",
+      "Act 1 only"
+    ],
+    "options": [
+      {
+        "id": "NAB_THE_MAP",
+        "title": "顺走地图",
+        "description": "获得[gold]藏宝图[/gold]。"
+      },
+      {
+        "id": "SLOWLY_FIND_AN_EXIT",
+        "title": "耐心寻找出口",
+        "description": "失去[red]8[/red]点生命。获得[blue]1[/blue]瓶随机[gold]药水[/gold]。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "INITIAL",
+        "description": "踏入漆黑的密室，一道亮光从上方刺破黑暗，与此同时，身后的门砰然关上。\n\n借着光亮，你看到前方的石台上放着一张地图。你有一种强烈的想要拿走它的冲动。\n\n事出反常。",
+        "options": [
+          {
+            "id": "NAB_THE_MAP",
+            "title": "顺走地图",
+            "description": "获得[gold]藏宝图[/gold]。"
+          },
+          {
+            "id": "SLOWLY_FIND_AN_EXIT",
+            "title": "耐心寻找出口",
+            "description": "失去[red]8[/red]点生命。获得[blue]1[/blue]瓶随机[gold]药水[/gold]。"
+          }
+        ]
+      },
+      {
+        "id": "NAB_THE_MAP",
+        "description": "再差能差到哪去？你抓起地图，一道出口随之就在房间对侧出现了。"
+      },
+      {
+        "id": "SLOWLY_FIND_AN_EXIT",
+        "description": "你在黑暗中摸索寻找出口，房间突然剧烈震动起来。伴随着一声巨响，整间密室在你周围轰然坍塌。\n\n你艰难地从废墟中脱身，却意外发现了一瓶之前藏在房内的好东西。"
+      }
+    ]
+  },
+  {
+    "id": "THIS_OR_THAT",
+    "name": "这个还是那个？",
+    "type": "Shared",
+    "act": null,
+    "description": "附近的一个坑洞里突然蹿出一双手臂，一只手紧握着一袋[gold]可疑的财宝[/gold]，另一只则拿着一件明显[purple]被诅咒的遗物[/purple]。\n\n[jitter][blue]“这个……还是那个？”[/blue][/jitter]\n一个嘶哑的声音从地下传来，向你低语。",
+    "preconditions": null,
+    "options": [
+      {
+        "id": "PLAIN",
+        "title": "这个",
+        "description": "失去[red]6[/red]点生命。获得[blue]41-68[/blue][gold]金币[/gold]。"
+      },
+      {
+        "id": "ORNATE",
+        "title": "那个",
+        "description": "将一张[red]笨拙[/red]加入你的[gold]牌组[/gold]。获得一件随机[gold]遗物[/gold]。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "INITIAL",
+        "description": "附近的一个坑洞里突然蹿出一双手臂，一只手紧握着一袋[gold]可疑的财宝[/gold]，另一只则拿着一件明显[purple]被诅咒的遗物[/purple]。\n\n[jitter][blue]“这个……还是那个？”[/blue][/jitter]\n一个嘶哑的声音从地下传来，向你低语。",
+        "options": [
+          {
+            "id": "PLAIN",
+            "title": "这个",
+            "description": "失去[red]6[/red]点生命。获得[blue]41-68[/blue][gold]金币[/gold]。"
+          },
+          {
+            "id": "ORNATE",
+            "title": "那个",
+            "description": "将一张[red]笨拙[/red]加入你的[gold]牌组[/gold]。获得一件随机[gold]遗物[/gold]。"
+          }
+        ]
+      },
+      {
+        "id": "ORNATE",
+        "description": "你抓住了[purple]被诅咒的遗物[/purple]。刚握上去，你的手臂上就凭空出现了一对镣铐。\n\n你听到一阵[blue][sine]幽灵般的笑声[/sine][/blue]，然后一道明亮的[orange]火光[/orange]充斥了你的视野！\n\n坑洞和手臂都消失了。"
+      },
+      {
+        "id": "PLAIN",
+        "description": "你握住钱袋，瞬间有[blue][jitter]第[b]三[/b]只手[/jitter][/blue]冒了出来，想要抓住你！\n\n你[red][jitter]拼命挣扎[/jitter][/red]了一番之后，它终于松开了手——坑洞和手臂全都消失了。"
+      }
+    ]
+  },
+  {
+    "id": "TINKER_TIME",
+    "name": "打造时间",
+    "type": "Event",
+    "act": "Act 3 - Glory",
+    "description": "你在翻越[red][sine]数不尽的尸山血海[/sine][/red]之时，遇到了一位正在搜寻破烂的[orange]疯狂科学家[/orange]。\n\n“是的，嗨，你好！你看起来是个有实力的战士……我的下一件[green]暴行装备[/green]正需要一个测试员！你觉得怎么样？”",
+    "preconditions": null,
+    "options": [
+      {
+        "id": "CHOOSE_CARD_TYPE",
+        "title": "接受",
+        "description": "制作一张定制卡牌加入你的[gold]牌组[/gold]。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "CHOOSE_CARD_TYPE",
+        "description": "“你觉得什么样的工具能帮助你[red][jitter]杀死所有人[/jitter][/red]？”",
+        "options": [
+          {
+            "id": "ATTACK",
+            "title": "武器",
+            "description": "制作一张攻击牌。"
+          },
+          {
+            "id": "SKILL",
+            "title": "护具",
+            "description": "制作一张技能牌。"
+          },
+          {
+            "id": "POWER",
+            "title": "装置",
+            "description": "制作一张能力牌。"
+          }
+        ]
+      },
+      {
+        "id": "CHOOSE_RIDER",
+        "description": "“很棒的选择！那么，它应该发挥什么[sine]作用[/sine]呢？”\n[orange]科学家[/orange]开心地搓起了她的双手。",
+        "options": [
+          {
+            "id": "SAPPING",
+            "title": "削弱",
+            "description": "给予[blue]2[/blue]层[gold]虚弱[/gold]。给予[blue]2[/blue]层[gold]易伤[/gold]。"
+          },
+          {
+            "id": "VIOLENCE",
+            "title": "暴力",
+            "description": "额外命中[blue]2[/blue]次。"
+          },
+          {
+            "id": "CHOKING",
+            "title": "扼杀",
+            "description": "本回合，你每打出一张牌，该敌人失去[blue]6[/blue]点生命。"
+          },
+          {
+            "id": "ENERGIZED",
+            "title": "充能",
+            "description": "获得[energy:2]。"
+          },
+          {
+            "id": "WISDOM",
+            "title": "智慧",
+            "description": "抽[blue]3[/blue]张牌。"
+          },
+          {
+            "id": "CHAOS",
+            "title": "混沌",
+            "description": "将一张随机牌放入你的[gold]手牌[/gold]。这张牌在本回合可以免费打出。"
+          },
+          {
+            "id": "EXPERTISE",
+            "title": "专长",
+            "description": "获得[blue]2[/blue]点[gold]力量[/gold]。获得[blue]2[/blue]点[gold]敏捷[/gold]。"
+          },
+          {
+            "id": "CURIOUS",
+            "title": "好奇",
+            "description": "能力牌的耗能减少[blue]1[/blue][energy:1]。"
+          },
+          {
+            "id": "IMPROVEMENT",
+            "title": "精进",
+            "description": "在战斗结束时，随机[gold]升级[/gold]一张牌。"
+          }
+        ]
+      },
+      {
+        "id": "DONE",
+        "description": "“呼——！大功告成啦，这个送给你！现在出去好好[red][jitter]杀个痛快[/jitter][/red]吧！！”\n\n你不知道的是，这位[orange]科学家[/orange]后来创造出了几百件武器，导致了高塔之中数以千计的死亡。"
+      },
+      {
+        "id": "INITIAL",
+        "description": "你在翻越[red][sine]数不尽的尸山血海[/sine][/red]之时，遇到了一位正在搜寻破烂的[orange]疯狂科学家[/orange]。\n\n“是的，嗨，你好！你看起来是个有实力的战士……我的下一件[green]暴行装备[/green]正需要一个测试员！你觉得怎么样？”",
+        "options": [
+          {
+            "id": "CHOOSE_CARD_TYPE",
+            "title": "接受",
+            "description": "制作一张定制卡牌加入你的[gold]牌组[/gold]。"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "TRASH_HEAP",
+    "name": "垃圾堆",
+    "type": "Event",
+    "act": "Underdocks",
+    "description": "你发现了一座如山般堆积的垃圾，里面有着[red][jitter]废旧武器[/jitter][/red]、[orange]遗弃饰品[/orange]和众多[purple][sine]其他古怪玩意儿[/sine][/purple]。垃圾堆摇摆晃动着，仿佛正在从内部不断生长变大……\n\n如果你从表面搜索，应该能找到一些好东西。但如果你努努力扎进垃圾堆里面，那就能找到一些[gold]奇珍异宝[/gold]。",
+    "preconditions": null,
+    "options": [
+      {
+        "id": "DIVE_IN",
+        "title": "扎进垃圾堆",
+        "description": "失去[red]8[/red]点生命。获得一件被遗忘的旧日[gold]遗物[/gold]。"
+      },
+      {
+        "id": "GRAB",
+        "title": "随便拿点垃圾",
+        "description": "获得[blue]100[/blue][gold]金币[/gold]。获得一张被遗忘的旧日卡牌。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "DIVE_IN",
+        "description": "你花了不少时间在[red][sine]危险的垃圾[/sine][/red]中努力翻找，最终找到了一件[gold]旧日遗物[/gold]！\n\n为什么这样的东西会被扔掉呢？"
+      },
+      {
+        "id": "GRAB",
+        "description": "你从安全的距离绕着垃圾堆走着，四处拾取了一些[gold]被遗忘的值钱物品[/gold]与[purple][sine]奇怪东西[/sine][/purple]。\n\n这些东西最初是为什么被创造出来的呢？"
+      },
+      {
+        "id": "INITIAL",
+        "description": "你发现了一座如山般堆积的垃圾，里面有着[red][jitter]废旧武器[/jitter][/red]、[orange]遗弃饰品[/orange]和众多[purple][sine]其他古怪玩意儿[/sine][/purple]。垃圾堆摇摆晃动着，仿佛正在从内部不断生长变大……\n\n如果你从表面搜索，应该能找到一些好东西。但如果你努努力扎进垃圾堆里面，那就能找到一些[gold]奇珍异宝[/gold]。",
+        "options": [
+          {
+            "id": "DIVE_IN",
+            "title": "扎进垃圾堆",
+            "description": "失去[red]8[/red]点生命。获得一件被遗忘的旧日[gold]遗物[/gold]。"
+          },
+          {
+            "id": "GRAB",
+            "title": "随便拿点垃圾",
+            "description": "获得[blue]100[/blue][gold]金币[/gold]。获得一张被遗忘的旧日卡牌。"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "TRIAL",
+    "name": "审判",
+    "type": "Event",
+    "act": "Act 3 - Glory",
+    "description": "你排起队，和众人一起进入一栋巨大的建筑物。\n\n当你通过一道[gold]金色的拱门[/gold]时，突然号角响起、[jitter]彩纸爆裂飞散[/jitter]、天花板上还飞出了众多[sine]彩条[/sine]！\n\n“[blue][EntrantNumber][/blue]号进入者，你将成为今天[gold]审判[/gold]的[green]判决者[/green]。”",
+    "preconditions": null,
+    "options": [
+      {
+        "id": "ACCEPT",
+        "title": "接受",
+        "description": "担当今天的判决者"
+      },
+      {
+        "id": "REJECT",
+        "title": "拒绝",
+        "description": "[red]拒绝是不被允许的。[/red]"
+      }
+    ],
+    "pages": [
+      {
+        "id": "INITIAL",
+        "description": "你排起队，和众人一起进入一栋巨大的建筑物。\n\n当你通过一道[gold]金色的拱门[/gold]时，突然号角响起、[jitter]彩纸爆裂飞散[/jitter]、天花板上还飞出了众多[sine]彩条[/sine]！\n\n“[blue][EntrantNumber][/blue]号进入者，你将成为今天[gold]审判[/gold]的[green]判决者[/green]。”",
+        "options": [
+          {
+            "id": "ACCEPT",
+            "title": "接受",
+            "description": "担当今天的判决者"
+          },
+          {
+            "id": "REJECT",
+            "title": "拒绝",
+            "description": "[red]拒绝是不被允许的。[/red]"
+          }
+        ]
+      },
+      {
+        "id": "MERCHANT",
+        "description": "一个[green]看起来很有钱的商人[/green]诉说了自己的案件：他被一个对手指控[red]谋杀[/red]。证据相当稀少，你感觉他很可能是无辜的，但是周围的看客们似乎都想要见到鲜血。",
+        "options": [
+          {
+            "id": "GUILTY",
+            "title": "判决：有罪",
+            "description": "将一张[red]悔恨[/red]加入你的[gold]牌组[/gold]。获得[blue]2[/blue]件随机[gold]遗物[/gold]。"
+          },
+          {
+            "id": "INNOCENT",
+            "title": "判决：无罪",
+            "description": "将一张[red]羞耻[/red]加入你的[gold]牌组[/gold]。[gold]升级[/gold][blue]2[/blue]张牌。"
+          }
+        ]
+      },
+      {
+        "id": "MERCHANT_GUILTY",
+        "description": "你判定这个人的所有财产都要被充公，作为今日法庭的审讯费用。\n人群愉悦地高呼起来。"
+      },
+      {
+        "id": "MERCHANT_INNOCENT",
+        "description": "你听从了自己的良知，宣判此人无罪。\n尽管周围嘘声不断，还有人骂你是个[sine][purple]“被收买的法官”[/purple][/sine]，你依旧觉得自己做出了正确的选择。"
+      },
+      {
+        "id": "NOBLE",
+        "description": "一个[gold]权势很大的贵族[/gold]走上前来。你发现自己的口袋里被塞了一张字条，说只要宣判他无罪就会得到巨额回报。[gold]贵族[/gold]对于[purple]贪污腐败的指控[/purple]几乎没有做任何反驳，只是特意向你露出一个得意的笑容。\n你无法阻止贪污腐败，但你可以借此机会捞一些[gold]金币……[/gold]",
+        "options": [
+          {
+            "id": "GUILTY",
+            "title": "判决：有罪",
+            "description": "回复[green]10[/green]点生命。"
+          },
+          {
+            "id": "INNOCENT",
+            "title": "判决：无罪",
+            "description": "将一张[red]悔恨[/red]加入你的[gold]牌组[/gold]。获得[blue]300[/blue][gold]金币[/gold]。"
+          }
+        ]
+      },
+      {
+        "id": "NOBLE_GUILTY",
+        "description": "[gold]大贵族[/gold]被[red]斩首处死[/red]。\n世界上又少了一个[purple]腐败的贵族[/purple]。"
+      },
+      {
+        "id": "NOBLE_INNOCENT",
+        "description": "你[sine][purple]其实[/purple][/sine]不是特别清楚他有没有罪……对，就是这样！\n这笔[gold]贿赂[/gold]和判决的结果没有任何关系。完全没有。"
+      },
+      {
+        "id": "NONDESCRIPT",
+        "description": "一个[orange]表情难以阅读的平凡女子[/orange]走上前来。她被指控犯下了[red]盗窃[/red]与[purple]诈骗[/purple]的罪行。这名女子开口时，你觉得她非常可信。但是有众多证人都作证说她做出过许多坏事。\n两边的说法都很有说服力！",
+        "options": [
+          {
+            "id": "GUILTY",
+            "title": "判决：有罪",
+            "description": "将一张[red]疑虑[/red]加入你的[gold]牌组[/gold]。获得[blue]2[/blue]次卡牌奖励。"
+          },
+          {
+            "id": "INNOCENT",
+            "title": "判决：无罪",
+            "description": "将一张[red]疑虑[/red]加入你的[gold]牌组[/gold]。[gold]变化[/gold][blue]2[/blue]张牌。"
+          }
+        ]
+      },
+      {
+        "id": "NONDESCRIPT_GUILTY",
+        "description": "你并不是很确定真相如何，但艰难的决定总要有人做出，你觉得证据已经算是足够。\n你是否真的做出了正确的判决呢？"
+      },
+      {
+        "id": "NONDESCRIPT_INNOCENT",
+        "description": "你并不是很确定真相如何，但你有着合理的怀疑。\n你不知道自己的判决是否正确，只是觉得无罪应该是更好的选择。"
+      },
+      {
+        "id": "REJECT",
+        "description": "[jitter]“[b]你不能拒绝！！[/b]”[/jitter]\n\n[gold]法院总仲裁官[/gold]大声喊道。\n\n[jitter]“回绝此项特权者，将被判处[red][b]死刑[/b][/red]。你是否还要抗命！？”[/jitter]",
+        "options": [
+          {
+            "id": "ACCEPT",
+            "title": "接受",
+            "description": "放弃。担当今天的判决者。"
+          },
+          {
+            "id": "DOUBLE_DOWN",
+            "title": "坚持到底",
+            "description": "[red]直面致命的后果。[/red]"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "UNREST_SITE",
+    "name": "无休之处",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": "你找到了一个隔绝的[gold]休息处[/gold]，于是点起[orange]篝火[/orange]打算休息。\n结果只是打算而已。\n\n篝火点起后，火光立即胀大起来，不是向上而是向着[sine]侧面[/sine]延伸向一片满是[purple]冒油树木[/purple]的林地。\n\n要不要不管这个情况，就这么继续休息？",
+    "preconditions": [
+      "Requires ≤70% HP"
+    ],
+    "options": [
+      {
+        "id": "REST",
+        "title": "就这样休息",
+        "description": "[green]回复全部生命值。[/green]获得[red]睡眠不佳[/red]。"
+      },
+      {
+        "id": "KILL",
+        "title": "杀死树木",
+        "description": "失去[red]8[/red]点最大生命。获得一件随机[gold]遗物[/gold]。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "INITIAL",
+        "description": "你找到了一个隔绝的[gold]休息处[/gold]，于是点起[orange]篝火[/orange]打算休息。\n结果只是打算而已。\n\n篝火点起后，火光立即胀大起来，不是向上而是向着[sine]侧面[/sine]延伸向一片满是[purple]冒油树木[/purple]的林地。\n\n要不要不管这个情况，就这么继续休息？",
+        "options": [
+          {
+            "id": "REST",
+            "title": "就这样休息",
+            "description": "[green]回复全部生命值。[/green]获得[red]睡眠不佳[/red]。"
+          },
+          {
+            "id": "KILL",
+            "title": "杀死树木",
+            "description": "失去[red]8[/red]点最大生命。获得一件随机[gold]遗物[/gold]。"
+          }
+        ]
+      },
+      {
+        "id": "KILL",
+        "description": "这些树木[purple]显然有恶意[/purple]所以你决定把它们解决掉。\n几天之后，你浑身满是[red]灰烬[/red]和[purple]油脂黏液[/purple]。\n\n被杀死的树木中飞出了一大群小小的异鸟灵魂，它们将一个[gold]小盒子[/gold]扔到了你的脚边。\n[green]“感谢你将我们从那些树木体内解放出来……[sine]叽叽叽[/sine]！”[/green]\n\n你真的该多睡一会儿。"
+      },
+      {
+        "id": "REST",
+        "description": "繁忙的冒险让你精疲力尽，所以尽管异象丛生，你还是决定倒头就睡。\n\n[orange]火焰[/orange]整晚呼啸作响，让你辗转反侧。那些[purple]恶心树木[/purple]的漆黑黏液散发出了一股恶臭的味道。\n\n你醒了，虽然恢复了体力，精神却没有变好。"
+      }
+    ]
+  },
+  {
+    "id": "VAKUU",
+    "name": "瓦库",
+    "type": "Ancient",
+    "act": "Act 3 - Glory",
+    "description": "把你自己交给我，你就能变得和我一样万众畏惧。",
+    "preconditions": null,
+    "options": null,
+    "pages": null,
+    "epithet": "第一个恶魔",
+    "dialogue": {
+      "Returning": [
+        {
+          "order": "0-0r",
+          "speaker": "ancient",
+          "text": "在尖塔中追寻荣耀是么？我倒是有一些提案可以给你……"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "143次。你已经来过这里143次。"
+        },
+        {
+          "order": "2-0r",
+          "speaker": "ancient",
+          "text": "你知道这[sine]永远不会[/sine]结束，是吧？"
+        }
+      ],
+      "Defect": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "破损的存在呀，让我把你变得[sine]完美[/sine]吧。"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "为何你的构装体同胞们都想杀死你，你就不觉得奇怪么？"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "如果你把建筑师的心脏带给我，我就把你的[aqua]同伴[/aqua]复原。"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "<恐惧的嘀嘀声>"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "何者更为重要？你的造主，还是你的朋友？"
+        }
+      ],
+      "Ironclad": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "真没想到，过了这么久，居然还会看见[sine]你[/sine]。"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "[jitter][b]神圣恶魔！[/b][/jitter]\n你都对我做了什么！？"
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "正是你交易应得的哦。"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "失去的那些部落们是否仍让你感到沉重……？\n瓦库大笑起来。"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "我傀儡中的傀儡呵……你为何还没有杀死建筑师？"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "我杀了建筑师之后，就会来杀了[jitter][b]你！[/b][/jitter]"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "[sine]哈欠[/sine]\n我很期待看着你如何失败。"
+        }
+      ],
+      "Necrobinder": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "我们都在寻求[sine]复仇[/sine]。当然，收获总要有代价。"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "我接受任何代价，只要能换来他的死亡。"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "我知道你的[sine]那只手[/sine]是从哪里来的。"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "我们两个，都被建筑师伤得很痛。"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "别多费唇舌了，恶魔。把你的契约给我看吧。"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "开门见山吗，很好……"
+        }
+      ],
+      "Regent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "居然是一个星间来客？在这被诅咒的墙内？"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "你知道我么？"
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "是啊，我觉得我们可以互相帮助。"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "只需付出小小代价，你就可以拥有我的更多力量。"
+        },
+        {
+          "order": "2-0",
+          "speaker": "character",
+          "text": "我觉得这些条件都不怎么样，我感觉很不好。"
+        },
+        {
+          "order": "2-1",
+          "speaker": "ancient",
+          "text": "你有好好完整地阅读过契约吧？\n你是在完全知情、主动、而且愿意接受所有相关责任的条件下签下的名字对吧？"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "你不打算完成交易里自己的那一半么？\n那再来一份契约怎么样？是不是更好一些？"
+        }
+      ],
+      "Silent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "杀人者。"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "[sine]...[/sine]"
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "你是不会有[jitter]好下场[/jitter]的。"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "瓦库向静默猎手展示着他的各种契约。"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "建筑师还不够，把你的姐妹们也杀了吧！"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "[sine]...[/sine]"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "无需言语，我们两个是一样的。"
+        }
+      ],
+      "First Visit": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "把你自己交给我，你就能变得和我一样万众畏惧。"
+        }
+      ]
+    },
+    "image_url": "/static/images/misc/ancients/vakuu.webp",
+    "relics": [
+      "BLOOD_SOAKED_ROSE",
+      "WHISPERING_EARRING",
+      "FIDDLE",
+      "PRESERVED_FOG",
+      "SERE_TALON",
+      "DISTINGUISHED_CAPE",
+      "CHOICES_PARADOX",
+      "MUSIC_BOX",
+      "LORDS_PARASOL",
+      "JEWELED_MASK"
+    ]
+  },
+  {
+    "id": "WAR_HISTORIAN_REPY",
+    "name": "战史学家 付袭",
+    "type": "Shared",
+    "act": null,
+    "description": "你看到一个学者被关在一个[purple]吊在空中的笼子[/purple]里，而旁边有一个[gold]大宝箱[/gold]。\n\n那个学者一边咕哝着什么[sine][orange]“一次性的钥匙”[/orange][/sine]，一边拼命地在写着些什么。\n\n看起来你可以二选一，要么打开[purple]笼子[/purple]，要么打开[gold]宝箱[/gold]。",
+    "preconditions": null,
+    "options": [
+      {
+        "id": "UNLOCK_CAGE",
+        "title": "打开笼子",
+        "description": "失去[gold]灯火钥匙[/gold]。获得[gold]历史课[/gold]。"
+      },
+      {
+        "id": "UNLOCK_CHEST",
+        "title": "打开宝箱",
+        "description": "失去[gold]灯火钥匙[/gold]。获得[blue]2[/blue]瓶随机[gold]药水[/gold]和[blue]2[/blue]件随机[gold]遗物[/gold]。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "INITIAL",
+        "description": "你看到一个学者被关在一个[purple]吊在空中的笼子[/purple]里，而旁边有一个[gold]大宝箱[/gold]。\n\n那个学者一边咕哝着什么[sine][orange]“一次性的钥匙”[/orange][/sine]，一边拼命地在写着些什么。\n\n看起来你可以二选一，要么打开[purple]笼子[/purple]，要么打开[gold]宝箱[/gold]。",
+        "options": [
+          {
+            "id": "UNLOCK_CAGE",
+            "title": "打开笼子",
+            "description": "失去[gold]灯火钥匙[/gold]。获得[gold]历史课[/gold]。"
+          },
+          {
+            "id": "UNLOCK_CHEST",
+            "title": "打开宝箱",
+            "description": "失去[gold]灯火钥匙[/gold]。获得[blue]2[/blue]瓶随机[gold]药水[/gold]和[blue]2[/blue]件随机[gold]遗物[/gold]。"
+          }
+        ]
+      },
+      {
+        "id": "UNLOCK_CAGE",
+        "description": "你打开了笼子，[green]付袭[/green]向你鞠躬表达谢意。他递给你一本[gold]厚厚的硬皮书[/gold]。\n\n“不懂得历史的人注定要重蹈覆辙。不过看起来你对‘重复’这件事还是略知一二的，对不对？”"
+      },
+      {
+        "id": "UNLOCK_CHEST",
+        "description": "“选择不解放学者[green]付袭[/green]是吗？根据古典哲学理论，你该被称为是[red]道德败坏[/red]。没错，下次你最好想一想，是不是应该先考虑下被锁起来的[purple][jitter][b]活人[/b][/jitter][/purple]才对啊！你是觉得这里没有一位对社会有价值的成员正处于[purple][jitter][b]危难之中[/b][/jitter][/purple]吗！！”\n\n“你看看这笼子有多小好不好！？唉我还在抱怨什么呢？你已经作出了你那缺乏学识的决定……嚯，看看那里面有什么？一些[gold]药水[/gold]和[gold]遗物[/gold]是吗？那可真好啊，[sine]真的好，对你来说真是太好了……[/sine]”\n\n[green]付袭[/green]的眼睛鄙夷地盯着你从这里离开。"
+      }
+    ]
+  },
+  {
+    "id": "WATERLOGGED_SCRIPTORIUM",
+    "name": "水漫缮写室",
+    "type": "Event",
+    "act": "Underdocks",
+    "description": "在昏暗的通道中前行时，你找到了一个小店，里面有一个[aqua]憔悴的员工[/aqua]。四周的书架上[sine]塞满了[/sine]无数潮湿的卷轴与羊皮纸。\n\n[aqua]抄写员兼店主[/aqua]注意到有客人进店，猛地回过神来，为你指了指书桌上摆放着的一些[gold]器具[/gold]。",
+    "preconditions": [
+      "Requires 55+ gold"
+    ],
+    "options": [
+      {
+        "id": "BLOODY_INK",
+        "title": "血液墨水",
+        "description": "获得[green]6[/green]点最大生命。"
+      },
+      {
+        "id": "TENTACLE_QUILL",
+        "title": "触手羽毛笔",
+        "description": "支付[red]55[/red][gold]金币[/gold]。给一张牌[gold]附魔[/gold]：[purple]稳定[/purple]。"
+      },
+      {
+        "id": "TENTACLE_QUILL_LOCKED",
+        "title": "锁定",
+        "description": "需要[blue]55[/blue][gold]金币[/gold]。"
+      },
+      {
+        "id": "PRICKLY_SPONGE",
+        "title": "扎手海绵",
+        "description": "支付[red]99[/red][gold]金币[/gold]。给[blue]2[/blue]张牌[gold]附魔[/gold]：[purple]稳定[/purple]。"
+      },
+      {
+        "id": "PRICKLY_SPONGE_LOCKED",
+        "title": "锁定",
+        "description": "需要[blue]99[/blue][gold]金币[/gold]。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "BLOODY_INK",
+        "description": "[aqua]抄写员[/aqua]小心地拿起那个装着[red]亮红色墨水[/red]的小瓶，轻轻摇晃了一下，然后又用手做了个蘸取的动作。\n\n你将你的手指往墨水上蘸了蘸，突然感觉到自己身体中传来[green][jitter]一阵活力的电流[/jitter][/green]！\n\n[aqua]抄写员[/aqua]似乎对你的反应相当满意，礼貌地鞠了个躬，挥手向你告别。"
+      },
+      {
+        "id": "INITIAL",
+        "description": "在昏暗的通道中前行时，你找到了一个小店，里面有一个[aqua]憔悴的员工[/aqua]。四周的书架上[sine]塞满了[/sine]无数潮湿的卷轴与羊皮纸。\n\n[aqua]抄写员兼店主[/aqua]注意到有客人进店，猛地回过神来，为你指了指书桌上摆放着的一些[gold]器具[/gold]。",
+        "options": [
+          {
+            "id": "BLOODY_INK",
+            "title": "血液墨水",
+            "description": "获得[green]6[/green]点最大生命。"
+          },
+          {
+            "id": "TENTACLE_QUILL",
+            "title": "触手羽毛笔",
+            "description": "支付[red]55[/red][gold]金币[/gold]。给一张牌[gold]附魔[/gold]：[purple]稳定[/purple]。"
+          },
+          {
+            "id": "TENTACLE_QUILL_LOCKED",
+            "title": "锁定",
+            "description": "需要[blue]55[/blue][gold]金币[/gold]。"
+          },
+          {
+            "id": "PRICKLY_SPONGE",
+            "title": "扎手海绵",
+            "description": "支付[red]99[/red][gold]金币[/gold]。给[blue]2[/blue]张牌[gold]附魔[/gold]：[purple]稳定[/purple]。"
+          },
+          {
+            "id": "PRICKLY_SPONGE_LOCKED",
+            "title": "锁定",
+            "description": "需要[blue]99[/blue][gold]金币[/gold]。"
+          }
+        ]
+      },
+      {
+        "id": "PRICKLY_SPONGE",
+        "description": "[aqua]抄写员[/aqua]拿起[gold]扎手海绵[/gold]（海绵还发出了一声吱吱声），把它往你的卷轴上抹去。\n\n[jitter][blue]*吱吱 吱吱 吱吱*[/blue][/jitter]\n\n扎手的纹理在卷轴上留下了[purple][sine]闪烁的印记[/sine][/purple]，似乎让墨水更加稳定了……"
+      },
+      {
+        "id": "TENTACLE_QUILL",
+        "description": "[aqua]抄写员[/aqua]拿起[jitter][gold]扭动着的羽毛笔[/gold][/jitter]，熟练而迅速地在你的头上画下了一个奇怪的印记。\n\n印记突然[purple][sine]大放光芒[/sine][/purple]，然后消失不见……"
+      }
+    ]
+  },
+  {
+    "id": "WELCOME_TO_WONGOS",
+    "name": "欢迎来到旺购百货",
+    "type": "Shared",
+    "act": null,
+    "description": "“欢迎来到旺购百货，这里有超旺商品，一定让您越购越旺。”店员说着欢迎词，看起来没有丝毫热情。\n\n“请随意查看我们的商品，祝您在旺购过得愉快。”店员头也不抬地继续说着。",
+    "preconditions": [
+      "Requires 100+ gold",
+      "Act 2 only"
+    ],
+    "options": [
+      {
+        "id": "BARGAIN_BIN",
+        "title": "旺购的打折货物",
+        "description": "支付[red]100[/red][gold]金币[/gold]。获得[blue]1[/blue]件随机[gold]普通遗物[/gold]。"
+      },
+      {
+        "id": "BARGAIN_BIN_LOCKED",
+        "title": "锁定",
+        "description": "需要[blue]100[/blue][gold]金币[/gold]。"
+      },
+      {
+        "id": "FEATURED_ITEM",
+        "title": "旺购的特选商品",
+        "description": "支付[red]200[/red][gold]金币[/gold]。获得[gold]a random Relic[/gold]。"
+      },
+      {
+        "id": "FEATURED_ITEM_LOCKED",
+        "title": "锁定",
+        "description": "需要[blue]200[/blue][gold]金币[/gold]。"
+      },
+      {
+        "id": "MYSTERY_BOX",
+        "title": "旺购的神秘盲盒",
+        "description": "支付[red]300[/red][gold]金币[/gold]。在[blue]5[/blue]场战斗后获得[blue]3[/blue]个随机[gold]遗物[/gold]。"
+      },
+      {
+        "id": "MYSTERY_BOX_LOCKED",
+        "title": "锁定",
+        "description": "需要[blue]300[/blue][gold]金币[/gold]。"
+      },
+      {
+        "id": "LEAVE",
+        "title": "离开",
+        "description": "随机[red]降级[/red]一张牌。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "AFTER_BUY",
+        "description": "“旺购百货感谢您的慷慨旺旺采购……尊敬的贵客，您现在已经积攒了[blue]0[/blue][gold]旺购积分[/gold]。只要再积[blue]0[/blue]分，您就能获得我们专属的[gold]旺购客户感恩徽章[/gold]。祝您旺旺翻倍。”\n\n你完全不知道这是在说什么，总之你发誓再也不会走进任何一家旺购百货。"
+      },
+      {
+        "id": "AFTER_BUY_BADGE_COUNTER",
+        "description": "“旺购百货感谢您的慷慨旺旺采购……尊敬的贵客，您现在已经积攒了[blue]0[/blue][gold]旺购积分[/gold]。只要再积[blue]0[/blue]分，您就能获得我们专属的[gold]旺购客户感恩徽章[/gold]。祝您旺旺翻倍。”\n\n你已经有了[blue]0[/blue]个这种没用的徽章。你发誓再也不会走进任何一家旺购百货。"
+      },
+      {
+        "id": "AFTER_BUY_RECEIVE_BADGE",
+        "description": "“旺购百货感谢您的慷慨旺旺采购……尊敬的贵客，您现在已经积攒了[blue]0[/blue][gold]旺购积分[/gold]。您的积分让您可以获得一个[gold]旺购客户感恩徽章[/gold]。”\n店员递给你一个看起来做工很廉价的徽章：“祝您旺旺翻倍。”\n\n你已经获得了[blue]0[/blue]个徽章。你发誓再也不会走进任何一家旺购百货。"
+      },
+      {
+        "id": "INITIAL",
+        "description": "“欢迎来到旺购百货，这里有超旺商品，一定让您越购越旺。”店员说着欢迎词，看起来没有丝毫热情。\n\n“请随意查看我们的商品，祝您在旺购过得愉快。”店员头也不抬地继续说着。",
+        "options": [
+          {
+            "id": "BARGAIN_BIN",
+            "title": "旺购的打折货物",
+            "description": "支付[red]100[/red][gold]金币[/gold]。获得[blue]1[/blue]件随机[gold]普通遗物[/gold]。"
+          },
+          {
+            "id": "BARGAIN_BIN_LOCKED",
+            "title": "锁定",
+            "description": "需要[blue]100[/blue][gold]金币[/gold]。"
+          },
+          {
+            "id": "FEATURED_ITEM",
+            "title": "旺购的特选商品",
+            "description": "支付[red]200[/red][gold]金币[/gold]。获得[gold]a random Relic[/gold]。"
+          },
+          {
+            "id": "FEATURED_ITEM_LOCKED",
+            "title": "锁定",
+            "description": "需要[blue]200[/blue][gold]金币[/gold]。"
+          },
+          {
+            "id": "MYSTERY_BOX",
+            "title": "旺购的神秘盲盒",
+            "description": "支付[red]300[/red][gold]金币[/gold]。在[blue]5[/blue]场战斗后获得[blue]3[/blue]个随机[gold]遗物[/gold]。"
+          },
+          {
+            "id": "MYSTERY_BOX_LOCKED",
+            "title": "锁定",
+            "description": "需要[blue]300[/blue][gold]金币[/gold]。"
+          },
+          {
+            "id": "LEAVE",
+            "title": "离开",
+            "description": "随机[red]降级[/red]一张牌。"
+          }
+        ]
+      },
+      {
+        "id": "LEAVE",
+        "description": "“嗯……抱歉，在旺购你不能不买东西就走的。”店员的语气听起来相当心烦。\n\n你们两个就顾客有无选择权利的问题进行了[jitter][red]激烈[/red][/jitter]的辩论，让你[sine][purple]耗尽了精力[/purple][/sine]。"
+      }
+    ]
+  },
+  {
+    "id": "WELLSPRING",
+    "name": "泉水",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": "你跟着一阵[jitter]低沉的轰鸣声[/jitter]找到了源头：居然是一处平静的泉水，让你心生向往。泉水[sine][aqua]绿如碧玉[/aqua][/sine]，你还能从中看见一些[sine][gold]发光的尘埃[/gold][/sine]。\n\n看起来十分诱人，这不可能出什么差错的吧？",
+    "preconditions": null,
+    "options": [
+      {
+        "id": "BOTTLE",
+        "title": "装瓶",
+        "description": "获得[blue]1[/blue]瓶随机[gold]药水[/gold]。"
+      },
+      {
+        "id": "BATHE",
+        "title": "沐浴",
+        "description": "从你的[gold]牌组[/gold]中移除[blue]1[/blue]张牌。将[blue]1[/blue]张[red]愧疚[/red]添加到你的[gold]牌组[/gold]。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "BATHE",
+        "description": "你从池水中出来时，有一股轻微的[red][sine]不安感[/sine][/red]。\n\n不过意外的是，你的精神恢复得相当不错。"
+      },
+      {
+        "id": "BOTTLE",
+        "description": "在[sine][aqua]如此美丽的池水[/aqua][/sine]中洗澡听起来有点可疑……你决定还是拿瓶子装点水就好。\n\n这应该会派的上用场。"
+      },
+      {
+        "id": "INITIAL",
+        "description": "你跟着一阵[jitter]低沉的轰鸣声[/jitter]找到了源头：居然是一处平静的泉水，让你心生向往。泉水[sine][aqua]绿如碧玉[/aqua][/sine]，你还能从中看见一些[sine][gold]发光的尘埃[/gold][/sine]。\n\n看起来十分诱人，这不可能出什么差错的吧？",
+        "options": [
+          {
+            "id": "BOTTLE",
+            "title": "装瓶",
+            "description": "获得[blue]1[/blue]瓶随机[gold]药水[/gold]。"
+          },
+          {
+            "id": "BATHE",
+            "title": "沐浴",
+            "description": "从你的[gold]牌组[/gold]中移除[blue]1[/blue]张牌。将[blue]1[/blue]张[red]愧疚[/red]添加到你的[gold]牌组[/gold]。"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "WHISPERING_HOLLOW",
+    "name": "低语空谷",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": "在通过一个[red]枯木林谷[/red]时，你遇见了一株孤单的白骨般的树。它的枝丫如同肋骨般向内弯曲，枝条上则挂着黏土般的球状物体。\n\n真是棵[purple]瘆人的树[/purple]。它还在发出低语：\n\n[sine][blue]…来做交易…..[/blue][/sine]",
+    "preconditions": [
+      "Requires 44+ gold"
+    ],
+    "options": [
+      {
+        "id": "GOLD",
+        "title": "交换金币",
+        "description": "失去[red]26-44[/red][gold]金币[/gold]。获得[blue]2[/blue]瓶随机[gold]药水[/gold]。"
+      },
+      {
+        "id": "HUG",
+        "title": "拥抱树木",
+        "description": "失去[red]9[/red]点生命。选择一张牌[gold]变化[/gold]。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "GOLD",
+        "description": "你将一些[gold]金币[/gold]撒在树的根部，有两个黏土容器一声不吭地掉落在了地上。\n\n容器裂开，里面居然是[green]完好无损的药水[/green]。\n\n你拿起药水，立即逃离。"
+      },
+      {
+        "id": "HUG",
+        "description": "[blue][sine]轻语声[/sine][/blue]敦促你给树[gold]金币[/gold]，但你抵抗住了它的意志，反而上前去给了树木一个大大的拥抱！\n\n它立即[red][jitter]摇摆晃动[/jitter][/red]起来，用枝丫刮伤了你，但最终还是平静了下来。这次[green]拥抱树木的体验[/green]让你有了一些[gold]变化[/gold]。\n\n[purple][sine]…来个拥抱…..？[/sine][/purple]"
+      },
+      {
+        "id": "INITIAL",
+        "description": "在通过一个[red]枯木林谷[/red]时，你遇见了一株孤单的白骨般的树。它的枝丫如同肋骨般向内弯曲，枝条上则挂着黏土般的球状物体。\n\n真是棵[purple]瘆人的树[/purple]。它还在发出低语：\n\n[sine][blue]…来做交易…..[/blue][/sine]",
+        "options": [
+          {
+            "id": "GOLD",
+            "title": "交换金币",
+            "description": "失去[red]26-44[/red][gold]金币[/gold]。获得[blue]2[/blue]瓶随机[gold]药水[/gold]。"
+          },
+          {
+            "id": "HUG",
+            "title": "拥抱树木",
+            "description": "失去[red]9[/red]点生命。选择一张牌[gold]变化[/gold]。"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "WOOD_CARVINGS",
+    "name": "木雕",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": "你打开一个尘封的盒子，发现里面有一组3个相当精细的木雕：\n\n一只鸟、一条蛇、还有……一个圆环？\n\n附近有一个基座，上面的凹陷痕迹正与这些木雕底部的形状吻合。你要把哪个木雕放在基座上呢？",
+    "preconditions": [
+      "Requires a removable basic card"
+    ],
+    "options": [
+      {
+        "id": "BIRD",
+        "title": "鸟",
+        "description": "选择[blue]1[/blue]张初始牌[gold]变化[/gold]为[gold]啄击[/gold]。"
+      },
+      {
+        "id": "SNAKE",
+        "title": "蛇",
+        "description": "给[blue]1[/blue]张牌[gold]附魔[/gold]：[purple]蛇行[/purple]。"
+      },
+      {
+        "id": "SNAKE_LOCKED",
+        "title": "锁定",
+        "description": "你没有任何牌可以添加附魔：[purple]蛇行[/purple]。"
+      },
+      {
+        "id": "TORUS",
+        "title": "圆环",
+        "description": "选择[blue]1[/blue]张初始牌[gold]变化[/gold]为[gold]坚韧之环[/gold]。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "BIRD",
+        "description": "你将木雕鸟儿放在基座上，雕像的[b]眼睛亮了起来[/b]，你仿佛听见自己的脑中有个轻微的声音在回荡着。\n\n[sine]…咔…. 咔咔——…[/sine]\n\n基座打开，有奇怪的液体流了出来。\n那自然，你全都喝了下去。"
+      },
+      {
+        "id": "INITIAL",
+        "description": "你打开一个尘封的盒子，发现里面有一组3个相当精细的木雕：\n\n一只鸟、一条蛇、还有……一个圆环？\n\n附近有一个基座，上面的凹陷痕迹正与这些木雕底部的形状吻合。你要把哪个木雕放在基座上呢？",
+        "options": [
+          {
+            "id": "BIRD",
+            "title": "鸟",
+            "description": "选择[blue]1[/blue]张初始牌[gold]变化[/gold]为[gold]啄击[/gold]。"
+          },
+          {
+            "id": "SNAKE",
+            "title": "蛇",
+            "description": "给[blue]1[/blue]张牌[gold]附魔[/gold]：[purple]蛇行[/purple]。"
+          },
+          {
+            "id": "SNAKE_LOCKED",
+            "title": "锁定",
+            "description": "你没有任何牌可以添加附魔：[purple]蛇行[/purple]。"
+          },
+          {
+            "id": "TORUS",
+            "title": "圆环",
+            "description": "选择[blue]1[/blue]张初始牌[gold]变化[/gold]为[gold]坚韧之环[/gold]。"
+          }
+        ]
+      },
+      {
+        "id": "SNAKE",
+        "description": "你将木雕小蛇放在基座上，雕像的[b]鳞甲亮了起来[/b]！你觉得有一点温暖、舒适和摇摇晃晃。"
+      },
+      {
+        "id": "TORUS",
+        "description": "你将木雕圆环放在基座上，你的[b]肚子亮了起来[/b]，因为雕像变成了一块滚烫的油炸甜点。无尽的饥饿感突然席卷了你，你很快就把那个甜甜圈吃了下去。\n\n你感觉自己变得更结实了，但也更慢了。"
+      }
+    ]
+  },
+  {
+    "id": "ZEN_WEAVER",
+    "name": "修禅织网者",
+    "type": "Event",
+    "act": "Act 2 - Hive",
+    "description": "你在行走时撞到了一张蜘蛛网，立即[jitter][red]慌了神[/red][/jitter]！\n可是很快，一阵[sine][blue]平静的感觉[/blue][/sine]席卷了你……\n\n[sine]“冷静下来，我需要你不再弄坏我的网。”[/sine]\n\n你怎么会这么快就冷静下来的呢？\n一只[orange]小之又小[/orange]的蜘蛛沿着丝线降落下来与你问好，它看起来愿意收取一些[gold]金币[/gold]来分享它的部分技术。",
+    "preconditions": [
+      "Requires 125+ gold"
+    ],
+    "options": [
+      {
+        "id": "BREATHING_TECHNIQUES",
+        "title": "呼吸技法",
+        "description": "支付[red]50[/red][gold]金币[/gold]。将[blue]2[/blue]张[gold]开悟[/gold]加入到你的[gold]牌组[/gold]。"
+      },
+      {
+        "id": "EMOTIONAL_AWARENESS",
+        "title": "情绪觉察",
+        "description": "支付[red]125[/red][gold]金币[/gold]。从你的[gold]牌组[/gold]中移除[blue]1[/blue]张牌。"
+      },
+      {
+        "id": "ARACHNID_ACUPUNCTURE",
+        "title": "蜘蛛针灸",
+        "description": "支付[red]250[/red][gold]金币[/gold]。从你的[gold]牌组[/gold]中移除[blue]2[/blue]张牌。"
+      },
+      {
+        "id": "LOCKED",
+        "title": "锁定",
+        "description": "[gold]金币[/gold]不足。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "ARACHNID_ACUPUNCTURE",
+        "description": "[sine]“不要…移动…”[/sine]一只[orange]微型蜘蛛[/orange]轻声说着，它的两条前腿开始[aqua][jitter]发出微光[/jitter][/aqua]。\n\n然后——是一阵[jitter]飞快戳刺的动作[/jitter]，把你全身扎了个遍！\n你感觉全身轻若无物。这笔钱真是值得。"
+      },
+      {
+        "id": "BREATHING_TECHNIQUES",
+        "description": "[sine]“在脑海中想象你的气道始终开启…每一次呼吸都很有意义。”[/sine]\n\n你用自己觉得合理的方法练习了这种技术。"
+      },
+      {
+        "id": "EMOTIONAL_AWARENESS",
+        "description": "[orange]小小的蜘蛛[/orange]开始跳起了[sine][purple]迷幻的舞步[/purple][/sine]，并不断吟唱着。\n\n[sine]“思维不会影响现实。恐慌是思维的杀手。一切依照计划。”[/sine]\n\n你觉得这些话很有道理，[orange]小小蜘蛛[/orange]竟有大大智慧。"
+      },
+      {
+        "id": "INITIAL",
+        "description": "你在行走时撞到了一张蜘蛛网，立即[jitter][red]慌了神[/red][/jitter]！\n可是很快，一阵[sine][blue]平静的感觉[/blue][/sine]席卷了你……\n\n[sine]“冷静下来，我需要你不再弄坏我的网。”[/sine]\n\n你怎么会这么快就冷静下来的呢？\n一只[orange]小之又小[/orange]的蜘蛛沿着丝线降落下来与你问好，它看起来愿意收取一些[gold]金币[/gold]来分享它的部分技术。",
+        "options": [
+          {
+            "id": "BREATHING_TECHNIQUES",
+            "title": "呼吸技法",
+            "description": "支付[red]50[/red][gold]金币[/gold]。将[blue]2[/blue]张[gold]开悟[/gold]加入到你的[gold]牌组[/gold]。"
+          },
+          {
+            "id": "EMOTIONAL_AWARENESS",
+            "title": "情绪觉察",
+            "description": "支付[red]125[/red][gold]金币[/gold]。从你的[gold]牌组[/gold]中移除[blue]1[/blue]张牌。"
+          },
+          {
+            "id": "ARACHNID_ACUPUNCTURE",
+            "title": "蜘蛛针灸",
+            "description": "支付[red]250[/red][gold]金币[/gold]。从你的[gold]牌组[/gold]中移除[blue]2[/blue]张牌。"
+          },
+          {
+            "id": "LOCKED",
+            "title": "锁定",
+            "description": "[gold]金币[/gold]不足。"
+          }
+        ]
+      }
+    ]
+  }
+]

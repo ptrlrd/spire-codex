@@ -1,0 +1,86 @@
+[
+  {
+    "id": "ATTACK",
+    "name": "ก้าวร้าว",
+    "description": "ศัตรูนี้ตั้งใจจะ[gold]โจมตี[/gold]{IsMultiplayer:ทุกคน|} สร้างความเสียหาย [blue]{Damage}[/blue]{Repeat:choose(1):| จำนวน [blue]{}[/blue] ครั้ง}",
+    "image_url": "/static/images/intents/attack.webp"
+  },
+  {
+    "id": "BUFF",
+    "name": "เสริมพลัง",
+    "description": "ศัตรูนี้ตั้งใจจะใช้[gold]ผลพิเศษ[/gold]",
+    "image_url": "/static/images/intents/buff.webp"
+  },
+  {
+    "id": "CARD_DEBUFF",
+    "name": "มุ่งร้าย",
+    "description": "ศัตรูนี้ตั้งใจจะสร้าง[gold]ผลกัดเซาะ[/gold]ใส่การ์ดของคุณ",
+    "image_url": "/static/images/intents/card_debuff.webp"
+  },
+  {
+    "id": "DEATH_BLOW",
+    "name": "เฮือกสุดท้าย",
+    "description": "สิ่งมีชีวิตนี้พยายามจะลากคุณไปตายด้วย มันจะโจมตีคุณ [blue]{Damage}[/blue] ก่อนถูกทำลาย",
+    "image_url": "/static/images/intents/death_blow.webp"
+  },
+  {
+    "id": "DEBUFF",
+    "name": "กลยุทธ์",
+    "description": "ศัตรูนี้ตั้งใจจะสร้าง[gold]ผลผิดปกติ[/gold]ใส่คุณ",
+    "image_url": "/static/images/intents/debuff.webp"
+  },
+  {
+    "id": "DEBUFF_STRONG",
+    "name": "กลยุทธ์",
+    "description": "ศัตรูนี้ตั้งใจจะสร้าง[gold]ผลพิเศษ[/gold]ที่ทรงพลังใส่คุณ",
+    "image_url": "/static/images/intents/debuff_strong.webp"
+  },
+  {
+    "id": "DEFEND",
+    "name": "ตั้งรับ",
+    "description": "ศัตรูนี้ตั้งใจจะ[gold]บล็อก[/gold]ในเทิร์นของมัน",
+    "image_url": "/static/images/intents/defend.webp"
+  },
+  {
+    "id": "ESCAPE",
+    "name": "ขี้ขลาด",
+    "description": "ศัตรูนี้ตั้งใจจะ[gold]หนี[/gold]",
+    "image_url": "/static/images/intents/escape.webp"
+  },
+  {
+    "id": "HEAL",
+    "name": "ฟื้นฟู",
+    "description": "ศัตรูนี้ตั้งใจจะ[gold]ฟื้นฟู[/gold]",
+    "image_url": "/static/images/intents/heal.webp"
+  },
+  {
+    "id": "SLEEP",
+    "name": "หลับอยู่",
+    "description": "ศัตรูนี้ไม่ทำอะไรเลยในเทิร์นนี้",
+    "image_url": "/static/images/intents/sleep.webp"
+  },
+  {
+    "id": "STATUS",
+    "name": "กลยุทธ์",
+    "description": "ศัตรูนี้ตั้งใจจะมอบ[gold]การ์ดสถานะ[/gold] [blue]{CardCount}[/blue] {CardCount:choose(1):การ์ด|การ์ด}ให้กับคุณ",
+    "image_url": "/static/images/intents/status.webp"
+  },
+  {
+    "id": "STUN",
+    "name": "สตัน",
+    "description": "ศัตรูนี้เคลื่อนไหวไม่ได้ในเทิร์นถัดไปของมัน",
+    "image_url": "/static/images/intents/stun.webp"
+  },
+  {
+    "id": "SUMMON",
+    "name": "อัญเชิญ",
+    "description": "ศัตรูนี้ตั้งใจจะอัญเชิญ[gold]พวกมอนสเตอร์[/gold]",
+    "image_url": "/static/images/intents/summon.webp"
+  },
+  {
+    "id": "UNKNOWN",
+    "name": "ปริศนา",
+    "description": "ความตั้งใจของศัตรูนี้เป็น[gold]ปริศนา[/gold]",
+    "image_url": "/static/images/intents/unknown.webp"
+  }
+]

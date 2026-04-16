@@ -1,0 +1,1546 @@
+[
+  {
+    "id": "AXEBOTS_NORMAL",
+    "name": "Siekieroboty",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "AXEBOT",
+        "name": "Siekierobot"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] {characterGender:choose(masculine|feminine|neutral):został poćwiartowany|została poćwiartowana|został poćwiartowany} przez [gold]Siekieroboty[/gold]."
+  },
+  {
+    "id": "BATTLEWORN_DUMMY_EVENT_ENCOUNTER",
+    "name": "Drewnobot",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
+      {
+        "id": "BATTLE_FRIEND_V1",
+        "name": "Drewnobot V1.0"
+      },
+      {
+        "id": "BATTLE_FRIEND_V2",
+        "name": "Drewnobot V2.0"
+      },
+      {
+        "id": "BATTLE_FRIEND_V3",
+        "name": "Drewnobot V3.0"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] jakimś cudem {characterGender:choose(masculine|feminine|neutral):zginął|zginęła|zginął} w walce z [gold]Drewnobotem[/gold]???"
+  },
+  {
+    "id": "BOWLBUGS_NORMAL",
+    "name": "Chmara Robali",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Workers"
+    ],
+    "monsters": [
+      {
+        "id": "BOWLBUG_EGG",
+        "name": "Robal z jajkiem"
+      },
+      {
+        "id": "BOWLBUG_NECTAR",
+        "name": "Robal z nektarem"
+      },
+      {
+        "id": "BOWLBUG_ROCK",
+        "name": "Robal z kamieniem"
+      },
+      {
+        "id": "BOWLBUG_SILK",
+        "name": "Robal z nicią"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] {characterGender:choose(masculine|feminine|neutral):przeszkodził|przeszkodziła|przeszkodził} [gold]Robalom[/gold] w pracy."
+  },
+  {
+    "id": "BOWLBUGS_WEAK",
+    "name": "Chmara Robali",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Workers"
+    ],
+    "monsters": [
+      {
+        "id": "BOWLBUG_EGG",
+        "name": "Robal z jajkiem"
+      },
+      {
+        "id": "BOWLBUG_NECTAR",
+        "name": "Robal z nektarem"
+      },
+      {
+        "id": "BOWLBUG_ROCK",
+        "name": "Robal z kamieniem"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] {characterGender:choose(masculine|feminine|neutral):przeszkodził|przeszkodziła|przeszkodził} [gold]Robalom[/gold] w pracy."
+  },
+  {
+    "id": "BYGONE_EFFIGY_ELITE",
+    "name": "Starodawna Figura",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "BYGONE_EFFIGY",
+        "name": "Starodawna Figura"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] {characterGender:choose(masculine|feminine|neutral):został przecięty|została przecięta|został przecięty} w pół przez [gold]Starodawną Figurę[/gold]."
+  },
+  {
+    "id": "BYRDONIS_ELITE",
+    "name": "Ptaszor",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "BYRDONIS",
+        "name": "Ptaszor"
+      }
+    ],
+    "loss_text": "[gold]Ptaszor[/gold] zadziobał {characterObject}."
+  },
+  {
+    "id": "CEREMONIAL_BEAST_BOSS",
+    "name": "Leśny Stróż",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "CEREMONIAL_BEAST",
+        "name": "Leśny Stróż"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] {characterGender:choose(masculine|feminine|neutral):został rozdeptany|została rozdeptana|został rozdeptany} przez [gold]Leśnego Stróża[/gold]."
+  },
+  {
+    "id": "CHOMPERS_NORMAL",
+    "name": "Para automatonów",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Chomper"
+    ],
+    "monsters": [
+      {
+        "id": "CHOMPER",
+        "name": "Gryzak"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] {characterGender:choose(masculine|feminine|neutral):został zagryziony|została zagryziona|został zagryziony} przez [gold]Gryzaki[/gold]."
+  },
+  {
+    "id": "CONSTRUCT_MENAGERIE_NORMAL",
+    "name": "Konstrukty",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "CUBEX_CONSTRUCT",
+        "name": "Promieniotron"
+      },
+      {
+        "id": "PUNCH_CONSTRUCT",
+        "name": "Robokser"
+      }
+    ],
+    "loss_text": "[gold]Konstrukty[/gold] zmiażdżyły {characterObject}."
+  },
+  {
+    "id": "CORPSE_SLUGS_NORMAL",
+    "name": "Dużo Ślimaków Trupojadów",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": [
+      "Slugs"
+    ],
+    "monsters": [
+      {
+        "id": "CORPSE_SLUG",
+        "name": "Ślimak Trupojad"
+      }
+    ],
+    "loss_text": "[gold]Ślimaki Trupojady[/gold] pożarły {characterObject}."
+  },
+  {
+    "id": "CORPSE_SLUGS_WEAK",
+    "name": "Ślimaki Trupojady",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Underdocks",
+    "tags": [
+      "Slugs"
+    ],
+    "monsters": [
+      {
+        "id": "CORPSE_SLUG",
+        "name": "Ślimak Trupojad"
+      }
+    ],
+    "loss_text": "[gold]Ślimaki Trupojady[/gold] pożarły {characterObject}."
+  },
+  {
+    "id": "CUBEX_CONSTRUCT_NORMAL",
+    "name": "Promieniotron",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "CUBEX_CONSTRUCT",
+        "name": "Promieniotron"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] {characterGender:choose(masculine|feminine|neutral):został zlaserowany|została zlaserowana|został zlaserowany} przez [gold]Promieniotrona[/gold]."
+  },
+  {
+    "id": "CULTISTS_NORMAL",
+    "name": "Kultyści",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "CALCIFIED_CULTIST",
+        "name": "Zwapniały Kultysta"
+      },
+      {
+        "id": "DAMP_CULTIST",
+        "name": "Zwilgotniały Kultysta"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] {characterGender:choose(masculine|feminine|neutral):został zabity|została zabita|został zabity} przez jakichś [gold]Kultystów[/gold]. [sine]Kraaaa[/sine]..."
+  },
+  {
+    "id": "DECIMILLIPEDE_ELITE",
+    "name": "Wielonoga",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "DECIMILLIPEDE_SEGMENT_BACK",
+        "name": "Decimillipede Segment Back"
+      },
+      {
+        "id": "DECIMILLIPEDE_SEGMENT_FRONT",
+        "name": "Decimillipede Segment Front"
+      },
+      {
+        "id": "DECIMILLIPEDE_SEGMENT_MIDDLE",
+        "name": "Decimillipede Segment Middle"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] {characterGender:choose(masculine|feminine|neutral):zginął|zginęła|zginął} na terytorium [gold]Wielonogi[/gold]."
+  },
+  {
+    "id": "DENSE_VEGETATION_EVENT_ENCOUNTER",
+    "name": "Pasożyty",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
+      {
+        "id": "WRIGGLER",
+        "name": "Pasożyt"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] {characterGender:choose(masculine|feminine|neutral):został opanowany|została opanowana|został opanowany} przez [gold]Pasożyty[/gold]."
+  },
+  {
+    "id": "DEVOTED_SCULPTOR_WEAK",
+    "name": "Zagorzały Rzeźbiarz",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "DEVOTED_SCULPTOR",
+        "name": "Zagorzały Rzeźbiarz"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] {characterGender:choose(masculine|feminine|neutral):został rozbity|została rozbita|został rozbity} na kawałki przez [gold]Zagorzałego Rzeźbiarza[/gold]."
+  },
+  {
+    "id": "DOORMAKER_BOSS",
+    "name": "Tytan Pustki",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "DOORMAKER",
+        "name": "Tytan Pustki"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] nie {characterGender:choose(masculine|feminine|neutral):zachwycił|zachwyciła|zachwycił} [gold]Tytana Pustki[/gold] swoją wizytą."
+  },
+  {
+    "id": "ENTOMANCER_ELITE",
+    "name": "Pszczelarz",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "ENTOMANCER",
+        "name": "Pszczelarz"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] {characterGender:choose(masculine|feminine|neutral):został zażądlony|została zażądlona|został zażądlony} na śmierć przez [gold]Pszczelarza[/gold]."
+  },
+  {
+    "id": "EXOSKELETONS_NORMAL",
+    "name": "Wiele Egzoszkieletów",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Exoskeletons"
+    ],
+    "monsters": [
+      {
+        "id": "EXOSKELETON",
+        "name": "Egzoszkielet"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] {characterGender:choose(masculine|feminine|neutral):został wypatroszony|została wypatroszona|został wypatroszony} przez [gold]Wiele Egzoszkieletów[/gold]."
+  },
+  {
+    "id": "EXOSKELETONS_WEAK",
+    "name": "Egzoszkielety",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Exoskeletons"
+    ],
+    "monsters": [
+      {
+        "id": "EXOSKELETON",
+        "name": "Egzoszkielet"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] {characterGender:choose(masculine|feminine|neutral):został wypatroszony|została wypatroszona|został wypatroszony} przez jakieś [gold]Egzoszkielety[/gold]."
+  },
+  {
+    "id": "FABRICATOR_NORMAL",
+    "name": "Mechanik",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "FABRICATOR",
+        "name": "Mechanik"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] {characterGender:choose(masculine|feminine|neutral):został porażony|została porażona|został porażony} prądem przez roboty [gold]Mechanika[/gold]."
+  },
+  {
+    "id": "FAKE_MERCHANT_EVENT_ENCOUNTER",
+    "name": "Handlarz???",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
+      {
+        "id": "FAKE_MERCHANT_MONSTER",
+        "name": "Handlarz???"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] {characterGender:choose(masculine|feminine|neutral):poznał|poznała|poznał} gniew [gold]Handlarza???[/gold]"
+  },
+  {
+    "id": "FLYCONID_NORMAL",
+    "name": "Grzyb i śluz",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Mushroom",
+      "Slimes"
+    ],
+    "monsters": [
+      {
+        "id": "FLYCONID",
+        "name": "Musznica"
+      },
+      {
+        "id": "LEAF_SLIME_M",
+        "name": "Śluzak Wielki"
+      },
+      {
+        "id": "TWIG_SLIME_M",
+        "name": "Śluzak Wielki"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] {characterGender:choose(masculine|feminine|neutral):został wchłonięty|została wchłonięta przez|został wchłonięty} przez [gold]Musznicę[/gold]."
+  },
+  {
+    "id": "FOGMOG_NORMAL",
+    "name": "Grzybol",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "EYE_WITH_TEETH",
+        "name": "Zębate Oko"
+      },
+      {
+        "id": "FOGMOG",
+        "name": "Grzybol"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] {characterGender:choose(masculine|feminine|neutral):został rozproszony|została rozproszona|został rozproszony} przez halucynacje [gold]Grzybola[/gold]."
+  },
+  {
+    "id": "FOSSIL_STALKER_NORMAL",
+    "name": "Skamieliniak",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "FOSSIL_STALKER",
+        "name": "Skamieliniak"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] {characterGender:choose(masculine|feminine|neutral):wpadł|wpadła|wpadł} w zasadzkę [gold]Skamieliniaka[/gold]."
+  },
+  {
+    "id": "FROG_KNIGHT_NORMAL",
+    "name": "Żabi Rycerz",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "FROG_KNIGHT",
+        "name": "Żabi Rycerz"
+      }
+    ],
+    "loss_text": "Dzielny [gold]Żabi Rycerz[/gold] pokonał {characterObject}."
+  },
+  {
+    "id": "FUZZY_WURM_CRAWLER_WEAK",
+    "name": "Kędzierzawy Robok",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Crawler"
+    ],
+    "monsters": [
+      {
+        "id": "FUZZY_WURM_CRAWLER",
+        "name": "Kędzierzawy Robok"
+      }
+    ],
+    "loss_text": "[gold]Kędzierzawy Robok[/gold] opluł {characterObject}."
+  },
+  {
+    "id": "GLOBE_HEAD_NORMAL",
+    "name": "Plazmogłowy",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "GLOBE_HEAD",
+        "name": "Plazmogłowy"
+      }
+    ],
+    "loss_text": "[gold]Plazmogłowy[/gold] poraził {characterObject} prądem."
+  },
+  {
+    "id": "GREMLIN_MERC_NORMAL",
+    "name": "Dwóch Gremlinów w płaszczu",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "FAT_GREMLIN",
+        "name": "Duży gremlin"
+      },
+      {
+        "id": "GREMLIN_MERC",
+        "name": "Gremlin Rabuś"
+      },
+      {
+        "id": "SNEAKY_GREMLIN",
+        "name": "Podstępny Gremlin"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] {characterGender:choose(masculine|feminine|neutral):został napadnięty|została napadnięta|został napadnięty} przez dwóch [gold]Gremlinów[/gold] w płaszczu."
+  },
+  {
+    "id": "HAUNTED_SHIP_NORMAL",
+    "name": "Nawiedzony Statek",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "HAUNTED_SHIP",
+        "name": "Nawiedzony Statek"
+      }
+    ],
+    "loss_text": "[gold]Nawiedzony Statek[/gold] zmiażdżył {characterObject}."
+  },
+  {
+    "id": "HUNTER_KILLER_NORMAL",
+    "name": "Zabójczy Łowca",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "HUNTER_KILLER",
+        "name": "Zabójczy Łowca"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] {characterGender:choose(masculine|feminine|neutral):został wypatroszony|została wypatroszona|został wypatroszony} przez [gold]Zabójczego Łowcę[/gold]."
+  },
+  {
+    "id": "INFESTED_PRISMS_ELITE",
+    "name": "Zainfekowany Pryzmat",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "INFESTED_PRISM",
+        "name": "Zainfekowany Pryzmat"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] {characterGender:choose(masculine|feminine|neutral):został powstrzymany|została powstrzymana|został powstrzymany} przez [gold]Zainfekowany Pryzmat[/gold]."
+  },
+  {
+    "id": "INKLETS_NORMAL",
+    "name": "Kropelki",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "INKLET",
+        "name": "Kropelka"
+      }
+    ],
+    "loss_text": "[gold]Kropelki[/gold] nie chciały przepuścić {characterObject}."
+  },
+  {
+    "id": "KAISER_CRAB_BOSS",
+    "name": "Krab Cesarski",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "CRUSHER",
+        "name": "Kruszyciel"
+      },
+      {
+        "id": "ROCKET",
+        "name": "Rakietowiec"
+      }
+    ],
+    "loss_text": "[gold]Krab Cesarski[/gold] zaatakował {characterObject} ze wszystkich stron."
+  },
+  {
+    "id": "KNIGHTS_ELITE",
+    "name": "Kompania Rycerska",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": [
+      "Knights"
+    ],
+    "monsters": [
+      {
+        "id": "FLAIL_KNIGHT",
+        "name": "Szeroki Rycerz"
+      },
+      {
+        "id": "MAGI_KNIGHT",
+        "name": "Mag"
+      },
+      {
+        "id": "SPECTRAL_KNIGHT",
+        "name": "Rycerz Widmo"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] {characterGender:choose(masculine|feminine|neutral):został zabity|została zabita|został zabity} przez [gold]Kompanię Rycerską[/gold]."
+  },
+  {
+    "id": "KNOWLEDGE_DEMON_BOSS",
+    "name": "Demon Wiedzy",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "KNOWLEDGE_DEMON",
+        "name": "Demon Wiedzy"
+      }
+    ],
+    "loss_text": "[gold]Demon Wiedzy[/gold] przytłoczył {characterObject} tajemnicami wszechświata."
+  },
+  {
+    "id": "LAGAVULIN_MATRIARCH_BOSS",
+    "name": "Matka Lagavulinów",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "LAGAVULIN_MATRIARCH",
+        "name": "Matka Lagavulinów"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] {characterGender:choose(masculine|feminine|neutral):został przekrojony|została przekrojona|został przekrojony} na pół przez [gold]Matkę Lagavulinów[/gold]."
+  },
+  {
+    "id": "LIVING_FOG_NORMAL",
+    "name": "Nieprzyjemny Gaz",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "GAS_BOMB",
+        "name": "Bomba Gazowa"
+      },
+      {
+        "id": "LIVING_FOG",
+        "name": "Żywa Mgła"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] {characterGender:choose(masculine|feminine|neutral):nie mógł|nie mogła|nie mógł} znieść smrodu [gold]Nieprzyjemnego Gazu[/gold]."
+  },
+  {
+    "id": "LOUSE_PROGENITOR_NORMAL",
+    "name": "Protowesz",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "LOUSE_PROGENITOR",
+        "name": "Protowesz"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] {characterGender:choose(masculine|feminine|neutral):został sparaliżowany|została sparaliżowana|został sparaliżowany} przez [gold]Protowesz[/gold]."
+  },
+  {
+    "id": "MAWLER_NORMAL",
+    "name": "Paszczur",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "MAWLER",
+        "name": "Paszczur"
+      }
+    ],
+    "loss_text": "[gold]Paszczur[/gold] zjadł {characterObject} na obiad."
+  },
+  {
+    "id": "MECHA_KNIGHT_ELITE",
+    "name": "Mecha-Rycerz",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "MECHA_KNIGHT",
+        "name": "Mecha-Rycerz"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] {characterGender:choose(masculine|feminine|neutral):został zadźgany i spalony|została zadźgana i spalona|został zadźgany i spalony} przez [gold]Mecha-Rycerza[/gold]."
+  },
+  {
+    "id": "MYSTERIOUS_KNIGHT_EVENT_ENCOUNTER",
+    "name": "Tajemniczy Rycerz",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
+      {
+        "id": "MYSTERIOUS_KNIGHT",
+        "name": "Tajemniczy Rycerz"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] {characterGender:choose(masculine|feminine|neutral):próbował|próbowała|próbował} zabrać klucz [gold]Tajemniczego Rycerza[/gold]."
+  },
+  {
+    "id": "MYTES_NORMAL",
+    "name": "Masa Roztyczy",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "MYTE",
+        "name": "Roztycz"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] {characterGender:choose(masculine|feminine|neutral):został otoczony|została otoczona|został otoczony} przez masę [gold]Roztyczy[/gold]."
+  },
+  {
+    "id": "NIBBITS_NORMAL",
+    "name": "Para Kumkaczy",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "NIBBIT",
+        "name": "Kumkacz"
+      }
+    ],
+    "loss_text": "[gold]Para Kumkaczy[/gold] pobiła {characterObject}."
+  },
+  {
+    "id": "NIBBITS_WEAK",
+    "name": "Kumkacz",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Nibbit"
+    ],
+    "monsters": [
+      {
+        "id": "NIBBIT",
+        "name": "Kumkacz"
+      }
+    ],
+    "loss_text": "[gold]Kumkacz[/gold] pobił {characterObject}."
+  },
+  {
+    "id": "OVERGROWTH_CRAWLERS",
+    "name": "Roboki",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Shrinker",
+      "Crawler"
+    ],
+    "monsters": [
+      {
+        "id": "FUZZY_WURM_CRAWLER",
+        "name": "Kędzierzawy Robok"
+      },
+      {
+        "id": "SHRINKER_BEETLE",
+        "name": "Żuczek Kurczyciel"
+      }
+    ],
+    "loss_text": "Jakieś [gold]Roboki[/gold] pożarły {characterObject}."
+  },
+  {
+    "id": "OVICOPTER_NORMAL",
+    "name": "Jajokopter",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "OVICOPTER",
+        "name": "Jajokopter"
+      },
+      {
+        "id": "TOUGH_EGG",
+        "name": "Twarde jajo"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] {characterGender:choose(masculine|feminine|neutral):stał się|stała się|stał się} pożywieniem dla larw [gold]Jajokoptera[/gold]."
+  },
+  {
+    "id": "OWL_MAGISTRATE_NORMAL",
+    "name": "Sędzia",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "OWL_MAGISTRATE",
+        "name": "Sędzia"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] {characterGender:choose(masculine|feminine|neutral):został skazany| została skazana|został skazany} na śmierć przez [gold]Sędzię[/gold]."
+  },
+  {
+    "id": "PHANTASMAL_GARDENERS_ELITE",
+    "name": "Węgorzówki",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "PHANTASMAL_GARDENER",
+        "name": "Węgorzówka"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] {characterGender:choose(masculine|feminine|neutral):został pożarty|została pożarta|został pożarty} przez [gold]Węgorzówki[/gold]."
+  },
+  {
+    "id": "PHROG_PARASITE_ELITE",
+    "name": "Zainfekowana Żapka",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "PHROG_PARASITE",
+        "name": "Zainfekowana Żapka"
+      },
+      {
+        "id": "WRIGGLER",
+        "name": "Pasożyt"
+      }
+    ],
+    "loss_text": "[gold]Pasożyty[/gold] rozprzestrzeniły swoją kolonię na {characterObject}."
+  },
+  {
+    "id": "PUNCH_CONSTRUCT_NORMAL",
+    "name": "Robokser",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "PUNCH_CONSTRUCT",
+        "name": "Robokser"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] {characterGender:choose(masculine|feminine|neutral):przegrał|przegrała|przegrał} walkę na pięści z [gold]Robokserem[/gold]."
+  },
+  {
+    "id": "PUNCH_OFF_EVENT_ENCOUNTER",
+    "name": "Robokserzy",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
+      {
+        "id": "PUNCH_CONSTRUCT",
+        "name": "Robokser"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] {characterGender:choose(masculine|feminine|neutral):przeszkodził|przeszkodziła|przeszkodził} [gold]Robokserom[/gold] w pojedynku."
+  },
+  {
+    "id": "QUEEN_BOSS",
+    "name": "Królowa",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "QUEEN",
+        "name": "Królowa"
+      },
+      {
+        "id": "TORCH_HEAD_AMALGAM",
+        "name": "Amalgamat"
+      }
+    ],
+    "loss_text": "[gold]Królowa[/gold] dodała {characterObject} do swojej kolekcji."
+  },
+  {
+    "id": "RUBY_RAIDERS_NORMAL",
+    "name": "Banda Najeźdźców",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "ASSASSIN_RUBY_RAIDER",
+        "name": "Szermierz"
+      },
+      {
+        "id": "AXE_RUBY_RAIDER",
+        "name": "Topornik"
+      },
+      {
+        "id": "BRUTE_RUBY_RAIDER",
+        "name": "Brutal"
+      },
+      {
+        "id": "CROSSBOW_RUBY_RAIDER",
+        "name": "Kusznik"
+      },
+      {
+        "id": "TRACKER_RUBY_RAIDER",
+        "name": "Tropiciel"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] {characterGender:choose(masculine|feminine|neutral):został napadnięty|została napadnięta|został napadnięty} przez [gold]Bandę Najeźdźców[/gold]."
+  },
+  {
+    "id": "SCROLLS_OF_BITING_NORMAL",
+    "name": "Wiele Zgryźliwych Zwojów",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": [
+      "Scrolls"
+    ],
+    "monsters": [
+      {
+        "id": "SCROLL_OF_BITING",
+        "name": "Zgryźliwy Zwój"
+      }
+    ],
+    "loss_text": "[gold]Wiele Zgryźliwych Zwojów[/gold] rozszarpało {characterObject} na kawałki."
+  },
+  {
+    "id": "SCROLLS_OF_BITING_WEAK",
+    "name": "Zgryźliwe Zwoje",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 3 - Glory",
+    "tags": [
+      "Scrolls"
+    ],
+    "monsters": [
+      {
+        "id": "SCROLL_OF_BITING",
+        "name": "Zgryźliwy Zwój"
+      }
+    ],
+    "loss_text": "[gold]Zgryźliwe Zwoje[/gold] rozszarpały {characterObject} na kawałki."
+  },
+  {
+    "id": "SEAPUNK_NORMAL",
+    "name": "Kijanki",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": [
+      "Seapunk"
+    ],
+    "monsters": [
+      {
+        "id": "CALCIFIED_CULTIST",
+        "name": "Zwapniały Kultysta"
+      },
+      {
+        "id": "SEAPUNK",
+        "name": "Gloniarz"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] {characterGender:choose(masculine|feminine|neutral):został pokonany|została pokonana|został pokonany} przez jakieś [gold]Kijanki[/gold]."
+  },
+  {
+    "id": "SEAPUNK_WEAK",
+    "name": "Gloniarz",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Underdocks",
+    "tags": [
+      "Seapunk"
+    ],
+    "monsters": [
+      {
+        "id": "SEAPUNK",
+        "name": "Gloniarz"
+      }
+    ],
+    "loss_text": "[gold]Gloniarz[/gold] sprał {characterObject} na kwaśne jabłko."
+  },
+  {
+    "id": "SEWER_CLAM_NORMAL",
+    "name": "Małża Ściekowa",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SEWER_CLAM",
+        "name": "Małża Ściekowa"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] {characterGender:choose(masculine|feminine|neutral):został pożarty|została pożarta|został pożarty} przez [gold]Małżę Ściekową[/gold]."
+  },
+  {
+    "id": "SHRINKER_BEETLE_WEAK",
+    "name": "Żuczek Kurczyciel",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Shrinker"
+    ],
+    "monsters": [
+      {
+        "id": "SHRINKER_BEETLE",
+        "name": "Żuczek Kurczyciel"
+      }
+    ],
+    "loss_text": "[gold]Żuczek Kurczyciel[/gold] zjadł {characterObject} na przekąskę."
+  },
+  {
+    "id": "SKULKING_COLONY_ELITE",
+    "name": "Żywa Rafa Koralowa",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SKULKING_COLONY",
+        "name": "Żywa Rafa Koralowa"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] {characterGender:choose(masculine|feminine|neutral):został wchłonięty|została wchłonięta przez|został wchłonięty} przez [gold]Żywą Rafę Koralową[/gold]."
+  },
+  {
+    "id": "SLIMED_BERSERKER_NORMAL",
+    "name": "Śluzak Berserker",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SLIMED_BERSERKER",
+        "name": "Śluzak Berserker"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] {characterGender:choose(masculine|feminine|neutral):został wchłonięty|została wchłonięta przez|został wchłonięty} przez [gold]Śluzaka Berserkera[/gold]."
+  },
+  {
+    "id": "SLIMES_NORMAL",
+    "name": "Masa Śluzaków",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Slimes"
+    ],
+    "monsters": [
+      {
+        "id": "LEAF_SLIME_M",
+        "name": "Śluzak Wielki"
+      },
+      {
+        "id": "LEAF_SLIME_S",
+        "name": "Śluzak Mały"
+      },
+      {
+        "id": "TWIG_SLIME_M",
+        "name": "Śluzak Wielki"
+      },
+      {
+        "id": "TWIG_SLIME_S",
+        "name": "Śluzak Mały"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] {characterGender:choose(masculine|feminine|neutral):został pokonany|została pokonana|został pokonany} przez masę [gold]Śluzaków[/gold]."
+  },
+  {
+    "id": "SLIMES_WEAK",
+    "name": "Grupka Śluzaków",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Slimes"
+    ],
+    "monsters": [
+      {
+        "id": "LEAF_SLIME_M",
+        "name": "Śluzak Wielki"
+      },
+      {
+        "id": "LEAF_SLIME_S",
+        "name": "Śluzak Mały"
+      },
+      {
+        "id": "TWIG_SLIME_M",
+        "name": "Śluzak Wielki"
+      },
+      {
+        "id": "TWIG_SLIME_S",
+        "name": "Śluzak Mały"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] {characterGender:choose(masculine|feminine|neutral):został pokonany|została pokonana|został pokonany} przez grupkę [gold]Śluzaków[/gold]."
+  },
+  {
+    "id": "SLITHERING_STRANGLER_NORMAL",
+    "name": "Dusiciel i jego kumpel",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "LEAF_SLIME_M",
+        "name": "Śluzak Wielki"
+      },
+      {
+        "id": "LEAF_SLIME_S",
+        "name": "Śluzak Mały"
+      },
+      {
+        "id": "SLITHERING_STRANGLER",
+        "name": "Ślizgi Dusiciel"
+      },
+      {
+        "id": "SNAPPING_JAXFRUIT",
+        "name": "Kwiat Energii"
+      },
+      {
+        "id": "TWIG_SLIME_M",
+        "name": "Śluzak Wielki"
+      },
+      {
+        "id": "TWIG_SLIME_S",
+        "name": "Śluzak Mały"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] {characterGender:choose(masculine|feminine|neutral):został uduszony|została uduszona|został uduszony} przez [gold]Dusiciela[/gold]."
+  },
+  {
+    "id": "SLUDGE_SPINNER_WEAK",
+    "name": "Wirówka",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SLUDGE_SPINNER",
+        "name": "Wirówka"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] nie {characterGender:choose(masculine|feminine|neutral):mógł|mogła|mógł} pokonać [gold]Wirówki[/gold]."
+  },
+  {
+    "id": "SLUMBERING_BEETLE_NORMAL",
+    "name": "Pidżama Party",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Workers"
+    ],
+    "monsters": [
+      {
+        "id": "BOWLBUG_ROCK",
+        "name": "Robal z kamieniem"
+      },
+      {
+        "id": "BOWLBUG_SILK",
+        "name": "Robal z nicią"
+      },
+      {
+        "id": "SLUMBERING_BEETLE",
+        "name": "Śpiący Żuk"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] {characterGender:choose(masculine|feminine|neutral):wybudził|wybudziła|wybudził} [gold]Śpiącego Żuka[/gold] ze snu."
+  },
+  {
+    "id": "SNAPPING_JAXFRUIT_NORMAL",
+    "name": "Flora Zarośli",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Mushroom"
+    ],
+    "monsters": [
+      {
+        "id": "FLYCONID",
+        "name": "Musznica"
+      },
+      {
+        "id": "SNAPPING_JAXFRUIT",
+        "name": "Kwiat Energii"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] {characterGender:choose(masculine|feminine|neutral):zaplątał|zaplątała|zaplątał} się we [gold]florze Zarośli[/gold]."
+  },
+  {
+    "id": "SOUL_FYSH_BOSS",
+    "name": "Dusza Rypki",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SOUL_FYSH",
+        "name": "Dusza Rypki"
+      }
+    ],
+    "loss_text": "[gold]Dusza Rypki[/gold] doprowadziła {characterObject} do zguby."
+  },
+  {
+    "id": "SOUL_NEXUS_ELITE",
+    "name": "Spojenie Dusz",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SOUL_NEXUS",
+        "name": "Spojenie Dusz"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] {characterGender:choose(masculine|feminine|neutral):zginął|zginęła|zginął} przez [gold]Spojenie Dusz[/gold] na zapomnianym polu bitwy."
+  },
+  {
+    "id": "SPINY_TOAD_NORMAL",
+    "name": "Kolczasta Ropucha",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SPINY_TOAD",
+        "name": "Kolczasta Ropucha"
+      }
+    ],
+    "loss_text": "Kolce [gold]Ropuchy[/gold] przebiły {characterObject} na wylot."
+  },
+  {
+    "id": "TERROR_EEL_ELITE",
+    "name": "Węgorzor",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "TERROR_EEL",
+        "name": "Węgorzor"
+      }
+    ],
+    "loss_text": "[gold]Węgorzor[/gold] przeraził {characterObject} na śmierć."
+  },
+  {
+    "id": "TEST_SUBJECT_BOSS",
+    "name": "Eksperyment",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "TEST_SUBJECT",
+        "name": "Eksperyment #C{Count}"
+      }
+    ],
+    "loss_text": "[gold]Eksperyment[/gold] powstrzymał {characterObject}, stając w obronie swoich panów."
+  },
+  {
+    "id": "THE_ARCHITECT_EVENT_ENCOUNTER",
+    "name": "Architekt",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
+      {
+        "id": "ARCHITECT",
+        "name": "Architekt"
+      }
+    ],
+    "loss_text": "Nie powinno cię tu być."
+  },
+  {
+    "id": "THE_INSATIABLE_BOSS",
+    "name": "Nienasycony",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "THE_INSATIABLE",
+        "name": "Nienasycony"
+      }
+    ],
+    "loss_text": "[gold]Nienasycony[/gold] pożarł {characterObject}, a jednak wciąż jest głodny..."
+  },
+  {
+    "id": "THE_KIN_BOSS",
+    "name": "Kapłan",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "KIN_FOLLOWER",
+        "name": "Wyznawca"
+      },
+      {
+        "id": "KIN_PRIEST",
+        "name": "Kapłan"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] {characterGender:choose(masculine|feminine|neutral):został unicestwiony|została unicestwiona|został unicestwiony} dzięki wybitnej strategii [gold]Kapłana[/gold]."
+  },
+  {
+    "id": "THE_LOST_AND_FORGOTTEN_NORMAL",
+    "name": "Porzucony i Zapomniany",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "THE_FORGOTTEN",
+        "name": "Zapomniany"
+      },
+      {
+        "id": "THE_LOST",
+        "name": "Porzucony"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] {characterGender:choose(masculine|feminine|neutral):stracił|straciła|stracił} chęci do życia przez [gold]Porzuconego i Zapomnianego[/gold]."
+  },
+  {
+    "id": "THE_OBSCURA_NORMAL",
+    "name": "Zasłona",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "THE_OBSCURA",
+        "name": "Zasłona"
+      }
+    ],
+    "loss_text": "[gold]Zasłona[/gold] i jej iluzja zmiażdżyły {characterObject}."
+  },
+  {
+    "id": "THIEVING_HOPPER_WEAK",
+    "name": "Złodziejski Skoczek",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Thieves"
+    ],
+    "monsters": [
+      {
+        "id": "THIEVING_HOPPER",
+        "name": "Złodziejski Skoczek"
+      }
+    ],
+    "loss_text": "[gold]Złodziejski Skoczek[/gold] napadł na {characterObject}."
+  },
+  {
+    "id": "TOADPOLES_WEAK",
+    "name": "Kijanki",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "TOADPOLE",
+        "name": "Kijanka"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] nie {characterGender:choose(masculine|feminine|neutral):umiał|umiała|umiał} poradzić sobie z jakimiś [gold]Kijankami[/gold]."
+  },
+  {
+    "id": "TUNNELER_NORMAL",
+    "name": "Tunelowy duet",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": [
+      "Burrower",
+      "Chomper"
+    ],
+    "monsters": [
+      {
+        "id": "CHOMPER",
+        "name": "Gryzak"
+      },
+      {
+        "id": "TUNNELER",
+        "name": "Tunelowiec"
+      }
+    ],
+    "loss_text": "[gold]Tunelowy duet[/gold] wykończył {characterObject}."
+  },
+  {
+    "id": "TUNNELER_WEAK",
+    "name": "Tunelowiec",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Burrower"
+    ],
+    "monsters": [
+      {
+        "id": "TUNNELER",
+        "name": "Tunelowiec"
+      }
+    ],
+    "loss_text": "[gold]Tunelowiec[/gold] grzmotnął {characterObject}."
+  },
+  {
+    "id": "TURRET_OPERATOR_WEAK",
+    "name": "Szczur z CKM-em",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "LIVING_SHIELD",
+        "name": "Żywa Tarcza"
+      },
+      {
+        "id": "TURRET_OPERATOR",
+        "name": "Szczur z CKM-em"
+      }
+    ],
+    "loss_text": "[gold]Szczur z CKM-em[/gold] podziurawił {characterObject}."
+  },
+  {
+    "id": "TWO_TAILED_RATS_NORMAL",
+    "name": "Zmutowany Szczur",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "TWO_TAILED_RAT",
+        "name": "Zmutowany Szczur"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] {characterGender:choose(masculine|feminine|neutral):został otoczony|została otoczona|został otoczony} przez jakieś [gold]Zmutowane Szczury[/gold]."
+  },
+  {
+    "id": "VANTOM_BOSS",
+    "name": "Fantom",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "VANTOM",
+        "name": "Fantom"
+      }
+    ],
+    "loss_text": "[gold]Fantom[/gold] zamienił {characterObject} w Kropelkę."
+  },
+  {
+    "id": "VINE_SHAMBLER_NORMAL",
+    "name": "Pnączowór",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "VINE_SHAMBLER",
+        "name": "Pnączowór"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] nie {characterGender:choose(masculine|feminine|neutral):mógł|mogła|mógł} uciec przed [gold]Pnączoworem[/gold]."
+  },
+  {
+    "id": "WATERFALL_GIANT_BOSS",
+    "name": "Kaskadowy Olbrzym",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "WATERFALL_GIANT",
+        "name": "Kaskadowy Olbrzym"
+      }
+    ],
+    "loss_text": "[gold]Kaskadowy Olbrzym[/gold] wysadził {characterObject} w powietrze."
+  }
+]

@@ -1,0 +1,1546 @@
+[
+  {
+    "id": "AXEBOTS_NORMAL",
+    "name": "Товарищи руботы",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "AXEBOT",
+        "name": "Рубот"
+      }
+    ],
+    "loss_text": "[gold]Товарищи руботы[/gold] расчленили {characterObject}."
+  },
+  {
+    "id": "BATTLEWORN_DUMMY_EVENT_ENCOUNTER",
+    "name": "Потрепанный манекен",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
+      {
+        "id": "BATTLE_FRIEND_V1",
+        "name": "Боевой тренажер 1.0"
+      },
+      {
+        "id": "BATTLE_FRIEND_V2",
+        "name": "Боевой тренажер 2.0"
+      },
+      {
+        "id": "BATTLE_FRIEND_V3",
+        "name": "Боевой тренажер 3.0"
+      }
+    ],
+    "loss_text": "[gold]Потрепанный манекен[/gold] загадочным образом одолел {characterObject}."
+  },
+  {
+    "id": "BOWLBUGS_NORMAL",
+    "name": "Полчище рогачей",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Workers"
+    ],
+    "monsters": [
+      {
+        "id": "BOWLBUG_EGG",
+        "name": "Полый рогач (с яйцом)"
+      },
+      {
+        "id": "BOWLBUG_NECTAR",
+        "name": "Полый рогач (с нектаром)"
+      },
+      {
+        "id": "BOWLBUG_ROCK",
+        "name": "Полый рогач (с камнем)"
+      },
+      {
+        "id": "BOWLBUG_SILK",
+        "name": "Полый рогач (с шелком)"
+      }
+    ],
+    "loss_text": "[gold]Полчище рогачей[/gold] уничтожило {characterObject}."
+  },
+  {
+    "id": "BOWLBUGS_WEAK",
+    "name": "Рогачи",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Workers"
+    ],
+    "monsters": [
+      {
+        "id": "BOWLBUG_EGG",
+        "name": "Полый рогач (с яйцом)"
+      },
+      {
+        "id": "BOWLBUG_NECTAR",
+        "name": "Полый рогач (с нектаром)"
+      },
+      {
+        "id": "BOWLBUG_ROCK",
+        "name": "Полый рогач (с камнем)"
+      }
+    ],
+    "loss_text": "[gold]Рогачи[/gold] уничтожили {characterObject}."
+  },
+  {
+    "id": "BYGONE_EFFIGY_ELITE",
+    "name": "Античный истукан",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "BYGONE_EFFIGY",
+        "name": "Античный истукан"
+      }
+    ],
+    "loss_text": "[gold]Античный истукан[/gold] располовинил {characterObject}."
+  },
+  {
+    "id": "BYRDONIS_ELITE",
+    "name": "Птахоклюй",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "BYRDONIS",
+        "name": "Птахоклюй"
+      }
+    ],
+    "loss_text": "[gold]Птахоклюй[/gold] отогнал {characterObject} от своего потомства."
+  },
+  {
+    "id": "CEREMONIAL_BEAST_BOSS",
+    "name": "Хранитель обряда",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "CEREMONIAL_BEAST",
+        "name": "Хранитель обряда"
+      }
+    ],
+    "loss_text": "[gold]Хранитель обряда[/gold] растоптал {characterObject}."
+  },
+  {
+    "id": "CHOMPERS_NORMAL",
+    "name": "Парочка автоматонов",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Chomper"
+    ],
+    "monsters": [
+      {
+        "id": "CHOMPER",
+        "name": "Зубастик"
+      }
+    ],
+    "loss_text": "[gold]Парочка автоматонов[/gold] загрызла {characterObject}."
+  },
+  {
+    "id": "CONSTRUCT_MENAGERIE_NORMAL",
+    "name": "Зоопарк конструкций",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "CUBEX_CONSTRUCT",
+        "name": "Кубический агрегат"
+      },
+      {
+        "id": "PUNCH_CONSTRUCT",
+        "name": "Бойкий агрегат"
+      }
+    ],
+    "loss_text": "[gold]Зоопарк конструкций[/gold] растер {characterObject} в порошок."
+  },
+  {
+    "id": "CORPSE_SLUGS_NORMAL",
+    "name": "Куча слизней-падальщиков",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": [
+      "Slugs"
+    ],
+    "monsters": [
+      {
+        "id": "CORPSE_SLUG",
+        "name": "Слизень-падальщик"
+      }
+    ],
+    "loss_text": "[gold]Куча слизней-падальщиков[/gold] с удовольствием сожрала {characterObject}."
+  },
+  {
+    "id": "CORPSE_SLUGS_WEAK",
+    "name": "Слизни-падальщики",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Underdocks",
+    "tags": [
+      "Slugs"
+    ],
+    "monsters": [
+      {
+        "id": "CORPSE_SLUG",
+        "name": "Слизень-падальщик"
+      }
+    ],
+    "loss_text": "[gold]Слизни-падальщики[/gold] с удовольствием сожрали {characterObject}."
+  },
+  {
+    "id": "CUBEX_CONSTRUCT_NORMAL",
+    "name": "Кубический агрегат",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "CUBEX_CONSTRUCT",
+        "name": "Кубический агрегат"
+      }
+    ],
+    "loss_text": "[gold]Кубический агрегат[/gold] расстрелял {characterObject} лазером."
+  },
+  {
+    "id": "CULTISTS_NORMAL",
+    "name": "Культисты",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "CALCIFIED_CULTIST",
+        "name": "Окаменелый культист"
+      },
+      {
+        "id": "DAMP_CULTIST",
+        "name": "Промокший культист"
+      }
+    ],
+    "loss_text": "[gold]Культисты[/gold] принесли {characterObject} в жертву. [sine]Ка-а-ар![/sine]"
+  },
+  {
+    "id": "DECIMILLIPEDE_ELITE",
+    "name": "Скольконожка",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "DECIMILLIPEDE_SEGMENT_BACK",
+        "name": "Decimillipede Segment Back"
+      },
+      {
+        "id": "DECIMILLIPEDE_SEGMENT_FRONT",
+        "name": "Decimillipede Segment Front"
+      },
+      {
+        "id": "DECIMILLIPEDE_SEGMENT_MIDDLE",
+        "name": "Decimillipede Segment Middle"
+      }
+    ],
+    "loss_text": "[gold]Скольконожка[/gold] раздавила {characterObject}."
+  },
+  {
+    "id": "DENSE_VEGETATION_EVENT_ENCOUNTER",
+    "name": "Ерзуны",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
+      {
+        "id": "WRIGGLER",
+        "name": "Ерзун"
+      }
+    ],
+    "loss_text": "[gold]Ерзуны[/gold] заразили {characterObject}."
+  },
+  {
+    "id": "DEVOTED_SCULPTOR_WEAK",
+    "name": "Одержимый скульптор",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "DEVOTED_SCULPTOR",
+        "name": "Одержимый скульптор"
+      }
+    ],
+    "loss_text": "[gold]Одержимый скульптор[/gold] разбил {characterObject} на кусочки."
+  },
+  {
+    "id": "DOORMAKER_BOSS",
+    "name": "Привратник",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "DOORMAKER",
+        "name": "Привратник"
+      }
+    ],
+    "loss_text": "[gold]Привратник[/gold] поставил {characterObject} на место."
+  },
+  {
+    "id": "ENTOMANCER_ELITE",
+    "name": "Энтомант",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "ENTOMANCER",
+        "name": "Энтомант"
+      }
+    ],
+    "loss_text": "[gold]Энтомант[/gold] зажалил {characterObject} до смерти."
+  },
+  {
+    "id": "EXOSKELETONS_NORMAL",
+    "name": "Группа экзоскелетов",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Exoskeletons"
+    ],
+    "monsters": [
+      {
+        "id": "EXOSKELETON",
+        "name": "Экзоскелет"
+      }
+    ],
+    "loss_text": "[gold]Группа экзоскелетов[/gold] выпотрошила {characterObject}."
+  },
+  {
+    "id": "EXOSKELETONS_WEAK",
+    "name": "Экзоскелеты",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Exoskeletons"
+    ],
+    "monsters": [
+      {
+        "id": "EXOSKELETON",
+        "name": "Экзоскелет"
+      }
+    ],
+    "loss_text": "[gold]Экзоскелеты[/gold] выпотрошили {characterObject}."
+  },
+  {
+    "id": "FABRICATOR_NORMAL",
+    "name": "Сборщик",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "FABRICATOR",
+        "name": "Сборщик"
+      }
+    ],
+    "loss_text": "[gold]Сборщик[/gold] забил {characterObject} током."
+  },
+  {
+    "id": "FAKE_MERCHANT_EVENT_ENCOUNTER",
+    "name": "Торговец?!",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
+      {
+        "id": "FAKE_MERCHANT_MONSTER",
+        "name": "Торговец?!"
+      }
+    ],
+    "loss_text": "Кто-то обвел {characterObject} вокруг пальца. Неужели это [gold]Торговец?![/gold]"
+  },
+  {
+    "id": "FLYCONID_NORMAL",
+    "name": "Гриб и слизь",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Mushroom",
+      "Slimes"
+    ],
+    "monsters": [
+      {
+        "id": "FLYCONID",
+        "name": "Мухамор"
+      },
+      {
+        "id": "LEAF_SLIME_M",
+        "name": "Лиственный слизень (средний)"
+      },
+      {
+        "id": "TWIG_SLIME_M",
+        "name": "Сучковый слизень (средний)"
+      }
+    ],
+    "loss_text": "[gold]Гриб и слизь[/gold] поглотили {characterObject}."
+  },
+  {
+    "id": "FOGMOG_NORMAL",
+    "name": "Грибодуй",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "EYE_WITH_TEETH",
+        "name": "Зубастое око"
+      },
+      {
+        "id": "FOGMOG",
+        "name": "Грибодуй"
+      }
+    ],
+    "loss_text": "[gold]Грибодуй[/gold] запутал {characterObject} своими иллюзиями."
+  },
+  {
+    "id": "FOSSIL_STALKER_NORMAL",
+    "name": "Хвостолов-отшельник",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "FOSSIL_STALKER",
+        "name": "Хвостолов-отшельник"
+      }
+    ],
+    "loss_text": "[gold]Хвостолов-отшельник[/gold] заманил {characterObject} в засаду."
+  },
+  {
+    "id": "FROG_KNIGHT_NORMAL",
+    "name": "Сэр Лягушка",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "FROG_KNIGHT",
+        "name": "Сэр Лягушка"
+      }
+    ],
+    "loss_text": "Бравый [gold]Сэр Лягушка[/gold] доблестно победил {characterObject}."
+  },
+  {
+    "id": "FUZZY_WURM_CRAWLER_WEAK",
+    "name": "Пышный червогрив",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Crawler"
+    ],
+    "monsters": [
+      {
+        "id": "FUZZY_WURM_CRAWLER",
+        "name": "Пышный червогрив"
+      }
+    ],
+    "loss_text": "[gold]Пышный червогрив[/gold] наплевал на {characterObject}."
+  },
+  {
+    "id": "GLOBE_HEAD_NORMAL",
+    "name": "Одинокий Шароголовый",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "GLOBE_HEAD",
+        "name": "Шароголовый"
+      }
+    ],
+    "loss_text": "[gold]Одинокий Шароголовый[/gold] распылил {characterObject}."
+  },
+  {
+    "id": "GREMLIN_MERC_NORMAL",
+    "name": "Два гремлина в пальто",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "FAT_GREMLIN",
+        "name": "Толстый гремлин"
+      },
+      {
+        "id": "GREMLIN_MERC",
+        "name": "Гремлин-наемник"
+      },
+      {
+        "id": "SNEAKY_GREMLIN",
+        "name": "Коварный гремлин"
+      }
+    ],
+    "loss_text": "[gold]Два гремлина в пальто[/gold] ограбили {characterObject}."
+  },
+  {
+    "id": "HAUNTED_SHIP_NORMAL",
+    "name": "Проклятое судно",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "HAUNTED_SHIP",
+        "name": "Проклятое судно"
+      }
+    ],
+    "loss_text": "[gold]Проклятое судно[/gold] растоптало {characterObject}."
+  },
+  {
+    "id": "HUNTER_KILLER_NORMAL",
+    "name": "Убийца охотников",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "HUNTER_KILLER",
+        "name": "Убийца охотников"
+      }
+    ],
+    "loss_text": "[gold]Убийца охотников[/gold] выпотрошил {characterObject}."
+  },
+  {
+    "id": "INFESTED_PRISMS_ELITE",
+    "name": "Зараженная призма",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "INFESTED_PRISM",
+        "name": "Зараженная призма"
+      }
+    ],
+    "loss_text": "[gold]Зараженная призма[/gold] остановила {characterObject}."
+  },
+  {
+    "id": "INKLETS_NORMAL",
+    "name": "Чернильники",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "INKLET",
+        "name": "Чернильник"
+      }
+    ],
+    "loss_text": "[gold]Чернильники[/gold] не пропустили {characterObject}."
+  },
+  {
+    "id": "KAISER_CRAB_BOSS",
+    "name": "Царь-краб",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "CRUSHER",
+        "name": "Крушитель"
+      },
+      {
+        "id": "ROCKET",
+        "name": "Ракета"
+      }
+    ],
+    "loss_text": "[gold]Царь-краб[/gold] поразил {characterObject} со всех сторон."
+  },
+  {
+    "id": "KNIGHTS_ELITE",
+    "name": "Банда рыцарей",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": [
+      "Knights"
+    ],
+    "monsters": [
+      {
+        "id": "FLAIL_KNIGHT",
+        "name": "Цепной рыцарь"
+      },
+      {
+        "id": "MAGI_KNIGHT",
+        "name": "Маг-рыцарь"
+      },
+      {
+        "id": "SPECTRAL_KNIGHT",
+        "name": "Призрачный рыцарь"
+      }
+    ],
+    "loss_text": "[gold]Банда рыцарей[/gold] сразила {characterObject}."
+  },
+  {
+    "id": "KNOWLEDGE_DEMON_BOSS",
+    "name": "Всезнающий демон",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "KNOWLEDGE_DEMON",
+        "name": "Всезнающий демон"
+      }
+    ],
+    "loss_text": "[gold]Всезнающий демон[/gold] наделил {characterObject} невыносимыми знаниями."
+  },
+  {
+    "id": "LAGAVULIN_MATRIARCH_BOSS",
+    "name": "Праматерь лагавулинов",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "LAGAVULIN_MATRIARCH",
+        "name": "Праматерь лагавулинов"
+      }
+    ],
+    "loss_text": "[gold]Праматерь лагавулинов[/gold] разорвала {characterObject} пополам."
+  },
+  {
+    "id": "LIVING_FOG_NORMAL",
+    "name": "Недобрый газ",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "GAS_BOMB",
+        "name": "Газовая бомба"
+      },
+      {
+        "id": "LIVING_FOG",
+        "name": "Живой туман"
+      }
+    ],
+    "loss_text": "[gold]Недобрый газ[/gold] насмерть отравил {characterObject}."
+  },
+  {
+    "id": "LOUSE_PROGENITOR_NORMAL",
+    "name": "Королевская вошь",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "LOUSE_PROGENITOR",
+        "name": "Королевская вошь"
+      }
+    ],
+    "loss_text": "[gold]Королевская вошь[/gold] парализовала {characterObject}."
+  },
+  {
+    "id": "MAWLER_NORMAL",
+    "name": "Клыкозавр",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "MAWLER",
+        "name": "Клыкозавр"
+      }
+    ],
+    "loss_text": "[gold]Клыкозавр[/gold] приготовил {characterObject} на ужин."
+  },
+  {
+    "id": "MECHA_KNIGHT_ELITE",
+    "name": "Механический рыцарь",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "MECHA_KNIGHT",
+        "name": "Механический рыцарь"
+      }
+    ],
+    "loss_text": "[gold]Механический рыцарь[/gold] спалил {characterObject} заживо."
+  },
+  {
+    "id": "MYSTERIOUS_KNIGHT_EVENT_ENCOUNTER",
+    "name": "Таинственный рыцарь",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
+      {
+        "id": "MYSTERIOUS_KNIGHT",
+        "name": "Таинственный рыцарь"
+      }
+    ],
+    "loss_text": "[gold]Таинственный рыцарь[/gold] оставил {characterObject} без заветного ключа."
+  },
+  {
+    "id": "MYTES_NORMAL",
+    "name": "Сброд кровожоров",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "MYTE",
+        "name": "Кровожор"
+      }
+    ],
+    "loss_text": "[gold]Сброд кровожоров[/gold] опустошил {characterObject}."
+  },
+  {
+    "id": "NIBBITS_NORMAL",
+    "name": "Пара кусак",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "NIBBIT",
+        "name": "Кусака"
+      }
+    ],
+    "loss_text": "[gold]Пара кусак[/gold] избила {characterObject}."
+  },
+  {
+    "id": "NIBBITS_WEAK",
+    "name": "Одинокий кусака",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Nibbit"
+    ],
+    "monsters": [
+      {
+        "id": "NIBBIT",
+        "name": "Кусака"
+      }
+    ],
+    "loss_text": "[gold]Одинокий кусака[/gold] как следует отдубасил {characterObject}."
+  },
+  {
+    "id": "OVERGROWTH_CRAWLERS",
+    "name": "Ползуны из зарослей",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Shrinker",
+      "Crawler"
+    ],
+    "monsters": [
+      {
+        "id": "FUZZY_WURM_CRAWLER",
+        "name": "Пышный червогрив"
+      },
+      {
+        "id": "SHRINKER_BEETLE",
+        "name": "Жук-ужиматель"
+      }
+    ],
+    "loss_text": "[gold]Ползуны из зарослей[/gold] сожрали {characterObject} заживо."
+  },
+  {
+    "id": "OVICOPTER_NORMAL",
+    "name": "Овикоптер",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "OVICOPTER",
+        "name": "Овикоптер"
+      },
+      {
+        "id": "TOUGH_EGG",
+        "name": "Крепкое яйцо"
+      }
+    ],
+    "loss_text": "[gold]Овикоптер[/gold] скормил {characterObject} своему потомству."
+  },
+  {
+    "id": "OWL_MAGISTRATE_NORMAL",
+    "name": "Сова-юстициарий",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "OWL_MAGISTRATE",
+        "name": "Сова-юстициарий"
+      }
+    ],
+    "loss_text": "[gold]Сова-юстициарий[/gold] приговорил {characterObject} к смертной казни."
+  },
+  {
+    "id": "PHANTASMAL_GARDENERS_ELITE",
+    "name": "Фантомные альгочисты",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "PHANTASMAL_GARDENER",
+        "name": "Фантомный альгочист"
+      }
+    ],
+    "loss_text": "[gold]Фантомные альгочисты[/gold] упокоили {characterObject}."
+  },
+  {
+    "id": "PHROG_PARASITE_ELITE",
+    "name": "Лягуш-паразит",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "PHROG_PARASITE",
+        "name": "Лягуш-паразит"
+      },
+      {
+        "id": "WRIGGLER",
+        "name": "Ерзун"
+      }
+    ],
+    "loss_text": "[gold]Лягуш-паразит[/gold] заселился в {characterObject}."
+  },
+  {
+    "id": "PUNCH_CONSTRUCT_NORMAL",
+    "name": "Бойкий агрегат",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "PUNCH_CONSTRUCT",
+        "name": "Бойкий агрегат"
+      }
+    ],
+    "loss_text": "[gold]Бойкий агрегат[/gold] избил {characterObject} до смерти."
+  },
+  {
+    "id": "PUNCH_OFF_EVENT_ENCOUNTER",
+    "name": "Бойкие агрегаты",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
+      {
+        "id": "PUNCH_CONSTRUCT",
+        "name": "Бойкий агрегат"
+      }
+    ],
+    "loss_text": "[gold]Бойкие агрегаты[/gold] забыли о разногласиях и напали на {characterObject}."
+  },
+  {
+    "id": "QUEEN_BOSS",
+    "name": "Королева",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "QUEEN",
+        "name": "Королева"
+      },
+      {
+        "id": "TORCH_HEAD_AMALGAM",
+        "name": "Огненная фаланга"
+      }
+    ],
+    "loss_text": "[gold]Королева[/gold] разорвала {characterObject} пополам."
+  },
+  {
+    "id": "RUBY_RAIDERS_NORMAL",
+    "name": "Рубиновые налетчики",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "ASSASSIN_RUBY_RAIDER",
+        "name": "Мародер-убийца"
+      },
+      {
+        "id": "AXE_RUBY_RAIDER",
+        "name": "Мародер-главоруб"
+      },
+      {
+        "id": "BRUTE_RUBY_RAIDER",
+        "name": "Мародер-верзила"
+      },
+      {
+        "id": "CROSSBOW_RUBY_RAIDER",
+        "name": "Мародер-стрелок"
+      },
+      {
+        "id": "TRACKER_RUBY_RAIDER",
+        "name": "Мародер-следопыт"
+      }
+    ],
+    "loss_text": "[gold]Рубиновые налетчики[/gold] налетели на {characterObject}."
+  },
+  {
+    "id": "SCROLLS_OF_BITING_NORMAL",
+    "name": "Группа зубастых свитков",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": [
+      "Scrolls"
+    ],
+    "monsters": [
+      {
+        "id": "SCROLL_OF_BITING",
+        "name": "Зубастый свиток"
+      }
+    ],
+    "loss_text": "[gold]Группа зубастых свитков[/gold] разорвала {characterObject} в клочья."
+  },
+  {
+    "id": "SCROLLS_OF_BITING_WEAK",
+    "name": "Зубастые свитки",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 3 - Glory",
+    "tags": [
+      "Scrolls"
+    ],
+    "monsters": [
+      {
+        "id": "SCROLL_OF_BITING",
+        "name": "Зубастый свиток"
+      }
+    ],
+    "loss_text": "[gold]Зубастые свитки[/gold] разорвали {characterObject} в клочья."
+  },
+  {
+    "id": "SEAPUNK_NORMAL",
+    "name": "Живность Пристани",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": [
+      "Seapunk"
+    ],
+    "monsters": [
+      {
+        "id": "CALCIFIED_CULTIST",
+        "name": "Окаменелый культист"
+      },
+      {
+        "id": "SEAPUNK",
+        "name": "Зламинария"
+      }
+    ],
+    "loss_text": "[gold]Живность Пристани[/gold] победила {characterObject}."
+  },
+  {
+    "id": "SEAPUNK_WEAK",
+    "name": "Зламинария",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Underdocks",
+    "tags": [
+      "Seapunk"
+    ],
+    "monsters": [
+      {
+        "id": "SEAPUNK",
+        "name": "Зламинария"
+      }
+    ],
+    "loss_text": "[gold]Зламинария[/gold] забила {characterObject} до смерти."
+  },
+  {
+    "id": "SEWER_CLAM_NORMAL",
+    "name": "Сточный моллюск",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SEWER_CLAM",
+        "name": "Сточный моллюск"
+      }
+    ],
+    "loss_text": "[gold]Сточный моллюск[/gold] заглотил {characterObject}."
+  },
+  {
+    "id": "SHRINKER_BEETLE_WEAK",
+    "name": "Жук-ужиматель",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Shrinker"
+    ],
+    "monsters": [
+      {
+        "id": "SHRINKER_BEETLE",
+        "name": "Жук-ужиматель"
+      }
+    ],
+    "loss_text": "[gold]Жук-ужиматель[/gold] оставил {characterObject} на закуску."
+  },
+  {
+    "id": "SKULKING_COLONY_ELITE",
+    "name": "Копотливая колония",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SKULKING_COLONY",
+        "name": "Копотливая колония"
+      }
+    ],
+    "loss_text": "[gold]Копотливая колония[/gold] поглотила {characterObject}."
+  },
+  {
+    "id": "SLIMED_BERSERKER_NORMAL",
+    "name": "Ослизненный берсерк",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SLIMED_BERSERKER",
+        "name": "Ослизненный берсерк"
+      }
+    ],
+    "loss_text": "[gold]Ослизненный берсерк[/gold] поглотил {characterObject}."
+  },
+  {
+    "id": "SLIMES_NORMAL",
+    "name": "Полчище слизней",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Slimes"
+    ],
+    "monsters": [
+      {
+        "id": "LEAF_SLIME_M",
+        "name": "Лиственный слизень (средний)"
+      },
+      {
+        "id": "LEAF_SLIME_S",
+        "name": "Лиственный слизень (маленький)"
+      },
+      {
+        "id": "TWIG_SLIME_M",
+        "name": "Сучковый слизень (средний)"
+      },
+      {
+        "id": "TWIG_SLIME_S",
+        "name": "Сучковый слизень (маленький)"
+      }
+    ],
+    "loss_text": "[gold]Полчище слизней[/gold] сразило {characterObject}."
+  },
+  {
+    "id": "SLIMES_WEAK",
+    "name": "Группа слизней",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Slimes"
+    ],
+    "monsters": [
+      {
+        "id": "LEAF_SLIME_M",
+        "name": "Лиственный слизень (средний)"
+      },
+      {
+        "id": "LEAF_SLIME_S",
+        "name": "Лиственный слизень (маленький)"
+      },
+      {
+        "id": "TWIG_SLIME_M",
+        "name": "Сучковый слизень (средний)"
+      },
+      {
+        "id": "TWIG_SLIME_S",
+        "name": "Сучковый слизень (маленький)"
+      }
+    ],
+    "loss_text": "[gold]Группа слизней[/gold] сразила {characterObject}."
+  },
+  {
+    "id": "SLITHERING_STRANGLER_NORMAL",
+    "name": "Горлодав и его приятель",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "LEAF_SLIME_M",
+        "name": "Лиственный слизень (средний)"
+      },
+      {
+        "id": "LEAF_SLIME_S",
+        "name": "Лиственный слизень (маленький)"
+      },
+      {
+        "id": "SLITHERING_STRANGLER",
+        "name": "Ползучий горлодав"
+      },
+      {
+        "id": "SNAPPING_JAXFRUIT",
+        "name": "Зрелый джаксфрут"
+      },
+      {
+        "id": "TWIG_SLIME_M",
+        "name": "Сучковый слизень (средний)"
+      },
+      {
+        "id": "TWIG_SLIME_S",
+        "name": "Сучковый слизень (маленький)"
+      }
+    ],
+    "loss_text": "[gold]Горлодав и его приятель[/gold] задушили {characterObject}."
+  },
+  {
+    "id": "SLUDGE_SPINNER_WEAK",
+    "name": "Грязевой вертоплюй",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SLUDGE_SPINNER",
+        "name": "Грязевой вертоплюй"
+      }
+    ],
+    "loss_text": "[gold]Грязевой вертоплюй[/gold] одолел {characterObject} в бою."
+  },
+  {
+    "id": "SLUMBERING_BEETLE_NORMAL",
+    "name": "Жучиная ночевка",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Workers"
+    ],
+    "monsters": [
+      {
+        "id": "BOWLBUG_ROCK",
+        "name": "Полый рогач (с камнем)"
+      },
+      {
+        "id": "BOWLBUG_SILK",
+        "name": "Полый рогач (с шелком)"
+      },
+      {
+        "id": "SLUMBERING_BEETLE",
+        "name": "Дремучий жук"
+      }
+    ],
+    "loss_text": "[gold]Жучиная ночевка[/gold] не довела {characterObject} до добра."
+  },
+  {
+    "id": "SNAPPING_JAXFRUIT_NORMAL",
+    "name": "Флора зарослей",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Mushroom"
+    ],
+    "monsters": [
+      {
+        "id": "FLYCONID",
+        "name": "Мухамор"
+      },
+      {
+        "id": "SNAPPING_JAXFRUIT",
+        "name": "Зрелый джаксфрут"
+      }
+    ],
+    "loss_text": "[gold]Флора зарослей[/gold] задушила {characterObject}."
+  },
+  {
+    "id": "SOUL_FYSH_BOSS",
+    "name": "Призрачный рыб",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SOUL_FYSH",
+        "name": "Призрачный рыб"
+      }
+    ],
+    "loss_text": "[gold]Призрачный рыб[/gold] приворожил {characterObject}."
+  },
+  {
+    "id": "SOUL_NEXUS_ELITE",
+    "name": "Чистилище душ",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SOUL_NEXUS",
+        "name": "Чистилище душ"
+      }
+    ],
+    "loss_text": "[gold]Чистилище душ[/gold] одолело {characterObject} на забытом поле брани."
+  },
+  {
+    "id": "SPINY_TOAD_NORMAL",
+    "name": "Ежовая жаба",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SPINY_TOAD",
+        "name": "Ежовая жаба"
+      }
+    ],
+    "loss_text": "[gold]Ежовая жаба[/gold] заколола {characterObject} своими шипами."
+  },
+  {
+    "id": "TERROR_EEL_ELITE",
+    "name": "Испугорь",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "TERROR_EEL",
+        "name": "Испугорь"
+      }
+    ],
+    "loss_text": "[gold]Испугорь[/gold] застращал {characterObject} до смерти."
+  },
+  {
+    "id": "TEST_SUBJECT_BOSS",
+    "name": "Подопытный",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "TEST_SUBJECT",
+        "name": "Подопытный №{Count}"
+      }
+    ],
+    "loss_text": "[gold]Подопытный[/gold] отогнал {characterObject} от чертогов своих хозяев."
+  },
+  {
+    "id": "THE_ARCHITECT_EVENT_ENCOUNTER",
+    "name": "Архитектор",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
+      {
+        "id": "ARCHITECT",
+        "name": "Архитектор"
+      }
+    ],
+    "loss_text": "Если вы это увидели, что-то пошло не так."
+  },
+  {
+    "id": "THE_INSATIABLE_BOSS",
+    "name": "Проглот",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "THE_INSATIABLE",
+        "name": "Проглот"
+      }
+    ],
+    "loss_text": "[gold]Проглот[/gold] сожрал {characterObject}, но так и не насытился."
+  },
+  {
+    "id": "THE_KIN_BOSS",
+    "name": "Стая",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "KIN_FOLLOWER",
+        "name": "Послужник стаи"
+      },
+      {
+        "id": "KIN_PRIEST",
+        "name": "Пастырь стаи"
+      }
+    ],
+    "loss_text": "[gold]Стая[/gold] уничтожила {characterObject}."
+  },
+  {
+    "id": "THE_LOST_AND_FORGOTTEN_NORMAL",
+    "name": "Пропащий и Забытый",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "THE_FORGOTTEN",
+        "name": "Забытый"
+      },
+      {
+        "id": "THE_LOST",
+        "name": "Пропащий"
+      }
+    ],
+    "loss_text": "[gold]Пропащий и Забытый[/gold] лишили {characterObject} жажды жизни."
+  },
+  {
+    "id": "THE_OBSCURA_NORMAL",
+    "name": "Обскура",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "THE_OBSCURA",
+        "name": "Обскура"
+      }
+    ],
+    "loss_text": "[gold]Обскура[/gold] и ее иллюзия сокрушили {characterObject}."
+  },
+  {
+    "id": "THIEVING_HOPPER_WEAK",
+    "name": "Загребущая цикада",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Thieves"
+    ],
+    "monsters": [
+      {
+        "id": "THIEVING_HOPPER",
+        "name": "Загребущая цикрада"
+      }
+    ],
+    "loss_text": "[gold]Загребущая цикада[/gold] обобрала {characterObject}."
+  },
+  {
+    "id": "TOADPOLES_WEAK",
+    "name": "Головастики",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "TOADPOLE",
+        "name": "Головастик"
+      }
+    ],
+    "loss_text": "[gold]Головастики[/gold] закусали {characterObject}."
+  },
+  {
+    "id": "TUNNELER_NORMAL",
+    "name": "Команда копателей",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": [
+      "Burrower",
+      "Chomper"
+    ],
+    "monsters": [
+      {
+        "id": "CHOMPER",
+        "name": "Зубастик"
+      },
+      {
+        "id": "TUNNELER",
+        "name": "Разрыхлитель"
+      }
+    ],
+    "loss_text": "[gold]Команда копателей[/gold] зарыла {characterObject}."
+  },
+  {
+    "id": "TUNNELER_WEAK",
+    "name": "Разрыхлитель",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Burrower"
+    ],
+    "monsters": [
+      {
+        "id": "TUNNELER",
+        "name": "Разрыхлитель"
+      }
+    ],
+    "loss_text": "[gold]Разрыхлитель[/gold] прихлопнул {characterObject}."
+  },
+  {
+    "id": "TURRET_OPERATOR_WEAK",
+    "name": "Наводчик",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "LIVING_SHIELD",
+        "name": "Живой щит"
+      },
+      {
+        "id": "TURRET_OPERATOR",
+        "name": "Наводчик"
+      }
+    ],
+    "loss_text": "[gold]Наводчик[/gold] превратил {characterObject} в швейцарский сыр."
+  },
+  {
+    "id": "TWO_TAILED_RATS_NORMAL",
+    "name": "Двухвостые крысы",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "TWO_TAILED_RAT",
+        "name": "Двухвостая крыса"
+      }
+    ],
+    "loss_text": "[gold]Двухвостые крысы[/gold] подавили {characterObject}."
+  },
+  {
+    "id": "VANTOM_BOSS",
+    "name": "Вантом",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "VANTOM",
+        "name": "Вантом"
+      }
+    ],
+    "loss_text": "[gold]Вантом[/gold] превратил {characterObject} в чернильника."
+  },
+  {
+    "id": "VINE_SHAMBLER_NORMAL",
+    "name": "Заросший скиталец",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "VINE_SHAMBLER",
+        "name": "Заросший скиталец"
+      }
+    ],
+    "loss_text": "[gold]Заросший скиталец[/gold] изловил {characterObject}."
+  },
+  {
+    "id": "WATERFALL_GIANT_BOSS",
+    "name": "Рифовый великан",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "WATERFALL_GIANT",
+        "name": "Рифовый великан"
+      }
+    ],
+    "loss_text": "[gold]Рифовый великан[/gold] убрал {characterObject} с Пристани."
+  }
+]
