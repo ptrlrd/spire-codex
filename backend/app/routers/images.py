@@ -79,11 +79,11 @@ CATEGORIES: dict[str, tuple[str, str, bool, list[str] | None]] = {
 
 
 def _get_images_for_category(category_id: str) -> list[dict[str, str]]:
-    """Return list of image dicts for a category."""
+    """Return list of image dicts for a category (all files on disk)."""
     if category_id not in CATEGORIES:
         return []
 
-    display_name, base_path, recursive, explicit_files = CATEGORIES[category_id]
+    _display_name, base_path, recursive, explicit_files = CATEGORIES[category_id]
     dir_path = IMAGES_DIR / base_path
 
     if not dir_path.exists():
@@ -113,6 +113,38 @@ def _get_images_for_category(category_id: str) -> list[dict[str, str]]:
     return images
 
 
+# Display preference when an asset exists in multiple formats: prefer webp (smaller),
+# then gif (for animations), then png/jpg. Lower number = higher priority.
+_FORMAT_PRIORITY = {"webp": 0, "gif": 1, "png": 2, "jpg": 3, "jpeg": 3}
+
+
+def _dedupe_for_gallery(images: list[dict[str, str]]) -> list[dict[str, str]]:
+    """Collapse `foo.png` + `foo.webp` into a single entry (preferring webp).
+
+    Keeps the gallery view clean while leaving the underlying file list (used
+    for zip downloads + the `formats` field) untouched.
+    """
+    best: dict[str, dict[str, str]] = {}
+    for img in images:
+        name = img["filename"]
+        if "." not in name:
+            best[name] = img
+            continue
+        stem, ext = name.rsplit(".", 1)
+        ext = ext.lower()
+        # Group by the URL stem so assets in different subdirs don't collide.
+        key = img["url"].rsplit(".", 1)[0]
+        priority = _FORMAT_PRIORITY.get(ext, 99)
+        existing = best.get(key)
+        if existing is None:
+            best[key] = img
+            continue
+        existing_ext = existing["filename"].rsplit(".", 1)[-1].lower()
+        if priority < _FORMAT_PRIORITY.get(existing_ext, 99):
+            best[key] = img
+    return sorted(best.values(), key=lambda i: i["filename"])
+
+
 def _extensions_in(images: list[dict[str, str]]) -> list[str]:
     """Return sorted unique file extensions (lowercase, no dot) present in the list."""
     exts: set[str] = set()
@@ -125,17 +157,24 @@ def _extensions_in(images: list[dict[str, str]]) -> list[str]:
 
 @router.get("", tags=["Images"])
 def list_image_categories(request: Request):
-    """Return all image categories with their contents."""
+    """Return all image categories with their contents.
+
+    The gallery listing dedupes `foo.png` + `foo.webp` to a single entry
+    (prefers webp) so the UI isn't noisy. The `formats` field still reflects
+    every extension on disk so the download split-button can offer PNG-only
+    zips.
+    """
     result = []
     for cat_id, (display_name, *_) in CATEGORIES.items():
-        images = _get_images_for_category(cat_id)
+        all_files = _get_images_for_category(cat_id)
+        display_images = _dedupe_for_gallery(all_files)
         result.append(
             {
                 "id": cat_id,
                 "name": display_name,
-                "count": len(images),
-                "images": images,
-                "formats": _extensions_in(images),
+                "count": len(display_images),
+                "images": display_images,
+                "formats": _extensions_in(all_files),
             }
         )
     return result

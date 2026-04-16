@@ -7,14 +7,19 @@
 
 import { useState, type ReactNode } from "react";
 import Link from "next/link";
+import TinyCard from "@/app/components/TinyCard";
 import {
   CardPill,
   RelicPill,
+  PotionPill,
   cleanId,
   displayName,
   type CardInfo,
   type RelicInfo,
+  type PotionInfo,
 } from "./RunPills";
+
+export type { PotionInfo };
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 const ICON_BASE = `${API}/static/images/ui/run_history`;
@@ -87,18 +92,15 @@ interface Run {
 
 const RARITY_ORDER = ["Starter", "Common", "Uncommon", "Rare", "Ancient", "Event", "Token", "Status", "Curse", "Quest"];
 
-const RARITY_TEXT_COLOR: Record<string, string> = {
-  Starter: "text-zinc-400",
-  Common: "text-zinc-300",
-  Uncommon: "text-blue-400",
-  Rare: "text-amber-400",
-  Ancient: "text-fuchsia-400",
-  Event: "text-purple-400",
-  Token: "text-emerald-400",
-  Status: "text-rose-400",
-  Curse: "text-rose-500",
-  Quest: "text-amber-300",
-};
+// Matches NDeckHistoryEntry.Reload() in the game:
+//   enchanted → StsColors.purple
+//   upgraded  → StsColors.green
+//   else      → default label color
+function cardLabelColor(upgraded: boolean, enchanted: boolean): string {
+  if (enchanted) return "text-[var(--color-necrobinder)]";
+  if (upgraded) return "text-[var(--color-silent)]";
+  return "text-[var(--text-primary)]";
+}
 
 const TIER_OUTLINE: Record<string, string> = {
   weak: "ring-1 ring-emerald-500/40",
@@ -106,18 +108,6 @@ const TIER_OUTLINE: Record<string, string> = {
   elite: "ring-1 ring-orange-500/60",
   boss: "ring-2 ring-rose-500/60",
 };
-
-const TYPE_ICON: Record<string, string> = {
-  Attack: "type_sort_attack.png",
-  Skill: "type_sort_skill.png",
-  Power: "type_sort_power.png",
-  // Curse / Status / Quest / Token all use the "other" glyph
-};
-
-function typeIconUrl(type: string | undefined): string {
-  const file = (type && TYPE_ICON[type]) || "type_sort_other.png";
-  return `${API}/static/images/ui/compendium/card/${file}`;
-}
 
 
 function formatTime(seconds: number): string {
@@ -146,6 +136,20 @@ function encounterTier(modelId: string | undefined, mapPointType: string): "weak
   if (modelId.endsWith("_WEAK")) return "weak";
   if (modelId.endsWith("_NORMAL")) return "normal";
   return mapPointType === "monster" ? "normal" : "";
+}
+
+/** Derive a spire-codex page href from an entity id by its prefix. */
+function entityHref(id: string, lp: string): string | null {
+  if (!id || id === "NONE.NONE") return null;
+  const slug = cleanId(id).toLowerCase();
+  if (id.startsWith("MONSTER.")) return `${lp}/monsters/${slug}`;
+  if (id.startsWith("ENCOUNTER.")) return `${lp}/encounters/${slug}`;
+  if (id.startsWith("EVENT.")) return `${lp}/events/${slug}`;
+  if (id.startsWith("RELIC.")) return `${lp}/relics/${slug}`;
+  if (id.startsWith("CARD.")) return `${lp}/cards/${slug}`;
+  if (id.startsWith("POTION.")) return `${lp}/potions/${slug}`;
+  if (id.startsWith("CHARACTER.")) return `${lp}/characters/${slug}`;
+  return null;
 }
 
 /** Resolve the icon filename for a map point. */
@@ -181,17 +185,18 @@ interface Props {
   player: Player;
   cardData: Record<string, CardInfo>;
   relicData: Record<string, RelicInfo>;
+  potionData: Record<string, PotionInfo>;
   charColor: string;
   langPrefix: string;
 }
 
-export default function RunSummary({ run, player, cardData, relicData, charColor, langPrefix: lp }: Props) {
+export default function RunSummary({ run, player, cardData, relicData, potionData, charColor, langPrefix: lp }: Props) {
   const finalStats = lastPlayerStats(run);
   const totalFloors = (run.map_point_history ?? []).reduce((sum, act) => sum + act.length, 0);
   const charSlug = cleanId(player.character).toLowerCase();
   const charIcon = `${API}/static/images/characters/character_icon_${charSlug}.webp`;
   const potionSlots = player.max_potion_slot_count ?? 3;
-  const filledPotions = (player.potions ?? []).length;
+  const playerPotions = player.potions ?? [];
 
   const deathQuote = run.win
     ? `${displayName(player.character)} ascended.`
@@ -227,7 +232,7 @@ export default function RunSummary({ run, player, cardData, relicData, charColor
         </Link>
         <IconStat icon={`${API}/static/images/ui/top_bar/top_bar_heart.webp`} alt="HP" value={`${finalStats?.current_hp ?? "?"}/${finalStats?.max_hp ?? "?"}`} color="var(--color-ironclad)" />
         <IconStat icon={`${API}/static/images/ui/top_bar/top_bar_gold.webp`} alt="Gold" value={finalStats?.current_gold ?? "?"} color="var(--accent-gold)" />
-        <PotionSlots filled={filledPotions} total={potionSlots} />
+        <PotionSlots potions={playerPotions} total={potionSlots} potionData={potionData} lp={lp} />
         <IconStat icon={`${API}/static/images/ui/top_bar/top_bar_map.webp`} alt="Floor" value={totalFloors} />
         <IconStat icon={`${API}/static/images/ui/top_bar/timer_icon.webp`} alt="Time" value={formatTime(run.run_time ?? 0)} />
         {(run.ascension ?? 0) > 0 && (
@@ -259,7 +264,7 @@ export default function RunSummary({ run, player, cardData, relicData, charColor
               <div className="w-20 sm:w-24 text-xs font-medium text-[var(--text-secondary)] flex-shrink-0">{actName}</div>
               <div className="flex flex-wrap items-center gap-1 flex-1">
                 {act.map((mp, j) => (
-                  <MapNode key={j} mp={mp} floorNum={actStartFloor + j} />
+                  <MapNode key={j} mp={mp} floorNum={actStartFloor + j} lp={lp} />
                 ))}
               </div>
             </div>
@@ -310,22 +315,18 @@ export default function RunSummary({ run, player, cardData, relicData, charColor
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-3 gap-y-1">
           {stackedCards.map((entry, i) => {
             const info = cardData[entry.id];
-            const colorClass = info ? RARITY_TEXT_COLOR[info.rarity] ?? "text-zinc-300" : "text-zinc-300";
+            const colorClass = cardLabelColor(entry.upgraded, !!entry.enchantment);
             return (
               <CardPill
-                key={`${entry.id}-${entry.upgraded ? "u" : "n"}-${i}`}
+                key={`${entry.id}-${entry.upgraded ? "u" : "n"}-${entry.enchantment ?? ""}-${i}`}
                 cardId={entry.id}
                 upgraded={entry.upgraded}
+                enchantment={entry.enchantment}
                 cardData={cardData}
                 lp={lp}
                 className="flex items-center gap-1.5 text-xs hover:bg-[var(--bg-card-hover)] rounded px-1 py-0.5 transition-colors"
               >
-                <img
-                  src={typeIconUrl(info?.type)}
-                  alt={info?.type ?? ""}
-                  className="w-5 h-5 flex-shrink-0 object-contain"
-                  crossOrigin="anonymous"
-                />
+                <TinyCard color={info?.color} type={info?.type} rarity={info?.rarity} />
                 <span className={`truncate ${colorClass}`}>
                   {entry.count > 1 && <span className="text-[var(--text-muted)] mr-1">{entry.count}x</span>}
                   {info?.name || displayName(`CARD.${entry.id}`)}
@@ -343,91 +344,118 @@ export default function RunSummary({ run, player, cardData, relicData, charColor
 function MapNode({
   mp,
   floorNum,
+  lp,
 }: {
   mp: MapPoint;
   floorNum: number;
+  lp: string;
 }) {
   const [show, setShow] = useState(false);
   const { src, tier, label } = iconFor(mp);
   const room = mp.rooms?.[0];
   const ps = mp.player_stats?.[0];
 
+  // Click target — encounter/event detail page derived from the room's model_id.
+  const href = entityHref(room?.model_id ?? "", lp);
+
+  const iconImg = (
+    <img
+      src={src}
+      alt={label}
+      className="w-full h-full object-contain p-0.5"
+      crossOrigin="anonymous"
+      onError={(e) => {
+        (e.currentTarget as HTMLImageElement).style.display = "none";
+      }}
+    />
+  );
+
+  const tooltip = show && (
+    <div className="absolute z-50 bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 p-3 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] shadow-xl pointer-events-none text-left">
+      <div className="flex items-center justify-between mb-1.5">
+        <div className="text-xs font-semibold text-[var(--text-primary)]">{label}</div>
+        <div className="text-[10px] text-[var(--text-muted)]">Floor {floorNum}</div>
+      </div>
+      <div className="text-[10px] text-[var(--text-muted)] mb-1.5 capitalize">
+        {mp.map_point_type.replace(/_/g, " ")}
+        {tier && ` · ${tier}`}
+        {room?.turns_taken != null && ` · ${room.turns_taken} turns`}
+      </div>
+      {room?.monster_ids && room.monster_ids.length > 0 && (
+        <div className="text-[10px] text-[var(--text-secondary)] mb-1.5">
+          vs {room.monster_ids.map((m) => displayName(m)).join(", ")}
+        </div>
+      )}
+      {ps && (
+        <div className="flex flex-wrap gap-x-2 gap-y-0.5 text-[10px] text-[var(--text-muted)] mb-1.5">
+          <span>HP {ps.current_hp}/{ps.max_hp}</span>
+          {(ps.damage_taken ?? 0) > 0 && (
+            <span style={{ color: "var(--color-ironclad)" }}>-{ps.damage_taken}</span>
+          )}
+          {(ps.hp_healed ?? 0) > 0 && (
+            <span style={{ color: "var(--color-silent)" }}>+{ps.hp_healed} HP</span>
+          )}
+          {(ps.gold_gained ?? 0) > 0 && (
+            <span style={{ color: "var(--accent-gold)" }}>+{ps.gold_gained}g</span>
+          )}
+          {(ps.gold_spent ?? 0) > 0 && (
+            <span style={{ color: "var(--text-muted)" }}>-{ps.gold_spent}g</span>
+          )}
+        </div>
+      )}
+      {ps?.cards_gained && ps.cards_gained.length > 0 && (
+        <div className="text-[10px] text-[var(--color-silent)] mb-0.5">
+          + {ps.cards_gained.map((c) => displayName(c.id)).join(", ")}
+        </div>
+      )}
+      {ps?.cards_removed && ps.cards_removed.length > 0 && (
+        <div className="text-[10px] text-[var(--color-ironclad)] mb-0.5">
+          − {ps.cards_removed.map((c) => displayName(c.id)).join(", ")}
+        </div>
+      )}
+      {ps?.upgraded_cards && ps.upgraded_cards.length > 0 && (
+        <div className="text-[10px] text-[var(--accent-gold)] mb-0.5">
+          ⬆ {ps.upgraded_cards.map((c) => displayName(c)).join(", ")}
+        </div>
+      )}
+      {ps?.relic_choices?.some((r) => r.was_picked) && (
+        <div className="text-[10px] text-[var(--accent-gold)] mb-0.5">
+          + {ps.relic_choices.filter((r) => r.was_picked).map((r) => displayName(r.choice)).join(", ")}
+        </div>
+      )}
+      {ps?.event_choices?.[0]?.title?.key && (
+        <div className="text-[10px] text-[var(--text-secondary)] mt-1 italic">
+          chose {humanizeChoiceKey(ps.event_choices[0].title.key)}
+        </div>
+      )}
+      <div className="absolute left-1/2 -translate-x-1/2 top-full w-2 h-2 bg-[var(--bg-card)] border-r border-b border-[var(--border-subtle)] rotate-45 -mt-1" />
+    </div>
+  );
+
+  const wrapClass = `relative w-7 h-7 sm:w-8 sm:h-8 rounded-md bg-black/30 flex items-center justify-center ${TIER_OUTLINE[tier] ?? ""}`;
+
+  if (href) {
+    return (
+      <Link
+        href={href}
+        className={`${wrapClass} hover:bg-black/50 hover:ring-2 hover:ring-[var(--accent-gold)]/60 transition-all`}
+        onMouseEnter={() => setShow(true)}
+        onMouseLeave={() => setShow(false)}
+      >
+        {iconImg}
+        {tooltip}
+      </Link>
+    );
+  }
+
   return (
     <span
-      className={`relative w-7 h-7 sm:w-8 sm:h-8 rounded-md bg-black/30 flex items-center justify-center group ${TIER_OUTLINE[tier] ?? ""}`}
+      className={wrapClass}
       onMouseEnter={() => setShow(true)}
       onMouseLeave={() => setShow(false)}
     >
-      <img
-        src={src}
-        alt={label}
-        className="w-full h-full object-contain p-0.5"
-        crossOrigin="anonymous"
-        onError={(e) => {
-          (e.currentTarget as HTMLImageElement).style.display = "none";
-        }}
-      />
-      {show && (
-        <div className="absolute z-50 bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 p-3 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] shadow-xl pointer-events-none text-left">
-          <div className="flex items-center justify-between mb-1.5">
-            <div className="text-xs font-semibold text-[var(--text-primary)]">{label}</div>
-            <div className="text-[10px] text-[var(--text-muted)]">Floor {floorNum}</div>
-          </div>
-          <div className="text-[10px] text-[var(--text-muted)] mb-1.5 capitalize">
-            {mp.map_point_type.replace(/_/g, " ")}
-            {tier && ` · ${tier}`}
-            {room?.turns_taken != null && ` · ${room.turns_taken} turns`}
-          </div>
-          {room?.monster_ids && room.monster_ids.length > 0 && (
-            <div className="text-[10px] text-[var(--text-secondary)] mb-1.5">
-              vs {room.monster_ids.map((m) => displayName(m)).join(", ")}
-            </div>
-          )}
-          {ps && (
-            <div className="flex flex-wrap gap-x-2 gap-y-0.5 text-[10px] text-[var(--text-muted)] mb-1.5">
-              <span>HP {ps.current_hp}/{ps.max_hp}</span>
-              {(ps.damage_taken ?? 0) > 0 && (
-                <span style={{ color: "var(--color-ironclad)" }}>-{ps.damage_taken}</span>
-              )}
-              {(ps.hp_healed ?? 0) > 0 && (
-                <span style={{ color: "var(--color-silent)" }}>+{ps.hp_healed} HP</span>
-              )}
-              {(ps.gold_gained ?? 0) > 0 && (
-                <span style={{ color: "var(--accent-gold)" }}>+{ps.gold_gained}g</span>
-              )}
-              {(ps.gold_spent ?? 0) > 0 && (
-                <span style={{ color: "var(--text-muted)" }}>-{ps.gold_spent}g</span>
-              )}
-            </div>
-          )}
-          {ps?.cards_gained && ps.cards_gained.length > 0 && (
-            <div className="text-[10px] text-[var(--color-silent)] mb-0.5">
-              + {ps.cards_gained.map((c) => displayName(c.id)).join(", ")}
-            </div>
-          )}
-          {ps?.cards_removed && ps.cards_removed.length > 0 && (
-            <div className="text-[10px] text-[var(--color-ironclad)] mb-0.5">
-              − {ps.cards_removed.map((c) => displayName(c.id)).join(", ")}
-            </div>
-          )}
-          {ps?.upgraded_cards && ps.upgraded_cards.length > 0 && (
-            <div className="text-[10px] text-[var(--accent-gold)] mb-0.5">
-              ⬆ {ps.upgraded_cards.map((c) => displayName(c)).join(", ")}
-            </div>
-          )}
-          {ps?.relic_choices?.some((r) => r.was_picked) && (
-            <div className="text-[10px] text-[var(--accent-gold)] mb-0.5">
-              + {ps.relic_choices.filter((r) => r.was_picked).map((r) => displayName(r.choice)).join(", ")}
-            </div>
-          )}
-          {ps?.event_choices?.[0]?.title?.key && (
-            <div className="text-[10px] text-[var(--text-secondary)] mt-1 italic">
-              chose {humanizeChoiceKey(ps.event_choices[0].title.key)}
-            </div>
-          )}
-          <div className="absolute left-1/2 -translate-x-1/2 top-full w-2 h-2 bg-[var(--bg-card)] border-r border-b border-[var(--border-subtle)] rotate-45 -mt-1" />
-        </div>
-      )}
+      {iconImg}
+      {tooltip}
     </span>
   );
 }
@@ -453,26 +481,56 @@ function IconStat({ icon, alt, value, color }: { icon: string; alt: string; valu
   );
 }
 
-function PotionSlots({ filled, total }: { filled: number; total: number }) {
-  const POTION_ICON = `${API}/static/images/ui/icons/potion_icon.webp`;
+function PotionSlots({
+  potions,
+  total,
+  potionData,
+  lp,
+}: {
+  potions: { id: string; slot_index: number }[];
+  total: number;
+  potionData: Record<string, PotionInfo>;
+  lp: string;
+}) {
+  // Sort potions into a slot array so empty slots render as dashed outlines.
+  const bySlot: (typeof potions[number] | null)[] = Array(total).fill(null);
+  for (const p of potions) {
+    if (p.slot_index >= 0 && p.slot_index < total) bySlot[p.slot_index] = p;
+  }
   return (
     <div className="flex items-center gap-1">
-      {Array.from({ length: total }).map((_, i) =>
-        i < filled ? (
-          <img
+      {bySlot.map((p, i) => {
+        if (!p) {
+          return (
+            <span
+              key={i}
+              className="w-5 h-5 rounded-sm border border-dashed border-[var(--border-subtle)]"
+            />
+          );
+        }
+        const id = cleanId(p.id);
+        const info = potionData[id];
+        return (
+          <PotionPill
             key={i}
-            src={POTION_ICON}
-            alt="Potion"
-            className="w-5 h-5 object-contain"
-            crossOrigin="anonymous"
-          />
-        ) : (
-          <span
-            key={i}
-            className="w-4 h-5 rounded-sm border border-dashed border-[var(--border-subtle)]"
-          />
-        ),
-      )}
+            potionId={id}
+            potionData={potionData}
+            lp={lp}
+            className="w-5 h-5 flex items-center justify-center hover:scale-110 transition-transform"
+          >
+            {info?.image_url ? (
+              <img
+                src={`${API}${info.image_url}`}
+                alt={info.name}
+                className="w-5 h-5 object-contain"
+                crossOrigin="anonymous"
+              />
+            ) : (
+              <span className="w-5 h-5 rounded-sm bg-[var(--color-silent)]/50" />
+            )}
+          </PotionPill>
+        );
+      })}
     </div>
   );
 }
@@ -498,6 +556,7 @@ function bucketByRarity<T>(items: T[], getRarity: (item: T) => string | undefine
 interface StackEntry {
   id: string;
   upgraded: boolean;
+  enchantment?: string;
   count: number;
 }
 
@@ -506,12 +565,13 @@ function stackCards(deck: DeckCard[], cardData: Record<string, CardInfo>): Stack
   for (const card of deck) {
     const id = cleanId(card.id);
     const upgraded = !!card.current_upgrade_level;
-    const key = `${id}::${upgraded}`;
+    const enchantment = card.enchantment ? cleanId(card.enchantment.id) : undefined;
+    const key = `${id}::${upgraded}::${enchantment ?? ""}`;
     const existing = map.get(key);
     if (existing) {
       existing.count += 1;
     } else {
-      map.set(key, { id, upgraded, count: 1 });
+      map.set(key, { id, upgraded, enchantment, count: 1 });
     }
   }
   const rarityScore: Record<string, number> = { Rare: 5, Uncommon: 4, Common: 3, Starter: 1, Curse: 0, Status: 0 };

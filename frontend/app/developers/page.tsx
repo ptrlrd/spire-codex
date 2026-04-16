@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import JsonLd from "@/app/components/JsonLd";
 import { buildSoftwareApplicationJsonLd, buildBreadcrumbJsonLd } from "@/lib/jsonld";
 import { IS_BETA } from "@/lib/seo";
+import TinyCard, { TINY_CARD_POOL_COLOR, TINY_CARD_BANNER_COLOR } from "@/app/components/TinyCard";
 
 const API_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://spire-codex.com";
 
@@ -229,6 +230,185 @@ console.log(relics.map(r => r.name));`}</code>
               </pre>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Tiny Card Sprite */}
+      <section className="mb-12">
+        <h2 className="text-2xl font-semibold text-[var(--accent-gold)] mb-4">
+          Tiny Card Sprite
+        </h2>
+        <p className="text-[var(--text-secondary)] mb-4">
+          Reproduce the game&rsquo;s in-run card thumbnail (used on the Run History / Game Over screens)
+          in any web project. Six PNG layers composited with CSS <code className="text-[var(--accent-gold)]">mask-image</code> —
+          no canvas, no WebGL, just tinted sprites. Colors come straight from the decompiled{" "}
+          <code className="text-[var(--accent-gold)]">NTinyCard</code> and{" "}
+          <code className="text-[var(--accent-gold)]">CardPoolModel.DeckEntryCardColor</code>.
+        </p>
+
+        <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5 mb-4">
+          <h3 className="text-sm font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-3">
+            Preview
+          </h3>
+          <div className="flex flex-wrap items-end gap-6">
+            {[
+              { color: "ironclad", type: "Attack", rarity: "Common", label: "Ironclad / Attack / Common" },
+              { color: "silent", type: "Skill", rarity: "Uncommon", label: "Silent / Skill / Uncommon" },
+              { color: "defect", type: "Power", rarity: "Rare", label: "Defect / Power / Rare" },
+              { color: "necrobinder", type: "Skill", rarity: "Rare", label: "Necrobinder / Skill / Rare" },
+              { color: "regent", type: "Attack", rarity: "Uncommon", label: "Regent / Attack / Uncommon" },
+              { color: "curse", type: "Curse", rarity: "Curse", label: "Curse" },
+              { color: "event", type: "Skill", rarity: "Event", label: "Event" },
+              { color: "quest", type: "Skill", rarity: "Quest", label: "Quest" },
+            ].map((c) => (
+              <div key={c.label} className="flex flex-col items-center gap-1.5">
+                <TinyCard color={c.color} type={c.type} rarity={c.rarity} className="w-16 h-16" />
+                <span className="text-[10px] text-[var(--text-muted)] text-center leading-tight">
+                  {c.label}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5 mb-4">
+          <h3 className="text-sm font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-3">
+            Sprite assets
+          </h3>
+          <p className="text-sm text-[var(--text-secondary)] mb-3">
+            All 10 PNGs are served with CORS enabled — drop the base URL in front of each filename.
+            Each sprite is 128×128, RGBA, white-on-transparent (meant to be tinted via CSS).
+          </p>
+          <pre className="bg-[var(--bg-primary)] rounded-lg p-4 text-xs text-[var(--text-secondary)] overflow-x-auto">
+            <code>{`${API_URL}/static/images/ui/run_history_card/
+  card_back.png           ← tinted by pool
+  desc_box.png            ← dark description area (render at 25% opacity)
+  attack_portrait.png     ← portrait per card type
+  attack_portrait_shadow.png
+  skill_portrait.png
+  skill_portrait_shadow.png
+  power_portrait.png
+  power_portrait_shadow.png
+  banner_shadow.png       ← render at 60% opacity
+  banner.png              ← tinted by rarity`}</code>
+          </pre>
+        </div>
+
+        <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5 mb-4">
+          <h3 className="text-sm font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-3">
+            Pool (card back) colors
+          </h3>
+          <p className="text-xs text-[var(--text-muted)] mb-3">
+            From <code>CardPoolModel.DeckEntryCardColor</code>. Match these against the{" "}
+            <code className="text-[var(--accent-gold)]">color</code> field returned by <code>/api/cards</code>.
+          </p>
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-1.5 text-sm font-mono">
+            {Object.entries(TINY_CARD_POOL_COLOR).map(([pool, hex]) => (
+              <div key={pool} className="flex items-center gap-2">
+                <span
+                  className="inline-block w-4 h-4 rounded border border-[var(--border-subtle)]"
+                  style={{ backgroundColor: hex }}
+                />
+                <span className="text-[var(--text-primary)] w-24">{pool}</span>
+                <span className="text-[var(--text-muted)]">{hex}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5 mb-4">
+          <h3 className="text-sm font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-3">
+            Rarity (banner) colors
+          </h3>
+          <p className="text-xs text-[var(--text-muted)] mb-3">
+            From <code>NTinyCard.GetBannerColor</code>. Match against <code className="text-[var(--accent-gold)]">rarity</code>.
+          </p>
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-1.5 text-sm font-mono">
+            {Object.entries(TINY_CARD_BANNER_COLOR).map(([rarity, hex]) => (
+              <div key={rarity} className="flex items-center gap-2">
+                <span
+                  className="inline-block w-4 h-4 rounded border border-[var(--border-subtle)]"
+                  style={{ backgroundColor: hex }}
+                />
+                <span className="text-[var(--text-primary)] w-24">{rarity}</span>
+                <span className="text-[var(--text-muted)]">{hex}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5 mb-4">
+          <h3 className="text-sm font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-3">
+            Minimal HTML + CSS recipe
+          </h3>
+          <p className="text-xs text-[var(--text-muted)] mb-3">
+            Portrait filename: <code>attack</code> for Attack cards, <code>power</code> for Power cards,
+            {" "}<code>skill</code> for everything else (Skill, Status, Curse, …).
+          </p>
+          <pre className="bg-[var(--bg-primary)] rounded-lg p-4 text-xs text-[var(--text-secondary)] overflow-x-auto">
+            <code>{`<div class="tiny-card" style="
+  --back: #D62000;   /* pool color — Ironclad */
+  --banner: #FFDA36; /* rarity color — Rare */
+  position: relative;
+  width: 64px;
+  height: 64px;
+">
+  <!-- 1. card back, tinted by pool -->
+  <div class="layer" style="
+    background-color: var(--back);
+    mask: url(${API_URL}/static/images/ui/run_history_card/card_back.png) center/contain no-repeat;
+    -webkit-mask: url(${API_URL}/static/images/ui/run_history_card/card_back.png) center/contain no-repeat;
+  "></div>
+
+  <!-- 2. description box -->
+  <img class="layer" src="${API_URL}/static/images/ui/run_history_card/desc_box.png" style="opacity:.25">
+
+  <!-- 3. portrait shadow + portrait (attack/skill/power) -->
+  <img class="layer" src="${API_URL}/static/images/ui/run_history_card/attack_portrait_shadow.png">
+  <img class="layer" src="${API_URL}/static/images/ui/run_history_card/attack_portrait.png"
+       style="filter: brightness(.95) sepia(.15)">
+
+  <!-- 4. banner shadow + banner tinted by rarity -->
+  <img class="layer" src="${API_URL}/static/images/ui/run_history_card/banner_shadow.png" style="opacity:.6">
+  <div class="layer" style="
+    background-color: var(--banner);
+    mask: url(${API_URL}/static/images/ui/run_history_card/banner.png) center/contain no-repeat;
+    -webkit-mask: url(${API_URL}/static/images/ui/run_history_card/banner.png) center/contain no-repeat;
+  "></div>
+</div>
+
+<style>
+  .tiny-card .layer {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: contain;
+  }
+</style>`}</code>
+          </pre>
+        </div>
+
+        <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5">
+          <h3 className="text-sm font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-3">
+            React component
+          </h3>
+          <p className="text-sm text-[var(--text-secondary)] mb-3">
+            Drop-in React version (source:{" "}
+            <a
+              href="https://github.com/ptrlrd/spire-codex/blob/main/frontend/app/components/TinyCard.tsx"
+              className="text-[var(--accent-gold)] hover:underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              TinyCard.tsx
+            </a>
+            ).
+          </p>
+          <pre className="bg-[var(--bg-primary)] rounded-lg p-4 text-xs text-[var(--text-secondary)] overflow-x-auto">
+            <code>{`import TinyCard from "./TinyCard";
+
+// Feed in the three fields from /api/cards:
+<TinyCard color="ironclad" type="Attack" rarity="Rare" className="w-16 h-16" />`}</code>
+          </pre>
         </div>
       </section>
 

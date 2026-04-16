@@ -13,10 +13,19 @@ export interface CardInfo {
   type: string;
   rarity: string;
   cost: number;
+  color: string;
   image_url: string | null;
 }
 
 export interface RelicInfo {
+  id: string;
+  name: string;
+  description: string;
+  rarity: string;
+  image_url: string | null;
+}
+
+export interface PotionInfo {
   id: string;
   name: string;
   description: string;
@@ -123,6 +132,55 @@ export function RelicPill({
       onMouseLeave={() => setShow(false)}
     >
       {children ?? info?.name ?? displayName(`RELIC.${relicId}`)}
+      {show && info && (
+        <div className="absolute z-50 bottom-full left-1/2 -translate-x-1/2 mb-2 w-56 p-3 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] shadow-xl pointer-events-none">
+          <div className="flex items-start gap-2 mb-1.5">
+            {info.image_url && (
+              <img
+                src={`${API}${info.image_url}`}
+                alt=""
+                className="w-8 h-8 object-contain"
+                crossOrigin="anonymous"
+              />
+            )}
+            <div className="min-w-0">
+              <div className="font-semibold text-xs text-[var(--text-primary)] truncate">{info.name}</div>
+              <div className="text-[10px] text-[var(--text-muted)]">{info.rarity}</div>
+            </div>
+          </div>
+          <div className="text-[10px] text-[var(--text-secondary)] leading-relaxed">
+            <RichDescription text={info.description} />
+          </div>
+          <div className="absolute left-1/2 -translate-x-1/2 top-full w-2 h-2 bg-[var(--bg-card)] border-r border-b border-[var(--border-subtle)] rotate-45 -mt-1" />
+        </div>
+      )}
+    </Link>
+  );
+}
+
+export function PotionPill({
+  potionId,
+  potionData,
+  lp,
+  className,
+  children,
+}: {
+  potionId: string;
+  potionData: Record<string, PotionInfo>;
+  lp: string;
+  className?: string;
+  children?: ReactNode;
+}) {
+  const [show, setShow] = useState(false);
+  const info = potionData[potionId];
+  return (
+    <Link
+      href={`${lp}/potions/${potionId.toLowerCase()}`}
+      className={`relative ${className || ""}`}
+      onMouseEnter={() => setShow(true)}
+      onMouseLeave={() => setShow(false)}
+    >
+      {children ?? info?.name ?? displayName(`POTION.${potionId}`)}
       {show && info && (
         <div className="absolute z-50 bottom-full left-1/2 -translate-x-1/2 mb-2 w-56 p-3 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] shadow-xl pointer-events-none">
           <div className="flex items-start gap-2 mb-1.5">

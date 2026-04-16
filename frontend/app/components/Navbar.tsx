@@ -16,7 +16,15 @@ interface NavGroup {
   links: { href: string; label: string }[];
 }
 
-const BETA_HIDDEN = new Set(["/runs", "/guides", "/meta", "/showcase"]);
+const BETA_HIDDEN = new Set(["/guides", "/showcase", "/leaderboards", "/leaderboards/submit", "/leaderboards/stats"]);
+
+// Routes that should only highlight on exact match (not prefix match)
+const EXACT_MATCH = new Set(["/leaderboards"]);
+
+function isLinkActive(strippedPath: string, href: string): boolean {
+  if (EXACT_MATCH.has(href)) return strippedPath === href;
+  return strippedPath.startsWith(href);
+}
 
 const NAV_GROUPS: NavGroup[] = [
   {
@@ -44,11 +52,17 @@ const NAV_GROUPS: NavGroup[] = [
       { href: "/keywords", label: "Keywords" },
       { href: "/compare", label: "Compare" },
       { href: "/modifiers", label: "Custom Mode" },
-      { href: "/runs", label: "Runs" },
       { href: "/unlocks", label: "Unlocks" },
       { href: "/mechanics", label: "Mechanics" },
       { href: "/guides", label: "Guides" },
-      { href: "/meta", label: "Meta" },
+    ],
+  },
+  {
+    label: "Tools",
+    links: [
+      { href: "/leaderboards", label: "Leaderboards" },
+      { href: "/leaderboards/submit", label: "Submit a Run" },
+      { href: "/leaderboards/stats", label: "Stats" },
     ],
   },
   {
@@ -78,7 +92,7 @@ export default function Navbar() {
   // Auto-expand the group containing the active page
   useEffect(() => {
     for (const group of NAV_GROUPS) {
-      if (group.links.some((link) => strippedPath.startsWith(link.href))) {
+      if (group.links.some((link) => !link.href.startsWith("http") && isLinkActive(strippedPath, link.href))) {
         setExpandedGroups((prev) => new Set(prev).add(group.label));
         break;
       }
@@ -201,7 +215,7 @@ export default function Navbar() {
                   const links = IS_BETA ? group.links.filter((l) => !BETA_HIDDEN.has(l.href)) : group.links;
                   if (links.length === 0) return null;
                   const isExpanded = expandedGroups.has(group.label);
-                  const hasActive = links.some((link) => strippedPath.startsWith(link.href));
+                  const hasActive = links.some((link) => !link.href.startsWith("http") && isLinkActive(strippedPath, link.href));
                   return (
                     <div key={group.label} className="border-t border-[var(--border-subtle)]">
                       <button
@@ -222,7 +236,7 @@ export default function Navbar() {
                           {links.map((link) => {
                             const isExternal = link.href.startsWith("http");
                             const fullHref = isExternal ? link.href : `${langPrefix}${link.href}`;
-                            const isActive = !isExternal && strippedPath.startsWith(link.href);
+                            const isActive = !isExternal && isLinkActive(strippedPath, link.href);
                             const className = `block px-6 py-1.5 text-sm font-medium transition-colors ${
                               isActive
                                 ? "text-[var(--accent-gold)] bg-[var(--bg-card)]"

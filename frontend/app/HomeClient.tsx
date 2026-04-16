@@ -41,8 +41,9 @@ const FALLBACK_DESCS: Record<string, string> = {
   images: "Browse and download Slay the Spire 2 game art — card portraits, relic icons, monster sprites.",
   reference: "Slay the Spire 2 reference — keywords, orbs, afflictions, intents, acts, ascension, and more.",
   guides: "Community strategy guides — character breakdowns, boss strategies, deckbuilding tips, and more.",
-  runs: "Community submitted runs — browse decks, relics, and stats from real climbs.",
-  meta: "Live community stats — win rates, popular cards, top relics, and more across all submitted runs.",
+  leaderboards: "Fastest wins and highest ascensions from the community. Browse every submitted run.",
+  submit: "Upload your .run files to contribute to leaderboards and community stats.",
+  stats: "Win rates by character, card pick rates, most common relics, deadliest encounters.",
 };
 
 interface HomeClientProps {
@@ -87,7 +88,7 @@ export default function HomeClient({ initialStats, initialTranslations }: HomeCl
     monsters: "Bestiary", potions: "Potion Lab", enchantments: "Enchantments",
     encounters: "Encounters", events: "Events", powers: "Powers",
     timeline: "Timeline", images: "Images", reference: "Reference",
-    guides: "Guides", runs: "Runs", meta: "Meta",
+    guides: "Guides", leaderboards: "Leaderboard", submit: "Submit a Run", stats: "Stats",
   };
   const ENGLISH_FALLBACKS = new Set(Object.values(SECTION_LABEL_MAP).map(v => v.toLowerCase()));
   const sectionKey = (key: string) => {
@@ -195,22 +196,28 @@ export default function HomeClient({ initialStats, initialTranslations }: HomeCl
     },
     ...(!IS_BETA ? [
       {
+        href: "/leaderboards",
+        key: "leaderboards",
+        count: null as number | string | null,
+        color: "#e8b830",  // gold
+      },
+      {
+        href: "/leaderboards/submit",
+        key: "submit",
+        count: runCount ?? "–",
+        color: "#d53b27",  // red
+      },
+      {
+        href: "/leaderboards/stats",
+        key: "stats",
+        count: null as number | string | null,
+        color: "#3873a9",  // defect blue
+      },
+      {
         href: "/guides",
         key: "guides",
         count: guideCount ?? "–",
         color: "#44CC44",  // guide green
-      },
-      {
-        href: "/runs",
-        key: "runs",
-        count: runCount ?? "–",
-        color: "#e8b830",  // gold
-      },
-      {
-        href: "/meta",
-        key: "meta",
-        count: null as number | string | null,
-        color: "#d53b27",  // red
       },
     ] : []),
   ];

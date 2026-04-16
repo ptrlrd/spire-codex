@@ -32,7 +32,7 @@ const ROTATING_BANNERS: RotatingBanner[] = [
           Spire Codex Discord
         </a>
         ... or{" "}
-        <Link href="/runs" className="font-medium text-indigo-100 underline hover:text-white transition-colors">
+        <Link href="/leaderboards/submit" className="font-medium text-indigo-100 underline hover:text-white transition-colors">
           upload your runs
         </Link>
         ... ...the meta... ...needs you...

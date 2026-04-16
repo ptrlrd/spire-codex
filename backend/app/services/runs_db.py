@@ -113,6 +113,7 @@ def init_db():
             ("was_abandoned", "INTEGER NOT NULL DEFAULT 0"),
             ("player_count", "INTEGER NOT NULL DEFAULT 1"),
             ("username", "TEXT"),
+            ("build_id", "TEXT"),
         ]:
             try:
                 conn.execute(f"ALTER TABLE runs ADD COLUMN {col} {coltype}")
@@ -121,6 +122,12 @@ def init_db():
         try:
             conn.execute(
                 "CREATE INDEX IF NOT EXISTS idx_runs_player_count ON runs(player_count)"
+            )
+        except Exception:
+            pass
+        try:
+            conn.execute(
+                "CREATE INDEX IF NOT EXISTS idx_runs_build_id ON runs(build_id)"
             )
         except Exception:
             pass
@@ -234,8 +241,8 @@ def _submit_player_run(
             """
             INSERT INTO runs (run_hash, seed, character, win, was_abandoned, ascension, game_mode,
                               player_count, run_time, floors_reached, acts_completed, killed_by,
-                              deck_size, relic_count, username)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                              deck_size, relic_count, username, build_id)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """,
             (
                 run_hash,
@@ -253,6 +260,7 @@ def _submit_player_run(
                 len(player["deck"]),
                 len(player["relics"]),
                 username,
+                data.get("build_id"),
             ),
         )
         run_id = cursor.lastrowid

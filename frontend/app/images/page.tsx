@@ -179,7 +179,7 @@ export default function ImagesPage() {
                           <div className="flex items-center justify-center p-2">
                             <img
                               src={`${API}${img.url}`}
-                              alt={img.filename.replace(/\.png$/, "").replace(/_/g, " ")}
+                              alt={img.filename.replace(/\.(png|webp|gif|jpe?g)$/i, "").replace(/_/g, " ")}
                               crossOrigin="anonymous"
                               loading="lazy"
                               className="max-w-full object-contain group-hover:scale-105 transition-transform duration-300"
@@ -187,7 +187,7 @@ export default function ImagesPage() {
                           </div>
                           <div className="px-1.5 pb-1.5 text-center">
                             <span className="text-[10px] text-[var(--text-muted)] truncate block" title={img.filename}>
-                              {img.filename.replace(/\.png$/, "").replace(/_/g, " ")}
+                              {img.filename.replace(/\.(png|webp|gif|jpe?g)$/i, "").replace(/_/g, " ")}
                             </span>
                           </div>
                         </div>

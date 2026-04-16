@@ -5,7 +5,7 @@ import { useParams } from "next/navigation";
 import Link from "next/link";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
 import { cachedFetch } from "@/lib/fetch-cache";
-import RunSummary from "./RunSummary";
+import RunSummary, { type PotionInfo } from "./RunSummary";
 import { CardPill, RelicPill, cleanId, displayName, type CardInfo, type RelicInfo } from "./RunPills";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
@@ -27,6 +27,7 @@ export default function SharedRunClient() {
   const [copied, setCopied] = useState(false);
   const [cardData, setCardData] = useState<Record<string, CardInfo>>({});
   const [relicData, setRelicData] = useState<Record<string, RelicInfo>>({});
+  const [potionData, setPotionData] = useState<Record<string, PotionInfo>>({});
   const [showDetails, setShowDetails] = useState(false);
 
   useEffect(() => {
@@ -47,6 +48,11 @@ export default function SharedRunClient() {
       for (const r of relics) m[r.id] = r;
       setRelicData(m);
     });
+    cachedFetch<PotionInfo[]>(`${API}/api/potions`).then((potions) => {
+      const m: Record<string, PotionInfo> = {};
+      for (const p of potions) m[p.id] = p;
+      setPotionData(m);
+    });
   }, [hash]);
 
   function copyLink() {
@@ -60,7 +66,7 @@ export default function SharedRunClient() {
   if (notFound || !run) return (
     <div className="max-w-4xl mx-auto px-4 py-12 text-center">
       <p className="text-[var(--text-muted)] mb-4">Run not found.</p>
-      <Link href={`${lp}/runs`} className="text-[var(--accent-gold)] hover:underline">&larr; Back</Link>
+      <Link href={`${lp}/leaderboards`} className="text-[var(--accent-gold)] hover:underline">&larr; Back</Link>
     </div>
   );
 
@@ -72,7 +78,7 @@ export default function SharedRunClient() {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="flex items-center justify-between mb-4">
-        <Link href={`${lp}/runs`} className="text-sm text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors">
+        <Link href={`${lp}/leaderboards`} className="text-sm text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors">
           &larr; Back
         </Link>
         <button onClick={copyLink}
@@ -116,6 +122,7 @@ export default function SharedRunClient() {
         player={player}
         cardData={cardData}
         relicData={relicData}
+        potionData={potionData}
         charColor={charColor}
         langPrefix={lp}
       />

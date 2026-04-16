@@ -95,10 +95,13 @@ def list_runs(
     character: str | None = None,
     win: str | None = None,
     username: str | None = None,
+    seed: str | None = None,
+    sort: str | None = None,
+    build_id: str | None = None,
     page: int = 1,
     limit: int = 50,
 ):
-    """List submitted runs with optional filters and pagination."""
+    """List submitted runs with optional filters, sorting, and pagination."""
     from ..services.runs_db import get_conn
 
     with get_conn() as conn:
@@ -114,7 +117,22 @@ def list_runs(
         if username:
             conditions.append("username LIKE ?")
             params.append(f"%{username}%")
+        if seed:
+            conditions.append("seed LIKE ?")
+            params.append(f"%{seed}%")
+        if build_id:
+            conditions.append("build_id = ?")
+            params.append(build_id)
         where = ("WHERE " + " AND ".join(conditions)) if conditions else ""
+
+        # Sort options
+        order_clauses = {
+            "time_asc": "run_time ASC",
+            "time_desc": "run_time DESC",
+            "ascension_desc": "ascension DESC, run_time ASC",
+            "date": "submitted_at DESC",
+        }
+        order_by = order_clauses.get(sort, "submitted_at DESC")
 
         total = conn.execute(
             f"SELECT COUNT(*) as c FROM runs {where}", params
@@ -126,9 +144,10 @@ def list_runs(
         rows = conn.execute(
             f"""
             SELECT run_hash, character, win, was_abandoned, ascension, game_mode,
-                   run_time, floors_reached, deck_size, relic_count, killed_by, username, submitted_at
+                   run_time, floors_reached, deck_size, relic_count, killed_by,
+                   username, submitted_at, build_id
             FROM runs {where}
-            ORDER BY submitted_at DESC LIMIT ? OFFSET ?
+            ORDER BY {order_by} LIMIT ? OFFSET ?
         """,
             query_params,
         ).fetchall()
@@ -140,6 +159,70 @@ def list_runs(
             "per_page": per_page,
             "total_pages": (total + per_page - 1) // per_page,
         }
+
+
+@router.get("/leaderboard", tags=["Runs"])
+def get_leaderboard(
+    request: Request,
+    category: str = "fastest",
+    character: str | None = None,
+    page: int = 1,
+    limit: int = 50,
+):
+    """Leaderboard for winning runs. Categories: fastest, highest_ascension."""
+    from ..services.runs_db import get_conn
+
+    with get_conn() as conn:
+        conditions = ["win = 1"]
+        params: list = []
+        if character:
+            conditions.append("character = ?")
+            params.append(character.upper())
+        where = "WHERE " + " AND ".join(conditions)
+
+        if category == "highest_ascension":
+            order_by = "ascension DESC, run_time ASC"
+        else:
+            # Default: fastest
+            order_by = "run_time ASC"
+
+        total = conn.execute(
+            f"SELECT COUNT(*) as c FROM runs {where}", params
+        ).fetchone()["c"]
+
+        per_page = min(limit, 100)
+        offset = (max(page, 1) - 1) * per_page
+        query_params = list(params) + [per_page, offset]
+        rows = conn.execute(
+            f"""
+            SELECT run_hash, character, win, ascension, run_time, floors_reached,
+                   deck_size, relic_count, username, submitted_at, killed_by
+            FROM runs {where}
+            ORDER BY {order_by} LIMIT ? OFFSET ?
+        """,
+            query_params,
+        ).fetchall()
+
+        return {
+            "runs": [dict(r) for r in rows],
+            "total": total,
+            "page": max(page, 1),
+            "per_page": per_page,
+            "total_pages": (total + per_page - 1) // per_page,
+            "category": category,
+        }
+
+
+@router.get("/versions", tags=["Runs"])
+def get_run_versions(request: Request):
+    """Return distinct build_id values from submitted runs."""
+    from ..services.runs_db import get_conn
+
+    with get_conn() as conn:
+        rows = conn.execute(
+            "SELECT DISTINCT build_id FROM runs WHERE build_id IS NOT NULL AND build_id != '' ORDER BY build_id DESC"
+        ).fetchall()
+        return {"versions": [r["build_id"] for r in rows]}
 
 
 @router.get("/shared/{run_hash}", tags=["Runs"])
