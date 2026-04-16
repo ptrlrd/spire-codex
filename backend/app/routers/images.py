@@ -155,6 +155,48 @@ def _extensions_in(images: list[dict[str, str]]) -> list[str]:
     return sorted(exts)
 
 
+@router.get("/search", tags=["Images"])
+def search_images(request: Request, search: str = "", limit: int = 10):
+    """Filename substring search across every image category.
+
+    Used by the global search modal so queries like "doormaker" surface image
+    results alongside entity pages. Matches every whitespace-separated token in
+    `search` against the basename (extension stripped, case-insensitive).
+    Results are deduped to one entry per asset (prefers webp, then gif, then
+    png) and capped at `limit` (max 50). Returns a flat list so the search
+    modal can treat it like any other category endpoint.
+    """
+    q = (search or "").strip().lower()
+    if not q:
+        return []
+
+    tokens = [t for t in q.split() if t]
+    capped = max(1, min(limit, 50))
+
+    matches: list[dict[str, str]] = []
+    for cat_id, (display_name, *_) in CATEGORIES.items():
+        all_files = _get_images_for_category(cat_id)
+        for img in _dedupe_for_gallery(all_files):
+            stem = img["filename"].rsplit(".", 1)[0].replace("_", " ").lower()
+            if all(tok in stem for tok in tokens):
+                matches.append(
+                    {
+                        # `id` + `name` keep the shape consistent with the other
+                        # entity search endpoints so the UI can reuse its row
+                        # rendering pipeline.
+                        "id": f"{cat_id}/{img['filename']}",
+                        "name": img["filename"].rsplit(".", 1)[0].replace("_", " "),
+                        "filename": img["filename"],
+                        "url": img["url"],
+                        "category_id": cat_id,
+                        "category_name": display_name,
+                    }
+                )
+                if len(matches) >= capped:
+                    return matches
+    return matches
+
+
 @router.get("", tags=["Images"])
 def list_image_categories(request: Request):
     """Return all image categories with their contents.

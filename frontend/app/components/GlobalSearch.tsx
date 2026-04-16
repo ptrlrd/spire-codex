@@ -18,6 +18,10 @@ interface CategoryConfig {
   endpoint: string;
   linkFn: (item: SearchResult) => string;
   subtitleFn?: (item: SearchResult) => string;
+  /** Absolute thumbnail URL — when present, the row renders it as a small preview. */
+  thumbFn?: (item: SearchResult) => string;
+  /** When true, activating the result opens it in a new tab instead of routing. */
+  openExternal?: boolean;
 }
 
 const CATEGORIES: CategoryConfig[] = [
@@ -83,6 +87,14 @@ const CATEGORIES: CategoryConfig[] = [
     endpoint: "/api/encounters",
     linkFn: (item) => `/encounters/${item.id.toLowerCase()}`,
     subtitleFn: (item) => (item.room_type ? String(item.room_type) : ""),
+  },
+  {
+    label: "Images",
+    endpoint: "/api/images/search",
+    linkFn: (item) => `${API}${item.url}`,
+    subtitleFn: (item) => (item.category_name ? String(item.category_name) : ""),
+    thumbFn: (item) => `${API}${item.url}`,
+    openExternal: true,
   },
 ];
 
@@ -230,7 +242,12 @@ export default function GlobalSearch() {
   const navigate = useCallback(
     (cat: CategoryConfig, item: SearchResult) => {
       setOpen(false);
-      router.push(cat.linkFn(item));
+      const href = cat.linkFn(item);
+      if (cat.openExternal) {
+        window.open(href, "_blank", "noopener,noreferrer");
+      } else {
+        router.push(href);
+      }
     },
     [router]
   );
@@ -376,10 +393,11 @@ export default function GlobalSearch() {
                   {items.map((item, i) => {
                     const globalIdx = startIndex + i;
                     const isSelected = globalIdx === selectedIndex;
+                    const thumb = cat.thumbFn?.(item);
                     return (
                       <button
                         key={item.id}
-                        className={`w-full text-left px-4 py-2 flex items-baseline gap-2 cursor-pointer transition-colors ${
+                        className={`w-full text-left px-4 py-2 flex items-center gap-3 cursor-pointer transition-colors ${
                           isSelected
                             ? "bg-[var(--bg-card-hover)]"
                             : "hover:bg-[var(--bg-card-hover)]"
@@ -387,6 +405,15 @@ export default function GlobalSearch() {
                         onClick={() => navigate(cat, item)}
                         onMouseEnter={() => setSelectedIndex(globalIdx)}
                       >
+                        {thumb && (
+                          <img
+                            src={thumb}
+                            alt=""
+                            className="w-8 h-8 object-contain shrink-0 rounded bg-[var(--bg-primary)]"
+                            crossOrigin="anonymous"
+                            loading="lazy"
+                          />
+                        )}
                         <span className="text-sm text-[var(--text-primary)] truncate">
                           {item.name}
                         </span>
@@ -394,6 +421,9 @@ export default function GlobalSearch() {
                           <span className="text-xs text-[var(--text-muted)] truncate shrink-0">
                             {cat.subtitleFn(item)}
                           </span>
+                        )}
+                        {cat.openExternal && (
+                          <span className="ml-auto text-[10px] text-[var(--text-muted)] shrink-0">↗</span>
                         )}
                       </button>
                     );
