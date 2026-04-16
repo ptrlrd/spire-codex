@@ -480,8 +480,9 @@ def extract_preconditions(content: str, vars_dict: dict) -> list[str] | None:
 
     Returns a list of human-readable condition strings, or None if no conditions.
     """
-    # Find IsAllowed override
-    m = re.search(r"override\s+bool\s+IsAllowed\s*\(\s*RunState\s+\w+\s*\)", content)
+    # Find IsAllowed override. v0.103.1 refactored RunState → IRunState, so
+    # match either signature.
+    m = re.search(r"override\s+bool\s+IsAllowed\s*\(\s*I?RunState\s+\w+\s*\)", content)
     if not m:
         return None
     # Extract method body

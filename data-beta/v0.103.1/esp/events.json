@@ -243,7 +243,10 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": "[b][jitter]¡CLANG! ¡¡¡CLANG!!![/jitter][/b]\n\nOyes ecos de metal contra metal al otro lado de una pared.\n\nAl apoyar la cabeza contra la pared para escuchar, esta se abre y revela a una [orange]imponente figura de seis brazos[/orange], la cual trabaja sin descanso.\nSu «cara» es un [gold][sine]vórtice giratorio de sigilos brillantes[/sine][/gold] que se mueven.\n\n—¿Alguien con un [aqua]espíritu ascendente[/aqua] encontró mi taller? ¡A [jitter]COMBINAR[/jitter]!",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 2+ Strikes in deck",
+      "Requires 2+ Defends in deck"
+    ],
     "options": [
       {
         "id": "COMBINE_STRIKES",
@@ -391,7 +394,9 @@
     "type": "Shared",
     "act": null,
     "description": "[jitter]*paf*[/jitter]\n\nSientes un dolor punzante en la coronilla y un pensamiento inunda tu mente.\n\n[purple][sine]—¿¿¿COMPARTIRÁS TU CONOCIMIENTO???[/sine][/purple]\n\nNo sabes cómo proceder.",
-    "preconditions": null,
+    "preconditions": [
+      "Act 1–2 only"
+    ],
     "options": [
       {
         "id": "SHARE_KNOWLEDGE",
@@ -487,7 +492,9 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "Ves cómo una enorme [jitter][red]bestia tambaleante[/red][/jitter] persigue a un [green][sine]jáparo verde[/sine][/green] herido.\n\nEn el nicho del que huyo el jáparo, yace un [gold] huevo desprotegido[/gold] y abandonado.\n\n[sine]Te gruñe el estómago...[/sine]",
-    "preconditions": null,
+    "preconditions": [
+      "Cannot have an event pet"
+    ],
     "options": [
       {
         "id": "EAT",
@@ -605,7 +612,9 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": "Una [green]flor colosal[/green] crece sobre una [red][jitter]montaña de huesos[/jitter][/red].\n\nMientras sus [sine]pétalos de color cambiante[/sine] palpitan, percibes que en el centro hay un [aqua]núcleo de polen poderoso[/aqua], pero los pétalos ondulantes son [red]afilados[/red] e impredecibles.\n\nPodrías tomar un poco del [gold]néctar dorado[/gold] que se escurre, pero alcanzar el premio en el centro es muy tentador.",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 19+ HP"
+    ],
     "options": [
       {
         "id": "EXTRACT_CURRENT_PRIZE_1",
@@ -687,7 +696,10 @@
     "type": "Shared",
     "act": null,
     "description": "[sine][blue]—¡Predije que vendrías![/blue][/sine]\n\nUna voz [jitter]ronca[/jitter] vocifera cuando entras en la [purple]cabaña mística[/purple].\n\n[sine][blue]—Tu destino te trajo aquí. ¡¡Debemos revelar tu futuro y fortuna para que puedas SALVARNOS A TODOS!![/blue][/sine]\n—Bien, estas son las opciones de [gold]lectura de bola de cristal[/gold]. También firma esta exención de responsabilidad —dice mientras saca una pluma y un pergamino.",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 100+ gold",
+      "Act 2+"
+    ],
     "options": [
       {
         "id": "UNCOVER_FUTURE",
@@ -997,7 +1009,9 @@
     "type": "Shared",
     "act": null,
     "description": "Entras en una habitación oculta.\n\nEstá repleta de una gran variedad de muñecas. Cada una es única, con expresiones que van desde la [green]alegría[/green] hasta la [purple]tristeza[/purple]. Además, sus atuendos abarcan siglos y reinos que trascienden el tuyo.\n\nUn [sine][blue]coro de susurros[/blue][/sine] suena cada vez más y más fuerte, hasta que [jitter][red]las muñecas se gritan[/red][/jitter] unas a otras y te llaman.\n\nDebes elegir una y marcharte de inmediato.",
-    "preconditions": null,
+    "preconditions": [
+      "Act 2 only"
+    ],
     "options": [
       {
         "id": "RANDOM",
@@ -1168,7 +1182,9 @@
     "type": "Event",
     "act": "Underdocks",
     "description": "Entras con torpeza en una choza con un letrero brillante y torcido que dice:\n[aqua]«FESTÍN SIN FIN: ¡PAGAS SEGÚN TU HAMBRE!»[/aqua]\n\nDentro, un [orange]chef grácil y con múltiples brazos[/orange] prepara [green]apetitosos manjares[/green] con destreza y los coloca sobre una [sine]sinuosa y quitinosa cinta transportadora[/sine].\n\nUno de los brazos del chef señala un cartel:\n[blue]40[/blue] de [gold]oro[/gold] por cada alimento.",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 120+ gold"
+    ],
     "options": [
       {
         "id": "OBSERVE_CHEF",
@@ -1266,7 +1282,11 @@
     "type": "Shared",
     "act": null,
     "description": "A suspicious merchant offers 9 fake relics at 42–58 gold each. Throwing a [gold]Foul Potion[/gold] starts a fight against The Merchant??? (165 HP). Winning rewards [gold]Fake Merchant's Rug[/gold] plus all unsold relics.",
-    "preconditions": null,
+    "preconditions": [
+      "Act 2+",
+      "Single player only",
+      "Requires 100+ gold or a Foul Potion"
+    ],
     "options": null,
     "pages": null
   },
@@ -1566,7 +1586,9 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "Te topas con un claro sobre el cual resplandece una luz azul antinatural. Unos hongos gigantescos laten con bioluminiscencia, con sus píleos hinchados y brillantes. A medida que te acercas, los hongos comienzan a emitir [sine][purple]tonos melódicos y evocadores[/purple][/sine] que resuenan en todo tu pecho.\n\nNotas algo brillante incrustado en la pulpa del hongo más grande que [sine]palpita[/sine] al ritmo de la canción fúngica.",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 100-149 gold"
+    ],
     "options": [
       {
         "id": "REACH_INTO_THE_FLESH",
@@ -1622,7 +1644,9 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "Entras a una arboleda de [green]árboles cristalinos[/green], ¡los cuales empiezan a [jitter]temblar de emoción[/jitter]!\nUn coro de [sine]saludos y bienvenidas[/sine] te bombardea mientras un grupo de [aqua]mórficos[/aqua] [jitter]emerge[/jitter] desde los árboles.\n\nUno de los [aqua]mórficos[/aqua] se mueve con nerviosismo en un rincón; es obvio que es menos sociable que los demás.\n\n¿A quién te acercas, al grupo o al mórfico solitario?",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 100+ gold"
+    ],
     "options": [
       {
         "id": "GROUP",
@@ -2413,7 +2437,9 @@
     "type": "Shared",
     "act": null,
     "description": "Hay un olor [sine]agrio[/sine] en el aire. Poco después, encuentras a un [gold]repartidor de pociones[/gold] desplomado en el suelo.\nEstá inmóvil, sin vida... [jitter]¿¡Acaso está muerto!?[/jitter]\nAunque saquearon sus pertenencias, hay un lote de [green][sine]pociones malolientes[/sine][/green] con una nota: «Para: Comerciante».",
-    "preconditions": null,
+    "preconditions": [
+      "Act 2+"
+    ],
     "options": [
       {
         "id": "GRAB_POTIONS",
@@ -2512,7 +2538,10 @@
     "type": "Shared",
     "act": null,
     "description": "Se te acerca la persona [purple]más anciana que has visto en tu vida[/purple].\n[sine]—Nos volvemos a ver... ¡Soy yo, Ranwid![/sine]\n\nNo conoces a este hombre.",
-    "preconditions": null,
+    "preconditions": [
+      "Act 2+",
+      "Requires at least one potion"
+    ],
     "options": [
       {
         "id": "POTION",
@@ -2638,7 +2667,10 @@
     "type": "Shared",
     "act": null,
     "description": "Doblas en una esquina y, de repente, una figura sombría aparece allí de pie. Se gira para mirarte.\n\n—¡Te doy la bienvenida! ¿Quieres hacer negocios?\nLa figura pregunta y abre la capa para revelar un montón de [sine][purple]mercancías sospechosas[/purple][/sine].",
-    "preconditions": null,
+    "preconditions": [
+      "Act 2+",
+      "Requires 5+ tradeable relics"
+    ],
     "options": [
       {
         "id": "TOP",
@@ -2690,7 +2722,9 @@
     "type": "Shared",
     "act": null,
     "description": "Esta sala está llena de [b][jitter]¡¡¡queso!!![/jitter][/b]\n\nMiras a tu alrededor para ver si hay trampas. Encima de ti hay... más [b]queso[/b]. Las velas parecen estar hechas de [b]queso[/b]; los muebles también son de [b]queso[/b].\nDe repente, la puerta se cierra de golpe detrás de ti.\n\nSip, también está hecha de [b]queso[/b].",
-    "preconditions": null,
+    "preconditions": [
+      "Act 1–2 only"
+    ],
     "options": [
       {
         "id": "GORGE",
@@ -2736,7 +2770,9 @@
     "type": "Event",
     "act": "Act 3 - Glory",
     "description": "Encuentras una [orange]invitación[/orange] para un tal [blue]«sir Galalot»[/blue] a una fiesta de té y decides asistir en su lugar.\n\nAl entrar a través de una modesta rotonda, te encuentras entre [gold]comandantes[/gold], [aqua]generales[/aqua], [red]líderes de guerra[/red] y [blue]mercenarios[/blue] tomando... ¿té?\nEl gigantesco caballero con una [gold]corona dorada[/gold] emite unas palabras.\n\n[jitter]—¡¿Osáis llegar tarde al [b]té[/b]?![/jitter]",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 12+ HP"
+    ],
     "options": [
       {
         "id": "ENJOY_TEA",
@@ -2947,7 +2983,10 @@
     "type": "Shared",
     "act": null,
     "description": "Mientras cruzas un puente de madera destartalado, de repente, cae una [blue][jitter]lluvia torrencial[/jitter][/blue]. [purple][sine]Enormes ráfagas de viento[/sine][/purple] te azotan y amenazan con terminar tu viaje.",
-    "preconditions": null,
+    "preconditions": [
+      "Floor 7+",
+      "Requires removable cards in deck"
+    ],
     "options": [
       {
         "id": "OVERCOME",
@@ -3169,7 +3208,10 @@
     "type": "Shared",
     "act": null,
     "description": "Una enorme roca yace en medio de una explanada abandonada.\n\nUna placa dice:\n[gold][b]Roca omnitemporal[/b][/gold].\n\nSu presencia, forma y adornos indican que esta explanada se construyó alrededor de esta [blue]roca[/blue] y que nunca se ha movido de este lugar.",
-    "preconditions": null,
+    "preconditions": [
+      "Act 2 only",
+      "Requires at least one potion"
+    ],
     "options": [
       {
         "id": "LIFT",
@@ -3327,7 +3369,9 @@
     "type": "Shared",
     "act": null,
     "description": "Durante tus viajes, te topas con un pólipo oscuro y amorfo. Percibes que es muy antiguo y maligno.\n\n[sine]—Acércate...[/sine]",
-    "preconditions": null,
+    "preconditions": [
+      "Act 2+"
+    ],
     "options": [
       {
         "id": "APPROACH_LOCKED",
@@ -3688,7 +3732,10 @@
     "type": "Shared",
     "act": null,
     "description": "Entras en una choza apenas iluminada y te encuentras en un espacio muy tranquilo que alberga una variedad obsesiva de té.\n\nEl hombre dentro señala una selección de [green]tés[/green], cada uno etiquetado con cuidado con un [gold]precio prémium[/gold].",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 150+ gold",
+      "Act 1–2 only"
+    ],
     "options": [
       {
         "id": "BONE_TEA",
@@ -4279,7 +4326,10 @@
     "type": "Shared",
     "act": null,
     "description": "Al entrar en una cámara completamente oscura, una luz repentina penetra la oscuridad desde arriba, justo cuando la puerta se cierra de golpe detrás de ti.\n\nIluminado ante ti, parece haber un podio con un mapa. Sientes el impulso de tomarlo.\n\nQué sospechoso.",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 10+ HP",
+      "Act 1 only"
+    ],
     "options": [
       {
         "id": "NAB_THE_MAP",
@@ -4647,7 +4697,9 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "Encuentras un [gold]punto de descanso[/gold] inhóspito y enciendes una [orange]fogata[/orange] para descansar.\nO eso creías.\n\nTras encender el fuego, empieza a crecer y a extenderse no hacia arriba, sino [sine]lateralmente[/sine] hacia un bosque de [purple]árboles que rezuman aceite[/purple].\n\n¿Deberías intentar descansar de todas formas?",
-    "preconditions": null,
+    "preconditions": [
+      "Requires ≤70% HP"
+    ],
     "options": [
       {
         "id": "REST",
@@ -4959,7 +5011,9 @@
     "type": "Event",
     "act": "Underdocks",
     "description": "Mientras caminas por los oscuros pasadizos, te topas con una [aqua]figura marchita[/aqua] que trabaja en una pequeña tienda. Los numerosos estantes están [sine]repletos[/sine] de pergaminos y rollos húmedos.\n\nAl notar que entró alguien, el [aqua]escriba comerciante[/aqua] se pone firme y señala unos [gold]utensilios[/gold] dispuestos sobre un escritorio.",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 55+ gold"
+    ],
     "options": [
       {
         "id": "BLOODY_INK",
@@ -5039,7 +5093,10 @@
     "type": "Shared",
     "act": null,
     "description": "—Te doy la bienvenida a Wongo. Tenemos lo que deseas a wontásticos precios. —dice el empleado menos entusiasta que hayas conocido.\n\n—Echa un vistazo a nuestros productos y disfruta de tu tiempo en Wongo. —continúa, sin siquiera levantar la vista.",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 100+ gold",
+      "Act 2 only"
+    ],
     "options": [
       {
         "id": "BARGAIN_BIN",
@@ -5189,7 +5246,9 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "Abriéndote paso por una [red]hondonada de árboles muertos[/red], te topas con un solo árbol blanco como el hueso. Adornos de arcilla cuelgan de sus ramas, las cuales se curvan hacia adentro como costillas protectoras.\n\nEs un [purple]árbol espeluznante[/purple]. Además, te susurra.\n\n[sine][blue]—... Intercambio ...[/blue][/sine]",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 44+ gold"
+    ],
     "options": [
       {
         "id": "GOLD",
@@ -5235,7 +5294,9 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "Abres una caja polvorienta y encuentras un conjunto de tres elaboradas esculturas de madera:\n\nUn pájaro, una serpiente y... ¿un toro?\n\nUn pedestal cercano tiene hendiduras que coinciden con la base de las esculturas. ¿Cuál colocarás en el pedestal?",
-    "preconditions": null,
+    "preconditions": [
+      "Requires a removable basic card"
+    ],
     "options": [
       {
         "id": "BIRD",
@@ -5305,7 +5366,9 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": "Caminas a través de una telaraña y ¡[jitter][red]ENTRAS EN PÁNICO[/red][/jitter]!\nPero entonces, una [sine][blue]ola de calma[/blue][/sine] te invade...\n\n[sine]—Tranquilízate; deja de ensuciar mi telaraña.[/sine]\n\n¿Cómo te calmaste tan rápido?\nUna [orange]araña pequeñita[/orange] desciende colgada en una telaraña hasta ti. Está dispuesta a enseñarte algunas técnicas a cambio de [gold]oro[/gold].",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 125+ gold"
+    ],
     "options": [
       {
         "id": "BREATHING_TECHNIQUES",

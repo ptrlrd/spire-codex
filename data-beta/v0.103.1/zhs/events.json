@@ -243,7 +243,10 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": "[b][jitter]铿！铿！！锵！！！[/jitter][/b]\n\n墙壁的另一侧传来了阵阵金属交击声的回响…\n\n当你把头贴在墙上准备探听一番时——墙壁轰然开启，露出了一个正在埋头苦干的[orange]魁梧六臂身影[/orange]。\n它的“脸部”是一团由[gold][sine]发光符文构成的流转旋涡[/sine][/gold]，正在不断变幻交织。\n\n“一个拥有[aqua]进阶之魂[/aqua]的人竟然找到了我的工坊？那就让我们开始[jitter]融合[/jitter]吧！”",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 2+ Strikes in deck",
+      "Requires 2+ Defends in deck"
+    ],
     "options": [
       {
         "id": "COMBINE_STRIKES",
@@ -391,7 +394,9 @@
     "type": "Shared",
     "act": null,
     "description": "[jitter]咚！[/jitter]\n\n你的头顶传来一阵刺痛，一个念头刺入了你的脑海。\n\n[purple][sine][b]“分享知识吗？？？”[/b][/sine][/purple]\n\n你不知如何是好…",
-    "preconditions": null,
+    "preconditions": [
+      "Act 1–2 only"
+    ],
     "options": [
       {
         "id": "SHARE_KNOWLEDGE",
@@ -487,7 +492,9 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "你看见一只巨大的[jitter][red]蹒跚巨兽[/red][/jitter]正在驱赶一只受伤的[green][sine]绿色异鸟[/sine][/green]。\n\n在那只异鸟逃离的隐蔽角落里，一颗[gold]无人看守的蛋[/gold]被遗弃在了那里。\n\n[sine]你的肚子咕咕作响…[/sine]",
-    "preconditions": null,
+    "preconditions": [
+      "Cannot have an event pet"
+    ],
     "options": [
       {
         "id": "EAT",
@@ -605,7 +612,9 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": "一朵[green]巨型花卉[/green]正生长在一座[red][jitter]骸骨堆积而成的山[/jitter][/red]上。\n\n随着它那[sine]变换色彩的花瓣[/sine]不断搏动，你感觉到中心处一定有[aqua]一团强力花粉[/aqua]，但那起伏的花瓣[red]如刀锋般锋利[/red]且捉摸不定。\n\n你本可以只采集一些[gold]金色花蜜[/gold]，但中心处的那个奖赏实在是太诱人了…",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 19+ HP"
+    ],
     "options": [
       {
         "id": "EXTRACT_CURRENT_PRIZE_1",
@@ -687,7 +696,10 @@
     "type": "Shared",
     "act": null,
     "description": "[sine][blue]“我预见到了你的到来…！”[/blue][/sine]\n\n当你走进一间[purple]神秘小屋[/purple]时，一个[jitter]沙哑[/jitter]的声音传了过来。\n\n[sine][blue]“你的命运指引你来到此处。我们必须揭开你的未来与运势，这样你才能拯救我们所有人！！”[/blue][/sine]\n“好啦，这是进行[gold]水晶球占卜[/gold]的几个选项。另外，记得把这份免责协议也签了，”她一边说着，一边拿出了笔和羊皮纸。",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 100+ gold",
+      "Act 2+"
+    ],
     "options": [
       {
         "id": "UNCOVER_FUTURE",
@@ -997,7 +1009,9 @@
     "type": "Shared",
     "act": null,
     "description": "你走进了一间隐藏的密室……\n\n这里堆满了琳琅满目的玩偶。每一只都独一无二，它们的表情亦从[green]喜悦[/green]到[purple]悲哀[/purple]各不相同，其服饰跨越了数个世纪，甚至来自你认知之外的领域。\n\n一阵[sine][blue]低语的合唱[/blue][/sine]变得越来越响，直到[jitter][red]那些玩偶互相争吵着大叫起来[/red][/jitter]，放声呼唤着你……\n\n你必须选择一个，并立刻离开这个地方。",
-    "preconditions": null,
+    "preconditions": [
+      "Act 2 only"
+    ],
     "options": [
       {
         "id": "RANDOM",
@@ -1168,7 +1182,9 @@
     "type": "Event",
     "act": "Underdocks",
     "description": "你走进一间挂着歪斜招牌的小木屋，招牌亮得发晃，上面写着：\n[aqua][b]“无尽盛宴—按饿付费！”[/b][/aqua]\n\n屋里，一位[orange]身形修长的多臂大厨[/orange]正熟练地准备着[green]一份份小食[/green]，并将它们摆在一条[sine]蜿蜒的几丁质传送带[/sine]上。\n\n大厨其中的一只手臂指向一块牌子：\n每份[blue]40[/blue][gold]金币[/gold]",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 120+ gold"
+    ],
     "options": [
       {
         "id": "OBSERVE_CHEF",
@@ -1266,7 +1282,11 @@
     "type": "Shared",
     "act": null,
     "description": "A suspicious merchant offers 9 fake relics at 42–58 gold each. Throwing a [gold]Foul Potion[/gold] starts a fight against The Merchant??? (165 HP). Winning rewards [gold]Fake Merchant's Rug[/gold] plus all unsold relics.",
-    "preconditions": null,
+    "preconditions": [
+      "Act 2+",
+      "Single player only",
+      "Requires 100+ gold or a Foul Potion"
+    ],
     "options": null,
     "pages": null
   },
@@ -1566,7 +1586,9 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "你撞入了一片沐浴在诡异蓝光下的林间空地。高耸的蘑菇随着生物荧光起伏脉动，菌盖肿胀而泛着光泽。当你靠近时，真菌们竟开始发出[sine][purple]凄美而婉转的旋律[/purple][/sine]，这旋律在你的胸腔内激荡。\n\n你注意到，在那个体型最大的蘑菇肉质中嵌入了某种闪光的东西，正随着真菌之歌有节奏地[sine]跃动[/sine]。",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 100-149 gold"
+    ],
     "options": [
       {
         "id": "REACH_INTO_THE_FLESH",
@@ -1622,7 +1644,9 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "你进入了一片[green]结晶树[/green]的林谷，树木开始[jitter]激动地颤抖起来[/jitter]！\n一阵阵杂乱的[sine]问候与欢迎声[/sine]在你耳边不断响起，原来是一群[aqua]变形灵[/aqua]从树上[jitter]绽放[/jitter]了出来。\n\n有一只[aqua]变形灵[/aqua]在角落里坐立不安的样子，显然不像其他同类那样善于社交。\n\n你是去找一群变形灵，还是去找落单的那个？",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 100+ gold"
+    ],
     "options": [
       {
         "id": "GROUP",
@@ -2413,7 +2437,9 @@
     "type": "Shared",
     "act": null,
     "description": "空气中传来一阵[sine]浓浓的酸味[/sine]，不一会儿你在附近找到了一个倒在地上的[gold]药水快递员[/gold]。\n一动不动，已经没了气。[jitter]死了！？[/jitter]\n快递员带着的物品已经被洗劫得差不多了，只有一批[green][sine]很难闻的药水[/sine][/green]好好地放在那里，上面有一张字条：“收件人：商人”。",
-    "preconditions": null,
+    "preconditions": [
+      "Act 2+"
+    ],
     "options": [
       {
         "id": "GRAB_POTIONS",
@@ -2512,7 +2538,10 @@
     "type": "Shared",
     "act": null,
     "description": "一个[purple]你至今为止见过最年迈的人[/purple]走到了你的身前。\n[sine]“我们又见面了....是我，兰伟德！”[/sine]\n\n你不认识这个男人。",
-    "preconditions": null,
+    "preconditions": [
+      "Act 2+",
+      "Requires at least one potion"
+    ],
     "options": [
       {
         "id": "POTION",
@@ -2638,7 +2667,10 @@
     "type": "Shared",
     "act": null,
     "description": "你走过一个拐角，一个黑影突然矗立在前方。他转过身来，正对着你。\n\n“欢迎！你想换点什么吶？”\n他开口询问，同时猛地掀开斗篷，露出一大堆[sine][purple]可疑货物[/purple][/sine]。",
-    "preconditions": null,
+    "preconditions": [
+      "Act 2+",
+      "Requires 5+ tradeable relics"
+    ],
     "options": [
       {
         "id": "TOP",
@@ -2690,7 +2722,9 @@
     "type": "Shared",
     "act": null,
     "description": "这房间里全是[b][jitter]芝士！！！[/jitter][/b]\n\n你环顾四周，想看看有没有陷阱，结果发现头顶上是…更多的[b]芝士[/b]。屋里的蜡烛似乎也是用[b]芝士[/b]做的。家具同样是[b]芝士[/b]。\n突然，你身后的门砰地一声关上了。\n\n也是[b]芝士[/b]做的。",
-    "preconditions": null,
+    "preconditions": [
+      "Act 1–2 only"
+    ],
     "options": [
       {
         "id": "GORGE",
@@ -2736,7 +2770,9 @@
     "type": "Event",
     "act": "Act 3 - Glory",
     "description": "你找到了一份送给[blue]“加拉洛特爵士”的[/blue][orange]请柬[/orange]，邀请他参加一次茶会，于是你决定代他前去。\n\n走进其貌不扬的圆形大厅时，你发现这里有一大群[gold]指挥官[/gold]、[aqua]将军[/aqua]、[red]军阀[/red]和[blue]商人[/blue]们，正在……喝着茶？\n一个头戴[gold]金冠[/gold]的巨人骑士开口说道：\n\n[jitter]“汝来[b]茶会[/b]竟敢迟到？！”[/jitter]",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 12+ HP"
+    ],
     "options": [
       {
         "id": "ENJOY_TEA",
@@ -2947,7 +2983,10 @@
     "type": "Shared",
     "act": null,
     "description": "当你穿过一座摇摇欲坠的木桥时，忽然间[blue][jitter]暴雨倾盆[/jitter][/blue]。[purple][sine]阵阵狂风[/sine][/purple]不断向你袭来，似乎要将你的旅程终结于此。",
-    "preconditions": null,
+    "preconditions": [
+      "Floor 7+",
+      "Requires removable cards in deck"
+    ],
     "options": [
       {
         "id": "OVERCOME",
@@ -3169,7 +3208,10 @@
     "type": "Shared",
     "act": null,
     "description": "在一个废弃庭院的当中，有一块巨大的石头。\n\n石头边的一块牌子上写着：\n[gold][b]永恒之石[/b][/gold]。\n\n从它的样子、形状和装饰来看，整个庭院都是围绕着这块[blue]石头[/blue]建造出来的，它从来没有离开过那个地点哪怕一次。",
-    "preconditions": null,
+    "preconditions": [
+      "Act 2 only",
+      "Requires at least one potion"
+    ],
     "options": [
       {
         "id": "LIFT",
@@ -3327,7 +3369,9 @@
     "type": "Shared",
     "act": null,
     "description": "在你的旅程中，你遇到了一个黑色无定形的肉块状生物，你能感觉到它非常古老、并且非常邪恶。\n\n[sine]过来吧…[/sine]",
-    "preconditions": null,
+    "preconditions": [
+      "Act 2+"
+    ],
     "options": [
       {
         "id": "APPROACH_LOCKED",
@@ -3688,7 +3732,10 @@
     "type": "Shared",
     "act": null,
     "description": "你不知怎么晃进了一个灯光昏暗的小棚屋，发现里面的空间感觉非常和平，四周摆满了种类繁多的茶叶。\n\n屋子里面的男人做出手势，让你去看一批[green]茶叶[/green]，每一种都有雅致的标签告知你茶叶的[gold]高昂价格[/gold]。",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 150+ gold",
+      "Act 1–2 only"
+    ],
     "options": [
       {
         "id": "BONE_TEA",
@@ -4279,7 +4326,10 @@
     "type": "Shared",
     "act": null,
     "description": "踏入漆黑的密室，一道亮光从上方刺破黑暗，与此同时，身后的门砰然关上。\n\n借着光亮，你看到前方的石台上放着一张地图。你有一种强烈的想要拿走它的冲动。\n\n事出反常。",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 10+ HP",
+      "Act 1 only"
+    ],
     "options": [
       {
         "id": "NAB_THE_MAP",
@@ -4647,7 +4697,9 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "你找到了一个隔绝的[gold]休息处[/gold]，于是点起[orange]篝火[/orange]打算休息。\n结果只是打算而已。\n\n篝火点起后，火光立即胀大起来，不是向上而是向着[sine]侧面[/sine]延伸向一片满是[purple]冒油树木[/purple]的林地。\n\n要不要不管这个情况，就这么继续休息？",
-    "preconditions": null,
+    "preconditions": [
+      "Requires ≤70% HP"
+    ],
     "options": [
       {
         "id": "REST",
@@ -4959,7 +5011,9 @@
     "type": "Event",
     "act": "Underdocks",
     "description": "在昏暗的通道中前行时，你找到了一个小店，里面有一个[aqua]憔悴的员工[/aqua]。四周的书架上[sine]塞满了[/sine]无数潮湿的卷轴与羊皮纸。\n\n[aqua]抄写员兼店主[/aqua]注意到有客人进店，猛地回过神来，为你指了指书桌上摆放着的一些[gold]器具[/gold]。",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 55+ gold"
+    ],
     "options": [
       {
         "id": "BLOODY_INK",
@@ -5039,7 +5093,10 @@
     "type": "Shared",
     "act": null,
     "description": "“欢迎来到旺购百货，这里有超旺商品，一定让您越购越旺。”店员说着欢迎词，看起来没有丝毫热情。\n\n“请随意查看我们的商品，祝您在旺购过得愉快。”店员头也不抬地继续说着。",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 100+ gold",
+      "Act 2 only"
+    ],
     "options": [
       {
         "id": "BARGAIN_BIN",
@@ -5189,7 +5246,9 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "在通过一个[red]枯木林谷[/red]时，你遇见了一株孤单的白骨般的树。它的枝丫如同肋骨般向内弯曲，枝条上则挂着黏土般的球状物体。\n\n真是棵[purple]瘆人的树[/purple]。它还在发出低语：\n\n[sine][blue]…来做交易…..[/blue][/sine]",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 44+ gold"
+    ],
     "options": [
       {
         "id": "GOLD",
@@ -5235,7 +5294,9 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "你打开一个尘封的盒子，发现里面有一组3个相当精细的木雕：\n\n一只鸟、一条蛇、还有……一个圆环？\n\n附近有一个基座，上面的凹陷痕迹正与这些木雕底部的形状吻合。你要把哪个木雕放在基座上呢？",
-    "preconditions": null,
+    "preconditions": [
+      "Requires a removable basic card"
+    ],
     "options": [
       {
         "id": "BIRD",
@@ -5305,7 +5366,9 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": "你在行走时撞到了一张蜘蛛网，立即[jitter][red]慌了神[/red][/jitter]！\n可是很快，一阵[sine][blue]平静的感觉[/blue][/sine]席卷了你……\n\n[sine]“冷静下来，我需要你不再弄坏我的网。”[/sine]\n\n你怎么会这么快就冷静下来的呢？\n一只[orange]小之又小[/orange]的蜘蛛沿着丝线降落下来与你问好，它看起来愿意收取一些[gold]金币[/gold]来分享它的部分技术。",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 125+ gold"
+    ],
     "options": [
       {
         "id": "BREATHING_TECHNIQUES",

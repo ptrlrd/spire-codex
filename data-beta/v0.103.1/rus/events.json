@@ -243,7 +243,10 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": "[b][jitter]БАХ! БАХ![/jitter][/b]\n\nВы слышите гулкий стук металла за стеной.\n\nСтоит вам приложить ухо к стене, как она открывается, и перед вами предстает [orange]оранжевый шестирукий гигант[/orange].\nЕго «лицо» покрыто [gold][sine]кружащей спиралью из печатей[/sine][/gold].\n\n«Неужто ко мне в мастерскую пожаловали [aqua]гости[/aqua]?! [jitter]Смеситель[/jitter] к вашим услугам!»",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 2+ Strikes in deck",
+      "Requires 2+ Defends in deck"
+    ],
     "options": [
       {
         "id": "COMBINE_STRIKES",
@@ -391,7 +394,9 @@
     "type": "Shared",
     "act": null,
     "description": "[jitter]Бац![/jitter]\n\nВы чувствуете острую боль в затылке. В голове раздается вопрос.\n\n[purple][sine]«ПОДЕЛИШЬСЯ ЗНАНИЯМИ?»[/sine][/purple]\n\nВы не знаете, как поступить…",
-    "preconditions": null,
+    "preconditions": [
+      "Act 1–2 only"
+    ],
     "options": [
       {
         "id": "SHARE_KNOWLEDGE",
@@ -487,7 +492,9 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "Огромный [jitter][red]скиталец[/red][/jitter] выгоняет раненого [green][sine]зеленого птаха[/sine][/green] из гнезда.\n\nВы замечаете, что в гнезде осталось [gold]яйцо[/gold].\n\n[sine]В животе урчит…[/sine]",
-    "preconditions": null,
+    "preconditions": [
+      "Cannot have an event pet"
+    ],
     "options": [
       {
         "id": "EAT",
@@ -605,7 +612,9 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": "Перед вами [red][jitter]груда костей[/jitter][/red], из которой растет [green]гигантский цветок[/green].\n\nЕго лепестки [sine]переливаются разными цветами[/sine]. Вам хочется забрать [aqua]пыльцовую сердцевину[/aqua] цветка, но его [red]острые, словно лезвия,[/red] лепестки внушают вам ужас.\n\nМожет, просто собрать немного [gold]золотого нектара[/gold]? Но пыльца такая соблазнительная…",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 19+ HP"
+    ],
     "options": [
       {
         "id": "EXTRACT_CURRENT_PRIZE_1",
@@ -687,7 +696,10 @@
     "type": "Shared",
     "act": null,
     "description": "[sine][blue]«Я знала, что ты ко мне явишься!»[/blue][/sine]\n\n[jitter]Хриплый голос[/jitter] зазывает вас в [purple]таинственную хижину[/purple].\n\n[sine][blue]«Ты здесь не случайно. Это судьба. Позволь открыть твое будущее, ведь именно тебе суждено СПАСТИ МИР!»[/blue][/sine]\n«Так, вот варианты [gold]предсказаний Хрустального шара[/gold]. Не забудь подписать договор», — она кладет перед вами ручку и пергамент.",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 100+ gold",
+      "Act 2+"
+    ],
     "options": [
       {
         "id": "UNCOVER_FUTURE",
@@ -997,7 +1009,9 @@
     "type": "Shared",
     "act": null,
     "description": "Вам попадается потайная комната…\n\nВ ней полно разнообразных кукол, как [green]веселых[/green], так и [purple]грустных[/purple]. Их одежда как будто родом из другой эпохи, а то и из другой вселенной.\n\nВы слышите [sine][blue]нарастающий шепот[/blue][/sine]. Он перерастает в [jitter][red]крики[/red][/jitter]. Куклы наперебой зовут вас к себе.\n\nНужно выбрать одну из кукол и убраться отсюда поскорее.",
-    "preconditions": null,
+    "preconditions": [
+      "Act 2 only"
+    ],
     "options": [
       {
         "id": "RANDOM",
@@ -1168,7 +1182,9 @@
     "type": "Event",
     "act": "Underdocks",
     "description": "Вам попадается странная хижина. Кривой знак на двери гласит:\n[aqua]«БЕСКОНЕЧНЫЙ ПИР! СКОЛЬКО ЗАПЛАТИШЬ, СТОЛЬКО И СЪЕШЬ!»[/aqua]\n\nВнутри [orange]худощавый многорукий повар[/orange] шустро готовит [green]небольшие закуски[/green] и раскладывает их на [sine]конвейерной ленте[/sine].\n\nОдна из рук повара указывает на знак:\n«Цена закуски — [blue]40[/blue] [gold]золота[/gold]».",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 120+ gold"
+    ],
     "options": [
       {
         "id": "OBSERVE_CHEF",
@@ -1266,7 +1282,11 @@
     "type": "Shared",
     "act": null,
     "description": "A suspicious merchant offers 9 fake relics at 42–58 gold each. Throwing a [gold]Foul Potion[/gold] starts a fight against The Merchant??? (165 HP). Winning rewards [gold]Fake Merchant's Rug[/gold] plus all unsold relics.",
-    "preconditions": null,
+    "preconditions": [
+      "Act 2+",
+      "Single player only",
+      "Requires 100+ gold or a Foul Potion"
+    ],
     "options": null,
     "pages": null
   },
@@ -1566,7 +1586,9 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "Вы выходите на поляну с огромными грибами. Их набухшие шляпки излучают неестественное голубое свечение. Стоит вам подойти поближе, как грибы начинают издавать [sine][purple]жутковатые мелодии[/purple][/sine], которые гулко отдаются у вас в груди.\n\nВаше внимание привлекают странные вспышки внутри самого крупного гриба, [sine]пульсирующие[/sine] в ритме их пения.",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 100-149 gold"
+    ],
     "options": [
       {
         "id": "REACH_INTO_THE_FLESH",
@@ -1622,7 +1644,9 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "Вы обнаруживаете рощу [green]хрустальных деревьев[/green]. Их листья встречают вас [jitter]приветливым звоном[/jitter].\n[sine]«Здравствуйте!» «Добро пожаловать!»[/sine] С ветвей [jitter]выпрыгивает[/jitter] небольшая группа [aqua]морфов[/aqua].\n\nВпрочем, один [aqua]морф[/aqua] не спешит к вам. Он смущенно сидит вдали от остальных.\n\nК кому бы подойти?",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 100+ gold"
+    ],
     "options": [
       {
         "id": "GROUP",
@@ -2413,7 +2437,9 @@
     "type": "Shared",
     "act": null,
     "description": "Вы чувствуете [sine]кислый[/sine] запах и замечаете лежащего на земле [gold]перевозчика зелий[/gold].\nОн не двигается. Даже не дышит. [jitter]Неужели он мертв?![/jitter]\nВесь его товар уже растащили, кроме партии [green][sine]мерзких зелий[/sine][/green] с пометкой «Для Торговца».",
-    "preconditions": null,
+    "preconditions": [
+      "Act 2+"
+    ],
     "options": [
       {
         "id": "GRAB_POTIONS",
@@ -2512,7 +2538,10 @@
     "type": "Shared",
     "act": null,
     "description": "Вас приветствует [purple]дряхлый старик[/purple]. Никого старее вы в жизни не видели.\n[sine]«Кажется, мы уже встречались! Это я, Ранвид!»[/sine]\n\nВы понятия не имеете, кто это такой.",
-    "preconditions": null,
+    "preconditions": [
+      "Act 2+",
+      "Requires at least one potion"
+    ],
     "options": [
       {
         "id": "POTION",
@@ -2638,7 +2667,10 @@
     "type": "Shared",
     "act": null,
     "description": "За углом вас поджидает какой-то подозрительный тип. Он смотрит на вас с заговорщицкой ухмылкой.\n\n«Привет! Меняться будешь?»\nОн распахивает плащ, внутри которого вы видите [sine][purple]странные товары[/purple][/sine].",
-    "preconditions": null,
+    "preconditions": [
+      "Act 2+",
+      "Requires 5+ tradeable relics"
+    ],
     "options": [
       {
         "id": "TOP",
@@ -2690,7 +2722,9 @@
     "type": "Shared",
     "act": null,
     "description": "В этой комнате полно [b][jitter]сыра![/jitter][/b]\n\nВы осматриваетесь в поисках ловушек, но видите только [b]сыр[/b]. Даже свечи здесь сделаны из [b]сыра[/b]. Мебель тоже сделана из [b]сыра[/b].\nДверь за вами неожиданно захлопывается сама собой.\n\nДверь сделана из [b]сыра[/b].",
-    "preconditions": null,
+    "preconditions": [
+      "Act 1–2 only"
+    ],
     "options": [
       {
         "id": "GORGE",
@@ -2736,7 +2770,9 @@
     "type": "Event",
     "act": "Act 3 - Glory",
     "description": "Вам попадается [orange]приглашение[/orange] на чаепитие, адресованное некоему [blue]сэру Галалоту[/blue], и решаете явиться вместо него.\n\nВы оказываетесь в компании [gold]военачальников[/gold], [aqua]генералов[/aqua], [red]полководцев[/red] и [blue]наемников[/blue]. Они вместе мирно попивают чай.\nСлово берет огромный рыцарь в [gold]золотой короне[/gold].\n\n[jitter]«Изволите опаздывать на [b]чай[/b]?!»[/jitter]",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 12+ HP"
+    ],
     "options": [
       {
         "id": "ENJOY_TEA",
@@ -2947,7 +2983,10 @@
     "type": "Shared",
     "act": null,
     "description": "Вы идете по шаткому деревянному мосту. Внезапно вас настигает [blue][jitter]ливень[/jitter][/blue]. [purple][sine]Порывы ветра[/sine][/purple] раскачивают мост из стороны в сторону. Ваша жизнь висит на волоске.",
-    "preconditions": null,
+    "preconditions": [
+      "Floor 7+",
+      "Requires removable cards in deck"
+    ],
     "options": [
       {
         "id": "OVERCOME",
@@ -3169,7 +3208,10 @@
     "type": "Shared",
     "act": null,
     "description": "Перед вами заброшенный двор, посреди которого стоит огромный булыжник.\n\nНа табличке написано:\n[gold][b]«Вечный камень»[/b][/gold].\n\nСудя по всему, [blue]камень[/blue] был здесь всегда, а двор построили вокруг него.",
-    "preconditions": null,
+    "preconditions": [
+      "Act 2 only",
+      "Requires at least one potion"
+    ],
     "options": [
       {
         "id": "LIFT",
@@ -3327,7 +3369,9 @@
     "type": "Shared",
     "act": null,
     "description": "В дороге вам попадается темная бесформенная масса. Вы чувствуете исходящее от нее древнее зло.\n\n[sine]Вы осторожно приближаетесь к ней…[/sine]",
-    "preconditions": null,
+    "preconditions": [
+      "Act 2+"
+    ],
     "options": [
       {
         "id": "APPROACH_LOCKED",
@@ -3688,7 +3732,10 @@
     "type": "Shared",
     "act": null,
     "description": "Вы заходите в хижину. В приятном полумраке видна огромная коллекция разнообразных сортов чая.\n\nХозяин хижины указывает на полку. Каждый сорт [green]чая[/green] помечен ценником. [gold]Цены довольно высокие[/gold].",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 150+ gold",
+      "Act 1–2 only"
+    ],
     "options": [
       {
         "id": "BONE_TEA",
@@ -4279,7 +4326,10 @@
     "type": "Shared",
     "act": null,
     "description": "Вы попадаете в темное помещение. Стоит вам увидеть тонкий лучик света наверху, как за спиной у вас захлопывается дверь.\n\nВы видите пьедестал, на котором лежит карта. Вам хочется ее забрать.\n\nСтранные дела…",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 10+ HP",
+      "Act 1 only"
+    ],
     "options": [
       {
         "id": "NAB_THE_MAP",
@@ -4647,7 +4697,9 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "Вы находите тихое [gold]место для привала[/gold] и решаете развести [orange]костер[/orange]. Пора хорошенько отдохнуть…\nНо не тут-то было!\n\nПламя костра почему-то отклоняется [sine]в сторону[/sine]. Видимо, его притягивает роща деревьев, [purple]источающих смолу[/purple].\n\nКак здесь поступить?",
-    "preconditions": null,
+    "preconditions": [
+      "Requires ≤70% HP"
+    ],
     "options": [
       {
         "id": "REST",
@@ -4959,7 +5011,9 @@
     "type": "Event",
     "act": "Underdocks",
     "description": "Вы натыкаетесь на небольшой магазинчик, в котором работает [aqua]дряхлый писарь[/aqua]. Полки уставлены сырыми свитками и летописями.\n\nУвидев посетителя, [aqua]писарь[/aqua] резко выпрямляется и указывает на [gold]товары[/gold], разложенные на столе.",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 55+ gold"
+    ],
     "options": [
       {
         "id": "BLOODY_INK",
@@ -5039,7 +5093,10 @@
     "type": "Shared",
     "act": null,
     "description": "«Добро пожаловать. Наши цены вас приятно удивят», — вяло приветствует вас продавец магазина «Вонго».\n\n«Выбирайте что душе угодно. Приятного вечера», — он на вас даже не смотрит.",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 100+ gold",
+      "Act 2 only"
+    ],
     "options": [
       {
         "id": "BARGAIN_BIN",
@@ -5189,7 +5246,9 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "Вы пробираетесь через [red]лощину, полную мертвых деревьев[/red]. Одно из них белое, словно оголенная кость. С его согнутых ветвей, напоминающих ребра, свисают глиняные побрякушки.\n\nКакое [purple]жуткое зрелище[/purple]! Вы слышите странный шепот.\n\n[sine][blue]«Обменяемся?»[/blue][/sine]",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 44+ gold"
+    ],
     "options": [
       {
         "id": "GOLD",
@@ -5235,7 +5294,9 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "Вам попадается пыльная коробка. Внутри — три деревянные фигурки с замысловатой резьбой.\n\nПтица, змея и… торус?\n\nРядом вы видите пьедестал с выемкой, в которую можно поместить одну из фигурок. Какая подойдет лучше всего?",
-    "preconditions": null,
+    "preconditions": [
+      "Requires a removable basic card"
+    ],
     "options": [
       {
         "id": "BIRD",
@@ -5305,7 +5366,9 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": "Вы попадаетесь в липкую паутину, вас охватывает [jitter][red]ПАНИКА[/red][/jitter]!\nВнезапно ваш разум застилает [sine][blue]волна спокойствия[/blue][/sine].\n\n[sine]«Не надо нервничать. И паутину мою рвать тоже не надо!»[/sine]\n\nКак вам удалось так быстро успокоиться?\nОткуда-то сверху опускается [orange]паук[/orange]. Он готов поделиться с вами знаниями в обмен на [gold]золото[/gold].",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 125+ gold"
+    ],
     "options": [
       {
         "id": "BREATHING_TECHNIQUES",

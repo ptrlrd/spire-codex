@@ -243,7 +243,10 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": "[b][jitter]BRZDĘK! BRZDĘK!!![/jitter][/b]\n\nZa ścianą słychać odgłosy wykuwania metalu...\n\nPrzysłuchujesz się im, przykładając głowę do ściany, która nagle otwiera się i ujawnia [orange]kolosalną, sześcioręczną postać[/orange] skupioną na pracy.\n Jej „twarz” to [gold][sine]symbole jarzące się[/sine][/gold] w płomiennym wirze.\n\n„[aqua]Wyniesiony[/aqua] odnalazł mój warsztat? Czas na [jitter]SPAWANIE[/jitter]!”",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 2+ Strikes in deck",
+      "Requires 2+ Defends in deck"
+    ],
     "options": [
       {
         "id": "COMBINE_STRIKES",
@@ -391,7 +394,9 @@
     "type": "Shared",
     "act": null,
     "description": "[jitter]*łup*[/jitter]\n\nOdczuwasz przeszywający ból głowy i nagle przeszywa cię pewna myśl.\n\n[purple][sine]„CHCESZ WIEDZĘ???”[/sine][/purple]\n\nNie do końca wiesz, jak masz postąpić...",
-    "preconditions": null,
+    "preconditions": [
+      "Act 1–2 only"
+    ],
     "options": [
       {
         "id": "SHARE_KNOWLEDGE",
@@ -487,7 +492,9 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "Widzisz, że jakaś ogromna [jitter][red]pnączasta bestia[/red][/jitter] przegania rannego [green][sine]zielonego Ptaszora[/sine][/green].\n\nWe wnęce, z której uciekł, dostrzegasz [gold]porzucone jajo[/gold]. \n\n[sine]Burczy ci w brzuchu...[/sine]",
-    "preconditions": null,
+    "preconditions": [
+      "Cannot have an event pet"
+    ],
     "options": [
       {
         "id": "EAT",
@@ -605,7 +612,9 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": "[green]Kolosalny kwiat[/green] wyrasta z [red][jitter]gigantycznej sterty kości[/jitter][/red].\n\nJego [sine]kolorowe płatki[/sine] pulsują. Wyczuwasz, że w środku znajduje się [aqua]potężny zapylony rdzeń[/aqua], lecz otaczające go faliste płatki są [red]ostre jak brzytwa[/red].\n\nWystarczyło by zebrać trochę [gold]złotego nektaru[/gold], ale sięgniecie po sam rdzeń wydaje się niezwykle kuszące...",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 19+ HP"
+    ],
     "options": [
       {
         "id": "EXTRACT_CURRENT_PRIZE_1",
@@ -687,7 +696,10 @@
     "type": "Shared",
     "act": null,
     "description": "[sine][blue]„Nasze spotkanie było zapisane w gwiazdach!”[/blue][/sine]\n\nPo wejściu do [purple]mistycznej chaty[/purple] słyszysz [jitter]chrapliwy[/jitter] głos.\n\n[sine][blue]„To musiało być przeznaczenie. Dziś odkryjemy twoją przyszłość! Z pewnością pomoże to URATOWAĆ NAS WSZYSTKICH!!”[/blue][/sine]\n„Przygotuj się na moc [gold]Kryształowej Kuli[/gold]”. Po chwili dodaje: „Poproszę tylko wpisać tutaj dzisiejszą datę i podpis”, następnie wyciąga pióro i pergamin.",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 100+ gold",
+      "Act 2+"
+    ],
     "options": [
       {
         "id": "UNCOVER_FUTURE",
@@ -997,7 +1009,9 @@
     "type": "Shared",
     "act": null,
     "description": "Wchodzisz do ukrytego pomieszczenia...\n\nJest wypełniony różnorodnymi lalkami. Każda jest jedyna w swoim rodzaju, a ich miny wyrażają przeróżne emocje, od [green]radości[/green] aż po [purple]smutek[/purple].\n\n[sine][blue]Szmery i szepty[/blue][/sine] robią się coraz głośniejsze, aż w końcu lalki zaczynają się [jitter][red]przekrzykiwać[/red][/jitter], wołając cię...\n\nMusisz wybrać jedną z nich i jak najszybciej stąd uciekać.",
-    "preconditions": null,
+    "preconditions": [
+      "Act 2 only"
+    ],
     "options": [
       {
         "id": "RANDOM",
@@ -1168,7 +1182,9 @@
     "type": "Event",
     "act": "Underdocks",
     "description": "Wchodzisz do chaty z jasnym, przekrzywionym napisem: \n[aqua]„NIEKOŃCZĄCA SIĘ UCZTA: PŁAĆ I JEDZ”[/aqua]\n\nW środku znajdujesz [orange]zwinnego kucharza o wielu ramionach[/orange], który sprawnie przyrządza [green]potrawy[/green] i umieszcza je na [sine]chitynowym taśmociągu[/sine].\n\nJedno z ramion kucharza pokazuje na znak:\n„[blue]40[/blue] szt. [gold]Złota[/gold] za kawałek”.",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 120+ gold"
+    ],
     "options": [
       {
         "id": "OBSERVE_CHEF",
@@ -1266,7 +1282,11 @@
     "type": "Shared",
     "act": null,
     "description": "A suspicious merchant offers 9 fake relics at 42–58 gold each. Throwing a [gold]Foul Potion[/gold] starts a fight against The Merchant??? (165 HP). Winning rewards [gold]Fake Merchant's Rug[/gold] plus all unsold relics.",
-    "preconditions": null,
+    "preconditions": [
+      "Act 2+",
+      "Single player only",
+      "Requires 100+ gold or a Foul Potion"
+    ],
     "options": null,
     "pages": null
   },
@@ -1566,7 +1586,9 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "Napotykasz się na ogromne grzyby, które emanują nienaturalną, niebieską poświatą. Pulsują bioluminescencją tak mocno, że ich kapelusze puchną i świecą się. Gdy podchodzisz bliżej, zaczynają wydawać z siebie [sine][purple]melodyjne dźwięki[/purple][/sine], które rozbrzmiewają w twojej głowie.\n\nWe wnętrzu największego grzyba zauważasz coś świecącego i [sine]pulsującego[/sine] w rytmie melodii.",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 100-149 gold"
+    ],
     "options": [
       {
         "id": "REACH_INTO_THE_FLESH",
@@ -1622,7 +1644,9 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "Wchodzisz do zagajnika z [green]krystalicznymi drzewami[/green], które zaczynają [jitter]radośnie drgać[/jitter]!\nSłyszysz falę [sine]serdecznych powitań[/sine] od całej grupy [aqua]Imitatorów[/aqua], którzy nagle [jitter]wyrastają[/jitter] z drzew.\n\nWidać, że jeden z nich wierci się niespokojnie gdzieś z boku, pewnie nie jest aż tak towarzyski jak reszta.\n\nDo kogo podejść? Do grupy czy do samotnika?",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 100+ gold"
+    ],
     "options": [
       {
         "id": "GROUP",
@@ -2413,7 +2437,9 @@
     "type": "Shared",
     "act": null,
     "description": "Czujesz [sine]kwaśny[/sine] zapach, a chwilę później znajdujesz [gold]Dostawcę Mikstur[/gold] leżącego na ziemii.\nJest nieruchomy. Bez życia. [jitter]Martwy!?[/jitter]\nPomimo że już został okradziony ze wszystkich towarów, jest jeszcze porcja [green][sine]paskudnie pachnących Mikstur[/sine][/green] z notatką: „Odbiorca: Handlarz”.",
-    "preconditions": null,
+    "preconditions": [
+      "Act 2+"
+    ],
     "options": [
       {
         "id": "GRAB_POTIONS",
@@ -2512,7 +2538,10 @@
     "type": "Shared",
     "act": null,
     "description": "Podchodzi do ciebie [purple]chyba najstarsza osoba w całej Iglicy[/purple].\n[sine]„Znów się spotykamy... to ja, Ranwid!”[/sine]\n\nNie masz bladego pojęcia, kim ten człowiek jest.",
-    "preconditions": null,
+    "preconditions": [
+      "Act 2+",
+      "Requires at least one potion"
+    ],
     "options": [
       {
         "id": "POTION",
@@ -2630,7 +2659,10 @@
     "type": "Shared",
     "act": null,
     "description": "Znajdujesz za rogiem jakąś postać skrywającą się w cieniu, która zauważa cię od razu i obraca się w twoją stronę.\n\n„Witaj! Chcesz się powymieniać?”\nPostać ujawnia pod swoim płaszczem mnóstwo [sine][purple]podejrzanych towarów[/purple][/sine].",
-    "preconditions": null,
+    "preconditions": [
+      "Act 2+",
+      "Requires 5+ tradeable relics"
+    ],
     "options": [
       {
         "id": "TOP",
@@ -2682,7 +2714,9 @@
     "type": "Shared",
     "act": null,
     "description": "Ile tu jest [b][jitter]sera!!![/jitter][/b]\n\nSprawdzasz, czy nie ma nigdzie pułapek w pobliżu... ale znajdujesz tylko więcej [b]sera[/b]. Chyba nawet świeczki są zrobione z [b]sera[/b]. Meble też są z [b]sera[/b].\nNagle słyszysz za sobą trzask drzwi.\n\nOczywiście również są zrobione z [b]sera[/b].",
-    "preconditions": null,
+    "preconditions": [
+      "Act 1–2 only"
+    ],
     "options": [
       {
         "id": "GORGE",
@@ -2728,7 +2762,9 @@
     "type": "Event",
     "act": "Act 3 - Glory",
     "description": "Znajdujesz [orange]zaproszenie[/orange] na herbatę dla kogoś o tytule [blue]„Sir Galalot”[/blue], więc decydujesz się pójść w jego imieniu.\n\nPo wejściu do skromnej rotundy widzisz przeróżnych [gold]dowódców[/gold], [aqua]generałów[/aqua], [red]watażków[/red] i [blue]najemników[/blue] pijących... herbatę?\nOgromny rycerz ze [gold]złotą koroną[/gold] zwraca się do ciebie:\n\n[jitter]„Jakże mogliście spóźnić się na [b]herbatę[/b]?!”[/jitter]",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 12+ HP"
+    ],
     "options": [
       {
         "id": "ENJOY_TEA",
@@ -2939,7 +2975,10 @@
     "type": "Shared",
     "act": null,
     "description": "Idziesz chwiejnym krokiem po drewnianym moście, gdy nagle spada na ciebie [blue][jitter]ogromna ulewa[/jitter][/blue]. Uderzają cię [purple][sine]potężne podmuchy wiatru[/sine][/purple], które mogą lada moment zakończyć twoją podróż.",
-    "preconditions": null,
+    "preconditions": [
+      "Floor 7+",
+      "Requires removable cards in deck"
+    ],
     "options": [
       {
         "id": "OVERCOME",
@@ -3161,7 +3200,10 @@
     "type": "Shared",
     "act": null,
     "description": "Ogromny głaz leży na samym środku porzuconego cmentarza.\n\nJest podpisany tabliczką:\n[gold][b]Głaz Wszech Czasów[/b][/gold].\n\nJego kształt i dekoracje wskazują na to, że cmentarz był zbudowany dookoła tego [blue]Głazu[/blue] i nikt go nigdy stamtąd nie przeniósł.",
-    "preconditions": null,
+    "preconditions": [
+      "Act 2 only",
+      "Requires at least one potion"
+    ],
     "options": [
       {
         "id": "LIFT",
@@ -3315,7 +3357,9 @@
     "type": "Shared",
     "act": null,
     "description": "Podczas swojej podróży napotykasz się na mroczny, bezkształtny polip. Można wyczuć, że jest prastarym wcieleniem zła.\n\n[sine]Podejdź...[/sine]",
-    "preconditions": null,
+    "preconditions": [
+      "Act 2+"
+    ],
     "options": [
       {
         "id": "APPROACH_LOCKED",
@@ -3676,7 +3720,10 @@
     "type": "Shared",
     "act": null,
     "description": "Napotykasz się na słabo oświetloną chatę, w której panuje bardzo spokojna atmosfera.\n\nW środku mężczyzna prezentuje ci mnóstwo przeróżnych odmian [green]herbat[/green], a na każdej z nich widać [gold]wysoką cenę[/gold].",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 150+ gold",
+      "Act 1–2 only"
+    ],
     "options": [
       {
         "id": "BONE_TEA",
@@ -4267,7 +4314,10 @@
     "type": "Shared",
     "act": null,
     "description": "Tuż po wejściu do ciemnej komnaty drzwi za tobą niespodziewanie się zamykają.\n\nŚwiatło przebija się z sufitu i oświetla przed tobą podium, na którym leży mapa. Czujesz, że musisz ją wziąć.\n\nPodejrzane.",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 10+ HP",
+      "Act 1 only"
+    ],
     "options": [
       {
         "id": "NAB_THE_MAP",
@@ -4635,7 +4685,9 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "Znajdujesz ustronne [gold]Obozowisko[/gold] i rozpalasz [orange]ognisko[/orange], aby trochę odpocząć.\nA przynajmniej taki był plan.\n\nRozpalony ogień zamiast się unosić, rozszerza się [sine]na boki[/sine] w kierunku [purple]drzew przesączonych olejem[/purple].\n\nCzy chcesz spróbować odpocząć mimo to?",
-    "preconditions": null,
+    "preconditions": [
+      "Requires ≤70% HP"
+    ],
     "options": [
       {
         "id": "REST",
@@ -4947,7 +4999,9 @@
     "type": "Event",
     "act": "Underdocks",
     "description": "Starasz się przebrnąć przez mroczne przejścia, ale natrafiasz na [aqua]zwiędłą postać[/aqua] prowadzącą mały sklep. Półki są [sine]wypełnione[/sine] wilgotnymi zwojami i pergaminami.\n\nNa widok klienta [aqua]sklepikarz-skryba[/aqua] nagle się ożywia i wskazuje na [gold]przyrządy[/gold] ułożone na ladzie.",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 55+ gold"
+    ],
     "options": [
       {
         "id": "BLOODY_INK",
@@ -5027,7 +5081,10 @@
     "type": "Shared",
     "act": null,
     "description": "„Witamy w Wongo's, codziennie Wongastyczne ceny”, mówi pozbawiony entuzjazmu sprzedawca.\n\n„Proszę zapoznać się z naszą ofertą i życzymy udanych zakupów”, mówi dalej bez spoglądania w górę.",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 100+ gold",
+      "Act 2 only"
+    ],
     "options": [
       {
         "id": "BARGAIN_BIN",
@@ -5177,7 +5234,9 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "Przedostając się przez [red]las martwych drzew[/red], napotykasz samotne drzewo, blade niczym kości. Gliniane żołędzie zwisają z jego gałęzi, które trochę przypominają żebra, przez to jak są powyginane.\n\nCo za [purple]upiorne drzewo[/purple]. Szepcze coś do ciebie.\n\n[sine][blue]...Złoto......[/blue][/sine]",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 44+ gold"
+    ],
     "options": [
       {
         "id": "GOLD",
@@ -5223,7 +5282,9 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "Otwierasz zakurzone pudło, w którym znajduje się zestaw trzech szczegółowo wyrzeźbionych figurek:\n\nPtak, wąż i... torus?\n\nPobliski piedestał ma wcięcie, które pasuje do spodu każdej figurki. Którą z nich zamierzasz tam umieścić?",
-    "preconditions": null,
+    "preconditions": [
+      "Requires a removable basic card"
+    ],
     "options": [
       {
         "id": "BIRD",
@@ -5293,7 +5354,9 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": "Wpadasz w pajęczynę, przez co zaczynasz [jitter][red]PANIKOWAĆ[/red][/jitter]!\nChwilę później uderza cię [sine][blue]fala spokoju[/blue][/sine]...\n\n[sine]„Spokojnie, przestań niszczyć mi sieć”.[/sine]\n\nUspokajasz się zaskakująco szybko.\n[orange]Maleńki[/orange] pająk opuszcza się na pajęczej nici, aby się z tobą zobaczyć. Wygląda na to, że może się z tobą podzielić swoimi technikami za kilka sztuk [gold]złota[/gold].",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 125+ gold"
+    ],
     "options": [
       {
         "id": "BREATHING_TECHNIQUES",

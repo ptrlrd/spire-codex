@@ -243,7 +243,10 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": "[b][jitter]ガァン！ ガァン！！！ [/jitter][/b]\n\n壁の向こうから、金属が激しくぶつかり合う音が響いてくる……\n\n様子をうかがおうと壁に耳を当てた途端、壁が開き、せわしなく働く[orange]六本腕を持つ巨人[/orange]が姿を現した。\nその「顔」の部分には、[gold][sine]発光する印の渦[/sine][/gold]がうごめいている。\n\n「[aqua]高みへと昇る[/aqua]志を持つ者よ、我が工房を見つけおったか。 さあ、[jitter]融合[/jitter]の時間だ！」",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 2+ Strikes in deck",
+      "Requires 2+ Defends in deck"
+    ],
     "options": [
       {
         "id": "COMBINE_STRIKES",
@@ -391,7 +394,9 @@
     "type": "Shared",
     "act": null,
     "description": "[jitter]*ブスッ*[/jitter]\n\n頭のてっぺんに鋭い痛みが走ったかと思うと、脳内に直接、奇妙な声が響いてきた。\n\n[purple][sine]「知識ヲ、共有スル？？」[/sine][/purple]\n\nさて、どうしたものか……",
-    "preconditions": null,
+    "preconditions": [
+      "Act 1–2 only"
+    ],
     "options": [
       {
         "id": "SHARE_KNOWLEDGE",
@@ -487,7 +492,9 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "巨大な[jitter][red]よろよろ歩く獣[/red][/jitter]が、傷ついた[green][sine]グリーン・ビャード[/sine][/green]を追い散らす場面に遭遇した。\n\nビャードが逃げ去ったあとの窪みには、[gold]無防備な卵がひとつ[/gold]、ぽつんと残されている。\n\n[sine]あなたのお腹がぐうと鳴った……。 [/sine]",
-    "preconditions": null,
+    "preconditions": [
+      "Cannot have an event pet"
+    ],
     "options": [
       {
         "id": "EAT",
@@ -605,7 +612,9 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": "[red][jitter]骨の山[/jitter][/red]の上に、[green]巨大な花[/green]が咲き誇っている。\n\n[sine]さまざまに色を変える花びら[/sine]が脈動し、あなたはその中心部に[aqua]強大な力を持つ花粉の塊[/aqua]があるのを感じ取った。 だが、うねる花びらは[red]カミソリのように鋭く[/red]、動きが読めない。\n\n[gold]黄金の蜜[/gold]を採取するだけで良しとすべきだろう。 だが、中心にあるお宝にも心を惹かれる……",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 19+ HP"
+    ],
     "options": [
       {
         "id": "EXTRACT_CURRENT_PRIZE_1",
@@ -687,7 +696,10 @@
     "type": "Shared",
     "act": null,
     "description": "[sine][blue]「ここに来ることは、すでに視えておったぞ……！」[/blue][/sine]\n\n[purple]神秘的な小屋[/purple]に入ると、[jitter]しわがれた[/jitter]声が響いてきた。\n\n[sine][blue]「運命がお主をここへと導いたのじゃ。 そして今、未来と運勢を明らかにせねばならぬ。 我らすべてを救うために！！」[/blue][/sine]\n「さあ、[gold]水晶占い[/gold]のコースを選んでおくれ。 この免責事項にもサインを頼むぞい」老婆はそう言って、ペンと羊皮紙を取り出した。",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 100+ gold",
+      "Act 2+"
+    ],
     "options": [
       {
         "id": "UNCOVER_FUTURE",
@@ -997,7 +1009,9 @@
     "type": "Shared",
     "act": null,
     "description": "あなたは隠し部屋に足を踏み入れた……\n\n部屋中が人形で埋め尽くされている。 一つとして同じものはなく、その表情は[green]喜び[/green]から[purple]悲哀[/purple]まで様々だ。 着ている服は時代が数世紀に渡ってバラバラで、異界の物とすら思われるものもある。\n\n次第に、[sine][blue]合唱のようなささやき声[/blue][/sine]は大きくなり、やがて[jitter][red]絶叫[/red][/jitter]となって、我先にとあなたを求めるようになった……\n\nどれか一つを選び、一刻も早く立ち去らなければ。",
-    "preconditions": null,
+    "preconditions": [
+      "Act 2 only"
+    ],
     "options": [
       {
         "id": "RANDOM",
@@ -1168,7 +1182,9 @@
     "type": "Event",
     "act": "Underdocks",
     "description": "あなたは派手な看板を掲げた小屋に足を踏み入れた。 傾いた看板にはこう書いてある――\n[aqua]「大食い食堂『無限の宴』――お代は空腹に応じて」[/aqua]\n\n中に入ると、[orange]すらっとした多腕のシェフ[/orange]が、器用に[green]一口サイズの料理[/green]を作り、[sine]うねうね動く甲殻でできたベルト[/sine]に乗せている。\n\nシェフの腕の1本が、看板を指差した。\n全品 1皿 [blue]40[/blue][gold]ゴールド[/gold]",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 120+ gold"
+    ],
     "options": [
       {
         "id": "OBSERVE_CHEF",
@@ -1266,7 +1282,11 @@
     "type": "Shared",
     "act": null,
     "description": "A suspicious merchant offers 9 fake relics at 42–58 gold each. Throwing a [gold]Foul Potion[/gold] starts a fight against The Merchant??? (165 HP). Winning rewards [gold]Fake Merchant's Rug[/gold] plus all unsold relics.",
-    "preconditions": null,
+    "preconditions": [
+      "Act 2+",
+      "Single player only",
+      "Requires 100+ gold or a Foul Potion"
+    ],
     "options": null,
     "pages": null
   },
@@ -1566,7 +1586,9 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "不自然な青い光に包まれた空き地に足を踏み入れた。 そびえ立つキノコたちが発光して脈打ち、その傘は膨れ上がりテカテカと光っている。 近づくと、菌類たちは胸の奥まで響くような[sine][purple]心をかき乱すメロディ[/purple][/sine]を奏で始めた。\n\nあなたは一番大きなキノコの中に何かが埋まっていることに気づいた。 それは菌類の歌のリズムに合わせて[sine]脈動しながら[/sine]光っている。",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 100-149 gold"
+    ],
     "options": [
       {
         "id": "REACH_INTO_THE_FLESH",
@@ -1622,7 +1644,9 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "[green]水晶の木々[/green]が生い茂る木立ちに入ると、木々が[jitter]興奮したように震え[/jitter]始めた！\n木々の中から[aqua]モーフィック[/aqua]の群れが[jitter]飛び出し[/jitter]、[sine]挨拶と歓迎の言葉[/sine]の声であなたを迎える。\n\nその中の一体の[aqua]モーフィック[/aqua]だけが隅でそわそわしており、明らかに他の者たちほど社交的ではないようだ。\n\n群れの方に向かうか、それとも独りぼっちの方に近づこうか？",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 100+ gold"
+    ],
     "options": [
       {
         "id": "GROUP",
@@ -2413,7 +2437,9 @@
     "type": "Shared",
     "act": null,
     "description": "あたりに[sine]酸っぱい[/sine]臭いが漂う中、すぐ近くの床に[gold]ポーションの運び屋[/gold]が倒れているのを発見した。\n動かないし、息もしていない。 [jitter]死んでる！？ [/jitter]\n所持品は物色された後だったが、[green][sine]悪臭を放つポーション[/sine][/green]のセットが残されていた。 メモにはこうある――「受取人: 商人」。",
-    "preconditions": null,
+    "preconditions": [
+      "Act 2+"
+    ],
     "options": [
       {
         "id": "GRAB_POTIONS",
@@ -2512,7 +2538,10 @@
     "type": "Shared",
     "act": null,
     "description": "[purple]これまで見たこともないぐらいに年老いた人物[/purple]が、あなたに近づいてきた。\n[sine]「また会ったな…… 私だ、ランウィッドだ！」[/sine]\n\nあなたはこの男に全く見覚えがない。",
-    "preconditions": null,
+    "preconditions": [
+      "Act 2+",
+      "Requires at least one potion"
+    ],
     "options": [
       {
         "id": "POTION",
@@ -2638,7 +2667,10 @@
     "type": "Shared",
     "act": null,
     "description": "角を曲がると、影を纏った人影に出くわした。 男はこちらへ向き直る。\n\n「ウェルカム！ 何が必要だ？」\n男がそう言って上着を広げると、[sine][purple]怪しげな品々[/purple][/sine]がズラリと並んでいた。",
-    "preconditions": null,
+    "preconditions": [
+      "Act 2+",
+      "Requires 5+ tradeable relics"
+    ],
     "options": [
       {
         "id": "TOP",
@@ -2690,7 +2722,9 @@
     "type": "Shared",
     "act": null,
     "description": "この部屋は[b][jitter]チーズ[/jitter][/b]だらけだ！！！\n\n罠がないか周囲を見渡すと、天井には…… そう、[b]チーズ[/b]だ。 どうやら部屋のロウソクも[b]チーズ[/b]らしい。 家具も[b]チーズ[/b]だ。\n突然、背後のドアがバタンと閉まった。\n\nもちろんそれも[b]チーズ[/b]だ。",
-    "preconditions": null,
+    "preconditions": [
+      "Act 1–2 only"
+    ],
     "options": [
       {
         "id": "GORGE",
@@ -2736,7 +2770,9 @@
     "type": "Event",
     "act": "Act 3 - Glory",
     "description": "[blue]「ガラロット卿」[/blue]に宛てたティーパーティーへの[orange]招待状[/orange]を拾ったあなたは、彼の代わりに顔を出してみることにした。\n\n質素な円形ホールに入ると、そこには[gold]指揮官[/gold]、[aqua]将軍[/aqua]、[red]武将[/red]、そして[blue]傭兵[/blue]たちが集まり…… 紅茶を楽しんでいるようだ。\n[gold]黄金の冠[/gold]をかぶった巨大な騎士が口を開く。\n\n[jitter]「貴殿よ、[b]ティータイム[/b]に遅刻するとは何事だ！！」[/jitter]",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 12+ HP"
+    ],
     "options": [
       {
         "id": "ENJOY_TEA",
@@ -2947,7 +2983,10 @@
     "type": "Shared",
     "act": null,
     "description": "ぐらつく木の橋を渡っていると、突然[blue][jitter]どしゃぶりの雨[/jitter][/blue]に見舞われた。 [purple][sine]すさまじい突風[/sine][/purple]が容赦なく吹き付け、旅の終わりへ誘おうとしている。",
-    "preconditions": null,
+    "preconditions": [
+      "Floor 7+",
+      "Requires removable cards in deck"
+    ],
     "options": [
       {
         "id": "OVERCOME",
@@ -3169,7 +3208,10 @@
     "type": "Shared",
     "act": null,
     "description": "廃墟と化した中庭の真ん中に、巨大な岩が鎮座している。\n\n銘板にはこう書かれている：\n[gold][b]悠久の石[/b][/gold]。\n\nその存在感や形、装飾から察するに、この中庭はこの[blue]石[/blue]を中心に造られたのだろう。 石はここから一度も動いたことがないことが伺える。",
-    "preconditions": null,
+    "preconditions": [
+      "Act 2 only",
+      "Requires at least one potion"
+    ],
     "options": [
       {
         "id": "LIFT",
@@ -3327,7 +3369,9 @@
     "type": "Shared",
     "act": null,
     "description": "冒険の途中、暗くて形を成していない肉塊に遭遇した。 そこからは、途方もない時を経た、邪悪な気配が漂っている。\n\n[sine]こっちに来い…… [/sine]",
-    "preconditions": null,
+    "preconditions": [
+      "Act 2+"
+    ],
     "options": [
       {
         "id": "APPROACH_LOCKED",
@@ -3688,7 +3732,10 @@
     "type": "Shared",
     "act": null,
     "description": "薄暗い小屋に足を踏み入れると、そこは静謐な空間だった。 異様なまでに多種多様な茶葉が並んでいる。\n\n中にいた男が、[green]茶葉[/green]の数々を無言で指し示した。 それぞれに[gold]高額な値段[/gold]が書かれたラベルが貼られている。",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 150+ gold",
+      "Act 1–2 only"
+    ],
     "options": [
       {
         "id": "BONE_TEA",
@@ -4279,7 +4326,10 @@
     "type": "Shared",
     "act": null,
     "description": "真っ暗な部屋に入ると、背後で扉が勢いよく閉まった。 同時に、頭上から一筋の光が差し込む。\n\n光に照らされた台座の上には、一枚の地図が置かれている。 まるでそれを手に取れと言っているかのようだ。\n\n実に怪しい。",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 10+ HP",
+      "Act 1 only"
+    ],
     "options": [
       {
         "id": "NAB_THE_MAP",
@@ -4647,7 +4697,9 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "人里離れた[gold]休憩所[/gold]を見つけ、少し休もうと[orange]火[/orange]をおこすことにした。\n…… そう思ったのも束の間だ。\n\n火は燃え上がると、上ではなく[sine]横[/sine]へと大きくなり、[purple]油が滲み出る木々[/purple]の木立ちへと向かっていく。\n\nそれでも休んで大丈夫だろうか？",
-    "preconditions": null,
+    "preconditions": [
+      "Requires ≤70% HP"
+    ],
     "options": [
       {
         "id": "REST",
@@ -4959,7 +5011,9 @@
     "type": "Event",
     "act": "Underdocks",
     "description": "暗い通路を進んでいくと、小さな店で働く[aqua]しわがれた人物[/aqua]に出くわした。 たくさんの棚には、湿気を帯びた巻物や羊皮紙が[sine]詰め込まれている[/sine]。\n\n客の来店に気づいた[aqua]筆写人[/aqua]は、ぴしっと姿勢を正し、机の上に並べられたいくつかの[gold]道具[/gold]を指し示した。",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 55+ gold"
+    ],
     "options": [
       {
         "id": "BLOODY_INK",
@@ -5039,7 +5093,10 @@
     "type": "Shared",
     "act": null,
     "description": "「ウォンゴズへようこそ。 お求めの商品をウォンタスティックな価格で取り揃えております」――これまで見たこともないほど無気力な店員が言った。\n\n「どうぞ商品をご覧になって、当店でのお買い物をお楽しみください」店員は顔を上げることもなく、棒読みで続けた。",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 100+ gold",
+      "Act 2 only"
+    ],
     "options": [
       {
         "id": "BARGAIN_BIN",
@@ -5189,7 +5246,9 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "[red]枯れ木が立ち並ぶ窪地[/red]を抜けていくと、一本の骨のように白い木に行き当たった。 まるで肋骨のように内側へ湾曲した枝には、粘土でできた飾りがぶら下がっている。\n\nこの[purple]おぞましい木[/purple]が、あなたに向かって囁きかけてきた。\n\n[sine][blue]…… 取引を…… しよう…… [/blue][/sine]",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 44+ gold"
+    ],
     "options": [
       {
         "id": "GOLD",
@@ -5235,7 +5294,9 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "ほこりまみれの箱を開けると、中には精巧な3つの木彫りが入っていた。\n\n鳥、ヘビ、そして…… ドーナツ型？\n\nすぐそばにある台座には、木彫りの底の形とぴったり合うくぼみが空いている。 どの木彫りを台座に置こうか？",
-    "preconditions": null,
+    "preconditions": [
+      "Requires a removable basic card"
+    ],
     "options": [
       {
         "id": "BIRD",
@@ -5305,7 +5366,9 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": "顔にクモの巣が引っかかり、あなたは[jitter][red]パニック[/red][/jitter]に陥った！\nしかし次の瞬間、不思議な[sine][blue]静寂の波[/blue][/sine]が、あなたの心をスッと落ち着かせる……。\n\n[sine]「落ち着き給え。 私の巣を荒らすのはよしてくれないか」[/sine]\n\nなぜこんなにすぐ冷静になれたのだろう？\n見ると、[orange]小さな[/orange]クモが糸を伝ってスルスルと降りてきた。 どうやら[gold]ゴールド[/gold]を支払えば、彼が特別な“ゼン”の技術を授けてくれるようだ。",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 125+ gold"
+    ],
     "options": [
       {
         "id": "BREATHING_TECHNIQUES",

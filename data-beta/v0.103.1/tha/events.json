@@ -243,7 +243,10 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": null,
-    "preconditions": null,
+    "preconditions": [
+      "Requires 2+ Strikes in deck",
+      "Requires 2+ Defends in deck"
+    ],
     "options": [
       {
         "id": "COMBINE_STRIKES",
@@ -336,7 +339,9 @@
     "type": "Shared",
     "act": null,
     "description": "[jitter]*จี๊ด*[/jitter]\n\nคุณรู้สึกถึงความเจ็บแปลบบริเวณศีรษะ และมีความคิดพุ่งเข้าหัวคุณ\n\n[purple][sine]“แบ่งปันความรู้กันไหม???”[/sine][/purple]\n\nคุณไม่แน่ใจว่าควรทำอย่างไร...",
-    "preconditions": null,
+    "preconditions": [
+      "Act 1–2 only"
+    ],
     "options": [
       {
         "id": "SHARE_KNOWLEDGE",
@@ -432,7 +437,9 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": null,
-    "preconditions": null,
+    "preconditions": [
+      "Cannot have an event pet"
+    ],
     "options": [
       {
         "id": "EAT",
@@ -550,7 +557,9 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": "มี[green]ดอกไม้มหึมา[/green]เติบโตอยู่บน[red][jitter]กองภูเขากระดูก[/jitter][/red]\n\nในขณะที่[sine]กลีบดอกเปลี่ยนสีได้[/sine]กำลังขยับเป็นช่วงๆ คุณก็สัมผัสได้ว่ามี[aqua]กองเกสรทรงพลัง[/aqua]อยู่ใจกลาง แต่กลีบดอกที่ขยับขึ้นลงอยู่นั้น[red]แหลมคมมาก[/red]และคาดเดาไม่ได้\n\nคุณสามารถเก็บ[gold]น้ำหวานทองคำ[/gold]ได้ แต่รางวัล ณ ใจกลางก็เย้ายวนใจเหลือเกิน...",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 19+ HP"
+    ],
     "options": [
       {
         "id": "EXTRACT_CURRENT_PRIZE_1",
@@ -623,7 +632,10 @@
     "type": "Shared",
     "act": null,
     "description": "[sine][blue]“แม่หมอทำนายไว้แล้วว่าลูกจะเข้ามา...!”[/blue][/sine]\n\nเสียง[jitter]แหบแห้ง[/jitter]เรียกหาคุณตอนคุณเดินเข้า[purple]กระท่อมผู้วิเศษ[/purple]\n\n[sine][blue]“โชคชะตานำพาลูกมาที่นี่ เราต้องค้นหาอนาคตและโชคลางของลูก เพื่อที่ลูกจะได้ช่วยเราทั้งหมดให้รอด!!”[/blue][/sine]\n“เอาล่ะ นี่คือทางเลือกในการดูดวงผ่าน[gold]ลูกแก้ววิเศษ[/gold] อย่าลืมเซ็นชื่อยินยอมรับความเสี่ยงด้วยล่ะ” เธอพูดขณะหยิบปากกาและกระดาษหนังออกมา",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 100+ gold",
+      "Act 2+"
+    ],
     "options": [
       {
         "id": "UNCOVER_FUTURE",
@@ -760,7 +772,9 @@
     "type": "Shared",
     "act": null,
     "description": "คุณเข้าไปยังห้องลับ...\n\nมีตุ๊กตาเรียงแถวเต็มไปหมด แต่ละตัวมีเอกลักษณ์ไม่เหมือนใคร สีหน้าของมันมีตั้งแต่[green]สุขสันต์[/green]ยัน[purple]เศร้าหมอง[/purple]เครื่องแต่งกายของแต่ละตัวมีหลากหลายยุคหลายศตวรรษ และหลายโลกเกินกว่าที่คุณจะรับรู้\n\n[sine][blue]เสียงกระซิบประสานกัน[/blue][/sine]ดังขึ้นเรื่อยๆ จนกระทั่ง[jitter][red]พวกตุ๊กตาเริ่มตะโกน[/red][/jitter]ใส่กันและกัน และเรียกหาคุณ...\n\nคุณต้องเลือกตัวเดียวและรีบออกไปทันที",
-    "preconditions": null,
+    "preconditions": [
+      "Act 2 only"
+    ],
     "options": [
       {
         "id": "RANDOM",
@@ -906,7 +920,9 @@
     "type": "Event",
     "act": "Underdocks",
     "description": "คุณโซซัดโซเซเข้าไปในกระท่อม ที่มีป้ายสว่างไสวแต่บิดเบี้ยว เขียนไว้ว่า:\n[aqua]“อร่อยไม่หยุด - สุดที่การจ่าย!”[/aqua]\n\nด้านในมี[orange]เชฟหลายแขนร่างเพรียวผอม[/orange]กำลังเตรียม[green]อาหารนานาชนิด[/green]อย่างช่ำชอง และวางลงบน[sine]สายพานคดเคี้ยวที่ทำจากเปลือกแข็งของสัตว์ทะเล[/sine].\n\nแขนข้างหนึ่งของเชฟชี้ไปที่ป้าย:\nจานละ [blue]40[/blue] [gold]ทอง[/gold]",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 120+ gold"
+    ],
     "options": [
       {
         "id": "OBSERVE_CHEF",
@@ -1004,7 +1020,11 @@
     "type": "Shared",
     "act": null,
     "description": "A suspicious merchant offers 9 fake relics at 42–58 gold each. Throwing a [gold]Foul Potion[/gold] starts a fight against The Merchant??? (165 HP). Winning rewards [gold]Fake Merchant's Rug[/gold] plus all unsold relics.",
-    "preconditions": null,
+    "preconditions": [
+      "Act 2+",
+      "Single player only",
+      "Requires 100+ gold or a Foul Potion"
+    ],
     "options": null,
     "pages": null
   },
@@ -1184,7 +1204,9 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": null,
-    "preconditions": null,
+    "preconditions": [
+      "Requires 100-149 gold"
+    ],
     "options": [
       {
         "id": "REACH_INTO_THE_FLESH",
@@ -1210,7 +1232,9 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": null,
-    "preconditions": null,
+    "preconditions": [
+      "Requires 100+ gold"
+    ],
     "options": [
       {
         "id": "LONER",
@@ -1387,7 +1411,9 @@
     "type": "Shared",
     "act": null,
     "description": null,
-    "preconditions": null,
+    "preconditions": [
+      "Act 2+"
+    ],
     "options": [
       {
         "id": "RANSACK",
@@ -1456,7 +1482,10 @@
     "type": "Shared",
     "act": null,
     "description": "[purple]บุคคลที่แก่หงำเหงือกที่สุดที่คุณเคยเจอมา[/purple]เคลื่อนตัวเข้ามาหาคุณ\n[sine]“เราเจอกันอีกแล้วนะ... ฉันเอง แรนวิดไงล่ะ!”[/sine]\n\nคุณไม่รู้จักชายผู้นี้",
-    "preconditions": null,
+    "preconditions": [
+      "Act 2+",
+      "Requires at least one potion"
+    ],
     "options": [
       {
         "id": "POTION",
@@ -1582,7 +1611,10 @@
     "type": "Shared",
     "act": null,
     "description": "คุณเลี้ยวตรงหัวมุม และทันใดนั้น ร่างเงาก็ยืนอยู่ตรงนั้น เขาหันมาหาคุณ\n\n“ยินดีต้อนรับ! มีอะไรมาแลกล่ะ?”\nร่างนั้นซักถามพร้อมกับเปิดผ้าคลุมของเขาออกมา เผยให้เห็น[sine][purple]สินค้าน่าสงสัย[/purple][/sine]ชุดหนึ่ง",
-    "preconditions": null,
+    "preconditions": [
+      "Act 2+",
+      "Requires 5+ tradeable relics"
+    ],
     "options": [
       {
         "id": "TOP",
@@ -1634,7 +1666,9 @@
     "type": "Shared",
     "act": null,
     "description": "ห้องนี้เต็มไปด้วย[b][jitter]ชีส!!![/jitter][/b]\n\nคุณมองไปรอบๆ เพื่อดูว่ามีกับดักไหม และด้านบนคุณมี... [b]ชีส[/b]อีกแล้ว บรรดาเทียนไขในห้องนี้ก็ดูทำจาก[b]ชีส[/b] เฟอร์นิเจอร์ต่างๆ ก็เป็น[b]ชีส[/b]\nทันใดนั้น ประตูด้านหลังคุณก็ปิดแรงๆ\n\nประตูก็[b]ชีส[/b]",
-    "preconditions": null,
+    "preconditions": [
+      "Act 1–2 only"
+    ],
     "options": [
       {
         "id": "GORGE",
@@ -1680,7 +1714,9 @@
     "type": "Event",
     "act": "Act 3 - Glory",
     "description": null,
-    "preconditions": null,
+    "preconditions": [
+      "Requires 12+ HP"
+    ],
     "options": [
       {
         "id": "ENJOY_TEA",
@@ -1851,7 +1887,10 @@
     "type": "Shared",
     "act": null,
     "description": "ขณะกำลังข้ามสะพานไม้โยกเยก จู่ๆ ก็มี[blue][jitter]ฝนตกหนัก[/jitter][/blue] [purple][sine]ลมกระโชกแรง[/sine][/purple]ซัดใส่คุณราวกับขู่เข็ญให้คุณยุติการเดินทาง",
-    "preconditions": null,
+    "preconditions": [
+      "Floor 7+",
+      "Requires removable cards in deck"
+    ],
     "options": [
       {
         "id": "OVERCOME",
@@ -2023,7 +2062,10 @@
     "type": "Shared",
     "act": null,
     "description": "ศิลาขนาดใหญ่ตั้งอยู่กลางลานกว้างร้าง\n\nแผ่นป้ายโลหะเขียนว่า:\n[gold][b]ศิลาตลอดกาล[/b][/gold].\n\nสภาพ รูปร่าง และของประดับประดา ชี้ให้เห็นว่าลานกว้างแห่งนี้ถูกสร้างขึ้นโดยมี[blue]ศิลา[/blue]นี้เป็นหลัก และมันไม่เคยถูกย้ายไปจากตำแหน่งนี้เลย",
-    "preconditions": null,
+    "preconditions": [
+      "Act 2 only",
+      "Requires at least one potion"
+    ],
     "options": [
       {
         "id": "LIFT",
@@ -2152,7 +2194,9 @@
     "type": "Shared",
     "act": null,
     "description": null,
-    "preconditions": null,
+    "preconditions": [
+      "Act 2+"
+    ],
     "options": [
       {
         "id": "APPROACH_LOCKED",
@@ -2294,7 +2338,10 @@
     "type": "Shared",
     "act": null,
     "description": null,
-    "preconditions": null,
+    "preconditions": [
+      "Requires 150+ gold",
+      "Act 1–2 only"
+    ],
     "options": [
       {
         "id": "BONE_TEA",
@@ -2429,7 +2476,10 @@
     "type": "Shared",
     "act": null,
     "description": null,
-    "preconditions": null,
+    "preconditions": [
+      "Requires 10+ HP",
+      "Act 1 only"
+    ],
     "options": [
       {
         "id": "SLOWLY_FIND_AN_EXIT",
@@ -2652,7 +2702,9 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "คุณพบ[gold]จุดพัก[/gold]เงียบสงบและ[orange]จุดไฟ[/orange]เพื่อเตรียมพักผ่อน\nคุณคิดเช่นนั้น แต่ว่า...\n\nเมื่อไฟลุกแล้ว แทนที่มันจะพุ่งขึ้น มันกลับพุ่งออก[sine]ด้านข้าง[/sine]ไปยังป่าที่เต็มไปด้วย[purple]ต้นไม้ชุ่มน้ำมัน[/purple]\n\nคุณจะพยายามพักผ่อนต่อไหม?",
-    "preconditions": null,
+    "preconditions": [
+      "Requires ≤70% HP"
+    ],
     "options": [
       {
         "id": "REST",
@@ -2742,7 +2794,9 @@
     "type": "Event",
     "act": "Underdocks",
     "description": null,
-    "preconditions": null,
+    "preconditions": [
+      "Requires 55+ gold"
+    ],
     "options": [
       {
         "id": "BLOODY_INK",
@@ -2778,7 +2832,10 @@
     "type": "Shared",
     "act": null,
     "description": null,
-    "preconditions": null,
+    "preconditions": [
+      "Requires 100+ gold",
+      "Act 2 only"
+    ],
     "options": [
       {
         "id": "BARGAIN_BIN",
@@ -2870,7 +2927,9 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": null,
-    "preconditions": null,
+    "preconditions": [
+      "Requires 44+ gold"
+    ],
     "options": [
       {
         "id": "GOLD",
@@ -2891,7 +2950,9 @@
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": null,
-    "preconditions": null,
+    "preconditions": [
+      "Requires a removable basic card"
+    ],
     "options": [
       {
         "id": "BIRD",
@@ -2922,7 +2983,9 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": "คุณเดินผ่านใยแมงมุมและ[jitter][red]เสียขวัญ[/red][/jitter]!\nแต่แล้วก็มี[sine][blue]คลื่นแห่งความสงบ[/blue][/sine]ซัดใส่คุณ...\n\n[sine]“ใจเย็นๆ ฉันอยากให้คุณเลิกทำลายใยของฉัน”[/sine]\n\nทำไมคุณถึงสงบใจลงได้เร็วนัก?\nแมงมุม[orange]เล็กจิ๋ว[/orange]โรยตัวลงมาพบคุณ ดูเหมือนว่ามันอยากจะถ่ายทอดวิชาให้โดยแลกกับ[gold]ทอง[/gold]",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 125+ gold"
+    ],
     "options": [
       {
         "id": "BREATHING_TECHNIQUES",
