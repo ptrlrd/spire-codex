@@ -82,8 +82,12 @@ spire-codex/
       guides/page.tsx        # Community guides list with search/filter
       guides/[slug]/         # Guide detail with markdown rendering + tooltip widget
       guides/submit/         # Guide submission form → Discord webhook
-      runs/page.tsx          # Community run browser + submission
-      meta/page.tsx          # Live community stats from submitted runs
+      leaderboards/page.tsx  # Three-tab browser — Fastest Wins, Highest Ascension, Browse Runs
+      leaderboards/submit/   # Drag-and-drop .run upload
+      leaderboards/stats/    # Ranked-table stats (cards/relics/potions/encounters pick + win rates)
+      runs/[hash]/           # Shared-run detail — in-game-style summary with TinyCard grid, clickable map nodes
+      runs/page.tsx          # Redirect to /leaderboards (old URL preserved)
+      meta/page.tsx          # Redirect to /leaderboards/stats (old URL preserved)
       showcase/page.tsx      # Community project gallery
       developers/page.tsx    # API docs, widget docs, data exports
       timeline/page.tsx reference/page.tsx images/page.tsx
@@ -94,12 +98,19 @@ spire-codex/
         CardGrid.tsx         # Card grid with inline icons, upgrade rendering
         RichDescription.tsx  # Tokenizer + tree builder for nested rich text tags
         SearchFilter.tsx     # Reusable search + filter + sort bar
+        SearchTrigger.tsx    # Input-styled trigger for the global search modal (hero/nav/icon variants)
+        GlobalSearch.tsx     # Centralized cmd-K–style search modal (opens on ".")
+        TinyCard.tsx         # In-game card thumbnail primitive — 6-layer mask composite, pool/rarity colors from decompiled C#
         JsonLd.tsx           # Server component for JSON-LD
-        Navbar.tsx           # In-game compendium names (Card Library, Bestiary, etc.)
+        Navbar.tsx           # Nav groups (Database, Game Info, Tools, About) + middle search on non-home pages
         Footer.tsx           # API, Developers, GitHub, Discord, Feedback
         LocalizedNames.tsx   # Collapsible cross-language name display
         EntityHistory.tsx    # Collapsible version history timeline
         RelatedCards.tsx     # Cards sharing keywords/tags
+      runs/[hash]/
+        RunSummary.tsx       # In-game-style summary — stats bar + act rows + relic strip + TinyCard grid
+        RunPills.tsx         # CardPill / RelicPill / PotionPill — hover tooltips with full entity info
+        SharedRunClient.tsx  # Run hash loader + top-level layout
     lib/
       api.ts                # API client + TypeScript interfaces (with compendium_order)
       seo.ts                # stripTags, SITE_URL, SITE_NAME, DEFAULT_OG_IMAGE
@@ -134,16 +145,16 @@ spire-codex/
   docker-compose.beta.yml   # Beta site (beta.spire-codex.com, :beta images + data-beta)
 ```
 
-## Data Parsed
+## Data Parsed (stable — beta counts may vary)
 - **576 cards** — cost, type, rarity, target, damage, block, keywords, tags, upgrades, X-cost, vars, resolved descriptions, compendium_order
 - **5 characters** — Ironclad, Silent, Defect, Necrobinder, Regent (HP, gold, energy, deck, relics)
-- **289 relics** — rarity, pool (with upgraded starter relic mapping from TouchOfOrobas), compendium_order
-- **111 monsters** — HP ranges, ascension scaling, moves, damage values, hit counts, innate powers (42 monsters), idle pose sprites
+- **293 relics** — rarity, pool (with upgraded starter relic mapping from TouchOfOrobas), compendium_order
+- **115 monsters** — HP ranges, ascension scaling, moves, damage values, hit counts, innate powers (42+ monsters), idle pose sprites
 - **63 potions** — rarity, pool, resolved descriptions, compendium_order
 - **22 enchantments** — card type restrictions, stackability, descriptions
 - **87 encounters** — monster compositions, room type, act placement, tags
-- **66 events** — multi-page decision trees, choices in C# source order, runtime-computed values (escalating costs, gold ranges)
-- **257 powers** — type (Buff/Debuff), stack type, descriptions (3 abstract bases excluded, 19 inherited powers resolved)
+- **66 events** — multi-page decision trees, choices in C# source order, runtime-computed values (escalating costs, gold ranges), preconditions (`IsAllowed` / `IRunState` bodies translated to human-readable strings)
+- **259 powers** — type (Buff/Debuff), stack type, descriptions (3 abstract bases excluded, 19 inherited powers resolved)
 - **8 keywords** — Exhaust, Ethereal, Innate, Retain, Sly, Eternal, Unplayable (+ Period)
 - **14 intents** · **5 orbs** · **9 afflictions** · **16 modifiers** · **33 achievements** (with unlock conditions, thresholds, categories)
 
@@ -167,7 +178,9 @@ spire-codex/
 - `GET /api/changelogs` / `GET /api/changelogs/{tag}` — Version changelogs
 - `GET /api/guides?category=&difficulty=&tag=&search=` / `GET /api/guides/{slug}` — Guides
 - `POST /api/guides` — Guide submission (Discord webhook, rate-limited)
-- `POST /api/runs` — Run submission / `GET /api/runs/list` / `GET /api/runs/shared/{hash}` / `GET /api/runs/stats`
+- `POST /api/runs` — Run submission / `GET /api/runs/list` (filters: character, win, username, seed, build_id, sort, page, limit) / `GET /api/runs/shared/{hash}` / `GET /api/runs/stats`
+- `GET /api/runs/leaderboard` — ranked wins-only list (category: fastest|highest_ascension, character, page, limit)
+- `GET /api/runs/versions` — distinct build_ids across submitted runs
 - `GET /api/languages` / `GET /api/translations`
 - All endpoints accept `?lang=` (default: eng) — 14 languages supported
 - Docs: `http://localhost:8000/docs`
@@ -293,7 +306,7 @@ Parallel deployment for Steam beta branch data. Uses same codebase/images but se
 
 ## Versioning
 Uses `1.X.Y` — 1=codex major, X=bumps on Mega Crit game patch, Y=our fixes/improvements.
-Current: **v1.0.17**
+Current: **v1.0.20**
 
 ## Known Limitations
 - 6 monsters lack images entirely (Crusher, Doormaker, Flyconid, Ovicopter, Rocket, Decimillipede)
@@ -331,6 +344,13 @@ Current: **v1.0.17**
 - ~~Achievement unlock conditions~~ ✅ — category, character, threshold, condition from C# source
 - ~~Card upgrade descriptions~~ ✅ — upgrade_description for all 403 upgradable cards
 - ~~Event dynamic values~~ ✅ — escalating costs, gold ranges, heal-to-full resolved correctly
+- ~~Event preconditions~~ ✅ — `IsAllowed` bodies translated to human-readable strings (gold thresholds, act restrictions, deck requirements); handles both `RunState` and `IRunState` signatures
+- ~~Monster attack patterns~~ ✅ — cycle/random/conditional move-machine parsing from `GenerateMoveStateMachine`
+- ~~Multi-version beta browsing~~ ✅ — versioned `data-beta/vX.Y.Z/` dirs with `latest` symlink, version-aware loader
+- ~~Leaderboards + run browser revamp~~ ✅ — `/leaderboards` 3-tab page (Fastest Wins, Highest Ascension, Browse), drag-and-drop submit, ranked-table stats replacing `/meta`, filter by seed/username/character/win/version/sort
+- ~~In-game-style run summary~~ ✅ — `/runs/[hash]` mimics the end-of-run screen with map-node rows, clickable encounter/event links, tiny-card deck grid
+- ~~TinyCard primitive + docs~~ ✅ — shared React component reproducing the in-game card thumbnail; live preview + recipes on `/developers`
+- ~~Search bar redesign~~ ✅ — hero search on home, middle-of-nav on other pages, icon-only on mobile
 - i18n refactor — migrate from manual t() calls to `next-intl` for complete translation coverage
   - Known gaps: compare graphs (keyword matching), merchant prose, about/changelog content, scattered client component strings
   - Current t() approach doesn't scale — hundreds of strings across dozens of components
