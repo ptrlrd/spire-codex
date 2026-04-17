@@ -33,17 +33,6 @@
     "image_url": "/static/images/enchantments/corrupted.webp"
   },
   {
-    "id": "FAVORED",
-    "name": "Privilegio",
-    "description": "Duplica el daño de ataque de esta carta.",
-    "description_raw": null,
-    "extra_card_text": null,
-    "card_type": "Attack",
-    "applicable_to": null,
-    "is_stackable": false,
-    "image_url": "/static/images/enchantments/favored.webp"
-  },
-  {
     "id": "GLAM",
     "name": "Glamour",
     "description": "Esta carta tiene [gold]Repetición[/gold] una vez por combate.",
@@ -77,9 +66,20 @@
     "image_url": "/static/images/enchantments/imbued.webp"
   },
   {
+    "id": "INKY",
+    "name": "Tinta",
+    "description": "Esta carta inflige [blue]2[/blue] de daño adicional y aplica [blue]1[/blue] de [gold]Debilidad[/gold].",
+    "description_raw": "Esta carta inflige [blue]{Damage}[/blue] de daño adicional y aplica [blue]{WeakPower}[/blue] de [gold]Debilidad[/gold].",
+    "extra_card_text": "Aplica [blue]1[/blue] de [gold]Debilidad[/gold] a TODOS los enemigos.",
+    "card_type": null,
+    "applicable_to": null,
+    "is_stackable": false,
+    "image_url": "/static/images/enchantments/inky.webp"
+  },
+  {
     "id": "INSTINCT",
     "name": "Instinto",
-    "description": "Disminuye el coste de esta carta en [blue]1[/blue].",
+    "description": "Duplica el daño de ataque de esta carta.",
     "description_raw": null,
     "extra_card_text": null,
     "card_type": "Attack",

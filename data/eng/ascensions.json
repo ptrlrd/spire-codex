@@ -38,8 +38,8 @@
   {
     "id": "LEVEL_06",
     "level": 6,
-    "name": "Gloom",
-    "description": "Less Rest Sites."
+    "name": "Inflation",
+    "description": "Removing cards from your deck at the Merchant is more expensive."
   },
   {
     "id": "LEVEL_07",

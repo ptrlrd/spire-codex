@@ -406,7 +406,7 @@
       {
         "id": "RIP",
         "title": "把它扯下来",
-        "description": "失去[red]5[/red]点生命值。获得一组无色卡牌奖励。"
+        "description": "失去[red]5[/red]点生命值。获得一次无色卡牌奖励。"
       }
     ],
     "pages": [
@@ -422,7 +422,7 @@
           {
             "id": "RIP",
             "title": "把它扯下来",
-            "description": "失去[red]5[/red]点生命值。获得一组无色卡牌奖励。"
+            "description": "失去[red]5[/red]点生命值。获得一次无色卡牌奖励。"
           }
         ]
       },
@@ -961,7 +961,7 @@
       {
         "id": "TRUDGE_ON",
         "title": "坚持跋涉",
-        "description": "从你的[gold]牌组[/gold]中移除一张牌。失去[red]11[/red]点生命。"
+        "description": "获得[blue]61-99[/blue] [gold]金币[/gold]。失去[red]8[/red]点生命。"
       },
       {
         "id": "REST",
@@ -977,7 +977,7 @@
           {
             "id": "TRUDGE_ON",
             "title": "坚持跋涉",
-            "description": "从你的[gold]牌组[/gold]中移除一张牌。失去[red]11[/red]点生命。"
+            "description": "获得[blue]61-99[/blue] [gold]金币[/gold]。失去[red]8[/red]点生命。"
           },
           {
             "id": "REST",
@@ -999,7 +999,7 @@
       },
       {
         "id": "TRUDGE_ON",
-        "description": "你一路劈砍，在丛林中硬生生砍出一条路来，但它似乎永无止境…\n\n你靠着[green]怪异的果实[/green]和[orange]嘎嘣脆的虫子[/orange]勉强维生，喝着[aqua]发光植物[/aqua]的花蜜，你开始觉得你自己有点[jitter][red]疑神疑鬼的…[/red][/jitter]\n\n不过，随后你发现了一片空地、一条小径，还有地上画着的一些地图。\n麻烦解决了。"
+        "description": "你一路劈砍，在丛林中硬生生砍出一条路来，但它似乎永无止境…\n\n你靠着[green]怪异的果实[/green]和[orange]嘎嘣脆的虫子[/orange]勉强维生，喝着[aqua]发光植物[/aqua]的花蜜，你开始觉得你自己有点[jitter][red]疑神疑鬼的…[/red][/jitter]\n\n不过，随后你发现了一片空地、一条小径，地上还有一些[gold]金币[/gold]。在金币中，还有一些画得相当潦草的地图！\n麻烦解决了。"
       }
     ]
   },
@@ -1181,9 +1181,9 @@
     "name": "无尽传送带",
     "type": "Event",
     "act": "Underdocks",
-    "description": "你走进一间挂着歪斜招牌的小木屋，招牌亮得发晃，上面写着：\n[aqua][b]“无尽盛宴—按饿付费！”[/b][/aqua]\n\n屋里，一位[orange]身形修长的多臂大厨[/orange]正熟练地准备着[green]一份份小食[/green]，并将它们摆在一条[sine]蜿蜒的几丁质传送带[/sine]上。\n\n大厨其中的一只手臂指向一块牌子：\n每份[blue]35[/blue][gold]金币[/gold]",
+    "description": "你走进一间挂着歪斜招牌的小木屋，招牌亮得发晃，上面写着：\n[aqua][b]“无尽盛宴—按饿付费！”[/b][/aqua]\n\n屋里，一位[orange]身形修长的多臂大厨[/orange]正熟练地准备着[green]一份份小食[/green]，并将它们摆在一条[sine]蜿蜒的几丁质传送带[/sine]上。\n\n大厨其中的一只手臂指向一块牌子：\n每份[blue]40[/blue][gold]金币[/gold]",
     "preconditions": [
-      "Requires 105+ gold"
+      "Requires 120+ gold"
     ],
     "options": [
       {
@@ -1205,17 +1205,17 @@
           {
             "id": "CAVIAR",
             "title": "从传送带上拿份鱼子酱",
-            "description": "支付[red]35[/red][gold]金币[/gold]。获得[green]4[/green]点最大生命。接着吃！"
+            "description": "支付[red]40[/red][gold]金币[/gold]。获得[green]4[/green]点最大生命。接着吃！"
           },
           {
             "id": "CLAM_ROLL",
             "title": "从传送带上拿份蚌肉卷",
-            "description": "支付[red]35[/red][gold]金币[/gold]。回复[green]10[/green]点生命值。接着吃！"
+            "description": "支付[red]40[/red][gold]金币[/gold]。回复[green]10[/green]点生命值。接着吃！"
           },
           {
             "id": "FRIED_EEL",
             "title": "从传送带上拿份炸鳗鱼",
-            "description": "支付[red]35[/red][gold]金币[/gold]。将一张随机无色牌添加到你的[gold]牌组[/gold]。接着吃！"
+            "description": "支付[red]40[/red][gold]金币[/gold]。将一张随机无色牌添加到你的[gold]牌组[/gold]。接着吃！"
           },
           {
             "id": "GOLDEN_FYSH",
@@ -1225,22 +1225,22 @@
           {
             "id": "JELLY_LIVER",
             "title": "从传送带上拿份果冻肝",
-            "description": "支付[red]35[/red][gold]金币[/gold]。 [gold]变化[/gold]一张牌。接着吃！"
+            "description": "支付[red]40[/red][gold]金币[/gold]。 [gold]变化[/gold]一张牌。接着吃！"
           },
           {
             "id": "SEAPUNK_SALAD",
             "title": "从传送带上拿份海洋混混沙拉",
-            "description": "支付[red]35[/red][gold]金币[/gold]。将一张[gold]疯狂进食[/gold]添加到你的[gold]牌组[/gold]。 接着吃！"
+            "description": "支付[red]40[/red][gold]金币[/gold]。将一张[gold]疯狂进食[/gold]添加到你的[gold]牌组[/gold]。 接着吃！"
           },
           {
             "id": "SPICY_SNAPPY",
             "title": "从传送带上拿份香辣薄脆",
-            "description": "支付[red]35[/red][gold]金币[/gold]。 随机[gold]升级[/gold]一张牌。接着吃！"
+            "description": "支付[red]40[/red][gold]金币[/gold]。 随机[gold]升级[/gold]一张牌。接着吃！"
           },
           {
             "id": "SUSPICIOUS_CONDIMENT",
             "title": "从传送带上拿份可疑调味料",
-            "description": "支付[red]35[/red][gold]金币[/gold]。随机获得一瓶[gold]药水[/gold]。接着吃！"
+            "description": "支付[red]40[/red][gold]金币[/gold]。随机获得一瓶[gold]药水[/gold]。接着吃！"
           }
         ]
       },
@@ -1257,7 +1257,7 @@
       },
       {
         "id": "INITIAL",
-        "description": "你走进一间挂着歪斜招牌的小木屋，招牌亮得发晃，上面写着：\n[aqua][b]“无尽盛宴—按饿付费！”[/b][/aqua]\n\n屋里，一位[orange]身形修长的多臂大厨[/orange]正熟练地准备着[green]一份份小食[/green]，并将它们摆在一条[sine]蜿蜒的几丁质传送带[/sine]上。\n\n大厨其中的一只手臂指向一块牌子：\n每份[blue]35[/blue][gold]金币[/gold]",
+        "description": "你走进一间挂着歪斜招牌的小木屋，招牌亮得发晃，上面写着：\n[aqua][b]“无尽盛宴—按饿付费！”[/b][/aqua]\n\n屋里，一位[orange]身形修长的多臂大厨[/orange]正熟练地准备着[green]一份份小食[/green]，并将它们摆在一条[sine]蜿蜒的几丁质传送带[/sine]上。\n\n大厨其中的一只手臂指向一块牌子：\n每份[blue]40[/blue][gold]金币[/gold]",
         "options": [
           {
             "id": "OBSERVE_CHEF",
@@ -1408,7 +1408,7 @@
       {
         "id": "FRAGRANT_MUSHROOM",
         "title": "芳香蘑菇",
-        "description": "Obtain [gold]芳香蘑菇[/gold]. 拾起时，失去[red]15[/red]点生命，然后随机[gold]升级[/gold][blue]3[/blue]张牌。"
+        "description": "Obtain [gold]芳香蘑菇[/gold]. 拾起时，失去[blue]15[/blue]点生命，然后随机[gold]升级[/gold][blue]2[/blue]张牌。"
       }
     ],
     "pages": [
@@ -1432,7 +1432,7 @@
           {
             "id": "FRAGRANT_MUSHROOM",
             "title": "芳香蘑菇",
-            "description": "Obtain [gold]芳香蘑菇[/gold]. 拾起时，失去[red]15[/red]点生命，然后随机[gold]升级[/gold][blue]3[/blue]张牌。"
+            "description": "Obtain [gold]芳香蘑菇[/gold]. 拾起时，失去[blue]15[/blue]点生命，然后随机[gold]升级[/gold][blue]2[/blue]张牌。"
           }
         ]
       },
@@ -1651,7 +1651,7 @@
       {
         "id": "GROUP",
         "title": "大群变形灵",
-        "description": "失去[red]100[/red][gold]金币[/gold]。[gold]变化[/gold][blue]2[/blue]张牌。"
+        "description": "失去[red]所有[/red][gold]金币[/gold]。[gold]变化[/gold][blue]2[/blue]张牌。"
       },
       {
         "id": "LONER",
@@ -1671,7 +1671,7 @@
           {
             "id": "GROUP",
             "title": "大群变形灵",
-            "description": "失去[red]100[/red][gold]金币[/gold]。[gold]变化[/gold][blue]2[/blue]张牌。"
+            "description": "失去[red]所有[/red][gold]金币[/gold]。[gold]变化[/gold][blue]2[/blue]张牌。"
           },
           {
             "id": "LONER",
@@ -1881,23 +1881,28 @@
     "relics": [
       "ARCANE_SCROLL",
       "BOOMING_CONCH",
-      "POMANDER",
       "GOLDEN_PEARL",
       "LEAD_PAPERWEIGHT",
-      "NEW_LEAF",
-      "NEOWS_TORMENT",
-      "PRECISE_SCISSORS",
       "LOST_COFFER",
-      "NUTRITIOUS_OYSTER",
-      "STONE_HUMIDIFIER",
+      "NEOWS_TORMENT",
+      "NEW_LEAF",
+      "PRECISE_SCISSORS",
+      "PHIAL_HOLSTER",
+      "WINGED_BOOTS",
       "MASSIVE_SCROLL",
       "LAVA_ROCK",
+      "NEOWS_TALISMAN",
+      "NUTRITIOUS_OYSTER",
+      "POMANDER",
       "SMALL_CAPSULE",
-      "SILVER_CRUCIBLE",
+      "STONE_HUMIDIFIER",
       "CURSED_PEARL",
+      "HEFTY_TABLET",
       "LARGE_CAPSULE",
       "LEAFY_POULTICE",
       "PRECARIOUS_SHEARS",
+      "SILVER_CRUCIBLE",
+      "NEOWS_BONES",
       "SCROLL_BOXES"
     ]
   },
@@ -2765,7 +2770,9 @@
     "type": "Event",
     "act": "Act 3 - Glory",
     "description": "你找到了一份送给[blue]“加拉洛特爵士”的[/blue][orange]请柬[/orange]，邀请他参加一次茶会，于是你决定代他前去。\n\n走进其貌不扬的圆形大厅时，你发现这里有一大群[gold]指挥官[/gold]、[aqua]将军[/aqua]、[red]军阀[/red]和[blue]商人[/blue]们，正在……喝着茶？\n一个头戴[gold]金冠[/gold]的巨人骑士开口说道：\n\n[jitter]“汝来[b]茶会[/b]竟敢迟到？！”[/jitter]",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 12+ HP"
+    ],
     "options": [
       {
         "id": "ENJOY_TEA",
@@ -2975,7 +2982,7 @@
     "name": "滑脚木桥",
     "type": "Shared",
     "act": null,
-    "description": "当你穿过一座摇摇欲坠的木桥时，忽然间[blue][jitter]暴雨倾盆[/jitter][/blue]。[purple][sine]阵阵狂风[/sine][/purple]不断向你袭来，似乎要将你的旅程终结与此。",
+    "description": "当你穿过一座摇摇欲坠的木桥时，忽然间[blue][jitter]暴雨倾盆[/jitter][/blue]。[purple][sine]阵阵狂风[/sine][/purple]不断向你袭来，似乎要将你的旅程终结于此。",
     "preconditions": [
       "Floor 7+",
       "Requires removable cards in deck"
@@ -3083,7 +3090,7 @@
       },
       {
         "id": "INITIAL",
-        "description": "当你穿过一座摇摇欲坠的木桥时，忽然间[blue][jitter]暴雨倾盆[/jitter][/blue]。[purple][sine]阵阵狂风[/sine][/purple]不断向你袭来，似乎要将你的旅程终结与此。",
+        "description": "当你穿过一座摇摇欲坠的木桥时，忽然间[blue][jitter]暴雨倾盆[/jitter][/blue]。[purple][sine]阵阵狂风[/sine][/purple]不断向你袭来，似乎要将你的旅程终结于此。",
         "options": [
           {
             "id": "OVERCOME",
@@ -3114,7 +3121,7 @@
       {
         "id": "OBSERVE",
         "title": "观察",
-        "description": "为一张“[gold]打击[/gold]”或“[gold]防御[/gold]”[gold]附魔[/gold]：[purple]涡旋[/purple]。"
+        "description": "为一张基础“[gold]打击[/gold]”或“[gold]防御[/gold]”[gold]附魔[/gold]：[purple]涡旋[/purple]。"
       },
       {
         "id": "DRINK",
@@ -3134,7 +3141,7 @@
           {
             "id": "OBSERVE",
             "title": "观察",
-            "description": "为一张“[gold]打击[/gold]”或“[gold]防御[/gold]”[gold]附魔[/gold]：[purple]涡旋[/purple]。"
+            "description": "为一张基础“[gold]打击[/gold]”或“[gold]防御[/gold]”[gold]附魔[/gold]：[purple]涡旋[/purple]。"
           },
           {
             "id": "DRINK",
@@ -3165,7 +3172,7 @@
       {
         "id": "REJECTION",
         "title": "拒绝",
-        "description": "失去[red]9[/red]点生命。从你的[gold]牌组[/gold]中移除一张牌。"
+        "description": "失去[red]10[/red]点生命。[gold]升级[/gold]一张牌。"
       }
     ],
     "pages": [
@@ -3181,7 +3188,7 @@
           {
             "id": "REJECTION",
             "title": "拒绝",
-            "description": "失去[red]9[/red]点生命。从你的[gold]牌组[/gold]中移除一张牌。"
+            "description": "失去[red]10[/red]点生命。[gold]升级[/gold]一张牌。"
           }
         ]
       },
@@ -3978,7 +3985,7 @@
         {
           "order": "2-2",
           "speaker": "ancient",
-          "text": "哎呀亲爱的……你不会一直在都[jitter][b]战斗[/b][/jitter]吧？"
+          "text": "哎呀亲爱的……你不会一直都在[jitter][b]战斗[/b][/jitter]吧？"
         }
       ],
       "First Visit": [
@@ -4476,7 +4483,7 @@
           {
             "id": "CHAOS",
             "title": "混沌",
-            "description": "将一张随机牌放入你的[gold]手牌[/gold]。这张牌在本回合这张牌在本回合耗能变为[blue]0[/blue][energy:1]。"
+            "description": "将一张随机牌放入你的[gold]手牌[/gold]。这张牌在本回合可以免费打出。"
           },
           {
             "id": "EXPERTISE",
@@ -4649,7 +4656,7 @@
           {
             "id": "GUILTY",
             "title": "判决：有罪",
-            "description": "将一张[red]疑虑[/red]加入你的[gold]牌组[/gold]。获得[blue]2[/blue]组卡牌奖励。"
+            "description": "将一张[red]疑虑[/red]加入你的[gold]牌组[/gold]。获得[blue]2[/blue]次卡牌奖励。"
           },
           {
             "id": "INNOCENT",
@@ -5005,7 +5012,7 @@
     "act": "Underdocks",
     "description": "在昏暗的通道中前行时，你找到了一个小店，里面有一个[aqua]憔悴的员工[/aqua]。四周的书架上[sine]塞满了[/sine]无数潮湿的卷轴与羊皮纸。\n\n[aqua]抄写员兼店主[/aqua]注意到有客人进店，猛地回过神来，为你指了指书桌上摆放着的一些[gold]器具[/gold]。",
     "preconditions": [
-      "Requires 65+ gold"
+      "Requires 55+ gold"
     ],
     "options": [
       {
@@ -5016,22 +5023,22 @@
       {
         "id": "TENTACLE_QUILL",
         "title": "触手羽毛笔",
-        "description": "支付[red]65[/red][gold]金币[/gold]。给一张牌[gold]附魔[/gold]：[purple]稳定[/purple]。"
+        "description": "支付[red]55[/red][gold]金币[/gold]。给一张牌[gold]附魔[/gold]：[purple]稳定[/purple]。"
       },
       {
         "id": "TENTACLE_QUILL_LOCKED",
         "title": "锁定",
-        "description": "需要[blue]65[/blue][gold]金币[/gold]。"
+        "description": "需要[blue]55[/blue][gold]金币[/gold]。"
       },
       {
         "id": "PRICKLY_SPONGE",
         "title": "扎手海绵",
-        "description": "支付[red]155[/red][gold]金币[/gold]。给[blue]2[/blue]张牌[gold]附魔[/gold]：[purple]稳定[/purple]。"
+        "description": "支付[red]99[/red][gold]金币[/gold]。给[blue]2[/blue]张牌[gold]附魔[/gold]：[purple]稳定[/purple]。"
       },
       {
         "id": "PRICKLY_SPONGE_LOCKED",
         "title": "锁定",
-        "description": "需要[blue]155[/blue][gold]金币[/gold]。"
+        "description": "需要[blue]99[/blue][gold]金币[/gold]。"
       }
     ],
     "pages": [
@@ -5051,22 +5058,22 @@
           {
             "id": "TENTACLE_QUILL",
             "title": "触手羽毛笔",
-            "description": "支付[red]65[/red][gold]金币[/gold]。给一张牌[gold]附魔[/gold]：[purple]稳定[/purple]。"
+            "description": "支付[red]55[/red][gold]金币[/gold]。给一张牌[gold]附魔[/gold]：[purple]稳定[/purple]。"
           },
           {
             "id": "TENTACLE_QUILL_LOCKED",
             "title": "锁定",
-            "description": "需要[blue]65[/blue][gold]金币[/gold]。"
+            "description": "需要[blue]55[/blue][gold]金币[/gold]。"
           },
           {
             "id": "PRICKLY_SPONGE",
             "title": "扎手海绵",
-            "description": "支付[red]155[/red][gold]金币[/gold]。给[blue]2[/blue]张牌[gold]附魔[/gold]：[purple]稳定[/purple]。"
+            "description": "支付[red]99[/red][gold]金币[/gold]。给[blue]2[/blue]张牌[gold]附魔[/gold]：[purple]稳定[/purple]。"
           },
           {
             "id": "PRICKLY_SPONGE_LOCKED",
             "title": "锁定",
-            "description": "需要[blue]155[/blue][gold]金币[/gold]。"
+            "description": "需要[blue]99[/blue][gold]金币[/gold]。"
           }
         ]
       },
@@ -5240,13 +5247,13 @@
     "act": "Act 1 - Overgrowth",
     "description": "在通过一个[red]枯木林谷[/red]时，你遇见了一株孤单的白骨般的树。它的枝丫如同肋骨般向内弯曲，枝条上则挂着黏土般的球状物体。\n\n真是棵[purple]瘆人的树[/purple]。它还在发出低语：\n\n[sine][blue]…来做交易…..[/blue][/sine]",
     "preconditions": [
-      "Requires 50+ gold"
+      "Requires 44+ gold"
     ],
     "options": [
       {
         "id": "GOLD",
         "title": "交换金币",
-        "description": "失去[red]50[/red][gold]金币[/gold]。获得[blue]2[/blue]瓶随机[gold]药水[/gold]。"
+        "description": "失去[red]26-44[/red][gold]金币[/gold]。获得[blue]2[/blue]瓶随机[gold]药水[/gold]。"
       },
       {
         "id": "HUG",
@@ -5270,7 +5277,7 @@
           {
             "id": "GOLD",
             "title": "交换金币",
-            "description": "失去[red]50[/red][gold]金币[/gold]。获得[blue]2[/blue]瓶随机[gold]药水[/gold]。"
+            "description": "失去[red]26-44[/red][gold]金币[/gold]。获得[blue]2[/blue]瓶随机[gold]药水[/gold]。"
           },
           {
             "id": "HUG",

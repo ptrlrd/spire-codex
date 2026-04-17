@@ -14,7 +14,7 @@
   {
     "id": "CHANNELING",
     "name": "Erschaffen",
-    "description": "Wenn du einen Orb erschaffst, kommt er in deinen ersten leeren Slot. Falls du keine leeren Slots hast, wird dein erster Orb automatisch [gold]entladen[/gold], um Platz zu machen.",
+    "description": "Wenn du einen Orb erschaffst, kommt er in deinen ersten leeren Slot. Falls du keine leeren Slots hast, wird dein erster Orb automatisch [gold]Entladen[/gold], um Platz zu machen.",
     "category": "combat"
   },
   {
@@ -56,7 +56,7 @@
   {
     "id": "EXHAUST_PILE",
     "name": "Erschöpfte Karten",
-    "description": "Klicke, um Karten zu siehen, die in diesem Kampf erschöpft wurden.",
+    "description": "Klicke, um Karten zu sehen, die in diesem Kampf Erschöpft wurden.",
     "category": "zones"
   },
   {
@@ -68,7 +68,7 @@
   {
     "id": "FORGE",
     "name": "Schmieden",
-    "description": "Wenn du zum ersten Mal in einem Kampf [gold]schmiedest[/gold], erhalte [gold]Hoheitsklinge[/gold] auf deine [gold]Hand[/gold]. Erhöht den Schaden der [gold]Hoheitsklinge[/gold].",
+    "description": "Wenn du zum ersten Mal in einem Kampf [gold]Schmiedest[/gold], erhalte [gold]Hoheitsklinge[/gold] auf deine [gold]Hand[/gold]. Erhöht den Schaden der [gold]Hoheitsklinge[/gold].",
     "category": "mechanics"
   },
   {
@@ -164,7 +164,7 @@
   {
     "id": "TRANSFORM",
     "name": "Transformieren",
-    "description": "Transformierte Karten werden zu einer zufälligen Karte aus irgendeiner Seltenheit.",
+    "description": "Transformierte Karten werden zu einer zufälligen Karte einer zufälligen Seltenheit.",
     "category": "mechanics"
   }
 ]

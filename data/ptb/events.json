@@ -401,7 +401,7 @@
       {
         "id": "SHARE_KNOWLEDGE",
         "title": "Compartilhar Conhecimento",
-        "description": "Escolha [blue]1[/blue] entre [blue]5[/blue] cartas aleatória para adicionar ao seu [gold]Baralho[/gold]."
+        "description": "Escolha [blue]1[/blue] entre [blue]5[/blue] cartas aleatórias para adicionar ao seu [gold]Baralho[/gold]."
       },
       {
         "id": "RIP",
@@ -417,7 +417,7 @@
           {
             "id": "SHARE_KNOWLEDGE",
             "title": "Compartilhar Conhecimento",
-            "description": "Escolha [blue]1[/blue] entre [blue]5[/blue] cartas aleatória para adicionar ao seu [gold]Baralho[/gold]."
+            "description": "Escolha [blue]1[/blue] entre [blue]5[/blue] cartas aleatórias para adicionar ao seu [gold]Baralho[/gold]."
           },
           {
             "id": "RIP",
@@ -961,7 +961,7 @@
       {
         "id": "TRUDGE_ON",
         "title": "Prosseguir",
-        "description": "Remova uma carta do seu [gold]Baralho[/gold]. Perca [red]11[/red] PV."
+        "description": "Receba [blue]61-99[/blue] de [gold]Ouro[/gold]. Perca [red]8[/red] PV."
       },
       {
         "id": "REST",
@@ -977,7 +977,7 @@
           {
             "id": "TRUDGE_ON",
             "title": "Prosseguir",
-            "description": "Remova uma carta do seu [gold]Baralho[/gold]. Perca [red]11[/red] PV."
+            "description": "Receba [blue]61-99[/blue] de [gold]Ouro[/gold]. Perca [red]8[/red] PV."
           },
           {
             "id": "REST",
@@ -999,7 +999,7 @@
       },
       {
         "id": "TRUDGE_ON",
-        "description": "Você abre caminho entre a densa vegetação, mas a selva parece não ter fim...\n\nVocê se alimenta de [green]estranhos frutos[/green], [orange]insetos crocantes[/orange] e bebe o néctar de [aqua]plantas brilhantes[/aqua], mas começa a sentir certa [jitter][red]paranoia...[/red][/jitter]\n\nEntão você encontra uma clareira, uma trilha e alguns rascunhos de mapas desenhados no chão.\nProblema resolvido."
+        "description": "Você abre caminho entre a densa vegetação, mas a selva parece não ter fim...\n\nVocê se alimenta de [green]estranhos frutos[/green], [orange]insetos crocantes[/orange] e bebe o néctar de [aqua]plantas brilhantes[/aqua], mas começa a sentir certa [jitter][red]paranoia...[/red][/jitter]\n\nEntão você encontra uma clareira, uma trilha e algumas moedas de [gold]Ouro[/gold] espalhadas pelo chão. Entre as moedas estão alguns rascunhos de mapas!\nProblema resolvido."
       }
     ]
   },
@@ -1181,9 +1181,9 @@
     "name": "Esteira Infinita",
     "type": "Event",
     "act": "Underdocks",
-    "description": "Você entra em uma cabana com um letreiro luminoso e capenga onde está escrito:\n[aqua]“BANQUETE INFINITO - PAGUE DE ACORDO COM A SUA FOME!”[/aqua]\n\nLá dentro, um [orange]chefe de cozinha esguio e com múltiplos braços[/orange] prepara habilidosamente [green]porções de comida[/green] e as coloca sobre uma [sine]sinuosa esteira[/sine].\n\nUm dos braços do chefe aponta para uma placa:\n[blue]35[/blue] de [gold]Ouro[/gold] por prato.",
+    "description": "Você entra em uma cabana com um letreiro luminoso e capenga onde está escrito:\n[aqua]“BANQUETE INFINITO - PAGUE DE ACORDO COM A SUA FOME!”[/aqua]\n\nLá dentro, um [orange]chefe de cozinha esguio e com múltiplos braços[/orange] prepara habilidosamente [green]porções de comida[/green] e as coloca sobre uma [sine]sinuosa esteira[/sine].\n\nUm dos braços do chefe aponta para uma placa:\n[blue]40[/blue] de [gold]Ouro[/gold] por prato.",
     "preconditions": [
-      "Requires 105+ gold"
+      "Requires 120+ gold"
     ],
     "options": [
       {
@@ -1205,17 +1205,17 @@
           {
             "id": "CAVIAR",
             "title": "Pegar Caviar da Esteira",
-            "description": "Pague [red]35[/red] de [gold]Ouro[/gold]. Receba [green]4[/green] PV Máximos. Continue o banquete!"
+            "description": "Pague [red]40[/red] de [gold]Ouro[/gold]. Receba [green]4[/green] PV Máximos. Continue o banquete!"
           },
           {
             "id": "CLAM_ROLL",
             "title": "Pegar Rolinho de Mariscos da Esteira",
-            "description": "Pague [red]35[/red] de [gold]Ouro[/gold]. Cure [green]10[/green] PV. Continue o banquete!"
+            "description": "Pague [red]40[/red] de [gold]Ouro[/gold]. Cure [green]10[/green] PV. Continue o banquete!"
           },
           {
             "id": "FRIED_EEL",
             "title": "Pegar Enguia Frita da Esteira",
-            "description": "Pague [red]35[/red] de [gold]Ouro[/gold]. Adicione uma carta Incolor aleatória ao seu [gold]Baralho[/gold]. Continue o banquete!"
+            "description": "Pague [red]40[/red] de [gold]Ouro[/gold]. Adicione uma carta Incolor aleatória ao seu [gold]Baralho[/gold]. Continue o banquete!"
           },
           {
             "id": "GOLDEN_FYSH",
@@ -1225,22 +1225,22 @@
           {
             "id": "JELLY_LIVER",
             "title": "Pegar Fígado de Água-viva da Esteira",
-            "description": "Pague [red]35[/red] de [gold]Ouro[/gold]. [gold]Transforme[/gold] uma carta. Continue o banquete!"
+            "description": "Pague [red]40[/red] de [gold]Ouro[/gold]. [gold]Transforme[/gold] uma carta. Continue o banquete!"
           },
           {
             "id": "SEAPUNK_SALAD",
             "title": "Pegar Salada de Algas Marinhas da Esteira",
-            "description": "Pague [red]35[/red] de [gold]Ouro[/gold]. Adicione [gold]Feeding Frenzy[/gold] ao seu [gold]Baralho[/gold]. Continue o banquete!"
+            "description": "Pague [red]40[/red] de [gold]Ouro[/gold]. Adicione [gold]Feeding Frenzy[/gold] ao seu [gold]Baralho[/gold]. Continue o banquete!"
           },
           {
             "id": "SPICY_SNAPPY",
             "title": "Pegar Petisco Picante da Esteira",
-            "description": "Pague [red]35[/red] de [gold]Ouro[/gold]. [gold]Aprimore[/gold] uma carta aleatória. Continue o banquete!"
+            "description": "Pague [red]40[/red] de [gold]Ouro[/gold]. [gold]Aprimore[/gold] uma carta aleatória. Continue o banquete!"
           },
           {
             "id": "SUSPICIOUS_CONDIMENT",
             "title": "Pegar Condimento Suspeito da Esteira",
-            "description": "Pagar [red]35[/red] de [gold]Ouro[/gold]. Receba uma [gold]Poção[/gold] aleatória. Continue o banquete!"
+            "description": "Pagar [red]40[/red] de [gold]Ouro[/gold]. Receba uma [gold]Poção[/gold] aleatória. Continue o banquete!"
           }
         ]
       },
@@ -1257,7 +1257,7 @@
       },
       {
         "id": "INITIAL",
-        "description": "Você entra em uma cabana com um letreiro luminoso e capenga onde está escrito:\n[aqua]“BANQUETE INFINITO - PAGUE DE ACORDO COM A SUA FOME!”[/aqua]\n\nLá dentro, um [orange]chefe de cozinha esguio e com múltiplos braços[/orange] prepara habilidosamente [green]porções de comida[/green] e as coloca sobre uma [sine]sinuosa esteira[/sine].\n\nUm dos braços do chefe aponta para uma placa:\n[blue]35[/blue] de [gold]Ouro[/gold] por prato.",
+        "description": "Você entra em uma cabana com um letreiro luminoso e capenga onde está escrito:\n[aqua]“BANQUETE INFINITO - PAGUE DE ACORDO COM A SUA FOME!”[/aqua]\n\nLá dentro, um [orange]chefe de cozinha esguio e com múltiplos braços[/orange] prepara habilidosamente [green]porções de comida[/green] e as coloca sobre uma [sine]sinuosa esteira[/sine].\n\nUm dos braços do chefe aponta para uma placa:\n[blue]40[/blue] de [gold]Ouro[/gold] por prato.",
         "options": [
           {
             "id": "OBSERVE_CHEF",
@@ -1408,7 +1408,7 @@
       {
         "id": "FRAGRANT_MUSHROOM",
         "title": "Cogumelo Aromático",
-        "description": "Obtain [gold]Cogumelo Aromático[/gold]. Ao coletar esta relíquia, perca [red]15[/red] PV e [gold]Aprimore[/gold] [blue]3[/blue] cartas aleatórias."
+        "description": "Obtain [gold]Cogumelo Aromático[/gold]. Ao coletar esta relíquia, perca [blue]15[/blue] PV e [gold]Aprimore[/gold] [blue]2[/blue] cartas aleatórias."
       }
     ],
     "pages": [
@@ -1432,7 +1432,7 @@
           {
             "id": "FRAGRANT_MUSHROOM",
             "title": "Cogumelo Aromático",
-            "description": "Obtain [gold]Cogumelo Aromático[/gold]. Ao coletar esta relíquia, perca [red]15[/red] PV e [gold]Aprimore[/gold] [blue]3[/blue] cartas aleatórias."
+            "description": "Obtain [gold]Cogumelo Aromático[/gold]. Ao coletar esta relíquia, perca [blue]15[/blue] PV e [gold]Aprimore[/gold] [blue]2[/blue] cartas aleatórias."
           }
         ]
       },
@@ -1651,7 +1651,7 @@
       {
         "id": "GROUP",
         "title": "Grupo",
-        "description": "Perca [red]100[/red] de [gold]Ouro[/gold]. [gold]Transforme[/gold] [blue]2[/blue] cartas."
+        "description": "Perca [red]TODO[/red] o seu [gold]Ouro[/gold]. [gold]Transforme[/gold] [blue]2[/blue] cartas."
       },
       {
         "id": "LONER",
@@ -1671,7 +1671,7 @@
           {
             "id": "GROUP",
             "title": "Grupo",
-            "description": "Perca [red]100[/red] de [gold]Ouro[/gold]. [gold]Transforme[/gold] [blue]2[/blue] cartas."
+            "description": "Perca [red]TODO[/red] o seu [gold]Ouro[/gold]. [gold]Transforme[/gold] [blue]2[/blue] cartas."
           },
           {
             "id": "LONER",
@@ -1881,23 +1881,28 @@
     "relics": [
       "ARCANE_SCROLL",
       "BOOMING_CONCH",
-      "POMANDER",
       "GOLDEN_PEARL",
       "LEAD_PAPERWEIGHT",
-      "NEW_LEAF",
-      "NEOWS_TORMENT",
-      "PRECISE_SCISSORS",
       "LOST_COFFER",
-      "NUTRITIOUS_OYSTER",
-      "STONE_HUMIDIFIER",
+      "NEOWS_TORMENT",
+      "NEW_LEAF",
+      "PRECISE_SCISSORS",
+      "PHIAL_HOLSTER",
+      "WINGED_BOOTS",
       "MASSIVE_SCROLL",
       "LAVA_ROCK",
+      "NEOWS_TALISMAN",
+      "NUTRITIOUS_OYSTER",
+      "POMANDER",
       "SMALL_CAPSULE",
-      "SILVER_CRUCIBLE",
+      "STONE_HUMIDIFIER",
       "CURSED_PEARL",
+      "HEFTY_TABLET",
       "LARGE_CAPSULE",
       "LEAFY_POULTICE",
       "PRECARIOUS_SHEARS",
+      "SILVER_CRUCIBLE",
+      "NEOWS_BONES",
       "SCROLL_BOXES"
     ]
   },
@@ -2765,7 +2770,9 @@
     "type": "Event",
     "act": "Act 3 - Glory",
     "description": "Você encontra um [orange]convite[/orange] endereçado a um tal [blue]“Sir Galalot”[/blue], para que compareça a um chá da tarde.\n\nAo chegar no local descrito, você se vê em meio a [gold]comandantes[/gold], [aqua]generais[/aqua], [red]líderes de guerra[/red] e [blue]mercenários[/blue], todos... tomando chá?\nO robusto cavaleiro usando uma [gold]coroa dourada[/gold] se dirige a você.\n\n[jitter]“Como ousa se atrasar para a hora do [b]Chá[/b]?!”[/jitter]",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 12+ HP"
+    ],
     "options": [
       {
         "id": "ENJOY_TEA",
@@ -3114,7 +3121,7 @@
       {
         "id": "OBSERVE",
         "title": "Observar",
-        "description": "[gold]Encante[/gold] um [gold]Golpe[/gold] ou uma [gold]Defesa[/gold] com [purple]Espiral[/purple]."
+        "description": "[gold]Encante[/gold] um [gold]Golpe[/gold] ou uma [gold]Defesa[/gold] iniciais com [purple]Espiral[/purple]."
       },
       {
         "id": "DRINK",
@@ -3134,7 +3141,7 @@
           {
             "id": "OBSERVE",
             "title": "Observar",
-            "description": "[gold]Encante[/gold] um [gold]Golpe[/gold] ou uma [gold]Defesa[/gold] com [purple]Espiral[/purple]."
+            "description": "[gold]Encante[/gold] um [gold]Golpe[/gold] ou uma [gold]Defesa[/gold] iniciais com [purple]Espiral[/purple]."
           },
           {
             "id": "DRINK",
@@ -3165,7 +3172,7 @@
       {
         "id": "REJECTION",
         "title": "Rejeitar",
-        "description": "Perca [red]9[/red] PV. Remova uma carta do seu [gold]Baralho[/gold]."
+        "description": "Perca [red]10[/red] PV. [gold]Aprimore[/gold] uma carta."
       }
     ],
     "pages": [
@@ -3181,7 +3188,7 @@
           {
             "id": "REJECTION",
             "title": "Rejeitar",
-            "description": "Perca [red]9[/red] PV. Remova uma carta do seu [gold]Baralho[/gold]."
+            "description": "Perca [red]10[/red] PV. [gold]Aprimore[/gold] uma carta."
           }
         ]
       },
@@ -3546,7 +3553,7 @@
         {
           "order": "0-0",
           "speaker": "ancient",
-          "text": "CONSTRUTO! SEM ARMAS?! FIQUE COM ISTO!"
+          "text": "CONSTRUCTO! SEM ARMAS?! FIQUE COM ISTO!"
         },
         {
           "order": "1-0r",
@@ -4153,7 +4160,7 @@
         {
           "order": "0-0",
           "speaker": "character",
-          "text": "Cheguei! Você aí, plebeu! Aqui é o topo?"
+          "text": "Eu cheguei! Você aí, plebeu! Aqui é o topo?"
         },
         {
           "order": "0-1",
@@ -4232,7 +4239,7 @@
       {
         "id": "POTION",
         "title": "Inserir Poção Common",
-        "description": "Perca [gold]a Potion[/gold]. Receba uma [gold]Skill Common[/gold] [gold]Aprimorada[/gold]."
+        "description": "Perca [gold]a Potion[/gold]. Receba uma carta de [gold]Skill Common[/gold] [gold]Aprimorada[/gold]."
       }
     ],
     "pages": [
@@ -4247,7 +4254,7 @@
           {
             "id": "POTION",
             "title": "Inserir Poção Common",
-            "description": "Perca [gold]a Potion[/gold]. Receba uma [gold]Skill Common[/gold] [gold]Aprimorada[/gold]."
+            "description": "Perca [gold]a Potion[/gold]. Receba uma carta de [gold]Skill Common[/gold] [gold]Aprimorada[/gold]."
           }
         ]
       }
@@ -4378,7 +4385,7 @@
       {
         "id": "ORNATE",
         "title": "Aquilo",
-        "description": "Adicione [red]Desajeitado[/red] ao seu [gold]Baralho[/gold]. Receba uma [gold]Relíquia[/gold] aleatória."
+        "description": "Adicione [red]Deselegância[/red] ao seu [gold]Baralho[/gold]. Receba uma [gold]Relíquia[/gold] aleatória."
       }
     ],
     "pages": [
@@ -4394,7 +4401,7 @@
           {
             "id": "ORNATE",
             "title": "Aquilo",
-            "description": "Adicione [red]Desajeitado[/red] ao seu [gold]Baralho[/gold]. Receba uma [gold]Relíquia[/gold] aleatória."
+            "description": "Adicione [red]Deselegância[/red] ao seu [gold]Baralho[/gold]. Receba uma [gold]Relíquia[/gold] aleatória."
           }
         ]
       },
@@ -4456,7 +4463,7 @@
           {
             "id": "VIOLENCE",
             "title": "Violência",
-            "description": "Golpeia [blue]2[/blue] vezes adicionais."
+            "description": "Golpeie [blue]2[/blue] vezes adicionais."
           },
           {
             "id": "CHOKING",
@@ -4476,7 +4483,7 @@
           {
             "id": "CHAOS",
             "title": "Caos",
-            "description": "Adicione uma carta aleatória na sua [gold]Mão[/gold]. Ela custa [blue]0[/blue] [energy:1] neste turno."
+            "description": "Adicione uma carta aleatória na sua [gold]Mão[/gold]. Ela não tem custo neste turno."
           },
           {
             "id": "EXPERTISE",
@@ -4563,7 +4570,7 @@
     "name": "O Julgamento",
     "type": "Event",
     "act": "Act 3 - Glory",
-    "description": "Você entra em uma fila de pessoas de frente a uma enorme edificação.\n\nAo passar por debaixo de um [gold]arco dourado[/gold] cornetas soam, [jitter]confetes são lançados[/jitter] e [sine]fitas caem[/sine] do teto!\n\n“Ingressante [blue][EntrantNumber][/blue], você tem o papel de [green]DECIDIR[/green] o [gold]Julgamento[/gold] de hoje.”",
+    "description": "Você entra em uma fila de pessoas de frente a uma enorme edificação.\n\nAo passar por debaixo de um [gold]arco dourado[/gold], cornetas soam, [jitter]confetes são lançados[/jitter] e [sine]fitas caem[/sine] do teto!\n\n“Ingressante [blue][EntrantNumber][/blue], você tem o papel de [green]DECIDIR[/green] o [gold]Julgamento[/gold] de hoje.”",
     "preconditions": null,
     "options": [
       {
@@ -4580,7 +4587,7 @@
     "pages": [
       {
         "id": "INITIAL",
-        "description": "Você entra em uma fila de pessoas de frente a uma enorme edificação.\n\nAo passar por debaixo de um [gold]arco dourado[/gold] cornetas soam, [jitter]confetes são lançados[/jitter] e [sine]fitas caem[/sine] do teto!\n\n“Ingressante [blue][EntrantNumber][/blue], você tem o papel de [green]DECIDIR[/green] o [gold]Julgamento[/gold] de hoje.”",
+        "description": "Você entra em uma fila de pessoas de frente a uma enorme edificação.\n\nAo passar por debaixo de um [gold]arco dourado[/gold], cornetas soam, [jitter]confetes são lançados[/jitter] e [sine]fitas caem[/sine] do teto!\n\n“Ingressante [blue][EntrantNumber][/blue], você tem o papel de [green]DECIDIR[/green] o [gold]Julgamento[/gold] de hoje.”",
         "options": [
           {
             "id": "ACCEPT",
@@ -4620,7 +4627,7 @@
       },
       {
         "id": "NOBLE",
-        "description": "Um [gold]poderoso nobre[/gold] dá um passo à frente. Você encontra um bilhete em seu bolso, indicando que caso declare inocência, receberá uma generosa gratificação. O [gold]nobre[/gold] ouve tranquilamente as [purple]acusações de corrupção[/purple] e sorri maliciosamente em sua direção.\nVocê não tem o poder te extinguir a corrupção, mas poderia embolsar uma boa quantidade de [gold]Ouro...[/gold]",
+        "description": "Um [gold]poderoso nobre[/gold] dá um passo à frente. Você encontra um bilhete em seu bolso, indicando que caso declare inocência, receberá uma generosa gratificação. O [gold]nobre[/gold] ouve tranquilamente as [purple]acusações de corrupção[/purple] e sorri maliciosamente em sua direção.\nVocê não tem o poder de extinguir a corrupção, mas poderia embolsar uma boa quantidade de [gold]Ouro...[/gold]",
         "options": [
           {
             "id": "GUILTY",
@@ -5005,7 +5012,7 @@
     "act": "Underdocks",
     "description": "Viajando por caminhos obscuros, você encontra uma [aqua]figura ressequida[/aqua] trabalhando em um pequeno estabelecimento. Uma infinitude de estantes estão [sine]repletas[/sine] de papéis e pergaminhos úmidos.\n\nPercebendo que alguém se aproxima, o [aqua]comerciante escrivão[/aqua] volta sua atenção a você e gesticula na direção de alguns [gold]utensílios[/gold] organizados em uma mesa.",
     "preconditions": [
-      "Requires 65+ gold"
+      "Requires 55+ gold"
     ],
     "options": [
       {
@@ -5016,22 +5023,22 @@
       {
         "id": "TENTACLE_QUILL",
         "title": "Pluma Tentacular",
-        "description": "Pague [red]65[/red] de [gold]Ouro[/gold]. [gold]Encante[/gold] uma carta com [purple]Prontidão[/purple]."
+        "description": "Pague [red]55[/red] de [gold]Ouro[/gold]. [gold]Encante[/gold] uma carta com [purple]Prontidão[/purple]."
       },
       {
         "id": "TENTACLE_QUILL_LOCKED",
         "title": "Bloqueado",
-        "description": "Requer [blue]65[/blue] de [gold]Ouro[/gold]."
+        "description": "Requer [blue]55[/blue] de [gold]Ouro[/gold]."
       },
       {
         "id": "PRICKLY_SPONGE",
         "title": "Esponja Espinhosa",
-        "description": "Pague [red]155[/red] de [gold]Ouro[/gold]. [gold]Encante[/gold] [blue]2[/blue] cartas com [purple]Prontidão[/purple]."
+        "description": "Pague [red]99[/red] de [gold]Ouro[/gold]. [gold]Encante[/gold] [blue]2[/blue] cartas com [purple]Prontidão[/purple]."
       },
       {
         "id": "PRICKLY_SPONGE_LOCKED",
         "title": "Bloqueado",
-        "description": "Requer [blue]155[/blue] de [gold]Ouro[/gold]."
+        "description": "Requer [blue]99[/blue] de [gold]Ouro[/gold]."
       }
     ],
     "pages": [
@@ -5051,22 +5058,22 @@
           {
             "id": "TENTACLE_QUILL",
             "title": "Pluma Tentacular",
-            "description": "Pague [red]65[/red] de [gold]Ouro[/gold]. [gold]Encante[/gold] uma carta com [purple]Prontidão[/purple]."
+            "description": "Pague [red]55[/red] de [gold]Ouro[/gold]. [gold]Encante[/gold] uma carta com [purple]Prontidão[/purple]."
           },
           {
             "id": "TENTACLE_QUILL_LOCKED",
             "title": "Bloqueado",
-            "description": "Requer [blue]65[/blue] de [gold]Ouro[/gold]."
+            "description": "Requer [blue]55[/blue] de [gold]Ouro[/gold]."
           },
           {
             "id": "PRICKLY_SPONGE",
             "title": "Esponja Espinhosa",
-            "description": "Pague [red]155[/red] de [gold]Ouro[/gold]. [gold]Encante[/gold] [blue]2[/blue] cartas com [purple]Prontidão[/purple]."
+            "description": "Pague [red]99[/red] de [gold]Ouro[/gold]. [gold]Encante[/gold] [blue]2[/blue] cartas com [purple]Prontidão[/purple]."
           },
           {
             "id": "PRICKLY_SPONGE_LOCKED",
             "title": "Bloqueado",
-            "description": "Requer [blue]155[/blue] de [gold]Ouro[/gold]."
+            "description": "Requer [blue]99[/blue] de [gold]Ouro[/gold]."
           }
         ]
       },
@@ -5238,20 +5245,20 @@
     "name": "Ravina Sussurrante",
     "type": "Event",
     "act": "Act 1 - Overgrowth",
-    "description": "Atravessando uma [red]ravina de árvores secas[/red] você se depara com uma única árvore branca como osso. Enfeites de cerâmica pendem de seus galhos, que se curvam para dentro como costelas.\n\nMas que [purple]árvore tenebrosa[/purple]. Ela sussurra.\n\n[sine][blue]...realizar troca.....[/blue][/sine]",
+    "description": "Atravessando uma [red]ravina de árvores secas[/red] você se depara com uma única árvore, branca como osso. Enfeites de cerâmica pendem de seus galhos, que se curvam para dentro como costelas.\n\nMas que [purple]árvore tenebrosa[/purple]. Ela sussurra.\n\n[sine][blue]...realizar troca.....[/blue][/sine]",
     "preconditions": [
-      "Requires 50+ gold"
+      "Requires 44+ gold"
     ],
     "options": [
       {
         "id": "GOLD",
         "title": "Trocar Ouro",
-        "description": "Perca [red]50[/red] de [gold]Ouro[/gold]. Receba [blue]2[/blue] [gold]Poções[/gold] aleatórias."
+        "description": "Perca [red]26-44[/red] de [gold]Ouro[/gold]. Receba [blue]2[/blue] [gold]Poções[/gold] aleatórias."
       },
       {
         "id": "HUG",
         "title": "Abraçar a Árvore",
-        "description": "Perca [red]9[/red] PV. Escolha uma carta para [gold]Transforma-la[/gold]."
+        "description": "Perca [red]9[/red] PV. Escolha uma carta para [gold]Transformá-la[/gold]."
       }
     ],
     "pages": [
@@ -5265,17 +5272,17 @@
       },
       {
         "id": "INITIAL",
-        "description": "Atravessando uma [red]ravina de árvores secas[/red] você se depara com uma única árvore branca como osso. Enfeites de cerâmica pendem de seus galhos, que se curvam para dentro como costelas.\n\nMas que [purple]árvore tenebrosa[/purple]. Ela sussurra.\n\n[sine][blue]...realizar troca.....[/blue][/sine]",
+        "description": "Atravessando uma [red]ravina de árvores secas[/red] você se depara com uma única árvore, branca como osso. Enfeites de cerâmica pendem de seus galhos, que se curvam para dentro como costelas.\n\nMas que [purple]árvore tenebrosa[/purple]. Ela sussurra.\n\n[sine][blue]...realizar troca.....[/blue][/sine]",
         "options": [
           {
             "id": "GOLD",
             "title": "Trocar Ouro",
-            "description": "Perca [red]50[/red] de [gold]Ouro[/gold]. Receba [blue]2[/blue] [gold]Poções[/gold] aleatórias."
+            "description": "Perca [red]26-44[/red] de [gold]Ouro[/gold]. Receba [blue]2[/blue] [gold]Poções[/gold] aleatórias."
           },
           {
             "id": "HUG",
             "title": "Abraçar a Árvore",
-            "description": "Perca [red]9[/red] PV. Escolha uma carta para [gold]Transforma-la[/gold]."
+            "description": "Perca [red]9[/red] PV. Escolha uma carta para [gold]Transformá-la[/gold]."
           }
         ]
       }
@@ -5294,7 +5301,7 @@
       {
         "id": "BIRD",
         "title": "Pássaro",
-        "description": "Escolha [blue]1[/blue] carta inicial para [gold]Transforma-la[/gold] em [gold]Bicada[/gold]."
+        "description": "Escolha [blue]1[/blue] carta inicial para [gold]Transformá-la[/gold] em [gold]Bicada[/gold]."
       },
       {
         "id": "SNAKE",
@@ -5309,7 +5316,7 @@
       {
         "id": "TORUS",
         "title": "Toro",
-        "description": "Escolha [blue]1[/blue] carta inicial para [gold]Transforma-la[/gold] em [gold]Resistência Tórica[/gold]."
+        "description": "Escolha [blue]1[/blue] carta inicial para [gold]Transformá-la[/gold] em [gold]Resistência Tórica[/gold]."
       }
     ],
     "pages": [
@@ -5324,7 +5331,7 @@
           {
             "id": "BIRD",
             "title": "Pássaro",
-            "description": "Escolha [blue]1[/blue] carta inicial para [gold]Transforma-la[/gold] em [gold]Bicada[/gold]."
+            "description": "Escolha [blue]1[/blue] carta inicial para [gold]Transformá-la[/gold] em [gold]Bicada[/gold]."
           },
           {
             "id": "SNAKE",
@@ -5339,7 +5346,7 @@
           {
             "id": "TORUS",
             "title": "Toro",
-            "description": "Escolha [blue]1[/blue] carta inicial para [gold]Transforma-la[/gold] em [gold]Resistência Tórica[/gold]."
+            "description": "Escolha [blue]1[/blue] carta inicial para [gold]Transformá-la[/gold] em [gold]Resistência Tórica[/gold]."
           }
         ]
       },

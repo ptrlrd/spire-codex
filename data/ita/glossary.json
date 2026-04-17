@@ -7,7 +7,7 @@
   },
   {
     "id": "CARD_REWARD",
-    "name": "Carta ricompensa",
+    "name": "Ricompensa di carte",
     "description": "Un pacchetto di [blue]3[/blue] carte casuali. Puoi sceglierne [blue]1[/blue] da aggiungere al tuo [gold]mazzo[/gold].",
     "category": "progression"
   },
@@ -61,7 +61,7 @@
   },
   {
     "id": "FATAL",
-    "name": "Letale",
+    "name": "Letalità",
     "description": "Si attiva ogni volta che questa carta uccide un nemico non seguace.",
     "category": "combat"
   },
@@ -91,7 +91,7 @@
   },
   {
     "id": "POTION_SLOT",
-    "name": "Spazio pozione",
+    "name": "Spazio per pozioni",
     "description": "Usa le pozioni durante il combattimento per ottenere [green]bonus[/green] od [red]ostacolare[/red] i nemici.",
     "category": "progression"
   },

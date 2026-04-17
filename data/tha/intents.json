@@ -2,7 +2,7 @@
   {
     "id": "ATTACK",
     "name": "ก้าวร้าว",
-    "description": "ศัตรูนี้ตั้งใจจะ[gold]โจมตี[/gold]{IsMultiplayer:ทุกคน|} สร้างความเสียหาย [blue]{Damage}[/blue]{Repeat:plural:| จำนวน [blue]{}[/blue] ครั้ง}",
+    "description": "ศัตรูนี้ตั้งใจจะ[gold]โจมตี[/gold]{IsMultiplayer:ทุกคน|} สร้างความเสียหาย [blue]{Damage}[/blue]{Repeat:choose(1):| จำนวน [blue]{}[/blue] ครั้ง}",
     "image_url": "/static/images/intents/attack.webp"
   },
   {
@@ -62,7 +62,7 @@
   {
     "id": "STATUS",
     "name": "กลยุทธ์",
-    "description": "ศัตรูนี้ตั้งใจจะมอบ[gold]การ์ดสถานะ[/gold] [blue]{CardCount}[/blue] {CardCount:plural:การ์ด|การ์ด}ให้กับคุณ",
+    "description": "ศัตรูนี้ตั้งใจจะมอบ[gold]การ์ดสถานะ[/gold] [blue]{CardCount}[/blue] {CardCount:choose(1):การ์ด|การ์ด}ให้กับคุณ",
     "image_url": "/static/images/intents/status.webp"
   },
   {

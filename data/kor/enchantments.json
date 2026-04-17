@@ -33,17 +33,6 @@
     "image_url": "/static/images/enchantments/corrupted.webp"
   },
   {
-    "id": "FAVORED",
-    "name": "선호",
-    "description": "이 카드의 공격 피해량이 2배가 됩니다.",
-    "description_raw": null,
-    "extra_card_text": null,
-    "card_type": "Attack",
-    "applicable_to": null,
-    "is_stackable": false,
-    "image_url": "/static/images/enchantments/favored.webp"
-  },
-  {
     "id": "GLAM",
     "name": "호화",
     "description": "이 카드는 전투당 한 번 [gold]재사용[/gold]을 보유합니다.",
@@ -59,7 +48,7 @@
     "name": "점착",
     "description": "이 카드가 [gold]소멸[/gold]을 얻습니다. 카드를 사용 시, 이 카드로 얻는 [gold]방어도[/gold]가 영구적으로 [blue]1[/blue] 증가합니다.",
     "description_raw": null,
-    "extra_card_text": "이 카드로 얻는 [gold]방어도[/gold]가 영구적으로 [blue]1[/blue] 증가합니다.",
+    "extra_card_text": "이 카드로 얻는 [gold]방어도[/gold]가\n영구적으로 [blue]1[/blue] 증가합니다.",
     "card_type": null,
     "applicable_to": "Defend cards",
     "is_stackable": false,
@@ -77,9 +66,20 @@
     "image_url": "/static/images/enchantments/imbued.webp"
   },
   {
+    "id": "INKY",
+    "name": "잉크투성이",
+    "description": "이 카드의 피해량이 [blue]2[/blue] 증가하고, [gold]약화[/gold] 를 [blue]1[/blue] 부여합니다.",
+    "description_raw": "이 카드의 피해량이 [blue]{Damage}[/blue] 증가하고, [gold]약화[/gold] 를 [blue]{WeakPower}[/blue] 부여합니다.",
+    "extra_card_text": "모든 적에게 [gold]약화[/gold]를 [blue]1[/blue] 부여합니다.",
+    "card_type": null,
+    "applicable_to": null,
+    "is_stackable": false,
+    "image_url": "/static/images/enchantments/inky.webp"
+  },
+  {
     "id": "INSTINCT",
     "name": "본능",
-    "description": "이 카드의 비용이 [blue]1[/blue] 감소합니다.",
+    "description": "이 카드의 공격 피해량이 2배가 됩니다.",
     "description_raw": null,
     "extra_card_text": null,
     "card_type": "Attack",
@@ -156,7 +156,7 @@
   {
     "id": "SLUMBERING_ESSENCE",
     "name": "잠재성",
-    "description": "내 턴 종료 시 이 카드가 손에 있다면, 카드를 내기 전까지 이 카드의 비용이 [blue]1[/blue] 감소합니다.",
+    "description": "내 턴 종료 시 이 카드가 손에 있다면, 카드를 사용하기 전까지 이 카드의 비용이 [blue]1[/blue] 감소합니다.",
     "description_raw": null,
     "extra_card_text": null,
     "card_type": null,
@@ -178,8 +178,8 @@
   {
     "id": "SOWN",
     "name": "발아",
-    "description": "매 전투마다 이 카드를 처음으로 사용 시, [energy:X]를 얻습니다.",
-    "description_raw": "매 전투마다 이 카드를 처음으로 사용 시, {Amount:energyIcons()}를 얻습니다.",
+    "description": "매 전투마다 이 카드를 처음 사용 시, [energy:X]를 얻습니다.",
+    "description_raw": "매 전투마다 이 카드를 처음 사용 시, {Amount:energyIcons()}를 얻습니다.",
     "extra_card_text": "[energy:X]를 얻습니다.",
     "card_type": null,
     "applicable_to": null,
@@ -211,9 +211,9 @@
   {
     "id": "SWIFT",
     "name": "신속",
-    "description": "이 카드를 처음으로 사용할 때, 카드를 [blue]X[/blue]장 뽑습니다.",
-    "description_raw": "이 카드를 처음으로 사용할 때, 카드를 [blue]{Amount}[/blue]장 뽑습니다.",
-    "extra_card_text": "이 카드를 처음으로 사용 시, 카드를 X장 뽑습니다.",
+    "description": "이 카드를 처음 사용 시, 카드를 [blue]X[/blue]장 뽑습니다.",
+    "description_raw": "이 카드를 처음 사용 시, 카드를 [blue]{Amount}[/blue]장 뽑습니다.",
+    "extra_card_text": "이 카드를 처음 사용 시,\n카드를 X장 뽑습니다.",
     "card_type": null,
     "applicable_to": null,
     "is_stackable": false,
@@ -233,8 +233,8 @@
   {
     "id": "VIGOROUS",
     "name": "활기",
-    "description": "이 카드를 처음으로 사용 시, 추가로 피해를 [blue]X[/blue] 줍니다.",
-    "description_raw": "이 카드를 처음으로 사용 시, 추가로 피해를 [blue]{Amount}[/blue] 줍니다.",
+    "description": "이 카드를 처음 사용 시, 추가로 피해를 [blue]X[/blue] 줍니다.",
+    "description_raw": "이 카드를 처음 사용 시, 추가로 피해를 [blue]{Amount}[/blue] 줍니다.",
     "extra_card_text": null,
     "card_type": "Attack",
     "applicable_to": null,

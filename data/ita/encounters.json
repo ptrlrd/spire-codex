@@ -35,11 +35,11 @@
         "name": "Partner da battaglia V3.0"
       }
     ],
-    "loss_text": "In qualche modo un [gold]Manichino da allenamento martoriato[/gold] ha ucciso [b]The Adventurer[/b]."
+    "loss_text": "In qualche modo, un [gold]Manichino da allenamento martoriato[/gold] ha ucciso [b]The Adventurer[/b]."
   },
   {
     "id": "BOWLBUGS_NORMAL",
-    "name": "Sciame di Scaraciotole",
+    "name": "sciame di Scaraciotole",
     "room_type": "Monster",
     "is_weak": false,
     "act": "Act 2 - Hive",
@@ -49,22 +49,22 @@
     "monsters": [
       {
         "id": "BOWLBUG_EGG",
-        "name": "Scaraciotola (Uovo)"
+        "name": "Scaraciotola (uovo)"
       },
       {
         "id": "BOWLBUG_NECTAR",
-        "name": "Scaraciotola (Nettare)"
+        "name": "Scaraciotola (nettare)"
       },
       {
         "id": "BOWLBUG_ROCK",
-        "name": "Scaraciotola (Roccia)"
+        "name": "Scaraciotola (roccia)"
       },
       {
         "id": "BOWLBUG_SILK",
-        "name": "Scaraciotola (Seta)"
+        "name": "Scaraciotola (seta)"
       }
     ],
-    "loss_text": "[b]The Adventurer[/b] ha intralciato il cammino di uno [gold]Sciame di Scaraciotole[/gold] indaffarato."
+    "loss_text": "[b]The Adventurer[/b] ha intralciato il cammino di uno [gold]sciame di Scaraciotole[/gold] indaffarato."
   },
   {
     "id": "BOWLBUGS_WEAK",
@@ -78,15 +78,15 @@
     "monsters": [
       {
         "id": "BOWLBUG_EGG",
-        "name": "Scaraciotola (Uovo)"
+        "name": "Scaraciotola (uovo)"
       },
       {
         "id": "BOWLBUG_NECTAR",
-        "name": "Scaraciotola (Nettare)"
+        "name": "Scaraciotola (nettare)"
       },
       {
         "id": "BOWLBUG_ROCK",
-        "name": "Scaraciotola (Roccia)"
+        "name": "Scaraciotola (roccia)"
       }
     ],
     "loss_text": "[b]The Adventurer[/b] ha intralciato il cammino di alcune [gold]Scaraciotole[/gold] indaffarate."
@@ -101,7 +101,7 @@
     "monsters": [
       {
         "id": "BYGONE_EFFIGY",
-        "name": "Effige antica"
+        "name": "Effigie antica"
       }
     ],
     "loss_text": "Un'[gold]Effigie antica[/gold] ha squarciato in due [b]The Adventurer[/b]."
@@ -301,10 +301,6 @@
     "act": "Act 3 - Glory",
     "tags": null,
     "monsters": [
-      {
-        "id": "DOOR",
-        "name": "Porta"
-      },
       {
         "id": "DOORMAKER",
         "name": "Fabbricaporte"
@@ -523,7 +519,7 @@
   },
   {
     "id": "HAUNTED_SHIP_NORMAL",
-    "name": "Nave Infestata",
+    "name": "Nave infestata",
     "room_type": "Monster",
     "is_weak": false,
     "act": "Underdocks",
@@ -534,7 +530,7 @@
         "name": "Nave infestata"
       }
     ],
-    "loss_text": "Una [gold]Nave Infestata[/gold] ha schiacciato [b]The Adventurer[/b]."
+    "loss_text": "Una [gold]Nave infestata[/gold] ha schiacciato [b]The Adventurer[/b]."
   },
   {
     "id": "HUNTER_KILLER_NORMAL",
@@ -820,7 +816,7 @@
         "name": "Uovo forte"
       }
     ],
-    "loss_text": "Un [gold]Ovicoptero[/gold] ha dato [b]The Adventurer[/b] in pasto per i suoi cuccioli."
+    "loss_text": "Un [gold]Ovicoptero[/gold] ha dato [b]The Adventurer[/b] in pasto ai suoi cuccioli."
   },
   {
     "id": "OWL_MAGISTRATE_NORMAL",
@@ -835,7 +831,7 @@
         "name": "Giudice gufo"
       }
     ],
-    "loss_text": "Il [gold]Giudice gufo[/gold] ha sentenziato [b]The Adventurer[/b] a morte."
+    "loss_text": "Il [gold]Giudice gufo[/gold] ha condannato [b]The Adventurer[/b] a morte."
   },
   {
     "id": "PHANTASMAL_GARDENERS_ELITE",
@@ -869,7 +865,7 @@
         "name": "Larva"
       }
     ],
-    "loss_text": "Un [gold]Parassita fungineo[/gold] ha diffuso la sua colona nel corpo di [b]The Adventurer[/b]."
+    "loss_text": "Un [gold]Parassita fungineo[/gold] ha diffuso la sua colonia nel corpo di [b]The Adventurer[/b]."
   },
   {
     "id": "PUNCH_CONSTRUCT_NORMAL",
@@ -888,7 +884,7 @@
   },
   {
     "id": "PUNCH_OFF_EVENT_ENCOUNTER",
-    "name": "Assemblaggi pugili",
+    "name": "Assemblaggi Pugili",
     "room_type": "Monster",
     "is_weak": false,
     "act": null,
@@ -899,7 +895,7 @@
         "name": "Assemblaggio pugile"
       }
     ],
-    "loss_text": "[b]The Adventurer[/b] ha interrotto un incontro tra due [gold]Assemblaggi pugili[/gold]."
+    "loss_text": "[b]The Adventurer[/b] ha interrotto un incontro tra due [gold]Assemblaggi Pugili[/gold]."
   },
   {
     "id": "QUEEN_BOSS",
@@ -918,7 +914,7 @@
         "name": "Torciamostro"
       }
     ],
-    "loss_text": "La [gold]Regina funesta[/gold] ha aggiunto una parte di [b]The Adventurer[/b] alla sua collezione."
+    "loss_text": "La [gold]Regina funesta[/gold] ha aggiunto la testa di [b]The Adventurer[/b] alla sua collezione."
   },
   {
     "id": "RUBY_RAIDERS_NORMAL",
@@ -986,6 +982,27 @@
     "loss_text": "Delle [gold]Pergamene mordenti[/gold] hanno ridotto [b]The Adventurer[/b] in brandelli."
   },
   {
+    "id": "SEAPUNK_NORMAL",
+    "name": "fauna dei Moli Funesti",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": [
+      "Seapunk"
+    ],
+    "monsters": [
+      {
+        "id": "CALCIFIED_CULTIST",
+        "name": "Accolito calcificato"
+      },
+      {
+        "id": "SEAPUNK",
+        "name": "Teppista marino"
+      }
+    ],
+    "loss_text": "La [gold]fauna dei Moli Funesti[/gold] ha sconfitto [b]The Adventurer[/b]."
+  },
+  {
     "id": "SEAPUNK_WEAK",
     "name": "Teppista marino",
     "room_type": "Monster",
@@ -1036,7 +1053,7 @@
   },
   {
     "id": "SKULKING_COLONY_ELITE",
-    "name": "colonia furtiva",
+    "name": "Colonia furtiva",
     "room_type": "Elite",
     "is_weak": false,
     "act": "Underdocks",
@@ -1047,7 +1064,7 @@
         "name": "Colonia furtiva"
       }
     ],
-    "loss_text": "Una [gold]colonia furtiva[/gold] ha assorbito [b]The Adventurer[/b]."
+    "loss_text": "Una [gold]Colonia furtiva[/gold] ha assorbito [b]The Adventurer[/b]."
   },
   {
     "id": "SLIMED_BERSERKER_NORMAL",
@@ -1095,7 +1112,7 @@
   },
   {
     "id": "SLIMES_WEAK",
-    "name": "gruppo di melme",
+    "name": "gruppo di Melme",
     "room_type": "Monster",
     "is_weak": true,
     "act": "Act 1 - Overgrowth",
@@ -1120,7 +1137,7 @@
         "name": "Ramomelma (piccola)"
       }
     ],
-    "loss_text": "Un [gold]gruppo di melme[/gold] ha sconfitto [b]The Adventurer[/b]."
+    "loss_text": "Un [gold]gruppo di Melme[/gold] ha sconfitto [b]The Adventurer[/b]."
   },
   {
     "id": "SLITHERING_STRANGLER_NORMAL",
@@ -1170,11 +1187,11 @@
         "name": "Poltiglia rotante"
       }
     ],
-    "loss_text": "[b]The Adventurer[/b] non ha avuto scampo con una [gold]Poltiglia rotante[/gold]."
+    "loss_text": "[b]The Adventurer[/b] non ha avuto scampo contro una [gold]Poltiglia rotante[/gold]."
   },
   {
     "id": "SLUMBERING_BEETLE_NORMAL",
-    "name": "festa di melme",
+    "name": "festa di scarafaggi",
     "room_type": "Monster",
     "is_weak": false,
     "act": "Act 2 - Hive",
@@ -1184,18 +1201,18 @@
     "monsters": [
       {
         "id": "BOWLBUG_ROCK",
-        "name": "Scaraciotola (Roccia)"
+        "name": "Scaraciotola (roccia)"
       },
       {
         "id": "BOWLBUG_SILK",
-        "name": "Scaraciotola (Seta)"
+        "name": "Scaraciotola (seta)"
       },
       {
         "id": "SLUMBERING_BEETLE",
         "name": "Scarabeo dormiente"
       }
     ],
-    "loss_text": "[b]The Adventurer[/b] ha interrotto una [gold]festa di melme[/gold]."
+    "loss_text": "[b]The Adventurer[/b] ha interrotto una [gold]festa di scarafaggi[/gold]."
   },
   {
     "id": "SNAPPING_JAXFRUIT_NORMAL",
@@ -1216,11 +1233,11 @@
         "name": "Bulbo azzannatore"
       }
     ],
-    "loss_text": "[b]The Adventurer[/b] ha avuto la sfortuna di incontrare una [gold]flora della Proliferazione[/gold]."
+    "loss_text": "[b]The Adventurer[/b] ha avuto la sfortuna di incontrare la [gold]flora della Proliferazione[/gold]."
   },
   {
     "id": "SOUL_FYSH_BOSS",
-    "name": "Animapesce",
+    "name": "Pesce anima",
     "room_type": "Boss",
     "is_weak": false,
     "act": "Underdocks",
@@ -1228,10 +1245,10 @@
     "monsters": [
       {
         "id": "SOUL_FYSH",
-        "name": "Animapesce"
+        "name": "Pesce anima"
       }
     ],
-    "loss_text": "Un [gold]Animapesce[/gold] ha condannato alla morte [b]The Adventurer[/b]."
+    "loss_text": "Un [gold]Pesce anima[/gold] ha condannato alla morte [b]The Adventurer[/b]."
   },
   {
     "id": "SOUL_NEXUS_ELITE",
@@ -1371,7 +1388,7 @@
     "monsters": [
       {
         "id": "THE_OBSCURA",
-        "name": "L'Obscura"
+        "name": "Tenebra"
       }
     ],
     "loss_text": "[gold]L'Oscura[/gold] e la sua illusione hanno annientato [b]The Adventurer[/b]."
@@ -1394,25 +1411,6 @@
     "loss_text": "Una [gold]Mantide ladra[/gold] ha derubato [b]The Adventurer[/b]."
   },
   {
-    "id": "TOADPOLES_NORMAL",
-    "name": "fauna dei Moli Funesti",
-    "room_type": "Monster",
-    "is_weak": false,
-    "act": "Underdocks",
-    "tags": null,
-    "monsters": [
-      {
-        "id": "CALCIFIED_CULTIST",
-        "name": "Accolito calcificato"
-      },
-      {
-        "id": "TOADPOLE",
-        "name": "Girino"
-      }
-    ],
-    "loss_text": "La [gold]fauna dei Moli Funesti[/gold] ha sconfitto [b]The Adventurer[/b]."
-  },
-  {
     "id": "TOADPOLES_WEAK",
     "name": "Girini",
     "room_type": "Monster",
@@ -1432,19 +1430,15 @@
     "name": "coppia di Scavatori",
     "room_type": "Monster",
     "is_weak": false,
-    "act": "Act 2 - Hive",
+    "act": null,
     "tags": [
       "Burrower",
-      "Workers"
+      "Chomper"
     ],
     "monsters": [
       {
-        "id": "BOWLBUG_EGG",
-        "name": "Scaraciotola (Uovo)"
-      },
-      {
-        "id": "BOWLBUG_SILK",
-        "name": "Scaraciotola (Seta)"
+        "id": "CHOMPER",
+        "name": "Mordicchio"
       },
       {
         "id": "TUNNELER",
@@ -1487,7 +1481,7 @@
         "name": "Operatorretta"
       }
     ],
-    "loss_text": "Un [gold]Operatorretta[/gold] ha crivellato [b]The Adventurer[/b]."
+    "loss_text": "Un'[gold]Operatorretta[/gold] ha crivellato [b]The Adventurer[/b]."
   },
   {
     "id": "TWO_TAILED_RATS_NORMAL",

@@ -961,7 +961,7 @@
       {
         "id": "TRUDGE_ON",
         "title": "Trudge On",
-        "description": "Remove a card from your [gold]Deck[/gold]. Lose [red]11[/red] HP."
+        "description": "Gain [blue]61-99[/blue] [gold]Gold[/gold]. Lose [red]8[/red] HP."
       },
       {
         "id": "REST",
@@ -977,7 +977,7 @@
           {
             "id": "TRUDGE_ON",
             "title": "Trudge On",
-            "description": "Remove a card from your [gold]Deck[/gold]. Lose [red]11[/red] HP."
+            "description": "Gain [blue]61-99[/blue] [gold]Gold[/gold]. Lose [red]8[/red] HP."
           },
           {
             "id": "REST",
@@ -999,7 +999,7 @@
       },
       {
         "id": "TRUDGE_ON",
-        "description": "You hack and slash your way through the jungle but it goes on and on...\n\nYou sustain yourself on [green]strange fruits[/green], [orange]crunchy bugs[/orange], and drink the nectar of [aqua]glowing plants[/aqua] but you start feeling [jitter][red]paranoid...[/red][/jitter]\n\nBut then you find a clearing, a trail, and some drawings of maps on the ground.\nProblem solved."
+        "description": "You hack and slash your way through the jungle but it goes on and on...\n\nYou sustain yourself on [green]strange fruits[/green], [orange]crunchy bugs[/orange], and drink the nectar of [aqua]glowing plants[/aqua] but you start feeling [jitter][red]paranoid...[/red][/jitter]\n\nBut then you find a clearing, a trail, and some [gold]Gold[/gold] coins scattered on the ground. Amongst the coins are some crudely-drawn maps!\nProblem solved."
       }
     ]
   },
@@ -1181,9 +1181,9 @@
     "name": "Endless Conveyor",
     "type": "Event",
     "act": "Underdocks",
-    "description": "You lumber into a shack with a bright but crooked sign that reads:\n[aqua]“ENDLESS FEAST - PAY WHAT YOU HUNGER!”[/aqua]\n\nInside, a [orange]willowy multi-armed chef[/orange] is deftly preparing [green]bites of food[/green] and placing them onto a [sine]winding chitinous belt[/sine].\n\nOne of the chef's arms point to a sign:\n[blue]35[/blue] [gold]Gold[/gold] each",
+    "description": "You lumber into a shack with a bright but crooked sign that reads:\n[aqua]“ENDLESS FEAST - PAY WHAT YOU HUNGER!”[/aqua]\n\nInside, a [orange]willowy multi-armed chef[/orange] is deftly preparing [green]bites of food[/green] and placing them onto a [sine]winding chitinous belt[/sine].\n\nOne of the chef's arms point to a sign:\n[blue]40[/blue] [gold]Gold[/gold] each",
     "preconditions": [
-      "Requires 105+ gold"
+      "Requires 120+ gold"
     ],
     "options": [
       {
@@ -1205,17 +1205,17 @@
           {
             "id": "CAVIAR",
             "title": "Grab Caviar off the Belt",
-            "description": "Pay [red]35[/red] [gold]Gold[/gold]. Gain [green]4[/green] Max HP. Continue feasting!"
+            "description": "Pay [red]40[/red] [gold]Gold[/gold]. Gain [green]4[/green] Max HP. Continue feasting!"
           },
           {
             "id": "CLAM_ROLL",
             "title": "Grab Clam Roll off the Belt",
-            "description": "Pay [red]35[/red] [gold]Gold[/gold]. Heal [green]10[/green] HP. Continue feasting!"
+            "description": "Pay [red]40[/red] [gold]Gold[/gold]. Heal [green]10[/green] HP. Continue feasting!"
           },
           {
             "id": "FRIED_EEL",
             "title": "Grab Fried Eel off the Belt",
-            "description": "Pay [red]35[/red] [gold]Gold[/gold]. Add a random Colorless Card to your [gold]Deck[/gold]. Continue feasting!"
+            "description": "Pay [red]40[/red] [gold]Gold[/gold]. Add a random Colorless Card to your [gold]Deck[/gold]. Continue feasting!"
           },
           {
             "id": "GOLDEN_FYSH",
@@ -1225,22 +1225,22 @@
           {
             "id": "JELLY_LIVER",
             "title": "Grab Jelly Liver off the Belt",
-            "description": "Pay [red]35[/red] [gold]Gold[/gold]. [gold]Transform[/gold] a card. Continue feasting!"
+            "description": "Pay [red]40[/red] [gold]Gold[/gold]. [gold]Transform[/gold] a card. Continue feasting!"
           },
           {
             "id": "SEAPUNK_SALAD",
             "title": "Grab Seapunk Salad off the Belt",
-            "description": "Pay [red]35[/red] [gold]Gold[/gold]. Add [gold]Feeding Frenzy[/gold] to your [gold]Deck[/gold]. Continue feasting!"
+            "description": "Pay [red]40[/red] [gold]Gold[/gold]. Add [gold]Feeding Frenzy[/gold] to your [gold]Deck[/gold]. Continue feasting!"
           },
           {
             "id": "SPICY_SNAPPY",
             "title": "Grab Spicy Snappy off the Belt",
-            "description": "Pay [red]35[/red] [gold]Gold[/gold]. [gold]Upgrade[/gold] a random card. Continue feasting!"
+            "description": "Pay [red]40[/red] [gold]Gold[/gold]. [gold]Upgrade[/gold] a random card. Continue feasting!"
           },
           {
             "id": "SUSPICIOUS_CONDIMENT",
             "title": "Grab Suspicious Condiment off the Belt",
-            "description": "Pay [red]35[/red] [gold]Gold[/gold]. Procure a random [gold]Potion[/gold]. Continue feasting!"
+            "description": "Pay [red]40[/red] [gold]Gold[/gold]. Procure a random [gold]Potion[/gold]. Continue feasting!"
           }
         ]
       },
@@ -1257,7 +1257,7 @@
       },
       {
         "id": "INITIAL",
-        "description": "You lumber into a shack with a bright but crooked sign that reads:\n[aqua]“ENDLESS FEAST - PAY WHAT YOU HUNGER!”[/aqua]\n\nInside, a [orange]willowy multi-armed chef[/orange] is deftly preparing [green]bites of food[/green] and placing them onto a [sine]winding chitinous belt[/sine].\n\nOne of the chef's arms point to a sign:\n[blue]35[/blue] [gold]Gold[/gold] each",
+        "description": "You lumber into a shack with a bright but crooked sign that reads:\n[aqua]“ENDLESS FEAST - PAY WHAT YOU HUNGER!”[/aqua]\n\nInside, a [orange]willowy multi-armed chef[/orange] is deftly preparing [green]bites of food[/green] and placing them onto a [sine]winding chitinous belt[/sine].\n\nOne of the chef's arms point to a sign:\n[blue]40[/blue] [gold]Gold[/gold] each",
         "options": [
           {
             "id": "OBSERVE_CHEF",
@@ -1408,7 +1408,7 @@
       {
         "id": "FRAGRANT_MUSHROOM",
         "title": "Fragrant Mushroom",
-        "description": "Obtain [gold]Fragrant Mushroom[/gold]. Upon pickup, lose [red]15[/red] HP and [gold]Upgrade[/gold] [blue]3[/blue] random cards."
+        "description": "Obtain [gold]Fragrant Mushroom[/gold]. Upon pickup, lose [blue]15[/blue] HP and [gold]Upgrade[/gold] [blue]2[/blue] random cards."
       }
     ],
     "pages": [
@@ -1432,7 +1432,7 @@
           {
             "id": "FRAGRANT_MUSHROOM",
             "title": "Fragrant Mushroom",
-            "description": "Obtain [gold]Fragrant Mushroom[/gold]. Upon pickup, lose [red]15[/red] HP and [gold]Upgrade[/gold] [blue]3[/blue] random cards."
+            "description": "Obtain [gold]Fragrant Mushroom[/gold]. Upon pickup, lose [blue]15[/blue] HP and [gold]Upgrade[/gold] [blue]2[/blue] random cards."
           }
         ]
       },
@@ -1651,7 +1651,7 @@
       {
         "id": "GROUP",
         "title": "Group",
-        "description": "Lose [red]100[/red] [gold]Gold[/gold]. [gold]Transform[/gold] [blue]2[/blue] cards."
+        "description": "Lose [red]ALL[/red] of your [gold]Gold[/gold]. [gold]Transform[/gold] [blue]2[/blue] cards."
       },
       {
         "id": "LONER",
@@ -1671,7 +1671,7 @@
           {
             "id": "GROUP",
             "title": "Group",
-            "description": "Lose [red]100[/red] [gold]Gold[/gold]. [gold]Transform[/gold] [blue]2[/blue] cards."
+            "description": "Lose [red]ALL[/red] of your [gold]Gold[/gold]. [gold]Transform[/gold] [blue]2[/blue] cards."
           },
           {
             "id": "LONER",
@@ -1881,23 +1881,28 @@
     "relics": [
       "ARCANE_SCROLL",
       "BOOMING_CONCH",
-      "POMANDER",
       "GOLDEN_PEARL",
       "LEAD_PAPERWEIGHT",
-      "NEW_LEAF",
-      "NEOWS_TORMENT",
-      "PRECISE_SCISSORS",
       "LOST_COFFER",
-      "NUTRITIOUS_OYSTER",
-      "STONE_HUMIDIFIER",
+      "NEOWS_TORMENT",
+      "NEW_LEAF",
+      "PRECISE_SCISSORS",
+      "PHIAL_HOLSTER",
+      "WINGED_BOOTS",
       "MASSIVE_SCROLL",
       "LAVA_ROCK",
+      "NEOWS_TALISMAN",
+      "NUTRITIOUS_OYSTER",
+      "POMANDER",
       "SMALL_CAPSULE",
-      "SILVER_CRUCIBLE",
+      "STONE_HUMIDIFIER",
       "CURSED_PEARL",
+      "HEFTY_TABLET",
       "LARGE_CAPSULE",
       "LEAFY_POULTICE",
       "PRECARIOUS_SHEARS",
+      "SILVER_CRUCIBLE",
+      "NEOWS_BONES",
       "SCROLL_BOXES"
     ]
   },
@@ -2765,7 +2770,9 @@
     "type": "Event",
     "act": "Act 3 - Glory",
     "description": "You find an [orange]invitation[/orange] for a [blue]“Sir Galalot”[/blue] to a tea party and decide to show up in his stead.\n\nUpon entering an unassuming rotunda, you find yourself in the midst of [gold]commanders[/gold], [aqua]generals[/aqua], [red]warlords[/red], and [blue]mercenaries[/blue] having... tea?\nThe gigantic knight donning a [gold]golden crown[/gold] speaks.\n\n[jitter]“Thou art late for [b]Tea[/b]?!”[/jitter]",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 12+ HP"
+    ],
     "options": [
       {
         "id": "ENJOY_TEA",
@@ -3114,7 +3121,7 @@
       {
         "id": "OBSERVE",
         "title": "Observe",
-        "description": "[gold]Enchant[/gold] a [gold]Strike[/gold] or [gold]Defend[/gold] with [purple]Spiral[/purple]."
+        "description": "[gold]Enchant[/gold] a Basic [gold]Strike[/gold] or [gold]Defend[/gold] with [purple]Spiral[/purple]."
       },
       {
         "id": "DRINK",
@@ -3134,7 +3141,7 @@
           {
             "id": "OBSERVE",
             "title": "Observe",
-            "description": "[gold]Enchant[/gold] a [gold]Strike[/gold] or [gold]Defend[/gold] with [purple]Spiral[/purple]."
+            "description": "[gold]Enchant[/gold] a Basic [gold]Strike[/gold] or [gold]Defend[/gold] with [purple]Spiral[/purple]."
           },
           {
             "id": "DRINK",
@@ -3165,7 +3172,7 @@
       {
         "id": "REJECTION",
         "title": "Rejection",
-        "description": "Lose [red]9[/red] HP. Remove a card from your [gold]Deck[/gold]."
+        "description": "Lose [red]10[/red] HP. [gold]Upgrade[/gold] a card."
       }
     ],
     "pages": [
@@ -3181,7 +3188,7 @@
           {
             "id": "REJECTION",
             "title": "Rejection",
-            "description": "Lose [red]9[/red] HP. Remove a card from your [gold]Deck[/gold]."
+            "description": "Lose [red]10[/red] HP. [gold]Upgrade[/gold] a card."
           }
         ]
       },
@@ -4476,7 +4483,7 @@
           {
             "id": "CHAOS",
             "title": "Chaos",
-            "description": "Add a random card into your [gold]Hand[/gold]. It costs [blue]0[/blue] [energy:1] this turn."
+            "description": "Add a random card into your [gold]Hand[/gold]. It's free to play this turn."
           },
           {
             "id": "EXPERTISE",
@@ -5005,7 +5012,7 @@
     "act": "Underdocks",
     "description": "Navigating the murky passages, you stumble upon a [aqua]withered figure[/aqua] working a small shop. The multitude of shelves are [sine]stuffed[/sine] full of damp scrolls and parchment.\n\nNoticing a patron has entered, the [aqua]scribe-shopkeeper[/aqua] snaps to attention and gestures at some [gold]implements[/gold] arranged on a desk.",
     "preconditions": [
-      "Requires 65+ gold"
+      "Requires 55+ gold"
     ],
     "options": [
       {
@@ -5016,22 +5023,22 @@
       {
         "id": "TENTACLE_QUILL",
         "title": "Tentacle Quill",
-        "description": "Pay [red]65[/red] [gold]Gold[/gold]. [gold]Enchant[/gold] a card with [purple]Steady[/purple]."
+        "description": "Pay [red]55[/red] [gold]Gold[/gold]. [gold]Enchant[/gold] a card with [purple]Steady[/purple]."
       },
       {
         "id": "TENTACLE_QUILL_LOCKED",
         "title": "Locked",
-        "description": "Requires [blue]65[/blue] [gold]Gold[/gold]."
+        "description": "Requires [blue]55[/blue] [gold]Gold[/gold]."
       },
       {
         "id": "PRICKLY_SPONGE",
         "title": "Prickly Sponge",
-        "description": "Pay [red]155[/red] [gold]Gold[/gold]. [gold]Enchant[/gold] [blue]2[/blue] cards with [purple]Steady[/purple]."
+        "description": "Pay [red]99[/red] [gold]Gold[/gold]. [gold]Enchant[/gold] [blue]2[/blue] cards with [purple]Steady[/purple]."
       },
       {
         "id": "PRICKLY_SPONGE_LOCKED",
         "title": "Locked",
-        "description": "Requires [blue]155[/blue] [gold]Gold[/gold]."
+        "description": "Requires [blue]99[/blue] [gold]Gold[/gold]."
       }
     ],
     "pages": [
@@ -5051,22 +5058,22 @@
           {
             "id": "TENTACLE_QUILL",
             "title": "Tentacle Quill",
-            "description": "Pay [red]65[/red] [gold]Gold[/gold]. [gold]Enchant[/gold] a card with [purple]Steady[/purple]."
+            "description": "Pay [red]55[/red] [gold]Gold[/gold]. [gold]Enchant[/gold] a card with [purple]Steady[/purple]."
           },
           {
             "id": "TENTACLE_QUILL_LOCKED",
             "title": "Locked",
-            "description": "Requires [blue]65[/blue] [gold]Gold[/gold]."
+            "description": "Requires [blue]55[/blue] [gold]Gold[/gold]."
           },
           {
             "id": "PRICKLY_SPONGE",
             "title": "Prickly Sponge",
-            "description": "Pay [red]155[/red] [gold]Gold[/gold]. [gold]Enchant[/gold] [blue]2[/blue] cards with [purple]Steady[/purple]."
+            "description": "Pay [red]99[/red] [gold]Gold[/gold]. [gold]Enchant[/gold] [blue]2[/blue] cards with [purple]Steady[/purple]."
           },
           {
             "id": "PRICKLY_SPONGE_LOCKED",
             "title": "Locked",
-            "description": "Requires [blue]155[/blue] [gold]Gold[/gold]."
+            "description": "Requires [blue]99[/blue] [gold]Gold[/gold]."
           }
         ]
       },
@@ -5240,13 +5247,13 @@
     "act": "Act 1 - Overgrowth",
     "description": "Making your way through a [red]hollow of dead trees[/red] you happen upon a single bone-white tree. Clay baubles hang off its branches, which curve inward like protective ribs.\n\nSuch a [purple]creepy tree[/purple]. It whispers.\n\n[sine][blue]...make exchange.....[/blue][/sine]",
     "preconditions": [
-      "Requires 50+ gold"
+      "Requires 44+ gold"
     ],
     "options": [
       {
         "id": "GOLD",
         "title": "Exchange Gold",
-        "description": "Lose [red]50[/red] [gold]Gold[/gold]. Procure [blue]2[/blue] random [gold]Potions[/gold]."
+        "description": "Lose [red]26-44[/red] [gold]Gold[/gold]. Procure [blue]2[/blue] random [gold]Potions[/gold]."
       },
       {
         "id": "HUG",
@@ -5270,7 +5277,7 @@
           {
             "id": "GOLD",
             "title": "Exchange Gold",
-            "description": "Lose [red]50[/red] [gold]Gold[/gold]. Procure [blue]2[/blue] random [gold]Potions[/gold]."
+            "description": "Lose [red]26-44[/red] [gold]Gold[/gold]. Procure [blue]2[/blue] random [gold]Potions[/gold]."
           },
           {
             "id": "HUG",

@@ -302,10 +302,6 @@
     "tags": null,
     "monsters": [
       {
-        "id": "DOOR",
-        "name": "문"
-      },
-      {
         "id": "DOORMAKER",
         "name": "문을 만드는 자"
       }
@@ -986,6 +982,27 @@
     "loss_text": "[gold]물어뜯는 두루마리[/gold]들은 [b]The Adventurer[/b]를 갈기갈기 찢어버렸습니다."
   },
   {
+    "id": "SEAPUNK_NORMAL",
+    "name": "지하 선착장 야생동물",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": [
+      "Seapunk"
+    ],
+    "monsters": [
+      {
+        "id": "CALCIFIED_CULTIST",
+        "name": "석회화된 광신자"
+      },
+      {
+        "id": "SEAPUNK",
+        "name": "불량 해초"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]는 [gold]지하 선착장 야생동물[/gold]들에게 패배했습니다."
+  },
+  {
     "id": "SEAPUNK_WEAK",
     "name": "불량 해초",
     "room_type": "Monster",
@@ -1394,25 +1411,6 @@
     "loss_text": "[gold]폴짝이 도적[/gold]은 [b]The Adventurer[/b]를 털어먹었습니다."
   },
   {
-    "id": "TOADPOLES_NORMAL",
-    "name": "지하 선착장 야생동물",
-    "room_type": "Monster",
-    "is_weak": false,
-    "act": "Underdocks",
-    "tags": null,
-    "monsters": [
-      {
-        "id": "CALCIFIED_CULTIST",
-        "name": "석회화된 광신자"
-      },
-      {
-        "id": "TOADPOLE",
-        "name": "올챙이"
-      }
-    ],
-    "loss_text": "[b]The Adventurer[/b]는 [gold]지하 선착장 야생동물[/gold]에게 패배했습니다."
-  },
-  {
     "id": "TOADPOLES_WEAK",
     "name": "올챙이들",
     "room_type": "Monster",
@@ -1432,19 +1430,15 @@
     "name": "땅굴 2인조",
     "room_type": "Monster",
     "is_weak": false,
-    "act": "Act 2 - Hive",
+    "act": null,
     "tags": [
       "Burrower",
-      "Workers"
+      "Chomper"
     ],
     "monsters": [
       {
-        "id": "BOWLBUG_EGG",
-        "name": "그릇벌레 (알)"
-      },
-      {
-        "id": "BOWLBUG_SILK",
-        "name": "그릇벌레 (실크)"
+        "id": "CHOMPER",
+        "name": "먹깨비"
       },
       {
         "id": "TUNNELER",

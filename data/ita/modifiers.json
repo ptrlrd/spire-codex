@@ -7,12 +7,12 @@
   {
     "id": "BIG_GAME_HUNTER",
     "name": "Caccia grossa",
-    "description": "la Guglia abbonda di nemici Élite che ti fanno ottenere ricompense migliori."
+    "description": "la Guglia abbonda di nemici Élite che offrono ricompense migliori."
   },
   {
     "id": "BINARY",
     "name": "Codice binario",
-    "description": "le [gold]carte ricompensa[/gold] ora contengono solo [blue]2[/blue] carte."
+    "description": "le [gold]ricompense di carte[/gold] ora contengono solo [blue]2[/blue] carte."
   },
   {
     "id": "CURSED_RUN",
@@ -22,17 +22,17 @@
   {
     "id": "DEADLY_EVENTS",
     "name": "Eventi mortali",
-    "description": "le stanze misteriose ora possono contenere nemici Élite, ma è anche più probabile che possano contenere tesori."
+    "description": "le stanze misteriose ora possono contenere nemici Élite, ma è anche più probabile che possano contenere stanze del tesoro."
   },
   {
     "id": "DRAFT",
-    "name": "Scelta personale",
-    "description": "scegli [blue]10[/blue] [gold]carte ricompensa[/gold] con cui sostituire il tuo mazzo iniziale."
+    "name": "Selezione",
+    "description": "scegli [blue]10[/blue] [gold]ricompense di carte[/gold] con cui sostituire il tuo mazzo iniziale."
   },
   {
     "id": "FLIGHT",
     "name": "Volo",
-    "description": "la scelta della stanza successiva da esplorare non è più limitata al percorso indicato sulla mappa."
+    "description": "puoi ignorare i percorsi nella scelta della prossima stanza da esplorare."
   },
   {
     "id": "HOARDER",

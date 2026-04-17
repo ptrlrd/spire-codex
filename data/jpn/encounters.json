@@ -302,10 +302,6 @@
     "tags": null,
     "monsters": [
       {
-        "id": "DOOR",
-        "name": "ドア"
-      },
-      {
         "id": "DOORMAKER",
         "name": "ドアメーカー"
       }
@@ -732,7 +728,7 @@
         "name": "謎の騎士"
       }
     ],
-    "loss_text": "[b]The Adventurer[/b]は[gold]謎の騎士[/gold]の鍵を取ろうとした。"
+    "loss_text": "[b]The Adventurer[/b]は[gold]謎の騎士[/gold]の鍵を盗ろうとした。"
   },
   {
     "id": "MYTES_NORMAL",
@@ -854,7 +850,7 @@
   },
   {
     "id": "PHROG_PARASITE_ELITE",
-    "name": "寄生カエル",
+    "name": "寄生キャエル",
     "room_type": "Elite",
     "is_weak": false,
     "act": "Act 1 - Overgrowth",
@@ -869,7 +865,7 @@
         "name": "リグラー"
       }
     ],
-    "loss_text": "[gold]寄生カエル[/gold]は[b]The Adventurer[/b]にコロニーを広げた。"
+    "loss_text": "[gold]寄生キャエル[/gold]は[b]The Adventurer[/b]にコロニーを広げた。"
   },
   {
     "id": "PUNCH_CONSTRUCT_NORMAL",
@@ -884,7 +880,7 @@
         "name": "パンチマシン"
       }
     ],
-    "loss_text": "[b]The Adventurer[/b]は[gold]パンチマシーン[/gold]との殴り合いに従事した。"
+    "loss_text": "[b]The Adventurer[/b]は[gold]パンチマシーン[/gold]との殴り合いに突入した。"
   },
   {
     "id": "PUNCH_OFF_EVENT_ENCOUNTER",
@@ -899,7 +895,7 @@
         "name": "パンチマシン"
       }
     ],
-    "loss_text": "[b]The Adventurer[/b]は2体の[gold]パンチマシーン[/gold]の間の試合を妨害した。"
+    "loss_text": "[b]The Adventurer[/b]は2体の[gold]パンチマシーン[/gold]による試合を妨害した。"
   },
   {
     "id": "QUEEN_BOSS",
@@ -918,7 +914,7 @@
         "name": "トーチヘッド・アマルガム"
       }
     ],
-    "loss_text": "[gold]クイーン[/gold]は彼女のコレクションに[b]The Adventurer[/b]の欠片を追加した。"
+    "loss_text": "[gold]クイーン[/gold]のコレクションに[b]The Adventurer[/b]が加わった。"
   },
   {
     "id": "RUBY_RAIDERS_NORMAL",
@@ -984,6 +980,27 @@
       }
     ],
     "loss_text": "[gold]噛みつきの巻物[/gold]は[b]The Adventurer[/b]をズタズタに引き裂いた。"
+  },
+  {
+    "id": "SEAPUNK_NORMAL",
+    "name": "地下ドックに生きるものたち",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": [
+      "Seapunk"
+    ],
+    "monsters": [
+      {
+        "id": "CALCIFIED_CULTIST",
+        "name": "石を纏った狂信者"
+      },
+      {
+        "id": "SEAPUNK",
+        "name": "シーパンク"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]は [gold]地下ドックに生きるものたち[/gold]に敗北した。"
   },
   {
     "id": "SEAPUNK_WEAK",
@@ -1394,25 +1411,6 @@
     "loss_text": "[gold]泥棒バッタ[/gold]は[b]The Adventurer[/b]を強盗した。"
   },
   {
-    "id": "TOADPOLES_NORMAL",
-    "name": "地下水路の生物",
-    "room_type": "Monster",
-    "is_weak": false,
-    "act": "Underdocks",
-    "tags": null,
-    "monsters": [
-      {
-        "id": "CALCIFIED_CULTIST",
-        "name": "石を纏った狂信者"
-      },
-      {
-        "id": "TOADPOLE",
-        "name": "ヒキジャクシ"
-      }
-    ],
-    "loss_text": "[b]The Adventurer[/b]は[gold]地下水路の生物[/gold]によって敗北した。"
-  },
-  {
     "id": "TOADPOLES_WEAK",
     "name": "ヒキジャクシ",
     "room_type": "Monster",
@@ -1432,19 +1430,15 @@
     "name": "トンネリング",
     "room_type": "Monster",
     "is_weak": false,
-    "act": "Act 2 - Hive",
+    "act": null,
     "tags": [
       "Burrower",
-      "Workers"
+      "Chomper"
     ],
     "monsters": [
       {
-        "id": "BOWLBUG_EGG",
-        "name": "ボウルバグ（卵）"
-      },
-      {
-        "id": "BOWLBUG_SILK",
-        "name": "ボウルバグ（糸）"
+        "id": "CHOMPER",
+        "name": "チョンパー"
       },
       {
         "id": "TUNNELER",

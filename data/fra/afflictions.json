@@ -7,6 +7,13 @@
     "is_stackable": false
   },
   {
+    "id": "DEVOURED",
+    "name": "Dévorée",
+    "description": "Ajoutez [gold]Épuisement[/gold] à cette carte.",
+    "extra_card_text": null,
+    "is_stackable": false
+  },
+  {
     "id": "ENTANGLED",
     "name": "Enchevêtrer",
     "description": "Coûte [energy:1] supplémentaire.",
@@ -39,6 +46,13 @@
     "name": "Brouillard",
     "description": "Vous ne pouvez plus jouer de [gold]Compétences[/gold] ce tour. Se dissipe à la fin du tour.",
     "extra_card_text": null,
+    "is_stackable": false
+  },
+  {
+    "id": "WEIGHTED",
+    "name": "Lestée",
+    "description": "Perdez [energy:1] quand cette carte est jouée.",
+    "extra_card_text": "Perdez [energy:1].",
     "is_stackable": false
   }
 ]

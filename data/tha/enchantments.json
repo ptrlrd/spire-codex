@@ -33,17 +33,6 @@
     "image_url": "/static/images/enchantments/corrupted.webp"
   },
   {
-    "id": "FAVORED",
-    "name": "มนตร์โปรดปราน",
-    "description": "พลังโจมตีของการ์ดนี้เป็น 2 เท่า",
-    "description_raw": null,
-    "extra_card_text": null,
-    "card_type": "Attack",
-    "applicable_to": null,
-    "is_stackable": false,
-    "image_url": "/static/images/enchantments/favored.webp"
-  },
-  {
     "id": "GLAM",
     "name": "มนตร์สวยหรู",
     "description": "การ์ดนี้มี[gold]เล่นซ้ำ[/gold] 1 ครั้งต่อการต่อสู้",
@@ -77,9 +66,20 @@
     "image_url": "/static/images/enchantments/imbued.webp"
   },
   {
+    "id": "INKY",
+    "name": "Inky",
+    "description": "",
+    "description_raw": null,
+    "extra_card_text": null,
+    "card_type": null,
+    "applicable_to": null,
+    "is_stackable": false,
+    "image_url": "/static/images/enchantments/inky.webp"
+  },
+  {
     "id": "INSTINCT",
     "name": "มนตร์สัญชาตญาณ",
-    "description": "ลดค่าร่ายของการ์ดนี้ [blue]1[/blue]",
+    "description": "พลังโจมตีของการ์ดนี้เป็น 2 เท่า",
     "description_raw": null,
     "extra_card_text": null,
     "card_type": "Attack",
@@ -212,7 +212,7 @@
     "id": "SWIFT",
     "name": "มนตร์ฉับพลัน",
     "description": "ครั้งแรกที่คุณเล่นการ์ดนี้ จั่ว [blue]X[/blue] การ์ด",
-    "description_raw": "ครั้งแรกที่คุณเล่นการ์ดนี้ จั่ว [blue]{Amount}[/blue] {Amount:plural:การ์ด|การ์ด}",
+    "description_raw": "ครั้งแรกที่คุณเล่นการ์ดนี้ จั่ว [blue]{Amount}[/blue] {Amount:choose(1):การ์ด|การ์ด}",
     "extra_card_text": "จั่ว X การ์ดตอนที่คุณเล่นการ์ดนี้ครั้งแรก",
     "card_type": null,
     "applicable_to": null,

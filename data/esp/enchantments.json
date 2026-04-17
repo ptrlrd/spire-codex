@@ -33,17 +33,6 @@
     "image_url": "/static/images/enchantments/corrupted.webp"
   },
   {
-    "id": "FAVORED",
-    "name": "Privilegio",
-    "description": "El daño de ataque de esta carta se duplica.",
-    "description_raw": null,
-    "extra_card_text": null,
-    "card_type": "Attack",
-    "applicable_to": null,
-    "is_stackable": false,
-    "image_url": "/static/images/enchantments/favored.webp"
-  },
-  {
     "id": "GLAM",
     "name": "Glamur",
     "description": "Esta carta se puede [gold]rejugar[/gold] una vez por combate.",
@@ -77,9 +66,20 @@
     "image_url": "/static/images/enchantments/imbued.webp"
   },
   {
+    "id": "INKY",
+    "name": "Entintado",
+    "description": "Infliges [blue]2[/blue] de daño adicional y aplicas [blue]1[/blue] de [gold]debilidad[/gold].",
+    "description_raw": "Infliges [blue]{Damage}[/blue] de daño adicional y aplicas [blue]{WeakPower}[/blue] de [gold]debilidad[/gold].",
+    "extra_card_text": "Aplicas [blue]1[/blue] de [gold]debilidad[/gold] a TODOS los enemigos.",
+    "card_type": null,
+    "applicable_to": null,
+    "is_stackable": false,
+    "image_url": "/static/images/enchantments/inky.webp"
+  },
+  {
     "id": "INSTINCT",
     "name": "Instinto",
-    "description": "Se reduce el costo de esta carta en [blue]1[/blue].",
+    "description": "Se duplica el daño de ataque de esta carta.",
     "description_raw": null,
     "extra_card_text": null,
     "card_type": "Attack",

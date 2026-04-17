@@ -123,7 +123,7 @@
   },
   {
     "id": "CEREMONIAL_BEAST_BOSS",
-    "name": "Zeremonientier",
+    "name": "Zeremonienbiest",
     "room_type": "Boss",
     "is_weak": false,
     "act": "Act 1 - Overgrowth",
@@ -134,7 +134,7 @@
         "name": "Zeremonienbiest"
       }
     ],
-    "loss_text": "[b]The Adventurer[/b] wurde vom [gold]Zeremonientier[/gold] zur Ruhe gelegt."
+    "loss_text": "[b]The Adventurer[/b] wurde vom [gold]Zeremonienbiest[/gold] zur Ruhe gelegt."
   },
   {
     "id": "CHOMPERS_NORMAL",
@@ -301,10 +301,6 @@
     "act": "Act 3 - Glory",
     "tags": null,
     "monsters": [
-      {
-        "id": "DOOR",
-        "name": "Tür"
-      },
       {
         "id": "DOORMAKER",
         "name": "Türmacher"
@@ -598,7 +594,7 @@
         "name": "Rakete"
       }
     ],
-    "loss_text": "Die [gold]Befallenen Automatons[/gold] haben {characterObject} von allen Seiten getroffen."
+    "loss_text": "Die [gold]Kaiserkrabbe[/gold] hat {characterObject} von allen Seiten getroffen."
   },
   {
     "id": "KNIGHTS_ELITE",
@@ -691,7 +687,7 @@
   },
   {
     "id": "MAWLER_NORMAL",
-    "name": "Mauler",
+    "name": "Schlunderer",
     "room_type": "Monster",
     "is_weak": false,
     "act": "Act 1 - Overgrowth",
@@ -699,10 +695,10 @@
     "monsters": [
       {
         "id": "MAWLER",
-        "name": "Mauler"
+        "name": "Schlunderer"
       }
     ],
-    "loss_text": "[b]The Adventurer[/b] wurde ein köstliches Mahl für einen [gold]Mauler[/gold]."
+    "loss_text": "[b]The Adventurer[/b] wurde ein köstliches Mahl für einen [gold]Schlunderer[/gold]."
   },
   {
     "id": "MECHA_KNIGHT_ELITE",
@@ -736,7 +732,7 @@
   },
   {
     "id": "MYTES_NORMAL",
-    "name": "Eine Menge Myten",
+    "name": "Eine Menge Mylben",
     "room_type": "Monster",
     "is_weak": false,
     "act": "Act 2 - Hive",
@@ -744,10 +740,10 @@
     "monsters": [
       {
         "id": "MYTE",
-        "name": "Myte"
+        "name": "Mylbe"
       }
     ],
-    "loss_text": "[b]The Adventurer[/b] wurde von [gold]Einer Menge Myten[/gold] umschwärmt."
+    "loss_text": "[b]The Adventurer[/b] wurde von [gold]Einer Menge Mylben[/gold] umschwärmt."
   },
   {
     "id": "NIBBITS_NORMAL",
@@ -835,7 +831,7 @@
         "name": "Eulenmagistratin"
       }
     ],
-    "loss_text": "[b]The Adventurer[/b] bekam das Todesurteil einer [gold]Eulenmagistratin[/gold]."
+    "loss_text": "[b]The Adventurer[/b] wurde von einer [gold]Eulenmagistratin[/gold] zum Tode verurteilt."
   },
   {
     "id": "PHANTASMAL_GARDENERS_ELITE",
@@ -918,7 +914,7 @@
         "name": "Fackelkopf-Amalgam"
       }
     ],
-    "loss_text": "Die [gold]Königin[/gold] hat ihrer Sammlung ein Stück von {characterObject} hinzugefügt."
+    "loss_text": "[b]The Adventurer[/b] ist das neueste Stück in der Sammlung der [gold]Königin[/gold]."
   },
   {
     "id": "RUBY_RAIDERS_NORMAL",
@@ -984,6 +980,27 @@
       }
     ],
     "loss_text": "Ein paar [gold]Pergamente des Beißens[/gold] rissen {characterObject} in Schnipsel."
+  },
+  {
+    "id": "SEAPUNK_NORMAL",
+    "name": "Unterdocks-Fauna",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": [
+      "Seapunk"
+    ],
+    "monsters": [
+      {
+        "id": "CALCIFIED_CULTIST",
+        "name": "Verkalkter Kultist"
+      },
+      {
+        "id": "SEAPUNK",
+        "name": "Meerespunk"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] wurde von [gold]Unterdocks-Fauna[/gold] besiegt."
   },
   {
     "id": "SEAPUNK_WEAK",
@@ -1394,25 +1411,6 @@
     "loss_text": "Ein [gold]Diebischer Hüpfer[/gold] raubte {characterObject} aus."
   },
   {
-    "id": "TOADPOLES_NORMAL",
-    "name": "Unterdocks-Wildtiere",
-    "room_type": "Monster",
-    "is_weak": false,
-    "act": "Underdocks",
-    "tags": null,
-    "monsters": [
-      {
-        "id": "CALCIFIED_CULTIST",
-        "name": "Verkalkter Kultist"
-      },
-      {
-        "id": "TOADPOLE",
-        "name": "Krötling"
-      }
-    ],
-    "loss_text": "[b]The Adventurer[/b] wurde von einigen [gold]Unterdocks-Wildtieren[/gold] besiegt."
-  },
-  {
     "id": "TOADPOLES_WEAK",
     "name": "Krötlinge",
     "room_type": "Monster",
@@ -1432,19 +1430,15 @@
     "name": "Grabendes Pärchen",
     "room_type": "Monster",
     "is_weak": false,
-    "act": "Act 2 - Hive",
+    "act": null,
     "tags": [
       "Burrower",
-      "Workers"
+      "Chomper"
     ],
     "monsters": [
       {
-        "id": "BOWLBUG_EGG",
-        "name": "Schalenkäfer (Ei)"
-      },
-      {
-        "id": "BOWLBUG_SILK",
-        "name": "Schalenkäfer (Seide)"
+        "id": "CHOMPER",
+        "name": "Mampfer"
       },
       {
         "id": "TUNNELER",

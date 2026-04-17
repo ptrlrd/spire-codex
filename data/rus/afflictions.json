@@ -7,6 +7,13 @@
     "is_stackable": false
   },
   {
+    "id": "DEVOURED",
+    "name": "Поглощение",
+    "description": "Карта [gold]сжигается[/gold] при разыгрывании.",
+    "extra_card_text": null,
+    "is_stackable": false
+  },
+  {
     "id": "ENTANGLED",
     "name": "Путы",
     "description": "Стоит на [energy:1] больше.",
@@ -39,6 +46,13 @@
     "name": "Смог",
     "description": "Вы больше не сможете разыгрывать [gold]Навыки[/gold] в этом ходу. Рассеивается в конце хода.",
     "extra_card_text": null,
+    "is_stackable": false
+  },
+  {
+    "id": "WEIGHTED",
+    "name": "Тяжесть",
+    "description": "Вы потеряете [energy:1], если разыграете эту карту.",
+    "extra_card_text": "Вы потеряете [energy:1].",
     "is_stackable": false
   }
 ]

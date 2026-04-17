@@ -10,6 +10,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/tri_boomerang.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 160
   },
@@ -28,6 +29,7 @@
     },
     "image_url": "/static/images/relics/ringing_triangle.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 130
   },
@@ -46,6 +48,7 @@
     },
     "image_url": "/static/images/relics/unceasing_top.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 80
   },
@@ -64,6 +67,7 @@
     },
     "image_url": "/static/images/relics/unsettling_lamp.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 81
   },
@@ -82,6 +86,7 @@
     },
     "image_url": "/static/images/relics/undying_sigil.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 131
   },
@@ -100,13 +105,14 @@
     },
     "image_url": "/static/images/relics/bookmark.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 82
   },
   {
     "id": "BOOK_OF_FIVE_RINGS",
     "name": "五轮书",
-    "description": "你每将[blue]5[/blue]张牌加入你的[gold]牌组[/gold]时，回复[green]15[/green]点生命。",
+    "description": "你每将[blue]5[/blue]张牌加入你的[gold]牌组[/gold]时，回复[green]20[/green]点生命。",
     "description_raw": "你每将[blue]{Cards}[/blue]张牌加入你的[gold]牌组[/gold]时，回复[green]{Heal}[/green]点生命。",
     "flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
     "rarity": "普通遗物",
@@ -118,6 +124,7 @@
     },
     "image_url": "/static/images/relics/book_of_five_rings.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 10
   },
@@ -132,6 +139,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/glitter.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 161
   },
@@ -150,6 +158,7 @@
     },
     "image_url": "/static/images/relics/membership_card.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 132
   },
@@ -164,6 +173,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/whispering_earring.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 162
   },
@@ -178,8 +188,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/ember_tea.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 252
+    "compendium_order": 257
   },
   {
     "id": "JUZU_BRACELET",
@@ -196,6 +207,7 @@
     },
     "image_url": "/static/images/relics/juzu_bracelet.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 11
   },
@@ -210,6 +222,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/paels_tears.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 163
   },
@@ -224,6 +237,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/paels_claw.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 164
   },
@@ -231,13 +245,14 @@
     "id": "PAELS_TOOTH",
     "name": "佩尔之牙",
     "description": "拾起时，从你的[gold]牌组[/gold]中选择[blue]5[/blue]张牌移除。在每场战斗结束时，将其中随机[blue]1[/blue]张牌[gold]升级[/gold]然后返还。",
-    "description_raw": "拾起时，从你的[gold]牌组[/gold]中选择[blue]{Cards}[/blue]张牌移除。在每场战斗结束时，将其中随机[blue]1[/blue]张牌[gold]升级[/gold]然后返还。{CardTitles.StringValue:cond:\n\n在牙中的牌：\n{}|}",
+    "description_raw": "拾起时，从你的[gold]牌组[/gold]中选择[blue]{Cards}[/blue]张牌移除。在每场战斗结束时，将其中随机[blue]1[/blue]张牌[gold]升级[/gold]然后返还。{CardTitles.StringValue:cond:\n\n被吞噬的牌：\n{}|}",
     "flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
     "rarity": "先古遗物",
     "pool": "shared",
     "merchant_price": null,
     "image_url": "/static/images/relics/paels_tooth.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 165
   },
@@ -252,6 +267,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/paels_eye.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 166
   },
@@ -266,6 +282,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/paels_wing.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 167
   },
@@ -280,6 +297,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/paels_flesh.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 168
   },
@@ -294,6 +312,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/paels_blood.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 169
   },
@@ -308,6 +327,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/paels_horn.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 170
   },
@@ -322,20 +342,22 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/paels_growth.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 171
   },
   {
     "id": "PAELS_LEGION",
     "name": "佩尔的士兵",
-    "description": "将你从一张卡牌内获得的[gold]格挡[/gold]翻倍，然后休眠[blue]2[/blue]个回合。",
-    "description_raw": "将你从一张卡牌内获得的[gold]格挡[/gold]翻倍，然后休眠[blue]{Turns}[/blue]个回合。",
+    "description": "将你从一张卡牌中获得的[gold]格挡[/gold]翻倍，然后此遗物会休眠[blue]2[/blue]回合。",
+    "description_raw": "将你从一张卡牌中获得的[gold]格挡[/gold]翻倍，然后此遗物会休眠[blue]{Turns}[/blue]回合。",
     "flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
     "rarity": "先古遗物",
     "pool": "shared",
     "merchant_price": null,
     "image_url": "/static/images/relics/paels_legion.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 172
   },
@@ -354,6 +376,7 @@
     },
     "image_url": "/static/images/relics/book_repair_knife.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 40
   },
@@ -372,6 +395,7 @@
     },
     "image_url": "/static/images/relics/symbiotic_virus.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 41
   },
@@ -390,6 +414,7 @@
     },
     "image_url": "/static/images/relics/ice_cream.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 83
   },
@@ -408,6 +433,7 @@
     },
     "image_url": "/static/images/relics/frozen_egg.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 84
   },
@@ -426,6 +452,7 @@
     },
     "image_url": "/static/images/relics/bag_of_preparation.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 12
   },
@@ -444,6 +471,7 @@
     },
     "image_url": "/static/images/relics/fencing_manual.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 13
   },
@@ -458,6 +486,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/meat_cleaver.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 173
   },
@@ -472,6 +501,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/claws.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 174
   },
@@ -490,6 +520,7 @@
     },
     "image_url": "/static/images/relics/razor_tooth.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 85
   },
@@ -508,6 +539,7 @@
     },
     "image_url": "/static/images/relics/sling_of_courage.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 133
   },
@@ -526,20 +558,22 @@
     },
     "image_url": "/static/images/relics/chemical_x.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 134
   },
   {
     "id": "CROSSBOW",
     "name": "十字弓",
-    "description": "在你的回合开始时，将一张随机[gold]攻击牌[/gold]加入你的[gold]手牌[/gold]。这张牌在本回合耗能为[blue]0[/blue][energy:1]。",
-    "description_raw": "在你的回合开始时，将一张随机[gold]攻击牌[/gold]加入你的[gold]手牌[/gold]。这张牌在本回合耗能为[blue]0[/blue]{energyPrefix:energyIcons(1)}。",
+    "description": "在你的回合开始时，将一张随机[gold]攻击牌[/gold]加入你的[gold]手牌[/gold]。这张牌在本回合可以免费打出。",
+    "description_raw": "在你的回合开始时，将一张随机[gold]攻击牌[/gold]加入你的[gold]手牌[/gold]。这张牌在本回合可以免费打出。",
     "flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
     "rarity": "先古遗物",
     "pool": "shared",
     "merchant_price": null,
     "image_url": "/static/images/relics/crossbow.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 175
   },
@@ -554,6 +588,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/beautiful_bracelet.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 176
   },
@@ -568,6 +603,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/distinguished_cape.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 177
   },
@@ -582,6 +618,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/pumpkin_candle.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 178
   },
@@ -600,6 +637,7 @@
     },
     "image_url": "/static/images/relics/charons_ashes.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 86
   },
@@ -614,6 +652,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/scroll_boxes.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 179
   },
@@ -628,8 +667,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/history_course.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 253
+    "compendium_order": 258
   },
   {
     "id": "STONE_CALENDAR",
@@ -646,6 +686,7 @@
     },
     "image_url": "/static/images/relics/stone_calendar.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 87
   },
@@ -660,6 +701,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/sere_talon.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 180
   },
@@ -678,6 +720,7 @@
     },
     "image_url": "/static/images/relics/nunchaku.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 42
   },
@@ -692,6 +735,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/radiant_pearl.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 181
   },
@@ -706,8 +750,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/the_boot.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 254
+    "compendium_order": 259
   },
   {
     "id": "ARCHAIC_TOOTH",
@@ -720,6 +765,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/archaic_tooth.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 182
   },
@@ -738,6 +784,7 @@
     },
     "image_url": "/static/images/relics/venerable_tea_set.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 14
   },
@@ -756,8 +803,9 @@
     },
     "image_url": "/static/images/relics/fake_venerable_tea_set.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 255
+    "compendium_order": 260
   },
   {
     "id": "OLD_COIN",
@@ -774,6 +822,7 @@
     },
     "image_url": "/static/images/relics/old_coin.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 88
   },
@@ -788,6 +837,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/calling_bell.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 183
   },
@@ -797,17 +847,18 @@
     "description": "每两场战斗，你的卡牌奖励就会额外包含一张能力牌。",
     "description_raw": "每两场战斗，你的卡牌奖励就会额外包含一张能力牌。",
     "flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
-    "rarity": "稀有遗物",
+    "rarity": "罕见遗物",
     "pool": "shared",
     "merchant_price": {
-      "base": 300,
-      "min": 255,
-      "max": 345
+      "base": 250,
+      "min": 212,
+      "max": 288
     },
     "image_url": "/static/images/relics/lasting_candy.webp",
     "image_variants": null,
-    "rarity_key": "Rare",
-    "compendium_order": 89
+    "notes": null,
+    "rarity_key": "Uncommon",
+    "compendium_order": 43
   },
   {
     "id": "CHANDELIER",
@@ -824,14 +875,15 @@
     },
     "image_url": "/static/images/relics/chandelier.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 90
+    "compendium_order": 89
   },
   {
     "id": "REGALITE",
     "name": "君王矿石",
-    "description": "每当你生成一张无色牌时，获得[blue]2[/blue]点[gold]格挡[/gold]。",
-    "description_raw": "每当你生成一张无色牌时，获得[blue]{Block}[/blue]点[gold]格挡[/gold]。",
+    "description": "每当你生成一张牌时，获得[blue]2[/blue]点[gold]格挡[/gold]。",
+    "description_raw": "每当你生成一张牌时，获得[blue]{Block}[/blue]点[gold]格挡[/gold]。",
     "flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
     "rarity": "罕见遗物",
     "pool": "regent",
@@ -842,8 +894,9 @@
     },
     "image_url": "/static/images/relics/regalite.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 43
+    "compendium_order": 44
   },
   {
     "id": "FAKE_MERCHANTS_RUG",
@@ -856,8 +909,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/fake_merchants_rug.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 256
+    "compendium_order": 261
   },
   {
     "id": "SIGNET_RING",
@@ -870,14 +924,15 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/signet_ring.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 184
   },
   {
     "id": "BOWLER_HAT",
     "name": "圆顶礼帽",
-    "description": "额外获得[blue]20%[/blue]的[gold]金币[/gold]。",
-    "description_raw": "额外获得[blue]20%[/blue]的[gold]金币[/gold]。",
+    "description": "额外获得[blue]25%[/blue]的[gold]金币[/gold]。",
+    "description_raw": "额外获得[blue]{GoldIncrease:percentMore()}%[/blue]的[gold]金币[/gold]。",
     "flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
     "rarity": "罕见遗物",
     "pool": "shared",
@@ -888,8 +943,9 @@
     },
     "image_url": "/static/images/relics/bowler_hat.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 44
+    "compendium_order": 45
   },
   {
     "id": "GREMLIN_HORN",
@@ -906,8 +962,9 @@
     },
     "image_url": "/static/images/relics/gremlin_horn.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 45
+    "compendium_order": 46
   },
   {
     "id": "STURDY_CLAMP",
@@ -924,8 +981,9 @@
     },
     "image_url": "/static/images/relics/sturdy_clamp.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 91
+    "compendium_order": 90
   },
   {
     "id": "TANXS_WHISTLE",
@@ -938,6 +996,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/tanxs_whistle.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 185
   },
@@ -956,8 +1015,9 @@
     },
     "image_url": "/static/images/relics/girya.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 92
+    "compendium_order": 91
   },
   {
     "id": "DOLLYS_MIRROR",
@@ -974,6 +1034,7 @@
     },
     "image_url": "/static/images/relics/dollys_mirror.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 135
   },
@@ -992,8 +1053,9 @@
     },
     "image_url": "/static/images/relics/big_hat.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 93
+    "compendium_order": 92
   },
   {
     "id": "BIG_MUSHROOM",
@@ -1006,8 +1068,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/big_mushroom.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 257
+    "compendium_order": 262
   },
   {
     "id": "CAULDRON",
@@ -1024,6 +1087,7 @@
     },
     "image_url": "/static/images/relics/cauldron.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 136
   },
@@ -1038,6 +1102,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/biiig_hug.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 186
   },
@@ -1052,6 +1117,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/divine_destiny.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Starter",
     "compendium_order": 0
   },
@@ -1066,6 +1132,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/divine_right.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Starter",
     "compendium_order": 1
   },
@@ -1080,8 +1147,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/chosen_cheese.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 258
+    "compendium_order": 263
   },
   {
     "id": "VELVET_CHOKER",
@@ -1094,20 +1162,22 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/velvet_choker.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 187
   },
   {
     "id": "LOST_COFFER",
     "name": "失物盒",
-    "description": "拾起时，获得[blue]1[/blue]组卡牌奖励和[blue]1[/blue]瓶随机药水。",
-    "description_raw": "拾起时，获得[blue]1[/blue]组卡牌奖励和[blue]1[/blue]瓶随机药水。",
+    "description": "拾起时，获得[blue]1[/blue]次卡牌奖励和[blue]1[/blue]瓶随机药水。",
+    "description_raw": "拾起时，获得[blue]1[/blue]次卡牌奖励和[blue]1[/blue]瓶随机药水。",
     "flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
     "rarity": "先古遗物",
     "pool": "shared",
     "merchant_price": null,
     "image_url": "/static/images/relics/lost_coffer.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 188
   },
@@ -1122,8 +1192,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/circlet.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "None",
-    "compendium_order": 287
+    "compendium_order": 292
   },
   {
     "id": "ORICHALCUM",
@@ -1140,8 +1211,9 @@
     },
     "image_url": "/static/images/relics/orichalcum.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 46
+    "compendium_order": 47
   },
   {
     "id": "FAKE_ORICHALCUM",
@@ -1158,8 +1230,9 @@
     },
     "image_url": "/static/images/relics/fake_orichalcum.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 259
+    "compendium_order": 264
   },
   {
     "id": "ARCANE_SCROLL",
@@ -1172,6 +1245,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/arcane_scroll.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 189
   },
@@ -1186,6 +1260,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/delicate_frond.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 190
   },
@@ -1204,8 +1279,9 @@
     },
     "image_url": "/static/images/relics/art_of_war.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 94
+    "compendium_order": 93
   },
   {
     "id": "JEWELED_MASK",
@@ -1218,6 +1294,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/jeweled_mask.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 191
   },
@@ -1232,8 +1309,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/bing_bong.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 260
+    "compendium_order": 265
   },
   {
     "id": "SMALL_CAPSULE",
@@ -1246,6 +1324,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/small_capsule.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 192
   },
@@ -1260,6 +1339,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/fiddle.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 193
   },
@@ -1278,6 +1358,7 @@
     },
     "image_url": "/static/images/relics/blood_vial.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 15
   },
@@ -1296,26 +1377,28 @@
     },
     "image_url": "/static/images/relics/fake_blood_vial.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 261
+    "compendium_order": 266
   },
   {
     "id": "TINY_MAILBOX",
     "name": "小邮箱",
-    "description": "每当你[gold]休息[/gold]时，获得一瓶随机药水。",
-    "description_raw": "每当你[gold]休息[/gold]时，获得一瓶随机药水。",
+    "description": "每当你[gold]休息[/gold]时，获得[blue]2[/blue]瓶随机药水。",
+    "description_raw": "每当你[gold]休息[/gold]时，获得[blue]2[/blue]瓶随机药水。",
     "flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
-    "rarity": "普通遗物",
+    "rarity": "罕见遗物",
     "pool": "shared",
     "merchant_price": {
-      "base": 200,
-      "min": 170,
-      "max": 230
+      "base": 250,
+      "min": 212,
+      "max": 288
     },
     "image_url": "/static/images/relics/tiny_mailbox.webp",
     "image_variants": null,
-    "rarity_key": "Common",
-    "compendium_order": 16
+    "notes": null,
+    "rarity_key": "Uncommon",
+    "compendium_order": 48
   },
   {
     "id": "SCREAMING_FLAGON",
@@ -1332,6 +1415,7 @@
     },
     "image_url": "/static/images/relics/screaming_flagon.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 137
   },
@@ -1346,6 +1430,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/dusty_tome.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 194
   },
@@ -1364,6 +1449,7 @@
     },
     "image_url": "/static/images/relics/toolbox.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 138
   },
@@ -1378,8 +1464,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/maw_bank.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 262
+    "compendium_order": 267
   },
   {
     "id": "MASSIVE_SCROLL",
@@ -1392,6 +1479,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/massive_scroll.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 195
   },
@@ -1406,6 +1494,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/large_capsule.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 196
   },
@@ -1420,6 +1509,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/looming_fruit.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 197
   },
@@ -1434,6 +1524,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/spiked_gauntlets.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 198
   },
@@ -1452,8 +1543,9 @@
     },
     "image_url": "/static/images/relics/meat_on_the_bone.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 95
+    "compendium_order": 94
   },
   {
     "id": "MUMMIFIED_HAND",
@@ -1470,8 +1562,9 @@
     },
     "image_url": "/static/images/relics/mummified_hand.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 96
+    "compendium_order": 95
   },
   {
     "id": "GHOST_SEED",
@@ -1488,6 +1581,7 @@
     },
     "image_url": "/static/images/relics/ghost_seed.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 139
   },
@@ -1506,8 +1600,9 @@
     },
     "image_url": "/static/images/relics/letter_opener.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 47
+    "compendium_order": 49
   },
   {
     "id": "HAPPY_FLOWER",
@@ -1524,8 +1619,9 @@
     },
     "image_url": "/static/images/relics/happy_flower.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
-    "compendium_order": 17
+    "compendium_order": 16
   },
   {
     "id": "FAKE_HAPPY_FLOWER",
@@ -1542,8 +1638,9 @@
     },
     "image_url": "/static/images/relics/fake_happy_flower.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 263
+    "compendium_order": 268
   },
   {
     "id": "SNECKO_EYE",
@@ -1556,6 +1653,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/snecko_eye.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 199
   },
@@ -1574,8 +1672,9 @@
     },
     "image_url": "/static/images/relics/fake_snecko_eye.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 264
+    "compendium_order": 269
   },
   {
     "id": "SNECKO_SKULL",
@@ -1592,8 +1691,9 @@
     },
     "image_url": "/static/images/relics/snecko_skull.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
-    "compendium_order": 18
+    "compendium_order": 17
   },
   {
     "id": "BYRDPIP",
@@ -1606,8 +1706,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/byrdpip.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 265
+    "compendium_order": 270
   },
   {
     "id": "BAG_OF_MARBLES",
@@ -1615,17 +1716,18 @@
     "description": "在每场战斗开始时，给予所有敌人[blue]1[/blue]层[gold]易伤[/gold]。",
     "description_raw": "在每场战斗开始时，给予所有敌人[blue]{VulnerablePower}[/blue]层[gold]易伤[/gold]。",
     "flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
-    "rarity": "罕见遗物",
+    "rarity": "普通遗物",
     "pool": "shared",
     "merchant_price": {
-      "base": 250,
-      "min": 212,
-      "max": 288
+      "base": 200,
+      "min": 170,
+      "max": 230
     },
     "image_url": "/static/images/relics/bag_of_marbles.webp",
     "image_variants": null,
-    "rarity_key": "Uncommon",
-    "compendium_order": 48
+    "notes": null,
+    "rarity_key": "Common",
+    "compendium_order": 18
   },
   {
     "id": "RAINBOW_RING",
@@ -1642,8 +1744,9 @@
     },
     "image_url": "/static/images/relics/rainbow_ring.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 97
+    "compendium_order": 96
   },
   {
     "id": "BEATING_REMNANT",
@@ -1660,8 +1763,9 @@
     },
     "image_url": "/static/images/relics/beating_remnant.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 98
+    "compendium_order": 97
   },
   {
     "id": "MINIATURE_CANNON",
@@ -1678,8 +1782,9 @@
     },
     "image_url": "/static/images/relics/miniature_cannon.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 49
+    "compendium_order": 50
   },
   {
     "id": "MINIATURE_TENT",
@@ -1696,6 +1801,7 @@
     },
     "image_url": "/static/images/relics/miniature_tent.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 140
   },
@@ -1714,6 +1820,7 @@
     },
     "image_url": "/static/images/relics/ninja_scroll.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 141
   },
@@ -1732,8 +1839,9 @@
     },
     "image_url": "/static/images/relics/pocketwatch.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 99
+    "compendium_order": 98
   },
   {
     "id": "DEMON_TONGUE",
@@ -1750,8 +1858,9 @@
     },
     "image_url": "/static/images/relics/demon_tongue.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 100
+    "compendium_order": 99
   },
   {
     "id": "EMOTION_CHIP",
@@ -1768,8 +1877,9 @@
     },
     "image_url": "/static/images/relics/emotion_chip.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 101
+    "compendium_order": 100
   },
   {
     "id": "ODDLY_SMOOTH_STONE",
@@ -1786,6 +1896,7 @@
     },
     "image_url": "/static/images/relics/oddly_smooth_stone.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 19
   },
@@ -1804,6 +1915,7 @@
     },
     "image_url": "/static/images/relics/war_paint.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 20
   },
@@ -1818,6 +1930,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/war_hammer.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 200
   },
@@ -1836,8 +1949,9 @@
     },
     "image_url": "/static/images/relics/shuriken.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 102
+    "compendium_order": 101
   },
   {
     "id": "HAND_DRILL",
@@ -1850,8 +1964,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/hand_drill.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 266
+    "compendium_order": 271
   },
   {
     "id": "STRIKE_DUMMY",
@@ -1868,6 +1983,7 @@
     },
     "image_url": "/static/images/relics/strike_dummy.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 21
   },
@@ -1886,8 +2002,9 @@
     },
     "image_url": "/static/images/relics/fake_strike_dummy.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 267
+    "compendium_order": 272
   },
   {
     "id": "TWISTED_FUNNEL",
@@ -1904,8 +2021,9 @@
     },
     "image_url": "/static/images/relics/twisted_funnel.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 50
+    "compendium_order": 51
   },
   {
     "id": "GNARLED_HAMMER",
@@ -1922,6 +2040,7 @@
     },
     "image_url": "/static/images/relics/gnarled_hammer.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 142
   },
@@ -1936,6 +2055,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/throwing_axe.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 201
   },
@@ -1954,6 +2074,7 @@
     },
     "image_url": "/static/images/relics/gorget.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 22
   },
@@ -1968,8 +2089,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/mr_struggles.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 268
+    "compendium_order": 273
   },
   {
     "id": "PARRYING_SHIELD",
@@ -1986,8 +2108,9 @@
     },
     "image_url": "/static/images/relics/parrying_shield.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 51
+    "compendium_order": 52
   },
   {
     "id": "LUCKY_FYSH",
@@ -2004,8 +2127,9 @@
     },
     "image_url": "/static/images/relics/lucky_fysh.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 52
+    "compendium_order": 53
   },
   {
     "id": "PUNCH_DAGGER",
@@ -2022,6 +2146,7 @@
     },
     "image_url": "/static/images/relics/punch_dagger.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 143
   },
@@ -2036,8 +2161,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/dream_catcher.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 269
+    "compendium_order": 274
   },
   {
     "id": "RUINED_HELMET",
@@ -2054,14 +2180,15 @@
     },
     "image_url": "/static/images/relics/ruined_helmet.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 103
+    "compendium_order": 102
   },
   {
     "id": "PENDULUM",
     "name": "摆动球",
-    "description": "每当你将[gold]抽牌堆[/gold]洗牌时，抽1张牌。",
-    "description_raw": "每当你将[gold]抽牌堆[/gold]洗牌时，抽1张牌。",
+    "description": "每[blue]3[/blue]个回合，抽[blue]1[/blue]张牌",
+    "description_raw": "每[blue]{Turns}[/blue]个回合，抽[blue]{Cards}[/blue]张牌",
     "flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
     "rarity": "普通遗物",
     "pool": "shared",
@@ -2072,6 +2199,7 @@
     },
     "image_url": "/static/images/relics/pendulum.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 23
   },
@@ -2086,6 +2214,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/electric_shrymp.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 202
   },
@@ -2100,6 +2229,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/storybook.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 203
   },
@@ -2118,6 +2248,7 @@
     },
     "image_url": "/static/images/relics/data_disk.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 24
   },
@@ -2136,8 +2267,9 @@
     },
     "image_url": "/static/images/relics/cloak_clasp.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 104
+    "compendium_order": 103
   },
   {
     "id": "NEW_LEAF",
@@ -2150,6 +2282,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/new_leaf.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 204
   },
@@ -2164,6 +2297,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/phylactery_unbound.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Starter",
     "compendium_order": 2
   },
@@ -2178,8 +2312,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/tea_of_discourtesy.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 270
+    "compendium_order": 275
   },
   {
     "id": "WONGO_CUSTOMER_APPRECIATION_BADGE",
@@ -2192,8 +2327,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/wongo_customer_appreciation_badge.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 271
+    "compendium_order": 276
   },
   {
     "id": "WONGOS_MYSTERY_TICKET",
@@ -2206,8 +2342,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/wongos_mystery_ticket.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 272
+    "compendium_order": 277
   },
   {
     "id": "ASTROLABE",
@@ -2220,14 +2357,15 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/astrolabe.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 205
   },
   {
     "id": "ORRERY",
     "name": "星系仪",
-    "description": "拾起时，获得[blue]5[/blue]组卡牌奖励",
-    "description_raw": "拾起时，获得[blue]{Cards}[/blue]组卡牌奖励",
+    "description": "拾起时，获得[blue]5[/blue]次卡牌奖励",
+    "description_raw": "拾起时，获得[blue]{Cards}[/blue]次卡牌奖励",
     "flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
     "rarity": "商店遗物",
     "pool": "shared",
@@ -2238,6 +2376,7 @@
     },
     "image_url": "/static/images/relics/orrery.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 144
   },
@@ -2256,8 +2395,9 @@
     },
     "image_url": "/static/images/relics/galactic_dust.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 53
+    "compendium_order": 54
   },
   {
     "id": "LUNAR_PASTRY",
@@ -2274,8 +2414,9 @@
     },
     "image_url": "/static/images/relics/lunar_pastry.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 105
+    "compendium_order": 104
   },
   {
     "id": "KIFUDA",
@@ -2292,6 +2433,7 @@
     },
     "image_url": "/static/images/relics/kifuda.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 145
   },
@@ -2310,6 +2452,7 @@
     },
     "image_url": "/static/images/relics/lees_waffle.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 146
   },
@@ -2328,27 +2471,29 @@
     },
     "image_url": "/static/images/relics/fake_lees_waffle.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 273
+    "compendium_order": 278
   },
   {
     "id": "PRECARIOUS_SHEARS",
     "name": "松动羊毛剪",
-    "description": "拾起时，从你的[gold]牌组[/gold]中移除[blue]2[/blue]张牌，并受到[red]13[/red]点伤害。",
-    "description_raw": "拾起时，从你的[gold]牌组[/gold]中移除[blue]{Cards}[/blue]张牌，并受到[red]{Damage}[/red]点伤害。",
+    "description": "拾起时，从你的[gold]牌组[/gold]中移除[blue]2[/blue]张牌并失去[blue]16[/blue]点生命。",
+    "description_raw": "拾起时，从你的[gold]牌组[/gold]中移除[blue]{Cards}[/blue]张牌并失去[blue]{Damage}[/blue]点生命。",
     "flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
     "rarity": "先古遗物",
     "pool": "shared",
     "merchant_price": null,
     "image_url": "/static/images/relics/precarious_shears.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 206
   },
   {
     "id": "LEAFY_POULTICE",
     "name": "树叶药膏",
-    "description": "拾起时，[gold]变化[/gold]你的[blue]1[/blue]张[gold]打击[/gold]和[blue]1[/blue]张[gold]防御[/gold]，然后失去[blue]10[/blue]点最大生命。",
+    "description": "拾起时，[gold]变化[/gold]你的[blue]1[/blue]张[gold]打击[/gold]和[blue]1[/blue]张[gold]防御[/gold]，然后失去[blue]12[/blue]点最大生命。",
     "description_raw": "拾起时，[gold]变化[/gold]你的[blue]1[/blue]张[gold]打击[/gold]和[blue]1[/blue]张[gold]防御[/gold]，然后失去[blue]{MaxHp}[/blue]点最大生命。",
     "flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
     "rarity": "先古遗物",
@@ -2356,6 +2501,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/leafy_poultice.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 207
   },
@@ -2374,8 +2520,9 @@
     },
     "image_url": "/static/images/relics/pear.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 54
+    "compendium_order": 55
   },
   {
     "id": "GAME_PIECE",
@@ -2392,8 +2539,9 @@
     },
     "image_url": "/static/images/relics/game_piece.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 106
+    "compendium_order": 105
   },
   {
     "id": "PRISMATIC_GEM",
@@ -2406,6 +2554,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/prismatic_gem.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 208
   },
@@ -2420,6 +2569,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/pomander.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 209
   },
@@ -2438,8 +2588,9 @@
     },
     "image_url": "/static/images/relics/orange_dough.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 107
+    "compendium_order": 106
   },
   {
     "id": "TOUCH_OF_OROBAS",
@@ -2452,6 +2603,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/touch_of_orobas.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 210
   },
@@ -2470,8 +2622,9 @@
     },
     "image_url": "/static/images/relics/toxic_egg.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 108
+    "compendium_order": 107
   },
   {
     "id": "MERCURY_HOURGLASS",
@@ -2488,26 +2641,28 @@
     },
     "image_url": "/static/images/relics/mercury_hourglass.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 55
+    "compendium_order": 56
   },
   {
     "id": "PERMAFROST",
     "name": "永冻冰晶",
-    "description": "当你在战斗中第一次打出能力牌时，获得[blue]6[/blue]点[gold]格挡[/gold]。",
+    "description": "当你在战斗中第一次打出能力牌时，获得[blue]7[/blue]点[gold]格挡[/gold]。",
     "description_raw": "当你在战斗中第一次打出能力牌时，获得[blue]{Block}[/blue]点[gold]格挡[/gold]。",
     "flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
-    "rarity": "普通遗物",
+    "rarity": "罕见遗物",
     "pool": "shared",
     "merchant_price": {
-      "base": 200,
-      "min": 170,
-      "max": 230
+      "base": 250,
+      "min": 212,
+      "max": 288
     },
     "image_url": "/static/images/relics/permafrost.webp",
     "image_variants": null,
-    "rarity_key": "Common",
-    "compendium_order": 25
+    "notes": null,
+    "rarity_key": "Uncommon",
+    "compendium_order": 57
   },
   {
     "id": "ETERNAL_FEATHER",
@@ -2524,8 +2679,24 @@
     },
     "image_url": "/static/images/relics/eternal_feather.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 56
+    "compendium_order": 58
+  },
+  {
+    "id": "HEFTY_TABLET",
+    "name": "沉重石板",
+    "description": "拾起时，从[blue]3[/blue]张稀有牌中选择[blue]1[/blue]张加入你的[gold]牌组[/gold]，同时将[blue]1[/blue]张[red]受伤[/red]加入你的[gold]牌组[/gold]。",
+    "description_raw": "拾起时，从[blue]{Cards}[/blue]张稀有牌中选择[blue]1[/blue]张加入你的[gold]牌组[/gold]，同时将[blue]1[/blue]张[red]受伤[/red]加入你的[gold]牌组[/gold]。",
+    "flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
+    "rarity": "先古遗物",
+    "pool": "shared",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/hefty_tablet.webp",
+    "image_variants": null,
+    "notes": null,
+    "rarity_key": "Ancient",
+    "compendium_order": 211
   },
   {
     "id": "SAND_CASTLE",
@@ -2538,8 +2709,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/sand_castle.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 211
+    "compendium_order": 212
   },
   {
     "id": "RIPPLE_BASIN",
@@ -2556,8 +2728,9 @@
     },
     "image_url": "/static/images/relics/ripple_basin.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 57
+    "compendium_order": 59
   },
   {
     "id": "INFUSED_CORE",
@@ -2570,13 +2743,14 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/infused_core.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Starter",
     "compendium_order": 3
   },
   {
     "id": "PLANISPHERE",
     "name": "活动星图",
-    "description": "每当你进入[gold]？[/gold]房间的时候，回复[green]4[/green]点生命。",
+    "description": "每当你进入[gold]？[/gold]房间的时候，回复[green]5[/green]点生命。",
     "description_raw": "每当你进入[gold]？[/gold]房间的时候，回复[green]{Heal}[/green]点生命。",
     "flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
     "rarity": "罕见遗物",
@@ -2588,8 +2762,9 @@
     },
     "image_url": "/static/images/relics/planisphere.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 58
+    "compendium_order": 60
   },
   {
     "id": "DRIFTWOOD",
@@ -2602,8 +2777,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/driftwood.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 212
+    "compendium_order": 213
   },
   {
     "id": "SEA_GLASS",
@@ -2616,8 +2792,24 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/sea_glass.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 213
+    "compendium_order": 214
+  },
+  {
+    "id": "NEOWS_TALISMAN",
+    "name": "涅奥的护符",
+    "description": "拾起时，[gold]升级[/gold]你的[blue]1[/blue]张[gold]打击[/gold]和[blue]1[/blue]张[gold]防御[/gold]。",
+    "description_raw": "拾起时，[gold]升级[/gold]你的[blue]1[/blue]张[gold]打击[/gold]和[blue]1[/blue]张[gold]防御[/gold]。",
+    "flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
+    "rarity": "先古遗物",
+    "pool": "shared",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/neows_talisman.webp",
+    "image_variants": null,
+    "notes": null,
+    "rarity_key": "Ancient",
+    "compendium_order": 215
   },
   {
     "id": "NEOWS_TORMENT",
@@ -2630,8 +2822,24 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/neows_torment.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 214
+    "compendium_order": 216
+  },
+  {
+    "id": "NEOWS_BONES",
+    "name": "涅奥的骨头",
+    "description": "拾起时，获得[blue]2[/blue]件随机[gold]涅奥遗物[/gold]。将[blue]1[/blue]张随机[red]诅咒[/red]加入你的[gold]牌组[/gold]。",
+    "description_raw": "拾起时，获得[blue]{Relics}[/blue]件随机[gold]涅奥{Relics:plural:遗物|遗物}[/gold]。将[blue]{Curses}[/blue]张随机[red]{Curses:plural:诅咒|诅咒}[/red]加入你的[gold]牌组[/gold]。",
+    "flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
+    "rarity": "先古遗物",
+    "pool": "shared",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/neows_bones.webp",
+    "image_variants": null,
+    "notes": null,
+    "rarity_key": "Ancient",
+    "compendium_order": 217
   },
   {
     "id": "SOZU",
@@ -2644,8 +2852,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/sozu.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 215
+    "compendium_order": 218
   },
   {
     "id": "PANDORAS_BOX",
@@ -2658,8 +2867,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/pandoras_box.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 216
+    "compendium_order": 219
   },
   {
     "id": "DRAGON_FRUIT",
@@ -2676,6 +2886,7 @@
     },
     "image_url": "/static/images/relics/dragon_fruit.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 147
   },
@@ -2694,8 +2905,9 @@
     },
     "image_url": "/static/images/relics/lantern.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
-    "compendium_order": 26
+    "compendium_order": 25
   },
   {
     "id": "ECTOPLASM",
@@ -2708,8 +2920,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/ectoplasm.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 217
+    "compendium_order": 220
   },
   {
     "id": "ALCHEMICAL_COFFER",
@@ -2722,8 +2935,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/alchemical_coffer.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 218
+    "compendium_order": 221
   },
   {
     "id": "TOASTY_MITTENS",
@@ -2736,8 +2950,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/toasty_mittens.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 219
+    "compendium_order": 222
   },
   {
     "id": "CANDELABRA",
@@ -2754,14 +2969,15 @@
     },
     "image_url": "/static/images/relics/candelabra.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 59
+    "compendium_order": 61
   },
   {
     "id": "VEXING_PUZZLEBOX",
     "name": "烦人机关盒",
-    "description": "在每场战斗开始时，将一张随机卡牌加入你的[gold]手牌[/gold]。这张牌的耗能变为[blue]0[/blue][energy:1]。",
-    "description_raw": "在每场战斗开始时，将一张随机卡牌加入你的[gold]手牌[/gold]。这张牌的耗能变为[blue]0[/blue]{energyPrefix:energyIcons(1)}。",
+    "description": "在每场战斗开始时，将一张随机卡牌加入你的[gold]手牌[/gold]。这张牌在本回合可以免费打出。",
+    "description_raw": "在每场战斗开始时，将一张随机卡牌加入你的[gold]手牌[/gold]。这张牌在本回合可以免费打出。",
     "flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
     "rarity": "稀有遗物",
     "pool": "shared",
@@ -2772,8 +2988,9 @@
     },
     "image_url": "/static/images/relics/vexing_puzzlebox.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 109
+    "compendium_order": 108
   },
   {
     "id": "VERY_HOT_COCOA",
@@ -2786,8 +3003,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/very_hot_cocoa.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 220
+    "compendium_order": 223
   },
   {
     "id": "LAVA_LAMP",
@@ -2804,6 +3022,7 @@
     },
     "image_url": "/static/images/relics/lava_lamp.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 148
   },
@@ -2818,8 +3037,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/lava_rock.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 221
+    "compendium_order": 224
   },
   {
     "id": "MOLTEN_EGG",
@@ -2836,8 +3056,9 @@
     },
     "image_url": "/static/images/relics/molten_egg.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 110
+    "compendium_order": 109
   },
   {
     "id": "BURNING_BLOOD",
@@ -2850,6 +3071,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/burning_blood.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Starter",
     "compendium_order": 4
   },
@@ -2868,6 +3090,7 @@
     },
     "image_url": "/static/images/relics/burning_sticks.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 149
   },
@@ -2886,8 +3109,9 @@
     },
     "image_url": "/static/images/relics/reptile_trinket.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 60
+    "compendium_order": 62
   },
   {
     "id": "SWORD_OF_JADE",
@@ -2900,8 +3124,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/sword_of_jade.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 274
+    "compendium_order": 279
   },
   {
     "id": "ROYAL_STAMP",
@@ -2918,6 +3143,7 @@
     },
     "image_url": "/static/images/relics/royal_stamp.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 150
   },
@@ -2932,8 +3158,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/royal_poison.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 275
+    "compendium_order": 280
   },
   {
     "id": "TOY_BOX",
@@ -2946,8 +3173,13 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/toy_box.webp",
     "image_variants": null,
+    "notes": [
+      "Wax Relics are pulled from the normal relic pool — any non-Ancient relic can be waxed.",
+      "Wax Relic rarity: 50% Common, 33% Uncommon, 17% Rare (standard relic rarity roll).",
+      "All wax relics melt after 12 total combats, then Toy Box is used up."
+    ],
     "rarity_key": "Ancient",
-    "compendium_order": 222
+    "compendium_order": 225
   },
   {
     "id": "GLASS_EYE",
@@ -2960,8 +3192,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/glass_eye.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 223
+    "compendium_order": 226
   },
   {
     "id": "JEWELRY_BOX",
@@ -2974,8 +3207,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/jewelry_box.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 224
+    "compendium_order": 227
   },
   {
     "id": "WHITE_BEAST_STATUE",
@@ -2992,14 +3226,15 @@
     },
     "image_url": "/static/images/relics/white_beast_statue.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 111
+    "compendium_order": 110
   },
   {
     "id": "WHITE_STAR",
     "name": "白星",
-    "description": "[gold]精英[/gold]敌人额外掉落一组[gold]稀有[/gold]卡牌奖励。",
-    "description_raw": "[gold]精英[/gold]敌人额外掉落一组[gold]稀有[/gold]卡牌奖励。",
+    "description": "[gold]精英[/gold]敌人额外掉落一次[gold]稀有[/gold]卡牌奖励。",
+    "description_raw": "[gold]精英[/gold]敌人额外掉落一次[gold]稀有[/gold]卡牌奖励。",
     "flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
     "rarity": "稀有遗物",
     "pool": "shared",
@@ -3010,22 +3245,24 @@
     },
     "image_url": "/static/images/relics/white_star.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 112
+    "compendium_order": 111
   },
   {
     "id": "SILVER_CRUCIBLE",
     "name": "白银熔炉",
-    "description": "你遇到的前[blue]3[/blue]组卡牌奖励将是被[gold]升级[/gold]过的。你打开的第一个宝箱将是[red]空的[/red]",
-    "description_raw": "你遇到的前[blue]{Cards}[/blue]组卡牌奖励将是被[gold]升级[/gold]过的。你打开的第一个宝箱将是[red]空的[/red]",
+    "description": "你遇到的前[blue]3[/blue]次卡牌奖励将是被[gold]升级[/gold]过的。你打开的第一个宝箱将是[red]空的[/red]",
+    "description_raw": "你遇到的前[blue]{Cards}[/blue]次卡牌奖励将是被[gold]升级[/gold]过的。你打开的第一个宝箱将是[red]空的[/red]",
     "flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
     "rarity": "先古遗物",
     "pool": "shared",
     "merchant_price": null,
     "image_url": "/static/images/relics/silver_crucible.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 225
+    "compendium_order": 228
   },
   {
     "id": "CENTENNIAL_PUZZLE",
@@ -3042,8 +3279,9 @@
     },
     "image_url": "/static/images/relics/centennial_puzzle.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
-    "compendium_order": 27
+    "compendium_order": 26
   },
   {
     "id": "REGAL_PILLOW",
@@ -3060,8 +3298,9 @@
     },
     "image_url": "/static/images/relics/regal_pillow.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
-    "compendium_order": 28
+    "compendium_order": 27
   },
   {
     "id": "FUR_COAT",
@@ -3074,8 +3313,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/fur_coat.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 226
+    "compendium_order": 229
   },
   {
     "id": "SWORD_OF_STONE",
@@ -3088,8 +3328,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/sword_of_stone.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 276
+    "compendium_order": 281
   },
   {
     "id": "PETRIFIED_TOAD",
@@ -3106,8 +3347,9 @@
     },
     "image_url": "/static/images/relics/petrified_toad.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 61
+    "compendium_order": 63
   },
   {
     "id": "STONE_HUMIDIFIER",
@@ -3120,8 +3362,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/stone_humidifier.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 227
+    "compendium_order": 230
   },
   {
     "id": "CRACKED_CORE",
@@ -3134,6 +3377,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/cracked_core.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Starter",
     "compendium_order": 5
   },
@@ -3152,14 +3396,15 @@
     },
     "image_url": "/static/images/relics/brimstone.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 151
   },
   {
     "id": "STONE_CRACKER",
     "name": "碎石钻",
-    "description": "在[gold]Boss[/gold]战开始时，在本场战斗中随机[gold]升级[/gold]你[gold]抽牌堆[/gold]中的[blue]3[/blue]张牌。",
-    "description_raw": "在[gold]Boss[/gold]战开始时，在本场战斗中随机[gold]升级[/gold]你[gold]抽牌堆[/gold]中的[blue]{Cards}[/blue]张牌。",
+    "description": "在每场战斗开始时，在本场战斗中随机[gold]升级[/gold]你[gold]抽牌堆[/gold]中的[blue]2[/blue]张牌。",
+    "description_raw": "在每场战斗开始时，在本场战斗中随机[gold]升级[/gold]你[gold]抽牌堆[/gold]中的[blue]{Cards}[/blue]张牌。",
     "flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
     "rarity": "罕见遗物",
     "pool": "shared",
@@ -3170,8 +3415,9 @@
     },
     "image_url": "/static/images/relics/stone_cracker.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 62
+    "compendium_order": 64
   },
   {
     "id": "WHETSTONE",
@@ -3188,8 +3434,9 @@
     },
     "image_url": "/static/images/relics/whetstone.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
-    "compendium_order": 29
+    "compendium_order": 28
   },
   {
     "id": "MYSTIC_LIGHTER",
@@ -3206,6 +3453,7 @@
     },
     "image_url": "/static/images/relics/mystic_lighter.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 152
   },
@@ -3220,8 +3468,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/empty_cage.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 228
+    "compendium_order": 231
   },
   {
     "id": "RUNIC_CAPACITOR",
@@ -3238,6 +3487,7 @@
     },
     "image_url": "/static/images/relics/runic_capacitor.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 153
   },
@@ -3252,8 +3502,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/runic_pyramid.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 229
+    "compendium_order": 232
   },
   {
     "id": "THE_ABACUS",
@@ -3270,6 +3521,7 @@
     },
     "image_url": "/static/images/relics/the_abacus.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 154
   },
@@ -3284,8 +3536,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/precise_scissors.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 230
+    "compendium_order": 233
   },
   {
     "id": "ORNAMENTAL_FAN",
@@ -3302,13 +3555,14 @@
     },
     "image_url": "/static/images/relics/ornamental_fan.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 63
+    "compendium_order": 65
   },
   {
     "id": "AMETHYST_AUBERGINE",
     "name": "紫水晶茄子",
-    "description": "敌人额外掉落[blue]10[/blue][gold]金币[/gold]。",
+    "description": "敌人额外掉落[blue]15[/blue][gold]金币[/gold]。",
     "description_raw": "敌人额外掉落[blue]{Gold}[/blue][gold]金币[/gold]。",
     "flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
     "rarity": "普通遗物",
@@ -3320,8 +3574,9 @@
     },
     "image_url": "/static/images/relics/amethyst_aubergine.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
-    "compendium_order": 30
+    "compendium_order": 29
   },
   {
     "id": "RED_SKULL",
@@ -3338,8 +3593,9 @@
     },
     "image_url": "/static/images/relics/red_skull.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
-    "compendium_order": 31
+    "compendium_order": 30
   },
   {
     "id": "RED_MASK",
@@ -3347,17 +3603,18 @@
     "description": "在每场战斗开始时，给于所有敌人[blue]1[/blue]层[gold]虚弱[/gold]。",
     "description_raw": "在每场战斗开始时，给于所有敌人[blue]{WeakPower}[/blue]层[gold]虚弱[/gold]。",
     "flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
-    "rarity": "罕见遗物",
+    "rarity": "普通遗物",
     "pool": "shared",
     "merchant_price": {
-      "base": 250,
-      "min": 212,
-      "max": 288
+      "base": 200,
+      "min": 170,
+      "max": 230
     },
     "image_url": "/static/images/relics/red_mask.webp",
     "image_variants": null,
-    "rarity_key": "Uncommon",
-    "compendium_order": 64
+    "notes": null,
+    "rarity_key": "Common",
+    "compendium_order": 31
   },
   {
     "id": "PAPER_PHROG",
@@ -3374,8 +3631,9 @@
     },
     "image_url": "/static/images/relics/paper_phrog.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 65
+    "compendium_order": 66
   },
   {
     "id": "PAPER_KRANE",
@@ -3392,8 +3650,9 @@
     },
     "image_url": "/static/images/relics/paper_krane.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 113
+    "compendium_order": 112
   },
   {
     "id": "TOUGH_BANDAGES",
@@ -3410,8 +3669,9 @@
     },
     "image_url": "/static/images/relics/tough_bandages.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 114
+    "compendium_order": 113
   },
   {
     "id": "VITRUVIAN_MINION",
@@ -3428,6 +3688,7 @@
     },
     "image_url": "/static/images/relics/vitruvian_minion.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 155
   },
@@ -3442,6 +3703,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/bound_phylactery.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Starter",
     "compendium_order": 6
   },
@@ -3460,8 +3722,9 @@
     },
     "image_url": "/static/images/relics/pantograph.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 66
+    "compendium_order": 67
   },
   {
     "id": "YUMMY_COOKIE",
@@ -3480,14 +3743,30 @@
       "Necrobinder": "/static/images/relics/yummy_cookie_necrobinder.webp",
       "Regent": "/static/images/relics/yummy_cookie_regent.webp"
     },
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 231
+    "compendium_order": 234
+  },
+  {
+    "id": "WINGED_BOOTS",
+    "name": "羽翼之靴",
+    "description": "你在选择下一层的房间时有[blue]3[/blue]次机会可以无视当前的路线。",
+    "description_raw": "你在选择下一层的房间时有[blue]{Rooms}[/blue]次机会可以无视当前的路线。",
+    "flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
+    "rarity": "先古遗物",
+    "pool": "shared",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/winged_boots.webp",
+    "image_variants": null,
+    "notes": null,
+    "rarity_key": "Ancient",
+    "compendium_order": 235
   },
   {
     "id": "WING_CHARM",
     "name": "羽翼护符",
-    "description": "每组卡牌奖励中，都会有随机一张牌被[gold]附魔[/gold]：[purple]迅捷[/purple][blue]1[/blue]。",
-    "description_raw": "每组卡牌奖励中，都会有随机一张牌被[gold]附魔[/gold]：[purple]迅捷[/purple][blue]{SwiftAmount}[/blue]。",
+    "description": "每次卡牌奖励中，都会有随机一张牌被[gold]附魔[/gold]：[purple]迅捷[/purple][blue]1[/blue]。",
+    "description_raw": "每次卡牌奖励中，都会有随机一张牌被[gold]附魔[/gold]：[purple]迅捷[/purple][blue]{SwiftAmount}[/blue]。",
     "flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
     "rarity": "商店遗物",
     "pool": "shared",
@@ -3498,6 +3777,7 @@
     },
     "image_url": "/static/images/relics/wing_charm.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 156
   },
@@ -3516,6 +3796,7 @@
     },
     "image_url": "/static/images/relics/dingy_rug.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 157
   },
@@ -3534,13 +3815,14 @@
     },
     "image_url": "/static/images/relics/power_cell.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 115
+    "compendium_order": 114
   },
   {
     "id": "PRESERVED_FOG",
     "name": "腌制活雾",
-    "description": "拾起时，从你的[gold]牌组[/gold]中移除[blue]5[/blue]张牌。将一张[red]愚行[/red]加入你的[gold]牌组[/gold]。",
+    "description": "拾起时，从你的[gold]牌组[/gold]中移除[blue]3[/blue]张牌。将一张[red]愚行[/red]加入你的[gold]牌组[/gold]。",
     "description_raw": "拾起时，从你的[gold]牌组[/gold]中移除[blue]{Cards}[/blue]张牌。将一张[red]愚行[/red]加入你的[gold]牌组[/gold]。",
     "flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
     "rarity": "先古遗物",
@@ -3548,8 +3830,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/preserved_fog.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 232
+    "compendium_order": 236
   },
   {
     "id": "BELT_BUCKLE",
@@ -3566,6 +3849,7 @@
     },
     "image_url": "/static/images/relics/belt_buckle.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 158
   },
@@ -3584,8 +3868,9 @@
     },
     "image_url": "/static/images/relics/vambrace.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 67
+    "compendium_order": 68
   },
   {
     "id": "SELF_FORMING_CLAY",
@@ -3602,8 +3887,9 @@
     },
     "image_url": "/static/images/relics/self_forming_clay.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 68
+    "compendium_order": 69
   },
   {
     "id": "CAPTAINS_WHEEL",
@@ -3620,8 +3906,9 @@
     },
     "image_url": "/static/images/relics/captains_wheel.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 116
+    "compendium_order": 115
   },
   {
     "id": "HORN_CLEAT",
@@ -3638,8 +3925,9 @@
     },
     "image_url": "/static/images/relics/horn_cleat.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 69
+    "compendium_order": 70
   },
   {
     "id": "BRILLIANT_SCARF",
@@ -3652,8 +3940,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/brilliant_scarf.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 233
+    "compendium_order": 237
   },
   {
     "id": "METRONOME",
@@ -3670,8 +3959,9 @@
     },
     "image_url": "/static/images/relics/metronome.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 117
+    "compendium_order": 116
   },
   {
     "id": "FESTIVE_POPPER",
@@ -3688,6 +3978,7 @@
     },
     "image_url": "/static/images/relics/festive_popper.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 32
   },
@@ -3706,8 +3997,9 @@
     },
     "image_url": "/static/images/relics/mango.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 118
+    "compendium_order": 117
   },
   {
     "id": "FAKE_MANGO",
@@ -3724,8 +4016,9 @@
     },
     "image_url": "/static/images/relics/fake_mango.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 277
+    "compendium_order": 282
   },
   {
     "id": "POLLINOUS_CORE",
@@ -3738,22 +4031,24 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/pollinous_core.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 278
+    "compendium_order": 283
   },
   {
     "id": "FRAGRANT_MUSHROOM",
     "name": "芳香蘑菇",
-    "description": "拾起时，失去[red]15[/red]点生命，然后随机[gold]升级[/gold][blue]3[/blue]张牌。",
-    "description_raw": "拾起时，失去[red]{HpLoss}[/red]点生命，然后随机[gold]升级[/gold][blue]{Cards}[/blue]张牌。",
+    "description": "拾起时，失去[blue]15[/blue]点生命，然后随机[gold]升级[/gold][blue]2[/blue]张牌。",
+    "description_raw": "拾起时，失去[blue]{HpLoss}[/blue]点生命，然后随机[gold]升级[/gold][blue]{Cards}[/blue]张牌。",
     "flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
     "rarity": "事件遗物",
     "pool": "shared",
     "merchant_price": null,
     "image_url": "/static/images/relics/fragrant_mushroom.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 279
+    "compendium_order": 284
   },
   {
     "id": "KUNAI",
@@ -3770,8 +4065,9 @@
     },
     "image_url": "/static/images/relics/kunai.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 119
+    "compendium_order": 118
   },
   {
     "id": "STRAWBERRY",
@@ -3788,6 +4084,7 @@
     },
     "image_url": "/static/images/relics/strawberry.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 33
   },
@@ -3806,8 +4103,24 @@
     },
     "image_url": "/static/images/relics/potion_belt.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 34
+  },
+  {
+    "id": "PHIAL_HOLSTER",
+    "name": "药瓶皮套",
+    "description": "拾起时，获得[blue]1[/blue]个药水栏位并获得[blue]2[/blue]瓶随机药水。",
+    "description_raw": "拾起时，获得[blue]{PotionSlots}[/blue]个药水{PotionSlots:plural:栏位|栏位}并获得[blue]{Potions}[/blue]瓶随机{Potions:plural:药水|药水}。",
+    "flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
+    "rarity": "先古遗物",
+    "pool": "shared",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/phial_holster.webp",
+    "image_variants": null,
+    "notes": null,
+    "rarity_key": "Ancient",
+    "compendium_order": 238
   },
   {
     "id": "FRESNEL_LENS",
@@ -3820,8 +4133,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/fresnel_lens.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 280
+    "compendium_order": 285
   },
   {
     "id": "NUTRITIOUS_SOUP",
@@ -3834,8 +4148,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/nutritious_soup.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 234
+    "compendium_order": 239
   },
   {
     "id": "NUTRITIOUS_OYSTER",
@@ -3848,8 +4163,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/nutritious_oyster.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 235
+    "compendium_order": 240
   },
   {
     "id": "FUNERARY_MASK",
@@ -3866,8 +4182,9 @@
     },
     "image_url": "/static/images/relics/funerary_mask.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 70
+    "compendium_order": 71
   },
   {
     "id": "RING_OF_THE_SNAKE",
@@ -3880,14 +4197,15 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/ring_of_the_snake.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Starter",
     "compendium_order": 7
   },
   {
     "id": "LIZARD_TAIL",
     "name": "蜥蜴尾巴",
-    "description": "当你要被杀死时，免死并回复到最大生命值的[green]50%[/green]（仅能起效一次）。",
-    "description_raw": "当你要被杀死时，免死并回复到最大生命值的[green]{Heal}%[/green]（仅能起效一次）。",
+    "description": "当你的生命值将要降低至[blue]0[/blue]或以下时，回复到最大生命值的[green]50%[/green]（仅能起效一次）。",
+    "description_raw": "当你的生命值将要降低至[blue]0[/blue]或以下时，回复到最大生命值的[green]{Heal}%[/green]（仅能起效一次）。",
     "flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
     "rarity": "稀有遗物",
     "pool": "shared",
@@ -3898,8 +4216,9 @@
     },
     "image_url": "/static/images/relics/lizard_tail.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 120
+    "compendium_order": 119
   },
   {
     "id": "HELICAL_DART",
@@ -3916,8 +4235,9 @@
     },
     "image_url": "/static/images/relics/helical_dart.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 121
+    "compendium_order": 120
   },
   {
     "id": "BLOOD_SOAKED_ROSE",
@@ -3930,8 +4250,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/blood_soaked_rose.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 236
+    "compendium_order": 241
   },
   {
     "id": "CURSED_PEARL",
@@ -3944,8 +4265,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/cursed_pearl.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 237
+    "compendium_order": 242
   },
   {
     "id": "IVORY_TILE",
@@ -3962,8 +4284,9 @@
     },
     "image_url": "/static/images/relics/ivory_tile.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 122
+    "compendium_order": 121
   },
   {
     "id": "PHILOSOPHERS_STONE",
@@ -3976,8 +4299,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/philosophers_stone.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 238
+    "compendium_order": 243
   },
   {
     "id": "GAMBLING_CHIP",
@@ -3994,8 +4318,9 @@
     },
     "image_url": "/static/images/relics/gambling_chip.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 123
+    "compendium_order": 122
   },
   {
     "id": "BLESSED_ANTLER",
@@ -4008,8 +4333,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/blessed_antler.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 239
+    "compendium_order": 244
   },
   {
     "id": "AKABEKO",
@@ -4026,14 +4352,15 @@
     },
     "image_url": "/static/images/relics/akabeko.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 71
+    "compendium_order": 72
   },
   {
     "id": "PRAYER_WHEEL",
     "name": "转经轮",
-    "description": "普通敌人额外掉落一组卡牌奖励。",
-    "description_raw": "普通敌人额外掉落一组卡牌奖励。",
+    "description": "普通敌人额外掉落一次卡牌奖励。",
+    "description_raw": "普通敌人额外掉落一次卡牌奖励。",
     "flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
     "rarity": "稀有遗物",
     "pool": "shared",
@@ -4044,8 +4371,9 @@
     },
     "image_url": "/static/images/relics/prayer_wheel.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 124
+    "compendium_order": 123
   },
   {
     "id": "BOOMING_CONCH",
@@ -4058,8 +4386,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/booming_conch.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 240
+    "compendium_order": 245
   },
   {
     "id": "MINI_REGENT",
@@ -4076,8 +4405,9 @@
     },
     "image_url": "/static/images/relics/mini_regent.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 125
+    "compendium_order": 124
   },
   {
     "id": "LOST_WISP",
@@ -4090,8 +4420,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/lost_wisp.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 281
+    "compendium_order": 286
   },
   {
     "id": "THE_COURIER",
@@ -4108,8 +4439,9 @@
     },
     "image_url": "/static/images/relics/the_courier.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 126
+    "compendium_order": 125
   },
   {
     "id": "CHOICES_PARADOX",
@@ -4122,8 +4454,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/choices_paradox.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 241
+    "compendium_order": 246
   },
   {
     "id": "FORGOTTEN_SOUL",
@@ -4136,8 +4469,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/forgotten_soul.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 282
+    "compendium_order": 287
   },
   {
     "id": "VAJRA",
@@ -4154,6 +4488,7 @@
     },
     "image_url": "/static/images/relics/vajra.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 35
   },
@@ -4172,8 +4507,9 @@
     },
     "image_url": "/static/images/relics/joss_paper.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 72
+    "compendium_order": 73
   },
   {
     "id": "GOLDEN_PEARL",
@@ -4186,8 +4522,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/golden_pearl.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 242
+    "compendium_order": 247
   },
   {
     "id": "SAI",
@@ -4200,8 +4537,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/sai.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 243
+    "compendium_order": 248
   },
   {
     "id": "PEN_NIB",
@@ -4218,8 +4556,9 @@
     },
     "image_url": "/static/images/relics/pen_nib.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 73
+    "compendium_order": 74
   },
   {
     "id": "TUNGSTEN_ROD",
@@ -4236,8 +4575,9 @@
     },
     "image_url": "/static/images/relics/tungsten_rod.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 127
+    "compendium_order": 126
   },
   {
     "id": "DIAMOND_DIADEM",
@@ -4250,8 +4590,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/diamond_diadem.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 244
+    "compendium_order": 249
   },
   {
     "id": "IRON_CLUB",
@@ -4264,8 +4605,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/iron_club.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 245
+    "compendium_order": 250
   },
   {
     "id": "LEAD_PAPERWEIGHT",
@@ -4278,8 +4620,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/lead_paperweight.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 246
+    "compendium_order": 251
   },
   {
     "id": "BRONZE_SCALES",
@@ -4296,6 +4639,7 @@
     },
     "image_url": "/static/images/relics/bronze_scales.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 36
   },
@@ -4314,8 +4658,9 @@
     },
     "image_url": "/static/images/relics/tingsha.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 74
+    "compendium_order": 75
   },
   {
     "id": "SHOVEL",
@@ -4332,8 +4677,9 @@
     },
     "image_url": "/static/images/relics/shovel.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 128
+    "compendium_order": 127
   },
   {
     "id": "KUSARIGAMA",
@@ -4350,8 +4696,9 @@
     },
     "image_url": "/static/images/relics/kusarigama.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 75
+    "compendium_order": 76
   },
   {
     "id": "ANCHOR",
@@ -4368,6 +4715,7 @@
     },
     "image_url": "/static/images/relics/anchor.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 37
   },
@@ -4386,8 +4734,9 @@
     },
     "image_url": "/static/images/relics/fake_anchor.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 283
+    "compendium_order": 288
   },
   {
     "id": "GOLD_PLATED_CABLES",
@@ -4404,8 +4753,9 @@
     },
     "image_url": "/static/images/relics/gold_plated_cables.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 76
+    "compendium_order": 77
   },
   {
     "id": "RING_OF_THE_DRAKE",
@@ -4418,6 +4768,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/ring_of_the_drake.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Starter",
     "compendium_order": 8
   },
@@ -4436,8 +4787,9 @@
     },
     "image_url": "/static/images/relics/sparkling_rouge.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 77
+    "compendium_order": 78
   },
   {
     "id": "BREAD",
@@ -4454,6 +4806,7 @@
     },
     "image_url": "/static/images/relics/bread.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 159
   },
@@ -4468,8 +4821,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/music_box.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 247
+    "compendium_order": 252
   },
   {
     "id": "TUNING_FORK",
@@ -4486,8 +4840,9 @@
     },
     "image_url": "/static/images/relics/tuning_fork.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 78
+    "compendium_order": 79
   },
   {
     "id": "LORDS_PARASOL",
@@ -4500,8 +4855,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/lords_parasol.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 248
+    "compendium_order": 253
   },
   {
     "id": "DAUGHTER_OF_THE_WIND",
@@ -4514,8 +4870,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/daughter_of_the_wind.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 284
+    "compendium_order": 289
   },
   {
     "id": "BELLOWS",
@@ -4523,17 +4880,18 @@
     "description": "你在每场战斗开始时的[gold]手牌[/gold]，将被[gold]升级[/gold]。",
     "description_raw": "你在每场战斗开始时的[gold]手牌[/gold]，将被[gold]升级[/gold]。",
     "flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
-    "rarity": "罕见遗物",
+    "rarity": "稀有遗物",
     "pool": "shared",
     "merchant_price": {
-      "base": 250,
-      "min": 212,
-      "max": 288
+      "base": 300,
+      "min": 255,
+      "max": 345
     },
     "image_url": "/static/images/relics/bellows.webp",
     "image_variants": null,
-    "rarity_key": "Uncommon",
-    "compendium_order": 79
+    "notes": null,
+    "rarity_key": "Rare",
+    "compendium_order": 128
   },
   {
     "id": "MEAL_TICKET",
@@ -4550,6 +4908,7 @@
     },
     "image_url": "/static/images/relics/meal_ticket.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 38
   },
@@ -4568,6 +4927,7 @@
     },
     "image_url": "/static/images/relics/intimidating_helmet.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 129
   },
@@ -4586,6 +4946,7 @@
     },
     "image_url": "/static/images/relics/bone_flute.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 39
   },
@@ -4600,8 +4961,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/bone_tea.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 285
+    "compendium_order": 290
   },
   {
     "id": "SEAL_OF_GOLD",
@@ -4614,8 +4976,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/seal_of_gold.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 249
+    "compendium_order": 254
   },
   {
     "id": "GOLDEN_COMPASS",
@@ -4628,8 +4991,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/golden_compass.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 250
+    "compendium_order": 255
   },
   {
     "id": "BLACK_STAR",
@@ -4642,8 +5006,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/black_star.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 251
+    "compendium_order": 256
   },
   {
     "id": "BLACK_BLOOD",
@@ -4656,6 +5021,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/black_blood.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Starter",
     "compendium_order": 9
   },
@@ -4670,7 +5036,8 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/darkstone_periapt.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 286
+    "compendium_order": 291
   }
 ]

@@ -163,7 +163,7 @@
     "is_x_star_cost": null,
     "star_cost": null,
     "type": "Umiej.",
-    "rarity": "Pospolita",
+    "rarity": "Niepospolita",
     "target": "Self",
     "color": "silent",
     "damage": null,
@@ -187,7 +187,7 @@
     "type_variants": null,
     "upgrade_description": "Dobierz 4 karty.\nOdrzuć 1 kartę.",
     "type_key": "Skill",
-    "rarity_key": "Common",
+    "rarity_key": "Uncommon",
     "compendium_order": 90
   },
   {
@@ -313,8 +313,8 @@
   {
     "id": "FETCH",
     "name": "Aport",
-    "description": "",
-    "description_raw": "",
+    "description": "[gold]Kostek[/gold] zadaje 3 pkt. obrażeń.\nJeżeli ta karta została zagrana po raz pierwszy w tej turze, dobierz 1 kartę.",
+    "description_raw": "[gold]Kostek[/gold] zadaje {OstyDamage:diff()} pkt. obrażeń.\nJeżeli ta karta została zagrana po raz pierwszy w tej turze, dobierz {Cards:diff()} {Cards:plural:kartę|karty|kart}.",
     "cost": 0,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -346,7 +346,7 @@
     "image_url": "/static/images/cards/fetch.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Kostek[/gold] zadaje 6 pkt. obrażeń.\nJeżeli ta karta została zagrana po raz pierwszy w tej turze, dobierz 1 kartę.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 294
@@ -396,8 +396,8 @@
   {
     "id": "ARSENAL",
     "name": "Arsenał",
-    "description": "Kiedykolwiek zagrasz bezbarwną kartę, zyskaj 1 pkt. [gold]Siły[/gold].",
-    "description_raw": "Kiedykolwiek zagrasz bezbarwną kartę, zyskaj {ArsenalPower:diff()} pkt. [gold]Siły[/gold].",
+    "description": "Kiedykolwiek stworzysz kartę, zyskaj 1 pkt. [gold]Siły[/gold].",
+    "description_raw": "Kiedykolwiek stworzysz kartę, zyskaj {ArsenalPower:diff()} pkt. [gold]Siły[/gold].",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -427,12 +427,12 @@
       "Arsenal": 1
     },
     "upgrade": {
-      "arsenalpower": "+1"
+      "add_innate": true
     },
     "image_url": "/static/images/cards/arsenal.webp",
     "beta_image_url": "/static/images/cards/beta/arsenal.webp",
     "type_variants": null,
-    "upgrade_description": "Kiedykolwiek zagrasz bezbarwną kartę, zyskaj 2 pkt. [gold]Siły[/gold].",
+    "upgrade_description": null,
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 176
@@ -440,8 +440,8 @@
   {
     "id": "UP_MY_SLEEVE",
     "name": "As w rękawie",
-    "description": "",
-    "description_raw": "",
+    "description": "Dodaj 3 [gold]Noże|Noży[/gold] do [gold]ręki[/gold].\nZredukuj koszt tej karty o 1.",
+    "description_raw": "Dodaj {Cards:diff()} [gold]{Cards:plural:Nóż|Noże|Noży}[/gold] do [gold]ręki[/gold].\nZredukuj koszt tej karty o 1.",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -471,7 +471,7 @@
     "image_url": "/static/images/cards/up_my_sleeve.webp",
     "beta_image_url": "/static/images/cards/beta/up_my_sleeve.webp",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Dodaj 4 [gold]Noże|Noży[/gold] do [gold]ręki[/gold].\nZredukuj koszt tej karty o 1.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 172
@@ -911,8 +911,8 @@
   {
     "id": "VICIOUS",
     "name": "Bezwzględność",
-    "description": "",
-    "description_raw": "",
+    "description": "Kiedykolwiek nałożysz [gold]Wrażliwość[/gold], dobierz 1 kartę.",
+    "description_raw": "Kiedykolwiek nałożysz [gold]Wrażliwość[/gold], dobierz {Cards:diff()} {Cards:plural:kartę|karty|kart}.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -940,7 +940,7 @@
     "image_url": "/static/images/cards/vicious.webp",
     "beta_image_url": "/static/images/cards/beta/vicious.webp",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Kiedykolwiek nałożysz [gold]Wrażliwość[/gold], dobierz 2 karty|kart.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 85
@@ -1037,8 +1037,8 @@
   {
     "id": "PALE_BLUE_DOT",
     "name": "Blady, błękitny punkcik",
-    "description": "",
-    "description_raw": "",
+    "description": "Po zagraniu co najmniej 5 kart w jednej turze dobierz dodatkowo 1 kartę na początku następnej tury.",
+    "description_raw": "Po zagraniu co najmniej {CardPlay} kart w jednej turze dobierz dodatkowo {Cards:diff()} {Cards:plural:kartę|karty|kart} na początku następnej tury.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -1067,7 +1067,7 @@
     "image_url": "/static/images/cards/pale_blue_dot.webp",
     "beta_image_url": "/static/images/cards/beta/pale_blue_dot.webp",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Po zagraniu co najmniej 5 kart w jednej turze dobierz dodatkowo 2 karty|kart na początku następnej tury.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 231
@@ -1075,8 +1075,8 @@
   {
     "id": "GLOW",
     "name": "Blask",
-    "description": "",
-    "description_raw": "",
+    "description": "Zyskaj [star:1].\nDobierz 1 kartę.\nW następnej turze dobierz 1 kartę.",
+    "description_raw": "Zyskaj {Stars:starIcons()}.\nDobierz {Cards:diff()} {Cards:plural:kartę|karty|kart}.\nW następnej turze dobierz {Cards:diff()} {Cards:plural:kartę|karty|kart}.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -1089,7 +1089,7 @@
     "block": null,
     "hit_count": null,
     "powers_applied": null,
-    "cards_draw": 2,
+    "cards_draw": 1,
     "energy_gain": null,
     "hp_loss": null,
     "keywords": null,
@@ -1097,7 +1097,7 @@
     "spawns_cards": null,
     "vars": {
       "Stars": 1,
-      "Cards": 2
+      "Cards": 1
     },
     "upgrade": {
       "stars": "+1"
@@ -1105,7 +1105,7 @@
     "image_url": "/static/images/cards/glow.webp",
     "beta_image_url": "/static/images/cards/beta/glow.webp",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Zyskaj [star:2].\nDobierz 1 kartę.\nW następnej turze dobierz 1 kartę.",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 209
@@ -1150,8 +1150,8 @@
   {
     "id": "THE_BOMB",
     "name": "Bomba",
-    "description": "",
-    "description_raw": "",
+    "description": "Za 3 tury|Za 3 tur zadaj 40 pkt. obrażeń WSZYSTKIM przeciwnikom.",
+    "description_raw": "{Turns:plural:Pod koniec tury|Za {Turns:diff()} tury|Za {Turns:diff()} tur} zadaj {BombDamage:diff()} pkt. obrażeń WSZYSTKIM przeciwnikom.",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -1180,7 +1180,7 @@
     "image_url": "/static/images/cards/the_bomb.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Za 3 tury|Za 3 tur zadaj 50 pkt. obrażeń WSZYSTKIM przeciwnikom.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 496
@@ -1188,8 +1188,8 @@
   {
     "id": "BOMBARDMENT",
     "name": "Bombardowanie",
-    "description": "Zadaj 18 pkt. obrażeń.\nNa początku tury zagraj tę kartę ze [gold]stosu kart wyczerpanych[/gold].",
-    "description_raw": "Zadaj {Damage:diff()} pkt. obrażeń.\nNa początku tury zagraj tę kartę ze [gold]stosu kart wyczerpanych[/gold].",
+    "description": "Zadaj 18 pkt. obrażeń.\nNa początku tury zagraj tę kartę, jeżeli znajduje się na [gold]stosie kart wyczerpanych[/gold].",
+    "description_raw": "Zadaj {Damage:diff()} pkt. obrażeń.\nNa początku tury zagraj tę kartę, jeżeli znajduje się na [gold]stosie kart wyczerpanych[/gold].",
     "cost": 3,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -1219,7 +1219,7 @@
     "image_url": "/static/images/cards/bombardment.webp",
     "beta_image_url": "/static/images/cards/beta/bombardment.webp",
     "type_variants": null,
-    "upgrade_description": "Zadaj 24 pkt. obrażeń.\nNa początku tury zagraj tę kartę ze [gold]stosu kart wyczerpanych[/gold].",
+    "upgrade_description": "Zadaj 24 pkt. obrażeń.\nNa początku tury zagraj tę kartę, jeżeli znajduje się na [gold]stosie kart wyczerpanych[/gold].",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -1230,8 +1230,8 @@
   {
     "id": "BUFFER",
     "name": "Bufor",
-    "description": "",
-    "description_raw": "",
+    "description": "Powstrzymaj następną utratę PŻ.",
+    "description_raw": "Powstrzymaj następną utratę PŻ{BufferPower:plural:| {BufferPower:diff()} razy|{BufferPower:diff()} razy}.",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -1266,7 +1266,7 @@
     "image_url": "/static/images/cards/buffer.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Powstrzymaj następną utratę PŻ 2 razy|2 razy.",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 359
@@ -1274,8 +1274,8 @@
   {
     "id": "STORM",
     "name": "Burza",
-    "description": "",
-    "description_raw": "",
+    "description": "Kiedykolwiek zagrasz Moc, [gold]Załaduj[/gold] 1 [gold]Sferę Gromu[/gold].",
+    "description_raw": "Kiedykolwiek zagrasz Moc, [gold]Załaduj[/gold] {StormPower:diff()} [gold]{StormPower:plural:Sferę|Sfery|Sfer} Gromu[/gold].",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -1310,7 +1310,7 @@
     "image_url": "/static/images/cards/storm.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Kiedykolwiek zagrasz Moc, [gold]Załaduj[/gold] 2 [gold]Sfery|Sfer Gromu[/gold].",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 422
@@ -1558,7 +1558,7 @@
   {
     "id": "GLITTERSTREAM",
     "name": "Błyszczący strumień",
-    "description": "Zyskaj 11 pkt. [gold]Bloku[/gold].\nW następnej turze zyskaj 4 pkt. [gold]Bloku[/gold].",
+    "description": "Zyskaj 11 pkt. [gold]Bloku[/gold].\nW następnej turze zyskaj 5 pkt. [gold]Bloku[/gold].",
     "description_raw": "Zyskaj {Block:diff()} pkt. [gold]Bloku[/gold].\nW następnej turze zyskaj {BlockNextTurn:diff()} pkt. [gold]Bloku[/gold].",
     "cost": 2,
     "is_x_cost": null,
@@ -1579,7 +1579,7 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "BlockNextTurn": 4,
+      "BlockNextTurn": 5,
       "Block": 11
     },
     "upgrade": {
@@ -1589,7 +1589,7 @@
     "image_url": "/static/images/cards/glitterstream.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Zyskaj 13 pkt. [gold]Bloku[/gold].\nW następnej turze zyskaj 6 pkt. [gold]Bloku[/gold].",
+    "upgrade_description": "Zyskaj 13 pkt. [gold]Bloku[/gold].\nW następnej turze zyskaj 7 pkt. [gold]Bloku[/gold].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 208
@@ -1740,8 +1740,8 @@
   {
     "id": "CHAOS",
     "name": "Chaos",
-    "description": "",
-    "description_raw": "",
+    "description": "[gold]Załaduj[/gold] 1 losową Sferę.",
+    "description_raw": "[gold]Załaduj[/gold] {Repeat:diff()} {Repeat:plural:losową Sferę|losowe Sfery|losowych Sfer}.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -1769,7 +1769,7 @@
     "image_url": "/static/images/cards/chaos.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Załaduj[/gold] 2 losowe Sfery|losowych Sfer.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 362
@@ -1815,56 +1815,10 @@
     "compendium_order": 512
   },
   {
-    "id": "GRAPPLE",
-    "name": "Chwyt",
-    "description": "Zadaj 7 pkt. obrażeń.\nKiedykolwiek zyskasz [gold]Blok[/gold] w tej turze, zadaj przeciwnikowi 5 pkt. obrażeń.",
-    "description_raw": "Zadaj {Damage:diff()} pkt. obrażeń.\nKiedykolwiek zyskasz [gold]Blok[/gold] w tej turze, zadaj przeciwnikowi {GrapplePower:diff()} pkt. obrażeń.",
-    "cost": 1,
-    "is_x_cost": null,
-    "is_x_star_cost": null,
-    "star_cost": null,
-    "type": "Atak",
-    "rarity": "Niepospolita",
-    "target": "AnyEnemy",
-    "color": "ironclad",
-    "damage": 7,
-    "block": null,
-    "hit_count": null,
-    "powers_applied": [
-      {
-        "power": "Chwyt",
-        "amount": 5,
-        "power_key": "Grapple"
-      }
-    ],
-    "cards_draw": null,
-    "energy_gain": null,
-    "hp_loss": null,
-    "keywords": null,
-    "tags": null,
-    "spawns_cards": null,
-    "vars": {
-      "Damage": 7,
-      "GrapplePower": 5,
-      "Grapple": 5
-    },
-    "upgrade": {
-      "damage": "+2",
-      "grapplepower": "+2"
-    },
-    "image_url": "/static/images/cards/grapple.webp",
-    "beta_image_url": null,
-    "type_variants": null,
-    "upgrade_description": "Zadaj 9 pkt. obrażeń.\nKiedykolwiek zyskasz [gold]Blok[/gold] w tej turze, zadaj przeciwnikowi 7 pkt. obrażeń.",
-    "type_key": "Attack",
-    "rarity_key": "Uncommon",
-    "compendium_order": 38
-  },
-  {
     "id": "PULL_FROM_BELOW",
     "name": "Chwyt z zaświatów",
-    "description": "",
-    "description_raw": "",
+    "description": "Zadaj 5 pkt. obrażeń za każdą [gold]Eteryczną[/gold] kartę zagraną w tej walce.razy)",
+    "description_raw": "Zadaj {Damage:diff()} pkt. obrażeń za każdą [gold]Eteryczną[/gold] kartę zagraną w tej walce.{InCombat:\n(Uderza {CalculatedHits:diff()} {CalculatedHits:plural:raz|razy|razy})|}",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -1894,7 +1848,7 @@
     "image_url": "/static/images/cards/pull_from_below.webp",
     "beta_image_url": "/static/images/cards/beta/pull_from_below.webp",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Zadaj 7 pkt. obrażeń za każdą [gold]Eteryczną[/gold] kartę zagraną w tej walce.razy)",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 319
@@ -1902,8 +1856,8 @@
   {
     "id": "WELL_LAID_PLANS",
     "name": "Chytry plan",
-    "description": "",
-    "description_raw": "",
+    "description": "Pod koniec tury otrzymaj [gold]Zachowaj[/gold] maksymalnie 1 kartę.",
+    "description_raw": "Pod koniec tury otrzymaj [gold]Zachowaj[/gold] maksymalnie {RetainAmount:diff()} {RetainAmount:plural:kartę|karty|kart}.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -1931,7 +1885,7 @@
     "image_url": "/static/images/cards/well_laid_plans.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Pod koniec tury otrzymaj [gold]Zachowaj[/gold] maksymalnie 2 karty|kart.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 173
@@ -1983,8 +1937,8 @@
   {
     "id": "SCOURGE",
     "name": "Chłosta",
-    "description": "",
-    "description_raw": "",
+    "description": "Nałóż 13 pkt. [gold]Zagłady[/gold].\nDobierz 1 kartę.",
+    "description_raw": "Nałóż {DoomPower:diff()} pkt. [gold]Zagłady[/gold].\nDobierz {Cards:diff()} {Cards:plural:kartę|karty|kart}.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -2021,7 +1975,7 @@
     "image_url": "/static/images/cards/scourge.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Nałóż 13 pkt. [gold]Zagłady[/gold].\nDobierz 2 karty|kart.",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 328
@@ -2359,8 +2313,8 @@
   {
     "id": "PURITY",
     "name": "Czystość",
-    "description": "",
-    "description_raw": "",
+    "description": "Wyczerp maksymalnie 3 karty|kart w [gold]ręce[/gold].",
+    "description_raw": "Wyczerp maksymalnie {Cards:diff()} {Cards:plural:kartę|karty|kart} w [gold]ręce[/gold].",
     "cost": 0,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -2391,7 +2345,7 @@
     "image_url": "/static/images/cards/purity.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Wyczerp maksymalnie 5 karty|kart w [gold]ręce[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -2483,8 +2437,8 @@
   {
     "id": "DECISIONS_DECISIONS",
     "name": "Decyzje, decyzje",
-    "description": "",
-    "description_raw": "",
+    "description": "Dobierz 3 karty|kart.\nWybierz Umiejętność w [gold]ręce[/gold] i zagraj ją 3 razy.",
+    "description_raw": "Dobierz {Cards:diff()} {Cards:plural:kartę|karty|kart}.\nWybierz Umiejętność w [gold]ręce[/gold] i zagraj ją {Repeat:diff()} razy.",
     "cost": 0,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -2516,7 +2470,7 @@
     "image_url": "/static/images/cards/decisions_decisions.webp",
     "beta_image_url": "/static/images/cards/beta/decisions_decisions.webp",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Dobierz 5 karty|kart.\nWybierz Umiejętność w [gold]ręce[/gold] i zagraj ją 3 razy.",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -2834,8 +2788,8 @@
   {
     "id": "HUDDLE_UP",
     "name": "Dobieramy",
-    "description": "",
-    "description_raw": "",
+    "description": "WSZYSCY gracze dobierają 2 karty.",
+    "description_raw": "WSZYSCY gracze dobierają {Cards:diff()} karty.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -2851,7 +2805,9 @@
     "cards_draw": 2,
     "energy_gain": null,
     "hp_loss": null,
-    "keywords": null,
+    "keywords": [
+      "Wyczerpanie"
+    ],
     "tags": null,
     "spawns_cards": null,
     "vars": {
@@ -2863,16 +2819,19 @@
     "image_url": "/static/images/cards/huddle_up.webp",
     "beta_image_url": "/static/images/cards/beta/huddle_up.webp",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "WSZYSCY gracze dobierają 3 karty.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
+    "keywords_key": [
+      "Exhaust"
+    ],
     "compendium_order": 463
   },
   {
     "id": "DOMINATE",
     "name": "Dominacja",
-    "description": "Zyskaj 1 pkt. [gold]Siły[/gold] za każdy pkt. [gold]Wrażliwości[/gold] na przeciwniku.",
-    "description_raw": "Zyskaj {StrengthPerVulnerable:diff()} pkt. [gold]Siły[/gold] za każdy pkt. [gold]Wrażliwości[/gold] na przeciwniku.",
+    "description": "Nałóż 1 pkt. [gold]Wrażliwości[/gold].\nZyskaj 1 pkt. [gold]Siły[/gold] za każdy pkt. [gold]Wrażliwości[/gold] na przeciwniku.",
+    "description_raw": "Nałóż {VulnerablePower:diff()} pkt. [gold]Wrażliwości[/gold].\nZyskaj {StrengthPerVulnerable:diff()} pkt. [gold]Siły[/gold] za każdy pkt. [gold]Wrażliwości[/gold] na przeciwniku.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -2884,7 +2843,13 @@
     "damage": null,
     "block": null,
     "hit_count": null,
-    "powers_applied": null,
+    "powers_applied": [
+      {
+        "power": "Wrażliwość",
+        "amount": 1,
+        "power_key": "Vulnerable"
+      }
+    ],
     "cards_draw": null,
     "energy_gain": null,
     "hp_loss": null,
@@ -2894,15 +2859,17 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "StrengthPerVulnerable": 1
+      "StrengthPerVulnerable": 1,
+      "VulnerablePower": 1,
+      "Vulnerable": 1
     },
     "upgrade": {
-      "remove_exhaust": true
+      "vulnerablepower": "+1"
     },
     "image_url": "/static/images/cards/dominate.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Nałóż 2 pkt. [gold]Wrażliwości[/gold].\nZyskaj 1 pkt. [gold]Siły[/gold] za każdy pkt. [gold]Wrażliwości[/gold] na przeciwniku.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -2913,7 +2880,7 @@
   {
     "id": "REFINE_BLADE",
     "name": "Doskonalenie ostrza",
-    "description": "[gold]Wykuj[/gold] 6.\nW następnej turze zyskaj [energy:1].",
+    "description": "[gold]Wykuj[/gold] 9.\nW następnej turze zyskaj [energy:1].",
     "description_raw": "[gold]Wykuj[/gold] {Forge:diff()}.\nW następnej turze zyskaj {Energy:energyIcons()}.",
     "cost": 1,
     "is_x_cost": null,
@@ -2934,7 +2901,7 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Forge": 6,
+      "Forge": 9,
       "Energy": 1
     },
     "upgrade": {
@@ -2943,7 +2910,7 @@
     "image_url": "/static/images/cards/refine_blade.webp",
     "beta_image_url": "/static/images/cards/beta/refine_blade.webp",
     "type_variants": null,
-    "upgrade_description": "[gold]Wykuj[/gold] 10.\nW następnej turze zyskaj [energy:1].",
+    "upgrade_description": "[gold]Wykuj[/gold] 13.\nW następnej turze zyskaj [energy:1].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 240
@@ -3078,8 +3045,8 @@
   {
     "id": "SOUL",
     "name": "Dusza",
-    "description": "",
-    "description_raw": "",
+    "description": "Dobierz 2 karty|kart.",
+    "description_raw": "Dobierz {Cards:diff()} {Cards:plural:kartę|karty|kart}.",
     "cost": 0,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -3109,7 +3076,7 @@
     "image_url": "/static/images/cards/soul.webp",
     "beta_image_url": "/static/images/cards/beta/soul.webp",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Dobierz 3 karty|kart.",
     "type_key": "Skill",
     "rarity_key": "Token",
     "keywords_key": [
@@ -3194,8 +3161,8 @@
   {
     "id": "FLAK_CANNON",
     "name": "Działo przeciwlotnicze",
-    "description": "",
-    "description_raw": "",
+    "description": "[gold]Wyczerp[/gold] WSZYSTKIE karty Stanu.\nZadaj 8 pkt. obrażeń losowemu przeciwnikowi za każdą [gold]Wyczerpaną[/gold] kartę.razy)",
+    "description_raw": "[gold]Wyczerp[/gold] WSZYSTKIE karty Stanu.\nZadaj {Damage:diff()} pkt. obrażeń losowemu przeciwnikowi za każdą [gold]Wyczerpaną[/gold] kartę.{InCombat:\n(Uderza {CalculatedHits:diff()} {CalculatedHits:plural:raz|razy|razy})|}",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -3225,7 +3192,7 @@
     "image_url": "/static/images/cards/flak_cannon.webp",
     "beta_image_url": "/static/images/cards/beta/flak_cannon.webp",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Wyczerp[/gold] WSZYSTKIE karty Stanu.\nZadaj 11 pkt. obrażeń losowemu przeciwnikowi za każdą [gold]Wyczerpaną[/gold] kartę.razy)",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 382
@@ -3233,7 +3200,7 @@
   {
     "id": "HEIRLOOM_HAMMER",
     "name": "Dziedziczony młot",
-    "description": "Zadaj 17 pkt. obrażeń.\nWybierz bezbarwną kartę w [gold]ręce[/gold]. Dodaj kopię tej karty do [gold]ręki[/gold].",
+    "description": "Zadaj 20 pkt. obrażeń.\nWybierz bezbarwną kartę w [gold]ręce[/gold]. Dodaj kopię tej karty do [gold]ręki[/gold].",
     "description_raw": "Zadaj {Damage:diff()} pkt. obrażeń.\nWybierz bezbarwną kartę w [gold]ręce[/gold]. Dodaj kopię tej karty do [gold]ręki[/gold].",
     "cost": 2,
     "is_x_cost": null,
@@ -3243,7 +3210,7 @@
     "rarity": "Rzadka",
     "target": "AnyEnemy",
     "color": "regent",
-    "damage": 17,
+    "damage": 20,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -3254,7 +3221,7 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Damage": 17,
+      "Damage": 20,
       "Repeat": 1
     },
     "upgrade": {
@@ -3263,7 +3230,7 @@
     "image_url": "/static/images/cards/heirloom_hammer.webp",
     "beta_image_url": "/static/images/cards/beta/heirloom_hammer.webp",
     "type_variants": null,
-    "upgrade_description": "Zadaj 22 pkt. obrażeń.\nWybierz bezbarwną kartę w [gold]ręce[/gold]. Dodaj kopię tej karty do [gold]ręki[/gold].",
+    "upgrade_description": "Zadaj 25 pkt. obrażeń.\nWybierz bezbarwną kartę w [gold]ręce[/gold]. Dodaj kopię tej karty do [gold]ręki[/gold].",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 215
@@ -3271,8 +3238,8 @@
   {
     "id": "STAMPEDE",
     "name": "Dziki pęd",
-    "description": "",
-    "description_raw": "",
+    "description": "Pod koniec tury losowy Atak w [gold]ręce[/gold] zostanie zagrany na losowego przeciwnika.",
+    "description_raw": "Pod koniec tury {Power:plural:losowy Atak w [gold]ręce[/gold] zostanie zagrany na losowego przeciwnika.|{Power:diff()} losowe Ataki w [gold]ręce[/gold] zostaną zagrane na losowych przeciwników.|{Power:diff()} losowych Ataków w [gold]ręce[/gold] zostanie zagranych na losowych przeciwników.}",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -3346,8 +3313,8 @@
   {
     "id": "FERAL",
     "name": "Dzikus",
-    "description": "",
-    "description_raw": "",
+    "description": "Gdy zagrasz Atak kosztujący 0[energy:1]\npo raz pierwszy w tej turze,\nprzywróć go do [gold]ręki[/gold].",
+    "description_raw": "Gdy zagrasz Atak kosztujący 0{energyPrefix:energyIcons(1)}\n{FeralPower:plural:po raz pierwszy|pierwsze {FeralPower:diff()} razy|pierwszych {FeralPower:diff()} razy} w tej turze,\nprzywróć go do [gold]ręki[/gold].",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -3629,8 +3596,8 @@
   {
     "id": "ENTROPY",
     "name": "Entropia",
-    "description": "",
-    "description_raw": "",
+    "description": "Na początku tury [gold]Zmień[/gold] 1 kartę w [gold]ręce[/gold].",
+    "description_raw": "Na początku tury [gold]Zmień[/gold] {Cards:diff()} {Cards:plural:kartę|karty|kart} w [gold]ręce[/gold].",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -3703,7 +3670,7 @@
   {
     "id": "CORROSIVE_WAVE",
     "name": "Fala korozyjna",
-    "description": "Kiedykolwiek dobierzesz kartę w tej turze, nałóż 3 pkt. [gold]Trucizny[/gold] na WSZYSTKICH przeciwników.",
+    "description": "Kiedykolwiek dobierzesz kartę w tej turze, nałóż 2 pkt. [gold]Trucizny[/gold] na WSZYSTKICH przeciwników.",
     "description_raw": "Kiedykolwiek dobierzesz kartę w tej turze, nałóż {CorrosiveWave:diff()} pkt. [gold]Trucizny[/gold] na WSZYSTKICH przeciwników.",
     "cost": 1,
     "is_x_cost": null,
@@ -3724,7 +3691,7 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "CorrosiveWave": 3
+      "CorrosiveWave": 2
     },
     "upgrade": {
       "corrosivewave": "+1"
@@ -3732,7 +3699,7 @@
     "image_url": "/static/images/cards/corrosive_wave.webp",
     "beta_image_url": "/static/images/cards/beta/corrosive_wave.webp",
     "type_variants": null,
-    "upgrade_description": "Kiedykolwiek dobierzesz kartę w tej turze, nałóż 4 pkt. [gold]Trucizny[/gold] na WSZYSTKICH przeciwników.",
+    "upgrade_description": "Kiedykolwiek dobierzesz kartę w tej turze, nałóż 3 pkt. [gold]Trucizny[/gold] na WSZYSTKICH przeciwników.",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 106
@@ -3938,8 +3905,8 @@
   {
     "id": "PHOTON_CUT",
     "name": "Fotonowe przecięcie",
-    "description": "",
-    "description_raw": "",
+    "description": "Zadaj 10 pkt. obrażeń.\nDobierz 1 kartę.\nPrzenieś 1 kartę z [gold]ręki[/gold] na szczyt [gold]stosu rozgrywającego[/gold].",
+    "description_raw": "Zadaj {Damage:diff()} pkt. obrażeń.\nDobierz {Cards:diff()} {Cards:plural:kartę|karty|kart}.\nPrzenieś 1 kartę z [gold]ręki[/gold] na szczyt [gold]stosu rozgrywającego[/gold].",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -3970,7 +3937,7 @@
     "image_url": "/static/images/cards/photon_cut.webp",
     "beta_image_url": "/static/images/cards/beta/photon_cut.webp",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Zadaj 13 pkt. obrażeń.\nDobierz 2 karty|kart.\nPrzenieś 1 kartę z [gold]ręki[/gold] na szczyt [gold]stosu rozgrywającego[/gold].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 235
@@ -3978,9 +3945,9 @@
   {
     "id": "VOLTAIC",
     "name": "Fotowoltaika",
-    "description": "",
-    "description_raw": "",
-    "cost": 2,
+    "description": "[gold]Załaduj Sferę Gromu[/gold] za każdą [gold]Sferę Gromu Załadowaną[/gold] w tej walce.Sfer Gromu[/gold])",
+    "description_raw": "[gold]Załaduj Sferę Gromu[/gold] za każdą [gold]Sferę Gromu Załadowaną[/gold] w tej walce.{InCombat:\n([gold]Załaduj[/gold] {CalculatedChannels:diff()} [gold]{CalculatedChannels:plural:Sferę|Sfery|Sfer} Gromu[/gold])|}",
+    "cost": 3,
     "is_x_cost": null,
     "is_x_star_cost": null,
     "star_cost": null,
@@ -4169,13 +4136,13 @@
     "upgrade_description": "Kiedykolwiek zyskasz [gold]Blok[/gold], zadaj 7 pkt. obrażeń losowemu przeciwnikowi.",
     "type_key": "Power",
     "rarity_key": "Rare",
-    "compendium_order": 49
+    "compendium_order": 48
   },
   {
     "id": "NEOWS_FURY",
     "name": "Gniew Neow",
-    "description": "",
-    "description_raw": "",
+    "description": "Zadaj 10 pkt. obrażeń.\nPrzenieś 2 losowe karty|2 losowych kart ze [gold]stosu kart odrzuconych[/gold] do [gold]ręki[/gold].",
+    "description_raw": "Zadaj {Damage:diff()} pkt. obrażeń.\nPrzenieś {Cards:plural:losową kartę|{:diff()} losowe karty|{:diff()} losowych kart} ze [gold]stosu kart odrzuconych[/gold] do [gold]ręki[/gold].",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -4201,12 +4168,13 @@
       "Cards": 2
     },
     "upgrade": {
-      "damage": "+4"
+      "damage": "+4",
+      "cards": "+1"
     },
     "image_url": "/static/images/cards/neows_fury.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Zadaj 14 pkt. obrażeń.\nPrzenieś 3 losowe karty|3 losowych kart ze [gold]stosu kart odrzuconych[/gold] do [gold]ręki[/gold].",
     "type_key": "Attack",
     "rarity_key": "Ancient",
     "keywords_key": [
@@ -4254,7 +4222,7 @@
   {
     "id": "GATHER_LIGHT",
     "name": "Gromadzenie światła",
-    "description": "Zyskaj 7 pkt. [gold]Bloku[/gold].\nZyskaj [star:1].",
+    "description": "Zyskaj 8 pkt. [gold]Bloku[/gold].\nZyskaj [star:1].",
     "description_raw": "Zyskaj {Block:diff()} pkt. [gold]Bloku[/gold].\nZyskaj {Stars:starIcons()}.",
     "cost": 1,
     "is_x_cost": null,
@@ -4265,7 +4233,7 @@
     "target": "Self",
     "color": "regent",
     "damage": null,
-    "block": 7,
+    "block": 8,
     "hit_count": null,
     "powers_applied": null,
     "cards_draw": null,
@@ -4275,7 +4243,7 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Block": 7,
+      "Block": 8,
       "Stars": 1
     },
     "upgrade": {
@@ -4284,7 +4252,7 @@
     "image_url": "/static/images/cards/gather_light.webp",
     "beta_image_url": "/static/images/cards/beta/gather_light.webp",
     "type_variants": null,
-    "upgrade_description": "Zyskaj 10 pkt. [gold]Bloku[/gold].\nZyskaj [star:1].",
+    "upgrade_description": "Zyskaj 11 pkt. [gold]Bloku[/gold].\nZyskaj [star:1].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 205
@@ -4330,8 +4298,8 @@
   {
     "id": "RATTLE",
     "name": "Grzechotka",
-    "description": "",
-    "description_raw": "",
+    "description": "[gold]Kostek[/gold] zadaje 7 pkt. obrażeń.\nUderza dodatkowy raz za każdy inny raz, kiedy zaatakował w tej turze.razy)",
+    "description_raw": "[gold]Kostek[/gold] zadaje {OstyDamage:diff()} pkt. obrażeń.\nUderza dodatkowy raz za każdy inny raz, kiedy zaatakował w tej turze.{InCombat:\n(Uderza {CalculatedHits:diff()} {CalculatedHits:plural:raz|razy|razy})|}",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -4364,7 +4332,7 @@
     "image_url": "/static/images/cards/rattle.webp",
     "beta_image_url": "/static/images/cards/beta/rattle.webp",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Kostek[/gold] zadaje 9 pkt. obrażeń.\nUderza dodatkowy raz za każdy inny raz, kiedy zaatakował w tej turze.razy)",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 321
@@ -4500,8 +4468,8 @@
   {
     "id": "GUIDING_STAR",
     "name": "Gwiazda przewodnia",
-    "description": "",
-    "description_raw": "",
+    "description": "Zadaj 12 pkt. obrażeń.\nDobierz 2 karty|kart.",
+    "description_raw": "Zadaj {Damage:diff()} pkt. obrażeń.\nDobierz {Cards:diff()} {Cards:plural:kartę|karty|kart}.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -4532,7 +4500,7 @@
     "image_url": "/static/images/cards/guiding_star.webp",
     "beta_image_url": "/static/images/cards/beta/guiding_star.webp",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Zadaj 13 pkt. obrażeń.\nDobierz 3 karty|kart.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 211
@@ -4829,6 +4797,7 @@
     "hp_loss": null,
     "keywords": [
       "Startowa",
+      "Eteryczna",
       "Niezagrywalna",
       "Wieczna"
     ],
@@ -4844,6 +4813,7 @@
     "rarity_key": "Curse",
     "keywords_key": [
       "Innate",
+      "Ethereal",
       "Unplayable",
       "Eternal"
     ],
@@ -4926,7 +4896,7 @@
   {
     "id": "HEMOKINESIS",
     "name": "Hemokineza",
-    "description": "Utrać 2 PŻ.\nZadaj 14 pkt. obrażeń.",
+    "description": "Utrać 2 PŻ.\nZadaj 15 pkt. obrażeń.",
     "description_raw": "Utrać {HpLoss:diff()} PŻ.\nZadaj {Damage:diff()} pkt. obrażeń.",
     "cost": 1,
     "is_x_cost": null,
@@ -4936,7 +4906,7 @@
     "rarity": "Niepospolita",
     "target": "AnyEnemy",
     "color": "ironclad",
-    "damage": 14,
+    "damage": 15,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -4948,7 +4918,7 @@
     "spawns_cards": null,
     "vars": {
       "HpLoss": 2,
-      "Damage": 14
+      "Damage": 15
     },
     "upgrade": {
       "damage": "+5"
@@ -4956,10 +4926,10 @@
     "image_url": "/static/images/cards/hemokinesis.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Utrać 2 PŻ.\nZadaj 19 pkt. obrażeń.",
+    "upgrade_description": "Utrać 2 PŻ.\nZadaj 20 pkt. obrażeń.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
-    "compendium_order": 42
+    "compendium_order": 41
   },
   {
     "id": "HYPERBEAM",
@@ -5124,8 +5094,8 @@
   {
     "id": "BURST",
     "name": "Impuls",
-    "description": "",
-    "description_raw": "",
+    "description": "W tej turze następna Umiejętność jest zagrywana dwukrotnie.",
+    "description_raw": "W tej turze {Skills:plural:następna Umiejętność jest zagrywana|następne {:diff()} Umiejętności są zagrywane|następnych {:diff()} Umiejętności jest zagrywanych} dwukrotnie.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -5153,7 +5123,7 @@
     "image_url": "/static/images/cards/burst.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "W tej turze następne 2 Umiejętności są zagrywane|następnych 2 Umiejętności jest zagrywanych dwukrotnie.",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 103
@@ -5313,8 +5283,8 @@
   {
     "id": "BRIGHTEST_FLAME",
     "name": "Jasny płomień",
-    "description": "",
-    "description_raw": "",
+    "description": "Zyskaj [energy:2].\nDobierz 2 karty|kart.\nUtrać 1 maks. PŻ.",
+    "description_raw": "Zyskaj {Energy:energyIcons()}.\nDobierz {Cards:diff()} {Cards:plural:kartę|karty|kart}.\nUtrać {MaxHp:diff()} maks. PŻ.",
     "cost": 0,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -5345,7 +5315,7 @@
     "image_url": "/static/images/cards/brightest_flame.webp",
     "beta_image_url": "/static/images/cards/beta/brightest_flame.webp",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Zyskaj [energy:3].\nDobierz 3 karty|kart.\nUtrać 1 maks. PŻ.",
     "type_key": "Skill",
     "rarity_key": "Ancient",
     "compendium_order": 523
@@ -5353,8 +5323,8 @@
   {
     "id": "I_AM_INVINCIBLE",
     "name": "Jestem niezwyciężony",
-    "description": "Zyskaj 9 pkt. [gold]Bloku[/gold].\nJeżeli ta karta znajduje się na szczycie [gold]stosu rozgrywającego[/gold] pod koniec twojej tury, zagraj ją.",
-    "description_raw": "Zyskaj {Block:diff()} pkt. [gold]Bloku[/gold].\nJeżeli ta karta znajduje się na szczycie [gold]stosu rozgrywającego[/gold] pod koniec twojej tury, zagraj ją.",
+    "description": "Zyskaj 10 pkt. [gold]Bloku[/gold].\nPod koniec tury zagraj tę kartę, jeżeli znajduje się na szczycie [gold]stosu rozgrywającego[/gold].",
+    "description_raw": "Zyskaj {Block:diff()} pkt. [gold]Bloku[/gold].\nPod koniec tury zagraj tę kartę, jeżeli znajduje się na szczycie [gold]stosu rozgrywającego[/gold].",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -5364,7 +5334,7 @@
     "target": "Self",
     "color": "regent",
     "damage": null,
-    "block": 9,
+    "block": 10,
     "hit_count": null,
     "powers_applied": null,
     "cards_draw": null,
@@ -5374,7 +5344,7 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Block": 9
+      "Block": 10
     },
     "upgrade": {
       "block": "+3"
@@ -5382,10 +5352,52 @@
     "image_url": "/static/images/cards/i_am_invincible.webp",
     "beta_image_url": "/static/images/cards/beta/i_am_invincible.webp",
     "type_variants": null,
-    "upgrade_description": "Zyskaj 12 pkt. [gold]Bloku[/gold].\nJeżeli ta karta znajduje się na szczycie [gold]stosu rozgrywającego[/gold] pod koniec twojej tury, zagraj ją.",
+    "upgrade_description": "Zyskaj 13 pkt. [gold]Bloku[/gold].\nPod koniec tury zagraj tę kartę, jeżeli znajduje się na szczycie [gold]stosu rozgrywającego[/gold].",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 217
+  },
+  {
+    "id": "NOT_YET",
+    "name": "Jeszcze nie",
+    "description": "Przywróć 10 PŻ.",
+    "description_raw": "Przywróć {Heal:diff()} PŻ.",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Umiej.",
+    "rarity": "Rzadka",
+    "target": "Self",
+    "color": "ironclad",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Wyczerpanie"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Heal": 10
+    },
+    "upgrade": {
+      "heal": "+3"
+    },
+    "image_url": "/static/images/cards/not_yet.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "upgrade_description": "Przywróć 13 PŻ.",
+    "type_key": "Skill",
+    "rarity_key": "Rare",
+    "keywords_key": [
+      "Exhaust"
+    ],
+    "compendium_order": 52
   },
   {
     "id": "SUPERMASSIVE",
@@ -5552,8 +5564,8 @@
   {
     "id": "CATASTROPHE",
     "name": "Katastrofa",
-    "description": "",
-    "description_raw": "",
+    "description": "Zagraj 2 losowe karty|losowych kart ze [gold]stosu rozgrywającego[/gold].",
+    "description_raw": "Zagraj {Cards:diff()} {Cards:plural:losową kartę|losowe karty|losowych kart} ze [gold]stosu rozgrywającego[/gold].",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -5581,7 +5593,7 @@
     "image_url": "/static/images/cards/catastrophe.webp",
     "beta_image_url": "/static/images/cards/beta/catastrophe.webp",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Zagraj 3 losowe karty|losowych kart ze [gold]stosu rozgrywającego[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 447
@@ -5788,8 +5800,8 @@
   {
     "id": "SPITE",
     "name": "Kolka",
-    "description": "",
-    "description_raw": "",
+    "description": "Zadaj 5 pkt. obrażeń.\nJeżeli utracono PŻ w tej turze,\nuderza 2 razy.",
+    "description_raw": "Zadaj {Damage:diff()} pkt. obrażeń.\nJeżeli utracono PŻ w tej turze,\nuderza {Repeat:diff()} razy.",
     "cost": 0,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -5798,27 +5810,27 @@
     "rarity": "Niepospolita",
     "target": "AnyEnemy",
     "color": "ironclad",
-    "damage": 6,
+    "damage": 5,
     "block": null,
-    "hit_count": null,
+    "hit_count": 2,
     "powers_applied": null,
-    "cards_draw": 1,
+    "cards_draw": null,
     "energy_gain": null,
     "hp_loss": null,
     "keywords": null,
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Damage": 6,
-      "Cards": 1
+      "Damage": 5,
+      "Repeat": 2
     },
     "upgrade": {
-      "damage": "+3"
+      "repeat": "+1"
     },
     "image_url": "/static/images/cards/spite.webp",
     "beta_image_url": "/static/images/cards/beta/spite.webp",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Zadaj 5 pkt. obrażeń.\nJeżeli utracono PŻ w tej turze,\nuderza 3 razy.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 67
@@ -5833,7 +5845,7 @@
     "is_x_star_cost": null,
     "star_cost": null,
     "type": "Umiej.",
-    "rarity": "Rzadka",
+    "rarity": "Niepospolita",
     "target": "Self",
     "color": "ironclad",
     "damage": null,
@@ -5858,7 +5870,7 @@
     "type_variants": null,
     "upgrade_description": "Zyskaj 8 pkt. [gold]Bloku[/gold].\nW tej turze otrzymujesz 50% mniej obrażeń od [gold]Wrażliwych[/gold] przeciwników.",
     "type_key": "Skill",
-    "rarity_key": "Rare",
+    "rarity_key": "Uncommon",
     "compendium_order": 18
   },
   {
@@ -5961,8 +5973,8 @@
   {
     "id": "COMPILE_DRIVER",
     "name": "Kompilacja sterownika",
-    "description": "",
-    "description_raw": "",
+    "description": "Zadaj 7 pkt. obrażeń.\nDobierz 1 kartę za każdy posiadany rodzaj Sfery.kart)",
+    "description_raw": "Zadaj {Damage:diff()} pkt. obrażeń.\nDobierz 1 kartę za każdy posiadany rodzaj Sfery.{InCombat:\n(Dobierz {CalculatedCards:diff()} {CalculatedCards:plural:kartę|karty|kart})|}",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -5992,7 +6004,7 @@
     "image_url": "/static/images/cards/compile_driver.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Zadaj 10 pkt. obrażeń.\nDobierz 1 kartę za każdy posiadany rodzaj Sfery.kart)",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 368
@@ -6086,7 +6098,7 @@
     "cost": 0,
     "is_x_cost": null,
     "is_x_star_cost": null,
-    "star_cost": 2,
+    "star_cost": 3,
     "type": "Umiej.",
     "rarity": "Niepospolita",
     "target": "Self",
@@ -6103,7 +6115,7 @@
     "spawns_cards": null,
     "vars": {
       "Energy": 2,
-      "StarCost": 2
+      "StarCost": 3
     },
     "upgrade": {
       "energy": "+1"
@@ -6519,7 +6531,7 @@
   {
     "id": "KINGLY_KICK",
     "name": "Królewski kopniak",
-    "description": "Zadaj 24 pkt. obrażeń.\nKiedykolwiek dobierzesz tę kartę, zredukuj jej koszt o 1.",
+    "description": "Zadaj 27 pkt. obrażeń.\nKiedykolwiek dobierzesz tę kartę, zredukuj jej koszt o 1.",
     "description_raw": "Zadaj {Damage:diff()} pkt. obrażeń.\nKiedykolwiek dobierzesz tę kartę, zredukuj jej koszt o 1.",
     "cost": 4,
     "is_x_cost": null,
@@ -6529,7 +6541,7 @@
     "rarity": "Niepospolita",
     "target": "AnyEnemy",
     "color": "regent",
-    "damage": 24,
+    "damage": 27,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -6540,15 +6552,15 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Damage": 24
+      "Damage": 27
     },
     "upgrade": {
-      "damage": "+6"
+      "damage": "+8"
     },
     "image_url": "/static/images/cards/kingly_kick.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Zadaj 30 pkt. obrażeń.\nKiedykolwiek dobierzesz tę kartę, zredukuj jej koszt o 1.",
+    "upgrade_description": "Zadaj 35 pkt. obrażeń.\nKiedykolwiek dobierzesz tę kartę, zredukuj jej koszt o 1.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 218
@@ -6556,7 +6568,7 @@
   {
     "id": "KINGLY_PUNCH",
     "name": "Królewski sierpowy",
-    "description": "Zadaj 8 pkt. obrażeń.\nKiedykolwiek dobierzesz tę kartę, zwiększ jej obrażenia w tej walce o 3 pkt.",
+    "description": "Zadaj 8 pkt. obrażeń.\nKiedykolwiek dobierzesz tę kartę, zwiększ jej obrażenia w tej walce o 4 pkt.",
     "description_raw": "Zadaj {Damage:diff()} pkt. obrażeń.\nKiedykolwiek dobierzesz tę kartę, zwiększ jej obrażenia w tej walce o {Increase:diff()} pkt.",
     "cost": 1,
     "is_x_cost": null,
@@ -6577,16 +6589,17 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Increase": 3,
+      "Increase": 4,
       "Damage": 8
     },
     "upgrade": {
+      "damage": "+2",
       "increase": "+2"
     },
     "image_url": "/static/images/cards/kingly_punch.webp",
     "beta_image_url": "/static/images/cards/beta/kingly_punch.webp",
     "type_variants": null,
-    "upgrade_description": "Zadaj 8 pkt. obrażeń.\nKiedykolwiek dobierzesz tę kartę, zwiększ jej obrażenia w tej walce o 5 pkt.",
+    "upgrade_description": "Zadaj 10 pkt. obrażeń.\nKiedykolwiek dobierzesz tę kartę, zwiększ jej obrażenia w tej walce o 6 pkt.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 219
@@ -6719,7 +6732,7 @@
   {
     "id": "COLLISION_COURSE",
     "name": "Kurs kolizyjny",
-    "description": "Zadaj 9 pkt. obrażeń.\nDodaj [gold]Gruz[/gold] do [gold]ręki[/gold].",
+    "description": "Zadaj 11 pkt. obrażeń.\nDodaj [gold]Gruz[/gold] do [gold]ręki[/gold].",
     "description_raw": "Zadaj {Damage:diff()} pkt. obrażeń.\nDodaj [gold]Gruz[/gold] do [gold]ręki[/gold].",
     "cost": 0,
     "is_x_cost": null,
@@ -6729,7 +6742,7 @@
     "rarity": "Pospolita",
     "target": "AnyEnemy",
     "color": "regent",
-    "damage": 9,
+    "damage": 11,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -6742,15 +6755,15 @@
       "DEBRIS"
     ],
     "vars": {
-      "Damage": 9
+      "Damage": 11
     },
     "upgrade": {
-      "damage": "+3"
+      "damage": "+4"
     },
     "image_url": "/static/images/cards/collision_course.webp",
     "beta_image_url": "/static/images/cards/beta/collision_course.webp",
     "type_variants": null,
-    "upgrade_description": "Zadaj 12 pkt. obrażeń.\nDodaj [gold]Gruz[/gold] do [gold]ręki[/gold].",
+    "upgrade_description": "Zadaj 15 pkt. obrażeń.\nDodaj [gold]Gruz[/gold] do [gold]ręki[/gold].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 189
@@ -6912,8 +6925,8 @@
   {
     "id": "SLOTH",
     "name": "Lenistwo",
-    "description": "",
-    "description_raw": "",
+    "description": "W każdej turze nie możesz zagrać więcej niż 3 karty|kart.",
+    "description_raw": "W każdej turze nie możesz zagrać więcej niż {SlothPower:diff()} {SlothPower:plural:kartę|karty|kart}.",
     "cost": -1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -6991,8 +7004,8 @@
   {
     "id": "JACKPOT",
     "name": "Loteria",
-    "description": "",
-    "description_raw": "",
+    "description": "Zadaj 25 pkt. obrażeń.\nDodaj 3 losowe karty kosztujące 0[energy:1]|losowych kart kosztujących 0[energy:1] do [gold]ręki[/gold].",
+    "description_raw": "Zadaj {Damage:diff()} pkt. obrażeń.\nDodaj {Cards:diff()} {Cards:plural:losową {IfUpgraded:show:[gold]Ulepszoną[/gold] }kartę kosztującą 0{energyPrefix:energyIcons(1)}|losowe {IfUpgraded:show:[gold]Ulepszone[/gold] }karty kosztujące 0{energyPrefix:energyIcons(1)}|losowych {IfUpgraded:show:[gold]Ulepszonych[/gold] }kart kosztujących 0{energyPrefix:energyIcons(1)}} do [gold]ręki[/gold].",
     "cost": 3,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -7021,7 +7034,7 @@
     "image_url": "/static/images/cards/jackpot.webp",
     "beta_image_url": "/static/images/cards/beta/jackpot.webp",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Zadaj 30 pkt. obrażeń.\nDodaj 3 losowe [gold]Ulepszone[/gold] karty kosztujące 0[energy:1]|losowych [gold]Ulepszonych[/gold] kart kosztujących 0[energy:1] do [gold]ręki[/gold].",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 466
@@ -7110,8 +7123,8 @@
   {
     "id": "DEMESNE",
     "name": "Majątek",
-    "description": "",
-    "description_raw": "",
+    "description": "Na początku tury zyskaj [energy:1] i dobierz 1 dodatkową kartę.",
+    "description_raw": "Na początku tury zyskaj {Energy:energyIcons()} i dobierz {Cards:diff()} {Cards:plural:dodatkową kartę|dodatkowe karty|dodatkowych kart}.",
     "cost": 3,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -7397,7 +7410,7 @@
   {
     "id": "MEMENTO_MORI",
     "name": "Memento Mori",
-    "description": "Zadaj 8 pkt. obrażeń.\nZadaje dodatkowo 4 pkt. obrażeń za każdą odrzuconą kartę w tej turze.",
+    "description": "Zadaj 9 pkt. obrażeń.\nZadaje dodatkowo 4 pkt. obrażeń za każdą odrzuconą kartę w tej turze.",
     "description_raw": "Zadaj {CalculatedDamage:diff()} pkt. obrażeń.\nZadaje dodatkowo {ExtraDamage:diff()} pkt. obrażeń za każdą odrzuconą kartę w tej turze.",
     "cost": 1,
     "is_x_cost": null,
@@ -7407,7 +7420,7 @@
     "rarity": "Niepospolita",
     "target": "AnyEnemy",
     "color": "silent",
-    "damage": 8,
+    "damage": 9,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -7418,9 +7431,9 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "CalculationBase": 8,
+      "CalculationBase": 9,
       "ExtraDamage": 4,
-      "CalculatedDamage": 8
+      "CalculatedDamage": 9
     },
     "upgrade": {
       "calculationbase": "+2",
@@ -7429,7 +7442,7 @@
     "image_url": "/static/images/cards/memento_mori.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Zadaj 8 pkt. obrażeń.\nZadaje dodatkowo 5 pkt. obrażeń za każdą odrzuconą kartę w tej turze.",
+    "upgrade_description": "Zadaj 9 pkt. obrażeń.\nZadaje dodatkowo 5 pkt. obrażeń za każdą odrzuconą kartę w tej turze.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 136
@@ -7554,8 +7567,8 @@
   {
     "id": "SWORD_SAGE",
     "name": "Mistrz miecza",
-    "description": "Zwiększ koszt [gold]Niebiańskiego Ostrza[/gold] o [blue]1[/blue]. Od teraz [gold]Niebiańskie Ostrze[/gold] uderza dodatkowy raz.",
-    "description_raw": "Zwiększ koszt [gold]Niebiańskiego Ostrza[/gold] o [blue]1[/blue]. Od teraz [gold]Niebiańskie Ostrze[/gold] uderza dodatkowy raz.",
+    "description": "Od teraz [gold]Niebiańskie Ostrze[/gold] uderza dodatkowy raz.",
+    "description_raw": "Od teraz [gold]Niebiańskie Ostrze[/gold] uderza dodatkowy raz.",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -7714,8 +7727,8 @@
   {
     "id": "MODDED",
     "name": "Modyfikacja",
-    "description": "",
-    "description_raw": "",
+    "description": "Zyskaj 1 miejscę na Sferę.\nDobierz 1 kartę. Zwiększ koszt tej karty o 1.",
+    "description_raw": "Zyskaj {Repeat:diff()} {Repeat:plural:miejscę na Sferę|miejsca na Sferę}.\nDobierz {Cards:diff()} {Cards:plural:kartę|karty|kart}. Zwiększ koszt tej karty o 1.",
     "cost": 0,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -7744,7 +7757,7 @@
     "image_url": "/static/images/cards/modded.webp",
     "beta_image_url": "/static/images/cards/beta/modded.webp",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Zyskaj 1 miejscę na Sferę.\nDobierz 2 karty|kart. Zwiększ koszt tej karty o 1.",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 404
@@ -7752,8 +7765,8 @@
   {
     "id": "MONOLOGUE",
     "name": "Monolog",
-    "description": "Kiedykolwiek zagrasz bezbarwną kartę w tej turze, zyskaj 1 pkt. [gold]Siły[/gold] do końca tury.",
-    "description_raw": "Kiedykolwiek zagrasz bezbarwną kartę w tej turze, zyskaj {Power:diff()} pkt. [gold]Siły[/gold] do końca tury.",
+    "description": "Kiedykolwiek zagrasz kartę w tej turze, zyskaj 1 pkt. [gold]Siły[/gold] w tej turze.",
+    "description_raw": "Kiedykolwiek zagrasz kartę w tej turze, zyskaj {Power:diff()} pkt. [gold]Siły[/gold] w tej turze.",
     "cost": 0,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -7827,7 +7840,7 @@
   },
   {
     "id": "DARK_SHACKLES",
-    "name": "Mroczne kajdany",
+    "name": "Mroczne okowy",
     "description": "W tej turze przeciwnik traci 9 pkt. [gold]Siły[/gold].",
     "description_raw": "W tej turze przeciwnik traci {StrengthLoss:diff()} pkt. [gold]Siły[/gold].",
     "cost": 0,
@@ -7870,8 +7883,8 @@
   {
     "id": "THINKING_AHEAD",
     "name": "Myślenie naprzód",
-    "description": "",
-    "description_raw": "",
+    "description": "Dobierz 2 karty|kart.\nPrzenieś kartę z [gold]ręki[/gold] na szczyt [gold]stosu rozgrywającego[/gold].",
+    "description_raw": "Dobierz {Cards:diff()} {Cards:plural:kartę|karty|kart}.\nPrzenieś kartę z [gold]ręki[/gold] na szczyt [gold]stosu rozgrywającego[/gold].",
     "cost": 0,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -7987,8 +8000,8 @@
   {
     "id": "NEUROSURGE",
     "name": "Na skraju śmierci",
-    "description": "",
-    "description_raw": "",
+    "description": "Zyskaj [energy:3].\nDobierz 2 karty|kart.\nNa początku tury nałóż na siebie 3 pkt. [gold]Zagłady[/gold].",
+    "description_raw": "Zyskaj {Energy:energyIcons()}.\nDobierz {Cards:diff()} {Cards:plural:kartę|karty|kart}.\nNa początku tury nałóż na siebie {NeurosurgePower:diff()} pkt. [gold]Zagłady[/gold].",
     "cost": 0,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -8025,7 +8038,7 @@
     "image_url": "/static/images/cards/neurosurge.webp",
     "beta_image_url": "/static/images/cards/beta/neurosurge.webp",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Zyskaj [energy:4].\nDobierz 2 karty|kart.\nNa początku tury nałóż na siebie 3 pkt. [gold]Zagłady[/gold].",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 311
@@ -8033,7 +8046,7 @@
   {
     "id": "FIGHT_ME",
     "name": "Na śmierć i życie",
-    "description": "Zadaj 5 pkt. obrażeń dwukrotnie.\nZyskaj 2 pkt. [gold]Siły[/gold].\nPrzeciwnik otrzymuje 1 pkt. [gold]Siły[/gold].",
+    "description": "Zadaj 5 pkt. obrażeń dwukrotnie.\nZyskaj 3 pkt. [gold]Siły[/gold].\nPrzeciwnik otrzymuje 1 pkt. [gold]Siły[/gold].",
     "description_raw": "Zadaj {Damage:diff()} pkt. obrażeń dwukrotnie.\nZyskaj {StrengthPower:diff()} pkt. [gold]Siły[/gold].\nPrzeciwnik otrzymuje {EnemyStrength:diff()} pkt. [gold]Siły[/gold].",
     "cost": 2,
     "is_x_cost": null,
@@ -8049,7 +8062,7 @@
     "powers_applied": [
       {
         "power": "Siła",
-        "amount": 2,
+        "amount": 3,
         "power_key": "Strength"
       }
     ],
@@ -8063,8 +8076,8 @@
       "EnemyStrength": 1,
       "Damage": 5,
       "Repeat": 2,
-      "StrengthPower": 2,
-      "Strength": 2
+      "StrengthPower": 3,
+      "Strength": 3
     },
     "upgrade": {
       "damage": "+1",
@@ -8073,7 +8086,7 @@
     "image_url": "/static/images/cards/fight_me.webp",
     "beta_image_url": "/static/images/cards/beta/fight_me.webp",
     "type_variants": null,
-    "upgrade_description": "Zadaj 6 pkt. obrażeń dwukrotnie.\nZyskaj 2 pkt. [gold]Siły[/gold].\nPrzeciwnik otrzymuje 1 pkt. [gold]Siły[/gold].",
+    "upgrade_description": "Zadaj 6 pkt. obrażeń dwukrotnie.\nZyskaj 3 pkt. [gold]Siły[/gold].\nPrzeciwnik otrzymuje 1 pkt. [gold]Siły[/gold].",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 35
@@ -8271,8 +8284,8 @@
   {
     "id": "CELESTIAL_MIGHT",
     "name": "Niebiańska potęga",
-    "description": "",
-    "description_raw": "",
+    "description": "Zadaj 6 pkt. obrażeń 3 razy|razy.",
+    "description_raw": "Zadaj {Damage:diff()} pkt. obrażeń {Repeat:diff()} {Repeat:plural:raz|razy|razy}.",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -8296,12 +8309,12 @@
       "Repeat": 3
     },
     "upgrade": {
-      "damage": "+2"
+      "repeat": "+1"
     },
     "image_url": "/static/images/cards/celestial_might.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Zadaj 6 pkt. obrażeń 4 razy|razy.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 185
@@ -8309,8 +8322,8 @@
   {
     "id": "SOVEREIGN_BLADE",
     "name": "Niebiańskie Ostrze",
-    "description": "",
-    "description_raw": "",
+    "description": "Zadaj 10 pkt. obrażeń.",
+    "description_raw": "Zadaj {Damage:diff()} pkt. obrażeń{SeekingEdgeAmount:cond:>0? WSZYSTKIM przeciwnikom|}{Repeat:plural:| {} razy}.",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -8429,12 +8442,12 @@
     "keywords_key": [
       "Exhaust"
     ],
-    "compendium_order": 44
+    "compendium_order": 43
   },
   {
     "id": "UNTOUCHABLE",
     "name": "Nietykalność",
-    "description": "Zyskaj 9 pkt. [gold]Bloku[/gold].",
+    "description": "Zyskaj 6 pkt. [gold]Bloku[/gold].",
     "description_raw": "Zyskaj {Block:diff()} pkt. [gold]Bloku[/gold].",
     "cost": 2,
     "is_x_cost": null,
@@ -8445,7 +8458,7 @@
     "target": "Self",
     "color": "silent",
     "damage": null,
-    "block": 9,
+    "block": 6,
     "hit_count": null,
     "powers_applied": null,
     "cards_draw": null,
@@ -8457,15 +8470,15 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Block": 9
+      "Block": 6
     },
     "upgrade": {
-      "block": "+3"
+      "block": "+2"
     },
     "image_url": "/static/images/cards/untouchable.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Zyskaj 12 pkt. [gold]Bloku[/gold].",
+    "upgrade_description": "Zyskaj 8 pkt. [gold]Bloku[/gold].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "keywords_key": [
@@ -8636,8 +8649,8 @@
   {
     "id": "NORMALITY",
     "name": "Normalność",
-    "description": "",
-    "description_raw": "",
+    "description": "Nie możesz zagrać więcej niż 3 karty w tej turze.Pozostało 2 kart)",
+    "description_raw": "Nie możesz zagrać więcej niż 3 karty w tej turze.{InCombat:\n({CalculatedCards:plural:Pozostała {} karta|Pozostały {} karty|Pozostało {} kart})|}",
     "cost": -1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -8712,8 +8725,8 @@
   {
     "id": "ITERATION",
     "name": "Nowa wersja",
-    "description": "",
-    "description_raw": "",
+    "description": "Gdy dobierzesz kartę Stanu po raz pierwszy w tej turze, dobierz 2 karty|kart.",
+    "description_raw": "Gdy dobierzesz kartę Stanu po raz pierwszy w tej turze, dobierz {IterationPower:diff()} {IterationPower:plural:kartę|karty|kart}.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -8748,7 +8761,7 @@
     "image_url": "/static/images/cards/iteration.webp",
     "beta_image_url": "/static/images/cards/beta/iteration.webp",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Gdy dobierzesz kartę Stanu po raz pierwszy w tej turze, dobierz 3 karty|kart.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 398
@@ -8802,8 +8815,8 @@
   {
     "id": "SHIV",
     "name": "Nóż",
-    "description": "Zadaj 4 pkt. obrażeń.",
-    "description_raw": "Zadaj {Damage:diff()} pkt. obrażeń{FanOfKnivesAmount:cond:>0? WSZYSTKIM przeciwnikom|}.",
+    "description": "Zadaj 4 pkt. obrażeń WSZYSTKIM przeciwnikom.",
+    "description_raw": "Zadaj {Damage:diff()} pkt. obrażeń{TargetType:choose(AllEnemies): WSZYSTKIM przeciwnikom|}.",
     "cost": 0,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -8827,9 +8840,7 @@
     ],
     "spawns_cards": null,
     "vars": {
-      "Damage": 4,
-      "CalculationBase": 0,
-      "CalculationExtra": 1
+      "Damage": 4
     },
     "upgrade": {
       "damage": "+2"
@@ -8837,7 +8848,7 @@
     "image_url": "/static/images/cards/shiv.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Zadaj 6 pkt. obrażeń.",
+    "upgrade_description": "Zadaj 6 pkt. obrażeń WSZYSTKIM przeciwnikom.",
     "type_key": "Attack",
     "rarity_key": "Token",
     "keywords_key": [
@@ -9459,8 +9470,8 @@
   {
     "id": "DISCOVERY",
     "name": "Odkrycie",
-    "description": "Wybierz 1 z 3 losowych kart i dodaj ją do [gold]ręki[/gold]. W tej turze kosztuje 0 [energy:1].",
-    "description_raw": "Wybierz 1 z 3 losowych kart i dodaj ją do [gold]ręki[/gold]. W tej turze kosztuje 0 {energyPrefix:energyIcons(1)}.",
+    "description": "Wybierz 1 z 3 losowych kart i dodaj ją do [gold]ręki[/gold]. W tej turze jest darmowa.",
+    "description_raw": "Wybierz 1 z 3 losowych kart i dodaj ją do [gold]ręki[/gold]. W tej turze jest darmowa.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -9699,8 +9710,8 @@
   {
     "id": "OFFERING",
     "name": "Ofiara",
-    "description": "",
-    "description_raw": "",
+    "description": "Utrać 6 PŻ.\nZyskaj [energy:2].\nDobierz 3 karty|kart.",
+    "description_raw": "Utrać {HpLoss:diff()} PŻ.\nZyskaj {Energy:energyIcons()}.\nDobierz {Cards:diff()} {Cards:plural:kartę|karty|kart}.",
     "cost": 0,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -9732,7 +9743,7 @@
     "image_url": "/static/images/cards/offering.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Utrać 6 PŻ.\nZyskaj [energy:2].\nDobierz 5 karty|kart.",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -9790,8 +9801,8 @@
   {
     "id": "BARRAGE",
     "name": "Ogień zaporowy",
-    "description": "",
-    "description_raw": "",
+    "description": "Zadaj 5 pkt. obrażeń za każdą [gold]Załadowaną[/gold] Sferę.razy)",
+    "description_raw": "Zadaj {Damage:diff()} pkt. obrażeń za każdą [gold]Załadowaną[/gold] Sferę.{InCombat:\n(Uderza {CalculatedHits:diff()} {CalculatedHits:plural:raz|razy|razy})|}",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -9821,7 +9832,7 @@
     "image_url": "/static/images/cards/barrage.webp",
     "beta_image_url": "/static/images/cards/beta/barrage.webp",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Zadaj 7 pkt. obrażeń za każdą [gold]Załadowaną[/gold] Sferę.razy)",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 354
@@ -9908,7 +9919,7 @@
     "keywords_key": [
       "Exhaust"
     ],
-    "compendium_order": 52
+    "compendium_order": 51
   },
   {
     "id": "BEAM_CELL",
@@ -10005,7 +10016,7 @@
     "name": "Okrzyk śmierci",
     "description": "Zadaj 33 pkt. obrażeń WSZYSTKIM przeciwnikom.\nKosztuje [energy:2] mniej za każdą [gold]Eteryczną[/gold] kartę zagraną w tej walce.",
     "description_raw": "Zadaj {Damage:diff()} pkt. obrażeń WSZYSTKIM przeciwnikom.\nKosztuje {Energy:energyIcons()} mniej za każdą [gold]Eteryczną[/gold] kartę zagraną w tej walce.",
-    "cost": 6,
+    "cost": 9,
     "is_x_cost": null,
     "is_x_star_cost": null,
     "star_cost": null,
@@ -10028,12 +10039,12 @@
       "Energy": 2
     },
     "upgrade": {
-      "damage": "+6"
+      "cost": 7
     },
     "image_url": "/static/images/cards/banshees_cry.webp",
     "beta_image_url": "/static/images/cards/beta/banshees_cry.webp",
     "type_variants": null,
-    "upgrade_description": "Zadaj 39 pkt. obrażeń WSZYSTKIM przeciwnikom.\nKosztuje [energy:2] mniej za każdą [gold]Eteryczną[/gold] kartę zagraną w tej walce.",
+    "upgrade_description": null,
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 264
@@ -10178,7 +10189,7 @@
     "spawns_cards": null,
     "vars": {
       "Damage": 7,
-      "Forge": 5
+      "Forge": 7
     },
     "upgrade": {
       "damage": "+2",
@@ -10195,8 +10206,8 @@
   {
     "id": "FLANKING",
     "name": "Oskrzydlenie",
-    "description": "W tej turze przeciwnik otrzymuje podwójne obrażenia od graczy.",
-    "description_raw": "W tej turze przeciwnik otrzymuje podwójne obrażenia od graczy.",
+    "description": "W tej turze gracze zadają przeciwnikowi podwójne obrażenia od Ataków.",
+    "description_raw": "W tej turze gracze zadają przeciwnikowi podwójne obrażenia od Ataków.",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -10230,8 +10241,8 @@
   {
     "id": "FINISHER",
     "name": "Ostateczny cios",
-    "description": "",
-    "description_raw": "",
+    "description": "Zadaj 6 pkt. obrażeń za każdy Atak zagrany w tej turze.razy)",
+    "description_raw": "Zadaj {Damage:diff()} pkt. obrażeń za każdy Atak zagrany w tej turze.{InCombat:\n(Uderza {CalculatedHits:diff()} {CalculatedHits:plural:raz|razy|razy})|}",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -10261,7 +10272,7 @@
     "image_url": "/static/images/cards/finisher.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Zadaj 8 pkt. obrażeń za każdy Atak zagrany w tej turze.razy)",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 120
@@ -10315,8 +10326,8 @@
   {
     "id": "BLADE_OF_INK",
     "name": "Ostrze z atramentu",
-    "description": "Kiedykolwiek zagrasz Atak w tej turze, zyskaj 2 pkt. [gold]Siły[/gold] do końca tury.",
-    "description_raw": "Kiedykolwiek zagrasz Atak w tej turze, zyskaj {StrengthPower:diff()} pkt. [gold]Siły[/gold] do końca tury.",
+    "description": "Dodaj 2 [gold]Noże|Noży[/gold] z [purple]Atramentem[/purple] do [gold]ręki[/gold].",
+    "description_raw": "Dodaj {Cards:diff()} [gold]{Cards:plural:Nóż|Noże|Noży}[/gold] z [purple]Atramentem[/purple] do [gold]ręki[/gold].",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -10328,30 +10339,25 @@
     "damage": null,
     "block": null,
     "hit_count": null,
-    "powers_applied": [
-      {
-        "power": "Siła",
-        "amount": 2,
-        "power_key": "Strength"
-      }
-    ],
-    "cards_draw": null,
+    "powers_applied": null,
+    "cards_draw": 2,
     "energy_gain": null,
     "hp_loss": null,
     "keywords": null,
     "tags": null,
-    "spawns_cards": null,
+    "spawns_cards": [
+      "SHIV"
+    ],
     "vars": {
-      "StrengthPower": 2,
-      "Strength": 2
+      "Cards": 2
     },
     "upgrade": {
-      "strength": "+1"
+      "cards": "+1"
     },
     "image_url": "/static/images/cards/blade_of_ink.webp",
     "beta_image_url": "/static/images/cards/beta/blade_of_ink.webp",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Dodaj 3 [gold]Noże|Noży[/gold] z [purple]Atramentem[/purple] do [gold]ręki[/gold].",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 98
@@ -10484,17 +10490,17 @@
   {
     "id": "BEGONE",
     "name": "PRECZ!",
-    "description": "Zadaj 4 pkt. obrażeń.\nWybierz kartę w [gold]ręce[/gold] i [gold]Zmień[/gold] ją w [gold]Skok na bombę służby[/gold].",
-    "description_raw": "Zadaj {Damage:diff()} pkt. obrażeń.\nWybierz kartę w [gold]ręce[/gold] i [gold]Zmień[/gold] ją w [gold]{IfUpgraded:show:Skok na bombę służby+|Skok na bombę służby}[/gold].",
+    "description": "Wybierz kartę w [gold]ręce[/gold] i [gold]Zmień[/gold] ją w [gold]Uderzenie służby[/gold].",
+    "description_raw": "Wybierz kartę w [gold]ręce[/gold] i [gold]Zmień[/gold] ją w [gold]{IfUpgraded:show:Uderzenie służby+|Uderzenie służby}[/gold].",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
     "star_cost": null,
-    "type": "Atak",
+    "type": "Umiej.",
     "rarity": "Pospolita",
-    "target": "AnyEnemy",
+    "target": "Self",
     "color": "regent",
-    "damage": 4,
+    "damage": null,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -10504,27 +10510,25 @@
     "keywords": null,
     "tags": null,
     "spawns_cards": [
-      "MINION_DIVE_BOMB"
+      "MINION_STRIKE"
     ],
-    "vars": {
-      "Damage": 4
-    },
+    "vars": null,
     "upgrade": {
-      "damage": "+1"
+      "description_changed": true
     },
     "image_url": "/static/images/cards/begone.webp",
     "beta_image_url": "/static/images/cards/beta/begone.webp",
     "type_variants": null,
-    "upgrade_description": "Zadaj 5 pkt. obrażeń.\nWybierz kartę w [gold]ręce[/gold] i [gold]Zmień[/gold] ją w [gold]Skok na bombę służby+[/gold].",
-    "type_key": "Attack",
+    "upgrade_description": "Wybierz kartę w [gold]ręce[/gold] i [gold]Zmień[/gold] ją w [gold]Uderzenie służby+[/gold].",
+    "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 179
   },
   {
     "id": "FUEL",
     "name": "Paliwo",
-    "description": "",
-    "description_raw": "",
+    "description": "Zyskaj [energy:1].\nDobierz 1 kartę.",
+    "description_raw": "Zyskaj {Energy:energyIcons()}.\nDobierz {Cards:diff()} {Cards:plural:kartę|karty|kart}.",
     "cost": 0,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -10555,7 +10559,7 @@
     "image_url": "/static/images/cards/fuel.webp",
     "beta_image_url": "/static/images/cards/beta/fuel.webp",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Zyskaj [energy:1].\nDobierz 2 karty|kart.",
     "type_key": "Skill",
     "rarity_key": "Token",
     "keywords_key": [
@@ -10566,8 +10570,8 @@
   {
     "id": "OUTBREAK",
     "name": "Pandemia",
-    "description": "",
-    "description_raw": "",
+    "description": "Zadaj 11 pkt. obrażeń WSZYSTKIM przeciwnikom po nałożeniu [gold]Trucizny[/gold] 3 razy|3 razy.",
+    "description_raw": "Zadaj {OutbreakPower:diff()} pkt. obrażeń WSZYSTKIM przeciwnikom po nałożeniu [gold]Trucizny[/gold] {Repeat:plural:{Repeat:diff()} raz|{Repeat:diff()} razy|{Repeat:diff()} razy}.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -10603,7 +10607,7 @@
     "image_url": "/static/images/cards/outbreak.webp",
     "beta_image_url": "/static/images/cards/beta/outbreak.webp",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Zadaj 15 pkt. obrażeń WSZYSTKIM przeciwnikom po nałożeniu [gold]Trucizny[/gold] 3 razy|3 razy.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 142
@@ -10644,8 +10648,8 @@
   {
     "id": "PANIC_BUTTON",
     "name": "Panika",
-    "description": "",
-    "description_raw": "",
+    "description": "Zyskaj 30 pkt. [gold]Bloku[/gold].\nNie możesz otrzymywać [gold]Bloku[/gold] z kart przez 2 następne tury|przez 2 następnych tur.",
+    "description_raw": "Zyskaj {Block:diff()} pkt. [gold]Bloku[/gold].\nNie możesz otrzymywać [gold]Bloku[/gold] z kart {Turns:plural:do końca tury|przez {Turns:diff()} następne tury|przez {Turns:diff()} następnych tur}.",
     "cost": 0,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -10676,7 +10680,7 @@
     "image_url": "/static/images/cards/panic_button.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Zyskaj 40 pkt. [gold]Bloku[/gold].\nNie możesz otrzymywać [gold]Bloku[/gold] z kart przez 2 następne tury|przez 2 następnych tur.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -10770,8 +10774,8 @@
   {
     "id": "STOKE",
     "name": "Piec",
-    "description": "[gold]Wyczerp[/gold] swoją [gold]rękę[/gold].\nDobierz kartę za każdą [gold]Wyczerpaną[/gold] kartę.",
-    "description_raw": "[gold]Wyczerp[/gold] swoją [gold]rękę[/gold].\nDobierz kartę za każdą [gold]Wyczerpaną[/gold] kartę.",
+    "description": "[gold]Wyczerp[/gold] swoją [gold]rękę[/gold].\nDodaj 1 losową [gold] [/gold]kartę do [gold]ręki[/gold] za każdą [gold]Wyczerpaną[/gold] kartę.",
+    "description_raw": "[gold]Wyczerp[/gold] swoją [gold]rękę[/gold].\nDodaj 1 losową [gold]{IfUpgraded:show:[gold]Ulepszoną[/gold] | }[/gold]kartę do [gold]ręki[/gold] za każdą [gold]Wyczerpaną[/gold] kartę.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -10787,24 +10791,19 @@
     "cards_draw": null,
     "energy_gain": null,
     "hp_loss": null,
-    "keywords": [
-      "Wyczerpanie"
-    ],
+    "keywords": null,
     "tags": null,
     "spawns_cards": null,
     "vars": null,
     "upgrade": {
-      "cost": 0
+      "description_changed": true
     },
     "image_url": "/static/images/cards/stoke.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Wyczerp[/gold] swoją [gold]rękę[/gold].\nDodaj 1 losową [gold][gold]Ulepszoną[/gold] [/gold]kartę do [gold]ręki[/gold] za każdą [gold]Wyczerpaną[/gold] kartę.",
     "type_key": "Skill",
     "rarity_key": "Rare",
-    "keywords_key": [
-      "Exhaust"
-    ],
     "compendium_order": 69
   },
   {
@@ -10845,7 +10844,7 @@
     "keywords_key": [
       "Exhaust"
     ],
-    "compendium_order": 45
+    "compendium_order": 44
   },
   {
     "id": "INFERNO",
@@ -10889,7 +10888,7 @@
     "upgrade_description": "Na początku tury utrać 1 PŻ.\nKiedykolwiek utracisz PŻ podczas swojej tury, zadaj 9 pkt. obrażeń WSZYSTKIM przeciwnikom.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
-    "compendium_order": 46
+    "compendium_order": 45
   },
   {
     "id": "SETUP_STRIKE",
@@ -10959,7 +10958,9 @@
     "cards_draw": null,
     "energy_gain": null,
     "hp_loss": null,
-    "keywords": null,
+    "keywords": [
+      "Wyczerpanie"
+    ],
     "tags": null,
     "spawns_cards": [
       "SOUL"
@@ -10976,6 +10977,9 @@
     "upgrade_description": "[gold]Przywołaj[/gold] 4 X razy.\nDodaj [gold]Duszę+[/gold] do [gold]stosu rozgrywającego[/gold] X razy.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
+    "keywords_key": [
+      "Exhaust"
+    ],
     "compendium_order": 286
   },
   {
@@ -11062,8 +11066,8 @@
   {
     "id": "LIGHTNING_ROD",
     "name": "Piorunochron",
-    "description": "",
-    "description_raw": "",
+    "description": "Zyskaj 4 pkt. [gold]Bloku[/gold].\nNa początku 2 następnych tur|2 następnych tur [gold]Załaduj[/gold] 1 [gold]Sferę Gromu[/gold].",
+    "description_raw": "Zyskaj {Block:diff()} pkt. [gold]Bloku[/gold].\nNa początku {LightningRodPower:plural:następnej tury|{:diff()} następnych tur|{:diff()} następnych tur} [gold]Załaduj[/gold] 1 [gold]Sferę Gromu[/gold].",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -11099,7 +11103,7 @@
     "image_url": "/static/images/cards/lightning_rod.webp",
     "beta_image_url": "/static/images/cards/beta/lightning_rod.webp",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Zyskaj 7 pkt. [gold]Bloku[/gold].\nNa początku 2 następnych tur|2 następnych tur [gold]Załaduj[/gold] 1 [gold]Sferę Gromu[/gold].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 400
@@ -11228,9 +11232,9 @@
   {
     "id": "BUNDLE_OF_JOY",
     "name": "Pociecha",
-    "description": "",
-    "description_raw": "",
-    "cost": 2,
+    "description": "Dodaj 3 losowe bezbarwne karty|losowych bezbarwnych kart do [gold]ręki[/gold].",
+    "description_raw": "Dodaj {Cards:diff()} {Cards:plural:losową bezbarwną kartę|losowe bezbarwne karty|losowych bezbarwnych kart} do [gold]ręki[/gold].",
+    "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
     "star_cost": null,
@@ -11259,7 +11263,7 @@
     "image_url": "/static/images/cards/bundle_of_joy.webp",
     "beta_image_url": "/static/images/cards/beta/bundle_of_joy.webp",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Dodaj 4 losowe bezbarwne karty|losowych bezbarwnych kart do [gold]ręki[/gold].",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -11270,8 +11274,8 @@
   {
     "id": "GUILTY",
     "name": "Poczucie winy",
-    "description": "",
-    "description_raw": "",
+    "description": "Zostaje usunięta z [gold]talii[/gold] po 5 walkach|walkach.",
+    "description_raw": "Zostaje usunięta z [gold]talii[/gold] po {Combats:diff()} {Combats:plural:walce|walkach|walkach}.",
     "cost": -1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -11310,8 +11314,8 @@
   {
     "id": "QUADCAST",
     "name": "Poczwórny układ",
-    "description": "",
-    "description_raw": "",
+    "description": "[gold]Wyładuj[/gold] pierwszą Sferę 4 razy|razy.",
+    "description_raw": "[gold]Wyładuj[/gold] pierwszą Sferę {Repeat:diff()} {Repeat:plural:raz|razy|razy}.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -11689,8 +11693,8 @@
   {
     "id": "DREDGE",
     "name": "Pogłębianie",
-    "description": "",
-    "description_raw": "",
+    "description": "Przenieś 3 karty|kart ze [gold]stosu kart odrzuconych[/gold] do [gold]ręki[/gold].",
+    "description_raw": "Przenieś {Cards:diff()} {Cards:plural:kartę|karty|kart} ze [gold]stosu kart odrzuconych[/gold] do [gold]ręki[/gold].",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -11852,8 +11856,8 @@
   {
     "id": "GLIMPSE_BEYOND",
     "name": "Portal z zaświatów",
-    "description": "",
-    "description_raw": "",
+    "description": "WSZYSCY gracze dodają 3 [gold]Dusze|Dusz[/gold] do swojego [gold]stosu rozgrywającego[/gold].",
+    "description_raw": "WSZYSCY gracze dodają {Cards:diff()} [gold]{Cards:plural:Duszę|Dusze|Dusz}[/gold] do swojego [gold]stosu rozgrywającego[/gold].",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -11885,7 +11889,7 @@
     "image_url": "/static/images/cards/glimpse_beyond.webp",
     "beta_image_url": "/static/images/cards/beta/glimpse_beyond.webp",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "WSZYSCY gracze dodają 4 [gold]Dusze|Dusz[/gold] do swojego [gold]stosu rozgrywającego[/gold].",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -12028,8 +12032,8 @@
   {
     "id": "HANG",
     "name": "Powieszenie",
-    "description": "Zadaj 10 pkt. obrażeń.\nDwukrotnie zwiększ obrażenia zadawane danemu przeciwnikowi przez WSZYSTKIE Powieszenia.",
-    "description_raw": "Zadaj {Damage:diff()} pkt. obrażeń.\nDwukrotnie zwiększ obrażenia zadawane danemu przeciwnikowi przez WSZYSTKIE Powieszenia.",
+    "description": "Zadaj 10 pkt. obrażeń.\nPodwój obrażenia zadawane temu przeciwnikowi przez WSZYSTKIE Powieszenia.",
+    "description_raw": "Zadaj {Damage:diff()} pkt. obrażeń.\nPodwój obrażenia zadawane temu przeciwnikowi przez WSZYSTKIE Powieszenia.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -12057,7 +12061,7 @@
     "image_url": "/static/images/cards/hang.webp",
     "beta_image_url": "/static/images/cards/beta/hang.webp",
     "type_variants": null,
-    "upgrade_description": "Zadaj 13 pkt. obrażeń.\nDwukrotnie zwiększ obrażenia zadawane danemu przeciwnikowi przez WSZYSTKIE Powieszenia.",
+    "upgrade_description": "Zadaj 13 pkt. obrażeń.\nPodwój obrażenia zadawane temu przeciwnikowi przez WSZYSTKIE Powieszenia.",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 301
@@ -12100,8 +12104,8 @@
   {
     "id": "DEBILITATE",
     "name": "Pozbawienie sił",
-    "description": "",
-    "description_raw": "",
+    "description": "Zadaj 10 pkt. obrażeń.\nEfekty [gold]Wrażliwości[/gold] i [gold]Słabości[/gold] na tym przeciwniku są podwojone przez 3 tury|tury.",
+    "description_raw": "Zadaj {Damage:diff()} pkt. obrażeń.\nEfekty [gold]Wrażliwości[/gold] i [gold]Słabości[/gold] na tym przeciwniku są podwojone przez {DebilitatePower:diff()} {DebilitatePower:plural:turę|tury|tury}.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -12110,7 +12114,7 @@
     "rarity": "Niepospolita",
     "target": "AnyEnemy",
     "color": "necrobinder",
-    "damage": 7,
+    "damage": 10,
     "block": null,
     "hit_count": null,
     "powers_applied": [
@@ -12127,7 +12131,7 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Damage": 7,
+      "Damage": 10,
       "DebilitatePower": 3,
       "Debilitate": 3
     },
@@ -12138,7 +12142,7 @@
     "image_url": "/static/images/cards/debilitate.webp",
     "beta_image_url": "/static/images/cards/beta/debilitate.webp",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Zadaj 12 pkt. obrażeń.\nEfekty [gold]Wrażliwości[/gold] i [gold]Słabości[/gold] na tym przeciwniku są podwojone przez 4 tury|tury.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 279
@@ -12482,7 +12486,7 @@
   {
     "id": "PINPOINT",
     "name": "Precyzja",
-    "description": "Zadaj 17 pkt. obrażeń.\nKosztuje 1 [energy:1] mniej za każdą Umiejętność zagraną w tej turze.",
+    "description": "Zadaj 15 pkt. obrażeń.\nKosztuje 1 [energy:1] mniej za każdą Umiejętność zagraną w tej turze.",
     "description_raw": "Zadaj {Damage:diff()} pkt. obrażeń.\nKosztuje 1 {energyPrefix:energyIcons(1)} mniej za każdą Umiejętność zagraną w tej turze.",
     "cost": 3,
     "is_x_cost": null,
@@ -12492,7 +12496,7 @@
     "rarity": "Niepospolita",
     "target": "AnyEnemy",
     "color": "silent",
-    "damage": 17,
+    "damage": 15,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -12503,15 +12507,15 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Damage": 17
+      "Damage": 15
     },
     "upgrade": {
-      "damage": "+5"
+      "damage": "+4"
     },
     "image_url": "/static/images/cards/pinpoint.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Zadaj 22 pkt. obrażeń.\nKosztuje 1 [energy:1] mniej za każdą Umiejętność zagraną w tej turze.",
+    "upgrade_description": "Zadaj 19 pkt. obrażeń.\nKosztuje 1 [energy:1] mniej za każdą Umiejętność zagraną w tej turze.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 145
@@ -12584,12 +12588,12 @@
       "Energy": 2
     },
     "upgrade": {
-      "remove_exhaust": true
+      "energy": "+1"
     },
     "image_url": "/static/images/cards/production.webp",
     "beta_image_url": "/static/images/cards/beta/production.webp",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Zyskaj [energy:3].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -12642,8 +12646,8 @@
   {
     "id": "LUNAR_BLAST",
     "name": "Promienie księżyca",
-    "description": "",
-    "description_raw": "",
+    "description": "Zadaj 4 pkt. obrażeń za każdą Umiejętność zagraną w tej turze.razy)",
+    "description_raw": "Zadaj {Damage:diff()} pkt. obrażeń za każdą Umiejętność zagraną w tej turze.{InCombat:\n(Uderza {CalculatedHits:diff()} {CalculatedHits:plural:raz|razy|razy})|}",
     "cost": 0,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -12673,7 +12677,7 @@
     "image_url": "/static/images/cards/lunar_blast.webp",
     "beta_image_url": "/static/images/cards/beta/lunar_blast.webp",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Zadaj 5 pkt. obrażeń za każdą Umiejętność zagraną w tej turze.razy)",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 223
@@ -12681,8 +12685,8 @@
   {
     "id": "RADIATE",
     "name": "Promieniowanie",
-    "description": "",
-    "description_raw": "",
+    "description": "Zadaj 3 pkt. obrażeń WSZYSTKIM przeciwnikom za każdą zyskaną [star:1] w tej turze.razy)",
+    "description_raw": "Zadaj {Damage:diff()} pkt. obrażeń WSZYSTKIM przeciwnikom za każdą zyskaną {Stars:starIcons()} w tej turze.{InCombat:\n(Uderza {CalculatedHits:diff()} {CalculatedHits:plural:raz|razy|razy})|}",
     "cost": 0,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -12713,7 +12717,7 @@
     "image_url": "/static/images/cards/radiate.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Zadaj 4 pkt. obrażeń WSZYSTKIM przeciwnikom za każdą zyskaną [star:1] w tej turze.razy)",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 239
@@ -12721,8 +12725,8 @@
   {
     "id": "GLIMMER",
     "name": "Promyk",
-    "description": "",
-    "description_raw": "",
+    "description": "Dobierz 3 karty|kart.\nPrzenieś 1 kartę z [gold]ręki[/gold] na szczyt [gold]stosu rozgrywającego[/gold].",
+    "description_raw": "Dobierz {Cards:diff()} {Cards:plural:kartę|karty|kart}.\nPrzenieś {PutBack:diff()} {PutBack:plural:kartę|karty|kart} z [gold]ręki[/gold] na szczyt [gold]stosu rozgrywającego[/gold].",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -12751,7 +12755,7 @@
     "image_url": "/static/images/cards/glimmer.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Dobierz 4 karty|kart.\nPrzenieś 1 kartę z [gold]ręki[/gold] na szczyt [gold]stosu rozgrywającego[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 207
@@ -13146,7 +13150,7 @@
   {
     "id": "TREMBLE",
     "name": "Przerażenie",
-    "description": "Nałóż 2 pkt. [gold]Wrażliwości[/gold].",
+    "description": "Nałóż 3 pkt. [gold]Wrażliwości[/gold].",
     "description_raw": "Nałóż {VulnerablePower:diff()} pkt. [gold]Wrażliwości[/gold].",
     "cost": 1,
     "is_x_cost": null,
@@ -13162,19 +13166,21 @@
     "powers_applied": [
       {
         "power": "Wrażliwość",
-        "amount": 2,
+        "amount": 3,
         "power_key": "Vulnerable"
       }
     ],
     "cards_draw": null,
     "energy_gain": null,
     "hp_loss": null,
-    "keywords": null,
+    "keywords": [
+      "Wyczerpanie"
+    ],
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "VulnerablePower": 2,
-      "Vulnerable": 2
+      "VulnerablePower": 3,
+      "Vulnerable": 3
     },
     "upgrade": {
       "vulnerable": "+1"
@@ -13185,13 +13191,16 @@
     "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Common",
+    "keywords_key": [
+      "Exhaust"
+    ],
     "compendium_order": 79
   },
   {
     "id": "SPECTRUM_SHIFT",
     "name": "Przesunięcie spektrum",
-    "description": "",
-    "description_raw": "",
+    "description": "Na początku tury dodaj 1 losową bezbarwną kartę do [gold]ręki[/gold].",
+    "description_raw": "Na początku tury dodaj {Cards:diff()} {Cards:plural:losową bezbarwną kartę|losowe bezbarwne karty|losowych bezbarwnych kart} do [gold]ręki[/gold].",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -13382,7 +13391,7 @@
   {
     "id": "ANTICIPATE",
     "name": "Przewidywanie",
-    "description": "Zyskaj 3 pkt. [gold]Zręczności[/gold] w tej turze.",
+    "description": "Zyskaj 2 pkt. [gold]Zręczności[/gold] w tej turze.",
     "description_raw": "Zyskaj {DexterityPower:diff()} pkt. [gold]Zręczności[/gold] w tej turze.",
     "cost": 0,
     "is_x_cost": null,
@@ -13398,7 +13407,7 @@
     "powers_applied": [
       {
         "power": "Zręczność",
-        "amount": 3,
+        "amount": 2,
         "power_key": "Dexterity"
       }
     ],
@@ -13409,11 +13418,11 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "DexterityPower": 3,
-      "Dexterity": 3
+      "DexterityPower": 2,
+      "Dexterity": 2
     },
     "upgrade": {
-      "dexterity": "+2"
+      "dexterity": "+1"
     },
     "image_url": "/static/images/cards/anticipate.webp",
     "beta_image_url": null,
@@ -13503,8 +13512,8 @@
   {
     "id": "PREPARED",
     "name": "Przygotowanie",
-    "description": "",
-    "description_raw": "",
+    "description": "Dobierz 1 kartę.\nOdrzuć 1 kartę.",
+    "description_raw": "Dobierz {Cards:diff()} {Cards:plural:kartę|karty|kart}.\nOdrzuć {Cards:diff()} {Cards:plural:kartę|karty|kart}.",
     "cost": 0,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -13532,7 +13541,7 @@
     "image_url": "/static/images/cards/prepared.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Dobierz 2 karty|kart.\nOdrzuć 2 karty|kart.",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 150
@@ -13540,8 +13549,8 @@
   {
     "id": "EXPECT_A_FIGHT",
     "name": "Przygotowanie do walki",
-    "description": "Zyskaj [energy:1] za każdy Atak w [gold]ręce[/gold].",
-    "description_raw": "Zyskaj {energyPrefix:energyIcons(1)} za każdy Atak w [gold]ręce[/gold].{InCombat:\n(Zyskaj {CalculatedEnergy:energyIcons()}.)|}",
+    "description": "Zyskaj [energy:1] za każdy Atak w [gold]ręce[/gold].\nNie możesz zyskać więcej [energy:1] w tej turze.",
+    "description_raw": "Zyskaj {energyPrefix:energyIcons(1)} za każdy Atak w [gold]ręce[/gold].\nNie możesz zyskać więcej {energyPrefix:energyIcons(1)} w tej turze.{InCombat:\n(Zyskaj {CalculatedEnergy:energyIcons()})|}",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -13624,8 +13633,8 @@
   {
     "id": "BULK_UP",
     "name": "Przypakowanie",
-    "description": "",
-    "description_raw": "",
+    "description": "Utrać 1 miejsce na Sferę.\nZyskaj 2 pkt. [gold]Siły[/gold].\nZyskaj 2 pkt. [gold]Zręczności[/gold].",
+    "description_raw": "Utrać {OrbSlots:diff()} {OrbSlots:plural:miejsce|miejsca|miejsc} na Sferę.\nZyskaj {StrengthPower:diff()} pkt. [gold]Siły[/gold].\nZyskaj {DexterityPower:diff()} pkt. [gold]Zręczności[/gold].",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -13719,8 +13728,8 @@
   {
     "id": "ACCELERANT",
     "name": "Przyspieszacz",
-    "description": "",
-    "description_raw": "",
+    "description": "[gold]Trucizna[/gold] jest aktywowana 1 dodatkowy raz.",
+    "description_raw": "[gold]Trucizna[/gold] jest aktywowana {Accelerant:diff()} {Accelerant:plural:dodatkowy raz|dodatkowe razy|dodatkowych razy}.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -13748,7 +13757,7 @@
     "image_url": "/static/images/cards/accelerant.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Trucizna[/gold] jest aktywowana 2 dodatkowe razy|dodatkowych razy.",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 88
@@ -13836,8 +13845,8 @@
   {
     "id": "VOID_FORM",
     "name": "Pustka",
-    "description": "",
-    "description_raw": "",
+    "description": "Zakończ swoją turę.\nW każdej turze pierwsze 2 zagrane karty są darmowe|pierwszych 2 zagranych kart jest darmowych.",
+    "description_raw": "Zakończ swoją turę.\nW każdej turze {VoidFormPower:plural:pierwsza zagrana karta jest darmowa|pierwsze {VoidFormPower:diff()} zagrane karty są darmowe|pierwszych {VoidFormPower:diff()} zagranych kart jest darmowych}.",
     "cost": 3,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -13859,7 +13868,9 @@
     "cards_draw": null,
     "energy_gain": null,
     "hp_loss": null,
-    "keywords": null,
+    "keywords": [
+      "Eteryczna"
+    ],
     "tags": null,
     "spawns_cards": null,
     "vars": {
@@ -13867,7 +13878,7 @@
       "VoidForm": 2
     },
     "upgrade": {
-      "voidformpower": "+1"
+      "remove_ethereal": true
     },
     "image_url": "/static/images/cards/void_form.webp",
     "beta_image_url": "/static/images/cards/beta/void_form.webp",
@@ -13875,6 +13886,9 @@
     "upgrade_description": null,
     "type_key": "Power",
     "rarity_key": "Rare",
+    "keywords_key": [
+      "Ethereal"
+    ],
     "compendium_order": 261
   },
   {
@@ -13959,8 +13973,8 @@
   {
     "id": "CLOAK_AND_DAGGER",
     "name": "Płaszcz i sztylet",
-    "description": "",
-    "description_raw": "",
+    "description": "Zyskaj 6 pkt. [gold]Bloku[/gold].\nDodaj 1 [gold]Nóż[/gold] do [gold]ręki[/gold].",
+    "description_raw": "Zyskaj {Block:diff()} pkt. [gold]Bloku[/gold].\nDodaj {Cards:diff()} [gold]{Cards:plural:Nóż|Noże|Noży}[/gold] do [gold]ręki[/gold].",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -13991,7 +14005,7 @@
     "image_url": "/static/images/cards/cloak_and_dagger.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Zyskaj 6 pkt. [gold]Bloku[/gold].\nDodaj 2 [gold]Noże|Noży[/gold] do [gold]ręki[/gold].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 105
@@ -14073,7 +14087,7 @@
   {
     "id": "FLICK_FLACK",
     "name": "Rach-ciach",
-    "description": "Zadaj 7 pkt. obrażeń WSZYSTKIM przeciwnikom.",
+    "description": "Zadaj 6 pkt. obrażeń WSZYSTKIM przeciwnikom.",
     "description_raw": "Zadaj {Damage:diff()} pkt. obrażeń WSZYSTKIM przeciwnikom.",
     "cost": 1,
     "is_x_cost": null,
@@ -14083,7 +14097,7 @@
     "rarity": "Pospolita",
     "target": "AllEnemies",
     "color": "silent",
-    "damage": 7,
+    "damage": 6,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -14096,7 +14110,7 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Damage": 7
+      "Damage": 6
     },
     "upgrade": {
       "damage": "+2"
@@ -14104,7 +14118,7 @@
     "image_url": "/static/images/cards/flick_flack.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Zadaj 9 pkt. obrażeń WSZYSTKIM przeciwnikom.",
+    "upgrade_description": "Zadaj 8 pkt. obrażeń WSZYSTKIM przeciwnikom.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "keywords_key": [
@@ -14115,8 +14129,8 @@
   {
     "id": "ROCKET_PUNCH",
     "name": "Rakietowy sierpowy",
-    "description": "",
-    "description_raw": "",
+    "description": "Zadaj 13 pkt. obrażeń.\nDobierz 1 kartę.\nKiedykolwiek stworzysz kartę Stanu, zredukuj koszt tej karty do 0 [energy:1] aż do zagrania.",
+    "description_raw": "Zadaj {Damage:diff()} pkt. obrażeń.\nDobierz {Cards:diff()} {Cards:plural:kartę|karty|kart}.\nKiedykolwiek stworzysz kartę Stanu, zredukuj koszt tej karty do 0 {energyPrefix:energyIcons(1)} aż do zagrania.",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -14146,7 +14160,7 @@
     "image_url": "/static/images/cards/rocket_punch.webp",
     "beta_image_url": "/static/images/cards/beta/rocket_punch.webp",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Zadaj 14 pkt. obrażeń.\nDobierz 2 karty|kart.\nKiedykolwiek stworzysz kartę Stanu, zredukuj koszt tej karty do 0 [energy:1] aż do zagrania.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 413
@@ -14314,8 +14328,8 @@
   {
     "id": "RELAX",
     "name": "Relaks",
-    "description": "",
-    "description_raw": "",
+    "description": "Zyskaj 15 pkt. [gold]Bloku[/gold].\nW następnej turze dobierz 2 karty|kart i zyskaj [energy:2].",
+    "description_raw": "Zyskaj {Block:diff()} pkt. [gold]Bloku[/gold].\nW następnej turze dobierz {Cards:diff()} {Cards:plural:kartę|karty|kart} i zyskaj {Energy:energyIcons()}.",
     "cost": 3,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -14349,7 +14363,7 @@
     "image_url": "/static/images/cards/relax.webp",
     "beta_image_url": "/static/images/cards/beta/relax.webp",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Zyskaj 17 pkt. [gold]Bloku[/gold].\nW następnej turze dobierz 3 karty|kart i zyskaj [energy:3].",
     "type_key": "Skill",
     "rarity_key": "Ancient",
     "keywords_key": [
@@ -14360,8 +14374,8 @@
   {
     "id": "REBOOT",
     "name": "Restart",
-    "description": "",
-    "description_raw": "",
+    "description": "Wtasuj WSZYSTKIE swoje karty do [gold]stosu kart rozgrywających[/gold].\nDobierz 4 karty|kart.",
+    "description_raw": "Wtasuj WSZYSTKIE swoje karty do [gold]stosu kart rozgrywających[/gold].\nDobierz {Cards:diff()} {Cards:plural:kartę|karty|kart}.",
     "cost": 0,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -14391,7 +14405,7 @@
     "image_url": "/static/images/cards/reboot.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Wtasuj WSZYSTKIE swoje karty do [gold]stosu kart rozgrywających[/gold].\nDobierz 6 karty|kart.",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -14447,8 +14461,8 @@
   {
     "id": "PARRY",
     "name": "Riposta",
-    "description": "Kiedykolwiek zagrasz [gold]Niebiańskie Ostrze[/gold], zyskaj 6 pkt. [gold]Bloku[/gold].",
-    "description_raw": "Kiedykolwiek zagrasz [gold]Niebiańskie Ostrze[/gold], zyskaj {ParryPower:diff()} pkt. [gold]Bloku[/gold].",
+    "description": "[gold]Niebiańskie Ostrze[/gold] zyskuje 10 pkt. [gold]Bloku[/gold].",
+    "description_raw": "[gold]Niebiańskie Ostrze[/gold] zyskuje {ParryPower:diff()} pkt. [gold]Bloku[/gold].",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -14463,7 +14477,7 @@
     "powers_applied": [
       {
         "power": "Riposta",
-        "amount": 6,
+        "amount": 10,
         "power_key": "Parry"
       }
     ],
@@ -14476,16 +14490,16 @@
       "SOVEREIGN_BLADE"
     ],
     "vars": {
-      "ParryPower": 6,
-      "Parry": 6
+      "ParryPower": 10,
+      "Parry": 10
     },
     "upgrade": {
-      "parrypower": "+3"
+      "parrypower": "+4"
     },
     "image_url": "/static/images/cards/parry.webp",
     "beta_image_url": "/static/images/cards/beta/parry.webp",
     "type_variants": null,
-    "upgrade_description": "Kiedykolwiek zagrasz [gold]Niebiańskie Ostrze[/gold], zyskaj 9 pkt. [gold]Bloku[/gold].",
+    "upgrade_description": "[gold]Niebiańskie Ostrze[/gold] zyskuje 14 pkt. [gold]Bloku[/gold].",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 232
@@ -14493,7 +14507,7 @@
   {
     "id": "SCULPTING_STRIKE",
     "name": "Rozbijające uderzenie",
-    "description": "Zadaj 8 pkt. obrażeń.\nDodaj [gold]Eteryczna[/gold] do karty w [gold]ręce[/gold].",
+    "description": "Zadaj 9 pkt. obrażeń.\nDodaj [gold]Eteryczna[/gold] do karty w [gold]ręce[/gold].",
     "description_raw": "Zadaj {Damage:diff()} pkt. obrażeń.\nDodaj [gold]Eteryczna[/gold] do karty w [gold]ręce[/gold].",
     "cost": 1,
     "is_x_cost": null,
@@ -14503,7 +14517,7 @@
     "rarity": "Pospolita",
     "target": "AnyEnemy",
     "color": "necrobinder",
-    "damage": 8,
+    "damage": 9,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -14516,7 +14530,7 @@
     ],
     "spawns_cards": null,
     "vars": {
-      "Damage": 8
+      "Damage": 9
     },
     "upgrade": {
       "damage": "+3"
@@ -14524,7 +14538,7 @@
     "image_url": "/static/images/cards/sculpting_strike.webp",
     "beta_image_url": "/static/images/cards/beta/sculpting_strike.webp",
     "type_variants": null,
-    "upgrade_description": "Zadaj 11 pkt. obrażeń.\nDodaj [gold]Eteryczna[/gold] do karty w [gold]ręce[/gold].",
+    "upgrade_description": "Zadaj 12 pkt. obrażeń.\nDodaj [gold]Eteryczna[/gold] do karty w [gold]ręce[/gold].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 329
@@ -14698,7 +14712,7 @@
     "is_x_star_cost": null,
     "star_cost": null,
     "type": "Atak",
-    "rarity": "Niepospolita",
+    "rarity": "Unikalna",
     "target": "RandomEnemy",
     "color": "event",
     "damage": 7,
@@ -14722,7 +14736,7 @@
     "type_variants": null,
     "upgrade_description": "Zadaj 9 pkt. obrażeń losowemu przeciwnikowi dwukrotnie.",
     "type_key": "Attack",
-    "rarity_key": "Uncommon",
+    "rarity_key": "Event",
     "compendium_order": 542
   },
   {
@@ -14767,8 +14781,8 @@
   {
     "id": "TEAR_ASUNDER",
     "name": "Rozerwanie na kawałki",
-    "description": "",
-    "description_raw": "",
+    "description": "Zadaj 5 pkt. obrażeń.\nUderza dodatkowo za każdy raz, kiedy utracono PŻ w tej walce.razy)",
+    "description_raw": "Zadaj {Damage:diff()} pkt. obrażeń.\nUderza dodatkowo za każdy raz, kiedy utracono PŻ w tej walce.{InCombat:\n(Uderza {CalculatedHits:diff()} {CalculatedHits:plural:raz|razy|razy})|}",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -14799,7 +14813,7 @@
     "image_url": "/static/images/cards/tear_asunder.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Zadaj 7 pkt. obrażeń.\nUderza dodatkowo za każdy raz, kiedy utracono PŻ w tej walce.razy)",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 76
@@ -14885,8 +14899,8 @@
   {
     "id": "SWEEPING_BEAM",
     "name": "Rozległy promień",
-    "description": "",
-    "description_raw": "",
+    "description": "Zadaj 6 pkt. obrażeń WSZYSTKIM przeciwnikom.\nDobierz 1 kartę.",
+    "description_raw": "Zadaj {Damage:diff()} pkt. obrażeń WSZYSTKIM przeciwnikom.\nDobierz {Cards:diff()} {Cards:plural:kartę|karty|kart}.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -14915,7 +14929,7 @@
     "image_url": "/static/images/cards/sweeping_beam.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Zadaj 9 pkt. obrażeń WSZYSTKIM przeciwnikom.\nDobierz 1 kartę.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 427
@@ -15071,8 +15085,8 @@
   {
     "id": "HOWL_FROM_BEYOND",
     "name": "Ryk z piekieł",
-    "description": "Zadaj 16 pkt. obrażeń WSZYSTKIM przeciwnikom.\nNa początku tury zagraj tę kartę ze [gold]stosu kart wyczerpanych[/gold].",
-    "description_raw": "Zadaj {Damage:diff()} pkt. obrażeń WSZYSTKIM przeciwnikom.\nNa początku tury zagraj tę kartę ze [gold]stosu kart wyczerpanych[/gold].",
+    "description": "Zadaj 16 pkt. obrażeń WSZYSTKIM przeciwnikom.\nNa początku tury zagraj tę kartę, jeżeli znajduje się na [gold]stosie kart wyczerpanych[/gold].",
+    "description_raw": "Zadaj {Damage:diff()} pkt. obrażeń WSZYSTKIM przeciwnikom.\nNa początku tury zagraj tę kartę, jeżeli znajduje się na [gold]stosie kart wyczerpanych[/gold].",
     "cost": 3,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -15100,10 +15114,10 @@
     "image_url": "/static/images/cards/howl_from_beyond.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Zadaj 21 pkt. obrażeń WSZYSTKIM przeciwnikom.\nNa początku tury zagraj tę kartę ze [gold]stosu kart wyczerpanych[/gold].",
+    "upgrade_description": "Zadaj 21 pkt. obrażeń WSZYSTKIM przeciwnikom.\nNa początku tury zagraj tę kartę, jeżeli znajduje się na [gold]stosie kart wyczerpanych[/gold].",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
-    "compendium_order": 43
+    "compendium_order": 42
   },
   {
     "id": "RICOCHET",
@@ -15228,8 +15242,8 @@
   {
     "id": "FLECHETTES",
     "name": "Rzutki",
-    "description": "",
-    "description_raw": "",
+    "description": "Zadaj 5 pkt. obrażeń za każdą Umiejętność w [gold]ręce[/gold].razy)",
+    "description_raw": "Zadaj {Damage:diff()} pkt. obrażeń za każdą Umiejętność w [gold]ręce[/gold].{InCombat:\n(Uderza {CalculatedHits:diff()} {CalculatedHits:plural:raz|razy|razy})|}",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -15259,7 +15273,7 @@
     "image_url": "/static/images/cards/flechettes.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Zadaj 7 pkt. obrażeń za każdą Umiejętność w [gold]ręce[/gold].razy)",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 122
@@ -15384,8 +15398,8 @@
   {
     "id": "CHARGE",
     "name": "SZARŻA!!",
-    "description": "",
-    "description_raw": "",
+    "description": "Wybierz 2 karty|kart ze [gold]stosu rozgrywającego[/gold]\ni [gold]Zmień[/gold] je|je w [gold]Szarżę służby[/gold].",
+    "description_raw": "Wybierz {Cards:diff()} {Cards:plural:kartę|karty|kart} ze [gold]stosu rozgrywającego[/gold]\ni [gold]Zmień[/gold] {Cards:plural:ją|je|je} w [gold]{IfUpgraded:show:Szarżę służby+|Szarżę służby}[/gold].",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -15404,16 +15418,18 @@
     "keywords": null,
     "tags": null,
     "spawns_cards": [
-      "MINION_STRIKE"
+      "MINION_DIVE_BOMB"
     ],
     "vars": {
       "Cards": 2
     },
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/charge.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Wybierz 2 karty|kart ze [gold]stosu rozgrywającego[/gold]\ni [gold]Zmień[/gold] je|je w [gold]Szarżę służby+[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 186
@@ -15609,8 +15625,8 @@
     "id": "SEANCE",
     "name": "Seans",
     "description": "Zmień kartę ze [gold]stosu rozgrywającego[/gold] w [gold]Duszę[/gold].",
-    "description_raw": "Zmień kartę ze [gold]stosu rozgrywającego[/gold] w [gold]{IfUpgraded:show:Duszę+|Duszę}[/gold].",
-    "cost": 0,
+    "description_raw": "Zmień kartę ze [gold]stosu rozgrywającego[/gold] w [gold]Duszę[/gold].",
+    "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
     "star_cost": null,
@@ -15636,12 +15652,12 @@
       "Cards": 1
     },
     "upgrade": {
-      "description_changed": true
+      "cost": 0
     },
     "image_url": "/static/images/cards/seance.webp",
     "beta_image_url": "/static/images/cards/beta/seance.webp",
     "type_variants": null,
-    "upgrade_description": "Zmień kartę ze [gold]stosu rozgrywającego[/gold] w [gold]Duszę+[/gold].",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -15733,8 +15749,8 @@
   {
     "id": "SEVEN_STARS",
     "name": "Siedem gwiazd",
-    "description": "",
-    "description_raw": "",
+    "description": "Zadaj 7 pkt. obrażeń WSZYSTKIM przeciwnikom 7 razy|7 razy.",
+    "description_raw": "Zadaj {Damage:diff()} pkt. obrażeń WSZYSTKIM przeciwnikom {Repeat:plural:{} raz|{} razy|{} razy}.",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -15894,50 +15910,6 @@
     "compendium_order": 433
   },
   {
-    "id": "MINION_DIVE_BOMB",
-    "name": "Skok na bombę służby",
-    "description": "Zadaj 13 pkt. obrażeń.",
-    "description_raw": "Zadaj {Damage:diff()} pkt. obrażeń.",
-    "cost": 1,
-    "is_x_cost": null,
-    "is_x_star_cost": null,
-    "star_cost": null,
-    "type": "Atak",
-    "rarity": "Specjalna",
-    "target": "AnyEnemy",
-    "color": "token",
-    "damage": 13,
-    "block": null,
-    "hit_count": null,
-    "powers_applied": null,
-    "cards_draw": null,
-    "energy_gain": null,
-    "hp_loss": null,
-    "keywords": [
-      "Wyczerpanie"
-    ],
-    "tags": [
-      "Minion"
-    ],
-    "spawns_cards": null,
-    "vars": {
-      "Damage": 13
-    },
-    "upgrade": {
-      "damage": "+3"
-    },
-    "image_url": "/static/images/cards/minion_dive_bomb.webp",
-    "beta_image_url": null,
-    "type_variants": null,
-    "upgrade_description": "Zadaj 16 pkt. obrażeń.",
-    "type_key": "Attack",
-    "rarity_key": "Token",
-    "keywords_key": [
-      "Exhaust"
-    ],
-    "compendium_order": 567
-  },
-  {
     "id": "BEAT_DOWN",
     "name": "Skopanie",
     "description": "Zagraj 3 losowe Ataki ze [gold]stosu kart odrzuconych[/gold].",
@@ -16063,7 +16035,7 @@
   {
     "id": "FALLING_STAR",
     "name": "Spadająca gwiazda",
-    "description": "Zadaj 7 pkt. obrażeń.\nNałóż 1 pkt. [gold]Słabości[/gold].\nNałóż 1 pkt. [gold]Wrażliwości[/gold].",
+    "description": "Zadaj 8 pkt. obrażeń.\nNałóż 1 pkt. [gold]Słabości[/gold].\nNałóż 1 pkt. [gold]Wrażliwości[/gold].",
     "description_raw": "Zadaj {Damage:diff()} pkt. obrażeń.\nNałóż {WeakPower:diff()} pkt. [gold]Słabości[/gold].\nNałóż {VulnerablePower:diff()} pkt. [gold]Wrażliwości[/gold].",
     "cost": 0,
     "is_x_cost": null,
@@ -16073,7 +16045,7 @@
     "rarity": "Zwykła",
     "target": "AnyEnemy",
     "color": "regent",
-    "damage": 7,
+    "damage": 8,
     "block": null,
     "hit_count": null,
     "powers_applied": [
@@ -16095,7 +16067,7 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Damage": 7,
+      "Damage": 8,
       "VulnerablePower": 1,
       "Vulnerable": 1,
       "WeakPower": 1,
@@ -16108,7 +16080,7 @@
     "image_url": "/static/images/cards/falling_star.webp",
     "beta_image_url": "/static/images/cards/beta/falling_star.webp",
     "type_variants": null,
-    "upgrade_description": "Zadaj 11 pkt. obrażeń.\nNałóż 1 pkt. [gold]Słabości[/gold].\nNałóż 1 pkt. [gold]Wrażliwości[/gold].",
+    "upgrade_description": "Zadaj 12 pkt. obrażeń.\nNałóż 1 pkt. [gold]Słabości[/gold].\nNałóż 1 pkt. [gold]Wrażliwości[/gold].",
     "type_key": "Attack",
     "rarity_key": "Basic",
     "compendium_order": 201
@@ -16116,8 +16088,8 @@
   {
     "id": "HELIX_DRILL",
     "name": "Spiralne wiertło",
-    "description": "",
-    "description_raw": "",
+    "description": "Zadaj 3 pkt. obrażeń za każdy [energy:1] wydany w tej turze.razy)",
+    "description_raw": "Zadaj {Damage:diff()} pkt. obrażeń za każdy {energyPrefix:energyIcons(1)} wydany w tej turze.{InCombat:\n(Uderza {CalculatedHits:diff()} {CalculatedHits:plural:raz|razy|razy})|}",
     "cost": 0,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -16147,7 +16119,7 @@
     "image_url": "/static/images/cards/helix_drill.webp",
     "beta_image_url": "/static/images/cards/beta/helix_drill.webp",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Zadaj 5 pkt. obrażeń za każdy [energy:1] wydany w tej turze.razy)",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 392
@@ -16237,7 +16209,7 @@
     "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Common",
-    "compendium_order": 39
+    "compendium_order": 38
   },
   {
     "id": "SUPERCRITICAL",
@@ -16285,7 +16257,7 @@
     "id": "STACK",
     "name": "Stos",
     "description": "Zyskaj [gold]Blok[/gold] równy liczbie kart na [gold]stosie kart odrzuconych[/gold] pkt.|}.",
-    "description_raw": "Zyskaj [gold]Blok[/gold] równy liczbie kart na [gold]stosie kart odrzuconych[/gold]{IfUpgraded:show: +{CalculationBase} pkt.|}.{InCombat:\n(Zyskaj {CalculatedBlock:diff()} pkt. [gold]Bloku[/gold].)|}",
+    "description_raw": "Zyskaj [gold]Blok[/gold] równy liczbie kart na [gold]stosie kart odrzuconych[/gold]{IfUpgraded:show: +{CalculationBase} pkt.|}.{InCombat:\n(Zyskaj {CalculatedBlock:diff()} pkt. [gold]Bloku[/gold])|}",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -16374,7 +16346,7 @@
     "id": "GRAVE_WARDEN",
     "name": "Stróż cmentarny",
     "description": "Zyskaj 8 pkt. [gold]Bloku[/gold].\nDodaj [gold]Duszę[/gold] do [gold]stosu rozgrywającego[/gold].",
-    "description_raw": "Zyskaj {Block:diff()} pkt. [gold]Bloku[/gold].\nDodaj [gold]{IfUpgraded:show:Duszę+|Duszę}[/gold] do [gold]stosu rozgrywającego[/gold].",
+    "description_raw": "Zyskaj {Block:diff()} pkt. [gold]Bloku[/gold].\nDodaj [gold]Duszę[/gold] do [gold]stosu rozgrywającego[/gold].",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -16400,12 +16372,12 @@
       "Cards": 1
     },
     "upgrade": {
-      "block": "+2"
+      "block": "+3"
     },
     "image_url": "/static/images/cards/grave_warden.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Zyskaj 10 pkt. [gold]Bloku[/gold].\nDodaj [gold]Duszę+[/gold] do [gold]stosu rozgrywającego[/gold].",
+    "upgrade_description": "Zyskaj 11 pkt. [gold]Bloku[/gold].\nDodaj [gold]Duszę[/gold] do [gold]stosu rozgrywającego[/gold].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 300
@@ -16413,7 +16385,7 @@
   {
     "id": "PATTER",
     "name": "Stukot meteorytów",
-    "description": "Zyskaj 8 pkt. [gold]Bloku[/gold].\nZyskaj 2 pkt. [gold]Wigoru[/gold].",
+    "description": "Zyskaj 9 pkt. [gold]Bloku[/gold].\nZyskaj 2 pkt. [gold]Wigoru[/gold].",
     "description_raw": "Zyskaj {Block:diff()} pkt. [gold]Bloku[/gold].\nZyskaj {VigorPower:diff()} pkt. [gold]Wigoru[/gold].",
     "cost": 1,
     "is_x_cost": null,
@@ -16424,7 +16396,7 @@
     "target": "Self",
     "color": "regent",
     "damage": null,
-    "block": 8,
+    "block": 9,
     "hit_count": null,
     "powers_applied": [
       {
@@ -16440,7 +16412,7 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Block": 8,
+      "Block": 9,
       "VigorPower": 2,
       "Vigor": 2
     },
@@ -16451,7 +16423,7 @@
     "image_url": "/static/images/cards/patter.webp",
     "beta_image_url": "/static/images/cards/beta/patter.webp",
     "type_variants": null,
-    "upgrade_description": "Zyskaj 10 pkt. [gold]Bloku[/gold].\nZyskaj 3 pkt. [gold]Wigoru[/gold].",
+    "upgrade_description": "Zyskaj 11 pkt. [gold]Bloku[/gold].\nZyskaj 3 pkt. [gold]Wigoru[/gold].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 234
@@ -16539,8 +16511,8 @@
   {
     "id": "MAD_SCIENCE",
     "name": "Szalony eksperyment",
-    "description": "",
-    "description_raw": "",
+    "description": "Zadaj 12 pkt. obrażeń.",
+    "description_raw": "{CardType:choose(Attack|Skill|Power):Zadaj {Damage:diff()} pkt. obrażeń{Violence: {ViolenceHits:diff()} razy|}.|Zyskaj {Block:diff()} pkt. [gold]Bloku[/gold].|}{HasRider:{Sapping:\nNałóż {SappingWeak:diff()} pkt. [gold]Słabości[/gold].\nNałóż {SappingVulnerable:diff()} pkt. [gold]Wrażliwości[/gold].|}{Choking:\nKiedykolwiek zagrasz kartę w tej turze, przeciwnik traci {ChokingDamage:diff()} PŻ.|}{Energized:\nZyskaj {EnergizedEnergy:energyIcons()}.|}{Wisdom:\nDobierz {WisdomCards:diff()} {WisdomCards:plural:kartę|karty|kart}.|}{Chaos:\nDodaj losową kartę do [gold]ręki[/gold]. W tej turze jest darmowa.|}{Expertise:Zyskaj {ExpertiseStrength:diff()} pkt. [gold]Siły[/gold].\nZyskaj {ExpertiseDexterity:diff()} pkt. [gold]Zręczności[/gold].|}{Curious:Moce kosztują {CuriousReduction:diff()} {energyPrefix:energyIcons(1)} mniej.|}{Improvement:Pod koniec walki [gold]Ulepsz[/gold] losową kartę.|}|{CardType:choose(Attack|Skill|Power):\n???|\n???|???}}",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -16575,19 +16547,132 @@
     "upgrade": {
       "add_innate": true
     },
-    "image_url": null,
+    "image_url": "/static/images/cards/mad_science_attack.webp",
     "beta_image_url": null,
-    "type_variants": null,
+    "type_variants": {
+      "attack": {
+        "type": "Attack",
+        "description": "Zadaj 12 pkt. obrażeń.",
+        "damage": 12,
+        "image_url": "/static/images/cards/mad_science_attack.webp",
+        "riders": [
+          {
+            "id": "SAPPING",
+            "name": "Osłabienie",
+            "description": "Nałóż [blue]2[/blue] pkt. [gold]Słabości[/gold]. Nałóż [blue]2[/blue] pkt. [gold]Wrażliwości[/gold]."
+          },
+          {
+            "id": "VIOLENCE",
+            "name": "Przemoc",
+            "description": "Uderza [blue]2[/blue] dodatkowe razy."
+          },
+          {
+            "id": "CHOKING",
+            "name": "Duszenie",
+            "description": "Kiedykolwiek zagrasz kartę w tej turze, przeciwnik traci [blue]6[/blue] PŻ."
+          }
+        ]
+      },
+      "skill": {
+        "type": "Skill",
+        "description": "Zyskaj 8 pkt. [gold]Bloku[/gold].",
+        "block": 8,
+        "image_url": "/static/images/cards/mad_science_skill.webp",
+        "riders": [
+          {
+            "id": "ENERGIZED",
+            "name": "Zasilanie",
+            "description": "Zyskaj [energy:2]."
+          },
+          {
+            "id": "WISDOM",
+            "name": "Mądrość",
+            "description": "Dobierz [blue]3[/blue] karty."
+          },
+          {
+            "id": "CHAOS",
+            "name": "Chaos",
+            "description": "Dodaj losową kartę do [gold]ręki[/gold]. W tej turze jest darmowa."
+          }
+        ]
+      },
+      "power": {
+        "type": "Power",
+        "description": "",
+        "image_url": "/static/images/cards/mad_science_power.webp",
+        "riders": [
+          {
+            "id": "EXPERTISE",
+            "name": "Ekspertyza",
+            "description": "Zyskaj [blue]2[/blue] pkt. [gold]Siły[/gold]. Zyskaj [blue]2[/blue] pkt. [gold]Zręczności[/gold]."
+          },
+          {
+            "id": "CURIOUS",
+            "name": "Skanowanie",
+            "description": "Moce kosztują [blue]1[/blue] [energy:1] mniej."
+          },
+          {
+            "id": "IMPROVEMENT",
+            "name": "Usprawnienie",
+            "description": "[gold]Ulepsz[/gold] losową kartę pod koniec walki."
+          }
+        ]
+      }
+    },
     "upgrade_description": null,
     "type_key": "Attack",
     "rarity_key": "Event",
     "compendium_order": 534
   },
   {
+    "id": "MINION_DIVE_BOMB",
+    "name": "Szarża służby",
+    "description": "Zadaj 13 pkt. obrażeń.",
+    "description_raw": "Zadaj {Damage:diff()} pkt. obrażeń.",
+    "cost": 0,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Atak",
+    "rarity": "Specjalna",
+    "target": "AnyEnemy",
+    "color": "token",
+    "damage": 13,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Wyczerpanie"
+    ],
+    "tags": [
+      "Minion"
+    ],
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 13
+    },
+    "upgrade": {
+      "damage": "+3"
+    },
+    "image_url": "/static/images/cards/minion_dive_bomb.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "upgrade_description": "Zadaj 16 pkt. obrażeń.",
+    "type_key": "Attack",
+    "rarity_key": "Token",
+    "keywords_key": [
+      "Exhaust"
+    ],
+    "compendium_order": 567
+  },
+  {
     "id": "KNIFE_TRAP",
     "name": "Szklana pułapka",
-    "description": "",
-    "description_raw": "",
+    "description": "Zagraj wszystkie [gold]Noże[/gold] ze [gold]stosu kart wyczerpanych[/gold] na przeciwnika.Noży[/gold])",
+    "description_raw": "{IfUpgraded:show:[gold]Ulepsz[/gold] i zagraj|Zagraj} wszystkie [gold]Noże[/gold] ze [gold]stosu kart wyczerpanych[/gold] na przeciwnika.{InCombat:\n(Zagrywa {CalculatedShivs:diff()} [gold]{CalculatedShivs:plural:Nóż|Noże|Noży}[/gold])|}",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -16614,11 +16699,13 @@
       "CalculationBase": 0,
       "CalculationExtra": 1
     },
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/knife_trap.webp",
     "beta_image_url": "/static/images/cards/beta/knife_trap.webp",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Ulepsz[/gold] i zagraj wszystkie [gold]Noże[/gold] ze [gold]stosu kart wyczerpanych[/gold] na przeciwnika.Noży[/gold])",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 131
@@ -16670,7 +16757,7 @@
   {
     "id": "SKEWER",
     "name": "Szpikulec",
-    "description": "Zadaj 7 pkt. obrażeń X razy.",
+    "description": "Zadaj 8 pkt. obrażeń X razy.",
     "description_raw": "Zadaj {Damage:diff()} pkt. obrażeń X razy.",
     "cost": 0,
     "is_x_cost": true,
@@ -16680,7 +16767,7 @@
     "rarity": "Niepospolita",
     "target": "AnyEnemy",
     "color": "silent",
-    "damage": 7,
+    "damage": 8,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -16691,7 +16778,7 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Damage": 7
+      "Damage": 8
     },
     "upgrade": {
       "damage": "+3"
@@ -16699,7 +16786,7 @@
     "image_url": "/static/images/cards/skewer.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Zadaj 10 pkt. obrażeń X razy.",
+    "upgrade_description": "Zadaj 11 pkt. obrażeń X razy.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 156
@@ -16783,8 +16870,8 @@
   {
     "id": "SPEEDSTER",
     "name": "Szybcior",
-    "description": "Kiedykolwiek dobierzesz kartę w tej turze, zadaj 2 pkt. obrażeń WSZYSTKIM przeciwnikom.",
-    "description_raw": "Kiedykolwiek dobierzesz kartę w tej turze, zadaj {SpeedsterPower:diff()} pkt. obrażeń WSZYSTKIM przeciwnikom.",
+    "description": "Kiedykolwiek dobierzesz kartę podczas swojej tury, zadaj 2 pkt. obrażeń WSZYSTKIM przeciwnikom.",
+    "description_raw": "Kiedykolwiek dobierzesz kartę podczas swojej tury, zadaj {SpeedsterPower:diff()} pkt. obrażeń WSZYSTKIM przeciwnikom.",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -16814,12 +16901,12 @@
       "Speedster": 2
     },
     "upgrade": {
-      "speedsterpower": "+1"
+      "add_innate": true
     },
     "image_url": "/static/images/cards/speedster.webp",
     "beta_image_url": "/static/images/cards/beta/speedster.webp",
     "type_variants": null,
-    "upgrade_description": "Kiedykolwiek dobierzesz kartę w tej turze, zadaj 3 pkt. obrażeń WSZYSTKIM przeciwnikom.",
+    "upgrade_description": null,
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 160
@@ -16827,7 +16914,7 @@
   {
     "id": "SOLAR_STRIKE",
     "name": "Słoneczne uderzenie",
-    "description": "Zadaj 8 pkt. obrażeń.\nZyskaj [star:1].",
+    "description": "Zadaj 9 pkt. obrażeń.\nZyskaj [star:1].",
     "description_raw": "Zadaj {Damage:diff()} pkt. obrażeń.\nZyskaj {Stars:starIcons()}.",
     "cost": 1,
     "is_x_cost": null,
@@ -16837,7 +16924,7 @@
     "rarity": "Pospolita",
     "target": "AnyEnemy",
     "color": "regent",
-    "damage": 8,
+    "damage": 9,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -16850,7 +16937,7 @@
     ],
     "spawns_cards": null,
     "vars": {
-      "Damage": 8,
+      "Damage": 9,
       "Stars": 1
     },
     "upgrade": {
@@ -16860,7 +16947,7 @@
     "image_url": "/static/images/cards/solar_strike.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Zadaj 9 pkt. obrażeń.\nZyskaj [star:2].",
+    "upgrade_description": "Zadaj 10 pkt. obrażeń.\nZyskaj [star:2].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 248
@@ -17074,8 +17161,8 @@
   {
     "id": "BLADE_DANCE",
     "name": "Taniec ostrzy",
-    "description": "",
-    "description_raw": "",
+    "description": "Dodaj 3 [gold]Noże|Noży[/gold] do [gold]ręki[/gold].",
+    "description_raw": "Dodaj {Cards:diff()} [gold]{Cards:plural:Nóż|Noże|Noży}[/gold] do [gold]ręki[/gold].",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -17107,7 +17194,7 @@
     "image_url": "/static/images/cards/blade_dance.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Dodaj 4 [gold]Noże|Noży[/gold] do [gold]ręki[/gold].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "keywords_key": [
@@ -17118,7 +17205,7 @@
   {
     "id": "DANSE_MACABRE",
     "name": "Taniec śmierci",
-    "description": "Kiedykolwiek zagrasz kartę kosztującą co najmniej [energy:2], zyskaj 3 pkt. [gold]Bloku[/gold].",
+    "description": "Kiedykolwiek zagrasz kartę kosztującą co najmniej [energy:2], zyskaj 4 pkt. [gold]Bloku[/gold].",
     "description_raw": "Kiedykolwiek zagrasz kartę kosztującą co najmniej {Energy:energyIcons()}, zyskaj {DanseMacabrePower:diff()} pkt. [gold]Bloku[/gold].",
     "cost": 1,
     "is_x_cost": null,
@@ -17134,7 +17221,7 @@
     "powers_applied": [
       {
         "power": "Taniec śmierci",
-        "amount": 3,
+        "amount": 4,
         "power_key": "DanseMacabre"
       }
     ],
@@ -17146,16 +17233,16 @@
     "spawns_cards": null,
     "vars": {
       "Energy": 2,
-      "DanseMacabrePower": 3,
-      "DanseMacabre": 3
+      "DanseMacabrePower": 4,
+      "DanseMacabre": 4
     },
     "upgrade": {
-      "dansemacabrepower": "+1"
+      "dansemacabrepower": "+2"
     },
     "image_url": "/static/images/cards/danse_macabre.webp",
     "beta_image_url": "/static/images/cards/beta/danse_macabre.webp",
     "type_variants": null,
-    "upgrade_description": "Kiedykolwiek zagrasz kartę kosztującą co najmniej [energy:2], zyskaj 4 pkt. [gold]Bloku[/gold].",
+    "upgrade_description": "Kiedykolwiek zagrasz kartę kosztującą co najmniej [energy:2], zyskaj 6 pkt. [gold]Bloku[/gold].",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 275
@@ -17200,8 +17287,8 @@
   {
     "id": "PAGESTORM",
     "name": "Testament",
-    "description": "",
-    "description_raw": "",
+    "description": "Kiedykolwiek dobierzesz [gold]eteryczną[/gold] kartę, dobierz 1 kartę.",
+    "description_raw": "Kiedykolwiek dobierzesz [gold]eteryczną[/gold] kartę, dobierz {Cards:diff()} {Cards:plural:kartę|karty|kart}.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -17472,8 +17559,8 @@
   {
     "id": "COOLHEADED",
     "name": "Trzeźwy umysł",
-    "description": "",
-    "description_raw": "",
+    "description": "[gold]Załaduj[/gold] 1 [gold]Sferę Mrozu[/gold].\nDobierz 1 kartę.",
+    "description_raw": "[gold]Załaduj[/gold] 1 [gold]Sferę Mrozu[/gold].\nDobierz {Cards:diff()} {Cards:plural:kartę|karty|kart}.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -17501,7 +17588,7 @@
     "image_url": "/static/images/cards/coolheaded.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Załaduj[/gold] 1 [gold]Sferę Mrozu[/gold].\nDobierz 2 karty|kart.",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 371
@@ -17622,8 +17709,8 @@
   {
     "id": "TORIC_TOUGHNESS",
     "name": "Twardy charakter",
-    "description": "",
-    "description_raw": "",
+    "description": "Zyskaj 5 pkt. [gold]Bloku[/gold].\nZyskaj 5 pkt. [gold]Bloku[/gold] na początku 2 następnych tur|2 następnych tur.",
+    "description_raw": "Zyskaj {Block:diff()} pkt. [gold]Bloku[/gold].\nZyskaj {Block:diff()} pkt. [gold]Bloku[/gold] na początku {Turns:plural:następnej tury|{Turns:diff()} następnych tur|{Turns:diff()} następnych tur}.",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -17652,7 +17739,7 @@
     "image_url": "/static/images/cards/toric_toughness.webp",
     "beta_image_url": "/static/images/cards/beta/toric_toughness.webp",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Zyskaj 7 pkt. [gold]Bloku[/gold].\nZyskaj 7 pkt. [gold]Bloku[/gold] na początku 2 następnych tur|2 następnych tur.",
     "type_key": "Skill",
     "rarity_key": "Event",
     "compendium_order": 545
@@ -17822,8 +17909,8 @@
   {
     "id": "DEATHS_DOOR",
     "name": "U progu śmierci",
-    "description": "",
-    "description_raw": "",
+    "description": "Zyskaj 6 pkt. [gold]Bloku[/gold].\nJeżeli w tej turze nałożono [gold]Zagładę[/gold], zyskaj dodatkowo tyle samo [gold]Bloku[/gold] 2 razy|razy.",
+    "description_raw": "Zyskaj {Block:diff()} pkt. [gold]Bloku[/gold].\nJeżeli w tej turze nałożono [gold]Zagładę[/gold], zyskaj dodatkowo tyle samo [gold]Bloku[/gold] {Repeat:diff()} {Repeat:plural:raz|razy|razy}.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -17852,7 +17939,7 @@
     "image_url": "/static/images/cards/deaths_door.webp",
     "beta_image_url": "/static/images/cards/beta/deaths_door.webp",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Zyskaj 7 pkt. [gold]Bloku[/gold].\nJeżeli w tej turze nałożono [gold]Zagładę[/gold], zyskaj dodatkowo tyle samo [gold]Bloku[/gold] 2 razy|razy.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 277
@@ -17860,8 +17947,8 @@
   {
     "id": "CAPTURE_SPIRIT",
     "name": "Uchwycenie ducha",
-    "description": "",
-    "description_raw": "",
+    "description": "Przeciwnik traci 3 PŻ.\nDodaj 3 [gold]Dusze|Dusz[/gold] do [gold]stosu rozgrywającego[/gold].",
+    "description_raw": "Przeciwnik traci {Damage:diff()} PŻ.\nDodaj {Cards:diff()} [gold]{Cards:plural:Duszę|Dusze|Dusz}[/gold] do [gold]stosu rozgrywającego[/gold].",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -17893,7 +17980,7 @@
     "image_url": "/static/images/cards/capture_spirit.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Przeciwnik traci 4 PŻ.\nDodaj 4 [gold]Dusze|Dusz[/gold] do [gold]stosu rozgrywającego[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 272
@@ -17901,8 +17988,8 @@
   {
     "id": "MACHINE_LEARNING",
     "name": "Uczenie maszynowe",
-    "description": "",
-    "description_raw": "",
+    "description": "Na początku tury dobierz dodatkowo 1 kartę.",
+    "description_raw": "Na początku tury dobierz dodatkowo {Cards:diff()} {Cards:plural:kartę|karty|kart}.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -18177,8 +18264,8 @@
   {
     "id": "POMMEL_STRIKE",
     "name": "Uderzenie głowicą",
-    "description": "",
-    "description_raw": "",
+    "description": "Zadaj 9 pkt. obrażeń.\nDobierz 1 kartę.",
+    "description_raw": "Zadaj {Damage:diff()} pkt. obrażeń.\nDobierz {Cards:diff()} {Cards:plural:kartę|karty|kart}.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -18210,7 +18297,7 @@
     "image_url": "/static/images/cards/pommel_strike.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Zadaj 10 pkt. obrażeń.\nDobierz 2 karty|kart.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 58
@@ -18257,7 +18344,7 @@
   {
     "id": "SEEKER_STRIKE",
     "name": "Uderzenie naprowadzające",
-    "description": "Zadaj 6 pkt. obrażeń.\nWybierz 1 z 3 kart ze [gold]stosu rozgrywającego[/gold] i dodaj ją do [gold]ręki[/gold].",
+    "description": "Zadaj 9 pkt. obrażeń.\nWybierz 1 z 3 kart ze [gold]stosu rozgrywającego[/gold] i dodaj ją do [gold]ręki[/gold].",
     "description_raw": "Zadaj {Damage:diff()} pkt. obrażeń.\nWybierz 1 z {Cards:diff()} kart ze [gold]stosu rozgrywającego[/gold] i dodaj ją do [gold]ręki[/gold].",
     "cost": 1,
     "is_x_cost": null,
@@ -18267,7 +18354,7 @@
     "rarity": "Niepospolita",
     "target": "AnyEnemy",
     "color": "colorless",
-    "damage": 6,
+    "damage": 9,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -18280,7 +18367,7 @@
     ],
     "spawns_cards": null,
     "vars": {
-      "Damage": 6,
+      "Damage": 9,
       "Cards": 3
     },
     "upgrade": {
@@ -18289,7 +18376,7 @@
     "image_url": "/static/images/cards/seeker_strike.webp",
     "beta_image_url": "/static/images/cards/beta/seeker_strike.webp",
     "type_variants": null,
-    "upgrade_description": "Zadaj 9 pkt. obrażeń.\nWybierz 1 z 3 kart ze [gold]stosu rozgrywającego[/gold] i dodaj ją do [gold]ręki[/gold].",
+    "upgrade_description": "Zadaj 12 pkt. obrażeń.\nWybierz 1 z 3 kart ze [gold]stosu rozgrywającego[/gold] i dodaj ją do [gold]ręki[/gold].",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 491
@@ -18297,8 +18384,8 @@
   {
     "id": "MINION_STRIKE",
     "name": "Uderzenie służby",
-    "description": "",
-    "description_raw": "",
+    "description": "Zadaj 6 pkt. obrażeń.\nDobierz 1 kartę.",
+    "description_raw": "Zadaj {Damage:diff()} pkt. obrażeń.\nDobierz {Cards:diff()} {Cards:plural:kartę|karty|kart}.",
     "cost": 0,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -18307,7 +18394,7 @@
     "rarity": "Specjalna",
     "target": "AnyEnemy",
     "color": "token",
-    "damage": 7,
+    "damage": 6,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -18323,7 +18410,7 @@
     ],
     "spawns_cards": null,
     "vars": {
-      "Damage": 7,
+      "Damage": 6,
       "Cards": 1
     },
     "upgrade": {
@@ -18332,7 +18419,7 @@
     "image_url": "/static/images/cards/minion_strike.webp",
     "beta_image_url": "/static/images/cards/beta/minion_strike.webp",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Zadaj 9 pkt. obrażeń.\nDobierz 1 kartę.",
     "type_key": "Attack",
     "rarity_key": "Token",
     "keywords_key": [
@@ -18419,47 +18506,6 @@
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 405
-  },
-  {
-    "id": "BEAT_INTO_SHAPE",
-    "name": "Udoskonalenie",
-    "description": "Zadaj 5 pkt. obrażeń.\n[gold]Wykuj[/gold] X.\n[gold]Wykuj[/gold] dodatkowo 5 za każde inne uderzenie przeciwnika w tej turze.",
-    "description_raw": "Zadaj {Damage:diff()} pkt. obrażeń.\n[gold]Wykuj[/gold] {CalculatedForge:diff()}.\n[gold]Wykuj[/gold] dodatkowo {CalculationExtra:diff()} za każde inne uderzenie przeciwnika w tej turze.",
-    "cost": 1,
-    "is_x_cost": null,
-    "is_x_star_cost": null,
-    "star_cost": null,
-    "type": "Atak",
-    "rarity": "Rzadka",
-    "target": "AnyEnemy",
-    "color": "regent",
-    "damage": 5,
-    "block": null,
-    "hit_count": null,
-    "powers_applied": null,
-    "cards_draw": null,
-    "energy_gain": null,
-    "hp_loss": null,
-    "keywords": null,
-    "tags": null,
-    "spawns_cards": null,
-    "vars": {
-      "Damage": 5,
-      "CalculationBase": 5,
-      "CalculationExtra": 5
-    },
-    "upgrade": {
-      "damage": "+2",
-      "calculationbase": "+2",
-      "calculationextra": "+2"
-    },
-    "image_url": "/static/images/cards/beat_into_shape.webp",
-    "beta_image_url": "/static/images/cards/beta/beat_into_shape.webp",
-    "type_variants": null,
-    "upgrade_description": "Zadaj 7 pkt. obrażeń.\n[gold]Wykuj[/gold] X.\n[gold]Wykuj[/gold] dodatkowo 7 za każde inne uderzenie przeciwnika w tej turze.",
-    "type_key": "Attack",
-    "rarity_key": "Rare",
-    "compendium_order": 178
   },
   {
     "id": "STRANGLE",
@@ -18556,8 +18602,8 @@
   {
     "id": "HIDDEN_DAGGERS",
     "name": "Ukryte sztylety",
-    "description": "",
-    "description_raw": "",
+    "description": "Odrzuć 2 karty|kart.\nDodaj 2 [gold]Noże|Noży[/gold] do [gold]ręki[/gold].",
+    "description_raw": "Odrzuć {Cards:diff()} {Cards:plural:kartę|karty|kart}.\nDodaj {Shivs:diff()} [gold]{Cards:plural:{IfUpgraded:show:Nóż+|Nóż}|{IfUpgraded:show:Noże+|Noże}|{IfUpgraded:show:Noży+|Noży}}[/gold] do [gold]ręki[/gold].",
     "cost": 0,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -18582,11 +18628,13 @@
       "Shivs": 2,
       "Cards": 2
     },
-    "upgrade": null,
+    "upgrade": {
+      "description_changed": true
+    },
     "image_url": "/static/images/cards/hidden_daggers.webp",
     "beta_image_url": "/static/images/cards/beta/hidden_daggers.webp",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Odrzuć 2 karty|kart.\nDodaj 2 [gold]Noże+|Noży+[/gold] do [gold]ręki[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 129
@@ -18594,8 +18642,8 @@
   {
     "id": "HIDDEN_GEM",
     "name": "Ukryty skarb",
-    "description": "Dodaj 2 [gold]Powtórki[/gold] do karty ze [gold]stosu rozgrywającego[/gold].",
-    "description_raw": "Dodaj {Replay:diff()} [gold]Powtórki[/gold] do karty ze [gold]stosu rozgrywającego[/gold].",
+    "description": "Dodaj 2 [gold]Powtórki[/gold] do karty bez [gold]Powtórek[/gold] ze [gold]stosu rozgrywającego[/gold].",
+    "description_raw": "Dodaj {Replay:diff()} [gold]Powtórki[/gold] do karty bez [gold]Powtórek[/gold] ze [gold]stosu rozgrywającego[/gold].",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -18623,10 +18671,51 @@
     "image_url": "/static/images/cards/hidden_gem.webp",
     "beta_image_url": "/static/images/cards/beta/hidden_gem.webp",
     "type_variants": null,
-    "upgrade_description": "Dodaj 3 [gold]Powtórki[/gold] do karty ze [gold]stosu rozgrywającego[/gold].",
+    "upgrade_description": "Dodaj 3 [gold]Powtórki[/gold] do karty bez [gold]Powtórek[/gold] ze [gold]stosu rozgrywającego[/gold].",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 462
+  },
+  {
+    "id": "BEAT_INTO_SHAPE",
+    "name": "Ukształtowanie",
+    "description": "Zadaj 5 pkt. obrażeń.\n[gold]Wykuj[/gold] X.\n[gold]Wykuj[/gold] dodatkowe 5 za każdy inny raz, gdy uderzono przeciwnika w tej turze.",
+    "description_raw": "Zadaj {Damage:diff()} pkt. obrażeń.\n[gold]Wykuj[/gold] {CalculatedForge:diff()}.\n[gold]Wykuj[/gold] dodatkowe {CalculationExtra:diff()} za każdy inny raz, gdy uderzono przeciwnika w tej turze.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Atak",
+    "rarity": "Rzadka",
+    "target": "AnyEnemy",
+    "color": "regent",
+    "damage": 5,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 5,
+      "CalculationBase": 5,
+      "CalculationExtra": 5
+    },
+    "upgrade": {
+      "damage": "+2",
+      "calculationbase": "+2",
+      "calculationextra": "+2"
+    },
+    "image_url": "/static/images/cards/beat_into_shape.webp",
+    "beta_image_url": "/static/images/cards/beta/beat_into_shape.webp",
+    "type_variants": null,
+    "upgrade_description": "Zadaj 7 pkt. obrażeń.\n[gold]Wykuj[/gold] X.\n[gold]Wykuj[/gold] dodatkowe 7 za każdy inny raz, gdy uderzono przeciwnika w tej turze.",
+    "type_key": "Attack",
+    "rarity_key": "Rare",
+    "compendium_order": 178
   },
   {
     "id": "SNAKEBITE",
@@ -18950,8 +19039,8 @@
   {
     "id": "GUNK_UP",
     "name": "Usmarowanie",
-    "description": "",
-    "description_raw": "",
+    "description": "Zadaj 4 pkt. obrażeń 3 razy|razy.\nDodaj [gold]Śluz[/gold] do [gold]stosu kart odrzuconych[/gold].",
+    "description_raw": "Zadaj {Damage:diff()} pkt. obrażeń {Repeat:diff()} {Repeat:plural:raz|razy|razy}.\nDodaj [gold]Śluz[/gold] do [gold]stosu kart odrzuconych[/gold].",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -18982,7 +19071,7 @@
     "image_url": "/static/images/cards/gunk_up.webp",
     "beta_image_url": "/static/images/cards/beta/gunk_up.webp",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Zadaj 5 pkt. obrażeń 3 razy|razy.\nDodaj [gold]Śluz[/gold] do [gold]stosu kart odrzuconych[/gold].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 390
@@ -19069,8 +19158,8 @@
   {
     "id": "FAN_OF_KNIVES",
     "name": "Wachlarz noży",
-    "description": "",
-    "description_raw": "",
+    "description": "Od teraz [gold]Noże[/gold] zadają obrażenia WSZYSTKIM przeciwnikom.\nDodaj 4 [gold]Noże|Noży[/gold] do [gold]ręki[/gold].",
+    "description_raw": "Od teraz [gold]Noże[/gold] zadają obrażenia WSZYSTKIM przeciwnikom.\nDodaj {Shivs:diff()} [gold]{Shivs:plural:Nóż|Noże|Noży}[/gold] do [gold]ręki[/gold].",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -19100,7 +19189,7 @@
     "image_url": "/static/images/cards/fan_of_knives.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Od teraz [gold]Noże[/gold] zadają obrażenia WSZYSTKIM przeciwnikom.\nDodaj 5 [gold]Noże|Noży[/gold] do [gold]ręki[/gold].",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 119
@@ -19280,7 +19369,7 @@
     "upgrade_description": "Zyskaj 3 pkt. [gold]Siły[/gold].",
     "type_key": "Power",
     "rarity_key": "Uncommon",
-    "compendium_order": 47
+    "compendium_order": 46
   },
   {
     "id": "SUMMON_FORTH",
@@ -19375,7 +19464,7 @@
   {
     "id": "ETERNAL_ARMOR",
     "name": "Wieczne opancerzenie",
-    "description": "Zyskaj 7 pkt. [gold]Opancerzenia[/gold].",
+    "description": "Zyskaj 9 pkt. [gold]Opancerzenia[/gold].",
     "description_raw": "Zyskaj {PlatingPower:diff()} pkt. [gold]Opancerzenia[/gold].",
     "cost": 3,
     "is_x_cost": null,
@@ -19391,7 +19480,7 @@
     "powers_applied": [
       {
         "power": "Opancerzenie",
-        "amount": 7,
+        "amount": 9,
         "power_key": "Plating"
       }
     ],
@@ -19402,16 +19491,16 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "PlatingPower": 7,
-      "Plating": 7
+      "PlatingPower": 9,
+      "Plating": 9
     },
     "upgrade": {
-      "platingpower": "+2"
+      "platingpower": "+3"
     },
     "image_url": "/static/images/cards/eternal_armor.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Zyskaj 9 pkt. [gold]Opancerzenia[/gold].",
+    "upgrade_description": "Zyskaj 12 pkt. [gold]Opancerzenia[/gold].",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 454
@@ -19419,8 +19508,8 @@
   {
     "id": "BIG_BANG",
     "name": "Wielki Wybuch",
-    "description": "",
-    "description_raw": "",
+    "description": "Dobierz 1 kartę.\nZyskaj [energy:1].\nZyskaj [star:1].\n[gold]Wykuj[/gold] 5.",
+    "description_raw": "Dobierz {Cards:diff()} {Cards:plural:kartę|karty|kart}.\nZyskaj {Energy:energyIcons()}.\nZyskaj {Stars:starIcons()}.\n[gold]Wykuj[/gold] {Forge:diff()}.",
     "cost": 0,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -19464,7 +19553,7 @@
   {
     "id": "GRAND_FINALE",
     "name": "Wielki finał",
-    "description": "Można zagrać, jeśli [gold]stos rozgrywający[/gold] jest pusty. Zadaj 50 pkt. obrażeń WSZYSTKIM przeciwnikom.",
+    "description": "Można zagrać, jeśli [gold]stos rozgrywający[/gold] jest pusty. Zadaj 60 pkt. obrażeń WSZYSTKIM przeciwnikom.",
     "description_raw": "Można zagrać, jeśli [gold]stos rozgrywający[/gold] jest pusty. Zadaj {Damage:diff()} pkt. obrażeń WSZYSTKIM przeciwnikom.",
     "cost": 0,
     "is_x_cost": null,
@@ -19474,7 +19563,7 @@
     "rarity": "Rzadka",
     "target": "AllEnemies",
     "color": "silent",
-    "damage": 50,
+    "damage": 60,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -19485,15 +19574,15 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Damage": 50
+      "Damage": 60
     },
     "upgrade": {
-      "damage": "+10"
+      "damage": "+15"
     },
     "image_url": "/static/images/cards/grand_finale.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Można zagrać, jeśli [gold]stos rozgrywający[/gold] jest pusty. Zadaj 60 pkt. obrażeń WSZYSTKIM przeciwnikom.",
+    "upgrade_description": "Można zagrać, jeśli [gold]stos rozgrywający[/gold] jest pusty. Zadaj 75 pkt. obrażeń WSZYSTKIM przeciwnikom.",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 126
@@ -19501,8 +19590,8 @@
   {
     "id": "BELIEVE_IN_YOU",
     "name": "Wierzę w Ciebie",
-    "description": "Inny gracz otrzymuje [energy:3].",
-    "description_raw": "Inny gracz otrzymuje {Energy:energyIcons()}.",
+    "description": "Inny gracz zyskuje [energy:2].",
+    "description_raw": "Inny gracz zyskuje {Energy:energyIcons()}.",
     "cost": 0,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -19516,13 +19605,13 @@
     "hit_count": null,
     "powers_applied": null,
     "cards_draw": null,
-    "energy_gain": 3,
+    "energy_gain": 2,
     "hp_loss": null,
     "keywords": null,
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Energy": 3
+      "Energy": 2
     },
     "upgrade": {
       "energy": "+1"
@@ -19530,7 +19619,7 @@
     "image_url": "/static/images/cards/believe_in_you.webp",
     "beta_image_url": "/static/images/cards/beta/believe_in_you.webp",
     "type_variants": null,
-    "upgrade_description": "Inny gracz otrzymuje [energy:4].",
+    "upgrade_description": "Inny gracz zyskuje [energy:3].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 444
@@ -19538,8 +19627,8 @@
   {
     "id": "LEADING_STRIKE",
     "name": "Wiodące uderzenie",
-    "description": "Zadaj 7 pkt. obrażeń.\nDodaj 1 [gold]Nóż[/gold] do [gold]ręki[/gold].",
-    "description_raw": "Zadaj {Damage:diff()} pkt. obrażeń.\nDodaj {Shivs:diff()} [gold]Nóż[/gold] do [gold]ręki[/gold].",
+    "description": "Zadaj 3 pkt. obrażeń.\nDodaj 2 [gold]Noże|Noży[/gold] do [gold]ręki[/gold].",
+    "description_raw": "Zadaj {Damage:diff()} pkt. obrażeń.\nDodaj {Shivs:diff()} [gold]{Shivs:plural:Nóż|Noże|Noży}[/gold] do [gold]ręki[/gold].",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -19548,7 +19637,7 @@
     "rarity": "Pospolita",
     "target": "AnyEnemy",
     "color": "silent",
-    "damage": 7,
+    "damage": 3,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -19563,8 +19652,8 @@
       "SHIV"
     ],
     "vars": {
-      "Shivs": 1,
-      "Damage": 7
+      "Shivs": 2,
+      "Damage": 3
     },
     "upgrade": {
       "damage": "+3"
@@ -19572,7 +19661,7 @@
     "image_url": "/static/images/cards/leading_strike.webp",
     "beta_image_url": "/static/images/cards/beta/leading_strike.webp",
     "type_variants": null,
-    "upgrade_description": "Zadaj 10 pkt. obrażeń.\nDodaj 1 [gold]Nóż[/gold] do [gold]ręki[/gold].",
+    "upgrade_description": "Zadaj 6 pkt. obrażeń.\nDodaj 2 [gold]Noże|Noży[/gold] do [gold]ręki[/gold].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 132
@@ -19617,8 +19706,8 @@
   {
     "id": "PROPHESIZE",
     "name": "Wróżenie",
-    "description": "",
-    "description_raw": "",
+    "description": "Dobierz 6 karty|kart.",
+    "description_raw": "Dobierz {Cards:diff()} {Cards:plural:kartę|karty|kart}.",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -19646,7 +19735,7 @@
     "image_url": "/static/images/cards/prophesize.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Dobierz 9 karty|kart.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 237
@@ -20096,26 +20185,20 @@
   {
     "id": "FOLLOW_THROUGH",
     "name": "Wykończenie",
-    "description": "Zadaj 6 pkt. obrażeń WSZYSTKIM przeciwnikom.\nJeżeli ostatnią zagraną kartą była Umiejętność, nałóż 1 pkt. [gold]Słabości[/gold] na WSZYSTKICH przeciwników.",
-    "description_raw": "Zadaj {Damage:diff()} pkt. obrażeń WSZYSTKIM przeciwnikom.\nJeżeli ostatnią zagraną kartą była Umiejętność, nałóż {WeakPower:diff()} pkt. [gold]Słabości[/gold] na WSZYSTKICH przeciwników.",
+    "description": "Zadaj 7 pkt. obrażeń.\nUderza dodatkowy raz, jeżeli masz co najmniej 5 karty|kart w [gold]ręcę[/gold].",
+    "description_raw": "Zadaj {Damage:diff()} pkt. obrażeń.\nUderza dodatkowy raz, jeżeli masz co najmniej {CardCount} {CardCount:plural:kartę|karty|kart} w [gold]ręcę[/gold].",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
     "star_cost": null,
     "type": "Atak",
-    "rarity": "Niepospolita",
-    "target": "AllEnemies",
+    "rarity": "Pospolita",
+    "target": "AnyEnemy",
     "color": "silent",
-    "damage": 6,
+    "damage": 7,
     "block": null,
     "hit_count": null,
-    "powers_applied": [
-      {
-        "power": "Słabość",
-        "amount": 1,
-        "power_key": "Weak"
-      }
-    ],
+    "powers_applied": null,
     "cards_draw": null,
     "energy_gain": null,
     "hp_loss": null,
@@ -20123,20 +20206,18 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Damage": 6,
-      "WeakPower": 1,
-      "Weak": 1
+      "CardCount": 5,
+      "Damage": 7
     },
     "upgrade": {
-      "damage": "+2",
-      "weak": "+1"
+      "damage": "+2"
     },
     "image_url": "/static/images/cards/follow_through.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Zadaj 8 pkt. obrażeń WSZYSTKIM przeciwnikom.\nJeżeli ostatnią zagraną kartą była Umiejętność, nałóż 1 pkt. [gold]Słabości[/gold] na WSZYSTKICH przeciwników.",
+    "upgrade_description": "Zadaj 9 pkt. obrażeń.\nUderza dodatkowy raz, jeżeli masz co najmniej 5 karty|kart w [gold]ręcę[/gold].",
     "type_key": "Attack",
-    "rarity_key": "Uncommon",
+    "rarity_key": "Common",
     "compendium_order": 124
   },
   {
@@ -20270,8 +20351,8 @@
   {
     "id": "DRAIN_POWER",
     "name": "Wysysanie mocy",
-    "description": "",
-    "description_raw": "",
+    "description": "Zadaj 10 pkt. obrażeń.\n[gold]Ulepsz[/gold] 2 losowe karty|losowych kart na [gold]stosie kart odrzuconych[/gold].",
+    "description_raw": "Zadaj {Damage:diff()} pkt. obrażeń.\n[gold]Ulepsz[/gold] {Cards:diff()} {Cards:plural:losową kartę|losowe karty|losowych kart} na [gold]stosie kart odrzuconych[/gold].",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -20301,7 +20382,7 @@
     "image_url": "/static/images/cards/drain_power.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Zadaj 12 pkt. obrażeń.\n[gold]Ulepsz[/gold] 3 losowe karty|losowych kart na [gold]stosie kart odrzuconych[/gold].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 287
@@ -20339,7 +20420,7 @@
     "upgrade_description": null,
     "type_key": "Power",
     "rarity_key": "Rare",
-    "compendium_order": 41
+    "compendium_order": 40
   },
   {
     "id": "SIGNAL_BOOST",
@@ -20465,7 +20546,7 @@
     "upgrade_description": "Zadaj 12 pkt. obrażeń.\nPrzenieś kartę ze [gold]stosu kart odrzuconych[/gold] na szczyt [gold]stosu rozgrywającego[/gold].",
     "type_key": "Attack",
     "rarity_key": "Common",
-    "compendium_order": 40
+    "compendium_order": 39
   },
   {
     "id": "FASTEN",
@@ -20690,8 +20771,8 @@
   {
     "id": "SCRAPE",
     "name": "Zadrapanie",
-    "description": "",
-    "description_raw": "",
+    "description": "Zadaj 7 pkt. obrażeń.\nDobierz 4 karty|kart.\nOdrzuć wszystkie dobrane karty, które nie kosztują 0 [energy:1].",
+    "description_raw": "Zadaj {Damage:diff()} pkt. obrażeń.\nDobierz {Cards:diff()} {Cards:plural:kartę|karty|kart}.\nOdrzuć wszystkie dobrane karty, które nie kosztują 0 {energyPrefix:energyIcons(1)}.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -20721,7 +20802,7 @@
     "image_url": "/static/images/cards/scrape.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Zadaj 10 pkt. obrażeń.\nDobierz 5 karty|kart.\nOdrzuć wszystkie dobrane karty, które nie kosztują 0 [energy:1].",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 415
@@ -20842,7 +20923,9 @@
     "cards_draw": null,
     "energy_gain": 3,
     "hp_loss": null,
-    "keywords": null,
+    "keywords": [
+      "Wyczerpanie"
+    ],
     "tags": null,
     "spawns_cards": null,
     "vars": {
@@ -20857,6 +20940,9 @@
     "upgrade_description": "Jeżeli [gold]Wyczerpano[/gold] kartę w tej turze, zyskaj [energy:4].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
+    "keywords_key": [
+      "Exhaust"
+    ],
     "compendium_order": 37
   },
   {
@@ -20896,13 +20982,12 @@
       "Weak": 1
     },
     "upgrade": {
-      "block": "+1",
-      "weak": "+1"
+      "block": "+3"
     },
     "image_url": "/static/images/cards/defy.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Zyskaj 7 pkt. [gold]Bloku[/gold].\nNałóż 1 pkt. [gold]Słabości[/gold].",
+    "upgrade_description": "Zyskaj 9 pkt. [gold]Bloku[/gold].\nNałóż 1 pkt. [gold]Słabości[/gold].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "keywords_key": [
@@ -21269,8 +21354,8 @@
   {
     "id": "PACTS_END",
     "name": "Zerwanie paktu",
-    "description": "",
-    "description_raw": "",
+    "description": "Można zagrać, jeśli masz co najmniej 3 karty|kart na [gold]stosie kart wyczerpanych[/gold].\nZadaj 17 pkt. obrażeń WSZYSTKIM przeciwnikom.",
+    "description_raw": "Można zagrać, jeśli masz co najmniej {Cards:diff()} {Cards:plural:kartę|karty|kart} na [gold]stosie kart wyczerpanych[/gold].\nZadaj {Damage:diff()} pkt. obrażeń WSZYSTKIM przeciwnikom.",
     "cost": 0,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -21299,7 +21384,7 @@
     "image_url": "/static/images/cards/pacts_end.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Można zagrać, jeśli masz co najmniej 3 karty|kart na [gold]stosie kart wyczerpanych[/gold].\nZadaj 23 pkt. obrażeń WSZYSTKIM przeciwnikom.",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 55
@@ -21348,8 +21433,8 @@
   {
     "id": "CALL_OF_THE_VOID",
     "name": "Zew pustki",
-    "description": "",
-    "description_raw": "",
+    "description": "Na początku tury dodaj 1 losową kartę do [gold]ręki[/gold]. Dodaj do niej [gold]Eteryczna[/gold].",
+    "description_raw": "Na początku tury dodaj {Cards:diff()} {Cards:plural:losową kartę|losowe karty|losowych kart} do [gold]ręki[/gold]. Dodaj do {Cards:plural:niej|nich} [gold]Eteryczna[/gold].",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -21512,8 +21597,8 @@
   {
     "id": "MIND_ROT",
     "name": "Zgniły umysł",
-    "description": "",
-    "description_raw": "",
+    "description": "W każdej turze dobieraj 1 kartę mniej.",
+    "description_raw": "W każdej turze dobieraj {MindRotPower:diff()} {MindRotPower:plural:kartę|karty|kart} mniej.",
     "cost": -1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -21829,7 +21914,7 @@
     "upgrade_description": "Zadaj 20 pkt. obrażeń.\nPrzeciwnik traci 15 pkt. [gold]Siły[/gold] w tej turze.",
     "type_key": "Attack",
     "rarity_key": "Rare",
-    "compendium_order": 51
+    "compendium_order": 50
   },
   {
     "id": "DASH",
@@ -22172,7 +22257,7 @@
     "name": "Złamanie",
     "description": "Zadaj 20 pkt. obrażeń.\nNałóż 5 pkt. [gold]Wrażliwości[/gold].",
     "description_raw": "Zadaj {Damage:diff()} pkt. obrażeń.\nNałóż {VulnerablePower:diff()} pkt. [gold]Wrażliwości[/gold].",
-    "cost": 2,
+    "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
     "star_cost": null,
@@ -22202,13 +22287,13 @@
       "Vulnerable": 5
     },
     "upgrade": {
-      "damage": "+5",
+      "damage": "+10",
       "vulnerable": "+2"
     },
     "image_url": "/static/images/cards/break.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Zadaj 25 pkt. obrażeń.\nNałóż 5 pkt. [gold]Wrażliwości[/gold].",
+    "upgrade_description": "Zadaj 30 pkt. obrażeń.\nNałóż 5 pkt. [gold]Wrażliwości[/gold].",
     "type_key": "Attack",
     "rarity_key": "Ancient",
     "compendium_order": 12
@@ -22253,8 +22338,8 @@
   {
     "id": "JACK_OF_ALL_TRADES",
     "name": "Złota rączka",
-    "description": "",
-    "description_raw": "",
+    "description": "Dodaj 1 losową bezbarwną kartę do [gold]ręki[/gold].",
+    "description_raw": "Dodaj {Cards:diff()} {Cards:plural:losową bezbarwną kartę|losowe bezbarwne karty|losowych bezbarwnych kart} do [gold]ręki[/gold].",
     "cost": 0,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -22284,7 +22369,7 @@
     "image_url": "/static/images/cards/jack_of_all_trades.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Dodaj 2 losowe bezbarwne karty|losowych bezbarwnych kart do [gold]ręki[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -22471,7 +22556,9 @@
     "cards_draw": null,
     "energy_gain": null,
     "hp_loss": null,
-    "keywords": null,
+    "keywords": [
+      "Wyczerpanie"
+    ],
     "tags": null,
     "spawns_cards": null,
     "vars": {
@@ -22479,14 +22566,17 @@
       "Focus": 2
     },
     "upgrade": {
-      "focuspower": "+1"
+      "remove_exhaust": true
     },
     "image_url": "/static/images/cards/hotfix.webp",
     "beta_image_url": "/static/images/cards/beta/hotfix.webp",
     "type_variants": null,
-    "upgrade_description": "Zyskaj 3 pkt. [gold]Skupienia[/gold] w tej turze.",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Common",
+    "keywords_key": [
+      "Exhaust"
+    ],
     "compendium_order": 394
   },
   {
@@ -22566,8 +22656,8 @@
   {
     "id": "SPOILS_OF_BATTLE",
     "name": "Łupy bitewne",
-    "description": "[gold]Wykuj[/gold] 10.",
-    "description_raw": "[gold]Wykuj[/gold] {Forge:diff()}.",
+    "description": "[gold]Wykuj[/gold] 5.\nDobierz 2 karty|kart.",
+    "description_raw": "[gold]Wykuj[/gold] {Forge:diff()}.\nDobierz {Cards:diff()} {Cards:plural:kartę|karty|kart}.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -22580,22 +22670,23 @@
     "block": null,
     "hit_count": null,
     "powers_applied": null,
-    "cards_draw": null,
+    "cards_draw": 2,
     "energy_gain": null,
     "hp_loss": null,
     "keywords": null,
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Forge": 10
+      "Forge": 5,
+      "Cards": 2
     },
     "upgrade": {
-      "forge": "+5"
+      "forge": "+3"
     },
     "image_url": "/static/images/cards/spoils_of_battle.webp",
     "beta_image_url": "/static/images/cards/beta/spoils_of_battle.webp",
     "type_variants": null,
-    "upgrade_description": "[gold]Wykuj[/gold] 15.",
+    "upgrade_description": "[gold]Wykuj[/gold] 8.\nDobierz 2 karty|kart.",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 250
@@ -22899,8 +22990,8 @@
   {
     "id": "CINDER",
     "name": "Żar",
-    "description": "Zadaj 17 pkt. obrażeń.\n[gold]Wyczerp[/gold] kartę na szczycie [gold]stosu rozgrywającego[/gold].",
-    "description_raw": "Zadaj {Damage:diff()} pkt. obrażeń.\n[gold]Wyczerp[/gold] kartę na szczycie [gold]stosu rozgrywającego[/gold].",
+    "description": "Zadaj 18 pkt. obrażeń.\n\n[gold]Wyczerp[/gold] losową kartę.",
+    "description_raw": "Zadaj {Damage:diff()} pkt. obrażeń.\n\n[gold]Wyczerp[/gold] losową kartę.",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -22909,7 +23000,7 @@
     "rarity": "Pospolita",
     "target": "AnyEnemy",
     "color": "ironclad",
-    "damage": 17,
+    "damage": 18,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -22920,16 +23011,15 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "CardsToExhaust": 1,
-      "Damage": 17
+      "Damage": 18
     },
     "upgrade": {
-      "damage": "+5"
+      "damage": "+6"
     },
     "image_url": "/static/images/cards/cinder.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Zadaj 22 pkt. obrażeń.\n[gold]Wyczerp[/gold] kartę na szczycie [gold]stosu rozgrywającego[/gold].",
+    "upgrade_description": "Zadaj 24 pkt. obrażeń.\n\n[gold]Wyczerp[/gold] losową kartę.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 17
@@ -22971,7 +23061,7 @@
     "upgrade_description": "Zyskaj 7 pkt. [gold]Bloku[/gold].\nZadaj 7 pkt. obrażeń.",
     "type_key": "Attack",
     "rarity_key": "Common",
-    "compendium_order": 48
+    "compendium_order": 47
   },
   {
     "id": "SERPENT_FORM",
@@ -23007,12 +23097,12 @@
       "SerpentForm": 4
     },
     "upgrade": {
-      "serpentformpower": "+1"
+      "serpentformpower": "+2"
     },
     "image_url": "/static/images/cards/serpent_form.webp",
     "beta_image_url": "/static/images/cards/beta/serpent_form.webp",
     "type_variants": null,
-    "upgrade_description": "Kiedykolwiek zagrasz kartę, zadaj 5 pkt. obrażeń losowemu przeciwnikowi.",
+    "upgrade_description": "Kiedykolwiek zagrasz kartę, zadaj 6 pkt. obrażeń losowemu przeciwnikowi.",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 153
@@ -23127,14 +23217,14 @@
     "upgrade_description": null,
     "type_key": "Power",
     "rarity_key": "Uncommon",
-    "compendium_order": 50
+    "compendium_order": 49
   },
   {
     "id": "BORROWED_TIME",
     "name": "Życie na krawędzi",
-    "description": "Nałóż na siebie 3 pkt. [gold]Zagłady[/gold].\nZyskaj [energy:1].",
-    "description_raw": "Nałóż na siebie {DoomPower:diff()} pkt. [gold]Zagłady[/gold].\nZyskaj {Energy:energyIcons()}.",
-    "cost": 0,
+    "description": "Zyskaj [energy:4].\nKarty kosztują dodatkowy [energy:1] w tej turze.",
+    "description_raw": "Zyskaj {Energy:energyIcons()}.\nKarty kosztują dodatkowy {ExtraCost:energyIcons()} w tej turze.",
+    "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
     "star_cost": null,
@@ -23145,31 +23235,24 @@
     "damage": null,
     "block": null,
     "hit_count": null,
-    "powers_applied": [
-      {
-        "power": "Zagłada",
-        "amount": 3,
-        "power_key": "Doom"
-      }
-    ],
+    "powers_applied": null,
     "cards_draw": null,
-    "energy_gain": 1,
+    "energy_gain": 4,
     "hp_loss": null,
     "keywords": null,
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Energy": 1,
-      "DoomPower": 3,
-      "Doom": 3
+      "ExtraCost": 1,
+      "Energy": 4
     },
     "upgrade": {
-      "energy": "+1"
+      "energy": "+2"
     },
     "image_url": "/static/images/cards/borrowed_time.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Nałóż na siebie 3 pkt. [gold]Zagłady[/gold].\nZyskaj [energy:2].",
+    "upgrade_description": "Zyskaj [energy:6].\nKarty kosztują dodatkowy [energy:1] w tej turze.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 268

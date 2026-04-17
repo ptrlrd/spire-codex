@@ -7,6 +7,13 @@
     "is_stackable": false
   },
   {
+    "id": "DEVOURED",
+    "name": "Devoración",
+    "description": "Añade [gold]Agotamiento[/gold] a esta carta.",
+    "extra_card_text": null,
+    "is_stackable": false
+  },
+  {
     "id": "ENTANGLED",
     "name": "Enredada",
     "description": "Cuesta 1 [energy:1] más.",
@@ -39,6 +46,13 @@
     "name": "Polución",
     "description": "No puedes jugar más [gold]Habilidades[/gold] este turno. Desaparece al final del turno.",
     "extra_card_text": null,
+    "is_stackable": false
+  },
+  {
+    "id": "WEIGHTED",
+    "name": "Pesadez",
+    "description": "Cuando esta carta se juegue, pierde [energy:1].",
+    "extra_card_text": "Pierde [energy:1].",
     "is_stackable": false
   }
 ]

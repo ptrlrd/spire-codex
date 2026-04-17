@@ -2,7 +2,7 @@
   {
     "id": "DEFECT",
     "name": "Defect",
-    "description": "Un automa che si modifica in eterno per sopravvivere.\nSfrutta dei Globi tecnologici per combattere.",
+    "description": "Un automa che si modifica in eterno per sopravvivere.\nSfrutta la tecnologia dei Globi per combattere.",
     "starting_hp": 75,
     "starting_gold": 99,
     "max_energy": 3,
@@ -445,7 +445,7 @@
   {
     "id": "IRONCLAD",
     "name": "Ironclad",
-    "description": "L'ultimo soldato del clan Ironclad.\nContro la sua stessa volontà, distrugge gli avversari con spada e fiamme.",
+    "description": "L'ultimo soldato degli Ironclad.\nContro la sua stessa volontà, distrugge gli avversari con spada e fiamme.",
     "starting_hp": 80,
     "starting_gold": 99,
     "max_energy": 3,
@@ -475,8 +475,8 @@
       "aroma_principle": "[sine][red]Non mi importa del dolore. I miei nemici devono morire.[/red][/sine]",
       "banter_alive": "Sbrigati.",
       "banter_dead": "...",
-      "cards_modifier_title": "Carte di Ironclad",
-      "cards_modifier_description": "le carte di Ironclad ora compariranno nelle ricompense e nei negozi."
+      "cards_modifier_title": "Carte dell'Ironclad",
+      "cards_modifier_description": "le carte dell'Ironclad ora compariranno nelle ricompense e nei negozi."
     },
     "dialogues": [
       {
@@ -888,8 +888,8 @@
       "banter_alive": "Quando vuoi...",
       "banter_dead": "...",
       "unlock_text": "Gioca una partita con [orange]{Prerequisite}[/orange] per sbloccare questo personaggio.",
-      "cards_modifier_title": "Carte di Necrobinder",
-      "cards_modifier_description": "le carte di Necrobinder ora compariranno nelle ricompense e nei negozi."
+      "cards_modifier_title": "Carte della Necrobinder",
+      "cards_modifier_description": "le carte della Necrobinder ora compariranno nelle ricompense e nei negozi."
     },
     "dialogues": [
       {
@@ -1397,13 +1397,13 @@
     "dialogue_color": "new",
     "quotes": {
       "event_death_prevention": "Devo sopravvivere per aiutare la mia squadra!",
-      "gold_monologue": "[sine]Così potrei comandare un esercito che abbia un po' di sale in zucca...[/sine]",
-      "aroma_principle": "[sine][orange]Sono il nuovo Re delle Stelle...[/orange][/sine]",
-      "banter_alive": "STO ANCORA ASPETTANDO!",
+      "gold_monologue": "[sine]Così potrei comandare un esercito con un po' di sale in zucca...[/sine]",
+      "aroma_principle": "[sine][orange]Sono il nuovo Re delle stelle...[/orange][/sine]",
+      "banter_alive": "STO ASPETTANDO!",
       "banter_dead": "...",
       "unlock_text": "Gioca una singola partita con [green]{Prerequisite}[/green] per sbloccare questo personaggio.",
-      "cards_modifier_title": "Carte di Regent",
-      "cards_modifier_description": "le carte di Regent ora compariranno nelle ricompense e nei negozi."
+      "cards_modifier_title": "Carte del Regent",
+      "cards_modifier_description": "le carte del Regent ora compariranno nelle ricompense e nei negozi."
     },
     "dialogues": [
       {
@@ -1879,7 +1879,7 @@
   {
     "id": "SILENT",
     "name": "Silent",
-    "description": "Una cacciatrice proveniente da un luogo lontano dalla Guglia.\nÈ pronta a pugnalare e avvelenare qualsiasi cosa ostacoli il suo cammino.",
+    "description": "Una cacciatrice proveniente da un luogo remoto.\nÈ pronta a pugnalare e avvelenare qualsiasi cosa ostacoli il suo cammino.",
     "starting_hp": 70,
     "starting_gold": 99,
     "max_energy": 3,
@@ -1912,8 +1912,8 @@
       "banter_alive": "[sine]...[/sine]",
       "banter_dead": "...",
       "unlock_text": "Gioca una partita per sbloccare questo personaggio.",
-      "cards_modifier_title": "Carte di Silent",
-      "cards_modifier_description": "le carte di Silent ora compariranno nelle ricompense e nei negozi."
+      "cards_modifier_title": "Carte della Silent",
+      "cards_modifier_description": "le carte della Silent ora compariranno nelle ricompense e nei negozi."
     },
     "dialogues": [
       {

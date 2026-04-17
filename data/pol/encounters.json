@@ -123,7 +123,7 @@
   },
   {
     "id": "CEREMONIAL_BEAST_BOSS",
-    "name": "Leśnym Stróżem",
+    "name": "Leśny Stróż",
     "room_type": "Boss",
     "is_weak": false,
     "act": "Act 1 - Overgrowth",
@@ -295,22 +295,18 @@
   },
   {
     "id": "DOORMAKER_BOSS",
-    "name": "Drzwiarzem",
+    "name": "Tytan Pustki",
     "room_type": "Boss",
     "is_weak": false,
     "act": "Act 3 - Glory",
     "tags": null,
     "monsters": [
       {
-        "id": "DOOR",
-        "name": "Drzwi"
-      },
-      {
         "id": "DOORMAKER",
-        "name": "Drzwiarz"
+        "name": "Tytan Pustki"
       }
     ],
-    "loss_text": "[b]The Adventurer[/b] nie {characterGender:choose(masculine|feminine|neutral):zachwycił|zachwyciła|zachwycił} [gold]Drzwiarza[/gold] swoją wizytą."
+    "loss_text": "[b]The Adventurer[/b] nie {characterGender:choose(masculine|feminine|neutral):zachwycił|zachwyciła|zachwycił} [gold]Tytana Pustki[/gold] swoją wizytą."
   },
   {
     "id": "ENTOMANCER_ELITE",
@@ -583,7 +579,7 @@
   },
   {
     "id": "KAISER_CRAB_BOSS",
-    "name": "Krabem Cesarskim",
+    "name": "Krab Cesarski",
     "room_type": "Boss",
     "is_weak": false,
     "act": "Act 2 - Hive",
@@ -627,7 +623,7 @@
   },
   {
     "id": "KNOWLEDGE_DEMON_BOSS",
-    "name": "Demonem Wiedzy",
+    "name": "Demon Wiedzy",
     "room_type": "Boss",
     "is_weak": false,
     "act": "Act 2 - Hive",
@@ -642,7 +638,7 @@
   },
   {
     "id": "LAGAVULIN_MATRIARCH_BOSS",
-    "name": "Królową Lagavulinów",
+    "name": "Matka Lagavulinów",
     "room_type": "Boss",
     "is_weak": false,
     "act": "Underdocks",
@@ -650,10 +646,10 @@
     "monsters": [
       {
         "id": "LAGAVULIN_MATRIARCH",
-        "name": "Królowa Lagavulinów"
+        "name": "Matka Lagavulinów"
       }
     ],
-    "loss_text": "[b]The Adventurer[/b] {characterGender:choose(masculine|feminine|neutral):został przekrojony|została przekrojona|został przekrojony} na pół przez [gold]Królową Lagavulinów[/gold]."
+    "loss_text": "[b]The Adventurer[/b] {characterGender:choose(masculine|feminine|neutral):został przekrojony|została przekrojona|został przekrojony} na pół przez [gold]Matkę Lagavulinów[/gold]."
   },
   {
     "id": "LIVING_FOG_NORMAL",
@@ -903,7 +899,7 @@
   },
   {
     "id": "QUEEN_BOSS",
-    "name": "Królową",
+    "name": "Królowa",
     "room_type": "Boss",
     "is_weak": false,
     "act": "Act 3 - Glory",
@@ -984,6 +980,27 @@
       }
     ],
     "loss_text": "[gold]Zgryźliwe Zwoje[/gold] rozszarpały {characterObject} na kawałki."
+  },
+  {
+    "id": "SEAPUNK_NORMAL",
+    "name": "Kijanki",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": [
+      "Seapunk"
+    ],
+    "monsters": [
+      {
+        "id": "CALCIFIED_CULTIST",
+        "name": "Zwapniały Kultysta"
+      },
+      {
+        "id": "SEAPUNK",
+        "name": "Gloniarz"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] {characterGender:choose(masculine|feminine|neutral):został pokonany|została pokonana|został pokonany} przez jakieś [gold]Kijanki[/gold]."
   },
   {
     "id": "SEAPUNK_WEAK",
@@ -1220,7 +1237,7 @@
   },
   {
     "id": "SOUL_FYSH_BOSS",
-    "name": "Duszą Rypki",
+    "name": "Dusza Rypki",
     "room_type": "Boss",
     "is_weak": false,
     "act": "Underdocks",
@@ -1280,7 +1297,7 @@
   },
   {
     "id": "TEST_SUBJECT_BOSS",
-    "name": "Eksperymentem",
+    "name": "Eksperyment",
     "room_type": "Boss",
     "is_weak": false,
     "act": "Act 3 - Glory",
@@ -1310,7 +1327,7 @@
   },
   {
     "id": "THE_INSATIABLE_BOSS",
-    "name": "Nienasyconym",
+    "name": "Nienasycony",
     "room_type": "Boss",
     "is_weak": false,
     "act": "Act 2 - Hive",
@@ -1325,7 +1342,7 @@
   },
   {
     "id": "THE_KIN_BOSS",
-    "name": "Kapłanem",
+    "name": "Kapłan",
     "room_type": "Boss",
     "is_weak": false,
     "act": "Act 1 - Overgrowth",
@@ -1394,25 +1411,6 @@
     "loss_text": "[gold]Złodziejski Skoczek[/gold] napadł na {characterObject}."
   },
   {
-    "id": "TOADPOLES_NORMAL",
-    "name": "Kijanki",
-    "room_type": "Monster",
-    "is_weak": false,
-    "act": "Underdocks",
-    "tags": null,
-    "monsters": [
-      {
-        "id": "CALCIFIED_CULTIST",
-        "name": "Zwapniały Kultysta"
-      },
-      {
-        "id": "TOADPOLE",
-        "name": "Kijanka"
-      }
-    ],
-    "loss_text": "[b]The Adventurer[/b] {characterGender:choose(masculine|feminine|neutral):został pokonany|została pokonana|został pokonany} przez jakieś [gold]Kijanki[/gold]."
-  },
-  {
     "id": "TOADPOLES_WEAK",
     "name": "Kijanki",
     "room_type": "Monster",
@@ -1432,19 +1430,15 @@
     "name": "Tunelowy duet",
     "room_type": "Monster",
     "is_weak": false,
-    "act": "Act 2 - Hive",
+    "act": null,
     "tags": [
       "Burrower",
-      "Workers"
+      "Chomper"
     ],
     "monsters": [
       {
-        "id": "BOWLBUG_EGG",
-        "name": "Robal z jajkiem"
-      },
-      {
-        "id": "BOWLBUG_SILK",
-        "name": "Robal z nicią"
+        "id": "CHOMPER",
+        "name": "Gryzak"
       },
       {
         "id": "TUNNELER",
@@ -1506,7 +1500,7 @@
   },
   {
     "id": "VANTOM_BOSS",
-    "name": "Fantomem",
+    "name": "Fantom",
     "room_type": "Boss",
     "is_weak": false,
     "act": "Act 1 - Overgrowth",
@@ -1536,7 +1530,7 @@
   },
   {
     "id": "WATERFALL_GIANT_BOSS",
-    "name": "Kaskadowym Olbrzymem",
+    "name": "Kaskadowy Olbrzym",
     "room_type": "Boss",
     "is_weak": false,
     "act": "Underdocks",

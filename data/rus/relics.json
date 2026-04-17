@@ -14,6 +14,7 @@
     },
     "image_url": "/static/images/relics/membership_card.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 130
   },
@@ -32,20 +33,22 @@
     },
     "image_url": "/static/images/relics/akabeko.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 40
   },
   {
     "id": "DIAMOND_DIADEM",
     "name": "Алмазная диадема",
-    "description": "Вы получаете от атак врагов в текущем ходу половину урона, если разыгрываете [blue]2[/blue] или меньше карт.",
-    "description_raw": "Вы получаете от атак врагов в текущем ходу половину урона, если разыгрываете [blue]{CardThreshold}[/blue] или меньше карт.",
+    "description": "Вы получаете половину урона от атак врагов в текущем ходу, если разыгрываете не более [blue]2[/blue] карт.",
+    "description_raw": "Вы получаете половину урона от атак врагов в текущем ходу, если разыгрываете не более [blue]{CardThreshold}[/blue] карт.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
     "merchant_price": null,
     "image_url": "/static/images/relics/diamond_diadem.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 160
   },
@@ -60,14 +63,15 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/alchemical_coffer.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 161
   },
   {
     "id": "AMETHYST_AUBERGINE",
     "name": "Аметистовый баклажан",
-    "description": "Дает [blue]10[/blue] дополнительного [gold]золота[/gold] за победу над врагами.",
-    "description_raw": "Дает [blue]{Gold}[/blue] дополнительного [gold]золота[/gold] за победу над врагами.",
+    "description": "Дает еще [blue]15[/blue] [gold]золота[/gold] за победу над врагами.",
+    "description_raw": "Дает еще [blue]{Gold}[/blue] [gold]золота[/gold] за победу над врагами.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Обычная реликвия",
     "pool": "shared",
@@ -78,14 +82,15 @@
     },
     "image_url": "/static/images/relics/amethyst_aubergine.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 10
   },
   {
     "id": "UNDYING_SIGIL",
     "name": "Амулет бессмертия",
-    "description": "Враги, чей [gold]злой рок[/gold] равен или больше их ОЗ, наносят на [blue]50%[/blue] меньше урона.",
-    "description_raw": "Враги, чей [gold]злой рок[/gold] равен или больше их ОЗ, наносят на [blue]50%[/blue] меньше урона.",
+    "description": "Враги, чей [gold]злой рок[/gold] не ниже их ОЗ, наносят на [blue]50%[/blue] меньше урона.",
+    "description_raw": "Враги, чей [gold]злой рок[/gold] не ниже их ОЗ, наносят на [blue]50%[/blue] меньше урона.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия из магазина",
     "pool": "necrobinder",
@@ -96,6 +101,7 @@
     },
     "image_url": "/static/images/relics/undying_sigil.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 131
   },
@@ -110,8 +116,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/darkstone_periapt.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 252
+    "compendium_order": 257
   },
   {
     "id": "VENERABLE_TEA_SET",
@@ -128,6 +135,7 @@
     },
     "image_url": "/static/images/relics/venerable_tea_set.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 11
   },
@@ -146,76 +154,82 @@
     },
     "image_url": "/static/images/relics/fake_venerable_tea_set.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 253
+    "compendium_order": 258
   },
   {
     "id": "CROSSBOW",
     "name": "Арбалет",
-    "description": "Добавляет в [gold]руку[/gold] случайную [gold]Атаку[/gold] в начале хода. В этом ходу ее цена [blue]0[/blue][energy:1].",
-    "description_raw": "Добавляет в [gold]руку[/gold] случайную [gold]Атаку[/gold] в начале хода. В этом ходу ее цена [blue]0[/blue]{energyPrefix:energyIcons(1)}.",
+    "description": "Добавляет в [gold]руку[/gold] случайную [gold]Атаку[/gold] в начале хода. В этом ходу она бесплатная.",
+    "description_raw": "Добавляет в [gold]руку[/gold] случайную [gold]Атаку[/gold] в начале хода. В этом ходу она бесплатная.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
     "merchant_price": null,
     "image_url": "/static/images/relics/crossbow.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 162
   },
   {
     "id": "FRAGRANT_MUSHROOM",
     "name": "Ароматный гриб",
-    "description": "При получении вы теряете [red]15[/red] ОЗ и [gold]улучшаете[/gold] [blue]3[/blue] plural(ru):случайную карту.",
-    "description_raw": "При получении вы теряете [red]{HpLoss}[/red] ОЗ и [gold]улучшаете[/gold] [blue]{Cards}[/blue] {Cards:plural(ru):случайную карту|случайные карты|случайных карт}.",
+    "description": "При получении вы теряете [blue]15[/blue] ОЗ и [gold]улучшаете[/gold] [blue]2[/blue] plural(ru):случайную карту.",
+    "description_raw": "При получении вы теряете [blue]{HpLoss}[/blue] ОЗ и [gold]улучшаете[/gold] [blue]{Cards}[/blue] {Cards:plural(ru):случайную карту|случайные карты|случайных карт}.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия за событие",
     "pool": "shared",
     "merchant_price": null,
     "image_url": "/static/images/relics/fragrant_mushroom.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 254
-  },
-  {
-    "id": "ARCHAIC_TOOTH",
-    "name": "Архаичный зуб",
-    "description": "При получении [gold]преобразует[/gold] базовую карту в ее древнюю версию.",
-    "description_raw": "При получении [gold]преобразует[/gold] {StarterCard.StringValue:cond:[gold]«{StarterCard}»[/gold] в [gold]«{AncientCard}»[/gold]|базовую карту в ее древнюю версию}.",
-    "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
-    "rarity": "Древняя реликвия",
-    "pool": "shared",
-    "merchant_price": null,
-    "image_url": "/static/images/relics/archaic_tooth.webp",
-    "image_variants": null,
-    "rarity_key": "Ancient",
-    "compendium_order": 163
+    "compendium_order": 259
   },
   {
     "id": "ASTROLABE",
     "name": "Астролябия",
-    "description": "При получении [gold]преобразует[/gold], затем [gold]улучшает[/gold] [blue]3[/blue] plural(ru):карту.",
-    "description_raw": "При получении [gold]преобразует[/gold], затем [gold]улучшает[/gold] [blue]{Cards}[/blue] {Cards:plural(ru):карту|карты|карт}.",
+    "description": "При получении [gold]преобразует[/gold], а затем [gold]улучшает[/gold] [blue]3[/blue] plural(ru):выбранную карту.",
+    "description_raw": "При получении [gold]преобразует[/gold], а затем [gold]улучшает[/gold] [blue]{Cards}[/blue] {Cards:plural(ru):выбранную карту|выбранные карты|выбранных карт}.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
     "merchant_price": null,
     "image_url": "/static/images/relics/astrolabe.webp",
     "image_variants": null,
+    "notes": null,
+    "rarity_key": "Ancient",
+    "compendium_order": 163
+  },
+  {
+    "id": "PHIAL_HOLSTER",
+    "name": "Бандольер для зелий",
+    "description": "При получении дает [blue]1[/blue] plural(ru):место для зелий и [blue]2[/blue] plural(ru):случайное зелье.",
+    "description_raw": "При получении дает [blue]{PotionSlots}[/blue] {PotionSlots:plural(ru):место|места|мест} для зелий и [blue]{Potions}[/blue] {Potions:plural(ru):случайное зелье|случайных зелья|случайных зелий}.",
+    "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
+    "rarity": "Древняя реликвия",
+    "pool": "shared",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/phial_holster.webp",
+    "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 164
   },
   {
     "id": "PRESERVED_FOG",
     "name": "Банка с туманом",
-    "description": "При получении удаляет [blue]5[/blue] plural(ru):карту из [gold]колоды[/gold]. Добавляет в [gold]колоду[/gold] [red]«Тщетность»[/red].",
-    "description_raw": "При получении удаляет [blue]{Cards}[/blue] {Cards:plural(ru):карту|карты|карт} из [gold]колоды[/gold]. Добавляет в [gold]колоду[/gold] [red]«Тщетность»[/red].",
+    "description": "При получении удаляет из [gold]колоды[/gold] [blue]3[/blue] plural(ru):карту. Добавляет в [gold]колоду[/gold] [red]«Тщетность»[/red].",
+    "description_raw": "При получении удаляет из [gold]колоды[/gold] [blue]{Cards}[/blue] {Cards:plural(ru):карту|карты|карт}. Добавляет в [gold]колоду[/gold] [red]«Тщетность»[/red].",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
     "merchant_price": null,
     "image_url": "/static/images/relics/preserved_fog.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 165
   },
@@ -230,14 +244,15 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/velvet_choker.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 166
   },
   {
     "id": "POWER_CELL",
     "name": "Батарейка",
-    "description": "Вы берете [blue]2[/blue] карты с ценой 0 из [gold]стопки добора[/gold] в начале боя.",
-    "description_raw": "Вы берете [blue]{Cards}[/blue] карты с ценой 0 из [gold]стопки добора[/gold] в начале боя.",
+    "description": "Вы берете [blue]2[/blue] plural(ru):карту стоимостью 0 из [gold]стопки добора[/gold] в начале боя.",
+    "description_raw": "Вы берете [blue]{Cards}[/blue] {Cards:plural(ru):карту|карты|карт} стоимостью 0 из [gold]стопки добора[/gold] в начале боя.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Редкая реликвия",
     "pool": "defect",
@@ -248,6 +263,7 @@
     },
     "image_url": "/static/images/relics/power_cell.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 80
   },
@@ -266,40 +282,24 @@
     },
     "image_url": "/static/images/relics/white_star.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 81
   },
   {
-    "id": "IVORY_TILE",
-    "name": "Белокостная плита",
-    "description": "Дает [energy:1], когда вы разыгрываете карту с ценой [energy:3] или больше.",
-    "description_raw": "Дает {Energy:energyIcons()}, когда вы разыгрываете карту с ценой {EnergyThreshold:energyIcons()} или больше.",
-    "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
-    "rarity": "Редкая реликвия",
-    "pool": "necrobinder",
-    "merchant_price": {
-      "base": 300,
-      "min": 255,
-      "max": 345
-    },
-    "image_url": "/static/images/relics/ivory_tile.webp",
-    "image_variants": null,
-    "rarity_key": "Rare",
-    "compendium_order": 82
-  },
-  {
     "id": "BING_BONG",
     "name": "Бинг-Бонг",
-    "description": "Когда вы добавляете карту в [gold]колоду[/gold], вы добавляете дополнительную копию.",
-    "description_raw": "Когда вы добавляете карту в [gold]колоду[/gold], вы добавляете дополнительную копию.",
+    "description": "Когда в [gold]колоду[/gold] добавляется карта, добавляется еще одна ее копия.",
+    "description_raw": "Когда в [gold]колоду[/gold] добавляется карта, добавляется еще одна ее копия.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия за событие",
     "pool": "shared",
     "merchant_price": null,
     "image_url": "/static/images/relics/bing_bong.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 255
+    "compendium_order": 260
   },
   {
     "id": "BURNING_STICKS",
@@ -316,34 +316,37 @@
     },
     "image_url": "/static/images/relics/burning_sticks.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 132
   },
   {
     "id": "BLESSED_ANTLER",
     "name": "Благословленный рог",
-    "description": "Дает [energy:1] в начале хода. Добавляет [blue]3[/blue] [gold]«Головокружения»[/gold] в [gold]стопку добора[/gold] в начале боя.",
-    "description_raw": "Дает {Energy:energyIcons()} в начале хода. Добавляет [blue]{Cards}[/blue] [gold]«Головокружения»[/gold] в [gold]стопку добора[/gold] в начале боя.",
+    "description": "Дает [energy:1] в начале хода. Добавляет [blue]3[/blue] [gold]plural(ru):«Головокружение»[/gold] в [gold]стопку добора[/gold] в начале боя.",
+    "description_raw": "Дает {Energy:energyIcons()} в начале хода. Добавляет [blue]{Cards}[/blue] [gold]{Cards:plural(ru):«Головокружение»|«Головокружения»|«Головокружений»}[/gold] в [gold]стопку добора[/gold] в начале боя.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
     "merchant_price": null,
     "image_url": "/static/images/relics/blessed_antler.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 167
   },
   {
     "id": "GLITTER",
     "name": "Блестки",
-    "description": "[gold]Чарует[/gold] все карты в наградных наборах на [purple]шик[/purple].",
-    "description_raw": "[gold]Чарует[/gold] все карты в наградных наборах на [purple]шик[/purple].",
+    "description": "Накладывает [gold]чары[/gold] [purple]«Шик»[/purple] на все карты в наградных наборах.",
+    "description_raw": "Накладывает [gold]чары[/gold] [purple]«Шик»[/purple] на все карты в наградных наборах.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
     "merchant_price": null,
     "image_url": "/static/images/relics/glitter.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 168
   },
@@ -358,8 +361,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/lost_wisp.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 256
+    "compendium_order": 261
   },
   {
     "id": "WAR_PAINT",
@@ -376,6 +380,7 @@
     },
     "image_url": "/static/images/relics/war_paint.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 12
   },
@@ -390,6 +395,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/divine_destiny.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Starter",
     "compendium_order": 0
   },
@@ -404,20 +410,22 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/divine_right.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Starter",
     "compendium_order": 1
   },
   {
     "id": "LARGE_CAPSULE",
     "name": "Большая капсула",
-    "description": "При получении дает [blue]2[/blue] plural(ru):случайную [gold]реликвию[/gold]. Добавляет в [gold]колоду[/gold] дополнительные [gold]«Удар»[/gold] и [gold]«Оборону»[/gold].",
-    "description_raw": "При получении дает [blue]{Relics}[/blue] {Relics:plural(ru):случайную [gold]реликвию[/gold]|случайные [gold]реликвии[/gold]|случайных [gold]реликвий[/gold]}. Добавляет в [gold]колоду[/gold] дополнительные [gold]«Удар»[/gold] и [gold]«Оборону»[/gold].",
+    "description": "При получении дает [blue]2[/blue] plural(ru):случайную [gold]реликвию[/gold]. Добавляет в [gold]колоду[/gold] еще 1 [gold]«Удар»[/gold] и 1 [gold]«Оборону»[/gold].",
+    "description_raw": "При получении дает [blue]{Relics}[/blue] {Relics:plural(ru):случайную [gold]реликвию[/gold]|случайные [gold]реликвии[/gold]|случайных [gold]реликвий[/gold]}. Добавляет в [gold]колоду[/gold] еще 1 [gold]«Удар»[/gold] и 1 [gold]«Оборону»[/gold].",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
     "merchant_price": null,
     "image_url": "/static/images/relics/large_capsule.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 169
   },
@@ -432,14 +440,15 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/big_mushroom.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 257
+    "compendium_order": 262
   },
   {
     "id": "JUZU_BRACELET",
     "name": "Браслет дзюдзу",
-    "description": "В комнатах [gold]?[/gold] больше нет обычных врагов.",
-    "description_raw": "В комнатах [gold]?[/gold] больше нет обычных врагов.",
+    "description": "В комнатах с [gold]?[/gold] больше нет обычных врагов.",
+    "description_raw": "В комнатах с [gold]?[/gold] больше нет обычных врагов.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Обычная реликвия",
     "pool": "shared",
@@ -450,14 +459,15 @@
     },
     "image_url": "/static/images/relics/juzu_bracelet.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 13
   },
   {
     "id": "BRONZE_SCALES",
     "name": "Бронзовая чешуя",
-    "description": "Дает [blue]3[/blue] [gold]шипов[/gold] в начале боя.",
-    "description_raw": "Дает [blue]{ThornsPower}[/blue] [gold]шипов[/gold] в начале боя.",
+    "description": "Дает [blue]3[/blue] [gold]plural(ru):шип[/gold] в начале боя.",
+    "description_raw": "Дает [blue]{ThornsPower}[/blue] [gold]{ThornsPower:plural(ru):шип|шипа|шипов}[/gold] в начале боя.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Обычная реликвия",
     "pool": "shared",
@@ -468,12 +478,13 @@
     },
     "image_url": "/static/images/relics/bronze_scales.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 14
   },
   {
     "id": "PAPER_KRANE",
-    "name": "Бумажный журафль",
+    "name": "Бумажный журавель",
     "description": "Повышает эффективность [gold]слабости[/gold] на врагах с [blue]-25%[/blue] до [blue]-40%[/blue] урона.",
     "description_raw": "Повышает эффективность [gold]слабости[/gold] на врагах с [blue]-25%[/blue] до [blue]-40%[/blue] урона.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
@@ -486,12 +497,13 @@
     },
     "image_url": "/static/images/relics/paper_krane.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 83
+    "compendium_order": 82
   },
   {
     "id": "PAPER_PHROG",
-    "name": "Бумажный легушь",
+    "name": "Бумажный лягуш",
     "description": "Повышает эффективность [gold]уязвимости[/gold] на врагах с [blue]+50%[/blue] до [blue]+75%[/blue] урона.",
     "description_raw": "Повышает эффективность [gold]уязвимости[/gold] на врагах с [blue]+50%[/blue] до [blue]+75%[/blue] урона.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
@@ -504,6 +516,7 @@
     },
     "image_url": "/static/images/relics/paper_phrog.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 41
   },
@@ -522,6 +535,7 @@
     },
     "image_url": "/static/images/relics/vajra.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 15
   },
@@ -540,6 +554,7 @@
     },
     "image_url": "/static/images/relics/lees_waffle.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 133
   },
@@ -558,8 +573,9 @@
     },
     "image_url": "/static/images/relics/fake_lees_waffle.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 258
+    "compendium_order": 263
   },
   {
     "id": "DINGY_RUG",
@@ -576,14 +592,15 @@
     },
     "image_url": "/static/images/relics/dingy_rug.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 134
   },
   {
     "id": "ETERNAL_FEATHER",
     "name": "Вечное перо",
-    "description": "Восполняет по [green]3[/green] ОЗ за plural(ru):каждую карту в [gold]колоде[/gold], когда вы посещаете [gold]лагерь[/gold].",
-    "description_raw": "Восполняет по [green]{Heal}[/green] ОЗ за {Cards:plural(ru):каждую карту|каждые [blue]{}[/blue] карты|каждые [blue]{}[/blue] карт} в [gold]колоде[/gold], когда вы посещаете [gold]лагерь[/gold].",
+    "description": "Восполняет [green]3[/green] ОЗ за plural(ru):каждую карту в [gold]колоде[/gold], когда вы посещаете [gold]лагерь[/gold].",
+    "description_raw": "Восполняет [green]{Heal}[/green] ОЗ за {Cards:plural(ru):каждую карту|каждые [blue]{}[/blue] карты|каждые [blue]{}[/blue] карт} в [gold]колоде[/gold], когда вы посещаете [gold]лагерь[/gold].",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Необычная реликвия",
     "pool": "shared",
@@ -594,14 +611,15 @@
     },
     "image_url": "/static/images/relics/eternal_feather.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 42
   },
   {
     "id": "UNCEASING_TOP",
     "name": "Вечный волчок",
-    "description": "Вы добираете карту, когда в [gold]руке[/gold] карты заканчиваются.",
-    "description_raw": "Вы добираете карту, когда в [gold]руке[/gold] карты заканчиваются.",
+    "description": "Когда в [gold]руке[/gold] заканчиваются карты, вы добираете 1 карту.",
+    "description_raw": "Когда в [gold]руке[/gold] заканчиваются карты, вы добираете 1 карту.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Редкая реликвия",
     "pool": "shared",
@@ -612,8 +630,9 @@
     },
     "image_url": "/static/images/relics/unceasing_top.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 84
+    "compendium_order": 83
   },
   {
     "id": "CHEMICAL_X",
@@ -630,14 +649,15 @@
     },
     "image_url": "/static/images/relics/chemical_x.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 135
   },
   {
     "id": "SYMBIOTIC_VIRUS",
     "name": "Вирус-симбионт",
-    "description": "[gold]Заряжает[/gold] [blue]1[/blue] [gold]сферу тьмы[/gold] в начале боя.",
-    "description_raw": "[gold]Заряжает[/gold] [blue]{Dark}[/blue] [gold]сферу тьмы[/gold] в начале боя.",
+    "description": "[gold]Заряжает[/gold] [blue]1[/blue] [gold]plural(ru):сферу тьмы[/gold] в начале боя.",
+    "description_raw": "[gold]Заряжает[/gold] [blue]{Dark}[/blue] [gold]{Dark:plural(ru):сферу тьмы|сферы тьмы|сфер тьмы}[/gold] в начале боя.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Необычная реликвия",
     "pool": "defect",
@@ -648,14 +668,15 @@
     },
     "image_url": "/static/images/relics/symbiotic_virus.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 43
   },
   {
     "id": "VITRUVIAN_MINION",
     "name": "Витрувианский слуга",
-    "description": "Карты с «Слуга» в названии наносят двойной урон и дают двойную [gold]защиту[/gold].",
-    "description_raw": "Карты с «Слуга» в названии наносят двойной урон и дают двойную [gold]защиту[/gold].",
+    "description": "Карты со «слугой» в названии наносят двойной урон и дают двойную [gold]защиту[/gold].",
+    "description_raw": "Карты со «слугой» в названии наносят двойной урон и дают двойную [gold]защиту[/gold].",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия из магазина",
     "pool": "regent",
@@ -666,14 +687,15 @@
     },
     "image_url": "/static/images/relics/vitruvian_minion.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 136
   },
   {
     "id": "YUMMY_COOKIE",
     "name": "Вкусное печенье",
-    "description": "При получении [gold]улучшает[/gold] [blue]4[/blue] plural(ru):карту.",
-    "description_raw": "При получении [gold]улучшает[/gold] [blue]{Cards}[/blue] {Cards:plural(ru):карту|карты|карт}.",
+    "description": "При получении [gold]улучшает[/gold] [blue]4[/blue] plural(ru):выбранную карту.",
+    "description_raw": "При получении [gold]улучшает[/gold] [blue]{Cards}[/blue] {Cards:plural(ru):выбранную карту|выбранные карты|выбранных карт}.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
@@ -686,6 +708,7 @@
       "Necrobinder": "/static/images/relics/yummy_cookie_necrobinder.webp",
       "Regent": "/static/images/relics/yummy_cookie_regent.webp"
     },
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 170
   },
@@ -704,14 +727,15 @@
     },
     "image_url": "/static/images/relics/ripple_basin.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 44
   },
   {
     "id": "TUNGSTEN_ROD",
     "name": "Вольфрамовый стержень",
-    "description": "Понижает потери ОЗ на [blue]1[/blue].",
-    "description_raw": "Понижает потери ОЗ на [blue]{HpLossReduction}[/blue].",
+    "description": "Понижает каждую потерю ОЗ на [blue]1[/blue].",
+    "description_raw": "Понижает каждую потерю ОЗ на [blue]{HpLossReduction}[/blue].",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Редкая реликвия",
     "pool": "shared",
@@ -722,36 +746,58 @@
     },
     "image_url": "/static/images/relics/tungsten_rod.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 85
+    "compendium_order": 84
   },
   {
     "id": "LAVA_ROCK",
     "name": "Вулканический камень",
-    "description": "Вы получите [blue]2[/blue] [gold]реликвии[/gold] за победу над [gold]боссом[/gold] [blue]1[/blue] [gold]акта[/gold].",
-    "description_raw": "Вы получите [blue]{Relics}[/blue] [gold]реликвии[/gold] за победу над [gold]боссом[/gold] [blue]1[/blue] [gold]акта[/gold].",
+    "description": "Даст [blue]2[/blue] [gold]реликвии[/gold] за победу над [gold]боссом[/gold] [blue]1-го[/blue] [gold]акта[/gold].",
+    "description_raw": "Даст [blue]{Relics}[/blue] [gold]реликвии[/gold] за победу над [gold]боссом[/gold] [blue]1-го[/blue] [gold]акта[/gold].",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
     "merchant_price": null,
     "image_url": "/static/images/relics/lava_rock.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 171
   },
   {
     "id": "DISTINGUISHED_CAPE",
     "name": "Выдающийся плащ",
-    "description": "При получении вы теряете [red]9[/red] максимальных ОЗ. Добавляет в [gold]колоду[/gold] [blue]3[/blue] [gold]plural(ru):«Призрак»[/gold].",
-    "description_raw": "При получении вы теряете [red]9[/red] максимальных ОЗ. Добавляет в [gold]колоду[/gold] [blue]{Cards}[/blue] [gold]{Cards:plural(ru):«Призрак»|«Призрака»|«Призраков»}[/gold].",
+    "description": "При получении понижает максимальные ОЗ на [blue]9[/blue]. Добавляет в [gold]колоду[/gold] [blue]3[/blue] [gold]plural(ru):«Привидение»[/gold].",
+    "description_raw": "При получении понижает максимальные ОЗ на [blue]9[/blue]. Добавляет в [gold]колоду[/gold] [blue]{Cards}[/blue] [gold]{Cards:plural(ru):«Привидение»|«Привидения»|«Привидений»}[/gold].",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
     "merchant_price": null,
     "image_url": "/static/images/relics/distinguished_cape.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 172
+  },
+  {
+    "id": "MUMMIFIED_HAND",
+    "name": "Высохшая рука",
+    "description": "Случайная карта в [gold]руке[/gold] становится бесплатной на ход, когда вы разыгрываете Талант.",
+    "description_raw": "Случайная карта в [gold]руке[/gold] становится бесплатной на ход, когда вы разыгрываете Талант.",
+    "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
+    "rarity": "Редкая реликвия",
+    "pool": "shared",
+    "merchant_price": {
+      "base": 300,
+      "min": 255,
+      "max": 345
+    },
+    "image_url": "/static/images/relics/mummified_hand.webp",
+    "image_variants": null,
+    "notes": null,
+    "rarity_key": "Rare",
+    "compendium_order": 85
   },
   {
     "id": "HELICAL_DART",
@@ -768,14 +814,15 @@
     },
     "image_url": "/static/images/relics/helical_dart.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 86
   },
   {
     "id": "GALACTIC_DUST",
     "name": "Галактическая пыль",
-    "description": "Дает [blue]10[/blue] [gold]защиты[/gold] за каждые [blue]10[/blue] потраченных [star:1].",
-    "description_raw": "Дает [blue]{Block}[/blue] [gold]защиты[/gold] за каждые [blue]{Stars}[/blue] потраченных {singleStarIcon}.",
+    "description": "Дает [blue]10[/blue] [gold]защиты[/gold] за каждые [blue]10[/blue] plural(ru):потраченную [star:1].",
+    "description_raw": "Дает [blue]{Block}[/blue] [gold]защиты[/gold] за каждые [blue]{Stars}[/blue] {Stars:plural(ru):потраченную|потраченные|потраченных} {singleStarIcon}.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Необычная реликвия",
     "pool": "regent",
@@ -786,14 +833,15 @@
     },
     "image_url": "/static/images/relics/galactic_dust.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 45
   },
   {
     "id": "GIRYA",
     "name": "Гиря",
-    "description": "Позволяет получать [gold]силу[/gold] до конца вылазки в [gold]лагере[/gold] (максимум [blue]3[/blue] раза).",
-    "description_raw": "Позволяет получать [gold]силу[/gold] до конца вылазки в [gold]лагере[/gold] (максимум [blue]3[/blue] раза).",
+    "description": "Позволяет получать [gold]силу[/gold] в [gold]лагере[/gold] до конца вылазки (максимум [blue]3[/blue] раза).",
+    "description_raw": "Позволяет получать [gold]силу[/gold] в [gold]лагере[/gold] до конца вылазки (максимум [blue]3[/blue] раза).",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Редкая реликвия",
     "pool": "shared",
@@ -804,6 +852,7 @@
     },
     "image_url": "/static/images/relics/girya.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 87
   },
@@ -818,20 +867,22 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/paels_eye.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 173
   },
   {
     "id": "SNECKO_EYE",
     "name": "Глаз змекко",
-    "description": "Вы добираете [blue]2[/blue] plural(ru):дополнительную карту в начале хода. Вы начинаете бой [red]в замешательстве[/red].",
-    "description_raw": "Вы добираете [blue]{Cards}[/blue] {Cards:plural(ru):дополнительную карту|дополнительные карты|дополнительных карт} в начале хода. Вы начинаете бой [red]в замешательстве[/red].",
+    "description": "Вы добираете еще [blue]2[/blue] plural(ru):карту в начале хода. Вы начинаете бой [red]в замешательстве[/red].",
+    "description_raw": "Вы добираете еще [blue]{Cards}[/blue] {Cards:plural(ru):карту|карты|карт} в начале хода. Вы начинаете бой [red]в замешательстве[/red].",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
     "merchant_price": null,
     "image_url": "/static/images/relics/snecko_eye.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 174
   },
@@ -850,8 +901,9 @@
     },
     "image_url": "/static/images/relics/fake_snecko_eye.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 259
+    "compendium_order": 264
   },
   {
     "id": "GORGET",
@@ -868,6 +920,7 @@
     },
     "image_url": "/static/images/relics/gorget.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 16
   },
@@ -886,8 +939,39 @@
     },
     "image_url": "/static/images/relics/screaming_flagon.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 137
+  },
+  {
+    "id": "HEFTY_TABLET",
+    "name": "Громоздкая плита",
+    "description": "При получении добавляет в [gold]колоду[/gold] [red]«Травму»[/red] и [blue]1[/blue] из [blue]3[/blue] редких карт на выбор.",
+    "description_raw": "При получении добавляет в [gold]колоду[/gold] [red]«Травму»[/red] и [blue]1[/blue] из [blue]{Cards}[/blue] редких карт на выбор.",
+    "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
+    "rarity": "Древняя реликвия",
+    "pool": "shared",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/hefty_tablet.webp",
+    "image_variants": null,
+    "notes": null,
+    "rarity_key": "Ancient",
+    "compendium_order": 175
+  },
+  {
+    "id": "TEA_OF_DISCOURTESY",
+    "name": "Грубый чай",
+    "description": "Добавит [blue]2[/blue] [gold]«Головокружения»[/gold] в [gold]стопку добора[/gold] в начале следующего боя.",
+    "description_raw": "Добавит [blue]{DazedCount}[/blue] [gold]«Головокружения»[/gold] в [gold]стопку добора[/gold] в начале следующего боя.",
+    "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
+    "rarity": "Реликвия за событие",
+    "pool": "shared",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/tea_of_discourtesy.webp",
+    "image_variants": null,
+    "notes": null,
+    "rarity_key": "Event",
+    "compendium_order": 265
   },
   {
     "id": "PEAR",
@@ -904,6 +988,7 @@
     },
     "image_url": "/static/images/relics/pear.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 46
   },
@@ -918,8 +1003,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/delicate_frond.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 175
+    "compendium_order": 176
   },
   {
     "id": "DATA_DISK",
@@ -936,22 +1022,24 @@
     },
     "image_url": "/static/images/relics/data_disk.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 17
   },
   {
     "id": "MASSIVE_SCROLL",
     "name": "Длиннющий свиток",
-    "description": "При получении добавляет в [gold]колоду[/gold] [blue]1[/blue] из [blue]3[/blue] бесцветных [gold]командных[/gold] карт на выбор.",
-    "description_raw": "При получении добавляет в [gold]колоду[/gold] [blue]1[/blue] из [blue]3[/blue] бесцветных [gold]командных[/gold] карт на выбор.",
+    "description": "При получении добавляет в [gold]колоду[/gold] [blue]1[/blue] из [blue]3[/blue] [gold]командных[/gold] карт на выбор.",
+    "description_raw": "При получении добавляет в [gold]колоду[/gold] [blue]1[/blue] из [blue]3[/blue] [gold]командных[/gold] карт на выбор.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
     "merchant_price": null,
     "image_url": "/static/images/relics/massive_scroll.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 176
+    "compendium_order": 177
   },
   {
     "id": "LASTING_CANDY",
@@ -959,17 +1047,18 @@
     "description": "В наградных наборах за каждый второй бой есть дополнительный Талант.",
     "description_raw": "В наградных наборах за каждый второй бой есть дополнительный Талант.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
-    "rarity": "Редкая реликвия",
+    "rarity": "Необычная реликвия",
     "pool": "shared",
     "merchant_price": {
-      "base": 300,
-      "min": 255,
-      "max": 345
+      "base": 250,
+      "min": 212,
+      "max": 288
     },
     "image_url": "/static/images/relics/lasting_candy.webp",
     "image_variants": null,
-    "rarity_key": "Rare",
-    "compendium_order": 88
+    "notes": null,
+    "rarity_key": "Uncommon",
+    "compendium_order": 47
   },
   {
     "id": "DAUGHTER_OF_THE_WIND",
@@ -982,12 +1071,13 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/daughter_of_the_wind.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 260
+    "compendium_order": 266
   },
   {
     "id": "DRAGON_FRUIT",
-    "name": "Драконий фрукт",
+    "name": "Драконий плод",
     "description": "Повышает максимальные ОЗ на [blue]1[/blue], когда вы получаете [gold]золото[/gold].",
     "description_raw": "Повышает максимальные ОЗ на [blue]{MaxHp}[/blue], когда вы получаете [gold]золото[/gold].",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
@@ -1000,14 +1090,30 @@
     },
     "image_url": "/static/images/relics/dragon_fruit.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 138
   },
   {
+    "id": "ARCHAIC_TOOTH",
+    "name": "Древний зуб",
+    "description": "При получении [gold]преобразует[/gold] базовую карту в ее древнюю версию.",
+    "description_raw": "При получении [gold]преобразует[/gold] {StarterCard.StringValue:cond:карту [gold]«{StarterCard}»[/gold] в карту [gold]«{AncientCard}»[/gold]|базовую карту в ее древнюю версию}.",
+    "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
+    "rarity": "Древняя реликвия",
+    "pool": "shared",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/archaic_tooth.webp",
+    "image_variants": null,
+    "notes": null,
+    "rarity_key": "Ancient",
+    "compendium_order": 178
+  },
+  {
     "id": "STONE_CRACKER",
     "name": "Дробитель камней",
-    "description": "[gold]Улучшает[/gold] [blue]3[/blue] plural(ru):случайную карту в [gold]стопке добора[/gold] в начале боя с [gold]боссами[/gold] до конца боя.",
-    "description_raw": "[gold]Улучшает[/gold] [blue]{Cards}[/blue] {Cards:plural(ru):случайную карту|случайные карты|случайных карт} в [gold]стопке добора[/gold] в начале боя с [gold]боссами[/gold] до конца боя.",
+    "description": "[gold]Улучшает[/gold] [blue]2[/blue] plural(ru):случайную карту в [gold]стопке добора[/gold] в начале боя.",
+    "description_raw": "[gold]Улучшает[/gold] [blue]{Cards}[/blue] {Cards:plural(ru):случайную карту|случайные карты|случайных карт} в [gold]стопке добора[/gold] в начале боя.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Необычная реликвия",
     "pool": "shared",
@@ -1018,28 +1124,30 @@
     },
     "image_url": "/static/images/relics/stone_cracker.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 47
+    "compendium_order": 48
   },
   {
     "id": "IRON_CLUB",
     "name": "Железная дубина",
     "description": "Вы добираете [blue]1[/blue] карту plural(ru):за каждую разыгранную карту.",
-    "description_raw": "Вы добираете [blue]1[/blue] карту {Cards:plural(ru):за каждую разыгранную карту|каждые [blue]{}[/blue] разыгранных карт|каждые [blue]{}[/blue] разыгранных карт}.",
+    "description_raw": "Вы добираете [blue]1[/blue] карту {Cards:plural(ru):за каждую разыгранную карту|за каждые [blue]{}[/blue] разыгранных карт|за каждые [blue]{}[/blue] разыгранных карт}.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
     "merchant_price": null,
     "image_url": "/static/images/relics/iron_club.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 177
+    "compendium_order": 179
   },
   {
     "id": "MYSTIC_LIGHTER",
     "name": "Загадочная зажигалка",
-    "description": "Повышает урон [gold]зачарованных[/gold] Атак [blue]9[/blue].",
-    "description_raw": "Повышает урон [gold]зачарованных[/gold] Атак [blue]{Damage}[/blue].",
+    "description": "Повышает урон [gold]зачарованных[/gold] Атак на [blue]9[/blue].",
+    "description_raw": "Повышает урон [gold]зачарованных[/gold] Атак на [blue]{Damage}[/blue].",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия из магазина",
     "pool": "shared",
@@ -1050,12 +1158,13 @@
     },
     "image_url": "/static/images/relics/mystic_lighter.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 139
   },
   {
     "id": "WONGOS_MYSTERY_TICKET",
-    "name": "Загадочный билет Вонго",
+    "name": "Загадочный билет «Вонго»",
     "description": "Даст [blue]3[/blue] plural(ru):случайную [gold]реликвию[/gold] после [blue]5[/blue] plural(ru):боя.",
     "description_raw": "Даст [blue]{Repeat}[/blue] {Repeat:plural(ru):случайную [gold]реликвию[/gold]|[blue]{}[/blue] случайные [gold]реликвии[/gold]|[blue]{}[/blue] случайных [gold]реликвий[/gold]} после [blue]{RemainingCombats}[/blue] {RemainingCombats:plural(ru):боя|боев|боев}.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
@@ -1064,26 +1173,47 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/wongos_mystery_ticket.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 261
+    "compendium_order": 267
+  },
+  {
+    "id": "BOOKMARK",
+    "name": "Закладка",
+    "description": "Понижает стоимость случайной [gold]оставленной[/gold] в руке карты на [blue]1[/blue] в конце хода, пока она не разыграна.",
+    "description_raw": "Понижает стоимость случайной [gold]оставленной[/gold] в руке карты на [blue]1[/blue] в конце хода, пока она не разыграна.",
+    "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
+    "rarity": "Редкая реликвия",
+    "pool": "necrobinder",
+    "merchant_price": {
+      "base": 300,
+      "min": 255,
+      "max": 345
+    },
+    "image_url": "/static/images/relics/bookmark.webp",
+    "image_variants": null,
+    "notes": null,
+    "rarity_key": "Rare",
+    "compendium_order": 88
   },
   {
     "id": "PERMAFROST",
     "name": "Заледеневшая снежинка",
-    "description": "Дает [blue]6[/blue] [gold]защиты[/gold], когда вы разыгрываете Талант первый раз за бой.",
+    "description": "Дает [blue]7[/blue] [gold]защиты[/gold], когда вы разыгрываете Талант первый раз за бой.",
     "description_raw": "Дает [blue]{Block}[/blue] [gold]защиты[/gold], когда вы разыгрываете Талант первый раз за бой.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
-    "rarity": "Обычная реликвия",
+    "rarity": "Необычная реликвия",
     "pool": "shared",
     "merchant_price": {
-      "base": 200,
-      "min": 170,
-      "max": 230
+      "base": 250,
+      "min": 212,
+      "max": 288
     },
     "image_url": "/static/images/relics/permafrost.webp",
     "image_variants": null,
-    "rarity_key": "Common",
-    "compendium_order": 18
+    "notes": null,
+    "rarity_key": "Uncommon",
+    "compendium_order": 49
   },
   {
     "id": "FROZEN_EGG",
@@ -1100,6 +1230,7 @@
     },
     "image_url": "/static/images/relics/frozen_egg.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 89
   },
@@ -1114,6 +1245,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/bound_phylactery.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Starter",
     "compendium_order": 2
   },
@@ -1132,12 +1264,13 @@
     },
     "image_url": "/static/images/relics/razor_tooth.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 90
   },
   {
     "id": "INFUSED_CORE",
-    "name": "Заряженная сфера",
+    "name": "Заряженное ядро",
     "description": "[gold]Заряжает[/gold] [blue]3[/blue] [gold]сферы молнии[/gold] в начале боя.",
     "description_raw": "[gold]Заряжает[/gold] [blue]{Lightning}[/blue] [gold]сферы молнии[/gold] в начале боя.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
@@ -1146,6 +1279,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/infused_core.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Starter",
     "compendium_order": 3
   },
@@ -1164,14 +1298,15 @@
     },
     "image_url": "/static/images/relics/ringing_triangle.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 140
   },
   {
     "id": "DOLLYS_MIRROR",
     "name": "Зеркало Долли",
-    "description": "При получении добавляет в [gold]колоду[/gold] копию существующей в ней карты.",
-    "description_raw": "При получении добавляет в [gold]колоду[/gold] копию существующей в ней карты.",
+    "description": "При получении добавляет в [gold]колоду[/gold] копию одной из ваших карт на выбор.",
+    "description_raw": "При получении добавляет в [gold]колоду[/gold] копию одной из ваших карт на выбор.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия из магазина",
     "pool": "shared",
@@ -1182,12 +1317,13 @@
     },
     "image_url": "/static/images/relics/dollys_mirror.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 141
   },
   {
     "id": "WONGO_CUSTOMER_APPRECIATION_BADGE",
-    "name": "Значок почетного покупателя Вонго",
+    "name": "Значок почетного покупателя «Вонго»",
     "description": "Ничего не делает.",
     "description_raw": "Ничего не делает.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
@@ -1196,8 +1332,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/wongo_customer_appreciation_badge.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 262
+    "compendium_order": 268
   },
   {
     "id": "GOLDEN_PEARL",
@@ -1210,36 +1347,39 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/golden_pearl.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 178
+    "compendium_order": 180
   },
   {
     "id": "SEAL_OF_GOLD",
     "name": "Золотая печать",
-    "description": "Дает [energy:1] и вы теряете [blue]5[/blue] [gold]золота[/gold] в начале хода.",
-    "description_raw": "Дает {Energy:energyIcons()} и вы теряете [blue]{Gold}[/blue] [gold]золота[/gold] в начале хода.",
+    "description": "Дает [energy:1] в обмен на [blue]5[/blue] [gold]золота[/gold] в начале хода.",
+    "description_raw": "Дает {Energy:energyIcons()} в обмен на [blue]{Gold}[/blue] [gold]золота[/gold] в начале хода.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
     "merchant_price": null,
     "image_url": "/static/images/relics/seal_of_gold.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 179
+    "compendium_order": 181
   },
   {
     "id": "GOLDEN_COMPASS",
     "name": "Золотой компас",
-    "description": "При получении заменяет карту [blue]2-го[/blue] [gold]акта[/gold] на особый, прямой путь.",
-    "description_raw": "При получении заменяет карту [blue]2-го[/blue] [gold]акта[/gold] на особый, прямой путь.",
+    "description": "При получении заменяет путь [blue]2-го[/blue] [gold]акта[/gold] на особую прямую дорогу.",
+    "description_raw": "При получении заменяет путь [blue]2-го[/blue] [gold]акта[/gold] на особую прямую дорогу.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
     "merchant_price": null,
     "image_url": "/static/images/relics/golden_compass.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 180
+    "compendium_order": 182
   },
   {
     "id": "LORDS_PARASOL",
@@ -1252,8 +1392,28 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/lords_parasol.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 181
+    "compendium_order": 183
+  },
+  {
+    "id": "IVORY_TILE",
+    "name": "Игральная кость",
+    "description": "Дает [energy:1], когда вы разыгрываете карту стоимостью не менее [energy:3].",
+    "description_raw": "Дает {Energy:energyIcons()}, когда вы разыгрываете карту стоимостью не менее {EnergyThreshold:energyIcons()}.",
+    "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
+    "rarity": "Редкая реликвия",
+    "pool": "necrobinder",
+    "merchant_price": {
+      "base": 300,
+      "min": 255,
+      "max": 345
+    },
+    "image_url": "/static/images/relics/ivory_tile.webp",
+    "image_variants": null,
+    "notes": null,
+    "rarity_key": "Rare",
+    "compendium_order": 91
   },
   {
     "id": "GAME_PIECE",
@@ -1270,8 +1430,24 @@
     },
     "image_url": "/static/images/relics/game_piece.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 91
+    "compendium_order": 92
+  },
+  {
+    "id": "MR_STRUGGLES",
+    "name": "Игрушечный страдалец",
+    "description": "Наносит урон, равный номеру текущего хода, ВСЕМ врагам в начале хода.",
+    "description_raw": "Наносит урон, равный номеру текущего хода, ВСЕМ врагам в начале хода.",
+    "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
+    "rarity": "Реликвия за событие",
+    "pool": "shared",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/mr_struggles.webp",
+    "image_variants": null,
+    "notes": null,
+    "rarity_key": "Event",
+    "compendium_order": 269
   },
   {
     "id": "CHOSEN_CHEESE",
@@ -1284,50 +1460,54 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/chosen_cheese.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 263
+    "compendium_order": 270
   },
   {
     "id": "PAELS_GROWTH",
     "name": "Изобилие Паэля",
-    "description": "",
-    "description_raw": "",
+    "description": "При получении накладывает [gold]чары[/gold] [purple]«Удвоение»[/purple] на выбранную карту.",
+    "description_raw": "При получении накладывает [gold]чары[/gold] [purple]«{EnchantmentName}»[/purple] на выбранную карту.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
     "merchant_price": null,
     "image_url": "/static/images/relics/paels_growth.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 182
+    "compendium_order": 184
   },
   {
     "id": "BRILLIANT_SCARF",
     "name": "Изумительный шарф",
-    "description": "Делает каждую [blue]5[/blue] разыгрываемую карту бесплатной.",
-    "description_raw": "Делает каждую [blue]5[/blue] разыгрываемую карту бесплатной.",
+    "description": "[blue]5-я[/blue] разыгрываемая за ход карта становится бесплатной.",
+    "description_raw": "[blue]5-я[/blue] разыгрываемая за ход карта становится бесплатной.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
     "merchant_price": null,
     "image_url": "/static/images/relics/brilliant_scarf.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 183
+    "compendium_order": 185
   },
   {
     "id": "JEWELED_MASK",
     "name": "Инкрустированная маска",
-    "description": "Вы берете случайный Талант из [gold]стопки добора[/gold] в начале боя, он бесплатный.",
-    "description_raw": "Вы берете случайный Талант из [gold]стопки добора[/gold] в начале боя, он бесплатный.",
+    "description": "Вы берете случайный Талант из [gold]стопки добора[/gold] в начале боя. В этом бою он бесплатный.",
+    "description_raw": "Вы берете случайный Талант из [gold]стопки добора[/gold] в начале боя. В этом бою он бесплатный.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
     "merchant_price": null,
     "image_url": "/static/images/relics/jeweled_mask.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 184
+    "compendium_order": 186
   },
   {
     "id": "TWISTED_FUNNEL",
@@ -1344,14 +1524,15 @@
     },
     "image_url": "/static/images/relics/twisted_funnel.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 48
+    "compendium_order": 50
   },
   {
     "id": "GNARLED_HAMMER",
     "name": "Искривленный молот",
-    "description": "При получении [gold]чарует[/gold] до [blue]3[/blue] plural(ru):Атаки на [purple]остроту[/purple] [blue]3[/blue].",
-    "description_raw": "При получении [gold]чарует[/gold] до [blue]{Cards}[/blue] {Cards:plural(ru):Атаки|Атак|Атак} на [purple]остроту[/purple] [blue]{SharpAmount:diff()}[/blue].",
+    "description": "Позволяет наложить [gold]чары[/gold] [purple]«Острота»[/purple] [blue]3[/blue] на [blue]3[/blue] plural(ru):выбранную Атаку.",
+    "description_raw": "Позволяет наложить [gold]чары[/gold] [purple]«Острота»[/purple] [blue]{SharpAmount:diff()}[/blue] на [blue]{Cards}[/blue] {Cards:plural(ru):выбранную Атаку|выбранные Атаки|выбранных Атак}.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия из магазина",
     "pool": "shared",
@@ -1362,6 +1543,7 @@
     },
     "image_url": "/static/images/relics/gnarled_hammer.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 142
   },
@@ -1380,22 +1562,24 @@
     },
     "image_url": "/static/images/relics/art_of_war.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 92
+    "compendium_order": 93
   },
   {
     "id": "SERE_TALON",
     "name": "Иссушенный коготь",
-    "description": "При получении добавляет в [gold]колоду[/gold] [blue]2[/blue] случайных [red]проклятия[/red] и [blue]3[/blue] [purple]«Желания»[/purple].",
-    "description_raw": "При получении добавляет в [gold]колоду[/gold] [blue]{Curses}[/blue] случайных [red]проклятия[/red] и [blue]{Wishes}[/blue] [purple]«Желания»[/purple].",
+    "description": "При получении добавляет в [gold]колоду[/gold] [blue]2[/blue] случайных [red]plural(ru):проклятие[/red] и [blue]3[/blue] [purple]plural(ru):«Желание»[/purple].",
+    "description_raw": "При получении добавляет в [gold]колоду[/gold] [blue]{Curses}[/blue] случайных [red]{Curses:plural(ru):проклятие|проклятия|проклятий}[/red] и [blue]{Wishes}[/blue] [purple]{Wishes:plural(ru):«Желание»|«Желания»|«Желаний»}[/purple].",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
     "merchant_price": null,
     "image_url": "/static/images/relics/sere_talon.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 185
+    "compendium_order": 187
   },
   {
     "id": "STONE_CALENDAR",
@@ -1412,8 +1596,9 @@
     },
     "image_url": "/static/images/relics/stone_calendar.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 93
+    "compendium_order": 94
   },
   {
     "id": "STONE_HUMIDIFIER",
@@ -1426,14 +1611,15 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/stone_humidifier.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 186
+    "compendium_order": 188
   },
   {
     "id": "TUNING_FORK",
     "name": "Камертон",
-    "description": "Дает [blue]7[/blue] [gold]защиты[/gold], когда вы разыгрываете [blue]10[/blue] Навыков за ход.",
-    "description_raw": "Дает [blue]{Block}[/blue] [gold]защиты[/gold], когда вы разыгрываете [blue]{Cards}[/blue] Навыков за ход.",
+    "description": "Дает [blue]7[/blue] [gold]защиты[/gold] за каждые [blue]10[/blue] разыгрываемых plural(ru):Навык.",
+    "description_raw": "Дает [blue]{Block}[/blue] [gold]защиты[/gold] за каждые [blue]{Cards}[/blue] разыгрываемых {Cards:plural(ru):Навык|Навыка|Навыков}.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Необычная реликвия",
     "pool": "shared",
@@ -1444,8 +1630,9 @@
     },
     "image_url": "/static/images/relics/tuning_fork.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 49
+    "compendium_order": 51
   },
   {
     "id": "CANDELABRA",
@@ -1462,8 +1649,9 @@
     },
     "image_url": "/static/images/relics/candelabra.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 50
+    "compendium_order": 52
   },
   {
     "id": "CAPTAINS_WHEEL",
@@ -1480,14 +1668,15 @@
     },
     "image_url": "/static/images/relics/captains_wheel.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 94
+    "compendium_order": 95
   },
   {
     "id": "POCKETWATCH",
     "name": "Карманные часы",
-    "description": "Вы добираете [blue]3[/blue] plural(ru):дополнительную карту в начале следующего хода, если разыгрываете [blue]3[/blue] plural(ru):карту или меньше в текущем.",
-    "description_raw": "Вы добираете [blue]{Cards}[/blue] {Cards:plural(ru):дополнительную карту|дополнительные карты|дополнительных карт} в начале следующего хода, если разыгрываете [blue]{CardThreshold}[/blue] {CardThreshold:plural(ru):карту|карты|карт} или меньше в текущем.",
+    "description": "Вы добираете еще [blue]3[/blue] plural(ru):карту в начале следующего хода, если разыгрываете не более [blue]3[/blue] plural(ru):карты в текущем.",
+    "description_raw": "Вы добираете еще [blue]{Cards}[/blue] {Cards:plural(ru):карту|карты|карт} в начале следующего хода, если разыгрываете не более [blue]{CardThreshold}[/blue] {CardThreshold:plural(ru):карты|карт|карт} в текущем.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Редкая реликвия",
     "pool": "shared",
@@ -1498,28 +1687,30 @@
     },
     "image_url": "/static/images/relics/pocketwatch.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 95
+    "compendium_order": 96
   },
   {
     "id": "TOUCH_OF_OROBAS",
     "name": "Касание Оробаса",
     "description": "При получении заменяет стартовую [gold]реликвию[/gold] на ее [gold]древнюю[/gold] версию.",
-    "description_raw": "При получении заменяет {StarterRelic.StringValue:cond:[gold]{StarterRelic}[/gold] на [gold]{UpgradedRelic}[/gold]|стартовую [gold]реликвию[/gold] на ее [gold]древнюю[/gold] версию}.",
+    "description_raw": "При получении {StarterRelic.StringValue:cond:в вашем наборе реликвий пропадает [gold]{StarterRelic}[/gold] и появляется [gold]{UpgradedRelic}[/gold]|заменяет стартовую [gold]реликвию[/gold] на ее [gold]древнюю[/gold] версию}.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
     "merchant_price": null,
     "image_url": "/static/images/relics/touch_of_orobas.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 187
+    "compendium_order": 189
   },
   {
     "id": "KIFUDA",
     "name": "Кифуда",
-    "description": "При получении [gold]чарует[/gold] до [blue]3[/blue] plural(ru):карты на [purple]смекалку[/purple].",
-    "description_raw": "При получении [gold]чарует[/gold] до [blue]{Cards}[/blue] {Cards:plural(ru):карты|карт|карт} на [purple]смекалку[/purple].",
+    "description": "Позволяет наложить [gold]чары[/gold] [purple]«Смекалка»[/purple] на [blue]3[/blue] plural(ru):выбранную карту.",
+    "description_raw": "Позволяет наложить [gold]чары[/gold] [purple]«Смекалка»[/purple] на [blue]{Cards}[/blue] {Cards:plural(ru):выбранную карту|выбранные карты|выбранных карт}.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия из магазина",
     "pool": "shared",
@@ -1530,6 +1721,7 @@
     },
     "image_url": "/static/images/relics/kifuda.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 143
   },
@@ -1548,28 +1740,30 @@
     },
     "image_url": "/static/images/relics/strawberry.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
-    "compendium_order": 19
+    "compendium_order": 18
   },
   {
     "id": "PAELS_TOOTH",
     "name": "Клык Паэля",
-    "description": "При получении удаляет из [gold]колоды[/gold] [blue]5[/blue] plural(ru):карту. Возвращает по [blue]1[/blue] в случайном порядке в конце боя, [gold]улучшенные[/gold].",
-    "description_raw": "При получении удаляет из [gold]колоды[/gold] [blue]{Cards}[/blue] {Cards:plural(ru):карту|карты|карт}. Возвращает по [blue]1[/blue] в случайном порядке в конце боя, [gold]улучшенные[/gold].{CardTitles.StringValue:cond:\n\nКарт в котле:\n{}|}",
+    "description": "При получении удаляет из [gold]колоды[/gold] [blue]5[/blue] plural(ru):карту. [gold]Улучшает[/gold] и возвращает по [blue]1[/blue] в случайном порядке в конце боя.",
+    "description_raw": "При получении удаляет из [gold]колоды[/gold] [blue]{Cards}[/blue] {Cards:plural(ru):карту|карты|карт}. [gold]Улучшает[/gold] и возвращает по [blue]1[/blue] в случайном порядке в конце боя.{CardTitles.StringValue:cond:\n\nЗакушенные карты:\n{}|}",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
     "merchant_price": null,
     "image_url": "/static/images/relics/paels_tooth.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 188
+    "compendium_order": 190
   },
   {
     "id": "BOOK_OF_FIVE_RINGS",
     "name": "Книга пяти колец",
-    "description": "Восполняет [green]15[/green] ОЗ каждые [blue]5[/blue] plural(ru):карту, добавляемых в [gold]колоду[/gold].",
-    "description_raw": "Восполняет [green]{Heal}[/green] ОЗ каждые [blue]{Cards}[/blue] {Cards:plural(ru):карту|карты|карт}, добавляемых в [gold]колоду[/gold].",
+    "description": "Восполняет [green]20[/green] ОЗ за каждую plural(ru):карту, добавляемую в [gold]колоду[/gold].",
+    "description_raw": "Восполняет [green]{Heal}[/green] ОЗ за каждую {Cards:plural(ru):карту, добавляемую|[blue]{}[/blue] карты, добавляемые|[blue]{}[/blue] карт, добавляемых} в [gold]колоду[/gold].",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Обычная реликвия",
     "pool": "shared",
@@ -1580,116 +1774,90 @@
     },
     "image_url": "/static/images/relics/book_of_five_rings.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
-    "compendium_order": 20
-  },
-  {
-    "id": "BOOKMARK",
-    "name": "Книжная закладка",
-    "description": "Понижает цену случайной [gold]оставленной[/gold] карты на [blue]1[/blue] в конце хода, пока она не разыграна.",
-    "description_raw": "Понижает цену случайной [gold]оставленной[/gold] карты на [blue]1[/blue] в конце хода, пока она не разыграна.",
-    "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
-    "rarity": "Редкая реликвия",
-    "pool": "necrobinder",
-    "merchant_price": {
-      "base": 300,
-      "min": 255,
-      "max": 345
-    },
-    "image_url": "/static/images/relics/bookmark.webp",
-    "image_variants": null,
-    "rarity_key": "Rare",
-    "compendium_order": 96
+    "compendium_order": 19
   },
   {
     "id": "FAKE_MERCHANTS_RUG",
     "name": "Ковер Торговца???",
-    "description": "Жалкая пародия. Ничего не делает.",
-    "description_raw": "Жалкая пародия. Ничего не делает.",
+    "description": "Никудышная подделка. Бесполезный.",
+    "description_raw": "Никудышная подделка. Бесполезный.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия за событие",
     "pool": "shared",
     "merchant_price": null,
     "image_url": "/static/images/relics/fake_merchants_rug.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 264
+    "compendium_order": 271
   },
   {
     "id": "PAELS_CLAW",
     "name": "Коготь Паэля",
-    "description": "",
-    "description_raw": "",
+    "description": "При получении накладывает [gold]чары[/gold] [purple]«Вязкая»[/purple] на все [gold]«Обороны»[/gold].",
+    "description_raw": "При получении накладывает [gold]чары[/gold] [purple]«{EnchantmentName}»[/purple] на все [gold]«Обороны»[/gold].",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
     "merchant_price": null,
     "image_url": "/static/images/relics/paels_claw.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 189
+    "compendium_order": 191
   },
   {
     "id": "CLAWS",
     "name": "Когти",
-    "description": "При получении [gold]преобразует[/gold] до [blue]6[/blue] plural(ru):карты в [gold]колоде[/gold] в [gold]«Растерзать»[/gold].",
-    "description_raw": "При получении [gold]преобразует[/gold] до [blue]{Cards}[/blue] {Cards:plural(ru):карты|карт|карт} в [gold]колоде[/gold] в [gold]«Растерзать»[/gold].",
+    "description": "При получении [gold]преобразует[/gold] до [blue]6[/blue] plural(ru):выбранной карты в [gold]«Побои»[/gold].",
+    "description_raw": "При получении [gold]преобразует[/gold] до [blue]{Cards}[/blue] {Cards:plural(ru):выбранной карты|выбранных карт|выбранных карт} в [gold]«Побои»[/gold].",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
     "merchant_price": null,
     "image_url": "/static/images/relics/claws.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 190
+    "compendium_order": 192
   },
   {
     "id": "RING_OF_THE_SNAKE",
     "name": "Кольцо змеи",
-    "description": "Вы добираете [blue]2[/blue] plural(ru):дополнительную карту в начале боя.",
-    "description_raw": "Вы добираете [blue]{Cards}[/blue] {Cards:plural(ru):дополнительную карту|дополнительные карты|дополнительных карт} в начале боя.",
+    "description": "Вы добираете еще [blue]2[/blue] plural(ru):карту в начале боя.",
+    "description_raw": "Вы добираете еще [blue]{Cards}[/blue] {Cards:plural(ru):карту|карты|карт} в начале боя.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Начальная реликвия",
     "pool": "silent",
     "merchant_price": null,
     "image_url": "/static/images/relics/ring_of_the_snake.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Starter",
     "compendium_order": 4
   },
   {
-    "id": "SIGNET_RING",
-    "name": "Кольцо с перстнем",
-    "description": "При получении дает [blue]999[/blue] [gold]золота[/gold].",
-    "description_raw": "При получении дает [blue]{Gold}[/blue] [gold]золота[/gold].",
-    "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
-    "rarity": "Древняя реликвия",
-    "pool": "shared",
-    "merchant_price": null,
-    "image_url": "/static/images/relics/signet_ring.webp",
-    "image_variants": null,
-    "rarity_key": "Ancient",
-    "compendium_order": 191
-  },
-  {
     "id": "RING_OF_THE_DRAKE",
     "name": "Кольцо ящера",
-    "description": "Вы добираете [blue]2[/blue] plural(ru):дополнительную карту plural(ru):в начале боя.",
-    "description_raw": "Вы добираете [blue]{Cards}[/blue] {Cards:plural(ru):дополнительную карту|дополнительные карты|дополнительных карт} {Turns:plural(ru):в начале боя|[blue]{}[/blue] первых хода|[blue]{}[/blue] первых ходов}.",
+    "description": "Вы добираете еще [blue]2[/blue] plural(ru):карту plural(ru):в начале боя.",
+    "description_raw": "Вы добираете еще [blue]{Cards}[/blue] {Cards:plural(ru):карту|карты|карт} {Turns:plural(ru):в начале боя|в начале первых [blue]{}[/blue] ходов|в начале первых [blue]{}[/blue] ходов}.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Начальная реликвия",
     "pool": "silent",
     "merchant_price": null,
     "image_url": "/static/images/relics/ring_of_the_drake.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Starter",
     "compendium_order": 5
   },
   {
     "id": "ROYAL_STAMP",
     "name": "Королевская печать",
-    "description": "",
-    "description_raw": "",
+    "description": "При получении накладывает [gold]чары[/gold] [purple]«Королевская печать»[/purple] на выбранную Атаку или Навык.",
+    "description_raw": "При получении накладывает [gold]чары[/gold] [purple]«{Enchantment}»[/purple] на выбранную Атаку или Навык.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия из магазина",
     "pool": "shared",
@@ -1700,6 +1868,7 @@
     },
     "image_url": "/static/images/relics/royal_stamp.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 144
   },
@@ -1718,36 +1887,54 @@
     },
     "image_url": "/static/images/relics/regal_pillow.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
-    "compendium_order": 21
+    "compendium_order": 20
   },
   {
     "id": "ROYAL_POISON",
     "name": "Королевский яд",
-    "description": "Вы теряете [blue]4[/blue] ОЗ в начале каждого боя.",
-    "description_raw": "Вы теряете [blue]{Damage}[/blue] ОЗ в начале каждого боя.",
+    "description": "Вы теряете [blue]4[/blue] ОЗ в начале боя.",
+    "description_raw": "Вы теряете [blue]{Damage}[/blue] ОЗ в начале боя.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия за событие",
     "pool": "shared",
     "merchant_price": null,
     "image_url": "/static/images/relics/royal_poison.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 265
+    "compendium_order": 272
+  },
+  {
+    "id": "NEOWS_BONES",
+    "name": "Кости Ньяу",
+    "description": "При получении дает [blue]2[/blue] [gold]plural(ru):случайную реликвию Ньяу[/gold] и добавляет в [gold]колоду[/gold] [blue]1[/blue] [red]plural(ru):случайное проклятие[/red].",
+    "description_raw": "При получении дает [blue]{Relics}[/blue] [gold]{Relics:plural(ru):случайную реликвию Ньяу|случайные реликвии Ньяу|случайных реликвий Ньяу}[/gold] и добавляет в [gold]колоду[/gold] [blue]{Curses}[/blue] [red]{Curses:plural(ru):случайное проклятие|случайных проклятия|случайных проклятий}[/red].",
+    "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
+    "rarity": "Древняя реликвия",
+    "pool": "shared",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/neows_bones.webp",
+    "image_variants": null,
+    "notes": null,
+    "rarity_key": "Ancient",
+    "compendium_order": 193
   },
   {
     "id": "BONE_TEA",
     "name": "Костный чай",
-    "description": "[gold]Улучшает[/gold] карты в руке в начале plural(ru):следующего боя.",
-    "description_raw": "[gold]Улучшает[/gold] карты в руке в начале {Combats:plural(ru):следующего боя|[blue]{}[/blue] следующих боев|[blue]{}[/blue] следующих боев}.",
+    "description": "[gold]Улучшает[/gold] карты в первой [gold]руке[/gold] plural(ru):следующего боя.",
+    "description_raw": "[gold]Улучшает[/gold] карты в первой [gold]руке[/gold] {Combats:plural(ru):следующего боя|[blue]{}[/blue] следующих боев|[blue]{}[/blue] следующих боев}.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия за событие",
     "pool": "shared",
     "merchant_price": null,
     "image_url": "/static/images/relics/bone_tea.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 266
+    "compendium_order": 273
   },
   {
     "id": "BONE_FLUTE",
@@ -1764,8 +1951,9 @@
     },
     "image_url": "/static/images/relics/bone_flute.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
-    "compendium_order": 22
+    "compendium_order": 21
   },
   {
     "id": "CAULDRON",
@@ -1782,28 +1970,15 @@
     },
     "image_url": "/static/images/relics/cauldron.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 145
   },
   {
-    "id": "BEAUTIFUL_BRACELET",
-    "name": "Красивый браслет",
-    "description": "При получении [gold]чарует[/gold] [blue]3[/blue] plural(ru):карту на [purple]скорость[/purple] [blue]3[/blue].",
-    "description_raw": "При получении [gold]чарует[/gold] [blue]{Cards}[/blue] {Cards:plural(ru):карту|карты|карт} на [purple]скорость[/purple] [blue]3[/blue].",
-    "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
-    "rarity": "Древняя реликвия",
-    "pool": "shared",
-    "merchant_price": null,
-    "image_url": "/static/images/relics/beautiful_bracelet.webp",
-    "image_variants": null,
-    "rarity_key": "Ancient",
-    "compendium_order": 192
-  },
-  {
-    "id": "RED_MASK",
-    "name": "Красная маска",
-    "description": "Накладывает [blue]1[/blue] [gold]слабости[/gold] на ВСЕХ врагов в начале боя.",
-    "description_raw": "Накладывает [blue]{WeakPower}[/blue] [gold]слабости[/gold] на ВСЕХ врагов в начале боя.",
+    "id": "BOWLER_HAT",
+    "name": "Котелок",
+    "description": "Вы получаете на [blue]25%[/blue] больше [gold]золота[/gold].",
+    "description_raw": "Вы получаете на [blue]{GoldIncrease:percentMore()}%[/blue] больше [gold]золота[/gold].",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Необычная реликвия",
     "pool": "shared",
@@ -1812,16 +1987,51 @@
       "min": 212,
       "max": 288
     },
+    "image_url": "/static/images/relics/bowler_hat.webp",
+    "image_variants": null,
+    "notes": null,
+    "rarity_key": "Uncommon",
+    "compendium_order": 53
+  },
+  {
+    "id": "BEAUTIFUL_BRACELET",
+    "name": "Красивый браслет",
+    "description": "При получении накладывает [gold]чары[/gold] [purple]«Скорость»[/purple] [blue]3[/blue] на [blue]3[/blue] plural(ru):выбранную карту.",
+    "description_raw": "При получении накладывает [gold]чары[/gold] [purple]«Скорость»[/purple] [blue]3[/blue] на [blue]{Cards}[/blue] {Cards:plural(ru):выбранную карту|выбранные карты|выбранных карт}.",
+    "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
+    "rarity": "Древняя реликвия",
+    "pool": "shared",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/beautiful_bracelet.webp",
+    "image_variants": null,
+    "notes": null,
+    "rarity_key": "Ancient",
+    "compendium_order": 194
+  },
+  {
+    "id": "RED_MASK",
+    "name": "Красная маска",
+    "description": "Накладывает [blue]1[/blue] [gold]слабости[/gold] на ВСЕХ врагов в начале боя.",
+    "description_raw": "Накладывает [blue]{WeakPower}[/blue] [gold]слабости[/gold] на ВСЕХ врагов в начале боя.",
+    "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
+    "rarity": "Обычная реликвия",
+    "pool": "shared",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
     "image_url": "/static/images/relics/red_mask.webp",
     "image_variants": null,
-    "rarity_key": "Uncommon",
-    "compendium_order": 51
+    "notes": null,
+    "rarity_key": "Common",
+    "compendium_order": 22
   },
   {
     "id": "RED_SKULL",
     "name": "Красный череп",
-    "description": "Дает [blue]3[/blue] [gold]силы[/gold], когда ОЗ равны или меньше [blue]50%[/blue].",
-    "description_raw": "Дает [blue]{StrengthPower}[/blue] [gold]силы[/gold], когда ОЗ равны или меньше [blue]{HpThreshold}%[/blue].",
+    "description": "Дает [blue]3[/blue] [gold]силы[/gold], когда ваши ОЗ не выше [blue]50%[/blue].",
+    "description_raw": "Дает [blue]{StrengthPower}[/blue] [gold]силы[/gold], когда ваши ОЗ не выше [blue]{HpThreshold}%[/blue].",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Обычная реликвия",
     "pool": "ironclad",
@@ -1832,6 +2042,7 @@
     },
     "image_url": "/static/images/relics/red_skull.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 23
   },
@@ -1850,22 +2061,39 @@
     },
     "image_url": "/static/images/relics/tough_bandages.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 97
   },
   {
     "id": "PAELS_BLOOD",
     "name": "Кровь Паэля",
-    "description": "Вы добираете [blue]1[/blue] plural(ru):дополнительную карту в начале хода.",
-    "description_raw": "Вы добираете [blue]{Cards}[/blue] {Cards:plural(ru):дополнительную карту|дополнительные карты|дополнительных карт} в начале хода.",
+    "description": "Вы добираете еще [blue]1[/blue] plural(ru):карту в начале хода.",
+    "description_raw": "Вы добираете еще [blue]{Cards}[/blue] {Cards:plural(ru):карту|карты|карт} в начале хода.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
     "merchant_price": null,
     "image_url": "/static/images/relics/paels_blood.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 193
+    "compendium_order": 195
+  },
+  {
+    "id": "WINGED_BOOTS",
+    "name": "Крылатые ботинки",
+    "description": "Позволяет [blue]3[/blue] раза выбрать следующую комнату, находящуюся на недоступном пути.",
+    "description_raw": "Позволяет [blue]{Rooms}[/blue] раза выбрать следующую комнату, находящуюся на недоступном пути.",
+    "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
+    "rarity": "Древняя реликвия",
+    "pool": "shared",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/winged_boots.webp",
+    "image_variants": null,
+    "notes": null,
+    "rarity_key": "Ancient",
+    "compendium_order": 196
   },
   {
     "id": "PAELS_WING",
@@ -1878,14 +2106,15 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/paels_wing.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 194
+    "compendium_order": 197
   },
   {
     "id": "WING_CHARM",
     "name": "Крыловидный оберег",
-    "description": "[gold]Чарует[/gold] случайную карту в каждом наградном наборе на [purple]скорость[/purple] [blue]1[/blue].",
-    "description_raw": "[gold]Чарует[/gold] случайную карту в каждом наградном наборе на [purple]скорость[/purple] [blue]{SwiftAmount}[/blue].",
+    "description": "Накладывает [gold]чары[/gold] [purple]Скорость[/purple] [blue]1[/blue] на случайную карту в каждом наградном наборе.",
+    "description_raw": "Накладывает [gold]чары[/gold] [purple]Скорость[/purple] [blue]{SwiftAmount}[/blue] на случайную карту в каждом наградном наборе.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия из магазина",
     "pool": "shared",
@@ -1896,14 +2125,15 @@
     },
     "image_url": "/static/images/relics/wing_charm.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 146
   },
   {
     "id": "KUNAI",
     "name": "Кунай",
-    "description": "Дает [blue]1[/blue] [gold]ловкости[/gold], когда вы разыгрываете [blue]3[/blue] Атаки за ход.",
-    "description_raw": "Дает [blue]{DexterityPower}[/blue] [gold]ловкости[/gold], когда вы разыгрываете [blue]{Cards}[/blue] Атаки за ход.",
+    "description": "Дает [blue]1[/blue] [gold]ловкости[/gold], когда вы разыгрываете [blue]3[/blue] plural(ru):Атаку за ход.",
+    "description_raw": "Дает [blue]{DexterityPower}[/blue] [gold]ловкости[/gold], когда вы разыгрываете [blue]{Cards}[/blue] {Cards:plural(ru):Атаку|Атаки|Атак} за ход.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Редкая реликвия",
     "pool": "shared",
@@ -1914,6 +2144,7 @@
     },
     "image_url": "/static/images/relics/kunai.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 98
   },
@@ -1932,6 +2163,7 @@
     },
     "image_url": "/static/images/relics/the_courier.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 99
   },
@@ -1950,14 +2182,15 @@
     },
     "image_url": "/static/images/relics/kusarigama.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 52
+    "compendium_order": 54
   },
   {
     "id": "LAVA_LAMP",
     "name": "Лавовая лампа",
-    "description": "[gold]Улучшает[/gold] карты в наградном наборе за бой, если вы не получали урон.",
-    "description_raw": "[gold]Улучшает[/gold] карты в наградном наборе за бой, если вы не получали урон.",
+    "description": "[gold]Улучшает[/gold] карты в наградном наборе за бой, если вы не получали в этом бою урон.",
+    "description_raw": "[gold]Улучшает[/gold] карты в наградном наборе за бой, если вы не получали в этом бою урон.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия из магазина",
     "pool": "shared",
@@ -1968,6 +2201,7 @@
     },
     "image_url": "/static/images/relics/lava_lamp.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 147
   },
@@ -1982,8 +2216,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/paels_legion.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 195
+    "compendium_order": 198
   },
   {
     "id": "HISTORY_COURSE",
@@ -1996,8 +2231,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/history_course.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 267
+    "compendium_order": 274
   },
   {
     "id": "DREAM_CATCHER",
@@ -2010,8 +2246,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/dream_catcher.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 268
+    "compendium_order": 275
   },
   {
     "id": "SHOVEL",
@@ -2028,6 +2265,7 @@
     },
     "image_url": "/static/images/relics/shovel.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 100
   },
@@ -2046,6 +2284,7 @@
     },
     "image_url": "/static/images/relics/lunar_pastry.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 101
   },
@@ -2060,8 +2299,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/arcane_scroll.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 196
+    "compendium_order": 199
   },
   {
     "id": "SMALL_CAPSULE",
@@ -2074,8 +2314,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/small_capsule.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 197
+    "compendium_order": 200
   },
   {
     "id": "MANGO",
@@ -2092,6 +2333,7 @@
     },
     "image_url": "/static/images/relics/mango.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 102
   },
@@ -2110,14 +2352,15 @@
     },
     "image_url": "/static/images/relics/fake_mango.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 269
+    "compendium_order": 276
   },
   {
     "id": "PENDULUM",
     "name": "Маятник",
-    "description": "Вы добираете карту, когда замешиваете [gold]стопку сброса[/gold] в [gold]стопку добора[/gold].",
-    "description_raw": "Вы добираете карту, когда замешиваете [gold]стопку сброса[/gold] в [gold]стопку добора[/gold].",
+    "description": "Вы добираете еще [blue]1[/blue] plural(ru):карту plural(ru):в начале хода.",
+    "description_raw": "Вы добираете еще [blue]{Cards}[/blue] {Cards:plural(ru):карту|карты|карт} {Turns:plural(ru):в начале хода|каждый [blue]{}-й[/blue] ход|каждый [blue]{}-й[/blue] ход}.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Обычная реликвия",
     "pool": "shared",
@@ -2128,42 +2371,45 @@
     },
     "image_url": "/static/images/relics/pendulum.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 24
   },
   {
     "id": "BIIIG_HUG",
     "name": "Медвежьи объятия",
-    "description": "При получении удаляет [blue]4[/blue] карты из [gold]колоды[/gold]. Добавляет [gold]«Сажу»[/gold] в [gold]стопку добора[/gold], когда вы замешиваете в нее [gold]стопку сброса[/gold].",
-    "description_raw": "При получении удаляет [blue]{Cards}[/blue] карты из [gold]колоды[/gold]. Добавляет [gold]«Сажу»[/gold] в [gold]стопку добора[/gold], когда вы замешиваете в нее [gold]стопку сброса[/gold].",
+    "description": "При получении удаляет из [gold]колоды[/gold] [blue]4[/blue] plural(ru):карту. При перемешивании [gold]стопки добора[/gold] в нее добавляется [gold]«Сажа»[/gold].",
+    "description_raw": "При получении удаляет из [gold]колоды[/gold] [blue]{Cards}[/blue] {Cards:plural(ru):карту|карты|карт}. При перемешивании [gold]стопки добора[/gold] в нее добавляется [gold]«Сажа»[/gold].",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
     "merchant_price": null,
     "image_url": "/static/images/relics/biiig_hug.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 198
+    "compendium_order": 201
   },
   {
     "id": "THROWING_AXE",
     "name": "Метательный топор",
-    "description": "Первая разыгранная за бой карта разыгрывается дополнительный раз.",
-    "description_raw": "Первая разыгранная за бой карта разыгрывается дополнительный раз.",
+    "description": "Первая разыгранная за бой карта разыгрывается еще 1 раз.",
+    "description_raw": "Первая разыгранная за бой карта разыгрывается еще 1 раз.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
     "merchant_price": null,
     "image_url": "/static/images/relics/throwing_axe.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 199
+    "compendium_order": 202
   },
   {
     "id": "METRONOME",
     "name": "Метроном",
-    "description": "Наносит [blue]30[/blue] урона ВСЕМ врагам, когда вы [gold]заряжаете[/gold] [blue]7[/blue] [gold]сферы[/gold] первый раз за бой.",
-    "description_raw": "Наносит [blue]{Damage}[/blue] урона ВСЕМ врагам, когда вы [gold]заряжаете[/gold] [blue]{OrbCount}[/blue] [gold]сферы[/gold] первый раз за бой.",
+    "description": "Наносит [blue]30[/blue] урона ВСЕМ врагам, когда вы [gold]заряжаете[/gold] [blue]7[/blue] [gold]plural(ru):сферу[/gold] первый раз за бой.",
+    "description_raw": "Наносит [blue]{Damage}[/blue] урона ВСЕМ врагам, когда вы [gold]заряжаете[/gold] [blue]{OrbCount}[/blue] [gold]{OrbCount:plural(ru):сферу|сферы|сфер}[/gold] первый раз за бой.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Редкая реликвия",
     "pool": "defect",
@@ -2174,26 +2420,28 @@
     },
     "image_url": "/static/images/relics/metronome.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 103
   },
   {
     "id": "BELLOWS",
     "name": "Мехи",
-    "description": "[gold]Улучшает[/gold] карты, добираемые в начале первого хода.",
-    "description_raw": "[gold]Улучшает[/gold] карты, добираемые в начале первого хода.",
+    "description": "[gold]Улучшает[/gold] карты в первой [gold]руке[/gold] каждого боя.",
+    "description_raw": "[gold]Улучшает[/gold] карты в первой [gold]руке[/gold] каждого боя.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
-    "rarity": "Необычная реликвия",
+    "rarity": "Редкая реликвия",
     "pool": "shared",
     "merchant_price": {
-      "base": 250,
-      "min": 212,
-      "max": 288
+      "base": 300,
+      "min": 255,
+      "max": 345
     },
     "image_url": "/static/images/relics/bellows.webp",
     "image_variants": null,
-    "rarity_key": "Uncommon",
-    "compendium_order": 53
+    "notes": null,
+    "rarity_key": "Rare",
+    "compendium_order": 104
   },
   {
     "id": "BAG_OF_MARBLES",
@@ -2201,17 +2449,18 @@
     "description": "Накладывает [blue]1[/blue] [gold]уязвимости[/gold] на ВСЕХ врагов в начале боя.",
     "description_raw": "Накладывает [blue]{VulnerablePower}[/blue] [gold]уязвимости[/gold] на ВСЕХ врагов в начале боя.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
-    "rarity": "Необычная реликвия",
+    "rarity": "Обычная реликвия",
     "pool": "shared",
     "merchant_price": {
-      "base": 250,
-      "min": 212,
-      "max": 288
+      "base": 200,
+      "min": 170,
+      "max": 230
     },
     "image_url": "/static/images/relics/bag_of_marbles.webp",
     "image_variants": null,
-    "rarity_key": "Uncommon",
-    "compendium_order": 54
+    "notes": null,
+    "rarity_key": "Common",
+    "compendium_order": 25
   },
   {
     "id": "MINI_REGENT",
@@ -2228,14 +2477,15 @@
     },
     "image_url": "/static/images/relics/mini_regent.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 104
+    "compendium_order": 105
   },
   {
     "id": "MINIATURE_TENT",
     "name": "Миниатюрная палатка",
-    "description": "Позволяет выбирать в [gold]лагере[/gold] любое количество опций.",
-    "description_raw": "Позволяет выбирать в [gold]лагере[/gold] любое количество опций.",
+    "description": "Позволяет выбирать несколько вариантов в [gold]лагере[/gold].",
+    "description_raw": "Позволяет выбирать несколько вариантов в [gold]лагере[/gold].",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия из магазина",
     "pool": "shared",
@@ -2246,6 +2496,7 @@
     },
     "image_url": "/static/images/relics/miniature_tent.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 148
   },
@@ -2264,6 +2515,7 @@
     },
     "image_url": "/static/images/relics/miniature_cannon.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 55
   },
@@ -2282,36 +2534,24 @@
     },
     "image_url": "/static/images/relics/orrery.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 149
   },
   {
-    "id": "MR_STRUGGLES",
-    "name": "Мистер Страглс",
-    "description": "Наносит урон ВСЕМ врагам, равный номеру текущего хода, в начале хода.",
-    "description_raw": "Наносит урон ВСЕМ врагам, равный номеру текущего хода, в начале хода.",
-    "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
-    "rarity": "Реликвия за событие",
-    "pool": "shared",
-    "merchant_price": null,
-    "image_url": "/static/images/relics/mr_struggles.webp",
-    "image_variants": null,
-    "rarity_key": "Event",
-    "compendium_order": 270
-  },
-  {
     "id": "THE_BOOT",
     "name": "Могучий ботинок",
-    "description": "Повышает наносимый Атаками урон по ОЗ до [blue]5[/blue], если он равен или меньше [blue]4[/blue].",
-    "description_raw": "Повышает наносимый Атаками урон по ОЗ до [blue]{DamageMinimum}[/blue], если он равен или меньше [blue]{DamageThreshold}[/blue].",
+    "description": "Повышает наносимый Атаками урон по ОЗ до [blue]5[/blue], если он не выше [blue]4[/blue].",
+    "description_raw": "Повышает наносимый Атаками урон по ОЗ до [blue]{DamageMinimum}[/blue], если он не выше [blue]{DamageThreshold}[/blue].",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия за событие",
     "pool": "shared",
     "merchant_price": null,
     "image_url": "/static/images/relics/the_boot.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 271
+    "compendium_order": 277
   },
   {
     "id": "PRAYER_WHEEL",
@@ -2328,8 +2568,9 @@
     },
     "image_url": "/static/images/relics/prayer_wheel.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 105
+    "compendium_order": 106
   },
   {
     "id": "WAR_HAMMER",
@@ -2342,8 +2583,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/war_hammer.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 200
+    "compendium_order": 203
   },
   {
     "id": "ICE_CREAM",
@@ -2360,28 +2602,30 @@
     },
     "image_url": "/static/images/relics/ice_cream.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 106
+    "compendium_order": 107
   },
   {
     "id": "SEA_GLASS",
     "name": "Морское стеклышко",
-    "description": "Позволяет добавить в [gold]колоду[/gold] любое количество карт другого персонажа из [blue]15[/blue] на выбор.",
-    "description_raw": "Позволяет добавить в [gold]колоду[/gold] любое количество карт {Character.StringValue:cond:персонажа [gold]{}[/gold]|другого персонажа} из [blue]{Cards}[/blue] на выбор.",
+    "description": "Другой персонаж покажет вам [blue]15[/blue] plural(ru):карту. Вы можете добавить любые их них в [gold]колоду[/gold].",
+    "description_raw": "{Character.StringValue:cond:[gold]{}[/gold]|Другой персонаж} покажет вам [blue]{Cards}[/blue] {Cards:plural(ru):карту|карты|карт}. Вы можете добавить любые их них в [gold]колоду[/gold].",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
     "merchant_price": null,
     "image_url": "/static/images/relics/sea_glass.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 201
+    "compendium_order": 204
   },
   {
     "id": "UNSETTLING_LAMP",
     "name": "Мрачная лампа",
-    "description": "Удваивает [gold]отрицательные эффекты[/gold], которые вы накладываете картой один раз за бой.",
-    "description_raw": "Удваивает [gold]отрицательные эффекты[/gold], которые вы накладываете картой один раз за бой.",
+    "description": "Удваивает [gold]отрицательные эффекты[/gold], которые вы накладываете картой первый раз за бой.",
+    "description_raw": "Удваивает [gold]отрицательные эффекты[/gold], которые вы накладываете картой первый раз за бой.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Редкая реликвия",
     "pool": "shared",
@@ -2392,14 +2636,15 @@
     },
     "image_url": "/static/images/relics/unsettling_lamp.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 107
+    "compendium_order": 108
   },
   {
     "id": "VEXING_PUZZLEBOX",
     "name": "Мудреный конструктор",
-    "description": "Добавляет в [gold]руку[/gold] случайную карту в начале боя и понижает ее цену до [blue]0[/blue][energy:1].",
-    "description_raw": "Добавляет в [gold]руку[/gold] случайную карту в начале боя и понижает ее цену до [blue]0[/blue]{energyPrefix:energyIcons(1)}.",
+    "description": "Добавляет в [gold]руку[/gold] случайную карту в начале боя. В этом ходу она бесплатная.",
+    "description_raw": "Добавляет в [gold]руку[/gold] случайную карту в начале боя. В этом ходу она бесплатная.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Редкая реликвия",
     "pool": "shared",
@@ -2410,8 +2655,9 @@
     },
     "image_url": "/static/images/relics/vexing_puzzlebox.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 108
+    "compendium_order": 109
   },
   {
     "id": "MUSIC_BOX",
@@ -2424,32 +2670,15 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/music_box.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 202
-  },
-  {
-    "id": "MUMMIFIED_HAND",
-    "name": "Мумифицированная рука",
-    "description": "Делает случайную карту в [gold]руке[/gold] бесплатной на ход, когда вы разыгрываете Талант.",
-    "description_raw": "Делает случайную карту в [gold]руке[/gold] бесплатной на ход, когда вы разыгрываете Талант.",
-    "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
-    "rarity": "Редкая реликвия",
-    "pool": "shared",
-    "merchant_price": {
-      "base": 300,
-      "min": 255,
-      "max": 345
-    },
-    "image_url": "/static/images/relics/mummified_hand.webp",
-    "image_variants": null,
-    "rarity_key": "Rare",
-    "compendium_order": 109
+    "compendium_order": 205
   },
   {
     "id": "MEAT_ON_THE_BONE",
     "name": "Мясо на кости",
-    "description": "Восполняет [green]12[/green] ОЗ в конце боя, если ОЗ равны или меньше [blue]50%[/blue].",
-    "description_raw": "Восполняет [green]{Heal}[/green] ОЗ в конце боя, если ОЗ равны или меньше [blue]{HpThreshold}%[/blue].",
+    "description": "Восполняет [green]12[/green] ОЗ в конце боя, если ваши ОЗ не выше [blue]50%[/blue].",
+    "description_raw": "Восполняет [green]{Heal}[/green] ОЗ в конце боя, если ваши ОЗ не выше [blue]{HpThreshold}%[/blue].",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Редкая реликвия",
     "pool": "shared",
@@ -2460,6 +2689,7 @@
     },
     "image_url": "/static/images/relics/meat_on_the_bone.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 110
   },
@@ -2478,6 +2708,7 @@
     },
     "image_url": "/static/images/relics/toolbox.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 150
   },
@@ -2492,28 +2723,30 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/nutritious_soup.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 203
+    "compendium_order": 206
   },
   {
     "id": "PRECISE_SCISSORS",
     "name": "Надежные ножницы",
-    "description": "При получении удаляет [blue]1[/blue] plural(ru):карту из [gold]колоды[/gold].",
-    "description_raw": "При получении удаляет [blue]{Cards}[/blue] {Cards:plural(ru):карту|карты|карт} из [gold]колоды[/gold].",
+    "description": "При получении удаляет из [gold]колоды[/gold] [blue]1[/blue] plural(ru):карту.",
+    "description_raw": "При получении удаляет из [gold]колоды[/gold] [blue]{Cards}[/blue] {Cards:plural(ru):карту|карты|карт}.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
     "merchant_price": null,
     "image_url": "/static/images/relics/precise_scissors.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 204
+    "compendium_order": 207
   },
   {
     "id": "PEN_NIB",
     "name": "Наконечник пера",
-    "description": "Каждая [blue]10-ая[/blue] разыгрываемая Атака наносит двойной урон.",
-    "description_raw": "Каждая [blue]10-ая[/blue] разыгрываемая Атака наносит двойной урон.",
+    "description": "Каждая [blue]10-я[/blue] разыгрываемая Атака наносит двойной урон.",
+    "description_raw": "Каждая [blue]10-я[/blue] разыгрываемая Атака наносит двойной урон.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Необычная реликвия",
     "pool": "shared",
@@ -2524,14 +2757,15 @@
     },
     "image_url": "/static/images/relics/pen_nib.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 56
   },
   {
     "id": "VAMBRACE",
     "name": "Наруч",
-    "description": "Удваивает [gold]защиту[/gold], получаемую вами от карты один раз за бой.",
-    "description_raw": "Удваивает [gold]защиту[/gold], получаемую вами от карты один раз за бой.",
+    "description": "Удваивает [gold]защиту[/gold], получаемую от карты первый раз за бой.",
+    "description_raw": "Удваивает [gold]защиту[/gold], получаемую от карты первый раз за бой.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Необычная реликвия",
     "pool": "shared",
@@ -2542,6 +2776,7 @@
     },
     "image_url": "/static/images/relics/vambrace.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 57
   },
@@ -2556,6 +2791,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/phylactery_unbound.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Starter",
     "compendium_order": 6
   },
@@ -2570,8 +2806,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/sword_of_jade.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 272
+    "compendium_order": 278
   },
   {
     "id": "LETTER_OPENER",
@@ -2588,14 +2825,15 @@
     },
     "image_url": "/static/images/relics/letter_opener.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 58
   },
   {
     "id": "NUNCHAKU",
     "name": "Нунчаки",
-    "description": "Дает [energy:1], когда вы разыгрываете [blue]10[/blue] Атак.",
-    "description_raw": "Дает {Energy:energyIcons()}, когда вы разыгрываете [blue]{Cards}[/blue] Атак.",
+    "description": "Дает [energy:1] за каждые [blue]10[/blue] plural(ru):разыгрываемую Атаку.",
+    "description_raw": "Дает {Energy:energyIcons()} за каждые [blue]{Cards}[/blue] {Cards:plural(ru):разыгрываемую Атаку|разыгрываемые Атаки|разыгрываемых Атак}.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Необычная реликвия",
     "pool": "shared",
@@ -2606,22 +2844,24 @@
     },
     "image_url": "/static/images/relics/nunchaku.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 59
   },
   {
     "id": "DRIFTWOOD",
     "name": "Обломок плотины",
-    "description": "Позволяет сменить предлагаемые карты в каждом наградном наборе один раз.",
-    "description_raw": "Позволяет сменить предлагаемые карты в каждом наградном наборе один раз.",
+    "description": "Позволяет сменить карты из каждого наградного набора один раз.",
+    "description_raw": "Позволяет сменить карты из каждого наградного набора один раз.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
     "merchant_price": null,
     "image_url": "/static/images/relics/driftwood.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 205
+    "compendium_order": 208
   },
   {
     "id": "CIRCLET",
@@ -2634,8 +2874,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/circlet.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "None",
-    "compendium_order": 287
+    "compendium_order": 292
   },
   {
     "id": "PETRIFIED_TOAD",
@@ -2652,6 +2893,7 @@
     },
     "image_url": "/static/images/relics/petrified_toad.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 60
   },
@@ -2666,8 +2908,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/sword_of_stone.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 273
+    "compendium_order": 279
   },
   {
     "id": "BLOOD_SOAKED_ROSE",
@@ -2680,8 +2923,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/blood_soaked_rose.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 206
+    "compendium_order": 209
   },
   {
     "id": "ORANGE_DOUGH",
@@ -2698,6 +2942,7 @@
     },
     "image_url": "/static/images/relics/orange_dough.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 111
   },
@@ -2716,6 +2961,7 @@
     },
     "image_url": "/static/images/relics/orichalcum.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 61
   },
@@ -2734,8 +2980,9 @@
     },
     "image_url": "/static/images/relics/fake_orichalcum.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 274
+    "compendium_order": 280
   },
   {
     "id": "RADIANT_PEARL",
@@ -2748,8 +2995,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/radiant_pearl.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 207
+    "compendium_order": 210
   },
   {
     "id": "VERY_HOT_COCOA",
@@ -2762,8 +3010,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/very_hot_cocoa.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 208
+    "compendium_order": 211
   },
   {
     "id": "PANTOGRAPH",
@@ -2780,6 +3029,7 @@
     },
     "image_url": "/static/images/relics/pantograph.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 62
   },
@@ -2794,14 +3044,15 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/choices_paradox.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 209
+    "compendium_order": 212
   },
   {
     "id": "PARRYING_SHIELD",
     "name": "Парирующий щит",
-    "description": "Наносит [blue]6[/blue] урона случайному врагу, когда вы заканчиваете ход с [blue]10[/blue] [gold]защиты[/gold] или больше.",
-    "description_raw": "Наносит [blue]{Damage}[/blue] урона случайному врагу, когда вы заканчиваете ход с [blue]{Block}[/blue] [gold]защиты[/gold] или больше.",
+    "description": "Наносит [blue]6[/blue] урона случайному врагу, если в конца хода у вас не меньше [blue]10[/blue] [gold]защиты[/gold].",
+    "description_raw": "Наносит [blue]{Damage}[/blue] урона случайному врагу, если в конца хода у вас не меньше [blue]{Block}[/blue] [gold]защиты[/gold].",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Необычная реликвия",
     "pool": "shared",
@@ -2812,6 +3063,7 @@
     },
     "image_url": "/static/images/relics/parrying_shield.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 63
   },
@@ -2826,8 +3078,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/maw_bank.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 275
+    "compendium_order": 281
   },
   {
     "id": "BOOK_REPAIR_KNIFE",
@@ -2844,8 +3097,24 @@
     },
     "image_url": "/static/images/relics/book_repair_knife.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 64
+  },
+  {
+    "id": "SIGNET_RING",
+    "name": "Перстень с печатью",
+    "description": "При получении дает [blue]999[/blue] [gold]золота[/gold].",
+    "description_raw": "При получении дает [blue]{Gold}[/blue] [gold]золота[/gold].",
+    "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
+    "rarity": "Древняя реликвия",
+    "pool": "shared",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/signet_ring.webp",
+    "image_variants": null,
+    "notes": null,
+    "rarity_key": "Ancient",
+    "compendium_order": 213
   },
   {
     "id": "SAND_CASTLE",
@@ -2858,8 +3127,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/sand_castle.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 210
+    "compendium_order": 214
   },
   {
     "id": "NUTRITIOUS_OYSTER",
@@ -2872,14 +3142,15 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/nutritious_oyster.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 211
+    "compendium_order": 215
   },
   {
     "id": "PLANISPHERE",
     "name": "Планисфера",
-    "description": "Восполняет [green]4[/green] ОЗ, когда вы посещаете комнату [gold]?[/gold].",
-    "description_raw": "Восполняет [green]{Heal}[/green] ОЗ, когда вы посещаете комнату [gold]?[/gold].",
+    "description": "Восполняет [green]5[/green] ОЗ, когда вы посещаете комнату с [gold]?[/gold].",
+    "description_raw": "Восполняет [green]{Heal}[/green] ОЗ, когда вы посещаете комнату с [gold]?[/gold].",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Необычная реликвия",
     "pool": "shared",
@@ -2890,28 +3161,30 @@
     },
     "image_url": "/static/images/relics/planisphere.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 65
   },
   {
     "id": "PAELS_FLESH",
     "name": "Плоть Паэля",
-    "description": "Дает [energy:1] в начале [blue]3-го[/blue] и последующих ходов.",
-    "description_raw": "Дает {Energy:energyIcons()} в начале [blue]3-го[/blue] и последующих ходов.",
+    "description": "Дает [energy:1] каждый ход, начиная с [blue]3-го[/blue].",
+    "description_raw": "Дает {Energy:energyIcons()} каждый ход, начиная с [blue]3-го[/blue].",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
     "merchant_price": null,
     "image_url": "/static/images/relics/paels_flesh.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 212
+    "compendium_order": 216
   },
   {
     "id": "STRIKE_DUMMY",
     "name": "Побитый манекен",
-    "description": "Карты с «Удар» в названии наносят на [blue]3[/blue] урона больше.",
-    "description_raw": "Карты с «Удар» в названии наносят на [blue]{ExtraDamage}[/blue] урона больше.",
+    "description": "Карты с «ударом» в названии наносят на [blue]3[/blue] урона больше.",
+    "description_raw": "Карты с «ударом» в названии наносят на [blue]{ExtraDamage}[/blue] урона больше.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Обычная реликвия",
     "pool": "shared",
@@ -2922,14 +3195,15 @@
     },
     "image_url": "/static/images/relics/strike_dummy.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
-    "compendium_order": 25
+    "compendium_order": 26
   },
   {
     "id": "FAKE_STRIKE_DUMMY",
     "name": "Побитый манекен???",
-    "description": "Карты с «Удар» в названии наносят на [blue]1[/blue] урона больше.",
-    "description_raw": "Карты с «Удар» в названии наносят на [blue]{ExtraDamage}[/blue] урона больше.",
+    "description": "Карты с «ударом» в названии наносят на [blue]1[/blue] урона больше.",
+    "description_raw": "Карты с «ударом» в названии наносят на [blue]{ExtraDamage}[/blue] урона больше.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия за событие",
     "pool": "shared",
@@ -2940,14 +3214,15 @@
     },
     "image_url": "/static/images/relics/fake_strike_dummy.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 276
+    "compendium_order": 282
   },
   {
     "id": "FUNERARY_MASK",
     "name": "Погребальная маска",
-    "description": "Добавляет в [gold]стопку добора[/gold] [blue]3[/blue] [gold]plural(ru):«Душу»[/gold] в начале боя.",
-    "description_raw": "Добавляет в [gold]стопку добора[/gold] [blue]{Cards}[/blue] [gold]{Cards:plural(ru):«Душу»|«Души»|«Душ»}[/gold] в начале боя.",
+    "description": "Добавляет [blue]3[/blue] [gold]plural(ru):«Душу»[/gold] в [gold]стопку добора[/gold] в начале боя.",
+    "description_raw": "Добавляет [blue]{Cards}[/blue] [gold]{Cards:plural(ru):«Душу»|«Души»|«Душ»}[/gold] в [gold]стопку добора[/gold] в начале боя.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Необычная реликвия",
     "pool": "necrobinder",
@@ -2958,6 +3233,7 @@
     },
     "image_url": "/static/images/relics/funerary_mask.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 66
   },
@@ -2976,28 +3252,30 @@
     },
     "image_url": "/static/images/relics/oddly_smooth_stone.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
-    "compendium_order": 26
+    "compendium_order": 27
   },
   {
     "id": "FORGOTTEN_SOUL",
     "name": "Позабытая душа",
-    "description": "Наносит [blue]1[/blue] урона случайному врагу, когда [gold]сжигается[/gold] карта.",
-    "description_raw": "Наносит [blue]{Damage}[/blue] урона случайному врагу, когда [gold]сжигается[/gold] карта.",
+    "description": "Наносит [blue]1[/blue] урона случайному врагу, когда вы [gold]сжигаете[/gold] карту.",
+    "description_raw": "Наносит [blue]{Damage}[/blue] урона случайному врагу, когда вы [gold]сжигаете[/gold] карту.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия за событие",
     "pool": "shared",
     "merchant_price": null,
     "image_url": "/static/images/relics/forgotten_soul.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 277
+    "compendium_order": 283
   },
   {
     "id": "GOLD_PLATED_CABLES",
     "name": "Позолоченный кабель",
-    "description": "Пассивный эффект правой сферы срабатывает дополнительный раз.",
-    "description_raw": "Пассивный эффект правой сферы срабатывает дополнительный раз.",
+    "description": "Пассивный эффект правой сферы срабатывает еще 1 раз.",
+    "description_raw": "Пассивный эффект правой сферы срабатывает еще 1 раз.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Необычная реликвия",
     "pool": "defect",
@@ -3008,28 +3286,30 @@
     },
     "image_url": "/static/images/relics/gold_plated_cables.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 67
   },
   {
     "id": "POMANDER",
     "name": "Помандер",
-    "description": "При получении [gold]улучшает[/gold] карту.",
-    "description_raw": "При получении [gold]улучшает[/gold] карту.",
+    "description": "При получении [gold]улучшает[/gold] выбранную карту.",
+    "description_raw": "При получении [gold]улучшает[/gold] выбранную карту.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
     "merchant_price": null,
     "image_url": "/static/images/relics/pomander.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 213
+    "compendium_order": 217
   },
   {
     "id": "FENCING_MANUAL",
     "name": "Пособие по фехтованию",
-    "description": "[gold]Кует[/gold] [blue]10[/blue] в начале боя.",
-    "description_raw": "[gold]Кует[/gold] [blue]{Forge}[/blue] в начале боя.",
+    "description": "[gold]Закаляет[/gold] [blue]10[/blue] в начале боя.",
+    "description_raw": "[gold]Закаляет[/gold] [blue]{Forge}[/blue] в начале боя.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Обычная реликвия",
     "pool": "regent",
@@ -3040,26 +3320,28 @@
     },
     "image_url": "/static/images/relics/fencing_manual.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
-    "compendium_order": 27
+    "compendium_order": 28
   },
   {
     "id": "TINY_MAILBOX",
     "name": "Почтовый ящичек",
-    "description": "Дает случайное зелье, когда вы [gold]отдыхаете[/gold].",
-    "description_raw": "Дает случайное зелье, когда вы [gold]отдыхаете[/gold].",
+    "description": "Дает [blue]2[/blue] случайных зелья, когда вы [gold]отдыхаете[/gold].",
+    "description_raw": "Дает [blue]2[/blue] случайных зелья, когда вы [gold]отдыхаете[/gold].",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
-    "rarity": "Обычная реликвия",
+    "rarity": "Необычная реликвия",
     "pool": "shared",
     "merchant_price": {
-      "base": 200,
-      "min": 170,
-      "max": 230
+      "base": 250,
+      "min": 212,
+      "max": 288
     },
     "image_url": "/static/images/relics/tiny_mailbox.webp",
     "image_variants": null,
-    "rarity_key": "Common",
-    "compendium_order": 28
+    "notes": null,
+    "rarity_key": "Uncommon",
+    "compendium_order": 68
   },
   {
     "id": "POTION_BELT",
@@ -3076,6 +3358,7 @@
     },
     "image_url": "/static/images/relics/potion_belt.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 29
   },
@@ -3094,14 +3377,15 @@
     },
     "image_url": "/static/images/relics/festive_popper.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 30
   },
   {
     "id": "CHARONS_ASHES",
     "name": "Прах Харона",
-    "description": "Наносит [blue]3[/blue] урона ВСЕМ врагам, когда [gold]сжигается[/gold] карта.",
-    "description_raw": "Наносит [blue]{Damage}[/blue] урона ВСЕМ врагам, когда [gold]сжигается[/gold] карта.",
+    "description": "Наносит [blue]3[/blue] урона ВСЕМ врагам, когда вы [gold]сжигаете[/gold] карту.",
+    "description_raw": "Наносит [blue]{Damage}[/blue] урона ВСЕМ врагам, когда вы [gold]сжигаете[/gold] карту.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Редкая реликвия",
     "pool": "ironclad",
@@ -3112,14 +3396,15 @@
     },
     "image_url": "/static/images/relics/charons_ashes.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 112
   },
   {
     "id": "SLING_OF_COURAGE",
     "name": "Праща отваги",
-    "description": "Дает [blue]2[/blue] [gold]силы[/gold] в начале боя с [gold]элитными врагами[/gold].",
-    "description_raw": "Дает [blue]{StrengthPower}[/blue] [gold]силы[/gold] в начале боя с [gold]элитными врагами[/gold].",
+    "description": "Дает [blue]2[/blue] [gold]силы[/gold] в начале боя с [gold]элитным врагом[/gold].",
+    "description_raw": "Дает [blue]{StrengthPower}[/blue] [gold]силы[/gold] в начале боя с [gold]элитным врагом[/gold].",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия из магазина",
     "pool": "shared",
@@ -3130,6 +3415,7 @@
     },
     "image_url": "/static/images/relics/sling_of_courage.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 151
   },
@@ -3144,14 +3430,15 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/prismatic_gem.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 214
+    "compendium_order": 218
   },
   {
     "id": "GHOST_SEED",
     "name": "Призрачное зерно",
-    "description": "[gold]«Удары»[/gold] и [gold]«Обороны»[/gold] [gold]эфирные[/gold].",
-    "description_raw": "[gold]«Удары»[/gold] и [gold]«Обороны»[/gold] [gold]эфирные[/gold].",
+    "description": "[gold]«Удары»[/gold] и [gold]«Обороны»[/gold] становятся [gold]эфирными[/gold].",
+    "description_raw": "[gold]«Удары»[/gold] и [gold]«Обороны»[/gold] становятся [gold]эфирными[/gold].",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия из магазина",
     "pool": "shared",
@@ -3162,40 +3449,24 @@
     },
     "image_url": "/static/images/relics/ghost_seed.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 152
   },
   {
     "id": "CALLING_BELL",
     "name": "Призывающий колокол",
-    "description": "При получении добавляет в [gold]колоду[/gold] уникальное [red]проклятие[/red] и дает [blue]3[/blue] [gold]реликвии[/gold].",
-    "description_raw": "При получении добавляет в [gold]колоду[/gold] уникальное [red]проклятие[/red] и дает [blue]{Relics}[/blue] [gold]реликвии[/gold].",
+    "description": "При получении добавляет в [gold]колоду[/gold] уникальное [red]проклятие[/red] и дает [blue]3[/blue] [gold]plural(ru):реликвию[/gold].",
+    "description_raw": "При получении добавляет в [gold]колоду[/gold] уникальное [red]проклятие[/red] и дает [blue]{Relics}[/blue] [gold]{Relics:plural(ru):реликвию|реликвии|реликвий}[/gold].",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
     "merchant_price": null,
     "image_url": "/static/images/relics/calling_bell.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 215
-  },
-  {
-    "id": "LUCKY_FYSH",
-    "name": "Приносящий удачу рыб",
-    "description": "Дает [blue]15[/blue] [gold]золота[/gold], когда вы добавляете карту в [gold]колоду[/gold].",
-    "description_raw": "Дает [blue]{Gold}[/blue] [gold]золота[/gold], когда вы добавляете карту в [gold]колоду[/gold].",
-    "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
-    "rarity": "Необычная реликвия",
-    "pool": "shared",
-    "merchant_price": {
-      "base": 250,
-      "min": 212,
-      "max": 288
-    },
-    "image_url": "/static/images/relics/lucky_fysh.webp",
-    "image_variants": null,
-    "rarity_key": "Uncommon",
-    "compendium_order": 68
+    "compendium_order": 219
   },
   {
     "id": "TOASTY_MITTENS",
@@ -3208,8 +3479,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/toasty_mittens.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 216
+    "compendium_order": 220
   },
   {
     "id": "CURSED_PEARL",
@@ -3222,8 +3494,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/cursed_pearl.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 217
+    "compendium_order": 221
   },
   {
     "id": "STURDY_CLAMP",
@@ -3240,6 +3513,7 @@
     },
     "image_url": "/static/images/relics/sturdy_clamp.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 113
   },
@@ -3258,22 +3532,24 @@
     },
     "image_url": "/static/images/relics/belt_buckle.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 153
   },
   {
     "id": "BYRDPIP",
     "name": "Птахоня",
-    "description": "При получении добавляет в [gold]колоду[/gold] [gold]«Налет птаха»[/gold]. [gold]Птахоня[/gold] сопровождает вас в бою.",
-    "description_raw": "При получении добавляет в [gold]колоду[/gold] [gold]«Налет птаха»[/gold]. [gold]Птахоня[/gold] сопровождает вас в бою.",
+    "description": "При получении добавляет в [gold]колоду[/gold] [gold]«Налет птаха»[/gold]. Вас сопровождает [gold]Птахоня[/gold].",
+    "description_raw": "При получении добавляет в [gold]колоду[/gold] [gold]«Налет птаха»[/gold]. Вас сопровождает [gold]Птахоня[/gold].",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия за событие",
     "pool": "shared",
     "merchant_price": null,
     "image_url": "/static/images/relics/byrdpip.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 278
+    "compendium_order": 284
   },
   {
     "id": "BLOOD_VIAL",
@@ -3290,6 +3566,7 @@
     },
     "image_url": "/static/images/relics/blood_vial.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 31
   },
@@ -3308,8 +3585,9 @@
     },
     "image_url": "/static/images/relics/fake_blood_vial.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 279
+    "compendium_order": 285
   },
   {
     "id": "BEATING_REMNANT",
@@ -3326,22 +3604,24 @@
     },
     "image_url": "/static/images/relics/beating_remnant.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 114
   },
   {
     "id": "EMPTY_CAGE",
     "name": "Пустая клетка",
-    "description": "При получении удаляет [blue]2[/blue] plural(ru):карту из [gold]колоды[/gold].",
-    "description_raw": "При получении удаляет [blue]{Cards}[/blue] {Cards:plural(ru):карту|карты|карт} из [gold]колоды[/gold].",
+    "description": "При получении удаляет из [gold]колоды[/gold] [blue]2[/blue] plural(ru):карту.",
+    "description_raw": "При получении удаляет из [gold]колоды[/gold] [blue]{Cards}[/blue] {Cards:plural(ru):карту|карты|карт}.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
     "merchant_price": null,
     "image_url": "/static/images/relics/empty_cage.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 218
+    "compendium_order": 222
   },
   {
     "id": "BURNING_BLOOD",
@@ -3354,6 +3634,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/burning_blood.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Starter",
     "compendium_order": 7
   },
@@ -3361,29 +3642,31 @@
     "id": "DUSTY_TOME",
     "name": "Пыльный сборник",
     "description": "При получении добавляет в [gold]колоду[/gold] [gold]древнюю карту[/gold].",
-    "description_raw": "При получении добавляет в [gold]колоду[/gold] {AncientCard.StringValue:cond:[gold]«{}»[/gold]|[gold]древнюю карту[/gold]}.",
+    "description_raw": "При получении добавляет в [gold]колоду[/gold] {AncientCard.StringValue:cond:карту [gold]«{}»[/gold]|[gold]древнюю карту[/gold]}.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
     "merchant_price": null,
     "image_url": "/static/images/relics/dusty_tome.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 219
+    "compendium_order": 223
   },
   {
     "id": "POLLINOUS_CORE",
     "name": "Пыльцовая сердцевина",
-    "description": "Вы добираете [blue]2[/blue] plural(ru):дополнительную карту plural(ru):каждый ход.",
-    "description_raw": "Вы добираете [blue]{Cards}[/blue] {Cards:plural(ru):дополнительную карту|дополнительные карты|дополнительных карт} {Turns:plural(ru):каждый ход|каждый [blue]{}[/blue] хода|каждые [blue]{}[/blue] ходов}.",
+    "description": "Вы добираете еще [blue]2[/blue] plural(ru):карту в начале plural(ru):хода.",
+    "description_raw": "Вы добираете еще [blue]{Cards}[/blue] {Cards:plural(ru):карту|карты|карт} в начале {Turns:plural(ru):хода|каждого [blue]{}-го[/blue] хода|каждого [blue]{}-го[/blue] хода}.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия за событие",
     "pool": "shared",
     "merchant_price": null,
     "image_url": "/static/images/relics/pollinous_core.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 280
+    "compendium_order": 286
   },
   {
     "id": "RAINBOW_RING",
@@ -3400,22 +3683,24 @@
     },
     "image_url": "/static/images/relics/rainbow_ring.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 115
   },
   {
     "id": "PRECARIOUS_SHEARS",
     "name": "Разболтавшиеся кусцы",
-    "description": "При получении удаляет [blue]2[/blue] plural(ru):карту из [gold]колоды[/gold] и вы получаете [red]13[/red] урона.",
-    "description_raw": "При получении удаляет [blue]{Cards}[/blue] {Cards:plural(ru):карту|карты|карт} из [gold]колоды[/gold] и вы получаете [red]{Damage}[/red] урона.",
+    "description": "При получении удаляет из [gold]колоды[/gold] [blue]2[/blue] plural(ru):карту, вы теряете [blue]16[/blue] ОЗ.",
+    "description_raw": "При получении удаляет из [gold]колоды[/gold] [blue]{Cards}[/blue] {Cards:plural(ru):карту|карты|карт}, вы теряете [blue]{Damage}[/blue] ОЗ.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
     "merchant_price": null,
     "image_url": "/static/images/relics/precarious_shears.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 220
+    "compendium_order": 224
   },
   {
     "id": "MEAT_CLEAVER",
@@ -3428,8 +3713,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/meat_cleaver.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 221
+    "compendium_order": 225
   },
   {
     "id": "MOLTEN_EGG",
@@ -3446,28 +3732,30 @@
     },
     "image_url": "/static/images/relics/molten_egg.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 116
   },
   {
     "id": "FRESNEL_LENS",
     "name": "Рассеивающая линза",
-    "description": "[gold]Чарует[/gold] добавляемые в [gold]колоду[/gold] карты, дающие [gold]защиту[/gold], на [purple]гибкость[/purple] [blue]2[/blue].",
-    "description_raw": "[gold]Чарует[/gold] добавляемые в [gold]колоду[/gold] карты, дающие [gold]защиту[/gold], на [purple]гибкость[/purple] [blue]{NimbleAmount}[/blue].",
+    "description": "Накладывает [gold]чары[/gold] [purple]«Гибкость»[/purple] [blue]2[/blue] на добавляемые в [gold]колоду[/gold] карты, дающие [gold]защиту[/gold].",
+    "description_raw": "Накладывает [gold]чары[/gold] [purple]«Гибкость»[/purple] [blue]{NimbleAmount}[/blue] на добавляемые в [gold]колоду[/gold] карты, дающие [gold]защиту[/gold].",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия за событие",
     "pool": "shared",
     "merchant_price": null,
     "image_url": "/static/images/relics/fresnel_lens.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 281
+    "compendium_order": 287
   },
   {
     "id": "REGALITE",
     "name": "Регалит",
-    "description": "Дает [blue]2[/blue] [gold]защиты[/gold], когда вы создаете бесцветные карты.",
-    "description_raw": "Дает [blue]{Block}[/blue] [gold]защиты[/gold], когда вы создаете бесцветные карты.",
+    "description": "Дает [blue]2[/blue] [gold]защиты[/gold], когда вы создаете карту.",
+    "description_raw": "Дает [blue]{Block}[/blue] [gold]защиты[/gold], когда вы создаете карту.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Необычная реликвия",
     "pool": "regent",
@@ -3478,14 +3766,15 @@
     },
     "image_url": "/static/images/relics/regalite.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 69
   },
   {
     "id": "JOSS_PAPER",
     "name": "Ритуальная бумага",
-    "description": "Вы добираете [blue]1[/blue] plural(ru):карту за каждые [blue]5[/blue] [gold]сжигаемых[/gold] карт.",
-    "description_raw": "Вы добираете [blue]{Cards}[/blue] {Cards:plural(ru):карту|карты|карт} за каждые [blue]{ExhaustAmount}[/blue] [gold]сжигаемых[/gold] карт.",
+    "description": "Вы добираете [blue]1[/blue] plural(ru):карту за каждые [blue]5[/blue] plural(ru):[gold]сожженную[/gold] карту.",
+    "description_raw": "Вы добираете [blue]{Cards}[/blue] {Cards:plural(ru):карту|карты|карт} за каждые [blue]{ExhaustAmount}[/blue] {ExhaustAmount:plural(ru):[gold]сожженную[/gold] карту|[gold]сожженные[/gold] карты|[gold]сожженных[/gold] карт}.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Необычная реликвия",
     "pool": "shared",
@@ -3496,6 +3785,7 @@
     },
     "image_url": "/static/images/relics/joss_paper.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 70
   },
@@ -3510,14 +3800,15 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/paels_horn.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 222
+    "compendium_order": 226
   },
   {
     "id": "GREMLIN_HORN",
     "name": "Рог гремлина",
-    "description": "Дает [energy:1] и вы добираете [blue]1[/blue] plural(ru):карту, когда погибает враг.",
-    "description_raw": "Дает {Energy:energyIcons()} и вы добираете [blue]{Cards}[/blue] {Cards:plural(ru):карту|карты|карт}, когда погибает враг.",
+    "description": "Вы получаете [energy:1] и добираете [blue]1[/blue] plural(ru):карту, когда погибает враг.",
+    "description_raw": "Вы получаете {Energy:energyIcons()} и добираете [blue]{Cards}[/blue] {Cards:plural(ru):карту|карты|карт}, когда погибает враг.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Необычная реликвия",
     "pool": "shared",
@@ -3528,14 +3819,15 @@
     },
     "image_url": "/static/images/relics/gremlin_horn.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 71
   },
   {
     "id": "MERCURY_HOURGLASS",
     "name": "Ртутные часы",
-    "description": "Наносит [blue]3[/blue] урона ВСЕМ врагам в начале хода.",
-    "description_raw": "Наносит [blue]{Damage}[/blue] урона ВСЕМ врагам в начале хода.",
+    "description": "Наносят [blue]3[/blue] урона ВСЕМ врагам в начале хода.",
+    "description_raw": "Наносят [blue]{Damage}[/blue] урона ВСЕМ врагам в начале хода.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Необычная реликвия",
     "pool": "shared",
@@ -3546,6 +3838,7 @@
     },
     "image_url": "/static/images/relics/mercury_hourglass.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 72
   },
@@ -3560,14 +3853,15 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/runic_pyramid.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 223
+    "compendium_order": 227
   },
   {
     "id": "RUNIC_CAPACITOR",
     "name": "Рунический конденсатор",
-    "description": "Дает [blue]3[/blue] [gold]слота для сфер[/gold] в начале боя.",
-    "description_raw": "Дает [blue]{Repeat}[/blue] [gold]слота для сфер[/gold] в начале боя.",
+    "description": "Дает [blue]3[/blue] [gold]plural(ru):слот[/gold] в начале боя.",
+    "description_raw": "Дает [blue]{Repeat}[/blue] [gold]{Repeat:plural(ru):слот|слота|слотов}[/gold] в начале боя.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия из магазина",
     "pool": "defect",
@@ -3578,6 +3872,7 @@
     },
     "image_url": "/static/images/relics/runic_capacitor.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 154
   },
@@ -3592,8 +3887,28 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/hand_drill.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 282
+    "compendium_order": 288
+  },
+  {
+    "id": "LUCKY_FYSH",
+    "name": "Рыб удачи",
+    "description": "Дает [blue]15[/blue] [gold]золота[/gold], когда вы добавляете карту в [gold]колоду[/gold].",
+    "description_raw": "Дает [blue]{Gold}[/blue] [gold]золота[/gold], когда вы добавляете карту в [gold]колоду[/gold].",
+    "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
+    "rarity": "Необычная реликвия",
+    "pool": "shared",
+    "merchant_price": {
+      "base": 250,
+      "min": 212,
+      "max": 288
+    },
+    "image_url": "/static/images/relics/lucky_fysh.webp",
+    "image_variants": null,
+    "notes": null,
+    "rarity_key": "Uncommon",
+    "compendium_order": 73
   },
   {
     "id": "SAI",
@@ -3606,14 +3921,15 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/sai.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 224
+    "compendium_order": 228
   },
   {
     "id": "SELF_FORMING_CLAY",
     "name": "Самолепящаяся глина",
-    "description": "Дает по [blue]3[/blue] [gold]защиты[/gold] в следующем ходу за каждую потерю ОЗ в текущем.",
-    "description_raw": "Дает по [blue]{BlockNextTurn}[/blue] [gold]защиты[/gold] в следующем ходу за каждую потерю ОЗ в текущем.",
+    "description": "Дает [blue]3[/blue] [gold]защиты[/gold] в следующем ходу за каждую потерю ОЗ в текущем.",
+    "description_raw": "Дает [blue]{BlockNextTurn}[/blue] [gold]защиты[/gold] в следующем ходу за каждую потерю ОЗ в текущем.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Необычная реликвия",
     "pool": "ironclad",
@@ -3624,8 +3940,9 @@
     },
     "image_url": "/static/images/relics/self_forming_clay.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 73
+    "compendium_order": 74
   },
   {
     "id": "SPARKLING_ROUGE",
@@ -3642,12 +3959,13 @@
     },
     "image_url": "/static/images/relics/sparkling_rouge.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 74
+    "compendium_order": 75
   },
   {
     "id": "LEAD_PAPERWEIGHT",
-    "name": "Свинцовый пресс-папье",
+    "name": "Свинцовое пресс-папье",
     "description": "При получении добавляет в [gold]колоду[/gold] [blue]1[/blue] из [blue]2[/blue] бесцветных карт на выбор.",
     "description_raw": "При получении добавляет в [gold]колоду[/gold] [blue]1[/blue] из [blue]2[/blue] бесцветных карт на выбор.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
@@ -3656,12 +3974,13 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/lead_paperweight.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 225
+    "compendium_order": 229
   },
   {
     "id": "TANXS_WHISTLE",
-    "name": "Свисток Танкза",
+    "name": "Свисток Танкcа",
     "description": "При получении добавляет в [gold]колоду[/gold] [blue]1[/blue] [gold]«Свисток»[/gold].",
     "description_raw": "При получении добавляет в [gold]колоду[/gold] [blue]1[/blue] [gold]«Свисток»[/gold].",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
@@ -3670,8 +3989,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/tanxs_whistle.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 226
+    "compendium_order": 230
   },
   {
     "id": "NINJA_SCROLL",
@@ -3688,14 +4008,15 @@
     },
     "image_url": "/static/images/relics/ninja_scroll.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 155
   },
   {
     "id": "BRIMSTONE",
     "name": "Сера",
-    "description": "Дает [blue]2[/blue] [gold]силы[/gold] и ВСЕ враги получают [blue]1[/blue] [gold]силы[/gold] в начале хода.",
-    "description_raw": "Дает [blue]{SelfStrength}[/blue] [gold]силы[/gold] и ВСЕ враги получают [blue]{EnemyStrength}[/blue] [gold]силы[/gold] в начале хода.",
+    "description": "Дает [blue]2[/blue] [gold]силы[/gold] в начале хода. ВСЕ враги получают [blue]1[/blue] [gold]силы[/gold] в начале хода.",
+    "description_raw": "Дает [blue]{SelfStrength}[/blue] [gold]силы[/gold] в начале хода. ВСЕ враги получают [blue]{EnemyStrength}[/blue] [gold]силы[/gold] в начале хода.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия из магазина",
     "pool": "ironclad",
@@ -3706,22 +4027,24 @@
     },
     "image_url": "/static/images/relics/brimstone.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 156
   },
   {
     "id": "SILVER_CRUCIBLE",
     "name": "Серебрянное горнило",
-    "description": "Карты в [blue]3[/blue] первых наградных наборах [gold]улучшены[/gold]. Первый открытый сундук [red]пустой[/red].",
-    "description_raw": "Карты в [blue]{Cards}[/blue] первых наградных наборах [gold]улучшены[/gold]. Первый открытый сундук [red]пустой[/red].",
+    "description": "Карты в [blue]3[/blue] первых наградных наборах [gold]улучшены[/gold]. В первом наградном сундуке [red]пусто[/red].",
+    "description_raw": "Карты в [blue]{Cards}[/blue] первых наградных наборах [gold]улучшены[/gold]. В первом наградном сундуке [red]пусто[/red].",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
     "merchant_price": null,
     "image_url": "/static/images/relics/silver_crucible.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 227
+    "compendium_order": 231
   },
   {
     "id": "STORYBOOK",
@@ -3734,36 +4057,39 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/storybook.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 228
+    "compendium_order": 232
   },
   {
     "id": "FIDDLE",
     "name": "Скрипка",
-    "description": "Вы добираете [blue]2[/blue] plural(ru):дополнительную карту в начале хода. Вы не можете добирать карты в свой ход.",
-    "description_raw": "Вы добираете [blue]{Cards}[/blue] {Cards:plural(ru):дополнительную карту|дополнительные карты|дополнительных карт} в начале хода. Вы не можете добирать карты в свой ход.",
+    "description": "Вы добираете еще [blue]2[/blue] plural(ru):карту в начале хода. Вы не можете добирать карты в свой ход.",
+    "description_raw": "Вы добираете еще [blue]{Cards}[/blue] {Cards:plural(ru):карту|карты|карт} в начале хода. Вы не можете добирать карты в свой ход.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
     "merchant_price": null,
     "image_url": "/static/images/relics/fiddle.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 229
+    "compendium_order": 233
   },
   {
     "id": "PAELS_TEARS",
     "name": "Слезы Паэля",
-    "description": "Дает [energy:2] в следующем ходу, если у вас остается [energy:1] в конце текущего.",
-    "description_raw": "Дает {Energy:energyIcons()} в следующем ходу, если у вас остается {energyPrefix:energyIcons(1)} в конце текущего.",
+    "description": "Дают [energy:2] в начале следующего хода, если у вас остается [energy:1] в конце текущего.",
+    "description_raw": "Дают {Energy:energyIcons()} в начале следующего хода, если у вас остается {energyPrefix:energyIcons(1)} в конце текущего.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
     "merchant_price": null,
     "image_url": "/static/images/relics/paels_tears.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 230
+    "compendium_order": 234
   },
   {
     "id": "SOZU",
@@ -3776,8 +4102,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/sozu.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 231
+    "compendium_order": 235
   },
   {
     "id": "RUINED_HELMET",
@@ -3794,6 +4121,7 @@
     },
     "image_url": "/static/images/relics/ruined_helmet.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 117
   },
@@ -3812,6 +4140,7 @@
     },
     "image_url": "/static/images/relics/old_coin.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 118
   },
@@ -3830,6 +4159,7 @@
     },
     "image_url": "/static/images/relics/white_beast_statue.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 119
   },
@@ -3844,8 +4174,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/glass_eye.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 232
+    "compendium_order": 236
   },
   {
     "id": "CENTENNIAL_PUZZLE",
@@ -3862,14 +4193,15 @@
     },
     "image_url": "/static/images/relics/centennial_puzzle.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 32
   },
   {
     "id": "BAG_OF_PREPARATION",
     "name": "Сумка готовности",
-    "description": "Вы добираете [blue]2[/blue] plural(ru):дополнительную карту в начале боя.",
-    "description_raw": "Вы добираете [blue]{Cards}[/blue] {Cards:plural(ru):дополнительную карту|дополнительные карты|дополнительных карт} в начале боя.",
+    "description": "Вы добираете еще [blue]2[/blue] plural(ru):карту в начале боя.",
+    "description_raw": "Вы добираете еще [blue]{Cards}[/blue] {Cards:plural(ru):карту|карты|карт} в начале боя.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Обычная реликвия",
     "pool": "shared",
@@ -3880,14 +4212,15 @@
     },
     "image_url": "/static/images/relics/bag_of_preparation.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 33
   },
   {
     "id": "HAPPY_FLOWER",
     "name": "Счастливый цветок",
-    "description": "Дает [energy:1] каждые [blue]3[/blue] plural(ru):ход.",
-    "description_raw": "Дает {Energy:energyIcons()} каждые [blue]{Turns}[/blue] {Turns:plural(ru):ход|хода|ходов}.",
+    "description": "Дает [energy:1] plural(ru):каждый ход.",
+    "description_raw": "Дает {Energy:energyIcons()} {Turns:plural(ru):каждый ход|каждые [blue]{}[/blue] хода|каждые [blue]{}[/blue] ходов}.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Обычная реликвия",
     "pool": "shared",
@@ -3898,6 +4231,7 @@
     },
     "image_url": "/static/images/relics/happy_flower.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 34
   },
@@ -3916,14 +4250,15 @@
     },
     "image_url": "/static/images/relics/fake_happy_flower.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 283
+    "compendium_order": 289
   },
   {
     "id": "THE_ABACUS",
     "name": "Счеты",
-    "description": "Дает [blue]6[/blue] [gold]защиты[/gold], когда вы замешиваете [gold]стопку сброса[/gold] в [gold]стопку добора[/gold].",
-    "description_raw": "Дает [blue]{Block}[/blue] [gold]защиты[/gold], когда вы замешиваете [gold]стопку сброса[/gold] в [gold]стопку добора[/gold].",
+    "description": "Дает [blue]6[/blue] [gold]защиты[/gold], когда перемешивается [gold]стопка добора[/gold].",
+    "description_raw": "Дает [blue]{Block}[/blue] [gold]защиты[/gold], когда перемешивается [gold]стопка добора[/gold].",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия из магазина",
     "pool": "shared",
@@ -3934,14 +4269,15 @@
     },
     "image_url": "/static/images/relics/the_abacus.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 157
   },
   {
     "id": "SHURIKEN",
     "name": "Сюрикен",
-    "description": "Дает [blue]1[/blue] [gold]силы[/gold], когда вы разыгрываете [blue]3[/blue] Атаки за ход.",
-    "description_raw": "Дает [blue]{StrengthPower}[/blue] [gold]силы[/gold], когда вы разыгрываете [blue]{Cards}[/blue] Атаки за ход.",
+    "description": "Дает [blue]1[/blue] [gold]силы[/gold], когда вы разыгрываете [blue]3[/blue] plural(ru):Атаку за ход.",
+    "description_raw": "Дает [blue]{StrengthPower}[/blue] [gold]силы[/gold], когда вы разыгрываете [blue]{Cards}[/blue] {Cards:plural(ru):Атаку|Атаки|Атак} за ход.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Редкая реликвия",
     "pool": "shared",
@@ -3952,8 +4288,24 @@
     },
     "image_url": "/static/images/relics/shuriken.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 120
+  },
+  {
+    "id": "NEOWS_TALISMAN",
+    "name": "Талисман Ньяу",
+    "description": "При получении [gold]улучшает[/gold] [blue]1[/blue] [gold]«Удар»[/gold] и [blue]1[/blue] [gold]«Оборону»[/gold].",
+    "description_raw": "При получении [gold]улучшает[/gold] [blue]1[/blue] [gold]«Удар»[/gold] и [blue]1[/blue] [gold]«Оборону»[/gold].",
+    "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
+    "rarity": "Древняя реликвия",
+    "pool": "shared",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/neows_talisman.webp",
+    "image_variants": null,
+    "notes": null,
+    "rarity_key": "Ancient",
+    "compendium_order": 237
   },
   {
     "id": "REPTILE_TRINKET",
@@ -3970,12 +4322,13 @@
     },
     "image_url": "/static/images/relics/reptile_trinket.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 75
+    "compendium_order": 76
   },
   {
     "id": "MEAL_TICKET",
-    "name": "Талон на питание",
+    "name": "Талон",
     "description": "Восполняет [green]15[/green] ОЗ, когда вы посещаете [gold]магазин[/gold].",
     "description_raw": "Восполняет [green]{Heal}[/green] ОЗ, когда вы посещаете [gold]магазин[/gold].",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
@@ -3988,6 +4341,7 @@
     },
     "image_url": "/static/images/relics/meal_ticket.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 35
   },
@@ -4006,8 +4360,9 @@
     },
     "image_url": "/static/images/relics/tingsha.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 76
+    "compendium_order": 77
   },
   {
     "id": "WHETSTONE",
@@ -4024,64 +4379,69 @@
     },
     "image_url": "/static/images/relics/whetstone.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 36
   },
   {
     "id": "LEAFY_POULTICE",
     "name": "Травяная настойка",
-    "description": "При получении [gold]преобразует[/gold] [blue]1[/blue] [gold]«Удар»[/gold] и [blue]1[/blue] [gold]«Оборону»[/gold]. Вы теряете [blue]10[/blue] максимальных ОЗ.",
-    "description_raw": "При получении [gold]преобразует[/gold] [blue]1[/blue] [gold]«Удар»[/gold] и [blue]1[/blue] [gold]«Оборону»[/gold]. Вы теряете [blue]{MaxHp}[/blue] максимальных ОЗ.",
+    "description": "При получении понижает максимальные ОЗ на [blue]12[/blue] и [gold]преобразует[/gold] [blue]1[/blue] [gold]«Удар»[/gold] и [blue]1[/blue] [gold]«Оборону»[/gold].",
+    "description_raw": "При получении понижает максимальные ОЗ на [blue]{MaxHp}[/blue] и [gold]преобразует[/gold] [blue]1[/blue] [gold]«Удар»[/gold] и [blue]1[/blue] [gold]«Оборону»[/gold].",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
     "merchant_price": null,
     "image_url": "/static/images/relics/leafy_poultice.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 233
+    "compendium_order": 238
   },
   {
     "id": "CRACKED_CORE",
     "name": "Треснувшее ядро",
-    "description": "[gold]Заряжает[/gold] [blue]1[/blue] [gold]сферу молнии[/gold] в начале боя.",
-    "description_raw": "[gold]Заряжает[/gold] [blue]{Lightning}[/blue] [gold]сферу молнии[/gold] в начале боя.",
+    "description": "[gold]Заряжает[/gold] [blue]1[/blue] [gold]plural(ru):сферу молнии[/gold] в начале боя.",
+    "description_raw": "[gold]Заряжает[/gold] [blue]{Lightning}[/blue] [gold]{Lightning:plural(ru):сферу|сферы|сфер} молнии[/gold] в начале боя.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Начальная реликвия",
     "pool": "defect",
     "merchant_price": null,
     "image_url": "/static/images/relics/cracked_core.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Starter",
     "compendium_order": 8
   },
   {
     "id": "TRI_BOOMERANG",
     "name": "Трехлопастный бумеранг",
-    "description": "[gold]Чарует[/gold] [blue]3[/blue] plural(ru):Атаку в [gold]колоде[/gold] на выбор [purple]инстинктом[/purple].",
-    "description_raw": "[gold]Чарует[/gold] [blue]{Cards}[/blue] {Cards:plural(ru):Атаку|Атаки|Атак} в [gold]колоде[/gold] на выбор [purple]инстинктом[/purple].",
+    "description": "Накладывает [gold]чары[/gold] [purple]«Инстинкт»[/purple] на [blue]3[/blue] plural(ru):выбранную Атаку.",
+    "description_raw": "Накладывает [gold]чары[/gold] [purple]«Инстинкт»[/purple] на [blue]{Cards}[/blue] {Cards:plural(ru):выбранную Атаку|выбранные Атаки|выбранных Атак}.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
     "merchant_price": null,
     "image_url": "/static/images/relics/tri_boomerang.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 234
+    "compendium_order": 239
   },
   {
     "id": "BOOMING_CONCH",
     "name": "Трубящая раковина",
-    "description": "Вы добираете [blue]2[/blue] plural(ru):дополнительную карту в начале боя с [gold]элитным врагом[/gold].",
-    "description_raw": "Вы добираете [blue]{Cards}[/blue] {Cards:plural(ru):дополнительную карту|дополнительные карты|дополнительных карт} в начале боя с [gold]элитным врагом[/gold].",
+    "description": "Вы добираете еще [blue]2[/blue] plural(ru):карту в начале боя с [gold]элитными врагами[/gold].",
+    "description_raw": "Вы добираете еще [blue]{Cards}[/blue] {Cards:plural(ru):карту|карты|карт} в начале боя с [gold]элитными врагами[/gold].",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
     "merchant_price": null,
     "image_url": "/static/images/relics/booming_conch.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 235
+    "compendium_order": 240
   },
   {
     "id": "PUMPKIN_CANDLE",
@@ -4094,14 +4454,15 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/pumpkin_candle.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 236
+    "compendium_order": 241
   },
   {
     "id": "PUNCH_DAGGER",
     "name": "Тычковый нож",
-    "description": "При получении [gold]чарует[/gold] Атаку на [purple]размах[/purple] [blue]5[/blue].",
-    "description_raw": "При получении [gold]чарует[/gold] Атаку на [purple]размах[/purple] [blue]{Momentum}[/blue].",
+    "description": "При получении накладывает [gold]чары[/gold] [purple]«Размах»[/purple] [blue]5[/blue] на выбранную Атаку.",
+    "description_raw": "При получении накладывает [gold]чары[/gold] [purple]«Размах»[/purple] [blue]{Momentum}[/blue] на выбранную Атаку.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия из магазина",
     "pool": "shared",
@@ -4112,6 +4473,7 @@
     },
     "image_url": "/static/images/relics/punch_dagger.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 158
   },
@@ -4126,22 +4488,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/looming_fruit.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 237
-  },
-  {
-    "id": "EMBER_TEA",
-    "name": "Углевой чай",
-    "description": "Даст [blue]2[/blue] [gold]силы[/gold] в начале plural(ru):следующего боя.",
-    "description_raw": "Даст [blue]{StrengthPower}[/blue] [gold]силы[/gold] в начале {Combats:plural(ru):следующего боя|[blue]{}[/blue] следующих боев|[blue]{}[/blue] следующих боев}.",
-    "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
-    "rarity": "Реликвия за событие",
-    "pool": "shared",
-    "merchant_price": null,
-    "image_url": "/static/images/relics/ember_tea.webp",
-    "image_variants": null,
-    "rarity_key": "Event",
-    "compendium_order": 284
+    "compendium_order": 242
   },
   {
     "id": "NEOWS_TORMENT",
@@ -4154,14 +4503,15 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/neows_torment.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 238
+    "compendium_order": 243
   },
   {
     "id": "ORNAMENTAL_FAN",
     "name": "Узорчатый веер",
-    "description": "Дает [blue]4[/blue] [gold]защиты[/gold], когда вы разыгрываете [blue]3[/blue] Атаки за ход.",
-    "description_raw": "Дает [blue]{Block}[/blue] [gold]защиты[/gold], когда вы разыгрываете [blue]{Cards}[/blue] Атаки за ход.",
+    "description": "Дает [blue]4[/blue] [gold]защиты[/gold], когда вы разыгрываете [blue]3[/blue] plural(ru):Атаку за ход.",
+    "description_raw": "Дает [blue]{Block}[/blue] [gold]защиты[/gold], когда вы разыгрываете [blue]{Cards}[/blue] {Cards:plural(ru):Атаку|Атаки|Атак} за ход.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Необычная реликвия",
     "pool": "shared",
@@ -4172,14 +4522,15 @@
     },
     "image_url": "/static/images/relics/ornamental_fan.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 77
+    "compendium_order": 78
   },
   {
     "id": "INTIMIDATING_HELMET",
     "name": "Устрашающий шлем",
-    "description": "Дает [blue]4[/blue] [gold]защиты[/gold], когда вы разыгрываете карту с ценой [energy:2] или больше.",
-    "description_raw": "Дает [blue]{Block}[/blue] [gold]защиты[/gold], когда вы разыгрываете карту с ценой {Energy:energyIcons()} или больше.",
+    "description": "Дает [blue]4[/blue] [gold]защиты[/gold], когда вы разыгрываете карту стоимостью не менее [energy:2].",
+    "description_raw": "Дает [blue]{Block}[/blue] [gold]защиты[/gold], когда вы разыгрываете карту стоимостью не менее {Energy:energyIcons()}.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Редкая реликвия",
     "pool": "shared",
@@ -4190,6 +4541,7 @@
     },
     "image_url": "/static/images/relics/intimidating_helmet.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 121
   },
@@ -4204,8 +4556,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/lost_coffer.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 239
+    "compendium_order": 244
   },
   {
     "id": "CLOAK_CLASP",
@@ -4222,6 +4575,7 @@
     },
     "image_url": "/static/images/relics/cloak_clasp.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 122
   },
@@ -4236,8 +4590,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/philosophers_stone.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 240
+    "compendium_order": 245
   },
   {
     "id": "GAMBLING_CHIP",
@@ -4254,6 +4609,7 @@
     },
     "image_url": "/static/images/relics/gambling_chip.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 123
   },
@@ -4272,14 +4628,15 @@
     },
     "image_url": "/static/images/relics/lantern.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 37
   },
   {
     "id": "LIZARD_TAIL",
     "name": "Хвост ящерицы",
-    "description": "Восполняет [green]50%[/green] ОЗ, когда вы получаете смертельный урон (срабатывает один раз).",
-    "description_raw": "Восполняет [green]{Heal}%[/green] ОЗ, когда вы получаете смертельный урон (срабатывает один раз).",
+    "description": "Когда ОЗ понижаются до [blue]0[/blue], вы исцеляетесь до [green]50%[/green] от максимальных ОЗ вместо того, чтобы умереть (срабатывает один раз).",
+    "description_raw": "Когда ОЗ понижаются до [blue]0[/blue], вы исцеляетесь до [green]{Heal}%[/green] от максимальных ОЗ вместо того, чтобы умереть (срабатывает один раз).",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Редкая реликвия",
     "pool": "shared",
@@ -4290,6 +4647,7 @@
     },
     "image_url": "/static/images/relics/lizard_tail.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 124
   },
@@ -4308,22 +4666,9 @@
     },
     "image_url": "/static/images/relics/bread.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 159
-  },
-  {
-    "id": "TEA_OF_DISCOURTESY",
-    "name": "Чай невежества",
-    "description": "Добавит [blue]2[/blue] [gold]«Головокружения»[/gold] в [gold]стопку добора[/gold] в начале следующего боя.",
-    "description_raw": "Добавит [blue]{DazedCount}[/blue] [gold]«Головокружения»[/gold] в [gold]стопку добора[/gold] в начале следующего боя.",
-    "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
-    "rarity": "Реликвия за событие",
-    "pool": "shared",
-    "merchant_price": null,
-    "image_url": "/static/images/relics/tea_of_discourtesy.webp",
-    "image_variants": null,
-    "rarity_key": "Event",
-    "compendium_order": 285
   },
   {
     "id": "SNECKO_SKULL",
@@ -4340,22 +4685,24 @@
     },
     "image_url": "/static/images/relics/snecko_skull.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 38
   },
   {
     "id": "BLACK_STAR",
     "name": "Черная звезда",
-    "description": "Дает дополнительную [gold]реликвию[/gold] за победу над [gold]элитным врагом[/gold].",
-    "description_raw": "Дает дополнительную [gold]реликвию[/gold] за победу над [gold]элитным врагом[/gold].",
+    "description": "Дает дополнительную [gold]реликвию[/gold] за победу над [gold]элитными врагами[/gold].",
+    "description_raw": "Дает дополнительную [gold]реликвию[/gold] за победу над [gold]элитными врагами[/gold].",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
     "merchant_price": null,
     "image_url": "/static/images/relics/black_star.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 241
+    "compendium_order": 246
   },
   {
     "id": "BLACK_BLOOD",
@@ -4368,14 +4715,15 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/black_blood.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Starter",
     "compendium_order": 9
   },
   {
     "id": "EMOTION_CHIP",
     "name": "Чип эмоций",
-    "description": "Активирует пассивный эффект всех заряженных Сфер в начале следующего хода, если вы теряли ОЗ в текущем.",
-    "description_raw": "Активирует пассивный эффект всех заряженных Сфер в начале следующего хода, если вы теряли ОЗ в текущем.",
+    "description": "Активирует пассивный эффект всех заряженных сфер в начале следующего хода, если вы теряли ОЗ в текущем.",
+    "description_raw": "Активирует пассивный эффект всех заряженных сфер в начале следующего хода, если вы теряли ОЗ в текущем.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Редкая реликвия",
     "pool": "defect",
@@ -4386,6 +4734,7 @@
     },
     "image_url": "/static/images/relics/emotion_chip.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 125
   },
@@ -4400,8 +4749,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/new_leaf.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 242
+    "compendium_order": 247
   },
   {
     "id": "CHANDELIER",
@@ -4418,6 +4768,7 @@
     },
     "image_url": "/static/images/relics/chandelier.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 126
   },
@@ -4436,8 +4787,9 @@
     },
     "image_url": "/static/images/relics/horn_cleat.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 78
+    "compendium_order": 79
   },
   {
     "id": "WHISPERING_EARRING",
@@ -4450,22 +4802,24 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/whispering_earring.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 243
+    "compendium_order": 248
   },
   {
     "id": "SPIKED_GAUNTLETS",
     "name": "Шипастые рукавицы",
-    "description": "Дает [energy:1] в начале хода. Повышает цену Талантов на [blue]1[/blue] [energy:1].",
-    "description_raw": "Дает {Energy:energyIcons()} в начале хода. Повышает цену Талантов на [blue]1[/blue] {energyPrefix:energyIcons(1)}.",
+    "description": "Дает [energy:1] в начале хода. Таланты стоят на [blue]1[/blue] [energy:1] больше.",
+    "description_raw": "Дает {Energy:energyIcons()} в начале хода. Таланты стоят на [blue]1[/blue] {energyPrefix:energyIcons(1)} больше.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
     "merchant_price": null,
     "image_url": "/static/images/relics/spiked_gauntlets.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 244
+    "compendium_order": 249
   },
   {
     "id": "BIG_HAT",
@@ -4482,6 +4836,7 @@
     },
     "image_url": "/static/images/relics/big_hat.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 127
   },
@@ -4496,40 +4851,24 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/jewelry_box.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 245
-  },
-  {
-    "id": "BOWLER_HAT",
-    "name": "Шляпа-котелок",
-    "description": "Вы получаете на [blue]20%[/blue] больше [gold]золота[/gold].",
-    "description_raw": "Вы получаете на [blue]20%[/blue] больше [gold]золота[/gold].",
-    "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
-    "rarity": "Необычная реликвия",
-    "pool": "shared",
-    "merchant_price": {
-      "base": 250,
-      "min": 212,
-      "max": 288
-    },
-    "image_url": "/static/images/relics/bowler_hat.webp",
-    "image_variants": null,
-    "rarity_key": "Uncommon",
-    "compendium_order": 79
+    "compendium_order": 250
   },
   {
     "id": "FUR_COAT",
     "name": "Шуба",
-    "description": "При получении отмечает на карте [blue]7[/blue] случайных комнат с врагами. Враги в них имеют [blue]1[/blue] ОЗ.",
-    "description_raw": "При получении отмечает на карте [blue]{Combats}[/blue] случайных комнат с врагами. Враги в них имеют [blue]1[/blue] ОЗ.",
+    "description": "При получении отмечает [blue]7[/blue] plural(ru):случайную комнату с врагами. Враги в них имеют [blue]1[/blue] ОЗ.",
+    "description_raw": "При получении отмечает [blue]{Combats}[/blue] {Combats:plural(ru):случайную комнату|случайные комнаты|случайных комнат} с врагами. Враги в них имеют [blue]1[/blue] ОЗ.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
     "merchant_price": null,
     "image_url": "/static/images/relics/fur_coat.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 246
+    "compendium_order": 251
   },
   {
     "id": "ECTOPLASM",
@@ -4542,22 +4881,24 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/ectoplasm.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 247
+    "compendium_order": 252
   },
   {
     "id": "ELECTRIC_SHRYMP",
     "name": "Электрический кревед",
-    "description": "При получении [gold]чарует[/gold] Навык на [purple]знаковость[/purple].",
-    "description_raw": "При получении [gold]чарует[/gold] Навык на [purple]знаковость[/purple].",
+    "description": "При получении накладывает [gold]чары[/gold] [purple]«Знаковость»[/purple] на выбранный Навык.",
+    "description_raw": "При получении накладывает [gold]чары[/gold] [purple]«Знаковость»[/purple] на выбранный Навык.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
     "merchant_price": null,
     "image_url": "/static/images/relics/electric_shrymp.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 248
+    "compendium_order": 253
   },
   {
     "id": "TOXIC_EGG",
@@ -4574,14 +4915,15 @@
     },
     "image_url": "/static/images/relics/toxic_egg.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 128
   },
   {
     "id": "DEMON_TONGUE",
     "name": "Язык демона",
-    "description": "Восполняет первую потерю ОЗ в [gold]вашем[/gold] ходу.",
-    "description_raw": "Восполняет первую потерю ОЗ в [gold]вашем[/gold] ходу.",
+    "description": "Восполняет первую потерю ОЗ в вашем ходу.",
+    "description_raw": "Восполняет первую потерю ОЗ в вашем ходу.",
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Редкая реликвия",
     "pool": "ironclad",
@@ -4592,6 +4934,7 @@
     },
     "image_url": "/static/images/relics/demon_tongue.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 129
   },
@@ -4610,6 +4953,7 @@
     },
     "image_url": "/static/images/relics/anchor.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 39
   },
@@ -4628,8 +4972,24 @@
     },
     "image_url": "/static/images/relics/fake_anchor.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 286
+    "compendium_order": 290
+  },
+  {
+    "id": "EMBER_TEA",
+    "name": "Янтарный чай",
+    "description": "Даст [blue]2[/blue] [gold]силы[/gold] в начале plural(ru):следующего боя.",
+    "description_raw": "Даст [blue]{StrengthPower}[/blue] [gold]силы[/gold] в начале {Combats:plural(ru):следующего боя|[blue]{}[/blue] следующих боев|[blue]{}[/blue] следующих боев}.",
+    "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
+    "rarity": "Реликвия за событие",
+    "pool": "shared",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/ember_tea.webp",
+    "image_variants": null,
+    "notes": null,
+    "rarity_key": "Event",
+    "compendium_order": 291
   },
   {
     "id": "PANDORAS_BOX",
@@ -4642,8 +5002,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/pandoras_box.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 249
+    "compendium_order": 254
   },
   {
     "id": "TOY_BOX",
@@ -4656,8 +5017,13 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/toy_box.webp",
     "image_variants": null,
+    "notes": [
+      "Wax Relics are pulled from the normal relic pool — any non-Ancient relic can be waxed.",
+      "Wax Relic rarity: 50% Common, 33% Uncommon, 17% Rare (standard relic rarity roll).",
+      "All wax relics melt after 12 total combats, then Toy Box is used up."
+    ],
     "rarity_key": "Ancient",
-    "compendium_order": 250
+    "compendium_order": 255
   },
   {
     "id": "SCROLL_BOXES",
@@ -4670,7 +5036,8 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/scroll_boxes.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 251
+    "compendium_order": 256
   }
 ]

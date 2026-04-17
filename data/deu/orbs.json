@@ -16,8 +16,8 @@
   {
     "id": "GLASS_ORB",
     "name": "Glas",
-    "description": "[gold]Passive:[/gold] Füge am Ende des Zuges ALLEN Gegnern [blue]4[/blue] Schaden zu und reduziere den Wert dieses Orbs um [blue]1[/blue].\n[gold]Entladen:[/gold] Füge ALLEN Gegnern [blue]8[/blue] Schaden zu.",
-    "description_raw": "[gold]Passive:[/gold] Füge am Ende des Zuges ALLEN Gegnern [blue]{Passive}[/blue] Schaden zu und reduziere den Wert dieses Orbs um [blue]1[/blue].\n[gold]Entladen:[/gold] Füge ALLEN Gegnern [blue]{Evoke}[/blue] Schaden zu.",
+    "description": "[gold]Passiv:[/gold] Füge am Ende deines Zuges ALLEN Gegnern [blue]4[/blue] Schaden zu und reduziere den Wert dieses Orbs um [blue]1[/blue].\n[gold]Entladen:[/gold] Füge ALLEN Gegnern [blue]8[/blue] Schaden zu.",
+    "description_raw": "[gold]Passiv:[/gold] Füge am Ende deines Zuges ALLEN Gegnern [blue]{Passive}[/blue] Schaden zu und reduziere den Wert dieses Orbs um [blue]1[/blue].\n[gold]Entladen:[/gold] Füge ALLEN Gegnern [blue]{Evoke}[/blue] Schaden zu.",
     "image_url": "/static/images/orbs/glass_orb.webp"
   },
   {

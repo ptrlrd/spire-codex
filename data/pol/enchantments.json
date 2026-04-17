@@ -33,17 +33,6 @@
     "image_url": "/static/images/enchantments/corrupted.webp"
   },
   {
-    "id": "FAVORED",
-    "name": "Faworyt",
-    "description": "Karta zadaje podwójne obrażenia.",
-    "description_raw": null,
-    "extra_card_text": null,
-    "card_type": "Attack",
-    "applicable_to": null,
-    "is_stackable": false,
-    "image_url": "/static/images/enchantments/favored.webp"
-  },
-  {
     "id": "GLAM",
     "name": "Dwakroć",
     "description": "Karta otrzymuje [gold]Powtórkę[/gold] raz na walkę.",
@@ -77,9 +66,20 @@
     "image_url": "/static/images/enchantments/imbued.webp"
   },
   {
+    "id": "INKY",
+    "name": "Atrament",
+    "description": "Karta zadaje dodatkowo [blue]2[/blue] pkt. obrażeń i nakłada [blue]1[/blue] pkt. [gold]Słabości[/gold].",
+    "description_raw": "Karta zadaje dodatkowo [blue]{Damage}[/blue] pkt. obrażeń i nakłada [blue]{WeakPower}[/blue] pkt. [gold]Słabości[/gold].",
+    "extra_card_text": "Nałóż [blue]1[/blue] pkt. [gold]Słabości[/gold] na WSZYSTKICH przeciwników.",
+    "card_type": null,
+    "applicable_to": null,
+    "is_stackable": false,
+    "image_url": "/static/images/enchantments/inky.webp"
+  },
+  {
     "id": "INSTINCT",
     "name": "Instynkt",
-    "description": "Zmniejsz koszt karty o [blue]1[/blue].",
+    "description": "Karta zadaje podwójne obrażenia.",
     "description_raw": null,
     "extra_card_text": null,
     "card_type": "Attack",
@@ -111,10 +111,10 @@
   },
   {
     "id": "PERFECT_FIT",
-    "name": "Pętla",
+    "name": "Dopasowanie",
     "description": "Gdy wtasujesz tę kartę do [gold]stosu rozgrywającego[/gold], umieść ją na samym szczycie.",
     "description_raw": null,
-    "extra_card_text": "Pętla.",
+    "extra_card_text": "Dopasowanie.",
     "card_type": null,
     "applicable_to": null,
     "is_stackable": false,
@@ -211,9 +211,9 @@
   {
     "id": "SWIFT",
     "name": "Sprint",
-    "description": "",
-    "description_raw": null,
-    "extra_card_text": null,
+    "description": "Gdy zagrasz tę kartę po raz pierwszy, dobierz [blue]X[/blue] karty|[blue]X[/blue] kart.",
+    "description_raw": "Gdy zagrasz tę kartę po raz pierwszy, dobierz {Amount:plural:[blue]{Amount}[/blue] kartę|[blue]{Amount}[/blue] karty|[blue]{Amount}[/blue] kart}.",
+    "extra_card_text": "Dobierz X karty|kart, gdy zagrasz tę kartę po raz pierwszy.",
     "card_type": null,
     "applicable_to": null,
     "is_stackable": false,

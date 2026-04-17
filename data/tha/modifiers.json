@@ -72,7 +72,7 @@
   {
     "id": "TERMINAL",
     "name": "ระยะสุดท้าย",
-    "description": "ทุกครั้งที่เข้าห้องใหม่ เสีย [red]1[/red] HP สูงสุด เริ่มแต่ละการต่อสู้ด้วย [blue]5[/blue] [gold]Plating[/gold]"
+    "description": "ทุกครั้งที่เข้าห้องใหม่ เสีย [red]1[/red] HP สูงสุด เริ่มแต่ละการต่อสู้ด้วย [blue]5[/blue] [gold]เกราะโลหะ[/gold]"
   },
   {
     "id": "VINTAGE",

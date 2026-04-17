@@ -62,7 +62,7 @@
   {
     "id": "ARSENAL",
     "name": "Arsenał",
-    "description": "Kiedykolwiek zagrasz bezbarwną kartę, zyskaj [blue]1[/blue] pkt. [gold]Siły[/gold].",
+    "description": "Kiedykolwiek stworzysz kartę, zyskaj [blue]1[/blue] pkt. [gold]Siły[/gold].",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
@@ -82,8 +82,8 @@
   {
     "id": "ASLEEP",
     "name": "Sen",
-    "description": "TODO",
-    "description_raw": null,
+    "description": "Budzi się po utraceniu PŻ lub po [blue]2[/blue] turach|po [blue]2[/blue] turach.",
+    "description_raw": "Budzi się po utraceniu PŻ lub {Amount:plural:w następnej turze|po [blue]{}[/blue] turach|po [blue]{}[/blue] turach}.",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -142,10 +142,10 @@
   {
     "id": "BEACON_OF_HOPE",
     "name": "Promyk nadziei",
-    "description": "Kiedykolwiek zyskasz pkt. [gold]Bloku[/gold] podczas swojej tury, pozostali gracze otrzymują połowę tych pkt.",
+    "description": "Kiedykolwiek zyskasz [gold]Blok[/gold] podczas swojej tury, pozostali gracze otrzymują połowę z tego [gold]Bloku[/gold].",
     "description_raw": null,
     "type": "Buff",
-    "stack_type": "Counter",
+    "stack_type": "Single",
     "allow_negative": null,
     "image_url": "/static/images/powers/beacon_of_hope_power.webp"
   },
@@ -170,16 +170,6 @@
     "image_url": "/static/images/powers/black_hole_power.webp"
   },
   {
-    "id": "BLADE_OF_INK",
-    "name": "Ostrze z atramentu",
-    "description": "Kiedykolwiek zagrasz Atak w tej turze, zyskaj [blue]2[/blue] pkt. [gold]Siły[/gold] do końca tury.",
-    "description_raw": null,
-    "type": "Buff",
-    "stack_type": "Counter",
-    "allow_negative": null,
-    "image_url": "/static/images/powers/blade_of_ink_power.webp"
-  },
-  {
     "id": "BLOCK_NEXT_TURN",
     "name": "Blok w następnej turze",
     "description": "Na początku następnej tury zyskaj [blue]4[/blue] pkt. [gold]Bloku[/gold].",
@@ -198,6 +188,16 @@
     "stack_type": "Counter",
     "allow_negative": null,
     "image_url": "/static/images/powers/blur_power.webp"
+  },
+  {
+    "id": "BORROWED_TIME",
+    "name": "Życie na krawędzi",
+    "description": "Karty kosztują dodatkowy pkt. Energii w tej turze.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/borrowed_time_power.webp"
   },
   {
     "id": "BUFFER",
@@ -292,8 +292,8 @@
   {
     "id": "COLOSSUS",
     "name": "Kolos",
-    "description": "W tej turze otrzymujesz [blue]50%[/blue] mniej obrażeń od [gold]Wrażliwych[/gold] przeciwników.",
-    "description_raw": null,
+    "description": "Przez [blue]2[/blue] tury|Przez [blue]2[/blue] tur|Przez [blue]2[/blue] tur otrzymujesz [blue]50%[/blue] mniej obrażeń od [gold]Wrażliwych[/gold] przeciwników.",
+    "description_raw": "{Amount:plural:W tej turze|Przez [blue]{}[/blue] tury|Przez [blue]{}[/blue] tur|Przez [blue]{}[/blue] tur} otrzymujesz [blue]{DamageDecrease:percentLess()}%[/blue] mniej obrażeń od [gold]Wrażliwych[/gold] przeciwników.",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -312,8 +312,8 @@
   {
     "id": "CONQUEROR",
     "name": "Zdobywca",
-    "description": "W tej turze [gold]Niebiańskie Ostrze[/gold] zadaje przeciwnikowi podwójne obrażenia.",
-    "description_raw": null,
+    "description": "Przez [blue]2[/blue] tury|Przez [blue]2[/blue] tur [gold]this creature[/gold] otrzymuje podwójne obrażenia od [gold]Niebiańskiego Ostrza[/gold].",
+    "description_raw": "{Amount:plural:W tej turze|Przez [blue]{}[/blue] tury|Przez [blue]{}[/blue] tur} [gold]{OwnerName}[/gold] otrzymuje podwójne obrażenia od [gold]Niebiańskiego Ostrza[/gold].",
     "type": "Debuff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -402,7 +402,7 @@
   {
     "id": "CRAB_RAGE",
     "name": "Furia",
-    "description": "Gdy sojusznik umrze, [gold]this creature[/gold] otrzymuje [blue]5[/blue] pkt. [gold]Siły[/gold] i [blue]99[/blue] pkt. [gold]Bloku[/gold].",
+    "description": "Gdy sojusznik umrze, [gold]this creature[/gold] otrzymuje [blue]6[/blue] pkt. [gold]Siły[/gold] i [blue]99[/blue] pkt. [gold]Bloku[/gold].",
     "description_raw": "Gdy sojusznik umrze, [gold]{OwnerName}[/gold] otrzymuje [blue]{StrengthPower}[/blue] pkt. [gold]Siły[/gold] i [blue]{Block}[/blue] pkt. [gold]Bloku[/gold].",
     "type": "Buff",
     "stack_type": "Single",
@@ -602,22 +602,12 @@
   {
     "id": "DOOM",
     "name": "Zagłada",
-    "description": "Przeciwnik umiera pod koniec swojej tury, jeżeli jego pkt. Zagłady są równe jego PŻ lub większe.",
-    "description_raw": null,
+    "description": "[gold]this creature[/gold] umiera pod koniec swojej tury, jeżeli ma [blue][Amount][/blue] PŻ lub mniej.",
+    "description_raw": "[gold]{OwnerName}[/gold] umiera pod koniec {OnPlayer:twojej|swojej} tury, jeżeli ma [blue]{Amount}[/blue] PŻ lub mniej.",
     "type": "Debuff",
     "stack_type": "Counter",
     "allow_negative": null,
     "image_url": "/static/images/powers/doom_power.webp"
-  },
-  {
-    "id": "DOOR_REVIVAL",
-    "name": "Naprawianie Drzwi",
-    "description": "Specjalna Moc do naprawiania Drzwi.",
-    "description_raw": null,
-    "type": "Buff",
-    "stack_type": "Single",
-    "allow_negative": null,
-    "image_url": null
   },
   {
     "id": "DOUBLE_DAMAGE",
@@ -642,8 +632,8 @@
   {
     "id": "DRUM_OF_BATTLE",
     "name": "Bębny wojenne",
-    "description": "",
-    "description_raw": null,
+    "description": "Na początku tury [gold]Wyczerp[/gold] [blue]2[/blue] karty|[blue]2[/blue] kart na szczycie [gold]stosu rozgrywającego[/gold].",
+    "description_raw": "Na początku tury [gold]Wyczerp[/gold] {Amount:plural:kartę|[blue]{}[/blue] karty|[blue]{}[/blue] kart} na szczycie [gold]stosu rozgrywającego[/gold].",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -682,7 +672,7 @@
   {
     "id": "ENERGY_NEXT_TURN",
     "name": "Energia w następnej turze",
-    "description": "Zyskaj dodatkowy pkt. [gold]Energi[/gold] w następnej turze.",
+    "description": "W następnej turze zyskaj dodatkowe pkt. [gold]Energii[/gold].",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
@@ -702,7 +692,7 @@
   {
     "id": "ENRAGE",
     "name": "Rozwścieczenie",
-    "description": "Kiedykolwiek zagrasz Umiejętność, zyskaj [blue]2[/blue] pkt. [gold]Siły[/gold].",
+    "description": "Kiedykolwiek zagrasz Umiejętność, zyskuje [blue]2[/blue] pkt. [gold]Siły[/gold].",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
@@ -802,7 +792,7 @@
   {
     "id": "FLANKING",
     "name": "Oskrzydlenie",
-    "description": "W tej turze pozostali sojusznicy zadają temu przeciwnikowi [blue]2x[/blue] więcej obrażeń.",
+    "description": "W tej turze pozostali sojusznicy zadają temu przeciwnikowi [blue]2x[/blue] więcej obrażeń od Ataków.",
     "description_raw": null,
     "type": "Debuff",
     "stack_type": "Counter",
@@ -822,8 +812,8 @@
   {
     "id": "FLUTTER",
     "name": "Trzepot skrzydeł",
-    "description": "Otrzymuje [gold]50%[/gold] mniej obrażeń od Ataków.",
-    "description_raw": null,
+    "description": "Otrzymuje [blue]50%[/blue] mniej obrażeń od Ataków. Zadaj obrażenia temu przeciwnikowi [blue][Amount][/blue] razy|razy, aby go [gold]Ogłuszyć[/gold].",
+    "description_raw": "Otrzymuje [blue]{DamageDecrease}%[/blue] mniej obrażeń od Ataków. Zadaj obrażenia temu przeciwnikowi [blue]{Amount}[/blue] {Amount:plural:raz|razy|razy}, aby go [gold]Ogłuszyć[/gold].",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -960,14 +950,14 @@
     "image_url": "/static/images/powers/gigantification_power.webp"
   },
   {
-    "id": "GRAPPLE",
-    "name": "Chwyt",
-    "description": "Kiedykolwiek zyskasz [gold]Blok[/gold] w tej turze, [gold]this creature[/gold] otrzymuje [blue][Amount][/blue] pkt. obrażeń.",
-    "description_raw": "Kiedykolwiek zyskasz [gold]Blok[/gold] w tej turze, [gold]{OwnerName}[/gold] otrzymuje [blue]{Amount}[/blue] pkt. obrażeń.",
-    "type": "Debuff",
-    "stack_type": "Counter",
+    "id": "GRASP",
+    "name": "Uścisk",
+    "description": "Kiedykolwiek zagrasz kartę, utrać [blue]1[/blue] pkt. Energii.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
     "allow_negative": null,
-    "image_url": "/static/images/powers/grapple_power.webp"
+    "image_url": "/static/images/powers/grasp_power.webp"
   },
   {
     "id": "GRAVITY",
@@ -1092,7 +1082,7 @@
   {
     "id": "HELLRAISER",
     "name": "Wysłannik piekieł",
-    "description": "Kiedykolwiek dobierzesz kartę zawierającą „Uderzenie” w nazwie, zaatakuj nią losowego przeciwnika.",
+    "description": "Kiedykolwiek dobierzesz kartę zawierającą „uderzenie” w nazwie, zaatakuj nią losowego przeciwnika.",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Single",
@@ -1128,6 +1118,16 @@
     "stack_type": "Counter",
     "allow_negative": null,
     "image_url": "/static/images/powers/hotfix_power.webp"
+  },
+  {
+    "id": "HUNGER",
+    "name": "Głód",
+    "description": "Kiedykolwiek zagrasz kartę Ataku lub Umiejętności, zostaje [gold]Wyczerpana[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/hunger_power.webp"
   },
   {
     "id": "ILLUSION",
@@ -1212,7 +1212,7 @@
   {
     "id": "ITERATION",
     "name": "Nowa wersja",
-    "description": "Gdy dobierzesz kartę [gold]Stanu[/gold] po raz pierwszy w tej turze, dobierz więcej kart.",
+    "description": "Gdy dobierzesz kartę Stanu po raz pierwszy w tej turze, dobierz więcej kart.",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
@@ -1382,8 +1382,8 @@
   {
     "id": "MONOLOGUE",
     "name": "Monolog",
-    "description": "Kiedykolwiek zagrasz bezbarwną kartę w tej turze, zyskaj [blue]1[/blue] pkt. [gold]Siły[/gold] w tej turze.\nAktualnie zyskano [blue]0[/blue] pkt. [gold]Siły[/gold].",
-    "description_raw": "Kiedykolwiek zagrasz bezbarwną kartę w tej turze, zyskaj [blue]{StrengthPower}[/blue] pkt. [gold]Siły[/gold] w tej turze.\nAktualnie zyskano [blue]{StrengthApplied}[/blue] pkt. [gold]Siły[/gold].",
+    "description": "Kiedykolwiek zagrasz kartę w tej turze, zyskaj [blue]1[/blue] pkt. [gold]Siły[/gold] w tej turze.\nAktualnie zyskano [blue]0[/blue] pkt. [gold]Siły[/gold].",
+    "description_raw": "Kiedykolwiek zagrasz kartę w tej turze, zyskaj [blue]{StrengthPower}[/blue] pkt. [gold]Siły[/gold] w tej turze.\nAktualnie zyskano [blue]{StrengthApplied}[/blue] pkt. [gold]Siły[/gold].",
     "type": "Buff",
     "stack_type": "None",
     "allow_negative": null,
@@ -1448,6 +1448,16 @@
     "stack_type": "Single",
     "allow_negative": null,
     "image_url": "/static/images/powers/no_draw_power.webp"
+  },
+  {
+    "id": "NO_ENERGY_GAIN",
+    "name": "Bez Energii",
+    "description": "Nie możesz zyskać więcej [energy:1] w tej turze.",
+    "description_raw": "Nie możesz zyskać więcej {energyPrefix:energyIcons(1)} w tej turze.",
+    "type": "Debuff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/no_energy_gain_power.webp"
   },
   {
     "id": "NOSTALGIA",
@@ -1532,8 +1542,8 @@
   {
     "id": "PALE_BLUE_DOT",
     "name": "Blady, błękitny punkcik",
-    "description": "Po zagraniu wystarczająco kart w jednej turze dobierz dodatkowe karty na początku następnej tury.",
-    "description_raw": null,
+    "description": "Po zagraniu co najmniej [blue]5[/blue] kart w jednej turze dobierz dodatkowo [blue][Amount][/blue] karty|kart na początku następnej tury.",
+    "description_raw": "Po zagraniu co najmniej [blue]{CardPlay}[/blue] kart w jednej turze dobierz dodatkowo [blue]{Amount}[/blue] {Amount:plural:kartę|karty|kart} na początku następnej tury.",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -1542,8 +1552,8 @@
   {
     "id": "PANACHE",
     "name": "Rozmach",
-    "description": "Po zagraniu [blue]5[/blue] kart w jednej turze zadaj obrażenia WSZYSTKIM przeciwnikom.",
-    "description_raw": null,
+    "description": "Po zagraniu [blue]5[/blue] kart|kart w tej turze zadaj obrażenia [blue][Amount][/blue] pkt. obrażeń WSZYSTKIM przeciwnikom.",
+    "description_raw": "Po zagraniu [blue]{CardsLeft}[/blue] {CardsLeft:plural:karty|kart|kart} w tej turze zadaj obrażenia [blue]{Amount}[/blue] pkt. obrażeń WSZYSTKIM przeciwnikom.",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -1682,8 +1692,8 @@
   {
     "id": "RADIANCE",
     "name": "Promienistość",
-    "description": "Zyskaj dodatkowy pkt. [gold]Energii[/gold] w następnej turze.",
-    "description_raw": null,
+    "description": "Przez [blue]2[/blue] tury|Przez [blue]2[/blue] tur zyskaj dodatkowy [energy:1].",
+    "description_raw": "{Amount:plural:W tej turze|Przez [blue]{}[/blue] tury|Przez [blue]{}[/blue] tur} zyskaj dodatkowy {Energy:energyIcons()}.",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -1850,6 +1860,16 @@
     "image_url": "/static/images/powers/sandpit_power.webp"
   },
   {
+    "id": "SCRUTINY",
+    "name": "Nadzór",
+    "description": "Nie możesz dobierać więcej kart w swojej turze.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/scrutiny_power.webp"
+  },
+  {
     "id": "SEEKING_EDGE",
     "name": "Przewaga niebios",
     "description": "Od teraz [gold]Niebańskie Ostrze[/gold] zadaje obrażenia WSZYSTKIM przeciwnikom.",
@@ -2002,8 +2022,8 @@
   {
     "id": "SLIPPERY",
     "name": "Śliskość",
-    "description": "Następny raz gdy to stworzenie utraci PŻ, zamiast tego traci tylko [blue]1[/blue] PŻ.",
-    "description_raw": null,
+    "description": "Następne [blue]2[/blue] razy|Następnych [blue]2[/blue] razy gdy [gold]this creature[/gold] utraci PŻ, zamiast tego traci tylko [blue]1[/blue] PŻ.",
+    "description_raw": "{Amount:plural:Następny raz|Następne [blue]{}[/blue] razy|Następnych [blue]{}[/blue] razy} gdy [gold]{OwnerName}[/gold] utraci PŻ, zamiast tego traci tylko [blue]1[/blue] PŻ.",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -2102,7 +2122,7 @@
   {
     "id": "SPEEDSTER",
     "name": "Szybcior",
-    "description": "Kiedykolwiek dobierzesz kartę w tej turze, zadaj [blue]1[/blue] pkt. obrażeń WSZYSTKIM przeciwnikom.",
+    "description": "Kiedykolwiek dobierzesz kartę podczas swojej tury, zadaj [blue]1[/blue] pkt. obrażeń WSZYSTKIM przeciwnikom.",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
@@ -2222,8 +2242,8 @@
   {
     "id": "SUCK",
     "name": "Wysysanie",
-    "description": "Kiedykolwiek [gold]this creature[/gold] zada ci niezablokowane obrażenia od ataku, utrać [blue][Amount][/blue] pkt. [gold]Siły[/gold].",
-    "description_raw": "Kiedykolwiek [gold]{OwnerName}[/gold] zada ci niezablokowane obrażenia od ataku, utrać [blue]{Amount}[/blue] pkt. [gold]Siły[/gold].",
+    "description": "Kiedykolwiek [gold]this creature[/gold] zada ci niezablokowane obrażenia od ataku, zyskuje [blue][Amount][/blue] pkt. [gold]Siły[/gold].",
+    "description_raw": "Kiedykolwiek [gold]{OwnerName}[/gold] zada ci niezablokowane obrażenia od ataku, zyskuje [blue]{Amount}[/blue] pkt. [gold]Siły[/gold].",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -2272,7 +2292,7 @@
   {
     "id": "SWORD_SAGE",
     "name": "Mistrz miecza",
-    "description": "Zwiększ koszt [gold]Niebiańskiego Ostrza[/gold] o [blue]1[/blue]. Od teraz [gold]Niebiańskie Ostrze[/gold] uderza [blue]1[/blue] dodatkowy raz.",
+    "description": "Od teraz [gold]Niebiańskie Ostrze[/gold] uderza [blue]1[/blue] dodatkowy raz.",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
@@ -2332,7 +2352,7 @@
   {
     "id": "TERRITORIAL",
     "name": "Obrona terytorium",
-    "description": "Pod koniec swojej tury otrzymuje [blue]1[/blue] pkt. [gold]Siły[/gold].",
+    "description": "Pod koniec swojej tury zyskuje [blue]1[/blue] pkt. [gold]Siły[/gold].",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
@@ -2342,8 +2362,8 @@
   {
     "id": "THE_BOMB",
     "name": "Bomba",
-    "description": "Za [blue]3[/blue] tury zadaj [blue]40[/blue] pkt. obrażeń WSZYSTKIM przeciwnikom.",
-    "description_raw": null,
+    "description": "Za [blue]2[/blue] tury|Za [blue]2[/blue] tur zadaj [blue]40[/blue] pkt. obrażeń WSZYSTKIM przeciwnikom.",
+    "description_raw": "{Amount:plural:Pod koniec tej tury|Za [blue]{}[/blue] tury|Za [blue]{}[/blue] tur} zadaj [blue]{Damage}[/blue] pkt. obrażeń WSZYSTKIM przeciwnikom.",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -2422,8 +2442,8 @@
   {
     "id": "TORIC_TOUGHNESS",
     "name": "Twardy charakter",
-    "description": "Na początku [blue]2[/blue] następnych tur zyskaj [blue]5[/blue] pkt. [gold]Bloku[/gold].",
-    "description_raw": null,
+    "description": "Na początku [blue][Amount][/blue] następnych tur|[blue][Amount][/blue] następnych tur zyskaj [blue]0[/blue] pkt. [gold]Bloku[/gold].",
+    "description_raw": "Na początku {Amount:plural:następnej tury|[blue]{Amount}[/blue] następnych tur|[blue]{Amount}[/blue] następnych tur} zyskaj [blue]{Block:diff()}[/blue] pkt. [gold]Bloku[/gold].",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -2522,8 +2542,8 @@
   {
     "id": "VULNERABLE",
     "name": "Wrażliwość",
-    "description": "Wrażliwe stworzenia otrzymują [blue]50%[/blue] więcej obrażeń od Ataków.",
-    "description_raw": null,
+    "description": "Otrzymuje [blue]50%[/blue] więcej obrażeń od Ataków przez [blue][Amount][/blue] tury|tur.",
+    "description_raw": "Otrzymuje [blue]{DamageIncrease:percentMore()}%[/blue] więcej obrażeń od Ataków przez [blue]{Amount}[/blue] {Amount:plural:turę|tury|tur}.",
     "type": "Debuff",
     "stack_type": "Counter",
     "allow_negative": null,

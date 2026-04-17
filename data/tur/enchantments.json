@@ -33,17 +33,6 @@
     "image_url": "/static/images/enchantments/corrupted.webp"
   },
   {
-    "id": "FAVORED",
-    "name": "Tercih Edilen",
-    "description": "Bu kartın saldırı hasarı iki katına çıkar.",
-    "description_raw": null,
-    "extra_card_text": null,
-    "card_type": "Attack",
-    "applicable_to": null,
-    "is_stackable": false,
-    "image_url": "/static/images/enchantments/favored.webp"
-  },
-  {
     "id": "GLAM",
     "name": "Cazibeli",
     "description": "Bu kart, her savaşta tek seferliğine [gold]Yeniden Oyna[/gold]'ya sahip olur.",
@@ -77,9 +66,20 @@
     "image_url": "/static/images/enchantments/imbued.webp"
   },
   {
+    "id": "INKY",
+    "name": "Mürekkepli",
+    "description": "Bu kart fazladan [blue]2[/blue] hasar verir ve [blue]1[/blue] [gold]Zayıf[/gold] uygular.",
+    "description_raw": "Bu kart fazladan [blue]{Damage}[/blue] hasar verir ve [blue]{WeakPower}[/blue] [gold]Zayıf[/gold] uygular.",
+    "extra_card_text": "TÜM düşmanlara [blue]1[/blue] [gold]Zayıf[/gold] uygula.",
+    "card_type": null,
+    "applicable_to": null,
+    "is_stackable": false,
+    "image_url": "/static/images/enchantments/inky.webp"
+  },
+  {
     "id": "INSTINCT",
     "name": "İçgüdü",
-    "description": "Bu kartın maliyetini [blue]1[/blue] azalt.",
+    "description": "Bu kartın saldırı hasarı iki katına çıkar.",
     "description_raw": null,
     "extra_card_text": null,
     "card_type": "Attack",

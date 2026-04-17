@@ -343,8 +343,8 @@
   {
     "id": "WEAK_POTION",
     "name": "Potion d'affaiblissement",
-    "description": "Appliquez [gold]Affaiblissement[/gold] [blue](3)[/blue].",
-    "description_raw": "Appliquez [gold]Affaiblissement[/gold] [blue]({WeakPower})[/blue].",
+    "description": "Appliquez [gold]Affaibli[/gold] [blue](3)[/blue].",
+    "description_raw": "Appliquez [gold]Affaibli[/gold] [blue]({WeakPower})[/blue].",
     "rarity": "Commun",
     "image_url": "/static/images/potions/weak_potion.webp",
     "rarity_key": "Common",
@@ -585,8 +585,8 @@
   {
     "id": "FOUL_POTION",
     "name": "Potion infecte",
-    "description": "Infligez [blue]12[/blue] dégâts à TOUT LE MONDE.\nPeut être jetée sur le [gold]Marchand[/gold] pour [blue]100[/blue] [gold]Pièces d'or[/gold].",
-    "description_raw": "Infligez [blue]{Damage}[/blue] {Damage:plural:dégât|dégâts} à TOUT LE MONDE.\nPeut être jetée sur le [gold]Marchand[/gold] pour [blue]{Gold}[/blue] [gold]Pièces d'or[/gold].",
+    "description": "Infligez [blue]12[/blue] dégâts à TOUS les joueurs et ennemis.\nPeut être jetée sur le [gold]Marchand[/gold] pour [blue]100[/blue] [gold]Pièces d'or[/gold].",
+    "description_raw": "Infligez [blue]{Damage}[/blue] {Damage:plural:dégât|dégâts} à TOUS les joueurs et ennemis.\nPeut être jetée sur le [gold]Marchand[/gold] pour [blue]{Gold}[/blue] [gold]Pièces d'or[/gold].",
     "rarity": "Événement",
     "image_url": "/static/images/potions/foul_potion.webp",
     "rarity_key": "Event",
@@ -673,8 +673,8 @@
   {
     "id": "LIQUID_MEMORIES",
     "name": "Souvenirs liquides",
-    "description": "Ajoutez une carte de votre [gold]Défausse[/gold] à votre [gold]Main[/gold]. Elle coûte [blue]0[/blue] [energy:1] ce tour.",
-    "description_raw": "Ajoutez une carte de votre [gold]Défausse[/gold] à votre [gold]Main[/gold]. Elle coûte [blue]0[/blue] {energyPrefix:energyIcons(1)} ce tour.",
+    "description": "Ajoutez une carte de votre [gold]Défausse[/gold] à votre [gold]Main[/gold]. Elle coûte [blue]0[/blue] ce tour.",
+    "description_raw": "Ajoutez une carte de votre [gold]Défausse[/gold] à votre [gold]Main[/gold]. Elle coûte [blue]0[/blue] ce tour.",
     "rarity": "Rare",
     "image_url": "/static/images/potions/liquid_memories.webp",
     "rarity_key": "Rare",

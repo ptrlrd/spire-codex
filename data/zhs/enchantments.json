@@ -33,17 +33,6 @@
     "image_url": "/static/images/enchantments/corrupted.webp"
   },
   {
-    "id": "FAVORED",
-    "name": "钟爱",
-    "description": "这张牌的攻击伤害翻倍。",
-    "description_raw": null,
-    "extra_card_text": null,
-    "card_type": "Attack",
-    "applicable_to": null,
-    "is_stackable": false,
-    "image_url": "/static/images/enchantments/favored.webp"
-  },
-  {
     "id": "GLAM",
     "name": "华彩",
     "description": "这张牌每场战斗能够[gold]重放[/gold]一次。",
@@ -77,9 +66,20 @@
     "image_url": "/static/images/enchantments/imbued.webp"
   },
   {
+    "id": "INKY",
+    "name": "墨影",
+    "description": "这张牌额外造成[blue]2[/blue]点伤害，并造成[blue]1[/blue]层[gold]虚弱[/gold]。",
+    "description_raw": "这张牌额外造成[blue]{Damage}[/blue]点伤害，并造成[blue]{WeakPower}[/blue]层[gold]虚弱[/gold]。",
+    "extra_card_text": "对所有敌人造成[blue]1[/blue]层[gold]虚弱[/gold]。",
+    "card_type": null,
+    "applicable_to": null,
+    "is_stackable": false,
+    "image_url": "/static/images/enchantments/inky.webp"
+  },
+  {
     "id": "INSTINCT",
     "name": "本能",
-    "description": "这张牌的费用减少[blue]1[/blue]。",
+    "description": "这张牌的攻击伤害翻倍。",
     "description_raw": null,
     "extra_card_text": null,
     "card_type": "Attack",

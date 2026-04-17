@@ -233,8 +233,8 @@
   {
     "id": "FAIRY_IN_A_BOTTLE",
     "name": "Fairy in a Bottle",
-    "description": "When you would die, instead this potion is discarded and you heal to [blue]30%[/blue] of your Max HP.",
-    "description_raw": "When you would die, instead this potion is discarded and you heal to [blue]30%[/blue] of your Max HP.",
+    "description": "When your HP would be reduced to [blue]0[/blue], instead this potion is discarded and you heal to [blue]30%[/blue] of your Max HP.",
+    "description_raw": "When your HP would be reduced to [blue]0[/blue], instead this potion is discarded and you heal to [blue]30%[/blue] of your Max HP.",
     "rarity": "Rare",
     "image_url": "/static/images/potions/fairy_in_a_bottle.webp",
     "rarity_key": "Rare",
@@ -288,8 +288,8 @@
   {
     "id": "FOUL_POTION",
     "name": "Foul Potion",
-    "description": "Deal [blue]12[/blue] damage to EVERYONE.\nCan be thrown at the [gold]Merchant[/gold] for [blue]100[/blue] [gold]Gold[/gold] instead.",
-    "description_raw": "Deal [blue]{Damage}[/blue] damage to EVERYONE.\nCan be thrown at the [gold]Merchant[/gold] for [blue]{Gold}[/blue] [gold]Gold[/gold] instead.",
+    "description": "Deal [blue]12[/blue] damage to ALL players and enemies.\nCan be thrown at the [gold]Merchant[/gold] for [blue]100[/blue] [gold]Gold[/gold] instead.",
+    "description_raw": "Deal [blue]{Damage}[/blue] damage to ALL players and enemies.\nCan be thrown at the [gold]Merchant[/gold] for [blue]{Gold}[/blue] [gold]Gold[/gold] instead.",
     "rarity": "Event",
     "image_url": "/static/images/potions/foul_potion.webp",
     "rarity_key": "Event",
@@ -398,8 +398,8 @@
   {
     "id": "LIQUID_MEMORIES",
     "name": "Liquid Memories",
-    "description": "Put a card from your [gold]Discard Pile[/gold] into your [gold]Hand[/gold]. It costs [blue]0[/blue] [energy:1] this turn.",
-    "description_raw": "Put a card from your [gold]Discard Pile[/gold] into your [gold]Hand[/gold]. It costs [blue]0[/blue] {energyPrefix:energyIcons(1)} this turn.",
+    "description": "Put a card from your [gold]Discard Pile[/gold] into your [gold]Hand[/gold]. It's free to play this turn.",
+    "description_raw": "Put a card from your [gold]Discard Pile[/gold] into your [gold]Hand[/gold]. It's free to play this turn.",
     "rarity": "Rare",
     "image_url": "/static/images/potions/liquid_memories.webp",
     "rarity_key": "Rare",

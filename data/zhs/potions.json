@@ -266,8 +266,8 @@
   {
     "id": "FOUL_POTION",
     "name": "污浊药水",
-    "description": "对所有人造成[blue]12[/blue]点伤害。\n也可以投掷给[gold]商人[/gold]换取[blue]100[/blue][gold]金币[/gold]。",
-    "description_raw": "对所有人造成[blue]{Damage}[/blue]点伤害。\n也可以投掷给[gold]商人[/gold]换取[blue]{Gold}[/blue][gold]金币[/gold]。",
+    "description": "对所有玩家和敌人造成[blue]12[/blue]点伤害。\n也可以投掷给[gold]商人[/gold]换取[blue]100[/blue][gold]金币[/gold]。",
+    "description_raw": "对所有玩家和敌人造成[blue]{Damage}[/blue]点伤害。\n也可以投掷给[gold]商人[/gold]换取[blue]{Gold}[/blue][gold]金币[/gold]。",
     "rarity": "事件",
     "image_url": "/static/images/potions/foul_potion.webp",
     "rarity_key": "Event",
@@ -299,8 +299,8 @@
   {
     "id": "LIQUID_MEMORIES",
     "name": "液态记忆",
-    "description": "将你[gold]弃牌堆[/gold]中的一张牌放入你的[gold]手牌[/gold]。这张牌在本回合的[energy:1]费用为[blue]0[/blue]。",
-    "description_raw": "将你[gold]弃牌堆[/gold]中的一张牌放入你的[gold]手牌[/gold]。这张牌在本回合的{energyPrefix:energyIcons(1)}费用为[blue]0[/blue]。",
+    "description": "将你[gold]弃牌堆[/gold]中的一张牌放入你的[gold]手牌[/gold]。这张牌在本回合可以免费打出。",
+    "description_raw": "将你[gold]弃牌堆[/gold]中的一张牌放入你的[gold]手牌[/gold]。这张牌在本回合可以免费打出。",
     "rarity": "稀有",
     "image_url": "/static/images/potions/liquid_memories.webp",
     "rarity_key": "Rare",
@@ -398,8 +398,8 @@
   {
     "id": "FAIRY_IN_A_BOTTLE",
     "name": "瓶中精灵",
-    "description": "当你将要死亡时，改为丢弃这瓶药水，然后将你回复到你最大生命值的[blue]30%[/blue]。",
-    "description_raw": "当你将要死亡时，改为丢弃这瓶药水，然后将你回复到你最大生命值的[blue]30%[/blue]。",
+    "description": "当你的生命值将被减少至[blue]0[/blue]或以下时，改为丢弃这瓶药水，然后将你回复到你最大生命值的[blue]30%[/blue]。",
+    "description_raw": "当你的生命值将被减少至[blue]0[/blue]或以下时，改为丢弃这瓶药水，然后将你回复到你最大生命值的[blue]30%[/blue]。",
     "rarity": "稀有",
     "image_url": "/static/images/potions/fairy_in_a_bottle.webp",
     "rarity_key": "Rare",

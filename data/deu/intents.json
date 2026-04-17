@@ -2,7 +2,7 @@
   {
     "id": "ATTACK",
     "name": "Aggressiv",
-    "description": "Dieser Gegner möchte {IsMultiplayer:alle |}{Repeat:plural:|[blue]{}[/blue] Mal }für [blue]{Damage}[/blue] Schaden [gold]angreifen[/gold].",
+    "description": "Dieser Gegner möchte {IsMultiplayer:alle |}{Repeat:plural:|[blue]{}[/blue] Mal }für [blue]{Damage}[/blue] Schaden [gold]angreifen[/gold].",
     "image_url": "/static/images/intents/attack.webp"
   },
   {
@@ -20,7 +20,7 @@
   {
     "id": "DEATH_BLOW",
     "name": "Todesstoß",
-    "description": "Diese Kreatur möchte mit dir zusammen sterben. Sie wird dich für [blue]{Damage}[/blue] Schaden angreifen, bevor sie zerstört wird.",
+    "description": "Diese Kreatur möchte mit dir zusammen sterben. Sie wird dich für [blue]{Damage}[/blue] Schaden angreifen, bevor sie zerstört wird.",
     "image_url": "/static/images/intents/death_blow.webp"
   },
   {
@@ -62,7 +62,7 @@
   {
     "id": "STATUS",
     "name": "Strategisch",
-    "description": "Dieser Gegner möchte dir [blue]{CardCount}[/blue] [gold]Status[/gold]{CardCount:plural:karte|karten} geben.",
+    "description": "Dieser Gegner möchte dir [blue]{CardCount}[/blue] [gold]Status{CardCount:plural:karte|karten}[/gold] geben.",
     "image_url": "/static/images/intents/status.webp"
   },
   {

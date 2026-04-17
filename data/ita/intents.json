@@ -2,19 +2,19 @@
   {
     "id": "ATTACK",
     "name": "Aggressività",
-    "description": "Questo nemico si appresta ad [gold]attaccare[/gold] {IsMultiplayer:tutti|}e infliggere [blue]{Damage}[/blue] di danno{Repeat:plural:| [blue]{}[/blue] volte}.",
+    "description": "Questo nemico si appresta ad [gold]attaccare[/gold] {IsMultiplayer:tutti |}e infliggere [blue]{Damage}[/blue] di danno{Repeat:plural:| [blue]{}[/blue] volte}.",
     "image_url": "/static/images/intents/attack.webp"
   },
   {
     "id": "BUFF",
     "name": "Rafforzamento",
-    "description": "Questo nemico si appresta a usare un [gold]Buff[/gold].",
+    "description": "Questo nemico si appresta a usare un [gold]effetto positivo[/gold].",
     "image_url": "/static/images/intents/buff.webp"
   },
   {
     "id": "CARD_DEBUFF",
     "name": "Malvagità",
-    "description": "Queto nemico si appresta ad applicare [gold]Afflizioni[/gold] sulle tue carte.",
+    "description": "Questo nemico si appresta ad applicare [gold]afflizioni[/gold] sulle tue carte.",
     "image_url": "/static/images/intents/card_debuff.webp"
   },
   {
@@ -26,13 +26,13 @@
   {
     "id": "DEBUFF",
     "name": "Strategia",
-    "description": "Questo nemico si appresta ad applicarti un [gold]Debuff[/gold].",
+    "description": "Questo nemico si appresta ad applicarti un [gold]effetto negativo[/gold].",
     "image_url": "/static/images/intents/debuff.webp"
   },
   {
     "id": "DEBUFF_STRONG",
-    "name": "Strategia superiore",
-    "description": "Questo nemico si appresta ad applicarti un potente [gold]Debuff[/gold].",
+    "name": "Strategia",
+    "description": "Questo nemico si appresta ad applicarti un potente [gold]effetto negativo[/gold].",
     "image_url": "/static/images/intents/debuff_strong.webp"
   },
   {
@@ -79,7 +79,7 @@
   },
   {
     "id": "UNKNOWN",
-    "name": "Incertezza",
+    "name": "Incognita",
     "description": "Le intenzioni del nemico sono [gold]sconosciute[/gold].",
     "image_url": "/static/images/intents/unknown.webp"
   }

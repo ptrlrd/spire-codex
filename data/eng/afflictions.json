@@ -7,6 +7,13 @@
     "is_stackable": false
   },
   {
+    "id": "DEVOURED",
+    "name": "Devoured",
+    "description": "Add [gold]Exhaust[/gold] to this card.",
+    "extra_card_text": null,
+    "is_stackable": false
+  },
+  {
     "id": "ENTANGLED",
     "name": "Entangled",
     "description": "Costs an additional [energy:1].",
@@ -39,6 +46,13 @@
     "name": "Smog",
     "description": "You cannot play additional [gold]Skills[/gold] this turn. Clears at the end of the turn.",
     "extra_card_text": null,
+    "is_stackable": false
+  },
+  {
+    "id": "WEIGHTED",
+    "name": "Weighted",
+    "description": "Lose [energy:1] when this card is played.",
+    "extra_card_text": "Lose [energy:1].",
     "is_stackable": false
   }
 ]

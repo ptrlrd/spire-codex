@@ -1,7 +1,7 @@
 [
   {
     "id": "ADROIT",
-    "name": "Attitudine",
+    "name": "Abile",
     "description": "Ottieni [blue]X[/blue] di [gold]Blocco[/gold].",
     "description_raw": "Ottieni [blue]{Block:diff()}[/blue] di [gold]Blocco[/gold].",
     "extra_card_text": "Ottieni X di [gold]Blocco[/gold].",
@@ -24,7 +24,7 @@
   {
     "id": "CORRUPTED",
     "name": "Corruzione",
-    "description": "Aumenti il danno che infliggi del [blue]50%[/blue], ma perdi [blue]2[/blue] PV.",
+    "description": "Infliggi il [blue]50%[/blue] di danno in più, ma perdi [blue]2[/blue] PV.",
     "description_raw": null,
     "extra_card_text": "Perdi 2 PV.",
     "card_type": "Attack",
@@ -33,20 +33,9 @@
     "image_url": "/static/images/enchantments/corrupted.webp"
   },
   {
-    "id": "FAVORED",
-    "name": "Privilegio",
-    "description": "L'attacco di questa carta infligge danno doppio.",
-    "description_raw": null,
-    "extra_card_text": null,
-    "card_type": "Attack",
-    "applicable_to": null,
-    "is_stackable": false,
-    "image_url": "/static/images/enchantments/favored.webp"
-  },
-  {
     "id": "GLAM",
     "name": "Glamour",
-    "description": "Questa carta riceve [gold]Riattivazione[/gold] una volta per combattimento.",
+    "description": "Questa carta possiede [gold]Riattivazione[/gold] una volta per combattimento.",
     "description_raw": null,
     "extra_card_text": null,
     "card_type": null,
@@ -70,16 +59,27 @@
     "name": "Infusione",
     "description": "Questa carta viene giocata automaticamente all'inizio di ogni combattimento.",
     "description_raw": null,
-    "extra_card_text": "Infusione",
+    "extra_card_text": "Infusione.",
     "card_type": "Skill",
     "applicable_to": null,
     "is_stackable": false,
     "image_url": "/static/images/enchantments/imbued.webp"
   },
   {
+    "id": "INKY",
+    "name": "Inchiostratura",
+    "description": "Questa carta infligge [blue]2[/blue] di danno extra e applica [blue]1[/blue] di [gold]Debolezza[/gold].",
+    "description_raw": "Questa carta infligge [blue]{Damage}[/blue] di danno extra e applica [blue]{WeakPower}[/blue] di [gold]Debolezza[/gold].",
+    "extra_card_text": "Applichi [blue]1[/blue] di [gold]Debolezza[/gold] a TUTTI i nemici.",
+    "card_type": null,
+    "applicable_to": null,
+    "is_stackable": false,
+    "image_url": "/static/images/enchantments/inky.webp"
+  },
+  {
     "id": "INSTINCT",
     "name": "Istinto",
-    "description": "Diminuisci il costo di questa carta di [blue]1[/blue].",
+    "description": "Il danno dell'attacco di questa carta viene raddoppiato.",
     "description_raw": null,
     "extra_card_text": null,
     "card_type": "Attack",
@@ -92,7 +92,7 @@
     "name": "Inerzia",
     "description": "Quando viene giocata, aumenti il danno dell'attacco di questa carta di [blue]X[/blue] durante questo combattimento.",
     "description_raw": "Quando viene giocata, aumenti il danno dell'attacco di questa carta di [blue]{Amount}[/blue] durante questo combattimento.",
-    "extra_card_text": "Aumenti il danno dell'attacco che questa carta infligge in combattimento di X.",
+    "extra_card_text": "Aumenti il danno di attacco che questa carta infligge in combattimento di X.",
     "card_type": "Attack",
     "applicable_to": null,
     "is_stackable": false,
@@ -114,7 +114,7 @@
     "name": "Incastro Perfetto",
     "description": "Invece di mischiare questa carta nel tuo [gold]mazzo di pesca[/gold], posizionala in cima.",
     "description_raw": null,
-    "extra_card_text": "Incastro Perfetto",
+    "extra_card_text": "Incastro Perfetto.",
     "card_type": null,
     "applicable_to": null,
     "is_stackable": false,
@@ -123,7 +123,7 @@
   {
     "id": "ROYALLY_APPROVED",
     "name": "Approvazione Regale",
-    "description": "Questa carta ha gli effetti [gold]Innatismo[/gold] e [gold]Conservazione[/gold].",
+    "description": "Questa carta possiede gli effetti [gold]Innatismo[/gold] e [gold]Conservazione[/gold].",
     "description_raw": null,
     "extra_card_text": null,
     "card_type": "Attack, Skill",
@@ -145,7 +145,7 @@
   {
     "id": "SLITHER",
     "name": "Serpeggiamento",
-    "description": "Quando peschi questa carta, il suo costo sarà modificato in modo casuale da [blue]0[/blue] a [blue]3[/blue].",
+    "description": "Quando peschi questa carta, il suo costo varierà in modo casuale da [blue]0[/blue] a [blue]3[/blue].",
     "description_raw": null,
     "extra_card_text": null,
     "card_type": null,

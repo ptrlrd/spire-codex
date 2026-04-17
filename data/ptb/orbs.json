@@ -9,8 +9,8 @@
   {
     "id": "FROST_ORB",
     "name": "Gelo",
-    "description": "[gold]Passiva:[/gold] No final do turno, receba [blue]2[/blue] [gold]Proteção[/gold].\n[gold]Evocar:[/gold] Receba [blue]5[/blue] [gold]Proteção[/gold].",
-    "description_raw": "[gold]Passiva:[/gold] No final do turno, receba [blue]{Passive}[/blue] [gold]Proteção[/gold].\n[gold]Evocar:[/gold] Receba [blue]{Evoke}[/blue] [gold]Proteção[/gold].",
+    "description": "[gold]Passiva:[/gold] No final do turno, receba [blue]2[/blue] de [gold]Proteção[/gold].\n[gold]Evocar:[/gold] Receba [blue]5[/blue] de [gold]Proteção[/gold].",
+    "description_raw": "[gold]Passiva:[/gold] No final do turno, receba [blue]{Passive}[/blue] de [gold]Proteção[/gold].\n[gold]Evocar:[/gold] Receba [blue]{Evoke}[/blue] de [gold]Proteção[/gold].",
     "image_url": "/static/images/orbs/frost_orb.webp"
   },
   {

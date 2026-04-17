@@ -33,17 +33,6 @@
     "image_url": "/static/images/enchantments/corrupted.webp"
   },
   {
-    "id": "FAVORED",
-    "name": "寵愛",
-    "description": "ダメージが2倍になる。",
-    "description_raw": null,
-    "extra_card_text": null,
-    "card_type": "Attack",
-    "applicable_to": null,
-    "is_stackable": false,
-    "image_url": "/static/images/enchantments/favored.webp"
-  },
-  {
     "id": "GLAM",
     "name": "魅惑",
     "description": "各戦闘につき1回、[gold]リプレイ[/gold]を得る。",
@@ -77,9 +66,20 @@
     "image_url": "/static/images/enchantments/imbued.webp"
   },
   {
+    "id": "INKY",
+    "name": "墨塗り",
+    "description": "このカードは追加で[blue]2[/blue]ダメージを与え、[gold]脱力[/gold][blue]1[/blue]を付与する。",
+    "description_raw": "このカードは追加で[blue]{Damage}[/blue]ダメージを与え、[gold]脱力[/gold][blue]{WeakPower}[/blue]を付与する。",
+    "extra_card_text": "すべての敵に[gold]脱力[/gold][blue]1[/blue]を付与する。",
+    "card_type": null,
+    "applicable_to": null,
+    "is_stackable": false,
+    "image_url": "/static/images/enchantments/inky.webp"
+  },
+  {
     "id": "INSTINCT",
     "name": "本能",
-    "description": "コストが[blue]1[/blue]減少する。",
+    "description": "このカードのアタックダメージが2倍になる。",
     "description_raw": null,
     "extra_card_text": null,
     "card_type": "Attack",

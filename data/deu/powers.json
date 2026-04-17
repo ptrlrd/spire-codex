@@ -42,7 +42,7 @@
   {
     "id": "AGGRESSION",
     "name": "Aggression",
-    "description": "Nimm zu Beginn deines Zuges einen zufälligen Angriff aus deinem [gold]Abwurfstapel[/gold] auf deine [gold]Hand[/gold] und [gold]verbessere[/gold] ihn für den restlichen Kampf.",
+    "description": "Nimm zu Beginn deines Zuges einen zufälligen Angriff aus deinem [gold]Abwurfstapel[/gold] auf deine [gold]Hand[/gold] und [gold]Verbessere[/gold] ihn für den restlichen Kampf.",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
@@ -62,7 +62,7 @@
   {
     "id": "ARSENAL",
     "name": "Arsenal",
-    "description": "Wenn du eine farblose Karte spielst, erhalte [blue]1[/blue] [gold]Stärke[/gold].",
+    "description": "Wenn du eine Karte erzeugst, erhalte [blue]1[/blue] [gold]Stärke[/gold].",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
@@ -145,7 +145,7 @@
     "description": "Wenn du in deinem Zug [gold]Block[/gold] erhältst, erhalten die Mitspieler halb so viel [gold]Block[/gold].",
     "description_raw": null,
     "type": "Buff",
-    "stack_type": "Counter",
+    "stack_type": "Single",
     "allow_negative": null,
     "image_url": "/static/images/powers/beacon_of_hope_power.webp"
   },
@@ -170,16 +170,6 @@
     "image_url": "/static/images/powers/black_hole_power.webp"
   },
   {
-    "id": "BLADE_OF_INK",
-    "name": "Tintenklinge",
-    "description": "Wenn du in diesem Zug einen Angriff spielst, erhalte für diesen Zug [blue]2[/blue] [gold]Stärke[/gold].",
-    "description_raw": null,
-    "type": "Buff",
-    "stack_type": "Counter",
-    "allow_negative": null,
-    "image_url": "/static/images/powers/blade_of_ink_power.webp"
-  },
-  {
     "id": "BLOCK_NEXT_TURN",
     "name": "Block im nächsten Zug",
     "description": "Erhalte zu Beginn deines nächsten Zuges [blue]4[/blue] [gold]Block[/gold].",
@@ -200,6 +190,16 @@
     "image_url": "/static/images/powers/blur_power.webp"
   },
   {
+    "id": "BORROWED_TIME",
+    "name": "Geliehene Zeit",
+    "description": "Karten kosten in diesem Zug eine Energie mehr.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/borrowed_time_power.webp"
+  },
+  {
     "id": "BUFFER",
     "name": "Puffer",
     "description": "Verhindere deinen nächsten TP-Verlust.",
@@ -212,8 +212,8 @@
   {
     "id": "BURROWED",
     "name": "Vergraben",
-    "description": "[gold]Block[/gold] wird zu Beginn des Zuges von [gold]this creature[/gold] nicht entfernt. Wird [gold]betäubt[/gold], falls aller [gold]Block[/gold] entfernt wird.",
-    "description_raw": "[gold]Block[/gold] wird zu Beginn des Zuges von [gold]{OwnerName}[/gold] nicht entfernt. Wird [gold]betäubt[/gold], falls aller [gold]Block[/gold] entfernt wird.",
+    "description": "[gold]Block[/gold] wird zu Beginn des Zuges von [gold]this creature[/gold] nicht entfernt. Wird [gold]Betäubt[/gold], falls aller [gold]Block[/gold] entfernt wird.",
+    "description_raw": "[gold]Block[/gold] wird zu Beginn des Zuges von [gold]{OwnerName}[/gold] nicht entfernt. Wird [gold]Betäubt[/gold], falls aller [gold]Block[/gold] entfernt wird.",
     "type": "Buff",
     "stack_type": "Single",
     "allow_negative": null,
@@ -322,7 +322,7 @@
   {
     "id": "CONSTRICT",
     "name": "Umwickelt",
-    "description": "Solange der Kriechwürger im Leben ist, nimm am Ende deines Zuges [blue]1[/blue] Schaden.",
+    "description": "Solange der Kriechwürger am Leben ist, nimm am Ende deines Zuges [blue]1[/blue] Schaden.",
     "description_raw": null,
     "type": "Debuff",
     "stack_type": "Counter",
@@ -362,7 +362,7 @@
   {
     "id": "CORROSIVE_WAVE",
     "name": "Ätzende Welle",
-    "description": "Wenn du in diesem Zug eine Karte ziehst, wende [blue]2[/blue] [gold]Gift[/gold] auf ALLE Gegner an.",
+    "description": "Wenn du in diesem Zug eine Karte ziehst, wende auf ALLE Gegner [blue]2[/blue] [gold]Gift[/gold] an.",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
@@ -372,7 +372,7 @@
   {
     "id": "CORRUPTION",
     "name": "Verderbnis",
-    "description": "Fertigkeiten kosten [blue]0[/blue].\nWenn du eine Fertigkeit spielst, [gold]erschöpfe[/gold] sie.",
+    "description": "Fertigkeiten kosten [blue]0[/blue].\nWenn du eine Fertigkeit spielst, [gold]Erschöpfe[/gold] sie.",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Single",
@@ -402,7 +402,7 @@
   {
     "id": "CRAB_RAGE",
     "name": "Wütende Krabbe",
-    "description": "Wenn ein Verbündeter stirbt, erhält [gold]this creature[/gold] [blue]5[/blue] [gold]Stärke[/gold] und [blue]99[/blue] [gold]Block[/gold].",
+    "description": "Wenn ein Verbündeter stirbt, erhält [gold]this creature[/gold] [blue]6[/blue] [gold]Stärke[/gold] und [blue]99[/blue] [gold]Block[/gold].",
     "description_raw": "Wenn ein Verbündeter stirbt, erhält [gold]{OwnerName}[/gold] [blue]{StrengthPower}[/blue] [gold]Stärke[/gold] und [blue]{Block}[/blue] [gold]Block[/gold].",
     "type": "Buff",
     "stack_type": "Single",
@@ -472,7 +472,7 @@
   {
     "id": "DAMPEN",
     "name": "Dämpfen",
-    "description": "Solange der Magus-Ritter am Leben ist, sind ALLE deine Karten [gold]verschlechtert[/gold].",
+    "description": "Solange der Magus-Ritter am Leben ist, sind ALLE deine Karten [gold]Verschlechtert[/gold].",
     "description_raw": null,
     "type": "Debuff",
     "stack_type": "None",
@@ -492,7 +492,7 @@
   {
     "id": "DARK_EMBRACE",
     "name": "Dunkle Hingabe",
-    "description": "Wenn eine Karte [gold]erschöpft[/gold] wird, ziehe [blue]1[/blue] Karte.",
+    "description": "Wenn eine Karte [gold]Erschöpft[/gold] wird, ziehe [blue]1[/blue] Karte.",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
@@ -602,22 +602,12 @@
   {
     "id": "DOOM",
     "name": "Verderben",
-    "description": "Falls [gold]this creature[/gold] am Ende des eigenen Zuges mindestens [blue][Amount][/blue] Verderben hat, stirbt der Gegner.",
-    "description_raw": "Falls [gold]{OwnerName}[/gold] am Ende des eigenen Zuges mindestens [blue]{Amount}[/blue] Verderben hat, stirbt der {OnPlayer:Spieler|Gegner}.",
+    "description": "Falls [gold]this creature[/gold] am Ende des eigenen Zuges höchstens [blue][Amount][/blue] TP hat, stirbt der Gegner.",
+    "description_raw": "Falls [gold]{OwnerName}[/gold] am Ende des eigenen Zuges höchstens [blue]{Amount}[/blue] TP hat, stirbt der {OnPlayer:Spieler|Gegner}.",
     "type": "Debuff",
     "stack_type": "Counter",
     "allow_negative": null,
     "image_url": "/static/images/powers/doom_power.webp"
-  },
-  {
-    "id": "DOOR_REVIVAL",
-    "name": "Tür-Wiederbelebung",
-    "description": "Interne Macht für Wiederbelebung der Tür.",
-    "description_raw": null,
-    "type": "Buff",
-    "stack_type": "Single",
-    "allow_negative": null,
-    "image_url": null
   },
   {
     "id": "DOUBLE_DAMAGE",
@@ -772,7 +762,7 @@
   {
     "id": "FEEL_NO_PAIN",
     "name": "Schmerzfrei",
-    "description": "Wenn eine Karte erschöpft wird, erhalte [blue]3[/blue] [gold]Block[/gold].",
+    "description": "Wenn eine Karte Erschöpft wird, erhalte [blue]3[/blue] [gold]Block[/gold].",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
@@ -802,7 +792,7 @@
   {
     "id": "FLANKING",
     "name": "Flankieren",
-    "description": "Andere Verbündete fügen diesem Gegner in diesem Zug [blue]2x[/blue] soviel Schaden zu.",
+    "description": "Andere Verbündete fügen diesem Gegner in diesem Zug [blue]2x[/blue] mehr Angriffsschaden zu.",
     "description_raw": null,
     "type": "Debuff",
     "stack_type": "Counter",
@@ -822,8 +812,8 @@
   {
     "id": "FLUTTER",
     "name": "Flattern",
-    "description": "Nimmt [blue]50%[/blue] weniger Schaden durch Angriffe. Füge ihm [blue][Amount][/blue] Mal Angriffsschaden zu, um ihn zu [gold]betäuben[/gold].",
-    "description_raw": "Nimmt [blue]{DamageDecrease}%[/blue] weniger Schaden durch Angriffe. Füge ihm [blue]{Amount}[/blue] Mal Angriffsschaden zu, um ihn zu [gold]betäuben[/gold].",
+    "description": "Nimmt [blue]50%[/blue] weniger Schaden durch Angriffe. Füge ihm [blue][Amount][/blue] Mal Angriffsschaden zu, um ihn zu [gold]Betäuben[/gold].",
+    "description_raw": "Nimmt [blue]{DamageDecrease}%[/blue] weniger Schaden durch Angriffe. Füge ihm [blue]{Amount}[/blue] Mal Angriffsschaden zu, um ihn zu [gold]Betäuben[/gold].",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -960,14 +950,14 @@
     "image_url": "/static/images/powers/gigantification_power.webp"
   },
   {
-    "id": "GRAPPLE",
-    "name": "Ringen",
-    "description": "Wenn du in diesem Zug [gold]Block[/gold] erhältst, füge [gold]this creature[/gold] [blue][Amount][/blue] Schaden zu.",
-    "description_raw": "Wenn du in diesem Zug [gold]Block[/gold] erhältst, füge [gold]{OwnerName}[/gold] [blue]{Amount}[/blue] Schaden zu.",
-    "type": "Debuff",
-    "stack_type": "Counter",
+    "id": "GRASP",
+    "name": "Greifen",
+    "description": "Immer wenn du eine Karte spielst, verliere [blue]1[/blue] Energie.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
     "allow_negative": null,
-    "image_url": "/static/images/powers/grapple_power.webp"
+    "image_url": "/static/images/powers/grasp_power.webp"
   },
   {
     "id": "GRAVITY",
@@ -1002,7 +992,7 @@
   {
     "id": "HAMMER_TIME",
     "name": "Hammertime",
-    "description": "Wenn du [gold]schmiedest[/gold], [gold]schmieden[/gold] alle Verbündeten ebenso.",
+    "description": "Wenn du [gold]Schmiedest[/gold], [gold]Schmieden[/gold] alle Verbündeten ebenso.",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Single",
@@ -1102,7 +1092,7 @@
   {
     "id": "HEX",
     "name": "Verflucht",
-    "description": "Solange Spektral-Ritter am Leben ist, sind ALLE deine Karten [gold]flüchtig[/gold].",
+    "description": "Solange Spektral-Ritter am Leben ist, sind ALLE deine Karten [gold]Flüchtig[/gold].",
     "description_raw": null,
     "type": "Debuff",
     "stack_type": "Single",
@@ -1130,6 +1120,16 @@
     "image_url": "/static/images/powers/hotfix_power.webp"
   },
   {
+    "id": "HUNGER",
+    "name": "Hungern",
+    "description": "Immer wenn du einen Angriff oder eine Fertigkeit spielst, wird sie [gold]Erschöpft[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/hunger_power.webp"
+  },
+  {
     "id": "ILLUSION",
     "name": "Illusion",
     "description": "Wenn dieses Wesen stirbt, kehrt es im nächsten Zug mit vollen TP zurück.",
@@ -1142,8 +1142,8 @@
   {
     "id": "IMBALANCED",
     "name": "Unausgewogen",
-    "description": "Falls die Angriffe von [gold]this creature[/gold] völlig geblockt werden, wird er [gold]betäubt[/gold].",
-    "description_raw": "Falls die Angriffe von [gold]{OwnerName}[/gold] völlig{IsMultiplayer: von einem beliebigen Spieler|} geblockt werden, wird er [gold]betäubt[/gold].",
+    "description": "Falls die Angriffe von [gold]this creature[/gold] völlig geblockt werden, wird er [gold]Betäubt[/gold].",
+    "description_raw": "Falls die Angriffe von [gold]{OwnerName}[/gold] völlig{IsMultiplayer: von einem beliebigen Spieler|} geblockt werden, wird er [gold]Betäubt[/gold].",
     "type": "Debuff",
     "stack_type": "Single",
     "allow_negative": null,
@@ -1212,7 +1212,7 @@
   {
     "id": "ITERATION",
     "name": "Iteration",
-    "description": "Wenn du zum ersten Mal in einem Zug eine [gold]Status[/gold]-Karte ziehst, ziehe mehr Karten.",
+    "description": "Wenn du zum ersten Mal in einem Zug einen Status ziehst, ziehe mehr Karten.",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
@@ -1450,6 +1450,16 @@
     "image_url": "/static/images/powers/no_draw_power.webp"
   },
   {
+    "id": "NO_ENERGY_GAIN",
+    "name": "Keine Energie erhalten",
+    "description": "Du kannst in diesem Zug keine weitere [energy:1] erhalten.",
+    "description_raw": "Du kannst in diesem Zug keine weitere {energyPrefix:energyIcons(1)} erhalten.",
+    "type": "Debuff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/no_energy_gain_power.webp"
+  },
+  {
     "id": "NOSTALGIA",
     "name": "Nostalgie",
     "description": "Die erste Angriffs- oder Fertigkeitskarte, die du jeden Zug spielst, wird auf deinen [gold]Nachziehstapel[/gold] gelegt.",
@@ -1512,7 +1522,7 @@
   {
     "id": "PAGESTORM",
     "name": "Blättersturm",
-    "description": "Wenn du eine [gold]flüchtige[/gold] Karte ziehst, ziehe [blue]1[/blue] Karte.",
+    "description": "Wenn du eine [gold]Flüchtige[/gold] Karte ziehst, ziehe [blue]1[/blue] Karte.",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
@@ -1622,8 +1632,8 @@
   {
     "id": "PLOW",
     "name": "Pflügen",
-    "description": "Wenn die TP des [gold]this creaturees[/gold] zum ersten Mal [blue][Amount][/blue] oder weniger erreichen, wird es [gold]betäubt[/gold] und verliert all seine [gold]Stärke[/gold].",
-    "description_raw": "Wenn die TP des [gold]{OwnerName}es[/gold] zum ersten Mal [blue]{Amount}[/blue] oder weniger erreichen, wird es [gold]betäubt[/gold] und verliert all seine [gold]Stärke[/gold].",
+    "description": "Wenn die TP des [gold]this creaturees[/gold] zum ersten Mal [blue][Amount][/blue] oder weniger erreichen, wird es [gold]Betäubt[/gold] und verliert all seine [gold]Stärke[/gold].",
+    "description_raw": "Wenn die TP des [gold]{OwnerName}es[/gold] zum ersten Mal [blue]{Amount}[/blue] oder weniger erreichen, wird es [gold]Betäubt[/gold] und verliert all seine [gold]Stärke[/gold].",
     "type": "Debuff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -1791,7 +1801,7 @@
   },
   {
     "id": "RINGING",
-    "name": "Läuten",
+    "name": "Klingeln",
     "description": "Du kannst in diesem Zug nur [blue]1[/blue] Karte spielen.",
     "description_raw": null,
     "type": "Debuff",
@@ -1848,6 +1858,16 @@
     "stack_type": "Counter",
     "allow_negative": null,
     "image_url": "/static/images/powers/sandpit_power.webp"
+  },
+  {
+    "id": "SCRUTINY",
+    "name": "Überprüfung",
+    "description": "Du kannst in deinem Zug keine weiteren Karten ziehen.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/scrutiny_power.webp"
   },
   {
     "id": "SEEKING_EDGE",
@@ -2002,8 +2022,8 @@
   {
     "id": "SLIPPERY",
     "name": "Glitschig",
-    "description": "Wenn [gold]this creature[/gold] die nächsten [blue]2[/blue] Male TP verliert, verliert er stattdessen nur [blue]1[/blue] TP.",
-    "description_raw": "Wenn [gold]{OwnerName}[/gold] {Amount:plural:das nächste Mal|die nächsten [blue]{}[/blue] Male} TP verliert, verliert er stattdessen nur [blue]1[/blue] TP.",
+    "description": "Wenn [gold]this creature[/gold] die nächsten [blue]2[/blue] Male TP verliert, verliert es stattdessen nur [blue]1[/blue] TP.",
+    "description_raw": "Wenn [gold]{OwnerName}[/gold] {Amount:plural:das nächste Mal|die nächsten [blue]{}[/blue] Male} TP verliert, verliert es stattdessen nur [blue]1[/blue] TP.",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -2072,8 +2092,8 @@
   {
     "id": "SOAR",
     "name": "Aufschwingen",
-    "description": "Erhält [blue]50%[/blue] weniger Angriffsschaden, bis er landet.",
-    "description_raw": "Erhält [blue]{DamageDecrease}%[/blue] weniger Angriffsschaden, bis er landet.",
+    "description": "Erhält [blue]50%[/blue] weniger Angriffsschaden, bis sie landet.",
+    "description_raw": "Erhält [blue]{DamageDecrease}%[/blue] weniger Angriffsschaden, bis sie landet.",
     "type": "Buff",
     "stack_type": "Single",
     "allow_negative": null,
@@ -2082,7 +2102,7 @@
   {
     "id": "SPECTRUM_SHIFT",
     "name": "Spektralverschiebung",
-    "description": "Erhalte zu Beginn deines Zuges [blue]1[/blue] zufällige farblose Karte auf deine [gold]Hand[/gold].",
+    "description": "Erhalte zu Beginn deines Zuges [blue]1[/blue] zufällige Farblose Karte auf deine [gold]Hand[/gold].",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
@@ -2222,8 +2242,8 @@
   {
     "id": "SUCK",
     "name": "Saugen",
-    "description": "Wenn [gold]this creature[/gold] ungeblockten Angriffsschaden zufügt, erhält es [blue][Amount][/blue] [gold]Stärke[/gold].",
-    "description_raw": "Wenn [gold]{OwnerName}[/gold] ungeblockten Angriffsschaden zufügt, erhält es [blue]{Amount}[/blue] [gold]Stärke[/gold].",
+    "description": "Wenn [gold]this creature[/gold] ungeblockten Angriffsschaden zufügt, erhält er [blue][Amount][/blue] [gold]Stärke[/gold].",
+    "description_raw": "Wenn [gold]{OwnerName}[/gold] ungeblockten Angriffsschaden zufügt, erhält er [blue]{Amount}[/blue] [gold]Stärke[/gold].",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -2242,7 +2262,7 @@
   {
     "id": "SURPRISE",
     "name": "Überraschung",
-    "description": "Irgendwas stimmt an dieser Kreatur nicht...",
+    "description": "Irgendwas stimmt mit dieser Kreatur nicht...",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Single",
@@ -2272,7 +2292,7 @@
   {
     "id": "SWORD_SAGE",
     "name": "Schwertmeister",
-    "description": "Erhöhe die Kosten der [gold]Hoheitsklinge[/gold] um [blue]1[/blue]. [gold]Hoheitsklinge[/gold] trifft jetzt [blue]1[/blue] weiteres Mal.",
+    "description": "[gold]Hoheitsklinge[/gold] trifft jetzt [blue]1[/blue] weiteres Mal.",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
@@ -2392,7 +2412,7 @@
   {
     "id": "THORNS",
     "name": "Stacheln",
-    "description": "Wenn von einem Angriff getroffen, fügen sie Schaden zurück zu.",
+    "description": "Wenn diese Kreatur von einem Angriff getroffen wird, fügt sie dem Angreifer Schaden zu.",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
@@ -2402,7 +2422,7 @@
   {
     "id": "THUNDER",
     "name": "Donner",
-    "description": "Wenn du [gold]Blitze Entlädtst[/gold], füge jedem getroffenen Gegner [blue]8[/blue] Schaden zu.",
+    "description": "Wenn du [gold]Blitze Entlädst[/gold], füge jedem getroffenen Gegner [blue]8[/blue] Schaden zu.",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
@@ -2531,7 +2551,7 @@
   },
   {
     "id": "WASTE_AWAY",
-    "name": "Verschwenden",
+    "name": "Verkümmern",
     "description": "Erhalte [blue]1[/blue] [gold]Energie[/gold] weniger pro Zug.",
     "description_raw": null,
     "type": "Debuff",

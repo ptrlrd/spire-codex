@@ -1,5 +1,14 @@
 [
   {
+    "id": "DEPRECATED_ACT",
+    "name": "Убранный из игры акт",
+    "num_rooms": 0,
+    "bosses": [],
+    "ancients": [],
+    "events": [],
+    "encounters": []
+  },
+  {
     "id": "GLORY",
     "name": "Чертог",
     "num_rooms": 13,
@@ -90,7 +99,6 @@
       "THE_INSATIABLE_BOSS",
       "THE_OBSCURA_NORMAL",
       "THIEVING_HOPPER_WEAK",
-      "TUNNELER_NORMAL",
       "TUNNELER_WEAK"
     ]
   },
@@ -176,20 +184,20 @@
       "CORPSE_SLUGS_NORMAL",
       "CORPSE_SLUGS_WEAK",
       "CULTISTS_NORMAL",
-      "LIVING_FOG_NORMAL",
       "FOSSIL_STALKER_NORMAL",
       "GREMLIN_MERC_NORMAL",
       "HAUNTED_SHIP_NORMAL",
       "LAGAVULIN_MATRIARCH_BOSS",
-      "SKULKING_COLONY_ELITE",
+      "LIVING_FOG_NORMAL",
       "PHANTASMAL_GARDENERS_ELITE",
       "PUNCH_CONSTRUCT_NORMAL",
+      "SEAPUNK_NORMAL",
       "SEAPUNK_WEAK",
       "SEWER_CLAM_NORMAL",
+      "SKULKING_COLONY_ELITE",
       "SLUDGE_SPINNER_WEAK",
       "SOUL_FYSH_BOSS",
       "TERROR_EEL_ELITE",
-      "TOADPOLES_NORMAL",
       "TOADPOLES_WEAK",
       "TWO_TAILED_RATS_NORMAL",
       "WATERFALL_GIANT_BOSS"

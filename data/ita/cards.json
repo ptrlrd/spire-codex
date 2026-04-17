@@ -39,8 +39,8 @@
   {
     "id": "CHARGE",
     "name": "ALLA CARICA!",
-    "description": "Scegli 2 carte nel tuo [gold]mazzo di pesca[/gold] da [gold]trasformare[/gold] in\n[gold]Colpi del Seguace[/gold].",
-    "description_raw": "Scegli {Cards:diff()} {Cards:plural:carta|carte} nel tuo [gold]mazzo di pesca[/gold] da [gold]trasformare[/gold] in\n[gold]{Cards:plural:{IfUpgraded:show:Colpo del Seguace+|Colpo del Seguace}[/gold]|{IfUpgraded:show:Colpi del Seguace+|Colpi del Seguace}[/gold]}.",
+    "description": "Scegli 2 carte nel tuo [gold]mazzo di pesca[/gold] da [gold]trasformare[/gold]\n[gold]nelle carte Attacco Bomba del Seguace[/gold].",
+    "description_raw": "Scegli {Cards:diff()} {Cards:plural:carta|carte} nel tuo [gold]mazzo di pesca[/gold] da [gold]trasformare[/gold]\n[gold]{Cards:plural:{IfUpgraded:show:nella carta Attacco Bomba del Seguace+|nella carta Attacco Bomba del Seguace}[/gold]|{IfUpgraded:show:nelle carte Attacco Bomba del Seguace+|nelle carte Attacco Bomba del Seguace}[/gold]}.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -59,7 +59,7 @@
     "keywords": null,
     "tags": null,
     "spawns_cards": [
-      "MINION_STRIKE"
+      "MINION_DIVE_BOMB"
     ],
     "vars": {
       "Cards": 2
@@ -70,7 +70,7 @@
     "image_url": "/static/images/cards/charge.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Scegli 2 carte nel tuo [gold]mazzo di pesca[/gold] da [gold]trasformare[/gold] in\n[gold]Colpi del Seguace+[/gold].",
+    "upgrade_description": "Scegli 2 carte nel tuo [gold]mazzo di pesca[/gold] da [gold]trasformare[/gold]\n[gold]nelle carte Attacco Bomba del Seguace+[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 186
@@ -243,7 +243,7 @@
     "is_x_star_cost": null,
     "star_cost": null,
     "type": "Abilità",
-    "rarity": "Comune",
+    "rarity": "Non comune",
     "target": "Self",
     "color": "silent",
     "damage": null,
@@ -267,7 +267,7 @@
     "type_variants": null,
     "upgrade_description": "Peschi 4 carte.\nScarti 1 carta.",
     "type_key": "Skill",
-    "rarity_key": "Common",
+    "rarity_key": "Uncommon",
     "compendium_order": 90
   },
   {
@@ -316,7 +316,7 @@
   {
     "id": "REFINE_BLADE",
     "name": "Affilatura Cosmica",
-    "description": "Applichi 6 di [gold]Forgiatura[/gold] \nIl turno successivo ottieni [energy:1].",
+    "description": "Applichi 9 di [gold]Forgiatura[/gold] \nIl turno successivo ottieni [energy:1].",
     "description_raw": "Applichi {Forge:diff()} di [gold]Forgiatura[/gold] \nIl turno successivo ottieni {Energy:energyIcons()}.",
     "cost": 1,
     "is_x_cost": null,
@@ -337,7 +337,7 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Forge": 6,
+      "Forge": 9,
       "Energy": 1
     },
     "upgrade": {
@@ -346,7 +346,7 @@
     "image_url": "/static/images/cards/refine_blade.webp",
     "beta_image_url": "/static/images/cards/beta/refine_blade.webp",
     "type_variants": null,
-    "upgrade_description": "Applichi 10 di [gold]Forgiatura[/gold] \nIl turno successivo ottieni [energy:1].",
+    "upgrade_description": "Applichi 13 di [gold]Forgiatura[/gold] \nIl turno successivo ottieni [energy:1].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 240
@@ -354,7 +354,7 @@
   {
     "id": "FIGHT_ME",
     "name": "Affrontami!",
-    "description": "Infliggi 5 di danno due volte.\nOttieni 2 di [gold]Forza[/gold].\nIl nemico ottiene 1 di [gold]Forza[/gold].",
+    "description": "Infliggi 5 di danno due volte.\nOttieni 3 di [gold]Forza[/gold].\nIl nemico ottiene 1 di [gold]Forza[/gold].",
     "description_raw": "Infliggi {Damage:diff()} di danno due volte.\nOttieni {StrengthPower:diff()} di [gold]Forza[/gold].\nIl nemico ottiene {EnemyStrength:diff()} di [gold]Forza[/gold].",
     "cost": 2,
     "is_x_cost": null,
@@ -370,7 +370,7 @@
     "powers_applied": [
       {
         "power": "Forza",
-        "amount": 2,
+        "amount": 3,
         "power_key": "Strength"
       }
     ],
@@ -384,8 +384,8 @@
       "EnemyStrength": 1,
       "Damage": 5,
       "Repeat": 2,
-      "StrengthPower": 2,
-      "Strength": 2
+      "StrengthPower": 3,
+      "Strength": 3
     },
     "upgrade": {
       "damage": "+1",
@@ -394,7 +394,7 @@
     "image_url": "/static/images/cards/fight_me.webp",
     "beta_image_url": "/static/images/cards/beta/fight_me.webp",
     "type_variants": null,
-    "upgrade_description": "Infliggi 6 di danno due volte.\nOttieni 2 di [gold]Forza[/gold].\nIl nemico ottiene 1 di [gold]Forza[/gold].",
+    "upgrade_description": "Infliggi 6 di danno due volte.\nOttieni 3 di [gold]Forza[/gold].\nIl nemico ottiene 1 di [gold]Forza[/gold].",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 35
@@ -702,7 +702,7 @@
     "cost": 0,
     "is_x_cost": null,
     "is_x_star_cost": null,
-    "star_cost": 2,
+    "star_cost": 3,
     "type": "Abilità",
     "rarity": "Non comune",
     "target": "Self",
@@ -719,7 +719,7 @@
     "spawns_cards": null,
     "vars": {
       "Energy": 2,
-      "StarCost": 2
+      "StarCost": 3
     },
     "upgrade": {
       "energy": "+1"
@@ -903,7 +903,7 @@
     "upgrade_description": "Ottieni 3 di [gold]Forza[/gold].",
     "type_key": "Power",
     "rarity_key": "Uncommon",
-    "compendium_order": 47
+    "compendium_order": 46
   },
   {
     "id": "END_OF_DAYS",
@@ -959,7 +959,7 @@
     "is_x_star_cost": null,
     "star_cost": null,
     "type": "Abilità",
-    "rarity": "Antico",
+    "rarity": "Antica",
     "target": "Self",
     "color": "event",
     "damage": null,
@@ -1151,7 +1151,7 @@
   {
     "id": "ETERNAL_ARMOR",
     "name": "Armatura Eterna",
-    "description": "Ottieni 7 di [gold]Placcatura[/gold].",
+    "description": "Ottieni 9 di [gold]Placcatura[/gold].",
     "description_raw": "Ottieni {PlatingPower:diff()} di [gold]Placcatura[/gold].",
     "cost": 3,
     "is_x_cost": null,
@@ -1167,7 +1167,7 @@
     "powers_applied": [
       {
         "power": "Placcatura",
-        "amount": 7,
+        "amount": 9,
         "power_key": "Plating"
       }
     ],
@@ -1178,16 +1178,16 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "PlatingPower": 7,
-      "Plating": 7
+      "PlatingPower": 9,
+      "Plating": 9
     },
     "upgrade": {
-      "platingpower": "+2"
+      "platingpower": "+3"
     },
     "image_url": "/static/images/cards/eternal_armor.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Ottieni 9 di [gold]Placcatura[/gold].",
+    "upgrade_description": "Ottieni 12 di [gold]Placcatura[/gold].",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 454
@@ -1277,8 +1277,8 @@
   {
     "id": "ARSENAL",
     "name": "Arsenale",
-    "description": "Ogni volta che giochi una carta incolore, ottieni 1 di [gold]Forza[/gold].",
-    "description_raw": "Ogni volta che giochi una carta incolore, ottieni {ArsenalPower:diff()} di [gold]Forza[/gold].",
+    "description": "Ogni volta che crei una carta, ottieni 1 di [gold]Forza[/gold].",
+    "description_raw": "Ogni volta che crei una carta, ottieni {ArsenalPower:diff()} di [gold]Forza[/gold].",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -1308,12 +1308,12 @@
       "Arsenal": 1
     },
     "upgrade": {
-      "arsenalpower": "+1"
+      "add_innate": true
     },
     "image_url": "/static/images/cards/arsenal.webp",
     "beta_image_url": "/static/images/cards/beta/arsenal.webp",
     "type_variants": null,
-    "upgrade_description": "Ogni volta che giochi una carta incolore, ottieni 2 di [gold]Forza[/gold].",
+    "upgrade_description": null,
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 176
@@ -1567,7 +1567,7 @@
     "name": "Attacco Bomba del Seguace",
     "description": "Infliggi 13 di danno.",
     "description_raw": "Infliggi {Damage:diff()} di danno.",
-    "cost": 1,
+    "cost": 0,
     "is_x_cost": null,
     "is_x_star_cost": null,
     "star_cost": null,
@@ -1911,52 +1911,6 @@
     "compendium_order": 512
   },
   {
-    "id": "GRAPPLE",
-    "name": "Avviluppo",
-    "description": "Infliggi 7 di danno.\nOgni volta che ottieni [gold]Blocco[/gold] in questo turno, infliggi 5 di danno al nemico.",
-    "description_raw": "Infliggi {Damage:diff()} di danno.\nOgni volta che ottieni [gold]Blocco[/gold] in questo turno, infliggi {GrapplePower:diff()} di danno al nemico.",
-    "cost": 1,
-    "is_x_cost": null,
-    "is_x_star_cost": null,
-    "star_cost": null,
-    "type": "Attacco",
-    "rarity": "Non comune",
-    "target": "AnyEnemy",
-    "color": "ironclad",
-    "damage": 7,
-    "block": null,
-    "hit_count": null,
-    "powers_applied": [
-      {
-        "power": "Avviluppo",
-        "amount": 5,
-        "power_key": "Grapple"
-      }
-    ],
-    "cards_draw": null,
-    "energy_gain": null,
-    "hp_loss": null,
-    "keywords": null,
-    "tags": null,
-    "spawns_cards": null,
-    "vars": {
-      "Damage": 7,
-      "GrapplePower": 5,
-      "Grapple": 5
-    },
-    "upgrade": {
-      "damage": "+2",
-      "grapplepower": "+2"
-    },
-    "image_url": "/static/images/cards/grapple.webp",
-    "beta_image_url": null,
-    "type_variants": null,
-    "upgrade_description": "Infliggi 9 di danno.\nOgni volta che ottieni [gold]Blocco[/gold] in questo turno, infliggi 7 di danno al nemico.",
-    "type_key": "Attack",
-    "rarity_key": "Uncommon",
-    "compendium_order": 38
-  },
-  {
     "id": "WASTE_AWAY",
     "name": "Avvizzimento",
     "description": "Ottieni 1 [energy:1] in meno per turno.",
@@ -2113,8 +2067,8 @@
   {
     "id": "FEED",
     "name": "Banchetto",
-    "description": "Infliggi 10 di danno.\nSe è [gold]Letale[/gold], aumenti i tuoi PV massimi di 3.",
-    "description_raw": "Infliggi {Damage:diff()} di danno.\nSe è [gold]Letale[/gold], aumenti i tuoi PV massimi di {MaxHp:diff()}.",
+    "description": "Infliggi 10 di danno.\nSe è [gold]letale[/gold], aumenti i tuoi PV massimi di 3.",
+    "description_raw": "Infliggi {Damage:diff()} di danno.\nSe è [gold]letale[/gold], aumenti i tuoi PV massimi di {MaxHp:diff()}.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -2146,7 +2100,7 @@
     "image_url": "/static/images/cards/feed.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Infliggi 12 di danno.\nSe è [gold]Letale[/gold], aumenti i tuoi PV massimi di 4.",
+    "upgrade_description": "Infliggi 12 di danno.\nSe è [gold]letale[/gold], aumenti i tuoi PV massimi di 4.",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -2187,7 +2141,7 @@
     "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Common",
-    "compendium_order": 39
+    "compendium_order": 38
   },
   {
     "id": "BARRICADE",
@@ -2227,7 +2181,7 @@
   {
     "id": "PATTER",
     "name": "Barriera Stellare",
-    "description": "Ottieni 8 di [gold]Blocco[/gold].\nOttieni 2 di [gold]Vigore[/gold].",
+    "description": "Ottieni 9 di [gold]Blocco[/gold].\nOttieni 2 di [gold]Vigore[/gold].",
     "description_raw": "Ottieni {Block:diff()} di [gold]Blocco[/gold].\nOttieni {VigorPower:diff()} di [gold]Vigore[/gold].",
     "cost": 1,
     "is_x_cost": null,
@@ -2238,7 +2192,7 @@
     "target": "Self",
     "color": "regent",
     "damage": null,
-    "block": 8,
+    "block": 9,
     "hit_count": null,
     "powers_applied": [
       {
@@ -2254,7 +2208,7 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Block": 8,
+      "Block": 9,
       "VigorPower": 2,
       "Vigor": 2
     },
@@ -2265,7 +2219,7 @@
     "image_url": "/static/images/cards/patter.webp",
     "beta_image_url": "/static/images/cards/beta/patter.webp",
     "type_variants": null,
-    "upgrade_description": "Ottieni 10 di [gold]Blocco[/gold].\nOttieni 3 di [gold]Vigore[/gold].",
+    "upgrade_description": "Ottieni 11 di [gold]Blocco[/gold].\nOttieni 3 di [gold]Vigore[/gold].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 234
@@ -2490,7 +2444,7 @@
     "is_x_star_cost": null,
     "star_cost": null,
     "type": "Potere",
-    "rarity": "Antico",
+    "rarity": "Antica",
     "target": "Self",
     "color": "defect",
     "damage": null,
@@ -2653,8 +2607,8 @@
   {
     "id": "BOMBARDMENT",
     "name": "Bombardamento",
-    "description": "Infliggi 18 di danno.\nAll'inizio del tuo turno, questa carta viene giocata dalla [gold]pila delle carte esaurite[/gold].",
-    "description_raw": "Infliggi {Damage:diff()} di danno.\nAll'inizio del tuo turno, questa carta viene giocata dalla [gold]pila delle carte esaurite[/gold].",
+    "description": "Infliggi 18 di danno.\nSe all'inizio del tuo turno questa carta si trova nella tua [gold]pila delle carte esaurite[/gold], giocala.",
+    "description_raw": "Infliggi {Damage:diff()} di danno.\nSe all'inizio del tuo turno questa carta si trova nella tua [gold]pila delle carte esaurite[/gold], giocala.",
     "cost": 3,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -2684,7 +2638,7 @@
     "image_url": "/static/images/cards/bombardment.webp",
     "beta_image_url": "/static/images/cards/beta/bombardment.webp",
     "type_variants": null,
-    "upgrade_description": "Infliggi 24 di danno.\nAll'inizio del tuo turno, questa carta viene giocata dalla [gold]pila delle carte esaurite[/gold].",
+    "upgrade_description": "Infliggi 24 di danno.\nSe all'inizio del tuo turno questa carta si trova nella tua [gold]pila delle carte esaurite[/gold], giocala.",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -2695,8 +2649,8 @@
   {
     "id": "SPOILS_OF_BATTLE",
     "name": "Bottino di Battaglia",
-    "description": "Applichi 10 di [gold]Forgiatura[/gold]",
-    "description_raw": "Applichi {Forge:diff()} di [gold]Forgiatura[/gold]",
+    "description": "Applichi 5 di [gold]Forgiatura[/gold].\nPeschi 2 carte.",
+    "description_raw": "Applichi {Forge:diff()} di [gold]Forgiatura[/gold].\nPeschi {Cards:diff()} {Cards:plural:carta|carte}.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -2709,22 +2663,23 @@
     "block": null,
     "hit_count": null,
     "powers_applied": null,
-    "cards_draw": null,
+    "cards_draw": 2,
     "energy_gain": null,
     "hp_loss": null,
     "keywords": null,
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Forge": 10
+      "Forge": 5,
+      "Cards": 2
     },
     "upgrade": {
-      "forge": "+5"
+      "forge": "+3"
     },
     "image_url": "/static/images/cards/spoils_of_battle.webp",
     "beta_image_url": "/static/images/cards/beta/spoils_of_battle.webp",
     "type_variants": null,
-    "upgrade_description": "Applichi 15 di [gold]Forgiatura[/gold]",
+    "upgrade_description": "Applichi 8 di [gold]Forgiatura[/gold].\nPeschi 2 carte.",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 250
@@ -2732,8 +2687,8 @@
   {
     "id": "CINDER",
     "name": "Brace",
-    "description": "Infliggi 17 di danno.\n[gold]Esaurisci[/gold] la carta in cima al tuo [gold]mazzo di pesca[/gold].",
-    "description_raw": "Infliggi {Damage:diff()} di danno.\n[gold]Esaurisci[/gold] la carta in cima al tuo [gold]mazzo di pesca[/gold].",
+    "description": "Infliggi 18 di danno.\n[gold]Esaurisci[/gold] 1 carta casuale.",
+    "description_raw": "Infliggi {Damage:diff()} di danno.\n[gold]Esaurisci[/gold] 1 carta casuale.",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -2742,7 +2697,7 @@
     "rarity": "Comune",
     "target": "AnyEnemy",
     "color": "ironclad",
-    "damage": 17,
+    "damage": 18,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -2753,16 +2708,15 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "CardsToExhaust": 1,
-      "Damage": 17
+      "Damage": 18
     },
     "upgrade": {
-      "damage": "+5"
+      "damage": "+6"
     },
     "image_url": "/static/images/cards/cinder.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Infliggi 22 di danno.\n[gold]Esaurisci[/gold] la carta in cima al tuo [gold]mazzo di pesca[/gold].",
+    "upgrade_description": "Infliggi 24 di danno.\n[gold]Esaurisci[/gold] 1 carta casuale.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 17
@@ -3051,7 +3005,7 @@
   {
     "id": "KINGLY_KICK",
     "name": "Calcio Regale",
-    "description": "Infliggi 24 di danno.\nOgni volta che peschi questa carta, riduci il suo costo di 1.",
+    "description": "Infliggi 27 di danno.\nOgni volta che peschi questa carta, riduci il suo costo di 1.",
     "description_raw": "Infliggi {Damage:diff()} di danno.\nOgni volta che peschi questa carta, riduci il suo costo di 1.",
     "cost": 4,
     "is_x_cost": null,
@@ -3061,7 +3015,7 @@
     "rarity": "Non comune",
     "target": "AnyEnemy",
     "color": "regent",
-    "damage": 24,
+    "damage": 27,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -3072,15 +3026,15 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Damage": 24
+      "Damage": 27
     },
     "upgrade": {
-      "damage": "+6"
+      "damage": "+8"
     },
     "image_url": "/static/images/cards/kingly_kick.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Infliggi 30 di danno.\nOgni volta che peschi questa carta, riduci il suo costo di 1.",
+    "upgrade_description": "Infliggi 35 di danno.\nOgni volta che peschi questa carta, riduci il suo costo di 1.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 218
@@ -3128,8 +3082,8 @@
   {
     "id": "FLAK_CANNON",
     "name": "Cannone Antiaereo",
-    "description": "[gold]Esaurisci[/gold] TUTTE le tue carte [gold]Stato[/gold].\nInfliggi 8 di danno a un nemico casuale per ogni carta [gold]esaurita[/gold].",
-    "description_raw": "[gold]Esaurisci[/gold] TUTTE le tue carte [gold]Stato[/gold].\nInfliggi {Damage:diff()} di danno a un nemico casuale per ogni carta [gold]esaurita[/gold].{InCombat:\n(Colpisce {CalculatedHits:diff()} {CalculatedHits:plural:volta|volte})|}",
+    "description": "[gold]Esaurisci[/gold] TUTTE le tue carte Stato.\nInfliggi 8 di danno a un nemico casuale per ogni carta [gold]esaurita[/gold].",
+    "description_raw": "[gold]Esaurisci[/gold] TUTTE le tue carte Stato.\nInfliggi {Damage:diff()} di danno a un nemico casuale per ogni carta [gold]esaurita[/gold].{InCombat:\n(Colpisce {CalculatedHits:diff()} {CalculatedHits:plural:volta|volte})|}",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -3159,7 +3113,7 @@
     "image_url": "/static/images/cards/flak_cannon.webp",
     "beta_image_url": "/static/images/cards/beta/flak_cannon.webp",
     "type_variants": null,
-    "upgrade_description": "[gold]Esaurisci[/gold] TUTTE le tue carte [gold]Stato[/gold].\nInfliggi 11 di danno a un nemico casuale per ogni carta [gold]esaurita[/gold].",
+    "upgrade_description": "[gold]Esaurisci[/gold] TUTTE le tue carte Stato.\nInfliggi 11 di danno a un nemico casuale per ogni carta [gold]esaurita[/gold].",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 382
@@ -3263,6 +3217,7 @@
     "hp_loss": null,
     "keywords": [
       "Innatismo",
+      "Evanescenza",
       "Ingiocabilità",
       "Eternità"
     ],
@@ -3278,6 +3233,7 @@
     "rarity_key": "Curse",
     "keywords_key": [
       "Innate",
+      "Ethereal",
       "Unplayable",
       "Eternal"
     ],
@@ -3716,7 +3672,7 @@
     "upgrade_description": "Ogni volta che ottieni [gold]Blocco[/gold], infliggi 7 di danno a un nemico casuale.",
     "type_key": "Power",
     "rarity_key": "Rare",
-    "compendium_order": 49
+    "compendium_order": 48
   },
   {
     "id": "GUILTY",
@@ -4162,8 +4118,8 @@
   {
     "id": "LEADING_STRIKE",
     "name": "Colpo Iniziale",
-    "description": "Infliggi 7 di danno.\nAggiungi 1 carta [gold]Pugnale[/gold] alla tua [gold]mano[/gold].",
-    "description_raw": "Infliggi {Damage:diff()} di danno.\nAggiungi {Shivs:diff()} carta [gold]Pugnale[/gold] alla tua [gold]mano[/gold].",
+    "description": "Infliggi 3 di danno.\nAggiungi 2 [gold]carte Pugnale[/gold] alla tua [gold]mano[/gold].",
+    "description_raw": "Infliggi {Damage:diff()} di danno.\nAggiungi {Shivs:diff()} [gold]{Shivs:plural:carta Pugnale|carte Pugnale}[/gold] alla tua [gold]mano[/gold].",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -4172,7 +4128,7 @@
     "rarity": "Comune",
     "target": "AnyEnemy",
     "color": "silent",
-    "damage": 7,
+    "damage": 3,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -4187,8 +4143,8 @@
       "SHIV"
     ],
     "vars": {
-      "Shivs": 1,
-      "Damage": 7
+      "Shivs": 2,
+      "Damage": 3
     },
     "upgrade": {
       "damage": "+3"
@@ -4196,7 +4152,7 @@
     "image_url": "/static/images/cards/leading_strike.webp",
     "beta_image_url": "/static/images/cards/beta/leading_strike.webp",
     "type_variants": null,
-    "upgrade_description": "Infliggi 10 di danno.\nAggiungi 1 carta [gold]Pugnale[/gold] alla tua [gold]mano[/gold].",
+    "upgrade_description": "Infliggi 6 di danno.\nAggiungi 2 [gold]carte Pugnale[/gold] alla tua [gold]mano[/gold].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 132
@@ -4204,7 +4160,7 @@
   {
     "id": "SEEKER_STRIKE",
     "name": "Colpo Inseguitore",
-    "description": "Infliggi 6 di danno.\nScegli 1 tra 3 carte nel tuo [gold]mazzo di pesca[/gold] da aggiungere alla tua [gold]mano[/gold].",
+    "description": "Infliggi 9 di danno.\nScegli 1 tra 3 carte nel tuo [gold]mazzo di pesca[/gold] da aggiungere alla tua [gold]mano[/gold].",
     "description_raw": "Infliggi {Damage:diff()} di danno.\nScegli 1 tra {Cards:diff()} carte nel tuo [gold]mazzo di pesca[/gold] da aggiungere alla tua [gold]mano[/gold].",
     "cost": 1,
     "is_x_cost": null,
@@ -4214,7 +4170,7 @@
     "rarity": "Non comune",
     "target": "AnyEnemy",
     "color": "colorless",
-    "damage": 6,
+    "damage": 9,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -4227,7 +4183,7 @@
     ],
     "spawns_cards": null,
     "vars": {
-      "Damage": 6,
+      "Damage": 9,
       "Cards": 3
     },
     "upgrade": {
@@ -4236,7 +4192,7 @@
     "image_url": "/static/images/cards/seeker_strike.webp",
     "beta_image_url": "/static/images/cards/beta/seeker_strike.webp",
     "type_variants": null,
-    "upgrade_description": "Infliggi 9 di danno.\nScegli 1 tra 3 carte nel tuo [gold]mazzo di pesca[/gold] da aggiungere alla tua [gold]mano[/gold].",
+    "upgrade_description": "Infliggi 12 di danno.\nScegli 1 tra 3 carte nel tuo [gold]mazzo di pesca[/gold] da aggiungere alla tua [gold]mano[/gold].",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 491
@@ -4244,7 +4200,7 @@
   {
     "id": "SCULPTING_STRIKE",
     "name": "Colpo Modellante",
-    "description": "Infliggi 8 di danno.\nApplichi [gold]Evanescenza[/gold] a una carta nella tua [gold]mano[/gold].",
+    "description": "Infliggi 9 di danno.\nApplichi [gold]Evanescenza[/gold] a una carta nella tua [gold]mano[/gold].",
     "description_raw": "Infliggi {Damage:diff()} di danno.\nApplichi [gold]Evanescenza[/gold] a una carta nella tua [gold]mano[/gold].",
     "cost": 1,
     "is_x_cost": null,
@@ -4254,7 +4210,7 @@
     "rarity": "Comune",
     "target": "AnyEnemy",
     "color": "necrobinder",
-    "damage": 8,
+    "damage": 9,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -4267,7 +4223,7 @@
     ],
     "spawns_cards": null,
     "vars": {
-      "Damage": 8
+      "Damage": 9
     },
     "upgrade": {
       "damage": "+3"
@@ -4275,7 +4231,7 @@
     "image_url": "/static/images/cards/sculpting_strike.webp",
     "beta_image_url": "/static/images/cards/beta/sculpting_strike.webp",
     "type_variants": null,
-    "upgrade_description": "Infliggi 11 di danno.\nApplichi [gold]Evanescenza[/gold] a una carta nella tua [gold]mano[/gold].",
+    "upgrade_description": "Infliggi 12 di danno.\nApplichi [gold]Evanescenza[/gold] a una carta nella tua [gold]mano[/gold].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 329
@@ -4451,7 +4407,7 @@
   {
     "id": "SOLAR_STRIKE",
     "name": "Colpo Solare",
-    "description": "Infliggi 8 di danno.\nOttieni [star:1].",
+    "description": "Infliggi 9 di danno.\nOttieni [star:1].",
     "description_raw": "Infliggi {Damage:diff()} di danno.\nOttieni {Stars:starIcons()}.",
     "cost": 1,
     "is_x_cost": null,
@@ -4461,7 +4417,7 @@
     "rarity": "Comune",
     "target": "AnyEnemy",
     "color": "regent",
-    "damage": 8,
+    "damage": 9,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -4474,7 +4430,7 @@
     ],
     "spawns_cards": null,
     "vars": {
-      "Damage": 8,
+      "Damage": 9,
       "Stars": 1
     },
     "upgrade": {
@@ -4484,7 +4440,7 @@
     "image_url": "/static/images/cards/solar_strike.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Infliggi 9 di danno.\nOttieni [star:2].",
+    "upgrade_description": "Infliggi 10 di danno.\nOttieni [star:2].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 248
@@ -4611,7 +4567,7 @@
   {
     "id": "MINION_STRIKE",
     "name": "Colpo del Seguace",
-    "description": "Infliggi 7 di danno.\nPeschi 1 carta.",
+    "description": "Infliggi 6 di danno.\nPeschi 1 carta.",
     "description_raw": "Infliggi {Damage:diff()} di danno.\nPeschi {Cards:diff()} {Cards:plural:carta|carte}.",
     "cost": 0,
     "is_x_cost": null,
@@ -4621,7 +4577,7 @@
     "rarity": "Segnalino",
     "target": "AnyEnemy",
     "color": "token",
-    "damage": 7,
+    "damage": 6,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -4637,7 +4593,7 @@
     ],
     "spawns_cards": null,
     "vars": {
-      "Damage": 7,
+      "Damage": 6,
       "Cards": 1
     },
     "upgrade": {
@@ -4646,7 +4602,7 @@
     "image_url": "/static/images/cards/minion_strike.webp",
     "beta_image_url": "/static/images/cards/beta/minion_strike.webp",
     "type_variants": null,
-    "upgrade_description": "Infliggi 10 di danno.\nPeschi 1 carta.",
+    "upgrade_description": "Infliggi 9 di danno.\nPeschi 1 carta.",
     "type_key": "Attack",
     "rarity_key": "Token",
     "keywords_key": [
@@ -4694,8 +4650,8 @@
   {
     "id": "EXPECT_A_FIGHT",
     "name": "Combattimento Imminente",
-    "description": "Ottieni [energy:1] per ogni carta Attacco nella tua [gold]mano[/gold].",
-    "description_raw": "Ottieni {energyPrefix:energyIcons(1)} per ogni carta Attacco nella tua [gold]mano[/gold].{InCombat:\n(Ottieni {CalculatedEnergy:energyIcons()}.)|}",
+    "description": "Ottieni [energy:1] per ogni carta Attacco nella tua [gold]mano[/gold].\nNon puoi ottenere\n[energy:1] extra in questo turno.",
+    "description_raw": "Ottieni {energyPrefix:energyIcons(1)} per ogni carta Attacco nella tua [gold]mano[/gold].\nNon puoi ottenere\n{energyPrefix:energyIcons(1)} extra in questo turno.{InCombat:\n(Ottieni {CalculatedEnergy:energyIcons()})|}",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -4899,8 +4855,8 @@
   {
     "id": "CAPACITOR",
     "name": "Condensatore",
-    "description": "Ottieni 2 spazi Globi.",
-    "description_raw": "Ottieni {Repeat:diff()} spazi Globi.",
+    "description": "Ottieni 2 spazi per Globi.",
+    "description_raw": "Ottieni {Repeat:diff()} spazi per Globi.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -4928,7 +4884,7 @@
     "image_url": "/static/images/cards/capacitor.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Ottieni 3 spazi Globi.",
+    "upgrade_description": "Ottieni 3 spazi per Globi.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 361
@@ -5134,7 +5090,7 @@
   {
     "id": "PARRY",
     "name": "Controparata",
-    "description": "Ogni volta che giochi la carta [gold]Spada Sovrana[/gold], ottieni 6 di [gold]Blocco[/gold].",
+    "description": "Ogni volta che giochi la carta [gold]Spada Sovrana[/gold], ottieni 10 di [gold]Blocco[/gold].",
     "description_raw": "Ogni volta che giochi la carta [gold]Spada Sovrana[/gold], ottieni {ParryPower:diff()} di [gold]Blocco[/gold].",
     "cost": 1,
     "is_x_cost": null,
@@ -5150,7 +5106,7 @@
     "powers_applied": [
       {
         "power": "Controparata",
-        "amount": 6,
+        "amount": 10,
         "power_key": "Parry"
       }
     ],
@@ -5163,16 +5119,16 @@
       "SOVEREIGN_BLADE"
     ],
     "vars": {
-      "ParryPower": 6,
-      "Parry": 6
+      "ParryPower": 10,
+      "Parry": 10
     },
     "upgrade": {
-      "parrypower": "+3"
+      "parrypower": "+4"
     },
     "image_url": "/static/images/cards/parry.webp",
     "beta_image_url": "/static/images/cards/beta/parry.webp",
     "type_variants": null,
-    "upgrade_description": "Ogni volta che giochi la carta [gold]Spada Sovrana[/gold], ottieni 9 di [gold]Blocco[/gold].",
+    "upgrade_description": "Ogni volta che giochi la carta [gold]Spada Sovrana[/gold], ottieni 14 di [gold]Blocco[/gold].",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 232
@@ -5364,7 +5320,9 @@
     "cards_draw": null,
     "energy_gain": null,
     "hp_loss": null,
-    "keywords": null,
+    "keywords": [
+      "Esaurimento"
+    ],
     "tags": null,
     "spawns_cards": null,
     "vars": {
@@ -5372,14 +5330,17 @@
       "Focus": 2
     },
     "upgrade": {
-      "focuspower": "+1"
+      "remove_exhaust": true
     },
     "image_url": "/static/images/cards/hotfix.webp",
     "beta_image_url": "/static/images/cards/beta/hotfix.webp",
     "type_variants": null,
-    "upgrade_description": "Ottieni 3 di [gold]Focus[/gold] in questo turno.",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Common",
+    "keywords_key": [
+      "Exhaust"
+    ],
     "compendium_order": 394
   },
   {
@@ -5392,7 +5353,7 @@
     "is_x_star_cost": null,
     "star_cost": null,
     "type": "Potere",
-    "rarity": "Antico",
+    "rarity": "Antica",
     "target": "Self",
     "color": "ironclad",
     "damage": null,
@@ -5460,7 +5421,7 @@
   {
     "id": "BELIEVE_IN_YOU",
     "name": "Credi in Te",
-    "description": "Un altro giocatore ottiene [energy:3].",
+    "description": "Un altro giocatore ottiene [energy:2].",
     "description_raw": "Un altro giocatore ottiene {Energy:energyIcons()}.",
     "cost": 0,
     "is_x_cost": null,
@@ -5475,13 +5436,13 @@
     "hit_count": null,
     "powers_applied": null,
     "cards_draw": null,
-    "energy_gain": 3,
+    "energy_gain": 2,
     "hp_loss": null,
     "keywords": null,
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Energy": 3
+      "Energy": 2
     },
     "upgrade": {
       "energy": "+1"
@@ -5489,7 +5450,7 @@
     "image_url": "/static/images/cards/believe_in_you.webp",
     "beta_image_url": "/static/images/cards/beta/believe_in_you.webp",
     "type_variants": null,
-    "upgrade_description": "Un altro giocatore ottiene [energy:4].",
+    "upgrade_description": "Un altro giocatore ottiene [energy:3].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 444
@@ -5627,7 +5588,7 @@
     "name": "Cucciolo Stellare",
     "description": "Aggiungi 3 carte incolori casuali alla tua [gold]mano[/gold].",
     "description_raw": "Aggiungi {Cards:diff()} {Cards:plural:carta incolore casuale|carte incolori casuali} alla tua [gold]mano[/gold].",
-    "cost": 2,
+    "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
     "star_cost": null,
@@ -5674,7 +5635,7 @@
     "is_x_star_cost": null,
     "star_cost": null,
     "type": "Attacco",
-    "rarity": "Antico",
+    "rarity": "Antica",
     "target": "AnyEnemy",
     "color": "necrobinder",
     "damage": 10,
@@ -5709,7 +5670,7 @@
   {
     "id": "DANSE_MACABRE",
     "name": "Danza Macabra",
-    "description": "Ogni volta che giochi una carta che ha un costo pari o superiore a [energy:2], ottieni 3 di [gold]Blocco[/gold].",
+    "description": "Ogni volta che giochi una carta che ha un costo pari o superiore a [energy:2], ottieni 4 di [gold]Blocco[/gold].",
     "description_raw": "Ogni volta che giochi una carta che ha un costo pari o superiore a {Energy:energyIcons()}, ottieni {DanseMacabrePower:diff()} di [gold]Blocco[/gold].",
     "cost": 1,
     "is_x_cost": null,
@@ -5725,7 +5686,7 @@
     "powers_applied": [
       {
         "power": "Danza Macabra",
-        "amount": 3,
+        "amount": 4,
         "power_key": "DanseMacabre"
       }
     ],
@@ -5737,16 +5698,16 @@
     "spawns_cards": null,
     "vars": {
       "Energy": 2,
-      "DanseMacabrePower": 3,
-      "DanseMacabre": 3
+      "DanseMacabrePower": 4,
+      "DanseMacabre": 4
     },
     "upgrade": {
-      "dansemacabrepower": "+1"
+      "dansemacabrepower": "+2"
     },
     "image_url": "/static/images/cards/danse_macabre.webp",
     "beta_image_url": "/static/images/cards/beta/danse_macabre.webp",
     "type_variants": null,
-    "upgrade_description": "Ogni volta che giochi una carta che ha un costo pari o superiore a [energy:2], ottieni 4 di [gold]Blocco[/gold].",
+    "upgrade_description": "Ogni volta che giochi una carta che ha un costo pari o superiore a [energy:2], ottieni 6 di [gold]Blocco[/gold].",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 275
@@ -5961,7 +5922,7 @@
   {
     "id": "DEBILITATE",
     "name": "Deperimento",
-    "description": "Infliggi 7 di danno.\n[gold]Vulnerabilità[/gold] e [gold]Debolezza[/gold] sono il doppio più efficaci contro il nemico per i 3 prossimi turni.",
+    "description": "Infliggi 10 di danno.\n[gold]Vulnerabilità[/gold] e [gold]Debolezza[/gold] sono il doppio più efficaci contro il nemico per i 3 prossimi turni.",
     "description_raw": "Infliggi {Damage:diff()} di danno.\n[gold]Vulnerabilità[/gold] e [gold]Debolezza[/gold] sono il doppio più efficaci contro il nemico per {DebilitatePower:plural:il prossimo turno|i {DebilitatePower:diff()} prossimi turni}.",
     "cost": 1,
     "is_x_cost": null,
@@ -5971,7 +5932,7 @@
     "rarity": "Non comune",
     "target": "AnyEnemy",
     "color": "necrobinder",
-    "damage": 7,
+    "damage": 10,
     "block": null,
     "hit_count": null,
     "powers_applied": [
@@ -5988,7 +5949,7 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Damage": 7,
+      "Damage": 10,
       "DebilitatePower": 3,
       "Debilitate": 3
     },
@@ -5999,7 +5960,7 @@
     "image_url": "/static/images/cards/debilitate.webp",
     "beta_image_url": "/static/images/cards/beta/debilitate.webp",
     "type_variants": null,
-    "upgrade_description": "Infliggi 9 di danno.\n[gold]Vulnerabilità[/gold] e [gold]Debolezza[/gold] sono il doppio più efficaci contro il nemico per i 4 prossimi turni.",
+    "upgrade_description": "Infliggi 12 di danno.\n[gold]Vulnerabilità[/gold] e [gold]Debolezza[/gold] sono il doppio più efficaci contro il nemico per i 4 prossimi turni.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 279
@@ -6014,7 +5975,7 @@
     "is_x_star_cost": null,
     "star_cost": null,
     "type": "Abilità",
-    "rarity": "Antico",
+    "rarity": "Antica",
     "target": "Self",
     "color": "event",
     "damage": null,
@@ -6355,7 +6316,7 @@
     "id": "TEAR_ASUNDER",
     "name": "Dilaniamento",
     "description": "Infliggi 5 di danno.\nColpisce una volta in più per ogni volta che hai perso PV in questo combattimento.",
-    "description_raw": "Infliggi {Damage:diff()} di danno.\nColpisce una volta in più per ogni volta che hai perso PV in questo combattimento.{InCombat:\n(Colpisce {CalculatedHits:diff()} {CalculatedHits:plural:volta|volte}.)|}",
+    "description_raw": "Infliggi {Damage:diff()} di danno.\nColpisce una volta in più per ogni volta che hai perso PV in questo combattimento.{InCombat:\n(Colpisce {CalculatedHits:diff()} {CalculatedHits:plural:volta|volte})|}",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -6723,8 +6684,8 @@
   {
     "id": "ONE_TWO_PUNCH",
     "name": "Doppio Pugno",
-    "description": "In questo turno, potrai giocare una volta in più  la prossima carta Attacco che giochi.",
-    "description_raw": "In questo turno, potrai giocare una volta in più {Attacks:cond:>1?le prossime {Attacks:diff()} carte Attacco| la prossima carta Attacco} che giochi.",
+    "description": "In questo turno, potrai giocare una volta in più la prossima carta Attacco che giochi.",
+    "description_raw": "In questo turno, potrai giocare una volta in più {Attacks:cond:>1?le prossime {Attacks:diff()} carte Attacco|la prossima carta Attacco} che giochi.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -6767,7 +6728,7 @@
     "is_x_star_cost": null,
     "star_cost": null,
     "type": "Attacco",
-    "rarity": "Non comune",
+    "rarity": "Evento",
     "target": "RandomEnemy",
     "color": "event",
     "damage": 7,
@@ -6791,7 +6752,7 @@
     "type_variants": null,
     "upgrade_description": "Infliggi 9 di danno a un nemico casuale due volte.",
     "type_key": "Attack",
-    "rarity_key": "Uncommon",
+    "rarity_key": "Event",
     "compendium_order": 542
   },
   {
@@ -7007,7 +6968,7 @@
   {
     "id": "HEMOKINESIS",
     "name": "Emocinesi",
-    "description": "Perdi 2 PV.\nInfliggi 14 di danno.",
+    "description": "Perdi 2 PV.\nInfliggi 15 di danno.",
     "description_raw": "Perdi {HpLoss:diff()} PV.\nInfliggi {Damage:diff()} di danno.",
     "cost": 1,
     "is_x_cost": null,
@@ -7017,7 +6978,7 @@
     "rarity": "Non comune",
     "target": "AnyEnemy",
     "color": "ironclad",
-    "damage": 14,
+    "damage": 15,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -7029,7 +6990,7 @@
     "spawns_cards": null,
     "vars": {
       "HpLoss": 2,
-      "Damage": 14
+      "Damage": 15
     },
     "upgrade": {
       "damage": "+5"
@@ -7037,10 +6998,10 @@
     "image_url": "/static/images/cards/hemokinesis.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Perdi 2 PV.\nInfliggi 19 di danno.",
+    "upgrade_description": "Perdi 2 PV.\nInfliggi 20 di danno.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
-    "compendium_order": 42
+    "compendium_order": 41
   },
   {
     "id": "DOUBLE_ENERGY",
@@ -7503,7 +7464,7 @@
     "is_x_star_cost": null,
     "star_cost": null,
     "type": "Abilità",
-    "rarity": "Antico",
+    "rarity": "Antica",
     "target": "Self",
     "color": "defect",
     "damage": null,
@@ -7895,7 +7856,7 @@
     "is_x_star_cost": null,
     "star_cost": null,
     "type": "Abilità",
-    "rarity": "Antico",
+    "rarity": "Antica",
     "target": "Self",
     "color": "event",
     "damage": null,
@@ -8000,8 +7961,8 @@
   {
     "id": "PACTS_END",
     "name": "Fine del Patto",
-    "description": "Si può giocare solo se hai 3 o più carte nella tua [gold]pila delle carte esaurite[/gold].\nInfliggi 17 di danno a TUTTI i nemici.",
-    "description_raw": "Si può giocare solo se hai {Cards:diff()} o più {Cards:plural:carta|carte} nella tua [gold]pila delle carte esaurite[/gold].\nInfliggi {Damage:diff()} di danno a TUTTI i nemici.",
+    "description": "Puoi giocarla solo se hai 3 o più carte nella tua [gold]pila delle carte esaurite[/gold].\nInfliggi 17 di danno a TUTTI i nemici.",
+    "description_raw": "Puoi giocarla solo se hai {Cards:diff()} o più {Cards:plural:carta|carte} nella tua [gold]pila delle carte esaurite[/gold].\nInfliggi {Damage:diff()} di danno a TUTTI i nemici.",
     "cost": 0,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -8030,7 +7991,7 @@
     "image_url": "/static/images/cards/pacts_end.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Si può giocare solo se hai 3 o più carte nella tua [gold]pila delle carte esaurite[/gold].\nInfliggi 23 di danno a TUTTI i nemici.",
+    "upgrade_description": "Puoi giocarla solo se hai 3 o più carte nella tua [gold]pila delle carte esaurite[/gold].\nInfliggi 23 di danno a TUTTI i nemici.",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 55
@@ -8161,7 +8122,7 @@
   {
     "id": "GLITTERSTREAM",
     "name": "Flusso Luminoso",
-    "description": "Ottieni 11 di [gold]Blocco[/gold].\nIl turno successivo ottieni 4 di [gold]Blocco[/gold].",
+    "description": "Ottieni 11 di [gold]Blocco[/gold].\nIl turno successivo ottieni 5 di [gold]Blocco[/gold].",
     "description_raw": "Ottieni {Block:diff()} di [gold]Blocco[/gold].\nIl turno successivo ottieni {BlockNextTurn:diff()} di [gold]Blocco[/gold].",
     "cost": 2,
     "is_x_cost": null,
@@ -8182,7 +8143,7 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "BlockNextTurn": 4,
+      "BlockNextTurn": 5,
       "Block": 11
     },
     "upgrade": {
@@ -8192,7 +8153,7 @@
     "image_url": "/static/images/cards/glitterstream.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Ottieni 13 di [gold]Blocco[/gold].\nIl turno successivo ottieni 6 di [gold]Blocco[/gold].",
+    "upgrade_description": "Ottieni 13 di [gold]Blocco[/gold].\nIl turno successivo ottieni 7 di [gold]Blocco[/gold].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 208
@@ -8200,7 +8161,7 @@
   {
     "id": "WROUGHT_IN_WAR",
     "name": "Forgiatura Bellica",
-    "description": "Infliggi 7 di danno.\nApplichi 5 di [gold]Forgiatura[/gold].",
+    "description": "Infliggi 7 di danno.\nApplichi 7 di [gold]Forgiatura[/gold].",
     "description_raw": "Infliggi {Damage:diff()} di danno.\nApplichi {Forge:diff()} di [gold]Forgiatura[/gold].",
     "cost": 1,
     "is_x_cost": null,
@@ -8222,7 +8183,7 @@
     "spawns_cards": null,
     "vars": {
       "Damage": 7,
-      "Forge": 5
+      "Forge": 7
     },
     "upgrade": {
       "damage": "+2",
@@ -8231,7 +8192,7 @@
     "image_url": "/static/images/cards/wrought_in_war.webp",
     "beta_image_url": "/static/images/cards/beta/wrought_in_war.webp",
     "type_variants": null,
-    "upgrade_description": "Infliggi 9 di danno.\nApplichi 7 di [gold]Forgiatura[/gold].",
+    "upgrade_description": "Infliggi 9 di danno.\nApplichi 9 di [gold]Forgiatura[/gold].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 262
@@ -8391,12 +8352,12 @@
       "SerpentForm": 4
     },
     "upgrade": {
-      "serpentformpower": "+1"
+      "serpentformpower": "+2"
     },
     "image_url": "/static/images/cards/serpent_form.webp",
     "beta_image_url": "/static/images/cards/beta/serpent_form.webp",
     "type_variants": null,
-    "upgrade_description": "Ogni volta che giochi una carta, infliggi 5 di danno a un nemico casuale.",
+    "upgrade_description": "Ogni volta che giochi una carta, infliggi 6 di danno a un nemico casuale.",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 153
@@ -8411,7 +8372,7 @@
     "is_x_star_cost": null,
     "star_cost": null,
     "type": "Potere",
-    "rarity": "Antico",
+    "rarity": "Antica",
     "target": "Self",
     "color": "silent",
     "damage": null,
@@ -8478,7 +8439,9 @@
     "cards_draw": null,
     "energy_gain": null,
     "hp_loss": null,
-    "keywords": null,
+    "keywords": [
+      "Evanescenza"
+    ],
     "tags": null,
     "spawns_cards": null,
     "vars": {
@@ -8486,14 +8449,17 @@
       "VoidForm": 2
     },
     "upgrade": {
-      "voidformpower": "+1"
+      "remove_ethereal": true
     },
     "image_url": "/static/images/cards/void_form.webp",
     "beta_image_url": "/static/images/cards/beta/void_form.webp",
     "type_variants": null,
-    "upgrade_description": "Termini il tuo turno.\nLe prime 3 carte che giochi in ogni turno possono essere giocate senza nessun costo.",
+    "upgrade_description": null,
     "type_key": "Power",
     "rarity_key": "Rare",
+    "keywords_key": [
+      "Ethereal"
+    ],
     "compendium_order": 261
   },
   {
@@ -8561,12 +8527,12 @@
       "Repeat": 3
     },
     "upgrade": {
-      "damage": "+2"
+      "repeat": "+1"
     },
     "image_url": "/static/images/cards/celestial_might.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Infliggi 8 di danno 3 volte.",
+    "upgrade_description": "Infliggi 6 di danno 4 volte.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 185
@@ -9015,7 +8981,7 @@
     "is_x_star_cost": null,
     "star_cost": null,
     "type": "Attacco",
-    "rarity": "Antico",
+    "rarity": "Antica",
     "target": "AnyEnemy",
     "color": "event",
     "damage": 10,
@@ -9035,12 +9001,13 @@
       "Cards": 2
     },
     "upgrade": {
-      "damage": "+4"
+      "damage": "+4",
+      "cards": "+1"
     },
     "image_url": "/static/images/cards/neows_fury.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Infliggi 14 di danno.\nMetti 2 carte casuali dalla tua [gold]pila degli scarti[/gold] nella tua [gold]mano[/gold].",
+    "upgrade_description": "Infliggi 14 di danno.\nMetti 3 carte casuali dalla tua [gold]pila degli scarti[/gold] nella tua [gold]mano[/gold].",
     "type_key": "Attack",
     "rarity_key": "Ancient",
     "keywords_key": [
@@ -9255,9 +9222,9 @@
   {
     "id": "VOLTAIC",
     "name": "Galvanismo",
-    "description": "[gold]Canalizzi Elettroglobi[/gold] pari agli [gold]Elettroglobi[/gold] già [gold]canalizzati[/gold] in questo combattimento.",
-    "description_raw": "[gold]Canalizzi Elettroglobi[/gold] pari agli [gold]Elettroglobi[/gold] già [gold]canalizzati[/gold] in questo combattimento.{InCombat:\n([gold]Elettroglobi[/gold] [gold]canalizzati[/gold]: {CalculatedChannels:diff()}|}",
-    "cost": 2,
+    "description": "[gold]Canalizzi Elettroglobi[/gold] pari agli [gold]Elettroglobi[/gold] già [gold]canalizzati[/gold] in questo combattimento..",
+    "description_raw": "[gold]Canalizzi Elettroglobi[/gold] pari agli [gold]Elettroglobi[/gold] già [gold]canalizzati[/gold] in questo combattimento.{InCombat:\n([gold]Elettroglobi[/gold] [gold]canalizzati[/gold]: {CalculatedChannels:diff()}|}.",
+    "cost": 3,
     "is_x_cost": null,
     "is_x_star_cost": null,
     "star_cost": null,
@@ -9298,8 +9265,8 @@
   {
     "id": "HIDDEN_GEM",
     "name": "Gemma Celata",
-    "description": "Una carta casuale nel tuo [gold]mazzo di pesca[/gold] ottiene 2 di [gold]Riattivazione[/gold].",
-    "description_raw": "Una carta casuale nel tuo [gold]mazzo di pesca[/gold] ottiene {Replay:diff()} di [gold]Riattivazione[/gold].",
+    "description": "Una carta casuale nel tuo [gold]mazzo di pesca[/gold] senza [gold]Riattivazione[/gold] ottiene 2 di [gold]Riattivazione[/gold].",
+    "description_raw": "Una carta casuale nel tuo [gold]mazzo di pesca[/gold] senza [gold]Riattivazione[/gold] ottiene {Replay:diff()} di [gold]Riattivazione[/gold].",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -9327,7 +9294,7 @@
     "image_url": "/static/images/cards/hidden_gem.webp",
     "beta_image_url": "/static/images/cards/beta/hidden_gem.webp",
     "type_variants": null,
-    "upgrade_description": "Una carta casuale nel tuo [gold]mazzo di pesca[/gold] ottiene 3 di [gold]Riattivazione[/gold].",
+    "upgrade_description": "Una carta casuale nel tuo [gold]mazzo di pesca[/gold] senza [gold]Riattivazione[/gold] ottiene 3 di [gold]Riattivazione[/gold].",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 462
@@ -9491,7 +9458,7 @@
     "is_x_star_cost": null,
     "star_cost": null,
     "type": "Abilità",
-    "rarity": "Rara",
+    "rarity": "Non comune",
     "target": "Self",
     "color": "ironclad",
     "damage": null,
@@ -9516,7 +9483,7 @@
     "type_variants": null,
     "upgrade_description": "Ottieni 8 di [gold]Blocco[/gold].\nSubisci il 50% di danno in meno dai nemici con [gold]Vulnerabilità[/gold] in questo turno.",
     "type_key": "Skill",
-    "rarity_key": "Rare",
+    "rarity_key": "Uncommon",
     "compendium_order": 18
   },
   {
@@ -9596,7 +9563,7 @@
     "upgrade_description": null,
     "type_key": "Power",
     "rarity_key": "Uncommon",
-    "compendium_order": 50
+    "compendium_order": 49
   },
   {
     "id": "SCRAPE",
@@ -9640,7 +9607,7 @@
   {
     "id": "GRAND_FINALE",
     "name": "Gran Finale",
-    "description": "Può essere giocata se non ci sono carte nel tuo [gold]mazzo di pesca[/gold]. Infliggi 50 di danno a TUTTI i nemici.",
+    "description": "Può essere giocata se non ci sono carte nel tuo [gold]mazzo di pesca[/gold]. Infliggi 60 di danno a TUTTI i nemici.",
     "description_raw": "Può essere giocata se non ci sono carte nel tuo [gold]mazzo di pesca[/gold]. Infliggi {Damage:diff()} di danno a TUTTI i nemici.",
     "cost": 0,
     "is_x_cost": null,
@@ -9650,7 +9617,7 @@
     "rarity": "Rara",
     "target": "AllEnemies",
     "color": "silent",
-    "damage": 50,
+    "damage": 60,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -9661,15 +9628,15 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Damage": 50
+      "Damage": 60
     },
     "upgrade": {
-      "damage": "+10"
+      "damage": "+15"
     },
     "image_url": "/static/images/cards/grand_finale.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Può essere giocata se non ci sono carte nel tuo [gold]mazzo di pesca[/gold]. Infliggi 60 di danno a TUTTI i nemici.",
+    "upgrade_description": "Può essere giocata se non ci sono carte nel tuo [gold]mazzo di pesca[/gold]. Infliggi 75 di danno a TUTTI i nemici.",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 126
@@ -9728,7 +9695,7 @@
     "is_x_star_cost": null,
     "star_cost": null,
     "type": "Potere",
-    "rarity": "Antico",
+    "rarity": "Antica",
     "target": "Self",
     "color": "necrobinder",
     "damage": null,
@@ -9835,8 +9802,8 @@
   {
     "id": "GRAVE_WARDEN",
     "name": "Guardiana della Tomba",
-    "description": "Ottieni 8 di [gold]Blocco[/gold].\nAggiungi la carta [gold]Anima[/gold] al tuo [gold]mazzo di pesca[/gold].",
-    "description_raw": "Ottieni {Block:diff()} di [gold]Blocco[/gold].\nAggiungi la carta [gold]{IfUpgraded:show:Anima+|Anima}[/gold] al tuo [gold]mazzo di pesca[/gold].",
+    "description": "Ottieni 8 di [gold]Blocco[/gold].\nAggiungi una carta [gold]Anima[/gold] al tuo [gold]mazzo di pesca[/gold].",
+    "description_raw": "Ottieni {Block:diff()} di [gold]Blocco[/gold].\nAggiungi una carta [gold]Anima[/gold] al tuo [gold]mazzo di pesca[/gold].",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -9862,12 +9829,12 @@
       "Cards": 1
     },
     "upgrade": {
-      "block": "+2"
+      "block": "+3"
     },
     "image_url": "/static/images/cards/grave_warden.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Ottieni 10 di [gold]Blocco[/gold].\nAggiungi la carta [gold]Anima+[/gold] al tuo [gold]mazzo di pesca[/gold].",
+    "upgrade_description": "Ottieni 11 di [gold]Blocco[/gold].\nAggiungi una carta [gold]Anima[/gold] al tuo [gold]mazzo di pesca[/gold].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 300
@@ -10263,7 +10230,7 @@
     "keywords_key": [
       "Exhaust"
     ],
-    "compendium_order": 44
+    "compendium_order": 43
   },
   {
     "id": "HANG",
@@ -10488,8 +10455,8 @@
   {
     "id": "STOKE",
     "name": "Incendio",
-    "description": "[gold]Esaurisci[/gold] la tua [gold]mano[/gold].\nPeschi una carta per ogni carta [gold]esaurita[/gold].",
-    "description_raw": "[gold]Esaurisci[/gold] la tua [gold]mano[/gold].\nPeschi una carta per ogni carta [gold]esaurita[/gold].",
+    "description": "[gold]Esaurisci[/gold] la tua [gold]mano[/gold].\nAggiungi 1 carta casuale alla tua [gold]mano[/gold] per ogni carta [gold]esaurita[/gold].",
+    "description_raw": "[gold]Esaurisci[/gold] la tua [gold]mano[/gold].\nAggiungi 1 carta {IfUpgraded:show:[gold]potenziata[/gold] |}casuale alla tua [gold]mano[/gold] per ogni carta [gold]esaurita[/gold].",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -10505,24 +10472,19 @@
     "cards_draw": null,
     "energy_gain": null,
     "hp_loss": null,
-    "keywords": [
-      "Esaurimento"
-    ],
+    "keywords": null,
     "tags": null,
     "spawns_cards": null,
     "vars": null,
     "upgrade": {
-      "cost": 0
+      "description_changed": true
     },
     "image_url": "/static/images/cards/stoke.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Esaurisci[/gold] la tua [gold]mano[/gold].\nAggiungi 1 carta [gold]potenziata[/gold] casuale alla tua [gold]mano[/gold] per ogni carta [gold]esaurita[/gold].",
     "type_key": "Skill",
     "rarity_key": "Rare",
-    "keywords_key": [
-      "Exhaust"
-    ],
     "compendium_order": 69
   },
   {
@@ -10725,7 +10687,7 @@
     "upgrade_description": "All'inizio del tuo turno, perdi 1 PV\nOgni volta che perdi PV nel tuo turno, infliggi 9 di danno a TUTTI i nemici.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
-    "compendium_order": 46
+    "compendium_order": 45
   },
   {
     "id": "INFECTION",
@@ -10807,7 +10769,7 @@
   {
     "id": "UNTOUCHABLE",
     "name": "Intoccabile",
-    "description": "Ottieni 9 di [gold]Blocco[/gold].",
+    "description": "Ottieni 6 di [gold]Blocco[/gold].",
     "description_raw": "Ottieni {Block:diff()} di [gold]Blocco[/gold].",
     "cost": 2,
     "is_x_cost": null,
@@ -10818,7 +10780,7 @@
     "target": "Self",
     "color": "silent",
     "damage": null,
-    "block": 9,
+    "block": 6,
     "hit_count": null,
     "powers_applied": null,
     "cards_draw": null,
@@ -10830,15 +10792,15 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Block": 9
+      "Block": 6
     },
     "upgrade": {
-      "block": "+3"
+      "block": "+2"
     },
     "image_url": "/static/images/cards/untouchable.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Ottieni 12 di [gold]Blocco[/gold].",
+    "upgrade_description": "Ottieni 8 di [gold]Blocco[/gold].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "keywords_key": [
@@ -11196,7 +11158,7 @@
     "upgrade_description": null,
     "type_key": "Power",
     "rarity_key": "Rare",
-    "compendium_order": 41
+    "compendium_order": 40
   },
   {
     "id": "ITERATION",
@@ -11363,8 +11325,8 @@
   {
     "id": "THE_HUNT",
     "name": "La Caccia",
-    "description": "Infliggi 10 di danno.\nSe è [gold]Letale[/gold], ottieni una carta extra come ricompensa.",
-    "description_raw": "Infliggi {Damage:diff()} di danno.\nSe è [gold]Letale[/gold], ottieni una carta extra come ricompensa.",
+    "description": "Infliggi 10 di danno.\nSe è [gold]letale[/gold], ottieni una ricompensa di carte extra.",
+    "description_raw": "Infliggi {Damage:diff()} di danno.\nSe è [gold]letale[/gold], ottieni una ricompensa di carte extra.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -11394,7 +11356,7 @@
     "image_url": "/static/images/cards/the_hunt.webp",
     "beta_image_url": "/static/images/cards/beta/the_hunt.webp",
     "type_variants": null,
-    "upgrade_description": "Infliggi 15 di danno.\nSe è [gold]Letale[/gold], ottieni una carta extra come ricompensa.",
+    "upgrade_description": "Infliggi 15 di danno.\nSe è [gold]letale[/gold], ottieni una ricompensa di carte extra.",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -11530,13 +11492,13 @@
     "keywords_key": [
       "Exhaust"
     ],
-    "compendium_order": 45
+    "compendium_order": 44
   },
   {
     "id": "BLADE_OF_INK",
     "name": "Lama a Inchiostro",
-    "description": "In questo turno, ogni volta che giochi una carta Attacco, ottieni 2 di [gold]Forza[/gold].",
-    "description_raw": "In questo turno, ogni volta che giochi una carta Attacco, ottieni {StrengthPower:diff()} di [gold]Forza[/gold].",
+    "description": "Aggiungi 2 [gold]carte Pugnale[/gold] con l'incantesimo [purple]Tintura[/purple] alla tua [gold]mano[/gold].",
+    "description_raw": "Aggiungi {Cards:diff()} [gold]{Cards:plural:carta Pugnale|carte Pugnale}[/gold] con l'incantesimo [purple]Tintura[/purple] alla tua [gold]mano[/gold].",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -11548,30 +11510,25 @@
     "damage": null,
     "block": null,
     "hit_count": null,
-    "powers_applied": [
-      {
-        "power": "Forza",
-        "amount": 2,
-        "power_key": "Strength"
-      }
-    ],
-    "cards_draw": null,
+    "powers_applied": null,
+    "cards_draw": 2,
     "energy_gain": null,
     "hp_loss": null,
     "keywords": null,
     "tags": null,
-    "spawns_cards": null,
+    "spawns_cards": [
+      "SHIV"
+    ],
     "vars": {
-      "StrengthPower": 2,
-      "Strength": 2
+      "Cards": 2
     },
     "upgrade": {
-      "strength": "+1"
+      "cards": "+1"
     },
     "image_url": "/static/images/cards/blade_of_ink.webp",
     "beta_image_url": "/static/images/cards/beta/blade_of_ink.webp",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Aggiungi 3 [gold]carte Pugnale[/gold] con l'incantesimo [purple]Tintura[/purple] alla tua [gold]mano[/gold].",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 98
@@ -12154,8 +12111,8 @@
   {
     "id": "SWORD_SAGE",
     "name": "Maestro Spadaccino",
-    "description": "Aumenti il costo della carta [gold]Spada Sovrana[/gold] di 1. La carta [gold]Spada Sovrana[/gold] ora colpisce una volta in più.",
-    "description_raw": "Aumenti il costo della carta [gold]Spada Sovrana[/gold] di 1. La carta [gold]Spada Sovrana[/gold] ora colpisce una volta in più.",
+    "description": "La carta [gold]Spada Sovrana[/gold] ora colpisce una volta in più.",
+    "description_raw": "La carta [gold]Spada Sovrana[/gold] ora colpisce una volta in più.",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -12445,8 +12402,8 @@
   {
     "id": "HAND_OF_GREED",
     "name": "Mano della Cupidigia",
-    "description": "Infliggi 20 di danno.\nSe è [gold]Letale[/gold], ottieni 20 unità d'[gold]oro[/gold].",
-    "description_raw": "Infliggi {Damage:diff()} di danno.\nSe è [gold]Letale[/gold], ottieni {Gold:diff()} unità d'[gold]oro[/gold].",
+    "description": "Infliggi 20 di danno.\nSe è [gold]letale[/gold], ottieni 20 unità d'[gold]oro[/gold].",
+    "description_raw": "Infliggi {Damage:diff()} di danno.\nSe è [gold]letale[/gold], ottieni {Gold:diff()} unità d'[gold]oro[/gold].",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -12476,7 +12433,7 @@
     "image_url": "/static/images/cards/hand_of_greed.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Infliggi 25 di danno.\nSe è [gold]Letale[/gold], ottieni 25 unità d'[gold]oro[/gold].",
+    "upgrade_description": "Infliggi 25 di danno.\nSe è [gold]letale[/gold], ottieni 25 unità d'[gold]oro[/gold].",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 461
@@ -12770,7 +12727,7 @@
   {
     "id": "HEIRLOOM_HAMMER",
     "name": "Martello di Famiglia",
-    "description": "Infliggi 17 di danno.\nScegli una carta incolore nella tua [gold]mano[/gold]. Aggiungi una copia di quella carta alla tua [gold]mano[/gold].",
+    "description": "Infliggi 20 di danno.\nScegli una carta incolore nella tua [gold]mano[/gold]. Aggiungi una copia di quella carta alla tua [gold]mano[/gold].",
     "description_raw": "Infliggi {Damage:diff()} di danno.\nScegli una carta incolore nella tua [gold]mano[/gold]. Aggiungi una copia di quella carta alla tua [gold]mano[/gold].",
     "cost": 2,
     "is_x_cost": null,
@@ -12780,7 +12737,7 @@
     "rarity": "Rara",
     "target": "AnyEnemy",
     "color": "regent",
-    "damage": 17,
+    "damage": 20,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -12791,7 +12748,7 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Damage": 17,
+      "Damage": 20,
       "Repeat": 1
     },
     "upgrade": {
@@ -12800,7 +12757,7 @@
     "image_url": "/static/images/cards/heirloom_hammer.webp",
     "beta_image_url": "/static/images/cards/beta/heirloom_hammer.webp",
     "type_variants": null,
-    "upgrade_description": "Infliggi 22 di danno.\nScegli una carta incolore nella tua [gold]mano[/gold]. Aggiungi una copia di quella carta alla tua [gold]mano[/gold].",
+    "upgrade_description": "Infliggi 25 di danno.\nScegli una carta incolore nella tua [gold]mano[/gold]. Aggiungi una copia di quella carta alla tua [gold]mano[/gold].",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 215
@@ -12954,7 +12911,9 @@
     "cards_draw": null,
     "energy_gain": null,
     "hp_loss": null,
-    "keywords": null,
+    "keywords": [
+      "Esaurimento"
+    ],
     "tags": null,
     "spawns_cards": [
       "SOUL"
@@ -12971,12 +12930,15 @@
     "upgrade_description": "Applichi 4 di [gold]Invocazione[/gold] X volte.\nAggiungi X carte [gold]Anima+[/gold] al tuo [gold]mazzo di pesca[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
+    "keywords_key": [
+      "Exhaust"
+    ],
     "compendium_order": 286
   },
   {
     "id": "MEMENTO_MORI",
     "name": "Memento Mori",
-    "description": "Infliggi 8 di danno.\nInfliggi 4 di danno extra per ogni carta scartata in questo turno.",
+    "description": "Infliggi 9 di danno.\nInfliggi 4 di danno extra per ogni carta scartata in questo turno.",
     "description_raw": "Infliggi {CalculatedDamage:diff()} di danno.\nInfliggi {ExtraDamage:diff()} di danno extra per ogni carta scartata in questo turno.",
     "cost": 1,
     "is_x_cost": null,
@@ -12986,7 +12948,7 @@
     "rarity": "Non comune",
     "target": "AnyEnemy",
     "color": "silent",
-    "damage": 8,
+    "damage": 9,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -12997,9 +12959,9 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "CalculationBase": 8,
+      "CalculationBase": 9,
       "ExtraDamage": 4,
-      "CalculatedDamage": 8
+      "CalculatedDamage": 9
     },
     "upgrade": {
       "calculationbase": "+2",
@@ -13008,7 +12970,7 @@
     "image_url": "/static/images/cards/memento_mori.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Infliggi 8 di danno.\nInfliggi 5 di danno extra per ogni carta scartata in questo turno.",
+    "upgrade_description": "Infliggi 9 di danno.\nInfliggi 5 di danno extra per ogni carta scartata in questo turno.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 136
@@ -13567,7 +13529,7 @@
     "upgrade_description": "Infliggi 20 di danno.\nIl nemico perde 15 di [gold]Forza[/gold] in questo turno.",
     "type_key": "Attack",
     "rarity_key": "Rare",
-    "compendium_order": 51
+    "compendium_order": 50
   },
   {
     "id": "NECRO_MASTERY",
@@ -13734,6 +13696,48 @@
     "type_key": "Attack",
     "rarity_key": "Basic",
     "compendium_order": 139
+  },
+  {
+    "id": "NOT_YET",
+    "name": "Non Ancora",
+    "description": "Recuperi 10 PV.",
+    "description_raw": "Recuperi {Heal:diff()} PV.",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Abilità",
+    "rarity": "Rara",
+    "target": "Self",
+    "color": "ironclad",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Esaurimento"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Heal": 10
+    },
+    "upgrade": {
+      "heal": "+3"
+    },
+    "image_url": "/static/images/cards/not_yet.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "upgrade_description": "Recuperi 13 PV.",
+    "type_key": "Skill",
+    "rarity_key": "Rare",
+    "keywords_key": [
+      "Exhaust"
+    ],
+    "compendium_order": 52
   },
   {
     "id": "UNDEATH",
@@ -14140,7 +14144,7 @@
   {
     "id": "CORROSIVE_WAVE",
     "name": "Onda Corrosiva",
-    "description": "Ogni volta che peschi una carta in questo turno, applichi 3 di [gold]Veleno[/gold] a TUTTI i nemici.",
+    "description": "Ogni volta che peschi una carta in questo turno, applichi 2 di [gold]Veleno[/gold] a TUTTI i nemici.",
     "description_raw": "Ogni volta che peschi una carta in questo turno, applichi {CorrosiveWave:diff()} di [gold]Veleno[/gold] a TUTTI i nemici.",
     "cost": 1,
     "is_x_cost": null,
@@ -14161,7 +14165,7 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "CorrosiveWave": 3
+      "CorrosiveWave": 2
     },
     "upgrade": {
       "corrosivewave": "+1"
@@ -14169,7 +14173,7 @@
     "image_url": "/static/images/cards/corrosive_wave.webp",
     "beta_image_url": "/static/images/cards/beta/corrosive_wave.webp",
     "type_variants": null,
-    "upgrade_description": "Ogni volta che peschi una carta in questo turno, applichi 4 di [gold]Veleno[/gold] a TUTTI i nemici.",
+    "upgrade_description": "Ogni volta che peschi una carta in questo turno, applichi 3 di [gold]Veleno[/gold] a TUTTI i nemici.",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 106
@@ -14290,7 +14294,7 @@
     "upgrade_description": "Ottieni 7 di [gold]Blocco[/gold].\nInfliggi 7 di danno.",
     "type_key": "Attack",
     "rarity_key": "Common",
-    "compendium_order": 48
+    "compendium_order": 47
   },
   {
     "id": "ORBIT",
@@ -14751,26 +14755,20 @@
   {
     "id": "FOLLOW_THROUGH",
     "name": "Perseveranza",
-    "description": "Infliggi 6 di danno a TUTTI i nemici,\nSe l'ultima carta che hai giocato in questo turno era una carta Abilità, applichi 1 di [gold]Debolezza[/gold] a TUTTI i nemici.",
-    "description_raw": "Infliggi {Damage:diff()} di danno a TUTTI i nemici,\nSe l'ultima carta che hai giocato in questo turno era una carta Abilità, applichi {WeakPower:diff()} di [gold]Debolezza[/gold] a TUTTI i nemici.",
+    "description": "",
+    "description_raw": "",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
     "star_cost": null,
     "type": "Attacco",
-    "rarity": "Non comune",
-    "target": "AllEnemies",
+    "rarity": "Comune",
+    "target": "AnyEnemy",
     "color": "silent",
-    "damage": 6,
+    "damage": 7,
     "block": null,
     "hit_count": null,
-    "powers_applied": [
-      {
-        "power": "Debolezza",
-        "amount": 1,
-        "power_key": "Weak"
-      }
-    ],
+    "powers_applied": null,
     "cards_draw": null,
     "energy_gain": null,
     "hp_loss": null,
@@ -14778,27 +14776,25 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Damage": 6,
-      "WeakPower": 1,
-      "Weak": 1
+      "CardCount": 5,
+      "Damage": 7
     },
     "upgrade": {
-      "damage": "+2",
-      "weak": "+1"
+      "damage": "+2"
     },
     "image_url": "/static/images/cards/follow_through.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Infliggi 8 di danno a TUTTI i nemici,\nSe l'ultima carta che hai giocato in questo turno era una carta Abilità, applichi 1 di [gold]Debolezza[/gold] a TUTTI i nemici.",
+    "upgrade_description": null,
     "type_key": "Attack",
-    "rarity_key": "Uncommon",
+    "rarity_key": "Common",
     "compendium_order": 124
   },
   {
     "id": "FIGHT_THROUGH",
     "name": "Perseveranza",
-    "description": "Ottieni 13 di [gold]Blocco[/gold].\nAggiungi 2 [gold]Ferite[/gold] alla tua [gold]pila degli scarti[/gold].",
-    "description_raw": "Ottieni {Block:diff()} di [gold]Blocco[/gold].\nAggiungi 2 [gold]Ferite[/gold] alla tua [gold]pila degli scarti[/gold].",
+    "description": "Ottieni 13 di [gold]Blocco[/gold].\nAggiungi 2 carte [gold]Ferita[/gold] alla tua [gold]pila degli scarti[/gold].",
+    "description_raw": "Ottieni {Block:diff()} di [gold]Blocco[/gold].\nAggiungi 2 carte [gold]Ferita[/gold] alla tua [gold]pila degli scarti[/gold].",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -14828,7 +14824,7 @@
     "image_url": "/static/images/cards/fight_through.webp",
     "beta_image_url": "/static/images/cards/beta/fight_through.webp",
     "type_variants": null,
-    "upgrade_description": "Ottieni 17 di [gold]Blocco[/gold].\nAggiungi 2 [gold]Ferite[/gold] alla tua [gold]pila degli scarti[/gold].",
+    "upgrade_description": "Ottieni 17 di [gold]Blocco[/gold].\nAggiungi 2 carte [gold]Ferita[/gold] alla tua [gold]pila degli scarti[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 381
@@ -15153,7 +15149,7 @@
     "is_x_star_cost": null,
     "star_cost": 2,
     "type": "Attacco",
-    "rarity": "Antico",
+    "rarity": "Antica",
     "target": "AllEnemies",
     "color": "regent",
     "damage": 14,
@@ -15353,12 +15349,12 @@
     "name": "Polverizzazione",
     "description": "Infliggi 20 di danno.\nApplichi 5 di [gold]Vulnerabilità[/gold].",
     "description_raw": "Infliggi {Damage:diff()} di danno.\nApplichi {VulnerablePower:diff()} di [gold]Vulnerabilità[/gold].",
-    "cost": 2,
+    "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
     "star_cost": null,
     "type": "Attacco",
-    "rarity": "Antico",
+    "rarity": "Antica",
     "target": "AnyEnemy",
     "color": "ironclad",
     "damage": 20,
@@ -15383,13 +15379,13 @@
       "Vulnerable": 5
     },
     "upgrade": {
-      "damage": "+5",
+      "damage": "+10",
       "vulnerable": "+2"
     },
     "image_url": "/static/images/cards/break.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Infliggi 25 di danno.\nApplichi 5 di [gold]Vulnerabilità[/gold].",
+    "upgrade_description": "Infliggi 30 di danno.\nApplichi 5 di [gold]Vulnerabilità[/gold].",
     "type_key": "Attack",
     "rarity_key": "Ancient",
     "compendium_order": 12
@@ -15682,7 +15678,7 @@
   {
     "id": "ANTICIPATE",
     "name": "Previsione",
-    "description": "Ottieni 3 di [gold]Destrezza[/gold] in questo turno.",
+    "description": "Ottieni 2 di [gold]Destrezza[/gold] in questo turno.",
     "description_raw": "Ottieni {DexterityPower:diff()} di [gold]Destrezza[/gold] in questo turno.",
     "cost": 0,
     "is_x_cost": null,
@@ -15698,7 +15694,7 @@
     "powers_applied": [
       {
         "power": "Destrezza",
-        "amount": 3,
+        "amount": 2,
         "power_key": "Dexterity"
       }
     ],
@@ -15709,11 +15705,11 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "DexterityPower": 3,
-      "Dexterity": 3
+      "DexterityPower": 2,
+      "Dexterity": 2
     },
     "upgrade": {
-      "dexterity": "+2"
+      "dexterity": "+1"
     },
     "image_url": "/static/images/cards/anticipate.webp",
     "beta_image_url": null,
@@ -15804,12 +15800,12 @@
       "Energy": 2
     },
     "upgrade": {
-      "remove_exhaust": true
+      "energy": "+1"
     },
     "image_url": "/static/images/cards/production.webp",
     "beta_image_url": "/static/images/cards/beta/production.webp",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Ottieni [energy:3].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -16061,8 +16057,8 @@
   {
     "id": "SHIV",
     "name": "Pugnale",
-    "description": "Infliggi 4 di danno.",
-    "description_raw": "Infliggi {Damage:diff()} di danno{FanOfKnivesAmount:cond:>0? a TUTTI i nemici|}.",
+    "description": "Infliggi 4 di danno  a TUTTI i nemici.",
+    "description_raw": "Infliggi {Damage:diff()} di danno {TargetType:choose(AllEnemies): a TUTTI i nemici|}.",
     "cost": 0,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -16086,9 +16082,7 @@
     ],
     "spawns_cards": null,
     "vars": {
-      "Damage": 4,
-      "CalculationBase": 0,
-      "CalculationExtra": 1
+      "Damage": 4
     },
     "upgrade": {
       "damage": "+2"
@@ -16096,7 +16090,7 @@
     "image_url": "/static/images/cards/shiv.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Infliggi 6 di danno.",
+    "upgrade_description": "Infliggi 6 di danno  a TUTTI i nemici.",
     "type_key": "Attack",
     "rarity_key": "Token",
     "keywords_key": [
@@ -16262,13 +16256,13 @@
     "keywords_key": [
       "Exhaust"
     ],
-    "compendium_order": 52
+    "compendium_order": 51
   },
   {
     "id": "ROCKET_PUNCH",
     "name": "Pugno Razzo",
-    "description": "Infliggi 13 di danno.\nPeschi 1 carta.\nQuando una carta Stato viene creata, riduci il costo di questa carta a 0 [energy:1] in questo turno.",
-    "description_raw": "Infliggi {Damage:diff()} di danno.\nPeschi {Cards:diff()} {Cards:plural:carta|carte}.\nQuando una carta Stato viene creata, riduci il costo di questa carta a 0 {energyPrefix:energyIcons(1)} in questo turno.",
+    "description": "Infliggi 13 di danno.\nPeschi 1 carta.\nOgni volta che crei una carta Stato, riduci il costo di questa carta a 0 [energy:1] finché non viene giocata.",
+    "description_raw": "Infliggi {Damage:diff()} di danno.\nPeschi {Cards:diff()} {Cards:plural:carta|carte}.\nOgni volta che crei una carta Stato, riduci il costo di questa carta a 0 {energyPrefix:energyIcons(1)} finché non viene giocata.",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -16298,7 +16292,7 @@
     "image_url": "/static/images/cards/rocket_punch.webp",
     "beta_image_url": "/static/images/cards/beta/rocket_punch.webp",
     "type_variants": null,
-    "upgrade_description": "Infliggi 14 di danno.\nPeschi 2 carte.\nQuando una carta Stato viene creata, riduci il costo di questa carta a 0 [energy:1] in questo turno.",
+    "upgrade_description": "Infliggi 14 di danno.\nPeschi 2 carte.\nOgni volta che crei una carta Stato, riduci il costo di questa carta a 0 [energy:1] finché non viene giocata.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 413
@@ -16306,7 +16300,7 @@
   {
     "id": "KINGLY_PUNCH",
     "name": "Pugno Regale",
-    "description": "Infliggi 8 di danno.\nQuando peschi questa carta, aumenti il suo danno di 3 durante questo combattimento.",
+    "description": "Infliggi 8 di danno.\nQuando peschi questa carta, aumenti il suo danno di 4 durante questo combattimento.",
     "description_raw": "Infliggi {Damage:diff()} di danno.\nQuando peschi questa carta, aumenti il suo danno di {Increase:diff()} durante questo combattimento.",
     "cost": 1,
     "is_x_cost": null,
@@ -16327,16 +16321,17 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Increase": 3,
+      "Increase": 4,
       "Damage": 8
     },
     "upgrade": {
+      "damage": "+2",
       "increase": "+2"
     },
     "image_url": "/static/images/cards/kingly_punch.webp",
     "beta_image_url": "/static/images/cards/beta/kingly_punch.webp",
     "type_variants": null,
-    "upgrade_description": "Infliggi 8 di danno.\nQuando peschi questa carta, aumenti il suo danno di 5 durante questo combattimento.",
+    "upgrade_description": "Infliggi 10 di danno.\nQuando peschi questa carta, aumenti il suo danno di 6 durante questo combattimento.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 219
@@ -16709,7 +16704,7 @@
   {
     "id": "GATHER_LIGHT",
     "name": "Raccolta Luminosa",
-    "description": "Ottieni 7 di [gold]Blocco[/gold].\nOttieni [star:1].",
+    "description": "Ottieni 8 di [gold]Blocco[/gold].\nOttieni [star:1].",
     "description_raw": "Ottieni {Block:diff()} di [gold]Blocco[/gold].\nOttieni {Stars:starIcons()}.",
     "cost": 1,
     "is_x_cost": null,
@@ -16720,7 +16715,7 @@
     "target": "Self",
     "color": "regent",
     "damage": null,
-    "block": 7,
+    "block": 8,
     "hit_count": null,
     "powers_applied": null,
     "cards_draw": null,
@@ -16730,7 +16725,7 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Block": 7,
+      "Block": 8,
       "Stars": 1
     },
     "upgrade": {
@@ -16739,7 +16734,7 @@
     "image_url": "/static/images/cards/gather_light.webp",
     "beta_image_url": "/static/images/cards/beta/gather_light.webp",
     "type_variants": null,
-    "upgrade_description": "Ottieni 10 di [gold]Blocco[/gold].\nOttieni [star:1].",
+    "upgrade_description": "Ottieni 11 di [gold]Blocco[/gold].\nOttieni [star:1].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 205
@@ -16867,8 +16862,8 @@
   {
     "id": "HUDDLE_UP",
     "name": "Raggruppamento",
-    "description": "TUTTI gli alleati pescano 2 carte.",
-    "description_raw": "TUTTI gli alleati pescano {Cards:diff()} carte.",
+    "description": "TUTTI i giocatori pescano 2 carte.",
+    "description_raw": "TUTTI i giocatori pescano {Cards:diff()} carte.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -16884,7 +16879,9 @@
     "cards_draw": 2,
     "energy_gain": null,
     "hp_loss": null,
-    "keywords": null,
+    "keywords": [
+      "Esaurimento"
+    ],
     "tags": null,
     "spawns_cards": null,
     "vars": {
@@ -16896,9 +16893,12 @@
     "image_url": "/static/images/cards/huddle_up.webp",
     "beta_image_url": "/static/images/cards/beta/huddle_up.webp",
     "type_variants": null,
-    "upgrade_description": "TUTTI gli alleati pescano 3 carte.",
+    "upgrade_description": "TUTTI i giocatori pescano 3 carte.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
+    "keywords_key": [
+      "Exhaust"
+    ],
     "compendium_order": 463
   },
   {
@@ -17029,7 +17029,7 @@
     "is_x_star_cost": null,
     "star_cost": null,
     "type": "Abilità",
-    "rarity": "Antico",
+    "rarity": "Antica",
     "target": "Self",
     "color": "event",
     "damage": null,
@@ -17402,8 +17402,8 @@
   {
     "id": "REFLECT",
     "name": "Riflesso",
-    "description": "Ottieni 17 di [gold]Blocco[/gold].\nIl danno bloccato viene rispedito a chi ti ha attaccato in questo turno.",
-    "description_raw": "Ottieni {Block:diff()} di [gold]Blocco[/gold].\nIl danno bloccato viene rispedito a chi ti ha attaccato in questo turno.",
+    "description": "Ottieni 17 di [gold]Blocco[/gold].\nIl danno bloccato viene rispedito a chi ha sferrato l'attacco in questo turno.",
+    "description_raw": "Ottieni {Block:diff()} di [gold]Blocco[/gold].\nIl danno bloccato viene rispedito a chi ha sferrato l'attacco in questo turno.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -17432,7 +17432,7 @@
     "image_url": "/static/images/cards/reflect.webp",
     "beta_image_url": "/static/images/cards/beta/reflect.webp",
     "type_variants": null,
-    "upgrade_description": "Ottieni 21 di [gold]Blocco[/gold].\nIl danno bloccato viene rispedito a chi ti ha attaccato in questo turno.",
+    "upgrade_description": "Ottieni 21 di [gold]Blocco[/gold].\nIl danno bloccato viene rispedito a chi ha sferrato l'attacco in questo turno.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 241
@@ -17559,8 +17559,8 @@
   {
     "id": "SPITE",
     "name": "Ripicca",
-    "description": "Infliggi 6 di danno.\nSe perdi PV in questo turno, peschi 1 carta.",
-    "description_raw": "Infliggi {Damage:diff()} di danno.\nSe perdi PV in questo turno, peschi {Cards:diff()} {Cards:plural:carta|carte}.",
+    "description": "Infliggi 5 di danno.\nSe perdi PV in questo turno,\ncolpisce 2 volte.",
+    "description_raw": "Infliggi {Damage:diff()} di danno.\nSe perdi PV in questo turno,\ncolpisce {Repeat:diff()} volte.",
     "cost": 0,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -17569,27 +17569,27 @@
     "rarity": "Non comune",
     "target": "AnyEnemy",
     "color": "ironclad",
-    "damage": 6,
+    "damage": 5,
     "block": null,
-    "hit_count": null,
+    "hit_count": 2,
     "powers_applied": null,
-    "cards_draw": 1,
+    "cards_draw": null,
     "energy_gain": null,
     "hp_loss": null,
     "keywords": null,
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Damage": 6,
-      "Cards": 1
+      "Damage": 5,
+      "Repeat": 2
     },
     "upgrade": {
-      "damage": "+3"
+      "repeat": "+1"
     },
     "image_url": "/static/images/cards/spite.webp",
     "beta_image_url": "/static/images/cards/beta/spite.webp",
     "type_variants": null,
-    "upgrade_description": "Infliggi 9 di danno.\nSe perdi PV in questo turno, peschi 1 carta.",
+    "upgrade_description": "Infliggi 5 di danno.\nSe perdi PV in questo turno,\ncolpisce 3 volte.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 67
@@ -17775,7 +17775,9 @@
     "cards_draw": null,
     "energy_gain": 3,
     "hp_loss": null,
-    "keywords": null,
+    "keywords": [
+      "Esaurimento"
+    ],
     "tags": null,
     "spawns_cards": null,
     "vars": {
@@ -17790,14 +17792,17 @@
     "upgrade_description": "Se hai [gold]esaurito[/gold] una carta in questo turno, ottieni [energy:4].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
+    "keywords_key": [
+      "Exhaust"
+    ],
     "compendium_order": 37
   },
   {
     "id": "SEANCE",
     "name": "Rituale Spettrale",
-    "description": "Trasformi una carta nel tuo [gold]mazzo di pesca[/gold] in una carta [gold]Anima[/gold].",
-    "description_raw": "Trasformi una carta nel tuo [gold]mazzo di pesca[/gold] in una carta [gold]{IfUpgraded:show:Anima+|Anima}[/gold].",
-    "cost": 0,
+    "description": "Trasformi una carta nel tuo [gold]mazzo di pesca[/gold] nella carta [gold]Anima[/gold].",
+    "description_raw": "Trasformi una carta nel tuo [gold]mazzo di pesca[/gold] nella carta [gold]Anima[/gold].",
+    "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
     "star_cost": null,
@@ -17823,12 +17828,12 @@
       "Cards": 1
     },
     "upgrade": {
-      "description_changed": true
+      "cost": 0
     },
     "image_url": "/static/images/cards/seance.webp",
     "beta_image_url": "/static/images/cards/beta/seance.webp",
     "type_variants": null,
-    "upgrade_description": "Trasformi una carta nel tuo [gold]mazzo di pesca[/gold] in una carta [gold]Anima+[/gold].",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -17884,7 +17889,7 @@
   {
     "id": "COLLISION_COURSE",
     "name": "Rotta di Collisione",
-    "description": "Infliggi 9 di danno.\nAggiungi la carta [gold]Rottami[/gold] alla tua [gold]mano[/gold].",
+    "description": "Infliggi 11 di danno.\nAggiungi la carta [gold]Rottami[/gold] alla tua [gold]mano[/gold].",
     "description_raw": "Infliggi {Damage:diff()} di danno.\nAggiungi la carta [gold]Rottami[/gold] alla tua [gold]mano[/gold].",
     "cost": 0,
     "is_x_cost": null,
@@ -17894,7 +17899,7 @@
     "rarity": "Comune",
     "target": "AnyEnemy",
     "color": "regent",
-    "damage": 9,
+    "damage": 11,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -17907,15 +17912,15 @@
       "DEBRIS"
     ],
     "vars": {
-      "Damage": 9
+      "Damage": 11
     },
     "upgrade": {
-      "damage": "+3"
+      "damage": "+4"
     },
     "image_url": "/static/images/cards/collision_course.webp",
     "beta_image_url": "/static/images/cards/beta/collision_course.webp",
     "type_variants": null,
-    "upgrade_description": "Infliggi 12 di danno.\nAggiungi la carta [gold]Rottami[/gold] alla tua [gold]mano[/gold].",
+    "upgrade_description": "Infliggi 15 di danno.\nAggiungi la carta [gold]Rottami[/gold] alla tua [gold]mano[/gold].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 189
@@ -18042,7 +18047,7 @@
     "id": "SPINNER",
     "name": "Ruota",
     "description": "[gold]Vitreoglobi[/gold] [gold]canalizzati[/gold] all'inizio del tuo turno: 1.",
-    "description_raw": "{IfUpgraded:show:[gold]Vitreoglobi[/gold] [gold]canalizzati[/gold]: 1\n|}[gold]Vitreoglobi[/gold] [gold]canalizzati[/gold] all'inizio del tuo turno: 1.",
+    "description_raw": "{IfUpgraded:show:[gold]Vitreoglobi[/gold] [gold]canalizzati[/gold]: 1.\n|}[gold]Vitreoglobi[/gold] [gold]canalizzati[/gold] all'inizio del tuo turno: 1.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -18077,7 +18082,7 @@
     "image_url": "/static/images/cards/spinner.webp",
     "beta_image_url": "/static/images/cards/beta/spinner.webp",
     "type_variants": null,
-    "upgrade_description": "[gold]Vitreoglobi[/gold] [gold]canalizzati[/gold]: 1\n[gold]Vitreoglobi[/gold] [gold]canalizzati[/gold] all'inizio del tuo turno: 1.",
+    "upgrade_description": "[gold]Vitreoglobi[/gold] [gold]canalizzati[/gold]: 1.\n[gold]Vitreoglobi[/gold] [gold]canalizzati[/gold] all'inizio del tuo turno: 1.",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 421
@@ -18085,17 +18090,17 @@
   {
     "id": "BEGONE",
     "name": "SPARISCI!",
-    "description": "Infliggi 4 di danno.\nScegli una carta nella tua [gold]mano[/gold] da [gold]trasformare[/gold] nella carta [gold]Attacco Bomba del Seguace[/gold].",
-    "description_raw": "Infliggi {Damage:diff()} di danno.\nScegli una carta nella tua [gold]mano[/gold] da [gold]trasformare[/gold] nella carta [gold]{IfUpgraded:show:Attacco Bomba del Seguace+|Attacco Bomba del Seguace}[/gold].",
+    "description": "Scegli una carta nella tua [gold]mano[/gold] da [gold]trasformare[/gold] nella carta [gold]Colpo del Seguace[/gold].",
+    "description_raw": "Scegli una carta nella tua [gold]mano[/gold] da [gold]trasformare[/gold] nella carta [gold]{IfUpgraded:show:Colpo del Seguace+|Colpo del Seguace}[/gold].",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
     "star_cost": null,
-    "type": "Attacco",
+    "type": "Abilità",
     "rarity": "Comune",
-    "target": "AnyEnemy",
+    "target": "Self",
     "color": "regent",
-    "damage": 4,
+    "damage": null,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -18105,19 +18110,17 @@
     "keywords": null,
     "tags": null,
     "spawns_cards": [
-      "MINION_DIVE_BOMB"
+      "MINION_STRIKE"
     ],
-    "vars": {
-      "Damage": 4
-    },
+    "vars": null,
     "upgrade": {
-      "damage": "+1"
+      "description_changed": true
     },
     "image_url": "/static/images/cards/begone.webp",
     "beta_image_url": "/static/images/cards/beta/begone.webp",
     "type_variants": null,
-    "upgrade_description": "Infliggi 5 di danno.\nScegli una carta nella tua [gold]mano[/gold] da [gold]trasformare[/gold] nella carta [gold]Attacco Bomba del Seguace+[/gold].",
-    "type_key": "Attack",
+    "upgrade_description": "Scegli una carta nella tua [gold]mano[/gold] da [gold]trasformare[/gold] nella carta [gold]Colpo del Seguace+[/gold].",
+    "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 179
   },
@@ -18327,7 +18330,7 @@
   {
     "id": "FLICK_FLACK",
     "name": "Salto Mortale",
-    "description": "Infliggi 7 di danno a TUTTI i nemici.",
+    "description": "Infliggi 6 di danno a TUTTI i nemici.",
     "description_raw": "Infliggi {Damage:diff()} di danno a TUTTI i nemici.",
     "cost": 1,
     "is_x_cost": null,
@@ -18337,7 +18340,7 @@
     "rarity": "Comune",
     "target": "AllEnemies",
     "color": "silent",
-    "damage": 7,
+    "damage": 6,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -18350,7 +18353,7 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Damage": 7
+      "Damage": 6
     },
     "upgrade": {
       "damage": "+2"
@@ -18358,7 +18361,7 @@
     "image_url": "/static/images/cards/flick_flack.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Infliggi 9 di danno a TUTTI i nemici.",
+    "upgrade_description": "Infliggi 8 di danno a TUTTI i nemici.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "keywords_key": [
@@ -18759,7 +18762,7 @@
     "id": "MAD_SCIENCE",
     "name": "Scienza Pazza",
     "description": "Infliggi 12 di danno.",
-    "description_raw": "{CardType:choose(Attack|Skill|Power):Infliggi {Damage:diff()} di danno{Violence: {ViolenceHits:diff()} volte|}.|Ottieni {Block:diff()} di [gold]Blocco[/gold].|}{HasRider:{Sapping:\nApplichi {SappingWeak:diff()} di [gold]Debolezza[/gold].\nApplichi {SappingVulnerable:diff()} di [gold]Vulnerabilità[/gold].|}{Choking:\nOgni volta che giochi una carta in questo turno, il nemico perde {ChokingDamage:diff()} PV.|}{Energized:\nOttieni {EnergizedEnergy:energyIcons()}.|}{Wisdom:\nPeschi {WisdomCards:diff()} carte.|}{Chaos:\nAggiungi una carta casuale alla tua [gold]mano[/gold]. Costerà 0 {energyPrefix:energyIcons(1)} in questo turno.|}{Expertise: Ottieni {ExpertiseStrength:diff()} di [gold]Forza[/gold].\nOttieni {ExpertiseDexterity:diff()} di [gold]Destrezza[/gold].|}{Curious: le carte Potere costano {CuriousReduction:diff()} {energyPrefix:energyIcons(1)} in meno.|}{Improvement: Alla fine del combattimento, [gold]potenzi[/gold] una carta casuale.|}|{CardType:choose(Attack|Skill|Power):\n???|\n???|???}}",
+    "description_raw": "{CardType:choose(Attack|Skill|Power):Infliggi {Damage:diff()} di danno{Violence: {ViolenceHits:diff()} volte|}.|Ottieni {Block:diff()} di [gold]Blocco[/gold].|}{HasRider:{Sapping:\nApplichi {SappingWeak:diff()} di [gold]Debolezza[/gold].\nApplichi {SappingVulnerable:diff()} di [gold]Vulnerabilità[/gold].|}{Choking:\nOgni volta che giochi una carta in questo turno, il nemico perde {ChokingDamage:diff()} PV.|}{Energized:\nOttieni {EnergizedEnergy:energyIcons()}.|}{Wisdom:\nPeschi {WisdomCards:diff()} carte.|}{Chaos:\nAggiungi una carta casuale alla tua [gold]mano[/gold]. Puoi giocarla senza nessun costo in questo turno.|}{Expertise: Ottieni {ExpertiseStrength:diff()} di [gold]Forza[/gold].\nOttieni {ExpertiseDexterity:diff()} di [gold]Destrezza[/gold].|}{Curious: le carte Potere costano {CuriousReduction:diff()} {energyPrefix:energyIcons(1)} in meno.|}{Improvement: Alla fine del combattimento, [gold]potenzi[/gold] una carta casuale.|}|{CardType:choose(Attack|Skill|Power):\n???|\n???|???}}",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -18805,18 +18808,18 @@
         "riders": [
           {
             "id": "SAPPING",
-            "name": "Sapping",
-            "description": ""
+            "name": "Svigorimento",
+            "description": "Applichi [blue]2[/blue] di [gold]Debolezza[/gold]. Applichi [blue]2[/blue] di [gold]Vulnerabilità[/gold]."
           },
           {
             "id": "VIOLENCE",
-            "name": "Violence",
-            "description": ""
+            "name": "Veemenza",
+            "description": "Colpisce [blue]2[/blue] volte extra."
           },
           {
             "id": "CHOKING",
-            "name": "Choking",
-            "description": ""
+            "name": "Asfissia",
+            "description": "Ogni volta che giochi una carta in questo turno, il nemico perde [blue]6[/blue] PV."
           }
         ]
       },
@@ -18828,18 +18831,18 @@
         "riders": [
           {
             "id": "ENERGIZED",
-            "name": "Energized",
-            "description": ""
+            "name": "Rivitalizzazione",
+            "description": "Ottieni [energy:2]."
           },
           {
             "id": "WISDOM",
-            "name": "Wisdom",
-            "description": ""
+            "name": "Saggezza",
+            "description": "Peschi [blue]3[/blue] carte."
           },
           {
             "id": "CHAOS",
-            "name": "Chaos",
-            "description": ""
+            "name": "Caos",
+            "description": "Aggiungi una carta casuale alla tua [gold]mano[/gold]. Questo turno puoi giocarla senza nessun costo."
           }
         ]
       },
@@ -18850,18 +18853,18 @@
         "riders": [
           {
             "id": "EXPERTISE",
-            "name": "Expertise",
-            "description": ""
+            "name": "Competenza",
+            "description": "Ottieni [blue]2[/blue] di [gold]Forza[/gold]. Ottieni [blue]2[/blue] di [gold]Destrezza[/gold]."
           },
           {
             "id": "CURIOUS",
-            "name": "Curious",
-            "description": ""
+            "name": "Curiosità",
+            "description": "Le carte Potere costano [blue]1[/blue] [energy:1] in meno."
           },
           {
             "id": "IMPROVEMENT",
-            "name": "Improvement",
-            "description": ""
+            "name": "Miglioramento",
+            "description": "Al termine del combattimento, [gold]potenzi[/gold] una carta casuale."
           }
         ]
       }
@@ -18874,8 +18877,8 @@
   {
     "id": "GLOW",
     "name": "Scintillio",
-    "description": "Ottieni [star:1].\nPeschi 2 carte.",
-    "description_raw": "Ottieni {Stars:starIcons()}.\nPeschi {Cards:diff()} {Cards:plural:carta|carte}.",
+    "description": "Ottieni [star:1].\nPeschi 1 carta.\nNel turno successivo, peschi 1 carta.",
+    "description_raw": "Ottieni {Stars:starIcons()}.\nPeschi {Cards:diff()} {Cards:plural:carta|carte}.\nNel turno successivo, peschi {Cards:diff()} {Cards:plural:carta|carte}.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -18888,7 +18891,7 @@
     "block": null,
     "hit_count": null,
     "powers_applied": null,
-    "cards_draw": 2,
+    "cards_draw": 1,
     "energy_gain": null,
     "hp_loss": null,
     "keywords": null,
@@ -18896,7 +18899,7 @@
     "spawns_cards": null,
     "vars": {
       "Stars": 1,
-      "Cards": 2
+      "Cards": 1
     },
     "upgrade": {
       "stars": "+1"
@@ -18904,7 +18907,7 @@
     "image_url": "/static/images/cards/glow.webp",
     "beta_image_url": "/static/images/cards/beta/glow.webp",
     "type_variants": null,
-    "upgrade_description": "Ottieni [star:2].\nPeschi 2 carte.",
+    "upgrade_description": "Ottieni [star:2].\nPeschi 1 carta.\nNel turno successivo, peschi 1 carta.",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 209
@@ -18994,8 +18997,8 @@
   {
     "id": "DISCOVERY",
     "name": "Scoperta",
-    "description": "Scegli 1 tra 3 carte casuali da aggiungere alla tua [gold]mano[/gold]. La carta scelta costerà 0 [energy:1] in questo turno.",
-    "description_raw": "Scegli 1 tra 3 carte casuali da aggiungere alla tua [gold]mano[/gold]. La carta scelta costerà 0 {energyPrefix:energyIcons(1)} in questo turno.",
+    "description": "Scegli 1 tra 3 carte casuali da aggiungere alla tua [gold]mano[/gold]. Puoi giocarla senza nessun costo in questo turno.",
+    "description_raw": "Scegli 1 tra 3 carte casuali da aggiungere alla tua [gold]mano[/gold]. Puoi giocarla senza nessun costo in questo turno.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -19513,13 +19516,12 @@
       "Weak": 1
     },
     "upgrade": {
-      "block": "+1",
-      "weak": "+1"
+      "block": "+3"
     },
     "image_url": "/static/images/cards/defy.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Ottieni 7 di [gold]Blocco[/gold].\nApplichi 1 di [gold]Debolezza[/gold].",
+    "upgrade_description": "Ottieni 9 di [gold]Blocco[/gold].\nApplichi 1 di [gold]Debolezza[/gold].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "keywords_key": [
@@ -19709,7 +19711,7 @@
     "is_x_star_cost": null,
     "star_cost": null,
     "type": "Attacco",
-    "rarity": "Antico",
+    "rarity": "Antica",
     "target": "AnyEnemy",
     "color": "event",
     "damage": 33,
@@ -19935,7 +19937,7 @@
   {
     "id": "I_AM_INVINCIBLE",
     "name": "Sono Invincibile!",
-    "description": "Ottieni 9 di [gold]Blocco[/gold].\nAl termine del tuo turno, se questa carta è in cima al [gold]mazzo di pesca[/gold], giocala.",
+    "description": "Ottieni 10 di [gold]Blocco[/gold].\nAl termine del tuo turno, se questa carta è in cima al [gold]mazzo di pesca[/gold], giocala.",
     "description_raw": "Ottieni {Block:diff()} di [gold]Blocco[/gold].\nAl termine del tuo turno, se questa carta è in cima al [gold]mazzo di pesca[/gold], giocala.",
     "cost": 1,
     "is_x_cost": null,
@@ -19946,7 +19948,7 @@
     "target": "Self",
     "color": "regent",
     "damage": null,
-    "block": 9,
+    "block": 10,
     "hit_count": null,
     "powers_applied": null,
     "cards_draw": null,
@@ -19956,7 +19958,7 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Block": 9
+      "Block": 10
     },
     "upgrade": {
       "block": "+3"
@@ -19964,7 +19966,7 @@
     "image_url": "/static/images/cards/i_am_invincible.webp",
     "beta_image_url": "/static/images/cards/beta/i_am_invincible.webp",
     "type_variants": null,
-    "upgrade_description": "Ottieni 12 di [gold]Blocco[/gold].\nAl termine del tuo turno, se questa carta è in cima al [gold]mazzo di pesca[/gold], giocala.",
+    "upgrade_description": "Ottieni 13 di [gold]Blocco[/gold].\nAl termine del tuo turno, se questa carta è in cima al [gold]mazzo di pesca[/gold], giocala.",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 217
@@ -19979,7 +19981,7 @@
     "is_x_star_cost": null,
     "star_cost": null,
     "type": "Attacco",
-    "rarity": "Antico",
+    "rarity": "Antica",
     "target": "AnyEnemy",
     "color": "silent",
     "damage": 11,
@@ -20346,7 +20348,7 @@
     "is_x_star_cost": null,
     "star_cost": null,
     "type": "Abilità",
-    "rarity": "Antico",
+    "rarity": "Antica",
     "target": "Self",
     "color": "event",
     "damage": null,
@@ -20625,7 +20627,7 @@
     "id": "STACK",
     "name": "Stack",
     "description": "Ottieni [gold]Blocco[/gold] pari al numero di carte nella tua [gold]pila degli scarti[/gold]|}.",
-    "description_raw": "Ottieni [gold]Blocco[/gold] pari al numero di carte nella tua [gold]pila degli scarti[/gold]{IfUpgraded:show: +{CalculationBase}|}.{InCombat:\n(Ottieni {CalculatedBlock:diff()} di [gold]Blocco[/gold].)|}",
+    "description_raw": "Ottieni [gold]Blocco[/gold] pari al numero di carte nella tua [gold]pila degli scarti[/gold]{IfUpgraded:show: +{CalculationBase}|}.{InCombat:\n(Ottieni {CalculatedBlock:diff()} di [gold]Blocco[/gold])|}",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -20704,7 +20706,7 @@
   {
     "id": "FALLING_STAR",
     "name": "Stella Cadente",
-    "description": "Infliggi 7 di danno.\nApplichi 1 di [gold]Debolezza[/gold].\nApplichi 1 di [gold]Vulnerabilità[/gold].",
+    "description": "Infliggi 8 di danno.\nApplichi 1 di [gold]Debolezza[/gold].\nApplichi 1 di [gold]Vulnerabilità[/gold].",
     "description_raw": "Infliggi {Damage:diff()} di danno.\nApplichi {WeakPower:diff()} di [gold]Debolezza[/gold].\nApplichi {VulnerablePower:diff()} di [gold]Vulnerabilità[/gold].",
     "cost": 0,
     "is_x_cost": null,
@@ -20714,7 +20716,7 @@
     "rarity": "Base",
     "target": "AnyEnemy",
     "color": "regent",
-    "damage": 7,
+    "damage": 8,
     "block": null,
     "hit_count": null,
     "powers_applied": [
@@ -20736,7 +20738,7 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Damage": 7,
+      "Damage": 8,
       "VulnerablePower": 1,
       "Vulnerable": 1,
       "WeakPower": 1,
@@ -20749,7 +20751,7 @@
     "image_url": "/static/images/cards/falling_star.webp",
     "beta_image_url": "/static/images/cards/beta/falling_star.webp",
     "type_variants": null,
-    "upgrade_description": "Infliggi 11 di danno.\nApplichi 1 di [gold]Debolezza[/gold].\nApplichi 1 di [gold]Vulnerabilità[/gold].",
+    "upgrade_description": "Infliggi 12 di danno.\nApplichi 1 di [gold]Debolezza[/gold].\nApplichi 1 di [gold]Vulnerabilità[/gold].",
     "type_key": "Attack",
     "rarity_key": "Basic",
     "compendium_order": 201
@@ -20757,8 +20759,8 @@
   {
     "id": "GUIDING_STAR",
     "name": "Stella Guida",
-    "description": "Infliggi 12 di danno.\nIl turno successivo peschi 2 carte.",
-    "description_raw": "Infliggi {Damage:diff()} di danno.\nIl turno successivo peschi {Cards:diff()} {Cards:plural:carta|carte}.",
+    "description": "Infliggi 12 di danno.\nPeschi 2 carte.",
+    "description_raw": "Infliggi {Damage:diff()} di danno.\nPeschi {Cards:diff()} {Cards:plural:carta|carte}.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -20789,7 +20791,7 @@
     "image_url": "/static/images/cards/guiding_star.webp",
     "beta_image_url": "/static/images/cards/beta/guiding_star.webp",
     "type_variants": null,
-    "upgrade_description": "Infliggi 13 di danno.\nIl turno successivo peschi 3 carte.",
+    "upgrade_description": "Infliggi 13 di danno.\nPeschi 3 carte.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 211
@@ -20842,7 +20844,7 @@
   {
     "id": "SKEWER",
     "name": "Stoccata",
-    "description": "Infliggi 7 di danno X volte.",
+    "description": "Infliggi 8 di danno X volte.",
     "description_raw": "Infliggi {Damage:diff()} di danno X volte.",
     "cost": 0,
     "is_x_cost": true,
@@ -20852,7 +20854,7 @@
     "rarity": "Non comune",
     "target": "AnyEnemy",
     "color": "silent",
-    "damage": 7,
+    "damage": 8,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -20863,7 +20865,7 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Damage": 7
+      "Damage": 8
     },
     "upgrade": {
       "damage": "+3"
@@ -20871,7 +20873,7 @@
     "image_url": "/static/images/cards/skewer.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Infliggi 10 di danno X volte.",
+    "upgrade_description": "Infliggi 11 di danno X volte.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 156
@@ -21009,7 +21011,7 @@
     "is_x_star_cost": null,
     "star_cost": null,
     "type": "Attacco",
-    "rarity": "Antico",
+    "rarity": "Antica",
     "target": "AnyEnemy",
     "color": "event",
     "damage": 5,
@@ -21159,8 +21161,8 @@
   {
     "id": "DOMINATE",
     "name": "Supremazia",
-    "description": "Ottieni 1 di [gold]Forza[/gold] per ogni punto di [gold]Vulnerabilità[/gold] sul nemico.",
-    "description_raw": "Ottieni {StrengthPerVulnerable:diff()} di [gold]Forza[/gold] per ogni punto di [gold]Vulnerabilità[/gold] sul nemico.",
+    "description": "Applichi 1 di [gold]Vulnerabilità[/gold].\nOttieni 1 di [gold]Forza[/gold] per ogni punto di [gold]Vulnerabilità[/gold] sul nemico.",
+    "description_raw": "Applichi {VulnerablePower:diff()} di [gold]Vulnerabilità[/gold].\nOttieni {StrengthPerVulnerable:diff()} di [gold]Forza[/gold] per ogni punto di [gold]Vulnerabilità[/gold] sul nemico.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -21172,7 +21174,13 @@
     "damage": null,
     "block": null,
     "hit_count": null,
-    "powers_applied": null,
+    "powers_applied": [
+      {
+        "power": "Vulnerabilità",
+        "amount": 1,
+        "power_key": "Vulnerable"
+      }
+    ],
     "cards_draw": null,
     "energy_gain": null,
     "hp_loss": null,
@@ -21182,15 +21190,17 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "StrengthPerVulnerable": 1
+      "StrengthPerVulnerable": 1,
+      "VulnerablePower": 1,
+      "Vulnerable": 1
     },
     "upgrade": {
-      "remove_exhaust": true
+      "vulnerablepower": "+1"
     },
     "image_url": "/static/images/cards/dominate.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Applichi 2 di [gold]Vulnerabilità[/gold].\nOttieni 1 di [gold]Forza[/gold] per ogni punto di [gold]Vulnerabilità[/gold] sul nemico.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -21642,9 +21652,9 @@
   {
     "id": "BORROWED_TIME",
     "name": "Tempo in Prestito",
-    "description": "Applichi 3 di [gold]Condanna[/gold] su di te.\nOttieni [energy:1].",
-    "description_raw": "Applichi {DoomPower:diff()} di [gold]Condanna[/gold] su di te.\nOttieni {Energy:energyIcons()}.",
-    "cost": 0,
+    "description": "Ottieni [energy:4].\nIn questo turno, le carte costano [energy:1] extra.",
+    "description_raw": "Ottieni {Energy:energyIcons()}.\nIn questo turno, le carte costano {ExtraCost:energyIcons()} extra.",
+    "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
     "star_cost": null,
@@ -21655,31 +21665,24 @@
     "damage": null,
     "block": null,
     "hit_count": null,
-    "powers_applied": [
-      {
-        "power": "Condanna",
-        "amount": 3,
-        "power_key": "Doom"
-      }
-    ],
+    "powers_applied": null,
     "cards_draw": null,
-    "energy_gain": 1,
+    "energy_gain": 4,
     "hp_loss": null,
     "keywords": null,
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Energy": 1,
-      "DoomPower": 3,
-      "Doom": 3
+      "ExtraCost": 1,
+      "Energy": 4
     },
     "upgrade": {
-      "energy": "+1"
+      "energy": "+2"
     },
     "image_url": "/static/images/cards/borrowed_time.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Applichi 3 di [gold]Condanna[/gold] su di te.\nOttieni [energy:2].",
+    "upgrade_description": "Ottieni [energy:6].\nIn questo turno, le carte costano [energy:1] extra.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 268
@@ -21894,7 +21897,7 @@
     "upgrade_description": "Infliggi 12 di danno.\nMetti una carta dalla tua [gold]pila degli scarti[/gold] in cima al tuo [gold]mazzo di pesca[/gold].",
     "type_key": "Attack",
     "rarity_key": "Common",
-    "compendium_order": 40
+    "compendium_order": 39
   },
   {
     "id": "SHADOW_SHIELD",
@@ -21976,7 +21979,7 @@
   {
     "id": "PINPOINT",
     "name": "Tiro Preciso",
-    "description": "Infliggi 17 di danno.\nCosta 1 [energy:1] in meno per ogni carta Abilità giocata in questo turno.",
+    "description": "Infliggi 15 di danno.\nCosta 1 [energy:1] in meno per ogni carta Abilità giocata in questo turno.",
     "description_raw": "Infliggi {Damage:diff()} di danno.\nCosta 1 {energyPrefix:energyIcons(1)} in meno per ogni carta Abilità giocata in questo turno.",
     "cost": 3,
     "is_x_cost": null,
@@ -21986,7 +21989,7 @@
     "rarity": "Non comune",
     "target": "AnyEnemy",
     "color": "silent",
-    "damage": 17,
+    "damage": 15,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -21997,15 +22000,15 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Damage": 17
+      "Damage": 15
     },
     "upgrade": {
-      "damage": "+5"
+      "damage": "+4"
     },
     "image_url": "/static/images/cards/pinpoint.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Infliggi 22 di danno.\nCosta 1 [energy:1] in meno per ogni carta Abilità giocata in questo turno.",
+    "upgrade_description": "Infliggi 19 di danno.\nCosta 1 [energy:1] in meno per ogni carta Abilità giocata in questo turno.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 145
@@ -22292,7 +22295,7 @@
   {
     "id": "TREMBLE",
     "name": "Tremolio",
-    "description": "Applichi 2 di [gold]Vulnerabilità[/gold].",
+    "description": "Applichi 3 di [gold]Vulnerabilità[/gold].",
     "description_raw": "Applichi {VulnerablePower:diff()} di [gold]Vulnerabilità[/gold].",
     "cost": 1,
     "is_x_cost": null,
@@ -22308,19 +22311,21 @@
     "powers_applied": [
       {
         "power": "Vulnerabilità",
-        "amount": 2,
+        "amount": 3,
         "power_key": "Vulnerable"
       }
     ],
     "cards_draw": null,
     "energy_gain": null,
     "hp_loss": null,
-    "keywords": null,
+    "keywords": [
+      "Esaurimento"
+    ],
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "VulnerablePower": 2,
-      "Vulnerable": 2
+      "VulnerablePower": 3,
+      "Vulnerable": 3
     },
     "upgrade": {
       "vulnerable": "+1"
@@ -22331,6 +22336,9 @@
     "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Common",
+    "keywords_key": [
+      "Exhaust"
+    ],
     "compendium_order": 79
   },
   {
@@ -22464,7 +22472,7 @@
     "is_x_star_cost": null,
     "star_cost": 3,
     "type": "Potere",
-    "rarity": "Antico",
+    "rarity": "Antica",
     "target": "Self",
     "color": "regent",
     "damage": null,
@@ -22722,8 +22730,8 @@
   {
     "id": "HOWL_FROM_BEYOND",
     "name": "Urlo dall'Aldilà",
-    "description": "Infliggi 16 di danno a TUTTI i nemici.\nAll'inizio del tuo turno, giocala dalla [gold]pila delle carte esaurite[/gold].",
-    "description_raw": "Infliggi {Damage:diff()} di danno a TUTTI i nemici.\nAll'inizio del tuo turno, giocala dalla [gold]pila delle carte esaurite[/gold].",
+    "description": "Infliggi 16 di danno a TUTTI i nemici.\nAll'inizio del tuo turno, se questa carta è nella tua [gold]pila delle carte esaurite[/gold], giocala.",
+    "description_raw": "Infliggi {Damage:diff()} di danno a TUTTI i nemici.\nAll'inizio del tuo turno, se questa carta è nella tua [gold]pila delle carte esaurite[/gold], giocala.",
     "cost": 3,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -22751,17 +22759,17 @@
     "image_url": "/static/images/cards/howl_from_beyond.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Infliggi 21 di danno a TUTTI i nemici.\nAll'inizio del tuo turno, giocala dalla [gold]pila delle carte esaurite[/gold].",
+    "upgrade_description": "Infliggi 21 di danno a TUTTI i nemici.\nAll'inizio del tuo turno, se questa carta è nella tua [gold]pila delle carte esaurite[/gold], giocala.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
-    "compendium_order": 43
+    "compendium_order": 42
   },
   {
     "id": "BANSHEES_CRY",
     "name": "Urlo della Banshee",
     "description": "Infliggi 33 di danno a TUTTI i nemici.\nCosta [energy:2] in meno per ogni carta con [gold]Evanescenza[/gold] giocata in questo combattimento.",
     "description_raw": "Infliggi {Damage:diff()} di danno a TUTTI i nemici.\nCosta {Energy:energyIcons()} in meno per ogni carta con [gold]Evanescenza[/gold] giocata in questo combattimento.",
-    "cost": 6,
+    "cost": 9,
     "is_x_cost": null,
     "is_x_star_cost": null,
     "star_cost": null,
@@ -22784,12 +22792,12 @@
       "Energy": 2
     },
     "upgrade": {
-      "damage": "+6"
+      "cost": 7
     },
     "image_url": "/static/images/cards/banshees_cry.webp",
     "beta_image_url": "/static/images/cards/beta/banshees_cry.webp",
     "type_variants": null,
-    "upgrade_description": "Infliggi 39 di danno a TUTTI i nemici.\nCosta [energy:2] in meno per ogni carta con [gold]Evanescenza[/gold] giocata in questo combattimento.",
+    "upgrade_description": null,
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 264
@@ -23084,12 +23092,12 @@
       "Speedster": 2
     },
     "upgrade": {
-      "speedsterpower": "+1"
+      "add_innate": true
     },
     "image_url": "/static/images/cards/speedster.webp",
     "beta_image_url": "/static/images/cards/beta/speedster.webp",
     "type_variants": null,
-    "upgrade_description": "Ogni volta che peschi una carta durante il tuo turno, infliggi 3 di danno a TUTTI i nemici.",
+    "upgrade_description": null,
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 160

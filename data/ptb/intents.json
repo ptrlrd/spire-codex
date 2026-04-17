@@ -20,7 +20,7 @@
   {
     "id": "DEATH_BLOW",
     "name": "Golpe Mortal",
-    "description": "Esta criatura está tentando te derrubar junto com ela. Ao se sacrificar, ela ataca causando [blue]{Damage}[/blue] de dano.",
+    "description": "Esta criatura planeja derrubar você junto com ela. Ao se sacrificar, ela ataca causando [blue]{Damage}[/blue] de dano.",
     "image_url": "/static/images/intents/death_blow.webp"
   },
   {
@@ -62,13 +62,13 @@
   {
     "id": "STATUS",
     "name": "Estratégico",
-    "description": "Este inimigo tem intenção de lhe dar [blue]{CardCount}[/blue] {CardCount:plural:carta|cartas} de [gold]Condição[/gold].",
+    "description": "Este inimigo tem intenção de lhe conceder [blue]{CardCount}[/blue] {CardCount:plural:carta|cartas} de [gold]Condição[/gold].",
     "image_url": "/static/images/intents/status.webp"
   },
   {
     "id": "STUN",
-    "name": "Atordoado",
-    "description": "Este inimigo não poderá agir no próximo turno dele.",
+    "name": "Atordoamento",
+    "description": "Este inimigo não poderá agir em seu próximo turno.",
     "image_url": "/static/images/intents/stun.webp"
   },
   {

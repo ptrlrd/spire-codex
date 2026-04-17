@@ -30,7 +30,7 @@
       "event_death_prevention": "Я должен выжить ради друзей!",
       "gold_monologue": "[sine]Это золото можно обменять на детали...[/sine]",
       "aroma_principle": "[sine][blue]1100 0011 1100 0011...[/blue][/sine]",
-      "banter_alive": "[jitter]0x54494D45 0x204C494D 0x49542045 0x58434545 0x00444544[/jitter]",
+      "banter_alive": "[jitter]0xD09FD0A0 0xD095D092 0xD0ABD0A8 0xD095D09D 0xD09E20D0 0x92D0A0D0 0x95D09CD0 0xAF20D09E 0xD096D098 0xD094D090 0xD09DD098 0x0000D0AF[/jitter]",
       "banter_dead": "...",
       "unlock_text": "Завершите одну вылазку за [pink]{Prerequisite}[/pink], чтобы открыть данного персонажа.",
       "cards_modifier_title": "Карты Дефекта",
@@ -2122,7 +2122,7 @@
           {
             "order": 0,
             "speaker": "ancient",
-            "text": "[thinky_dots]Ты отравила меня? Что со мной…[/thinky_dots]\n[i][font_size=22]Паэль тут же захрапел.[/font_size][/i]"
+            "text": "[thinky_dots]Ты отравила меня…\nЧто еще за… Хр-р-р…[/thinky_dots]"
           }
         ]
       },

@@ -24,8 +24,8 @@
   {
     "id": "FYSH_OIL",
     "name": "Baluk Yağı",
-    "description": "[blue]1[/blue] [gold]Kuvvet[/gold] ve [blue]1[/blue] [gold]Çeviklik[/gold] elde et.",
-    "description_raw": "[blue]{StrengthPower}[/blue] [gold]Kuvvet[/gold] ve [blue]{DexterityPower}[/blue] [gold]Çeviklik[/gold] elde et.",
+    "description": "[blue]1[/blue] [gold]Kuvvet[/gold] ve [blue]1[/blue] [gold]Beceriklilik[/gold] elde et.",
+    "description_raw": "[blue]{StrengthPower}[/blue] [gold]Kuvvet[/gold] ve [blue]{DexterityPower}[/blue] [gold]Beceriklilik[/gold] elde et.",
     "rarity": "Az Yaygın",
     "image_url": "/static/images/potions/fysh_oil.webp",
     "rarity_key": "Uncommon",
@@ -41,6 +41,17 @@
     "image_url": "/static/images/potions/skill_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 1,
+    "pool": "shared"
+  },
+  {
+    "id": "DEXTERITY_POTION",
+    "name": "Beceriklilik İksiri",
+    "description": "[blue]2[/blue] [gold]Beceriklilik[/gold] elde et.",
+    "description_raw": "[blue]{DexterityPower}[/blue] [gold]Beceriklilik[/gold] elde et.",
+    "rarity": "Yaygın",
+    "image_url": "/static/images/potions/dexterity_potion.webp",
+    "rarity_key": "Common",
+    "compendium_order": 2,
     "pool": "shared"
   },
   {
@@ -62,7 +73,7 @@
     "rarity": "Yaygın",
     "image_url": "/static/images/potions/block_potion.webp",
     "rarity_key": "Common",
-    "compendium_order": 2,
+    "compendium_order": 3,
     "pool": "shared"
   },
   {
@@ -161,7 +172,7 @@
     "rarity": "Yaygın",
     "image_url": "/static/images/potions/energy_potion.webp",
     "rarity_key": "Common",
-    "compendium_order": 3,
+    "compendium_order": 4,
     "pool": "shared"
   },
   {
@@ -172,7 +183,7 @@
     "rarity": "Yaygın",
     "image_url": "/static/images/potions/flex_potion.webp",
     "rarity_key": "Common",
-    "compendium_order": 4,
+    "compendium_order": 5,
     "pool": "shared"
   },
   {
@@ -183,7 +194,7 @@
     "rarity": "Yaygın",
     "image_url": "/static/images/potions/power_potion.webp",
     "rarity_key": "Common",
-    "compendium_order": 5,
+    "compendium_order": 6,
     "pool": "shared"
   },
   {
@@ -209,14 +220,14 @@
     "pool": "necrobinder"
   },
   {
-    "id": "SWIFT_POTION",
+    "id": "SPEED_POTION",
     "name": "Hız İksiri",
-    "description": "[blue]3[/blue] kart çek.",
-    "description_raw": "[blue]{Cards}[/blue] {Cards:plural:kart|kart} çek.",
+    "description": "[blue]5[/blue] [gold]Beceriklilik[/gold] elde et. Turunun sonunda [blue]5[/blue] [gold]Beceriklilik[/gold] kaybet.",
+    "description_raw": "[blue]{DexterityPower}[/blue] [gold]Beceriklilik[/gold] elde et. Turunun sonunda [blue]{DexterityPower}[/blue] [gold]Beceriklilik[/gold] kaybet.",
     "rarity": "Yaygın",
-    "image_url": "/static/images/potions/swift_potion.webp",
+    "image_url": "/static/images/potions/speed_potion.webp",
     "rarity_key": "Common",
-    "compendium_order": 6,
+    "compendium_order": 7,
     "pool": "shared"
   },
   {
@@ -249,7 +260,7 @@
     "rarity": "Yaygın",
     "image_url": "/static/images/potions/potion_of_doom.webp",
     "rarity_key": "Common",
-    "compendium_order": 7,
+    "compendium_order": 8,
     "pool": "necrobinder"
   },
   {
@@ -260,7 +271,7 @@
     "rarity": "Yaygın",
     "image_url": "/static/images/potions/blood_potion.webp",
     "rarity_key": "Common",
-    "compendium_order": 8,
+    "compendium_order": 9,
     "pool": "ironclad"
   },
   {
@@ -359,7 +370,7 @@
     "rarity": "Yaygın",
     "image_url": "/static/images/potions/strength_potion.webp",
     "rarity_key": "Common",
-    "compendium_order": 9,
+    "compendium_order": 10,
     "pool": "shared"
   },
   {
@@ -414,7 +425,7 @@
     "rarity": "Yaygın",
     "image_url": "/static/images/potions/focus_potion.webp",
     "rarity_key": "Common",
-    "compendium_order": 10,
+    "compendium_order": 11,
     "pool": "defect"
   },
   {
@@ -436,7 +447,7 @@
     "rarity": "Yaygın",
     "image_url": "/static/images/potions/explosive_ampoule.webp",
     "rarity_key": "Common",
-    "compendium_order": 11,
+    "compendium_order": 12,
     "pool": "shared"
   },
   {
@@ -447,7 +458,7 @@
     "rarity": "Yaygın",
     "image_url": "/static/images/potions/colorless_potion.webp",
     "rarity_key": "Common",
-    "compendium_order": 12,
+    "compendium_order": 13,
     "pool": "shared"
   },
   {
@@ -458,7 +469,7 @@
     "rarity": "Yaygın",
     "image_url": "/static/images/potions/attack_potion.webp",
     "rarity_key": "Common",
-    "compendium_order": 13,
+    "compendium_order": 14,
     "pool": "shared"
   },
   {
@@ -469,7 +480,7 @@
     "rarity": "Yaygın",
     "image_url": "/static/images/potions/vulnerable_potion.webp",
     "rarity_key": "Common",
-    "compendium_order": 14,
+    "compendium_order": 15,
     "pool": "shared"
   },
   {
@@ -495,6 +506,17 @@
     "pool": "shared"
   },
   {
+    "id": "SWIFT_POTION",
+    "name": "Sürat İksiri",
+    "description": "[blue]3[/blue] kart çek.",
+    "description_raw": "[blue]{Cards}[/blue] {Cards:plural:kart|kart} çek.",
+    "rarity": "Yaygın",
+    "image_url": "/static/images/potions/swift_potion.webp",
+    "rarity_key": "Common",
+    "compendium_order": 16,
+    "pool": "shared"
+  },
+  {
     "id": "LIQUID_BRONZE",
     "name": "Sıvı Bronz",
     "description": "[blue]3[/blue] [gold]Diken[/gold] elde et.",
@@ -508,8 +530,8 @@
   {
     "id": "LIQUID_MEMORIES",
     "name": "Sıvı Hatıralar",
-    "description": "[gold]Atık Deste[/gold]'nden [gold]El[/gold]'ine bir kart koy. Bu tur maliyeti [blue]0[/blue] [energy:1] olur.",
-    "description_raw": "[gold]Atık Deste[/gold]'nden [gold]El[/gold]'ine bir kart koy. Bu tur maliyeti [blue]0[/blue] {energyPrefix:energyIcons(1)} olur.",
+    "description": "[gold]Atık Deste[/gold]'nden bir kartı [gold]El[/gold]'ine koy. Bu tur oynaması ücretsiz olur.",
+    "description_raw": "[gold]Atık Deste[/gold]'nden bir kartı [gold]El[/gold]'ine koy. Bu tur oynaması ücretsiz olur.",
     "rarity": "Nadir",
     "image_url": "/static/images/potions/liquid_memories.webp",
     "rarity_key": "Rare",
@@ -546,7 +568,7 @@
     "rarity": "Yaygın",
     "image_url": "/static/images/potions/star_potion.webp",
     "rarity_key": "Common",
-    "compendium_order": 15,
+    "compendium_order": 17,
     "pool": "regent"
   },
   {
@@ -557,7 +579,7 @@
     "rarity": "Yaygın",
     "image_url": "/static/images/potions/weak_potion.webp",
     "rarity_key": "Common",
-    "compendium_order": 16,
+    "compendium_order": 18,
     "pool": "shared"
   },
   {
@@ -568,7 +590,7 @@
     "rarity": "Yaygın",
     "image_url": "/static/images/potions/poison_potion.webp",
     "rarity_key": "Common",
-    "compendium_order": 17,
+    "compendium_order": 19,
     "pool": "silent"
   },
   {
@@ -580,28 +602,6 @@
     "image_url": "/static/images/potions/shackling_potion.webp",
     "rarity_key": "Rare",
     "compendium_order": 54,
-    "pool": "shared"
-  },
-  {
-    "id": "DEXTERITY_POTION",
-    "name": "Çeviklik İksiri",
-    "description": "[blue]2[/blue] [gold]Çeviklik[/gold] elde et.",
-    "description_raw": "[blue]{DexterityPower}[/blue] [gold]Çeviklik[/gold] elde et.",
-    "rarity": "Yaygın",
-    "image_url": "/static/images/potions/dexterity_potion.webp",
-    "rarity_key": "Common",
-    "compendium_order": 18,
-    "pool": "shared"
-  },
-  {
-    "id": "SPEED_POTION",
-    "name": "Çeviklik İksiri",
-    "description": "[blue]5[/blue] [gold]Çeviklik[/gold] elde et. Turunun sonunda [blue]5[/blue] [gold]Çeviklik[/gold] kaybet.",
-    "description_raw": "[blue]{DexterityPower}[/blue] [gold]Çeviklik[/gold] elde et. Turunun sonunda [blue]{DexterityPower}[/blue] [gold]Çeviklik[/gold] kaybet.",
-    "rarity": "Yaygın",
-    "image_url": "/static/images/potions/speed_potion.webp",
-    "rarity_key": "Common",
-    "compendium_order": 19,
     "pool": "shared"
   },
   {
@@ -640,8 +640,8 @@
   {
     "id": "FOUL_POTION",
     "name": "İğrenç İksir",
-    "description": "HERKESE [blue]12[/blue] hasar ver.\nAyrıca [blue]100[/blue] [gold]Altın[/gold] elde etmek için [gold]Tüccar[/gold]'a da fırlatılabilir.",
-    "description_raw": "HERKESE [blue]{Damage}[/blue] hasar ver.\nAyrıca [blue]{Gold}[/blue] [gold]Altın[/gold] elde etmek için [gold]Tüccar[/gold]'a da fırlatılabilir.",
+    "description": "TÜM oyunculara ve düşmanlara [blue]12[/blue] hasar ver.\nAyrıca [blue]100[/blue] [gold]Altın[/gold] elde etmek için [gold]Tüccar[/gold]'a da fırlatılabilir.",
+    "description_raw": "TÜM oyunculara ve düşmanlara [blue]{Damage}[/blue] hasar ver.\nAyrıca [blue]{Gold}[/blue] [gold]Altın[/gold] elde etmek için [gold]Tüccar[/gold]'a da fırlatılabilir.",
     "rarity": "Etkinlik",
     "image_url": "/static/images/potions/foul_potion.webp",
     "rarity_key": "Event",
@@ -673,8 +673,8 @@
   {
     "id": "FAIRY_IN_A_BOTTLE",
     "name": "Şişedeki Peri",
-    "description": "Ölmek yerine bu iksiri harcar ve Maksimum CP'nin [blue]%30[/blue]'una kadar iyileşirsin.",
-    "description_raw": "Ölmek yerine bu iksiri harcar ve Maksimum CP'nin [blue]%30[/blue]'una kadar iyileşirsin.",
+    "description": "Sahip olduğun CP [blue]0[/blue]'a indiğinde bu iksiri tüket ve Maksimum CP'nin [blue]%30[/blue]'u kadar iyileş.",
+    "description_raw": "Sahip olduğun CP [blue]0[/blue]'a indiğinde bu iksiri tüket ve Maksimum CP'nin [blue]%30[/blue]'u kadar iyileş.",
     "rarity": "Nadir",
     "image_url": "/static/images/potions/fairy_in_a_bottle.webp",
     "rarity_key": "Rare",

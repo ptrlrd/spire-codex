@@ -1,48 +1,237 @@
 [
   {
     "id": "ABYSSAL_BATHS",
-    "name": "AbyssalBaths",
+    "name": "บ่ออาบน้ำนรก",
     "type": "Event",
     "act": "Underdocks",
-    "description": null,
+    "description": "คุณค้นพบห้องเงียบสงบ\n\nไอน้ำลอยขึ้นจากบ่อจำนวนมากที่เดือดปุดๆ ซึ่งของเหลวร้อนในบ่อล้วนเปลี่ยนสีไปตามจังหวะราวกับถูกสะกดจิต มีเพรียงห้อยลงมาจากเพดาน หยดของเหลวหนืดๆ ที่ส่งเสียงฟู่ๆ และบิดรูปร่างเมื่อมันสัมผัสพื้นผิว บรรยากาศให้ความรู้สึกหนักอึ้ง เปี่ยมไปด้วย[blue]เกลือ[/blue]และบางสิ่งที่[green]มีชีวิตไม่ผิดแน่[/green]\n\nเมื่อคุณเข้าใกล้ขอบของบ่อที่ใหญ่ที่สุด ของเหลงนั้นก็เกิดระลอกคลื่นขึ้น เกิดฟองอากาศเดือดปุดๆ มากขึ้น ราวกับกำลังเฝ้ารอให้คุณเข้าไป",
     "preconditions": null,
     "options": [
       {
         "id": "IMMERSE",
-        "title": "IMMERSE",
+        "title": "ลงไปดื่มด่ำ",
         "description": "ได้รับ [green]2[/green] HP สูงสุด ได้รับความเสียหาย [red]3[/red]"
       },
       {
         "id": "ABSTAIN",
-        "title": "ABSTAIN",
+        "title": "ห้ามใจไว้",
         "description": "ฟื้นฟู [green]10[/green] HP"
       }
     ],
     "pages": [
+      {
+        "id": "ABSTAIN",
+        "description": "คุณปฏิเสธบ่อน้ำที่ล่อใจ แล้วเก็บรวบรวมคราบเกลือตกผลึกตามขอบบ่อแทน เมื่อคุณนำมาทาผิว บ่อน้ำต่างๆ ล้วนเดือดปุดๆ อย่างปั่นป่วน จากนั้นอุณหภูมิบริเวณรอบๆ ก็ลดลงอย่างเห็นได้ชัด และในช่วงเวลาครู่หนึ่ง ผิวน้ำทั้งหมดในห้องสะท้อนให้เห็นเป็นตัวคุณที่ตากลวงโบ๋ จากนั้นก็จางหายไป คุณรู้สึกพลาดอะไรบางอย่างที่สร้างการเปลี่ยนแปลงครั้งใหญ่ คุณไม่สามารถสลัดความรู้สึกนี้ออกไปได้เลย"
+      },
       {
         "id": "ALL",
         "description": null,
         "options": [
           {
             "id": "LINGER",
-            "title": "LINGER",
+            "title": "อยู่ต่อ",
             "description": "ได้รับ [green]2[/green] HP สูงสุด ได้รับความเสียหาย [red]3[/red]"
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "หยุดอาบ",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "id": "DEATH_WARNING",
+        "description": "[sine][red]หากคุณอาบต่อ คุณจะตาย[/red][/sine]",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "อยู่ต่อ",
+            "description": "[sine][red]หากคุณอาบต่อ คุณจะตาย[/red][/sine]"
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "หยุดอาบ",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "id": "EXIT_BATHS",
+        "description": "ในที่สุดก็ทนความร้อนไม่ไหว คุณลุกออกจากบ่อ"
+      },
+      {
+        "id": "IMMERSE",
+        "description": "ของเหลวเผาไหม้ผิวหนังของคุณ ทั้ง[blue][jitter]เย็นกัดกระดูก[/jitter][/blue]และ[red][jitter]ร้อนลวก[/jitter][/red]ในเวลาเดียวกัน\n\nภายใต้ผิวน้ำ มีบางอย่างขัดถูขาของคุณอยู่—พวกไม้เลื้อย? หรือกระแสน้ำที่ซัดมาอย่างตั้งใจ? แต่เมื่อความเจ็บปวดทุเลาลงแล้ว คุณก็รู้สึกเลือดลมไหลเวียนและมีชีวิตชีวามากขึ้น น้ำเองก็ฟังดูเหมือนจะฮัมเป็นทำนองพึงพอใจเช่นกัน",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "อยู่ต่อ",
+            "description": "ได้รับ [green]2[/green] HP สูงสุด ได้รับความเสียหาย [red]4[/red]"
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "หยุดอาบ",
+            "description": ""
           }
         ]
       },
       {
         "id": "INITIAL",
-        "description": null,
+        "description": "คุณค้นพบห้องเงียบสงบ\n\nไอน้ำลอยขึ้นจากบ่อจำนวนมากที่เดือดปุดๆ ซึ่งของเหลวร้อนในบ่อล้วนเปลี่ยนสีไปตามจังหวะราวกับถูกสะกดจิต มีเพรียงห้อยลงมาจากเพดาน หยดของเหลวหนืดๆ ที่ส่งเสียงฟู่ๆ และบิดรูปร่างเมื่อมันสัมผัสพื้นผิว บรรยากาศให้ความรู้สึกหนักอึ้ง เปี่ยมไปด้วย[blue]เกลือ[/blue]และบางสิ่งที่[green]มีชีวิตไม่ผิดแน่[/green]\n\nเมื่อคุณเข้าใกล้ขอบของบ่อที่ใหญ่ที่สุด ของเหลงนั้นก็เกิดระลอกคลื่นขึ้น เกิดฟองอากาศเดือดปุดๆ มากขึ้น ราวกับกำลังเฝ้ารอให้คุณเข้าไป",
         "options": [
           {
             "id": "IMMERSE",
-            "title": "IMMERSE",
+            "title": "ลงไปดื่มด่ำ",
             "description": "ได้รับ [green]2[/green] HP สูงสุด ได้รับความเสียหาย [red]3[/red]"
           },
           {
             "id": "ABSTAIN",
-            "title": "ABSTAIN",
+            "title": "ห้ามใจไว้",
             "description": "ฟื้นฟู [green]10[/green] HP"
+          }
+        ]
+      },
+      {
+        "id": "LINGER1",
+        "description": "[jitter]อุณหภูมิเพิ่มขึ้นเรื่อยๆ![/jitter]\n\nคุณจะทนได้อีกนานแค่ไหน ก่อนที่คุณจะถูกต้มจนสุกจากภายใน?",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "อยู่ต่อ",
+            "description": "ได้รับ [green]2[/green] HP สูงสุด ได้รับความเสียหาย [red]5[/red]"
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "หยุดอาบ",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "id": "LINGER2",
+        "description": "[jitter][orange]มันร้อนขึ้นเรื่อยๆ![/orange][/jitter]\n\nเสียงฟองอากาศเดือดปุดๆ ของบ่อน้ำฟังดูคล้ายเสียงหัวเราะ",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "อยู่ต่อ",
+            "description": "ได้รับ [green]2[/green] HP สูงสุด ได้รับความเสียหาย [red]6[/red]"
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "หยุดอาบ",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "id": "LINGER3",
+        "description": "[jitter][red]ร้อนเหลือเกิน![/red][/jitter]\n\nคุณแอบคิดว่า การอาศัยในหมู่บ้านปีศาจคงจะอารมณ์ประมาณนี้หรือเปล่านะ?",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "อยู่ต่อ",
+            "description": "ได้รับ [green]2[/green] HP สูงสุด ได้รับความเสียหาย [red]7[/red]"
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "หยุดอาบ",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "id": "LINGER4",
+        "description": "[sine][purple]คุณอาบนานเกินจนลืมเวลาและสติไปแล้ว...[/purple][/sine]",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "อยู่ต่อ",
+            "description": "ได้รับ [green]2[/green] HP สูงสุด ได้รับความเสียหาย [red]8[/red]"
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "หยุดอาบ",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "id": "LINGER5",
+        "description": "ดีจังเลย",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "อยู่ต่อ",
+            "description": "ได้รับ [green]2[/green] HP สูงสุด ได้รับความเสียหาย [red]9[/red]"
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "หยุดอาบ",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "id": "LINGER6",
+        "description": "ยอดเยี่ยมจริงๆ",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "อยู่ต่อ",
+            "description": "ได้รับ [green]2[/green] HP สูงสุด ได้รับความเสียหาย [red]10[/red]"
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "หยุดอาบ",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "id": "LINGER7",
+        "description": "ฟินสุดๆ",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "อยู่ต่อ",
+            "description": "ได้รับ [green]2[/green] HP สูงสุด ได้รับความเสียหาย [red]11[/red]"
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "หยุดอาบ",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "id": "LINGER8",
+        "description": "[sine]อื้มมม...[/sine]",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "อยู่ต่อ",
+            "description": "ได้รับ [green]2[/green] HP สูงสุด ได้รับความเสียหาย [red]12[/red]"
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "หยุดอาบ",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "id": "LINGER9",
+        "description": "[sine]Zzz...\n..zzzz....[/sine]",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "อยู่ต่อ",
+            "description": "ได้รับ [green]2[/green] HP สูงสุด ได้รับความเสียหาย [red]13[/red]"
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "หยุดอาบ",
+            "description": ""
           }
         ]
       }
@@ -439,16 +628,56 @@
   },
   {
     "id": "CRYSTAL_SPHERE",
-    "name": "CrystalSphere",
+    "name": "ลูกแก้ววิเศษ",
     "type": "Shared",
     "act": null,
-    "description": null,
+    "description": "[sine][blue]“แม่หมอทำนายไว้แล้วว่าลูกจะเข้ามา...!”[/blue][/sine]\n\nเสียง[jitter]แหบแห้ง[/jitter]เรียกหาคุณตอนคุณเดินเข้า[purple]กระท่อมผู้วิเศษ[/purple]\n\n[sine][blue]“โชคชะตานำพาลูกมาที่นี่ เราต้องค้นหาอนาคตและโชคลางของลูก เพื่อที่ลูกจะได้ช่วยเราทั้งหมดให้รอด!!”[/blue][/sine]\n“เอาล่ะ นี่คือทางเลือกในการดูดวงผ่าน[gold]ลูกแก้ววิเศษ[/gold] อย่าลืมเซ็นชื่อยินยอมรับความเสี่ยงด้วยล่ะ” เธอพูดขณะหยิบปากกาและกระดาษหนังออกมา",
     "preconditions": [
       "Requires 100+ gold",
       "Act 2+"
     ],
-    "options": null,
-    "pages": null
+    "options": [
+      {
+        "id": "UNCOVER_FUTURE",
+        "title": "เปิดเผยอนาคต",
+        "description": "จ่าย[red]51-99[/red] [gold]ทอง[/gold] [purple]ทำนาย[/purple] [blue]3[/blue] ครั้ง"
+      },
+      {
+        "id": "PAYMENT_PLAN",
+        "title": "แผนการชำระ",
+        "description": "ได้รับ[red]หนี้สิน[/red] [purple]ทำนาย[/purple] [blue]6[/blue] ครั้ง"
+      }
+    ],
+    "pages": [
+      {
+        "id": "FINISH",
+        "description": "ฉันคิดเสร็จแล้ว"
+      },
+      {
+        "id": "INITIAL",
+        "description": "[sine][blue]“แม่หมอทำนายไว้แล้วว่าลูกจะเข้ามา...!”[/blue][/sine]\n\nเสียง[jitter]แหบแห้ง[/jitter]เรียกหาคุณตอนคุณเดินเข้า[purple]กระท่อมผู้วิเศษ[/purple]\n\n[sine][blue]“โชคชะตานำพาลูกมาที่นี่ เราต้องค้นหาอนาคตและโชคลางของลูก เพื่อที่ลูกจะได้ช่วยเราทั้งหมดให้รอด!!”[/blue][/sine]\n“เอาล่ะ นี่คือทางเลือกในการดูดวงผ่าน[gold]ลูกแก้ววิเศษ[/gold] อย่าลืมเซ็นชื่อยินยอมรับความเสี่ยงด้วยล่ะ” เธอพูดขณะหยิบปากกาและกระดาษหนังออกมา",
+        "options": [
+          {
+            "id": "UNCOVER_FUTURE",
+            "title": "เปิดเผยอนาคต",
+            "description": "จ่าย[red]51-99[/red] [gold]ทอง[/gold] [purple]ทำนาย[/purple] [blue]3[/blue] ครั้ง"
+          },
+          {
+            "id": "PAYMENT_PLAN",
+            "title": "แผนการชำระ",
+            "description": "ได้รับ[red]หนี้สิน[/red] [purple]ทำนาย[/purple] [blue]6[/blue] ครั้ง"
+          }
+        ]
+      },
+      {
+        "id": "PAYMENT_PLAN",
+        "description": "แผนการชำระ"
+      },
+      {
+        "id": "UNCOVER_FUTURE",
+        "description": "เปิดเผยอนาคต"
+      }
+    ]
   },
   {
     "id": "DARV",
@@ -507,11 +736,6 @@
     "preconditions": null,
     "options": [
       {
-        "id": "TRUDGE_ON",
-        "title": "TRUDGE_ON",
-        "description": "กำจัดการ์ด 1 ใบจาก[gold]กองการ์ด[/gold] เสีย [red]11[/red] HP"
-      },
-      {
         "id": "REST",
         "title": "พักผ่อน",
         "description": "ฟื้นฟู [green]30% Max[/green] HP และต่อสู้[red]ศัตรู[/red]กลุ่มหนึ่ง"
@@ -522,11 +746,6 @@
         "id": "INITIAL",
         "description": null,
         "options": [
-          {
-            "id": "TRUDGE_ON",
-            "title": "TRUDGE_ON",
-            "description": "กำจัดการ์ด 1 ใบจาก[gold]กองการ์ด[/gold] เสีย [red]11[/red] HP"
-          },
           {
             "id": "REST",
             "title": "พักผ่อน",
@@ -552,7 +771,7 @@
     "name": "ห้องตุ๊กตา",
     "type": "Shared",
     "act": null,
-    "description": null,
+    "description": "คุณเข้าไปยังห้องลับ...\n\nมีตุ๊กตาเรียงแถวเต็มไปหมด แต่ละตัวมีเอกลักษณ์ไม่เหมือนใคร สีหน้าของมันมีตั้งแต่[green]สุขสันต์[/green]ยัน[purple]เศร้าหมอง[/purple]เครื่องแต่งกายของแต่ละตัวมีหลากหลายยุคหลายศตวรรษ และหลายโลกเกินกว่าที่คุณจะรับรู้\n\n[sine][blue]เสียงกระซิบประสานกัน[/blue][/sine]ดังขึ้นเรื่อยๆ จนกระทั่ง[jitter][red]พวกตุ๊กตาเริ่มตะโกน[/red][/jitter]ใส่กันและกัน และเรียกหาคุณ...\n\nคุณต้องเลือกตัวเดียวและรีบออกไปทันที",
     "preconditions": [
       "Act 2 only"
     ],
@@ -575,8 +794,20 @@
     ],
     "pages": [
       {
+        "id": "DAUGHTER_OF_WIND",
+        "description": "[blue]“เธอควรดีใจนะที่ฉันเลือกเธอน่ะ!”[/blue]\nตุ๊กตาตัวนั้นประกาศศักดาอย่างมีชัย"
+      },
+      {
+        "id": "EXAMINE",
+        "description": "คุณตรวจสอบตุ๊กตาแต่ละตัวก่อนที่จะตัดสินใจเลือก\n\nเสียงตะโกนถึงขั้น[red][jitter]เสียงแหลมบาดแก้วหู[/jitter][/red] แต่คุณเลือกได้ทันก่อนที่คุณจะเป็นบ้าไปเสียก่อน!"
+      },
+      {
+        "id": "FABLE",
+        "description": "เสียงอันอบอุ่นแทรกเข้าหัวคุณอย่างมีความสุข\n[orange][sine]“เราจะออกเดินทางค้นหาเรื่องราวที่สุขที่สุดไปด้วยกันนะ!”[/sine][/orange]"
+      },
+      {
         "id": "INITIAL",
-        "description": null,
+        "description": "คุณเข้าไปยังห้องลับ...\n\nมีตุ๊กตาเรียงแถวเต็มไปหมด แต่ละตัวมีเอกลักษณ์ไม่เหมือนใคร สีหน้าของมันมีตั้งแต่[green]สุขสันต์[/green]ยัน[purple]เศร้าหมอง[/purple]เครื่องแต่งกายของแต่ละตัวมีหลากหลายยุคหลายศตวรรษ และหลายโลกเกินกว่าที่คุณจะรับรู้\n\n[sine][blue]เสียงกระซิบประสานกัน[/blue][/sine]ดังขึ้นเรื่อยๆ จนกระทั่ง[jitter][red]พวกตุ๊กตาเริ่มตะโกน[/red][/jitter]ใส่กันและกัน และเรียกหาคุณ...\n\nคุณต้องเลือกตัวเดียวและรีบออกไปทันที",
         "options": [
           {
             "id": "RANDOM",
@@ -596,6 +827,10 @@
         ]
       },
       {
+        "id": "MR_STRUGGLES",
+        "description": "เมื่อคุณหยิบ[sine][purple]ตุ๊กตาที่ดูเก่าๆ ขาดๆ[/purple][/sine] เสียงทั้งหมดก็เงียบลงทันที\nตัวนี้ไม่พูด"
+      },
+      {
         "id": "TAKE",
         "description": null,
         "options": [
@@ -605,6 +840,10 @@
             "description": "ได้รับ[gold]a random Relic[/gold]"
           }
         ]
+      },
+      {
+        "id": "TAKE_SOME_TIME",
+        "description": "คุณรีบตรวจสอบตุ๊กตาทั้งหลายท่ามกลางเสียงตะโกนบาดหู\n\n1 ใน 2 ตัวนี้คงจะดีมั้ง?\nการเพ่งสมาธิท่ามกลาง[red]ความทรมานทางจิตใจ[/red]นั้นเป็นไปได้ยาก"
       }
     ]
   },
@@ -613,7 +852,7 @@
     "name": "ประตูแห่งแสงและความมืด",
     "type": "Event",
     "act": "Underdocks",
-    "description": null,
+    "description": "อยู่ดีๆ ก็มีประตูปรากฏขึ้น ทั้งๆ ที่ก่อนหน้านี้ไม่เคยมีอยู่...\n\nคุณเข้าไปแล้วพบว่ามีประตูที่ส่องแสงเป็นประกายอยู่ 2 บาน และ[gold]ทวารบาลผู้แต่งกายดี 1 นาย[/gold]\n“ในที่สุดก็มีแขก! ได้โปรด ได้โปรด! เลือกประตูสักบาน บานไหนก็ได้!”\n\n[blue]นี่เรายังอยู่ในสไปร์หรือเปล่า? ที่นี่สะอาดขนาดนี้ได้อย่างไร?[/blue]",
     "preconditions": null,
     "options": [
       {
@@ -627,7 +866,32 @@
         "description": "กำจัดการ์ด [blue]1[/blue]ใบใน[gold]กองการ์ด[/gold]"
       }
     ],
-    "pages": null
+    "pages": [
+      {
+        "id": "DARK",
+        "description": "[sine][purple]มุ่งสู่ความมืด...[/purple][/sine]\n\nมองอะไรไม่เห็นเลย\nแต่มันช่วยให้คุณได้คิด... คุณละทิ้ง[red]ความคิดต่างๆ ที่ไร้สาระ[/red]ไป\n\nคุณกลับมายัง[blue]ท่าเรือเบื้องล่าง[/blue]\nเอ๊ะ? ได้ยังไง...?"
+      },
+      {
+        "id": "INITIAL",
+        "description": "อยู่ดีๆ ก็มีประตูปรากฏขึ้น ทั้งๆ ที่ก่อนหน้านี้ไม่เคยมีอยู่...\n\nคุณเข้าไปแล้วพบว่ามีประตูที่ส่องแสงเป็นประกายอยู่ 2 บาน และ[gold]ทวารบาลผู้แต่งกายดี 1 นาย[/gold]\n“ในที่สุดก็มีแขก! ได้โปรด ได้โปรด! เลือกประตูสักบาน บานไหนก็ได้!”\n\n[blue]นี่เรายังอยู่ในสไปร์หรือเปล่า? ที่นี่สะอาดขนาดนี้ได้อย่างไร?[/blue]",
+        "options": [
+          {
+            "id": "LIGHT",
+            "title": "ประตูแห่งแสง",
+            "description": "[gold]พัฒนา[/gold]การ์ด [blue]2[/blue] ใบแบบสุ่ม"
+          },
+          {
+            "id": "DARK",
+            "title": "ประตูแห่งความมืด",
+            "description": "กำจัดการ์ด [blue]1[/blue]ใบใน[gold]กองการ์ด[/gold]"
+          }
+        ]
+      },
+      {
+        "id": "LIGHT",
+        "description": "[sine][gold]มุ่งสู่แสงสว่าง...[/gold][/sine]\n\n[jitter]มันช่างจ้าเสียเหลือเกิน!![/jitter] แต่แสงช่วย[gold]เสริมกำลัง[/gold]ให้แก่คุณ\n\nคุณกลับมายัง[blue]ท่าเรือเบื้องล่าง[/blue]\nเอ๊ะ? ได้ยังไง...?"
+      }
+    ]
   },
   {
     "id": "DROWNING_BEACON",
@@ -652,21 +916,103 @@
   },
   {
     "id": "ENDLESS_CONVEYOR",
-    "name": "EndlessConveyor",
+    "name": "สายพานไร้สิ้นสุด",
     "type": "Event",
     "act": "Underdocks",
-    "description": null,
+    "description": "คุณโซซัดโซเซเข้าไปในกระท่อม ที่มีป้ายสว่างไสวแต่บิดเบี้ยว เขียนไว้ว่า:\n[aqua]“อร่อยไม่หยุด - สุดที่การจ่าย!”[/aqua]\n\nด้านในมี[orange]เชฟหลายแขนร่างเพรียวผอม[/orange]กำลังเตรียม[green]อาหารนานาชนิด[/green]อย่างช่ำชอง และวางลงบน[sine]สายพานคดเคี้ยวที่ทำจากเปลือกแข็งของสัตว์ทะเล[/sine].\n\nแขนข้างหนึ่งของเชฟชี้ไปที่ป้าย:\nจานละ [blue]40[/blue] [gold]ทอง[/gold]",
     "preconditions": [
-      "Requires 105+ gold"
+      "Requires 120+ gold"
     ],
     "options": [
       {
         "id": "OBSERVE_CHEF",
-        "title": "OBSERVE_CHEF",
+        "title": "จับตามองเชฟ",
         "description": "[gold]พัฒนา[/gold]การ์ด 1 ใบใน[gold]กองการ์ด[/gold] แบบสุ่ม"
       }
     ],
-    "pages": null
+    "pages": [
+      {
+        "id": "ALL",
+        "description": null,
+        "options": [
+          {
+            "id": "LOCKED",
+            "title": "ถังแตก",
+            "description": "คุณอยากกินต่อแต่[gold]ทอง[/gold]ไม่พอ"
+          },
+          {
+            "id": "CAVIAR",
+            "title": "หยิบไข่ปลาคาเวียร์จากสายพาน",
+            "description": "จ่าย [red]40[/red] [gold]ทอง[/gold] ได้รับ [green]4[/green] HP สูงสุด โซ้ยต่อ!"
+          },
+          {
+            "id": "CLAM_ROLL",
+            "title": "หยิบหอยโรลจากสายพาน",
+            "description": "จ่าย [red]40[/red] [gold]ทอง[/gold] ฟื้นฟู [green]10[/green] HP โซ้ยต่อ!"
+          },
+          {
+            "id": "FRIED_EEL",
+            "title": "หยิบปลาไหลทอดจากสายพาน",
+            "description": "จ่าย [red]40[/red] [gold]ทอง[/gold] เพิ่มการ์ดไม่มีสี 1 ใบแบบสุ่มเข้า[gold]กองการ์ด[/gold] โซ้ยต่อ!"
+          },
+          {
+            "id": "GOLDEN_FYSH",
+            "title": "หยิบปฬาทองคำจากสายพาน",
+            "description": "[green]คุณคือผู้โชคดี![/green] ได้รับ [blue]75[/blue] [gold]ทอง[/gold]"
+          },
+          {
+            "id": "JELLY_LIVER",
+            "title": "หยิบตับเยลลี่จากสายพาน",
+            "description": "จ่าย [red]40[/red] [gold]ทอง[/gold] [gold]แปรสภาพ[/gold]การ์ด 1 ใบ โซ้ยต่อ!"
+          },
+          {
+            "id": "SEAPUNK_SALAD",
+            "title": "หยิบสลัดหร่ายเลจากสายพาน",
+            "description": "จ่าย [red]40[/red] [gold]ทอง[/gold] เพิ่ม[gold]Feeding Frenzy[/gold]เข้า[gold]กองการ์ด[/gold] โซ้ยต่อ!"
+          },
+          {
+            "id": "SPICY_SNAPPY",
+            "title": "หยิบเผ็ดกรอบทรงเครื่องจากสายพาน",
+            "description": "จ่าย [red]40[/red] [gold]ทอง[/gold] [gold]พัฒนา[/gold]การ์ด 1 ใบแบบสุ่ม โซ้ยต่อ!"
+          },
+          {
+            "id": "SUSPICIOUS_CONDIMENT",
+            "title": "หยิบเครื่องปรุงน่าสงสัยจากสายพาน",
+            "description": "จ่าย [red]40[/red] [gold]ทอง[/gold] จัดหา[gold]ขวดยา[/gold] 1 ขวดแบบสุ่ม โซ้ยต่อ!"
+          }
+        ]
+      },
+      {
+        "id": "GRAB_SOMETHING_OFF_THE_BELT",
+        "description": "คุณหยิบ[gold]Last Dish Title[/gold]จากสายพานแล้วกินจนหมด\n[green]อาโหร่ย![/green]",
+        "options": [
+          {
+            "id": "LEAVE",
+            "title": "จากไป",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "id": "INITIAL",
+        "description": "คุณโซซัดโซเซเข้าไปในกระท่อม ที่มีป้ายสว่างไสวแต่บิดเบี้ยว เขียนไว้ว่า:\n[aqua]“อร่อยไม่หยุด - สุดที่การจ่าย!”[/aqua]\n\nด้านในมี[orange]เชฟหลายแขนร่างเพรียวผอม[/orange]กำลังเตรียม[green]อาหารนานาชนิด[/green]อย่างช่ำชอง และวางลงบน[sine]สายพานคดเคี้ยวที่ทำจากเปลือกแข็งของสัตว์ทะเล[/sine].\n\nแขนข้างหนึ่งของเชฟชี้ไปที่ป้าย:\nจานละ [blue]40[/blue] [gold]ทอง[/gold]",
+        "options": [
+          {
+            "id": "OBSERVE_CHEF",
+            "title": "จับตามองเชฟ",
+            "description": "[gold]พัฒนา[/gold]การ์ด 1 ใบใน[gold]กองการ์ด[/gold] แบบสุ่ม"
+          }
+        ]
+      },
+      {
+        "id": "LEAVE",
+        "description": "คุณกินจนหนำใจ แล้วออกเดินทางต่อ"
+      },
+      {
+        "id": "OBSERVE_CHEF",
+        "description": "คุณยืนนิ่งอยู่ในเงามืดบริเวณทางเข้าร้าน เว้นระยะห่างจากที่นั่ง\n\n[orange]เชฟ[/orange]ทำงานของตัวเองไปโดยไม่สนใจ คุณศึกษาพฤติกรรมและวินัยของเชฟ เพื่อหวังลดการเคลื่อนไหวและอารมณ์ที่ไม่จำเป็นระหว่างต่อสู้"
+      }
+    ]
   },
   {
     "id": "FAKE_MERCHANT",
@@ -762,37 +1108,62 @@
   },
   {
     "id": "JUNGLE_MAZE_ADVENTURE",
-    "name": "ผจญภัยเขาวงกตดงดิบ",
+    "name": "การผจญภัยเขาวงกตดงดิบ",
     "type": "Event",
     "act": "Act 1 - Overgrowth",
-    "description": null,
+    "description": "คุณบังเอิญพบ[green]กลุ่มนักผจญภัยที่ไม่เป็นระเบียบ[/green]บริเวณที่โล่งกลางป่า กำลังมองและทำท่าทางไปที่[purple]เขาวงกตยักษ์[/purple]\n\nพวกเข้าเสนอจะร่วมผจญภัยไปพร้อมคุณใน[b]ภารกิจมหากาพย์[/b]ล่าสมบัติในเขาวงกตแห่งนี้ ในฐานะที่คุณเองก็เป็นนักผจญภัยมากประสบการณ์ เห็นได้ชัดว่าเขาวงกตนี้เต็มไปด้วย[red][jitter]กับดักร้ายแรง[/jitter][/red]และ[orange][sine]ผู้พิทักษ์[/sine][/orange]\n\nร่วมแรงร่วมใจอาจง่ายกว่า แต่ของรางวัลก็ต้องแบ่งกันด้วย",
     "preconditions": null,
     "options": [
       {
         "id": "SOLO_QUEST",
-        "title": "SOLO_QUEST",
+        "title": "ผจญภัยคนเดียว",
         "description": "ได้รับ [blue]135-165[/blue] [gold]ทอง[/gold] เสีย [red]18[/red] HP"
       },
       {
         "id": "JOIN_FORCES",
-        "title": "JOIN_FORCES",
+        "title": "ร่วมแรงร่วมใจ",
         "description": "ได้รับ [blue]35-65[/blue] [gold]ทอง[/gold]"
       }
     ],
-    "pages": null
+    "pages": [
+      {
+        "id": "INITIAL",
+        "description": "คุณบังเอิญพบ[green]กลุ่มนักผจญภัยที่ไม่เป็นระเบียบ[/green]บริเวณที่โล่งกลางป่า กำลังมองและทำท่าทางไปที่[purple]เขาวงกตยักษ์[/purple]\n\nพวกเข้าเสนอจะร่วมผจญภัยไปพร้อมคุณใน[b]ภารกิจมหากาพย์[/b]ล่าสมบัติในเขาวงกตแห่งนี้ ในฐานะที่คุณเองก็เป็นนักผจญภัยมากประสบการณ์ เห็นได้ชัดว่าเขาวงกตนี้เต็มไปด้วย[red][jitter]กับดักร้ายแรง[/jitter][/red]และ[orange][sine]ผู้พิทักษ์[/sine][/orange]\n\nร่วมแรงร่วมใจอาจง่ายกว่า แต่ของรางวัลก็ต้องแบ่งกันด้วย",
+        "options": [
+          {
+            "id": "SOLO_QUEST",
+            "title": "ผจญภัยคนเดียว",
+            "description": "ได้รับ [blue]135-165[/blue] [gold]ทอง[/gold] เสีย [red]18[/red] HP"
+          },
+          {
+            "id": "JOIN_FORCES",
+            "title": "ร่วมแรงร่วมใจ",
+            "description": "ได้รับ [blue]35-65[/blue] [gold]ทอง[/gold]"
+          }
+        ]
+      },
+      {
+        "id": "JOIN_FORCES",
+        "description": "สีหน้าของทุกคนดีขึ้นทันที รวมถึงคุณด้วย!\n\nหนึ่งในนักผจญภัยเหล่านั้นเป็นนักกวี!\nคุณโลดแล่นเข้าเขาวงกตอย่างสนุกสนาน ในขณะที่[aqua]Aquid หมึกจอมเวท[/aqua]ปลดกับดักอย่างไม่ยากเย็น และคุณกับ[red]Grathorian นักสู้[/red]ล้ม[orange]เหล่าผู้พิทักษ์ถือกระบองหนาม[/orange]ลงอย่างง่ายดาย\n\nนี่เป็นการผจญภัยที่สุขสันต์ที่สุดในชีวิตของคุณ และคุณได้สร้าง[gold][sine]ความทรงจำอันยิ่งใหญ่[/sine][/gold]อย่างแท้จริง"
+      },
+      {
+        "id": "SOLO_QUEST",
+        "description": "คุณรู้สึกไม่อยากยุ่งกับผู้คน จึงเดินผ่านพวกเขาโดยไม่พูดอะไรสักคำ สีหน้าของพวกเขาบึ้งตึง หนึ่งในนั้นถึงกับ[jitter][purple]เขย่ากำปั้น[/purple][/jitter]ใส่คุณด้วย\n\nเขาวงกตนี้ไม่เป็นมิตรเอาเสียเลย คุณตกลงไปในกับดักหนาม คุณถูกโจมตีด้วยขอนไม้ขนาดใหญ่ที่เต็มไปด้วยหนาม และ[orange]สิ่งมีชีวิตดุร้ายที่มีกระบองหนาม[/orange]ต่อสู้กับคุณตลอดเส้นทาง\n\nตอนนี้คุณเอียนหนามเต็มที และคิดว่าครั้งหน้า ร่วมมือกันอาจดีกว่า"
+      }
+    ]
   },
   {
     "id": "LOST_WISP",
-    "name": "LostWisp",
+    "name": "ลูกไฟวิญญาณที่หลงทาง",
     "type": "Event",
     "act": "Act 2 - Hive",
-    "description": null,
+    "description": "มีภาพที่แปลกตามากอยู่ไกลๆ [sine][red]แมลงตาย[/red][/sine]กองกันเป็นภูเขาหลายลูก ล้อมรอบสิ่งที่ดูเหมือนจะเป็น[orange]กลุ่มก้อนเรืองแสงขนาดเล็ก[/orange]\nสงสัยนี่คงเป็นตัวล่อแมลงทุกชนิดได้เป็นอย่างดี แต่คุณเห็นมันพ่นเปลวไฟออกมาด้วย!\n\nคุณเข้าไปใกล้ขึ้นเพื่อตรวจสอบ",
     "preconditions": null,
     "options": [
       {
         "id": "CLAIM",
-        "title": "CLAIM",
-        "description": "เพิ่ม[red]ความเสื่อมสลาย[/red]เข้า[gold]กองการ์ด[/gold] ได้รับ[gold]LostWisp[/gold]"
+        "title": "จับลูกไฟวิญญาณ",
+        "description": "เพิ่ม[red]ความเสื่อมสลาย[/red]เข้า[gold]กองการ์ด[/gold] ได้รับ[gold]ลูกไฟวิญญาณที่หลงทาง[/gold]"
       },
       {
         "id": "SEARCH",
@@ -800,7 +1171,32 @@
         "description": "ได้รับ [blue]45-75[/blue] [gold]ทอง[/gold]"
       }
     ],
-    "pages": null
+    "pages": [
+      {
+        "id": "CLAIM",
+        "description": "คุณค่อยๆ เข้าใกล้[orange]ลูกไฟวิญญาณ[/orange]อย่างระมัดระวัง...\nยิ่งเข้าใกล้ มันยิ่งตอบสนองต่อการมีอยู่ของคุณ\n\nเมื่อเข้าใกล้ในระยะเอื้อมถึง คุณจับ[orange]ลูกไฟวิญญาณ[/orange]แต่มัน[red][jitter]ลวกคุณด้วยไอน้ำร้อนและเปลวไฟ![/jitter][/red]\n\nคุณพยายาม[jitter]ยื้อยุดฉุดกระชาก[/jitter]ให้สิ่งมีชีวิตนั้นยอมจำนน ในที่สุดเจ้า[orange]ลูกไฟวิญญาณ[/orange]ก็ยอมแพ้ และยอมรับคุณว่าเป็นเจ้านายใหม่ของมัน"
+      },
+      {
+        "id": "INITIAL",
+        "description": "มีภาพที่แปลกตามากอยู่ไกลๆ [sine][red]แมลงตาย[/red][/sine]กองกันเป็นภูเขาหลายลูก ล้อมรอบสิ่งที่ดูเหมือนจะเป็น[orange]กลุ่มก้อนเรืองแสงขนาดเล็ก[/orange]\nสงสัยนี่คงเป็นตัวล่อแมลงทุกชนิดได้เป็นอย่างดี แต่คุณเห็นมันพ่นเปลวไฟออกมาด้วย!\n\nคุณเข้าไปใกล้ขึ้นเพื่อตรวจสอบ",
+        "options": [
+          {
+            "id": "CLAIM",
+            "title": "จับลูกไฟวิญญาณ",
+            "description": "เพิ่ม[red]ความเสื่อมสลาย[/red]เข้า[gold]กองการ์ด[/gold] ได้รับ[gold]ลูกไฟวิญญาณที่หลงทาง[/gold]"
+          },
+          {
+            "id": "SEARCH",
+            "title": "ค้นหาบริเวณรอบข้าง",
+            "description": "ได้รับ [blue]45-75[/blue] [gold]ทอง[/gold]"
+          }
+        ]
+      },
+      {
+        "id": "SEARCH",
+        "description": "คุณตัดสินใจไม่เข้าไปยุ่งกับเจ้าตัวน้อย ปลอดภัยไว้ก่อนดีกว่า!\n\nบริเวณนี้ไม่ค่อยมีอะไรมาก แต่คุณพบ[gold]ทอง[/gold]บางส่วนที่กระจายอยู่ตามซากศพแมลง\nคุณไม่คิดจะหาคำตอบของเรื่องนั้น"
+      }
+    ]
   },
   {
     "id": "LUMINOUS_CHOIR",
@@ -840,11 +1236,6 @@
       "Requires 100+ gold"
     ],
     "options": [
-      {
-        "id": "GROUP",
-        "title": "GROUP",
-        "description": "เสีย [red]100[/red] [gold]ทอง[/gold] [gold]แปรสภาพ[/gold]การ์ด [blue]2[/blue] ใบ"
-      },
       {
         "id": "LONER",
         "title": "LONER",
@@ -902,23 +1293,28 @@
     "relics": [
       "ARCANE_SCROLL",
       "BOOMING_CONCH",
-      "POMANDER",
       "GOLDEN_PEARL",
       "LEAD_PAPERWEIGHT",
-      "NEW_LEAF",
-      "NEOWS_TORMENT",
-      "PRECISE_SCISSORS",
       "LOST_COFFER",
-      "NUTRITIOUS_OYSTER",
-      "STONE_HUMIDIFIER",
+      "NEOWS_TORMENT",
+      "NEW_LEAF",
+      "PRECISE_SCISSORS",
+      "PHIAL_HOLSTER",
+      "WINGED_BOOTS",
       "MASSIVE_SCROLL",
       "LAVA_ROCK",
+      "NEOWS_TALISMAN",
+      "NUTRITIOUS_OYSTER",
+      "POMANDER",
       "SMALL_CAPSULE",
-      "SILVER_CRUCIBLE",
+      "STONE_HUMIDIFIER",
       "CURSED_PEARL",
+      "HEFTY_TABLET",
       "LARGE_CAPSULE",
       "LEAFY_POULTICE",
       "PRECARIOUS_SHEARS",
+      "SILVER_CRUCIBLE",
+      "NEOWS_BONES",
       "SCROLL_BOXES"
     ]
   },
@@ -1029,15 +1425,15 @@
   },
   {
     "id": "PUNCH_OFF",
-    "name": "PunchOff",
+    "name": "ต่อยกระเด็น",
     "type": "Event",
     "act": "Underdocks",
-    "description": null,
+    "description": "[gold]จักรกลชกต่อย[/gold] 2 ตัวกำลังแลกหมัดกันอยู่ และคุณเห็นสมบัติอยู่ท่ามกลางพวกมัน...\n\nควรจะลองฉกมันมาไหม?",
     "preconditions": null,
     "options": [
       {
         "id": "NAB",
-        "title": "NAB",
+        "title": "ฉก",
         "description": "เพิ่ม[red]Injury[/red]เข้า[gold]กองการ์ด[/gold] ได้รับ[gold]เครื่องราง[/gold] 1 ชิ้นแบบสุ่ม"
       },
       {
@@ -1049,11 +1445,11 @@
     "pages": [
       {
         "id": "INITIAL",
-        "description": null,
+        "description": "[gold]จักรกลชกต่อย[/gold] 2 ตัวกำลังแลกหมัดกันอยู่ และคุณเห็นสมบัติอยู่ท่ามกลางพวกมัน...\n\nควรจะลองฉกมันมาไหม?",
         "options": [
           {
             "id": "NAB",
-            "title": "NAB",
+            "title": "ฉก",
             "description": "เพิ่ม[red]Injury[/red]เข้า[gold]กองการ์ด[/gold] ได้รับ[gold]เครื่องราง[/gold] 1 ชิ้นแบบสุ่ม"
           },
           {
@@ -1065,7 +1461,7 @@
       },
       {
         "id": "I_CAN_TAKE_THEM",
-        "description": null,
+        "description": "พวก[gold]จักรกล[/gold]หันมาหาคุณอย่างน่ากลัว!\n\nคุณตั้งการ์ดรับมือ",
         "options": [
           {
             "id": "FIGHT",
@@ -1073,15 +1469,19 @@
             "description": ""
           }
         ]
+      },
+      {
+        "id": "NAB",
+        "description": "คุณฉกเครื่องรางมาได้สำเร็จ!\n\n...คุณคิดว่าสำเร็จ แต่โดนหมัดขวา[jitter][red]ใส่เข้าหน้าเต็มๆ[/red][/jitter]"
       }
     ]
   },
   {
     "id": "RANWID_THE_ELDER",
-    "name": "RanwidTheElder",
+    "name": "ผู้อาวุโสแรนวิด",
     "type": "Shared",
     "act": null,
-    "description": null,
+    "description": "[purple]บุคคลที่แก่หงำเหงือกที่สุดที่คุณเคยเจอมา[/purple]เคลื่อนตัวเข้ามาหาคุณ\n[sine]“เราเจอกันอีกแล้วนะ... ฉันเอง แรนวิดไงล่ะ!”[/sine]\n\nคุณไม่รู้จักชายผู้นี้",
     "preconditions": [
       "Act 2+",
       "Requires at least one potion"
@@ -1113,14 +1513,58 @@
         "description": "คุณไม่เหลือเครื่องรางที่สามารถมอบให้ได้"
       }
     ],
-    "pages": null
+    "pages": [
+      {
+        "id": "GOLD",
+        "description": "[sine]“งด.. งาม...”[/sine]\n\nแรนวิดพึมพำขณะเคี้ยว[gold]ทอง[/gold]"
+      },
+      {
+        "id": "INITIAL",
+        "description": "[purple]บุคคลที่แก่หงำเหงือกที่สุดที่คุณเคยเจอมา[/purple]เคลื่อนตัวเข้ามาหาคุณ\n[sine]“เราเจอกันอีกแล้วนะ... ฉันเอง แรนวิดไงล่ะ!”[/sine]\n\nคุณไม่รู้จักชายผู้นี้",
+        "options": [
+          {
+            "id": "POTION",
+            "title": "ให้Potion",
+            "description": "ได้รับ[gold]เครื่องราง[/gold] 1 ชิ้นแบบสุ่ม"
+          },
+          {
+            "id": "POTION_LOCKED",
+            "title": "ล็อก",
+            "description": "คุณไม่เหลือขวดยาที่สามารถมอบให้ได้"
+          },
+          {
+            "id": "GOLD",
+            "title": "ให้ 100 ทอง",
+            "description": "ได้รับ[gold]เครื่องราง[/gold] 1 ชิ้นแบบสุ่ม"
+          },
+          {
+            "id": "RELIC",
+            "title": "ให้Relic",
+            "description": "ได้รับ[gold]เครื่องราง[/gold] [blue]2[/blue] ชิ้นแบบสุ่ม"
+          },
+          {
+            "id": "RELIC_LOCKED",
+            "title": "ล็อก",
+            "description": "คุณไม่เหลือเครื่องรางที่สามารถมอบให้ได้"
+          }
+        ]
+      },
+      {
+        "id": "POTION",
+        "description": "“[sine]วิจิตร...”[/sine]\n\n[sine][blue]เอื๊อก เอื๊อก เอื๊อก[/blue][/sine]\n\nเขากระดก[gold]Potion[/gold]รวดเดียวหมด"
+      },
+      {
+        "id": "RELIC",
+        "description": "[sine]“ล้ำเลิศประเสริฐศรี...”[/sine]\n\nแรนวิดตรวจสอบเครื่องรางอย่างเอาจริงเอาจังเป็นเวลาหลายนาที...\n\nจากนั้นก็กิน[gold]Relic[/gold]เข้าไป"
+      }
+    ]
   },
   {
     "id": "REFLECTIONS",
     "name": "ภาพสะท้อน นอท้ะสพาภ",
     "type": "Event",
     "act": "Act 3 - Glory",
-    "description": null,
+    "description": "อะไรเนี่ย? รู้สึกเหมือนมีบางอย่างผิดปกติ...\n[sine]...ติกปดผิงาย่องาบมีนอมืหเกสึรู้ ?ยนี่เรไะอ[/sine]",
     "preconditions": null,
     "options": [
       {
@@ -1134,14 +1578,39 @@
         "description": "ทำสำเนาทั้ง[gold]กองการ์ด[/gold] ได้รับ[purple]โชคร้าย[/purple]"
       }
     ],
-    "pages": null
+    "pages": [
+      {
+        "id": "INITIAL",
+        "description": "อะไรเนี่ย? รู้สึกเหมือนมีบางอย่างผิดปกติ...\n[sine]...ติกปดผิงาย่องาบมีนอมืหเกสึรู้ ?ยนี่เรไะอ[/sine]",
+        "options": [
+          {
+            "id": "TOUCH_A_MIRROR",
+            "title": "สัมผัสกระจก",
+            "description": "[red]ย้อนการพัฒนา[/red]การ์ด [blue]2[/blue] ใบแบบสุ่ม [green]พัฒนา[/green]การ์ด [blue]4[/blue] ใบแบบสุ่ม"
+          },
+          {
+            "id": "SHATTER",
+            "title": "ทุบให้แตก",
+            "description": "ทำสำเนาทั้ง[gold]กองการ์ด[/gold] ได้รับ[purple]โชคร้าย[/purple]"
+          }
+        ]
+      },
+      {
+        "id": "SHATTER",
+        "description": "คุณตั้งสมาธิและตรวจสอบกระจกเงาไร้รอยต่อบานยักษ์ที่ตั้งอยู่ตรงหน้า\nด้วยการเตะอย่างรวดเร็ว กระจกยักษ์ก็[jitter]แตกเป็นเสี่ยงๆ[/jitter]!\nทันทีที่คุณทำลายกระจก เงาสะท้อนของคุณก็เตรียมตัวเตรียมใจของตัว[pronounObject]เองให้พร้อม ในตอนที่ตัว[pronounSubject]กลายเป็นหนึ่งพันเศษเสี้ยวระยิบระยับอันงดงาม\n\nสถานที่แบบนี้มันมีอยู่ได้ไงเนี่ย?"
+      },
+      {
+        "id": "TOUCH_A_MIRROR",
+        "description": "คุณขยับเข้าไปและหลอมรวมตัวเองเข้ากับภาพสะท้อนตรงหน้า\n[sine]ร่างไหนคือฉันกันแน่?[/sine]"
+      }
+    ]
   },
   {
     "id": "RELIC_TRADER",
     "name": "วาณิชเครื่องราง",
     "type": "Shared",
     "act": null,
-    "description": null,
+    "description": "คุณเลี้ยวตรงหัวมุม และทันใดนั้น ร่างเงาก็ยืนอยู่ตรงนั้น เขาหันมาหาคุณ\n\n“ยินดีต้อนรับ! มีอะไรมาแลกล่ะ?”\nร่างนั้นซักถามพร้อมกับเปิดผ้าคลุมของเขาออกมา เผยให้เห็น[sine][purple]สินค้าน่าสงสัย[/purple][/sine]ชุดหนึ่ง",
     "preconditions": [
       "Act 2+",
       "Requires 5+ tradeable relics"
@@ -1163,21 +1632,47 @@
         "description": "แลก[gold]one of your Relics[/gold]เป็น[gold]a random Relic[/gold]"
       }
     ],
-    "pages": null
+    "pages": [
+      {
+        "id": "DONE",
+        "description": "“ฮ่าฮ่าฮ่า ฮ่าาาา... ขอบใจ!”"
+      },
+      {
+        "id": "INITIAL",
+        "description": "คุณเลี้ยวตรงหัวมุม และทันใดนั้น ร่างเงาก็ยืนอยู่ตรงนั้น เขาหันมาหาคุณ\n\n“ยินดีต้อนรับ! มีอะไรมาแลกล่ะ?”\nร่างนั้นซักถามพร้อมกับเปิดผ้าคลุมของเขาออกมา เผยให้เห็น[sine][purple]สินค้าน่าสงสัย[/purple][/sine]ชุดหนึ่ง",
+        "options": [
+          {
+            "id": "TOP",
+            "title": "เอาอันบน",
+            "description": "แลก[gold]one of your Relics[/gold]เป็น[gold]a random Relic[/gold]"
+          },
+          {
+            "id": "MIDDLE",
+            "title": "เอาอันกลาง",
+            "description": "แลก[gold]one of your Relics[/gold]เป็น[gold]a random Relic[/gold]"
+          },
+          {
+            "id": "BOTTOM",
+            "title": "เอาอันล่าง",
+            "description": "แลก[gold]one of your Relics[/gold]เป็น[gold]a random Relic[/gold]"
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "ROOM_FULL_OF_CHEESE",
     "name": "ห้องที่เต็มไปด้วยชีส",
     "type": "Shared",
     "act": null,
-    "description": null,
+    "description": "ห้องนี้เต็มไปด้วย[b][jitter]ชีส!!![/jitter][/b]\n\nคุณมองไปรอบๆ เพื่อดูว่ามีกับดักไหม และด้านบนคุณมี... [b]ชีส[/b]อีกแล้ว บรรดาเทียนไขในห้องนี้ก็ดูทำจาก[b]ชีส[/b] เฟอร์นิเจอร์ต่างๆ ก็เป็น[b]ชีส[/b]\nทันใดนั้น ประตูด้านหลังคุณก็ปิดแรงๆ\n\nประตูก็[b]ชีส[/b]",
     "preconditions": [
       "Act 1–2 only"
     ],
     "options": [
       {
         "id": "GORGE",
-        "title": "GORGE",
+        "title": "ห้องชูชก",
         "description": "เลือกการ์ด[gold]ธรรมดา[/gold] [blue]2[/blue] จากที่สุ่มมา[blue]8[/blue] ใบเพื่อเพิ่มเข้า[gold]กองการ์ด[/gold]"
       },
       {
@@ -1189,15 +1684,15 @@
     "pages": [
       {
         "id": "GORGE",
-        "description": null
+        "description": "คุณแทะ[b]ชีส[/b]ไปเล็กน้อย มันเติมพลังให้คุณมีแรงกิน[b]ชีส[/b]มากขึ้นและมากขึ้น\n\n[sine]เวลาผ่านไป...[/sine]\n\n คุณกิน[b]ชีส[/b]ไปในปริมาณที่มากจนน่าเกรงกลัว\nคืนนี้ฝันถึง[b]ชีส[/b]แน่ๆ"
       },
       {
         "id": "INITIAL",
-        "description": null,
+        "description": "ห้องนี้เต็มไปด้วย[b][jitter]ชีส!!![/jitter][/b]\n\nคุณมองไปรอบๆ เพื่อดูว่ามีกับดักไหม และด้านบนคุณมี... [b]ชีส[/b]อีกแล้ว บรรดาเทียนไขในห้องนี้ก็ดูทำจาก[b]ชีส[/b] เฟอร์นิเจอร์ต่างๆ ก็เป็น[b]ชีส[/b]\nทันใดนั้น ประตูด้านหลังคุณก็ปิดแรงๆ\n\nประตูก็[b]ชีส[/b]",
         "options": [
           {
             "id": "GORGE",
-            "title": "GORGE",
+            "title": "ห้องชูชก",
             "description": "เลือกการ์ด[gold]ธรรมดา[/gold] [blue]2[/blue] จากที่สุ่มมา[blue]8[/blue] ใบเพื่อเพิ่มเข้า[gold]กองการ์ด[/gold]"
           },
           {
@@ -1206,6 +1701,10 @@
             "description": "เสีย [red]14[/red] HP ได้รับ[gold]ชีสที่ถูกเลือก[/gold]"
           }
         ]
+      },
+      {
+        "id": "SEARCH",
+        "description": "คุณเดินสำรวจเป็นเวลา[sine]ชั่วโมงแล้วชั่วโมงเล่า...[/sine]\n\nเวลาไหลผ่านไปในขณะที่จิตใจของคุณล่องลอยออกจาก[b]ชีส[/b]ที่มีพวกนี้ ไปยังสถานที่แปลกประหลาดมากมาย จนหมดสติไปตอนไหนไม่รู้....\nคุณได้สติตื่นขึ้นอีกครั้ง และรู้สึกว่าคุณจะถืออะไรบางอย่างไว้\n\n[b]ชีสที่ถูกเลือก[/b]"
       }
     ]
   },
@@ -1215,7 +1714,9 @@
     "type": "Event",
     "act": "Act 3 - Glory",
     "description": null,
-    "preconditions": null,
+    "preconditions": [
+      "Requires 12+ HP"
+    ],
     "options": [
       {
         "id": "ENJOY_TEA",
@@ -1232,31 +1733,56 @@
   },
   {
     "id": "SAPPHIRE_SEED",
-    "name": "SapphireSeed",
+    "name": "เมล็ดไพลิน",
     "type": "Event",
     "act": "Act 1 - Overgrowth",
-    "description": null,
+    "description": "คุณเกือบจะเหยียบอะไรคมๆ สว่างๆ เข้าให้แล้ว... เมล็ดงั้นเหรอ? ดูจากสีแล้ว ต้องเป็น[aqua]เมล็ดไพลิน[/aqua]ไม่ผิดแน่! เหลือเชื่อ! เมล็ดพวกนี้น่าจะสูญพันธุ์ไปแล้วไม่ใช่เหรอ!?\n\nตำนานเล่าว่า หากกินเข้าไปจะช่วย[gold]เสริมความทนทาน[/gold]อย่างมาก แต่ถ้าเราเอาไปปลูกและดูแลมันแทนล่ะ?",
     "preconditions": null,
     "options": [
       {
         "id": "EAT",
-        "title": "EAT",
+        "title": "กิน",
         "description": "ฟื้นฟู [green]9[/green] HP [gold]พัฒนา[/gold]การ์ด 1 ใบใน[gold]กองการ์ด[/gold]"
       },
       {
         "id": "PLANT",
-        "title": "PLANT",
+        "title": "ปลูกและดูแล",
         "description": "[gold]ร่ายมนตร์[/gold]ใส่การ์ด 1 ใบด้วย[purple]มนตร์หว่านเมล็ด[/purple]"
       }
     ],
-    "pages": null
+    "pages": [
+      {
+        "id": "EAT",
+        "description": "คุณนำ[aqua]เมล็ดไพลิน[/aqua]เข้าปาก และทันใดนั้นเองก็รู้สึกว่า[blue]แขนขาของคุณคล่องตัวมากขึ้น[/blue] [gold]สีสันคมชัดขึ้น[/gold] และคุณ[purple][sine]สัมผัสวิญญาณศัตรูรอบข้างได้[/sine][/purple]\n\nดีนะที่ไม่เผลอเหยียบมันเข้าให้"
+      },
+      {
+        "id": "INITIAL",
+        "description": "คุณเกือบจะเหยียบอะไรคมๆ สว่างๆ เข้าให้แล้ว... เมล็ดงั้นเหรอ? ดูจากสีแล้ว ต้องเป็น[aqua]เมล็ดไพลิน[/aqua]ไม่ผิดแน่! เหลือเชื่อ! เมล็ดพวกนี้น่าจะสูญพันธุ์ไปแล้วไม่ใช่เหรอ!?\n\nตำนานเล่าว่า หากกินเข้าไปจะช่วย[gold]เสริมความทนทาน[/gold]อย่างมาก แต่ถ้าเราเอาไปปลูกและดูแลมันแทนล่ะ?",
+        "options": [
+          {
+            "id": "EAT",
+            "title": "กิน",
+            "description": "ฟื้นฟู [green]9[/green] HP [gold]พัฒนา[/gold]การ์ด 1 ใบใน[gold]กองการ์ด[/gold]"
+          },
+          {
+            "id": "PLANT",
+            "title": "ปลูกและดูแล",
+            "description": "[gold]ร่ายมนตร์[/gold]ใส่การ์ด 1 ใบด้วย[purple]มนตร์หว่านเมล็ด[/purple]"
+          }
+        ]
+      },
+      {
+        "id": "PLANT",
+        "description": "คุณเสาะหาในดินแดน[green]รกชัฏ[/green]และเจอกระถางที่[blue]ระบายอากาศได้ดี[/blue] จากนั้นคุณก็ออกสำรวจและค้นพบบริเวณที่ปลอดภัยและมี[orange]แสงลอดผ่านรอยแตกของกำแพง[/orange] คุณบรรจงนำเปลือกไม้และเถาวัลย์มาเสริมอย่างระมัดระวังเพื่อ[green]พราง[/green]กระถาง จากนั้นใส่ดินร่วนที่อุดมด้วยสารอาหาร และกด[aqua]เมล็ด[/aqua]ลงไปใต้ผิวดินเล็กน้อย\n\nสุดท้าย คุณรวบรวมน้ำค้างจากพืชบริเวณนั้นแล้วรดน้ำลงดิน\n\n[sine]โตไวๆ นะ เจ้าเมล็ดน้อย...[/sine]\n[aqua]เมล็ดไพลิน[/aqua]เชื่อมต่อกับคุณทางจิตวิญญาณโดยไม่รู้ตัว\nมันซาบซึ้งในความพยายามอย่างหนักของคุณ"
+      }
+    ]
   },
   {
     "id": "SELF_HELP_BOOK",
     "name": "หนังสือพัฒนาตัวเอง",
     "type": "Shared",
     "act": null,
-    "description": null,
+    "description": "พบหนังสืออยู่ที่พื้น\n“3 สุดยอดวิธีพิชิตสไปร์”\n\nหนังสือ[red]มีเลือดท่วม[/red] คุณจึงรู้สึกว่ามันน่าสงสัยมาก\n\nจะอ่านไหม?",
     "preconditions": null,
     "options": [
       {
@@ -1298,7 +1824,7 @@
     "pages": [
       {
         "id": "INITIAL",
-        "description": null,
+        "description": "พบหนังสืออยู่ที่พื้น\n“3 สุดยอดวิธีพิชิตสไปร์”\n\nหนังสือ[red]มีเลือดท่วม[/red] คุณจึงรู้สึกว่ามันน่าสงสัยมาก\n\nจะอ่านไหม?",
         "options": [
           {
             "id": "READ_THE_BACK",
@@ -1360,7 +1886,7 @@
     "name": "สะพานลื่น",
     "type": "Shared",
     "act": null,
-    "description": null,
+    "description": "ขณะกำลังข้ามสะพานไม้โยกเยก จู่ๆ ก็มี[blue][jitter]ฝนตกหนัก[/jitter][/blue] [purple][sine]ลมกระโชกแรง[/sine][/purple]ซัดใส่คุณราวกับขู่เข็ญให้คุณยุติการเดินทาง",
     "preconditions": [
       "Floor 7+",
       "Requires removable cards in deck"
@@ -1468,7 +1994,7 @@
       },
       {
         "id": "INITIAL",
-        "description": null,
+        "description": "ขณะกำลังข้ามสะพานไม้โยกเยก จู่ๆ ก็มี[blue][jitter]ฝนตกหนัก[/jitter][/blue] [purple][sine]ลมกระโชกแรง[/sine][/purple]ซัดใส่คุณราวกับขู่เข็ญให้คุณยุติการเดินทาง",
         "options": [
           {
             "id": "OVERCOME",
@@ -1525,17 +2051,17 @@
       {
         "id": "REJECTION",
         "title": "ปฏิเสธ",
-        "description": "เสีย [red]9[/red] HP กำจัดการ์ด 1 ใบจาก[gold]กองการ์ด[/gold]"
+        "description": "เสีย [red]10[/red] HP กำจัดการ์ด 1 ใบจาก[gold]กองการ์ด[/gold]"
       }
     ],
     "pages": null
   },
   {
     "id": "STONE_OF_ALL_TIME",
-    "name": "StoneOfAllTime",
+    "name": "ศิลาตลอดกาล",
     "type": "Shared",
     "act": null,
-    "description": null,
+    "description": "ศิลาขนาดใหญ่ตั้งอยู่กลางลานกว้างร้าง\n\nแผ่นป้ายโลหะเขียนว่า:\n[gold][b]ศิลาตลอดกาล[/b][/gold].\n\nสภาพ รูปร่าง และของประดับประดา ชี้ให้เห็นว่าลานกว้างแห่งนี้ถูกสร้างขึ้นโดยมี[blue]ศิลา[/blue]นี้เป็นหลัก และมันไม่เคยถูกย้ายไปจากตำแหน่งนี้เลย",
     "preconditions": [
       "Act 2 only",
       "Requires at least one potion"
@@ -1562,7 +2088,42 @@
         "description": "เสีย [red]6[/red] HP [gold]ร่ายมนตร์[/gold]การ์ดโจมตี 1 ใบด้วย[purple]Vigorous[/purple] [blue]8[/blue]"
       }
     ],
-    "pages": null
+    "pages": [
+      {
+        "id": "INITIAL",
+        "description": "ศิลาขนาดใหญ่ตั้งอยู่กลางลานกว้างร้าง\n\nแผ่นป้ายโลหะเขียนว่า:\n[gold][b]ศิลาตลอดกาล[/b][/gold].\n\nสภาพ รูปร่าง และของประดับประดา ชี้ให้เห็นว่าลานกว้างแห่งนี้ถูกสร้างขึ้นโดยมี[blue]ศิลา[/blue]นี้เป็นหลัก และมันไม่เคยถูกย้ายไปจากตำแหน่งนี้เลย",
+        "options": [
+          {
+            "id": "LIFT",
+            "title": "ดื่มแล้วยก",
+            "description": "เสีย [red]a random Potion[/red] ได้รับ [blue]10[/blue] HP สูงสุด"
+          },
+          {
+            "id": "LIFT_LOCKED",
+            "title": "ล็อก",
+            "description": "ตัองการขวดยา 1 ขวด"
+          },
+          {
+            "id": "PUSH_LOCKED",
+            "title": "ล็อก",
+            "description": "ตัองการการ์ดโจมตี 1 ใบ"
+          },
+          {
+            "id": "PUSH",
+            "title": "ผลัก",
+            "description": "เสีย [red]6[/red] HP [gold]ร่ายมนตร์[/gold]การ์ดโจมตี 1 ใบด้วย[purple]Vigorous[/purple] [blue]8[/blue]"
+          }
+        ]
+      },
+      {
+        "id": "LIFT",
+        "description": "คุณกระดก[gold]a random Potion[/gold]แล้วพยายาม[jitter]ยกศิลาด้วยแรงทั้งหมด[/jitter]!!\n\nไม่มีอะไรเกิดขึ้น"
+      },
+      {
+        "id": "PUSH",
+        "description": "คุณพยายาม[jitter]ผลักแล้วผลักอีก[/jitter] ทุ่มพลังทั้งหมดที่มี!!\n\nไม่มีอะไรเกิดขึ้น"
+      }
+    ]
   },
   {
     "id": "SUNKEN_STATUE",
@@ -1795,7 +2356,7 @@
       {
         "id": "EMBER_TEA",
         "title": "EMBER_TEA",
-        "description": "จ่าย [red]150[/red] [gold]ทอง[/gold] ตอนเริ่มต้นอีก [blue]5[/blue] การต่อสู้ ได้รับ [blue]2[/blue] [gold]ความแข็งแรง[/gold]"
+        "description": "จ่าย [red]150[/red] [gold]ทอง[/gold] ตอนเริ่มต้นอีก 1 การต่อสู้ ได้รับ [blue]2[/blue] [gold]ความแข็งแรง[/gold]"
       },
       {
         "id": "EMBER_TEA_LOCKED",
@@ -2137,10 +2698,10 @@
   },
   {
     "id": "UNREST_SITE",
-    "name": "UnrestSite",
+    "name": "จุดพักไม่ได้พัก",
     "type": "Event",
     "act": "Act 1 - Overgrowth",
-    "description": null,
+    "description": "คุณพบ[gold]จุดพัก[/gold]เงียบสงบและ[orange]จุดไฟ[/orange]เพื่อเตรียมพักผ่อน\nคุณคิดเช่นนั้น แต่ว่า...\n\nเมื่อไฟลุกแล้ว แทนที่มันจะพุ่งขึ้น มันกลับพุ่งออก[sine]ด้านข้าง[/sine]ไปยังป่าที่เต็มไปด้วย[purple]ต้นไม้ชุ่มน้ำมัน[/purple]\n\nคุณจะพยายามพักผ่อนต่อไหม?",
     "preconditions": [
       "Requires ≤70% HP"
     ],
@@ -2152,11 +2713,36 @@
       },
       {
         "id": "KILL",
-        "title": "KILL",
+        "title": "ฆ่าพวกต้นไม้",
         "description": "[red]เสีย 8 HP สูงสุด[/red] ได้รับ[gold]เครื่องราง[/gold]แบบสุ่ม"
       }
     ],
-    "pages": null
+    "pages": [
+      {
+        "id": "INITIAL",
+        "description": "คุณพบ[gold]จุดพัก[/gold]เงียบสงบและ[orange]จุดไฟ[/orange]เพื่อเตรียมพักผ่อน\nคุณคิดเช่นนั้น แต่ว่า...\n\nเมื่อไฟลุกแล้ว แทนที่มันจะพุ่งขึ้น มันกลับพุ่งออก[sine]ด้านข้าง[/sine]ไปยังป่าที่เต็มไปด้วย[purple]ต้นไม้ชุ่มน้ำมัน[/purple]\n\nคุณจะพยายามพักผ่อนต่อไหม?",
+        "options": [
+          {
+            "id": "REST",
+            "title": "ก็จะพักผ่อนอยู่ดี",
+            "description": "[green]ฟื้นฟู HP จนเต็ม[/green] ได้รับ[red]Poor Sleep[/red]"
+          },
+          {
+            "id": "KILL",
+            "title": "ฆ่าพวกต้นไม้",
+            "description": "[red]เสีย 8 HP สูงสุด[/red] ได้รับ[gold]เครื่องราง[/gold]แบบสุ่ม"
+          }
+        ]
+      },
+      {
+        "id": "KILL",
+        "description": "ต้นไม้เหล่านี้มัน[purple]ประสงค์ร้ายอย่างเห็นได้ชัด[/purple] คุณจึงตัดสินใจกำจัดพวกมัน\nหลายวันต่อมา ตัวคุณเต็มไปด้วย[red]ขี้เถ้า[/red]และ[purple]เมือกมันๆ[/purple]\n\nวิญญาณณกฝูงใหญ่ลอยขึ้นจากซากต้นไม้ และทิ้ง[gold]กล่องขนาดเล็ก[/gold]ไว้ที่เท้าของคุณ\n[green]“ขอบคุณที่ปลดปล่อยพวกเราจากต้นไม้เหล่านั้น... [sine]จิ๊บ จิ๊บ[/sine]!”[/green]\n\nคุณควรได้นอนมากกว่านี้จริงๆ"
+      },
+      {
+        "id": "REST",
+        "description": "ตลอดการผจญภัยที่ผ่านมาทำให้คุณหมดเรี่ยวหมดแรง คุณตัดสินใจที่จะหลับท่ามกลางความแปลกประหลาดนี้\n\nคุณพลิกตัวนอน ในขณะที่[orange]ไฟ[/orange]คำรามลั่นตลอดทั้งคืน พวก[purple]ต้นไม้น่ารังเกียจ[/purple]ส่งกลิ่นเหม็นเน่าจากน้ำยางดำสนิทของมัน\n\nแล้วคุณก็ตื่นขึ้น ได้รับการฟื้นตัว แต่ไม่รู้สึกเติมเต็ม"
+      }
+    ]
   },
   {
     "id": "VAKUU",
@@ -2209,7 +2795,7 @@
     "act": "Underdocks",
     "description": null,
     "preconditions": [
-      "Requires 65+ gold"
+      "Requires 55+ gold"
     ],
     "options": [
       {
@@ -2220,22 +2806,22 @@
       {
         "id": "TENTACLE_QUILL",
         "title": "TENTACLE_QUILL",
-        "description": "จ่าย [red]65[/red] [gold]ทอง[/gold] [gold]ร่ายมนตร์[/gold]การ์ด 1 ใบด้วย[purple]Steady[/purple]"
+        "description": "จ่าย [red]55[/red] [gold]ทอง[/gold] [gold]ร่ายมนตร์[/gold]การ์ด 1 ใบด้วย[purple]Steady[/purple]"
       },
       {
         "id": "TENTACLE_QUILL_LOCKED",
         "title": "ล็อก",
-        "description": "ต้องการ [blue]65[/blue] [gold]ทอง[/gold]"
+        "description": "ต้องการ [blue]55[/blue] [gold]ทอง[/gold]"
       },
       {
         "id": "PRICKLY_SPONGE",
         "title": "PRICKLY_SPONGE",
-        "description": "จ่าย [red]155[/red] [gold]ทอง[/gold] [gold]ร่ายมนตร์[/gold]การ์ด [blue]2[/blue] ใบด้วย[purple]Steady[/purple]"
+        "description": "จ่าย [red]99[/red] [gold]ทอง[/gold] [gold]ร่ายมนตร์[/gold]การ์ด [blue]2[/blue] ใบด้วย[purple]Steady[/purple]"
       },
       {
         "id": "PRICKLY_SPONGE_LOCKED",
         "title": "ล็อก",
-        "description": "ต้องการ [blue]155[/blue] [gold]ทอง[/gold]"
+        "description": "ต้องการ [blue]99[/blue] [gold]ทอง[/gold]"
       }
     ],
     "pages": null
@@ -2291,24 +2877,49 @@
   },
   {
     "id": "WELLSPRING",
-    "name": "Wellspring",
+    "name": "บ่อน้ำพุ",
     "type": "Event",
     "act": "Act 1 - Overgrowth",
-    "description": null,
+    "description": "คุณไล่ตาม[jitter]เสียงทุ้มต่ำ[/jitter]จนถึงต้นตอ และพบว่าตัวเองกำลังหลงใหลในบ่อน้ำพุแสนสงบ น้ำสี[sine][aqua]เขียวมรกต[/aqua][/sine]ที่มี[sine][gold]อนุภาคเรืองแสง[/gold][/sine]เต็มไปหมด\n\nรู้สึกน่าเข้าไปมาก คงไม่มีอะไรแย่หรอกมั้ง?",
     "preconditions": null,
     "options": [
       {
         "id": "BOTTLE",
-        "title": "BOTTLE",
+        "title": "เก็บใส่ขวด",
         "description": "จัดหา[gold]ขวดยา[/gold] [blue]1[/blue] ขวดแบบสุ่ม"
       },
       {
         "id": "BATHE",
-        "title": "BATHE",
+        "title": "อาบน้ำ",
         "description": "กำจัดการ์ด [blue]1[/blue] ใบจาก[gold]กองการ์ด[/gold] เพิ่ม[red]Guilty[/red] [blue]1[/blue] ใบเข้า[gold]กองการ์ด[/gold]"
       }
     ],
-    "pages": null
+    "pages": [
+      {
+        "id": "BATHE",
+        "description": "คุณพุ่งออกจากบ่อน้ำด้วย[red][sine]ความรู้สึกไม่สบายใจ[/sine][/red]เล็กน้อย\n\nอย่างไรก็ตาม คุณรู้สึกสดชื่นอย่างน่าประหลาด"
+      },
+      {
+        "id": "BOTTLE",
+        "description": "การอาบน้ำใน[sine][aqua]น้ำที่สวยงาม[/aqua][/sine]ดูไม่ชอบมาพากล... คุณตัดสินใจตักเก็บใส่ขวดแทน\n\nน่าจะมีประโยชน์ในภายหลัง"
+      },
+      {
+        "id": "INITIAL",
+        "description": "คุณไล่ตาม[jitter]เสียงทุ้มต่ำ[/jitter]จนถึงต้นตอ และพบว่าตัวเองกำลังหลงใหลในบ่อน้ำพุแสนสงบ น้ำสี[sine][aqua]เขียวมรกต[/aqua][/sine]ที่มี[sine][gold]อนุภาคเรืองแสง[/gold][/sine]เต็มไปหมด\n\nรู้สึกน่าเข้าไปมาก คงไม่มีอะไรแย่หรอกมั้ง?",
+        "options": [
+          {
+            "id": "BOTTLE",
+            "title": "เก็บใส่ขวด",
+            "description": "จัดหา[gold]ขวดยา[/gold] [blue]1[/blue] ขวดแบบสุ่ม"
+          },
+          {
+            "id": "BATHE",
+            "title": "อาบน้ำ",
+            "description": "กำจัดการ์ด [blue]1[/blue] ใบจาก[gold]กองการ์ด[/gold] เพิ่ม[red]Guilty[/red] [blue]1[/blue] ใบเข้า[gold]กองการ์ด[/gold]"
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "WHISPERING_HOLLOW",
@@ -2317,13 +2928,13 @@
     "act": "Act 1 - Overgrowth",
     "description": null,
     "preconditions": [
-      "Requires 50+ gold"
+      "Requires 44+ gold"
     ],
     "options": [
       {
         "id": "GOLD",
         "title": "GOLD",
-        "description": "เสีย [red]50[/red] [gold]ทอง[/gold] จัดหา[gold]ขวดยา[/gold] [blue]2[/blue] ขวดแบบสุ่ม"
+        "description": "เสีย [red]26-44[/red] [gold]ทอง[/gold] จัดหา[gold]ขวดยา[/gold] [blue]2[/blue] ขวดแบบสุ่ม"
       },
       {
         "id": "HUG",
@@ -2368,27 +2979,27 @@
   },
   {
     "id": "ZEN_WEAVER",
-    "name": "ZenWeaver",
+    "name": "ผู้ถักทอนิกายเซน",
     "type": "Event",
     "act": "Act 2 - Hive",
-    "description": null,
+    "description": "คุณเดินผ่านใยแมงมุมและ[jitter][red]เสียขวัญ[/red][/jitter]!\nแต่แล้วก็มี[sine][blue]คลื่นแห่งความสงบ[/blue][/sine]ซัดใส่คุณ...\n\n[sine]“ใจเย็นๆ ฉันอยากให้คุณเลิกทำลายใยของฉัน”[/sine]\n\nทำไมคุณถึงสงบใจลงได้เร็วนัก?\nแมงมุม[orange]เล็กจิ๋ว[/orange]โรยตัวลงมาพบคุณ ดูเหมือนว่ามันอยากจะถ่ายทอดวิชาให้โดยแลกกับ[gold]ทอง[/gold]",
     "preconditions": [
       "Requires 125+ gold"
     ],
     "options": [
       {
         "id": "BREATHING_TECHNIQUES",
-        "title": "BREATHING_TECHNIQUES",
+        "title": "ฝึกกำหนดลมหายใจ",
         "description": "จ่าย [red]50[/red] [gold]ทอง[/gold] เพิ่ม[gold]Enlightenment[/gold] [blue]2[/blue] ใบเข้า[gold]กองการ์ด[/gold]"
       },
       {
         "id": "EMOTIONAL_AWARENESS",
-        "title": "EMOTIONAL_AWARENESS",
+        "title": "รู้เท่าทันอารมณ์",
         "description": "จ่าย [red]125[/red] [gold]ทอง[/gold] กำจัดการ์ด [blue]1[/blue] ใบจาก[gold]กองการ์ด[/gold]"
       },
       {
         "id": "ARACHNID_ACUPUNCTURE",
-        "title": "ARACHNID_ACUPUNCTURE",
+        "title": "แมงมุมฝังเข็ม",
         "description": "จ่าย [red]250[/red] [gold]ทอง[/gold] กำจัดการ์ด [blue]2[/blue] ใบจาก[gold]กองการ์ด[/gold]"
       },
       {
@@ -2397,6 +3008,45 @@
         "description": "[gold]ทอง[/gold]ไม่เพียงพอ"
       }
     ],
-    "pages": null
+    "pages": [
+      {
+        "id": "ARACHNID_ACUPUNCTURE",
+        "description": "[sine]“อย่า... ขยับ...”[/sine] [orange]แมงมุมกระจิริด[/orange]พึมพำในขณะที่ขาคู่หน้าของมันเริ่ม[aqua][jitter]เรืองแสง[/jitter][/aqua]\n\nจากนั้น— [jitter]ในท่วงท่าทิ่มแทงรวดเร็วแค่พริบตา[/jitter] คุณถูกแทงทั่วทั้งตัว!\nคุณรู้สึกสบายตัวราวกับไร้น้ำหนัก คุ้มค่ากับที่จ่ายไปจริงๆ"
+      },
+      {
+        "id": "BREATHING_TECHNIQUES",
+        "description": "[sine]“กำหนดจิต นิมิตว่าทางเดินหายใจเปิดค้างไว้... ลมหายใจแต่ละเฮือกล้วนมีความหมาย”[/sine]\n\nคุณพยายามฝึกวิชาตามความเข้าใจของคุณ"
+      },
+      {
+        "id": "EMOTIONAL_AWARENESS",
+        "description": "[orange]เจ้าแมงมุมตัวน้อย[/orange]เริ่มขั้นตอน[sine][purple]เต้นรำสะกดจิต[/purple][/sine]และสวดซ้ำไปซ้ำมา\n\n[sine]“ความคิดไม่ส่งผลต่อความจริง การเสียขวัญคือฆาตกรทางความคิด จงทำตามแผนเถอะ”[/sine]\n\nฟังดูมีเหตุผลมาก คำพูดมากปัญญาอันยิ่งใหญ่ ที่มาจาก[orange]แมงมุมเล็กจิ๋ว[/orange]"
+      },
+      {
+        "id": "INITIAL",
+        "description": "คุณเดินผ่านใยแมงมุมและ[jitter][red]เสียขวัญ[/red][/jitter]!\nแต่แล้วก็มี[sine][blue]คลื่นแห่งความสงบ[/blue][/sine]ซัดใส่คุณ...\n\n[sine]“ใจเย็นๆ ฉันอยากให้คุณเลิกทำลายใยของฉัน”[/sine]\n\nทำไมคุณถึงสงบใจลงได้เร็วนัก?\nแมงมุม[orange]เล็กจิ๋ว[/orange]โรยตัวลงมาพบคุณ ดูเหมือนว่ามันอยากจะถ่ายทอดวิชาให้โดยแลกกับ[gold]ทอง[/gold]",
+        "options": [
+          {
+            "id": "BREATHING_TECHNIQUES",
+            "title": "ฝึกกำหนดลมหายใจ",
+            "description": "จ่าย [red]50[/red] [gold]ทอง[/gold] เพิ่ม[gold]Enlightenment[/gold] [blue]2[/blue] ใบเข้า[gold]กองการ์ด[/gold]"
+          },
+          {
+            "id": "EMOTIONAL_AWARENESS",
+            "title": "รู้เท่าทันอารมณ์",
+            "description": "จ่าย [red]125[/red] [gold]ทอง[/gold] กำจัดการ์ด [blue]1[/blue] ใบจาก[gold]กองการ์ด[/gold]"
+          },
+          {
+            "id": "ARACHNID_ACUPUNCTURE",
+            "title": "แมงมุมฝังเข็ม",
+            "description": "จ่าย [red]250[/red] [gold]ทอง[/gold] กำจัดการ์ด [blue]2[/blue] ใบจาก[gold]กองการ์ด[/gold]"
+          },
+          {
+            "id": "LOCKED",
+            "title": "ล็อก",
+            "description": "[gold]ทอง[/gold]ไม่เพียงพอ"
+          }
+        ]
+      }
+    ]
   }
 ]

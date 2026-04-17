@@ -175,7 +175,7 @@
     "is_x_star_cost": null,
     "star_cost": null,
     "type": "Beceri",
-    "rarity": "Yaygın",
+    "rarity": "Az Yaygın",
     "target": "Self",
     "color": "silent",
     "damage": null,
@@ -199,7 +199,7 @@
     "type_variants": null,
     "upgrade_description": "4 kart çek.\n1 kartı elden çıkar.",
     "type_key": "Skill",
-    "rarity_key": "Common",
+    "rarity_key": "Uncommon",
     "compendium_order": 90
   },
   {
@@ -321,7 +321,7 @@
     "upgrade_description": "3 [gold]Kuvvet[/gold] elde et.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
-    "compendium_order": 47
+    "compendium_order": 46
   },
   {
     "id": "SUBROUTINE",
@@ -569,6 +569,7 @@
     "hp_loss": null,
     "keywords": [
       "Yerleşik",
+      "Ruhani",
       "Oynanamaz",
       "Sonsuz"
     ],
@@ -584,6 +585,7 @@
     "rarity_key": "Curse",
     "keywords_key": [
       "Innate",
+      "Ethereal",
       "Unplayable",
       "Eternal"
     ],
@@ -902,8 +904,8 @@
   {
     "id": "STOKE",
     "name": "Ateşi Körükle",
-    "description": "[gold]El[/gold]'inin tamamını [gold]Tüket[/gold].\n[gold]Tüketilen[/gold] her kart için bir kart çek.",
-    "description_raw": "[gold]El[/gold]'inin tamamını [gold]Tüket[/gold].\n[gold]Tüketilen[/gold] her kart için bir kart çek.",
+    "description": "[gold]El[/gold]'ini [gold]Tüket[/gold].\n[gold]Tüketilen[/gold] her kart için [gold]El[/gold]'ine rastgele bir kart ekle.",
+    "description_raw": "[gold]El[/gold]'ini [gold]Tüket[/gold].\n[gold]Tüketilen[/gold] her kart için [gold]El[/gold]'ine {IfUpgraded:show:[gold]Geliştirilmiş[/gold] |}rastgele bir kart ekle.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -919,24 +921,19 @@
     "cards_draw": null,
     "energy_gain": null,
     "hp_loss": null,
-    "keywords": [
-      "Tüket"
-    ],
+    "keywords": null,
     "tags": null,
     "spawns_cards": null,
     "vars": null,
     "upgrade": {
-      "cost": 0
+      "description_changed": true
     },
     "image_url": "/static/images/cards/stoke.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]El[/gold]'ini [gold]Tüket[/gold].\n[gold]Tüketilen[/gold] her kart için [gold]El[/gold]'ine [gold]Geliştirilmiş[/gold] rastgele bir kart ekle.",
     "type_key": "Skill",
     "rarity_key": "Rare",
-    "keywords_key": [
-      "Exhaust"
-    ],
     "compendium_order": 69
   },
   {
@@ -1102,8 +1099,8 @@
   {
     "id": "FOOTWORK",
     "name": "Ayak Tekniği",
-    "description": "2 [gold]Çeviklik[/gold] elde et.",
-    "description_raw": "{DexterityPower:diff()} [gold]Çeviklik[/gold] elde et.",
+    "description": "2 [gold]Beceriklilik[/gold] elde et.",
+    "description_raw": "{DexterityPower:diff()} [gold]Beceriklilik[/gold] elde et.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -1117,7 +1114,7 @@
     "hit_count": null,
     "powers_applied": [
       {
-        "power": "Çeviklik",
+        "power": "Beceriklilik",
         "amount": 2,
         "power_key": "Dexterity"
       }
@@ -1572,7 +1569,9 @@
     "cards_draw": null,
     "energy_gain": null,
     "hp_loss": null,
-    "keywords": null,
+    "keywords": [
+      "Tüket"
+    ],
     "tags": null,
     "spawns_cards": [
       "SOUL"
@@ -1589,6 +1588,9 @@
     "upgrade_description": "X kez 4 [gold]Çağır[/gold].\n[gold]Çekme Deste[/gold]'ne X adet [gold]Ruh+[/gold] ekle.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
+    "keywords_key": [
+      "Exhaust"
+    ],
     "compendium_order": 286
   },
   {
@@ -1631,13 +1633,13 @@
     "keywords_key": [
       "Exhaust"
     ],
-    "compendium_order": 44
+    "compendium_order": 43
   },
   {
     "id": "ABRASIVE",
     "name": "Aşındırıcı",
-    "description": "1 [gold]Çeviklik[/gold] elde et.\n4 [gold]Diken[/gold] elde et.",
-    "description_raw": "{DexterityPower:diff()} [gold]Çeviklik[/gold] elde et.\n{ThornsPower:diff()} [gold]Diken[/gold] elde et.",
+    "description": "1 [gold]Beceriklilik[/gold] elde et.\n4 [gold]Diken[/gold] elde et.",
+    "description_raw": "{DexterityPower:diff()} [gold]Beceriklilik[/gold] elde et.\n{ThornsPower:diff()} [gold]Diken[/gold] elde et.",
     "cost": 3,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -1656,7 +1658,7 @@
         "power_key": "Thorns"
       },
       {
-        "power": "Çeviklik",
+        "power": "Beceriklilik",
         "amount": 1,
         "power_key": "Dexterity"
       }
@@ -1681,7 +1683,7 @@
     "image_url": "/static/images/cards/abrasive.webp",
     "beta_image_url": "/static/images/cards/beta/abrasive.webp",
     "type_variants": null,
-    "upgrade_description": "1 [gold]Çeviklik[/gold] elde et.\n6 [gold]Diken[/gold] elde et.",
+    "upgrade_description": "1 [gold]Beceriklilik[/gold] elde et.\n6 [gold]Diken[/gold] elde et.",
     "type_key": "Power",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -1692,7 +1694,7 @@
   {
     "id": "CORROSIVE_WAVE",
     "name": "Aşındırıcı Dalga",
-    "description": "Bu tur her kart çektiğinde TÜM düşmanlara 3 [gold]Zehir[/gold] uygula.",
+    "description": "Bu tur her kart çektiğinde TÜM düşmanlara 2 [gold]Zehir[/gold] uygula.",
     "description_raw": "Bu tur her kart çektiğinde TÜM düşmanlara {CorrosiveWave:diff()} [gold]Zehir[/gold] uygula.",
     "cost": 1,
     "is_x_cost": null,
@@ -1713,7 +1715,7 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "CorrosiveWave": 3
+      "CorrosiveWave": 2
     },
     "upgrade": {
       "corrosivewave": "+1"
@@ -1721,7 +1723,7 @@
     "image_url": "/static/images/cards/corrosive_wave.webp",
     "beta_image_url": "/static/images/cards/beta/corrosive_wave.webp",
     "type_variants": null,
-    "upgrade_description": "Bu tur her kart çektiğinde TÜM düşmanlara 4 [gold]Zehir[/gold] uygula.",
+    "upgrade_description": "Bu tur her kart çektiğinde TÜM düşmanlara 3 [gold]Zehir[/gold] uygula.",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 106
@@ -1775,7 +1777,7 @@
     "name": "Banshee'nin Çığlığı",
     "description": "TÜM düşmanlara 33 hasar ver.\nBu savaşta oynanan her [gold]Ruhani[/gold] kart için [energy:2] ucuzlar.",
     "description_raw": "TÜM düşmanlara {Damage:diff()} hasar ver.\nBu savaşta oynanan her [gold]Ruhani[/gold] kart için {Energy:energyIcons()} ucuzlar.",
-    "cost": 6,
+    "cost": 9,
     "is_x_cost": null,
     "is_x_star_cost": null,
     "star_cost": null,
@@ -1798,12 +1800,12 @@
       "Energy": 2
     },
     "upgrade": {
-      "damage": "+6"
+      "cost": 7
     },
     "image_url": "/static/images/cards/banshees_cry.webp",
     "beta_image_url": "/static/images/cards/beta/banshees_cry.webp",
     "type_variants": null,
-    "upgrade_description": "TÜM düşmanlara 39 hasar ver.\nBu savaşta oynanan her [gold]Ruhani[/gold] kart için [energy:2] ucuzlar.",
+    "upgrade_description": null,
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 264
@@ -2097,7 +2099,7 @@
   {
     "id": "I_AM_INVINCIBLE",
     "name": "Ben Dokunulmazım",
-    "description": "9 [gold]Blok[/gold] elde et.\nTurunun sonunda bu kart [gold]Çekme Deste[/gold]'nin en üstündeyse otomatik olarak oynanır.",
+    "description": "10 [gold]Blok[/gold] elde et.\nTurunun sonunda bu kart [gold]Çekme Deste[/gold]'nin en üstündeyse otomatik olarak oynanır.",
     "description_raw": "{Block:diff()} [gold]Blok[/gold] elde et.\nTurunun sonunda bu kart [gold]Çekme Deste[/gold]'nin en üstündeyse otomatik olarak oynanır.",
     "cost": 1,
     "is_x_cost": null,
@@ -2108,7 +2110,7 @@
     "target": "Self",
     "color": "regent",
     "damage": null,
-    "block": 9,
+    "block": 10,
     "hit_count": null,
     "powers_applied": null,
     "cards_draw": null,
@@ -2118,7 +2120,7 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Block": 9
+      "Block": 10
     },
     "upgrade": {
       "block": "+3"
@@ -2126,7 +2128,7 @@
     "image_url": "/static/images/cards/i_am_invincible.webp",
     "beta_image_url": "/static/images/cards/beta/i_am_invincible.webp",
     "type_variants": null,
-    "upgrade_description": "12 [gold]Blok[/gold] elde et.\nTurunun sonunda bu kart [gold]Çekme Deste[/gold]'nin en üstündeyse otomatik olarak oynanır.",
+    "upgrade_description": "13 [gold]Blok[/gold] elde et.\nTurunun sonunda bu kart [gold]Çekme Deste[/gold]'nin en üstündeyse otomatik olarak oynanır.",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 217
@@ -2426,7 +2428,7 @@
   {
     "id": "DEBILITATE",
     "name": "Bitkinleştir",
-    "description": "7 hasar ver.\nSonraki 3 tur boyunca [gold]Savunmasız[/gold] ve [gold]Zayıf[/gold] düşman üzerinde iki kat daha etkili olur.",
+    "description": "10 hasar ver.\nSonraki 3 tur boyunca [gold]Savunmasız[/gold] ve [gold]Zayıf[/gold] düşman üzerinde iki kat daha etkili olur.",
     "description_raw": "{Damage:diff()} hasar ver.\nSonraki {DebilitatePower:diff()} {DebilitatePower:plural:tur|tur} boyunca [gold]Savunmasız[/gold] ve [gold]Zayıf[/gold] düşman üzerinde iki kat daha etkili olur.",
     "cost": 1,
     "is_x_cost": null,
@@ -2436,7 +2438,7 @@
     "rarity": "Az Yaygın",
     "target": "AnyEnemy",
     "color": "necrobinder",
-    "damage": 7,
+    "damage": 10,
     "block": null,
     "hit_count": null,
     "powers_applied": [
@@ -2453,7 +2455,7 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Damage": 7,
+      "Damage": 10,
       "DebilitatePower": 3,
       "Debilitate": 3
     },
@@ -2464,7 +2466,7 @@
     "image_url": "/static/images/cards/debilitate.webp",
     "beta_image_url": "/static/images/cards/beta/debilitate.webp",
     "type_variants": null,
-    "upgrade_description": "9 hasar ver.\nSonraki 4 tur boyunca [gold]Savunmasız[/gold] ve [gold]Zayıf[/gold] düşman üzerinde iki kat daha etkili olur.",
+    "upgrade_description": "12 hasar ver.\nSonraki 4 tur boyunca [gold]Savunmasız[/gold] ve [gold]Zayıf[/gold] düşman üzerinde iki kat daha etkili olur.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 279
@@ -2547,8 +2549,8 @@
   {
     "id": "BOMBARDMENT",
     "name": "Bombardıman",
-    "description": "18 hasar ver.\nTurunun başında [gold]Tüketme Deste[/gold]'nden oynanır.",
-    "description_raw": "{Damage:diff()} hasar ver.\nTurunun başında [gold]Tüketme Deste[/gold]'nden oynanır.",
+    "description": "18 hasar ver.\nBu kart, turunun başında [gold]Tüketme Deste[/gold]'nde ise kendi kendine oynanır.",
+    "description_raw": "{Damage:diff()} hasar ver.\nBu kart, turunun başında [gold]Tüketme Deste[/gold]'nde ise kendi kendine oynanır.",
     "cost": 3,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -2578,7 +2580,7 @@
     "image_url": "/static/images/cards/bombardment.webp",
     "beta_image_url": "/static/images/cards/beta/bombardment.webp",
     "type_variants": null,
-    "upgrade_description": "24 hasar ver.\nTurunun başında [gold]Tüketme Deste[/gold]'nden oynanır.",
+    "upgrade_description": "24 hasar ver.\nBu kart, turunun başında [gold]Tüketme Deste[/gold]'nde ise kendi kendine oynanır.",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -2740,7 +2742,9 @@
     "cards_draw": null,
     "energy_gain": null,
     "hp_loss": null,
-    "keywords": null,
+    "keywords": [
+      "Ruhani"
+    ],
     "tags": null,
     "spawns_cards": null,
     "vars": {
@@ -2748,14 +2752,17 @@
       "VoidForm": 2
     },
     "upgrade": {
-      "voidformpower": "+1"
+      "remove_ethereal": true
     },
     "image_url": "/static/images/cards/void_form.webp",
     "beta_image_url": "/static/images/cards/beta/void_form.webp",
     "type_variants": null,
-    "upgrade_description": "Turunu bitir.\nHer tur ilk oynayacağın 3 kart ücretsiz oynanır.",
+    "upgrade_description": null,
     "type_key": "Power",
     "rarity_key": "Rare",
+    "keywords_key": [
+      "Ethereal"
+    ],
     "compendium_order": 261
   },
   {
@@ -2951,7 +2958,7 @@
   {
     "id": "GRAND_FINALE",
     "name": "Büyük Final",
-    "description": "Ancak [gold]Çekme Deste[/gold]'nde hiçbir kart yoksa oynanabilir. TÜM düşmanlara 50 hasar ver.",
+    "description": "Ancak [gold]Çekme Deste[/gold]'nde hiçbir kart yoksa oynanabilir. TÜM düşmanlara 60 hasar ver.",
     "description_raw": "Ancak [gold]Çekme Deste[/gold]'nde hiçbir kart yoksa oynanabilir. TÜM düşmanlara {Damage:diff()} hasar ver.",
     "cost": 0,
     "is_x_cost": null,
@@ -2961,7 +2968,7 @@
     "rarity": "Nadir",
     "target": "AllEnemies",
     "color": "silent",
-    "damage": 50,
+    "damage": 60,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -2972,15 +2979,15 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Damage": 50
+      "Damage": 60
     },
     "upgrade": {
-      "damage": "+10"
+      "damage": "+15"
     },
     "image_url": "/static/images/cards/grand_finale.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Ancak [gold]Çekme Deste[/gold]'nde hiçbir kart yoksa oynanabilir. TÜM düşmanlara 60 hasar ver.",
+    "upgrade_description": "Ancak [gold]Çekme Deste[/gold]'nde hiçbir kart yoksa oynanabilir. TÜM düşmanlara 75 hasar ver.",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 126
@@ -3352,13 +3359,13 @@
     "upgrade_description": "Turunun başında 1 CP kaybet.\nTurunda her CP kaybettiğinde TÜM düşmanlara 9 hasar ver.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
-    "compendium_order": 46
+    "compendium_order": 45
   },
   {
     "id": "HELLRAISER",
     "name": "Cehennem Azabı",
-    "description": "İçinde \"Saldırı\" bulunan bir kart çektiğinde rastgele bir düşmana karşı oynanır.",
-    "description_raw": "İçinde \"Saldırı\" bulunan bir kart çektiğinde rastgele bir düşmana karşı oynanır.",
+    "description": "İsminde \"Saldırı\" bulunan bir kart çektiğinde rastgele bir düşmana karşı oynanır.",
+    "description_raw": "İsminde \"Saldırı\" bulunan bir kart çektiğinde rastgele bir düşmana karşı oynanır.",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -3387,7 +3394,7 @@
     "upgrade_description": null,
     "type_key": "Power",
     "rarity_key": "Rare",
-    "compendium_order": 41
+    "compendium_order": 40
   },
   {
     "id": "INFERNAL_BLADE",
@@ -3427,13 +3434,13 @@
     "keywords_key": [
       "Exhaust"
     ],
-    "compendium_order": 45
+    "compendium_order": 44
   },
   {
     "id": "ARSENAL",
     "name": "Cephanelik",
-    "description": "Her Renksiz kart oynadığında 1 [gold]Kuvvet[/gold] elde et.",
-    "description_raw": "Her Renksiz kart oynadığında {ArsenalPower:diff()} [gold]Kuvvet[/gold] elde et.",
+    "description": "Her kart oluşturduğunda 1 [gold]Kuvvet[/gold] elde et.",
+    "description_raw": "Her kart oluşturduğunda {ArsenalPower:diff()} [gold]Kuvvet[/gold] elde et.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -3463,12 +3470,12 @@
       "Arsenal": 1
     },
     "upgrade": {
-      "arsenalpower": "+1"
+      "add_innate": true
     },
     "image_url": "/static/images/cards/arsenal.webp",
     "beta_image_url": "/static/images/cards/beta/arsenal.webp",
     "type_variants": null,
-    "upgrade_description": "Her Renksiz kart oynadığında 2 [gold]Kuvvet[/gold] elde et.",
+    "upgrade_description": null,
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 176
@@ -3553,17 +3560,17 @@
   {
     "id": "BEGONE",
     "name": "DEFOL!",
-    "description": "4 hasar ver.\n[gold]El[/gold]'indeki kartlardan birini seç ve [gold]Uşak Dalışı[/gold] kartına [gold]Dönüştür[/gold].",
-    "description_raw": "{Damage:diff()} hasar ver.\n[gold]El[/gold]'indeki kartlardan birini seç ve [gold]{IfUpgraded:show:Uşak Dalışı+|Uşak Dalışı}[/gold] kartına [gold]Dönüştür[/gold].",
+    "description": "[gold]El[/gold]'indeki kartlardan birini seç ve [gold]Uşak Saldırısı[/gold] kartına [gold]Dönüştür[/gold].",
+    "description_raw": "[gold]El[/gold]'indeki kartlardan birini seç ve [gold]{IfUpgraded:show:Uşak Saldırısı+|Uşak Saldırısı}[/gold] kartına [gold]Dönüştür[/gold].",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
     "star_cost": null,
-    "type": "Saldırı",
+    "type": "Beceri",
     "rarity": "Yaygın",
-    "target": "AnyEnemy",
+    "target": "Self",
     "color": "regent",
-    "damage": 4,
+    "damage": null,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -3573,19 +3580,17 @@
     "keywords": null,
     "tags": null,
     "spawns_cards": [
-      "MINION_DIVE_BOMB"
+      "MINION_STRIKE"
     ],
-    "vars": {
-      "Damage": 4
-    },
+    "vars": null,
     "upgrade": {
-      "damage": "+1"
+      "description_changed": true
     },
     "image_url": "/static/images/cards/begone.webp",
     "beta_image_url": "/static/images/cards/beta/begone.webp",
     "type_variants": null,
-    "upgrade_description": "5 hasar ver.\n[gold]El[/gold]'indeki kartlardan birini seç ve [gold]Uşak Dalışı+[/gold] kartına [gold]Dönüştür[/gold].",
-    "type_key": "Attack",
+    "upgrade_description": "[gold]El[/gold]'indeki kartlardan birini seç ve [gold]Uşak Saldırısı+[/gold] kartına [gold]Dönüştür[/gold].",
+    "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 179
   },
@@ -3671,7 +3676,7 @@
     "upgrade_description": "7 [gold]Blok[/gold] elde et.\n7 hasar ver.",
     "type_key": "Attack",
     "rarity_key": "Common",
-    "compendium_order": 48
+    "compendium_order": 47
   },
   {
     "id": "CALTROPS",
@@ -3833,26 +3838,20 @@
   {
     "id": "FOLLOW_THROUGH",
     "name": "Devam Hamlesi",
-    "description": "TÜM düşmanlara 6 hasar ver.\nEğer bu tur son oynadığın kart bir Beceri ise TÜM düşmanlara 1 [gold]Zayıf[/gold] uygula.",
-    "description_raw": "TÜM düşmanlara {Damage:diff()} hasar ver.\nEğer bu tur son oynadığın kart bir Beceri ise TÜM düşmanlara {WeakPower:diff()} [gold]Zayıf[/gold] uygula.",
+    "description": "",
+    "description_raw": "",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
     "star_cost": null,
     "type": "Saldırı",
-    "rarity": "Az Yaygın",
-    "target": "AllEnemies",
+    "rarity": "Yaygın",
+    "target": "AnyEnemy",
     "color": "silent",
-    "damage": 6,
+    "damage": 7,
     "block": null,
     "hit_count": null,
-    "powers_applied": [
-      {
-        "power": "Zayıf",
-        "amount": 1,
-        "power_key": "Weak"
-      }
-    ],
+    "powers_applied": null,
     "cards_draw": null,
     "energy_gain": null,
     "hp_loss": null,
@@ -3860,20 +3859,18 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Damage": 6,
-      "WeakPower": 1,
-      "Weak": 1
+      "CardCount": 5,
+      "Damage": 7
     },
     "upgrade": {
-      "damage": "+2",
-      "weak": "+1"
+      "damage": "+2"
     },
     "image_url": "/static/images/cards/follow_through.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "TÜM düşmanlara 8 hasar ver.\nEğer bu tur son oynadığın kart bir Beceri ise TÜM düşmanlara 1 [gold]Zayıf[/gold] uygula.",
+    "upgrade_description": null,
     "type_key": "Attack",
-    "rarity_key": "Uncommon",
+    "rarity_key": "Common",
     "compendium_order": 124
   },
   {
@@ -3886,7 +3883,7 @@
     "is_x_star_cost": null,
     "star_cost": null,
     "type": "Beceri",
-    "rarity": "Nadir",
+    "rarity": "Az Yaygın",
     "target": "Self",
     "color": "ironclad",
     "damage": null,
@@ -3911,7 +3908,7 @@
     "type_variants": null,
     "upgrade_description": "8 [gold]Blok[/gold] elde et.\nBu tur, [gold]Savunmasız[/gold] olan düşmanlardan %50 daha az hasar al.",
     "type_key": "Skill",
-    "rarity_key": "Rare",
+    "rarity_key": "Uncommon",
     "compendium_order": 18
   },
   {
@@ -4154,7 +4151,7 @@
   {
     "id": "UNTOUCHABLE",
     "name": "Dokunulmaz",
-    "description": "9 [gold]Blok[/gold] elde et.",
+    "description": "6 [gold]Blok[/gold] elde et.",
     "description_raw": "{Block:diff()} [gold]Blok[/gold] elde et.",
     "cost": 2,
     "is_x_cost": null,
@@ -4165,7 +4162,7 @@
     "target": "Self",
     "color": "silent",
     "damage": null,
-    "block": 9,
+    "block": 6,
     "hit_count": null,
     "powers_applied": null,
     "cards_draw": null,
@@ -4177,15 +4174,15 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Block": 9
+      "Block": 6
     },
     "upgrade": {
-      "block": "+3"
+      "block": "+2"
     },
     "image_url": "/static/images/cards/untouchable.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "12 [gold]Blok[/gold] elde et.",
+    "upgrade_description": "8 [gold]Blok[/gold] elde et.",
     "type_key": "Skill",
     "rarity_key": "Common",
     "keywords_key": [
@@ -4240,8 +4237,8 @@
   {
     "id": "LOOP",
     "name": "Döngü",
-    "description": "Turunun başında en sağdaki Küre'nin pasif yeteneğini  aktifleştir.",
-    "description_raw": "Turunun başında en sağdaki Küre'nin pasif yeteneğini {IfUpgraded:show: 2 kez} aktifleştir.",
+    "description": "Turunun başında en sağdaki Küre'nin pasif yeteneğini aktifleştir.",
+    "description_raw": "Turunun başında en sağdaki Küre'nin pasif yeteneğini {IfUpgraded:show:2 kez }aktifleştir.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -4269,7 +4266,7 @@
     "image_url": "/static/images/cards/loop.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Turunun başında en sağdaki Küre'nin pasif yeteneğini  2 kez aktifleştir.",
+    "upgrade_description": "Turunun başında en sağdaki Küre'nin pasif yeteneğini 2 kez aktifleştir.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 401
@@ -4438,7 +4435,7 @@
   {
     "id": "ETERNAL_ARMOR",
     "name": "Ebedi Zırh",
-    "description": "7 [gold]Zırh[/gold] elde et.",
+    "description": "9 [gold]Zırh[/gold] elde et.",
     "description_raw": "{PlatingPower:diff()} [gold]Zırh[/gold] elde et.",
     "cost": 3,
     "is_x_cost": null,
@@ -4454,7 +4451,7 @@
     "powers_applied": [
       {
         "power": "Zırh",
-        "amount": 7,
+        "amount": 9,
         "power_key": "Plating"
       }
     ],
@@ -4465,16 +4462,16 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "PlatingPower": 7,
-      "Plating": 7
+      "PlatingPower": 9,
+      "Plating": 9
     },
     "upgrade": {
-      "platingpower": "+2"
+      "platingpower": "+3"
     },
     "image_url": "/static/images/cards/eternal_armor.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "9 [gold]Zırh[/gold] elde et.",
+    "upgrade_description": "12 [gold]Zırh[/gold] elde et.",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 454
@@ -4842,7 +4839,7 @@
     "keywords_key": [
       "Exhaust"
     ],
-    "compendium_order": 52
+    "compendium_order": 51
   },
   {
     "id": "DRAMATIC_ENTRANCE",
@@ -5484,7 +5481,7 @@
     "name": "Galvanik",
     "description": "Bu savaşta [gold]Oluşturulan[/gold] [gold]Yıldırım[/gold] sayısı kadar [gold]Yıldırım Oluştur[/gold].",
     "description_raw": "Bu savaşta [gold]Oluşturulan[/gold] [gold]Yıldırım[/gold] sayısı kadar [gold]Yıldırım Oluştur[/gold].{InCombat:\n({CalculatedChannels:diff()} [gold]Yıldırım[/gold] [gold]Oluştur[/gold])|}",
-    "cost": 2,
+    "cost": 3,
     "is_x_cost": null,
     "is_x_star_cost": null,
     "star_cost": null,
@@ -5618,8 +5615,8 @@
   {
     "id": "SPITE",
     "name": "Gaz-ap",
-    "description": "6 hasar ver.\nBu turda CP kaybettiysen 1 kart çekersin.",
-    "description_raw": "{Damage:diff()} hasar ver.\nBu turda CP kaybettiysen {Cards:diff()} {Cards:plural:kart|kart} çekersin.",
+    "description": "5 hasar ver.\nBu turda CP kaybettiysen\n2 kez vurur.",
+    "description_raw": "{Damage:diff()} hasar ver.\nBu turda CP kaybettiysen\n{Repeat:diff()} kez vurur.",
     "cost": 0,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -5628,27 +5625,27 @@
     "rarity": "Az Yaygın",
     "target": "AnyEnemy",
     "color": "ironclad",
-    "damage": 6,
+    "damage": 5,
     "block": null,
-    "hit_count": null,
+    "hit_count": 2,
     "powers_applied": null,
-    "cards_draw": 1,
+    "cards_draw": null,
     "energy_gain": null,
     "hp_loss": null,
     "keywords": null,
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Damage": 6,
-      "Cards": 1
+      "Damage": 5,
+      "Repeat": 2
     },
     "upgrade": {
-      "damage": "+3"
+      "repeat": "+1"
     },
     "image_url": "/static/images/cards/spite.webp",
     "beta_image_url": "/static/images/cards/beta/spite.webp",
     "type_variants": null,
-    "upgrade_description": "9 hasar ver.\nBu turda CP kaybettiysen 1 kart çekersin.",
+    "upgrade_description": "5 hasar ver.\nBu turda CP kaybettiysen\n3 kez vurur.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 67
@@ -5814,7 +5811,7 @@
   {
     "id": "FLICK_FLACK",
     "name": "Geri Salto",
-    "description": "TÜM düşmanlara 7 hasar ver.",
+    "description": "TÜM düşmanlara 6 hasar ver.",
     "description_raw": "TÜM düşmanlara {Damage:diff()} hasar ver.",
     "cost": 1,
     "is_x_cost": null,
@@ -5824,7 +5821,7 @@
     "rarity": "Yaygın",
     "target": "AllEnemies",
     "color": "silent",
-    "damage": 7,
+    "damage": 6,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -5837,7 +5834,7 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Damage": 7
+      "Damage": 6
     },
     "upgrade": {
       "damage": "+2"
@@ -5845,7 +5842,7 @@
     "image_url": "/static/images/cards/flick_flack.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "TÜM düşmanlara 9 hasar ver.",
+    "upgrade_description": "TÜM düşmanlara 8 hasar ver.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "keywords_key": [
@@ -6814,7 +6811,7 @@
   {
     "id": "SEEKER_STRIKE",
     "name": "Güdümlü Saldırı",
-    "description": "6 hasar ver.\n[gold]El[/gold]'ine koymak için [gold]Çekme Deste[/gold]'ndeki 3 karttan 1 tanesini seç.",
+    "description": "9 hasar ver.\n[gold]El[/gold]'ine koymak için [gold]Çekme Deste[/gold]'ndeki 3 karttan 1 tanesini seç.",
     "description_raw": "{Damage:diff()} hasar ver.\n[gold]El[/gold]'ine koymak için [gold]Çekme Deste[/gold]'ndeki {Cards:diff()} karttan 1 tanesini seç.",
     "cost": 1,
     "is_x_cost": null,
@@ -6824,7 +6821,7 @@
     "rarity": "Az Yaygın",
     "target": "AnyEnemy",
     "color": "colorless",
-    "damage": 6,
+    "damage": 9,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -6837,7 +6834,7 @@
     ],
     "spawns_cards": null,
     "vars": {
-      "Damage": 6,
+      "Damage": 9,
       "Cards": 3
     },
     "upgrade": {
@@ -6846,7 +6843,7 @@
     "image_url": "/static/images/cards/seeker_strike.webp",
     "beta_image_url": "/static/images/cards/beta/seeker_strike.webp",
     "type_variants": null,
-    "upgrade_description": "9 hasar ver.\n[gold]El[/gold]'ine koymak için [gold]Çekme Deste[/gold]'ndeki 3 karttan 1 tanesini seç.",
+    "upgrade_description": "12 hasar ver.\n[gold]El[/gold]'ine koymak için [gold]Çekme Deste[/gold]'ndeki 3 karttan 1 tanesini seç.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 491
@@ -6854,7 +6851,7 @@
   {
     "id": "SOLAR_STRIKE",
     "name": "Güneş Saldırısı",
-    "description": "8 hasar ver.\n[star:1] elde et.",
+    "description": "9 hasar ver.\n[star:1] elde et.",
     "description_raw": "{Damage:diff()} hasar ver.\n{Stars:starIcons()} elde et.",
     "cost": 1,
     "is_x_cost": null,
@@ -6864,7 +6861,7 @@
     "rarity": "Yaygın",
     "target": "AnyEnemy",
     "color": "regent",
-    "damage": 8,
+    "damage": 9,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -6877,7 +6874,7 @@
     ],
     "spawns_cards": null,
     "vars": {
-      "Damage": 8,
+      "Damage": 9,
       "Stars": 1
     },
     "upgrade": {
@@ -6887,7 +6884,7 @@
     "image_url": "/static/images/cards/solar_strike.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "9 hasar ver.\n[star:2] elde et.",
+    "upgrade_description": "10 hasar ver.\n[star:2] elde et.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 248
@@ -7175,8 +7172,8 @@
   {
     "id": "WRAITH_FORM",
     "name": "Hayalet Formu",
-    "description": "2 [gold]Soyutluk[/gold] elde et.\nTurunun başında 1 [gold]Çeviklik[/gold] kaybet.",
-    "description_raw": "{IntangiblePower:diff()} [gold]Soyutluk[/gold] elde et.\nTurunun başında {WraithFormPower:diff()} [gold]Çeviklik[/gold] kaybet.",
+    "description": "2 [gold]Soyutluk[/gold] elde et.\nTurunun başında 1 [gold]Beceriklilik[/gold] kaybet.",
+    "description_raw": "{IntangiblePower:diff()} [gold]Soyutluk[/gold] elde et.\nTurunun başında {WraithFormPower:diff()} [gold]Beceriklilik[/gold] kaybet.",
     "cost": 3,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -7218,7 +7215,7 @@
     "image_url": "/static/images/cards/wraith_form.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "3 [gold]Soyutluk[/gold] elde et.\nTurunun başında 1 [gold]Çeviklik[/gold] kaybet.",
+    "upgrade_description": "3 [gold]Soyutluk[/gold] elde et.\nTurunun başında 1 [gold]Beceriklilik[/gold] kaybet.",
     "type_key": "Power",
     "rarity_key": "Ancient",
     "compendium_order": 174
@@ -7663,7 +7660,7 @@
     "cost": 0,
     "is_x_cost": null,
     "is_x_star_cost": null,
-    "star_cost": 2,
+    "star_cost": 3,
     "type": "Beceri",
     "rarity": "Az Yaygın",
     "target": "Self",
@@ -7680,7 +7677,7 @@
     "spawns_cards": null,
     "vars": {
       "Energy": 2,
-      "StarCost": 2
+      "StarCost": 3
     },
     "upgrade": {
       "energy": "+1"
@@ -7726,7 +7723,7 @@
     "upgrade_description": null,
     "type_key": "Power",
     "rarity_key": "Uncommon",
-    "compendium_order": 50
+    "compendium_order": 49
   },
   {
     "id": "HOLOGRAM",
@@ -7811,8 +7808,8 @@
   {
     "id": "PROWESS",
     "name": "Hüner",
-    "description": "1 [gold]Kuvvet[/gold] elde et.\n1 [gold]Çeviklik[/gold] elde et.",
-    "description_raw": "{StrengthPower:diff()} [gold]Kuvvet[/gold] elde et.\n{DexterityPower:diff()} [gold]Çeviklik[/gold] elde et.",
+    "description": "1 [gold]Kuvvet[/gold] elde et.\n1 [gold]Beceriklilik[/gold] elde et.",
+    "description_raw": "{StrengthPower:diff()} [gold]Kuvvet[/gold] elde et.\n{DexterityPower:diff()} [gold]Beceriklilik[/gold] elde et.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -7831,7 +7828,7 @@
         "power_key": "Strength"
       },
       {
-        "power": "Çeviklik",
+        "power": "Beceriklilik",
         "amount": 1,
         "power_key": "Dexterity"
       }
@@ -8007,12 +8004,12 @@
       "Speedster": 2
     },
     "upgrade": {
-      "speedsterpower": "+1"
+      "add_innate": true
     },
     "image_url": "/static/images/cards/speedster.webp",
     "beta_image_url": "/static/images/cards/beta/speedster.webp",
     "type_variants": null,
-    "upgrade_description": "Turun sırasında her kart çektiğinde TÜM düşmanlara 3 hasar ver.",
+    "upgrade_description": null,
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 160
@@ -8102,7 +8099,7 @@
   {
     "id": "GATHER_LIGHT",
     "name": "Işık Topla",
-    "description": "7 [gold]Blok[/gold] elde et.\n[star:1] elde et.",
+    "description": "8 [gold]Blok[/gold] elde et.\n[star:1] elde et.",
     "description_raw": "{Block:diff()} [gold]Blok[/gold] elde et.\n{Stars:starIcons()} elde et.",
     "cost": 1,
     "is_x_cost": null,
@@ -8113,7 +8110,7 @@
     "target": "Self",
     "color": "regent",
     "damage": null,
-    "block": 7,
+    "block": 8,
     "hit_count": null,
     "powers_applied": null,
     "cards_draw": null,
@@ -8123,7 +8120,7 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Block": 7,
+      "Block": 8,
       "Stars": 1
     },
     "upgrade": {
@@ -8132,7 +8129,7 @@
     "image_url": "/static/images/cards/gather_light.webp",
     "beta_image_url": "/static/images/cards/beta/gather_light.webp",
     "type_variants": null,
-    "upgrade_description": "10 [gold]Blok[/gold] elde et.\n[star:1] elde et.",
+    "upgrade_description": "11 [gold]Blok[/gold] elde et.\n[star:1] elde et.",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 205
@@ -8377,13 +8374,13 @@
     "upgrade_description": "12 hasar ver.\n[gold]Atık Deste[/gold]'nden bir kartı [gold]Çekme Deste[/gold]'nin en üstüne koy.",
     "type_key": "Attack",
     "rarity_key": "Common",
-    "compendium_order": 40
+    "compendium_order": 39
   },
   {
     "id": "SHIV",
     "name": "Kama",
-    "description": "4 hasar ver.",
-    "description_raw": "{FanOfKnivesAmount:cond:>0? TÜM düşmanlara|} {Damage:diff()} hasar ver.",
+    "description": "TÜM düşmanlara 4 hasar ver.",
+    "description_raw": "{TargetType:choose(AllEnemies):TÜM düşmanlara |}{Damage:diff()} hasar ver.",
     "cost": 0,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -8407,9 +8404,7 @@
     ],
     "spawns_cards": null,
     "vars": {
-      "Damage": 4,
-      "CalculationBase": 0,
-      "CalculationExtra": 1
+      "Damage": 4
     },
     "upgrade": {
       "damage": "+2"
@@ -8417,7 +8412,7 @@
     "image_url": "/static/images/cards/shiv.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "6 hasar ver.",
+    "upgrade_description": "TÜM düşmanlara 6 hasar ver.",
     "type_key": "Attack",
     "rarity_key": "Token",
     "keywords_key": [
@@ -8428,7 +8423,7 @@
   {
     "id": "HEMOKINESIS",
     "name": "Kan Bükümü",
-    "description": "2 CP kaybet.\n14 hasar ver.",
+    "description": "2 CP kaybet.\n15 hasar ver.",
     "description_raw": "{HpLoss:diff()} CP kaybet.\n{Damage:diff()} hasar ver.",
     "cost": 1,
     "is_x_cost": null,
@@ -8438,7 +8433,7 @@
     "rarity": "Az Yaygın",
     "target": "AnyEnemy",
     "color": "ironclad",
-    "damage": 14,
+    "damage": 15,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -8450,7 +8445,7 @@
     "spawns_cards": null,
     "vars": {
       "HpLoss": 2,
-      "Damage": 14
+      "Damage": 15
     },
     "upgrade": {
       "damage": "+5"
@@ -8458,10 +8453,10 @@
     "image_url": "/static/images/cards/hemokinesis.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "2 CP kaybet.\n19 hasar ver.",
+    "upgrade_description": "2 CP kaybet.\n20 hasar ver.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
-    "compendium_order": 42
+    "compendium_order": 41
   },
   {
     "id": "BLOOD_WALL",
@@ -8742,8 +8737,8 @@
   {
     "id": "DARKNESS",
     "name": "Karanlık",
-    "description": "1 [gold]Karanlık[/gold] [gold]Oluştur[/gold].\nTüm [gold]Karanlık[/gold] Kürelerin pasif yeteneğini  aktifleştir.",
-    "description_raw": "1 [gold]Karanlık[/gold] [gold]Oluştur[/gold].\nTüm [gold]Karanlık[/gold] Kürelerin pasif yeteneğini {IfUpgraded:show: iki kez|} aktifleştir.",
+    "description": "1 [gold]Karanlık[/gold] [gold]Oluştur[/gold].\nTüm [gold]Karanlık[/gold] Kürelerin pasif yeteneğini aktifleştir.",
+    "description_raw": "1 [gold]Karanlık[/gold] [gold]Oluştur[/gold].\nTüm [gold]Karanlık[/gold] Kürelerin pasif yeteneğini{IfUpgraded:show: iki kez|} aktifleştir.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -8769,7 +8764,7 @@
     "image_url": "/static/images/cards/darkness.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "1 [gold]Karanlık[/gold] [gold]Oluştur[/gold].\nTüm [gold]Karanlık[/gold] Kürelerin pasif yeteneğini  iki kez aktifleştir.",
+    "upgrade_description": "1 [gold]Karanlık[/gold] [gold]Oluştur[/gold].\nTüm [gold]Karanlık[/gold] Kürelerin pasif yeteneğini iki kez aktifleştir.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 373
@@ -8881,13 +8876,12 @@
       "Weak": 1
     },
     "upgrade": {
-      "block": "+1",
-      "weak": "+1"
+      "block": "+3"
     },
     "image_url": "/static/images/cards/defy.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "7 [gold]Blok[/gold] elde et.\n1 [gold]Zayıf[/gold] uygula.",
+    "upgrade_description": "9 [gold]Blok[/gold] elde et.\n1 [gold]Zayıf[/gold] uygula.",
     "type_key": "Skill",
     "rarity_key": "Common",
     "keywords_key": [
@@ -8970,55 +8964,9 @@
     "compendium_order": 88
   },
   {
-    "id": "GRAPPLE",
-    "name": "Kavra",
-    "description": "7 hasar ver.\nBu tur her [gold]Blok[/gold] elde ettiğinde düşmana 5 hasar ver.",
-    "description_raw": "{Damage:diff()} hasar ver.\nBu tur her [gold]Blok[/gold] elde ettiğinde düşmana {GrapplePower:diff()} hasar ver.",
-    "cost": 1,
-    "is_x_cost": null,
-    "is_x_star_cost": null,
-    "star_cost": null,
-    "type": "Saldırı",
-    "rarity": "Az Yaygın",
-    "target": "AnyEnemy",
-    "color": "ironclad",
-    "damage": 7,
-    "block": null,
-    "hit_count": null,
-    "powers_applied": [
-      {
-        "power": "Kavra",
-        "amount": 5,
-        "power_key": "Grapple"
-      }
-    ],
-    "cards_draw": null,
-    "energy_gain": null,
-    "hp_loss": null,
-    "keywords": null,
-    "tags": null,
-    "spawns_cards": null,
-    "vars": {
-      "Damage": 7,
-      "GrapplePower": 5,
-      "Grapple": 5
-    },
-    "upgrade": {
-      "damage": "+2",
-      "grapplepower": "+2"
-    },
-    "image_url": "/static/images/cards/grapple.webp",
-    "beta_image_url": null,
-    "type_variants": null,
-    "upgrade_description": "9 hasar ver.\nBu tur her [gold]Blok[/gold] elde ettiğinde düşmana 7 hasar ver.",
-    "type_key": "Attack",
-    "rarity_key": "Uncommon",
-    "compendium_order": 38
-  },
-  {
     "id": "FALLING_STAR",
     "name": "Kayan Yıldız",
-    "description": "7 hasar ver.\n1 [gold]Zayıf[/gold] uygula.\n1 [gold]Savunmasız[/gold] uygula.",
+    "description": "8 hasar ver.\n1 [gold]Zayıf[/gold] uygula.\n1 [gold]Savunmasız[/gold] uygula.",
     "description_raw": "{Damage:diff()} hasar ver.\n{WeakPower:diff()} [gold]Zayıf[/gold] uygula.\n{VulnerablePower:diff()} [gold]Savunmasız[/gold] uygula.",
     "cost": 0,
     "is_x_cost": null,
@@ -9028,7 +8976,7 @@
     "rarity": "Temel",
     "target": "AnyEnemy",
     "color": "regent",
-    "damage": 7,
+    "damage": 8,
     "block": null,
     "hit_count": null,
     "powers_applied": [
@@ -9050,7 +8998,7 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Damage": 7,
+      "Damage": 8,
       "VulnerablePower": 1,
       "Vulnerable": 1,
       "WeakPower": 1,
@@ -9063,7 +9011,7 @@
     "image_url": "/static/images/cards/falling_star.webp",
     "beta_image_url": "/static/images/cards/beta/falling_star.webp",
     "type_variants": null,
-    "upgrade_description": "11 hasar ver.\n1 [gold]Zayıf[/gold] uygula.\n1 [gold]Savunmasız[/gold] uygula.",
+    "upgrade_description": "12 hasar ver.\n1 [gold]Zayıf[/gold] uygula.\n1 [gold]Savunmasız[/gold] uygula.",
     "type_key": "Attack",
     "rarity_key": "Basic",
     "compendium_order": 201
@@ -9454,8 +9402,8 @@
   {
     "id": "DISCOVERY",
     "name": "Keşif",
-    "description": "3 rastgele karttan 1 tanesini [gold]El[/gold]'ine ekle. Bu tur maliyeti 0 [energy:1] olur.",
-    "description_raw": "3 rastgele karttan 1 tanesini [gold]El[/gold]'ine ekle. Bu tur maliyeti 0 {energyPrefix:energyIcons(1)} olur.",
+    "description": "3 rastgele karttan 1 tanesini [gold]El[/gold]'ine eklemek için seç. Bu tur oynaması ücretsiz olur.",
+    "description_raw": "3 rastgele karttan 1 tanesini [gold]El[/gold]'ine eklemek için seç. Bu tur oynaması ücretsiz olur.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -9581,8 +9529,8 @@
   {
     "id": "CINDER",
     "name": "Kor",
-    "description": "17 hasar ver.\n[gold]Çekme Deste[/gold]'nin en üstündeki kartı [gold]Tüket[/gold].",
-    "description_raw": "{Damage:diff()} hasar ver.\n[gold]Çekme Deste[/gold]'nin en üstündeki kartı [gold]Tüket[/gold].",
+    "description": "18 hasar ver.\nRastgele 1 kartı [gold]Tüket[/gold].",
+    "description_raw": "{Damage:diff()} hasar ver.\nRastgele 1 kartı [gold]Tüket[/gold].",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -9591,7 +9539,7 @@
     "rarity": "Yaygın",
     "target": "AnyEnemy",
     "color": "ironclad",
-    "damage": 17,
+    "damage": 18,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -9602,16 +9550,15 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "CardsToExhaust": 1,
-      "Damage": 17
+      "Damage": 18
     },
     "upgrade": {
-      "damage": "+5"
+      "damage": "+6"
     },
     "image_url": "/static/images/cards/cinder.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "22 hasar ver.\n[gold]Çekme Deste[/gold]'nin en üstündeki kartı [gold]Tüket[/gold].",
+    "upgrade_description": "24 hasar ver.\nRastgele 1 kartı [gold]Tüket[/gold].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 17
@@ -9866,7 +9813,7 @@
   {
     "id": "KINGLY_KICK",
     "name": "Krallara Layık Tekme",
-    "description": "24 hasar ver.\nBu kartı her çektiğinde maliyetini 1 azalt.",
+    "description": "27 hasar ver.\nBu kartı her çektiğinde maliyetini 1 azalt.",
     "description_raw": "{Damage:diff()} hasar ver.\nBu kartı her çektiğinde maliyetini 1 azalt.",
     "cost": 4,
     "is_x_cost": null,
@@ -9876,7 +9823,7 @@
     "rarity": "Az Yaygın",
     "target": "AnyEnemy",
     "color": "regent",
-    "damage": 24,
+    "damage": 27,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -9887,15 +9834,15 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Damage": 24
+      "Damage": 27
     },
     "upgrade": {
-      "damage": "+6"
+      "damage": "+8"
     },
     "image_url": "/static/images/cards/kingly_kick.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "30 hasar ver.\nBu kartı her çektiğinde maliyetini 1 azalt.",
+    "upgrade_description": "35 hasar ver.\nBu kartı her çektiğinde maliyetini 1 azalt.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 218
@@ -9903,7 +9850,7 @@
   {
     "id": "KINGLY_PUNCH",
     "name": "Krallara Layık Yumruk",
-    "description": "8 hasar ver.\nBu kartı her çektiğinde kartın hasarını bu savaş için 3 artır.",
+    "description": "8 hasar ver.\nBu kartı her çektiğinde kartın hasarını bu savaş için 4 artır.",
     "description_raw": "{Damage:diff()} hasar ver.\nBu kartı her çektiğinde kartın hasarını bu savaş için {Increase:diff()} artır.",
     "cost": 1,
     "is_x_cost": null,
@@ -9924,16 +9871,17 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Increase": 3,
+      "Increase": 4,
       "Damage": 8
     },
     "upgrade": {
+      "damage": "+2",
       "increase": "+2"
     },
     "image_url": "/static/images/cards/kingly_punch.webp",
     "beta_image_url": "/static/images/cards/beta/kingly_punch.webp",
     "type_variants": null,
-    "upgrade_description": "8 hasar ver.\nBu kartı her çektiğinde kartın hasarını bu savaş için 5 artır.",
+    "upgrade_description": "10 hasar ver.\nBu kartı her çektiğinde kartın hasarını bu savaş için 6 artır.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 219
@@ -10018,8 +9966,8 @@
   {
     "id": "PERFECTED_STRIKE",
     "name": "Kusursuz Saldırı",
-    "description": "6 hasar ver.\nİçinde \"Saldırı\" geçen TÜM kartların için fazladan 2 hasar ver.",
-    "description_raw": "{CalculatedDamage:diff()} hasar ver.\nİçinde \"Saldırı\" geçen TÜM kartların için fazladan {ExtraDamage:diff()} hasar ver.",
+    "description": "6 hasar ver.\nİsminde \"Saldırı\" geçen TÜM kartların için fazladan 2 hasar ver.",
+    "description_raw": "{CalculatedDamage:diff()} hasar ver.\nİsminde \"Saldırı\" geçen TÜM kartların için fazladan {ExtraDamage:diff()} hasar ver.",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -10051,7 +9999,7 @@
     "image_url": "/static/images/cards/perfected_strike.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "6 hasar ver.\nİçinde \"Saldırı\" geçen TÜM kartların için fazladan 3 hasar ver.",
+    "upgrade_description": "6 hasar ver.\nİsminde \"Saldırı\" geçen TÜM kartların için fazladan 3 hasar ver.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 56
@@ -10084,12 +10032,12 @@
       "Repeat": 3
     },
     "upgrade": {
-      "damage": "+2"
+      "repeat": "+1"
     },
     "image_url": "/static/images/cards/celestial_might.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "3 kez 8 hasar ver.",
+    "upgrade_description": "4 kez 6 hasar ver.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 185
@@ -10227,8 +10175,8 @@
   {
     "id": "FLANKING",
     "name": "Kuşatma",
-    "description": "Düşman bu turda diğer oyunculardan iki kat daha fazla hasar alır.",
-    "description_raw": "Düşman bu turda diğer oyunculardan iki kat daha fazla hasar alır.",
+    "description": "Düşman bu turda diğer oyunculardan iki kat daha fazla saldırı hasarı alır.",
+    "description_raw": "Düşman bu turda diğer oyunculardan iki kat daha fazla saldırı hasarı alır.",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -10471,7 +10419,7 @@
   {
     "id": "REFINE_BLADE",
     "name": "Kılıcını Bile",
-    "description": "6 [gold]Döv[/gold].\nSonraki tur [energy:1] elde et.",
+    "description": "9 [gold]Döv[/gold].\nSonraki tur [energy:1] elde et.",
     "description_raw": "{Forge:diff()} [gold]Döv[/gold].\nSonraki tur {Energy:energyIcons()} elde et.",
     "cost": 1,
     "is_x_cost": null,
@@ -10492,7 +10440,7 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Forge": 6,
+      "Forge": 9,
       "Energy": 1
     },
     "upgrade": {
@@ -10501,7 +10449,7 @@
     "image_url": "/static/images/cards/refine_blade.webp",
     "beta_image_url": "/static/images/cards/beta/refine_blade.webp",
     "type_variants": null,
-    "upgrade_description": "10 [gold]Döv[/gold].\nSonraki tur [energy:1] elde et.",
+    "upgrade_description": "13 [gold]Döv[/gold].\nSonraki tur [energy:1] elde et.",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 240
@@ -10547,8 +10495,8 @@
   {
     "id": "SWORD_SAGE",
     "name": "Kılıç Üstadı",
-    "description": "[gold]Egemen Kılıcı[/gold]'nın maliyetini 1 artır. [gold]Egemen Kılıcı[/gold] artık fazladan bir kez daha vurur.",
-    "description_raw": "[gold]Egemen Kılıcı[/gold]'nın maliyetini 1 artır. [gold]Egemen Kılıcı[/gold] artık fazladan bir kez daha vurur.",
+    "description": "[gold]Egemen Kılıcı[/gold] artık fazladan bir kez daha vurur.",
+    "description_raw": "[gold]Egemen Kılıcı[/gold] artık fazladan bir kez daha vurur.",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -11203,7 +11151,7 @@
     "id": "GRAVE_WARDEN",
     "name": "Mezar Muhafızı",
     "description": "8 [gold]Blok[/gold] elde et.\n[gold]Çekme Deste[/gold]'ne bir [gold]Ruh[/gold] ekle.",
-    "description_raw": "{Block:diff()} [gold]Blok[/gold] elde et.\n[gold]Çekme Deste[/gold]'ne bir [gold]{IfUpgraded:show:Ruh+|Ruh}[/gold] ekle.",
+    "description_raw": "{Block:diff()} [gold]Blok[/gold] elde et.\n[gold]Çekme Deste[/gold]'ne bir [gold]Ruh[/gold] ekle.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -11229,12 +11177,12 @@
       "Cards": 1
     },
     "upgrade": {
-      "block": "+2"
+      "block": "+3"
     },
     "image_url": "/static/images/cards/grave_warden.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "10 [gold]Blok[/gold] elde et.\n[gold]Çekme Deste[/gold]'ne bir [gold]Ruh+[/gold] ekle.",
+    "upgrade_description": "11 [gold]Blok[/gold] elde et.\n[gold]Çekme Deste[/gold]'ne bir [gold]Ruh[/gold] ekle.",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 300
@@ -11554,8 +11502,8 @@
   {
     "id": "BLADE_OF_INK",
     "name": "Mürekkepli Bıçak",
-    "description": "Bu tur her Saldırı kartı oynadığında sonraki tura kadar 2 [gold]Kuvvet[/gold] elde et.",
-    "description_raw": "Bu tur her Saldırı kartı oynadığında sonraki tura kadar {StrengthPower:diff()} [gold]Kuvvet[/gold] elde et.",
+    "description": "[gold]El[/gold]'ine 2 [purple]Mürekkepli[/purple] [gold]Kama[/gold] ekle.",
+    "description_raw": "[gold]El[/gold]'ine {Cards:diff()} [purple]Mürekkepli[/purple] [gold]{Cards:plural:Kama|Kama}[/gold] ekle.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -11567,30 +11515,25 @@
     "damage": null,
     "block": null,
     "hit_count": null,
-    "powers_applied": [
-      {
-        "power": "Kuvvet",
-        "amount": 2,
-        "power_key": "Strength"
-      }
-    ],
-    "cards_draw": null,
+    "powers_applied": null,
+    "cards_draw": 2,
     "energy_gain": null,
     "hp_loss": null,
     "keywords": null,
     "tags": null,
-    "spawns_cards": null,
+    "spawns_cards": [
+      "SHIV"
+    ],
     "vars": {
-      "StrengthPower": 2,
-      "Strength": 2
+      "Cards": 2
     },
     "upgrade": {
-      "strength": "+1"
+      "cards": "+1"
     },
     "image_url": "/static/images/cards/blade_of_ink.webp",
     "beta_image_url": "/static/images/cards/beta/blade_of_ink.webp",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]El[/gold]'ine 3 [purple]Mürekkepli[/purple] [gold]Kama[/gold] ekle.",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 98
@@ -11715,12 +11658,13 @@
       "Cards": 2
     },
     "upgrade": {
-      "damage": "+4"
+      "damage": "+4",
+      "cards": "+1"
     },
     "image_url": "/static/images/cards/neows_fury.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "14 hasar ver.\n[gold]Atık Destesi[/gold]'nden rastgele 2 kartı [gold]El[/gold]'ine koy.",
+    "upgrade_description": "14 hasar ver.\n[gold]Atık Destesi[/gold]'nden rastgele 3 kartı [gold]El[/gold]'ine koy.",
     "type_key": "Attack",
     "rarity_key": "Ancient",
     "keywords_key": [
@@ -11733,7 +11677,7 @@
     "name": "Neşe Kaynağı",
     "description": "[gold]El[/gold]'ine rastgele 3 Renksiz kart ekle.",
     "description_raw": "[gold]El[/gold]'ine rastgele {Cards:diff()} Renksiz {Cards:plural:kart|kart} ekle.",
-    "cost": 2,
+    "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
     "star_cost": null,
@@ -11851,7 +11795,7 @@
   {
     "id": "PINPOINT",
     "name": "Nokta Atışı",
-    "description": "17 hasar ver.\nBu turda oynanan her Beceri için 1 [energy:1] ucuzlaşır.",
+    "description": "15 hasar ver.\nBu turda oynanan her Beceri için 1 [energy:1] ucuzlaşır.",
     "description_raw": "{Damage:diff()} hasar ver.\nBu turda oynanan her Beceri için 1 {energyPrefix:energyIcons(1)} ucuzlaşır.",
     "cost": 3,
     "is_x_cost": null,
@@ -11861,7 +11805,7 @@
     "rarity": "Az Yaygın",
     "target": "AnyEnemy",
     "color": "silent",
-    "damage": 17,
+    "damage": 15,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -11872,15 +11816,15 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Damage": 17
+      "Damage": 15
     },
     "upgrade": {
-      "damage": "+5"
+      "damage": "+4"
     },
     "image_url": "/static/images/cards/pinpoint.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "22 hasar ver.\nBu turda oynanan her Beceri için 1 [energy:1] ucuzlaşır.",
+    "upgrade_description": "19 hasar ver.\nBu turda oynanan her Beceri için 1 [energy:1] ucuzlaşır.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 145
@@ -11919,6 +11863,48 @@
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 474
+  },
+  {
+    "id": "NOT_YET",
+    "name": "NotYet",
+    "description": "",
+    "description_raw": "",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Beceri",
+    "rarity": "Nadir",
+    "target": "Self",
+    "color": "ironclad",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Tüket"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Heal": 10
+    },
+    "upgrade": {
+      "heal": "+3"
+    },
+    "image_url": "/static/images/cards/not_yet.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "upgrade_description": null,
+    "type_key": "Skill",
+    "rarity_key": "Rare",
+    "keywords_key": [
+      "Exhaust"
+    ],
+    "compendium_order": 52
   },
   {
     "id": "NEUROSURGE",
@@ -12267,8 +12253,8 @@
   {
     "id": "GLOW",
     "name": "Parla",
-    "description": "[star:1] elde et.\n2 kart çek.",
-    "description_raw": "{Stars:starIcons()} elde et.\n{Cards:diff()} {Cards:plural:kart|kart} çek.",
+    "description": "[star:1] elde et.\n1 kart çek.\nSonraki turunda 1 kart çek.",
+    "description_raw": "{Stars:starIcons()} elde et.\n{Cards:diff()} {Cards:plural:kart|kart} çek.\nSonraki turunda {Cards:diff()} {Cards:plural:kart|kart} çek.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -12281,7 +12267,7 @@
     "block": null,
     "hit_count": null,
     "powers_applied": null,
-    "cards_draw": 2,
+    "cards_draw": 1,
     "energy_gain": null,
     "hp_loss": null,
     "keywords": null,
@@ -12289,7 +12275,7 @@
     "spawns_cards": null,
     "vars": {
       "Stars": 1,
-      "Cards": 2
+      "Cards": 1
     },
     "upgrade": {
       "stars": "+1"
@@ -12297,7 +12283,7 @@
     "image_url": "/static/images/cards/glow.webp",
     "beta_image_url": "/static/images/cards/beta/glow.webp",
     "type_variants": null,
-    "upgrade_description": "[star:2] elde et.\n2 kart çek.",
+    "upgrade_description": "[star:2] elde et.\n1 kart çek.\nSonraki turunda 1 kart çek.",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 209
@@ -12417,7 +12403,7 @@
     "upgrade_description": "20 hasar ver.\nDüşman bu turda 15 [gold]Kuvvet[/gold] kaybeder.",
     "type_key": "Attack",
     "rarity_key": "Rare",
-    "compendium_order": 51
+    "compendium_order": 50
   },
   {
     "id": "RIP_AND_TEAR",
@@ -12429,7 +12415,7 @@
     "is_x_star_cost": null,
     "star_cost": null,
     "type": "Saldırı",
-    "rarity": "Az Yaygın",
+    "rarity": "Etkinlik",
     "target": "RandomEnemy",
     "color": "event",
     "damage": 7,
@@ -12453,7 +12439,7 @@
     "type_variants": null,
     "upgrade_description": "İki kez rastgele bir düşmana 9 hasar ver.",
     "type_key": "Attack",
-    "rarity_key": "Uncommon",
+    "rarity_key": "Event",
     "compendium_order": 542
   },
   {
@@ -12497,7 +12483,7 @@
   {
     "id": "GLITTERSTREAM",
     "name": "Parıltı Akışı",
-    "description": "11 [gold]Blok[/gold] elde et.\nBir sonraki tur 4 [gold]Blok[/gold] elde et.",
+    "description": "11 [gold]Blok[/gold] elde et.\nBir sonraki tur 5 [gold]Blok[/gold] elde et.",
     "description_raw": "{Block:diff()} [gold]Blok[/gold] elde et.\nBir sonraki tur {BlockNextTurn:diff()} [gold]Blok[/gold] elde et.",
     "cost": 2,
     "is_x_cost": null,
@@ -12518,7 +12504,7 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "BlockNextTurn": 4,
+      "BlockNextTurn": 5,
       "Block": 11
     },
     "upgrade": {
@@ -12528,7 +12514,7 @@
     "image_url": "/static/images/cards/glitterstream.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "13 [gold]Blok[/gold] elde et.\nBir sonraki tur 6 [gold]Blok[/gold] elde et.",
+    "upgrade_description": "13 [gold]Blok[/gold] elde et.\nBir sonraki tur 7 [gold]Blok[/gold] elde et.",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 208
@@ -12862,8 +12848,8 @@
   {
     "id": "ROCKET_PUNCH",
     "name": "Roket Yumruğu",
-    "description": "13 hasar ver.\n1 kart çek.\nBir Durum kartı oluşturulduğunda bu kartın maliyeti, bu tur için 0 [energy:1] olur.",
-    "description_raw": "{Damage:diff()} hasar ver.\n{Cards:diff()} {Cards:plural:kart|kart} çek.\nBir Durum kartı oluşturulduğunda bu kartın maliyeti, bu tur için 0 {energyPrefix:energyIcons(1)} olur.",
+    "description": "13 hasar ver.\n1 kart çek.\nHer Durum kartı oluşturduğunda bu kartın maliyeti, oynanana kadar 0 [energy:1] olur.",
+    "description_raw": "{Damage:diff()} hasar ver.\n{Cards:diff()} {Cards:plural:kart|kart} çek.\nHer Durum kartı oluşturduğunda bu kartın maliyeti, oynanana kadar 0 {energyPrefix:energyIcons(1)} olur.",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -12893,7 +12879,7 @@
     "image_url": "/static/images/cards/rocket_punch.webp",
     "beta_image_url": "/static/images/cards/beta/rocket_punch.webp",
     "type_variants": null,
-    "upgrade_description": "14 hasar ver.\n2 kart çek.\nBir Durum kartı oluşturulduğunda bu kartın maliyeti, bu tur için 0 [energy:1] olur.",
+    "upgrade_description": "14 hasar ver.\n2 kart çek.\nHer Durum kartı oluşturduğunda bu kartın maliyeti, oynanana kadar 0 [energy:1] olur.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 413
@@ -13067,9 +13053,9 @@
   {
     "id": "SEANCE",
     "name": "Ruh Çağırma Seansı",
-    "description": "[gold]Çekme Deste[/gold]'nden bir kartı [gold]Ruh[/gold] kartına Dönüştür.",
-    "description_raw": "[gold]Çekme Deste[/gold]'nden bir kartı [gold]{IfUpgraded:show:Ruh+|Ruh}[/gold] kartına Dönüştür.",
-    "cost": 0,
+    "description": "[gold]Çekme Deste[/gold]'nden bir kartı [gold]Ruh[/gold] kartına dönüştür.",
+    "description_raw": "[gold]Çekme Deste[/gold]'nden bir kartı [gold]Ruh[/gold] kartına dönüştür.",
+    "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
     "star_cost": null,
@@ -13095,12 +13081,12 @@
       "Cards": 1
     },
     "upgrade": {
-      "description_changed": true
+      "cost": 0
     },
     "image_url": "/static/images/cards/seance.webp",
     "beta_image_url": "/static/images/cards/beta/seance.webp",
     "type_variants": null,
-    "upgrade_description": "[gold]Çekme Deste[/gold]'nden bir kartı [gold]Ruh+[/gold] kartına Dönüştür.",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -13360,8 +13346,8 @@
   {
     "id": "HIDDEN_GEM",
     "name": "Saklı Cevher",
-    "description": "[gold]Çekme Deste[/gold]'ndeki rastgele bir karta 2 [gold]Yeniden Oyna[/gold] ekle.",
-    "description_raw": "[gold]Çekme Deste[/gold]'ndeki rastgele bir karta {Replay:diff()} [gold]Yeniden Oyna[/gold] ekle.",
+    "description": "[gold]Çekme Deste[/gold]'nde [gold]Yeniden Oyna[/gold]'ya sahip olmayan rastgele bir karta 2 [gold]Yeniden Oyna[/gold] ekle.",
+    "description_raw": "[gold]Çekme Deste[/gold]'nde [gold]Yeniden Oyna[/gold]'ya sahip olmayan rastgele bir karta {Replay:diff()} [gold]Yeniden Oyna[/gold] ekle.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -13389,7 +13375,7 @@
     "image_url": "/static/images/cards/hidden_gem.webp",
     "beta_image_url": "/static/images/cards/beta/hidden_gem.webp",
     "type_variants": null,
-    "upgrade_description": "[gold]Çekme Deste[/gold]'ndeki rastgele bir karta 3 [gold]Yeniden Oyna[/gold] ekle.",
+    "upgrade_description": "[gold]Çekme Deste[/gold]'nde [gold]Yeniden Oyna[/gold]'ya sahip olmayan rastgele bir karta 3 [gold]Yeniden Oyna[/gold] ekle.",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 462
@@ -13721,7 +13707,7 @@
   {
     "id": "BELIEVE_IN_YOU",
     "name": "Sana İnanıyorum",
-    "description": "Bir diğer oyuncu [energy:3] elde eder.",
+    "description": "Bir diğer oyuncu [energy:2] elde eder.",
     "description_raw": "Bir diğer oyuncu {Energy:energyIcons()} elde eder.",
     "cost": 0,
     "is_x_cost": null,
@@ -13736,13 +13722,13 @@
     "hit_count": null,
     "powers_applied": null,
     "cards_draw": null,
-    "energy_gain": 3,
+    "energy_gain": 2,
     "hp_loss": null,
     "keywords": null,
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Energy": 3
+      "Energy": 2
     },
     "upgrade": {
       "energy": "+1"
@@ -13750,7 +13736,7 @@
     "image_url": "/static/images/cards/believe_in_you.webp",
     "beta_image_url": "/static/images/cards/beta/believe_in_you.webp",
     "type_variants": null,
-    "upgrade_description": "Bir diğer oyuncu [energy:4] elde eder.",
+    "upgrade_description": "Bir diğer oyuncu [energy:3] elde eder.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 444
@@ -13876,7 +13862,7 @@
   {
     "id": "FIGHT_ME",
     "name": "Savaş Benimle!",
-    "description": "İki kez 5 hasar ver.\n2 [gold]Kuvvet[/gold] elde et.\nDüşman 1 [gold]Kuvvet[/gold] elde eder.",
+    "description": "İki kez 5 hasar ver.\n3 [gold]Kuvvet[/gold] elde et.\nDüşman 1 [gold]Kuvvet[/gold] elde eder.",
     "description_raw": "İki kez {Damage:diff()} hasar ver.\n{StrengthPower:diff()} [gold]Kuvvet[/gold] elde et.\nDüşman {EnemyStrength:diff()} [gold]Kuvvet[/gold] elde eder.",
     "cost": 2,
     "is_x_cost": null,
@@ -13892,7 +13878,7 @@
     "powers_applied": [
       {
         "power": "Kuvvet",
-        "amount": 2,
+        "amount": 3,
         "power_key": "Strength"
       }
     ],
@@ -13906,8 +13892,8 @@
       "EnemyStrength": 1,
       "Damage": 5,
       "Repeat": 2,
-      "StrengthPower": 2,
-      "Strength": 2
+      "StrengthPower": 3,
+      "Strength": 3
     },
     "upgrade": {
       "damage": "+1",
@@ -13916,7 +13902,7 @@
     "image_url": "/static/images/cards/fight_me.webp",
     "beta_image_url": "/static/images/cards/beta/fight_me.webp",
     "type_variants": null,
-    "upgrade_description": "İki kez 6 hasar ver.\n2 [gold]Kuvvet[/gold] elde et.\nDüşman 1 [gold]Kuvvet[/gold] elde eder.",
+    "upgrade_description": "İki kez 6 hasar ver.\n3 [gold]Kuvvet[/gold] elde et.\nDüşman 1 [gold]Kuvvet[/gold] elde eder.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 35
@@ -13969,8 +13955,8 @@
   {
     "id": "SPOILS_OF_BATTLE",
     "name": "Savaş Ganimetleri",
-    "description": "10 [gold]Döv[/gold].",
-    "description_raw": "{Forge:diff()} [gold]Döv[/gold].",
+    "description": "5 [gold]Döv[/gold].\n2 kart çek.",
+    "description_raw": "{Forge:diff()} [gold]Döv[/gold].\n{Cards:diff()} {Cards:plural:kart|kart} çek.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -13983,22 +13969,23 @@
     "block": null,
     "hit_count": null,
     "powers_applied": null,
-    "cards_draw": null,
+    "cards_draw": 2,
     "energy_gain": null,
     "hp_loss": null,
     "keywords": null,
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Forge": 10
+      "Forge": 5,
+      "Cards": 2
     },
     "upgrade": {
-      "forge": "+5"
+      "forge": "+3"
     },
     "image_url": "/static/images/cards/spoils_of_battle.webp",
     "beta_image_url": "/static/images/cards/beta/spoils_of_battle.webp",
     "type_variants": null,
-    "upgrade_description": "15 [gold]Döv[/gold].",
+    "upgrade_description": "8 [gold]Döv[/gold].\n2 kart çek.",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 250
@@ -14082,7 +14069,7 @@
   {
     "id": "WROUGHT_IN_WAR",
     "name": "Savaşta Şekillendirilmiş",
-    "description": "7 hasar ver.\n5 [gold]Döv[/gold].",
+    "description": "7 hasar ver.\n7 [gold]Döv[/gold].",
     "description_raw": "{Damage:diff()} hasar ver.\n{Forge:diff()} [gold]Döv[/gold].",
     "cost": 1,
     "is_x_cost": null,
@@ -14104,7 +14091,7 @@
     "spawns_cards": null,
     "vars": {
       "Damage": 7,
-      "Forge": 5
+      "Forge": 7
     },
     "upgrade": {
       "damage": "+2",
@@ -14113,7 +14100,7 @@
     "image_url": "/static/images/cards/wrought_in_war.webp",
     "beta_image_url": "/static/images/cards/beta/wrought_in_war.webp",
     "type_variants": null,
-    "upgrade_description": "9 hasar ver.\n7 [gold]Döv[/gold].",
+    "upgrade_description": "9 hasar ver.\n9 [gold]Döv[/gold].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 262
@@ -14316,7 +14303,7 @@
   {
     "id": "PARRY",
     "name": "Savuştur",
-    "description": "[gold]Egemen Kılıcı[/gold]'nı her oynadığında 6 [gold]Blok[/gold] elde et.",
+    "description": "[gold]Egemen Kılıcı[/gold]'nı her oynadığında 10 [gold]Blok[/gold] elde et.",
     "description_raw": "[gold]Egemen Kılıcı[/gold]'nı her oynadığında {ParryPower:diff()} [gold]Blok[/gold] elde et.",
     "cost": 1,
     "is_x_cost": null,
@@ -14332,7 +14319,7 @@
     "powers_applied": [
       {
         "power": "Savuştur",
-        "amount": 6,
+        "amount": 10,
         "power_key": "Parry"
       }
     ],
@@ -14345,16 +14332,16 @@
       "SOVEREIGN_BLADE"
     ],
     "vars": {
-      "ParryPower": 6,
-      "Parry": 6
+      "ParryPower": 10,
+      "Parry": 10
     },
     "upgrade": {
-      "parrypower": "+3"
+      "parrypower": "+4"
     },
     "image_url": "/static/images/cards/parry.webp",
     "beta_image_url": "/static/images/cards/beta/parry.webp",
     "type_variants": null,
-    "upgrade_description": "[gold]Egemen Kılıcı[/gold]'nı her oynadığında 9 [gold]Blok[/gold] elde et.",
+    "upgrade_description": "[gold]Egemen Kılıcı[/gold]'nı her oynadığında 14 [gold]Blok[/gold] elde et.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 232
@@ -16367,7 +16354,7 @@
     "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Common",
-    "compendium_order": 39
+    "compendium_order": 38
   },
   {
     "id": "TRACKING",
@@ -16449,7 +16436,7 @@
   {
     "id": "PATTER",
     "name": "Takımyıldız",
-    "description": "8 [gold]Blok[/gold] elde et.\n2 [gold]Dinç[/gold] elde et.",
+    "description": "9 [gold]Blok[/gold] elde et.\n2 [gold]Dinç[/gold] elde et.",
     "description_raw": "{Block:diff()} [gold]Blok[/gold] elde et.\n{VigorPower:diff()} [gold]Dinç[/gold] elde et.",
     "cost": 1,
     "is_x_cost": null,
@@ -16460,7 +16447,7 @@
     "target": "Self",
     "color": "regent",
     "damage": null,
-    "block": 8,
+    "block": 9,
     "hit_count": null,
     "powers_applied": [
       {
@@ -16476,7 +16463,7 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Block": 8,
+      "Block": 9,
       "VigorPower": 2,
       "Vigor": 2
     },
@@ -16487,7 +16474,7 @@
     "image_url": "/static/images/cards/patter.webp",
     "beta_image_url": "/static/images/cards/beta/patter.webp",
     "type_variants": null,
-    "upgrade_description": "10 [gold]Blok[/gold] elde et.\n3 [gold]Dinç[/gold] elde et.",
+    "upgrade_description": "11 [gold]Blok[/gold] elde et.\n3 [gold]Dinç[/gold] elde et.",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 234
@@ -16905,7 +16892,7 @@
   {
     "id": "TREMBLE",
     "name": "Titreme",
-    "description": "2 [gold]Savunmasız[/gold] uygula.",
+    "description": "3 [gold]Savunmasız[/gold] uygula.",
     "description_raw": "{VulnerablePower:diff()} [gold]Savunmasız[/gold] uygula.",
     "cost": 1,
     "is_x_cost": null,
@@ -16921,19 +16908,21 @@
     "powers_applied": [
       {
         "power": "Savunmasız",
-        "amount": 2,
+        "amount": 3,
         "power_key": "Vulnerable"
       }
     ],
     "cards_draw": null,
     "energy_gain": null,
     "hp_loss": null,
-    "keywords": null,
+    "keywords": [
+      "Tüket"
+    ],
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "VulnerablePower": 2,
-      "Vulnerable": 2
+      "VulnerablePower": 3,
+      "Vulnerable": 3
     },
     "upgrade": {
       "vulnerable": "+1"
@@ -16944,6 +16933,9 @@
     "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Common",
+    "keywords_key": [
+      "Exhaust"
+    ],
     "compendium_order": 79
   },
   {
@@ -17026,8 +17018,8 @@
   {
     "id": "HUDDLE_UP",
     "name": "Toplanın",
-    "description": "TÜM müttefikler 2 kart çeker.",
-    "description_raw": "TÜM müttefikler {Cards:diff()} kart çeker.",
+    "description": "TÜM oyuncular 2 kart çeker.",
+    "description_raw": "TÜM oyuncular {Cards:diff()} kart çeker.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -17043,7 +17035,9 @@
     "cards_draw": 2,
     "energy_gain": null,
     "hp_loss": null,
-    "keywords": null,
+    "keywords": [
+      "Tüket"
+    ],
     "tags": null,
     "spawns_cards": null,
     "vars": {
@@ -17055,9 +17049,12 @@
     "image_url": "/static/images/cards/huddle_up.webp",
     "beta_image_url": "/static/images/cards/beta/huddle_up.webp",
     "type_variants": null,
-    "upgrade_description": "TÜM müttefikler 3 kart çeker.",
+    "upgrade_description": "TÜM oyuncular 3 kart çeker.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
+    "keywords_key": [
+      "Exhaust"
+    ],
     "compendium_order": 463
   },
   {
@@ -17278,7 +17275,9 @@
     "cards_draw": null,
     "energy_gain": 3,
     "hp_loss": null,
-    "keywords": null,
+    "keywords": [
+      "Tüket"
+    ],
     "tags": null,
     "spawns_cards": null,
     "vars": {
@@ -17293,6 +17292,9 @@
     "upgrade_description": "Eğer bu tur bir kartı [gold]Tükettiysen[/gold] [energy:4] elde et.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
+    "keywords_key": [
+      "Exhaust"
+    ],
     "compendium_order": 37
   },
   {
@@ -17608,8 +17610,8 @@
   {
     "id": "FLAK_CANNON",
     "name": "Uçaksavar",
-    "description": "TÜM [gold]Durum[/gold] kartlarını [gold]Tüket[/gold].\n[gold]Tüketilen[/gold] her kart için rastgele bir düşmana 8 hasar ver.",
-    "description_raw": "TÜM [gold]Durum[/gold] kartlarını [gold]Tüket[/gold].\n[gold]Tüketilen[/gold] her kart için rastgele bir düşmana {Damage:diff()} hasar ver.{InCombat:\n({CalculatedHits:diff()} {CalculatedHits:plural:kez|kez} vurur)|}",
+    "description": "TÜM Durum kartlarını [gold]Tüket[/gold].\n[gold]Tüketilen[/gold] her kart için rastgele bir düşmana 8 hasar ver.",
+    "description_raw": "TÜM Durum kartlarını [gold]Tüket[/gold].\n[gold]Tüketilen[/gold] her kart için rastgele bir düşmana {Damage:diff()} hasar ver.{InCombat:\n({CalculatedHits:diff()} {CalculatedHits:plural:kez|kez} vurur)|}",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -17639,7 +17641,7 @@
     "image_url": "/static/images/cards/flak_cannon.webp",
     "beta_image_url": "/static/images/cards/beta/flak_cannon.webp",
     "type_variants": null,
-    "upgrade_description": "TÜM [gold]Durum[/gold] kartlarını [gold]Tüket[/gold].\n[gold]Tüketilen[/gold] her kart için rastgele bir düşmana 11 hasar ver.",
+    "upgrade_description": "TÜM Durum kartlarını [gold]Tüket[/gold].\n[gold]Tüketilen[/gold] her kart için rastgele bir düşmana 11 hasar ver.",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 382
@@ -17686,7 +17688,7 @@
     "name": "Uşak Dalışı",
     "description": "13 hasar ver.",
     "description_raw": "{Damage:diff()} hasar ver.",
-    "cost": 1,
+    "cost": 0,
     "is_x_cost": null,
     "is_x_star_cost": null,
     "star_cost": null,
@@ -17772,7 +17774,7 @@
   {
     "id": "MINION_STRIKE",
     "name": "Uşak Saldırısı",
-    "description": "7 hasar ver.\n1 kart çek.",
+    "description": "6 hasar ver.\n1 kart çek.",
     "description_raw": "{Damage:diff()} hasar ver.\n{Cards:diff()} {Cards:plural:kart|kart} çek.",
     "cost": 0,
     "is_x_cost": null,
@@ -17782,7 +17784,7 @@
     "rarity": "Token",
     "target": "AnyEnemy",
     "color": "token",
-    "damage": 7,
+    "damage": 6,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -17798,7 +17800,7 @@
     ],
     "spawns_cards": null,
     "vars": {
-      "Damage": 7,
+      "Damage": 6,
       "Cards": 1
     },
     "upgrade": {
@@ -17807,7 +17809,7 @@
     "image_url": "/static/images/cards/minion_strike.webp",
     "beta_image_url": "/static/images/cards/beta/minion_strike.webp",
     "type_variants": null,
-    "upgrade_description": "10 hasar ver.\n1 kart çek.",
+    "upgrade_description": "9 hasar ver.\n1 kart çek.",
     "type_key": "Attack",
     "rarity_key": "Token",
     "keywords_key": [
@@ -17945,7 +17947,7 @@
   {
     "id": "HEIRLOOM_HAMMER",
     "name": "Yadigâr Çekiç",
-    "description": "17 hasar ver.\n[gold]El[/gold]'indeki bir Renksiz kartı seç. Bu kartın bir kopyasını [gold]El[/gold]'ine koy.",
+    "description": "20 hasar ver.\n[gold]El[/gold]'indeki bir Renksiz kartı seç. Bu kartın bir kopyasını [gold]El[/gold]'ine koy.",
     "description_raw": "{Damage:diff()} hasar ver.\n[gold]El[/gold]'indeki bir Renksiz kartı seç. Bu kartın bir kopyasını [gold]El[/gold]'ine koy.",
     "cost": 2,
     "is_x_cost": null,
@@ -17955,7 +17957,7 @@
     "rarity": "Nadir",
     "target": "AnyEnemy",
     "color": "regent",
-    "damage": 17,
+    "damage": 20,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -17966,7 +17968,7 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Damage": 17,
+      "Damage": 20,
       "Repeat": 1
     },
     "upgrade": {
@@ -17975,7 +17977,7 @@
     "image_url": "/static/images/cards/heirloom_hammer.webp",
     "beta_image_url": "/static/images/cards/beta/heirloom_hammer.webp",
     "type_variants": null,
-    "upgrade_description": "22 hasar ver.\n[gold]El[/gold]'indeki bir Renksiz kartı seç. Bu kartın bir kopyasını [gold]El[/gold]'ine koy.",
+    "upgrade_description": "25 hasar ver.\n[gold]El[/gold]'indeki bir Renksiz kartı seç. Bu kartın bir kopyasını [gold]El[/gold]'ine koy.",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 215
@@ -18043,7 +18045,9 @@
     "cards_draw": null,
     "energy_gain": null,
     "hp_loss": null,
-    "keywords": null,
+    "keywords": [
+      "Tüket"
+    ],
     "tags": null,
     "spawns_cards": null,
     "vars": {
@@ -18051,14 +18055,17 @@
       "Focus": 2
     },
     "upgrade": {
-      "focuspower": "+1"
+      "remove_exhaust": true
     },
     "image_url": "/static/images/cards/hotfix.webp",
     "beta_image_url": "/static/images/cards/beta/hotfix.webp",
     "type_variants": null,
-    "upgrade_description": "Bu turda 3 [gold]Odak[/gold] elde et.",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Common",
+    "keywords_key": [
+      "Exhaust"
+    ],
     "compendium_order": 394
   },
   {
@@ -19033,8 +19040,8 @@
   {
     "id": "GUIDING_STAR",
     "name": "Yol Gösteren Yıldız",
-    "description": "12 hasar ver.\nSonraki tur 2 kart çek.",
-    "description_raw": "{Damage:diff()} hasar ver.\nSonraki tur {Cards:diff()} {Cards:plural:kart|kart} çek.",
+    "description": "12 hasar ver.\n2 kart çek.",
+    "description_raw": "{Damage:diff()} hasar ver.\n{Cards:diff()} {Cards:plural:kart|kart} çek.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -19065,7 +19072,7 @@
     "image_url": "/static/images/cards/guiding_star.webp",
     "beta_image_url": "/static/images/cards/beta/guiding_star.webp",
     "type_variants": null,
-    "upgrade_description": "13 hasar ver.\nSonraki tur 3 kart çek.",
+    "upgrade_description": "13 hasar ver.\n3 kart çek.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 211
@@ -19397,7 +19404,7 @@
     "name": "Yık",
     "description": "20 hasar ver.\n5 [gold]Savunmasız[/gold] uygula.",
     "description_raw": "{Damage:diff()} hasar ver.\n{VulnerablePower:diff()} [gold]Savunmasız[/gold] uygula.",
-    "cost": 2,
+    "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
     "star_cost": null,
@@ -19427,13 +19434,13 @@
       "Vulnerable": 5
     },
     "upgrade": {
-      "damage": "+5",
+      "damage": "+10",
       "vulnerable": "+2"
     },
     "image_url": "/static/images/cards/break.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "25 hasar ver.\n5 [gold]Savunmasız[/gold] uygula.",
+    "upgrade_description": "30 hasar ver.\n5 [gold]Savunmasız[/gold] uygula.",
     "type_key": "Attack",
     "rarity_key": "Ancient",
     "compendium_order": 12
@@ -19472,12 +19479,12 @@
       "SerpentForm": 4
     },
     "upgrade": {
-      "serpentformpower": "+1"
+      "serpentformpower": "+2"
     },
     "image_url": "/static/images/cards/serpent_form.webp",
     "beta_image_url": "/static/images/cards/beta/serpent_form.webp",
     "type_variants": null,
-    "upgrade_description": "Her kart oynadığında rastgele bir düşmana 5 hasar ver.",
+    "upgrade_description": "Her kart oynadığında rastgele bir düşmana 6 hasar ver.",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 153
@@ -19766,7 +19773,7 @@
     "id": "TEAR_ASUNDER",
     "name": "Yırtıp At",
     "description": "5 hasar ver.\nBu savaş boyunca CP kaybettiğin her sefer için ek bir vuruş yapar.",
-    "description_raw": "{Damage:diff()} hasar ver.\nBu savaş boyunca CP kaybettiğin her sefer için ek bir vuruş yapar.{InCombat:\n({CalculatedHits:diff()} {CalculatedHits:plural:kez|kez} vurur.)|}",
+    "description_raw": "{Damage:diff()} hasar ver.\nBu savaş boyunca CP kaybettiğin her sefer için ek bir vuruş yapar.{InCombat:\n({CalculatedHits:diff()} {CalculatedHits:plural:kez|kez} vurur)|}",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -19806,7 +19813,7 @@
     "id": "STACK",
     "name": "Yığın",
     "description": "[gold]Atık Deste[/gold]'ndeki kart sayısı kadar [gold]Blok[/gold] kazan.  Blok daha ekle|}",
-    "description_raw": "[gold]Atık Deste[/gold]'ndeki kart sayısı kadar [gold]Blok[/gold] kazan. {IfUpgraded:show: +{CalculationBase} Blok daha ekle|} {InCombat:\n({CalculatedBlock:diff()} [gold]Blok[/gold] elde et.)|}",
+    "description_raw": "[gold]Atık Deste[/gold]'ndeki kart sayısı kadar [gold]Blok[/gold] kazan. {IfUpgraded:show: +{CalculationBase} Blok daha ekle|} {InCombat:\n({CalculatedBlock:diff()} [gold]Blok[/gold] elde et)|}",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -20193,8 +20200,8 @@
   {
     "id": "MIND_ROT",
     "name": "Zihin Çürümesi",
-    "description": "Her tur 1 daha az kart çek.",
-    "description_raw": "Her tur {MindRotPower:diff()} daha az {MindRotPower:plural:kart|kart} çek.",
+    "description": "Her tur 1 kart az çek.",
+    "description_raw": "Her tur {MindRotPower:diff()} {MindRotPower:plural:kart|kart} az çek.",
     "cost": -1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -20476,7 +20483,7 @@
   {
     "id": "COLLISION_COURSE",
     "name": "Çarpışma Rotası",
-    "description": "9 hasar ver.\n[gold]El[/gold]'ine 1 [gold]Moloz[/gold] ekle.",
+    "description": "11 hasar ver.\n[gold]El[/gold]'ine 1 [gold]Moloz[/gold] ekle.",
     "description_raw": "{Damage:diff()} hasar ver.\n[gold]El[/gold]'ine 1 [gold]Moloz[/gold] ekle.",
     "cost": 0,
     "is_x_cost": null,
@@ -20486,7 +20493,7 @@
     "rarity": "Yaygın",
     "target": "AnyEnemy",
     "color": "regent",
-    "damage": 9,
+    "damage": 11,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -20499,15 +20506,15 @@
       "DEBRIS"
     ],
     "vars": {
-      "Damage": 9
+      "Damage": 11
     },
     "upgrade": {
-      "damage": "+3"
+      "damage": "+4"
     },
     "image_url": "/static/images/cards/collision_course.webp",
     "beta_image_url": "/static/images/cards/beta/collision_course.webp",
     "type_variants": null,
-    "upgrade_description": "12 hasar ver.\n[gold]El[/gold]'ine 1 [gold]Moloz[/gold] ekle.",
+    "upgrade_description": "15 hasar ver.\n[gold]El[/gold]'ine 1 [gold]Moloz[/gold] ekle.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 189
@@ -20589,8 +20596,8 @@
   {
     "id": "EXPECT_A_FIGHT",
     "name": "Çatışma Kapıda",
-    "description": "[gold]El[/gold]'indeki her Saldırı için [energy:1] elde et.",
-    "description_raw": "[gold]El[/gold]'indeki her Saldırı için {energyPrefix:energyIcons(1)} elde et.{InCombat:\n({CalculatedEnergy:energyIcons()} elde et.)|}",
+    "description": "[gold]El[/gold]'indeki her Saldırı için [energy:1] elde et.\nBu tur\nfazladan [energy:1] elde edemezsin.",
+    "description_raw": "[gold]El[/gold]'indeki her Saldırı için {energyPrefix:energyIcons(1)} elde et.\nBu tur\nfazladan {energyPrefix:energyIcons(1)} elde edemezsin.{InCombat:\n({CalculatedEnergy:energyIcons()} elde et)|}",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -21164,7 +21171,7 @@
     "id": "MAD_SCIENCE",
     "name": "Çılgın Bilim",
     "description": "12 hasar ver.",
-    "description_raw": "{CardType:choose(Attack|Skill|Power):{Violence: {ViolenceHits:diff()} kez |}{Damage:diff()} hasar ver.|{Block:diff()} [gold]Blok[/gold] elde et.|}{HasRider:{Sapping:\n{SappingWeak:diff()} [gold]Zayıf[/gold] uygula.\n{SappingVulnerable:diff()} [gold]Savunmasız[/gold] uygula.|}{Choking:\nBu tur her kart oynadığında düşman {ChokingDamage:diff()} CP kaybeder.|}{Energized:\n{EnergizedEnergy:energyIcons()} elde et.|}{Wisdom:\n{WisdomCards:diff()} kart çek.|}{Chaos:\n[gold]El[/gold]'ine rastgele bir kart ekle. Bu turda maliyeti 0 {energyPrefix:energyIcons(1)} olur.|}{Expertise:{ExpertiseStrength:diff()} [gold]Kuvvet[/gold] elde et.\n{ExpertiseDexterity:diff()} [gold]Çeviklik[/gold] elde et.|}{Curious:Güç kartlarının maliyeti {CuriousReduction:diff()} {energyPrefix:energyIcons(1)} azalır.|}{Improvement:Savaşın sonunda rastgele bir kartı [gold]Geliştir[/gold].|}|{CardType:choose(Attack|Skill|Power):\n???|\n???|???}}",
+    "description_raw": "{CardType:choose(Attack|Skill|Power):{Violence: {ViolenceHits:diff()} kez |}{Damage:diff()} hasar ver.|{Block:diff()} [gold]Blok[/gold] elde et.|}{HasRider:{Sapping:\n{SappingWeak:diff()} [gold]Zayıf[/gold] uygula.\n{SappingVulnerable:diff()} [gold]Savunmasız[/gold] uygula.|}{Choking:\nBu tur her kart oynadığında düşman {ChokingDamage:diff()} CP kaybeder.|}{Energized:\n{EnergizedEnergy:energyIcons()} elde et.|}{Wisdom:\n{WisdomCards:diff()} kart çek.|}{Chaos:\n[gold]El[/gold]'ine rastgele bir kart ekle. Bu turda oynaması ücretsiz olur.|}{Expertise:{ExpertiseStrength:diff()} [gold]Kuvvet[/gold] elde et.\n{ExpertiseDexterity:diff()} [gold]Beceriklilik[/gold] elde et.|}{Curious:Güç kartlarının maliyeti {CuriousReduction:diff()} {energyPrefix:energyIcons(1)} azalır.|}{Improvement:Savaşın sonunda rastgele bir kartı [gold]Geliştir[/gold].|}|{CardType:choose(Attack|Skill|Power):\n???|\n???|???}}",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -21244,7 +21251,7 @@
           {
             "id": "CHAOS",
             "name": "Kaos",
-            "description": "[gold]El[/gold]'ine rastgele bir kart ekle. Bu tur maliyeti [blue]0[/blue] [energy:1] olur."
+            "description": "[gold]El[/gold]'ine rastgele bir kart ekle. Bu tur oynaması ücretsiz olur."
           }
         ]
       },
@@ -21256,7 +21263,7 @@
           {
             "id": "EXPERTISE",
             "name": "Uzmanlık",
-            "description": "[blue]2[/blue] [gold]Kuvvet[/gold] elde et. [blue]2[/blue] [gold]Çeviklik[/gold] elde et."
+            "description": "[blue]2[/blue] [gold]Kuvvet[/gold] elde et. [blue]2[/blue] [gold]Beceriklilik[/gold] elde et."
           },
           {
             "id": "CURIOUS",
@@ -21279,9 +21286,9 @@
   {
     "id": "BORROWED_TIME",
     "name": "Ödünç Zaman",
-    "description": "Kendine 3 [gold]Kader[/gold] uygula.\n[energy:1] elde et.",
-    "description_raw": "Kendine {DoomPower:diff()} [gold]Kader[/gold] uygula.\n{Energy:energyIcons()} elde et.",
-    "cost": 0,
+    "description": "",
+    "description_raw": "",
+    "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
     "star_cost": null,
@@ -21292,31 +21299,24 @@
     "damage": null,
     "block": null,
     "hit_count": null,
-    "powers_applied": [
-      {
-        "power": "Kader",
-        "amount": 3,
-        "power_key": "Doom"
-      }
-    ],
+    "powers_applied": null,
     "cards_draw": null,
-    "energy_gain": 1,
+    "energy_gain": 4,
     "hp_loss": null,
     "keywords": null,
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Energy": 1,
-      "DoomPower": 3,
-      "Doom": 3
+      "ExtraCost": 1,
+      "Energy": 4
     },
     "upgrade": {
-      "energy": "+1"
+      "energy": "+2"
     },
     "image_url": "/static/images/cards/borrowed_time.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Kendine 3 [gold]Kader[/gold] uygula.\n[energy:2] elde et.",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 268
@@ -21361,7 +21361,7 @@
   {
     "id": "MEMENTO_MORI",
     "name": "Öleceğini Hatırla",
-    "description": "8 hasar ver.\nBu tur elinden çıkardığın her kart için fazladan 4 hasar ver.",
+    "description": "9 hasar ver.\nBu tur elinden çıkardığın her kart için fazladan 4 hasar ver.",
     "description_raw": "{CalculatedDamage:diff()} hasar ver.\nBu tur elinden çıkardığın her kart için fazladan {ExtraDamage:diff()} hasar ver.",
     "cost": 1,
     "is_x_cost": null,
@@ -21371,7 +21371,7 @@
     "rarity": "Az Yaygın",
     "target": "AnyEnemy",
     "color": "silent",
-    "damage": 8,
+    "damage": 9,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -21382,9 +21382,9 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "CalculationBase": 8,
+      "CalculationBase": 9,
       "ExtraDamage": 4,
-      "CalculatedDamage": 8
+      "CalculatedDamage": 9
     },
     "upgrade": {
       "calculationbase": "+2",
@@ -21393,7 +21393,7 @@
     "image_url": "/static/images/cards/memento_mori.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "8 hasar ver.\nBu tur elinden çıkardığın her kart için fazladan 5 hasar ver.",
+    "upgrade_description": "9 hasar ver.\nBu tur elinden çıkardığın her kart için fazladan 5 hasar ver.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 136
@@ -21446,7 +21446,7 @@
   {
     "id": "DANSE_MACABRE",
     "name": "Ölüm Dansı",
-    "description": "Bedeli en az [energy:2] olan bir kartı her oynadığında 3 [gold]Blok[/gold] elde et.",
+    "description": "Bedeli en az [energy:2] olan bir kartı her oynadığında 4 [gold]Blok[/gold] elde et.",
     "description_raw": "Bedeli en az {Energy:energyIcons()} olan bir kartı her oynadığında {DanseMacabrePower:diff()} [gold]Blok[/gold] elde et.",
     "cost": 1,
     "is_x_cost": null,
@@ -21462,7 +21462,7 @@
     "powers_applied": [
       {
         "power": "Ölüm Dansı",
-        "amount": 3,
+        "amount": 4,
         "power_key": "DanseMacabre"
       }
     ],
@@ -21474,16 +21474,16 @@
     "spawns_cards": null,
     "vars": {
       "Energy": 2,
-      "DanseMacabrePower": 3,
-      "DanseMacabre": 3
+      "DanseMacabrePower": 4,
+      "DanseMacabre": 4
     },
     "upgrade": {
-      "dansemacabrepower": "+1"
+      "dansemacabrepower": "+2"
     },
     "image_url": "/static/images/cards/danse_macabre.webp",
     "beta_image_url": "/static/images/cards/beta/danse_macabre.webp",
     "type_variants": null,
-    "upgrade_description": "Bedeli en az [energy:2] olan bir kartı her oynadığında 4 [gold]Blok[/gold] elde et.",
+    "upgrade_description": "Bedeli en az [energy:2] olan bir kartı her oynadığında 6 [gold]Blok[/gold] elde et.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 275
@@ -21881,8 +21881,8 @@
   {
     "id": "LEADING_STRIKE",
     "name": "Öncül Saldırı",
-    "description": "7 hasar ver.\n[gold]El[/gold]'ine 1 [gold]Kama[/gold] ekle.",
-    "description_raw": "{Damage:diff()} hasar ver.\n[gold]El[/gold]'ine {Shivs:diff()} [gold]Kama[/gold] ekle.",
+    "description": "3 hasar ver.\n[gold]El[/gold]'ine 2 [gold]Kama[/gold] ekle.",
+    "description_raw": "{Damage:diff()} hasar ver.\n[gold]El[/gold]'ine {Shivs:diff()} [gold]{Shivs:plural:Kama|Kama}[/gold] ekle.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -21891,7 +21891,7 @@
     "rarity": "Yaygın",
     "target": "AnyEnemy",
     "color": "silent",
-    "damage": 7,
+    "damage": 3,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -21906,8 +21906,8 @@
       "SHIV"
     ],
     "vars": {
-      "Shivs": 1,
-      "Damage": 7
+      "Shivs": 2,
+      "Damage": 3
     },
     "upgrade": {
       "damage": "+3"
@@ -21915,7 +21915,7 @@
     "image_url": "/static/images/cards/leading_strike.webp",
     "beta_image_url": "/static/images/cards/beta/leading_strike.webp",
     "type_variants": null,
-    "upgrade_description": "10 hasar ver.\n[gold]El[/gold]'ine 1 [gold]Kama[/gold] ekle.",
+    "upgrade_description": "6 hasar ver.\n[gold]El[/gold]'ine 2 [gold]Kama[/gold] ekle.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 132
@@ -21923,8 +21923,8 @@
   {
     "id": "ANTICIPATE",
     "name": "Öngör",
-    "description": "Bu tur 3 [gold]Çeviklik[/gold] elde et.",
-    "description_raw": "Bu tur {DexterityPower:diff()} [gold]Çeviklik[/gold] elde et.",
+    "description": "Bu tur 2 [gold]Beceriklilik[/gold] elde et.",
+    "description_raw": "Bu tur {DexterityPower:diff()} [gold]Beceriklilik[/gold] elde et.",
     "cost": 0,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -21938,8 +21938,8 @@
     "hit_count": null,
     "powers_applied": [
       {
-        "power": "Çeviklik",
-        "amount": 3,
+        "power": "Beceriklilik",
+        "amount": 2,
         "power_key": "Dexterity"
       }
     ],
@@ -21950,11 +21950,11 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "DexterityPower": 3,
-      "Dexterity": 3
+      "DexterityPower": 2,
+      "Dexterity": 2
     },
     "upgrade": {
-      "dexterity": "+2"
+      "dexterity": "+1"
     },
     "image_url": "/static/images/cards/anticipate.webp",
     "beta_image_url": null,
@@ -21967,8 +21967,8 @@
   {
     "id": "HOWL_FROM_BEYOND",
     "name": "Öteden Gelen Uluma",
-    "description": "TÜM düşmanlara 16 hasar ver.\nTurunun başında [gold]Tüketim Deste[/gold]'nden oynanır.",
-    "description_raw": "TÜM düşmanlara {Damage:diff()} hasar ver.\nTurunun başında [gold]Tüketim Deste[/gold]'nden oynanır.",
+    "description": "TÜM düşmanlara 16 hasar ver.\nBu kart, turunun başında [gold]Tüketme Deste[/gold]'nde ise kendi kendine oynanır.",
+    "description_raw": "TÜM düşmanlara {Damage:diff()} hasar ver.\nBu kart, turunun başında [gold]Tüketme Deste[/gold]'nde ise kendi kendine oynanır.",
     "cost": 3,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -21996,10 +21996,10 @@
     "image_url": "/static/images/cards/howl_from_beyond.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "TÜM düşmanlara 21 hasar ver.\nTurunun başında [gold]Tüketim Deste[/gold]'nden oynanır.",
+    "upgrade_description": "TÜM düşmanlara 21 hasar ver.\nBu kart, turunun başında [gold]Tüketme Deste[/gold]'nde ise kendi kendine oynanır.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
-    "compendium_order": 43
+    "compendium_order": 42
   },
   {
     "id": "GLIMPSE_BEYOND",
@@ -22112,12 +22112,12 @@
       "Energy": 2
     },
     "upgrade": {
-      "remove_exhaust": true
+      "energy": "+1"
     },
     "image_url": "/static/images/cards/production.webp",
     "beta_image_url": "/static/images/cards/beta/production.webp",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[energy:3] elde et.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -22241,8 +22241,8 @@
   {
     "id": "DOMINATE",
     "name": "Üstünlük Kur",
-    "description": "Düşmandaki her [gold]Savunmasız[/gold] için 1 [gold]Kuvvet[/gold] elde et.",
-    "description_raw": "Düşmandaki her [gold]Savunmasız[/gold] için {StrengthPerVulnerable:diff()} [gold]Kuvvet[/gold] elde et.",
+    "description": "1 [gold]Savunmasız[/gold] uygula.\nDüşmandaki her [gold]Savunmasız[/gold] için 1 [gold]Kuvvet[/gold] elde et.",
+    "description_raw": "{VulnerablePower:diff()} [gold]Savunmasız[/gold] uygula.\nDüşmandaki her [gold]Savunmasız[/gold] için {StrengthPerVulnerable:diff()} [gold]Kuvvet[/gold] elde et.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -22254,7 +22254,13 @@
     "damage": null,
     "block": null,
     "hit_count": null,
-    "powers_applied": null,
+    "powers_applied": [
+      {
+        "power": "Savunmasız",
+        "amount": 1,
+        "power_key": "Vulnerable"
+      }
+    ],
     "cards_draw": null,
     "energy_gain": null,
     "hp_loss": null,
@@ -22264,15 +22270,17 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "StrengthPerVulnerable": 1
+      "StrengthPerVulnerable": 1,
+      "VulnerablePower": 1,
+      "Vulnerable": 1
     },
     "upgrade": {
-      "remove_exhaust": true
+      "vulnerablepower": "+1"
     },
     "image_url": "/static/images/cards/dominate.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "2 [gold]Savunmasız[/gold] uygula.\nDüşmandaki her [gold]Savunmasız[/gold] için 1 [gold]Kuvvet[/gold] elde et.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -22320,8 +22328,8 @@
   {
     "id": "CHARGE",
     "name": "İLERİ!!",
-    "description": "[gold]Çekme Deste[/gold]'nden 2 kart seç ve onları\n[gold]Uşak Saldırısı[/gold] kartlarına [gold]Dönüştür[/gold].",
-    "description_raw": "[gold]Çekme Deste[/gold]'nden {Cards:diff()} {Cards:plural:kart|kart} seç ve onları\n[gold]{Cards:plural:{IfUpgraded:show:Uşak Saldırısı+|Uşak Saldırısı}[/gold]|{IfUpgraded:show:Uşak Saldırısı+|Uşak Saldırısı}[/gold]} kartlarına [gold]Dönüştür[/gold].",
+    "description": "[gold]Çekme Deste[/gold]'nden 2 kart seç ve onları\n[gold]Uşak Dalışı[/gold] kartlarına [gold]Dönüştür[/gold].",
+    "description_raw": "[gold]Çekme Deste[/gold]'nden {Cards:diff()} {Cards:plural:kart|kart} seç ve onları\n[gold]{Cards:plural:{IfUpgraded:show:Uşak Dalışı+|Uşak Dalışı}[/gold]|{IfUpgraded:show:Uşak Dalışı+|Uşak Dalışı}[/gold]} kartlarına [gold]Dönüştür[/gold].",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -22340,7 +22348,7 @@
     "keywords": null,
     "tags": null,
     "spawns_cards": [
-      "MINION_STRIKE"
+      "MINION_DIVE_BOMB"
     ],
     "vars": {
       "Cards": 2
@@ -22351,7 +22359,7 @@
     "image_url": "/static/images/cards/charge.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "[gold]Çekme Deste[/gold]'nden 2 kart seç ve onları\n[gold]Uşak Saldırısı+[/gold] kartlarına [gold]Dönüştür[/gold].",
+    "upgrade_description": "[gold]Çekme Deste[/gold]'nden 2 kart seç ve onları\n[gold]Uşak Dalışı+[/gold] kartlarına [gold]Dönüştür[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 186
@@ -22635,8 +22643,8 @@
   {
     "id": "BULK_UP",
     "name": "İrileş",
-    "description": "1 Küre Yuvası kaybet.\n2 [gold]Kuvvet[/gold] elde et.\n2 [gold]Çeviklik[/gold] elde et.",
-    "description_raw": "{OrbSlots:diff()} Küre {OrbSlots:plural:Yuvası|Yuvası} kaybet.\n{StrengthPower:diff()} [gold]Kuvvet[/gold] elde et.\n{DexterityPower:diff()} [gold]Çeviklik[/gold] elde et.",
+    "description": "1 Küre Yuvası kaybet.\n2 [gold]Kuvvet[/gold] elde et.\n2 [gold]Beceriklilik[/gold] elde et.",
+    "description_raw": "{OrbSlots:diff()} Küre {OrbSlots:plural:Yuvası|Yuvası} kaybet.\n{StrengthPower:diff()} [gold]Kuvvet[/gold] elde et.\n{DexterityPower:diff()} [gold]Beceriklilik[/gold] elde et.",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -22655,7 +22663,7 @@
         "power_key": "Strength"
       },
       {
-        "power": "Çeviklik",
+        "power": "Beceriklilik",
         "amount": 2,
         "power_key": "Dexterity"
       }
@@ -22931,13 +22939,13 @@
     "upgrade_description": "Bu tur her [gold]Blok[/gold] elde ettiğinde rastgele bir düşmana 7 hasar ver.",
     "type_key": "Power",
     "rarity_key": "Rare",
-    "compendium_order": 49
+    "compendium_order": 48
   },
   {
     "id": "STAMPEDE",
     "name": "İzdiham",
-    "description": "Turunun sonunda [gold]El[/gold]'indeki rastgele 1 kart rastgele bir düşmana karşı oynanır.",
-    "description_raw": "Turunun sonunda {Power:plural:[gold]El[/gold]'indeki rastgele {Power:diff()} kart rastgele bir düşmana karşı oynanır.|[gold]El[/gold]'indeki rastgele {Power:diff()} kart rastgele düşmanlara karşı oynanır.}",
+    "description": "Turunun sonunda [gold]El[/gold]'indeki rastgele 1 Saldırı kartı rastgele bir düşmana karşı oynanır.",
+    "description_raw": "Turunun sonunda {Power:plural:[gold]El[/gold]'indeki rastgele {Power:diff()} Saldırı kartı rastgele bir düşmana karşı oynanır.|[gold]El[/gold]'indeki rastgele {Power:diff()} Saldırı kartı rastgele düşmanlara karşı oynanır.}",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -23012,7 +23020,7 @@
   {
     "id": "SCULPTING_STRIKE",
     "name": "Şekillendirici Saldırı",
-    "description": "8 hasar ver.\n[gold]El[/gold]'indeki bir karta [gold]Ruhani[/gold] ekle.",
+    "description": "9 hasar ver.\n[gold]El[/gold]'indeki bir karta [gold]Ruhani[/gold] ekle.",
     "description_raw": "{Damage:diff()} hasar ver.\n[gold]El[/gold]'indeki bir karta [gold]Ruhani[/gold] ekle.",
     "cost": 1,
     "is_x_cost": null,
@@ -23022,7 +23030,7 @@
     "rarity": "Yaygın",
     "target": "AnyEnemy",
     "color": "necrobinder",
-    "damage": 8,
+    "damage": 9,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -23035,7 +23043,7 @@
     ],
     "spawns_cards": null,
     "vars": {
-      "Damage": 8
+      "Damage": 9
     },
     "upgrade": {
       "damage": "+3"
@@ -23043,7 +23051,7 @@
     "image_url": "/static/images/cards/sculpting_strike.webp",
     "beta_image_url": "/static/images/cards/beta/sculpting_strike.webp",
     "type_variants": null,
-    "upgrade_description": "11 hasar ver.\n[gold]El[/gold]'indeki bir karta [gold]Ruhani[/gold] ekle.",
+    "upgrade_description": "12 hasar ver.\n[gold]El[/gold]'indeki bir karta [gold]Ruhani[/gold] ekle.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 329
@@ -23215,7 +23223,7 @@
   {
     "id": "SKEWER",
     "name": "Şişle",
-    "description": "X kez 7 hasar ver.",
+    "description": "X kez 8 hasar ver.",
     "description_raw": "X kez {Damage:diff()} hasar ver.",
     "cost": 0,
     "is_x_cost": true,
@@ -23225,7 +23233,7 @@
     "rarity": "Az Yaygın",
     "target": "AnyEnemy",
     "color": "silent",
-    "damage": 7,
+    "damage": 8,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -23236,7 +23244,7 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Damage": 7
+      "Damage": 8
     },
     "upgrade": {
       "damage": "+3"
@@ -23244,7 +23252,7 @@
     "image_url": "/static/images/cards/skewer.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "X kez 10 hasar ver.",
+    "upgrade_description": "X kez 11 hasar ver.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 156

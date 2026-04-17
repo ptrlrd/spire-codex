@@ -302,10 +302,6 @@
     "tags": null,
     "monsters": [
       {
-        "id": "DOOR",
-        "name": "Door"
-      },
-      {
         "id": "DOORMAKER",
         "name": "Doormaker"
       }
@@ -986,6 +982,27 @@
     "loss_text": "Some [gold]Scrolls of Biting[/gold] tore [b]The Adventurer[/b] to shreds."
   },
   {
+    "id": "SEAPUNK_NORMAL",
+    "name": "Underdocks Wildlife",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": [
+      "Seapunk"
+    ],
+    "monsters": [
+      {
+        "id": "CALCIFIED_CULTIST",
+        "name": "Calcified Cultist"
+      },
+      {
+        "id": "SEAPUNK",
+        "name": "Seapunk"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] was defeated by some [gold]Underdocks Wildlife[/gold]."
+  },
+  {
     "id": "SEAPUNK_WEAK",
     "name": "Seapunk",
     "room_type": "Monster",
@@ -1394,25 +1411,6 @@
     "loss_text": "A [gold]Thieving Hopper[/gold] mugged [b]The Adventurer[/b]."
   },
   {
-    "id": "TOADPOLES_NORMAL",
-    "name": "Underdocks Wildlife",
-    "room_type": "Monster",
-    "is_weak": false,
-    "act": "Underdocks",
-    "tags": null,
-    "monsters": [
-      {
-        "id": "CALCIFIED_CULTIST",
-        "name": "Calcified Cultist"
-      },
-      {
-        "id": "TOADPOLE",
-        "name": "Toadpole"
-      }
-    ],
-    "loss_text": "[b]The Adventurer[/b] was defeated by some [gold]Underdocks Wildlife[/gold]."
-  },
-  {
     "id": "TOADPOLES_WEAK",
     "name": "Toadpoles",
     "room_type": "Monster",
@@ -1432,19 +1430,15 @@
     "name": "Tunneling Twosome",
     "room_type": "Monster",
     "is_weak": false,
-    "act": "Act 2 - Hive",
+    "act": null,
     "tags": [
       "Burrower",
-      "Workers"
+      "Chomper"
     ],
     "monsters": [
       {
-        "id": "BOWLBUG_EGG",
-        "name": "Bowlbug (Egg)"
-      },
-      {
-        "id": "BOWLBUG_SILK",
-        "name": "Bowlbug (Silk)"
+        "id": "CHOMPER",
+        "name": "Chomper"
       },
       {
         "id": "TUNNELER",

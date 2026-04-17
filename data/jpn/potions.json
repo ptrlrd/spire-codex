@@ -244,8 +244,8 @@
   {
     "id": "RADIANT_TINCTURE",
     "name": "光輝の霊薬",
-    "description": "[energy:1]を得る。次のターン開始時、追加で[energy:1]を得る。（残り[blue]3[/blue]ターン）",
-    "description_raw": "{Energy:energyIcons()}を得る。次のターン開始時、追加で{energyPrefix:energyIcons(1)}を得る。（残り[blue]{RadiancePower}[/blue]ターン）",
+    "description": "[energy:1]を得る。次のターン開始時、追加で[energy:1]を得る。（[blue]3[/blue]ターン持続）",
+    "description_raw": "{Energy:energyIcons()}を得る。次のターン開始時、追加で{energyPrefix:energyIcons(1)}を得る。（[blue]{RadiancePower}[/blue]ターン持続）",
     "rarity": "ポーション（アンコモン）",
     "image_url": "/static/images/potions/radiant_tincture.webp",
     "rarity_key": "Uncommon",
@@ -409,8 +409,8 @@
   {
     "id": "CLARITY",
     "name": "明晰エキス",
-    "description": "カードを[blue]1[/blue]枚引く。次のターン開始時、カードを追加で[blue]1[/blue]枚引く。（残り[blue]3[/blue]ターン）",
-    "description_raw": "カードを[blue]{Cards}[/blue]枚引く。次のターン開始時、カードを追加で[blue]1[/blue]枚引く。（残り[blue]{ClarityPower}[/blue]ターン）",
+    "description": "カードを[blue]1[/blue]枚引く。次のターン開始時、カードを追加で[blue]1[/blue]枚引く。（[blue]3[/blue]ターン持続）",
+    "description_raw": "カードを[blue]{Cards}[/blue]枚引く。次のターン開始時、カードを追加で[blue]1[/blue]枚引く。（[blue]{ClarityPower}[/blue]ターン持続）",
     "rarity": "ポーション（アンコモン）",
     "image_url": "/static/images/potions/clarity.webp",
     "rarity_key": "Uncommon",
@@ -541,8 +541,8 @@
   {
     "id": "FAIRY_IN_A_BOTTLE",
     "name": "瓶詰の妖精",
-    "description": "死亡時、最大HPの[blue]30%[/blue]で復活し、このポーションを失う。",
-    "description_raw": "死亡時、最大HPの[blue]30%[/blue]で復活し、このポーションを失う。",
+    "description": "HPが[blue]0[/blue]になる時、最大HPの[blue]30%[/blue]で復活し、このポーションを失う。",
+    "description_raw": "HPが[blue]0[/blue]になる時、最大HPの[blue]30%[/blue]で復活し、このポーションを失う。",
     "rarity": "ポーション（レア）",
     "image_url": "/static/images/potions/fairy_in_a_bottle.webp",
     "rarity_key": "Rare",
@@ -618,8 +618,8 @@
   {
     "id": "LIQUID_MEMORIES",
     "name": "記憶リキッド",
-    "description": "[gold]捨て札[/gold]からカードを1枚[gold]手札[/gold]に加える。このターン、そのコストは[blue]0[/blue][energy:1]。",
-    "description_raw": "[gold]捨て札[/gold]からカードを1枚[gold]手札[/gold]に加える。このターン、そのコストは[blue]0[/blue]{energyPrefix:energyIcons(1)}。",
+    "description": "[gold]捨て札[/gold]からカードを1枚[gold]手札[/gold]に加える。このターン、それはコストを支払わずにプレイできる。",
+    "description_raw": "[gold]捨て札[/gold]からカードを1枚[gold]手札[/gold]に加える。このターン、それはコストを支払わずにプレイできる。",
     "rarity": "ポーション（レア）",
     "image_url": "/static/images/potions/liquid_memories.webp",
     "rarity_key": "Rare",

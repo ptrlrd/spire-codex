@@ -2,8 +2,15 @@
   {
     "id": "BOUND",
     "name": "Gebunden",
-    "description": "Nur [blue]1[/blue] [gold]gebundene[/gold] Karte kann pro Zug gespielt werden. Am Ende des Zuges werden Karten un-[gold]gebunden[/gold].",
+    "description": "Nur [blue]1[/blue] [gold]Gebundene[/gold] Karte kann pro Zug gespielt werden. Am Ende des Zuges verlieren Karten [gold]Gebunden[/gold].",
     "extra_card_text": "Gebunden",
+    "is_stackable": false
+  },
+  {
+    "id": "DEVOURED",
+    "name": "Verschlungen",
+    "description": "Gib dieser Karte [gold]Erschöpft[/gold].",
+    "extra_card_text": null,
     "is_stackable": false
   },
   {
@@ -29,9 +36,9 @@
   },
   {
     "id": "RINGING",
-    "name": "Läuten",
+    "name": "Klingeln",
     "description": "Du kannst in diesem Zug nur [blue]1[/blue] Karte spielen.",
-    "extra_card_text": "Läuten.",
+    "extra_card_text": "Klingeln.",
     "is_stackable": false
   },
   {
@@ -39,6 +46,13 @@
     "name": "Vernebelt",
     "description": "Du kannst in diesem Zug keine [gold]Fertigkeiten[/gold] mehr spielen. Löst sich am Ende des Zuges auf.",
     "extra_card_text": null,
+    "is_stackable": false
+  },
+  {
+    "id": "WEIGHTED",
+    "name": "Belastet",
+    "description": "Verliere [energy:1], wenn diese Karte gespielt wird.",
+    "extra_card_text": "Verliere [energy:1].",
     "is_stackable": false
   }
 ]

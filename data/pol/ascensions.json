@@ -38,8 +38,8 @@
   {
     "id": "LEVEL_06",
     "level": 6,
-    "name": "Mrok",
-    "description": "Na mapie pojawia się mniej Obozowisk."
+    "name": "Inflacja",
+    "description": "Usuwanie kart z talii u Handlarza jest droższe."
   },
   {
     "id": "LEVEL_07",

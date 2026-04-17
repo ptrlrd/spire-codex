@@ -2,7 +2,7 @@
   {
     "id": "ATTACK",
     "name": "Agresja",
-    "description": "",
+    "description": "Ten przeciwnik zamierza [gold]zaatakować[/gold]. Zada {IsMultiplayer:wszystkim |}[blue]{Damage}[/blue] pkt. obrażeń{Repeat:plural:| [blue]{}[/blue] razy| [blue]{}[/blue] razy}.",
     "image_url": "/static/images/intents/attack.webp"
   },
   {
@@ -62,7 +62,7 @@
   {
     "id": "STATUS",
     "name": "Strategia",
-    "description": "",
+    "description": "Ten przeciwnik zamierza ci dać {CardCount:plural:[blue]{CardCount}[/blue] kartę|[blue]{CardCount}[/blue] karty|[blue]{CardCount}[/blue] kart} [gold]Stanu[/gold].",
     "image_url": "/static/images/intents/status.webp"
   },
   {

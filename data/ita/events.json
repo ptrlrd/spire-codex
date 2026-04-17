@@ -4,13 +4,13 @@
     "name": "Pozze abissali",
     "type": "Event",
     "act": "Underdocks",
-    "description": "Scopri una stanza defilata.\n\nIl vapore si innalza da pozze ribollenti di liquido caldo che cambia colore con un ritmo ipnotico. Dal soffitto pendono formazioni di cirripedi, che fanno gocciolare un liquido viscoso che sibila e si contorce a contatto con la superficie. L'aria è pesante, carica di [blue]sale[/blue] e di qualcosa di [green]inconfondibilmente organico [/green]. \n\nMentre ti avvicini al bordo della pozza più grande, il liquido si increspa. Le acque ribollono con maggiore intensità, come se stessero aspettando che ti immergi.",
+    "description": "Scopri una stanza defilata.\n\nIl vapore si innalza da pozze ribollenti di liquido caldo che cambia colore con un ritmo ipnotico. Dal soffitto pendono formazioni di cirripedi, che fanno gocciolare un liquido viscoso che sibila e si contorce a contatto con la superficie. L'aria è pesante, carica di [blue]sale[/blue] e di qualcosa di [green]inconfondibilmente organico[/green].\n\nMentre ti avvicini al bordo della pozza più grande, il liquido si increspa. Le acque ribollono con maggiore intensità, come se stessero aspettando la tua immersione.",
     "preconditions": null,
     "options": [
       {
         "id": "IMMERSE",
         "title": "Immergiti",
-        "description": "Ottieni i seguenti PV massimi: [green]2[/green]. Subisci [red]3[/red] di danno."
+        "description": "Aumenti i PV massimi di [green]2[/green]. Subisci [red]3[/red] di danno."
       },
       {
         "id": "ABSTAIN",
@@ -21,7 +21,7 @@
     "pages": [
       {
         "id": "ABSTAIN",
-        "description": "Rifiuti la tentazione di immergerti in acqua. In cambio raccogli i sali cristallini che si sono formati lungo i bordi. Non appena li applichi sulla tua pelle, le pozze si agitano ed emettono della schiuma con una violenza inaudita. La temperatura cala sensibilmente e per un istante tutte le superfici riflettenti della stanza mostrano una versione di te dall'aspetto affaticato e rinsecchito. Non riesci a scrollarti di dosso la sensazione di aver perso un'opportunità unica."
+        "description": "Rifiuti la tentazione di immergerti in acqua. Raccogli invece i sali cristallini che si sono formati lungo i bordi. Non appena li applichi sulla tua pelle, le pozze si agitano ed emettono della schiuma con una violenza inaudita. La temperatura cala sensibilmente e, per un istante, tutte le superfici riflettenti della stanza mostrano una versione di te dall'aspetto affaticato e rinsecchito. Non riesci a scrollarti di dosso la sensazione di aver perso un'opportunità unica."
       },
       {
         "id": "ALL",
@@ -30,7 +30,7 @@
           {
             "id": "LINGER",
             "title": "Resta in acqua",
-            "description": "Ottieni [green]2[/green] PV massimi. Subisci [red]3[/red] di danno."
+            "description": "Aumenti i PV massimi di [green]2[/green]. Subisci [red]3[/red] di danno."
           },
           {
             "id": "EXIT_BATHS",
@@ -66,7 +66,7 @@
           {
             "id": "LINGER",
             "title": "Resta in acqua",
-            "description": "Ottieni [green]2[/green] PV massimi. Subisci [red]4[/red] di danno."
+            "description": "Aumenti i PV massimi di [green]2[/green]. Subisci [red]4[/red] di danno."
           },
           {
             "id": "EXIT_BATHS",
@@ -77,12 +77,12 @@
       },
       {
         "id": "INITIAL",
-        "description": "Scopri una stanza defilata.\n\nIl vapore si innalza da pozze ribollenti di liquido caldo che cambia colore con un ritmo ipnotico. Dal soffitto pendono formazioni di cirripedi, che fanno gocciolare un liquido viscoso che sibila e si contorce a contatto con la superficie. L'aria è pesante, carica di [blue]sale[/blue] e di qualcosa di [green]inconfondibilmente organico [/green]. \n\nMentre ti avvicini al bordo della pozza più grande, il liquido si increspa. Le acque ribollono con maggiore intensità, come se stessero aspettando che ti immergi.",
+        "description": "Scopri una stanza defilata.\n\nIl vapore si innalza da pozze ribollenti di liquido caldo che cambia colore con un ritmo ipnotico. Dal soffitto pendono formazioni di cirripedi, che fanno gocciolare un liquido viscoso che sibila e si contorce a contatto con la superficie. L'aria è pesante, carica di [blue]sale[/blue] e di qualcosa di [green]inconfondibilmente organico[/green].\n\nMentre ti avvicini al bordo della pozza più grande, il liquido si increspa. Le acque ribollono con maggiore intensità, come se stessero aspettando la tua immersione.",
         "options": [
           {
             "id": "IMMERSE",
             "title": "Immergiti",
-            "description": "Ottieni i seguenti PV massimi: [green]2[/green]. Subisci [red]3[/red] di danno."
+            "description": "Aumenti i PV massimi di [green]2[/green]. Subisci [red]3[/red] di danno."
           },
           {
             "id": "ABSTAIN",
@@ -98,7 +98,7 @@
           {
             "id": "LINGER",
             "title": "Resta in acqua",
-            "description": "Ottieni [green]2[/green] PV massimi. Subisci [red]5[/red] di danno."
+            "description": "Aumenti i PV massimi di [green]2[/green]. Subisci [red]5[/red] di danno."
           },
           {
             "id": "EXIT_BATHS",
@@ -109,12 +109,12 @@
       },
       {
         "id": "LINGER2",
-        "description": "[jitter][orange]La temperatura continua a salire![/orange][/jitter]\n\nIl gorgoglio della pozza sembra simulare il suono di una risata.",
+        "description": "[jitter][orange]Fa sempre più caldo![/orange][/jitter]\n\nIl gorgoglio della pozza sembra simulare il suono di una risata.",
         "options": [
           {
             "id": "LINGER",
             "title": "Resta in acqua",
-            "description": "Ottieni [green]2[/green] PV massimi. Subisci [red]6[/red] di danno."
+            "description": "Aumenti i PV massimi di [green]2[/green]. Subisci [red]6[/red] di danno."
           },
           {
             "id": "EXIT_BATHS",
@@ -130,7 +130,7 @@
           {
             "id": "LINGER",
             "title": "Resta in acqua",
-            "description": "Ottieni [green]2[/green] PV massimi. Subisci [red]7[/red] di danno."
+            "description": "Aumenti i PV massimi di [green]2[/green]. Subisci [red]7[/red] di danno."
           },
           {
             "id": "EXIT_BATHS",
@@ -141,12 +141,12 @@
       },
       {
         "id": "LINGER4",
-        "description": "[sine][purple]Hai passato un eternità in acqua e hai perso la cognizione del tempo e la tua mente...[/purple][/sine]",
+        "description": "[sine][purple]Hai passato un eternità in acqua e hai perso la cognizione del tempo e della tua mente...[/purple][/sine]",
         "options": [
           {
             "id": "LINGER",
             "title": "Resta in acqua",
-            "description": "Ottieni [green]2[/green] PV massimi. Subisci [red]8[/red] di danno."
+            "description": "Aumenti i PV massimi di [green]2[/green]. Subisci [red]8[/red] di danno."
           },
           {
             "id": "EXIT_BATHS",
@@ -162,7 +162,7 @@
           {
             "id": "LINGER",
             "title": "Resta in acqua",
-            "description": "Ottieni [green]2[/green] PV massimi. Subisci [red]9[/red] di danno."
+            "description": "Aumenti i PV massimi di [green]2[/green]. Subisci [red]9[/red] di danno."
           },
           {
             "id": "EXIT_BATHS",
@@ -178,7 +178,7 @@
           {
             "id": "LINGER",
             "title": "Resta in acqua",
-            "description": "Ottieni [green]2[/green] PV massimi. Subisci [red]10[/red] di danno."
+            "description": "Aumenti i PV massimi di [green]2[/green]. Subisci [red]10[/red] di danno."
           },
           {
             "id": "EXIT_BATHS",
@@ -194,7 +194,7 @@
           {
             "id": "LINGER",
             "title": "Resta in acqua",
-            "description": "Ottieni [green]2[/green] PV massimi. Subisci [red]11[/red] di danno."
+            "description": "Aumenti i PV massimi di [green]2[/green]. Subisci [red]11[/red] di danno."
           },
           {
             "id": "EXIT_BATHS",
@@ -210,7 +210,7 @@
           {
             "id": "LINGER",
             "title": "Resta in acqua",
-            "description": "Ottieni [green]2[/green] PV massimi. Subisci [red]12[/red] di danno."
+            "description": "Aumenti i PV massimi di [green]2[/green]. Subisci [red]12[/red] di danno."
           },
           {
             "id": "EXIT_BATHS",
@@ -226,7 +226,7 @@
           {
             "id": "LINGER",
             "title": "Resta in acqua",
-            "description": "Ottieni [green]2[/green] PV massimi. Subisci [red]13[/red] di danno."
+            "description": "Aumenti i PV massimi di [green]2[/green]. Subisci [red]13[/red] di danno."
           },
           {
             "id": "EXIT_BATHS",
@@ -242,7 +242,7 @@
     "name": "Amalgamatore",
     "type": "Event",
     "act": "Act 2 - Hive",
-    "description": "[b][jitter]CLANG! CLANG!!![/jitter][/b]\n\nSenti rumori di metalli che si scontrano tra di loro dall'altra parte del muro...\n\nMentre appoggi la testa sul muro per ascoltare, questo si apre rivelando [orange]una figura gigantesca a sei braccia[/orange] che lavora senza sosta.\nIl suo \"volto\" è un [gold][sine]turbinio di sigilli luminosi [/sine][/gold] in movimento.\n\n\"Un essere con uno [aqua]spirito ascendente[/aqua] ha trovato il mio atelier, eh? È il momento di fare una [jitter]COMBINAZIONE[/jitter]!\"",
+    "description": "[b][jitter]CLANG! CLANG!!![/jitter][/b]\n\nSenti rumori di metalli che si scontrano tra di loro dall'altra parte del muro...\n\nMentre appoggi la testa sul muro per ascoltare, questo si apre rivelando [orange]una figura gigantesca a sei braccia[/orange] che lavora senza sosta.\nIl suo \"volto\" è un [gold][sine]turbinio di sigilli luminosi[/sine][/gold] in movimento.\n\n\"Un essere con uno [aqua]spirito ascendente[/aqua] ha trovato la mia bottega, eh? È il momento di [jitter]COMBINARE[/jitter]!\"",
     "preconditions": [
       "Requires 2+ Strikes in deck",
       "Requires 2+ Defends in deck"
@@ -270,7 +270,7 @@
       },
       {
         "id": "INITIAL",
-        "description": "[b][jitter]CLANG! CLANG!!![/jitter][/b]\n\nSenti rumori di metalli che si scontrano tra di loro dall'altra parte del muro...\n\nMentre appoggi la testa sul muro per ascoltare, questo si apre rivelando [orange]una figura gigantesca a sei braccia[/orange] che lavora senza sosta.\nIl suo \"volto\" è un [gold][sine]turbinio di sigilli luminosi [/sine][/gold] in movimento.\n\n\"Un essere con uno [aqua]spirito ascendente[/aqua] ha trovato il mio atelier, eh? È il momento di fare una [jitter]COMBINAZIONE[/jitter]!\"",
+        "description": "[b][jitter]CLANG! CLANG!!![/jitter][/b]\n\nSenti rumori di metalli che si scontrano tra di loro dall'altra parte del muro...\n\nMentre appoggi la testa sul muro per ascoltare, questo si apre rivelando [orange]una figura gigantesca a sei braccia[/orange] che lavora senza sosta.\nIl suo \"volto\" è un [gold][sine]turbinio di sigilli luminosi[/sine][/gold] in movimento.\n\n\"Un essere con uno [aqua]spirito ascendente[/aqua] ha trovato la mia bottega, eh? È il momento di [jitter]COMBINARE[/jitter]!\"",
         "options": [
           {
             "id": "COMBINE_STRIKES",
@@ -324,7 +324,7 @@
       },
       {
         "id": "LET_GO",
-        "description": "Ti lasci andare e la tua mente [sine][purple]vaga...[/purple][/sine]\nTi vedi mentre [blue]conversi con i tuoi amici[/blue], [green]combatti in squadra[/green] e [gold]affronti nemici formidabili[/gold]. Stai sognando o è tutto reale? Oppure entrambe le cose? Un gran numero di occhi osservano te e i tuoi sogni. Chi sono?\n\nTi risvegli dopo un periodo di tempo indefinito.\nL'aroma si affievolisce e i suoi effetti svaniscono mentre recuperi i sensi. Una volta ristabilizzata la situazione, senti di possedere una grande lucidità.\n\n[sine][red]Cos'erano quegli occhi?[/red][/sine]"
+        "description": "Ti lasci andare e la tua mente [sine][purple]vaga...[/purple][/sine]\nTi vedi mentre [blue]entri in comunione con i tuoi amici[/blue], [green]combatti in squadra[/green] e [gold]affronti nemici formidabili[/gold]. Stai sognando o è tutto reale? Oppure entrambe le cose? Un gran numero di occhi osservano te e i tuoi sogni. Chi sono?\n\nTi risvegli dopo un periodo di tempo indefinito.\nL'aroma si affievolisce e i suoi effetti svaniscono mentre recuperi i sensi. Una volta ristabilizzata la situazione, senti di possedere una grande lucidità.\n\n[sine][red]Cos'erano quegli occhi?[/red][/sine]"
       },
       {
         "id": "MAINTAIN_CONTROL",
@@ -337,54 +337,54 @@
     "name": "Manichino da allenamento martoriato",
     "type": "Event",
     "act": "Act 3 - Glory",
-    "description": "Mentre ti avvicini comincia a rumoreggiare e a sibilare, illuminandosi poi intensamente!\n\n\"[jitter]BZZZT![/jitter] È IL MOMENTO DI ALLENARSI! HAI [blue]3 TURNI[/blue] PER SCONFIGGERMI!\nSCEGLI UN'OPZIONE O PREPARATI A SUBIRE UN'[red]UMILIAZIONE TOTALE[/red].\nEcco le opzioni:\"\n\nDopo questo messaggio terrificante, il manichino legge attentamente le istruzioni.\n\nQuale opzione scegli?",
+    "description": "Mentre ti avvicini comincia a rumoreggiare, sibilare e illuminarsi intensamente!\n\n\"[jitter]BZZZT![/jitter] È IL MOMENTO DI ALLENARSI! HAI [blue]3 TURNI[/blue] PER SCONFIGGERMI!\nSCEGLI UN'OPZIONE O PREPARATI A SUBIRE UN'[red]UMILIAZIONE FATALE[/red].\nEcco le opzioni:\"\n\nDopo questo messaggio terrificante, il manichino legge attentamente le istruzioni.\n\nQuale opzione scegli?",
     "preconditions": null,
     "options": [
       {
         "id": "SETTING_1",
         "title": "Opzione 1",
-        "description": "Affronti un manichino da [blue]75[/blue] PV. Ricevi [blue]1[/blue] [gold]pozione[/gold] casuale."
+        "description": "Affronti un manichino con [blue]75[/blue] PV. Ricevi [blue]1[/blue] [gold]pozione[/gold] casuale."
       },
       {
         "id": "SETTING_2",
         "title": "Opzione 2",
-        "description": "Affronti un manichino da [blue]150[/blue] PV. [gold]Potenzi[/gold] [blue]2[/blue] carte casuali."
+        "description": "Affronti un manichino con [blue]150[/blue] PV. [gold]Potenzi[/gold] [blue]2[/blue] carte casuali."
       },
       {
         "id": "SETTING_3",
         "title": "Opzione 3",
-        "description": "Affronti un manichino da [blue]300[/blue] PV. Ottieni una [gold]reliquia[/gold] casuale."
+        "description": "Affronti un manichino con [blue]300[/blue] PV. Ottieni una [gold]reliquia[/gold] casuale."
       }
     ],
     "pages": [
       {
         "id": "DEFEAT",
-        "description": "\"[jitter][red]SEI DEBOLE![/red][/jitter]\nTI HO INFLITTO UNA GRANDE UMILIAZIONE!\"\n\nIl manichino rimane in silenzio per qualche istante e poi...\n\n\"La prossima scegli un'opzione più facile. Buona giornata.\""
+        "description": "\"[jitter][red]SEI DEBOLE![/red][/jitter]\nTI HO INFLITTO UNA GRANDE UMILIAZIONE!\"\n\nIl manichino rimane in silenzio per qualche istante e poi...\n\n\"La prossima volta scegli un'opzione più facile. Buona giornata.\""
       },
       {
         "id": "INITIAL",
-        "description": "Mentre ti avvicini comincia a rumoreggiare e a sibilare, illuminandosi poi intensamente!\n\n\"[jitter]BZZZT![/jitter] È IL MOMENTO DI ALLENARSI! HAI [blue]3 TURNI[/blue] PER SCONFIGGERMI!\nSCEGLI UN'OPZIONE O PREPARATI A SUBIRE UN'[red]UMILIAZIONE TOTALE[/red].\nEcco le opzioni:\"\n\nDopo questo messaggio terrificante, il manichino legge attentamente le istruzioni.\n\nQuale opzione scegli?",
+        "description": "Mentre ti avvicini comincia a rumoreggiare, sibilare e illuminarsi intensamente!\n\n\"[jitter]BZZZT![/jitter] È IL MOMENTO DI ALLENARSI! HAI [blue]3 TURNI[/blue] PER SCONFIGGERMI!\nSCEGLI UN'OPZIONE O PREPARATI A SUBIRE UN'[red]UMILIAZIONE FATALE[/red].\nEcco le opzioni:\"\n\nDopo questo messaggio terrificante, il manichino legge attentamente le istruzioni.\n\nQuale opzione scegli?",
         "options": [
           {
             "id": "SETTING_1",
             "title": "Opzione 1",
-            "description": "Affronti un manichino da [blue]75[/blue] PV. Ricevi [blue]1[/blue] [gold]pozione[/gold] casuale."
+            "description": "Affronti un manichino con [blue]75[/blue] PV. Ricevi [blue]1[/blue] [gold]pozione[/gold] casuale."
           },
           {
             "id": "SETTING_2",
             "title": "Opzione 2",
-            "description": "Affronti un manichino da [blue]150[/blue] PV. [gold]Potenzi[/gold] [blue]2[/blue] carte casuali."
+            "description": "Affronti un manichino con [blue]150[/blue] PV. [gold]Potenzi[/gold] [blue]2[/blue] carte casuali."
           },
           {
             "id": "SETTING_3",
             "title": "Opzione 3",
-            "description": "Affronti un manichino da [blue]300[/blue] PV. Ottieni una [gold]reliquia[/gold] casuale."
+            "description": "Affronti un manichino con [blue]300[/blue] PV. Ottieni una [gold]reliquia[/gold] casuale."
           }
         ]
       },
       {
         "id": "VICTORY",
-        "description": "\"[jitter]HAI SUPERATO L'ALLENAMENTO![/jitter]\nORA HAI TUTTE LE QUALITÀ NECESSARIE PER DIFENDERE QUESTA [gold]FABBBRICA[/gold] DAGLI INTRUSI! ASSICURATI DI IDRATARTI OGNI VOLTA CHE FINISCI DI ALLENARTI!\""
+        "description": "\"[jitter]HAI SUPERATO L'ALLENAMENTO![/jitter]\nORA HAI TUTTE LE QUALITÀ NECESSARIE PER DIFENDERE QUESTA [gold]FABBRICA[/gold] DAGLI INTRUSI! ASSICURATI DI IDRATARTI OGNI VOLTA CHE FINISCI DI ALLENARTI!\""
       }
     ]
   },
@@ -393,36 +393,36 @@
     "name": "Sanguisuga cerebrale",
     "type": "Shared",
     "act": null,
-    "description": "[jitter]*Tonf*[/jitter]\n\nSenti un dolore lancinante sopra la testa e un pensiero pervade la tua mente.\n\n[purple][sine]\"VUOI CONDIVIDERE LA TUA CONOSCENZA???\"[/sine][/purple]\n\nNon sai bene cosa fare...",
+    "description": "[jitter]*Tonf*[/jitter]\n\nSenti un dolore lancinante sopra la testa e un pensiero pervade la tua mente.\n\n[purple][sine]\"VUOI CONDIVIDERE LA CONOSCENZA???\"[/sine][/purple]\n\nNon sai bene cosa fare...",
     "preconditions": [
       "Act 1–2 only"
     ],
     "options": [
       {
         "id": "SHARE_KNOWLEDGE",
-        "title": "Condividi la tua conoscenza",
+        "title": "Condividi la conoscenza",
         "description": "Scegli [blue]1[/blue] tra [blue]5[/blue] carte casuali da aggiungere al tuo [gold]mazzo[/gold]."
       },
       {
         "id": "RIP",
         "title": "Rimuovi la sanguisuga",
-        "description": "Perdi [red]5[/red] PV. Ottieni una carta ricompensa incolore."
+        "description": "Perdi [red]5[/red] PV. Ottieni una ricompensa di carte incolori."
       }
     ],
     "pages": [
       {
         "id": "INITIAL",
-        "description": "[jitter]*Tonf*[/jitter]\n\nSenti un dolore lancinante sopra la testa e un pensiero pervade la tua mente.\n\n[purple][sine]\"VUOI CONDIVIDERE LA TUA CONOSCENZA???\"[/sine][/purple]\n\nNon sai bene cosa fare...",
+        "description": "[jitter]*Tonf*[/jitter]\n\nSenti un dolore lancinante sopra la testa e un pensiero pervade la tua mente.\n\n[purple][sine]\"VUOI CONDIVIDERE LA CONOSCENZA???\"[/sine][/purple]\n\nNon sai bene cosa fare...",
         "options": [
           {
             "id": "SHARE_KNOWLEDGE",
-            "title": "Condividi la tua conoscenza",
+            "title": "Condividi la conoscenza",
             "description": "Scegli [blue]1[/blue] tra [blue]5[/blue] carte casuali da aggiungere al tuo [gold]mazzo[/gold]."
           },
           {
             "id": "RIP",
             "title": "Rimuovi la sanguisuga",
-            "description": "Perdi [red]5[/red] PV. Ottieni una carta ricompensa incolore."
+            "description": "Perdi [red]5[/red] PV. Ottieni una ricompensa di carte incolori."
           }
         ]
       },
@@ -432,7 +432,7 @@
       },
       {
         "id": "SHARE_KNOWLEDGE",
-        "description": "[purple][sine]\"SEI VERAMENTE UN POZZO DI SCIENZA! RIESCO A VEDERE COME OSTENTI TUTTA LA TUA CONOSCENZA IN QUESTA MENTE LABIRINTICA!\nMI FARÒ UN BEL BANCHETTO CON TUTTE QUESTE SOSTANZE CEREBRALI!\"[/sine][/purple].\n\nSoddisfatta, la creatura esce dalla tua testa e striscia via.\nSei senza [blue]parole[/blue]."
+        "description": "[purple][sine]\"RIESCO A VEDERE COME OSTENTI TUTTA LA TUA CONOSCENZA IN QUESTA MENTE LABIRINTICA!\nMI FARÒ UN BEL BANCHETTO CON TUTTE QUESTE SOSTANZE CEREBRALI!\"[/sine][/purple].\n\nSoddisfatta, la creatura si stacca dalla tua testa e striscia via.\nSei senza [blue]parole[/blue]."
       }
     ]
   },
@@ -441,7 +441,7 @@
     "name": "Ammazzainsetti",
     "type": "Event",
     "act": "Act 2 - Hive",
-    "description": "Mentre stai respingendo uno [jitter][red]sciame di insetti aggressivi[/red][/jitter], all'improvviso noti un [gold]possente guerriero rude[/gold] che stava combattendo al tuo fianco per tutto il tempo!\n\nGli insetti, sentendosi sconfitti, si disperdono. Guardi il tuo compagno di battaglia.\n\"Vorresti qualche consiglio su come sterminare questi parassiti?\"\n\nChe brava persona. Annuisci e accetti la sua offerta.",
+    "description": "Mentre stai respingendo uno [jitter][red]sciame di insetti aggressivi[/red][/jitter], all'improvviso noti un [gold]guerriero rude e possente[/gold] che stava combattendo al tuo fianco per tutto il tempo!\n\nGli insetti, sentendosi sconfitti, si disperdono. Guardi il tuo compagno di battaglia.\n\"Vorresti qualche consiglio su come sterminare questi parassiti?\"\n\nChe brava persona. Annuisci e accetti la sua offerta.",
     "preconditions": null,
     "options": [
       {
@@ -451,7 +451,7 @@
       },
       {
         "id": "SQUASH",
-        "title": "Impara la tecnica Schiacciaparassita",
+        "title": "Impara la tecnica Schiacciamento",
         "description": "Aggiungi [gold]Pestata[/gold] al tuo [gold]mazzo[/gold]."
       }
     ],
@@ -466,7 +466,7 @@
       },
       {
         "id": "INITIAL",
-        "description": "Mentre stai respingendo uno [jitter][red]sciame di insetti aggressivi[/red][/jitter], all'improvviso noti un [gold]possente guerriero rude[/gold] che stava combattendo al tuo fianco per tutto il tempo!\n\nGli insetti, sentendosi sconfitti, si disperdono. Guardi il tuo compagno di battaglia.\n\"Vorresti qualche consiglio su come sterminare questi parassiti?\"\n\nChe brava persona. Annuisci e accetti la sua offerta.",
+        "description": "Mentre stai respingendo uno [jitter][red]sciame di insetti aggressivi[/red][/jitter], all'improvviso noti un [gold]guerriero rude e possente[/gold] che stava combattendo al tuo fianco per tutto il tempo!\n\nGli insetti, sentendosi sconfitti, si disperdono. Guardi il tuo compagno di battaglia.\n\"Vorresti qualche consiglio su come sterminare questi parassiti?\"\n\nChe brava persona. Annuisci e accetti la sua offerta.",
         "options": [
           {
             "id": "EXTERMINATION",
@@ -475,14 +475,14 @@
           },
           {
             "id": "SQUASH",
-            "title": "Impara la tecnica Schiacciaparassita",
+            "title": "Impara la tecnica Schiacciamento",
             "description": "Aggiungi [gold]Pestata[/gold] al tuo [gold]mazzo[/gold]."
           }
         ]
       },
       {
         "id": "SQUASH",
-        "description": "\"Capisco... Vuoi imparare la [gold]tecnica Schiacciaparassita[/gold]. Molto bene...\"\n\nFa una breve pausa riflettendo su come insegnarti questa tecnica...\n\n[jitter]\"QUESTA È LA TECNICA! OSSERVA CON I TUOI OCCHI!\"[/jitter]\nSi vanta mentre schiaccia un insetto gigante."
+        "description": "\"Capisco... Vuoi imparare la [gold]tecnica Schiacciamento[/gold]. Molto bene...\"\n\nFa una breve pausa riflettendo su come insegnarti questa tecnica...\n\n[jitter]\"QUESTA È LA TECNICA! OSSERVA CON I TUOI OCCHI!\"[/jitter]\nSi vanta mentre schiaccia un insetto gigante."
       }
     ]
   },
@@ -499,7 +499,7 @@
       {
         "id": "EAT",
         "title": "Mangia l'uovo",
-        "description": "Ottieni i seguenti PV massimi: [blue]7[/blue]."
+        "description": "Aumenti i PV massimi di [blue]7[/blue]."
       },
       {
         "id": "TAKE",
@@ -519,7 +519,7 @@
           {
             "id": "EAT",
             "title": "Mangia l'uovo",
-            "description": "Ottieni i seguenti PV massimi: [blue]7[/blue]."
+            "description": "Aumenti i PV massimi di [blue]7[/blue]."
           },
           {
             "id": "TAKE",
@@ -539,7 +539,7 @@
     "name": "Filosofi cromatici",
     "type": "Event",
     "act": "Act 2 - Hive",
-    "description": "Davanti a te scorgi una scena epica.\nVedi 3 statue di colori diversi su una pedana impegnate in un [jitter][red]acceso dibattiti[/red][/jitter] sulle implicazioni filosofiche del colore.\n\nMentre le ascolti, hai la sensazione che la domanda più importante ricada su quale sia il colore [gold]MIGLIORE[/gold].\n\nIntervieni dando la tua opinione.",
+    "description": "Davanti a te scorgi una scena epica.\nVedi 3 statue di colori diversi su una pedana, impegnate in un [jitter][red]acceso dibattito[/red][/jitter] sulle implicazioni filosofiche del colore.\n\nMentre le ascolti, hai la sensazione che la domanda più importante ricada su quale sia il colore [gold]MIGLIORE[/gold].\n\nIntervieni dando la tua opinione.",
     "preconditions": null,
     "options": [
       {
@@ -550,22 +550,22 @@
       {
         "id": "IRONCLAD",
         "title": "Rosso",
-        "description": "Ottieni [blue]3[/blue] carte di Ironclad."
+        "description": "Ottieni [blue]3[/blue] carte dell'Ironclad."
       },
       {
         "id": "NECROBINDER",
         "title": "Rosa",
-        "description": "Ottieni [blue]3[/blue] carte di Necrobinder."
+        "description": "Ottieni [blue]3[/blue] carte della Necrobinder."
       },
       {
         "id": "REGENT",
         "title": "Arancione",
-        "description": "Ottieni [blue]3[/blue] carte di Regent."
+        "description": "Ottieni [blue]3[/blue] carte del Regent."
       },
       {
         "id": "SILENT",
         "title": "Verde",
-        "description": "Ottieni [blue]3[/blue] carte di Silent."
+        "description": "Ottieni [blue]3[/blue] carte della Silent."
       }
     ],
     "pages": [
@@ -575,7 +575,7 @@
       },
       {
         "id": "INITIAL",
-        "description": "Davanti a te scorgi una scena epica.\nVedi 3 statue di colori diversi su una pedana impegnate in un [jitter][red]acceso dibattiti[/red][/jitter] sulle implicazioni filosofiche del colore.\n\nMentre le ascolti, hai la sensazione che la domanda più importante ricada su quale sia il colore [gold]MIGLIORE[/gold].\n\nIntervieni dando la tua opinione.",
+        "description": "Davanti a te scorgi una scena epica.\nVedi 3 statue di colori diversi su una pedana, impegnate in un [jitter][red]acceso dibattito[/red][/jitter] sulle implicazioni filosofiche del colore.\n\nMentre le ascolti, hai la sensazione che la domanda più importante ricada su quale sia il colore [gold]MIGLIORE[/gold].\n\nIntervieni dando la tua opinione.",
         "options": [
           {
             "id": "DEFECT",
@@ -585,22 +585,22 @@
           {
             "id": "IRONCLAD",
             "title": "Rosso",
-            "description": "Ottieni [blue]3[/blue] carte di Ironclad."
+            "description": "Ottieni [blue]3[/blue] carte dell'Ironclad."
           },
           {
             "id": "NECROBINDER",
             "title": "Rosa",
-            "description": "Ottieni [blue]3[/blue] carte di Necrobinder."
+            "description": "Ottieni [blue]3[/blue] carte della Necrobinder."
           },
           {
             "id": "REGENT",
             "title": "Arancione",
-            "description": "Ottieni [blue]3[/blue] carte di Regent."
+            "description": "Ottieni [blue]3[/blue] carte del Regent."
           },
           {
             "id": "SILENT",
             "title": "Verde",
-            "description": "Ottieni [blue]3[/blue] carte di Silent."
+            "description": "Ottieni [blue]3[/blue] carte della Silent."
           }
         ]
       }
@@ -611,7 +611,7 @@
     "name": "Fiore colossale",
     "type": "Event",
     "act": "Act 2 - Hive",
-    "description": "C'è un [green]fiore colossale[/green] che cresce sulla vetta di una [red][jitter]montagna di ossa[/jitter][/red].\n\nMentre i suoi [sine]petali cangianti[/sine] palpitano, percepisci che c'è un [aqua]potente ammasso di polline[/aqua] al centro, ma i petali ondulati sono [red]affilati[/red] e imprevedibili.\n\nPotresti prendere un po' di [gold]nettare dorato[/gold], ma la tentazione di raggiungere il tesoro al centro è veramente forte...",
+    "description": "C'è un [green]fiore colossale[/green] che cresce sulla vetta di una [red][jitter]montagna di ossa[/jitter][/red].\n\nMentre i suoi [sine]petali cangianti[/sine] pulsano, percepisci che c'è un [aqua]potente ammasso di polline[/aqua] al centro, ma i petali ondulati sono [red]affilati[/red] e imprevedibili.\n\nPotresti prendere un po' di [gold]nettare dorato[/gold], ma la tentazione di raggiungere il tesoro al centro è veramente forte...",
     "preconditions": [
       "Requires 19+ HP"
     ],
@@ -634,11 +634,11 @@
       },
       {
         "id": "EXTRACT_INSTEAD",
-        "description": "Le [purple]tossine[/purple], le [red]spine[/red] e le [green]foglie[/green] intorbidiscono e logorano il tuo corpo.\nBasta così.\n\nMetti da parte un po' di [gold]nettare di alta qualità[/gold] e ti ritiri."
+        "description": "Le [purple]tossine[/purple], le [red]spine[/red] e le [green]foglie[/green] intorpidiscono e logorano il tuo corpo.\nBasta così.\n\nMetti da parte un po' di [gold]nettare di alta qualità[/gold] e ti ritiri."
       },
       {
         "id": "INITIAL",
-        "description": "C'è un [green]fiore colossale[/green] che cresce sulla vetta di una [red][jitter]montagna di ossa[/jitter][/red].\n\nMentre i suoi [sine]petali cangianti[/sine] palpitano, percepisci che c'è un [aqua]potente ammasso di polline[/aqua] al centro, ma i petali ondulati sono [red]affilati[/red] e imprevedibili.\n\nPotresti prendere un po' di [gold]nettare dorato[/gold], ma la tentazione di raggiungere il tesoro al centro è veramente forte...",
+        "description": "C'è un [green]fiore colossale[/green] che cresce sulla vetta di una [red][jitter]montagna di ossa[/jitter][/red].\n\nMentre i suoi [sine]petali cangianti[/sine] pulsano, percepisci che c'è un [aqua]potente ammasso di polline[/aqua] al centro, ma i petali ondulati sono [red]affilati[/red] e imprevedibili.\n\nPotresti prendere un po' di [gold]nettare dorato[/gold], ma la tentazione di raggiungere il tesoro al centro è veramente forte...",
         "options": [
           {
             "id": "EXTRACT_CURRENT_PRIZE_1",
@@ -654,7 +654,7 @@
       },
       {
         "id": "POLLINOUS_CORE",
-        "description": "Con un ultimo slancio afferri il [aqua]nucleo pollinico[/aqua]!\nLa pianta trema violentemente; i suoi petali diventano opachi e cessa di [jitter]formicolare[/jitter].\n\nIl [gold]nettare dorato[/gold] diventa letame senza alcun valore.\nL'hai uccisa."
+        "description": "Con un ultimo slancio afferri il [aqua]nucleo pollinico[/aqua]!\nLa pianta trema violentemente, i suoi petali sbiadiscono e cessa di [jitter]formicolare[/jitter].\n\nIl [gold]nettare dorato[/gold] diventa letame senza alcun valore.\nL'hai uccisa."
       },
       {
         "id": "REACH_DEEPER_1",
@@ -667,14 +667,14 @@
           },
           {
             "id": "REACH_DEEPER_2",
-            "title": "Addentrati ulteriormente in profondità",
+            "title": "Addentrati di più in profondità",
             "description": "Ti addentri ulteriormente in profondità. Perdi [red]6[/red] PV."
           }
         ]
       },
       {
         "id": "REACH_DEEPER_2",
-        "description": "Il formicolio si trasforma in una [jitter][red]debolezza palpitante[/red][/jitter] man mano che avanzi...\n\n[purple]Questo fiore vuole mangiarmi. Perché ho deciso di entrarci?[/purple]",
+        "description": "Il formicolio si trasforma in una [jitter][red]debolezza pulsante[/red][/jitter] man mano che avanzi...\n\n[purple]Questo fiore vuole mangiarmi. Perché ho deciso di entrarci?[/purple]",
         "options": [
           {
             "id": "EXTRACT_INSTEAD",
@@ -683,8 +683,8 @@
           },
           {
             "id": "POLLINOUS_CORE",
-            "title": "Raggiungi il nucleo",
-            "description": "Perdi [red]7[/red] PV. Ottieni [gold]nucleo pollinico[/gold]."
+            "title": "Raggiungi il centro",
+            "description": "Perdi [red]7[/red] PV. Ottieni [gold]Nucleo pollinico[/gold]."
           }
         ]
       }
@@ -695,7 +695,7 @@
     "name": "Sfera di cristallo",
     "type": "Shared",
     "act": null,
-    "description": "[sine][blue]\"Ho previsto il tuo arrivo...!\"[/blue][/sine]\n\nUna voce [jitter]rauca[/jitter] ti chiama mentre entri in una [purple]capanna mistica[/purple].\n\n[sine][blue]\"Il tuo destino ti ha portato qui. Dobbiamo scoprire il tuo futuro e la tua fortuna così potrai SALVARCI TUTTI!\"[/blue][/sine]\n\"Bene, ecco le opzioni per la [gold]lettura della sfera di cristallo[/gold]. Assicurati di firmare anche questa liberatoria\", dice mentre tira fuori una penna e una pergamena.",
+    "description": "[sine][blue]\"Ho previsto il tuo arrivo...!\"[/blue][/sine]\n\nUna voce [jitter]rauca[/jitter] ti chiama mentre entri in una [purple]capanna mistica[/purple].\n\n[sine][blue]\"Il tuo destino ti ha portato qui. Dobbiamo scoprire il tuo futuro e la tua sorte così potrai SALVARCI TUTTI!\"[/blue][/sine]\n\"Bene, ecco le opzioni per la [gold]lettura della sfera di cristallo[/gold]. Assicurati di firmare anche questa liberatoria\", dice mentre tira fuori una penna e una pergamena.",
     "preconditions": [
       "Requires 100+ gold",
       "Act 2+"
@@ -704,12 +704,12 @@
       {
         "id": "UNCOVER_FUTURE",
         "title": "Rivela il futuro",
-        "description": "Paghi [red]51-99[/red] unità d'[gold]oro[/gold]. Puoi effettuare [blue]3[/blue] [purple]divinazioni[/purple]."
+        "description": "Paghi [red]51-99[/red] unità d'[gold]oro[/gold]. Puoi effettuare [blue]3[/blue] [purple]predizioni[/purple]."
       },
       {
         "id": "PAYMENT_PLAN",
-        "title": "Chiedi piano di pagamento",
-        "description": "Ottieni [red]Debito[/red]. Puoi effettuare [blue]6[/blue] [purple]divinazioni[/purple]."
+        "title": "Piano di pagamento",
+        "description": "Ottieni [red]Debito[/red]. Puoi effettuare [blue]6[/blue] [purple]predizioni[/purple]."
       }
     ],
     "pages": [
@@ -719,23 +719,23 @@
       },
       {
         "id": "INITIAL",
-        "description": "[sine][blue]\"Ho previsto il tuo arrivo...!\"[/blue][/sine]\n\nUna voce [jitter]rauca[/jitter] ti chiama mentre entri in una [purple]capanna mistica[/purple].\n\n[sine][blue]\"Il tuo destino ti ha portato qui. Dobbiamo scoprire il tuo futuro e la tua fortuna così potrai SALVARCI TUTTI!\"[/blue][/sine]\n\"Bene, ecco le opzioni per la [gold]lettura della sfera di cristallo[/gold]. Assicurati di firmare anche questa liberatoria\", dice mentre tira fuori una penna e una pergamena.",
+        "description": "[sine][blue]\"Ho previsto il tuo arrivo...!\"[/blue][/sine]\n\nUna voce [jitter]rauca[/jitter] ti chiama mentre entri in una [purple]capanna mistica[/purple].\n\n[sine][blue]\"Il tuo destino ti ha portato qui. Dobbiamo scoprire il tuo futuro e la tua sorte così potrai SALVARCI TUTTI!\"[/blue][/sine]\n\"Bene, ecco le opzioni per la [gold]lettura della sfera di cristallo[/gold]. Assicurati di firmare anche questa liberatoria\", dice mentre tira fuori una penna e una pergamena.",
         "options": [
           {
             "id": "UNCOVER_FUTURE",
             "title": "Rivela il futuro",
-            "description": "Paghi [red]51-99[/red] unità d'[gold]oro[/gold]. Puoi effettuare [blue]3[/blue] [purple]divinazioni[/purple]."
+            "description": "Paghi [red]51-99[/red] unità d'[gold]oro[/gold]. Puoi effettuare [blue]3[/blue] [purple]predizioni[/purple]."
           },
           {
             "id": "PAYMENT_PLAN",
-            "title": "Chiedi piano di pagamento",
-            "description": "Ottieni [red]Debito[/red]. Puoi effettuare [blue]6[/blue] [purple]divinazioni[/purple]."
+            "title": "Piano di pagamento",
+            "description": "Ottieni [red]Debito[/red]. Puoi effettuare [blue]6[/blue] [purple]predizioni[/purple]."
           }
         ]
       },
       {
         "id": "PAYMENT_PLAN",
-        "description": "Chiedi piano di pagamento"
+        "description": "Piano di pagamento"
       },
       {
         "id": "UNCOVER_FUTURE",
@@ -955,13 +955,13 @@
     "name": "Vegetazione densa",
     "type": "Event",
     "act": "Act 1 - Overgrowth",
-    "description": "Dopo aver preso la strada sbagliata per un bel po' di tempo, ti ritrovi in una fitta giungla di [green]felci[/green], [green]arbusti[/green] e [green]viticci[/green]. Soprattutto [green]viticci[/green]. La stanchezza ti assale e un pensiero oscuro pervade la tua testa:\n\n[sine][purple]\"Hai smarrito la strada, non hai la minima idea di cosa fare e l'inevitabilità della morte si avvicina.\"[/purple][/sine]\n\nCosa fai?",
+    "description": "Dopo aver preso la strada sbagliata per un bel po' di tempo, ti ritrovi in una fitta giungla di [green]felci[/green], [green]arbusti[/green] e [green]rampicanti[/green]. Soprattutto [green]rampicanti[/green]. La stanchezza ti assale e un pensiero oscuro pervade la tua mente:\n\n[sine][purple]\"Hai smarrito la strada, non hai la minima idea di cosa fare e l'inevitabilità della morte si avvicina.\"[/purple][/sine]\n\nCosa fai?",
     "preconditions": null,
     "options": [
       {
         "id": "TRUDGE_ON",
         "title": "Avanza a fatica",
-        "description": "Rimuovi una carta dal tuo [gold]mazzo[/gold]. Perdi [red]11[/red] PV."
+        "description": "Ottieni [blue]61-99[/blue] unità d'[gold]oro[/gold]. Perdi [red]8[/red] PV."
       },
       {
         "id": "REST",
@@ -972,12 +972,12 @@
     "pages": [
       {
         "id": "INITIAL",
-        "description": "Dopo aver preso la strada sbagliata per un bel po' di tempo, ti ritrovi in una fitta giungla di [green]felci[/green], [green]arbusti[/green] e [green]viticci[/green]. Soprattutto [green]viticci[/green]. La stanchezza ti assale e un pensiero oscuro pervade la tua testa:\n\n[sine][purple]\"Hai smarrito la strada, non hai la minima idea di cosa fare e l'inevitabilità della morte si avvicina.\"[/purple][/sine]\n\nCosa fai?",
+        "description": "Dopo aver preso la strada sbagliata per un bel po' di tempo, ti ritrovi in una fitta giungla di [green]felci[/green], [green]arbusti[/green] e [green]rampicanti[/green]. Soprattutto [green]rampicanti[/green]. La stanchezza ti assale e un pensiero oscuro pervade la tua mente:\n\n[sine][purple]\"Hai smarrito la strada, non hai la minima idea di cosa fare e l'inevitabilità della morte si avvicina.\"[/purple][/sine]\n\nCosa fai?",
         "options": [
           {
             "id": "TRUDGE_ON",
             "title": "Avanza a fatica",
-            "description": "Rimuovi una carta dal tuo [gold]mazzo[/gold]. Perdi [red]11[/red] PV."
+            "description": "Ottieni [blue]61-99[/blue] unità d'[gold]oro[/gold]. Perdi [red]8[/red] PV."
           },
           {
             "id": "REST",
@@ -999,7 +999,7 @@
       },
       {
         "id": "TRUDGE_ON",
-        "description": "Ti fai strada nella giungla che però non finisce mai...\n\nTi nutri di [green]strani frutti[/green], [orange]insetti croccanti[/orange] e bevi il nettare di [aqua]piante luminose[/aqua], ma inizi a sentire [jitter][red]paranoia...[/red][/jitter]\n\nMa poi trovi una radura, un sentiero e alcuni disegni di mappe sul terreno.\nProblema risolto."
+        "description": "Ti fai strada nella giungla che però non finisce mai...\n\nTi nutri di [green]strani frutti[/green], [orange]insetti croccanti[/orange] e bevi il nettare di [aqua]piante luminose[/aqua], ma la [jitter][red]paranoia[/red][/jitter] inizia a farsi strada in te...\n\nMa poi trovi una radura, un sentiero e alcune monete d'[gold]oro[/gold] sparse per terra. Tra le monete noti anche delle mappe mal disegnate!\nProblema risolto."
       }
     ]
   },
@@ -1008,7 +1008,7 @@
     "name": "Stanza delle bambole",
     "type": "Shared",
     "act": null,
-    "description": "Entri in una stanza nascosta...\n\nÈ piena di bambole di ogni tipo. Ognuna di loro è unica: le loro espressioni spaziano dalla [green]gioia[/green] alla [purple]tristezza[/purple], i loro abiti abbracciano secoli e regni che trascendono il tuo.\n\nUn [sine][blue]coro di sussurri[/blue][/sine] diventa sempre più forte finché [jitter][red]le bambole gridano[/red][/jitter] tra loro e ti chiamano...\n\nDevi sceglierne una e andartene immediatamente.",
+    "description": "Entri in una stanza nascosta...\n\nÈ piena di bambole di ogni tipo. Ognuna di loro è unica: le loro espressioni spaziano dalla [green]gioia[/green] alla [purple]tristezza[/purple], i loro abiti abbracciano secoli e regni che trascendono il tuo.\n\nUn [sine][blue]coro di sussurri[/blue][/sine] diventa sempre più forte, finché [jitter][red]le bambole gridano[/red][/jitter] una sopra l'altra e ti chiamano...\n\nDevi sceglierne una e andartene immediatamente.",
     "preconditions": [
       "Act 2 only"
     ],
@@ -1016,23 +1016,23 @@
       {
         "id": "RANDOM",
         "title": "Scegli in modo casuale",
-        "description": "Ottieni una [gold]Reliquia Bambolesca[/gold]."
+        "description": "Ottieni una [gold]reliquia bambolesca[/gold] casuale."
       },
       {
         "id": "TAKE_SOME_TIME",
-        "title": "Prenditi del tempo prima di decidere",
-        "description": "Perdi [red]5[/red] PV. Scegli [blue]1[/blue] tra [blue]2[/blue] [gold]Reliquie Bambolesche[/gold]."
+        "title": "Prenditi del tempo",
+        "description": "Perdi [red]5[/red] PV. Scegli [blue]1[/blue] tra [blue]2[/blue] [gold]reliquie bambolesche[/gold]."
       },
       {
         "id": "EXAMINE",
         "title": "Esamina ogni bambola e fai la scelta migliore",
-        "description": "Perdi [red]15[/red] PV. Scegli [blue]1[/blue] tra [blue]3[/blue] [gold]Reliquie Bambolesche[/gold]."
+        "description": "Perdi [red]15[/red] PV. Scegli [blue]1[/blue] tra [blue]3[/blue] [gold]reliquie bambolesche[/gold]."
       }
     ],
     "pages": [
       {
         "id": "DAUGHTER_OF_WIND",
-        "description": "[blue]\"Dovresti essere felice che alla fine ho scelto te!\"[/blue]\nLa bambola proclama trionfante."
+        "description": "[blue]\"Dovresti essere felice che ho scelto te!\"[/blue]\nLa bambola proclama trionfante."
       },
       {
         "id": "EXAMINE",
@@ -1044,22 +1044,22 @@
       },
       {
         "id": "INITIAL",
-        "description": "Entri in una stanza nascosta...\n\nÈ piena di bambole di ogni tipo. Ognuna di loro è unica: le loro espressioni spaziano dalla [green]gioia[/green] alla [purple]tristezza[/purple], i loro abiti abbracciano secoli e regni che trascendono il tuo.\n\nUn [sine][blue]coro di sussurri[/blue][/sine] diventa sempre più forte finché [jitter][red]le bambole gridano[/red][/jitter] tra loro e ti chiamano...\n\nDevi sceglierne una e andartene immediatamente.",
+        "description": "Entri in una stanza nascosta...\n\nÈ piena di bambole di ogni tipo. Ognuna di loro è unica: le loro espressioni spaziano dalla [green]gioia[/green] alla [purple]tristezza[/purple], i loro abiti abbracciano secoli e regni che trascendono il tuo.\n\nUn [sine][blue]coro di sussurri[/blue][/sine] diventa sempre più forte, finché [jitter][red]le bambole gridano[/red][/jitter] una sopra l'altra e ti chiamano...\n\nDevi sceglierne una e andartene immediatamente.",
         "options": [
           {
             "id": "RANDOM",
             "title": "Scegli in modo casuale",
-            "description": "Ottieni una [gold]Reliquia Bambolesca[/gold]."
+            "description": "Ottieni una [gold]reliquia bambolesca[/gold] casuale."
           },
           {
             "id": "TAKE_SOME_TIME",
-            "title": "Prenditi del tempo prima di decidere",
-            "description": "Perdi [red]5[/red] PV. Scegli [blue]1[/blue] tra [blue]2[/blue] [gold]Reliquie Bambolesche[/gold]."
+            "title": "Prenditi del tempo",
+            "description": "Perdi [red]5[/red] PV. Scegli [blue]1[/blue] tra [blue]2[/blue] [gold]reliquie bambolesche[/gold]."
           },
           {
             "id": "EXAMINE",
             "title": "Esamina ogni bambola e fai la scelta migliore",
-            "description": "Perdi [red]15[/red] PV. Scegli [blue]1[/blue] tra [blue]3[/blue] [gold]Reliquie Bambolesche[/gold]."
+            "description": "Perdi [red]15[/red] PV. Scegli [blue]1[/blue] tra [blue]3[/blue] [gold]reliquie bambolesche[/gold]."
           }
         ]
       },
@@ -1106,7 +1106,7 @@
     "pages": [
       {
         "id": "DARK",
-        "description": "[sine][purple]Ti addentri nell'oscurità...[/purple][/sine]\n\nNon vedi nulla.\nMa questo ti aiuta a riflettere... Ti liberi dei [red]pensieri inutili[/red].\n\nHai fatto ritorno nei [blue]Moli Funesti[/blue].\nMa com'è possibile?"
+        "description": "[sine][purple]Ti addentri nell'oscurità...[/purple][/sine]\n\nNon vedi nulla.\nMa questo ti aiuta a riflettere... Ti liberi dei [red]pensieri inutili[/red].\n\nHai fatto ritorno ai [blue]Moli Funesti[/blue].\nMa com'è possibile?"
       },
       {
         "id": "INITIAL",
@@ -1126,7 +1126,7 @@
       },
       {
         "id": "LIGHT",
-        "description": "[sine][gold]Ti addentri verso la luce...[/gold][/sine]\n\n[jitter]È accecante![/jitter] Ma la luce [gold]ti rafforza[/gold].\n\nHai fatto ritorno nei [blue]Moli Funesti[/blue].\nMa com'è possibile?"
+        "description": "[sine][gold]Ti addentri nella luce...[/gold][/sine]\n\n[jitter]È accecante![/jitter] Ma la luce [gold]ti rafforza[/gold].\n\nHai fatto ritorno ai [blue]Moli Funesti[/blue].\nMa com'è possibile?"
       }
     ]
   },
@@ -1135,7 +1135,7 @@
     "name": "Faro sprofondante",
     "type": "Event",
     "act": "Underdocks",
-    "description": "Attraversando un paesaggio onirico di rocce e acque tranquille, ti trovi di fronte a un [sine]faro che affonda[/sine] che emette [purple]anti-luce[/purple].\n\nPuoi imbottigliare l'[aqua][sine]acqua misteriosamente luminosa[/sine][/aqua] che si è accumulata qui o salire attraverso la struttura fatiscente per recuperare la [gold]lente[/gold].",
+    "description": "Attraversando un paesaggio onirico di rocce e acque tranquille, ti trovi di fronte a un [sine]faro che affonda[/sine] che emette [purple]anti-luce[/purple].\n\nPuoi imbottigliare l'[aqua][sine]acqua misteriosamente luminosa[/sine][/aqua] che si è accumulata qui o raggiungere la cima della struttura fatiscente per recuperare la [gold]lente[/gold].",
     "preconditions": null,
     "options": [
       {
@@ -1146,7 +1146,7 @@
       {
         "id": "CLIMB",
         "title": "Sali",
-        "description": "Ottieni [gold]Lenti di Fresnel[/gold]. Perdi i seguenti PV massimi: [red]13[/red]."
+        "description": "Ottieni [gold]Lenti di Fresnel[/gold]. Perdi [red]13[/red] dei tuoi PV massimi."
       }
     ],
     "pages": [
@@ -1156,11 +1156,11 @@
       },
       {
         "id": "CLIMB",
-        "description": "Raggiungi la sommità del faro perché ti preoccupa che possa affondare del tutto.\n\nDopo aver raggiunto la [gold]stanza della lanterna[/gold], inizi a staccare la lente mentre [purple]l'anti-luce[/purple] [jitter][red]ti prosciuga la vitalità[/red][/jitter]!\n\nAlla fine riesci a liberarla e il faro smette di affondare."
+        "description": "Raggiungi la sommità del faro, ma il suo incessante sprofondare ti innervosisce.\n\nDopo aver raggiunto la [gold]stanza della lanterna[/gold], inizi a staccare la lente mentre [purple]l'anti-luce[/purple] [jitter][red] prosciuga la tua vitalità[/red][/jitter]!\n\nAlla fine riesci a liberarla e il faro smette di affondare."
       },
       {
         "id": "INITIAL",
-        "description": "Attraversando un paesaggio onirico di rocce e acque tranquille, ti trovi di fronte a un [sine]faro che affonda[/sine] che emette [purple]anti-luce[/purple].\n\nPuoi imbottigliare l'[aqua][sine]acqua misteriosamente luminosa[/sine][/aqua] che si è accumulata qui o salire attraverso la struttura fatiscente per recuperare la [gold]lente[/gold].",
+        "description": "Attraversando un paesaggio onirico di rocce e acque tranquille, ti trovi di fronte a un [sine]faro che affonda[/sine] che emette [purple]anti-luce[/purple].\n\nPuoi imbottigliare l'[aqua][sine]acqua misteriosamente luminosa[/sine][/aqua] che si è accumulata qui o raggiungere la cima della struttura fatiscente per recuperare la [gold]lente[/gold].",
         "options": [
           {
             "id": "BOTTLE",
@@ -1170,7 +1170,7 @@
           {
             "id": "CLIMB",
             "title": "Sali",
-            "description": "Ottieni [gold]Lenti di Fresnel[/gold]. Perdi i seguenti PV massimi: [red]13[/red]."
+            "description": "Ottieni [gold]Lenti di Fresnel[/gold]. Perdi [red]13[/red] dei tuoi PV massimi."
           }
         ]
       }
@@ -1181,14 +1181,14 @@
     "name": "Nastro trasportatore infinito",
     "type": "Event",
     "act": "Underdocks",
-    "description": "Entri a fatica in una baracca con un cartello luminoso ma storto che recita:\n[aqua]\"BANCHETTO INFINITO - PAGA IN BASE ALLA TUA FAME!\"[/aqua]\n\nAll'interno, uno [orange]chef snello e dalle molteplici braccia[/orange] sta preparando abilmente dei [green]bocconcini di cibo[/green] e li sistema su un [sine]chitinoso nastro trasportatore avvolgente[/sine].\n\nUna delle braccia dello chef indica un cartello:\n[blue]35[/blue] unità d'[gold]oro[/gold] per ogni piatto",
+    "description": "Arranchi all'interno di una baracca con un cartello luminoso ma storto che recita:\n[aqua]\"BANCHETTO INFINITO - PAGA IN BASE ALLA TUA FAME!\"[/aqua]\n\nAll'interno, uno [orange]chef snello e dalle molteplici braccia[/orange] sta preparando abilmente dei [green]bocconcini di cibo[/green] e li sistema su un [sine]chitinoso nastro trasportatore[/sine].\n\nUna delle braccia dello chef indica un cartello:\n[blue]40[/blue] unità d'[gold]oro[/gold] per ogni piatto",
     "preconditions": [
-      "Requires 105+ gold"
+      "Requires 120+ gold"
     ],
     "options": [
       {
         "id": "OBSERVE_CHEF",
-        "title": "Osservi lo chef",
+        "title": "Osserva lo chef",
         "description": "[gold]Potenzi[/gold] una carta casuale nel tuo [gold]mazzo[/gold]."
       }
     ],
@@ -1205,17 +1205,17 @@
           {
             "id": "CAVIAR",
             "title": "Prendi il caviale dal nastro",
-            "description": "Paga [red]35[/red] unità d'[gold]oro[/gold]. Ottieni i seguenti PV massimi: [green]4[/green]. Continua a mangiare!"
+            "description": "Paghi [red]40[/red] unità d'[gold]oro[/gold]. Aumenti i PV massimi di [green]4[/green]. Continua a mangiare!"
           },
           {
             "id": "CLAM_ROLL",
             "title": "Prendi il rotolo di vongole dal nastro",
-            "description": "Paga [red]35[/red] unità d'[gold]oro[/gold]. Recuperi [green]10[/green] PV. Continua a mangiare!"
+            "description": "Paghi [red]40[/red] unità d'[gold]oro[/gold]. Recuperi [green]10[/green] PV. Continua a mangiare!"
           },
           {
             "id": "FRIED_EEL",
             "title": "Prendi l'anguilla fritta dal nastro",
-            "description": "Paghi [red]35[/red] unità d'[gold]oro[/gold]. Aggiungi una carta incolore casuale al tuo [gold]mazzo[/gold]. Continua a mangiare!"
+            "description": "Paghi [red]40[/red] unità d'[gold]oro[/gold]. Aggiungi una carta incolore casuale al tuo [gold]mazzo[/gold]. Continua a mangiare!"
           },
           {
             "id": "GOLDEN_FYSH",
@@ -1225,28 +1225,28 @@
           {
             "id": "JELLY_LIVER",
             "title": "Prendi il fegato di medusa dal nastro",
-            "description": "Paghi [red]35[/red] unità d'[gold]oro[/gold]. [gold]Trasformi[/gold] una carta. Continua a mangiare!"
+            "description": "Paghi [red]40[/red] unità d'[gold]oro[/gold]. [gold]Trasformi[/gold] una carta. Continua a mangiare!"
           },
           {
             "id": "SEAPUNK_SALAD",
-            "title": "Prendi l'insalata di mare dal nastro",
-            "description": "Paghi [red]35[/red] unità d'[gold]oro[/gold]. Aggiungi la carta [gold]Fame Insaziabile[/gold] al tuo [gold]mazzo[/gold]. Continua a mangiare!"
+            "title": "Prendi l'insalata di Teppista marino dal nastro",
+            "description": "Paghi [red]40[/red] unità d'[gold]oro[/gold]. Aggiungi la carta [gold]Fame Insaziabile[/gold] al tuo [gold]mazzo[/gold]. Continua a mangiare!"
           },
           {
             "id": "SPICY_SNAPPY",
             "title": "Prendi il dentice piccante dal nastro",
-            "description": "Paghi [red]35[/red] unità d'[gold]oro[/gold]. [gold]Potenzi[/gold] una carta casuale. Continua a mangiare!"
+            "description": "Paghi [red]40[/red] unità d'[gold]oro[/gold]. [gold]Potenzi[/gold] una carta casuale. Continua a mangiare!"
           },
           {
             "id": "SUSPICIOUS_CONDIMENT",
             "title": "Prendi il condimento sospetto dal nastro",
-            "description": "Paghi [red]35[/red] unità d'[gold]oro[/gold]. Ricevi una [gold]pozione[/gold] casuale. Continua a mangiare!"
+            "description": "Paghi [red]40[/red] unità d'[gold]oro[/gold]. Ricevi una [gold]pozione[/gold] casuale. Continua a mangiare!"
           }
         ]
       },
       {
         "id": "GRAB_SOMETHING_OFF_THE_BELT",
-        "description": "[gold]Last Dish Title[/gold]! Ottima scelta! Prendi questa squisitezza direttamente dal nastro e la mangi con gusto.\n[green]Che bontà![/green]",
+        "description": "[gold]Last Dish Title[/gold], ottima scelta! Prendi questa squisitezza direttamente dal nastro e la mangi con gusto.\n[green]Che bontà![/green]",
         "options": [
           {
             "id": "LEAVE",
@@ -1257,11 +1257,11 @@
       },
       {
         "id": "INITIAL",
-        "description": "Entri a fatica in una baracca con un cartello luminoso ma storto che recita:\n[aqua]\"BANCHETTO INFINITO - PAGA IN BASE ALLA TUA FAME!\"[/aqua]\n\nAll'interno, uno [orange]chef snello e dalle molteplici braccia[/orange] sta preparando abilmente dei [green]bocconcini di cibo[/green] e li sistema su un [sine]chitinoso nastro trasportatore avvolgente[/sine].\n\nUna delle braccia dello chef indica un cartello:\n[blue]35[/blue] unità d'[gold]oro[/gold] per ogni piatto",
+        "description": "Arranchi all'interno di una baracca con un cartello luminoso ma storto che recita:\n[aqua]\"BANCHETTO INFINITO - PAGA IN BASE ALLA TUA FAME!\"[/aqua]\n\nAll'interno, uno [orange]chef snello e dalle molteplici braccia[/orange] sta preparando abilmente dei [green]bocconcini di cibo[/green] e li sistema su un [sine]chitinoso nastro trasportatore[/sine].\n\nUna delle braccia dello chef indica un cartello:\n[blue]40[/blue] unità d'[gold]oro[/gold] per ogni piatto",
         "options": [
           {
             "id": "OBSERVE_CHEF",
-            "title": "Osservi lo chef",
+            "title": "Osserva lo chef",
             "description": "[gold]Potenzi[/gold] una carta casuale nel tuo [gold]mazzo[/gold]."
           }
         ]
@@ -1292,71 +1292,71 @@
   },
   {
     "id": "FIELD_OF_MAN_SIZED_HOLES",
-    "name": "Campo di buchi antropomorfi",
+    "name": "Campo di buche antropomorfe",
     "type": "Event",
     "act": "Act 2 - Hive",
-    "description": "Rimani a bocca aperta quando all'improvviso vedi [jitter]un vasto campo brulicante di grandi figure corporee[/jitter].\n\nUna di queste sagome corrisponde alla tua.\n\n[sine][orange]È perfetta...[/orange][/sine]",
+    "description": "Rimani a bocca aperta quando, all'improvviso, vedi un vasto campo [jitter]brulicante di grandi sagome di corpi[/jitter].\n\nUna di queste sagome corrisponde alla tua.\n\n[sine][orange]È perfetta...[/orange][/sine]",
     "preconditions": null,
     "options": [
       {
         "id": "RESIST",
         "title": "Resisti",
-        "description": "Rimuovi [blue]2[/blue] carte dal tuo [gold]Deck[/gold]. Aggiungi [red]Normalità[/red] al tuo [gold]mazzo[/gold]."
+        "description": "Rimuovi [blue]2[/blue] carte dal tuo [gold]mazzo[/gold]. Aggiungi [red]Normalità[/red] al tuo [gold]mazzo[/gold]."
       },
       {
         "id": "ENTER_YOUR_HOLE",
-        "title": "Entra nel tuo buco",
+        "title": "Entra nella tua buca",
         "description": "[gold]Incanti[/gold] una carta con [purple]Incastro Perfetto[/purple]."
       }
     ],
     "pages": [
       {
         "id": "ENTER_YOUR_HOLE",
-        "description": "Ci entri a malapena però riesci a infilarti nel buco...\n\nPiù avanzi, più [sine][purple]diventa più scuro[/purple][/sine].\nAlla fine, vedi una [gold]fioca luce[/gold] diventare più luminosa e rivelare l'uscita.\n\nEsci e sembra che niente sia cambiato, però ora comprendi gli [green]intimi segreti della vita[/green]."
+        "description": "Ci entri a malapena, però riesci a infilarti nella buca...\n\nPiù avanzi, [sine][purple]più diventa buio[/purple][/sine].\nAlla fine, vedi una [gold]luce fioca[/gold] diventare più luminosa e rivelare l'uscita.\n\nEsci e sembra che niente sia cambiato, però ora comprendi gli [green]intimi segreti della vita[/green]."
       },
       {
         "id": "INITIAL",
-        "description": "Rimani a bocca aperta quando all'improvviso vedi [jitter]un vasto campo brulicante di grandi figure corporee[/jitter].\n\nUna di queste sagome corrisponde alla tua.\n\n[sine][orange]È perfetta...[/orange][/sine]",
+        "description": "Rimani a bocca aperta quando, all'improvviso, vedi un vasto campo [jitter]brulicante di grandi sagome di corpi[/jitter].\n\nUna di queste sagome corrisponde alla tua.\n\n[sine][orange]È perfetta...[/orange][/sine]",
         "options": [
           {
             "id": "RESIST",
             "title": "Resisti",
-            "description": "Rimuovi [blue]2[/blue] carte dal tuo [gold]Deck[/gold]. Aggiungi [red]Normalità[/red] al tuo [gold]mazzo[/gold]."
+            "description": "Rimuovi [blue]2[/blue] carte dal tuo [gold]mazzo[/gold]. Aggiungi [red]Normalità[/red] al tuo [gold]mazzo[/gold]."
           },
           {
             "id": "ENTER_YOUR_HOLE",
-            "title": "Entra nel tuo buco",
+            "title": "Entra nella tua buca",
             "description": "[gold]Incanti[/gold] una carta con [purple]Incastro Perfetto[/purple]."
           }
         ]
       },
       {
         "id": "RESIST",
-        "description": "Passi davanti a tutti i buchi, persino a quello che [orange]corrisponde perfettamente alla tua sagoma...[/orange]\n\nPerché ho deciso di non entrarci? Cosa sarebbe successo? Già ho visitato quel buco in passato? Chi ha fatto questi buchi?\n\n[sine][red]Cosa? Chi? Dove?[/red][/sine]"
+        "description": "Passi davanti a tutte le buche, persino a quella che [orange]corrisponde perfettamente a te...[/orange]\n\nPerché ho deciso di non entrarci? Cosa sarebbe successo? Ho già visitato quella buca in passato? Chi ha realizzato queste buche?\n\n[sine][red]Cosa? Chi? Dove?[/red][/sine]"
       }
     ]
   },
   {
     "id": "GRAVE_OF_THE_FORGOTTEN",
-    "name": "Tomba del guerriero dimenticato",
+    "name": "Tomba del Dimenticato",
     "type": "Event",
     "act": "Act 3 - Glory",
-    "description": "C'è una tomba con una [jitter][aqua]fiamma blu turbolenta[/aqua][/jitter]...\n\nUn fiero guerriero è morto in battaglia, ma la sua anima è inquieta. Vuole continuare a combattere e la senti che ti [sine]implora[/sine] di viaggiare insieme a te.\n\nMa forse non sarebbe meglio che accettasse la [red]realtà[/red] dei fatti?",
+    "description": "C'è una tomba con una [jitter][aqua]fiamma blu che si agita[/aqua][/jitter]...\n\nUn fiero guerriero è morto in battaglia, ma la sua anima è inquieta. Vuole continuare a combattere e la senti che ti [sine]implora[/sine] di viaggiare insieme a te.\n\nMa forse non sarebbe meglio che accettasse la [red]realtà[/red] dei fatti?",
     "preconditions": null,
     "options": [
       {
         "id": "CONFRONT_LOCKED",
-        "title": "Bloccato",
+        "title": "Bloccata",
         "description": "Non hai nessuna carta con [gold]Esaurimento[/gold] da [purple]incantare[/purple]."
       },
       {
         "id": "CONFRONT",
-        "title": "Mostri la realtà dei fatti",
-        "description": "Aggiungi [red]Decomposizione[/red] al [gold]mazzo[/gold]. Usi [purple]Potere dell'Anima[/purple] per [gold]incantare[/gold] una carta con [gold]Esaurimento[/gold]."
+        "title": "Mostra la realtà dei fatti",
+        "description": "Aggiungi [red]Decomposizione[/red] al [gold]mazzo[/gold]. [gold]Incanti[/gold] una carta che si [gold]esaurisce[/gold] con [purple]Potere dell'Anima[/purple]."
       },
       {
         "id": "ACCEPT",
-        "title": "Accetta Anima Dimenticata",
+        "title": "Accetta l'Anima Dimenticata",
         "description": "Ottieni [gold]Anima Dimenticata[/gold]."
       }
     ],
@@ -1371,21 +1371,21 @@
       },
       {
         "id": "INITIAL",
-        "description": "C'è una tomba con una [jitter][aqua]fiamma blu turbolenta[/aqua][/jitter]...\n\nUn fiero guerriero è morto in battaglia, ma la sua anima è inquieta. Vuole continuare a combattere e la senti che ti [sine]implora[/sine] di viaggiare insieme a te.\n\nMa forse non sarebbe meglio che accettasse la [red]realtà[/red] dei fatti?",
+        "description": "C'è una tomba con una [jitter][aqua]fiamma blu che si agita[/aqua][/jitter]...\n\nUn fiero guerriero è morto in battaglia, ma la sua anima è inquieta. Vuole continuare a combattere e la senti che ti [sine]implora[/sine] di viaggiare insieme a te.\n\nMa forse non sarebbe meglio che accettasse la [red]realtà[/red] dei fatti?",
         "options": [
           {
             "id": "CONFRONT_LOCKED",
-            "title": "Bloccato",
+            "title": "Bloccata",
             "description": "Non hai nessuna carta con [gold]Esaurimento[/gold] da [purple]incantare[/purple]."
           },
           {
             "id": "CONFRONT",
-            "title": "Mostri la realtà dei fatti",
-            "description": "Aggiungi [red]Decomposizione[/red] al [gold]mazzo[/gold]. Usi [purple]Potere dell'Anima[/purple] per [gold]incantare[/gold] una carta con [gold]Esaurimento[/gold]."
+            "title": "Mostra la realtà dei fatti",
+            "description": "Aggiungi [red]Decomposizione[/red] al [gold]mazzo[/gold]. [gold]Incanti[/gold] una carta che si [gold]esaurisce[/gold] con [purple]Potere dell'Anima[/purple]."
           },
           {
             "id": "ACCEPT",
-            "title": "Accetta Anima Dimenticata",
+            "title": "Accetta l'Anima Dimenticata",
             "description": "Ottieni [gold]Anima Dimenticata[/gold]."
           }
         ]
@@ -1397,48 +1397,48 @@
     "name": "Fame di funghi",
     "type": "Event",
     "act": "Act 3 - Glory",
-    "description": "[sine]Da quanto tempo non mangi?\n...aspetta, cos'è questo odore fantastico?[/sine]\n\nSeguendo l'aroma, raggiungi un accogliente campeggio nel quale si cucinano [green]funghi saporiti[/green] di ogni tipo! Non ti viene il dubbio se sia sicuro o meno mangiare questi funghi... Anche perché hai una fame da lupi.\n(Hai talmente tanta fame che non noti il cadavere di un avventuriero)",
+    "description": "[sine]Da quanto tempo non mangi?\n... aspetta, cos'è questo odore fantastico?[/sine]\n\nSeguendo l'aroma, raggiungi un accogliente accampamento nel quale si cucinano [green]funghi saporiti[/green] di ogni tipo! Non ti viene il dubbio se sia sicuro o meno mangiare questi funghi... Perché hai una fame da lupi.\n(Hai talmente tanta fame che non noti il cadavere di un avventuriero)",
     "preconditions": null,
     "options": [
       {
         "id": "BIG_MUSHROOM",
-        "title": "Grande fungo",
-        "description": "Obtain [gold]Grande fungo[/gold]. Dopo aver ottenuto questa reliquia, aumenti i tuoi PV massimi di [blue]20[/blue]. All'inizio di ogni combattimento, peschi [blue]2[/blue] carte in meno."
+        "title": "Fungo grande",
+        "description": "Obtain [gold]Fungo grande[/gold]. Dopo aver ottenuto questa reliquia, aumenti i tuoi PV massimi di [blue]20[/blue]. All'inizio di ogni combattimento, peschi [blue]2[/blue] carte in meno."
       },
       {
         "id": "FRAGRANT_MUSHROOM",
         "title": "Fungo fragrante",
-        "description": "Obtain [gold]Fungo fragrante[/gold]. Dopo aver ottenuto questa reliquia perdi [red]15[/red] PV e [gold]potenzi[/gold] [blue]3[/blue] carte casuali."
+        "description": "Obtain [gold]Fungo fragrante[/gold]. Dopo aver ottenuto questa reliquia perdi [blue]15[/blue] PV e [gold]potenzi[/gold] [blue]2[/blue] carte casuali."
       }
     ],
     "pages": [
       {
         "id": "BIG_MUSHROOM",
-        "description": "Mordi il [orange]grande fungo[/orange]. La sua polpa è soda, amidacea e appagante. Più ne mangi, più ti viene appetito, come se il fungo stesse alimentando la tua fame.\n\n[sine]È così buono che... entri in [red]coma alimentare[/red].[/sine]\nLa tua golosità ti costerà caro."
+        "description": "Mordi il [orange]fungo grande[/orange]. La sua polpa è soda, ricca d'amido e sostanziosa. Più ne mangi, più ti viene appetito, come se il fungo stesse alimentando la tua fame.\n\n[sine]È così buono che... entri in uno [red]stato di sonnolenza[/red].[/sine]\nLa tua golosità ti costerà caro."
       },
       {
         "id": "FRAGRANT_MUSHROOM",
-        "description": "Assaggi il [green]fungo fragrante[/green] che ha una consistenza legnosa e un delicato aroma ai frutti di mare...\n\nUna scarica di energia ti spinge a correre, saltare e [gold]allenarti con rigore[/gold]!\nPoi, percepisci un improvviso [red][jitter]dolore lancinante[/jitter][/red] mentre il fungo ancora vivo lotta dentro di te durante i suoi ultimi istanti di vita."
+        "description": "Assaggi il [green]fungo fragrante[/green], che ha una consistenza legnosa e un delicato aroma ai frutti di mare...\n\nUna scarica di energia ti spinge a correre, saltare e [gold]allenarti con rigore[/gold]!\nPoi, percepisci un improvviso [red][jitter]dolore lancinante[/jitter][/red] mentre il fungo, ancora vivo, lotta dentro di te durante i suoi ultimi istanti di vita."
       },
       {
         "id": "INITIAL",
-        "description": "[sine]Da quanto tempo non mangi?\n...aspetta, cos'è questo odore fantastico?[/sine]\n\nSeguendo l'aroma, raggiungi un accogliente campeggio nel quale si cucinano [green]funghi saporiti[/green] di ogni tipo! Non ti viene il dubbio se sia sicuro o meno mangiare questi funghi... Anche perché hai una fame da lupi.\n(Hai talmente tanta fame che non noti il cadavere di un avventuriero)",
+        "description": "[sine]Da quanto tempo non mangi?\n... aspetta, cos'è questo odore fantastico?[/sine]\n\nSeguendo l'aroma, raggiungi un accogliente accampamento nel quale si cucinano [green]funghi saporiti[/green] di ogni tipo! Non ti viene il dubbio se sia sicuro o meno mangiare questi funghi... Perché hai una fame da lupi.\n(Hai talmente tanta fame che non noti il cadavere di un avventuriero)",
         "options": [
           {
             "id": "BIG_MUSHROOM",
-            "title": "Grande fungo",
-            "description": "Obtain [gold]Grande fungo[/gold]. Dopo aver ottenuto questa reliquia, aumenti i tuoi PV massimi di [blue]20[/blue]. All'inizio di ogni combattimento, peschi [blue]2[/blue] carte in meno."
+            "title": "Fungo grande",
+            "description": "Obtain [gold]Fungo grande[/gold]. Dopo aver ottenuto questa reliquia, aumenti i tuoi PV massimi di [blue]20[/blue]. All'inizio di ogni combattimento, peschi [blue]2[/blue] carte in meno."
           },
           {
             "id": "FRAGRANT_MUSHROOM",
             "title": "Fungo fragrante",
-            "description": "Obtain [gold]Fungo fragrante[/gold]. Dopo aver ottenuto questa reliquia perdi [red]15[/red] PV e [gold]potenzi[/gold] [blue]3[/blue] carte casuali."
+            "description": "Obtain [gold]Fungo fragrante[/gold]. Dopo aver ottenuto questa reliquia perdi [blue]15[/blue] PV e [gold]potenzi[/gold] [blue]2[/blue] carte casuali."
           }
         ]
       },
       {
         "id": "MEDLEY",
-        "description": "Questo [green]mix di funghi[/green] sembra il più invitante e così opti per questo.\n\n[red][jitter]\"I MIEI FUNGHI!!!\"[/jitter][/red]\n\nL'avventuriero, che sembrava morto, ti attacca! Lo metti al tappeto e, con un pizzico di colpa, finisci il resto del delizioso pasto."
+        "description": "Il [green]mix di funghi[/green] sembra il più invitante e così opti per questo.\n\n[red][jitter]\"I MIEI FUNGHI!\"[/jitter][/red]\n\nL'avventuriero, che sembrava morto, ti attacca! Lo metti al tappeto e, con un pizzico di colpa, finisci il resto del delizioso pasto."
       }
     ]
   },
@@ -1447,7 +1447,7 @@
     "name": "Automa infestato",
     "type": "Event",
     "act": "Act 2 - Hive",
-    "description": "Giungi a una stanza piena di [red]robot morti[/red].\n\nUn automa solitario ha ancora un [sine][aqua]nucleo con un leggero scintillio[/aqua][/sine]. Tuttavia, è avvolto da una grottesca formazione organica e sembra non dare segni di vita.",
+    "description": "Giungi in una stanza piena di [red]robot morti[/red].\n\nUn automa solitario possiede ancora un [sine][aqua]nucleo con un flebile scintillio[/aqua][/sine]. Tuttavia, è avvolto da una grottesca formazione organica e sembra non dare segni di vita.",
     "preconditions": null,
     "options": [
       {
@@ -1458,13 +1458,13 @@
       {
         "id": "TOUCH_CORE",
         "title": "Tocca il nucleo",
-        "description": "Ottieni una [gold]carta da costo 0[/gold] casuale."
+        "description": "Ottieni una [gold]carta di costo 0[/gold] casuale."
       }
     ],
     "pages": [
       {
         "id": "INITIAL",
-        "description": "Giungi a una stanza piena di [red]robot morti[/red].\n\nUn automa solitario ha ancora un [sine][aqua]nucleo con un leggero scintillio[/aqua][/sine]. Tuttavia, è avvolto da una grottesca formazione organica e sembra non dare segni di vita.",
+        "description": "Giungi in una stanza piena di [red]robot morti[/red].\n\nUn automa solitario possiede ancora un [sine][aqua]nucleo con un flebile scintillio[/aqua][/sine]. Tuttavia, è avvolto da una grottesca formazione organica e sembra non dare segni di vita.",
         "options": [
           {
             "id": "STUDY",
@@ -1474,7 +1474,7 @@
           {
             "id": "TOUCH_CORE",
             "title": "Tocca il nucleo",
-            "description": "Ottieni una [gold]carta da costo 0[/gold] casuale."
+            "description": "Ottieni una [gold]carta di costo 0[/gold] casuale."
           }
         ]
       },
@@ -1484,7 +1484,7 @@
       },
       {
         "id": "TOUCH_CORE",
-        "description": "Al minimo tocco del [aqua]nucleo[/aqua], senti [jitter]una piccola scossa di [gold]elettricità[/gold][/jitter].\n\nScappi a tutta velocità con la sensazione di aver [sine][purple]appreso[/purple][/sine] qualcosa di nuovo da questa esperienza."
+        "description": "Appena sfiori il [aqua]nucleo[/aqua], una [jitter]scossa [gold]elettrica[/gold] ti pervade[/jitter].\n\nScappi a tutta velocità, con la sensazione di aver [sine][purple]appreso[/purple][/sine] qualcosa di nuovo da questa esperienza."
       }
     ]
   },
@@ -1526,11 +1526,11 @@
       },
       {
         "id": "JOIN_FORCES",
-        "description": "Il volto di tutti si illumina immediatamente, incluso il tuo!\n\nUno degli avventurieri si rivela essere un bardo!\nEntri con gioia nel labirinto mentre [aqua]Aquid, lo stregone calamaro[/aqua] disinnesca con disinvoltura le trappole, mentre tu e la [red]guerriera Grathoriana[/red] vi sbarazzate facilmente delle [orange]guardie e loro clave spinose[/orange].\n\nQuesta è stata l'avventura più gioiosa della tua vita e hai creato dei [gold][sine]ricordi indelebili[/sine][/gold]."
+        "description": "Il volto di tutti si illumina immediatamente, incluso il tuo!\n\nUno degli avventurieri si rivela essere un bardo!\nEntri con gioia nel labirinto mentre [aqua]Aquid, lo stregone calamaro[/aqua] disinnesca con disinvoltura le trappole, mentre tu e la [red]guerriera grathoriana[/red] vi sbarazzate facilmente delle [orange]guardie con le mazze chiodate[/orange].\n\nQuesta è stata l'avventura più gioiosa della tua vita e hai creato dei [gold][sine]ricordi indelebili[/sine][/gold]."
       },
       {
         "id": "SOLO_QUEST",
-        "description": "Non hai molta voglia di parlare così gli passi davanti senza dire nulla nonostante i loro sguardi imbronciati. Uno di loro perfino [jitter][purple]agita il pugno[/purple][/jitter] in segno di delusione.\n\nIl labirinto è ostile: cadi in una trappola a spuntoni, un tronco gigante pieno di chiodi ti trafigge e [orange]creature feroci con mazze chiodate[/orange] ti attaccano a ogni angolo.\n\nNe hai abbastanza degli spuntoni e la prossima volta probabilmente accetterai di fare squadra."
+        "description": "Non hai molta voglia di collaborare, così gli passi davanti senza dire nulla nonostante i loro sguardi imbronciati. Uno di loro addirittura [jitter][purple]agita il pugno[/purple][/jitter] contro di te.\n\nIl labirinto è ostile: cadi in una trappola a spuntoni, un tronco gigante pieno di chiodi ti trafigge e [orange]creature feroci con mazze chiodate[/orange] ti attaccano a ogni angolo.\n\nNe hai abbastanza degli spuntoni e la prossima volta probabilmente accetterai di fare squadra."
       }
     ]
   },
@@ -1539,13 +1539,13 @@
     "name": "Il fuoco fatuo perduto",
     "type": "Event",
     "act": "Act 2 - Hive",
-    "description": "In lontananza scorgi uno scenario inquietante: una miriade di [sine][red]insetti morti[/red][/sine] che circondano quello che sembra essere un [orange]piccolo granello luminoso[/orange].\nSembra attirare ogni tipo di insetto allo stesso modo, ma vedi che sprigiona delle fiamme!\n\nTi avvicini per indagare.",
+    "description": "In lontananza scorgi uno scenario inquietante: una miriade di [sine][red]insetti morti[/red][/sine] che circondano quello che sembra essere un [orange]piccolo granello luminoso[/orange].\nSembra attirare ogni tipo di insetto, ma vedi che sprigiona delle fiamme!\n\nTi avvicini per indagare.",
     "preconditions": null,
     "options": [
       {
         "id": "CLAIM",
         "title": "Cattura il fuoco fatuo",
-        "description": "Aggiungi [red]Decomposizione[/red] al tuo [gold]mazzo[/gold]. Ottieni [gold]Fuoco Fatuo Perduto[/gold]."
+        "description": "Aggiungi [red]Decomposizione[/red] al tuo [gold]mazzo[/gold]. Ottieni il [gold]Fuoco Fatuo Perduto[/gold]."
       },
       {
         "id": "SEARCH",
@@ -1560,12 +1560,12 @@
       },
       {
         "id": "INITIAL",
-        "description": "In lontananza scorgi uno scenario inquietante: una miriade di [sine][red]insetti morti[/red][/sine] che circondano quello che sembra essere un [orange]piccolo granello luminoso[/orange].\nSembra attirare ogni tipo di insetto allo stesso modo, ma vedi che sprigiona delle fiamme!\n\nTi avvicini per indagare.",
+        "description": "In lontananza scorgi uno scenario inquietante: una miriade di [sine][red]insetti morti[/red][/sine] che circondano quello che sembra essere un [orange]piccolo granello luminoso[/orange].\nSembra attirare ogni tipo di insetto, ma vedi che sprigiona delle fiamme!\n\nTi avvicini per indagare.",
         "options": [
           {
             "id": "CLAIM",
             "title": "Cattura il fuoco fatuo",
-            "description": "Aggiungi [red]Decomposizione[/red] al tuo [gold]mazzo[/gold]. Ottieni [gold]Fuoco Fatuo Perduto[/gold]."
+            "description": "Aggiungi [red]Decomposizione[/red] al tuo [gold]mazzo[/gold]. Ottieni il [gold]Fuoco Fatuo Perduto[/gold]."
           },
           {
             "id": "SEARCH",
@@ -1576,7 +1576,7 @@
       },
       {
         "id": "SEARCH",
-        "description": "Decidi di lasciare in pace il pulcino. Meglio non rischiare!\n\nNon c'è molto nella zona, ma trovi dell'[gold]oro[/gold] sparso tra gli insetti morti.\nDecidi di non indagare per cercare una risposta."
+        "description": "Decidi di lasciare in pace il piccoletto. Meglio non rischiare!\n\nNon c'è molto nella zona, ma trovi dell'[gold]oro[/gold] sparso tra gli insetti morti.\nDecidi di non indagare per cercare una risposta."
       }
     ]
   },
@@ -1585,7 +1585,7 @@
     "name": "Coro luminoso",
     "type": "Event",
     "act": "Act 1 - Overgrowth",
-    "description": "Ti imbatti in una radura immersa in una luce blu innaturale. Dei funghi giganti pulsano di bioluminescenza, con i cappelli gonfi e luminosi. Avvicinandoti, i funghi iniziano a emettere [sine][purple]suoni evocativi e melodici[/purple][/sine] che ti riecheggiano nel petto.\n\nNoti qualcosa di luccicante incastonato nella polpa del fungo più grande che [sine]palpita[/sine] al ritmo della melodia fungina.",
+    "description": "Ti imbatti in una radura immersa in una luce blu innaturale. Dei funghi giganti pulsano di bioluminescenza, con i cappelli gonfi e luminosi. Avvicinandoti, i funghi iniziano a emettere [sine][purple]suoni evocativi e melodici[/purple][/sine] che ti riecheggiano nel petto.\n\nNoti qualcosa di luccicante incastonato nella polpa del fungo più grande, che [sine]palpita[/sine] al ritmo della melodia fungina.",
     "preconditions": [
       "Requires 100-149 gold"
     ],
@@ -1598,18 +1598,18 @@
       {
         "id": "OFFER_TRIBUTE",
         "title": "Offri un tributo",
-        "description": "Paga [red]100-149[/red] unità d'[gold]oro[/gold]. Ottieni una [gold]reliquia[/gold] casuale."
+        "description": "Paghi [red]100-149[/red] unità d'[gold]oro[/gold]. Ottieni una [gold]reliquia[/gold] casuale."
       },
       {
         "id": "OFFER_TRIBUTE_LOCKED",
-        "title": "Bloccato",
+        "title": "Bloccata",
         "description": "Richiede [blue]100-149[/blue] unità d'[gold]oro[/gold]."
       }
     ],
     "pages": [
       {
         "id": "INITIAL",
-        "description": "Ti imbatti in una radura immersa in una luce blu innaturale. Dei funghi giganti pulsano di bioluminescenza, con i cappelli gonfi e luminosi. Avvicinandoti, i funghi iniziano a emettere [sine][purple]suoni evocativi e melodici[/purple][/sine] che ti riecheggiano nel petto.\n\nNoti qualcosa di luccicante incastonato nella polpa del fungo più grande che [sine]palpita[/sine] al ritmo della melodia fungina.",
+        "description": "Ti imbatti in una radura immersa in una luce blu innaturale. Dei funghi giganti pulsano di bioluminescenza, con i cappelli gonfi e luminosi. Avvicinandoti, i funghi iniziano a emettere [sine][purple]suoni evocativi e melodici[/purple][/sine] che ti riecheggiano nel petto.\n\nNoti qualcosa di luccicante incastonato nella polpa del fungo più grande, che [sine]palpita[/sine] al ritmo della melodia fungina.",
         "options": [
           {
             "id": "REACH_INTO_THE_FLESH",
@@ -1619,31 +1619,31 @@
           {
             "id": "OFFER_TRIBUTE",
             "title": "Offri un tributo",
-            "description": "Paga [red]100-149[/red] unità d'[gold]oro[/gold]. Ottieni una [gold]reliquia[/gold] casuale."
+            "description": "Paghi [red]100-149[/red] unità d'[gold]oro[/gold]. Ottieni una [gold]reliquia[/gold] casuale."
           },
           {
             "id": "OFFER_TRIBUTE_LOCKED",
-            "title": "Bloccato",
+            "title": "Bloccata",
             "description": "Richiede [blue]100-149[/blue] unità d'[gold]oro[/gold]."
           }
         ]
       },
       {
         "id": "OFFER_TRIBUTE",
-        "description": "Posizioni l'oro sul fondo spugnoso. Le monete affondano lentamente e i viticci spingono delicatamente la reliquia in superficie, consentendoti di recuperarla facilmente."
+        "description": "Posizioni l'oro sul terreno spugnoso. Le monete affondano lentamente e i viticci spingono delicatamente la reliquia in superficie, consentendoti di recuperarla facilmente."
       },
       {
         "id": "REACH_INTO_THE_FLESH",
-        "description": "Affondi la mano direttamente nel tessuto spugnoso del fungo dominante per estrarre la reliquia al suo interno. La rete fungina sussulta a causa della tua intrusione, mentre la tua mente [sine]trema[/sine] di tutta risposta."
+        "description": "Affondi la mano direttamente nel tessuto spugnoso del fungo dominante per estrarre la reliquia al suo interno. La rete fungina sussulta a causa della tua intrusione e la tua mente [sine]trema[/sine] di tutta risposta."
       }
     ]
   },
   {
     "id": "MORPHIC_GROVE",
-    "name": "Bosco morfico",
+    "name": "Boschetto morfico",
     "type": "Event",
     "act": "Act 1 - Overgrowth",
-    "description": "Entri in un boschetto di [green]alberi di cristallo[/green], che iniziano a [jitter]tremare dall'emozione[/jitter]!\nUn coro di [sine]saluti e benvenuti[/sine] ti accoglie mentre un gruppo di [aqua]morfici[/aqua] [jitter]compare[/jitter] dagli alberi.\n\nUno dei [aqua]morfici[/aqua] si agita nervosamente in un angolo; è chiaramente meno socievole degli altri.\n\nA chi ti avvicini? Al gruppo o al morfico solitario?",
+    "description": "Entri in un boschetto di [green]alberi di cristallo[/green], che iniziano a [jitter]tremare dall'emozione[/jitter]!\nUn coro di [sine]benvenuto[/sine] ti accoglie mentre un gruppo di [aqua]morfici[/aqua] [jitter]compare[/jitter] dagli alberi.\n\nUno dei [aqua]morfici[/aqua] si agita nervosamente in un angolo; è chiaramente meno socievole degli altri.\n\nA chi ti avvicini? Al gruppo o al morfico solitario?",
     "preconditions": [
       "Requires 100+ gold"
     ],
@@ -1651,12 +1651,12 @@
       {
         "id": "GROUP",
         "title": "Avvicinati al gruppo",
-        "description": "Perdi [red]100[/red] unità d'[gold]oro[/gold]. [gold]Trasformi[/gold] [blue]2[/blue] carte."
+        "description": "Perdi [red]TUTTO[/red] il tuo [gold]oro[/gold]. [gold]Trasformi[/gold] [blue]2[/blue] carte."
       },
       {
         "id": "LONER",
         "title": "Avvicinati al morfico solitario",
-        "description": "Ottieni i seguenti PV massimi: [green]5[/green]."
+        "description": "I PV massimi aumentano di [green]5[/green]."
       }
     ],
     "pages": [
@@ -1666,17 +1666,17 @@
       },
       {
         "id": "INITIAL",
-        "description": "Entri in un boschetto di [green]alberi di cristallo[/green], che iniziano a [jitter]tremare dall'emozione[/jitter]!\nUn coro di [sine]saluti e benvenuti[/sine] ti accoglie mentre un gruppo di [aqua]morfici[/aqua] [jitter]compare[/jitter] dagli alberi.\n\nUno dei [aqua]morfici[/aqua] si agita nervosamente in un angolo; è chiaramente meno socievole degli altri.\n\nA chi ti avvicini? Al gruppo o al morfico solitario?",
+        "description": "Entri in un boschetto di [green]alberi di cristallo[/green], che iniziano a [jitter]tremare dall'emozione[/jitter]!\nUn coro di [sine]benvenuto[/sine] ti accoglie mentre un gruppo di [aqua]morfici[/aqua] [jitter]compare[/jitter] dagli alberi.\n\nUno dei [aqua]morfici[/aqua] si agita nervosamente in un angolo; è chiaramente meno socievole degli altri.\n\nA chi ti avvicini? Al gruppo o al morfico solitario?",
         "options": [
           {
             "id": "GROUP",
             "title": "Avvicinati al gruppo",
-            "description": "Perdi [red]100[/red] unità d'[gold]oro[/gold]. [gold]Trasformi[/gold] [blue]2[/blue] carte."
+            "description": "Perdi [red]TUTTO[/red] il tuo [gold]oro[/gold]. [gold]Trasformi[/gold] [blue]2[/blue] carte."
           },
           {
             "id": "LONER",
             "title": "Avvicinati al morfico solitario",
-            "description": "Ottieni i seguenti PV massimi: [green]5[/green]."
+            "description": "I PV massimi aumentano di [green]5[/green]."
           }
         ]
       },
@@ -1881,23 +1881,28 @@
     "relics": [
       "ARCANE_SCROLL",
       "BOOMING_CONCH",
-      "POMANDER",
       "GOLDEN_PEARL",
       "LEAD_PAPERWEIGHT",
-      "NEW_LEAF",
-      "NEOWS_TORMENT",
-      "PRECISE_SCISSORS",
       "LOST_COFFER",
-      "NUTRITIOUS_OYSTER",
-      "STONE_HUMIDIFIER",
+      "NEOWS_TORMENT",
+      "NEW_LEAF",
+      "PRECISE_SCISSORS",
+      "PHIAL_HOLSTER",
+      "WINGED_BOOTS",
       "MASSIVE_SCROLL",
       "LAVA_ROCK",
+      "NEOWS_TALISMAN",
+      "NUTRITIOUS_OYSTER",
+      "POMANDER",
       "SMALL_CAPSULE",
-      "SILVER_CRUCIBLE",
+      "STONE_HUMIDIFIER",
       "CURSED_PEARL",
+      "HEFTY_TABLET",
       "LARGE_CAPSULE",
       "LEAFY_POULTICE",
       "PRECARIOUS_SHEARS",
+      "SILVER_CRUCIBLE",
+      "NEOWS_BONES",
       "SCROLL_BOXES"
     ]
   },
@@ -2438,13 +2443,13 @@
     "options": [
       {
         "id": "GRAB_POTIONS",
-        "title": "Prendi pozioni",
-        "description": "Ricevi [blue]3[/blue] [gold] Pozioni Nefaste[/gold]."
+        "title": "Prendi le pozioni",
+        "description": "Ricevi [blue]3[/blue] [gold]Pozioni Nefaste[/gold]."
       },
       {
         "id": "RANSACK",
         "title": "Rovista",
-        "description": "Ricevi [blue]1[/blue] [gold]pozione non comune[/gold]."
+        "description": "Ricevi [blue]1[/blue] [gold]pozione non comune[/gold] casuale."
       }
     ],
     "pages": [
@@ -2458,19 +2463,19 @@
         "options": [
           {
             "id": "GRAB_POTIONS",
-            "title": "Prendi pozioni",
-            "description": "Ricevi [blue]3[/blue] [gold] Pozioni Nefaste[/gold]."
+            "title": "Prendi le pozioni",
+            "description": "Ricevi [blue]3[/blue] [gold]Pozioni Nefaste[/gold]."
           },
           {
             "id": "RANSACK",
             "title": "Rovista",
-            "description": "Ricevi [blue]1[/blue] [gold]pozione non comune[/gold]."
+            "description": "Ricevi [blue]1[/blue] [gold]pozione non comune[/gold] casuale."
           }
         ]
       },
       {
         "id": "RANSACK",
-        "description": "C'è una sola pozione intatta."
+        "description": "C'era una sola pozione intatta."
       }
     ]
   },
@@ -2479,7 +2484,7 @@
     "name": "Scazzottata",
     "type": "Event",
     "act": "Underdocks",
-    "description": "Due [gold]Assemblaggi pugili[/gold] sono impegnati in una lotta senza esclusione di colpi, ma in mezzo a loro scorgi un tesoro...\n\nVuoi provare a rubarlo?",
+    "description": "Due [gold]Assemblaggi Pugili[/gold] sono impegnati in una lotta senza esclusione di colpi, ma in mezzo a loro scorgi un tesoro...\n\nVuoi provare a rubarlo?",
     "preconditions": null,
     "options": [
       {
@@ -2496,7 +2501,7 @@
     "pages": [
       {
         "id": "INITIAL",
-        "description": "Due [gold]Assemblaggi pugili[/gold] sono impegnati in una lotta senza esclusione di colpi, ma in mezzo a loro scorgi un tesoro...\n\nVuoi provare a rubarlo?",
+        "description": "Due [gold]Assemblaggi Pugili[/gold] sono impegnati in una lotta senza esclusione di colpi, ma in mezzo a loro scorgi un tesoro...\n\nVuoi provare a rubarlo?",
         "options": [
           {
             "id": "NAB",
@@ -2532,7 +2537,7 @@
     "name": "Ranwid l'anziano",
     "type": "Shared",
     "act": null,
-    "description": "Ti si avvicina [purple]la persona più anziana che tu abbia mai visto[/purple].\n[sine]\"Ci incontriamo di nuovo... Sono io, Ranwid!\"[/sine]\n\nNon hai idea di chi sia quest'uomo.",
+    "description": "Ti si avvicina la [purple]persona più anziana che tu abbia mai visto[/purple].\n[sine]\"Ci incontriamo di nuovo... Sono io, Ranwid!\"[/sine]\n\nNon hai idea di chi sia quest'uomo.",
     "preconditions": [
       "Act 2+",
       "Requires at least one potion"
@@ -2545,7 +2550,7 @@
       },
       {
         "id": "POTION_LOCKED",
-        "title": "Bloccato",
+        "title": "Bloccata",
         "description": "Non hai nessuna pozione da donare."
       },
       {
@@ -2560,7 +2565,7 @@
       },
       {
         "id": "RELIC_LOCKED",
-        "title": "Bloccato",
+        "title": "Bloccata",
         "description": "Non hai nessuna reliquia da donare."
       }
     ],
@@ -2571,7 +2576,7 @@
       },
       {
         "id": "INITIAL",
-        "description": "Ti si avvicina [purple]la persona più anziana che tu abbia mai visto[/purple].\n[sine]\"Ci incontriamo di nuovo... Sono io, Ranwid!\"[/sine]\n\nNon hai idea di chi sia quest'uomo.",
+        "description": "Ti si avvicina la [purple]persona più anziana che tu abbia mai visto[/purple].\n[sine]\"Ci incontriamo di nuovo... Sono io, Ranwid!\"[/sine]\n\nNon hai idea di chi sia quest'uomo.",
         "options": [
           {
             "id": "POTION",
@@ -2580,7 +2585,7 @@
           },
           {
             "id": "POTION_LOCKED",
-            "title": "Bloccato",
+            "title": "Bloccata",
             "description": "Non hai nessuna pozione da donare."
           },
           {
@@ -2595,27 +2600,27 @@
           },
           {
             "id": "RELIC_LOCKED",
-            "title": "Bloccato",
+            "title": "Bloccata",
             "description": "Non hai nessuna reliquia da donare."
           }
         ]
       },
       {
         "id": "POTION",
-        "description": "\"[sine]Che delizia...\"[/sine]\n\n[sine][blue]Glu glu glu[/blue][/sine]\n\nTutto d'un fiato, beve la seguente pozione: [gold]Potion[/gold]."
+        "description": "\"[sine]Che delizia...\"[/sine]\n\n[sine][blue]Glu glu glu[/blue][/sine]\n\nTutto d'un fiato, beve questa pozione: [gold]Potion[/gold]."
       },
       {
         "id": "RELIC",
-        "description": "[sine]\"Che magnificenza...\"[/sine]\n\nRanwid osserva attentamente la reliquia per svariati minuti...\n\nPoi ingurgita completamente la seguente reliquia: [gold]Relic[/gold]."
+        "description": "[sine]\"Che magnificenza...\"[/sine]\n\nRanwid osserva attentamente la reliquia per svariati minuti...\n\nPoi mangia questa reliquia: [gold]Relic[/gold]."
       }
     ]
   },
   {
     "id": "REFLECTIONS",
-    "name": "Riflessi | snoitcelfeR",
+    "name": "Riflessi isselfiR",
     "type": "Event",
     "act": "Act 3 - Glory",
-    "description": "Che succede? C'è qualcosa che non va...\n[sine]...daijdsad sdadas weww oadlaoD? sade si xczW[/sine]",
+    "description": "Che succede? Qualcosa non va...\n[sine]...av non asoclauQ ?edeccus ehC[/sine]",
     "preconditions": null,
     "options": [
       {
@@ -2632,7 +2637,7 @@
     "pages": [
       {
         "id": "INITIAL",
-        "description": "Che succede? C'è qualcosa che non va...\n[sine]...daijdsad sdadas weww oadlaoD? sade si xczW[/sine]",
+        "description": "Che succede? Qualcosa non va...\n[sine]...av non asoclauQ ?edeccus ehC[/sine]",
         "options": [
           {
             "id": "TOUCH_A_MIRROR",
@@ -2648,7 +2653,7 @@
       },
       {
         "id": "SHATTER",
-        "description": "Ti concentri e identifichi un gigantesco specchio senza imperfezioni davant a te.\nCon un rapido calcio lo mandi in [jitter]FRANTUMI[/jitter]!\nNell'istante in cui lo specchio si frantuma, il tuo riflesso si prepara e si trasforma in mille splendidi frammenti scintillanti.\n\nCome può esistere un luogo del genere?"
+        "description": "Ti concentri e identifichi un gigantesco specchio senza imperfezioni davanti a te.\nCon un rapido calcio lo mandi in [jitter]FRANTUMI[/jitter]!\nNell'istante in cui lo specchio si frantuma, il tuo riflesso si trasforma in mille splendidi frammenti scintillanti.\n\nCome può esistere un luogo del genere?"
       },
       {
         "id": "TOUCH_A_MIRROR",
@@ -2661,7 +2666,7 @@
     "name": "Commerciante di reliquie",
     "type": "Shared",
     "act": null,
-    "description": "Svolti l'angolo e all'improvviso ti ritrovi davanti a una figura misteriosa. Dopodiché, si gira verso di te.\n\n\"Ti do il benvenuto! Che ne dici di fare qualche scambio?\"\nChiede la figura mentre apre il mantello per rivelare un mucchio di [sine][purple]merce sospetta[/purple][/sine].",
+    "description": "Svolti l'angolo e all'improvviso ti ritrovi davanti a una figura misteriosa, la quale si gira verso di te.\n\n\"Ti do il benvenuto! Che ne dici di fare qualche scambio?\"\nChiede la figura mentre apre il mantello per rivelare un mucchio di [sine][purple]articoli sospetti[/purple][/sine].",
     "preconditions": [
       "Act 2+",
       "Requires 5+ tradeable relics"
@@ -2669,17 +2674,17 @@
     "options": [
       {
         "id": "TOP",
-        "title": "Prendi quella in alto",
+        "title": "Scegli quello in alto",
         "description": "Scambia [gold]one of your Relics[/gold] con [gold]a random Relic[/gold]."
       },
       {
         "id": "MIDDLE",
-        "title": "Prendi quella al centro",
+        "title": "Scegli quello al centro",
         "description": "Scambia [gold]one of your Relics[/gold] con [gold]a random Relic[/gold]."
       },
       {
         "id": "BOTTOM",
-        "title": "Scegli quella in basso",
+        "title": "Scegli quello in basso",
         "description": "Scambia [gold]one of your Relics[/gold] con [gold]a random Relic[/gold]."
       }
     ],
@@ -2690,21 +2695,21 @@
       },
       {
         "id": "INITIAL",
-        "description": "Svolti l'angolo e all'improvviso ti ritrovi davanti a una figura misteriosa. Dopodiché, si gira verso di te.\n\n\"Ti do il benvenuto! Che ne dici di fare qualche scambio?\"\nChiede la figura mentre apre il mantello per rivelare un mucchio di [sine][purple]merce sospetta[/purple][/sine].",
+        "description": "Svolti l'angolo e all'improvviso ti ritrovi davanti a una figura misteriosa, la quale si gira verso di te.\n\n\"Ti do il benvenuto! Che ne dici di fare qualche scambio?\"\nChiede la figura mentre apre il mantello per rivelare un mucchio di [sine][purple]articoli sospetti[/purple][/sine].",
         "options": [
           {
             "id": "TOP",
-            "title": "Prendi quella in alto",
+            "title": "Scegli quello in alto",
             "description": "Scambia [gold]one of your Relics[/gold] con [gold]a random Relic[/gold]."
           },
           {
             "id": "MIDDLE",
-            "title": "Prendi quella al centro",
+            "title": "Scegli quello al centro",
             "description": "Scambia [gold]one of your Relics[/gold] con [gold]a random Relic[/gold]."
           },
           {
             "id": "BOTTOM",
-            "title": "Scegli quella in basso",
+            "title": "Scegli quello in basso",
             "description": "Scambia [gold]one of your Relics[/gold] con [gold]a random Relic[/gold]."
           }
         ]
@@ -2735,7 +2740,7 @@
     "pages": [
       {
         "id": "GORGE",
-        "description": "Assaggi un piccolo pezzetto di [b]formaggio[/b], ma così ti viene voglia di mangiare ancora più [b]formaggio[/b].\n\n[sine]Il tempo passa...[/sine]\n\nHai mangiato una quantità impressionante di [b]formaggio[/b].\nStanotte, avrai sogni [b]formaggiosi[/b]."
+        "description": "Assaggi un piccolo pezzetto di [b]formaggio[/b], ma così ti viene voglia di mangiare ancora più [b]formaggio[/b].\n\n[sine]Il tempo passa...[/sine]\n\nHai mangiato una quantità impressionante di [b]formaggio[/b].\nStanotte, farai sogni [b]formaggiosi[/b]."
       },
       {
         "id": "INITIAL",
@@ -2755,7 +2760,7 @@
       },
       {
         "id": "SEARCH",
-        "description": "Cerchi per [sine]ore e ore...[/sine]\n\nA causa del forte odore di tutto questo [b]formaggio[/b], la tua mente comincia a fare bizzarri viaggi mentali e sprofondi in uno stato di torpore...\nTi svegli di soprassalto e ti rendi conto di avere qualcosa in mano.\n\nÈ [b]Il Formaggio Prescelto.[/b]"
+        "description": "Cerchi per [sine]ore e ore...[/sine]\n\nA causa del forte odore di tutto questo [b]formaggio[/b], la tua mente comincia a fare bizzarri viaggi mentali e sprofondi in uno stato di torpore...\nTi svegli di soprassalto e ti rendi conto di avere qualcosa in mano.\n\n[b]Il Formaggio Prescelto.[/b]"
       }
     ]
   },
@@ -2764,8 +2769,10 @@
     "name": "Ricevimento del tè della tavola rotonda",
     "type": "Event",
     "act": "Act 3 - Glory",
-    "description": "Trovi un [orange]invito[/orange] diretto a un tale [blue]\"Sir Galalot\"[/blue] per un ricevimento del tè e decidi di presenziare l'evento al suo posto.\n\nDopo aver varcato le porte di un sobrio edificio circolare, ti ritrovi tra [gold]comandanti[/gold], [aqua]generali[/aqua], [red]signori della guerra[/red] e [blue]mercenari[/blue] che bevono... il tè?\nIl gigantesco cavaliere con indosso una [gold]corona d'oro[/gold] prende parola.\n\n[jitter]\"Come osi arrivare in ritardo al ricevimento del [b]tè[/b]?!\"[/jitter]",
-    "preconditions": null,
+    "description": "Trovi un [orange]invito[/orange] diretto a un tale [blue]\"Sir Galalot\"[/blue] per un ricevimento del tè e decidi di presentarti al suo posto.\n\nDopo aver varcato le porte di un sobrio edificio circolare, ti ritrovi tra [gold]comandanti[/gold], [aqua]generali[/aqua], [red]signori della guerra[/red] e [blue]mercenari[/blue] che bevono... il tè?\nIl gigantesco cavaliere con indosso una [gold]corona d'oro[/gold] prende parola.\n\n[jitter]\"Come osi arrivare in ritardo al ricevimento del [b]tè[/b]?!\"[/jitter]",
+    "preconditions": [
+      "Requires 12+ HP"
+    ],
     "options": [
       {
         "id": "ENJOY_TEA",
@@ -2781,7 +2788,7 @@
     "pages": [
       {
         "id": "CONTINUE_FIGHT",
-        "description": "Gli invitati fissano con gli occhi sbarrati il cadavere di uno dei loro clienti abituali... poi fanno... [jitter]un applauso scrosciante!?[/jitter]\n\n\"Ci chiedevamo come sbarazzarci di [red]sir Wygore[/red], ben fatto!\"\n\nRovesciano a terra il tuo [green]tè avvelenato[/green] e discuti di [orange]tattiche[/orange] e [purple]segreti[/purple] insieme a loro per tutta la notte. Che splendido ricevimento del tè!"
+        "description": "Gli invitati fissano con gli occhi sbarrati il cadavere di uno dei loro compagni... poi fanno [jitter]un applauso scrosciante!?[/jitter]\n\n\"Ci chiedevamo come sbarazzarci di [red]sir Wygore[/red], ben fatto!\"\n\nRovesciano a terra il tuo [green]tè avvelenato[/green] e discuti di [orange]tattiche[/orange] e [purple]segreti[/purple] insieme a loro per tutta la notte. Che splendido ricevimento del tè!"
       },
       {
         "id": "ENJOY_TEA",
@@ -2789,7 +2796,7 @@
       },
       {
         "id": "INITIAL",
-        "description": "Trovi un [orange]invito[/orange] diretto a un tale [blue]\"Sir Galalot\"[/blue] per un ricevimento del tè e decidi di presenziare l'evento al suo posto.\n\nDopo aver varcato le porte di un sobrio edificio circolare, ti ritrovi tra [gold]comandanti[/gold], [aqua]generali[/aqua], [red]signori della guerra[/red] e [blue]mercenari[/blue] che bevono... il tè?\nIl gigantesco cavaliere con indosso una [gold]corona d'oro[/gold] prende parola.\n\n[jitter]\"Come osi arrivare in ritardo al ricevimento del [b]tè[/b]?!\"[/jitter]",
+        "description": "Trovi un [orange]invito[/orange] diretto a un tale [blue]\"Sir Galalot\"[/blue] per un ricevimento del tè e decidi di presentarti al suo posto.\n\nDopo aver varcato le porte di un sobrio edificio circolare, ti ritrovi tra [gold]comandanti[/gold], [aqua]generali[/aqua], [red]signori della guerra[/red] e [blue]mercenari[/blue] che bevono... il tè?\nIl gigantesco cavaliere con indosso una [gold]corona d'oro[/gold] prende parola.\n\n[jitter]\"Come osi arrivare in ritardo al ricevimento del [b]tè[/b]?!\"[/jitter]",
         "options": [
           {
             "id": "ENJOY_TEA",
@@ -2809,7 +2816,7 @@
       },
       {
         "id": "PICK_FIGHT",
-        "description": "Salti sul tavolo e dai un [jitter]calcio[/jitter] in faccia al [red]signore della guerra[/red]!\nIl signore della guerra emette un urlo inquietante e crolla a terra.\n\n[jitter][purple]*Tutti i presenti sussultano*[/purple][/jitter]",
+        "description": "Salti sul tavolo e dai un [jitter]calcio[/jitter] in faccia al [red]signore della guerra[/red]!\nIl signore della guerra emette un urlo inquietante e crolla a terra.\n\n[jitter][purple]*tutti i presenti sussultano*[/purple][/jitter]",
         "options": [
           {
             "id": "CONTINUE_FIGHT",
@@ -2822,7 +2829,7 @@
   },
   {
     "id": "SAPPHIRE_SEED",
-    "name": "Seme zaffiro",
+    "name": "Seme di zaffiro",
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "C'è mancato poco che calpestassi un... seme luminoso e affilato? Il suo colore inconfondibile non lascia dubbi: è un [aqua]seme di zaffiro[/aqua]! Ma questi semi incredibili non erano ormai estinti?\n\nLe leggende narrano che mangiarne uno possa [gold]aumentare notevolmente la resistenza[/gold], ma cosa succederebbe se lo piantassi e lo coltivassi?",
@@ -2862,7 +2869,7 @@
       },
       {
         "id": "PLANT",
-        "description": "Perlustri ogni angolo della [green]Proliferazione[/green] e trovi un vaso [blue]ben arieggiato[/blue]. Poi cerchi un punto tranquillo dove [orange]la luce filtra attraverso un muro crepato[/orange]. Con attenzione, rinforzi il vaso con corteccia e viticci per [green]mimetizzarlo[/green], lo riempi di terriccio argilloso ricco di nutrienti e pianti il [aqua]seme[/aqua] appena sotto la superficie.\n\nInfine, raccogli la rugiada dalle piante vicine e la versi sul terreno.\n\n[sine]Cresci e diventa grande, piccolo seme...[/sine]\nInavvertitamente, il [aqua]seme di zaffiro[/aqua] si lega a te spiritualmente.\nÈ grato per il tuo duro lavoro"
+        "description": "Perlustri ogni angolo della [green]Proliferazione[/green] e trovi un vaso [blue]ben arieggiato[/blue]. Poi cerchi un punto tranquillo dove [orange]la luce filtra attraverso un muro crepato[/orange]. Con attenzione, rinforzi il vaso con corteccia e rampicanti per [green]mimetizzarlo[/green], lo riempi di terriccio argilloso ricco di nutrienti e pianti il [aqua]seme[/aqua] appena sotto la superficie.\n\nInfine, raccogli la rugiada dalle piante vicine e la versi sul terreno.\n\n[sine]Cresci e diventa grande, piccolo seme...[/sine]\nInavvertitamente, il [aqua]seme di zaffiro[/aqua] si lega a te spiritualmente.\nÈ grato per il tuo duro lavoro."
       }
     ]
   },
@@ -2881,7 +2888,7 @@
       },
       {
         "id": "READ_THE_BACK_LOCKED",
-        "title": "Bloccato",
+        "title": "Bloccata",
         "description": "Non hai nessuna carta Attacco da [gold]incantare[/gold]."
       },
       {
@@ -2891,7 +2898,7 @@
       },
       {
         "id": "READ_PASSAGE_LOCKED",
-        "title": "Bloccato",
+        "title": "Bloccata",
         "description": "Non hai nessuna carta Abilità da [gold]incantare[/gold]."
       },
       {
@@ -2901,7 +2908,7 @@
       },
       {
         "id": "READ_ENTIRE_BOOK_LOCKED",
-        "title": "Bloccato",
+        "title": "Bloccata",
         "description": "Non hai nessuna carta Potere da [gold]incantare[/gold]."
       },
       {
@@ -2922,7 +2929,7 @@
           },
           {
             "id": "READ_THE_BACK_LOCKED",
-            "title": "Bloccato",
+            "title": "Bloccata",
             "description": "Non hai nessuna carta Attacco da [gold]incantare[/gold]."
           },
           {
@@ -2932,7 +2939,7 @@
           },
           {
             "id": "READ_PASSAGE_LOCKED",
-            "title": "Bloccato",
+            "title": "Bloccata",
             "description": "Non hai nessuna carta Abilità da [gold]incantare[/gold]."
           },
           {
@@ -2942,7 +2949,7 @@
           },
           {
             "id": "READ_ENTIRE_BOOK_LOCKED",
-            "title": "Bloccato",
+            "title": "Bloccata",
             "description": "Non hai nessuna carta Potere da [gold]incantare[/gold]."
           },
           {
@@ -2958,15 +2965,15 @@
       },
       {
         "id": "READ_ENTIRE_BOOK",
-        "description": "Che lettura avvincente! Alcune frasi ti rimangono impresse nella mente:\n\"Evita i mostri più grandi.\"\n\"Prendi tutte le carte.\"\n\"Fare il pieno di blocco è da codardi.\"\n\nHai le mani ricoperte di [red]sangue[/red]."
+        "description": "Che lettura avvincente! Alcune frasi ti rimangono impresse nella mente:\n\"Evita i mostri più grandi.\"\n\"Prendi tutte le carte.\"\n\"Bloccare è da codardi.\"\n\nHai le mani ricoperte di [red]sangue[/red]."
       },
       {
         "id": "READ_PASSAGE",
-        "description": "Giri pagine in modo casuale:\n\"Principi della difesa: non farti colpire!\"\n\nLeggi il resto della pagina e la trovi sorprendentemente illuminante. Integri queste idee nelle tue tattiche di battaglia."
+        "description": "Giri le pagine in modo casuale:\n\"Principi della difesa: non farti colpire!\"\n\nLeggi il resto della pagina e la trovi sorprendentemente illuminante. Integri queste idee nelle tue tattiche di battaglia."
       },
       {
         "id": "READ_THE_BACK",
-        "description": "Giri il libro e leggi il riassunto:\n[blue]\"Critici e Accoliti concordano sul fatto che le armi affilate e appuntite siano il modo migliore per infliggere danni!\"[/blue]\n\nSul retro del libro c'è un'etichetta con il prezzo; è stata barrato e sostituito da uno notevolmente scontato."
+        "description": "Giri il libro e leggi il riassunto:\n[blue]\"Critici e Accoliti concordano sul fatto che le armi affilate e appuntite siano il modo migliore per infliggere danno!\"[/blue]\n\nSul retro del libro c'è un'etichetta con il prezzo; è stato barrato e sostituito da uno notevolmente scontato."
       }
     ]
   },
@@ -2984,7 +2991,7 @@
       {
         "id": "OVERCOME",
         "title": "Oltrepassa",
-        "description": "La seguente carta viene rimossa dal tuo [gold]mazzo[/gold]: [red]a random Card[/red]."
+        "description": "La carta [red]a random Card[/red] viene rimossa dal tuo [gold]mazzo[/gold]."
       },
       {
         "id": "HOLD_ON_0",
@@ -3006,7 +3013,7 @@
       },
       {
         "id": "HOLD_ON_1",
-        "description": "Stai... ancora... [jitter]resistendooo!!![/jitter]",
+        "description": "Stai... ancora... [jitter]resistenDOOO!!![/jitter]",
         "options": [
           {
             "id": "HOLD_ON_2",
@@ -3061,7 +3068,7 @@
       },
       {
         "id": "HOLD_ON_6",
-        "description": "[red][b][jitter][b]!!!... !!!\n\n!!![/b][/jitter][/b][/red]",
+        "description": "[red][b][jitter][b]!!!!!!!!!!!!!... !!!\n\n!!!!!!!! !!!!!!!!!!!?? !!!!!!!!![/b][/jitter][/b][/red]",
         "options": [
           {
             "id": "HOLD_ON_LOOP",
@@ -3072,7 +3079,7 @@
       },
       {
         "id": "HOLD_ON_LOOP",
-        "description": "Il team di sviluppo desidera informare che non c'è più testo disponibile per i giocatori che hanno resistito per così tanto tempo. Ci scusiamo per il disagio.",
+        "description": "Il team di sviluppo desidera informare che non c'è più testo disponibile per i giocatori che hanno resistito così a lungo. Ci scusiamo per il disagio.",
         "options": [
           {
             "id": "HOLD_ON_LOOP",
@@ -3088,7 +3095,7 @@
           {
             "id": "OVERCOME",
             "title": "Oltrepassa",
-            "description": "La seguente carta viene rimossa dal tuo [gold]mazzo[/gold]: [red]a random Card[/red]."
+            "description": "La carta [red]a random Card[/red] viene rimossa dal tuo [gold]mazzo[/gold]."
           },
           {
             "id": "HOLD_ON_0",
@@ -3108,13 +3115,13 @@
     "name": "Vortice a spirale",
     "type": "Event",
     "act": "Underdocks",
-    "description": "Ti imbatti in un [aqua][sine]immenso vortice a spirale[/sine][/aqua]. L'acqua turbina con meravigliosa precisione e le pareti circostanti sono decorate con motivi a spirale.\n\n[purple][sine]Gira, gira... gira...\ne gira ancora... Che spettacolo![/sine][/purple]\n\nCosa fai?",
+    "description": "Ti imbatti in un [aqua][sine]immenso vortice a spirale[/sine][/aqua]. L'acqua turbina con meravigliosa precisione e le pareti circostanti sono decorate con motivi a spirale.\n\n[purple][sine]Gira, gira... gira...\n... e gira ancora... Che spettacolo![/sine][/purple]\n\nCosa fai?",
     "preconditions": null,
     "options": [
       {
         "id": "OBSERVE",
         "title": "Osserva",
-        "description": "[gold]Incanti[/gold] una carta [gold]Colpo[/gold] o una carta [gold]Difendi[/gold] con [purple]Spirale[/purple]."
+        "description": "[gold]Incanti[/gold] una carta base [gold]Colpo[/gold] o una carta base [gold]Difendi[/gold] con [purple]Spirale[/purple]."
       },
       {
         "id": "DRINK",
@@ -3129,12 +3136,12 @@
       },
       {
         "id": "INITIAL",
-        "description": "Ti imbatti in un [aqua][sine]immenso vortice a spirale[/sine][/aqua]. L'acqua turbina con meravigliosa precisione e le pareti circostanti sono decorate con motivi a spirale.\n\n[purple][sine]Gira, gira... gira...\ne gira ancora... Che spettacolo![/sine][/purple]\n\nCosa fai?",
+        "description": "Ti imbatti in un [aqua][sine]immenso vortice a spirale[/sine][/aqua]. L'acqua turbina con meravigliosa precisione e le pareti circostanti sono decorate con motivi a spirale.\n\n[purple][sine]Gira, gira... gira...\n... e gira ancora... Che spettacolo![/sine][/purple]\n\nCosa fai?",
         "options": [
           {
             "id": "OBSERVE",
             "title": "Osserva",
-            "description": "[gold]Incanti[/gold] una carta [gold]Colpo[/gold] o una carta [gold]Difendi[/gold] con [purple]Spirale[/purple]."
+            "description": "[gold]Incanti[/gold] una carta base [gold]Colpo[/gold] o una carta base [gold]Difendi[/gold] con [purple]Spirale[/purple]."
           },
           {
             "id": "DRINK",
@@ -3145,7 +3152,7 @@
       },
       {
         "id": "OBSERVE",
-        "description": "[sine][purple]...Ah, che meraviglia...\nNon smette più di girare...\nOh! Ma quello... era un piccolo schizzo...?\nCerto... anche tu meriti di divertirti [/purple] [aqua]sig. Spirale[/aqua][purple]... ahah...\n... ... ...[/purple][/sine]\n\nÈ ora di andare.\nSussurri qualcosa mentre saluti il vortice.\n\n[gold]\"Grazie, Spirale.\"[/gold]"
+        "description": "[sine][purple]... Ah, che meraviglia...\nNon smette più di girare...\nOh! Ma quello... era un piccolo schizzo...?\nCerto... anche tu meriti di divertirti,[/purple] [aqua]sig. Spirale[/aqua][purple]... ahah...\n... ... ...[/purple][/sine]\n\nÈ ora di andare.\nSussurri qualcosa mentre saluti il vortice.\n\n[gold]\"Grazie, Spirale.\"[/gold]"
       }
     ]
   },
@@ -3154,7 +3161,7 @@
     "name": "Spirito innestatore",
     "type": "Event",
     "act": "Act 2 - Hive",
-    "description": "Sopra la tua testa giace un bozzolo pronto a schiudersi che [jitter]trema e si contorce[/jitter]!\n\nSmette di contorcersi... [orange][sine]Il bozzolo inizia a brillare[/sine][/orange]! [jitter]Cosa sta succedendo?[/jitter]\nDopo un bagliore di [gold]luce[/gold] e [red]fiamme[/red], uno [orange]spirito innestatore[/orange] si avventa su di te, minacciando di fondersi con il tuo corpo per diventare completo.",
+    "description": "Sopra la tua testa c'è un bozzolo pronto a schiudersi, che [jitter]trema e si contorce[/jitter]!\n\nSmette di contorcersi... [orange][sine]Il bozzolo si incendia[/sine][/orange]! [jitter]Cosa sta succedendo?[/jitter]\nDopo un bagliore di [gold]luce[/gold] e [red]fiamme[/red], uno [orange]spirito innestatore[/orange] si avventa su di te, minacciando di fondersi con il tuo corpo per diventare completo.",
     "preconditions": null,
     "options": [
       {
@@ -3164,14 +3171,14 @@
       },
       {
         "id": "REJECTION",
-        "title": "Rifiuta",
-        "description": "Perdi [red]9[/red] PV. Rimuovi una carta dal tuo [gold]mazzo[/gold]."
+        "title": "Opponi resistenza",
+        "description": "Perdi [red]10[/red] PV. [gold]Potenzi[/gold] una carta."
       }
     ],
     "pages": [
       {
         "id": "INITIAL",
-        "description": "Sopra la tua testa giace un bozzolo pronto a schiudersi che [jitter]trema e si contorce[/jitter]!\n\nSmette di contorcersi... [orange][sine]Il bozzolo inizia a brillare[/sine][/orange]! [jitter]Cosa sta succedendo?[/jitter]\nDopo un bagliore di [gold]luce[/gold] e [red]fiamme[/red], uno [orange]spirito innestatore[/orange] si avventa su di te, minacciando di fondersi con il tuo corpo per diventare completo.",
+        "description": "Sopra la tua testa c'è un bozzolo pronto a schiudersi, che [jitter]trema e si contorce[/jitter]!\n\nSmette di contorcersi... [orange][sine]Il bozzolo si incendia[/sine][/orange]! [jitter]Cosa sta succedendo?[/jitter]\nDopo un bagliore di [gold]luce[/gold] e [red]fiamme[/red], uno [orange]spirito innestatore[/orange] si avventa su di te, minacciando di fondersi con il tuo corpo per diventare completo.",
         "options": [
           {
             "id": "LET_IT_IN",
@@ -3180,18 +3187,18 @@
           },
           {
             "id": "REJECTION",
-            "title": "Rifiuta",
-            "description": "Perdi [red]9[/red] PV. Rimuovi una carta dal tuo [gold]mazzo[/gold]."
+            "title": "Opponi resistenza",
+            "description": "Perdi [red]10[/red] PV. [gold]Potenzi[/gold] una carta."
           }
         ]
       },
       {
         "id": "LET_IT_IN",
-        "description": "Lo [orange]spirito innestatore[/orange] si fonde con te. Questo vitale spirito affine ti [green]guarisce[/green] rapidamente.\n\nOgni tua parte del corpo è completamente [blue]rinata[/blue]."
+        "description": "Lo [orange]spirito innestatore[/orange] si fonde con te. Questo spirito affine ti [green]guarisce[/green] rapidamente.\n\n[blue]Rinasci[/blue] completamente."
       },
       {
         "id": "REJECTION",
-        "description": "La tua volontà ferma facilmente lo [orange]spirito innestatore[/orange].\n\nTuttavia, si avventura ripetutamente verso di te, nel disperato tentativo di entrare nel tuo corpo. Le sue forze si esauriscono e si dissolve in un [purple][sine]soffio[/sine][/purple].\n\n[sine]Che spirito fugace.[/sine]"
+        "description": "La tua volontà ferma facilmente lo [orange]spirito innestatore[/orange].\n\nTuttavia, vola ripetutamente verso di te, nel disperato tentativo di entrare nel tuo corpo. Le sue forze si esauriscono e si dissolve con un [purple][sine]puff[/sine][/purple].\n\n[sine]Che spirito fugace.[/sine]"
       }
     ]
   },
@@ -3200,7 +3207,7 @@
     "name": "Roccia onnitemporale",
     "type": "Shared",
     "act": null,
-    "description": "Un'enorme roccia giace al centro di un cortile abbandonato.\n\nTrovi una placca con la seguente iscrizione:\n[gold][b]roccia onnitemporale[/b][/gold].\n\nLa sua presenza, la sua forma e le sue decorazioni indicano che questo cortile è stato costruito intorno a questa [blue]roccia[/blue] e che non si è mai mossa da questa posizione.",
+    "description": "Un'enorme roccia giace al centro di un cortile abbandonato.\n\nTrovi una placca con la seguente iscrizione:\n[gold][b]Roccia onnitemporale[/b][/gold].\n\nLa sua presenza, la sua forma e le sue decorazioni indicano che questo cortile è stato costruito intorno a questa [blue]roccia[/blue] e che non si è mai mossa da questa posizione.",
     "preconditions": [
       "Act 2 only",
       "Requires at least one potion"
@@ -3209,16 +3216,16 @@
       {
         "id": "LIFT",
         "title": "Bevi e solleva",
-        "description": "Perdi [red]a random Potion[/red]. Ottieni i seguenti PV massimi: [blue]10[/blue]."
+        "description": "Perdi [red]a random Potion[/red]. I PV massimi aumentano di [blue]10[/blue]."
       },
       {
         "id": "LIFT_LOCKED",
-        "title": "Bloccato",
+        "title": "Bloccata",
         "description": "Richiede una pozione."
       },
       {
         "id": "PUSH_LOCKED",
-        "title": "Bloccato",
+        "title": "Bloccata",
         "description": "Richiede una carta Attacco."
       },
       {
@@ -3230,21 +3237,21 @@
     "pages": [
       {
         "id": "INITIAL",
-        "description": "Un'enorme roccia giace al centro di un cortile abbandonato.\n\nTrovi una placca con la seguente iscrizione:\n[gold][b]roccia onnitemporale[/b][/gold].\n\nLa sua presenza, la sua forma e le sue decorazioni indicano che questo cortile è stato costruito intorno a questa [blue]roccia[/blue] e che non si è mai mossa da questa posizione.",
+        "description": "Un'enorme roccia giace al centro di un cortile abbandonato.\n\nTrovi una placca con la seguente iscrizione:\n[gold][b]Roccia onnitemporale[/b][/gold].\n\nLa sua presenza, la sua forma e le sue decorazioni indicano che questo cortile è stato costruito intorno a questa [blue]roccia[/blue] e che non si è mai mossa da questa posizione.",
         "options": [
           {
             "id": "LIFT",
             "title": "Bevi e solleva",
-            "description": "Perdi [red]a random Potion[/red]. Ottieni i seguenti PV massimi: [blue]10[/blue]."
+            "description": "Perdi [red]a random Potion[/red]. I PV massimi aumentano di [blue]10[/blue]."
           },
           {
             "id": "LIFT_LOCKED",
-            "title": "Bloccato",
+            "title": "Bloccata",
             "description": "Richiede una pozione."
           },
           {
             "id": "PUSH_LOCKED",
-            "title": "Bloccato",
+            "title": "Bloccata",
             "description": "Richiede una carta Attacco."
           },
           {
@@ -3266,16 +3273,16 @@
   },
   {
     "id": "SUNKEN_STATUE",
-    "name": "La statua sommersa",
+    "name": "Statua sommersa",
     "type": "Event",
     "act": "Act 1 - Overgrowth / Underdocks",
-    "description": "Vedi una statua antica semisommersa in uno stagno; le sue mani sono appoggiate delicatamente su una [blue]spada di pietra[/blue].\n\nC'è anche qualcosa che [gold][sine]luccica[/sine][/gold] sul fondo dello stagno.\nSaranno delle offerte votive?\n\nEffettivamente un po' di denaro ti farebbero comodo...",
+    "description": "Vedi una statua antica semisommersa in uno stagno. Le sue mani sono appoggiate delicatamente su una [blue]spada di pietra[/blue].\n\nC'è anche qualcosa che [gold][sine]luccica[/sine][/gold] sul fondo dello stagno.\nSaranno delle offerte votive?\n\nEffettivamente un po' di denaro ti farebbe comodo...",
     "preconditions": null,
     "options": [
       {
         "id": "GRAB_SWORD",
         "title": "Prendi la spada",
-        "description": "Ottieni la seguente reliquia: [gold]Spada di Pietra.[/gold]"
+        "description": "Ottieni la [gold]Spada di Pietra.[/gold]"
       },
       {
         "id": "DIVE_INTO_WATER",
@@ -3286,7 +3293,7 @@
     "pages": [
       {
         "id": "DIVE_INTO_WATER",
-        "description": "Ti immergi in profondità nell'acqua!\n\nMentre raccogli le [gold]offerte[/gold] senti un [sine][blue]suono ovattato[/blue][/sine] e delle pietre ti colpiscono!\n\nUna volta in superficie, noti che la vecchia statua si è sgretolata a causa del tuo trambusto: sia [red]fisico[/red] che [purple]spirituale[/purple]."
+        "description": "Ti immergi in profondità nell'acqua!\n\nMentre raccogli le [gold]offerte[/gold], senti un [sine][blue]suono ovattato[/blue][/sine] e delle pietre ti colpiscono!\n\nUna volta in superficie, noti che la vecchia statua si è sgretolata a causa della tua interferenza, sia [red]fisica[/red] che [purple]spirituale[/purple]."
       },
       {
         "id": "GRAB_SWORD",
@@ -3294,12 +3301,12 @@
       },
       {
         "id": "INITIAL",
-        "description": "Vedi una statua antica semisommersa in uno stagno; le sue mani sono appoggiate delicatamente su una [blue]spada di pietra[/blue].\n\nC'è anche qualcosa che [gold][sine]luccica[/sine][/gold] sul fondo dello stagno.\nSaranno delle offerte votive?\n\nEffettivamente un po' di denaro ti farebbero comodo...",
+        "description": "Vedi una statua antica semisommersa in uno stagno. Le sue mani sono appoggiate delicatamente su una [blue]spada di pietra[/blue].\n\nC'è anche qualcosa che [gold][sine]luccica[/sine][/gold] sul fondo dello stagno.\nSaranno delle offerte votive?\n\nEffettivamente un po' di denaro ti farebbe comodo...",
         "options": [
           {
             "id": "GRAB_SWORD",
             "title": "Prendi la spada",
-            "description": "Ottieni la seguente reliquia: [gold]Spada di Pietra.[/gold]"
+            "description": "Ottieni la [gold]Spada di Pietra.[/gold]"
           },
           {
             "id": "DIVE_INTO_WATER",
@@ -3315,7 +3322,7 @@
     "name": "Tesoro sommerso",
     "type": "Event",
     "act": "Underdocks",
-    "description": "Un sentiero ti conduce in una cripta parzialmente sommersa.\nCi sono [blue]2[/blue] [gold]forzieri[/gold] ma hai solo [blue]1[/blue] [jitter][purple]chiave fragile[/purple][/jitter].\n\n[gold]Primo forziere:[/gold] scuotendolo, senti dei tintinnii. Ci sarà un po' d'oro.\n[gold]Secondo forziere:[/gold] è enorme, decorato e chiaramente [red]maledetto[/red]. Ci sarà oro a palate!",
+    "description": "Un sentiero ti conduce in una cripta parzialmente sommersa.\nCi sono [blue]2[/blue] [gold]forzieri[/gold], ma hai solo [blue]1[/blue] [jitter][purple]chiave fragile[/purple][/jitter].\n\n[gold]Primo forziere:[/gold] scuotendolo, senti dei tintinnii. Ci sarà un po' d'oro.\n[gold]Secondo forziere:[/gold] è enorme, decorato e chiaramente [red]maledetto[/red]. Ci sarà oro a palate!",
     "preconditions": null,
     "options": [
       {
@@ -3336,7 +3343,7 @@
       },
       {
         "id": "INITIAL",
-        "description": "Un sentiero ti conduce in una cripta parzialmente sommersa.\nCi sono [blue]2[/blue] [gold]forzieri[/gold] ma hai solo [blue]1[/blue] [jitter][purple]chiave fragile[/purple][/jitter].\n\n[gold]Primo forziere:[/gold] scuotendolo, senti dei tintinnii. Ci sarà un po' d'oro.\n[gold]Secondo forziere:[/gold] è enorme, decorato e chiaramente [red]maledetto[/red]. Ci sarà oro a palate!",
+        "description": "Un sentiero ti conduce in una cripta parzialmente sommersa.\nCi sono [blue]2[/blue] [gold]forzieri[/gold], ma hai solo [blue]1[/blue] [jitter][purple]chiave fragile[/purple][/jitter].\n\n[gold]Primo forziere:[/gold] scuotendolo, senti dei tintinnii. Ci sarà un po' d'oro.\n[gold]Secondo forziere:[/gold] è enorme, decorato e chiaramente [red]maledetto[/red]. Ci sarà oro a palate!",
         "options": [
           {
             "id": "FIRST_CHEST",
@@ -3358,17 +3365,17 @@
   },
   {
     "id": "SYMBIOTE",
-    "name": "Symbiote",
+    "name": "Simbionte",
     "type": "Shared",
     "act": null,
-    "description": "Nel coso dei tuoi viaggi, ti imbatti in un polipo scuro e amorfo. Intuisci che è molto antico e malvagio.\n\n[sine]Avvicinati...[/sine]",
+    "description": "Nel corso dei tuoi viaggi, ti imbatti in un polipo scuro e amorfo. Intuisci che è molto antico e malvagio.\n\n[sine]Avvicinati...[/sine]",
     "preconditions": [
       "Act 2+"
     ],
     "options": [
       {
         "id": "APPROACH_LOCKED",
-        "title": "Bloccato",
+        "title": "Bloccata",
         "description": "Non hai nessuna carta Attacco da incantare."
       },
       {
@@ -3378,7 +3385,7 @@
       },
       {
         "id": "KILL_WITH_FIRE",
-        "title": "Uccidi con il fuoco",
+        "title": "Uccidilo con il fuoco",
         "description": "Scegli una carta da [gold]trasformare[/gold]."
       }
     ],
@@ -3389,11 +3396,11 @@
       },
       {
         "id": "INITIAL",
-        "description": "Nel coso dei tuoi viaggi, ti imbatti in un polipo scuro e amorfo. Intuisci che è molto antico e malvagio.\n\n[sine]Avvicinati...[/sine]",
+        "description": "Nel corso dei tuoi viaggi, ti imbatti in un polipo scuro e amorfo. Intuisci che è molto antico e malvagio.\n\n[sine]Avvicinati...[/sine]",
         "options": [
           {
             "id": "APPROACH_LOCKED",
-            "title": "Bloccato",
+            "title": "Bloccata",
             "description": "Non hai nessuna carta Attacco da incantare."
           },
           {
@@ -3403,22 +3410,121 @@
           },
           {
             "id": "KILL_WITH_FIRE",
-            "title": "Uccidi con il fuoco",
+            "title": "Uccidilo con il fuoco",
             "description": "Scegli una carta da [gold]trasformare[/gold]."
           }
         ]
+      },
+      {
+        "id": "KILL_WITH_FIRE",
+        "description": "Bruci il polipo scuro. Mentre stride e si riduce in cenere, provi un forte dolore alla testa, ma riesci a non svenire.\nCos'era quella cosa?"
       }
     ]
   },
   {
     "id": "TABLET_OF_TRUTH",
-    "name": "TabletOfTruth",
+    "name": "Tavoletta della verità",
     "type": "Event",
     "act": "Act 1 - Overgrowth",
-    "description": null,
+    "description": "Sconfiggi dei [blue]Guardiani della Tribù[/blue] e raggiungi una cripta protetta.\n\nAll'interno trovi una [purple][sine]tavoletta con iscrizioni familiari[/sine][/purple]. Il tuo intuito ti dice che questa lingua può essere decifrata piuttosto facilmente... Tuttavia, una volta che inizi a decifrarla, ti servirà tutta la tua concentrazione.\n\nLa tavoletta emana un'energia rilassante e puoi distruggerla per riceverne le [green]energie curative[/green].",
     "preconditions": null,
-    "options": null,
-    "pages": null
+    "options": [
+      {
+        "id": "DECIPHER_1",
+        "title": "Decifra",
+        "description": "Perdi [red]3[/red] PV massimi. [gold]Potenzi[/gold] una carta casuale."
+      },
+      {
+        "id": "SMASH",
+        "title": "Rompi la tavoletta",
+        "description": "Recuperi [green]20[/green] PV."
+      }
+    ],
+    "pages": [
+      {
+        "id": "DECIPHER",
+        "description": null,
+        "options": [
+          {
+            "id": "GIVE_UP",
+            "title": "Desisti",
+            "description": "Smetti di leggere il testo e vai via."
+          }
+        ]
+      },
+      {
+        "id": "DECIPHER_1",
+        "description": "Mentre inizi a decifrare la tavoletta, il [blue]mantra della Tribù[/blue] risuona nella tua testa.\n\n\"Non c'è nulla di più importante della [gold]verità[/gold]...\"",
+        "options": [
+          {
+            "id": "DECIPHER",
+            "title": "Continua a decifrare",
+            "description": "Perdi [red]3[/red] PV massimi. [gold]Potenzi[/gold] una carta casuale."
+          }
+        ]
+      },
+      {
+        "id": "DECIPHER_2",
+        "description": "Ti senti debole dopo aver letto così tanto!\n\n[purple][sine]Gli eroi non sono fatti per leggere così a lungo...[/sine][/purple]",
+        "options": [
+          {
+            "id": "DECIPHER",
+            "title": "Continua a decifrare",
+            "description": "Perdi [red]3[/red] PV massimi. [gold]Potenzi[/gold] una carta casuale."
+          }
+        ]
+      },
+      {
+        "id": "DECIPHER_3",
+        "description": "[sine][red]Ti reggi a malapena in piedi...[/red][/sine]\nHai quasi decifrato la tavoletta. Il [blue]mantra[/blue] contiene la verità... \n\n[jitter]LA VERITÀ!!! QUAL È LA VERITÀ?![/jitter]",
+        "options": [
+          {
+            "id": "DECIPHER",
+            "title": "CONTINUA A DECIFRARE",
+            "description": "Perdi [red]3[/red] PV massimi. [gold]Potenzi[/gold] una carta casuale."
+          }
+        ]
+      },
+      {
+        "id": "DECIPHER_4",
+        "description": "In uno stato di trance, decifri il testo rimanente, abbandonando mente e corpo. [purple][sine]La ricerca spirituale della [gold]verità[/gold] è l'unica cosa che conta.[/sine][/purple]\n\nO forse no? Resta un'ultima parola da leggere...\n[jitter]Ma il prezzo da pagare sarà enorme.[/jitter]",
+        "options": [
+          {
+            "id": "DECIPHER",
+            "title": "Perdi tutto",
+            "description": "Set Max HP to [red]1[/red]. [gold]Upgrade ALL[/gold] cards."
+          }
+        ]
+      },
+      {
+        "id": "DECIPHER_5",
+        "description": "[red][jitter]Hai esaurito tutte le energie[/jitter][/red] per decifrare l'[gold]ultima parola[/gold] e perdi i sensi...\nQuando riprendi conoscenza, nota qualcosa di inciso sul pavimento.\n\n[b]\"Aria\"[/b]"
+      },
+      {
+        "id": "GIVE_UP",
+        "description": "Smetti di leggere e decifrare la tavoletta. Il tuo corpo torna alla normalità, anche se non puoi fare a meno di chiederti quale fosse la [gold]verità[/gold]."
+      },
+      {
+        "id": "INITIAL",
+        "description": "Sconfiggi dei [blue]Guardiani della Tribù[/blue] e raggiungi una cripta protetta.\n\nAll'interno trovi una [purple][sine]tavoletta con iscrizioni familiari[/sine][/purple]. Il tuo intuito ti dice che questa lingua può essere decifrata piuttosto facilmente... Tuttavia, una volta che inizi a decifrarla, ti servirà tutta la tua concentrazione.\n\nLa tavoletta emana un'energia rilassante e puoi distruggerla per riceverne le [green]energie curative[/green].",
+        "options": [
+          {
+            "id": "DECIPHER_1",
+            "title": "Decifra",
+            "description": "Perdi [red]3[/red] PV massimi. [gold]Potenzi[/gold] una carta casuale."
+          },
+          {
+            "id": "SMASH",
+            "title": "Rompi la tavoletta",
+            "description": "Recuperi [green]20[/green] PV."
+          }
+        ]
+      },
+      {
+        "id": "SMASH",
+        "description": "La tavoletta si [jitter][red]frantuma in mille pezzi[/red][/jitter], l'energia che esce da essa si diffonde nel tuo corpo.\n\n[green]Hai recuperato le energie![/green]"
+      }
+    ]
   },
   {
     "id": "TANX",
@@ -3622,16 +3728,82 @@
   },
   {
     "id": "TEA_MASTER",
-    "name": "TeaMaster",
+    "name": "Maestro del tè",
     "type": "Shared",
     "act": null,
-    "description": null,
+    "description": "Varcando l'entrata di una capanna scarsamente illuminata, ti ritrovi in uno spazio molto tranquillo che ospita un'enorme varietà di tè.\n\nL'uomo all'interno indica una selezione di [green]tè[/green], ognuno accuratamente etichettato con un [gold]prezzo elevato[/gold].",
     "preconditions": [
       "Requires 150+ gold",
       "Act 1–2 only"
     ],
-    "options": null,
-    "pages": null
+    "options": [
+      {
+        "id": "BONE_TEA",
+        "title": "Tè d'Ossa",
+        "description": "Paghi [red]50[/red] unità d'[gold]oro[/gold]. All'inizio del prossimo combattimento, [gold]potenzi[/gold] la tua mano iniziale."
+      },
+      {
+        "id": "BONE_TEA_LOCKED",
+        "title": "Bloccata",
+        "description": "Richiede [blue]50[/blue] unità d'[gold]oro[/gold]."
+      },
+      {
+        "id": "EMBER_TEA",
+        "title": "Tè delle Braci",
+        "description": "Paghi [red]150[/red] unità d'[gold]oro[/gold]. All'inizio dei successivi [blue]5[/blue] combattimenti, ottieni [blue]2[/blue] di [gold]Forza[/gold]."
+      },
+      {
+        "id": "EMBER_TEA_LOCKED",
+        "title": "Bloccata",
+        "description": "Richiede [blue]150[/blue] unità d'[gold]oro[/gold]."
+      },
+      {
+        "id": "TEA_OF_DISCOURTESY",
+        "title": "Tè della Scortesia",
+        "description": "All'inizio del combattimento successivo, mischi [blue]2[/blue] [gold]Disorientato[/gold] nel tuo [gold]mazzo di pesca[/gold]."
+      }
+    ],
+    "pages": [
+      {
+        "id": "DONE",
+        "description": "Il [blue]maestro del tè[/blue] accetta il tuo ordine e inizia a preparare il tè.\n\n[gold]1.[/gold] Versa l'acqua da una caraffa piena di carbone in una teiera.\n[gold]2.[/gold] Riscalda la teiera con una delicata [purple]fiamma viola[/purple].\n[gold]3.[/gold] Mette un cucchiaino di tè nella teiera prima che bolla.\n[gold]4.[/gold] Toglie la teiera dal fuoco e scandisce il ritmo battendo le mani.\n[gold]5.[/gold] Solleva la teiera e versa il contenuto con precisione in una tazzina.\n\n[green][sine]\"Il tè è servito.\"[/sine][/green]"
+      },
+      {
+        "id": "INITIAL",
+        "description": "Varcando l'entrata di una capanna scarsamente illuminata, ti ritrovi in uno spazio molto tranquillo che ospita un'enorme varietà di tè.\n\nL'uomo all'interno indica una selezione di [green]tè[/green], ognuno accuratamente etichettato con un [gold]prezzo elevato[/gold].",
+        "options": [
+          {
+            "id": "BONE_TEA",
+            "title": "Tè d'Ossa",
+            "description": "Paghi [red]50[/red] unità d'[gold]oro[/gold]. All'inizio del prossimo combattimento, [gold]potenzi[/gold] la tua mano iniziale."
+          },
+          {
+            "id": "BONE_TEA_LOCKED",
+            "title": "Bloccata",
+            "description": "Richiede [blue]50[/blue] unità d'[gold]oro[/gold]."
+          },
+          {
+            "id": "EMBER_TEA",
+            "title": "Tè delle Braci",
+            "description": "Paghi [red]150[/red] unità d'[gold]oro[/gold]. All'inizio dei successivi [blue]5[/blue] combattimenti, ottieni [blue]2[/blue] di [gold]Forza[/gold]."
+          },
+          {
+            "id": "EMBER_TEA_LOCKED",
+            "title": "Bloccata",
+            "description": "Richiede [blue]150[/blue] unità d'[gold]oro[/gold]."
+          },
+          {
+            "id": "TEA_OF_DISCOURTESY",
+            "title": "Tè della Scortesia",
+            "description": "All'inizio del combattimento successivo, mischi [blue]2[/blue] [gold]Disorientato[/gold] nel tuo [gold]mazzo di pesca[/gold]."
+          }
+        ]
+      },
+      {
+        "id": "TEA_OF_DISCOURTESY",
+        "description": "Rifiuti cortesemente il tè e...\n\n[jitter][red]*SBAM*[/red][/jitter]\n\nLa porta dietro di te si chiude di colpo. Il [blue]maestro del tè[/blue] ti fissa per un istante, poi ti porge una tazza dall'aspetto orribile.\nOh, questo tè è per chi non conosce le buone maniere..."
+      }
+    ]
   },
   {
     "id": "TEZCATARA",
@@ -4058,88 +4230,514 @@
   },
   {
     "id": "THE_FUTURE_OF_POTIONS",
-    "name": "TheFutureOfPotions",
+    "name": "Il futuro delle pozioni?",
     "type": "Shared",
     "act": null,
-    "description": null,
+    "description": "Svoltando l'angolo, avverti un leggero rumore e scopri un gigantesco apparecchio rotante!\nPresenta diverse fessure che sembrano trasformare i liquidi in pillole digeribili altamente compresse.\n\nL'idea di trasformare questi tonici per la salute in un bocconi minuscoli è alquanto inquietante, però forse a volte bisogna sperimentare...",
     "preconditions": null,
-    "options": null,
-    "pages": null
+    "options": [
+      {
+        "id": "POTION",
+        "title": "Inserisci pozione Common",
+        "description": "Perdi [gold]a Potion[/gold]. Ottieni una carta [gold]Skill Common[/gold] [gold]potenziata[/gold]."
+      }
+    ],
+    "pages": [
+      {
+        "id": "DONE",
+        "description": "La pillola era disgustosa. Non c'è speranza per il futuro."
+      },
+      {
+        "id": "INITIAL",
+        "description": "Svoltando l'angolo, avverti un leggero rumore e scopri un gigantesco apparecchio rotante!\nPresenta diverse fessure che sembrano trasformare i liquidi in pillole digeribili altamente compresse.\n\nL'idea di trasformare questi tonici per la salute in un bocconi minuscoli è alquanto inquietante, però forse a volte bisogna sperimentare...",
+        "options": [
+          {
+            "id": "POTION",
+            "title": "Inserisci pozione Common",
+            "description": "Perdi [gold]a Potion[/gold]. Ottieni una carta [gold]Skill Common[/gold] [gold]potenziata[/gold]."
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "THE_LANTERN_KEY",
-    "name": "TheLanternKey",
+    "name": "La Chiave Ardente",
     "type": "Event",
     "act": "Act 2 - Hive",
-    "description": null,
+    "description": "Trovi e raccogli una chiave che emana una debole luce.\n\n\"L'ho cercata dappertutto! Se non ti dispiace...\"\n\nQuesta persona sembra malintenzionata, ma come si suol dire, \"Mai giudicare un libro dalla copertina\", o forse no?",
     "preconditions": null,
-    "options": null,
-    "pages": null
+    "options": [
+      {
+        "id": "RETURN_THE_KEY",
+        "title": "Restituisci la chiave",
+        "description": "Ottieni [blue]100[/blue] unità d'[gold]oro[/gold]."
+      },
+      {
+        "id": "KEEP_THE_KEY",
+        "title": "Tieni la chiave",
+        "description": "Combatti per ottenere la chiave."
+      }
+    ],
+    "pages": [
+      {
+        "id": "DONE",
+        "description": null,
+        "options": [
+          {
+            "id": "RETURN_THE_KEY",
+            "title": "RETURN_THE_KEY",
+            "description": "Lo sconosciuto ti ringrazia per l'aiuto e ti ricompensa generosamente."
+          }
+        ]
+      },
+      {
+        "id": "INITIAL",
+        "description": "Trovi e raccogli una chiave che emana una debole luce.\n\n\"L'ho cercata dappertutto! Se non ti dispiace...\"\n\nQuesta persona sembra malintenzionata, ma come si suol dire, \"Mai giudicare un libro dalla copertina\", o forse no?",
+        "options": [
+          {
+            "id": "RETURN_THE_KEY",
+            "title": "Restituisci la chiave",
+            "description": "Ottieni [blue]100[/blue] unità d'[gold]oro[/gold]."
+          },
+          {
+            "id": "KEEP_THE_KEY",
+            "title": "Tieni la chiave",
+            "description": "Combatti per ottenere la chiave."
+          }
+        ]
+      },
+      {
+        "id": "KEEP_THE_KEY",
+        "description": "Lo sconosciuto ti fissa con uno sguardo minaccioso. Sembra che solo una persona riuscirà a uscire da qui con la chiave.",
+        "options": [
+          {
+            "id": "FIGHT",
+            "title": "Combatti",
+            "description": ""
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "THE_LEGENDS_WERE_TRUE",
-    "name": "TheLegendsWereTrue",
+    "name": "Le leggende erano vere",
     "type": "Shared",
     "act": null,
-    "description": null,
+    "description": "Varchi l'ingresso di una stanza completamente buia e una luce improvvisa squarcia l'oscurità dall'alto... Nello stesso momento la porta si chiude di colpo alle tue spalle.\n\nDavanti a te, la luce illumina quello che sembra essere una pedana con una mappa. Senti l'impulso di prenderla.\n\nSembra tutto alquanto sospetto...",
     "preconditions": [
       "Requires 10+ HP",
       "Act 1 only"
     ],
-    "options": null,
-    "pages": null
+    "options": [
+      {
+        "id": "NAB_THE_MAP",
+        "title": "Prendi la mappa",
+        "description": "Ottieni la carta [gold]Mappa del Tesoro[/gold]."
+      },
+      {
+        "id": "SLOWLY_FIND_AN_EXIT",
+        "title": "Cerca un'uscita con calma",
+        "description": "Perdi [red]8[/red] PV. Ricevi [blue]1[/blue] [gold]pozione[/gold] casuale."
+      }
+    ],
+    "pages": [
+      {
+        "id": "INITIAL",
+        "description": "Varchi l'ingresso di una stanza completamente buia e una luce improvvisa squarcia l'oscurità dall'alto... Nello stesso momento la porta si chiude di colpo alle tue spalle.\n\nDavanti a te, la luce illumina quello che sembra essere una pedana con una mappa. Senti l'impulso di prenderla.\n\nSembra tutto alquanto sospetto...",
+        "options": [
+          {
+            "id": "NAB_THE_MAP",
+            "title": "Prendi la mappa",
+            "description": "Ottieni la carta [gold]Mappa del Tesoro[/gold]."
+          },
+          {
+            "id": "SLOWLY_FIND_AN_EXIT",
+            "title": "Cerca un'uscita con calma",
+            "description": "Perdi [red]8[/red] PV. Ricevi [blue]1[/blue] [gold]pozione[/gold] casuale."
+          }
+        ]
+      },
+      {
+        "id": "NAB_THE_MAP",
+        "description": "Cosa potrebbe mai succedere? Non appena prendi la mappa, si apre un varco dall'altra parte della stanza."
+      },
+      {
+        "id": "SLOWLY_FIND_AN_EXIT",
+        "description": "Mentre ti muovi con discrezione nell'oscurità alla ricerca di un'uscita, la stanza inizia a tremare violentemente. Senti un boato improvviso e l'intera stanza inizia a crollare.\n\nRiesci per un soffio a uscire dalle macerie e trovi una fiala contenente qualcosa di utile che era nascosta da qualche parte nella stanza."
+      }
+    ]
   },
   {
     "id": "THIS_OR_THAT",
-    "name": "ThisOrThat",
+    "name": "Sinistra o destra",
     "type": "Shared",
     "act": null,
-    "description": null,
+    "description": "Delle braccia spuntano all'improvviso da un buco lì vicino: il braccio sinistro ha una [gold]borsa sospetta piena di tesori[/gold] e quello destro ha una [purple]reliquia chiaramente maledetta[/purple].\n\n[jitter][blue]\"Sinistra... o destra?\"[/blue][/jitter]\nSussurra una voce roca dal basso.",
     "preconditions": null,
-    "options": null,
-    "pages": null
+    "options": [
+      {
+        "id": "PLAIN",
+        "title": "Sinistra",
+        "description": "Perdi [red]6[/red] PV. Ottieni [blue]41-68[/blue] unità d'[gold]oro[/gold]."
+      },
+      {
+        "id": "ORNATE",
+        "title": "Destra",
+        "description": "Aggiungi [red]Impacciato[/red] al tuo [gold]mazzo[/gold]. Ottieni una [gold]reliquia[/gold]."
+      }
+    ],
+    "pages": [
+      {
+        "id": "INITIAL",
+        "description": "Delle braccia spuntano all'improvviso da un buco lì vicino: il braccio sinistro ha una [gold]borsa sospetta piena di tesori[/gold] e quello destro ha una [purple]reliquia chiaramente maledetta[/purple].\n\n[jitter][blue]\"Sinistra... o destra?\"[/blue][/jitter]\nSussurra una voce roca dal basso.",
+        "options": [
+          {
+            "id": "PLAIN",
+            "title": "Sinistra",
+            "description": "Perdi [red]6[/red] PV. Ottieni [blue]41-68[/blue] unità d'[gold]oro[/gold]."
+          },
+          {
+            "id": "ORNATE",
+            "title": "Destra",
+            "description": "Aggiungi [red]Impacciato[/red] al tuo [gold]mazzo[/gold]. Ottieni una [gold]reliquia[/gold]."
+          }
+        ]
+      },
+      {
+        "id": "ORNATE",
+        "description": "Prendi la [purple]reliquia maledetta[/purple]. Non appena la stringi, delle catene si materializzano ai tuoi polsi.\n\nSenti una [blue][sine]risata spettrale[/sine][/blue] e una luminosa [orange]colonna di fuoco[/orange] ti compare davanti agli occhi!\n\nIl buco e le braccia sono spariti."
+      },
+      {
+        "id": "PLAIN",
+        "description": "Prendi la borsa e, in quello stesso momento, una [blue][jitter]TERZA mano[/jitter][/blue] appare e ti afferra!\n\nDopo una [red][jitter]lotta frenetica[/jitter][/red] ti lascia andare: le braccia e il buco sono spariti."
+      }
+    ]
   },
   {
     "id": "TINKER_TIME",
-    "name": "TinkerTime",
+    "name": "Invenzioni a volontà",
     "type": "Event",
     "act": "Act 3 - Glory",
-    "description": null,
+    "description": "Navigando in un [red][sine]mare infinito di cadaveri[/sine][/red], trovi una [orange]scienziata pazza[/orange] che rovista tra i resti.\n\n\"Sì. Ciao, salve! Sembra che tu sia abile in combattimento... Ho bisogno di una persona che possa collaudare il mio nuovo [green]apparecchio diabolico[/green]! Mi daresti una mano?\"",
     "preconditions": null,
-    "options": null,
-    "pages": null
+    "options": [
+      {
+        "id": "CHOOSE_CARD_TYPE",
+        "title": "Accetta",
+        "description": "Crei una carta personalizzata da aggiungere al tuo [gold]mazzo[/gold]."
+      }
+    ],
+    "pages": [
+      {
+        "id": "CHOOSE_CARD_TYPE",
+        "description": "\"Che tipo di strumento ti aiuterà a [red][jitter]uccidere tutti[/jitter][/red]?\"",
+        "options": [
+          {
+            "id": "ATTACK",
+            "title": "Un'arma",
+            "description": "Crei una carta Attacco."
+          },
+          {
+            "id": "SKILL",
+            "title": "Una protezione",
+            "description": "Crei una carta Abilità."
+          },
+          {
+            "id": "POWER",
+            "title": "Un congegno",
+            "description": "Crei una carta Potere."
+          }
+        ]
+      },
+      {
+        "id": "CHOOSE_RIDER",
+        "description": "\"Ottima scelta! E ora cosa [sine]FACCIAMO[/sine]?\"\nLa [orange]scienziata[/orange] si sfrega le mani con gioia.",
+        "options": [
+          {
+            "id": "SAPPING",
+            "title": "Svigorimento",
+            "description": "Applichi [blue]2[/blue] di [gold]Debolezza[/gold]. Applichi [blue]2[/blue] di [gold]Vulnerabilità[/gold]."
+          },
+          {
+            "id": "VIOLENCE",
+            "title": "Veemenza",
+            "description": "Colpisce [blue]2[/blue] volte extra."
+          },
+          {
+            "id": "CHOKING",
+            "title": "Asfissia",
+            "description": "Ogni volta che giochi una carta in questo turno, il nemico perde [blue]6[/blue] PV."
+          },
+          {
+            "id": "ENERGIZED",
+            "title": "Rivitalizzazione",
+            "description": "Ottieni [energy:2]."
+          },
+          {
+            "id": "WISDOM",
+            "title": "Saggezza",
+            "description": "Peschi [blue]3[/blue] carte."
+          },
+          {
+            "id": "CHAOS",
+            "title": "Caos",
+            "description": "Aggiungi una carta casuale alla tua [gold]mano[/gold]. Questo turno puoi giocarla senza nessun costo."
+          },
+          {
+            "id": "EXPERTISE",
+            "title": "Competenza",
+            "description": "Ottieni [blue]2[/blue] di [gold]Forza[/gold]. Ottieni [blue]2[/blue] di [gold]Destrezza[/gold]."
+          },
+          {
+            "id": "CURIOUS",
+            "title": "Curiosità",
+            "description": "Le carte Potere costano [blue]1[/blue] [energy:1] in meno."
+          },
+          {
+            "id": "IMPROVEMENT",
+            "title": "Miglioramento",
+            "description": "Al termine del combattimento, [gold]potenzi[/gold] una carta casuale."
+          }
+        ]
+      },
+      {
+        "id": "DONE",
+        "description": "\"Che faticaccia! Fatto. Tieni! Ora vai e [red][jitter]massacra[/jitter][/red] tutti quelli che incontri!\"\n\nNon sapevi però che quella [orange]scienziata[/orange] avrebbe poi creato centinaia di armi, provocando diverse migliaia di morti all'interno della Guglia."
+      },
+      {
+        "id": "INITIAL",
+        "description": "Navigando in un [red][sine]mare infinito di cadaveri[/sine][/red], trovi una [orange]scienziata pazza[/orange] che rovista tra i resti.\n\n\"Sì. Ciao, salve! Sembra che tu sia abile in combattimento... Ho bisogno di una persona che possa collaudare il mio nuovo [green]apparecchio diabolico[/green]! Mi daresti una mano?\"",
+        "options": [
+          {
+            "id": "CHOOSE_CARD_TYPE",
+            "title": "Accetta",
+            "description": "Crei una carta personalizzata da aggiungere al tuo [gold]mazzo[/gold]."
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "TRASH_HEAP",
-    "name": "TrashHeap",
+    "name": "Discarica",
     "type": "Event",
     "act": "Underdocks",
-    "description": null,
+    "description": "Scopri un'enorme cumulo di [red][jitter]armi[/jitter][/red], [orange]cianfrusaglie[/orange] e [purple][sine]altre stranezze[/sine][/purple] abbandonate. L'enorme cumulo si muove e rumoreggia, come se crescesse dall'interno...\n\nSe ti limiti a frugare in superficie, potresti trovare qualcosa di interessante. Ma se ti addentri nel cumulo, potresti trovare dei [gold]tesori particolari[/gold].",
     "preconditions": null,
-    "options": null,
-    "pages": null
+    "options": [
+      {
+        "id": "DIVE_IN",
+        "title": "Addentrati nel cumulo",
+        "description": "Perdi [red]8[/red] PV. Ottieni una [gold]reliquia[/gold] dimenticata del passato casuale."
+      },
+      {
+        "id": "GRAB",
+        "title": "Rovista in superficie",
+        "description": "Ottieni [blue]100[/blue] unità d'[gold]oro[/gold]. Ottieni una carta dimenticata del passato casuale."
+      }
+    ],
+    "pages": [
+      {
+        "id": "DIVE_IN",
+        "description": "Passi molto tempo a rovistare tra i [red][sine]rifiuti pericolosi[/sine][/red] e trovi una [gold]reliquia del passato[/gold]!\n\nPerché è stata buttata via?"
+      },
+      {
+        "id": "GRAB",
+        "description": "Cammini nei pressi del cumulo a distanza di sicurezza, raccogliendo [gold]oggetti di valore dimenticati[/gold] e [purple][sine]stranezze[/sine][/purple] sparsi qua e là.\n\nMa la vera domanda è una sola: perché questi oggetti sono stati creati?"
+      },
+      {
+        "id": "INITIAL",
+        "description": "Scopri un'enorme cumulo di [red][jitter]armi[/jitter][/red], [orange]cianfrusaglie[/orange] e [purple][sine]altre stranezze[/sine][/purple] abbandonate. L'enorme cumulo si muove e rumoreggia, come se crescesse dall'interno...\n\nSe ti limiti a frugare in superficie, potresti trovare qualcosa di interessante. Ma se ti addentri nel cumulo, potresti trovare dei [gold]tesori particolari[/gold].",
+        "options": [
+          {
+            "id": "DIVE_IN",
+            "title": "Addentrati nel cumulo",
+            "description": "Perdi [red]8[/red] PV. Ottieni una [gold]reliquia[/gold] dimenticata del passato casuale."
+          },
+          {
+            "id": "GRAB",
+            "title": "Rovista in superficie",
+            "description": "Ottieni [blue]100[/blue] unità d'[gold]oro[/gold]. Ottieni una carta dimenticata del passato casuale."
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "TRIAL",
-    "name": "Trial",
+    "name": "Il processo",
     "type": "Event",
     "act": "Act 3 - Glory",
-    "description": null,
+    "description": "Ti unisci a una fila di persone che entrano in un enorme edificio.\n\nMentre passi sotto un [gold]arco dorato[/gold], suonano le trombe, [jitter]vengono lanciati dei coriandoli[/jitter] e delle [sine]stelle filanti[/sine] scendono dal soffitto!\n\n\"Partecipante [blue][EntrantNumber][/blue], svolgerai tu il ruolo di [green]GIUDICE[/green] per il [gold]processo[/gold] della data odierna.\"",
     "preconditions": null,
-    "options": null,
-    "pages": null
+    "options": [
+      {
+        "id": "ACCEPT",
+        "title": "Accetta",
+        "description": "Assumi il ruolo di giudice."
+      },
+      {
+        "id": "REJECT",
+        "title": "Rifiuta",
+        "description": "[red]Non puoi rifiutare.[/red]"
+      }
+    ],
+    "pages": [
+      {
+        "id": "INITIAL",
+        "description": "Ti unisci a una fila di persone che entrano in un enorme edificio.\n\nMentre passi sotto un [gold]arco dorato[/gold], suonano le trombe, [jitter]vengono lanciati dei coriandoli[/jitter] e delle [sine]stelle filanti[/sine] scendono dal soffitto!\n\n\"Partecipante [blue][EntrantNumber][/blue], svolgerai tu il ruolo di [green]GIUDICE[/green] per il [gold]processo[/gold] della data odierna.\"",
+        "options": [
+          {
+            "id": "ACCEPT",
+            "title": "Accetta",
+            "description": "Assumi il ruolo di giudice."
+          },
+          {
+            "id": "REJECT",
+            "title": "Rifiuta",
+            "description": "[red]Non puoi rifiutare.[/red]"
+          }
+        ]
+      },
+      {
+        "id": "MERCHANT",
+        "description": "Un [green]commerciante dall'aspetto benestante[/green] espone il suo caso. Uno dei suoi rivali lo accusa di [red]omicidio[/red]. Le prove sono scarse e sembra evidente che l'uomo sia innocente. Tuttavia, il pubblico sembra assetato di sangue.",
+        "options": [
+          {
+            "id": "GUILTY",
+            "title": "VERDETTO: colpevole",
+            "description": "Aggiungi la carta [red]Rimorso[/red] al tuo [gold]mazzo[/gold]. Ottieni [blue]2[/blue] [gold]reliquie[/gold] casuali."
+          },
+          {
+            "id": "INNOCENT",
+            "title": "VERDETTO: innocente",
+            "description": "Aggiungi la carta [red]Vergogna[/red] al tuo [gold]mazzo[/gold]. [gold]Potenzi[/gold] [blue]2[/blue] carte."
+          }
+        ]
+      },
+      {
+        "id": "MERCHANT_GUILTY",
+        "description": "Decreti che tutti i beni dell'uomo debbano essere confiscati e consegnati al tribunale a titolo di spese legali.\nIl pubblico esulta di gioia!"
+      },
+      {
+        "id": "MERCHANT_INNOCENT",
+        "description": "Ascolti la tua coscienza e dichiari l'uomo innocente.\nNonostante i fischi e le accuse di aver [sine][purple]intascato una tangente[/purple][/sine], senti di aver preso la scelta giusta."
+      },
+      {
+        "id": "NOBLE",
+        "description": "Un [gold]potente nobile[/gold] si fa avanti. In tasca ti ritrovi un biglietto: se dichiarerai il nobile innocente, riceverai una lauta ricompensa. Il [gold]nobile[/gold] non si impegna più di tanto a respingere le [purple]accuse di corruzione[/purple] e ti rivolge un sorrisetto d'intesa.\nNon puoi fermare la corruzione, ma puoi sicuramente intascare un po' d'[gold]oro...[/gold]",
+        "options": [
+          {
+            "id": "GUILTY",
+            "title": "VERDETTO: colpevole",
+            "description": "Recuperi [green]10[/green] PV."
+          },
+          {
+            "id": "INNOCENT",
+            "title": "VERDETTO: innocente",
+            "description": "Aggiungi la carta [red]Rimorso[/red] al tuo [gold]mazzo[/gold]. Ottieni [blue]300[/blue] unità d'[gold]oro[/gold]."
+          }
+        ]
+      },
+      {
+        "id": "NOBLE_GUILTY",
+        "description": "Il [gold]potente nobile[/gold] è stato [red]decapitato[/red].\nUn [purple]nobile corrotto[/purple] in meno."
+      },
+      {
+        "id": "NOBLE_INNOCENT",
+        "description": "Non hai l'assoluta [sine][purple]certezza[/purple][/sine] che sia colpevole... Esatto, proprio così!\nLa [gold]tangente[/gold] non ha affatto influenzato questo verdetto. Assolutamente no."
+      },
+      {
+        "id": "NONDESCRIPT",
+        "description": "Una [orange]donna dall'aspetto ordinario e dal volto indecifrabile[/orange] si fa avanti. È accusata di [red]furto[/red] e [purple]truffa[/purple]. Quando la donna parla le credi, ma numerosi testimoni confermano le sue malefatte.\nEntrambe le versioni dei fatti sono convincenti!",
+        "options": [
+          {
+            "id": "GUILTY",
+            "title": "VERDETTO: colpevole",
+            "description": "Aggiungi la carta [red]Dubbio[/red] al tuo [gold]mazzo[/gold]. Ottieni [blue]2[/blue] ricompense di carte."
+          },
+          {
+            "id": "INNOCENT",
+            "title": "VERDETTO: innocente",
+            "description": "Aggiungi la carta [red]Dubbio[/red] al tuo [gold]mazzo[/gold]. [gold]Trasformi[/gold] [blue]2[/blue] carte."
+          }
+        ]
+      },
+      {
+        "id": "NONDESCRIPT_GUILTY",
+        "description": "Non ne hai l'assoluta certezza, ma, dovendo prendere una decisione difficile, ritieni che le prove siano sufficienti.\nAvrai davvero preso la decisione giusta?"
+      },
+      {
+        "id": "NONDESCRIPT_INNOCENT",
+        "description": "Non ne hai l'assoluta certezza; infatti un dubbio ti attanaglia.\nNon sai se hai preso la decisione giusta, ma dichiarare l'innocenza di una persona sembra la scelta migliore."
+      },
+      {
+        "id": "REJECT",
+        "description": "[jitter]\"NON PUOI RIFIUTARE!\"[/jitter]\n\nGrida il [gold]supremo giudice della corte[/gold].\n\n[jitter]\"Chi rifiuta questo privilegio subirà la massima pena: la [red]MORTE[/red]. Vuoi ancora rifiutare l'offerta?!\"[/jitter]",
+        "options": [
+          {
+            "id": "ACCEPT",
+            "title": "Accetta",
+            "description": "Non ti opponi: assumi il ruolo di giudice."
+          },
+          {
+            "id": "DOUBLE_DOWN",
+            "title": "Rifiuta nuovamente",
+            "description": "[red]Affronta conseguenze mortali.[/red]"
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "UNREST_SITE",
-    "name": "UnrestSite",
+    "name": "Luogo di non-riposo",
     "type": "Event",
     "act": "Act 1 - Overgrowth",
-    "description": null,
+    "description": "Trovi un [gold]luogo di riposo[/gold] appartato e accendi un [orange]falò[/orange] per riposarti.\nO almeno così credevi.\n\nUna volta acceso, il fuoco inizia a divampare e a propagarsi non verso l'alto, ma [sine]lateralmente[/sine] verso degli [purple]alberi che trasudano olio[/purple].\n\nVuoi comunque provare a riposare?",
     "preconditions": [
       "Requires ≤70% HP"
     ],
-    "options": null,
-    "pages": null
+    "options": [
+      {
+        "id": "REST",
+        "title": "Riposa comunque",
+        "description": "[green]Recuperi tutti i PV.[/green] Ottieni la carta [red]Mancanza di Sonno[/red]."
+      },
+      {
+        "id": "KILL",
+        "title": "Uccidi gli alberi",
+        "description": "Perdi [red]8[/red] PV massimi. Ottieni una [gold]reliquia[/gold] casuale."
+      }
+    ],
+    "pages": [
+      {
+        "id": "INITIAL",
+        "description": "Trovi un [gold]luogo di riposo[/gold] appartato e accendi un [orange]falò[/orange] per riposarti.\nO almeno così credevi.\n\nUna volta acceso, il fuoco inizia a divampare e a propagarsi non verso l'alto, ma [sine]lateralmente[/sine] verso degli [purple]alberi che trasudano olio[/purple].\n\nVuoi comunque provare a riposare?",
+        "options": [
+          {
+            "id": "REST",
+            "title": "Riposa comunque",
+            "description": "[green]Recuperi tutti i PV.[/green] Ottieni la carta [red]Mancanza di Sonno[/red]."
+          },
+          {
+            "id": "KILL",
+            "title": "Uccidi gli alberi",
+            "description": "Perdi [red]8[/red] PV massimi. Ottieni una [gold]reliquia[/gold] casuale."
+          }
+        ]
+      },
+      {
+        "id": "KILL",
+        "description": "Questi alberi sono [purple]chiaramente malvagi[/purple], così decidi di sbarazzartene.\nGiorni dopo, il tuo corpo è ricoperto di [red]cenere[/red] e di una [purple]melma oleosa[/purple].\n\nUn enorme stormo di spiriti di Gryfoncini compare dagli alberi abbattuti e lascia cadere una [gold]piccola cassa[/gold] ai tuoi piedi.\n[green]\"Grazie per averci liberato da quegli alberi... [sine]cip cip[/sine]!\"[/green]\n\nAvresti proprio bisogno di dormire."
+      },
+      {
+        "id": "REST",
+        "description": "Dopo tutte queste avventure non hai più energie e, nonostante le circostanze, decidi comunque di dormire.\n\nTi giri e ti rigiri mentre il [orange]fuoco[/orange] crepita e scoppietta nella notte. Gli [purple]alberi ripugnanti[/purple] emanano un odore terribile dalla loro linfa nera come la pece.\n\nTi svegli e ti senti meglio, ma non completamente nel pieno delle forze."
+      }
+    ]
   },
   {
     "id": "VAKUU",
@@ -4363,83 +4961,475 @@
   },
   {
     "id": "WAR_HISTORIAN_REPY",
-    "name": "WarHistorianRepy",
+    "name": "Repy, lo storico della guerra",
     "type": "Shared",
     "act": null,
-    "description": null,
+    "description": "Uno studioso è intrappolato in una [purple]gabbia sospesa[/purple] accanto a uno [gold]scrigno del tesoro[/gold].\n\nLo studioso borbotta qualcosa a proposito di [sine][orange]\"chiavi monouso\"[/orange][/sine] mentre scrive forsennatamente qualcosa.\n\nSembra che tu possa scegliere se aprire la [purple]gabbia[/purple] o lo [gold]scrigno[/gold].",
     "preconditions": null,
-    "options": null,
-    "pages": null
+    "options": [
+      {
+        "id": "UNLOCK_CAGE",
+        "title": "Apri la gabbia",
+        "description": "Perdi la carta [gold]Chiave Ardente[/gold]. Ottieni la reliquia [gold]Corso di Storia[/gold]."
+      },
+      {
+        "id": "UNLOCK_CHEST",
+        "title": "Apri il forziere",
+        "description": "Perdi la carta [gold]Chiave Ardente[/gold]. Ricevi [blue]2[/blue] [gold]pozioni[/gold] casuali. Ottieni [blue]2[/blue] [gold]reliquie[/gold] casuali."
+      }
+    ],
+    "pages": [
+      {
+        "id": "INITIAL",
+        "description": "Uno studioso è intrappolato in una [purple]gabbia sospesa[/purple] accanto a uno [gold]scrigno del tesoro[/gold].\n\nLo studioso borbotta qualcosa a proposito di [sine][orange]\"chiavi monouso\"[/orange][/sine] mentre scrive forsennatamente qualcosa.\n\nSembra che tu possa scegliere se aprire la [purple]gabbia[/purple] o lo [gold]scrigno[/gold].",
+        "options": [
+          {
+            "id": "UNLOCK_CAGE",
+            "title": "Apri la gabbia",
+            "description": "Perdi la carta [gold]Chiave Ardente[/gold]. Ottieni la reliquia [gold]Corso di Storia[/gold]."
+          },
+          {
+            "id": "UNLOCK_CHEST",
+            "title": "Apri il forziere",
+            "description": "Perdi la carta [gold]Chiave Ardente[/gold]. Ricevi [blue]2[/blue] [gold]pozioni[/gold] casuali. Ottieni [blue]2[/blue] [gold]reliquie[/gold] casuali."
+          }
+        ]
+      },
+      {
+        "id": "UNLOCK_CAGE",
+        "description": "[green]Repy[/green] si inchina per ringraziarti mentre apri la gabbia. Ti porge un [gold]grosso tomo rilegato in pelle[/gold].\n\n\"Chi non conosce la storia, la ripeterà in eterno. Ma a quanto pare sembra che tu abbia esperienza nel ripetere le cose, vero?\""
+      },
+      {
+        "id": "UNLOCK_CHEST",
+        "description": "\"Quindi non libererai [green]Repy[/green] lo studioso? Nella filosofia classica, ti considererebbero un [red]fallimento morale[/red]. Già, magari la prossima volta prova a salvare una [purple][jitter]PERSONA IN CARNE E OSSA[/jitter][/purple] che è rinchiusa in una gabbia! Non c'è mica un importante membro della società in una [purple][jitter]GRAVE SITUAZIONE[/jitter][/purple]! Certo che no!\"\n\n\"Ehi, vedi quanto è piccola questa gabbia?! Ma cosa mi lamento a fare, hai già preso la tua stupida decisione... Oh, cosa c'è lì dentro? Qualche [gold]pozione[/gold] e [gold]reliquia[/gold]? Fantastico, vero? [sine]Sì, fantastico per te...[/sine]\"\n\nGli occhi di [green]Repy[/green] ti seguono con disprezzo mentre ti allontani."
+      }
+    ]
   },
   {
     "id": "WATERLOGGED_SCRIPTORIUM",
-    "name": "WaterloggedScriptorium",
+    "name": "Scriptorium allagato",
     "type": "Event",
     "act": "Underdocks",
-    "description": null,
+    "description": "Mentre percorri corridoi oscuri, ti imbatti in una [aqua]figura avvizzita[/aqua] che lavora in un piccolo negozio. I numerosi scaffali sono [sine]pieni[/sine] di pergamene e papiri umidi.\n\nQuando nota che una persona ha varcato l'ingresso del negozio, lo [aqua]scriba negoziante[/aqua] si mette in posizione e indica alcuni [gold]utensili[/gold] disposti su una scrivania.",
     "preconditions": [
-      "Requires 65+ gold"
+      "Requires 55+ gold"
     ],
-    "options": null,
-    "pages": null
+    "options": [
+      {
+        "id": "BLOODY_INK",
+        "title": "Inchiostro sanguinario",
+        "description": "Ottieni [green]6[/green] PV massimi."
+      },
+      {
+        "id": "TENTACLE_QUILL",
+        "title": "Penna tentacolare",
+        "description": "Paghi [red]55[/red] unità d'[gold]oro[/gold]. [gold]Incanti[/gold] una carta con [purple]Stabilità[/purple]."
+      },
+      {
+        "id": "TENTACLE_QUILL_LOCKED",
+        "title": "Bloccata",
+        "description": "Richiede [blue]55[/blue] unità d'[gold]oro[/gold]."
+      },
+      {
+        "id": "PRICKLY_SPONGE",
+        "title": "Spugna spinosa",
+        "description": "Paghi [red]99[/red] unità d'[gold]oro[/gold]. [gold]Incanti[/gold] [blue]2[/blue] carte con [purple]Stabilità[/purple]."
+      },
+      {
+        "id": "PRICKLY_SPONGE_LOCKED",
+        "title": "Bloccata",
+        "description": "Richiede [blue]99[/blue] unità d'[gold]oro[/gold]."
+      }
+    ],
+    "pages": [
+      {
+        "id": "BLOODY_INK",
+        "description": "Lo [aqua]scriba[/aqua] prende con cura la fiala piena di [red]inchiostro rosso brillante[/red] e la scuote, poi fa il gesto di intingere con la sua mano.\n\nIntingi le dita nell'inchiostro e una [green][jitter]scarica di vitalità[/jitter][/green] ti pervade!\n\nSoddisfatto della tua reazione, lo [aqua]scriba[/aqua] ti fa un cortese inchino e ti saluta."
+      },
+      {
+        "id": "INITIAL",
+        "description": "Mentre percorri corridoi oscuri, ti imbatti in una [aqua]figura avvizzita[/aqua] che lavora in un piccolo negozio. I numerosi scaffali sono [sine]pieni[/sine] di pergamene e papiri umidi.\n\nQuando nota che una persona ha varcato l'ingresso del negozio, lo [aqua]scriba negoziante[/aqua] si mette in posizione e indica alcuni [gold]utensili[/gold] disposti su una scrivania.",
+        "options": [
+          {
+            "id": "BLOODY_INK",
+            "title": "Inchiostro sanguinario",
+            "description": "Ottieni [green]6[/green] PV massimi."
+          },
+          {
+            "id": "TENTACLE_QUILL",
+            "title": "Penna tentacolare",
+            "description": "Paghi [red]55[/red] unità d'[gold]oro[/gold]. [gold]Incanti[/gold] una carta con [purple]Stabilità[/purple]."
+          },
+          {
+            "id": "TENTACLE_QUILL_LOCKED",
+            "title": "Bloccata",
+            "description": "Richiede [blue]55[/blue] unità d'[gold]oro[/gold]."
+          },
+          {
+            "id": "PRICKLY_SPONGE",
+            "title": "Spugna spinosa",
+            "description": "Paghi [red]99[/red] unità d'[gold]oro[/gold]. [gold]Incanti[/gold] [blue]2[/blue] carte con [purple]Stabilità[/purple]."
+          },
+          {
+            "id": "PRICKLY_SPONGE_LOCKED",
+            "title": "Bloccata",
+            "description": "Richiede [blue]99[/blue] unità d'[gold]oro[/gold]."
+          }
+        ]
+      },
+      {
+        "id": "PRICKLY_SPONGE",
+        "description": "Lo [aqua]scriba[/aqua] prende la [gold]spugna spinosa[/gold] (che cigola) e la usa sulle tue pergamene.\n\n[jitter][blue]*squeak squeak squeak*[/blue][/jitter]\n\nLa consistenza spinosa lascia dietro di sé dei [purple][sine]segni lucidi[/sine][/purple] che sembrano stabilizzare l'inchiostro..."
+      },
+      {
+        "id": "TENTACLE_QUILL",
+        "description": "Lo [aqua]scriba[/aqua] solleva la [jitter][gold]penna tentacolare[/gold][/jitter] e, con movimenti rapidi e agili, incide uno strano segno sulla tua testa.\n\nIl segno [purple][sine]brilla intensamente[/sine][/purple], poi svanisce..."
+      }
+    ]
   },
   {
     "id": "WELCOME_TO_WONGOS",
-    "name": "WelcomeToWongos",
+    "name": "Ti diamo il benvenuto da Wongo",
     "type": "Shared",
     "act": null,
-    "description": null,
+    "description": "\"Ti do il benvenuto da Wongo. Abbiamo quello che cerchi a prezzi fantawontastici\", dice il commesso meno entusiasta che tu abbia mai incontrato.\n\n\"Dai un'occhiata ai nostri prodotti e divertiti nel negozio di Wongo\", continua, senza nemmeno alzare lo sguardo.",
     "preconditions": [
       "Requires 100+ gold",
       "Act 2 only"
     ],
-    "options": null,
-    "pages": null
+    "options": [
+      {
+        "id": "BARGAIN_BIN",
+        "title": "Cesto delle offerte di Wongo",
+        "description": "Paghi [red]100[/red] unità d'[gold]oro[/gold]. Ottieni [blue]1[/blue] [gold]reliquia comune[/gold] casuale."
+      },
+      {
+        "id": "BARGAIN_BIN_LOCKED",
+        "title": "Bloccata",
+        "description": "Richiede [blue]100[/blue] unità d'[gold]oro[/gold]."
+      },
+      {
+        "id": "FEATURED_ITEM",
+        "title": "Prodotto del momento di Wongo",
+        "description": "Paghi [red]200[/red] unità d'[gold]oro[/gold]. Ottieni [gold]a random Relic[/gold]."
+      },
+      {
+        "id": "FEATURED_ITEM_LOCKED",
+        "title": "Bloccata",
+        "description": "Richiede [blue]200[/blue] unità d'[gold]oro[/gold]."
+      },
+      {
+        "id": "MYSTERY_BOX",
+        "title": "Pacco misterioso di Wongo",
+        "description": "Paghi [red]300[/red] unità d'[gold]oro[/gold]. Ottieni [blue]3[/blue] [gold]reliquie[/gold] casuali dopo [blue]5[/blue] combattimenti."
+      },
+      {
+        "id": "MYSTERY_BOX_LOCKED",
+        "title": "Bloccata",
+        "description": "Richiede [blue]300[/blue] unità d'[gold]oro[/gold]."
+      },
+      {
+        "id": "LEAVE",
+        "title": "Esci",
+        "description": "[red]Depotenzi[/red] una carta casuale."
+      }
+    ],
+    "pages": [
+      {
+        "id": "AFTER_BUY",
+        "description": "\"Fantawontastico, grazie mille... Hai accumulato [blue]0[/blue] [gold]punti Wongo[/gold]. Con soli altri [blue]0[/blue] punti, riceverai il nostro esclusivo [gold]Distintivo di Wongo[/gold]. Ti auguro una giornata fantawontastica!\"\n\nNon hai la minima idea di cosa stia dicendo e ti riprometti di non mettere mai più piede in un negozio di Wongo."
+      },
+      {
+        "id": "AFTER_BUY_BADGE_COUNTER",
+        "description": "\"Fantawontastico, grazie mille... Hai accumulato [blue]0[/blue] [gold]punti Wongo[/gold]. Con soli altri [blue]0[/blue] punti, riceverai il nostro esclusivo [gold]Distintivo di Wongo[/gold]. Ti auguro una giornata fantawontastica!\"\n\nHai già ricevuto [blue]0[/blue] di questi distintivi inutili. Ti riprometti di non mettere mai più piede in un negozio di Wongo."
+      },
+      {
+        "id": "AFTER_BUY_RECEIVE_BADGE",
+        "description": "\"Fantawontastico, grazie mille... Hai accumulato [blue]0[/blue] [gold]punti Wongo[/gold]. Grazie a questa quantità di punti ricevi un [gold]Distintivo di Wongo[/gold].\" \nIl commesso ti porge un distintivo di pessima fattura. \"Ti auguro una giornata fantawontastica!\"\n\nOra hai ricevuto [blue]0[/blue] distintivi. Ti riprometti di non mettere mai più piede in un negozio di Wongo."
+      },
+      {
+        "id": "INITIAL",
+        "description": "\"Ti do il benvenuto da Wongo. Abbiamo quello che cerchi a prezzi fantawontastici\", dice il commesso meno entusiasta che tu abbia mai incontrato.\n\n\"Dai un'occhiata ai nostri prodotti e divertiti nel negozio di Wongo\", continua, senza nemmeno alzare lo sguardo.",
+        "options": [
+          {
+            "id": "BARGAIN_BIN",
+            "title": "Cesto delle offerte di Wongo",
+            "description": "Paghi [red]100[/red] unità d'[gold]oro[/gold]. Ottieni [blue]1[/blue] [gold]reliquia comune[/gold] casuale."
+          },
+          {
+            "id": "BARGAIN_BIN_LOCKED",
+            "title": "Bloccata",
+            "description": "Richiede [blue]100[/blue] unità d'[gold]oro[/gold]."
+          },
+          {
+            "id": "FEATURED_ITEM",
+            "title": "Prodotto del momento di Wongo",
+            "description": "Paghi [red]200[/red] unità d'[gold]oro[/gold]. Ottieni [gold]a random Relic[/gold]."
+          },
+          {
+            "id": "FEATURED_ITEM_LOCKED",
+            "title": "Bloccata",
+            "description": "Richiede [blue]200[/blue] unità d'[gold]oro[/gold]."
+          },
+          {
+            "id": "MYSTERY_BOX",
+            "title": "Pacco misterioso di Wongo",
+            "description": "Paghi [red]300[/red] unità d'[gold]oro[/gold]. Ottieni [blue]3[/blue] [gold]reliquie[/gold] casuali dopo [blue]5[/blue] combattimenti."
+          },
+          {
+            "id": "MYSTERY_BOX_LOCKED",
+            "title": "Bloccata",
+            "description": "Richiede [blue]300[/blue] unità d'[gold]oro[/gold]."
+          },
+          {
+            "id": "LEAVE",
+            "title": "Esci",
+            "description": "[red]Depotenzi[/red] una carta casuale."
+          }
+        ]
+      },
+      {
+        "id": "LEAVE",
+        "description": "\"Ehm... mi dispiace ma non puoi andartene senza comprare qualcosa da Wongo,\" dice il commesso del negozio con un tono irritato.\n\nHai un'[jitter][red]accesa[/red][/jitter] discussione sui diritti dei consumatori che ti [sine][purple]prosciuga mentalmente[/purple][/sine]."
+      }
+    ]
   },
   {
     "id": "WELLSPRING",
-    "name": "Wellspring",
+    "name": "Sorgente",
     "type": "Event",
     "act": "Act 1 - Overgrowth",
-    "description": null,
+    "description": "Segui un [jitter]suono ovattato[/jitter] fino alla sua origine e ti imbatti in una sorgente placida. L'acqua è di colore [sine][aqua]verde smeraldo[/aqua][/sine] con ammassi di [sine][gold]particelle scintillanti[/gold][/sine].\n\nLa tentazione di tuffarsi è forte. Cosa mai potrebbe succedere?",
     "preconditions": null,
-    "options": null,
-    "pages": null
+    "options": [
+      {
+        "id": "BOTTLE",
+        "title": "Metti l'acqua in bottiglia",
+        "description": "Ricevi [blue]1[/blue] [gold]pozione[/gold] casuale."
+      },
+      {
+        "id": "BATHE",
+        "title": "Tuffati nella sorgente",
+        "description": "Rimuovi [blue]1[/blue] carta dal tuo [gold]mazzo[/gold]. Aggiungi [blue]1[/blue] [red]Colpevolezza[/red] al tuo [gold]mazzo[/gold]."
+      }
+    ],
+    "pages": [
+      {
+        "id": "BATHE",
+        "description": "Esci dalla sorgente con una leggera [red][sine]sensazione di disagio[/sine][/red].\n\nTuttavia, senti di aver recuperato tutte le energie."
+      },
+      {
+        "id": "BOTTLE",
+        "description": "Immergerti in queste [sine][aqua]acque meravigliose[/aqua][/sine] ti sembra sospetto... Decidi quindi di metterne un po' in bottiglia.\n\nTi tornerà utile."
+      },
+      {
+        "id": "INITIAL",
+        "description": "Segui un [jitter]suono ovattato[/jitter] fino alla sua origine e ti imbatti in una sorgente placida. L'acqua è di colore [sine][aqua]verde smeraldo[/aqua][/sine] con ammassi di [sine][gold]particelle scintillanti[/gold][/sine].\n\nLa tentazione di tuffarsi è forte. Cosa mai potrebbe succedere?",
+        "options": [
+          {
+            "id": "BOTTLE",
+            "title": "Metti l'acqua in bottiglia",
+            "description": "Ricevi [blue]1[/blue] [gold]pozione[/gold] casuale."
+          },
+          {
+            "id": "BATHE",
+            "title": "Tuffati nella sorgente",
+            "description": "Rimuovi [blue]1[/blue] carta dal tuo [gold]mazzo[/gold]. Aggiungi [blue]1[/blue] [red]Colpevolezza[/red] al tuo [gold]mazzo[/gold]."
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "WHISPERING_HOLLOW",
-    "name": "WhisperingHollow",
+    "name": "Conca dei Sussurri",
     "type": "Event",
     "act": "Act 1 - Overgrowth",
-    "description": null,
+    "description": "Attraversando una [red]conca di alberi morti[/red] ti imbatti in un albero solitario bianco come un osso. Dalle sue fronde, che si incurvano verso l'interno come costole protettive, pendono ornamenti di argilla.\n\nChe albero [purple]inquietante[/purple]. E per di più, ti sussurra qualcosa.\n\n[sine][blue]... Scambio...[/blue][/sine]",
     "preconditions": [
-      "Requires 50+ gold"
+      "Requires 44+ gold"
     ],
-    "options": null,
-    "pages": null
+    "options": [
+      {
+        "id": "GOLD",
+        "title": "Scambia l'oro",
+        "description": "Perdi [red]26-44[/red] unità d'[gold]oro[/gold]. Ricevi [blue]2[/blue] [gold]pozioni[/gold] casuali."
+      },
+      {
+        "id": "HUG",
+        "title": "Abbraccia l'albero",
+        "description": "Perdi [red]9[/red] PV. Scegli una carta da [gold]trasformare[/gold]."
+      }
+    ],
+    "pages": [
+      {
+        "id": "GOLD",
+        "description": "Spargi un po' d'[gold]oro[/gold] alla base dell'albero e due vasi di terracotta cadono a terra senza fare rumore.\n\nI vasi si rompono: al loro interno c'erano delle [green]pozioni perfettamente intatte[/green].\n\nPrendi le pozioni e scappi."
+      },
+      {
+        "id": "HUG",
+        "description": "Il [blue][sine]sussurro[/sine][/blue] ti incita a dargli l'[gold]oro[/gold], ma riesci a resistere e dai un forte abbraccio all'albero!\n\nL'albero si [red][jitter]dimena[/jitter][/red], graffiandoti con i suoi rami, ma alla fine si calma. L'esperienza di abbracciare [green]un albero[/green] ti [gold]trasforma[/gold].\n\n[purple][sine]... Abbracciare...?[/sine][/purple]"
+      },
+      {
+        "id": "INITIAL",
+        "description": "Attraversando una [red]conca di alberi morti[/red] ti imbatti in un albero solitario bianco come un osso. Dalle sue fronde, che si incurvano verso l'interno come costole protettive, pendono ornamenti di argilla.\n\nChe albero [purple]inquietante[/purple]. E per di più, ti sussurra qualcosa.\n\n[sine][blue]... Scambio...[/blue][/sine]",
+        "options": [
+          {
+            "id": "GOLD",
+            "title": "Scambia l'oro",
+            "description": "Perdi [red]26-44[/red] unità d'[gold]oro[/gold]. Ricevi [blue]2[/blue] [gold]pozioni[/gold] casuali."
+          },
+          {
+            "id": "HUG",
+            "title": "Abbraccia l'albero",
+            "description": "Perdi [red]9[/red] PV. Scegli una carta da [gold]trasformare[/gold]."
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "WOOD_CARVINGS",
-    "name": "WoodCarvings",
+    "name": "Sculture di legno",
     "type": "Event",
     "act": "Act 1 - Overgrowth",
-    "description": null,
+    "description": "Apri una cassa impolverata e trovi un set di tre elaborate sculture in legno:\n\nUn uccello, un serpente e... un toro?\n\nUn piedistallo lì vicino presenta delle rientranze che corrispondono alle basi delle sculture. Quale collocherai sul piedistallo?",
     "preconditions": [
       "Requires a removable basic card"
     ],
-    "options": null,
-    "pages": null
+    "options": [
+      {
+        "id": "BIRD",
+        "title": "Uccello",
+        "description": "Scegli [blue]1[/blue] carta iniziale da [gold]trasformare[/gold] in [gold]Beccata[/gold]."
+      },
+      {
+        "id": "SNAKE",
+        "title": "Serpente",
+        "description": "[gold]Incanta[/gold] [blue]1[/blue] carta con [purple]Serpeggiamento[/purple]."
+      },
+      {
+        "id": "SNAKE_LOCKED",
+        "title": "Bloccata",
+        "description": "Non puoi incantare nessuna delle tue carte con [purple]Serpeggiamento[/purple]."
+      },
+      {
+        "id": "TORUS",
+        "title": "Toro",
+        "description": "Scegli [blue]1[/blue] carta iniziale da [gold]trasformare[/gold] in [gold]Resistenza Torica[/gold]."
+      }
+    ],
+    "pages": [
+      {
+        "id": "BIRD",
+        "description": "Posizioni la scultura dell'uccello sul piedistallo, gli OCCHI della statua SI ILLUMINANO e senti un debole suono nella tua mente.\n\n[sine]... Craaa... Craaa... Craaa...[/sine]\n\nIl piedistallo si apre e uno strano liquido inizia a fuoriuscire.\nNaturalmente, lo bevi tutto."
+      },
+      {
+        "id": "INITIAL",
+        "description": "Apri una cassa impolverata e trovi un set di tre elaborate sculture in legno:\n\nUn uccello, un serpente e... un toro?\n\nUn piedistallo lì vicino presenta delle rientranze che corrispondono alle basi delle sculture. Quale collocherai sul piedistallo?",
+        "options": [
+          {
+            "id": "BIRD",
+            "title": "Uccello",
+            "description": "Scegli [blue]1[/blue] carta iniziale da [gold]trasformare[/gold] in [gold]Beccata[/gold]."
+          },
+          {
+            "id": "SNAKE",
+            "title": "Serpente",
+            "description": "[gold]Incanta[/gold] [blue]1[/blue] carta con [purple]Serpeggiamento[/purple]."
+          },
+          {
+            "id": "SNAKE_LOCKED",
+            "title": "Bloccata",
+            "description": "Non puoi incantare nessuna delle tue carte con [purple]Serpeggiamento[/purple]."
+          },
+          {
+            "id": "TORUS",
+            "title": "Toro",
+            "description": "Scegli [blue]1[/blue] carta iniziale da [gold]trasformare[/gold] in [gold]Resistenza Torica[/gold]."
+          }
+        ]
+      },
+      {
+        "id": "SNAKE",
+        "description": "Collochi la scultura del serpente sul piedistallo e le SQUAME della statua si ILLUMINANO! Senti un po' di calore, conforto e un leggero capogiro."
+      },
+      {
+        "id": "TORUS",
+        "description": "Collochi la scultura del toro sul piedistallo e il tuo STOMACO SI ILLUMINA, mentre la statua si trasforma in un dolce fritto fumante. Una fame insaziabile ti assale e divori rapidamente la ciambella.\n\nTi senti più forte, ma meno veloce."
+      }
+    ]
   },
   {
     "id": "ZEN_WEAVER",
-    "name": "ZenWeaver",
+    "name": "Tessitore zen",
     "type": "Event",
     "act": "Act 2 - Hive",
-    "description": null,
+    "description": "Attraversi una ragnatela e [jitter][red]VAI NEL PANICO[/red][/jitter]!\nMa poi, una [sine][blue]sensazione di calma[/blue][/sine] ti pervade...\n\n[sine]\"Calmati. Smettila di rovinare la mia ragnatela.\"[/sine]\n\nCome hai fatto a calmarti così in fretta?\nUn [orange]minuscolo[/orange] ragnetto scende sulla sua ragnatela e arriva di fronte a te. Sembra disposto a insegnarti qualche tecnica in cambio di un po' d'[gold]oro[/gold].",
     "preconditions": [
       "Requires 125+ gold"
     ],
-    "options": null,
-    "pages": null
+    "options": [
+      {
+        "id": "BREATHING_TECHNIQUES",
+        "title": "Tecniche di respirazione",
+        "description": "Paghi [red]50[/red] unità d'[gold]oro[/gold]. Aggiungi [blue]2[/blue] carte [gold]Illuminazione[/gold] al tuo [gold]mazzo[/gold]."
+      },
+      {
+        "id": "EMOTIONAL_AWARENESS",
+        "title": "Consapevolezza emotiva",
+        "description": "Paghi [red]125[/red] unità d'[gold]oro[/gold]. Rimuovi [blue]1[/blue] carta dal tuo [gold]mazzo[/gold]."
+      },
+      {
+        "id": "ARACHNID_ACUPUNCTURE",
+        "title": "Agopuntura aracnide",
+        "description": "Paghi [red]250[/red] unità d'[gold]oro[/gold]. Rimuovi [blue]2[/blue] carte dal tuo [gold]mazzo[/gold]."
+      },
+      {
+        "id": "LOCKED",
+        "title": "Bloccata",
+        "description": "Non hai abbastanza [gold]oro[/gold]."
+      }
+    ],
+    "pages": [
+      {
+        "id": "ARACHNID_ACUPUNCTURE",
+        "description": "[sine]\"Non... muoverti...\"[/sine] mormora il [orange]minuscolo ragnetto[/orange] mentre le sue zampe anteriori iniziano a [aqua][jitter]brillare[/jitter][/aqua].\n\nPoi, con una serie [jitter]di movimenti rapidi e pungenti[/jitter], ti colpisce dappertutto!\nIl tuo corpo viene pervaso da una sensazione di leggerezza. Hai investito benissimo il tuo oro."
+      },
+      {
+        "id": "BREATHING_TECHNIQUES",
+        "description": "[sine]\"Visualizza le tue vie respiratorie aperte... Ogni singolo respiro è importante.\"[/sine]\n\nPratichi la tecnica nel modo che ti risulta più naturale."
+      },
+      {
+        "id": "EMOTIONAL_AWARENESS",
+        "description": "Il [orange]minuscolo ragnetto[/orange] inizia una [sine][purple]danza ipnotica[/purple][/sine] e canta incessantemente:\n\n[sine]\"I pensieri non influenzano la realtà. Il panico uccide i pensieri. Segui il piano.\"[/sine]\n\nTutto quello che dice ti sembra logico. Che grandi parole sagge dette da un [orange]minuscolo ragnetto[/orange]."
+      },
+      {
+        "id": "INITIAL",
+        "description": "Attraversi una ragnatela e [jitter][red]VAI NEL PANICO[/red][/jitter]!\nMa poi, una [sine][blue]sensazione di calma[/blue][/sine] ti pervade...\n\n[sine]\"Calmati. Smettila di rovinare la mia ragnatela.\"[/sine]\n\nCome hai fatto a calmarti così in fretta?\nUn [orange]minuscolo[/orange] ragnetto scende sulla sua ragnatela e arriva di fronte a te. Sembra disposto a insegnarti qualche tecnica in cambio di un po' d'[gold]oro[/gold].",
+        "options": [
+          {
+            "id": "BREATHING_TECHNIQUES",
+            "title": "Tecniche di respirazione",
+            "description": "Paghi [red]50[/red] unità d'[gold]oro[/gold]. Aggiungi [blue]2[/blue] carte [gold]Illuminazione[/gold] al tuo [gold]mazzo[/gold]."
+          },
+          {
+            "id": "EMOTIONAL_AWARENESS",
+            "title": "Consapevolezza emotiva",
+            "description": "Paghi [red]125[/red] unità d'[gold]oro[/gold]. Rimuovi [blue]1[/blue] carta dal tuo [gold]mazzo[/gold]."
+          },
+          {
+            "id": "ARACHNID_ACUPUNCTURE",
+            "title": "Agopuntura aracnide",
+            "description": "Paghi [red]250[/red] unità d'[gold]oro[/gold]. Rimuovi [blue]2[/blue] carte dal tuo [gold]mazzo[/gold]."
+          },
+          {
+            "id": "LOCKED",
+            "title": "Bloccata",
+            "description": "Non hai abbastanza [gold]oro[/gold]."
+          }
+        ]
+      }
+    ]
   }
 ]

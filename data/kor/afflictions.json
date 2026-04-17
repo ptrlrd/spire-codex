@@ -7,6 +7,13 @@
     "is_stackable": false
   },
   {
+    "id": "DEVOURED",
+    "name": "집어삼킴",
+    "description": "이 카드에 [gold]소멸[/gold]을 추가합니다.",
+    "extra_card_text": null,
+    "is_stackable": false
+  },
+  {
     "id": "ENTANGLED",
     "name": "뒤엉킴",
     "description": "비용이 [energy:1]만큼 증가합니다.",
@@ -39,6 +46,13 @@
     "name": "안개",
     "description": "이번 턴에는 [gold]스킬[/gold]을 추가로 사용할 수 없습니다. 턴이 끝날 시 사라집니다.",
     "extra_card_text": null,
+    "is_stackable": false
+  },
+  {
+    "id": "WEIGHTED",
+    "name": "가중",
+    "description": "이 카드를 사용 시 [energy:1]를 잃습니다.",
+    "extra_card_text": "[energy:1]를 잃습니다.",
     "is_stackable": false
   }
 ]

@@ -62,7 +62,7 @@
   {
     "id": "ARSENAL",
     "name": "Arsenal",
-    "description": "Whenever you play a Colorless card, gain [blue]1[/blue] [gold]Strength[/gold].",
+    "description": "Whenever you create a card, gain [blue]1[/blue] [gold]Strength[/gold].",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
@@ -145,7 +145,7 @@
     "description": "Whenever you gain [gold]Block[/gold] on your turn, other players gain half that much [gold]Block[/gold].",
     "description_raw": null,
     "type": "Buff",
-    "stack_type": "Counter",
+    "stack_type": "Single",
     "allow_negative": null,
     "image_url": "/static/images/powers/beacon_of_hope_power.webp"
   },
@@ -170,16 +170,6 @@
     "image_url": "/static/images/powers/black_hole_power.webp"
   },
   {
-    "id": "BLADE_OF_INK",
-    "name": "Blade of Ink",
-    "description": "Whenever you play an Attack this turn, gain [blue]2[/blue] [gold]Strength[/gold] this turn.",
-    "description_raw": null,
-    "type": "Buff",
-    "stack_type": "Counter",
-    "allow_negative": null,
-    "image_url": "/static/images/powers/blade_of_ink_power.webp"
-  },
-  {
     "id": "BLOCK_NEXT_TURN",
     "name": "Block Next Turn",
     "description": "At the start of your next turn, gain [blue]4[/blue] [gold]Block[/gold].",
@@ -198,6 +188,16 @@
     "stack_type": "Counter",
     "allow_negative": null,
     "image_url": "/static/images/powers/blur_power.webp"
+  },
+  {
+    "id": "BORROWED_TIME",
+    "name": "Borrowed Time",
+    "description": "Cards cost an additional Energy this turn.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/borrowed_time_power.webp"
   },
   {
     "id": "BUFFER",
@@ -402,7 +402,7 @@
   {
     "id": "CRAB_RAGE",
     "name": "Crab Rage",
-    "description": "When an ally dies, [gold]this creature[/gold] gains [blue]5[/blue] [gold]Strength[/gold] and [blue]99[/blue] [gold]Block[/gold].",
+    "description": "When an ally dies, [gold]this creature[/gold] gains [blue]6[/blue] [gold]Strength[/gold] and [blue]99[/blue] [gold]Block[/gold].",
     "description_raw": "When an ally dies, [gold]{OwnerName}[/gold] gains [blue]{StrengthPower}[/blue] [gold]Strength[/gold] and [blue]{Block}[/blue] [gold]Block[/gold].",
     "type": "Buff",
     "stack_type": "Single",
@@ -610,16 +610,6 @@
     "image_url": "/static/images/powers/doom_power.webp"
   },
   {
-    "id": "DOOR_REVIVAL",
-    "name": "Door Revival",
-    "description": "Internal power for Door revival mechanics.",
-    "description_raw": null,
-    "type": "Buff",
-    "stack_type": "Single",
-    "allow_negative": null,
-    "image_url": null
-  },
-  {
     "id": "DOUBLE_DAMAGE",
     "name": "Double Damage",
     "description": "This turn, Attacks deal double damage.",
@@ -802,7 +792,7 @@
   {
     "id": "FLANKING",
     "name": "Flanking",
-    "description": "Other allies deal [blue]2x[/blue] more damage to this enemy this turn.",
+    "description": "Other allies deal [blue]2x[/blue] more attack damage to this enemy this turn.",
     "description_raw": null,
     "type": "Debuff",
     "stack_type": "Counter",
@@ -960,14 +950,14 @@
     "image_url": "/static/images/powers/gigantification_power.webp"
   },
   {
-    "id": "GRAPPLE",
-    "name": "Grapple",
-    "description": "Whenever you gain [gold]Block[/gold] this turn, deal [blue][Amount][/blue] damage to [gold]this creature[/gold].",
-    "description_raw": "Whenever you gain [gold]Block[/gold] this turn, deal [blue]{Amount}[/blue] damage to [gold]{OwnerName}[/gold].",
-    "type": "Debuff",
-    "stack_type": "Counter",
+    "id": "GRASP",
+    "name": "Grasp",
+    "description": "Whenever you play a card, lose [blue]1[/blue] Energy.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
     "allow_negative": null,
-    "image_url": "/static/images/powers/grapple_power.webp"
+    "image_url": "/static/images/powers/grasp_power.webp"
   },
   {
     "id": "GRAVITY",
@@ -1130,6 +1120,16 @@
     "image_url": "/static/images/powers/hotfix_power.webp"
   },
   {
+    "id": "HUNGER",
+    "name": "Hunger",
+    "description": "Whenever you play an Attack or Skill, it is [gold]Exhausted[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/hunger_power.webp"
+  },
+  {
     "id": "ILLUSION",
     "name": "Illusion",
     "description": "When this dies, it revives next turn at full HP.",
@@ -1212,7 +1212,7 @@
   {
     "id": "ITERATION",
     "name": "Iteration",
-    "description": "The first time you draw a [gold]Status[/gold] card each turn, draw more cards.",
+    "description": "The first time you draw a Status each turn, draw more cards.",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
@@ -1448,6 +1448,16 @@
     "stack_type": "Single",
     "allow_negative": null,
     "image_url": "/static/images/powers/no_draw_power.webp"
+  },
+  {
+    "id": "NO_ENERGY_GAIN",
+    "name": "No Energy Gain",
+    "description": "You cannot gain additional [energy:1] this turn.",
+    "description_raw": "You cannot gain additional {energyPrefix:energyIcons(1)} this turn.",
+    "type": "Debuff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/no_energy_gain_power.webp"
   },
   {
     "id": "NOSTALGIA",
@@ -1848,6 +1858,16 @@
     "stack_type": "Counter",
     "allow_negative": null,
     "image_url": "/static/images/powers/sandpit_power.webp"
+  },
+  {
+    "id": "SCRUTINY",
+    "name": "Scrutiny",
+    "description": "You cannot draw additional cards during your turn.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/scrutiny_power.webp"
   },
   {
     "id": "SEEKING_EDGE",
@@ -2272,7 +2292,7 @@
   {
     "id": "SWORD_SAGE",
     "name": "Sword Sage",
-    "description": "Increase the cost of [gold]Sovereign Blade[/gold] by [blue]1[/blue]. [gold]Sovereign Blade[/gold] now hits [blue]1[/blue] additional time.",
+    "description": "[gold]Sovereign Blade[/gold] now hits [blue]1[/blue] additional time.",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",

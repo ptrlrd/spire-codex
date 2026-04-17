@@ -406,7 +406,7 @@
       {
         "id": "RIP",
         "title": "Arrancar la sanguijuela",
-        "description": "Pierdes [red]5[/red] PV. Obtienes una recompensa de carta incolora."
+        "description": "Pierdes [red]5[/red] PV. Obtienes una carta recompensa incolora."
       }
     ],
     "pages": [
@@ -422,7 +422,7 @@
           {
             "id": "RIP",
             "title": "Arrancar la sanguijuela",
-            "description": "Pierdes [red]5[/red] PV. Obtienes una recompensa de carta incolora."
+            "description": "Pierdes [red]5[/red] PV. Obtienes una carta recompensa incolora."
           }
         ]
       },
@@ -961,7 +961,7 @@
       {
         "id": "TRUDGE_ON",
         "title": "Avanzar a duras penas",
-        "description": "Quitas una carta del [gold]mazo[/gold]. Pierdes [red]11[/red] PV."
+        "description": "Obtienes [blue]61-99[/blue] de [gold]oro[/gold]. Pierdes [red]8[/red] PV."
       },
       {
         "id": "REST",
@@ -977,7 +977,7 @@
           {
             "id": "TRUDGE_ON",
             "title": "Avanzar a duras penas",
-            "description": "Quitas una carta del [gold]mazo[/gold]. Pierdes [red]11[/red] PV."
+            "description": "Obtienes [blue]61-99[/blue] de [gold]oro[/gold]. Pierdes [red]8[/red] PV."
           },
           {
             "id": "REST",
@@ -999,7 +999,7 @@
       },
       {
         "id": "TRUDGE_ON",
-        "description": "Te abres camino a través de la jungla, pero es infinita.\n\nTe alimentas de [green]frutas extrañas[/green], [orange]bichos crujientes[/orange] y bebes el néctar de [aqua]plantas brillantes[/aqua]. Sin embargo, empiezas a sentir [jitter][red]paranoia[/red][/jitter].\n\nTras un tiempo, encuentras un claro, un sendero y unos dibujos de mapas en el suelo.\nListo, problema resuelto."
+        "description": "Te abres camino a través de la jungla, pero es infinita.\n\nTe alimentas de [green]frutas extrañas[/green], [orange]bichos crujientes[/orange] y bebes el néctar de [aqua]plantas brillantes[/aqua]. Sin embargo, empiezas a sentir [jitter][red]paranoia[/red][/jitter]...\n\nTras un tiempo, encuentras un claro, un sendero y algunas monedas de [gold]oro[/gold] dispersas en el suelo. Entre las monedas, ves algunos mapas mal dibujados.\nListo, problema resuelto."
       }
     ]
   },
@@ -1181,9 +1181,9 @@
     "name": "Cinta transportadora infinita",
     "type": "Event",
     "act": "Underdocks",
-    "description": "Entras con torpeza en una choza con un letrero brillante y torcido que dice:\n[aqua]«FESTÍN SIN FIN: ¡PAGA SEGÚN TU HAMBRE!»[/aqua]\n\nDentro, un [orange]chef grácil y con múltiples brazos[/orange] prepara [green]apetitosos manjares[/green] con destreza y los coloca sobre una [sine]sinuosa y quitinosa cinta transportadora[/sine].\n\nUno de los brazos del chef señala un cartel:\n[blue]35[/blue] de [gold]oro[/gold] por cada alimento",
+    "description": "Entras con torpeza en una choza con un letrero brillante y torcido que dice:\n[aqua]«FESTÍN SIN FIN: ¡PAGAS SEGÚN TU HAMBRE!»[/aqua]\n\nDentro, un [orange]chef grácil y con múltiples brazos[/orange] prepara [green]apetitosos manjares[/green] con destreza y los coloca sobre una [sine]sinuosa y quitinosa cinta transportadora[/sine].\n\nUno de los brazos del chef señala un cartel:\n[blue]40[/blue] de [gold]oro[/gold] por cada alimento.",
     "preconditions": [
-      "Requires 105+ gold"
+      "Requires 120+ gold"
     ],
     "options": [
       {
@@ -1205,17 +1205,17 @@
           {
             "id": "CAVIAR",
             "title": "Tomar el caviar de la cinta transportadora",
-            "description": "Pagas [red]35[/red] de [gold]oro[/gold]. Obtienes [green]4[/green] PV máx. ¡Sigue comiendo!"
+            "description": "Pagas [red]40[/red] de [gold]oro[/gold]. Obtienes [green]4[/green] PV máx. ¡Sigue comiendo!"
           },
           {
             "id": "CLAM_ROLL",
             "title": "Tomar el rollo de almeja de la cinta transportadora",
-            "description": "Pagas [red]35[/red] de [gold]oro[/gold]. Recuperas [green]10[/green] PV. ¡Sigue comiendo!"
+            "description": "Pagas [red]40[/red] de [gold]oro[/gold]. Recuperas [green]10[/green] PV. ¡Sigue comiendo!"
           },
           {
             "id": "FRIED_EEL",
             "title": "Tomar la anguila frita de la cinta transportadora",
-            "description": "Pagas [red]35[/red] de [gold]oro[/gold]. Agregas una carta incolora al azar al [gold]mazo[/gold]. ¡Sigue comiendo!"
+            "description": "Pagas [red]40[/red] de [gold]oro[/gold]. Agregas una carta incolora al azar al [gold]mazo[/gold]. ¡Sigue comiendo!"
           },
           {
             "id": "GOLDEN_FYSH",
@@ -1225,22 +1225,22 @@
           {
             "id": "JELLY_LIVER",
             "title": "Tomar el hígado de medusa de la cinta transportadora",
-            "description": "Pagas [red]35[/red] de [gold]oro[/gold]. [gold]Transformas[/gold] una carta. ¡Sigue comiendo!"
+            "description": "Pagas [red]40[/red] de [gold]oro[/gold]. [gold]Transformas[/gold] una carta. ¡Sigue comiendo!"
           },
           {
             "id": "SEAPUNK_SALAD",
             "title": "Tomar la ensalada marina de la cinta transportadora",
-            "description": "Pagas [red]35[/red] de [gold]oro[/gold]. Agregas [gold]Festín frenético[/gold] al [gold]mazo[/gold]. ¡Sigue comiendo!"
+            "description": "Pagas [red]40[/red] de [gold]oro[/gold]. Agregas [gold]Festín frenético[/gold] al [gold]mazo[/gold]. ¡Sigue comiendo!"
           },
           {
             "id": "SPICY_SNAPPY",
             "title": "Tomar el picante crujiente de la cinta transportadora",
-            "description": "Pagas [red]35[/red] de [gold]oro[/gold]. [gold]Mejoras[/gold] una carta al azar. ¡Sigue comiendo!"
+            "description": "Pagas [red]40[/red] de [gold]oro[/gold]. [gold]Mejoras[/gold] una carta al azar. ¡Sigue comiendo!"
           },
           {
             "id": "SUSPICIOUS_CONDIMENT",
             "title": "Tomar el condimento sospechoso de la cinta transportadora",
-            "description": "Pagas [red]35[/red] de [gold]oro[/gold]. Obtienes una [gold]poción[/gold] al azar. ¡Sigue comiendo!"
+            "description": "Pagas [red]40[/red] de [gold]oro[/gold]. Obtienes una [gold]poción[/gold] al azar. ¡Sigue comiendo!"
           }
         ]
       },
@@ -1257,7 +1257,7 @@
       },
       {
         "id": "INITIAL",
-        "description": "Entras con torpeza en una choza con un letrero brillante y torcido que dice:\n[aqua]«FESTÍN SIN FIN: ¡PAGA SEGÚN TU HAMBRE!»[/aqua]\n\nDentro, un [orange]chef grácil y con múltiples brazos[/orange] prepara [green]apetitosos manjares[/green] con destreza y los coloca sobre una [sine]sinuosa y quitinosa cinta transportadora[/sine].\n\nUno de los brazos del chef señala un cartel:\n[blue]35[/blue] de [gold]oro[/gold] por cada alimento",
+        "description": "Entras con torpeza en una choza con un letrero brillante y torcido que dice:\n[aqua]«FESTÍN SIN FIN: ¡PAGAS SEGÚN TU HAMBRE!»[/aqua]\n\nDentro, un [orange]chef grácil y con múltiples brazos[/orange] prepara [green]apetitosos manjares[/green] con destreza y los coloca sobre una [sine]sinuosa y quitinosa cinta transportadora[/sine].\n\nUno de los brazos del chef señala un cartel:\n[blue]40[/blue] de [gold]oro[/gold] por cada alimento.",
         "options": [
           {
             "id": "OBSERVE_CHEF",
@@ -1408,7 +1408,7 @@
       {
         "id": "FRAGRANT_MUSHROOM",
         "title": "Hongo aromático",
-        "description": "Obtain [gold]Hongo aromático[/gold]. Al recogerla, pierdes [red]15[/red] PV y [gold]mejoras[/gold] [blue]3[/blue] cartas al azar."
+        "description": "Obtain [gold]Hongo aromático[/gold]. Al recogerla, pierdes [blue]15[/blue] PV y [gold]mejoras[/gold] [blue]2[/blue] cartas al azar."
       }
     ],
     "pages": [
@@ -1432,7 +1432,7 @@
           {
             "id": "FRAGRANT_MUSHROOM",
             "title": "Hongo aromático",
-            "description": "Obtain [gold]Hongo aromático[/gold]. Al recogerla, pierdes [red]15[/red] PV y [gold]mejoras[/gold] [blue]3[/blue] cartas al azar."
+            "description": "Obtain [gold]Hongo aromático[/gold]. Al recogerla, pierdes [blue]15[/blue] PV y [gold]mejoras[/gold] [blue]2[/blue] cartas al azar."
           }
         ]
       },
@@ -1651,7 +1651,7 @@
       {
         "id": "GROUP",
         "title": "Acercarse al grupo",
-        "description": "Pierdes [red]100[/red] de [gold]oro[/gold]. [gold]Transformas[/gold] [blue]2[/blue] cartas."
+        "description": "Pierdes [red]TODO[/red] el [gold]oro[/gold]. [gold]Transformas[/gold] [blue]2[/blue] cartas."
       },
       {
         "id": "LONER",
@@ -1671,7 +1671,7 @@
           {
             "id": "GROUP",
             "title": "Acercarse al grupo",
-            "description": "Pierdes [red]100[/red] de [gold]oro[/gold]. [gold]Transformas[/gold] [blue]2[/blue] cartas."
+            "description": "Pierdes [red]TODO[/red] el [gold]oro[/gold]. [gold]Transformas[/gold] [blue]2[/blue] cartas."
           },
           {
             "id": "LONER",
@@ -1881,23 +1881,28 @@
     "relics": [
       "ARCANE_SCROLL",
       "BOOMING_CONCH",
-      "POMANDER",
       "GOLDEN_PEARL",
       "LEAD_PAPERWEIGHT",
-      "NEW_LEAF",
-      "NEOWS_TORMENT",
-      "PRECISE_SCISSORS",
       "LOST_COFFER",
-      "NUTRITIOUS_OYSTER",
-      "STONE_HUMIDIFIER",
+      "NEOWS_TORMENT",
+      "NEW_LEAF",
+      "PRECISE_SCISSORS",
+      "PHIAL_HOLSTER",
+      "WINGED_BOOTS",
       "MASSIVE_SCROLL",
       "LAVA_ROCK",
+      "NEOWS_TALISMAN",
+      "NUTRITIOUS_OYSTER",
+      "POMANDER",
       "SMALL_CAPSULE",
-      "SILVER_CRUCIBLE",
+      "STONE_HUMIDIFIER",
       "CURSED_PEARL",
+      "HEFTY_TABLET",
       "LARGE_CAPSULE",
       "LEAFY_POULTICE",
       "PRECARIOUS_SHEARS",
+      "SILVER_CRUCIBLE",
+      "NEOWS_BONES",
       "SCROLL_BOXES"
     ]
   },
@@ -2485,7 +2490,7 @@
       {
         "id": "NAB",
         "title": "Robar",
-        "description": "Agregas [red]Herida[/red] al [gold]mazo[/gold]. Obtienes una [gold]reliquia[/gold] al azar."
+        "description": "Agregas [red]Lesión[/red] al [gold]mazo[/gold]. Obtienes una [gold]reliquia[/gold] al azar."
       },
       {
         "id": "I_CAN_TAKE_THEM",
@@ -2501,7 +2506,7 @@
           {
             "id": "NAB",
             "title": "Robar",
-            "description": "Agregas [red]Herida[/red] al [gold]mazo[/gold]. Obtienes una [gold]reliquia[/gold] al azar."
+            "description": "Agregas [red]Lesión[/red] al [gold]mazo[/gold]. Obtienes una [gold]reliquia[/gold] al azar."
           },
           {
             "id": "I_CAN_TAKE_THEM",
@@ -2765,7 +2770,9 @@
     "type": "Event",
     "act": "Act 3 - Glory",
     "description": "Encuentras una [orange]invitación[/orange] para un tal [blue]«sir Galalot»[/blue] a una fiesta de té y decides asistir en su lugar.\n\nAl entrar a través de una modesta rotonda, te encuentras entre [gold]comandantes[/gold], [aqua]generales[/aqua], [red]líderes de guerra[/red] y [blue]mercenarios[/blue] tomando... ¿té?\nEl gigantesco caballero con una [gold]corona dorada[/gold] emite unas palabras.\n\n[jitter]—¡¿Osáis llegar tarde al [b]té[/b]?![/jitter]",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 12+ HP"
+    ],
     "options": [
       {
         "id": "ENJOY_TEA",
@@ -3165,7 +3172,7 @@
       {
         "id": "REJECTION",
         "title": "Rechazarlo",
-        "description": "Pierdes [red]9[/red] PV. Quitas una carta del [gold]mazo[/gold]."
+        "description": "Pierdes [red]10[/red] PV. [gold]Mejoras[/gold] una carta."
       }
     ],
     "pages": [
@@ -3181,7 +3188,7 @@
           {
             "id": "REJECTION",
             "title": "Rechazarlo",
-            "description": "Pierdes [red]9[/red] PV. Quitas una carta del [gold]mazo[/gold]."
+            "description": "Pierdes [red]10[/red] PV. [gold]Mejoras[/gold] una carta."
           }
         ]
       },
@@ -4232,7 +4239,7 @@
       {
         "id": "POTION",
         "title": "Insertar poción Common",
-        "description": "Pierdes [gold]a Potion[/gold]. Obtienes una poción [gold]Common de Skill[/gold] [gold]mejorada[/gold]."
+        "description": "Pierdes [gold]a Potion[/gold]. Obtienes una carta [gold]Common de Skill[/gold] [gold]mejorada[/gold]."
       }
     ],
     "pages": [
@@ -4247,7 +4254,7 @@
           {
             "id": "POTION",
             "title": "Insertar poción Common",
-            "description": "Pierdes [gold]a Potion[/gold]. Obtienes una poción [gold]Common de Skill[/gold] [gold]mejorada[/gold]."
+            "description": "Pierdes [gold]a Potion[/gold]. Obtienes una carta [gold]Common de Skill[/gold] [gold]mejorada[/gold]."
           }
         ]
       }
@@ -4476,7 +4483,7 @@
           {
             "id": "CHAOS",
             "title": "Caos",
-            "description": "Agregas una carta al azar a tu [gold]mano[/gold]. Cuesta [blue]0[/blue] [energy:1] este turno."
+            "description": "Agregas una carta al azar a la [gold]mano[/gold]. Se puede jugar sin costo en este turno."
           },
           {
             "id": "EXPERTISE",
@@ -5005,7 +5012,7 @@
     "act": "Underdocks",
     "description": "Mientras caminas por los oscuros pasadizos, te topas con una [aqua]figura marchita[/aqua] que trabaja en una pequeña tienda. Los numerosos estantes están [sine]repletos[/sine] de pergaminos y rollos húmedos.\n\nAl notar que entró alguien, el [aqua]escriba comerciante[/aqua] se pone firme y señala unos [gold]utensilios[/gold] dispuestos sobre un escritorio.",
     "preconditions": [
-      "Requires 65+ gold"
+      "Requires 55+ gold"
     ],
     "options": [
       {
@@ -5016,22 +5023,22 @@
       {
         "id": "TENTACLE_QUILL",
         "title": "Pluma tentacular",
-        "description": "Pagas [red]65[/red] de [gold]oro[/gold]. [gold]Encantas[/gold] una carta con [purple]Firmeza[/purple]."
+        "description": "Pagas [red]55[/red] de [gold]oro[/gold]. [gold]Encantas[/gold] una carta con [purple]Firmeza[/purple]."
       },
       {
         "id": "TENTACLE_QUILL_LOCKED",
         "title": "Sin desbloquear",
-        "description": "Necesitas [blue]65[/blue] de [gold]oro[/gold]."
+        "description": "Necesitas [blue]55[/blue] de [gold]oro[/gold]."
       },
       {
         "id": "PRICKLY_SPONGE",
         "title": "Esponja espinosa",
-        "description": "Pagas [red]155[/red] de [gold]oro[/gold]. [gold]Encantas[/gold] [blue]2[/blue] cartas con [purple]Firmeza[/purple]."
+        "description": "Pagas [red]99[/red] de [gold]oro[/gold]. [gold]Encantas[/gold] [blue]2[/blue] cartas con [purple]Firmeza[/purple]."
       },
       {
         "id": "PRICKLY_SPONGE_LOCKED",
         "title": "Sin desbloquear",
-        "description": "Necesitas [blue]155[/blue] de [gold]oro[/gold]."
+        "description": "Necesitas [blue]99[/blue] de [gold]oro[/gold]."
       }
     ],
     "pages": [
@@ -5051,22 +5058,22 @@
           {
             "id": "TENTACLE_QUILL",
             "title": "Pluma tentacular",
-            "description": "Pagas [red]65[/red] de [gold]oro[/gold]. [gold]Encantas[/gold] una carta con [purple]Firmeza[/purple]."
+            "description": "Pagas [red]55[/red] de [gold]oro[/gold]. [gold]Encantas[/gold] una carta con [purple]Firmeza[/purple]."
           },
           {
             "id": "TENTACLE_QUILL_LOCKED",
             "title": "Sin desbloquear",
-            "description": "Necesitas [blue]65[/blue] de [gold]oro[/gold]."
+            "description": "Necesitas [blue]55[/blue] de [gold]oro[/gold]."
           },
           {
             "id": "PRICKLY_SPONGE",
             "title": "Esponja espinosa",
-            "description": "Pagas [red]155[/red] de [gold]oro[/gold]. [gold]Encantas[/gold] [blue]2[/blue] cartas con [purple]Firmeza[/purple]."
+            "description": "Pagas [red]99[/red] de [gold]oro[/gold]. [gold]Encantas[/gold] [blue]2[/blue] cartas con [purple]Firmeza[/purple]."
           },
           {
             "id": "PRICKLY_SPONGE_LOCKED",
             "title": "Sin desbloquear",
-            "description": "Necesitas [blue]155[/blue] de [gold]oro[/gold]."
+            "description": "Necesitas [blue]99[/blue] de [gold]oro[/gold]."
           }
         ]
       },
@@ -5240,13 +5247,13 @@
     "act": "Act 1 - Overgrowth",
     "description": "Abriéndote paso por una [red]hondonada de árboles muertos[/red], te topas con un solo árbol blanco como el hueso. Adornos de arcilla cuelgan de sus ramas, las cuales se curvan hacia adentro como costillas protectoras.\n\nEs un [purple]árbol espeluznante[/purple]. Además, te susurra.\n\n[sine][blue]—... Intercambio ...[/blue][/sine]",
     "preconditions": [
-      "Requires 50+ gold"
+      "Requires 44+ gold"
     ],
     "options": [
       {
         "id": "GOLD",
         "title": "Intercambiar oro",
-        "description": "Pierdes [red]50[/red] de [gold]oro[/gold]. Obtienes [blue]2[/blue] [gold]pociones[/gold] al azar."
+        "description": "Pierdes [red]26-44[/red] de [gold]oro[/gold]. Obtienes [blue]2[/blue] [gold]pociones[/gold] al azar."
       },
       {
         "id": "HUG",
@@ -5270,7 +5277,7 @@
           {
             "id": "GOLD",
             "title": "Intercambiar oro",
-            "description": "Pierdes [red]50[/red] de [gold]oro[/gold]. Obtienes [blue]2[/blue] [gold]pociones[/gold] al azar."
+            "description": "Pierdes [red]26-44[/red] de [gold]oro[/gold]. Obtienes [blue]2[/blue] [gold]pociones[/gold] al azar."
           },
           {
             "id": "HUG",

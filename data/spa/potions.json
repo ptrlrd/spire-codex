@@ -233,8 +233,8 @@
   {
     "id": "FAIRY_IN_A_BOTTLE",
     "name": "Hada embotellada",
-    "description": "Si fueses a morir, en su lugar esta poción se descarta y te curas un [blue]30 %[/blue] de tus PV máx.",
-    "description_raw": "Si fueses a morir, en su lugar esta poción se descarta y te curas un [blue]30 %[/blue] de tus PV máx.",
+    "description": "Si tus PV llegan a [blue]0[/blue], esta poción se descarta y te curas un [blue]30 %[/blue] de tus PV máx.",
+    "description_raw": "Si tus PV llegan a [blue]0[/blue], esta poción se descarta y te curas un [blue]30 %[/blue] de tus PV máx.",
     "rarity": "Rara",
     "image_url": "/static/images/potions/fairy_in_a_bottle.webp",
     "rarity_key": "Rare",
@@ -552,8 +552,8 @@
   {
     "id": "FOUL_POTION",
     "name": "Poción nauseabunda",
-    "description": "Inflige [blue]12[/blue] de daño a TODOS.\nTambién puedes lanzársela al [gold]Comerciante[/gold] para obtener [blue]100[/blue] de [gold]Oro[/gold].",
-    "description_raw": "Inflige [blue]{Damage}[/blue] de daño a TODOS.\nTambién puedes lanzársela al [gold]Comerciante[/gold] para obtener [blue]{Gold}[/blue] de [gold]Oro[/gold].",
+    "description": "Inflige [blue]12[/blue] de daño a TODOS los jugadores y enemigos.\nTambién puedes lanzársela al [gold]Comerciante[/gold] para obtener [blue]100[/blue] de [gold]Oro[/gold].",
+    "description_raw": "Inflige [blue]{Damage}[/blue] de daño a TODOS los jugadores y enemigos.\nTambién puedes lanzársela al [gold]Comerciante[/gold] para obtener [blue]{Gold}[/blue] de [gold]Oro[/gold].",
     "rarity": "de Evento",
     "image_url": "/static/images/potions/foul_potion.webp",
     "rarity_key": "Event",
@@ -574,8 +574,8 @@
   {
     "id": "LIQUID_MEMORIES",
     "name": "Recuerdos líquidos",
-    "description": "Coloca una carta de tu [gold]Pila de descarte[/gold] en tu [gold]Mano[/gold]. Cuesta [blue]0[/blue] [energy:1] este turno.",
-    "description_raw": "Coloca una carta de tu [gold]Pila de descarte[/gold] en tu [gold]Mano[/gold]. Cuesta [blue]0[/blue] {energyPrefix:energyIcons(1)} este turno.",
+    "description": "Coloca una carta de tu [gold]Pila de descarte[/gold] en tu [gold]Mano[/gold]. Puedes jugarla gratis este turno.",
+    "description_raw": "Coloca una carta de tu [gold]Pila de descarte[/gold] en tu [gold]Mano[/gold]. Puedes jugarla gratis este turno.",
     "rarity": "Rara",
     "image_url": "/static/images/potions/liquid_memories.webp",
     "rarity_key": "Rare",

@@ -35,7 +35,7 @@
         "name": "Ami de combat V3.0"
       }
     ],
-    "loss_text": "Un [gold]Mannequin de combat usé[/gold] serait venu à bout de [b]The Adventurer[/b] ???"
+    "loss_text": "Un [gold]Mannequin de combat usé[/gold] serait venu à bout de [b]The Adventurer[/b] ???"
   },
   {
     "id": "BOWLBUGS_NORMAL",
@@ -302,10 +302,6 @@
     "tags": null,
     "monsters": [
       {
-        "id": "DOOR",
-        "name": "Porte"
-      },
-      {
         "id": "DOORMAKER",
         "name": "L'Huissier"
       }
@@ -342,7 +338,7 @@
         "name": "Exosquelette"
       }
     ],
-    "loss_text": "[b]The Adventurer[/b] s'est fait éviscérer par [gold]Exosquelettes nombreux[/gold]."
+    "loss_text": "[b]The Adventurer[/b] s'est fait éviscérer par des [gold]Exosquelettes nombreux[/gold]."
   },
   {
     "id": "EXOSKELETONS_WEAK",
@@ -389,11 +385,11 @@
         "name": "Le Marchand ???"
       }
     ],
-    "loss_text": "[b]The Adventurer[/b] a subi la colère du [gold]Le Marchand ???[/gold]."
+    "loss_text": "[b]The Adventurer[/b] a subi la colère du [gold]Marchand ???[/gold]."
   },
   {
     "id": "FLYCONID_NORMAL",
-    "name": "Champi et Limon",
+    "name": "Mycoptère et Limon",
     "room_type": "Monster",
     "is_weak": false,
     "act": "Act 1 - Overgrowth",
@@ -415,7 +411,7 @@
         "name": "Limon brindille (M)"
       }
     ],
-    "loss_text": "[b]The Adventurer[/b] a été digéré{characterGender:choose(feminine):e|} par un [gold]Champi et Limon[/gold]."
+    "loss_text": "[b]The Adventurer[/b] a été digéré{characterGender:choose(feminine):e|} par un [gold]Mycoptère et un Limon[/gold]."
   },
   {
     "id": "FOGMOG_NORMAL",
@@ -598,7 +594,7 @@
         "name": "Roquette"
       }
     ],
-    "loss_text": "Les [gold]Crabe empereur[/gold] ont frappé [b]The Adventurer[/b] de toutes parts."
+    "loss_text": "Le [gold]Crabe empereur[/gold] a frappé [b]The Adventurer[/b] de toutes parts."
   },
   {
     "id": "KNIGHTS_ELITE",
@@ -986,6 +982,27 @@
     "loss_text": "Des [gold]Parchemord[/gold] ont réduit [b]The Adventurer[/b] en miettes."
   },
   {
+    "id": "SEAPUNK_NORMAL",
+    "name": "Faune des Bas-Quais",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": [
+      "Seapunk"
+    ],
+    "monsters": [
+      {
+        "id": "CALCIFIED_CULTIST",
+        "name": "Adepte calcifié"
+      },
+      {
+        "id": "SEAPUNK",
+        "name": "Voyou marin"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] a été vaincu par la [gold]Faune des Bas-Quais[/gold]."
+  },
+  {
     "id": "SEAPUNK_WEAK",
     "name": "Voyou marin",
     "room_type": "Monster",
@@ -1120,7 +1137,7 @@
         "name": "Limon brindille (S)"
       }
     ],
-    "loss_text": "[b]The Adventurer[/b] s'est fait abattre par un [gold]Bande de limons[/gold]."
+    "loss_text": "[b]The Adventurer[/b] s'est fait abattre par une [gold]Bande de limons[/gold]."
   },
   {
     "id": "SLITHERING_STRANGLER_NORMAL",
@@ -1394,25 +1411,6 @@
     "loss_text": "Une [gold]Mante Chapardeuse[/gold] a braqué [b]The Adventurer[/b]."
   },
   {
-    "id": "TOADPOLES_NORMAL",
-    "name": "Faune et flore des Bas-Quais",
-    "room_type": "Monster",
-    "is_weak": false,
-    "act": "Underdocks",
-    "tags": null,
-    "monsters": [
-      {
-        "id": "CALCIFIED_CULTIST",
-        "name": "Adepte calcifié"
-      },
-      {
-        "id": "TOADPOLE",
-        "name": "Crapautard"
-      }
-    ],
-    "loss_text": "[b]The Adventurer[/b] a été vaincu{characterGender:choose(feminine):e|} par la [gold]Faune et flore des Bas-Quais[/gold]."
-  },
-  {
     "id": "TOADPOLES_WEAK",
     "name": "Crapautards",
     "room_type": "Monster",
@@ -1432,19 +1430,15 @@
     "name": "Tunnelier accompagné",
     "room_type": "Monster",
     "is_weak": false,
-    "act": "Act 2 - Hive",
+    "act": null,
     "tags": [
       "Burrower",
-      "Workers"
+      "Chomper"
     ],
     "monsters": [
       {
-        "id": "BOWLBUG_EGG",
-        "name": "Sphéropode (Œuf)"
-      },
-      {
-        "id": "BOWLBUG_SILK",
-        "name": "Sphéropode (Soie)"
+        "id": "CHOMPER",
+        "name": "Croquebot"
       },
       {
         "id": "TUNNELER",
@@ -1521,7 +1515,7 @@
   },
   {
     "id": "VINE_SHAMBLER_NORMAL",
-    "name": "Bourbelianes",
+    "name": "Bourbeliane",
     "room_type": "Monster",
     "is_weak": false,
     "act": "Act 1 - Overgrowth",
@@ -1532,7 +1526,7 @@
         "name": "Bourbelianes"
       }
     ],
-    "loss_text": "[b]The Adventurer[/b] n'a pu échapper à un [gold]Bourbelianes[/gold]."
+    "loss_text": "[b]The Adventurer[/b] n'a pu échapper à un [gold]Bourbeliane[/gold]."
   },
   {
     "id": "WATERFALL_GIANT_BOSS",

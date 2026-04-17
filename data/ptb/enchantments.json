@@ -33,17 +33,6 @@
     "image_url": "/static/images/enchantments/corrupted.webp"
   },
   {
-    "id": "FAVORED",
-    "name": "Prestigiada",
-    "description": "O dano de ataque desta carta é dobrado.",
-    "description_raw": null,
-    "extra_card_text": null,
-    "card_type": "Attack",
-    "applicable_to": null,
-    "is_stackable": false,
-    "image_url": "/static/images/enchantments/favored.webp"
-  },
-  {
     "id": "GLAM",
     "name": "Elegante",
     "description": "Esta carta recebe [gold]Repetir[/gold] uma vez por combate.",
@@ -56,7 +45,7 @@
   },
   {
     "id": "GOOPY",
-    "name": "Gosmenta",
+    "name": "Viscosidade",
     "description": "Esta carta recebe [gold]Exaurir[/gold]. Quando jogada, aumente permanentemente a [gold]Proteção[/gold] desta carta em [blue]1[/blue].",
     "description_raw": null,
     "extra_card_text": "Aumenta permanentemente a [gold]Proteção[/gold] desta carta em [blue]1[/blue].",
@@ -77,9 +66,20 @@
     "image_url": "/static/images/enchantments/imbued.webp"
   },
   {
+    "id": "INKY",
+    "name": "Nanquim",
+    "description": "Esta carta causa [blue]2[/blue] de dano adicional e aplica [blue]1[/blue] de [gold]Fraqueza[/gold].",
+    "description_raw": "Esta carta causa [blue]{Damage}[/blue] de dano adicional e aplica [blue]{WeakPower}[/blue] de [gold]Fraqueza[/gold].",
+    "extra_card_text": "Aplique [blue]1[/blue] de [gold]Fraqueza[/gold] a TODOS os inimigos.",
+    "card_type": null,
+    "applicable_to": null,
+    "is_stackable": false,
+    "image_url": "/static/images/enchantments/inky.webp"
+  },
+  {
     "id": "INSTINCT",
     "name": "Instinto",
-    "description": "Reduz o custo desta carta em [blue]1[/blue].",
+    "description": "O dano de ataque desta carta é dobrado.",
     "description_raw": null,
     "extra_card_text": null,
     "card_type": "Attack",

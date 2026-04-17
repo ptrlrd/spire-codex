@@ -33,17 +33,6 @@
     "image_url": "/static/images/enchantments/corrupted.webp"
   },
   {
-    "id": "FAVORED",
-    "name": "Begünstigt",
-    "description": "Der Angriffsschaden dieser Karte ist verdoppelt.",
-    "description_raw": null,
-    "extra_card_text": null,
-    "card_type": "Attack",
-    "applicable_to": null,
-    "is_stackable": false,
-    "image_url": "/static/images/enchantments/favored.webp"
-  },
-  {
     "id": "GLAM",
     "name": "Schick",
     "description": "Diese Karte hat einmal pro Kampf [gold]Erneut Spielen[/gold].",
@@ -57,7 +46,7 @@
   {
     "id": "GOOPY",
     "name": "Klebrig",
-    "description": "Diese Karte [gold]erschöpft[/gold]. Wenn sie ausgespielt wird, erhöhe den [gold]Block[/gold] dieser Karte permanent um [blue]1[/blue].",
+    "description": "Diese Karte bekommt [gold]Erschöpft[/gold]. Erhöhe beim Ausspielen den [gold]Block[/gold] dieser Karte permanent um [blue]1[/blue].",
     "description_raw": null,
     "extra_card_text": "Erhöhe den [gold]Block[/gold] dieser Karte permanent um [blue]1[/blue].",
     "card_type": null,
@@ -77,9 +66,20 @@
     "image_url": "/static/images/enchantments/imbued.webp"
   },
   {
+    "id": "INKY",
+    "name": "Tintenbeschmiert",
+    "description": "Diese Karte fügt [blue]2[/blue] Schaden mehr zu und wendet [blue]1[/blue] [gold]Schwach[/gold] an.",
+    "description_raw": "Diese Karte fügt [blue]{Damage}[/blue] Schaden mehr zu und wendet [blue]{WeakPower}[/blue] [gold]Schwach[/gold] an.",
+    "extra_card_text": "Wende [blue]1[/blue] [gold]Schwach[/gold] auf ALLE Gegner an.",
+    "card_type": null,
+    "applicable_to": null,
+    "is_stackable": false,
+    "image_url": "/static/images/enchantments/inky.webp"
+  },
+  {
     "id": "INSTINCT",
     "name": "Instinkt",
-    "description": "Senke die Kosten dieser Karte um [blue]1[/blue].",
+    "description": "Der Angriffsschaden dieser Karte ist verdoppelt.",
     "description_raw": null,
     "extra_card_text": null,
     "card_type": "Attack",
@@ -167,7 +167,7 @@
   {
     "id": "SOULS_POWER",
     "name": "Seelenkraft",
-    "description": "Diese Karte [gold]erschöpft[/gold] nicht mehr.",
+    "description": "Diese Karte verliert [gold]Erschöpft[/gold].",
     "description_raw": null,
     "extra_card_text": null,
     "card_type": null,

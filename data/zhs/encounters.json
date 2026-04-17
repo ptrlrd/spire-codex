@@ -302,10 +302,6 @@
     "tags": null,
     "monsters": [
       {
-        "id": "DOOR",
-        "name": "门扉"
-      },
-      {
         "id": "DOORMAKER",
         "name": "门扉缔造者"
       }
@@ -986,6 +982,27 @@
     "loss_text": "一些[gold]咬人卷轴[/gold]将[b]The Adventurer[/b]撕成了碎片。"
   },
   {
+    "id": "SEAPUNK_NORMAL",
+    "name": "暗港野生动物",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": [
+      "Seapunk"
+    ],
+    "monsters": [
+      {
+        "id": "CALCIFIED_CULTIST",
+        "name": "钙化邪教徒"
+      },
+      {
+        "id": "SEAPUNK",
+        "name": "海洋混混"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]被一些[gold]暗港野生动物[/gold]打败了。"
+  },
+  {
     "id": "SEAPUNK_WEAK",
     "name": "海洋混混",
     "room_type": "Monster",
@@ -1394,25 +1411,6 @@
     "loss_text": "一只[gold]偷窃草蜢[/gold]抢走了[b]The Adventurer[/b]的生命。"
   },
   {
-    "id": "TOADPOLES_NORMAL",
-    "name": "暗港野生动物",
-    "room_type": "Monster",
-    "is_weak": false,
-    "act": "Underdocks",
-    "tags": null,
-    "monsters": [
-      {
-        "id": "CALCIFIED_CULTIST",
-        "name": "钙化邪教徒"
-      },
-      {
-        "id": "TOADPOLE",
-        "name": "蟾蜍蝌蚪"
-      }
-    ],
-    "loss_text": "[b]The Adventurer[/b]被一些[gold]暗港野生动物[/gold]打败。"
-  },
-  {
     "id": "TOADPOLES_WEAK",
     "name": "蟾蜍蝌蚪",
     "room_type": "Monster",
@@ -1432,19 +1430,15 @@
     "name": "地道组合",
     "room_type": "Monster",
     "is_weak": false,
-    "act": "Act 2 - Hive",
+    "act": null,
     "tags": [
       "Burrower",
-      "Workers"
+      "Chomper"
     ],
     "monsters": [
       {
-        "id": "BOWLBUG_EGG",
-        "name": "盛碗虫（卵）"
-      },
-      {
-        "id": "BOWLBUG_SILK",
-        "name": "盛碗虫（丝）"
+        "id": "CHOMPER",
+        "name": "啃咬机"
       },
       {
         "id": "TUNNELER",

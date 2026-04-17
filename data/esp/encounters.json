@@ -302,10 +302,6 @@
     "tags": null,
     "monsters": [
       {
-        "id": "DOOR",
-        "name": "Portal"
-      },
-      {
         "id": "DOORMAKER",
         "name": "Portalero"
       }
@@ -591,11 +587,11 @@
     "monsters": [
       {
         "id": "CRUSHER",
-        "name": "Pinzinon"
+        "name": "Pinzinón"
       },
       {
         "id": "ROCKET",
-        "name": "Pinzinin"
+        "name": "Pinzinín"
       }
     ],
     "loss_text": "El [gold]Cangrejo káiser[/gold] golpeó a [b]The Adventurer[/b] por todas partes."
@@ -984,6 +980,27 @@
       }
     ],
     "loss_text": "Unos [gold]pergaminos dentados[/gold] destrozaron a [b]The Adventurer[/b] en pedazos."
+  },
+  {
+    "id": "SEAPUNK_NORMAL",
+    "name": "fauna de los Muelles Funestos",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": [
+      "Seapunk"
+    ],
+    "monsters": [
+      {
+        "id": "CALCIFIED_CULTIST",
+        "name": "Sectario calciremojado"
+      },
+      {
+        "id": "SEAPUNK",
+        "name": "Rufián marino"
+      }
+    ],
+    "loss_text": "Un [gold]fauna de los Muelles Funestos[/gold] derrotó a [b]The Adventurer[/b]."
   },
   {
     "id": "SEAPUNK_WEAK",
@@ -1394,25 +1411,6 @@
     "loss_text": "Un [gold]asaltamontes[/gold] asaltó a [b]The Adventurer[/b]."
   },
   {
-    "id": "TOADPOLES_NORMAL",
-    "name": "fauna de Muelles Funestos",
-    "room_type": "Monster",
-    "is_weak": false,
-    "act": "Underdocks",
-    "tags": null,
-    "monsters": [
-      {
-        "id": "CALCIFIED_CULTIST",
-        "name": "Sectario calciremojado"
-      },
-      {
-        "id": "TOADPOLE",
-        "name": "Ranacuajo"
-      }
-    ],
-    "loss_text": "La [gold]fauna de Muelles Funestos[/gold] derrotó a [b]The Adventurer[/b]."
-  },
-  {
     "id": "TOADPOLES_WEAK",
     "name": "ranacuajos",
     "room_type": "Monster",
@@ -1432,19 +1430,15 @@
     "name": "excavante y compañía",
     "room_type": "Monster",
     "is_weak": false,
-    "act": "Act 2 - Hive",
+    "act": null,
     "tags": [
       "Burrower",
-      "Workers"
+      "Chomper"
     ],
     "monsters": [
       {
-        "id": "BOWLBUG_EGG",
-        "name": "Bichobol (huevo)"
-      },
-      {
-        "id": "BOWLBUG_SILK",
-        "name": "Bichobol (seda)"
+        "id": "CHOMPER",
+        "name": "Mordebot"
       },
       {
         "id": "TUNNELER",

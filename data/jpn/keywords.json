@@ -20,11 +20,6 @@
     "description": "このカードが[gold]手札[/gold]にある状態で戦闘を開始する。"
   },
   {
-    "id": "PERIOD",
-    "name": "Period",
-    "description": ""
-  },
-  {
     "id": "RETAIN",
     "name": "保留",
     "description": "保留されたカードは、ターン終了時に捨て札にならない。"

@@ -38,8 +38,8 @@
   {
     "id": "LEVEL_06",
     "level": 6,
-    "name": "陰鬱",
-    "description": "休憩所の数が減る。"
+    "name": "インフレ",
+    "description": "商人でデッキからカードを削除する費用が増加する。"
   },
   {
     "id": "LEVEL_07",

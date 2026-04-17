@@ -62,7 +62,7 @@
   {
     "id": "STATUS",
     "name": "Находчивость",
-    "description": "Этот враг собирается подбросить вам [blue]{CardCount}[/blue] {CardCount:plural(ru):[gold]Статус[/gold]|[gold]Статуса[/gold]|[gold]Статусов[/gold]}.",
+    "description": "Этот враг собирается подбросить вам [blue]{CardCount}[/blue] [gold]{CardCount:plural(ru):Статус|Статуса|Статусов}[/gold].",
     "image_url": "/static/images/intents/status.webp"
   },
   {

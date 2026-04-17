@@ -62,7 +62,7 @@
   {
     "id": "ARSENAL",
     "name": "Arsenal",
-    "description": "Cuando juegues una carta incolora, gana [blue]1[/blue] de [gold]Fuerza[/gold].",
+    "description": "Cuando crees una carta, gana [blue]1[/blue] de [gold]Fuerza[/gold].",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
@@ -145,7 +145,7 @@
     "description": "Cuando ganes [gold]Bloqueo[/gold] durante tu turno, el resto de jugadores obtienen la mitad de ese [gold]Bloqueo[/gold].",
     "description_raw": null,
     "type": "Buff",
-    "stack_type": "Counter",
+    "stack_type": "Single",
     "allow_negative": null,
     "image_url": "/static/images/powers/beacon_of_hope_power.webp"
   },
@@ -170,16 +170,6 @@
     "image_url": "/static/images/powers/black_hole_power.webp"
   },
   {
-    "id": "BLADE_OF_INK",
-    "name": "Hoja de tinta",
-    "description": "Cuando juegues un Ataque este turno, gana [blue]2[/blue] de [gold]Fuerza[/gold] hasta el final del turno.",
-    "description_raw": null,
-    "type": "Buff",
-    "stack_type": "Counter",
-    "allow_negative": null,
-    "image_url": "/static/images/powers/blade_of_ink_power.webp"
-  },
-  {
     "id": "BLOCK_NEXT_TURN",
     "name": "Bloqueo inminente",
     "description": "Al comienzo de tu siguiente turno, gana [blue]4[/blue] de [gold]Bloqueo[/gold].",
@@ -198,6 +188,16 @@
     "stack_type": "Counter",
     "allow_negative": null,
     "image_url": "/static/images/powers/blur_power.webp"
+  },
+  {
+    "id": "BORROWED_TIME",
+    "name": "Tiempo prestado",
+    "description": "Jugar cartas cuesta 1 más de energía este turno.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/borrowed_time_power.webp"
   },
   {
     "id": "BUFFER",
@@ -402,7 +402,7 @@
   {
     "id": "CRAB_RAGE",
     "name": "Cólera crustácea",
-    "description": "Cuando un aliado muere, [gold]this creature[/gold] gana [blue]5[/blue] de [gold]Fuerza[/gold] y [blue]99[/blue] de [gold]Bloqueo[/gold].",
+    "description": "Cuando un aliado muere, [gold]this creature[/gold] gana [blue]6[/blue] de [gold]Fuerza[/gold] y [blue]99[/blue] de [gold]Bloqueo[/gold].",
     "description_raw": "Cuando un aliado muere, [gold]{OwnerName}[/gold] gana [blue]{StrengthPower}[/blue] de [gold]Fuerza[/gold] y [blue]{Block}[/blue] de [gold]Bloqueo[/gold].",
     "type": "Buff",
     "stack_type": "Single",
@@ -610,16 +610,6 @@
     "image_url": "/static/images/powers/doom_power.webp"
   },
   {
-    "id": "DOOR_REVIVAL",
-    "name": "Resurrección de puerta",
-    "description": "Poder infernal para las mecánicas de resurreción de Puerta.",
-    "description_raw": null,
-    "type": "Buff",
-    "stack_type": "Single",
-    "allow_negative": null,
-    "image_url": null
-  },
-  {
     "id": "DOUBLE_DAMAGE",
     "name": "Daño doble",
     "description": "Este turno, los Ataques infligen el doble de daño.",
@@ -802,7 +792,7 @@
   {
     "id": "FLANKING",
     "name": "Flanquear",
-    "description": "Durante este turno, tus aliados infligen [blue]el doble[/blue] de daño a este enemigo.",
+    "description": "Durante este turno, los ataques de tus aliados infligen [blue]el doble[/blue] de daño a este enemigo.",
     "description_raw": null,
     "type": "Debuff",
     "stack_type": "Counter",
@@ -960,14 +950,14 @@
     "image_url": "/static/images/powers/gigantification_power.webp"
   },
   {
-    "id": "GRAPPLE",
-    "name": "Agarrón",
-    "description": "Cuando ganes [gold]Bloqueo[/gold] este turno, inflige [blue][Amount][/blue] de daño a [gold]this creature[/gold].",
-    "description_raw": "Cuando ganes [gold]Bloqueo[/gold] este turno, inflige [blue]{Amount}[/blue] de daño a [gold]{OwnerName}[/gold].",
-    "type": "Debuff",
-    "stack_type": "Counter",
+    "id": "GRASP",
+    "name": "Agarre",
+    "description": "Cuando juegues una carta, pierdes [blue]1[/blue] de Energía.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
     "allow_negative": null,
-    "image_url": "/static/images/powers/grapple_power.webp"
+    "image_url": "/static/images/powers/grasp_power.webp"
   },
   {
     "id": "GRAVITY",
@@ -1130,6 +1120,16 @@
     "image_url": "/static/images/powers/hotfix_power.webp"
   },
   {
+    "id": "HUNGER",
+    "name": "Hambre",
+    "description": "Cuando juegues una carta de Ataque o Habilidad, [gold]Agótala[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/hunger_power.webp"
+  },
+  {
     "id": "ILLUSION",
     "name": "Ilusión",
     "description": "Cuando esta criatura muere, revive al siguiente turno con todos los PV.",
@@ -1212,7 +1212,7 @@
   {
     "id": "ITERATION",
     "name": "Iteración",
-    "description": "La primera vez que robes una carta de [gold]Estado[/gold] cada turno, roba más cartas.",
+    "description": "La primera vez que robes una carta de Estado cada turno, roba más cartas.",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
@@ -1448,6 +1448,16 @@
     "stack_type": "Single",
     "allow_negative": null,
     "image_url": "/static/images/powers/no_draw_power.webp"
+  },
+  {
+    "id": "NO_ENERGY_GAIN",
+    "name": "Energía agotada",
+    "description": "No puedes obtener más [energy:1] este turno.",
+    "description_raw": "No puedes obtener más {energyPrefix:energyIcons(1)} este turno.",
+    "type": "Debuff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/no_energy_gain_power.webp"
   },
   {
     "id": "NOSTALGIA",
@@ -1848,6 +1858,16 @@
     "stack_type": "Counter",
     "allow_negative": null,
     "image_url": "/static/images/powers/sandpit_power.webp"
+  },
+  {
+    "id": "SCRUTINY",
+    "name": "Escrutinio",
+    "description": "No puedes robar cartas adicionales durante tu turno.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/scrutiny_power.webp"
   },
   {
     "id": "SEEKING_EDGE",
@@ -2272,7 +2292,7 @@
   {
     "id": "SWORD_SAGE",
     "name": "Maestro espadachín",
-    "description": "Aumenta el coste de [gold]Espada del soberano[/gold] en [blue]1[/blue]. Ahora [gold]Espada del soberano[/gold] golpea [blue]1[/blue] vez más.",
+    "description": "Ahora [gold]Espada del soberano[/gold] golpea [blue]1[/blue] vez más.",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",

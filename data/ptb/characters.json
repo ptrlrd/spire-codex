@@ -249,7 +249,7 @@
           {
             "order": 0,
             "speaker": "ancient",
-            "text": "CONSTRUTO! SEM ARMAS?! FIQUE COM ISTO!"
+            "text": "CONSTRUCTO! SEM ARMAS?! FIQUE COM ISTO!"
           }
         ]
       },
@@ -1764,7 +1764,7 @@
           {
             "order": 0,
             "speaker": "char",
-            "text": "Cheguei! Você aí, plebeu! Aqui é o topo?"
+            "text": "Eu cheguei! Você aí, plebeu! Aqui é o topo?"
           },
           {
             "order": 1,
@@ -1879,7 +1879,7 @@
   {
     "id": "SILENT",
     "name": "A Sorrateira",
-    "description": "Uma caçadora forasteira do Pináculo.\nPronta para apunhalar e envenenar quem\ncruzar seu caminho.",
+    "description": "Uma caçadora forasteira do Pináculo.\nPronta para apunhalar e envenenar quem cruzar\no seu caminho.",
     "starting_hp": 70,
     "starting_gold": 99,
     "max_energy": 3,

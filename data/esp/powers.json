@@ -62,7 +62,7 @@
   {
     "id": "ARSENAL",
     "name": "Arsenal",
-    "description": "Al jugar una carta incolora, brinda [blue]1[/blue] de [gold]fuerza[/gold].",
+    "description": "Al crear una carta, brinda [blue]1[/blue] de [gold]fuerza[/gold].",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
@@ -142,10 +142,10 @@
   {
     "id": "BEACON_OF_HOPE",
     "name": "Faro de la esperanza",
-    "description": "Al obtener [gold]bloqueo[/gold] en el turno, las demás personas obtienen la mitad de esos puntos en [gold]bloqueo[/gold].",
+    "description": "Al obtener [gold]bloqueo[/gold] en el turno, otros jugadores obtienen la mitad de esos puntos de [gold]bloqueo[/gold].",
     "description_raw": null,
     "type": "Buff",
-    "stack_type": "Counter",
+    "stack_type": "Single",
     "allow_negative": null,
     "image_url": "/static/images/powers/beacon_of_hope_power.webp"
   },
@@ -170,16 +170,6 @@
     "image_url": "/static/images/powers/black_hole_power.webp"
   },
   {
-    "id": "BLADE_OF_INK",
-    "name": "Cuchillas de tinta",
-    "description": "Al jugar una carta de ataque en este turno, brinda [blue]2[/blue] de [gold]fuerza[/gold].",
-    "description_raw": null,
-    "type": "Buff",
-    "stack_type": "Counter",
-    "allow_negative": null,
-    "image_url": "/static/images/powers/blade_of_ink_power.webp"
-  },
-  {
     "id": "BLOCK_NEXT_TURN",
     "name": "Bloqueo de próximo turno",
     "description": "Al comienzo del próximo turno, brinda [blue]4[/blue] de [gold]bloqueo[/gold].",
@@ -198,6 +188,16 @@
     "stack_type": "Counter",
     "allow_negative": null,
     "image_url": "/static/images/powers/blur_power.webp"
+  },
+  {
+    "id": "BORROWED_TIME",
+    "name": "Tiempo prestado",
+    "description": "En este turno, las cartas cuestan uno más de energía.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/borrowed_time_power.webp"
   },
   {
     "id": "BUFFER",
@@ -402,7 +402,7 @@
   {
     "id": "CRAB_RAGE",
     "name": "Cólera crustácea",
-    "description": "Si un camarada muere, [gold]this creature[/gold] obtiene [blue]5[/blue] de [gold]fuerza[/gold] y [blue]99[/blue] de [gold]bloqueo[/gold].",
+    "description": "Si un camarada muere, [gold]this creature[/gold] obtiene [blue]6[/blue] de [gold]fuerza[/gold] y [blue]99[/blue] de [gold]bloqueo[/gold].",
     "description_raw": "Si un camarada muere, [gold]{OwnerName}[/gold] obtiene [blue]{StrengthPower}[/blue] de [gold]fuerza[/gold] y [blue]{Block}[/blue] de [gold]bloqueo[/gold].",
     "type": "Buff",
     "stack_type": "Single",
@@ -610,16 +610,6 @@
     "image_url": "/static/images/powers/doom_power.webp"
   },
   {
-    "id": "DOOR_REVIVAL",
-    "name": "Reactivapuertas",
-    "description": "Poder interno para las mecánicas de Reactivapuertas.",
-    "description_raw": null,
-    "type": "Buff",
-    "stack_type": "Single",
-    "allow_negative": null,
-    "image_url": null
-  },
-  {
     "id": "DOUBLE_DAMAGE",
     "name": "Daño doble",
     "description": "En este turno, los ataques infligen el doble de daño.",
@@ -802,7 +792,7 @@
   {
     "id": "FLANKING",
     "name": "Flanquear",
-    "description": "Tus camaradas infligen [blue]el doble[/blue] de daño a este enemigo durante este turno.",
+    "description": "Tus camaradas infligen [blue]el doble[/blue] de daño con cartas de ataque a este enemigo durante este turno.",
     "description_raw": null,
     "type": "Debuff",
     "stack_type": "Counter",
@@ -960,14 +950,14 @@
     "image_url": "/static/images/powers/gigantification_power.webp"
   },
   {
-    "id": "GRAPPLE",
+    "id": "GRASP",
     "name": "Agarre",
-    "description": "Al obtener [gold]bloqueo[/gold] en este turno, provoca [blue][Amount][/blue] de daño a [gold]this creature[/gold].",
-    "description_raw": "Al obtener [gold]bloqueo[/gold] en este turno, provoca [blue]{Amount}[/blue] de daño a [gold]{OwnerName}[/gold].",
-    "type": "Debuff",
-    "stack_type": "Counter",
+    "description": "Al jugar una carta, se quita [blue]1[/blue] de energía.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
     "allow_negative": null,
-    "image_url": "/static/images/powers/grapple_power.webp"
+    "image_url": "/static/images/powers/grasp_power.webp"
   },
   {
     "id": "GRAVITY",
@@ -1102,7 +1092,7 @@
   {
     "id": "HEX",
     "name": "Maleficio",
-    "description": "Mientras Caballero espectral permanezca con vida, se aplica [gold]evanescencia[/gold] a TODAS tus cartas.",
+    "description": "Mientras Espectrocallero permanezca con vida, se aplica [gold]evanescencia[/gold] a TODAS tus cartas.",
     "description_raw": null,
     "type": "Debuff",
     "stack_type": "Single",
@@ -1128,6 +1118,16 @@
     "stack_type": "Counter",
     "allow_negative": null,
     "image_url": "/static/images/powers/hotfix_power.webp"
+  },
+  {
+    "id": "HUNGER",
+    "name": "Hambruna",
+    "description": "Al jugar una carta de ataque o habilidad, se [gold]agotará[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/hunger_power.webp"
   },
   {
     "id": "ILLUSION",
@@ -1162,8 +1162,8 @@
   {
     "id": "INFERNO",
     "name": "Infierno",
-    "description": "Al comienzo del turno, quita [blue]0[/blue] PV. Al perder PV en el turno, provoca [blue][Amount][/blue] de daño a TODOS los enemigos.",
-    "description_raw": "Al comienzo del turno, quita [blue]{SelfDamage}[/blue] PV. Al perder PV en el turno, provoca [blue]{Amount}[/blue] de daño a TODOS los enemigos.",
+    "description": "Al comienzo de tu turno, pierdes [blue]0[/blue] PV. Al perder PV en e tu turno, infliges [blue][Amount][/blue] de daño a TODOS los enemigos.",
+    "description_raw": "Al comienzo de tu turno, pierdes [blue]{SelfDamage}[/blue] PV. Al perder PV en e tu turno, infliges [blue]{Amount}[/blue] de daño a TODOS los enemigos.",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -1212,7 +1212,7 @@
   {
     "id": "ITERATION",
     "name": "Iteración",
-    "description": "La primera vez que robas una carta de [gold]estado[/gold] en cada turno, robas más cartas.",
+    "description": "La primera vez que robas una carta de estado en cada turno, robas más cartas.",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
@@ -1402,7 +1402,7 @@
   {
     "id": "NEMESIS",
     "name": "Némesis",
-    "description": "Al final de cada turno, brinda [blue]1[/blue] de [gold]intangibilidad[/gold].",
+    "description": "Al final de cada dos turnos, otorga [blue]1[/blue] de [gold]intangibilidad[/gold].",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Single",
@@ -1412,7 +1412,7 @@
   {
     "id": "NEUROSURGE",
     "name": "Sobrecarga neural",
-    "description": "Al final del turno, se autoplica [blue]3[/blue] de [gold]condena[/gold].",
+    "description": "Al inicio del turno, se autoaplica [blue]3[/blue] de [gold]condena[/gold].",
     "description_raw": null,
     "type": "Debuff",
     "stack_type": "Counter",
@@ -1448,6 +1448,16 @@
     "stack_type": "Single",
     "allow_negative": null,
     "image_url": "/static/images/powers/no_draw_power.webp"
+  },
+  {
+    "id": "NO_ENERGY_GAIN",
+    "name": "Sin energía",
+    "description": "No puedes obtener [energy:1] adicional en este turno.",
+    "description_raw": "No puedes obtener {energyPrefix:energyIcons(1)} adicional en este turno.",
+    "type": "Debuff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/no_energy_gain_power.webp"
   },
   {
     "id": "NOSTALGIA",
@@ -1848,6 +1858,16 @@
     "stack_type": "Counter",
     "allow_negative": null,
     "image_url": "/static/images/powers/sandpit_power.webp"
+  },
+  {
+    "id": "SCRUTINY",
+    "name": "Escrutinio",
+    "description": "No puedes robar cartas adicionales durante tu turno.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/scrutiny_power.webp"
   },
   {
     "id": "SEEKING_EDGE",
@@ -2272,7 +2292,7 @@
   {
     "id": "SWORD_SAGE",
     "name": "Espadachín sabio",
-    "description": "Aumenta el costo de [gold]Espada del soberano[/gold] en [blue]1[/blue]. [gold]Espada del soberano[/gold] ahora golpea [blue]1[/blue] vez más.",
+    "description": "[gold]Espada del soberano[/gold] ahora golpea [blue]1[/blue] vez más.",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",

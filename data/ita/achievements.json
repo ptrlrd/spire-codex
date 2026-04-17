@@ -46,7 +46,7 @@
   },
   {
     "id": "CHARACTER_SKILL_NECROBINDER2",
-    "name": "Calcio a gogo",
+    "name": "Ricco di calcio",
     "description": "Applica 50 di Forza a Osty.",
     "category": "character_skill",
     "character": "Necrobinder",
@@ -56,7 +56,7 @@
   {
     "id": "CHARACTER_SKILL_REGENT1",
     "name": "Una spada da monarca",
-    "description": "Crea una carta Spada Sovrana tramite Forgiatura che infligge almeno 999 di danno.",
+    "description": "Forgia una Spada Sovrana che infligga almeno 999 di danno.",
     "category": "character_skill",
     "character": "Regent",
     "threshold": 999,
@@ -182,7 +182,7 @@
   {
     "id": "DISCOVER_ALL_EVENTS",
     "name": "Amante dell'esplorazione",
-    "description": "Scopri tutti gli eventi.",
+    "description": "Trova tutti gli eventi.",
     "category": "collection",
     "character": null,
     "threshold": null,
@@ -254,7 +254,7 @@
   {
     "id": "PLAY20_CARDS_SINGLE_TURN",
     "name": "Giocare le carte è uno spasso!",
-    "description": "Gioca 20 carde in un singolo turno.",
+    "description": "Gioca 20 carte in un singolo turno.",
     "category": "combat",
     "character": null,
     "threshold": 20,
@@ -280,7 +280,7 @@
   },
   {
     "id": "SILENT_ASCENSION10",
-    "name": "Fantasma silente",
+    "name": "Spettro",
     "description": "Completa una partita in Ascensione 10 con Silent.",
     "category": "character_ascension",
     "character": "Silent",

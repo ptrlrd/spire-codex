@@ -62,7 +62,7 @@
   {
     "id": "ARSENAL",
     "name": "무기고",
-    "description": "무색 카드를 사용할 때마다, [gold]힘[/gold]을 [blue]1[/blue] 얻습니다.",
+    "description": "카드를 생성할 때마다, [gold]힘[/gold]을 [blue]1[/blue] 얻습니다.",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
@@ -145,7 +145,7 @@
     "description": "내 턴 동안 [gold]방어도[/gold]를 얻을 때마다, 다른 플레이어가 그 절반만큼 [gold]방어도[/gold]를 얻습니다.",
     "description_raw": null,
     "type": "Buff",
-    "stack_type": "Counter",
+    "stack_type": "Single",
     "allow_negative": null,
     "image_url": "/static/images/powers/beacon_of_hope_power.webp"
   },
@@ -170,16 +170,6 @@
     "image_url": "/static/images/powers/black_hole_power.webp"
   },
   {
-    "id": "BLADE_OF_INK",
-    "name": "잉크 칼날",
-    "description": "이번 턴에 공격 카드를 사용할 때마다, 이번 턴 동안 [gold]힘[/gold]을 [blue]2[/blue] 얻습니다.",
-    "description_raw": null,
-    "type": "Buff",
-    "stack_type": "Counter",
-    "allow_negative": null,
-    "image_url": "/static/images/powers/blade_of_ink_power.webp"
-  },
-  {
     "id": "BLOCK_NEXT_TURN",
     "name": "다음 턴 방어도",
     "description": "다음 턴 시작 시, [gold]방어도[/gold]를 [blue]4[/blue] 얻습니다.",
@@ -198,6 +188,16 @@
     "stack_type": "Counter",
     "allow_negative": null,
     "image_url": "/static/images/powers/blur_power.webp"
+  },
+  {
+    "id": "BORROWED_TIME",
+    "name": "연명",
+    "description": "이번 턴 동안 카드의 비용이 1 증가합니다.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/borrowed_time_power.webp"
   },
   {
     "id": "BUFFER",
@@ -402,8 +402,8 @@
   {
     "id": "CRAB_RAGE",
     "name": "꽃게의 격노",
-    "description": "아군이 죽을 시, [gold]this creature[/gold]가 [gold]힘[/gold]을 [blue]5[/blue], [gold]방어도[/gold]를 [blue]99[/blue] 얻습니다.",
-    "description_raw": "아군이 죽을 시, [gold]{OwnerName}[/gold]가 [gold]힘[/gold]을 [blue]{StrengthPower}[/blue], [gold]방어도[/gold]를 [blue]{Block}[/blue] 얻습니다.",
+    "description": "아군이 죽을 시, [gold]this creature[/gold]이(가) [gold]힘[/gold]을 [blue]6[/blue], [gold]방어도[/gold]를 [blue]99[/blue] 얻습니다.",
+    "description_raw": "아군이 죽을 시, [gold]{OwnerName}[/gold]이(가) [gold]힘[/gold]을 [blue]{StrengthPower}[/blue], [gold]방어도[/gold]를 [blue]{Block}[/blue] 얻습니다.",
     "type": "Buff",
     "stack_type": "Single",
     "allow_negative": null,
@@ -610,16 +610,6 @@
     "image_url": "/static/images/powers/doom_power.webp"
   },
   {
-    "id": "DOOR_REVIVAL",
-    "name": "문 공개",
-    "description": "문 공개 메커니즘을 위한 내부 파워.",
-    "description_raw": null,
-    "type": "Buff",
-    "stack_type": "Single",
-    "allow_negative": null,
-    "image_url": null
-  },
-  {
     "id": "DOUBLE_DAMAGE",
     "name": "2배의 피해",
     "description": "이번 턴에 가하는 공격의 피해량이 2배가 됩니다.",
@@ -782,8 +772,8 @@
   {
     "id": "FERAL",
     "name": "야성",
-    "description": "매 턴마다 처음으로 비용이 0[energy:1]인 공격 카드를 사용 시, 그 카드를 [gold]손[/gold]으로 다시 가져옵니다.",
-    "description_raw": "매 턴마다 처음으로 비용이 0{energyPrefix:energyIcons(1)}인 공격 카드를 사용 시, 그 카드를 [gold]손[/gold]으로 다시 가져옵니다.",
+    "description": "매 턴마다 처음 비용이 0[energy:1]인 공격 카드를 사용 시, 그 카드를 [gold]손[/gold]으로 다시 가져옵니다.",
+    "description_raw": "매 턴마다 처음 비용이 0{energyPrefix:energyIcons(1)}인 공격 카드를 사용 시, 그 카드를 [gold]손[/gold]으로 다시 가져옵니다.",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -802,7 +792,7 @@
   {
     "id": "FLANKING",
     "name": "측면 공격",
-    "description": "이번 턴에 다른 아군이 이 적에게 가하는 피해량이 [blue]2배[/blue]가 됩니다.",
+    "description": "이번 턴에 다른 아군이 이 적에게 가하는 공격 피해량이 [blue]2배[/blue]가 됩니다.",
     "description_raw": null,
     "type": "Debuff",
     "stack_type": "Counter",
@@ -822,8 +812,8 @@
   {
     "id": "FLUTTER",
     "name": "날갯짓",
-    "description": "공격 카드를 통해 받는 피해량이 [blue]50%[/blue] 감소합니다. 공격 피해를 [blue][Amount][/blue]번 받을 시 [gold]기절[/gold] 상태가 됩니다",
-    "description_raw": "공격 카드를 통해 받는 피해량이 [blue]{DamageDecrease}%[/blue] 감소합니다. 공격 피해를 [blue]{Amount}[/blue]번 받을 시 [gold]기절[/gold] 상태가 됩니다",
+    "description": "공격 카드를 통해 받는 피해량이 [blue]50%[/blue] 감소합니다. 공격 피해를 [blue][Amount][/blue]번 받을 시 [gold]기절[/gold] 상태가 됩니다.",
+    "description_raw": "공격 카드를 통해 받는 피해량이 [blue]{DamageDecrease}%[/blue] 감소합니다. 공격 피해를 [blue]{Amount}[/blue]번 받을 시 [gold]기절[/gold] 상태가 됩니다.",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -960,14 +950,14 @@
     "image_url": "/static/images/powers/gigantification_power.webp"
   },
   {
-    "id": "GRAPPLE",
-    "name": "그래플링",
-    "description": "이번 턴에 [gold]방어도[/gold]를 얻을 때마다, [gold]this creature[/gold]에게 피해를 [blue][Amount][/blue] 줍니다.",
-    "description_raw": "이번 턴에 [gold]방어도[/gold]를 얻을 때마다, [gold]{OwnerName}[/gold]에게 피해를 [blue]{Amount}[/blue] 줍니다.",
-    "type": "Debuff",
-    "stack_type": "Counter",
+    "id": "GRASP",
+    "name": "움켜쥐기",
+    "description": "카드를 사용할 때마다, 에너지를 [blue]1[/blue] 잃습니다.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
     "allow_negative": null,
-    "image_url": "/static/images/powers/grapple_power.webp"
+    "image_url": "/static/images/powers/grasp_power.webp"
   },
   {
     "id": "GRAVITY",
@@ -1130,6 +1120,16 @@
     "image_url": "/static/images/powers/hotfix_power.webp"
   },
   {
+    "id": "HUNGER",
+    "name": "굶주림",
+    "description": "공격이나 스킬 카드를 사용 시, 그 카드가 [gold]소멸[/gold]됩니다.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/hunger_power.webp"
+  },
+  {
     "id": "ILLUSION",
     "name": "환상",
     "description": "사망 시, 다음 턴에 체력이 가득 찬 상태로 부활합니다.",
@@ -1212,7 +1212,7 @@
   {
     "id": "ITERATION",
     "name": "순회",
-    "description": "매 턴마다 처음으로 [gold]상태이상[/gold] 카드를 뽑을 시, 추가로 카드를 뽑습니다.",
+    "description": "매 턴마다 처음으로 상태이상 카드를 뽑을 시, 추가로 카드를 뽑습니다.",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
@@ -1450,6 +1450,16 @@
     "image_url": "/static/images/powers/no_draw_power.webp"
   },
   {
+    "id": "NO_ENERGY_GAIN",
+    "name": "에너지 획득 불가",
+    "description": "이번 턴에 추가로 [energy:1]를 얻을 수 없습니다.",
+    "description_raw": "이번 턴에 추가로 {energyPrefix:energyIcons(1)}를 얻을 수 없습니다.",
+    "type": "Debuff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/no_energy_gain_power.webp"
+  },
+  {
     "id": "NOSTALGIA",
     "name": "향수",
     "description": "매 턴마다 처음으로 사용하는 공격이나 스킬 카드를 [gold]뽑을 카드 더미[/gold] 맨 위에 놓습니다.",
@@ -1572,7 +1582,7 @@
   {
     "id": "PERSONAL_HIVE",
     "name": "개인 군락",
-    "description": "이 적이 공격 카드에 적중당할 때마다, [gold]뽑을 카드 더미[/gold]에 [gold]어지러움[/gold]을 섞어 넣습니다.",
+    "description": "이 적이 공격 카드에 적중당할 때마다, [gold]뽑을 카드 더미[/gold]에 [gold]어지러움[/gold]을 추가합니다.",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
@@ -1848,6 +1858,16 @@
     "stack_type": "Counter",
     "allow_negative": null,
     "image_url": "/static/images/powers/sandpit_power.webp"
+  },
+  {
+    "id": "SCRUTINY",
+    "name": "감시",
+    "description": "내 턴 동안 카드를 뽑을 수 없습니다.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/scrutiny_power.webp"
   },
   {
     "id": "SEEKING_EDGE",
@@ -2272,7 +2292,7 @@
   {
     "id": "SWORD_SAGE",
     "name": "검성",
-    "description": "[gold]군주의 칼날[/gold]의 비용이 [blue]1[/blue] 증가합니다. [gold]군주의 칼날[/gold]이 이제 [blue]1[/blue]번 추가로 적중합니다.",
+    "description": "[gold]군주의 칼날[/gold]이 이제 [blue]1[/blue]번 추가로 적중합니다.",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
@@ -2432,7 +2452,7 @@
   {
     "id": "TRACKING",
     "name": "추적",
-    "description": "[gold]약화[/gold] 상태의 적이 공격 카드로 받는 피해가 [blue]2[/blue]배가 됩니다..",
+    "description": "[gold]약화[/gold] 상태의 적이 공격 카드로 받는 피해가 [blue]2[/blue]배가 됩니다.",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
@@ -2512,7 +2532,7 @@
   {
     "id": "VOID_FORM",
     "name": "공허의 형상",
-    "description": "매 턴마다 처음으로 내는 카드 [blue]2[/blue]장이 비용 없이 사용됩니다.",
+    "description": "매 턴마다 처음으로 사용하는 카드 [blue]2[/blue]장이 비용 없이 사용됩니다.",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
@@ -2522,8 +2542,8 @@
   {
     "id": "VULNERABLE",
     "name": "취약",
-    "description": "[blue][Amount][/blue]턴 동안 공격을 통해 받는 피해량이 [blue]50%[/blue] 증가합니다.",
-    "description_raw": "[blue]{Amount}[/blue]턴 동안 공격을 통해 받는 피해량이 [blue]{DamageIncrease:percentMore()}%[/blue] 증가합니다.",
+    "description": "[blue][Amount][/blue]턴 동안 공격 카드를 통해 받는 피해량이 [blue]50%[/blue] 증가합니다.",
+    "description_raw": "[blue]{Amount}[/blue]턴 동안 공격 카드를 통해 받는 피해량이 [blue]{DamageIncrease:percentMore()}%[/blue] 증가합니다.",
     "type": "Debuff",
     "stack_type": "Counter",
     "allow_negative": null,

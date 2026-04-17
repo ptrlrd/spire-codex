@@ -92,7 +92,7 @@
   },
   {
     "id": "REOPENING",
-    "name": "И снова распахнулись двери",
+    "name": "Открытие",
     "epochs": [
       "POTION2_EPOCH",
       "RELIC5_EPOCH",

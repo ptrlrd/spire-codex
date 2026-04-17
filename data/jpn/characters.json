@@ -445,7 +445,7 @@
   {
     "id": "IRONCLAD",
     "name": "アイアンクラッド",
-    "description": "アイアンクラッド族の最後の兵士。\n不本意ながらも、剣と炎で敵を粉砕する。",
+    "description": "アイアンクラッド族、最後の兵士。\n己が意志に反し、剣と炎で敵を粉砕する。",
     "starting_hp": 80,
     "starting_gold": 99,
     "max_energy": 3,

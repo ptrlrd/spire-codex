@@ -62,7 +62,7 @@
   {
     "id": "ARSENAL",
     "name": "Arsenal",
-    "description": "Sempre que você jogar uma carta Incolor, receba [blue]1[/blue] de [gold]Força[/gold].",
+    "description": "Sempre que você criar uma carta, receba [blue]1[/blue] de [gold]Força[/gold].",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
@@ -102,7 +102,7 @@
   {
     "id": "BACK_ATTACK_LEFT",
     "name": "Ataque Traseiro",
-    "description": "Causa [blue]50%[/blue] a mais de dano quando atacar você pelas costas.",
+    "description": "Causa [blue]50%[/blue] de dano adicional quando atacar você pelas costas.",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Single",
@@ -112,7 +112,7 @@
   {
     "id": "BACK_ATTACK_RIGHT",
     "name": "Ataque Traseiro",
-    "description": "Causa [blue]50%[/blue] a mais de dano quando atacar você pelas costas.",
+    "description": "Causa [blue]50%[/blue] de dano adicional quando atacar você pelas costas.",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Single",
@@ -145,7 +145,7 @@
     "description": "Sempre que você receber [gold]Proteção[/gold] no seu turno, outros jogadores recebem metade desta [gold]Proteção[/gold].",
     "description_raw": null,
     "type": "Buff",
-    "stack_type": "Counter",
+    "stack_type": "Single",
     "allow_negative": null,
     "image_url": "/static/images/powers/beacon_of_hope_power.webp"
   },
@@ -170,16 +170,6 @@
     "image_url": "/static/images/powers/black_hole_power.webp"
   },
   {
-    "id": "BLADE_OF_INK",
-    "name": "Lâmina Nanquim",
-    "description": "Sempre que você jogar um Ataque neste turno, receba [blue]2[/blue] de [gold]Força[/gold] neste turno.",
-    "description_raw": null,
-    "type": "Buff",
-    "stack_type": "Counter",
-    "allow_negative": null,
-    "image_url": "/static/images/powers/blade_of_ink_power.webp"
-  },
-  {
     "id": "BLOCK_NEXT_TURN",
     "name": "Proteção Iminente",
     "description": "No início do seu próximo turno, receba [blue]4[/blue] de [gold]Proteção[/gold].",
@@ -198,6 +188,16 @@
     "stack_type": "Counter",
     "allow_negative": null,
     "image_url": "/static/images/powers/blur_power.webp"
+  },
+  {
+    "id": "BORROWED_TIME",
+    "name": "Tempo Emprestado",
+    "description": "Cartas custam uma Energia adicional neste turno.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/borrowed_time_power.webp"
   },
   {
     "id": "BUFFER",
@@ -402,7 +402,7 @@
   {
     "id": "CRAB_RAGE",
     "name": "Furor Crustáceo",
-    "description": "Quando um aliado é derrotado, [gold]this creature[/gold] recebe [blue]5[/blue] de [gold]Força[/gold] e [blue]99[/blue] de [gold]Proteção[/gold].",
+    "description": "Quando um aliado é derrotado, [gold]this creature[/gold] recebe [blue]6[/blue] de [gold]Força[/gold] e [blue]99[/blue] de [gold]Proteção[/gold].",
     "description_raw": "Quando um aliado é derrotado, [gold]{OwnerName}[/gold] recebe [blue]{StrengthPower}[/blue] de [gold]Força[/gold] e [blue]{Block}[/blue] de [gold]Proteção[/gold].",
     "type": "Buff",
     "stack_type": "Single",
@@ -610,16 +610,6 @@
     "image_url": "/static/images/powers/doom_power.webp"
   },
   {
-    "id": "DOOR_REVIVAL",
-    "name": "Reativação de Portas",
-    "description": "Poder interno para mecânicas de reativação de Portas.",
-    "description_raw": null,
-    "type": "Buff",
-    "stack_type": "Single",
-    "allow_negative": null,
-    "image_url": null
-  },
-  {
     "id": "DOUBLE_DAMAGE",
     "name": "Dano em Dobro",
     "description": "Neste turno, Ataques causam o dobro de dano.",
@@ -802,7 +792,7 @@
   {
     "id": "FLANKING",
     "name": "Flanquear",
-    "description": "Aliados causam [blue]2x[/blue] mais dano a este inimigo neste turno.",
+    "description": "Outros jogadores causam [blue]2x[/blue] mais dano de ataque a este inimigo neste turno.",
     "description_raw": null,
     "type": "Debuff",
     "stack_type": "Counter",
@@ -960,14 +950,14 @@
     "image_url": "/static/images/powers/gigantification_power.webp"
   },
   {
-    "id": "GRAPPLE",
-    "name": "Agarrão",
-    "description": "Sempre que você receber [gold]Proteção[/gold] neste turno, [gold]this creature[/gold] sofre [blue][Amount][/blue] de dano.",
-    "description_raw": "Sempre que você receber [gold]Proteção[/gold] neste turno, [gold]{OwnerName}[/gold] sofre [blue]{Amount}[/blue] de dano.",
-    "type": "Debuff",
-    "stack_type": "Counter",
+    "id": "GRASP",
+    "name": "Agarrar",
+    "description": "Sempre que você jogar uma carta, perca [blue]1[/blue] Energia.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
     "allow_negative": null,
-    "image_url": "/static/images/powers/grapple_power.webp"
+    "image_url": "/static/images/powers/grasp_power.webp"
   },
   {
     "id": "GRAVITY",
@@ -1130,6 +1120,16 @@
     "image_url": "/static/images/powers/hotfix_power.webp"
   },
   {
+    "id": "HUNGER",
+    "name": "Fome",
+    "description": "Sempre que você jogar um Ataque ou uma Técnica, eles são [gold]Exauridos[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/hunger_power.webp"
+  },
+  {
     "id": "ILLUSION",
     "name": "Ilusão",
     "description": "Quando for derrotada, regenera no próximo turno com todos os PV.",
@@ -1142,8 +1142,8 @@
   {
     "id": "IMBALANCED",
     "name": "Desequilíbrio",
-    "description": "Se os ataques de [gold]this creature[/gold] forem completamente bloqueados , esta criatura fica [gold]Atordoada[/gold].",
-    "description_raw": "Se os ataques de [gold]{OwnerName}[/gold] forem completamente bloqueados {IsMultiplayer: por qualquer jogador|}, esta criatura fica [gold]Atordoada[/gold].",
+    "description": "Se os ataques de [gold]this creature[/gold] forem completamente bloqueados, esta criatura fica [gold]Atordoada[/gold].",
+    "description_raw": "Se os ataques de [gold]{OwnerName}[/gold] forem completamente bloqueados{IsMultiplayer: por qualquer jogador|}, esta criatura fica [gold]Atordoada[/gold].",
     "type": "Debuff",
     "stack_type": "Single",
     "allow_negative": null,
@@ -1212,7 +1212,7 @@
   {
     "id": "ITERATION",
     "name": "Iteração",
-    "description": "Na primeira vez que você comprar uma carta de [gold]Condição[/gold] a cada turno, compre duas cartas adicionais.",
+    "description": "Na primeira vez que você comprar uma carta de Condição a cada turno, compre duas cartas adicionais.",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
@@ -1448,6 +1448,16 @@
     "stack_type": "Single",
     "allow_negative": null,
     "image_url": "/static/images/powers/no_draw_power.webp"
+  },
+  {
+    "id": "NO_ENERGY_GAIN",
+    "name": "Sem Energia Adicional",
+    "description": "Você não pode receber [energy:1] adicional neste turno.",
+    "description_raw": "Você não pode receber {energyPrefix:energyIcons(1)} adicional neste turno.",
+    "type": "Debuff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/no_energy_gain_power.webp"
   },
   {
     "id": "NOSTALGIA",
@@ -1850,6 +1860,16 @@
     "image_url": "/static/images/powers/sandpit_power.webp"
   },
   {
+    "id": "SCRUTINY",
+    "name": "Inspeção",
+    "description": "Você não pode comprar cartas adicionais durante o seu turno.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/scrutiny_power.webp"
+  },
+  {
     "id": "SEEKING_EDGE",
     "name": "Lâmina Perseguidora",
     "description": "[gold]Espada Soberana[/gold] agora golpeia TODOS os inimigos.",
@@ -1942,8 +1962,8 @@
   {
     "id": "SHRINK",
     "name": "Encolhimento",
-    "description": "os Ataques de[gold]this creature[/gold] causam [blue]30%[/blue] menos dano.",
-    "description_raw": "{ApplierName.StringValue:cond:Enquanto {} estiver vivo, os seus Ataques|os Ataques de[gold]{OwnerName}[/gold]} causam [blue]{DamageDecrease}%[/blue] menos dano{Amount:cond:==1? no próximo turno|>1? pelos próximos [blue]{}[/blue] turnos|}.",
+    "description": "Os Ataques de [gold]this creature[/gold] causam [blue]30%[/blue] menos dano.",
+    "description_raw": "{ApplierName.StringValue:cond:Enquanto {} estiver vivo, os seus Ataques|Os Ataques de [gold]{OwnerName}[/gold]} causam [blue]{DamageDecrease}%[/blue] menos dano{Amount:cond:==1? no próximo turno|>1? pelos próximos [blue]{}[/blue] turnos|}.",
     "type": "Debuff",
     "stack_type": "None",
     "allow_negative": true,
@@ -2111,7 +2131,7 @@
   },
   {
     "id": "SPINNER",
-    "name": "Spinner",
+    "name": "Vitro-Fiandeiro",
     "description": "No início do seu turno, [gold]Canalize[/gold] [blue]1[/blue] [gold]Vidro[/gold].",
     "description_raw": null,
     "type": "Buff",
@@ -2272,7 +2292,7 @@
   {
     "id": "SWORD_SAGE",
     "name": "Mestre Espadachim",
-    "description": "Aumenta o custo da [gold]Espada Soberana[/gold] em [blue]1[/blue]. [gold]Espada Soberana[/gold] agora golpeia [blue]1[/blue] vez adicional.",
+    "description": "[gold]Espada Soberana[/gold] agora golpeia [blue]1[/blue] vez adicional.",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
@@ -2481,7 +2501,7 @@
   },
   {
     "id": "VICIOUS",
-    "name": "Crueldade",
+    "name": "Brutalidade",
     "description": "Sempre que você aplicar [gold]Vulnerável[/gold], compre [blue]1[/blue] carta.",
     "description_raw": null,
     "type": "Buff",

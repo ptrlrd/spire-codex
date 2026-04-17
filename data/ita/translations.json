@@ -12,7 +12,7 @@
     "Common": "Comune",
     "Uncommon": "Non comune",
     "Rare": "Rara",
-    "Ancient": "Antico",
+    "Ancient": "Antica",
     "Event": "Evento",
     "Token": "Segnalino",
     "Status": "Stato",
@@ -26,7 +26,7 @@
     "Rare": "Reliquia rara",
     "Ancient": "Reliquia antica",
     "Event": "Reliquia evento",
-    "Shop": "Reliquia artigianale"
+    "Shop": "Reliquia del negozio"
   },
   "potion_rarities": {
     "Common": "Comune",
@@ -49,7 +49,7 @@
     "characters": "Characters",
     "relics": "Reliquiario",
     "monsters": "Bestiario",
-    "potions": "Laboratorio",
+    "potions": "Laboratorio delle pozioni",
     "enchantments": "Enchantments",
     "encounters": "Encounters",
     "events": "Events",
@@ -60,9 +60,9 @@
   },
   "section_descs": {
     "cards": "Vedi tutte le carte che hai incontrato nella Guglia.",
-    "relics": "Vedi i vari oggetti e gli artefatti che hai ottenuto nella Guglia.",
+    "relics": "Esamina i vari ninnoli e i manufatti che hai ottenuto nelle tue partite.",
     "monsters": "Vedi tutti i nemici che hai incontrato nella Guglia.",
-    "potions": "Vedi tutte le pozioni che hai trovato nella Guglia."
+    "potions": "Osserva le numerose pozioni che hai trovato nella Guglia."
   },
   "character_names": {
     "ironclad": "Ironclad",

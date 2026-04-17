@@ -2,8 +2,8 @@
   {
     "id": "CHARGE",
     "name": "ATTACKE!!",
-    "description": "Wähle 2 Karten aus deinem [gold]Nachziehstapel[/gold], die du zu \n[gold]Diener-Schlägen[/gold] [gold]transformierst[/gold].",
-    "description_raw": "Wähle {Cards:diff()} {Cards:plural:Karte|Karten} aus deinem [gold]Nachziehstapel[/gold], die du zu \n[gold]{Cards:plural:{IfUpgraded:show:Diener-Schlag+|Diener-Schlag}[/gold]|{IfUpgraded:show:Diener-Schlägen+|Diener-Schlägen}[/gold]} [gold]transformierst[/gold].",
+    "description": "Wähle 2 Karten aus deinem [gold]Nachziehstapel[/gold], die du zu \n[gold]Diener-Sturzflügen[/gold] [gold]Transformierst[/gold].",
+    "description_raw": "Wähle {Cards:diff()} {Cards:plural:Karte|Karten} aus deinem [gold]Nachziehstapel[/gold], die du zu \n[gold]{Cards:plural:{IfUpgraded:show:Diener-Sturzflug+|Diener-Sturzflug}[/gold]|{IfUpgraded:show:Diener-Sturzflügen+|Diener-Sturzflügen}[/gold]} [gold]Transformierst[/gold].",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -22,7 +22,7 @@
     "keywords": null,
     "tags": null,
     "spawns_cards": [
-      "MINION_STRIKE"
+      "MINION_DIVE_BOMB"
     ],
     "vars": {
       "Cards": 2
@@ -33,7 +33,7 @@
     "image_url": "/static/images/cards/charge.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Wähle 2 Karten aus deinem [gold]Nachziehstapel[/gold], die du zu \n[gold]Diener-Schlägen+[/gold] [gold]transformierst[/gold].",
+    "upgrade_description": "Wähle 2 Karten aus deinem [gold]Nachziehstapel[/gold], die du zu \n[gold]Diener-Sturzflügen+[/gold] [gold]Transformierst[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 186
@@ -85,8 +85,8 @@
   {
     "id": "DISTRACTION",
     "name": "Ablenkung",
-    "description": "Erhalte eine zufällige Fertigkeit auf deine [gold]Hand[/gold]. Sie kostet diesen Zug 0 [energy:1].",
-    "description_raw": "Erhalte eine zufällige Fertigkeit auf deine [gold]Hand[/gold]. Sie kostet diesen Zug 0 {energyPrefix:energyIcons(1)}.",
+    "description": "Erhalte eine zufällige Fertigkeit auf deine [gold]Hand[/gold]. Sie ist in diesem Zug kostenlos spielbar.",
+    "description_raw": "Erhalte eine zufällige Fertigkeit auf deine [gold]Hand[/gold]. Sie ist in diesem Zug kostenlos spielbar.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -125,8 +125,8 @@
   {
     "id": "RICOCHET",
     "name": "Abprallen",
-    "description": "Füge einem zufälligen Gegner 4 Mal 3 Schaden zu.",
-    "description_raw": "Füge einem zufälligen Gegner {Repeat:diff()} Mal {Damage:diff()} Schaden zu.",
+    "description": "Füge 4 Mal einem zufälligen Gegner 3 Schaden zu.",
+    "description_raw": "Füge {Repeat:diff()} Mal einem zufälligen Gegner {Damage:diff()} Schaden zu.",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -157,7 +157,7 @@
     "image_url": "/static/images/cards/ricochet.webp",
     "beta_image_url": "/static/images/cards/beta/ricochet.webp",
     "type_variants": null,
-    "upgrade_description": "Füge einem zufälligen Gegner 5 Mal 3 Schaden zu.",
+    "upgrade_description": "Füge 5 Mal einem zufälligen Gegner 3 Schaden zu.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "keywords_key": [
@@ -242,8 +242,8 @@
   {
     "id": "ADAPTIVE_STRIKE",
     "name": "Adaptivschlag",
-    "description": "Füge 18 Schaden zu.\nErhalte eine 0[energy:1]-Kopie dieser Karte in deinen [gold]Abwurfstapel[/gold].",
-    "description_raw": "Füge {Damage:diff()} Schaden zu.\nErhalte eine 0{energyPrefix:energyIcons(1)}-Kopie dieser Karte in deinen [gold]Abwurfstapel[/gold].",
+    "description": "Füge 18 Schaden zu.\nNimm eine 0[energy:1]-Kopie dieser Karte in deinen [gold]Abwurfstapel[/gold].",
+    "description_raw": "Füge {Damage:diff()} Schaden zu.\nNimm eine 0{energyPrefix:energyIcons(1)}-Kopie dieser Karte in deinen [gold]Abwurfstapel[/gold].",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -273,7 +273,7 @@
     "image_url": "/static/images/cards/adaptive_strike.webp",
     "beta_image_url": "/static/images/cards/beta/adaptive_strike.webp",
     "type_variants": null,
-    "upgrade_description": "Füge 23 Schaden zu.\nErhalte eine 0[energy:1]-Kopie dieser Karte in deinen [gold]Abwurfstapel[/gold].",
+    "upgrade_description": "Füge 23 Schaden zu.\nNimm eine 0[energy:1]-Kopie dieser Karte in deinen [gold]Abwurfstapel[/gold].",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 351
@@ -404,7 +404,7 @@
     "is_x_star_cost": null,
     "star_cost": null,
     "type": "Fertigkeit",
-    "rarity": "Gewöhnlich",
+    "rarity": "Ungewöhnlich",
     "target": "Self",
     "color": "silent",
     "damage": null,
@@ -428,7 +428,7 @@
     "type_variants": null,
     "upgrade_description": "Ziehe 4 Karten.\nWirf 1 Karte ab.",
     "type_key": "Skill",
-    "rarity_key": "Common",
+    "rarity_key": "Uncommon",
     "compendium_order": 90
   },
   {
@@ -551,8 +551,8 @@
   {
     "id": "JACK_OF_ALL_TRADES",
     "name": "Alleskönner",
-    "description": "Erhalte 1 zufällige farblose Karte auf deine [gold]Hand[/gold].",
-    "description_raw": "Erhalte {Cards:diff()} zufällige farblose {Cards:plural:Karte|Karten} auf deine [gold]Hand[/gold].",
+    "description": "Erhalte 1 zufällige Farblose Karte auf deine [gold]Hand[/gold].",
+    "description_raw": "Erhalte {Cards:diff()} zufällige Farblose {Cards:plural:Karte|Karten} auf deine [gold]Hand[/gold].",
     "cost": 0,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -582,7 +582,7 @@
     "image_url": "/static/images/cards/jack_of_all_trades.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Erhalte 2 zufällige farblose Karten auf deine [gold]Hand[/gold].",
+    "upgrade_description": "Erhalte 2 zufällige Farblose Karten auf deine [gold]Hand[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -593,8 +593,8 @@
   {
     "id": "LIFT",
     "name": "Anheben",
-    "description": "Gib einem Verbündeten 11 [gold]Block[/gold].",
-    "description_raw": "Gib einem Verbündeten {Block:diff()} [gold]Block[/gold].",
+    "description": "Gib einem Mitspieler 11 [gold]Block[/gold].",
+    "description_raw": "Gib einem Mitspieler {Block:diff()} [gold]Block[/gold].",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -622,7 +622,7 @@
     "image_url": "/static/images/cards/lift.webp",
     "beta_image_url": "/static/images/cards/beta/lift.webp",
     "type_variants": null,
-    "upgrade_description": "Gib einem Verbündeten 16 [gold]Block[/gold].",
+    "upgrade_description": "Gib einem Mitspieler 16 [gold]Block[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 469
@@ -635,7 +635,7 @@
     "cost": 0,
     "is_x_cost": null,
     "is_x_star_cost": null,
-    "star_cost": 2,
+    "star_cost": 3,
     "type": "Fertigkeit",
     "rarity": "Ungewöhnlich",
     "target": "Self",
@@ -652,7 +652,7 @@
     "spawns_cards": null,
     "vars": {
       "Energy": 2,
-      "StarCost": 2
+      "StarCost": 3
     },
     "upgrade": {
       "energy": "+1"
@@ -749,7 +749,7 @@
   {
     "id": "ANTICIPATE",
     "name": "Antizipieren",
-    "description": "Erhalte für diesen Zug 3 [gold]Geschicklichkeit[/gold].",
+    "description": "Erhalte für diesen Zug 2 [gold]Geschicklichkeit[/gold].",
     "description_raw": "Erhalte für diesen Zug {DexterityPower:diff()} [gold]Geschicklichkeit[/gold].",
     "cost": 0,
     "is_x_cost": null,
@@ -765,7 +765,7 @@
     "powers_applied": [
       {
         "power": "Geschicklichkeit",
-        "amount": 3,
+        "amount": 2,
         "power_key": "Dexterity"
       }
     ],
@@ -776,11 +776,11 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "DexterityPower": 3,
-      "Dexterity": 3
+      "DexterityPower": 2,
+      "Dexterity": 2
     },
     "upgrade": {
-      "dexterity": "+2"
+      "dexterity": "+1"
     },
     "image_url": "/static/images/cards/anticipate.webp",
     "beta_image_url": null,
@@ -925,8 +925,8 @@
   {
     "id": "ARSENAL",
     "name": "Arsenal",
-    "description": "Immer wenn du eine farblose Karte spielst, erhalte 1 [gold]Stärke[/gold].",
-    "description_raw": "Immer wenn du eine farblose Karte spielst, erhalte {ArsenalPower:diff()} [gold]Stärke[/gold].",
+    "description": "Immer wenn du eine Karte erzeugst, erhalte 1 [gold]Stärke[/gold].",
+    "description_raw": "Immer wenn du eine Karte erzeugst, erhalte {ArsenalPower:diff()} [gold]Stärke[/gold].",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -956,12 +956,12 @@
       "Arsenal": 1
     },
     "upgrade": {
-      "arsenalpower": "+1"
+      "add_innate": true
     },
     "image_url": "/static/images/cards/arsenal.webp",
     "beta_image_url": "/static/images/cards/beta/arsenal.webp",
     "type_variants": null,
-    "upgrade_description": "Immer wenn du eine farblose Karte spielst, erhalte 2 [gold]Stärke[/gold].",
+    "upgrade_description": null,
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 176
@@ -1047,7 +1047,7 @@
   },
   {
     "id": "ASTRAL_PULSE",
-    "name": "Astraler Puls",
+    "name": "Astralpuls",
     "description": "Füge ALLEN Gegnern 14 Schaden zu.",
     "description_raw": "Füge ALLEN Gegnern {Damage:diff()} Schaden zu.",
     "cost": 0,
@@ -1342,7 +1342,7 @@
   {
     "id": "SKEWER",
     "name": "Aufspießen",
-    "description": "Füge X mal 7 Schaden zu.",
+    "description": "Füge X mal 8 Schaden zu.",
     "description_raw": "Füge X mal {Damage:diff()} Schaden zu.",
     "cost": 0,
     "is_x_cost": true,
@@ -1352,7 +1352,7 @@
     "rarity": "Ungewöhnlich",
     "target": "AnyEnemy",
     "color": "silent",
-    "damage": 7,
+    "damage": 8,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -1363,7 +1363,7 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Damage": 7
+      "Damage": 8
     },
     "upgrade": {
       "damage": "+3"
@@ -1371,7 +1371,7 @@
     "image_url": "/static/images/cards/skewer.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Füge X mal 10 Schaden zu.",
+    "upgrade_description": "Füge X mal 11 Schaden zu.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 156
@@ -1379,8 +1379,8 @@
   {
     "id": "TRACKING",
     "name": "Aufspüren",
-    "description": "[gold]Schwache[/gold] Gegner erleiden doppelten Schaden von Angriffen.",
-    "description_raw": "[gold]Schwache[/gold] Gegner erleiden doppelten Schaden von Angriffen.",
+    "description": "[gold]Schwache[/gold] Gegner nehmen von Angriffen doppelten Schaden.",
+    "description_raw": "[gold]Schwache[/gold] Gegner nehmen von Angriffen doppelten Schaden.",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -1689,8 +1689,8 @@
   {
     "id": "SQUEEZE",
     "name": "Ausquetschen",
-    "description": "[gold]Osty[/gold] fügt 25 Schaden zu.\nFügt 5 Schaden mehr zu für ALLE deine anderen [gold]Osty[/gold]-Angriffskarten.",
-    "description_raw": "[gold]Osty[/gold] fügt {CalculatedDamage:diff()} Schaden zu.\nFügt {ExtraDamage:diff()} Schaden mehr zu für ALLE deine anderen [gold]Osty[/gold]-Angriffskarten.",
+    "description": "[gold]Osty[/gold] fügt 25 Schaden zu.\nFügt 5 Schaden mehr für ALLE deine anderen [gold]Osty[/gold]-Angriffskarten zu.",
+    "description_raw": "[gold]Osty[/gold] fügt {CalculatedDamage:diff()} Schaden zu.\nFügt {ExtraDamage:diff()} Schaden mehr für ALLE deine anderen [gold]Osty[/gold]-Angriffskarten zu.",
     "cost": 3,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -1723,7 +1723,7 @@
     "image_url": "/static/images/cards/squeeze.webp",
     "beta_image_url": "/static/images/cards/beta/squeeze.webp",
     "type_variants": null,
-    "upgrade_description": "[gold]Osty[/gold] fügt 25 Schaden zu.\nFügt 6 Schaden mehr zu für ALLE deine anderen [gold]Osty[/gold]-Angriffskarten.",
+    "upgrade_description": "[gold]Osty[/gold] fügt 25 Schaden zu.\nFügt 6 Schaden mehr für ALLE deine anderen [gold]Osty[/gold]-Angriffskarten zu.",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 342
@@ -1961,8 +1961,8 @@
   {
     "id": "MANIFEST_AUTHORITY",
     "name": "Autorität zeigen",
-    "description": "Erhalte 7 [gold]Block[/gold].\nErhalte 1 zufällige farblose Karte auf deine [gold]Hand[/gold].",
-    "description_raw": "Erhalte {Block:diff()} [gold]Block[/gold].\nErhalte 1 zufällige{IfUpgraded:show: [gold]verbesserte[/gold]} farblose Karte auf deine [gold]Hand[/gold].",
+    "description": "Erhalte 7 [gold]Block[/gold].\nErhalte 1 zufällige Farblose Karte auf deine [gold]Hand[/gold].",
+    "description_raw": "Erhalte {Block:diff()} [gold]Block[/gold].\nErhalte 1 zufällige{IfUpgraded:show: [gold]Verbesserte[/gold]} Farblose Karte auf deine [gold]Hand[/gold].",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -1990,7 +1990,7 @@
     "image_url": "/static/images/cards/manifest_authority.webp",
     "beta_image_url": "/static/images/cards/beta/manifest_authority.webp",
     "type_variants": null,
-    "upgrade_description": "Erhalte 8 [gold]Block[/gold].\nErhalte 1 zufällige [gold]verbesserte[/gold] farblose Karte auf deine [gold]Hand[/gold].",
+    "upgrade_description": "Erhalte 8 [gold]Block[/gold].\nErhalte 1 zufällige [gold]Verbesserte[/gold] Farblose Karte auf deine [gold]Hand[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 225
@@ -2346,46 +2346,6 @@
     "type_key": "Attack",
     "rarity_key": "Ancient",
     "compendium_order": 317
-  },
-  {
-    "id": "SPOILS_MAP",
-    "name": "Beuteschatzkarte",
-    "description": "Markiert im nächsten Akt einen Ort mit 600 zusätzlichem [gold]Gold[/gold].",
-    "description_raw": "Markiert im nächsten Akt einen Ort mit {Gold:diff()} zusätzlichem [gold]Gold[/gold].",
-    "cost": -1,
-    "is_x_cost": null,
-    "is_x_star_cost": null,
-    "star_cost": null,
-    "type": "Auftrag",
-    "rarity": "Auftrag",
-    "target": "Self",
-    "color": "quest",
-    "damage": null,
-    "block": null,
-    "hit_count": null,
-    "powers_applied": null,
-    "cards_draw": null,
-    "energy_gain": null,
-    "hp_loss": null,
-    "keywords": [
-      "Unspielbar"
-    ],
-    "tags": null,
-    "spawns_cards": null,
-    "vars": {
-      "Gold": 600
-    },
-    "upgrade": null,
-    "image_url": "/static/images/cards/spoils_map.webp",
-    "beta_image_url": "/static/images/cards/beta/spoils_map.webp",
-    "type_variants": null,
-    "upgrade_description": null,
-    "type_key": "Quest",
-    "rarity_key": "Quest",
-    "keywords_key": [
-      "Unplayable"
-    ],
-    "compendium_order": 550
   },
   {
     "id": "BODYGUARD",
@@ -2878,8 +2838,8 @@
   {
     "id": "BODY_SLAM",
     "name": "Bodyslam",
-    "description": "Füge Schaden zu in Höhe deines [gold]Blocks[/gold].",
-    "description_raw": "Füge Schaden zu in Höhe deines [gold]Blocks[/gold].{InCombat:\n({CalculatedDamage:diff()} Schaden)|}",
+    "description": "Füge Schaden in Höhe deines [gold]Blocks[/gold] zu.",
+    "description_raw": "Füge Schaden in Höhe deines [gold]Blocks[/gold] zu.{InCombat:\n({CalculatedDamage:diff()} Schaden)|}",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -2993,8 +2953,8 @@
   {
     "id": "BOMBARDMENT",
     "name": "Bombardierung",
-    "description": "Füge 18 Schaden zu.\nSpielt sich selbst zu Beginn deines Zuges aus dem [gold]Erschöpfungsstapel[/gold].",
-    "description_raw": "Füge {Damage:diff()} Schaden zu.\nSpielt sich selbst zu Beginn deines Zuges aus dem [gold]Erschöpfungsstapel[/gold].",
+    "description": "Füge 18 Schaden zu.\nFalls diese Karte zu Beginn deines Zuges in deinem [gold]Erschöpfungsstapel[/gold] ist, spiele sie.",
+    "description_raw": "Füge {Damage:diff()} Schaden zu.\nFalls diese Karte zu Beginn deines Zuges in deinem [gold]Erschöpfungsstapel[/gold] ist, spiele sie.",
     "cost": 3,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -3024,7 +2984,7 @@
     "image_url": "/static/images/cards/bombardment.webp",
     "beta_image_url": "/static/images/cards/beta/bombardment.webp",
     "type_variants": null,
-    "upgrade_description": "Füge 24 Schaden zu.\nSpielt sich selbst zu Beginn deines Zuges aus dem [gold]Erschöpfungsstapel[/gold].",
+    "upgrade_description": "Füge 24 Schaden zu.\nFalls diese Karte zu Beginn deines Zuges in deinem [gold]Erschöpfungsstapel[/gold] ist, spiele sie.",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -3119,7 +3079,7 @@
     "name": "Brechen",
     "description": "Füge 20 Schaden zu.\nWende 5 [gold]Verwundbar[/gold] an.",
     "description_raw": "Füge {Damage:diff()} Schaden zu.\nWende {VulnerablePower:diff()} [gold]Verwundbar[/gold] an.",
-    "cost": 2,
+    "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
     "star_cost": null,
@@ -3149,13 +3109,13 @@
       "Vulnerable": 5
     },
     "upgrade": {
-      "damage": "+5",
+      "damage": "+10",
       "vulnerable": "+2"
     },
     "image_url": "/static/images/cards/break.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Füge 25 Schaden zu.\nWende 5 [gold]Verwundbar[/gold] an.",
+    "upgrade_description": "Füge 30 Schaden zu.\nWende 5 [gold]Verwundbar[/gold] an.",
     "type_key": "Attack",
     "rarity_key": "Ancient",
     "compendium_order": 12
@@ -3197,46 +3157,6 @@
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 427
-  },
-  {
-    "id": "BURN",
-    "name": "Brennen",
-    "description": "Falls diese Karte am Ende deines Zuges auf deiner [gold]Hand[/gold] ist, nimm 2 Schaden.",
-    "description_raw": "Falls diese Karte am Ende deines Zuges auf deiner [gold]Hand[/gold] ist, nimm {Damage:diff()} Schaden.",
-    "cost": -1,
-    "is_x_cost": null,
-    "is_x_star_cost": null,
-    "star_cost": null,
-    "type": "Status",
-    "rarity": "Status",
-    "target": "None",
-    "color": "status",
-    "damage": 2,
-    "block": null,
-    "hit_count": null,
-    "powers_applied": null,
-    "cards_draw": null,
-    "energy_gain": null,
-    "hp_loss": null,
-    "keywords": [
-      "Unspielbar"
-    ],
-    "tags": null,
-    "spawns_cards": null,
-    "vars": {
-      "Damage": 2
-    },
-    "upgrade": null,
-    "image_url": "/static/images/cards/burn.webp",
-    "beta_image_url": null,
-    "type_variants": null,
-    "upgrade_description": null,
-    "type_key": "Status",
-    "rarity_key": "Status",
-    "keywords_key": [
-      "Unplayable"
-    ],
-    "compendium_order": 552
   },
   {
     "id": "CRASH_LANDING",
@@ -3392,7 +3312,7 @@
   {
     "id": "DANSE_MACABRE",
     "name": "Danse Macabre",
-    "description": "Immer wenn du eine Karte spielst, die [energy:2] oder mehr kostet, erhalte 3 [gold]Block[/gold].",
+    "description": "Immer wenn du eine Karte spielst, die [energy:2] oder mehr kostet, erhalte 4 [gold]Block[/gold].",
     "description_raw": "Immer wenn du eine Karte spielst, die {Energy:energyIcons()} oder mehr kostet, erhalte {DanseMacabrePower:diff()} [gold]Block[/gold].",
     "cost": 1,
     "is_x_cost": null,
@@ -3408,7 +3328,7 @@
     "powers_applied": [
       {
         "power": "Danse Macabre",
-        "amount": 3,
+        "amount": 4,
         "power_key": "DanseMacabre"
       }
     ],
@@ -3420,16 +3340,16 @@
     "spawns_cards": null,
     "vars": {
       "Energy": 2,
-      "DanseMacabrePower": 3,
-      "DanseMacabre": 3
+      "DanseMacabrePower": 4,
+      "DanseMacabre": 4
     },
     "upgrade": {
-      "dansemacabrepower": "+1"
+      "dansemacabrepower": "+2"
     },
     "image_url": "/static/images/cards/danse_macabre.webp",
     "beta_image_url": "/static/images/cards/beta/danse_macabre.webp",
     "type_variants": null,
-    "upgrade_description": "Immer wenn du eine Karte spielst, die [energy:2] oder mehr kostet, erhalte 4 [gold]Block[/gold].",
+    "upgrade_description": "Immer wenn du eine Karte spielst, die [energy:2] oder mehr kostet, erhalte 6 [gold]Block[/gold].",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 275
@@ -3798,7 +3718,7 @@
   {
     "id": "MINION_STRIKE",
     "name": "Diener-Schlag",
-    "description": "Füge 7 Schaden zu.\nZiehe 1 Karte.",
+    "description": "Füge 6 Schaden zu.\nZiehe 1 Karte.",
     "description_raw": "Füge {Damage:diff()} Schaden zu.\nZiehe {Cards:diff()} {Cards:plural:Karte|Karten}.",
     "cost": 0,
     "is_x_cost": null,
@@ -3808,7 +3728,7 @@
     "rarity": "Token",
     "target": "AnyEnemy",
     "color": "token",
-    "damage": 7,
+    "damage": 6,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -3824,7 +3744,7 @@
     ],
     "spawns_cards": null,
     "vars": {
-      "Damage": 7,
+      "Damage": 6,
       "Cards": 1
     },
     "upgrade": {
@@ -3833,7 +3753,7 @@
     "image_url": "/static/images/cards/minion_strike.webp",
     "beta_image_url": "/static/images/cards/beta/minion_strike.webp",
     "type_variants": null,
-    "upgrade_description": "Füge 10 Schaden zu.\nZiehe 1 Karte.",
+    "upgrade_description": "Füge 9 Schaden zu.\nZiehe 1 Karte.",
     "type_key": "Attack",
     "rarity_key": "Token",
     "keywords_key": [
@@ -3846,7 +3766,7 @@
     "name": "Diener-Sturzflug",
     "description": "Füge 13 Schaden zu.",
     "description_raw": "Füge {Damage:diff()} Schaden zu.",
-    "cost": 1,
+    "cost": 0,
     "is_x_cost": null,
     "is_x_star_cost": null,
     "star_cost": null,
@@ -4041,8 +3961,8 @@
   {
     "id": "DOMINATE",
     "name": "Dominieren",
-    "description": "Erhalte 1 [gold]Stärke[/gold] für jedes [gold]Verwundbar[/gold] auf dem Gegner.",
-    "description_raw": "Erhalte {StrengthPerVulnerable:diff()} [gold]Stärke[/gold] für jedes [gold]Verwundbar[/gold] auf dem Gegner.",
+    "description": "Wende 1 [gold]Verwundbar[/gold] an.\n Erhalte 1 [gold]Stärke[/gold] für jedes [gold]Verwundbar[/gold] auf dem Gegner.",
+    "description_raw": "Wende {VulnerablePower:diff()} [gold]Verwundbar[/gold] an.\n Erhalte {StrengthPerVulnerable:diff()} [gold]Stärke[/gold] für jedes [gold]Verwundbar[/gold] auf dem Gegner.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -4054,7 +3974,13 @@
     "damage": null,
     "block": null,
     "hit_count": null,
-    "powers_applied": null,
+    "powers_applied": [
+      {
+        "power": "Verwundbar",
+        "amount": 1,
+        "power_key": "Vulnerable"
+      }
+    ],
     "cards_draw": null,
     "energy_gain": null,
     "hp_loss": null,
@@ -4064,15 +3990,17 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "StrengthPerVulnerable": 1
+      "StrengthPerVulnerable": 1,
+      "VulnerablePower": 1,
+      "Vulnerable": 1
     },
     "upgrade": {
-      "remove_exhaust": true
+      "vulnerablepower": "+1"
     },
     "image_url": "/static/images/cards/dominate.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Wende 2 [gold]Verwundbar[/gold] an.\n Erhalte 1 [gold]Stärke[/gold] für jedes [gold]Verwundbar[/gold] auf dem Gegner.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -4126,8 +4054,8 @@
   {
     "id": "THUNDER",
     "name": "Donner",
-    "description": "Immer wenn du einen [gold]Blitz Entlädtst[/gold], füge dem getroffenen Gegner 6 Schaden zu.",
-    "description_raw": "Immer wenn du einen [gold]Blitz Entlädtst[/gold], füge dem getroffenen Gegner {ThunderPower:diff()} Schaden zu.",
+    "description": "Immer wenn du einen [gold]Blitz Entlädst[/gold], füge dem getroffenen Gegner 6 Schaden zu.",
+    "description_raw": "Immer wenn du einen [gold]Blitz Entlädst[/gold], füge dem getroffenen Gegner {ThunderPower:diff()} Schaden zu.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -4162,7 +4090,7 @@
     "image_url": "/static/images/cards/thunder.webp",
     "beta_image_url": "/static/images/cards/beta/thunder.webp",
     "type_variants": null,
-    "upgrade_description": "Immer wenn du einen [gold]Blitz Entlädtst[/gold], füge dem getroffenen Gegner 8 Schaden zu.",
+    "upgrade_description": "Immer wenn du einen [gold]Blitz Entlädst[/gold], füge dem getroffenen Gegner 8 Schaden zu.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 432
@@ -4442,7 +4370,7 @@
   {
     "id": "BELIEVE_IN_YOU",
     "name": "Du schaffst das",
-    "description": "Ein anderer Spieler erhält [energy:3].",
+    "description": "Ein anderer Spieler erhält [energy:2].",
     "description_raw": "Ein anderer Spieler erhält {Energy:energyIcons()}.",
     "cost": 0,
     "is_x_cost": null,
@@ -4457,13 +4385,13 @@
     "hit_count": null,
     "powers_applied": null,
     "cards_draw": null,
-    "energy_gain": 3,
+    "energy_gain": 2,
     "hp_loss": null,
     "keywords": null,
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Energy": 3
+      "Energy": 2
     },
     "upgrade": {
       "energy": "+1"
@@ -4471,7 +4399,7 @@
     "image_url": "/static/images/cards/believe_in_you.webp",
     "beta_image_url": "/static/images/cards/beta/believe_in_you.webp",
     "type_variants": null,
-    "upgrade_description": "Ein anderer Spieler erhält [energy:4].",
+    "upgrade_description": "Ein anderer Spieler erhält [energy:3].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 444
@@ -4556,8 +4484,8 @@
   {
     "id": "DARK_EMBRACE",
     "name": "Dunkle Hingabe",
-    "description": "Immer wenn eine Karte [gold]Erschöpft[/gold],\nziehe 1 Karte.",
-    "description_raw": "Immer wenn eine Karte [gold]Erschöpft[/gold],\nziehe 1 Karte.",
+    "description": "Immer wenn eine Karte [gold]Erschöpft[/gold] wird, ziehe 1 Karte.",
+    "description_raw": "Immer wenn eine Karte [gold]Erschöpft[/gold] wird, ziehe 1 Karte.",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -4840,8 +4768,8 @@
   {
     "id": "DEMONIC_SHIELD",
     "name": "Dämonischer Schild",
-    "description": "Verliere 1 TP.\nGib einem Verbündeten [gold]Block[/gold] in Höhe deines [gold]Blocks[/gold].",
-    "description_raw": "Verliere {HpLoss:diff()} TP.\nGib einem Verbündeten [gold]Block[/gold] in Höhe deines [gold]Blocks[/gold].{InCombat:\n(Gibt {CalculatedBlock:diff()} [gold]Block[/gold])|}",
+    "description": "Verliere 1 TP.\nGib einem Mitspieler [gold]Block[/gold] in Höhe deines [gold]Blocks[/gold].",
+    "description_raw": "Verliere {HpLoss:diff()} TP.\nGib einem Mitspieler [gold]Block[/gold] in Höhe deines [gold]Blocks[/gold].{InCombat:\n(Gibt {CalculatedBlock:diff()} [gold]Block[/gold])|}",
     "cost": 0,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -4963,8 +4891,8 @@
   {
     "id": "CINDER",
     "name": "Einäschern",
-    "description": "Füge 17 Schaden zu.\n[gold]Erschöpfe[/gold] die oberste Karte deines [gold]Nachziehstapels[/gold].",
-    "description_raw": "Füge {Damage:diff()} Schaden zu.\n[gold]Erschöpfe[/gold] die oberste Karte deines [gold]Nachziehstapels[/gold].",
+    "description": "Füge 18 Schaden zu.\n[gold]Erschöpfe[/gold] 1 zufällige Karte.",
+    "description_raw": "Füge {Damage:diff()} Schaden zu.\n[gold]Erschöpfe[/gold] 1 zufällige Karte.",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -4973,7 +4901,7 @@
     "rarity": "Gewöhnlich",
     "target": "AnyEnemy",
     "color": "ironclad",
-    "damage": 17,
+    "damage": 18,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -4984,16 +4912,15 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "CardsToExhaust": 1,
-      "Damage": 17
+      "Damage": 18
     },
     "upgrade": {
-      "damage": "+5"
+      "damage": "+6"
     },
     "image_url": "/static/images/cards/cinder.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Füge 22 Schaden zu.\n[gold]Erschöpfe[/gold] die oberste Karte deines [gold]Nachziehstapels[/gold].",
+    "upgrade_description": "Füge 24 Schaden zu.\n[gold]Erschöpfe[/gold] 1 zufällige Karte.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 17
@@ -5035,7 +4962,7 @@
     "upgrade_description": "Erhalte 7 [gold]Block[/gold].\nFüge 7 Schaden zu.",
     "type_key": "Attack",
     "rarity_key": "Common",
-    "compendium_order": 48
+    "compendium_order": 47
   },
   {
     "id": "ICE_LANCE",
@@ -5196,8 +5123,8 @@
   {
     "id": "DISCOVERY",
     "name": "Entdeckung",
-    "description": "Wähle 1 aus 3 zufälligen Karten, die du auf deine [gold]Hand[/gold] erhältst. Sie kostet diesen Zug 0 [energy:1].",
-    "description_raw": "Wähle 1 aus 3 zufälligen Karten, die du auf deine [gold]Hand[/gold] erhältst. Sie kostet diesen Zug 0 {energyPrefix:energyIcons(1)}.",
+    "description": "Wähle 1 aus 3 zufälligen Karten, die du auf deine [gold]Hand[/gold] erhältst. Sie ist in diesem Zug kostenlos spielbar.",
+    "description_raw": "Wähle 1 aus 3 zufälligen Karten, die du auf deine [gold]Hand[/gold] erhältst. Sie ist in diesem Zug kostenlos spielbar.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -5275,12 +5202,12 @@
     "upgrade_description": "Erhalte 3 [gold]Stärke[/gold].",
     "type_key": "Power",
     "rarity_key": "Uncommon",
-    "compendium_order": 47
+    "compendium_order": 46
   },
   {
     "id": "DEBILITATE",
     "name": "Entkräften",
-    "description": "Füge 7 Schaden zu.\n[gold]Verwundbar[/gold] und [gold]Schwach[/gold] sind auf diesem Gegner für die nächsten 3 Züge doppelt so effektiv.",
+    "description": "Füge 10 Schaden zu.\n[gold]Verwundbar[/gold] und [gold]Schwach[/gold] sind auf diesem Gegner für die nächsten 3 Züge doppelt so effektiv.",
     "description_raw": "Füge {Damage:diff()} Schaden zu.\n[gold]Verwundbar[/gold] und [gold]Schwach[/gold] sind auf diesem Gegner für {DebilitatePower:plural:den nächsten Zug|die nächsten {DebilitatePower:diff()} Züge} doppelt so effektiv.",
     "cost": 1,
     "is_x_cost": null,
@@ -5290,7 +5217,7 @@
     "rarity": "Ungewöhnlich",
     "target": "AnyEnemy",
     "color": "necrobinder",
-    "damage": 7,
+    "damage": 10,
     "block": null,
     "hit_count": null,
     "powers_applied": [
@@ -5307,7 +5234,7 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Damage": 7,
+      "Damage": 10,
       "DebilitatePower": 3,
       "Debilitate": 3
     },
@@ -5318,7 +5245,7 @@
     "image_url": "/static/images/cards/debilitate.webp",
     "beta_image_url": "/static/images/cards/beta/debilitate.webp",
     "type_variants": null,
-    "upgrade_description": "Füge 9 Schaden zu.\n[gold]Verwundbar[/gold] und [gold]Schwach[/gold] sind auf diesem Gegner für die nächsten 4 Züge doppelt so effektiv.",
+    "upgrade_description": "Füge 12 Schaden zu.\n[gold]Verwundbar[/gold] und [gold]Schwach[/gold] sind auf diesem Gegner für die nächsten 4 Züge doppelt so effektiv.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 279
@@ -5570,8 +5497,8 @@
   {
     "id": "MURDER",
     "name": "Ermorden",
-    "description": "Füge 1 Schaden zu.\nFügt 1 Schaden mehr zu für jede in diesem Kampf gezogene Karte.",
-    "description_raw": "Füge {CalculatedDamage:diff()} Schaden zu.\nFügt {ExtraDamage:diff()} Schaden mehr zu für jede in diesem Kampf gezogene Karte.",
+    "description": "Füge 1 Schaden zu.\nFügt 1 Schaden mehr für jede in diesem Kampf gezogene Karte zu.",
+    "description_raw": "Füge {CalculatedDamage:diff()} Schaden zu.\nFügt {ExtraDamage:diff()} Schaden mehr für jede in diesem Kampf gezogene Karte zu.",
     "cost": 3,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -5736,7 +5663,7 @@
   {
     "id": "ETERNAL_ARMOR",
     "name": "Ewige Rüstung",
-    "description": "Erhalte 7 [gold]Panzerung[/gold].",
+    "description": "Erhalte 9 [gold]Panzerung[/gold].",
     "description_raw": "Erhalte {PlatingPower:diff()} [gold]Panzerung[/gold].",
     "cost": 3,
     "is_x_cost": null,
@@ -5752,7 +5679,7 @@
     "powers_applied": [
       {
         "power": "Panzerung",
-        "amount": 7,
+        "amount": 9,
         "power_key": "Plating"
       }
     ],
@@ -5763,16 +5690,16 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "PlatingPower": 7,
-      "Plating": 7
+      "PlatingPower": 9,
+      "Plating": 9
     },
     "upgrade": {
-      "platingpower": "+2"
+      "platingpower": "+3"
     },
     "image_url": "/static/images/cards/eternal_armor.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Erhalte 9 [gold]Panzerung[/gold].",
+    "upgrade_description": "Erhalte 12 [gold]Panzerung[/gold].",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 454
@@ -5857,7 +5784,7 @@
   {
     "id": "FALLING_STAR",
     "name": "Fallender Stern",
-    "description": "Füge 7 Schaden zu.\nWende 1 [gold]Schwach[/gold] an.\nWende 1 [gold]Verwundbar[/gold] an.",
+    "description": "Füge 8 Schaden zu.\nWende 1 [gold]Schwach[/gold] an.\nWende 1 [gold]Verwundbar[/gold] an.",
     "description_raw": "Füge {Damage:diff()} Schaden zu.\nWende {WeakPower:diff()} [gold]Schwach[/gold] an.\nWende {VulnerablePower:diff()} [gold]Verwundbar[/gold] an.",
     "cost": 0,
     "is_x_cost": null,
@@ -5867,7 +5794,7 @@
     "rarity": "Basis",
     "target": "AnyEnemy",
     "color": "regent",
-    "damage": 7,
+    "damage": 8,
     "block": null,
     "hit_count": null,
     "powers_applied": [
@@ -5889,7 +5816,7 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Damage": 7,
+      "Damage": 8,
       "VulnerablePower": 1,
       "Vulnerable": 1,
       "WeakPower": 1,
@@ -5902,7 +5829,7 @@
     "image_url": "/static/images/cards/falling_star.webp",
     "beta_image_url": "/static/images/cards/beta/falling_star.webp",
     "type_variants": null,
-    "upgrade_description": "Füge 11 Schaden zu.\nWende 1 [gold]Schwach[/gold] an.\nWende 1 [gold]Verwundbar[/gold] an.",
+    "upgrade_description": "Füge 12 Schaden zu.\nWende 1 [gold]Schwach[/gold] an.\nWende 1 [gold]Verwundbar[/gold] an.",
     "type_key": "Attack",
     "rarity_key": "Basic",
     "compendium_order": 201
@@ -6077,8 +6004,8 @@
   {
     "id": "STOKE",
     "name": "Feuer schüren",
-    "description": "[gold]Erschöpfe[/gold] deine [gold]Hand[/gold].\nZiehe eine Karte für jede [gold]Erschöpfte[/gold] Karte.",
-    "description_raw": "[gold]Erschöpfe[/gold] deine [gold]Hand[/gold].\nZiehe eine Karte für jede [gold]Erschöpfte[/gold] Karte.",
+    "description": "[gold]Erschöpfe[/gold] deine [gold]Hand[/gold].\nErhalte für jede [gold]Erschöpfte[/gold] Karte 1 zufällige Karte auf deine [gold]Hand[/gold].",
+    "description_raw": "[gold]Erschöpfe[/gold] deine [gold]Hand[/gold].\nErhalte für jede [gold]Erschöpfte[/gold] Karte 1 zufällige {IfUpgraded:show:[gold]Verbesserte[/gold] |}Karte auf deine [gold]Hand[/gold].",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -6094,24 +6021,19 @@
     "cards_draw": null,
     "energy_gain": null,
     "hp_loss": null,
-    "keywords": [
-      "Erschöpft"
-    ],
+    "keywords": null,
     "tags": null,
     "spawns_cards": null,
     "vars": null,
     "upgrade": {
-      "cost": 0
+      "description_changed": true
     },
     "image_url": "/static/images/cards/stoke.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]Erschöpfe[/gold] deine [gold]Hand[/gold].\nErhalte für jede [gold]Erschöpfte[/gold] Karte 1 zufällige [gold]Verbesserte[/gold] Karte auf deine [gold]Hand[/gold].",
     "type_key": "Skill",
     "rarity_key": "Rare",
-    "keywords_key": [
-      "Exhaust"
-    ],
     "compendium_order": 69
   },
   {
@@ -6154,7 +6076,7 @@
     "keywords_key": [
       "Exhaust"
     ],
-    "compendium_order": 52
+    "compendium_order": 51
   },
   {
     "id": "BURNING_PACT",
@@ -6273,8 +6195,8 @@
   {
     "id": "FLAK_CANNON",
     "name": "Flak-Kanone",
-    "description": "[gold]Erschöpfe[/gold] ALLE deine [gold]Status[/gold]-Karten.\nFüge für jede [gold]Erschöpfte[/gold] Karte einem zufälligen Gegner 8 Schaden zu.",
-    "description_raw": "[gold]Erschöpfe[/gold] ALLE deine [gold]Status[/gold]-Karten.\nFüge für jede [gold]Erschöpfte[/gold] Karte einem zufälligen Gegner {Damage:diff()} Schaden zu.{InCombat:\n(Trifft {CalculatedHits:diff()} {CalculatedHits:plural:Mal|Mal})|}",
+    "description": "[gold]Erschöpfe[/gold] ALLE deine Statuskarten.\nFüge für jede [gold]Erschöpfte[/gold] Karte einem zufälligen Gegner 8 Schaden zu.",
+    "description_raw": "[gold]Erschöpfe[/gold] ALLE deine Statuskarten.\nFüge für jede [gold]Erschöpfte[/gold] Karte einem zufälligen Gegner {Damage:diff()} Schaden zu.{InCombat:\n(Trifft {CalculatedHits:diff()} {CalculatedHits:plural:Mal|Mal})|}",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -6304,7 +6226,7 @@
     "image_url": "/static/images/cards/flak_cannon.webp",
     "beta_image_url": "/static/images/cards/beta/flak_cannon.webp",
     "type_variants": null,
-    "upgrade_description": "[gold]Erschöpfe[/gold] ALLE deine [gold]Status[/gold]-Karten.\nFüge für jede [gold]Erschöpfte[/gold] Karte einem zufälligen Gegner 11 Schaden zu.",
+    "upgrade_description": "[gold]Erschöpfe[/gold] ALLE deine Statuskarten.\nFüge für jede [gold]Erschöpfte[/gold] Karte einem zufälligen Gegner 11 Schaden zu.",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 382
@@ -6351,8 +6273,8 @@
   {
     "id": "FLANKING",
     "name": "Flankieren",
-    "description": "Der Gegner nimmt in diesem Zug doppelten Schaden von deinen Verbündeten.",
-    "description_raw": "Der Gegner nimmt in diesem Zug doppelten Schaden von deinen Verbündeten.",
+    "description": "Der Gegner nimmt in diesem Zug doppelten Angriffsschaden von deinen Mitspielern.",
+    "description_raw": "Der Gegner nimmt in diesem Zug doppelten Angriffsschaden von deinen Mitspielern.",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -6386,7 +6308,7 @@
   {
     "id": "FLICK_FLACK",
     "name": "Flickflack",
-    "description": "Füge ALLEN Gegnern 7 Schaden zu.",
+    "description": "Füge ALLEN Gegnern 6 Schaden zu.",
     "description_raw": "Füge ALLEN Gegnern {Damage:diff()} Schaden zu.",
     "cost": 1,
     "is_x_cost": null,
@@ -6396,7 +6318,7 @@
     "rarity": "Gewöhnlich",
     "target": "AllEnemies",
     "color": "silent",
-    "damage": 7,
+    "damage": 6,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -6409,7 +6331,7 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Damage": 7
+      "Damage": 6
     },
     "upgrade": {
       "damage": "+2"
@@ -6417,7 +6339,7 @@
     "image_url": "/static/images/cards/flick_flack.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Füge ALLEN Gegnern 9 Schaden zu.",
+    "upgrade_description": "Füge ALLEN Gegnern 8 Schaden zu.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "keywords_key": [
@@ -6849,7 +6771,7 @@
   {
     "id": "LEADING_STRIKE",
     "name": "Führender Schlag",
-    "description": "Füge 7 Schaden zu.\nErhalte 1 [gold]Messer[/gold] auf deine [gold]Hand[/gold].",
+    "description": "Füge 3 Schaden zu.\nErhalte 2 [gold]Messer[/gold] auf deine [gold]Hand[/gold].",
     "description_raw": "Füge {Damage:diff()} Schaden zu.\nErhalte {Shivs:diff()} [gold]Messer[/gold] auf deine [gold]Hand[/gold].",
     "cost": 1,
     "is_x_cost": null,
@@ -6859,7 +6781,7 @@
     "rarity": "Gewöhnlich",
     "target": "AnyEnemy",
     "color": "silent",
-    "damage": 7,
+    "damage": 3,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -6874,8 +6796,8 @@
       "SHIV"
     ],
     "vars": {
-      "Shivs": 1,
-      "Damage": 7
+      "Shivs": 2,
+      "Damage": 3
     },
     "upgrade": {
       "damage": "+3"
@@ -6883,7 +6805,7 @@
     "image_url": "/static/images/cards/leading_strike.webp",
     "beta_image_url": "/static/images/cards/beta/leading_strike.webp",
     "type_variants": null,
-    "upgrade_description": "Füge 10 Schaden zu.\nErhalte 1 [gold]Messer[/gold] auf deine [gold]Hand[/gold].",
+    "upgrade_description": "Füge 6 Schaden zu.\nErhalte 2 [gold]Messer[/gold] auf deine [gold]Hand[/gold].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 132
@@ -6944,8 +6866,8 @@
   {
     "id": "MIND_BLAST",
     "name": "Gedankenstrahl",
-    "description": "Füge Schaden zu in Höhe der Zahl von Karten in deinem [gold]Nachziehstapel[/gold].",
-    "description_raw": "Füge Schaden zu in Höhe der Zahl von Karten in deinem [gold]Nachziehstapel[/gold].{InCombat:\n({CalculatedDamage:diff()} Schaden)|}",
+    "description": "Füge Schaden in Höhe der Zahl von Karten in deinem [gold]Nachziehstapel[/gold] zu.",
+    "description_raw": "Füge Schaden in Höhe der Zahl von Karten in deinem [gold]Nachziehstapel[/gold] zu.{InCombat:\n({CalculatedDamage:diff()} Schaden)|}",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -6988,8 +6910,8 @@
   {
     "id": "HEIRLOOM_HAMMER",
     "name": "Geerbter Hammer",
-    "description": "Füge 17 Schaden zu.\nWähle eine farblose [gold]Handkarte[/gold]. Erhalte eine Kopie dieser Karte auf deine [gold]Hand[/gold].",
-    "description_raw": "Füge {Damage:diff()} Schaden zu.\nWähle eine farblose [gold]Handkarte[/gold]. Erhalte eine Kopie dieser Karte auf deine [gold]Hand[/gold].",
+    "description": "Füge 20 Schaden zu.\nWähle eine Farblose [gold]Handkarte[/gold]. Erhalte eine Kopie dieser Karte auf deine [gold]Hand[/gold].",
+    "description_raw": "Füge {Damage:diff()} Schaden zu.\nWähle eine Farblose [gold]Handkarte[/gold]. Erhalte eine Kopie dieser Karte auf deine [gold]Hand[/gold].",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -6998,7 +6920,7 @@
     "rarity": "Selten",
     "target": "AnyEnemy",
     "color": "regent",
-    "damage": 17,
+    "damage": 20,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -7009,7 +6931,7 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Damage": 17,
+      "Damage": 20,
       "Repeat": 1
     },
     "upgrade": {
@@ -7018,7 +6940,7 @@
     "image_url": "/static/images/cards/heirloom_hammer.webp",
     "beta_image_url": "/static/images/cards/beta/heirloom_hammer.webp",
     "type_variants": null,
-    "upgrade_description": "Füge 22 Schaden zu.\nWähle eine farblose [gold]Handkarte[/gold]. Erhalte eine Kopie dieser Karte auf deine [gold]Hand[/gold].",
+    "upgrade_description": "Füge 25 Schaden zu.\nWähle eine Farblose [gold]Handkarte[/gold]. Erhalte eine Kopie dieser Karte auf deine [gold]Hand[/gold].",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 215
@@ -7106,8 +7028,8 @@
   {
     "id": "HOWL_FROM_BEYOND",
     "name": "Geheul aus dem Jenseits",
-    "description": "Füge ALLEN Gegnern 16 Schaden zu.\nSpielt sich selbst zu Beginn deines Zuges aus dem [gold]Erschöpfungsstapel[/gold].",
-    "description_raw": "Füge ALLEN Gegnern {Damage:diff()} Schaden zu.\nSpielt sich selbst zu Beginn deines Zuges aus dem [gold]Erschöpfungsstapel[/gold].",
+    "description": "Füge ALLEN Gegnern 16 Schaden zu.\nFalls diese Karte zu Beginn deines Zuges in deinem [gold]Erschöpfungsstapel[/gold] ist, spiele sie.",
+    "description_raw": "Füge ALLEN Gegnern {Damage:diff()} Schaden zu.\nFalls diese Karte zu Beginn deines Zuges in deinem [gold]Erschöpfungsstapel[/gold] ist, spiele sie.",
     "cost": 3,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -7135,10 +7057,10 @@
     "image_url": "/static/images/cards/howl_from_beyond.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Füge ALLEN Gegnern 21 Schaden zu.\nSpielt sich selbst zu Beginn deines Zuges aus dem [gold]Erschöpfungsstapel[/gold].",
+    "upgrade_description": "Füge ALLEN Gegnern 21 Schaden zu.\nFalls diese Karte zu Beginn deines Zuges in deinem [gold]Erschöpfungsstapel[/gold] ist, spiele sie.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
-    "compendium_order": 43
+    "compendium_order": 42
   },
   {
     "id": "SPIRIT_OF_ASH",
@@ -7359,9 +7281,9 @@
   {
     "id": "BORROWED_TIME",
     "name": "Geliehene Zeit",
-    "description": "Wende 3 [gold]Verderben[/gold] auf dich selbst an.\nErhalte [energy:1].",
-    "description_raw": "Wende {DoomPower:diff()} [gold]Verderben[/gold] auf dich selbst an.\nErhalte {Energy:energyIcons()}.",
-    "cost": 0,
+    "description": "Erhalte [energy:4].\nKarten kosten in diesem Zug [energy:1] mehr.",
+    "description_raw": "Erhalte {Energy:energyIcons()}.\nKarten kosten in diesem Zug {ExtraCost:energyIcons()} mehr.",
+    "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
     "star_cost": null,
@@ -7372,31 +7294,24 @@
     "damage": null,
     "block": null,
     "hit_count": null,
-    "powers_applied": [
-      {
-        "power": "Verderben",
-        "amount": 3,
-        "power_key": "Doom"
-      }
-    ],
+    "powers_applied": null,
     "cards_draw": null,
-    "energy_gain": 1,
+    "energy_gain": 4,
     "hp_loss": null,
     "keywords": null,
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Energy": 1,
-      "DoomPower": 3,
-      "Doom": 3
+      "ExtraCost": 1,
+      "Energy": 4
     },
     "upgrade": {
-      "energy": "+1"
+      "energy": "+2"
     },
     "image_url": "/static/images/cards/borrowed_time.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Wende 3 [gold]Verderben[/gold] auf dich selbst an.\nErhalte [energy:2].",
+    "upgrade_description": "Erhalte [energy:6].\nKarten kosten in diesem Zug [energy:1] mehr.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 268
@@ -7735,46 +7650,6 @@
     "compendium_order": 512
   },
   {
-    "id": "TOXIC",
-    "name": "Giftig",
-    "description": "Falls diese Karte am Ende deines Zuges auf deiner [gold]Hand[/gold] ist, nimm 5 Schaden.",
-    "description_raw": "Falls diese Karte am Ende deines Zuges auf deiner [gold]Hand[/gold] ist, nimm {Damage:diff()} Schaden.",
-    "cost": 1,
-    "is_x_cost": null,
-    "is_x_star_cost": null,
-    "star_cost": null,
-    "type": "Status",
-    "rarity": "Status",
-    "target": "None",
-    "color": "status",
-    "damage": 5,
-    "block": null,
-    "hit_count": null,
-    "powers_applied": null,
-    "cards_draw": null,
-    "energy_gain": null,
-    "hp_loss": null,
-    "keywords": [
-      "Erschöpft"
-    ],
-    "tags": null,
-    "spawns_cards": null,
-    "vars": {
-      "Damage": 5
-    },
-    "upgrade": null,
-    "image_url": "/static/images/cards/toxic.webp",
-    "beta_image_url": null,
-    "type_variants": null,
-    "upgrade_description": null,
-    "type_key": "Status",
-    "rarity_key": "Status",
-    "keywords_key": [
-      "Exhaust"
-    ],
-    "compendium_order": 559
-  },
-  {
     "id": "NOXIOUS_FUMES",
     "name": "Giftige Dämpfe",
     "description": "Wende immer zu Beginn deines Zuges auf ALLE Gegner 2 [gold]Gift[/gold] an.",
@@ -7897,8 +7772,8 @@
   {
     "id": "GLIMMER",
     "name": "Glimmern",
-    "description": "Ziehe 3 Karten.\nLege 1 Karte aus deiner [gold]Hand[/gold] auf deinen [gold]Nachziehstapel[/gold].",
-    "description_raw": "Ziehe {Cards:diff()} {Cards:plural:Karte|Karten}.\nLege {PutBack:diff()} {PutBack:plural:Karte|Karten} aus deiner [gold]Hand[/gold] auf deinen [gold]Nachziehstapel[/gold].",
+    "description": "Ziehe 3 Karten.\nLege 1 [gold]Handkarte[/gold] auf deinen [gold]Nachziehstapel[/gold].",
+    "description_raw": "Ziehe {Cards:diff()} {Cards:plural:Karte|Karten}.\nLege {PutBack:diff()} [gold]{PutBack:plural:Handkarte|Handkarten}[/gold] auf deinen [gold]Nachziehstapel[/gold].",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -7927,7 +7802,7 @@
     "image_url": "/static/images/cards/glimmer.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Ziehe 4 Karten.\nLege 1 Karte aus deiner [gold]Hand[/gold] auf deinen [gold]Nachziehstapel[/gold].",
+    "upgrade_description": "Ziehe 4 Karten.\nLege 1 [gold]Handkarte[/gold] auf deinen [gold]Nachziehstapel[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 207
@@ -7935,7 +7810,7 @@
   {
     "id": "GLITTERSTREAM",
     "name": "Glitzerstrom",
-    "description": "Erhalte 11 [gold]Block[/gold].\nErhalte im nächsten Zug 4 [gold]Block[/gold].",
+    "description": "Erhalte 11 [gold]Block[/gold].\nErhalte im nächsten Zug 5 [gold]Block[/gold].",
     "description_raw": "Erhalte {Block:diff()} [gold]Block[/gold].\nErhalte im nächsten Zug {BlockNextTurn:diff()} [gold]Block[/gold].",
     "cost": 2,
     "is_x_cost": null,
@@ -7956,7 +7831,7 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "BlockNextTurn": 4,
+      "BlockNextTurn": 5,
       "Block": 11
     },
     "upgrade": {
@@ -7966,7 +7841,7 @@
     "image_url": "/static/images/cards/glitterstream.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Erhalte 13 [gold]Block[/gold].\nErhalte im nächsten Zug 6 [gold]Block[/gold].",
+    "upgrade_description": "Erhalte 13 [gold]Block[/gold].\nErhalte im nächsten Zug 7 [gold]Block[/gold].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 208
@@ -7974,8 +7849,8 @@
   {
     "id": "GOLD_AXE",
     "name": "Goldaxt",
-    "description": "Füge Schaden zu in Höhe der Anzahl in diesem Kampf gespielter Karten.",
-    "description_raw": "Füge Schaden zu in Höhe der Anzahl in diesem Kampf gespielter Karten.{InCombat:\n({CalculatedDamage:diff()} Schaden)|}",
+    "description": "Füge Schaden in Höhe der Anzahl in diesem Kampf gespielter Karten zu.",
+    "description_raw": "Füge Schaden in Höhe der Anzahl in diesem Kampf gespielter Karten zu.{InCombat:\n({CalculatedDamage:diff()} Schaden)|}",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -8057,7 +7932,7 @@
     "id": "GRAVE_WARDEN",
     "name": "Grabwächterin",
     "description": "Erhalte 8 [gold]Block[/gold].\nErhalte eine [gold]Seele[/gold] in deinen [gold]Nachziehstapel[/gold].",
-    "description_raw": "Erhalte {Block:diff()} [gold]Block[/gold].\nErhalte eine [gold]{IfUpgraded:show:Seele+|Seele}[/gold] in deinen [gold]Nachziehstapel[/gold].",
+    "description_raw": "Erhalte {Block:diff()} [gold]Block[/gold].\nErhalte eine [gold]Seele[/gold] in deinen [gold]Nachziehstapel[/gold].",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -8083,12 +7958,12 @@
       "Cards": 1
     },
     "upgrade": {
-      "block": "+2"
+      "block": "+3"
     },
     "image_url": "/static/images/cards/grave_warden.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Erhalte 10 [gold]Block[/gold].\nErhalte eine [gold]Seele+[/gold] in deinen [gold]Nachziehstapel[/gold].",
+    "upgrade_description": "Erhalte 11 [gold]Block[/gold].\nErhalte eine [gold]Seele[/gold] in deinen [gold]Nachziehstapel[/gold].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 300
@@ -8140,7 +8015,7 @@
   {
     "id": "FIGHT_ME",
     "name": "Greif schon an!",
-    "description": "Füge zweimal 5 Schaden zu.\nErhalte 2 [gold]Stärke[/gold].\nDer Gegner erhält 1 [gold]Stärke[/gold].",
+    "description": "Füge zweimal 5 Schaden zu.\nErhalte 3 [gold]Stärke[/gold].\nDer Gegner erhält 1 [gold]Stärke[/gold].",
     "description_raw": "Füge zweimal {Damage:diff()} Schaden zu.\nErhalte {StrengthPower:diff()} [gold]Stärke[/gold].\nDer Gegner erhält {EnemyStrength:diff()} [gold]Stärke[/gold].",
     "cost": 2,
     "is_x_cost": null,
@@ -8156,7 +8031,7 @@
     "powers_applied": [
       {
         "power": "Stärke",
-        "amount": 2,
+        "amount": 3,
         "power_key": "Strength"
       }
     ],
@@ -8170,8 +8045,8 @@
       "EnemyStrength": 1,
       "Damage": 5,
       "Repeat": 2,
-      "StrengthPower": 2,
-      "Strength": 2
+      "StrengthPower": 3,
+      "Strength": 3
     },
     "upgrade": {
       "damage": "+1",
@@ -8180,7 +8055,7 @@
     "image_url": "/static/images/cards/fight_me.webp",
     "beta_image_url": "/static/images/cards/beta/fight_me.webp",
     "type_variants": null,
-    "upgrade_description": "Füge zweimal 6 Schaden zu.\nErhalte 2 [gold]Stärke[/gold].\nDer Gegner erhält 1 [gold]Stärke[/gold].",
+    "upgrade_description": "Füge zweimal 6 Schaden zu.\nErhalte 3 [gold]Stärke[/gold].\nDer Gegner erhält 1 [gold]Stärke[/gold].",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 35
@@ -8188,8 +8063,8 @@
   {
     "id": "PULL_FROM_BELOW",
     "name": "Griff aus der Tiefe",
-    "description": "Füge 5 Schaden zu für jede in diesem Kampf gespielte [gold]Flüchtige[/gold] Karte.",
-    "description_raw": "Füge {Damage:diff()} Schaden zu für jede in diesem Kampf gespielte [gold]Flüchtige[/gold] Karte.{InCombat:\n(Trifft {CalculatedHits:diff()} {CalculatedHits:plural:Mal|Mal})|}",
+    "description": "Füge 5 Schaden für jede in diesem Kampf gespielte [gold]Flüchtige[/gold] Karte zu.",
+    "description_raw": "Füge {Damage:diff()} Schaden für jede in diesem Kampf gespielte [gold]Flüchtige[/gold] Karte zu.{InCombat:\n(Trifft {CalculatedHits:diff()} {CalculatedHits:plural:Mal|Mal})|}",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -8219,7 +8094,7 @@
     "image_url": "/static/images/cards/pull_from_below.webp",
     "beta_image_url": "/static/images/cards/beta/pull_from_below.webp",
     "type_variants": null,
-    "upgrade_description": "Füge 7 Schaden zu für jede in diesem Kampf gespielte [gold]Flüchtige[/gold] Karte.",
+    "upgrade_description": "Füge 7 Schaden für jede in diesem Kampf gespielte [gold]Flüchtige[/gold] Karte zu.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 319
@@ -8227,7 +8102,7 @@
   {
     "id": "GRAND_FINALE",
     "name": "Großes Finale",
-    "description": "Nur spielbar, wenn keine Karten in deinem [gold]Nachziehstapel[/gold] sind. \nFüge ALLEN Gegnern 50 Schaden zu.",
+    "description": "Nur spielbar, wenn keine Karten in deinem [gold]Nachziehstapel[/gold] sind. \nFüge ALLEN Gegnern 60 Schaden zu.",
     "description_raw": "Nur spielbar, wenn keine Karten in deinem [gold]Nachziehstapel[/gold] sind. \nFüge ALLEN Gegnern {Damage:diff()} Schaden zu.",
     "cost": 0,
     "is_x_cost": null,
@@ -8237,7 +8112,7 @@
     "rarity": "Selten",
     "target": "AllEnemies",
     "color": "silent",
-    "damage": 50,
+    "damage": 60,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -8248,15 +8123,15 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Damage": 50
+      "Damage": 60
     },
     "upgrade": {
-      "damage": "+10"
+      "damage": "+15"
     },
     "image_url": "/static/images/cards/grand_finale.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Nur spielbar, wenn keine Karten in deinem [gold]Nachziehstapel[/gold] sind. \nFüge ALLEN Gegnern 60 Schaden zu.",
+    "upgrade_description": "Nur spielbar, wenn keine Karten in deinem [gold]Nachziehstapel[/gold] sind. \nFüge ALLEN Gegnern 75 Schaden zu.",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 126
@@ -8264,8 +8139,8 @@
   {
     "id": "LARGESSE",
     "name": "Großtum",
-    "description": "Ein Verbündeter erhält 1 zufällige farblose Karte auf die [gold]Hand[/gold].",
-    "description_raw": "Ein Verbündeter erhält 1 zufällige{IfUpgraded:show: [gold]verbesserte[/gold]} farblose Karte auf die [gold]Hand[/gold].",
+    "description": "Ein Mitspieler erhält 1 zufällige Farblose Karte auf die [gold]Hand[/gold].",
+    "description_raw": "Ein Mitspieler erhält 1 zufällige{IfUpgraded:show: [gold]Verbesserte[/gold]} Farblose Karte auf die [gold]Hand[/gold].",
     "cost": 0,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -8291,7 +8166,7 @@
     "image_url": "/static/images/cards/largesse.webp",
     "beta_image_url": "/static/images/cards/beta/largesse.webp",
     "type_variants": null,
-    "upgrade_description": "Ein Verbündeter erhält 1 zufällige [gold]verbesserte[/gold] farblose Karte auf die [gold]Hand[/gold].",
+    "upgrade_description": "Ein Mitspieler erhält 1 zufällige [gold]Verbesserte[/gold] Farblose Karte auf die [gold]Hand[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 222
@@ -8336,17 +8211,17 @@
   {
     "id": "BEGONE",
     "name": "HINFORT!",
-    "description": "Füge 4 Schaden zu.\nWähle eine [gold]Handkarte[/gold], die du zu [gold]Diener-Sturzflug[/gold] [gold]Transformierst[/gold].",
-    "description_raw": "Füge {Damage:diff()} Schaden zu.\nWähle eine [gold]Handkarte[/gold], die du zu [gold]{IfUpgraded:show:Diener-Sturzflug+|Diener-Sturzflug}[/gold] [gold]Transformierst[/gold].",
+    "description": "Wähle eine [gold]Handkarte[/gold], die du zu [gold]Diener-Schlag[/gold] [gold]Transformierst[/gold].",
+    "description_raw": "Wähle eine [gold]Handkarte[/gold], die du zu [gold]{IfUpgraded:show:Diener-Schlag+|Diener-Schlag}[/gold] [gold]Transformierst[/gold].",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
     "star_cost": null,
-    "type": "Angriff",
+    "type": "Fertigkeit",
     "rarity": "Gewöhnlich",
-    "target": "AnyEnemy",
+    "target": "Self",
     "color": "regent",
-    "damage": 4,
+    "damage": null,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -8356,19 +8231,17 @@
     "keywords": null,
     "tags": null,
     "spawns_cards": [
-      "MINION_DIVE_BOMB"
+      "MINION_STRIKE"
     ],
-    "vars": {
-      "Damage": 4
-    },
+    "vars": null,
     "upgrade": {
-      "damage": "+1"
+      "description_changed": true
     },
     "image_url": "/static/images/cards/begone.webp",
     "beta_image_url": "/static/images/cards/beta/begone.webp",
     "type_variants": null,
-    "upgrade_description": "Füge 5 Schaden zu.\nWähle eine [gold]Handkarte[/gold], die du zu [gold]Diener-Sturzflug+[/gold] [gold]Transformierst[/gold].",
-    "type_key": "Attack",
+    "upgrade_description": "Wähle eine [gold]Handkarte[/gold], die du zu [gold]Diener-Schlag+[/gold] [gold]Transformierst[/gold].",
+    "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 179
   },
@@ -8525,7 +8398,7 @@
     "id": "JACKPOT",
     "name": "Hauptgewinn",
     "description": "Füge 25 Schaden zu.\nErhalte 3 zufällige 0[energy:1]-Karten auf deine [gold]Hand[/gold].",
-    "description_raw": "Füge {Damage:diff()} Schaden zu.\nErhalte {Cards:diff()} zufällige{IfUpgraded:show: [gold]verbesserte[/gold]} 0{energyPrefix:energyIcons(1)}-{Cards:plural:Karte|Karten} auf deine [gold]Hand[/gold].",
+    "description_raw": "Füge {Damage:diff()} Schaden zu.\nErhalte {Cards:diff()} zufällige{IfUpgraded:show: [gold]Verbesserte[/gold]} 0{energyPrefix:energyIcons(1)}-{Cards:plural:Karte|Karten} auf deine [gold]Hand[/gold].",
     "cost": 3,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -8554,7 +8427,7 @@
     "image_url": "/static/images/cards/jackpot.webp",
     "beta_image_url": "/static/images/cards/beta/jackpot.webp",
     "type_variants": null,
-    "upgrade_description": "Füge 30 Schaden zu.\nErhalte 3 zufällige [gold]verbesserte[/gold] 0[energy:1]-Karten auf deine [gold]Hand[/gold].",
+    "upgrade_description": "Füge 30 Schaden zu.\nErhalte 3 zufällige [gold]Verbesserte[/gold] 0[energy:1]-Karten auf deine [gold]Hand[/gold].",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 466
@@ -8754,12 +8627,12 @@
       "Repeat": 3
     },
     "upgrade": {
-      "damage": "+2"
+      "repeat": "+1"
     },
     "image_url": "/static/images/cards/celestial_might.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Füge 3 Mal 8 Schaden zu.",
+    "upgrade_description": "Füge 4 Mal 6 Schaden zu.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 185
@@ -8952,7 +8825,9 @@
     "cards_draw": null,
     "energy_gain": null,
     "hp_loss": null,
-    "keywords": null,
+    "keywords": [
+      "Erschöpft"
+    ],
     "tags": null,
     "spawns_cards": null,
     "vars": {
@@ -8960,14 +8835,17 @@
       "Focus": 2
     },
     "upgrade": {
-      "focuspower": "+1"
+      "remove_exhaust": true
     },
     "image_url": "/static/images/cards/hotfix.webp",
     "beta_image_url": "/static/images/cards/beta/hotfix.webp",
     "type_variants": null,
-    "upgrade_description": "Erhalte für diesen Zug 3 [gold]Fokus[/gold].",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Common",
+    "keywords_key": [
+      "Exhaust"
+    ],
     "compendium_order": 394
   },
   {
@@ -9018,7 +8896,7 @@
   {
     "id": "HEMOKINESIS",
     "name": "Hämokinese",
-    "description": "Verliere 2 TP.\nFüge 14 Schaden zu.",
+    "description": "Verliere 2 TP.\nFüge 15 Schaden zu.",
     "description_raw": "Verliere {HpLoss:diff()} TP.\nFüge {Damage:diff()} Schaden zu.",
     "cost": 1,
     "is_x_cost": null,
@@ -9028,7 +8906,7 @@
     "rarity": "Ungewöhnlich",
     "target": "AnyEnemy",
     "color": "ironclad",
-    "damage": 14,
+    "damage": 15,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -9040,7 +8918,7 @@
     "spawns_cards": null,
     "vars": {
       "HpLoss": 2,
-      "Damage": 14
+      "Damage": 15
     },
     "upgrade": {
       "damage": "+5"
@@ -9048,10 +8926,10 @@
     "image_url": "/static/images/cards/hemokinesis.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Verliere 2 TP.\nFüge 19 Schaden zu.",
+    "upgrade_description": "Verliere 2 TP.\nFüge 20 Schaden zu.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
-    "compendium_order": 42
+    "compendium_order": 41
   },
   {
     "id": "HELLRAISER",
@@ -9086,13 +8964,13 @@
     "upgrade_description": null,
     "type_key": "Power",
     "rarity_key": "Rare",
-    "compendium_order": 41
+    "compendium_order": 40
   },
   {
     "id": "I_AM_INVINCIBLE",
     "name": "Ich bin unbesiegbar",
-    "description": "Erhalte 9 [gold]Block[/gold].\nFalls diese Karte am Ende deines Zuges auf deinem [gold]Nachziehstapel[/gold] liegt, spiele sie.",
-    "description_raw": "Erhalte {Block:diff()} [gold]Block[/gold].\nFalls diese Karte am Ende deines Zuges auf deinem [gold]Nachziehstapel[/gold] liegt, spiele sie.",
+    "description": "Erhalte 10 [gold]Block[/gold].\nFalls diese Karte am Ende deines Zuges oben auf deinem [gold]Nachziehstapel[/gold] liegt, spiele sie.",
+    "description_raw": "Erhalte {Block:diff()} [gold]Block[/gold].\nFalls diese Karte am Ende deines Zuges oben auf deinem [gold]Nachziehstapel[/gold] liegt, spiele sie.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -9102,7 +8980,7 @@
     "target": "Self",
     "color": "regent",
     "damage": null,
-    "block": 9,
+    "block": 10,
     "hit_count": null,
     "powers_applied": null,
     "cards_draw": null,
@@ -9112,7 +8990,7 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Block": 9
+      "Block": 10
     },
     "upgrade": {
       "block": "+3"
@@ -9120,7 +8998,7 @@
     "image_url": "/static/images/cards/i_am_invincible.webp",
     "beta_image_url": "/static/images/cards/beta/i_am_invincible.webp",
     "type_variants": null,
-    "upgrade_description": "Erhalte 12 [gold]Block[/gold].\nFalls diese Karte am Ende deines Zuges auf deinem [gold]Nachziehstapel[/gold] liegt, spiele sie.",
+    "upgrade_description": "Erhalte 13 [gold]Block[/gold].\nFalls diese Karte am Ende deines Zuges oben auf deinem [gold]Nachziehstapel[/gold] liegt, spiele sie.",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 217
@@ -9128,7 +9006,7 @@
   {
     "id": "WROUGHT_IN_WAR",
     "name": "Im Kampf gefertigt",
-    "description": "Füge 7 Schaden zu.\n[gold]Schmiede[/gold] 5.",
+    "description": "Füge 7 Schaden zu.\n[gold]Schmiede[/gold] 7.",
     "description_raw": "Füge {Damage:diff()} Schaden zu.\n[gold]Schmiede[/gold] {Forge:diff()}.",
     "cost": 1,
     "is_x_cost": null,
@@ -9150,7 +9028,7 @@
     "spawns_cards": null,
     "vars": {
       "Damage": 7,
-      "Forge": 5
+      "Forge": 7
     },
     "upgrade": {
       "damage": "+2",
@@ -9159,7 +9037,7 @@
     "image_url": "/static/images/cards/wrought_in_war.webp",
     "beta_image_url": "/static/images/cards/beta/wrought_in_war.webp",
     "type_variants": null,
-    "upgrade_description": "Füge 9 Schaden zu.\n[gold]Schmiede[/gold] 7.",
+    "upgrade_description": "Füge 9 Schaden zu.\n[gold]Schmiede[/gold] 9.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 262
@@ -9370,7 +9248,7 @@
     "upgrade_description": "Verliere immer zu Beginn deines Zuges 1 TP.\nImmer wenn du in deinem Zug TP verlierst, füge ALLEN Gegnern 9 Schaden zu.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
-    "compendium_order": 46
+    "compendium_order": 45
   },
   {
     "id": "WISP",
@@ -9417,8 +9295,8 @@
   {
     "id": "ITERATION",
     "name": "Iteration",
-    "description": "Immer wenn du die erste Status-Karte in einem Zug ziehst, ziehe 2 Karten.",
-    "description_raw": "Immer wenn du die erste Status-Karte in einem Zug ziehst, ziehe {IterationPower:diff()} {IterationPower:plural:Karte|Karten}.",
+    "description": "Immer wenn du den ersten Status in einem Zug ziehst, ziehe 2 Karten.",
+    "description_raw": "Immer wenn du den ersten Status in einem Zug ziehst, ziehe {IterationPower:diff()} {IterationPower:plural:Karte|Karten}.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -9453,7 +9331,7 @@
     "image_url": "/static/images/cards/iteration.webp",
     "beta_image_url": "/static/images/cards/beta/iteration.webp",
     "type_variants": null,
-    "upgrade_description": "Immer wenn du die erste Status-Karte in einem Zug ziehst, ziehe 3 Karten.",
+    "upgrade_description": "Immer wenn du den ersten Status in einem Zug ziehst, ziehe 3 Karten.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 398
@@ -9528,7 +9406,7 @@
     "upgrade_description": null,
     "type_key": "Power",
     "rarity_key": "Uncommon",
-    "compendium_order": 50
+    "compendium_order": 49
   },
   {
     "id": "END_OF_DAYS",
@@ -9655,8 +9533,8 @@
   {
     "id": "EXPECT_A_FIGHT",
     "name": "Kampfbereit",
-    "description": "Erhalte [energy:1] für jeden Angriff auf deiner [gold]Hand[/gold].",
-    "description_raw": "Erhalte {energyPrefix:energyIcons(1)} für jeden Angriff auf deiner [gold]Hand[/gold].{InCombat:\n(Gibt {CalculatedEnergy:energyIcons()})|}",
+    "description": "Erhalte [energy:1] für jeden Angriff auf deiner [gold]Hand[/gold].\nDu kannst in diesem Zug keine weitere [energy:1] erhalten.",
+    "description_raw": "Erhalte {energyPrefix:energyIcons(1)} für jeden Angriff auf deiner [gold]Hand[/gold].\nDu kannst in diesem Zug keine weitere {energyPrefix:energyIcons(1)} erhalten.{InCombat:\n(Gibt {CalculatedEnergy:energyIcons()})|}",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -9694,8 +9572,8 @@
   {
     "id": "SPOILS_OF_BATTLE",
     "name": "Kampfesbeute",
-    "description": "[gold]Schmiede[/gold] 10.",
-    "description_raw": "[gold]Schmiede[/gold] {Forge:diff()}.",
+    "description": "[gold]Schmiede[/gold] 5.\nZiehe 2 Karten.",
+    "description_raw": "[gold]Schmiede[/gold] {Forge:diff()}.\nZiehe {Cards:diff()} {Cards:plural:Karte|Karten}.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -9708,22 +9586,23 @@
     "block": null,
     "hit_count": null,
     "powers_applied": null,
-    "cards_draw": null,
+    "cards_draw": 2,
     "energy_gain": null,
     "hp_loss": null,
     "keywords": null,
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Forge": 10
+      "Forge": 5,
+      "Cards": 2
     },
     "upgrade": {
-      "forge": "+5"
+      "forge": "+3"
     },
     "image_url": "/static/images/cards/spoils_of_battle.webp",
     "beta_image_url": "/static/images/cards/beta/spoils_of_battle.webp",
     "type_variants": null,
-    "upgrade_description": "[gold]Schmiede[/gold] 15.",
+    "upgrade_description": "[gold]Schmiede[/gold] 8.\nZiehe 2 Karten.",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 250
@@ -9764,43 +9643,6 @@
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 6
-  },
-  {
-    "id": "CAPACITOR",
-    "name": "Kapazität",
-    "description": "Erhalte 2 Orb-Slots.",
-    "description_raw": "Erhalte {Repeat:diff()} Orb-Slots.",
-    "cost": 1,
-    "is_x_cost": null,
-    "is_x_star_cost": null,
-    "star_cost": null,
-    "type": "Macht",
-    "rarity": "Ungewöhnlich",
-    "target": "Self",
-    "color": "defect",
-    "damage": null,
-    "block": null,
-    "hit_count": null,
-    "powers_applied": null,
-    "cards_draw": null,
-    "energy_gain": null,
-    "hp_loss": null,
-    "keywords": null,
-    "tags": null,
-    "spawns_cards": null,
-    "vars": {
-      "Repeat": 2
-    },
-    "upgrade": {
-      "repeat": "+1"
-    },
-    "image_url": "/static/images/cards/capacitor.webp",
-    "beta_image_url": null,
-    "type_variants": null,
-    "upgrade_description": "Erhalte 3 Orb-Slots.",
-    "type_key": "Power",
-    "rarity_key": "Uncommon",
-    "compendium_order": 361
   },
   {
     "id": "CASCADE",
@@ -9878,7 +9720,7 @@
     "id": "NO_ESCAPE",
     "name": "Kein Entkommen",
     "description": "Wende 10 [gold]Verderben[/gold] an und zusätzlich 5 [gold]Verderben[/gold] für je 10 [gold]Verderben[/gold], die der Gegner schon hat.",
-    "description_raw": "Wende {CalculationBase:diff()} [gold]Verderben[/gold] an und zusätzlich {CalculationExtra:diff()} [gold]Verderben[/gold] für je {DoomThreshold:diff()} [gold]Verderben[/gold], die der Gegner schon hat.{IsTargeting:\n(Gibt {CalculatedDoom:diff()} [gold]Verderbnis[/gold])|}",
+    "description_raw": "Wende {CalculationBase:diff()} [gold]Verderben[/gold] an und zusätzlich {CalculationExtra:diff()} [gold]Verderben[/gold] für je {DoomThreshold:diff()} [gold]Verderben[/gold], die der Gegner schon hat.{IsTargeting:\n(Gibt {CalculatedDoom:diff()} [gold]Verderben[/gold])|}",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -10010,7 +9852,7 @@
   {
     "id": "REFINE_BLADE",
     "name": "Klinge ausbessern",
-    "description": "[gold]Schmiede[/gold] 6.\nErhalte im nächsten Zug [energy:1].",
+    "description": "[gold]Schmiede[/gold] 9.\nErhalte im nächsten Zug [energy:1].",
     "description_raw": "[gold]Schmiede[/gold] {Forge:diff()}.\nErhalte im nächsten Zug {Energy:energyIcons()}.",
     "cost": 1,
     "is_x_cost": null,
@@ -10031,7 +9873,7 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Forge": 6,
+      "Forge": 9,
       "Energy": 1
     },
     "upgrade": {
@@ -10040,7 +9882,7 @@
     "image_url": "/static/images/cards/refine_blade.webp",
     "beta_image_url": "/static/images/cards/beta/refine_blade.webp",
     "type_variants": null,
-    "upgrade_description": "[gold]Schmiede[/gold] 10.\nErhalte im nächsten Zug [energy:1].",
+    "upgrade_description": "[gold]Schmiede[/gold] 13.\nErhalte im nächsten Zug [energy:1].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 240
@@ -10212,7 +10054,7 @@
   {
     "id": "COLLISION_COURSE",
     "name": "Kollisionskurs",
-    "description": "Füge 9 Schaden zu.\nErhalte einen [gold]Schutt[/gold] auf deine [gold]Hand[/gold].",
+    "description": "Füge 11 Schaden zu.\nErhalte einen [gold]Schutt[/gold] auf deine [gold]Hand[/gold].",
     "description_raw": "Füge {Damage:diff()} Schaden zu.\nErhalte einen [gold]Schutt[/gold] auf deine [gold]Hand[/gold].",
     "cost": 0,
     "is_x_cost": null,
@@ -10222,7 +10064,7 @@
     "rarity": "Gewöhnlich",
     "target": "AnyEnemy",
     "color": "regent",
-    "damage": 9,
+    "damage": 11,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -10235,15 +10077,15 @@
       "DEBRIS"
     ],
     "vars": {
-      "Damage": 9
+      "Damage": 11
     },
     "upgrade": {
-      "damage": "+3"
+      "damage": "+4"
     },
     "image_url": "/static/images/cards/collision_course.webp",
     "beta_image_url": "/static/images/cards/beta/collision_course.webp",
     "type_variants": null,
-    "upgrade_description": "Füge 12 Schaden zu.\nErhalte einen [gold]Schutt[/gold] auf deine [gold]Hand[/gold].",
+    "upgrade_description": "Füge 15 Schaden zu.\nErhalte einen [gold]Schutt[/gold] auf deine [gold]Hand[/gold].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 189
@@ -10258,7 +10100,7 @@
     "is_x_star_cost": null,
     "star_cost": null,
     "type": "Fertigkeit",
-    "rarity": "Selten",
+    "rarity": "Ungewöhnlich",
     "target": "Self",
     "color": "ironclad",
     "damage": null,
@@ -10283,7 +10125,7 @@
     "type_variants": null,
     "upgrade_description": "Erhalte 8 [gold]Block[/gold].\nDu nimmst in diesem Zug 50% weniger Schaden von [gold]Verwundbaren[/gold] Gegnern.",
     "type_key": "Skill",
-    "rarity_key": "Rare",
+    "rarity_key": "Uncommon",
     "compendium_order": 18
   },
   {
@@ -10379,6 +10221,43 @@
     "compendium_order": 368
   },
   {
+    "id": "CAPACITOR",
+    "name": "Kondensator",
+    "description": "Erhalte 2 Orb-Slots.",
+    "description_raw": "Erhalte {Repeat:diff()} Orb-Slots.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Macht",
+    "rarity": "Ungewöhnlich",
+    "target": "Self",
+    "color": "defect",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Repeat": 2
+    },
+    "upgrade": {
+      "repeat": "+1"
+    },
+    "image_url": "/static/images/cards/capacitor.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "upgrade_description": "Erhalte 3 Orb-Slots.",
+    "type_key": "Power",
+    "rarity_key": "Uncommon",
+    "compendium_order": 361
+  },
+  {
     "id": "CONVERGENCE",
     "name": "Konvergenz",
     "description": "Erhalte im nächsten Zug [energy:1] und [star:1].\n[gold]Behalte[/gold] deine [gold]Hand[/gold] in diesem Zug.",
@@ -10419,8 +10298,8 @@
   {
     "id": "COORDINATE",
     "name": "Koordinieren",
-    "description": "Gib einem Verbündeten für diesen Zug 5 [gold]Stärke[/gold].",
-    "description_raw": "Gib einem Verbündeten für diesen Zug {StrengthPower:diff()} [gold]Stärke[/gold].",
+    "description": "Gib einem Mitspieler für diesen Zug 5 [gold]Stärke[/gold].",
+    "description_raw": "Gib einem Mitspieler für diesen Zug {StrengthPower:diff()} [gold]Stärke[/gold].",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -10495,13 +10374,13 @@
     "upgrade_description": "Füge 12 Schaden zu.\nLege eine Karte aus deinem [gold]Abwurfstapel[/gold] auf deinen [gold]Nachziehstapel[/gold].",
     "type_key": "Attack",
     "rarity_key": "Common",
-    "compendium_order": 40
+    "compendium_order": 39
   },
   {
     "id": "COSMIC_INDIFFERENCE",
-    "name": "Kosmiche Gelassenheit",
-    "description": "Erhalte 6 [gold]Block[/gold].\nLege eine Karte aus deinem [gold]Abwurfstapel[/gold] oben auf deinen [gold]Nachziehstapel[/gold].",
-    "description_raw": "Erhalte {Block:diff()} [gold]Block[/gold].\nLege eine Karte aus deinem [gold]Abwurfstapel[/gold] oben auf deinen [gold]Nachziehstapel[/gold].",
+    "name": "Kosmische Gelassenheit",
+    "description": "Erhalte 6 [gold]Block[/gold].\nLege eine Karte aus deinem [gold]Abwurfstapel[/gold] auf deinen [gold]Nachziehstapel[/gold].",
+    "description_raw": "Erhalte {Block:diff()} [gold]Block[/gold].\nLege eine Karte aus deinem [gold]Abwurfstapel[/gold] auf deinen [gold]Nachziehstapel[/gold].",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -10529,7 +10408,7 @@
     "image_url": "/static/images/cards/cosmic_indifference.webp",
     "beta_image_url": "/static/images/cards/beta/cosmic_indifference.webp",
     "type_variants": null,
-    "upgrade_description": "Erhalte 9 [gold]Block[/gold].\nLege eine Karte aus deinem [gold]Abwurfstapel[/gold] oben auf deinen [gold]Nachziehstapel[/gold].",
+    "upgrade_description": "Erhalte 9 [gold]Block[/gold].\nLege eine Karte aus deinem [gold]Abwurfstapel[/gold] auf deinen [gold]Nachziehstapel[/gold].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 193
@@ -11006,7 +10885,7 @@
   {
     "id": "KINGLY_PUNCH",
     "name": "Königlicher Hieb",
-    "description": "Füge 8 Schaden zu.\nImmer wenn du diese Karte ziehst, erhöhe ihren Schaden für diesen Kampf um 3.",
+    "description": "Füge 8 Schaden zu.\nImmer wenn du diese Karte ziehst, erhöhe ihren Schaden für diesen Kampf um 4.",
     "description_raw": "Füge {Damage:diff()} Schaden zu.\nImmer wenn du diese Karte ziehst, erhöhe ihren Schaden für diesen Kampf um {Increase:diff()}.",
     "cost": 1,
     "is_x_cost": null,
@@ -11027,16 +10906,17 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Increase": 3,
+      "Increase": 4,
       "Damage": 8
     },
     "upgrade": {
+      "damage": "+2",
       "increase": "+2"
     },
     "image_url": "/static/images/cards/kingly_punch.webp",
     "beta_image_url": "/static/images/cards/beta/kingly_punch.webp",
     "type_variants": null,
-    "upgrade_description": "Füge 8 Schaden zu.\nImmer wenn du diese Karte ziehst, erhöhe ihren Schaden für diesen Kampf um 5.",
+    "upgrade_description": "Füge 10 Schaden zu.\nImmer wenn du diese Karte ziehst, erhöhe ihren Schaden für diesen Kampf um 6.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 219
@@ -11044,7 +10924,7 @@
   {
     "id": "KINGLY_KICK",
     "name": "Königlicher Tritt",
-    "description": "Füge 24 Schaden zu.\nImmer wenn du diese Karte ziehst, senke ihre Kosten um 1.",
+    "description": "Füge 27 Schaden zu.\nImmer wenn du diese Karte ziehst, senke ihre Kosten um 1.",
     "description_raw": "Füge {Damage:diff()} Schaden zu.\nImmer wenn du diese Karte ziehst, senke ihre Kosten um 1.",
     "cost": 4,
     "is_x_cost": null,
@@ -11054,7 +10934,7 @@
     "rarity": "Ungewöhnlich",
     "target": "AnyEnemy",
     "color": "regent",
-    "damage": 24,
+    "damage": 27,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -11065,15 +10945,15 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Damage": 24
+      "Damage": 27
     },
     "upgrade": {
-      "damage": "+6"
+      "damage": "+8"
     },
     "image_url": "/static/images/cards/kingly_kick.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Füge 30 Schaden zu.\nImmer wenn du diese Karte ziehst, senke ihre Kosten um 1.",
+    "upgrade_description": "Füge 35 Schaden zu.\nImmer wenn du diese Karte ziehst, senke ihre Kosten um 1.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 218
@@ -11169,7 +11049,7 @@
   },
   {
     "id": "COOLANT",
-    "name": "Kühlmittel",
+    "name": "Kühlung",
     "description": "Erhalte immer zu Beginn deines Zuges 2 [gold]Block[/gold] für jeden unterschiedlichen Orb, den du hast.",
     "description_raw": "Erhalte immer zu Beginn deines Zuges {CoolantPower:diff()} [gold]Block[/gold] für jeden unterschiedlichen Orb, den du hast.",
     "cost": 1,
@@ -11365,7 +11245,9 @@
     "cards_draw": null,
     "energy_gain": null,
     "hp_loss": null,
-    "keywords": null,
+    "keywords": [
+      "Flüchtig"
+    ],
     "tags": null,
     "spawns_cards": null,
     "vars": {
@@ -11373,14 +11255,17 @@
       "VoidForm": 2
     },
     "upgrade": {
-      "voidformpower": "+1"
+      "remove_ethereal": true
     },
     "image_url": "/static/images/cards/void_form.webp",
     "beta_image_url": "/static/images/cards/beta/void_form.webp",
     "type_variants": null,
-    "upgrade_description": "Beende deinen Zug.\nDie ersten 3 Karten, die du in jedem Zug spielst, sind kostenlos spielbar.",
+    "upgrade_description": null,
     "type_key": "Power",
     "rarity_key": "Rare",
+    "keywords_key": [
+      "Ethereal"
+    ],
     "compendium_order": 261
   },
   {
@@ -11428,8 +11313,8 @@
   {
     "id": "SLEIGHT_OF_FLESH",
     "name": "Leibeszerfall",
-    "description": "Immer wenn du einen Debuff auf einen Gegner anwendest, füge ihm 9 Schaden zu.",
-    "description_raw": "Immer wenn du einen Debuff auf einen Gegner anwendest, füge ihm {SleightOfFleshPower:diff()} Schaden zu.",
+    "description": "Immer wenn du einen Debuff auf einen Gegner anwendest, nimmt er 9 Schaden.",
+    "description_raw": "Immer wenn du einen Debuff auf einen Gegner anwendest, nimmt er {SleightOfFleshPower:diff()} Schaden.",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -11464,7 +11349,7 @@
     "image_url": "/static/images/cards/sleight_of_flesh.webp",
     "beta_image_url": "/static/images/cards/beta/sleight_of_flesh.webp",
     "type_variants": null,
-    "upgrade_description": "Immer wenn du einen Debuff auf einen Gegner anwendest, füge ihm 13 Schaden zu.",
+    "upgrade_description": "Immer wenn du einen Debuff auf einen Gegner anwendest, nimmt er 13 Schaden.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 336
@@ -11549,8 +11434,8 @@
   {
     "id": "GUIDING_STAR",
     "name": "Leitstern",
-    "description": "Füge 12 Schaden zu.\nZiehe im nächsten Zug 2 Karten.",
-    "description_raw": "Füge {Damage:diff()} Schaden zu.\nZiehe im nächsten Zug {Cards:diff()} {Cards:plural:Karte|Karten}.",
+    "description": "Füge 12 Schaden zu.\nZiehe 2 Karten.",
+    "description_raw": "Füge {Damage:diff()} Schaden zu.\nZiehe {Cards:diff()} {Cards:plural:Karte|Karten}.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -11581,7 +11466,7 @@
     "image_url": "/static/images/cards/guiding_star.webp",
     "beta_image_url": "/static/images/cards/beta/guiding_star.webp",
     "type_variants": null,
-    "upgrade_description": "Füge 13 Schaden zu.\nZiehe im nächsten Zug 3 Karten.",
+    "upgrade_description": "Füge 13 Schaden zu.\nZiehe 3 Karten.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 211
@@ -11670,8 +11555,8 @@
   {
     "id": "GLOW",
     "name": "Leuchten",
-    "description": "Erhalte [star:1].\nZiehe 2 Karten.",
-    "description_raw": "Erhalte {Stars:starIcons()}.\nZiehe {Cards:diff()} {Cards:plural:Karte|Karten}.",
+    "description": "Erhalte [star:1].\nZiehe 1 Karte.\nZiehe im nächsten Zug 1 Karte.",
+    "description_raw": "Erhalte {Stars:starIcons()}.\nZiehe {Cards:diff()} {Cards:plural:Karte|Karten}.\nZiehe im nächsten Zug {Cards:diff()} {Cards:plural:Karte|Karten}.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -11684,7 +11569,7 @@
     "block": null,
     "hit_count": null,
     "powers_applied": null,
-    "cards_draw": 2,
+    "cards_draw": 1,
     "energy_gain": null,
     "hp_loss": null,
     "keywords": null,
@@ -11692,7 +11577,7 @@
     "spawns_cards": null,
     "vars": {
       "Stars": 1,
-      "Cards": 2
+      "Cards": 1
     },
     "upgrade": {
       "stars": "+1"
@@ -11700,7 +11585,7 @@
     "image_url": "/static/images/cards/glow.webp",
     "beta_image_url": "/static/images/cards/beta/glow.webp",
     "type_variants": null,
-    "upgrade_description": "Erhalte [star:2].\nZiehe 2 Karten.",
+    "upgrade_description": "Erhalte [star:2].\nZiehe 1 Karte.\nZiehe im nächsten Zug 1 Karte.",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 209
@@ -11752,7 +11637,7 @@
   {
     "id": "GATHER_LIGHT",
     "name": "Licht einfangen",
-    "description": "Erhalte 7 [gold]Block[/gold].\nErhalte [star:1].",
+    "description": "Erhalte 8 [gold]Block[/gold].\nErhalte [star:1].",
     "description_raw": "Erhalte {Block:diff()} [gold]Block[/gold].\nErhalte {Stars:starIcons()}.",
     "cost": 1,
     "is_x_cost": null,
@@ -11763,7 +11648,7 @@
     "target": "Self",
     "color": "regent",
     "damage": null,
-    "block": 7,
+    "block": 8,
     "hit_count": null,
     "powers_applied": null,
     "cards_draw": null,
@@ -11773,7 +11658,7 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Block": 7,
+      "Block": 8,
       "Stars": 1
     },
     "upgrade": {
@@ -11782,7 +11667,7 @@
     "image_url": "/static/images/cards/gather_light.webp",
     "beta_image_url": "/static/images/cards/beta/gather_light.webp",
     "type_variants": null,
-    "upgrade_description": "Erhalte 10 [gold]Block[/gold].\nErhalte [star:1].",
+    "upgrade_description": "Erhalte 11 [gold]Block[/gold].\nErhalte [star:1].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 205
@@ -11980,7 +11865,7 @@
   {
     "id": "SCULPTING_STRIKE",
     "name": "Meißelschlag",
-    "description": "Füge 8 Schaden zu.\nGib einer deiner [gold]Handkarten[/gold] [gold]Flüchtig[/gold].",
+    "description": "Füge 9 Schaden zu.\nGib einer deiner [gold]Handkarten[/gold] [gold]Flüchtig[/gold].",
     "description_raw": "Füge {Damage:diff()} Schaden zu.\nGib einer deiner [gold]Handkarten[/gold] [gold]Flüchtig[/gold].",
     "cost": 1,
     "is_x_cost": null,
@@ -11990,7 +11875,7 @@
     "rarity": "Gewöhnlich",
     "target": "AnyEnemy",
     "color": "necrobinder",
-    "damage": 8,
+    "damage": 9,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -12003,7 +11888,7 @@
     ],
     "spawns_cards": null,
     "vars": {
-      "Damage": 8
+      "Damage": 9
     },
     "upgrade": {
       "damage": "+3"
@@ -12011,7 +11896,7 @@
     "image_url": "/static/images/cards/sculpting_strike.webp",
     "beta_image_url": "/static/images/cards/beta/sculpting_strike.webp",
     "type_variants": null,
-    "upgrade_description": "Füge 11 Schaden zu.\nGib einer deiner [gold]Handkarten[/gold] [gold]Flüchtig[/gold].",
+    "upgrade_description": "Füge 12 Schaden zu.\nGib einer deiner [gold]Handkarten[/gold] [gold]Flüchtig[/gold].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 329
@@ -12057,7 +11942,7 @@
   {
     "id": "MEMENTO_MORI",
     "name": "Memento Mori",
-    "description": "Füge 8 Schaden zu.\nFügt für jede in diesem Zug abgeworfene Karte 4 Schaden mehr zu.",
+    "description": "Füge 9 Schaden zu.\nFügt für jede in diesem Zug abgeworfene Karte 4 Schaden mehr zu.",
     "description_raw": "Füge {CalculatedDamage:diff()} Schaden zu.\nFügt für jede in diesem Zug abgeworfene Karte {ExtraDamage:diff()} Schaden mehr zu.",
     "cost": 1,
     "is_x_cost": null,
@@ -12067,7 +11952,7 @@
     "rarity": "Ungewöhnlich",
     "target": "AnyEnemy",
     "color": "silent",
-    "damage": 8,
+    "damage": 9,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -12078,9 +11963,9 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "CalculationBase": 8,
+      "CalculationBase": 9,
       "ExtraDamage": 4,
-      "CalculatedDamage": 8
+      "CalculatedDamage": 9
     },
     "upgrade": {
       "calculationbase": "+2",
@@ -12089,7 +11974,7 @@
     "image_url": "/static/images/cards/memento_mori.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Füge 8 Schaden zu.\nFügt für jede in diesem Zug abgeworfene Karte 5 Schaden mehr zu.",
+    "upgrade_description": "Füge 9 Schaden zu.\nFügt für jede in diesem Zug abgeworfene Karte 5 Schaden mehr zu.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 136
@@ -12097,8 +11982,8 @@
   {
     "id": "SHIV",
     "name": "Messer",
-    "description": "Füge 4 Schaden zu.",
-    "description_raw": "Füge{FanOfKnivesAmount:cond:>0? ALLEN Gegnern|} {Damage:diff()} Schaden zu.",
+    "description": "Füge ALLEN Gegnern 4 Schaden zu.",
+    "description_raw": "Füge{TargetType:choose(AllEnemies): ALLEN Gegnern|} {Damage:diff()} Schaden zu.",
     "cost": 0,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -12122,9 +12007,7 @@
     ],
     "spawns_cards": null,
     "vars": {
-      "Damage": 4,
-      "CalculationBase": 0,
-      "CalculationExtra": 1
+      "Damage": 4
     },
     "upgrade": {
       "damage": "+2"
@@ -12132,7 +12015,7 @@
     "image_url": "/static/images/cards/shiv.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Füge 6 Schaden zu.",
+    "upgrade_description": "Füge ALLEN Gegnern 6 Schaden zu.",
     "type_key": "Attack",
     "rarity_key": "Token",
     "keywords_key": [
@@ -12229,8 +12112,8 @@
   {
     "id": "METAMORPHOSIS",
     "name": "Metamorphose",
-    "description": "Erhalte 3 zufällige Angriffe in deinen [gold]Nachziehstapel[/gold]. Sie kosten für diesen Kampf 0 [energy:1].",
-    "description_raw": "Erhalte {Cards:diff()} zufällige Angriffe in deinen [gold]Nachziehstapel[/gold]. Sie kosten für diesen Kampf 0 {energyPrefix:energyIcons(1)}.",
+    "description": "Erhalte 3 zufällige Angriffe in deinen [gold]Nachziehstapel[/gold]. Sie ist in diesem Kampf kostenlos spielbar.",
+    "description_raw": "Erhalte {Cards:diff()} zufällige Angriffe in deinen [gold]Nachziehstapel[/gold]. Sie ist in diesem Kampf kostenlos spielbar.",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -12260,7 +12143,7 @@
     "image_url": "/static/images/cards/metamorphosis.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Erhalte 5 zufällige Angriffe in deinen [gold]Nachziehstapel[/gold]. Sie kosten für diesen Kampf 0 [energy:1].",
+    "upgrade_description": "Erhalte 5 zufällige Angriffe in deinen [gold]Nachziehstapel[/gold]. Sie ist in diesem Kampf kostenlos spielbar.",
     "type_key": "Skill",
     "rarity_key": "Event",
     "keywords_key": [
@@ -12484,13 +12367,13 @@
     "upgrade_description": "Immer wenn du [gold]Block[/gold] erhältst, füge einem zufälligen Gegner 7 Schaden zu.",
     "type_key": "Power",
     "rarity_key": "Rare",
-    "compendium_order": 49
+    "compendium_order": 48
   },
   {
     "id": "LUNAR_BLAST",
     "name": "Mondschuss",
-    "description": "Füge 4 Schaden für jede Fertigkeit, die du in diesem Zug bereits gespielt hast.",
-    "description_raw": "Füge {Damage:diff()} Schaden für jede Fertigkeit, die du in diesem Zug bereits gespielt hast.{InCombat:\n(Trifft {CalculatedHits:diff()} {CalculatedHits:plural:Mal|Mal})|}",
+    "description": "Füge 4 Schaden für jede in diesem Zug bereits gespielte Fertigkeit zu.",
+    "description_raw": "Füge {Damage:diff()} Schaden für jede in diesem Zug bereits gespielte Fertigkeit zu.{InCombat:\n(Trifft {CalculatedHits:diff()} {CalculatedHits:plural:Mal|Mal})|}",
     "cost": 0,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -12520,7 +12403,7 @@
     "image_url": "/static/images/cards/lunar_blast.webp",
     "beta_image_url": "/static/images/cards/beta/lunar_blast.webp",
     "type_variants": null,
-    "upgrade_description": "Füge 5 Schaden für jede Fertigkeit, die du in diesem Zug bereits gespielt hast.",
+    "upgrade_description": "Füge 5 Schaden für jede in diesem Zug bereits gespielte Fertigkeit zu.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 223
@@ -12528,8 +12411,8 @@
   {
     "id": "CRESCENT_SPEAR",
     "name": "Mondsichelspeer",
-    "description": "Füge 6 Schaden zu.\nFügt 2 Schaden mehr zu für ALLE deine Karten mit [star:1]-Kosten.",
-    "description_raw": "Füge {CalculatedDamage:diff()} Schaden zu.\nFügt {ExtraDamage:diff()} Schaden mehr zu für ALLE deine Karten mit {singleStarIcon}-Kosten.",
+    "description": "Füge 6 Schaden zu.\nFügt 2 Schaden mehr für ALLE deine Karten mit [star:1]-Kosten zu.",
+    "description_raw": "Füge {CalculatedDamage:diff()} Schaden zu.\nFügt {ExtraDamage:diff()} Schaden mehr für ALLE deine Karten mit {singleStarIcon}-Kosten zu.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -12560,7 +12443,7 @@
     "image_url": "/static/images/cards/crescent_spear.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Füge 6 Schaden zu.\nFügt 3 Schaden mehr zu für ALLE deine Karten mit [star:1]-Kosten.",
+    "upgrade_description": "Füge 6 Schaden zu.\nFügt 3 Schaden mehr für ALLE deine Karten mit [star:1]-Kosten zu.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 195
@@ -12640,8 +12523,8 @@
   {
     "id": "MIMIC",
     "name": "Nachahmen",
-    "description": "Erhalte so viel [gold]Block[/gold], wie ein Verbündeter [gold]Block[/gold] hat.",
-    "description_raw": "Erhalte so viel [gold]Block[/gold], wie ein Verbündeter [gold]Block[/gold] hat.",
+    "description": "Erhalte so viel [gold]Block[/gold], wie ein Mitspieler [gold]Block[/gold] hat.",
+    "description_raw": "Erhalte so viel [gold]Block[/gold], wie ein Mitspieler [gold]Block[/gold] hat.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -12879,12 +12762,13 @@
       "Cards": 2
     },
     "upgrade": {
-      "damage": "+4"
+      "damage": "+4",
+      "cards": "+1"
     },
     "image_url": "/static/images/cards/neows_fury.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Füge 14 Schaden zu.\nNimm 2 zufällige Karten aus deinem [gold]Abwurfstapel[/gold] auf deine [gold]Hand[/gold].",
+    "upgrade_description": "Füge 14 Schaden zu.\nNimm 3 zufällige Karten aus deinem [gold]Abwurfstapel[/gold] auf deine [gold]Hand[/gold].",
     "type_key": "Attack",
     "rarity_key": "Ancient",
     "keywords_key": [
@@ -13235,6 +13119,48 @@
     "compendium_order": 66
   },
   {
+    "id": "NOT_YET",
+    "name": "Noch nicht",
+    "description": "Heile 10 TP.",
+    "description_raw": "Heile {Heal:diff()} TP.",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Fertigkeit",
+    "rarity": "Selten",
+    "target": "Self",
+    "color": "ironclad",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Erschöpft"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Heal": 10
+    },
+    "upgrade": {
+      "heal": "+3"
+    },
+    "image_url": "/static/images/cards/not_yet.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "upgrade_description": "Heile 13 TP.",
+    "type_key": "Skill",
+    "rarity_key": "Rare",
+    "keywords_key": [
+      "Exhaust"
+    ],
+    "compendium_order": 52
+  },
+  {
     "id": "NORMALITY",
     "name": "Normalität",
     "description": "Du kannst in diesem Zug nicht mehr als 3 Karten spielen.",
@@ -13471,9 +13397,9 @@
   {
     "id": "BUNDLE_OF_JOY",
     "name": "Paket der Freude",
-    "description": "Erhalte 3 zufällige farblose Karten auf deine [gold]Hand[/gold].",
-    "description_raw": "Erhalte {Cards:diff()} zufällige farblose {Cards:plural:Karte|Karten} auf deine [gold]Hand[/gold].",
-    "cost": 2,
+    "description": "Erhalte 3 zufällige Farblose Karten auf deine [gold]Hand[/gold].",
+    "description_raw": "Erhalte {Cards:diff()} zufällige Farblose {Cards:plural:Karte|Karten} auf deine [gold]Hand[/gold].",
+    "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
     "star_cost": null,
@@ -13502,7 +13428,7 @@
     "image_url": "/static/images/cards/bundle_of_joy.webp",
     "beta_image_url": "/static/images/cards/beta/bundle_of_joy.webp",
     "type_variants": null,
-    "upgrade_description": "Erhalte 4 zufällige farblose Karten auf deine [gold]Hand[/gold].",
+    "upgrade_description": "Erhalte 4 zufällige Farblose Karten auf deine [gold]Hand[/gold].",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -13556,7 +13482,7 @@
   {
     "id": "PARRY",
     "name": "Parieren",
-    "description": "Immer wenn du [gold]Hoheitsklinge[/gold] spielst, erhalte 6 [gold]Block[/gold].",
+    "description": "Immer wenn du [gold]Hoheitsklinge[/gold] spielst, erhalte 10 [gold]Block[/gold].",
     "description_raw": "Immer wenn du [gold]Hoheitsklinge[/gold] spielst, erhalte {ParryPower:diff()} [gold]Block[/gold].",
     "cost": 1,
     "is_x_cost": null,
@@ -13572,7 +13498,7 @@
     "powers_applied": [
       {
         "power": "Parieren",
-        "amount": 6,
+        "amount": 10,
         "power_key": "Parry"
       }
     ],
@@ -13585,16 +13511,16 @@
       "SOVEREIGN_BLADE"
     ],
     "vars": {
-      "ParryPower": 6,
-      "Parry": 6
+      "ParryPower": 10,
+      "Parry": 10
     },
     "upgrade": {
-      "parrypower": "+3"
+      "parrypower": "+4"
     },
     "image_url": "/static/images/cards/parry.webp",
     "beta_image_url": "/static/images/cards/beta/parry.webp",
     "type_variants": null,
-    "upgrade_description": "Immer wenn du [gold]Hoheitsklinge[/gold] spielst, erhalte 9 [gold]Block[/gold].",
+    "upgrade_description": "Immer wenn du [gold]Hoheitsklinge[/gold] spielst, erhalte 14 [gold]Block[/gold].",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 232
@@ -13602,8 +13528,8 @@
   {
     "id": "PERFECTED_STRIKE",
     "name": "Perfekter Schlag",
-    "description": "Füge 6 Schaden zu.\nFügt 2 Schaden mehr zu für ALLE deine “Schlag” beinhaltenden Karten.",
-    "description_raw": "Füge {CalculatedDamage:diff()} Schaden zu.\nFügt {ExtraDamage:diff()} Schaden mehr zu für ALLE deine “Schlag” beinhaltenden Karten.",
+    "description": "Füge 6 Schaden zu.\nFügt 2 Schaden mehr für ALLE deine “Schlag” beinhaltenden Karten zu.",
+    "description_raw": "Füge {CalculatedDamage:diff()} Schaden zu.\nFügt {ExtraDamage:diff()} Schaden mehr für ALLE deine “Schlag” beinhaltenden Karten zu.",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -13635,7 +13561,7 @@
     "image_url": "/static/images/cards/perfected_strike.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Füge 6 Schaden zu.\nFügt 3 Schaden mehr zu für ALLE deine “Schlag” beinhaltenden Karten.",
+    "upgrade_description": "Füge 6 Schaden zu.\nFügt 3 Schaden mehr für ALLE deine “Schlag” beinhaltenden Karten zu.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 56
@@ -13724,8 +13650,8 @@
   {
     "id": "PHANTOM_BLADES",
     "name": "Phantomklingen",
-    "description": "[gold]Messer[/gold] werden [gold]behalten[/gold].\nDas erste [gold]Messer[/gold], das du jeden Zug spielst, fügt 9 Schaden mehr zu.",
-    "description_raw": "[gold]Messer[/gold] werden [gold]behalten[/gold].\nDas erste [gold]Messer[/gold], das du jeden Zug spielst, fügt {PhantomBladesPower:diff()} Schaden mehr zu.",
+    "description": "Gib [gold]Messern[/gold] [gold]Behalten[/gold].\nDas erste [gold]Messer[/gold], das du jeden Zug spielst, fügt 9 Schaden mehr zu.",
+    "description_raw": "Gib [gold]Messern[/gold] [gold]Behalten[/gold].\nDas erste [gold]Messer[/gold], das du jeden Zug spielst, fügt {PhantomBladesPower:diff()} Schaden mehr zu.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -13762,7 +13688,7 @@
     "image_url": "/static/images/cards/phantom_blades.webp",
     "beta_image_url": "/static/images/cards/beta/phantom_blades.webp",
     "type_variants": null,
-    "upgrade_description": "[gold]Messer[/gold] werden [gold]behalten[/gold].\nDas erste [gold]Messer[/gold], das du jeden Zug spielst, fügt 12 Schaden mehr zu.",
+    "upgrade_description": "Gib [gold]Messern[/gold] [gold]Behalten[/gold].\nDas erste [gold]Messer[/gold], das du jeden Zug spielst, fügt 12 Schaden mehr zu.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 143
@@ -14000,7 +13926,7 @@
   {
     "id": "PATTER",
     "name": "Prasseln lassen",
-    "description": "Erhalte 8 [gold]Block[/gold].\nErhalte 2 [gold]Elan[/gold].",
+    "description": "Erhalte 9 [gold]Block[/gold].\nErhalte 2 [gold]Elan[/gold].",
     "description_raw": "Erhalte {Block:diff()} [gold]Block[/gold].\nErhalte {VigorPower:diff()} [gold]Elan[/gold].",
     "cost": 1,
     "is_x_cost": null,
@@ -14011,7 +13937,7 @@
     "target": "Self",
     "color": "regent",
     "damage": null,
-    "block": 8,
+    "block": 9,
     "hit_count": null,
     "powers_applied": [
       {
@@ -14027,7 +13953,7 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Block": 8,
+      "Block": 9,
       "VigorPower": 2,
       "Vigor": 2
     },
@@ -14038,7 +13964,7 @@
     "image_url": "/static/images/cards/patter.webp",
     "beta_image_url": "/static/images/cards/beta/patter.webp",
     "type_variants": null,
-    "upgrade_description": "Erhalte 10 [gold]Block[/gold].\nErhalte 3 [gold]Elan[/gold].",
+    "upgrade_description": "Erhalte 11 [gold]Block[/gold].\nErhalte 3 [gold]Elan[/gold].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 234
@@ -14072,12 +13998,12 @@
       "Energy": 2
     },
     "upgrade": {
-      "remove_exhaust": true
+      "energy": "+1"
     },
     "image_url": "/static/images/cards/production.webp",
     "beta_image_url": "/static/images/cards/beta/production.webp",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Erhalte [energy:3].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -14125,8 +14051,8 @@
   {
     "id": "PRECISE_CUT",
     "name": "Präziser Schnitt",
-    "description": "Füge 13 Schaden zu.\nFügt 2 weniger Schaden zu für jede weitere [gold]Handkarte[/gold].",
-    "description_raw": "Füge {CalculatedDamage:diff()} Schaden zu.\nFügt {ExtraDamage:inverseDiff()} weniger Schaden zu für jede weitere [gold]Handkarte[/gold].",
+    "description": "Füge 13 Schaden zu.\nFügt 2 weniger Schaden für jede weitere [gold]Handkarte[/gold] zu.",
+    "description_raw": "Füge {CalculatedDamage:diff()} Schaden zu.\nFügt {ExtraDamage:inverseDiff()} weniger Schaden für jede weitere [gold]Handkarte[/gold] zu.",
     "cost": 0,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -14289,8 +14215,8 @@
   {
     "id": "QUASAR",
     "name": "Quasar",
-    "description": "Wähle 1 aus 3 zufälligen farblosen Karten, die du auf deine [gold]Hand[/gold] erhältst.",
-    "description_raw": "Wähle 1 aus 3 zufälligen{IfUpgraded:show: [gold]verbesserten[/gold]|} farblosen Karten, die du auf deine [gold]Hand[/gold] erhältst.",
+    "description": "Wähle 1 aus 3 zufälligen Farblosen Karten, die du auf deine [gold]Hand[/gold] erhältst.",
+    "description_raw": "Wähle 1 aus 3 zufälligen{IfUpgraded:show: [gold]verbesserten[/gold]|} Farblosen Karten, die du auf deine [gold]Hand[/gold] erhältst.",
     "cost": 0,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -14318,7 +14244,7 @@
     "image_url": "/static/images/cards/quasar.webp",
     "beta_image_url": "/static/images/cards/beta/quasar.webp",
     "type_variants": null,
-    "upgrade_description": "Wähle 1 aus 3 zufälligen [gold]verbesserten[/gold] farblosen Karten, die du auf deine [gold]Hand[/gold] erhältst.",
+    "upgrade_description": "Wähle 1 aus 3 zufälligen [gold]verbesserten[/gold] Farblosen Karten, die du auf deine [gold]Hand[/gold] erhältst.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 238
@@ -14326,8 +14252,8 @@
   {
     "id": "ROCKET_PUNCH",
     "name": "Raketenhieb",
-    "description": "Füge 13 Schaden zu.\nZiehe 1 Karte.\nWenn eine Status-Karte erzeugt wird, senke die Kosten dieser Karte für diesen Zug auf 0 [energy:1].",
-    "description_raw": "Füge {Damage:diff()} Schaden zu.\nZiehe {Cards:diff()} {Cards:plural:Karte|Karten}.\nWenn eine Status-Karte erzeugt wird, senke die Kosten dieser Karte für diesen Zug auf 0 {energyPrefix:energyIcons(1)}.",
+    "description": "Füge 13 Schaden zu.\nZiehe 1 Karte.\nImmer wenn du einen Status erzeugst, senke die Kosten dieser Karte auf 0 [energy:1], bis du sie spielst.",
+    "description_raw": "Füge {Damage:diff()} Schaden zu.\nZiehe {Cards:diff()} {Cards:plural:Karte|Karten}.\nImmer wenn du einen Status erzeugst, senke die Kosten dieser Karte auf 0 {energyPrefix:energyIcons(1)}, bis du sie spielst.",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -14357,7 +14283,7 @@
     "image_url": "/static/images/cards/rocket_punch.webp",
     "beta_image_url": "/static/images/cards/beta/rocket_punch.webp",
     "type_variants": null,
-    "upgrade_description": "Füge 14 Schaden zu.\nZiehe 2 Karten.\nWenn eine Status-Karte erzeugt wird, senke die Kosten dieser Karte für diesen Zug auf 0 [energy:1].",
+    "upgrade_description": "Füge 14 Schaden zu.\nZiehe 2 Karten.\nImmer wenn du einen Status erzeugst, senke die Kosten dieser Karte auf 0 [energy:1], bis du sie spielst.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 413
@@ -14404,8 +14330,8 @@
   {
     "id": "WHITE_NOISE",
     "name": "Rauschen",
-    "description": "Erhalte eine zufällige Macht auf deine [gold]Hand[/gold]. Sie kostet diesen Zug 0 [energy:1].",
-    "description_raw": "Erhalte eine zufällige Macht auf deine [gold]Hand[/gold]. Sie kostet diesen Zug 0 {energyPrefix:energyIcons(1)}.",
+    "description": "Erhalte eine zufällige Macht auf deine [gold]Hand[/gold]. Sie ist in diesem Zug kostenlos spielbar.",
+    "description_raw": "Erhalte eine zufällige Macht auf deine [gold]Hand[/gold]. Sie ist in diesem Zug kostenlos spielbar.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -14765,52 +14691,6 @@
     "type_key": "Attack",
     "rarity_key": "Token",
     "compendium_order": 563
-  },
-  {
-    "id": "GRAPPLE",
-    "name": "Ringen",
-    "description": "Füge 7 Schaden zu.\nImmer wenn du in diesem Zug [gold]Block[/gold] erhältst, füge dem Gegner 5 Schaden zu.",
-    "description_raw": "Füge {Damage:diff()} Schaden zu.\nImmer wenn du in diesem Zug [gold]Block[/gold] erhältst, füge dem Gegner {GrapplePower:diff()} Schaden zu.",
-    "cost": 1,
-    "is_x_cost": null,
-    "is_x_star_cost": null,
-    "star_cost": null,
-    "type": "Angriff",
-    "rarity": "Ungewöhnlich",
-    "target": "AnyEnemy",
-    "color": "ironclad",
-    "damage": 7,
-    "block": null,
-    "hit_count": null,
-    "powers_applied": [
-      {
-        "power": "Ringen",
-        "amount": 5,
-        "power_key": "Grapple"
-      }
-    ],
-    "cards_draw": null,
-    "energy_gain": null,
-    "hp_loss": null,
-    "keywords": null,
-    "tags": null,
-    "spawns_cards": null,
-    "vars": {
-      "Damage": 7,
-      "GrapplePower": 5,
-      "Grapple": 5
-    },
-    "upgrade": {
-      "damage": "+2",
-      "grapplepower": "+2"
-    },
-    "image_url": "/static/images/cards/grapple.webp",
-    "beta_image_url": null,
-    "type_variants": null,
-    "upgrade_description": "Füge 9 Schaden zu.\nImmer wenn du in diesem Zug [gold]Block[/gold] erhältst, füge dem Gegner 7 Schaden zu.",
-    "type_key": "Attack",
-    "rarity_key": "Uncommon",
-    "compendium_order": 38
   },
   {
     "id": "ROLLING_BOULDER",
@@ -15303,6 +15183,46 @@
     "compendium_order": 155
   },
   {
+    "id": "SPOILS_MAP",
+    "name": "Schatzkarte",
+    "description": "Markiert im nächsten Akt einen Ort mit 600 zusätzlichem [gold]Gold[/gold].",
+    "description_raw": "Markiert im nächsten Akt einen Ort mit {Gold:diff()} zusätzlichem [gold]Gold[/gold].",
+    "cost": -1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Auftrag",
+    "rarity": "Auftrag",
+    "target": "Self",
+    "color": "quest",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Unspielbar"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Gold": 600
+    },
+    "upgrade": null,
+    "image_url": "/static/images/cards/spoils_map.webp",
+    "beta_image_url": "/static/images/cards/beta/spoils_map.webp",
+    "type_variants": null,
+    "upgrade_description": null,
+    "type_key": "Quest",
+    "rarity_key": "Quest",
+    "keywords_key": [
+      "Unplayable"
+    ],
+    "compendium_order": 550
+  },
+  {
     "id": "PYRE",
     "name": "Scheiterhaufen",
     "description": "Erhalte zu Beginn jedes Zuges [energy:1].",
@@ -15617,12 +15537,12 @@
       "SerpentForm": 4
     },
     "upgrade": {
-      "serpentformpower": "+1"
+      "serpentformpower": "+2"
     },
     "image_url": "/static/images/cards/serpent_form.webp",
     "beta_image_url": "/static/images/cards/beta/serpent_form.webp",
     "type_variants": null,
-    "upgrade_description": "Immer wenn du eine Karte spielst, füge einem zufälligen Gegner 5 Schaden zu.",
+    "upgrade_description": "Immer wenn du eine Karte spielst, füge einem zufälligen Gegner 6 Schaden zu.",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 153
@@ -15707,8 +15627,8 @@
   {
     "id": "SMOKESTACK",
     "name": "Schlot",
-    "description": "Immer wenn du einen Status erschaffst, füge ALLEN Gegnern 5 Schaden zu.",
-    "description_raw": "Immer wenn du einen Status erschaffst, füge ALLEN Gegnern {SmokestackPower:diff()} Schaden zu.",
+    "description": "Immer wenn du einen Status erzeugst, füge ALLEN Gegnern 5 Schaden zu.",
+    "description_raw": "Immer wenn du einen Status erzeugst, füge ALLEN Gegnern {SmokestackPower:diff()} Schaden zu.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -15743,7 +15663,7 @@
     "image_url": "/static/images/cards/smokestack.webp",
     "beta_image_url": "/static/images/cards/beta/smokestack.webp",
     "type_variants": null,
-    "upgrade_description": "Immer wenn du einen Status erschaffst, füge ALLEN Gegnern 7 Schaden zu.",
+    "upgrade_description": "Immer wenn du einen Status erzeugst, füge ALLEN Gegnern 7 Schaden zu.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 420
@@ -15788,8 +15708,8 @@
   {
     "id": "FEEL_NO_PAIN",
     "name": "Schmerzfrei",
-    "description": "Immer wenn eine Karte [gold]Erschöpft[/gold], erhalte 3 [gold]Block[/gold].",
-    "description_raw": "Immer wenn eine Karte [gold]Erschöpft[/gold], erhalte {Power:diff()} [gold]Block[/gold].",
+    "description": "Immer wenn eine Karte [gold]Erschöpft[/gold] wird, erhalte 3 [gold]Block[/gold].",
+    "description_raw": "Immer wenn eine Karte [gold]Erschöpft[/gold] wird, erhalte {Power:diff()} [gold]Block[/gold].",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -15817,7 +15737,7 @@
     "image_url": "/static/images/cards/feel_no_pain.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Immer wenn eine Karte [gold]Erschöpft[/gold], erhalte 4 [gold]Block[/gold].",
+    "upgrade_description": "Immer wenn eine Karte [gold]Erschöpft[/gold] wird, erhalte 4 [gold]Block[/gold].",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 33
@@ -15979,12 +15899,12 @@
       "Speedster": 2
     },
     "upgrade": {
-      "speedsterpower": "+1"
+      "add_innate": true
     },
     "image_url": "/static/images/cards/speedster.webp",
     "beta_image_url": "/static/images/cards/beta/speedster.webp",
     "type_variants": null,
-    "upgrade_description": "Immer wenn du während deines Zuges eine Karte ziehst, füge ALLEN Gegnern 3 Schaden zu.",
+    "upgrade_description": null,
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 160
@@ -16106,9 +16026,9 @@
   {
     "id": "BANSHEES_CRY",
     "name": "Schrei der Banshee",
-    "description": "Füge ALLEN Gegnern 33 Schaden zu.\nKostet [energy:2] weniger für jede [gold]flüchtige[/gold] Karte, die in diesem Kampf gespielt wurde.",
-    "description_raw": "Füge ALLEN Gegnern {Damage:diff()} Schaden zu.\nKostet {Energy:energyIcons()} weniger für jede [gold]flüchtige[/gold] Karte, die in diesem Kampf gespielt wurde.",
-    "cost": 6,
+    "description": "Füge ALLEN Gegnern 33 Schaden zu.\nKostet [energy:2] weniger für jede in diesem Kampf gespielte [gold]Flüchtige[/gold] Karte.",
+    "description_raw": "Füge ALLEN Gegnern {Damage:diff()} Schaden zu.\nKostet {Energy:energyIcons()} weniger für jede in diesem Kampf gespielte [gold]Flüchtige[/gold] Karte.",
+    "cost": 9,
     "is_x_cost": null,
     "is_x_star_cost": null,
     "star_cost": null,
@@ -16131,12 +16051,12 @@
       "Energy": 2
     },
     "upgrade": {
-      "damage": "+6"
+      "cost": 7
     },
     "image_url": "/static/images/cards/banshees_cry.webp",
     "beta_image_url": "/static/images/cards/beta/banshees_cry.webp",
     "type_variants": null,
-    "upgrade_description": "Füge ALLEN Gegnern 39 Schaden zu.\nKostet [energy:2] weniger für jede [gold]flüchtige[/gold] Karte, die in diesem Kampf gespielt wurde.",
+    "upgrade_description": null,
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 264
@@ -16186,8 +16106,8 @@
   {
     "id": "TRASH_TO_TREASURE",
     "name": "Schrott zu Schätzen",
-    "description": "Immer wenn du eine Status-Karte erzeugst, [gold]Erschaffe[/gold] 1 zufälligen Orb.",
-    "description_raw": "Immer wenn du eine Status-Karte erzeugst, [gold]Erschaffe[/gold] 1 zufälligen Orb.",
+    "description": "Immer wenn du einen Status erzeugst, [gold]Erschaffe[/gold] 1 zufälligen Orb.",
+    "description_raw": "Immer wenn du einen Status erzeugst, [gold]Erschaffe[/gold] 1 zufälligen Orb.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -16421,8 +16341,8 @@
   {
     "id": "SWORD_SAGE",
     "name": "Schwertmeister",
-    "description": "Erhöhe die Kosten der [gold]Hoheitsklinge[/gold] um 1. [gold]Hoheitsklinge[/gold] trifft jetzt ein weiteres Mal.",
-    "description_raw": "Erhöhe die Kosten der [gold]Hoheitsklinge[/gold] um 1. [gold]Hoheitsklinge[/gold] trifft jetzt ein weiteres Mal.",
+    "description": "[gold]Hoheitsklinge[/gold] trifft jetzt ein weiteres Mal.",
+    "description_raw": "[gold]Hoheitsklinge[/gold] trifft jetzt ein weiteres Mal.",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -16673,8 +16593,8 @@
   {
     "id": "SEVERANCE",
     "name": "Seelenraub",
-    "description": "Füge 13 Schaden zu.\nErhalte eine [gold]Seele[/gold] auf deinen [gold]Nachziehstapel[/gold], [gold]Abwurfstapel[/gold] und deine [gold]Hand[/gold].",
-    "description_raw": "Füge {Damage:diff()} Schaden zu.\nErhalte eine [gold]Seele[/gold] auf deinen [gold]Nachziehstapel[/gold], [gold]Abwurfstapel[/gold] und deine [gold]Hand[/gold].",
+    "description": "Füge 13 Schaden zu.\nErhalte eine [gold]Seele[/gold] in deinen [gold]Nachziehstapel[/gold], [gold]Abwurfstapel[/gold] und auf deine [gold]Hand[/gold].",
+    "description_raw": "Füge {Damage:diff()} Schaden zu.\nErhalte eine [gold]Seele[/gold] in deinen [gold]Nachziehstapel[/gold], [gold]Abwurfstapel[/gold] und auf deine [gold]Hand[/gold].",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -16704,7 +16624,7 @@
     "image_url": "/static/images/cards/severance.webp",
     "beta_image_url": "/static/images/cards/beta/severance.webp",
     "type_variants": null,
-    "upgrade_description": "Füge 18 Schaden zu.\nErhalte eine [gold]Seele[/gold] auf deinen [gold]Nachziehstapel[/gold], [gold]Abwurfstapel[/gold] und deine [gold]Hand[/gold].",
+    "upgrade_description": "Füge 18 Schaden zu.\nErhalte eine [gold]Seele[/gold] in deinen [gold]Nachziehstapel[/gold], [gold]Abwurfstapel[/gold] und auf deine [gold]Hand[/gold].",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 332
@@ -16841,7 +16761,7 @@
   {
     "id": "SOLAR_STRIKE",
     "name": "Solarschlag",
-    "description": "Füge 8 Schaden zu.\nErhalte [star:1].",
+    "description": "Füge 9 Schaden zu.\nErhalte [star:1].",
     "description_raw": "Füge {Damage:diff()} Schaden zu.\nErhalte {Stars:starIcons()}.",
     "cost": 1,
     "is_x_cost": null,
@@ -16851,7 +16771,7 @@
     "rarity": "Gewöhnlich",
     "target": "AnyEnemy",
     "color": "regent",
-    "damage": 8,
+    "damage": 9,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -16864,7 +16784,7 @@
     ],
     "spawns_cards": null,
     "vars": {
-      "Damage": 8,
+      "Damage": 9,
       "Stars": 1
     },
     "upgrade": {
@@ -16874,7 +16794,7 @@
     "image_url": "/static/images/cards/solar_strike.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Füge 9 Schaden zu.\nErhalte [star:2].",
+    "upgrade_description": "Füge 10 Schaden zu.\nErhalte [star:2].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 248
@@ -16882,8 +16802,8 @@
   {
     "id": "SPECTRUM_SHIFT",
     "name": "Spektralverschiebung",
-    "description": "Erhalte zu Beginn jedes Zuges 1 zufällige farblose Karte auf deine [gold]Hand[/gold].",
-    "description_raw": "Erhalte zu Beginn jedes Zuges {Cards:diff()} zufällige farblose {Cards:plural:Karte|Karten} auf deine [gold]Hand[/gold].",
+    "description": "Erhalte zu Beginn jedes Zuges 1 zufällige Farblose Karte auf deine [gold]Hand[/gold].",
+    "description_raw": "Erhalte zu Beginn jedes Zuges {Cards:diff()} zufällige Farblose {Cards:plural:Karte|Karten} auf deine [gold]Hand[/gold].",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -16919,8 +16839,8 @@
   {
     "id": "BARRAGE",
     "name": "Sperrfeuer",
-    "description": "Füge 5 Schaden zu für jeden [gold]Erschaffenen[/gold] Orb.",
-    "description_raw": "Füge {Damage:diff()} Schaden zu für jeden [gold]Erschaffenen[/gold] Orb.{InCombat:\n(Trifft {CalculatedHits:diff()} {CalculatedHits:plural:Mal|Mal})|}",
+    "description": "Füge 5 Schaden für jeden [gold]Erschaffenen[/gold] Orb zu.",
+    "description_raw": "Füge {Damage:diff()} Schaden für jeden [gold]Erschaffenen[/gold] Orb zu.{InCombat:\n(Trifft {CalculatedHits:diff()} {CalculatedHits:plural:Mal|Mal})|}",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -16950,7 +16870,7 @@
     "image_url": "/static/images/cards/barrage.webp",
     "beta_image_url": "/static/images/cards/beta/barrage.webp",
     "type_variants": null,
-    "upgrade_description": "Füge 7 Schaden zu für jeden [gold]Erschaffenen[/gold] Orb.",
+    "upgrade_description": "Füge 7 Schaden für jeden [gold]Erschaffenen[/gold] Orb zu.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 354
@@ -17118,7 +17038,7 @@
     "id": "SPLASH",
     "name": "Spritzer",
     "description": "Wähle 1 aus 3 zufälligen Angriffen eines anderen Charakters, den du auf deine [gold]Hand[/gold] erhältst. Er ist in diesem Zug kostenlos spielbar.",
-    "description_raw": "Wähle 1 aus 3 zufälligen{IfUpgraded:show: [gold]verbesserten[/gold]} Angriffen eines anderen Charakters, den du auf deine [gold]Hand[/gold] erhältst. Er ist in diesem Zug kostenlos spielbar.",
+    "description_raw": "Wähle 1 aus 3 zufälligen{IfUpgraded:show: [gold]Verbesserten[/gold]} Angriffen eines anderen Charakters, den du auf deine [gold]Hand[/gold] erhältst. Er ist in diesem Zug kostenlos spielbar.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -17144,7 +17064,7 @@
     "image_url": "/static/images/cards/splash.webp",
     "beta_image_url": "/static/images/cards/beta/splash.webp",
     "type_variants": null,
-    "upgrade_description": "Wähle 1 aus 3 zufälligen [gold]verbesserten[/gold] Angriffen eines anderen Charakters, den du auf deine [gold]Hand[/gold] erhältst. Er ist in diesem Zug kostenlos spielbar.",
+    "upgrade_description": "Wähle 1 aus 3 zufälligen [gold]Verbesserten[/gold] Angriffen eines anderen Charakters, den du auf deine [gold]Hand[/gold] erhältst. Er ist in diesem Zug kostenlos spielbar.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 493
@@ -17266,8 +17186,8 @@
   {
     "id": "STORM_OF_STEEL",
     "name": "Stahlsturm",
-    "description": "Wirf deine [gold]Hand[/gold] ab.\nErhalte für jede abgeworfene Karte 1 [gold]Messer[/gold] auf deine [gold]Hand[/gold].",
-    "description_raw": "Wirf deine [gold]Hand[/gold] ab.\nErhalte für jede abgeworfene Karte 1 [gold]{IfUpgraded:show:Messer+|Messer}[/gold] auf deine [gold]Hand[/gold].",
+    "description": "Wirf deine [gold]Hand[/gold] ab.\nErhalte für jede abgeworfene Karte 1 [gold]Messer[/gold] auf deine [gold]Hand[/gold].",
+    "description_raw": "Wirf deine [gold]Hand[/gold] ab.\nErhalte für jede abgeworfene Karte 1 [gold]{IfUpgraded:show:Messer+|Messer}[/gold] auf deine [gold]Hand[/gold].",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -17295,7 +17215,7 @@
     "image_url": "/static/images/cards/storm_of_steel.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Wirf deine [gold]Hand[/gold] ab.\nErhalte für jede abgeworfene Karte 1 [gold]Messer+[/gold] auf deine [gold]Hand[/gold].",
+    "upgrade_description": "Wirf deine [gold]Hand[/gold] ab.\nErhalte für jede abgeworfene Karte 1 [gold]Messer+[/gold] auf deine [gold]Hand[/gold].",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 161
@@ -17577,8 +17497,8 @@
   {
     "id": "STARDUST",
     "name": "Sternenstaub",
-    "description": "Füge X Mal einem zufälligen Gegner 5 Schaden zu.",
-    "description_raw": "Füge X Mal einem zufälligen Gegner {Damage:diff()} Schaden zu.",
+    "description": "Füge X Mal einem zufälligen Gegner 5 Schaden zu.",
+    "description_raw": "Füge X Mal einem zufälligen Gegner {Damage:diff()} Schaden zu.",
     "cost": 0,
     "is_x_cost": null,
     "is_x_star_cost": true,
@@ -17606,7 +17526,7 @@
     "image_url": "/static/images/cards/stardust.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Füge X Mal einem zufälligen Gegner 7 Schaden zu.",
+    "upgrade_description": "Füge X Mal einem zufälligen Gegner 7 Schaden zu.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 251
@@ -17651,8 +17571,8 @@
   {
     "id": "RADIATE",
     "name": "Strahlen",
-    "description": "Füge ALLEN Gegnern 3 Schaden zu für jeden in diesem Zug erhaltenen [star:1].",
-    "description_raw": "Füge ALLEN Gegnern {Damage:diff()} Schaden zu für jeden in diesem Zug erhaltenen {Stars:starIcons()}.{InCombat:\n(Trifft {CalculatedHits:diff()} {CalculatedHits:plural:Mal|Mal})|}",
+    "description": "Füge ALLEN Gegnern 3 Schaden für jeden in diesem Zug erhaltenen [star:1] zu.",
+    "description_raw": "Füge ALLEN Gegnern {Damage:diff()} Schaden für jeden in diesem Zug erhaltenen {Stars:starIcons()} zu.{InCombat:\n(Trifft {CalculatedHits:diff()} {CalculatedHits:plural:Mal|Mal})|}",
     "cost": 0,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -17683,7 +17603,7 @@
     "image_url": "/static/images/cards/radiate.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Füge ALLEN Gegnern 4 Schaden zu für jeden in diesem Zug erhaltenen [star:1].",
+    "upgrade_description": "Füge ALLEN Gegnern 4 Schaden für jeden in diesem Zug erhaltenen [star:1] zu.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 239
@@ -17891,7 +17811,7 @@
   {
     "id": "SEEKER_STRIKE",
     "name": "Sucher-Schlag",
-    "description": "Füge 6 Schaden zu.\nWähle 1 von 3 Karten aus deinem [gold]Nachziehstapel[/gold], die du auf deine [gold]Hand[/gold] nimmst.",
+    "description": "Füge 9 Schaden zu.\nWähle 1 von 3 Karten aus deinem [gold]Nachziehstapel[/gold], die du auf deine [gold]Hand[/gold] nimmst.",
     "description_raw": "Füge {Damage:diff()} Schaden zu.\nWähle 1 von {Cards:diff()} Karten aus deinem [gold]Nachziehstapel[/gold], die du auf deine [gold]Hand[/gold] nimmst.",
     "cost": 1,
     "is_x_cost": null,
@@ -17901,7 +17821,7 @@
     "rarity": "Ungewöhnlich",
     "target": "AnyEnemy",
     "color": "colorless",
-    "damage": 6,
+    "damage": 9,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -17914,7 +17834,7 @@
     ],
     "spawns_cards": null,
     "vars": {
-      "Damage": 6,
+      "Damage": 9,
       "Cards": 3
     },
     "upgrade": {
@@ -17923,7 +17843,7 @@
     "image_url": "/static/images/cards/seeker_strike.webp",
     "beta_image_url": "/static/images/cards/beta/seeker_strike.webp",
     "type_variants": null,
-    "upgrade_description": "Füge 9 Schaden zu.\nWähle 1 von 3 Karten aus deinem [gold]Nachziehstapel[/gold], die du auf deine [gold]Hand[/gold] nimmst.",
+    "upgrade_description": "Füge 12 Schaden zu.\nWähle 1 von 3 Karten aus deinem [gold]Nachziehstapel[/gold], die du auf deine [gold]Hand[/gold] nimmst.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 491
@@ -18253,8 +18173,8 @@
     "id": "SEANCE",
     "name": "Séance",
     "description": "Transformiere eine Karte aus deinem [gold]Nachziehstapel[/gold] zu einer [gold]Seele[/gold].",
-    "description_raw": "Transformiere eine Karte aus deinem [gold]Nachziehstapel[/gold] zu einer [gold]{IfUpgraded:show:Seele+|Seele}[/gold].",
-    "cost": 0,
+    "description_raw": "Transformiere eine Karte aus deinem [gold]Nachziehstapel[/gold] zu einer [gold]Seele[/gold].",
+    "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
     "star_cost": null,
@@ -18280,12 +18200,12 @@
       "Cards": 1
     },
     "upgrade": {
-      "description_changed": true
+      "cost": 0
     },
     "image_url": "/static/images/cards/seance.webp",
     "beta_image_url": "/static/images/cards/beta/seance.webp",
     "type_variants": null,
-    "upgrade_description": "Transformiere eine Karte aus deinem [gold]Nachziehstapel[/gold] zu einer [gold]Seele+[/gold].",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -18486,7 +18406,7 @@
   },
   {
     "id": "TERRAFORMING",
-    "name": "Terraformen",
+    "name": "Terraforming",
     "description": "Erhalte 6 [gold]Elan[/gold].",
     "description_raw": "Erhalte {VigorPower:diff()} [gold]Elan[/gold].",
     "cost": 1,
@@ -18568,8 +18488,8 @@
   {
     "id": "FIEND_FIRE",
     "name": "Teufelsfeuer",
-    "description": "[gold]Erschöpfe[/gold] deine [gold]Hand[/gold].\nFüge 7 Schaden für jede [gold]erschöpfte[/gold] Karte zu.",
-    "description_raw": "[gold]Erschöpfe[/gold] deine [gold]Hand[/gold].\nFüge {Damage:diff()} Schaden für jede [gold]erschöpfte[/gold] Karte zu.",
+    "description": "[gold]Erschöpfe[/gold] deine [gold]Hand[/gold].\nFüge 7 Schaden für jede [gold]Erschöpfte[/gold] Karte zu.",
+    "description_raw": "[gold]Erschöpfe[/gold] deine [gold]Hand[/gold].\nFüge {Damage:diff()} Schaden für jede [gold]Erschöpfte[/gold] Karte zu.",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -18599,7 +18519,7 @@
     "image_url": "/static/images/cards/fiend_fire.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "[gold]Erschöpfe[/gold] deine [gold]Hand[/gold].\nFüge 10 Schaden für jede [gold]erschöpfte[/gold] Karte zu.",
+    "upgrade_description": "[gold]Erschöpfe[/gold] deine [gold]Hand[/gold].\nFüge 10 Schaden für jede [gold]Erschöpfte[/gold] Karte zu.",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -18610,8 +18530,8 @@
   {
     "id": "INFERNAL_BLADE",
     "name": "Teuflische Klinge",
-    "description": "Erhalte einen zufälligen Angriff auf deine [gold]Hand[/gold]. Er kostet diesen Zug 0 [energy:1].",
-    "description_raw": "Erhalte einen zufälligen Angriff auf deine [gold]Hand[/gold]. Er kostet diesen Zug 0 {energyPrefix:energyIcons(1)}.",
+    "description": "Erhalte einen zufälligen Angriff auf deine [gold]Hand[/gold]. Er ist in diesem Zug kostenlos spielbar.",
+    "description_raw": "Erhalte einen zufälligen Angriff auf deine [gold]Hand[/gold]. Er ist in diesem Zug kostenlos spielbar.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -18645,13 +18565,13 @@
     "keywords_key": [
       "Exhaust"
     ],
-    "compendium_order": 45
+    "compendium_order": 44
   },
   {
     "id": "BLADE_OF_INK",
     "name": "Tintenklinge",
-    "description": "Immer wenn du in diesem Zug einen Angriff spielst, erhalte für diesen Zug 2 [gold]Stärke[/gold].",
-    "description_raw": "Immer wenn du in diesem Zug einen Angriff spielst, erhalte für diesen Zug {StrengthPower:diff()} [gold]Stärke[/gold].",
+    "description": "Erhalte 2 [purple]Tintenbeschmierte[/purple] [gold]Messer[/gold] auf deine [gold]Hand[/gold].",
+    "description_raw": "Erhalte {Cards:diff()} [purple]Tintenbeschmierte[/purple] [gold]Messer[/gold] auf deine [gold]Hand[/gold].",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -18663,30 +18583,25 @@
     "damage": null,
     "block": null,
     "hit_count": null,
-    "powers_applied": [
-      {
-        "power": "Stärke",
-        "amount": 2,
-        "power_key": "Strength"
-      }
-    ],
-    "cards_draw": null,
+    "powers_applied": null,
+    "cards_draw": 2,
     "energy_gain": null,
     "hp_loss": null,
     "keywords": null,
     "tags": null,
-    "spawns_cards": null,
+    "spawns_cards": [
+      "SHIV"
+    ],
     "vars": {
-      "StrengthPower": 2,
-      "Strength": 2
+      "Cards": 2
     },
     "upgrade": {
-      "strength": "+1"
+      "cards": "+1"
     },
     "image_url": "/static/images/cards/blade_of_ink.webp",
     "beta_image_url": "/static/images/cards/beta/blade_of_ink.webp",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "Erhalte 3 [purple]Tintenbeschmierte[/purple] [gold]Messer[/gold] auf deine [gold]Hand[/gold].",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 98
@@ -18842,6 +18757,7 @@
     "hp_loss": null,
     "keywords": [
       "Angeboren",
+      "Flüchtig",
       "Unspielbar",
       "Ewig"
     ],
@@ -18857,6 +18773,7 @@
     "rarity_key": "Curse",
     "keywords_key": [
       "Innate",
+      "Ethereal",
       "Unplayable",
       "Eternal"
     ],
@@ -18920,7 +18837,9 @@
     "cards_draw": null,
     "energy_gain": null,
     "hp_loss": null,
-    "keywords": null,
+    "keywords": [
+      "Erschöpft"
+    ],
     "tags": null,
     "spawns_cards": [
       "SOUL"
@@ -18937,7 +18856,50 @@
     "upgrade_description": "[gold]Beschwöre[/gold] 4 X Mal.\nErhalte X [gold]Seelen+[/gold] in deinen [gold]Nachziehstapel[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
+    "keywords_key": [
+      "Exhaust"
+    ],
     "compendium_order": 286
+  },
+  {
+    "id": "TOXIC",
+    "name": "Toxisch",
+    "description": "Falls diese Karte am Ende deines Zuges auf deiner [gold]Hand[/gold] ist, nimm 5 Schaden.",
+    "description_raw": "Falls diese Karte am Ende deines Zuges auf deiner [gold]Hand[/gold] ist, nimm {Damage:diff()} Schaden.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Status",
+    "rarity": "Status",
+    "target": "None",
+    "color": "status",
+    "damage": 5,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Erschöpft"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 5
+    },
+    "upgrade": null,
+    "image_url": "/static/images/cards/toxic.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "upgrade_description": null,
+    "type_key": "Status",
+    "rarity_key": "Status",
+    "keywords_key": [
+      "Exhaust"
+    ],
+    "compendium_order": 559
   },
   {
     "id": "BULK_UP",
@@ -19110,13 +19072,12 @@
       "Weak": 1
     },
     "upgrade": {
-      "block": "+1",
-      "weak": "+1"
+      "block": "+3"
     },
     "image_url": "/static/images/cards/defy.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Erhalte 7 [gold]Block[/gold].\nWende 1 [gold]Schwach[/gold] an.",
+    "upgrade_description": "Erhalte 9 [gold]Block[/gold].\nWende 1 [gold]Schwach[/gold] an.",
     "type_key": "Skill",
     "rarity_key": "Common",
     "keywords_key": [
@@ -19303,8 +19264,8 @@
   {
     "id": "SPITE",
     "name": "Tücke",
-    "description": "Füge 6 Schaden zu.\nFalls du in diesem Zug TP verloren hast, ziehe 1 Karte.",
-    "description_raw": "Füge {Damage:diff()} Schaden zu.\nFalls du in diesem Zug TP verloren hast, ziehe {Cards:diff()} {Cards:plural:Karte|Karten}.",
+    "description": "Füge 5 Schaden zu.\nTrifft 2 Mal, falls du in diesem Zug TP verloren hast.",
+    "description_raw": "Füge {Damage:diff()} Schaden zu.\nTrifft {Repeat:diff()} Mal, falls du in diesem Zug TP verloren hast.",
     "cost": 0,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -19313,27 +19274,27 @@
     "rarity": "Ungewöhnlich",
     "target": "AnyEnemy",
     "color": "ironclad",
-    "damage": 6,
+    "damage": 5,
     "block": null,
-    "hit_count": null,
+    "hit_count": 2,
     "powers_applied": null,
-    "cards_draw": 1,
+    "cards_draw": null,
     "energy_gain": null,
     "hp_loss": null,
     "keywords": null,
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Damage": 6,
-      "Cards": 1
+      "Damage": 5,
+      "Repeat": 2
     },
     "upgrade": {
-      "damage": "+3"
+      "repeat": "+1"
     },
     "image_url": "/static/images/cards/spite.webp",
     "beta_image_url": "/static/images/cards/beta/spite.webp",
     "type_variants": null,
-    "upgrade_description": "Füge 9 Schaden zu.\nFalls du in diesem Zug TP verloren hast, ziehe 1 Karte.",
+    "upgrade_description": "Füge 5 Schaden zu.\nTrifft 3 Mal, falls du in diesem Zug TP verloren hast.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 67
@@ -19456,7 +19417,7 @@
     "keywords_key": [
       "Exhaust"
     ],
-    "compendium_order": 44
+    "compendium_order": 43
   },
   {
     "id": "UNRELENTING",
@@ -19544,7 +19505,7 @@
   {
     "id": "UNTOUCHABLE",
     "name": "Unfassbar",
-    "description": "Erhalte 9 [gold]Block[/gold].",
+    "description": "Erhalte 6 [gold]Block[/gold].",
     "description_raw": "Erhalte {Block:diff()} [gold]Block[/gold].",
     "cost": 2,
     "is_x_cost": null,
@@ -19555,7 +19516,7 @@
     "target": "Self",
     "color": "silent",
     "damage": null,
-    "block": 9,
+    "block": 6,
     "hit_count": null,
     "powers_applied": null,
     "cards_draw": null,
@@ -19567,15 +19528,15 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Block": 9
+      "Block": 6
     },
     "upgrade": {
-      "block": "+3"
+      "block": "+2"
     },
     "image_url": "/static/images/cards/untouchable.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Erhalte 12 [gold]Block[/gold].",
+    "upgrade_description": "Erhalte 8 [gold]Block[/gold].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "keywords_key": [
@@ -20076,6 +20037,46 @@
     "compendium_order": 296
   },
   {
+    "id": "BURN",
+    "name": "Verbrennung",
+    "description": "Falls diese Karte am Ende deines Zuges auf deiner [gold]Hand[/gold] ist, nimm 2 Schaden.",
+    "description_raw": "Falls diese Karte am Ende deines Zuges auf deiner [gold]Hand[/gold] ist, nimm {Damage:diff()} Schaden.",
+    "cost": -1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Status",
+    "rarity": "Status",
+    "target": "None",
+    "color": "status",
+    "damage": 2,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Unspielbar"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 2
+    },
+    "upgrade": null,
+    "image_url": "/static/images/cards/burn.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "upgrade_description": null,
+    "type_key": "Status",
+    "rarity_key": "Status",
+    "keywords_key": [
+      "Unplayable"
+    ],
+    "compendium_order": 552
+  },
+  {
     "id": "CORRUPTION",
     "name": "Verderbnis",
     "description": "Fertigkeiten kosten 0 [energy:1].\nImmer wenn du eine Fertigkeit spielst, [gold]Erschöpfe[/gold] sie.",
@@ -20211,7 +20212,9 @@
     "cards_draw": null,
     "energy_gain": 3,
     "hp_loss": null,
-    "keywords": null,
+    "keywords": [
+      "Erschöpft"
+    ],
     "tags": null,
     "spawns_cards": null,
     "vars": {
@@ -20226,6 +20229,9 @@
     "upgrade_description": "Falls du in diesem Zug eine Karte [gold]Erschöpft[/gold] hast, erhalte [energy:4].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
+    "keywords_key": [
+      "Exhaust"
+    ],
     "compendium_order": 37
   },
   {
@@ -20308,6 +20314,48 @@
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 270
+  },
+  {
+    "id": "WASTE_AWAY",
+    "name": "Verkümmern",
+    "description": "Erhalte 1 [energy:1] weniger pro Zug.",
+    "description_raw": "Erhalte {WasteAwayPower:diff()} {energyPrefix:energyIcons(1)} weniger pro Zug.",
+    "cost": -1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Status",
+    "rarity": "Status",
+    "target": "None",
+    "color": "token",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Verkümmern",
+        "amount": 1,
+        "power_key": "WasteAway"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "WasteAwayPower": 1,
+      "WasteAway": 1
+    },
+    "upgrade": null,
+    "image_url": "/static/images/cards/waste_away.webp",
+    "beta_image_url": "/static/images/cards/beta/waste_away.webp",
+    "type_variants": null,
+    "upgrade_description": null,
+    "type_key": "Status",
+    "rarity_key": "Status",
+    "compendium_order": 575
   },
   {
     "id": "INJURY",
@@ -20426,7 +20474,7 @@
     "id": "MAD_SCIENCE",
     "name": "Verrückte Forschung",
     "description": "Füge 12 Schaden zu.",
-    "description_raw": "{CardType:choose(Attack|Skill|Power):Füge{Violence: {ViolenceHits:diff()} Mal|} {Damage:diff()} Schaden zu.|Erhalte {Block:diff()} [gold]Block[/gold].|}{HasRider:{Sapping:\nWende {SappingWeak:diff()} [gold]Schwach[/gold] an.\nWende {SappingVulnerable:diff()} [gold]Verwundbar[/gold] an.|}{Choking:\nImmer wenn du in diesem Zug eine Karte spielst, verliert der Gegner {ChokingDamage:diff()} TP.|}{Energized:\nErhalte {EnergizedEnergy:energyIcons()}.|}{Wisdom:\nZiehe {WisdomCards:diff()} Karten.|}{Chaos:\nErhalte eine zufällige Karte auf deine [gold]Hand[/gold]. Sie kostet diesen Zug 0 {energyPrefix:energyIcons(1)}.|}{Expertise:Erhalte {ExpertiseStrength:diff()} [gold]Stärke[/gold].\nErhalte {ExpertiseDexterity:diff()} [gold]Geschicklichkeit[/gold].|}{Curious:Mächte kosten {CuriousReduction:diff()} {energyPrefix:energyIcons(1)} weniger.|}{Improvement:[gold]Verbessere[/gold] am Ende des Kampfes eine zufällige Karte.|}|{CardType:choose(Attack|Skill|Power):\n???|\n???|???}}",
+    "description_raw": "{CardType:choose(Attack|Skill|Power):Füge{Violence: {ViolenceHits:diff()} Mal|} {Damage:diff()} Schaden zu.|Erhalte {Block:diff()} [gold]Block[/gold].|}{HasRider:{Sapping:\nWende {SappingWeak:diff()} [gold]Schwach[/gold] an.\nWende {SappingVulnerable:diff()} [gold]Verwundbar[/gold] an.|}{Choking:\nImmer wenn du in diesem Zug eine Karte spielst, verliert der Gegner {ChokingDamage:diff()} TP.|}{Energized:\nErhalte {EnergizedEnergy:energyIcons()}.|}{Wisdom:\nZiehe {WisdomCards:diff()} Karten.|}{Chaos:\nErhalte eine zufällige Karte auf deine [gold]Hand[/gold]. Sie ist in diesem Zug kostenlos spielbar.|}{Expertise:Erhalte {ExpertiseStrength:diff()} [gold]Stärke[/gold].\nErhalte {ExpertiseDexterity:diff()} [gold]Geschicklichkeit[/gold].|}{Curious:Mächte kosten {CuriousReduction:diff()} {energyPrefix:energyIcons(1)} weniger.|}{Improvement:[gold]Verbessere[/gold] am Ende des Kampfes eine zufällige Karte.|}|{CardType:choose(Attack|Skill|Power):\n???|\n???|???}}",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -20506,7 +20554,7 @@
           {
             "id": "CHAOS",
             "name": "Chaos",
-            "description": "Erhalte eine zufällige Karte auf deine [gold]Hand[/gold]. Sie kostet in diesem Zug [blue]0[/blue] [energy:1]."
+            "description": "Erhalte eine zufällige Karte auf deine [gold]Hand[/gold]. Sie ist in diesem Zug kostenlos spielbar."
           }
         ]
       },
@@ -20653,8 +20701,8 @@
   {
     "id": "FEED",
     "name": "Verschlingen",
-    "description": "Füge 10 Schaden zu.\nFalls [gold]tödlich[/gold], erhöhe deine max. TP um 3.",
-    "description_raw": "Füge {Damage:diff()} Schaden zu.\nFalls [gold]tödlich[/gold], erhöhe deine max. TP um {MaxHp:diff()}.",
+    "description": "Füge 10 Schaden zu.\nFalls [gold]Tödlich[/gold], erhöhe deine max. TP um 3.",
+    "description_raw": "Füge {Damage:diff()} Schaden zu.\nFalls [gold]Tödlich[/gold], erhöhe deine max. TP um {MaxHp:diff()}.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -20686,55 +20734,13 @@
     "image_url": "/static/images/cards/feed.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Füge 12 Schaden zu.\nFalls [gold]tödlich[/gold], erhöhe deine max. TP um 4.",
+    "upgrade_description": "Füge 12 Schaden zu.\nFalls [gold]Tödlich[/gold], erhöhe deine max. TP um 4.",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "keywords_key": [
       "Exhaust"
     ],
     "compendium_order": 32
-  },
-  {
-    "id": "WASTE_AWAY",
-    "name": "Verschwenden",
-    "description": "Erhalte 1 weniger [energy:1] pro Zug.",
-    "description_raw": "Erhalte {WasteAwayPower:diff()} weniger {energyPrefix:energyIcons(1)} pro Zug.",
-    "cost": -1,
-    "is_x_cost": null,
-    "is_x_star_cost": null,
-    "star_cost": null,
-    "type": "Status",
-    "rarity": "Status",
-    "target": "None",
-    "color": "token",
-    "damage": null,
-    "block": null,
-    "hit_count": null,
-    "powers_applied": [
-      {
-        "power": "Verschwenden",
-        "amount": 1,
-        "power_key": "WasteAway"
-      }
-    ],
-    "cards_draw": null,
-    "energy_gain": null,
-    "hp_loss": null,
-    "keywords": null,
-    "tags": null,
-    "spawns_cards": null,
-    "vars": {
-      "WasteAwayPower": 1,
-      "WasteAway": 1
-    },
-    "upgrade": null,
-    "image_url": "/static/images/cards/waste_away.webp",
-    "beta_image_url": "/static/images/cards/beta/waste_away.webp",
-    "type_variants": null,
-    "upgrade_description": null,
-    "type_key": "Status",
-    "rarity_key": "Status",
-    "compendium_order": 575
   },
   {
     "id": "BLUR",
@@ -20908,8 +20914,8 @@
   {
     "id": "HIDDEN_GEM",
     "name": "Verstecktes Juwel",
-    "description": "Gib einer zufälligen Karte aus deinem [gold]Nachziehstapel[/gold] [gold]Erneut Spielen[/gold] 2.",
-    "description_raw": "Gib einer zufälligen Karte aus deinem [gold]Nachziehstapel[/gold] [gold]Erneut Spielen[/gold] {Replay:diff()}.",
+    "description": "Gib einer zufälligen Karte ohne [gold]Erneut Spielen[/gold] aus deinem [gold]Nachziehstapel[/gold] [gold]Erneut Spielen[/gold] 2.",
+    "description_raw": "Gib einer zufälligen Karte ohne [gold]Erneut Spielen[/gold] aus deinem [gold]Nachziehstapel[/gold] [gold]Erneut Spielen[/gold] {Replay:diff()}.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -20937,7 +20943,7 @@
     "image_url": "/static/images/cards/hidden_gem.webp",
     "beta_image_url": "/static/images/cards/beta/hidden_gem.webp",
     "type_variants": null,
-    "upgrade_description": "Gib einer zufälligen Karte aus deinem [gold]Nachziehstapel[/gold] [gold]Erneut Spielen[/gold] 3.",
+    "upgrade_description": "Gib einer zufälligen Karte ohne [gold]Erneut Spielen[/gold] aus deinem [gold]Nachziehstapel[/gold] [gold]Erneut Spielen[/gold] 3.",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 462
@@ -20979,7 +20985,7 @@
     "upgrade_description": "Füge 20 Schaden zu.\nDer Gegner verliert für diesen Zug 15 [gold]Stärke[/gold].",
     "type_key": "Attack",
     "rarity_key": "Rare",
-    "compendium_order": 51
+    "compendium_order": 50
   },
   {
     "id": "DEFEND_IRONCLAD",
@@ -21330,7 +21336,7 @@
     "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Common",
-    "compendium_order": 39
+    "compendium_order": 38
   },
   {
     "id": "BIASED_COGNITION",
@@ -21463,8 +21469,8 @@
   {
     "id": "FINISHER",
     "name": "Vollstrecken",
-    "description": "Füge 6 Schaden zu für jeden in diesem Zug gespielen Angriff.",
-    "description_raw": "Füge {Damage:diff()} Schaden zu für jeden in diesem Zug gespielen Angriff.{InCombat:\n(Trifft {CalculatedHits:diff()} {CalculatedHits:plural:Mal|Mal})|}",
+    "description": "Füge 6 Schaden für jeden in diesem Zug gespielten Angriff zu.",
+    "description_raw": "Füge {Damage:diff()} Schaden für jeden in diesem Zug gespielten Angriff zu.{InCombat:\n(Trifft {CalculatedHits:diff()} {CalculatedHits:plural:Mal|Mal})|}",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -21494,7 +21500,7 @@
     "image_url": "/static/images/cards/finisher.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Füge 8 Schaden zu für jeden in diesem Zug gespielen Angriff.",
+    "upgrade_description": "Füge 8 Schaden für jeden in diesem Zug gespielten Angriff zu.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 120
@@ -21504,7 +21510,7 @@
     "name": "Voltaisch",
     "description": "[gold]Erschaffe Blitze[/gold] für jeden [gold]Blitz[/gold], den du in diesem Kampf bereits [gold]Erschaffen[/gold] hast.",
     "description_raw": "[gold]Erschaffe Blitze[/gold] für jeden [gold]Blitz[/gold], den du in diesem Kampf bereits [gold]Erschaffen[/gold] hast.{InCombat:\n([gold]Erschaffe[/gold] {CalculatedChannels:diff()} [gold]Blitze[/gold])|}",
-    "cost": 2,
+    "cost": 3,
     "is_x_cost": null,
     "is_x_star_cost": null,
     "star_cost": null,
@@ -22104,8 +22110,8 @@
   {
     "id": "FLECHETTES",
     "name": "Wurfpfeile",
-    "description": "Füge 5 Schaden zu für jede Fertigkeit auf deiner [gold]Hand[/gold].",
-    "description_raw": "Füge {Damage:diff()} Schaden zu für jede Fertigkeit auf deiner [gold]Hand[/gold].{InCombat:\n(Trifft {CalculatedHits:diff()} {CalculatedHits:plural:Mal|Mal})|}",
+    "description": "Füge 5 Schaden für jede Fertigkeit auf deiner [gold]Hand[/gold] zu.",
+    "description_raw": "Füge {Damage:diff()} Schaden für jede Fertigkeit auf deiner [gold]Hand[/gold] zu.{InCombat:\n(Trifft {CalculatedHits:diff()} {CalculatedHits:plural:Mal|Mal})|}",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -22135,7 +22141,7 @@
     "image_url": "/static/images/cards/flechettes.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Füge 7 Schaden zu für jede Fertigkeit auf deiner [gold]Hand[/gold].",
+    "upgrade_description": "Füge 7 Schaden für jede Fertigkeit auf deiner [gold]Hand[/gold] zu.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 122
@@ -22433,7 +22439,7 @@
     "is_x_star_cost": null,
     "star_cost": null,
     "type": "Angriff",
-    "rarity": "Ungewöhnlich",
+    "rarity": "Ereignis",
     "target": "RandomEnemy",
     "color": "event",
     "damage": 7,
@@ -22457,7 +22463,7 @@
     "type_variants": null,
     "upgrade_description": "Füge einem zufälligen Gegner zweimal 9 Schaden zu.",
     "type_key": "Attack",
-    "rarity_key": "Uncommon",
+    "rarity_key": "Event",
     "compendium_order": 542
   },
   {
@@ -22539,8 +22545,8 @@
   {
     "id": "CRUSH_UNDER",
     "name": "Zerquetschen",
-    "description": "Füge ALLEN Gegnern 7 Schaden zu. Alle Gegner verlieren für diesen Zug 1 [gold]Stärke[/gold].",
-    "description_raw": "Füge ALLEN Gegnern {Damage:diff()} Schaden zu. Alle Gegner verlieren für diesen Zug {StrengthLoss:diff()} [gold]Stärke[/gold].",
+    "description": "Füge ALLEN Gegnern 7 Schaden zu.\nAlle Gegner verlieren für diesen Zug 1 [gold]Stärke[/gold].",
+    "description_raw": "Füge ALLEN Gegnern {Damage:diff()} Schaden zu.\nAlle Gegner verlieren für diesen Zug {StrengthLoss:diff()} [gold]Stärke[/gold].",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -22570,7 +22576,7 @@
     "image_url": "/static/images/cards/crush_under.webp",
     "beta_image_url": "/static/images/cards/beta/crush_under.webp",
     "type_variants": null,
-    "upgrade_description": "Füge ALLEN Gegnern 8 Schaden zu. Alle Gegner verlieren für diesen Zug 2 [gold]Stärke[/gold].",
+    "upgrade_description": "Füge ALLEN Gegnern 8 Schaden zu.\nAlle Gegner verlieren für diesen Zug 2 [gold]Stärke[/gold].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 196
@@ -22619,7 +22625,7 @@
     "id": "TEAR_ASUNDER",
     "name": "Zerrupfen",
     "description": "Füge 5 Schaden zu.\nTrifft ein weiteres Mal für jeden TP-Verlust in diesem Kampf.",
-    "description_raw": "Füge {Damage:diff()} Schaden zu.\nTrifft ein weiteres Mal für jeden TP-Verlust in diesem Kampf.{InCombat:\n(Trifft {CalculatedHits:diff()} {CalculatedHits:plural:Mal|Mal}.)|}",
+    "description_raw": "Füge {Damage:diff()} Schaden zu.\nTrifft ein weiteres Mal für jeden TP-Verlust in diesem Kampf.{InCombat:\n(Trifft {CalculatedHits:diff()} {CalculatedHits:plural:Mal|Mal})|}",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -22732,7 +22738,7 @@
   {
     "id": "PINPOINT",
     "name": "Zielgenau",
-    "description": "Füge 17 Schaden zu.\nKostet 1 weniger [energy:1] für jede in diesem Zug gespielte Fertigkeit.",
+    "description": "Füge 15 Schaden zu.\nKostet 1 weniger [energy:1] für jede in diesem Zug gespielte Fertigkeit.",
     "description_raw": "Füge {Damage:diff()} Schaden zu.\nKostet 1 weniger {energyPrefix:energyIcons(1)} für jede in diesem Zug gespielte Fertigkeit.",
     "cost": 3,
     "is_x_cost": null,
@@ -22742,7 +22748,7 @@
     "rarity": "Ungewöhnlich",
     "target": "AnyEnemy",
     "color": "silent",
-    "damage": 17,
+    "damage": 15,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -22753,15 +22759,15 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Damage": 17
+      "Damage": 15
     },
     "upgrade": {
-      "damage": "+5"
+      "damage": "+4"
     },
     "image_url": "/static/images/cards/pinpoint.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Füge 22 Schaden zu.\nKostet 1 weniger [energy:1] für jede in diesem Zug gespielte Fertigkeit.",
+    "upgrade_description": "Füge 19 Schaden zu.\nKostet 1 weniger [energy:1] für jede in diesem Zug gespielte Fertigkeit.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 145
@@ -22769,7 +22775,7 @@
   {
     "id": "TREMBLE",
     "name": "Zittern",
-    "description": "Wende 2 [gold]Verwundbar[/gold] an.",
+    "description": "Wende 3 [gold]Verwundbar[/gold] an.",
     "description_raw": "Wende {VulnerablePower:diff()} [gold]Verwundbar[/gold] an.",
     "cost": 1,
     "is_x_cost": null,
@@ -22785,19 +22791,21 @@
     "powers_applied": [
       {
         "power": "Verwundbar",
-        "amount": 2,
+        "amount": 3,
         "power_key": "Vulnerable"
       }
     ],
     "cards_draw": null,
     "energy_gain": null,
     "hp_loss": null,
-    "keywords": null,
+    "keywords": [
+      "Erschöpft"
+    ],
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "VulnerablePower": 2,
-      "Vulnerable": 2
+      "VulnerablePower": 3,
+      "Vulnerable": 3
     },
     "upgrade": {
       "vulnerable": "+1"
@@ -22808,13 +22816,16 @@
     "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Common",
+    "keywords_key": [
+      "Exhaust"
+    ],
     "compendium_order": 79
   },
   {
     "id": "ANGER",
     "name": "Zorn",
-    "description": "Füge 6 Schaden zu.\nErhalte eine Kopie dieser Karte in deinen [gold]Abwurfstapel[/gold].",
-    "description_raw": "Füge {Damage:diff()} Schaden zu.\nErhalte eine Kopie dieser Karte in deinen [gold]Abwurfstapel[/gold].",
+    "description": "Füge 6 Schaden zu.\nNimm eine Kopie dieser Karte in deinen [gold]Abwurfstapel[/gold].",
+    "description_raw": "Füge {Damage:diff()} Schaden zu.\nNimm eine Kopie dieser Karte in deinen [gold]Abwurfstapel[/gold].",
     "cost": 0,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -22842,7 +22853,7 @@
     "image_url": "/static/images/cards/anger.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Füge 8 Schaden zu.\nErhalte eine Kopie dieser Karte in deinen [gold]Abwurfstapel[/gold].",
+    "upgrade_description": "Füge 8 Schaden zu.\nNimm eine Kopie dieser Karte in deinen [gold]Abwurfstapel[/gold].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 1
@@ -22850,8 +22861,8 @@
   {
     "id": "KNOCKDOWN",
     "name": "Zu Boden werfen",
-    "description": "Füge 10 Schaden zu.\nDieser Gegner nimmt von Verbündeten in diesem Zug doppelten Schaden.",
-    "description_raw": "Füge {Damage:diff()} Schaden zu.\nDieser Gegner nimmt von Verbündeten in diesem Zug {IfUpgraded:show:dreifachen|doppelten} Schaden.",
+    "description": "Füge 10 Schaden zu.\nDieser Gegner nimmt in diesem Zug doppelten Schaden von Mitspielern.",
+    "description_raw": "Füge {Damage:diff()} Schaden zu.\nDieser Gegner nimmt in diesem Zug {IfUpgraded:show:dreifachen|doppelten} Schaden von Mitspielern.",
     "cost": 3,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -22888,7 +22899,7 @@
     "image_url": "/static/images/cards/knockdown.webp",
     "beta_image_url": "/static/images/cards/beta/knockdown.webp",
     "type_variants": null,
-    "upgrade_description": "Füge 14 Schaden zu.\nDieser Gegner nimmt von Verbündeten in diesem Zug dreifachen Schaden.",
+    "upgrade_description": "Füge 14 Schaden zu.\nDieser Gegner nimmt in diesem Zug dreifachen Schaden von Mitspielern.",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 468
@@ -22896,26 +22907,20 @@
   {
     "id": "FOLLOW_THROUGH",
     "name": "Zu Ende bringen",
-    "description": "Füge ALLEN Gegnern 6 Schaden zu. Falls die letzte in diesem Zug gespielte Karte eine Fertigkeit war, wende auf ALLE Gegner 1 [gold]Schwach[/gold] an.",
-    "description_raw": "Füge ALLEN Gegnern {Damage:diff()} Schaden zu. Falls die letzte in diesem Zug gespielte Karte eine Fertigkeit war, wende auf ALLE Gegner {WeakPower:diff()} [gold]Schwach[/gold] an.",
+    "description": "Füge 7 Schaden zu. Trifft ein weiteres Mal, falls du 5 oder mehr andere [gold]Handkarten[/gold] hast.",
+    "description_raw": "Füge {Damage:diff()} Schaden zu. Trifft ein weiteres Mal, falls du {CardCount} oder mehr andere [gold]Handkarten[/gold] hast.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
     "star_cost": null,
     "type": "Angriff",
-    "rarity": "Ungewöhnlich",
-    "target": "AllEnemies",
+    "rarity": "Gewöhnlich",
+    "target": "AnyEnemy",
     "color": "silent",
-    "damage": 6,
+    "damage": 7,
     "block": null,
     "hit_count": null,
-    "powers_applied": [
-      {
-        "power": "Schwach",
-        "amount": 1,
-        "power_key": "Weak"
-      }
-    ],
+    "powers_applied": null,
     "cards_draw": null,
     "energy_gain": null,
     "hp_loss": null,
@@ -22923,20 +22928,18 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Damage": 6,
-      "WeakPower": 1,
-      "Weak": 1
+      "CardCount": 5,
+      "Damage": 7
     },
     "upgrade": {
-      "damage": "+2",
-      "weak": "+1"
+      "damage": "+2"
     },
     "image_url": "/static/images/cards/follow_through.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Füge ALLEN Gegnern 8 Schaden zu. Falls die letzte in diesem Zug gespielte Karte eine Fertigkeit war, wende auf ALLE Gegner 1 [gold]Schwach[/gold] an.",
+    "upgrade_description": "Füge 9 Schaden zu. Trifft ein weiteres Mal, falls du 5 oder mehr andere [gold]Handkarten[/gold] hast.",
     "type_key": "Attack",
-    "rarity_key": "Uncommon",
+    "rarity_key": "Common",
     "compendium_order": 124
   },
   {
@@ -22984,8 +22987,8 @@
   {
     "id": "HUDDLE_UP",
     "name": "Zusammenkommen",
-    "description": "ALLE Verbündeten ziehen 2 Karten.",
-    "description_raw": "ALLE Verbündeten ziehen {Cards:diff()} Karten.",
+    "description": "ALLE Spieler ziehen 2 Karten.",
+    "description_raw": "ALLE Spieler ziehen {Cards:diff()} Karten.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -23001,7 +23004,9 @@
     "cards_draw": 2,
     "energy_gain": null,
     "hp_loss": null,
-    "keywords": null,
+    "keywords": [
+      "Erschöpft"
+    ],
     "tags": null,
     "spawns_cards": null,
     "vars": {
@@ -23013,9 +23018,12 @@
     "image_url": "/static/images/cards/huddle_up.webp",
     "beta_image_url": "/static/images/cards/beta/huddle_up.webp",
     "type_variants": null,
-    "upgrade_description": "ALLE Verbündeten ziehen 3 Karten.",
+    "upgrade_description": "ALLE Spieler ziehen 3 Karten.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
+    "keywords_key": [
+      "Exhaust"
+    ],
     "compendium_order": 463
   },
   {
@@ -23221,7 +23229,7 @@
   {
     "id": "CORROSIVE_WAVE",
     "name": "Ätzende Welle",
-    "description": "Immer wenn du in diesem Zug eine Karte ziehst, wende auf ALLE Gegner 3 [gold]Gift[/gold] an.",
+    "description": "Immer wenn du in diesem Zug eine Karte ziehst, wende auf ALLE Gegner 2 [gold]Gift[/gold] an.",
     "description_raw": "Immer wenn du in diesem Zug eine Karte ziehst, wende auf ALLE Gegner {CorrosiveWave:diff()} [gold]Gift[/gold] an.",
     "cost": 1,
     "is_x_cost": null,
@@ -23242,7 +23250,7 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "CorrosiveWave": 3
+      "CorrosiveWave": 2
     },
     "upgrade": {
       "corrosivewave": "+1"
@@ -23250,7 +23258,7 @@
     "image_url": "/static/images/cards/corrosive_wave.webp",
     "beta_image_url": "/static/images/cards/beta/corrosive_wave.webp",
     "type_variants": null,
-    "upgrade_description": "Immer wenn du in diesem Zug eine Karte ziehst, wende auf ALLE Gegner 4 [gold]Gift[/gold] an.",
+    "upgrade_description": "Immer wenn du in diesem Zug eine Karte ziehst, wende auf ALLE Gegner 3 [gold]Gift[/gold] an.",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 106
@@ -23295,8 +23303,8 @@
   {
     "id": "OVERCLOCK",
     "name": "Übertakten",
-    "description": "Ziehe 2 Karten.\nErhalte ein [gold]Brennen[/gold] in deinen [gold]Abwurfstapel[/gold].",
-    "description_raw": "Ziehe {Cards:diff()} Karten.\nErhalte ein [gold]Brennen[/gold] in deinen [gold]Abwurfstapel[/gold].",
+    "description": "Ziehe 2 Karten.\nErhalte eine [gold]Verbrennung[/gold] in deinen [gold]Abwurfstapel[/gold].",
+    "description_raw": "Ziehe {Cards:diff()} Karten.\nErhalte eine [gold]Verbrennung[/gold] in deinen [gold]Abwurfstapel[/gold].",
     "cost": 0,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -23326,7 +23334,7 @@
     "image_url": "/static/images/cards/overclock.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Ziehe 3 Karten.\nErhalte ein [gold]Brennen[/gold] in deinen [gold]Abwurfstapel[/gold].",
+    "upgrade_description": "Ziehe 3 Karten.\nErhalte eine [gold]Verbrennung[/gold] in deinen [gold]Abwurfstapel[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 408

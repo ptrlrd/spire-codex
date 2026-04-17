@@ -7,6 +7,13 @@
     "is_stackable": false
   },
   {
+    "id": "DEVOURED",
+    "name": "Devoración",
+    "description": "Agrega [gold]agotamiento[/gold] a esta carta.",
+    "extra_card_text": null,
+    "is_stackable": false
+  },
+  {
     "id": "ENTANGLED",
     "name": "Enredo",
     "description": "Cuesta un punto adicional de [energy:1].",
@@ -39,6 +46,13 @@
     "name": "Contaminación",
     "description": "No puedes jugar [gold]habilidades[/gold] extra en este turno. El efecto desaparece al final del turno.",
     "extra_card_text": null,
+    "is_stackable": false
+  },
+  {
+    "id": "WEIGHTED",
+    "name": "Pesadez",
+    "description": "Cuando se juega esta carta, quita [energy:1].",
+    "extra_card_text": "Quita [energy:1].",
     "is_stackable": false
   }
 ]

@@ -21,13 +21,13 @@
     "id": "LEVEL_03",
     "level": 3,
     "name": "Povertà",
-    "description": "I nemici e le casse del tesoro offrono il [blue]25%[/blue] in meno [gold]d'oro[/gold]."
+    "description": "I nemici e gli scrigni del tesoro offrono il [blue]25%[/blue] in meno di [gold]oro[/gold]."
   },
   {
     "id": "LEVEL_04",
     "level": 4,
     "name": "Stringere la cinghia",
-    "description": "Inizi ogni partita con 1 spazio pozioni in meno."
+    "description": "Inizi ogni partita con 1 spazio per pozioni in meno."
   },
   {
     "id": "LEVEL_05",
@@ -38,8 +38,8 @@
   {
     "id": "LEVEL_06",
     "level": 6,
-    "name": "A corto di sonno",
-    "description": "Incontrerai meno luoghi di riposo."
+    "name": "Inflazione",
+    "description": "Ora rimuovere le carte dal tuo mazzo presso il mercante costa di più."
   },
   {
     "id": "LEVEL_07",
@@ -62,7 +62,7 @@
   {
     "id": "LEVEL_10",
     "level": 10,
-    "name": "Boss doppi",
+    "name": "Doppio boss",
     "description": "Affronti due boss al termine dell'Atto 3."
   }
 ]

@@ -7,6 +7,13 @@
     "is_stackable": false
   },
   {
+    "id": "DEVOURED",
+    "name": "Yutulmuş",
+    "description": "Bu karta [gold]Tüket[/gold] ekle.",
+    "extra_card_text": null,
+    "is_stackable": false
+  },
+  {
     "id": "ENTANGLED",
     "name": "Dolanmış",
     "description": "Fazladan [energy:1] Enerji gerektirir.",
@@ -39,6 +46,13 @@
     "name": "Duman",
     "description": "Bu tur ilave [gold]Beceri[/gold] kartları oynayamazsın. Tur sonunda kaldırılır.",
     "extra_card_text": null,
+    "is_stackable": false
+  },
+  {
+    "id": "WEIGHTED",
+    "name": "Ağırlaştırılmış",
+    "description": "Bu kart oynandığında [energy:1] kaybet.",
+    "extra_card_text": "[energy:1] kaybet.",
     "is_stackable": false
   }
 ]

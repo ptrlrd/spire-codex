@@ -14,6 +14,7 @@
     },
     "image_url": "/static/images/relics/ornamental_fan.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 40
   },
@@ -32,6 +33,7 @@
     },
     "image_url": "/static/images/relics/sturdy_clamp.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 80
   },
@@ -46,6 +48,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/biiig_hug.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 160
   },
@@ -64,6 +67,7 @@
     },
     "image_url": "/static/images/relics/letter_opener.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 41
   },
@@ -78,6 +82,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/fur_coat.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 161
   },
@@ -96,6 +101,7 @@
     },
     "image_url": "/static/images/relics/centennial_puzzle.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 10
   },
@@ -114,6 +120,7 @@
     },
     "image_url": "/static/images/relics/reptile_trinket.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 42
   },
@@ -132,6 +139,7 @@
     },
     "image_url": "/static/images/relics/akabeko.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 43
   },
@@ -146,6 +154,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/paels_wing.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 162
   },
@@ -160,8 +169,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/maw_bank.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 252
+    "compendium_order": 257
   },
   {
     "id": "DINGY_RUG",
@@ -178,6 +188,7 @@
     },
     "image_url": "/static/images/relics/dingy_rug.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 130
   },
@@ -192,8 +203,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/forgotten_soul.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 253
+    "compendium_order": 258
   },
   {
     "id": "REGAL_PILLOW",
@@ -210,6 +222,7 @@
     },
     "image_url": "/static/images/relics/regal_pillow.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 11
   },
@@ -228,6 +241,7 @@
     },
     "image_url": "/static/images/relics/wing_charm.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 131
   },
@@ -246,6 +260,7 @@
     },
     "image_url": "/static/images/relics/anchor.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 12
   },
@@ -264,6 +279,7 @@
     },
     "image_url": "/static/images/relics/rainbow_ring.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 81
   },
@@ -278,6 +294,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/signet_ring.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 163
   },
@@ -292,6 +309,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/ring_of_the_drake.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Starter",
     "compendium_order": 0
   },
@@ -306,6 +324,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/ring_of_the_snake.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Starter",
     "compendium_order": 1
   },
@@ -320,6 +339,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/lost_coffer.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 164
   },
@@ -338,6 +358,7 @@
     },
     "image_url": "/static/images/relics/self_forming_clay.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 44
   },
@@ -356,6 +377,7 @@
     },
     "image_url": "/static/images/relics/art_of_war.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 82
   },
@@ -370,6 +392,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/astrolabe.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 165
   },
@@ -384,8 +407,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/dream_catcher.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 254
+    "compendium_order": 259
   },
   {
     "id": "VAMBRACE",
@@ -402,6 +426,7 @@
     },
     "image_url": "/static/images/relics/vambrace.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 45
   },
@@ -420,27 +445,29 @@
     },
     "image_url": "/static/images/relics/brimstone.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 132
   },
   {
     "id": "CROSSBOW",
     "name": "Ballesta",
-    "description": "Al inicio de tu turno, agregas una [gold]carta de ataque[/gold] al azar a tu [gold]mano[/gold]. Cuesta [blue]0[/blue] [energy:1] este turno.",
-    "description_raw": "Al inicio de tu turno, agregas una [gold]carta de ataque[/gold] al azar a tu [gold]mano[/gold]. Cuesta [blue]0[/blue] {energyPrefix:energyIcons(1)} este turno.",
+    "description": "Al inicio de tu turno, agregas una [gold]carta de ataque[/gold] al azar a tu [gold]mano[/gold]. Se puede jugar sin costo durante este turno.",
+    "description_raw": "Al inicio de tu turno, agregas una [gold]carta de ataque[/gold] al azar a tu [gold]mano[/gold]. Se puede jugar sin costo durante este turno.",
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
     "merchant_price": null,
     "image_url": "/static/images/relics/crossbow.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 166
   },
   {
     "id": "AMETHYST_AUBERGINE",
     "name": "Berenjena amatista",
-    "description": "Los enemigos sueltan [blue]10[/blue] de [gold]oro[/gold] adicional.",
+    "description": "Los enemigos sueltan [blue]15[/blue] de [gold]oro[/gold] adicional.",
     "description_raw": "Los enemigos sueltan [blue]{Gold}[/blue] de [gold]oro[/gold] adicional.",
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia común",
@@ -452,6 +479,7 @@
     },
     "image_url": "/static/images/relics/amethyst_aubergine.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 13
   },
@@ -470,6 +498,7 @@
     },
     "image_url": "/static/images/relics/joss_paper.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 46
   },
@@ -484,8 +513,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/bing_bong.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 255
+    "compendium_order": 260
   },
   {
     "id": "MEAL_TICKET",
@@ -502,6 +532,7 @@
     },
     "image_url": "/static/images/relics/meal_ticket.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 14
   },
@@ -516,8 +547,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/wongos_mystery_ticket.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 256
+    "compendium_order": 261
   },
   {
     "id": "BAG_OF_MARBLES",
@@ -525,17 +557,18 @@
     "description": "Al inicio de cada combate, aplicas [blue]1[/blue] de [gold]vulnerabilidad[/gold] a TODOS los enemigos.",
     "description_raw": "Al inicio de cada combate, aplicas [blue]{VulnerablePower}[/blue] de [gold]vulnerabilidad[/gold] a TODOS los enemigos.",
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
-    "rarity": "Reliquia infrecuente",
+    "rarity": "Reliquia común",
     "pool": "shared",
     "merchant_price": {
-      "base": 250,
-      "min": 212,
-      "max": 288
+      "base": 200,
+      "min": 170,
+      "max": 230
     },
     "image_url": "/static/images/relics/bag_of_marbles.webp",
     "image_variants": null,
-    "rarity_key": "Uncommon",
-    "compendium_order": 47
+    "notes": null,
+    "rarity_key": "Common",
+    "compendium_order": 15
   },
   {
     "id": "BAG_OF_PREPARATION",
@@ -552,14 +585,15 @@
     },
     "image_url": "/static/images/relics/bag_of_preparation.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
-    "compendium_order": 15
+    "compendium_order": 16
   },
   {
     "id": "BOWLER_HAT",
     "name": "Bombín",
-    "description": "Obtienes un [blue]20 %[/blue] adicional de [gold]oro[/gold].",
-    "description_raw": "Obtienes un [blue]20 %[/blue] adicional de [gold]oro[/gold].",
+    "description": "Obtienes un [blue]25 %[/blue] adicional de [gold]oro[/gold].",
+    "description_raw": "Obtienes un [blue]{GoldIncrease:percentMore()} %[/blue] adicional de [gold]oro[/gold].",
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia infrecuente",
     "pool": "shared",
@@ -570,8 +604,9 @@
     },
     "image_url": "/static/images/relics/bowler_hat.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 48
+    "compendium_order": 47
   },
   {
     "id": "THE_BOOT",
@@ -584,8 +619,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/the_boot.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 257
+    "compendium_order": 262
   },
   {
     "id": "BEAUTIFUL_BRACELET",
@@ -598,6 +634,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/beautiful_bracelet.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 167
   },
@@ -616,6 +653,7 @@
     },
     "image_url": "/static/images/relics/cloak_clasp.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 83
   },
@@ -630,6 +668,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/golden_compass.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 168
   },
@@ -644,26 +683,28 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/brilliant_scarf.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 169
   },
   {
     "id": "TINY_MAILBOX",
     "name": "Buzón pequeño",
-    "description": "Al [gold]descansar[/gold], obtienes una poción al azar.",
-    "description_raw": "Al [gold]descansar[/gold], obtienes una poción al azar.",
+    "description": "Al [gold]descansar[/gold], obtienes [blue]2[/blue] pociones al azar.",
+    "description_raw": "Al [gold]descansar[/gold], obtienes [blue]2[/blue] pociones al azar.",
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
-    "rarity": "Reliquia común",
+    "rarity": "Reliquia infrecuente",
     "pool": "shared",
     "merchant_price": {
-      "base": 200,
-      "min": 170,
-      "max": 230
+      "base": 250,
+      "min": 212,
+      "max": 288
     },
     "image_url": "/static/images/relics/tiny_mailbox.webp",
     "image_variants": null,
-    "rarity_key": "Common",
-    "compendium_order": 16
+    "notes": null,
+    "rarity_key": "Uncommon",
+    "compendium_order": 48
   },
   {
     "id": "TRI_BOOMERANG",
@@ -676,6 +717,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/tri_boomerang.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 170
   },
@@ -694,6 +736,7 @@
     },
     "image_url": "/static/images/relics/gold_plated_cables.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 49
   },
@@ -708,6 +751,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/pandoras_box.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 171
   },
@@ -726,6 +770,7 @@
     },
     "image_url": "/static/images/relics/toolbox.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 133
   },
@@ -740,6 +785,11 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/toy_box.webp",
     "image_variants": null,
+    "notes": [
+      "Wax Relics are pulled from the normal relic pool — any non-Ancient relic can be waxed.",
+      "Wax Relic rarity: 50% Common, 33% Uncommon, 17% Rare (standard relic rarity roll).",
+      "All wax relics melt after 12 total combats, then Toy Box is used up."
+    ],
     "rarity_key": "Ancient",
     "compendium_order": 172
   },
@@ -754,14 +804,15 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/scroll_boxes.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 173
   },
   {
     "id": "VEXING_PUZZLEBOX",
     "name": "Caja rompecabezas frustrante",
-    "description": "Al inicio de cada combate, agregas una carta al azar a tu [gold]mano[/gold]. Cuesta [blue]0[/blue] [energy:1].",
-    "description_raw": "Al inicio de cada combate, agregas una carta al azar a tu [gold]mano[/gold]. Cuesta [blue]0[/blue] {energyPrefix:energyIcons(1)}.",
+    "description": "Al inicio de cada combate, agregas una carta al azar a tu [gold]mano[/gold]. Se puede jugar sin costo durante este turno.",
+    "description_raw": "Al inicio de cada combate, agregas una carta al azar a tu [gold]mano[/gold]. Se puede jugar sin costo durante este turno.",
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia rara",
     "pool": "shared",
@@ -772,6 +823,7 @@
     },
     "image_url": "/static/images/relics/vexing_puzzlebox.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 84
   },
@@ -786,6 +838,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/music_box.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 174
   },
@@ -804,6 +857,7 @@
     },
     "image_url": "/static/images/relics/red_skull.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 17
   },
@@ -822,6 +876,7 @@
     },
     "image_url": "/static/images/relics/cauldron.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 134
   },
@@ -840,6 +895,7 @@
     },
     "image_url": "/static/images/relics/stone_calendar.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 85
   },
@@ -854,6 +910,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/calling_bell.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 175
   },
@@ -872,6 +929,7 @@
     },
     "image_url": "/static/images/relics/chandelier.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 86
   },
@@ -890,20 +948,22 @@
     },
     "image_url": "/static/images/relics/candelabra.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 50
   },
   {
     "id": "DISTINGUISHED_CAPE",
     "name": "Capa distinguida",
-    "description": "Al recogerla, pierdes [red]9[/red] PV máx. Agregas [blue]3[/blue] [gold]cartas de Espectral[/gold] al [gold]mazo[/gold].",
-    "description_raw": "Al recogerla, pierdes [red]9[/red] PV máx. Agregas [blue]{Cards}[/blue] [gold]{Cards:plural:Espectral|cartas de Espectral}[/gold] al [gold]mazo[/gold].",
+    "description": "Al recogerla, pierdes [blue]9[/blue] PV máx. Agregas [blue]3[/blue] [gold]cartas de Espectral[/gold] al [gold]mazo[/gold].",
+    "description_raw": "Al recogerla, pierdes [blue]9[/blue] PV máx. Agregas [blue]{Cards}[/blue] [gold]{Cards:plural:Espectral|cartas de Espectral}[/gold] al [gold]mazo[/gold].",
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
     "merchant_price": null,
     "image_url": "/static/images/relics/distinguished_cape.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 176
   },
@@ -918,26 +978,28 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/booming_conch.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 177
   },
   {
     "id": "LASTING_CANDY",
     "name": "Caramelos duros",
-    "description": "Cada dos combates, tus cartas recompensa obtienen un poder adicional.",
-    "description_raw": "Cada dos combates, tus cartas recompensa obtienen un poder adicional.",
+    "description": "Cada dos combates, las cartas recompensas ofrecen un poder adicional.",
+    "description_raw": "Cada dos combates, las cartas recompensas ofrecen un poder adicional.",
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
-    "rarity": "Reliquia rara",
+    "rarity": "Reliquia infrecuente",
     "pool": "shared",
     "merchant_price": {
-      "base": 300,
-      "min": 255,
-      "max": 345
+      "base": 250,
+      "min": 212,
+      "max": 288
     },
     "image_url": "/static/images/relics/lasting_candy.webp",
     "image_variants": null,
-    "rarity_key": "Rare",
-    "compendium_order": 87
+    "notes": null,
+    "rarity_key": "Uncommon",
+    "compendium_order": 51
   },
   {
     "id": "MEAT_ON_THE_BONE",
@@ -954,8 +1016,9 @@
     },
     "image_url": "/static/images/relics/meat_on_the_bone.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 88
+    "compendium_order": 87
   },
   {
     "id": "PAELS_FLESH",
@@ -968,6 +1031,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/paels_flesh.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 178
   },
@@ -982,13 +1046,14 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/sand_castle.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 179
   },
   {
     "id": "LEAFY_POULTICE",
     "name": "Cataplasma frondoso",
-    "description": "Al recogerla, [gold]transformas[/gold] [blue]1[/blue] carta de [gold]Golpe[/gold] y [blue]1[/blue] de [gold]Defensa[/gold], pero pierdes [blue]10[/blue] PV máx.",
+    "description": "Al recogerla, [gold]transformas[/gold] [blue]1[/blue] carta de [gold]Golpe[/gold] y [blue]1[/blue] de [gold]Defensa[/gold], pero pierdes [blue]12[/blue] PV máx.",
     "description_raw": "Al recogerla, [gold]transformas[/gold] [blue]1[/blue] carta de [gold]Golpe[/gold] y [blue]1[/blue] de [gold]Defensa[/gold], pero pierdes [blue]{MaxHp}[/blue] PV máx.",
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
@@ -996,6 +1061,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/leafy_poultice.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 180
   },
@@ -1014,8 +1080,9 @@
     },
     "image_url": "/static/images/relics/power_cell.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 89
+    "compendium_order": 88
   },
   {
     "id": "CHARONS_ASHES",
@@ -1032,8 +1099,9 @@
     },
     "image_url": "/static/images/relics/charons_ashes.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 90
+    "compendium_order": 89
   },
   {
     "id": "EMOTION_CHIP",
@@ -1050,8 +1118,9 @@
     },
     "image_url": "/static/images/relics/emotion_chip.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 91
+    "compendium_order": 90
   },
   {
     "id": "VERY_HOT_COCOA",
@@ -1064,6 +1133,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/very_hot_cocoa.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 181
   },
@@ -1082,6 +1152,7 @@
     },
     "image_url": "/static/images/relics/potion_belt.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 18
   },
@@ -1096,8 +1167,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/history_course.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 258
+    "compendium_order": 263
   },
   {
     "id": "ALCHEMICAL_COFFER",
@@ -1110,14 +1182,15 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/alchemical_coffer.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 182
   },
   {
     "id": "LIZARD_TAIL",
     "name": "Cola de lagarto",
-    "description": "Si estás a punto de morir, recuperas un [green]50 %[/green] de tus PV máx. (uso único).",
-    "description_raw": "Si estás a punto de morir, recuperas un [green]{Heal} %[/green] de tus PV máx. (uso único).",
+    "description": "Si tus PV se reducirán a [blue]0[/blue], recuperas un [green]50 %[/green] de tus PV máx (uso único).",
+    "description_raw": "Si tus PV se reducirán a [blue]0[/blue], recuperas un [green]{Heal} %[/green] de tus PV máx (uso único).",
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia rara",
     "pool": "shared",
@@ -1128,8 +1201,9 @@
     },
     "image_url": "/static/images/relics/lizard_tail.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 92
+    "compendium_order": 91
   },
   {
     "id": "RUNIC_CAPACITOR",
@@ -1146,6 +1220,7 @@
     },
     "image_url": "/static/images/relics/runic_capacitor.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 135
   },
@@ -1160,6 +1235,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/blessed_antler.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 183
   },
@@ -1178,8 +1254,9 @@
     },
     "image_url": "/static/images/relics/horn_cleat.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 51
+    "compendium_order": 52
   },
   {
     "id": "LOOMING_FRUIT",
@@ -1192,6 +1269,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/looming_fruit.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 184
   },
@@ -1206,8 +1284,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/circlet.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "None",
-    "compendium_order": 287
+    "compendium_order": 292
   },
   {
     "id": "SILVER_CRUCIBLE",
@@ -1220,6 +1299,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/silver_crucible.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 185
   },
@@ -1238,6 +1318,7 @@
     },
     "image_url": "/static/images/relics/snecko_skull.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 19
   },
@@ -1252,6 +1333,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/meat_cleaver.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 186
   },
@@ -1270,8 +1352,9 @@
     },
     "image_url": "/static/images/relics/book_repair_knife.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 52
+    "compendium_order": 53
   },
   {
     "id": "RIPPLE_BASIN",
@@ -1288,8 +1371,9 @@
     },
     "image_url": "/static/images/relics/ripple_basin.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 53
+    "compendium_order": 54
   },
   {
     "id": "PAELS_HORN",
@@ -1302,6 +1386,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/paels_horn.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 187
   },
@@ -1320,8 +1405,9 @@
     },
     "image_url": "/static/images/relics/gremlin_horn.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 54
+    "compendium_order": 55
   },
   {
     "id": "LARGE_CAPSULE",
@@ -1334,6 +1420,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/large_capsule.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 188
   },
@@ -1348,6 +1435,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/small_capsule.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 189
   },
@@ -1366,6 +1454,7 @@
     },
     "image_url": "/static/images/relics/punch_dagger.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 136
   },
@@ -1384,8 +1473,9 @@
     },
     "image_url": "/static/images/relics/helical_dart.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 93
+    "compendium_order": 92
   },
   {
     "id": "DIVINE_RIGHT",
@@ -1398,6 +1488,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/divine_right.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Starter",
     "compendium_order": 2
   },
@@ -1412,6 +1503,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/divine_destiny.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Starter",
     "compendium_order": 3
   },
@@ -1426,6 +1518,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/diamond_diadem.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 190
   },
@@ -1444,20 +1537,22 @@
     },
     "image_url": "/static/images/relics/tuning_fork.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 55
+    "compendium_order": 56
   },
   {
     "id": "ARCHAIC_TOOTH",
     "name": "Diente arcaico",
-    "description": "Al recogerla, [gold]transformas[/gold] una carta básica en su versión ancestral.",
-    "description_raw": "Al recogerla, [gold]transformas[/gold] {StarterCard.StringValue:cond:[gold]{StarterCard}[/gold] en [gold]{AncientCard}[/gold]|una carta básica en su versión ancestral}.",
+    "description": "Al recogerla, [gold]transformas[/gold] una carta básica a su versión ancestral.",
+    "description_raw": "Al recogerla, [gold]transformas[/gold] {StarterCard.StringValue:cond:[gold]{StarterCard}[/gold] en [gold]{AncientCard}[/gold]|una carta básica a su versión ancestral}.",
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
     "merchant_price": null,
     "image_url": "/static/images/relics/archaic_tooth.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 191
   },
@@ -1465,13 +1560,14 @@
     "id": "PAELS_TOOTH",
     "name": "Diente de Pael",
     "description": "Al recogerla, quitas [blue]5[/blue] cartas del [gold]mazo[/gold]. Después de cada combate, devuelves [blue]1[/blue] [gold]mejorada[/gold] al azar.",
-    "description_raw": "Al recogerla, quitas [blue]{Cards}[/blue] {Cards:plural:carta|cartas} del [gold]mazo[/gold]. Después de cada combate, devuelves [blue]1[/blue] [gold]mejorada[/gold] al azar.{CardTitles.StringValue:cond:\n\nCartas en el pozo:\n{}|}",
+    "description_raw": "Al recogerla, quitas [blue]{Cards}[/blue] {Cards:plural:carta|cartas} del [gold]mazo[/gold]. Después de cada combate, devuelves [blue]1[/blue] [gold]mejorada[/gold] al azar.{CardTitles.StringValue:cond:\n\nCartas devoradas:\n{}|}",
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
     "merchant_price": null,
     "image_url": "/static/images/relics/paels_tooth.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 192
   },
@@ -1490,8 +1586,9 @@
     },
     "image_url": "/static/images/relics/razor_tooth.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 94
+    "compendium_order": 93
   },
   {
     "id": "DATA_DISK",
@@ -1508,6 +1605,7 @@
     },
     "image_url": "/static/images/relics/data_disk.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 20
   },
@@ -1522,6 +1620,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/ectoplasm.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 193
   },
@@ -1540,8 +1639,9 @@
     },
     "image_url": "/static/images/relics/twisted_funnel.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 56
+    "compendium_order": 57
   },
   {
     "id": "MYSTIC_LIGHTER",
@@ -1558,6 +1658,7 @@
     },
     "image_url": "/static/images/relics/mystic_lighter.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 137
   },
@@ -1576,6 +1677,7 @@
     },
     "image_url": "/static/images/relics/vitruvian_minion.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 138
   },
@@ -1594,6 +1696,7 @@
     },
     "image_url": "/static/images/relics/bronze_scales.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 21
   },
@@ -1612,8 +1715,9 @@
     },
     "image_url": "/static/images/relics/parrying_shield.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 57
+    "compendium_order": 58
   },
   {
     "id": "SWORD_OF_JADE",
@@ -1626,8 +1730,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/sword_of_jade.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 259
+    "compendium_order": 264
   },
   {
     "id": "SWORD_OF_STONE",
@@ -1640,8 +1745,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/sword_of_stone.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 260
+    "compendium_order": 265
   },
   {
     "id": "DOLLYS_MIRROR",
@@ -1658,6 +1764,7 @@
     },
     "image_url": "/static/images/relics/dollys_mirror.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 139
   },
@@ -1676,8 +1783,9 @@
     },
     "image_url": "/static/images/relics/white_beast_statue.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 95
+    "compendium_order": 94
   },
   {
     "id": "WHITE_STAR",
@@ -1694,8 +1802,9 @@
     },
     "image_url": "/static/images/relics/white_star.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 96
+    "compendium_order": 95
   },
   {
     "id": "BLACK_STAR",
@@ -1708,6 +1817,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/black_star.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 194
   },
@@ -1726,6 +1836,7 @@
     },
     "image_url": "/static/images/relics/lantern.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 22
   },
@@ -1744,8 +1855,9 @@
     },
     "image_url": "/static/images/relics/gambling_chip.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 97
+    "compendium_order": 96
   },
   {
     "id": "PHYLACTERY_UNBOUND",
@@ -1758,6 +1870,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/phylactery_unbound.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Starter",
     "compendium_order": 4
   },
@@ -1772,6 +1885,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/bound_phylactery.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Starter",
     "compendium_order": 5
   },
@@ -1790,6 +1904,7 @@
     },
     "image_url": "/static/images/relics/bone_flute.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 23
   },
@@ -1808,6 +1923,7 @@
     },
     "image_url": "/static/images/relics/happy_flower.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 24
   },
@@ -1826,6 +1942,7 @@
     },
     "image_url": "/static/images/relics/strawberry.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 25
   },
@@ -1840,8 +1957,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/lost_wisp.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 261
+    "compendium_order": 266
   },
   {
     "id": "BELLOWS",
@@ -1849,17 +1967,18 @@
     "description": "[gold]Mejoras[/gold] la primera [gold]mano[/gold] que robas en cada combate.",
     "description_raw": "[gold]Mejoras[/gold] la primera [gold]mano[/gold] que robas en cada combate.",
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
-    "rarity": "Reliquia infrecuente",
+    "rarity": "Reliquia rara",
     "pool": "shared",
     "merchant_price": {
-      "base": 250,
-      "min": 212,
-      "max": 288
+      "base": 300,
+      "min": 255,
+      "max": 345
     },
     "image_url": "/static/images/relics/bellows.webp",
     "image_variants": null,
-    "rarity_key": "Uncommon",
-    "compendium_order": 58
+    "notes": null,
+    "rarity_key": "Rare",
+    "compendium_order": 97
   },
   {
     "id": "YUMMY_COOKIE",
@@ -1878,6 +1997,7 @@
       "Necrobinder": "/static/images/relics/yummy_cookie_necrobinder.webp",
       "Regent": "/static/images/relics/yummy_cookie_regent.webp"
     },
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 195
   },
@@ -1892,6 +2012,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/velvet_choker.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 196
   },
@@ -1906,6 +2027,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/paels_claw.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 197
   },
@@ -1920,6 +2042,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/sere_talon.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 198
   },
@@ -1934,6 +2057,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/claws.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 199
   },
@@ -1948,6 +2072,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/iron_club.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 200
   },
@@ -1962,6 +2087,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/prismatic_gem.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 201
   },
@@ -1976,6 +2102,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/massive_scroll.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 202
   },
@@ -1994,6 +2121,7 @@
     },
     "image_url": "/static/images/relics/gorget.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 26
   },
@@ -2012,6 +2140,7 @@
     },
     "image_url": "/static/images/relics/paper_krane.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 98
   },
@@ -2026,6 +2155,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/spiked_gauntlets.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 203
   },
@@ -2040,6 +2170,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/throwing_axe.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 204
   },
@@ -2058,6 +2189,7 @@
     },
     "image_url": "/static/images/relics/belt_buckle.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 140
   },
@@ -2076,6 +2208,7 @@
     },
     "image_url": "/static/images/relics/ice_cream.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 99
   },
@@ -2090,6 +2223,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/delicate_frond.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 205
   },
@@ -2104,8 +2238,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/daughter_of_the_wind.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 262
+    "compendium_order": 267
   },
   {
     "id": "NEW_LEAF",
@@ -2118,6 +2253,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/new_leaf.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 206
   },
@@ -2136,22 +2272,24 @@
     },
     "image_url": "/static/images/relics/sling_of_courage.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 141
   },
   {
     "id": "FRAGRANT_MUSHROOM",
     "name": "Hongo aromático",
-    "description": "Al recogerla, pierdes [red]15[/red] PV y [gold]mejoras[/gold] [blue]3[/blue] cartas al azar.",
-    "description_raw": "Al recogerla, pierdes [red]{HpLoss}[/red] PV y [gold]mejoras[/gold] [blue]{Cards}[/blue] {Cards:plural:carta|cartas} al azar.",
+    "description": "Al recogerla, pierdes [blue]15[/blue] PV y [gold]mejoras[/gold] [blue]2[/blue] cartas al azar.",
+    "description_raw": "Al recogerla, pierdes [blue]{HpLoss}[/blue] PV y [gold]mejoras[/gold] [blue]{Cards}[/blue] {Cards:plural:carta|cartas} al azar.",
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia de eventos",
     "pool": "shared",
     "merchant_price": null,
     "image_url": "/static/images/relics/fragrant_mushroom.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 263
+    "compendium_order": 268
   },
   {
     "id": "BIG_MUSHROOM",
@@ -2164,8 +2302,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/big_mushroom.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 264
+    "compendium_order": 269
   },
   {
     "id": "FROZEN_EGG",
@@ -2182,6 +2321,7 @@
     },
     "image_url": "/static/images/relics/frozen_egg.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 100
   },
@@ -2200,6 +2340,7 @@
     },
     "image_url": "/static/images/relics/molten_egg.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 101
   },
@@ -2218,6 +2359,7 @@
     },
     "image_url": "/static/images/relics/toxic_egg.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 102
   },
@@ -2232,6 +2374,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/stone_humidifier.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 207
   },
@@ -2250,6 +2393,7 @@
     },
     "image_url": "/static/images/relics/burning_sticks.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 142
   },
@@ -2264,8 +2408,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/wongo_customer_appreciation_badge.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 265
+    "compendium_order": 270
   },
   {
     "id": "BYRDPIP",
@@ -2278,8 +2423,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/byrdpip.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 266
+    "compendium_order": 271
   },
   {
     "id": "SCREAMING_FLAGON",
@@ -2296,6 +2442,7 @@
     },
     "image_url": "/static/images/relics/screaming_flagon.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 143
   },
@@ -2310,6 +2457,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/empty_cage.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 208
   },
@@ -2324,6 +2472,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/jewelry_box.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 209
   },
@@ -2342,6 +2491,7 @@
     },
     "image_url": "/static/images/relics/venerable_tea_set.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 27
   },
@@ -2360,6 +2510,7 @@
     },
     "image_url": "/static/images/relics/kifuda.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 144
   },
@@ -2378,6 +2529,7 @@
     },
     "image_url": "/static/images/relics/kunai.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 103
   },
@@ -2396,6 +2548,7 @@
     },
     "image_url": "/static/images/relics/kusarigama.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 59
   },
@@ -2414,20 +2567,22 @@
     },
     "image_url": "/static/images/relics/festive_popper.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 28
   },
   {
     "id": "PAELS_LEGION",
     "name": "Legión de Pael",
-    "description": "Duplica el [gold]bloqueo[/gold] obtenido de una carta y vuelve a dormir durante [blue]2[/blue] turnos.",
-    "description_raw": "Duplica el [gold]bloqueo[/gold] obtenido de una carta y vuelve a dormir durante [blue]{Turns}[/blue] {Turns:plural:turno|turnos}.",
+    "description": "Duplica el [gold]bloqueo[/gold] obtenido de una carta, luego el efecto de esta reliquia se desactiva durante [blue]2[/blue] turnos.",
+    "description_raw": "Duplica el [gold]bloqueo[/gold] obtenido de una carta, luego el efecto de esta reliquia se desactiva durante [blue]{Turns}[/blue] {Turns:plural:turno|turnos}.",
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
     "merchant_price": null,
     "image_url": "/static/images/relics/paels_legion.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 210
   },
@@ -2446,6 +2601,7 @@
     },
     "image_url": "/static/images/relics/demon_tongue.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 104
   },
@@ -2460,8 +2616,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/fresnel_lens.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 267
+    "compendium_order": 272
   },
   {
     "id": "STORYBOOK",
@@ -2474,13 +2631,14 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/storybook.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 211
   },
   {
     "id": "BOOK_OF_FIVE_RINGS",
     "name": "Libro de los cinco anillos",
-    "description": "Cada [blue]5[/blue] cartas que agregues al [gold]mazo[/gold], recuperas [green]15[/green] PV.",
+    "description": "Cada [blue]5[/blue] cartas que agregues al [gold]mazo[/gold], recuperas [green]20[/green] PV.",
     "description_raw": "Cada [blue]{Cards}[/blue] {Cards:plural:carta|cartas} que agregues al [gold]mazo[/gold], recuperas [green]{Heal}[/green] PV.",
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia común",
@@ -2492,6 +2650,7 @@
     },
     "image_url": "/static/images/relics/book_of_five_rings.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 29
   },
@@ -2510,6 +2669,7 @@
     },
     "image_url": "/static/images/relics/ivory_tile.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 105
   },
@@ -2524,6 +2684,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/paels_tears.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 212
   },
@@ -2542,6 +2703,7 @@
     },
     "image_url": "/static/images/relics/lava_lamp.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 145
   },
@@ -2560,6 +2722,7 @@
     },
     "image_url": "/static/images/relics/unsettling_lamp.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 106
   },
@@ -2574,6 +2737,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/electric_shrymp.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 213
   },
@@ -2588,6 +2752,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/driftwood.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 214
   },
@@ -2606,6 +2771,7 @@
     },
     "image_url": "/static/images/relics/mango.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 107
   },
@@ -2624,6 +2790,7 @@
     },
     "image_url": "/static/images/relics/mummified_hand.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 108
   },
@@ -2642,6 +2809,7 @@
     },
     "image_url": "/static/images/relics/fencing_manual.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 30
   },
@@ -2660,6 +2828,7 @@
     },
     "image_url": "/static/images/relics/bookmark.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 109
   },
@@ -2674,6 +2843,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/war_hammer.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 215
   },
@@ -2692,6 +2862,7 @@
     },
     "image_url": "/static/images/relics/gnarled_hammer.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 146
   },
@@ -2710,6 +2881,7 @@
     },
     "image_url": "/static/images/relics/orange_dough.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 110
   },
@@ -2728,6 +2900,7 @@
     },
     "image_url": "/static/images/relics/metronome.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 111
   },
@@ -2746,6 +2919,7 @@
     },
     "image_url": "/static/images/relics/miniature_tent.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 147
   },
@@ -2764,6 +2938,7 @@
     },
     "image_url": "/static/images/relics/miniature_cannon.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 60
   },
@@ -2782,6 +2957,7 @@
     },
     "image_url": "/static/images/relics/mini_regent.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 112
   },
@@ -2796,6 +2972,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/toasty_mittens.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 216
   },
@@ -2814,6 +2991,7 @@
     },
     "image_url": "/static/images/relics/old_coin.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 113
   },
@@ -2832,6 +3010,7 @@
     },
     "image_url": "/static/images/relics/strike_dummy.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 31
   },
@@ -2846,6 +3025,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/jeweled_mask.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 217
   },
@@ -2864,6 +3044,7 @@
     },
     "image_url": "/static/images/relics/funerary_mask.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 61
   },
@@ -2873,22 +3054,38 @@
     "description": "Al inicio de cada combate, aplicas [blue]1[/blue] de [gold]debilitamiento[/gold] a TODOS los enemigos.",
     "description_raw": "Al inicio de cada combate, aplicas [blue]{WeakPower}[/blue] de [gold]debilitamiento[/gold] a TODOS los enemigos.",
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
-    "rarity": "Reliquia infrecuente",
+    "rarity": "Reliquia común",
     "pool": "shared",
     "merchant_price": {
-      "base": 250,
-      "min": 212,
-      "max": 288
+      "base": 200,
+      "min": 170,
+      "max": 230
     },
     "image_url": "/static/images/relics/red_mask.webp",
     "image_variants": null,
-    "rarity_key": "Uncommon",
-    "compendium_order": 62
+    "notes": null,
+    "rarity_key": "Common",
+    "compendium_order": 32
+  },
+  {
+    "id": "NEOWS_BONES",
+    "name": "NeowsBones",
+    "description": "",
+    "description_raw": "",
+    "flavor": "",
+    "rarity": "Reliquia ancestral",
+    "pool": "shared",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/neows_bones.webp",
+    "image_variants": null,
+    "notes": null,
+    "rarity_key": "Ancient",
+    "compendium_order": 218
   },
   {
     "id": "PRESERVED_FOG",
     "name": "Niebla preservada",
-    "description": "Al recogerla, quitas [blue]5[/blue] cartas del [gold]mazo[/gold]. Agregas [red]Locura[/red] al [gold]mazo[/gold].",
+    "description": "Al recogerla, quitas [blue]3[/blue] cartas del [gold]mazo[/gold]. Agregas [red]Locura[/red] al [gold]mazo[/gold].",
     "description_raw": "Al recogerla, quitas [blue]{Cards}[/blue] {Cards:plural:carta|cartas} del [gold]mazo[/gold]. Agregas [red]Locura[/red] al [gold]mazo[/gold].",
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
@@ -2896,8 +3093,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/preserved_fog.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 218
+    "compendium_order": 219
   },
   {
     "id": "NUNCHAKU",
@@ -2914,8 +3112,9 @@
     },
     "image_url": "/static/images/relics/nunchaku.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 63
+    "compendium_order": 62
   },
   {
     "id": "CRACKED_CORE",
@@ -2928,6 +3127,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/cracked_core.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Starter",
     "compendium_order": 6
   },
@@ -2942,6 +3142,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/infused_core.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Starter",
     "compendium_order": 7
   },
@@ -2956,8 +3157,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/pollinous_core.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 268
+    "compendium_order": 273
   },
   {
     "id": "PAELS_EYE",
@@ -2970,8 +3172,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/paels_eye.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 219
+    "compendium_order": 220
   },
   {
     "id": "SNECKO_EYE",
@@ -2984,8 +3187,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/snecko_eye.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 220
+    "compendium_order": 221
   },
   {
     "id": "GLASS_EYE",
@@ -2998,8 +3202,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/glass_eye.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 221
+    "compendium_order": 222
   },
   {
     "id": "ORICHALCUM",
@@ -3016,8 +3221,9 @@
     },
     "image_url": "/static/images/relics/orichalcum.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 64
+    "compendium_order": 63
   },
   {
     "id": "NUTRITIOUS_OYSTER",
@@ -3030,8 +3236,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/nutritious_oyster.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 222
+    "compendium_order": 223
   },
   {
     "id": "SHOVEL",
@@ -3048,6 +3255,7 @@
     },
     "image_url": "/static/images/relics/shovel.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 114
   },
@@ -3066,6 +3274,7 @@
     },
     "image_url": "/static/images/relics/bread.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 148
   },
@@ -3084,8 +3293,9 @@
     },
     "image_url": "/static/images/relics/pantograph.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 65
+    "compendium_order": 64
   },
   {
     "id": "CHOICES_PARADOX",
@@ -3098,8 +3308,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/choices_paradox.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 223
+    "compendium_order": 224
   },
   {
     "id": "LUNAR_PASTRY",
@@ -3116,6 +3327,7 @@
     },
     "image_url": "/static/images/relics/lunar_pastry.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 115
   },
@@ -3130,8 +3342,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/whispering_earring.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 224
+    "compendium_order": 225
   },
   {
     "id": "PEAR",
@@ -3148,8 +3361,9 @@
     },
     "image_url": "/static/images/relics/pear.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 66
+    "compendium_order": 65
   },
   {
     "id": "ARCANE_SCROLL",
@@ -3162,8 +3376,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/arcane_scroll.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 225
+    "compendium_order": 226
   },
   {
     "id": "NINJA_SCROLL",
@@ -3180,6 +3395,7 @@
     },
     "image_url": "/static/images/relics/ninja_scroll.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 149
   },
@@ -3194,8 +3410,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/darkstone_periapt.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 269
+    "compendium_order": 274
   },
   {
     "id": "GOLDEN_PEARL",
@@ -3208,8 +3425,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/golden_pearl.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 226
+    "compendium_order": 227
   },
   {
     "id": "CURSED_PEARL",
@@ -3222,8 +3440,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/cursed_pearl.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 227
+    "compendium_order": 228
   },
   {
     "id": "RADIANT_PEARL",
@@ -3236,26 +3455,28 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/radiant_pearl.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 228
+    "compendium_order": 229
   },
   {
     "id": "PERMAFROST",
     "name": "Permafrost",
-    "description": "La primera vez que juegues un poder en cada combate, obtendrás [blue]6[/blue] de [gold]bloqueo[/gold].",
+    "description": "La primera vez que juegues un poder en cada combate, obtendrás [blue]7[/blue] de [gold]bloqueo[/gold].",
     "description_raw": "La primera vez que juegues un poder en cada combate, obtendrás [blue]{Block}[/blue] de [gold]bloqueo[/gold].",
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
-    "rarity": "Reliquia común",
+    "rarity": "Reliquia infrecuente",
     "pool": "shared",
     "merchant_price": {
-      "base": 200,
-      "min": 170,
-      "max": 230
+      "base": 250,
+      "min": 212,
+      "max": 288
     },
     "image_url": "/static/images/relics/permafrost.webp",
     "image_variants": null,
-    "rarity_key": "Common",
-    "compendium_order": 32
+    "notes": null,
+    "rarity_key": "Uncommon",
+    "compendium_order": 66
   },
   {
     "id": "GIRYA",
@@ -3272,6 +3493,7 @@
     },
     "image_url": "/static/images/relics/girya.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 116
   },
@@ -3290,8 +3512,24 @@
     },
     "image_url": "/static/images/relics/lucky_fysh.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 67
+  },
+  {
+    "id": "PHIAL_HOLSTER",
+    "name": "PhialHolster",
+    "description": "",
+    "description_raw": "",
+    "flavor": "",
+    "rarity": "Reliquia ancestral",
+    "pool": "shared",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/phial_holster.webp",
+    "image_variants": null,
+    "notes": null,
+    "rarity_key": "Ancient",
+    "compendium_order": 230
   },
   {
     "id": "WHETSTONE",
@@ -3308,6 +3546,7 @@
     },
     "image_url": "/static/images/relics/whetstone.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 33
   },
@@ -3326,6 +3565,7 @@
     },
     "image_url": "/static/images/relics/oddly_smooth_stone.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 34
   },
@@ -3340,8 +3580,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/philosophers_stone.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 229
+    "compendium_order": 231
   },
   {
     "id": "GAME_PIECE",
@@ -3358,6 +3599,7 @@
     },
     "image_url": "/static/images/relics/game_piece.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 117
   },
@@ -3376,6 +3618,7 @@
     },
     "image_url": "/static/images/relics/sparkling_rouge.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 68
   },
@@ -3394,6 +3637,7 @@
     },
     "image_url": "/static/images/relics/war_paint.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 35
   },
@@ -3408,8 +3652,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/runic_pyramid.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 230
+    "compendium_order": 232
   },
   {
     "id": "LEAD_PAPERWEIGHT",
@@ -3422,8 +3667,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/lead_paperweight.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 231
+    "compendium_order": 233
   },
   {
     "id": "DRAGON_FRUIT",
@@ -3440,6 +3686,7 @@
     },
     "image_url": "/static/images/relics/dragon_fruit.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 150
   },
@@ -3458,13 +3705,14 @@
     },
     "image_url": "/static/images/relics/orrery.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 151
   },
   {
     "id": "PLANISPHERE",
     "name": "Planisferio",
-    "description": "Al ingresar a una sala [gold]¿?[/gold], recuperas [green]4[/green] PV.",
+    "description": "Al ingresar a una sala [gold]¿?[/gold], recuperas [green]5[/green] PV.",
     "description_raw": "Al ingresar a una sala [gold]¿?[/gold], recuperas [green]{Heal}[/green] PV.",
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia infrecuente",
@@ -3476,6 +3724,7 @@
     },
     "image_url": "/static/images/relics/planisphere.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 69
   },
@@ -3494,6 +3743,7 @@
     },
     "image_url": "/static/images/relics/eternal_feather.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 70
   },
@@ -3512,6 +3762,7 @@
     },
     "image_url": "/static/images/relics/pen_nib.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 71
   },
@@ -3530,6 +3781,7 @@
     },
     "image_url": "/static/images/relics/galactic_dust.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 72
   },
@@ -3544,8 +3796,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/pomander.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 232
+    "compendium_order": 234
   },
   {
     "id": "JUZU_BRACELET",
@@ -3562,6 +3815,7 @@
     },
     "image_url": "/static/images/relics/juzu_bracelet.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 36
   },
@@ -3576,14 +3830,15 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/glitter.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 233
+    "compendium_order": 235
   },
   {
     "id": "PENDULUM",
     "name": "Péndulo",
-    "description": "Al barajar el [gold]mazo de robo[/gold], robas una carta.",
-    "description_raw": "Al barajar el [gold]mazo de robo[/gold], robas una carta.",
+    "description": "Cada [blue]3[/blue] turnos, robas [blue]1[/blue] carta.",
+    "description_raw": "Cada [blue]{Turns}[/blue] {Turns:plural:turno|turnos}, robas [blue]{Cards}[/blue] {Cards:plural:carta|cartas}.",
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia común",
     "pool": "shared",
@@ -3594,6 +3849,7 @@
     },
     "image_url": "/static/images/relics/pendulum.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 37
   },
@@ -3608,8 +3864,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/chosen_cheese.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 270
+    "compendium_order": 275
   },
   {
     "id": "REGALITE",
@@ -3626,6 +3883,7 @@
     },
     "image_url": "/static/images/relics/regalite.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 73
   },
@@ -3644,6 +3902,7 @@
     },
     "image_url": "/static/images/relics/pocketwatch.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 118
   },
@@ -3662,6 +3921,7 @@
     },
     "image_url": "/static/images/relics/mercury_hourglass.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 74
   },
@@ -3680,6 +3940,7 @@
     },
     "image_url": "/static/images/relics/beating_remnant.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 119
   },
@@ -3698,6 +3959,7 @@
     },
     "image_url": "/static/images/relics/the_courier.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 120
   },
@@ -3716,6 +3978,7 @@
     },
     "image_url": "/static/images/relics/paper_phrog.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 75
   },
@@ -3730,14 +3993,15 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/lava_rock.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 234
+    "compendium_order": 236
   },
   {
     "id": "STONE_CRACKER",
     "name": "Rompepiedras",
-    "description": "Al inicio de combates contra [gold]jefes[/gold], [gold]mejoras[/gold] [blue]3[/blue] cartas al azar en el [gold]mazo de robo[/gold] por el resto del combate.",
-    "description_raw": "Al inicio de combates contra [gold]jefes[/gold], [gold]mejoras[/gold] [blue]{Cards}[/blue] {Cards:plural:carta|cartas} al azar en el [gold]mazo de robo[/gold] por el resto del combate.",
+    "description": "Al inicio de cada combate, [gold]mejoras[/gold] [blue]2[/blue] cartas al azar del [gold]mazo de robo[/gold] durante el resto del combate.",
+    "description_raw": "Al inicio de cada combate, [gold]mejoras[/gold] [blue]{Cards}[/blue] {Cards:plural:carta|cartas} al azar del [gold]mazo de robo[/gold] durante el resto del combate.",
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia infrecuente",
     "pool": "shared",
@@ -3748,6 +4012,7 @@
     },
     "image_url": "/static/images/relics/stone_cracker.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 76
   },
@@ -3762,8 +4027,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/blood_soaked_rose.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 235
+    "compendium_order": 237
   },
   {
     "id": "PRAYER_WHEEL",
@@ -3780,6 +4046,7 @@
     },
     "image_url": "/static/images/relics/prayer_wheel.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 121
   },
@@ -3794,8 +4061,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/sai.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 236
+    "compendium_order": 238
   },
   {
     "id": "BURNING_BLOOD",
@@ -3808,6 +4076,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/burning_blood.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Starter",
     "compendium_order": 8
   },
@@ -3822,6 +4091,7 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/black_blood.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Starter",
     "compendium_order": 9
   },
@@ -3836,8 +4106,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/paels_blood.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 237
+    "compendium_order": 239
   },
   {
     "id": "PETRIFIED_TOAD",
@@ -3854,6 +4125,7 @@
     },
     "image_url": "/static/images/relics/petrified_toad.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 77
   },
@@ -3868,8 +4140,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/seal_of_gold.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 238
+    "compendium_order": 240
   },
   {
     "id": "ROYAL_STAMP",
@@ -3886,6 +4159,7 @@
     },
     "image_url": "/static/images/relics/royal_stamp.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 152
   },
@@ -3904,6 +4178,7 @@
     },
     "image_url": "/static/images/relics/ghost_seed.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 153
   },
@@ -3922,6 +4197,7 @@
     },
     "image_url": "/static/images/relics/shuriken.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 122
   },
@@ -3940,6 +4216,7 @@
     },
     "image_url": "/static/images/relics/undying_sigil.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 154
   },
@@ -3954,8 +4231,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/tanxs_whistle.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 239
+    "compendium_order": 241
   },
   {
     "id": "BIG_HAT",
@@ -3972,6 +4250,7 @@
     },
     "image_url": "/static/images/relics/big_hat.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 123
   },
@@ -3986,8 +4265,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/lords_parasol.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 240
+    "compendium_order": 242
   },
   {
     "id": "NUTRITIOUS_SOUP",
@@ -4000,8 +4280,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/nutritious_soup.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 241
+    "compendium_order": 243
   },
   {
     "id": "SOZU",
@@ -4014,8 +4295,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/sozu.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 242
+    "compendium_order": 244
   },
   {
     "id": "MR_STRUGGLES",
@@ -4028,8 +4310,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/mr_struggles.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 271
+    "compendium_order": 276
   },
   {
     "id": "CHEMICAL_X",
@@ -4046,8 +4329,24 @@
     },
     "image_url": "/static/images/relics/chemical_x.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 155
+  },
+  {
+    "id": "HEFTY_TABLET",
+    "name": "Tableta pesada",
+    "description": "Al recogerla, eliges [blue]1[/blue] de [blue]3[/blue] cartas raras para agregar al [gold]mazo[/gold] y agregas [blue]1[/blue] [red]Lesión[/red] al [gold]mazo[/gold].",
+    "description_raw": "Al recogerla, eliges [blue]1[/blue] de [blue]{Cards}[/blue] cartas raras para agregar al [gold]mazo[/gold] y agregas [blue]1[/blue] [red]Lesión[/red] al [gold]mazo[/gold].",
+    "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
+    "rarity": "Reliquia ancestral",
+    "pool": "shared",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/hefty_tablet.webp",
+    "image_variants": null,
+    "notes": null,
+    "rarity_key": "Ancient",
+    "compendium_order": 245
   },
   {
     "id": "HAND_DRILL",
@@ -4060,8 +4359,24 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/hand_drill.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 272
+    "compendium_order": 277
+  },
+  {
+    "id": "NEOWS_TALISMAN",
+    "name": "Talismán de Neow",
+    "description": "Al recogerla, [gold]mejoras[/gold] [blue]1[/blue] [gold]Golpe[/gold] y [blue]1[/blue] [gold]Defensa[/gold].",
+    "description_raw": "Al recogerla, [gold]mejoras[/gold] [blue]1[/blue] [gold]Golpe[/gold] y [blue]1[/blue] [gold]Defensa[/gold].",
+    "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
+    "rarity": "Reliquia ancestral",
+    "pool": "shared",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/neows_talisman.webp",
+    "image_variants": null,
+    "notes": null,
+    "rarity_key": "Ancient",
+    "compendium_order": 246
   },
   {
     "id": "MEMBERSHIP_CARD",
@@ -4078,22 +4393,24 @@
     },
     "image_url": "/static/images/relics/membership_card.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 156
   },
   {
     "id": "PRECARIOUS_SHEARS",
     "name": "Tijeras peligrosas",
-    "description": "Al recogerla, quitas [blue]2[/blue] cartas del [gold]mazo[/gold] y recibes [red]13[/red] de daño.",
-    "description_raw": "Al recogerla, quitas [blue]{Cards}[/blue] {Cards:plural:carta|cartas} del [gold]mazo[/gold] y recibes [red]{Damage}[/red] de daño.",
+    "description": "Al recogerla, quitas [blue]2[/blue] cartas del [gold]mazo[/gold] y pierdes [blue]16[/blue] PV.",
+    "description_raw": "Al recogerla, quitas [blue]{Cards}[/blue] {Cards:plural:carta|cartas} del [gold]mazo[/gold] y pierdes [blue]{Damage}[/blue] PV.",
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
     "merchant_price": null,
     "image_url": "/static/images/relics/precarious_shears.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 243
+    "compendium_order": 247
   },
   {
     "id": "PRECISE_SCISSORS",
@@ -4106,8 +4423,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/precise_scissors.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 244
+    "compendium_order": 248
   },
   {
     "id": "CAPTAINS_WHEEL",
@@ -4124,6 +4442,7 @@
     },
     "image_url": "/static/images/relics/captains_wheel.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 124
   },
@@ -4142,6 +4461,7 @@
     },
     "image_url": "/static/images/relics/tingsha.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 78
   },
@@ -4156,8 +4476,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/dusty_tome.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 245
+    "compendium_order": 249
   },
   {
     "id": "TOUCH_OF_OROBAS",
@@ -4170,8 +4491,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/touch_of_orobas.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 246
+    "compendium_order": 250
   },
   {
     "id": "NEOWS_TORMENT",
@@ -4184,8 +4506,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/neows_torment.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 247
+    "compendium_order": 251
   },
   {
     "id": "RINGING_TRIANGLE",
@@ -4202,6 +4525,7 @@
     },
     "image_url": "/static/images/relics/ringing_triangle.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 157
   },
@@ -4220,6 +4544,7 @@
     },
     "image_url": "/static/images/relics/unceasing_top.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 125
   },
@@ -4234,8 +4559,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/paels_growth.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 248
+    "compendium_order": 252
   },
   {
     "id": "EMBER_TEA",
@@ -4248,8 +4574,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/ember_tea.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 273
+    "compendium_order": 278
   },
   {
     "id": "BONE_TEA",
@@ -4262,8 +4589,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/bone_tea.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 274
+    "compendium_order": 279
   },
   {
     "id": "TEA_OF_DISCOURTESY",
@@ -4276,8 +4604,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/tea_of_discourtesy.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 275
+    "compendium_order": 280
   },
   {
     "id": "VAJRA",
@@ -4294,6 +4623,7 @@
     },
     "image_url": "/static/images/relics/vajra.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 38
   },
@@ -4312,6 +4642,7 @@
     },
     "image_url": "/static/images/relics/tungsten_rod.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 126
   },
@@ -4326,8 +4657,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/pumpkin_candle.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 249
+    "compendium_order": 253
   },
   {
     "id": "TOUGH_BANDAGES",
@@ -4344,6 +4676,7 @@
     },
     "image_url": "/static/images/relics/tough_bandages.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 127
   },
@@ -4358,8 +4691,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/royal_poison.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 276
+    "compendium_order": 281
   },
   {
     "id": "BLOOD_VIAL",
@@ -4376,6 +4710,7 @@
     },
     "image_url": "/static/images/relics/blood_vial.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 39
   },
@@ -4390,8 +4725,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/sea_glass.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 250
+    "compendium_order": 254
   },
   {
     "id": "FIDDLE",
@@ -4404,8 +4740,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/fiddle.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 251
+    "compendium_order": 255
   },
   {
     "id": "SYMBIOTIC_VIRUS",
@@ -4422,6 +4759,7 @@
     },
     "image_url": "/static/images/relics/symbiotic_virus.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 79
   },
@@ -4440,8 +4778,24 @@
     },
     "image_url": "/static/images/relics/lees_waffle.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 158
+  },
+  {
+    "id": "WINGED_BOOTS",
+    "name": "WingedBoots",
+    "description": "",
+    "description_raw": "",
+    "flavor": "",
+    "rarity": "Reliquia ancestral",
+    "pool": "shared",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/winged_boots.webp",
+    "image_variants": null,
+    "notes": null,
+    "rarity_key": "Ancient",
+    "compendium_order": 256
   },
   {
     "id": "RUINED_HELMET",
@@ -4458,6 +4812,7 @@
     },
     "image_url": "/static/images/relics/ruined_helmet.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 128
   },
@@ -4476,6 +4831,7 @@
     },
     "image_url": "/static/images/relics/intimidating_helmet.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 129
   },
@@ -4490,8 +4846,9 @@
     "merchant_price": null,
     "image_url": "/static/images/relics/fake_merchants_rug.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 277
+    "compendium_order": 282
   },
   {
     "id": "FAKE_ANCHOR",
@@ -4508,8 +4865,9 @@
     },
     "image_url": "/static/images/relics/fake_anchor.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 278
+    "compendium_order": 283
   },
   {
     "id": "FAKE_HAPPY_FLOWER",
@@ -4526,8 +4884,9 @@
     },
     "image_url": "/static/images/relics/fake_happy_flower.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 279
+    "compendium_order": 284
   },
   {
     "id": "FAKE_VENERABLE_TEA_SET",
@@ -4544,8 +4903,9 @@
     },
     "image_url": "/static/images/relics/fake_venerable_tea_set.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 280
+    "compendium_order": 285
   },
   {
     "id": "FAKE_MANGO",
@@ -4562,8 +4922,9 @@
     },
     "image_url": "/static/images/relics/fake_mango.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 281
+    "compendium_order": 286
   },
   {
     "id": "FAKE_STRIKE_DUMMY",
@@ -4580,8 +4941,9 @@
     },
     "image_url": "/static/images/relics/fake_strike_dummy.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 282
+    "compendium_order": 287
   },
   {
     "id": "FAKE_SNECKO_EYE",
@@ -4598,8 +4960,9 @@
     },
     "image_url": "/static/images/relics/fake_snecko_eye.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 283
+    "compendium_order": 288
   },
   {
     "id": "FAKE_ORICHALCUM",
@@ -4616,8 +4979,9 @@
     },
     "image_url": "/static/images/relics/fake_orichalcum.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 284
+    "compendium_order": 289
   },
   {
     "id": "FAKE_BLOOD_VIAL",
@@ -4634,8 +4998,9 @@
     },
     "image_url": "/static/images/relics/fake_blood_vial.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 285
+    "compendium_order": 290
   },
   {
     "id": "FAKE_LEES_WAFFLE",
@@ -4652,8 +5017,9 @@
     },
     "image_url": "/static/images/relics/fake_lees_waffle.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 286
+    "compendium_order": 291
   },
   {
     "id": "THE_ABACUS",
@@ -4670,6 +5036,7 @@
     },
     "image_url": "/static/images/relics/the_abacus.webp",
     "image_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 159
   }

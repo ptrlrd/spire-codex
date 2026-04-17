@@ -38,8 +38,8 @@
   {
     "id": "LEVEL_06",
     "level": 6,
-    "name": "Düsternis",
-    "description": "Weniger Lagerfeuer."
+    "name": "Inflation",
+    "description": "Es ist teurer, beim Händler Karten aus deinem Deck zu entfernen."
   },
   {
     "id": "LEVEL_07",

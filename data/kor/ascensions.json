@@ -15,13 +15,13 @@
     "id": "LEVEL_02",
     "level": 2,
     "name": "지친 여행자",
-    "description": "고대의 존재가 잃은 체력의 [blue]80%[/blue]만을 회복시켜줍니다."
+    "description": "고대의 존재가 잃은 체력의 [blue]80%[/blue]만을\n회복시켜줍니다."
   },
   {
     "id": "LEVEL_03",
     "level": 3,
     "name": "빈곤",
-    "description": "적과 보물 상자가 보상으로 주는 [gold]골드[/gold]가 [blue]25%[/blue] 감소합니다."
+    "description": "적과 보물 상자가 보상으로 주는 [gold]골드[/gold]가 [blue]25%[/blue]\n감소합니다."
   },
   {
     "id": "LEVEL_04",
@@ -38,8 +38,8 @@
   {
     "id": "LEVEL_06",
     "level": 6,
-    "name": "비관",
-    "description": "휴식 장소가 줄어듭니다."
+    "name": "인플레이션",
+    "description": "상인을 통해 덱에서 카드를 제거할 때의 비용이\n증가합니다."
   },
   {
     "id": "LEVEL_07",

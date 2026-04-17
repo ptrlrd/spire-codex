@@ -441,7 +441,7 @@
     "name": "Tueur d’insectes",
     "type": "Event",
     "act": "Act 2 - Hive",
-    "description": "Alors que vous affrontez un [jitter][red]essaim d’insectes agressifs[/red][/jitter], vous remarquez soudain qu’un [gold]Puissant Guerrier[/gold] à l’allure rude combattait à vous côtés depuis le début !\n\nSentant venir la défaite, les insectes s’éparpillent. Vous vous tournez vers votre nouveau compagnon.\n« Veux-tu quelques conseils pour exterminer ces nuisibles ? »\n\nQuelle courtoisie. Vous acceptez son offre d’un hochement de la tête.",
+    "description": "Alors que vous affrontez un [jitter][red]essaim d’insectes agressifs[/red][/jitter], vous remarquez soudain qu’un [gold]Puissant Guerrier[/gold] à l’allure rude combattait à vos côtés depuis le début !\n\nSentant venir la défaite, les insectes s’éparpillent. Vous vous tournez vers votre nouveau compagnon.\n« Veux-tu quelques conseils pour exterminer ces nuisibles ? »\n\nQuelle courtoisie. Vous acceptez son offre d’un hochement de la tête.",
     "preconditions": null,
     "options": [
       {
@@ -466,7 +466,7 @@
       },
       {
         "id": "INITIAL",
-        "description": "Alors que vous affrontez un [jitter][red]essaim d’insectes agressifs[/red][/jitter], vous remarquez soudain qu’un [gold]Puissant Guerrier[/gold] à l’allure rude combattait à vous côtés depuis le début !\n\nSentant venir la défaite, les insectes s’éparpillent. Vous vous tournez vers votre nouveau compagnon.\n« Veux-tu quelques conseils pour exterminer ces nuisibles ? »\n\nQuelle courtoisie. Vous acceptez son offre d’un hochement de la tête.",
+        "description": "Alors que vous affrontez un [jitter][red]essaim d’insectes agressifs[/red][/jitter], vous remarquez soudain qu’un [gold]Puissant Guerrier[/gold] à l’allure rude combattait à vos côtés depuis le début !\n\nSentant venir la défaite, les insectes s’éparpillent. Vous vous tournez vers votre nouveau compagnon.\n« Veux-tu quelques conseils pour exterminer ces nuisibles ? »\n\nQuelle courtoisie. Vous acceptez son offre d’un hochement de la tête.",
         "options": [
           {
             "id": "EXTERMINATION",
@@ -952,7 +952,7 @@
   },
   {
     "id": "DENSE_VEGETATION",
-    "name": "Végétation dense",
+    "name": "Jungle dense",
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "Après avoir emprunté le mauvais chemin depuis un bon moment, vous vous trouvez dans une épaisse jungle de [green]fougères[/green], de [green]buissons[/green] et de [green]lianes[/green]. Surtout de [green]lianes[/green]. L’épuisement vous gagne, et une pensée sombre vous vient à l’esprit :\n\n[sine][purple]« Tu es perdue, prise au dépourvu, et la mort approche inexorablement. »[/purple][/sine]\n\nQue faites-vous ?",
@@ -961,7 +961,7 @@
       {
         "id": "TRUDGE_ON",
         "title": "Avancer malgré tout",
-        "description": "Retirez une carte de votre [gold]Deck[/gold]. Perdez [red]11[/red] PV."
+        "description": "Recevez [blue]61-99[/blue] [gold]Pièces d'or[/gold]. Perdez [red]8[/red] PV."
       },
       {
         "id": "REST",
@@ -977,7 +977,7 @@
           {
             "id": "TRUDGE_ON",
             "title": "Avancer malgré tout",
-            "description": "Retirez une carte de votre [gold]Deck[/gold]. Perdez [red]11[/red] PV."
+            "description": "Recevez [blue]61-99[/blue] [gold]Pièces d'or[/gold]. Perdez [red]8[/red] PV."
           },
           {
             "id": "REST",
@@ -999,7 +999,7 @@
       },
       {
         "id": "TRUDGE_ON",
-        "description": "Vous vous frayez un chemin à travers la jungle, mais elle semble interminable...\n\nVous vous nourrissez de [green]fruits étranges[/green] et d’[orange]insectes croquants[/orange], et buvez le nectar de [aqua]plantes luminescentes[/aqua] ; mais la [jitter][red]paranoïa[/red][/jitter] vous gagne...\n\nCependant, vous tombez bientôt sur une clairière, puis un sentier, agrémenté de dessins gribouillés sur le sol vous indiquant la route.\nProblème réglé."
+        "description": "Vous vous frayez un chemin à travers la jungle, mais elle semble interminable...\n\nVous vous nourrissez de [green]fruits étranges[/green] et d’[orange]insectes croquants[/orange], et buvez le nectar de [aqua]plantes luminescentes[/aqua] ; mais la [jitter][red]paranoïa[/red][/jitter] vous gagne...\n\nCependant, vous tombez bientôt sur une clairière, puis un sentier, et quelques [gold]Pièces d'or[/gold] éparpillées au sol. Parmi elles se trouvent des cartes grossièrement dessinées !\nProblème réglé."
       }
     ]
   },
@@ -1132,7 +1132,7 @@
   },
   {
     "id": "DROWNING_BEACON",
-    "name": "Balise engloutie",
+    "name": "Phare englouti",
     "type": "Event",
     "act": "Underdocks",
     "description": "Après avoir traversé un paysage onirique d’eaux calmes et de rochers, vous émergez face à un [sine]phare[/sine] en train de s'enfoncer dans la boue et qui émet une lueur d'[purple]anti-lumière[/purple].\n\nVous pouvez mettre en bouteille un peu du [aqua][sine]liquide faiblement luminescent[/sine][/aqua] qui s’est accumulé ici, ou bien vous pouvez tenter d’atteindre le sommet du phare afin d’en récupérer la [gold]lentille[/gold].",
@@ -1181,9 +1181,9 @@
     "name": "Convoyeur sans fin",
     "type": "Event",
     "act": "Underdocks",
-    "description": "Vous vous traînez jusque dans une baraque à l'enseigne lumineuse (mais de travers) :\n[aqua]« FESTIN À VOLONTÉ — PAYEZ SELON VOTRE FAIM ! »[/aqua]\n\nÀ l'intérieur, un [orange]chef cuisinier svelte doté de nombreux bras[/orange] prépare avec dextérité des [green]bouchées alléchantes[/green] qu'il pose sur un [sine]convoyeur en chitine sinueux[/sine].\n\nDe l'un de ses bras, le chef indique un panneau :\n[blue]35[/blue] [gold]Pièces d'or[/gold] par assiette",
+    "description": "Vous vous traînez jusque dans une baraque à l'enseigne lumineuse (mais de travers) :\n[aqua]« FESTIN À VOLONTÉ — PAYEZ SELON VOTRE FAIM ! »[/aqua]\n\nÀ l'intérieur, un [orange]chef cuisinier svelte doté de nombreux bras[/orange] prépare avec dextérité des [green]bouchées alléchantes[/green] qu'il pose sur un [sine]convoyeur en chitine sinueux[/sine].\n\nDe l'un de ses bras, le chef indique un panneau :\n[blue]40[/blue] [gold]Pièces d'or[/gold] par assiette",
     "preconditions": [
-      "Requires 105+ gold"
+      "Requires 120+ gold"
     ],
     "options": [
       {
@@ -1205,17 +1205,17 @@
           {
             "id": "CAVIAR",
             "title": "Attraper le caviar",
-            "description": "Payez [red]35[/red] [gold]Pièces d'or[/gold]. Gagnez [green]4[/green] PV Max. Continuez le festin !"
+            "description": "Payez [red]40[/red] [gold]Pièces d'or[/gold]. Gagnez [green]4[/green] PV Max. Continuez le festin !"
           },
           {
             "id": "CLAM_ROLL",
             "title": "Attraper le maki aux palourdes",
-            "description": "Payez [red]35[/red] [gold]Pièces d'or[/gold]. Récupérez [green]10[/green] PV. Continuez le festin !"
+            "description": "Payez [red]40[/red] [gold]Pièces d'or[/gold]. Récupérez [green]10[/green] PV. Continuez le festin !"
           },
           {
             "id": "FRIED_EEL",
             "title": "Attraper l'anguille frite",
-            "description": "Payez [red]35[/red] [gold]Pièces d'or[/gold]. Ajoutez une Carte incolore aléatoire à votre [gold]Deck[/gold]. Continuez le festin !"
+            "description": "Payez [red]40[/red] [gold]Pièces d'or[/gold]. Ajoutez une Carte incolore aléatoire à votre [gold]Deck[/gold]. Continuez le festin !"
           },
           {
             "id": "GOLDEN_FYSH",
@@ -1225,22 +1225,22 @@
           {
             "id": "JELLY_LIVER",
             "title": "Attraper le foie en gelée",
-            "description": "Payez [red]35[/red] [gold]Pièces d'or[/gold]. [gold]Transformez[/gold] une carte. Continuez le festin !"
+            "description": "Payez [red]40[/red] [gold]Pièces d'or[/gold]. [gold]Transformez[/gold] une carte. Continuez le festin !"
           },
           {
             "id": "SEAPUNK_SALAD",
             "title": "Attraper la salade de voyou marin",
-            "description": "Payez [red]35[/red] [gold]Pièces d'or[/gold]. Ajoutez [gold]Repas frénétique[/gold] à votre [gold]Deck[/gold]. Continuez le festin !"
+            "description": "Payez [red]40[/red] [gold]Pièces d'or[/gold]. Ajoutez [gold]Repas frénétique[/gold] à votre [gold]Deck[/gold]. Continuez le festin !"
           },
           {
             "id": "SPICY_SNAPPY",
             "title": "Attraper le vivaneau épicé",
-            "description": "Payez [red]35[/red] [gold]Pièces d'or[/gold]. [gold]Améliorez[/gold] une carte aléatoire de votre [gold]Deck[/gold]. Continuez le festin !"
+            "description": "Payez [red]40[/red] [gold]Pièces d'or[/gold]. [gold]Améliorez[/gold] une carte aléatoire de votre [gold]Deck[/gold]. Continuez le festin !"
           },
           {
             "id": "SUSPICIOUS_CONDIMENT",
             "title": "Attraper le condiment suspect",
-            "description": "Payez [red]35[/red] [gold]Pièces d'or[/gold]. Obtenez une [gold]Potion[/gold] aléatoire. Continuez le festin !"
+            "description": "Payez [red]40[/red] [gold]Pièces d'or[/gold]. Obtenez une [gold]Potion[/gold] aléatoire. Continuez le festin !"
           }
         ]
       },
@@ -1257,7 +1257,7 @@
       },
       {
         "id": "INITIAL",
-        "description": "Vous vous traînez jusque dans une baraque à l'enseigne lumineuse (mais de travers) :\n[aqua]« FESTIN À VOLONTÉ — PAYEZ SELON VOTRE FAIM ! »[/aqua]\n\nÀ l'intérieur, un [orange]chef cuisinier svelte doté de nombreux bras[/orange] prépare avec dextérité des [green]bouchées alléchantes[/green] qu'il pose sur un [sine]convoyeur en chitine sinueux[/sine].\n\nDe l'un de ses bras, le chef indique un panneau :\n[blue]35[/blue] [gold]Pièces d'or[/gold] par assiette",
+        "description": "Vous vous traînez jusque dans une baraque à l'enseigne lumineuse (mais de travers) :\n[aqua]« FESTIN À VOLONTÉ — PAYEZ SELON VOTRE FAIM ! »[/aqua]\n\nÀ l'intérieur, un [orange]chef cuisinier svelte doté de nombreux bras[/orange] prépare avec dextérité des [green]bouchées alléchantes[/green] qu'il pose sur un [sine]convoyeur en chitine sinueux[/sine].\n\nDe l'un de ses bras, le chef indique un panneau :\n[blue]40[/blue] [gold]Pièces d'or[/gold] par assiette",
         "options": [
           {
             "id": "OBSERVE_CHEF",
@@ -1394,7 +1394,7 @@
   },
   {
     "id": "HUNGRY_FOR_MUSHROOMS",
-    "name": "Affamé de champignons",
+    "name": "Affamé de champis",
     "type": "Event",
     "act": "Act 3 - Glory",
     "description": "[sine]Depuis combien de temps n’avez-vous rien mangé ?\n... attends, d’où vient cette odeur incroyable ?[/sine]\n\nVous suivez l’odeur et arrivez dans un campement accueillant où cuisent toutes sortes de [green]champignons appétissants[/green] ! Vous avez si faim que vous ne vous préoccupez pas de leur innocuité.\n(Si faim que vous ne remarquez même pas l’aventurier mort qui gît à terre.)",
@@ -1402,13 +1402,13 @@
     "options": [
       {
         "id": "BIG_MUSHROOM",
-        "title": "Gros champignon",
-        "description": "Obtain [gold]Gros champignon[/gold]. Lorsque vous obtenez cette relique, augmentez vos PV Max de [blue]20[/blue]. Au début de chaque combat, vous piochez [blue]2[/blue] cartes en moins."
+        "title": "Gros champi",
+        "description": "Obtain [gold]Gros champi[/gold]. Lorsque vous obtenez cette relique, augmentez vos PV Max de [blue]20[/blue]. Au début de chaque combat, vous piochez [blue]2[/blue] cartes en moins."
       },
       {
         "id": "FRAGRANT_MUSHROOM",
-        "title": "Champignon aromatique",
-        "description": "Obtain [gold]Champignon aromatique[/gold]. Lorsque vous obtenez cette relique, perdez [red]15[/red] PV et [gold]Améliorez[/gold] [blue]3[/blue] cartes aléatoires."
+        "title": "Champi aromatique",
+        "description": "Obtain [gold]Champi aromatique[/gold]. Lorsque vous obtenez cette relique, perdez [blue]15[/blue] PV et [gold]Améliorez[/gold] [blue]2[/blue] cartes aléatoires."
       }
     ],
     "pages": [
@@ -1426,13 +1426,13 @@
         "options": [
           {
             "id": "BIG_MUSHROOM",
-            "title": "Gros champignon",
-            "description": "Obtain [gold]Gros champignon[/gold]. Lorsque vous obtenez cette relique, augmentez vos PV Max de [blue]20[/blue]. Au début de chaque combat, vous piochez [blue]2[/blue] cartes en moins."
+            "title": "Gros champi",
+            "description": "Obtain [gold]Gros champi[/gold]. Lorsque vous obtenez cette relique, augmentez vos PV Max de [blue]20[/blue]. Au début de chaque combat, vous piochez [blue]2[/blue] cartes en moins."
           },
           {
             "id": "FRAGRANT_MUSHROOM",
-            "title": "Champignon aromatique",
-            "description": "Obtain [gold]Champignon aromatique[/gold]. Lorsque vous obtenez cette relique, perdez [red]15[/red] PV et [gold]Améliorez[/gold] [blue]3[/blue] cartes aléatoires."
+            "title": "Champi aromatique",
+            "description": "Obtain [gold]Champi aromatique[/gold]. Lorsque vous obtenez cette relique, perdez [blue]15[/blue] PV et [gold]Améliorez[/gold] [blue]2[/blue] cartes aléatoires."
           }
         ]
       },
@@ -1490,7 +1490,7 @@
   },
   {
     "id": "JUNGLE_MAZE_ADVENTURE",
-    "name": "Aventure dans le labyrinthe de la jungle",
+    "name": "Aventure du labyrinthe de la jungle",
     "type": "Event",
     "act": "Act 1 - Overgrowth",
     "description": "Dans une clairière, vous tombez sur une [green]Bande d’aventuriers hétéroclite[/green]. L’air démoralisés, ils vous indiquent un [purple]labyrinthe géant[/purple].\n\nIls vous proposent d’unir vos forces aux leurs pour vous embarquer dans une [b]Quête épique[/b], dans le but de piller les trésors de ce labyrinthe. Étant vous-même une aventurière expérimentée, vous ne vous faites pas d’illusions sur les [red][jitter]pièges mortels[/jitter][/red] et les [orange][sine]gardiens redoutables[/sine][/orange] dont est sûrement rempli ce labyrinthe.\n\nCe serait plus simple si vous travailliez ensemble, mais il faudra alors partager le butin.",
@@ -1651,7 +1651,7 @@
       {
         "id": "GROUP",
         "title": "Groupe",
-        "description": "Perdez [red]100[/red] [gold]Pièces d’or[/gold]. [gold]Transformez[/gold] [blue]2[/blue] cartes."
+        "description": "Perdez [red]TOUTES[/red] vos [gold]Pièces d'or[/gold]. [gold]Transformez[/gold] [blue]2[/blue] cartes."
       },
       {
         "id": "LONER",
@@ -1662,7 +1662,7 @@
     "pages": [
       {
         "id": "GROUP",
-        "description": "Vous saluez les [aqua]Morphiques[/aqua] bavards, qui vous accueillent un à un dans leurs bras cristallins.\n\nIls partagent avec vous leur savoir collectif et vous injectent de [sine]Magie morphique[/sine], altérant votre nature... Quelles charmantes créatures, ces [aqua]Morphiques[/aqua].\n\n[red]L’un d’eux vous a volé votre[/red] [gold]or[/gold][red].[/red]"
+        "description": "Vous saluez les [aqua]Morphiques[/aqua] bavards, qui vous accueillent un à un dans leurs bras cristallins.\n\nIls partagent avec vous leur savoir collectif et vous infusent de [sine]Magie morphique[/sine], altérant votre nature... Quelles charmantes créatures, ces [aqua]Morphiques[/aqua].\n\n[red]L’un d’eux vous a volé votre[/red] [gold]or[/gold][red].[/red]"
       },
       {
         "id": "INITIAL",
@@ -1671,7 +1671,7 @@
           {
             "id": "GROUP",
             "title": "Groupe",
-            "description": "Perdez [red]100[/red] [gold]Pièces d’or[/gold]. [gold]Transformez[/gold] [blue]2[/blue] cartes."
+            "description": "Perdez [red]TOUTES[/red] vos [gold]Pièces d'or[/gold]. [gold]Transformez[/gold] [blue]2[/blue] cartes."
           },
           {
             "id": "LONER",
@@ -1881,23 +1881,28 @@
     "relics": [
       "ARCANE_SCROLL",
       "BOOMING_CONCH",
-      "POMANDER",
       "GOLDEN_PEARL",
       "LEAD_PAPERWEIGHT",
-      "NEW_LEAF",
-      "NEOWS_TORMENT",
-      "PRECISE_SCISSORS",
       "LOST_COFFER",
-      "NUTRITIOUS_OYSTER",
-      "STONE_HUMIDIFIER",
+      "NEOWS_TORMENT",
+      "NEW_LEAF",
+      "PRECISE_SCISSORS",
+      "PHIAL_HOLSTER",
+      "WINGED_BOOTS",
       "MASSIVE_SCROLL",
       "LAVA_ROCK",
+      "NEOWS_TALISMAN",
+      "NUTRITIOUS_OYSTER",
+      "POMANDER",
       "SMALL_CAPSULE",
-      "SILVER_CRUCIBLE",
+      "STONE_HUMIDIFIER",
       "CURSED_PEARL",
+      "HEFTY_TABLET",
       "LARGE_CAPSULE",
       "LEAFY_POULTICE",
       "PRECARIOUS_SHEARS",
+      "SILVER_CRUCIBLE",
+      "NEOWS_BONES",
       "SCROLL_BOXES"
     ]
   },
@@ -2765,7 +2770,9 @@
     "type": "Event",
     "act": "Act 3 - Glory",
     "description": "Vous trouvez par hasard une [orange]invitation[/orange] à une collation postméridienne destinée à un certain [blue]« Monseigneur Galalot »[/blue] ; vous décidez de vous y rendre à sa place.\n\nAprès être entrée à l’intérieur d’une rotonde sans prétention, vous vous retrouvez parmi un groupe de [gold]commandants[/gold], de [aqua]généraux[/aqua], de [red]seigneurs de guerre[/red] et de [blue]mercenaires[/blue] en train de prendre... le thé ?\nUn gigantesque chevalier portant sur la tête une [gold]couronne dorée[/gold] prend la parole.\n\n[jitter]« C’est à cette heure tardive que vous vous manifestez pour prendre le [b]Thé[/b] ?! »[/jitter]",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 12+ HP"
+    ],
     "options": [
       {
         "id": "ENJOY_TEA",
@@ -3114,7 +3121,7 @@
       {
         "id": "OBSERVE",
         "title": "Observer",
-        "description": "[gold]Envoûter[/gold] une [gold]Frappe[/gold] ou une [gold]Défense[/gold] avec [purple]Spirale[/purple]."
+        "description": "[gold]Envoûter[/gold] une [gold]Frappe[/gold] Basique ou une [gold]Défense[/gold] avec [purple]Spirale[/purple]."
       },
       {
         "id": "DRINK",
@@ -3134,7 +3141,7 @@
           {
             "id": "OBSERVE",
             "title": "Observer",
-            "description": "[gold]Envoûter[/gold] une [gold]Frappe[/gold] ou une [gold]Défense[/gold] avec [purple]Spirale[/purple]."
+            "description": "[gold]Envoûter[/gold] une [gold]Frappe[/gold] Basique ou une [gold]Défense[/gold] avec [purple]Spirale[/purple]."
           },
           {
             "id": "DRINK",
@@ -3165,7 +3172,7 @@
       {
         "id": "REJECTION",
         "title": "Rejeter",
-        "description": "Perdez [red]9[/red] PV. Retirez une carte de votre [gold]Deck[/gold]."
+        "description": "Perdez [red]10[/red] PV. [gold]Améliorez[/gold] une carte."
       }
     ],
     "pages": [
@@ -3181,7 +3188,7 @@
           {
             "id": "REJECTION",
             "title": "Rejeter",
-            "description": "Perdez [red]9[/red] PV. Retirez une carte de votre [gold]Deck[/gold]."
+            "description": "Perdez [red]10[/red] PV. [gold]Améliorez[/gold] une carte."
           }
         ]
       },
@@ -4318,7 +4325,7 @@
     "name": "La légende disait vrai",
     "type": "Shared",
     "act": null,
-    "description": "Alors que vous pénétrez dans une pièce où règne le noir total, une lueur venue d’au-dessus transperce soudain l’obscurité — dans le même instant, la porte claque derrière vous.\n\nDevant vous, illuminé, se tient un podium sur lequel est posé une carte dessinée. Vous ressentez l’envie pressante de vous en emparer.\n\nC’est très suspect.",
+    "description": "Vous pénétrez dans une pièce où règne le noir total, lorsque, soudain, une lueur venue d’au-dessus transperce l’obscurité — au même moment, la porte claque derrière vous.\n\nDevant vous, illuminé, se tient un podium sur lequel est posé une carte dessinée. Vous ressentez l’envie pressante de vous en emparer.\n\nTout ceci est très suspect.",
     "preconditions": [
       "Requires 10+ HP",
       "Act 1 only"
@@ -4338,7 +4345,7 @@
     "pages": [
       {
         "id": "INITIAL",
-        "description": "Alors que vous pénétrez dans une pièce où règne le noir total, une lueur venue d’au-dessus transperce soudain l’obscurité — dans le même instant, la porte claque derrière vous.\n\nDevant vous, illuminé, se tient un podium sur lequel est posé une carte dessinée. Vous ressentez l’envie pressante de vous en emparer.\n\nC’est très suspect.",
+        "description": "Vous pénétrez dans une pièce où règne le noir total, lorsque, soudain, une lueur venue d’au-dessus transperce l’obscurité — au même moment, la porte claque derrière vous.\n\nDevant vous, illuminé, se tient un podium sur lequel est posé une carte dessinée. Vous ressentez l’envie pressante de vous en emparer.\n\nTout ceci est très suspect.",
         "options": [
           {
             "id": "NAB_THE_MAP",
@@ -4476,7 +4483,7 @@
           {
             "id": "CHAOS",
             "title": "Chaos",
-            "description": "Ajoutez une carte aléatoire à votre [gold]Main[/gold]. Elle coûte [blue]0[/blue] [energy:1] pendant ce tour."
+            "description": "Ajoutez une carte aléatoire à votre [gold]Main[/gold]. Elle coûte [blue]0[/blue] ce tour."
           },
           {
             "id": "EXPERTISE",
@@ -4596,7 +4603,7 @@
       },
       {
         "id": "MERCHANT",
-        "description": "Un [green]marchand d’allure nanti[/green] présente son dossier. Il est accusé de [red]murder[/red] par l’un de ses concurrents. Les preuves ne sont pas concluantes, et vous avez le sentiment que l’homme est innocent, mais la foule a l’air de vouloir du sang.",
+        "description": "Un [green]marchand d’allure nanti[/green] présente son dossier. Il est accusé de [red]meurtre[/red] par l’un de ses concurrents. Les preuves ne sont pas concluantes, et vous avez le sentiment que l’homme est innocent, mais la foule a l’air de vouloir du sang.",
         "options": [
           {
             "id": "GUILTY",
@@ -5005,7 +5012,7 @@
     "act": "Underdocks",
     "description": "Tandis que vous faites votre chemin à travers les passages embourbés, vous tombez sur une [aqua]silhouette émaciée[/aqua] qui tient une petite boutique. Sur les nombreuses étagères sont [sine]tassées[/sine] des liasses de vélins et parchemins humides.\n\nRemarquant qu’une cliente est entrée, le [aqua]scribe-commerçant[/aqua] accourt pour vous servir puis vous indique le [gold]matériel[/gold] exposé sur le bureau.",
     "preconditions": [
-      "Requires 65+ gold"
+      "Requires 55+ gold"
     ],
     "options": [
       {
@@ -5016,22 +5023,22 @@
       {
         "id": "TENTACLE_QUILL",
         "title": "Stylo tentacule",
-        "description": "Payez [red]65[/red] [gold]Pièces d’or[/gold]. [gold]Envoûtez[/gold] une carte avec [purple]Stabilité[/purple]."
+        "description": "Payez [red]55[/red] [gold]Pièces d’or[/gold]. [gold]Envoûtez[/gold] une carte avec [purple]Stabilité[/purple]."
       },
       {
         "id": "TENTACLE_QUILL_LOCKED",
         "title": "Verrouillé",
-        "description": "Coûte [blue]65[/blue] [gold]Pièces d’or[/gold]."
+        "description": "Coûte [blue]55[/blue] [gold]Pièces d’or[/gold]."
       },
       {
         "id": "PRICKLY_SPONGE",
         "title": "Éponge rêche",
-        "description": "Payez [red]155[/red] [gold]Pièces d’or[/gold]. [gold]Envoûtez[/gold] [blue]2[/blue] cartes avec [purple]Stabilité[/purple]."
+        "description": "Payez [red]99[/red] [gold]Pièces d’or[/gold]. [gold]Envoûtez[/gold] [blue]2[/blue] cartes avec [purple]Stabilité[/purple]."
       },
       {
         "id": "PRICKLY_SPONGE_LOCKED",
         "title": "Verrouillé",
-        "description": "Coûte [blue]155[/blue] [gold]Pièces d’or[/gold]."
+        "description": "Coûte [blue]99[/blue] [gold]Pièces d’or[/gold]."
       }
     ],
     "pages": [
@@ -5051,22 +5058,22 @@
           {
             "id": "TENTACLE_QUILL",
             "title": "Stylo tentacule",
-            "description": "Payez [red]65[/red] [gold]Pièces d’or[/gold]. [gold]Envoûtez[/gold] une carte avec [purple]Stabilité[/purple]."
+            "description": "Payez [red]55[/red] [gold]Pièces d’or[/gold]. [gold]Envoûtez[/gold] une carte avec [purple]Stabilité[/purple]."
           },
           {
             "id": "TENTACLE_QUILL_LOCKED",
             "title": "Verrouillé",
-            "description": "Coûte [blue]65[/blue] [gold]Pièces d’or[/gold]."
+            "description": "Coûte [blue]55[/blue] [gold]Pièces d’or[/gold]."
           },
           {
             "id": "PRICKLY_SPONGE",
             "title": "Éponge rêche",
-            "description": "Payez [red]155[/red] [gold]Pièces d’or[/gold]. [gold]Envoûtez[/gold] [blue]2[/blue] cartes avec [purple]Stabilité[/purple]."
+            "description": "Payez [red]99[/red] [gold]Pièces d’or[/gold]. [gold]Envoûtez[/gold] [blue]2[/blue] cartes avec [purple]Stabilité[/purple]."
           },
           {
             "id": "PRICKLY_SPONGE_LOCKED",
             "title": "Verrouillé",
-            "description": "Coûte [blue]155[/blue] [gold]Pièces d’or[/gold]."
+            "description": "Coûte [blue]99[/blue] [gold]Pièces d’or[/gold]."
           }
         ]
       },
@@ -5240,13 +5247,13 @@
     "act": "Act 1 - Overgrowth",
     "description": "Vous vous frayez un chemin à travers un [red]vallon d’arbres morts[/red] et découvrez un arbre blanc comme de l’os, solitaire parmi les autres. Des boules d’argile pendent des branches, qui s’incurvent vers l’intérieur à la manière d’une cage thoracique.\n\nComme cet[purple]arbre est sinistre[/purple]. Il murmure\n\n[sine][blue]...faire échange.....[/blue][/sine]",
     "preconditions": [
-      "Requires 50+ gold"
+      "Requires 44+ gold"
     ],
     "options": [
       {
         "id": "GOLD",
         "title": "Échanger des pièces d’or",
-        "description": "Perdez [red]50[/red] [gold]Pièces d’or[/gold]. Obtenez [blue]2[/blue] [gold]Potions[/gold] aléatoires."
+        "description": "Perdez [red]26-44[/red] [gold]Pièces d’or[/gold]. Obtenez [blue]2[/blue] [gold]Potions[/gold] aléatoires."
       },
       {
         "id": "HUG",
@@ -5270,7 +5277,7 @@
           {
             "id": "GOLD",
             "title": "Échanger des pièces d’or",
-            "description": "Perdez [red]50[/red] [gold]Pièces d’or[/gold]. Obtenez [blue]2[/blue] [gold]Potions[/gold] aléatoires."
+            "description": "Perdez [red]26-44[/red] [gold]Pièces d’or[/gold]. Obtenez [blue]2[/blue] [gold]Potions[/gold] aléatoires."
           },
           {
             "id": "HUG",

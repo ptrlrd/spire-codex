@@ -2,8 +2,15 @@
   {
     "id": "BOUND",
     "name": "束縛",
-    "description": "1ターンにプレイできる[gold]束縛[/gold]状態のカードは[blue]1[/blue]枚のみ。ターン終了時に [gold]束縛[/gold]は解除される。",
+    "description": "1ターンにプレイできる[gold]束縛[/gold]状態のカードは[blue]1[/blue]枚のみ。ターン終了時に[gold]束縛[/gold]は解除される。",
     "extra_card_text": "束縛",
+    "is_stackable": false
+  },
+  {
+    "id": "DEVOURED",
+    "name": "貪食",
+    "description": "このカードに[gold]廃棄[/gold]を付与する。",
+    "extra_card_text": null,
     "is_stackable": false
   },
   {
@@ -39,6 +46,13 @@
     "name": "スモッグ",
     "description": "このターン、これ以上[gold]スキル[/gold]をプレイできない。ターン終了時に解除される。",
     "extra_card_text": null,
+    "is_stackable": false
+  },
+  {
+    "id": "WEIGHTED",
+    "name": "重荷",
+    "description": "このカードをプレイした時、[energy:1]を失う。",
+    "extra_card_text": "[energy:1]を失う。",
     "is_stackable": false
   }
 ]

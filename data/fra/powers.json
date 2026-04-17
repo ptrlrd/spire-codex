@@ -62,7 +62,7 @@
   {
     "id": "ARSENAL",
     "name": "Arsenal",
-    "description": "Lorsque vous jouez une carte Incolore, gagnez [blue]1[/blue] de [gold]Force[/gold].",
+    "description": "Lorsque vous créez une carte, gagnez [blue]1[/blue] de [gold]Force[/gold].",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
@@ -145,7 +145,7 @@
     "description": "Lorsque vous gagnez de l'[gold]Armure[/gold] pendant votre tour, les autres joueurs en gagnent la moitié.",
     "description_raw": null,
     "type": "Buff",
-    "stack_type": "Counter",
+    "stack_type": "Single",
     "allow_negative": null,
     "image_url": "/static/images/powers/beacon_of_hope_power.webp"
   },
@@ -170,16 +170,6 @@
     "image_url": "/static/images/powers/black_hole_power.webp"
   },
   {
-    "id": "BLADE_OF_INK",
-    "name": "Lame d'encre",
-    "description": "Lorsque vous jouez une Attaque pendant ce tour, gagnez [blue]2[/blue] de [gold]Force[/gold] jusqu'à la fin du tour.",
-    "description_raw": null,
-    "type": "Buff",
-    "stack_type": "Counter",
-    "allow_negative": null,
-    "image_url": "/static/images/powers/blade_of_ink_power.webp"
-  },
-  {
     "id": "BLOCK_NEXT_TURN",
     "name": "Armure au prochain tour",
     "description": "Au début de votre prochain tour, gagnez [blue]4[/blue] d'[gold]Armure[/gold].",
@@ -198,6 +188,16 @@
     "stack_type": "Counter",
     "allow_negative": null,
     "image_url": "/static/images/powers/blur_power.webp"
+  },
+  {
+    "id": "BORROWED_TIME",
+    "name": "Sursis",
+    "description": "Les cartes coûtent une Énergie supplémentaire ce tour.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/borrowed_time_power.webp"
   },
   {
     "id": "BUFFER",
@@ -402,7 +402,7 @@
   {
     "id": "CRAB_RAGE",
     "name": "Crabe furieux",
-    "description": "Lorsqu'un allié périt, [gold]this creature[/gold] gagne [blue]5[/blue] de [gold]Force[/gold] et [blue]99[/blue] d'[gold]Armure[/gold].",
+    "description": "Lorsqu'un allié périt, [gold]this creature[/gold] gagne [blue]6[/blue] de [gold]Force[/gold] et [blue]99[/blue] d'[gold]Armure[/gold].",
     "description_raw": "Lorsqu'un allié périt, [gold]{OwnerName}[/gold] gagne [blue]{StrengthPower}[/blue] de [gold]Force[/gold] et [blue]{Block}[/blue] d'[gold]Armure[/gold].",
     "type": "Buff",
     "stack_type": "Single",
@@ -610,16 +610,6 @@
     "image_url": "/static/images/powers/doom_power.webp"
   },
   {
-    "id": "DOOR_REVIVAL",
-    "name": "Porte régénérée",
-    "description": "Pouvoir interne pour les mécaniques de régénération de la Porte.",
-    "description_raw": null,
-    "type": "Buff",
-    "stack_type": "Single",
-    "allow_negative": null,
-    "image_url": null
-  },
-  {
     "id": "DOUBLE_DAMAGE",
     "name": "Dégâts doublés",
     "description": "Pendant ce tour, les Attaques infligent le double de dégâts.",
@@ -802,7 +792,7 @@
   {
     "id": "FLANKING",
     "name": "Encerclement",
-    "description": "Les autres alliés infligent [blue]2x[/blue] plus de dégâts à cet ennemi pendant ce tour.",
+    "description": "Les autres alliés infligent [blue]2x[/blue] plus de dégâts d'attaque à cet ennemi pendant ce tour.",
     "description_raw": null,
     "type": "Debuff",
     "stack_type": "Counter",
@@ -960,14 +950,14 @@
     "image_url": "/static/images/powers/gigantification_power.webp"
   },
   {
-    "id": "GRAPPLE",
-    "name": "Prise au sol",
-    "description": "Lorsque vous gagnez de l'[gold]Armure[/gold] pendant ce tour, infligez [blue][Amount][/blue] dégâts à [gold]this creature[/gold].",
-    "description_raw": "Lorsque vous gagnez de l'[gold]Armure[/gold] pendant ce tour, infligez [blue]{Amount}[/blue] dégâts à [gold]{OwnerName}[/gold].",
-    "type": "Debuff",
-    "stack_type": "Counter",
+    "id": "GRASP",
+    "name": "Étreinte",
+    "description": "Chaque fois que vous jouez une carte, perdez [blue]1[/blue] d'Énergie.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
     "allow_negative": null,
-    "image_url": "/static/images/powers/grapple_power.webp"
+    "image_url": "/static/images/powers/grasp_power.webp"
   },
   {
     "id": "GRAVITY",
@@ -1130,6 +1120,16 @@
     "image_url": "/static/images/powers/hotfix_power.webp"
   },
   {
+    "id": "HUNGER",
+    "name": "Voracité",
+    "description": "Lorsque vous jouez une Attaque ou une Compétence, elle est [gold]Épuisée[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/hunger_power.webp"
+  },
+  {
     "id": "ILLUSION",
     "name": "Illusion",
     "description": "Si cette créature périt, elle se régénère au prochain tour avec tous ses PV.",
@@ -1212,7 +1212,7 @@
   {
     "id": "ITERATION",
     "name": "Itération",
-    "description": "La première fois que vous piochez une carte [gold]Statut[/gold] chaque tour, vous piochez plus de cartes.",
+    "description": "La première fois que vous piochez une carte Statut chaque tour, vous piochez plus de cartes.",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
@@ -1450,6 +1450,16 @@
     "image_url": "/static/images/powers/no_draw_power.webp"
   },
   {
+    "id": "NO_ENERGY_GAIN",
+    "name": "Pas de gain d'Énergie",
+    "description": "Vous ne pouvez plus gagner d'[energy:1] ce tour.",
+    "description_raw": "Vous ne pouvez plus gagner d'{energyPrefix:energyIcons(1)} ce tour.",
+    "type": "Debuff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/no_energy_gain_power.webp"
+  },
+  {
     "id": "NOSTALGIA",
     "name": "Nostalgie",
     "description": "La première Attaque ou Compétence que vous jouez chaque tour est placée sur le dessus de votre [gold]Pioche[/gold].",
@@ -1502,8 +1512,8 @@
   {
     "id": "OUTBREAK",
     "name": "Épidémie",
-    "description": "Toutes les [blue]3[/blue] applications de [gold]Poison[/gold], infligez [blue][Amount][/blue] dégâts à TOUS les ennemis.",
-    "description_raw": "Toutes les [blue]{Repeat}[/blue] applications de [gold]Poison[/gold], infligez [blue]{Amount}[/blue] dégâts à TOUS les ennemis.",
+    "description": "Toutes les [blue]3[/blue] fois que vous appliquez du [gold]Poison[/gold], infligez [blue][Amount][/blue] dégâts à TOUS les ennemis.",
+    "description_raw": "Toutes les [blue]{Repeat}[/blue] fois que vous appliquez du [gold]Poison[/gold], infligez [blue]{Amount}[/blue] dégâts à TOUS les ennemis.",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -1848,6 +1858,16 @@
     "stack_type": "Counter",
     "allow_negative": null,
     "image_url": "/static/images/powers/sandpit_power.webp"
+  },
+  {
+    "id": "SCRUTINY",
+    "name": "Regard pesant",
+    "description": "Vous ne pouvez plus piocher de cartes ce tour.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/scrutiny_power.webp"
   },
   {
     "id": "SEEKING_EDGE",
@@ -2272,7 +2292,7 @@
   {
     "id": "SWORD_SAGE",
     "name": "Sage à l'épée",
-    "description": "Augmentez le coût de [gold]Lame Souveraine[/gold] de [blue]1[/blue]. [gold]Lame Souveraine[/gold] touche désormais l'ennemi [blue]1[/blue] fois de plus.",
+    "description": "[gold]Lame Souveraine[/gold] touche désormais l'ennemi [blue]1[/blue] fois de plus.",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",

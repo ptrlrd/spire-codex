@@ -695,7 +695,7 @@
     "name": "水晶玉",
     "type": "Shared",
     "act": null,
-    "description": "[sine][blue]「来ることは、視えておったぞ……！」[/blue][/sine]\n\n[purple]神秘的な小屋[/purple]に入ると、[jitter]しわがれた[/jitter]声が響いてきた。\n\n[sine][blue]「お主の運命がここへ導いたのじゃ。 お主の未来と運勢を明らかにせねばならん。 我らすべてを救うために！！」[/blue][/sine]\n「さあ、[gold]水晶占い[/gold]のコースを選んでおくれ。 この免責事項にもサインを頼むぞい」老婆はそう言って、ペンと羊皮紙を取り出した。",
+    "description": "[sine][blue]「ここに来ることは、すでに視えておったぞ……！」[/blue][/sine]\n\n[purple]神秘的な小屋[/purple]に入ると、[jitter]しわがれた[/jitter]声が響いてきた。\n\n[sine][blue]「運命がお主をここへと導いたのじゃ。 そして今、未来と運勢を明らかにせねばならぬ。 我らすべてを救うために！！」[/blue][/sine]\n「さあ、[gold]水晶占い[/gold]のコースを選んでおくれ。 この免責事項にもサインを頼むぞい」老婆はそう言って、ペンと羊皮紙を取り出した。",
     "preconditions": [
       "Requires 100+ gold",
       "Act 2+"
@@ -719,7 +719,7 @@
       },
       {
         "id": "INITIAL",
-        "description": "[sine][blue]「来ることは、視えておったぞ……！」[/blue][/sine]\n\n[purple]神秘的な小屋[/purple]に入ると、[jitter]しわがれた[/jitter]声が響いてきた。\n\n[sine][blue]「お主の運命がここへ導いたのじゃ。 お主の未来と運勢を明らかにせねばならん。 我らすべてを救うために！！」[/blue][/sine]\n「さあ、[gold]水晶占い[/gold]のコースを選んでおくれ。 この免責事項にもサインを頼むぞい」老婆はそう言って、ペンと羊皮紙を取り出した。",
+        "description": "[sine][blue]「ここに来ることは、すでに視えておったぞ……！」[/blue][/sine]\n\n[purple]神秘的な小屋[/purple]に入ると、[jitter]しわがれた[/jitter]声が響いてきた。\n\n[sine][blue]「運命がお主をここへと導いたのじゃ。 そして今、未来と運勢を明らかにせねばならぬ。 我らすべてを救うために！！」[/blue][/sine]\n「さあ、[gold]水晶占い[/gold]のコースを選んでおくれ。 この免責事項にもサインを頼むぞい」老婆はそう言って、ペンと羊皮紙を取り出した。",
         "options": [
           {
             "id": "UNCOVER_FUTURE",
@@ -735,7 +735,7 @@
       },
       {
         "id": "PAYMENT_PLAN",
-        "description": "支払いプラン"
+        "description": "支払い方法"
       },
       {
         "id": "UNCOVER_FUTURE",
@@ -961,7 +961,7 @@
       {
         "id": "TRUDGE_ON",
         "title": "意地でも進む",
-        "description": "[gold]デッキ[/gold]からカードを1枚削除する。 HPを[red]11[/red]失う。"
+        "description": "[blue]61-99[/blue][gold]ゴールド[/gold]を獲得する。HPを[red]8[/red]失う。"
       },
       {
         "id": "REST",
@@ -977,7 +977,7 @@
           {
             "id": "TRUDGE_ON",
             "title": "意地でも進む",
-            "description": "[gold]デッキ[/gold]からカードを1枚削除する。 HPを[red]11[/red]失う。"
+            "description": "[blue]61-99[/blue][gold]ゴールド[/gold]を獲得する。HPを[red]8[/red]失う。"
           },
           {
             "id": "REST",
@@ -999,7 +999,7 @@
       },
       {
         "id": "TRUDGE_ON",
-        "description": "ジャングルを切り開いて進むが、森はどこまでも続いている……\n\n[green]奇妙な果実[/green]や[orange]歯ごたえのある虫[/orange]をかじり、[aqua]光る植物[/aqua]の蜜を飲んで命をつなぐものの、次第に[jitter][red]疑心暗鬼[/red][/jitter]に陥ってゆく……\n\nしかし、ついに開けた場所に出た。 小道があり、地面には地図のような落書きがある。\nどうやら助かったようだ。"
+        "description": "ジャングルを切り開いて進むが、森はどこまでも続いている……\n\n[green]奇妙な果実[/green]や[orange]歯ごたえのある虫[/orange]をかじり、[aqua]光る植物[/aqua]の蜜をすすって命をつなぐものの、次第に[jitter][red]疑心暗鬼[/red][/jitter]に陥ってゆく……\n\nしかし、ついに開けた場所に出た。 小道があり、地面には[gold]ゴールド[/gold]の硬貨が散らばっている。それに交じって、殴り書きの地図も何枚か落ちていた！\nどうやら助かったようだ。"
       }
     ]
   },
@@ -1181,9 +1181,9 @@
     "name": "無限コンベア",
     "type": "Event",
     "act": "Underdocks",
-    "description": "あなたは派手な看板を掲げた小屋に足を踏み入れた。 傾いた看板にはこう書いてある――\n[aqua]「大食い食堂『無限の宴』――お代は空腹に応じて」[/aqua]\n\n中に入ると、[orange]すらっとした多腕のシェフ[/orange]が、器用に[green]一口サイズの料理[/green]を作り、[sine]うねうね動く甲殻でできたベルト[/sine]に乗せている。\n\nシェフの腕の1本が、看板を指差した。\n全品 1皿 [blue]35[/blue][gold]ゴールド[/gold]",
+    "description": "あなたは派手な看板を掲げた小屋に足を踏み入れた。 傾いた看板にはこう書いてある――\n[aqua]「大食い食堂『無限の宴』――お代は空腹に応じて」[/aqua]\n\n中に入ると、[orange]すらっとした多腕のシェフ[/orange]が、器用に[green]一口サイズの料理[/green]を作り、[sine]うねうね動く甲殻でできたベルト[/sine]に乗せている。\n\nシェフの腕の1本が、看板を指差した。\n全品 1皿 [blue]40[/blue][gold]ゴールド[/gold]",
     "preconditions": [
-      "Requires 105+ gold"
+      "Requires 120+ gold"
     ],
     "options": [
       {
@@ -1205,17 +1205,17 @@
           {
             "id": "CAVIAR",
             "title": "レーンからキャビアを取る",
-            "description": "[red]35[/red][gold]ゴールド[/gold]を支払う。 最大HPが[green]4[/green]増加する。 食事を続ける！"
+            "description": "[red]40[/red][gold]ゴールド[/gold]を支払う。 最大HPが[green]4[/green]増加する。 食事を続ける！"
           },
           {
             "id": "CLAM_ROLL",
             "title": "レーンからクラムロールを取る",
-            "description": "[red]35[/red][gold]ゴールド[/gold]を支払う。 HPを[green]10[/green]回復する。 食事を続ける！"
+            "description": "[red]40[/red][gold]ゴールド[/gold]を支払う。 HPを[green]10[/green]回復する。 食事を続ける！"
           },
           {
             "id": "FRIED_EEL",
             "title": "レーンからうなぎのフライを取る",
-            "description": "[red]35[/red][gold]ゴールド[/gold]を支払う。 ランダムな無色カードを1枚[gold]デッキ[/gold]に加える。 食事を続ける！"
+            "description": "[red]40[/red][gold]ゴールド[/gold]を支払う。 ランダムな無色カードを1枚[gold]デッキ[/gold]に加える。 食事を続ける！"
           },
           {
             "id": "GOLDEN_FYSH",
@@ -1225,22 +1225,22 @@
           {
             "id": "JELLY_LIVER",
             "title": "レーンからゼリーレバーを取る",
-            "description": "[red]35[/red][gold]ゴールド[/gold]を支払う。 カードを1枚[gold]変化[/gold]させる。 食事を続ける！"
+            "description": "[red]40[/red][gold]ゴールド[/gold]を支払う。 カードを1枚[gold]変化[/gold]させる。 食事を続ける！"
           },
           {
             "id": "SEAPUNK_SALAD",
             "title": "レーンからシーパンク・サラダを取る",
-            "description": "[red]35[/red][gold]ゴールド[/gold]を支払う。 [gold]フードファイト[/gold]を[gold]デッキ[/gold]に追加。 食事を続ける！"
+            "description": "[red]40[/red][gold]ゴールド[/gold]を支払う。 [gold]フードファイト[/gold]を[gold]デッキ[/gold]に追加。 食事を続ける！"
           },
           {
             "id": "SPICY_SNAPPY",
             "title": "レーンからスパイシー・スナッピーを取る",
-            "description": "[red]35[/red][gold]ゴールド[/gold]を支払う。 ランダムなカードを1枚[gold]アップグレード[/gold]。 食事を続ける！"
+            "description": "[red]40[/red][gold]ゴールド[/gold]を支払う。 ランダムなカードを1枚[gold]アップグレード[/gold]。 食事を続ける！"
           },
           {
             "id": "SUSPICIOUS_CONDIMENT",
             "title": "レーンから怪しい調味料を取る",
-            "description": "[red]35[/red][gold]ゴールド[/gold]を支払う。 ランダムな[gold]ポーション[/gold]を獲得する。 食事を続ける！"
+            "description": "[red]40[/red][gold]ゴールド[/gold]を支払う。 ランダムな[gold]ポーション[/gold]を獲得する。 食事を続ける！"
           }
         ]
       },
@@ -1257,7 +1257,7 @@
       },
       {
         "id": "INITIAL",
-        "description": "あなたは派手な看板を掲げた小屋に足を踏み入れた。 傾いた看板にはこう書いてある――\n[aqua]「大食い食堂『無限の宴』――お代は空腹に応じて」[/aqua]\n\n中に入ると、[orange]すらっとした多腕のシェフ[/orange]が、器用に[green]一口サイズの料理[/green]を作り、[sine]うねうね動く甲殻でできたベルト[/sine]に乗せている。\n\nシェフの腕の1本が、看板を指差した。\n全品 1皿 [blue]35[/blue][gold]ゴールド[/gold]",
+        "description": "あなたは派手な看板を掲げた小屋に足を踏み入れた。 傾いた看板にはこう書いてある――\n[aqua]「大食い食堂『無限の宴』――お代は空腹に応じて」[/aqua]\n\n中に入ると、[orange]すらっとした多腕のシェフ[/orange]が、器用に[green]一口サイズの料理[/green]を作り、[sine]うねうね動く甲殻でできたベルト[/sine]に乗せている。\n\nシェフの腕の1本が、看板を指差した。\n全品 1皿 [blue]40[/blue][gold]ゴールド[/gold]",
         "options": [
           {
             "id": "OBSERVE_CHEF",
@@ -1408,7 +1408,7 @@
       {
         "id": "FRAGRANT_MUSHROOM",
         "title": "芳醇なキノコ",
-        "description": "Obtain [gold]芳醇なキノコ[/gold]. 取得時、HPを[red]15[/red]失い、ランダムなカードを[blue]3[/blue]枚[gold]アップグレード[/gold]する。"
+        "description": "Obtain [gold]芳醇なキノコ[/gold]. 取得時、HPを[blue]15[/blue]失い、ランダムなカードを[blue]2[/blue]枚[gold]アップグレード[/gold]する。"
       }
     ],
     "pages": [
@@ -1432,7 +1432,7 @@
           {
             "id": "FRAGRANT_MUSHROOM",
             "title": "芳醇なキノコ",
-            "description": "Obtain [gold]芳醇なキノコ[/gold]. 取得時、HPを[red]15[/red]失い、ランダムなカードを[blue]3[/blue]枚[gold]アップグレード[/gold]する。"
+            "description": "Obtain [gold]芳醇なキノコ[/gold]. 取得時、HPを[blue]15[/blue]失い、ランダムなカードを[blue]2[/blue]枚[gold]アップグレード[/gold]する。"
           }
         ]
       },
@@ -1651,7 +1651,7 @@
       {
         "id": "GROUP",
         "title": "群れ",
-        "description": "[gold]ゴールド[/gold]を[red]100[/red]失う。 カードを[blue]2[/blue]枚[gold]変化[/gold]させる。"
+        "description": "[gold]ゴールド[/gold]を[red]すべて[/red]失う。 カードを[blue]2[/blue]枚[gold]変化[/gold]させる。"
       },
       {
         "id": "LONER",
@@ -1671,7 +1671,7 @@
           {
             "id": "GROUP",
             "title": "群れ",
-            "description": "[gold]ゴールド[/gold]を[red]100[/red]失う。 カードを[blue]2[/blue]枚[gold]変化[/gold]させる。"
+            "description": "[gold]ゴールド[/gold]を[red]すべて[/red]失う。 カードを[blue]2[/blue]枚[gold]変化[/gold]させる。"
           },
           {
             "id": "LONER",
@@ -1881,23 +1881,28 @@
     "relics": [
       "ARCANE_SCROLL",
       "BOOMING_CONCH",
-      "POMANDER",
       "GOLDEN_PEARL",
       "LEAD_PAPERWEIGHT",
-      "NEW_LEAF",
-      "NEOWS_TORMENT",
-      "PRECISE_SCISSORS",
       "LOST_COFFER",
-      "NUTRITIOUS_OYSTER",
-      "STONE_HUMIDIFIER",
+      "NEOWS_TORMENT",
+      "NEW_LEAF",
+      "PRECISE_SCISSORS",
+      "PHIAL_HOLSTER",
+      "WINGED_BOOTS",
       "MASSIVE_SCROLL",
       "LAVA_ROCK",
+      "NEOWS_TALISMAN",
+      "NUTRITIOUS_OYSTER",
+      "POMANDER",
       "SMALL_CAPSULE",
-      "SILVER_CRUCIBLE",
+      "STONE_HUMIDIFIER",
       "CURSED_PEARL",
+      "HEFTY_TABLET",
       "LARGE_CAPSULE",
       "LEAFY_POULTICE",
       "PRECARIOUS_SHEARS",
+      "SILVER_CRUCIBLE",
+      "NEOWS_BONES",
       "SCROLL_BOXES"
     ]
   },
@@ -2485,7 +2490,7 @@
       {
         "id": "NAB",
         "title": "盗む",
-        "description": "[red]負傷[/red]を[gold]デッキ[/gold]に追加。 ランダムな[gold]レリック[/gold]を1個獲得する。"
+        "description": "[red]怪我[/red]を[gold]デッキ[/gold]に追加。ランダムな[gold]レリック[/gold]を1個獲得する。"
       },
       {
         "id": "I_CAN_TAKE_THEM",
@@ -2501,7 +2506,7 @@
           {
             "id": "NAB",
             "title": "盗む",
-            "description": "[red]負傷[/red]を[gold]デッキ[/gold]に追加。 ランダムな[gold]レリック[/gold]を1個獲得する。"
+            "description": "[red]怪我[/red]を[gold]デッキ[/gold]に追加。ランダムな[gold]レリック[/gold]を1個獲得する。"
           },
           {
             "id": "I_CAN_TAKE_THEM",
@@ -2765,7 +2770,9 @@
     "type": "Event",
     "act": "Act 3 - Glory",
     "description": "[blue]「ガラロット卿」[/blue]に宛てたティーパーティーへの[orange]招待状[/orange]を拾ったあなたは、彼の代わりに顔を出してみることにした。\n\n質素な円形ホールに入ると、そこには[gold]指揮官[/gold]、[aqua]将軍[/aqua]、[red]武将[/red]、そして[blue]傭兵[/blue]たちが集まり…… 紅茶を楽しんでいるようだ。\n[gold]黄金の冠[/gold]をかぶった巨大な騎士が口を開く。\n\n[jitter]「貴殿よ、[b]ティータイム[/b]に遅刻するとは何事だ！！」[/jitter]",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 12+ HP"
+    ],
     "options": [
       {
         "id": "ENJOY_TEA",
@@ -3160,12 +3167,12 @@
       {
         "id": "LET_IT_IN",
         "title": "受け入れる",
-        "description": "HPを[green]25[/green]回復する。 [gold]メタモルフォーシス[/gold]を[gold]デッキ[/gold]に追加。"
+        "description": "HPを[green]25[/green]回復する。 [gold]羽化[/gold]を[gold]デッキ[/gold]に追加。"
       },
       {
         "id": "REJECTION",
         "title": "拒絶する",
-        "description": "HPを[red]9[/red]失う。 [gold]デッキ[/gold]からカードを1枚削除する。"
+        "description": "HPを[red]10[/red]失う。カードを1枚[gold]アップグレード[/gold]する。"
       }
     ],
     "pages": [
@@ -3176,12 +3183,12 @@
           {
             "id": "LET_IT_IN",
             "title": "受け入れる",
-            "description": "HPを[green]25[/green]回復する。 [gold]メタモルフォーシス[/gold]を[gold]デッキ[/gold]に追加。"
+            "description": "HPを[green]25[/green]回復する。 [gold]羽化[/gold]を[gold]デッキ[/gold]に追加。"
           },
           {
             "id": "REJECTION",
             "title": "拒絶する",
-            "description": "HPを[red]9[/red]失う。 [gold]デッキ[/gold]からカードを1枚削除する。"
+            "description": "HPを[red]10[/red]失う。カードを1枚[gold]アップグレード[/gold]する。"
           }
         ]
       },
@@ -3419,7 +3426,7 @@
     "name": "真実の石板",
     "type": "Event",
     "act": "Act 1 - Overgrowth",
-    "description": "2体の[blue]ガーディアン・キン[/blue]を打ち倒し、奴らが守っていた金庫室へと進む。\n\n中には[purple][sine]見覚えのある碑文が刻まれた石板[/sine][/purple]が安置されていた。 直感が告げている。 この言語なら比較的簡単に解読できるはずだ…… しかし、一度解読を始めれば、あなたはここに閉じ込められるだろう。\n\n石板は穏やかなエネルギーを放っており、これを叩き割ることで[green]癒やしのエネルギー[/green]を受け取ることもできそうだ。",
+    "description": "[blue]血族の門番[/blue]二人を打ち倒し、あなたは奴らが守っていた金庫室へと進んだ。\n\n中には[purple][sine]見覚えのある碑文が刻まれた石板[/sine][/purple]が安置されていた。 直感が告げている。 この文字なら比較的簡単に解読できるはずだ…… しかし、一度解読を始めれば、あなたはここに閉じ込められるだろう。\n\n石板は穏やかなエネルギーを放っている。これを叩き割れば、[green]癒やしのエネルギー[/green]を受け取ることもできそうだ。",
     "preconditions": null,
     "options": [
       {
@@ -3499,7 +3506,7 @@
       },
       {
         "id": "INITIAL",
-        "description": "2体の[blue]ガーディアン・キン[/blue]を打ち倒し、奴らが守っていた金庫室へと進む。\n\n中には[purple][sine]見覚えのある碑文が刻まれた石板[/sine][/purple]が安置されていた。 直感が告げている。 この言語なら比較的簡単に解読できるはずだ…… しかし、一度解読を始めれば、あなたはここに閉じ込められるだろう。\n\n石板は穏やかなエネルギーを放っており、これを叩き割ることで[green]癒やしのエネルギー[/green]を受け取ることもできそうだ。",
+        "description": "[blue]血族の門番[/blue]二人を打ち倒し、あなたは奴らが守っていた金庫室へと進んだ。\n\n中には[purple][sine]見覚えのある碑文が刻まれた石板[/sine][/purple]が安置されていた。 直感が告げている。 この文字なら比較的簡単に解読できるはずだ…… しかし、一度解読を始めれば、あなたはここに閉じ込められるだろう。\n\n石板は穏やかなエネルギーを放っている。これを叩き割れば、[green]癒やしのエネルギー[/green]を受け取ることもできそうだ。",
         "options": [
           {
             "id": "DECIPHER_1",
@@ -4258,7 +4265,7 @@
     "name": "ランタンの鍵",
     "type": "Event",
     "act": "Act 2 - Hive",
-    "description": "かすかに発光する鍵を見つけ、拾い上げようとしたその時。\n\n「その鍵、ずっと探してたんだ！ 悪いけど、返してくれないか？」\n\nどう見ても関わらない方がよさそうな人物だが、決めつけも良くないかもしれない。",
+    "description": "あなたは、かすかに光る鍵を見つけた。拾い上げようとしたその時。\n\n「その鍵、ずっと探していたんだ！ 悪いが、返してくれないか？」\n\nどう見ても関わらない方がよさそうな人物だが、決めつけも良くないかもしれない。",
     "preconditions": null,
     "options": [
       {
@@ -4286,7 +4293,7 @@
       },
       {
         "id": "INITIAL",
-        "description": "かすかに発光する鍵を見つけ、拾い上げようとしたその時。\n\n「その鍵、ずっと探してたんだ！ 悪いけど、返してくれないか？」\n\nどう見ても関わらない方がよさそうな人物だが、決めつけも良くないかもしれない。",
+        "description": "あなたは、かすかに光る鍵を見つけた。拾い上げようとしたその時。\n\n「その鍵、ずっと探していたんだ！ 悪いが、返してくれないか？」\n\nどう見ても関わらない方がよさそうな人物だが、決めつけも良くないかもしれない。",
         "options": [
           {
             "id": "RETURN_THE_KEY",
@@ -4302,7 +4309,7 @@
       },
       {
         "id": "KEEP_THE_KEY",
-        "description": "見知らぬ人はあなたを威嚇するように見つめる。 この場から鍵を持って出られるのは一人だけのようだ。",
+        "description": "見知らぬ騎士はあなたを威嚇するように見つめた。 この場から鍵を持って出られるのは一人だけのようだ。",
         "options": [
           {
             "id": "FIGHT",
@@ -4476,7 +4483,7 @@
           {
             "id": "CHAOS",
             "title": "混沌",
-            "description": "ランダムなカードを1枚[gold]手札[/gold]に加える。 このターン、そのコストは[blue]0[/blue][energy:1]。"
+            "description": "ランダムなカードを1枚[gold]手札[/gold]に加える。このターン、それはコストを支払わずにプレイできる。"
           },
           {
             "id": "EXPERTISE",
@@ -5005,7 +5012,7 @@
     "act": "Underdocks",
     "description": "暗い通路を進んでいくと、小さな店で働く[aqua]しわがれた人物[/aqua]に出くわした。 たくさんの棚には、湿気を帯びた巻物や羊皮紙が[sine]詰め込まれている[/sine]。\n\n客の来店に気づいた[aqua]筆写人[/aqua]は、ぴしっと姿勢を正し、机の上に並べられたいくつかの[gold]道具[/gold]を指し示した。",
     "preconditions": [
-      "Requires 65+ gold"
+      "Requires 55+ gold"
     ],
     "options": [
       {
@@ -5016,22 +5023,22 @@
       {
         "id": "TENTACLE_QUILL",
         "title": "触手の羽ペン",
-        "description": "[red]65[/red][gold]ゴールド[/gold]を支払う。 カード1枚に[purple]安定性[/purple]を[gold]エンチャント[/gold]する。"
+        "description": "[red]55[/red][gold]ゴールド[/gold]を支払う。 カード1枚に[purple]安定性[/purple]を[gold]エンチャント[/gold]する。"
       },
       {
         "id": "TENTACLE_QUILL_LOCKED",
         "title": "ロック中",
-        "description": "[blue]65[/blue][gold]ゴールド[/gold]が必要。"
+        "description": "[blue]55[/blue][gold]ゴールド[/gold]が必要。"
       },
       {
         "id": "PRICKLY_SPONGE",
         "title": "チクチクするスポンジ",
-        "description": "[red]155[/red][gold]ゴールド[/gold]を支払う。 カード[blue]2[/blue]枚に[purple]安定性[/purple]を[gold]エンチャント[/gold]する。"
+        "description": "[red]99[/red][gold]ゴールド[/gold]を支払う。 カード[blue]2[/blue]枚に[purple]安定性[/purple]を[gold]エンチャント[/gold]する。"
       },
       {
         "id": "PRICKLY_SPONGE_LOCKED",
         "title": "ロック中",
-        "description": "[blue]155[/blue][gold]ゴールド[/gold]が必要。"
+        "description": "[blue]99[/blue][gold]ゴールド[/gold]が必要。"
       }
     ],
     "pages": [
@@ -5051,22 +5058,22 @@
           {
             "id": "TENTACLE_QUILL",
             "title": "触手の羽ペン",
-            "description": "[red]65[/red][gold]ゴールド[/gold]を支払う。 カード1枚に[purple]安定性[/purple]を[gold]エンチャント[/gold]する。"
+            "description": "[red]55[/red][gold]ゴールド[/gold]を支払う。 カード1枚に[purple]安定性[/purple]を[gold]エンチャント[/gold]する。"
           },
           {
             "id": "TENTACLE_QUILL_LOCKED",
             "title": "ロック中",
-            "description": "[blue]65[/blue][gold]ゴールド[/gold]が必要。"
+            "description": "[blue]55[/blue][gold]ゴールド[/gold]が必要。"
           },
           {
             "id": "PRICKLY_SPONGE",
             "title": "チクチクするスポンジ",
-            "description": "[red]155[/red][gold]ゴールド[/gold]を支払う。 カード[blue]2[/blue]枚に[purple]安定性[/purple]を[gold]エンチャント[/gold]する。"
+            "description": "[red]99[/red][gold]ゴールド[/gold]を支払う。 カード[blue]2[/blue]枚に[purple]安定性[/purple]を[gold]エンチャント[/gold]する。"
           },
           {
             "id": "PRICKLY_SPONGE_LOCKED",
             "title": "ロック中",
-            "description": "[blue]155[/blue][gold]ゴールド[/gold]が必要。"
+            "description": "[blue]99[/blue][gold]ゴールド[/gold]が必要。"
           }
         ]
       },
@@ -5240,13 +5247,13 @@
     "act": "Act 1 - Overgrowth",
     "description": "[red]枯れ木が立ち並ぶ窪地[/red]を抜けていくと、一本の骨のように白い木に行き当たった。 まるで肋骨のように内側へ湾曲した枝には、粘土でできた飾りがぶら下がっている。\n\nこの[purple]おぞましい木[/purple]が、あなたに向かって囁きかけてきた。\n\n[sine][blue]…… 取引を…… しよう…… [/blue][/sine]",
     "preconditions": [
-      "Requires 50+ gold"
+      "Requires 44+ gold"
     ],
     "options": [
       {
         "id": "GOLD",
         "title": "ゴールドを渡す",
-        "description": "[gold]ゴールド[/gold]を[red]50[/red]失う。 ランダムな[gold]ポーション[/gold]を[blue]2[/blue]個獲得する。"
+        "description": "[gold]ゴールド[/gold]を[red]26-44[/red]失う。 ランダムな[gold]ポーション[/gold]を[blue]2[/blue]個獲得する。"
       },
       {
         "id": "HUG",
@@ -5270,7 +5277,7 @@
           {
             "id": "GOLD",
             "title": "ゴールドを渡す",
-            "description": "[gold]ゴールド[/gold]を[red]50[/red]失う。 ランダムな[gold]ポーション[/gold]を[blue]2[/blue]個獲得する。"
+            "description": "[gold]ゴールド[/gold]を[red]26-44[/red]失う。 ランダムな[gold]ポーション[/gold]を[blue]2[/blue]個獲得する。"
           },
           {
             "id": "HUG",
@@ -5366,7 +5373,7 @@
       {
         "id": "BREATHING_TECHNIQUES",
         "title": "呼吸法",
-        "description": "[red]50[/red][gold]ゴールド[/gold]を支払う。 [gold]悟り[/gold]を[blue]2[/blue]枚[gold]デッキ[/gold]に追加する。"
+        "description": "[red]50[/red][gold]ゴールド[/gold]を支払う。 [gold]啓発[/gold]を[blue]2[/blue]枚[gold]デッキ[/gold]に追加する。"
       },
       {
         "id": "EMOTIONAL_AWARENESS",
@@ -5404,7 +5411,7 @@
           {
             "id": "BREATHING_TECHNIQUES",
             "title": "呼吸法",
-            "description": "[red]50[/red][gold]ゴールド[/gold]を支払う。 [gold]悟り[/gold]を[blue]2[/blue]枚[gold]デッキ[/gold]に追加する。"
+            "description": "[red]50[/red][gold]ゴールド[/gold]を支払う。 [gold]啓発[/gold]を[blue]2[/blue]枚[gold]デッキ[/gold]に追加する。"
           },
           {
             "id": "EMOTIONAL_AWARENESS",

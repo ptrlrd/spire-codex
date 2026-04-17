@@ -62,7 +62,7 @@
   {
     "id": "ARSENAL",
     "name": "武器庫",
-    "description": "無色カードをプレイするたび、[gold]筋力[/gold][blue]1[/blue]を得る。",
+    "description": "カードを作成するたび、[gold]筋力[/gold][blue]1[/blue]を得る。",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
@@ -145,7 +145,7 @@
     "description": "自身のターン中に[gold]ブロック[/gold]を得るたび、他の全プレイヤーはその半分の値の[gold]ブロック[/gold]を得る。",
     "description_raw": null,
     "type": "Buff",
-    "stack_type": "Counter",
+    "stack_type": "Single",
     "allow_negative": null,
     "image_url": "/static/images/powers/beacon_of_hope_power.webp"
   },
@@ -170,16 +170,6 @@
     "image_url": "/static/images/powers/black_hole_power.webp"
   },
   {
-    "id": "BLADE_OF_INK",
-    "name": "墨の刃",
-    "description": "このターン、アタックをプレイするたび、ターン終了時まで[gold]筋力[/gold][blue]2[/blue]を得る。",
-    "description_raw": null,
-    "type": "Buff",
-    "stack_type": "Counter",
-    "allow_negative": null,
-    "image_url": "/static/images/powers/blade_of_ink_power.webp"
-  },
-  {
     "id": "BLOCK_NEXT_TURN",
     "name": "次ターンブロック",
     "description": "次のターン開始時、[blue]4[/blue][gold]ブロック[/gold]を得る。",
@@ -198,6 +188,16 @@
     "stack_type": "Counter",
     "allow_negative": null,
     "image_url": "/static/images/powers/blur_power.webp"
+  },
+  {
+    "id": "BORROWED_TIME",
+    "name": "借り物の時間",
+    "description": "このターン、カードのコストが増加する。",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/borrowed_time_power.webp"
   },
   {
     "id": "BUFFER",
@@ -402,7 +402,7 @@
   {
     "id": "CRAB_RAGE",
     "name": "カニの怒り",
-    "description": "味方が1体死亡した時、[gold]this creature[/gold]は[gold]筋力[/gold][blue]5[/blue]と[blue]99[/blue][gold]ブロック[/gold]を得る。",
+    "description": "味方が1体死亡した時、[gold]this creature[/gold]は[gold]筋力[/gold][blue]6[/blue]と[blue]99[/blue][gold]ブロック[/gold]を得る。",
     "description_raw": "味方が1体死亡した時、[gold]{OwnerName}[/gold]は[gold]筋力[/gold][blue]{StrengthPower}[/blue]と[blue]{Block}[/blue][gold]ブロック[/gold]を得る。",
     "type": "Buff",
     "stack_type": "Single",
@@ -431,7 +431,7 @@
   },
   {
     "id": "CRUELTY",
-    "name": "残酷",
+    "name": "無慈悲",
     "description": "弱体中の敵は、追加ダメージを受ける。",
     "description_raw": null,
     "type": "Buff",
@@ -610,16 +610,6 @@
     "image_url": "/static/images/powers/doom_power.webp"
   },
   {
-    "id": "DOOR_REVIVAL",
-    "name": "扉の復活",
-    "description": "扉の復活ギミック用の内部パワー。",
-    "description_raw": null,
-    "type": "Buff",
-    "stack_type": "Single",
-    "allow_negative": null,
-    "image_url": null
-  },
-  {
     "id": "DOUBLE_DAMAGE",
     "name": "ダメージ2倍",
     "description": "このターン、アタックは2倍のダメージを与える。",
@@ -781,7 +771,7 @@
   },
   {
     "id": "FERAL",
-    "name": "野生",
+    "name": "野性",
     "description": "毎ターン、コスト0[energy:1]のアタックを初めてプレイした時、そのカードを[gold]手札[/gold]に戻す。",
     "description_raw": "毎ターン、コスト0{energyPrefix:energyIcons(1)}のアタックを初めてプレイした時、そのカードを[gold]手札[/gold]に戻す。",
     "type": "Buff",
@@ -802,7 +792,7 @@
   {
     "id": "FLANKING",
     "name": "挟撃",
-    "description": "このターン、他の味方はこの敵に[blue]2[/blue]倍のダメージを与える。",
+    "description": "このターン、他の味方はこの敵に[blue]2[/blue]倍のアタックダメージを与える。",
     "description_raw": null,
     "type": "Debuff",
     "stack_type": "Counter",
@@ -960,14 +950,14 @@
     "image_url": "/static/images/powers/gigantification_power.webp"
   },
   {
-    "id": "GRAPPLE",
-    "name": "グラップル",
-    "description": "このターン、[gold]ブロック[/gold]を得るたび、[gold]this creature[/gold]に[blue][Amount][/blue]ダメージを与える。",
-    "description_raw": "このターン、[gold]ブロック[/gold]を得るたび、[gold]{OwnerName}[/gold]に[blue]{Amount}[/blue]ダメージを与える。",
-    "type": "Debuff",
-    "stack_type": "Counter",
+    "id": "GRASP",
+    "name": "掌握",
+    "description": "カードをプレイするたび、エナジーを[blue]1[/blue]失う。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
     "allow_negative": null,
-    "image_url": "/static/images/powers/grapple_power.webp"
+    "image_url": "/static/images/powers/grasp_power.webp"
   },
   {
     "id": "GRAVITY",
@@ -1130,6 +1120,16 @@
     "image_url": "/static/images/powers/hotfix_power.webp"
   },
   {
+    "id": "HUNGER",
+    "name": "飢餓",
+    "description": "アタックかスキルをプレイするたび、それを[gold]廃棄[/gold]する。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/hunger_power.webp"
+  },
+  {
     "id": "ILLUSION",
     "name": "幻影",
     "description": "これが倒された時、次のターンにHP全快で復活する。",
@@ -1212,7 +1212,7 @@
   {
     "id": "ITERATION",
     "name": "反復",
-    "description": "毎ターン、最初に[gold]状態異常[/gold]を引いた時、さらにカードを引く。",
+    "description": "毎ターン、最初に状態異常を引いた時、さらにカードを引く。",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
@@ -1450,6 +1450,16 @@
     "image_url": "/static/images/powers/no_draw_power.webp"
   },
   {
+    "id": "NO_ENERGY_GAIN",
+    "name": "エナジー獲得不可",
+    "description": "このターン、追加の[energy:1]を得ることができない。",
+    "description_raw": "このターン、追加の{energyPrefix:energyIcons(1)}を得ることができない。",
+    "type": "Debuff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/no_energy_gain_power.webp"
+  },
+  {
     "id": "NOSTALGIA",
     "name": "郷愁",
     "description": "毎ターン、最初にプレイするアタックまたはスキルは、[gold]山札[/gold]の一番上に置かれる。",
@@ -1461,7 +1471,7 @@
   },
   {
     "id": "NOXIOUS_FUMES",
-    "name": "毒ガス",
+    "name": "有毒ガス",
     "description": "ターン開始時、すべての敵に[gold]毒[/gold][blue]2[/blue]を付与する。",
     "description_raw": null,
     "type": "Buff",
@@ -1551,9 +1561,9 @@
   },
   {
     "id": "PAPER_CUTS",
-    "name": "ペーパーカット",
-    "description": "[gold]this creature[/gold]からブロックされなかった攻撃ダメージを受けるたび、[gold]最大HP[/gold][blue][Amount][/blue]を失う。",
-    "description_raw": "[gold]{OwnerName}[/gold]からブロックされなかった攻撃ダメージを受けるたび、[gold]最大HP[/gold][blue]{Amount}[/blue]を失う。",
+    "name": "紙傷",
+    "description": "[gold]this creature[/gold]からブロックしきれなかった攻撃ダメージを受けるたび、[gold]最大HP[/gold][blue][Amount][/blue]を失う。",
+    "description_raw": "[gold]{OwnerName}[/gold]からブロックしきれなかった攻撃ダメージを受けるたび、[gold]最大HP[/gold][blue]{Amount}[/blue]を失う。",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
@@ -1850,8 +1860,18 @@
     "image_url": "/static/images/powers/sandpit_power.webp"
   },
   {
+    "id": "SCRUTINY",
+    "name": "監視",
+    "description": "このターン、追加でカードを引くことができない。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/scrutiny_power.webp"
+  },
+  {
     "id": "SEEKING_EDGE",
-    "name": "探求の刃",
+    "name": "追尾の刃",
     "description": "[gold]ソヴリン・ブレード[/gold]がすべての敵を攻撃するようになる。",
     "description_raw": null,
     "type": "Buff",
@@ -2211,7 +2231,7 @@
   },
   {
     "id": "SUBROUTINE",
-    "name": "サブルーティン",
+    "name": "サブルーチン",
     "description": "パワーをプレイするたび、[blue]1[/blue][energy:1]を得る。",
     "description_raw": "パワーをプレイするたび、[blue]1[/blue]{energyPrefix:energyIcons(1)}を得る。",
     "type": "Buff",
@@ -2261,8 +2281,8 @@
   },
   {
     "id": "SWIPE",
-    "name": "スワイプ",
-    "description": "この敵を倒した時、盗まれたカードが[gold]手札[/gold]に戻る。",
+    "name": "盗む",
+    "description": "この敵を倒した時、盗まれたカードが手札に戻る。",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Single",
@@ -2272,7 +2292,7 @@
   {
     "id": "SWORD_SAGE",
     "name": "剣聖",
-    "description": "[gold]ソヴリン・ブレード[/gold]のコストが[blue]1[/blue]増加する。[gold]ソヴリン・ブレード[/gold]の攻撃回数が[blue]1[/blue]回増える。",
+    "description": "[gold]ソヴリン・ブレード[/gold]の攻撃回数が[blue]1[/blue]回増える。",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
@@ -2522,8 +2542,8 @@
   {
     "id": "VULNERABLE",
     "name": "弱体",
-    "description": "アタックから受けるダメージが[blue]50%[/blue]増加する。（残り[blue][Amount][/blue]ターン）",
-    "description_raw": "アタックから受けるダメージが[blue]{DamageIncrease:percentMore()}%[/blue]増加する。（残り[blue]{Amount}[/blue]ターン）",
+    "description": "[blue][Amount][/blue]ターンの間、アタックから受けるダメージが[blue]50%[/blue]増加する。",
+    "description_raw": "[blue]{Amount}[/blue]ターンの間、アタックから受けるダメージが[blue]{DamageIncrease:percentMore()}%[/blue]増加する。",
     "type": "Debuff",
     "stack_type": "Counter",
     "allow_negative": null,

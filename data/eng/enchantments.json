@@ -33,17 +33,6 @@
     "image_url": "/static/images/enchantments/corrupted.webp"
   },
   {
-    "id": "FAVORED",
-    "name": "Favored",
-    "description": "This card's attack damage is doubled.",
-    "description_raw": null,
-    "extra_card_text": null,
-    "card_type": "Attack",
-    "applicable_to": null,
-    "is_stackable": false,
-    "image_url": "/static/images/enchantments/favored.webp"
-  },
-  {
     "id": "GLAM",
     "name": "Glam",
     "description": "This card has [gold]Replay[/gold] once per combat.",
@@ -77,9 +66,20 @@
     "image_url": "/static/images/enchantments/imbued.webp"
   },
   {
+    "id": "INKY",
+    "name": "Inky",
+    "description": "This card deals [blue]2[/blue] additional damage and applies [blue]1[/blue] [gold]Weak[/gold].",
+    "description_raw": "This card deals [blue]{Damage}[/blue] additional damage and applies [blue]{WeakPower}[/blue] [gold]Weak[/gold].",
+    "extra_card_text": "Apply [blue]1[/blue] [gold]Weak[/gold] to ALL enemies.",
+    "card_type": null,
+    "applicable_to": null,
+    "is_stackable": false,
+    "image_url": "/static/images/enchantments/inky.webp"
+  },
+  {
     "id": "INSTINCT",
     "name": "Instinct",
-    "description": "Decrease the cost of this card by [blue]1[/blue].",
+    "description": "This card's attack damage is doubled.",
     "description_raw": null,
     "extra_card_text": null,
     "card_type": "Attack",

@@ -2,7 +2,7 @@
   {
     "id": "ALL_STAR",
     "name": "Alleskönner",
-    "description": "Beginne mit [blue]5[/blue] [gold]farblosen Karten[/gold]."
+    "description": "Beginne mit [blue]5[/blue] [gold]Farblosen Karten[/gold]."
   },
   {
     "id": "BIG_GAME_HUNTER",
@@ -17,7 +17,7 @@
   {
     "id": "CURSED_RUN",
     "name": "Verflucht",
-    "description": "Erhalte zu Beginn jedes Aktes einen zufälligen [red]Fluch[/red] in dein Deck ."
+    "description": "Nimm zu Beginn jedes Aktes einen zufälligen [red]Fluch[/red] in dein Deck ."
   },
   {
     "id": "DEADLY_EVENTS",
@@ -32,12 +32,12 @@
   {
     "id": "FLIGHT",
     "name": "Fliegen",
-    "description": "Du kannst Pfade ignorieren, wenn du wählst, zu welchem Raum du als nächstes reist."
+    "description": "Du kannst Pfade ignorieren, wenn du entscheidest, zu welchem Raum du reist."
   },
   {
     "id": "HOARDER",
     "name": "Sammler",
-    "description": "Immer wenn du deinem Deck eine Karte hinzufügst, bekommst du [blue]2[/blue] weitere Exemplare. Du kannst beim Händler keine Karten mehr entfernen."
+    "description": "Immer wenn eine Karte in dein Deck nimmst, bekommst du [blue]2[/blue] weitere Exemplare. Du kannst beim Händler keine Karten mehr entfernen."
   },
   {
     "id": "INSANITY",

@@ -302,10 +302,6 @@
     "tags": null,
     "monsters": [
       {
-        "id": "DOOR",
-        "name": "Portal"
-      },
-      {
         "id": "DOORMAKER",
         "name": "Titán interdimensional"
       }
@@ -986,6 +982,27 @@
     "loss_text": "Unos [gold]Pergaminos mordedores[/gold] hicieron trizas a [b]The Adventurer[/b]."
   },
   {
+    "id": "SEAPUNK_NORMAL",
+    "name": "fauna de los Muelles Sombríos",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": [
+      "Seapunk"
+    ],
+    "monsters": [
+      {
+        "id": "CALCIFIED_CULTIST",
+        "name": "Sectario calcificado"
+      },
+      {
+        "id": "SEAPUNK",
+        "name": "Canalla marino"
+      }
+    ],
+    "loss_text": "La [gold]fauna de los Muelles Sombríos[/gold] le explicó un par de cosas a [b]The Adventurer[/b]."
+  },
+  {
     "id": "SEAPUNK_WEAK",
     "name": "Canalla marino",
     "room_type": "Monster",
@@ -1394,25 +1411,6 @@
     "loss_text": "Un [gold]Asaltamontes[/gold] atracó a [b]The Adventurer[/b]."
   },
   {
-    "id": "TOADPOLES_NORMAL",
-    "name": "criatura de los Muelles Sombríos",
-    "room_type": "Monster",
-    "is_weak": false,
-    "act": "Underdocks",
-    "tags": null,
-    "monsters": [
-      {
-        "id": "CALCIFIED_CULTIST",
-        "name": "Sectario calcificado"
-      },
-      {
-        "id": "TOADPOLE",
-        "name": "Ranicuajo"
-      }
-    ],
-    "loss_text": "[b]The Adventurer[/b] cayó ante una [gold]criatura de los Muelles Sombríos[/gold]."
-  },
-  {
     "id": "TOADPOLES_WEAK",
     "name": "Ranicuajos",
     "room_type": "Monster",
@@ -1432,19 +1430,15 @@
     "name": "Dúo tunelador",
     "room_type": "Monster",
     "is_weak": false,
-    "act": "Act 2 - Hive",
+    "act": null,
     "tags": [
       "Burrower",
-      "Workers"
+      "Chomper"
     ],
     "monsters": [
       {
-        "id": "BOWLBUG_EGG",
-        "name": "Escaracuenco (Huevo)"
-      },
-      {
-        "id": "BOWLBUG_SILK",
-        "name": "Escaracuenco (Seda)"
+        "id": "CHOMPER",
+        "name": "Bocaditos"
       },
       {
         "id": "TUNNELER",

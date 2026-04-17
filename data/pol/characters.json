@@ -471,7 +471,7 @@
     "dialogue_color": "new",
     "quotes": {
       "event_death_prevention": "Moja kompania wciąż mnie potrzebuje.",
-      "gold_monologue": "[sine]Cały ten majątek wzmocni zbrojownię klanu...[/sine]",
+      "gold_monologue": "[sine]Mogę wzmocnić zbrojownię klanu tym majątkiem...[/sine]",
       "aroma_principle": "[sine][red]Ból jest niczym. Moi wrogowie muszą umrzeć.[/red][/sine]",
       "banter_alive": "Szybciej!",
       "banter_dead": "...",
@@ -1907,8 +1907,8 @@
     "dialogue_color": "new",
     "quotes": {
       "event_death_prevention": "Muszę przeżyć, aby polować dalej...",
-      "gold_monologue": "[sine]Siostry byłyby dumne z tylu bogactw...[/sine]",
-      "aroma_principle": "[sine][green]...poluj... wykaż się... zasłużysz na swoje miejsce...[/green][/sine]",
+      "gold_monologue": "[sine]Siostry byłyby dumne z takich bogactw...[/sine]",
+      "aroma_principle": "[sine][green]...Poluj... Wykaż się... Zasłużysz na swoje miejsce...[/green][/sine]",
       "banter_alive": "[sine]...[/sine]",
       "banter_dead": "...",
       "unlock_text": "Ukończ pierwszą wyprawę, aby odblokować tę postać.",

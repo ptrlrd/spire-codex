@@ -153,17 +153,17 @@
   {
     "id": "BEGONE",
     "name": "下去！",
-    "description": "造成4点伤害。\n选择你[gold]手牌[/gold]中的一张牌，将其[gold]变化[/gold]为[gold]仆从俯冲[/gold]。",
-    "description_raw": "造成{Damage:diff()}点伤害。\n选择你[gold]手牌[/gold]中的一张牌，将其[gold]变化[/gold]为[gold]{IfUpgraded:show:仆从俯冲+|仆从俯冲}[/gold]。",
+    "description": "选择你[gold]手牌[/gold]中的一张牌，将其[gold]变化[/gold]为[gold]仆从打击[/gold]。",
+    "description_raw": "选择你[gold]手牌[/gold]中的一张牌，将其[gold]变化[/gold]为[gold]{IfUpgraded:show:仆从打击+|仆从打击}[/gold]。",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
     "star_cost": null,
-    "type": "攻击",
+    "type": "技能",
     "rarity": "普通",
-    "target": "AnyEnemy",
+    "target": "Self",
     "color": "regent",
-    "damage": 4,
+    "damage": null,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -173,19 +173,17 @@
     "keywords": null,
     "tags": null,
     "spawns_cards": [
-      "MINION_DIVE_BOMB"
+      "MINION_STRIKE"
     ],
-    "vars": {
-      "Damage": 4
-    },
+    "vars": null,
     "upgrade": {
-      "damage": "+1"
+      "description_changed": true
     },
     "image_url": "/static/images/cards/begone.webp",
     "beta_image_url": "/static/images/cards/beta/begone.webp",
     "type_variants": null,
-    "upgrade_description": "造成5点伤害。\n选择你[gold]手牌[/gold]中的一张牌，将其[gold]变化[/gold]为[gold]仆从俯冲+[/gold]。",
-    "type_key": "Attack",
+    "upgrade_description": "选择你[gold]手牌[/gold]中的一张牌，将其[gold]变化[/gold]为[gold]仆从打击+[/gold]。",
+    "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 179
   },
@@ -268,7 +266,7 @@
   {
     "id": "FIGHT_ME",
     "name": "与我一战！",
-    "description": "造成5点伤害两次。\n获得2点[gold]力量[/gold]。\n该敌人获得1点[gold]力量[/gold]。",
+    "description": "造成5点伤害两次。\n获得3点[gold]力量[/gold]。\n该敌人获得1点[gold]力量[/gold]。",
     "description_raw": "造成{Damage:diff()}点伤害两次。\n获得{StrengthPower:diff()}点[gold]力量[/gold]。\n该敌人获得{EnemyStrength:diff()}点[gold]力量[/gold]。",
     "cost": 2,
     "is_x_cost": null,
@@ -284,7 +282,7 @@
     "powers_applied": [
       {
         "power": "力量",
-        "amount": 2,
+        "amount": 3,
         "power_key": "Strength"
       }
     ],
@@ -298,8 +296,8 @@
       "EnemyStrength": 1,
       "Damage": 5,
       "Repeat": 2,
-      "StrengthPower": 2,
-      "Strength": 2
+      "StrengthPower": 3,
+      "Strength": 3
     },
     "upgrade": {
       "damage": "+1",
@@ -308,7 +306,7 @@
     "image_url": "/static/images/cards/fight_me.webp",
     "beta_image_url": "/static/images/cards/beta/fight_me.webp",
     "type_variants": null,
-    "upgrade_description": "造成6点伤害两次。\n获得2点[gold]力量[/gold]。\n该敌人获得1点[gold]力量[/gold]。",
+    "upgrade_description": "造成6点伤害两次。\n获得3点[gold]力量[/gold]。\n该敌人获得1点[gold]力量[/gold]。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 35
@@ -407,7 +405,7 @@
   {
     "id": "SKEWER",
     "name": "串刺",
-    "description": "造成7点伤害X次。",
+    "description": "造成8点伤害X次。",
     "description_raw": "造成{Damage:diff()}点伤害X次。",
     "cost": 0,
     "is_x_cost": true,
@@ -417,7 +415,7 @@
     "rarity": "罕见",
     "target": "AnyEnemy",
     "color": "silent",
-    "damage": 7,
+    "damage": 8,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -428,7 +426,7 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Damage": 7
+      "Damage": 8
     },
     "upgrade": {
       "damage": "+3"
@@ -436,7 +434,7 @@
     "image_url": "/static/images/cards/skewer.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "造成10点伤害X次。",
+    "upgrade_description": "造成11点伤害X次。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 156
@@ -444,8 +442,8 @@
   {
     "id": "DOMINATE",
     "name": "主宰",
-    "description": "敌人身上每有一层[gold]易伤[/gold]，就获得1点[gold]力量[/gold]。",
-    "description_raw": "敌人身上每有一层[gold]易伤[/gold]，就获得{StrengthPerVulnerable:diff()}点[gold]力量[/gold]。",
+    "description": "给予1层[gold]易伤[/gold]。\n敌人身上每有一层[gold]易伤[/gold]，就获得1点[gold]力量[/gold]。",
+    "description_raw": "给予{VulnerablePower:diff()}层[gold]易伤[/gold]。\n敌人身上每有一层[gold]易伤[/gold]，就获得{StrengthPerVulnerable:diff()}点[gold]力量[/gold]。",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -457,7 +455,13 @@
     "damage": null,
     "block": null,
     "hit_count": null,
-    "powers_applied": null,
+    "powers_applied": [
+      {
+        "power": "易伤",
+        "amount": 1,
+        "power_key": "Vulnerable"
+      }
+    ],
     "cards_draw": null,
     "energy_gain": null,
     "hp_loss": null,
@@ -467,15 +471,17 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "StrengthPerVulnerable": 1
+      "StrengthPerVulnerable": 1,
+      "VulnerablePower": 1,
+      "Vulnerable": 1
     },
     "upgrade": {
-      "remove_exhaust": true
+      "vulnerablepower": "+1"
     },
     "image_url": "/static/images/cards/dominate.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "给予2层[gold]易伤[/gold]。\n敌人身上每有一层[gold]易伤[/gold]，就获得1点[gold]力量[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -748,7 +754,7 @@
     "name": "仆从俯冲",
     "description": "造成13点伤害。",
     "description_raw": "造成{Damage:diff()}点伤害。",
-    "cost": 1,
+    "cost": 0,
     "is_x_cost": null,
     "is_x_star_cost": null,
     "star_cost": null,
@@ -790,7 +796,7 @@
   {
     "id": "MINION_STRIKE",
     "name": "仆从打击",
-    "description": "造成7点伤害。\n抽1张牌。",
+    "description": "造成6点伤害。\n抽1张牌。",
     "description_raw": "造成{Damage:diff()}点伤害。\n抽{Cards:diff()}张牌。",
     "cost": 0,
     "is_x_cost": null,
@@ -800,7 +806,7 @@
     "rarity": "衍生",
     "target": "AnyEnemy",
     "color": "token",
-    "damage": 7,
+    "damage": 6,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -816,7 +822,7 @@
     ],
     "spawns_cards": null,
     "vars": {
-      "Damage": 7,
+      "Damage": 6,
       "Cards": 1
     },
     "upgrade": {
@@ -825,7 +831,7 @@
     "image_url": "/static/images/cards/minion_strike.webp",
     "beta_image_url": "/static/images/cards/beta/minion_strike.webp",
     "type_variants": null,
-    "upgrade_description": "造成10点伤害。\n抽1张牌。",
+    "upgrade_description": "造成9点伤害。\n抽1张牌。",
     "type_key": "Attack",
     "rarity_key": "Token",
     "keywords_key": [
@@ -880,7 +886,7 @@
   {
     "id": "HEIRLOOM_HAMMER",
     "name": "传承之锤",
-    "description": "造成17点伤害。\n选择你[gold]手牌[/gold]中的一张无色牌。将这张牌的一张复制品放入你的[gold]手牌[/gold]。",
+    "description": "造成20点伤害。\n选择你[gold]手牌[/gold]中的一张无色牌。将这张牌的一张复制品放入你的[gold]手牌[/gold]。",
     "description_raw": "造成{Damage:diff()}点伤害。\n选择你[gold]手牌[/gold]中的一张无色牌。将这张牌的一张复制品放入你的[gold]手牌[/gold]。",
     "cost": 2,
     "is_x_cost": null,
@@ -890,7 +896,7 @@
     "rarity": "稀有",
     "target": "AnyEnemy",
     "color": "regent",
-    "damage": 17,
+    "damage": 20,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -901,7 +907,7 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Damage": 17,
+      "Damage": 20,
       "Repeat": 1
     },
     "upgrade": {
@@ -910,7 +916,7 @@
     "image_url": "/static/images/cards/heirloom_hammer.webp",
     "beta_image_url": "/static/images/cards/beta/heirloom_hammer.webp",
     "type_variants": null,
-    "upgrade_description": "造成22点伤害。\n选择你[gold]手牌[/gold]中的一张无色牌。将这张牌的一张复制品放入你的[gold]手牌[/gold]。",
+    "upgrade_description": "造成25点伤害。\n选择你[gold]手牌[/gold]中的一张无色牌。将这张牌的一张复制品放入你的[gold]手牌[/gold]。",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 215
@@ -1109,8 +1115,8 @@
   {
     "id": "CINDER",
     "name": "余烬",
-    "description": "造成17点伤害。\n[gold]消耗[/gold]你的[gold]抽牌堆[/gold]顶部的牌。",
-    "description_raw": "造成{Damage:diff()}点伤害。\n[gold]消耗[/gold]你的[gold]抽牌堆[/gold]顶部的牌。",
+    "description": "造成18点伤害。\n随机[gold]消耗[/gold]1张牌。",
+    "description_raw": "造成{Damage:diff()}点伤害。\n随机[gold]消耗[/gold]1张牌。",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -1119,7 +1125,7 @@
     "rarity": "普通",
     "target": "AnyEnemy",
     "color": "ironclad",
-    "damage": 17,
+    "damage": 18,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -1130,16 +1136,15 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "CardsToExhaust": 1,
-      "Damage": 17
+      "Damage": 18
     },
     "upgrade": {
-      "damage": "+5"
+      "damage": "+6"
     },
     "image_url": "/static/images/cards/cinder.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "造成22点伤害。\n[gold]消耗[/gold]你的[gold]抽牌堆[/gold]顶部的牌。",
+    "upgrade_description": "造成24点伤害。\n随机[gold]消耗[/gold]1张牌。",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 17
@@ -1231,8 +1236,8 @@
   {
     "id": "COUNTDOWN",
     "name": "倒数计时",
-    "description": "在你的回合开始时，给予随机敌人6点[gold]灾厄[/gold]。",
-    "description_raw": "在你的回合开始时，给予随机敌人{CountdownPower:diff()}点[gold]灾厄[/gold]。",
+    "description": "在你的回合开始时，给予随机敌人6层[gold]灾厄[/gold]。",
+    "description_raw": "在你的回合开始时，给予随机敌人{CountdownPower:diff()}层[gold]灾厄[/gold]。",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -1267,7 +1272,7 @@
     "image_url": "/static/images/cards/countdown.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "在你的回合开始时，给予随机敌人9点[gold]灾厄[/gold]。",
+    "upgrade_description": "在你的回合开始时，给予随机敌人9层[gold]灾厄[/gold]。",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 274
@@ -1514,7 +1519,7 @@
   {
     "id": "LEADING_STRIKE",
     "name": "先制打击",
-    "description": "造成7点伤害。\n将1张[gold]小刀[/gold]加入你的[gold]手牌[/gold]。",
+    "description": "造成3点伤害。\n将2张[gold]小刀[/gold]加入你的[gold]手牌[/gold]。",
     "description_raw": "造成{Damage:diff()}点伤害。\n将{Shivs:diff()}张[gold]小刀[/gold]加入你的[gold]手牌[/gold]。",
     "cost": 1,
     "is_x_cost": null,
@@ -1524,7 +1529,7 @@
     "rarity": "普通",
     "target": "AnyEnemy",
     "color": "silent",
-    "damage": 7,
+    "damage": 3,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -1539,8 +1544,8 @@
       "SHIV"
     ],
     "vars": {
-      "Shivs": 1,
-      "Damage": 7
+      "Shivs": 2,
+      "Damage": 3
     },
     "upgrade": {
       "damage": "+3"
@@ -1548,7 +1553,7 @@
     "image_url": "/static/images/cards/leading_strike.webp",
     "beta_image_url": "/static/images/cards/beta/leading_strike.webp",
     "type_variants": null,
-    "upgrade_description": "造成10点伤害。\n将1张[gold]小刀[/gold]加入你的[gold]手牌[/gold]。",
+    "upgrade_description": "造成6点伤害。\n将2张[gold]小刀[/gold]加入你的[gold]手牌[/gold]。",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 132
@@ -1804,6 +1809,43 @@
     "compendium_order": 242
   },
   {
+    "id": "SCAVENGE",
+    "name": "内存清理",
+    "description": "[gold]消耗[/gold]一张牌。\n在下个回合获得[energy:2]。",
+    "description_raw": "[gold]消耗[/gold]一张牌。\n在下个回合获得{Energy:energyIcons()}。",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "技能",
+    "rarity": "罕见",
+    "target": "Self",
+    "color": "defect",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": 2,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Energy": 2
+    },
+    "upgrade": {
+      "energy": "+1"
+    },
+    "image_url": "/static/images/cards/scavenge.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "upgrade_description": "[gold]消耗[/gold]一张牌。\n在下个回合获得[energy:3]。",
+    "type_key": "Skill",
+    "rarity_key": "Uncommon",
+    "compendium_order": 414
+  },
+  {
     "id": "TURBO",
     "name": "内核加速",
     "description": "获得[energy:2]。\n将一张[gold]虚空[/gold]加入你的[gold]弃牌堆[/gold]。",
@@ -1841,43 +1883,6 @@
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 434
-  },
-  {
-    "id": "SCAVENGE",
-    "name": "再利用",
-    "description": "[gold]消耗[/gold]一张牌。\n在下个回合获得[energy:2]。",
-    "description_raw": "[gold]消耗[/gold]一张牌。\n在下个回合获得{Energy:energyIcons()}。",
-    "cost": 1,
-    "is_x_cost": null,
-    "is_x_star_cost": null,
-    "star_cost": null,
-    "type": "技能",
-    "rarity": "罕见",
-    "target": "Self",
-    "color": "defect",
-    "damage": null,
-    "block": null,
-    "hit_count": null,
-    "powers_applied": null,
-    "cards_draw": null,
-    "energy_gain": 2,
-    "hp_loss": null,
-    "keywords": null,
-    "tags": null,
-    "spawns_cards": null,
-    "vars": {
-      "Energy": 2
-    },
-    "upgrade": {
-      "energy": "+1"
-    },
-    "image_url": "/static/images/cards/scavenge.webp",
-    "beta_image_url": null,
-    "type_variants": null,
-    "upgrade_description": "[gold]消耗[/gold]一张牌。\n在下个回合获得[energy:3]。",
-    "type_key": "Skill",
-    "rarity_key": "Uncommon",
-    "compendium_order": 414
   },
   {
     "id": "ICE_LANCE",
@@ -2080,8 +2085,8 @@
   {
     "id": "CHARGE",
     "name": "冲锋！！",
-    "description": "选择你[gold]抽牌堆[/gold]中的2张 牌，将其[gold]变化[/gold]为\n[gold]仆从打击[/gold]。",
-    "description_raw": "选择你[gold]抽牌堆[/gold]中的{Cards:diff()}张 牌，将其[gold]变化[/gold]为\n[gold]{IfUpgraded:show:仆从打击+|仆从打击}[/gold]。",
+    "description": "选择你[gold]抽牌堆[/gold]中的2张牌，将其[gold]变化[/gold]为\n[gold]仆从俯冲[/gold]。",
+    "description_raw": "选择你[gold]抽牌堆[/gold]中的{Cards:diff()}张牌，将其[gold]变化[/gold]为\n[gold]{IfUpgraded:show:仆从俯冲+|仆从俯冲}[/gold]。",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -2100,7 +2105,7 @@
     "keywords": null,
     "tags": null,
     "spawns_cards": [
-      "MINION_STRIKE"
+      "MINION_DIVE_BOMB"
     ],
     "vars": {
       "Cards": 2
@@ -2111,7 +2116,7 @@
     "image_url": "/static/images/cards/charge.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "选择你[gold]抽牌堆[/gold]中的2张 牌，将其[gold]变化[/gold]为\n[gold]仆从打击+[/gold]。",
+    "upgrade_description": "选择你[gold]抽牌堆[/gold]中的2张牌，将其[gold]变化[/gold]为\n[gold]仆从俯冲+[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 186
@@ -2404,7 +2409,7 @@
     "upgrade_description": "造成20点伤害。\n敌人在本回合失去15点[gold]力量[/gold]。",
     "type_key": "Attack",
     "rarity_key": "Rare",
-    "compendium_order": 51
+    "compendium_order": 50
   },
   {
     "id": "NORMALITY",
@@ -2528,8 +2533,8 @@
   {
     "id": "KNOCKDOWN",
     "name": "击倒",
-    "description": "造成10点伤害。\n该敌人在本回合受到的来自其他玩家的伤害翻倍。",
-    "description_raw": "造成{Damage:diff()}点伤害。\n该敌人在本回合受到的来自其他玩家的伤害{IfUpgraded:show:翻三倍|翻倍}。",
+    "description": "造成10点伤害。\n该敌人在本回合受到的来自其他玩家的伤害变为两倍。",
+    "description_raw": "造成{Damage:diff()}点伤害。\n该敌人在本回合受到的来自其他玩家的伤害变为{IfUpgraded:show:三倍|两倍}。",
     "cost": 3,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -2566,7 +2571,7 @@
     "image_url": "/static/images/cards/knockdown.webp",
     "beta_image_url": "/static/images/cards/beta/knockdown.webp",
     "type_variants": null,
-    "upgrade_description": "造成14点伤害。\n该敌人在本回合受到的来自其他玩家的伤害翻三倍。",
+    "upgrade_description": "造成14点伤害。\n该敌人在本回合受到的来自其他玩家的伤害变为三倍。",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 468
@@ -3102,8 +3107,8 @@
   {
     "id": "SWORD_SAGE",
     "name": "剑圣",
-    "description": "[gold]君王之剑[/gold]的耗能加1。[gold]君王之剑[/gold]现在会额外命中一次。",
-    "description_raw": "[gold]君王之剑[/gold]的耗能加1。[gold]君王之剑[/gold]现在会额外命中一次。",
+    "description": "[gold]君王之剑[/gold]现在会额外命中一次。",
+    "description_raw": "[gold]君王之剑[/gold]现在会额外命中一次。",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -3305,7 +3310,7 @@
     "upgrade_description": "每当你获得[gold]格挡[/gold]时，对随机敌人造成7点伤害。",
     "type_key": "Power",
     "rarity_key": "Rare",
-    "compendium_order": 49
+    "compendium_order": 48
   },
   {
     "id": "FASTEN",
@@ -3421,7 +3426,7 @@
   {
     "id": "GRAND_FINALE",
     "name": "华丽收场",
-    "description": "只有当你的[gold]抽牌堆[/gold]中没有牌时才能打出。对所有敌人造成50点伤害。",
+    "description": "只有当你的[gold]抽牌堆[/gold]中没有牌时才能打出。对所有敌人造成60点伤害。",
     "description_raw": "只有当你的[gold]抽牌堆[/gold]中没有牌时才能打出。对所有敌人造成{Damage:diff()}点伤害。",
     "cost": 0,
     "is_x_cost": null,
@@ -3431,7 +3436,7 @@
     "rarity": "稀有",
     "target": "AllEnemies",
     "color": "silent",
-    "damage": 50,
+    "damage": 60,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -3442,15 +3447,15 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Damage": 50
+      "Damage": 60
     },
     "upgrade": {
-      "damage": "+10"
+      "damage": "+15"
     },
     "image_url": "/static/images/cards/grand_finale.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "只有当你的[gold]抽牌堆[/gold]中没有牌时才能打出。对所有敌人造成60点伤害。",
+    "upgrade_description": "只有当你的[gold]抽牌堆[/gold]中没有牌时才能打出。对所有敌人造成75点伤害。",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 126
@@ -3945,8 +3950,8 @@
   {
     "id": "DISCOVERY",
     "name": "发现",
-    "description": "从3张随机牌中选择1张加入你的[gold]手牌[/gold]。这张牌在本回合的耗能为0[energy:1]。",
-    "description_raw": "从3张随机牌中选择1张加入你的[gold]手牌[/gold]。这张牌在本回合的耗能为0{energyPrefix:energyIcons(1)}。",
+    "description": "从3张随机牌中选择1张加入你的[gold]手牌[/gold]。这张牌在本回合可以免费打出。",
+    "description_raw": "从3张随机牌中选择1张加入你的[gold]手牌[/gold]。这张牌在本回合可以免费打出。",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -4926,8 +4931,8 @@
   {
     "id": "INFERNAL_BLADE",
     "name": "地狱之刃",
-    "description": "将一张随机攻击牌加入你的[gold]手牌[/gold]。这张牌在本回合内可以免费打出。",
-    "description_raw": "将一张随机攻击牌加入你的[gold]手牌[/gold]。这张牌在本回合内可以免费打出。",
+    "description": "将一张随机攻击牌加入你的[gold]手牌[/gold]。那张牌在本回合内可以免费打出。",
+    "description_raw": "将一张随机攻击牌加入你的[gold]手牌[/gold]。那张牌在本回合内可以免费打出。",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -4961,7 +4966,7 @@
     "keywords_key": [
       "Exhaust"
     ],
-    "compendium_order": 45
+    "compendium_order": 44
   },
   {
     "id": "HELLRAISER",
@@ -4996,7 +5001,7 @@
     "upgrade_description": null,
     "type_key": "Power",
     "rarity_key": "Rare",
-    "compendium_order": 41
+    "compendium_order": 40
   },
   {
     "id": "EQUILIBRIUM",
@@ -5230,7 +5235,7 @@
     "id": "STACK",
     "name": "堆栈",
     "description": "获得等量于与你当前[gold]弃牌堆[/gold]中牌数|}的[gold]格挡[/gold]值。",
-    "description_raw": "获得等量于与你当前[gold]弃牌堆[/gold]中牌数{IfUpgraded:show:+{CalculationBase}|}的[gold]格挡[/gold]值。{InCombat:\n（获得{CalculatedBlock:diff()}点[gold]格挡[/gold]。）|}",
+    "description_raw": "获得等量于与你当前[gold]弃牌堆[/gold]中牌数{IfUpgraded:show:+{CalculationBase}|}的[gold]格挡[/gold]值。{InCombat:\n（获得{CalculatedBlock:diff()}点[gold]格挡[/gold]）|}",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -5311,8 +5316,8 @@
   {
     "id": "BLADE_OF_INK",
     "name": "墨之刃",
-    "description": "每当你在本回合打出一张攻击牌时，本回合获得2点[gold]力量[/gold]。",
-    "description_raw": "每当你在本回合打出一张攻击牌时，本回合获得{StrengthPower:diff()}点[gold]力量[/gold]。",
+    "description": "添加2张[purple]墨影[/purple][gold]小刀[/gold]到你的[gold]手牌[/gold]。",
+    "description_raw": "添加{Cards:diff()}张[purple]墨影[/purple][gold]小刀[/gold]到你的[gold]手牌[/gold]。",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -5324,30 +5329,25 @@
     "damage": null,
     "block": null,
     "hit_count": null,
-    "powers_applied": [
-      {
-        "power": "力量",
-        "amount": 2,
-        "power_key": "Strength"
-      }
-    ],
-    "cards_draw": null,
+    "powers_applied": null,
+    "cards_draw": 2,
     "energy_gain": null,
     "hp_loss": null,
     "keywords": null,
     "tags": null,
-    "spawns_cards": null,
+    "spawns_cards": [
+      "SHIV"
+    ],
     "vars": {
-      "StrengthPower": 2,
-      "Strength": 2
+      "Cards": 2
     },
     "upgrade": {
-      "strength": "+1"
+      "cards": "+1"
     },
     "image_url": "/static/images/cards/blade_of_ink.webp",
     "beta_image_url": "/static/images/cards/beta/blade_of_ink.webp",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "添加3张[purple]墨影[/purple][gold]小刀[/gold]到你的[gold]手牌[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 98
@@ -5695,12 +5695,12 @@
       "Repeat": 3
     },
     "upgrade": {
-      "damage": "+2"
+      "repeat": "+1"
     },
     "image_url": "/static/images/cards/celestial_might.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "造成8点伤害3次。",
+    "upgrade_description": "造成6点伤害4次。",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 185
@@ -5786,7 +5786,7 @@
   {
     "id": "SOLAR_STRIKE",
     "name": "太阳打击",
-    "description": "造成8点伤害。\n获得[star:1]。",
+    "description": "造成9点伤害。\n获得[star:1]。",
     "description_raw": "造成{Damage:diff()}点伤害。\n获得{Stars:starIcons()}。",
     "cost": 1,
     "is_x_cost": null,
@@ -5796,7 +5796,7 @@
     "rarity": "普通",
     "target": "AnyEnemy",
     "color": "regent",
-    "damage": 8,
+    "damage": 9,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -5809,7 +5809,7 @@
     ],
     "spawns_cards": null,
     "vars": {
-      "Damage": 8,
+      "Damage": 9,
       "Stars": 1
     },
     "upgrade": {
@@ -5819,7 +5819,7 @@
     "image_url": "/static/images/cards/solar_strike.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "造成9点伤害。\n获得[star:2]。",
+    "upgrade_description": "造成10点伤害。\n获得[star:2]。",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 248
@@ -5859,13 +5859,13 @@
     "upgrade_description": "造成12点伤害。\n将你[gold]弃牌堆[/gold]中的一张牌放到[gold]抽牌堆[/gold]顶部。",
     "type_key": "Attack",
     "rarity_key": "Common",
-    "compendium_order": 40
+    "compendium_order": 39
   },
   {
     "id": "FLANKING",
     "name": "夹击",
-    "description": "一名敌人在本回合受到的来自其他玩家的伤害翻倍。",
-    "description_raw": "一名敌人在本回合受到的来自其他玩家的伤害翻倍。",
+    "description": "一名敌人在本回合受到的来自其他玩家的攻击伤害翻倍。",
+    "description_raw": "一名敌人在本回合受到的来自其他玩家的攻击伤害翻倍。",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -5937,9 +5937,9 @@
   {
     "id": "BANSHEES_CRY",
     "name": "女妖之嚎",
-    "description": "对所有敌人造成33点伤害。\n本场战斗中每打出过一张[gold]虚无[/gold]牌，此牌费用就减少[energy:2]。",
-    "description_raw": "对所有敌人造成{Damage:diff()}点伤害。\n本场战斗中每打出过一张[gold]虚无[/gold]牌，此牌费用就减少{Energy:energyIcons()}。",
-    "cost": 6,
+    "description": "对所有敌人造成33点伤害。\n本场战斗中每打出过一张[gold]虚无[/gold]牌，此牌的耗能就减少[energy:2]。",
+    "description_raw": "对所有敌人造成{Damage:diff()}点伤害。\n本场战斗中每打出过一张[gold]虚无[/gold]牌，此牌的耗能就减少{Energy:energyIcons()}。",
+    "cost": 9,
     "is_x_cost": null,
     "is_x_star_cost": null,
     "star_cost": null,
@@ -5962,12 +5962,12 @@
       "Energy": 2
     },
     "upgrade": {
-      "damage": "+6"
+      "cost": 7
     },
     "image_url": "/static/images/cards/banshees_cry.webp",
     "beta_image_url": "/static/images/cards/beta/banshees_cry.webp",
     "type_variants": null,
-    "upgrade_description": "对所有敌人造成39点伤害。\n本场战斗中每打出过一张[gold]虚无[/gold]牌，此牌费用就减少[energy:2]。",
+    "upgrade_description": null,
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 264
@@ -6269,7 +6269,7 @@
     "id": "GRAVE_WARDEN",
     "name": "守墓人",
     "description": "获得8点[gold]格挡[/gold]。\n将一张[gold]灵魂[/gold]放入你的[gold]抽牌堆[/gold]中。",
-    "description_raw": "获得{Block:diff()}点[gold]格挡[/gold]。\n将一张[gold]{IfUpgraded:show:灵魂+|灵魂}[/gold]放入你的[gold]抽牌堆[/gold]中。",
+    "description_raw": "获得{Block:diff()}点[gold]格挡[/gold]。\n将一张[gold]灵魂[/gold]放入你的[gold]抽牌堆[/gold]中。",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -6295,12 +6295,12 @@
       "Cards": 1
     },
     "upgrade": {
-      "block": "+2"
+      "block": "+3"
     },
     "image_url": "/static/images/cards/grave_warden.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "获得10点[gold]格挡[/gold]。\n将一张[gold]灵魂+[/gold]放入你的[gold]抽牌堆[/gold]中。",
+    "upgrade_description": "获得11点[gold]格挡[/gold]。\n将一张[gold]灵魂[/gold]放入你的[gold]抽牌堆[/gold]中。",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 300
@@ -6465,8 +6465,8 @@
   {
     "id": "SHIV",
     "name": "小刀",
-    "description": "造成4点伤害。",
-    "description_raw": "{FanOfKnivesAmount:cond:>0? 对所有敌人|}造成{Damage:diff()}点伤害。",
+    "description": "对所有敌人造成4点伤害。",
+    "description_raw": "{TargetType:choose(AllEnemies):对所有敌人|}造成{Damage:diff()}点伤害。",
     "cost": 0,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -6490,9 +6490,7 @@
     ],
     "spawns_cards": null,
     "vars": {
-      "Damage": 4,
-      "CalculationBase": 0,
-      "CalculationExtra": 1
+      "Damage": 4
     },
     "upgrade": {
       "damage": "+2"
@@ -6500,7 +6498,7 @@
     "image_url": "/static/images/cards/shiv.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "造成6点伤害。",
+    "upgrade_description": "对所有敌人造成6点伤害。",
     "type_key": "Attack",
     "rarity_key": "Token",
     "keywords_key": [
@@ -6634,7 +6632,7 @@
     "keywords_key": [
       "Exhaust"
     ],
-    "compendium_order": 44
+    "compendium_order": 43
   },
   {
     "id": "VENERATE",
@@ -6683,7 +6681,7 @@
     "is_x_star_cost": null,
     "star_cost": null,
     "type": "技能",
-    "rarity": "稀有",
+    "rarity": "罕见",
     "target": "Self",
     "color": "ironclad",
     "damage": null,
@@ -6708,7 +6706,7 @@
     "type_variants": null,
     "upgrade_description": "获得8点[gold]格挡[/gold]。\n在本回合中，有[gold]易伤[/gold]状态的敌人对你造成的伤害降低50%。",
     "type_key": "Skill",
-    "rarity_key": "Rare",
+    "rarity_key": "Uncommon",
     "compendium_order": 18
   },
   {
@@ -6957,8 +6955,8 @@
   {
     "id": "EIDOLON",
     "name": "幻景",
-    "description": "[gold]消耗[/gold]所有[gold]手牌[/gold]。\n如果有至少9张牌被通过这个方法[gold]消耗[/gold]，则获得1层[gold]无实体[/gold]。",
-    "description_raw": "[gold]消耗[/gold]所有[gold]手牌[/gold]。\n如果有至少9张牌被通过这个方法[gold]消耗[/gold]，则获得1层[gold]无实体[/gold]。",
+    "description": "[gold]消耗[/gold]所有[gold]手牌[/gold]。\n如果有9张牌被[gold]消耗[/gold]，则获得1层[gold]无实体[/gold]。",
+    "description_raw": "[gold]消耗[/gold]所有[gold]手牌[/gold]。\n如果有9张牌被[gold]消耗[/gold]，则获得1层[gold]无实体[/gold]。",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -7205,8 +7203,8 @@
   {
     "id": "GUIDING_STAR",
     "name": "引导之星",
-    "description": "造成12点伤害。\n在下一回合抽2张牌。",
-    "description_raw": "造成{Damage:diff()}点伤害。\n在下一回合抽{Cards:diff()}张牌。",
+    "description": "造成12点伤害。\n抽2张牌。",
+    "description_raw": "造成{Damage:diff()}点伤害。\n抽{Cards:diff()}张牌。",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -7237,7 +7235,7 @@
     "image_url": "/static/images/cards/guiding_star.webp",
     "beta_image_url": "/static/images/cards/beta/guiding_star.webp",
     "type_variants": null,
-    "upgrade_description": "造成13点伤害。\n在下一回合抽3张牌。",
+    "upgrade_description": "造成13点伤害。\n抽3张牌。",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 211
@@ -7669,8 +7667,8 @@
   {
     "id": "HOWL_FROM_BEYOND",
     "name": "彼岸咆哮",
-    "description": "对所有敌人造成16点伤害。\n在你的回合开始时，从[gold]消耗牌堆[/gold]将此牌打出。",
-    "description_raw": "对所有敌人造成{Damage:diff()}点伤害。\n在你的回合开始时，从[gold]消耗牌堆[/gold]将此牌打出。",
+    "description": "对所有敌人造成16点伤害。\n在你的回合开始时，如果这张牌在你的[gold]消耗牌堆[/gold]中，则将其打出。",
+    "description_raw": "对所有敌人造成{Damage:diff()}点伤害。\n在你的回合开始时，如果这张牌在你的[gold]消耗牌堆[/gold]中，则将其打出。",
     "cost": 3,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -7698,10 +7696,10 @@
     "image_url": "/static/images/cards/howl_from_beyond.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "对所有敌人造成21点伤害。\n在你的回合开始时，从[gold]消耗牌堆[/gold]将此牌打出。",
+    "upgrade_description": "对所有敌人造成21点伤害。\n在你的回合开始时，如果这张牌在你的[gold]消耗牌堆[/gold]中，则将其打出。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
-    "compendium_order": 43
+    "compendium_order": 42
   },
   {
     "id": "SUMMON_FORTH",
@@ -7823,7 +7821,7 @@
   {
     "id": "HEMOKINESIS",
     "name": "御血术",
-    "description": "失去2点生命。\n造成14点伤害。",
+    "description": "失去2点生命。\n造成15点伤害。",
     "description_raw": "失去{HpLoss:diff()}点生命。\n造成{Damage:diff()}点伤害。",
     "cost": 1,
     "is_x_cost": null,
@@ -7833,7 +7831,7 @@
     "rarity": "罕见",
     "target": "AnyEnemy",
     "color": "ironclad",
-    "damage": 14,
+    "damage": 15,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -7845,7 +7843,7 @@
     "spawns_cards": null,
     "vars": {
       "HpLoss": 2,
-      "Damage": 14
+      "Damage": 15
     },
     "upgrade": {
       "damage": "+5"
@@ -7853,10 +7851,10 @@
     "image_url": "/static/images/cards/hemokinesis.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "失去2点生命。\n造成19点伤害。",
+    "upgrade_description": "失去2点生命。\n造成20点伤害。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
-    "compendium_order": 42
+    "compendium_order": 41
   },
   {
     "id": "LOOP",
@@ -8248,8 +8246,8 @@
   {
     "id": "SPITE",
     "name": "怨恨",
-    "description": "造成6点伤害。\n如果你在本回合失去过生命值，则抽1张牌。",
-    "description_raw": "造成{Damage:diff()}点伤害。\n如果你在本回合失去过生命值，则抽{Cards:diff()}张牌。",
+    "description": "造成5点伤害。\n如果你在本回合失去过生命值，\n则攻击2次。",
+    "description_raw": "造成{Damage:diff()}点伤害。\n如果你在本回合失去过生命值，\n则攻击{Repeat:diff()}次。",
     "cost": 0,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -8258,27 +8256,27 @@
     "rarity": "罕见",
     "target": "AnyEnemy",
     "color": "ironclad",
-    "damage": 6,
+    "damage": 5,
     "block": null,
-    "hit_count": null,
+    "hit_count": 2,
     "powers_applied": null,
-    "cards_draw": 1,
+    "cards_draw": null,
     "energy_gain": null,
     "hp_loss": null,
     "keywords": null,
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Damage": 6,
-      "Cards": 1
+      "Damage": 5,
+      "Repeat": 2
     },
     "upgrade": {
-      "damage": "+3"
+      "repeat": "+1"
     },
     "image_url": "/static/images/cards/spite.webp",
     "beta_image_url": "/static/images/cards/beta/spite.webp",
     "type_variants": null,
-    "upgrade_description": "造成9点伤害。\n如果你在本回合失去过生命值，则抽1张牌。",
+    "upgrade_description": "造成5点伤害。\n如果你在本回合失去过生命值，\n则攻击3次。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 67
@@ -8561,6 +8559,7 @@
     "hp_loss": null,
     "keywords": [
       "固有",
+      "虚无",
       "不能被打出",
       "永恒"
     ],
@@ -8576,6 +8575,7 @@
     "rarity_key": "Curse",
     "keywords_key": [
       "Innate",
+      "Ethereal",
       "Unplayable",
       "Eternal"
     ],
@@ -8778,8 +8778,8 @@
   {
     "id": "SPOILS_OF_BATTLE",
     "name": "战利品",
-    "description": "[gold]铸造[/gold]10。",
-    "description_raw": "[gold]铸造[/gold]{Forge:diff()}。",
+    "description": "[gold]铸造[/gold]5。\n抽2张牌。",
+    "description_raw": "[gold]铸造[/gold]{Forge:diff()}。\n抽{Cards:diff()}张牌。",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -8792,22 +8792,23 @@
     "block": null,
     "hit_count": null,
     "powers_applied": null,
-    "cards_draw": null,
+    "cards_draw": 2,
     "energy_gain": null,
     "hp_loss": null,
     "keywords": null,
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Forge": 10
+      "Forge": 5,
+      "Cards": 2
     },
     "upgrade": {
-      "forge": "+5"
+      "forge": "+3"
     },
     "image_url": "/static/images/cards/spoils_of_battle.webp",
     "beta_image_url": "/static/images/cards/beta/spoils_of_battle.webp",
     "type_variants": null,
-    "upgrade_description": "[gold]铸造[/gold]15。",
+    "upgrade_description": "[gold]铸造[/gold]8。\n抽2张牌。",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 250
@@ -8894,7 +8895,7 @@
   {
     "id": "TREMBLE",
     "name": "战栗",
-    "description": "给予2层[gold]易伤[/gold]。",
+    "description": "给予3层[gold]易伤[/gold]。",
     "description_raw": "给予{VulnerablePower:diff()}层[gold]易伤[/gold]。",
     "cost": 1,
     "is_x_cost": null,
@@ -8910,19 +8911,21 @@
     "powers_applied": [
       {
         "power": "易伤",
-        "amount": 2,
+        "amount": 3,
         "power_key": "Vulnerable"
       }
     ],
     "cards_draw": null,
     "energy_gain": null,
     "hp_loss": null,
-    "keywords": null,
+    "keywords": [
+      "消耗"
+    ],
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "VulnerablePower": 2,
-      "Vulnerable": 2
+      "VulnerablePower": 3,
+      "Vulnerable": 3
     },
     "upgrade": {
       "vulnerable": "+1"
@@ -8933,12 +8936,15 @@
     "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Common",
+    "keywords_key": [
+      "Exhaust"
+    ],
     "compendium_order": 79
   },
   {
     "id": "WROUGHT_IN_WAR",
     "name": "战火铸就",
-    "description": "造成7点伤害。\n[gold]铸造[/gold]5。",
+    "description": "造成7点伤害。\n[gold]铸造[/gold]7。",
     "description_raw": "造成{Damage:diff()}点伤害。\n[gold]铸造[/gold]{Forge:diff()}。",
     "cost": 1,
     "is_x_cost": null,
@@ -8960,7 +8966,7 @@
     "spawns_cards": null,
     "vars": {
       "Damage": 7,
-      "Forge": 5
+      "Forge": 7
     },
     "upgrade": {
       "damage": "+2",
@@ -8969,7 +8975,7 @@
     "image_url": "/static/images/cards/wrought_in_war.webp",
     "beta_image_url": "/static/images/cards/beta/wrought_in_war.webp",
     "type_variants": null,
-    "upgrade_description": "造成9点伤害。\n[gold]铸造[/gold]7。",
+    "upgrade_description": "造成9点伤害。\n[gold]铸造[/gold]9。",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 262
@@ -9104,7 +9110,7 @@
   {
     "id": "I_AM_INVINCIBLE",
     "name": "所向无敌",
-    "description": "获得9点[gold]格挡[/gold]。\n在你的回合结束时，如果这张牌位于[gold]抽牌堆[/gold]顶部，则将其打出。",
+    "description": "获得10点[gold]格挡[/gold]。\n在你的回合结束时，如果这张牌位于[gold]抽牌堆[/gold]顶部，则将其打出。",
     "description_raw": "获得{Block:diff()}点[gold]格挡[/gold]。\n在你的回合结束时，如果这张牌位于[gold]抽牌堆[/gold]顶部，则将其打出。",
     "cost": 1,
     "is_x_cost": null,
@@ -9115,7 +9121,7 @@
     "target": "Self",
     "color": "regent",
     "damage": null,
-    "block": 9,
+    "block": 10,
     "hit_count": null,
     "powers_applied": null,
     "cards_draw": null,
@@ -9125,7 +9131,7 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Block": 9
+      "Block": 10
     },
     "upgrade": {
       "block": "+3"
@@ -9133,7 +9139,7 @@
     "image_url": "/static/images/cards/i_am_invincible.webp",
     "beta_image_url": "/static/images/cards/beta/i_am_invincible.webp",
     "type_variants": null,
-    "upgrade_description": "获得12点[gold]格挡[/gold]。\n在你的回合结束时，如果这张牌位于[gold]抽牌堆[/gold]顶部，则将其打出。",
+    "upgrade_description": "获得13点[gold]格挡[/gold]。\n在你的回合结束时，如果这张牌位于[gold]抽牌堆[/gold]顶部，则将其打出。",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 217
@@ -9945,7 +9951,9 @@
     "cards_draw": 2,
     "energy_gain": null,
     "hp_loss": null,
-    "keywords": null,
+    "keywords": [
+      "消耗"
+    ],
     "tags": null,
     "spawns_cards": null,
     "vars": {
@@ -9960,6 +9968,9 @@
     "upgrade_description": "所有玩家抽3张牌。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
+    "keywords_key": [
+      "Exhaust"
+    ],
     "compendium_order": 463
   },
   {
@@ -10041,7 +10052,7 @@
   {
     "id": "PARRY",
     "name": "招架",
-    "description": "每当你打出[gold]君王之剑[/gold]时，获得6点[gold]格挡[/gold]。",
+    "description": "每当你打出[gold]君王之剑[/gold]时，获得10点[gold]格挡[/gold]。",
     "description_raw": "每当你打出[gold]君王之剑[/gold]时，获得{ParryPower:diff()}点[gold]格挡[/gold]。",
     "cost": 1,
     "is_x_cost": null,
@@ -10057,7 +10068,7 @@
     "powers_applied": [
       {
         "power": "招架",
-        "amount": 6,
+        "amount": 10,
         "power_key": "Parry"
       }
     ],
@@ -10070,16 +10081,16 @@
       "SOVEREIGN_BLADE"
     ],
     "vars": {
-      "ParryPower": 6,
-      "Parry": 6
+      "ParryPower": 10,
+      "Parry": 10
     },
     "upgrade": {
-      "parrypower": "+3"
+      "parrypower": "+4"
     },
     "image_url": "/static/images/cards/parry.webp",
     "beta_image_url": "/static/images/cards/beta/parry.webp",
     "type_variants": null,
-    "upgrade_description": "每当你打出[gold]君王之剑[/gold]时，获得9点[gold]格挡[/gold]。",
+    "upgrade_description": "每当你打出[gold]君王之剑[/gold]时，获得14点[gold]格挡[/gold]。",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 232
@@ -10267,7 +10278,9 @@
     "cards_draw": null,
     "energy_gain": null,
     "hp_loss": null,
-    "keywords": null,
+    "keywords": [
+      "消耗"
+    ],
     "tags": null,
     "spawns_cards": [
       "SOUL"
@@ -10284,6 +10297,9 @@
     "upgrade_description": "[gold]召唤[/gold]4X次。\n将X张[gold]灵魂+[/gold]添加到你的[gold]抽牌堆[/gold]中。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
+    "keywords_key": [
+      "Exhaust"
+    ],
     "compendium_order": 286
   },
   {
@@ -10330,7 +10346,7 @@
   {
     "id": "SEEKER_STRIKE",
     "name": "探寻打击",
-    "description": "造成6点伤害。\n从[gold]抽牌堆[/gold]的随机3张牌中选择一张加入你的[gold]手牌[/gold]。",
+    "description": "造成9点伤害。\n从[gold]抽牌堆[/gold]的随机3张牌中选择一张加入你的[gold]手牌[/gold]。",
     "description_raw": "造成{Damage:diff()}点伤害。\n从[gold]抽牌堆[/gold]的随机{Cards:diff()}张牌中选择一张加入你的[gold]手牌[/gold]。",
     "cost": 1,
     "is_x_cost": null,
@@ -10340,7 +10356,7 @@
     "rarity": "罕见",
     "target": "AnyEnemy",
     "color": "colorless",
-    "damage": 6,
+    "damage": 9,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -10353,7 +10369,7 @@
     ],
     "spawns_cards": null,
     "vars": {
-      "Damage": 6,
+      "Damage": 9,
       "Cards": 3
     },
     "upgrade": {
@@ -10362,7 +10378,7 @@
     "image_url": "/static/images/cards/seeker_strike.webp",
     "beta_image_url": "/static/images/cards/beta/seeker_strike.webp",
     "type_variants": null,
-    "upgrade_description": "造成9点伤害。\n从[gold]抽牌堆[/gold]的随机3张牌中选择一张加入你的[gold]手牌[/gold]。",
+    "upgrade_description": "造成12点伤害。\n从[gold]抽牌堆[/gold]的随机3张牌中选择一张加入你的[gold]手牌[/gold]。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 491
@@ -10370,8 +10386,8 @@
   {
     "id": "DEBILITATE",
     "name": "摧残",
-    "description": "造成7点伤害。\n在接下来的3回合内，该敌人身上的[gold]易伤[/gold]与[gold]虚弱[/gold]效率翻倍。",
-    "description_raw": "造成{Damage:diff()}点伤害。\n在接下来的{DebilitatePower:diff()}回合内，该敌人身上的[gold]易伤[/gold]与[gold]虚弱[/gold]效率翻倍。",
+    "description": "造成10点伤害。\n在接下来的3回合内，该敌人身上的[gold]易伤[/gold]与[gold]虚弱[/gold]效果翻倍。",
+    "description_raw": "造成{Damage:diff()}点伤害。\n在接下来的{DebilitatePower:diff()}回合内，该敌人身上的[gold]易伤[/gold]与[gold]虚弱[/gold]效果翻倍。",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -10380,7 +10396,7 @@
     "rarity": "罕见",
     "target": "AnyEnemy",
     "color": "necrobinder",
-    "damage": 7,
+    "damage": 10,
     "block": null,
     "hit_count": null,
     "powers_applied": [
@@ -10397,7 +10413,7 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Damage": 7,
+      "Damage": 10,
       "DebilitatePower": 3,
       "Debilitate": 3
     },
@@ -10408,7 +10424,7 @@
     "image_url": "/static/images/cards/debilitate.webp",
     "beta_image_url": "/static/images/cards/beta/debilitate.webp",
     "type_variants": null,
-    "upgrade_description": "造成9点伤害。\n在接下来的4回合内，该敌人身上的[gold]易伤[/gold]与[gold]虚弱[/gold]效率翻倍。",
+    "upgrade_description": "造成12点伤害。\n在接下来的4回合内，该敌人身上的[gold]易伤[/gold]与[gold]虚弱[/gold]效果翻倍。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 279
@@ -10579,52 +10595,6 @@
     "compendium_order": 339
   },
   {
-    "id": "GRAPPLE",
-    "name": "擒拿",
-    "description": "造成7点伤害。\n当你在本回合获得[gold]格挡[/gold]时，对该敌人造成5点伤害。",
-    "description_raw": "造成{Damage:diff()}点伤害。\n当你在本回合获得[gold]格挡[/gold]时，对该敌人造成{GrapplePower:diff()}点伤害。",
-    "cost": 1,
-    "is_x_cost": null,
-    "is_x_star_cost": null,
-    "star_cost": null,
-    "type": "攻击",
-    "rarity": "罕见",
-    "target": "AnyEnemy",
-    "color": "ironclad",
-    "damage": 7,
-    "block": null,
-    "hit_count": null,
-    "powers_applied": [
-      {
-        "power": "擒拿",
-        "amount": 5,
-        "power_key": "Grapple"
-      }
-    ],
-    "cards_draw": null,
-    "energy_gain": null,
-    "hp_loss": null,
-    "keywords": null,
-    "tags": null,
-    "spawns_cards": null,
-    "vars": {
-      "Damage": 7,
-      "GrapplePower": 5,
-      "Grapple": 5
-    },
-    "upgrade": {
-      "damage": "+2",
-      "grapplepower": "+2"
-    },
-    "image_url": "/static/images/cards/grapple.webp",
-    "beta_image_url": null,
-    "type_variants": null,
-    "upgrade_description": "造成9点伤害。\n当你在本回合获得[gold]格挡[/gold]时，对该敌人造成7点伤害。",
-    "type_key": "Attack",
-    "rarity_key": "Uncommon",
-    "compendium_order": 38
-  },
-  {
     "id": "REAP",
     "name": "收割",
     "description": "造成27点伤害。",
@@ -10669,7 +10639,7 @@
   {
     "id": "GATHER_LIGHT",
     "name": "收集光辉",
-    "description": "获得7点[gold]格挡[/gold]。\n获得[star:1]。",
+    "description": "获得8点[gold]格挡[/gold]。\n获得[star:1]。",
     "description_raw": "获得{Block:diff()}点[gold]格挡[/gold]。\n获得{Stars:starIcons()}。",
     "cost": 1,
     "is_x_cost": null,
@@ -10680,7 +10650,7 @@
     "target": "Self",
     "color": "regent",
     "damage": null,
-    "block": 7,
+    "block": 8,
     "hit_count": null,
     "powers_applied": null,
     "cards_draw": null,
@@ -10690,7 +10660,7 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Block": 7,
+      "Block": 8,
       "Stars": 1
     },
     "upgrade": {
@@ -10699,7 +10669,7 @@
     "image_url": "/static/images/cards/gather_light.webp",
     "beta_image_url": "/static/images/cards/beta/gather_light.webp",
     "type_variants": null,
-    "upgrade_description": "获得10点[gold]格挡[/gold]。\n获得[star:1]。",
+    "upgrade_description": "获得11点[gold]格挡[/gold]。\n获得[star:1]。",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 205
@@ -10791,8 +10761,8 @@
   {
     "id": "FLAK_CANNON",
     "name": "散射炮",
-    "description": "[gold]消耗[/gold]你所有的[gold]状态[/gold]牌。\n每有一张被[gold]消耗[/gold]的牌，就随机对敌人造成8点伤害。",
-    "description_raw": "[gold]消耗[/gold]你所有的[gold]状态[/gold]牌。\n每有一张被[gold]消耗[/gold]的牌，就随机对敌人造成{Damage:diff()}点伤害。{InCombat:\n（攻击{CalculatedHits:diff()}次）|}",
+    "description": "[gold]消耗[/gold]你所有的状态牌。\n每有一张被[gold]消耗[/gold]的牌，就随机对敌人造成8点伤害。",
+    "description_raw": "[gold]消耗[/gold]你所有的状态牌。\n每有一张被[gold]消耗[/gold]的牌，就随机对敌人造成{Damage:diff()}点伤害。{InCombat:\n（攻击{CalculatedHits:diff()}次）|}",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -10822,7 +10792,7 @@
     "image_url": "/static/images/cards/flak_cannon.webp",
     "beta_image_url": "/static/images/cards/beta/flak_cannon.webp",
     "type_variants": null,
-    "upgrade_description": "[gold]消耗[/gold]你所有的[gold]状态[/gold]牌。\n每有一张被[gold]消耗[/gold]的牌，就随机对敌人造成11点伤害。",
+    "upgrade_description": "[gold]消耗[/gold]你所有的状态牌。\n每有一张被[gold]消耗[/gold]的牌，就随机对敌人造成11点伤害。",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 382
@@ -10912,7 +10882,7 @@
     "name": "新生之喜",
     "description": "将3张随机无色牌添加到你的[gold]手牌[/gold]。",
     "description_raw": "将{Cards:diff()}张随机无色牌添加到你的[gold]手牌[/gold]。",
-    "cost": 2,
+    "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
     "star_cost": null,
@@ -11292,6 +11262,48 @@
     "compendium_order": 150
   },
   {
+    "id": "NOT_YET",
+    "name": "时候未到",
+    "description": "回复10点生命。",
+    "description_raw": "回复{Heal:diff()}点生命。",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "技能",
+    "rarity": "稀有",
+    "target": "Self",
+    "color": "ironclad",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "消耗"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Heal": 10
+    },
+    "upgrade": {
+      "heal": "+3"
+    },
+    "image_url": "/static/images/cards/not_yet.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "upgrade_description": "回复13点生命。",
+    "type_key": "Skill",
+    "rarity_key": "Rare",
+    "keywords_key": [
+      "Exhaust"
+    ],
+    "compendium_order": 52
+  },
+  {
     "id": "SHINING_STRIKE",
     "name": "明耀打击",
     "description": "造成8点伤害。\n获得[star:2]。\n将这张牌放置于你的[gold]抽牌堆[/gold]顶部。",
@@ -11339,7 +11351,7 @@
     "cost": 0,
     "is_x_cost": null,
     "is_x_star_cost": null,
-    "star_cost": 2,
+    "star_cost": 3,
     "type": "技能",
     "rarity": "罕见",
     "target": "Self",
@@ -11356,7 +11368,7 @@
     "spawns_cards": null,
     "vars": {
       "Energy": 2,
-      "StarCost": 2
+      "StarCost": 3
     },
     "upgrade": {
       "energy": "+1"
@@ -11409,7 +11421,7 @@
   {
     "id": "PATTER",
     "name": "星星点点",
-    "description": "获得8点[gold]格挡[/gold]。\n获得2点[gold]活力[/gold]。",
+    "description": "获得9点[gold]格挡[/gold]。\n获得2点[gold]活力[/gold]。",
     "description_raw": "获得{Block:diff()}点[gold]格挡[/gold]。\n获得{VigorPower:diff()}点[gold]活力[/gold]。",
     "cost": 1,
     "is_x_cost": null,
@@ -11420,7 +11432,7 @@
     "target": "Self",
     "color": "regent",
     "damage": null,
-    "block": 8,
+    "block": 9,
     "hit_count": null,
     "powers_applied": [
       {
@@ -11436,7 +11448,7 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Block": 8,
+      "Block": 9,
       "VigorPower": 2,
       "Vigor": 2
     },
@@ -11447,7 +11459,7 @@
     "image_url": "/static/images/cards/patter.webp",
     "beta_image_url": "/static/images/cards/beta/patter.webp",
     "type_variants": null,
-    "upgrade_description": "获得10点[gold]格挡[/gold]。\n获得3点[gold]活力[/gold]。",
+    "upgrade_description": "获得11点[gold]格挡[/gold]。\n获得3点[gold]活力[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 234
@@ -11937,8 +11949,8 @@
   {
     "id": "HIDDEN_GEM",
     "name": "未掘宝石",
-    "description": "你[gold]抽牌堆[/gold]中的一张随机牌获得2层[gold]重放[/gold]。",
-    "description_raw": "你[gold]抽牌堆[/gold]中的一张随机牌获得{Replay:diff()}层[gold]重放[/gold]。",
+    "description": "你[gold]抽牌堆[/gold]中的一张没有[gold]重放[/gold]的随机牌获得2层[gold]重放[/gold]。",
+    "description_raw": "你[gold]抽牌堆[/gold]中的一张没有[gold]重放[/gold]的随机牌获得{Replay:diff()}层[gold]重放[/gold]。",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -11966,7 +11978,7 @@
     "image_url": "/static/images/cards/hidden_gem.webp",
     "beta_image_url": "/static/images/cards/beta/hidden_gem.webp",
     "type_variants": null,
-    "upgrade_description": "你[gold]抽牌堆[/gold]中的一张随机牌获得3层[gold]重放[/gold]。",
+    "upgrade_description": "你[gold]抽牌堆[/gold]中的一张没有[gold]重放[/gold]的随机牌获得3层[gold]重放[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 462
@@ -12142,7 +12154,7 @@
     "is_x_star_cost": null,
     "star_cost": null,
     "type": "技能",
-    "rarity": "普通",
+    "rarity": "罕见",
     "target": "Self",
     "color": "silent",
     "damage": null,
@@ -12166,7 +12178,7 @@
     "type_variants": null,
     "upgrade_description": "抽4张牌。\n丢弃1张牌。",
     "type_key": "Skill",
-    "rarity_key": "Common",
+    "rarity_key": "Uncommon",
     "compendium_order": 90
   },
   {
@@ -12202,7 +12214,7 @@
     "upgrade_description": null,
     "type_key": "Power",
     "rarity_key": "Uncommon",
-    "compendium_order": 50
+    "compendium_order": 49
   },
   {
     "id": "AFTERLIFE",
@@ -12447,8 +12459,8 @@
   {
     "id": "ARSENAL",
     "name": "武器库",
-    "description": "你每打出一张无色牌，都获得1点[gold]力量[/gold]。",
-    "description_raw": "你每打出一张无色牌，都获得{ArsenalPower:diff()}点[gold]力量[/gold]。",
+    "description": "每当你生成一张牌，就获得1点[gold]力量[/gold]。",
+    "description_raw": "每当你生成一张牌，就获得{ArsenalPower:diff()}点[gold]力量[/gold]。",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -12478,12 +12490,12 @@
       "Arsenal": 1
     },
     "upgrade": {
-      "arsenalpower": "+1"
+      "add_innate": true
     },
     "image_url": "/static/images/cards/arsenal.webp",
     "beta_image_url": "/static/images/cards/beta/arsenal.webp",
     "type_variants": null,
-    "upgrade_description": "你每打出一张无色牌，都获得2点[gold]力量[/gold]。",
+    "upgrade_description": null,
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 176
@@ -12528,7 +12540,7 @@
   {
     "id": "DANSE_MACABRE",
     "name": "死亡之舞",
-    "description": "每当你打出一张耗能大于等于[energy:2]的牌时，获得3点[gold]格挡[/gold]。",
+    "description": "每当你打出一张耗能大于等于[energy:2]的牌时，获得4点[gold]格挡[/gold]。",
     "description_raw": "每当你打出一张耗能大于等于{Energy:energyIcons()}的牌时，获得{DanseMacabrePower:diff()}点[gold]格挡[/gold]。",
     "cost": 1,
     "is_x_cost": null,
@@ -12544,7 +12556,7 @@
     "powers_applied": [
       {
         "power": "死亡之舞",
-        "amount": 3,
+        "amount": 4,
         "power_key": "DanseMacabre"
       }
     ],
@@ -12556,16 +12568,16 @@
     "spawns_cards": null,
     "vars": {
       "Energy": 2,
-      "DanseMacabrePower": 3,
-      "DanseMacabre": 3
+      "DanseMacabrePower": 4,
+      "DanseMacabre": 4
     },
     "upgrade": {
-      "dansemacabrepower": "+1"
+      "dansemacabrepower": "+2"
     },
     "image_url": "/static/images/cards/danse_macabre.webp",
     "beta_image_url": "/static/images/cards/beta/danse_macabre.webp",
     "type_variants": null,
-    "upgrade_description": "每当你打出一张耗能大于等于[energy:2]的牌时，获得4点[gold]格挡[/gold]。",
+    "upgrade_description": "每当你打出一张耗能大于等于[energy:2]的牌时，获得6点[gold]格挡[/gold]。",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 275
@@ -12983,7 +12995,7 @@
   {
     "id": "ETERNAL_ARMOR",
     "name": "永恒铠甲",
-    "description": "获得7层[gold]覆甲[/gold]。",
+    "description": "获得9层[gold]覆甲[/gold]。",
     "description_raw": "获得{PlatingPower:diff()}层[gold]覆甲[/gold]。",
     "cost": 3,
     "is_x_cost": null,
@@ -12999,7 +13011,7 @@
     "powers_applied": [
       {
         "power": "覆甲",
-        "amount": 7,
+        "amount": 9,
         "power_key": "Plating"
       }
     ],
@@ -13010,16 +13022,16 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "PlatingPower": 7,
-      "Plating": 7
+      "PlatingPower": 9,
+      "Plating": 9
     },
     "upgrade": {
-      "platingpower": "+2"
+      "platingpower": "+3"
     },
     "image_url": "/static/images/cards/eternal_armor.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "获得9层[gold]覆甲[/gold]。",
+    "upgrade_description": "获得12层[gold]覆甲[/gold]。",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 454
@@ -13142,7 +13154,7 @@
   {
     "id": "GLITTERSTREAM",
     "name": "流光溢彩",
-    "description": "获得11点[gold]格挡[/gold]。\n在下一回合获得4点[gold]格挡[/gold]。",
+    "description": "获得11点[gold]格挡[/gold]。\n在下一回合获得5点[gold]格挡[/gold]。",
     "description_raw": "获得{Block:diff()}点[gold]格挡[/gold]。\n在下一回合获得{BlockNextTurn:diff()}点[gold]格挡[/gold]。",
     "cost": 2,
     "is_x_cost": null,
@@ -13163,7 +13175,7 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "BlockNextTurn": 4,
+      "BlockNextTurn": 5,
       "Block": 11
     },
     "upgrade": {
@@ -13173,7 +13185,7 @@
     "image_url": "/static/images/cards/glitterstream.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "获得13点[gold]格挡[/gold]。\n在下一回合获得6点[gold]格挡[/gold]。",
+    "upgrade_description": "获得13点[gold]格挡[/gold]。\n在下一回合获得7点[gold]格挡[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 208
@@ -13342,12 +13354,13 @@
       "Cards": 2
     },
     "upgrade": {
-      "damage": "+4"
+      "damage": "+4",
+      "cards": "+1"
     },
     "image_url": "/static/images/cards/neows_fury.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "造成14点伤害。\n将你[gold]弃牌堆[/gold]中的2张随机牌放入你的[gold]手牌[/gold]。",
+    "upgrade_description": "造成14点伤害。\n将你[gold]弃牌堆[/gold]中的3张随机牌放入你的[gold]手牌[/gold]。",
     "type_key": "Attack",
     "rarity_key": "Ancient",
     "keywords_key": [
@@ -13358,7 +13371,7 @@
   {
     "id": "REFINE_BLADE",
     "name": "淬炼刀刃",
-    "description": "[gold]铸造[/gold]6。\n在下个回合获得[energy:1]。",
+    "description": "[gold]铸造[/gold]9。\n在下个回合获得[energy:1]。",
     "description_raw": "[gold]铸造[/gold]{Forge:diff()}。\n在下个回合获得{Energy:energyIcons()}。",
     "cost": 1,
     "is_x_cost": null,
@@ -13379,7 +13392,7 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Forge": 6,
+      "Forge": 9,
       "Energy": 1
     },
     "upgrade": {
@@ -13388,7 +13401,7 @@
     "image_url": "/static/images/cards/refine_blade.webp",
     "beta_image_url": "/static/images/cards/beta/refine_blade.webp",
     "type_variants": null,
-    "upgrade_description": "[gold]铸造[/gold]10。\n在下个回合获得[energy:1]。",
+    "upgrade_description": "[gold]铸造[/gold]13。\n在下个回合获得[energy:1]。",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 240
@@ -13475,8 +13488,8 @@
   {
     "id": "STOKE",
     "name": "添柴",
-    "description": "[gold]消耗[/gold]所有[gold]手牌[/gold]。\n然后抽相同数量张牌。",
-    "description_raw": "[gold]消耗[/gold]所有[gold]手牌[/gold]。\n然后抽相同数量张牌。",
+    "description": "[gold]消耗[/gold]所有[gold]手牌[/gold]。\n每[gold]消耗[/gold]一张牌，将1张随机牌加入你的[gold]手牌[/gold]。",
+    "description_raw": "[gold]消耗[/gold]所有[gold]手牌[/gold]。\n每[gold]消耗[/gold]一张牌，将1张随机{IfUpgraded:show:已[gold]升级[/gold]的|}牌加入你的[gold]手牌[/gold]。",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -13492,24 +13505,19 @@
     "cards_draw": null,
     "energy_gain": null,
     "hp_loss": null,
-    "keywords": [
-      "消耗"
-    ],
+    "keywords": null,
     "tags": null,
     "spawns_cards": null,
     "vars": null,
     "upgrade": {
-      "cost": 0
+      "description_changed": true
     },
     "image_url": "/static/images/cards/stoke.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "[gold]消耗[/gold]所有[gold]手牌[/gold]。\n每[gold]消耗[/gold]一张牌，将1张随机已[gold]升级[/gold]的牌加入你的[gold]手牌[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Rare",
-    "keywords_key": [
-      "Exhaust"
-    ],
     "compendium_order": 69
   },
   {
@@ -13557,8 +13565,8 @@
   {
     "id": "OBLIVION",
     "name": "湮灭",
-    "description": "你在本回合内每打出一张牌，就给予该敌人3层[gold]灾厄[/gold]。",
-    "description_raw": "你在本回合内每打出一张牌，就给予该敌人{DoomPower:diff()}层[gold]灾厄[/gold]。",
+    "description": "打出此牌后，你在本回合内每打出一张牌，就给予该敌人3层[gold]灾厄[/gold]。",
+    "description_raw": "打出此牌后，你在本回合内每打出一张牌，就给予该敌人{DoomPower:diff()}层[gold]灾厄[/gold]。",
     "cost": 0,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -13760,8 +13768,8 @@
   {
     "id": "ROCKET_PUNCH",
     "name": "火箭飞拳",
-    "description": "造成13点伤害。\n抽1张牌。\n当有一张状态被生成时，将此牌的耗能在本回合降为0[energy:1]。",
-    "description_raw": "造成{Damage:diff()}点伤害。\n抽{Cards:diff()}张牌。\n当有一张状态被生成时，将此牌的耗能在本回合降为0{energyPrefix:energyIcons(1)}。",
+    "description": "造成13点伤害。\n抽1张牌。\n每当你生成状态牌时，此牌的耗能将在下一次打出前降为0[energy:1]。",
+    "description_raw": "造成{Damage:diff()}点伤害。\n抽{Cards:diff()}张牌。\n每当你生成状态牌时，此牌的耗能将在下一次打出前降为0{energyPrefix:energyIcons(1)}。",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -13791,7 +13799,7 @@
     "image_url": "/static/images/cards/rocket_punch.webp",
     "beta_image_url": "/static/images/cards/beta/rocket_punch.webp",
     "type_variants": null,
-    "upgrade_description": "造成14点伤害。\n抽2张牌。\n当有一张状态被生成时，将此牌的耗能在本回合降为0[energy:1]。",
+    "upgrade_description": "造成14点伤害。\n抽2张牌。\n每当你生成状态牌时，此牌的耗能将在下一次打出前降为0[energy:1]。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 413
@@ -14360,7 +14368,9 @@
     "cards_draw": null,
     "energy_gain": null,
     "hp_loss": null,
-    "keywords": null,
+    "keywords": [
+      "消耗"
+    ],
     "tags": null,
     "spawns_cards": null,
     "vars": {
@@ -14368,14 +14378,17 @@
       "Focus": 2
     },
     "upgrade": {
-      "focuspower": "+1"
+      "remove_exhaust": true
     },
     "image_url": "/static/images/cards/hotfix.webp",
     "beta_image_url": "/static/images/cards/beta/hotfix.webp",
     "type_variants": null,
-    "upgrade_description": "在本回合获得3点[gold]集中[/gold]。",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Common",
+    "keywords_key": [
+      "Exhaust"
+    ],
     "compendium_order": 394
   },
   {
@@ -14533,7 +14546,7 @@
     "keywords_key": [
       "Exhaust"
     ],
-    "compendium_order": 52
+    "compendium_order": 51
   },
   {
     "id": "ENTROPY",
@@ -14657,7 +14670,7 @@
     "upgrade_description": "获得3点[gold]力量[/gold]。",
     "type_key": "Power",
     "rarity_key": "Uncommon",
-    "compendium_order": 47
+    "compendium_order": 46
   },
   {
     "id": "BURNING_PACT",
@@ -14859,7 +14872,7 @@
     "is_x_star_cost": null,
     "star_cost": null,
     "type": "攻击",
-    "rarity": "罕见",
+    "rarity": "事件",
     "target": "RandomEnemy",
     "color": "event",
     "damage": 7,
@@ -14883,7 +14896,7 @@
     "type_variants": null,
     "upgrade_description": "随机对敌人造成9点伤害两次。",
     "type_key": "Attack",
-    "rarity_key": "Uncommon",
+    "rarity_key": "Event",
     "compendium_order": 542
   },
   {
@@ -15040,8 +15053,8 @@
   {
     "id": "THE_HUNT",
     "name": "狩猎",
-    "description": "造成10点伤害。\n[gold]斩杀[/gold]时，额外获得一组卡牌奖励。",
-    "description_raw": "造成{Damage:diff()}点伤害。\n[gold]斩杀[/gold]时，额外获得一组卡牌奖励。",
+    "description": "造成10点伤害。\n[gold]斩杀[/gold]时，额外获得一次卡牌奖励。",
+    "description_raw": "造成{Damage:diff()}点伤害。\n[gold]斩杀[/gold]时，额外获得一次卡牌奖励。",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -15071,7 +15084,7 @@
     "image_url": "/static/images/cards/the_hunt.webp",
     "beta_image_url": "/static/images/cards/beta/the_hunt.webp",
     "type_variants": null,
-    "upgrade_description": "造成15点伤害。\n[gold]斩杀[/gold]时，额外获得一组卡牌奖励。",
+    "upgrade_description": "造成15点伤害。\n[gold]斩杀[/gold]时，额外获得一次卡牌奖励。",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -15195,7 +15208,7 @@
     "upgrade_description": "在你的回合开始时，失去1点生命。\n每当你在你的回合内失去生命时，对所有敌人造成9点伤害。",
     "type_key": "Power",
     "rarity_key": "Uncommon",
-    "compendium_order": 46
+    "compendium_order": 45
   },
   {
     "id": "PREDATOR",
@@ -15274,8 +15287,8 @@
   {
     "id": "RATTLE",
     "name": "猛晃",
-    "description": "[gold]奥斯提[/gold]造成7点伤害。\n他在本回合每攻击过一次，此牌就额外造成一次伤害。",
-    "description_raw": "[gold]奥斯提[/gold]造成{OstyDamage:diff()}点伤害。\n他在本回合每攻击过一次，此牌就额外造成一次伤害。{InCombat:\n（命中{CalculatedHits:diff()}次）|}",
+    "description": "[gold]奥斯提[/gold]造成7点伤害。\n本回合每使用过一次奥斯提攻击牌，此牌就额外造成一次伤害。",
+    "description_raw": "[gold]奥斯提[/gold]造成{OstyDamage:diff()}点伤害。\n本回合每使用过一次奥斯提攻击牌，此牌就额外造成一次伤害。{InCombat:\n（命中{CalculatedHits:diff()}次）|}",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -15308,7 +15321,7 @@
     "image_url": "/static/images/cards/rattle.webp",
     "beta_image_url": "/static/images/cards/beta/rattle.webp",
     "type_variants": null,
-    "upgrade_description": "[gold]奥斯提[/gold]造成9点伤害。\n他在本回合每攻击过一次，此牌就额外造成一次伤害。",
+    "upgrade_description": "[gold]奥斯提[/gold]造成9点伤害。\n本回合每使用过一次奥斯提攻击牌，此牌就额外造成一次伤害。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 321
@@ -15390,7 +15403,7 @@
   {
     "id": "KINGLY_PUNCH",
     "name": "王者之拳",
-    "description": "造成8点伤害。\n每当你抽到这张牌时，在这场战斗中其伤害增加3。",
+    "description": "造成8点伤害。\n每当你抽到这张牌时，在这场战斗中其伤害增加4。",
     "description_raw": "造成{Damage:diff()}点伤害。\n每当你抽到这张牌时，在这场战斗中其伤害增加{Increase:diff()}。",
     "cost": 1,
     "is_x_cost": null,
@@ -15411,16 +15424,17 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Increase": 3,
+      "Increase": 4,
       "Damage": 8
     },
     "upgrade": {
+      "damage": "+2",
       "increase": "+2"
     },
     "image_url": "/static/images/cards/kingly_punch.webp",
     "beta_image_url": "/static/images/cards/beta/kingly_punch.webp",
     "type_variants": null,
-    "upgrade_description": "造成8点伤害。\n每当你抽到这张牌时，在这场战斗中其伤害增加5。",
+    "upgrade_description": "造成10点伤害。\n每当你抽到这张牌时，在这场战斗中其伤害增加6。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 219
@@ -15428,7 +15442,7 @@
   {
     "id": "KINGLY_KICK",
     "name": "王者之踢",
-    "description": "造成24点伤害。\n每当你抽到这张牌时，这张牌的耗能减少1。",
+    "description": "造成27点伤害。\n每当你抽到这张牌时，这张牌的耗能减少1。",
     "description_raw": "造成{Damage:diff()}点伤害。\n每当你抽到这张牌时，这张牌的耗能减少1。",
     "cost": 4,
     "is_x_cost": null,
@@ -15438,7 +15452,7 @@
     "rarity": "罕见",
     "target": "AnyEnemy",
     "color": "regent",
-    "damage": 24,
+    "damage": 27,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -15449,15 +15463,15 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Damage": 24
+      "Damage": 27
     },
     "upgrade": {
-      "damage": "+6"
+      "damage": "+8"
     },
     "image_url": "/static/images/cards/kingly_kick.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "造成30点伤害。\n每当你抽到这张牌时，这张牌的耗能减少1。",
+    "upgrade_description": "造成35点伤害。\n每当你抽到这张牌时，这张牌的耗能减少1。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 218
@@ -15686,12 +15700,12 @@
       "Energy": 2
     },
     "upgrade": {
-      "remove_exhaust": true
+      "energy": "+1"
     },
     "image_url": "/static/images/cards/production.webp",
     "beta_image_url": "/static/images/cards/beta/production.webp",
     "type_variants": null,
-    "upgrade_description": null,
+    "upgrade_description": "获得[energy:3]。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "keywords_key": [
@@ -15776,7 +15790,7 @@
     "name": "电流相生",
     "description": "[gold]生成[/gold]等量于你在这场战斗中[gold]生成过[/gold]的[gold]闪电[/gold]充能球数量的[gold]闪电[/gold]充能球。",
     "description_raw": "[gold]生成[/gold]等量于你在这场战斗中[gold]生成过[/gold]的[gold]闪电[/gold]充能球数量的[gold]闪电[/gold]充能球。{InCombat:\n（[gold]生成[/gold]{CalculatedChannels:diff()}个[gold]闪电[/gold]充能球）|}",
-    "cost": 2,
+    "cost": 3,
     "is_x_cost": null,
     "is_x_star_cost": null,
     "star_cost": null,
@@ -15865,7 +15879,7 @@
     "id": "MAD_SCIENCE",
     "name": "疯狂科学",
     "description": "造成12点伤害。\n？？？",
-    "description_raw": "{CardType:choose(Attack|Skill|Power):造成{Damage:diff()}点伤害{Violence:{ViolenceHits:diff()}次|}。|获得{Block:diff()}点[gold]格挡[/gold]。|}{HasRider:{Sapping:\n给予{SappingWeak:diff()}层[gold]虚弱[/gold]。\n给予{SappingVulnerable:diff()}层[gold]易伤[/gold]。|}{Choking:\n本回合，你每打出一张牌，该敌人失去{ChokingDamage:diff()}点生命。|}{Energized:\n获得{EnergizedEnergy:energyIcons()}。|}{Wisdom:\n抽{WisdomCards:diff()}张牌|}{Chaos:\n将一张随机牌放入你的[gold]手牌[/gold]，这张牌在本回合耗能变为0{energyPrefix:energyIcons(1)}。|}{Expertise:获得{ExpertiseStrength:diff()}点[gold]力量[/gold]。\n获得{ExpertiseDexterity:diff()}点[gold]敏捷[/gold]。|}{Curious:能力牌的耗能减少{CuriousReduction:diff()}{energyPrefix:energyIcons(1)}。|}{Improvement:在战斗结束时，[gold]升级[/gold]你牌组中的一张随机牌。|}|{CardType:choose(Attack|Skill|Power):\n？？？|\n？？？|？？？}}",
+    "description_raw": "{CardType:choose(Attack|Skill|Power):造成{Damage:diff()}点伤害{Violence:{ViolenceHits:diff()}次|}。|获得{Block:diff()}点[gold]格挡[/gold]。|}{HasRider:{Sapping:\n给予{SappingWeak:diff()}层[gold]虚弱[/gold]。\n给予{SappingVulnerable:diff()}层[gold]易伤[/gold]。|}{Choking:\n本回合，你每打出一张牌，该敌人失去{ChokingDamage:diff()}点生命。|}{Energized:\n获得{EnergizedEnergy:energyIcons()}。|}{Wisdom:\n抽{WisdomCards:diff()}张牌|}{Chaos:\n将一张随机牌放入你的[gold]手牌[/gold]，这张牌在本回合可以免费打出。|}{Expertise:获得{ExpertiseStrength:diff()}点[gold]力量[/gold]。\n获得{ExpertiseDexterity:diff()}点[gold]敏捷[/gold]。|}{Curious:能力牌的耗能减少{CuriousReduction:diff()}{energyPrefix:energyIcons(1)}。|}{Improvement:在战斗结束时，[gold]升级[/gold]你牌组中的一张随机牌。|}|{CardType:choose(Attack|Skill|Power):\n？？？|\n？？？|？？？}}",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -15945,7 +15959,7 @@
           {
             "id": "CHAOS",
             "name": "混沌",
-            "description": "将一张随机牌放入你的[gold]手牌[/gold]。这张牌在本回合这张牌在本回合耗能变为[blue]0[/blue][energy:1]。"
+            "description": "将一张随机牌放入你的[gold]手牌[/gold]。这张牌在本回合可以免费打出。"
           }
         ]
       },
@@ -16147,7 +16161,7 @@
   {
     "id": "BELIEVE_IN_YOU",
     "name": "相信着你",
-    "description": "另一名玩家获得[energy:3]。",
+    "description": "另一名玩家获得[energy:2]。",
     "description_raw": "另一名玩家获得{Energy:energyIcons()}。",
     "cost": 0,
     "is_x_cost": null,
@@ -16162,13 +16176,13 @@
     "hit_count": null,
     "powers_applied": null,
     "cards_draw": null,
-    "energy_gain": 3,
+    "energy_gain": 2,
     "hp_loss": null,
     "keywords": null,
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Energy": 3
+      "Energy": 2
     },
     "upgrade": {
       "energy": "+1"
@@ -16176,7 +16190,7 @@
     "image_url": "/static/images/cards/believe_in_you.webp",
     "beta_image_url": "/static/images/cards/beta/believe_in_you.webp",
     "type_variants": null,
-    "upgrade_description": "另一名玩家获得[energy:4]。",
+    "upgrade_description": "另一名玩家获得[energy:3]。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 444
@@ -16272,7 +16286,7 @@
     "name": "破击",
     "description": "造成20点伤害。\n给予5层[gold]易伤[/gold]。",
     "description_raw": "造成{Damage:diff()}点伤害。\n给予{VulnerablePower:diff()}层[gold]易伤[/gold]。",
-    "cost": 2,
+    "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
     "star_cost": null,
@@ -16302,13 +16316,13 @@
       "Vulnerable": 5
     },
     "upgrade": {
-      "damage": "+5",
+      "damage": "+10",
       "vulnerable": "+2"
     },
     "image_url": "/static/images/cards/break.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "造成25点伤害。\n给予5层[gold]易伤[/gold]。",
+    "upgrade_description": "造成30点伤害。\n给予5层[gold]易伤[/gold]。",
     "type_key": "Attack",
     "rarity_key": "Ancient",
     "compendium_order": 12
@@ -16346,7 +16360,7 @@
     "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Common",
-    "compendium_order": 39
+    "compendium_order": 38
   },
   {
     "id": "DEBRIS",
@@ -16475,7 +16489,7 @@
   {
     "id": "COLLISION_COURSE",
     "name": "碰撞轨迹",
-    "description": "造成9点伤害。\n将一张[gold]碎屑[/gold]添加至你的[gold]手牌[/gold]。",
+    "description": "造成11点伤害。\n将一张[gold]碎屑[/gold]添加至你的[gold]手牌[/gold]。",
     "description_raw": "造成{Damage:diff()}点伤害。\n将一张[gold]碎屑[/gold]添加至你的[gold]手牌[/gold]。",
     "cost": 0,
     "is_x_cost": null,
@@ -16485,7 +16499,7 @@
     "rarity": "普通",
     "target": "AnyEnemy",
     "color": "regent",
-    "damage": 9,
+    "damage": 11,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -16498,15 +16512,15 @@
       "DEBRIS"
     ],
     "vars": {
-      "Damage": 9
+      "Damage": 11
     },
     "upgrade": {
-      "damage": "+3"
+      "damage": "+4"
     },
     "image_url": "/static/images/cards/collision_course.webp",
     "beta_image_url": "/static/images/cards/beta/collision_course.webp",
     "type_variants": null,
-    "upgrade_description": "造成12点伤害。\n将一张[gold]碎屑[/gold]添加至你的[gold]手牌[/gold]。",
+    "upgrade_description": "造成15点伤害。\n将一张[gold]碎屑[/gold]添加至你的[gold]手牌[/gold]。",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 189
@@ -16890,7 +16904,7 @@
   },
   {
     "id": "NULL",
-    "name": "空无",
+    "name": "空值",
     "description": "造成10点伤害。\n给予2层[gold]虚弱[/gold]。\n[gold]生成[/gold]1个[gold]黑暗[/gold]充能球。",
     "description_raw": "造成{Damage:diff()}点伤害。\n给予{WeakPower:diff()}层[gold]虚弱[/gold]。\n[gold]生成[/gold]1个[gold]黑暗[/gold]充能球。",
     "cost": 2,
@@ -17219,7 +17233,7 @@
   {
     "id": "PINPOINT",
     "name": "精密瞄准",
-    "description": "造成17点伤害。\n你在本回合中每打出过一张技能牌，其耗能减少1[energy:1]。",
+    "description": "造成15点伤害。\n你在本回合中每打出过一张技能牌，其耗能减少1[energy:1]。",
     "description_raw": "造成{Damage:diff()}点伤害。\n你在本回合中每打出过一张技能牌，其耗能减少1{energyPrefix:energyIcons(1)}。",
     "cost": 3,
     "is_x_cost": null,
@@ -17229,7 +17243,7 @@
     "rarity": "罕见",
     "target": "AnyEnemy",
     "color": "silent",
-    "damage": 17,
+    "damage": 15,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -17240,15 +17254,15 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Damage": 17
+      "Damage": 15
     },
     "upgrade": {
-      "damage": "+5"
+      "damage": "+4"
     },
     "image_url": "/static/images/cards/pinpoint.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "造成22点伤害。\n你在本回合中每打出过一张技能牌，其耗能减少1[energy:1]。",
+    "upgrade_description": "造成19点伤害。\n你在本回合中每打出过一张技能牌，其耗能减少1[energy:1]。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 145
@@ -17787,12 +17801,12 @@
       "SerpentForm": 4
     },
     "upgrade": {
-      "serpentformpower": "+1"
+      "serpentformpower": "+2"
     },
     "image_url": "/static/images/cards/serpent_form.webp",
     "beta_image_url": "/static/images/cards/beta/serpent_form.webp",
     "type_variants": null,
-    "upgrade_description": "你每打出一张牌，就对随机一名敌人造成5点伤害。",
+    "upgrade_description": "你每打出一张牌，就对随机一名敌人造成6点伤害。",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 153
@@ -17881,7 +17895,7 @@
   {
     "id": "FLICK_FLACK",
     "name": "翻越撑击",
-    "description": "对所有敌人造成7点伤害。",
+    "description": "对所有敌人造成6点伤害。",
     "description_raw": "对所有敌人造成{Damage:diff()}点伤害。",
     "cost": 1,
     "is_x_cost": null,
@@ -17891,7 +17905,7 @@
     "rarity": "普通",
     "target": "AllEnemies",
     "color": "silent",
-    "damage": 7,
+    "damage": 6,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -17904,7 +17918,7 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Damage": 7
+      "Damage": 6
     },
     "upgrade": {
       "damage": "+2"
@@ -17912,7 +17926,7 @@
     "image_url": "/static/images/cards/flick_flack.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "对所有敌人造成9点伤害。",
+    "upgrade_description": "对所有敌人造成8点伤害。",
     "type_key": "Attack",
     "rarity_key": "Common",
     "keywords_key": [
@@ -18319,7 +18333,7 @@
   {
     "id": "CORROSIVE_WAVE",
     "name": "腐蚀波",
-    "description": "打出此牌后，你在本回合每抽到一张牌，就给予所有敌人3层[gold]中毒[/gold]。",
+    "description": "打出此牌后，你在本回合每抽到一张牌，就给予所有敌人2层[gold]中毒[/gold]。",
     "description_raw": "打出此牌后，你在本回合每抽到一张牌，就给予所有敌人{CorrosiveWave:diff()}层[gold]中毒[/gold]。",
     "cost": 1,
     "is_x_cost": null,
@@ -18340,7 +18354,7 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "CorrosiveWave": 3
+      "CorrosiveWave": 2
     },
     "upgrade": {
       "corrosivewave": "+1"
@@ -18348,7 +18362,7 @@
     "image_url": "/static/images/cards/corrosive_wave.webp",
     "beta_image_url": "/static/images/cards/beta/corrosive_wave.webp",
     "type_variants": null,
-    "upgrade_description": "打出此牌后，你在本回合每抽到一张牌，就给予所有敌人4层[gold]中毒[/gold]。",
+    "upgrade_description": "打出此牌后，你在本回合每抽到一张牌，就给予所有敌人3层[gold]中毒[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Rare",
     "compendium_order": 106
@@ -18984,7 +18998,9 @@
     "cards_draw": null,
     "energy_gain": null,
     "hp_loss": null,
-    "keywords": null,
+    "keywords": [
+      "虚无"
+    ],
     "tags": null,
     "spawns_cards": null,
     "vars": {
@@ -18992,14 +19008,17 @@
       "VoidForm": 2
     },
     "upgrade": {
-      "voidformpower": "+1"
+      "remove_ethereal": true
     },
     "image_url": "/static/images/cards/void_form.webp",
     "beta_image_url": "/static/images/cards/beta/void_form.webp",
     "type_variants": null,
-    "upgrade_description": "结束你的回合。\n你可以免费打出每回合的前3张牌。",
+    "upgrade_description": null,
     "type_key": "Power",
     "rarity_key": "Rare",
+    "keywords_key": [
+      "Ethereal"
+    ],
     "compendium_order": 261
   },
   {
@@ -19353,7 +19372,9 @@
     "cards_draw": null,
     "energy_gain": 3,
     "hp_loss": null,
-    "keywords": null,
+    "keywords": [
+      "消耗"
+    ],
     "tags": null,
     "spawns_cards": null,
     "vars": {
@@ -19368,12 +19389,15 @@
     "upgrade_description": "如果你在本回合[gold]消耗过[/gold]卡牌，则获得[energy:4]。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
+    "keywords_key": [
+      "Exhaust"
+    ],
     "compendium_order": 37
   },
   {
     "id": "UNTOUCHABLE",
     "name": "触不可及",
-    "description": "获得9点[gold]格挡[/gold]。",
+    "description": "获得6点[gold]格挡[/gold]。",
     "description_raw": "获得{Block:diff()}点[gold]格挡[/gold]。",
     "cost": 2,
     "is_x_cost": null,
@@ -19384,7 +19408,7 @@
     "target": "Self",
     "color": "silent",
     "damage": null,
-    "block": 9,
+    "block": 6,
     "hit_count": null,
     "powers_applied": null,
     "cards_draw": null,
@@ -19396,15 +19420,15 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Block": 9
+      "Block": 6
     },
     "upgrade": {
-      "block": "+3"
+      "block": "+2"
     },
     "image_url": "/static/images/cards/untouchable.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "获得12点[gold]格挡[/gold]。",
+    "upgrade_description": "获得8点[gold]格挡[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Common",
     "keywords_key": [
@@ -20047,8 +20071,8 @@
   {
     "id": "EXPECT_A_FIGHT",
     "name": "跃跃欲试",
-    "description": "你的[gold]手牌[/gold]中每有一张攻击牌，就会获得[energy:1]。",
-    "description_raw": "你的[gold]手牌[/gold]中每有一张攻击牌，就会获得{energyPrefix:energyIcons(1)}。{InCombat:\n（获得{CalculatedEnergy:energyIcons()}。）|}",
+    "description": "你的[gold]手牌[/gold]中每有一张攻击牌，就获得[energy:1]。\n你在本回合内\n不能再获得[energy:1]。",
+    "description_raw": "你的[gold]手牌[/gold]中每有一张攻击牌，就获得{energyPrefix:energyIcons(1)}。\n你在本回合内\n不能再获得{energyPrefix:energyIcons(1)}。{InCombat:\n（获得{CalculatedEnergy:energyIcons()}）|}",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -20086,8 +20110,8 @@
   {
     "id": "TRACKING",
     "name": "跟踪",
-    "description": "对[gold]虚弱[/gold]状态的敌人，造成的攻击伤害翻倍。",
-    "description_raw": "对[gold]虚弱[/gold]状态的敌人，造成的攻击伤害翻倍。",
+    "description": "对[gold]虚弱[/gold]状态的敌人，你所造成的攻击伤害翻倍。",
+    "description_raw": "对[gold]虚弱[/gold]状态的敌人，你所造成的攻击伤害翻倍。",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -20121,26 +20145,20 @@
   {
     "id": "FOLLOW_THROUGH",
     "name": "跟进",
-    "description": "对所有敌人造成6点伤害。\n如果在本回合，你打出的上一张牌是技能牌，则给予所有敌人1层[gold]虚弱[/gold]。",
-    "description_raw": "对所有敌人造成{Damage:diff()}点伤害。\n如果在本回合，你打出的上一张牌是技能牌，则给予所有敌人{WeakPower:diff()}层[gold]虚弱[/gold]。",
+    "description": "造成7点伤害。\n如果你的[gold]手牌[/gold]中还有至少5张其他牌，则额外命中一次。",
+    "description_raw": "造成{Damage:diff()}点伤害。\n如果你的[gold]手牌[/gold]中还有至少{CardCount}张其他{CardCount:plural:牌|牌}，则额外命中一次。",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
     "star_cost": null,
     "type": "攻击",
-    "rarity": "罕见",
-    "target": "AllEnemies",
+    "rarity": "普通",
+    "target": "AnyEnemy",
     "color": "silent",
-    "damage": 6,
+    "damage": 7,
     "block": null,
     "hit_count": null,
-    "powers_applied": [
-      {
-        "power": "虚弱",
-        "amount": 1,
-        "power_key": "Weak"
-      }
-    ],
+    "powers_applied": null,
     "cards_draw": null,
     "energy_gain": null,
     "hp_loss": null,
@@ -20148,20 +20166,18 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Damage": 6,
-      "WeakPower": 1,
-      "Weak": 1
+      "CardCount": 5,
+      "Damage": 7
     },
     "upgrade": {
-      "damage": "+2",
-      "weak": "+1"
+      "damage": "+2"
     },
     "image_url": "/static/images/cards/follow_through.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "对所有敌人造成8点伤害。\n如果在本回合，你打出的上一张牌是技能牌，则给予所有敌人1层[gold]虚弱[/gold]。",
+    "upgrade_description": "造成9点伤害。\n如果你的[gold]手牌[/gold]中还有至少5张其他牌，则额外命中一次。",
     "type_key": "Attack",
-    "rarity_key": "Uncommon",
+    "rarity_key": "Common",
     "compendium_order": 124
   },
   {
@@ -20204,8 +20220,8 @@
   {
     "id": "BOMBARDMENT",
     "name": "轰击",
-    "description": "造成18点伤害。\n在你的回合开始时，从[gold]消耗牌堆[/gold]打出这张牌。",
-    "description_raw": "造成{Damage:diff()}点伤害。\n在你的回合开始时，从[gold]消耗牌堆[/gold]打出这张牌。",
+    "description": "造成18点伤害。\n你的回合开始时，如果这张牌在你的[gold]消耗牌堆[/gold]中，则将其打出。",
+    "description_raw": "造成{Damage:diff()}点伤害。\n你的回合开始时，如果这张牌在你的[gold]消耗牌堆[/gold]中，则将其打出。",
     "cost": 3,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -20235,7 +20251,7 @@
     "image_url": "/static/images/cards/bombardment.webp",
     "beta_image_url": "/static/images/cards/beta/bombardment.webp",
     "type_variants": null,
-    "upgrade_description": "造成24点伤害。\n在你的回合开始时，从[gold]消耗牌堆[/gold]打出这张牌。",
+    "upgrade_description": "造成24点伤害。\n你的回合开始时，如果这张牌在你的[gold]消耗牌堆[/gold]中，则将其打出。",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -20246,8 +20262,8 @@
   {
     "id": "GLOW",
     "name": "辉光",
-    "description": "获得[star:1]。\n抽2张牌。",
-    "description_raw": "获得{Stars:starIcons()}。\n抽{Cards:diff()}张牌。",
+    "description": "获得[star:1]。\n抽1张牌。\n下一回合抽1张牌。",
+    "description_raw": "获得{Stars:starIcons()}。\n抽{Cards:diff()}张牌。\n下一回合抽{Cards:diff()}张牌{Cards:plural:|}。",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -20260,7 +20276,7 @@
     "block": null,
     "hit_count": null,
     "powers_applied": null,
-    "cards_draw": 2,
+    "cards_draw": 1,
     "energy_gain": null,
     "hp_loss": null,
     "keywords": null,
@@ -20268,7 +20284,7 @@
     "spawns_cards": null,
     "vars": {
       "Stars": 1,
-      "Cards": 2
+      "Cards": 1
     },
     "upgrade": {
       "stars": "+1"
@@ -20276,7 +20292,7 @@
     "image_url": "/static/images/cards/glow.webp",
     "beta_image_url": "/static/images/cards/beta/glow.webp",
     "type_variants": null,
-    "upgrade_description": "获得[star:2]。\n抽2张牌。",
+    "upgrade_description": "获得[star:2]。\n抽1张牌。\n下一回合抽1张牌。",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 209
@@ -20284,8 +20300,8 @@
   {
     "id": "RADIATE",
     "name": "辐射",
-    "description": "你在本回合每获得一点[star:1]，则此牌就所有敌人造成3点伤害一次。",
-    "description_raw": "你在本回合每获得一点{Stars:starIcons()}，则此牌就所有敌人造成{Damage:diff()}点伤害一次。{InCombat:\n（命中{CalculatedHits:diff()}次）|}",
+    "description": "你在本回合每获得一点[star:1]，此牌就对所有敌人造成3点伤害一次。",
+    "description_raw": "你在本回合每获得一点{Stars:starIcons()}，此牌就对所有敌人造成{Damage:diff()}点伤害一次。{InCombat:\n（命中{CalculatedHits:diff()}次）|}",
     "cost": 0,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -20316,7 +20332,7 @@
     "image_url": "/static/images/cards/radiate.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "你在本回合每获得一点[star:1]，则此牌就所有敌人造成4点伤害一次。",
+    "upgrade_description": "你在本回合每获得一点[star:1]，此牌就对所有敌人造成4点伤害一次。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 239
@@ -20400,13 +20416,12 @@
       "Weak": 1
     },
     "upgrade": {
-      "block": "+1",
-      "weak": "+1"
+      "block": "+3"
     },
     "image_url": "/static/images/cards/defy.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "获得7点[gold]格挡[/gold]。\n给予1层[gold]虚弱[/gold]。",
+    "upgrade_description": "获得9点[gold]格挡[/gold]。\n给予1层[gold]虚弱[/gold]。",
     "type_key": "Skill",
     "rarity_key": "Common",
     "keywords_key": [
@@ -20810,12 +20825,12 @@
       "Speedster": 2
     },
     "upgrade": {
-      "speedsterpower": "+1"
+      "add_innate": true
     },
     "image_url": "/static/images/cards/speedster.webp",
     "beta_image_url": "/static/images/cards/beta/speedster.webp",
     "type_variants": null,
-    "upgrade_description": "每当你在回合进行中抽到一张牌时，对所有敌人造成3点伤害。",
+    "upgrade_description": null,
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 160
@@ -20903,8 +20918,8 @@
   {
     "id": "FLATTEN",
     "name": "重压",
-    "description": "[gold]奥斯提[/gold]造成12点伤害。\n如果[gold]奥斯提[/gold]本回合攻击过，则这张牌的费用变为0[energy:1]。",
-    "description_raw": "[gold]奥斯提[/gold]造成{OstyDamage:diff()}点伤害。\n如果[gold]奥斯提[/gold]本回合攻击过，则这张牌的费用变为0{energyPrefix:energyIcons(1)}。",
+    "description": "[gold]奥斯提[/gold]造成12点伤害。\n如果[gold]奥斯提[/gold]本回合攻击过，则这张牌的耗能变为0[energy:1]。",
+    "description_raw": "[gold]奥斯提[/gold]造成{OstyDamage:diff()}点伤害。\n如果[gold]奥斯提[/gold]本回合攻击过，则这张牌的耗能变为0{energyPrefix:energyIcons(1)}。",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -20935,7 +20950,7 @@
     "image_url": "/static/images/cards/flatten.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "[gold]奥斯提[/gold]造成16点伤害。\n如果[gold]奥斯提[/gold]本回合攻击过，则这张牌的费用变为0[energy:1]。",
+    "upgrade_description": "[gold]奥斯提[/gold]造成16点伤害。\n如果[gold]奥斯提[/gold]本回合攻击过，则这张牌的耗能变为0[energy:1]。",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 295
@@ -21022,8 +21037,8 @@
   {
     "id": "TRANSFIGURE",
     "name": "重构",
-    "description": "给一张[gold]手牌[/gold]添加[gold]重放[/gold]。\n其费用增加1[energy:1]。",
-    "description_raw": "给一张[gold]手牌[/gold]添加[gold]重放[/gold]。\n其费用增加1{Energy:energyIcons()}。",
+    "description": "给一张[gold]手牌[/gold]添加[gold]重放[/gold]。\n其耗能增加1[energy:1]。",
+    "description_raw": "给一张[gold]手牌[/gold]添加[gold]重放[/gold]。\n其耗能增加1{Energy:energyIcons()}。",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -21299,7 +21314,7 @@
     "upgrade_description": "获得7点[gold]格挡[/gold]。\n造成7点伤害。",
     "type_key": "Attack",
     "rarity_key": "Common",
-    "compendium_order": 48
+    "compendium_order": 47
   },
   {
     "id": "CALTROPS",
@@ -21388,7 +21403,7 @@
   {
     "id": "MEMENTO_MORI",
     "name": "铭记死亡",
-    "description": "造成8点伤害。\n本回合每丢弃过一张牌，则增加4点额外伤害。",
+    "description": "造成9点伤害。\n本回合每丢弃过一张牌，则增加4点额外伤害。",
     "description_raw": "造成{CalculatedDamage:diff()}点伤害。\n本回合每丢弃过一张牌，则增加{ExtraDamage:diff()}点额外伤害。",
     "cost": 1,
     "is_x_cost": null,
@@ -21398,7 +21413,7 @@
     "rarity": "罕见",
     "target": "AnyEnemy",
     "color": "silent",
-    "damage": 8,
+    "damage": 9,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -21409,9 +21424,9 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "CalculationBase": 8,
+      "CalculationBase": 9,
       "ExtraDamage": 4,
-      "CalculatedDamage": 8
+      "CalculatedDamage": 9
     },
     "upgrade": {
       "calculationbase": "+2",
@@ -21420,7 +21435,7 @@
     "image_url": "/static/images/cards/memento_mori.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "造成8点伤害。\n本回合每丢弃过一张牌，则增加5点额外伤害。",
+    "upgrade_description": "造成9点伤害。\n本回合每丢弃过一张牌，则增加5点额外伤害。",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 136
@@ -21903,8 +21918,8 @@
     "id": "SEANCE",
     "name": "降灵",
     "description": "将你[gold]抽牌堆[/gold]中的一张牌变化为[gold]灵魂[/gold]。",
-    "description_raw": "将你[gold]抽牌堆[/gold]中的一张牌变化为[gold]{IfUpgraded:show:灵魂+|灵魂}[/gold]。",
-    "cost": 0,
+    "description_raw": "将你[gold]抽牌堆[/gold]中的一张牌变化为[gold]灵魂[/gold]。",
+    "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
     "star_cost": null,
@@ -21930,12 +21945,12 @@
       "Cards": 1
     },
     "upgrade": {
-      "description_changed": true
+      "cost": 0
     },
     "image_url": "/static/images/cards/seance.webp",
     "beta_image_url": "/static/images/cards/beta/seance.webp",
     "type_variants": null,
-    "upgrade_description": "将你[gold]抽牌堆[/gold]中的一张牌变化为[gold]灵魂+[/gold]。",
+    "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -21946,7 +21961,7 @@
   {
     "id": "FALLING_STAR",
     "name": "陨星",
-    "description": "造成7点伤害。\n给予1层[gold]虚弱[/gold]。\n给予1层[gold]易伤[/gold]。",
+    "description": "造成8点伤害。\n给予1层[gold]虚弱[/gold]。\n给予1层[gold]易伤[/gold]。",
     "description_raw": "造成{Damage:diff()}点伤害。\n给予{WeakPower:diff()}层[gold]虚弱[/gold]。\n给予{VulnerablePower:diff()}层[gold]易伤[/gold]。",
     "cost": 0,
     "is_x_cost": null,
@@ -21956,7 +21971,7 @@
     "rarity": "基础",
     "target": "AnyEnemy",
     "color": "regent",
-    "damage": 7,
+    "damage": 8,
     "block": null,
     "hit_count": null,
     "powers_applied": [
@@ -21978,7 +21993,7 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Damage": 7,
+      "Damage": 8,
       "VulnerablePower": 1,
       "Vulnerable": 1,
       "WeakPower": 1,
@@ -21991,7 +22006,7 @@
     "image_url": "/static/images/cards/falling_star.webp",
     "beta_image_url": "/static/images/cards/beta/falling_star.webp",
     "type_variants": null,
-    "upgrade_description": "造成11点伤害。\n给予1层[gold]虚弱[/gold]。\n给予1层[gold]易伤[/gold]。",
+    "upgrade_description": "造成12点伤害。\n给予1层[gold]虚弱[/gold]。\n给予1层[gold]易伤[/gold]。",
     "type_key": "Attack",
     "rarity_key": "Basic",
     "compendium_order": 201
@@ -22208,7 +22223,7 @@
   {
     "id": "SCULPTING_STRIKE",
     "name": "雕琢打击",
-    "description": "造成8点伤害。\n为一张[gold]手牌[/gold]添加[gold]虚无[/gold]。",
+    "description": "造成9点伤害。\n为一张[gold]手牌[/gold]添加[gold]虚无[/gold]。",
     "description_raw": "造成{Damage:diff()}点伤害。\n为一张[gold]手牌[/gold]添加[gold]虚无[/gold]。",
     "cost": 1,
     "is_x_cost": null,
@@ -22218,7 +22233,7 @@
     "rarity": "普通",
     "target": "AnyEnemy",
     "color": "necrobinder",
-    "damage": 8,
+    "damage": 9,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -22231,7 +22246,7 @@
     ],
     "spawns_cards": null,
     "vars": {
-      "Damage": 8
+      "Damage": 9
     },
     "upgrade": {
       "damage": "+3"
@@ -22239,7 +22254,7 @@
     "image_url": "/static/images/cards/sculpting_strike.webp",
     "beta_image_url": "/static/images/cards/beta/sculpting_strike.webp",
     "type_variants": null,
-    "upgrade_description": "造成11点伤害。\n为一张[gold]手牌[/gold]添加[gold]虚无[/gold]。",
+    "upgrade_description": "造成12点伤害。\n为一张[gold]手牌[/gold]添加[gold]虚无[/gold]。",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 329
@@ -22556,9 +22571,9 @@
   {
     "id": "BORROWED_TIME",
     "name": "预借时间",
-    "description": "给予自身3层[gold]灾厄[/gold]。\n获得[energy:1]。",
-    "description_raw": "给予自身{DoomPower:diff()}层[gold]灾厄[/gold]。\n获得{Energy:energyIcons()}。",
-    "cost": 0,
+    "description": "获得[energy:4]。\n卡牌在本回合耗能增加[energy:1]。",
+    "description_raw": "获得{Energy:energyIcons()}。\n卡牌在本回合耗能增加{ExtraCost:energyIcons()}。",
+    "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
     "star_cost": null,
@@ -22569,31 +22584,24 @@
     "damage": null,
     "block": null,
     "hit_count": null,
-    "powers_applied": [
-      {
-        "power": "灾厄",
-        "amount": 3,
-        "power_key": "Doom"
-      }
-    ],
+    "powers_applied": null,
     "cards_draw": null,
-    "energy_gain": 1,
+    "energy_gain": 4,
     "hp_loss": null,
     "keywords": null,
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Energy": 1,
-      "DoomPower": 3,
-      "Doom": 3
+      "ExtraCost": 1,
+      "Energy": 4
     },
     "upgrade": {
-      "energy": "+1"
+      "energy": "+2"
     },
     "image_url": "/static/images/cards/borrowed_time.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "给予自身3层[gold]灾厄[/gold]。\n获得[energy:2]。",
+    "upgrade_description": "获得[energy:6]。\n卡牌在本回合耗能增加[energy:1]。",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 268
@@ -22601,7 +22609,7 @@
   {
     "id": "ANTICIPATE",
     "name": "预判",
-    "description": "在本回合获得3点[gold]敏捷[/gold]。",
+    "description": "在本回合获得2点[gold]敏捷[/gold]。",
     "description_raw": "在本回合获得{DexterityPower:diff()}点[gold]敏捷[/gold]。",
     "cost": 0,
     "is_x_cost": null,
@@ -22617,7 +22625,7 @@
     "powers_applied": [
       {
         "power": "敏捷",
-        "amount": 3,
+        "amount": 2,
         "power_key": "Dexterity"
       }
     ],
@@ -22628,11 +22636,11 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "DexterityPower": 3,
-      "Dexterity": 3
+      "DexterityPower": 2,
+      "Dexterity": 2
     },
     "upgrade": {
-      "dexterity": "+2"
+      "dexterity": "+1"
     },
     "image_url": "/static/images/cards/anticipate.webp",
     "beta_image_url": null,

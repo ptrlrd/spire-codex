@@ -46,8 +46,8 @@
   {
     "id": "ENTROPIC_BREW",
     "name": "Bevanda Entropica",
-    "description": "Riempi tutti gli spazi pozioni vuoti con pozioni casuali.",
-    "description_raw": "Riempi tutti gli spazi pozioni vuoti con pozioni casuali.",
+    "description": "Riempi tutti gli spazi per pozioni vuoti con pozioni casuali.",
+    "description_raw": "Riempi tutti gli spazi per pozioni vuoti con pozioni casuali.",
     "rarity": "Rara",
     "image_url": "/static/images/potions/entropic_brew.webp",
     "rarity_key": "Rare",
@@ -156,8 +156,8 @@
   {
     "id": "DUPLICATOR",
     "name": "Duplicatore",
-    "description": "In questo turno, la tua carta successiva verrà giocata una seconda volta.",
-    "description_raw": "In questo turno, la tua carta successiva verrà giocata una seconda volta.",
+    "description": "In questo turno, la tua prossima carta verrà giocata una volta in più.",
+    "description_raw": "In questo turno, la tua prossima carta verrà giocata una volta in più.",
     "rarity": "Non comune",
     "image_url": "/static/images/potions/duplicator.webp",
     "rarity_key": "Uncommon",
@@ -167,8 +167,8 @@
   {
     "id": "ESSENCE_OF_DARKNESS",
     "name": "Essenza Oscura",
-    "description": "[gold]Canalizzi[/gold] un [gold]Tetroglobo[/gold] per ognuno dei tuoi [gold]spazi Globi[/gold].",
-    "description_raw": "[gold]Canalizzi[/gold] un [gold]Tetroglobo[/gold] per ognuno dei tuoi [gold]spazi Globi[/gold].",
+    "description": "[gold]Canalizzi[/gold] un [gold]Tetroglobo[/gold] per ognuno dei tuoi [gold]spazi per Globi[/gold].",
+    "description_raw": "[gold]Canalizzi[/gold] un [gold]Tetroglobo[/gold] per ognuno dei tuoi [gold]spazi per Globi[/gold].",
     "rarity": "Rara",
     "image_url": "/static/images/potions/essence_of_darkness.webp",
     "rarity_key": "Rare",
@@ -189,8 +189,8 @@
   {
     "id": "CLARITY",
     "name": "Estratto di Chiarezza",
-    "description": "Peschi [blue]1[/blue] carta. All'inizio dei tuoi [blue]3[/blue] turni successivi, peschi [blue]1[/blue] carta extra.",
-    "description_raw": "Peschi [blue]{Cards}[/blue] {Cards:plural:carta|carte}. All'inizio {ClarityPower:plural:del tuo turno successivo|dei tuoi [blue]{}[/blue] turni successivi}, peschi [blue]1[/blue] carta extra.",
+    "description": "Peschi [blue]1[/blue] carta. All'inizio dei tuoi prossimi [blue]3[/blue] turni, peschi [blue]1[/blue] carta extra.",
+    "description_raw": "Peschi [blue]{Cards}[/blue] {Cards:plural:carta|carte}. All'inizio {ClarityPower:plural:del tuo prossimo turno|dei tuoi prossimi [blue]{}[/blue] turni}, peschi [blue]1[/blue] carta extra.",
     "rarity": "Non comune",
     "image_url": "/static/images/potions/clarity.webp",
     "rarity_key": "Uncommon",
@@ -200,8 +200,8 @@
   {
     "id": "FAIRY_IN_A_BOTTLE",
     "name": "Fata Imbottigliata",
-    "description": "Quando stai per morire, questa pozione viene scartata e recuperi il [blue]30%[/blue] dei tuoi PV massimi.",
-    "description_raw": "Quando stai per morire, questa pozione viene scartata e recuperi il [blue]30%[/blue] dei tuoi PV massimi.",
+    "description": "Se i tuoi PV si riducono a [blue]0[/blue], scarti questa pozione e recuperi il [blue]30%[/blue] dei tuoi PV massimi.",
+    "description_raw": "Se i tuoi PV si riducono a [blue]0[/blue], scarti questa pozione e recuperi il [blue]30%[/blue] dei tuoi PV massimi.",
     "rarity": "Rara",
     "image_url": "/static/images/potions/fairy_in_a_bottle.webp",
     "rarity_key": "Rare",
@@ -244,8 +244,8 @@
   {
     "id": "LIQUID_MEMORIES",
     "name": "Memorie Liquide",
-    "description": "Metti una carta dalla tua [gold]pila degli scarti[/gold] nella tua [gold]mano[/gold]. Costa [blue]0[/blue] [energy:1] in questo turno.",
-    "description_raw": "Metti una carta dalla tua [gold]pila degli scarti[/gold] nella tua [gold]mano[/gold]. Costa [blue]0[/blue] {energyPrefix:energyIcons(1)} in questo turno.",
+    "description": "Metti una carta dalla tua [gold]pila degli scarti[/gold] nella tua [gold]mano[/gold]. Questo turno puoi giocarla senza nessun costo.",
+    "description_raw": "Metti una carta dalla tua [gold]pila degli scarti[/gold] nella tua [gold]mano[/gold]. Questo turno puoi giocarla senza nessun costo.",
     "rarity": "Rara",
     "image_url": "/static/images/potions/liquid_memories.webp",
     "rarity_key": "Rare",
@@ -277,8 +277,8 @@
   {
     "id": "SHIP_IN_A_BOTTLE",
     "name": "Nave in Bottiglia",
-    "description": "Ottieni [blue]10[/blue] di [gold]Blocco[/gold]. Nel turno successivo, ottieni [blue]10[/blue] di [gold]Blocco[/gold].",
-    "description_raw": "Ottieni [blue]{Block:diff()}[/blue] di [gold]Blocco[/gold]. Nel turno successivo, ottieni [blue]{Block:diff()}[/blue] di [gold]Blocco[/gold].",
+    "description": "Ottieni [blue]10[/blue] di [gold]Blocco[/gold]. Il prossimo turno, ottieni [blue]10[/blue] di [gold]Blocco[/gold].",
+    "description_raw": "Ottieni [blue]{Block:diff()}[/blue] di [gold]Blocco[/gold]. Il prossimo turno, ottieni [blue]{Block:diff()}[/blue] di [gold]Blocco[/gold].",
     "rarity": "Rara",
     "image_url": "/static/images/potions/ship_in_a_bottle.webp",
     "rarity_key": "Rare",
@@ -288,8 +288,8 @@
   {
     "id": "SNECKO_OIL",
     "name": "Olio di Snecko",
-    "description": "Peschi [blue]7[/blue] carte. In questo turno il costo delle carte nella tua [gold]mano[/gold] vengono modificate in modo casuale.",
-    "description_raw": "Peschi [blue]{Cards}[/blue] carte. In questo turno il costo delle carte nella tua [gold]mano[/gold] vengono modificate in modo casuale.",
+    "description": "Peschi [blue]7[/blue] carte. In questo turno il costo delle carte nella tua [gold]mano[/gold] viene modificato in modo casuale.",
+    "description_raw": "Peschi [blue]{Cards}[/blue] carte. In questo turno il costo delle carte nella tua [gold]mano[/gold] viene modificato in modo casuale.",
     "rarity": "Rara",
     "image_url": "/static/images/potions/snecko_oil.webp",
     "rarity_key": "Rare",
@@ -321,8 +321,8 @@
   {
     "id": "POTION_OF_CAPACITY",
     "name": "Pozione Conduttiva",
-    "description": "Ottieni [blue]2[/blue] [gold]spazi Globi[/gold].",
-    "description_raw": "Ottieni [blue]{Repeat}[/blue] [gold]{Repeat:plural:spazio|spazi} Globi[/gold].",
+    "description": "Ottieni [blue]2[/blue] [gold]spazi per Globi[/gold].",
+    "description_raw": "Ottieni [blue]{Repeat}[/blue] [gold]{Repeat:plural:spazio|spazi} per Globi[/gold].",
     "rarity": "Non comune",
     "image_url": "/static/images/potions/potion_of_capacity.webp",
     "rarity_key": "Uncommon",
@@ -349,17 +349,6 @@
     "image_url": "/static/images/potions/energy_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 8,
-    "pool": "shared"
-  },
-  {
-    "id": "GIGANTIFICATION_POTION",
-    "name": "Pozione Giganteggiante",
-    "description": "La carta Attacco successiva che giochi infligge danno triplo.",
-    "description_raw": "La carta Attacco successiva che giochi infligge danno triplo.",
-    "rarity": "Rara",
-    "image_url": "/static/images/potions/gigantification_potion.webp",
-    "rarity_key": "Rare",
-    "compendium_order": 51,
     "pool": "shared"
   },
   {
@@ -398,8 +387,8 @@
   {
     "id": "FOUL_POTION",
     "name": "Pozione Nefasta",
-    "description": "Infliggi [blue]12[/blue] di danno a TUTTI.\nPuò essere lanciata al [gold]mercante[/gold] in cambio di [blue]100[/blue] unità [gold]d'oro[/gold].",
-    "description_raw": "Infliggi [blue]{Damage}[/blue] di danno a TUTTI.\nPuò essere lanciata al [gold]mercante[/gold] in cambio di [blue]{Gold}[/blue] unità [gold]d'oro[/gold].",
+    "description": "Infliggi [blue]12[/blue] di danno a TUTTI i giocatori e ai nemici.\nPuò essere lanciata al [gold]mercante[/gold] in cambio di [blue]100[/blue] unità [gold]d'oro[/gold].",
+    "description_raw": "Infliggi [blue]{Damage}[/blue] di danno a TUTTI i giocatori e ai nemici.\nPuò essere lanciata al [gold]mercante[/gold] in cambio di [blue]{Gold}[/blue] unità [gold]d'oro[/gold].",
     "rarity": "Evento",
     "image_url": "/static/images/potions/foul_potion.webp",
     "rarity_key": "Event",
@@ -414,7 +403,7 @@
     "rarity": "Rara",
     "image_url": "/static/images/potions/shackling_potion.webp",
     "rarity_key": "Rare",
-    "compendium_order": 52,
+    "compendium_order": 51,
     "pool": "shared"
   },
   {
@@ -454,7 +443,7 @@
     "id": "CUNNING_POTION",
     "name": "Pozione Scaltra",
     "description": "Aggiungi [blue]3[/blue] [gold]carte Pugnale potenziate[/gold] alla tua [gold]mano[/gold].",
-    "description_raw": "Aggiungi [blue]{Cards}[/blue] [gold]{Cards:plural:carta Pugnale potenziato|carte Pugnale potenziate}[/gold] alla tua [gold]mano[/gold].",
+    "description_raw": "Aggiungi [blue]{Cards}[/blue] [gold]{Cards:plural:carta Pugnale potenziata|carte Pugnale potenziate}[/gold] alla tua [gold]mano[/gold].",
     "rarity": "Non comune",
     "image_url": "/static/images/potions/cunning_potion.webp",
     "rarity_key": "Uncommon",
@@ -550,6 +539,17 @@
     "pool": "shared"
   },
   {
+    "id": "GIGANTIFICATION_POTION",
+    "name": "Pozione di Gigantificazione",
+    "description": "Il danno della prossima carta Attacco che giochi è triplicato.",
+    "description_raw": "Il danno della prossima carta Attacco che giochi è triplicato.",
+    "rarity": "Rara",
+    "image_url": "/static/images/potions/gigantification_potion.webp",
+    "rarity_key": "Rare",
+    "compendium_order": 52,
+    "pool": "shared"
+  },
+  {
     "id": "MAZALETHS_GIFT",
     "name": "Regalo di Mazaleth",
     "description": "Ottieni [blue]1[/blue] di [gold]Rituale[/gold].",
@@ -618,8 +618,8 @@
   {
     "id": "FRUIT_JUICE",
     "name": "Succo di Frutta",
-    "description": "Ottieni i seguenti PV massimi: [blue]5[/blue].",
-    "description_raw": "Ottieni i seguenti PV massimi: [blue]{MaxHp}[/blue].",
+    "description": "Aumenti i PV massimi di [blue]5[/blue].",
+    "description_raw": "Aumenti i PV massimi di [blue]{MaxHp}[/blue].",
     "rarity": "Rara",
     "image_url": "/static/images/potions/fruit_juice.webp",
     "rarity_key": "Rare",
@@ -629,8 +629,8 @@
   {
     "id": "BEETLE_JUICE",
     "name": "Succo di Scarafaggio",
-    "description": "Gli attacchi del nemico infliggono un [blue]30%[/blue] di danno in meno per i [blue]4[/blue] turni successivi.",
-    "description_raw": "Gli attacchi del nemico infliggono un [blue]{DamageDecrease}%[/blue] di danno in meno per {Repeat:plural:il turno successivo|i [blue]{}[/blue] turni successivi}.",
+    "description": "Gli attacchi del nemico infliggono un [blue]30%[/blue] di danno in meno per i prossimi [blue]4[/blue] turni.",
+    "description_raw": "Gli attacchi del nemico infliggono un [blue]{DamageDecrease}%[/blue] di danno in meno per {Repeat:plural:il prossimo turno|i prossimi [blue]{}[/blue] turni}.",
     "rarity": "Rara",
     "image_url": "/static/images/potions/beetle_juice.webp",
     "rarity_key": "Rare",
@@ -640,8 +640,8 @@
   {
     "id": "RADIANT_TINCTURE",
     "name": "Tintura Radiosa",
-    "description": "Ottieni [energy:1]. Ottieni [energy:1] extra all'inizio dei tuoi [blue]3[/blue] prossimi turni.",
-    "description_raw": "Ottieni {Energy:energyIcons()}. Ottieni {energyPrefix:energyIcons(1)} extra all'inizio {RadiancePower:plural:del tuo prossimo turno|dei tuoi [blue]{RadiancePower}[/blue] prossimi turni}.",
+    "description": "Ottieni [energy:1]. Ottieni [energy:1] extra all'inizio dei tuoi prossimi [blue]3[/blue] turni.",
+    "description_raw": "Ottieni {Energy:energyIcons()}. Ottieni {energyPrefix:energyIcons(1)} extra all'inizio {RadiancePower:plural:del tuo prossimo turno|dei tuoi prossimi [blue]{RadiancePower}[/blue] turni}.",
     "rarity": "Non comune",
     "image_url": "/static/images/potions/radiant_tincture.webp",
     "rarity_key": "Uncommon",
@@ -651,8 +651,8 @@
   {
     "id": "TOUCH_OF_INSANITY",
     "name": "Tocco di Pazzia",
-    "description": "Scegli una carta nella tua [gold]mano[/gold] che potrai giocare senza nessun costo in questo combattimento.",
-    "description_raw": "Scegli una carta nella tua [gold]mano[/gold] che potrai giocare senza nessun costo in questo combattimento.",
+    "description": "Scegli una carta nella tua [gold]mano[/gold]. Giocala senza nessun costo in questo combattimento.",
+    "description_raw": "Scegli una carta nella tua [gold]mano[/gold]. Giocala senza nessun costo in questo combattimento.",
     "rarity": "Non comune",
     "image_url": "/static/images/potions/touch_of_insanity.webp",
     "rarity_key": "Uncommon",

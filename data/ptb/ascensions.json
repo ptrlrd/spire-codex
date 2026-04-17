@@ -14,7 +14,7 @@
   {
     "id": "LEVEL_02",
     "level": 2,
-    "name": "Viajante Exausto",
+    "name": "Viagem Exaustiva",
     "description": "Ancestrais curam apenas [blue]80%[/blue] de seus PV perdidos."
   },
   {
@@ -38,8 +38,8 @@
   {
     "id": "LEVEL_06",
     "level": 6,
-    "name": "Trevas",
-    "description": "Menos Locais de Descanso."
+    "name": "Inflação",
+    "description": "O serviço de remoção de cartas do Mercador custa mais caro."
   },
   {
     "id": "LEVEL_07",

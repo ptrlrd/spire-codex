@@ -7,6 +7,13 @@
     "is_stackable": false
   },
   {
+    "id": "DEVOURED",
+    "name": "Devorada",
+    "description": "Adiciona [gold]Exaurir[/gold] a esta carta.",
+    "extra_card_text": null,
+    "is_stackable": false
+  },
+  {
     "id": "ENTANGLED",
     "name": "Emaranhada",
     "description": "Custa [energy:1] adicional.",
@@ -39,6 +46,13 @@
     "name": "Poluição",
     "description": "Você não pode jogar [gold]Técnicas[/gold] adicionais neste turno. É removida no final do turno.",
     "extra_card_text": null,
+    "is_stackable": false
+  },
+  {
+    "id": "WEIGHTED",
+    "name": "Lastreada",
+    "description": "Perca [energy:1] quando esta carta é jogada.",
+    "extra_card_text": "Perca [energy:1].",
     "is_stackable": false
   }
 ]

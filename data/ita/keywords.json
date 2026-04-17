@@ -7,7 +7,7 @@
   {
     "id": "ETHEREAL",
     "name": "Evanescenza",
-    "description": "Se questa carta è nella tua [gold]mano[/gold] al termine di questo turno, diventa [gold]esaurita[/gold]."
+    "description": "Se questa carta è nella tua [gold]mano[/gold] al termine di questo turno, viene [gold]esaurita[/gold]."
   },
   {
     "id": "EXHAUST",
@@ -37,6 +37,6 @@
   {
     "id": "UNPLAYABLE",
     "name": "Ingiocabilità",
-    "description": "Le carte con Ingiocabilità non possono essere usate."
+    "description": "Le carte con Ingiocabilità non possono essere giocate."
   }
 ]

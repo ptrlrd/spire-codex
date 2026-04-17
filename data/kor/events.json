@@ -961,7 +961,7 @@
       {
         "id": "TRUDGE_ON",
         "title": "묵묵히 나아간다",
-        "description": "[gold]덱[/gold]에서 카드를 1장 제거합니다. 체력을 [red]11[/red] 잃습니다."
+        "description": "[gold]골드[/gold]를 [blue]61-99[/blue] 얻습니다. 체력을 [red]8[/red] 잃습니다."
       },
       {
         "id": "REST",
@@ -977,7 +977,7 @@
           {
             "id": "TRUDGE_ON",
             "title": "묵묵히 나아간다",
-            "description": "[gold]덱[/gold]에서 카드를 1장 제거합니다. 체력을 [red]11[/red] 잃습니다."
+            "description": "[gold]골드[/gold]를 [blue]61-99[/blue] 얻습니다. 체력을 [red]8[/red] 잃습니다."
           },
           {
             "id": "REST",
@@ -999,7 +999,7 @@
       },
       {
         "id": "TRUDGE_ON",
-        "description": "당신은 밀림을 가르고 헤치며 나아갔지만, 숲은 끝없이 이어집니다...\n\n당신은 [green]정체를 알 수 없는 과일[/green]과 [orange]바삭거리는 벌레[/orange]들로 허기를 달래고, [aqua]빛나는 식물[/aqua]의 꿀을 마시며 버텼지만, 점점 [jitter][red]편집적인 망상[/red][/jitter]이 떠오르기 시작합니다...\n\n하지만 이윽고, 당신은 공터와 오솔길, 땅바닥에 그려진 지도 같은 그림들을 발견합니다.\n문제가 해결됐네요."
+        "description": "당신은 밀림을 가르고 헤치며 나아갔지만, 숲은 끝없이 이어집니다...\n\n당신은 [green]정체를 알 수 없는 과일[/green]과 [orange]바삭거리는 벌레[/orange]들로 허기를 달래고, [aqua]빛나는 식물[/aqua]의 꿀을 마시며 버텼지만, 점점 [jitter][red]편집적인 망상[/red][/jitter]이 떠오르기 시작합니다...\n\n하지만 이윽고, 당신은 공터와 오솔길, 그리고 땅바닥에 흩어져 있는 [gold]금화[/gold] 몇 개를 발견합니다. 금화들 사이로 조잡하게 그려진 지도가 보입니다!\n문제가 해결됐네요."
       }
     ]
   },
@@ -1181,9 +1181,9 @@
     "name": "무한의 컨베이어",
     "type": "Event",
     "act": "Underdocks",
-    "description": "당신은 한 오두막집에 들어섭니다. 밝지만 뒤틀린 표지판에는 다음과 같은 내용이 적혀 있습니다:\n[aqua]“끝없는 만찬 - 배고픈 만큼 계산하세요!”[/aqua]\n\n오두막의 안쪽에는, [orange]가늘고 길쭉한 팔을 여럿 드리우고 있는 요리사[/orange]가 능숙한 솜씨로 [green]한 입 크기의 음식[/green]을 준비해, [sine]구불구불한 키틴질 벨트[/sine] 위에 올려놓고 있습니다.\n\n요리사의 팔 중 하나가 표지판을 가리킵니다:\n접시당 [blue]35[/blue] [gold]골드[/gold]",
+    "description": "당신은 한 오두막집에 들어섭니다. 밝지만 뒤틀린 표지판에는 다음과 같은 내용이 적혀 있습니다:\n[aqua]“끝없는 만찬 - 배고픈 만큼 계산하세요!”[/aqua]\n\n오두막의 안쪽에는, [orange]가늘고 길쭉한 팔을 여럿 드리우고 있는 요리사[/orange]가 능숙한 솜씨로 [green]한 입 크기의 음식[/green]을 준비해, [sine]구불구불한 키틴질 벨트[/sine] 위에 올려놓고 있습니다.\n\n요리사의 팔 중 하나가 표지판을 가리킵니다:\n접시당 [blue]40[/blue] [gold]골드[/gold]",
     "preconditions": [
-      "Requires 105+ gold"
+      "Requires 120+ gold"
     ],
     "options": [
       {
@@ -1205,17 +1205,17 @@
           {
             "id": "CAVIAR",
             "title": "캐비어를 집는다",
-            "description": "[gold]골드[/gold]를 [red]35[/red] 지불합니다. 최대 체력을 [green]4[/green] 얻습니다. 만찬을 이어갑니다!"
+            "description": "[gold]골드[/gold]를 [red]40[/red] 지불합니다. 최대 체력을 [green]4[/green] 얻습니다. 만찬을 이어갑니다!"
           },
           {
             "id": "CLAM_ROLL",
             "title": "조개 롤을 집는다",
-            "description": "[gold]골드[/gold]를 [red]35[/red] 지불합니다. 체력을 [green]10[/green] 회복합니다. 만찬을 이어갑니다!"
+            "description": "[gold]골드[/gold]를 [red]40[/red] 지불합니다. 체력을 [green]10[/green] 회복합니다. 만찬을 이어갑니다!"
           },
           {
             "id": "FRIED_EEL",
             "title": "장어 튀김을 집는다",
-            "description": "[gold]골드[/gold]를 [red]35[/red] 지불합니다. [gold]덱[/gold]에 무작위 무색 카드를 1장 추가합니다. 만찬을 이어갑니다!"
+            "description": "[gold]골드[/gold]를 [red]40[/red] 지불합니다. [gold]덱[/gold]에 무작위 무색 카드를 1장 추가합니다. 만찬을 이어갑니다!"
           },
           {
             "id": "GOLDEN_FYSH",
@@ -1225,22 +1225,22 @@
           {
             "id": "JELLY_LIVER",
             "title": "젤리 간을 집는다",
-            "description": "[gold]골드[/gold]를 [red]35[/red] 지불합니다. 카드를 1장 [gold]변화[/gold]시킵니다. 만찬을 이어갑니다!"
+            "description": "[gold]골드[/gold]를 [red]40[/red] 지불합니다. 카드를 1장 [gold]변화[/gold]시킵니다. 만찬을 이어갑니다!"
           },
           {
             "id": "SEAPUNK_SALAD",
             "title": "불량 해초 샐러드를 집는다",
-            "description": "[gold]골드[/gold]를 [red]35[/red] 지불합니다. [gold]덱[/gold]에 [gold]광란의 포식[/gold]을 추가합니다. 만찬을 이어갑니다!"
+            "description": "[gold]골드[/gold]를 [red]40[/red] 지불합니다. [gold]덱[/gold]에 [gold]광란의 포식[/gold]을 추가합니다. 만찬을 이어갑니다!"
           },
           {
             "id": "SPICY_SNAPPY",
             "title": "매콤 톡톡을 집는다",
-            "description": "[gold]골드[/gold]를 [red]35[/red] 지불합니다. 무작위 카드를 1장 [gold]강화[/gold]합니다. 만찬을 이어갑니다!"
+            "description": "[gold]골드[/gold]를 [red]40[/red] 지불합니다. 무작위 카드를 1장 [gold]강화[/gold]합니다. 만찬을 이어갑니다!"
           },
           {
             "id": "SUSPICIOUS_CONDIMENT",
             "title": "수상한 조미료를 집는다",
-            "description": "[gold]골드[/gold]를 [red]35[/red] 지불합니다. 무작위 [gold]포션[/gold]을 1개 생성합니다. 만찬을 이어갑니다!"
+            "description": "[gold]골드[/gold]를 [red]40[/red] 지불합니다. 무작위 [gold]포션[/gold]을 1개 생성합니다. 만찬을 이어갑니다!"
           }
         ]
       },
@@ -1257,7 +1257,7 @@
       },
       {
         "id": "INITIAL",
-        "description": "당신은 한 오두막집에 들어섭니다. 밝지만 뒤틀린 표지판에는 다음과 같은 내용이 적혀 있습니다:\n[aqua]“끝없는 만찬 - 배고픈 만큼 계산하세요!”[/aqua]\n\n오두막의 안쪽에는, [orange]가늘고 길쭉한 팔을 여럿 드리우고 있는 요리사[/orange]가 능숙한 솜씨로 [green]한 입 크기의 음식[/green]을 준비해, [sine]구불구불한 키틴질 벨트[/sine] 위에 올려놓고 있습니다.\n\n요리사의 팔 중 하나가 표지판을 가리킵니다:\n접시당 [blue]35[/blue] [gold]골드[/gold]",
+        "description": "당신은 한 오두막집에 들어섭니다. 밝지만 뒤틀린 표지판에는 다음과 같은 내용이 적혀 있습니다:\n[aqua]“끝없는 만찬 - 배고픈 만큼 계산하세요!”[/aqua]\n\n오두막의 안쪽에는, [orange]가늘고 길쭉한 팔을 여럿 드리우고 있는 요리사[/orange]가 능숙한 솜씨로 [green]한 입 크기의 음식[/green]을 준비해, [sine]구불구불한 키틴질 벨트[/sine] 위에 올려놓고 있습니다.\n\n요리사의 팔 중 하나가 표지판을 가리킵니다:\n접시당 [blue]40[/blue] [gold]골드[/gold]",
         "options": [
           {
             "id": "OBSERVE_CHEF",
@@ -1408,7 +1408,7 @@
       {
         "id": "FRAGRANT_MUSHROOM",
         "title": "향기로운 버섯",
-        "description": "Obtain [gold]향기로운 버섯[/gold]. 획득 시, 체력을 [red]15%[/red] 잃고 무작위 카드를 [blue]3[/blue]장 [gold]강화[/gold]합니다."
+        "description": "Obtain [gold]향기로운 버섯[/gold]. 획득 시, 체력을 [blue]15[/blue] 잃고 무작위 카드를 [blue]2[/blue]장 [gold]강화[/gold]합니다."
       }
     ],
     "pages": [
@@ -1432,7 +1432,7 @@
           {
             "id": "FRAGRANT_MUSHROOM",
             "title": "향기로운 버섯",
-            "description": "Obtain [gold]향기로운 버섯[/gold]. 획득 시, 체력을 [red]15%[/red] 잃고 무작위 카드를 [blue]3[/blue]장 [gold]강화[/gold]합니다."
+            "description": "Obtain [gold]향기로운 버섯[/gold]. 획득 시, 체력을 [blue]15[/blue] 잃고 무작위 카드를 [blue]2[/blue]장 [gold]강화[/gold]합니다."
           }
         ]
       },
@@ -1651,7 +1651,7 @@
       {
         "id": "GROUP",
         "title": "무리",
-        "description": "[gold]골드[/gold]를 [red]100[/red] 잃습니다. 카드를 [blue]2[/blue]장 [gold]변화[/gold]시킵니다."
+        "description": "[red]모든[/red] [gold]골드[/gold]를 잃습니다. 카드를 [blue]2[/blue]장 [gold]변화[/gold]시킵니다."
       },
       {
         "id": "LONER",
@@ -1671,7 +1671,7 @@
           {
             "id": "GROUP",
             "title": "무리",
-            "description": "[gold]골드[/gold]를 [red]100[/red] 잃습니다. 카드를 [blue]2[/blue]장 [gold]변화[/gold]시킵니다."
+            "description": "[red]모든[/red] [gold]골드[/gold]를 잃습니다. 카드를 [blue]2[/blue]장 [gold]변화[/gold]시킵니다."
           },
           {
             "id": "LONER",
@@ -1881,23 +1881,28 @@
     "relics": [
       "ARCANE_SCROLL",
       "BOOMING_CONCH",
-      "POMANDER",
       "GOLDEN_PEARL",
       "LEAD_PAPERWEIGHT",
-      "NEW_LEAF",
-      "NEOWS_TORMENT",
-      "PRECISE_SCISSORS",
       "LOST_COFFER",
-      "NUTRITIOUS_OYSTER",
-      "STONE_HUMIDIFIER",
+      "NEOWS_TORMENT",
+      "NEW_LEAF",
+      "PRECISE_SCISSORS",
+      "PHIAL_HOLSTER",
+      "WINGED_BOOTS",
       "MASSIVE_SCROLL",
       "LAVA_ROCK",
+      "NEOWS_TALISMAN",
+      "NUTRITIOUS_OYSTER",
+      "POMANDER",
       "SMALL_CAPSULE",
-      "SILVER_CRUCIBLE",
+      "STONE_HUMIDIFIER",
       "CURSED_PEARL",
+      "HEFTY_TABLET",
       "LARGE_CAPSULE",
       "LEAFY_POULTICE",
       "PRECARIOUS_SHEARS",
+      "SILVER_CRUCIBLE",
+      "NEOWS_BONES",
       "SCROLL_BOXES"
     ]
   },
@@ -2765,7 +2770,9 @@
     "type": "Event",
     "act": "Act 3 - Glory",
     "description": "당신은 [blue]“갤러롯 경”[/blue]에게 온 다과회의 [orange]초대장[/orange]을 발견했고, 그를 대신해 파티에 참석하기로 했습니다.\n\n비교적 소박해 보이는 원형 홀에 들어서자, 당신은 [gold]지휘관[/gold]과 [aqua]장군[/aqua], [red]군벌[/red], [blue]용병[/blue]들이 함께... 홍차를 마시고 있는 곳 한복판에 있다는 것을 알게 됐습니다.\n[gold]황금 왕관[/gold]을 쓴 거대한 기사 한 명이 입을 엽니다.\n\n[jitter]“[b]차[/b] 모임에 조금 늦으셨군요?!”[/jitter]",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 12+ HP"
+    ],
     "options": [
       {
         "id": "ENJOY_TEA",
@@ -2785,7 +2792,7 @@
       },
       {
         "id": "ENJOY_TEA",
-        "description": "당신은 찻잔을 집어들고서 한 번에 들이켭니다.\n홍차는 [jitter][red]미친듯이 뜨거웠지만[/red][/jitter], 당신은 표정 하나 바꾸지 않습니다. 파티의 참석자들은 당신의 자기 파괴적 행위에 놀라움을 금치 못합니다.\n\n악의는 없었습니다, [blue]갤러롯 경[/blue]. 진심으로 사과드립니다.”\n\n당신은 [green]독[/green]을 섭취했다는 것도 모른 채로, 홍차와 크럼핏을 즐겼습니다."
+        "description": "당신은 찻잔을 집어 들고서 한 번에 들이켭니다.\n홍차는 [jitter][red]미친듯이 뜨거웠지만[/red][/jitter], 당신은 표정 하나 바꾸지 않습니다. 파티의 참석자들은 당신의 자기 파괴적 행위에 놀라움을 금치 못합니다.\n\n악의는 없었습니다, [blue]갤러롯 경[/blue]. 진심으로 사과드립니다.”\n\n당신은 [green]독[/green]을 섭취했다는 것도 모른 채로, 홍차와 크럼핏을 즐겼습니다."
       },
       {
         "id": "INITIAL",
@@ -3114,7 +3121,7 @@
       {
         "id": "OBSERVE",
         "title": "관찰한다",
-        "description": "[gold]타격[/gold]이나 [gold]수비[/gold] 1장에 [purple]소용돌이[/purple]를 [gold]인챈트[/gold]합니다."
+        "description": "기본 [gold]타격[/gold]이나 [gold]수비[/gold] 1장에 [purple]소용돌이[/purple]를 [gold]인챈트[/gold]합니다."
       },
       {
         "id": "DRINK",
@@ -3134,7 +3141,7 @@
           {
             "id": "OBSERVE",
             "title": "관찰한다",
-            "description": "[gold]타격[/gold]이나 [gold]수비[/gold] 1장에 [purple]소용돌이[/purple]를 [gold]인챈트[/gold]합니다."
+            "description": "기본 [gold]타격[/gold]이나 [gold]수비[/gold] 1장에 [purple]소용돌이[/purple]를 [gold]인챈트[/gold]합니다."
           },
           {
             "id": "DRINK",
@@ -3165,7 +3172,7 @@
       {
         "id": "REJECTION",
         "title": "거부한다",
-        "description": "체력을 [red]9[/red] 잃습니다. [gold]덱[/gold]에서 카드를 1장 제거합니다."
+        "description": "체력을 [red]10[/red] 잃습니다. 카드를 1장 [gold]강화[/gold]합니다."
       }
     ],
     "pages": [
@@ -3181,7 +3188,7 @@
           {
             "id": "REJECTION",
             "title": "거부한다",
-            "description": "체력을 [red]9[/red] 잃습니다. [gold]덱[/gold]에서 카드를 1장 제거합니다."
+            "description": "체력을 [red]10[/red] 잃습니다. 카드를 1장 [gold]강화[/gold]합니다."
           }
         ]
       },
@@ -4141,7 +4148,7 @@
         {
           "order": "3-1r",
           "speaker": "ancient",
-          "text": "내 목숨도 앗아갔지"
+          "text": "네 목숨도 앗아갔지"
         },
         {
           "order": "3-2r",
@@ -4232,7 +4239,7 @@
       {
         "id": "POTION",
         "title": "Common 포션을 삽입한다",
-        "description": "[gold]a Potion[/gold]을(를) 잃습니다. [gold]강화된[/gold] [gold]Common Skill[/gold] 카드를 얻습니다."
+        "description": "[gold]a Potion[/gold]을(를) 잃습니다. [gold]강화[/gold]된 [gold]Common Skill[/gold] 카드를 얻습니다."
       }
     ],
     "pages": [
@@ -4247,7 +4254,7 @@
           {
             "id": "POTION",
             "title": "Common 포션을 삽입한다",
-            "description": "[gold]a Potion[/gold]을(를) 잃습니다. [gold]강화된[/gold] [gold]Common Skill[/gold] 카드를 얻습니다."
+            "description": "[gold]a Potion[/gold]을(를) 잃습니다. [gold]강화[/gold]된 [gold]Common Skill[/gold] 카드를 얻습니다."
           }
         ]
       }
@@ -4476,7 +4483,7 @@
           {
             "id": "CHAOS",
             "title": "혼돈",
-            "description": "무작위 카드를 1장 [gold]손[/gold]으로 가져옵니다. 이번 턴 동안 그 카드의 비용이 [blue]0[/blue] [energy:1]이 됩니다."
+            "description": "무작위 카드를 1장 [gold]손[/gold]으로 가져옵니다. 이번 턴 동안 그 카드를 비용 없이 사용할 수 있습니다."
           },
           {
             "id": "EXPERTISE",
@@ -5003,9 +5010,9 @@
     "name": "물에 잠긴 기록실",
     "type": "Event",
     "act": "Underdocks",
-    "description": "당신은 어두컴컴한 통로를 헤쳐 나아가던 중, 작은 가게에서 일하고 있는 [aqua]수척한 인물[/aqua]을 우연히 발견합니다. 무수히 많은 선반에는 눅눅한 두루마리와 양피지가 [sine]빽빽하게[/sine] 쌓여 있습니다.\n\n손님이 들어왔다는 것을 알아차린 [aqua]필경사 상인[/aqua]은 잽싸게 자세를 고쳐 앉고, 책상 위에 놓인 몇몇 [gold]도구들[/gold]을 가리킵니다.",
+    "description": "당신은 어두컴컴한 통로를 헤쳐 나아가던 중, 작은 가게에서 일하고 있는 [aqua]수척한 인물[/aqua]을 우연히 발견합니다. 무수히 많은 선반에는 눅눅한\n두루마리와 양피지가 [sine]빽빽하게[/sine] 쌓여 있습니다.\n\n손님이 들어왔다는 것을 알아차린 [aqua]필경사 상인[/aqua]은 잽싸게 자세를\n고쳐 앉고, 책상 위에 놓인 몇몇 [gold]도구들[/gold]을 가리킵니다.",
     "preconditions": [
-      "Requires 65+ gold"
+      "Requires 55+ gold"
     ],
     "options": [
       {
@@ -5016,32 +5023,32 @@
       {
         "id": "TENTACLE_QUILL",
         "title": "촉수 펜",
-        "description": "[gold]골드[/gold]를 [red]65[/red] 지불합니다. 카드 1장에 [purple]안정[/purple]을 [gold]인챈트[/gold]합니다."
+        "description": "[gold]골드[/gold]를 [red]55[/red] 지불합니다. 카드 1장에 [purple]안정[/purple]을 [gold]인챈트[/gold]합니다."
       },
       {
         "id": "TENTACLE_QUILL_LOCKED",
         "title": "잠김",
-        "description": "[gold]골드[/gold]가 [blue]65[/blue] 필요합니다."
+        "description": "[gold]골드[/gold]가 [blue]55[/blue] 필요합니다."
       },
       {
         "id": "PRICKLY_SPONGE",
         "title": "꺼끌꺼끌한 스펀지",
-        "description": "[gold]골드[/gold]를 [red]155[/red] 지불합니다. 카드 [blue]2[/blue]장에 [purple]안정[/purple]을 [gold]인챈트[/gold]합니다."
+        "description": "[gold]골드[/gold]를 [red]99[/red] 지불합니다. 카드 [blue]2[/blue]장에 [purple]안정[/purple]을 [gold]인챈트[/gold]합니다."
       },
       {
         "id": "PRICKLY_SPONGE_LOCKED",
         "title": "잠김",
-        "description": "[gold]골드[/gold]가 [blue]155[/blue] 필요합니다."
+        "description": "[gold]골드[/gold]가 [blue]99[/blue] 필요합니다."
       }
     ],
     "pages": [
       {
         "id": "BLOODY_INK",
-        "description": "[aqua]필경사[/aqua]는 [red]밝은 붉은빛의 잉크[/red]가 담긴 병을 조심스레 집어 들고서 한 번 흔든 뒤, 자신의 손을 병 안에 담그는 듯한 동작을 취합니다.\n\n당신이 손가락을 잉크에 담그자, [green][jitter]강인한 생명력[/jitter][/green]이 당신의 온몸을 꿰뚫고 지나갑니다!\n\n당신에 반응에 만족한 [aqua]필경사[/aqua]는, 정중하게 고개를 숙인 뒤 손짓하며 당신을 배웅합니다."
+        "description": "[aqua]필경사[/aqua]는 [red]밝은 붉은빛의 잉크[/red]가 담긴 병을 조심스레 집어 들고서 한 번\n흔든 뒤, 자신의 손을 병 안에 담그는 듯한 동작을 취합니다.\n\n당신이 손가락을 잉크에 담그자, [green][jitter]강인한 생명력[/jitter][/green]이 당신의 온몸을\n꿰뚫고 지나갑니다!\n\n당신에 반응에 만족한 [aqua]필경사[/aqua]는, 정중하게 고개를 숙인 뒤\n손짓하며 당신을 배웅합니다."
       },
       {
         "id": "INITIAL",
-        "description": "당신은 어두컴컴한 통로를 헤쳐 나아가던 중, 작은 가게에서 일하고 있는 [aqua]수척한 인물[/aqua]을 우연히 발견합니다. 무수히 많은 선반에는 눅눅한 두루마리와 양피지가 [sine]빽빽하게[/sine] 쌓여 있습니다.\n\n손님이 들어왔다는 것을 알아차린 [aqua]필경사 상인[/aqua]은 잽싸게 자세를 고쳐 앉고, 책상 위에 놓인 몇몇 [gold]도구들[/gold]을 가리킵니다.",
+        "description": "당신은 어두컴컴한 통로를 헤쳐 나아가던 중, 작은 가게에서 일하고 있는 [aqua]수척한 인물[/aqua]을 우연히 발견합니다. 무수히 많은 선반에는 눅눅한\n두루마리와 양피지가 [sine]빽빽하게[/sine] 쌓여 있습니다.\n\n손님이 들어왔다는 것을 알아차린 [aqua]필경사 상인[/aqua]은 잽싸게 자세를\n고쳐 앉고, 책상 위에 놓인 몇몇 [gold]도구들[/gold]을 가리킵니다.",
         "options": [
           {
             "id": "BLOODY_INK",
@@ -5051,22 +5058,22 @@
           {
             "id": "TENTACLE_QUILL",
             "title": "촉수 펜",
-            "description": "[gold]골드[/gold]를 [red]65[/red] 지불합니다. 카드 1장에 [purple]안정[/purple]을 [gold]인챈트[/gold]합니다."
+            "description": "[gold]골드[/gold]를 [red]55[/red] 지불합니다. 카드 1장에 [purple]안정[/purple]을 [gold]인챈트[/gold]합니다."
           },
           {
             "id": "TENTACLE_QUILL_LOCKED",
             "title": "잠김",
-            "description": "[gold]골드[/gold]가 [blue]65[/blue] 필요합니다."
+            "description": "[gold]골드[/gold]가 [blue]55[/blue] 필요합니다."
           },
           {
             "id": "PRICKLY_SPONGE",
             "title": "꺼끌꺼끌한 스펀지",
-            "description": "[gold]골드[/gold]를 [red]155[/red] 지불합니다. 카드 [blue]2[/blue]장에 [purple]안정[/purple]을 [gold]인챈트[/gold]합니다."
+            "description": "[gold]골드[/gold]를 [red]99[/red] 지불합니다. 카드 [blue]2[/blue]장에 [purple]안정[/purple]을 [gold]인챈트[/gold]합니다."
           },
           {
             "id": "PRICKLY_SPONGE_LOCKED",
             "title": "잠김",
-            "description": "[gold]골드[/gold]가 [blue]155[/blue] 필요합니다."
+            "description": "[gold]골드[/gold]가 [blue]99[/blue] 필요합니다."
           }
         ]
       },
@@ -5240,13 +5247,13 @@
     "act": "Act 1 - Overgrowth",
     "description": "당신은 [red]죽은 나무들로 이뤄진 골짜기[/red]를 지나던 중, 우연히 뼈처럼 새하얀 색의 나무 한 그루를 발견합니다. 무언가를 보호하는 갈비뼈처럼 안쪽으로 휘어진 가지에는, 점토 장식이 매달려 있습니다.\n\n정말 [purple]소름끼치는 나무[/purple]입니다. 나무는 속삭입니다.\n\n[sine][blue]...거래하라.....[/blue][/sine]",
     "preconditions": [
-      "Requires 50+ gold"
+      "Requires 44+ gold"
     ],
     "options": [
       {
         "id": "GOLD",
         "title": "골드를 거래한다",
-        "description": "[gold]골드[/gold]를 [red]50[/red] 잃습니다. 무작위 [gold]포션[/gold]을 [blue]2[/blue]개 생성합니다."
+        "description": "[gold]골드[/gold]를 [red]26-44[/red] 잃습니다. 무작위 [gold]포션[/gold]을 [blue]2[/blue]개 생성합니다."
       },
       {
         "id": "HUG",
@@ -5270,7 +5277,7 @@
           {
             "id": "GOLD",
             "title": "골드를 거래한다",
-            "description": "[gold]골드[/gold]를 [red]50[/red] 잃습니다. 무작위 [gold]포션[/gold]을 [blue]2[/blue]개 생성합니다."
+            "description": "[gold]골드[/gold]를 [red]26-44[/red] 잃습니다. 무작위 [gold]포션[/gold]을 [blue]2[/blue]개 생성합니다."
           },
           {
             "id": "HUG",

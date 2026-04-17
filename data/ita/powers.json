@@ -62,7 +62,7 @@
   {
     "id": "ARSENAL",
     "name": "Arsenale",
-    "description": "Ogni volta che giochi una carta incolore, ottieni [blue]1[/blue] di [gold]Forza[/gold].",
+    "description": "Ogni volta che crei una carta, ottieni [blue]1[/blue] di [gold]Forza[/gold].",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
@@ -145,7 +145,7 @@
     "description": "Ogni volta che ottieni [gold]Blocco[/gold] durante il tuo turno, gli altri giocatori ottengono la metà del valore di quel [gold]Blocco[/gold].",
     "description_raw": null,
     "type": "Buff",
-    "stack_type": "Counter",
+    "stack_type": "Single",
     "allow_negative": null,
     "image_url": "/static/images/powers/beacon_of_hope_power.webp"
   },
@@ -170,16 +170,6 @@
     "image_url": "/static/images/powers/black_hole_power.webp"
   },
   {
-    "id": "BLADE_OF_INK",
-    "name": "Lama a Inchiostro",
-    "description": "Ogni volta che giochi una carta Attacco in questo turno, ottieni [blue]2[/blue] di [gold]Forza[/gold] in questo turno.",
-    "description_raw": null,
-    "type": "Buff",
-    "stack_type": "Counter",
-    "allow_negative": null,
-    "image_url": "/static/images/powers/blade_of_ink_power.webp"
-  },
-  {
     "id": "BLOCK_NEXT_TURN",
     "name": "Blocco Imminente",
     "description": "All'inizio del tuo turno successivo, ottieni [blue]4[/blue] di [gold]Blocco[/gold].",
@@ -198,6 +188,16 @@
     "stack_type": "Counter",
     "allow_negative": null,
     "image_url": "/static/images/powers/blur_power.webp"
+  },
+  {
+    "id": "BORROWED_TIME",
+    "name": "Tempo in Prestito",
+    "description": "In questo turno le carte costano uno di Energia extra.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/borrowed_time_power.webp"
   },
   {
     "id": "BUFFER",
@@ -402,7 +402,7 @@
   {
     "id": "CRAB_RAGE",
     "name": "Furia del Granchio",
-    "description": "Quando un alleato muore, [gold]this creature[/gold] ottiene [blue]5[/blue] di [gold]Forza[/gold] e [blue]99[/blue] di [gold]Blocco[/gold].",
+    "description": "Quando un alleato muore, [gold]this creature[/gold] ottiene [blue]6[/blue] di [gold]Forza[/gold] e [blue]99[/blue] di [gold]Blocco[/gold].",
     "description_raw": "Quando un alleato muore, [gold]{OwnerName}[/gold] ottiene [blue]{StrengthPower}[/blue] di [gold]Forza[/gold] e [blue]{Block}[/blue] di [gold]Blocco[/gold].",
     "type": "Buff",
     "stack_type": "Single",
@@ -608,16 +608,6 @@
     "stack_type": "Counter",
     "allow_negative": null,
     "image_url": "/static/images/powers/doom_power.webp"
-  },
-  {
-    "id": "DOOR_REVIVAL",
-    "name": "Riattivaporte",
-    "description": "Potere interno per le meccaniche di Riattivaporte.",
-    "description_raw": null,
-    "type": "Buff",
-    "stack_type": "Single",
-    "allow_negative": null,
-    "image_url": null
   },
   {
     "id": "DOUBLE_DAMAGE",
@@ -960,14 +950,14 @@
     "image_url": "/static/images/powers/gigantification_power.webp"
   },
   {
-    "id": "GRAPPLE",
-    "name": "Avviluppo",
-    "description": "Ogni volta che ottieni [gold]Blocco[/gold] in questo turno, infliggi [blue][Amount][/blue] di danno a [gold]this creature[/gold].",
-    "description_raw": "Ogni volta che ottieni [gold]Blocco[/gold] in questo turno, infliggi [blue]{Amount}[/blue] di danno a [gold]{OwnerName}[/gold].",
-    "type": "Debuff",
-    "stack_type": "Counter",
+    "id": "GRASP",
+    "name": "Stretta",
+    "description": "Ogni volta che giochi una carta, perdi [blue]1[/blue] di Energia.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
     "allow_negative": null,
-    "image_url": "/static/images/powers/grapple_power.webp"
+    "image_url": "/static/images/powers/grasp_power.webp"
   },
   {
     "id": "GRAVITY",
@@ -1130,6 +1120,16 @@
     "image_url": "/static/images/powers/hotfix_power.webp"
   },
   {
+    "id": "HUNGER",
+    "name": "Golosità",
+    "description": "Ogni volta che giochi una carta Attacco o Abilità, questa diventa [gold]esaurita[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/hunger_power.webp"
+  },
+  {
     "id": "ILLUSION",
     "name": "Illusione",
     "description": "Quando muore, rinasce nel turno successivo con PV massimi.",
@@ -1212,7 +1212,7 @@
   {
     "id": "ITERATION",
     "name": "Iterazione",
-    "description": "La prima volta che peschi una carta [gold]Stato[/gold] in ogni turno, peschi altre carte.",
+    "description": "La prima volta che peschi una carta Stato in ogni turno, peschi altre carte.",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
@@ -1272,7 +1272,7 @@
   {
     "id": "LIGHTNING_ROD",
     "name": "Parafulmine",
-    "description": "[gold]Elettroglobi[/gold] [gold]canalizzati[/gold] all'inizio dei successivi [blue]2[/blue] turni: [blue]1[/blue]",
+    "description": "[gold]Elettroglobi[/gold] [gold]canalizzati[/gold] all'inizio dei successivi [blue]2[/blue] turni: [blue]1[/blue].",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
@@ -1448,6 +1448,16 @@
     "stack_type": "Single",
     "allow_negative": null,
     "image_url": "/static/images/powers/no_draw_power.webp"
+  },
+  {
+    "id": "NO_ENERGY_GAIN",
+    "name": "Senza Energia Extra",
+    "description": "Non puoi ottenere [energy:1] extra in questo turno.",
+    "description_raw": "Non puoi ottenere {energyPrefix:energyIcons(1)} extra in questo turno.",
+    "type": "Debuff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/no_energy_gain_power.webp"
   },
   {
     "id": "NOSTALGIA",
@@ -1732,7 +1742,7 @@
   {
     "id": "REATTACH",
     "name": "Ricomposizione",
-    "description": "Se altri frammenti sono ancora vivi, rinasce tra [blue]2[/blue] turni con [blue]25[/blue] PV.",
+    "description": "Se le altre parti sono ancora vive, rinasce tra [blue]2[/blue] turni con [blue]25[/blue] PV.",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Single",
@@ -1752,7 +1762,7 @@
   {
     "id": "REFLECT",
     "name": "Riflesso",
-    "description": "Il danno bloccato viene rispedito a chi ti ha attaccato.",
+    "description": "Il danno bloccato viene rispedito a chi ha sferrato l'attacco.",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
@@ -1848,6 +1858,16 @@
     "stack_type": "Counter",
     "allow_negative": null,
     "image_url": "/static/images/powers/sandpit_power.webp"
+  },
+  {
+    "id": "SCRUTINY",
+    "name": "Occhiata",
+    "description": "Non puoi pescare carte extra durante il tuo turno.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/scrutiny_power.webp"
   },
   {
     "id": "SEEKING_EDGE",
@@ -2272,7 +2292,7 @@
   {
     "id": "SWORD_SAGE",
     "name": "Maestro Spadaccino",
-    "description": "Aumenti il costo della carta [gold]Spada Sovrana[/gold] di [blue]1[/blue]. La carta [gold]Spada Sovrana[/gold] ora colpisce [blue]1[/blue] volta in più.",
+    "description": "La carta [gold]Spada Sovrana[/gold] ora colpisce [blue]1[/blue] volta in più.",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
@@ -2362,7 +2382,7 @@
   {
     "id": "THE_HUNT",
     "name": "La Caccia",
-    "description": "Ottieni [blue]1[/blue] carta extra come ricompensa al termine del combattimento.",
+    "description": "Ottieni [blue]1[/blue] ricompensa di carte extra al termine del combattimento.",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",

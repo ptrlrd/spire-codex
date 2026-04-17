@@ -33,17 +33,6 @@
     "image_url": "/static/images/enchantments/corrupted.webp"
   },
   {
-    "id": "FAVORED",
-    "name": "Faveur",
-    "description": "Les dégâts de cette attaque sont doublés.",
-    "description_raw": null,
-    "extra_card_text": null,
-    "card_type": "Attack",
-    "applicable_to": null,
-    "is_stackable": false,
-    "image_url": "/static/images/enchantments/favored.webp"
-  },
-  {
     "id": "GLAM",
     "name": "Glamour",
     "description": "Cette carte a [gold]Écho[/gold] ([blue]1[/blue]) une fois par combat.",
@@ -77,9 +66,20 @@
     "image_url": "/static/images/enchantments/imbued.webp"
   },
   {
+    "id": "INKY",
+    "name": "Encrée",
+    "description": "Cette carte inflige [blue]2[/blue] dégâts supplémentaires et applique [gold]Affaibli[/gold] ([blue]1[/blue]).",
+    "description_raw": "Cette carte inflige [blue]{Damage}[/blue] dégâts supplémentaires et applique [gold]Affaibli[/gold] ([blue]{WeakPower}[/blue]).",
+    "extra_card_text": "Appliquez [gold]Affaibli[/gold] ([blue]1[/blue]) à TOUS les ennemis.",
+    "card_type": null,
+    "applicable_to": null,
+    "is_stackable": false,
+    "image_url": "/static/images/enchantments/inky.webp"
+  },
+  {
     "id": "INSTINCT",
     "name": "Instinct",
-    "description": "Diminuez le coût de cette carte de [blue]1[/blue].",
+    "description": "Les dégâts de cette attaque sont doublés.",
     "description_raw": null,
     "extra_card_text": null,
     "card_type": "Attack",

@@ -302,10 +302,6 @@
     "tags": null,
     "monsters": [
       {
-        "id": "DOOR",
-        "name": "Kapı"
-      },
-      {
         "id": "DOORMAKER",
         "name": "Kapı Ustası"
       }
@@ -986,6 +982,27 @@
     "loss_text": "[b]The Adventurer[/b], bazı [gold]Isırma Parşömenleri[/gold] tarafından paramparça edildi."
   },
   {
+    "id": "SEAPUNK_NORMAL",
+    "name": "Dip Rıhtımlar'ın Yaban Hayatı",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": [
+      "Seapunk"
+    ],
+    "monsters": [
+      {
+        "id": "CALCIFIED_CULTIST",
+        "name": "Taşlaşmış Tarikatçı"
+      },
+      {
+        "id": "SEAPUNK",
+        "name": "Deniz Haydutu"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b], [gold]Dip Rıhtımlar'ın Yaban Hayatı[/gold] tarafından yenilgiye uğratıldı."
+  },
+  {
     "id": "SEAPUNK_WEAK",
     "name": "Deniz Haydutu",
     "room_type": "Monster",
@@ -1394,25 +1411,6 @@
     "loss_text": "[b]The Adventurer[/b], [gold]Hırsız Çekirge[/gold] tarafından gasp edildi."
   },
   {
-    "id": "TOADPOLES_NORMAL",
-    "name": "Dip Rıhtımlar'ın Vahşi Yaşamı",
-    "room_type": "Monster",
-    "is_weak": false,
-    "act": "Underdocks",
-    "tags": null,
-    "monsters": [
-      {
-        "id": "CALCIFIED_CULTIST",
-        "name": "Taşlaşmış Tarikatçı"
-      },
-      {
-        "id": "TOADPOLE",
-        "name": "İribaş"
-      }
-    ],
-    "loss_text": "[b]The Adventurer[/b], [gold]Dip Rıhtımlar'ın Vahşi Yaşamı[/gold] tarafından yenilgiye uğratıldı."
-  },
-  {
     "id": "TOADPOLES_WEAK",
     "name": "İribaşlar",
     "room_type": "Monster",
@@ -1432,19 +1430,15 @@
     "name": "Tünel Kazan İkili",
     "room_type": "Monster",
     "is_weak": false,
-    "act": "Act 2 - Hive",
+    "act": null,
     "tags": [
       "Burrower",
-      "Workers"
+      "Chomper"
     ],
     "monsters": [
       {
-        "id": "BOWLBUG_EGG",
-        "name": "Çanakböceği (Yumurta)"
-      },
-      {
-        "id": "BOWLBUG_SILK",
-        "name": "Çanakböceği (İpek)"
+        "id": "CHOMPER",
+        "name": "Çiğneyici"
       },
       {
         "id": "TUNNELER",

@@ -33,17 +33,6 @@
     "image_url": "/static/images/enchantments/corrupted.webp"
   },
   {
-    "id": "FAVORED",
-    "name": "Фаворит",
-    "description": "Удваивает урон от атак этой картой.",
-    "description_raw": null,
-    "extra_card_text": null,
-    "card_type": "Attack",
-    "applicable_to": null,
-    "is_stackable": false,
-    "image_url": "/static/images/enchantments/favored.webp"
-  },
-  {
     "id": "GLAM",
     "name": "Шик",
     "description": "При первом разыгрывании в каждом бою у карты есть [gold]повтор[/gold].",
@@ -77,9 +66,20 @@
     "image_url": "/static/images/enchantments/imbued.webp"
   },
   {
+    "id": "INKY",
+    "name": "Чернильная",
+    "description": "Эта карта наносит на [blue]2[/blue] больше урона и накладывает [blue]1[/blue] [gold]слабости[/gold].",
+    "description_raw": "Эта карта наносит на [blue]{Damage}[/blue] больше урона и накладывает [blue]{WeakPower}[/blue] [gold]слабости[/gold].",
+    "extra_card_text": "Накладывает [blue]1[/blue] [gold]слабости[/gold] на ВСЕХ врагов.",
+    "card_type": null,
+    "applicable_to": null,
+    "is_stackable": false,
+    "image_url": "/static/images/enchantments/inky.webp"
+  },
+  {
     "id": "INSTINCT",
     "name": "Инстинкт",
-    "description": "Стоимость этой карты уменьшается на [blue]1[/blue].",
+    "description": "Эта карта наносит двойной урон.",
     "description_raw": null,
     "extra_card_text": null,
     "card_type": "Attack",

@@ -392,7 +392,7 @@
           {
             "order": 2,
             "speaker": "ancient",
-            "text": "Töricht"
+            "text": "Töricht."
           }
         ]
       },
@@ -414,7 +414,7 @@
           {
             "order": 0,
             "speaker": "ancient",
-            "text": "Findest du es merkwürdig, dass deine Konstrukt-Kameraden dich tot sehen wollen?"
+            "text": "Wundert es dich, dass deine Konstrukt-Kameraden dich tot sehen wollen?"
           }
         ]
       },
@@ -1308,7 +1308,7 @@
           {
             "order": 1,
             "speaker": "ancient",
-            "text": "Leben"
+            "text": "...Leben."
           },
           {
             "order": 2,
@@ -1774,7 +1774,7 @@
           {
             "order": 2,
             "speaker": "char",
-            "text": "Ich werde dir etwas Manieren beibringen!"
+            "text": "Ich werde dir ein paar Manieren beibringen!"
           }
         ]
       },
@@ -1811,7 +1811,7 @@
           {
             "order": 1,
             "speaker": "ancient",
-            "text": "Darin stimmen wir beide überein."
+            "text": "Darin haben wir etwas gemeinsam."
           },
           {
             "order": 2,
@@ -2262,7 +2262,7 @@
           {
             "order": 0,
             "speaker": "ancient",
-            "text": "Nerfiger Schuft!\n[jitter]WEG MIT DIR!![/jitter]"
+            "text": "Nerviger Schuft!\n[jitter]WEG MIT DIR!![/jitter]"
           }
         ]
       },

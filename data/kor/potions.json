@@ -277,8 +277,8 @@
   {
     "id": "FAIRY_IN_A_BOTTLE",
     "name": "병 속의 요정",
-    "description": "사망 시, 그 대신 이 포션이 버려지고 최대 체력의 [blue]30%[/blue]만큼 체력을 회복합니다.",
-    "description_raw": "사망 시, 그 대신 이 포션이 버려지고 최대 체력의 [blue]30%[/blue]만큼 체력을 회복합니다.",
+    "description": "체력이 [blue]0[/blue]이 될 때, 그 대신 이 포션이 버려지고 최대 체력의 [blue]30%[/blue]만큼 체력을 회복합니다.",
+    "description_raw": "체력이 [blue]0[/blue]이 될 때, 그 대신 이 포션이 버려지고 최대 체력의 [blue]30%[/blue]만큼 체력을 회복합니다.",
     "rarity": "희귀",
     "image_url": "/static/images/potions/fairy_in_a_bottle.webp",
     "rarity_key": "Rare",
@@ -330,17 +330,6 @@
     "pool": "shared"
   },
   {
-    "id": "SHACKLING_POTION",
-    "name": "속박 포션",
-    "description": "이번 턴 동안 모든 적이 [gold]힘[/gold]을 [blue]7[/blue] 잃습니다.",
-    "description_raw": "이번 턴 동안 모든 적이 [gold]힘[/gold]을 [blue]{StrengthPower}[/blue] 잃습니다.",
-    "rarity": "희귀",
-    "image_url": "/static/images/potions/shackling_potion.webp",
-    "rarity_key": "Rare",
-    "compendium_order": 50,
-    "pool": "shared"
-  },
-  {
     "id": "POTION_OF_BINDING",
     "name": "속박의 포션",
     "description": "모든 적에게 [gold]약화[/gold]를 [blue]1[/blue], [gold]취약[/gold]을 [blue]1[/blue] 부여합니다.",
@@ -370,7 +359,7 @@
     "rarity": "희귀",
     "image_url": "/static/images/potions/snecko_oil.webp",
     "rarity_key": "Rare",
-    "compendium_order": 51,
+    "compendium_order": 50,
     "pool": "shared"
   },
   {
@@ -414,18 +403,18 @@
     "rarity": "희귀",
     "image_url": "/static/images/potions/essence_of_darkness.webp",
     "rarity_key": "Rare",
-    "compendium_order": 52,
+    "compendium_order": 51,
     "pool": "defect"
   },
   {
     "id": "LIQUID_MEMORIES",
     "name": "액상 기억",
-    "description": "[gold]버린 카드 더미[/gold]에서 카드를 1장 선택해 [gold]손[/gold]으로 가져옵니다. 이번 턴 동안 그 카드의 비용이 [blue]0[/blue] [energy:1]이 됩니다.",
-    "description_raw": "[gold]버린 카드 더미[/gold]에서 카드를 1장 선택해 [gold]손[/gold]으로 가져옵니다. 이번 턴 동안 그 카드의 비용이 [blue]0[/blue] {energyPrefix:energyIcons(1)}이 됩니다.",
+    "description": "[gold]버린 카드 더미[/gold]에서 카드를 1장 선택해 [gold]손[/gold]으로 가져옵니다. 이번 턴 동안 그 카드를 비용 없이 사용할 수 있습니다.",
+    "description_raw": "[gold]버린 카드 더미[/gold]에서 카드를 1장 선택해 [gold]손[/gold]으로 가져옵니다. 이번 턴 동안 그 카드를 비용 없이 사용할 수 있습니다.",
     "rarity": "희귀",
     "image_url": "/static/images/potions/liquid_memories.webp",
     "rarity_key": "Rare",
-    "compendium_order": 53,
+    "compendium_order": 52,
     "pool": "shared"
   },
   {
@@ -469,14 +458,14 @@
     "rarity": "희귀",
     "image_url": "/static/images/potions/entropic_brew.webp",
     "rarity_key": "Rare",
-    "compendium_order": 54,
+    "compendium_order": 53,
     "pool": "shared"
   },
   {
     "id": "FOUL_POTION",
     "name": "역겨운 포션",
-    "description": "모든 대상에게 피해를 [blue]12[/blue] 줍니다.\n[gold]상인[/gold]에게도 던질 수 있으며, 상인에게 던질 시 피해를 주는 대신 [gold]골드[/gold]를 [blue]100[/blue] 얻습니다.",
-    "description_raw": "모든 대상에게 피해를 [blue]{Damage}[/blue] 줍니다.\n[gold]상인[/gold]에게도 던질 수 있으며, 상인에게 던질 시 피해를 주는 대신 [gold]골드[/gold]를 [blue]{Gold}[/blue] 얻습니다.",
+    "description": "모든 플레이어와 적에게 피해를 [blue]12[/blue] 줍니다.\n[gold]상인[/gold]에게도 던질 수 있으며, 상인에게 던질 시 피해를 주는 대신 [gold]골드[/gold]를 [blue]100[/blue] 얻습니다.",
+    "description_raw": "모든 플레이어와 적에게 피해를 [blue]{Damage}[/blue] 줍니다.\n[gold]상인[/gold]에게도 던질 수 있으며, 상인에게 던질 시 피해를 주는 대신 [gold]골드[/gold]를 [blue]{Gold}[/blue] 얻습니다.",
     "rarity": "이벤트",
     "image_url": "/static/images/potions/foul_potion.webp",
     "rarity_key": "Event",
@@ -491,7 +480,7 @@
     "rarity": "희귀",
     "image_url": "/static/images/potions/droplet_of_precognition.webp",
     "rarity_key": "Rare",
-    "compendium_order": 55,
+    "compendium_order": 54,
     "pool": "shared"
   },
   {
@@ -502,7 +491,7 @@
     "rarity": "희귀",
     "image_url": "/static/images/potions/orobic_acid.webp",
     "rarity_key": "Rare",
-    "compendium_order": 56,
+    "compendium_order": 55,
     "pool": "shared"
   },
   {
@@ -524,7 +513,7 @@
     "rarity": "희귀",
     "image_url": "/static/images/potions/cosmic_concoction.webp",
     "rarity_key": "Rare",
-    "compendium_order": 57,
+    "compendium_order": 56,
     "pool": "regent"
   },
   {
@@ -567,6 +556,17 @@
     "description_raw": "[gold]뽑을 카드 더미[/gold] 위에서부터 [blue]{Repeat}[/blue]장의 카드를 사용합니다.",
     "rarity": "희귀",
     "image_url": "/static/images/potions/distilled_chaos.webp",
+    "rarity_key": "Rare",
+    "compendium_order": 57,
+    "pool": "shared"
+  },
+  {
+    "id": "SHACKLING_POTION",
+    "name": "족쇄 포션",
+    "description": "이번 턴 동안 모든 적이 [gold]힘[/gold]을 [blue]7[/blue] 잃습니다.",
+    "description_raw": "이번 턴 동안 모든 적이 [gold]힘[/gold]을 [blue]{StrengthPower}[/blue] 잃습니다.",
+    "rarity": "희귀",
+    "image_url": "/static/images/potions/shackling_potion.webp",
     "rarity_key": "Rare",
     "compendium_order": 58,
     "pool": "shared"

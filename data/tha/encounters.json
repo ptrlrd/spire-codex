@@ -167,7 +167,7 @@
       },
       {
         "id": "PUNCH_CONSTRUCT",
-        "name": "Punch Construct"
+        "name": "จักรกลชกต่อย"
       }
     ],
     "loss_text": "[gold]Construct Menagerie Normal[/gold]บดขยี้[b]The Adventurer[/b]จนแหลก"
@@ -184,7 +184,7 @@
     "monsters": [
       {
         "id": "CORPSE_SLUG",
-        "name": "Corpse Slug"
+        "name": "ทากศพ"
       }
     ],
     "loss_text": "[b]The Adventurer[/b]ถูก[gold]ฝูงทากศพ[/gold]รุมกินโต๊ะ"
@@ -201,7 +201,7 @@
     "monsters": [
       {
         "id": "CORPSE_SLUG",
-        "name": "Corpse Slug"
+        "name": "ทากศพ"
       }
     ],
     "loss_text": "[b]The Adventurer[/b]ถูก[gold]ทากศพ[/gold]รุมกินโต๊ะ"
@@ -301,10 +301,6 @@
     "act": "Act 3 - Glory",
     "tags": null,
     "monsters": [
-      {
-        "id": "DOOR",
-        "name": "Door"
-      },
       {
         "id": "DOORMAKER",
         "name": "Doormaker"
@@ -672,7 +668,7 @@
         "name": "Living Fog"
       }
     ],
-    "loss_text": "[b]The Adventurer[/b]ทนกลิ่นของ[gold]Living Fog Normal[/gold]ไม่ไหว"
+    "loss_text": null
   },
   {
     "id": "LOUSE_PROGENITOR_NORMAL",
@@ -873,7 +869,7 @@
   },
   {
     "id": "PUNCH_CONSTRUCT_NORMAL",
-    "name": "Punch Construct Normal",
+    "name": "จักรกลชกต่อย",
     "room_type": "Monster",
     "is_weak": false,
     "act": "Underdocks",
@@ -881,14 +877,14 @@
     "monsters": [
       {
         "id": "PUNCH_CONSTRUCT",
-        "name": "Punch Construct"
+        "name": "จักรกลชกต่อย"
       }
     ],
-    "loss_text": "[b]The Adventurer[/b]แลกหมัดกับ[gold]Punch Construct Normal[/gold]"
+    "loss_text": "[b]The Adventurer[/b]แลกหมัดกับ[gold]จักรกลชกต่อย[/gold]"
   },
   {
     "id": "PUNCH_OFF_EVENT_ENCOUNTER",
-    "name": "Punch Off Event Encounter",
+    "name": "พวกจักรกลชกต่อย",
     "room_type": "Monster",
     "is_weak": false,
     "act": null,
@@ -896,10 +892,10 @@
     "monsters": [
       {
         "id": "PUNCH_CONSTRUCT",
-        "name": "Punch Construct"
+        "name": "จักรกลชกต่อย"
       }
     ],
-    "loss_text": "[b]The Adventurer[/b]เข้าไปขัดการดวลของ[gold]Punch Off Event Encounter[/gold] 2 ตัว"
+    "loss_text": "[b]The Adventurer[/b]เข้าไปขัดการดวลของ[gold]พวกจักรกลชกต่อย[/gold] 2 ตัว"
   },
   {
     "id": "QUEEN_BOSS",
@@ -986,8 +982,29 @@
     "loss_text": "[gold]Scrolls Of Biting Weak[/gold]ฉีก[b]The Adventurer[/b]เป็นชิ้นๆ"
   },
   {
+    "id": "SEAPUNK_NORMAL",
+    "name": "สิ่งมีชีวิตในท่าเรือเบื้องล่าง",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": [
+      "Seapunk"
+    ],
+    "monsters": [
+      {
+        "id": "CALCIFIED_CULTIST",
+        "name": "Calcified Cultist"
+      },
+      {
+        "id": "SEAPUNK",
+        "name": "หร่ายเล"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]ถูกกำจัดโดยพวก[gold]สิ่งมีชีวิตในท่าเรือเบื้องล่าง[/gold]"
+  },
+  {
     "id": "SEAPUNK_WEAK",
-    "name": "Seapunk Weak",
+    "name": "หร่ายเล",
     "room_type": "Monster",
     "is_weak": true,
     "act": "Underdocks",
@@ -997,10 +1014,10 @@
     "monsters": [
       {
         "id": "SEAPUNK",
-        "name": "Seapunk"
+        "name": "หร่ายเล"
       }
     ],
-    "loss_text": "[gold]Seapunk Weak[/gold]กระทืบ[b]The Adventurer[/b]"
+    "loss_text": "[gold]หร่ายเล[/gold]กระทืบ[b]The Adventurer[/b]"
   },
   {
     "id": "SEWER_CLAM_NORMAL",
@@ -1394,25 +1411,6 @@
     "loss_text": "[gold]Thieving Hopper Weak[/gold]ปล้น[b]The Adventurer[/b]"
   },
   {
-    "id": "TOADPOLES_NORMAL",
-    "name": "Toadpoles Normal",
-    "room_type": "Monster",
-    "is_weak": false,
-    "act": "Underdocks",
-    "tags": null,
-    "monsters": [
-      {
-        "id": "CALCIFIED_CULTIST",
-        "name": "Calcified Cultist"
-      },
-      {
-        "id": "TOADPOLE",
-        "name": "Toadpole"
-      }
-    ],
-    "loss_text": "[b]The Adventurer[/b]ถูกกำจัดโดย[gold]Toadpoles Normal[/gold]"
-  },
-  {
     "id": "TOADPOLES_WEAK",
     "name": "Toadpoles Weak",
     "room_type": "Monster",
@@ -1432,19 +1430,15 @@
     "name": "Tunneler Normal",
     "room_type": "Monster",
     "is_weak": false,
-    "act": "Act 2 - Hive",
+    "act": null,
     "tags": [
       "Burrower",
-      "Workers"
+      "Chomper"
     ],
     "monsters": [
       {
-        "id": "BOWLBUG_EGG",
-        "name": "Bowlbug Egg"
-      },
-      {
-        "id": "BOWLBUG_SILK",
-        "name": "Bowlbug Silk"
+        "id": "CHOMPER",
+        "name": "Chomper"
       },
       {
         "id": "TUNNELER",
@@ -1544,7 +1538,7 @@
     "monsters": [
       {
         "id": "WATERFALL_GIANT",
-        "name": "Waterfall Giant"
+        "name": "ยักษ์น้ำตก"
       }
     ],
     "loss_text": "[gold]ยักษ์น้ำตก[/gold]ชำระล้างท่าเรือเบื้องล่างให้ปราศจาก[b]The Adventurer[/b]"

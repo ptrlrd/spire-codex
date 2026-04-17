@@ -4,7 +4,7 @@
     "name": "Abgründige Bäder",
     "type": "Event",
     "act": "Underdocks",
-    "description": "Du entdeckst eine abgelegene Kammer.\n\nDampf steigt aus brodelnden Becken voll heißer Flüssigkeit, welche in hypnotischem Rhythmus die Farbe wechselt. Von der Decke hängen Meeresgewächse, aus denen eine zähe Flüssigkeit tropft, welche beim Berühren der Oberfläche zischt und sich windet. Die Luft fühlt sich schwer an, gefüllt mit [blue]Salz[/blue] und etwas [green]unverkennbar Organischem[/green].\n\nDu näherst dich der Kante des größten Beckens, da kräuselt sich die Flussigkeit. Das Wasser blubbert intensiver, als würde es deinen Eintritt erwarten.",
+    "description": "Du entdeckst eine abgelegene Kammer.\n\nDampf steigt aus brodelnden Becken mit heißem Nass, das in hypnotischem Rhythmus die Farbe wechselt. Von der Decke hängen Meeresgewächse, aus denen eine zähe Flüssigkeit tropft, welche beim Berühren der Oberfläche zischt und britzelt. Die Luft fühlt sich schwer an, gefüllt mit [blue]Salz[/blue] und etwas [green]unverkennbar Organischem[/green].\n\nDu näherst dich der Kante des größten Beckens, da kräuselt sich die Flüssigkeit. Das Wasser blubbert intensiver, als würde es deinen Eintritt erwarten.",
     "preconditions": null,
     "options": [
       {
@@ -21,7 +21,7 @@
     "pages": [
       {
         "id": "ABSTAIN",
-        "description": "Du widerstehst der Versuchung des Wassers und sammelst stattdessen Salzkristalle, die an den Rändern entstanden sind. Während du sie auf deine Haut aufträgst, strudeln und schäumen die Becken wild. Die Umgebungstemparatur sinkt merklich und für einen Moment zeigen alle Spiegelflächen im Raum ein Bild von dir, das hohläugig und geschrumpft wirkt. Du wirst das Gefühl nicht los, etwas erneuerndes verpasst zu haben."
+        "description": "Du widerstehst der Versuchung des Wassers und sammelst stattdessen Salzkristalle, die an den Rändern entstanden sind. Während du sie auf deine Haut aufträgst, strudeln und schäumen die Becken wild. Die Umgebungstemparatur sinkt merklich und für einen Moment zeigen alle Spiegelflächen im Raum ein Bild von dir, das hohläugig und geschrumpft wirkt. Du wirst das Gefühl nicht los, etwas Erneuerndes verpasst zu haben."
       },
       {
         "id": "ALL",
@@ -77,7 +77,7 @@
       },
       {
         "id": "INITIAL",
-        "description": "Du entdeckst eine abgelegene Kammer.\n\nDampf steigt aus brodelnden Becken voll heißer Flüssigkeit, welche in hypnotischem Rhythmus die Farbe wechselt. Von der Decke hängen Meeresgewächse, aus denen eine zähe Flüssigkeit tropft, welche beim Berühren der Oberfläche zischt und sich windet. Die Luft fühlt sich schwer an, gefüllt mit [blue]Salz[/blue] und etwas [green]unverkennbar Organischem[/green].\n\nDu näherst dich der Kante des größten Beckens, da kräuselt sich die Flussigkeit. Das Wasser blubbert intensiver, als würde es deinen Eintritt erwarten.",
+        "description": "Du entdeckst eine abgelegene Kammer.\n\nDampf steigt aus brodelnden Becken mit heißem Nass, das in hypnotischem Rhythmus die Farbe wechselt. Von der Decke hängen Meeresgewächse, aus denen eine zähe Flüssigkeit tropft, welche beim Berühren der Oberfläche zischt und britzelt. Die Luft fühlt sich schwer an, gefüllt mit [blue]Salz[/blue] und etwas [green]unverkennbar Organischem[/green].\n\nDu näherst dich der Kante des größten Beckens, da kräuselt sich die Flüssigkeit. Das Wasser blubbert intensiver, als würde es deinen Eintritt erwarten.",
         "options": [
           {
             "id": "IMMERSE",
@@ -125,7 +125,7 @@
       },
       {
         "id": "LINGER3",
-        "description": "[jitter][red]ES IST SO HEIẞ![/red][/jitter]\n\nDu fragst dich, ob es sich so hier anfühlt, wenn man im Dorf der Dämonen lebt?",
+        "description": "[jitter][red]ES IST SO HEIẞ![/red][/jitter]\n\nDu fragst dich, ob das so ist, wie es wäre, im Dorf der Dämonen zu wohnen?",
         "options": [
           {
             "id": "LINGER",
@@ -251,12 +251,12 @@
       {
         "id": "COMBINE_STRIKES",
         "title": "Schläge kombinieren",
-        "description": "Entferne [blue]2[/blue] [gold]Schläge[/gold]. Erhalte [gold]Ultimativer Schlag[/gold] in dein [gold]Deck[/gold]."
+        "description": "Entferne [blue]2[/blue] [gold]Schläge[/gold]. Nimm [gold]Ultimativer Schlag[/gold] in dein [gold]Deck[/gold]."
       },
       {
         "id": "COMBINE_DEFENDS",
         "title": "Verteidigen kombinieren",
-        "description": "Entferne [blue]2[/blue] [gold]Verteidigen[/gold]. Erhalte [gold]Ultimatives Verteidigen[/gold] in dein [gold]Deck[/gold]."
+        "description": "Entferne [blue]2[/blue] [gold]Verteidigen[/gold]. Nimm [gold]Ultimatives Verteidigen[/gold] in dein [gold]Deck[/gold]."
       }
     ],
     "pages": [
@@ -275,12 +275,12 @@
           {
             "id": "COMBINE_STRIKES",
             "title": "Schläge kombinieren",
-            "description": "Entferne [blue]2[/blue] [gold]Schläge[/gold]. Erhalte [gold]Ultimativer Schlag[/gold] in dein [gold]Deck[/gold]."
+            "description": "Entferne [blue]2[/blue] [gold]Schläge[/gold]. Nimm [gold]Ultimativer Schlag[/gold] in dein [gold]Deck[/gold]."
           },
           {
             "id": "COMBINE_DEFENDS",
             "title": "Verteidigen kombinieren",
-            "description": "Entferne [blue]2[/blue] [gold]Verteidigen[/gold]. Erhalte [gold]Ultimatives Verteidigen[/gold] in dein [gold]Deck[/gold]."
+            "description": "Entferne [blue]2[/blue] [gold]Verteidigen[/gold]. Nimm [gold]Ultimatives Verteidigen[/gold] in dein [gold]Deck[/gold]."
           }
         ]
       }
@@ -337,7 +337,7 @@
     "name": "Kampferprobter Dummy",
     "type": "Event",
     "act": "Act 3 - Glory",
-    "description": "Als du näher kommst, beginnt er zu rattern und zu zischen und strahlt hell auf!\n\n“[jitter]BZZZT![/jitter] ZEIT FÜRS TRAINING!!! DU HAST [blue]3 ZÜGE[/blue], UM MICH ZU BESIEGEN!\nWÄHLE EINE EINSTELLUNG ODER BEGEGNE [red]TÖDLICHER SCHMACH[/red].\nHier sind die Optionen:”\n\nNach der erschreckenden Nachricht liest der Dummy sorgsam die ausführlichen Anweisungen vor.\n\nWas wählst du aus?",
+    "description": "Als du näher kommst, beginnt er zu rattern und zu zischen und strahlt hell auf!\n\n“[jitter]BZZZT![/jitter] ZEIT FÜRS TRAINING!!!\nDU HAST [blue]3 ZÜGE[/blue], UM MICH ZU BESIEGEN!\nWÄHLE EINE EINSTELLUNG ODER BEGEGNE [red]TÖDLICHER SCHMACH[/red].\nHier sind die Optionen:”\n\nNach der erschreckenden Nachricht liest der Dummy sorgfältig die ausführlichen Anweisungen vor.\n\nWas wählst du aus?",
     "preconditions": null,
     "options": [
       {
@@ -363,7 +363,7 @@
       },
       {
         "id": "INITIAL",
-        "description": "Als du näher kommst, beginnt er zu rattern und zu zischen und strahlt hell auf!\n\n“[jitter]BZZZT![/jitter] ZEIT FÜRS TRAINING!!! DU HAST [blue]3 ZÜGE[/blue], UM MICH ZU BESIEGEN!\nWÄHLE EINE EINSTELLUNG ODER BEGEGNE [red]TÖDLICHER SCHMACH[/red].\nHier sind die Optionen:”\n\nNach der erschreckenden Nachricht liest der Dummy sorgsam die ausführlichen Anweisungen vor.\n\nWas wählst du aus?",
+        "description": "Als du näher kommst, beginnt er zu rattern und zu zischen und strahlt hell auf!\n\n“[jitter]BZZZT![/jitter] ZEIT FÜRS TRAINING!!!\nDU HAST [blue]3 ZÜGE[/blue], UM MICH ZU BESIEGEN!\nWÄHLE EINE EINSTELLUNG ODER BEGEGNE [red]TÖDLICHER SCHMACH[/red].\nHier sind die Optionen:”\n\nNach der erschreckenden Nachricht liest der Dummy sorgfältig die ausführlichen Anweisungen vor.\n\nWas wählst du aus?",
         "options": [
           {
             "id": "SETTING_1",
@@ -401,12 +401,12 @@
       {
         "id": "SHARE_KNOWLEDGE",
         "title": "Wissen teilen",
-        "description": "Erhalte [blue]1[/blue] von [blue]5[/blue] zufälligen Karten in dein [gold]Deck[/gold]."
+        "description": "Nimm [blue]1[/blue] von [blue]5[/blue] zufälligen Karten in dein [gold]Deck[/gold]."
       },
       {
         "id": "RIP",
         "title": "Den Egel abreißen",
-        "description": "Verliere [red]5[/red] TP. Erhalte eine farblose Kartenbelohnung."
+        "description": "Verliere [red]5[/red] TP. Erhalte eine Farblose Kartenbelohnung."
       }
     ],
     "pages": [
@@ -417,12 +417,12 @@
           {
             "id": "SHARE_KNOWLEDGE",
             "title": "Wissen teilen",
-            "description": "Erhalte [blue]1[/blue] von [blue]5[/blue] zufälligen Karten in dein [gold]Deck[/gold]."
+            "description": "Nimm [blue]1[/blue] von [blue]5[/blue] zufälligen Karten in dein [gold]Deck[/gold]."
           },
           {
             "id": "RIP",
             "title": "Den Egel abreißen",
-            "description": "Verliere [red]5[/red] TP. Erhalte eine farblose Kartenbelohnung."
+            "description": "Verliere [red]5[/red] TP. Erhalte eine Farblose Kartenbelohnung."
           }
         ]
       },
@@ -447,12 +447,12 @@
       {
         "id": "EXTERMINATION",
         "title": "Ausrottungstechnik lernen",
-        "description": "Erhalte [gold]Ausrotten[/gold] in dein [gold]Deck[/gold]."
+        "description": "Nimm [gold]Ausrotten[/gold] in dein [gold]Deck[/gold]."
       },
       {
         "id": "SQUASH",
         "title": "Quetschtechnik lernen",
-        "description": "Erhalte [gold]Zerdrücken[/gold] in dein [gold]Deck[/gold]."
+        "description": "Nimm [gold]Zerdrücken[/gold] in dein [gold]Deck[/gold]."
       }
     ],
     "pages": [
@@ -471,12 +471,12 @@
           {
             "id": "EXTERMINATION",
             "title": "Ausrottungstechnik lernen",
-            "description": "Erhalte [gold]Ausrotten[/gold] in dein [gold]Deck[/gold]."
+            "description": "Nimm [gold]Ausrotten[/gold] in dein [gold]Deck[/gold]."
           },
           {
             "id": "SQUASH",
             "title": "Quetschtechnik lernen",
-            "description": "Erhalte [gold]Zerdrücken[/gold] in dein [gold]Deck[/gold]."
+            "description": "Nimm [gold]Zerdrücken[/gold] in dein [gold]Deck[/gold]."
           }
         ]
       },
@@ -504,7 +504,7 @@
       {
         "id": "TAKE",
         "title": "Das Ei nehmen",
-        "description": "Erhalte [gold]Foglonis-Ei[/gold] in dein [gold]Deck[/gold]."
+        "description": "Nimm [gold]Foglonis-Ei[/gold] in dein [gold]Deck[/gold]."
       }
     ],
     "pages": [
@@ -524,7 +524,7 @@
           {
             "id": "TAKE",
             "title": "Das Ei nehmen",
-            "description": "Erhalte [gold]Foglonis-Ei[/gold] in dein [gold]Deck[/gold]."
+            "description": "Nimm [gold]Foglonis-Ei[/gold] in dein [gold]Deck[/gold]."
           }
         ]
       },
@@ -550,7 +550,7 @@
       {
         "id": "IRONCLAD",
         "title": "Rot",
-        "description": "Erhalte [blue]3[/blue] Eisernen-Karten."
+        "description": "Erhalte [blue]3[/blue] Eiserne-Karten."
       },
       {
         "id": "NECROBINDER",
@@ -585,7 +585,7 @@
           {
             "id": "IRONCLAD",
             "title": "Rot",
-            "description": "Erhalte [blue]3[/blue] Eisernen-Karten."
+            "description": "Erhalte [blue]3[/blue] Eiserne-Karten."
           },
           {
             "id": "NECROBINDER",
@@ -955,13 +955,13 @@
     "name": "Dichte Vegetation",
     "type": "Event",
     "act": "Act 1 - Overgrowth",
-    "description": "Du warst schon eine ganze Weile auf dem falschen Pfad, jetzt findest du dich in einem dichten Dschungel aus [green]Farnen[/green], [green]Büschen[/green] und [green]Ranken[/green]. Vor Allem [green]Ranken[/green]. Die Erschöpfung setzt ein und ein düsterer Gedanke kommt dir in den Kopf:\n\n[sine][purple]“Du bist verloren, unvorbereitet und die Unvermeidlichkeit des Todes nähert sich.”[/purple][/sine]\n\nWas machst du?",
+    "description": "Du warst schon eine ganze Weile auf dem falschen Pfad, jetzt befindest du dich in einem dichten Dschungel aus [green]Farnen[/green], [green]Büschen[/green] und [green]Ranken[/green]. Vor allem [green]Ranken[/green]. Die Erschöpfung setzt ein und ein düsterer Gedanke kommt dir in den Sinn:\n\n[sine][purple]“Du bist verloren, unvorbereitet und die Unvermeidlichkeit des Todes nähert sich.”[/purple][/sine]\n\nWas machst du?",
     "preconditions": null,
     "options": [
       {
         "id": "TRUDGE_ON",
         "title": "Dich weiterschleppen",
-        "description": "Entferne eine Karte aus deinem [gold]Deck[/gold]. Verliere [red]11[/red] TP."
+        "description": "Erhalte [blue]61-99[/blue] [gold]Gold[/gold]. Verliere [red]8[/red] TP."
       },
       {
         "id": "REST",
@@ -972,12 +972,12 @@
     "pages": [
       {
         "id": "INITIAL",
-        "description": "Du warst schon eine ganze Weile auf dem falschen Pfad, jetzt findest du dich in einem dichten Dschungel aus [green]Farnen[/green], [green]Büschen[/green] und [green]Ranken[/green]. Vor Allem [green]Ranken[/green]. Die Erschöpfung setzt ein und ein düsterer Gedanke kommt dir in den Kopf:\n\n[sine][purple]“Du bist verloren, unvorbereitet und die Unvermeidlichkeit des Todes nähert sich.”[/purple][/sine]\n\nWas machst du?",
+        "description": "Du warst schon eine ganze Weile auf dem falschen Pfad, jetzt befindest du dich in einem dichten Dschungel aus [green]Farnen[/green], [green]Büschen[/green] und [green]Ranken[/green]. Vor allem [green]Ranken[/green]. Die Erschöpfung setzt ein und ein düsterer Gedanke kommt dir in den Sinn:\n\n[sine][purple]“Du bist verloren, unvorbereitet und die Unvermeidlichkeit des Todes nähert sich.”[/purple][/sine]\n\nWas machst du?",
         "options": [
           {
             "id": "TRUDGE_ON",
             "title": "Dich weiterschleppen",
-            "description": "Entferne eine Karte aus deinem [gold]Deck[/gold]. Verliere [red]11[/red] TP."
+            "description": "Erhalte [blue]61-99[/blue] [gold]Gold[/gold]. Verliere [red]8[/red] TP."
           },
           {
             "id": "REST",
@@ -999,7 +999,7 @@
       },
       {
         "id": "TRUDGE_ON",
-        "description": "Du hackst dir einen Weg durch das Gestrüpp des Dschungels, doch er nimmt kein Ende...\n\nDu stärkst dich mit [green]seltsamen Früchten[/green], [orange]knusprigen Käfern[/orange] und trinkst den Nektar von [aqua]leuchtenden Pflanzen[/aqua], aber beginnst dich [jitter][red]paranoid[/red][/jitter] zu fühlen...\n\nDoch dann findest du eine Lichtung, einen Pfad und einige auf den Boden gezeichnete Wegweiser.\nProblem gelöst."
+        "description": "Du hackst dir einen Weg durch das Gestrüpp des Dschungels, doch er nimmt kein Ende...\n\nDu stärkst dich mit [green]seltsamen Früchten[/green], [orange]knusprigen Käfern[/orange] und trinkst den Nektar von [aqua]leuchtenden Pflanzen[/aqua], aber beginnst dich [jitter][red]paranoid[/red][/jitter] zu fühlen...\n\nDoch dann findest du eine Lichtung, einen Pfad und einige auf dem Boden verstreute [gold]Goldmünzen[/gold]. Bei den Münzen sind ein paar grob gezeichnete Landkarten!\nProblem gelöst."
       }
     ]
   },
@@ -1008,7 +1008,7 @@
     "name": "Puppenraum",
     "type": "Shared",
     "act": null,
-    "description": "Du betrittst einen versteckten Raum...\n\nEr ist brechend voll mit einer Unmenge von Puppen. Jede ist anders, ihre Ausdrücke reichen von [green]Freude[/green] bis [purple]Schmerz[/purple], ihre Kleidung stammt aus unterschiedlichsten Jahrhunderten und Reichen außer deinem.\n\nEin [sine][blue]Flüsterchor[/blue][/sine] wird lauter und lauter, bis [jitter][red]die Puppen schreien[/red][/jitter] und sich gegenseitig übertönend nach dir rufen...\n\nDu musst sofort eine auswählen und weggehen.",
+    "description": "Du betrittst einen versteckten Raum...\n\nEr ist vollgepackt mit Unmengen an Puppen. Jede ist anders, ihre Ausdrücke reichen von [green]Freude[/green] bis [purple]Schmerz[/purple], ihre Kleidung stammt aus Jahrhunderten und Reichen jenseits von deinem.\n\nEin [sine][blue]Flüsterchor[/blue][/sine] wird lauter und lauter, bis [jitter][red]die Puppen durcheinander schreien[/red][/jitter] und nach dir rufen...\n\nDu musst schleunigst eine wählen und dann weg von hier.",
     "preconditions": [
       "Act 2 only"
     ],
@@ -1044,7 +1044,7 @@
       },
       {
         "id": "INITIAL",
-        "description": "Du betrittst einen versteckten Raum...\n\nEr ist brechend voll mit einer Unmenge von Puppen. Jede ist anders, ihre Ausdrücke reichen von [green]Freude[/green] bis [purple]Schmerz[/purple], ihre Kleidung stammt aus unterschiedlichsten Jahrhunderten und Reichen außer deinem.\n\nEin [sine][blue]Flüsterchor[/blue][/sine] wird lauter und lauter, bis [jitter][red]die Puppen schreien[/red][/jitter] und sich gegenseitig übertönend nach dir rufen...\n\nDu musst sofort eine auswählen und weggehen.",
+        "description": "Du betrittst einen versteckten Raum...\n\nEr ist vollgepackt mit Unmengen an Puppen. Jede ist anders, ihre Ausdrücke reichen von [green]Freude[/green] bis [purple]Schmerz[/purple], ihre Kleidung stammt aus Jahrhunderten und Reichen jenseits von deinem.\n\nEin [sine][blue]Flüsterchor[/blue][/sine] wird lauter und lauter, bis [jitter][red]die Puppen durcheinander schreien[/red][/jitter] und nach dir rufen...\n\nDu musst schleunigst eine wählen und dann weg von hier.",
         "options": [
           {
             "id": "RANDOM",
@@ -1126,7 +1126,7 @@
       },
       {
         "id": "LIGHT",
-        "description": "[sine][gold]Ins Licht hinein...[/gold][/sine]\n\n[jitter]Es blendet!![/jitter] Aber das Licht [gold]stärkt[/gold] dich.\n\nDu bist zurück in den [blue]Unterdocks[/blue].\nHow did you? Huh...?"
+        "description": "[sine][gold]Ins Licht hinein...[/gold][/sine]\n\n[jitter]Es blendet!![/jitter] Aber das Licht [gold]stärkt[/gold] dich.\n\nDu bist zurück in den [blue]Unterdocks[/blue].\nWie hast du? Häh...?"
       }
     ]
   },
@@ -1181,9 +1181,9 @@
     "name": "Endloses Band",
     "type": "Event",
     "act": "Underdocks",
-    "description": "Du stampfst in eine Baracke mit einem hellen, aber verbogenen Schild, auf dem steht:\n[aqua]“ENDLOSES FESTMAHL – ZAHLE JE NACH HUNGER!”[/aqua]\n\nDrinnen bereitet ein [orange]gertenschlanker vielarmiger Koch[/orange] geschickt [green]Essenshappen[/green] vor, die er auf einem [sine]kurvigen chitinösen Band[/sine] platziert.\n\nEiner der Arme des Koches weist auf ein Schild:\nJe [blue]35[/blue] [gold]Gold[/gold]",
+    "description": "Du stampfst in eine Baracke mit einem hellen, aber verbogenen Schild, auf dem steht:\n[aqua]“ENDLOSES FESTMAHL – ZAHLE JE NACH HUNGER!”[/aqua]\n\nDrinnen bereitet ein [orange]gertenschlanker vielarmiger Koch[/orange] geschickt [green]Essenshappen[/green] vor, die er auf einem [sine]kurvigen chitinösen Band[/sine] platziert.\n\nEiner der Arme des Koches weist auf ein Schild:\nJe [blue]40[/blue] [gold]Gold[/gold]",
     "preconditions": [
-      "Requires 105+ gold"
+      "Requires 120+ gold"
     ],
     "options": [
       {
@@ -1205,17 +1205,17 @@
           {
             "id": "CAVIAR",
             "title": "Kaviar vom Band schnappen",
-            "description": "Zahle [red]35[/red] [gold]Gold[/gold]. Erhalte [green]4[/green] max. TP. Speise weiter!"
+            "description": "Zahle [red]40[/red] [gold]Gold[/gold]. Erhalte [green]4[/green] max. TP. Speise weiter!"
           },
           {
             "id": "CLAM_ROLL",
             "title": "Muschelbrötchen vom Band schnappen",
-            "description": "Zahle [red]35[/red] [gold]Gold[/gold]. Heile [green]10[/green] TP. Speise weiter!"
+            "description": "Zahle [red]40[/red] [gold]Gold[/gold]. Heile [green]10[/green] TP. Speise weiter!"
           },
           {
             "id": "FRIED_EEL",
             "title": "Gebratenen Aal vom Band schnappen",
-            "description": "Zahle [red]35[/red] [gold]Gold[/gold]. Erhalte eine zufällige farblose Karte in dein [gold]Deck[/gold]. Speise weiter!"
+            "description": "Zahle [red]40[/red] [gold]Gold[/gold]. Nimm eine zufällige Farblose Karte in dein [gold]Deck[/gold]. Speise weiter!"
           },
           {
             "id": "GOLDEN_FYSH",
@@ -1225,22 +1225,22 @@
           {
             "id": "JELLY_LIVER",
             "title": "Quallenleber vom Band schnappen",
-            "description": "Zahle [red]35[/red] [gold]Gold[/gold]. [gold]Transformiere[/gold] eine Karte. Speise weiter!"
+            "description": "Zahle [red]40[/red] [gold]Gold[/gold]. [gold]Transformiere[/gold] eine Karte. Speise weiter!"
           },
           {
             "id": "SEAPUNK_SALAD",
             "title": "Meerespunk-Salat vom Band schnappen",
-            "description": "Zahle [red]35[/red] [gold]Gold[/gold]. Erhalte [gold]Fressrausch[/gold] in dein [gold]Deck[/gold]. Speise weiter!"
+            "description": "Zahle [red]40[/red] [gold]Gold[/gold]. Nimm [gold]Fressrausch[/gold] in dein [gold]Deck[/gold]. Speise weiter!"
           },
           {
             "id": "SPICY_SNAPPY",
             "title": "Deftigen Schnappi vom Band schnappen",
-            "description": "Zahle [red]35[/red] [gold]Gold[/gold]. [gold]Verbessere[/gold] eine zufällige Karte. Speise weiter!"
+            "description": "Zahle [red]40[/red] [gold]Gold[/gold]. [gold]Verbessere[/gold] eine zufällige Karte. Speise weiter!"
           },
           {
             "id": "SUSPICIOUS_CONDIMENT",
             "title": "Ominöses Würzmittel vom Band schnappen",
-            "description": "Zahle [red]35[/red] [gold]Gold[/gold]. Beschaffe einen zufälligen [gold]Trank[/gold]. Speise weiter!"
+            "description": "Zahle [red]40[/red] [gold]Gold[/gold]. Beschaffe einen zufälligen [gold]Trank[/gold]. Speise weiter!"
           }
         ]
       },
@@ -1257,7 +1257,7 @@
       },
       {
         "id": "INITIAL",
-        "description": "Du stampfst in eine Baracke mit einem hellen, aber verbogenen Schild, auf dem steht:\n[aqua]“ENDLOSES FESTMAHL – ZAHLE JE NACH HUNGER!”[/aqua]\n\nDrinnen bereitet ein [orange]gertenschlanker vielarmiger Koch[/orange] geschickt [green]Essenshappen[/green] vor, die er auf einem [sine]kurvigen chitinösen Band[/sine] platziert.\n\nEiner der Arme des Koches weist auf ein Schild:\nJe [blue]35[/blue] [gold]Gold[/gold]",
+        "description": "Du stampfst in eine Baracke mit einem hellen, aber verbogenen Schild, auf dem steht:\n[aqua]“ENDLOSES FESTMAHL – ZAHLE JE NACH HUNGER!”[/aqua]\n\nDrinnen bereitet ein [orange]gertenschlanker vielarmiger Koch[/orange] geschickt [green]Essenshappen[/green] vor, die er auf einem [sine]kurvigen chitinösen Band[/sine] platziert.\n\nEiner der Arme des Koches weist auf ein Schild:\nJe [blue]40[/blue] [gold]Gold[/gold]",
         "options": [
           {
             "id": "OBSERVE_CHEF",
@@ -1301,7 +1301,7 @@
       {
         "id": "RESIST",
         "title": "Widerstehen",
-        "description": "Entferne [blue]2[/blue] Karten aus deinem [gold]Deck[/gold]. Erhalte [red]Normalität[/red] in dein [gold]Deck[/gold]."
+        "description": "Entferne [blue]2[/blue] Karten aus deinem [gold]Deck[/gold]. Nimm [red]Normalität[/red] in dein [gold]Deck[/gold]."
       },
       {
         "id": "ENTER_YOUR_HOLE",
@@ -1312,7 +1312,7 @@
     "pages": [
       {
         "id": "ENTER_YOUR_HOLE",
-        "description": "Es ist etwas eng, aber du quetschst dich in das Loch...\n\nJe weiter du gehst, desto [sine][purple]dunkler wird es[/purple][/sine].\nEndlich siehst du ein [gold]mattes Licht[/gold] immer heller werden und die andere Seite zeigen.\n\nDu trittst unverändert hinaus, verstehst jetzt aber die [green]intimen Geheimnisse des Lebens[/green]."
+        "description": "Es ist etwas eng, aber du quetschst dich in das Loch...\n\nJe weiter du gehst, desto [sine][purple]dunkler wird es[/purple][/sine].\nEndlich siehst du ein [gold]mattes Licht[/gold], das immer heller wird und die andere Seite zum Vorschein bringt.\n\nDu trittst unverändert hinaus, verstehst jetzt aber die [green]intimen Geheimnisse des Lebens[/green]."
       },
       {
         "id": "INITIAL",
@@ -1321,7 +1321,7 @@
           {
             "id": "RESIST",
             "title": "Widerstehen",
-            "description": "Entferne [blue]2[/blue] Karten aus deinem [gold]Deck[/gold]. Erhalte [red]Normalität[/red] in dein [gold]Deck[/gold]."
+            "description": "Entferne [blue]2[/blue] Karten aus deinem [gold]Deck[/gold]. Nimm [red]Normalität[/red] in dein [gold]Deck[/gold]."
           },
           {
             "id": "ENTER_YOUR_HOLE",
@@ -1352,7 +1352,7 @@
       {
         "id": "CONFRONT",
         "title": "Mit der Wahrheit konfrontieren",
-        "description": "Erhalte [red]Verfall[/red] in dein [gold]Deck[/gold]. [gold]Verzaubere[/gold] eine Karte, die [gold]Erschöpft[/gold], mit [purple]Seelenkraft[/purple]."
+        "description": "Nimm [red]Verfall[/red] in dein [gold]Deck[/gold]. [gold]Verzaubere[/gold] eine Karte, die [gold]Erschöpft[/gold], mit [purple]Seelenkraft[/purple]."
       },
       {
         "id": "ACCEPT",
@@ -1381,7 +1381,7 @@
           {
             "id": "CONFRONT",
             "title": "Mit der Wahrheit konfrontieren",
-            "description": "Erhalte [red]Verfall[/red] in dein [gold]Deck[/gold]. [gold]Verzaubere[/gold] eine Karte, die [gold]Erschöpft[/gold], mit [purple]Seelenkraft[/purple]."
+            "description": "Nimm [red]Verfall[/red] in dein [gold]Deck[/gold]. [gold]Verzaubere[/gold] eine Karte, die [gold]Erschöpft[/gold], mit [purple]Seelenkraft[/purple]."
           },
           {
             "id": "ACCEPT",
@@ -1407,8 +1407,8 @@
       },
       {
         "id": "FRAGRANT_MUSHROOM",
-        "title": "Wohlriechender Pilz",
-        "description": "Obtain [gold]Wohlriechender Pilz[/gold]. Verliere beim Aufheben [red]15%[/red] deiner TP und [gold]verbessere[/gold] [blue]3[/blue] zufällige Karten."
+        "title": "Duftender Pilz",
+        "description": "Obtain [gold]Duftender Pilz[/gold]. Verliere beim Aufheben [blue]15%[/blue] deiner TP und [gold]Verbessere[/gold] [blue]2[/blue] zufällige Karten."
       }
     ],
     "pages": [
@@ -1418,7 +1418,7 @@
       },
       {
         "id": "FRAGRANT_MUSHROOM",
-        "description": "Du kostest den [green]Wohlriechenden[/green], einen kleinen holzigen Pilz mit einem zarten Geruch nach Meeresfrüchten...\n\nEin Energieschub beflügelt dich, zu laufen, springen und [gold]hart zu trainieren[/gold]!\nDann trifft dich ein plötzlicher [red][jitter]stechender Schmerz[/jitter][/red], als sich der lebende Pilz in deinem Inneren für einige kurze letzte Augenblicke wehrt."
+        "description": "Du kostest den [green]Duftenden[/green], einen kleinen holzigen Pilz mit einem zarten Geruch nach Meeresfrüchten...\n\nEin Energieschub beflügelt dich, zu laufen, springen und [gold]hart zu trainieren[/gold]!\nDann trifft dich ein plötzlicher [red][jitter]stechender Schmerz[/jitter][/red], als sich der lebende Pilz in deinem Inneren für einige kurze letzte Augenblicke wehrt."
       },
       {
         "id": "INITIAL",
@@ -1431,8 +1431,8 @@
           },
           {
             "id": "FRAGRANT_MUSHROOM",
-            "title": "Wohlriechender Pilz",
-            "description": "Obtain [gold]Wohlriechender Pilz[/gold]. Verliere beim Aufheben [red]15%[/red] deiner TP und [gold]verbessere[/gold] [blue]3[/blue] zufällige Karten."
+            "title": "Duftender Pilz",
+            "description": "Obtain [gold]Duftender Pilz[/gold]. Verliere beim Aufheben [blue]15%[/blue] deiner TP und [gold]Verbessere[/gold] [blue]2[/blue] zufällige Karten."
           }
         ]
       },
@@ -1530,7 +1530,7 @@
       },
       {
         "id": "SOLO_QUEST",
-        "description": "Mit einem misanthropischen Gefühl läufst du wortlos an ihren jetzt schmollenden Gesichtern vorbei. Einer von ihnen [jitter][purple]fuchtelt mit der Faust[/purple][/jitter] nach dir.\n\nDas Labyrinth ist nicht gerade gastfreundlich. Du fällst in eine Stachelfalle, wirst von einem großen Stamm mit Stacheln getoffen und [orange]angriffslustige Kreaturen mit stacheligen Keulen[/orange] kämpfen auf der ganzen Reise gegen dich.\n\nDu hast genug von den Stacheln und erwägst für das nächte Abenteuer lieber Teamarbeit."
+        "description": "Mit einem misanthropischen Gefühl läufst du wortlos an ihren jetzt schmollenden Gesichtern vorbei. Einer von ihnen [jitter][purple]fuchtelt mit der Faust[/purple][/jitter] nach dir.\n\nDas Labyrinth ist nicht gerade gastfreundlich. Du fällst in eine Stachelfalle, wirst von einem großen Stamm mit Stacheln getroffen und [orange]angriffslustige Kreaturen mit stacheligen Keulen[/orange] kämpfen auf der ganzen Reise gegen dich.\n\nDu hast genug von den Stacheln und erwägst für das nächte Abenteuer lieber Teamarbeit."
       }
     ]
   },
@@ -1545,7 +1545,7 @@
       {
         "id": "CLAIM",
         "title": "Das Irrlicht fangen",
-        "description": "Erhalte [red]Verfall[/red] in dein [gold]Deck[/gold]. Erhalte [gold]Verlorenes Irrlicht[/gold]."
+        "description": "Nimm [red]Verfall[/red] in dein [gold]Deck[/gold]. Erhalte [gold]Verlorenes Irrlicht[/gold]."
       },
       {
         "id": "SEARCH",
@@ -1565,7 +1565,7 @@
           {
             "id": "CLAIM",
             "title": "Das Irrlicht fangen",
-            "description": "Erhalte [red]Verfall[/red] in dein [gold]Deck[/gold]. Erhalte [gold]Verlorenes Irrlicht[/gold]."
+            "description": "Nimm [red]Verfall[/red] in dein [gold]Deck[/gold]. Erhalte [gold]Verlorenes Irrlicht[/gold]."
           },
           {
             "id": "SEARCH",
@@ -1593,7 +1593,7 @@
       {
         "id": "REACH_INTO_THE_FLESH",
         "title": "In das Fleisch greifen",
-        "description": "Entferne [blue]2[/blue] Karten aus deinem [gold]Deck[/gold]. Erhalte [red]Sporensinn[/red] in dein [gold]Deck[/gold]."
+        "description": "Entferne [blue]2[/blue] Karten aus deinem [gold]Deck[/gold]. Nimm [red]Sporensinn[/red] in dein [gold]Deck[/gold]."
       },
       {
         "id": "OFFER_TRIBUTE",
@@ -1614,7 +1614,7 @@
           {
             "id": "REACH_INTO_THE_FLESH",
             "title": "In das Fleisch greifen",
-            "description": "Entferne [blue]2[/blue] Karten aus deinem [gold]Deck[/gold]. Erhalte [red]Sporensinn[/red] in dein [gold]Deck[/gold]."
+            "description": "Entferne [blue]2[/blue] Karten aus deinem [gold]Deck[/gold]. Nimm [red]Sporensinn[/red] in dein [gold]Deck[/gold]."
           },
           {
             "id": "OFFER_TRIBUTE",
@@ -1651,7 +1651,7 @@
       {
         "id": "GROUP",
         "title": "Gruppe",
-        "description": "Verliere [red]100[/red] [gold]Gold[/gold]. [gold]Transformiere[/gold] [blue]2[/blue] Karten."
+        "description": "Verliere [red]ALL[/red] dein [gold]Gold[/gold]. [gold]Transformiere[/gold] [blue]2[/blue] Karten."
       },
       {
         "id": "LONER",
@@ -1671,7 +1671,7 @@
           {
             "id": "GROUP",
             "title": "Gruppe",
-            "description": "Verliere [red]100[/red] [gold]Gold[/gold]. [gold]Transformiere[/gold] [blue]2[/blue] Karten."
+            "description": "Verliere [red]ALL[/red] dein [gold]Gold[/gold]. [gold]Transformiere[/gold] [blue]2[/blue] Karten."
           },
           {
             "id": "LONER",
@@ -1695,7 +1695,7 @@
     "preconditions": null,
     "options": null,
     "pages": null,
-    "epithet": "Mutter der Auferwerckung (exiliert)",
+    "epithet": "Mutter der Auferweckung (im Exil)",
     "dialogue": {
       "Returning": [
         {
@@ -1881,23 +1881,28 @@
     "relics": [
       "ARCANE_SCROLL",
       "BOOMING_CONCH",
-      "POMANDER",
       "GOLDEN_PEARL",
       "LEAD_PAPERWEIGHT",
-      "NEW_LEAF",
-      "NEOWS_TORMENT",
-      "PRECISE_SCISSORS",
       "LOST_COFFER",
-      "NUTRITIOUS_OYSTER",
-      "STONE_HUMIDIFIER",
+      "NEOWS_TORMENT",
+      "NEW_LEAF",
+      "PRECISE_SCISSORS",
+      "PHIAL_HOLSTER",
+      "WINGED_BOOTS",
       "MASSIVE_SCROLL",
       "LAVA_ROCK",
+      "NEOWS_TALISMAN",
+      "NUTRITIOUS_OYSTER",
+      "POMANDER",
       "SMALL_CAPSULE",
-      "SILVER_CRUCIBLE",
+      "STONE_HUMIDIFIER",
       "CURSED_PEARL",
+      "HEFTY_TABLET",
       "LARGE_CAPSULE",
       "LEAFY_POULTICE",
       "PRECARIOUS_SHEARS",
+      "SILVER_CRUCIBLE",
+      "NEOWS_BONES",
       "SCROLL_BOXES"
     ]
   },
@@ -2281,7 +2286,7 @@
         {
           "order": "1-0r",
           "speaker": "ancient",
-          "text": "Pael schläft. Sein Schnarchen erschüttert den Raum"
+          "text": "Pael schläft. Sein Schnarchen erschüttert den Raum."
         }
       ],
       "Defect": [
@@ -2485,7 +2490,7 @@
       {
         "id": "NAB",
         "title": "Schnappen",
-        "description": "Erhalte [red]Verletzung[/red] in dein [gold]Deck[/gold]. Erhalte ein zufälliges [gold]Relikt[/gold]."
+        "description": "Nimm [red]Verletzung[/red] in dein [gold]Deck[/gold]. Erhalte ein zufälliges [gold]Relikt[/gold]."
       },
       {
         "id": "I_CAN_TAKE_THEM",
@@ -2501,7 +2506,7 @@
           {
             "id": "NAB",
             "title": "Schnappen",
-            "description": "Erhalte [red]Verletzung[/red] in dein [gold]Deck[/gold]. Erhalte ein zufälliges [gold]Relikt[/gold]."
+            "description": "Nimm [red]Verletzung[/red] in dein [gold]Deck[/gold]. Erhalte ein zufälliges [gold]Relikt[/gold]."
           },
           {
             "id": "I_CAN_TAKE_THEM",
@@ -2724,7 +2729,7 @@
       {
         "id": "GORGE",
         "title": "Vollfressen",
-        "description": "Wähle [blue]2[/blue] von [blue]8[/blue] zufälligen [gold]Gewöhnlichen[/gold] Karten für dein [gold]Deck[/gold]."
+        "description": "Wähle [blue]2[/blue] von [blue]8[/blue] zufälligen [gold]Gewöhnlichen[/gold] Karten, die du in dein [gold]Deck[/gold] nimmst."
       },
       {
         "id": "SEARCH",
@@ -2744,7 +2749,7 @@
           {
             "id": "GORGE",
             "title": "Vollfressen",
-            "description": "Wähle [blue]2[/blue] von [blue]8[/blue] zufälligen [gold]Gewöhnlichen[/gold] Karten für dein [gold]Deck[/gold]."
+            "description": "Wähle [blue]2[/blue] von [blue]8[/blue] zufälligen [gold]Gewöhnlichen[/gold] Karten, die du in dein [gold]Deck[/gold] nimmst."
           },
           {
             "id": "SEARCH",
@@ -2765,7 +2770,9 @@
     "type": "Event",
     "act": "Act 3 - Glory",
     "description": "Du findest eine [orange]Einladung[/orange] an einen [blue]“Sir Galalot”[/blue] zu einer Teerunde und entscheidest dich, an seiner Stelle zu erscheinen.\n\nDu betrittst einen unscheinbaren Rundbau und befindest dich mitten zwischen [gold]Kommandeuren[/gold], [aqua]Generälen[/aqua], [red]Bandenchefs[/red] und [blue]Söldnern[/blue], die... Tee trinken?\nDer gigantische Ritter, der eine [gold]goldene Krone[/gold] trägt, spricht.\n\n[jitter]“Kommest du zu spät zum [b]Tee[/b]?!”[/jitter]",
-    "preconditions": null,
+    "preconditions": [
+      "Requires 12+ HP"
+    ],
     "options": [
       {
         "id": "ENJOY_TEA",
@@ -3114,7 +3121,7 @@
       {
         "id": "OBSERVE",
         "title": "Betrachten",
-        "description": "[gold]Verzaubere[/gold] einen [gold]Schlag[/gold] oder ein [gold]Verteidigen[/gold] mit [purple]Spirale[/purple]."
+        "description": "[gold]Verzaubere[/gold] einen Start-[gold]Schlag[/gold] oder -[gold]Verteidigen[/gold] mit [purple]Spirale[/purple]."
       },
       {
         "id": "DRINK",
@@ -3125,7 +3132,7 @@
     "pages": [
       {
         "id": "DRINK",
-        "description": "Du formst deine Hande zu einer Schale und tauchst sie in den [sine][aqua]Wasserstrudel[/aqua][/sine].\n\nSein Wasser füllt deine Hände gemächlich, du nimmst mit geschlossenen Augen kleine Schlucke.\n\nKöstliches Wasser [sine]kreist[/sine] durch dich bis in deine [gold]Mitte[/gold], es wäscht schädliche Gedanken und physische Gebrechen weg..."
+        "description": "Du formst deine Hände zu einer Schale und tauchst sie in den [sine][aqua]Wasserstrudel[/aqua][/sine].\n\nSein Wasser füllt deine Hände gemächlich, du nimmst mit geschlossenen Augen kleine Schlucke.\n\nKöstliches Wasser [sine]kreist[/sine] durch dich bis in deine [gold]Mitte[/gold], es wäscht schädliche Gedanken und physische Gebrechen weg..."
       },
       {
         "id": "INITIAL",
@@ -3134,7 +3141,7 @@
           {
             "id": "OBSERVE",
             "title": "Betrachten",
-            "description": "[gold]Verzaubere[/gold] einen [gold]Schlag[/gold] oder ein [gold]Verteidigen[/gold] mit [purple]Spirale[/purple]."
+            "description": "[gold]Verzaubere[/gold] einen Start-[gold]Schlag[/gold] oder -[gold]Verteidigen[/gold] mit [purple]Spirale[/purple]."
           },
           {
             "id": "DRINK",
@@ -3154,34 +3161,34 @@
     "name": "Geistespfropfer",
     "type": "Event",
     "act": "Act 2 - Hive",
-    "description": "Über dir [jitter]wackelt und zappelt[/jitter] ein Kokon – kurz vor dem Aufplatzen!\n\n...er hört auf zu zappeln. [orange][sine]Der Kokon geht in Feuer auf[/sine][/orange]! [jitter]Was ist hier los?[/jitter]\nIn einem Blitz aus [gold]Licht[/gold] und [red]Flamme[/red] fährt ein [orange]Geistespfropfer[/orange] in dich hinein und droht, sich mit deinem Wesen zu vereinen, um sich zu vervollkommnen.",
+    "description": "Über dir [jitter]wackelt und zappelt[/jitter] ein Kokon – kurz vor dem Aufplatzen!\n\n...er hört auf zu zappeln. [orange][sine]Der Kokon geht in Flammen auf[/sine][/orange]! [jitter]Was ist hier los?[/jitter]\nIn einem Blitz aus [gold]Licht[/gold] und [red]Feuer[/red] fährt ein [orange]Geistespfropfer[/orange] in dich hinein und droht, sich mit deinem Wesen zu vereinen, um sich zu vervollkommnen.",
     "preconditions": null,
     "options": [
       {
         "id": "LET_IT_IN",
         "title": "Ihn hereinlassen",
-        "description": "Heile [green]25[/green] TP. Erhalte [gold]Metamorphose[/gold] in dein [gold]Deck[/gold]."
+        "description": "Heile [green]25[/green] TP. Nimm [gold]Metamorphose[/gold] in dein [gold]Deck[/gold]."
       },
       {
         "id": "REJECTION",
         "title": "Ablehnung",
-        "description": "Verliere [red]9[/red] TP. Entferne eine Karte aus deinem [gold]Deck[/gold]."
+        "description": "Verliere [red]10[/red] TP. [gold]Verbessere[/gold] eine Karte."
       }
     ],
     "pages": [
       {
         "id": "INITIAL",
-        "description": "Über dir [jitter]wackelt und zappelt[/jitter] ein Kokon – kurz vor dem Aufplatzen!\n\n...er hört auf zu zappeln. [orange][sine]Der Kokon geht in Feuer auf[/sine][/orange]! [jitter]Was ist hier los?[/jitter]\nIn einem Blitz aus [gold]Licht[/gold] und [red]Flamme[/red] fährt ein [orange]Geistespfropfer[/orange] in dich hinein und droht, sich mit deinem Wesen zu vereinen, um sich zu vervollkommnen.",
+        "description": "Über dir [jitter]wackelt und zappelt[/jitter] ein Kokon – kurz vor dem Aufplatzen!\n\n...er hört auf zu zappeln. [orange][sine]Der Kokon geht in Flammen auf[/sine][/orange]! [jitter]Was ist hier los?[/jitter]\nIn einem Blitz aus [gold]Licht[/gold] und [red]Feuer[/red] fährt ein [orange]Geistespfropfer[/orange] in dich hinein und droht, sich mit deinem Wesen zu vereinen, um sich zu vervollkommnen.",
         "options": [
           {
             "id": "LET_IT_IN",
             "title": "Ihn hereinlassen",
-            "description": "Heile [green]25[/green] TP. Erhalte [gold]Metamorphose[/gold] in dein [gold]Deck[/gold]."
+            "description": "Heile [green]25[/green] TP. Nimm [gold]Metamorphose[/gold] in dein [gold]Deck[/gold]."
           },
           {
             "id": "REJECTION",
             "title": "Ablehnung",
-            "description": "Verliere [red]9[/red] TP. Entferne eine Karte aus deinem [gold]Deck[/gold]."
+            "description": "Verliere [red]10[/red] TP. [gold]Verbessere[/gold] eine Karte."
           }
         ]
       },
@@ -4057,7 +4064,7 @@
         {
           "order": "2-2r",
           "speaker": "ancient",
-          "text": "Töricht"
+          "text": "Töricht."
         }
       ],
       "Ironclad": [
@@ -4141,7 +4148,7 @@
         {
           "order": "3-1r",
           "speaker": "ancient",
-          "text": "Leben"
+          "text": "...Leben."
         },
         {
           "order": "3-2r",
@@ -4163,7 +4170,7 @@
         {
           "order": "0-2",
           "speaker": "character",
-          "text": "Ich werde dir etwas Manieren beibringen!"
+          "text": "Ich werde dir ein paar Manieren beibringen!"
         },
         {
           "order": "1-0r",
@@ -4188,7 +4195,7 @@
         {
           "order": "2-1r",
           "speaker": "ancient",
-          "text": "Darin stimmen wir beide überein."
+          "text": "Darin haben wir etwas gemeinsam."
         },
         {
           "order": "2-2r",
@@ -4215,7 +4222,7 @@
         {
           "order": "3-0r",
           "speaker": "ancient",
-          "text": "Nerfiger Schuft!\n[jitter]WEG MIT DIR!![/jitter]"
+          "text": "Nerviger Schuft!\n[jitter]WEG MIT DIR!![/jitter]"
         }
       ]
     },
@@ -4232,7 +4239,7 @@
       {
         "id": "POTION",
         "title": "Ereignis-Trank einfüllen",
-        "description": "Verliere [gold]a Potion[/gold]. Erhalte einen [gold]verbesserten[/gold] [gold]Commonen {}[/gold]."
+        "description": "Verliere [gold]a Potion[/gold]. Erhalte einen [gold]Verbesserten[/gold] [gold]Commonen {}[/gold]."
       }
     ],
     "pages": [
@@ -4247,7 +4254,7 @@
           {
             "id": "POTION",
             "title": "Ereignis-Trank einfüllen",
-            "description": "Verliere [gold]a Potion[/gold]. Erhalte einen [gold]verbesserten[/gold] [gold]Commonen {}[/gold]."
+            "description": "Verliere [gold]a Potion[/gold]. Erhalte einen [gold]Verbesserten[/gold] [gold]Commonen {}[/gold]."
           }
         ]
       }
@@ -4327,7 +4334,7 @@
       {
         "id": "NAB_THE_MAP",
         "title": "Die Karte schnappen",
-        "description": "Erhalte die [gold]Beuteschatzkarte[/gold]."
+        "description": "Erhalte die [gold]Schatzkarte[/gold]."
       },
       {
         "id": "SLOWLY_FIND_AN_EXIT",
@@ -4343,7 +4350,7 @@
           {
             "id": "NAB_THE_MAP",
             "title": "Die Karte schnappen",
-            "description": "Erhalte die [gold]Beuteschatzkarte[/gold]."
+            "description": "Erhalte die [gold]Schatzkarte[/gold]."
           },
           {
             "id": "SLOWLY_FIND_AN_EXIT",
@@ -4354,7 +4361,7 @@
       },
       {
         "id": "NAB_THE_MAP",
-        "description": "Was soll schon Schlimmes passieren? Als du die Schatzkarte nimmst, erscheint eine Öffnung vor dir auf der anderen Seite des Raumes."
+        "description": "Was soll schon Schlimmes passieren? Als du die Karte greifst, erscheint eine Öffnung vor dir auf der anderen Seite des Raumes."
       },
       {
         "id": "SLOWLY_FIND_AN_EXIT",
@@ -4378,7 +4385,7 @@
       {
         "id": "ORNATE",
         "title": "Das",
-        "description": "Erhalte [red]Ungeschickt[/red] in dein [gold]Deck[/gold]. Erhalte ein zufälliges [gold]Relikt[/gold]."
+        "description": "Nimm [red]Ungeschickt[/red] in dein [gold]Deck[/gold]. Erhalte ein zufälliges [gold]Relikt[/gold]."
       }
     ],
     "pages": [
@@ -4394,7 +4401,7 @@
           {
             "id": "ORNATE",
             "title": "Das",
-            "description": "Erhalte [red]Ungeschickt[/red] in dein [gold]Deck[/gold]. Erhalte ein zufälliges [gold]Relikt[/gold]."
+            "description": "Nimm [red]Ungeschickt[/red] in dein [gold]Deck[/gold]. Erhalte ein zufälliges [gold]Relikt[/gold]."
           }
         ]
       },
@@ -4419,7 +4426,7 @@
       {
         "id": "CHOOSE_CARD_TYPE",
         "title": "Akzeptieren",
-        "description": "Erzeuge eine eigene Karte, die du deinem [gold]Deck[/gold] hinzufügst."
+        "description": "Erzeuge eine eigene Karte, die du in dein [gold]Deck[/gold] nimmst."
       }
     ],
     "pages": [
@@ -4476,7 +4483,7 @@
           {
             "id": "CHAOS",
             "title": "Chaos",
-            "description": "Erhalte eine zufällige Karte auf deine [gold]Hand[/gold]. Sie kostet in diesem Zug [blue]0[/blue] [energy:1]."
+            "description": "Erhalte eine zufällige Karte auf deine [gold]Hand[/gold]. Sie ist in diesem Zug kostenlos spielbar."
           },
           {
             "id": "EXPERTISE",
@@ -4497,7 +4504,7 @@
       },
       {
         "id": "DONE",
-        "description": "“Puh! Alles fertig. Das ist für dich! Und jetzt geh nach da draußen und [red][jitter]schlachte[/jitter][/red]!!”\n\nWas du nicht wusstest, diese [orange]Forscherin[/orange] fuhr damit fort, hunderte Waffen zu erschaffen, was zu einigen Tausend Toden im Spire führte."
+        "description": "“Puh! Alles fertig. Das ist für dich! Und jetzt geh nach da draußen und [red][jitter]schlachte[/jitter][/red]!!”\n\nDu konntest nicht ahnen, dass diese [orange]Forscherin[/orange] weitermachte und hunderte Waffen erschuf, was zu einigen Tausend Toden im Spire führte."
       },
       {
         "id": "INITIAL",
@@ -4506,7 +4513,7 @@
           {
             "id": "CHOOSE_CARD_TYPE",
             "title": "Akzeptieren",
-            "description": "Erzeuge eine eigene Karte, die du deinem [gold]Deck[/gold] hinzufügst."
+            "description": "Erzeuge eine eigene Karte, die du in dein [gold]Deck[/gold] nimmst."
           }
         ]
       }
@@ -4601,12 +4608,12 @@
           {
             "id": "GUILTY",
             "title": "ENTSCHEIDE: Schuldig",
-            "description": "Erhalte [red]Reue[/red] in dein [gold]Deck[/gold]. Erhalte [blue]2[/blue] zufällige [gold]Relikte[/gold]."
+            "description": "Nimm [red]Reue[/red] in dein [gold]Deck[/gold]. Erhalte [blue]2[/blue] zufällige [gold]Relikte[/gold]."
           },
           {
             "id": "INNOCENT",
             "title": "ENTSCHEIDE: Unschuldig",
-            "description": "Erhalte [red]Scham[/red] in dein [gold]Deck[/gold]. [gold]Verbessere[/gold] [blue]2[/blue] Karten."
+            "description": "Nimm [red]Scham[/red] in dein [gold]Deck[/gold]. [gold]Verbessere[/gold] [blue]2[/blue] Karten."
           }
         ]
       },
@@ -4630,7 +4637,7 @@
           {
             "id": "INNOCENT",
             "title": "ENTSCHEIDE: Unschuldig",
-            "description": "Erhalte [red]Reue[/red] in dein [gold]Deck[/gold]. Erhalte [blue]300[/blue] [gold]Gold[/gold]."
+            "description": "Nimm [red]Reue[/red] in dein [gold]Deck[/gold]. Erhalte [blue]300[/blue] [gold]Gold[/gold]."
           }
         ]
       },
@@ -4649,12 +4656,12 @@
           {
             "id": "GUILTY",
             "title": "ENTSCHEIDE: Schuldig",
-            "description": "Erhalte [red]Zweifel[/red] in dein [gold]Deck[/gold]. Erhalte [blue]2[/blue] Kartenbelohnungen."
+            "description": "Nimm [red]Zweifel[/red] in dein [gold]Deck[/gold]. Erhalte [blue]2[/blue] Kartenbelohnungen."
           },
           {
             "id": "INNOCENT",
             "title": "ENTSCHEIDE: Unschuldig",
-            "description": "Erhalte [red]Zweifel[/red] in dein [gold]Deck[/gold]. [gold]Transformiere[/gold] [blue]2[/blue] Karten."
+            "description": "Nimm [red]Zweifel[/red] in dein [gold]Deck[/gold]. [gold]Transformiere[/gold] [blue]2[/blue] Karten."
           }
         ]
       },
@@ -4728,7 +4735,7 @@
       },
       {
         "id": "REST",
-        "description": "All diese Abenteuer haben dich erschöpft gemacht. Du entscheidest dich trotz der Merkwürdigkeiten, zu schlafen.\n\nDu wirfst dich hin und her, während das [orange]Feuer[/orange] über Nacht braust und knistert. Die [purple]widerlichen Bäume[/purple] geben über ihren pechschwarzen Saft einen miesen Geruch ab.\n\nBeim Aufwachen bist du erholt, aber nicht bei Kräften."
+        "description": "All diese Abenteuer haben dich erschöpft gemacht. Du entscheidest dich trotz der Merkwürdigkeiten, zu schlafen.\n\nDu wirfst dich hin und her, während das [orange]Feuer[/orange] über Nacht prasselt und knistert. Die [purple]widerlichen Bäume[/purple] geben über ihren pechschwarzen Saft einen miesen Geruch ab.\n\nBeim Aufwachen bist du erholt, aber nicht bei Kräften."
       }
     ]
   },
@@ -4769,7 +4776,7 @@
         {
           "order": "1-0r",
           "speaker": "ancient",
-          "text": "Findest du es merkwürdig, dass deine Konstrukt-Kameraden dich tot sehen wollen?"
+          "text": "Wundert es dich, dass deine Konstrukt-Kameraden dich tot sehen wollen?"
         },
         {
           "order": "2-0",
@@ -5005,7 +5012,7 @@
     "act": "Underdocks",
     "description": "Als du durch die trüben Kanäle steuerst, stößt du auf eine [aqua]welke Figur[/aqua], die einen kleinen Laden betreibt. Die Vielzahl an Regalen ist [sine]vollgestopft[/sine] mit klammen Schriftrollen und Pergamenten.\n\nAls er merkt, dass ein Kunde gekommen ist, wird der [aqua]Schreiber-Verkäufer[/aqua] ruckartig aufmerksam und deutet auf einige [gold]Utensilien[/gold], die auf einem Tisch drapiert sind.",
     "preconditions": [
-      "Requires 65+ gold"
+      "Requires 55+ gold"
     ],
     "options": [
       {
@@ -5016,22 +5023,22 @@
       {
         "id": "TENTACLE_QUILL",
         "title": "Tentakel-Schreibfeder",
-        "description": "Zahle [red]65[/red] [gold]Gold[/gold]. [gold]Verzaubere[/gold] eine Karte mit [purple]Beständig[/purple]."
+        "description": "Zahle [red]55[/red] [gold]Gold[/gold]. [gold]Verzaubere[/gold] eine Karte mit [purple]Beständig[/purple]."
       },
       {
         "id": "TENTACLE_QUILL_LOCKED",
         "title": "Gesperrt",
-        "description": "Benötigt [blue]65[/blue] [gold]Gold[/gold]."
+        "description": "Benötigt [blue]55[/blue] [gold]Gold[/gold]."
       },
       {
         "id": "PRICKLY_SPONGE",
         "title": "Dorniger Schwamm",
-        "description": "Zahle [red]155[/red] [gold]Gold[/gold]. [gold]Verzaubere[/gold] [blue]2[/blue] Karten mit [purple]Beständig[/purple]."
+        "description": "Zahle [red]99[/red] [gold]Gold[/gold]. [gold]Verzaubere[/gold] [blue]2[/blue] Karten mit [purple]Beständig[/purple]."
       },
       {
         "id": "PRICKLY_SPONGE_LOCKED",
         "title": "Gesperrt",
-        "description": "Benötigt [blue]155[/blue] [gold]Gold[/gold]."
+        "description": "Benötigt [blue]99[/blue] [gold]Gold[/gold]."
       }
     ],
     "pages": [
@@ -5051,22 +5058,22 @@
           {
             "id": "TENTACLE_QUILL",
             "title": "Tentakel-Schreibfeder",
-            "description": "Zahle [red]65[/red] [gold]Gold[/gold]. [gold]Verzaubere[/gold] eine Karte mit [purple]Beständig[/purple]."
+            "description": "Zahle [red]55[/red] [gold]Gold[/gold]. [gold]Verzaubere[/gold] eine Karte mit [purple]Beständig[/purple]."
           },
           {
             "id": "TENTACLE_QUILL_LOCKED",
             "title": "Gesperrt",
-            "description": "Benötigt [blue]65[/blue] [gold]Gold[/gold]."
+            "description": "Benötigt [blue]55[/blue] [gold]Gold[/gold]."
           },
           {
             "id": "PRICKLY_SPONGE",
             "title": "Dorniger Schwamm",
-            "description": "Zahle [red]155[/red] [gold]Gold[/gold]. [gold]Verzaubere[/gold] [blue]2[/blue] Karten mit [purple]Beständig[/purple]."
+            "description": "Zahle [red]99[/red] [gold]Gold[/gold]. [gold]Verzaubere[/gold] [blue]2[/blue] Karten mit [purple]Beständig[/purple]."
           },
           {
             "id": "PRICKLY_SPONGE_LOCKED",
             "title": "Gesperrt",
-            "description": "Benötigt [blue]155[/blue] [gold]Gold[/gold]."
+            "description": "Benötigt [blue]99[/blue] [gold]Gold[/gold]."
           }
         ]
       },
@@ -5203,7 +5210,7 @@
       {
         "id": "BATHE",
         "title": "Baden",
-        "description": "Entferne [blue]1[/blue] Karte aus deinem [gold]Deck[/gold]. Erhalte [blue]1[/blue] [red]Schuldgefühl[/red] in dein [gold]Deck[/gold]."
+        "description": "Entferne [blue]1[/blue] Karte aus deinem [gold]Deck[/gold]. Nimm [blue]1[/blue] [red]Schuldgefühl[/red] in dein [gold]Deck[/gold]."
       }
     ],
     "pages": [
@@ -5227,7 +5234,7 @@
           {
             "id": "BATHE",
             "title": "Baden",
-            "description": "Entferne [blue]1[/blue] Karte aus deinem [gold]Deck[/gold]. Erhalte [blue]1[/blue] [red]Schuldgefühl[/red] in dein [gold]Deck[/gold]."
+            "description": "Entferne [blue]1[/blue] Karte aus deinem [gold]Deck[/gold]. Nimm [blue]1[/blue] [red]Schuldgefühl[/red] in dein [gold]Deck[/gold]."
           }
         ]
       }
@@ -5240,13 +5247,13 @@
     "act": "Act 1 - Overgrowth",
     "description": "Du kommst durch ein [red]Tal mit toten Bäumen[/red], wo dir ein einzelner knochenweißer Baum auffällt. Tonkugeln hängen an seinen Zweigen, welche sich wie schützende Rippen nach innen krümmen.\n\nSo ein [purple]unheimlicher Baum[/purple]. Er flüstert.\n\n[sine][blue]...Tausch machen.....[/blue][/sine]",
     "preconditions": [
-      "Requires 50+ gold"
+      "Requires 44+ gold"
     ],
     "options": [
       {
         "id": "GOLD",
         "title": "Gold wegtauschen",
-        "description": "Verliere [red]50[/red] [gold]Gold[/gold]. Beschaffe [blue]2[/blue] zufällige [gold]Tränke[/gold]."
+        "description": "Verliere [red]26-44[/red] [gold]Gold[/gold]. Beschaffe [blue]2[/blue] zufällige [gold]Tränke[/gold]."
       },
       {
         "id": "HUG",
@@ -5270,7 +5277,7 @@
           {
             "id": "GOLD",
             "title": "Gold wegtauschen",
-            "description": "Verliere [red]50[/red] [gold]Gold[/gold]. Beschaffe [blue]2[/blue] zufällige [gold]Tränke[/gold]."
+            "description": "Verliere [red]26-44[/red] [gold]Gold[/gold]. Beschaffe [blue]2[/blue] zufällige [gold]Tränke[/gold]."
           },
           {
             "id": "HUG",
@@ -5315,7 +5322,7 @@
     "pages": [
       {
         "id": "BIRD",
-        "description": "Du stellst die geflügelte Schnitzerei auf das Podest und die Augen der Statue LEUCHTEN AUF und du hörst ein schwaches Klingeln in deinem Kopf.\n\n[sine]...kah.... kah kaaaahhh...[/sine]\n\nDas Podest öffnet sich und eine seltsame Flüssigkeit beginnt herauszufließen.\nSelbstverständlich trinkst du alles davon."
+        "description": "Du stellst die geflügelte Schnitzerei auf das Podest und die AUGEN der Statue LEUCHTEN AUF und du hörst ein schwaches Klingeln in deinem Kopf.\n\n[sine]...kah.... kah kaaaahhh...[/sine]\n\nDas Podest öffnet sich und eine seltsame Flüssigkeit beginnt herauszufließen.\nSelbstverständlich trinkst du alles davon."
       },
       {
         "id": "INITIAL",
@@ -5345,7 +5352,7 @@
       },
       {
         "id": "SNAKE",
-        "description": "Du stellst die Schlangenschnitzerei auf das Podest und die Schuppen der Statue LEUCHTEN AUF! Du fühlst dich etwas warm, gemütlich und wacklig."
+        "description": "Du stellst die Schlangenschnitzerei auf das Podest und die SCHUPPEN der Statue LEUCHTEN AUF! Du fühlst dich etwas warm, gemütlich und wacklig."
       },
       {
         "id": "TORUS",
@@ -5366,7 +5373,7 @@
       {
         "id": "BREATHING_TECHNIQUES",
         "title": "Atemtechniken",
-        "description": "Zahle [red]50[/red] [gold]Gold[/gold]. Erhalte [blue]2[/blue] [gold]Erleuchtung[/gold] in dein [gold]Deck[/gold]."
+        "description": "Zahle [red]50[/red] [gold]Gold[/gold]. Nimm [blue]2[/blue] [gold]Erleuchtung[/gold] in dein [gold]Deck[/gold]."
       },
       {
         "id": "EMOTIONAL_AWARENESS",
@@ -5404,7 +5411,7 @@
           {
             "id": "BREATHING_TECHNIQUES",
             "title": "Atemtechniken",
-            "description": "Zahle [red]50[/red] [gold]Gold[/gold]. Erhalte [blue]2[/blue] [gold]Erleuchtung[/gold] in dein [gold]Deck[/gold]."
+            "description": "Zahle [red]50[/red] [gold]Gold[/gold]. Nimm [blue]2[/blue] [gold]Erleuchtung[/gold] in dein [gold]Deck[/gold]."
           },
           {
             "id": "EMOTIONAL_AWARENESS",

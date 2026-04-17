@@ -14,7 +14,7 @@
   {
     "id": "CARD_DEBUFF",
     "name": "悪意",
-    "description": "カードに[gold]災い[/gold]を付与する。",
+    "description": "カードに[gold]災禍[/gold]を付与する。",
     "image_url": "/static/images/intents/card_debuff.webp"
   },
   {

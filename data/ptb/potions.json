@@ -145,8 +145,8 @@
   {
     "id": "FAIRY_IN_A_BOTTLE",
     "name": "Fada Engarrafada",
-    "description": "Quando você receber dano letal, esta poção será descartada e você cura [blue]30%[/blue] dos seus PV Máximos.",
-    "description_raw": "Quando você receber dano letal, esta poção será descartada e você cura [blue]30%[/blue] dos seus PV Máximos.",
+    "description": "Quando seus PV forem reduzidos a [blue]0[/blue], esta poção será descartada e você cura [blue]30%[/blue] dos seus PV Máximos.",
+    "description_raw": "Quando seus PV forem reduzidos a [blue]0[/blue], esta poção será descartada e você cura [blue]30%[/blue] dos seus PV Máximos.",
     "rarity": "Rara",
     "image_url": "/static/images/potions/fairy_in_a_bottle.webp",
     "rarity_key": "Rare",
@@ -211,8 +211,8 @@
   {
     "id": "LIQUID_MEMORIES",
     "name": "Memórias Líquidas",
-    "description": "Coloque uma carta da sua [gold]Pilha de Descarte[/gold] na sua [gold]Mão[/gold]. Ela custa [blue]0[/blue] [energy:1] neste turno.",
-    "description_raw": "Coloque uma carta da sua [gold]Pilha de Descarte[/gold] na sua [gold]Mão[/gold]. Ela custa [blue]0[/blue] {energyPrefix:energyIcons(1)} neste turno.",
+    "description": "Coloque uma carta da sua [gold]Pilha de Descarte[/gold] na sua [gold]Mão[/gold]. Ela não tem custo neste turno.",
+    "description_raw": "Coloque uma carta da sua [gold]Pilha de Descarte[/gold] na sua [gold]Mão[/gold]. Ela não tem custo neste turno.",
     "rarity": "Rara",
     "image_url": "/static/images/potions/liquid_memories.webp",
     "rarity_key": "Rare",
@@ -321,8 +321,8 @@
   {
     "id": "FOUL_POTION",
     "name": "Poção Nefasta",
-    "description": "Cause [blue]12[/blue] de dano a TODOS.\nPode ser arremessada no [gold]Mercador[/gold] em troca de [blue]100[/blue] [gold]Ouro[/gold].",
-    "description_raw": "Cause [blue]{Damage}[/blue] de dano a TODOS.\nPode ser arremessada no [gold]Mercador[/gold] em troca de [blue]{Gold}[/blue] [gold]Ouro[/gold].",
+    "description": "Cause [blue]12[/blue] de dano a TODOS os jogadores e inimigos.\nPode ser arremessada no [gold]Mercador[/gold] em troca de [blue]100[/blue] [gold]Ouro[/gold].",
+    "description_raw": "Cause [blue]{Damage}[/blue] de dano a TODOS os jogadores e inimigos.\nPode ser arremessada no [gold]Mercador[/gold] em troca de [blue]{Gold}[/blue] [gold]Ouro[/gold].",
     "rarity": "Evento",
     "image_url": "/static/images/potions/foul_potion.webp",
     "rarity_key": "Event",
@@ -618,8 +618,8 @@
   {
     "id": "RADIANT_TINCTURE",
     "name": "Tintura Radiante",
-    "description": "Receba [energy:1]. Receba uma [energy:1] adicional no início dos seus próximos [blue]3[/blue] turnos.",
-    "description_raw": "Receba {Energy:energyIcons()}. Receba uma {energyPrefix:energyIcons(1)} adicional no início dos seus próximos [blue]{RadiancePower}[/blue] {RadiancePower:plural:turno|turnos}.",
+    "description": "Receba [energy:1]. Receba [energy:1] adicional no início dos seus próximos [blue]3[/blue] turnos.",
+    "description_raw": "Receba {Energy:energyIcons()}. Receba {energyPrefix:energyIcons(1)} adicional no início {RadiancePower:plural:do seu próximo turno|dos seus próximos [blue]{RadiancePower}[/blue] turnos}.",
     "rarity": "Incomum",
     "image_url": "/static/images/potions/radiant_tincture.webp",
     "rarity_key": "Uncommon",

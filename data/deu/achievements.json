@@ -109,8 +109,8 @@
   },
   {
     "id": "DEFEAT_GLORY_ENEMIES",
-    "name": "Die Gloria",
-    "description": "Besiege jeden Gegner in der Gloria.",
+    "name": "Der Ruhm",
+    "description": "Besiege jeden Gegner im Ruhm.",
     "category": "combat",
     "character": null,
     "threshold": null,

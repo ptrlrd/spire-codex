@@ -1,9 +1,20 @@
 [
   {
+    "id": "GAMBLERS_BREW",
+    "name": "Азартная настойка",
+    "description": "Позволяет сбросить любое количество карт и взять столько же.",
+    "description_raw": "Позволяет сбросить любое количество карт и взять столько же.",
+    "rarity": "Необычное",
+    "image_url": "/static/images/potions/gamblers_brew.webp",
+    "rarity_key": "Uncommon",
+    "compendium_order": 20,
+    "pool": "shared"
+  },
+  {
     "id": "LUCKY_TONIC",
     "name": "Бальзам удачи",
-    "description": "Дает [blue]1[/blue] [gold]Буфер[/gold].",
-    "description_raw": "Дает [blue]{BufferPower}[/blue] [gold]Буфер[/gold].",
+    "description": "Дает [blue]1[/blue] [gold]plural(ru):буфер[/gold].",
+    "description_raw": "Дает [blue]{BufferPower}[/blue] [gold]{BufferPower:plural(ru):буфер|буфера|буферов}[/gold].",
     "rarity": "Редкое",
     "image_url": "/static/images/potions/lucky_tonic.webp",
     "rarity_key": "Rare",
@@ -40,7 +51,7 @@
     "rarity": "Необычное",
     "image_url": "/static/images/potions/blessing_of_the_forge.webp",
     "rarity_key": "Uncommon",
-    "compendium_order": 20,
+    "compendium_order": 21,
     "pool": "shared"
   },
   {
@@ -62,14 +73,14 @@
     "rarity": "Необычное",
     "image_url": "/static/images/potions/clarity.webp",
     "rarity_key": "Uncommon",
-    "compendium_order": 21,
+    "compendium_order": 22,
     "pool": "shared"
   },
   {
     "id": "MAZALETHS_GIFT",
     "name": "Дар Мазалета",
-    "description": "Дает [blue]1[/blue] [gold]Ритуал[/gold].",
-    "description_raw": "Дает [blue]{RitualPower}[/blue] [gold]Ритуал[/gold].",
+    "description": "Дает [blue]1[/blue] [gold]plural(ru):ритуал[/gold].",
+    "description_raw": "Дает [blue]{RitualPower}[/blue] [gold]{RitualPower:plural(ru):ритуал|ритуала|ритуалов}[/gold].",
     "rarity": "Редкое",
     "image_url": "/static/images/potions/mazaleths_gift.webp",
     "rarity_key": "Rare",
@@ -79,30 +90,30 @@
   {
     "id": "DUPLICATOR",
     "name": "Дубликатор",
-    "description": "Следующая разыгранная в этом ходу карта, разыгрывается еще раз.",
-    "description_raw": "Следующая разыгранная в этом ходу карта, разыгрывается еще раз.",
+    "description": "Следующая разыгранная в этом ходу карта разыгрывается еще раз.",
+    "description_raw": "Следующая разыгранная в этом ходу карта разыгрывается еще раз.",
     "rarity": "Необычное",
     "image_url": "/static/images/potions/duplicator.webp",
-    "rarity_key": "Uncommon",
-    "compendium_order": 22,
-    "pool": "shared"
-  },
-  {
-    "id": "LIQUID_BRONZE",
-    "name": "Жидкая бронза",
-    "description": "Дает [blue]3[/blue] [gold]шипов[/gold].",
-    "description_raw": "Дает [blue]{ThornsPower}[/blue] [gold]шипов[/gold].",
-    "rarity": "Необычное",
-    "image_url": "/static/images/potions/liquid_bronze.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 23,
     "pool": "shared"
   },
   {
+    "id": "LIQUID_BRONZE",
+    "name": "Жидкая бронза",
+    "description": "Дает [blue]3[/blue] [gold]plural(ru):шип[/gold].",
+    "description_raw": "Дает [blue]{ThornsPower}[/blue] [gold]{ThornsPower:plural(ru):шип|шипа|шипов}[/gold].",
+    "rarity": "Необычное",
+    "image_url": "/static/images/potions/liquid_bronze.webp",
+    "rarity_key": "Uncommon",
+    "compendium_order": 24,
+    "pool": "shared"
+  },
+  {
     "id": "LIQUID_MEMORIES",
     "name": "Жидкие воспоминания",
-    "description": "Положите карту из [gold]стопки сброса[/gold] в [gold]руку[/gold]. В этом ходу она стоит [blue]0[/blue] [energy:1].",
-    "description_raw": "Положите карту из [gold]стопки сброса[/gold] в [gold]руку[/gold]. В этом ходу она стоит [blue]0[/blue] {energyPrefix:energyIcons(1)}.",
+    "description": "Вы берете карту из [gold]стопки сброса[/gold]. В этом ходу она бесплатная.",
+    "description_raw": "Вы берете карту из [gold]стопки сброса[/gold]. В этом ходу она бесплатная.",
     "rarity": "Редкое",
     "image_url": "/static/images/potions/liquid_memories.webp",
     "rarity_key": "Rare",
@@ -112,8 +123,8 @@
   {
     "id": "SNECKO_OIL",
     "name": "Жир змекко",
-    "description": "Вы добираете [blue]7[/blue] карт. Стоимость карт в вашей [gold]руке[/gold] изменяется случайным образом на этот ход.",
-    "description_raw": "Вы добираете [blue]{Cards}[/blue] карт. Стоимость карт в вашей [gold]руке[/gold] изменяется случайным образом на этот ход.",
+    "description": "Вы добираете [blue]7[/blue] plural(ru):карту. Стоимость карт в вашей [gold]руке[/gold] изменяется случайным образом на этот ход.",
+    "description_raw": "Вы добираете [blue]{Cards}[/blue] {Cards:plural(ru):карту|карты|карт}. Стоимость карт в вашей [gold]руке[/gold] изменяется случайным образом на этот ход.",
     "rarity": "Редкое",
     "image_url": "/static/images/potions/snecko_oil.webp",
     "rarity_key": "Rare",
@@ -124,7 +135,7 @@
     "id": "BEETLE_JUICE",
     "name": "Жучиный сок",
     "description": "Атаки выбранного противника наносят на [blue]30%[/blue] меньше урона plural(ru):в следующем ходу.",
-    "description_raw": "Атаки выбранного противника наносят на [blue]{DamageDecrease}%[/blue] меньше урона {Repeat:plural(ru):в следующем ходу|в последующих [blue]{}[/blue] ходах|в последующих [blue]{}[/blue] ходах}.",
+    "description_raw": "Атаки выбранного противника наносят на [blue]{DamageDecrease}%[/blue] меньше урона {Repeat:plural(ru):в следующем ходу|в течение [blue]{}[/blue] ходов|в течение [blue]{}[/blue] ходов}.",
     "rarity": "Редкое",
     "image_url": "/static/images/potions/beetle_juice.webp",
     "rarity_key": "Rare",
@@ -183,7 +194,7 @@
     "rarity": "Необычное",
     "image_url": "/static/images/potions/potion_of_capacity.webp",
     "rarity_key": "Uncommon",
-    "compendium_order": 24,
+    "compendium_order": 25,
     "pool": "defect"
   },
   {
@@ -211,8 +222,8 @@
   {
     "id": "BLOOD_POTION",
     "name": "Зелье крови",
-    "description": "Восполняет [green]20%[/green] от Макс. ОЗ.",
-    "description_raw": "Восполняет [green]{HealPercent}%[/green] от Макс. ОЗ.",
+    "description": "Восполняет [green]20%[/green] максимальных ОЗ.",
+    "description_raw": "Восполняет [green]{HealPercent}%[/green] максимальных ОЗ.",
     "rarity": "Обычное",
     "image_url": "/static/images/potions/blood_potion.webp",
     "rarity_key": "Common",
@@ -271,7 +282,7 @@
     "rarity": "Необычное",
     "image_url": "/static/images/potions/regen_potion.webp",
     "rarity_key": "Uncommon",
-    "compendium_order": 25,
+    "compendium_order": 26,
     "pool": "shared"
   },
   {
@@ -310,8 +321,8 @@
   {
     "id": "POWER_POTION",
     "name": "Зелье таланта",
-    "description": "Вы выбираете [blue]1[/blue] из [blue]3[/blue] случайных Талатов и добавляете его в [gold]руку[/gold]. В этом ходу он бесплатен.",
-    "description_raw": "Вы выбираете [blue]1[/blue] из [blue]3[/blue] случайных Талатов и добавляете его в [gold]руку[/gold]. В этом ходу он бесплатен.",
+    "description": "Вы выбираете [blue]1[/blue] из [blue]3[/blue] случайных Талантов и добавляете его в [gold]руку[/gold]. В этом ходу он бесплатен.",
+    "description_raw": "Вы выбираете [blue]1[/blue] из [blue]3[/blue] случайных Талантов и добавляете его в [gold]руку[/gold]. В этом ходу он бесплатен.",
     "rarity": "Обычное",
     "image_url": "/static/images/potions/power_potion.webp",
     "rarity_key": "Common",
@@ -348,7 +359,7 @@
     "rarity": "Необычное",
     "image_url": "/static/images/potions/cunning_potion.webp",
     "rarity_key": "Uncommon",
-    "compendium_order": 26,
+    "compendium_order": 27,
     "pool": "silent"
   },
   {
@@ -381,7 +392,7 @@
     "rarity": "Необычное",
     "image_url": "/static/images/potions/touch_of_insanity.webp",
     "rarity_key": "Uncommon",
-    "compendium_order": 27,
+    "compendium_order": 28,
     "pool": "shared"
   },
   {
@@ -414,7 +425,7 @@
     "rarity": "Необычное",
     "image_url": "/static/images/potions/kings_courage.webp",
     "rarity_key": "Uncommon",
-    "compendium_order": 28,
+    "compendium_order": 29,
     "pool": "regent"
   },
   {
@@ -436,15 +447,15 @@
     "rarity": "Необычное",
     "image_url": "/static/images/potions/bone_brew.webp",
     "rarity_key": "Uncommon",
-    "compendium_order": 29,
+    "compendium_order": 30,
     "pool": "necrobinder"
   },
   {
     "id": "FOUL_POTION",
     "name": "Мерзкое зелье",
-    "description": "Наносит [blue]12[/blue] урона ВСЕМ.\nВы можете бросить это зелье [gold]торговцу[/gold] за вознаграждение в [blue]100[/blue] [gold]золота[/gold].",
-    "description_raw": "Наносит [blue]{Damage}[/blue] урона ВСЕМ.\nВы можете бросить это зелье [gold]торговцу[/gold] за вознаграждение в [blue]{Gold}[/blue] [gold]золота[/gold].",
-    "rarity": "Зелье события",
+    "description": "Наносит [blue]12[/blue] урона ВСЕМ игрокам и врагам.\nВы можете бросить это зелье [gold]торговцу[/gold] за вознаграждение в [blue]100[/blue] [gold]золота[/gold].",
+    "description_raw": "Наносит [blue]{Damage}[/blue] урона ВСЕМ игрокам и врагам.\nВы можете бросить это зелье [gold]торговцу[/gold] за вознаграждение в [blue]{Gold}[/blue] [gold]золота[/gold].",
+    "rarity": "Особое",
     "image_url": "/static/images/potions/foul_potion.webp",
     "rarity_key": "Event",
     "compendium_order": 60,
@@ -453,12 +464,12 @@
   {
     "id": "ASHWATER",
     "name": "Настой пепла",
-    "description": "[gold]Сжигает[/gold] любое количество выбранных карт в вашей [gold]руке[/gold].",
-    "description_raw": "[gold]Сжигает[/gold] любое количество выбранных карт в вашей [gold]руке[/gold].",
+    "description": "[gold]Сжигает[/gold] любое количество выбранных карт в [gold]руке[/gold].",
+    "description_raw": "[gold]Сжигает[/gold] любое количество выбранных карт в [gold]руке[/gold].",
     "rarity": "Необычное",
     "image_url": "/static/images/potions/ashwater.webp",
     "rarity_key": "Uncommon",
-    "compendium_order": 30,
+    "compendium_order": 31,
     "pool": "ironclad"
   },
   {
@@ -470,17 +481,6 @@
     "image_url": "/static/images/potions/entropic_brew.webp",
     "rarity_key": "Rare",
     "compendium_order": 51,
-    "pool": "shared"
-  },
-  {
-    "id": "GAMBLERS_BREW",
-    "name": "Настойка игрока",
-    "description": "Сбросьте любое количество карт и возьмите столько же.",
-    "description_raw": "Сбросьте любое количество карт и возьмите столько же.",
-    "rarity": "Необычное",
-    "image_url": "/static/images/potions/gamblers_brew.webp",
-    "rarity_key": "Uncommon",
-    "compendium_order": 31,
     "pool": "shared"
   },
   {
@@ -585,9 +585,9 @@
   {
     "id": "GLOWWATER_POTION",
     "name": "Сияющая водица",
-    "description": "[gold]Сжигает[/gold] все карты в [gold]руке[/gold]. Вы добираете [blue]10[/blue] карт.",
-    "description_raw": "[gold]Сжигает[/gold] все карты в [gold]руке[/gold]. Вы добираете [blue]{Cards}[/blue] карт.",
-    "rarity": "Зелье события",
+    "description": "[gold]Сжигает[/gold] все карты в [gold]руке[/gold]. Вы добираете [blue]10[/blue] plural(ru):карту.",
+    "description_raw": "[gold]Сжигает[/gold] все карты в [gold]руке[/gold]. Вы добираете [blue]{Cards}[/blue] {Cards:plural(ru):карту|карты|карт}.",
+    "rarity": "Особое",
     "image_url": "/static/images/potions/glowwater_potion.webp",
     "rarity_key": "Event",
     "compendium_order": 61,
@@ -596,8 +596,8 @@
   {
     "id": "RADIANT_TINCTURE",
     "name": "Сияющая настойка",
-    "description": "",
-    "description_raw": "",
+    "description": "Дает [energy:1]. В начале plural(ru):следующего [blue]3[/blue] plural(ru):хода дает [energy:1].",
+    "description_raw": "Дает {Energy:energyIcons()}. В начале {RadiancePower:plural(ru):следующего|следующих|следующих} [blue]{RadiancePower}[/blue] {RadiancePower:plural(ru):хода|ходов|ходов} дает {energyPrefix:energyIcons(1)}.",
     "rarity": "Необычное",
     "image_url": "/static/images/potions/radiant_tincture.webp",
     "rarity_key": "Uncommon",
@@ -618,8 +618,8 @@
   {
     "id": "SOLDIERS_STEW",
     "name": "Солдатская похлебка",
-    "description": "Все карты с [gold]«Ударом»[/gold] в названии получают [gold]повтор[/gold] [blue]1[/blue] .",
-    "description_raw": "Все карты с [gold]«Ударом»[/gold] в названии получают [gold]повтор[/gold] [blue]1[/blue] .",
+    "description": "Все карты с [gold]«ударом»[/gold] в названии получают [blue]1[/blue] [gold]повтор[/gold].",
+    "description_raw": "Все карты с [gold]«ударом»[/gold] в названии получают [blue]1[/blue] [gold]повтор[/gold].",
     "rarity": "Редкое",
     "image_url": "/static/images/potions/soldiers_stew.webp",
     "rarity_key": "Rare",
@@ -629,8 +629,8 @@
   {
     "id": "STABLE_SERUM",
     "name": "Стабильная сыворотка",
-    "description": "Следующие [blue]2[/blue] plural(ru):ход вы [gold]оставляете[/gold] карты в [gold]руке[/gold].",
-    "description_raw": "Следующие [blue]{Repeat}[/blue] {Repeat:plural(ru):ход|хода|ходов} вы [gold]оставляете[/gold] карты в [gold]руке[/gold].",
+    "description": "Вы [gold]оставляете[/gold] карты в [gold]руке[/gold] в течение [blue]2[/blue] plural(ru):хода .",
+    "description_raw": "Вы [gold]оставляете[/gold] карты в [gold]руке[/gold] в течение [blue]{Repeat}[/blue] {Repeat:plural(ru):хода|ходов|ходов} .",
     "rarity": "Необычное",
     "image_url": "/static/images/potions/stable_serum.webp",
     "rarity_key": "Uncommon",
@@ -651,8 +651,8 @@
   {
     "id": "FORTIFIER",
     "name": "Укрепляющее зелье",
-    "description": "Утраивает вашу текущую [gold]Защиту[/gold].",
-    "description_raw": "Утраивает вашу текущую [gold]Защиту[/gold].",
+    "description": "Утраивает вашу текущую [gold]защиту[/gold].",
+    "description_raw": "Утраивает вашу текущую [gold]защиту[/gold].",
     "rarity": "Необычное",
     "image_url": "/static/images/potions/fortifier.webp",
     "rarity_key": "Uncommon",
@@ -662,8 +662,8 @@
   {
     "id": "FAIRY_IN_A_BOTTLE",
     "name": "Фея в бутылке",
-    "description": "Вместо того, чтобы умереть, вы исцеляетесь до [blue]30%[/blue] от Макс. ОЗ и сбрасываете это зелье.",
-    "description_raw": "Вместо того, чтобы умереть, вы исцеляетесь до [blue]30%[/blue] от Макс. ОЗ и сбрасываете это зелье.",
+    "description": "Когда ОЗ понижаются до [blue]0[/blue], вы исцеляетесь до [blue]30%[/blue] от максимальных ОЗ и сбрасываете это зелье вместо того, чтобы умереть.",
+    "description_raw": "Когда ОЗ понижаются до [blue]0[/blue], вы исцеляетесь до [blue]30%[/blue] от максимальных ОЗ и сбрасываете это зелье вместо того, чтобы умереть.",
     "rarity": "Редкое",
     "image_url": "/static/images/potions/fairy_in_a_bottle.webp",
     "rarity_key": "Rare",
@@ -673,8 +673,8 @@
   {
     "id": "FRUIT_JUICE",
     "name": "Фруктовый сок",
-    "description": "Повышает Макс. ОЗ на [blue]5[/blue].",
-    "description_raw": "Повышает Макс. ОЗ на [blue]{MaxHp}[/blue].",
+    "description": "Повышает максимальные ОЗ на [blue]5[/blue].",
+    "description_raw": "Повышает максимальные ОЗ на [blue]{MaxHp}[/blue].",
     "rarity": "Редкое",
     "image_url": "/static/images/potions/fruit_juice.webp",
     "rarity_key": "Rare",

@@ -62,7 +62,7 @@
   {
     "id": "ARSENAL",
     "name": "武器库",
-    "description": "你每打出一张无色牌，都获得[blue]1[/blue]点[gold]力量[/gold]。",
+    "description": "每当你生成一张牌，就获得[blue]1[/blue]点[gold]力量[/gold]。",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
@@ -145,7 +145,7 @@
     "description": "每当你在你的回合获得[gold]格挡[/gold]时，其他玩家获得相应一半的[gold]格挡[/gold]。",
     "description_raw": null,
     "type": "Buff",
-    "stack_type": "Counter",
+    "stack_type": "Single",
     "allow_negative": null,
     "image_url": "/static/images/powers/beacon_of_hope_power.webp"
   },
@@ -170,16 +170,6 @@
     "image_url": "/static/images/powers/black_hole_power.webp"
   },
   {
-    "id": "BLADE_OF_INK",
-    "name": "墨之刃",
-    "description": "每当你在本回合打出一张攻击牌时，本回合获得[blue]2[/blue]点[gold]力量[/gold]。",
-    "description_raw": null,
-    "type": "Buff",
-    "stack_type": "Counter",
-    "allow_negative": null,
-    "image_url": "/static/images/powers/blade_of_ink_power.webp"
-  },
-  {
     "id": "BLOCK_NEXT_TURN",
     "name": "下回合格挡",
     "description": "在你的下个回合开始时，获得[blue]4[/blue]点[gold]格挡[/gold]。",
@@ -198,6 +188,16 @@
     "stack_type": "Counter",
     "allow_negative": null,
     "image_url": "/static/images/powers/blur_power.webp"
+  },
+  {
+    "id": "BORROWED_TIME",
+    "name": "预借时间",
+    "description": "卡牌在本回合耗能增加一。",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/borrowed_time_power.webp"
   },
   {
     "id": "BUFFER",
@@ -402,7 +402,7 @@
   {
     "id": "CRAB_RAGE",
     "name": "蟹之怒",
-    "description": "当有盟友死亡时，[gold]this creature[/gold]获得[blue]5[/blue]点[gold]力量[/gold]和[blue]99[/blue]点[gold]格挡[/gold]。",
+    "description": "当有盟友死亡时，[gold]this creature[/gold]获得[blue]6[/blue]点[gold]力量[/gold]和[blue]99[/blue]点[gold]格挡[/gold]。",
     "description_raw": "当有盟友死亡时，[gold]{OwnerName}[/gold]获得[blue]{StrengthPower}[/blue]点[gold]力量[/gold]和[blue]{Block}[/blue]点[gold]格挡[/gold]。",
     "type": "Buff",
     "stack_type": "Single",
@@ -610,16 +610,6 @@
     "image_url": "/static/images/powers/doom_power.webp"
   },
   {
-    "id": "DOOR_REVIVAL",
-    "name": "门扉复活",
-    "description": "门扉复活机制的内置能力。",
-    "description_raw": null,
-    "type": "Buff",
-    "stack_type": "Single",
-    "allow_negative": null,
-    "image_url": null
-  },
-  {
     "id": "DOUBLE_DAMAGE",
     "name": "双倍伤害",
     "description": "本回合，攻击造成双倍伤害。",
@@ -802,7 +792,7 @@
   {
     "id": "FLANKING",
     "name": "夹击",
-    "description": "其他盟友在本回合对这名敌人造成[blue]2倍[/blue]伤害。",
+    "description": "其他盟友在本回合对这名敌人造成[blue]2倍[/blue]攻击伤害。",
     "description_raw": null,
     "type": "Debuff",
     "stack_type": "Counter",
@@ -960,14 +950,14 @@
     "image_url": "/static/images/powers/gigantification_power.webp"
   },
   {
-    "id": "GRAPPLE",
-    "name": "擒拿",
-    "description": "本回合，每当你获得[gold]格挡[/gold]时，对[gold]this creature[/gold]造成[blue][Amount][/blue]点伤害。",
-    "description_raw": "本回合，每当你获得[gold]格挡[/gold]时，对[gold]{OwnerName}[/gold]造成[blue]{Amount}[/blue]点伤害。",
-    "type": "Debuff",
-    "stack_type": "Counter",
+    "id": "GRASP",
+    "name": "紧握",
+    "description": "每当你打出一张牌时，失去 [blue]1[/blue]点能量。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
     "allow_negative": null,
-    "image_url": "/static/images/powers/grapple_power.webp"
+    "image_url": "/static/images/powers/grasp_power.webp"
   },
   {
     "id": "GRAVITY",
@@ -1130,6 +1120,16 @@
     "image_url": "/static/images/powers/hotfix_power.webp"
   },
   {
+    "id": "HUNGER",
+    "name": "饥饿",
+    "description": "当你打出攻击牌或技能牌时，将其[gold]消耗[/gold]。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/hunger_power.webp"
+  },
+  {
     "id": "ILLUSION",
     "name": "幻象",
     "description": "死亡时，下回合会以完整生命值复活。",
@@ -1212,7 +1212,7 @@
   {
     "id": "ITERATION",
     "name": "迭代",
-    "description": "每回合你第一次抽到[gold]状态[/gold]牌时，抽更多牌。",
+    "description": "每回合你第一次抽到状态牌时，抽更多牌。",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
@@ -1448,6 +1448,16 @@
     "stack_type": "Single",
     "allow_negative": null,
     "image_url": "/static/images/powers/no_draw_power.webp"
+  },
+  {
+    "id": "NO_ENERGY_GAIN",
+    "name": "无法获得能量",
+    "description": "你在本回合无法再获得更多[energy:1]。",
+    "description_raw": "你在本回合无法再获得更多{energyPrefix:energyIcons(1)}。",
+    "type": "Debuff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/no_energy_gain_power.webp"
   },
   {
     "id": "NOSTALGIA",
@@ -1848,6 +1858,16 @@
     "stack_type": "Counter",
     "allow_negative": null,
     "image_url": "/static/images/powers/sandpit_power.webp"
+  },
+  {
+    "id": "SCRUTINY",
+    "name": "细看",
+    "description": "在你的回合内你无法额外抽牌。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/scrutiny_power.webp"
   },
   {
     "id": "SEEKING_EDGE",
@@ -2272,7 +2292,7 @@
   {
     "id": "SWORD_SAGE",
     "name": "剑圣",
-    "description": "[gold]君王之剑[/gold]的耗能增加[blue]1[/blue]。[gold]君王之剑[/gold]现在额外命中[blue]1[/blue]次。",
+    "description": "[gold]君王之剑[/gold]现在额外命中[blue]1[/blue]次。",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",

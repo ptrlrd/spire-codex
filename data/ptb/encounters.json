@@ -302,10 +302,6 @@
     "tags": null,
     "monsters": [
       {
-        "id": "DOOR",
-        "name": "Porta"
-      },
-      {
         "id": "DOORMAKER",
         "name": "Porteiro"
       }
@@ -363,7 +359,7 @@
   },
   {
     "id": "FABRICATOR_NORMAL",
-    "name": "Operador",
+    "name": "Engenheiro",
     "room_type": "Monster",
     "is_weak": false,
     "act": "Act 3 - Glory",
@@ -371,10 +367,10 @@
     "monsters": [
       {
         "id": "FABRICATOR",
-        "name": "Operador"
+        "name": "Engenheiro"
       }
     ],
-    "loss_text": "Os robôs controlados pelo [gold]Operador[/gold] pulverizaram [b]The Adventurer[/b]."
+    "loss_text": "Os robôs controlados pelo [gold]Engenheiro[/gold] pulverizaram [b]The Adventurer[/b]."
   },
   {
     "id": "FAKE_MERCHANT_EVENT_ENCOUNTER",
@@ -930,7 +926,7 @@
     "monsters": [
       {
         "id": "ASSASSIN_RUBY_RAIDER",
-        "name": "Guerreiro Assassino"
+        "name": "Guerreira Assassina"
       },
       {
         "id": "AXE_RUBY_RAIDER",
@@ -984,6 +980,27 @@
       }
     ],
     "loss_text": "Alguns [gold]Pergaminhos Mordazes[/gold] destroçaram [b]The Adventurer[/b] em pedacinhos."
+  },
+  {
+    "id": "SEAPUNK_NORMAL",
+    "name": "Vida Selvagem das Docas Subterrâneas",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Underdocks",
+    "tags": [
+      "Seapunk"
+    ],
+    "monsters": [
+      {
+        "id": "CALCIFIED_CULTIST",
+        "name": "Cultista Calcificado"
+      },
+      {
+        "id": "SEAPUNK",
+        "name": "Arruaceiro Marinho"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b] não foi páreo para a [gold]Vida Selvagem das Docas Subterrâneas[/gold]."
   },
   {
     "id": "SEAPUNK_WEAK",
@@ -1340,7 +1357,7 @@
         "name": "Sacerdote Tribal"
       }
     ],
-    "loss_text": "[b]The Adventurer[/b] não foi pareo para a superior estratégia [gold]A Tribo[/gold]."
+    "loss_text": "[b]The Adventurer[/b] não foi pareo para [gold]A Tribo[/gold] e sua estratégia superior."
   },
   {
     "id": "THE_LOST_AND_FORGOTTEN_NORMAL",
@@ -1394,25 +1411,6 @@
     "loss_text": "Um [gold]Gafanhoto Larápio[/gold] assaltou [b]The Adventurer[/b]."
   },
   {
-    "id": "TOADPOLES_NORMAL",
-    "name": "Fauna das Docas Subterrâneas",
-    "room_type": "Monster",
-    "is_weak": false,
-    "act": "Underdocks",
-    "tags": null,
-    "monsters": [
-      {
-        "id": "CALCIFIED_CULTIST",
-        "name": "Cultista Calcificado"
-      },
-      {
-        "id": "TOADPOLE",
-        "name": "Girino"
-      }
-    ],
-    "loss_text": "[b]The Adventurer[/b] se arrependeu de encontrar algumas das espécies da [gold]Fauna das Docas Subterrâneas[/gold]."
-  },
-  {
     "id": "TOADPOLES_WEAK",
     "name": "Girinos",
     "room_type": "Monster",
@@ -1432,19 +1430,15 @@
     "name": "Escavador e seu aliado",
     "room_type": "Monster",
     "is_weak": false,
-    "act": "Act 2 - Hive",
+    "act": null,
     "tags": [
       "Burrower",
-      "Workers"
+      "Chomper"
     ],
     "monsters": [
       {
-        "id": "BOWLBUG_EGG",
-        "name": "Besouro Coletor (Ovo)"
-      },
-      {
-        "id": "BOWLBUG_SILK",
-        "name": "Besouro Coletor (Seda)"
+        "id": "CHOMPER",
+        "name": "Mordiscador"
       },
       {
         "id": "TUNNELER",

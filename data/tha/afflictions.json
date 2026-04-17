@@ -7,6 +7,13 @@
     "is_stackable": false
   },
   {
+    "id": "DEVOURED",
+    "name": "ถูกกลืนกิน",
+    "description": "เพิ่ม[gold]สลาย[/gold]ใส่การ์ดนี้",
+    "extra_card_text": null,
+    "is_stackable": false
+  },
+  {
     "id": "ENTANGLED",
     "name": "พัวพัน",
     "description": "ค่าร่ายเพิ่มอีก 1 [energy:1]",

@@ -228,7 +228,7 @@
       },
       {
         "id": "HAMMER_UPPERCUT",
-        "name": "Gancio martellante",
+        "name": "Montante martellante",
         "intent": "Attack + Debuff",
         "powers": [
           {
@@ -442,7 +442,7 @@
   },
   {
     "id": "BOWLBUG_EGG",
-    "name": "Scaraciotola (Uovo)",
+    "name": "Scaraciotola (uovo)",
     "type": "Normal",
     "min_hp": 21,
     "max_hp": 22,
@@ -509,7 +509,7 @@
   },
   {
     "id": "BOWLBUG_NECTAR",
-    "name": "Scaraciotola (Nettare)",
+    "name": "Scaraciotola (nettare)",
     "type": "Normal",
     "min_hp": 35,
     "max_hp": 38,
@@ -526,7 +526,7 @@
       },
       {
         "id": "BUFF",
-        "name": "Buff",
+        "name": "Potenziamento",
         "intent": "Buff",
         "powers": [
           {
@@ -591,14 +591,14 @@
           "next": "THRASH2_MOVE"
         }
       ],
-      "description": "Percossa → Buff → Percossa → repeat"
+      "description": "Percossa → Potenziamento → Percossa → repeat"
     },
     "image_url": "/static/images/monsters/bowlbug_nectar.webp",
     "beta_image_url": null
   },
   {
     "id": "BOWLBUG_ROCK",
-    "name": "Scaraciotola (Roccia)",
+    "name": "Scaraciotola (roccia)",
     "type": "Normal",
     "min_hp": 45,
     "max_hp": 48,
@@ -679,7 +679,7 @@
   },
   {
     "id": "BOWLBUG_SILK",
-    "name": "Scaraciotola (Seta)",
+    "name": "Scaraciotola (seta)",
     "type": "Normal",
     "min_hp": 40,
     "max_hp": 43,
@@ -831,7 +831,7 @@
   },
   {
     "id": "BYGONE_EFFIGY",
-    "name": "Effige antica",
+    "name": "Effigie antica",
     "type": "Elite",
     "min_hp": 127,
     "max_hp": null,
@@ -865,15 +865,15 @@
         "name": "Squarcio",
         "intent": "Attack",
         "damage": {
-          "normal": 15,
-          "ascension": 17
+          "normal": 13,
+          "ascension": 15
         }
       }
     ],
     "damage_values": {
       "Slash": {
-        "normal": 15,
-        "ascension": 17
+        "normal": 13,
+        "ascension": 15
       }
     },
     "block_values": null,
@@ -925,10 +925,10 @@
     "id": "BYRDONIS",
     "name": "Gryfone",
     "type": "Elite",
-    "min_hp": 91,
-    "max_hp": 94,
-    "min_hp_ascension": 99,
-    "max_hp_ascension": 99,
+    "min_hp": 81,
+    "max_hp": 84,
+    "min_hp_ascension": 90,
+    "max_hp_ascension": 90,
     "moves": [
       {
         "id": "PECK",
@@ -946,8 +946,8 @@
         "name": "Swoop",
         "intent": "Attack",
         "damage": {
-          "normal": 16,
-          "ascension": 18
+          "normal": 17,
+          "ascension": 19
         }
       }
     ],
@@ -958,8 +958,8 @@
         "hit_count": 3
       },
       "Swoop": {
-        "normal": 16,
-        "ascension": 18
+        "normal": 17,
+        "ascension": 19
       }
     },
     "block_values": null,
@@ -1488,9 +1488,9 @@
     "id": "CRUSHER",
     "name": "Spaccaossa",
     "type": "Boss",
-    "min_hp": 199,
+    "min_hp": 209,
     "max_hp": null,
-    "min_hp_ascension": 209,
+    "min_hp_ascension": 219,
     "max_hp_ascension": null,
     "moves": [
       {
@@ -1837,10 +1837,10 @@
     "id": "DECIMILLIPEDE_SEGMENT",
     "name": "Diecimilapiedi",
     "type": "Elite",
-    "min_hp": 42,
-    "max_hp": 48,
-    "min_hp_ascension": 48,
-    "max_hp_ascension": 56,
+    "min_hp": 40,
+    "max_hp": 46,
+    "min_hp_ascension": 46,
+    "max_hp_ascension": 52,
     "moves": [
       {
         "id": "WRITHE",
@@ -2021,107 +2021,6 @@
     "beta_image_url": null
   },
   {
-    "id": "DOOR",
-    "name": "Porta",
-    "type": "Boss",
-    "min_hp": 155,
-    "max_hp": null,
-    "min_hp_ascension": 165,
-    "max_hp_ascension": null,
-    "moves": [
-      {
-        "id": "DRAMATIC_OPEN",
-        "name": "Dramatic Open",
-        "intent": "Attack",
-        "damage": {
-          "normal": 25,
-          "ascension": 28
-        }
-      },
-      {
-        "id": "ENFORCE",
-        "name": "Enforce",
-        "intent": "Attack + Buff",
-        "powers": [
-          {
-            "power_id": "STRENGTH",
-            "target": "self",
-            "amount": 3
-          }
-        ],
-        "damage": {
-          "normal": 20
-        }
-      },
-      {
-        "id": "DOOR_SLAM",
-        "name": "Door Slam",
-        "intent": "Attack",
-        "damage": {
-          "normal": 15,
-          "ascension": 15,
-          "hit_count": 2
-        }
-      },
-      {
-        "id": "DEAD",
-        "name": "Dead",
-        "intent": "Unknown"
-      }
-    ],
-    "damage_values": {
-      "DramaticOpen": {
-        "normal": 25,
-        "ascension": 28
-      },
-      "DoorSlam": {
-        "normal": 15,
-        "ascension": 15,
-        "hit_count": 2
-      },
-      "Enforce": {
-        "normal": 20
-      }
-    },
-    "block_values": null,
-    "encounters": [
-      {
-        "encounter_id": "DOORMAKER_BOSS",
-        "encounter_name": "Il Fabbricaporte",
-        "room_type": "Boss",
-        "act": "Act 3 - Glory",
-        "is_weak": false
-      }
-    ],
-    "innate_powers": null,
-    "attack_pattern": {
-      "type": "cycle",
-      "initial_move": null,
-      "states": [
-        {
-          "id": "ENFORCE_MOVE",
-          "type": "move",
-          "move_id": "ENFORCE"
-        },
-        {
-          "id": "DOOR_SLAM_MOVE",
-          "type": "move",
-          "move_id": "DOOR_SLAM",
-          "next": "ENFORCE_MOVE"
-        },
-        {
-          "id": "DEAD_MOVE",
-          "type": "move",
-          "move_id": "DEAD",
-          "next": "DEAD_MOVE"
-        }
-      ],
-      "description": ""
-    },
-    "image_url": "/static/images/monsters/door.webp",
-    "beta_image_url": "/static/images/monsters/beta/door.webp"
-  },
-  {
     "id": "DOORMAKER",
     "name": "Fabbricaporte",
     "type": "Boss",
@@ -2131,44 +2030,59 @@
     "max_hp_ascension": null,
     "moves": [
       {
-        "id": "WHAT_IS_IT",
-        "name": "What Is It",
-        "intent": "Stun"
+        "id": "DRAMATIC_OPEN",
+        "name": "Dramatic Open",
+        "intent": "Summon"
       },
       {
-        "id": "BEAM",
-        "name": "Beam",
+        "id": "HUNGER",
+        "name": "Hunger",
         "intent": "Attack",
         "damage": {
-          "normal": 31,
-          "ascension": 34
+          "normal": 30,
+          "ascension": 35
         }
       },
       {
-        "id": "GET_BACK_IN",
-        "name": "Get Back In",
-        "intent": "Attack + Buff + Escape",
+        "id": "SCRUTINY",
+        "name": "Scrutiny",
+        "intent": "Attack",
+        "damage": {
+          "normal": 24,
+          "ascension": 26
+        }
+      },
+      {
+        "id": "GRASP",
+        "name": "Grasp",
+        "intent": "Attack + Buff",
         "powers": [
           {
             "power_id": "STRENGTH",
             "target": "self",
-            "amount": 5
+            "amount": 3
           }
         ],
         "damage": {
-          "normal": 40,
-          "ascension": 45
+          "normal": 10,
+          "ascension": 11,
+          "hit_count": 2
         }
       }
     ],
     "damage_values": {
-      "LaserBeam": {
-        "normal": 31,
-        "ascension": 34
+      "Hunger": {
+        "normal": 30,
+        "ascension": 35
       },
-      "GetBackInMove": {
-        "normal": 40,
-        "ascension": 45
+      "Scrutiny": {
+        "normal": 24,
+        "ascension": 26
+      },
+      "Grasp": {
+        "normal": 10,
+        "ascension": 11,
+        "hit_count": 2
       }
     },
     "block_values": null,
@@ -2184,28 +2098,34 @@
     "innate_powers": null,
     "attack_pattern": {
       "type": "cycle",
-      "initial_move": "WHAT_IS_IT",
+      "initial_move": "DRAMATIC_OPEN",
       "states": [
         {
-          "id": "WHAT_IS_IT_MOVE",
+          "id": "DRAMATIC_OPEN_MOVE",
           "type": "move",
-          "move_id": "WHAT_IS_IT",
-          "next": "BEAM_MOVE"
+          "move_id": "DRAMATIC_OPEN",
+          "next": "HUNGER_MOVE"
         },
         {
-          "id": "BEAM_MOVE",
+          "id": "HUNGER_MOVE",
           "type": "move",
-          "move_id": "BEAM",
-          "next": "GET_BACK_IN_MOVE"
+          "move_id": "HUNGER",
+          "next": "SCRUTINY_MOVE"
         },
         {
-          "id": "GET_BACK_IN_MOVE",
+          "id": "SCRUTINY_MOVE",
           "type": "move",
-          "move_id": "GET_BACK_IN",
-          "next": "GET_BACK_IN_MOVE"
+          "move_id": "SCRUTINY",
+          "next": "GRASP_MOVE"
+        },
+        {
+          "id": "GRASP_MOVE",
+          "type": "move",
+          "move_id": "GRASP",
+          "next": "HUNGER_MOVE"
         }
       ],
-      "description": "What Is It → Beam → Get Back In → repeat"
+      "description": "Dramatic Open → Hunger → Scrutiny → Grasp → repeat"
     },
     "image_url": "/static/images/monsters/doormaker.webp",
     "beta_image_url": "/static/images/monsters/beta/door_maker_placeholder_2.webp"
@@ -2637,8 +2557,8 @@
           }
         ],
         "damage": {
-          "normal": 13,
-          "ascension": 15
+          "normal": 9,
+          "ascension": 10
         }
       },
       {
@@ -3457,9 +3377,9 @@
     "id": "GAS_BOMB",
     "name": "Gasbomba",
     "type": "Normal",
-    "min_hp": 10,
+    "min_hp": 7,
     "max_hp": null,
-    "min_hp_ascension": 12,
+    "min_hp_ascension": 8,
     "max_hp_ascension": null,
     "moves": [
       {
@@ -3722,10 +3642,10 @@
     "id": "GUARDBOT",
     "name": "Guardiabot",
     "type": "Normal",
-    "min_hp": 21,
-    "max_hp": 25,
-    "min_hp_ascension": 22,
-    "max_hp_ascension": 26,
+    "min_hp": 16,
+    "max_hp": 20,
+    "min_hp_ascension": 17,
+    "max_hp_ascension": 21,
     "moves": [
       {
         "id": "GUARD",
@@ -3766,7 +3686,14 @@
       {
         "id": "RAMMING_SPEED",
         "name": "Velocità di speronamento",
-        "intent": "Attack + Status",
+        "intent": "Attack + Debuff",
+        "powers": [
+          {
+            "power_id": "WEAK",
+            "target": "player",
+            "amount": 1
+          }
+        ],
         "damage": {
           "normal": 10,
           "ascension": 11
@@ -3794,24 +3721,7 @@
       {
         "id": "HAUNT",
         "name": "Infestazione",
-        "intent": "Debuff",
-        "powers": [
-          {
-            "power_id": "WEAK",
-            "target": "player",
-            "amount": 2
-          },
-          {
-            "power_id": "FRAIL",
-            "target": "player",
-            "amount": 2
-          },
-          {
-            "power_id": "VULNERABLE",
-            "target": "player",
-            "amount": 2
-          }
-        ]
+        "intent": "Status"
       }
     ],
     "damage_values": {
@@ -3842,7 +3752,7 @@
     "innate_powers": null,
     "attack_pattern": {
       "type": "random",
-      "initial_move": "RAMMING_SPEED",
+      "initial_move": "HAUNT",
       "states": [
         {
           "id": "RAMMING_SPEED_MOVE",
@@ -3879,7 +3789,7 @@
           "branches": []
         }
       ],
-      "description": "Starts with Velocità di speronamento"
+      "description": "Starts with Infestazione"
     },
     "image_url": "/static/images/monsters/haunted_ship.webp",
     "beta_image_url": null
@@ -5614,7 +5524,7 @@
         "block": 5,
         "damage": {
           "normal": 6,
-          "ascension": 6
+          "ascension": 7
         }
       },
       {
@@ -5637,7 +5547,7 @@
       },
       "Slice": {
         "normal": 6,
-        "ascension": 6
+        "ascension": 7
       }
     },
     "block_values": null,
@@ -5708,10 +5618,10 @@
     "id": "NOISEBOT",
     "name": "Suonobot",
     "type": "Normal",
-    "min_hp": 23,
-    "max_hp": 28,
-    "min_hp_ascension": 24,
-    "max_hp_ascension": 29,
+    "min_hp": 18,
+    "max_hp": 23,
+    "min_hp_ascension": 19,
+    "max_hp_ascension": 24,
     "moves": [
       {
         "id": "NOISE",
@@ -6095,10 +6005,10 @@
     "id": "PHANTASMAL_GARDENER",
     "name": "Giardiniere spettrale",
     "type": "Elite",
-    "min_hp": 28,
-    "max_hp": 32,
-    "min_hp_ascension": 29,
-    "max_hp_ascension": 33,
+    "min_hp": 26,
+    "max_hp": 31,
+    "min_hp_ascension": 27,
+    "max_hp_ascension": 32,
     "moves": [
       {
         "id": "BITE",
@@ -6585,9 +6495,9 @@
     "id": "ROCKET",
     "name": "Razzo",
     "type": "Boss",
-    "min_hp": 189,
+    "min_hp": 199,
     "max_hp": null,
-    "min_hp_ascension": 199,
+    "min_hp_ascension": 209,
     "max_hp_ascension": null,
     "moves": [
       {
@@ -6818,7 +6728,7 @@
         "intent": "Attack",
         "damage": {
           "normal": 11,
-          "ascension": 12
+          "ascension": 13
         }
       },
       {
@@ -6847,7 +6757,7 @@
     "damage_values": {
       "SeaKick": {
         "normal": 11,
-        "ascension": 12
+        "ascension": 13
       },
       "SpinningKick": {
         "normal": 2,
@@ -7054,66 +6964,74 @@
     "id": "SKULKING_COLONY",
     "name": "Colonia furtiva",
     "type": "Elite",
-    "min_hp": 79,
+    "min_hp": 70,
     "max_hp": null,
-    "min_hp_ascension": 84,
+    "min_hp_ascension": 75,
     "max_hp_ascension": null,
     "moves": [
       {
-        "id": "INERTIA",
-        "name": "Inerzia",
-        "intent": "Defend + Buff",
-        "powers": [
-          {
-            "power_id": "STRENGTH",
-            "target": "self",
-            "amount": 3
-          }
-        ],
-        "block": 10
+        "id": "SMASH",
+        "name": "Smash",
+        "intent": "Attack",
+        "damage": {
+          "normal": 12,
+          "ascension": 13
+        }
       },
       {
         "id": "ZOOM",
         "name": "Velocità",
-        "intent": "Attack",
+        "intent": "Attack + Defend",
+        "block": 10,
         "damage": {
-          "normal": 16,
-          "ascension": 17
+          "normal": 14,
+          "ascension": 16
         }
       },
       {
-        "id": "SUPER_CRAB",
-        "name": "Super granchio",
-        "intent": "Attack",
-        "damage": {
-          "normal": 6,
-          "ascension": 7,
-          "hit_count": 2
-        }
-      },
-      {
-        "id": "SMASH",
-        "name": "Smash",
-        "intent": "Attack + Status",
+        "id": "INERTIA",
+        "name": "Inerzia",
+        "intent": "Attack + Buff",
+        "powers": [
+          {
+            "power_id": "STRENGTH",
+            "target": "self",
+            "amount": 2
+          }
+        ],
         "damage": {
           "normal": 9,
           "ascension": 11
         }
+      },
+      {
+        "id": "PIERCING_STABS",
+        "name": "Pugnalate perforanti",
+        "intent": "Attack",
+        "damage": {
+          "normal": 7,
+          "ascension": 8,
+          "hit_count": 2
+        }
       }
     ],
     "damage_values": {
-      "SuperCrab": {
-        "normal": 6,
-        "ascension": 7,
-        "hit_count": 2
-      },
-      "Zoom": {
-        "normal": 16,
-        "ascension": 17
-      },
       "Smash": {
+        "normal": 12,
+        "ascension": 13
+      },
+      "Inertia": {
         "normal": 9,
         "ascension": 11
+      },
+      "Zoom": {
+        "normal": 14,
+        "ascension": 16
+      },
+      "PiercingStabs": {
+        "normal": 7,
+        "ascension": 8,
+        "hit_count": 2
       }
     },
     "block_values": null,
@@ -7132,10 +7050,10 @@
       "initial_move": "SMASH",
       "states": [
         {
-          "id": "INERTIA_MOVE",
+          "id": "SMASH_MOVE",
           "type": "move",
-          "move_id": "INERTIA",
-          "next": "SUPER_CRAB_MOVE"
+          "move_id": "SMASH",
+          "next": "ZOOM_MOVE"
         },
         {
           "id": "ZOOM_MOVE",
@@ -7144,19 +7062,19 @@
           "next": "INERTIA_MOVE"
         },
         {
-          "id": "SUPER_CRAB_MOVE",
+          "id": "INERTIA_MOVE",
           "type": "move",
-          "move_id": "SUPER_CRAB",
-          "next": "SMASH_MOVE"
+          "move_id": "INERTIA",
+          "next": "PIERCING_STABS_MOVE"
         },
         {
-          "id": "SMASH_MOVE",
+          "id": "PIERCING_STABS_MOVE",
           "type": "move",
-          "move_id": "SMASH",
-          "next": "ZOOM_MOVE"
+          "move_id": "PIERCING_STABS",
+          "next": "SMASH_MOVE"
         }
       ],
-      "description": "Smash → Velocità → Inerzia → Super granchio → repeat"
+      "description": "Smash → Velocità → Inerzia → Pugnalate perforanti → repeat"
     },
     "image_url": "/static/images/monsters/skulkling_colomy.webp",
     "beta_image_url": null
@@ -7689,7 +7607,7 @@
   },
   {
     "id": "SOUL_FYSH",
-    "name": "Animapesce",
+    "name": "Pesce anima",
     "type": "Boss",
     "min_hp": 211,
     "max_hp": null,
@@ -8133,10 +8051,10 @@
     "id": "STABBOT",
     "name": "Pugnalebot",
     "type": "Normal",
-    "min_hp": 23,
-    "max_hp": 28,
-    "min_hp_ascension": 24,
-    "max_hp_ascension": 29,
+    "min_hp": 18,
+    "max_hp": 23,
+    "min_hp_ascension": 19,
+    "max_hp_ascension": 24,
     "moves": [
       {
         "id": "STAB",
@@ -8194,8 +8112,8 @@
         "name": "Crash",
         "intent": "Attack",
         "damage": {
-          "normal": 17,
-          "ascension": 19
+          "normal": 16,
+          "ascension": 18
         }
       },
       {
@@ -8206,7 +8124,7 @@
           {
             "power_id": "VIGOR",
             "target": "self",
-            "amount": 7
+            "amount": 6
           }
         ],
         "damage": {
@@ -8235,8 +8153,8 @@
     ],
     "damage_values": {
       "Crash": {
-        "normal": 17,
-        "ascension": 19
+        "normal": 16,
+        "ascension": 18
       },
       "Thrash": {
         "normal": 3,
@@ -8347,15 +8265,6 @@
         }
       },
       {
-        "id": "POUNCE",
-        "name": "Pounce",
-        "intent": "Attack",
-        "damage": {
-          "normal": 30,
-          "ascension": 32
-        }
-      },
-      {
         "id": "MULTI_CLAW",
         "name": "Multi Claw",
         "intent": "Attack",
@@ -8404,10 +8313,6 @@
         "normal": 14,
         "ascension": 16
       },
-      "Pounce": {
-        "normal": 30,
-        "ascension": 32
-      },
       "MultiClaw": {
         "normal": 10,
         "ascension": 11
@@ -8455,16 +8360,10 @@
           "next": "BITE_MOVE"
         },
         {
-          "id": "POUNCE_MOVE",
-          "type": "move",
-          "move_id": "POUNCE",
-          "next": "MULTI_CLAW_MOVE"
-        },
-        {
           "id": "MULTI_CLAW_MOVE",
           "type": "move",
           "move_id": "MULTI_CLAW",
-          "next": "POUNCE_MOVE"
+          "next": "MULTI_CLAW_MOVE"
         },
         {
           "id": "PHASE3_LACERATE_MOVE",
@@ -8791,19 +8690,10 @@
       {
         "id": "DREAD",
         "name": "Angoscia",
-        "intent": "Attack",
-        "damage": {
-          "normal": 15,
-          "ascension": 17
-        }
+        "intent": "Attack"
       }
     ],
-    "damage_values": {
-      "Dread": {
-        "normal": 15,
-        "ascension": 17
-      }
-    },
+    "damage_values": null,
     "block_values": null,
     "encounters": [
       {
@@ -9025,7 +8915,7 @@
   },
   {
     "id": "THE_OBSCURA",
-    "name": "L'Obscura",
+    "name": "Tenebra",
     "type": "Normal",
     "min_hp": 123,
     "max_hp": null,
@@ -10291,9 +10181,9 @@
     "id": "WATERFALL_GIANT",
     "name": "Gigante della cascata",
     "type": "Boss",
-    "min_hp": 250,
+    "min_hp": 240,
     "max_hp": null,
-    "min_hp_ascension": 260,
+    "min_hp_ascension": 250,
     "max_hp_ascension": null,
     "moves": [
       {
@@ -10598,10 +10488,10 @@
     "id": "ZAPBOT",
     "name": "Elettrobot",
     "type": "Normal",
-    "min_hp": 23,
-    "max_hp": 28,
-    "min_hp_ascension": 24,
-    "max_hp_ascension": 29,
+    "min_hp": 18,
+    "max_hp": 23,
+    "min_hp_ascension": 19,
+    "max_hp_ascension": 24,
     "moves": [
       {
         "id": "ZAP",
@@ -10642,10 +10532,10 @@
     "id": "DECIMILLIPEDE_SEGMENT_BACK",
     "name": "Decimillipede Segment (Back)",
     "type": "Elite",
-    "min_hp": 42,
-    "max_hp": 48,
-    "min_hp_ascension": 48,
-    "max_hp_ascension": 56,
+    "min_hp": 40,
+    "max_hp": 46,
+    "min_hp_ascension": 46,
+    "max_hp_ascension": 52,
     "moves": [
       {
         "id": "WRITHE",
@@ -10731,10 +10621,10 @@
     "id": "DECIMILLIPEDE_SEGMENT_FRONT",
     "name": "Decimillipede Segment (Front)",
     "type": "Elite",
-    "min_hp": 42,
-    "max_hp": 48,
-    "min_hp_ascension": 48,
-    "max_hp_ascension": 56,
+    "min_hp": 40,
+    "max_hp": 46,
+    "min_hp_ascension": 46,
+    "max_hp_ascension": 52,
     "moves": [
       {
         "id": "WRITHE",
@@ -10820,10 +10710,10 @@
     "id": "DECIMILLIPEDE_SEGMENT_MIDDLE",
     "name": "Decimillipede Segment (Middle)",
     "type": "Elite",
-    "min_hp": 42,
-    "max_hp": 48,
-    "min_hp_ascension": 48,
-    "max_hp_ascension": 56,
+    "min_hp": 40,
+    "max_hp": 46,
+    "min_hp_ascension": 46,
+    "max_hp_ascension": 52,
     "moves": [
       {
         "id": "WRITHE",

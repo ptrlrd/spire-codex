@@ -2,7 +2,7 @@
   {
     "id": "ACCELERANT",
     "name": "Катализатор",
-    "description": "[gold]Яд[/gold] срабатывает дополнительный раз.",
+    "description": "[gold]Яд[/gold] срабатывает еще 1 раз.",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
@@ -42,7 +42,7 @@
   {
     "id": "AGGRESSION",
     "name": "Агрессия",
-    "description": "Вы берете случайную Атаку из [gold]стопки cброса[/gold], она [gold]улучшается[/gold] до конца боя.",
+    "description": "В начале хода вы берете случайную Атаку из [gold]стопки cброса[/gold], она [gold]улучшается[/gold] до конца боя.",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
@@ -62,7 +62,7 @@
   {
     "id": "ARSENAL",
     "name": "Арсенал",
-    "description": "Дает [blue]1[/blue] [gold]силы[/gold], когда вы разыгрываете бесцветную карту.",
+    "description": "Дает [blue]1[/blue] [gold]силы[/gold], когда вы создаете бесцветную карту.",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
@@ -145,7 +145,7 @@
     "description": "Когда вы получаете [gold]защиту[/gold] в свой ход, другие игроки получают половину [gold]защиты[/gold] от этого количества.",
     "description_raw": null,
     "type": "Buff",
-    "stack_type": "Counter",
+    "stack_type": "Single",
     "allow_negative": null,
     "image_url": "/static/images/powers/beacon_of_hope_power.webp"
   },
@@ -170,16 +170,6 @@
     "image_url": "/static/images/powers/black_hole_power.webp"
   },
   {
-    "id": "BLADE_OF_INK",
-    "name": "Чернильный клинок",
-    "description": "Дает [blue]2[/blue] [gold]силы[/gold] на ход, когда вы разыгрываете Атаку в этом ходу.",
-    "description_raw": null,
-    "type": "Buff",
-    "stack_type": "Counter",
-    "allow_negative": null,
-    "image_url": "/static/images/powers/blade_of_ink_power.webp"
-  },
-  {
     "id": "BLOCK_NEXT_TURN",
     "name": "Отложенная защита",
     "description": "Даст [blue]4[/blue] [gold]защиты[/gold] в начале следующего хода.",
@@ -198,6 +188,16 @@
     "stack_type": "Counter",
     "allow_negative": null,
     "image_url": "/static/images/powers/blur_power.webp"
+  },
+  {
+    "id": "BORROWED_TIME",
+    "name": "Сверхурочные",
+    "description": "Стоимость карт увеличена на 1 энергию в этом ходу",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/borrowed_time_power.webp"
   },
   {
     "id": "BUFFER",
@@ -402,7 +402,7 @@
   {
     "id": "CRAB_RAGE",
     "name": "Гнев краба",
-    "description": "[gold]this creature[/gold] получает [blue]5[/blue] [gold]силы[/gold] и [blue]99[/blue] [gold]защиты[/gold] при гибели союзника.",
+    "description": "[gold]this creature[/gold] получает [blue]6[/blue] [gold]силы[/gold] и [blue]99[/blue] [gold]защиты[/gold] при гибели союзника.",
     "description_raw": "[gold]{OwnerName}[/gold] получает [blue]{StrengthPower}[/blue] [gold]силы[/gold] и [blue]{Block}[/blue] [gold]защиты[/gold] при гибели союзника.",
     "type": "Buff",
     "stack_type": "Single",
@@ -411,7 +411,7 @@
   },
   {
     "id": "CREATIVE_AI",
-    "name": "Творческий ИИ",
+    "name": "Находчивый ИИ",
     "description": "Добавляет в [gold]руку[/gold] случайный Талант в начале хода.",
     "description_raw": null,
     "type": "Buff",
@@ -610,16 +610,6 @@
     "image_url": "/static/images/powers/doom_power.webp"
   },
   {
-    "id": "DOOR_REVIVAL",
-    "name": "Воскрешение двери",
-    "description": "Технический талант для воскрешения Двери.",
-    "description_raw": null,
-    "type": "Buff",
-    "stack_type": "Single",
-    "allow_negative": null,
-    "image_url": null
-  },
-  {
     "id": "DOUBLE_DAMAGE",
     "name": "Двойной урон",
     "description": "Атаки наносят двойной урон в этом ходу.",
@@ -802,7 +792,7 @@
   {
     "id": "FLANKING",
     "name": "Заход с фланга",
-    "description": "Напарники наносят врагу [blue]в 2 раза[/blue] больше урона в этом ходу.",
+    "description": "Напарники наносят врагу [blue]в 2 раза[/blue] больше урона от атак в этом ходу.",
     "description_raw": null,
     "type": "Debuff",
     "stack_type": "Counter",
@@ -851,7 +841,7 @@
   },
   {
     "id": "FORBIDDEN_GRIMOIRE",
-    "name": "Порочный гримуар",
+    "name": "Запретный гримуар",
     "description": "Вы сможете удалить карту из [gold]колоды[/gold] в конце хода.",
     "description_raw": null,
     "type": "Buff",
@@ -960,14 +950,14 @@
     "image_url": "/static/images/powers/gigantification_power.webp"
   },
   {
-    "id": "GRAPPLE",
-    "name": "Захват",
-    "description": "[gold]this creature[/gold] получает [blue][Amount][/blue] урона, когда вы получаете [gold]защиту[/gold] в этом ходу.",
-    "description_raw": "[gold]{OwnerName}[/gold] получает [blue]{Amount}[/blue] урона, когда вы получаете [gold]защиту[/gold] в этом ходу.",
-    "type": "Debuff",
-    "stack_type": "Counter",
+    "id": "GRASP",
+    "name": "Хватка",
+    "description": "При розыгрыше любой карты вы теряете [blue]1[/blue] энергию.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
     "allow_negative": null,
-    "image_url": "/static/images/powers/grapple_power.webp"
+    "image_url": "/static/images/powers/grasp_power.webp"
   },
   {
     "id": "GRAVITY",
@@ -1130,6 +1120,16 @@
     "image_url": "/static/images/powers/hotfix_power.webp"
   },
   {
+    "id": "HUNGER",
+    "name": "Ненасытность",
+    "description": "Разыгрываемые Атаки и Навыки [gold]сжигаются[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/hunger_power.webp"
+  },
+  {
     "id": "ILLUSION",
     "name": "Иллюзия",
     "description": "Воскресает с полными ОЗ в следующем ходу, когда погибает.",
@@ -1212,7 +1212,7 @@
   {
     "id": "ITERATION",
     "name": "Пробы и ошибки",
-    "description": "Вы добираете карты, когда добираете [gold]Статус[/gold] первый раз за ход.",
+    "description": "Вы добираете карты, когда добираете Статус первый раз за ход.",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",
@@ -1401,7 +1401,7 @@
   },
   {
     "id": "NEMESIS",
-    "name": "Немезида",
+    "name": "Немезис",
     "description": "Получает [blue]1[/blue] [gold]неосязаемости[/gold] в конце каждого второго хода.",
     "description_raw": null,
     "type": "Buff",
@@ -1448,6 +1448,16 @@
     "stack_type": "Single",
     "allow_negative": null,
     "image_url": "/static/images/powers/no_draw_power.webp"
+  },
+  {
+    "id": "NO_ENERGY_GAIN",
+    "name": "Предел энергии",
+    "description": "Вы не можете получать [energy:1] до конца хода.",
+    "description_raw": "Вы не можете получать {energyPrefix:energyIcons(1)} до конца хода.",
+    "type": "Debuff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/no_energy_gain_power.webp"
   },
   {
     "id": "NOSTALGIA",
@@ -1848,6 +1858,16 @@
     "stack_type": "Counter",
     "allow_negative": null,
     "image_url": "/static/images/powers/sandpit_power.webp"
+  },
+  {
+    "id": "SCRUTINY",
+    "name": "Укоризна",
+    "description": "Вы не можете добирать дополнительные карты в свой ход.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/scrutiny_power.webp"
   },
   {
     "id": "SEEKING_EDGE",
@@ -2272,7 +2292,7 @@
   {
     "id": "SWORD_SAGE",
     "name": "Мастер меча",
-    "description": "[gold]Клинок монарха[/gold] стоит на [blue]1[/blue] больше и наносит урон [blue]1[/blue] дополнительный раз.",
+    "description": "[gold]Клинок монарха[/gold] наносит урон еще [blue]1[/blue] раз.",
     "description_raw": null,
     "type": "Buff",
     "stack_type": "Counter",

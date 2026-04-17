@@ -22,7 +22,7 @@
   {
     "id": "DEADLY_EVENTS",
     "name": "Événements d'extrême",
-    "description": "Les salles mystère (?) peuvent contenir des ennemis d'Élite, mais ont plus de chances de contenir un coffre trésor."
+    "description": "Les salles mystères (?) peuvent contenir des ennemis d'Élite, mais ont plus de chances de contenir un coffre trésor."
   },
   {
     "id": "DRAFT",
@@ -32,7 +32,7 @@
   {
     "id": "FLIGHT",
     "name": "Vol d'oizo",
-    "description": "Le choix de la salle suivante n'est plus limité par les trajets indiqués sur la carte."
+    "description": "Vous pouvez ignorer les trajets indiqués sur la carte lorsque vous choisissez la prochaine salle où vous rendre."
   },
   {
     "id": "HOARDER",
@@ -47,7 +47,7 @@
   {
     "id": "MIDAS",
     "name": "Midas",
-    "description": "Vous ramassez [blue]200%[/blue] de plus d'or sur les ennemis, mais vous ne pouvez plus Forger aux [gold]Sites de repos[/gold]."
+    "description": "Vous ramassez [blue]200%[/blue] de pièces d'or supplémentaires sur les ennemis, mais vous ne pouvez plus Forger aux [gold]Sites de repos[/gold]."
   },
   {
     "id": "MURDEROUS",
