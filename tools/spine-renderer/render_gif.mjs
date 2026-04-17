@@ -43,7 +43,12 @@ const SHADOW_NAMES = ["shadow", "shadow2", "shadow_v2", "ground", "ground_shadow
 // effects at runtime. Without the shader they render as a neon-pink rectangle,
 // so we hide them in static/animated previews. (Soul Fysh's `soundwave` /
 // `beckonwave` slots both reference the "Soundwave Here" placeholder atlas.)
-const HIDDEN_SLOTS = ["smoketex", "smoke_tex", "smokeplacholder", "smoke_placeholder", "megatail", "megablade", "soundwave", "beckonwave"];
+const HIDDEN_SLOTS = [
+  "smoketex", "smoke_tex", "smoke mesh", "smoke1/smoke mesh",
+  "smokeplacholder", "smoke_placeholder",
+  "megatail", "megablade",
+  "soundwave", "beckonwave",
+];
 
 async function main() {
   const skelDir = path.resolve(process.argv[2] || "");

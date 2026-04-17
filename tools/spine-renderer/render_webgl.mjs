@@ -22,8 +22,17 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const IDLE_NAMES = ["idle_loop", "idle", "Idle_loop", "Idle", "rest_idle", "rest_loop", "loop", "animation"];
 const SHADOW_NAMES = ["shadow", "shadow2", "shadow_v2", "ground", "ground_shadow"];
 // Slots that hold magenta placeholder textures the game replaces with shader
-// effects at runtime. Without the shader they render as a neon-pink rectangle.
-const HIDDEN_SLOTS = ["smoketex", "smoke_tex", "smokeplacholder", "smoke_placeholder", "megatail", "megablade", "soundwave", "beckonwave"];
+// effects at runtime. Without the shader they render as a neon-pink rectangle
+// or a "SMOKE" / "Smoke Placeholder" / "Soundwave Here" banner. Match is a
+// case-insensitive substring against both the slot name and the attachment
+// name, so e.g. "smoke mesh" catches `smoke mesh1`, `smoke mesh2`, and the
+// shared `smoke1/smoke mesh` attachment used by The Forgotten.
+const HIDDEN_SLOTS = [
+  "smoketex", "smoke_tex", "smoke mesh", "smoke1/smoke mesh",
+  "smokeplacholder", "smoke_placeholder",
+  "megatail", "megablade",
+  "soundwave", "beckonwave",
+];
 
 async function main() {
   const skelDir = path.resolve(process.argv[2] || "");
