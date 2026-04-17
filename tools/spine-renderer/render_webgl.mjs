@@ -22,17 +22,29 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const IDLE_NAMES = ["idle_loop", "idle", "Idle_loop", "Idle", "rest_idle", "rest_loop", "loop", "animation"];
 const SHADOW_NAMES = ["shadow", "shadow2", "shadow_v2", "ground", "ground_shadow"];
 // Slots that hold magenta placeholder textures the game replaces with shader
-// effects at runtime. Without the shader they render as a neon-pink rectangle
-// or a "SMOKE" / "Smoke Placeholder" / "Soundwave Here" banner. Match is a
-// case-insensitive substring against both the slot name and the attachment
-// name, so e.g. "smoke mesh" catches `smoke mesh1`, `smoke mesh2`, and the
-// shared `smoke1/smoke mesh` attachment used by The Forgotten.
+// effects at runtime. We hide whatever we can't reasonably substitute —
+// `megatail`/`megablade` are weapon shaders, `soundwave`/`beckonwave` are
+// Soul Fysh's ring effect we have no good substitute for. The smoke
+// placeholders, however, get a procedurally-generated soft smoke texture
+// (see SMOKE_PLACEHOLDER_PAGES below) so the slot still renders meaningful
+// art instead of being stripped — Mega Crit's bestiary has these monsters
+// shrouded in gas/smoke and we're the primary public source for this data,
+// so an approximated cloud is better than a missing limb.
 const HIDDEN_SLOTS = [
-  "smoketex", "smoke_tex", "smoke mesh", "smoke1/smoke mesh",
   "smokeplacholder", "smoke_placeholder",
   "megatail", "megablade",
   "soundwave", "beckonwave",
 ];
+
+// Atlas page filenames that ship as magenta placeholder boards in the source
+// .pck — get swapped for a generated soft cloud texture before upload so the
+// monsters that depend on them (Gas Bomb, Living Fog, The Forgotten, …)
+// render the gas/smoke effect.
+const SMOKE_PLACEHOLDER_PAGES = new Set([
+  "gas_bomb_2.png",
+  "the_forgotten_2.png",
+  "living_smog_2.png",
+]);
 
 async function main() {
   const skelDir = path.resolve(process.argv[2] || "");
@@ -103,7 +115,7 @@ async function main() {
   const spineCoreCode = fs.readFileSync(spineCorePath, "utf-8");
 
   const result = await page.evaluate(async (params) => {
-    const { skelB64, atlasB64, textureData, outputSize, idleNames, shadowNames, hiddenSlots, onlySlots, whiteMode, skinName, animOverride, animTime, spineCoreCode } = params;
+    const { skelB64, atlasB64, textureData, outputSize, idleNames, shadowNames, hiddenSlots, smokePlaceholderPages, onlySlots, whiteMode, skinName, animOverride, animTime, spineCoreCode } = params;
 
     // Load spine-webgl — IIFE uses `var spine = (...)()`, make it global
     eval(spineCoreCode.replace(/^"use strict";\s*var spine\s*=/, "window.spine ="));
@@ -128,7 +140,42 @@ async function main() {
     const renderer = new spine.SkeletonRenderer(gl);
     const shapes = new spine.ShapeRenderer(gl);
 
-    // Load textures from base64
+    // Procedural soft-smoke texture used to substitute placeholder atlas
+    // pages (e.g. gas_bomb_2.png, the_forgotten_2.png). Matches the
+    // placeholder's dimensions so atlas region offsets map correctly.
+    function generateSmokeTexture(w, h) {
+      const c = document.createElement("canvas");
+      c.width = w; c.height = h;
+      const ctx = c.getContext("2d");
+      const cx = w / 2, cy = h / 2;
+      const baseR = Math.max(w, h) * 0.55;
+      const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, baseR);
+      grad.addColorStop(0,   "rgba(225,225,225,0.85)");
+      grad.addColorStop(0.5, "rgba(180,180,180,0.45)");
+      grad.addColorStop(1,   "rgba(150,150,150,0)");
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, w, h);
+      // Wispy noise puffs
+      ctx.globalCompositeOperation = "lighter";
+      const puffCount = Math.floor(Math.max(w, h) / 6);
+      for (let i = 0; i < puffCount; i++) {
+        const x = Math.random() * w;
+        const y = Math.random() * h;
+        const r2 = 4 + Math.random() * Math.min(w, h) * 0.18;
+        const a = 0.04 + Math.random() * 0.12;
+        const g2 = ctx.createRadialGradient(x, y, 0, x, y, r2);
+        g2.addColorStop(0, `rgba(235,235,235,${a})`);
+        g2.addColorStop(1, "rgba(235,235,235,0)");
+        ctx.fillStyle = g2;
+        ctx.fillRect(0, 0, w, h);
+      }
+      return c;
+    }
+
+    // Load textures from base64. Smoke placeholder pages get swapped for a
+    // procedurally generated soft cloud at the same dimensions — the slot
+    // mesh deformation stays intact, but the texture is a neutral cloud
+    // instead of a magenta "Smoke Placeholder" banner.
     const loadedTextures = {};
     for (const [name, b64] of Object.entries(textureData)) {
       const img = new Image();
@@ -137,7 +184,11 @@ async function main() {
         img.onerror = reject;
         img.src = "data:image/png;base64," + b64;
       });
-      const tex = new spine.GLTexture(gl, img);
+      let texSource = img;
+      if (smokePlaceholderPages.includes(name)) {
+        texSource = generateSmokeTexture(img.naturalWidth, img.naturalHeight);
+      }
+      const tex = new spine.GLTexture(gl, texSource);
       loadedTextures[name] = tex;
     }
 
@@ -328,6 +379,7 @@ async function main() {
     idleNames: IDLE_NAMES,
     shadowNames: SHADOW_NAMES,
     hiddenSlots: HIDDEN_SLOTS,
+    smokePlaceholderPages: Array.from(SMOKE_PLACEHOLDER_PAGES),
     onlySlots: onlySlots || null,
     skinName: skinName || null,
     animOverride: animOverride || null,
