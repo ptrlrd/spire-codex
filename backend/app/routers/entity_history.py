@@ -27,22 +27,26 @@ def get_entity_history(entity_type: str, entity_id: str):
     """Return version history entries for a specific entity across all changelogs.
 
     Scans every changelog's categories for added/removed/changed entries matching
-    the given entity_type (e.g. 'cards') and entity_id (e.g. 'BASH').
+    the given entity_type (e.g. 'cards') and entity_id (e.g. 'BASH'). Match is
+    case-insensitive on both — entity_type comes lowercased from the URL while
+    changelog ids are upper-snake (e.g. 'DOORMAKER').
     """
     logs = _load_changelogs()
     history: list[dict] = []
+    target_type = entity_type.lower()
+    target_id = entity_id.upper()
 
     for log in logs:
         version = log.get("game_version", log.get("version", ""))
         date = log.get("date", "")
 
         for category in log.get("categories", []):
-            if category.get("id") != entity_type:
+            if category.get("id", "").lower() != target_type:
                 continue
 
             # Check added
             for item in category.get("added", []):
-                if item.get("id") == entity_id:
+                if str(item.get("id", "")).upper() == target_id:
                     history.append(
                         {
                             "version": version,
@@ -55,7 +59,7 @@ def get_entity_history(entity_type: str, entity_id: str):
 
             # Check removed
             for item in category.get("removed", []):
-                if item.get("id") == entity_id:
+                if str(item.get("id", "")).upper() == target_id:
                     history.append(
                         {
                             "version": version,
@@ -68,7 +72,7 @@ def get_entity_history(entity_type: str, entity_id: str):
 
             # Check changed
             for item in category.get("changed", []):
-                if item.get("id") == entity_id:
+                if str(item.get("id", "")).upper() == target_id:
                     history.append(
                         {
                             "version": version,
