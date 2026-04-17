@@ -6,19 +6,20 @@
 |----------|-------|------------|
 | Cards | 576 | cost, type, rarity, damage, block, keywords, upgrades, upgrade_description, compendium_order |
 | Characters | 5 | HP, gold, energy, starting deck/relics, dialogues |
-| Relics | 289 | rarity, pool, image_variants |
-| Monsters | 116 | HP, moves with intents/damage/powers/block/hit counts, innate powers (42), encounter context |
+| Relics | 293 | rarity, pool, image_variants, merchant_price |
+| Monsters | 115 | HP, moves with intents/damage/powers/block/hit counts, innate powers, encounter context, attack_pattern (state machine) |
 | Potions | 63 | rarity, pool, compendium_order |
 | Enchantments | 22 | card type restrictions, stackability |
 | Encounters | 87 | monster compositions, room type, act, is_weak |
-| Events | 66 | multi-page decision trees, choices, runtime-computed values (gold ranges, escalating costs) |
-| Powers | 257 | type (Buff/Debuff), stack type |
+| Events | 66 | multi-page decision trees, choices, runtime-computed values (gold ranges, escalating costs), preconditions |
+| Powers | 259 | type (Buff/Debuff), stack type |
 | Keywords | 8 | Exhaust, Ethereal, Innate, Retain, Sly, Eternal, Unplayable |
 | Intents | 14 | Monster intent types with icons |
 | Orbs | 5 | Passive/Evoke values |
-| Afflictions | 9 | Stackability, extra card text |
+| Afflictions | 8 | Stackability, extra card text |
 | Modifiers | 16 | Custom mode run modifiers |
 | Achievements | 33 | Unlock descriptions, category, character, threshold, condition |
+| **Badges** | **25** | **Run-end mini-achievements; Bronze/Silver/Gold tiers, requires_win + multiplayer_only flags, per-tier title + description** |
 | Acts | 4 | Bosses, encounters, events, ancients |
 | Ascensions | 11 | Levels 0-10 with descriptions |
 
@@ -120,3 +121,29 @@ python3 tools/diff_data.py v1.0.11 --format json --game-version "1.0.12" --date 
 # Preview as text
 python3 tools/diff_data.py v1.0.11 --format text
 ```
+
+### Field-level recursion
+
+`diff_data.py` recurses into nested dicts and lists so each leaf becomes its own change row:
+
+```
+vars.DamageVar:                    8 → 10
+moves[GRASP].damage.normal:        8 → 10
+attack_pattern.initial_move:       WHAT_IS_IT → DRAMATIC_OPEN
+```
+
+instead of opaque `vars: 2 fields → 2 fields`. List items with stable `id` fields are matched by id (`moves[BEAM_MOVE]` rather than `moves[2]`).
+
+### Curated release notes
+
+After running the script, hand-edit the JSON to add three arrays at the top level:
+
+- `features`: bullet per feature shipped this release
+- `fixes`: bullet per bug fix
+- `api_changes`: bullet per new/changed API endpoint
+
+These survive a regen — `diff_data.py` merges them through if the file at the target tag already exists. The data-diff portion is always overwritten on regen, but the curated notes are preserved.
+
+### Write-once rule
+
+Files in `data/changelogs/` are write-once. CI (`.github/workflows/changelog-guard.yml`) blocks PRs that modify or delete an existing changelog. New files (`A`) are always allowed; modifications require the `changelog-edit-approved` label on the PR. See `CONTRIBUTING.md → Changelog Retention` for the full policy.

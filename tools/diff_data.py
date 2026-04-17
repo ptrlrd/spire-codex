@@ -31,6 +31,19 @@ Options:
 
   The Steam App ID for Slay the Spire 2 is 2868840 (hardcoded).
   Build IDs can be found on SteamDB or via Steam's app info API.
+
+Behaviour notes:
+  - Field-level diffs RECURSE into nested dicts and lists. A `vars` change
+    becomes individual rows like `vars.DamageVar: 8 -> 10` instead of
+    opaque `vars: 2 fields -> 2 fields`. List items with stable `id` fields
+    are matched by id (so `moves[BEAM_MOVE]` not `moves[2]`).
+  - Hand-curated `features` / `fixes` / `api_changes` arrays are PRESERVED
+    when regenerating an existing changelog at the same tag. The data-diff
+    portion (`categories`, `summary`) is overwritten on regen, but the
+    release notes someone wrote on top survive the merge.
+  - data/changelogs/ is write-once at PR time — see
+    .github/workflows/changelog-guard.yml. Editing an existing changelog
+    requires the `changelog-edit-approved` label on the PR.
 """
 import json
 import sys

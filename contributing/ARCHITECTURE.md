@@ -109,10 +109,60 @@ Filter parameters always use English values regardless of language.
 
 Monster sprites are Spine skeletal animations (.skel + .atlas + .png), not static images.
 
-- **WebGL renderer** (`tools/spine-renderer/render_webgl.mjs`) — Playwright + spine-webgl via headless Chrome, single frame
-- **Batch renderer** (`tools/spine-renderer/render_all_webgl.mjs`) — all 138 skeletons as static PNGs
+- **WebGL renderer** (`tools/spine-renderer/render_webgl.mjs`) — Playwright + spine-webgl via headless Chrome, single frame.
+- **Batch renderer** (`tools/spine-renderer/render_all_webgl.mjs`) — all 138 skeletons as static PNGs.
 - **Animation renderer** (`tools/spine-renderer/render_gif.mjs`) — animated WebP/GIF/APNG with skin variant and animation selection support. Streams frames to disk for WebP/APNG to avoid OOM.
-- Hidden slots: `smoketex`, `smoke_placeholder`, `megatail`, `megablade`, `shadow_v2`
-- Static output: 512×512 transparent PNGs
-- Animation output: 209 lossless animated WebPs (characters at 512×512, monsters at 256×256)
-- Skin variants: 13 monsters need `--skin=` flag (bowlbug, cubex_construct, cultists, etc.)
+- **Static output**: 512×512 transparent PNGs (+ same-source WebPs).
+- **Animation output**: 209 lossless animated WebPs (characters at 512×512, monsters at 256×256).
+
+### Renderer flags (`render_webgl.mjs`)
+
+| Flag | Purpose | Example |
+|---|---|---|
+| `--skin=a,b,c` | Combine variant skins with `default`. Required for skeletons that split body / eye / variant across multiple skins. | `--skin=moss1,diamondeye` for cubex_construct, `--skin=skin1` for scroll_of_biting |
+| `--anim=name` | Override the auto-picked idle animation. | `--anim=attack` |
+| `--anim-time=<seconds>` | Advance the animation N seconds before snapshotting. For skeletons that assemble over the first few frames. | `--anim-time=0.5` |
+| `--white` | Convert all visible pixels to white silhouette. | — |
+| `--only-slots=<pattern>` | Render only slots matching a substring. | — |
+
+### Hidden slots + smoke substitution
+
+The renderer maintains two lists for placeholder content the game replaces with shaders at runtime:
+
+- **`HIDDEN_SLOTS`** (stripped before draw) — `smokeplacholder`, `smoke_placeholder`, `megatail`, `megablade`, `soundwave`, `beckonwave`. These are weapon / soundwave VFX with no good static substitute.
+- **`SMOKE_PLACEHOLDER_PAGES`** (texture swapped with a generated cloud) — `gas_bomb_2.png`, `the_forgotten_2.png`, `living_smog_2.png`. Each placeholder atlas page is replaced with a procedurally generated dark plum smoke texture at the same dimensions before GL upload, so the slot's mesh deformation drives a real-looking smoke effect. Slot `color.a` is forced to `1.0` for substituted slots — the original artists set low alpha (0.26-0.38) expecting a shader to add density, and without the shader the cloud reads washed out.
+
+### Re-framing undersized renders
+
+`tools/rescale_bestiary.py` is a post-processor that crops to the **true alpha bbox** (not the Spine vertex bbox) and rescales each monster's PNG + WebP to fill 92% of the 512×512 frame. Run it after `render_all_webgl.mjs` for monsters whose visible sprite was sitting at low frame coverage.
+
+```bash
+python3 tools/rescale_bestiary.py fuzzy_wurm_crawler thieving_hopper terror_eel
+```
+
+## Badges
+
+Run-end mini-achievements awarded on the Game Over screen (introduced in v0.103.x beta, shipped to stable in Major Update #1).
+
+- **Parser** (`backend/app/parsers/badge_parser.py`) — reads `MegaCrit.Sts2.Core.Models.Badges/*.cs` for `Id` / `RequiresWin` / `MultiplayerOnly`, groups bronze/silver/gold tier titles + descriptions from `localization/<lang>/badges.json`. Outputs 25 badges per language (Thai is empty upstream).
+- **Schema** (`backend/app/models/schemas.py`): `Badge` + `BadgeTier` Pydantic models.
+- **Router** (`backend/app/routers/badges.py`): `GET /api/badges` (filters: `tiered`, `multiplayer_only`, `requires_win`, `search`), `GET /api/badges/{id}`.
+- **Frontend**: `/badges` list page (tiered / single-tier / multiplayer sections), `/badges/[id]` detail page (Bronze / Silver / Gold tier breakdown). Mirror routes at `/[lang]/badges` for all 14 languages.
+
+## Image Pipeline
+
+`backend/scripts/copy_images.py` copies game art from `extraction/raw/images/` to `backend/static/images/`. Each PNG is copied **and** a sibling WebP is generated from the same source (`quality=95`, `method=6`) — never a re-conversion of an existing backend WebP. Skips when the WebP is already newer than the source PNG so reruns don't churn untouched art.
+
+Frontend serves the WebP as the primary asset (smaller, faster), with PNG as the fallback and the format offered for download from `/images`.
+
+## Entity Version History
+
+Every detail page renders a Version History rail powered by `GET /api/history/{entity_type}/{entity_id}`. The endpoint scans every changelog under `data/changelogs/` for entries that touched the requested entity, returns them **newest first**, and matches case-insensitively (URLs use lowercased ids; changelog ids are upper-snake).
+
+`tools/diff_data.py` produces the field-level changes via `_deep_diff()` — recurses into nested dicts and lists so each leaf becomes its own row (`vars.DamageVar: 8 → 10`) instead of opaque `vars: 2 fields → 2 fields`. List items with stable `id` fields are matched by id (so `moves[BEAM_MOVE]` rather than `moves[2]`).
+
+Hand-curated `features` / `fixes` / `api_changes` arrays in a changelog are preserved through regenerations of an existing tag. The data-diff portion is overwritten but those release-note arrays merge through.
+
+### Write-once retention
+
+Files under `data/changelogs/` are write-once historical records. `.github/workflows/changelog-guard.yml` blocks any PR that modifies or deletes an existing changelog file. New files (`A`) are always allowed; modifications require the `changelog-edit-approved` PR label. See `CONTRIBUTING.md → Changelog Retention`.
