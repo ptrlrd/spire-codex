@@ -38,6 +38,8 @@ All data endpoints accept `?lang=` (default: `eng`). Rate limited to 60 req/min 
 | `GET /api/modifiers/{id}` | | Single modifier |
 | `GET /api/achievements` | | All achievements |
 | `GET /api/achievements/{id}` | | Single achievement |
+| `GET /api/badges` | `tiered`, `multiplayer_only`, `requires_win`, `search` | All run-end badges (Bronze/Silver/Gold tiers) |
+| `GET /api/badges/{id}` | | Single badge with tier breakdown |
 | `GET /api/epochs` | `era`, `search` | Timeline epochs |
 | `GET /api/acts` | | All acts |
 | `GET /api/acts/{id}` | | Single act |
@@ -78,7 +80,7 @@ All data endpoints accept `?lang=` (default: `eng`). Rate limited to 60 req/min 
 | `GET /api/changelogs/{tag}` | Full changelog for a version |
 | `GET /api/names/{type}/{id}` | Cross-language name lookup |
 | `GET /api/exports/{lang}` | ZIP download of all entity JSON |
-| `GET /api/history/{type}/{id}` | Per-entity version history |
+| `GET /api/history/{type}/{id}` | Per-entity version history (newest first, case-insensitive id match) |
 | `POST /api/feedback` | Submit feedback (proxied to Discord) |
 
 ## Languages

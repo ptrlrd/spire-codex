@@ -1,0 +1,50 @@
+{
+  "app_id": 2868840,
+  "game_version": "1.1.1",
+  "build_id": "",
+  "tag": "1.1.1",
+  "date": "2026-04-17",
+  "title": "Badges section, smoke art for shader-driven monsters, bestiary cleanup, full localization for runs/leaderboards, changelog write-once guard",
+  "from_ref": "v1.1.0",
+  "to_ref": "current",
+  "summary": {
+    "added": 0,
+    "removed": 0,
+    "changed": 0
+  },
+  "features": [
+    "/badges section landed: parser pulls all 25 run-end badges from extraction (Bronze / Silver / Gold tier metadata, requires-win + multiplayer-only flags), backend exposes /api/badges and /api/badges/{id}, frontend ships /badges list + detail pages, navbar entry at the end of Database, home-page tile alongside Cards / Bestiary / Relic Collection, and tooltip widget recognizes the badge entity type. 25 icons copied from the source atlas. (PRs #72, #73)",
+    "Localization sweep for leaderboards, submit a run, stats, runs, and badges — adds ~40 new keys to lib/ui-translations.ts across all 14 supported languages (page headings, tabs, taglines, Victory / Defeat / Abandoned status, tier labels, form placeholders) and wires useLanguage() + t() into every relevant client component. (PR #76)",
+    "New /[lang]/ mirror routes for /leaderboards, /leaderboards/submit, /leaderboards/stats, /runs, /runs/[hash], /badges, and /badges/[id] — users on a localized URL no longer hit 404 when clicking these from the navbar. Each wrapper plumbs hreflang alternates, canonical URLs, and OG locale metadata. (PR #76)",
+    "Spiredle (spiredle.net) added to the community showcase as a reciprocal listing — daily Wordle-style Slay the Spire 2 guessing game that pulls entity data from Spire Codex. (PR #77)",
+    "tools/rescale_bestiary.py — pixel-bbox-aware post-processor that crops to the true alpha bounds and rescales each monster sprite to fill 92% of the 512×512 frame. Fixes 21 monsters whose Spine vertex bbox left the visible sprite at 67-88% coverage with dead space around it (Biting Scroll, Living Fog, Gas Bomb, Soul Nexus, Spectral Knight, Terror Eel, The Insatiable, Thieving Hopper, Vantom, etc.). (PR #79)",
+    "Spine renderer — render_webgl.mjs gains three flags: --skin=a,b,c (combine multiple variant skins with default; required for cubex_construct's split body / eye / moss skins), --anim-time=<seconds> (advance the animation before snapshotting; for skeletons that assemble over the first few frames), --anim=<name> (override the auto-picked idle animation). (PR #79)",
+    "Smoke placeholder substitution in render_webgl.mjs — atlas pages that ship as magenta 'Smoke Placeholder' / 'SMOKE' boards (gas_bomb_2.png, the_forgotten_2.png, living_smog_2.png) now get swapped for a procedurally generated dark plum cloud at the same dimensions before GL upload. The_Forgotten's three SMOKE banners become smoke trails behind the mask, Living Fog gets a recognizable plum smog body, Gas Bomb shows an actual gas cloud rather than just the spark. Slot alpha forced to 1.0 for substituted slots since the original artists set low alpha expecting a shader contribution. (PR #80)",
+    "WebP regeneration pipeline in copy_images.py — every PNG copied from extraction now also emits a sibling WebP at quality=95, method=6, generated directly from the extraction PNG (not re-converted from a prior backend WebP). Refreshed 1,649 stale WebPs across cards / relics / potions / characters / ancients / bosses / powers / icons / monsters that were rendering pre-v1.1.0 art under the WebP path. (PR #81)",
+    "Entity version history — full deep diff. tools/diff_data.py now recurses into nested dicts and lists so each leaf becomes its own row instead of opaque 'N fields' / 'N items'. The Doormaker rework now exposes its 79 individual move-state changes instead of one collapsed entry. format_value() also renders small collections inline (k=v, k=v) and only falls back to a count when the rendered string would exceed 100 chars. Existing changelogs with the old pythonish format are pretty-printed client-side via a JSON parser in EntityHistory.tsx. (PR #82)",
+    "Entity history rail now lists newest first with a per-row Before / After two-column layout for complex changes. (PR #82)",
+    "tools/diff_data.py preserves hand-curated `features` / `fixes` / `api_changes` arrays through regenerations of an existing tag's changelog — diff_data only knows the data diff, not the release notes someone wrote on top, so a re-run no longer wipes them. (PR #82)",
+    ".github/workflows/changelog-guard.yml — write-once guard on data/changelogs/. PRs that modify or delete an existing changelog file fail with an annotation pointing at CONTRIBUTING.md. Override is the `changelog-edit-approved` PR label; the workflow re-runs on label change. (PR #83)",
+    "Badges category in /images — all 28 badge icons (25 named badges + bronze/silver/gold tier frames) now show up in the image gallery alongside Cards / Relics / Powers, with the same split-button download (PNG-only zip, WebP-only zip, or all formats).",
+    "CONTRIBUTING.md gains a 'Changelog Retention' section documenting the write-once rule, override workflow, and what the guard protects against. (PR #83)"
+  ],
+  "fixes": [
+    "Image gallery: 'Idle Animations' category no longer double-counts entries from the sibling monsters_attack folder — the recursive walk honors a per-category exclusion list. (PR #68)",
+    "Soul Fysh attack animation no longer shows a magenta soundwave placeholder triangle in the top-left — soundwave / beckonwave slots added to HIDDEN_SLOTS and the attack render regenerated. (PR #69)",
+    "Biting Scroll renders now show the actual scroll body, teeth, and rune art. Previous builds rendered only the shadow because the renderer defaulted to the `default` skin and the visible parts live in `skin1`. (PR #70)",
+    "Image search results (/api/images/search) prefer PNG over WebP when both formats exist on disk — opening the WebP from a search result was rendering as garbled text in some browsers. Animation-only categories still fall back to WebP. (PR #74)",
+    "Badge images on /badges no longer point at http://localhost:8000 in production. STATIC_BASE was using `||` instead of `??` so an empty NEXT_PUBLIC_API_URL (production setting) fell through to the localhost default. Switched to the `??` pattern used elsewhere; OG / JSON-LD imageUrl now uses NEXT_PUBLIC_SITE_URL since social crawlers don't resolve relative paths. (PR #75)",
+    "Cubex Construct render shows the actual top + bottom + eye instead of just the orb and shadow. The default skin only carries effect attachments; the body lives across moss1 / moss2 / moss3 + circleeye / diamondeye / squareeye variant skins. Re-rendered with --skin=moss1,diamondeye. (PR #79)",
+    "21 monsters previously rendered at 67-88% frame coverage now sit at 87-92% after rescale_bestiary.py: fuzzy_wurm_crawler, leaf_slime_m, myte, queen, sludge_spinner, soul_nexus, spectral_knight, terror_eel, the_insatiable, thieving_hopper, scroll_of_biting, vantom, egg_layer, ovicopter, fabricator, sewer_clam, parafright, mawler, kin_follower, exoskeleton, flail_knight, eye_with_teeth. (PR #79)",
+    "The Forgotten render no longer shows three loud blue 'SMOKE SMOKE SMOKE' banners over the mask — added 'smoke mesh' to HIDDEN_SLOTS and now substitutes the placeholder atlas page with a procedurally generated cloud. (PR #80)",
+    "Entity version history rail now correctly resolves entity ids regardless of case — URLs use lowercased ids (/monsters/doormaker) but changelog ids are upper-snake (DOORMAKER), so strict-equality matching was returning empty. Fixed by lowercasing entity_type and uppercasing entity_id once at the top of the handler. (PR #82)",
+    "WebP-served card / relic / portrait art was showing the pre-v1.1.0 placeholder for 1,649 entities (Shadow Shield was the visible symptom — PNG was the new shipped art, WebP was the old beta art). copy_images.py now emits both formats from the extraction source. (PR #81)"
+  ],
+  "api_changes": [
+    "GET /api/badges — list all 25 run-end badges, optional filters: tiered (bool), multiplayer_only (bool), requires_win (bool), search (string).",
+    "GET /api/badges/{id} — single badge with tier breakdown (Bronze / Silver / Gold title + description), requires_win flag, multiplayer_only flag, icon image URL.",
+    "GET /api/stats now reports a `badges` count alongside the existing entity counts.",
+    "GET /api/history/{entity_type}/{entity_id} now matches case-insensitively (lowercases entity_type, uppercases entity_id) and returns entries newest-first instead of oldest-first."
+  ],
+  "categories": []
+}

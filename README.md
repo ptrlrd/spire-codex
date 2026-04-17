@@ -177,6 +177,8 @@ spire-codex/
 | Affliction Detail | `/afflictions/[id]` | Affliction description, stackability |
 | Modifier Detail | `/modifiers/[id]` | Run modifier description |
 | Achievement Detail | `/achievements/[id]` | Achievement description |
+| Badges | `/badges` | All 25 run-end badges grouped by tiered / single-tier / multiplayer-only |
+| Badge Detail | `/badges/[id]` | Per-tier breakdown (Bronze / Silver / Gold), requires-win + multiplayer flags, icon |
 | Mechanics | `/mechanics` | Game mechanics hub — 27 clickable sections with individual SEO pages |
 | Mechanic Detail | `/mechanics/[slug]` | Card odds, relic distribution, potion drops, map generation, boss pools, combat, secrets & trivia |
 | Guides | `/guides` | Community strategy guides with search/filter |
@@ -227,6 +229,9 @@ All data endpoints accept an optional `?lang=` query parameter (default: `eng`).
 | `GET /api/modifiers/{id}` | Single modifier | `lang` |
 | `GET /api/achievements` | All achievements | `lang` |
 | `GET /api/achievements/{id}` | Single achievement | `lang` |
+| `GET /api/badges` | All run-end badges | `tiered`, `multiplayer_only`, `requires_win`, `search`, `lang` |
+| `GET /api/badges/{id}` | Single badge with tier breakdown | `lang` |
+| `GET /api/history/{entity_type}/{entity_id}` | Per-entity version history (case-insensitive, newest first) | — |
 | `GET /api/epochs` | Timeline epochs | `era`, `search`, `lang` |
 | `GET /api/epochs/{id}` | Single epoch | `lang` |
 | `GET /api/stories` | Story entries | `lang` |
@@ -387,14 +392,31 @@ cd backend/app/parsers && python3 parse_all.py
 # Parse a single language
 cd backend/app/parsers && python3 parse_all.py --lang eng
 
-# Copy images from extraction to static
+# Copy images from extraction to static (PNG + WebP from same source — no
+# lossy chain through an existing backend WebP). WebP at quality=95, method=6.
 python3 backend/scripts/copy_images.py
 
 # Render Spine sprites (WebGL — no triangle seam artifacts)
 cd tools/spine-renderer && npm install
 npx playwright install chromium           # First time only
 node render_all_webgl.mjs                 # All 138 skeletons via headless Chrome
-node render_webgl.mjs <skel_dir> <out> [size]  # Single skeleton (e.g., hi-res ancient)
+node render_webgl.mjs <skel_dir> <out> [size] [--skin=a,b] [--anim=name] [--anim-time=N]
+
+# Common per-monster overrides:
+#   --skin=moss1,diamondeye   combine variant skins with default (cubex_construct)
+#   --skin=skin1              swap default for a variant (scroll_of_biting)
+#   --anim-time=0.5           advance animation N seconds before snapshot
+#   --anim=attack             override the auto-picked idle animation
+#
+# Smoke-placeholder substitution: gas_bomb_2.png, the_forgotten_2.png, and
+# living_smog_2.png ship as magenta "Smoke Placeholder" boards in the source.
+# render_webgl.mjs swaps them for a procedurally generated dark plum cloud
+# at the same dimensions before GL upload, then forces slot.color.a = 1.0
+# on substituted slots (the artists set low alpha expecting a shader).
+
+# Re-frame undersized monster sprites (post-process — crops to true alpha
+# bbox, scales to fill ~92% of the 512x512 frame):
+python3 tools/rescale_bestiary.py fuzzy_wurm_crawler thieving_hopper terror_eel
 
 # Legacy canvas renderer (has triangle seam artifacts — avoid)
 # node render_all.mjs / node render.mjs
@@ -430,7 +452,16 @@ Each changelog JSON file contains:
 | `date` | Date of the update |
 | `title` | Human-readable title |
 | `summary` | Counts: `{ added, removed, changed }` |
-| `categories` | Per-category diffs with added/removed/changed entities |
+| `features` / `fixes` / `api_changes` | Hand-curated release notes. Preserved through `diff_data.py` regenerations of an existing tag — the data diff is overwritten but these arrays merge through. |
+| `categories` | Per-category diffs with added/removed/changed entities. Field changes recurse into nested dicts/lists so each leaf is its own row (e.g. `vars.DamageVar: 8 → 10`) instead of opaque `vars: 2 fields → 2 fields`. |
+
+### Write-once retention
+
+Files under `data/changelogs/` are write-once historical records. `.github/workflows/changelog-guard.yml` blocks any PR that **modifies or deletes** an existing changelog. New files (`A`) are always allowed; modifications require the `changelog-edit-approved` label on the PR. See `CONTRIBUTING.md → Changelog Retention` for the policy and override workflow.
+
+### Per-entity history
+
+`GET /api/history/{entity_type}/{entity_id}` walks every changelog and returns the entries that touched the requested entity, newest first. The Version History rail on every detail page (`/cards/{id}`, `/monsters/{id}`, etc.) is powered by this endpoint.
 
 ## Deploying
 
