@@ -1,0 +1,87 @@
+name: Changelog Guard
+
+# Existing changelog files in data/changelogs/ are write-once historical
+# records — modifying or deleting them silently loses release history. This
+# workflow inspects every PR against main and fails if any existing changelog
+# was changed without an explicit override label.
+#
+# Override: add the `changelog-edit-approved` label to the PR. Re-runs on
+# label change, so the check turns green once the label is added.
+#
+# What's allowed without the label:
+#   - Adding a new file:    A data/changelogs/X.json   ← green
+# What's blocked without the label:
+#   - Modifying an existing file: M data/changelogs/X.json   ← red
+#   - Deleting an existing file:  D data/changelogs/X.json   ← red
+
+on:
+  pull_request:
+    branches: [main]
+    paths: ["data/changelogs/**"]
+    types: [opened, reopened, synchronize, labeled, unlabeled]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  guard:
+    name: Block edits to historical changelogs
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Detect modified or deleted changelog files
+        id: scan
+        run: |
+          set -euo pipefail
+          base="${{ github.event.pull_request.base.sha }}"
+          head="${{ github.event.pull_request.head.sha }}"
+
+          # Walk the merge-base diff so we only see what THIS PR changes.
+          merge_base=$(git merge-base "$base" "$head")
+          changed=$(
+            git diff --name-status "$merge_base" "$head" -- data/changelogs/ \
+              | awk '$1 ~ /^[MD]/ { print $1, $2 }'
+          )
+
+          if [ -z "$changed" ]; then
+            echo "✅ No existing changelog files modified or deleted."
+            echo "blocked=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          echo "🚫 Existing changelog files modified or deleted:"
+          echo "$changed" | sed 's/^/  /'
+          # Save for the next step's annotation message
+          {
+            echo "blocked=true"
+            echo "changed_files<<EOF"
+            echo "$changed"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Allow if override label present
+        if: steps.scan.outputs.blocked == 'true'
+        run: |
+          set -euo pipefail
+          labels='${{ toJson(github.event.pull_request.labels.*.name) }}'
+          if echo "$labels" | grep -q '"changelog-edit-approved"'; then
+            echo "✅ \`changelog-edit-approved\` label present — bypassing guard."
+            exit 0
+          fi
+
+          cat <<MSG
+          ::error::Historical changelog files in data/changelogs/ are write-once.
+          The following files were modified or deleted by this PR:
+
+          ${{ steps.scan.outputs.changed_files }}
+
+          If this is intentional (typo fix, regen of a tag's data diff,
+          one-time format normalization, etc.), add the
+          \`changelog-edit-approved\` label to the PR and the check will
+          re-run. See CONTRIBUTING.md → "Changelog retention" for context.
+          MSG
+          exit 1
