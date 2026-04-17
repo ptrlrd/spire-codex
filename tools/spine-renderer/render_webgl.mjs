@@ -37,9 +37,17 @@ async function main() {
   // Optional: --skin=name to combine the named skin with `default`
   const skinArg = process.argv.find(a => a.startsWith("--skin="));
   const skinName = skinArg ? skinArg.split("=")[1] : null;
+  // Optional: --anim-time=SECONDS to advance the animation before snapshotting —
+  // required for skeletons whose idle frames at t=0 haven't assembled yet
+  // (e.g. cubex_construct, whose top/bottom halves fly in over the first ~0.5s).
+  const animTimeArg = process.argv.find(a => a.startsWith("--anim-time="));
+  const animTime = animTimeArg ? parseFloat(animTimeArg.split("=")[1]) : 0;
+  // Optional: --anim=name to override the auto-detected idle animation
+  const animArg = process.argv.find(a => a.startsWith("--anim="));
+  const animOverride = animArg ? animArg.split("=")[1] : null;
 
   if (!skelDir || !fs.existsSync(skelDir)) {
-    console.error("Usage: node render_webgl.mjs <skel_dir> <output_path> [size] [--only-slots=pattern] [--white] [--skin=name]");
+    console.error("Usage: node render_webgl.mjs <skel_dir> <output_path> [size] [--only-slots=pattern] [--white] [--skin=name] [--anim=name] [--anim-time=seconds]");
     process.exit(1);
   }
 
@@ -86,7 +94,7 @@ async function main() {
   const spineCoreCode = fs.readFileSync(spineCorePath, "utf-8");
 
   const result = await page.evaluate(async (params) => {
-    const { skelB64, atlasB64, textureData, outputSize, idleNames, shadowNames, hiddenSlots, onlySlots, whiteMode, skinName, spineCoreCode } = params;
+    const { skelB64, atlasB64, textureData, outputSize, idleNames, shadowNames, hiddenSlots, onlySlots, whiteMode, skinName, animOverride, animTime, spineCoreCode } = params;
 
     // Load spine-webgl — IIFE uses `var spine = (...)()`, make it global
     eval(spineCoreCode.replace(/^"use strict";\s*var spine\s*=/, "window.spine ="));
@@ -145,11 +153,15 @@ async function main() {
 
     const skeleton = new spine.Skeleton(skelData);
     const defaultSkin = skelData.findSkin("default");
-    const variantSkin = skinName ? skelData.findSkin(skinName) : null;
-    if (variantSkin) {
+    // --skin accepts comma-separated names (e.g. --skin=moss1,circleeye) so
+    // skeletons that split body / eye / moss variants across multiple skins
+    // (cubex_construct) can be combined into a single render.
+    const variantNames = skinName ? skinName.split(",").map(s => s.trim()).filter(Boolean) : [];
+    const variantSkins = variantNames.map(n => skelData.findSkin(n)).filter(Boolean);
+    if (variantSkins.length) {
       const combined = new spine.Skin("combined");
       if (defaultSkin) combined.addSkin(defaultSkin);
-      combined.addSkin(variantSkin);
+      for (const s of variantSkins) combined.addSkin(s);
       skeleton.setSkin(combined);
       skeleton.setSlotsToSetupPose();
     } else if (defaultSkin) {
@@ -158,25 +170,34 @@ async function main() {
     }
     skeleton.setToSetupPose();
 
-    // Apply idle animation
+    // Apply idle animation (or override via --anim)
     const stateData = new spine.AnimationStateData(skelData);
     const state = new spine.AnimationState(stateData);
     let animName = null;
-    for (const name of idleNames) {
-      if (skelData.findAnimation(name)) {
-        state.setAnimation(0, name, false);
-        state.apply(skeleton);
-        animName = name;
-        break;
+    if (animOverride && skelData.findAnimation(animOverride)) {
+      state.setAnimation(0, animOverride, true);
+      animName = animOverride;
+    } else {
+      for (const name of idleNames) {
+        if (skelData.findAnimation(name)) {
+          state.setAnimation(0, name, true);
+          animName = name;
+          break;
+        }
+      }
+      if (!animName && skelData.animations.length > 0) {
+        state.setAnimation(0, skelData.animations[0].name, true);
+        animName = skelData.animations[0].name;
       }
     }
-    if (!animName && skelData.animations.length > 0) {
-      state.setAnimation(0, skelData.animations[0].name, false);
-      state.apply(skeleton);
-      animName = skelData.animations[0].name;
-    }
 
-    skeleton.updateWorldTransform(spine.Physics.reset);
+    // Advance the animation by animTime seconds before snapshotting — some
+    // skeletons assemble over the first few frames (e.g. cubex_construct).
+    if (animTime > 0) {
+      state.update(animTime);
+    }
+    state.apply(skeleton);
+    skeleton.updateWorldTransform(animTime > 0 ? spine.Physics.update : spine.Physics.reset);
 
     // Compute bounds (excluding shadows)
     const offset = new spine.Vector2();
@@ -300,6 +321,8 @@ async function main() {
     hiddenSlots: HIDDEN_SLOTS,
     onlySlots: onlySlots || null,
     skinName: skinName || null,
+    animOverride: animOverride || null,
+    animTime: animTime || 0,
     whiteMode: whiteMode || false,
     spineCoreCode: spineCoreCode,
   });
