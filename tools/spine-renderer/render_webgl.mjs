@@ -40,11 +40,37 @@ const HIDDEN_SLOTS = [
 // .pck — get swapped for a generated soft cloud texture before upload so the
 // monsters that depend on them (Gas Bomb, Living Fog, The Forgotten, …)
 // render the gas/smoke effect.
-const SMOKE_PLACEHOLDER_PAGES = new Set([
-  "gas_bomb_2.png",
-  "the_forgotten_2.png",
-  "living_smog_2.png",
-]);
+//
+// Each entry maps to a colour palette so individual monsters can take a
+// thematic tint — Gas Bomb's poison gas is dark/sickly, Living Fog +
+// The Forgotten read as neutral white smoke. Palette tuples are:
+//   { core: "rgba(...)", mid: "rgba(...)", edge: "rgba(...)", puff: "rgba(...,A)" }
+const SMOKE_PLACEHOLDER_PAGES = {
+  "the_forgotten_2.png": "plum",
+  "living_smog_2.png":   "plum",
+  "gas_bomb_2.png":      "plum",
+};
+
+const SMOKE_PALETTES = {
+  // Generic neutral white smoke — kept as a fallback for future entries.
+  white: {
+    core: "rgba(225,225,225,0.85)",
+    mid:  "rgba(180,180,180,0.45)",
+    edge: "rgba(150,150,150,0)",
+    puff: "rgba(235,235,235,$A)",
+  },
+  // Dark plum/eggplant smoke — matches the in-game look for Gas Bomb and
+  // Living Fog (purple-tinged dark cloud, faintly muted highlights). Holds
+  // saturation through the mid-range so the smoke stays visibly dark when
+  // the slot mesh stretches the texture across a larger visible area.
+  plum: {
+    core: "rgba(48,32,46,0.96)",
+    mid:  "rgba(58,40,55,0.92)",
+    edge: "rgba(40,26,42,0)",
+    puff: "rgba(90,68,86,$A)",
+    midStop: 0.78, // hold dark colour longer before fading
+  },
+};
 
 async function main() {
   const skelDir = path.resolve(process.argv[2] || "");
@@ -115,7 +141,7 @@ async function main() {
   const spineCoreCode = fs.readFileSync(spineCorePath, "utf-8");
 
   const result = await page.evaluate(async (params) => {
-    const { skelB64, atlasB64, textureData, outputSize, idleNames, shadowNames, hiddenSlots, smokePlaceholderPages, onlySlots, whiteMode, skinName, animOverride, animTime, spineCoreCode } = params;
+    const { skelB64, atlasB64, textureData, outputSize, idleNames, shadowNames, hiddenSlots, smokePlaceholderPages, smokePalettes, onlySlots, whiteMode, skinName, animOverride, animTime, spineCoreCode } = params;
 
     // Load spine-webgl — IIFE uses `var spine = (...)()`, make it global
     eval(spineCoreCode.replace(/^"use strict";\s*var spine\s*=/, "window.spine ="));
@@ -141,31 +167,40 @@ async function main() {
     const shapes = new spine.ShapeRenderer(gl);
 
     // Procedural soft-smoke texture used to substitute placeholder atlas
-    // pages (e.g. gas_bomb_2.png, the_forgotten_2.png). Matches the
-    // placeholder's dimensions so atlas region offsets map correctly.
-    function generateSmokeTexture(w, h) {
+    // pages (e.g. gas_bomb_2.png, the_forgotten_2.png). Palette controls
+    // colour/opacity so e.g. Gas Bomb's poison gas reads dark and sickly
+    // while The Forgotten / Living Fog stay neutral white. Output canvas
+    // matches the placeholder's exact dimensions so atlas region offsets
+    // map correctly.
+    function generateSmokeTexture(w, h, palette) {
       const c = document.createElement("canvas");
       c.width = w; c.height = h;
       const ctx = c.getContext("2d");
       const cx = w / 2, cy = h / 2;
       const baseR = Math.max(w, h) * 0.55;
       const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, baseR);
-      grad.addColorStop(0,   "rgba(225,225,225,0.85)");
-      grad.addColorStop(0.5, "rgba(180,180,180,0.45)");
-      grad.addColorStop(1,   "rgba(150,150,150,0)");
+      const midStop = typeof palette.midStop === "number" ? palette.midStop : 0.5;
+      grad.addColorStop(0,        palette.core);
+      grad.addColorStop(midStop,  palette.mid);
+      grad.addColorStop(1,        palette.edge);
       ctx.fillStyle = grad;
       ctx.fillRect(0, 0, w, h);
-      // Wispy noise puffs
-      ctx.globalCompositeOperation = "lighter";
+      // Wispy noise puffs — additive for white smoke (so they brighten),
+      // source-over for dark smoke (so they darken via low-alpha layering).
+      const isDark = palette.core.startsWith("rgba(7") ||
+                     palette.core.startsWith("rgba(6") ||
+                     palette.core.startsWith("rgba(5") ||
+                     palette.core.startsWith("rgba(4");
+      ctx.globalCompositeOperation = isDark ? "source-over" : "lighter";
       const puffCount = Math.floor(Math.max(w, h) / 6);
       for (let i = 0; i < puffCount; i++) {
         const x = Math.random() * w;
         const y = Math.random() * h;
         const r2 = 4 + Math.random() * Math.min(w, h) * 0.18;
-        const a = 0.04 + Math.random() * 0.12;
+        const a = (0.04 + Math.random() * 0.12).toFixed(3);
         const g2 = ctx.createRadialGradient(x, y, 0, x, y, r2);
-        g2.addColorStop(0, `rgba(235,235,235,${a})`);
-        g2.addColorStop(1, "rgba(235,235,235,0)");
+        g2.addColorStop(0, palette.puff.replace("$A", a));
+        g2.addColorStop(1, palette.puff.replace("$A", "0"));
         ctx.fillStyle = g2;
         ctx.fillRect(0, 0, w, h);
       }
@@ -185,8 +220,13 @@ async function main() {
         img.src = "data:image/png;base64," + b64;
       });
       let texSource = img;
-      if (smokePlaceholderPages.includes(name)) {
-        texSource = generateSmokeTexture(img.naturalWidth, img.naturalHeight);
+      const paletteKey = smokePlaceholderPages[name];
+      if (paletteKey && smokePalettes[paletteKey]) {
+        texSource = generateSmokeTexture(
+          img.naturalWidth,
+          img.naturalHeight,
+          smokePalettes[paletteKey],
+        );
       }
       const tex = new spine.GLTexture(gl, texSource);
       loadedTextures[name] = tex;
@@ -330,7 +370,12 @@ async function main() {
     shader.setUniformi(spine.Shader.SAMPLER, 0);
     shader.setUniform4x4f(spine.Shader.MVP_MATRIX, mvp.values);
 
-    // Hide placeholder/smoke slots before rendering
+    // Hide placeholder/smoke slots before rendering, and force alpha=1.0
+    // on substituted-smoke slots — the artists set low alpha (0.26-0.38) on
+    // these because the in-game shader was supposed to add the density. Our
+    // generated cloud has no shader, so we restore opacity to keep the
+    // colour readable.
+    const SMOKE_ATTACHMENT_NAMES = ["smoketex/smoke_tex", "smoke1/smoke mesh"];
     for (const slot of skeleton.slots) {
       const sn = slot.data.name.toLowerCase();
       const att = slot.getAttachment();
@@ -341,6 +386,10 @@ async function main() {
       // If --only-slots is set, hide anything that doesn't match the pattern
       if (onlySlots && !sn.includes(onlySlots.toLowerCase())) {
         slot.setAttachment(null);
+      }
+      // Restore full alpha on substituted smoke slots.
+      if (att && SMOKE_ATTACHMENT_NAMES.includes(an)) {
+        slot.color.a = 1.0;
       }
     }
 
@@ -379,7 +428,8 @@ async function main() {
     idleNames: IDLE_NAMES,
     shadowNames: SHADOW_NAMES,
     hiddenSlots: HIDDEN_SLOTS,
-    smokePlaceholderPages: Array.from(SMOKE_PLACEHOLDER_PAGES),
+    smokePlaceholderPages: SMOKE_PLACEHOLDER_PAGES,
+    smokePalettes: SMOKE_PALETTES,
     onlySlots: onlySlots || null,
     skinName: skinName || null,
     animOverride: animOverride || null,
