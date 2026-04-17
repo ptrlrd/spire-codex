@@ -407,6 +407,7 @@ export interface Stats {
   afflictions: number;
   modifiers: number;
   achievements: number;
+  badges: number;
   epochs: number;
   acts: number;
   ascensions: number;

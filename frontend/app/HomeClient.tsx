@@ -40,6 +40,7 @@ const FALLBACK_DESCS: Record<string, string> = {
   timeline: "Explore the Slay the Spire 2 timeline — epochs, story arcs, and unlockable content.",
   images: "Browse and download Slay the Spire 2 game art — card portraits, relic icons, monster sprites.",
   reference: "Slay the Spire 2 reference — keywords, orbs, afflictions, intents, acts, ascension, and more.",
+  badges: "Run-end badges from Slay the Spire 2 — Bronze, Silver, and Gold tier mini-achievements awarded on the Game Over screen.",
   guides: "Community strategy guides — character breakdowns, boss strategies, deckbuilding tips, and more.",
   leaderboards: "Fastest wins and highest ascensions from the community. Browse every submitted run.",
   submit: "Upload your .run files to contribute to leaderboards and community stats.",
@@ -88,6 +89,7 @@ export default function HomeClient({ initialStats, initialTranslations }: HomeCl
     monsters: "Bestiary", potions: "Potion Lab", enchantments: "Enchantments",
     encounters: "Encounters", events: "Events", powers: "Powers",
     timeline: "Timeline", images: "Images", reference: "Reference",
+    badges: "Badges",
     guides: "Guides", leaderboards: "Leaderboard", submit: "Submit a Run", stats: "Stats",
   };
   const ENGLISH_FALLBACKS = new Set(Object.values(SECTION_LABEL_MAP).map(v => v.toLowerCase()));
@@ -193,6 +195,12 @@ export default function HomeClient({ initialStats, initialTranslations }: HomeCl
           (stats.ascensions ?? 0)
         : "–",
       color: "#596068",  // muted
+    },
+    {
+      href: "/badges",
+      key: "badges",
+      count: stats?.badges ?? "–",
+      color: "#c5894a",  // bronze
     },
     ...(!IS_BETA ? [
       {
