@@ -25,6 +25,7 @@
     "Entity history rail now lists newest first with a per-row Before / After two-column layout for complex changes. (PR #82)",
     "tools/diff_data.py preserves hand-curated `features` / `fixes` / `api_changes` arrays through regenerations of an existing tag's changelog — diff_data only knows the data diff, not the release notes someone wrote on top, so a re-run no longer wipes them. (PR #82)",
     ".github/workflows/changelog-guard.yml — write-once guard on data/changelogs/. PRs that modify or delete an existing changelog file fail with an annotation pointing at CONTRIBUTING.md. Override is the `changelog-edit-approved` PR label; the workflow re-runs on label change. (PR #83)",
+    "Badges category in /images — all 28 badge icons (25 named badges + bronze/silver/gold tier frames) now show up in the image gallery alongside Cards / Relics / Powers, with the same split-button download (PNG-only zip, WebP-only zip, or all formats).",
     "CONTRIBUTING.md gains a 'Changelog Retention' section documenting the write-once rule, override workflow, and what the guard protects against. (PR #83)"
   ],
   "fixes": [

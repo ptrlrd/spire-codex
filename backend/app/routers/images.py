@@ -23,6 +23,7 @@ CATEGORIES: dict[str, tuple[str, str, bool, list[str] | None]] = {
     "icons": ("Icons", "icons", False, None),
     "ancients": ("Ancients", "misc/ancients", False, None),
     "bosses": ("Bosses", "misc/bosses", False, None),
+    "badges": ("Badges", "badges", False, None),
     "npcs": (
         "NPCs",
         "misc",
