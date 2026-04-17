@@ -1,5 +1,6 @@
 [
   { "id": "bober-in-spire", "name": "BoberInSpire", "description": "A hybrid C# + Python overlay assistant that provides real-time combat analysis and card recommendations for Slay the Spire 2.", "url": "https://github.com/S0ul3r/BoberInSpire", "category": "tool", "author": "S0ul3r" },
   { "id": "scry", "name": "Scry", "description": "A free companion app for Slay the Spire 2 that automatically tracks runs and provides detailed analysis with global statistics.", "url": "https://scry-sps2.vercel.app/", "category": "app", "author": "Pierre Tusseau" },
-  { "id": "sts-lore-timeline", "name": "The Ultimate Slay the Spire 1 and 2 Lore Timeline", "description": "A comprehensive video covering the full lore timeline across both Slay the Spire games.", "url": "https://www.youtube.com/watch?v=PvlPLCvS8K4", "category": "content", "author": "Placeholder" }
+  { "id": "sts-lore-timeline", "name": "The Ultimate Slay the Spire 1 and 2 Lore Timeline", "description": "A comprehensive video covering the full lore timeline across both Slay the Spire games.", "url": "https://www.youtube.com/watch?v=PvlPLCvS8K4", "category": "content", "author": "Placeholder" },
+  { "id": "spiredle", "name": "Spiredle", "description": "Daily Slay the Spire 2 guessing game — Wordle-style modes for cards (by deduction or artwork), relics, powers, potions, and monsters. Pulls entity data straight from Spire Codex.", "url": "https://www.spiredle.net", "category": "app", "author": "Spiredle Team" }
 ]
