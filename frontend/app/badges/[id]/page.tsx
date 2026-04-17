@@ -14,7 +14,18 @@ const API_INTERNAL =
   process.env.NEXT_PUBLIC_API_URL ||
   "http://localhost:8000";
 
-const STATIC_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+// Inline <img> src — relative path in prod (NEXT_PUBLIC_API_URL is "") so the
+// browser hits the same origin. ?? (not ||) is critical: with || an empty
+// string falls through to the localhost fallback in production.
+const STATIC_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
+
+// OG / JSON-LD images need ABSOLUTE URLs (social crawlers don't resolve
+// relative paths), so prefer NEXT_PUBLIC_SITE_URL — which is set to
+// https://spire-codex.com in prod CI.
+const ABSOLUTE_BASE =
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  process.env.NEXT_PUBLIC_API_URL ||
+  "http://localhost:8000";
 
 type Props = { params: Promise<{ id: string }> };
 
@@ -60,7 +71,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title,
       description: metaDesc,
       images: badge.image_url
-        ? [{ url: `${STATIC_BASE}${badge.image_url}` }]
+        ? [{ url: `${ABSOLUTE_BASE}${badge.image_url}` }]
         : [],
     },
     twitter: { card: "summary_large_image" },
@@ -78,7 +89,7 @@ export default async function BadgePage({ params }: Props) {
     name: badge.name,
     description: desc || `${badge.name} run-end badge from Slay the Spire 2`,
     path: `/badges/${id}`,
-    imageUrl: badge.image_url ? `${STATIC_BASE}${badge.image_url}` : undefined,
+    imageUrl: badge.image_url ? `${ABSOLUTE_BASE}${badge.image_url}` : undefined,
     category: "Badge",
     breadcrumbs: [
       { name: "Home", href: "/" },

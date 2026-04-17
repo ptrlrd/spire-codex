@@ -14,7 +14,10 @@ const API =
   process.env.NEXT_PUBLIC_API_URL ||
   "http://localhost:8000";
 
-const STATIC_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+// Use ?? not || so an empty NEXT_PUBLIC_API_URL (production sets it to "")
+// passes through and image src becomes a relative `/static/...` URL — falling
+// back on `||` would route prod traffic at http://localhost:8000.
+const STATIC_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
 const TOP_TIER_BORDER: Record<string, string> = {
   bronze: "border-[#a87a3d]",
