@@ -162,9 +162,12 @@ def search_images(request: Request, search: str = "", limit: int = 10):
     Used by the global search modal so queries like "doormaker" surface image
     results alongside entity pages. Matches every whitespace-separated token in
     `search` against the basename (extension stripped, case-insensitive).
-    Results are deduped to one entry per asset (prefers webp, then gif, then
-    png) and capped at `limit` (max 50). Returns a flat list so the search
-    modal can treat it like any other category endpoint.
+
+    Results prefer the PNG sibling of any asset if one exists on disk — our
+    animated webp exports (monsters, spine renders) can render garbled when
+    opened directly, so search results route users to the static PNG instead.
+    Falls back to the gallery-preferred extension when no PNG is available.
+    Capped at `limit` (max 50).
     """
     q = (search or "").strip().lower()
     if not q:
@@ -176,24 +179,34 @@ def search_images(request: Request, search: str = "", limit: int = 10):
     matches: list[dict[str, str]] = []
     for cat_id, (display_name, *_) in CATEGORIES.items():
         all_files = _get_images_for_category(cat_id)
+        # Build a map from url-stem -> png variant if present, so we can rewrite
+        # the deduped entry to point at the png when one exists.
+        png_by_stem: dict[str, dict[str, str]] = {}
+        for img in all_files:
+            if img["filename"].lower().endswith(".png"):
+                png_by_stem[img["url"].rsplit(".", 1)[0]] = img
         for img in _dedupe_for_gallery(all_files):
-            stem = img["filename"].rsplit(".", 1)[0].replace("_", " ").lower()
-            if all(tok in stem for tok in tokens):
-                matches.append(
-                    {
-                        # `id` + `name` keep the shape consistent with the other
-                        # entity search endpoints so the UI can reuse its row
-                        # rendering pipeline.
-                        "id": f"{cat_id}/{img['filename']}",
-                        "name": img["filename"].rsplit(".", 1)[0].replace("_", " "),
-                        "filename": img["filename"],
-                        "url": img["url"],
-                        "category_id": cat_id,
-                        "category_name": display_name,
-                    }
-                )
-                if len(matches) >= capped:
-                    return matches
+            stem_name = img["filename"].rsplit(".", 1)[0]
+            stem_for_match = stem_name.replace("_", " ").lower()
+            if not all(tok in stem_for_match for tok in tokens):
+                continue
+            url_stem = img["url"].rsplit(".", 1)[0]
+            preferred = png_by_stem.get(url_stem, img)
+            matches.append(
+                {
+                    # `id` + `name` keep the shape consistent with the other
+                    # entity search endpoints so the UI can reuse its row
+                    # rendering pipeline.
+                    "id": f"{cat_id}/{preferred['filename']}",
+                    "name": stem_name.replace("_", " "),
+                    "filename": preferred["filename"],
+                    "url": preferred["url"],
+                    "category_id": cat_id,
+                    "category_name": display_name,
+                }
+            )
+            if len(matches) >= capped:
+                return matches
     return matches
 
 
