@@ -31,6 +31,7 @@ from .routers import (
     afflictions,
     modifiers,
     achievements,
+    badges,
     epochs,
     stories,
     images,
@@ -156,6 +157,7 @@ _ENTITY_TYPES = frozenset(
         "afflictions",
         "modifiers",
         "achievements",
+        "badges",
         "epochs",
         "stories",
         "acts",
@@ -285,6 +287,7 @@ app.include_router(orbs.router)
 app.include_router(afflictions.router)
 app.include_router(modifiers.router)
 app.include_router(achievements.router)
+app.include_router(badges.router)
 app.include_router(epochs.router)
 app.include_router(stories.router)
 app.include_router(images.router)

@@ -43,6 +43,7 @@ const NAV_GROUPS: NavGroup[] = [
       { href: "/timeline", label: "Timeline" },
       { href: "/images", label: "Images" },
       { href: "/reference", label: "Reference" },
+      { href: "/badges", label: "Badges" },
     ],
   },
   {

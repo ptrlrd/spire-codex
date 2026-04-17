@@ -1,0 +1,482 @@
+[
+  {
+    "id": "BIG_DECK",
+    "name": "Mazzo grande",
+    "description": "Hai vinto con un mazzo formato da [blue]40[/blue] o più carte.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Mazzo grande",
+        "description": "Hai vinto con un mazzo formato da [blue]40[/blue] o più carte."
+      },
+      {
+        "rarity": "silver",
+        "title": "Mazzo enorme",
+        "description": "Hai vinto con un mazzo formato da [blue]60[/blue] o più carte."
+      },
+      {
+        "rarity": "gold",
+        "title": "Mazzo mostruoso",
+        "description": "Hai vinto con un mazzo formato da [blue]100[/blue] o più carte."
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_big_deck.png"
+  },
+  {
+    "id": "CCCCOMBO",
+    "name": "Una carta dopo l'altra",
+    "description": "Hai giocato [blue]20[/blue] carte in un singolo turno.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Una carta dopo l'altra",
+        "description": "Hai giocato [blue]20[/blue] carte in un singolo turno."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_ccccombo.png"
+  },
+  {
+    "id": "CURSES",
+    "name": "Maledizioni!",
+    "description": "Hai vinto con [blue]5[/blue] o più [red]Maledizioni[/red].",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Maledizioni!",
+        "description": "Hai vinto con [blue]5[/blue] o più [red]Maledizioni[/red]."
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_curses.png"
+  },
+  {
+    "id": "DAMAGE_LEADER",
+    "name": "Amante dei danni",
+    "description": "Hai inflitto il maggior numero di danni ai nemici in modalità multigiocatore.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Amante dei danni",
+        "description": "Hai inflitto il maggior numero di danni ai nemici in modalità multigiocatore."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": true,
+    "image_url": "/static/images/badges/badge_damage_leader.png"
+  },
+  {
+    "id": "DEBUFFER",
+    "name": "Amante dei debuff",
+    "description": "Hai applicato il maggior numero di debuf in modalità multigiocatore.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Amante dei debuff",
+        "description": "Hai applicato il maggior numero di debuf in modalità multigiocatore."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": true,
+    "image_url": "/static/images/badges/badge_debuffer.png"
+  },
+  {
+    "id": "DOUBLE_SNECKO",
+    "name": "Doppio Snecko",
+    "description": "Hai ottenuto gli occhi di Snecko veri e falsi.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Doppio Snecko",
+        "description": "Hai ottenuto gli occhi di Snecko veri e falsi."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_double_snecko.png"
+  },
+  {
+    "id": "ELITE",
+    "name": "Caccia di nemici Élite",
+    "description": "Hai ucciso [blue]3[/blue] o più nemici Élite.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Caccia di nemici Élite",
+        "description": "Hai ucciso [blue]3[/blue] o più nemici Élite."
+      },
+      {
+        "rarity": "silver",
+        "title": "Assassinio di nemici Élite",
+        "description": "Hai ucciso [blue]6[/blue] o più nemici Élite."
+      },
+      {
+        "rarity": "gold",
+        "title": "Massacro di nemici Élite",
+        "description": "Hai ucciso [blue]9[/blue] o più nemici Élite."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_elite.png"
+  },
+  {
+    "id": "FAMISHED",
+    "name": "A corto di energie",
+    "description": "Hai vinto con PV massimi ridotti a meno della metà dei tuoi PV iniziali.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "A corto di energie",
+        "description": "Hai vinto con PV massimi ridotti a meno della metà dei tuoi PV iniziali."
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_famished.png"
+  },
+  {
+    "id": "FAVORITE_CARD",
+    "name": "Carta preferita",
+    "description": "Hai vinto una partita e hai giocato una singola carta più di [blue]100[/blue] volte.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Carta preferita",
+        "description": "Hai vinto una partita e hai giocato una singola carta più di [blue]100[/blue] volte."
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_favorite_card.png"
+  },
+  {
+    "id": "GLUTTON",
+    "name": "Giusta dose di energia",
+    "description": "Hai vinto una partita con PV massimi aumentati di un valore pari o superiore a [blue]15[/blue].",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Giusta dose di energia",
+        "description": "Hai vinto una partita con PV massimi aumentati di un valore pari o superiore a [blue]15[/blue]."
+      },
+      {
+        "rarity": "silver",
+        "title": "Traboccante di energia",
+        "description": "Hai vinto una partita con PV massimi aumentati di un valore pari o superiore a [blue]30[/blue]."
+      },
+      {
+        "rarity": "gold",
+        "title": "Energia a non finire",
+        "description": "Hai vinto una partita con un numero di PV massimi incredibili (aumentati di un valore pari o superiore a [blue]50[/blue])."
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_glutton.png"
+  },
+  {
+    "id": "HEALER",
+    "name": "Altruista",
+    "description": "Curare che passione!",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Altruista",
+        "description": "Curare che passione!"
+      },
+      {
+        "rarity": "silver",
+        "title": "Curare, che passione!",
+        "description": "Hai curato un alleato due volte."
+      },
+      {
+        "rarity": "gold",
+        "title": "Fan della medicina",
+        "description": "Hai curato gli alleati svariate volte (almeno [blue]3[/blue] volte)."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": true,
+    "image_url": "/static/images/badges/badge_healer.png"
+  },
+  {
+    "id": "HIGHLANDER",
+    "name": "Abbasso la monotonia",
+    "description": "Hai vinto con un mazzo con tutte carte diverse (escluse le carte Iniziali).",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Abbasso la monotonia",
+        "description": "Hai vinto con un mazzo con tutte carte diverse (escluse le carte Iniziali)."
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_highlander.png"
+  },
+  {
+    "id": "HONED",
+    "name": "Fan della monotonia",
+    "description": "Hai vinto con un mazzo formato da [blue]5[/blue] o più carte uguali (escluse le carte Iniziali).",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Fan della monotonia",
+        "description": "Hai vinto con un mazzo formato da [blue]5[/blue] o più carte uguali (escluse le carte Iniziali)."
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_honed.png"
+  },
+  {
+    "id": "ILIKESHINY",
+    "name": "Materialista",
+    "description": "Hai accumulato [blue]25[/blue] o più reliquie.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Materialista",
+        "description": "Hai accumulato [blue]25[/blue] o più reliquie."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_ilikeshiny.png"
+  },
+  {
+    "id": "KACHING",
+    "name": "Mani bucate",
+    "description": "Hai speso più di [blue]1.000[/blue] unità d'[gold]oro[/gold] dal mercante.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Mani bucate",
+        "description": "Hai speso più di [blue]1.000[/blue] unità d'[gold]oro[/gold] dal mercante."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_kaching.png"
+  },
+  {
+    "id": "MONEY_MONEY",
+    "name": "Risparmiare è improtante",
+    "description": "Hai vinto con [blue]200[/blue] o più unità d'[gold]oro[/gold].",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Risparmiare è improtante",
+        "description": "Hai vinto con [blue]200[/blue] o più unità d'[gold]oro[/gold]."
+      },
+      {
+        "rarity": "silver",
+        "title": "Soldi a palate",
+        "description": "Hai vinto con [blue]400[/blue] o più unità d'[gold]oro[/gold]."
+      },
+      {
+        "rarity": "gold",
+        "title": "Adoro l'oro",
+        "description": "Hai vinto con [blue]600[/blue] o più unità d'[gold]oro[/gold]."
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_money_money.png"
+  },
+  {
+    "id": "MYSTERY_MACHINE",
+    "name": "Attrazione per l'ignoto",
+    "description": "Hai visitato [blue]15[/blue] o più stanze ?.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Attrazione per l'ignoto",
+        "description": "Hai visitato [blue]15[/blue] o più stanze ?."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_mystery_machine.png"
+  },
+  {
+    "id": "PERFECT",
+    "name": "Ottimo",
+    "description": "Hai sconfitto un boss senza perdere PV.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Ottimo",
+        "description": "Hai sconfitto un boss senza perdere PV."
+      },
+      {
+        "rarity": "silver",
+        "title": "Eccellente",
+        "description": "Hai sconfitto [blue]2[/blue] boss senza perdere PV."
+      },
+      {
+        "rarity": "gold",
+        "title": "Perfetto",
+        "description": "Hai sconfitto [blue]3[/blue] boss senza perdere PV."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_perfect.png"
+  },
+  {
+    "id": "RESTFUL",
+    "name": "Che relax!",
+    "description": "Hai vinto una partita riposandoti in ogni luogo di riposo.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Che relax!",
+        "description": "Hai vinto una partita riposandoti in ogni luogo di riposo."
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_restful.png"
+  },
+  {
+    "id": "RESTLESS",
+    "name": "Notti insonni",
+    "description": "Hai vinto una partita senza mai riposarti.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Notti insonni",
+        "description": "Hai vinto una partita senza mai riposarti."
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_restless.png"
+  },
+  {
+    "id": "SPEEDY",
+    "name": "Partita lampo",
+    "description": "Hai vinto una partita impiegando meno di [blue]50[/blue] minuti.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Partita lampo",
+        "description": "Hai vinto una partita impiegando meno di [blue]50[/blue] minuti."
+      },
+      {
+        "rarity": "silver",
+        "title": "Partita alla velocità della luce",
+        "description": "Hai vinto una partita impiegando meno di [blue]40[/blue] minuti."
+      },
+      {
+        "rarity": "gold",
+        "title": "A tutto gas",
+        "description": "Hai vinto una partita impiegando meno di [blue]30[/blue] minuti."
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_speedy.png"
+  },
+  {
+    "id": "TABLET",
+    "name": "Tavoletta della verità",
+    "description": "Hai vinto con solo [blue]1[/blue] PV massimo.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Tavoletta della verità",
+        "description": "Hai vinto con solo [blue]1[/blue] PV massimo."
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_tablet.png"
+  },
+  {
+    "id": "TEAM_PLAYER",
+    "name": "Gioco di squadra",
+    "description": "Il tuo mazzo era formato da [blue]3[/blue] o più carte esclusive della modalità multigiocatore.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Gioco di squadra",
+        "description": "Il tuo mazzo era formato da [blue]3[/blue] o più carte esclusive della modalità multigiocatore."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": true,
+    "image_url": "/static/images/badges/badge_team_player.png"
+  },
+  {
+    "id": "TINY_DECK",
+    "name": "Mazzo piccolo",
+    "description": "Hai vinto con un mazzo formato da [blue]20[/blue] o meno carte.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Mazzo piccolo",
+        "description": "Hai vinto con un mazzo formato da [blue]20[/blue] o meno carte."
+      },
+      {
+        "rarity": "silver",
+        "title": "Mazzo esiguo",
+        "description": "Hai vino con un mazzo formato da [blue]10[/blue] o meno carte."
+      },
+      {
+        "rarity": "gold",
+        "title": "Mazzo minuscolo",
+        "description": "Hai vinto con un mazzo formato da [blue]5[/blue] o meno carte."
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_tiny_deck.png"
+  },
+  {
+    "id": "WHOMPER",
+    "name": "Danni ingenti",
+    "description": "Hai inflitto più di [blue]100[/blue] di danno con un singolo attacco.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Danni ingenti",
+        "description": "Hai inflitto più di [blue]100[/blue] di danno con un singolo attacco."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_whomper.png"
+  }
+]

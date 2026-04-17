@@ -11,6 +11,7 @@ from encounter_parser import main as parse_encounters
 from event_parser import main as parse_events
 from power_parser import main as parse_powers
 from keyword_parser import main as parse_keywords_etc
+from badge_parser import main as parse_badges
 from epoch_parser import main as parse_epochs
 from act_parser import main as parse_acts
 from ascension_parser import main as parse_ascensions
@@ -47,6 +48,7 @@ def parse_language(lang: str):
     parse_events(lang)
     parse_powers(lang)
     parse_keywords_etc(lang)
+    parse_badges(lang)
     parse_epochs(lang)
     parse_acts(lang)
     parse_ascensions(lang)

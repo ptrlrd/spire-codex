@@ -349,6 +349,23 @@ class Achievement(BaseModel):
     condition: str | None = None
 
 
+class BadgeTier(BaseModel):
+    rarity: str
+    title: str
+    description: str
+
+
+class Badge(BaseModel):
+    id: str
+    name: str
+    description: str
+    tiered: bool
+    tiers: list[BadgeTier]
+    requires_win: bool
+    multiplayer_only: bool
+    image_url: str | None = None
+
+
 class Epoch(BaseModel):
     id: str
     slug: str | None = None
