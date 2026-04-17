@@ -3,6 +3,8 @@
 import { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
+import { useLanguage } from "@/app/contexts/LanguageContext";
+import { t } from "@/lib/ui-translations";
 import { cachedFetch } from "@/lib/fetch-cache";
 import RichDescription from "@/app/components/RichDescription";
 
@@ -247,6 +249,7 @@ function pickRateColor(pr: number): string {
 
 export default function StatsClient() {
   const lp = useLangPrefix();
+  const { lang } = useLanguage();
   const [stats, setStats] = useState<CommunityStats | null>(null);
   const [cardData, setCardData] = useState<Record<string, CardInfo>>({});
   const [relicData, setRelicData] = useState<Record<string, RelicInfo>>({});
@@ -511,11 +514,11 @@ export default function StatsClient() {
   }
 
   const TABS: { key: TopTab; label: string }[] = [
-    { key: "overview", label: "Overview" },
-    { key: "cards", label: "Cards" },
-    { key: "relics", label: "Relics" },
-    { key: "potions", label: "Potions" },
-    { key: "encounters", label: "Encounters" },
+    { key: "overview", label: t("Overview", lang) },
+    { key: "cards", label: t("Cards", lang) },
+    { key: "relics", label: t("Relics", lang) },
+    { key: "potions", label: t("Potions", lang) },
+    { key: "encounters", label: t("Encounters", lang) },
   ];
 
   const selectClass =
@@ -523,7 +526,9 @@ export default function StatsClient() {
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h1 className="text-3xl font-bold text-[var(--text-primary)] mb-2">Stats</h1>
+      <h1 className="text-3xl font-bold mb-2">
+        <span className="text-[var(--accent-gold)]">{t("Stats", lang)}</span>
+      </h1>
       <p className="text-[var(--text-secondary)] mb-5">
         {stats?.total_runs || 0} runs analyzed.{" "}
         <Link
