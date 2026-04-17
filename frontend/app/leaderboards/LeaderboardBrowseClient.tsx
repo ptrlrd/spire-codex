@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
+import { useLanguage } from "@/app/contexts/LanguageContext";
+import { t } from "@/lib/ui-translations";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -63,6 +65,7 @@ type Tab = "fastest" | "highest_ascension" | "browse";
 
 export default function LeaderboardBrowseClient() {
   const lp = useLangPrefix();
+  const { lang } = useLanguage();
   const router = useRouter();
   const [tab, setTab] = useState<Tab>("fastest");
 
@@ -152,31 +155,31 @@ export default function LeaderboardBrowseClient() {
   }, [tab, browseChar, browseWin, browseUser, browseSeed, browseBuildId, browseSort, browsePage]);
 
   const TABS: { key: Tab; label: string; shortLabel: string }[] = [
-    { key: "fastest", label: "Fastest Wins", shortLabel: "Fastest" },
-    { key: "highest_ascension", label: "Highest Ascension", shortLabel: "Ascension" },
-    { key: "browse", label: "Browse Runs", shortLabel: "Browse" },
+    { key: "fastest", label: t("Fastest Wins", lang), shortLabel: t("Fastest", lang) },
+    { key: "highest_ascension", label: t("Highest Ascension", lang), shortLabel: t("Ascension", lang) },
+    { key: "browse", label: t("Browse Runs", lang), shortLabel: t("Browse", lang) },
   ];
 
   const isLeaderboard = tab !== "browse";
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h1 className="text-3xl font-bold text-[var(--accent-gold)] mb-6">Leaderboards</h1>
+      <h1 className="text-3xl font-bold text-[var(--accent-gold)] mb-6">{t("Leaderboards", lang)}</h1>
 
       {/* Tabs */}
       <div className="flex gap-1 mb-6 border-b border-[var(--border-subtle)]">
-        {TABS.map((t) => (
+        {TABS.map((tb) => (
           <button
-            key={t.key}
-            onClick={() => setTab(t.key)}
+            key={tb.key}
+            onClick={() => setTab(tb.key)}
             className={`px-3 sm:px-4 py-2 text-sm font-medium transition-colors border-b-2 -mb-px ${
-              tab === t.key
+              tab === tb.key
                 ? "border-[var(--accent-gold)] text-[var(--accent-gold)]"
                 : "border-transparent text-[var(--text-muted)] hover:text-[var(--text-secondary)]"
             }`}
           >
-            <span className="sm:hidden">{t.shortLabel}</span>
-            <span className="hidden sm:inline">{t.label}</span>
+            <span className="sm:hidden">{tb.shortLabel}</span>
+            <span className="hidden sm:inline">{tb.label}</span>
           </button>
         ))}
       </div>
@@ -247,7 +250,7 @@ export default function LeaderboardBrowseClient() {
                           className="border-b border-[var(--border-subtle)] hover:bg-[var(--bg-card-hover)] transition-colors cursor-pointer"
                         >
                           <td className="py-2.5 px-2 sm:px-3 font-medium text-[var(--accent-gold)]">#{entry.rank}</td>
-                          <td className="hidden sm:table-cell py-2.5 px-3 text-[var(--text-primary)] truncate max-w-[10rem]">{entry.username || "Anonymous"}</td>
+                          <td className="hidden sm:table-cell py-2.5 px-3 text-[var(--text-primary)] truncate max-w-[10rem]">{entry.username || t("Anonymous", lang)}</td>
                           <td className="py-2.5 px-2 sm:px-3" style={{ color: charColor }}>
                             <span className="sm:hidden">{charName.slice(0, 3)}</span>
                             <span className="hidden sm:inline">{charName}</span>
@@ -260,8 +263,8 @@ export default function LeaderboardBrowseClient() {
                               href={`${lp}/runs/${entry.run_hash}`}
                               onClick={(e) => e.stopPropagation()}
                               className="text-[var(--accent-gold)] hover:underline text-xs"
-                              title="View run"
-                              aria-label="View run details"
+                              title={t("View run", lang)}
+                              aria-label={t("View run details", lang)}
                             >
                               &#x2197;
                             </Link>
@@ -292,7 +295,7 @@ export default function LeaderboardBrowseClient() {
               onChange={(e) => setBrowseChar(e.target.value)}
               className="text-sm px-3 py-1.5 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)] w-full sm:w-auto"
             >
-              <option value="">All Characters</option>
+              <option value="">{t("All Characters", lang)}</option>
               <option value="IRONCLAD">Ironclad</option>
               <option value="SILENT">Silent</option>
               <option value="DEFECT">Defect</option>
@@ -314,7 +317,7 @@ export default function LeaderboardBrowseClient() {
               type="text"
               value={browseUser}
               onChange={(e) => setBrowseUser(e.target.value)}
-              placeholder="Username..."
+              placeholder={t("Username...", lang)}
               className="text-sm px-3 py-1.5 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)] w-full sm:w-44"
             />
 
@@ -322,7 +325,7 @@ export default function LeaderboardBrowseClient() {
               type="text"
               value={browseSeed}
               onChange={(e) => setBrowseSeed(e.target.value)}
-              placeholder="Seed..."
+              placeholder={t("Seed...", lang)}
               className="text-sm px-3 py-1.5 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)] w-full sm:w-36"
             />
 

@@ -8,6 +8,8 @@
 import { useState, type ReactNode } from "react";
 import Link from "next/link";
 import TinyCard from "@/app/components/TinyCard";
+import { useLanguage } from "@/app/contexts/LanguageContext";
+import { t } from "@/lib/ui-translations";
 import {
   CardPill,
   RelicPill,
@@ -191,6 +193,7 @@ interface Props {
 }
 
 export default function RunSummary({ run, player, cardData, relicData, potionData, charColor, langPrefix: lp }: Props) {
+  const { lang } = useLanguage();
   const finalStats = lastPlayerStats(run);
   const totalFloors = (run.map_point_history ?? []).reduce((sum, act) => sum + act.length, 0);
   const charSlug = cleanId(player.character).toLowerCase();
@@ -201,7 +204,7 @@ export default function RunSummary({ run, player, cardData, relicData, potionDat
   const deathQuote = run.win
     ? `${displayName(player.character)} ascended.`
     : run.was_abandoned
-      ? "The journey ended."
+      ? t("The journey ended.", lang)
       : run.killed_by_encounter && run.killed_by_encounter !== "NONE.NONE"
         ? `${displayName(player.character)} fell to ${displayName(run.killed_by_encounter)}.`
         : `${displayName(player.character)} fell.`;
@@ -246,7 +249,7 @@ export default function RunSummary({ run, player, cardData, relicData, potionDat
             </div>
           )}
           <div className="truncate">
-            {run.game_mode ?? "Standard"}
+            {run.game_mode ?? t("Standard", lang)}
             {run.build_id && <span className="ml-1">· {run.build_id}</span>}
           </div>
         </div>

@@ -3,12 +3,15 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
+import { useLanguage } from "@/app/contexts/LanguageContext";
+import { t } from "@/lib/ui-translations";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
 export default function SubmitRunClient() {
   const router = useRouter();
   const lp = useLangPrefix();
+  const { lang } = useLanguage();
   const [jsonInput, setJsonInput] = useState("");
   const [error, setError] = useState("");
   const [username, setUsername] = useState("");
@@ -250,12 +253,11 @@ export default function SubmitRunClient() {
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h1 className="text-3xl font-bold text-[var(--text-primary)] mb-2">
-        Submit a Run
+      <h1 className="text-3xl font-bold mb-2">
+        <span className="text-[var(--accent-gold)]">{t("Submit a Run", lang)}</span>
       </h1>
-      <p className="text-[var(--text-secondary)] mb-6">
-        Upload your Slay the Spire 2 run files to share with the community and
-        contribute to aggregate stats.
+      <p className="text-sm text-[var(--text-muted)] mb-6">
+        {t("submit_tagline", lang)}
       </p>
 
       <div className="space-y-4">
@@ -264,7 +266,7 @@ export default function SubmitRunClient() {
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value.slice(0, 25))}
-          placeholder="Username (optional)"
+          placeholder={t("Username (optional)", lang)}
           maxLength={25}
           className="px-3 py-2 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] text-sm focus:outline-none focus:border-[var(--accent-gold)] w-48"
         />
@@ -283,8 +285,8 @@ export default function SubmitRunClient() {
         >
           <p className="text-sm text-[var(--text-secondary)] mb-1">
             {isDragging
-              ? "Drop files here..."
-              : "Drag & drop .run files here, or click to select"}
+              ? t("Drop files here...", lang)
+              : t("Drag & drop .run files here, or click to select", lang)}
           </p>
           <div className="text-left mb-3 space-y-1 text-xs text-[var(--text-muted)]">
             <p>

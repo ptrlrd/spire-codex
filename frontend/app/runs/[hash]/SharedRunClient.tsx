@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
+import { useLanguage } from "@/app/contexts/LanguageContext";
+import { t } from "@/lib/ui-translations";
 import { cachedFetch } from "@/lib/fetch-cache";
 import RunSummary, { type PotionInfo } from "./RunSummary";
 import { CardPill, RelicPill, cleanId, displayName, type CardInfo, type RelicInfo } from "./RunPills";
@@ -21,6 +23,7 @@ const CHAR_CSS_VAR: Record<string, string> = {
 export default function SharedRunClient() {
   const { hash } = useParams<{ hash: string }>();
   const lp = useLangPrefix();
+  const { lang } = useLanguage();
   const [run, setRun] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
@@ -83,7 +86,7 @@ export default function SharedRunClient() {
         </Link>
         <button onClick={copyLink}
           className="text-xs px-3 py-1.5 rounded-lg border border-[var(--border-subtle)] text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:border-[var(--border-accent)] transition-colors">
-          {copied ? "Copied!" : "Share"}
+          {copied ? t("Copied!", lang) : t("Share", lang)}
         </button>
       </div>
 
@@ -97,7 +100,7 @@ export default function SharedRunClient() {
             className="text-xl font-bold"
             style={{ color: run.win ? "var(--color-silent)" : run.was_abandoned ? "var(--text-muted)" : "var(--color-ironclad)" }}
           >
-            {run.win ? "Victory" : run.was_abandoned ? "Abandoned" : "Defeat"}
+            {run.win ? t("Victory", lang) : run.was_abandoned ? t("Abandoned", lang) : t("Defeat", lang)}
           </span>
           <Link href={`${lp}/characters/${charId.toLowerCase()}`} className="text-base hover:underline" style={{ color: charColor }}>
             {displayName(player.character)}
