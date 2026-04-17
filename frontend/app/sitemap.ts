@@ -37,6 +37,7 @@ const STATIC_PAGES = [
   { path: "/mechanics", priority: 0.7, changeFrequency: "monthly" as const },
   { path: "/guides", priority: 0.7, changeFrequency: "weekly" as const },
   { path: "/guides/submit", priority: 0.3, changeFrequency: "monthly" as const },
+  { path: "/badges", priority: 0.6, changeFrequency: "weekly" as const },
   { path: "/cards/browse", priority: 0.8, changeFrequency: "daily" as const },
 ];
 
@@ -65,6 +66,7 @@ const DYNAMIC_ROUTES = [
   { endpoint: "/api/afflictions", prefix: "/afflictions", priority: 0.5 },
   { endpoint: "/api/modifiers", prefix: "/modifiers", priority: 0.5 },
   { endpoint: "/api/achievements", prefix: "/achievements", priority: 0.5 },
+  { endpoint: "/api/badges", prefix: "/badges", priority: 0.5 },
   { endpoint: "/api/epochs", prefix: "/timeline", priority: 0.5 },
   { endpoint: "/api/guides", prefix: "/guides", priority: 0.6 },
 ];

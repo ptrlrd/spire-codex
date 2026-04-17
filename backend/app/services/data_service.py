@@ -112,6 +112,10 @@ def load_achievements(lang: str = DEFAULT_LANG) -> list[dict]:
     return _load_json(lang, "achievements")
 
 
+def load_badges(lang: str = DEFAULT_LANG) -> list[dict]:
+    return _load_json(lang, "badges")
+
+
 def load_glossary(lang: str = DEFAULT_LANG) -> list[dict]:
     return _load_json(lang, "glossary")
 
@@ -227,6 +231,7 @@ def get_stats(lang: str = DEFAULT_LANG) -> dict:
         "afflictions": len(load_afflictions(lang)),
         "modifiers": len(load_modifiers(lang)),
         "achievements": len(load_achievements(lang)),
+        "badges": len(load_badges(lang)),
         "glossary": len(load_glossary(lang)),
         "epochs": len(load_epochs(lang)),
         "acts": len(load_acts(lang)),

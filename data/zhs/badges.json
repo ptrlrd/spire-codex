@@ -1,0 +1,482 @@
+[
+  {
+    "id": "BIG_DECK",
+    "name": "大牌组",
+    "description": "以[blue]40[/blue]张或更多张牌的牌组获胜。",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "大牌组",
+        "description": "以[blue]40[/blue]张或更多张牌的牌组获胜。"
+      },
+      {
+        "rarity": "silver",
+        "title": "巨大牌组",
+        "description": "以[blue]60[/blue]张或更多张牌的牌组获胜。"
+      },
+      {
+        "rarity": "gold",
+        "title": "怪物牌组",
+        "description": "以[blue]100[/blue]张或更多张牌的牌组获胜。"
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_big_deck.png"
+  },
+  {
+    "id": "CCCCOMBO",
+    "name": "连连连连段攻击",
+    "description": "在一回合内打出[blue]20[/blue]。",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "连连连连段攻击",
+        "description": "在一回合内打出[blue]20[/blue]。"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_ccccombo.png"
+  },
+  {
+    "id": "CURSES",
+    "name": "诅咒局！",
+    "description": "以[blue]5[/blue]张或更多张[red]诅咒[/red]牌获胜。",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "诅咒局！",
+        "description": "以[blue]5[/blue]张或更多张[red]诅咒[/red]牌获胜。"
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_curses.png"
+  },
+  {
+    "id": "DAMAGE_LEADER",
+    "name": "伤害第一",
+    "description": "在多人游戏中，对敌人造成最多伤害。",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "伤害第一",
+        "description": "在多人游戏中，对敌人造成最多伤害。"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": true,
+    "image_url": "/static/images/badges/badge_damage_leader.png"
+  },
+  {
+    "id": "DEBUFFER",
+    "name": "弱化专家",
+    "description": "在多人游戏中，施加最多负面效果。",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "弱化专家",
+        "description": "在多人游戏中，施加最多负面效果。"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": true,
+    "image_url": "/static/images/badges/badge_debuffer.png"
+  },
+  {
+    "id": "DOUBLE_SNECKO",
+    "name": "二蛇之眼",
+    "description": "同时获得真假版本的异蛇之眼。",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "二蛇之眼",
+        "description": "同时获得真假版本的异蛇之眼。"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_double_snecko.png"
+  },
+  {
+    "id": "ELITE",
+    "name": "精英猎手",
+    "description": "杀死[blue]3[/blue]名或更多精英。",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "精英猎手",
+        "description": "杀死[blue]3[/blue]名或更多精英。"
+      },
+      {
+        "rarity": "silver",
+        "title": "精英杀手",
+        "description": "杀死[blue]6[/blue]名或更多精英。"
+      },
+      {
+        "rarity": "gold",
+        "title": "精英屠夫",
+        "description": "杀死[blue]9[/blue]名或更多精英。"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_elite.png"
+  },
+  {
+    "id": "FAMISHED",
+    "name": "饥肠辘辘",
+    "description": "以少于初始生命值一半的最大生命值获胜。",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "饥肠辘辘",
+        "description": "以少于初始生命值一半的最大生命值获胜。"
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_famished.png"
+  },
+  {
+    "id": "FAVORITE_CARD",
+    "name": "最爱好牌",
+    "description": "获胜时有一张牌打出过超过[blue]100[/blue]次。",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "最爱好牌",
+        "description": "获胜时有一张牌打出过超过[blue]100[/blue]次。"
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_favorite_card.png"
+  },
+  {
+    "id": "GLUTTON",
+    "name": "吃饱",
+    "description": "获胜时最大生命值提高了至少[blue]15[/blue]点。",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "吃饱",
+        "description": "获胜时最大生命值提高了至少[blue]15[/blue]点。"
+      },
+      {
+        "rarity": "silver",
+        "title": "吃撑",
+        "description": "获胜时最大生命值提高了至少[blue]30[/blue]点。"
+      },
+      {
+        "rarity": "gold",
+        "title": "饕餮",
+        "description": "获胜时最大生命值提高了至少[blue]50[/blue]点。"
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_glutton.png"
+  },
+  {
+    "id": "HEALER",
+    "name": "治愈者",
+    "description": "愈合过盟友一次。",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "治愈者",
+        "description": "愈合过盟友一次。"
+      },
+      {
+        "rarity": "silver",
+        "title": "治疗师",
+        "description": "愈合一名盟友两次。"
+      },
+      {
+        "rarity": "gold",
+        "title": "医生",
+        "description": "反复愈合过盟友（至少[blue]3[/blue]次）。"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": true,
+    "image_url": "/static/images/badges/badge_healer.png"
+  },
+  {
+    "id": "HIGHLANDER",
+    "name": "高地人",
+    "description": "获胜时牌组中没有相同牌（初始牌除外）。",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "高地人",
+        "description": "获胜时牌组中没有相同牌（初始牌除外）。"
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_highlander.png"
+  },
+  {
+    "id": "HONED",
+    "name": "熟能生巧",
+    "description": "获胜时牌组中有至少[blue]5[/blue]张相同牌（初始牌除外）。",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "熟能生巧",
+        "description": "获胜时牌组中有至少[blue]5[/blue]张相同牌（初始牌除外）。"
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_honed.png"
+  },
+  {
+    "id": "ILIKESHINY",
+    "name": "我爱亮闪闪",
+    "description": "收集[blue]25[/blue]件或更多遗物。",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "我爱亮闪闪",
+        "description": "收集[blue]25[/blue]件或更多遗物。"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_ilikeshiny.png"
+  },
+  {
+    "id": "KACHING",
+    "name": "感谢惠顾！",
+    "description": "在商人处花费超过[blue]1000[/blue][gold]金币[/gold]。",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "感谢惠顾！",
+        "description": "在商人处花费超过[blue]1000[/blue][gold]金币[/gold]。"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_kaching.png"
+  },
+  {
+    "id": "MONEY_MONEY",
+    "name": "好多好多钱",
+    "description": "获胜时拥有至少[blue]200[/blue][gold]金币[/gold]。",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "好多好多钱",
+        "description": "获胜时拥有至少[blue]200[/blue][gold]金币[/gold]。"
+      },
+      {
+        "rarity": "silver",
+        "title": "下钱雨啦",
+        "description": "获胜时拥有至少[blue]400[/blue][gold]金币[/gold]。"
+      },
+      {
+        "rarity": "gold",
+        "title": "真的好喜欢钱啊",
+        "description": "获胜时拥有至少[blue]600[/blue][gold]金币[/gold]。"
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_money_money.png"
+  },
+  {
+    "id": "MYSTERY_MACHINE",
+    "name": "寻谜问道",
+    "description": "造访过[blue]15[/blue]个或更多个？房间。",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "寻谜问道",
+        "description": "造访过[blue]15[/blue]个或更多个？房间。"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_mystery_machine.png"
+  },
+  {
+    "id": "PERFECT",
+    "name": "完胜",
+    "description": "在不失去生命的情况下击败BOSS。",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "完胜",
+        "description": "在不失去生命的情况下击败BOSS。"
+      },
+      {
+        "rarity": "silver",
+        "title": "更加完胜",
+        "description": "在不失去生命的情况下击败[blue]2[/blue]个BOSS。"
+      },
+      {
+        "rarity": "gold",
+        "title": "全面完胜",
+        "description": "在不失去生命的情况下击败[blue]3[/blue]个BOSS。"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_perfect.png"
+  },
+  {
+    "id": "RESTFUL",
+    "name": "休养生息",
+    "description": "获胜时，在每个休息处都选择了休息。",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "休养生息",
+        "description": "获胜时，在每个休息处都选择了休息。"
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_restful.png"
+  },
+  {
+    "id": "RESTLESS",
+    "name": "战斗不息",
+    "description": "获胜时，一次都没有休息过。",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "战斗不息",
+        "description": "获胜时，一次都没有休息过。"
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_restless.png"
+  },
+  {
+    "id": "SPEEDY",
+    "name": "高速",
+    "description": "在[blue]50[/blue]分钟内赢得一局游戏。",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "高速",
+        "description": "在[blue]50[/blue]分钟内赢得一局游戏。"
+      },
+      {
+        "rarity": "silver",
+        "title": "疾速",
+        "description": "在[blue]40[/blue]分钟内赢得一局游戏。"
+      },
+      {
+        "rarity": "gold",
+        "title": "光速",
+        "description": "在[blue]30[/blue]分钟内赢得一局游戏。"
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_speedy.png"
+  },
+  {
+    "id": "TABLET",
+    "name": "真理石板",
+    "description": "获胜时只有[blue]1[/blue]点最大生命值。",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "真理石板",
+        "description": "获胜时只有[blue]1[/blue]点最大生命值。"
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_tablet.png"
+  },
+  {
+    "id": "TEAM_PLAYER",
+    "name": "团队型选手",
+    "description": "牌组中有至少[blue]3[/blue]张多人专属牌。",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "团队型选手",
+        "description": "牌组中有至少[blue]3[/blue]张多人专属牌。"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": true,
+    "image_url": "/static/images/badges/badge_team_player.png"
+  },
+  {
+    "id": "TINY_DECK",
+    "name": "小牌组",
+    "description": "获胜时牌组中的牌数不超过[blue]20[/blue]张。",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "小牌组",
+        "description": "获胜时牌组中的牌数不超过[blue]20[/blue]张。"
+      },
+      {
+        "rarity": "silver",
+        "title": "袖珍牌组",
+        "description": "获胜时牌组中的牌数不超过[blue]10[/blue]张。"
+      },
+      {
+        "rarity": "gold",
+        "title": "微型牌组",
+        "description": "获胜时牌组中的牌数不超过[blue]5[/blue]张。"
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_tiny_deck.png"
+  },
+  {
+    "id": "WHOMPER",
+    "name": "势大力沉",
+    "description": "单次攻击造成超过[blue]100[/blue]点伤害。",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "势大力沉",
+        "description": "单次攻击造成超过[blue]100[/blue]点伤害。"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_whomper.png"
+  }
+]

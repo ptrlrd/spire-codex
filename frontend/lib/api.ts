@@ -328,6 +328,23 @@ export interface Achievement {
   description: string;
 }
 
+export interface BadgeTier {
+  rarity: "bronze" | "silver" | "gold";
+  title: string;
+  description: string;
+}
+
+export interface Badge {
+  id: string;
+  name: string;
+  description: string;
+  tiered: boolean;
+  tiers: BadgeTier[];
+  requires_win: boolean;
+  multiplayer_only: boolean;
+  image_url: string | null;
+}
+
 export interface Epoch {
   id: string;
   title: string;
