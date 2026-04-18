@@ -1,6 +1,14 @@
 import { card, h3, tbl, thr, th, thr2, tr, td, tdr, gold, note, bold } from "../styles";
+import { loadMerchantConfig } from "@/lib/merchant-config";
+import ShopInventoryFromConfig from "./ShopInventoryFromConfig";
 
-export default function MechanicContent({ slug }: { slug: string }) {
+export default async function MechanicContent({ slug }: { slug: string }) {
+  // The shop-inventory section reads live merchant config so the removal
+  // table and variance footnote stay in sync with the parsed C# constants.
+  if (slug === "shop-inventory") {
+    const config = await loadMerchantConfig();
+    return <ShopInventoryFromConfig config={config} />;
+  }
   switch (slug) {
     case "card-rarity":
       return (
@@ -120,36 +128,6 @@ export default function MechanicContent({ slug }: { slug: string }) {
             <tr><td className={td}>Treasure room</td><td className={gold}>42-52</td><td className={gold}>31-39</td></tr>
           </tbody></table>
           <p className={note}>Ascension 3 (Poverty) multiplies all gold rewards by 0.75x. If enemies escape during combat, gold is proportionally reduced.</p>
-        </div>
-      );
-
-    case "shop-inventory":
-      return (
-        <div className={card}>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <h3 className={h3}>Inventory Layout</h3>
-              <table className={tbl}><thead><tr className={thr}><th className={th}>Category</th><th className={thr2}>Slots</th></tr></thead><tbody>
-                <tr className={tr}><td className={td}>Character cards</td><td className={tdr}>5 (2 ATK, 2 SKL, 1 PWR)</td></tr>
-                <tr className={tr}><td className={td}>Colorless cards</td><td className={tdr}>2 (1 UNC, 1 RARE)</td></tr>
-                <tr className={tr}><td className={td}>Relics</td><td className={tdr}>3 (2 random + 1 shop)</td></tr>
-                <tr className={tr}><td className={td}>Potions</td><td className={tdr}>3</td></tr>
-                <tr><td className={td}>Card removal</td><td className={tdr}>1 service</td></tr>
-              </tbody></table>
-              <p className={note}>One random character card is &quot;On Sale&quot; each visit. Card and potion prices have &plusmn;5% variance, relic prices have &plusmn;15% variance.</p>
-            </div>
-            <div>
-              <h3 className={h3}>Card Removal Cost</h3>
-              <table className={tbl}><thead><tr className={thr}><th className={th}>Removals Used</th><th className={thr2}>A0–5</th><th className={thr2}>A6+ (Inflation)</th></tr></thead><tbody>
-                <tr className={tr}><td className={td}>0 (first)</td><td className={gold}>75g</td><td className={gold}>100g</td></tr>
-                <tr className={tr}><td className={td}>1</td><td className={gold}>100g</td><td className={gold}>150g</td></tr>
-                <tr className={tr}><td className={td}>2</td><td className={gold}>125g</td><td className={gold}>200g</td></tr>
-                <tr className={tr}><td className={td}>3</td><td className={gold}>150g</td><td className={gold}>250g</td></tr>
-                <tr><td className={td}>n</td><td className={gold}>75 + 25n</td><td className={gold}>100 + 50n</td></tr>
-              </tbody></table>
-              <p className={note}>Major Update #1 (v0.103.2) reworked Ascension 6 from Gloom (1 fewer rest site) into Inflation, which raises the base removal price by 25 gold and the per-use increment by 25.</p>
-            </div>
-          </div>
         </div>
       );
 

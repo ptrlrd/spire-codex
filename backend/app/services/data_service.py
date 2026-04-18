@@ -108,6 +108,18 @@ def load_modifiers(lang: str = DEFAULT_LANG) -> list[dict]:
     return _load_json(lang, "modifiers")
 
 
+def load_merchant(lang: str = DEFAULT_LANG) -> dict:
+    """Merchant pricing config (dict, not list — falls back to {} if missing)."""
+    base = _resolve_base(_get_version())
+    filepath = base / lang / "merchant.json"
+    if not filepath.exists():
+        filepath = base / DEFAULT_LANG / "merchant.json"
+    if not filepath.exists():
+        return {}
+    with open(filepath, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+
 def load_achievements(lang: str = DEFAULT_LANG) -> list[dict]:
     return _load_json(lang, "achievements")
 

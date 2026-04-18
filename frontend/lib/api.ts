@@ -391,6 +391,51 @@ export interface Guide extends GuideSummary {
   content: string;
 }
 
+export interface PriceTier {
+  base: number;
+  min: number;
+  max: number;
+}
+
+export interface MerchantConfig {
+  cards: {
+    common: PriceTier;
+    uncommon: PriceTier;
+    rare: PriceTier;
+    variance: { min: number; max: number };
+    colorless_multiplier: number;
+    on_sale_fraction: number;
+  };
+  potions: {
+    common: PriceTier;
+    uncommon: PriceTier;
+    rare: PriceTier;
+    variance: { min: number; max: number };
+  };
+  relics: {
+    common: PriceTier;
+    uncommon: PriceTier;
+    rare: PriceTier;
+    shop: PriceTier;
+    variance: { min: number; max: number };
+    blacklist: { id: string; name: string }[];
+  };
+  card_removal: {
+    base: number;
+    increment: number;
+    ascension_inflation: {
+      level: number | null;
+      modifier: string;
+      base: number;
+      increment: number;
+    };
+  };
+  fake_merchant: {
+    flat_price: number;
+    relic_count: number;
+  };
+}
+
 export interface Stats {
   cards: number;
   characters: number;
@@ -416,6 +461,8 @@ export interface Stats {
 
 export const api = {
   getStats: () => fetchApi<Stats>("/api/stats"),
+  getMerchantConfig: (lang?: string) =>
+    fetchApi<MerchantConfig>(`/api/merchant/config${lang ? `?lang=${lang}` : ""}`),
   getCards: (params?: string) => fetchApi<Card[]>(`/api/cards${params ? `?${params}` : ""}`),
   getCard: (id: string) => fetchApi<Card>(`/api/cards/${id}`),
   getCharacters: () => fetchApi<Character[]>("/api/characters"),

@@ -1,11 +1,34 @@
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
+import {
+  loadMerchantConfig,
+  blacklistLabel,
+  colorlessRange,
+  onSaleRange,
+} from "@/lib/merchant-config";
 
-export default function MerchantPage() {
+export default async function MerchantPage() {
+  const config = await loadMerchantConfig();
+  const { cards, potions, relics, card_removal, fake_merchant } = config;
+  const inflation = card_removal.ascension_inflation;
+  const blacklist = blacklistLabel(relics.blacklist);
+  const colorlessCommon = colorlessRange(cards.common, cards);
+  const colorlessUncommon = colorlessRange(cards.uncommon, cards);
+  const colorlessRare = colorlessRange(cards.rare, cards);
+  const onSaleCommon = onSaleRange(cards.common, cards);
+  const onSaleUncommon = onSaleRange(cards.uncommon, cards);
+  const onSaleRare = onSaleRange(cards.rare, cards);
+  const cardVarPct = Math.round(cards.variance.max * 100 - 100);
+  const relicVarPct = Math.round(relics.variance.max * 100 - 100);
+  const colorlessMarkupPct = Math.round((cards.colorless_multiplier - 1) * 100);
+  const removalSchedule = (base: number, increment: number) =>
+    [0, 1, 2, 3, 4, 5].map((i) => base + increment * i);
+
   const jsonLd = [
     ...buildDetailPageJsonLd({
       name: "Merchant Guide",
-      description: "Complete Slay the Spire 2 merchant price guide with card, relic, and potion costs, card removal pricing, and Fake Merchant relic details.",
+      description:
+        "Complete Slay the Spire 2 merchant price guide with card, relic, and potion costs, card removal pricing, and Fake Merchant relic details.",
       path: "/merchant",
       category: "Guide",
       breadcrumbs: [
@@ -14,10 +37,22 @@ export default function MerchantPage() {
       ],
     }),
     buildFAQPageJsonLd([
-      { question: "How much do cards cost at the merchant in Slay the Spire 2?", answer: "Common cards cost 48-53 gold, Uncommon 71-79 gold, Rare 143-158 gold. Colorless cards have a 15% markup. One random card is on sale for half price." },
-      { question: "How much do relics cost at the shop in Slay the Spire 2?", answer: "Common relics cost 149-201 gold, Uncommon 191-259 gold, Rare 234-316 gold, and Shop relics 170-230 gold. Major Update #1 (v0.103.2) reduced every relic base price by 25 gold." },
-      { question: "How much does card removal cost in Slay the Spire 2?", answer: "Card removal starts at 75 gold and increases by 25 gold each time you use it. At Ascension 6 and above, the Inflation modifier raises the base to 100 gold and the increment to 50 gold (100, 150, 200, ...)." },
-      { question: "What is the Fake Merchant in Slay the Spire 2?", answer: "The Fake Merchant is an event that sells counterfeit versions of popular relics for only 50 gold each. These fakes have weaker effects than the originals." },
+      {
+        question: "How much do cards cost at the merchant in Slay the Spire 2?",
+        answer: `Common cards cost ${cards.common.min}-${cards.common.max} gold, Uncommon ${cards.uncommon.min}-${cards.uncommon.max} gold, Rare ${cards.rare.min}-${cards.rare.max} gold. Colorless cards have a ${colorlessMarkupPct}% markup. One random card is on sale for half price.`,
+      },
+      {
+        question: "How much do relics cost at the shop in Slay the Spire 2?",
+        answer: `Common relics cost ${relics.common.min}-${relics.common.max} gold, Uncommon ${relics.uncommon.min}-${relics.uncommon.max} gold, Rare ${relics.rare.min}-${relics.rare.max} gold, and Shop relics ${relics.shop.min}-${relics.shop.max} gold.`,
+      },
+      {
+        question: "How much does card removal cost in Slay the Spire 2?",
+        answer: `Card removal starts at ${card_removal.base} gold and increases by ${card_removal.increment} gold each time you use it. At Ascension ${inflation.level ?? 6} and above, the ${inflation.modifier} modifier raises the base to ${inflation.base} gold and the increment to ${inflation.increment} gold.`,
+      },
+      {
+        question: "What is the Fake Merchant in Slay the Spire 2?",
+        answer: `The Fake Merchant is an event that sells counterfeit versions of popular relics for only ${fake_merchant.flat_price} gold each. These fakes have weaker effects than the originals.`,
+      },
     ]),
   ];
 
@@ -48,11 +83,11 @@ export default function MerchantPage() {
             </div>
             <div className="bg-[var(--bg-primary)] rounded-lg p-3">
               <h3 className="font-semibold text-[var(--text-primary)] mb-1">Colorless Cards (2)</h3>
-              <p className="text-[var(--text-muted)]">1 Uncommon, 1 Rare — from the colorless pool. 15% price markup.</p>
+              <p className="text-[var(--text-muted)]">1 Uncommon, 1 Rare — from the colorless pool. {colorlessMarkupPct}% price markup.</p>
             </div>
             <div className="bg-[var(--bg-primary)] rounded-lg p-3">
               <h3 className="font-semibold text-[var(--text-primary)] mb-1">Relics (3)</h3>
-              <p className="text-[var(--text-muted)]">2 random rarity rolls + 1 guaranteed Shop relic. The Courier, Old Coin, Lucky Fysh, Bowler Hat, and Amethyst Aubergine are blacklisted (gold-generating relics removed in Major Update #1).</p>
+              <p className="text-[var(--text-muted)]">2 random rarity rolls + 1 guaranteed Shop relic. {blacklist} are blacklisted.</p>
             </div>
             <div className="bg-[var(--bg-primary)] rounded-lg p-3">
               <h3 className="font-semibold text-[var(--text-primary)] mb-1">Potions (3)</h3>
@@ -85,29 +120,29 @@ export default function MerchantPage() {
             <tbody>
               <tr className="border-b border-[var(--border-subtle)]/50">
                 <td className="p-3 text-gray-300">Common</td>
-                <td className="p-3 text-right text-[var(--text-primary)]">50</td>
-                <td className="p-3 text-right text-[var(--accent-gold)]">48–53</td>
-                <td className="p-3 text-right text-[var(--text-secondary)]">55–60</td>
-                <td className="p-3 text-right text-emerald-400">24–27</td>
+                <td className="p-3 text-right text-[var(--text-primary)]">{cards.common.base}</td>
+                <td className="p-3 text-right text-[var(--accent-gold)]">{cards.common.min}–{cards.common.max}</td>
+                <td className="p-3 text-right text-[var(--text-secondary)]">{colorlessCommon.min}–{colorlessCommon.max}</td>
+                <td className="p-3 text-right text-emerald-400">{onSaleCommon.min}–{onSaleCommon.max}</td>
               </tr>
               <tr className="border-b border-[var(--border-subtle)]/50">
                 <td className="p-3 text-blue-400">Uncommon</td>
-                <td className="p-3 text-right text-[var(--text-primary)]">75</td>
-                <td className="p-3 text-right text-[var(--accent-gold)]">71–79</td>
-                <td className="p-3 text-right text-[var(--text-secondary)]">82–90</td>
-                <td className="p-3 text-right text-emerald-400">36–40</td>
+                <td className="p-3 text-right text-[var(--text-primary)]">{cards.uncommon.base}</td>
+                <td className="p-3 text-right text-[var(--accent-gold)]">{cards.uncommon.min}–{cards.uncommon.max}</td>
+                <td className="p-3 text-right text-[var(--text-secondary)]">{colorlessUncommon.min}–{colorlessUncommon.max}</td>
+                <td className="p-3 text-right text-emerald-400">{onSaleUncommon.min}–{onSaleUncommon.max}</td>
               </tr>
               <tr>
                 <td className="p-3 text-[var(--accent-gold)]">Rare</td>
-                <td className="p-3 text-right text-[var(--text-primary)]">150</td>
-                <td className="p-3 text-right text-[var(--accent-gold)]">143–158</td>
-                <td className="p-3 text-right text-[var(--text-secondary)]">164–181</td>
-                <td className="p-3 text-right text-emerald-400">71–79</td>
+                <td className="p-3 text-right text-[var(--text-primary)]">{cards.rare.base}</td>
+                <td className="p-3 text-right text-[var(--accent-gold)]">{cards.rare.min}–{cards.rare.max}</td>
+                <td className="p-3 text-right text-[var(--text-secondary)]">{colorlessRare.min}–{colorlessRare.max}</td>
+                <td className="p-3 text-right text-emerald-400">{onSaleRare.min}–{onSaleRare.max}</td>
               </tr>
             </tbody>
           </table>
           <div className="px-3 py-2 text-xs text-[var(--text-muted)] border-t border-[var(--border-subtle)]/50">
-            Range: base × random(0.95–1.05). Colorless: +15% markup. On sale: 50% off.
+            Range: base × random({cards.variance.min.toFixed(2)}–{cards.variance.max.toFixed(2)}). Colorless: +{colorlessMarkupPct}% markup. On sale: {Math.round(cards.on_sale_fraction * 100)}% of base.
           </div>
         </div>
       </section>
@@ -130,32 +165,32 @@ export default function MerchantPage() {
             <tbody>
               <tr className="border-b border-[var(--border-subtle)]/50">
                 <td className="p-3 text-gray-300">Common</td>
-                <td className="p-3 text-right text-[var(--text-primary)]">175</td>
-                <td className="p-3 text-right text-[var(--accent-gold)]">149–201</td>
-                <td className="p-3 text-right text-[var(--text-muted)]">×0.85–1.15</td>
+                <td className="p-3 text-right text-[var(--text-primary)]">{relics.common.base}</td>
+                <td className="p-3 text-right text-[var(--accent-gold)]">{relics.common.min}–{relics.common.max}</td>
+                <td className="p-3 text-right text-[var(--text-muted)]">×{relics.variance.min.toFixed(2)}–{relics.variance.max.toFixed(2)}</td>
               </tr>
               <tr className="border-b border-[var(--border-subtle)]/50">
                 <td className="p-3 text-emerald-400">Shop</td>
-                <td className="p-3 text-right text-[var(--text-primary)]">200</td>
-                <td className="p-3 text-right text-[var(--accent-gold)]">170–230</td>
-                <td className="p-3 text-right text-[var(--text-muted)]">×0.85–1.15</td>
+                <td className="p-3 text-right text-[var(--text-primary)]">{relics.shop.base}</td>
+                <td className="p-3 text-right text-[var(--accent-gold)]">{relics.shop.min}–{relics.shop.max}</td>
+                <td className="p-3 text-right text-[var(--text-muted)]">×{relics.variance.min.toFixed(2)}–{relics.variance.max.toFixed(2)}</td>
               </tr>
               <tr className="border-b border-[var(--border-subtle)]/50">
                 <td className="p-3 text-blue-400">Uncommon</td>
-                <td className="p-3 text-right text-[var(--text-primary)]">225</td>
-                <td className="p-3 text-right text-[var(--accent-gold)]">191–259</td>
-                <td className="p-3 text-right text-[var(--text-muted)]">×0.85–1.15</td>
+                <td className="p-3 text-right text-[var(--text-primary)]">{relics.uncommon.base}</td>
+                <td className="p-3 text-right text-[var(--accent-gold)]">{relics.uncommon.min}–{relics.uncommon.max}</td>
+                <td className="p-3 text-right text-[var(--text-muted)]">×{relics.variance.min.toFixed(2)}–{relics.variance.max.toFixed(2)}</td>
               </tr>
               <tr>
                 <td className="p-3 text-[var(--accent-gold)]">Rare</td>
-                <td className="p-3 text-right text-[var(--text-primary)]">275</td>
-                <td className="p-3 text-right text-[var(--accent-gold)]">234–316</td>
-                <td className="p-3 text-right text-[var(--text-muted)]">×0.85–1.15</td>
+                <td className="p-3 text-right text-[var(--text-primary)]">{relics.rare.base}</td>
+                <td className="p-3 text-right text-[var(--accent-gold)]">{relics.rare.min}–{relics.rare.max}</td>
+                <td className="p-3 text-right text-[var(--text-muted)]">×{relics.variance.min.toFixed(2)}–{relics.variance.max.toFixed(2)}</td>
               </tr>
             </tbody>
           </table>
           <div className="px-3 py-2 text-xs text-[var(--text-muted)] border-t border-[var(--border-subtle)]/50">
-            Relics have a wider price variance (±15%) than cards (±5%). Major Update #1 (v0.103.2) reduced every relic base by 25 gold. Five relics are blacklisted from the shop pool: The Courier, Old Coin, Lucky Fysh, Bowler Hat, Amethyst Aubergine.
+            Relics have a wider price variance (±{relicVarPct}%) than cards (±{cardVarPct}%). {relics.blacklist.length === 0 ? "No relics are blacklisted from the shop pool." : `${relics.blacklist.length} relic${relics.blacklist.length === 1 ? " is" : "s are"} blacklisted from the shop pool: ${blacklist}.`}
           </div>
         </div>
       </section>
@@ -177,23 +212,23 @@ export default function MerchantPage() {
             <tbody>
               <tr className="border-b border-[var(--border-subtle)]/50">
                 <td className="p-3 text-gray-300">Common</td>
-                <td className="p-3 text-right text-[var(--text-primary)]">50</td>
-                <td className="p-3 text-right text-[var(--accent-gold)]">48–53</td>
+                <td className="p-3 text-right text-[var(--text-primary)]">{potions.common.base}</td>
+                <td className="p-3 text-right text-[var(--accent-gold)]">{potions.common.min}–{potions.common.max}</td>
               </tr>
               <tr className="border-b border-[var(--border-subtle)]/50">
                 <td className="p-3 text-blue-400">Uncommon</td>
-                <td className="p-3 text-right text-[var(--text-primary)]">75</td>
-                <td className="p-3 text-right text-[var(--accent-gold)]">71–79</td>
+                <td className="p-3 text-right text-[var(--text-primary)]">{potions.uncommon.base}</td>
+                <td className="p-3 text-right text-[var(--accent-gold)]">{potions.uncommon.min}–{potions.uncommon.max}</td>
               </tr>
               <tr>
                 <td className="p-3 text-[var(--accent-gold)]">Rare</td>
-                <td className="p-3 text-right text-[var(--text-primary)]">100</td>
-                <td className="p-3 text-right text-[var(--accent-gold)]">95–105</td>
+                <td className="p-3 text-right text-[var(--text-primary)]">{potions.rare.base}</td>
+                <td className="p-3 text-right text-[var(--accent-gold)]">{potions.rare.min}–{potions.rare.max}</td>
               </tr>
             </tbody>
           </table>
           <div className="px-3 py-2 text-xs text-[var(--text-muted)] border-t border-[var(--border-subtle)]/50">
-            Range: base × random(0.95–1.05). Same variance as cards.
+            Range: base × random({potions.variance.min.toFixed(2)}–{potions.variance.max.toFixed(2)}). Same variance as cards.
           </div>
         </div>
       </section>
@@ -209,44 +244,44 @@ export default function MerchantPage() {
           </p>
 
           <div className="mb-4">
-            <h3 className="text-sm font-semibold text-[var(--text-primary)] mb-2">Ascension 0–5</h3>
+            <h3 className="text-sm font-semibold text-[var(--text-primary)] mb-2">Ascension 0–{(inflation.level ?? 6) - 1}</h3>
             <div className="flex flex-wrap gap-2">
-              {[0, 1, 2, 3, 4, 5].map((i) => (
+              {removalSchedule(card_removal.base, card_removal.increment).map((cost, i) => (
                 <div key={i} className="bg-[var(--bg-primary)] rounded-lg p-3 text-center min-w-[80px]">
                   <div className="text-xs text-[var(--text-muted)] mb-1">
                     {i === 0 ? "1st" : i === 1 ? "2nd" : i === 2 ? "3rd" : `${i + 1}th`}
                   </div>
                   <div className="text-lg font-bold text-[var(--accent-gold)]">
-                    {75 + 25 * i}
+                    {cost}
                   </div>
                   <div className="text-xs text-[var(--text-muted)]">gold</div>
                 </div>
               ))}
             </div>
             <p className="text-xs text-[var(--text-muted)] mt-2">
-              Formula: 75 + (25 × removals used).
+              Formula: {card_removal.base} + ({card_removal.increment} × removals used).
             </p>
           </div>
 
           <div>
             <h3 className="text-sm font-semibold text-[var(--text-primary)] mb-2">
-              Ascension 6+ — <span className="text-[var(--accent-gold)]">Inflation</span>
+              Ascension {inflation.level ?? 6}+ — <span className="text-[var(--accent-gold)]">{inflation.modifier}</span>
             </h3>
             <div className="flex flex-wrap gap-2">
-              {[0, 1, 2, 3, 4, 5].map((i) => (
+              {removalSchedule(inflation.base, inflation.increment).map((cost, i) => (
                 <div key={i} className="bg-[var(--bg-primary)] rounded-lg p-3 text-center min-w-[80px]">
                   <div className="text-xs text-[var(--text-muted)] mb-1">
                     {i === 0 ? "1st" : i === 1 ? "2nd" : i === 2 ? "3rd" : `${i + 1}th`}
                   </div>
                   <div className="text-lg font-bold text-[var(--accent-gold)]">
-                    {100 + 50 * i}
+                    {cost}
                   </div>
                   <div className="text-xs text-[var(--text-muted)]">gold</div>
                 </div>
               ))}
             </div>
             <p className="text-xs text-[var(--text-muted)] mt-2">
-              Formula: 100 + (50 × removals used). Major Update #1 reworked Ascension 6 from <span className="line-through">Gloom (less rest sites)</span> to Inflation, raising the base by 25 gold and the per-use increment by 25.
+              Formula: {inflation.base} + ({inflation.increment} × removals used). Major Update #1 reworked Ascension {inflation.level ?? 6} from <span className="line-through">Gloom (less rest sites)</span> to {inflation.modifier}.
             </p>
           </div>
         </div>
@@ -258,7 +293,7 @@ export default function MerchantPage() {
           Fake Merchant
         </h2>
         <p className="text-sm text-[var(--text-secondary)] mb-4">
-          The Fake Merchant is an event that sells counterfeit relics for a flat 50 gold each. These are weaker versions of well-known relics. All fake relics have Event rarity.
+          The Fake Merchant is an event that sells {fake_merchant.relic_count} counterfeit relics for a flat {fake_merchant.flat_price} gold each. These are weaker versions of well-known relics. All fake relics have Event rarity.
         </p>
         <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] overflow-hidden">
           <table className="w-full text-sm">
@@ -272,16 +307,16 @@ export default function MerchantPage() {
             </thead>
             <tbody>
               {[
-                { fake: "Fake Anchor", real: "Anchor", price: 50, effect: "Gain 4 Block at the start of combat (real: 10)" },
-                { fake: "Fake Blood Vial", real: "Blood Vial", price: 50, effect: "Heal 1 HP at the start of turn 1 only" },
-                { fake: "Fake Happy Flower", real: "Happy Flower", price: 50, effect: "Gain 1 Energy every 5 turns (real: every 3)" },
-                { fake: "Fake Lee's Waffle", real: "Lee's Waffle", price: 50, effect: "Heal 10% Max HP on pickup (real: raise Max HP)" },
-                { fake: "Fake Mango", real: "Mango", price: 50, effect: "Gain 3 Max HP on pickup (real: 14)" },
-                { fake: "Fake Orichalcum", real: "Orichalcum", price: 50, effect: "Gain 3 Block at end of turn if no Block (real: 6)" },
-                { fake: "Fake Snecko Eye", real: "Snecko Eye", price: 50, effect: "Applies Confused (randomizes card costs) with no draw bonus" },
-                { fake: "Fake Strike Dummy", real: "Strike Dummy", price: 50, effect: "Strike cards deal 1 extra damage (real: 3)" },
-                { fake: "Fake Venerable Tea Set", real: "Venerable Tea Set", price: 50, effect: "Gain 1 Energy next combat after resting (real: 2)" },
-                { fake: "Fake Merchant's Rug", real: "—", price: 50, effect: "No effect. Purely decorative." },
+                { fake: "Fake Anchor", real: "Anchor", price: fake_merchant.flat_price, effect: "Gain 4 Block at the start of combat (real: 10)" },
+                { fake: "Fake Blood Vial", real: "Blood Vial", price: fake_merchant.flat_price, effect: "Heal 1 HP at the start of turn 1 only" },
+                { fake: "Fake Happy Flower", real: "Happy Flower", price: fake_merchant.flat_price, effect: "Gain 1 Energy every 5 turns (real: every 3)" },
+                { fake: "Fake Lee's Waffle", real: "Lee's Waffle", price: fake_merchant.flat_price, effect: "Heal 10% Max HP on pickup (real: raise Max HP)" },
+                { fake: "Fake Mango", real: "Mango", price: fake_merchant.flat_price, effect: "Gain 3 Max HP on pickup (real: 14)" },
+                { fake: "Fake Orichalcum", real: "Orichalcum", price: fake_merchant.flat_price, effect: "Gain 3 Block at end of turn if no Block (real: 6)" },
+                { fake: "Fake Snecko Eye", real: "Snecko Eye", price: fake_merchant.flat_price, effect: "Applies Confused (randomizes card costs) with no draw bonus" },
+                { fake: "Fake Strike Dummy", real: "Strike Dummy", price: fake_merchant.flat_price, effect: "Strike cards deal 1 extra damage (real: 3)" },
+                { fake: "Fake Venerable Tea Set", real: "Venerable Tea Set", price: fake_merchant.flat_price, effect: "Gain 1 Energy next combat after resting (real: 2)" },
+                { fake: "Fake Merchant's Rug", real: "—", price: fake_merchant.flat_price, effect: "No effect. Purely decorative." },
               ].map((row) => (
                 <tr key={row.fake} className="border-b border-[var(--border-subtle)]/50 last:border-0">
                   <td className="p-3 text-[var(--text-primary)] font-medium">{row.fake}</td>
@@ -305,10 +340,10 @@ export default function MerchantPage() {
             All prices use the seeded <code className="text-[var(--accent-gold)] text-xs">PlayerRng.Shops</code> random number generator, meaning prices are deterministic per seed.
           </p>
           <p>
-            Cards use <code className="text-[var(--accent-gold)] text-xs">NextFloat(0.95f, 1.05f)</code> for a ±5% variance. Relics use <code className="text-[var(--accent-gold)] text-xs">NextFloat(0.85f, 1.15f)</code> for a wider ±15% variance. Potions use the same ±5% as cards.
+            Cards use <code className="text-[var(--accent-gold)] text-xs">NextFloat({cards.variance.min.toFixed(2)}f, {cards.variance.max.toFixed(2)}f)</code> for a ±{cardVarPct}% variance. Relics use <code className="text-[var(--accent-gold)] text-xs">NextFloat({relics.variance.min.toFixed(2)}f, {relics.variance.max.toFixed(2)}f)</code> for a wider ±{relicVarPct}% variance. Potions use the same ±{cardVarPct}% as cards.
           </p>
           <p>
-            The shop randomly picks one of the 5 character cards to put on sale (50% off). The sale slot is determined by <code className="text-[var(--accent-gold)] text-xs">PlayerRng.Shops.NextInt(5)</code>.
+            The shop randomly picks one of the 5 character cards to put on sale ({Math.round((1 - cards.on_sale_fraction) * 100)}% off). The sale slot is determined by <code className="text-[var(--accent-gold)] text-xs">PlayerRng.Shops.NextInt(5)</code>.
           </p>
           <p>
             When you buy an item, the slot is emptied. Items only restock if you have <strong>The Courier</strong> relic, which refills purchased slots with new random items (excluding duplicates already in the shop).

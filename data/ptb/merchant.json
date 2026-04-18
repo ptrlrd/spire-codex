@@ -1,0 +1,108 @@
+{
+  "cards": {
+    "common": {
+      "base": 50,
+      "min": 48,
+      "max": 52
+    },
+    "uncommon": {
+      "base": 75,
+      "min": 71,
+      "max": 79
+    },
+    "rare": {
+      "base": 150,
+      "min": 142,
+      "max": 158
+    },
+    "variance": {
+      "min": 0.95,
+      "max": 1.05
+    },
+    "colorless_multiplier": 1.15,
+    "on_sale_fraction": 0.5
+  },
+  "potions": {
+    "common": {
+      "base": 50,
+      "min": 48,
+      "max": 52
+    },
+    "uncommon": {
+      "base": 75,
+      "min": 71,
+      "max": 79
+    },
+    "rare": {
+      "base": 100,
+      "min": 95,
+      "max": 105
+    },
+    "variance": {
+      "min": 0.95,
+      "max": 1.05
+    }
+  },
+  "relics": {
+    "common": {
+      "base": 175,
+      "min": 149,
+      "max": 201
+    },
+    "uncommon": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "rare": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "shop": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
+    "variance": {
+      "min": 0.85,
+      "max": 1.15
+    },
+    "blacklist": [
+      {
+        "id": "AMETHYST_AUBERGINE",
+        "name": "Berinjela de Ametista"
+      },
+      {
+        "id": "BOWLER_HAT",
+        "name": "Chapéu Coco"
+      },
+      {
+        "id": "LUCKY_FYSH",
+        "name": "Peyxe da Sorte"
+      },
+      {
+        "id": "OLD_COIN",
+        "name": "Moeda Antiga"
+      },
+      {
+        "id": "THE_COURIER",
+        "name": "O Caixeiro"
+      }
+    ]
+  },
+  "card_removal": {
+    "base": 75,
+    "increment": 25,
+    "ascension_inflation": {
+      "level": 6,
+      "modifier": "Inflation",
+      "base": 100,
+      "increment": 50
+    }
+  },
+  "fake_merchant": {
+    "flat_price": 50,
+    "relic_count": 10
+  }
+}

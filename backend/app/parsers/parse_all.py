@@ -17,6 +17,7 @@ from act_parser import main as parse_acts
 from ascension_parser import main as parse_ascensions
 from pool_parser import main as parse_pools
 from translation_parser import main as parse_translations
+from merchant_parser import main as parse_merchant
 
 LANGUAGES = [
     "deu",
@@ -53,6 +54,7 @@ def parse_language(lang: str):
     parse_acts(lang)
     parse_ascensions(lang)
     parse_pools(lang)  # Must run after potions
+    parse_merchant(lang)  # Must run after relics (uses parsed names for blacklist)
     parse_translations(lang)
 
 
