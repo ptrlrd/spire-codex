@@ -4,7 +4,7 @@ import JsonLd from "@/app/components/JsonLd";
 import { buildBreadcrumbJsonLd, buildCollectionPageJsonLd } from "@/lib/jsonld";
 import { SITE_URL, SITE_NAME } from "@/lib/seo";
 import type { NewsArticle, NewsListResponse } from "@/lib/api";
-import { newsExcerpt, formatNewsDate } from "@/lib/steam-news";
+import { newsExcerpt, formatNewsDate, newsSlugForArticle } from "@/lib/steam-news";
 import {
   isValidLang,
   LANG_GAME_NAME,
@@ -19,6 +19,20 @@ const API = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "
 
 export const dynamic = "force-dynamic";
 export const revalidate = 1800;
+
+type Tab = "community" | "press" | "all";
+
+const TABS: { key: Tab; feedType: number | null }[] = [
+  { key: "community", feedType: 1 },
+  { key: "press", feedType: 0 },
+  { key: "all", feedType: null },
+];
+
+function tabFromParam(value: string | string[] | undefined): Tab {
+  const v = Array.isArray(value) ? value[0] : value;
+  if (v === "press" || v === "all") return v;
+  return "community";
+}
 
 export async function generateMetadata({
   params,
@@ -49,9 +63,11 @@ export async function generateMetadata({
   };
 }
 
-async function loadNews(): Promise<NewsListResponse> {
+async function loadNews(feedType: number | null): Promise<NewsListResponse> {
+  const params = new URLSearchParams({ limit: "200" });
+  if (feedType !== null) params.set("feed_type", String(feedType));
   try {
-    const res = await fetch(`${API}/api/news?limit=200`, { next: { revalidate } });
+    const res = await fetch(`${API}/api/news?${params}`, { next: { revalidate } });
     if (!res.ok) throw new Error();
     return (await res.json()) as NewsListResponse;
   } catch {
@@ -61,12 +77,17 @@ async function loadNews(): Promise<NewsListResponse> {
 
 export default async function LangNewsPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ lang: string }>;
+  searchParams: Promise<{ tab?: string }>;
 }) {
   const { lang } = await params;
   if (!isValidLang(lang)) return null;
-  const data = await loadNews();
+  const sp = await searchParams;
+  const activeTab = tabFromParam(sp.tab);
+  const tabConfig = TABS.find((tb) => tb.key === activeTab) ?? TABS[0];
+  const data = await loadNews(tabConfig.feedType);
   const items = data.items;
 
   const jsonLd = [
@@ -78,9 +99,19 @@ export default async function LangNewsPage({
       name: `Slay the Spire 2 ${t("News", lang)}`,
       description: t("news_tagline", lang),
       path: `/${lang}/news`,
-      items: items.slice(0, 50).map((n) => ({ name: n.title, path: `/${lang}/news/${n.gid}` })),
+      items: items
+        .slice(0, 50)
+        .map((n) => ({ name: n.title, path: newsSlugForArticle(n.gid, `/${lang}/news`) })),
     }),
   ];
+
+  // Localized tab labels — falls back to the English source label if the
+  // translation key isn't present yet.
+  const tabLabels: Record<Tab, { label: string; sublabel: string }> = {
+    community: { label: t("Mega Crit", lang), sublabel: t("news_tab_community", lang) },
+    press: { label: t("Press", lang), sublabel: t("news_tab_press", lang) },
+    all: { label: t("All", lang), sublabel: t("news_tab_all", lang) },
+  };
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -89,6 +120,30 @@ export default async function LangNewsPage({
         <span className="text-[var(--accent-gold)]">{t("News", lang)}</span>
       </h1>
       <p className="text-sm text-[var(--text-muted)] mb-6">{t("news_tagline", lang)}</p>
+
+      <div className="flex gap-1 mb-6 border-b border-[var(--border-subtle)]">
+        {TABS.map((tb) => {
+          const isActive = tb.key === activeTab;
+          const href =
+            tb.key === "community" ? `/${lang}/news` : `/${lang}/news?tab=${tb.key}`;
+          return (
+            <Link
+              key={tb.key}
+              href={href}
+              className={`px-4 py-2 text-sm font-medium border-b-2 -mb-px transition-colors ${
+                isActive
+                  ? "border-[var(--accent-gold)] text-[var(--accent-gold)]"
+                  : "border-transparent text-[var(--text-muted)] hover:text-[var(--text-secondary)]"
+              }`}
+            >
+              <span>{tabLabels[tb.key].label}</span>
+              <span className="hidden sm:inline text-xs text-[var(--text-muted)] ml-2 font-normal">
+                {tabLabels[tb.key].sublabel}
+              </span>
+            </Link>
+          );
+        })}
+      </div>
 
       {items.length === 0 ? (
         <p className="text-[var(--text-muted)]">{t("news_empty", lang)}</p>
@@ -121,7 +176,7 @@ function NewsRow({
   return (
     <li>
       <Link
-        href={`${basePath}/${article.gid}`}
+        href={newsSlugForArticle(article.gid, basePath)}
         className="block bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5 hover:border-[var(--border-accent)] transition-colors"
       >
         <div className="flex items-baseline justify-between gap-3 mb-1">

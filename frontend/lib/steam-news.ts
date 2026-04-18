@@ -112,3 +112,46 @@ export function formatNewsDate(unixSeconds: number, locale: string = "en"): stri
   const d = new Date(unixSeconds * 1000);
   return d.toLocaleDateString(locale, { year: "numeric", month: "long", day: "numeric" });
 }
+
+/** Steam exposes the same article under several URL patterns. We canonicalize
+ * to `store.steampowered.com/news/app/{appid}/view/{gid}` because that's the
+ * one Steam itself uses on the storefront and it's stable across the
+ * `externalpost/{feedname}/{gid}` wrappers the API hands back. */
+export function canonicalSteamUrl(gid: string, appid: number = 2868840): string {
+  return `https://store.steampowered.com/news/app/${appid}/view/${gid}`;
+}
+
+/** Build the on-site path for a given article. URL-encodes the canonical
+ * Steam URL into the path so a single `/news/{encoded-url}` route covers
+ * Mega Crit announcements, press articles, and anything else Steam adds —
+ * the source is visible right in the URL without us having to invent a slug. */
+export function newsSlugForArticle(gid: string, basePath: string = "/news"): string {
+  return `${basePath}/${encodeURIComponent(canonicalSteamUrl(gid))}`;
+}
+
+/** Reverse-resolve any URL back to a Steam `gid`. Handles every URL pattern
+ * Steam returns plus the canonical view URL we generate ourselves:
+ *
+ *   - https://store.steampowered.com/news/app/{appid}/view/{gid}
+ *   - https://steamstore-a.akamaihd.net/news/externalpost/{feedname}/{gid}
+ *   - bare gid (legacy /news/{gid} routes — kept for inbound links)
+ *
+ * Returns null when nothing usable can be extracted so callers can 404. */
+export function gidFromSlug(slug: string): string | null {
+  const decoded = (() => {
+    try {
+      return decodeURIComponent(slug);
+    } catch {
+      return slug;
+    }
+  })();
+  // Bare numeric gid (covers legacy `/news/{gid}` URLs we shipped first).
+  if (/^\d{6,}$/.test(decoded)) return decoded;
+  // Pull the last digit-only segment from the URL — Steam puts the gid at
+  // the end of every variant.
+  const segments = decoded.split(/[/?#]/).filter(Boolean);
+  for (let i = segments.length - 1; i >= 0; i--) {
+    if (/^\d{6,}$/.test(segments[i])) return segments[i];
+  }
+  return null;
+}

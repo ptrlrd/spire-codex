@@ -1,16 +1,23 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import JsonLd from "@/app/components/JsonLd";
 import { buildBreadcrumbJsonLd } from "@/lib/jsonld";
 import { SITE_URL, SITE_NAME } from "@/lib/seo";
 import type { NewsArticle } from "@/lib/api";
-import { sanitizeSteamNews, newsExcerpt, formatNewsDate } from "@/lib/steam-news";
+import {
+  sanitizeSteamNews,
+  newsExcerpt,
+  formatNewsDate,
+  gidFromSlug,
+  newsSlugForArticle,
+  canonicalSteamUrl,
+} from "@/lib/steam-news";
+import { isValidLang, LANG_HREFLANG, type LangCode } from "@/lib/languages";
+import { t } from "@/lib/ui-translations";
 
 const API = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
-// Same reasoning as /news — skip the build-time prerender so we don't
-// bake a "Not Found" page when the backend isn't reachable from CI.
 export const dynamic = "force-dynamic";
 export const revalidate = 1800;
 
@@ -26,42 +33,64 @@ async function fetchItem(gid: string): Promise<NewsArticle | null> {
   }
 }
 
+function joinSlug(parts: string[]): string {
+  return parts.join("/");
+}
+
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ gid: string }>;
+  params: Promise<{ lang: string; slug: string[] }>;
 }): Promise<Metadata> {
-  const { gid } = await params;
+  const { lang, slug } = await params;
+  if (!isValidLang(lang)) return {};
+  const gid = gidFromSlug(joinSlug(slug));
+  if (!gid) return { title: `${t("Not Found", lang)} | ${SITE_NAME}` };
   const article = await fetchItem(gid);
-  if (!article) return { title: `News Not Found | ${SITE_NAME}` };
+  if (!article) return { title: `${t("Not Found", lang)} | ${SITE_NAME}` };
   const description = newsExcerpt(article.contents ?? "", 200);
   const title = `${article.title} | ${SITE_NAME}`;
+  const canonicalPath = newsSlugForArticle(article.gid, `/${lang}/news`);
   return {
     title,
     description,
-    alternates: {
-      // Canonical points back to Steam — we're additive, not duplicative.
-      canonical: article.url,
-    },
+    alternates: { canonical: canonicalSteamUrl(article.gid) },
     openGraph: {
       title: article.title,
       description,
-      url: `${SITE_URL}/news/${gid}`,
+      url: `${SITE_URL}${canonicalPath}`,
       siteName: SITE_NAME,
       type: "article",
       publishedTime: new Date(article.date * 1000).toISOString(),
       authors: article.author ? [article.author] : undefined,
+      locale: LANG_HREFLANG[lang as LangCode],
     },
     twitter: { card: "summary_large_image", title: article.title, description },
   };
 }
 
-export default async function NewsArticlePage({
+export default async function LangNewsArticlePage({
   params,
 }: {
-  params: Promise<{ gid: string }>;
+  params: Promise<{ lang: string; slug: string[] }>;
 }) {
-  const { gid } = await params;
+  const { lang, slug } = await params;
+  if (!isValidLang(lang)) return null;
+  const joined = joinSlug(slug);
+  const gid = gidFromSlug(joined);
+  if (!gid) notFound();
+
+  let decoded = joined;
+  try {
+    decoded = decodeURIComponent(joined);
+  } catch {
+    /* keep raw */
+  }
+  const onCanonicalPath = decoded.startsWith("https://store.steampowered.com/news/app/");
+  if (!onCanonicalPath) {
+    redirect(newsSlugForArticle(gid, `/${lang}/news`));
+  }
+
   const article = await fetchItem(gid);
   if (!article) notFound();
 
@@ -69,15 +98,13 @@ export default async function NewsArticlePage({
   const date = formatNewsDate(article.date);
   const description = newsExcerpt(article.contents ?? "", 250);
   const publishedIso = new Date(article.date * 1000).toISOString();
+  const onSitePath = newsSlugForArticle(article.gid, `/${lang}/news`);
 
-  // NewsArticle JSON-LD pointing at the original Steam URL as the
-  // canonical mainEntityOfPage so search engines treat us as a mirror,
-  // not the source.
   const jsonLd: Record<string, unknown>[] = [
     buildBreadcrumbJsonLd([
-      { name: "Home", href: "/" },
-      { name: "News", href: "/news" },
-      { name: article.title, href: `/news/${article.gid}` },
+      { name: t("Home", lang), href: `/${lang}` },
+      { name: t("News", lang), href: `/${lang}/news` },
+      { name: article.title, href: onSitePath },
     ]),
     {
       "@context": "https://schema.org",
@@ -89,17 +116,11 @@ export default async function NewsArticlePage({
       author: article.author
         ? { "@type": "Person", name: article.author }
         : { "@type": "Organization", name: article.feedlabel || "Mega Crit" },
-      publisher: {
-        "@type": "Organization",
-        name: "Mega Crit",
-      },
-      mainEntityOfPage: {
-        "@type": "WebPage",
-        "@id": article.url,
-      },
+      publisher: { "@type": "Organization", name: "Mega Crit" },
+      mainEntityOfPage: { "@type": "WebPage", "@id": canonicalSteamUrl(article.gid) },
       isBasedOn: article.url,
-      url: `${SITE_URL}/news/${article.gid}`,
-      inLanguage: "en",
+      url: `${SITE_URL}${onSitePath}`,
+      inLanguage: LANG_HREFLANG[lang as LangCode],
       about: { "@type": "VideoGame", name: "Slay the Spire 2" },
     },
   ];
@@ -109,10 +130,10 @@ export default async function NewsArticlePage({
       <JsonLd data={jsonLd} />
 
       <Link
-        href="/news"
+        href={`/${lang}/news`}
         className="text-sm text-[var(--text-muted)] hover:text-[var(--accent-gold)] mb-6 inline-flex items-center gap-1 transition-colors"
       >
-        <span>&larr;</span> Back to News
+        <span>&larr;</span> {t("Back to", lang)} {t("News", lang)}
       </Link>
 
       <article>
@@ -124,21 +145,9 @@ export default async function NewsArticlePage({
           {" · "}
           {article.feedlabel}
           {article.author ? ` · ${article.author}` : ""}
-          {article.tags?.includes("patchnotes") ? " · Patch Notes" : ""}
+          {article.tags?.includes("patchnotes") ? ` · ${t("Patch Notes", lang)}` : ""}
         </p>
-        <p className="text-xs text-[var(--text-muted)] mb-6">
-          From{" "}
-          <a
-            href={article.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline hover:text-[var(--accent-gold)]"
-          >
-            {article.is_external_url ? "the original publisher" : "Steam"}
-          </a>
-          {" "}— content © Mega Crit Games / respective publisher. Spire Codex mirrors this
-          announcement so it stays searchable after Steam rotates it off the news feed.
-        </p>
+        <p className="text-xs text-[var(--text-muted)] mb-6">{t("news_attribution", lang)}</p>
 
         <div
           className="news-article prose prose-invert max-w-none text-[var(--text-secondary)] leading-relaxed"
@@ -146,14 +155,14 @@ export default async function NewsArticlePage({
         />
 
         <p className="mt-8 pt-4 border-t border-[var(--border-subtle)] text-xs text-[var(--text-muted)]">
-          Read on Steam:{" "}
+          {t("Read on Steam", lang)}:{" "}
           <a
-            href={article.url}
+            href={canonicalSteamUrl(article.gid)}
             target="_blank"
             rel="noopener noreferrer"
             className="underline text-[var(--accent-gold)] hover:text-white"
           >
-            {article.url}
+            {canonicalSteamUrl(article.gid)}
           </a>
         </p>
       </article>

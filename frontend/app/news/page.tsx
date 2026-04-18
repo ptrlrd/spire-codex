@@ -4,16 +4,13 @@ import JsonLd from "@/app/components/JsonLd";
 import { buildBreadcrumbJsonLd, buildCollectionPageJsonLd } from "@/lib/jsonld";
 import { SITE_URL, SITE_NAME } from "@/lib/seo";
 import type { NewsArticle, NewsListResponse } from "@/lib/api";
-import { newsExcerpt, formatNewsDate } from "@/lib/steam-news";
+import { newsExcerpt, formatNewsDate, newsSlugForArticle } from "@/lib/steam-news";
 
 const API = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
 // Render at request time, not build time. The Docker build container
 // can't reach the backend, so a build-time prerender would catch the
-// fetch error and bake an empty list into the image — and ISR's 30-min
-// revalidate window would then serve that empty version for half an
-// hour after every deploy. Same pattern as `/[lang]/showcase` and
-// `/[lang]/leaderboards`.
+// fetch error and bake an empty list into the image.
 export const dynamic = "force-dynamic";
 export const revalidate = 1800;
 
@@ -32,9 +29,25 @@ export const metadata: Metadata = {
   },
 };
 
-async function loadNews(): Promise<NewsListResponse> {
+type Tab = "community" | "press" | "all";
+
+const TABS: { key: Tab; label: string; sublabel: string; feedType: number | null }[] = [
+  { key: "community", label: "Mega Crit", sublabel: "Steam announcements", feedType: 1 },
+  { key: "press", label: "Press", sublabel: "PCGamesN, RPS, GamingOnLinux…", feedType: 0 },
+  { key: "all", label: "All", sublabel: "Everything", feedType: null },
+];
+
+function tabFromParam(value: string | string[] | undefined): Tab {
+  const v = Array.isArray(value) ? value[0] : value;
+  if (v === "press" || v === "all") return v;
+  return "community";
+}
+
+async function loadNews(feedType: number | null): Promise<NewsListResponse> {
+  const params = new URLSearchParams({ limit: "200" });
+  if (feedType !== null) params.set("feed_type", String(feedType));
   try {
-    const res = await fetch(`${API}/api/news?limit=200`, { next: { revalidate } });
+    const res = await fetch(`${API}/api/news?${params}`, { next: { revalidate } });
     if (!res.ok) throw new Error(`status ${res.status}`);
     return (await res.json()) as NewsListResponse;
   } catch {
@@ -42,8 +55,15 @@ async function loadNews(): Promise<NewsListResponse> {
   }
 }
 
-export default async function NewsPage() {
-  const data = await loadNews();
+export default async function NewsPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ tab?: string }>;
+}) {
+  const sp = await searchParams;
+  const activeTab = tabFromParam(sp.tab);
+  const tabConfig = TABS.find((t) => t.key === activeTab) ?? TABS[0];
+  const data = await loadNews(tabConfig.feedType);
   const items = data.items;
 
   const jsonLd = [
@@ -55,7 +75,7 @@ export default async function NewsPage() {
       name: `Slay the Spire 2 News`,
       description: "Patch notes, dev updates, and community announcements.",
       path: "/news",
-      items: items.slice(0, 50).map((n) => ({ name: n.title, path: `/news/${n.gid}` })),
+      items: items.slice(0, 50).map((n) => ({ name: n.title, path: newsSlugForArticle(n.gid) })),
     }),
   ];
 
@@ -69,6 +89,30 @@ export default async function NewsPage() {
         Patch notes, dev updates, and community announcements from Mega Crit, plus press
         coverage. Mirrored from Steam — read each post in full or follow the original link.
       </p>
+
+      {/* Tabs — Community is the default; Press surfaces external coverage */}
+      <div className="flex gap-1 mb-6 border-b border-[var(--border-subtle)]">
+        {TABS.map((tb) => {
+          const isActive = tb.key === activeTab;
+          const href = tb.key === "community" ? "/news" : `/news?tab=${tb.key}`;
+          return (
+            <Link
+              key={tb.key}
+              href={href}
+              className={`px-4 py-2 text-sm font-medium border-b-2 -mb-px transition-colors ${
+                isActive
+                  ? "border-[var(--accent-gold)] text-[var(--accent-gold)]"
+                  : "border-transparent text-[var(--text-muted)] hover:text-[var(--text-secondary)]"
+              }`}
+            >
+              <span>{tb.label}</span>
+              <span className="hidden sm:inline text-xs text-[var(--text-muted)] ml-2 font-normal">
+                {tb.sublabel}
+              </span>
+            </Link>
+          );
+        })}
+      </div>
 
       {items.length === 0 ? (
         <p className="text-[var(--text-muted)]">No news available right now. Check back soon.</p>
@@ -97,7 +141,7 @@ export function NewsRow({ article, basePath }: { article: NewsArticle; basePath:
   return (
     <li>
       <Link
-        href={`${basePath}/${article.gid}`}
+        href={newsSlugForArticle(article.gid, basePath)}
         className="block bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5 hover:border-[var(--border-accent)] transition-colors"
       >
         <div className="flex items-baseline justify-between gap-3 mb-1">
