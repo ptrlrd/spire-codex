@@ -65,11 +65,11 @@ export default function SharedRunClient() {
     });
   }
 
-  if (loading) return <div className="max-w-4xl mx-auto px-4 py-12 text-center text-[var(--text-muted)]">Loading...</div>;
+  if (loading) return <div className="max-w-4xl mx-auto px-4 py-12 text-center text-[var(--text-muted)]">{t("Loading...", lang)}</div>;
   if (notFound || !run) return (
     <div className="max-w-4xl mx-auto px-4 py-12 text-center">
-      <p className="text-[var(--text-muted)] mb-4">Run not found.</p>
-      <Link href={`${lp}/leaderboards`} className="text-[var(--accent-gold)] hover:underline">&larr; Back</Link>
+      <p className="text-[var(--text-muted)] mb-4">{t("Run not found.", lang)}</p>
+      <Link href={`${lp}/leaderboards`} className="text-[var(--accent-gold)] hover:underline">&larr; {t("Back to", lang)}</Link>
     </div>
   );
 
@@ -82,7 +82,7 @@ export default function SharedRunClient() {
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="flex items-center justify-between mb-4">
         <Link href={`${lp}/leaderboards`} className="text-sm text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors">
-          &larr; Back
+          &larr; {t("Back to", lang)}
         </Link>
         <button onClick={copyLink}
           className="text-xs px-3 py-1.5 rounded-lg border border-[var(--border-subtle)] text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:border-[var(--border-accent)] transition-colors">
@@ -107,10 +107,10 @@ export default function SharedRunClient() {
           </Link>
         </div>
         <div className="text-sm text-[var(--text-muted)]">
-          Ascension {run.ascension || 0}
+          {t("Ascension", lang)} {run.ascension || 0}
           {!run.win && !run.was_abandoned && run.killed_by_encounter && run.killed_by_encounter !== "NONE.NONE" && (
             <>
-              {" · Killed by "}
+              {" · "}{t("Killed by", lang)}{" "}
               <Link href={`${lp}/encounters/${cleanId(run.killed_by_encounter).toLowerCase()}`} className="hover:underline" style={{ color: "var(--color-ironclad)" }}>
                 {displayName(run.killed_by_encounter)}
               </Link>
@@ -136,13 +136,13 @@ export default function SharedRunClient() {
         className="w-full text-left text-sm text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors mb-3 flex items-center gap-2"
       >
         <span className={`inline-block transition-transform ${showDetails ? "rotate-90" : ""}`}>&gt;</span>
-        {showDetails ? "Hide" : "Show"} detailed history (deck list, relic acquisition floors, floor-by-floor stats)
+        {showDetails ? t("Hide", lang) : t("Show", lang)} {t("detailed history", lang)}
       </button>
 
       {showDetails && <>
       {/* Deck */}
       <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5 mb-4">
-        <h2 className="text-lg font-semibold text-[var(--text-primary)] mb-3">Final Deck ({player.deck.length})</h2>
+        <h2 className="text-lg font-semibold text-[var(--text-primary)] mb-3">{t("Final Deck", lang)} ({player.deck.length})</h2>
         <div className="flex flex-wrap gap-1.5">
           {player.deck.sort((a: any, b: any) => cleanId(a.id).localeCompare(cleanId(b.id))).map((card: any, i: number) => {
             const cid = cleanId(card.id);
@@ -162,7 +162,7 @@ export default function SharedRunClient() {
 
       {/* Relics */}
       <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5 mb-4">
-        <h2 className="text-lg font-semibold text-[var(--text-primary)] mb-3">Relics ({player.relics.length})</h2>
+        <h2 className="text-lg font-semibold text-[var(--text-primary)] mb-3">{t("Relics", lang)} ({player.relics.length})</h2>
         <div className="flex flex-wrap gap-1.5">
           {player.relics.map((relic: any, i: number) => {
             const rid = cleanId(relic.id);
@@ -179,7 +179,7 @@ export default function SharedRunClient() {
 
       {/* Floor History */}
       <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5">
-        <h2 className="text-lg font-semibold text-[var(--text-primary)] mb-3">Floor History</h2>
+        <h2 className="text-lg font-semibold text-[var(--text-primary)] mb-3">{t("Floor History", lang)}</h2>
         <div className="space-y-1">
           {run.map_point_history?.map((actFloors: any[], actIdx: number) => (
             <div key={actIdx}>

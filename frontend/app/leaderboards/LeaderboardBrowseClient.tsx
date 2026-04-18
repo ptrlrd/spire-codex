@@ -197,7 +197,7 @@ export default function LeaderboardBrowseClient() {
                   : "bg-[var(--bg-primary)] border-[var(--border-subtle)] text-[var(--text-muted)] hover:text-[var(--text-primary)]"
               }`}
             >
-              All
+              {t("All", lang)}
             </button>
             {CHARACTERS.map((ch) => (
               <button
@@ -221,21 +221,21 @@ export default function LeaderboardBrowseClient() {
 
           {/* Leaderboard table */}
           {lbLoading ? (
-            <p className="text-center py-8 text-[var(--text-muted)]">Loading...</p>
+            <p className="text-center py-8 text-[var(--text-muted)]">{t("Loading...", lang)}</p>
           ) : lbEntries.length === 0 ? (
-            <p className="text-center py-8 text-[var(--text-muted)]">No leaderboard entries found.</p>
+            <p className="text-center py-8 text-[var(--text-muted)]">{t("No leaderboard entries found.", lang)}</p>
           ) : (
             <>
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
                   <thead>
                     <tr className="border-b border-[var(--border-subtle)]">
-                      <th className="text-left py-2 px-2 sm:px-3 text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider">Rank</th>
-                      <th className="hidden sm:table-cell text-left py-2 px-3 text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider">Player</th>
-                      <th className="text-left py-2 px-2 sm:px-3 text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider">Character</th>
-                      <th className="text-left py-2 px-2 sm:px-3 text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider">Asc</th>
-                      <th className="text-left py-2 px-2 sm:px-3 text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider">Time</th>
-                      <th className="hidden sm:table-cell text-left py-2 px-3 text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider">Floors</th>
+                      <th className="text-left py-2 px-2 sm:px-3 text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider">{t("Rank", lang)}</th>
+                      <th className="hidden sm:table-cell text-left py-2 px-3 text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider">{t("Player", lang)}</th>
+                      <th className="text-left py-2 px-2 sm:px-3 text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider">{t("Character", lang)}</th>
+                      <th className="text-left py-2 px-2 sm:px-3 text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider">{t("Asc", lang)}</th>
+                      <th className="text-left py-2 px-2 sm:px-3 text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider">{t("Time", lang)}</th>
+                      <th className="hidden sm:table-cell text-left py-2 px-3 text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider">{t("Floors", lang)}</th>
                       <th className="py-2 px-2 sm:px-3"></th>
                     </tr>
                   </thead>
@@ -278,7 +278,7 @@ export default function LeaderboardBrowseClient() {
 
               {/* Leaderboard pagination */}
               {lbTotalPages > 1 && (
-                <Pagination page={lbPage} totalPages={lbTotalPages} onPageChange={setLbPage} />
+                <Pagination page={lbPage} totalPages={lbTotalPages} onPageChange={setLbPage} lang={lang} />
               )}
             </>
           )}
@@ -308,9 +308,9 @@ export default function LeaderboardBrowseClient() {
               onChange={(e) => setBrowseWin(e.target.value)}
               className="text-sm px-3 py-1.5 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)] w-full sm:w-auto"
             >
-              <option value="">All Runs</option>
-              <option value="true">Wins</option>
-              <option value="false">Losses</option>
+              <option value="">{t("All Runs", lang)}</option>
+              <option value="true">{t("Wins", lang)}</option>
+              <option value="false">{t("Losses", lang)}</option>
             </select>
 
             <input
@@ -335,7 +335,7 @@ export default function LeaderboardBrowseClient() {
                 onChange={(e) => setBrowseBuildId(e.target.value)}
                 className="text-sm px-3 py-1.5 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)] w-full sm:w-auto"
               >
-                <option value="">All Versions</option>
+                <option value="">{t("All Versions", lang)}</option>
                 {versions.map((v) => (
                   <option key={v} value={v}>{v}</option>
                 ))}
@@ -347,18 +347,18 @@ export default function LeaderboardBrowseClient() {
               onChange={(e) => setBrowseSort(e.target.value)}
               className="text-sm px-3 py-1.5 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)] w-full sm:w-auto"
             >
-              <option value="date">Newest</option>
-              <option value="time_asc">Fastest</option>
-              <option value="time_desc">Slowest</option>
-              <option value="ascension_desc">Highest Asc</option>
+              <option value="date">{t("Newest", lang)}</option>
+              <option value="time_asc">{t("Fastest", lang)}</option>
+              <option value="time_desc">{t("Slowest", lang)}</option>
+              <option value="ascension_desc">{t("Highest Asc", lang)}</option>
             </select>
           </div>
 
           {/* Total count */}
-          <p className="text-xs text-[var(--text-muted)] mb-3">{browseTotal} runs total</p>
+          <p className="text-xs text-[var(--text-muted)] mb-3">{browseTotal} {t("runs total", lang)}</p>
 
           {runList.length === 0 ? (
-            <p className="text-center py-8 text-[var(--text-muted)]">No runs found.</p>
+            <p className="text-center py-8 text-[var(--text-muted)]">{t("No runs found.", lang)}</p>
           ) : (
             <>
               <div className="space-y-2">
@@ -396,17 +396,18 @@ export default function LeaderboardBrowseClient() {
 
               {/* Pagination */}
               {browseTotalPages > 1 && (
-                <Pagination page={browsePage} totalPages={browseTotalPages} onPageChange={setBrowsePage} />
+                <Pagination page={browsePage} totalPages={browseTotalPages} onPageChange={setBrowsePage} lang={lang} />
               )}
             </>
           )}
         </>
       )}
+      {/* Leaderboard pagination — also threads lang for translated labels */}
     </div>
   );
 }
 
-function Pagination({ page, totalPages, onPageChange }: { page: number; totalPages: number; onPageChange: (p: number) => void }) {
+function Pagination({ page, totalPages, onPageChange, lang }: { page: number; totalPages: number; onPageChange: (p: number) => void; lang: string }) {
   return (
     <div className="flex items-center justify-center gap-2 mt-4">
       <button
@@ -414,17 +415,17 @@ function Pagination({ page, totalPages, onPageChange }: { page: number; totalPag
         disabled={page <= 1}
         className="text-xs px-3 py-1.5 rounded-lg border border-[var(--border-subtle)] text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:border-[var(--border-accent)] transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
       >
-        &larr; Prev
+        &larr; {t("Prev", lang)}
       </button>
       <span className="text-xs text-[var(--text-muted)]">
-        Page {page} of {totalPages}
+        {t("Page", lang)} {page} {t("of", lang)} {totalPages}
       </span>
       <button
         onClick={() => onPageChange(page + 1)}
         disabled={page >= totalPages}
         className="text-xs px-3 py-1.5 rounded-lg border border-[var(--border-subtle)] text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:border-[var(--border-accent)] transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
       >
-        Next &rarr;
+        {t("Next", lang)} &rarr;
       </button>
     </div>
   );

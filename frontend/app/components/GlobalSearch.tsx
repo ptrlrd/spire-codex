@@ -4,6 +4,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { useLanguage } from "../contexts/LanguageContext";
 import { buildApiUrl } from "@/lib/fetch-cache";
+import { t } from "@/lib/ui-translations";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -317,7 +318,7 @@ export default function GlobalSearch() {
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search cards, relics, monsters..."
+            placeholder={t("Search cards, relics, monsters...", lang)}
             className="flex-1 bg-transparent text-lg text-[var(--text-primary)] placeholder:text-[var(--text-muted)] outline-none"
           />
           {loading && (
@@ -332,20 +333,20 @@ export default function GlobalSearch() {
         <div className="max-h-[60vh] overflow-y-auto">
           {!query.trim() && (
             <div className="px-4 py-8 text-center text-sm text-[var(--text-muted)]">
-              Type to search across all categories
+              {t("Type to search across all categories", lang)}
             </div>
           )}
 
           {query.trim() && !loading && totalResults === 0 && (
             <div className="px-4 py-8 text-center text-sm text-[var(--text-muted)]">
-              No results found for &ldquo;{query}&rdquo;
+              {t("No results found for", lang)} &ldquo;{query}&rdquo;
             </div>
           )}
 
           {matchedPages.length > 0 && (
             <div className="py-2">
               <div className="px-4 py-1 text-xs uppercase tracking-wider text-[var(--text-muted)] font-medium">
-                Pages
+                {t("Pages", lang)}
               </div>
               {matchedPages.map((p, i) => {
                 const isSelected = i === selectedIndex;

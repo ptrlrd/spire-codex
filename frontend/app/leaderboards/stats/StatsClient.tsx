@@ -574,13 +574,13 @@ export default function StatsClient() {
           onChange={(e) => setWinFilter(e.target.value)}
           className={selectClass}
         >
-          <option value="">All Outcomes</option>
-          <option value="true">Wins only</option>
-          <option value="false">Losses only</option>
-          <option value="abandoned">Abandoned</option>
+          <option value="">{t("All", lang)}</option>
+          <option value="true">{t("Wins", lang)}</option>
+          <option value="false">{t("Losses", lang)}</option>
+          <option value="abandoned">{t("Abandoned", lang)}</option>
         </select>
         {loading && (
-          <span className="text-xs text-[var(--text-muted)] self-center">Updating...</span>
+          <span className="text-xs text-[var(--text-muted)] self-center">{t("Loading...", lang)}</span>
         )}
       </div>
 
@@ -603,11 +603,11 @@ export default function StatsClient() {
 
       {!stats || stats.total_runs === 0 ? (
         <div className="text-center py-12 text-[var(--text-muted)]">
-          No runs match these filters.
+          {t("No runs found.", lang)}
         </div>
       ) : (
         <>
-          {tab === "overview" && <OverviewTab stats={stats} onCharacterClick={setCharacter} />}
+          {tab === "overview" && <OverviewTab stats={stats} onCharacterClick={setCharacter} lang={lang} />}
           {tab === "cards" && (
             <CardsTab
               rows={filteredCards}
@@ -665,9 +665,11 @@ export default function StatsClient() {
 function OverviewTab({
   stats,
   onCharacterClick,
+  lang,
 }: {
   stats: CommunityStats;
   onCharacterClick: (c: string) => void;
+  lang: string;
 }) {
   const losses =
     (stats.total_runs || 0) - (stats.total_wins || 0) - (stats.total_abandoned || 0);
@@ -682,21 +684,21 @@ function OverviewTab({
             <div className="text-2xl font-bold text-[var(--text-primary)]">
               {stats.total_runs}
             </div>
-            <div className="text-xs text-[var(--text-muted)]">Runs</div>
+            <div className="text-xs text-[var(--text-muted)]">{t("Runs", lang)}</div>
           </div>
           <div className="bg-[var(--bg-primary)] rounded-lg p-3">
             <div className="text-2xl font-bold text-emerald-400">{stats.total_wins}</div>
-            <div className="text-xs text-[var(--text-muted)]">Wins</div>
+            <div className="text-xs text-[var(--text-muted)]">{t("Wins", lang)}</div>
           </div>
           <div className="bg-[var(--bg-primary)] rounded-lg p-3">
             <div className="text-2xl font-bold text-red-400">{losses}</div>
-            <div className="text-xs text-[var(--text-muted)]">Losses</div>
+            <div className="text-xs text-[var(--text-muted)]">{t("Losses", lang)}</div>
           </div>
           <div className="bg-[var(--bg-primary)] rounded-lg p-3">
             <div className="text-2xl font-bold text-[var(--accent-gold)]">
               {stats.win_rate}%
             </div>
-            <div className="text-xs text-[var(--text-muted)]">Win Rate</div>
+            <div className="text-xs text-[var(--text-muted)]">{t("Win %", lang)}</div>
           </div>
         </div>
       </div>

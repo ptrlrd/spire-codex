@@ -4,10 +4,13 @@ import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { IS_BETA } from "@/lib/seo";
+import { useLanguage } from "@/app/contexts/LanguageContext";
+import { t } from "@/lib/ui-translations";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
 function FeedbackModal({ onClose, page }: { onClose: () => void; page: string }) {
+  const { lang } = useLanguage();
   const [type, setType] = useState("Bug");
   const [contact, setContact] = useState("");
   const [contents, setContents] = useState("");
@@ -33,7 +36,7 @@ function FeedbackModal({ onClose, page }: { onClose: () => void; page: string })
       setSent(true);
       setTimeout(onClose, 1500);
     } catch {
-      setError("Failed to send. Please try again.");
+      setError(t("Failed to send. Please try again.", lang));
     } finally {
       setSending(false);
     }
@@ -46,13 +49,13 @@ function FeedbackModal({ onClose, page }: { onClose: () => void; page: string })
         className="relative w-full max-w-md bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] shadow-2xl shadow-black/50 p-6"
         onClick={(e) => e.stopPropagation()}
       >
-        <h2 className="text-lg font-bold text-[var(--text-primary)] mb-4">Submit Feedback</h2>
+        <h2 className="text-lg font-bold text-[var(--text-primary)] mb-4">{t("Submit Feedback", lang)}</h2>
 
         {sent ? (
-          <p className="text-emerald-400 text-sm py-4">Sent successfully. Thank you!</p>
+          <p className="text-emerald-400 text-sm py-4">{t("Sent successfully. Thank you!", lang)}</p>
         ) : (
           <>
-            <label className="block text-sm text-[var(--text-secondary)] mb-1">Page</label>
+            <label className="block text-sm text-[var(--text-secondary)] mb-1">{t("Page", lang)}</label>
             <input
               type="text"
               value={page}
@@ -60,18 +63,18 @@ function FeedbackModal({ onClose, page }: { onClose: () => void; page: string })
               className="w-full mb-4 px-3 py-2 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-muted)] text-sm cursor-default"
             />
 
-            <label className="block text-sm text-[var(--text-secondary)] mb-1">Type</label>
+            <label className="block text-sm text-[var(--text-secondary)] mb-1">{t("Type", lang)}</label>
             <select
               value={type}
               onChange={(e) => setType(e.target.value)}
               className="w-full mb-4 px-3 py-2 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] text-sm focus:outline-none focus:border-[var(--accent-gold)]"
             >
-              <option value="Bug">Bug</option>
-              <option value="Feature Request">Feature Request</option>
-              <option value="Localization">Localization</option>
+              <option value="Bug">{t("Bug", lang)}</option>
+              <option value="Feature Request">{t("Feature Request", lang)}</option>
+              <option value="Localization">{t("Localization", lang)}</option>
             </select>
 
-            <label className="block text-sm text-[var(--text-secondary)] mb-1">Discord Username or Email <span className="text-red-400">*</span></label>
+            <label className="block text-sm text-[var(--text-secondary)] mb-1">{t("Discord Username or Email", lang)} <span className="text-red-400">*</span></label>
             <input
               type="text"
               value={contact}
@@ -80,12 +83,12 @@ function FeedbackModal({ onClose, page }: { onClose: () => void; page: string })
               className="w-full mb-4 px-3 py-2 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] text-sm focus:outline-none focus:border-[var(--accent-gold)]"
             />
 
-            <label className="block text-sm text-[var(--text-secondary)] mb-1">Contents <span className="text-red-400">*</span></label>
+            <label className="block text-sm text-[var(--text-secondary)] mb-1">{t("Contents", lang)} <span className="text-red-400">*</span></label>
             <textarea
               value={contents}
               onChange={(e) => setContents(e.target.value)}
               rows={5}
-              placeholder="Describe the bug or feature request..."
+              placeholder={t("Describe the bug or feature request...", lang)}
               className="w-full mb-4 px-3 py-2 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] text-sm focus:outline-none focus:border-[var(--accent-gold)] resize-none"
             />
 
@@ -96,14 +99,14 @@ function FeedbackModal({ onClose, page }: { onClose: () => void; page: string })
                 onClick={onClose}
                 className="px-4 py-2 rounded-lg text-sm text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors"
               >
-                Cancel
+                {t("Cancel", lang)}
               </button>
               <button
                 onClick={handleSubmit}
                 disabled={sending || !contents.trim() || !contact.trim()}
                 className="px-4 py-2 rounded-lg text-sm font-medium bg-[var(--accent-gold)] text-[var(--bg-primary)] hover:opacity-90 transition-opacity disabled:opacity-50"
               >
-                {sending ? "Sending..." : "Submit"}
+                {sending ? t("Sending...", lang) : t("Submit", lang)}
               </button>
             </div>
           </>
@@ -114,6 +117,7 @@ function FeedbackModal({ onClose, page }: { onClose: () => void; page: string })
 }
 
 export default function Footer() {
+  const { lang } = useLanguage();
   const pathname = usePathname();
   const [showFeedback, setShowFeedback] = useState(false);
 
@@ -133,7 +137,7 @@ export default function Footer() {
           href="/developers"
           className="hover:text-[var(--accent-gold)] transition-colors"
         >
-          Developers
+          {t("Developers", lang)}
         </Link>
         <span className="text-[var(--border-subtle)]" aria-hidden>·</span>
         <a
@@ -167,14 +171,14 @@ export default function Footer() {
           onClick={() => setShowFeedback(true)}
           className="hover:text-[var(--accent-gold)] transition-colors"
         >
-          Submit Feedback
+          {t("Submit Feedback", lang)}
         </button>
         <span className="text-[var(--border-subtle)]" aria-hidden>·</span>
         <a
           href={IS_BETA ? "https://spire-codex.com" : "https://beta.spire-codex.com"}
           className="hover:text-[var(--accent-gold)] transition-colors"
         >
-          {IS_BETA ? "Stable Site" : "Beta Site"}
+          {IS_BETA ? t("Stable Site", lang) : t("Beta Site", lang)}
         </a>
       </div>
       {showFeedback && <FeedbackModal onClose={() => setShowFeedback(false)} page={pathname} />}

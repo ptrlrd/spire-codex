@@ -170,7 +170,7 @@ export default function SubmitRunClient() {
       const data = JSON.parse(jsonInput);
       if (!data.players || !data.map_point_history || !Array.isArray(data.acts)) {
         setError(
-          "This doesn't look like a valid run file. Expected players, map_point_history, and acts fields."
+          t("submit_invalid_run", lang)
         );
         return;
       }
@@ -312,7 +312,7 @@ export default function SubmitRunClient() {
             </p>
           </div>
           <label className="inline-block px-5 py-2 rounded-lg text-sm font-medium bg-[var(--accent-gold)] text-[var(--bg-primary)] hover:opacity-90 transition-opacity cursor-pointer">
-            Choose Files
+            {t("Choose Files", lang)}
             <input
               ref={fileInputRef}
               type="file"
@@ -337,21 +337,21 @@ export default function SubmitRunClient() {
               <p className="text-xs text-[var(--text-muted)]">
                 {uploadProgress.done === uploadProgress.total ? (
                   <>
-                    Done!{" "}
+                    {t("Done!", lang)}{" "}
                     {uploadProgress.total -
                       uploadProgress.dupes -
                       uploadProgress.errors}{" "}
-                    submitted
+                    {t("submitted", lang)}
                     {uploadProgress.dupes > 0 && (
-                      <>, {uploadProgress.dupes} duplicates skipped</>
+                      <>, {uploadProgress.dupes} {t("duplicates skipped", lang)}</>
                     )}
                     {uploadProgress.errors > 0 && (
-                      <>, {uploadProgress.errors} invalid</>
+                      <>, {uploadProgress.errors} {t("invalid", lang)}</>
                     )}
                   </>
                 ) : (
                   <>
-                    Processing {uploadProgress.done} of{" "}
+                    {t("Processing", lang)} {uploadProgress.done} {t("of", lang)}{" "}
                     {uploadProgress.total}...
                   </>
                 )}
@@ -364,7 +364,7 @@ export default function SubmitRunClient() {
         <div className="relative">
           <div className="absolute inset-x-0 top-0 flex items-center justify-center -mt-2">
             <span className="bg-[var(--bg-primary)] px-3 text-xs text-[var(--text-muted)]">
-              or paste JSON
+              {t("or paste JSON", lang)}
             </span>
           </div>
           <textarea
@@ -379,7 +379,7 @@ export default function SubmitRunClient() {
             disabled={!jsonInput.trim()}
             className="mt-2 px-5 py-2 rounded-lg text-sm font-medium bg-[var(--accent-gold)] text-[var(--bg-primary)] hover:opacity-90 transition-opacity disabled:opacity-50"
           >
-            Analyze Run
+            {t("Analyze Run", lang)}
           </button>
         </div>
 
