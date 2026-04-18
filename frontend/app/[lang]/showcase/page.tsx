@@ -87,7 +87,7 @@ export default async function LangShowcasePage({ params }: { params: Promise<{ l
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <h1 className="text-3xl font-bold text-[var(--text-primary)] mb-2">
-        Community Showcase
+        {t("Community Showcase", lang)}
       </h1>
       <p className="text-[var(--text-secondary)] mb-8">
         {t("showcase_tagline", lang)}

@@ -111,9 +111,7 @@ export default async function LangReferencePage({ params }: { params: Promise<{ 
         </span>
       </h1>
       <p className="text-sm text-[var(--text-muted)] mb-6">
-        Quick reference for Slay the Spire 2 game mechanics — keywords,
-        orbs, afflictions, intents, modifiers, achievements, acts, and ascension
-        levels.
+        {t("reference_tagline", lang)}
       </p>
 
       <ReferenceClient initialData={data} />

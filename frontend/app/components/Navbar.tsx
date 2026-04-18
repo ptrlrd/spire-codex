@@ -157,14 +157,14 @@ export default function Navbar() {
                 href="https://spire-codex.com"
                 className="hidden sm:inline-flex items-center px-2 py-1 rounded text-xs font-semibold bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 hover:bg-emerald-500/25 transition-colors"
               >
-                View Stable Site
+                {t("View Stable Site", lang)}
               </a>
             ) : (
               <a
                 href="https://beta.spire-codex.com"
                 className="hidden sm:inline-flex items-center px-2 py-1 rounded text-xs font-semibold bg-[var(--accent-gold)]/15 text-[var(--accent-gold)] border border-[var(--accent-gold)]/30 hover:bg-[var(--accent-gold)]/25 transition-colors"
               >
-                View Beta Site
+                {t("View Beta Site", lang)}
               </a>
             )}
 
@@ -184,7 +184,7 @@ export default function Navbar() {
               ref={buttonRef}
               onClick={() => setOpen(!open)}
               className="p-2 rounded-md text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-card)] transition-colors"
-              aria-label="Toggle menu"
+              aria-label={t("Toggle menu", lang)}
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 {open ? (
