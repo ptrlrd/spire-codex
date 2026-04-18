@@ -83,8 +83,8 @@ export default async function LangMerchantPage({ params }: { params: Promise<{ l
     }),
     buildFAQPageJsonLd([
       { question: `How much do cards cost at the merchant in ${gameName}?`, answer: "Common cards cost 48-53 gold, Uncommon 71-79 gold, Rare 143-158 gold. Colorless cards have a 15% markup. One random card is on sale for half price." },
-      { question: `How much do relics cost at the shop in ${gameName}?`, answer: "Common relics cost 170-230 gold, Uncommon 213-288 gold, Rare 255-345 gold, and Shop relics 191-259 gold." },
-      { question: `How much does card removal cost in ${gameName}?`, answer: "Card removal starts at 75 gold and increases by 25 gold each time you use it (75, 100, 125, 150, etc.)." },
+      { question: `How much do relics cost at the shop in ${gameName}?`, answer: "Common relics cost 149-201 gold, Uncommon 191-259 gold, Rare 234-316 gold, and Shop relics 170-230 gold. Major Update #1 (v0.103.2) reduced every relic base price by 25 gold." },
+      { question: `How much does card removal cost in ${gameName}?`, answer: "Card removal starts at 75 gold and increases by 25 gold each time you use it. At Ascension 6 and above, the Inflation modifier raises the base to 100 gold and the increment to 50 gold (100, 150, 200, ...)." },
       { question: `What is the Fake Merchant in ${gameName}?`, answer: "The Fake Merchant is an event that sells counterfeit versions of popular relics for only 50 gold each. These fakes have weaker effects than the originals." },
     ]),
   ];
@@ -120,7 +120,7 @@ export default async function LangMerchantPage({ params }: { params: Promise<{ l
             </div>
             <div className="bg-[var(--bg-primary)] rounded-lg p-3">
               <h3 className="font-semibold text-[var(--text-primary)] mb-1">Relics (3)</h3>
-              <p className="text-[var(--text-muted)]">2 random rarity rolls + 1 guaranteed Shop relic. The Courier and Old Coin are blacklisted.</p>
+              <p className="text-[var(--text-muted)]">2 random rarity rolls + 1 guaranteed Shop relic. The Courier, Old Coin, Lucky Fysh, Bowler Hat, and Amethyst Aubergine are blacklisted (gold-generating relics removed in Major Update #1).</p>
             </div>
             <div className="bg-[var(--bg-primary)] rounded-lg p-3">
               <h3 className="font-semibold text-[var(--text-primary)] mb-1">Potions (3)</h3>
@@ -198,32 +198,32 @@ export default async function LangMerchantPage({ params }: { params: Promise<{ l
             <tbody>
               <tr className="border-b border-[var(--border-subtle)]/50">
                 <td className="p-3 text-gray-300">{rr("Common")}</td>
+                <td className="p-3 text-right text-[var(--text-primary)]">175</td>
+                <td className="p-3 text-right text-[var(--accent-gold)]">149–201</td>
+                <td className="p-3 text-right text-[var(--text-muted)]">x0.85–1.15</td>
+              </tr>
+              <tr className="border-b border-[var(--border-subtle)]/50">
+                <td className="p-3 text-emerald-400">{rr("Shop")}</td>
                 <td className="p-3 text-right text-[var(--text-primary)]">200</td>
                 <td className="p-3 text-right text-[var(--accent-gold)]">170–230</td>
                 <td className="p-3 text-right text-[var(--text-muted)]">x0.85–1.15</td>
               </tr>
               <tr className="border-b border-[var(--border-subtle)]/50">
-                <td className="p-3 text-emerald-400">{rr("Shop")}</td>
+                <td className="p-3 text-blue-400">{rr("Uncommon")}</td>
                 <td className="p-3 text-right text-[var(--text-primary)]">225</td>
                 <td className="p-3 text-right text-[var(--accent-gold)]">191–259</td>
                 <td className="p-3 text-right text-[var(--text-muted)]">x0.85–1.15</td>
               </tr>
-              <tr className="border-b border-[var(--border-subtle)]/50">
-                <td className="p-3 text-blue-400">{rr("Uncommon")}</td>
-                <td className="p-3 text-right text-[var(--text-primary)]">250</td>
-                <td className="p-3 text-right text-[var(--accent-gold)]">213–288</td>
-                <td className="p-3 text-right text-[var(--text-muted)]">x0.85–1.15</td>
-              </tr>
               <tr>
                 <td className="p-3 text-[var(--accent-gold)]">{rr("Rare")}</td>
-                <td className="p-3 text-right text-[var(--text-primary)]">300</td>
-                <td className="p-3 text-right text-[var(--accent-gold)]">255–345</td>
+                <td className="p-3 text-right text-[var(--text-primary)]">275</td>
+                <td className="p-3 text-right text-[var(--accent-gold)]">234–316</td>
                 <td className="p-3 text-right text-[var(--text-muted)]">x0.85–1.15</td>
               </tr>
             </tbody>
           </table>
           <div className="px-3 py-2 text-xs text-[var(--text-muted)] border-t border-[var(--border-subtle)]/50">
-            Relics have a wider price variance (+-15%) than cards (+-5%). The Courier and Old Coin cannot appear in the shop.
+            Relics have a wider price variance (+-15%) than cards (+-5%). Major Update #1 (v0.103.2) reduced every relic base by 25 gold. Five relics are blacklisted from the shop pool: The Courier, Old Coin, Lucky Fysh, Bowler Hat, Amethyst Aubergine.
           </div>
         </div>
       </section>
@@ -273,24 +273,50 @@ export default async function LangMerchantPage({ params }: { params: Promise<{ l
         </h2>
         <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5">
           <p className="text-sm text-[var(--text-secondary)] mb-4">
-            The merchant offers card removal at an escalating price. The cost increases by 25 gold each time you use it during the run.
+            The merchant offers card removal at an escalating price. The cost increases each time you use it during the run. No random variance.
           </p>
-          <div className="flex flex-wrap gap-2">
-            {[0, 1, 2, 3, 4, 5].map((i) => (
-              <div key={i} className="bg-[var(--bg-primary)] rounded-lg p-3 text-center min-w-[80px]">
-                <div className="text-xs text-[var(--text-muted)] mb-1">
-                  {i === 0 ? "1st" : i === 1 ? "2nd" : i === 2 ? "3rd" : `${i + 1}th`}
+
+          <div className="mb-4">
+            <h3 className="text-sm font-semibold text-[var(--text-primary)] mb-2">Ascension 0–5</h3>
+            <div className="flex flex-wrap gap-2">
+              {[0, 1, 2, 3, 4, 5].map((i) => (
+                <div key={i} className="bg-[var(--bg-primary)] rounded-lg p-3 text-center min-w-[80px]">
+                  <div className="text-xs text-[var(--text-muted)] mb-1">
+                    {i === 0 ? "1st" : i === 1 ? "2nd" : i === 2 ? "3rd" : `${i + 1}th`}
+                  </div>
+                  <div className="text-lg font-bold text-[var(--accent-gold)]">
+                    {75 + 25 * i}
+                  </div>
+                  <div className="text-xs text-[var(--text-muted)]">gold</div>
                 </div>
-                <div className="text-lg font-bold text-[var(--accent-gold)]">
-                  {75 + 25 * i}
-                </div>
-                <div className="text-xs text-[var(--text-muted)]">gold</div>
-              </div>
-            ))}
+              ))}
+            </div>
+            <p className="text-xs text-[var(--text-muted)] mt-2">
+              Formula: 75 + (25 x removals used).
+            </p>
           </div>
-          <p className="text-xs text-[var(--text-muted)] mt-3">
-            Formula: 75 + (25 x removals used). No random variance.
-          </p>
+
+          <div>
+            <h3 className="text-sm font-semibold text-[var(--text-primary)] mb-2">
+              Ascension 6+ — <span className="text-[var(--accent-gold)]">Inflation</span>
+            </h3>
+            <div className="flex flex-wrap gap-2">
+              {[0, 1, 2, 3, 4, 5].map((i) => (
+                <div key={i} className="bg-[var(--bg-primary)] rounded-lg p-3 text-center min-w-[80px]">
+                  <div className="text-xs text-[var(--text-muted)] mb-1">
+                    {i === 0 ? "1st" : i === 1 ? "2nd" : i === 2 ? "3rd" : `${i + 1}th`}
+                  </div>
+                  <div className="text-lg font-bold text-[var(--accent-gold)]">
+                    {100 + 50 * i}
+                  </div>
+                  <div className="text-xs text-[var(--text-muted)]">gold</div>
+                </div>
+              ))}
+            </div>
+            <p className="text-xs text-[var(--text-muted)] mt-2">
+              Formula: 100 + (50 x removals used). Major Update #1 reworked Ascension 6 from <span className="line-through">Gloom (less rest sites)</span> to Inflation, raising the base by 25 gold and the per-use increment by 25.
+            </p>
+          </div>
         </div>
       </section>
 

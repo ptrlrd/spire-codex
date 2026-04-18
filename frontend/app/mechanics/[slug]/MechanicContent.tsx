@@ -140,13 +140,14 @@ export default function MechanicContent({ slug }: { slug: string }) {
             </div>
             <div>
               <h3 className={h3}>Card Removal Cost</h3>
-              <table className={tbl}><thead><tr className={thr}><th className={th}>Removals Used</th><th className={thr2}>Cost</th></tr></thead><tbody>
-                <tr className={tr}><td className={td}>0 (first)</td><td className={gold}>75g</td></tr>
-                <tr className={tr}><td className={td}>1</td><td className={gold}>100g</td></tr>
-                <tr className={tr}><td className={td}>2</td><td className={gold}>125g</td></tr>
-                <tr className={tr}><td className={td}>3</td><td className={gold}>150g</td></tr>
-                <tr><td className={td}>n</td><td className={gold}>75 + 25n</td></tr>
+              <table className={tbl}><thead><tr className={thr}><th className={th}>Removals Used</th><th className={thr2}>A0–5</th><th className={thr2}>A6+ (Inflation)</th></tr></thead><tbody>
+                <tr className={tr}><td className={td}>0 (first)</td><td className={gold}>75g</td><td className={gold}>100g</td></tr>
+                <tr className={tr}><td className={td}>1</td><td className={gold}>100g</td><td className={gold}>150g</td></tr>
+                <tr className={tr}><td className={td}>2</td><td className={gold}>125g</td><td className={gold}>200g</td></tr>
+                <tr className={tr}><td className={td}>3</td><td className={gold}>150g</td><td className={gold}>250g</td></tr>
+                <tr><td className={td}>n</td><td className={gold}>75 + 25n</td><td className={gold}>100 + 50n</td></tr>
               </tbody></table>
+              <p className={note}>Major Update #1 (v0.103.2) reworked Ascension 6 from Gloom (1 fewer rest site) into Inflation, which raises the base removal price by 25 gold and the per-use increment by 25.</p>
             </div>
           </div>
         </div>
@@ -352,16 +353,16 @@ export default function MechanicContent({ slug }: { slug: string }) {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <h3 className={`${h3} text-sm`}>Positive Pool (2 picked)</h3>
-              <p className="text-xs text-[var(--text-secondary)]">Arcane Scroll, Booming Conch, Pomander, Golden Pearl, Lead Paperweight, New Leaf, Neow&apos;s Torment, Precise Scissors, Lost Coffer</p>
-              <p className="text-xs text-[var(--text-muted)] mt-1">Plus one of: Nutritious Oyster / Stone Humidifier (50/50) and one of: Lava Rock / Small Capsule (50/50)</p>
+              <p className="text-xs text-[var(--text-secondary)]">Arcane Scroll, Booming Conch, Golden Pearl, Lead Paperweight, Lost Coffer, Massive Scroll, Neow&apos;s Torment, New Leaf, Phial Holster, Precise Scissors, Winged Boots</p>
+              <p className="text-xs text-[var(--text-muted)] mt-1">Plus one of each pair (50/50 each): Lava Rock / Small Capsule · Nutritious Oyster / Stone Humidifier · Neow&apos;s Talisman / Pomander</p>
             </div>
             <div>
               <h3 className={`${h3} text-sm`}>Curse Pool (1 picked)</h3>
-              <p className="text-xs text-[var(--text-secondary)]">Cursed Pearl, Large Capsule, Leafy Poultice, Precarious Shears, Scroll Boxes (conditional), Silver Crucible (singleplayer only)</p>
-              <p className="text-xs text-[var(--text-muted)] mt-1">Conflicting pairs are removed (e.g. Cursed Pearl excludes Golden Pearl).</p>
+              <p className="text-xs text-[var(--text-secondary)]">Cursed Pearl, Hefty Tablet, Large Capsule, Leafy Poultice, Neow&apos;s Bones, Precarious Shears, Scroll Boxes (conditional), Silver Crucible (singleplayer only)</p>
+              <p className="text-xs text-[var(--text-muted)] mt-1">Conflicting pairs are removed (e.g. Cursed Pearl excludes Golden Pearl, Hefty Tablet excludes Arcane Scroll, Leafy Poultice excludes New Leaf, Precarious Shears excludes Precise Scissors). If Large Capsule rolls as the curse, both the Lava Rock / Small Capsule pair are skipped.</p>
             </div>
           </div>
-          <p className={note}>Before the event, you are healed to full HP. On A2+, heal is only 80% of missing HP.</p>
+          <p className={note}>Before the event, you are healed to full HP. On A2+, heal is only 80% of missing HP. Major Update #1 (v0.103.2) expanded both pools — Phial Holster, Winged Boots, Massive Scroll, and Neow&apos;s Talisman joined the positive side; Hefty Tablet and Neow&apos;s Bones joined the curse side.</p>
         </div>
       );
 
@@ -374,7 +375,7 @@ export default function MechanicContent({ slug }: { slug: string }) {
             <tr className={tr}><td className={td}>3</td><td className={td}>Poverty</td><td className={tdr}>Gold rewards x0.75</td></tr>
             <tr className={tr}><td className={td}>4</td><td className={td}>Tight Belt</td><td className={tdr}>3 → 2 potion slots</td></tr>
             <tr className={tr}><td className={td}>5</td><td className={td}>Ascender&apos;s Bane</td><td className={tdr}>Start with Ascender&apos;s Bane curse</td></tr>
-            <tr className={tr}><td className={td}>6</td><td className={td}>Gloom</td><td className={tdr}>1 fewer rest site on map</td></tr>
+            <tr className={tr}><td className={td}>6</td><td className={td}>Inflation</td><td className={tdr}>Card removal at the Merchant is more expensive (base 100g, +50g per use)</td></tr>
             <tr className={tr}><td className={td}>7</td><td className={td}>Scarcity</td><td className={tdr}>~50% rarer cards, slower pity</td></tr>
             <tr className={tr}><td className={td}>8</td><td className={td}>Tough Enemies</td><td className={tdr}>Enemy HP increases (per-enemy)</td></tr>
             <tr className={tr}><td className={td}>9</td><td className={td}>Deadly Enemies</td><td className={tdr}>Enemy damage increases (per-enemy)</td></tr>
@@ -388,13 +389,12 @@ export default function MechanicContent({ slug }: { slug: string }) {
         <div className={card}>
           <table className={tbl}><thead><tr className={thr}><th className={th}>Component</th><th className={thr2}>Value</th></tr></thead><tbody>
             <tr className={tr}><td className={td}>Rooms visited</td><td className={tdr}>10 pts per room per act (x1/x2/x3)</td></tr>
-            <tr className={tr}><td className={td}>Win bonus</td><td className={gold}>+300</td></tr>
-            <tr className={tr}><td className={td}>Act 3 death</td><td className={tdr}>+200</td></tr>
-            <tr className={tr}><td className={td}>Act 2 death</td><td className={tdr}>+100</td></tr>
-            <tr className={tr}><td className={td}>Act 1 death</td><td className={tdr}>+0</td></tr>
+            <tr className={tr}><td className={td}>Gold gained</td><td className={tdr}>+1 pt per 100 gold (divided by player count)</td></tr>
+            <tr className={tr}><td className={td}>Elites killed</td><td className={gold}>+50 each (the elite you died to doesn&apos;t count)</td></tr>
+            <tr className={tr}><td className={td}>Bosses slain</td><td className={gold}>+100 each (3 on a win, fewer if you die earlier; A10 wins count 4)</td></tr>
             <tr><td className={td}>Ascension multiplier</td><td className={gold}>x(1 + ascension x 0.1)</td></tr>
           </tbody></table>
-          <p className={note}>At Ascension 10, your score is doubled. The final boss scene uses your score to determine the visual damage numbers.</p>
+          <p className={note}>Total = (rooms + gold + elites + bosses) x (1 + ascension x 0.1). At Ascension 10, your score is doubled. Daily-run scoring also encodes badge count and run time on top of this base. The final boss scene uses your score to determine the visual damage numbers.</p>
         </div>
       );
 
@@ -470,7 +470,7 @@ export default function MechanicContent({ slug }: { slug: string }) {
       return (
         <div className={card}>
           <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
-            <strong className={bold}>The Courier</strong> and <strong className={bold}>Old Coin</strong> are hardcoded into the merchant relic blacklist and can never appear in shops. Both would break the shop economy.
+            Five relics override <code className="bg-[var(--bg-primary)] px-1 rounded text-xs text-[var(--accent-gold)]">IsAllowedInShops =&gt; false</code> and never appear in the merchant pool: <strong className={bold}>The Courier</strong>, <strong className={bold}>Old Coin</strong>, <strong className={bold}>Lucky Fysh</strong>, <strong className={bold}>Bowler Hat</strong>, and <strong className={bold}>Amethyst Aubergine</strong>. Major Update #1 (v0.103.2) added the last three after gold-generating relics broke shop economy testing — they remain craftable through other sources but are walled off from the merchant.
           </p>
         </div>
       );

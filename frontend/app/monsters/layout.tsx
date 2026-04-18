@@ -1,18 +1,24 @@
 import type { Metadata } from "next";
+import { api } from "@/lib/api";
 
-export const metadata: Metadata = {
-  title: "Slay the Spire 2 Monsters - Complete Monster List | Spire Codex",
-  description:
-    "Slay the Spire 2 monsters — browse all 111 normals, elites, and bosses. View HP values, moves, damage stats, and ascension scaling.",
-  openGraph: {
+export async function generateMetadata(): Promise<Metadata> {
+  let count = "111";
+  try {
+    const stats = await api.getStats();
+    count = String(stats.monsters);
+  } catch {
+    // Fall back to the baseline count if the API is unreachable at build time.
+  }
+  return {
     title: "Slay the Spire 2 Monsters - Complete Monster List | Spire Codex",
-    description:
-      "Slay the Spire 2 monsters — browse all 111 normals, elites, and bosses. View HP, moves, and ascension scaling.",
-  },
-  alternates: {
-    canonical: "/monsters",
-  },
-};
+    description: `Slay the Spire 2 monsters — browse all ${count} normals, elites, and bosses. View HP values, moves, damage stats, and ascension scaling.`,
+    openGraph: {
+      title: "Slay the Spire 2 Monsters - Complete Monster List | Spire Codex",
+      description: `Slay the Spire 2 monsters — browse all ${count} normals, elites, and bosses. View HP, moves, and ascension scaling.`,
+    },
+    alternates: { canonical: "/monsters" },
+  };
+}
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return children;

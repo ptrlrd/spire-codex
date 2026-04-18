@@ -1,18 +1,24 @@
 import type { Metadata } from "next";
+import { api } from "@/lib/api";
 
-export const metadata: Metadata = {
-  title: "Slay the Spire 2 Events - All In-Game Events | Spire Codex",
-  description:
-    "Slay the Spire 2 events — browse all 66 shrine events, Ancient encounters, and story events. View choices, dialogue, relic offerings, and outcomes for every event.",
-  openGraph: {
+export async function generateMetadata(): Promise<Metadata> {
+  let count = "66";
+  try {
+    const stats = await api.getStats();
+    count = String(stats.events);
+  } catch {
+    // Fall back to the baseline count if the API is unreachable at build time.
+  }
+  return {
     title: "Slay the Spire 2 Events - All In-Game Events | Spire Codex",
-    description:
-      "Slay the Spire 2 events — browse all 66 shrine events, Ancient encounters, and story events with choices, dialogue, and outcomes.",
-  },
-  alternates: {
-    canonical: "/events",
-  },
-};
+    description: `Slay the Spire 2 events — browse all ${count} shrine events, Ancient encounters, and story events. View choices, dialogue, relic offerings, and outcomes for every event.`,
+    openGraph: {
+      title: "Slay the Spire 2 Events - All In-Game Events | Spire Codex",
+      description: `Slay the Spire 2 events — browse all ${count} shrine events, Ancient encounters, and story events with choices, dialogue, and outcomes.`,
+    },
+    alternates: { canonical: "/events" },
+  };
+}
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return children;

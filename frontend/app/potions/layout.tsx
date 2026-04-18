@@ -1,18 +1,24 @@
 import type { Metadata } from "next";
+import { api } from "@/lib/api";
 
-export const metadata: Metadata = {
-  title: "Slay the Spire 2 Potions - Complete Potion List | Spire Codex",
-  description:
-    "Browse all 63+ Slay the Spire 2 potions. Filter by rarity (Common, Uncommon, Rare) and character pool (Ironclad, Silent, Defect, Necrobinder, Regent). View potion effects and descriptions.",
-  openGraph: {
+export async function generateMetadata(): Promise<Metadata> {
+  let count = "63+";
+  try {
+    const stats = await api.getStats();
+    count = String(stats.potions);
+  } catch {
+    // Fall back to the baseline count if the API is unreachable at build time.
+  }
+  return {
     title: "Slay the Spire 2 Potions - Complete Potion List | Spire Codex",
-    description:
-      "Browse all 63+ Slay the Spire 2 potions. Filter by rarity and character pool.",
-  },
-  alternates: {
-    canonical: "/potions",
-  },
-};
+    description: `Browse all ${count} Slay the Spire 2 potions. Filter by rarity (Common, Uncommon, Rare) and character pool (Ironclad, Silent, Defect, Necrobinder, Regent). View potion effects and descriptions.`,
+    openGraph: {
+      title: "Slay the Spire 2 Potions - Complete Potion List | Spire Codex",
+      description: `Browse all ${count} Slay the Spire 2 potions. Filter by rarity and character pool.`,
+    },
+    alternates: { canonical: "/potions" },
+  };
+}
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return children;
