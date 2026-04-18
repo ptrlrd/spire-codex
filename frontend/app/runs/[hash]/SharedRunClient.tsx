@@ -31,6 +31,8 @@ export default function SharedRunClient() {
   const [cardData, setCardData] = useState<Record<string, CardInfo>>({});
   const [relicData, setRelicData] = useState<Record<string, RelicInfo>>({});
   const [potionData, setPotionData] = useState<Record<string, PotionInfo>>({});
+  const [charNames, setCharNames] = useState<Record<string, string>>({});
+  const [encounterNames, setEncounterNames] = useState<Record<string, string>>({});
   const [showDetails, setShowDetails] = useState(false);
 
   useEffect(() => {
@@ -41,22 +43,44 @@ export default function SharedRunClient() {
       .catch(() => setNotFound(true))
       .finally(() => setLoading(false));
 
-    cachedFetch<CardInfo[]>(`${API}/api/cards`).then((cards) => {
+    cachedFetch<CardInfo[]>(`${API}/api/cards?lang=${lang}`).then((cards) => {
       const m: Record<string, CardInfo> = {};
       for (const c of cards) m[c.id] = c;
       setCardData(m);
     });
-    cachedFetch<RelicInfo[]>(`${API}/api/relics`).then((relics) => {
+    cachedFetch<RelicInfo[]>(`${API}/api/relics?lang=${lang}`).then((relics) => {
       const m: Record<string, RelicInfo> = {};
       for (const r of relics) m[r.id] = r;
       setRelicData(m);
     });
-    cachedFetch<PotionInfo[]>(`${API}/api/potions`).then((potions) => {
+    cachedFetch<PotionInfo[]>(`${API}/api/potions?lang=${lang}`).then((potions) => {
       const m: Record<string, PotionInfo> = {};
       for (const p of potions) m[p.id] = p;
       setPotionData(m);
     });
-  }, [hash]);
+    // Localized character names so the header reads "戦士" etc. instead of
+    // the displayName(id) English derivation.
+    cachedFetch<{ id: string; name: string }[]>(`${API}/api/characters?lang=${lang}`).then((chars) => {
+      const m: Record<string, string> = {};
+      for (const c of chars) m[c.id.toUpperCase()] = c.name;
+      setCharNames(m);
+    });
+    // Localized encounter names so "Killed by …" shows the locale's name.
+    cachedFetch<{ id: string; name: string }[]>(`${API}/api/encounters?lang=${lang}`).then((encs) => {
+      const m: Record<string, string> = {};
+      for (const e of encs) m[e.id.toUpperCase()] = e.name;
+      setEncounterNames(m);
+    });
+  }, [hash, lang]);
+
+  function localizedCharName(id: string): string {
+    const key = cleanId(id).toUpperCase();
+    return charNames[key] ?? displayName(id);
+  }
+  function localizedEncounterName(id: string): string {
+    const key = cleanId(id).toUpperCase();
+    return encounterNames[key] ?? displayName(id);
+  }
 
   function copyLink() {
     navigator.clipboard.writeText(window.location.href).then(() => {
@@ -103,7 +127,7 @@ export default function SharedRunClient() {
             {run.win ? t("Victory", lang) : run.was_abandoned ? t("Abandoned", lang) : t("Defeat", lang)}
           </span>
           <Link href={`${lp}/characters/${charId.toLowerCase()}`} className="text-base hover:underline" style={{ color: charColor }}>
-            {displayName(player.character)}
+            {localizedCharName(player.character)}
           </Link>
         </div>
         <div className="text-sm text-[var(--text-muted)]">
@@ -112,7 +136,7 @@ export default function SharedRunClient() {
             <>
               {" · "}{t("Killed by", lang)}{" "}
               <Link href={`${lp}/encounters/${cleanId(run.killed_by_encounter).toLowerCase()}`} className="hover:underline" style={{ color: "var(--color-ironclad)" }}>
-                {displayName(run.killed_by_encounter)}
+                {localizedEncounterName(run.killed_by_encounter)}
               </Link>
             </>
           )}

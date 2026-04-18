@@ -48,6 +48,11 @@ interface LeaderboardEntry {
   floors_reached: number;
 }
 
+interface CharacterNameRow {
+  id: string;
+  name: string;
+}
+
 interface BrowseRun {
   run_hash: string;
   character: string;
@@ -89,6 +94,7 @@ export default function LeaderboardBrowseClient() {
   const [browseTotal, setBrowseTotal] = useState(0);
   const [browseTotalPages, setBrowseTotalPages] = useState(0);
   const [versions, setVersions] = useState<string[]>([]);
+  const [charNames, setCharNames] = useState<Record<string, string>>({});
 
   // Fetch available versions for the version dropdown
   useEffect(() => {
@@ -97,6 +103,25 @@ export default function LeaderboardBrowseClient() {
       .then((data) => setVersions(data.versions || []))
       .catch(() => {});
   }, []);
+
+  // Fetch localized character names so leaderboard rows show "Sentinelle de fer"
+  // instead of the English-derived "Ironclad" produced by displayName(id).
+  useEffect(() => {
+    fetch(`${API}/api/characters?lang=${lang}`)
+      .then((r) => (r.ok ? r.json() : []))
+      .then((data: CharacterNameRow[]) => {
+        const m: Record<string, string> = {};
+        for (const c of data) m[c.id.toUpperCase()] = c.name;
+        setCharNames(m);
+      })
+      .catch(() => {});
+  }, [lang]);
+
+  // Resolve a character id (e.g. "IRONCLAD") to its localized name. Falls
+  // back to displayName() if the API hasn't responded yet.
+  function charName(id: string): string {
+    return charNames[id.toUpperCase()] ?? displayName(`CHARACTER.${id}`);
+  }
 
   // Reset leaderboard page when filters change
   useEffect(() => { setLbPage(1); }, [tab, lbChar]);
@@ -241,8 +266,12 @@ export default function LeaderboardBrowseClient() {
                   </thead>
                   <tbody>
                     {lbEntries.map((entry) => {
-                      const charName = displayName(`CHARACTER.${entry.character}`);
-                      const charColor = CHARACTER_COLORS[charName] || "var(--text-primary)";
+                      // Color lookup keys on the canonical English title-case
+                      // name so the per-character accent stays consistent
+                      // across locales.
+                      const englishName = displayName(`CHARACTER.${entry.character}`);
+                      const localizedName = charName(entry.character);
+                      const charColor = CHARACTER_COLORS[englishName] || "var(--text-primary)";
                       return (
                         <tr
                           key={entry.run_hash}
@@ -252,8 +281,8 @@ export default function LeaderboardBrowseClient() {
                           <td className="py-2.5 px-2 sm:px-3 font-medium text-[var(--accent-gold)]">#{entry.rank}</td>
                           <td className="hidden sm:table-cell py-2.5 px-3 text-[var(--text-primary)] truncate max-w-[10rem]">{entry.username || t("Anonymous", lang)}</td>
                           <td className="py-2.5 px-2 sm:px-3" style={{ color: charColor }}>
-                            <span className="sm:hidden">{charName.slice(0, 3)}</span>
-                            <span className="hidden sm:inline">{charName}</span>
+                            <span className="sm:hidden">{localizedName.slice(0, 3)}</span>
+                            <span className="hidden sm:inline">{localizedName}</span>
                           </td>
                           <td className="py-2.5 px-2 sm:px-3 text-[var(--text-secondary)]">A{entry.ascension}</td>
                           <td className="py-2.5 px-2 sm:px-3 text-[var(--text-secondary)] whitespace-nowrap">{formatTime(entry.run_time)}</td>
@@ -377,7 +406,7 @@ export default function LeaderboardBrowseClient() {
                         {r.win ? "W" : r.was_abandoned ? "A" : "L"}
                       </span>
                       <span className="text-sm text-[var(--text-primary)] truncate">
-                        {displayName(`CHARACTER.${r.character}`)}
+                        {charName(r.character)}
                       </span>
                       <span className="text-xs text-[var(--text-muted)] shrink-0">A{r.ascension}</span>
                       {r.username && (
