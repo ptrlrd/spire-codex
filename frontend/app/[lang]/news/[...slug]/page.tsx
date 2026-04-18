@@ -13,7 +13,7 @@ import {
   newsSlugForArticle,
   canonicalSteamUrl,
 } from "@/lib/steam-news";
-import { isValidLang, LANG_HREFLANG, type LangCode } from "@/lib/languages";
+import { isValidLang, LANG_GAME_NAME, LANG_HREFLANG, type LangCode } from "@/lib/languages";
 import { t } from "@/lib/ui-translations";
 
 const API = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
@@ -44,12 +44,16 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { lang, slug } = await params;
   if (!isValidLang(lang)) return {};
+  const langCode = lang as LangCode;
+  const gameName = LANG_GAME_NAME[langCode];
+  const newsLabel = t("News", lang);
   const gid = gidFromSlug(joinSlug(slug));
-  if (!gid) return { title: `${t("Not Found", lang)} | ${SITE_NAME}` };
+  if (!gid) return { title: `${gameName} ${newsLabel} - ${t("Not Found", lang)} | ${SITE_NAME}` };
   const article = await fetchItem(gid);
-  if (!article) return { title: `${t("Not Found", lang)} | ${SITE_NAME}` };
-  const description = newsExcerpt(article.contents ?? "", 200);
-  const title = `${article.title} | ${SITE_NAME}`;
+  if (!article) return { title: `${gameName} ${newsLabel} - ${t("Not Found", lang)} | ${SITE_NAME}` };
+  const excerpt = newsExcerpt(article.contents ?? "", 160);
+  const description = `${gameName} ${newsLabel} — ${article.title}. ${excerpt}`.slice(0, 300);
+  const title = `${article.title} - ${gameName} ${newsLabel} | ${SITE_NAME}`;
   const canonicalPath = newsSlugForArticle(article.gid, `/${lang}/news`);
   return {
     title,

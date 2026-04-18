@@ -60,11 +60,15 @@ export async function generateMetadata({
   const { slug } = await params;
   const joined = joinSlug(slug);
   const gid = gidFromSlug(joined);
-  if (!gid) return { title: `News Not Found | ${SITE_NAME}` };
+  if (!gid) return { title: `Slay the Spire 2 News - Not Found | ${SITE_NAME}` };
   const article = await fetchItem(gid);
-  if (!article) return { title: `News Not Found | ${SITE_NAME}` };
-  const description = newsExcerpt(article.contents ?? "", 200);
-  const title = `${article.title} | ${SITE_NAME}`;
+  if (!article) return { title: `Slay the Spire 2 News - Not Found | ${SITE_NAME}` };
+  // Lead the meta description with Spire Codex framing so search snippets
+  // identify the page as our archive of the Steam announcement, not just
+  // the raw article body.
+  const excerpt = newsExcerpt(article.contents ?? "", 160);
+  const description = `Slay the Spire 2 news on Spire Codex — ${article.title}. ${excerpt}`.slice(0, 300);
+  const title = `${article.title} - Slay the Spire 2 News | ${SITE_NAME}`;
   const canonicalPath = newsSlugForArticle(article.gid);
   return {
     title,

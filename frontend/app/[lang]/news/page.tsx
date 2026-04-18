@@ -44,8 +44,11 @@ export async function generateMetadata({
   const langCode = lang as LangCode;
   const gameName = LANG_GAME_NAME[langCode];
   const nativeName = LANG_NAMES[langCode];
-  const title = `${gameName} ${t("News", lang)} | ${SITE_NAME} (${nativeName})`;
-  const description = `${t("news_tagline", lang)} ${nativeName}.`;
+  // Title + description use the standard format mirrored from /changelog —
+  // visible page copy uses `news_tagline`, meta uses the tighter
+  // `news_meta_description`.
+  const title = `${gameName} ${t("News", lang)} - ${t("News - Subtitle", lang)} | ${SITE_NAME} (${nativeName})`;
+  const description = t("news_meta_description", lang);
 
   const languages: Record<string, string> = {
     en: `${SITE_URL}/news`,

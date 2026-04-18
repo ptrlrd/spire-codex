@@ -14,15 +14,18 @@ const API = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "
 export const dynamic = "force-dynamic";
 export const revalidate = 1800;
 
+// Meta follows the standard `Slay the Spire 2 {Topic} - {Descriptor} | Spire Codex`
+// format used across the rest of the site (see /changelog, /cards, /relics, etc.).
+// The visible page tagline below is separate marketing copy.
 export const metadata: Metadata = {
   title: `Slay the Spire 2 News - Patch Notes & Announcements | ${SITE_NAME}`,
   description:
-    "Latest Slay the Spire 2 news — patch notes, dev updates, community announcements, and press coverage. Mirrored from Steam with permanent archive.",
+    "Slay the Spire 2 patch notes, dev announcements, and press coverage. Track every Mega Crit update plus external articles from PCGamesN, RPS, and more.",
   alternates: { canonical: `${SITE_URL}/news` },
   openGraph: {
-    title: `Slay the Spire 2 News`,
+    title: `Slay the Spire 2 News - Patch Notes & Announcements | ${SITE_NAME}`,
     description:
-      "Patch notes, dev updates, community announcements, and press coverage for Slay the Spire 2.",
+      "Slay the Spire 2 patch notes, dev announcements, and press coverage. Track every Mega Crit update plus external articles from PCGamesN, RPS, and more.",
     url: `${SITE_URL}/news`,
     siteName: SITE_NAME,
     type: "website",
