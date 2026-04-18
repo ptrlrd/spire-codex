@@ -129,6 +129,7 @@ const PAGES = [
   { name: "About", path: "/about", keywords: ["about", "info", "credits"] },
   { name: "Discord", path: "https://discord.gg/xMsTBeh", keywords: ["discord", "chat", "community"] },
   { name: "Card Browse", path: "/cards/browse", keywords: ["browse", "filter", "matrix"] },
+  { name: "News", path: "/news", keywords: ["news", "patch", "patch notes", "announcement", "update", "steam", "press"] },
 ];
 
 const MAX_PER_CATEGORY = 5;

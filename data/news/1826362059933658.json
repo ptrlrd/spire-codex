@@ -1,0 +1,16 @@
+{
+  "gid": "1826362059933658",
+  "title": "Hotfix Patch notes - v0.98.3",
+  "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1826362059933658",
+  "is_external_url": true,
+  "author": "demileaf",
+  "contents": "Another small hotfix which resolves some more softlock issues. Thanks again to everyone reporting issues like this!\n\n[h3]BUG FIXES:[/h3]\n[list]\n[*]Fixed more instances of players getting stuck at the timeline\n[/list]",
+  "feedlabel": "Community Announcements",
+  "feedname": "steam_community_announcements",
+  "feed_type": 1,
+  "tags": [
+    "patchnotes"
+  ],
+  "date": 1773165305,
+  "appid": 2868840
+}

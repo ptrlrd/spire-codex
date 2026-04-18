@@ -409,6 +409,32 @@ export interface Guide extends GuideSummary {
   content: string;
 }
 
+export interface NewsArticle {
+  gid: string;
+  title: string;
+  url: string;
+  is_external_url: boolean;
+  author: string;
+  /** Raw Steam HTML/BBCode body. Only present on detail fetches; the
+   * list endpoint omits it to keep payloads small. */
+  contents?: string;
+  feedlabel: string;
+  feedname: string;
+  /** 1 = Steam community announcement, 0 = external press article. */
+  feed_type: number;
+  tags: string[];
+  /** Unix epoch seconds. */
+  date: number;
+  appid: number;
+}
+
+export interface NewsListResponse {
+  total: number;
+  limit: number;
+  offset: number;
+  items: NewsArticle[];
+}
+
 export interface Stats {
   cards: number;
   characters: number;
@@ -434,6 +460,9 @@ export interface Stats {
 
 export const api = {
   getStats: () => fetchApi<Stats>("/api/stats"),
+  getNews: (params?: string) =>
+    fetchApi<NewsListResponse>(`/api/news${params ? `?${params}` : ""}`),
+  getNewsItem: (gid: string) => fetchApi<NewsArticle>(`/api/news/${gid}`),
   // Bounded variant for use inside `generateMetadata` — won't hang the
   // build if the backend is unreachable. Caller should wrap in try/catch
   // and fall through to a hardcoded baseline.

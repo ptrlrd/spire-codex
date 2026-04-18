@@ -65,6 +65,7 @@ const NAV_GROUPS: NavGroup[] = [
       { href: "/leaderboards", label: "Leaderboards" },
       { href: "/leaderboards/submit", label: "Submit a Run" },
       { href: "/leaderboards/stats", label: "Stats" },
+      { href: "/news", label: "News" },
     ],
   },
   {

@@ -48,6 +48,7 @@ from .routers import (
     guides,
     versions,
     unlocks,
+    news,
 )
 from .services.data_service import get_stats, load_translation_maps, current_version
 from .dependencies import get_lang, VALID_LANGUAGES, LANGUAGE_NAMES
@@ -304,6 +305,7 @@ app.include_router(glossary.router)
 app.include_router(guides.router)
 app.include_router(versions.router)
 app.include_router(unlocks.router)
+app.include_router(news.router)
 
 
 @app.get("/api/languages", tags=["Languages"])

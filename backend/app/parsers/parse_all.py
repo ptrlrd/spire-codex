@@ -17,6 +17,7 @@ from act_parser import main as parse_acts
 from ascension_parser import main as parse_ascensions
 from pool_parser import main as parse_pools
 from translation_parser import main as parse_translations
+from news_parser import main as parse_news
 
 LANGUAGES = [
     "deu",
@@ -77,5 +78,8 @@ if __name__ == "__main__":
     from guide_parser import main as parse_guides
 
     parse_guides()
+
+    # Steam news is language-agnostic — fetch once after the per-lang sweep.
+    parse_news()
 
     print("\n=== Done! ===")

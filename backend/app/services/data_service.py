@@ -136,6 +136,37 @@ def load_ascensions(lang: str = DEFAULT_LANG) -> list[dict]:
     return _load_json(lang, "ascensions")
 
 
+@lru_cache(maxsize=4)
+def _load_news_index(version: str | None) -> list[dict]:
+    """Load the news/index.json built by news_parser. The index is
+    language-agnostic — Steam news isn't translated."""
+    base = _resolve_base(version)
+    filepath = base / "news" / "index.json"
+    if not filepath.exists():
+        return []
+    with open(filepath, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+
+def load_news_index() -> list[dict]:
+    return _load_news_index(_get_version())
+
+
+@lru_cache(maxsize=512)
+def _load_news_item(gid: str, version: str | None) -> dict | None:
+    """Load a single archived Steam news item by Steam `gid`."""
+    base = _resolve_base(version)
+    filepath = base / "news" / f"{gid}.json"
+    if not filepath.exists():
+        return None
+    with open(filepath, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+
+def load_news_item(gid: str) -> dict | None:
+    return _load_news_item(gid, _get_version())
+
+
 @lru_cache(maxsize=16)
 def _load_guides_versioned(version: str | None) -> list[dict]:
     base = _resolve_base(version)
