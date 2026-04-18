@@ -239,7 +239,7 @@ export default function LeaderboardBrowseClient() {
                     : undefined
                 }
               >
-                {ch}
+                {charName(ch)}
               </button>
             ))}
           </div>
@@ -325,11 +325,9 @@ export default function LeaderboardBrowseClient() {
               className="text-sm px-3 py-1.5 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)] w-full sm:w-auto"
             >
               <option value="">{t("All Characters", lang)}</option>
-              <option value="IRONCLAD">Ironclad</option>
-              <option value="SILENT">Silent</option>
-              <option value="DEFECT">Defect</option>
-              <option value="NECROBINDER">Necrobinder</option>
-              <option value="REGENT">Regent</option>
+              {CHARACTERS.map((ch) => (
+                <option key={ch} value={ch.toUpperCase()}>{charName(ch)}</option>
+              ))}
             </select>
 
             <select
