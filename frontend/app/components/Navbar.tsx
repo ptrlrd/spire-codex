@@ -49,6 +49,7 @@ const NAV_GROUPS: NavGroup[] = [
   {
     label: "Game Info",
     links: [
+      { href: "/news", label: "News" },
       { href: "/merchant", label: "Merchant" },
       { href: "/ancients", label: "Ancients" },
       { href: "/keywords", label: "Keywords" },
@@ -65,7 +66,6 @@ const NAV_GROUPS: NavGroup[] = [
       { href: "/leaderboards", label: "Leaderboards" },
       { href: "/leaderboards/submit", label: "Submit a Run" },
       { href: "/leaderboards/stats", label: "Stats" },
-      { href: "/news", label: "News" },
     ],
   },
   {

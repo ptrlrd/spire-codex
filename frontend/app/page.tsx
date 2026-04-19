@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import type { Stats } from "@/lib/api";
 import HomeClient from "./HomeClient";
+import HomeNewsSection from "./components/HomeNewsSection";
 import JsonLd from "./components/JsonLd";
 import SearchTrigger from "./components/SearchTrigger";
 import { buildWebSiteJsonLd, buildVideoGameJsonLd } from "@/lib/jsonld";
@@ -79,6 +80,11 @@ export default async function Home() {
       </section>
 
       <HomeClient initialStats={stats} initialTranslations={translations ?? {}} />
+
+      {/* Latest 3 community announcements rendered as image-card blocks
+          mirroring the grid above. Server-rendered so search snippets
+          and OG previews can pick up the headlines. */}
+      <HomeNewsSection />
     </div>
   );
 }

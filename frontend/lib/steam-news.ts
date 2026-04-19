@@ -108,6 +108,32 @@ export function newsExcerpt(raw: string, maxLen = 200): string {
   return (lastSpace > 0 ? slice.slice(0, lastSpace) : slice).trim() + "…";
 }
 
+/** Pull the first image URL out of a Steam announcement body so callers
+ * can use it as a hero/thumbnail. Handles both BBCode (Steam community
+ * posts use `[img]{STEAM_CLAN_IMAGE}/...[/img]`) and the raw `<img>` tags
+ * external press articles ship with. Returns null when the article has
+ * no inline imagery — caller should fall back to a placeholder. */
+export function firstNewsImage(raw: string | undefined | null): string | null {
+  if (!raw) return null;
+  // BBCode form: [img]{STEAM_CLAN_IMAGE}/29087962/abc.png[/img] or [img]https://.../foo.jpg[/img]
+  const bb = raw.match(/\[img\]([^\[\]]+)\[\/img\]/i);
+  if (bb) {
+    const url = bb[1].trim();
+    return url.startsWith("{STEAM_CLAN_IMAGE}")
+      ? url.replace("{STEAM_CLAN_IMAGE}", "https://clan.cloudflare.steamstatic.com/images")
+      : url;
+  }
+  // HTML form: <img src="https://...">
+  const html = raw.match(/<img\b[^>]*\bsrc\s*=\s*["']([^"']+)["']/i);
+  if (html) return html[1].trim();
+  // Bare {STEAM_CLAN_IMAGE} placeholder (rare — some posts skip the [img] wrapper)
+  const bare = raw.match(/\{STEAM_CLAN_IMAGE\}\/[^\s\[]+/);
+  if (bare) {
+    return bare[0].replace("{STEAM_CLAN_IMAGE}", "https://clan.cloudflare.steamstatic.com/images");
+  }
+  return null;
+}
+
 export function formatNewsDate(unixSeconds: number, locale: string = "en"): string {
   const d = new Date(unixSeconds * 1000);
   return d.toLocaleDateString(locale, { year: "numeric", month: "long", day: "numeric" });

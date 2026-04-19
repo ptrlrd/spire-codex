@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import type { Stats } from "@/lib/api";
 import HomeClient from "@/app/HomeClient";
+import HomeNewsSection from "@/app/components/HomeNewsSection";
 import JsonLd from "@/app/components/JsonLd";
 import { buildWebSiteJsonLd, buildVideoGameJsonLd } from "@/lib/jsonld";
 import { t } from "@/lib/ui-translations";
@@ -106,6 +107,8 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
       </section>
 
       <HomeClient initialStats={stats} initialTranslations={translations ?? {}} />
+
+      <HomeNewsSection langPrefix={`/${lang}`} lang={lang} />
     </div>
   );
 }
