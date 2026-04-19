@@ -1,7 +1,15 @@
 import Link from "next/link";
 import { t } from "@/lib/ui-translations";
+import { IS_BETA } from "@/lib/seo";
 
 const API = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+// Beta has run submissions disabled, so its local runs.db is essentially
+// empty. Fetch leaderboard + recent-runs data from stable instead so the
+// section actually has content to show. Server-side fetch — no CORS hop.
+// All in-page links (row → /runs/{hash}, View more → /leaderboards) on
+// beta point at stable's absolute URL since the data only lives there.
+const RUNS_HOST = IS_BETA ? "https://spire-codex.com" : "";
+const RUNS_API = IS_BETA ? "https://spire-codex.com" : API;
 // The browser fetches images from the public API URL — `API_INTERNAL_URL`
 // only resolves inside the Docker network during server render. The
 // production build sets `NEXT_PUBLIC_API_URL=""` (empty) on purpose so
@@ -101,7 +109,7 @@ async function loadFastestWins(): Promise<{ runs: RunRow[]; ascension: number | 
   // back to "any ascension" so the section never renders empty when wins
   // exist at all.
   try {
-    const res = await fetch(`${API}/api/runs/leaderboard?category=fastest&limit=50`, {
+    const res = await fetch(`${RUNS_API}/api/runs/leaderboard?category=fastest&limit=50`, {
       next: { revalidate: REVALIDATE },
     });
     if (!res.ok) return { runs: [], ascension: null };
@@ -121,7 +129,7 @@ async function loadFastestWins(): Promise<{ runs: RunRow[]; ascension: number | 
 
 async function loadRecentRuns(): Promise<RunRow[]> {
   try {
-    const res = await fetch(`${API}/api/runs/list?limit=5&sort=newest`, {
+    const res = await fetch(`${RUNS_API}/api/runs/list?limit=5&sort=newest`, {
       next: { revalidate: REVALIDATE },
     });
     if (!res.ok) return [];
@@ -147,7 +155,12 @@ export default async function HomeLeaderboardSection({
   const [fastest, recent] = await Promise.all([loadFastestWins(), loadRecentRuns()]);
   if (fastest.runs.length === 0 && recent.length === 0) return null;
 
-  const lbBase = `${langPrefix}/leaderboards`;
+  // On beta, point all in-page links at stable's absolute URL — the data
+  // shown in this section came from stable, so the run-detail / browse /
+  // submit pages need to live there too. On stable, stay relative so
+  // the langPrefix stays meaningful.
+  const lbBase = `${RUNS_HOST}${langPrefix}/leaderboards`;
+  const runsBase = `${RUNS_HOST}${langPrefix}/runs`;
   const ascLabel =
     fastest.ascension === TARGET_ASCENSION
       ? `A${TARGET_ASCENSION}`
@@ -203,7 +216,7 @@ export default async function HomeLeaderboardSection({
               {fastest.runs.map((r, i) => (
                 <li key={r.run_hash}>
                   <Link
-                    href={`${langPrefix}/runs/${r.run_hash}`}
+                    href={`${runsBase}/${r.run_hash}`}
                     className="grid grid-cols-[1.5rem_2rem_1fr_auto] items-center gap-3 px-5 py-3 hover:bg-[var(--bg-card-hover)] transition-colors"
                   >
                     <span className="text-base font-bold text-[var(--text-muted)] tabular-nums">
@@ -266,7 +279,7 @@ export default async function HomeLeaderboardSection({
                 return (
                   <li key={r.run_hash}>
                     <Link
-                      href={`${langPrefix}/runs/${r.run_hash}`}
+                      href={`${runsBase}/${r.run_hash}`}
                       className="flex items-center gap-3 px-5 py-3 hover:bg-[var(--bg-card-hover)] transition-colors"
                     >
                       <img

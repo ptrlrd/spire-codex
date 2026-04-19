@@ -1,7 +1,13 @@
 import Link from "next/link";
 import { t } from "@/lib/ui-translations";
+import { IS_BETA } from "@/lib/seo";
 
 const API = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+// Beta has run submissions disabled, so its stats endpoint reports near
+// zero. Pull from stable on beta so the section matches the community
+// leaderboards above. Server-side fetch — no CORS hop.
+const RUNS_HOST = IS_BETA ? "https://spire-codex.com" : "";
+const RUNS_API = IS_BETA ? "https://spire-codex.com" : API;
 
 const REVALIDATE = 300;
 
@@ -49,7 +55,7 @@ function winRateColor(pct: number): string {
 
 async function loadStats(): Promise<CommunityStats | null> {
   try {
-    const res = await fetch(`${API}/api/runs/stats`, { next: { revalidate: REVALIDATE } });
+    const res = await fetch(`${RUNS_API}/api/runs/stats`, { next: { revalidate: REVALIDATE } });
     if (!res.ok) return null;
     return (await res.json()) as CommunityStats;
   } catch {
@@ -86,7 +92,7 @@ export default async function HomeStatsSection({
           {t("Stats", lang)}
         </h2>
         <Link
-          href={`${langPrefix}/leaderboards/stats`}
+          href={`${RUNS_HOST}${langPrefix}/leaderboards/stats`}
           className="shrink-0 inline-flex items-center gap-1 text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--accent-gold)] transition-colors"
         >
           <span>{t("View all stats", lang)}</span>
