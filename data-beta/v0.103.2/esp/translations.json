@@ -1,0 +1,74 @@
+{
+  "card_types": {
+    "Attack": "Ataque",
+    "Skill": "Habilidad",
+    "Power": "Poder",
+    "Status": "Estado",
+    "Curse": "Maldición",
+    "Quest": "Misión"
+  },
+  "card_rarities": {
+    "Basic": "Básica",
+    "Common": "Común",
+    "Uncommon": "Infrecuente",
+    "Rare": "Rara",
+    "Ancient": "Ancestral",
+    "Event": "Evento",
+    "Token": "Simbólica",
+    "Status": "Estado",
+    "Curse": "Maldición",
+    "Quest": "Misión"
+  },
+  "relic_rarities": {
+    "Starter": "Reliquia básica",
+    "Common": "Reliquia común",
+    "Uncommon": "Reliquia infrecuente",
+    "Rare": "Reliquia rara",
+    "Ancient": "Reliquia ancestral",
+    "Event": "Reliquia de eventos",
+    "Shop": "Tienda de reliquias"
+  },
+  "potion_rarities": {
+    "Common": "Común",
+    "Uncommon": "Infrecuente",
+    "Rare": "Rara",
+    "Event": "De evento",
+    "Token": "Simbólica"
+  },
+  "keywords": {
+    "ETERNAL": "Inmutabilidad",
+    "ETHEREAL": "Evanescencia",
+    "EXHAUST": "Agotamiento",
+    "INNATE": "Innatismo",
+    "RETAIN": "Retención",
+    "SLY": "Astucia",
+    "UNPLAYABLE": "Injugabilidad"
+  },
+  "sections": {
+    "cards": "Colección de cartas",
+    "characters": "Characters",
+    "relics": "Relicario",
+    "monsters": "Bestiario",
+    "potions": "Pocionero",
+    "enchantments": "Enchantments",
+    "encounters": "Encounters",
+    "events": "Events",
+    "powers": "Powers",
+    "timeline": "Cronología",
+    "images": "Images",
+    "reference": "Reference"
+  },
+  "section_descs": {
+    "cards": "Muestra todas las cartas que descubriste en la Torre.",
+    "relics": "Muestra los diversos objetos y artefactos que obtienes en tus partidas.",
+    "monsters": "Muestra todos los enemigos contra los que te enfrentaste en la Torre.",
+    "potions": "Muestra las numerosas pociones que descubriste en la Torre."
+  },
+  "character_names": {
+    "ironclad": "El Blindado",
+    "silent": "La Silenciosa",
+    "defect": "El Defectuoso",
+    "necrobinder": "La Necrodescarte",
+    "regent": "El Monarca"
+  }
+}

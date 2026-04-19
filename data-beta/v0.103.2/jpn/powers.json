@@ -1,0 +1,2592 @@
+[
+  {
+    "id": "ACCELERANT",
+    "name": "促進剤",
+    "description": "[gold]毒[/gold]が追加で発動する。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/accelerant_power.webp"
+  },
+  {
+    "id": "ACCURACY",
+    "name": "精度上昇",
+    "description": "[gold]ナイフ[/gold]が追加ダメージを与える。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/accuracy_power.webp"
+  },
+  {
+    "id": "ADAPTABLE",
+    "name": "適応",
+    "description": "[gold]This creature[/gold]が倒される時、代わりにより強くなって復活する。",
+    "description_raw": "[gold]{OwnerName}[/gold]が倒される時、代わりにより強くなって復活する。",
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/adaptable_power.webp"
+  },
+  {
+    "id": "AFTERIMAGE",
+    "name": "残像",
+    "description": "カードをプレイするたび、[blue]1[/blue][gold]ブロック[/gold]を得る。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/afterimage_power.webp"
+  },
+  {
+    "id": "AGGRESSION",
+    "name": "闘争心",
+    "description": "ターン開始時、[gold]捨て札[/gold]からランダムなアタックを1枚[gold]手札[/gold]に加え、この戦闘中それを[gold]アップグレード[/gold]する。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/aggression_power.webp"
+  },
+  {
+    "id": "ANTICIPATE",
+    "name": "Temporary Dexterity",
+    "description": "このターン終了時まで、[gold]敏捷[/gold]を得る。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/anticipate_power.webp"
+  },
+  {
+    "id": "ARSENAL",
+    "name": "武器庫",
+    "description": "カードを作成するたび、[gold]筋力[/gold][blue]1[/blue]を得る。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/arsenal_power.webp"
+  },
+  {
+    "id": "ARTIFACT",
+    "name": "アーティファクト",
+    "description": "デバフを[gold]無効化[/gold]する。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/artifact_power.webp"
+  },
+  {
+    "id": "ASLEEP",
+    "name": "睡眠",
+    "description": "HPを失うか、[blue][Amount][/blue]ターン後に目覚める。",
+    "description_raw": "HPを失うか、[blue]{Amount}[/blue]ターン後に目覚める。",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/asleep_power.webp"
+  },
+  {
+    "id": "AUTOMATION",
+    "name": "オートメーション",
+    "description": "カードを[blue]10[/blue]枚引くたび、[energy:1]を得る。",
+    "description_raw": "カードを[blue]{BaseCards}[/blue]枚引くたび、{Amount:energyIcons()}を得る。",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/automation_power.webp"
+  },
+  {
+    "id": "BACK_ATTACK_LEFT",
+    "name": "バックアタック",
+    "description": "背後から攻撃する時、ダメージが[blue]50%[/blue]増加する。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/back_attack_left_power.webp"
+  },
+  {
+    "id": "BACK_ATTACK_RIGHT",
+    "name": "バックアタック",
+    "description": "背後から攻撃する時、ダメージが[blue]50%[/blue]増加する。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/back_attack_right_power.webp"
+  },
+  {
+    "id": "BARRICADE",
+    "name": "バリケード",
+    "description": "自身のターン開始時に[gold]ブロック[/gold]を失わない。",
+    "description_raw": "{ApplierName.StringValue:cond:[gold]{OwnerName}[/gold]の|自身の}ターン開始時に[gold]ブロック[/gold]を失わない。",
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/barricade_power.webp"
+  },
+  {
+    "id": "BATTLEWORN_DUMMY_TIME_LIMIT",
+    "name": "タイムリミット",
+    "description": "訓練人形を倒すまで残り[blue]3[/blue]ターン。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/battleworn_dummy_time_limit_power.webp"
+  },
+  {
+    "id": "BEACON_OF_HOPE",
+    "name": "希望の道標",
+    "description": "自身のターン中に[gold]ブロック[/gold]を得るたび、他の全プレイヤーはその半分の値の[gold]ブロック[/gold]を得る。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/beacon_of_hope_power.webp"
+  },
+  {
+    "id": "BIASED_COGNITION",
+    "name": "認知偏向",
+    "description": "ターン開始時、[gold]集中力[/gold][blue]1[/blue]を失う。",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/biased_cognition_power.webp"
+  },
+  {
+    "id": "BLACK_HOLE",
+    "name": "ブラックホール",
+    "description": "[star:1]を使用するか得るたび、すべての敵に[blue]3[/blue]ダメージを与える。",
+    "description_raw": "{singleStarIcon}を使用するか得るたび、すべての敵に[blue]3[/blue]ダメージを与える。",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/black_hole_power.webp"
+  },
+  {
+    "id": "BLOCK_NEXT_TURN",
+    "name": "次ターンブロック",
+    "description": "次のターン開始時、[blue]4[/blue][gold]ブロック[/gold]を得る。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/block_next_turn_power.webp"
+  },
+  {
+    "id": "BLUR",
+    "name": "ブラー",
+    "description": "次のターン開始時に[gold]ブロック[/gold]を失わない。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/blur_power.webp"
+  },
+  {
+    "id": "BORROWED_TIME",
+    "name": "借り物の時間",
+    "description": "このターン、カードのコストが[energy:1]増加する。",
+    "description_raw": "このターン、カードのコストが{Amount:energyIcons()}増加する。",
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/borrowed_time_power.webp"
+  },
+  {
+    "id": "BUFFER",
+    "name": "バッファー",
+    "description": "次にHPを失う時、それを無効化する。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/buffer_power.webp"
+  },
+  {
+    "id": "BURROWED",
+    "name": "潜伏",
+    "description": "[gold]This creature[/gold]のターン開始時に[gold]ブロック[/gold]を失わない。すべての[gold]ブロック[/gold]が取り除かれた場合、[gold]スタン[/gold]する。",
+    "description_raw": "[gold]{OwnerName}[/gold]のターン開始時に[gold]ブロック[/gold]を失わない。すべての[gold]ブロック[/gold]が取り除かれた場合、[gold]スタン[/gold]する。",
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/burrowed_power.webp"
+  },
+  {
+    "id": "BURST",
+    "name": "バースト",
+    "description": "このターン、次にプレイするスキルをもう1回プレイする。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/burst_power.webp"
+  },
+  {
+    "id": "CALAMITY",
+    "name": "カラミティ",
+    "description": "アタックをプレイするたび、ランダムなアタックを1枚[gold]手札[/gold]に加える。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/calamity_power.webp"
+  },
+  {
+    "id": "CALCIFY",
+    "name": "骨強化",
+    "description": "[gold]オスティ[/gold]の攻撃は追加ダメージを与える。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/calcify_power.webp"
+  },
+  {
+    "id": "CALL_OF_THE_VOID",
+    "name": "虚空の呼び声",
+    "description": "ターン開始時、ランダムなカードを[blue]1[/blue]枚[gold]手札[/gold]に加える。それは[gold]エセリアル[/gold]を得る。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/call_of_the_void_power.webp"
+  },
+  {
+    "id": "CHAINS_OF_BINDING",
+    "name": "拘束の鎖",
+    "description": "毎ターン、最初に引いた[blue]3[/blue]枚のカードは[gold]拘束[/gold]を受ける。",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/chains_of_binding_power.webp"
+  },
+  {
+    "id": "CHILD_OF_THE_STARS",
+    "name": "星の子",
+    "description": "[star:1]を消費するたび、[blue]1[/blue][gold]ブロック[/gold]を得る。",
+    "description_raw": "{singleStarIcon}を消費するたび、[blue]1[/blue][gold]ブロック[/gold]を得る。",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/child_of_the_stars_power.webp"
+  },
+  {
+    "id": "CLARITY",
+    "name": "明鏡止水",
+    "description": "次のターン開始時、追加でカードを[blue]1[/blue]枚引く。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/clarity_power.webp"
+  },
+  {
+    "id": "COLOSSUS",
+    "name": "巨人",
+    "description": "このターン、[gold]弱体[/gold]中の敵から受けるダメージが[blue]50%[/blue]減少する。",
+    "description_raw": "{Amount:choose(1):このターン|[blue]{Amount}[/blue]ターンの間}、[gold]弱体[/gold]中の敵から受けるダメージが[blue]{DamageDecrease:percentLess()}%[/blue]減少する。",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/colossus_power.webp"
+  },
+  {
+    "id": "CONFUSED",
+    "name": "混乱",
+    "description": "カードを引いた時、コストが[blue]0[/blue]から[blue]3[/blue]の間でランダムに変化する。",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/confused_power.webp"
+  },
+  {
+    "id": "CONQUEROR",
+    "name": "征服者",
+    "description": "このターン、[gold]ソヴリン・ブレード[/gold]は[gold]this creature[/gold]に2倍のダメージを与える。",
+    "description_raw": "{Amount:choose(1):このターン|[blue]{Amount}[/blue]ターンの間}、[gold]ソヴリン・ブレード[/gold]は[gold]{OwnerName}[/gold]に2倍のダメージを与える。",
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/conqueror_power.webp"
+  },
+  {
+    "id": "CONSTRICT",
+    "name": "締め付け",
+    "description": "絞蛇が生存中、ターン終了時、[blue]1[/blue]ダメージを受ける。",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/constrict_power.webp"
+  },
+  {
+    "id": "CONSUMING_SHADOW",
+    "name": "貪る影",
+    "description": "ターン終了時、左端のオーブを[gold]解放[/gold]する。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/consuming_shadow_power.webp"
+  },
+  {
+    "id": "COOLANT",
+    "name": "冷却材",
+    "description": "ターン開始時、生成中のオーブ1種類につき[blue]3[/blue][gold]ブロック[/gold]を得る。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/coolant_power.webp"
+  },
+  {
+    "id": "COORDINATE",
+    "name": "Temporary Strength",
+    "description": "このターン終了時まで、[gold]筋力[/gold]を得る。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/coordinate_power.webp"
+  },
+  {
+    "id": "CORROSIVE_WAVE",
+    "name": "腐食の波",
+    "description": "このターン、カードを1枚引くたび、すべての敵に[gold]毒[/gold][blue]2[/blue]を付与する。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/corrosive_wave_power.webp"
+  },
+  {
+    "id": "CORRUPTION",
+    "name": "堕落",
+    "description": "スキルのコストは[blue]0[/blue]。\nスキルをプレイするたび、それを[gold]廃棄[/gold]する。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/corruption_power.webp"
+  },
+  {
+    "id": "COUNTDOWN",
+    "name": "カウントダウン",
+    "description": "ターン開始時、ランダムな敵に[gold]破滅[/gold][blue]6[/blue]を付与する。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/countdown_power.webp"
+  },
+  {
+    "id": "COVERED",
+    "name": "カバー",
+    "description": "他のプレイヤーがあなたをかばっている。あなたが受けるはずのすべての攻撃は、代わりにそのプレイヤーに向かう。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/covered_power.webp"
+  },
+  {
+    "id": "CRAB_RAGE",
+    "name": "カニの怒り",
+    "description": "味方が1体死亡した時、[gold]this creature[/gold]は[gold]筋力[/gold][blue]6[/blue]と[blue]99[/blue][gold]ブロック[/gold]を得る。",
+    "description_raw": "味方が1体死亡した時、[gold]{OwnerName}[/gold]は[gold]筋力[/gold][blue]{StrengthPower}[/blue]と[blue]{Block}[/blue][gold]ブロック[/gold]を得る。",
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/crab_rage_power.webp"
+  },
+  {
+    "id": "CREATIVE_AI",
+    "name": "クリエイティブAI",
+    "description": "ターン開始時、ランダムなパワーを1枚[gold]手札[/gold]に加える。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/creative_ai_power.webp"
+  },
+  {
+    "id": "CRIMSON_MANTLE",
+    "name": "深紅の衣",
+    "description": "ターン開始時、HPを[blue]0[/blue]失い、[blue][Amount][/blue][gold]ブロック[/gold]を得る。",
+    "description_raw": "ターン開始時、HPを[blue]{SelfDamage}[/blue]失い、[blue]{Amount}[/blue][gold]ブロック[/gold]を得る。",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/crimson_mantle_power.webp"
+  },
+  {
+    "id": "CRUELTY",
+    "name": "無慈悲",
+    "description": "弱体中の敵は、追加ダメージを受ける。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/cruelty_power.webp"
+  },
+  {
+    "id": "CRUSH_UNDER",
+    "name": "Temporary Strength Down",
+    "description": "このターン終了時まで、[gold]筋力[/gold]を失う。",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/crush_under_power.webp"
+  },
+  {
+    "id": "CURIOUS",
+    "name": "好奇心",
+    "description": "パワーのコストが[blue]1[/blue][energy:1]減少する。",
+    "description_raw": "パワーのコストが[blue]1[/blue]{energyPrefix:energyIcons(1)}減少する。",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/curious_power.webp"
+  },
+  {
+    "id": "CURL_UP",
+    "name": "まるくなる",
+    "description": "ダメージを受けた時、丸まってブロックを得る。（各戦闘1回のみ）",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/curl_up_power.webp"
+  },
+  {
+    "id": "DAMPEN",
+    "name": "減衰",
+    "description": "マギ・ナイトが生存中、あなたのすべてのカードは[gold]ダウングレード[/gold]される。",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "None",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/dampen_power.webp"
+  },
+  {
+    "id": "DANSE_MACABRE",
+    "name": "死の舞踏",
+    "description": "コストが[energy:2]以上のカードをプレイするたび、[blue][Amount][/blue][gold]ブロック[/gold]を得る。",
+    "description_raw": "コストが{Energy:energyIcons()}以上のカードをプレイするたび、[blue]{Amount}[/blue][gold]ブロック[/gold]を得る。",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/danse_macabre_power.webp"
+  },
+  {
+    "id": "DARK_EMBRACE",
+    "name": "闇の抱擁",
+    "description": "カードが[gold]廃棄[/gold]されるたび、カードを[blue]1[/blue]枚引く。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/dark_embrace_power.webp"
+  },
+  {
+    "id": "DARK_SHACKLES",
+    "name": "Temporary Strength Down",
+    "description": "このターン終了時まで、[gold]筋力[/gold]を失う。",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/dark_shackles_power.webp"
+  },
+  {
+    "id": "DEBILITATE",
+    "name": "衰弱",
+    "description": "このターン、[gold]弱体[/gold]と[gold]脱力[/gold]の効果が2倍になる。",
+    "description_raw": "{Amount:choose(1):このターン|[blue]{Amount}[/blue]ターンの間}、[gold]弱体[/gold]と[gold]脱力[/gold]の効果が2倍になる。",
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/debilitate_power.webp"
+  },
+  {
+    "id": "DEMESNE",
+    "name": "領域",
+    "description": "ターン開始時、[gold]エナジー[/gold][blue]1[/blue]を得て、追加でカードを[blue]1[/blue]枚引く。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/demesne_power.webp"
+  },
+  {
+    "id": "DEMISE",
+    "name": "崩御",
+    "description": "[gold]This creature[/gold]のターン終了時、HPを[blue][Amount][/blue]失う。",
+    "description_raw": "[gold]{OwnerName}[/gold]のターン終了時、HPを[blue]{Amount}[/blue]失う。",
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/demise_power.webp"
+  },
+  {
+    "id": "DEMON_FORM",
+    "name": "悪魔化",
+    "description": "ターン開始時、[gold]筋力[/gold][blue]2[/blue]を得る。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/demon_form_power.webp"
+  },
+  {
+    "id": "DEVOUR_LIFE",
+    "name": "魂喰らい",
+    "description": "[gold]ソウル[/gold]をプレイするたび、[gold]召喚[/gold][blue]1[/blue]。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/devour_life_power.webp"
+  },
+  {
+    "id": "DEXTERITY",
+    "name": "敏捷",
+    "description": "カードから得る[gold]ブロック[/gold]が[blue][/blue]増加する。",
+    "description_raw": "カードから得る[gold]ブロック[/gold]が[blue]{Amount:abs()}[/blue]{Amount:cond:<0?減少|増加}する。",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": true,
+    "image_url": "/static/images/powers/dexterity_power.webp"
+  },
+  {
+    "id": "DIAMOND_DIADEM",
+    "name": "ダイヤのティアラ",
+    "description": "このターン、敵から受けるダメージが[blue]50%[/blue]減少する。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/diamond_diadem_power.webp"
+  },
+  {
+    "id": "DIE_FOR_YOU",
+    "name": "身代わり",
+    "description": "[gold]オスティ[/gold]はブロックされなかった攻撃ダメージをすべて吸収する。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/die_for_you_power.webp"
+  },
+  {
+    "id": "DISINTEGRATION",
+    "name": "崩壊",
+    "description": "ターン終了時、[blue]5[/blue]ダメージを受ける。",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/disintegration_power.webp"
+  },
+  {
+    "id": "DOOM",
+    "name": "破滅",
+    "description": "敵のターン終了時、[gold]this creature[/gold]のHPが[blue][Amount][/blue]以下の場合、即死する。",
+    "description_raw": "{OnPlayer:自身の|敵の}ターン終了時、[gold]{OwnerName}[/gold]のHPが[blue]{Amount}[/blue]以下の場合、即死する。",
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/doom_power.webp"
+  },
+  {
+    "id": "DOUBLE_DAMAGE",
+    "name": "ダメージ2倍",
+    "description": "このターン、アタックは2倍のダメージを与える。",
+    "description_raw": "{Amount:choose(1):このターン|[blue]{Amount}[/blue]ターンの間}、アタックは2倍のダメージを与える。",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/double_damage_power.webp"
+  },
+  {
+    "id": "DRAW_CARDS_NEXT_TURN",
+    "name": "次ターンドロー",
+    "description": "次のターン開始時、追加でカードを[blue]1[/blue]枚引く。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/draw_cards_next_turn_power.webp"
+  },
+  {
+    "id": "DRUM_OF_BATTLE",
+    "name": "戦いのドラム",
+    "description": "ターン開始時、[gold]山札[/gold]の一番上から[blue][Amount][/blue]枚のカードを[gold]廃棄[/gold]する。",
+    "description_raw": "ターン開始時、[gold]山札[/gold]の一番上から[blue]{Amount}[/blue]枚のカードを[gold]廃棄[/gold]する。",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/drum_of_battle_power.webp"
+  },
+  {
+    "id": "DUPLICATION",
+    "name": "複製",
+    "description": "次にプレイするカードをもう1回プレイする。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/duplication_power.webp"
+  },
+  {
+    "id": "DYING_STAR",
+    "name": "Temporary Strength Down",
+    "description": "このターン終了時まで、[gold]筋力[/gold]を失う。",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/dying_star_power.webp"
+  },
+  {
+    "id": "ECHO_FORM",
+    "name": "反響化",
+    "description": "毎ターン、最初にプレイするカードをもう一度プレイする。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/echo_form_power.webp"
+  },
+  {
+    "id": "ENERGY_NEXT_TURN",
+    "name": "次ターンエナジー",
+    "description": "次のターン、追加の[gold]エナジー[/gold]を得る。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/energy_next_turn_power.webp"
+  },
+  {
+    "id": "ENFEEBLING_TOUCH",
+    "name": "Temporary Strength Down",
+    "description": "このターン終了時まで、[gold]筋力[/gold]を失う。",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/enfeebling_touch_power.webp"
+  },
+  {
+    "id": "ENRAGE",
+    "name": "激怒",
+    "description": "スキルをプレイするたび、[gold]筋力[/gold][blue]2[/blue]を得る。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/enrage_power.webp"
+  },
+  {
+    "id": "ENTROPY",
+    "name": "エントロピー",
+    "description": "ターン開始時、[gold]手札[/gold]のカードを[blue]1[/blue]枚[gold]変化[/gold]させる。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/entropy_power.webp"
+  },
+  {
+    "id": "ENVENOM",
+    "name": "毒の仕込み",
+    "description": "ブロックされなかった攻撃ダメージを与えるたび、[gold]毒[/gold][blue]1[/blue]を付与する。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/envenom_power.webp"
+  },
+  {
+    "id": "ESCAPE_ARTIST",
+    "name": "脱出名人",
+    "description": "4ターン後に戦闘から逃走する。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/escape_artist_power.webp"
+  },
+  {
+    "id": "FAN_OF_KNIVES",
+    "name": "ナイフの雨",
+    "description": "[gold]ナイフ[/gold]はすべての敵を攻撃する。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/fan_of_knives_power.webp"
+  },
+  {
+    "id": "FASTEN",
+    "name": "締め直し",
+    "description": "防御カードから追加で[blue]4[/blue][gold]ブロック[/gold]を得る。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/fasten_power.webp"
+  },
+  {
+    "id": "FEEDING_FRENZY",
+    "name": "Temporary Strength",
+    "description": "このターン終了時まで、[gold]筋力[/gold]を得る。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/feeding_frenzy_power.webp"
+  },
+  {
+    "id": "FEEL_NO_PAIN",
+    "name": "無痛",
+    "description": "カードが廃棄されるたび、[blue]3[/blue][gold]ブロック[/gold]を得る。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/feel_no_pain_power.webp"
+  },
+  {
+    "id": "FERAL",
+    "name": "野性",
+    "description": "毎ターン、コスト0[energy:1]のアタックを初めてプレイした時、そのカードを[gold]手札[/gold]に戻す。",
+    "description_raw": "毎ターン、コスト0{energyPrefix:energyIcons(1)}のアタックを初めてプレイした時、そのカードを[gold]手札[/gold]に戻す。",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/feral_power.webp"
+  },
+  {
+    "id": "FLAME_BARRIER",
+    "name": "炎の障壁",
+    "description": "このターン、攻撃を受けるたび、攻撃した敵に[blue]4[/blue]ダメージを与える。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/flame_barrier_power.webp"
+  },
+  {
+    "id": "FLANKING",
+    "name": "挟撃",
+    "description": "このターン、他の味方はこの敵に[blue]2[/blue]倍のアタックダメージを与える。",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/flanking_power.webp"
+  },
+  {
+    "id": "FLEX_POTION",
+    "name": "Temporary Strength",
+    "description": "このターン終了時まで、[gold]筋力[/gold]を得る。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/flex_potion_power.webp"
+  },
+  {
+    "id": "FLUTTER",
+    "name": "羽ばたき",
+    "description": "アタックから受けるダメージが[blue]50%[/blue]減少する。[gold]スタン[/gold]させるには、アタックで[blue][Amount][/blue]回ダメージを与える必要がある。",
+    "description_raw": "アタックから受けるダメージが[blue]{DamageDecrease}%[/blue]減少する。[gold]スタン[/gold]させるには、アタックで[blue]{Amount}[/blue]回ダメージを与える必要がある。",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/flutter_power.webp"
+  },
+  {
+    "id": "FOCUS",
+    "name": "集中力",
+    "description": "オーブの効果が[blue][/blue]増加する。",
+    "description_raw": "オーブの効果が[blue]{Amount:abs()}[/blue]{Amount:cond:<0?減少|増加}する。",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": true,
+    "image_url": "/static/images/powers/focus_power.webp"
+  },
+  {
+    "id": "FOCUSED_STRIKE",
+    "name": "Temporary Focus",
+    "description": "このターン終了時まで、[gold]集中力[/gold]を得る。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/focused_strike_power.webp"
+  },
+  {
+    "id": "FORBIDDEN_GRIMOIRE",
+    "name": "禁断の魔導書",
+    "description": "戦闘終了時、[gold]デッキ[/gold]からカードを1枚削除する。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/forbidden_grimoire_power.webp"
+  },
+  {
+    "id": "FOREGONE_CONCLUSION",
+    "name": "確定事項",
+    "description": "次のターン、[gold]山札[/gold]からカードを[blue]3[/blue]枚[gold]手札[/gold]に加える。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/foregone_conclusion_power.webp"
+  },
+  {
+    "id": "FRAIL",
+    "name": "脆弱",
+    "description": "脆弱状態の間、カードから得る[gold]ブロック[/gold]が[blue]25%[/blue]減少する。",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/frail_power.webp"
+  },
+  {
+    "id": "FREE_ATTACK",
+    "name": "フリーアタック",
+    "description": "次にプレイするアタックのコストは[blue]0[/blue][energy:1]。",
+    "description_raw": "次にプレイするアタックのコストは[blue]0[/blue]{energyPrefix:energyIcons(1)}。",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/free_attack_power.webp"
+  },
+  {
+    "id": "FREE_POWER",
+    "name": "フリーパワー",
+    "description": "次にプレイするパワーのコストは[blue]0[/blue][energy:1]。",
+    "description_raw": "次にプレイするパワーのコストは[blue]0[/blue]{energyPrefix:energyIcons(1)}。",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/free_power_power.webp"
+  },
+  {
+    "id": "FREE_SKILL",
+    "name": "フリースキル",
+    "description": "次にプレイするスキルのコストは[blue]0[/blue][energy:1]。",
+    "description_raw": "次にプレイするスキルのコストは[blue]0[/blue]{energyPrefix:energyIcons(1)}。",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/free_skill_power.webp"
+  },
+  {
+    "id": "FRIENDSHIP",
+    "name": "フレンドシップ",
+    "description": "ターン開始時、[energy:1]を得る。",
+    "description_raw": "ターン開始時、{Amount:energyIcons()}を得る。",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/friendship_power.webp"
+  },
+  {
+    "id": "FURNACE",
+    "name": "溶鉱炉",
+    "description": "ターン開始時、[gold]鍛造[/gold][blue]5[/blue]。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/furnace_power.webp"
+  },
+  {
+    "id": "GALVANIC",
+    "name": "ガルバニック",
+    "description": "パワーは[gold]ガルバニック[/gold]の影響を受ける。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/galvanic_power.webp"
+  },
+  {
+    "id": "GENESIS",
+    "name": "ジェネシス",
+    "description": "ターン開始時、[star:1]を得る。",
+    "description_raw": "ターン開始時、{Amount:starIcons()}を得る。",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/genesis_power.webp"
+  },
+  {
+    "id": "GIGANTIFICATION",
+    "name": "巨大化",
+    "description": "次にプレイするアタックは3倍のダメージを与える。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/gigantification_power.webp"
+  },
+  {
+    "id": "GRASP",
+    "name": "掌握",
+    "description": "カードをプレイするたび、[energy:1]を失う。",
+    "description_raw": "カードをプレイするたび、{Amount:energyIcons()}を失う。",
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/grasp_power.webp"
+  },
+  {
+    "id": "GRAVITY",
+    "name": "重力",
+    "description": "このターン、カードをプレイするたび、すべての敵に[blue]2[/blue]ダメージを与える。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/gravity_power.webp"
+  },
+  {
+    "id": "GUARDED",
+    "name": "護衛",
+    "description": "敵から受けるダメージが半分になる。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/guarded_power.webp"
+  },
+  {
+    "id": "HAILSTORM",
+    "name": "ヘイルストーム",
+    "description": "ターン終了時、[gold]フロスト[/gold]を生成中の場合、すべての敵に[blue]6[/blue]ダメージを与える。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/hailstorm_power.webp"
+  },
+  {
+    "id": "HAMMER_TIME",
+    "name": "ハンマータイム",
+    "description": "[gold]鍛造[/gold]を行うたび、味方全員も[gold]鍛造[/gold]を行う。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/hammer_time_power.webp"
+  },
+  {
+    "id": "HANG",
+    "name": "絞首",
+    "description": "この敵に与えるすべての[gold]絞首[/gold]のダメージが[blue]2[/blue]倍になる。",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/hang_power.webp"
+  },
+  {
+    "id": "HARD_TO_KILL",
+    "name": "不死身",
+    "description": "[gold]This creature[/gold]が受けるすべてのダメージとHP喪失を[blue]9[/blue]に減らす。",
+    "description_raw": "[gold]{OwnerName}[/gold]が受けるすべてのダメージとHP喪失を[blue]9[/blue]に減らす。",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/hard_to_kill_power.webp"
+  },
+  {
+    "id": "HARDENED_SHELL",
+    "name": "硬い殻",
+    "description": "[gold]This creature[/gold]は1ターンに[blue][Amount][/blue]以上のHPを失わない。",
+    "description_raw": "[gold]{OwnerName}[/gold]は1ターンに[blue]{Amount}[/blue]以上のHPを失わない。",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/hardened_shell_power.webp"
+  },
+  {
+    "id": "HATCH",
+    "name": "ふ化",
+    "description": "[blue]X[/blue]ターン後にふ化する。",
+    "description_raw": "Xターン後にふ化する。",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/hatch_power.webp"
+  },
+  {
+    "id": "HAUNT",
+    "name": "憑依",
+    "description": "[gold]ソウル[/gold]をプレイするたび、ランダムな敵1体はHPを[blue]3[/blue]失う。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/haunt_power.webp"
+  },
+  {
+    "id": "HEIST",
+    "name": "強奪",
+    "description": "倒された時、盗んだ[gold]ゴールド[/gold]をすべて返す。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/heist_power.webp"
+  },
+  {
+    "id": "HELICAL_DART",
+    "name": "Temporary Dexterity",
+    "description": "このターン終了時まで、[gold]敏捷[/gold]を得る。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/helical_dart_power.webp"
+  },
+  {
+    "id": "HELLO_WORLD",
+    "name": "ハロー・ワールド",
+    "description": "ターン開始時、ランダムなコモンカードを[blue]1[/blue]枚[gold]手札[/gold]に加える。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/hello_world_power.webp"
+  },
+  {
+    "id": "HELLRAISER",
+    "name": "ヘル・レイザー",
+    "description": "名前に「ストライク」を含むカードを引くたび、それをランダムな敵に対して自動でプレイする。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/hellraiser_power.webp"
+  },
+  {
+    "id": "HEX",
+    "name": "呪術",
+    "description": "スペクトルナイトが生存中、あなたのすべてのカードは[gold]エセリアル[/gold]を得る。",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/hex_power.webp"
+  },
+  {
+    "id": "HIGH_VOLTAGE",
+    "name": "高電圧",
+    "description": "[gold]This creature[/gold]のターン開始時、[gold]筋力[/gold][blue][Amount][/blue]を得る。",
+    "description_raw": "[gold]{OwnerName}[/gold]のターン開始時、[gold]筋力[/gold][blue]{Amount}[/blue]を得る。",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/high_voltage_power.webp"
+  },
+  {
+    "id": "HOTFIX",
+    "name": "Temporary Focus",
+    "description": "このターン終了時まで、[gold]集中力[/gold]を得る。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/hotfix_power.webp"
+  },
+  {
+    "id": "HUNGER",
+    "name": "飢餓",
+    "description": "アタックかスキルをプレイするたび、それを[gold]廃棄[/gold]する。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/hunger_power.webp"
+  },
+  {
+    "id": "ILLUSION",
+    "name": "幻影",
+    "description": "これが倒された時、次のターンにHP全快で復活する。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/illusion_power.webp"
+  },
+  {
+    "id": "IMBALANCED",
+    "name": "アンバランス",
+    "description": "[gold]This creature[/gold]の攻撃が完全にブロックされた場合、[gold]スタン[/gold]する。",
+    "description_raw": "[gold]{OwnerName}[/gold]の攻撃が{IsMultiplayer:いずれかのプレイヤーに|}完全にブロックされた場合、[gold]スタン[/gold]する。",
+    "type": "Debuff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/imbalanced_power.webp"
+  },
+  {
+    "id": "IMPROVEMENT",
+    "name": "改善",
+    "description": "戦闘終了時、ランダムなカードを1枚[gold]アップグレード[/gold]する。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/improvement_power.webp"
+  },
+  {
+    "id": "INFERNO",
+    "name": "インフェルノ",
+    "description": "ターン開始時、HPを[blue]0[/blue]失う。このターン、HPを失うたび、すべての敵に[blue][Amount][/blue]ダメージを与える。",
+    "description_raw": "ターン開始時、HPを[blue]{SelfDamage}[/blue]失う。このターン、HPを失うたび、すべての敵に[blue]{Amount}[/blue]ダメージを与える。",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/inferno_power.webp"
+  },
+  {
+    "id": "INFESTED",
+    "name": "寄生",
+    "description": "倒された時、何かを召喚する……",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/infested_power.webp"
+  },
+  {
+    "id": "INFINITE_BLADES",
+    "name": "無限の刃",
+    "description": "ターン開始時、[gold]ナイフ[/gold]を1枚[gold]手札[/gold]に加える。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/infinite_blades_power.webp"
+  },
+  {
+    "id": "INTANGIBLE",
+    "name": "霊体",
+    "description": "このターン、受けるすべてのダメージとHP喪失が[blue]1[/blue]になる。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/intangible_power.webp"
+  },
+  {
+    "id": "INTERCEPT",
+    "name": "インターセプト",
+    "description": "他のプレイヤーをかばっている。そのプレイヤーが受けるはずのすべての攻撃は、代わりにあなたに向かう。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/intercept_power.webp"
+  },
+  {
+    "id": "ITERATION",
+    "name": "反復",
+    "description": "毎ターン、最初に状態異常を引いた時、さらにカードを引く。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/iteration_power.webp"
+  },
+  {
+    "id": "JUGGERNAUT",
+    "name": "ジャガーノート",
+    "description": "[gold]ブロック[/gold]を得るたび、ランダムな敵に[blue]5[/blue]ダメージを与える。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/juggernaut_power.webp"
+  },
+  {
+    "id": "JUGGLING",
+    "name": "ジャグリング",
+    "description": "毎ターン、3枚目にプレイしたアタックのコピーを1枚[gold]手札[/gold]に加える。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/juggling_power.webp"
+  },
+  {
+    "id": "KNOCKDOWN",
+    "name": "ノックダウン",
+    "description": "このターン、このモンスターは他のプレイヤーから受けるダメージが[blue][Amount][/blue]倍になる。",
+    "description_raw": "このターン、このモンスターは他のプレイヤーから受けるダメージが[blue]{Amount}[/blue]倍になる。",
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/knockdown_power.webp"
+  },
+  {
+    "id": "LEADERSHIP",
+    "name": "リーダーシップ",
+    "description": "他のすべての味方は、追加で[blue]1[/blue]ダメージを与える。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/leadership_power.webp"
+  },
+  {
+    "id": "LETHALITY",
+    "name": "殺意",
+    "description": "毎ターン、最初のアタックは追加で50%のダメージを与える。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/lethality_power.webp"
+  },
+  {
+    "id": "LIGHTNING_ROD",
+    "name": "避雷針",
+    "description": "次の[blue]2[/blue]ターンの開始時、[gold]ライトニング[/gold][blue]1[/blue]を[gold]生成[/gold]する。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/lightning_rod_power.webp"
+  },
+  {
+    "id": "LOOP",
+    "name": "ループ",
+    "description": "ターン開始時、右端のオーブの自動効果を発動する。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/loop_power.webp"
+  },
+  {
+    "id": "MACHINE_LEARNING",
+    "name": "機械学習",
+    "description": "ターン開始時、追加でカードを[blue]1[/blue]枚引く。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/machine_learning_power.webp"
+  },
+  {
+    "id": "MAGIC_BOMB",
+    "name": "魔法の爆弾",
+    "description": "ターン終了時、[blue]20[/blue]ダメージを受ける。マギ・ナイトが死ぬと効果が消滅する。",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/magic_bomb_power.webp"
+  },
+  {
+    "id": "MANGLE",
+    "name": "Temporary Strength Down",
+    "description": "このターン終了時まで、[gold]筋力[/gold]を失う。",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/mangle_power.webp"
+  },
+  {
+    "id": "MASTER_PLANNER",
+    "name": "稀代の策士",
+    "description": "スキルをプレイした時、それに[gold]スライ[/gold]を付与する。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/master_planner_power.webp"
+  },
+  {
+    "id": "MAYHEM",
+    "name": "騒乱",
+    "description": "ターン開始時、[gold]山札[/gold]の一番上にあるカードをプレイする。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/mayhem_power.webp"
+  },
+  {
+    "id": "MIND_ROT",
+    "name": "精神腐敗",
+    "description": "毎ターン、カードを引く枚数が[blue]1[/blue]枚少なくなる。",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/mind_rot_power.webp"
+  },
+  {
+    "id": "MINION",
+    "name": "ミニオン",
+    "description": "ミニオンはリーダーがいなくなると戦闘から逃走する。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/minion_power.webp"
+  },
+  {
+    "id": "MONARCHS_GAZE",
+    "name": "君主の睨み",
+    "description": "敵を攻撃するたび、ターン終了時までその敵は[gold]筋力[/gold][blue]1[/blue]を失う。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/monarchs_gaze_power.webp"
+  },
+  {
+    "id": "MONARCHS_GAZE_STRENGTH_DOWN",
+    "name": "Temporary Strength Down",
+    "description": "このターン終了時まで、[gold]筋力[/gold]を失う。",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/monarchs_gaze_strength_down_power.webp"
+  },
+  {
+    "id": "MONOLOGUE",
+    "name": "モノローグ",
+    "description": "このターン、カードをプレイするたび、ターン終了時まで[gold]筋力[/gold][blue]1[/blue]を得る。\n現在[blue]0[/blue]の[gold]筋力[/gold]を得ている。",
+    "description_raw": "このターン、カードをプレイするたび、ターン終了時まで[gold]筋力[/gold][blue]{StrengthPower}[/blue]を得る。\n現在[blue]{StrengthApplied}[/blue]の[gold]筋力[/gold]を得ている。",
+    "type": "Buff",
+    "stack_type": "None",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/monologue_power.webp"
+  },
+  {
+    "id": "NECRO_MASTERY",
+    "name": "ネクロマスタリー",
+    "description": "[gold]オスティ[/gold]がHPを失うたび、すべての敵も同じ値のHPを失う。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/necro_mastery_power.webp"
+  },
+  {
+    "id": "NEMESIS",
+    "name": "ネメシス",
+    "description": "2ターンに1回、[gold]霊体[/gold][blue]1[/blue]を得る。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/nemesis_power.webp"
+  },
+  {
+    "id": "NEUROSURGE",
+    "name": "ニューロサージ",
+    "description": "ターン開始時、自身に[blue]3[/blue]の[gold]破滅[/gold]を付与する。",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/neurosurge_power.webp"
+  },
+  {
+    "id": "NIGHTMARE",
+    "name": "悪夢",
+    "description": "次のターン、選んだカードのコピーを[blue]3[/blue]枚[gold]手札[/gold]に加える。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/nightmare_power.webp"
+  },
+  {
+    "id": "NO_BLOCK",
+    "name": "ノーブロック",
+    "description": "カードから[gold]ブロック[/gold]を得ることができない。",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/no_block_power.webp"
+  },
+  {
+    "id": "NO_DRAW",
+    "name": "ノードロー",
+    "description": "このターン、これ以上カードを引くことができない。",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/no_draw_power.webp"
+  },
+  {
+    "id": "NO_ENERGY_GAIN",
+    "name": "エナジー獲得不可",
+    "description": "このターン、追加の[energy:1]を得ることができない。",
+    "description_raw": "このターン、追加の{energyPrefix:energyIcons(1)}を得ることができない。",
+    "type": "Debuff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/no_energy_gain_power.webp"
+  },
+  {
+    "id": "NOSTALGIA",
+    "name": "郷愁",
+    "description": "毎ターン、最初にプレイするアタックまたはスキルは、[gold]山札[/gold]の一番上に置かれる。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/nostalgia_power.webp"
+  },
+  {
+    "id": "NOXIOUS_FUMES",
+    "name": "有毒ガス",
+    "description": "ターン開始時、すべての敵に[gold]毒[/gold][blue]2[/blue]を付与する。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/noxious_fumes_power.webp"
+  },
+  {
+    "id": "OBLIVION",
+    "name": "オブリビオン",
+    "description": "カードをプレイするたび、この敵は[gold]破滅[/gold][blue]1[/blue]を得る。",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/oblivion_power.webp"
+  },
+  {
+    "id": "ONE_TWO_PUNCH",
+    "name": "ワン・ツーパンチ",
+    "description": "このターン、次にプレイするアタックをもう1回プレイする。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/one_two_punch_power.webp"
+  },
+  {
+    "id": "ORBIT",
+    "name": "オービット",
+    "description": "[energy:4]を消費するたび、[energy:1]を得る。",
+    "description_raw": "{Energy:energyIcons()}を消費するたび、{Amount:energyIcons()}を得る。",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/orbit_power.webp"
+  },
+  {
+    "id": "OUTBREAK",
+    "name": "感染爆発",
+    "description": "[gold]毒[/gold]を[blue]3[/blue]回付与するたび、すべての敵に[blue][Amount][/blue]ダメージを与える。",
+    "description_raw": "[gold]毒[/gold]を[blue]{Repeat}[/blue]回付与するたび、すべての敵に[blue]{Amount}[/blue]ダメージを与える。",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/outbreak_power.webp"
+  },
+  {
+    "id": "PAGESTORM",
+    "name": "紙の嵐",
+    "description": "[gold]エセリアル[/gold]を引くたび、カードを[blue]1[/blue]枚引く。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/pagestorm_power.webp"
+  },
+  {
+    "id": "PAINFUL_STABS",
+    "name": "苦痛の一刺し",
+    "description": "ブロックされなかった攻撃ダメージを受けるたび、[gold]負傷[/gold]を[blue]1[/blue]枚[gold]捨て札[/gold]に混ぜる。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/painful_stabs_power.webp"
+  },
+  {
+    "id": "PALE_BLUE_DOT",
+    "name": "ペイル・ブルー・ドット",
+    "description": "1ターンの間にカードを[blue]5[/blue]枚以上プレイした場合、次のターン開始時、追加でカードを[blue][Amount][/blue]枚引く。",
+    "description_raw": "1ターンの間にカードを[blue]{CardPlay}[/blue]枚以上プレイした場合、次のターン開始時、追加でカードを[blue]{Amount}[/blue]枚引く。",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/pale_blue_dot_power.webp"
+  },
+  {
+    "id": "PANACHE",
+    "name": "威風堂々",
+    "description": "このターン、あと[blue]5[/blue]枚プレイした場合、すべての敵に[blue][Amount][/blue]ダメージを与える。",
+    "description_raw": "このターン、あと[blue]{CardsLeft}[/blue]枚プレイした場合、すべての敵に[blue]{Amount}[/blue]ダメージを与える。",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/panache_power.webp"
+  },
+  {
+    "id": "PAPER_CUTS",
+    "name": "紙傷",
+    "description": "[gold]This creature[/gold]からブロックしきれなかった攻撃ダメージを受けるたび、[gold]最大HP[/gold][blue][Amount][/blue]を失う。",
+    "description_raw": "[gold]{OwnerName}[/gold]からブロックしきれなかった攻撃ダメージを受けるたび、[gold]最大HP[/gold][blue]{Amount}[/blue]を失う。",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/paper_cuts_power.webp"
+  },
+  {
+    "id": "PARRY",
+    "name": "パリィ",
+    "description": "[gold]ソヴリン・ブレード[/gold]をプレイするたび、[blue]8[/blue][gold]ブロック[/gold]を得る。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/parry_power.webp"
+  },
+  {
+    "id": "PERSONAL_HIVE",
+    "name": "パーソナルハイヴ",
+    "description": "この敵が攻撃された時、[gold]めまい[/gold]を[gold]山札[/gold]に加える。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/personal_hive_power.webp"
+  },
+  {
+    "id": "PHANTOM_BLADES",
+    "name": "ファントムブレード",
+    "description": "[gold]ナイフ[/gold]が[gold]保留[/gold]を得る。\n毎ターン、最初にプレイする[gold]ナイフ[/gold]が追加で[blue]9[/blue]ダメージを与える。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/phantom_blades_power.webp"
+  },
+  {
+    "id": "PIERCING_WAIL",
+    "name": "Temporary Strength Down",
+    "description": "このターン終了時まで、[gold]筋力[/gold]を失う。",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/piercing_wail_power.webp"
+  },
+  {
+    "id": "PILLAR_OF_CREATION",
+    "name": "創造の柱",
+    "description": "カードを作成するたび、[blue]5[/blue][gold]ブロック[/gold]を得る。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/pillar_of_creation_power.webp"
+  },
+  {
+    "id": "PLATING",
+    "name": "プレート",
+    "description": "ターン終了時、[blue][Amount][/blue][gold]ブロック[/gold]を得る。ターン開始時、[gold]プレート[/gold]が[blue]1[/blue]減少する。",
+    "description_raw": "ターン終了時、[blue]{Amount}[/blue][gold]ブロック[/gold]を得る。ターン開始時、[gold]プレート[/gold]が[blue]{Decrement}[/blue]減少する。",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/plating_power.webp"
+  },
+  {
+    "id": "PLOW",
+    "name": "すき込み",
+    "description": "[gold]This creature[/gold]のHPが初めて[blue][Amount][/blue]以下になった時、[gold]スタン[/gold]し、すべての[gold]筋力[/gold]を失う。",
+    "description_raw": "[gold]{OwnerName}[/gold]のHPが初めて[blue]{Amount}[/blue]以下になった時、[gold]スタン[/gold]し、すべての[gold]筋力[/gold]を失う。",
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/plow_power.webp"
+  },
+  {
+    "id": "POISON",
+    "name": "毒",
+    "description": "[gold]毒[/gold]に侵されたモンスターはターン開始時にHPを失う。毎ターン、[gold]毒[/gold]は[blue]1[/blue]減少する。",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/poison_power.webp"
+  },
+  {
+    "id": "POSSESS_SPEED",
+    "name": "敏捷泥棒",
+    "description": "倒された時、盗んだ[gold]敏捷[/gold]をすべてプレイヤーに返す。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/possess_speed_power.webp"
+  },
+  {
+    "id": "POSSESS_STRENGTH",
+    "name": "筋力泥棒",
+    "description": "倒された時、盗んだ[gold]筋力[/gold]をすべてプレイヤーに返す。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/possess_strength_power.webp"
+  },
+  {
+    "id": "PREP_TIME",
+    "name": "ウォームアップ",
+    "description": "ターン開始時、[gold]活力[/gold][blue]4[/blue]を得る。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/prep_time_power.webp"
+  },
+  {
+    "id": "PYRE",
+    "name": "かがり火",
+    "description": "ターン開始時、[energy:1]を得る。",
+    "description_raw": "ターン開始時、{Amount:energyIcons()}を得る。",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/pyre_power.webp"
+  },
+  {
+    "id": "RADIANCE",
+    "name": "輝き",
+    "description": "次のターン、追加の[energy:1]を得る。",
+    "description_raw": "{Amount:choose(1):次のターン|次の[blue]{Amount}[/blue]ターンの間}、追加の{Energy:energyIcons()}を得る。",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/radiance_power.webp"
+  },
+  {
+    "id": "RAGE",
+    "name": "激怒",
+    "description": "このターン、アタックをプレイするたび、[blue]3[/blue][gold]ブロック[/gold]を得る。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/rage_power.webp"
+  },
+  {
+    "id": "RAMPART",
+    "name": "城壁",
+    "description": "プレイヤーのターン開始時、タレットオペレーターは[blue]25[/blue][gold]ブロック[/gold]を得る。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/rampart_power.webp"
+  },
+  {
+    "id": "RAVENOUS",
+    "name": "貪欲",
+    "description": "敵が死んだ時、屍ナメクジは即座にそれを食べ、[gold]スタン[/gold]して[gold]筋力[/gold][blue]1[/blue]を得る。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/ravenous_power.webp"
+  },
+  {
+    "id": "REAPER_FORM",
+    "name": "死神化",
+    "description": "アタックでダメージを与えるたび、そのダメージと同じ値の[gold]破滅[/gold]を付与する。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/reaper_form_power.webp"
+  },
+  {
+    "id": "REATTACH",
+    "name": "再結合",
+    "description": "他の節がまだ生きていれば、[blue]2[/blue]ターン後にHP[blue]25[/blue]で復活する。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/reattach_power.webp"
+  },
+  {
+    "id": "REBOUND",
+    "name": "リバウンド",
+    "description": "このターン、次にプレイするカードを[gold]山札[/gold]の一番上に置く。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/rebound_power.webp"
+  },
+  {
+    "id": "REFLECT",
+    "name": "反射",
+    "description": "ブロックしたダメージを攻撃者に跳ね返す。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/reflect_power.webp"
+  },
+  {
+    "id": "REGEN",
+    "name": "再生",
+    "description": "ターン終了時、[gold]再生[/gold]によりHPを回復する。毎ターン、[gold]再生[/gold]は[blue]1[/blue]減少する。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/regen_power.webp"
+  },
+  {
+    "id": "REPTILE_TRINKET",
+    "name": "Temporary Strength",
+    "description": "このターン終了時まで、[gold]筋力[/gold]を得る。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/reptile_trinket_power.webp"
+  },
+  {
+    "id": "RETAIN_HAND",
+    "name": "手札保留",
+    "description": "このターン、[gold]手札[/gold]をすべて[gold]保留[/gold]する。",
+    "description_raw": "{Amount:choose(1):このターン|[blue]{Amount}[/blue]ターンの間}、[gold]手札[/gold]をすべて[gold]保留[/gold]する。",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/retain_hand_power.webp"
+  },
+  {
+    "id": "RINGING",
+    "name": "耳鳴り",
+    "description": "このターン、カードを[blue]1[/blue]枚しかプレイできない。",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/ringing_power.webp"
+  },
+  {
+    "id": "RITUAL",
+    "name": "儀式",
+    "description": "ターン終了時、[gold]筋力[/gold]を得る。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/ritual_power.webp"
+  },
+  {
+    "id": "ROLLING_BOULDER",
+    "name": "大岩転がし",
+    "description": "ターン開始時、すべての敵に[blue][Amount][/blue]ダメージを与え、このダメージを[blue]5[/blue]増加させる。",
+    "description_raw": "ターン開始時、すべての敵に[blue]{Amount}[/blue]ダメージを与え、このダメージを[blue]{Damage}[/blue]増加させる。",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/rolling_boulder_power.webp"
+  },
+  {
+    "id": "ROYALTIES",
+    "name": "ロイヤリティ",
+    "description": "戦闘終了時、[blue]25[/blue][gold]ゴールド[/gold]を獲得する。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/royalties_power.webp"
+  },
+  {
+    "id": "RUPTURE",
+    "name": "血の沸騰",
+    "description": "このターン、HPを失うたび、[gold]筋力[/gold][blue]1[/blue]を得る。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/rupture_power.webp"
+  },
+  {
+    "id": "SANDPIT",
+    "name": "蟻地獄",
+    "description": "貪りの獣が使用するパワー。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/sandpit_power.webp"
+  },
+  {
+    "id": "SCRUTINY",
+    "name": "監視",
+    "description": "このターン、追加でカードを引くことができない。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/scrutiny_power.webp"
+  },
+  {
+    "id": "SEEKING_EDGE",
+    "name": "追尾の刃",
+    "description": "[gold]ソヴリン・ブレード[/gold]がすべての敵を攻撃するようになる。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/seeking_edge_power.webp"
+  },
+  {
+    "id": "SELF_FORMING_CLAY",
+    "name": "自己形成粘土",
+    "description": "次のターン、[blue]3[/blue][gold]ブロック[/gold]を得る。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/self_forming_clay_power.webp"
+  },
+  {
+    "id": "SENTRY_MODE",
+    "name": "監視モード",
+    "description": "ターン開始時、[gold]索敵の眼差し[/gold]を[blue]1[/blue]枚[gold]手札[/gold]に加える。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/sentry_mode_power.webp"
+  },
+  {
+    "id": "SERPENT_FORM",
+    "name": "大蛇化",
+    "description": "カードをプレイするたび、ランダムな敵に[blue]4[/blue]ダメージを与える。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/serpent_form_power.webp"
+  },
+  {
+    "id": "SETUP_STRIKE",
+    "name": "Temporary Strength",
+    "description": "このターン終了時まで、[gold]筋力[/gold]を得る。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/setup_strike_power.webp"
+  },
+  {
+    "id": "SHACKLING_POTION",
+    "name": "Temporary Strength Down",
+    "description": "このターン終了時まで、[gold]筋力[/gold]を失う。",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/shackling_potion_power.webp"
+  },
+  {
+    "id": "SHADOW_STEP",
+    "name": "シャドウステップ",
+    "description": "次のターン、アタックは2倍のダメージを与える。",
+    "description_raw": "{Amount:choose(1):次のターン|次の[blue]{Amount}[/blue]ターンの間}、アタックは2倍のダメージを与える。",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/shadow_step_power.webp"
+  },
+  {
+    "id": "SHADOWMELD",
+    "name": "影との融合",
+    "description": "このターン、獲得する[gold]ブロック[/gold]値が2倍になる。",
+    "description_raw": "このターン、獲得する[gold]ブロック[/gold]値が{Amount:choose(1):2倍|[blue]2の{Amount}[/blue]乗倍}になる。",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/shadowmeld_power.webp"
+  },
+  {
+    "id": "SHRIEK",
+    "name": "悲鳴",
+    "description": "[gold]This creature[/gold]のHPが初めて[blue][Amount][/blue]以下になった時、[gold]スタン[/gold]する。",
+    "description_raw": "[gold]{OwnerName}[/gold]のHPが初めて[blue]{Amount}[/blue]以下になった時、[gold]スタン[/gold]する。",
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": true,
+    "image_url": "/static/images/powers/shriek_power.webp"
+  },
+  {
+    "id": "SHRINK",
+    "name": "縮小",
+    "description": "[gold]This creature[/gold]のアタックダメージが[blue]30%[/blue]減少する。",
+    "description_raw": "{ApplierName.StringValue:cond:{}が生存中、あなたの|[gold]{OwnerName}[/gold]の}アタックダメージが[blue]{DamageDecrease}%[/blue]減少する{Amount:cond:==1?（次のターンまで）|>1?（残り[blue]{Amount}[/blue]ターン）|}。",
+    "type": "Debuff",
+    "stack_type": "None",
+    "allow_negative": true,
+    "image_url": "/static/images/powers/shrink_power.webp"
+  },
+  {
+    "id": "SHROUD",
+    "name": "影の衣",
+    "description": "[gold]破滅[/gold]を付与するたび、[blue]3[/blue][gold]ブロック[/gold]を得る。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/shroud_power.webp"
+  },
+  {
+    "id": "SIC_EM",
+    "name": "やっちゃえ",
+    "description": "このターン、[gold]オスティ[/gold]がこの敵を攻撃するたび、[gold]召喚[/gold][blue]3[/blue]。",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/sic_em_power.webp"
+  },
+  {
+    "id": "SIGNAL_BOOST",
+    "name": "信号増幅",
+    "description": "次にプレイするパワーをもう1回プレイする。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/signal_boost_power.webp"
+  },
+  {
+    "id": "SKITTISH",
+    "name": "臆病",
+    "description": "毎ターン、[gold]this creature[/gold]が最初に攻撃を受けた時、[blue][Amount][/blue][gold]ブロック[/gold]を得る。",
+    "description_raw": "毎ターン、[gold]{OwnerName}[/gold]が最初に攻撃を受けた時、[blue]{Amount}[/blue][gold]ブロック[/gold]を得る。",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/skittish_power.webp"
+  },
+  {
+    "id": "SLEIGHT_OF_FLESH",
+    "name": "呪肉の奇術",
+    "description": "敵にデバフを付与するたび、その敵は[blue]13[/blue]ダメージを受ける。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/sleight_of_flesh_power.webp"
+  },
+  {
+    "id": "SLIPPERY",
+    "name": "スリップ",
+    "description": "次に[gold]this creature[/gold]がHPを失う時、代わりにHPを[blue]1[/blue]だけ失う。（残り[blue][Amount][/blue]回）",
+    "description_raw": "次に[gold]{OwnerName}[/gold]がHPを失う時、代わりにHPを[blue]1[/blue]だけ失う。（残り[blue]{Amount}[/blue]回）",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/slippery_power.webp"
+  },
+  {
+    "id": "SLOTH",
+    "name": "怠惰",
+    "description": "毎ターン、[blue]3[/blue]枚までしかカードをプレイできない。",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/sloth_power.webp"
+  },
+  {
+    "id": "SLOW",
+    "name": "スロウ",
+    "description": "このターン、カードをプレイするたび、この敵がアタックから受けるダメージが[blue]10%[/blue]増加する。[blue][/blue]",
+    "description_raw": "このターン、カードをプレイするたび、{OnPlayer:自身が|この敵が}アタックから受けるダメージが[blue]10%[/blue]増加する。{Amount:plural:|[blue][/blue]}",
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/slow_power.webp"
+  },
+  {
+    "id": "SLUMBER",
+    "name": "まどろみ",
+    "description": "ターンが経過するか、HPを3回失うと目覚める。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/slumber_power.webp"
+  },
+  {
+    "id": "SMOGGY",
+    "name": "スモッグ",
+    "description": "1ターンにスキルを[blue]1[/blue]枚しかプレイできない。",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/smoggy_power.webp"
+  },
+  {
+    "id": "SMOKESTACK",
+    "name": "煙突",
+    "description": "状態異常を作成するたび、すべての敵にダメージを与える。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/smokestack_power.webp"
+  },
+  {
+    "id": "SNEAKY",
+    "name": "隠密",
+    "description": "他のプレイヤーが敵を攻撃するたび、[gold]ブロック[/gold]を得る。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/sneaky_power.webp"
+  },
+  {
+    "id": "SOAR",
+    "name": "飛翔",
+    "description": "着地するまで、アタックから受けるダメージが[blue]50%[/blue]減少する。",
+    "description_raw": "着地するまで、アタックから受けるダメージが[blue]{DamageDecrease}%[/blue]減少する。",
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/soar_power.webp"
+  },
+  {
+    "id": "SPECTRUM_SHIFT",
+    "name": "スペクトラムシフト",
+    "description": "ターン開始時、ランダムな無色カードを[blue]1[/blue]枚[gold]手札[/gold]に加える。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/spectrum_shift_power.webp"
+  },
+  {
+    "id": "SPEED_POTION",
+    "name": "Temporary Dexterity",
+    "description": "このターン終了時まで、[gold]敏捷[/gold]を得る。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/speed_potion_power.webp"
+  },
+  {
+    "id": "SPEEDSTER",
+    "name": "スピードスター",
+    "description": "自身のターン中にカードを引くたび、すべての敵に[blue]1[/blue]ダメージを与える。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/speedster_power.webp"
+  },
+  {
+    "id": "SPINNER",
+    "name": "スピナー",
+    "description": "ターン開始時、[gold]グラス[/gold][blue]1[/blue]を[gold]生成[/gold]する。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/spinner_power.webp"
+  },
+  {
+    "id": "SPIRIT_OF_ASH",
+    "name": "灰の精霊",
+    "description": "[gold]エセリアル[/gold]をプレイするたび、[blue]4[/blue][gold]ブロック[/gold]を得る。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/spirit_of_ash_power.webp"
+  },
+  {
+    "id": "STAMPEDE",
+    "name": "暴走",
+    "description": "ターン終了時、[gold]手札[/gold]にあるランダムなアタック[blue]1[/blue]枚をランダムな敵に対してプレイする。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/stampede_power.webp"
+  },
+  {
+    "id": "STAR_NEXT_TURN",
+    "name": "次ターンスター",
+    "description": "次のターン、[star:1]を1得る。",
+    "description_raw": "次のターン、{singleStarIcon}を1得る。",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/star_next_turn_power.webp"
+  },
+  {
+    "id": "STEAM_ERUPTION",
+    "name": "蒸気噴出",
+    "description": "倒された時、あなたの次のターンの終了時にダメージを与える。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/steam_eruption_power.webp"
+  },
+  {
+    "id": "STOCK",
+    "name": "ストック",
+    "description": "倒された時、代わりに新しいアックスマシンが召喚される。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/stock_power.webp"
+  },
+  {
+    "id": "STORM",
+    "name": "ストーム",
+    "description": "パワーをプレイするたび、[gold]ライトニング[/gold][blue]1[/blue]を[gold]生成[/gold]する。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/storm_power.webp"
+  },
+  {
+    "id": "STRANGLE",
+    "name": "絞殺",
+    "description": "このターン、カードをプレイするたび、この敵はHPを[blue]2[/blue]失う。",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/strangle_power.webp"
+  },
+  {
+    "id": "STRATAGEM",
+    "name": "計略",
+    "description": "[gold]山札[/gold]をシャッフルするたび、そこからカードを[blue]1[/blue]枚選んで[gold]手札[/gold]に加える。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/stratagem_power.webp"
+  },
+  {
+    "id": "STRENGTH",
+    "name": "筋力",
+    "description": "アタックのダメージが[blue][/blue]増加する。",
+    "description_raw": "アタックのダメージが[blue]{Amount:abs()}[/blue]{Amount:cond:<0?減少|増加}する。",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": true,
+    "image_url": "/static/images/powers/strength_power.webp"
+  },
+  {
+    "id": "SUBROUTINE",
+    "name": "サブルーチン",
+    "description": "パワーをプレイするたび、[blue]1[/blue][energy:1]を得る。",
+    "description_raw": "パワーをプレイするたび、[blue]1[/blue]{energyPrefix:energyIcons(1)}を得る。",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/subroutine_power.webp"
+  },
+  {
+    "id": "SUCK",
+    "name": "吸血",
+    "description": "[gold]This creature[/gold]がブロックされなかった攻撃ダメージを与えるたび、[gold]筋力[/gold][blue][Amount][/blue]を得る。",
+    "description_raw": "[gold]{OwnerName}[/gold]がブロックされなかった攻撃ダメージを与えるたび、[gold]筋力[/gold][blue]{Amount}[/blue]を得る。",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/suck_power.webp"
+  },
+  {
+    "id": "SUMMON_NEXT_TURN",
+    "name": "次ターン召喚",
+    "description": "次のターンの開始時、[gold]召喚[/gold][blue]2[/blue]。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/summon_next_turn_power.webp"
+  },
+  {
+    "id": "SURPRISE",
+    "name": "サプライズ",
+    "description": "このモンスターは何か様子がおかしい……",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/surprise_power.webp"
+  },
+  {
+    "id": "SURROUNDED",
+    "name": "包囲",
+    "description": "背後から攻撃されると受けるダメージが[blue]50%[/blue]増加する。ターゲット指定のカードやポーションを使って向きを変えよう。",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/surrounded_power.webp"
+  },
+  {
+    "id": "SWIPE",
+    "name": "盗む",
+    "description": "この敵を倒した時、盗まれたカードが手札に戻る。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/swipe_power.webp"
+  },
+  {
+    "id": "SWORD_SAGE",
+    "name": "剣聖",
+    "description": "[gold]ソヴリン・ブレード[/gold]の攻撃回数が[blue]1[/blue]回増える。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/sword_sage_power.webp"
+  },
+  {
+    "id": "SYNCHRONIZE",
+    "name": "Temporary Focus",
+    "description": "このターン終了時まで、[gold]集中力[/gold]を得る。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/synchronize_power.webp"
+  },
+  {
+    "id": "TAG_TEAM",
+    "name": "タッグチーム",
+    "description": "他の味方がこの敵に対して次にプレイするアタックは、追加で1回プレイされる。",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/tag_team_power.webp"
+  },
+  {
+    "id": "TANGLED",
+    "name": "もつれ",
+    "description": "このターン、アタックのコストが追加で[blue]1[/blue][gold]エナジー[/gold]増加する。",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/tangled_power.webp"
+  },
+  {
+    "id": "TANK",
+    "name": "タンク",
+    "description": "敵から受けるダメージが2倍になる。味方が敵から受けるダメージが半分になる。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/tank_power.webp"
+  },
+  {
+    "id": "TENDER",
+    "name": "軟化",
+    "description": "このターン、カードをプレイするたび、[gold]筋力[/gold][blue]1[/blue]と[gold]敏捷[/gold][blue]1[/blue]を失う。",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/tender_power.webp"
+  },
+  {
+    "id": "TERRITORIAL",
+    "name": "縄張り意識",
+    "description": "敵のターン終了時、[gold]筋力[/gold][blue]1[/blue]を得る。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/territorial_power.webp"
+  },
+  {
+    "id": "THE_BOMB",
+    "name": "爆弾",
+    "description": "[blue]3[/blue]ターン終了時、すべての敵に[blue]40[/blue]ダメージを与える。",
+    "description_raw": "[blue]{Amount}[/blue]ターン終了時、すべての敵に[blue]{Damage}[/blue]ダメージを与える。",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/the_bomb_power.webp"
+  },
+  {
+    "id": "THE_GAMBIT",
+    "name": "背水の陣",
+    "description": "この戦闘中、ブロックできずに攻撃ダメージを受けた場合、即死する。",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/the_gambit_power.webp"
+  },
+  {
+    "id": "THE_HUNT",
+    "name": "狩猟",
+    "description": "戦闘終了時、追加のカード報酬を[blue]1[/blue]回獲得する。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/the_hunt_power.webp"
+  },
+  {
+    "id": "THE_SEALED_THRONE",
+    "name": "封印されし玉座",
+    "description": "カードをプレイするたび、[star:1]を得る。",
+    "description_raw": "カードをプレイするたび、{Amount:starIcons()}を得る。",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/the_sealed_throne_power.webp"
+  },
+  {
+    "id": "THIEVERY",
+    "name": "泥棒",
+    "description": "アタック時に[gold]ゴールド[/gold]を盗む。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/thievery_power.webp"
+  },
+  {
+    "id": "THORNS",
+    "name": "トゲ",
+    "description": "アタックで攻撃された時、ダメージを跳ね返す。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/thorns_power.webp"
+  },
+  {
+    "id": "THUNDER",
+    "name": "サンダー",
+    "description": "[gold]ライトニングを解放[/gold]するたび、命中した各敵に[blue]8[/blue]ダメージを与える。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/thunder_power.webp"
+  },
+  {
+    "id": "TOOLS_OF_THE_TRADE",
+    "name": "商売道具",
+    "description": "ターン開始時、カードを[blue]1[/blue]枚引き、カードを[blue]1[/blue]枚捨てる。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/tools_of_the_trade_power.webp"
+  },
+  {
+    "id": "TORIC_TOUGHNESS",
+    "name": "円環の障壁",
+    "description": "次のターン開始時、[blue]5[/blue][gold]ブロック[/gold]を得る。",
+    "description_raw": "次の{Amount:choose(1):ターン開始時| [blue]{}[/blue]ターンの間、ターン開始時}、[blue]{Block:diff()}[/blue][gold]ブロック[/gold]を得る。",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/toric_toughness_power.webp"
+  },
+  {
+    "id": "TRACKING",
+    "name": "追跡",
+    "description": "[gold]脱力[/gold]状態の敵は、アタックから受けるダメージが[blue]2[/blue]倍になる。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/tracking_power.webp"
+  },
+  {
+    "id": "TRASH_TO_TREASURE",
+    "name": "災い転じて",
+    "description": "状態異常を作成するたび、ランダムなオーブを[blue]1[/blue]つ[gold]生成[/gold]する。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/trash_to_treasure_power.webp"
+  },
+  {
+    "id": "TYRANNY",
+    "name": "専制",
+    "description": "ターン開始時、カードを1枚引き、[gold]手札[/gold]からカードを1枚[gold]廃棄[/gold]する。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/tyranny_power.webp"
+  },
+  {
+    "id": "UNMOVABLE",
+    "name": "盤石",
+    "description": "毎ターン、最初にカードから[gold]ブロック[/gold]を得た時、その値を2倍にする。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/unmovable_power.webp"
+  },
+  {
+    "id": "VEILPIERCER",
+    "name": "ベールピアサー",
+    "description": "次にプレイする[gold]エセリアル[/gold]のコストは[blue]0[/blue]。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/veilpiercer_power.webp"
+  },
+  {
+    "id": "VICIOUS",
+    "name": "残忍",
+    "description": "[gold]弱体[/gold]を付与するたび、カードを[blue]1[/blue]枚引く。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/vicious_power.webp"
+  },
+  {
+    "id": "VIGOR",
+    "name": "活力",
+    "description": "[gold]This creature[/gold]が次にプレイするアタックは追加で[blue][Amount][/blue]ダメージを与える。",
+    "description_raw": "{OnPlayer:自身が|[gold]{OwnerName}[/gold]が}次にプレイするアタックは追加で[blue]{Amount}[/blue]ダメージを与える。",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/vigor_power.webp"
+  },
+  {
+    "id": "VITAL_SPARK",
+    "name": "生命の火花",
+    "description": "毎ターン、[gold]this creature[/gold]が初めて攻撃ダメージを受けた時、攻撃者は[energy:1]を得る。",
+    "description_raw": "毎ターン、[gold]{OwnerName}[/gold]が初めて攻撃ダメージを受けた時、攻撃者は{Energy:energyIcons()}を得る。",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/vital_spark_power.webp"
+  },
+  {
+    "id": "VOID_FORM",
+    "name": "虚無化",
+    "description": "毎ターン、最初にプレイする[blue]2[/blue]枚のカードはコストを支払わずにプレイできる。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/void_form_power.webp"
+  },
+  {
+    "id": "VULNERABLE",
+    "name": "弱体",
+    "description": "[blue][Amount][/blue]ターンの間、アタックから受けるダメージが[blue]50%[/blue]増加する。",
+    "description_raw": "[blue]{Amount}[/blue]ターンの間、アタックから受けるダメージが[blue]{DamageIncrease:percentMore()}%[/blue]増加する。",
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/vulnerable_power.webp"
+  },
+  {
+    "id": "WASTE_AWAY",
+    "name": "虚脱",
+    "description": "毎ターンの開始時に得る[gold]エナジー[/gold]が[blue]1[/blue]減る。",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/waste_away_power.webp"
+  },
+  {
+    "id": "WEAK",
+    "name": "脱力",
+    "description": "脱力状態のモンスターはアタックで与えるダメージが[blue]25%[/blue]減少する。",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/weak_power.webp"
+  },
+  {
+    "id": "WELL_LAID_PLANS",
+    "name": "用意周到",
+    "description": "ターン終了時、[blue]1[/blue]枚までカードを[gold]保留[/gold]する。",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/well_laid_plans_power.webp"
+  },
+  {
+    "id": "WRAITH_FORM",
+    "name": "死霊化",
+    "description": "ターン開始時、[gold]敏捷[/gold][blue]1[/blue]を失う。",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/wraith_form_power.webp"
+  }
+]

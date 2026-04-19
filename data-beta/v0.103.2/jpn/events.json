@@ -1,0 +1,5435 @@
+[
+  {
+    "id": "ABYSSAL_BATHS",
+    "name": "深淵の浴場",
+    "type": "Event",
+    "act": "Underdocks",
+    "description": "あなたは隠された小部屋を見つけた。\n\n不可思議なリズムで変色する、煮えたぎる液体の池から蒸気が立ち昇っている。 天井から垂れ下がるフジツボのような塊から粘性の体液が滴り、水面に落ちると身悶えするようにシューッと音を立てた。 空気は重く、[blue]塩気[/blue]と[green]生々しい有機物[/green]の臭いが充満している。\n\n最も大きな池の縁に近づくと、水面が波打ち、液体はより一層激しく泡立ち始めた。 まるであなたの入浴を待ちわびているかのようだ。",
+    "preconditions": null,
+    "options": [
+      {
+        "id": "IMMERSE",
+        "title": "入浴する",
+        "description": "最大HPが[green]2[/green]増加する。 [red]3[/red]ダメージを受ける。"
+      },
+      {
+        "id": "ABSTAIN",
+        "title": "遠慮する",
+        "description": "HPを[green]10[/green]回復する。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "ABSTAIN",
+        "description": "入浴の誘惑を振り切り、代わりに池の縁で結晶化した塩を集めた。 それを肌に擦り込むと、池の水が苛立ったように泡立ち、激しくうねる。 室温が急激に下がり、部屋中の反射する壁が一瞬「虚ろな目でやせ細った自分」を映し出した。 何か、自分が生まれ変わる機会を逃してしまったのではないか。 そんな感覚が拭いきれない。"
+      },
+      {
+        "id": "ALL",
+        "description": null,
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "長風呂する",
+            "description": "最大HPが[green]2[/green]増加。 [red]3[/red]ダメージを受ける。"
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "浴場を出る",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "id": "DEATH_WARNING",
+        "description": "[sine][red]これ以上つかれば、命の保証はない。 [/red][/sine]",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "長風呂する",
+            "description": "[sine][red]これ以上つかれば、命の保証はない。 [/red][/sine]"
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "浴場を出る",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "id": "EXIT_BATHS",
+        "description": "ついに熱さに耐えきれなくなり、池から勢いよく飛び出した。"
+      },
+      {
+        "id": "IMMERSE",
+        "description": "液体が肌を焼き、[blue][jitter]凍てつく冷気[/jitter][/blue]と[red][jitter]焼け焦げるような熱[/jitter][/red]が同時に襲いかかる。\n\n水面下で、何かが足に触れた。 触手だろうか？ それとも意志を持った水流だろうか？ しかし痛みが引くと、自身の身体が…… 何というか、より引き締まって、がっしりしたように感じる。 池の水は満足げにハミングしているようだ。",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "長風呂する",
+            "description": "最大HPが[green]2[/green]増加。 [red]4[/red]ダメージを受ける。"
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "浴場を出る",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "id": "INITIAL",
+        "description": "あなたは隠された小部屋を見つけた。\n\n不可思議なリズムで変色する、煮えたぎる液体の池から蒸気が立ち昇っている。 天井から垂れ下がるフジツボのような塊から粘性の体液が滴り、水面に落ちると身悶えするようにシューッと音を立てた。 空気は重く、[blue]塩気[/blue]と[green]生々しい有機物[/green]の臭いが充満している。\n\n最も大きな池の縁に近づくと、水面が波打ち、液体はより一層激しく泡立ち始めた。 まるであなたの入浴を待ちわびているかのようだ。",
+        "options": [
+          {
+            "id": "IMMERSE",
+            "title": "入浴する",
+            "description": "最大HPが[green]2[/green]増加する。 [red]3[/red]ダメージを受ける。"
+          },
+          {
+            "id": "ABSTAIN",
+            "title": "遠慮する",
+            "description": "HPを[green]10[/green]回復する。"
+          }
+        ]
+      },
+      {
+        "id": "LINGER1",
+        "description": "[jitter]温度が上がり続けている！ [/jitter]\n\n蒸気で身体の内側が茹で上がるまで、果たしてどれだけ耐えられるだろうか？",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "長風呂する",
+            "description": "最大HPが[green]2[/green]増加。 [red]5[/red]ダメージを受ける。"
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "浴場を出る",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "id": "LINGER2",
+        "description": "[jitter][orange]さらに熱くなってきた！ [/orange][/jitter]\n\n池の泡立つ音が、まるで笑い声のように聞こえる。",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "長風呂する",
+            "description": "最大HPが[green]2[/green]増加。 [red]6[/red]ダメージを受ける。"
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "浴場を出る",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "id": "LINGER3",
+        "description": "[jitter][red]熱すぎる！！ [/red][/jitter]\n\n悪魔の村に住むと、こういう感じなんだろうか？",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "長風呂する",
+            "description": "最大HPが[green]2[/green]増加。 [red]7[/red]ダメージを受ける。"
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "浴場を出る",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "id": "LINGER4",
+        "description": "[sine][purple]長湯をしすぎたせいで、時間と自我の感覚が溶けていく…… [/purple][/sine]",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "長風呂する",
+            "description": "最大HPが[green]2[/green]増加。 [red]8[/red]ダメージを受ける。"
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "浴場を出る",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "id": "LINGER5",
+        "description": "いい湯だな。",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "長風呂する",
+            "description": "最大HPが[green]2[/green]増加。 [red]9[/red]ダメージを受ける。"
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "浴場を出る",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "id": "LINGER6",
+        "description": "極楽、極楽。",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "長風呂する",
+            "description": "最大HPが[green]2[/green]増加。 [red]10[/red]ダメージを受ける。"
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "浴場を出る",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "id": "LINGER7",
+        "description": "気分がいい",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "長風呂する",
+            "description": "最大HPが[green]2[/green]増加。 [red]11[/red]ダメージを受ける。"
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "浴場を出る",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "id": "LINGER8",
+        "description": "[sine]ふう…… [/sine]",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "長風呂する",
+            "description": "最大HPが[green]2[/green]増加。 [red]12[/red]ダメージを受ける。"
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "浴場を出る",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "id": "LINGER9",
+        "description": "[sine]Zzz...\n.. zzzz.... [/sine]",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "長風呂する",
+            "description": "最大HPが[green]2[/green]増加。 [red]13[/red]ダメージを受ける。"
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "浴場を出る",
+            "description": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "AMALGAMATOR",
+    "name": "アマルガメーター",
+    "type": "Event",
+    "act": "Act 2 - Hive",
+    "description": "[b][jitter]ガァン！ ガァン！！！ [/jitter][/b]\n\n壁の向こうから、金属が激しくぶつかり合う音が響いてくる……\n\n様子をうかがおうと壁に耳を当てた途端、壁が開き、せわしなく働く[orange]六本腕を持つ巨人[/orange]が姿を現した。\nその「顔」の部分には、[gold][sine]発光する印の渦[/sine][/gold]がうごめいている。\n\n「[aqua]高みへと昇る[/aqua]志を持つ者よ、我が工房を見つけおったか。 さあ、[jitter]融合[/jitter]の時間だ！」",
+    "preconditions": [
+      "Requires 2+ Strikes in deck",
+      "Requires 2+ Defends in deck"
+    ],
+    "options": [
+      {
+        "id": "COMBINE_STRIKES",
+        "title": "ストライクを融合",
+        "description": "[gold]ストライク[/gold]を[blue]2[/blue]枚削除。 [gold]デッキ[/gold]に[gold]究極のストライク[/gold]を追加。"
+      },
+      {
+        "id": "COMBINE_DEFENDS",
+        "title": "防御を融合",
+        "description": "[gold]防御[/gold]を[blue]2[/blue]枚削除。 [gold]デッキ[/gold]に[gold]究極の防御[/gold]を追加。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "COMBINE_DEFENDS",
+        "description": "[b][jitter]ガァン！ ガァン！！！ [/jitter][/b]\n\n[orange]アマルガメーター[/orange]が骨の金床を打ち据える。\n\n火花が散るたびに、戦闘や防御、守りの型の記憶が研ぎ澄まされていく。\n究極の技があなたのもとに蘇った。"
+      },
+      {
+        "id": "COMBINE_STRIKES",
+        "description": "[b][jitter]ガァン！ ガァン！！！ [/jitter][/b]\n\n[orange]アマルガメーター[/orange]が骨の金床を打ち据える。\n\n火花が散るたびに、戦闘や攻撃、攻めの型の記憶が研ぎ澄まされていく。\n究極の技があなたのもとに蘇った。"
+      },
+      {
+        "id": "INITIAL",
+        "description": "[b][jitter]ガァン！ ガァン！！！ [/jitter][/b]\n\n壁の向こうから、金属が激しくぶつかり合う音が響いてくる……\n\n様子をうかがおうと壁に耳を当てた途端、壁が開き、せわしなく働く[orange]六本腕を持つ巨人[/orange]が姿を現した。\nその「顔」の部分には、[gold][sine]発光する印の渦[/sine][/gold]がうごめいている。\n\n「[aqua]高みへと昇る[/aqua]志を持つ者よ、我が工房を見つけおったか。 さあ、[jitter]融合[/jitter]の時間だ！」",
+        "options": [
+          {
+            "id": "COMBINE_STRIKES",
+            "title": "ストライクを融合",
+            "description": "[gold]ストライク[/gold]を[blue]2[/blue]枚削除。 [gold]デッキ[/gold]に[gold]究極のストライク[/gold]を追加。"
+          },
+          {
+            "id": "COMBINE_DEFENDS",
+            "title": "防御を融合",
+            "description": "[gold]防御[/gold]を[blue]2[/blue]枚削除。 [gold]デッキ[/gold]に[gold]究極の防御[/gold]を追加。"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "AROMA_OF_CHAOS",
+    "name": "混沌の香り",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": "うっそうとした茂みをかき分け、開けた場所に出ると、どこからともなく郷愁の念に駆られた。\n\n[purple]花の香り[/purple]、[green]腐敗臭[/green]、そして[orange]全く別の何か[/orange]が混ざり合っている。 一歩進むごとに香りは強くなり、周囲の世界が[sine]歪み、ねじ曲がっている[/sine]ように感じられる。\n\n[sine]うつろう混沌[/sine]の感覚に圧倒され、あなたは自我を失い始めた。",
+    "preconditions": null,
+    "options": [
+      {
+        "id": "LET_GO",
+        "title": "身を委ねる",
+        "description": "[gold]デッキ[/gold]のカードを1枚[gold]変化[/gold]させる。"
+      },
+      {
+        "id": "MAINTAIN_CONTROL",
+        "title": "意識を保つ",
+        "description": "[gold]デッキ[/gold]のカードを1枚[gold]アップグレード[/gold]する。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "INITIAL",
+        "description": "うっそうとした茂みをかき分け、開けた場所に出ると、どこからともなく郷愁の念に駆られた。\n\n[purple]花の香り[/purple]、[green]腐敗臭[/green]、そして[orange]全く別の何か[/orange]が混ざり合っている。 一歩進むごとに香りは強くなり、周囲の世界が[sine]歪み、ねじ曲がっている[/sine]ように感じられる。\n\n[sine]うつろう混沌[/sine]の感覚に圧倒され、あなたは自我を失い始めた。",
+        "options": [
+          {
+            "id": "LET_GO",
+            "title": "身を委ねる",
+            "description": "[gold]デッキ[/gold]のカードを1枚[gold]変化[/gold]させる。"
+          },
+          {
+            "id": "MAINTAIN_CONTROL",
+            "title": "意識を保つ",
+            "description": "[gold]デッキ[/gold]のカードを1枚[gold]アップグレード[/gold]する。"
+          }
+        ]
+      },
+      {
+        "id": "LET_GO",
+        "description": "抵抗をやめると、意識が[sine][purple]漂い始める…… [/purple][/sine]\nあなたは[blue]友と語り合い[/blue]、[green]仲間と共に協力して戦い[/green]、[gold]強大な敵に立ち向かう[/gold]己の姿を見た。 これは夢か、現実か。 あるいはその両方か？ 無数の視線が、あなたとその夢をじっと見つめている。 彼らは一体何者だ……？\n\nどれだけの時間が過ぎたのだろうか。 あなたは目を覚ました。\n香りは薄れ、その影響も消え去っていく。 自分を取り戻した今、あなたの頭はかつてないほど冴え渡っていた。\n\n[sine][red]あの目はいったい何だったのだろうか？ [/red][/sine]"
+      },
+      {
+        "id": "MAINTAIN_CONTROL",
+        "description": "狂気に呑まれまいと誘惑に抗い、香りが届かない木の上に避難した。 だが、その効果は未だ精神を蝕んでいる。\n\n意識を保つのは困難だ。 あなたは[blue]確固たる信念[/blue]を強く念じ、そこに精神を繋ぎとめる。\n\n[AromaPrinciple]\n[AromaPrinciple]\n[AromaPrinciple]\n\nやがて、香りは収まった。"
+      }
+    ]
+  },
+  {
+    "id": "BATTLEWORN_DUMMY",
+    "name": "歴戦の訓練人形",
+    "type": "Event",
+    "act": "Act 3 - Glory",
+    "description": "近づくと、そいつは駆動音と火花を散らしながら、まばゆい光を放ち起動した！\n\n「[jitter]ビビーッ！ [/jitter]訓練ノ時間ダ！！！ ワタシヲ[blue]3ターン[/blue]以内に倒セ！\n設定ヲ選ベ。 サモナクバ[red]死ヨリモ恐ロシイ屈辱[/red]ヲ与エル。\n選択肢ハ次ノ通リダ。」\n\n恐ろしいメッセージを放った後、訓練人形は丁寧な口調で詳細な説明を読み上げた。\n\nどの設定を選ぶ？",
+    "preconditions": null,
+    "options": [
+      {
+        "id": "SETTING_1",
+        "title": "レベル1",
+        "description": "HP[blue]75[/blue]の訓練人形と戦闘。 ランダムな[gold]ポーション[/gold]を[blue]1[/blue]個獲得。"
+      },
+      {
+        "id": "SETTING_2",
+        "title": "レベル2",
+        "description": "HP[blue]150[/blue]の訓練人形と戦闘。 ランダムなカードを[blue]2[/blue]枚[gold]アップグレード[/gold]。"
+      },
+      {
+        "id": "SETTING_3",
+        "title": "レベル3",
+        "description": "HP[blue]300[/blue]の訓練人形と戦闘。 ランダムな[gold]レリック[/gold]を1個獲得。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "DEFEAT",
+        "description": "「[jitter][red]オ前ハ弱イ！！ [/red][/jitter]\nタダチニ屈辱ヲ執行スル！」\n\n訓練人形は少しの間沈黙し、そして――\n\n「次ハ身ノ丈ニ合ッタレベルヲ選ブコトダ。 ソレデハ、ヨイ一日ヲ」"
+      },
+      {
+        "id": "INITIAL",
+        "description": "近づくと、そいつは駆動音と火花を散らしながら、まばゆい光を放ち起動した！\n\n「[jitter]ビビーッ！ [/jitter]訓練ノ時間ダ！！！ ワタシヲ[blue]3ターン[/blue]以内に倒セ！\n設定ヲ選ベ。 サモナクバ[red]死ヨリモ恐ロシイ屈辱[/red]ヲ与エル。\n選択肢ハ次ノ通リダ。」\n\n恐ろしいメッセージを放った後、訓練人形は丁寧な口調で詳細な説明を読み上げた。\n\nどの設定を選ぶ？",
+        "options": [
+          {
+            "id": "SETTING_1",
+            "title": "レベル1",
+            "description": "HP[blue]75[/blue]の訓練人形と戦闘。 ランダムな[gold]ポーション[/gold]を[blue]1[/blue]個獲得。"
+          },
+          {
+            "id": "SETTING_2",
+            "title": "レベル2",
+            "description": "HP[blue]150[/blue]の訓練人形と戦闘。 ランダムなカードを[blue]2[/blue]枚[gold]アップグレード[/gold]。"
+          },
+          {
+            "id": "SETTING_3",
+            "title": "レベル3",
+            "description": "HP[blue]300[/blue]の訓練人形と戦闘。 ランダムな[gold]レリック[/gold]を1個獲得。"
+          }
+        ]
+      },
+      {
+        "id": "VICTORY",
+        "description": "「[jitter]訓練合格！ [/jitter]\nコレデ侵入者カラ[gold]工場[/gold]ヲ守ル準備ガ整ッタ！！ 訓練後ノ水分補給ヲ忘レルナ！」"
+      }
+    ]
+  },
+  {
+    "id": "BRAIN_LEECH",
+    "name": "脳ヒル",
+    "type": "Shared",
+    "act": null,
+    "description": "[jitter]*ブスッ*[/jitter]\n\n頭のてっぺんに鋭い痛みが走ったかと思うと、脳内に直接、奇妙な声が響いてきた。\n\n[purple][sine]「知識ヲ、共有スル？？」[/sine][/purple]\n\nさて、どうしたものか……",
+    "preconditions": [
+      "Act 1–2 only"
+    ],
+    "options": [
+      {
+        "id": "SHARE_KNOWLEDGE",
+        "title": "知識を共有する",
+        "description": "ランダムなカード[blue]5[/blue]枚から[blue]1[/blue]枚を選び、[gold]デッキ[/gold]に追加。"
+      },
+      {
+        "id": "RIP",
+        "title": "ヒルを引き剥がす",
+        "description": "HPを[red]5[/red]失う。 無色カード報酬を1枚受け取る。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "INITIAL",
+        "description": "[jitter]*ブスッ*[/jitter]\n\n頭のてっぺんに鋭い痛みが走ったかと思うと、脳内に直接、奇妙な声が響いてきた。\n\n[purple][sine]「知識ヲ、共有スル？？」[/sine][/purple]\n\nさて、どうしたものか……",
+        "options": [
+          {
+            "id": "SHARE_KNOWLEDGE",
+            "title": "知識を共有する",
+            "description": "ランダムなカード[blue]5[/blue]枚から[blue]1[/blue]枚を選び、[gold]デッキ[/gold]に追加。"
+          },
+          {
+            "id": "RIP",
+            "title": "ヒルを引き剥がす",
+            "description": "HPを[red]5[/red]失う。 無色カード報酬を1枚受け取る。"
+          }
+        ]
+      },
+      {
+        "id": "RIP",
+        "description": "[jitter]頭に張り付いたヒルを力任せに引き剥がし[/jitter]、はるか彼方へと投げ捨てた！\n\n頭の中に声が響く。\n[purple][sine]「ギャアアアアアァァァァァァァァ……！！」[/sine][/purple]"
+      },
+      {
+        "id": "SHARE_KNOWLEDGE",
+        "description": "[purple][sine]「迷宮ノ如キ精神ノ、ナント深淵ナル知識ノ泉カ！\nマサニ我ガ脳髄ヲ満タス、極上ノフルコースダ！」[/sine][/purple]\n\n満足したのか、その生物はポンと頭から離れ、這い去っていった。\nあなたは[blue]すっかり呆気にとられて[/blue]いた。"
+      }
+    ]
+  },
+  {
+    "id": "BUGSLAYER",
+    "name": "虫殺し",
+    "type": "Event",
+    "act": "Act 2 - Hive",
+    "description": "[jitter][red]凶暴な虫の群れ[/red][/jitter]を追い払っていたあなたは、隣で[gold]屈強で無骨な戦士[/gold]がずっと一緒に戦ってくれていたことにようやく気が付いた！\n\n旗色が悪いと悟った虫たちは、散り散りに逃げていく。 隣の戦士の方を振り返ると、彼が口を開いた。\n「害虫どもを駆除する極意、知りたくはないか？」\n\nなんと親切な男だろう。 あなたは頷き、彼の申し出を受けた。",
+    "preconditions": null,
+    "options": [
+      {
+        "id": "EXTERMINATION",
+        "title": "「駆除」の極意を学ぶ",
+        "description": "[gold]駆除[/gold]を[gold]デッキ[/gold]に追加。"
+      },
+      {
+        "id": "SQUASH",
+        "title": "「圧殺」の極意を学ぶ",
+        "description": "[gold]踏み潰し[/gold]を[gold]デッキ[/gold]に追加。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "DONE",
+        "description": "戦士はあなたに向かって静かにうなずくと、どこかへと立ち去っていった。"
+      },
+      {
+        "id": "EXTERMINATION",
+        "description": "「ほう…… [gold]駆除の極意[/gold]を学びたいと。 よかろう……」\n\n彼はしばし沈黙した。 この奥義をどのように伝えればよいか、思案しているようだ。\n\n[jitter]「これぞ奥義なり！ とくと見よ！！」[/jitter]\nそう叫ぶと、彼は誇らしげに[green]殺虫剤[/green]のスプレー缶を天高く掲げた。"
+      },
+      {
+        "id": "INITIAL",
+        "description": "[jitter][red]凶暴な虫の群れ[/red][/jitter]を追い払っていたあなたは、隣で[gold]屈強で無骨な戦士[/gold]がずっと一緒に戦ってくれていたことにようやく気が付いた！\n\n旗色が悪いと悟った虫たちは、散り散りに逃げていく。 隣の戦士の方を振り返ると、彼が口を開いた。\n「害虫どもを駆除する極意、知りたくはないか？」\n\nなんと親切な男だろう。 あなたは頷き、彼の申し出を受けた。",
+        "options": [
+          {
+            "id": "EXTERMINATION",
+            "title": "「駆除」の極意を学ぶ",
+            "description": "[gold]駆除[/gold]を[gold]デッキ[/gold]に追加。"
+          },
+          {
+            "id": "SQUASH",
+            "title": "「圧殺」の極意を学ぶ",
+            "description": "[gold]踏み潰し[/gold]を[gold]デッキ[/gold]に追加。"
+          }
+        ]
+      },
+      {
+        "id": "SQUASH",
+        "description": "「ほう…… [gold]圧殺の極意[/gold]を学びたいと。 よかろう……」\n\n彼はしばし沈黙した。 この奥義をどのように伝えればよいか、思案しているようだ。\n\n[jitter]「これぞ奥義なり！ とくと見よ！！」[/jitter]\nそう叫ぶと、彼は誇らしげに巨大な虫を力任せに踏み潰した。"
+      }
+    ]
+  },
+  {
+    "id": "BYRDONIS_NEST",
+    "name": "ビャードニスの巣",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": "巨大な[jitter][red]よろよろ歩く獣[/red][/jitter]が、傷ついた[green][sine]グリーン・ビャード[/sine][/green]を追い散らす場面に遭遇した。\n\nビャードが逃げ去ったあとの窪みには、[gold]無防備な卵がひとつ[/gold]、ぽつんと残されている。\n\n[sine]あなたのお腹がぐうと鳴った……。 [/sine]",
+    "preconditions": [
+      "Cannot have an event pet"
+    ],
+    "options": [
+      {
+        "id": "EAT",
+        "title": "卵を食べる",
+        "description": "最大HPが[blue]7[/blue]増加。"
+      },
+      {
+        "id": "TAKE",
+        "title": "卵を持っていく",
+        "description": "[gold]ビャードニスの卵[/gold]を[gold]デッキ[/gold]に追加。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "EAT",
+        "description": "卵を割り、中身をガツガツと平らげる。\n良い朝食になった。"
+      },
+      {
+        "id": "INITIAL",
+        "description": "巨大な[jitter][red]よろよろ歩く獣[/red][/jitter]が、傷ついた[green][sine]グリーン・ビャード[/sine][/green]を追い散らす場面に遭遇した。\n\nビャードが逃げ去ったあとの窪みには、[gold]無防備な卵がひとつ[/gold]、ぽつんと残されている。\n\n[sine]あなたのお腹がぐうと鳴った……。 [/sine]",
+        "options": [
+          {
+            "id": "EAT",
+            "title": "卵を食べる",
+            "description": "最大HPが[blue]7[/blue]増加。"
+          },
+          {
+            "id": "TAKE",
+            "title": "卵を持っていく",
+            "description": "[gold]ビャードニスの卵[/gold]を[gold]デッキ[/gold]に追加。"
+          }
+        ]
+      },
+      {
+        "id": "TAKE",
+        "description": "後々、役に立つ何かに[green]ふ化[/green]するかもしれない。\nそう考えたあなたは、卵を優しくすくい上げ、荷物の中にしまった。"
+      }
+    ]
+  },
+  {
+    "id": "COLORFUL_PHILOSOPHERS",
+    "name": "色とりどりの哲学者たち",
+    "type": "Event",
+    "act": "Act 2 - Hive",
+    "description": "目の前に、なんとも壮大な光景が広がっている。\n演台にそびえ立つ3色の彫像が、色彩の持つ哲学的意味について[jitter][red]白熱した議論[/red][/jitter]を交わしている。\n\n話に耳を傾けてみると、彼らにとっての最大の争点は「果たしてどの色が真に[gold]“至高”[/gold]であるか」ということらしい。\n\nあなたは議論に割って入り、自説を披露することにした。",
+    "preconditions": null,
+    "options": [
+      {
+        "id": "DEFECT",
+        "title": "青",
+        "description": "ディフェクトのカードを[blue]3[/blue]枚獲得する。"
+      },
+      {
+        "id": "IRONCLAD",
+        "title": "赤",
+        "description": "アイアンクラッドのカードを[blue]3[/blue]枚獲得する。"
+      },
+      {
+        "id": "NECROBINDER",
+        "title": "ピンク",
+        "description": "ネクロバインダーのカードを[blue]3[/blue]枚獲得する。"
+      },
+      {
+        "id": "REGENT",
+        "title": "オレンジ",
+        "description": "リージェントのカードを[blue]3[/blue]枚獲得する。"
+      },
+      {
+        "id": "SILENT",
+        "title": "緑",
+        "description": "サイレントのカードを[blue]3[/blue]枚獲得する。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "DONE",
+        "description": "あなたの意見は歓迎されなかったようだ。 彫像たちは終わりのない議論を再開した。"
+      },
+      {
+        "id": "INITIAL",
+        "description": "目の前に、なんとも壮大な光景が広がっている。\n演台にそびえ立つ3色の彫像が、色彩の持つ哲学的意味について[jitter][red]白熱した議論[/red][/jitter]を交わしている。\n\n話に耳を傾けてみると、彼らにとっての最大の争点は「果たしてどの色が真に[gold]“至高”[/gold]であるか」ということらしい。\n\nあなたは議論に割って入り、自説を披露することにした。",
+        "options": [
+          {
+            "id": "DEFECT",
+            "title": "青",
+            "description": "ディフェクトのカードを[blue]3[/blue]枚獲得する。"
+          },
+          {
+            "id": "IRONCLAD",
+            "title": "赤",
+            "description": "アイアンクラッドのカードを[blue]3[/blue]枚獲得する。"
+          },
+          {
+            "id": "NECROBINDER",
+            "title": "ピンク",
+            "description": "ネクロバインダーのカードを[blue]3[/blue]枚獲得する。"
+          },
+          {
+            "id": "REGENT",
+            "title": "オレンジ",
+            "description": "リージェントのカードを[blue]3[/blue]枚獲得する。"
+          },
+          {
+            "id": "SILENT",
+            "title": "緑",
+            "description": "サイレントのカードを[blue]3[/blue]枚獲得する。"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "COLOSSAL_FLOWER",
+    "name": "巨大な花",
+    "type": "Event",
+    "act": "Act 2 - Hive",
+    "description": "[red][jitter]骨の山[/jitter][/red]の上に、[green]巨大な花[/green]が咲き誇っている。\n\n[sine]さまざまに色を変える花びら[/sine]が脈動し、あなたはその中心部に[aqua]強大な力を持つ花粉の塊[/aqua]があるのを感じ取った。 だが、うねる花びらは[red]カミソリのように鋭く[/red]、動きが読めない。\n\n[gold]黄金の蜜[/gold]を採取するだけで良しとすべきだろう。 だが、中心にあるお宝にも心を惹かれる……",
+    "preconditions": [
+      "Requires 19+ HP"
+    ],
+    "options": [
+      {
+        "id": "EXTRACT_CURRENT_PRIZE_1",
+        "title": "蜜を採取",
+        "description": "[blue]35[/blue][gold]ゴールド[/gold]を獲得。"
+      },
+      {
+        "id": "REACH_DEEPER_1",
+        "title": "奥へ入る",
+        "description": "奥へと進む。 HPを[red]5[/red]失う。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "EXTRACT_CURRENT_PRIZE",
+        "description": "花の肉から慎重に[gold]蜜[/gold]を集めた。\n花びらが怒ったように揺らめいている。"
+      },
+      {
+        "id": "EXTRACT_INSTEAD",
+        "description": "[purple]毒素[/purple]と[red]棘[/red]、そして[green]葉[/green]にやられ、全身が麻痺してボロボロだ。\nもうたくさんだ。\n\n[gold]高品質な蜜[/gold]の塊をカバンに押し込み、撤退することにした。"
+      },
+      {
+        "id": "INITIAL",
+        "description": "[red][jitter]骨の山[/jitter][/red]の上に、[green]巨大な花[/green]が咲き誇っている。\n\n[sine]さまざまに色を変える花びら[/sine]が脈動し、あなたはその中心部に[aqua]強大な力を持つ花粉の塊[/aqua]があるのを感じ取った。 だが、うねる花びらは[red]カミソリのように鋭く[/red]、動きが読めない。\n\n[gold]黄金の蜜[/gold]を採取するだけで良しとすべきだろう。 だが、中心にあるお宝にも心を惹かれる……",
+        "options": [
+          {
+            "id": "EXTRACT_CURRENT_PRIZE_1",
+            "title": "蜜を採取",
+            "description": "[blue]35[/blue][gold]ゴールド[/gold]を獲得。"
+          },
+          {
+            "id": "REACH_DEEPER_1",
+            "title": "奥へ入る",
+            "description": "奥へと進む。 HPを[red]5[/red]失う。"
+          }
+        ]
+      },
+      {
+        "id": "POLLINOUS_CORE",
+        "description": "最後の力を振り絞って飛び込み、[aqua]花粉の中心核[/aqua]を掴み取った！\n植物は激しく震え、花びらの色はくすみ、[jitter]ヒリヒリ[/jitter]する感覚が消えていく。\n\n[gold]黄金の蜜[/gold]はただの泥と化した。\n花を枯らせてしまったのだ。"
+      },
+      {
+        "id": "REACH_DEEPER_1",
+        "description": "[red]カミソリのように鋭い[/red]花びらの層を押し分けて進む。 それらは肌を[jitter]ヒリヒリ[/jitter]させる[purple]物質[/purple]で覆われている。 これが痛みを麻痺させているのだろうか？\n\n骨の山ができている理由は、恐らくこれなのだろう……",
+        "options": [
+          {
+            "id": "EXTRACT_CURRENT_PRIZE_2",
+            "title": "蜜を採取",
+            "description": "[blue]75[/blue][gold]ゴールド[/gold]を獲得。"
+          },
+          {
+            "id": "REACH_DEEPER_2",
+            "title": "さらに奥へ",
+            "description": "さらに奥へ進む。 HPを[red]6[/red]失う。"
+          }
+        ]
+      },
+      {
+        "id": "REACH_DEEPER_2",
+        "description": "奥へ進むにつれ、ヒリヒリとした感覚は[jitter][red]ズキズキとした脱力感[/red][/jitter]へと変わっていく……\n\n[purple]この花は私を捕食しようとしている。 中に入ったのは間違いだったか。 [/purple]",
+        "options": [
+          {
+            "id": "EXTRACT_INSTEAD",
+            "title": "蜜を採取",
+            "description": "[blue]135[/blue][gold]ゴールド[/gold]を獲得。"
+          },
+          {
+            "id": "POLLINOUS_CORE",
+            "title": "中心へ",
+            "description": "HPを[red]7[/red]失う。 [gold]花粉の中心核[/gold]を獲得。"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "CRYSTAL_SPHERE",
+    "name": "水晶玉",
+    "type": "Shared",
+    "act": null,
+    "description": "[sine][blue]「ここに来ることは、すでに視えておったぞ……！」[/blue][/sine]\n\n[purple]神秘的な小屋[/purple]に入ると、[jitter]しわがれた[/jitter]声が響いてきた。\n\n[sine][blue]「運命がお主をここへと導いたのじゃ。 そして今、未来と運勢を明らかにせねばならぬ。 我らすべてを救うために！！」[/blue][/sine]\n「さあ、[gold]水晶占い[/gold]のコースを選んでおくれ。 この免責事項にもサインを頼むぞい」老婆はそう言って、ペンと羊皮紙を取り出した。",
+    "preconditions": [
+      "Requires 100+ gold",
+      "Act 2+"
+    ],
+    "options": [
+      {
+        "id": "UNCOVER_FUTURE",
+        "title": "未来を明らかにする",
+        "description": "[red]51-99[/red][gold]ゴールド[/gold]を支払う。 [blue]3[/blue]回[purple]占う[/purple]。"
+      },
+      {
+        "id": "PAYMENT_PLAN",
+        "title": "後払いプラン",
+        "description": "[red]負債[/red]を1枚獲得。 [blue]6[/blue]回[purple]占う[/purple]。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "FINISH",
+        "description": "考え事は終わった"
+      },
+      {
+        "id": "INITIAL",
+        "description": "[sine][blue]「ここに来ることは、すでに視えておったぞ……！」[/blue][/sine]\n\n[purple]神秘的な小屋[/purple]に入ると、[jitter]しわがれた[/jitter]声が響いてきた。\n\n[sine][blue]「運命がお主をここへと導いたのじゃ。 そして今、未来と運勢を明らかにせねばならぬ。 我らすべてを救うために！！」[/blue][/sine]\n「さあ、[gold]水晶占い[/gold]のコースを選んでおくれ。 この免責事項にもサインを頼むぞい」老婆はそう言って、ペンと羊皮紙を取り出した。",
+        "options": [
+          {
+            "id": "UNCOVER_FUTURE",
+            "title": "未来を明らかにする",
+            "description": "[red]51-99[/red][gold]ゴールド[/gold]を支払う。 [blue]3[/blue]回[purple]占う[/purple]。"
+          },
+          {
+            "id": "PAYMENT_PLAN",
+            "title": "後払いプラン",
+            "description": "[red]負債[/red]を1枚獲得。 [blue]6[/blue]回[purple]占う[/purple]。"
+          }
+        ]
+      },
+      {
+        "id": "PAYMENT_PLAN",
+        "description": "支払い方法"
+      },
+      {
+        "id": "UNCOVER_FUTURE",
+        "description": "未来を明らかにする"
+      }
+    ]
+  },
+  {
+    "id": "DARV",
+    "name": "ダーヴ",
+    "type": "Ancient",
+    "act": null,
+    "description": "…… どこに置いたっけな…… おお！オレのコレクションを見に来たのか！？\nあの山から好きなモンを持ってってくれ！きっと役に立つぜ！",
+    "preconditions": null,
+    "options": null,
+    "pages": null,
+    "epithet": "収集家",
+    "dialogue": {
+      "Returning": [
+        {
+          "order": "0-0r",
+          "speaker": "ancient",
+          "text": "ほら、この忘れられた宝石を持っていきな！"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "今日は忙しいんでな。\nその山から好きなもんを持っていきな！！"
+        }
+      ],
+      "Defect": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "お前さん、美しいガラクタの塊だな。 言ってる意味、分かるか？"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "<3"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "まだ頑張ってんのか…… お前さんをアップグレードできるか見てみようぜ！"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "お前さんのダチの、えーっと…… うーん。\nいや、気にすんな！ なんでもねぇ！！"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "<問い詰めるような電子音>"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "オレの可愛いガラクタちゃん、今言ったことは全部忘れな！"
+        }
+      ],
+      "Ironclad": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "炎の戦士がお戻りだな！\nお前さんにぴったりのモンがあるぜ！"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "手あたり次第、頭をカチ割ってるらしいな。\n元気そうで何よりだ！"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "お前さんのあの重い剣、まだオレが預かってるぜ…… だが、修復できるヤツが誰一人見つからねぇんだ。"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "アイアンクラッドはダーヴをじっと見つめた。 "
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "もしかしたら、アーキテクトが何か知ってるかもしれねぇな。"
+        }
+      ],
+      "Necrobinder": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "お嬢ちゃん、マジな顔してんな。 何かオレに手伝えることはあるかい？"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "あの忌まわしい男を殺すための助けなら、なんだって。"
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "そうかい…… なら、ちょっと見ていきな！"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "まだ復讐の道を歩んでるのか？ 俺は止めねぇけどよ！"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "この本はお嬢ちゃんと繋がってるみたいだな。お前さんが生まれる前からあったんだけどな。"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "どうやってそれを手に入れたの？"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "[sine]恐ろしい[/sine]モンってのは、なぜか俺のコレクションに集まるのさ。"
+        }
+      ],
+      "Regent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "お前さんみたいなのが、こんな上まで何しに来たんだ？ 俺のコレクションを見ていくかい？"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "見事な品を愛でるのが、余の趣味でな……"
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "いいねェ！"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "また来たのかい、殿下！"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "新しいダチに、ピッタリのモンを用意してるぜ！"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "見せてもらおうではないか！"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "渡してやりたいんだが、アーキテクトの野郎にパクられちまったんだ！！\nダチを助けると思ってさ！ 頼みを聞いてくれねぇか？"
+        }
+      ],
+      "Silent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "お前さんもスパイアに戻ってきたのかい？\n光り輝くモンには目がねえってか！？"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "お前さんが持ってるその「狩りの証」、何かいいモンと交換してやろうか！"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "オレ様の寛大さを覚えてねぇとは残念だぜ！\nまあ、ネオーのやり方は知ってるけどよ……"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "……"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "最後の決戦か何からしいな。よし、お前さんの装備を整えてやろう！"
+        }
+      ],
+      "First Visit": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "…… どこに置いたっけな…… おお！オレのコレクションを見に来たのか！？\nあの山から好きなモンを持ってってくれ！きっと役に立つぜ！"
+        }
+      ]
+    },
+    "image_url": "/static/images/misc/ancients/darv.webp",
+    "relics": [
+      "DUSTY_TOME",
+      "ASTROLABE",
+      "BLACK_STAR",
+      "CALLING_BELL",
+      "EMPTY_CAGE",
+      "PANDORAS_BOX",
+      "RUNIC_PYRAMID",
+      "SNECKO_EYE",
+      "ECTOPLASM",
+      "SOZU",
+      "PHILOSOPHERS_STONE",
+      "VELVET_CHOKER"
+    ]
+  },
+  {
+    "id": "DENSE_VEGETATION",
+    "name": "密林",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": "ずいぶんと長い間、道を間違えていたようだ。 [green]シダ[/green]や[green]低木[/green]、そして[green]ツタ[/green]が生い茂る、鬱蒼としたジャングルに迷い込んでしまった。 特に[green]ツタ[/green]がひどい。 疲労困憊の中、暗い幻聴が頭をよぎる。\n\n[sine][purple]「お前は道に迷い、備えもなく、逃れられぬ死が近づいている。」[/purple][/sine]\n\nどうするべきか？",
+    "preconditions": null,
+    "options": [
+      {
+        "id": "TRUDGE_ON",
+        "title": "意地でも進む",
+        "description": "[blue]61-99[/blue][gold]ゴールド[/gold]を獲得する。HPを[red]8[/red]失う。"
+      },
+      {
+        "id": "REST",
+        "title": "休憩する",
+        "description": "HPを[green]30% Max[/green]回復する。 [red]敵[/red]と戦う。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "INITIAL",
+        "description": "ずいぶんと長い間、道を間違えていたようだ。 [green]シダ[/green]や[green]低木[/green]、そして[green]ツタ[/green]が生い茂る、鬱蒼としたジャングルに迷い込んでしまった。 特に[green]ツタ[/green]がひどい。 疲労困憊の中、暗い幻聴が頭をよぎる。\n\n[sine][purple]「お前は道に迷い、備えもなく、逃れられぬ死が近づいている。」[/purple][/sine]\n\nどうするべきか？",
+        "options": [
+          {
+            "id": "TRUDGE_ON",
+            "title": "意地でも進む",
+            "description": "[blue]61-99[/blue][gold]ゴールド[/gold]を獲得する。HPを[red]8[/red]失う。"
+          },
+          {
+            "id": "REST",
+            "title": "休憩する",
+            "description": "HPを[green]30% Max[/green]回復する。 [red]敵[/red]と戦う。"
+          }
+        ]
+      },
+      {
+        "id": "REST",
+        "description": "死ぬほど疲れていたあなたは、仮眠をとることにした……\n\n…… が、体の上で[gold][jitter]何かがうごめく[/jitter][/gold]気配に叩き起こされた！",
+        "options": [
+          {
+            "id": "FIGHT",
+            "title": "戦う！",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "id": "TRUDGE_ON",
+        "description": "ジャングルを切り開いて進むが、森はどこまでも続いている……\n\n[green]奇妙な果実[/green]や[orange]歯ごたえのある虫[/orange]をかじり、[aqua]光る植物[/aqua]の蜜をすすって命をつなぐものの、次第に[jitter][red]疑心暗鬼[/red][/jitter]に陥ってゆく……\n\nしかし、ついに開けた場所に出た。 小道があり、地面には[gold]ゴールド[/gold]の硬貨が散らばっている。それに交じって、殴り書きの地図も何枚か落ちていた！\nどうやら助かったようだ。"
+      }
+    ]
+  },
+  {
+    "id": "DOLL_ROOM",
+    "name": "ドール・ルーム",
+    "type": "Shared",
+    "act": null,
+    "description": "あなたは隠し部屋に足を踏み入れた……\n\n部屋中が人形で埋め尽くされている。 一つとして同じものはなく、その表情は[green]喜び[/green]から[purple]悲哀[/purple]まで様々だ。 着ている服は時代が数世紀に渡ってバラバラで、異界の物とすら思われるものもある。\n\n次第に、[sine][blue]合唱のようなささやき声[/blue][/sine]は大きくなり、やがて[jitter][red]絶叫[/red][/jitter]となって、我先にとあなたを求めるようになった……\n\nどれか一つを選び、一刻も早く立ち去らなければ。",
+    "preconditions": [
+      "Act 2 only"
+    ],
+    "options": [
+      {
+        "id": "RANDOM",
+        "title": "ランダムに選ぶ",
+        "description": "ランダムな[gold]人形レリック[/gold]を1体獲得する。"
+      },
+      {
+        "id": "TAKE_SOME_TIME",
+        "title": "少しだけ時間をかける",
+        "description": "HPを[red]5[/red]失う。 [blue]2[/blue]つの[gold]人形レリック[/gold]から[blue]1[/blue]つを選ぶ。"
+      },
+      {
+        "id": "EXAMINE",
+        "title": "念入りに調べ、最良のものを選ぶ",
+        "description": "HPを[red]15[/red]失う。 [blue]3[/blue]つの[gold]人形レリック[/gold]から[blue]1[/blue]つを選ぶ。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "DAUGHTER_OF_WIND",
+        "description": "[blue]「このワタシに選ばれたこと、光栄に思いなさいよね！」[/blue]\n人形は勝ち誇ったように宣言した。"
+      },
+      {
+        "id": "EXAMINE",
+        "description": "選択する前に、人形を一体ずつ調べていく。\n\n叫び声は[red][jitter]耳をつんざくような大音量[/jitter][/red]に達したが、なんとか完全に発狂してしまう前に選ぶことができた！"
+      },
+      {
+        "id": "FABLE",
+        "description": "温かい声が楽しげに頭の中に響き渡る。\n[orange][sine]「ボクと一緒に、最高に楽しい物語を見つけに行こうよ！」[/sine][/orange]"
+      },
+      {
+        "id": "INITIAL",
+        "description": "あなたは隠し部屋に足を踏み入れた……\n\n部屋中が人形で埋め尽くされている。 一つとして同じものはなく、その表情は[green]喜び[/green]から[purple]悲哀[/purple]まで様々だ。 着ている服は時代が数世紀に渡ってバラバラで、異界の物とすら思われるものもある。\n\n次第に、[sine][blue]合唱のようなささやき声[/blue][/sine]は大きくなり、やがて[jitter][red]絶叫[/red][/jitter]となって、我先にとあなたを求めるようになった……\n\nどれか一つを選び、一刻も早く立ち去らなければ。",
+        "options": [
+          {
+            "id": "RANDOM",
+            "title": "ランダムに選ぶ",
+            "description": "ランダムな[gold]人形レリック[/gold]を1体獲得する。"
+          },
+          {
+            "id": "TAKE_SOME_TIME",
+            "title": "少しだけ時間をかける",
+            "description": "HPを[red]5[/red]失う。 [blue]2[/blue]つの[gold]人形レリック[/gold]から[blue]1[/blue]つを選ぶ。"
+          },
+          {
+            "id": "EXAMINE",
+            "title": "念入りに調べ、最良のものを選ぶ",
+            "description": "HPを[red]15[/red]失う。 [blue]3[/blue]つの[gold]人形レリック[/gold]から[blue]1[/blue]つを選ぶ。"
+          }
+        ]
+      },
+      {
+        "id": "MR_STRUGGLES",
+        "description": "その[sine][purple]ボロボロの人形[/purple][/sine]を手に取った瞬間、すべての声がピタリと止んだ。\nこの人形は喋らないようだ。"
+      },
+      {
+        "id": "TAKE",
+        "description": null,
+        "options": [
+          {
+            "id": "TAKE",
+            "title": "TAKE",
+            "description": "[gold]a random Relic[/gold]を獲得する。"
+          }
+        ]
+      },
+      {
+        "id": "TAKE_SOME_TIME",
+        "description": "絶叫が響く中、急いで人形たちを品定めする。\n\nこの2つのどちらかが良いだろうか？\n[red]精神的な苦痛[/red]で、なかなか集中できない。"
+      }
+    ]
+  },
+  {
+    "id": "DOORS_OF_LIGHT_AND_DARK",
+    "name": "光と闇の扉",
+    "type": "Event",
+    "act": "Underdocks",
+    "description": "さっきまで何もなかったはずの場所に、入り口が現れた……\n\n中に入ると、二つの輝く扉と[gold]身なりの良いドアマン[/gold]が待っていた。\n「やっと、お客様がいらした！ どうぞどうぞ！ お好きな扉をお選びください！」\n\n[blue]ここは本当にスパイアの中なのか？ それにしてはあまりに綺麗すぎる…… [/blue]",
+    "preconditions": null,
+    "options": [
+      {
+        "id": "LIGHT",
+        "title": "光の扉",
+        "description": "ランダムなカードを[blue]2[/blue]枚[gold]アップグレード[/gold]。"
+      },
+      {
+        "id": "DARK",
+        "title": "闇の扉",
+        "description": "[gold]デッキ[/gold]からカードを[blue]1[/blue]枚削除。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "DARK",
+        "description": "[sine][purple]闇の中へと進む…… [/purple][/sine]\n\n何も見えない。\nだが、それがかえって思考を研ぎ澄ませてくれる……。 脳裏にこびりついていた[red]無用な雑念[/red]が消え去っていった。\n\n気がつくと、あなたは[blue]地下水路[/blue]に立っていた。\nどうやって戻ってきたんだ？ 一体何が……？"
+      },
+      {
+        "id": "INITIAL",
+        "description": "さっきまで何もなかったはずの場所に、入り口が現れた……\n\n中に入ると、二つの輝く扉と[gold]身なりの良いドアマン[/gold]が待っていた。\n「やっと、お客様がいらした！ どうぞどうぞ！ お好きな扉をお選びください！」\n\n[blue]ここは本当にスパイアの中なのか？ それにしてはあまりに綺麗すぎる…… [/blue]",
+        "options": [
+          {
+            "id": "LIGHT",
+            "title": "光の扉",
+            "description": "ランダムなカードを[blue]2[/blue]枚[gold]アップグレード[/gold]。"
+          },
+          {
+            "id": "DARK",
+            "title": "闇の扉",
+            "description": "[gold]デッキ[/gold]からカードを[blue]1[/blue]枚削除。"
+          }
+        ]
+      },
+      {
+        "id": "LIGHT",
+        "description": "[sine][gold]光の中へと進む…… [/gold][/sine]\n\n[jitter]目が眩む！ [/jitter] だが、その光が[gold]力を与えてくれる[/gold]。\n\n気がつくと、あなたは[blue]地下水路[/blue]に立っていた。\nどうやって戻ってきたんだ？ 一体何が……？"
+      }
+    ]
+  },
+  {
+    "id": "DROWNING_BEACON",
+    "name": "沈みゆく灯台",
+    "type": "Event",
+    "act": "Underdocks",
+    "description": "岩石と静かな水辺が広がる幻想的な風景を抜けると、[purple]空虚な光[/purple]を放つ、[sine]沈みゆく灯台[/sine]が現れた。\n\n足元に溜まっている[aqua][sine]不気味に発光する水[/sine][/aqua]を瓶に汲むか、崩れかけた灯台をよじ登って[gold]レンズ[/gold]を回収するか。 二つに一つだ。",
+    "preconditions": null,
+    "options": [
+      {
+        "id": "BOTTLE",
+        "title": "水を汲む",
+        "description": "[aqua]燐光のポーション[/aqua]を獲得。"
+      },
+      {
+        "id": "CLIMB",
+        "title": "よじ登る",
+        "description": "[gold]フレネルレンズ[/gold]を獲得。 最大HPを[red]13[/red]失う。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "BOTTLE",
+        "description": "手近な瓶を使って[aqua]光る液体[/aqua]を慎重に汲み取った。 その横では、灯台が静かに沈んでいく。\n\n中にいなくて本当に良かった。"
+      },
+      {
+        "id": "CLIMB",
+        "description": "ずぶずぶと沈んでいく灯台に恐怖を覚えながらも、頂上まで登り詰めた。\n\n[gold]明かりが灯る部屋[/gold]にたどり着き、レンズをこじ開けようとする。 だが、[purple]活力を奪う光[/purple]が[jitter][red]生命力を削り取っていく！ [/red][/jitter]\n\nついにレンズをもぎ取ると、灯台はピタリと沈むのをやめた。"
+      },
+      {
+        "id": "INITIAL",
+        "description": "岩石と静かな水辺が広がる幻想的な風景を抜けると、[purple]空虚な光[/purple]を放つ、[sine]沈みゆく灯台[/sine]が現れた。\n\n足元に溜まっている[aqua][sine]不気味に発光する水[/sine][/aqua]を瓶に汲むか、崩れかけた灯台をよじ登って[gold]レンズ[/gold]を回収するか。 二つに一つだ。",
+        "options": [
+          {
+            "id": "BOTTLE",
+            "title": "水を汲む",
+            "description": "[aqua]燐光のポーション[/aqua]を獲得。"
+          },
+          {
+            "id": "CLIMB",
+            "title": "よじ登る",
+            "description": "[gold]フレネルレンズ[/gold]を獲得。 最大HPを[red]13[/red]失う。"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ENDLESS_CONVEYOR",
+    "name": "無限コンベア",
+    "type": "Event",
+    "act": "Underdocks",
+    "description": "あなたは派手な看板を掲げた小屋に足を踏み入れた。 傾いた看板にはこう書いてある――\n[aqua]「大食い食堂『無限の宴』――お代は空腹に応じて」[/aqua]\n\n中に入ると、[orange]すらっとした多腕のシェフ[/orange]が、器用に[green]一口サイズの料理[/green]を作り、[sine]うねうね動く甲殻でできたベルト[/sine]に乗せている。\n\nシェフの腕の1本が、看板を指差した。\n全品 1皿 [blue]40[/blue][gold]ゴールド[/gold]",
+    "preconditions": [
+      "Requires 120+ gold"
+    ],
+    "options": [
+      {
+        "id": "OBSERVE_CHEF",
+        "title": "シェフを観察する",
+        "description": "[gold]デッキ[/gold]のランダムなカードを1枚[gold]アップグレード[/gold]。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "ALL",
+        "description": null,
+        "options": [
+          {
+            "id": "LOCKED",
+            "title": "金欠",
+            "description": "まだ食べられるが、[gold]ゴールド[/gold]がもうない。"
+          },
+          {
+            "id": "CAVIAR",
+            "title": "レーンからキャビアを取る",
+            "description": "[red]40[/red][gold]ゴールド[/gold]を支払う。 最大HPが[green]4[/green]増加する。 食事を続ける！"
+          },
+          {
+            "id": "CLAM_ROLL",
+            "title": "レーンからクラムロールを取る",
+            "description": "[red]40[/red][gold]ゴールド[/gold]を支払う。 HPを[green]10[/green]回復する。 食事を続ける！"
+          },
+          {
+            "id": "FRIED_EEL",
+            "title": "レーンからうなぎのフライを取る",
+            "description": "[red]40[/red][gold]ゴールド[/gold]を支払う。 ランダムな無色カードを1枚[gold]デッキ[/gold]に加える。 食事を続ける！"
+          },
+          {
+            "id": "GOLDEN_FYSH",
+            "title": "レーンから黄金魚を取る",
+            "description": "[green]大当たり！[/green] [blue]75[/blue][gold]ゴールド[/gold]を獲得。"
+          },
+          {
+            "id": "JELLY_LIVER",
+            "title": "レーンからゼリーレバーを取る",
+            "description": "[red]40[/red][gold]ゴールド[/gold]を支払う。 カードを1枚[gold]変化[/gold]させる。 食事を続ける！"
+          },
+          {
+            "id": "SEAPUNK_SALAD",
+            "title": "レーンからシーパンク・サラダを取る",
+            "description": "[red]40[/red][gold]ゴールド[/gold]を支払う。 [gold]フードファイト[/gold]を[gold]デッキ[/gold]に追加。 食事を続ける！"
+          },
+          {
+            "id": "SPICY_SNAPPY",
+            "title": "レーンからスパイシー・スナッピーを取る",
+            "description": "[red]40[/red][gold]ゴールド[/gold]を支払う。 ランダムなカードを1枚[gold]アップグレード[/gold]。 食事を続ける！"
+          },
+          {
+            "id": "SUSPICIOUS_CONDIMENT",
+            "title": "レーンから怪しい調味料を取る",
+            "description": "[red]40[/red][gold]ゴールド[/gold]を支払う。 ランダムな[gold]ポーション[/gold]を獲得する。 食事を続ける！"
+          }
+        ]
+      },
+      {
+        "id": "GRAB_SOMETHING_OFF_THE_BELT",
+        "description": "あなたはレーンから[gold]Last Dish Title[/gold]を取り、一気に平らげた。\n[green]ウマい！ [/green]",
+        "options": [
+          {
+            "id": "LEAVE",
+            "title": "立ち去る",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "id": "INITIAL",
+        "description": "あなたは派手な看板を掲げた小屋に足を踏み入れた。 傾いた看板にはこう書いてある――\n[aqua]「大食い食堂『無限の宴』――お代は空腹に応じて」[/aqua]\n\n中に入ると、[orange]すらっとした多腕のシェフ[/orange]が、器用に[green]一口サイズの料理[/green]を作り、[sine]うねうね動く甲殻でできたベルト[/sine]に乗せている。\n\nシェフの腕の1本が、看板を指差した。\n全品 1皿 [blue]40[/blue][gold]ゴールド[/gold]",
+        "options": [
+          {
+            "id": "OBSERVE_CHEF",
+            "title": "シェフを観察する",
+            "description": "[gold]デッキ[/gold]のランダムなカードを1枚[gold]アップグレード[/gold]。"
+          }
+        ]
+      },
+      {
+        "id": "LEAVE",
+        "description": "お腹も膨れたので、先へ進むことにした。"
+      },
+      {
+        "id": "OBSERVE_CHEF",
+        "description": "席には座らず、入り口の影から様子を伺うことにした。\n\n[orange]シェフ[/orange]は動じることなく作業を続けている。 その所作と規律を観察し、戦闘において無駄な動きと感情を排除する術を学んだ。"
+      }
+    ]
+  },
+  {
+    "id": "FAKE_MERCHANT",
+    "name": "商人（？ ）",
+    "type": "Shared",
+    "act": null,
+    "description": "A suspicious merchant offers 9 fake relics at 42–58 gold each. Throwing a [gold]Foul Potion[/gold] starts a fight against The Merchant??? (165 HP). Winning rewards [gold]Fake Merchant's Rug[/gold] plus all unsold relics.",
+    "preconditions": [
+      "Act 2+",
+      "Single player only",
+      "Requires 100+ gold or a Foul Potion"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "FIELD_OF_MAN_SIZED_HOLES",
+    "name": "人型の穴",
+    "type": "Event",
+    "act": "Act 2 - Hive",
+    "description": "[jitter]巨大な人型の穴が無数にうがたれた[/jitter]広大な野原が突如として眼前に現れ、あなたは足を止めた。\n\n無数にある穴のうちの一つが、あなたの体格や輪郭と寸分違わず一致している。\n\n[sine][orange]ぴったりだ…… [/orange][/sine]",
+    "preconditions": null,
+    "options": [
+      {
+        "id": "RESIST",
+        "title": "やめておく",
+        "description": "[gold]デッキ[/gold]からカードを[blue]2[/blue]枚削除。 [red]凡庸[/red]を[gold]デッキ[/gold]に追加。"
+      },
+      {
+        "id": "ENTER_YOUR_HOLE",
+        "title": "“自分の”穴に入る",
+        "description": "カード1枚に、[purple]完璧な適合[/purple]を[gold]エンチャント[/gold]する。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "ENTER_YOUR_HOLE",
+        "description": "きついが、穴に体を押し込んだ……\n\n奥へ進むほど、[sine][purple]視界は暗くなっていく[/purple][/sine]。\nやがて、[gold]かすかな光[/gold]が強くなり、向こう側が見えてきた。\n\n外に出た体に変化はない。 だが今や、あなたは[green]生命の深淵なる秘密[/green]を理解していた。"
+      },
+      {
+        "id": "INITIAL",
+        "description": "[jitter]巨大な人型の穴が無数にうがたれた[/jitter]広大な野原が突如として眼前に現れ、あなたは足を止めた。\n\n無数にある穴のうちの一つが、あなたの体格や輪郭と寸分違わず一致している。\n\n[sine][orange]ぴったりだ…… [/orange][/sine]",
+        "options": [
+          {
+            "id": "RESIST",
+            "title": "やめておく",
+            "description": "[gold]デッキ[/gold]からカードを[blue]2[/blue]枚削除。 [red]凡庸[/red]を[gold]デッキ[/gold]に追加。"
+          },
+          {
+            "id": "ENTER_YOUR_HOLE",
+            "title": "“自分の”穴に入る",
+            "description": "カード1枚に、[purple]完璧な適合[/purple]を[gold]エンチャント[/gold]する。"
+          }
+        ]
+      },
+      {
+        "id": "RESIST",
+        "description": "[orange]自分と寸分違わぬ形[/orange]の穴を含め、すべての穴を無視することにした。\n\nなぜ自分は中に入らなかったのだろう？ もし入っていたらどうなっていた？ 前にあそこに入ったことがあったか？ 誰があれを作ったんだ？\n\n[sine][red]何が…… 誰ガ…… ドコ？ [/red][/sine]"
+      }
+    ]
+  },
+  {
+    "id": "GRAVE_OF_THE_FORGOTTEN",
+    "name": "忘れられた者の墓",
+    "type": "Event",
+    "act": "Act 3 - Glory",
+    "description": "[jitter][aqua]青い炎が揺らめく[/aqua][/jitter]墓が一つある……\n\n誇り高き戦士が戦死したが、その魂は安らぐことなく彷徨っているようだ。 魂は戦い続けることを望み、共に連れて行ってくれと[sine]懇願[/sine]しているようだ。\n\nだが、[red]真実[/red]と向き合わせるほうが、彼のためではないだろうか？",
+    "preconditions": null,
+    "options": [
+      {
+        "id": "CONFRONT_LOCKED",
+        "title": "ロック中",
+        "description": "[gold]廃棄[/gold]を持っていて、[purple]エンチャント[/purple]できるカードがない。"
+      },
+      {
+        "id": "CONFRONT",
+        "title": "真実を突き付ける",
+        "description": "[red]腐敗[/red]を[gold]デッキ[/gold]に追加。 [gold]廃棄[/gold]を持つカード1枚に[purple]魂力[/purple]を[gold]エンチャント[/gold]する。"
+      },
+      {
+        "id": "ACCEPT",
+        "title": "忘れ去られし魂を受け入れる",
+        "description": "[gold]忘れ去られし魂[/gold]を獲得。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "ACCEPT",
+        "description": "墓に手を置き、囁きかける……\n\n[sine]「共に登ろう……」[/sine]\n\nすると、炎は墓から抜け出し、[aqua]燃え盛る魂[/aqua]となって周りを漂い始めた。 あなたに従うようだ。\n彼はあなたが何者であるかを知り、最後の目的地まで付き従うことを望んでいる。"
+      },
+      {
+        "id": "CONFRONT",
+        "description": "墓に手を置き、囁きかける……\n\n[sine]「お前の戦いは、もう終わったんだ……」[/sine]\n\nすると、炎はあなたの肉体に飛び込み、[jitter][aqua]魂同士の戦い[/aqua][/jitter]が始まった！\nだが、あなたが潜り抜けてきた数々の戦いの記憶に気圧され、戦士の魂は敗北を認めた。"
+      },
+      {
+        "id": "INITIAL",
+        "description": "[jitter][aqua]青い炎が揺らめく[/aqua][/jitter]墓が一つある……\n\n誇り高き戦士が戦死したが、その魂は安らぐことなく彷徨っているようだ。 魂は戦い続けることを望み、共に連れて行ってくれと[sine]懇願[/sine]しているようだ。\n\nだが、[red]真実[/red]と向き合わせるほうが、彼のためではないだろうか？",
+        "options": [
+          {
+            "id": "CONFRONT_LOCKED",
+            "title": "ロック中",
+            "description": "[gold]廃棄[/gold]を持っていて、[purple]エンチャント[/purple]できるカードがない。"
+          },
+          {
+            "id": "CONFRONT",
+            "title": "真実を突き付ける",
+            "description": "[red]腐敗[/red]を[gold]デッキ[/gold]に追加。 [gold]廃棄[/gold]を持つカード1枚に[purple]魂力[/purple]を[gold]エンチャント[/gold]する。"
+          },
+          {
+            "id": "ACCEPT",
+            "title": "忘れ去られし魂を受け入れる",
+            "description": "[gold]忘れ去られし魂[/gold]を獲得。"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "HUNGRY_FOR_MUSHROOMS",
+    "name": "キノコに夢中",
+    "type": "Event",
+    "act": "Act 3 - Glory",
+    "description": "[sine]最後に食事をしたのはいつだったか……\n…… ん？ なんだ、このたまらなくいい匂いは？ [/sine]\n\n匂いをたどっていくと、こじんまりとしたキャンプ場にたどりついた。 そこには、おいしそうに調理された[green]色とりどりのキノコ[/green]が残されている！ あまりにも空腹なあなたは、食べて大丈夫なキノコかどうか考える余裕もない。\n(腹が減りすぎていて、横に冒険者の死体が転がっていることすら目に入らなかった)",
+    "preconditions": null,
+    "options": [
+      {
+        "id": "BIG_MUSHROOM",
+        "title": "大きなキノコ",
+        "description": "Obtain [gold]大きなキノコ[/gold]. 取得時、最大HPが[blue]20[/blue]増加する。戦闘開始時に引くカードが[blue]2[/blue]枚少なくなる。"
+      },
+      {
+        "id": "FRAGRANT_MUSHROOM",
+        "title": "芳醇なキノコ",
+        "description": "Obtain [gold]芳醇なキノコ[/gold]. 取得時、HPを[blue]15[/blue]失い、ランダムなカードを[blue]2[/blue]枚[gold]アップグレード[/gold]する。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "BIG_MUSHROOM",
+        "description": "あなたは[orange]大きなキノコ[/orange]にかぶりついた。 歯ごたえがあり、ホクホクしていて、食べ応えがある。 だが食べれば食べるほど、腹は減っていく。 まるでキノコがこちらの“食欲”を喰らっているかのようだ。\n\n[sine]ああ、うまい…… うますぎる……。 あなたはドカ食いにより気絶に[red]至って[/red]しまった。 [/sine]\nこの暴食のツケは高くつくことになった。"
+      },
+      {
+        "id": "FRAGRANT_MUSHROOM",
+        "description": "ほのかに魚介の香りがする、硬めの小さな[green]芳醇なキノコ[/green]をつまんだ……\n\n瞬間、爆発的な活力が体にみなぎった。 無性に走り、飛び回り、[gold]猛特訓[/gold]したい衝動に駆られる！\nしかし直後、[red][jitter]刺すような痛み[/jitter][/red]があなたを襲う。 生き残った菌類が、その最期の瞬間に体内で暴れ回っているのだ。"
+      },
+      {
+        "id": "INITIAL",
+        "description": "[sine]最後に食事をしたのはいつだったか……\n…… ん？ なんだ、このたまらなくいい匂いは？ [/sine]\n\n匂いをたどっていくと、こじんまりとしたキャンプ場にたどりついた。 そこには、おいしそうに調理された[green]色とりどりのキノコ[/green]が残されている！ あまりにも空腹なあなたは、食べて大丈夫なキノコかどうか考える余裕もない。\n(腹が減りすぎていて、横に冒険者の死体が転がっていることすら目に入らなかった)",
+        "options": [
+          {
+            "id": "BIG_MUSHROOM",
+            "title": "大きなキノコ",
+            "description": "Obtain [gold]大きなキノコ[/gold]. 取得時、最大HPが[blue]20[/blue]増加する。戦闘開始時に引くカードが[blue]2[/blue]枚少なくなる。"
+          },
+          {
+            "id": "FRAGRANT_MUSHROOM",
+            "title": "芳醇なキノコ",
+            "description": "Obtain [gold]芳醇なキノコ[/gold]. 取得時、HPを[blue]15[/blue]失い、ランダムなカードを[blue]2[/blue]枚[gold]アップグレード[/gold]する。"
+          }
+        ]
+      },
+      {
+        "id": "MEDLEY",
+        "description": "[green]キノコの盛り合わせ[/green]が一番美味しそうだったので、それに手を伸ばした。\n\n[red][jitter]「俺のキノコに触れるな！！」[/jitter][/red]\n\n死体だと思っていた冒険者が突如として襲いかかってきた！ あなたはそいつを返り討ちにして気絶させ、残りのご馳走を平らげた。 罪悪感というスパイスと共に。"
+      }
+    ]
+  },
+  {
+    "id": "INFESTED_AUTOMATON",
+    "name": "寄生されたオートマトン",
+    "type": "Event",
+    "act": "Act 2 - Hive",
+    "description": "[red]壊れたオートマトンたち[/red]で埋め尽くされた部屋がある。\n\nその中の一体は、まだ[sine][aqua]かすかに光るコア[/aqua][/sine] を残している。 だが、グロテスクな生体組織に侵食されており、反応はない。",
+    "preconditions": null,
+    "options": [
+      {
+        "id": "STUDY",
+        "title": "調査する",
+        "description": "ランダムな[gold]パワー[/gold]を1枚獲得する。"
+      },
+      {
+        "id": "TOUCH_CORE",
+        "title": "コアに触れる",
+        "description": "ランダムな[gold]0コストのカード[/gold]を1枚獲得する。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "INITIAL",
+        "description": "[red]壊れたオートマトンたち[/red]で埋め尽くされた部屋がある。\n\nその中の一体は、まだ[sine][aqua]かすかに光るコア[/aqua][/sine] を残している。 だが、グロテスクな生体組織に侵食されており、反応はない。",
+        "options": [
+          {
+            "id": "STUDY",
+            "title": "調査する",
+            "description": "ランダムな[gold]パワー[/gold]を1枚獲得する。"
+          },
+          {
+            "id": "TOUCH_CORE",
+            "title": "コアに触れる",
+            "description": "ランダムな[gold]0コストのカード[/gold]を1枚獲得する。"
+          }
+        ]
+      },
+      {
+        "id": "STUDY",
+        "description": "[aqua]光るオートマトン[/aqua]の内部構造を調査すると、一つ発見があった。 特定の金属とその配置が、様々な状態異常への耐性を持つようだ！\n\nあなたはその[blue]テクノロジー[/blue]を自身に適用した。"
+      },
+      {
+        "id": "TOUCH_CORE",
+        "description": "[aqua]コア[/aqua]に軽く触れた瞬間、[jitter][gold]電流[/gold]が体を駆け巡った[/jitter]。\n\n慌ててその場を離れたが、そのショックで自分の何かが[sine][purple]変質した[/purple][/sine]ように感じる。"
+      }
+    ]
+  },
+  {
+    "id": "JUNGLE_MAZE_ADVENTURE",
+    "name": "ジャングル大迷宮のクエスト",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": "開けた場所で、[green]寄せ集めの冒険者パーティ[/green]に出会った。 [purple]巨大な迷宮[/purple]を見下ろしながら、身振り手振りを交えて話している、\n\n彼らはこの迷宮の財宝を狙う[b]壮大なクエスト[/b]に、一緒に挑まないかと持ちかけてきた。 経験豊かなあなたには、この迷宮に[red][jitter]致命的な罠[/jitter][/red]と[orange][sine]ガーディアン[/sine][/orange]がひしめいていることが手に取るようにわかる。\n\n協力すれば楽にはなるだろう。 だがその分、戦利品は山分けになってしまう。",
+    "preconditions": null,
+    "options": [
+      {
+        "id": "SOLO_QUEST",
+        "title": "ソロプレイを貫く",
+        "description": "[blue]135-165[/blue][gold]ゴールド[/gold]を獲得。 HPを[red]18[/red]失う。"
+      },
+      {
+        "id": "JOIN_FORCES",
+        "title": "パーティーを組む",
+        "description": "[blue]35-65[/blue][gold]ゴールド[/gold]を獲得。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "INITIAL",
+        "description": "開けた場所で、[green]寄せ集めの冒険者パーティ[/green]に出会った。 [purple]巨大な迷宮[/purple]を見下ろしながら、身振り手振りを交えて話している、\n\n彼らはこの迷宮の財宝を狙う[b]壮大なクエスト[/b]に、一緒に挑まないかと持ちかけてきた。 経験豊かなあなたには、この迷宮に[red][jitter]致命的な罠[/jitter][/red]と[orange][sine]ガーディアン[/sine][/orange]がひしめいていることが手に取るようにわかる。\n\n協力すれば楽にはなるだろう。 だがその分、戦利品は山分けになってしまう。",
+        "options": [
+          {
+            "id": "SOLO_QUEST",
+            "title": "ソロプレイを貫く",
+            "description": "[blue]135-165[/blue][gold]ゴールド[/gold]を獲得。 HPを[red]18[/red]失う。"
+          },
+          {
+            "id": "JOIN_FORCES",
+            "title": "パーティーを組む",
+            "description": "[blue]35-65[/blue][gold]ゴールド[/gold]を獲得。"
+          }
+        ]
+      },
+      {
+        "id": "JOIN_FORCES",
+        "description": "あなたを含め、全員の顔がぱっと明るくなった！\n\nなんと冒険者の一人は吟遊詩人だった！\n[aqua]イカの魔法使いアクイッド[/aqua]が軽々と罠を解除していく横で、あなたと[red]グラソリアンの戦士[/red]が[orange]トゲ付き棍棒を持つ衛兵[/orange]を蹴散らし、陽気にステップを踏みながら迷宮を進んでいく。\n\nこれは人生で最も楽しい冒険だ。 本当に[gold][sine]素晴らしい思い出[/sine][/gold]となった。"
+      },
+      {
+        "id": "SOLO_QUEST",
+        "description": "人付き合いが面倒になったあなたは、露骨に嫌な顔をする彼らの脇を無言で通り過ぎた。 中には[jitter][purple]拳を振り上げて怒る[/purple][/jitter]者もいた。\n\n…… だが、迷宮の歓迎は凄まじかった。 トゲの落とし穴に落ち、トゲ付きの巨大な丸太に殴られ、道中ずっと[orange]トゲ付き棍棒を振り回す凶暴なバケモノ[/orange]と戦いを繰り広げる羽目になった。\n\nもうトゲはこりごりだ。 次の冒険ではチームワークを大事にしようと心に誓った。"
+      }
+    ]
+  },
+  {
+    "id": "LOST_WISP",
+    "name": "迷子のウィスプ",
+    "type": "Event",
+    "act": "Act 2 - Hive",
+    "description": "遠くに奇妙な光景が見える。 [sine][red]死んだ虫[/red][/sine]の山がいくつもあり、それが[orange]小さく光る塵[/orange]のようなものを囲んでいるのだ。\nあらゆる虫を引き寄せているようだ。 時折そこから炎が噴き出しているのが見える！\n\nあなたは調査のため近づいてみた。",
+    "preconditions": null,
+    "options": [
+      {
+        "id": "CLAIM",
+        "title": "ウィスプを捕まえる",
+        "description": "[red]腐敗[/red]を[gold]デッキ[/gold]に追加。 [gold]迷子のウィスプ[/gold]を獲得する。"
+      },
+      {
+        "id": "SEARCH",
+        "title": "周辺を探索する",
+        "description": "[blue]45-75[/blue][gold]ゴールド[/gold]を獲得。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "CLAIM",
+        "description": "慎重に[orange]ウィスプ[/orange]に近づく……\n距離が縮まるにつれ、それはあなたの気配に強く反応し始めた。\n\n手の届く距離まで来て[orange]ウィスプ[/orange]を掴むと、そいつは[red][jitter]熱い蒸気と炎を吹き付けて火傷を負わせてきた！ [/jitter][/red]\n\nそれでも[jitter]揉み合いながら[/jitter]力ずくで押さえつけると、やがて[orange]ウィスプ[/orange]は降参し、あなたを新たな主人として認めた。"
+      },
+      {
+        "id": "INITIAL",
+        "description": "遠くに奇妙な光景が見える。 [sine][red]死んだ虫[/red][/sine]の山がいくつもあり、それが[orange]小さく光る塵[/orange]のようなものを囲んでいるのだ。\nあらゆる虫を引き寄せているようだ。 時折そこから炎が噴き出しているのが見える！\n\nあなたは調査のため近づいてみた。",
+        "options": [
+          {
+            "id": "CLAIM",
+            "title": "ウィスプを捕まえる",
+            "description": "[red]腐敗[/red]を[gold]デッキ[/gold]に追加。 [gold]迷子のウィスプ[/gold]を獲得する。"
+          },
+          {
+            "id": "SEARCH",
+            "title": "周辺を探索する",
+            "description": "[blue]45-75[/blue][gold]ゴールド[/gold]を獲得。"
+          }
+        ]
+      },
+      {
+        "id": "SEARCH",
+        "description": "この小さな生き物には手を出さないことにした。 安全第一だ！\n\n周辺には大したものはないが、虫の死骸の間に散らばっていた[gold]ゴールド[/gold]をいくらか見つけた。\nこれ以上、深入りする必要はない。"
+      }
+    ]
+  },
+  {
+    "id": "LUMINOUS_CHOIR",
+    "name": "輝く合唱団",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": "不自然な青い光に包まれた空き地に足を踏み入れた。 そびえ立つキノコたちが発光して脈打ち、その傘は膨れ上がりテカテカと光っている。 近づくと、菌類たちは胸の奥まで響くような[sine][purple]心をかき乱すメロディ[/purple][/sine]を奏で始めた。\n\nあなたは一番大きなキノコの中に何かが埋まっていることに気づいた。 それは菌類の歌のリズムに合わせて[sine]脈動しながら[/sine]光っている。",
+    "preconditions": [
+      "Requires 100-149 gold"
+    ],
+    "options": [
+      {
+        "id": "REACH_INTO_THE_FLESH",
+        "title": "キノコの中に手を突っ込む",
+        "description": "[gold]デッキ[/gold]からカードを[blue]2[/blue]枚削除。 [red]菌糸の汚染[/red]を[gold]デッキ[/gold]に追加。"
+      },
+      {
+        "id": "OFFER_TRIBUTE",
+        "title": "貢物を捧げる",
+        "description": "[red]100-149[/red][gold]ゴールド[/gold]を支払う。 ランダムな[gold]レリック[/gold]を1個獲得する。"
+      },
+      {
+        "id": "OFFER_TRIBUTE_LOCKED",
+        "title": "ロック中",
+        "description": "[blue]100-149[/blue][gold]ゴールド[/gold]が必要。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "INITIAL",
+        "description": "不自然な青い光に包まれた空き地に足を踏み入れた。 そびえ立つキノコたちが発光して脈打ち、その傘は膨れ上がりテカテカと光っている。 近づくと、菌類たちは胸の奥まで響くような[sine][purple]心をかき乱すメロディ[/purple][/sine]を奏で始めた。\n\nあなたは一番大きなキノコの中に何かが埋まっていることに気づいた。 それは菌類の歌のリズムに合わせて[sine]脈動しながら[/sine]光っている。",
+        "options": [
+          {
+            "id": "REACH_INTO_THE_FLESH",
+            "title": "キノコの中に手を突っ込む",
+            "description": "[gold]デッキ[/gold]からカードを[blue]2[/blue]枚削除。 [red]菌糸の汚染[/red]を[gold]デッキ[/gold]に追加。"
+          },
+          {
+            "id": "OFFER_TRIBUTE",
+            "title": "貢物を捧げる",
+            "description": "[red]100-149[/red][gold]ゴールド[/gold]を支払う。 ランダムな[gold]レリック[/gold]を1個獲得する。"
+          },
+          {
+            "id": "OFFER_TRIBUTE_LOCKED",
+            "title": "ロック中",
+            "description": "[blue]100-149[/blue][gold]ゴールド[/gold]が必要。"
+          }
+        ]
+      },
+      {
+        "id": "OFFER_TRIBUTE",
+        "description": "スポンジ状の床にゴールドを置く。 硬貨がゆっくりと沈み込んでいくと同時に、菌糸が優しくレリックを表面へと押し出した。 あなたはそれを傷つけることなく回収できた。"
+      },
+      {
+        "id": "REACH_INTO_THE_FLESH",
+        "description": "巨大なキノコのスポンジ状の組織に直接手を突っ込み、中にあるレリックを引きずり出した。 あなたの侵入により、菌糸類が震えている。 それに呼応するように、あなたの精神も[sine]激しく揺さぶられた[/sine]。"
+      }
+    ]
+  },
+  {
+    "id": "MORPHIC_GROVE",
+    "name": "モーフィックの木立",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": "[green]水晶の木々[/green]が生い茂る木立ちに入ると、木々が[jitter]興奮したように震え[/jitter]始めた！\n木々の中から[aqua]モーフィック[/aqua]の群れが[jitter]飛び出し[/jitter]、[sine]挨拶と歓迎の言葉[/sine]の声であなたを迎える。\n\nその中の一体の[aqua]モーフィック[/aqua]だけが隅でそわそわしており、明らかに他の者たちほど社交的ではないようだ。\n\n群れの方に向かうか、それとも独りぼっちの方に近づこうか？",
+    "preconditions": [
+      "Requires 100+ gold"
+    ],
+    "options": [
+      {
+        "id": "GROUP",
+        "title": "群れ",
+        "description": "[gold]ゴールド[/gold]を[red]すべて[/red]失う。 カードを[blue]2[/blue]枚[gold]変化[/gold]させる。"
+      },
+      {
+        "id": "LONER",
+        "title": "独りぼっち",
+        "description": "最大HPが[green]5[/green]増加。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "GROUP",
+        "description": "ピーピーと鳴く[aqua]モーフィック[/aqua]たちに挨拶すると、彼らは水晶の腕であなたを抱きしめた。\n\n彼らは共有する知識を分け与え、[sine]モーフィックの魔法[/sine]を注入して、あなたの性質を造り変えていく…… この[aqua]モーフィック[/aqua]たちは、なんて愛らしい生き物なんだろう。\n\n[red]その中の一匹が[/red][gold]ゴールド[/gold][red]をスリ取っていった。 [/red]"
+      },
+      {
+        "id": "INITIAL",
+        "description": "[green]水晶の木々[/green]が生い茂る木立ちに入ると、木々が[jitter]興奮したように震え[/jitter]始めた！\n木々の中から[aqua]モーフィック[/aqua]の群れが[jitter]飛び出し[/jitter]、[sine]挨拶と歓迎の言葉[/sine]の声であなたを迎える。\n\nその中の一体の[aqua]モーフィック[/aqua]だけが隅でそわそわしており、明らかに他の者たちほど社交的ではないようだ。\n\n群れの方に向かうか、それとも独りぼっちの方に近づこうか？",
+        "options": [
+          {
+            "id": "GROUP",
+            "title": "群れ",
+            "description": "[gold]ゴールド[/gold]を[red]すべて[/red]失う。 カードを[blue]2[/blue]枚[gold]変化[/gold]させる。"
+          },
+          {
+            "id": "LONER",
+            "title": "独りぼっち",
+            "description": "最大HPが[green]5[/green]増加。"
+          }
+        ]
+      },
+      {
+        "id": "LONER",
+        "description": "その性格に共感をおぼえ、独りぼっちの[aqua]モーフィック[/aqua]に手を差し伸べた。\nそいつは小さな水晶の果実をプレゼントしてくれた。 あなたは彼らの習慣に倣い、それを口にする。\n\n果実は思考と目的をクリアにしてくれた。 あなたは感謝の意を伝え、先へと進む。"
+      }
+    ]
+  },
+  {
+    "id": "NEOW",
+    "name": "ネオー",
+    "type": "Ancient",
+    "act": "Act 1 - Overgrowth / Underdocks",
+    "description": "[sine]私が…… お前を…… “作り直した”……\n…… 行け…… 上へ………… [/sine]",
+    "preconditions": null,
+    "options": null,
+    "pages": null,
+    "epithet": "復活の母（追放されし者）",
+    "dialogue": {
+      "Returning": [
+        {
+          "order": "0-0r",
+          "speaker": "ancient",
+          "text": "[sine]…… また…… 会ったな…… [/sine]"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "[sine]…… 目覚めよ……\n…… 目覚めるのだ………… [/sine]"
+        },
+        {
+          "order": "2-0r",
+          "speaker": "ancient",
+          "text": "[sine]…… 受け取れ…… 祝福を……\n…… そして…… 行くのだ……… [/sine]"
+        },
+        {
+          "order": "3-0r",
+          "speaker": "ancient",
+          "text": "[sine]…… 私が…… お前を…… 連れ戻した…… [/sine]"
+        },
+        {
+          "order": "4-0r",
+          "speaker": "ancient",
+          "text": "[sine]…… 殺せ…… 奴を…… [red][jitter]アーキテクト[/jitter][/red]を…… [/sine]"
+        }
+      ],
+      "Defect": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "[sine]…… 造られし者よ…… お前は……\n…… 何になったと…… いうのだ……？ [/sine]"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "[sine]…… 奴なら…… お前を……\n…… 直せる…… すべてを………… [/sine]"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "[sine]…… 私は…… お前を……\n…… 忘れさせることは…… できぬ………… [/sine]"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "<断固とした電子音>"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "[sine]…… よかろう………… [/sine]"
+        }
+      ],
+      "Ironclad": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "[sine]…… 立ち上がれ…… 我が戦士よ……\n…… 再び…… 戦いの時…… [/sine]"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "[sine]…… まだ怒りに…… 飲まれているか…… 素晴らしい…… [/sine]"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "[sine]…… 覚えているか…… 初めて……\n…… 私の前に…… 現れた時のこと…… [/sine]"
+        },
+        {
+          "order": "2-1",
+          "speaker": "ancient",
+          "text": "[sine]…… あんなにも…… 怒り狂っていて…… [/sine]"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "[sine]…… あんなにも…… 利用価値があった………… [/sine]"
+        }
+      ],
+      "Necrobinder": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "[sine]…… 私たちの…… 目的は…… 同じだ…… [/sine]"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "[jitter]奴は私の愛するすべてを奪った！！ [/jitter]"
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "[sine]…… 私の力を…… お前に授けよう…… [/sine]"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "[sine]奴は…… まだ…… 息をしている………… [/sine]"
+        },
+        {
+          "order": "2-0",
+          "speaker": "character",
+          "text": "[sine]それは…… 果たして…… 可能なの……？ [/sine]"
+        },
+        {
+          "order": "2-1",
+          "speaker": "ancient",
+          "text": "[sine]…… [red]アーキテクト[/red]は…… 弱っている……\n…… 私たちは…… 強くなっている…… [/sine]"
+        }
+      ],
+      "Regent": [
+        {
+          "order": "0-0",
+          "speaker": "character",
+          "text": "デカくて青い生き物よ！ 余こそが未来の[orange]王[/orange]であるぞ！"
+        },
+        {
+          "order": "0-1",
+          "speaker": "ancient",
+          "text": "[sine]…… 可愛らしいこと……\n…… お前とは…… また…… 会うことに…… なる…… [/sine]"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "[sine]…… まだやるか……？ [/sine]"
+        },
+        {
+          "order": "2-0",
+          "speaker": "character",
+          "text": "[jitter]なぜ余は勝てぬのだ！？ [/jitter]"
+        },
+        {
+          "order": "2-1",
+          "speaker": "ancient",
+          "text": "[sine]…… 受け取れ…… この…… 祝福を…… [/sine]"
+        },
+        {
+          "order": "2-2",
+          "speaker": "character",
+          "text": "…… うむ。 大儀である、ネオー。"
+        }
+      ],
+      "Silent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "[sine]……帰ってきたのだな…… 外から……\n…… 戻ってくると…… 分かっていた…… [/sine]"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "[sine]…… お前の……\n…… 「狩りの証」が…… 待っている…… [/sine]"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "[sine]…… 私たちは…… 知っている…… 家族による痛み…… [/sine]"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "……"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "[sine]…… まだ…… 認めてほしいと…… 思っているのか……？\n…… [jitter]愚かな[/jitter]…… [/sine]"
+        }
+      ],
+      "First Visit": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "[sine]私が…… お前を…… “作り直した”……\n…… 行け…… 上へ………… [/sine]"
+        }
+      ]
+    },
+    "image_url": "/static/images/misc/ancients/neow.webp",
+    "relics": [
+      "ARCANE_SCROLL",
+      "BOOMING_CONCH",
+      "GOLDEN_PEARL",
+      "LEAD_PAPERWEIGHT",
+      "LOST_COFFER",
+      "NEOWS_TORMENT",
+      "NEW_LEAF",
+      "PRECISE_SCISSORS",
+      "PHIAL_HOLSTER",
+      "WINGED_BOOTS",
+      "MASSIVE_SCROLL",
+      "LAVA_ROCK",
+      "NEOWS_TALISMAN",
+      "NUTRITIOUS_OYSTER",
+      "POMANDER",
+      "SMALL_CAPSULE",
+      "STONE_HUMIDIFIER",
+      "CURSED_PEARL",
+      "HEFTY_TABLET",
+      "LARGE_CAPSULE",
+      "LEAFY_POULTICE",
+      "PRECARIOUS_SHEARS",
+      "SILVER_CRUCIBLE",
+      "NEOWS_BONES",
+      "SCROLL_BOXES"
+    ]
+  },
+  {
+    "id": "NONUPEIPE",
+    "name": "ノヌペイペ",
+    "type": "Ancient",
+    "act": "Act 3 - Glory",
+    "description": "お客さんなんて千年ぶりかしら！\n随分と地味な格好じゃん。 ほら、カワイイ服を着せてあげる。",
+    "preconditions": null,
+    "options": null,
+    "pages": null,
+    "epithet": "美と幸運の化身",
+    "dialogue": {
+      "Returning": [
+        {
+          "order": "0-0r",
+          "speaker": "ancient",
+          "text": "イカレ野郎が頂上で待っているわ。 あたしの力でやっちゃいなさい。"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "あたしに会うために、遠くからよく来たものね！\nもっとこっち来なよ、祝福あげちゃう。"
+        }
+      ],
+      "Defect": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "造られた機械風情が、ホントにあたしの祝福に釣り合うのかなー？\n前においでよ、ディフェクト。 あんたをオートマトンの中で一番カワイくしてあげる。"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "かわいそう、ボロボロじゃん。 あたしがキレイにしてあげる。"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "普段はアーキテクトの物なんて好きじゃないんだけど。 あんたのこと、ちょっと気に入ってきたかも。"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "<照れるような音>"
+        }
+      ],
+      "Ironclad": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "あ、アイアンクラッドじゃん。 やっとあたしのとこ来たんだ。\n前に出なよ、チカラを授けてあげる。"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "アイアンクラッド、アイアンクラッド…… 前のプレゼントじゃ足りなかった感じ？"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "また戻ってきたのね？ あたしの英雄さん。\nこれで何回目？ 前はもっと強かったじゃん？ 一族を丸ごと滅しちゃうぐらいに。"
+        }
+      ],
+      "Necrobinder": [
+        {
+          "order": "0-0",
+          "speaker": "character",
+          "text": "あなたの護衛は死んだわ。 噂では、アーキテクトの死を望む者に祝福を授けてくれるそうね。"
+        },
+        {
+          "order": "0-1",
+          "speaker": "ancient",
+          "text": "デキる子は嫌いじゃないわ。 あたしの力を分けてあげる。\n次は、あたしの衛兵を殺すのやめてよね。"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "魔術師にはバトるのに相応しい、上質なアクセが必要でしょ？ 前へ出なさい、ネクロバインダー。"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "あんたのその[sine]ペット[/sine]、アーキテクトは嫌がりそう。"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "オスティのこと？ 最後にあいつにトドメを刺すのは彼よ。"
+        }
+      ],
+      "Regent": [
+        {
+          "order": "0-0",
+          "speaker": "character",
+          "text": "ノヌペイペに謁見を求める！"
+        },
+        {
+          "order": "0-1",
+          "speaker": "ancient",
+          "text": "すっごいキレイなローブじゃん！ 遠い国から来たって？\nミニオンたちに担がせて、もっとこっちに来なよ。 あんたを祝福してあげる。"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "お偉いさんが来たなら、それなりの対応をしないとね。\n誰か！ お茶を持ってきて。"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "アーキテクトってば、狂っちゃったワケ！ 誰か高貴なヒーロー様が、このピンチから救ってくれたりしないかなー……"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "恐れるな！ このリージェントが、奴の狂気に終止符を打ってやろう！\nだがその前に…… 茶だ！"
+        }
+      ],
+      "Silent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "あたしの領域に、小さい泥棒さんが忍び込んだみたいね。\n隠れられるとでも思ってんの？ 出てきなよ！"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "サイレントが影から姿を現す…… "
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "女狩人さん、何があんたをスパイアに呼び戻したのかしら？\nこっちに来て。 あたしの祝福をまといなさい。"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "あんたのために贈り物を用意したわ、暗殺者さん。 恥ずかしがらないでよ。"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "ネオーのオモチャの中でも、あんたが一番オドロキだわ。"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "……"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "何があんたの最初の命を奪ったの？ ネオーがあんたを[sine]見つけた[/sine]って？\nだんまりなんて、つまんないわね"
+        }
+      ],
+      "First Visit": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "お客さんなんて千年ぶりかしら！\n随分と地味な格好じゃん。 ほら、カワイイ服を着せてあげる。"
+        }
+      ]
+    },
+    "image_url": "/static/images/misc/ancients/nonupeipe.webp",
+    "relics": [
+      "BLESSED_ANTLER",
+      "BRILLIANT_SCARF",
+      "DELICATE_FROND",
+      "DIAMOND_DIADEM",
+      "FUR_COAT",
+      "GLITTER",
+      "JEWELRY_BOX",
+      "LOOMING_FRUIT",
+      "SIGNET_RING",
+      "BEAUTIFUL_BRACELET"
+    ]
+  },
+  {
+    "id": "OROBAS",
+    "name": "オロバス",
+    "type": "Ancient",
+    "act": "Act 2 - Hive",
+    "description": "ニンギョウ！ ニンギョウ！！ コンナウエマデキタ！？ コレモッテケ、モッテケ！",
+    "preconditions": null,
+    "options": null,
+    "pages": null,
+    "epithet": "生きた虹",
+    "dialogue": {
+      "Returning": [
+        {
+          "order": "0-0r",
+          "speaker": "ancient",
+          "text": "コレタメシテ！！"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "トテモイイモノ、ミツケタ！！ ミテミテ！"
+        }
+      ],
+      "Defect": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "ナンダ！ オツカイノキカイ！？ マダウゴイテル！！\nナンデココ？ ナンデ、コウジョウジャナイ？？"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "ピカピカノオーブ！ ドウヤッテウゴク？\n[jitter]イテッ！！ [/jitter]"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "コア、コワレテル？ ネオー、コワレタキカイ、ツカッテル？\nアヤツラレテル？"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "<静かな電子音>"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "アーキテクト、キミヲナオス？"
+        }
+      ],
+      "Ironclad": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "アイアンクラッド！？ ドウシテ？？ コワイ。 トテモコワイ！！"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "ケイヤク、サインシタ？ ナンデ！？ ワルイセンタク？ ウン。 マチガイ！"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "ジユウニナアレ！ ジユウニナアレ！\nヴァクー、ワルイ。 トテモワルイ！ アーキテクト、キミヲジユウニスル？"
+        }
+      ],
+      "Necrobinder": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "シンデル！？ シンデナイ！ ナンデ、ニンギョウ？ オオキナ、テ！！"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "私は「ニンギョウ」じゃない。 殺さなきゃいけない奴がいるの。\nあなたは私に何をしてくれる？"
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "コロス、ワルイ！！ カワリニ、コレモッテケ！"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "シンデナイヒト！ イイオクリモノ、アゲル！！ ボウリョク、ワルイ。"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "ボウリョクダメ！ カワリニ、ピカピカアツメテ…… ピカピカ！！"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "私の挑戦は、アーキテクトが消える日まで終わらない。\n「ボウリョク」は避けられないわ。"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "アーキテクト、ワルクナイ！ タブン、オハナシ？ オハナシ、イイ！！ トテモイイ！"
+        }
+      ],
+      "Regent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "タビビト！ ウチュウカラ！？ ウチュウノドコ？\nドウヤッテ、ウチュウカラ？ トガッタアタマ！ チイサナトモダチ！！"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "リージェントは自身のこれまでの冒険譚を語った。 何時間もかけて。"
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "ワクワク！ スゴイ！！ モット！ モット！！！"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "モットオハナシ！ コレ、キミノタメニミツケタ！\nサア、モットオハナシシテ！！"
+        },
+        {
+          "order": "2-0",
+          "speaker": "character",
+          "text": "余の一番の忠臣！ オロバス、我が友よ！\n息災で何よりだ！"
+        },
+        {
+          "order": "2-1",
+          "speaker": "ancient",
+          "text": "オハナシ！？"
+        },
+        {
+          "order": "2-2",
+          "speaker": "character",
+          "text": "もちろんだ、もちろんだとも…… だが、余への貢物は用意しているだろうな？"
+        }
+      ],
+      "Silent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "カンセン……？ [jitter]ビョーキ！？ [/jitter] コレモッテ、アッチイケ！！"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "[sine]…… [/sine]"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "ウツラナイ？ トテモ、シニソウ？ アーキテクト、キミヲタスケル？"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "シマイタチ、ドコ？ コワクテイジワルナ、シマイタチ！\nイイヒトニナレ！ シマイタチニ、ナルナ！！"
+        }
+      ],
+      "First Visit": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "ニンギョウ！ ニンギョウ！！ コンナウエマデキタ！？ コレモッテケ、モッテケ！"
+        }
+      ]
+    },
+    "image_url": "/static/images/misc/ancients/orobas.webp",
+    "relics": [
+      "ELECTRIC_SHRYMP",
+      "GLASS_EYE",
+      "SAND_CASTLE",
+      "ALCHEMICAL_COFFER",
+      "DRIFTWOOD",
+      "RADIANT_PEARL",
+      "SEA_GLASS",
+      "PRISMATIC_GEM",
+      "TOUCH_OF_OROBAS",
+      "ARCHAIC_TOOTH"
+    ]
+  },
+  {
+    "id": "PAEL",
+    "name": "パエル",
+    "type": "Ancient",
+    "act": "Act 2 - Hive",
+    "description": "操り人形が来たのか。\n父様の様子を見てきてくれないか？ 私はもう眠くて…… ",
+    "preconditions": null,
+    "options": null,
+    "pages": null,
+    "epithet": "溶けゆくドラゴン",
+    "dialogue": {
+      "Returning": [
+        {
+          "order": "0-0r",
+          "speaker": "ancient",
+          "text": "おかえり、友よ。 私の“肉”が君の助けになればいいが…… "
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "パエルは眠っている。 彼のいびきで部屋が揺れている。 "
+        }
+      ],
+      "Defect": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "悩めるオートマトンよ、友を探しているのか？\n手伝ってやろう…… "
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "機械も夢を見るのだろうか？\n私を見て、真似るといい…… "
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "君の友の夢を見た……\n父様なら、[aqua]フロウ[/aqua]を直せるだろう…… "
+        }
+      ],
+      "Ironclad": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "凄まじい怒りを抱えているな。 私の一部を持っていき、安らぎとしたまえ…… "
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "夢を見る感覚を覚えているか？\n眠るのは良いぞ…… "
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "炎を鎮めるのだ。\n父様なら、君を自由にできるだろう…… "
+        }
+      ],
+      "Necrobinder": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "君の心は、酷い悪意に染まっているな。 "
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "俺の身に起きたことを知れば、お前も同じ色に染まるさ。"
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "君の道に安らぎはない。\n私の一部を持っていき、重荷を和らげなさい…… "
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "「手」を持つ者が戻ってきたか。\n痛ましい記憶だ。 私の力を受け取りなさい…… "
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "[red]父様[/red]を殺しても、そこに安らぎはないぞ。 "
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "[jitter]あんな奴[/jitter]を父親と呼ぶの！？"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "家族は選べないものだ…… "
+        }
+      ],
+      "Regent": [
+        {
+          "order": "0-0",
+          "speaker": "character",
+          "text": "もしもし！ 余はリージェントだ。\nおおーい？？ [jitter]聞こえているか！？ [/jitter]"
+        },
+        {
+          "order": "0-1",
+          "speaker": "ancient",
+          "text": "静かにしなさい。\n私の一部をやるから、もう行ってくれ…… "
+        },
+        {
+          "order": "1-0r",
+          "speaker": "character",
+          "text": "余が戻ってきたぞ！ ああ、やはり寝ているか。\nさて、どれにしようか……"
+        },
+        {
+          "order": "2-0",
+          "speaker": "character",
+          "text": "なぜ己の身を削ってまで与えるのだ？"
+        },
+        {
+          "order": "2-1",
+          "speaker": "ancient",
+          "text": "有り余るほどの肉があるのだ。それを与えない理由はあるまい。"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "君が戻ってくる頃には、私は新たに満たされている。\n眠るとはそういうことだ…… "
+        }
+      ],
+      "Silent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "殺意に満ちた生き物よ、ここで暴力を振るう必要はない。\n私の一部を持っていき、安らぎを見つけなさい…… "
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "「狩りの証」を探しているのか？ いいとも、私の一部を持っていきなさい……\n君の慰めになるのなら…… "
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "私に毒を盛ったのか……？\nこれは一体どう……？ むにゃ…… zZZzz…… "
+        }
+      ],
+      "First Visit": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "操り人形が来たのか。\n父様の様子を見てきてくれないか？ 私はもう眠くて…… "
+        }
+      ]
+    },
+    "image_url": "/static/images/misc/ancients/pael.webp",
+    "relics": [
+      "PAELS_CLAW",
+      "PAELS_TOOTH",
+      "PAELS_GROWTH",
+      "PAELS_LEGION",
+      "PAELS_FLESH",
+      "PAELS_HORN",
+      "PAELS_TEARS",
+      "PAELS_WING",
+      "PAELS_EYE",
+      "PAELS_BLOOD"
+    ]
+  },
+  {
+    "id": "POTION_COURIER",
+    "name": "ポーションの運び屋",
+    "type": "Shared",
+    "act": null,
+    "description": "あたりに[sine]酸っぱい[/sine]臭いが漂う中、すぐ近くの床に[gold]ポーションの運び屋[/gold]が倒れているのを発見した。\n動かないし、息もしていない。 [jitter]死んでる！？ [/jitter]\n所持品は物色された後だったが、[green][sine]悪臭を放つポーション[/sine][/green]のセットが残されていた。 メモにはこうある――「受取人: 商人」。",
+    "preconditions": [
+      "Act 2+"
+    ],
+    "options": [
+      {
+        "id": "GRAB_POTIONS",
+        "title": "ポーションを拾う",
+        "description": "[gold]悪臭ポーション[/gold]を[blue]3[/blue]個獲得する。"
+      },
+      {
+        "id": "RANSACK",
+        "title": "物色する",
+        "description": "ランダムな[gold]アンコモンのポーション[/gold]を[blue]1[/blue]個獲得する。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "GRAB_POTIONS",
+        "description": "[blue]商人[/blue]はこんなポーションを何に使うつもりだったのだろう？"
+      },
+      {
+        "id": "INITIAL",
+        "description": "あたりに[sine]酸っぱい[/sine]臭いが漂う中、すぐ近くの床に[gold]ポーションの運び屋[/gold]が倒れているのを発見した。\n動かないし、息もしていない。 [jitter]死んでる！？ [/jitter]\n所持品は物色された後だったが、[green][sine]悪臭を放つポーション[/sine][/green]のセットが残されていた。 メモにはこうある――「受取人: 商人」。",
+        "options": [
+          {
+            "id": "GRAB_POTIONS",
+            "title": "ポーションを拾う",
+            "description": "[gold]悪臭ポーション[/gold]を[blue]3[/blue]個獲得する。"
+          },
+          {
+            "id": "RANSACK",
+            "title": "物色する",
+            "description": "ランダムな[gold]アンコモンのポーション[/gold]を[blue]1[/blue]個獲得する。"
+          }
+        ]
+      },
+      {
+        "id": "RANSACK",
+        "description": "無事だったポーションは1個だけだった。"
+      }
+    ]
+  },
+  {
+    "id": "PUNCH_OFF",
+    "name": "パンチ対決",
+    "type": "Event",
+    "act": "Underdocks",
+    "description": "2体の[gold]パンチ・コンストラクト[/gold]が殴り合っており、その間にいくつかのお宝が落ちているのが見える……\n\n盗み取ってみるか？",
+    "preconditions": null,
+    "options": [
+      {
+        "id": "NAB",
+        "title": "盗む",
+        "description": "[red]怪我[/red]を[gold]デッキ[/gold]に追加。ランダムな[gold]レリック[/gold]を1個獲得する。"
+      },
+      {
+        "id": "I_CAN_TAKE_THEM",
+        "title": "あいつらなら倒せそうだ",
+        "description": "[gold]より良い報酬[/gold]を求めて戦う。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "INITIAL",
+        "description": "2体の[gold]パンチ・コンストラクト[/gold]が殴り合っており、その間にいくつかのお宝が落ちているのが見える……\n\n盗み取ってみるか？",
+        "options": [
+          {
+            "id": "NAB",
+            "title": "盗む",
+            "description": "[red]怪我[/red]を[gold]デッキ[/gold]に追加。ランダムな[gold]レリック[/gold]を1個獲得する。"
+          },
+          {
+            "id": "I_CAN_TAKE_THEM",
+            "title": "あいつらなら倒せそうだ",
+            "description": "[gold]より良い報酬[/gold]を求めて戦う。"
+          }
+        ]
+      },
+      {
+        "id": "I_CAN_TAKE_THEM",
+        "description": "[gold]コンストラクト[/gold]たちは威嚇するようにこちらを振り向いた！\n\nあなたは拳を構えた。",
+        "options": [
+          {
+            "id": "FIGHT",
+            "title": "戦う",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "id": "NAB",
+        "description": "見事レリックを盗み取ることに成功した！\n\n…… と思った瞬間、強烈な右フックが[jitter][red]顔面に直撃した[/red][/jitter]。"
+      }
+    ]
+  },
+  {
+    "id": "RANWID_THE_ELDER",
+    "name": "長老、ランウィッド",
+    "type": "Shared",
+    "act": null,
+    "description": "[purple]これまで見たこともないぐらいに年老いた人物[/purple]が、あなたに近づいてきた。\n[sine]「また会ったな…… 私だ、ランウィッドだ！」[/sine]\n\nあなたはこの男に全く見覚えがない。",
+    "preconditions": [
+      "Act 2+",
+      "Requires at least one potion"
+    ],
+    "options": [
+      {
+        "id": "POTION",
+        "title": "Potionを渡す",
+        "description": "ランダムな[gold]レリック[/gold]を1個獲得する。"
+      },
+      {
+        "id": "POTION_LOCKED",
+        "title": "ロック中",
+        "description": "渡せるポーションが1つもない。"
+      },
+      {
+        "id": "GOLD",
+        "title": "100ゴールドを渡す",
+        "description": "ランダムな[gold]レリック[/gold]を1個獲得する。"
+      },
+      {
+        "id": "RELIC",
+        "title": "Relicを渡す",
+        "description": "ランダムな[gold]レリック[/gold]を[blue]2[/blue]個入手する。"
+      },
+      {
+        "id": "RELIC_LOCKED",
+        "title": "ロック中",
+        "description": "渡せるレリックが1つもない。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "GOLD",
+        "description": "[sine]「すっ…… すばらしい……」[/sine]\n\nランウィッドは[gold]ゴールド[/gold]を咀嚼しながらつぶやいた。"
+      },
+      {
+        "id": "INITIAL",
+        "description": "[purple]これまで見たこともないぐらいに年老いた人物[/purple]が、あなたに近づいてきた。\n[sine]「また会ったな…… 私だ、ランウィッドだ！」[/sine]\n\nあなたはこの男に全く見覚えがない。",
+        "options": [
+          {
+            "id": "POTION",
+            "title": "Potionを渡す",
+            "description": "ランダムな[gold]レリック[/gold]を1個獲得する。"
+          },
+          {
+            "id": "POTION_LOCKED",
+            "title": "ロック中",
+            "description": "渡せるポーションが1つもない。"
+          },
+          {
+            "id": "GOLD",
+            "title": "100ゴールドを渡す",
+            "description": "ランダムな[gold]レリック[/gold]を1個獲得する。"
+          },
+          {
+            "id": "RELIC",
+            "title": "Relicを渡す",
+            "description": "ランダムな[gold]レリック[/gold]を[blue]2[/blue]個入手する。"
+          },
+          {
+            "id": "RELIC_LOCKED",
+            "title": "ロック中",
+            "description": "渡せるレリックが1つもない。"
+          }
+        ]
+      },
+      {
+        "id": "POTION",
+        "description": "[sine]「絶品だ……」[/sine]\n\n[sine][blue]ゴクゴクゴクッ[/blue][/sine]\n\n彼は[gold]Potion[/gold]を一息に飲み干した。"
+      },
+      {
+        "id": "RELIC",
+        "description": "[sine]「見事だ……」[/sine]\n\nランウィッドは数分間、[gold]Relic[/gold]を熱心に観察し……\n\nそして、そのレリックを食べてしまった。"
+      }
+    ]
+  },
+  {
+    "id": "REFLECTIONS",
+    "name": "鏡の反射　射反の鏡",
+    "type": "Event",
+    "act": "Act 3 - Glory",
+    "description": "これは何だ？ この場所は何かがおかしい……\n[sine]…… いしかおがか何は所場のこ ？ だ何はれこ[/sine]",
+    "preconditions": null,
+    "options": [
+      {
+        "id": "TOUCH_A_MIRROR",
+        "title": "鏡に触れる",
+        "description": "ランダムなカードを[blue]2[/blue]枚[red]ダウングレード[/red]する。 ランダムなカードを[blue]4[/blue]枚[green]アップグレード[/green]する。"
+      },
+      {
+        "id": "SHATTER",
+        "title": "鏡を割る",
+        "description": "[gold]デッキ[/gold]を複製する。 [purple]不運[/purple]を受け取る。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "INITIAL",
+        "description": "これは何だ？ この場所は何かがおかしい……\n[sine]…… いしかおがか何は所場のこ ？ だ何はれこ[/sine]",
+        "options": [
+          {
+            "id": "TOUCH_A_MIRROR",
+            "title": "鏡に触れる",
+            "description": "ランダムなカードを[blue]2[/blue]枚[red]ダウングレード[/red]する。 ランダムなカードを[blue]4[/blue]枚[green]アップグレード[/green]する。"
+          },
+          {
+            "id": "SHATTER",
+            "title": "鏡を割る",
+            "description": "[gold]デッキ[/gold]を複製する。 [purple]不運[/purple]を受け取る。"
+          }
+        ]
+      },
+      {
+        "id": "SHATTER",
+        "description": "集中して目を凝らすと、目の前にあるのは巨大な一枚鏡だと分かった。\n鋭い蹴りを放ち、巨大な鏡を[jitter]粉々に砕く[/jitter]！\n鏡が割れる瞬間、そこに映る自分自身が身構えるのが見えた。 それはそのまま、何千もの美しく輝く破片となって散っていった。\n\nどうしてこんな場所が存在するんだ？"
+      },
+      {
+        "id": "TOUCH_A_MIRROR",
+        "description": "手を伸ばすと、目の前の鏡像の中へと溶け込んでいく。\n[sine]果たして、どちらが本当の私なのだろうか？ [/sine]"
+      }
+    ]
+  },
+  {
+    "id": "RELIC_TRADER",
+    "name": "レリック商人",
+    "type": "Shared",
+    "act": null,
+    "description": "角を曲がると、影を纏った人影に出くわした。 男はこちらへ向き直る。\n\n「ウェルカム！ 何が必要だ？」\n男がそう言って上着を広げると、[sine][purple]怪しげな品々[/purple][/sine]がズラリと並んでいた。",
+    "preconditions": [
+      "Act 2+",
+      "Requires 5+ tradeable relics"
+    ],
+    "options": [
+      {
+        "id": "TOP",
+        "title": "一番上の品を選ぶ",
+        "description": "[gold]one of your Relics[/gold]を[gold]a random Relic[/gold]と交換する。"
+      },
+      {
+        "id": "MIDDLE",
+        "title": "真ん中の品を選ぶ",
+        "description": "[gold]one of your Relics[/gold]を[gold]a random Relic[/gold]と交換する。"
+      },
+      {
+        "id": "BOTTOM",
+        "title": "一番下の品を選ぶ",
+        "description": "[gold]one of your Relics[/gold]を[gold]a random Relic[/gold]と交換する。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "DONE",
+        "description": "「ヘッヘッヘッ…… サンキュー！」"
+      },
+      {
+        "id": "INITIAL",
+        "description": "角を曲がると、影を纏った人影に出くわした。 男はこちらへ向き直る。\n\n「ウェルカム！ 何が必要だ？」\n男がそう言って上着を広げると、[sine][purple]怪しげな品々[/purple][/sine]がズラリと並んでいた。",
+        "options": [
+          {
+            "id": "TOP",
+            "title": "一番上の品を選ぶ",
+            "description": "[gold]one of your Relics[/gold]を[gold]a random Relic[/gold]と交換する。"
+          },
+          {
+            "id": "MIDDLE",
+            "title": "真ん中の品を選ぶ",
+            "description": "[gold]one of your Relics[/gold]を[gold]a random Relic[/gold]と交換する。"
+          },
+          {
+            "id": "BOTTOM",
+            "title": "一番下の品を選ぶ",
+            "description": "[gold]one of your Relics[/gold]を[gold]a random Relic[/gold]と交換する。"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ROOM_FULL_OF_CHEESE",
+    "name": "チーズまみれの部屋",
+    "type": "Shared",
+    "act": null,
+    "description": "この部屋は[b][jitter]チーズ[/jitter][/b]だらけだ！！！\n\n罠がないか周囲を見渡すと、天井には…… そう、[b]チーズ[/b]だ。 どうやら部屋のロウソクも[b]チーズ[/b]らしい。 家具も[b]チーズ[/b]だ。\n突然、背後のドアがバタンと閉まった。\n\nもちろんそれも[b]チーズ[/b]だ。",
+    "preconditions": [
+      "Act 1–2 only"
+    ],
+    "options": [
+      {
+        "id": "GORGE",
+        "title": "むさぼり食う",
+        "description": "[blue]8[/blue]枚のランダムな[gold]コモン[/gold]カードから[blue]2[/blue]枚を選び、[gold]デッキ[/gold]に追加する。"
+      },
+      {
+        "id": "SEARCH",
+        "title": "物色する",
+        "description": "HPを[red]14[/red]失う。 [gold]選ばれしチーズ[/gold]を獲得する。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "GORGE",
+        "description": "ほんの一口だけ[b]チーズ[/b]をかじったが、これが[b]チーズ[/b]を食べたいという欲求に火を点けた。\n\n[sine]時間が過ぎていく…… [/sine]\n\nあなたは恐ろしい量の[b]チーズ[/b]を平らげた。\n今夜見る夢は、きっと[b]チーズ[/b]の夢だ。"
+      },
+      {
+        "id": "INITIAL",
+        "description": "この部屋は[b][jitter]チーズ[/jitter][/b]だらけだ！！！\n\n罠がないか周囲を見渡すと、天井には…… そう、[b]チーズ[/b]だ。 どうやら部屋のロウソクも[b]チーズ[/b]らしい。 家具も[b]チーズ[/b]だ。\n突然、背後のドアがバタンと閉まった。\n\nもちろんそれも[b]チーズ[/b]だ。",
+        "options": [
+          {
+            "id": "GORGE",
+            "title": "むさぼり食う",
+            "description": "[blue]8[/blue]枚のランダムな[gold]コモン[/gold]カードから[blue]2[/blue]枚を選び、[gold]デッキ[/gold]に追加する。"
+          },
+          {
+            "id": "SEARCH",
+            "title": "物色する",
+            "description": "HPを[red]14[/red]失う。 [gold]選ばれしチーズ[/gold]を獲得する。"
+          }
+        ]
+      },
+      {
+        "id": "SEARCH",
+        "description": "あなたは部屋中を探し回った。 [sine]何時間も、何時間も…… [/sine]\n\n大量の[b]チーズ[/b]が放つ圧倒的な存在感にあてられ、意識は奇妙な場所へと飛び、時間が過ぎ去っていく。 いつしかあなたは正気を失っていく……\nふと我に返ると、手に何かを握っていることに気がついた。\n\n[b]選ばれしチーズ[/b]だ。"
+      }
+    ]
+  },
+  {
+    "id": "ROUND_TEA_PARTY",
+    "name": "円卓のティーパーティー",
+    "type": "Event",
+    "act": "Act 3 - Glory",
+    "description": "[blue]「ガラロット卿」[/blue]に宛てたティーパーティーへの[orange]招待状[/orange]を拾ったあなたは、彼の代わりに顔を出してみることにした。\n\n質素な円形ホールに入ると、そこには[gold]指揮官[/gold]、[aqua]将軍[/aqua]、[red]武将[/red]、そして[blue]傭兵[/blue]たちが集まり…… 紅茶を楽しんでいるようだ。\n[gold]黄金の冠[/gold]をかぶった巨大な騎士が口を開く。\n\n[jitter]「貴殿よ、[b]ティータイム[/b]に遅刻するとは何事だ！！」[/jitter]",
+    "preconditions": [
+      "Requires 12+ HP"
+    ],
+    "options": [
+      {
+        "id": "ENJOY_TEA",
+        "title": "紅茶を楽しむ",
+        "description": "[red]ロイヤルな毒[/red]を1個獲得する。 [green]HPを全回復する。 [/green]"
+      },
+      {
+        "id": "PICK_FIGHT",
+        "title": "喧嘩を売る",
+        "description": "HPを[red]11[/red]失う。 ランダムな[gold]レリック[/gold]を1個獲得する。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "CONTINUE_FIGHT",
+        "description": "常連客たちは、仲間の死体を目を丸くして見つめ…… 次の瞬間、[jitter]拍手喝采が沸き起こった！ [/jitter] 一体なぜ？\n\n「[red]ワイゴア卿[/red]をどうやって始末しようかと、皆で悩んでいたところだったのだ。 見事な手際だった！」\n\n彼らはあなたに出された[green]毒入りのお茶[/green]を捨て、一晩中[orange]戦術[/orange]や[purple]秘密の情報[/purple]について語り明かした。 最高のティーパーティだ。"
+      },
+      {
+        "id": "ENJOY_TEA",
+        "description": "あなたはティーカップをひっつかみ、一息に飲み干す。\n中身は[jitter][red]煮えくり返るほど熱かった[/red][/jitter]が、あなたは顔色一つ変えなかった。 同席者たちは、あなたのその常軌を逸した度胸に度肝を抜かれている。\n\n「どうかお気を悪くなさらず、[blue]ガラロット卿[/blue]。 心よりお詫び申し上げます。」\n\nあなたは自分が[green]猛毒[/green]をあおったことなど知る由もなく、優雅にお茶と茶菓子を楽しんだ。"
+      },
+      {
+        "id": "INITIAL",
+        "description": "[blue]「ガラロット卿」[/blue]に宛てたティーパーティーへの[orange]招待状[/orange]を拾ったあなたは、彼の代わりに顔を出してみることにした。\n\n質素な円形ホールに入ると、そこには[gold]指揮官[/gold]、[aqua]将軍[/aqua]、[red]武将[/red]、そして[blue]傭兵[/blue]たちが集まり…… 紅茶を楽しんでいるようだ。\n[gold]黄金の冠[/gold]をかぶった巨大な騎士が口を開く。\n\n[jitter]「貴殿よ、[b]ティータイム[/b]に遅刻するとは何事だ！！」[/jitter]",
+        "options": [
+          {
+            "id": "ENJOY_TEA",
+            "title": "紅茶を楽しむ",
+            "description": "[red]ロイヤルな毒[/red]を1個獲得する。 [green]HPを全回復する。 [/green]"
+          },
+          {
+            "id": "PICK_FIGHT",
+            "title": "喧嘩を売る",
+            "description": "HPを[red]11[/red]失う。 ランダムな[gold]レリック[/gold]を1個獲得する。"
+          }
+        ]
+      },
+      {
+        "id": "NOPE",
+        "description": "彼らは一斉にこちらへ武器を向けた――\n\n「命が惜しければ、せめて[gold]参加料[/gold]ぐらいは払っていくんだな」"
+      },
+      {
+        "id": "PICK_FIGHT",
+        "description": "あなたはテーブルに飛び乗り、[red]武将の騎士[/red]の顔面を[jitter]蹴り飛ばした[/jitter]！\n 騎士は恐ろしい悲鳴を上げ、倒れ込む。\n\n[jitter][purple]全員が息を呑んだ。 [/purple][/jitter]",
+        "options": [
+          {
+            "id": "CONTINUE_FIGHT",
+            "title": "続ける",
+            "description": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "SAPPHIRE_SEED",
+    "name": "サファイアの種",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": "あなたは鋭く光る…… 種？ を踏みそうになるのを間一髪で避ける。 その見紛うことなき輝きは、[aqua]サファイアの種[/aqua]に違いない！\nこの驚くべき種は、もう絶滅したはずでは！？\n\n伝説によれば、これを食べると[gold]耐久力が劇的に跳ね上がる[/gold]という。\nだが、食べずに土に植えてみるというのはどうだ？ 育てれば一体どうなるのだろうか？",
+    "preconditions": null,
+    "options": [
+      {
+        "id": "EAT",
+        "title": "食べる",
+        "description": "HPを[green]9[/green]回復する。 [gold]デッキ[/gold]のカードを1枚[gold]アップグレード[/gold]する。"
+      },
+      {
+        "id": "PLANT",
+        "title": "植えて育てる",
+        "description": "カード1枚に、[purple]芽吹き[/purple]を[gold]エンチャント[/gold]する。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "EAT",
+        "description": "[aqua]サファイアの種[/aqua]を飲み込むと、たちまち[blue]手足が軽くなり[/blue]、視界に映る[gold]色彩は鮮明になり[/gold]、[purple][sine]近くの敵の魂まで感知できる[/sine][/purple]ようになった。\n\nうっかり踏みつぶさなくて本当に良かった。"
+      },
+      {
+        "id": "INITIAL",
+        "description": "あなたは鋭く光る…… 種？ を踏みそうになるのを間一髪で避ける。 その見紛うことなき輝きは、[aqua]サファイアの種[/aqua]に違いない！\nこの驚くべき種は、もう絶滅したはずでは！？\n\n伝説によれば、これを食べると[gold]耐久力が劇的に跳ね上がる[/gold]という。\nだが、食べずに土に植えてみるというのはどうだ？ 育てれば一体どうなるのだろうか？",
+        "options": [
+          {
+            "id": "EAT",
+            "title": "食べる",
+            "description": "HPを[green]9[/green]回復する。 [gold]デッキ[/gold]のカードを1枚[gold]アップグレード[/gold]する。"
+          },
+          {
+            "id": "PLANT",
+            "title": "植えて育てる",
+            "description": "カード1枚に、[purple]芽吹き[/purple]を[gold]エンチャント[/gold]する。"
+          }
+        ]
+      },
+      {
+        "id": "PLANT",
+        "description": "[green]茂み[/green]を探し回り、[blue]通気性の良い[/blue]鉢を見つけ出した。 それから歩き回り、[orange]ひび割れた壁から光が差す[/orange]手付かずの場所を探し当てた。 樹皮とツルで慎重に鉢を補強して[green]カモフラージュ[/green]し、栄養豊富なふかふかの土を入れ、\n[aqua]種[/aqua]を優しくその中に埋めた。\n\n最後に、近くの葉から朝露を集め、土に注ぐ。\n\n[sine]立派に育つんだぞ、小さな種よ…… [/sine]\n知らず知らずのうちに、[aqua]サファイアの種[/aqua]とあなたは、精神的な繋がりを深めていた。\nその献身的なお世話に感謝して。"
+      }
+    ]
+  },
+  {
+    "id": "SELF_HELP_BOOK",
+    "name": "自己啓発本",
+    "type": "Shared",
+    "act": null,
+    "description": "床に一冊の本が落ちている。\n「スパイアを攻略する3つの極意」\n\n本は[red]血まみれ[/red]で、どうみても胡散臭いシロモノだ。\n\n読んでみるか？",
+    "preconditions": null,
+    "options": [
+      {
+        "id": "READ_THE_BACK",
+        "title": "裏表紙を読む",
+        "description": "アタックを1枚選び、[purple]鋭利[/purple][blue]2[/blue]を[gold]エンチャント[/gold]する。"
+      },
+      {
+        "id": "READ_THE_BACK_LOCKED",
+        "title": "ロック中",
+        "description": "[gold]エンチャント[/gold]できるアタックがない。"
+      },
+      {
+        "id": "READ_PASSAGE",
+        "title": "適当なページを読む",
+        "description": "スキルを1枚選び、[purple]身軽[/purple][blue]2[/blue]を[gold]エンチャント[/gold]する。"
+      },
+      {
+        "id": "READ_PASSAGE_LOCKED",
+        "title": "ロック中",
+        "description": "[gold]エンチャント[/gold]できるスキルがない。"
+      },
+      {
+        "id": "READ_ENTIRE_BOOK",
+        "title": "読破する",
+        "description": "パワーを1枚選び、[purple]迅速[/purple][blue]2[/blue]を[gold]エンチャント[/gold]する。"
+      },
+      {
+        "id": "READ_ENTIRE_BOOK_LOCKED",
+        "title": "ロック中",
+        "description": "[gold]エンチャント[/gold]できるパワーがない。"
+      },
+      {
+        "id": "NO_OPTIONS",
+        "title": "先へ進む",
+        "description": "エンチャントできるカードがない。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "INITIAL",
+        "description": "床に一冊の本が落ちている。\n「スパイアを攻略する3つの極意」\n\n本は[red]血まみれ[/red]で、どうみても胡散臭いシロモノだ。\n\n読んでみるか？",
+        "options": [
+          {
+            "id": "READ_THE_BACK",
+            "title": "裏表紙を読む",
+            "description": "アタックを1枚選び、[purple]鋭利[/purple][blue]2[/blue]を[gold]エンチャント[/gold]する。"
+          },
+          {
+            "id": "READ_THE_BACK_LOCKED",
+            "title": "ロック中",
+            "description": "[gold]エンチャント[/gold]できるアタックがない。"
+          },
+          {
+            "id": "READ_PASSAGE",
+            "title": "適当なページを読む",
+            "description": "スキルを1枚選び、[purple]身軽[/purple][blue]2[/blue]を[gold]エンチャント[/gold]する。"
+          },
+          {
+            "id": "READ_PASSAGE_LOCKED",
+            "title": "ロック中",
+            "description": "[gold]エンチャント[/gold]できるスキルがない。"
+          },
+          {
+            "id": "READ_ENTIRE_BOOK",
+            "title": "読破する",
+            "description": "パワーを1枚選び、[purple]迅速[/purple][blue]2[/blue]を[gold]エンチャント[/gold]する。"
+          },
+          {
+            "id": "READ_ENTIRE_BOOK_LOCKED",
+            "title": "ロック中",
+            "description": "[gold]エンチャント[/gold]できるパワーがない。"
+          },
+          {
+            "id": "NO_OPTIONS",
+            "title": "先へ進む",
+            "description": "エンチャントできるカードがない。"
+          }
+        ]
+      },
+      {
+        "id": "NO_OPTIONS",
+        "description": "読書にはあまり興味がない。 血まみれの本なら猶更だ。"
+      },
+      {
+        "id": "READ_ENTIRE_BOOK",
+        "description": "なんて魅力的な本なんだ！ いくつかの金言が頭に深く刻み込まれた。\n「デカい敵からは逃げろ」\n「カードは全部ピックしろ」\n「ブロックは臆病者のすること」\n\n気づけば、あなたの両手は[red]血まみれ[/red]になっていた。"
+      },
+      {
+        "id": "READ_PASSAGE",
+        "description": "適当なページを開いてみた。\n「防御の基本: 攻撃をくらうな！」\n\n続きを読んでみると、驚くほど理にかなっていた。 あなたはこのアイデアを自身の戦い方に組み込むことにした。"
+      },
+      {
+        "id": "READ_THE_BACK",
+        "description": "本を裏返してあらすじを読んでみる。\n[blue]「評論家も狂信者も太鼓判！ 敵にダメージを与えるなら、鋭く尖った武器が一番！」[/blue]\n\n裏表紙には値札シールが貼られており、元の値段がバツ印で消され、大幅な叩き売り価格が記されていた。"
+      }
+    ]
+  },
+  {
+    "id": "SLIPPERY_BRIDGE",
+    "name": "滑りやすい橋",
+    "type": "Shared",
+    "act": null,
+    "description": "ぐらつく木の橋を渡っていると、突然[blue][jitter]どしゃぶりの雨[/jitter][/blue]に見舞われた。 [purple][sine]すさまじい突風[/sine][/purple]が容赦なく吹き付け、旅の終わりへ誘おうとしている。",
+    "preconditions": [
+      "Floor 7+",
+      "Requires removable cards in deck"
+    ],
+    "options": [
+      {
+        "id": "OVERCOME",
+        "title": "乗り越える",
+        "description": "[gold]デッキ[/gold]から[red]a random Card[/red]が失われる。"
+      },
+      {
+        "id": "HOLD_ON_0",
+        "title": "しがみつく",
+        "description": "HPを[red]3[/red]失う。 上の選択肢のカードがランダムに変わる。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "HOLD_ON_0",
+        "description": "[jitter]必死にしがみついた！ [/jitter]",
+        "options": [
+          {
+            "id": "HOLD_ON_1",
+            "title": "しがみつく",
+            "description": "HPを[red]4[/red]失う。 上の選択肢のカードがランダムに変わる。"
+          }
+        ]
+      },
+      {
+        "id": "HOLD_ON_1",
+        "description": "まだ…… 耐え…… [jitter]られるッ！！ [/jitter]",
+        "options": [
+          {
+            "id": "HOLD_ON_2",
+            "title": "しがみつく",
+            "description": "HPを[red]5[/red]失う。 上の選択肢のカードがランダムに変わる。"
+          }
+        ]
+      },
+      {
+        "id": "HOLD_ON_2",
+        "description": "[sine]うわあああ！？！！！ [/sine]",
+        "options": [
+          {
+            "id": "HOLD_ON_3",
+            "title": "しがみつく",
+            "description": "HPを[red]6[/red]失う。 上の選択肢のカードがランダムに変わる。"
+          }
+        ]
+      },
+      {
+        "id": "HOLD_ON_3",
+        "description": "[jitter][b]まだいけるはずだ！！！ [/b][/jitter]",
+        "options": [
+          {
+            "id": "HOLD_ON_4",
+            "title": "しがみつく",
+            "description": "HPを[red]7[/red]失う。 上の選択肢のカードがランダムに変わる。"
+          }
+        ]
+      },
+      {
+        "id": "HOLD_ON_4",
+        "description": "[gold][b][jitter][b]あああああああ！！！ [/b][/jitter][/b][/gold]",
+        "options": [
+          {
+            "id": "HOLD_ON_5",
+            "title": "しがみつく",
+            "description": "HPを[red]8[/red]失う。 上の選択肢のカードがランダムに変わる。"
+          }
+        ]
+      },
+      {
+        "id": "HOLD_ON_5",
+        "description": "[red][b][jitter][b]自分は一体何をやっているんだ！？ [/b][/jitter][/b][/red]",
+        "options": [
+          {
+            "id": "HOLD_ON_6",
+            "title": "しがみつく",
+            "description": "HPを[red]9[/red]失う。 上の選択肢のカードがランダムに変わる。"
+          }
+        ]
+      },
+      {
+        "id": "HOLD_ON_6",
+        "description": "[red][b][jitter][b]！！！！！…… ！！！\n\n！！！！！！！！！！！！？？！！！！！！ [/b][/jitter][/b][/red]",
+        "options": [
+          {
+            "id": "HOLD_ON_LOOP",
+            "title": "しがみつく",
+            "description": "HPを[red]10[/red]失う。 上の選択肢のカードがランダムに変わる。"
+          }
+        ]
+      },
+      {
+        "id": "HOLD_ON_LOOP",
+        "description": "【開発者からのお知らせ】ここまで耐え抜いたプレイヤーの皆様にお知らせ致します。 これ以降、追加のテキストは用意されておりません。 ご不便をおかけして申し訳ありませんが、何卒よろしくお願い致します。\n引き続き『Slay the Spire 2』をお楽しみください。",
+        "options": [
+          {
+            "id": "HOLD_ON_LOOP",
+            "title": "しがみつく",
+            "description": "HPを[red]11+[/red]失う。 上の選択肢のカードがランダムに変わる。"
+          }
+        ]
+      },
+      {
+        "id": "INITIAL",
+        "description": "ぐらつく木の橋を渡っていると、突然[blue][jitter]どしゃぶりの雨[/jitter][/blue]に見舞われた。 [purple][sine]すさまじい突風[/sine][/purple]が容赦なく吹き付け、旅の終わりへ誘おうとしている。",
+        "options": [
+          {
+            "id": "OVERCOME",
+            "title": "乗り越える",
+            "description": "[gold]デッキ[/gold]から[red]a random Card[/red]が失われる。"
+          },
+          {
+            "id": "HOLD_ON_0",
+            "title": "しがみつく",
+            "description": "HPを[red]3[/red]失う。 上の選択肢のカードがランダムに変わる。"
+          }
+        ]
+      },
+      {
+        "id": "OVERCOME",
+        "description": "橋なんて大嫌いだ。"
+      }
+    ]
+  },
+  {
+    "id": "SPIRALING_WHIRLPOOL",
+    "name": "らせんの渦巻き",
+    "type": "Event",
+    "act": "Underdocks",
+    "description": "あなたは[aqua][sine]巨大ならせんの渦巻き[/sine][/aqua]に偶然出くわした。 水は美しいバランスで渦を巻き、周囲の壁は螺旋模様で彩られている。\n\n[purple][sine]ぐるぐると…… ぐるぐると……\n…… ぐるぐると…… なんて光景だ…… [/sine][/purple]\n\nどうする？",
+    "preconditions": null,
+    "options": [
+      {
+        "id": "OBSERVE",
+        "title": "観察する",
+        "description": "[gold]ストライク[/gold]か[gold]防御[/gold]1枚に、[purple]らせん[/purple]を[gold]エンチャント[/gold]する。"
+      },
+      {
+        "id": "DRINK",
+        "title": "飲む",
+        "description": "HPを[green]33% Max[/green]回復する。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "DRINK",
+        "description": "両手で掬うようにして、[sine][aqua]らせんの渦巻き[/aqua][/sine]に手を入れた。\n\n穏やかな流れが手のひらを満たし、目を閉じてそれを少しずつ喉に流し込む。\n\n甘美な水が[sine]螺旋を描きながら[/sine]身体の[gold]中心[/gold]へと染み渡り、心の淀みや体の不調を綺麗に洗い流してくれた……"
+      },
+      {
+        "id": "INITIAL",
+        "description": "あなたは[aqua][sine]巨大ならせんの渦巻き[/sine][/aqua]に偶然出くわした。 水は美しいバランスで渦を巻き、周囲の壁は螺旋模様で彩られている。\n\n[purple][sine]ぐるぐると…… ぐるぐると……\n…… ぐるぐると…… なんて光景だ…… [/sine][/purple]\n\nどうする？",
+        "options": [
+          {
+            "id": "OBSERVE",
+            "title": "観察する",
+            "description": "[gold]ストライク[/gold]か[gold]防御[/gold]1枚に、[purple]らせん[/purple]を[gold]エンチャント[/gold]する。"
+          },
+          {
+            "id": "DRINK",
+            "title": "飲む",
+            "description": "HPを[green]33% Max[/green]回復する。"
+          }
+        ]
+      },
+      {
+        "id": "OBSERVE",
+        "description": "[sine][purple]…… ああ…… なんて美しい……\n回っている…… ずっとぐるぐると回っている。 ああ……\nおや？ 今のは…… ちょっとした水しぶきか……？\n…… そうだな。 君だって遊びたいよな、[/purple][aqua]らせんさん[/aqua][purple]…… ハハッ……\n…… ………   …… [/purple][/sine]\n\nそろそろ行かなければ。\n立ち去る間際、あなたはぽつりと呟いた。\n\n[gold]「ありがとう、らせんさん」[/gold]"
+      }
+    ]
+  },
+  {
+    "id": "SPIRIT_GRAFTER",
+    "name": "スピリット・グラフター",
+    "type": "Event",
+    "act": "Act 2 - Hive",
+    "description": "頭上で、繭が今にも破裂しそうに、[jitter]揺れてうごめいている[/jitter]！\n\n…… 不意に動きが止まった。 突如、[orange][sine]繭が燃え上がる[/sine][/orange]！ [jitter]何が起きているんだ？ [/jitter]\n[gold]光[/gold]と[red]炎[/red]の閃光とともに、[orange]スピリット・グラフター[/orange]があなたに突進してきた。 完全な存在となるため、あなたの肉体と融合しようとしているのだ。",
+    "preconditions": null,
+    "options": [
+      {
+        "id": "LET_IT_IN",
+        "title": "受け入れる",
+        "description": "HPを[green]25[/green]回復する。 [gold]羽化[/gold]を[gold]デッキ[/gold]に追加。"
+      },
+      {
+        "id": "REJECTION",
+        "title": "拒絶する",
+        "description": "HPを[red]10[/red]失う。カードを1枚[gold]アップグレード[/gold]する。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "INITIAL",
+        "description": "頭上で、繭が今にも破裂しそうに、[jitter]揺れてうごめいている[/jitter]！\n\n…… 不意に動きが止まった。 突如、[orange][sine]繭が燃え上がる[/sine][/orange]！ [jitter]何が起きているんだ？ [/jitter]\n[gold]光[/gold]と[red]炎[/red]の閃光とともに、[orange]スピリット・グラフター[/orange]があなたに突進してきた。 完全な存在となるため、あなたの肉体と融合しようとしているのだ。",
+        "options": [
+          {
+            "id": "LET_IT_IN",
+            "title": "受け入れる",
+            "description": "HPを[green]25[/green]回復する。 [gold]羽化[/gold]を[gold]デッキ[/gold]に追加。"
+          },
+          {
+            "id": "REJECTION",
+            "title": "拒絶する",
+            "description": "HPを[red]10[/red]失う。カードを1枚[gold]アップグレード[/gold]する。"
+          }
+        ]
+      },
+      {
+        "id": "LET_IT_IN",
+        "description": "[orange]スピリット・グラフター[/orange]はあなたと融合した。 生命力に満ちた精霊の力が、瞬く間に傷を[green]癒やしていく[/green]。\n\nあなたは[blue]生まれ変わった[/blue]のだ。"
+      },
+      {
+        "id": "REJECTION",
+        "description": "[orange]スピリット・グラフター[/orange]は、あなたの意志の前にあっさりと弾かれた。\n\nそれでも宿主を求めて、必死に何度も飛んでくる。 やがて力を使い果たし、それは[purple][sine]ポンッ[/sine][/purple]と音を立てて消滅した。\n\n[sine]なんと儚き精霊か。 [/sine]"
+      }
+    ]
+  },
+  {
+    "id": "STONE_OF_ALL_TIME",
+    "name": "悠久の石",
+    "type": "Shared",
+    "act": null,
+    "description": "廃墟と化した中庭の真ん中に、巨大な岩が鎮座している。\n\n銘板にはこう書かれている：\n[gold][b]悠久の石[/b][/gold]。\n\nその存在感や形、装飾から察するに、この中庭はこの[blue]石[/blue]を中心に造られたのだろう。 石はここから一度も動いたことがないことが伺える。",
+    "preconditions": [
+      "Act 2 only",
+      "Requires at least one potion"
+    ],
+    "options": [
+      {
+        "id": "LIFT",
+        "title": "ポーションを飲んで持ち上げる",
+        "description": "[red]a random Potion[/red]を失う。 最大HPが[blue]10[/blue]増加。"
+      },
+      {
+        "id": "LIFT_LOCKED",
+        "title": "ロック中",
+        "description": "ポーションが必要。"
+      },
+      {
+        "id": "PUSH_LOCKED",
+        "title": "ロック中",
+        "description": "アタックが必要。"
+      },
+      {
+        "id": "PUSH",
+        "title": "押す",
+        "description": "HPを[red]6[/red]失う。 アタック1枚に[purple]活発[/purple][blue]8[/blue]を[gold]エンチャント[/gold]する。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "INITIAL",
+        "description": "廃墟と化した中庭の真ん中に、巨大な岩が鎮座している。\n\n銘板にはこう書かれている：\n[gold][b]悠久の石[/b][/gold]。\n\nその存在感や形、装飾から察するに、この中庭はこの[blue]石[/blue]を中心に造られたのだろう。 石はここから一度も動いたことがないことが伺える。",
+        "options": [
+          {
+            "id": "LIFT",
+            "title": "ポーションを飲んで持ち上げる",
+            "description": "[red]a random Potion[/red]を失う。 最大HPが[blue]10[/blue]増加。"
+          },
+          {
+            "id": "LIFT_LOCKED",
+            "title": "ロック中",
+            "description": "ポーションが必要。"
+          },
+          {
+            "id": "PUSH_LOCKED",
+            "title": "ロック中",
+            "description": "アタックが必要。"
+          },
+          {
+            "id": "PUSH",
+            "title": "押す",
+            "description": "HPを[red]6[/red]失う。 アタック1枚に[purple]活発[/purple][blue]8[/blue]を[gold]エンチャント[/gold]する。"
+          }
+        ]
+      },
+      {
+        "id": "LIFT",
+        "description": "[gold]a random Potion[/gold]を一気に飲み干し、[jitter]ありったけの力で持ち上げる[/jitter]！！\n\nビクともしない。"
+      },
+      {
+        "id": "PUSH",
+        "description": "持てる力をすべて振り絞って[jitter]何度も押す[/jitter]！！\n\nビクともしない。"
+      }
+    ]
+  },
+  {
+    "id": "SUNKEN_STATUE",
+    "name": "沈んだ像",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth / Underdocks",
+    "description": "池に半ば沈みかけた古い石像を見つけた。 その手は[blue]石の剣[/blue]の上に静かに添えられている。\n\n池の底では、何かが[gold][sine]きらきらと光って[/sine][/gold]いる。\nお供え物だろうか？\n\n切実にゴールドを必要としているんだが……",
+    "preconditions": null,
+    "options": [
+      {
+        "id": "GRAB_SWORD",
+        "title": "剣を掴む",
+        "description": "[gold]石の剣[/gold]を獲得する。"
+      },
+      {
+        "id": "DIVE_INTO_WATER",
+        "title": "池に飛び込む",
+        "description": "[blue]101-121[/blue][gold]ゴールド[/gold]を獲得。 HPを[red]7[/red]失う。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "DIVE_INTO_WATER",
+        "description": "あなたは池の深くまで潜った！\n\n[gold]お供え物[/gold]をかき集めていると、[sine][blue]鈍い反響音[/blue][/sine]が響き、崩れ落ちてきた石が直撃した！\n\n水面に顔を出すと、古い石像が崩壊しているのが見えた。 あなたが手を出したことで、[red]物理的[/red]にも[purple]霊的[/purple]にも崩れてしまったようだ。"
+      },
+      {
+        "id": "GRAB_SWORD",
+        "description": "像の手から[blue]剣[/blue]を[jitter]もぎ取る[/jitter]と、石像が完全に崩れ落ちる！\n\n今となっては池の底で[gold][jitter]光って[/jitter][/gold]いたものを拾うのは危険すぎる……\n\n[blue]剣[/blue]を調べてみたが、その内に途方もない[green]力が眠っている[/green]のを感じた。"
+      },
+      {
+        "id": "INITIAL",
+        "description": "池に半ば沈みかけた古い石像を見つけた。 その手は[blue]石の剣[/blue]の上に静かに添えられている。\n\n池の底では、何かが[gold][sine]きらきらと光って[/sine][/gold]いる。\nお供え物だろうか？\n\n切実にゴールドを必要としているんだが……",
+        "options": [
+          {
+            "id": "GRAB_SWORD",
+            "title": "剣を掴む",
+            "description": "[gold]石の剣[/gold]を獲得する。"
+          },
+          {
+            "id": "DIVE_INTO_WATER",
+            "title": "池に飛び込む",
+            "description": "[blue]101-121[/blue][gold]ゴールド[/gold]を獲得。 HPを[red]7[/red]失う。"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "SUNKEN_TREASURY",
+    "name": "水没した宝物庫",
+    "type": "Event",
+    "act": "Underdocks",
+    "description": "道なりに進むと、あなたは一部が水没している宝物庫へと辿り着いた。\nそこには[blue]2[/blue]つの[gold]宝箱[/gold]があるが、手元にある[jitter][purple]脆い鍵[/purple][/jitter]は[blue]1[/blue]つしかない。\n\n[gold]1つ目の宝箱: [/gold]振ってみると、チャリンチャリンと音がする。 少しはゴールドが入っていそうだ。\n[gold]2つ目の宝箱:[/gold] 巨大で装飾が施され、明らかに[red]呪われている[/red]。 大量のゴールドが入っているに違いない！",
+    "preconditions": null,
+    "options": [
+      {
+        "id": "FIRST_CHEST",
+        "title": "1つ目の宝箱",
+        "description": "[blue]52-67[/blue][gold]ゴールド[/gold]を獲得。"
+      },
+      {
+        "id": "SECOND_CHEST",
+        "title": "2つ目の宝箱",
+        "description": "[blue]303-363[/blue][gold]ゴールド[/gold]を獲得。 [red]強欲[/red]を受け取る。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "FIRST_CHEST",
+        "description": "予想通り、中には[gold]ゴールド[/gold]が入っていた。"
+      },
+      {
+        "id": "INITIAL",
+        "description": "道なりに進むと、あなたは一部が水没している宝物庫へと辿り着いた。\nそこには[blue]2[/blue]つの[gold]宝箱[/gold]があるが、手元にある[jitter][purple]脆い鍵[/purple][/jitter]は[blue]1[/blue]つしかない。\n\n[gold]1つ目の宝箱: [/gold]振ってみると、チャリンチャリンと音がする。 少しはゴールドが入っていそうだ。\n[gold]2つ目の宝箱:[/gold] 巨大で装飾が施され、明らかに[red]呪われている[/red]。 大量のゴールドが入っているに違いない！",
+        "options": [
+          {
+            "id": "FIRST_CHEST",
+            "title": "1つ目の宝箱",
+            "description": "[blue]52-67[/blue][gold]ゴールド[/gold]を獲得。"
+          },
+          {
+            "id": "SECOND_CHEST",
+            "title": "2つ目の宝箱",
+            "description": "[blue]303-363[/blue][gold]ゴールド[/gold]を獲得。 [red]強欲[/red]を受け取る。"
+          }
+        ]
+      },
+      {
+        "id": "SECOND_CHEST",
+        "description": "これほど多くの[gold]ゴールド[/gold]を一度に見たことはない！\n\n[sine]あの[/sine][blue]商人[/blue][sine]の商品も全部買い占められる…… [/sine]\n[Monologue]\n[sine]厄介な敵だって金で解決できるじゃないか…… [/sine]\n\nその[red][sine]熱を帯びた強欲な[/sine][/red]考えは、この先ずっとあなたの頭から離れることはなかった……"
+      }
+    ]
+  },
+  {
+    "id": "SYMBIOTE",
+    "name": "シンビオート",
+    "type": "Shared",
+    "act": null,
+    "description": "冒険の途中、暗くて形を成していない肉塊に遭遇した。 そこからは、途方もない時を経た、邪悪な気配が漂っている。\n\n[sine]こっちに来い…… [/sine]",
+    "preconditions": [
+      "Act 2+"
+    ],
+    "options": [
+      {
+        "id": "APPROACH_LOCKED",
+        "title": "ロック中",
+        "description": "エンチャントできるアタックがない。"
+      },
+      {
+        "id": "APPROACH",
+        "title": "近づく",
+        "description": "アタック1枚に、[purple]蝕み[/purple]を[gold]エンチャント[/gold]する。"
+      },
+      {
+        "id": "KILL_WITH_FIRE",
+        "title": "炎で焼き払う",
+        "description": "カードを1枚選び、[gold]変化[/gold]させる。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "APPROACH",
+        "description": "突然、「それ」はあなたに飛びかかってきた。 腕にへばりつき、焼け付くような痛みが走ったかと思うと、一瞬にして消え去ってしまった。\n\n……？ どこへ消えたんだ？"
+      },
+      {
+        "id": "INITIAL",
+        "description": "冒険の途中、暗くて形を成していない肉塊に遭遇した。 そこからは、途方もない時を経た、邪悪な気配が漂っている。\n\n[sine]こっちに来い…… [/sine]",
+        "options": [
+          {
+            "id": "APPROACH_LOCKED",
+            "title": "ロック中",
+            "description": "エンチャントできるアタックがない。"
+          },
+          {
+            "id": "APPROACH",
+            "title": "近づく",
+            "description": "アタック1枚に、[purple]蝕み[/purple]を[gold]エンチャント[/gold]する。"
+          },
+          {
+            "id": "KILL_WITH_FIRE",
+            "title": "炎で焼き払う",
+            "description": "カードを1枚選び、[gold]変化[/gold]させる。"
+          }
+        ]
+      },
+      {
+        "id": "KILL_WITH_FIRE",
+        "description": "不気味な肉塊を炎で焼き払う。 そいつが金切り声を上げながら灰になっていくにつれ、頭が割れるように痛んだが、なんとか気絶せずに持ちこたえた。\nあれは何だったんだ？"
+      }
+    ]
+  },
+  {
+    "id": "TABLET_OF_TRUTH",
+    "name": "真実の石板",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": "[blue]血族の門番[/blue]二人を打ち倒し、あなたは奴らが守っていた金庫室へと進んだ。\n\n中には[purple][sine]見覚えのある碑文が刻まれた石板[/sine][/purple]が安置されていた。 直感が告げている。 この文字なら比較的簡単に解読できるはずだ…… しかし、一度解読を始めれば、あなたはここに閉じ込められるだろう。\n\n石板は穏やかなエネルギーを放っている。これを叩き割れば、[green]癒やしのエネルギー[/green]を受け取ることもできそうだ。",
+    "preconditions": null,
+    "options": [
+      {
+        "id": "DECIPHER_1",
+        "title": "解読する",
+        "description": "最大HPを[red]3[/red]失う。 ランダムなカードを1枚[gold]アップグレード[/gold]する。"
+      },
+      {
+        "id": "SMASH",
+        "title": "叩き割る",
+        "description": "HPを[green]20[/green]回復する。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "DECIPHER",
+        "description": null,
+        "options": [
+          {
+            "id": "GIVE_UP",
+            "title": "諦める",
+            "description": "文字を読むのをやめて立ち去る。"
+          }
+        ]
+      },
+      {
+        "id": "DECIPHER_1",
+        "description": "石板の解読を始めると、[blue]キンのマントラ[/blue]があなたに語りかけてくる。\n\n「[gold]真実[/gold]がすべてだ……」",
+        "options": [
+          {
+            "id": "DECIPHER",
+            "title": "解読を続ける",
+            "description": "最大HPを[red]3[/red]失う。 ランダムなカードを1枚[gold]アップグレード[/gold]する。"
+          }
+        ]
+      },
+      {
+        "id": "DECIPHER_2",
+        "description": "読んでいると気を失いそうだ！\n\n[purple][sine]英雄という生き物は、これほど長時間文字を読むのに向いてはいないのだ…… [/sine][/purple]",
+        "options": [
+          {
+            "id": "DECIPHER",
+            "title": "さらに解読を続ける",
+            "description": "最大HPを[red]3[/red]失う。 ランダムなカードを1枚[gold]アップグレード[/gold]する。"
+          }
+        ]
+      },
+      {
+        "id": "DECIPHER_3",
+        "description": "[sine][red]意識が飛びそうだ…… [/red][/sine]\n石板の解読はもうすぐ終わる。 [blue]マントラ[/blue]は真実を握っている……\n\n[jitter]真実！！ 真実とは何だ！？ [/jitter]",
+        "options": [
+          {
+            "id": "DECIPHER",
+            "title": "解読ヲ続ケル",
+            "description": "最大HPを[red]3[/red]失う。 ランダムなカードを1枚[gold]アップグレード[/gold]する。"
+          }
+        ]
+      },
+      {
+        "id": "DECIPHER_4",
+        "description": "トランス状態に陥ったあなたは、心身の限界も忘れ、残りのテキストを解読していく。 [purple][sine][gold]真実[/gold]への精神的な探求、それこそがすべてなのだ。 [/sine][/purple]\n\n…… 本当にそうか？ まだ、「最後の一語」が残っている……\n[jitter]それはすべてを犠牲にするだろう。 [/jitter]",
+        "options": [
+          {
+            "id": "DECIPHER",
+            "title": "すべてを失う",
+            "description": "Set Max HP to [red]1[/red]. [gold]Upgrade ALL[/gold] cards."
+          }
+        ]
+      },
+      {
+        "id": "DECIPHER_5",
+        "description": "[gold]最後の一語[/gold]を解読するため、[red][jitter]すべてを捧げた[/jitter][/red]あなたは、意識を失った……\n目を覚ますと、床に何かが彫られていることに気がついた。\n\n[b]『空気』[/b]"
+      },
+      {
+        "id": "GIVE_UP",
+        "description": "読むのも解読するのもやめた。 体の調子は元に戻ったが、あの[gold]真実[/gold]が何だったのか、どうしても気になってしまう。"
+      },
+      {
+        "id": "INITIAL",
+        "description": "[blue]血族の門番[/blue]二人を打ち倒し、あなたは奴らが守っていた金庫室へと進んだ。\n\n中には[purple][sine]見覚えのある碑文が刻まれた石板[/sine][/purple]が安置されていた。 直感が告げている。 この文字なら比較的簡単に解読できるはずだ…… しかし、一度解読を始めれば、あなたはここに閉じ込められるだろう。\n\n石板は穏やかなエネルギーを放っている。これを叩き割れば、[green]癒やしのエネルギー[/green]を受け取ることもできそうだ。",
+        "options": [
+          {
+            "id": "DECIPHER_1",
+            "title": "解読する",
+            "description": "最大HPを[red]3[/red]失う。 ランダムなカードを1枚[gold]アップグレード[/gold]する。"
+          },
+          {
+            "id": "SMASH",
+            "title": "叩き割る",
+            "description": "HPを[green]20[/green]回復する。"
+          }
+        ]
+      },
+      {
+        "id": "SMASH",
+        "description": "石板を[jitter][red]粉々に叩き割る[/red][/jitter]と、そこから放出されたエネルギーがあなたの身体へと染み込んできた。\n\n[green]気分がすっきりとリフレッシュした！ [/green]"
+      }
+    ]
+  },
+  {
+    "id": "TANX",
+    "name": "タンクス",
+    "type": "Ancient",
+    "act": "Act 3 - Glory",
+    "description": "弱すぎる！ だが見込みはあるな！\nこの武器を使え！！",
+    "preconditions": null,
+    "options": null,
+    "pages": null,
+    "epithet": "キメラ王",
+    "dialogue": {
+      "Returning": [
+        {
+          "order": "0-0r",
+          "speaker": "ancient",
+          "text": "もっと強くなれ！ そしてオレと戦え！！！"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "武器はいくらあっても困らねぇ！！"
+        }
+      ],
+      "Defect": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "造り物！ 武器がねえだと！？ コレを持ってけ！"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "オーブなんざ武器じゃねぇ！！"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "オレと戦え、ディフェクト！！"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "ディフェクトは勇敢に戦った。 "
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "オーブは[jitter]武器[/jitter]なのか！？"
+        }
+      ],
+      "Ironclad": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "見事な剣だな、戦士よ！ もっとたくさん武器を使え！"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "戦士に武器を！ さあ武器を取れ！戦ろうぜ！"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "オレと戦え、アイアンクラッド！！"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "アイアンクラッドはタンクスと戦った。 "
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "ウオオオオ！！ 最高の戦いだったぜ！ さあ 武器を持っていけ！"
+        }
+      ],
+      "Necrobinder": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "なんて強ェ大鎌だ！"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "ええ、復讐のための特注品よ。"
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "その「手」にも武器がいるんじゃねえか！？"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "オレと戦え、オスティ！！"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "オレと戦え、ネクロバインダー！！"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "ネクロバインダーとオスティはタンクスと乱闘した。 "
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "いいチームワークじゃねか！！ 武器を持っていけ！！"
+        }
+      ],
+      "Regent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "オレンジ！？ どうやったらオレンジになれる！！？"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "オレンジこそ、最も王にふさわしき色。 常識であろう！"
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "すげぇ！！ 超強そうだ！！"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "オレンジのヤツ！！ 強ェ武器を選べ！"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "オレと戦え、リージェント！！"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "断る！ 前に来た時にも戦ったではないか！"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "もう一回だ、戦るぞ！！"
+        }
+      ],
+      "Silent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "狩人か！ お前のその“爪”を研ぎ澄ましてやろう！！"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "なぜダガーなんぞを！！ 弱ェ！"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "オレと戦え、サイレント！！"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "サイレントは逃げ出した。 ついでに武器もいただいた。 "
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "どこへ行きやがった！！！"
+        }
+      ],
+      "First Visit": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "弱すぎる！ だが見込みはあるな！\nこの武器を使え！！"
+        }
+      ]
+    },
+    "image_url": "/static/images/misc/ancients/tanx.webp",
+    "relics": [
+      "CLAWS",
+      "CROSSBOW",
+      "IRON_CLUB",
+      "MEAT_CLEAVER",
+      "SAI",
+      "SPIKED_GAUNTLETS",
+      "TANXS_WHISTLE",
+      "THROWING_AXE",
+      "WAR_HAMMER",
+      "TRI_BOOMERANG"
+    ]
+  },
+  {
+    "id": "TEA_MASTER",
+    "name": "茶人",
+    "type": "Shared",
+    "act": null,
+    "description": "薄暗い小屋に足を踏み入れると、そこは静謐な空間だった。 異様なまでに多種多様な茶葉が並んでいる。\n\n中にいた男が、[green]茶葉[/green]の数々を無言で指し示した。 それぞれに[gold]高額な値段[/gold]が書かれたラベルが貼られている。",
+    "preconditions": [
+      "Requires 150+ gold",
+      "Act 1–2 only"
+    ],
+    "options": [
+      {
+        "id": "BONE_TEA",
+        "title": "骨茶",
+        "description": "[red]50[/red][gold]ゴールド[/gold]を支払う。 次の[blue]1[/blue]回の戦闘開始時、最初の手札をすべて[gold]アップグレード[/gold]する。"
+      },
+      {
+        "id": "BONE_TEA_LOCKED",
+        "title": "ロック中",
+        "description": "[blue]50[/blue][gold]ゴールド[/gold]が必要。"
+      },
+      {
+        "id": "EMBER_TEA",
+        "title": "燃え殻茶",
+        "description": "[red]150[/red][gold]ゴールド[/gold]を支払う。 次の[blue]5[/blue]回の戦闘開始時、[gold]筋力[/gold][blue]2[/blue]を得る。"
+      },
+      {
+        "id": "EMBER_TEA_LOCKED",
+        "title": "ロック中",
+        "description": "[blue]150[/blue][gold]ゴールド[/gold]が必要。"
+      },
+      {
+        "id": "TEA_OF_DISCOURTESY",
+        "title": "無作法茶",
+        "description": "次の戦闘開始時、[gold]めまい[/gold]を[blue]2[/blue]枚[gold]山札[/gold]に混ぜる。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "DONE",
+        "description": "[blue]茶人[/blue]はあなたの注文を聞くと、お点前を始めた\n\n[gold]1.[/gold] 炭の入った水差しから、柄杓でやかんに水を移す。\n[gold]2.[/gold] 穏やかな[purple]紫色の炎[/purple]でやかんを熱する。\n[gold]3.[/gold] 沸騰する前に、茶葉をひとすくいやかんにいれる。\n[gold]4.[/gold] 火から下ろし、手拍子でリズミカルに時間を計る。\n[gold]5.[/gold] やかんを高く持ち上げ、小さなカップに正確に注ぐ。\n\n[green][sine]「お茶が入りました」[/sine][/green]"
+      },
+      {
+        "id": "INITIAL",
+        "description": "薄暗い小屋に足を踏み入れると、そこは静謐な空間だった。 異様なまでに多種多様な茶葉が並んでいる。\n\n中にいた男が、[green]茶葉[/green]の数々を無言で指し示した。 それぞれに[gold]高額な値段[/gold]が書かれたラベルが貼られている。",
+        "options": [
+          {
+            "id": "BONE_TEA",
+            "title": "骨茶",
+            "description": "[red]50[/red][gold]ゴールド[/gold]を支払う。 次の[blue]1[/blue]回の戦闘開始時、最初の手札をすべて[gold]アップグレード[/gold]する。"
+          },
+          {
+            "id": "BONE_TEA_LOCKED",
+            "title": "ロック中",
+            "description": "[blue]50[/blue][gold]ゴールド[/gold]が必要。"
+          },
+          {
+            "id": "EMBER_TEA",
+            "title": "燃え殻茶",
+            "description": "[red]150[/red][gold]ゴールド[/gold]を支払う。 次の[blue]5[/blue]回の戦闘開始時、[gold]筋力[/gold][blue]2[/blue]を得る。"
+          },
+          {
+            "id": "EMBER_TEA_LOCKED",
+            "title": "ロック中",
+            "description": "[blue]150[/blue][gold]ゴールド[/gold]が必要。"
+          },
+          {
+            "id": "TEA_OF_DISCOURTESY",
+            "title": "無作法茶",
+            "description": "次の戦闘開始時、[gold]めまい[/gold]を[blue]2[/blue]枚[gold]山札[/gold]に混ぜる。"
+          }
+        ]
+      },
+      {
+        "id": "TEA_OF_DISCOURTESY",
+        "description": "あなたが丁重にお茶を断ろうとすると――\n\n[jitter][red]*バタンッ*[/red][/jitter]\n\n背後の扉が勢いよく閉まった。 [blue]茶人[/blue]はじっとこちらを見据えた後、不格好な茶器を差し出してきた。\nなるほど、これは無作法者に振る舞われるお茶らしい……。"
+      }
+    ]
+  },
+  {
+    "id": "TEZCATARA",
+    "name": "テスカタラ",
+    "type": "Ancient",
+    "act": "Act 2 - Hive",
+    "description": "あら、お客様ね！ さあ入ってちょうだい、愛しい子！\n今日はテスカタラに何をしてほしいの？",
+    "preconditions": null,
+    "options": null,
+    "pages": null,
+    "epithet": "炎を育むもの",
+    "dialogue": {
+      "Returning": [
+        {
+          "order": "0-0r",
+          "speaker": "ancient",
+          "text": "おかえり、愛しい子よ。 あなたの良くないところを[jitter][b]焼き尽くして[/b][/jitter]あげましょうねえ。"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "さあ入ってちょうだい！ 今日はテスカタラに何をしてほしいのかしら？"
+        }
+      ],
+      "Defect": [
+        {
+          "order": "0-0",
+          "speaker": "character",
+          "text": "<挨拶の電子音>"
+        },
+        {
+          "order": "0-1",
+          "speaker": "ancient",
+          "text": "私をからかいに来たわけじゃないのね？ なんて[jitter][b]珍しい[/b][/jitter]、小さな機械の坊や……"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "自分が作ったものに壊されるなんて、滑稽だとは思わない？"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "本当に直してもらいたいの？"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "<問い詰めるような電子音>"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "まあ、あなたが本当に[jitter][b]そうしたい[/b][/jitter]なら。"
+        }
+      ],
+      "Ironclad": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "とっても綺麗に[jitter][b]燃える[/b][/jitter]のね！ さあ入って、入って！"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "なんて強い子なんでしょう！ さあこっちへ来て、何か食べていきなさい。\nお腹が空いてたら[jitter][b]殺戮[/b][/jitter]なんてできないでしょう？"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "あらら、アーキテクトったらまだ生きてるの？ [jitter][b]さっさと[/b][/jitter]殺してきてくれないかしら？\nここで待ってるからねえ！"
+        }
+      ],
+      "Necrobinder": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "あら。こんな壁の中で、ガイコツちゃんが何をしているの？"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "私の目的は単純よ。 家族の復讐。\n頂上へ辿り着き、奴に報いを受けさせる。"
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "[jitter][b]すばらしいわぁ！[/b][/jitter]"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "さあ入って、入って！ あなたの炎を、もっと[jitter][b]明るく[/b][/jitter]してあげましょうねえ。"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "あなたを包むその炎、何か禁じられたものを思い出させるわねえ。"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "あなたは何を知っているの？"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "誰があの[jitter][b]本[/b][/jitter]を書いたか、わたしは知っているわ。"
+        }
+      ],
+      "Regent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "あらまあ、なんて[jitter][b]珍しい[/b][/jitter]お客様！ あなたは何者かしら、可愛い坊や？"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "余は坊やではない！ 口の利き方に気をつけよ、この巨大な…… なんだかよく分からんヤツめ！"
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "あらあら、これはとんだ御無礼を。\nテスカタラはうれしそうに高笑いした。 "
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "また戻ってきてくれたの？お友達も一緒ねえ。\nあなたたちのために[jitter][b]おやつ[/b][/jitter]を作ったのよ！"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "おかえりなさい、王様坊や！ 外では[jitter][b]上手く[/b][/jitter]やっているようねえ。"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "ああ、もちろんだ！ 上の階でちょっとした失敗はあったがな…… その…… 死ぬとか。"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "誰だって間違いから学ぶものよ。"
+        }
+      ],
+      "Silent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "近くにいらっしゃい、無口な子。 あんまりよく見えないわね……"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "……"
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "私を[jitter][b]信用[/b][/jitter]していいのよ。"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "ひどく厄介な[jitter][b]病気[/b][/jitter]にかかっているのね。 さあ、手当てをしてあげましょう。"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "私、あなたの姉妹に会ったことがあるのよ？ とってもかわいい子たちだったわあ。"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "……"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "あらやだ…… [jitter][b]ケンカ[/b][/jitter]なんてしてないわよね？"
+        }
+      ],
+      "First Visit": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "あら、お客様ね！ さあ入ってちょうだい、愛しい子！\n今日はテスカタラに何をしてほしいの？"
+        }
+      ]
+    },
+    "image_url": "/static/images/misc/ancients/tezcatara.webp",
+    "relics": [
+      "NUTRITIOUS_SOUP",
+      "VERY_HOT_COCOA",
+      "YUMMY_COOKIE",
+      "BIIIG_HUG",
+      "STORYBOOK",
+      "SEAL_OF_GOLD",
+      "TOASTY_MITTENS",
+      "GOLDEN_COMPASS",
+      "PUMPKIN_CANDLE",
+      "TOY_BOX"
+    ]
+  },
+  {
+    "id": "THE_ARCHITECT",
+    "name": "アーキテクト",
+    "type": "Ancient",
+    "act": null,
+    "description": "大悪魔の奴隷がご到着か。",
+    "preconditions": null,
+    "options": null,
+    "pages": null,
+    "dialogue": {
+      "Defect": [
+        {
+          "order": "0-0r",
+          "speaker": "ancient",
+          "text": "ここで何をしている？"
+        },
+        {
+          "order": "0-1r",
+          "speaker": "character",
+          "text": "<ランダムな文字化けしたセリフ>"
+        },
+        {
+          "order": "0-2r",
+          "speaker": "ancient",
+          "text": "お前を直せだと？ 命令するな。"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "戻ってきたのか？ 解体したはずだが。"
+        },
+        {
+          "order": "1-1r",
+          "speaker": "character",
+          "text": "<ランダムな文字化けしたセリフ>"
+        },
+        {
+          "order": "1-2r",
+          "speaker": "ancient",
+          "text": "お前を直せ？ お前の友を直せだと？ くだらん。"
+        },
+        {
+          "order": "2-0r",
+          "speaker": "ancient",
+          "text": "なぜ何度も戻ってくる？ ネオーの仕業か？"
+        },
+        {
+          "order": "2-1r",
+          "speaker": "character",
+          "text": "<ランダムな文字化けしたセリフ>"
+        },
+        {
+          "order": "2-2r",
+          "speaker": "ancient",
+          "text": "愚かな。"
+        }
+      ],
+      "Ironclad": [
+        {
+          "order": "0-0r",
+          "speaker": "ancient",
+          "text": "大悪魔の奴隷がご到着か。"
+        },
+        {
+          "order": "0-1r",
+          "speaker": "character",
+          "text": "敵……\n殺す……"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "永遠に戦い続ける呪い、だろう？"
+        },
+        {
+          "order": "1-1r",
+          "speaker": "character",
+          "text": "アーキテクト…… 最大の…… 敵！！"
+        },
+        {
+          "order": "1-2r",
+          "speaker": "ancient",
+          "text": "自分の名前すら分からないのか？"
+        },
+        {
+          "order": "2-0r",
+          "speaker": "ancient",
+          "text": "哀れだな。"
+        },
+        {
+          "order": "2-1r",
+          "speaker": "character",
+          "text": "殺す……"
+        },
+        {
+          "order": "2-2r",
+          "speaker": "ancient",
+          "text": "塔の底へと帰れ、アイアンクラッド。"
+        }
+      ],
+      "Necrobinder": [
+        {
+          "order": "0-0",
+          "speaker": "character",
+          "text": "アーキテクト！ 貴様は私の両親を奪った。 私の友を奪った。 私の“人生すべて”を奪った！…… 次は私が貴様を殺す番だ！"
+        },
+        {
+          "order": "0-1",
+          "speaker": "ancient",
+          "text": "復讐だと？ まっぴら御免だな。"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "character",
+          "text": "アーキテクト！ お前は私の両親を奪った。 私の友を奪った。 私の――"
+        },
+        {
+          "order": "1-1r",
+          "speaker": "ancient",
+          "text": "怒りで過去を変えることはできん。"
+        },
+        {
+          "order": "2-0r",
+          "speaker": "character",
+          "text": "アーキテクト！ 貴様は私の両親を奪った。 私の友を奪った。 私の“人生すべて”を――"
+        },
+        {
+          "order": "2-1r",
+          "speaker": "ancient",
+          "text": "必要なことをしたまでだ。秩序を保つためにな。"
+        },
+        {
+          "order": "3-0r",
+          "speaker": "character",
+          "text": "アーキテクト！ 貴様は私の両親を奪った。 私の友を奪った。 私の――"
+        },
+        {
+          "order": "3-1r",
+          "speaker": "ancient",
+          "text": "「人生すべてを」、かね？"
+        },
+        {
+          "order": "3-2r",
+          "speaker": "character",
+          "text": "なっ……！？死ね、化け物！"
+        }
+      ],
+      "Regent": [
+        {
+          "order": "0-0",
+          "speaker": "character",
+          "text": "到着したぞ！ そこの平民！ ここが頂上か？"
+        },
+        {
+          "order": "0-1",
+          "speaker": "ancient",
+          "text": "五月蠅くて敵わんな……"
+        },
+        {
+          "order": "0-2",
+          "speaker": "character",
+          "text": "余が礼儀というものを教えてやろう！"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "character",
+          "text": "またもや余が到着したぞ！"
+        },
+        {
+          "order": "1-1r",
+          "speaker": "ancient",
+          "text": "騒々しい愚か者が戻ってきたか。"
+        },
+        {
+          "order": "1-2r",
+          "speaker": "character",
+          "text": "余は騒々しくも愚かでもない！ さあ勝負しろ！"
+        },
+        {
+          "order": "2-0r",
+          "speaker": "character",
+          "text": "貴様の無礼な態度にはもううんざりだ！"
+        },
+        {
+          "order": "2-1r",
+          "speaker": "ancient",
+          "text": "それについては、同意見だ。"
+        },
+        {
+          "order": "2-2r",
+          "speaker": "character",
+          "text": "さあ、ダンスの時間だ！"
+        }
+      ],
+      "Silent": [
+        {
+          "order": "0-0r",
+          "speaker": "ancient",
+          "text": "挨拶もなしか？"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "どこから来た？\n何が狙いだ？"
+        },
+        {
+          "order": "2-0r",
+          "speaker": "ancient",
+          "text": "[jitter]ぐっ！ [/jitter]\n[jitter][red]死ね！！ [/red][/jitter]"
+        },
+        {
+          "order": "3-0r",
+          "speaker": "ancient",
+          "text": "鬱陶しいクズめ！\n[jitter]消え失せろ！！ [/jitter]"
+        }
+      ]
+    },
+    "image_url": "/static/images/monsters/architect.webp"
+  },
+  {
+    "id": "THE_FUTURE_OF_POTIONS",
+    "name": "未来のポーション？",
+    "type": "Shared",
+    "act": null,
+    "description": "角を曲がると、かすかな地響きを感じる。 そこには、巨大な回転する装置があった！\nいくつかの投入口を備えており、液体を高度に圧縮し、服用可能な錠剤に変換するようだ。\n\nポーションを、ほんの小さな一口サイズに変えてしまうというアイデアには不安を覚える。 だが、何事もまずは試してみるべきか？",
+    "preconditions": null,
+    "options": [
+      {
+        "id": "POTION",
+        "title": "ポーション（Common）を投入",
+        "description": "[gold]a Potion[/gold]を失う。 [gold]アップグレード[/gold]した[gold]CommonのSkill[/gold]を1つ入手する。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "DONE",
+        "description": "錠剤はひどい味だった。 ポーションの未来は暗い。"
+      },
+      {
+        "id": "INITIAL",
+        "description": "角を曲がると、かすかな地響きを感じる。 そこには、巨大な回転する装置があった！\nいくつかの投入口を備えており、液体を高度に圧縮し、服用可能な錠剤に変換するようだ。\n\nポーションを、ほんの小さな一口サイズに変えてしまうというアイデアには不安を覚える。 だが、何事もまずは試してみるべきか？",
+        "options": [
+          {
+            "id": "POTION",
+            "title": "ポーション（Common）を投入",
+            "description": "[gold]a Potion[/gold]を失う。 [gold]アップグレード[/gold]した[gold]CommonのSkill[/gold]を1つ入手する。"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "THE_LANTERN_KEY",
+    "name": "ランタンの鍵",
+    "type": "Event",
+    "act": "Act 2 - Hive",
+    "description": "あなたは、かすかに光る鍵を見つけた。拾い上げようとしたその時。\n\n「その鍵、ずっと探していたんだ！ 悪いが、返してくれないか？」\n\nどう見ても関わらない方がよさそうな人物だが、決めつけも良くないかもしれない。",
+    "preconditions": null,
+    "options": [
+      {
+        "id": "RETURN_THE_KEY",
+        "title": "鍵を返す",
+        "description": "[blue]100[/blue][gold]ゴールド[/gold]を獲得。"
+      },
+      {
+        "id": "KEEP_THE_KEY",
+        "title": "鍵を渡さない",
+        "description": "鍵を手に入れるため、戦う。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "DONE",
+        "description": null,
+        "options": [
+          {
+            "id": "RETURN_THE_KEY",
+            "title": "RETURN_THE_KEY",
+            "description": "見知らぬ人はあなたの助けに感謝し、気前よく見返りを支払ってくれた。"
+          }
+        ]
+      },
+      {
+        "id": "INITIAL",
+        "description": "あなたは、かすかに光る鍵を見つけた。拾い上げようとしたその時。\n\n「その鍵、ずっと探していたんだ！ 悪いが、返してくれないか？」\n\nどう見ても関わらない方がよさそうな人物だが、決めつけも良くないかもしれない。",
+        "options": [
+          {
+            "id": "RETURN_THE_KEY",
+            "title": "鍵を返す",
+            "description": "[blue]100[/blue][gold]ゴールド[/gold]を獲得。"
+          },
+          {
+            "id": "KEEP_THE_KEY",
+            "title": "鍵を渡さない",
+            "description": "鍵を手に入れるため、戦う。"
+          }
+        ]
+      },
+      {
+        "id": "KEEP_THE_KEY",
+        "description": "見知らぬ騎士はあなたを威嚇するように見つめた。 この場から鍵を持って出られるのは一人だけのようだ。",
+        "options": [
+          {
+            "id": "FIGHT",
+            "title": "戦う",
+            "description": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "THE_LEGENDS_WERE_TRUE",
+    "name": "伝説は本当だった",
+    "type": "Shared",
+    "act": null,
+    "description": "真っ暗な部屋に入ると、背後で扉が勢いよく閉まった。 同時に、頭上から一筋の光が差し込む。\n\n光に照らされた台座の上には、一枚の地図が置かれている。 まるでそれを手に取れと言っているかのようだ。\n\n実に怪しい。",
+    "preconditions": [
+      "Requires 10+ HP",
+      "Act 1 only"
+    ],
+    "options": [
+      {
+        "id": "NAB_THE_MAP",
+        "title": "地図をいただく",
+        "description": "[gold]戦利品の地図[/gold]を受け取る。"
+      },
+      {
+        "id": "SLOWLY_FIND_AN_EXIT",
+        "title": "ゆっくりと出口を探す",
+        "description": "HPを[red]8[/red]失う。 ランダムな[gold]ポーション[/gold]を[blue]1[/blue]個獲得。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "INITIAL",
+        "description": "真っ暗な部屋に入ると、背後で扉が勢いよく閉まった。 同時に、頭上から一筋の光が差し込む。\n\n光に照らされた台座の上には、一枚の地図が置かれている。 まるでそれを手に取れと言っているかのようだ。\n\n実に怪しい。",
+        "options": [
+          {
+            "id": "NAB_THE_MAP",
+            "title": "地図をいただく",
+            "description": "[gold]戦利品の地図[/gold]を受け取る。"
+          },
+          {
+            "id": "SLOWLY_FIND_AN_EXIT",
+            "title": "ゆっくりと出口を探す",
+            "description": "HPを[red]8[/red]失う。 ランダムな[gold]ポーション[/gold]を[blue]1[/blue]個獲得。"
+          }
+        ]
+      },
+      {
+        "id": "NAB_THE_MAP",
+        "description": "何か起きたらその時だ。 あなたが地図をひっつかむと、部屋の反対側に新たな出口が現れた。"
+      },
+      {
+        "id": "SLOWLY_FIND_AN_EXIT",
+        "description": "出口を探して暗闇を慎重に探っていると、部屋が激しく揺れ始めた。 突如の轟音と共に、部屋全体が崩れ落ちてくる。\n\nかろうじて瓦礫から抜け出すと、役に立ちそうな薬瓶を見つけた。 かつてこの部屋に隠されていた物だろう。"
+      }
+    ]
+  },
+  {
+    "id": "THIS_OR_THAT",
+    "name": "こっちか、そっちか？",
+    "type": "Shared",
+    "act": null,
+    "description": "近くの穴から突如として腕が2本突き出てきた。 一方の手には[gold]怪しげな財宝の袋[/gold]、もう一方には明らかに[purple]呪われたレリック[/purple]が握られている。\n\n[jitter][blue]「こっちか…… そっちか？」[/blue][/jitter]\n穴の奥底から、しゃがれた声がささやく。",
+    "preconditions": null,
+    "options": [
+      {
+        "id": "PLAIN",
+        "title": "こっち",
+        "description": "HPを[red]6[/red]失う。 [blue]41-68[/blue][gold]ゴールド[/gold]を獲得。"
+      },
+      {
+        "id": "ORNATE",
+        "title": "そっち",
+        "description": "[red]不器用[/red]を[gold]デッキ[/gold]に追加。 ランダムな[gold]レリック[/gold]を1個獲得する。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "INITIAL",
+        "description": "近くの穴から突如として腕が2本突き出てきた。 一方の手には[gold]怪しげな財宝の袋[/gold]、もう一方には明らかに[purple]呪われたレリック[/purple]が握られている。\n\n[jitter][blue]「こっちか…… そっちか？」[/blue][/jitter]\n穴の奥底から、しゃがれた声がささやく。",
+        "options": [
+          {
+            "id": "PLAIN",
+            "title": "こっち",
+            "description": "HPを[red]6[/red]失う。 [blue]41-68[/blue][gold]ゴールド[/gold]を獲得。"
+          },
+          {
+            "id": "ORNATE",
+            "title": "そっち",
+            "description": "[red]不器用[/red]を[gold]デッキ[/gold]に追加。 ランダムな[gold]レリック[/gold]を1個獲得する。"
+          }
+        ]
+      },
+      {
+        "id": "ORNATE",
+        "description": "あなたは[purple]呪われたレリック[/purple]を掴む。 握った途端、両手首に手枷が具現化する。\n\n[blue][sine]幽霊のような笑い声[/sine][/blue]が聞こえ、視界がまばゆい[orange]炎の柱[/orange]に包まれる！\n\n穴と腕は、消え去った。"
+      },
+      {
+        "id": "PLAIN",
+        "description": "袋を掴み取った瞬間、穴の中から[blue][jitter]三本目の腕[/jitter][/blue]が飛び出し、あなたに掴みかかる！！\n\n[red][jitter]死に物狂いの抵抗[/jitter][/red]の末、ようやく腕を振り解くと――腕も穴も、跡形もなく消え去っていた。"
+      }
+    ]
+  },
+  {
+    "id": "TINKER_TIME",
+    "name": "発明の時間だ",
+    "type": "Event",
+    "act": "Act 3 - Glory",
+    "description": "[red][sine]見渡す限りの死体の海[/sine][/red]をかき分けて進むと、ガラクタを漁っている[orange]マッドサイエンティスト[/orange]に出くわした。\n\n「よし。 やあ、ごきげんよう！ キミ、なかなか腕の立つ戦士のようだね…… ちょうど、次に作る[green]凶悪兵器[/green]のテスト役を探していたんだ！ どうだ、やってみないか？」",
+    "preconditions": null,
+    "options": [
+      {
+        "id": "CHOOSE_CARD_TYPE",
+        "title": "引き受ける",
+        "description": "カスタムしたカードを作成し、[gold]デッキ[/gold]に加える。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "CHOOSE_CARD_TYPE",
+        "description": "「[red][jitter]皆殺しにする[/jitter][/red]なら、どんな道具がいいかな？」",
+        "options": [
+          {
+            "id": "ATTACK",
+            "title": "武器",
+            "description": "アタックを作成する。"
+          },
+          {
+            "id": "SKILL",
+            "title": "防具",
+            "description": "スキルを作成する。"
+          },
+          {
+            "id": "POWER",
+            "title": "ガジェット",
+            "description": "パワーを作成する。"
+          }
+        ]
+      },
+      {
+        "id": "CHOOSE_RIDER",
+        "description": "「素晴らしい選択だ！ じゃあ、そいつに[sine]どんな機能[/sine]を付けようか？」\n[orange]科学者[/orange]は嬉しそうにもみ手をしている。",
+        "options": [
+          {
+            "id": "SAPPING",
+            "title": "虚弱",
+            "description": "[gold]脱力[/gold][blue]2[/blue]を付与する。 [gold]弱体[/gold][blue]2[/blue]を付与する。"
+          },
+          {
+            "id": "VIOLENCE",
+            "title": "暴力",
+            "description": "追加で[blue]2[/blue]回ダメージを与える。"
+          },
+          {
+            "id": "CHOKING",
+            "title": "窒息",
+            "description": "このターン、カードをプレイするたび、敵はHPを[blue]6[/blue]失う。"
+          },
+          {
+            "id": "ENERGIZED",
+            "title": "活性化",
+            "description": "[energy:2]を得る。"
+          },
+          {
+            "id": "WISDOM",
+            "title": "知恵",
+            "description": "カードを[blue]3[/blue]枚引く。"
+          },
+          {
+            "id": "CHAOS",
+            "title": "混沌",
+            "description": "ランダムなカードを1枚[gold]手札[/gold]に加える。このターン、それはコストを支払わずにプレイできる。"
+          },
+          {
+            "id": "EXPERTISE",
+            "title": "専門家",
+            "description": "[gold]筋力[/gold][blue]2[/blue]を得る。 [gold]敏捷[/gold][blue]2[/blue]を得る。"
+          },
+          {
+            "id": "CURIOUS",
+            "title": "好奇心",
+            "description": "パワーのコストが[blue]1[/blue][energy:1]減少する。"
+          },
+          {
+            "id": "IMPROVEMENT",
+            "title": "改良",
+            "description": "戦闘終了時、ランダムなカードを1枚[gold]アップグレード[/gold]する。"
+          }
+        ]
+      },
+      {
+        "id": "DONE",
+        "description": "「ふぅ！ 完成だ。 さあ、持っていきたまえ！ 外へ出て存分に[red][jitter]殺戮[/jitter][/red]するのだ！！」\n\nあなたが知る由もないことだが、この[orange]マッドサイエンティスト[/orange]はその後も何百もの兵器を生み出し続け、スパイア内で数千人もの死者を出す原因となったのであった。"
+      },
+      {
+        "id": "INITIAL",
+        "description": "[red][sine]見渡す限りの死体の海[/sine][/red]をかき分けて進むと、ガラクタを漁っている[orange]マッドサイエンティスト[/orange]に出くわした。\n\n「よし。 やあ、ごきげんよう！ キミ、なかなか腕の立つ戦士のようだね…… ちょうど、次に作る[green]凶悪兵器[/green]のテスト役を探していたんだ！ どうだ、やってみないか？」",
+        "options": [
+          {
+            "id": "CHOOSE_CARD_TYPE",
+            "title": "引き受ける",
+            "description": "カスタムしたカードを作成し、[gold]デッキ[/gold]に加える。"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "TRASH_HEAP",
+    "name": "ガラクタの山",
+    "type": "Event",
+    "act": "Underdocks",
+    "description": "そびえ立つ[red][jitter]壊れた武器[/jitter][/red]、[orange]捨てられた装身具[/orange]、そして[purple][sine]奇妙な得体のしれない物[/sine][/purple]が山積みになっているのを発見した。 巨大な山は、まるで内側から成長しているかのようにうごめき、不気味な音を立てている……\n\n表面を漁るだけでも、そこそこの戦利品が手に入るだろう。 しかし中まで潜り込めば、[gold]珍しい宝物[/gold]が見つかるかもしれない。",
+    "preconditions": null,
+    "options": [
+      {
+        "id": "DIVE_IN",
+        "title": "潜り込む",
+        "description": "HPを[red]8[/red]失う。 忘れ去られた過去の[gold]レリック[/gold]を1個入手する。"
+      },
+      {
+        "id": "GRAB",
+        "title": "適当にガラクタを拾う",
+        "description": "[blue]100[/blue][gold]ゴールド[/gold]を獲得。 忘れ去られた過去のカードを1枚入手する。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "DIVE_IN",
+        "description": "[red][sine]危険なゴミ[/sine][/red]をかき分け、かなりの時間を費やした末に、[gold]過去のレリック[/gold]を発見した！\n\nなぜこんなものがここに捨てられていたんだろうか。"
+      },
+      {
+        "id": "GRAB",
+        "description": "安全な距離から山の周囲を歩き回り、ところどころに落ちている[gold]放置された金品[/gold]や[purple][sine]奇妙なガラクタ[/sine][/purple]を拾い集めた。\n\nそもそも、なぜこんなものがここに？"
+      },
+      {
+        "id": "INITIAL",
+        "description": "そびえ立つ[red][jitter]壊れた武器[/jitter][/red]、[orange]捨てられた装身具[/orange]、そして[purple][sine]奇妙な得体のしれない物[/sine][/purple]が山積みになっているのを発見した。 巨大な山は、まるで内側から成長しているかのようにうごめき、不気味な音を立てている……\n\n表面を漁るだけでも、そこそこの戦利品が手に入るだろう。 しかし中まで潜り込めば、[gold]珍しい宝物[/gold]が見つかるかもしれない。",
+        "options": [
+          {
+            "id": "DIVE_IN",
+            "title": "潜り込む",
+            "description": "HPを[red]8[/red]失う。 忘れ去られた過去の[gold]レリック[/gold]を1個入手する。"
+          },
+          {
+            "id": "GRAB",
+            "title": "適当にガラクタを拾う",
+            "description": "[blue]100[/blue][gold]ゴールド[/gold]を獲得。 忘れ去られた過去のカードを1枚入手する。"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "TRIAL",
+    "name": "裁判",
+    "type": "Event",
+    "act": "Act 3 - Glory",
+    "description": "巨大な建造物へと続く人だかりの列に、あなたは紛れ込んだ。\n\n[gold]黄金のアーチ[/gold]をくぐり抜けた途端、角笛が鳴り響き、[jitter]紙吹雪が舞い散り[/jitter]、天井から[sine]テープが降り注いできた！ [/sine]\n\n「入場番号[blue][EntrantNumber][/blue]番！ あなたが本日の[gold]裁判[/gold]における[green]裁判官[/green]です！」",
+    "preconditions": null,
+    "options": [
+      {
+        "id": "ACCEPT",
+        "title": "受諾する",
+        "description": "本日の裁判官を務める。"
+      },
+      {
+        "id": "REJECT",
+        "title": "拒否する",
+        "description": "[red]拒否権はない。 [/red]"
+      }
+    ],
+    "pages": [
+      {
+        "id": "INITIAL",
+        "description": "巨大な建造物へと続く人だかりの列に、あなたは紛れ込んだ。\n\n[gold]黄金のアーチ[/gold]をくぐり抜けた途端、角笛が鳴り響き、[jitter]紙吹雪が舞い散り[/jitter]、天井から[sine]テープが降り注いできた！ [/sine]\n\n「入場番号[blue][EntrantNumber][/blue]番！ あなたが本日の[gold]裁判[/gold]における[green]裁判官[/green]です！」",
+        "options": [
+          {
+            "id": "ACCEPT",
+            "title": "受諾する",
+            "description": "本日の裁判官を務める。"
+          },
+          {
+            "id": "REJECT",
+            "title": "拒否する",
+            "description": "[red]拒否権はない。 [/red]"
+          }
+        ]
+      },
+      {
+        "id": "MERCHANT",
+        "description": "[green]裕福そうな商人[/green]が証言台に立った。 彼は商売敵から[red]殺人[/red]の罪で告発されている。 証拠は乏しく、あなたから見て男はおそらく無実だろうと思われる。 だが、傍聴席の群衆は血に飢えているようだ。",
+        "options": [
+          {
+            "id": "GUILTY",
+            "title": "判決: 有罪",
+            "description": "[red]後悔[/red]を[gold]デッキ[/gold]に追加。 ランダムな[gold]レリック[/gold]を[blue]2[/blue]個入手する。"
+          },
+          {
+            "id": "INNOCENT",
+            "title": "判決: 無罪",
+            "description": "[red]羞恥[/red]を[gold]デッキ[/gold]に追加。 カードを[blue]2[/blue]枚[gold]アップグレード[/gold]する。"
+          }
+        ]
+      },
+      {
+        "id": "MERCHANT_GUILTY",
+        "description": "あなたは男の全財産を没収し、訴訟費用に充てるという判決を下した。\n群衆は歓喜の声を上げる！"
+      },
+      {
+        "id": "MERCHANT_INNOCENT",
+        "description": "あなたは自分の良心に従い、男に無罪の判決を下した。\n群衆からのブーイングや[sine][purple]「どうせ買収されたんだろ！」[/purple][/sine]という野次が聞こえるが、あなたは正しい行いをしたはずだ。"
+      },
+      {
+        "id": "NOBLE",
+        "description": "[gold]位の高い貴族[/gold]が証言台に立った。 ふとポケットを探ると、メモが入っていた。 「無罪にしてくれたら、多額の報酬を支払う」という内容だ。 その[gold]貴族[/gold]は[purple]汚職の罪[/purple]に対してろくに抗弁もせず、あなたに向かって意味ありげな笑みを浮かべている。\n汚職をなくすことはできないが、いくらかの[gold]ゴールド[/gold]を懐に収めることはできる……",
+        "options": [
+          {
+            "id": "GUILTY",
+            "title": "判決: 有罪",
+            "description": "HPを[green]10[/green]回復する。"
+          },
+          {
+            "id": "INNOCENT",
+            "title": "判決: 無罪",
+            "description": "[red]後悔[/red]を[gold]デッキ[/gold]に追加。 [blue]300[/blue][gold]ゴールド[/gold]を獲得する。"
+          }
+        ]
+      },
+      {
+        "id": "NOBLE_GUILTY",
+        "description": "[gold]位の高い貴族[/gold]は[red]斬首された[/red]。\nこれで[purple]腐った貴族[/purple]がまた一人、この世から消えた。"
+      },
+      {
+        "id": "NOBLE_INNOCENT",
+        "description": "彼が有罪だという[sine][purple]決定的な証拠[/purple][/sine]はない…… そう、それだけのことだ！\n決して[gold]賄賂[/gold]が判決を左右したわけではない。 絶対に。"
+      },
+      {
+        "id": "NONDESCRIPT",
+        "description": "[orange]感情の読めない、特徴のない女性[/orange]が証言台に立った。 罪状は[red]窃盗[/red]と[purple]詐欺[/purple]。 彼女の証言を聞いていると無実のように思えるが、一方で彼女の悪行を裏付ける証人も多数存在している。\n双方の主張、どちらも非常に説得力がある！",
+        "options": [
+          {
+            "id": "GUILTY",
+            "title": "判決: 有罪",
+            "description": "[red]疑念[/red]を[gold]デッキ[/gold]に追加。 カード報酬を[blue]2[/blue]回獲得する。"
+          },
+          {
+            "id": "INNOCENT",
+            "title": "判決: 無罪",
+            "description": "[red]疑念[/red]を[gold]デッキ[/gold]に追加。 カードを[blue]2[/blue]枚[gold]変化[/gold]させる。"
+          }
+        ]
+      },
+      {
+        "id": "NONDESCRIPT_GUILTY",
+        "description": "確証は持てないが、苦渋の決断の末、証拠は十分だと判断した。\n本当に正しい判決だったのだろうか？"
+      },
+      {
+        "id": "NONDESCRIPT_INNOCENT",
+        "description": "確証は持てないが、合理的な疑いはある。\nこれが正しい判断かはわからないが、有罪にするよりはマシな選択に思えた。"
+      },
+      {
+        "id": "REJECT",
+        "description": "[jitter]「拒否権はありません！！」[/jitter]\n\n[gold]法廷の裁判長[/gold]が怒号を響かせる。\n\n[jitter]「この特権を拒む者には、[red]死[/red]をもって罰を与えねばなりません。 それでもなお、楯突くというのですか！？」[/jitter]",
+        "options": [
+          {
+            "id": "ACCEPT",
+            "title": "受諾する",
+            "description": "折れて、本日の裁判官を務める。"
+          },
+          {
+            "id": "DOUBLE_DOWN",
+            "title": "徹底的に抗う",
+            "description": "[red]死の報いを受ける。 [/red]"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "UNREST_SITE",
+    "name": "休まらない場所",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": "人里離れた[gold]休憩所[/gold]を見つけ、少し休もうと[orange]火[/orange]をおこすことにした。\n…… そう思ったのも束の間だ。\n\n火は燃え上がると、上ではなく[sine]横[/sine]へと大きくなり、[purple]油が滲み出る木々[/purple]の木立ちへと向かっていく。\n\nそれでも休んで大丈夫だろうか？",
+    "preconditions": [
+      "Requires ≤70% HP"
+    ],
+    "options": [
+      {
+        "id": "REST",
+        "title": "構わず休む",
+        "description": "[green]HPを全回復する。 [/green] [red]寝不足[/red]を受け取る。"
+      },
+      {
+        "id": "KILL",
+        "title": "木々を伐採する",
+        "description": "最大HPを[red]8[/red]失う。 ランダムな[gold]レリック[/gold]を1個獲得する。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "INITIAL",
+        "description": "人里離れた[gold]休憩所[/gold]を見つけ、少し休もうと[orange]火[/orange]をおこすことにした。\n…… そう思ったのも束の間だ。\n\n火は燃え上がると、上ではなく[sine]横[/sine]へと大きくなり、[purple]油が滲み出る木々[/purple]の木立ちへと向かっていく。\n\nそれでも休んで大丈夫だろうか？",
+        "options": [
+          {
+            "id": "REST",
+            "title": "構わず休む",
+            "description": "[green]HPを全回復する。 [/green] [red]寝不足[/red]を受け取る。"
+          },
+          {
+            "id": "KILL",
+            "title": "木々を伐採する",
+            "description": "最大HPを[red]8[/red]失う。 ランダムな[gold]レリック[/gold]を1個獲得する。"
+          }
+        ]
+      },
+      {
+        "id": "KILL",
+        "description": "この木々からは[purple]明らかに邪悪な意志[/purple]を感じる。 あなたは伐採することにした。\n数日がかりの作業の末、あなたは[red]灰[/red]と[purple]油っぽい粘液[/purple]にまみれていた。\n\n切り倒された木々からは、小さなビャードの精霊の大群が飛び立ち、あなたの足元に[gold]小さな箱[/gold]を落としていった。\n[green]「あの木から助けてくれてありがとう…… [sine]チュンチュン[/sine]！」[/green]\n\n…… こんな幻覚を見るなんて、本当にちゃんと寝た方がいい。"
+      },
+      {
+        "id": "REST",
+        "description": "ここまでの冒険で疲れ果てていたあなたは、奇妙な出来事には目を瞑り、眠ることにした。\n\n一晩中、[orange]炎[/orange]がごうごうと音を立てて燃え盛り、あなたは何度も寝返りを打った。 [purple]おぞましい木々[/purple]からは真っ黒な樹液が滲み出し、ひどい悪臭を放っている。\n\n朝が来た。 体力は回復したものの、全く疲れが取れた気がしない。"
+      }
+    ]
+  },
+  {
+    "id": "VAKUU",
+    "name": "ヴァクー",
+    "type": "Ancient",
+    "act": "Act 3 - Glory",
+    "description": "私に身を委ねなさい。 そうすれば、私と同じくらい恐れられる存在になれますよ。",
+    "preconditions": null,
+    "options": null,
+    "pages": null,
+    "epithet": "最初の悪魔",
+    "dialogue": {
+      "Returning": [
+        {
+          "order": "0-0r",
+          "speaker": "ancient",
+          "text": "スパイアで栄光をお求めですか？ あなたにいくつかご提案があるのですが……"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "143回。 あなたがここへ来るのは143回目です。"
+        },
+        {
+          "order": "2-0r",
+          "speaker": "ancient",
+          "text": "お気づきですか？これが[sine]永遠に[/sine]終わらないことに。"
+        }
+      ],
+      "Defect": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "壊れたお方、私があなたを[sine]完璧[/sine]にしてさしあげましょう。"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "仲間の機械があなたの死を望んでいること、奇妙だとは思いませんか？"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "アーキテクトの心臓を持ってくるなら、あなたの[aqua]お友達[/aqua]を修復してさしあげましょう。"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "<恐怖の電子音>"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "どちらが大切ですか？ あなたの創造主？それともお友達？"
+        }
+      ],
+      "Ironclad": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "こんなにも長い時を経て、再び[sine]あなた[/sine]に会えるとは。"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "[jitter][b]『聖なる悪魔』め！ [/b][/jitter]\n俺に何をした！？"
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "あなたが契約した通りに、ですよ。"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "滅んだ一族のことが気がかりですか……？\nヴァクーは笑い声を上げる。 "
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "私の最高の操り人形よ…… なぜまだアーキテクトを殺していないのですか？"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "アーキテクトを殺した後、次はお前の番だ。 [jitter][b]悪魔め！ [/b][/jitter]"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "[sine]あくび[/sine]\nあなたが失敗する様…… 楽しみにしていますよ。"
+        }
+      ],
+      "Necrobinder": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "私たちはどちらも[sine]復讐[/sine]を求めています。 それには支払うべき代償が伴いますよ。"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "どんな代償でも受け入れるわ。 奴の死のためなら、あらゆる代償を。"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "あなたがその[sine]手[/sine]をどこで手に入れたのか、私は知っていますよ。"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "アーキテクトは私たち双方に深い傷を負わせました。"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "さっさと進めて、悪魔。 あなたの契約内容を見せなさい。"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "話が早くて助かります。 それでは……"
+        }
+      ],
+      "Regent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "星々からの来訪者ですか？ この忌まわしい壁の中に？"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "余のことを知っているのか？"
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "ええ、お互いに助け合えると思いますよ。"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "ちょっとした対価をいただければ、私の力をさらに授けましょう。"
+        },
+        {
+          "order": "2-0",
+          "speaker": "character",
+          "text": "この取引が良いものだとは思えん。 気分が優れぬのだ。"
+        },
+        {
+          "order": "2-1",
+          "speaker": "ancient",
+          "text": "契約書は隅々まで読みましたよね？\n十分な意思と責任を持って署名したはずですよ。"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "取引の義務を果たさないおつもりで？\nならば、別の契約はいかがでしょう？ そちらもオススメですよ。"
+        }
+      ],
+      "Silent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "殺し屋の方ですね。"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "[sine]…… [/sine]"
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "これはあなたにとって良い[jitter]結末[/jitter]にはならないでしょうね。"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "ヴァクーはサイレントに様々な契約書を見せた。 "
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "アーキテクトだけでは不十分です。 あなたの姉妹たちも殺してしまいなさい！"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "[sine]…… [/sine]"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "言葉は不要です。私たちは“同じ”なのですから。"
+        }
+      ],
+      "First Visit": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "私に身を委ねなさい。 そうすれば、私と同じくらい恐れられる存在になれますよ。"
+        }
+      ]
+    },
+    "image_url": "/static/images/misc/ancients/vakuu.webp",
+    "relics": [
+      "BLOOD_SOAKED_ROSE",
+      "WHISPERING_EARRING",
+      "FIDDLE",
+      "PRESERVED_FOG",
+      "SERE_TALON",
+      "DISTINGUISHED_CAPE",
+      "CHOICES_PARADOX",
+      "MUSIC_BOX",
+      "LORDS_PARASOL",
+      "JEWELED_MASK"
+    ]
+  },
+  {
+    "id": "WAR_HISTORIAN_REPY",
+    "name": "戦史家、レピー",
+    "type": "Shared",
+    "act": null,
+    "description": "[gold]宝箱[/gold]の隣に[purple]吊り下げられた檻[/purple]があり、中に学者が閉じ込められている。\n\n学者は何やら猛烈な勢いで書き物をしながら、[sine][orange]「使い捨ての鍵」[/orange][/sine]について呟いている。\n\nどうやら手持ちの鍵で[purple]檻[/purple]か[gold]宝箱[/gold]のどちらかを開けられるようだ。",
+    "preconditions": null,
+    "options": [
+      {
+        "id": "UNLOCK_CAGE",
+        "title": "檻を開ける",
+        "description": "[gold]ランタンの鍵[/gold]を失う。 [gold]歴史学教程[/gold]を獲得。"
+      },
+      {
+        "id": "UNLOCK_CHEST",
+        "title": "宝箱を開ける",
+        "description": "[gold]ランタンの鍵[/gold]を失う。 ランダムな[gold]ポーション[/gold]を[blue]2[/blue]個入手する。 ランダムな[gold]レリック[/gold]を[blue]2[/blue]個入手する。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "INITIAL",
+        "description": "[gold]宝箱[/gold]の隣に[purple]吊り下げられた檻[/purple]があり、中に学者が閉じ込められている。\n\n学者は何やら猛烈な勢いで書き物をしながら、[sine][orange]「使い捨ての鍵」[/orange][/sine]について呟いている。\n\nどうやら手持ちの鍵で[purple]檻[/purple]か[gold]宝箱[/gold]のどちらかを開けられるようだ。",
+        "options": [
+          {
+            "id": "UNLOCK_CAGE",
+            "title": "檻を開ける",
+            "description": "[gold]ランタンの鍵[/gold]を失う。 [gold]歴史学教程[/gold]を獲得。"
+          },
+          {
+            "id": "UNLOCK_CHEST",
+            "title": "宝箱を開ける",
+            "description": "[gold]ランタンの鍵[/gold]を失う。 ランダムな[gold]ポーション[/gold]を[blue]2[/blue]個入手する。 ランダムな[gold]レリック[/gold]を[blue]2[/blue]個入手する。"
+          }
+        ]
+      },
+      {
+        "id": "UNLOCK_CAGE",
+        "description": "檻を開けてやると、[green]レピー[/green]は感謝してお辞儀する。 そして、[gold]分厚い革張りの本[/gold]をあなたに差し出した。\n\n「『歴史を覚えていない人は、歴史を繰り返す運命にある』。 しかし、君は“繰り返す”というものをよく理解しているようだな？」"
+      },
+      {
+        "id": "UNLOCK_CHEST",
+        "description": "「この学者たる[green]レピー[/green]を解放しないというのか？ 古典哲学に照らし合わせれば、君は[red]道徳的な落伍者[/red]と見なされるだろうな。 そう、次は閉じ込められている[purple][jitter]生きた人間[/jitter][/purple]のことも考慮に入れるべきだ！ まるで、社会にとって有益な人材が[purple][jitter]絶体絶命の窮地[/jitter][/purple]に陥っていることなど、どうでもいいかのような振る舞いだな！」\n\n「ほら、見てみたまえ、この檻の狭さを！！…… なぜ私がこんなに文句を言っているかって？ 君が実に非学術的な決断を下してしまったからだ…… おやおや、中には何が入っていた？ いくつかの[gold]ポーション[/gold]に[gold]レリック[/gold]か？ そいつは重畳。 [sine]実に素晴らしい。 本当に良かったな…… 君にとっては[/sine]」\n\n立ち去るあなたの背中を、[green]レピー[/green]は軽蔑の眼差しでいつまでも睨みつけていた。"
+      }
+    ]
+  },
+  {
+    "id": "WATERLOGGED_SCRIPTORIUM",
+    "name": "水浸しの写字室",
+    "type": "Event",
+    "act": "Underdocks",
+    "description": "暗い通路を進んでいくと、小さな店で働く[aqua]しわがれた人物[/aqua]に出くわした。 たくさんの棚には、湿気を帯びた巻物や羊皮紙が[sine]詰め込まれている[/sine]。\n\n客の来店に気づいた[aqua]筆写人[/aqua]は、ぴしっと姿勢を正し、机の上に並べられたいくつかの[gold]道具[/gold]を指し示した。",
+    "preconditions": [
+      "Requires 55+ gold"
+    ],
+    "options": [
+      {
+        "id": "BLOODY_INK",
+        "title": "血のインク",
+        "description": "最大HPが[green]6[/green]増加する。"
+      },
+      {
+        "id": "TENTACLE_QUILL",
+        "title": "触手の羽ペン",
+        "description": "[red]55[/red][gold]ゴールド[/gold]を支払う。 カード1枚に[purple]安定性[/purple]を[gold]エンチャント[/gold]する。"
+      },
+      {
+        "id": "TENTACLE_QUILL_LOCKED",
+        "title": "ロック中",
+        "description": "[blue]55[/blue][gold]ゴールド[/gold]が必要。"
+      },
+      {
+        "id": "PRICKLY_SPONGE",
+        "title": "チクチクするスポンジ",
+        "description": "[red]99[/red][gold]ゴールド[/gold]を支払う。 カード[blue]2[/blue]枚に[purple]安定性[/purple]を[gold]エンチャント[/gold]する。"
+      },
+      {
+        "id": "PRICKLY_SPONGE_LOCKED",
+        "title": "ロック中",
+        "description": "[blue]99[/blue][gold]ゴールド[/gold]が必要。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "BLOODY_INK",
+        "description": "[aqua]筆写人[/aqua]は[red]鮮やかな赤いインク[/red]が入った小瓶を慎重に手に取り、軽く振ってから、指を浸すようなジェスチャーをした。\n\n言われた通りにインクに指を浸すと、[green][jitter]すさまじい活力が電撃のように[/jitter][/green]全身を駆け巡った！\n\nあなたの反応を見て満足したのか、[aqua]筆写人[/aqua]は深々とお辞儀をし、手を振って見送ってくれた。"
+      },
+      {
+        "id": "INITIAL",
+        "description": "暗い通路を進んでいくと、小さな店で働く[aqua]しわがれた人物[/aqua]に出くわした。 たくさんの棚には、湿気を帯びた巻物や羊皮紙が[sine]詰め込まれている[/sine]。\n\n客の来店に気づいた[aqua]筆写人[/aqua]は、ぴしっと姿勢を正し、机の上に並べられたいくつかの[gold]道具[/gold]を指し示した。",
+        "options": [
+          {
+            "id": "BLOODY_INK",
+            "title": "血のインク",
+            "description": "最大HPが[green]6[/green]増加する。"
+          },
+          {
+            "id": "TENTACLE_QUILL",
+            "title": "触手の羽ペン",
+            "description": "[red]55[/red][gold]ゴールド[/gold]を支払う。 カード1枚に[purple]安定性[/purple]を[gold]エンチャント[/gold]する。"
+          },
+          {
+            "id": "TENTACLE_QUILL_LOCKED",
+            "title": "ロック中",
+            "description": "[blue]55[/blue][gold]ゴールド[/gold]が必要。"
+          },
+          {
+            "id": "PRICKLY_SPONGE",
+            "title": "チクチクするスポンジ",
+            "description": "[red]99[/red][gold]ゴールド[/gold]を支払う。 カード[blue]2[/blue]枚に[purple]安定性[/purple]を[gold]エンチャント[/gold]する。"
+          },
+          {
+            "id": "PRICKLY_SPONGE_LOCKED",
+            "title": "ロック中",
+            "description": "[blue]99[/blue][gold]ゴールド[/gold]が必要。"
+          }
+        ]
+      },
+      {
+        "id": "PRICKLY_SPONGE",
+        "description": "[aqua]筆写人[/aqua]は[gold]チクチクするスポンジ[/gold]を手に取ると（握るとキュッキュッと鳴る）、あなたの巻物にポンポンと押し当てていく。\n\n[jitter][blue]キュッ キュッ キュッ[/blue][/jitter]\n\nチクチクとした表面が、インクを安定させるかのような[purple][sine]きらめく跡[/sine][/purple]を残していった……。"
+      },
+      {
+        "id": "TENTACLE_QUILL",
+        "description": "[aqua]筆写人[/aqua]は[jitter][gold]うねうねと動く羽ペン[/gold][/jitter]を持ち上げ、熟練した素早い手つきで、あなたの頭に奇妙な印を刻み込んだ。\n\n印は[purple][sine]まばゆく発光し[/sine][/purple]、そして消え去った……。"
+      }
+    ]
+  },
+  {
+    "id": "WELCOME_TO_WONGOS",
+    "name": "ウォンゴズへようこそ",
+    "type": "Shared",
+    "act": null,
+    "description": "「ウォンゴズへようこそ。 お求めの商品をウォンタスティックな価格で取り揃えております」――これまで見たこともないほど無気力な店員が言った。\n\n「どうぞ商品をご覧になって、当店でのお買い物をお楽しみください」店員は顔を上げることもなく、棒読みで続けた。",
+    "preconditions": [
+      "Requires 100+ gold",
+      "Act 2 only"
+    ],
+    "options": [
+      {
+        "id": "BARGAIN_BIN",
+        "title": "ウォンゴの特売ワゴン",
+        "description": "[red]100[/red][gold]ゴールド[/gold]を支払う。 ランダムな[gold]レリック（コモン）[/gold]を[blue]1[/blue]個獲得する。"
+      },
+      {
+        "id": "BARGAIN_BIN_LOCKED",
+        "title": "ロック中",
+        "description": "[blue]100[/blue][gold]ゴールド[/gold]が必要。"
+      },
+      {
+        "id": "FEATURED_ITEM",
+        "title": "ウォンゴのおすすめ商品",
+        "description": "[red]200[/red][gold]ゴールド[/gold]を支払う。 [gold]a random Relic[/gold]を獲得する。"
+      },
+      {
+        "id": "FEATURED_ITEM_LOCKED",
+        "title": "ロック中",
+        "description": "[blue]200[/blue][gold]ゴールド[/gold]が必要。"
+      },
+      {
+        "id": "MYSTERY_BOX",
+        "title": "ウォンゴのミステリーボックス",
+        "description": "[red]300[/red][gold]ゴールド[/gold]を支払う。 [blue]5[/blue]回の戦闘後、ランダムな[gold]レリック[/gold]を[blue]3[/blue]個入手する。"
+      },
+      {
+        "id": "MYSTERY_BOX_LOCKED",
+        "title": "ロック中",
+        "description": "[blue]300[/blue][gold]ゴールド[/gold]が必要。"
+      },
+      {
+        "id": "LEAVE",
+        "title": "退店する",
+        "description": "ランダムなカードを1枚[red]ダウングレード[/red]する。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "AFTER_BUY",
+        "description": "「お客様のお買い上げにウォンゴ・ワオです……。 お客様の現在のポイントは[blue]0[/blue][gold]ウォンゴポイント[/gold]です。 あと[blue]0[/blue]ポイントで、特製の[gold]ウォンゴお客様感謝バッジ[/gold]を進呈いたします。 それでは、ウォンタスティックな一日を」\n\n何の話をしているのかさっぱりわからなかった。 あなたは二度とこの店には来まいと心に誓った。"
+      },
+      {
+        "id": "AFTER_BUY_BADGE_COUNTER",
+        "description": "「お客様のお買い上げにウォンゴ・ワオです……。 お客様の現在のポイントは[blue]0[/blue][gold]ウォンゴポイント[/gold]です。 あと[blue]0[/blue]ポイントで、特製の[gold]ウォンゴお客様感謝バッジ[/gold]をプレゼントいたします。 それでは、ウォンタスティックな一日を」\n\nすでにこの無価値なバッジを[blue]0[/blue]個も押し付けられている。 あなたは二度とこの店には来まいと心に誓った。"
+      },
+      {
+        "id": "AFTER_BUY_RECEIVE_BADGE",
+        "description": "「お客様のお買い上げにウォンゴ・ワオです……。 お客様の現在のポイントは[blue]0[/blue][gold]ウォンゴポイント[/gold]です。 ポイントが貯まりましたので、こちらの[gold]ウォンゴお客様感謝バッジ[/gold]をプレゼントいたします」\n店員は安っぽい作りのバッジをこちらに手渡してきた。 「それでは、ウォンタスティックな一日を」\n\nこれで合計[blue]0[/blue]個のバッジを受け取ったことになる。 あなたは二度とこの店には来まいと心に誓った。"
+      },
+      {
+        "id": "INITIAL",
+        "description": "「ウォンゴズへようこそ。 お求めの商品をウォンタスティックな価格で取り揃えております」――これまで見たこともないほど無気力な店員が言った。\n\n「どうぞ商品をご覧になって、当店でのお買い物をお楽しみください」店員は顔を上げることもなく、棒読みで続けた。",
+        "options": [
+          {
+            "id": "BARGAIN_BIN",
+            "title": "ウォンゴの特売ワゴン",
+            "description": "[red]100[/red][gold]ゴールド[/gold]を支払う。 ランダムな[gold]レリック（コモン）[/gold]を[blue]1[/blue]個獲得する。"
+          },
+          {
+            "id": "BARGAIN_BIN_LOCKED",
+            "title": "ロック中",
+            "description": "[blue]100[/blue][gold]ゴールド[/gold]が必要。"
+          },
+          {
+            "id": "FEATURED_ITEM",
+            "title": "ウォンゴのおすすめ商品",
+            "description": "[red]200[/red][gold]ゴールド[/gold]を支払う。 [gold]a random Relic[/gold]を獲得する。"
+          },
+          {
+            "id": "FEATURED_ITEM_LOCKED",
+            "title": "ロック中",
+            "description": "[blue]200[/blue][gold]ゴールド[/gold]が必要。"
+          },
+          {
+            "id": "MYSTERY_BOX",
+            "title": "ウォンゴのミステリーボックス",
+            "description": "[red]300[/red][gold]ゴールド[/gold]を支払う。 [blue]5[/blue]回の戦闘後、ランダムな[gold]レリック[/gold]を[blue]3[/blue]個入手する。"
+          },
+          {
+            "id": "MYSTERY_BOX_LOCKED",
+            "title": "ロック中",
+            "description": "[blue]300[/blue][gold]ゴールド[/gold]が必要。"
+          },
+          {
+            "id": "LEAVE",
+            "title": "退店する",
+            "description": "ランダムなカードを1枚[red]ダウングレード[/red]する。"
+          }
+        ]
+      },
+      {
+        "id": "LEAVE",
+        "description": "「あの…… お客様。 ウォンゴズに入店した方は、何も買わずに帰ることはできないシステムとなっております」店員が苛立ちを隠さずに言った。\n\n「客には選ぶ権利があるだろう」と[jitter][red]白熱した[/red][/jitter]口論になり、あなたはすっかり[sine][purple]精神をすり減らして[/purple][/sine]しまった。"
+      }
+    ]
+  },
+  {
+    "id": "WELLSPRING",
+    "name": "癒やしの泉",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": "[jitter]低い地鳴り[/jitter]のような音をたどっていくと、静かに水をたたえる泉に行き当たり、あなたはその美しさに目を奪われた。 [sine][aqua]エメラルドグリーン[/aqua][/sine]に澄み渡り、中では[sine][gold]光り輝く粒子[/gold][/sine]が集まっている。\n\n泉はまるでこちらを誘っているかのようだ。 何か悪いことが起きるはずもないだろう。",
+    "preconditions": null,
+    "options": [
+      {
+        "id": "BOTTLE",
+        "title": "瓶に汲む",
+        "description": "ランダムな[gold]ポーション[/gold]を[blue]1[/blue]個獲得。"
+      },
+      {
+        "id": "BATHE",
+        "title": "泉につかる",
+        "description": "[gold]デッキ[/gold]からカードを[blue]1[/blue]枚削除。 [red]罪悪感[/red]を[blue]1[/blue]枚[gold]デッキ[/gold]に追加。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "BATHE",
+        "description": "わずかな[red][sine]不安感[/sine][/red]を抱えながら、泉から上がる。\n\nとはいえ、驚くほどリフレッシュした気分だ。"
+      },
+      {
+        "id": "BOTTLE",
+        "description": "この[sine][aqua]美しすぎる水[/aqua][/sine]につかるのはどうにも怪しい…… 代わりに少しだけ瓶に汲んでいくことにした。\n\nこれは役に立つはずだ。"
+      },
+      {
+        "id": "INITIAL",
+        "description": "[jitter]低い地鳴り[/jitter]のような音をたどっていくと、静かに水をたたえる泉に行き当たり、あなたはその美しさに目を奪われた。 [sine][aqua]エメラルドグリーン[/aqua][/sine]に澄み渡り、中では[sine][gold]光り輝く粒子[/gold][/sine]が集まっている。\n\n泉はまるでこちらを誘っているかのようだ。 何か悪いことが起きるはずもないだろう。",
+        "options": [
+          {
+            "id": "BOTTLE",
+            "title": "瓶に汲む",
+            "description": "ランダムな[gold]ポーション[/gold]を[blue]1[/blue]個獲得。"
+          },
+          {
+            "id": "BATHE",
+            "title": "泉につかる",
+            "description": "[gold]デッキ[/gold]からカードを[blue]1[/blue]枚削除。 [red]罪悪感[/red]を[blue]1[/blue]枚[gold]デッキ[/gold]に追加。"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "WHISPERING_HOLLOW",
+    "name": "囁きの窪地",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": "[red]枯れ木が立ち並ぶ窪地[/red]を抜けていくと、一本の骨のように白い木に行き当たった。 まるで肋骨のように内側へ湾曲した枝には、粘土でできた飾りがぶら下がっている。\n\nこの[purple]おぞましい木[/purple]が、あなたに向かって囁きかけてきた。\n\n[sine][blue]…… 取引を…… しよう…… [/blue][/sine]",
+    "preconditions": [
+      "Requires 44+ gold"
+    ],
+    "options": [
+      {
+        "id": "GOLD",
+        "title": "ゴールドを渡す",
+        "description": "[gold]ゴールド[/gold]を[red]26-44[/red]失う。 ランダムな[gold]ポーション[/gold]を[blue]2[/blue]個獲得する。"
+      },
+      {
+        "id": "HUG",
+        "title": "木を抱きしめる",
+        "description": "HPを[red]9[/red]失う。 カードを1枚選び、[gold]変化[/gold]させる。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "GOLD",
+        "description": "木の根元に[gold]ゴールド[/gold]を放り投げると、粘土の器が2つ、音もなく地面に落ちた。\n\n器が割れると、中には[green]完全に無傷のポーション[/green]が入っていた。\n\nあなたはポーションをひっつかみ、その場から逃げ出した。"
+      },
+      {
+        "id": "HUG",
+        "description": "[blue][sine]囁き声[/sine][/blue]は[gold]ゴールド[/gold]をよこせと要求してくるが、あなたはそれを無視し、勢いよく木に抱きついた！\n\n木は[red][jitter]のたうち回り[/jitter][/red]、枝で引っ掻いてきたが、やがて落ち着きを取り戻した。 [green]木とハグをしたという体験[/green]が、あなたを[gold]変化[/gold]させる。\n\n[purple][sine]…… 抱き…… しめ… る…？ [/sine][/purple]"
+      },
+      {
+        "id": "INITIAL",
+        "description": "[red]枯れ木が立ち並ぶ窪地[/red]を抜けていくと、一本の骨のように白い木に行き当たった。 まるで肋骨のように内側へ湾曲した枝には、粘土でできた飾りがぶら下がっている。\n\nこの[purple]おぞましい木[/purple]が、あなたに向かって囁きかけてきた。\n\n[sine][blue]…… 取引を…… しよう…… [/blue][/sine]",
+        "options": [
+          {
+            "id": "GOLD",
+            "title": "ゴールドを渡す",
+            "description": "[gold]ゴールド[/gold]を[red]26-44[/red]失う。 ランダムな[gold]ポーション[/gold]を[blue]2[/blue]個獲得する。"
+          },
+          {
+            "id": "HUG",
+            "title": "木を抱きしめる",
+            "description": "HPを[red]9[/red]失う。 カードを1枚選び、[gold]変化[/gold]させる。"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "WOOD_CARVINGS",
+    "name": "木彫り",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": "ほこりまみれの箱を開けると、中には精巧な3つの木彫りが入っていた。\n\n鳥、ヘビ、そして…… ドーナツ型？\n\nすぐそばにある台座には、木彫りの底の形とぴったり合うくぼみが空いている。 どの木彫りを台座に置こうか？",
+    "preconditions": [
+      "Requires a removable basic card"
+    ],
+    "options": [
+      {
+        "id": "BIRD",
+        "title": "鳥",
+        "description": "スターターカードを[blue]1[/blue]枚選び、[gold]ついばみ[/gold]に[gold]変化[/gold]させる。"
+      },
+      {
+        "id": "SNAKE",
+        "title": "蛇",
+        "description": "カードを[blue]1[/blue]枚選び、[purple]スリザー[/purple]を[gold]エンチャント[/gold]する。"
+      },
+      {
+        "id": "SNAKE_LOCKED",
+        "title": "ロック中",
+        "description": "[purple]スリザー[/purple]をエンチャントできるカードがない。"
+      },
+      {
+        "id": "TORUS",
+        "title": "ドーナツ",
+        "description": "スターターカードを[blue]1[/blue]枚選び、[gold]円環の障壁[/gold]に[gold]変化[/gold]させる。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "BIRD",
+        "description": "鳥の木彫りを台座にセットすると、像の目がカッと光り、脳内に微かな鳴き声が聞こえた。\n\n[sine]…… カァ…… カァ、クワァー…… [/sine]\n\n台座が開き、中から奇妙な液体が溢れ出してきた。\nあなたは迷うことなく、それをすべて飲み干した。"
+      },
+      {
+        "id": "INITIAL",
+        "description": "ほこりまみれの箱を開けると、中には精巧な3つの木彫りが入っていた。\n\n鳥、ヘビ、そして…… ドーナツ型？\n\nすぐそばにある台座には、木彫りの底の形とぴったり合うくぼみが空いている。 どの木彫りを台座に置こうか？",
+        "options": [
+          {
+            "id": "BIRD",
+            "title": "鳥",
+            "description": "スターターカードを[blue]1[/blue]枚選び、[gold]ついばみ[/gold]に[gold]変化[/gold]させる。"
+          },
+          {
+            "id": "SNAKE",
+            "title": "蛇",
+            "description": "カードを[blue]1[/blue]枚選び、[purple]スリザー[/purple]を[gold]エンチャント[/gold]する。"
+          },
+          {
+            "id": "SNAKE_LOCKED",
+            "title": "ロック中",
+            "description": "[purple]スリザー[/purple]をエンチャントできるカードがない。"
+          },
+          {
+            "id": "TORUS",
+            "title": "ドーナツ",
+            "description": "スターターカードを[blue]1[/blue]枚選び、[gold]円環の障壁[/gold]に[gold]変化[/gold]させる。"
+          }
+        ]
+      },
+      {
+        "id": "SNAKE",
+        "description": "蛇の木彫りを台座に置くと、像の鱗が光り輝く！ じんわりと温かく、心地よい脱力感に包まれる。"
+      },
+      {
+        "id": "TORUS",
+        "description": "ドーナツ型の木彫りを台座にセットすると、像は熱々の揚げ菓子へと姿を変えた。あなたの胃袋が激しく反応する！ 抑えきれない食欲に突き動かされ、あなたはあっという間にそのドーナツを平らげた。\n\n体がずっしりと頑丈になったが、同時に動きが鈍くなってしまった。"
+      }
+    ]
+  },
+  {
+    "id": "ZEN_WEAVER",
+    "name": "禅蜘蛛",
+    "type": "Event",
+    "act": "Act 2 - Hive",
+    "description": "顔にクモの巣が引っかかり、あなたは[jitter][red]パニック[/red][/jitter]に陥った！\nしかし次の瞬間、不思議な[sine][blue]静寂の波[/blue][/sine]が、あなたの心をスッと落ち着かせる……。\n\n[sine]「落ち着き給え。 私の巣を荒らすのはよしてくれないか」[/sine]\n\nなぜこんなにすぐ冷静になれたのだろう？\n見ると、[orange]小さな[/orange]クモが糸を伝ってスルスルと降りてきた。 どうやら[gold]ゴールド[/gold]を支払えば、彼が特別な“ゼン”の技術を授けてくれるようだ。",
+    "preconditions": [
+      "Requires 125+ gold"
+    ],
+    "options": [
+      {
+        "id": "BREATHING_TECHNIQUES",
+        "title": "呼吸法",
+        "description": "[red]50[/red][gold]ゴールド[/gold]を支払う。 [gold]啓発[/gold]を[blue]2[/blue]枚[gold]デッキ[/gold]に追加する。"
+      },
+      {
+        "id": "EMOTIONAL_AWARENESS",
+        "title": "感情のコントロール",
+        "description": "[red]125[/red][gold]ゴールド[/gold]を支払う。 [gold]デッキ[/gold]からカードを[blue]1[/blue]枚削除。"
+      },
+      {
+        "id": "ARACHNID_ACUPUNCTURE",
+        "title": "蜘蛛式・鍼治療",
+        "description": "[red]250[/red][gold]ゴールド[/gold]を支払う。 [gold]デッキ[/gold]からカードを[blue]2[/blue]枚削除。"
+      },
+      {
+        "id": "LOCKED",
+        "title": "ロック中",
+        "description": "[gold]ゴールド[/gold]が足りない。"
+      }
+    ],
+    "pages": [
+      {
+        "id": "ARACHNID_ACUPUNCTURE",
+        "description": "[sine]「動くなよ……」[/sine][orange]小さなクモ[/orange]がそうつぶやくと、その前脚が[aqua][jitter]光り[/jitter][/aqua]始めた。\n\n次の瞬間――[jitter]怒涛の連続突き[/jitter]が全身のツボを正確に貫いた！\n無重力になったかのような感覚だ。 ゴールドを払う価値は十二分にあった。"
+      },
+      {
+        "id": "BREATHING_TECHNIQUES",
+        "description": "[sine]「気道が常に開いているイメージだ…… すべての呼吸に意味を持たせろ」[/sine]\n\nあなたは自分なりにその呼吸法を体得した。"
+      },
+      {
+        "id": "EMOTIONAL_AWARENESS",
+        "description": "[orange]小さなクモ[/orange]は、[sine][purple]吸い込まれるような奇妙なダンス[/purple][/sine]を踊りながら、繰り返し唱える。\n\n[sine]「思考は現実に影響を与えない。 慌てれば思考が停止する。 ただ計画通りに動け」[/sine]\n\nなるほど、確かにその通りだ。 [orange]小さなクモ[/orange]から、大いなる教訓を授かった。"
+      },
+      {
+        "id": "INITIAL",
+        "description": "顔にクモの巣が引っかかり、あなたは[jitter][red]パニック[/red][/jitter]に陥った！\nしかし次の瞬間、不思議な[sine][blue]静寂の波[/blue][/sine]が、あなたの心をスッと落ち着かせる……。\n\n[sine]「落ち着き給え。 私の巣を荒らすのはよしてくれないか」[/sine]\n\nなぜこんなにすぐ冷静になれたのだろう？\n見ると、[orange]小さな[/orange]クモが糸を伝ってスルスルと降りてきた。 どうやら[gold]ゴールド[/gold]を支払えば、彼が特別な“ゼン”の技術を授けてくれるようだ。",
+        "options": [
+          {
+            "id": "BREATHING_TECHNIQUES",
+            "title": "呼吸法",
+            "description": "[red]50[/red][gold]ゴールド[/gold]を支払う。 [gold]啓発[/gold]を[blue]2[/blue]枚[gold]デッキ[/gold]に追加する。"
+          },
+          {
+            "id": "EMOTIONAL_AWARENESS",
+            "title": "感情のコントロール",
+            "description": "[red]125[/red][gold]ゴールド[/gold]を支払う。 [gold]デッキ[/gold]からカードを[blue]1[/blue]枚削除。"
+          },
+          {
+            "id": "ARACHNID_ACUPUNCTURE",
+            "title": "蜘蛛式・鍼治療",
+            "description": "[red]250[/red][gold]ゴールド[/gold]を支払う。 [gold]デッキ[/gold]からカードを[blue]2[/blue]枚削除。"
+          },
+          {
+            "id": "LOCKED",
+            "title": "ロック中",
+            "description": "[gold]ゴールド[/gold]が足りない。"
+          }
+        ]
+      }
+    ]
+  }
+]

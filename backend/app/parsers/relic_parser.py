@@ -119,13 +119,23 @@ def parse_single_relic(
     desc_clean = description_resolved
     flavor_clean = flavor
 
-    # Merchant cost — base price from rarity or MerchantCost override, with ×0.85–1.15 variance
+    # Merchant cost — base price from rarity or MerchantCost override, with
+    # ×0.85–1.15 variance. Major Update #1 (game v0.103.2) reduced every
+    # rarity tier's base by 25g; values below match the post-MU1 RelicModel.cs
+    # constants. The five gold-generating relics that broke shop economy
+    # (The Courier, Old Coin + the MU1 additions Lucky Fysh, Bowler Hat,
+    # Amethyst Aubergine) now opt out via `IsAllowedInShops => false` —
+    # surface that as `merchant_price: null` so the frontend doesn't
+    # advertise a shop price for relics you can never actually buy.
     RARITY_BASE_COST = {
-        "Common": 200,
-        "Uncommon": 250,
-        "Rare": 300,
-        "Shop": 225,
+        "Common": 175,
+        "Uncommon": 225,
+        "Rare": 275,
+        "Shop": 200,
     }
+    is_shop_blacklisted = bool(
+        re.search(r"override\s+bool\s+IsAllowedInShops\s*=>\s*false\b", content)
+    )
     merchant_cost_override = re.search(
         r"override\s+int\s+MerchantCost\s*=>\s*(\d+)", content
     )
@@ -134,12 +144,12 @@ def parse_single_relic(
     else:
         base_cost = RARITY_BASE_COST.get(rarity)
 
-    if base_cost is not None:
+    if is_shop_blacklisted or base_cost is None:
+        merchant_price = None
+    else:
         cost_min = round(base_cost * 0.85)
         cost_max = round(base_cost * 1.15)
         merchant_price = {"base": base_cost, "min": cost_min, "max": cost_max}
-    else:
-        merchant_price = None
 
     # Pool/character
     pool = relic_pools.get(class_name, "shared")
