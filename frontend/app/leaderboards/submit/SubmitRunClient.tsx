@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
 import { useLanguage } from "@/app/contexts/LanguageContext";
 import { t } from "@/lib/ui-translations";
+import { IS_BETA } from "@/lib/seo";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -250,6 +251,39 @@ export default function SubmitRunClient() {
       document.removeEventListener("drop", handleDocDrop);
     };
   }, [handleFileUpload]);
+
+  // Run submissions are server-side rejected on beta (the backend returns
+  // 403 with "Submit to spire-codex.com instead"). The Navbar already
+  // hides this route on beta, but bookmarks / external links can still
+  // land here — show an upfront notice instead of letting users drag in
+  // files only to get a 403 per file. Two open bug reports (#104, #105)
+  // came from exactly this flow before this gate existed.
+  if (IS_BETA) {
+    return (
+      <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <h1 className="text-3xl font-bold mb-3">
+          <span className="text-[var(--accent-gold)]">{t("Submit a Run", lang)}</span>
+        </h1>
+        <div className="rounded-xl border border-[var(--accent-gold)]/30 bg-[var(--accent-gold)]/5 p-6">
+          <p className="text-base text-[var(--text-primary)] mb-4">
+            Run submissions are disabled on the beta site so the leaderboards
+            and community stats stay aligned with the stable game build.
+          </p>
+          <p className="text-sm text-[var(--text-secondary)] mb-5">
+            Head to the stable site to upload your runs — they&apos;ll appear
+            on the public leaderboards within a minute.
+          </p>
+          <a
+            href="https://spire-codex.com/leaderboards/submit"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[var(--accent-gold)] text-[var(--bg-primary)] font-medium hover:opacity-90 transition-opacity"
+          >
+            Submit on spire-codex.com
+            <span aria-hidden>→</span>
+          </a>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
