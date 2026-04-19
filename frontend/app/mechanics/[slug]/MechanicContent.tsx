@@ -41,7 +41,7 @@ export default function MechanicContent({ slug }: { slug: string }) {
           <div className={`${card} mt-4`}>
             <h3 className={h3}>Rare Card Pity System</h3>
             <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
-              A hidden offset starts at <strong className={bold}>-5%</strong> and increases by <strong className={bold}>+1%</strong> each time you pick a non-rare card (+0.5% on A7+). When a rare is rolled, the offset resets to -5%. Caps at <strong className={bold}>+40%</strong>. This ensures you see rares more often the longer you go without one.
+              A hidden offset starts at <strong className={bold}>-5%</strong> and increases by <strong className={bold}>+1%</strong> for each non-rare card <em>shown</em> in a combat reward (+0.5% on A7+) — including ones you skip. When a rare is rolled, the offset resets to -5%. Caps at <strong className={bold}>+40%</strong>. Each combat reward generates 3 cards up front, so a skipped reward still ticks the counter 3 times. This ensures you see rares more often the longer you go without one.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
