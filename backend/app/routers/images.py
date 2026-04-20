@@ -47,9 +47,12 @@ CATEGORIES: dict[str, tuple[str, str, bool, list[str] | None]] = {
             # Tanx / Vakuu / Nonupeipe / Pael as `_placeholder.png` in
             # `images/ancients/` since the final polished art isn't done,
             # but the placeholders are what actually renders in-game today
-            # and players see them, so they're shippable. Neow's hi-res
-            # render lives at `misc/neow-only.png` (just the character,
-            # no environment) so it stays in the NPCs category — not here.
+            # and players see them, so they're shippable. The Neow + room
+            # composite is freshly rendered from the
+            # `extraction/raw/animations/backgrounds/neow_room/` Spine
+            # scene at 2048x2048; the character-only render still lives
+            # at `misc/neow-only.png` and stays in the NPCs category.
+            "neow.png",
             "tezcatara.png",
             "darv.png",
             "orobas.png",
