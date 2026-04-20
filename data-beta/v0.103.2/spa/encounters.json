@@ -1411,25 +1411,6 @@
     "loss_text": "Un [gold]Asaltamontes[/gold] atracó a [b]The Adventurer[/b]."
   },
   {
-    "id": "TOADPOLES_NORMAL",
-    "name": "Toadpoles Normal",
-    "room_type": "Monster",
-    "is_weak": false,
-    "act": null,
-    "tags": null,
-    "monsters": [
-      {
-        "id": "CALCIFIED_CULTIST",
-        "name": "Sectario calcificado"
-      },
-      {
-        "id": "TOADPOLE",
-        "name": "Ranicuajo"
-      }
-    ],
-    "loss_text": null
-  },
-  {
     "id": "TOADPOLES_WEAK",
     "name": "Ranicuajos",
     "room_type": "Monster",

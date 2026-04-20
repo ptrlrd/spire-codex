@@ -1411,25 +1411,6 @@
     "loss_text": "Um [gold]Gafanhoto Larápio[/gold] assaltou [b]The Adventurer[/b]."
   },
   {
-    "id": "TOADPOLES_NORMAL",
-    "name": "Toadpoles Normal",
-    "room_type": "Monster",
-    "is_weak": false,
-    "act": null,
-    "tags": null,
-    "monsters": [
-      {
-        "id": "CALCIFIED_CULTIST",
-        "name": "Cultista Calcificado"
-      },
-      {
-        "id": "TOADPOLE",
-        "name": "Girino"
-      }
-    ],
-    "loss_text": null
-  },
-  {
     "id": "TOADPOLES_WEAK",
     "name": "Girinos",
     "room_type": "Monster",

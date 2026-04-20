@@ -1068,13 +1068,6 @@
         "room_type": "Monster",
         "act": "Underdocks",
         "is_weak": false
-      },
-      {
-        "encounter_id": "TOADPOLES_NORMAL",
-        "encounter_name": "Toadpoles Normal",
-        "room_type": "Monster",
-        "act": null,
-        "is_weak": false
       }
     ],
     "innate_powers": null,
@@ -2019,99 +2012,6 @@
     },
     "image_url": "/static/images/monsters/devoted_sculptor.webp",
     "beta_image_url": null
-  },
-  {
-    "id": "DOOR",
-    "name": "ドア",
-    "type": "Normal",
-    "min_hp": 155,
-    "max_hp": null,
-    "min_hp_ascension": 165,
-    "max_hp_ascension": null,
-    "moves": [
-      {
-        "id": "DRAMATIC_OPEN",
-        "name": "Dramatic Open",
-        "intent": "Attack",
-        "damage": {
-          "normal": 25,
-          "ascension": 28
-        }
-      },
-      {
-        "id": "ENFORCE",
-        "name": "Enforce",
-        "intent": "Attack + Buff",
-        "powers": [
-          {
-            "power_id": "STRENGTH",
-            "target": "self",
-            "amount": 3
-          }
-        ],
-        "damage": {
-          "normal": 20
-        }
-      },
-      {
-        "id": "DOOR_SLAM",
-        "name": "Door Slam",
-        "intent": "Attack",
-        "damage": {
-          "normal": 15,
-          "ascension": 15,
-          "hit_count": 2
-        }
-      },
-      {
-        "id": "DEAD",
-        "name": "Dead",
-        "intent": "Unknown"
-      }
-    ],
-    "damage_values": {
-      "DramaticOpen": {
-        "normal": 25,
-        "ascension": 28
-      },
-      "DoorSlam": {
-        "normal": 15,
-        "ascension": 15,
-        "hit_count": 2
-      },
-      "Enforce": {
-        "normal": 20
-      }
-    },
-    "block_values": null,
-    "encounters": null,
-    "innate_powers": null,
-    "attack_pattern": {
-      "type": "cycle",
-      "initial_move": null,
-      "states": [
-        {
-          "id": "ENFORCE_MOVE",
-          "type": "move",
-          "move_id": "ENFORCE"
-        },
-        {
-          "id": "DOOR_SLAM_MOVE",
-          "type": "move",
-          "move_id": "DOOR_SLAM",
-          "next": "ENFORCE_MOVE"
-        },
-        {
-          "id": "DEAD_MOVE",
-          "type": "move",
-          "move_id": "DEAD",
-          "next": "DEAD_MOVE"
-        }
-      ],
-      "description": ""
-    },
-    "image_url": "/static/images/monsters/door.webp",
-    "beta_image_url": "/static/images/monsters/beta/door.webp"
   },
   {
     "id": "DOORMAKER",
@@ -9290,13 +9190,6 @@
     },
     "block_values": null,
     "encounters": [
-      {
-        "encounter_id": "TOADPOLES_NORMAL",
-        "encounter_name": "Toadpoles Normal",
-        "room_type": "Monster",
-        "act": null,
-        "is_weak": false
-      },
       {
         "encounter_id": "TOADPOLES_WEAK",
         "encounter_name": "ヒキジャクシ",

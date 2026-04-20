@@ -1411,25 +1411,6 @@
     "loss_text": "Una [gold]Mantide ladra[/gold] ha derubato [b]The Adventurer[/b]."
   },
   {
-    "id": "TOADPOLES_NORMAL",
-    "name": "Toadpoles Normal",
-    "room_type": "Monster",
-    "is_weak": false,
-    "act": null,
-    "tags": null,
-    "monsters": [
-      {
-        "id": "CALCIFIED_CULTIST",
-        "name": "Accolito calcificato"
-      },
-      {
-        "id": "TOADPOLE",
-        "name": "Girino"
-      }
-    ],
-    "loss_text": null
-  },
-  {
     "id": "TOADPOLES_WEAK",
     "name": "Girini",
     "room_type": "Monster",

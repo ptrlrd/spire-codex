@@ -1411,25 +1411,6 @@
     "loss_text": "[gold]泥棒バッタ[/gold]は[b]The Adventurer[/b]を強盗した。"
   },
   {
-    "id": "TOADPOLES_NORMAL",
-    "name": "Toadpoles Normal",
-    "room_type": "Monster",
-    "is_weak": false,
-    "act": null,
-    "tags": null,
-    "monsters": [
-      {
-        "id": "CALCIFIED_CULTIST",
-        "name": "石を纏った狂信者"
-      },
-      {
-        "id": "TOADPOLE",
-        "name": "ヒキジャクシ"
-      }
-    ],
-    "loss_text": null
-  },
-  {
     "id": "TOADPOLES_WEAK",
     "name": "ヒキジャクシ",
     "room_type": "Monster",

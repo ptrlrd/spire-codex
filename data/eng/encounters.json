@@ -1411,25 +1411,6 @@
     "loss_text": "A [gold]Thieving Hopper[/gold] mugged [b]The Adventurer[/b]."
   },
   {
-    "id": "TOADPOLES_NORMAL",
-    "name": "Toadpoles Normal",
-    "room_type": "Monster",
-    "is_weak": false,
-    "act": null,
-    "tags": null,
-    "monsters": [
-      {
-        "id": "CALCIFIED_CULTIST",
-        "name": "Calcified Cultist"
-      },
-      {
-        "id": "TOADPOLE",
-        "name": "Toadpole"
-      }
-    ],
-    "loss_text": null
-  },
-  {
     "id": "TOADPOLES_WEAK",
     "name": "Toadpoles",
     "room_type": "Monster",

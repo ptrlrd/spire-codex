@@ -4,6 +4,7 @@ import json
 import re
 from pathlib import Path
 
+from orphan_filter import is_orphan
 from parser_paths import DECOMPILED, loc_dir as _loc_dir, data_dir as _data_dir
 
 ENCOUNTERS_DIR = DECOMPILED / "MegaCrit.Sts2.Core.Models.Encounters"
@@ -95,6 +96,11 @@ def parse_single_encounter(
     act_mapping: dict,
     monster_names: dict[str, str] = {},
 ) -> dict | None:
+    # Skip orphan .cs files left over from previous extractions — the
+    # class no longer exists in the current DLL (no cross-references,
+    # stale mtime) so it shouldn't appear in our output.
+    if is_orphan(filepath):
+        return None
     content = filepath.read_text(encoding="utf-8")
     class_name = filepath.stem
 

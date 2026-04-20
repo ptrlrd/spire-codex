@@ -5,6 +5,7 @@ import re
 from pathlib import Path
 from description_resolver import resolve_description, extract_vars_from_source
 
+from orphan_filter import is_orphan
 from parser_paths import BASE, DECOMPILED, loc_dir as _loc_dir, data_dir as _data_dir
 
 POTIONS_DIR = DECOMPILED / "MegaCrit.Sts2.Core.Models.Potions"
@@ -26,6 +27,11 @@ def load_localization(loc_dir: Path) -> dict:
 
 
 def parse_single_potion(filepath: Path, localization: dict) -> dict | None:
+    # Skip orphan .cs files left over from previous extractions — the
+    # class no longer exists in the current DLL (no cross-references,
+    # stale mtime) so it shouldn't appear in our output.
+    if is_orphan(filepath):
+        return None
     content = filepath.read_text(encoding="utf-8")
     class_name = filepath.stem
 

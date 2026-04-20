@@ -1411,25 +1411,6 @@
     "loss_text": "Ein [gold]Diebischer Hüpfer[/gold] raubte {characterObject} aus."
   },
   {
-    "id": "TOADPOLES_NORMAL",
-    "name": "Toadpoles Normal",
-    "room_type": "Monster",
-    "is_weak": false,
-    "act": null,
-    "tags": null,
-    "monsters": [
-      {
-        "id": "CALCIFIED_CULTIST",
-        "name": "Verkalkter Kultist"
-      },
-      {
-        "id": "TOADPOLE",
-        "name": "Krötling"
-      }
-    ],
-    "loss_text": null
-  },
-  {
     "id": "TOADPOLES_WEAK",
     "name": "Krötlinge",
     "room_type": "Monster",

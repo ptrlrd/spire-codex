@@ -1411,25 +1411,6 @@
     "loss_text": "[gold]Загребущая цикада[/gold] обобрала {characterObject}."
   },
   {
-    "id": "TOADPOLES_NORMAL",
-    "name": "Toadpoles Normal",
-    "room_type": "Monster",
-    "is_weak": false,
-    "act": null,
-    "tags": null,
-    "monsters": [
-      {
-        "id": "CALCIFIED_CULTIST",
-        "name": "Окаменелый культист"
-      },
-      {
-        "id": "TOADPOLE",
-        "name": "Головастик"
-      }
-    ],
-    "loss_text": null
-  },
-  {
     "id": "TOADPOLES_WEAK",
     "name": "Головастики",
     "room_type": "Monster",

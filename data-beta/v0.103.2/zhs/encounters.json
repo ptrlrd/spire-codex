@@ -1411,25 +1411,6 @@
     "loss_text": "一只[gold]偷窃草蜢[/gold]抢走了[b]The Adventurer[/b]的生命。"
   },
   {
-    "id": "TOADPOLES_NORMAL",
-    "name": "Toadpoles Normal",
-    "room_type": "Monster",
-    "is_weak": false,
-    "act": null,
-    "tags": null,
-    "monsters": [
-      {
-        "id": "CALCIFIED_CULTIST",
-        "name": "钙化邪教徒"
-      },
-      {
-        "id": "TOADPOLE",
-        "name": "蟾蜍蝌蚪"
-      }
-    ],
-    "loss_text": null
-  },
-  {
     "id": "TOADPOLES_WEAK",
     "name": "蟾蜍蝌蚪",
     "room_type": "Monster",

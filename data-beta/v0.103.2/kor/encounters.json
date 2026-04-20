@@ -1411,25 +1411,6 @@
     "loss_text": "[gold]폴짝이 도적[/gold]은 [b]The Adventurer[/b]를 털어먹었습니다."
   },
   {
-    "id": "TOADPOLES_NORMAL",
-    "name": "Toadpoles Normal",
-    "room_type": "Monster",
-    "is_weak": false,
-    "act": null,
-    "tags": null,
-    "monsters": [
-      {
-        "id": "CALCIFIED_CULTIST",
-        "name": "석회화된 광신자"
-      },
-      {
-        "id": "TOADPOLE",
-        "name": "올챙이"
-      }
-    ],
-    "loss_text": null
-  },
-  {
     "id": "TOADPOLES_WEAK",
     "name": "올챙이들",
     "room_type": "Monster",

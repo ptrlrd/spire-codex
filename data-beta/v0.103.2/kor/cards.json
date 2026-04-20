@@ -40,52 +40,6 @@
     "compendium_order": 384
   },
   {
-    "id": "GRAPPLE",
-    "name": "Grapple",
-    "description": "",
-    "description_raw": "",
-    "cost": 1,
-    "is_x_cost": null,
-    "is_x_star_cost": null,
-    "star_cost": null,
-    "type": "공격",
-    "rarity": "고급",
-    "target": "AnyEnemy",
-    "color": "unknown",
-    "damage": 7,
-    "block": null,
-    "hit_count": null,
-    "powers_applied": [
-      {
-        "power": "Grapple",
-        "amount": 5,
-        "power_key": "Grapple"
-      }
-    ],
-    "cards_draw": null,
-    "energy_gain": null,
-    "hp_loss": null,
-    "keywords": null,
-    "tags": null,
-    "spawns_cards": null,
-    "vars": {
-      "Damage": 7,
-      "GrapplePower": 5,
-      "Grapple": 5
-    },
-    "upgrade": {
-      "damage": "+2",
-      "grapplepower": "+2"
-    },
-    "image_url": "/static/images/cards/grapple.webp",
-    "beta_image_url": null,
-    "type_variants": null,
-    "upgrade_description": null,
-    "type_key": "Attack",
-    "rarity_key": "Uncommon",
-    "compendium_order": 576
-  },
-  {
     "id": "HELLO_WORLD",
     "name": "Hello World",
     "description": "내 턴 시작 시,\n무작위 일반 카드를 1장\n[gold]손[/gold]으로 가져옵니다.",

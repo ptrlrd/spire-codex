@@ -1411,25 +1411,6 @@
     "loss_text": "[gold]Złodziejski Skoczek[/gold] napadł na {characterObject}."
   },
   {
-    "id": "TOADPOLES_NORMAL",
-    "name": "Toadpoles Normal",
-    "room_type": "Monster",
-    "is_weak": false,
-    "act": null,
-    "tags": null,
-    "monsters": [
-      {
-        "id": "CALCIFIED_CULTIST",
-        "name": "Zwapniały Kultysta"
-      },
-      {
-        "id": "TOADPOLE",
-        "name": "Kijanka"
-      }
-    ],
-    "loss_text": null
-  },
-  {
     "id": "TOADPOLES_WEAK",
     "name": "Kijanki",
     "room_type": "Monster",

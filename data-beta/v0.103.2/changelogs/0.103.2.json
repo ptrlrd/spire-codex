@@ -8,26 +8,16 @@
   "from_ref": "data-beta/v0.103.1/eng",
   "to_ref": "data-beta/v0.103.2/eng",
   "summary": {
-    "added": 4,
+    "added": 0,
     "removed": 0,
-    "changed": 88
+    "changed": 191
   },
   "categories": [
     {
       "id": "cards",
       "name": "Cards",
       "old_count": 576,
-      "new_count": 577,
-      "added": [
-        {
-          "id": "GRAPPLE",
-          "name": "Grapple",
-          "cost": 1,
-          "damage": 7,
-          "type": "Attack",
-          "rarity": "Uncommon"
-        }
-      ],
+      "new_count": 576,
       "changed": [
         {
           "id": "ANTICIPATE",
@@ -452,36 +442,3965 @@
       "id": "monsters",
       "name": "Monsters",
       "old_count": 115,
-      "new_count": 116,
-      "added": [
+      "new_count": 115,
+      "changed": [
         {
-          "id": "DOOR",
-          "name": "Door",
-          "min_hp": 155
-        }
-      ]
-    },
-    {
-      "id": "enchantments",
-      "name": "Enchantments",
-      "old_count": 22,
-      "new_count": 23,
-      "added": [
+          "id": "ARCHITECT",
+          "name": "The Architect",
+          "changes": [
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "THE_ARCHITECT_EVENT_ENCOUNTER"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "The Architect"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
         {
-          "id": "FAVORED",
-          "name": "Favored"
-        }
-      ]
-    },
-    {
-      "id": "encounters",
-      "name": "Encounters",
-      "old_count": 87,
-      "new_count": 88,
-      "added": [
+          "id": "ASSASSIN_RUBY_RAIDER",
+          "name": "Assassin Raider",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 1 - Overgrowth"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "RUBY_RAIDERS_NORMAL"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Ruby Raiders"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
         {
-          "id": "TOADPOLES_NORMAL",
-          "name": "Toadpoles Normal"
+          "id": "AXEBOT",
+          "name": "Axebot",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 3 - Glory"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "AXEBOTS_NORMAL"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Bot Buddies"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "AXE_RUBY_RAIDER",
+          "name": "Axe Raider",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 1 - Overgrowth"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "RUBY_RAIDERS_NORMAL"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Ruby Raiders"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "BATTLE_FRIEND_V1",
+          "name": "Battle Friend V1.0",
+          "changes": [
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "BATTLEWORN_DUMMY_EVENT_ENCOUNTER"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Battleworn Dummy"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "BATTLE_FRIEND_V2",
+          "name": "Battle Friend V2.0",
+          "changes": [
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "BATTLEWORN_DUMMY_EVENT_ENCOUNTER"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Battleworn Dummy"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "BATTLE_FRIEND_V3",
+          "name": "Battle Friend V3.0",
+          "changes": [
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "BATTLEWORN_DUMMY_EVENT_ENCOUNTER"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Battleworn Dummy"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "BOWLBUG_EGG",
+          "name": "Bowlbug (Egg)",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 2 - Hive"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "BOWLBUGS_NORMAL"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Bowlbug Swarm"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            },
+            {
+              "field": "encounters[1].act",
+              "old": "none",
+              "new": "Act 2 - Hive"
+            },
+            {
+              "field": "encounters[1].encounter_id",
+              "old": "none",
+              "new": "BOWLBUGS_WEAK"
+            },
+            {
+              "field": "encounters[1].encounter_name",
+              "old": "none",
+              "new": "Bowlbugs"
+            },
+            {
+              "field": "encounters[1].is_weak",
+              "old": "none",
+              "new": "yes"
+            },
+            {
+              "field": "encounters[1].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "BOWLBUG_NECTAR",
+          "name": "Bowlbug (Nectar)",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 2 - Hive"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "BOWLBUGS_NORMAL"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Bowlbug Swarm"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            },
+            {
+              "field": "encounters[1].act",
+              "old": "none",
+              "new": "Act 2 - Hive"
+            },
+            {
+              "field": "encounters[1].encounter_id",
+              "old": "none",
+              "new": "BOWLBUGS_WEAK"
+            },
+            {
+              "field": "encounters[1].encounter_name",
+              "old": "none",
+              "new": "Bowlbugs"
+            },
+            {
+              "field": "encounters[1].is_weak",
+              "old": "none",
+              "new": "yes"
+            },
+            {
+              "field": "encounters[1].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "BOWLBUG_ROCK",
+          "name": "Bowlbug (Rock)",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 2 - Hive"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "BOWLBUGS_NORMAL"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Bowlbug Swarm"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            },
+            {
+              "field": "encounters[1].act",
+              "old": "none",
+              "new": "Act 2 - Hive"
+            },
+            {
+              "field": "encounters[1].encounter_id",
+              "old": "none",
+              "new": "BOWLBUGS_WEAK"
+            },
+            {
+              "field": "encounters[1].encounter_name",
+              "old": "none",
+              "new": "Bowlbugs"
+            },
+            {
+              "field": "encounters[1].is_weak",
+              "old": "none",
+              "new": "yes"
+            },
+            {
+              "field": "encounters[1].room_type",
+              "old": "none",
+              "new": "Monster"
+            },
+            {
+              "field": "encounters[2].act",
+              "old": "none",
+              "new": "Act 2 - Hive"
+            },
+            {
+              "field": "encounters[2].encounter_id",
+              "old": "none",
+              "new": "SLUMBERING_BEETLE_NORMAL"
+            },
+            {
+              "field": "encounters[2].encounter_name",
+              "old": "none",
+              "new": "Slumber Party"
+            },
+            {
+              "field": "encounters[2].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[2].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "BOWLBUG_SILK",
+          "name": "Bowlbug (Silk)",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 2 - Hive"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "BOWLBUGS_NORMAL"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Bowlbug Swarm"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            },
+            {
+              "field": "encounters[1].act",
+              "old": "none",
+              "new": "Act 2 - Hive"
+            },
+            {
+              "field": "encounters[1].encounter_id",
+              "old": "none",
+              "new": "SLUMBERING_BEETLE_NORMAL"
+            },
+            {
+              "field": "encounters[1].encounter_name",
+              "old": "none",
+              "new": "Slumber Party"
+            },
+            {
+              "field": "encounters[1].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[1].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "BRUTE_RUBY_RAIDER",
+          "name": "Brute Raider",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 1 - Overgrowth"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "RUBY_RAIDERS_NORMAL"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Ruby Raiders"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "BYGONE_EFFIGY",
+          "name": "Bygone Effigy",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 1 - Overgrowth"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "BYGONE_EFFIGY_ELITE"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Bygone Effigy"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Elite"
+            }
+          ]
+        },
+        {
+          "id": "BYRDONIS",
+          "name": "Byrdonis",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 1 - Overgrowth"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "BYRDONIS_ELITE"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Byrdonis"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Elite"
+            }
+          ]
+        },
+        {
+          "id": "CALCIFIED_CULTIST",
+          "name": "Calcified Cultist",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Underdocks"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "CULTISTS_NORMAL"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Cultists"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            },
+            {
+              "field": "encounters[1].act",
+              "old": "none",
+              "new": "Underdocks"
+            },
+            {
+              "field": "encounters[1].encounter_id",
+              "old": "none",
+              "new": "SEAPUNK_NORMAL"
+            },
+            {
+              "field": "encounters[1].encounter_name",
+              "old": "none",
+              "new": "Underdocks Wildlife"
+            },
+            {
+              "field": "encounters[1].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[1].room_type",
+              "old": "none",
+              "new": "Monster"
+            },
+            {
+              "field": "encounters[2].encounter_id",
+              "old": "none",
+              "new": "TOADPOLES_NORMAL"
+            },
+            {
+              "field": "encounters[2].encounter_name",
+              "old": "none",
+              "new": "Toadpoles Normal"
+            },
+            {
+              "field": "encounters[2].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[2].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "CEREMONIAL_BEAST",
+          "name": "Ceremonial Beast",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 1 - Overgrowth"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "CEREMONIAL_BEAST_BOSS"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Ceremonial Beast"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Boss"
+            }
+          ]
+        },
+        {
+          "id": "CHOMPER",
+          "name": "Chomper",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 2 - Hive"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "CHOMPERS_NORMAL"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "An Automaton Pair"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            },
+            {
+              "field": "encounters[1].encounter_id",
+              "old": "none",
+              "new": "TUNNELER_NORMAL"
+            },
+            {
+              "field": "encounters[1].encounter_name",
+              "old": "none",
+              "new": "Tunneling Twosome"
+            },
+            {
+              "field": "encounters[1].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[1].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "CORPSE_SLUG",
+          "name": "Corpse Slug",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Underdocks"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "CORPSE_SLUGS_NORMAL"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Many Corpse Slugs"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            },
+            {
+              "field": "encounters[1].act",
+              "old": "none",
+              "new": "Underdocks"
+            },
+            {
+              "field": "encounters[1].encounter_id",
+              "old": "none",
+              "new": "CORPSE_SLUGS_WEAK"
+            },
+            {
+              "field": "encounters[1].encounter_name",
+              "old": "none",
+              "new": "Corpse Slugs"
+            },
+            {
+              "field": "encounters[1].is_weak",
+              "old": "none",
+              "new": "yes"
+            },
+            {
+              "field": "encounters[1].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "CROSSBOW_RUBY_RAIDER",
+          "name": "Crossbow Raider",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 1 - Overgrowth"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "RUBY_RAIDERS_NORMAL"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Ruby Raiders"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "CRUSHER",
+          "name": "Crusher",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 2 - Hive"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "KAISER_CRAB_BOSS"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Kaiser Crab"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Boss"
+            }
+          ]
+        },
+        {
+          "id": "CUBEX_CONSTRUCT",
+          "name": "Cubex Construct",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 3 - Glory"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "CONSTRUCT_MENAGERIE_NORMAL"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Construct Menagerie"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            },
+            {
+              "field": "encounters[1].act",
+              "old": "none",
+              "new": "Act 1 - Overgrowth"
+            },
+            {
+              "field": "encounters[1].encounter_id",
+              "old": "none",
+              "new": "CUBEX_CONSTRUCT_NORMAL"
+            },
+            {
+              "field": "encounters[1].encounter_name",
+              "old": "none",
+              "new": "Cubex Construct"
+            },
+            {
+              "field": "encounters[1].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[1].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "DAMP_CULTIST",
+          "name": "Damp Cultist",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Underdocks"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "CULTISTS_NORMAL"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Cultists"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "DECIMILLIPEDE_SEGMENT_BACK",
+          "name": "Decimillipede Segment (Back)",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 2 - Hive"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "DECIMILLIPEDE_ELITE"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "The Decimillipede"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Elite"
+            }
+          ]
+        },
+        {
+          "id": "DECIMILLIPEDE_SEGMENT_FRONT",
+          "name": "Decimillipede Segment (Front)",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 2 - Hive"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "DECIMILLIPEDE_ELITE"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "The Decimillipede"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Elite"
+            }
+          ]
+        },
+        {
+          "id": "DECIMILLIPEDE_SEGMENT_MIDDLE",
+          "name": "Decimillipede Segment (Middle)",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 2 - Hive"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "DECIMILLIPEDE_ELITE"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "The Decimillipede"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Elite"
+            }
+          ]
+        },
+        {
+          "id": "DEVOTED_SCULPTOR",
+          "name": "Devoted Sculptor",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 3 - Glory"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "DEVOTED_SCULPTOR_WEAK"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Devoted Sculptor"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "yes"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "DOORMAKER",
+          "name": "Doormaker",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 3 - Glory"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "DOORMAKER_BOSS"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "The Doormaker"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Boss"
+            }
+          ]
+        },
+        {
+          "id": "ENTOMANCER",
+          "name": "Entomancer",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 2 - Hive"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "ENTOMANCER_ELITE"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Entomancer"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Elite"
+            }
+          ]
+        },
+        {
+          "id": "EXOSKELETON",
+          "name": "Exoskeleton",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 2 - Hive"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "EXOSKELETONS_NORMAL"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Many Exoskeletons"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            },
+            {
+              "field": "encounters[1].act",
+              "old": "none",
+              "new": "Act 2 - Hive"
+            },
+            {
+              "field": "encounters[1].encounter_id",
+              "old": "none",
+              "new": "EXOSKELETONS_WEAK"
+            },
+            {
+              "field": "encounters[1].encounter_name",
+              "old": "none",
+              "new": "Exoskeletons"
+            },
+            {
+              "field": "encounters[1].is_weak",
+              "old": "none",
+              "new": "yes"
+            },
+            {
+              "field": "encounters[1].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "EYE_WITH_TEETH",
+          "name": "Eye With Teeth",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 1 - Overgrowth"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "FOGMOG_NORMAL"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Fogmog"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "FABRICATOR",
+          "name": "Fabricator",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 3 - Glory"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "FABRICATOR_NORMAL"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Fabricator"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "FAKE_MERCHANT_MONSTER",
+          "name": "The Merchant???",
+          "changes": [
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "FAKE_MERCHANT_EVENT_ENCOUNTER"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "The Merchant???"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "FAT_GREMLIN",
+          "name": "Fat Gremlin",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Underdocks"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "GREMLIN_MERC_NORMAL"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Two Gremlins in a Trenchcoat"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "FLAIL_KNIGHT",
+          "name": "Flail Knight",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 3 - Glory"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "KNIGHTS_ELITE"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Knight Gang"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Elite"
+            }
+          ]
+        },
+        {
+          "id": "FLYCONID",
+          "name": "Flyconid",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 1 - Overgrowth"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "FLYCONID_NORMAL"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Shroom and Slime"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            },
+            {
+              "field": "encounters[1].act",
+              "old": "none",
+              "new": "Act 1 - Overgrowth"
+            },
+            {
+              "field": "encounters[1].encounter_id",
+              "old": "none",
+              "new": "SNAPPING_JAXFRUIT_NORMAL"
+            },
+            {
+              "field": "encounters[1].encounter_name",
+              "old": "none",
+              "new": "Overgrowth Flora"
+            },
+            {
+              "field": "encounters[1].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[1].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "FOGMOG",
+          "name": "Fogmog",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 1 - Overgrowth"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "FOGMOG_NORMAL"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Fogmog"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "FOSSIL_STALKER",
+          "name": "Fossil Stalker",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Underdocks"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "FOSSIL_STALKER_NORMAL"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Fossil Stalker"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "FROG_KNIGHT",
+          "name": "Frog Knight",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 3 - Glory"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "FROG_KNIGHT_NORMAL"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Frog Knight"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "FUZZY_WURM_CRAWLER",
+          "name": "Fuzzy Wurm Crawler",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 1 - Overgrowth"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "FUZZY_WURM_CRAWLER_WEAK"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Fuzzy Wurm Crawler"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "yes"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            },
+            {
+              "field": "encounters[1].act",
+              "old": "none",
+              "new": "Act 1 - Overgrowth"
+            },
+            {
+              "field": "encounters[1].encounter_id",
+              "old": "none",
+              "new": "OVERGROWTH_CRAWLERS"
+            },
+            {
+              "field": "encounters[1].encounter_name",
+              "old": "none",
+              "new": "Overgrowth Crawlers"
+            },
+            {
+              "field": "encounters[1].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[1].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "GAS_BOMB",
+          "name": "Gas Bomb",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Underdocks"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "LIVING_FOG_NORMAL"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Evil Gas"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "GLOBE_HEAD",
+          "name": "Globe Head",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 3 - Glory"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "GLOBE_HEAD_NORMAL"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "A Lone Globe Head"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "GREMLIN_MERC",
+          "name": "Gremlin Merc",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Underdocks"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "GREMLIN_MERC_NORMAL"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Two Gremlins in a Trenchcoat"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "HAUNTED_SHIP",
+          "name": "Haunted Ship",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Underdocks"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "HAUNTED_SHIP_NORMAL"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Haunted Ship"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "HUNTER_KILLER",
+          "name": "Hunter Killer",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 2 - Hive"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "HUNTER_KILLER_NORMAL"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Hunter Killer"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "INFESTED_PRISM",
+          "name": "Infested Prism",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 2 - Hive"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "INFESTED_PRISMS_ELITE"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Infested Prism"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Elite"
+            }
+          ]
+        },
+        {
+          "id": "INKLET",
+          "name": "Inklet",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 1 - Overgrowth"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "INKLETS_NORMAL"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Inklets"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "KIN_FOLLOWER",
+          "name": "Kin Follower",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 1 - Overgrowth"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "THE_KIN_BOSS"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "The Kin"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Boss"
+            }
+          ]
+        },
+        {
+          "id": "KIN_PRIEST",
+          "name": "Kin Priest",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 1 - Overgrowth"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "THE_KIN_BOSS"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "The Kin"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Boss"
+            }
+          ]
+        },
+        {
+          "id": "KNOWLEDGE_DEMON",
+          "name": "Knowledge Demon",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 2 - Hive"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "KNOWLEDGE_DEMON_BOSS"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Knowledge Demon"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Boss"
+            }
+          ]
+        },
+        {
+          "id": "LAGAVULIN_MATRIARCH",
+          "name": "Lagavulin Matriarch",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Underdocks"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "LAGAVULIN_MATRIARCH_BOSS"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Lagavulin Matriarch"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Boss"
+            }
+          ]
+        },
+        {
+          "id": "LEAF_SLIME_M",
+          "name": "Leaf Slime (M)",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 1 - Overgrowth"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "FLYCONID_NORMAL"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Shroom and Slime"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            },
+            {
+              "field": "encounters[1].act",
+              "old": "none",
+              "new": "Act 1 - Overgrowth"
+            },
+            {
+              "field": "encounters[1].encounter_id",
+              "old": "none",
+              "new": "SLIMES_NORMAL"
+            },
+            {
+              "field": "encounters[1].encounter_name",
+              "old": "none",
+              "new": "Swarm of Slimes"
+            },
+            {
+              "field": "encounters[1].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[1].room_type",
+              "old": "none",
+              "new": "Monster"
+            },
+            {
+              "field": "encounters[2].act",
+              "old": "none",
+              "new": "Act 1 - Overgrowth"
+            },
+            {
+              "field": "encounters[2].encounter_id",
+              "old": "none",
+              "new": "SLIMES_WEAK"
+            },
+            {
+              "field": "encounters[2].encounter_name",
+              "old": "none",
+              "new": "Group of Slimes"
+            },
+            {
+              "field": "encounters[2].is_weak",
+              "old": "none",
+              "new": "yes"
+            },
+            {
+              "field": "encounters[2].room_type",
+              "old": "none",
+              "new": "Monster"
+            },
+            {
+              "field": "encounters[3].act",
+              "old": "none",
+              "new": "Act 1 - Overgrowth"
+            },
+            {
+              "field": "encounters[3].encounter_id",
+              "old": "none",
+              "new": "SLITHERING_STRANGLER_NORMAL"
+            },
+            {
+              "field": "encounters[3].encounter_name",
+              "old": "none",
+              "new": "Strangler and Friend"
+            },
+            {
+              "field": "encounters[3].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[3].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "LEAF_SLIME_S",
+          "name": "Leaf Slime (S)",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 1 - Overgrowth"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "SLIMES_NORMAL"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Swarm of Slimes"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            },
+            {
+              "field": "encounters[1].act",
+              "old": "none",
+              "new": "Act 1 - Overgrowth"
+            },
+            {
+              "field": "encounters[1].encounter_id",
+              "old": "none",
+              "new": "SLIMES_WEAK"
+            },
+            {
+              "field": "encounters[1].encounter_name",
+              "old": "none",
+              "new": "Group of Slimes"
+            },
+            {
+              "field": "encounters[1].is_weak",
+              "old": "none",
+              "new": "yes"
+            },
+            {
+              "field": "encounters[1].room_type",
+              "old": "none",
+              "new": "Monster"
+            },
+            {
+              "field": "encounters[2].act",
+              "old": "none",
+              "new": "Act 1 - Overgrowth"
+            },
+            {
+              "field": "encounters[2].encounter_id",
+              "old": "none",
+              "new": "SLITHERING_STRANGLER_NORMAL"
+            },
+            {
+              "field": "encounters[2].encounter_name",
+              "old": "none",
+              "new": "Strangler and Friend"
+            },
+            {
+              "field": "encounters[2].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[2].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "LIVING_FOG",
+          "name": "Living Fog",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Underdocks"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "LIVING_FOG_NORMAL"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Evil Gas"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "LIVING_SHIELD",
+          "name": "Living Shield",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 3 - Glory"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "TURRET_OPERATOR_WEAK"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Turret Operator"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "yes"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "LOUSE_PROGENITOR",
+          "name": "Louse Progenitor",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 2 - Hive"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "LOUSE_PROGENITOR_NORMAL"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Louse Progenitor"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "MAGI_KNIGHT",
+          "name": "Magi Knight",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 3 - Glory"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "KNIGHTS_ELITE"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Knight Gang"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Elite"
+            }
+          ]
+        },
+        {
+          "id": "MAWLER",
+          "name": "Mawler",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 1 - Overgrowth"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "MAWLER_NORMAL"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Mawler"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "MECHA_KNIGHT",
+          "name": "Mecha Knight",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 3 - Glory"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "MECHA_KNIGHT_ELITE"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Mecha Knight"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Elite"
+            }
+          ]
+        },
+        {
+          "id": "MYSTERIOUS_KNIGHT",
+          "name": "Mysterious Knight",
+          "changes": [
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "MYSTERIOUS_KNIGHT_EVENT_ENCOUNTER"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Mysterious Knight"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "MYTE",
+          "name": "Myte",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 2 - Hive"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "MYTES_NORMAL"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Mass of Mytes"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "NIBBIT",
+          "name": "Nibbit",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 1 - Overgrowth"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "NIBBITS_NORMAL"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "A Pair of Nibbits"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            },
+            {
+              "field": "encounters[1].act",
+              "old": "none",
+              "new": "Act 1 - Overgrowth"
+            },
+            {
+              "field": "encounters[1].encounter_id",
+              "old": "none",
+              "new": "NIBBITS_WEAK"
+            },
+            {
+              "field": "encounters[1].encounter_name",
+              "old": "none",
+              "new": "A Lone Nibbit"
+            },
+            {
+              "field": "encounters[1].is_weak",
+              "old": "none",
+              "new": "yes"
+            },
+            {
+              "field": "encounters[1].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "OVICOPTER",
+          "name": "Ovicopter",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 2 - Hive"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "OVICOPTER_NORMAL"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Ovicopter"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "OWL_MAGISTRATE",
+          "name": "Owl Magistrate",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 3 - Glory"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "OWL_MAGISTRATE_NORMAL"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Owl Magistrate"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "PHANTASMAL_GARDENER",
+          "name": "Phantasmal Gardener",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Underdocks"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "PHANTASMAL_GARDENERS_ELITE"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Phantasmal Gardeners"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Elite"
+            }
+          ]
+        },
+        {
+          "id": "PHROG_PARASITE",
+          "name": "Phrog Parasite",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 1 - Overgrowth"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "PHROG_PARASITE_ELITE"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Phrog Parasite"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Elite"
+            }
+          ]
+        },
+        {
+          "id": "PUNCH_CONSTRUCT",
+          "name": "Punch Construct",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 3 - Glory"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "CONSTRUCT_MENAGERIE_NORMAL"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Construct Menagerie"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            },
+            {
+              "field": "encounters[1].act",
+              "old": "none",
+              "new": "Underdocks"
+            },
+            {
+              "field": "encounters[1].encounter_id",
+              "old": "none",
+              "new": "PUNCH_CONSTRUCT_NORMAL"
+            },
+            {
+              "field": "encounters[1].encounter_name",
+              "old": "none",
+              "new": "Punch Construct"
+            },
+            {
+              "field": "encounters[1].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[1].room_type",
+              "old": "none",
+              "new": "Monster"
+            },
+            {
+              "field": "encounters[2].encounter_id",
+              "old": "none",
+              "new": "PUNCH_OFF_EVENT_ENCOUNTER"
+            },
+            {
+              "field": "encounters[2].encounter_name",
+              "old": "none",
+              "new": "Punch Constructs"
+            },
+            {
+              "field": "encounters[2].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[2].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "QUEEN",
+          "name": "Queen",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 3 - Glory"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "QUEEN_BOSS"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Queen"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Boss"
+            }
+          ]
+        },
+        {
+          "id": "ROCKET",
+          "name": "Rocket",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 2 - Hive"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "KAISER_CRAB_BOSS"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Kaiser Crab"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Boss"
+            }
+          ]
+        },
+        {
+          "id": "SCROLL_OF_BITING",
+          "name": "Scroll of Biting",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 3 - Glory"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "SCROLLS_OF_BITING_NORMAL"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Many Scrolls of Biting"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            },
+            {
+              "field": "encounters[1].act",
+              "old": "none",
+              "new": "Act 3 - Glory"
+            },
+            {
+              "field": "encounters[1].encounter_id",
+              "old": "none",
+              "new": "SCROLLS_OF_BITING_WEAK"
+            },
+            {
+              "field": "encounters[1].encounter_name",
+              "old": "none",
+              "new": "Scrolls of Biting"
+            },
+            {
+              "field": "encounters[1].is_weak",
+              "old": "none",
+              "new": "yes"
+            },
+            {
+              "field": "encounters[1].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "SEAPUNK",
+          "name": "Seapunk",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Underdocks"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "SEAPUNK_NORMAL"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Underdocks Wildlife"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            },
+            {
+              "field": "encounters[1].act",
+              "old": "none",
+              "new": "Underdocks"
+            },
+            {
+              "field": "encounters[1].encounter_id",
+              "old": "none",
+              "new": "SEAPUNK_WEAK"
+            },
+            {
+              "field": "encounters[1].encounter_name",
+              "old": "none",
+              "new": "Seapunk"
+            },
+            {
+              "field": "encounters[1].is_weak",
+              "old": "none",
+              "new": "yes"
+            },
+            {
+              "field": "encounters[1].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "SEWER_CLAM",
+          "name": "Sewer Clam",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Underdocks"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "SEWER_CLAM_NORMAL"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Sewer Clam"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "SHRINKER_BEETLE",
+          "name": "Shrinker Beetle",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 1 - Overgrowth"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "OVERGROWTH_CRAWLERS"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Overgrowth Crawlers"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            },
+            {
+              "field": "encounters[1].act",
+              "old": "none",
+              "new": "Act 1 - Overgrowth"
+            },
+            {
+              "field": "encounters[1].encounter_id",
+              "old": "none",
+              "new": "SHRINKER_BEETLE_WEAK"
+            },
+            {
+              "field": "encounters[1].encounter_name",
+              "old": "none",
+              "new": "Shrinker Beetle"
+            },
+            {
+              "field": "encounters[1].is_weak",
+              "old": "none",
+              "new": "yes"
+            },
+            {
+              "field": "encounters[1].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "SKULKING_COLONY",
+          "name": "Skulking Colony",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Underdocks"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "SKULKING_COLONY_ELITE"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Skulking Colony"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Elite"
+            }
+          ]
+        },
+        {
+          "id": "SLIMED_BERSERKER",
+          "name": "Slimed Berserker",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 3 - Glory"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "SLIMED_BERSERKER_NORMAL"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Slimed Berserker"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "SLITHERING_STRANGLER",
+          "name": "Slithering Strangler",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 1 - Overgrowth"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "SLITHERING_STRANGLER_NORMAL"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Strangler and Friend"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "SLUDGE_SPINNER",
+          "name": "Sludge Spinner",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Underdocks"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "SLUDGE_SPINNER_WEAK"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Sludge Spinner"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "yes"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "SLUMBERING_BEETLE",
+          "name": "Slumbering Beetle",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 2 - Hive"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "SLUMBERING_BEETLE_NORMAL"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Slumber Party"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "SNAPPING_JAXFRUIT",
+          "name": "Snapping Jaxfruit",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 1 - Overgrowth"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "SLITHERING_STRANGLER_NORMAL"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Strangler and Friend"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            },
+            {
+              "field": "encounters[1].act",
+              "old": "none",
+              "new": "Act 1 - Overgrowth"
+            },
+            {
+              "field": "encounters[1].encounter_id",
+              "old": "none",
+              "new": "SNAPPING_JAXFRUIT_NORMAL"
+            },
+            {
+              "field": "encounters[1].encounter_name",
+              "old": "none",
+              "new": "Overgrowth Flora"
+            },
+            {
+              "field": "encounters[1].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[1].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "SNEAKY_GREMLIN",
+          "name": "Sneaky Gremlin",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Underdocks"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "GREMLIN_MERC_NORMAL"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Two Gremlins in a Trenchcoat"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "SOUL_FYSH",
+          "name": "Soul Fysh",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Underdocks"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "SOUL_FYSH_BOSS"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Soul Fysh"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Boss"
+            }
+          ]
+        },
+        {
+          "id": "SOUL_NEXUS",
+          "name": "Soul Nexus",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 3 - Glory"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "SOUL_NEXUS_ELITE"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Soul Nexus"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Elite"
+            }
+          ]
+        },
+        {
+          "id": "SPECTRAL_KNIGHT",
+          "name": "Spectral Knight",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 3 - Glory"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "KNIGHTS_ELITE"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Knight Gang"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Elite"
+            }
+          ]
+        },
+        {
+          "id": "SPINY_TOAD",
+          "name": "Spiny Toad",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 2 - Hive"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "SPINY_TOAD_NORMAL"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Spiny Toad"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "TERROR_EEL",
+          "name": "Terror Eel",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Underdocks"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "TERROR_EEL_ELITE"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Terror Eel"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Elite"
+            }
+          ]
+        },
+        {
+          "id": "TEST_SUBJECT",
+          "name": "Test Subject #C14",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 3 - Glory"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "TEST_SUBJECT_BOSS"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Test Subject"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Boss"
+            }
+          ]
+        },
+        {
+          "id": "THE_FORGOTTEN",
+          "name": "The Forgotten",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 3 - Glory"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "THE_LOST_AND_FORGOTTEN_NORMAL"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Lost and Forgotten"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "THE_INSATIABLE",
+          "name": "The Insatiable",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 2 - Hive"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "THE_INSATIABLE_BOSS"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "The Insatiable"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Boss"
+            }
+          ]
+        },
+        {
+          "id": "THE_LOST",
+          "name": "The Lost",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 3 - Glory"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "THE_LOST_AND_FORGOTTEN_NORMAL"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Lost and Forgotten"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "THE_OBSCURA",
+          "name": "The Obscura",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 2 - Hive"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "THE_OBSCURA_NORMAL"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "The Obscura"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "THIEVING_HOPPER",
+          "name": "Thieving Hopper",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 2 - Hive"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "THIEVING_HOPPER_WEAK"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Thieving Hopper"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "yes"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "TOADPOLE",
+          "name": "Toadpole",
+          "changes": [
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "TOADPOLES_NORMAL"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Toadpoles Normal"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            },
+            {
+              "field": "encounters[1].act",
+              "old": "none",
+              "new": "Underdocks"
+            },
+            {
+              "field": "encounters[1].encounter_id",
+              "old": "none",
+              "new": "TOADPOLES_WEAK"
+            },
+            {
+              "field": "encounters[1].encounter_name",
+              "old": "none",
+              "new": "Toadpoles"
+            },
+            {
+              "field": "encounters[1].is_weak",
+              "old": "none",
+              "new": "yes"
+            },
+            {
+              "field": "encounters[1].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "TORCH_HEAD_AMALGAM",
+          "name": "Torch Head Amalgam",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 3 - Glory"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "QUEEN_BOSS"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Queen"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Boss"
+            }
+          ]
+        },
+        {
+          "id": "TOUGH_EGG",
+          "name": "Tough Egg",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 2 - Hive"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "OVICOPTER_NORMAL"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Ovicopter"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "TRACKER_RUBY_RAIDER",
+          "name": "Tracker Raider",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 1 - Overgrowth"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "RUBY_RAIDERS_NORMAL"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Ruby Raiders"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "TUNNELER",
+          "name": "Tunneler",
+          "changes": [
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "TUNNELER_NORMAL"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Tunneling Twosome"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            },
+            {
+              "field": "encounters[1].act",
+              "old": "none",
+              "new": "Act 2 - Hive"
+            },
+            {
+              "field": "encounters[1].encounter_id",
+              "old": "none",
+              "new": "TUNNELER_WEAK"
+            },
+            {
+              "field": "encounters[1].encounter_name",
+              "old": "none",
+              "new": "Tunneler"
+            },
+            {
+              "field": "encounters[1].is_weak",
+              "old": "none",
+              "new": "yes"
+            },
+            {
+              "field": "encounters[1].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "TURRET_OPERATOR",
+          "name": "Turret Operator",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 3 - Glory"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "TURRET_OPERATOR_WEAK"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Turret Operator"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "yes"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "TWIG_SLIME_M",
+          "name": "Twig Slime (M)",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 1 - Overgrowth"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "FLYCONID_NORMAL"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Shroom and Slime"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            },
+            {
+              "field": "encounters[1].act",
+              "old": "none",
+              "new": "Act 1 - Overgrowth"
+            },
+            {
+              "field": "encounters[1].encounter_id",
+              "old": "none",
+              "new": "SLIMES_NORMAL"
+            },
+            {
+              "field": "encounters[1].encounter_name",
+              "old": "none",
+              "new": "Swarm of Slimes"
+            },
+            {
+              "field": "encounters[1].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[1].room_type",
+              "old": "none",
+              "new": "Monster"
+            },
+            {
+              "field": "encounters[2].act",
+              "old": "none",
+              "new": "Act 1 - Overgrowth"
+            },
+            {
+              "field": "encounters[2].encounter_id",
+              "old": "none",
+              "new": "SLIMES_WEAK"
+            },
+            {
+              "field": "encounters[2].encounter_name",
+              "old": "none",
+              "new": "Group of Slimes"
+            },
+            {
+              "field": "encounters[2].is_weak",
+              "old": "none",
+              "new": "yes"
+            },
+            {
+              "field": "encounters[2].room_type",
+              "old": "none",
+              "new": "Monster"
+            },
+            {
+              "field": "encounters[3].act",
+              "old": "none",
+              "new": "Act 1 - Overgrowth"
+            },
+            {
+              "field": "encounters[3].encounter_id",
+              "old": "none",
+              "new": "SLITHERING_STRANGLER_NORMAL"
+            },
+            {
+              "field": "encounters[3].encounter_name",
+              "old": "none",
+              "new": "Strangler and Friend"
+            },
+            {
+              "field": "encounters[3].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[3].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "TWIG_SLIME_S",
+          "name": "Twig Slime (S)",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 1 - Overgrowth"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "SLIMES_NORMAL"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Swarm of Slimes"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            },
+            {
+              "field": "encounters[1].act",
+              "old": "none",
+              "new": "Act 1 - Overgrowth"
+            },
+            {
+              "field": "encounters[1].encounter_id",
+              "old": "none",
+              "new": "SLIMES_WEAK"
+            },
+            {
+              "field": "encounters[1].encounter_name",
+              "old": "none",
+              "new": "Group of Slimes"
+            },
+            {
+              "field": "encounters[1].is_weak",
+              "old": "none",
+              "new": "yes"
+            },
+            {
+              "field": "encounters[1].room_type",
+              "old": "none",
+              "new": "Monster"
+            },
+            {
+              "field": "encounters[2].act",
+              "old": "none",
+              "new": "Act 1 - Overgrowth"
+            },
+            {
+              "field": "encounters[2].encounter_id",
+              "old": "none",
+              "new": "SLITHERING_STRANGLER_NORMAL"
+            },
+            {
+              "field": "encounters[2].encounter_name",
+              "old": "none",
+              "new": "Strangler and Friend"
+            },
+            {
+              "field": "encounters[2].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[2].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "TWO_TAILED_RAT",
+          "name": "Two-Tailed Rat",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Underdocks"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "TWO_TAILED_RATS_NORMAL"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Two-Tailed Rats"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "VANTOM",
+          "name": "Vantom",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 1 - Overgrowth"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "VANTOM_BOSS"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Vantom"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Boss"
+            }
+          ]
+        },
+        {
+          "id": "VINE_SHAMBLER",
+          "name": "Vine Shambler",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Act 1 - Overgrowth"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "VINE_SHAMBLER_NORMAL"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Vine Shambler"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "WATERFALL_GIANT",
+          "name": "Waterfall Giant",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "none",
+              "new": "Underdocks"
+            },
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "WATERFALL_GIANT_BOSS"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Waterfall Giant"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Boss"
+            }
+          ]
+        },
+        {
+          "id": "WRIGGLER",
+          "name": "Wriggler",
+          "changes": [
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "none",
+              "new": "DENSE_VEGETATION_EVENT_ENCOUNTER"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "none",
+              "new": "Wrigglers"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[0].room_type",
+              "old": "none",
+              "new": "Monster"
+            },
+            {
+              "field": "encounters[1].act",
+              "old": "none",
+              "new": "Act 1 - Overgrowth"
+            },
+            {
+              "field": "encounters[1].encounter_id",
+              "old": "none",
+              "new": "PHROG_PARASITE_ELITE"
+            },
+            {
+              "field": "encounters[1].encounter_name",
+              "old": "none",
+              "new": "Phrog Parasite"
+            },
+            {
+              "field": "encounters[1].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[1].room_type",
+              "old": "none",
+              "new": "Elite"
+            }
+          ]
         }
       ]
     },

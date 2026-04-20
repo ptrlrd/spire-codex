@@ -1411,25 +1411,6 @@
     "loss_text": "Une [gold]Mante Chapardeuse[/gold] a braqué [b]The Adventurer[/b]."
   },
   {
-    "id": "TOADPOLES_NORMAL",
-    "name": "Toadpoles Normal",
-    "room_type": "Monster",
-    "is_weak": false,
-    "act": null,
-    "tags": null,
-    "monsters": [
-      {
-        "id": "CALCIFIED_CULTIST",
-        "name": "Adepte calcifié"
-      },
-      {
-        "id": "TOADPOLE",
-        "name": "Crapautard"
-      }
-    ],
-    "loss_text": null
-  },
-  {
     "id": "TOADPOLES_WEAK",
     "name": "Crapautards",
     "room_type": "Monster",

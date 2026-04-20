@@ -8166,53 +8166,6 @@
     "compendium_order": 300
   },
   {
-    "id": "GRAPPLE",
-    "name": "Grapple",
-    "description": "",
-    "description_raw": "",
-    "cost": 1,
-    "is_x_cost": null,
-    "is_x_star_cost": null,
-    "star_cost": null,
-    "type": "Angriff",
-    "rarity": "Ungewöhnlich",
-    "target": "AnyEnemy",
-    "color": "unknown",
-    "damage": 7,
-    "block": null,
-    "hit_count": null,
-    "powers_applied": [
-      {
-        "power": "Grapple",
-        "amount": 5,
-        "power_key": "Grapple"
-      }
-    ],
-    "cards_draw": null,
-    "energy_gain": null,
-    "hp_loss": null,
-    "keywords": null,
-    "tags": null,
-    "spawns_cards": null,
-    "vars": {
-      "Damage": 7,
-      "GrapplePower": 5,
-      "Grapple": 5
-    },
-    "upgrade": {
-      "damage": "+2",
-      "grapplepower": "+2"
-    },
-    "image_url": "/static/images/cards/grapple.webp",
-    "beta_image_url": null,
-    "type_variants": null,
-    "can_be_generated_in_combat": null,
-    "upgrade_description": null,
-    "type_key": "Attack",
-    "rarity_key": "Uncommon",
-    "compendium_order": 576
-  },
-  {
     "id": "CRUELTY",
     "name": "Grausamkeit",
     "description": "[gold]Verwundbare[/gold] Gegner nehmen 25% mehr Schaden.",

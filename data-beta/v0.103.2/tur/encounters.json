@@ -1411,25 +1411,6 @@
     "loss_text": "[b]The Adventurer[/b], [gold]Hırsız Çekirge[/gold] tarafından gasp edildi."
   },
   {
-    "id": "TOADPOLES_NORMAL",
-    "name": "Toadpoles Normal",
-    "room_type": "Monster",
-    "is_weak": false,
-    "act": null,
-    "tags": null,
-    "monsters": [
-      {
-        "id": "CALCIFIED_CULTIST",
-        "name": "Taşlaşmış Tarikatçı"
-      },
-      {
-        "id": "TOADPOLE",
-        "name": "İribaş"
-      }
-    ],
-    "loss_text": null
-  },
-  {
     "id": "TOADPOLES_WEAK",
     "name": "İribaşlar",
     "room_type": "Monster",

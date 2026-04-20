@@ -5,6 +5,7 @@ import re
 from pathlib import Path
 from description_resolver import resolve_description, extract_vars_from_source
 
+from orphan_filter import is_orphan
 from parser_paths import BASE, DECOMPILED, loc_dir as _loc_dir, data_dir as _data_dir
 
 RELICS_DIR = DECOMPILED / "MegaCrit.Sts2.Core.Models.Relics"
@@ -75,6 +76,11 @@ def parse_relic_pools() -> dict[str, str]:
 def parse_single_relic(
     filepath: Path, localization: dict, relic_pools: dict, ench_loc: dict | None = None
 ) -> dict | None:
+    # Skip orphan .cs files left over from previous extractions — the
+    # class no longer exists in the current DLL (no cross-references,
+    # stale mtime) so it shouldn't appear in our output.
+    if is_orphan(filepath):
+        return None
     content = filepath.read_text(encoding="utf-8")
     class_name = filepath.stem
 
