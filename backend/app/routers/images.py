@@ -28,7 +28,7 @@ CATEGORIES: dict[str, tuple[str, str, bool, list[str] | None]] = {
         "NPCs",
         "misc",
         False,
-        ["neow.png", "tezcatara.png", "merchant.png", "fake_merchant.png"],
+        ["neow-only.png", "tezcatara.png", "merchant.png", "fake_merchant.png"],
     ),
     "renders": ("Spine Renders", "renders", True, None),
     "cards-beta": ("Cards (Beta Art)", "cards/beta", False, None),
@@ -47,8 +47,9 @@ CATEGORIES: dict[str, tuple[str, str, bool, list[str] | None]] = {
             # Tanx / Vakuu / Nonupeipe / Pael as `_placeholder.png` in
             # `images/ancients/` since the final polished art isn't done,
             # but the placeholders are what actually renders in-game today
-            # and players see them, so they're shippable.
-            "neow.png",
+            # and players see them, so they're shippable. Neow's hi-res
+            # render lives at `misc/neow-only.png` (just the character,
+            # no environment) so it stays in the NPCs category — not here.
             "tezcatara.png",
             "darv.png",
             "orobas.png",
