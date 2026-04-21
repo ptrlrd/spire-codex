@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { IS_BETA } from "@/lib/seo";
@@ -121,6 +121,27 @@ export default function Footer() {
   const pathname = usePathname();
   const [showFeedback, setShowFeedback] = useState(false);
 
+  // Open the feedback modal when navigated to with `#feedback` in the URL
+  // (the Contact menu in the navbar uses this anchor). Listening to
+  // `hashchange` on top of the initial check covers both first-load and
+  // intra-page nav. Closing the modal also strips the hash so the URL
+  // doesn't keep re-opening it on back/forward.
+  useEffect(() => {
+    function checkHash() {
+      if (window.location.hash === "#feedback") setShowFeedback(true);
+    }
+    checkHash();
+    window.addEventListener("hashchange", checkHash);
+    return () => window.removeEventListener("hashchange", checkHash);
+  }, []);
+
+  function closeFeedback() {
+    setShowFeedback(false);
+    if (window.location.hash === "#feedback") {
+      history.replaceState(null, "", window.location.pathname + window.location.search);
+    }
+  }
+
   return (
     <footer className="border-t border-[var(--border-subtle)] mt-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-[var(--text-muted)]">
@@ -181,7 +202,7 @@ export default function Footer() {
           {IS_BETA ? t("Stable Site", lang) : t("Beta Site", lang)}
         </a>
       </div>
-      {showFeedback && <FeedbackModal onClose={() => setShowFeedback(false)} page={pathname} />}
+      {showFeedback && <FeedbackModal onClose={closeFeedback} page={pathname} />}
     </footer>
   );
 }

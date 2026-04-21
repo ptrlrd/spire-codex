@@ -75,12 +75,18 @@ export default function HomeFAQ({
               <h3 className="text-base sm:text-lg font-semibold text-[var(--text-primary)] group-hover:text-[var(--accent-gold)] transition-colors">
                 {faq.question}
               </h3>
-              <span
+              <svg
                 aria-hidden
-                className="shrink-0 text-sm text-[var(--text-muted)] transition-transform group-open:rotate-180"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                className="shrink-0 w-4 h-4 text-[var(--text-muted)] transition-transform group-open:rotate-180"
               >
-                ▾
-              </span>
+                <path
+                  fillRule="evenodd"
+                  d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 11.168l3.71-3.938a.75.75 0 1 1 1.08 1.04l-4.25 4.5a.75.75 0 0 1-1.08 0l-4.25-4.5a.75.75 0 0 1 .02-1.06z"
+                  clipRule="evenodd"
+                />
+              </svg>
             </summary>
             <p className="px-4 sm:px-5 pb-4 sm:pb-5 -mt-1 text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed">
               {faq.answer}
