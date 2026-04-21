@@ -125,7 +125,7 @@ export default function SiteSwitcher() {
   const currentLabel = current?.label ?? (IS_BETA ? "beta" : "main");
 
   return (
-    <div className="relative hidden sm:block">
+    <div className="relative">
       <button
         ref={buttonRef}
         onClick={() => setOpen(!open)}

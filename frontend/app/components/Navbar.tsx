@@ -12,6 +12,8 @@ import { IS_BETA } from "@/lib/seo";
 
 const LANG_CODES = new Set(["deu", "esp", "fra", "ita", "jpn", "kor", "pol", "ptb", "rus", "spa", "tha", "tur", "zhs"]);
 
+const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
+
 interface NavGroup {
   label: string;
   links: { href: string; label: string }[];
@@ -47,15 +49,15 @@ const NAV_GROUPS: NavGroup[] = [
     ],
   },
   {
-    label: "Game Info",
+    label: "Gameplay",
     links: [
       { href: "/news", label: "News" },
       { href: "/merchant", label: "Merchant" },
       { href: "/ancients", label: "Ancients" },
       { href: "/keywords", label: "Keywords" },
-      { href: "/compare", label: "Compare" },
+      { href: "/compare", label: "Compare Characters" },
       { href: "/modifiers", label: "Custom Mode" },
-      { href: "/unlocks", label: "Unlocks" },
+      { href: "/unlocks", label: "Unlockables" },
       { href: "/mechanics", label: "Mechanics" },
       { href: "/guides", label: "Guides" },
     ],
@@ -66,16 +68,30 @@ const NAV_GROUPS: NavGroup[] = [
       { href: "/leaderboards", label: "Leaderboards" },
       { href: "/leaderboards/submit", label: "Submit a Run" },
       { href: "/leaderboards/stats", label: "Stats" },
+      { href: "/showcase", label: "Showcase" },
     ],
   },
   {
-    label: "About the Site",
+    label: "About",
     links: [
+      { href: "/about", label: "Spire Codex" },
       { href: "/developers", label: "Developers" },
-      { href: "/showcase", label: "Showcase" },
+      { href: `${API_BASE}/docs`, label: "API" },
       { href: "/changelog", label: "Changelog" },
-      { href: "/about", label: "About" },
+      { href: "/thank-you", label: "Thank You" },
+      { href: "https://ko-fi.com/yitsy", label: "Ko-fi" },
+    ],
+  },
+  {
+    label: "Contact",
+    links: [
       { href: "https://discord.gg/xMsTBeh", label: "Discord" },
+      { href: "https://github.com/ptrlrd/spire-codex", label: "GitHub" },
+      // Hash anchor (no leading slash): Footer listens for `#feedback`
+      // and opens the existing feedback modal in place, so the link
+      // works on any page without a full-page nav back to home.
+      { href: "#feedback", label: "Feedback" },
+      { href: "mailto:media@spire-codex.com", label: "Email" },
     ],
   },
 ];
@@ -145,9 +161,99 @@ export default function Navbar() {
             </span>
           </Link>
 
-          {/* Middle search — non-home pages only. Takes ~40% of the bar on desktop. */}
+          {/* Desktop nav — lg+ only. Single-row mega-menu pattern: each
+              group button opens a multi-column panel below the row. Pure
+              CSS toggle (`group-hover` + `group-focus-within`) so keyboard
+              users get the same affordance as mouse users; the panel is
+              `display:none` until either trigger fires, which keeps the
+              inner links out of the tab order while collapsed. The wrapper
+              uses `top-full pt-1` (padding INSIDE the absolute box) so
+              there's visual breathing room without breaking the hover
+              chain — a margin gap would briefly leave the cursor over
+              "nothing" and snap the panel shut. Last group's panel is
+              right-anchored so it doesn't push past the viewport edge. */}
+          <div className="hidden lg:flex items-center gap-1 shrink-0">
+            {NAV_GROUPS.map((group, i) => {
+              const links = IS_BETA ? group.links.filter((l) => !BETA_HIDDEN.has(l.href)) : group.links;
+              if (links.length === 0) return null;
+              const hasActive = links.some(
+                (link) => !link.href.startsWith("http") && isLinkActive(strippedPath, link.href)
+              );
+              const isLast = i === NAV_GROUPS.length - 1;
+              return (
+                <div key={group.label} className="relative group">
+                  <button
+                    type="button"
+                    aria-haspopup="menu"
+                    className={`flex items-center gap-1.5 px-3.5 py-2 text-sm font-medium rounded-md transition-colors ${
+                      hasActive
+                        ? "text-[var(--accent-gold)]"
+                        : "text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-card)]"
+                    } group-hover:bg-[var(--bg-card)] group-focus-within:bg-[var(--bg-card)]`}
+                  >
+                    {t(group.label, lang)}
+                    <svg
+                      aria-hidden
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      className="w-4 h-4 text-[var(--text-secondary)] transition-transform group-hover:rotate-180 group-focus-within:rotate-180"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 11.168l3.71-3.938a.75.75 0 1 1 1.08 1.04l-4.25 4.5a.75.75 0 0 1-1.08 0l-4.25-4.5a.75.75 0 0 1 .02-1.06z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  </button>
+                  <div
+                    className={`absolute ${isLast ? "right-0" : "left-0"} top-full pt-2 hidden group-hover:block group-focus-within:block`}
+                  >
+                    <div
+                      role="menu"
+                      className="grid grid-cols-2 w-[22rem] gap-x-4 gap-y-0.5 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] shadow-xl shadow-black/30 p-2"
+                    >
+                      {links.map((link) => {
+                        const isInternal = link.href.startsWith("/");
+                        const isHttp = link.href.startsWith("http");
+                        const fullHref = isInternal ? `${langPrefix}${link.href}` : link.href;
+                        const isActive = isInternal && isLinkActive(strippedPath, link.href);
+                        const className = `block px-3 py-2 text-sm font-medium whitespace-nowrap rounded-md transition-colors ${
+                          isActive
+                            ? "text-[var(--accent-gold)] bg-[var(--bg-card)]"
+                            : "text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-card)]"
+                        }`;
+                        if (isInternal) {
+                          return (
+                            <Link key={link.href} href={fullHref} role="menuitem" className={className}>
+                              {t(link.label, lang)}
+                            </Link>
+                          );
+                        }
+                        return (
+                          <a
+                            key={link.href}
+                            href={fullHref}
+                            {...(isHttp ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                            role="menuitem"
+                            className={className}
+                          >
+                            {t(link.label, lang)}
+                          </a>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Inline search bar — md only. At lg+ the nav owns the row
+              and search collapses to the icon trigger in the right cluster
+              (Apple / Linear pattern). The icon still opens the same modal
+              and the `.` global hotkey works at every breakpoint. */}
           {!isHome && (
-            <div className="hidden md:flex flex-1 max-w-md">
+            <div className="hidden md:flex lg:hidden flex-1 max-w-md">
               <SearchTrigger variant="nav" />
             </div>
           )}
@@ -161,15 +267,17 @@ export default function Navbar() {
             <SiteSwitcher />
             <LanguageSelector />
 
-            {/* Mobile icon-only search — non-home pages only, sits next to the language selector */}
+            {/* Icon search — visible on mobile (below md) AND at lg+
+                where the inline bar collapses. Sits next to the language
+                selector in the right cluster. */}
             {!isHome && (
-              <div className="md:hidden">
+              <div className="md:hidden lg:flex">
                 <SearchTrigger variant="icon" />
               </div>
             )}
 
-          {/* Burger button */}
-          <div className="relative">
+          {/* Burger button — hidden at lg+ where the secondary nav row below takes over */}
+          <div className="relative lg:hidden">
             <button
               ref={buttonRef}
               onClick={() => setOpen(!open)}
@@ -222,39 +330,47 @@ export default function Navbar() {
                         }`}
                       >
                         {t(group.label, lang)}
-                        <span className={`text-[10px] transition-transform ${isExpanded ? "rotate-90" : ""}`}>
-                          ▸
-                        </span>
+                        <svg
+                          aria-hidden
+                          viewBox="0 0 20 20"
+                          fill="currentColor"
+                          className={`w-3.5 h-3.5 transition-transform ${isExpanded ? "" : "-rotate-90"}`}
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 11.168l3.71-3.938a.75.75 0 1 1 1.08 1.04l-4.25 4.5a.75.75 0 0 1-1.08 0l-4.25-4.5a.75.75 0 0 1 .02-1.06z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
                       </button>
                       {isExpanded && (
                         <div className="pb-1">
                           {links.map((link) => {
-                            const isExternal = link.href.startsWith("http");
-                            const fullHref = isExternal ? link.href : `${langPrefix}${link.href}`;
-                            const isActive = !isExternal && isLinkActive(strippedPath, link.href);
+                            const isInternal = link.href.startsWith("/");
+                            const isHttp = link.href.startsWith("http");
+                            const fullHref = isInternal ? `${langPrefix}${link.href}` : link.href;
+                            const isActive = isInternal && isLinkActive(strippedPath, link.href);
                             const className = `block px-6 py-1.5 text-sm font-medium transition-colors ${
                               isActive
                                 ? "text-[var(--accent-gold)] bg-[var(--bg-card)]"
                                 : "text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-card)]"
                             }`;
-                            return isExternal ? (
+                            if (isInternal) {
+                              return (
+                                <Link key={link.href} href={fullHref} className={className}>
+                                  {t(link.label, lang)}
+                                </Link>
+                              );
+                            }
+                            return (
                               <a
                                 key={link.href}
                                 href={fullHref}
-                                target="_blank"
-                                rel="noopener noreferrer"
+                                {...(isHttp ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                                 className={className}
                               >
                                 {t(link.label, lang)}
                               </a>
-                            ) : (
-                              <Link
-                                key={link.href}
-                                href={fullHref}
-                                className={className}
-                              >
-                                {t(link.label, lang)}
-                              </Link>
                             );
                           })}
                         </div>
