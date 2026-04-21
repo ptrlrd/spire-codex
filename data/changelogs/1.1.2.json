@@ -1,0 +1,5021 @@
+{
+  "app_id": 2868840,
+  "game_version": "1.1.2",
+  "build_id": "",
+  "tag": "1.1.2",
+  "date": "2026-04-20",
+  "title": "News vertical, Knowledge Demon bot, desktop mega-menu nav, power descriptions, merchant v0.103.2 prices",
+  "from_ref": "v1.1.1",
+  "to_ref": "current",
+  "summary": {
+    "added": 0,
+    "removed": 0,
+    "changed": 280
+  },
+  "features": [
+    "News vertical: new /news and /news/{gid} routes mirror Steam's Slay the Spire 2 announcements with Mega Crit / Press / All tabs, URL-as-slug routing, and sanitized BBCode bodies. Every announcement is archived locally so content survives Steam's sliding-window rotation.",
+    "Knowledge Demon info page at /knowledge-demon — the Discord bot for StS2 communities. Slash commands for every entity (/card, /relic, /monster, /potion, /character, /event, /power, /enchantment, /lookup, /meta) plus a full moderation toolkit. Bot also listed on /showcase.",
+    "Thank You page at /thank-you — split from /about so Ko-fi supporters and community contributors have a direct link.",
+    "Desktop mega-menu nav at lg+: inline dropdowns with uniform multi-column panels, burger hidden, inline search collapses to icon (Apple / Linear pattern). New Contact group with Discord, GitHub, Feedback, Email — Feedback opens the existing modal on any page via a #feedback hash.",
+    "Home page grid: News, Leaderboards, Stats, Guides, Showcase, and FAQ sections surface the site's breadth on the landing page.",
+    "Scoring mechanics detail page at /mechanics/score-formula covering the daily-leaderboard packing system.",
+    "Unified SiteSwitcher: one dropdown lists `main` plus every beta version with the current view filtered out. Replaces the separate site-toggle button and the beta-only VersionSelector.",
+    "Home FAQ accordion is now exclusive — opening one auto-closes any other (native `<details name=…>` behavior).",
+    "StS2 abbreviation added to 24 meta descriptions across 14 pages, a new FAQ entry, and the About intro so queries like `StS2 cards` or `StS2 tier list` route to Spire Codex.",
+    "Ancient room backgrounds (Darv, Orobas, Tanx, Vakuu, Nonupeipe, Pael) added to the Images → Backgrounds gallery. Neow gallery image rebuilt as a proper cave-bg + Spine render + vignette composite so it matches what you see in game.",
+    "Image search now matches category names alongside filenames, so queries like `darv background` surface the Backgrounds gallery.",
+    "Leaderboards, runs, stats, footer, and search all translated across the 14 supported languages. Character + encounter names in leaderboard rows and run summaries now look up against /api/characters and /api/encounters with a `displayName(id)` fallback.",
+    "SiteSwitcher no longer hidden below `sm`, so mobile keeps the main/beta toggle in the right cluster (main · language · search · menu order).",
+    "Chevron indicators upgraded sitewide (Navbar desktop + burger, HomeFAQ, LocalizedNames, RelatedCards) — thin Unicode `▾` / `▸` swapped for Heroicons-style SVG chevrons with clearer contrast at small sizes.",
+    "Beta badge color switched from gold to emerald so it matches the rest of the beta-site accent scheme.",
+    "STS2Replays.com added to the /showcase gallery."
+  ],
+  "fixes": [
+    "Power descriptions: drop deprecated entries, source canonical text from cards, polish placeholders (150 powers updated).",
+    "Card pity counter wording: counter ticks per roll, not per pick.",
+    "Card upgrade rendering: `IfUpgraded` conditional no longer leaks a stray `|}`, and power-suffix bumps (e.g. VulnerablePower upgrades) now apply correctly.",
+    "Leaderboard character icons no longer leak localhost URLs in production.",
+    "Entity-list `generateMetadata` bounded to a 3s `/api/stats` fetch so static generation can't hang.",
+    "Underdocks encounters now return `act: 'Act 1 - Underdocks'` so the filter groups them with the other Act 1 options instead of listing Underdocks as its own top-level act. (Closes #91.)",
+    "thieving_hopper bestiary sprite re-rendered at 2048 to fix the pixelated 512-direct render. (Closes #98.)",
+    "Beta home: Leaderboards + Stats sections pull from the stable site since beta data doesn't carry runs.",
+    "Beta /leaderboards/submit now shows a disabled notice instead of letting users hit a 403.",
+    "Merchant v0.103.2 prices: relic prices reduced by 25g, A6 Inflation replaces Gloom, and the shop blacklist expands to cover Bowler Hat, Amethyst Aubergine, and Lucky Fysh.",
+    "Parser gap: captured two v0.103.1 patch-note items the parser had been missing.",
+    "News meta format aligned with the standard `Slay the Spire 2 {Topic} - {Descriptor} | Spire Codex` shape.",
+    "/news pages render at request time (`force-dynamic`) instead of at build.",
+    "Door monster removed from the bestiary — stale v0.99.1 orphan, not present in v0.103.2. Orphan-class detection added so future stale ilspycmd output stops polluting data.",
+    "Sitewide sync to v0.103.2 game state — mechanics text, merchant prose, and auto-counted metadata all match the current game.",
+    "Accidentally-committed `card_builder.db` removed and gitignored."
+  ],
+  "api_changes": [
+    "NEW `GET /api/news` — Steam announcements + community news, archived locally. Filters: `feed_type`, `feedname`, `tag`, `since`, `search`, `limit`, `offset`.",
+    "NEW `GET /api/news/{gid}` — single news article with raw HTML / BBCode body.",
+    "`GET /api/encounters`: Underdocks encounters now return `act: 'Act 1 - Underdocks'`. The backend's case-insensitive substring filter means existing `?act=underdocks` links keep working."
+  ],
+  "categories": [
+    {
+      "id": "cards",
+      "name": "Cards",
+      "old_count": 576,
+      "new_count": 576,
+      "changed": [
+        {
+          "id": "ALCHEMIZE",
+          "name": "Alchemize",
+          "changes": [
+            {
+              "field": "can_be_generated_in_combat",
+              "old": "none",
+              "new": "no"
+            }
+          ]
+        },
+        {
+          "id": "ANTICIPATE",
+          "name": "Anticipate",
+          "changes": [
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "Gain 3 [gold]Dexterity[/gold] this turn."
+            }
+          ]
+        },
+        {
+          "id": "ASSASSINATE",
+          "name": "Assassinate",
+          "changes": [
+            {
+              "field": "upgrade_description",
+              "old": "Deal 13 damage.\nApply 1 [gold]Vulnerable[/gold].",
+              "new": "Deal 13 damage.\nApply 2 [gold]Vulnerable[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "BASH",
+          "name": "Bash",
+          "changes": [
+            {
+              "field": "upgrade_description",
+              "old": "Deal 10 damage.\nApply 2 [gold]Vulnerable[/gold].",
+              "new": "Deal 10 damage.\nApply 3 [gold]Vulnerable[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "BEAM_CELL",
+          "name": "Beam Cell",
+          "changes": [
+            {
+              "field": "upgrade_description",
+              "old": "Deal 4 damage.\nApply 1 [gold]Vulnerable[/gold].",
+              "new": "Deal 4 damage.\nApply 2 [gold]Vulnerable[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "BRAND",
+          "name": "Brand",
+          "changes": [
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "Lose 1 HP.\n[gold]Exhaust[/gold] 1 card.\nGain 2 [gold]Strength[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "BREAK",
+          "name": "Break",
+          "changes": [
+            {
+              "field": "upgrade_description",
+              "old": "Deal 30 damage.\nApply 5 [gold]Vulnerable[/gold].",
+              "new": "Deal 30 damage.\nApply 7 [gold]Vulnerable[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "BUBBLE_BUBBLE",
+          "name": "Bubble Bubble",
+          "changes": [
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "If the enemy has [gold]Poison[/gold], apply 12 [gold]Poison[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "BULK_UP",
+          "name": "Bulk Up",
+          "changes": [
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "Lose 1 Orb Slot.\nGain 3 [gold]Strength[/gold].\nGain 3 [gold]Dexterity[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "COORDINATE",
+          "name": "Coordinate",
+          "changes": [
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "Give another player 8 [gold]Strength[/gold] this turn."
+            }
+          ]
+        },
+        {
+          "id": "DEADLY_POISON",
+          "name": "Deadly Poison",
+          "changes": [
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "Apply 7 [gold]Poison[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "DEATHBRINGER",
+          "name": "Deathbringer",
+          "changes": [
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "Apply 26 [gold]Doom[/gold] and 1 [gold]Weak[/gold] to ALL enemies."
+            }
+          ]
+        },
+        {
+          "id": "DISINTEGRATION",
+          "name": "Disintegration",
+          "changes": [
+            {
+              "field": "can_be_generated_in_combat",
+              "old": "none",
+              "new": "no"
+            }
+          ]
+        },
+        {
+          "id": "DUAL_WIELD",
+          "name": "Dual Wield",
+          "changes": [
+            {
+              "field": "description",
+              "old": "Choose an Attack or Power card. Add  copies|a copy} of that card into your [g...",
+              "new": "Choose an Attack or Power card. Add a copy of that card into your [gold]Hand[..."
+            },
+            {
+              "field": "upgrade_description",
+              "old": "Choose an Attack or Power card. Add [Cards copies|a copy] of that card into y...",
+              "new": "Choose an Attack or Power card. Add 2 copies of that card into your [gold]Han..."
+            }
+          ]
+        },
+        {
+          "id": "END_OF_DAYS",
+          "name": "End of Days",
+          "changes": [
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "Apply 37 [gold]Doom[/gold] to ALL enemies.\nKill enemies with at least as much..."
+            }
+          ]
+        },
+        {
+          "id": "FEAR",
+          "name": "Fear",
+          "changes": [
+            {
+              "field": "upgrade_description",
+              "old": "Deal 8 damage.\nApply 1 [gold]Vulnerable[/gold].",
+              "new": "Deal 8 damage.\nApply 2 [gold]Vulnerable[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "FEED",
+          "name": "Feed",
+          "changes": [
+            {
+              "field": "can_be_generated_in_combat",
+              "old": "none",
+              "new": "no"
+            }
+          ]
+        },
+        {
+          "id": "FEEDING_FRENZY",
+          "name": "Feeding Frenzy",
+          "changes": [
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "Gain 7 [gold]Strength[/gold] this turn."
+            }
+          ]
+        },
+        {
+          "id": "FIGHT_ME",
+          "name": "Fight Me!",
+          "changes": [
+            {
+              "field": "upgrade_description",
+              "old": "Deal 6 damage twice.\nGain 3 [gold]Strength[/gold].\nThe enemy gains 1 [gold]St...",
+              "new": "Deal 6 damage twice.\nGain 4 [gold]Strength[/gold].\nThe enemy gains 1 [gold]St..."
+            }
+          ]
+        },
+        {
+          "id": "FOOTWORK",
+          "name": "Footwork",
+          "changes": [
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "Gain 3 [gold]Dexterity[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "FRANTIC_ESCAPE",
+          "name": "Frantic Escape",
+          "changes": [
+            {
+              "field": "can_be_generated_in_combat",
+              "old": "none",
+              "new": "no"
+            }
+          ]
+        },
+        {
+          "id": "GO_FOR_THE_EYES",
+          "name": "Go for the Eyes",
+          "changes": [
+            {
+              "field": "upgrade_description",
+              "old": "Deal 4 damage.\nIf the enemy intends to attack, apply 1 [gold]Weak[/gold].",
+              "new": "Deal 4 damage.\nIf the enemy intends to attack, apply 2 [gold]Weak[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "HAND_OF_GREED",
+          "name": "Hand of Greed",
+          "changes": [
+            {
+              "field": "can_be_generated_in_combat",
+              "old": "none",
+              "new": "no"
+            }
+          ]
+        },
+        {
+          "id": "HAZE",
+          "name": "Haze",
+          "changes": [
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "Apply 6 [gold]Poison[/gold] to ALL enemies."
+            }
+          ]
+        },
+        {
+          "id": "HIDDEN_GEM",
+          "name": "Hidden Gem",
+          "changes": [
+            {
+              "field": "can_be_generated_in_combat",
+              "old": "none",
+              "new": "no"
+            }
+          ]
+        },
+        {
+          "id": "HIGH_FIVE",
+          "name": "High Five",
+          "changes": [
+            {
+              "field": "upgrade_description",
+              "old": "[gold]Osty[/gold] deals 13 damage\nand applies 2 [gold]Vulnerable[/gold]\nto AL...",
+              "new": "[gold]Osty[/gold] deals 13 damage\nand applies 3 [gold]Vulnerable[/gold]\nto AL..."
+            }
+          ]
+        },
+        {
+          "id": "LEG_SWEEP",
+          "name": "Leg Sweep",
+          "changes": [
+            {
+              "field": "upgrade_description",
+              "old": "Apply 2 [gold]Weak[/gold].\nGain 14 [gold]Block[/gold].",
+              "new": "Apply 3 [gold]Weak[/gold].\nGain 14 [gold]Block[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "MIND_ROT",
+          "name": "Mind Rot",
+          "changes": [
+            {
+              "field": "can_be_generated_in_combat",
+              "old": "none",
+              "new": "no"
+            }
+          ]
+        },
+        {
+          "id": "NEGATIVE_PULSE",
+          "name": "Negative Pulse",
+          "changes": [
+            {
+              "field": "upgrade_description",
+              "old": "Gain 6 [gold]Block[/gold].\nApply 7 [gold]Doom[/gold] to ALL enemies.",
+              "new": "Gain 6 [gold]Block[/gold].\nApply 11 [gold]Doom[/gold] to ALL enemies."
+            }
+          ]
+        },
+        {
+          "id": "NEOWS_FURY",
+          "name": "Neow's Fury",
+          "changes": [
+            {
+              "field": "can_be_generated_in_combat",
+              "old": "none",
+              "new": "no"
+            }
+          ]
+        },
+        {
+          "id": "NEUTRALIZE",
+          "name": "Neutralize",
+          "changes": [
+            {
+              "field": "upgrade_description",
+              "old": "Deal 4 damage.\nApply 1 [gold]Weak[/gold].",
+              "new": "Deal 4 damage.\nApply 2 [gold]Weak[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "NOT_YET",
+          "name": "Not Yet",
+          "changes": [
+            {
+              "field": "can_be_generated_in_combat",
+              "old": "none",
+              "new": "no"
+            }
+          ]
+        },
+        {
+          "id": "NULL",
+          "name": "Null",
+          "changes": [
+            {
+              "field": "upgrade_description",
+              "old": "Deal 13 damage.\nApply 2 [gold]Weak[/gold].\n[gold]Channel[/gold] 1 [gold]Dark[...",
+              "new": "Deal 13 damage.\nApply 3 [gold]Weak[/gold].\n[gold]Channel[/gold] 1 [gold]Dark[..."
+            }
+          ]
+        },
+        {
+          "id": "OBLIVION",
+          "name": "Oblivion",
+          "changes": [
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "Whenever you play a card this turn, apply 4 [gold]Doom[/gold] to the enemy."
+            }
+          ]
+        },
+        {
+          "id": "POISONED_STAB",
+          "name": "Poisoned Stab",
+          "changes": [
+            {
+              "field": "upgrade_description",
+              "old": "Deal 8 damage.\nApply 3 [gold]Poison[/gold].",
+              "new": "Deal 8 damage.\nApply 4 [gold]Poison[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "PROWESS",
+          "name": "Prowess",
+          "changes": [
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "Gain 2 [gold]Strength[/gold].\nGain 2 [gold]Dexterity[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "ROYALTIES",
+          "name": "Royalties",
+          "changes": [
+            {
+              "field": "can_be_generated_in_combat",
+              "old": "none",
+              "new": "no"
+            }
+          ]
+        },
+        {
+          "id": "RUPTURE",
+          "name": "Rupture",
+          "changes": [
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "Whenever you lose HP on your turn, gain 2 [gold]Strength[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "SCOURGE",
+          "name": "Scourge",
+          "changes": [
+            {
+              "field": "upgrade_description",
+              "old": "Apply 13 [gold]Doom[/gold].\nDraw 2 cards.",
+              "new": "Apply 16 [gold]Doom[/gold].\nDraw 2 cards."
+            }
+          ]
+        },
+        {
+          "id": "SETUP_STRIKE",
+          "name": "Setup Strike",
+          "changes": [
+            {
+              "field": "upgrade_description",
+              "old": "Deal 9 damage.\nGain 2 [gold]Strength[/gold] this turn.",
+              "new": "Deal 9 damage.\nGain 3 [gold]Strength[/gold] this turn."
+            }
+          ]
+        },
+        {
+          "id": "SLOTH",
+          "name": "Sloth",
+          "changes": [
+            {
+              "field": "can_be_generated_in_combat",
+              "old": "none",
+              "new": "no"
+            }
+          ]
+        },
+        {
+          "id": "SNAKEBITE",
+          "name": "Snakebite",
+          "changes": [
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "Apply 10 [gold]Poison[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "SOOT",
+          "name": "Soot",
+          "changes": [
+            {
+              "field": "can_be_generated_in_combat",
+              "old": "none",
+              "new": "no"
+            }
+          ]
+        },
+        {
+          "id": "SQUASH",
+          "name": "Squash",
+          "changes": [
+            {
+              "field": "upgrade_description",
+              "old": "Deal 12 damage.\nApply 2 [gold]Vulnerable[/gold].",
+              "new": "Deal 12 damage.\nApply 3 [gold]Vulnerable[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "STACK",
+          "name": "Stack",
+          "changes": [
+            {
+              "field": "description",
+              "old": "Gain [gold]Block[/gold] equal to the number of cards in your [gold]Discard Pi...",
+              "new": "Gain [gold]Block[/gold] equal to the number of cards in your [gold]Discard Pi..."
+            },
+            {
+              "field": "upgrade_description",
+              "old": "Gain [gold]Block[/gold] equal to the number of cards in your [gold]Discard Pi...",
+              "new": "Gain [gold]Block[/gold] equal to the number of cards in your [gold]Discard Pi..."
+            }
+          ]
+        },
+        {
+          "id": "SUCKER_PUNCH",
+          "name": "Sucker Punch",
+          "changes": [
+            {
+              "field": "upgrade_description",
+              "old": "Deal 10 damage.\nApply 1 [gold]Weak[/gold].",
+              "new": "Deal 10 damage.\nApply 2 [gold]Weak[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "SUPPRESS",
+          "name": "Suppress",
+          "changes": [
+            {
+              "field": "upgrade_description",
+              "old": "Deal 17 damage.\nApply 3 [gold]Weak[/gold].",
+              "new": "Deal 17 damage.\nApply 5 [gold]Weak[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "TAUNT",
+          "name": "Taunt",
+          "changes": [
+            {
+              "field": "upgrade_description",
+              "old": "Gain 8 [gold]Block[/gold].\nApply 1 [gold]Vulnerable[/gold].",
+              "new": "Gain 8 [gold]Block[/gold].\nApply 2 [gold]Vulnerable[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "THE_HUNT",
+          "name": "The Hunt",
+          "changes": [
+            {
+              "field": "can_be_generated_in_combat",
+              "old": "none",
+              "new": "no"
+            }
+          ]
+        },
+        {
+          "id": "TREMBLE",
+          "name": "Tremble",
+          "changes": [
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "Apply 4 [gold]Vulnerable[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "WASTE_AWAY",
+          "name": "Waste Away",
+          "changes": [
+            {
+              "field": "can_be_generated_in_combat",
+              "old": "none",
+              "new": "no"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "relics",
+      "name": "Relics",
+      "old_count": 293,
+      "new_count": 293,
+      "changed": [
+        {
+          "id": "AKABEKO",
+          "name": "Akabeko",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "250",
+              "new": "225"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "288",
+              "new": "259"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "212",
+              "new": "191"
+            }
+          ]
+        },
+        {
+          "id": "AMETHYST_AUBERGINE",
+          "name": "Amethyst Aubergine",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "200",
+              "new": "none"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "230",
+              "new": "none"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "170",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "ANCHOR",
+          "name": "Anchor",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "200",
+              "new": "175"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "230",
+              "new": "201"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "170",
+              "new": "149"
+            }
+          ]
+        },
+        {
+          "id": "ART_OF_WAR",
+          "name": "Art of War",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "300",
+              "new": "275"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "345",
+              "new": "316"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "255",
+              "new": "234"
+            }
+          ]
+        },
+        {
+          "id": "BAG_OF_MARBLES",
+          "name": "Bag of Marbles",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "200",
+              "new": "175"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "230",
+              "new": "201"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "170",
+              "new": "149"
+            }
+          ]
+        },
+        {
+          "id": "BAG_OF_PREPARATION",
+          "name": "Bag of Preparation",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "200",
+              "new": "175"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "230",
+              "new": "201"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "170",
+              "new": "149"
+            }
+          ]
+        },
+        {
+          "id": "BEATING_REMNANT",
+          "name": "Beating Remnant",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "300",
+              "new": "275"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "345",
+              "new": "316"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "255",
+              "new": "234"
+            }
+          ]
+        },
+        {
+          "id": "BELLOWS",
+          "name": "Bellows",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "300",
+              "new": "275"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "345",
+              "new": "316"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "255",
+              "new": "234"
+            }
+          ]
+        },
+        {
+          "id": "BELT_BUCKLE",
+          "name": "Belt Buckle",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "225",
+              "new": "200"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "259",
+              "new": "230"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "191",
+              "new": "170"
+            }
+          ]
+        },
+        {
+          "id": "BIG_HAT",
+          "name": "Big Hat",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "300",
+              "new": "275"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "345",
+              "new": "316"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "255",
+              "new": "234"
+            }
+          ]
+        },
+        {
+          "id": "BLOOD_VIAL",
+          "name": "Blood Vial",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "200",
+              "new": "175"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "230",
+              "new": "201"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "170",
+              "new": "149"
+            }
+          ]
+        },
+        {
+          "id": "BONE_FLUTE",
+          "name": "Bone Flute",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "200",
+              "new": "175"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "230",
+              "new": "201"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "170",
+              "new": "149"
+            }
+          ]
+        },
+        {
+          "id": "BOOKMARK",
+          "name": "Bookmark",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "300",
+              "new": "275"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "345",
+              "new": "316"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "255",
+              "new": "234"
+            }
+          ]
+        },
+        {
+          "id": "BOOK_OF_FIVE_RINGS",
+          "name": "Book of Five Rings",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "200",
+              "new": "175"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "230",
+              "new": "201"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "170",
+              "new": "149"
+            }
+          ]
+        },
+        {
+          "id": "BOOK_REPAIR_KNIFE",
+          "name": "Book Repair Knife",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "250",
+              "new": "225"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "288",
+              "new": "259"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "212",
+              "new": "191"
+            }
+          ]
+        },
+        {
+          "id": "BOWLER_HAT",
+          "name": "Bowler Hat",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "250",
+              "new": "none"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "288",
+              "new": "none"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "212",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "BREAD",
+          "name": "Bread",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "225",
+              "new": "200"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "259",
+              "new": "230"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "191",
+              "new": "170"
+            }
+          ]
+        },
+        {
+          "id": "BRIMSTONE",
+          "name": "Brimstone",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "225",
+              "new": "200"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "259",
+              "new": "230"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "191",
+              "new": "170"
+            }
+          ]
+        },
+        {
+          "id": "BRONZE_SCALES",
+          "name": "Bronze Scales",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "200",
+              "new": "175"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "230",
+              "new": "201"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "170",
+              "new": "149"
+            }
+          ]
+        },
+        {
+          "id": "BURNING_STICKS",
+          "name": "Burning Sticks",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "225",
+              "new": "200"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "259",
+              "new": "230"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "191",
+              "new": "170"
+            }
+          ]
+        },
+        {
+          "id": "CANDELABRA",
+          "name": "Candelabra",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "250",
+              "new": "225"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "288",
+              "new": "259"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "212",
+              "new": "191"
+            }
+          ]
+        },
+        {
+          "id": "CAPTAINS_WHEEL",
+          "name": "Captain's Wheel",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "300",
+              "new": "275"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "345",
+              "new": "316"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "255",
+              "new": "234"
+            }
+          ]
+        },
+        {
+          "id": "CAULDRON",
+          "name": "Cauldron",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "225",
+              "new": "200"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "259",
+              "new": "230"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "191",
+              "new": "170"
+            }
+          ]
+        },
+        {
+          "id": "CENTENNIAL_PUZZLE",
+          "name": "Centennial Puzzle",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "200",
+              "new": "175"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "230",
+              "new": "201"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "170",
+              "new": "149"
+            }
+          ]
+        },
+        {
+          "id": "CHANDELIER",
+          "name": "Chandelier",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "300",
+              "new": "275"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "345",
+              "new": "316"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "255",
+              "new": "234"
+            }
+          ]
+        },
+        {
+          "id": "CHARONS_ASHES",
+          "name": "Charon's Ashes",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "300",
+              "new": "275"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "345",
+              "new": "316"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "255",
+              "new": "234"
+            }
+          ]
+        },
+        {
+          "id": "CHEMICAL_X",
+          "name": "Chemical X",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "225",
+              "new": "200"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "259",
+              "new": "230"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "191",
+              "new": "170"
+            }
+          ]
+        },
+        {
+          "id": "CLOAK_CLASP",
+          "name": "Cloak Clasp",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "300",
+              "new": "275"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "345",
+              "new": "316"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "255",
+              "new": "234"
+            }
+          ]
+        },
+        {
+          "id": "DATA_DISK",
+          "name": "Data Disk",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "200",
+              "new": "175"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "230",
+              "new": "201"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "170",
+              "new": "149"
+            }
+          ]
+        },
+        {
+          "id": "DEMON_TONGUE",
+          "name": "Demon Tongue",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "300",
+              "new": "275"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "345",
+              "new": "316"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "255",
+              "new": "234"
+            }
+          ]
+        },
+        {
+          "id": "DINGY_RUG",
+          "name": "Dingy Rug",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "225",
+              "new": "200"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "259",
+              "new": "230"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "191",
+              "new": "170"
+            }
+          ]
+        },
+        {
+          "id": "DOLLYS_MIRROR",
+          "name": "Dolly's Mirror",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "225",
+              "new": "200"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "259",
+              "new": "230"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "191",
+              "new": "170"
+            }
+          ]
+        },
+        {
+          "id": "DRAGON_FRUIT",
+          "name": "Dragon Fruit",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "225",
+              "new": "200"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "259",
+              "new": "230"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "191",
+              "new": "170"
+            }
+          ]
+        },
+        {
+          "id": "EMOTION_CHIP",
+          "name": "Emotion Chip",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "300",
+              "new": "275"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "345",
+              "new": "316"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "255",
+              "new": "234"
+            }
+          ]
+        },
+        {
+          "id": "ETERNAL_FEATHER",
+          "name": "Eternal Feather",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "250",
+              "new": "225"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "288",
+              "new": "259"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "212",
+              "new": "191"
+            }
+          ]
+        },
+        {
+          "id": "FENCING_MANUAL",
+          "name": "Fencing Manual",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "200",
+              "new": "175"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "230",
+              "new": "201"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "170",
+              "new": "149"
+            }
+          ]
+        },
+        {
+          "id": "FESTIVE_POPPER",
+          "name": "Festive Popper",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "200",
+              "new": "175"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "230",
+              "new": "201"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "170",
+              "new": "149"
+            }
+          ]
+        },
+        {
+          "id": "FROZEN_EGG",
+          "name": "Frozen Egg",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "300",
+              "new": "275"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "345",
+              "new": "316"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "255",
+              "new": "234"
+            }
+          ]
+        },
+        {
+          "id": "FUNERARY_MASK",
+          "name": "Funerary Mask",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "250",
+              "new": "225"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "288",
+              "new": "259"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "212",
+              "new": "191"
+            }
+          ]
+        },
+        {
+          "id": "GALACTIC_DUST",
+          "name": "Galactic Dust",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "250",
+              "new": "225"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "288",
+              "new": "259"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "212",
+              "new": "191"
+            }
+          ]
+        },
+        {
+          "id": "GAMBLING_CHIP",
+          "name": "Gambling Chip",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "300",
+              "new": "275"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "345",
+              "new": "316"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "255",
+              "new": "234"
+            }
+          ]
+        },
+        {
+          "id": "GAME_PIECE",
+          "name": "Game Piece",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "300",
+              "new": "275"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "345",
+              "new": "316"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "255",
+              "new": "234"
+            }
+          ]
+        },
+        {
+          "id": "GHOST_SEED",
+          "name": "Ghost Seed",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "225",
+              "new": "200"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "259",
+              "new": "230"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "191",
+              "new": "170"
+            }
+          ]
+        },
+        {
+          "id": "GIRYA",
+          "name": "Girya",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "300",
+              "new": "275"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "345",
+              "new": "316"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "255",
+              "new": "234"
+            }
+          ]
+        },
+        {
+          "id": "GNARLED_HAMMER",
+          "name": "Gnarled Hammer",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "225",
+              "new": "200"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "259",
+              "new": "230"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "191",
+              "new": "170"
+            }
+          ]
+        },
+        {
+          "id": "GOLD_PLATED_CABLES",
+          "name": "Gold-Plated Cables",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "250",
+              "new": "225"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "288",
+              "new": "259"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "212",
+              "new": "191"
+            }
+          ]
+        },
+        {
+          "id": "GORGET",
+          "name": "Gorget",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "200",
+              "new": "175"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "230",
+              "new": "201"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "170",
+              "new": "149"
+            }
+          ]
+        },
+        {
+          "id": "GREMLIN_HORN",
+          "name": "Gremlin Horn",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "250",
+              "new": "225"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "288",
+              "new": "259"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "212",
+              "new": "191"
+            }
+          ]
+        },
+        {
+          "id": "HAPPY_FLOWER",
+          "name": "Happy Flower",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "200",
+              "new": "175"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "230",
+              "new": "201"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "170",
+              "new": "149"
+            }
+          ]
+        },
+        {
+          "id": "HELICAL_DART",
+          "name": "Helical Dart",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "300",
+              "new": "275"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "345",
+              "new": "316"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "255",
+              "new": "234"
+            }
+          ]
+        },
+        {
+          "id": "HORN_CLEAT",
+          "name": "Horn Cleat",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "250",
+              "new": "225"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "288",
+              "new": "259"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "212",
+              "new": "191"
+            }
+          ]
+        },
+        {
+          "id": "ICE_CREAM",
+          "name": "Ice Cream",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "300",
+              "new": "275"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "345",
+              "new": "316"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "255",
+              "new": "234"
+            }
+          ]
+        },
+        {
+          "id": "INTIMIDATING_HELMET",
+          "name": "Intimidating Helmet",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "300",
+              "new": "275"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "345",
+              "new": "316"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "255",
+              "new": "234"
+            }
+          ]
+        },
+        {
+          "id": "IVORY_TILE",
+          "name": "Ivory Tile",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "300",
+              "new": "275"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "345",
+              "new": "316"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "255",
+              "new": "234"
+            }
+          ]
+        },
+        {
+          "id": "JOSS_PAPER",
+          "name": "Joss Paper",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "250",
+              "new": "225"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "288",
+              "new": "259"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "212",
+              "new": "191"
+            }
+          ]
+        },
+        {
+          "id": "JUZU_BRACELET",
+          "name": "Juzu Bracelet",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "200",
+              "new": "175"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "230",
+              "new": "201"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "170",
+              "new": "149"
+            }
+          ]
+        },
+        {
+          "id": "KIFUDA",
+          "name": "Kifuda",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "225",
+              "new": "200"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "259",
+              "new": "230"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "191",
+              "new": "170"
+            }
+          ]
+        },
+        {
+          "id": "KUNAI",
+          "name": "Kunai",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "300",
+              "new": "275"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "345",
+              "new": "316"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "255",
+              "new": "234"
+            }
+          ]
+        },
+        {
+          "id": "KUSARIGAMA",
+          "name": "Kusarigama",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "250",
+              "new": "225"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "288",
+              "new": "259"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "212",
+              "new": "191"
+            }
+          ]
+        },
+        {
+          "id": "LANTERN",
+          "name": "Lantern",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "200",
+              "new": "175"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "230",
+              "new": "201"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "170",
+              "new": "149"
+            }
+          ]
+        },
+        {
+          "id": "LASTING_CANDY",
+          "name": "Lasting Candy",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "250",
+              "new": "225"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "288",
+              "new": "259"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "212",
+              "new": "191"
+            }
+          ]
+        },
+        {
+          "id": "LAVA_LAMP",
+          "name": "Lava Lamp",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "225",
+              "new": "200"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "259",
+              "new": "230"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "191",
+              "new": "170"
+            }
+          ]
+        },
+        {
+          "id": "LEES_WAFFLE",
+          "name": "Lee's Waffle",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "225",
+              "new": "200"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "259",
+              "new": "230"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "191",
+              "new": "170"
+            }
+          ]
+        },
+        {
+          "id": "LETTER_OPENER",
+          "name": "Letter Opener",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "250",
+              "new": "225"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "288",
+              "new": "259"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "212",
+              "new": "191"
+            }
+          ]
+        },
+        {
+          "id": "LIZARD_TAIL",
+          "name": "Lizard Tail",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "300",
+              "new": "275"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "345",
+              "new": "316"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "255",
+              "new": "234"
+            }
+          ]
+        },
+        {
+          "id": "LUCKY_FYSH",
+          "name": "Lucky Fysh",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "250",
+              "new": "none"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "288",
+              "new": "none"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "212",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "LUNAR_PASTRY",
+          "name": "Lunar Pastry",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "300",
+              "new": "275"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "345",
+              "new": "316"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "255",
+              "new": "234"
+            }
+          ]
+        },
+        {
+          "id": "MANGO",
+          "name": "Mango",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "300",
+              "new": "275"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "345",
+              "new": "316"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "255",
+              "new": "234"
+            }
+          ]
+        },
+        {
+          "id": "MEAL_TICKET",
+          "name": "Meal Ticket",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "200",
+              "new": "175"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "230",
+              "new": "201"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "170",
+              "new": "149"
+            }
+          ]
+        },
+        {
+          "id": "MEAT_ON_THE_BONE",
+          "name": "Meat on the Bone",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "300",
+              "new": "275"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "345",
+              "new": "316"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "255",
+              "new": "234"
+            }
+          ]
+        },
+        {
+          "id": "MEMBERSHIP_CARD",
+          "name": "Membership Card",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "225",
+              "new": "200"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "259",
+              "new": "230"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "191",
+              "new": "170"
+            }
+          ]
+        },
+        {
+          "id": "MERCURY_HOURGLASS",
+          "name": "Mercury Hourglass",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "250",
+              "new": "225"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "288",
+              "new": "259"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "212",
+              "new": "191"
+            }
+          ]
+        },
+        {
+          "id": "METRONOME",
+          "name": "Metronome",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "300",
+              "new": "275"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "345",
+              "new": "316"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "255",
+              "new": "234"
+            }
+          ]
+        },
+        {
+          "id": "MINIATURE_CANNON",
+          "name": "Miniature Cannon",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "250",
+              "new": "225"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "288",
+              "new": "259"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "212",
+              "new": "191"
+            }
+          ]
+        },
+        {
+          "id": "MINIATURE_TENT",
+          "name": "Miniature Tent",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "225",
+              "new": "200"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "259",
+              "new": "230"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "191",
+              "new": "170"
+            }
+          ]
+        },
+        {
+          "id": "MINI_REGENT",
+          "name": "Mini Regent",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "300",
+              "new": "275"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "345",
+              "new": "316"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "255",
+              "new": "234"
+            }
+          ]
+        },
+        {
+          "id": "MOLTEN_EGG",
+          "name": "Molten Egg",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "300",
+              "new": "275"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "345",
+              "new": "316"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "255",
+              "new": "234"
+            }
+          ]
+        },
+        {
+          "id": "MUMMIFIED_HAND",
+          "name": "Mummified Hand",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "300",
+              "new": "275"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "345",
+              "new": "316"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "255",
+              "new": "234"
+            }
+          ]
+        },
+        {
+          "id": "MYSTIC_LIGHTER",
+          "name": "Mystic Lighter",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "225",
+              "new": "200"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "259",
+              "new": "230"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "191",
+              "new": "170"
+            }
+          ]
+        },
+        {
+          "id": "NINJA_SCROLL",
+          "name": "Ninja Scroll",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "225",
+              "new": "200"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "259",
+              "new": "230"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "191",
+              "new": "170"
+            }
+          ]
+        },
+        {
+          "id": "NUNCHAKU",
+          "name": "Nunchaku",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "250",
+              "new": "225"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "288",
+              "new": "259"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "212",
+              "new": "191"
+            }
+          ]
+        },
+        {
+          "id": "ODDLY_SMOOTH_STONE",
+          "name": "Oddly Smooth Stone",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "200",
+              "new": "175"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "230",
+              "new": "201"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "170",
+              "new": "149"
+            }
+          ]
+        },
+        {
+          "id": "OLD_COIN",
+          "name": "Old Coin",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "300",
+              "new": "none"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "345",
+              "new": "none"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "255",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "ORANGE_DOUGH",
+          "name": "Orange Dough",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "300",
+              "new": "275"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "345",
+              "new": "316"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "255",
+              "new": "234"
+            }
+          ]
+        },
+        {
+          "id": "ORICHALCUM",
+          "name": "Orichalcum",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "250",
+              "new": "225"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "288",
+              "new": "259"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "212",
+              "new": "191"
+            }
+          ]
+        },
+        {
+          "id": "ORNAMENTAL_FAN",
+          "name": "Ornamental Fan",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "250",
+              "new": "225"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "288",
+              "new": "259"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "212",
+              "new": "191"
+            }
+          ]
+        },
+        {
+          "id": "ORRERY",
+          "name": "Orrery",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "225",
+              "new": "200"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "259",
+              "new": "230"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "191",
+              "new": "170"
+            }
+          ]
+        },
+        {
+          "id": "PANTOGRAPH",
+          "name": "Pantograph",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "250",
+              "new": "225"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "288",
+              "new": "259"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "212",
+              "new": "191"
+            }
+          ]
+        },
+        {
+          "id": "PAPER_KRANE",
+          "name": "Paper Krane",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "300",
+              "new": "275"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "345",
+              "new": "316"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "255",
+              "new": "234"
+            }
+          ]
+        },
+        {
+          "id": "PAPER_PHROG",
+          "name": "Paper Phrog",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "250",
+              "new": "225"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "288",
+              "new": "259"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "212",
+              "new": "191"
+            }
+          ]
+        },
+        {
+          "id": "PARRYING_SHIELD",
+          "name": "Parrying Shield",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "250",
+              "new": "225"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "288",
+              "new": "259"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "212",
+              "new": "191"
+            }
+          ]
+        },
+        {
+          "id": "PEAR",
+          "name": "Pear",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "250",
+              "new": "225"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "288",
+              "new": "259"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "212",
+              "new": "191"
+            }
+          ]
+        },
+        {
+          "id": "PENDULUM",
+          "name": "Pendulum",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "200",
+              "new": "175"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "230",
+              "new": "201"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "170",
+              "new": "149"
+            }
+          ]
+        },
+        {
+          "id": "PEN_NIB",
+          "name": "Pen Nib",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "250",
+              "new": "225"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "288",
+              "new": "259"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "212",
+              "new": "191"
+            }
+          ]
+        },
+        {
+          "id": "PERMAFROST",
+          "name": "Permafrost",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "250",
+              "new": "225"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "288",
+              "new": "259"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "212",
+              "new": "191"
+            }
+          ]
+        },
+        {
+          "id": "PETRIFIED_TOAD",
+          "name": "Petrified Toad",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "250",
+              "new": "225"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "288",
+              "new": "259"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "212",
+              "new": "191"
+            }
+          ]
+        },
+        {
+          "id": "PLANISPHERE",
+          "name": "Planisphere",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "250",
+              "new": "225"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "288",
+              "new": "259"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "212",
+              "new": "191"
+            }
+          ]
+        },
+        {
+          "id": "POCKETWATCH",
+          "name": "Pocketwatch",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "300",
+              "new": "275"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "345",
+              "new": "316"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "255",
+              "new": "234"
+            }
+          ]
+        },
+        {
+          "id": "POTION_BELT",
+          "name": "Potion Belt",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "200",
+              "new": "175"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "230",
+              "new": "201"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "170",
+              "new": "149"
+            }
+          ]
+        },
+        {
+          "id": "POWER_CELL",
+          "name": "Power Cell",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "300",
+              "new": "275"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "345",
+              "new": "316"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "255",
+              "new": "234"
+            }
+          ]
+        },
+        {
+          "id": "PRAYER_WHEEL",
+          "name": "Prayer Wheel",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "300",
+              "new": "275"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "345",
+              "new": "316"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "255",
+              "new": "234"
+            }
+          ]
+        },
+        {
+          "id": "PUNCH_DAGGER",
+          "name": "Punch Dagger",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "225",
+              "new": "200"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "259",
+              "new": "230"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "191",
+              "new": "170"
+            }
+          ]
+        },
+        {
+          "id": "RAINBOW_RING",
+          "name": "Rainbow Ring",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "300",
+              "new": "275"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "345",
+              "new": "316"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "255",
+              "new": "234"
+            }
+          ]
+        },
+        {
+          "id": "RAZOR_TOOTH",
+          "name": "Razor Tooth",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "300",
+              "new": "275"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "345",
+              "new": "316"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "255",
+              "new": "234"
+            }
+          ]
+        },
+        {
+          "id": "RED_MASK",
+          "name": "Red Mask",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "200",
+              "new": "175"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "230",
+              "new": "201"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "170",
+              "new": "149"
+            }
+          ]
+        },
+        {
+          "id": "RED_SKULL",
+          "name": "Red Skull",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "200",
+              "new": "175"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "230",
+              "new": "201"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "170",
+              "new": "149"
+            }
+          ]
+        },
+        {
+          "id": "REGALITE",
+          "name": "Regalite",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "250",
+              "new": "225"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "288",
+              "new": "259"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "212",
+              "new": "191"
+            }
+          ]
+        },
+        {
+          "id": "REGAL_PILLOW",
+          "name": "Regal Pillow",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "200",
+              "new": "175"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "230",
+              "new": "201"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "170",
+              "new": "149"
+            }
+          ]
+        },
+        {
+          "id": "REPTILE_TRINKET",
+          "name": "Reptile Trinket",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "250",
+              "new": "225"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "288",
+              "new": "259"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "212",
+              "new": "191"
+            }
+          ]
+        },
+        {
+          "id": "RINGING_TRIANGLE",
+          "name": "Ringing Triangle",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "225",
+              "new": "200"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "259",
+              "new": "230"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "191",
+              "new": "170"
+            }
+          ]
+        },
+        {
+          "id": "RIPPLE_BASIN",
+          "name": "Ripple Basin",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "250",
+              "new": "225"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "288",
+              "new": "259"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "212",
+              "new": "191"
+            }
+          ]
+        },
+        {
+          "id": "ROYAL_STAMP",
+          "name": "Royal Stamp",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "225",
+              "new": "200"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "259",
+              "new": "230"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "191",
+              "new": "170"
+            }
+          ]
+        },
+        {
+          "id": "RUINED_HELMET",
+          "name": "Ruined Helmet",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "300",
+              "new": "275"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "345",
+              "new": "316"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "255",
+              "new": "234"
+            }
+          ]
+        },
+        {
+          "id": "RUNIC_CAPACITOR",
+          "name": "Runic Capacitor",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "225",
+              "new": "200"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "259",
+              "new": "230"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "191",
+              "new": "170"
+            }
+          ]
+        },
+        {
+          "id": "SCREAMING_FLAGON",
+          "name": "Screaming Flagon",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "225",
+              "new": "200"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "259",
+              "new": "230"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "191",
+              "new": "170"
+            }
+          ]
+        },
+        {
+          "id": "SELF_FORMING_CLAY",
+          "name": "Self-Forming Clay",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "250",
+              "new": "225"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "288",
+              "new": "259"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "212",
+              "new": "191"
+            }
+          ]
+        },
+        {
+          "id": "SHOVEL",
+          "name": "Shovel",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "300",
+              "new": "275"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "345",
+              "new": "316"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "255",
+              "new": "234"
+            }
+          ]
+        },
+        {
+          "id": "SHURIKEN",
+          "name": "Shuriken",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "300",
+              "new": "275"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "345",
+              "new": "316"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "255",
+              "new": "234"
+            }
+          ]
+        },
+        {
+          "id": "SLING_OF_COURAGE",
+          "name": "Sling of Courage",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "225",
+              "new": "200"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "259",
+              "new": "230"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "191",
+              "new": "170"
+            }
+          ]
+        },
+        {
+          "id": "SNECKO_SKULL",
+          "name": "Snecko Skull",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "200",
+              "new": "175"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "230",
+              "new": "201"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "170",
+              "new": "149"
+            }
+          ]
+        },
+        {
+          "id": "SPARKLING_ROUGE",
+          "name": "Sparkling Rouge",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "250",
+              "new": "225"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "288",
+              "new": "259"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "212",
+              "new": "191"
+            }
+          ]
+        },
+        {
+          "id": "STONE_CALENDAR",
+          "name": "Stone Calendar",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "300",
+              "new": "275"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "345",
+              "new": "316"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "255",
+              "new": "234"
+            }
+          ]
+        },
+        {
+          "id": "STONE_CRACKER",
+          "name": "Stone Cracker",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "250",
+              "new": "225"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "288",
+              "new": "259"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "212",
+              "new": "191"
+            }
+          ]
+        },
+        {
+          "id": "STRAWBERRY",
+          "name": "Strawberry",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "200",
+              "new": "175"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "230",
+              "new": "201"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "170",
+              "new": "149"
+            }
+          ]
+        },
+        {
+          "id": "STRIKE_DUMMY",
+          "name": "Strike Dummy",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "200",
+              "new": "175"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "230",
+              "new": "201"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "170",
+              "new": "149"
+            }
+          ]
+        },
+        {
+          "id": "STURDY_CLAMP",
+          "name": "Sturdy Clamp",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "300",
+              "new": "275"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "345",
+              "new": "316"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "255",
+              "new": "234"
+            }
+          ]
+        },
+        {
+          "id": "SYMBIOTIC_VIRUS",
+          "name": "Symbiotic Virus",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "250",
+              "new": "225"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "288",
+              "new": "259"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "212",
+              "new": "191"
+            }
+          ]
+        },
+        {
+          "id": "THE_ABACUS",
+          "name": "The Abacus",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "225",
+              "new": "200"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "259",
+              "new": "230"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "191",
+              "new": "170"
+            }
+          ]
+        },
+        {
+          "id": "THE_COURIER",
+          "name": "The Courier",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "300",
+              "new": "none"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "345",
+              "new": "none"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "255",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "TINGSHA",
+          "name": "Tingsha",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "250",
+              "new": "225"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "288",
+              "new": "259"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "212",
+              "new": "191"
+            }
+          ]
+        },
+        {
+          "id": "TINY_MAILBOX",
+          "name": "Tiny Mailbox",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "250",
+              "new": "225"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "288",
+              "new": "259"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "212",
+              "new": "191"
+            }
+          ]
+        },
+        {
+          "id": "TOOLBOX",
+          "name": "Toolbox",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "225",
+              "new": "200"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "259",
+              "new": "230"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "191",
+              "new": "170"
+            }
+          ]
+        },
+        {
+          "id": "TOUGH_BANDAGES",
+          "name": "Tough Bandages",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "300",
+              "new": "275"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "345",
+              "new": "316"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "255",
+              "new": "234"
+            }
+          ]
+        },
+        {
+          "id": "TOXIC_EGG",
+          "name": "Toxic Egg",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "300",
+              "new": "275"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "345",
+              "new": "316"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "255",
+              "new": "234"
+            }
+          ]
+        },
+        {
+          "id": "TUNGSTEN_ROD",
+          "name": "Tungsten Rod",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "300",
+              "new": "275"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "345",
+              "new": "316"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "255",
+              "new": "234"
+            }
+          ]
+        },
+        {
+          "id": "TUNING_FORK",
+          "name": "Tuning Fork",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "250",
+              "new": "225"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "288",
+              "new": "259"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "212",
+              "new": "191"
+            }
+          ]
+        },
+        {
+          "id": "TWISTED_FUNNEL",
+          "name": "Twisted Funnel",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "250",
+              "new": "225"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "288",
+              "new": "259"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "212",
+              "new": "191"
+            }
+          ]
+        },
+        {
+          "id": "UNCEASING_TOP",
+          "name": "Unceasing Top",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "300",
+              "new": "275"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "345",
+              "new": "316"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "255",
+              "new": "234"
+            }
+          ]
+        },
+        {
+          "id": "UNDYING_SIGIL",
+          "name": "Undying Sigil",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "225",
+              "new": "200"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "259",
+              "new": "230"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "191",
+              "new": "170"
+            }
+          ]
+        },
+        {
+          "id": "UNSETTLING_LAMP",
+          "name": "Unsettling Lamp",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "300",
+              "new": "275"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "345",
+              "new": "316"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "255",
+              "new": "234"
+            }
+          ]
+        },
+        {
+          "id": "VAJRA",
+          "name": "Vajra",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "200",
+              "new": "175"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "230",
+              "new": "201"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "170",
+              "new": "149"
+            }
+          ]
+        },
+        {
+          "id": "VAMBRACE",
+          "name": "Vambrace",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "250",
+              "new": "225"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "288",
+              "new": "259"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "212",
+              "new": "191"
+            }
+          ]
+        },
+        {
+          "id": "VENERABLE_TEA_SET",
+          "name": "Venerable Tea Set",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "200",
+              "new": "175"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "230",
+              "new": "201"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "170",
+              "new": "149"
+            }
+          ]
+        },
+        {
+          "id": "VEXING_PUZZLEBOX",
+          "name": "Vexing Puzzlebox",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "300",
+              "new": "275"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "345",
+              "new": "316"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "255",
+              "new": "234"
+            }
+          ]
+        },
+        {
+          "id": "VITRUVIAN_MINION",
+          "name": "Vitruvian Minion",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "225",
+              "new": "200"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "259",
+              "new": "230"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "191",
+              "new": "170"
+            }
+          ]
+        },
+        {
+          "id": "WAR_PAINT",
+          "name": "War Paint",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "200",
+              "new": "175"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "230",
+              "new": "201"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "170",
+              "new": "149"
+            }
+          ]
+        },
+        {
+          "id": "WHETSTONE",
+          "name": "Whetstone",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "200",
+              "new": "175"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "230",
+              "new": "201"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "170",
+              "new": "149"
+            }
+          ]
+        },
+        {
+          "id": "WHITE_BEAST_STATUE",
+          "name": "White Beast Statue",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "300",
+              "new": "275"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "345",
+              "new": "316"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "255",
+              "new": "234"
+            }
+          ]
+        },
+        {
+          "id": "WHITE_STAR",
+          "name": "White Star",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "300",
+              "new": "275"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "345",
+              "new": "316"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "255",
+              "new": "234"
+            }
+          ]
+        },
+        {
+          "id": "WING_CHARM",
+          "name": "Wing Charm",
+          "changes": [
+            {
+              "field": "merchant_price.base",
+              "old": "225",
+              "new": "200"
+            },
+            {
+              "field": "merchant_price.max",
+              "old": "259",
+              "new": "230"
+            },
+            {
+              "field": "merchant_price.min",
+              "old": "191",
+              "new": "170"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "monsters",
+      "name": "Monsters",
+      "old_count": 115,
+      "new_count": 115,
+      "changed": [
+        {
+          "id": "BOWLBUG_EGG",
+          "name": "Bowlbug (Egg)",
+          "changes": [
+            {
+              "field": "encounters[2].act",
+              "old": "Act 2 - Hive",
+              "new": "none"
+            },
+            {
+              "field": "encounters[2].encounter_id",
+              "old": "TUNNELER_NORMAL",
+              "new": "none"
+            },
+            {
+              "field": "encounters[2].encounter_name",
+              "old": "Tunneling Twosome",
+              "new": "none"
+            },
+            {
+              "field": "encounters[2].is_weak",
+              "old": "no",
+              "new": "none"
+            },
+            {
+              "field": "encounters[2].room_type",
+              "old": "Monster",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "BOWLBUG_SILK",
+          "name": "Bowlbug (Silk)",
+          "changes": [
+            {
+              "field": "encounters[2].act",
+              "old": "Act 2 - Hive",
+              "new": "none"
+            },
+            {
+              "field": "encounters[2].encounter_id",
+              "old": "TUNNELER_NORMAL",
+              "new": "none"
+            },
+            {
+              "field": "encounters[2].encounter_name",
+              "old": "Tunneling Twosome",
+              "new": "none"
+            },
+            {
+              "field": "encounters[2].is_weak",
+              "old": "no",
+              "new": "none"
+            },
+            {
+              "field": "encounters[2].room_type",
+              "old": "Monster",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "CALCIFIED_CULTIST",
+          "name": "Calcified Cultist",
+          "changes": [
+            {
+              "field": "encounters[1].encounter_id",
+              "old": "TOADPOLES_NORMAL",
+              "new": "SEAPUNK_NORMAL"
+            }
+          ]
+        },
+        {
+          "id": "CHOMPER",
+          "name": "Chomper",
+          "changes": [
+            {
+              "field": "encounters[1].encounter_id",
+              "old": "none",
+              "new": "TUNNELER_NORMAL"
+            },
+            {
+              "field": "encounters[1].encounter_name",
+              "old": "none",
+              "new": "Tunneling Twosome"
+            },
+            {
+              "field": "encounters[1].is_weak",
+              "old": "none",
+              "new": "no"
+            },
+            {
+              "field": "encounters[1].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "SEAPUNK",
+          "name": "Seapunk",
+          "changes": [
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "SEAPUNK_WEAK",
+              "new": "SEAPUNK_NORMAL"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "Seapunk",
+              "new": "Underdocks Wildlife"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "yes",
+              "new": "no"
+            },
+            {
+              "field": "encounters[1].act",
+              "old": "none",
+              "new": "Underdocks"
+            },
+            {
+              "field": "encounters[1].encounter_id",
+              "old": "none",
+              "new": "SEAPUNK_WEAK"
+            },
+            {
+              "field": "encounters[1].encounter_name",
+              "old": "none",
+              "new": "Seapunk"
+            },
+            {
+              "field": "encounters[1].is_weak",
+              "old": "none",
+              "new": "yes"
+            },
+            {
+              "field": "encounters[1].room_type",
+              "old": "none",
+              "new": "Monster"
+            }
+          ]
+        },
+        {
+          "id": "TOADPOLE",
+          "name": "Toadpole",
+          "changes": [
+            {
+              "field": "encounters[0].encounter_id",
+              "old": "TOADPOLES_NORMAL",
+              "new": "TOADPOLES_WEAK"
+            },
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "Underdocks Wildlife",
+              "new": "Toadpoles"
+            },
+            {
+              "field": "encounters[0].is_weak",
+              "old": "no",
+              "new": "yes"
+            },
+            {
+              "field": "encounters[1].act",
+              "old": "Underdocks",
+              "new": "none"
+            },
+            {
+              "field": "encounters[1].encounter_id",
+              "old": "TOADPOLES_WEAK",
+              "new": "none"
+            },
+            {
+              "field": "encounters[1].encounter_name",
+              "old": "Toadpoles",
+              "new": "none"
+            },
+            {
+              "field": "encounters[1].is_weak",
+              "old": "yes",
+              "new": "none"
+            },
+            {
+              "field": "encounters[1].room_type",
+              "old": "Monster",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "TUNNELER",
+          "name": "Tunneler",
+          "changes": [
+            {
+              "field": "encounters[0].act",
+              "old": "Act 2 - Hive",
+              "new": "none"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "encounters",
+      "name": "Encounters",
+      "old_count": 87,
+      "new_count": 87,
+      "changed": [
+        {
+          "id": "CORPSE_SLUGS_NORMAL",
+          "name": "Many Corpse Slugs",
+          "changes": [
+            {
+              "field": "act",
+              "old": "Underdocks",
+              "new": "Act 1 - Underdocks"
+            }
+          ]
+        },
+        {
+          "id": "CORPSE_SLUGS_WEAK",
+          "name": "Corpse Slugs",
+          "changes": [
+            {
+              "field": "act",
+              "old": "Underdocks",
+              "new": "Act 1 - Underdocks"
+            }
+          ]
+        },
+        {
+          "id": "CULTISTS_NORMAL",
+          "name": "Cultists",
+          "changes": [
+            {
+              "field": "act",
+              "old": "Underdocks",
+              "new": "Act 1 - Underdocks"
+            }
+          ]
+        },
+        {
+          "id": "FOSSIL_STALKER_NORMAL",
+          "name": "Fossil Stalker",
+          "changes": [
+            {
+              "field": "act",
+              "old": "Underdocks",
+              "new": "Act 1 - Underdocks"
+            }
+          ]
+        },
+        {
+          "id": "GREMLIN_MERC_NORMAL",
+          "name": "Two Gremlins in a Trenchcoat",
+          "changes": [
+            {
+              "field": "act",
+              "old": "Underdocks",
+              "new": "Act 1 - Underdocks"
+            }
+          ]
+        },
+        {
+          "id": "HAUNTED_SHIP_NORMAL",
+          "name": "Haunted Ship",
+          "changes": [
+            {
+              "field": "act",
+              "old": "Underdocks",
+              "new": "Act 1 - Underdocks"
+            }
+          ]
+        },
+        {
+          "id": "LAGAVULIN_MATRIARCH_BOSS",
+          "name": "Lagavulin Matriarch",
+          "changes": [
+            {
+              "field": "act",
+              "old": "Underdocks",
+              "new": "Act 1 - Underdocks"
+            }
+          ]
+        },
+        {
+          "id": "LIVING_FOG_NORMAL",
+          "name": "Evil Gas",
+          "changes": [
+            {
+              "field": "act",
+              "old": "Underdocks",
+              "new": "Act 1 - Underdocks"
+            }
+          ]
+        },
+        {
+          "id": "PHANTASMAL_GARDENERS_ELITE",
+          "name": "Phantasmal Gardeners",
+          "changes": [
+            {
+              "field": "act",
+              "old": "Underdocks",
+              "new": "Act 1 - Underdocks"
+            }
+          ]
+        },
+        {
+          "id": "PUNCH_CONSTRUCT_NORMAL",
+          "name": "Punch Construct",
+          "changes": [
+            {
+              "field": "act",
+              "old": "Underdocks",
+              "new": "Act 1 - Underdocks"
+            }
+          ]
+        },
+        {
+          "id": "SEAPUNK_NORMAL",
+          "name": "Underdocks Wildlife",
+          "changes": [
+            {
+              "field": "act",
+              "old": "Underdocks",
+              "new": "Act 1 - Underdocks"
+            }
+          ]
+        },
+        {
+          "id": "SEAPUNK_WEAK",
+          "name": "Seapunk",
+          "changes": [
+            {
+              "field": "act",
+              "old": "Underdocks",
+              "new": "Act 1 - Underdocks"
+            }
+          ]
+        },
+        {
+          "id": "SEWER_CLAM_NORMAL",
+          "name": "Sewer Clam",
+          "changes": [
+            {
+              "field": "act",
+              "old": "Underdocks",
+              "new": "Act 1 - Underdocks"
+            }
+          ]
+        },
+        {
+          "id": "SKULKING_COLONY_ELITE",
+          "name": "Skulking Colony",
+          "changes": [
+            {
+              "field": "act",
+              "old": "Underdocks",
+              "new": "Act 1 - Underdocks"
+            }
+          ]
+        },
+        {
+          "id": "SLUDGE_SPINNER_WEAK",
+          "name": "Sludge Spinner",
+          "changes": [
+            {
+              "field": "act",
+              "old": "Underdocks",
+              "new": "Act 1 - Underdocks"
+            }
+          ]
+        },
+        {
+          "id": "SOUL_FYSH_BOSS",
+          "name": "Soul Fysh",
+          "changes": [
+            {
+              "field": "act",
+              "old": "Underdocks",
+              "new": "Act 1 - Underdocks"
+            }
+          ]
+        },
+        {
+          "id": "TERROR_EEL_ELITE",
+          "name": "Terror Eel",
+          "changes": [
+            {
+              "field": "act",
+              "old": "Underdocks",
+              "new": "Act 1 - Underdocks"
+            }
+          ]
+        },
+        {
+          "id": "TOADPOLES_WEAK",
+          "name": "Toadpoles",
+          "changes": [
+            {
+              "field": "act",
+              "old": "Underdocks",
+              "new": "Act 1 - Underdocks"
+            }
+          ]
+        },
+        {
+          "id": "TWO_TAILED_RATS_NORMAL",
+          "name": "Two-Tailed Rats",
+          "changes": [
+            {
+              "field": "act",
+              "old": "Underdocks",
+              "new": "Act 1 - Underdocks"
+            }
+          ]
+        },
+        {
+          "id": "WATERFALL_GIANT_BOSS",
+          "name": "Waterfall Giant",
+          "changes": [
+            {
+              "field": "act",
+              "old": "Underdocks",
+              "new": "Act 1 - Underdocks"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "events",
+      "name": "Events",
+      "old_count": 66,
+      "new_count": 66,
+      "changed": [
+        {
+          "id": "COLORFUL_PHILOSOPHERS",
+          "name": "Colorful Philosophers",
+          "changes": [
+            {
+              "field": "preconditions[0]",
+              "old": "none",
+              "new": "Requires more than one character unlocked"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "powers",
+      "name": "Powers",
+      "old_count": 259,
+      "new_count": 259,
+      "changed": [
+        {
+          "id": "BLUR",
+          "name": "Blur",
+          "changes": [
+            {
+              "field": "description",
+              "old": "[gold]Block[/gold] is not removed at the start of your next turn.",
+              "new": "[gold]Block[/gold] is not removed at the start of your next 2 turns."
+            },
+            {
+              "field": "description_raw",
+              "old": "none",
+              "new": "[gold]Block[/gold] is not removed at the start of your next {Amount:plural:tu..."
+            }
+          ]
+        },
+        {
+          "id": "BORROWED_TIME",
+          "name": "Borrowed Time",
+          "changes": [
+            {
+              "field": "description",
+              "old": "Cards cost an additional Energy this turn.",
+              "new": "Cards cost an additional [energy:1] this turn."
+            },
+            {
+              "field": "description_raw",
+              "old": "none",
+              "new": "Cards cost an additional {Amount:energyIcons()} this turn."
+            }
+          ]
+        },
+        {
+          "id": "BUFFER",
+          "name": "Buffer",
+          "changes": [
+            {
+              "field": "description",
+              "old": "Prevent the next time you would lose HP.",
+              "new": "Prevent the next [blue]2[/blue] times you would lose HP."
+            },
+            {
+              "field": "description_raw",
+              "old": "none",
+              "new": "Prevent the next {Amount:plural:time|[blue]{}[/blue] times} you would lose HP."
+            }
+          ]
+        },
+        {
+          "id": "BURST",
+          "name": "Burst",
+          "changes": [
+            {
+              "field": "description",
+              "old": "This turn, your next Skill is played an extra time.",
+              "new": "Your next [blue]2[/blue] Skills are played an extra time this turn."
+            },
+            {
+              "field": "description_raw",
+              "old": "none",
+              "new": "Your next {Amount:plural:Skill is|[blue]{}[/blue] Skills are} played an extra..."
+            }
+          ]
+        },
+        {
+          "id": "CALAMITY",
+          "name": "Calamity",
+          "changes": [
+            {
+              "field": "description",
+              "old": "Whenever you play an Attack, add a random Attack into your [gold]Hand[/gold].",
+              "new": "Whenever you play an Attack, add [blue]2[/blue] random Attacks into your [gol..."
+            },
+            {
+              "field": "description_raw",
+              "old": "none",
+              "new": "Whenever you play an Attack, add {Amount:plural:a random Attack|[blue]{}[/blu..."
+            }
+          ]
+        },
+        {
+          "id": "CLARITY",
+          "name": "Clarity",
+          "changes": [
+            {
+              "field": "description",
+              "old": "At the start of your next turn, draw [blue]1[/blue] additional card.",
+              "new": "At the start of your next [blue]2[/blue] turns, draw [blue]1[/blue] additiona..."
+            },
+            {
+              "field": "description_raw",
+              "old": "none",
+              "new": "At the start of your next {Amount:plural:turn|[blue]{}[/blue] turns}, draw [b..."
+            }
+          ]
+        },
+        {
+          "id": "CONSUMING_SHADOW",
+          "name": "Consuming Shadow",
+          "changes": [
+            {
+              "field": "description",
+              "old": "At the end of your turn, [gold]Evoke[/gold] your leftmost Orb.",
+              "new": "At the end of your turn, [gold]Evoke[/gold] your [blue]2[/blue] leftmost Orbs."
+            },
+            {
+              "field": "description_raw",
+              "old": "none",
+              "new": "At the end of your turn, [gold]Evoke[/gold] your {Amount:plural:|[blue]{}[/bl..."
+            }
+          ]
+        },
+        {
+          "id": "CREATIVE_AI",
+          "name": "Creative AI",
+          "changes": [
+            {
+              "field": "description",
+              "old": "At the start of your turn, add a random Power into your [gold]Hand[/gold].",
+              "new": "At the start of your turn, add [blue]2[/blue] random Powers into your [gold]H..."
+            },
+            {
+              "field": "description_raw",
+              "old": "none",
+              "new": "At the start of your turn, add {Amount:plural:a random Power|[blue]{}[/blue] ..."
+            }
+          ]
+        },
+        {
+          "id": "DEBILITATE",
+          "name": "Debilitate",
+          "changes": [
+            {
+              "field": "description_raw",
+              "old": "none",
+              "new": "[gold]Vulnerable[/gold] and [gold]Weak[/gold] are twice as effective {Amount:..."
+            }
+          ]
+        },
+        {
+          "id": "DEXTERITY",
+          "name": "Dexterity",
+          "changes": [
+            {
+              "field": "description",
+              "old": "Dexterity improves [gold]Block[/gold] gained from cards.",
+              "new": "Increases [gold]Block[/gold] gained from cards by [blue][/blue]."
+            },
+            {
+              "field": "description_raw",
+              "old": "none",
+              "new": "{Amount:cond:<0?Decreases|Increases} [gold]Block[/gold] gained from cards by ..."
+            }
+          ]
+        },
+        {
+          "id": "DOUBLE_DAMAGE",
+          "name": "Double Damage",
+          "changes": [
+            {
+              "field": "description",
+              "old": "This turn, Attacks deal double damage.",
+              "new": "For the next [blue]2[/blue] turns, Attacks deal double damage."
+            },
+            {
+              "field": "description_raw",
+              "old": "none",
+              "new": "{Amount:plural:This turn|For the next [blue]{}[/blue] turns}, Attacks deal do..."
+            }
+          ]
+        },
+        {
+          "id": "DUPLICATION",
+          "name": "Duplication",
+          "changes": [
+            {
+              "field": "description",
+              "old": "Your next card is played an extra time.",
+              "new": "Your next [blue]2[/blue] cards are played an extra time."
+            },
+            {
+              "field": "description_raw",
+              "old": "none",
+              "new": "Your next {Amount:plural:card is|[blue]{}[/blue] cards are} played an extra t..."
+            }
+          ]
+        },
+        {
+          "id": "ECHO_FORM",
+          "name": "Echo Form",
+          "changes": [
+            {
+              "field": "description",
+              "old": "The first card you play each turn is played an extra time.",
+              "new": "The first [blue]2[/blue] cards you play each turn are played an extra time."
+            },
+            {
+              "field": "description_raw",
+              "old": "none",
+              "new": "The first {Amount:plural:card you play each turn is|[blue]{}[/blue] cards you..."
+            }
+          ]
+        },
+        {
+          "id": "ESCAPE_ARTIST",
+          "name": "Escape Artist",
+          "changes": [
+            {
+              "field": "description",
+              "old": "Exits the combat after 4 turns.",
+              "new": "Tries to escape the combat after [blue]2[/blue] turns."
+            },
+            {
+              "field": "description_raw",
+              "old": "none",
+              "new": "Tries to escape the combat {Amount:plural:this turn|after [blue]{}[/blue] tur..."
+            }
+          ]
+        },
+        {
+          "id": "FERAL",
+          "name": "Feral",
+          "changes": [
+            {
+              "field": "description",
+              "old": "The first time you play a 0[energy:1] Attack each turn, return it to your [go...",
+              "new": "The first [blue]2[/blue] times you play a 0[energy:1] Attack each turn, retur..."
+            },
+            {
+              "field": "description_raw",
+              "old": "The first time you play a 0{energyPrefix:energyIcons(1)} Attack each turn, re...",
+              "new": "The first {Amount:plural:time|[blue]{}[/blue] times} you play a 0{energyPrefi..."
+            }
+          ]
+        },
+        {
+          "id": "FOCUS",
+          "name": "Focus",
+          "changes": [
+            {
+              "field": "description",
+              "old": "Increases the effectiveness of Orbs.",
+              "new": "Increases the effectiveness of Orbs by [blue][/blue]."
+            },
+            {
+              "field": "description_raw",
+              "old": "none",
+              "new": "{Amount:cond:<0?Decreases|Increases} the effectiveness of Orbs by [blue]{Amou..."
+            }
+          ]
+        },
+        {
+          "id": "FREE_ATTACK",
+          "name": "Free Attack",
+          "changes": [
+            {
+              "field": "description",
+              "old": "Your next Attack costs [blue]0[/blue] [energy:1].",
+              "new": "Your next [blue]2[/blue] Attacks cost [blue]0[/blue] [energy:1]."
+            },
+            {
+              "field": "description_raw",
+              "old": "Your next Attack costs [blue]0[/blue] {energyPrefix:energyIcons(1)}.",
+              "new": "Your next {Amount:plural:Attack costs|[blue]{}[/blue] Attacks cost} [blue]0[/..."
+            }
+          ]
+        },
+        {
+          "id": "FREE_POWER",
+          "name": "Free Power",
+          "changes": [
+            {
+              "field": "description",
+              "old": "The next Power you play costs [blue]0[/blue] [energy:1].",
+              "new": "The next [blue]2[/blue] Powers you play cost [blue]0[/blue] [energy:1]."
+            },
+            {
+              "field": "description_raw",
+              "old": "The next Power you play costs [blue]0[/blue] {energyPrefix:energyIcons(1)}.",
+              "new": "The next {Amount:plural:Power|[blue]{}[/blue] Powers} you play {Amount:plural..."
+            }
+          ]
+        },
+        {
+          "id": "FREE_SKILL",
+          "name": "Free Skill",
+          "changes": [
+            {
+              "field": "description",
+              "old": "The next Skill you play costs [blue]0[/blue] [energy:1].",
+              "new": "The next [blue]2[/blue] Skills you play cost [blue]0[/blue] [energy:1]."
+            },
+            {
+              "field": "description_raw",
+              "old": "The next Skill you play costs [blue]0[/blue] {energyPrefix:energyIcons(1)}.",
+              "new": "The next {Amount:plural:Skill|[blue]{}[/blue] Skills} you play {Amount:plural..."
+            }
+          ]
+        },
+        {
+          "id": "FRIENDSHIP",
+          "name": "Friendship",
+          "changes": [
+            {
+              "field": "description",
+              "old": "Gain [blue]1[/blue] [gold]Energy[/gold] at the start of each turn.",
+              "new": "Gain [energy:1] at the start of each turn."
+            },
+            {
+              "field": "description_raw",
+              "old": "none",
+              "new": "Gain {Amount:energyIcons()} at the start of each turn."
+            }
+          ]
+        },
+        {
+          "id": "GENESIS",
+          "name": "Genesis",
+          "changes": [
+            {
+              "field": "description_raw",
+              "old": "At the start of your turn, gain {singleStarIcon}.",
+              "new": "At the start of your turn, gain {Amount:starIcons()}."
+            }
+          ]
+        },
+        {
+          "id": "GIGANTIFICATION",
+          "name": "Gigantification",
+          "changes": [
+            {
+              "field": "description",
+              "old": "The next Attack you play deals triple damage.",
+              "new": "The next [blue]2[/blue] Attacks you play deal triple damage."
+            },
+            {
+              "field": "description_raw",
+              "old": "none",
+              "new": "The next {Amount:plural:Attack you play deals|[blue]{}[/blue] Attacks you pla..."
+            }
+          ]
+        },
+        {
+          "id": "GRASP",
+          "name": "Grasp",
+          "changes": [
+            {
+              "field": "description",
+              "old": "Whenever you play a card, lose [blue]1[/blue] Energy.",
+              "new": "Whenever you play a card, lose [energy:1]."
+            },
+            {
+              "field": "description_raw",
+              "old": "none",
+              "new": "Whenever you play a card, lose {Amount:energyIcons()}."
+            }
+          ]
+        },
+        {
+          "id": "HARDENED_SHELL",
+          "name": "Hardened Shell",
+          "changes": [
+            {
+              "field": "description",
+              "old": "[gold]this creature[/gold] cannot lose more than [blue][Amount][/blue] HP eac...",
+              "new": "[gold]This creature[/gold] cannot lose more than [blue][Amount][/blue] HP eac..."
+            }
+          ]
+        },
+        {
+          "id": "HATCH",
+          "name": "Hatch",
+          "changes": [
+            {
+              "field": "description",
+              "old": "Hatches after X turns.",
+              "new": "Hatches after [blue]X[/blue] turns."
+            },
+            {
+              "field": "description_raw",
+              "old": "none",
+              "new": "Hatches after X turns."
+            }
+          ]
+        },
+        {
+          "id": "INFINITE_BLADES",
+          "name": "Infinite Blades",
+          "changes": [
+            {
+              "field": "description",
+              "old": "At the start of your turn, add a [gold]Shiv[/gold] into your [gold]Hand[/gold].",
+              "new": "At the start of your turn, add [blue]2[/blue] [gold]Shivs[/gold] into your [g..."
+            },
+            {
+              "field": "description_raw",
+              "old": "none",
+              "new": "At the start of your turn, add {Amount:plural:a [gold]Shiv[/gold]|[blue]{}[/b..."
+            }
+          ]
+        },
+        {
+          "id": "LIGHTNING_ROD",
+          "name": "Lightning Rod",
+          "changes": [
+            {
+              "field": "description_raw",
+              "old": "none",
+              "new": "At the start of the next {Amount:plural:turn|[blue]{}[/blue] turns}, [gold]Ch..."
+            }
+          ]
+        },
+        {
+          "id": "MAYHEM",
+          "name": "Mayhem",
+          "changes": [
+            {
+              "field": "description",
+              "old": "At the start of your turn, play the top card of your [gold]Draw Pile[/gold].",
+              "new": "At the start of your turn, play the next [blue]2[/blue] top cards of your [go..."
+            },
+            {
+              "field": "description_raw",
+              "old": "none",
+              "new": "At the start of your turn, play the {Amount:plural:top card|next [blue]{}[/bl..."
+            }
+          ]
+        },
+        {
+          "id": "NIGHTMARE",
+          "name": "Nightmare",
+          "changes": [
+            {
+              "field": "description",
+              "old": "Add [blue]3[/blue] of a chosen card into your [gold]Hand[/gold] next turn.",
+              "new": "Add [blue]2[/blue] [gold][Card][/gold] cards into your [gold]Hand[/gold] next..."
+            },
+            {
+              "field": "description_raw",
+              "old": "none",
+              "new": "Add {Amount:plural:a|[blue]{}[/blue]} [gold]{Card}[/gold] {Amount:plural:card..."
+            }
+          ]
+        },
+        {
+          "id": "NOSTALGIA",
+          "name": "Nostalgia",
+          "changes": [
+            {
+              "field": "description",
+              "old": "The first Attack or Skill you play each turn is placed on top of your [gold]D...",
+              "new": "The first 2 Attacks or Skills you play each turn are placed on top of your [g..."
+            },
+            {
+              "field": "description_raw",
+              "old": "none",
+              "new": "The first {Amount:plural:Attack or Skill|{} Attacks or Skills} you play each ..."
+            }
+          ]
+        },
+        {
+          "id": "NO_BLOCK",
+          "name": "No Block",
+          "changes": [
+            {
+              "field": "description",
+              "old": "You cannot gain [gold]Block[/gold] from cards.",
+              "new": "You cannot gain [gold]Block[/gold] from cards for [blue]2[/blue] turns."
+            },
+            {
+              "field": "description_raw",
+              "old": "none",
+              "new": "You cannot gain [gold]Block[/gold] from cards for {Amount:plural:[blue]{}[/bl..."
+            }
+          ]
+        },
+        {
+          "id": "ONE_TWO_PUNCH",
+          "name": "One-Two Punch",
+          "changes": [
+            {
+              "field": "description",
+              "old": "Your next Attack is played an extra time this turn.",
+              "new": "Your next [blue]2[/blue] Attacks are played an extra time this turn."
+            },
+            {
+              "field": "description_raw",
+              "old": "none",
+              "new": "Your next {Amount:plural:Attack is|[blue]{}[/blue] Attacks are} played an ext..."
+            }
+          ]
+        },
+        {
+          "id": "PYRE",
+          "name": "Pyre",
+          "changes": [
+            {
+              "field": "description",
+              "old": "Gain [blue]1[/blue] [gold]Energy[/gold] at the start of each turn.",
+              "new": "Gain [energy:1] at the start of each turn."
+            },
+            {
+              "field": "description_raw",
+              "old": "none",
+              "new": "Gain {Amount:energyIcons()} at the start of each turn."
+            }
+          ]
+        },
+        {
+          "id": "REAPER_FORM",
+          "name": "Reaper Form",
+          "changes": [
+            {
+              "field": "description",
+              "old": "Whenever Attacks deal damage, they also apply that much [gold]Doom[/gold].",
+              "new": "Whenever Attacks deal damage, they also apply [blue]2[/blue] times that much ..."
+            },
+            {
+              "field": "description_raw",
+              "old": "none",
+              "new": "Whenever Attacks deal damage, they also apply {Amount:plural:|[blue]{}[/blue]..."
+            }
+          ]
+        },
+        {
+          "id": "REBOUND",
+          "name": "Rebound",
+          "changes": [
+            {
+              "field": "description",
+              "old": "The next card you play this turn is placed on the top of your [gold]Draw Pile...",
+              "new": "The next [blue]2[/blue] cards you play this turn are placed on the top of you..."
+            },
+            {
+              "field": "description_raw",
+              "old": "none",
+              "new": "The next {Amount:plural:card|[blue]{}[/blue] cards} you play this turn {Amoun..."
+            }
+          ]
+        },
+        {
+          "id": "RETAIN_HAND",
+          "name": "Retain Hand",
+          "changes": [
+            {
+              "field": "description_raw",
+              "old": "none",
+              "new": "[gold]Retain[/gold] your [gold]Hand[/gold] {Amount:plural:this turn|for the n..."
+            }
+          ]
+        },
+        {
+          "id": "SANDPIT",
+          "name": "Sandpit",
+          "changes": [
+            {
+              "field": "description",
+              "old": "A power used by The Insatiable.",
+              "new": "In [blue]2[/blue] turns, you will be eaten and die."
+            },
+            {
+              "field": "description_raw",
+              "old": "none",
+              "new": "{Amount:plural:When [gold]The Insatiable[/gold] takes its turn|In [blue]{}[/b..."
+            }
+          ]
+        },
+        {
+          "id": "SHADOWMELD",
+          "name": "Shadowmeld",
+          "changes": [
+            {
+              "field": "description",
+              "old": "Double your [gold]Block[/gold] gain this turn.",
+              "new": "Double your [gold]Block[/gold] gain this turn [blue]2[/blue] times."
+            },
+            {
+              "field": "description_raw",
+              "old": "none",
+              "new": "Double your [gold]Block[/gold] gain this turn{Amount:plural:| [blue]{}[/blue]..."
+            }
+          ]
+        },
+        {
+          "id": "SHADOW_STEP",
+          "name": "Shadow Step",
+          "changes": [
+            {
+              "field": "description",
+              "old": "Next turn, Attacks deal double damage.",
+              "new": "For the next [blue]2[/blue] turns after this one, Attacks deal double damage."
+            },
+            {
+              "field": "description_raw",
+              "old": "none",
+              "new": "{Amount:plural:Next turn|For the next [blue]{}[/blue] turns after this one}, ..."
+            }
+          ]
+        },
+        {
+          "id": "SHRINK",
+          "name": "Shrink",
+          "changes": [
+            {
+              "field": "description",
+              "old": "[gold]this creature's[/gold] Attacks deal [blue]30%[/blue] less damage.",
+              "new": "[gold]This creature's[/gold] Attacks deal [blue]30%[/blue] less damage."
+            }
+          ]
+        },
+        {
+          "id": "SIGNAL_BOOST",
+          "name": "Signal Boost",
+          "changes": [
+            {
+              "field": "description",
+              "old": "Your next Power is played an extra time.",
+              "new": "Your next [blue]2[/blue] Powers are played an extra time."
+            },
+            {
+              "field": "description_raw",
+              "old": "none",
+              "new": "Your next {Amount:plural:Power is|[blue]{}[/blue] Powers are} played an extra..."
+            }
+          ]
+        },
+        {
+          "id": "STRENGTH",
+          "name": "Strength",
+          "changes": [
+            {
+              "field": "description",
+              "old": "Strength adds additional damage to Attacks.",
+              "new": "Increases attack damage by [blue][/blue]."
+            },
+            {
+              "field": "description_raw",
+              "old": "none",
+              "new": "{Amount:cond:<0?Decreases|Increases} attack damage by [blue]{Amount:abs()}[/b..."
+            }
+          ]
+        },
+        {
+          "id": "TANGLED",
+          "name": "Tangled",
+          "changes": [
+            {
+              "field": "description",
+              "old": "Attacks cost [blue]1[/blue] additional [gold]Energy[/gold] this turn.",
+              "new": "Attacks cost an additional [energy:1] for 2 turns."
+            },
+            {
+              "field": "description_raw",
+              "old": "none",
+              "new": "Attacks cost an additional {Amount:energyIcons()} {Amount:plural:this turn|fo..."
+            }
+          ]
+        },
+        {
+          "id": "THE_BOMB",
+          "name": "The Bomb",
+          "changes": [
+            {
+              "field": "description",
+              "old": "At the end of [blue]2[/blue] turns, deal [blue]40[/blue] damage to ALL enemies.",
+              "new": "At the end of [blue]3[/blue] turns, deal [blue]40[/blue] damage to ALL enemies."
+            }
+          ]
+        },
+        {
+          "id": "THE_SEALED_THRONE",
+          "name": "The Sealed Throne",
+          "changes": [
+            {
+              "field": "description_raw",
+              "old": "Whenever you play a card, gain {singleStarIcon}.",
+              "new": "Whenever you play a card, gain {Amount:starIcons()}."
+            }
+          ]
+        },
+        {
+          "id": "TORIC_TOUGHNESS",
+          "name": "Toric Toughness",
+          "changes": [
+            {
+              "field": "description",
+              "old": "Gain [blue]0[/blue] [gold]Block[/gold] at the start of the next [blue][Amount...",
+              "new": "Gain [blue]5[/blue] [gold]Block[/gold] at the start of the next [blue]2[/blue..."
+            }
+          ]
+        },
+        {
+          "id": "TRASH_TO_TREASURE",
+          "name": "Trash to Treasure",
+          "changes": [
+            {
+              "field": "description",
+              "old": "Whenever you create a Status, [gold]Channel[/gold] [blue]1[/blue] random Orb.",
+              "new": "Whenever you create a Status, [gold]Channel[/gold] [blue]2[/blue] random Orbs."
+            },
+            {
+              "field": "description_raw",
+              "old": "none",
+              "new": "Whenever you create a Status, [gold]Channel[/gold] {Amount:plural:[blue]{}[/b..."
+            }
+          ]
+        },
+        {
+          "id": "TYRANNY",
+          "name": "Tyranny",
+          "changes": [
+            {
+              "field": "description",
+              "old": "At the start of your turn, draw a card and [gold]Exhaust[/gold] a card from y...",
+              "new": "At the start of your turn, draw [blue]2[/blue] cards and [gold]Exhaust[/gold]..."
+            },
+            {
+              "field": "description_raw",
+              "old": "none",
+              "new": "At the start of your turn, draw {Amount:plural:[blue]{}[/blue] card|[blue]{}[..."
+            }
+          ]
+        },
+        {
+          "id": "UNMOVABLE",
+          "name": "Unmovable",
+          "changes": [
+            {
+              "field": "description",
+              "old": "The first time you gain [gold]Block[/gold] from a card each turn, double the ...",
+              "new": "The first [blue]2[/blue] times you gain [gold]Block[/gold] from a card each t..."
+            },
+            {
+              "field": "description_raw",
+              "old": "none",
+              "new": "The first {Amount:plural:time|[blue]{}[/blue] times} you gain [gold]Block[/go..."
+            }
+          ]
+        },
+        {
+          "id": "VIGOR",
+          "name": "Vigor",
+          "changes": [
+            {
+              "field": "description",
+              "old": "[gold]this creature's[/gold] next Attack deals [blue][Amount][/blue] addition...",
+              "new": "[gold]This creature's[/gold] next Attack deals [blue][Amount][/blue] addition..."
+            }
+          ]
+        },
+        {
+          "id": "VOID_FORM",
+          "name": "Void Form",
+          "changes": [
+            {
+              "field": "description_raw",
+              "old": "none",
+              "new": "The first {Amount:plural:card|[blue]{}[/blue] cards} you play each turn {Amou..."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
