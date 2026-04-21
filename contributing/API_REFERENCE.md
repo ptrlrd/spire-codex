@@ -78,6 +78,9 @@ All data endpoints accept `?lang=` (default: `eng`). Rate limited to 60 req/min 
 | `GET /api/images/{category}/download` | ZIP download of image category |
 | `GET /api/changelogs` | Changelog summaries |
 | `GET /api/changelogs/{tag}` | Full changelog for a version |
+| `GET /api/news` | Steam announcements + community news (locally archived). Filters: `feed_type`, `feedname`, `tag`, `since`, `search`, `limit`, `offset` |
+| `GET /api/news/{gid}` | Single Steam news article with raw HTML/BBCode body |
+| `GET /api/merchant/config` | Merchant pricing config (auto-extracted from C#: card/potion/relic prices, removal tiers, blacklist) |
 | `GET /api/names/{type}/{id}` | Cross-language name lookup |
 | `GET /api/exports/{lang}` | ZIP download of all entity JSON |
 | `GET /api/history/{type}/{id}` | Per-entity version history (newest first, case-insensitive id match) |

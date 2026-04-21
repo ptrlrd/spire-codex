@@ -192,6 +192,10 @@ spire-codex/
 | Images | `/images` | Browsable game assets with ZIP download per category |
 | Changelog | `/changelog` | Data diffs between game updates |
 | About | `/about` | Project info, stats, pipeline visualization |
+| Thank You | `/thank-you` | Ko-fi supporters and community contributors (split from About so the page can be linked directly) |
+| Knowledge Demon | `/knowledge-demon` | Info page for the Discord bot — slash commands, moderation features, install CTA |
+| News | `/news` | Mirrored Steam announcements feed; canonical links back to Steam so it's additive, not duplicative |
+| News article | `/news/[gid]` | Single Steam announcement with sanitized BBCode body and `NewsArticle` JSON-LD |
 
 ## API Endpoints
 
@@ -711,13 +715,13 @@ Full docs: [spire-codex.com/developers](https://spire-codex.com/developers)
 - ~~Monster attack patterns~~ ✅ — 112 monsters with cycle/random/conditional/mixed AI from C# state machines
 - ~~Event preconditions~~ ✅ — 25 events with IsAllowed() conditions parsed from C# source
 - ~~Multi-version beta browsing~~ ✅ — Version dropdown, all past betas preserved and browsable with changelogs
-- **Discord bot** — Card lookup, patch alerts
+- ~~Discord bot~~ ✅ — [Knowledge Demon](https://bot.spire-codex.com): slash commands for every entity (`/card`, `/relic`, `/monster`, `/potion`, `/character`, `/event`, `/power`, `/enchantment`, `/lookup`, `/meta`), Steam-news RSS, plus a full moderation toolkit forked from [Kernel](https://github.com/ptrlrd/kernel)
 - **Deck builder** — Interactive deck theorycrafting
 - **Database backend** — Replace JSON loading with SQLite/PostgreSQL
 
 ## Acknowledgments
 
-Thanks to **vesper-arch**, **terracubist**, **U77654**, **Purple Aspired Dreaming**, and **Kobaru** for QA testing, bug reports, and contributions.
+Thanks to **vesper-arch**, **terracubist**, **U77654**, **Purple Aspired Dreaming**, **Kobaru**, and **Severi** for QA testing, bug reports, and contributions. The full supporter list — including Ko-fi donors who keep the lights on — lives at [spire-codex.com/thank-you](https://spire-codex.com/thank-you).
 
 ## Tech Stack
 

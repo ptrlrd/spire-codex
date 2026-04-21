@@ -183,6 +183,10 @@ spire-codex/
 | 图片 | `/images` | 可浏览的游戏素材，支持按类别下载 ZIP |
 | 更新日志 | `/changelog` | 游戏更新之间的数据差异 |
 | 关于 | `/about` | 项目信息、统计、流水线可视化 |
+| 致谢页 | `/thank-you` | Ko-fi 支持者与社区贡献者（从「关于」页拆分出来，方便单独链接） |
+| Knowledge Demon | `/knowledge-demon` | Discord 机器人介绍页 —— 斜杠命令、版务功能、加入服务器入口 |
+| 新闻 | `/news` | 镜像 Steam 公告流；canonical 链接回 Steam，作为补充而非重复 |
+| 单条新闻 | `/news/[gid]` | 单篇 Steam 公告，BBCode 内容已净化，并附 `NewsArticle` JSON-LD |
 
 ## API 端点
 
@@ -686,13 +690,13 @@ Spire Codex 使用 **`1.X.Y`** 语义化版本规则：
 - ~~怪物出招模式~~ ✅ —— 112 个怪物，基于 C# 状态机解析出的循环 / 随机 / 条件 / 混合型 AI
 - ~~事件前置条件~~ ✅ —— 25 个事件，条件来自 C# 源码中 IsAllowed() 的解析
 - ~~Beta 多版本浏览~~ ✅ —— 版本下拉框，保留所有历史 beta，并支持查看 changelog
-- **Discord 机器人** —— 卡牌查询、补丁提醒
+- ~~Discord 机器人~~ ✅ —— [Knowledge Demon](https://bot.spire-codex.com)：每个实体都有斜杠命令（`/card`、`/relic`、`/monster`、`/potion`、`/character`、`/event`、`/power`、`/enchantment`、`/lookup`、`/meta`），支持 Steam 新闻 RSS，外加从 [Kernel](https://github.com/ptrlrd/kernel) 派生的完整版务工具集
 - **构筑编辑器** —— 可交互式牌组理论构筑
 - **数据库后端** —— 用 SQLite / PostgreSQL 替换 JSON 加载
 
 ## 致谢
 
-感谢 **vesper-arch**、**terracubist**、**U77654**、**Purple Aspired Dreaming** 和 **Kobaru** 在 QA 测试、Bug 报告和贡献方面提供的帮助。
+感谢 **vesper-arch**、**terracubist**、**U77654**、**Purple Aspired Dreaming**、**Kobaru** 和 **Severi** 在 QA 测试、Bug 报告和贡献方面提供的帮助。完整支持者名单（含为本项目持续供电的 Ko-fi 捐赠者）见 [spire-codex.com/thank-you](https://spire-codex.com/thank-you)。
 
 ## 技术栈
 
