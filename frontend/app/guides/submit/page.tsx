@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useLangPrefix } from "@/lib/use-lang-prefix";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -31,6 +32,7 @@ const characters = [
 ];
 
 export default function SubmitGuidePage() {
+  const lp = useLangPrefix();
   const [title, setTitle] = useState("");
   const [authorName, setAuthorName] = useState("");
   const [contact, setContact] = useState("");
@@ -103,7 +105,7 @@ export default function SubmitGuidePage() {
           <p className="text-[var(--text-secondary)] mb-6">
             Thanks for your contribution! We&apos;ll review your guide and publish it soon.
           </p>
-          <Link href="/guides" className="text-[var(--accent-gold)] hover:underline">
+          <Link href={`${lp}/guides`} className="text-[var(--accent-gold)] hover:underline">
             Back to Guides
           </Link>
         </div>
@@ -116,7 +118,7 @@ export default function SubmitGuidePage() {
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <Link href="/guides" className="text-sm text-[var(--text-muted)] hover:text-[var(--accent-gold)] mb-6 inline-flex items-center gap-1 transition-colors">
+      <Link href={`${lp}/guides`} className="text-sm text-[var(--text-muted)] hover:text-[var(--accent-gold)] mb-6 inline-flex items-center gap-1 transition-colors">
         <span>&larr;</span> Back to Guides
       </Link>
 

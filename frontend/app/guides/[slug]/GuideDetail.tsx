@@ -7,6 +7,7 @@ import { cachedFetch } from "@/lib/fetch-cache";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import Link from "next/link";
+import { useLangPrefix } from "@/lib/use-lang-prefix";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -33,6 +34,7 @@ const categoryLabels: Record<string, string> = {
 };
 
 export default function GuideDetail({ slug, initialGuide }: { slug: string; initialGuide: Guide | null }) {
+  const lp = useLangPrefix();
   const router = useRouter();
   const [guide, setGuide] = useState<Guide | null>(initialGuide);
   const [notFound, setNotFound] = useState(false);
@@ -73,7 +75,7 @@ export default function GuideDetail({ slug, initialGuide }: { slug: string; init
       <div className="text-center py-20">
         <h1 className="text-2xl font-bold text-[var(--text-primary)] mb-2">Guide Not Found</h1>
         <p className="text-[var(--text-muted)] mb-4">This guide doesn&apos;t exist.</p>
-        <Link href="/guides" className="text-[var(--accent-gold)] hover:underline">Browse all guides</Link>
+        <Link href={`${lp}/guides`} className="text-[var(--accent-gold)] hover:underline">Browse all guides</Link>
       </div>
     );
   }
@@ -111,7 +113,7 @@ export default function GuideDetail({ slug, initialGuide }: { slug: string; init
             {categoryLabels[guide.category] || guide.category}
           </span>
           {guide.character && (
-            <Link href={`/characters`} className="px-2 py-0.5 rounded bg-[var(--bg-primary)] text-[var(--accent-gold)] border border-[var(--border-subtle)] text-[10px] hover:border-[var(--accent-gold)] transition-colors">
+            <Link href={`${lp}/characters`} className="px-2 py-0.5 rounded bg-[var(--bg-primary)] text-[var(--accent-gold)] border border-[var(--border-subtle)] text-[10px] hover:border-[var(--accent-gold)] transition-colors">
               {guide.character}
             </Link>
           )}
