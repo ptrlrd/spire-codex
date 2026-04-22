@@ -62,8 +62,11 @@ jobs:
             echo "committed=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
-          git config user.name  "spire-codex-bot"
-          git config user.email "bot@spire-codex.com"
+          # Knowledge Demon is the same bot identity used for the
+          # /api/feedback → GitHub issue flow, so news refreshes share
+          # the author so the bot's activity all shows up under one name.
+          git config user.name  "Knowledge Demon"
+          git config user.email "knowledge-demon@spire-codex.com"
           git add data/news/
           # `[skip ci]` keeps the existing CI workflow (lint/type-check/
           # secret-scan/Docker build) from firing on every poll. The
