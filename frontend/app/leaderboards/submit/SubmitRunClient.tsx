@@ -25,6 +25,13 @@ export default function SubmitRunClient() {
   const [isDragging, setIsDragging] = useState(false);
   const dragCounter = useRef(0);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  // Belt-and-suspenders against any source of double-fire on the upload
+  // path (the dropzone-vs-document race the native stopImmediatePropagation
+  // kills above, plus button double-click, retry, etc.). A ref instead of
+  // useState so the guard sees the latest value without waiting for a
+  // re-render — back-to-back drops fire the second handler before React
+  // commits any state from the first.
+  const uploadInFlight = useRef(false);
 
   function isValidRunFile(data: any): boolean {
     return (
@@ -88,6 +95,8 @@ export default function SubmitRunClient() {
     async (files: FileList) => {
       const total = files.length;
       if (total === 0) return;
+      if (uploadInFlight.current) return;
+      uploadInFlight.current = true;
       setUploadProgress({ total, done: 0, dupes: 0, errors: 0 });
       setError("");
 
@@ -161,6 +170,7 @@ export default function SubmitRunClient() {
       if (total === 1 && errors === 0 && lastHash) {
         router.push(`${lp}/runs/${lastHash}`);
       }
+      uploadInFlight.current = false;
     },
     [username, lp, router]
   );
@@ -224,6 +234,15 @@ export default function SubmitRunClient() {
     (e: React.DragEvent) => {
       e.preventDefault();
       e.stopPropagation();
+      // The page-level `document.addEventListener("drop", …)` below also
+      // calls handleFileUpload so drops anywhere on the page are captured.
+      // React's `e.stopPropagation()` only stops further synthetic handlers
+      // — the underlying native event still bubbles past React's root to
+      // the document listener, which fires handleFileUpload a second time.
+      // Each file then gets POSTed twice: the first request inserts, the
+      // second comes back marked `duplicate`, and the UI shows "0 submitted,
+      // 2 skipped" for what was actually a clean two-file upload.
+      e.nativeEvent.stopImmediatePropagation();
       dragCounter.current = 0;
       setIsDragging(false);
       if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
