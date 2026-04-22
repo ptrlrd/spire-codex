@@ -2,8 +2,11 @@
 
 import json
 import os
+from functools import lru_cache
 from pathlib import Path
 from fastapi import APIRouter, HTTPException, Request
+from slowapi import Limiter
+from slowapi.util import get_remote_address
 from ..services.runs_db import submit_run, get_stats
 from ..metrics import (
     run_submissions,
@@ -19,8 +22,28 @@ _data_dir = Path(
 )
 
 router = APIRouter(prefix="/api/runs", tags=["Runs"])
+limiter = Limiter(key_func=get_remote_address)
 
 MAX_BODY_SIZE = 512 * 1024  # 512 KB
+
+
+@lru_cache(maxsize=2048)
+def _load_run_blob(run_hash: str) -> str | None:
+    """Read a run JSON file once and serve from memory thereafter.
+
+    Run files are immutable once submitted, so a cache is safe — the only
+    way the contents change is the multiplayer-sibling fallback below
+    `shutil.copy2`'ing a sibling's file in, which happens at most once per
+    `run_hash` (the next request hits the file directly). Returning the
+    raw text keeps FastAPI from re-serializing on every request, which
+    matters when a scraper enumerates hashes and turns the worker into a
+    json.dumps loop. `None` means file missing.
+    """
+    run_file = _data_dir / "runs" / f"{run_hash}.json"
+    if not run_file.exists():
+        return None
+    with open(run_file, "r", encoding="utf-8") as f:
+        return f.read()
 
 
 @router.post("", tags=["Runs"])
@@ -226,12 +249,15 @@ def get_run_versions(request: Request):
 
 
 @router.get("/shared/{run_hash}", tags=["Runs"])
+# Per-IP cap. Legitimate share-link traffic is one request per run; this
+# only bites scrapers enumerating hashes — which was sustaining ~8 req/s
+# against this single endpoint and pegging the worker at 100% CPU.
+@limiter.limit("60/minute")
 def get_shared_run(run_hash: str, request: Request):
     """Retrieve a shared run by its hash."""
-    run_file = _data_dir / "runs" / f"{run_hash}.json"
-    if run_file.exists():
-        with open(run_file, "r", encoding="utf-8") as f:
-            return json.load(f)
+    cached = _load_run_blob(run_hash)
+    if cached is not None:
+        return json.loads(cached)
 
     # Fallback for multiplayer: find the run in DB, get its seed/start_time,
     # then look for any sibling player's file with the same seed
@@ -254,7 +280,11 @@ def get_shared_run(run_hash: str, request: Request):
                 # Copy for future lookups
                 import shutil
 
+                run_file = _data_dir / "runs" / f"{run_hash}.json"
                 shutil.copy2(sib_file, run_file)
+                # Bust the cached miss so the just-copied file is served
+                # on this and subsequent requests.
+                _load_run_blob.cache_clear()
                 with open(run_file, "r", encoding="utf-8") as f:
                     return json.load(f)
 
