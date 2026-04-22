@@ -1,0 +1,72 @@
+name: News refresh
+
+# Steam's ISteamNews/GetNewsForApp returns a sliding window of the newest
+# ~200 articles, so once a post ages out we can never query it again through
+# that endpoint. This workflow polls hourly, overwrites changed bodies,
+# appends new gids to `data/news/`, rebuilds `data/news/index.json`, and
+# commits the diff to main when something changed.
+#
+# `news_parser.py` is stdlib-only (no `pip install` needed) and swallows
+# fetch errors with a log line + exit 0, so a Steam outage just produces
+# an empty diff rather than a red workflow.
+
+on:
+  schedule:
+    # Hourly on the top of the hour. The backend reads the bind-mounted
+    # `data/news/` on every request (no lru_cache), so a new Steam post
+    # is visible within ~1h of publish without a container restart.
+    # The parser is idempotent — polls that find nothing new bail before
+    # committing, so most ticks are free aside from the Steam round-trip.
+    - cron: "0 * * * *"
+  workflow_dispatch: {}  # allow manual "run now" from the Actions tab
+
+# Don't allow two refreshes to race — if a long run is still committing,
+# skip the next tick rather than collide on `git push`.
+concurrency:
+  group: news-refresh
+  cancel-in-progress: false
+
+permissions:
+  contents: write  # needed to push the data/news/ commit back to main
+
+jobs:
+  refresh:
+    name: Poll Steam + commit changes
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # We need full history so the commit lands on the live branch
+          # rather than a detached HEAD that the push then rejects.
+          ref: main
+          # The workflow's GITHUB_TOKEN doesn't trigger downstream
+          # workflows by default, which is what we want here — the
+          # data-only refresh shouldn't rerun the CI suite for every
+          # poll. The deploy pipeline picks up the new files on the
+          # next real push.
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run news parser
+        # Stdlib-only — no `pip install` step needed.
+        run: python3 backend/app/parsers/news_parser.py
+
+      - name: Commit + push if anything changed
+        run: |
+          if git diff --quiet -- data/news/; then
+            echo "No new or updated news entries — nothing to commit."
+            exit 0
+          fi
+          git config user.name  "spire-codex-bot"
+          git config user.email "bot@spire-codex.com"
+          git add data/news/
+          # `[skip ci]` keeps the existing CI workflow (lint/type-check/
+          # secret-scan/Docker build) from firing on every poll. The
+          # backend reads `data/news/` from the mounted volume, so a
+          # Docker rebuild isn't required — the next regular merge will
+          # cycle the image normally.
+          git commit -m "Refresh news archive from Steam [skip ci]"
+          git push origin main

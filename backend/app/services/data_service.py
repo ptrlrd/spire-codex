@@ -136,11 +136,18 @@ def load_ascensions(lang: str = DEFAULT_LANG) -> list[dict]:
     return _load_json(lang, "ascensions")
 
 
-@lru_cache(maxsize=4)
-def _load_news_index(version: str | None) -> list[dict]:
+def load_news_index() -> list[dict]:
     """Load the news/index.json built by news_parser. The index is
-    language-agnostic — Steam news isn't translated."""
-    base = _resolve_base(version)
+    language-agnostic — Steam news isn't translated.
+
+    Intentionally NOT `@lru_cache`'d: the `news-refresh` workflow commits
+    new entries to `data/news/` every 6 hours, and the data dir is
+    bind-mounted into the production container (`./data:/data:ro`), so
+    caching would pin the first-load snapshot and the new articles
+    wouldn't show up until the next deploy. At ~44 KB / ~100 entries
+    the re-read is sub-millisecond — cheaper than the staleness.
+    """
+    base = _resolve_base(_get_version())
     filepath = base / "news" / "index.json"
     if not filepath.exists():
         return []
@@ -148,23 +155,16 @@ def _load_news_index(version: str | None) -> list[dict]:
         return json.load(f)
 
 
-def load_news_index() -> list[dict]:
-    return _load_news_index(_get_version())
-
-
-@lru_cache(maxsize=512)
-def _load_news_item(gid: str, version: str | None) -> dict | None:
-    """Load a single archived Steam news item by Steam `gid`."""
-    base = _resolve_base(version)
+def load_news_item(gid: str) -> dict | None:
+    """Load a single archived Steam news item by Steam `gid`. Not cached
+    for the same reason as `load_news_index` — individual articles are
+    small and new ones land on disk between deploys."""
+    base = _resolve_base(_get_version())
     filepath = base / "news" / f"{gid}.json"
     if not filepath.exists():
         return None
     with open(filepath, "r", encoding="utf-8") as f:
         return json.load(f)
-
-
-def load_news_item(gid: str) -> dict | None:
-    return _load_news_item(gid, _get_version())
 
 
 @lru_cache(maxsize=16)
