@@ -1,0 +1,69 @@
+name: Runs DB backup
+
+# Daily SQLite snapshot of /var/www/spire-codex/data/runs.db onto the
+# same prod host under ~/backups/spire-codex-runs/. No sudo — the
+# SSH deploy user already owns its home dir, so permissions are
+# straightforward. Keeps the last 30 days; older snapshots are
+# pruned in the same step. Still single-host risk (the note in the
+# PR that added this is load-bearing) — swap to S3/R2 later if the
+# data becomes irreplaceable.
+
+on:
+  workflow_dispatch: {}
+  schedule:
+    # 03:15 UTC every day — off-peak for traffic, well clear of the
+    # hourly news-refresh cron so the two don't stomp on each other.
+    - cron: "15 3 * * *"
+
+concurrency:
+  group: runs-db-backup
+  cancel-in-progress: false
+
+jobs:
+  backup:
+    name: Snapshot runs.db on prod
+    runs-on: self-hosted
+    steps:
+      - name: SSH — snapshot + rotate
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            set -euo pipefail
+            BACKUP_DIR="$HOME/backups/spire-codex-runs"
+            SRC="/var/www/spire-codex/data/runs.db"
+            STAMP=$(date -u +%Y-%m-%dT%H-%M-%SZ)
+            TMP=$(mktemp "$HOME/runs.db.XXXXXX")
+            DEST="$BACKUP_DIR/runs-${STAMP}.db.gz"
+
+            mkdir -p "$BACKUP_DIR"
+
+            if [ ! -s "$SRC" ]; then
+              echo "ERROR: source DB missing or empty at $SRC" >&2
+              exit 1
+            fi
+
+            # `.backup` is SQLite's online-safe copy — runs without
+            # locking the live DB even if submissions are in flight.
+            sqlite3 "$SRC" ".backup $TMP"
+
+            # Verify the snapshot before we ship it + retain it.
+            sqlite3 "$TMP" "PRAGMA integrity_check;" \
+              | tee /tmp/runs-integrity.log \
+              | grep -q '^ok$' \
+              || { echo "integrity check failed" >&2; cat /tmp/runs-integrity.log >&2; rm -f "$TMP"; exit 1; }
+
+            gzip -9 "$TMP"
+            mv "${TMP}.gz" "$DEST"
+
+            echo "wrote $DEST ($(du -h "$DEST" | cut -f1))"
+
+            # Retention — keep last 30 daily snapshots. mtime-based so a
+            # run that accidentally happens twice in a day doesn't double
+            # up the count.
+            find "$BACKUP_DIR" -maxdepth 1 -name 'runs-*.db.gz' -mtime +30 -print -delete
+
+            echo "retained:"
+            ls -1h "$BACKUP_DIR" | tail -10
