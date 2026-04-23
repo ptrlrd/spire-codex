@@ -40,8 +40,8 @@ export default function EnchantmentsClient({ initialEnchantments }: { initialEnc
       if (v) params.set(k, v);
     }
     const qs = params.toString();
-    router.replace(`/enchantments${qs ? `?${qs}` : ""}`, { scroll: false });
-  }, [router]);
+    router.replace(`${lp}/enchantments${qs ? `?${qs}` : ""}`, { scroll: false });
+  }, [router, lp]);
 
   const setFilterAndUrl = useCallback((key: string, value: string, setter: (v: string) => void) => {
     setter(value);

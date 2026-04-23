@@ -42,10 +42,10 @@ const sortOptions = [
 
 export default function PotionsClient({ initialPotions }: { initialPotions: Potion[] }) {
   const { lang } = useLanguage();
-    const lp = useLangPrefix();
+  const lp = useLangPrefix();
   const searchParams = useSearchParams();
   const router = useRouter();
-const [potions, setPotions] = useState<Potion[]>(initialPotions);
+  const [potions, setPotions] = useState<Potion[]>(initialPotions);
   const [search, setSearch] = useState(searchParams.get("search") || "");
   const [rarity, setRarity] = useState(searchParams.get("rarity") || "");
   const [pool, setPool] = useState(searchParams.get("pool") || "");
@@ -59,8 +59,8 @@ const [potions, setPotions] = useState<Potion[]>(initialPotions);
       if (v && v !== "az") params.set(k, v);
     }
     const qs = params.toString();
-    router.replace(`/potions${qs ? `?${qs}` : ""}`, { scroll: false });
-  }, [router]);
+    router.replace(`${lp}/potions${qs ? `?${qs}` : ""}`, { scroll: false });
+  }, [router, lp]);
 
   const setFilterAndUrl = useCallback((key: string, value: string, setter: (v: string) => void) => {
     setter(value);

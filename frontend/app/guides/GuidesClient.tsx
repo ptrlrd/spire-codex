@@ -6,6 +6,7 @@ import type { GuideSummary } from "@/lib/api";
 import { cachedFetch } from "@/lib/fetch-cache";
 import Link from "next/link";
 import SearchFilter from "../components/SearchFilter";
+import { useLangPrefix } from "@/lib/use-lang-prefix";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -41,6 +42,7 @@ const sortOptions = [
 ];
 
 export default function GuidesClient({ initialGuides }: { initialGuides: GuideSummary[] }) {
+  const lp = useLangPrefix();
   const searchParams = useSearchParams();
   const router = useRouter();
   const [guides, setGuides] = useState<GuideSummary[]>(initialGuides);
@@ -61,8 +63,8 @@ export default function GuidesClient({ initialGuides }: { initialGuides: GuideSu
       if (v && v !== "newest") params.set(k, v);
     }
     const qs = params.toString();
-    router.replace(`/guides${qs ? `?${qs}` : ""}`, { scroll: false });
-  }, [router]);
+    router.replace(`${lp}/guides${qs ? `?${qs}` : ""}`, { scroll: false });
+  }, [router, lp]);
 
   const setFilterAndUrl = useCallback((key: string, value: string, setter: (v: string) => void) => {
     setter(value);
@@ -123,7 +125,7 @@ export default function GuidesClient({ initialGuides }: { initialGuides: GuideSu
         {filtered.map((guide) => (
           <Link
             key={guide.slug}
-            href={`/guides/${guide.slug}`}
+            href={`${lp}/guides/${guide.slug}`}
             className="bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] p-5 hover:bg-[var(--bg-card-hover)] hover:border-[var(--border-accent)] transition-all block"
           >
             <h3 className="font-semibold text-lg text-[var(--accent-gold)] mb-1">{guide.title}</h3>

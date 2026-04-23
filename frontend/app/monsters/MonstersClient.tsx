@@ -39,10 +39,10 @@ const actOptions = [
 
 export default function MonstersClient({ initialMonsters }: { initialMonsters: Monster[] }) {
   const { lang } = useLanguage();
-    const lp = useLangPrefix();
+  const lp = useLangPrefix();
   const searchParams = useSearchParams();
   const router = useRouter();
-const [monsters, setMonsters] = useState<Monster[]>(initialMonsters);
+  const [monsters, setMonsters] = useState<Monster[]>(initialMonsters);
   const [search, setSearch] = useState(searchParams.get("search") || "");
   const [type, setType] = useState(searchParams.get("type") || "");
   const [act, setAct] = useState(searchParams.get("act") || "");
@@ -54,8 +54,8 @@ const [monsters, setMonsters] = useState<Monster[]>(initialMonsters);
       if (v) params.set(k, v);
     }
     const qs = params.toString();
-    router.replace(`/monsters${qs ? `?${qs}` : ""}`, { scroll: false });
-  }, [router]);
+    router.replace(`${lp}/monsters${qs ? `?${qs}` : ""}`, { scroll: false });
+  }, [router, lp]);
 
   const setFilterAndUrl = useCallback((key: string, value: string, setter: (v: string) => void) => {
     setter(value);

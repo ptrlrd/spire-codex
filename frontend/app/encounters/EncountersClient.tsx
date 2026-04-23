@@ -39,10 +39,10 @@ const actOptions = [
 ];
 
 export default function EncountersClient({ initialEncounters }: { initialEncounters: Encounter[] }) {
-    const lp = useLangPrefix();
+  const lp = useLangPrefix();
   const searchParams = useSearchParams();
   const router = useRouter();
-const [encounters, setEncounters] = useState<Encounter[]>(initialEncounters);
+  const [encounters, setEncounters] = useState<Encounter[]>(initialEncounters);
   const [search, setSearch] = useState(searchParams.get("search") || "");
   const [roomType, setRoomType] = useState(searchParams.get("roomType") || "");
   const [act, setAct] = useState(searchParams.get("act") || "");
@@ -55,8 +55,8 @@ const [encounters, setEncounters] = useState<Encounter[]>(initialEncounters);
       if (v) params.set(k, v);
     }
     const qs = params.toString();
-    router.replace(`/encounters${qs ? `?${qs}` : ""}`, { scroll: false });
-  }, [router]);
+    router.replace(`${lp}/encounters${qs ? `?${qs}` : ""}`, { scroll: false });
+  }, [router, lp]);
 
   const setFilterAndUrl = useCallback((key: string, value: string, setter: (v: string) => void) => {
     setter(value);

@@ -100,10 +100,10 @@ function PageBlock({
 }
 
 export default function EventsClient({ initialEvents }: { initialEvents: GameEvent[] }) {
-    const lp = useLangPrefix();
+  const lp = useLangPrefix();
   const searchParams = useSearchParams();
   const router = useRouter();
-const [events, setEvents] = useState<GameEvent[]>(initialEvents);
+  const [events, setEvents] = useState<GameEvent[]>(initialEvents);
   const [search, setSearch] = useState(searchParams.get("search") || "");
   const [type, setType] = useState(searchParams.get("type") || "");
   const [act, setAct] = useState(searchParams.get("act") || "");
@@ -126,8 +126,8 @@ const [events, setEvents] = useState<GameEvent[]>(initialEvents);
       if (v) params.set(k, v);
     }
     const qs = params.toString();
-    router.replace(`/events${qs ? `?${qs}` : ""}`, { scroll: false });
-  }, [router]);
+    router.replace(`${lp}/events${qs ? `?${qs}` : ""}`, { scroll: false });
+  }, [router, lp]);
 
   const setFilterAndUrl = useCallback((key: string, value: string, setter: (v: string) => void) => {
     setter(value);
@@ -207,7 +207,7 @@ const [events, setEvents] = useState<GameEvent[]>(initialEvents);
           return (
             <div
               key={event.id}
-              onClick={() => router.push(`/events/${event.id.toLowerCase()}`)}
+              onClick={() => router.push(`${lp}/events/${event.id.toLowerCase()}`)}
               className={`bg-[var(--bg-card)] rounded-lg border ${
                 typeColors[event.type] || "border-[var(--border-subtle)]"
               } p-4 hover:bg-[var(--bg-card-hover)] transition-all cursor-pointer`}

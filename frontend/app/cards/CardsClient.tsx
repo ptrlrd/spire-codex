@@ -7,6 +7,7 @@ import { cachedFetch } from "@/lib/fetch-cache";
 import CardGrid from "../components/CardGrid";
 import SearchFilter from "../components/SearchFilter";
 import { useLanguage } from "../contexts/LanguageContext";
+import { useLangPrefix } from "@/lib/use-lang-prefix";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -55,6 +56,7 @@ const keywordOptions = [
 ];
 
 export default function CardsClient({ initialCards }: { initialCards: Card[] }) {
+  const lp = useLangPrefix();
   const searchParams = useSearchParams();
   const router = useRouter();
 
@@ -75,8 +77,8 @@ export default function CardsClient({ initialCards }: { initialCards: Card[] }) 
       if (v && v !== "az") params.set(k, v);
     }
     const qs = params.toString();
-    router.replace(`/cards${qs ? `?${qs}` : ""}`, { scroll: false });
-  }, [router]);
+    router.replace(`${lp}/cards${qs ? `?${qs}` : ""}`, { scroll: false });
+  }, [router, lp]);
 
   // Wrap setters to also update URL
   const setFilterAndUrl = useCallback((key: string, value: string, setter: (v: string) => void) => {

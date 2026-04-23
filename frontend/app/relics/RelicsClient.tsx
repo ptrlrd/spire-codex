@@ -48,10 +48,10 @@ const sortOptions = [
 ];
 
 export default function RelicsClient({ initialRelics }: { initialRelics: Relic[] }) {
-    const lp = useLangPrefix();
+  const lp = useLangPrefix();
   const searchParams = useSearchParams();
   const router = useRouter();
-const [relics, setRelics] = useState<Relic[]>(initialRelics);
+  const [relics, setRelics] = useState<Relic[]>(initialRelics);
   const [search, setSearch] = useState(searchParams.get("search") || "");
   const [rarity, setRarity] = useState(searchParams.get("rarity") || "");
   const [pool, setPool] = useState(searchParams.get("pool") || "");
@@ -65,8 +65,8 @@ const [relics, setRelics] = useState<Relic[]>(initialRelics);
       if (v && v !== "az") params.set(k, v);
     }
     const qs = params.toString();
-    router.replace(`/relics${qs ? `?${qs}` : ""}`, { scroll: false });
-  }, [router]);
+    router.replace(`${lp}/relics${qs ? `?${qs}` : ""}`, { scroll: false });
+  }, [router, lp]);
 
   const setFilterAndUrl = useCallback((key: string, value: string, setter: (v: string) => void) => {
     setter(value);
