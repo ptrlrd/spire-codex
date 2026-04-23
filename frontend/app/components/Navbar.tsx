@@ -140,6 +140,14 @@ export default function Navbar() {
   // Close menu on route change
   useEffect(() => {
     setOpen(false);
+    // Clear nav focus after navigation so focus-within dropdowns close (keyboard support preserved).
+    const main = document.querySelector("main");
+    if (main instanceof HTMLElement) {
+      if (!main.hasAttribute("tabindex")) {
+        main.setAttribute("tabindex", "-1");
+      }
+      main.focus();
+    }
   }, [pathname]);
 
   function toggleGroup(label: string) {
@@ -186,6 +194,8 @@ export default function Navbar() {
                   <button
                     type="button"
                     aria-haspopup="menu"
+                    // Mouse clicks should not leave focus in the nav
+                    onMouseDown={(e) => e.preventDefault()}
                     className={`flex items-center gap-1.5 px-3.5 py-2 text-sm font-medium rounded-md transition-colors ${
                       hasActive
                         ? "text-[var(--accent-gold)]"
@@ -225,7 +235,8 @@ export default function Navbar() {
                         }`;
                         if (isInternal) {
                           return (
-                            <Link key={link.href} href={fullHref} role="menuitem" className={className}>
+                            // Mouse clicks should not leave focus in the nav (onMouseDown)
+                            <Link key={link.href} href={fullHref} role="menuitem"  className={className} onMouseDown={(e) => e.preventDefault()}>
                               {t(link.label, lang)}
                             </Link>
                           );
@@ -236,6 +247,8 @@ export default function Navbar() {
                             href={fullHref}
                             {...(isHttp ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                             role="menuitem"
+                            // Mouse clicks should not leave focus in the nav
+                            onMouseDown={(e) => e.preventDefault()}
                             className={className}
                           >
                             {t(link.label, lang)}
