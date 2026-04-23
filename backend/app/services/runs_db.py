@@ -333,8 +333,15 @@ def get_stats(
     ascension: str | None = None,
     game_mode: str | None = None,
     players: str | None = None,
+    username: str | None = None,
 ) -> dict:
-    """Compute aggregate community stats with optional filters."""
+    """Compute aggregate community stats with optional filters.
+
+    `username` narrows the aggregation to a single uploader — the
+    Spire Compendium desktop app uses this for its per-user Stats
+    tab (top cards / relics / potions by the player's own runs).
+    Exact match on the sanitized username the run was submitted with.
+    """
     with get_conn() as conn:
         # Build WHERE clause
         conditions = []
@@ -358,6 +365,9 @@ def get_stats(
             conditions.append("r.player_count = 1")
         elif players == "multi":
             conditions.append("r.player_count > 1")
+        if username:
+            conditions.append("r.username = ?")
+            params.append(username)
         where = ("WHERE " + " AND ".join(conditions)) if conditions else ""
 
         total = conn.execute(
@@ -372,6 +382,7 @@ def get_stats(
                     "ascension": ascension,
                     "game_mode": game_mode,
                     "players": players,
+                    "username": username,
                 },
             }
 
@@ -540,6 +551,7 @@ def get_stats(
                 "ascension": ascension,
                 "game_mode": game_mode,
                 "players": players,
+                "username": username,
             },
             "characters": [
                 {

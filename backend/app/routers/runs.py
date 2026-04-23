@@ -299,12 +299,16 @@ def get_community_stats(
     ascension: str | None = None,
     game_mode: str | None = None,
     players: str | None = None,
+    username: str | None = None,
 ):
-    """Get aggregated community run stats. Filter by character, win/loss/abandoned, ascension, game_mode, players."""
+    """Get aggregated run stats. Community-wide by default; pass
+    `username` to narrow to a single uploader (used by the Spire
+    Compendium desktop app for its per-user Stats tab)."""
     return get_stats(
         character=character,
         win=win,
         ascension=ascension,
         game_mode=game_mode,
         players=players,
+        username=username,
     )
