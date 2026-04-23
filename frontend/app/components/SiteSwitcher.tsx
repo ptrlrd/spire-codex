@@ -153,7 +153,7 @@ export default function SiteSwitcher() {
       {open && (
         <div
           ref={menuRef}
-          className="absolute right-0 top-full mt-2 w-56 max-h-80 overflow-y-auto rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] shadow-xl shadow-black/30 z-50"
+          className="absolute right-0 top-full mt-2 w-48 max-h-80 overflow-y-auto rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] shadow-xl shadow-black/30 z-50"
         >
           <div className="py-1">
             {others.map((e) => {
@@ -172,14 +172,12 @@ export default function SiteSwitcher() {
                     }
                   }}
                   className={`flex items-center justify-between gap-3 px-4 py-2 text-sm transition-colors hover:bg-[var(--bg-card)] ${
-                    e.isMain
-                      ? "text-[var(--accent-gold)] hover:text-[var(--accent-gold)]"
-                      : "text-emerald-400 hover:text-emerald-300"
+                    e.sublabel == "latest" ? "text-emerald-400 hover:text-emerald-300" : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
                   }`}
                 >
                   <span className="font-medium">{e.label}</span>
                   {e.sublabel && (
-                    <span className="text-xs text-[var(--text-muted)]">
+                    <span className="text-xs">
                       {e.sublabel}
                     </span>
                   )}
