@@ -83,6 +83,13 @@ export default function SiteSwitcher() {
   // Current beta version comes from `?version=` when on beta; empty means
   // "viewing latest". On main this is always null.
   const currentBetaVersion = IS_BETA ? searchParams.get("version") : null;
+  
+  // Release currently treated as the main version.
+  const MAIN_VERSION = "v0.103.2";
+  // Keep the main-version check in one place so label and styling use the same source of truth.
+  function isMainVersion(version: string) {
+    return stripSuffix(version) === MAIN_VERSION;
+  }
 
   // Build the full list: "main" entry + one entry per beta version.
   // Beta entries point at beta.spire-codex.com with `?version=<v>` for
@@ -102,11 +109,12 @@ export default function SiteSwitcher() {
       const href = v.is_latest
         ? BETA_URL
         : `${BETA_URL}/?version=${encodeURIComponent(v.version)}`;
+      const mainVersion = isMainVersion(v.version);
       return {
         label: `beta ${stripSuffix(v.version)}`,
-        sublabel: v.is_latest ? "latest" : undefined,
         href,
-        isMain: false,
+        sublabel: v.is_latest ? "latest" : mainVersion ? "main" : undefined,
+        isMain: mainVersion,
         isCurrent,
         // When user is already on beta and picks a different beta version,
         // stay in-SPA via the context setter — no full page reload.
@@ -153,7 +161,7 @@ export default function SiteSwitcher() {
       {open && (
         <div
           ref={menuRef}
-          className="absolute right-0 top-full mt-2 w-48 max-h-80 overflow-y-auto rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] shadow-xl shadow-black/30 z-50"
+          className="absolute right-0 top-full mt-2 w-56 max-h-80 overflow-y-auto rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] shadow-xl shadow-black/30 z-50"
         >
           <div className="py-1">
             {others.map((e) => {
@@ -172,7 +180,11 @@ export default function SiteSwitcher() {
                     }
                   }}
                   className={`flex items-center justify-between gap-3 px-4 py-2 text-sm transition-colors hover:bg-[var(--bg-card)] ${
-                    e.sublabel == "latest" ? "text-emerald-400 hover:text-emerald-300" : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+                    e.isMain
+                      ? "text-[var(--accent-gold)] hover:text-[var(--accent-gold)]"
+                      : e.sublabel === "latest"
+                      ? "text-emerald-400 hover:text-emerald-300"
+                      : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
                   }`}
                 >
                   <span className="font-medium">{e.label}</span>
