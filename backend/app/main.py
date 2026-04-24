@@ -206,7 +206,9 @@ class RequestLoggingMiddleware(BaseHTTPMiddleware):
         if version:
             version_usage.labels(version=version).inc()
         else:
-            host = request.headers.get("x-forwarded-host") or request.headers.get("host", "")
+            host = request.headers.get("x-forwarded-host") or request.headers.get(
+                "host", ""
+            )
             if host.startswith("beta."):
                 version_usage.labels(version="latest").inc()
 
