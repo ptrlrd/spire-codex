@@ -104,8 +104,8 @@ export default function SiteSwitcher() {
         : `${BETA_URL}/?version=${encodeURIComponent(v.version)}`;
       return {
         label: `beta ${stripSuffix(v.version)}`,
-        sublabel: v.is_latest ? "latest" : undefined,
         href,
+        sublabel: v.is_latest ? "latest" : undefined,
         isMain: false,
         isCurrent,
         // When user is already on beta and picks a different beta version,
@@ -174,12 +174,14 @@ export default function SiteSwitcher() {
                   className={`flex items-center justify-between gap-3 px-4 py-2 text-sm transition-colors hover:bg-[var(--bg-card)] ${
                     e.isMain
                       ? "text-[var(--accent-gold)] hover:text-[var(--accent-gold)]"
-                      : "text-emerald-400 hover:text-emerald-300"
+                      : e.sublabel === "latest"
+                      ? "text-emerald-400 hover:text-emerald-300"
+                      : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
                   }`}
                 >
                   <span className="font-medium">{e.label}</span>
                   {e.sublabel && (
-                    <span className="text-xs text-[var(--text-muted)]">
+                    <span className="text-xs">
                       {e.sublabel}
                     </span>
                   )}
