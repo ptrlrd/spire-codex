@@ -34,16 +34,25 @@ CATEGORIES: dict[str, tuple[str, str, bool, list[str] | None]] = {
     "cards-beta": ("Cards (Beta Art)", "cards/beta", False, None),
     "relics-beta": ("Relics (Beta Art)", "relics/beta", False, None),
     "monsters-beta": ("Monsters (Beta Art)", "monsters/beta", False, None),
-    "backgrounds-beta": (
-        "Backgrounds (Beta Art)",
-        "misc/beta",
-        False,
-        # Event-scene backgrounds that changed in Steam beta builds but
-        # haven't landed on the stable branch yet. File names mirror
-        # their stable counterparts under `misc/` so downloads from
-        # either bundle produce a consistent filename.
-        ["vakuu.png"],
+    # ── Steam-beta-branch art (v0.104.0 and onward) ──────────────
+    # Mirrors the main image tree under a `beta/` prefix. Separate from
+    # Mega Crit's per-category `cards/beta/`, `relics/beta/`,
+    # `monsters/beta/` placeholder-art convention — those are their
+    # internal "art not yet done" fallbacks, unrelated to which game
+    # branch the image shipped on. Files here come from the Steam beta
+    # extraction and only match what's currently in-game on the beta
+    # branch; stable paths intentionally keep the previous art until
+    # Mega Crit promotes the patch.
+    "beta-cards": ("Cards (Steam Beta)", "beta/cards", False, None),
+    "beta-backgrounds": ("Backgrounds (Steam Beta)", "beta/misc", False, None),
+    "beta-monsters": (
+        "Monsters (Steam Beta)",
+        "beta/monsters",
+        True,
+        None,
     ),
+    "beta-ui": ("UI (Steam Beta)", "beta/ui", True, None),
+    "beta-vfx": ("VFX (Steam Beta)", "beta/vfx", True, None),
     "backgrounds": (
         "Backgrounds",
         "misc",
