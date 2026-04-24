@@ -93,6 +93,14 @@ if SENTRY_DSN:
     except Exception as e:
         logger.warning("Sentry init failed: %s", e)
 
+# Beta backend deployment marker. `docker-compose.beta.yml` sets
+# DISABLE_RUN_SUBMISSIONS=1 on the beta-tagged container (stable
+# never sets it), so presence of the var uniquely identifies "this
+# process is the beta deployment." Used to tag the default
+# `version_usage` counter so beta dashboards see baseline traffic
+# without requiring every client to set `?version=latest`.
+IS_BETA_BACKEND = os.environ.get("DISABLE_RUN_SUBMISSIONS") == "1"
+
 limiter = Limiter(key_func=get_remote_address, default_limits=["60/minute"])
 
 app = FastAPI(
@@ -205,12 +213,13 @@ class RequestLoggingMiddleware(BaseHTTPMiddleware):
         version = request.query_params.get("version")
         if version:
             version_usage.labels(version=version).inc()
-        else:
-            host = request.headers.get("x-forwarded-host") or request.headers.get(
-                "host", ""
-            )
-            if host.startswith("beta."):
-                version_usage.labels(version="latest").inc()
+        elif IS_BETA_BACKEND:
+            # No explicit ?version= on a beta-deployment request means
+            # the client is browsing whatever `latest` points at right
+            # now. The Host-header version of this check only worked
+            # when nginx preserved the public hostname; the env-var
+            # check is deterministic regardless of proxy layer.
+            version_usage.labels(version="latest").inc()
 
         # Track entity views and searches from API paths
         path = request.url.path
