@@ -79,13 +79,18 @@ CATEGORIES: dict[str, tuple[str, str, bool, list[str] | None]] = {
             "vakuu.png",
             "nonupeipe.png",
             "pael.png",
-            # Relic-inspect popup assets. The full parchment panel that
-            # the inspect screen draws on (`reward_panel.png`, reused
-            # from `images/ui/reward_screen/`) plus the inner rounded
-            # frame the relic art sits inside (`relic_inspect_frame.png`,
-            # `images/packed/inspect_relic_screen/`).
+            # Relic-inspect popup assets. `reward_panel.png` is the
+            # parchment background (reused from `images/ui/reward_screen/`),
+            # `relic_inspect_frame.png` is the gold corner ornaments
+            # (`images/packed/inspect_relic_screen/`), and
+            # `relic_inspect_inner.png` is a synthesized 340x340 fill
+            # matching the FrameBg modulate color from
+            # `inspect_relic_screen.tscn` — the game draws that surface
+            # procedurally (no asset file exists), this convenience PNG
+            # lets re-creations skip the alpha-blend step.
             "reward_panel.png",
             "relic_inspect_frame.png",
+            "relic_inspect_inner.png",
         ],
     ),
     "intents": ("Intent Icons", "intents", False, None),
