@@ -79,6 +79,10 @@ CATEGORIES: dict[str, tuple[str, str, bool, list[str] | None]] = {
             "vakuu.png",
             "nonupeipe.png",
             "pael.png",
+            # Relic-inspect popup frame — the rounded square that sits
+            # behind the relic art when you hover/click a relic in-game.
+            # Source: extraction/raw/images/packed/inspect_relic_screen/.
+            "relic_inspect_frame.png",
         ],
     ),
     "intents": ("Intent Icons", "intents", False, None),
