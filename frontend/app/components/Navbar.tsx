@@ -140,10 +140,13 @@ export default function Navbar() {
   // Close menu on route change
   useEffect(() => {
     setOpen(false);
-    // Clear nav focus after navigation so focus-within dropdowns close (keyboard support preserved).
+    // Clear nav focus after navigation so focus-within dropdowns close
+    // (keyboard support preserved). preventScroll matters: without it the
+    // browser scrolls <main> into view, which on small screens jumps past
+    // the donation banner that sits above main in the layout.
     const main = document.querySelector("main");
     if (main instanceof HTMLElement) {
-      main.focus();
+      main.focus({ preventScroll: true });
     }
   }, [pathname]);
 
