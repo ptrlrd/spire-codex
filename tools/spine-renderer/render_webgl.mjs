@@ -383,9 +383,16 @@ async function main() {
       if (hiddenSlots.some(h => sn.includes(h) || an.includes(h))) {
         slot.setAttachment(null);
       }
-      // If --only-slots is set, hide anything that doesn't match the pattern
-      if (onlySlots && !sn.includes(onlySlots.toLowerCase())) {
-        slot.setAttachment(null);
+      // If --only-slots is set, hide anything that doesn't match. Pattern
+      // can be a single substring or a comma-separated list — slot is kept
+      // if its name contains ANY of the patterns. Lets us select disjoint
+      // slot families (e.g. `Layer,swirls,stars` for Regent's backdrop)
+      // without chaining multiple renders.
+      if (onlySlots) {
+        const patterns = onlySlots.toLowerCase().split(",").map(p => p.trim()).filter(Boolean);
+        if (!patterns.some(p => sn.includes(p))) {
+          slot.setAttachment(null);
+        }
       }
       // Restore full alpha on substituted smoke slots.
       if (att && SMOKE_ATTACHMENT_NAMES.includes(an)) {
