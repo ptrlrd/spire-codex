@@ -101,34 +101,48 @@ export default function RelicDetail({ initialRelic }: { initialRelic?: Relic | n
               className="w-24 h-24 object-contain"
               crossOrigin="anonymous"
             />
-            {relic.image_variants && Object.keys(relic.image_variants).length > 0 && (
-              <div className="mt-4 text-center">
-                <p className="text-xs text-[var(--text-muted)] mb-2">
-                  {t("This relic has different art for each character. Click to preview.", lang)}
-                </p>
-                <div className="flex gap-1.5 justify-center">
-                  {Object.entries(relic.image_variants).map(([char, url]) => (
-                    <button
-                      key={char}
-                      onClick={() => { setSelectedVariant(url); setSelectedChar(char); }}
-                      title={`${t("Show", lang)} ${char} ${t("variant", lang)}`}
-                      className={`text-xs px-2 py-1 rounded border transition-colors ${
-                        selectedVariant === url
-                          ? "border-[var(--accent-gold)]/50 text-[var(--accent-gold)] bg-[var(--accent-gold)]/10"
-                          : "border-[var(--border-subtle)] text-[var(--text-muted)] hover:text-[var(--text-secondary)]"
-                      }`}
-                    >
-                      {char}
-                    </button>
-                  ))}
-                </div>
-                {selectedChar && (
-                  <p className="text-xs text-[var(--text-muted)] mt-2 italic">
-                    {t("Showing", lang)}: {selectedChar}
+            {relic.image_variants && Object.keys(relic.image_variants).length > 0 && (() => {
+              // Detect what KIND of variant this is so the caption fits.
+              // Character-name keys (Ironclad / Silent / etc.) → Yummy Cookie
+              // pattern. Anything else (e.g. Looming Fruit's Cornucopia / Fruit)
+              // is a per-save / per-context variant and gets a generic caption
+              // — relic_parser.py adds a `notes` entry explaining the specific
+              // mechanic for those, which renders below.
+              const CHARACTER_KEYS = new Set(["Ironclad", "Silent", "Defect", "Necrobinder", "Regent"]);
+              const variantKeys = Object.keys(relic.image_variants);
+              const isCharacterVariants = variantKeys.every((k) => CHARACTER_KEYS.has(k));
+              const caption = isCharacterVariants
+                ? t("This relic has different art for each character. Click to preview.", lang)
+                : t("This relic has multiple in-game art variants. Click to preview.", lang);
+              return (
+                <div className="mt-4 text-center w-full max-w-xs mx-auto">
+                  <p className="text-xs text-[var(--text-muted)] mb-2 px-2">
+                    {caption}
                   </p>
-                )}
-              </div>
-            )}
+                  <div className="flex flex-wrap gap-1.5 justify-center">
+                    {Object.entries(relic.image_variants).map(([variantKey, url]) => (
+                      <button
+                        key={variantKey}
+                        onClick={() => { setSelectedVariant(url); setSelectedChar(variantKey); }}
+                        title={`${t("Show", lang)} ${variantKey} ${t("variant", lang)}`}
+                        className={`text-xs px-2 py-1 rounded border transition-colors ${
+                          selectedVariant === url
+                            ? "border-[var(--accent-gold)]/50 text-[var(--accent-gold)] bg-[var(--accent-gold)]/10"
+                            : "border-[var(--border-subtle)] text-[var(--text-muted)] hover:text-[var(--text-secondary)]"
+                        }`}
+                      >
+                        {variantKey}
+                      </button>
+                    ))}
+                  </div>
+                  {selectedChar && (
+                    <p className="text-xs text-[var(--text-muted)] mt-2 italic">
+                      {t("Showing", lang)}: {selectedChar}
+                    </p>
+                  )}
+                </div>
+              );
+            })()}
           </div>
         )}
 
