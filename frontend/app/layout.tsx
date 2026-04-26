@@ -59,7 +59,13 @@ export default function RootLayout({
               <Navbar />
               <div className="pt-16">
                 <DonationBanner />
-                <main tabIndex={-1}>{children}</main>
+                {/* tabIndex=-1 lets Navbar's main.focus() (PR #142) clear
+                    focus-within from the dropdown after route changes. The
+                    outline-none is required because the programmatic focus
+                    would otherwise paint a visible browser focus ring around
+                    the entire content area, which read as a stray "tab" line
+                    underneath the donation banner on every navigation. */}
+                <main tabIndex={-1} className="outline-none">{children}</main>
               </div>
               <Footer />
               <GlobalSearch />
