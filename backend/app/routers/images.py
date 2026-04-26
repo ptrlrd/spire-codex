@@ -81,6 +81,18 @@ CATEGORIES: dict[str, tuple[str, str, bool, list[str] | None]] = {
             "pael.png",
         ],
     ),
+    "character-backgrounds": (
+        "Character Backgrounds",
+        "misc/character_bg",
+        False,
+        # Clean per-character backdrops from `scenes/screens/char_select/`.
+        # silent + necrobinder come straight from the dedicated bg.png files
+        # in `animations/character_select/{char}/`. ironclad + defect render
+        # the bg-only slots (`bg`, `background*`) from their Spine skeletons.
+        # regent has no bg asset — its scene draws a flat ColorRect, so we
+        # generate a solid PNG matching the Color() value in the tscn.
+        ["ironclad.png", "silent.png", "defect.png", "necrobinder.png", "regent.png"],
+    ),
     "intents": ("Intent Icons", "intents", False, None),
     "ui-icons": ("UI Icons", "ui/icons", False, None),
     "ui-energy": ("Energy Icons", "ui/energy", False, None),
