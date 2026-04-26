@@ -214,7 +214,7 @@
           { "id": "TANXS_WHISTLE", "condition": null },
           { "id": "THROWING_AXE", "condition": null },
           { "id": "WAR_HAMMER", "condition": null },
-          { "id": "TRI_BOOMERANG", "condition": "Deck has 3+ cards that can be enchanted with Instinct (Attacks costing 1+)" }
+          { "id": "TRI_BOOMERANG", "condition": "Deck has 3+ Attack cards (the type filter Instinct enforces)" }
         ]
       }
     ]
