@@ -1059,14 +1059,14 @@
         "encounter_id": "CULTISTS_NORMAL",
         "encounter_name": "狂信者たち",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       },
       {
         "encounter_id": "SEAPUNK_NORMAL",
         "encounter_name": "地下ドックに生きるものたち",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       }
     ],
@@ -1369,14 +1369,14 @@
         "encounter_id": "CORPSE_SLUGS_NORMAL",
         "encounter_name": "多数の屍ナメクジ",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       },
       {
         "encounter_id": "CORPSE_SLUGS_WEAK",
         "encounter_name": "屍ナメクジ",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": true
       }
     ],
@@ -1801,7 +1801,7 @@
         "encounter_id": "CULTISTS_NORMAL",
         "encounter_name": "狂信者たち",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       }
     ],
@@ -2662,7 +2662,7 @@
         "encounter_id": "GREMLIN_MERC_NORMAL",
         "encounter_name": "トレンチコートのグレムリン",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       }
     ],
@@ -3098,7 +3098,7 @@
         "encounter_id": "FOSSIL_STALKER_NORMAL",
         "encounter_name": "化石のストーカー",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       }
     ],
@@ -3397,7 +3397,7 @@
         "encounter_id": "LIVING_FOG_NORMAL",
         "encounter_name": "邪悪なガス",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       }
     ],
@@ -3598,7 +3598,7 @@
         "encounter_id": "GREMLIN_MERC_NORMAL",
         "encounter_name": "トレンチコートのグレムリン",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       }
     ],
@@ -3738,7 +3738,7 @@
         "encounter_id": "HAUNTED_SHIP_NORMAL",
         "encounter_name": "幽霊船",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       }
     ],
@@ -4547,7 +4547,7 @@
         "encounter_id": "LAGAVULIN_MATRIARCH_BOSS",
         "encounter_name": "ラガヴーリン・メイトリアーク",
         "room_type": "Boss",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       }
     ],
@@ -4831,7 +4831,7 @@
         "encounter_id": "LIVING_FOG_NORMAL",
         "encounter_name": "邪悪なガス",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       }
     ],
@@ -6064,7 +6064,7 @@
         "encounter_id": "PHANTASMAL_GARDENERS_ELITE",
         "encounter_name": "幻影蟲",
         "room_type": "Elite",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       }
     ],
@@ -6267,7 +6267,7 @@
         "encounter_id": "PUNCH_CONSTRUCT_NORMAL",
         "encounter_name": "パンチマシーン",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       },
       {
@@ -6763,14 +6763,14 @@
         "encounter_id": "SEAPUNK_NORMAL",
         "encounter_name": "地下ドックに生きるものたち",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       },
       {
         "encounter_id": "SEAPUNK_WEAK",
         "encounter_name": "シーパンク",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": true
       }
     ],
@@ -6846,7 +6846,7 @@
         "encounter_id": "SEWER_CLAM_NORMAL",
         "encounter_name": "下水貝",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       }
     ],
@@ -7040,7 +7040,7 @@
         "encounter_id": "SKULKING_COLONY_ELITE",
         "encounter_name": "蠢く群生体",
         "room_type": "Elite",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       }
     ],
@@ -7355,7 +7355,7 @@
         "encounter_id": "SLUDGE_SPINNER_WEAK",
         "encounter_name": "スラッジスピナー",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": true
       }
     ],
@@ -7580,7 +7580,7 @@
         "encounter_id": "GREMLIN_MERC_NORMAL",
         "encounter_name": "トレンチコートのグレムリン",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       }
     ],
@@ -7686,7 +7686,7 @@
         "encounter_id": "SOUL_FYSH_BOSS",
         "encounter_name": "ソウルフィッシュ",
         "room_type": "Boss",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       }
     ],
@@ -8168,7 +8168,7 @@
         "encounter_id": "TERROR_EEL_ELITE",
         "encounter_name": "テラーウツボ",
         "room_type": "Elite",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       }
     ],
@@ -9194,7 +9194,7 @@
         "encounter_id": "TOADPOLES_WEAK",
         "encounter_name": "ヒキジャクシ",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": true
       }
     ],
@@ -9912,7 +9912,7 @@
         "encounter_id": "TWO_TAILED_RATS_NORMAL",
         "encounter_name": "双尾のネズミ",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       }
     ],
@@ -10303,7 +10303,7 @@
         "encounter_id": "WATERFALL_GIANT_BOSS",
         "encounter_name": "滝の巨人",
         "room_type": "Boss",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       }
     ],

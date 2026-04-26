@@ -31,9 +31,9 @@ const typeOptions = [
 
 const actOptions = [
   { label: "Act 1 - Overgrowth", value: "Act 1 - Overgrowth" },
+  { label: "Act 1 - Underdocks", value: "Act 1 - Underdocks" },
   { label: "Act 2 - Hive", value: "Act 2 - Hive" },
   { label: "Act 3 - Glory", value: "Act 3 - Glory" },
-  { label: "Underdocks", value: "Underdocks" },
   { label: "Weak Encounters", value: "weak" },
 ];
 

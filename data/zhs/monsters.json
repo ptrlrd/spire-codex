@@ -1059,14 +1059,14 @@
         "encounter_id": "CULTISTS_NORMAL",
         "encounter_name": "邪教徒们",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       },
       {
         "encounter_id": "SEAPUNK_NORMAL",
         "encounter_name": "暗港野生动物",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       }
     ],
@@ -1369,14 +1369,14 @@
         "encounter_id": "CORPSE_SLUGS_NORMAL",
         "encounter_name": "许多噬尸蛞蝓",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       },
       {
         "encounter_id": "CORPSE_SLUGS_WEAK",
         "encounter_name": "一些噬尸蛞蝓",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": true
       }
     ],
@@ -1801,7 +1801,7 @@
         "encounter_id": "CULTISTS_NORMAL",
         "encounter_name": "邪教徒们",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       }
     ],
@@ -2662,7 +2662,7 @@
         "encounter_id": "GREMLIN_MERC_NORMAL",
         "encounter_name": "穿着一件大衣的两只地精",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       }
     ],
@@ -3098,7 +3098,7 @@
         "encounter_id": "FOSSIL_STALKER_NORMAL",
         "encounter_name": "化石追踪者",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       }
     ],
@@ -3397,7 +3397,7 @@
         "encounter_id": "LIVING_FOG_NORMAL",
         "encounter_name": "邪恶气体",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       }
     ],
@@ -3598,7 +3598,7 @@
         "encounter_id": "GREMLIN_MERC_NORMAL",
         "encounter_name": "穿着一件大衣的两只地精",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       }
     ],
@@ -3738,7 +3738,7 @@
         "encounter_id": "HAUNTED_SHIP_NORMAL",
         "encounter_name": "幽灵船",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       }
     ],
@@ -4547,7 +4547,7 @@
         "encounter_id": "LAGAVULIN_MATRIARCH_BOSS",
         "encounter_name": "乐加维林族母",
         "room_type": "Boss",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       }
     ],
@@ -4831,7 +4831,7 @@
         "encounter_id": "LIVING_FOG_NORMAL",
         "encounter_name": "邪恶气体",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       }
     ],
@@ -6064,7 +6064,7 @@
         "encounter_id": "PHANTASMAL_GARDENERS_ELITE",
         "encounter_name": "花园幽灵鳗",
         "room_type": "Elite",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       }
     ],
@@ -6267,7 +6267,7 @@
         "encounter_id": "PUNCH_CONSTRUCT_NORMAL",
         "encounter_name": "拳击构装体",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       },
       {
@@ -6763,14 +6763,14 @@
         "encounter_id": "SEAPUNK_NORMAL",
         "encounter_name": "暗港野生动物",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       },
       {
         "encounter_id": "SEAPUNK_WEAK",
         "encounter_name": "海洋混混",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": true
       }
     ],
@@ -6846,7 +6846,7 @@
         "encounter_id": "SEWER_CLAM_NORMAL",
         "encounter_name": "下水道蚌",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       }
     ],
@@ -7040,7 +7040,7 @@
         "encounter_id": "SKULKING_COLONY_ELITE",
         "encounter_name": "鬼祟珊瑚群",
         "room_type": "Elite",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       }
     ],
@@ -7355,7 +7355,7 @@
         "encounter_id": "SLUDGE_SPINNER_WEAK",
         "encounter_name": "淤泥旋螺",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": true
       }
     ],
@@ -7580,7 +7580,7 @@
         "encounter_id": "GREMLIN_MERC_NORMAL",
         "encounter_name": "穿着一件大衣的两只地精",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       }
     ],
@@ -7686,7 +7686,7 @@
         "encounter_id": "SOUL_FYSH_BOSS",
         "encounter_name": "灵魂异鱼",
         "room_type": "Boss",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       }
     ],
@@ -8168,7 +8168,7 @@
         "encounter_id": "TERROR_EEL_ELITE",
         "encounter_name": "骇鳗",
         "room_type": "Elite",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       }
     ],
@@ -9194,7 +9194,7 @@
         "encounter_id": "TOADPOLES_WEAK",
         "encounter_name": "蟾蜍蝌蚪",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": true
       }
     ],
@@ -9912,7 +9912,7 @@
         "encounter_id": "TWO_TAILED_RATS_NORMAL",
         "encounter_name": "双尾鼠",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       }
     ],
@@ -10303,7 +10303,7 @@
         "encounter_id": "WATERFALL_GIANT_BOSS",
         "encounter_name": "瀑布巨兽",
         "room_type": "Boss",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       }
     ],

@@ -33,9 +33,9 @@ const roomTypeOptions = [
 
 const actOptions = [
   { label: "Act 1 - Overgrowth", value: "overgrowth" },
+  { label: "Act 1 - Underdocks", value: "underdocks" },
   { label: "Act 2 - Hive", value: "hive" },
   { label: "Act 3 - Glory", value: "glory" },
-  { label: "Act 1 - Underdocks", value: "underdocks" },
 ];
 
 export default function EncountersClient({ initialEncounters }: { initialEncounters: Encounter[] }) {

@@ -1059,14 +1059,14 @@
         "encounter_id": "CULTISTS_NORMAL",
         "encounter_name": "Cultists",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       },
       {
         "encounter_id": "SEAPUNK_NORMAL",
         "encounter_name": "Underdocks Wildlife",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       }
     ],
@@ -1369,14 +1369,14 @@
         "encounter_id": "CORPSE_SLUGS_NORMAL",
         "encounter_name": "Many Corpse Slugs",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       },
       {
         "encounter_id": "CORPSE_SLUGS_WEAK",
         "encounter_name": "Corpse Slugs",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": true
       }
     ],
@@ -1801,7 +1801,7 @@
         "encounter_id": "CULTISTS_NORMAL",
         "encounter_name": "Cultists",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       }
     ],
@@ -2662,7 +2662,7 @@
         "encounter_id": "GREMLIN_MERC_NORMAL",
         "encounter_name": "Two Gremlins in a Trenchcoat",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       }
     ],
@@ -3098,7 +3098,7 @@
         "encounter_id": "FOSSIL_STALKER_NORMAL",
         "encounter_name": "Fossil Stalker",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       }
     ],
@@ -3397,7 +3397,7 @@
         "encounter_id": "LIVING_FOG_NORMAL",
         "encounter_name": "Evil Gas",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       }
     ],
@@ -3598,7 +3598,7 @@
         "encounter_id": "GREMLIN_MERC_NORMAL",
         "encounter_name": "Two Gremlins in a Trenchcoat",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       }
     ],
@@ -3738,7 +3738,7 @@
         "encounter_id": "HAUNTED_SHIP_NORMAL",
         "encounter_name": "Haunted Ship",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       }
     ],
@@ -4547,7 +4547,7 @@
         "encounter_id": "LAGAVULIN_MATRIARCH_BOSS",
         "encounter_name": "Lagavulin Matriarch",
         "room_type": "Boss",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       }
     ],
@@ -4831,7 +4831,7 @@
         "encounter_id": "LIVING_FOG_NORMAL",
         "encounter_name": "Evil Gas",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       }
     ],
@@ -6064,7 +6064,7 @@
         "encounter_id": "PHANTASMAL_GARDENERS_ELITE",
         "encounter_name": "Phantasmal Gardeners",
         "room_type": "Elite",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       }
     ],
@@ -6267,7 +6267,7 @@
         "encounter_id": "PUNCH_CONSTRUCT_NORMAL",
         "encounter_name": "Punch Construct",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       },
       {
@@ -6763,14 +6763,14 @@
         "encounter_id": "SEAPUNK_NORMAL",
         "encounter_name": "Underdocks Wildlife",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       },
       {
         "encounter_id": "SEAPUNK_WEAK",
         "encounter_name": "Seapunk",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": true
       }
     ],
@@ -6846,7 +6846,7 @@
         "encounter_id": "SEWER_CLAM_NORMAL",
         "encounter_name": "Sewer Clam",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       }
     ],
@@ -7040,7 +7040,7 @@
         "encounter_id": "SKULKING_COLONY_ELITE",
         "encounter_name": "Skulking Colony",
         "room_type": "Elite",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       }
     ],
@@ -7355,7 +7355,7 @@
         "encounter_id": "SLUDGE_SPINNER_WEAK",
         "encounter_name": "Sludge Spinner",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": true
       }
     ],
@@ -7580,7 +7580,7 @@
         "encounter_id": "GREMLIN_MERC_NORMAL",
         "encounter_name": "Two Gremlins in a Trenchcoat",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       }
     ],
@@ -7686,7 +7686,7 @@
         "encounter_id": "SOUL_FYSH_BOSS",
         "encounter_name": "Soul Fysh",
         "room_type": "Boss",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       }
     ],
@@ -8168,7 +8168,7 @@
         "encounter_id": "TERROR_EEL_ELITE",
         "encounter_name": "Terror Eel",
         "room_type": "Elite",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       }
     ],
@@ -9194,7 +9194,7 @@
         "encounter_id": "TOADPOLES_WEAK",
         "encounter_name": "Toadpoles",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": true
       }
     ],
@@ -9912,7 +9912,7 @@
         "encounter_id": "TWO_TAILED_RATS_NORMAL",
         "encounter_name": "Two-Tailed Rats",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       }
     ],
@@ -10303,7 +10303,7 @@
         "encounter_id": "WATERFALL_GIANT_BOSS",
         "encounter_name": "Waterfall Giant",
         "room_type": "Boss",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       }
     ],
