@@ -155,7 +155,7 @@ function KofiBanner({ onDismiss }: { onDismiss: () => void }) {
             </a>
             . Servants! Fetch tea for{" "}
             <Link
-              href="/about#thank-you"
+              href="/thank-you"
               className="font-medium text-emerald-100 underline hover:text-white transition-colors"
             >
               those who&apos;ve supported us
