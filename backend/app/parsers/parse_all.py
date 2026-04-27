@@ -90,4 +90,12 @@ if __name__ == "__main__":
 
     parse_ancient_pools()
 
+    # Merchant pricing config — language-agnostic. Pulls card / potion /
+    # relic / removal cost constants from the C# entry classes so the
+    # frontend `/merchant` page can render from data instead of hardcoded
+    # numbers (which silently desync on every Mega Crit balance pass).
+    from merchant_parser import main as parse_merchant_config
+
+    parse_merchant_config()
+
     print("\n=== Done! ===")
