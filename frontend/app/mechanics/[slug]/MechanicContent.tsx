@@ -13,53 +13,125 @@ export interface CharacterStatsRow {
   orb_slots: number;
 }
 
+// Subset of `data/mechanics_constants.json` consumed by the
+// card-rarity page. Only the buckets we actually render are typed
+// here so the prop stays narrow — page wrapper picks them off the
+// full payload before passing.
+type AscensionConditional = {
+  base: number;
+  ascended: number;
+  ascension_level: string;
+};
+export interface CardRarityConstants {
+  bossCommonOdds: number;
+  bossUncommonOdds: number;
+  bossRareOdds: number;
+  eliteUncommonOdds: number;
+  regularUncommonOdds: number;
+  shopUncommonOdds: number;
+  _baseRarityOffset: number;
+  _maxRarityOffset: number;
+  RegularRareOdds?: AscensionConditional;
+  EliteCommonOdds?: AscensionConditional;
+  EliteRareOdds?: AscensionConditional;
+  ShopCommonOdds?: AscensionConditional;
+  ShopRareOdds?: AscensionConditional;
+  RarityGrowth?: AscensionConditional;
+  regularCommonOdds?: AscensionConditional | number;
+}
+
 interface MechanicContentProps {
   slug: string;
   characterStats?: CharacterStatsRow[];
+  cardRarity?: CardRarityConstants;
 }
 
-export default function MechanicContent({ slug, characterStats }: MechanicContentProps) {
+// Format a probability (0..1) as a percentage string. Trims trailing
+// zeros so 0.5 renders as "50%" not "50.0%".
+function pct(value: number): string {
+  const v = value * 100;
+  return Number.isInteger(v) ? `${v}%` : `${parseFloat(v.toFixed(2))}%`;
+}
+
+// Helper: pull the base value out of a const-or-AscensionConditional
+// field. Card-rarity has both shapes (e.g. `regularUncommonOdds: 0.37`
+// vs `regularCommonOdds: { base: 0.6, ascended: 0.615, ... }`).
+function baseValue(field: number | AscensionConditional | undefined, fallback: number): number {
+  if (field === undefined) return fallback;
+  if (typeof field === "number") return field;
+  return field.base;
+}
+function ascendedValue(field: AscensionConditional | undefined, fallback: number): number {
+  return field?.ascended ?? fallback;
+}
+
+export default function MechanicContent({ slug, characterStats, cardRarity }: MechanicContentProps) {
   switch (slug) {
-    case "card-rarity":
+    case "card-rarity": {
+      // Per-table values pulled from the parsed C# constants when
+      // available, hardcoded fallbacks otherwise. Fallbacks mirror
+      // CardRarityOdds.cs as of Mega Crit's 2026-04 build — kept in
+      // sync by `parse_all.py` running before each release.
+      const r = cardRarity;
+      const normalCommon = baseValue(r?.regularCommonOdds, 0.6);
+      const normalCommonAsc = ascendedValue(typeof r?.regularCommonOdds === "object" ? r?.regularCommonOdds : undefined, 0.615);
+      const normalUncommon = r?.regularUncommonOdds ?? 0.37;
+      const normalRare = baseValue(r?.RegularRareOdds, 0.03);
+      const normalRareAsc = ascendedValue(r?.RegularRareOdds, 0.0149);
+      const eliteCommon = baseValue(r?.EliteCommonOdds, 0.5);
+      const eliteCommonAsc = ascendedValue(r?.EliteCommonOdds, 0.549);
+      const eliteUncommon = r?.eliteUncommonOdds ?? 0.4;
+      const eliteRare = baseValue(r?.EliteRareOdds, 0.1);
+      const eliteRareAsc = ascendedValue(r?.EliteRareOdds, 0.05);
+      const bossRare = r?.bossRareOdds ?? 1.0;
+      const shopCommon = baseValue(r?.ShopCommonOdds, 0.54);
+      const shopCommonAsc = ascendedValue(r?.ShopCommonOdds, 0.585);
+      const shopUncommon = r?.shopUncommonOdds ?? 0.37;
+      const shopRare = baseValue(r?.ShopRareOdds, 0.09);
+      const shopRareAsc = ascendedValue(r?.ShopRareOdds, 0.045);
+      const baseOffset = r?._baseRarityOffset ?? -0.05;
+      const maxOffset = r?._maxRarityOffset ?? 0.4;
+      const rarityGrowth = baseValue(r?.RarityGrowth, 0.01);
+      const rarityGrowthAsc = ascendedValue(r?.RarityGrowth, 0.005);
       return (
         <>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className={card}>
               <h3 className={h3}>Normal Fights</h3>
               <table className={tbl}><thead><tr className={thr}><th className={th}>Rarity</th><th className={thr2}>Chance</th><th className={thr2}>A7+</th></tr></thead><tbody>
-                <tr className={tr}><td className={td}>Common</td><td className={tdr}>60%</td><td className={tdr}>61.5%</td></tr>
-                <tr className={tr}><td className={td}>Uncommon</td><td className={tdr}>37%</td><td className={tdr}>37%</td></tr>
-                <tr><td className={td}>Rare</td><td className={gold}>3%</td><td className={gold}>1.5%</td></tr>
+                <tr className={tr}><td className={td}>Common</td><td className={tdr}>{pct(normalCommon)}</td><td className={tdr}>{pct(normalCommonAsc)}</td></tr>
+                <tr className={tr}><td className={td}>Uncommon</td><td className={tdr}>{pct(normalUncommon)}</td><td className={tdr}>{pct(normalUncommon)}</td></tr>
+                <tr><td className={td}>Rare</td><td className={gold}>{pct(normalRare)}</td><td className={gold}>{pct(normalRareAsc)}</td></tr>
               </tbody></table>
             </div>
             <div className={card}>
               <h3 className={h3}>Elite Fights</h3>
               <table className={tbl}><thead><tr className={thr}><th className={th}>Rarity</th><th className={thr2}>Chance</th><th className={thr2}>A7+</th></tr></thead><tbody>
-                <tr className={tr}><td className={td}>Common</td><td className={tdr}>50%</td><td className={tdr}>54.9%</td></tr>
-                <tr className={tr}><td className={td}>Uncommon</td><td className={tdr}>40%</td><td className={tdr}>40%</td></tr>
-                <tr><td className={td}>Rare</td><td className={gold}>10%</td><td className={gold}>5%</td></tr>
+                <tr className={tr}><td className={td}>Common</td><td className={tdr}>{pct(eliteCommon)}</td><td className={tdr}>{pct(eliteCommonAsc)}</td></tr>
+                <tr className={tr}><td className={td}>Uncommon</td><td className={tdr}>{pct(eliteUncommon)}</td><td className={tdr}>{pct(eliteUncommon)}</td></tr>
+                <tr><td className={td}>Rare</td><td className={gold}>{pct(eliteRare)}</td><td className={gold}>{pct(eliteRareAsc)}</td></tr>
               </tbody></table>
             </div>
             <div className={card}>
               <h3 className={h3}>Boss Fights</h3>
               <table className={tbl}><thead><tr className={thr}><th className={th}>Rarity</th><th className={thr2}>Chance</th></tr></thead><tbody>
-                <tr><td className={td}>Rare</td><td className={gold}>100%</td></tr>
+                <tr><td className={td}>Rare</td><td className={gold}>{pct(bossRare)}</td></tr>
               </tbody></table>
               <p className={note}>Boss card rewards are always rare.</p>
             </div>
             <div className={card}>
               <h3 className={h3}>Shop</h3>
               <table className={tbl}><thead><tr className={thr}><th className={th}>Rarity</th><th className={thr2}>Chance</th><th className={thr2}>A7+</th></tr></thead><tbody>
-                <tr className={tr}><td className={td}>Common</td><td className={tdr}>54%</td><td className={tdr}>58.5%</td></tr>
-                <tr className={tr}><td className={td}>Uncommon</td><td className={tdr}>37%</td><td className={tdr}>37%</td></tr>
-                <tr><td className={td}>Rare</td><td className={gold}>9%</td><td className={gold}>4.5%</td></tr>
+                <tr className={tr}><td className={td}>Common</td><td className={tdr}>{pct(shopCommon)}</td><td className={tdr}>{pct(shopCommonAsc)}</td></tr>
+                <tr className={tr}><td className={td}>Uncommon</td><td className={tdr}>{pct(shopUncommon)}</td><td className={tdr}>{pct(shopUncommon)}</td></tr>
+                <tr><td className={td}>Rare</td><td className={gold}>{pct(shopRare)}</td><td className={gold}>{pct(shopRareAsc)}</td></tr>
               </tbody></table>
             </div>
           </div>
           <div className={`${card} mt-4`}>
             <h3 className={h3}>Rare Card Pity System</h3>
             <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
-              A hidden offset starts at <strong className={bold}>-5%</strong> and increases by <strong className={bold}>+1%</strong> for each non-rare card <em>shown</em> in a combat reward (+0.5% on A7+) — including ones you skip. When a rare is rolled, the offset resets to -5%. Caps at <strong className={bold}>+40%</strong>. Each combat reward generates 3 cards up front, so a skipped reward still ticks the counter 3 times. This ensures you see rares more often the longer you go without one.
+              A hidden offset starts at <strong className={bold}>{pct(baseOffset)}</strong> and increases by <strong className={bold}>+{pct(rarityGrowth)}</strong> for each non-rare card <em>shown</em> in a combat reward (+{pct(rarityGrowthAsc)} on A7+) — including ones you skip. When a rare is rolled, the offset resets to {pct(baseOffset)}. Caps at <strong className={bold}>+{pct(maxOffset)}</strong>. Each combat reward generates 3 cards up front, so a skipped reward still ticks the counter 3 times. This ensures you see rares more often the longer you go without one.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
@@ -78,6 +150,7 @@ export default function MechanicContent({ slug, characterStats }: MechanicConten
           </div>
         </>
       );
+    }
 
     case "relic-distribution":
       return (

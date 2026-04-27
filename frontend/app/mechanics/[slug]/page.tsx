@@ -5,7 +5,10 @@ import JsonLd from "@/app/components/JsonLd";
 import { buildBreadcrumbJsonLd, buildDetailPageJsonLd } from "@/lib/jsonld";
 import { MECHANIC_SECTIONS, getSectionBySlug } from "../sections";
 import Link from "next/link";
-import MechanicContent, { type CharacterStatsRow } from "./MechanicContent";
+import MechanicContent, {
+  type CharacterStatsRow,
+  type CardRarityConstants,
+} from "./MechanicContent";
 
 const API_INTERNAL = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
@@ -22,6 +25,23 @@ interface ApiCharacter {
 // Server-side fetch with 5-min revalidation matches the merchant page
 // pattern. Falls back to undefined on network failure so MechanicContent
 // uses its inline fallback table.
+// Pull the card-rarity bucket out of `/api/mechanics/constants` so the
+// card-rarity page renders from C# constants instead of hand-typed
+// percentages. Same revalidation + graceful-fallback shape as the
+// character-stats fetcher above.
+async function fetchCardRarity(): Promise<CardRarityConstants | undefined> {
+  try {
+    const res = await fetch(`${API_INTERNAL}/api/mechanics/constants`, {
+      next: { revalidate: 300 },
+    });
+    if (!res.ok) return undefined;
+    const data = (await res.json()) as { card_rarity_odds?: CardRarityConstants };
+    return data.card_rarity_odds;
+  } catch {
+    return undefined;
+  }
+}
+
 async function fetchCharacterStats(): Promise<CharacterStatsRow[] | undefined> {
   try {
     const res = await fetch(`${API_INTERNAL}/api/characters`, {
@@ -105,6 +125,7 @@ export default async function MechanicDetailPage({ params }: { params: Promise<{
       <MechanicContent
         slug={slug}
         characterStats={slug === "character-stats" ? await fetchCharacterStats() : undefined}
+        cardRarity={slug === "card-rarity" ? await fetchCardRarity() : undefined}
       />
     </div>
   );
