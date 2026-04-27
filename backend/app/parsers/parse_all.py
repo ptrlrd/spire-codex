@@ -98,4 +98,12 @@ if __name__ == "__main__":
 
     parse_merchant_config()
 
+    # Mechanics page constants — language-agnostic. Pulls named numeric
+    # constants out of the C# odds files so the /mechanics pages have
+    # an authoritative source instead of hand-typed numbers (which
+    # drift silently on every Mega Crit balance pass).
+    from mechanics_constants_parser import main as parse_mechanics_constants
+
+    parse_mechanics_constants()
+
     print("\n=== Done! ===")
