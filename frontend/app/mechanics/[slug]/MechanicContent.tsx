@@ -1,6 +1,24 @@
 import { card, h3, tbl, thr, th, thr2, tr, td, tdr, gold, note, bold } from "../styles";
 
-export default function MechanicContent({ slug }: { slug: string }) {
+// Optional character-stats data sourced from `/api/characters` and
+// passed in by the page wrapper. When present we render the table from
+// it instead of the hardcoded fallback below — avoids the silent drift
+// (e.g. Necrobinder HP changing in a patch and the page never updating).
+export interface CharacterStatsRow {
+  id: string;
+  name: string;
+  starting_hp: number;
+  starting_gold: number;
+  deck_size: number;
+  orb_slots: number;
+}
+
+interface MechanicContentProps {
+  slug: string;
+  characterStats?: CharacterStatsRow[];
+}
+
+export default function MechanicContent({ slug, characterStats }: MechanicContentProps) {
   switch (slug) {
     case "card-rarity":
       return (
@@ -300,19 +318,47 @@ export default function MechanicContent({ slug }: { slug: string }) {
         </>
       );
 
-    case "character-stats":
+    case "character-stats": {
+      // Fallback values mirror the C# constants in
+      // `Models.Characters/{Char}.cs::StartingHp` so a backend outage at
+      // build/render time still serves the right table. Kept in sync by
+      // the same `parse_all.py` run that feeds /api/characters.
+      const fallback: CharacterStatsRow[] = [
+        { id: "IRONCLAD", name: "Ironclad", starting_hp: 80, starting_gold: 99, deck_size: 10, orb_slots: 0 },
+        { id: "SILENT", name: "Silent", starting_hp: 70, starting_gold: 99, deck_size: 12, orb_slots: 0 },
+        { id: "DEFECT", name: "Defect", starting_hp: 75, starting_gold: 99, deck_size: 10, orb_slots: 3 },
+        { id: "NECROBINDER", name: "Necrobinder", starting_hp: 66, starting_gold: 99, deck_size: 10, orb_slots: 0 },
+        { id: "REGENT", name: "Regent", starting_hp: 75, starting_gold: 99, deck_size: 10, orb_slots: 0 },
+      ];
+      const rows = characterStats?.length ? characterStats : fallback;
       return (
         <div className={card}>
-          <table className={tbl}><thead><tr className={thr}><th className={th}>Character</th><th className={thr2}>HP</th><th className={thr2}>Gold</th><th className={thr2}>Deck</th><th className={thr2}>Orb Slots</th></tr></thead><tbody>
-            <tr className={tr}><td className={td}>Ironclad</td><td className={gold}>80</td><td className={tdr}>99</td><td className={tdr}>10</td><td className={tdr}>0</td></tr>
-            <tr className={tr}><td className={td}>Silent</td><td className={gold}>70</td><td className={tdr}>99</td><td className={tdr}>12</td><td className={tdr}>0</td></tr>
-            <tr className={tr}><td className={td}>Defect</td><td className={gold}>75</td><td className={tdr}>99</td><td className={tdr}>10</td><td className={tdr}>3</td></tr>
-            <tr className={tr}><td className={td}>Necrobinder</td><td className={gold}>66</td><td className={tdr}>99</td><td className={tdr}>10</td><td className={tdr}>0</td></tr>
-            <tr><td className={td}>Regent</td><td className={gold}>75</td><td className={tdr}>99</td><td className={tdr}>10</td><td className={tdr}>0</td></tr>
-          </tbody></table>
+          <table className={tbl}>
+            <thead>
+              <tr className={thr}>
+                <th className={th}>Character</th>
+                <th className={thr2}>HP</th>
+                <th className={thr2}>Gold</th>
+                <th className={thr2}>Deck</th>
+                <th className={thr2}>Orb Slots</th>
+              </tr>
+            </thead>
+            <tbody>
+              {rows.map((c, i) => (
+                <tr key={c.id} className={i < rows.length - 1 ? tr : undefined}>
+                  <td className={td}>{c.name.replace(/^The\s+/, "")}</td>
+                  <td className={gold}>{c.starting_hp}</td>
+                  <td className={tdr}>{c.starting_gold}</td>
+                  <td className={tdr}>{c.deck_size}</td>
+                  <td className={tdr}>{c.orb_slots}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
           <p className={note}>All characters start with 3 energy and 3 potion slots.</p>
         </div>
       );
+    }
 
     case "orb-mechanics":
       return (
