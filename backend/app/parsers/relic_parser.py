@@ -11,6 +11,29 @@ from parser_paths import BASE, DECOMPILED, loc_dir as _loc_dir, data_dir as _dat
 RELICS_DIR = DECOMPILED / "MegaCrit.Sts2.Core.Models.Relics"
 RELIC_POOLS_DIR = DECOMPILED / "MegaCrit.Sts2.Core.Models.RelicPools"
 STATIC_IMAGES = BASE / "backend" / "static" / "images" / "relics"
+RELIC_NOTES_PATH = BASE / "data" / "relic_notes.json"
+
+
+def _load_relic_notes() -> dict[str, list[str]]:
+    """Read `data/relic_notes.json` once at import time.
+
+    Per-relic prose explanations (Toy Box's wax mechanic, Looming
+    Fruit's per-save coin flip) used to be hardcoded inline in this
+    parser. Moving them to an external JSON keeps the parser focused
+    on C# extraction and gives reviewers a single file to scan when
+    they want to know "what mechanic notes are we shipping?" without
+    grepping the parser source.
+
+    Schema: `{relic_id: [note, note, ...]}`. Empty/missing file
+    returns `{}` so the parser still runs in fresh checkouts.
+    """
+    if not RELIC_NOTES_PATH.exists():
+        return {}
+    with open(RELIC_NOTES_PATH, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+
+_RELIC_NOTES = _load_relic_notes()
 
 
 def class_name_to_id(name: str) -> str:
@@ -199,19 +222,9 @@ def parse_single_relic(
             image_variants["Cornucopia"] = cornucopia_url
             image_variants["Fruit"] = f"/static/images/relics/{fruit_file.name}"
 
-    # Relic-specific notes extracted from C# source
-    notes = None
-    if class_name == "ToyBox":
-        notes = [
-            "Wax Relics are pulled from the normal relic pool — any non-Ancient relic can be waxed.",
-            "Wax Relic rarity: 50% Common, 33% Uncommon, 17% Rare (standard relic rarity roll).",
-            "All wax relics melt after 12 total combats, then Toy Box is used up.",
-        ]
-    if class_name == "LoomingFruit":
-        notes = [
-            "Looming Fruit ships two icons (Cornucopia and Fruit). The game picks one per save based on whether your save's UniqueId ends in an even or odd digit, so half the playerbase sees each variant.",
-            "Both variants are functionally identical — same +31 Max HP effect — and the choice is permanent for a given save file. Use the toggle above to preview the one your save shows.",
-        ]
+    # Per-relic notes — see _load_relic_notes() docstring for why this
+    # lives in `data/relic_notes.json` and not inline.
+    notes = _RELIC_NOTES.get(relic_id)
 
     return {
         "id": relic_id,
