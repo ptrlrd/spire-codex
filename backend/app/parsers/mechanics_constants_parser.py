@@ -169,6 +169,65 @@ def parse_ascension_levels() -> list[str]:
     ]
 
 
+def parse_combat_modifiers() -> dict:
+    """Pull damage/block multipliers from the combat-debuff power classes.
+
+    Each combat power's effect lives in its `CanonicalVars` block as a
+    `new DynamicVar("DamageIncrease"|"DamageDecrease"|"BlockDecrease", Xm)`.
+    Localization strings bake the resulting percentage into prose, so
+    the mechanics-combat page hand-types "1.5x", "0.75x" etc. instead
+    of pulling from a structured field. Surface those values directly
+    so the page can render from data.
+
+    Limited to the 5 named combat powers — broader CanonicalVars
+    extraction is the job of `power_parser.py` (which already feeds
+    `/api/powers`). This bucket is just the small slice the
+    mechanics page references.
+    """
+    targets = {
+        "VulnerablePower.cs": ("Vulnerable", "DamageIncrease"),
+        "WeakPower.cs": ("Weak", "DamageDecrease"),
+        # Frail uses a hardcoded `return 0.75m;` instead of a DynamicVar
+        # since it has no per-stack scaling. Picked up by the literal
+        # fallback below.
+        "FrailPower.cs": ("Frail", "BlockDecrease"),
+    }
+    powers_dir = DECOMPILED / "MegaCrit.Sts2.Core.Models.Powers"
+    out: dict = {}
+    for filename, (label, key) in targets.items():
+        filepath = powers_dir / filename
+        if not filepath.exists():
+            continue
+        content = filepath.read_text(encoding="utf-8")
+        # First try the CanonicalVars literal — `new DynamicVar("Name", N.Mm)`.
+        var_match = re.search(
+            r'new\s+DynamicVar\(\s*"(?P<key>\w+)"\s*,\s*(?P<value>-?[0-9]+\.?[0-9]*)m\s*\)',
+            content,
+        )
+        if var_match:
+            out[label] = {
+                "key": var_match.group("key"),
+                "value": float(var_match.group("value")),
+            }
+            continue
+        # Fall back to the last non-1m decimal literal returned in the
+        # file — Frail's pattern is `if (...) return 1m; ... return
+        # 0.75m;` so we pick the multiplier that isn't an early-return
+        # passthrough.
+        literals = [
+            float(m.group(1))
+            for m in re.finditer(r"return\s+(-?[0-9]+\.?[0-9]*)m\s*;", content)
+            if float(m.group(1)) != 1.0
+        ]
+        if literals:
+            out[label] = {"key": key, "value": literals[-1]}
+    # Strength and Dexterity intentionally not parsed — both are flat
+    # +N-per-stack effects with no fixed multiplier in the source. The
+    # mechanics page should describe them as "+1 attack damage / +1
+    # block per stack" rather than reading from this bucket.
+    return out
+
+
 def parse_all() -> dict:
     """Walk every configured source file and collect its constants."""
     out: dict = {}
@@ -176,6 +235,7 @@ def parse_all() -> dict:
         out[bucket] = parse_file(DECOMPILED / rel_path)
     out["encounter_gold_rewards"] = parse_encounter_gold_rewards()
     out["ascension_levels"] = parse_ascension_levels()
+    out["combat_modifiers"] = parse_combat_modifiers()
     return out
 
 

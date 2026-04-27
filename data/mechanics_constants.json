@@ -59,6 +59,20 @@
     "regularUncommonOdds": 0.37,
     "shopUncommonOdds": 0.37
   },
+  "combat_modifiers": {
+    "Frail": {
+      "key": "BlockDecrease",
+      "value": 0.75
+    },
+    "Vulnerable": {
+      "key": "DamageIncrease",
+      "value": 1.5
+    },
+    "Weak": {
+      "key": "DamageDecrease",
+      "value": 0.75
+    }
+  },
   "encounter_gold_rewards": {
     "Boss": {
       "max": 100,
