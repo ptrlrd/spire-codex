@@ -2352,7 +2352,7 @@
           ]
         }
       ],
-      "description": "then random: Отскок (no repeat), Mandible (no repeat); then conditional: Отскок (if base.Creature.SlotName == \"first\") / Mandible (if base.Creature.SlotName == \"second\") / Гнев (if base.Creature.SlotName == \"third\") / Rand (if base.Creature.SlotName == \"fourth\")"
+      "description": "then random: Отскок (no repeat), Mandible (no repeat); then conditional: Отскок (if in first slot) / Mandible (if in second slot) / Гнев (if in third slot) / Rand (if in fourth slot)"
     },
     "image_url": "/static/images/monsters/exoskeleton.webp",
     "beta_image_url": null
@@ -2507,7 +2507,7 @@
           ]
         }
       ],
-      "description": "then random: Сбор, Fabricating Strike; then conditional: Rand (if CanFabricate) / Расщепление (if !CanFabricate)"
+      "description": "then random: Сбор, Fabricating Strike; then conditional: Rand (if can fabricate) / Расщепление (if cannot fabricate)"
     },
     "image_url": "/static/images/monsters/fabricator.webp",
     "beta_image_url": null
@@ -3271,7 +3271,7 @@
           ]
         }
       ],
-      "description": "Starts: Скользкий хлыст → Искоренение зла → Именем королевы!; then conditional: Скользкий хлыст (if HasBeetleCharged || base.Creature.CurrentHp >= base.Creature.MaxHp / 2) / Рывок броненосца (if !HasBeetleCharged && base.Creature.CurrentHp < base.Creature.MaxHp / 2)"
+      "description": "Starts: Скользкий хлыст → Искоренение зла → Именем королевы!; then conditional: Скользкий хлыст (if HasBeetleCharged || CurrentHp >= MaxHp / 2) / Рывок броненосца (if !HasBeetleCharged && CurrentHp < MaxHp / 2)"
     },
     "image_url": "/static/images/monsters/frog_knight.webp",
     "beta_image_url": null
@@ -4465,7 +4465,7 @@
           ]
         }
       ],
-      "description": "Starts: Бремя созидания → Slap → Непостижимая истина → Раздумья; then conditional: Бремя созидания (if _curseOfKnowledgeCounter < 3) / Slap (if _curseOfKnowledgeCounter >= 3)"
+      "description": "Starts: Бремя созидания → Slap → Непостижимая истина → Раздумья; then conditional: Бремя созидания (if curse of knowledge counter < 3) / Slap (if curse of knowledge counter >= 3)"
     },
     "image_url": "/static/images/monsters/knowledge_demon.webp",
     "beta_image_url": null
@@ -4940,16 +4940,16 @@
           "branches": [
             {
               "move_id": "SHIELD_SLAM",
-              "condition": "GetAllyCount("
+              "condition": "GetAllyCount() > 0"
             },
             {
               "move_id": "SMASH",
-              "condition": "GetAllyCount("
+              "condition": "GetAllyCount() == 0"
             }
           ]
         }
       ],
-      "description": "Starts with Удар щитом; then conditional: Удар щитом (if GetAllyCount() / Smash (if GetAllyCount()"
+      "description": "Starts with Удар щитом; then conditional: Удар щитом (if has allies) / Smash (if no allies)"
     },
     "image_url": "/static/images/monsters/living_shield.webp",
     "beta_image_url": null
@@ -5487,7 +5487,7 @@
           ]
         }
       ],
-      "description": "then conditional: Избыток токсинов (if base.Creature.SlotName == \"first\") / Глоток крови (if base.Creature.SlotName == \"second\")"
+      "description": "then conditional: Избыток токсинов (if in first slot) / Глоток крови (if in second slot)"
     },
     "image_url": "/static/images/monsters/myte.webp",
     "beta_image_url": null
@@ -5589,20 +5589,20 @@
           "branches": [
             {
               "move_id": "BUTT",
-              "condition": "((Nibbit"
+              "condition": "((Nibbit)base.Creature.Monster).IsAlone"
             },
             {
               "move_id": "HISS",
-              "condition": "!((Nibbit"
+              "condition": "!((Nibbit)base.Creature.Monster).IsFront"
             },
             {
               "move_id": "SLICE",
-              "condition": "((Nibbit"
+              "condition": "((Nibbit)base.Creature.Monster).IsFront"
             }
           ]
         }
       ],
-      "description": "then conditional: Толчок (if ((Nibbit) / Шипение (if !((Nibbit) / Slice (if ((Nibbit)"
+      "description": "then conditional: Толчок (if alone) / Шипение (if not in front) / Slice (if in front)"
     },
     "image_url": "/static/images/monsters/nibbit.webp",
     "beta_image_url": null
@@ -5793,7 +5793,7 @@
           ]
         }
       ],
-      "description": "Starts: Кладка → Разнос → Размягчитель; then conditional: Кладка (if CanLay) / Питательная паста (if !CanLay)"
+      "description": "Starts: Кладка → Разнос → Размягчитель; then conditional: Кладка (if can lay) / Питательная паста (if cannot lay)"
     },
     "image_url": "/static/images/monsters/ovicopter.webp",
     "beta_image_url": null
@@ -6126,7 +6126,7 @@
           ]
         }
       ],
-      "description": "then conditional: Бичевание (if base.Creature.SlotName == \"first\") / Укус (if base.Creature.SlotName == \"second\") / Захлест (if base.Creature.SlotName == \"third\") / Рост (if base.Creature.SlotName == \"fourth\")"
+      "description": "then conditional: Бичевание (if in first slot) / Укус (if in second slot) / Захлест (if in third slot) / Рост (if in fourth slot)"
     },
     "image_url": "/static/images/monsters/phantasmal_gardener.webp",
     "beta_image_url": null
@@ -6479,7 +6479,7 @@
           ]
         }
       ],
-      "description": "Starts: Puppet Strings → Your Mine; then conditional: Гори ясно! (if !HasAmalgamDied) / Голову с плеч! (if HasAmalgamDied); then conditional: Гори ясно! (if !HasAmalgamDied) / Голову с плеч! (if HasAmalgamDied)"
+      "description": "Starts: Puppet Strings → Your Mine; then conditional: Гори ясно! (if does not have amalgam died) / Голову с плеч! (if has amalgam died); then conditional: Гори ясно! (if does not have amalgam died) / Голову с плеч! (if has amalgam died)"
     },
     "image_url": "/static/images/monsters/queen.webp",
     "beta_image_url": null
@@ -8405,7 +8405,7 @@
           ]
         }
       ],
-      "description": "Starts: Bite → Skull Bash; then conditional: Multi Claw (if Respawns < 2) / Phase3 Lacerate (if Respawns >= 2)"
+      "description": "Starts: Bite → Skull Bash; then conditional: Multi Claw (if respawns < 2) / Phase3 Lacerate (if respawns >= 2)"
     },
     "image_url": "/static/images/monsters/test_subject.webp",
     "beta_image_url": null
@@ -9227,16 +9227,16 @@
           "branches": [
             {
               "move_id": "WHIRL",
-              "condition": "!((Toadpole"
+              "condition": "!((Toadpole)base.Creature.Monster).IsFront"
             },
             {
               "move_id": "SPIKEN",
-              "condition": "((Toadpole"
+              "condition": "((Toadpole)base.Creature.Monster).IsFront"
             }
           ]
         }
       ],
-      "description": "then conditional: Виток (if !((Toadpole) / Шипы (if ((Toadpole)"
+      "description": "then conditional: Виток (if not in front) / Шипы (if in front)"
     },
     "image_url": "/static/images/monsters/toadpole.webp",
     "beta_image_url": null

@@ -495,12 +495,27 @@ def extract_attack_pattern(
             states[branch_state_var]["branches"].append(branch)
 
     # --- Parse AddState calls (ConditionalBranchState) ---
-    for m in re.finditer(
-        r"(\w+)\.AddState\(\s*(\w+)\s*,\s*\(\)\s*=>\s*([^)]+)\)", body
-    ):
+    # The lambda body can contain unbalanced-looking text like
+    # `((Nibbit)base.Creature.Monster).IsAlone`, so we can't use `[^)]+` —
+    # we have to walk the call arguments tracking paren depth to find the
+    # real closing `)` of the AddState invocation.
+    for m in re.finditer(r"(\w+)\.AddState\(\s*(\w+)\s*,\s*\(\)\s*=>\s*", body):
         cond_state_var = m.group(1)
         move_var = m.group(2)
-        condition = m.group(3).strip()
+        depth = 1
+        i = m.end()
+        while i < len(body) and depth > 0:
+            c = body[i]
+            if c == "(":
+                depth += 1
+            elif c == ")":
+                depth -= 1
+                if depth == 0:
+                    break
+            i += 1
+        if depth != 0:
+            continue
+        condition = body[m.end() : i].strip()
 
         if cond_state_var in states and states[cond_state_var]["type"] == "conditional":
             states[cond_state_var]["branches"].append(
@@ -601,6 +616,86 @@ def extract_attack_pattern(
         "states": output_states,
         "description": description,
     }
+
+
+def _split_camel(name: str) -> str:
+    name = re.sub(r"^_+", "", name)
+    name = re.sub(r"(?<=[a-z0-9])(?=[A-Z])", " ", name)
+    name = re.sub(r"(?<=[A-Z])(?=[A-Z][a-z])", " ", name)
+    return name.strip().lower()
+
+
+def _humanize_condition(cond: str) -> str:
+    """Translate a C# condition expression into a short human-readable phrase.
+
+    Generic — pattern-driven only, no per-monster mapping. Falls back to the
+    raw expression (lightly cleaned) when nothing matches so the worst case
+    is "ugly but accurate" rather than wrong."""
+    s = cond.strip()
+    # Strip `((Type)base.Creature.Monster).` or `((Type)base.Creature).` casts
+    s = re.sub(r"\(\(\w+\)base\.Creature(?:\.Monster)?\)\.", "", s)
+    # Strip bare `base.Creature.Monster.` and `base.Creature.`
+    s = re.sub(r"base\.Creature(?:\.Monster)?\.", "", s)
+
+    # Leading negation is conveyed as "not …"
+    negated = False
+    if s.startswith("!"):
+        negated = True
+        s = s[1:].lstrip()
+        if s.startswith("(") and s.endswith(")"):
+            s = s[1:-1].strip()
+
+    # HasPower<XPower>() → "has X"
+    m = re.fullmatch(r"HasPower<(\w+?)(?:Power)?>\(\)", s)
+    if m:
+        phrase = f"has {_split_camel(m.group(1))}"
+        return f"does not {phrase[4:]}" if negated else phrase
+
+    # SlotName == "first" → "in first slot"
+    m = re.fullmatch(r'SlotName\s*==\s*"(\w+)"', s)
+    if m:
+        return ("not " if negated else "") + f"in {m.group(1)} slot"
+
+    # GetAllyCount() == 0 / > 0 / >= N
+    m = re.fullmatch(r"GetAllyCount\(\)\s*([<>=!]+)\s*(\d+)", s)
+    if m:
+        op, n = m.group(1), int(m.group(2))
+        if op == "==" and n == 0:
+            phrase = "no allies"
+        elif op == ">" and n == 0:
+            phrase = "has allies"
+        else:
+            phrase = f"ally count {op} {n}"
+        return ("not " if negated else "") + phrase
+
+    # `Counter < N`, `Respawns >= 2`, etc.
+    m = re.fullmatch(r"(\w+)\s*([<>=!]+)\s*(\d+)", s)
+    if m:
+        return ("not " if negated else "") + f"{_split_camel(m.group(1))} {m.group(2)} {m.group(3)}"
+
+    # Bare boolean property: IsAlone, HasAmalgamDied, CanFabricate
+    m = re.fullmatch(r"\w+", s)
+    if m:
+        # `IsX` reads better with the "is" stripped: "IsFront" → "in front" /
+        # "not in front" rather than "is front" / "not is front". For nouns
+        # like "IsAlone" we just drop the prefix → "alone" / "not alone".
+        if re.match(r"Is[A-Z]", s):
+            stem = _split_camel(s[2:])
+            in_words = {"front", "back", "first slot", "last slot"}
+            phrase = f"in {stem}" if stem in in_words else stem
+            return f"not {phrase}" if negated else phrase
+        if re.match(r"Can[A-Z]", s):
+            stem = _split_camel(s[3:])
+            return f"cannot {stem}" if negated else f"can {stem}"
+        if re.match(r"Has[A-Z]", s):
+            stem = _split_camel(s[3:])
+            return f"does not have {stem}" if negated else f"has {stem}"
+        words = _split_camel(s)
+        return f"not {words}" if negated else words
+
+    # Fallback: return the (cleaned) expression as-is
+    cleaned = ("!" + s) if negated else s
+    return cleaned
 
 
 def _build_pattern_description(
@@ -720,7 +815,7 @@ def _build_pattern_description(
         for b in branches:
             move_id = re.sub(r"_MOVE$", "", b["move_id"])
             name = move_name_fn(move_id)
-            cond_parts.append(f"{name} (if {b['condition']})")
+            cond_parts.append(f"{name} (if {_humanize_condition(b['condition'])})")
         if cond_parts:
             parts.append("then conditional: " + " / ".join(cond_parts))
 

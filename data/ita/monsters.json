@@ -2352,7 +2352,7 @@
           ]
         }
       ],
-      "description": "then random: Tagliare la corda (no repeat), Mandible (no repeat); then conditional: Tagliare la corda (if base.Creature.SlotName == \"first\") / Mandible (if base.Creature.SlotName == \"second\") / Ira (if base.Creature.SlotName == \"third\") / Rand (if base.Creature.SlotName == \"fourth\")"
+      "description": "then random: Tagliare la corda (no repeat), Mandible (no repeat); then conditional: Tagliare la corda (if in first slot) / Mandible (if in second slot) / Ira (if in third slot) / Rand (if in fourth slot)"
     },
     "image_url": "/static/images/monsters/exoskeleton.webp",
     "beta_image_url": null
@@ -2507,7 +2507,7 @@
           ]
         }
       ],
-      "description": "then random: Fabricazione, Fabricating Strike; then conditional: Rand (if CanFabricate) / Disintegrazione (if !CanFabricate)"
+      "description": "then random: Fabricazione, Fabricating Strike; then conditional: Rand (if can fabricate) / Disintegrazione (if cannot fabricate)"
     },
     "image_url": "/static/images/monsters/fabricator.webp",
     "beta_image_url": null
@@ -3271,7 +3271,7 @@
           ]
         }
       ],
-      "description": "Starts: Sferzata con lingua → Espiare il male → Per la regina; then conditional: Sferzata con lingua (if HasBeetleCharged || base.Creature.CurrentHp >= base.Creature.MaxHp / 2) / Carica scarabeo (if !HasBeetleCharged && base.Creature.CurrentHp < base.Creature.MaxHp / 2)"
+      "description": "Starts: Sferzata con lingua → Espiare il male → Per la regina; then conditional: Sferzata con lingua (if HasBeetleCharged || CurrentHp >= MaxHp / 2) / Carica scarabeo (if !HasBeetleCharged && CurrentHp < MaxHp / 2)"
     },
     "image_url": "/static/images/monsters/frog_knight.webp",
     "beta_image_url": null
@@ -4465,7 +4465,7 @@
           ]
         }
       ],
-      "description": "Starts: Maledizione della conoscenza → Slap → Conoscenza travolgente → Riflessione; then conditional: Maledizione della conoscenza (if _curseOfKnowledgeCounter < 3) / Slap (if _curseOfKnowledgeCounter >= 3)"
+      "description": "Starts: Maledizione della conoscenza → Slap → Conoscenza travolgente → Riflessione; then conditional: Maledizione della conoscenza (if curse of knowledge counter < 3) / Slap (if curse of knowledge counter >= 3)"
     },
     "image_url": "/static/images/monsters/knowledge_demon.webp",
     "beta_image_url": null
@@ -4940,16 +4940,16 @@
           "branches": [
             {
               "move_id": "SHIELD_SLAM",
-              "condition": "GetAllyCount("
+              "condition": "GetAllyCount() > 0"
             },
             {
               "move_id": "SMASH",
-              "condition": "GetAllyCount("
+              "condition": "GetAllyCount() == 0"
             }
           ]
         }
       ],
-      "description": "Starts with Colpo con scudo; then conditional: Colpo con scudo (if GetAllyCount() / Smash (if GetAllyCount()"
+      "description": "Starts with Colpo con scudo; then conditional: Colpo con scudo (if has allies) / Smash (if no allies)"
     },
     "image_url": "/static/images/monsters/living_shield.webp",
     "beta_image_url": null
@@ -5487,7 +5487,7 @@
           ]
         }
       ],
-      "description": "then conditional: Abbondanza tossica (if base.Creature.SlotName == \"first\") / Risucchio (if base.Creature.SlotName == \"second\")"
+      "description": "then conditional: Abbondanza tossica (if in first slot) / Risucchio (if in second slot)"
     },
     "image_url": "/static/images/monsters/myte.webp",
     "beta_image_url": null
@@ -5589,20 +5589,20 @@
           "branches": [
             {
               "move_id": "BUTT",
-              "condition": "((Nibbit"
+              "condition": "((Nibbit)base.Creature.Monster).IsAlone"
             },
             {
               "move_id": "HISS",
-              "condition": "!((Nibbit"
+              "condition": "!((Nibbit)base.Creature.Monster).IsFront"
             },
             {
               "move_id": "SLICE",
-              "condition": "((Nibbit"
+              "condition": "((Nibbit)base.Creature.Monster).IsFront"
             }
           ]
         }
       ],
-      "description": "then conditional: Didietro (if ((Nibbit) / Sibillio (if !((Nibbit) / Slice (if ((Nibbit)"
+      "description": "then conditional: Didietro (if alone) / Sibillio (if not in front) / Slice (if in front)"
     },
     "image_url": "/static/images/monsters/nibbit.webp",
     "beta_image_url": null
@@ -5793,7 +5793,7 @@
           ]
         }
       ],
-      "description": "Starts: Deposizione delle uova → Colpo → Batticarne; then conditional: Deposizione delle uova (if CanLay) / Pasto nutriente (if !CanLay)"
+      "description": "Starts: Deposizione delle uova → Colpo → Batticarne; then conditional: Deposizione delle uova (if can lay) / Pasto nutriente (if cannot lay)"
     },
     "image_url": "/static/images/monsters/ovicopter.webp",
     "beta_image_url": null
@@ -6126,7 +6126,7 @@
           ]
         }
       ],
-      "description": "then conditional: Flagello (if base.Creature.SlotName == \"first\") / Morso (if base.Creature.SlotName == \"second\") / Sferzata (if base.Creature.SlotName == \"third\") / Ingrandimento (if base.Creature.SlotName == \"fourth\")"
+      "description": "then conditional: Flagello (if in first slot) / Morso (if in second slot) / Sferzata (if in third slot) / Ingrandimento (if in fourth slot)"
     },
     "image_url": "/static/images/monsters/phantasmal_gardener.webp",
     "beta_image_url": null
@@ -6479,7 +6479,7 @@
           ]
         }
       ],
-      "description": "Starts: Puppet Strings → Your Mine; then conditional: Brucia luminoso per me (if !HasAmalgamDied) / Gigliottina (if HasAmalgamDied); then conditional: Brucia luminoso per me (if !HasAmalgamDied) / Gigliottina (if HasAmalgamDied)"
+      "description": "Starts: Puppet Strings → Your Mine; then conditional: Brucia luminoso per me (if does not have amalgam died) / Gigliottina (if has amalgam died); then conditional: Brucia luminoso per me (if does not have amalgam died) / Gigliottina (if has amalgam died)"
     },
     "image_url": "/static/images/monsters/queen.webp",
     "beta_image_url": null
@@ -8405,7 +8405,7 @@
           ]
         }
       ],
-      "description": "Starts: Bite → Skull Bash; then conditional: Multi Claw (if Respawns < 2) / Phase3 Lacerate (if Respawns >= 2)"
+      "description": "Starts: Bite → Skull Bash; then conditional: Multi Claw (if respawns < 2) / Phase3 Lacerate (if respawns >= 2)"
     },
     "image_url": "/static/images/monsters/test_subject.webp",
     "beta_image_url": null
@@ -9227,16 +9227,16 @@
           "branches": [
             {
               "move_id": "WHIRL",
-              "condition": "!((Toadpole"
+              "condition": "!((Toadpole)base.Creature.Monster).IsFront"
             },
             {
               "move_id": "SPIKEN",
-              "condition": "((Toadpole"
+              "condition": "((Toadpole)base.Creature.Monster).IsFront"
             }
           ]
         }
       ],
-      "description": "then conditional: Turbine (if !((Toadpole) / Spine (if ((Toadpole)"
+      "description": "then conditional: Turbine (if not in front) / Spine (if in front)"
     },
     "image_url": "/static/images/monsters/toadpole.webp",
     "beta_image_url": null

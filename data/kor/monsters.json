@@ -2352,7 +2352,7 @@
           ]
         }
       ],
-      "description": "then random: 뛰어다니기 (no repeat), Mandible (no repeat); then conditional: 뛰어다니기 (if base.Creature.SlotName == \"first\") / Mandible (if base.Creature.SlotName == \"second\") / 격분 (if base.Creature.SlotName == \"third\") / Rand (if base.Creature.SlotName == \"fourth\")"
+      "description": "then random: 뛰어다니기 (no repeat), Mandible (no repeat); then conditional: 뛰어다니기 (if in first slot) / Mandible (if in second slot) / 격분 (if in third slot) / Rand (if in fourth slot)"
     },
     "image_url": "/static/images/monsters/exoskeleton.webp",
     "beta_image_url": null
@@ -2507,7 +2507,7 @@
           ]
         }
       ],
-      "description": "then random: 조립, Fabricating Strike; then conditional: Rand (if CanFabricate) / 해체 (if !CanFabricate)"
+      "description": "then random: 조립, Fabricating Strike; then conditional: Rand (if can fabricate) / 해체 (if cannot fabricate)"
     },
     "image_url": "/static/images/monsters/fabricator.webp",
     "beta_image_url": null
@@ -3271,7 +3271,7 @@
           ]
         }
       ],
-      "description": "Starts: 혓바닥 채찍 → 악을 처단한다 → 여왕님을 위해; then conditional: 혓바닥 채찍 (if HasBeetleCharged || base.Creature.CurrentHp >= base.Creature.MaxHp / 2) / 딱정벌레 돌진 (if !HasBeetleCharged && base.Creature.CurrentHp < base.Creature.MaxHp / 2)"
+      "description": "Starts: 혓바닥 채찍 → 악을 처단한다 → 여왕님을 위해; then conditional: 혓바닥 채찍 (if HasBeetleCharged || CurrentHp >= MaxHp / 2) / 딱정벌레 돌진 (if !HasBeetleCharged && CurrentHp < MaxHp / 2)"
     },
     "image_url": "/static/images/monsters/frog_knight.webp",
     "beta_image_url": null
@@ -4465,7 +4465,7 @@
           ]
         }
       ],
-      "description": "Starts: 지식의 저주 → Slap → 압도적인 지식 → 숙고; then conditional: 지식의 저주 (if _curseOfKnowledgeCounter < 3) / Slap (if _curseOfKnowledgeCounter >= 3)"
+      "description": "Starts: 지식의 저주 → Slap → 압도적인 지식 → 숙고; then conditional: 지식의 저주 (if curse of knowledge counter < 3) / Slap (if curse of knowledge counter >= 3)"
     },
     "image_url": "/static/images/monsters/knowledge_demon.webp",
     "beta_image_url": null
@@ -4940,16 +4940,16 @@
           "branches": [
             {
               "move_id": "SHIELD_SLAM",
-              "condition": "GetAllyCount("
+              "condition": "GetAllyCount() > 0"
             },
             {
               "move_id": "SMASH",
-              "condition": "GetAllyCount("
+              "condition": "GetAllyCount() == 0"
             }
           ]
         }
       ],
-      "description": "Starts with 방패 찍기; then conditional: 방패 찍기 (if GetAllyCount() / Smash (if GetAllyCount()"
+      "description": "Starts with 방패 찍기; then conditional: 방패 찍기 (if has allies) / Smash (if no allies)"
     },
     "image_url": "/static/images/monsters/living_shield.webp",
     "beta_image_url": null
@@ -5487,7 +5487,7 @@
           ]
         }
       ],
-      "description": "then conditional: 유독성 풍요 (if base.Creature.SlotName == \"first\") / 빨아 먹기 (if base.Creature.SlotName == \"second\")"
+      "description": "then conditional: 유독성 풍요 (if in first slot) / 빨아 먹기 (if in second slot)"
     },
     "image_url": "/static/images/monsters/myte.webp",
     "beta_image_url": null
@@ -5589,20 +5589,20 @@
           "branches": [
             {
               "move_id": "BUTT",
-              "condition": "((Nibbit"
+              "condition": "((Nibbit)base.Creature.Monster).IsAlone"
             },
             {
               "move_id": "HISS",
-              "condition": "!((Nibbit"
+              "condition": "!((Nibbit)base.Creature.Monster).IsFront"
             },
             {
               "move_id": "SLICE",
-              "condition": "((Nibbit"
+              "condition": "((Nibbit)base.Creature.Monster).IsFront"
             }
           ]
         }
       ],
-      "description": "then conditional: 박치기 (if ((Nibbit) / 쉭쉭대기 (if !((Nibbit) / Slice (if ((Nibbit)"
+      "description": "then conditional: 박치기 (if alone) / 쉭쉭대기 (if not in front) / Slice (if in front)"
     },
     "image_url": "/static/images/monsters/nibbit.webp",
     "beta_image_url": null
@@ -5793,7 +5793,7 @@
           ]
         }
       ],
-      "description": "Starts: 알 낳기 → 부수기 → 연약화; then conditional: 알 낳기 (if CanLay) / 영양 보충 (if !CanLay)"
+      "description": "Starts: 알 낳기 → 부수기 → 연약화; then conditional: 알 낳기 (if can lay) / 영양 보충 (if cannot lay)"
     },
     "image_url": "/static/images/monsters/ovicopter.webp",
     "beta_image_url": null
@@ -6126,7 +6126,7 @@
           ]
         }
       ],
-      "description": "then conditional: 마구 휘두르기 (if base.Creature.SlotName == \"first\") / 물기 (if base.Creature.SlotName == \"second\") / 후려치기 (if base.Creature.SlotName == \"third\") / 늘리기 (if base.Creature.SlotName == \"fourth\")"
+      "description": "then conditional: 마구 휘두르기 (if in first slot) / 물기 (if in second slot) / 후려치기 (if in third slot) / 늘리기 (if in fourth slot)"
     },
     "image_url": "/static/images/monsters/phantasmal_gardener.webp",
     "beta_image_url": null
@@ -6479,7 +6479,7 @@
           ]
         }
       ],
-      "description": "Starts: Puppet Strings → Your Mine; then conditional: 환하게 타올라라 (if !HasAmalgamDied) / 목을 베어라 (if HasAmalgamDied); then conditional: 환하게 타올라라 (if !HasAmalgamDied) / 목을 베어라 (if HasAmalgamDied)"
+      "description": "Starts: Puppet Strings → Your Mine; then conditional: 환하게 타올라라 (if does not have amalgam died) / 목을 베어라 (if has amalgam died); then conditional: 환하게 타올라라 (if does not have amalgam died) / 목을 베어라 (if has amalgam died)"
     },
     "image_url": "/static/images/monsters/queen.webp",
     "beta_image_url": null
@@ -8405,7 +8405,7 @@
           ]
         }
       ],
-      "description": "Starts: Bite → Skull Bash; then conditional: Multi Claw (if Respawns < 2) / Phase3 Lacerate (if Respawns >= 2)"
+      "description": "Starts: Bite → Skull Bash; then conditional: Multi Claw (if respawns < 2) / Phase3 Lacerate (if respawns >= 2)"
     },
     "image_url": "/static/images/monsters/test_subject.webp",
     "beta_image_url": null
@@ -9227,16 +9227,16 @@
           "branches": [
             {
               "move_id": "WHIRL",
-              "condition": "!((Toadpole"
+              "condition": "!((Toadpole)base.Creature.Monster).IsFront"
             },
             {
               "move_id": "SPIKEN",
-              "condition": "((Toadpole"
+              "condition": "((Toadpole)base.Creature.Monster).IsFront"
             }
           ]
         }
       ],
-      "description": "then conditional: 선회 (if !((Toadpole) / 가시 세우기 (if ((Toadpole)"
+      "description": "then conditional: 선회 (if not in front) / 가시 세우기 (if in front)"
     },
     "image_url": "/static/images/monsters/toadpole.webp",
     "beta_image_url": null

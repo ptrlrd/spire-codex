@@ -2352,7 +2352,7 @@
           ]
         }
       ],
-      "description": "then random: Escabullirse (no repeat), Mandible (no repeat); then conditional: Escabullirse (if base.Creature.SlotName == \"first\") / Mandible (if base.Creature.SlotName == \"second\") / Cólera (if base.Creature.SlotName == \"third\") / Rand (if base.Creature.SlotName == \"fourth\")"
+      "description": "then random: Escabullirse (no repeat), Mandible (no repeat); then conditional: Escabullirse (if in first slot) / Mandible (if in second slot) / Cólera (if in third slot) / Rand (if in fourth slot)"
     },
     "image_url": "/static/images/monsters/exoskeleton.webp",
     "beta_image_url": null
@@ -2507,7 +2507,7 @@
           ]
         }
       ],
-      "description": "then random: Fabricar, Fabricating Strike; then conditional: Rand (if CanFabricate) / Desintegrar (if !CanFabricate)"
+      "description": "then random: Fabricar, Fabricating Strike; then conditional: Rand (if can fabricate) / Desintegrar (if cannot fabricate)"
     },
     "image_url": "/static/images/monsters/fabricator.webp",
     "beta_image_url": null
@@ -3271,7 +3271,7 @@
           ]
         }
       ],
-      "description": "Starts: Látigo lengua → Expiar el mal → Por la reina; then conditional: Látigo lengua (if HasBeetleCharged || base.Creature.CurrentHp >= base.Creature.MaxHp / 2) / Carga de escarabajo (if !HasBeetleCharged && base.Creature.CurrentHp < base.Creature.MaxHp / 2)"
+      "description": "Starts: Látigo lengua → Expiar el mal → Por la reina; then conditional: Látigo lengua (if HasBeetleCharged || CurrentHp >= MaxHp / 2) / Carga de escarabajo (if !HasBeetleCharged && CurrentHp < MaxHp / 2)"
     },
     "image_url": "/static/images/monsters/frog_knight.webp",
     "beta_image_url": null
@@ -4465,7 +4465,7 @@
           ]
         }
       ],
-      "description": "Starts: Maldición del saber → Slap → Conocimiento abrumador → Reflexión; then conditional: Maldición del saber (if _curseOfKnowledgeCounter < 3) / Slap (if _curseOfKnowledgeCounter >= 3)"
+      "description": "Starts: Maldición del saber → Slap → Conocimiento abrumador → Reflexión; then conditional: Maldición del saber (if curse of knowledge counter < 3) / Slap (if curse of knowledge counter >= 3)"
     },
     "image_url": "/static/images/monsters/knowledge_demon.webp",
     "beta_image_url": null
@@ -4940,16 +4940,16 @@
           "branches": [
             {
               "move_id": "SHIELD_SLAM",
-              "condition": "GetAllyCount("
+              "condition": "GetAllyCount() > 0"
             },
             {
               "move_id": "SMASH",
-              "condition": "GetAllyCount("
+              "condition": "GetAllyCount() == 0"
             }
           ]
         }
       ],
-      "description": "Starts with Escudazo; then conditional: Escudazo (if GetAllyCount() / Smash (if GetAllyCount()"
+      "description": "Starts with Escudazo; then conditional: Escudazo (if has allies) / Smash (if no allies)"
     },
     "image_url": "/static/images/monsters/living_shield.webp",
     "beta_image_url": null
@@ -5487,7 +5487,7 @@
           ]
         }
       ],
-      "description": "then conditional: Cornada tóxica (if base.Creature.SlotName == \"first\") / Succión (if base.Creature.SlotName == \"second\")"
+      "description": "then conditional: Cornada tóxica (if in first slot) / Succión (if in second slot)"
     },
     "image_url": "/static/images/monsters/myte.webp",
     "beta_image_url": null
@@ -5589,20 +5589,20 @@
           "branches": [
             {
               "move_id": "BUTT",
-              "condition": "((Nibbit"
+              "condition": "((Nibbit)base.Creature.Monster).IsAlone"
             },
             {
               "move_id": "HISS",
-              "condition": "!((Nibbit"
+              "condition": "!((Nibbit)base.Creature.Monster).IsFront"
             },
             {
               "move_id": "SLICE",
-              "condition": "((Nibbit"
+              "condition": "((Nibbit)base.Creature.Monster).IsFront"
             }
           ]
         }
       ],
-      "description": "then conditional: Golpetazo (if ((Nibbit) / Bufar (if !((Nibbit) / Slice (if ((Nibbit)"
+      "description": "then conditional: Golpetazo (if alone) / Bufar (if not in front) / Slice (if in front)"
     },
     "image_url": "/static/images/monsters/nibbit.webp",
     "beta_image_url": null
@@ -5793,7 +5793,7 @@
           ]
         }
       ],
-      "description": "Starts: Desovar → Remate → Ablandador; then conditional: Desovar (if CanLay) / Pasta nutritiva (if !CanLay)"
+      "description": "Starts: Desovar → Remate → Ablandador; then conditional: Desovar (if can lay) / Pasta nutritiva (if cannot lay)"
     },
     "image_url": "/static/images/monsters/ovicopter.webp",
     "beta_image_url": null
@@ -6126,7 +6126,7 @@
           ]
         }
       ],
-      "description": "then conditional: Flagelo (if base.Creature.SlotName == \"first\") / Mordida (if base.Creature.SlotName == \"second\") / Latigazo (if base.Creature.SlotName == \"third\") / Crecimiento (if base.Creature.SlotName == \"fourth\")"
+      "description": "then conditional: Flagelo (if in first slot) / Mordida (if in second slot) / Latigazo (if in third slot) / Crecimiento (if in fourth slot)"
     },
     "image_url": "/static/images/monsters/phantasmal_gardener.webp",
     "beta_image_url": null
@@ -6479,7 +6479,7 @@
           ]
         }
       ],
-      "description": "Starts: Puppet Strings → Your Mine; then conditional: Llama regia (if !HasAmalgamDied) / ¡Córtenle la cabeza! (if HasAmalgamDied); then conditional: Llama regia (if !HasAmalgamDied) / ¡Córtenle la cabeza! (if HasAmalgamDied)"
+      "description": "Starts: Puppet Strings → Your Mine; then conditional: Llama regia (if does not have amalgam died) / ¡Córtenle la cabeza! (if has amalgam died); then conditional: Llama regia (if does not have amalgam died) / ¡Córtenle la cabeza! (if has amalgam died)"
     },
     "image_url": "/static/images/monsters/queen.webp",
     "beta_image_url": null
@@ -8405,7 +8405,7 @@
           ]
         }
       ],
-      "description": "Starts: Bite → Skull Bash; then conditional: Multi Claw (if Respawns < 2) / Phase3 Lacerate (if Respawns >= 2)"
+      "description": "Starts: Bite → Skull Bash; then conditional: Multi Claw (if respawns < 2) / Phase3 Lacerate (if respawns >= 2)"
     },
     "image_url": "/static/images/monsters/test_subject.webp",
     "beta_image_url": null
@@ -9227,16 +9227,16 @@
           "branches": [
             {
               "move_id": "WHIRL",
-              "condition": "!((Toadpole"
+              "condition": "!((Toadpole)base.Creature.Monster).IsFront"
             },
             {
               "move_id": "SPIKEN",
-              "condition": "((Toadpole"
+              "condition": "((Toadpole)base.Creature.Monster).IsFront"
             }
           ]
         }
       ],
-      "description": "then conditional: Remolino (if !((Toadpole) / Espina (if ((Toadpole)"
+      "description": "then conditional: Remolino (if not in front) / Espina (if in front)"
     },
     "image_url": "/static/images/monsters/toadpole.webp",
     "beta_image_url": null

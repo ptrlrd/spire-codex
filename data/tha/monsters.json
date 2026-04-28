@@ -2352,7 +2352,7 @@
           ]
         }
       ],
-      "description": "then random: Skitter (no repeat), Mandible (no repeat); then conditional: Skitter (if base.Creature.SlotName == \"first\") / Mandible (if base.Creature.SlotName == \"second\") / Enrage (if base.Creature.SlotName == \"third\") / Rand (if base.Creature.SlotName == \"fourth\")"
+      "description": "then random: Skitter (no repeat), Mandible (no repeat); then conditional: Skitter (if in first slot) / Mandible (if in second slot) / Enrage (if in third slot) / Rand (if in fourth slot)"
     },
     "image_url": "/static/images/monsters/exoskeleton.webp",
     "beta_image_url": null
@@ -2507,7 +2507,7 @@
           ]
         }
       ],
-      "description": "then random: Fabricate, Fabricating Strike; then conditional: Rand (if CanFabricate) / Disintegrate (if !CanFabricate)"
+      "description": "then random: Fabricate, Fabricating Strike; then conditional: Rand (if can fabricate) / Disintegrate (if cannot fabricate)"
     },
     "image_url": "/static/images/monsters/fabricator.webp",
     "beta_image_url": null
@@ -3271,7 +3271,7 @@
           ]
         }
       ],
-      "description": "Starts: Tongue Lash → Strike Down Evil → For The Queen; then conditional: Tongue Lash (if HasBeetleCharged || base.Creature.CurrentHp >= base.Creature.MaxHp / 2) / Beetle Charge (if !HasBeetleCharged && base.Creature.CurrentHp < base.Creature.MaxHp / 2)"
+      "description": "Starts: Tongue Lash → Strike Down Evil → For The Queen; then conditional: Tongue Lash (if HasBeetleCharged || CurrentHp >= MaxHp / 2) / Beetle Charge (if !HasBeetleCharged && CurrentHp < MaxHp / 2)"
     },
     "image_url": "/static/images/monsters/frog_knight.webp",
     "beta_image_url": null
@@ -4465,7 +4465,7 @@
           ]
         }
       ],
-      "description": "Starts: Curse Of Knowledge → Slap → Knowledge Overwhelming → Ponder; then conditional: Curse Of Knowledge (if _curseOfKnowledgeCounter < 3) / Slap (if _curseOfKnowledgeCounter >= 3)"
+      "description": "Starts: Curse Of Knowledge → Slap → Knowledge Overwhelming → Ponder; then conditional: Curse Of Knowledge (if curse of knowledge counter < 3) / Slap (if curse of knowledge counter >= 3)"
     },
     "image_url": "/static/images/monsters/knowledge_demon.webp",
     "beta_image_url": null
@@ -4940,16 +4940,16 @@
           "branches": [
             {
               "move_id": "SHIELD_SLAM",
-              "condition": "GetAllyCount("
+              "condition": "GetAllyCount() > 0"
             },
             {
               "move_id": "SMASH",
-              "condition": "GetAllyCount("
+              "condition": "GetAllyCount() == 0"
             }
           ]
         }
       ],
-      "description": "Starts with Shield Slam; then conditional: Shield Slam (if GetAllyCount() / Smash (if GetAllyCount()"
+      "description": "Starts with Shield Slam; then conditional: Shield Slam (if has allies) / Smash (if no allies)"
     },
     "image_url": "/static/images/monsters/living_shield.webp",
     "beta_image_url": null
@@ -5487,7 +5487,7 @@
           ]
         }
       ],
-      "description": "then conditional: Toxic (if base.Creature.SlotName == \"first\") / Suck (if base.Creature.SlotName == \"second\")"
+      "description": "then conditional: Toxic (if in first slot) / Suck (if in second slot)"
     },
     "image_url": "/static/images/monsters/myte.webp",
     "beta_image_url": null
@@ -5589,20 +5589,20 @@
           "branches": [
             {
               "move_id": "BUTT",
-              "condition": "((Nibbit"
+              "condition": "((Nibbit)base.Creature.Monster).IsAlone"
             },
             {
               "move_id": "HISS",
-              "condition": "!((Nibbit"
+              "condition": "!((Nibbit)base.Creature.Monster).IsFront"
             },
             {
               "move_id": "SLICE",
-              "condition": "((Nibbit"
+              "condition": "((Nibbit)base.Creature.Monster).IsFront"
             }
           ]
         }
       ],
-      "description": "then conditional: Butt (if ((Nibbit) / Hiss (if !((Nibbit) / Slice (if ((Nibbit)"
+      "description": "then conditional: Butt (if alone) / Hiss (if not in front) / Slice (if in front)"
     },
     "image_url": "/static/images/monsters/nibbit.webp",
     "beta_image_url": null
@@ -5793,7 +5793,7 @@
           ]
         }
       ],
-      "description": "Starts: Lay Eggs → Smash → Tenderizer; then conditional: Lay Eggs (if CanLay) / Nutritional Paste (if !CanLay)"
+      "description": "Starts: Lay Eggs → Smash → Tenderizer; then conditional: Lay Eggs (if can lay) / Nutritional Paste (if cannot lay)"
     },
     "image_url": "/static/images/monsters/ovicopter.webp",
     "beta_image_url": null
@@ -6126,7 +6126,7 @@
           ]
         }
       ],
-      "description": "then conditional: Flail (if base.Creature.SlotName == \"first\") / Bite (if base.Creature.SlotName == \"second\") / Lash (if base.Creature.SlotName == \"third\") / Enlarge (if base.Creature.SlotName == \"fourth\")"
+      "description": "then conditional: Flail (if in first slot) / Bite (if in second slot) / Lash (if in third slot) / Enlarge (if in fourth slot)"
     },
     "image_url": "/static/images/monsters/phantasmal_gardener.webp",
     "beta_image_url": null
@@ -6479,7 +6479,7 @@
           ]
         }
       ],
-      "description": "Starts: Puppet Strings → Your Mine; then conditional: Burn Bright For Me (if !HasAmalgamDied) / Off With Your Head (if HasAmalgamDied); then conditional: Burn Bright For Me (if !HasAmalgamDied) / Off With Your Head (if HasAmalgamDied)"
+      "description": "Starts: Puppet Strings → Your Mine; then conditional: Burn Bright For Me (if does not have amalgam died) / Off With Your Head (if has amalgam died); then conditional: Burn Bright For Me (if does not have amalgam died) / Off With Your Head (if has amalgam died)"
     },
     "image_url": "/static/images/monsters/queen.webp",
     "beta_image_url": null
@@ -8405,7 +8405,7 @@
           ]
         }
       ],
-      "description": "Starts: Bite → Skull Bash; then conditional: Multi Claw (if Respawns < 2) / Phase3 Lacerate (if Respawns >= 2)"
+      "description": "Starts: Bite → Skull Bash; then conditional: Multi Claw (if respawns < 2) / Phase3 Lacerate (if respawns >= 2)"
     },
     "image_url": "/static/images/monsters/test_subject.webp",
     "beta_image_url": null
@@ -9227,16 +9227,16 @@
           "branches": [
             {
               "move_id": "WHIRL",
-              "condition": "!((Toadpole"
+              "condition": "!((Toadpole)base.Creature.Monster).IsFront"
             },
             {
               "move_id": "SPIKEN",
-              "condition": "((Toadpole"
+              "condition": "((Toadpole)base.Creature.Monster).IsFront"
             }
           ]
         }
       ],
-      "description": "then conditional: Whirl (if !((Toadpole) / Spiken (if ((Toadpole)"
+      "description": "then conditional: Whirl (if not in front) / Spiken (if in front)"
     },
     "image_url": "/static/images/monsters/toadpole.webp",
     "beta_image_url": null
