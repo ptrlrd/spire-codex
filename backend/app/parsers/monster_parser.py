@@ -671,7 +671,9 @@ def _humanize_condition(cond: str) -> str:
     # `Counter < N`, `Respawns >= 2`, etc.
     m = re.fullmatch(r"(\w+)\s*([<>=!]+)\s*(\d+)", s)
     if m:
-        return ("not " if negated else "") + f"{_split_camel(m.group(1))} {m.group(2)} {m.group(3)}"
+        return (
+            "not " if negated else ""
+        ) + f"{_split_camel(m.group(1))} {m.group(2)} {m.group(3)}"
 
     # Bare boolean property: IsAlone, HasAmalgamDied, CanFabricate
     m = re.fullmatch(r"\w+", s)
