@@ -1,0 +1,101 @@
+{
+  "ascension_helper": {
+    "PovertyAscensionGoldMultiplier": 0.75
+  },
+  "ascension_levels": [
+    "SwarmingElites",
+    "WearyTraveler",
+    "Poverty",
+    "TightBelt",
+    "AscendersBane",
+    "Inflation",
+    "Scarcity",
+    "ToughEnemies",
+    "DeadlyEnemies",
+    "DoubleBoss"
+  ],
+  "card_rarity_odds": {
+    "EliteCommonOdds": {
+      "ascended": 0.549,
+      "ascension_level": "Scarcity",
+      "base": 0.5
+    },
+    "EliteRareOdds": {
+      "ascended": 0.05,
+      "ascension_level": "Scarcity",
+      "base": 0.1
+    },
+    "RarityGrowth": {
+      "ascended": 0.005,
+      "ascension_level": "Scarcity",
+      "base": 0.01
+    },
+    "RegularRareOdds": {
+      "ascended": 0.0149,
+      "ascension_level": "Scarcity",
+      "base": 0.03
+    },
+    "ShopCommonOdds": {
+      "ascended": 0.585,
+      "ascension_level": "Scarcity",
+      "base": 0.54
+    },
+    "ShopRareOdds": {
+      "ascended": 0.045,
+      "ascension_level": "Scarcity",
+      "base": 0.09
+    },
+    "_baseRarityOffset": -0.05,
+    "_maxRarityOffset": 0.4,
+    "bossCommonOdds": 0.0,
+    "bossRareOdds": 1.0,
+    "bossUncommonOdds": 0.0,
+    "eliteUncommonOdds": 0.4,
+    "regularCommonOdds": {
+      "ascended": 0.615,
+      "ascension_level": "Scarcity",
+      "base": 0.6
+    },
+    "regularUncommonOdds": 0.37,
+    "shopUncommonOdds": 0.37
+  },
+  "combat_modifiers": {
+    "Frail": {
+      "key": "BlockDecrease",
+      "value": 0.75
+    },
+    "Vulnerable": {
+      "key": "DamageIncrease",
+      "value": 1.5
+    },
+    "Weak": {
+      "key": "DamageDecrease",
+      "value": 0.75
+    }
+  },
+  "encounter_gold_rewards": {
+    "Boss": {
+      "max": 100,
+      "min": 100
+    },
+    "Elite": {
+      "max": 45,
+      "min": 35
+    },
+    "Monster": {
+      "max": 20,
+      "min": 10
+    }
+  },
+  "potion_reward_odds": {
+    "_basePotionRewardOdds": 0.4,
+    "eliteBonus": 0.25,
+    "targetOdds": 0.5
+  },
+  "unknown_map_point_odds": {
+    "baseEliteOdds": -1.0,
+    "baseMonsterOdds": 0.1,
+    "baseShopOdds": 0.03,
+    "baseTreasureOdds": 0.02
+  }
+}
