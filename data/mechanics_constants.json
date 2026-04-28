@@ -61,14 +61,17 @@
   },
   "combat_modifiers": {
     "Frail": {
+      "decays": true,
       "key": "BlockDecrease",
       "value": 0.75
     },
     "Vulnerable": {
+      "decays": true,
       "key": "DamageIncrease",
       "value": 1.5
     },
     "Weak": {
+      "decays": true,
       "key": "DamageDecrease",
       "value": 0.75
     }

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { card, h3, tbl, thr, th, thr2, tr, td, tdr, gold, note, bold } from "../styles";
 
 // Optional character-stats data sourced from `/api/characters` and
@@ -58,16 +59,39 @@ export interface AscensionHelperConstants {
 // Damage / block multipliers from the named combat-debuff powers.
 // Each entry's `value` is the literal from the power's `CanonicalVars`
 // — Vulnerable's `DamageIncrease` (1.5x), Weak's `DamageDecrease`
-// (0.75x), Frail's `BlockDecrease` (0.75x). Lets the combat-mechanics
-// page stay in sync with C# balance changes without a code edit.
+// (0.75x), Frail's `BlockDecrease` (0.75x). `decays` is true when the
+// power overrides `AfterTurnEnd` (counter ticks down each turn) —
+// drives the Scaling card on /mechanics/combat-mechanics.
 export interface CombatModifierEntry {
   key: string;
   value: number;
+  decays?: boolean;
 }
 export interface CombatModifiers {
   Vulnerable?: CombatModifierEntry;
   Weak?: CombatModifierEntry;
   Frail?: CombatModifierEntry;
+}
+
+// Subset of the /api/monsters payload consumed by the
+// enemy-ascension-scaling page. Keep this narrow — pulling the full
+// `Monster` type would drag MonsterMove, AttackPattern, encounters,
+// innate powers, and image fields the table never reads.
+export interface MonsterScalingMove {
+  name: string;
+  damage_normal: number | null;
+  damage_ascension: number | null;
+  hit_count: number | null;
+}
+export interface MonsterScalingRow {
+  id: string;
+  name: string;
+  type: string;
+  min_hp: number | null;
+  max_hp: number | null;
+  min_hp_ascension: number | null;
+  max_hp_ascension: number | null;
+  moves: MonsterScalingMove[];
 }
 
 interface MechanicContentProps {
@@ -78,6 +102,7 @@ interface MechanicContentProps {
   ascensionHelper?: AscensionHelperConstants;
   ascensionLevels?: string[];
   combatModifiers?: CombatModifiers;
+  monsterScaling?: MonsterScalingRow[];
 }
 
 // Format a probability (0..1) as a percentage string. Trims trailing
@@ -113,6 +138,7 @@ export default function MechanicContent({
   ascensionHelper,
   ascensionLevels,
   combatModifiers,
+  monsterScaling,
 }: MechanicContentProps) {
   switch (slug) {
     case "card-rarity": {
@@ -458,6 +484,13 @@ export default function MechanicContent({
       const vuln = combatModifiers?.Vulnerable?.value ?? 1.5;
       const weak = combatModifiers?.Weak?.value ?? 0.75;
       const frail = combatModifiers?.Frail?.value ?? 0.75;
+      // Decay flags are sourced from the parser (true when the power
+      // overrides AfterTurnEnd). Falling back to true matches the
+      // current shipped behaviour for all three debuffs.
+      const vulnDecays = combatModifiers?.Vulnerable?.decays ?? true;
+      const weakDecays = combatModifiers?.Weak?.decays ?? true;
+      const frailDecays = combatModifiers?.Frail?.decays ?? true;
+      const decayLabel = (decays: boolean) => (decays ? "decays 1/turn" : "persists");
       return (
         <>
           <div className={card}>
@@ -467,6 +500,25 @@ export default function MechanicContent({
             </p>
             <p className={`${note} mt-2`}>
               Block follows the mirror path: card block + <strong className={bold}>Dexterity</strong> stacks, then multiplied by <strong className={bold}>{mult(frail)}</strong> if the player has <strong className={bold}>Frail</strong>. Multi-hit attacks apply the full pipeline per hit. Source: <span className="font-mono">VulnerablePower</span>, <span className="font-mono">WeakPower</span>, <span className="font-mono">FrailPower</span>, <span className="font-mono">StrengthPower</span>, <span className="font-mono">DexterityPower</span>.
+            </p>
+          </div>
+          <div className={`${card} mt-4`}>
+            <h3 className={h3}>Scaling</h3>
+            <table className={tbl}>
+              <thead><tr className={thr}><th className={th}>Effect</th><th className={thr2}>Per stack</th><th className={thr2}>Lifetime</th></tr></thead>
+              <tbody>
+                <tr className={tr}><td className={td}>Strength</td><td className={tdr}>+1 attack damage</td><td className={tdr}>persists</td></tr>
+                <tr className={tr}><td className={td}>Dexterity</td><td className={tdr}>+1 card block</td><td className={tdr}>persists</td></tr>
+                <tr className={tr}><td className={td}>Vulnerable</td><td className={tdr}>{mult(vuln)} damage taken (debuff cap, not per-stack)</td><td className={tdr}>{decayLabel(vulnDecays)}</td></tr>
+                <tr className={tr}><td className={td}>Weak</td><td className={tdr}>{mult(weak)} damage dealt (debuff cap, not per-stack)</td><td className={tdr}>{decayLabel(weakDecays)}</td></tr>
+                <tr><td className={td}>Frail</td><td className={tdr}>{mult(frail)} block from cards (debuff cap, not per-stack)</td><td className={tdr}>{decayLabel(frailDecays)}</td></tr>
+              </tbody>
+            </table>
+            <p className={`${note} mt-2`}>
+              Buffs (Strength, Dexterity) accumulate additively and last the whole combat. Debuffs (Vulnerable, Weak, Frail) are <em>counters</em> — the multiplier is fixed regardless of stack count, but the counter ticks down by 1 at the end of each turn until it reaches zero. Multi-hit attacks apply the full damage pipeline (Strength + multipliers + Block) on every hit.
+            </p>
+            <p className={`${note} mt-2`}>
+              <strong className={bold}>Enemy ascension scaling.</strong> Monster HP and damage are bumped per-monster at <strong className={bold}>ToughEnemies</strong> (A7+) and <strong className={bold}>DeadlyEnemies</strong> (A2+) respectively, using the <span className="font-mono">AscensionHelper.GetValueIfAscension</span> pattern. Each monster is shipped with both its base and ascended values — see the <Link className="text-[var(--accent-gold)] hover:underline" href="/mechanics/enemy-ascension-scaling">full scaling table</Link>.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
@@ -645,6 +697,147 @@ export default function MechanicContent({
             </tbody>
           </table>
         </div>
+      );
+    }
+
+    case "enemy-ascension-scaling": {
+      // Per-monster scaling deltas computed client-side from
+      // /api/monsters. Each monster ships with both base values
+      // (min/max HP, move damage) and the corresponding A7+/A2+
+      // value already resolved by `AscensionHelper.GetValueIfAscension`
+      // — we just compute the delta and render. Sorted by largest HP
+      // delta so the punchiest scalers float to the top.
+      const rows = monsterScaling ?? [];
+      type ScalingRow = {
+        id: string;
+        name: string;
+        type: string;
+        baseHp: string;
+        ascHp: string;
+        hpDelta: number;
+        baseDmg: string;
+        ascDmg: string;
+        dmgDelta: number;
+      };
+      const scalingRows: ScalingRow[] = rows
+        .map((m) => {
+          const baseHpRange =
+            m.min_hp != null && m.max_hp != null
+              ? m.min_hp === m.max_hp ? `${m.min_hp}` : `${m.min_hp}-${m.max_hp}`
+              : "";
+          const ascHpRange =
+            m.min_hp_ascension != null && m.max_hp_ascension != null
+              ? m.min_hp_ascension === m.max_hp_ascension
+                ? `${m.min_hp_ascension}`
+                : `${m.min_hp_ascension}-${m.max_hp_ascension}`
+              : "";
+          // Use the max HP delta so single-hp monsters and ranged ones
+          // are comparable on one axis.
+          const hpDelta =
+            m.max_hp != null && m.max_hp_ascension != null
+              ? m.max_hp_ascension - m.max_hp
+              : 0;
+          // Pick the largest scaling damage across all moves to keep
+          // the row representative; many monsters have one signature
+          // attack and several utility moves.
+          const damageMoves = m.moves.filter(
+            (mv) => mv.damage_normal != null && mv.damage_ascension != null,
+          );
+          let bestMove: MonsterScalingMove | null = null;
+          let bestDelta = 0;
+          for (const mv of damageMoves) {
+            const delta = (mv.damage_ascension ?? 0) - (mv.damage_normal ?? 0);
+            if (delta > bestDelta || bestMove == null) {
+              bestDelta = delta;
+              bestMove = mv;
+            }
+          }
+          const fmtHit = (n: number, hits: number | null) =>
+            hits && hits > 1 ? `${n}×${hits}` : `${n}`;
+          const baseDmg = bestMove
+            ? `${bestMove.name} ${fmtHit(bestMove.damage_normal ?? 0, bestMove.hit_count)}`
+            : "";
+          const ascDmg = bestMove
+            ? `${fmtHit(bestMove.damage_ascension ?? 0, bestMove.hit_count)}`
+            : "";
+          return {
+            id: m.id,
+            name: m.name,
+            type: m.type || "Normal",
+            baseHp: baseHpRange,
+            ascHp: ascHpRange,
+            hpDelta,
+            baseDmg,
+            ascDmg,
+            dmgDelta: bestDelta,
+          };
+        })
+        .filter((r) => r.hpDelta > 0 || r.dmgDelta > 0)
+        .sort((a, b) => b.hpDelta - a.hpDelta || b.dmgDelta - a.dmgDelta);
+      const totalShown = scalingRows.length;
+      const hpScalers = scalingRows.filter((r) => r.hpDelta > 0).length;
+      const dmgScalers = scalingRows.filter((r) => r.dmgDelta > 0).length;
+      return (
+        <>
+          <div className={card}>
+            <h3 className={h3}>How Enemy Scaling Works</h3>
+            <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
+              Two ascension levels bump enemy stats game-wide. <strong className={bold}>DeadlyEnemies</strong> (unlocked at <strong className={bold}>A2</strong>) raises every monster&rsquo;s attack damage; <strong className={bold}>ToughEnemies</strong> (unlocked at <strong className={bold}>A7</strong>) raises HP and per-move block. The bumps are <em>per-monster constants</em> defined in each monster&rsquo;s C# class via <span className="font-mono">AscensionHelper.GetValueIfAscension(level, ascended, base)</span>, not a global multiplier — every entry below is a literal value pulled from the source.
+            </p>
+            <p className={`${note} mt-2`}>
+              {totalShown} of the {rows.length} monsters in the bestiary scale with ascension — <strong className={bold}>{hpScalers}</strong> get HP bumps at A7+ and <strong className={bold}>{dmgScalers}</strong> get damage bumps at A2+. Damage column shows the move with the largest bump (multi-hit attacks displayed as <span className="font-mono">N×hits</span>).
+            </p>
+          </div>
+          <div className={`${card} mt-4 overflow-x-auto`}>
+            <table className={tbl}>
+              <thead>
+                <tr className={thr}>
+                  <th className={th}>Monster</th>
+                  <th className={thr2}>Type</th>
+                  <th className={thr2}>HP</th>
+                  <th className={thr2}>HP @ A7+</th>
+                  <th className={thr2}>Top attack</th>
+                  <th className={thr2}>@ A2+</th>
+                </tr>
+              </thead>
+              <tbody>
+                {scalingRows.map((r, i) => (
+                  <tr key={r.id} className={i < scalingRows.length - 1 ? tr : undefined}>
+                    <td className={td}>
+                      <Link
+                        className="text-[var(--accent-gold)] hover:underline"
+                        href={`/monsters/${r.id.toLowerCase()}`}
+                      >
+                        {r.name}
+                      </Link>
+                    </td>
+                    <td className={tdr}>{r.type}</td>
+                    <td className={tdr}>{r.baseHp || "—"}</td>
+                    <td className={tdr}>
+                      {r.ascHp || "—"}
+                      {r.hpDelta > 0 && (
+                        <span className="ml-1 text-xs text-orange-400">+{r.hpDelta}</span>
+                      )}
+                    </td>
+                    <td className={tdr}>{r.baseDmg || "—"}</td>
+                    <td className={tdr}>
+                      {r.ascDmg || "—"}
+                      {r.dmgDelta > 0 && (
+                        <span className="ml-1 text-xs text-orange-400">
+                          +{r.dmgDelta}
+                          {r.baseDmg.includes("×") ? "/hit" : ""}
+                        </span>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            {rows.length === 0 && (
+              <p className={note}>Loading monster data… (or the API is unreachable — refresh after starting the backend)</p>
+            )}
+          </div>
+        </>
       );
     }
 
