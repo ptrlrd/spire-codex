@@ -8,6 +8,9 @@ import Link from "next/link";
 import MechanicContent, {
   type CharacterStatsRow,
   type CardRarityConstants,
+  type EncounterGoldConstants,
+  type AscensionHelperConstants,
+  type CombatModifiers,
 } from "./MechanicContent";
 
 const API_INTERNAL = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
@@ -29,14 +32,25 @@ interface ApiCharacter {
 // card-rarity page renders from C# constants instead of hand-typed
 // percentages. Same revalidation + graceful-fallback shape as the
 // character-stats fetcher above.
-async function fetchCardRarity(): Promise<CardRarityConstants | undefined> {
+// Single fetch for `/api/mechanics/constants` — returns the whole
+// payload so callers can pick whichever bucket(s) they need without
+// firing multiple round-trips. Pages that only consume one bucket
+// destructure inline at the call site below.
+type MechanicsConstants = {
+  card_rarity_odds?: CardRarityConstants;
+  encounter_gold_rewards?: EncounterGoldConstants;
+  ascension_helper?: AscensionHelperConstants;
+  ascension_levels?: string[];
+  combat_modifiers?: CombatModifiers;
+};
+
+async function fetchMechanicsConstants(): Promise<MechanicsConstants | undefined> {
   try {
     const res = await fetch(`${API_INTERNAL}/api/mechanics/constants`, {
       next: { revalidate: 300 },
     });
     if (!res.ok) return undefined;
-    const data = (await res.json()) as { card_rarity_odds?: CardRarityConstants };
-    return data.card_rarity_odds;
+    return (await res.json()) as MechanicsConstants;
   } catch {
     return undefined;
   }
@@ -122,11 +136,27 @@ export default async function MechanicDetailPage({ params }: { params: Promise<{
         <span className="text-[var(--accent-gold)]">{section.title}</span>
       </h1>
       <p className="text-sm text-[var(--text-muted)] mb-8">{section.description}</p>
-      <MechanicContent
-        slug={slug}
-        characterStats={slug === "character-stats" ? await fetchCharacterStats() : undefined}
-        cardRarity={slug === "card-rarity" ? await fetchCardRarity() : undefined}
-      />
+      {await (async () => {
+        // Slugs that need parsed mechanics constants share one fetch
+        // so the page makes at most one /api/mechanics/constants call
+        // even if multiple buckets are needed. Character-stats has its
+        // own dedicated /api/characters fetch since it's a different
+        // data source.
+        const needsMechanics = ["card-rarity", "gold-rewards", "ascension-modifiers", "combat-mechanics"].includes(slug);
+        const mechanics = needsMechanics ? await fetchMechanicsConstants() : undefined;
+        const characterStats = slug === "character-stats" ? await fetchCharacterStats() : undefined;
+        return (
+          <MechanicContent
+            slug={slug}
+            characterStats={characterStats}
+            cardRarity={slug === "card-rarity" ? mechanics?.card_rarity_odds : undefined}
+            encounterGold={slug === "gold-rewards" ? mechanics?.encounter_gold_rewards : undefined}
+            ascensionHelper={slug === "gold-rewards" ? mechanics?.ascension_helper : undefined}
+            ascensionLevels={slug === "ascension-modifiers" ? mechanics?.ascension_levels : undefined}
+            combatModifiers={slug === "combat-mechanics" ? mechanics?.combat_modifiers : undefined}
+          />
+        );
+      })()}
     </div>
   );
 }
