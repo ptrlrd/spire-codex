@@ -209,22 +209,30 @@ def parse_combat_modifiers() -> dict:
                 "key": var_match.group("key"),
                 "value": float(var_match.group("value")),
             }
-            continue
-        # Fall back to the last non-1m decimal literal returned in the
-        # file — Frail's pattern is `if (...) return 1m; ... return
-        # 0.75m;` so we pick the multiplier that isn't an early-return
-        # passthrough.
-        literals = [
-            float(m.group(1))
-            for m in re.finditer(r"return\s+(-?[0-9]+\.?[0-9]*)m\s*;", content)
-            if float(m.group(1)) != 1.0
-        ]
-        if literals:
-            out[label] = {"key": key, "value": literals[-1]}
+        else:
+            # Fall back to the last non-1m decimal literal returned in
+            # the file — Frail's pattern is `if (...) return 1m; ...
+            # return 0.75m;` so we pick the multiplier that isn't an
+            # early-return passthrough.
+            literals = [
+                float(m.group(1))
+                for m in re.finditer(r"return\s+(-?[0-9]+\.?[0-9]*)m\s*;", content)
+                if float(m.group(1)) != 1.0
+            ]
+            if literals:
+                out[label] = {"key": key, "value": literals[-1]}
+        # `decays` is true when the power overrides `AfterTurnEnd` —
+        # that's where Vulnerable/Weak/Frail decrement their counter
+        # each turn. Strength/Dexterity don't override it (they
+        # persist), but they aren't in this bucket anyway. The
+        # /mechanics/combat-mechanics scaling card uses this to label
+        # which debuffs tick down vs. linger.
+        if label in out:
+            out[label]["decays"] = "AfterTurnEnd" in content
     # Strength and Dexterity intentionally not parsed — both are flat
     # +N-per-stack effects with no fixed multiplier in the source. The
-    # mechanics page should describe them as "+1 attack damage / +1
-    # block per stack" rather than reading from this bucket.
+    # mechanics page describes them as "+1 attack damage / +1 block
+    # per stack" rather than reading from this bucket.
     return out
 
 

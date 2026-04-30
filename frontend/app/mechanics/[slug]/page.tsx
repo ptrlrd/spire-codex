@@ -11,6 +11,7 @@ import MechanicContent, {
   type EncounterGoldConstants,
   type AscensionHelperConstants,
   type CombatModifiers,
+  type MonsterScalingRow,
 } from "./MechanicContent";
 
 const API_INTERNAL = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
@@ -51,6 +52,53 @@ async function fetchMechanicsConstants(): Promise<MechanicsConstants | undefined
     });
     if (!res.ok) return undefined;
     return (await res.json()) as MechanicsConstants;
+  } catch {
+    return undefined;
+  }
+}
+
+// Pull the bestiary down for the enemy-ascension-scaling page. Trims
+// the payload to just the fields the table renders so the React tree
+// doesn't carry attack patterns, encounters, innate powers, or images
+// that the page never reads. Same revalidation + graceful-fallback
+// shape as the other fetchers above.
+interface ApiMonsterMove {
+  name: string;
+  damage?: { normal?: number | null; ascension?: number | null; hit_count?: number | null } | null;
+}
+interface ApiMonster {
+  id: string;
+  name: string;
+  type?: string | null;
+  min_hp?: number | null;
+  max_hp?: number | null;
+  min_hp_ascension?: number | null;
+  max_hp_ascension?: number | null;
+  moves?: ApiMonsterMove[] | null;
+}
+
+async function fetchMonsterScaling(): Promise<MonsterScalingRow[] | undefined> {
+  try {
+    const res = await fetch(`${API_INTERNAL}/api/monsters`, {
+      next: { revalidate: 300 },
+    });
+    if (!res.ok) return undefined;
+    const monsters = (await res.json()) as ApiMonster[];
+    return monsters.map((m) => ({
+      id: m.id,
+      name: m.name,
+      type: m.type ?? "Normal",
+      min_hp: m.min_hp ?? null,
+      max_hp: m.max_hp ?? null,
+      min_hp_ascension: m.min_hp_ascension ?? null,
+      max_hp_ascension: m.max_hp_ascension ?? null,
+      moves: (m.moves ?? []).map((mv) => ({
+        name: mv.name,
+        damage_normal: mv.damage?.normal ?? null,
+        damage_ascension: mv.damage?.ascension ?? null,
+        hit_count: mv.damage?.hit_count ?? null,
+      })),
+    }));
   } catch {
     return undefined;
   }
@@ -143,8 +191,11 @@ export default async function MechanicDetailPage({ params }: { params: Promise<{
         // own dedicated /api/characters fetch since it's a different
         // data source.
         const needsMechanics = ["card-rarity", "gold-rewards", "ascension-modifiers", "combat-mechanics"].includes(slug);
-        const mechanics = needsMechanics ? await fetchMechanicsConstants() : undefined;
-        const characterStats = slug === "character-stats" ? await fetchCharacterStats() : undefined;
+        const [mechanics, characterStats, monsterScaling] = await Promise.all([
+          needsMechanics ? fetchMechanicsConstants() : Promise.resolve(undefined),
+          slug === "character-stats" ? fetchCharacterStats() : Promise.resolve(undefined),
+          slug === "enemy-ascension-scaling" ? fetchMonsterScaling() : Promise.resolve(undefined),
+        ]);
         return (
           <MechanicContent
             slug={slug}
@@ -154,6 +205,7 @@ export default async function MechanicDetailPage({ params }: { params: Promise<{
             ascensionHelper={slug === "gold-rewards" ? mechanics?.ascension_helper : undefined}
             ascensionLevels={slug === "ascension-modifiers" ? mechanics?.ascension_levels : undefined}
             combatModifiers={slug === "combat-mechanics" ? mechanics?.combat_modifiers : undefined}
+            monsterScaling={monsterScaling}
           />
         );
       })()}
