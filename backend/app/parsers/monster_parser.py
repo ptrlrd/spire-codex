@@ -1099,24 +1099,43 @@ def parse_single_monster(
         f"/static/images/monsters/{image_file.name}" if image_file.exists() else None
     )
 
-    # Beta/concept art — check beta/ subdirectory
+    # Concept-art aliases — a few monsters (Door / Doormaker / Pael's Legion)
+    # ship a placeholder/concept variant under `monsters/beta/` that the beta
+    # site uses while the proper sprite is still being made. This is NOT the
+    # same as v0.X.Y beta-only art (which lives under top-level
+    # `backend/static/images/beta/monsters/`). When that asset graduates to
+    # stable it gets moved into `monsters/` and the alias drops out.
     BETA_ALIASES = {
         "DOOR": "door",
         "DOORMAKER": "door_maker_placeholder_2",
         "PAELS_LEGION": "paels_legion",
     }
     beta_name = BETA_ALIASES.get(monster_id)
+    beta_file = None
     if beta_name:
-        beta_file = IMAGES_DIR / "beta" / f"{beta_name}.webp"
-        if not beta_file.exists():
-            beta_file = IMAGES_DIR / "beta" / f"{beta_name}.png"
+        candidate_webp = IMAGES_DIR / "beta" / f"{beta_name}.webp"
+        candidate_png = IMAGES_DIR / "beta" / f"{beta_name}.png"
+        beta_file = (
+            candidate_webp
+            if candidate_webp.exists()
+            else (candidate_png if candidate_png.exists() else None)
+        )
+    # Fall back to the top-level `beta/monsters/` tree for genuine v0.X.Y
+    # beta-only art that hasn't promoted yet. Same path convention the cards
+    # parser uses.
+    if not beta_file:
+        top_beta = IMAGES_DIR.parent / "beta" / "monsters"
+        slug = monster_id.lower()
+        candidate_webp = top_beta / f"{slug}.webp"
+        candidate_png = top_beta / f"{slug}.png"
+        if candidate_webp.exists():
+            beta_image_url = f"/static/images/beta/monsters/{candidate_webp.name}"
+        elif candidate_png.exists():
+            beta_image_url = f"/static/images/beta/monsters/{candidate_png.name}"
+        else:
+            beta_image_url = None
     else:
-        beta_file = None
-    beta_image_url = (
-        f"/static/images/monsters/beta/{beta_file.name}"
-        if beta_file and beta_file.exists()
-        else None
-    )
+        beta_image_url = f"/static/images/monsters/beta/{beta_file.name}"
 
     return {
         "id": monster_id,

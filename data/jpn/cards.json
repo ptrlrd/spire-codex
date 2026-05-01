@@ -70,7 +70,7 @@
       "energy": "+1"
     },
     "image_url": "/static/images/cards/believe_in_you.webp",
-    "beta_image_url": "/static/images/cards/beta/believe_in_you.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "他のプレイヤーは[energy:3]を得る。",
@@ -184,7 +184,7 @@
     "vars": null,
     "upgrade": null,
     "image_url": "/static/images/cards/soot.webp",
-    "beta_image_url": "/static/images/cards/beta/soot.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": false,
     "upgrade_description": null,
@@ -347,7 +347,7 @@
       "damage": "+3"
     },
     "image_url": "/static/images/cards/pillage.webp",
-    "beta_image_url": "/static/images/cards/beta/pillage.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "9ダメージを与える。\nアタック以外のカードを引くまで、カードを引く。",
@@ -433,7 +433,7 @@
       "thornspower": "+2"
     },
     "image_url": "/static/images/cards/caltrops.webp",
-    "beta_image_url": "/static/images/cards/beta/caltrops.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "アタックされるたび、反撃して5ダメージを与える。",
@@ -475,7 +475,7 @@
       "ostydamage": "+2"
     },
     "image_url": "/static/images/cards/right_hand_hand.webp",
-    "beta_image_url": "/static/images/cards/beta/right_hand_hand.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "[gold]オスティ[/gold]が6ダメージを与える。コストが[energy:2]以上のカードをプレイするたび、これを[gold]捨て札[/gold]から[gold]手札[/gold]に戻す。",
@@ -557,7 +557,7 @@
       "remove_exhaust": true
     },
     "image_url": "/static/images/cards/mimic.webp",
-    "beta_image_url": "/static/images/cards/beta/mimic.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -610,7 +610,7 @@
       "sicempower": "+1"
     },
     "image_url": "/static/images/cards/sic_em.webp",
-    "beta_image_url": "/static/images/cards/beta/sic_em.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "[gold]オスティ[/gold]が6ダメージを与える。このターン、[gold]オスティ[/gold]がこの敵を攻撃するたび、[gold]召喚[/gold]3。",
@@ -689,7 +689,7 @@
       "damage": "+5"
     },
     "image_url": "/static/images/cards/ice_lance.webp",
-    "beta_image_url": "/static/images/cards/beta/ice_lance.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "24ダメージを与える。\n[gold]フロスト[/gold]3を[gold]生成[/gold]する。",
@@ -765,7 +765,7 @@
     "vars": null,
     "upgrade": null,
     "image_url": "/static/images/cards/ascenders_bane.webp",
-    "beta_image_url": "/static/images/cards/beta/ascenders_bane.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -810,7 +810,7 @@
       "damage": "+5"
     },
     "image_url": "/static/images/cards/adaptive_strike.webp",
-    "beta_image_url": "/static/images/cards/beta/adaptive_strike.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "23ダメージを与える。\nこのカードの0[energy:1]のコピーを1枚[gold]捨て札[/gold]に加える。",
@@ -1014,7 +1014,7 @@
       "remove_exhaust": true
     },
     "image_url": "/static/images/cards/ignition.webp",
-    "beta_image_url": "/static/images/cards/beta/ignition.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -1055,7 +1055,7 @@
       "block": "+4"
     },
     "image_url": "/static/images/cards/intercept.webp",
-    "beta_image_url": "/static/images/cards/beta/intercept.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "13[gold]ブロック[/gold]を得る。\nこのターン、他のプレイヤーが受けるすべての攻撃を自分が代わりに受ける。",
@@ -1178,7 +1178,7 @@
       "add_retain": true
     },
     "image_url": "/static/images/cards/wisp.webp",
-    "beta_image_url": "/static/images/cards/beta/wisp.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -1226,7 +1226,7 @@
       "preptimepower": "+2"
     },
     "image_url": "/static/images/cards/prep_time.webp",
-    "beta_image_url": "/static/images/cards/beta/prep_time.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "ターン開始時、[gold]活力[/gold]6を得る。",
@@ -1266,7 +1266,7 @@
       "energy": "+1"
     },
     "image_url": "/static/images/cards/energy_surge.webp",
-    "beta_image_url": "/static/images/cards/beta/energy_surge.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "すべてのプレイヤーは[energy:3]を得る。",
@@ -1307,7 +1307,7 @@
       "add_innate": true
     },
     "image_url": "/static/images/cards/entropy.webp",
-    "beta_image_url": "/static/images/cards/beta/entropy.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -1390,7 +1390,7 @@
       "cost": 0
     },
     "image_url": "/static/images/cards/automation.webp",
-    "beta_image_url": "/static/images/cards/beta/automation.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -1587,7 +1587,7 @@
       "description_changed": true
     },
     "image_url": "/static/images/cards/cascade.webp",
-    "beta_image_url": "/static/images/cards/beta/cascade.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "[gold]山札[/gold]の上からX+1枚のカードをプレイする。",
@@ -1623,7 +1623,7 @@
       "cost": 2
     },
     "image_url": "/static/images/cards/calamity.webp",
-    "beta_image_url": "/static/images/cards/beta/calamity.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -1666,7 +1666,7 @@
       "ostydamage": "+2"
     },
     "image_url": "/static/images/cards/rattle.webp",
-    "beta_image_url": "/static/images/cards/beta/rattle.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "[gold]オスティ[/gold]が9ダメージを与える。\nこのターン中に[gold]オスティ[/gold]が攻撃した回数分、追加で繰り返す。",
@@ -1704,7 +1704,7 @@
       "block": "+3"
     },
     "image_url": "/static/images/cards/glasswork.webp",
-    "beta_image_url": "/static/images/cards/beta/glasswork.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "8[gold]ブロック[/gold]を得る。\n[gold]グラス[/gold]1を[gold]生成[/gold]する。",
@@ -1758,7 +1758,7 @@
       "damage": "+5"
     },
     "image_url": "/static/images/cards/gamma_blast.webp",
-    "beta_image_url": "/static/images/cards/beta/gamma_blast.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "18ダメージを与える。\n[gold]脱力[/gold]2を付与する。\n[gold]弱体[/gold]2を付与する。",
@@ -1796,7 +1796,7 @@
       "cost": 0
     },
     "image_url": "/static/images/cards/quadcast.webp",
-    "beta_image_url": "/static/images/cards/beta/quadcast.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -1834,7 +1834,7 @@
       "description_changed": true
     },
     "image_url": "/static/images/cards/quasar.webp",
-    "beta_image_url": "/static/images/cards/beta/quasar.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "ランダムな[gold]アップグレード[/gold]済みの無色カード3枚の中から1枚選び、[gold]手札[/gold]に加える。",
@@ -1872,7 +1872,7 @@
       "damage": "+4"
     },
     "image_url": "/static/images/cards/clash.webp",
-    "beta_image_url": "/static/images/cards/beta/clash.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "[gold]手札[/gold]のカードがすべてアタックの場合にのみプレイできる。\n18ダメージを与える。",
@@ -2100,7 +2100,7 @@
       "cost": 0
     },
     "image_url": "/static/images/cards/subroutine.webp",
-    "beta_image_url": "/static/images/cards/beta/subroutine.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -2145,7 +2145,7 @@
       "thunderpower": "+2"
     },
     "image_url": "/static/images/cards/thunder.webp",
-    "beta_image_url": "/static/images/cards/beta/thunder.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "[gold]ライトニングを解放[/gold]するたび、命中した各敵に8ダメージを与える。",
@@ -2268,7 +2268,7 @@
       "damage": "+3"
     },
     "image_url": "/static/images/cards/shining_strike.webp",
-    "beta_image_url": "/static/images/cards/beta/shining_strike.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "11ダメージを与える。\n[star:2]を得る。\nこのカードを[gold]山札[/gold]の一番上に置く。",
@@ -2306,7 +2306,7 @@
       "block": "+4"
     },
     "image_url": "/static/images/cards/shadow_shield.webp",
-    "beta_image_url": "/static/images/cards/beta/shadow_shield.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "15[gold]ブロック[/gold]を得る。\n[gold]ダーク[/gold]1を[gold]生成[/gold]する。",
@@ -2382,7 +2382,7 @@
       "damage": "+6"
     },
     "image_url": "/static/images/cards/synthesis.webp",
-    "beta_image_url": "/static/images/cards/beta/synthesis.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "18ダメージを与える。\n次にプレイするパワーのコストが0[energy:1]。",
@@ -2423,7 +2423,7 @@
       "damage": "+3"
     },
     "image_url": "/static/images/cards/seeker_strike.webp",
-    "beta_image_url": "/static/images/cards/beta/seeker_strike.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "12ダメージを与える。\n[gold]山札[/gold]のランダムなカード3枚から1枚選び、[gold]手札[/gold]に加える。",
@@ -2543,7 +2543,7 @@
       "starsperturn": "+1"
     },
     "image_url": "/static/images/cards/genesis.webp",
-    "beta_image_url": "/static/images/cards/beta/genesis.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "ターン開始時、[star:3]を得る。",
@@ -2624,7 +2624,7 @@
       "add_innate": true
     },
     "image_url": "/static/images/cards/juggling.webp",
-    "beta_image_url": "/static/images/cards/beta/juggling.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -2663,7 +2663,7 @@
       "damage": "+5"
     },
     "image_url": "/static/images/cards/jackpot.webp",
-    "beta_image_url": "/static/images/cards/beta/jackpot.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "30ダメージを与える。\nランダムな[gold]アップグレード[/gold]済みのコスト0[energy:1]のカードを3枚[gold]手札[/gold]に加える。",
@@ -2780,7 +2780,7 @@
       "calculationbase": "+3"
     },
     "image_url": "/static/images/cards/stack.webp",
-    "beta_image_url": "/static/images/cards/beta/stack.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "[gold]捨て札[/gold]の枚数 +3に等しい[gold]ブロック[/gold]を得る。",
@@ -3115,7 +3115,7 @@
       "description_changed": true
     },
     "image_url": "/static/images/cards/spinner.webp",
-    "beta_image_url": "/static/images/cards/beta/spinner.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "[gold]グラス[/gold]1を[gold]生成[/gold]する。\nターン開始時、[gold]グラス[/gold]1を[gold]生成[/gold]する。",
@@ -3160,7 +3160,7 @@
       "add_innate": true
     },
     "image_url": "/static/images/cards/speedster.webp",
-    "beta_image_url": "/static/images/cards/beta/speedster.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -3196,7 +3196,7 @@
       "description_changed": true
     },
     "image_url": "/static/images/cards/splash.webp",
-    "beta_image_url": "/static/images/cards/beta/splash.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "他のキャラクターのランダムな[gold]アップグレード[/gold]済みのアタックを3枚見て1枚を選び、[gold]手札[/gold]に加える。このターン、それはコストを支払わずにプレイできる。",
@@ -3234,7 +3234,7 @@
       "cost": 1
     },
     "image_url": "/static/images/cards/spectrum_shift.webp",
-    "beta_image_url": "/static/images/cards/beta/spectrum_shift.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -3399,7 +3399,7 @@
       "cost": 1
     },
     "image_url": "/static/images/cards/seven_stars.webp",
-    "beta_image_url": "/static/images/cards/beta/seven_stars.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -3439,7 +3439,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/soul.webp",
-    "beta_image_url": "/static/images/cards/beta/soul.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "カードを3枚引く。",
@@ -3484,7 +3484,7 @@
       "extradamage": "+1"
     },
     "image_url": "/static/images/cards/soul_storm.webp",
-    "beta_image_url": "/static/images/cards/beta/soul_storm.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "9ダメージを与える。\n[gold]廃棄札[/gold]にある[gold]ソウル[/gold]1枚につき、追加で3ダメージを与える。",
@@ -3528,7 +3528,7 @@
       "cost": 1
     },
     "image_url": "/static/images/cards/sovereign_blade.webp",
-    "beta_image_url": "/static/images/cards/beta/sovereign_blade.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -3686,7 +3686,7 @@
       "cost": 0
     },
     "image_url": "/static/images/cards/tank.webp",
-    "beta_image_url": "/static/images/cards/beta/tank.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -3883,7 +3883,7 @@
       "damage": "+3"
     },
     "image_url": "/static/images/cards/tesla_coil.webp",
-    "beta_image_url": "/static/images/cards/beta/tesla_coil.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "6ダメージを与える。\n敵に対し、すべての[gold]ライトニング[/gold]の自動効果を発動する。",
@@ -3928,7 +3928,7 @@
       "vigorpower": "+2"
     },
     "image_url": "/static/images/cards/terraforming.webp",
-    "beta_image_url": "/static/images/cards/beta/terraforming.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "[gold]活力[/gold]8を得る。",
@@ -4042,7 +4042,7 @@
       "energy": "+1"
     },
     "image_url": "/static/images/cards/delay.webp",
-    "beta_image_url": "/static/images/cards/beta/delay.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "13[gold]ブロック[/gold]を得る。\n次のターン、\n[energy:2]を得る。",
@@ -4175,7 +4175,7 @@
     "vars": null,
     "upgrade": null,
     "image_url": "/static/images/cards/debris.webp",
-    "beta_image_url": "/static/images/cards/beta/debris.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -4340,7 +4340,7 @@
       "description_changed": true
     },
     "image_url": "/static/images/cards/knife_trap.webp",
-    "beta_image_url": "/static/images/cards/beta/knife_trap.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "[gold]廃棄札[/gold]にあるすべての[gold]ナイフ[/gold]を[gold]アップグレード[/gold]してプレイする。",
@@ -4426,7 +4426,7 @@
       "platingpower": "+3"
     },
     "image_url": "/static/images/cards/neutron_aegis.webp",
-    "beta_image_url": "/static/images/cards/beta/neutron_aegis.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "[gold]プレート[/gold]11を得る。",
@@ -4473,7 +4473,7 @@
       "energy": "+1"
     },
     "image_url": "/static/images/cards/neurosurge.webp",
-    "beta_image_url": "/static/images/cards/beta/neurosurge.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "[energy:4]を得る。\nカードを2枚引く。\nターン開始時、自身に[gold]破滅[/gold]3を付与する。",
@@ -4603,7 +4603,7 @@
       "summon": "+3"
     },
     "image_url": "/static/images/cards/necro_mastery.webp",
-    "beta_image_url": "/static/images/cards/beta/necro_mastery.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "[gold]召喚[/gold]8。\n[gold]オスティ[/gold]がHPを失うたび、すべての敵が同じ値のHPを失う。",
@@ -4642,7 +4642,7 @@
       "damage": "+8"
     },
     "image_url": "/static/images/cards/knockout_blow.webp",
-    "beta_image_url": "/static/images/cards/beta/knockout_blow.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "38ダメージを与える。\nこのカードでとどめを刺した時、[star:5]を得る。",
@@ -4689,7 +4689,7 @@
       "knockdownpower": "+1"
     },
     "image_url": "/static/images/cards/knockdown.webp",
-    "beta_image_url": "/static/images/cards/beta/knockdown.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "14ダメージを与える。\nこのターン、敵は他のプレイヤーから3倍のダメージを受ける。",
@@ -4821,7 +4821,7 @@
       "add_innate": true
     },
     "image_url": "/static/images/cards/hello_world.webp",
-    "beta_image_url": "/static/images/cards/beta/hello_world.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -4857,7 +4857,7 @@
       "cost": 1
     },
     "image_url": "/static/images/cards/hammer_time.webp",
-    "beta_image_url": "/static/images/cards/beta/hammer_time.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -5109,7 +5109,7 @@
       "poison": "+3"
     },
     "image_url": "/static/images/cards/bubble_bubble.webp",
-    "beta_image_url": "/static/images/cards/beta/bubble_bubble.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "敵が[gold]毒[/gold]に侵されている場合、[gold]毒[/gold]12を付与する。",
@@ -5220,7 +5220,7 @@
       "cost": 7
     },
     "image_url": "/static/images/cards/banshees_cry.webp",
-    "beta_image_url": "/static/images/cards/beta/banshees_cry.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -5299,7 +5299,7 @@
       "ostydamage": "+3"
     },
     "image_url": "/static/images/cards/snap.webp",
-    "beta_image_url": "/static/images/cards/beta/snap.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "[gold]オスティ[/gold]が10ダメージを与える。\n[gold]手札[/gold]のカード1枚が[gold]保留[/gold]を得る。",
@@ -5346,7 +5346,7 @@
       "parrypower": "+4"
     },
     "image_url": "/static/images/cards/parry.webp",
-    "beta_image_url": "/static/images/cards/beta/parry.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "[gold]ソヴリン・ブレード[/gold]をプレイするたび、14[gold]ブロック[/gold]を得る。",
@@ -5431,7 +5431,7 @@
       "add_innate": true
     },
     "image_url": "/static/images/cards/big_bang.webp",
-    "beta_image_url": "/static/images/cards/beta/big_bang.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -5549,7 +5549,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/beat_down.webp",
-    "beta_image_url": "/static/images/cards/beta/beat_down.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "[gold]捨て札[/gold]からランダムなアタックを4枚プレイする。",
@@ -5720,7 +5720,7 @@
       "phantombladespower": "+3"
     },
     "image_url": "/static/images/cards/phantom_blades.webp",
-    "beta_image_url": "/static/images/cards/beta/phantom_blades.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "[gold]ナイフ[/gold]が[gold]保留[/gold]を得る。\n毎ターン、最初にプレイする[gold]ナイフ[/gold]が追加で12ダメージを与える。",
@@ -5801,7 +5801,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/photon_cut.webp",
-    "beta_image_url": "/static/images/cards/beta/photon_cut.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "13ダメージを与える。\nカードを2枚引く。\n[gold]手札[/gold]からカードを1枚選び、[gold]山札[/gold]の一番上に置く。",
@@ -5850,7 +5850,7 @@
       "focuspower": "+1"
     },
     "image_url": "/static/images/cards/focused_strike.webp",
-    "beta_image_url": "/static/images/cards/beta/focused_strike.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "11ダメージを与える。\nターン終了時まで[gold]集中力[/gold]2を得る。",
@@ -5935,7 +5935,7 @@
       "damage": "+3"
     },
     "image_url": "/static/images/cards/flak_cannon.webp",
-    "beta_image_url": "/static/images/cards/beta/flak_cannon.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "すべての状態異常を[gold]廃棄[/gold]する。[gold]廃棄[/gold]したカード1枚につき、ランダムな敵に11ダメージを与える。",
@@ -6109,7 +6109,7 @@
       "strength": "+2"
     },
     "image_url": "/static/images/cards/feeding_frenzy.webp",
-    "beta_image_url": "/static/images/cards/beta/feeding_frenzy.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "ターン終了時まで[gold]筋力[/gold]7を得る。",
@@ -6154,7 +6154,7 @@
       "blackholepower": "+1"
     },
     "image_url": "/static/images/cards/black_hole.webp",
-    "beta_image_url": "/static/images/cards/beta/black_hole.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "[star:1]を使用するか得るたび、すべての敵に4ダメージを与える。",
@@ -6321,7 +6321,7 @@
       "hailstormpower": "+2"
     },
     "image_url": "/static/images/cards/hailstorm.webp",
-    "beta_image_url": "/static/images/cards/beta/hailstorm.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "ターン終了時、[gold]フロスト[/gold]を生成中の場合、すべての敵に8ダメージを与える。",
@@ -6400,7 +6400,7 @@
       "damage": "+1"
     },
     "image_url": "/static/images/cards/gunk_up.webp",
-    "beta_image_url": "/static/images/cards/beta/gunk_up.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "5ダメージを3回与える。\n[gold]粘液[/gold]を1枚[gold]捨て札[/gold]に加える。",
@@ -6514,7 +6514,7 @@
       "damage": "+2"
     },
     "image_url": "/static/images/cards/heavenly_drill.webp",
-    "beta_image_url": "/static/images/cards/beta/heavenly_drill.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "10ダメージをX回与える。\nXが4以上なら、Xを2倍にする。",
@@ -6552,7 +6552,7 @@
       "damage": "+3"
     },
     "image_url": "/static/images/cards/veilpiercer.webp",
-    "beta_image_url": "/static/images/cards/beta/veilpiercer.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "13ダメージを与える。\n次にプレイする[gold]エセリアル[/gold]のコストは0[energy:1]。",
@@ -6591,7 +6591,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/pale_blue_dot.webp",
-    "beta_image_url": "/static/images/cards/beta/pale_blue_dot.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "1ターンの間にカードを5枚以上プレイした場合、次のターン開始時、カードを2枚引く。",
@@ -6631,7 +6631,7 @@
       "damage": "+11"
     },
     "image_url": "/static/images/cards/whistle.webp",
-    "beta_image_url": "/static/images/cards/beta/whistle.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "44ダメージを与える。\nこの敵を[gold]スタン[/gold]させる。",
@@ -6681,7 +6681,7 @@
       "remove_exhaust": true
     },
     "image_url": "/static/images/cards/hotfix.webp",
-    "beta_image_url": "/static/images/cards/beta/hotfix.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -6807,7 +6807,7 @@
       "summon": "+2"
     },
     "image_url": "/static/images/cards/bodyguard.webp",
-    "beta_image_url": "/static/images/cards/beta/bodyguard.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "[gold]召喚[/gold]7。",
@@ -7202,7 +7202,7 @@
       "add_retain": true
     },
     "image_url": "/static/images/cards/misery.webp",
-    "beta_image_url": "/static/images/cards/beta/misery.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "9ダメージを与える。\n対象の敵に付与しているすべてのデバフを、他のすべての敵にも付与する。",
@@ -7289,7 +7289,7 @@
       "block": "+3"
     },
     "image_url": "/static/images/cards/minion_sacrifice.webp",
-    "beta_image_url": "/static/images/cards/beta/minion_sacrifice.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "12[gold]ブロック[/gold]を得る。",
@@ -7336,7 +7336,7 @@
       "damage": "+3"
     },
     "image_url": "/static/images/cards/minion_strike.webp",
-    "beta_image_url": "/static/images/cards/beta/minion_strike.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "9ダメージを与える。\nカードを1枚引く。",
@@ -7458,7 +7458,7 @@
       "add_retain": true
     },
     "image_url": "/static/images/cards/monologue.webp",
-    "beta_image_url": "/static/images/cards/beta/monologue.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -7536,7 +7536,7 @@
     },
     "upgrade": null,
     "image_url": "/static/images/cards/lantern_key.webp",
-    "beta_image_url": "/static/images/cards/beta/lantern_key.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -7616,7 +7616,7 @@
       "damage": "+3"
     },
     "image_url": "/static/images/cards/rebound.webp",
-    "beta_image_url": "/static/images/cards/beta/rebound.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "12ダメージを与える。\nこのターン、次にプレイするカードを[gold]山札[/gold]の一番上に置く。",
@@ -7660,7 +7660,7 @@
       "energy": "+1"
     },
     "image_url": "/static/images/cards/relax.webp",
-    "beta_image_url": "/static/images/cards/beta/relax.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "17[gold]ブロック[/gold]を得る。\n次のターン、カードを3枚引き、[energy:3]を得る。",
@@ -7706,7 +7706,7 @@
       "damage": "+3"
     },
     "image_url": "/static/images/cards/leading_strike.webp",
-    "beta_image_url": "/static/images/cards/beta/leading_strike.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "6ダメージを与える。\n[gold]ナイフ[/gold]を2枚[gold]手札[/gold]に加える。",
@@ -7823,7 +7823,7 @@
       "gold": "+5"
     },
     "image_url": "/static/images/cards/royalties.webp",
-    "beta_image_url": "/static/images/cards/beta/royalties.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": false,
     "upgrade_description": "戦闘終了時、35[gold]ゴールド[/gold]を獲得する。",
@@ -7864,7 +7864,7 @@
       "add_retain": true
     },
     "image_url": "/static/images/cards/royal_gamble.webp",
-    "beta_image_url": "/static/images/cards/beta/royal_gamble.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -7907,7 +7907,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/rocket_punch.webp",
-    "beta_image_url": "/static/images/cards/beta/rocket_punch.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "14ダメージを与える。\nカードを2枚引く。\n状態異常を作成するたび、プレイするまでこのカードのコストは0[energy:1]。",
@@ -7983,7 +7983,7 @@
       "damage": "+4"
     },
     "image_url": "/static/images/cards/salvo.webp",
-    "beta_image_url": "/static/images/cards/beta/salvo.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "16ダメージを与える。\nこのターン、[gold]手札[/gold]をすべて[gold]保留[/gold]する。",
@@ -8356,7 +8356,7 @@
       "damage": "+5"
     },
     "image_url": "/static/images/cards/crash_landing.webp",
-    "beta_image_url": "/static/images/cards/beta/crash_landing.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "すべての敵に26ダメージを与える。\n[gold]手札[/gold]を[gold]デブリ[/gold]で満たす。",
@@ -8394,7 +8394,7 @@
       "block": "+2"
     },
     "image_url": "/static/images/cards/undeath.webp",
-    "beta_image_url": "/static/images/cards/beta/undeath.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "9[gold]ブロック[/gold]を得る。\nこのカードのコピーを1枚[gold]捨て札[/gold]に加える。",
@@ -8478,7 +8478,7 @@
     },
     "upgrade": null,
     "image_url": "/static/images/cards/bad_luck.webp",
-    "beta_image_url": "/static/images/cards/beta/bad_luck.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -8639,7 +8639,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/dual_wield.webp",
-    "beta_image_url": "/static/images/cards/beta/dual_wield.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "アタックかパワーを1枚選ぶ。そのコピーを2枚[gold]手札[/gold]に加える。",
@@ -8715,7 +8715,7 @@
       "cost": 1
     },
     "image_url": "/static/images/cards/eidolon.webp",
-    "beta_image_url": "/static/images/cards/beta/eidolon.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -8798,7 +8798,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/huddle_up.webp",
-    "beta_image_url": "/static/images/cards/beta/huddle_up.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "全プレイヤーはカードを3枚引く。",
@@ -8983,7 +8983,7 @@
       "strength": "+1"
     },
     "image_url": "/static/images/cards/fight_me.webp",
-    "beta_image_url": "/static/images/cards/beta/fight_me.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "6ダメージを2回与える。\n[gold]筋力[/gold]4を得る。\n敵は[gold]筋力[/gold]1を得る。",
@@ -9060,7 +9060,7 @@
       "energy": "+1"
     },
     "image_url": "/static/images/cards/outmaneuver.webp",
-    "beta_image_url": "/static/images/cards/beta/outmaneuver.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "次のターン、[energy:3]を得る。",
@@ -9099,7 +9099,7 @@
       "block": "+3"
     },
     "image_url": "/static/images/cards/gather_light.webp",
-    "beta_image_url": "/static/images/cards/beta/gather_light.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "11[gold]ブロック[/gold]を得る。\n[star:1]を得る。",
@@ -9186,7 +9186,7 @@
       "strengthpower": "+1"
     },
     "image_url": "/static/images/cards/resonance.webp",
-    "beta_image_url": "/static/images/cards/beta/resonance.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "[gold]筋力[/gold]2を得る。すべての敵は[gold]筋力[/gold]1を失う。",
@@ -9263,7 +9263,7 @@
       "block": "+2"
     },
     "image_url": "/static/images/cards/toric_toughness.webp",
-    "beta_image_url": "/static/images/cards/beta/toric_toughness.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "7[gold]ブロック[/gold]を得る。\n次のターン開始時、7[gold]ブロック[/gold]を得る。",
@@ -9346,7 +9346,7 @@
       "damage": "+4"
     },
     "image_url": "/static/images/cards/defile.webp",
-    "beta_image_url": "/static/images/cards/beta/defile.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "17ダメージを与える。",
@@ -9552,7 +9552,7 @@
       "forge": "+2"
     },
     "image_url": "/static/images/cards/wrought_in_war.webp",
-    "beta_image_url": "/static/images/cards/beta/wrought_in_war.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "9ダメージを与える。\n[gold]鍛造[/gold]9。",
@@ -9592,7 +9592,7 @@
       "damage": "+5"
     },
     "image_url": "/static/images/cards/severance.webp",
-    "beta_image_url": "/static/images/cards/beta/severance.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "18ダメージを与える。\n[gold]ソウル[/gold]を1枚、[gold]山札[/gold]、[gold]手札[/gold]、[gold]捨て札[/gold]にそれぞれ加える。",
@@ -9711,7 +9711,7 @@
       "damage": "+6"
     },
     "image_url": "/static/images/cards/reap.webp",
-    "beta_image_url": "/static/images/cards/beta/reap.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "33ダメージを与える。",
@@ -9768,7 +9768,7 @@
       "thornspower": "+2"
     },
     "image_url": "/static/images/cards/abrasive.webp",
-    "beta_image_url": "/static/images/cards/beta/abrasive.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "[gold]敏捷[/gold]1を得る。\n[gold]トゲ[/gold]6を得る。",
@@ -9855,7 +9855,7 @@
       "forge": "+4"
     },
     "image_url": "/static/images/cards/refine_blade.webp",
-    "beta_image_url": "/static/images/cards/beta/refine_blade.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "[gold]鍛造[/gold]13。\n次のターン、[energy:1]を得る。",
@@ -9947,7 +9947,7 @@
       "cost": 1
     },
     "image_url": "/static/images/cards/sword_sage.webp",
-    "beta_image_url": "/static/images/cards/beta/sword_sage.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -9985,7 +9985,7 @@
       "block": "+1"
     },
     "image_url": "/static/images/cards/pillar_of_creation.webp",
-    "beta_image_url": "/static/images/cards/beta/pillar_of_creation.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "カードを1枚作成するたび、4[gold]ブロック[/gold]を得る。",
@@ -10110,7 +10110,7 @@
       "energy": "+1"
     },
     "image_url": "/static/images/cards/turbo.webp",
-    "beta_image_url": "/static/images/cards/beta/turbo.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "[energy:3]を得る。\n[gold]虚無[/gold]を1枚[gold]捨て札[/gold]に加える。",
@@ -10148,7 +10148,7 @@
       "cost": 0
     },
     "image_url": "/static/images/cards/distraction.webp",
-    "beta_image_url": "/static/images/cards/beta/distraction.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -10271,7 +10271,7 @@
       "block": "+4"
     },
     "image_url": "/static/images/cards/reflect.webp",
-    "beta_image_url": "/static/images/cards/beta/reflect.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "21[gold]ブロック[/gold]を得る。\nこのターン、ブロックしたアタックによるダメージを、攻撃してきた敵に跳ね返す。",
@@ -10359,7 +10359,7 @@
       "iterationpower": "+1"
     },
     "image_url": "/static/images/cards/iteration.webp",
-    "beta_image_url": "/static/images/cards/beta/iteration.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "毎ターン、最初に状態異常を引いた時、カードを3枚引く。",
@@ -10572,7 +10572,7 @@
       "calculationextra": "+2"
     },
     "image_url": "/static/images/cards/beat_into_shape.webp",
-    "beta_image_url": "/static/images/cards/beta/beat_into_shape.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "7ダメージを与える。\n[gold]鍛造[/gold]X。\nこのターンに対象の敵へ攻撃していた回数（これを除く）1回につき、追加で[gold]鍛造[/gold]7。",
@@ -10613,7 +10613,7 @@
       "remove_exhaust": true
     },
     "image_url": "/static/images/cards/synchronize.webp",
-    "beta_image_url": "/static/images/cards/beta/synchronize.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -10699,7 +10699,7 @@
       "sleightoffleshpower": "+4"
     },
     "image_url": "/static/images/cards/sleight_of_flesh.webp",
-    "beta_image_url": "/static/images/cards/beta/sleight_of_flesh.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "敵にデバフを付与するたび、その敵は13ダメージを受ける。",
@@ -10814,7 +10814,7 @@
       "damage": "+3"
     },
     "image_url": "/static/images/cards/omnislice.webp",
-    "beta_image_url": "/static/images/cards/beta/omnislice.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "11ダメージを与える。\n与えたダメージと同じダメージを、他のすべての敵に与える。",
@@ -10854,7 +10854,7 @@
       "block": "+1"
     },
     "image_url": "/static/images/cards/compact.webp",
-    "beta_image_url": "/static/images/cards/beta/compact.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "7[gold]ブロック[/gold]を得る。\n[gold]手札[/gold]にあるすべての状態異常を[gold]燃料+[/gold]に[gold]変化[/gold]させる。",
@@ -10894,7 +10894,7 @@
       "damage": "+2"
     },
     "image_url": "/static/images/cards/pull_from_below.webp",
-    "beta_image_url": "/static/images/cards/beta/pull_from_below.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "この戦闘中にプレイした[gold]エセリアル[/gold]1枚につき、7ダメージを与える。",
@@ -10971,7 +10971,7 @@
       "damage": "+11"
     },
     "image_url": "/static/images/cards/bury.webp",
-    "beta_image_url": "/static/images/cards/beta/bury.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "63ダメージを与える。",
@@ -11011,7 +11011,7 @@
       "forge": "+3"
     },
     "image_url": "/static/images/cards/bulwark.webp",
-    "beta_image_url": "/static/images/cards/beta/bulwark.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "16[gold]ブロック[/gold]を得る。\n[gold]鍛造[/gold]13。",
@@ -11085,7 +11085,7 @@
       "cost": 1
     },
     "image_url": "/static/images/cards/entrench.webp",
-    "beta_image_url": "/static/images/cards/beta/entrench.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -11126,7 +11126,7 @@
       "remove_exhaust": true
     },
     "image_url": "/static/images/cards/graveblast.webp",
-    "beta_image_url": "/static/images/cards/beta/graveblast.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "6ダメージを与える。\n[gold]捨て札[/gold]からカードを1枚[gold]手札[/gold]に加える。",
@@ -11210,7 +11210,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/blade_of_ink.webp",
-    "beta_image_url": "/static/images/cards/beta/blade_of_ink.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "[purple]墨塗り[/purple]の[gold]ナイフ[/gold]を3枚、[gold]手札[/gold]に加える。",
@@ -11250,7 +11250,7 @@
       "remove_exhaust": true
     },
     "image_url": "/static/images/cards/transfigure.webp",
-    "beta_image_url": "/static/images/cards/beta/transfigure.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -11340,7 +11340,7 @@
       "rollingboulderpower": "+5"
     },
     "image_url": "/static/images/cards/rolling_boulder.webp",
-    "beta_image_url": "/static/images/cards/beta/rolling_boulder.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "ターン開始時、すべての敵に10ダメージを与え、このダメージを5増加させる。",
@@ -11385,7 +11385,7 @@
       "serpentformpower": "+2"
     },
     "image_url": "/static/images/cards/serpent_form.webp",
-    "beta_image_url": "/static/images/cards/beta/serpent_form.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "カードをプレイするたび、ランダムな敵に6ダメージを与える。",
@@ -11427,7 +11427,7 @@
       "increase": "+1"
     },
     "image_url": "/static/images/cards/the_scythe.webp",
-    "beta_image_url": "/static/images/cards/beta/the_scythe.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "13ダメージを与える。\nこのカードのダメージが永続的に4増加する。",
@@ -11468,7 +11468,7 @@
       "damage": "+2"
     },
     "image_url": "/static/images/cards/uproar.webp",
-    "beta_image_url": "/static/images/cards/beta/uproar.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "7ダメージを2回与える。\n[gold]山札[/gold]からランダムなアタックを1枚プレイする。",
@@ -11545,7 +11545,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/catastrophe.webp",
-    "beta_image_url": "/static/images/cards/beta/catastrophe.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "[gold]山札[/gold]にあるカードをランダムに3枚プレイする。",
@@ -11630,7 +11630,7 @@
       "description_changed": true
     },
     "image_url": "/static/images/cards/begone.webp",
-    "beta_image_url": "/static/images/cards/beta/begone.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "[gold]手札[/gold]のカードを1枚選び、[gold]ミニオンストライク+[/gold]に[gold]変化[/gold]させる。",
@@ -11709,7 +11709,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/up_my_sleeve.webp",
-    "beta_image_url": "/static/images/cards/beta/up_my_sleeve.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "[gold]ナイフ[/gold]を4枚[gold]手札[/gold]に加える。\nこのカードのコストが1減少する。",
@@ -11836,7 +11836,7 @@
       "block": "+3"
     },
     "image_url": "/static/images/cards/cosmic_indifference.webp",
-    "beta_image_url": "/static/images/cards/beta/cosmic_indifference.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "9[gold]ブロック[/gold]を得る。\n[gold]捨て札[/gold]のカードを1枚[gold]山札[/gold]の一番上に置く。",
@@ -11911,7 +11911,7 @@
       "damage": "+3"
     },
     "image_url": "/static/images/cards/make_it_so.webp",
-    "beta_image_url": "/static/images/cards/beta/make_it_so.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "9ダメージを与える。\n1ターンの間に、スキルを3枚プレイするたび、これを[gold]手札[/gold]に戻す。",
@@ -11950,7 +11950,7 @@
       "damage": "+5"
     },
     "image_url": "/static/images/cards/heirloom_hammer.webp",
-    "beta_image_url": "/static/images/cards/beta/heirloom_hammer.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "25ダメージを与える。\n[gold]手札[/gold]にある無色カードを1枚選び、そのコピーを1枚[gold]手札[/gold]に加える。",
@@ -12065,7 +12065,7 @@
       "description_changed": true
     },
     "image_url": "/static/images/cards/largesse.webp",
-    "beta_image_url": "/static/images/cards/beta/largesse.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "他のプレイヤー1人は、ランダムな[gold]アップグレード[/gold]済みの無色カードを1枚[gold]手札[/gold]に加える。",
@@ -12102,7 +12102,7 @@
     "vars": null,
     "upgrade": null,
     "image_url": "/static/images/cards/poor_sleep.webp",
-    "beta_image_url": "/static/images/cards/beta/poor_sleep.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -12144,7 +12144,7 @@
       "add_innate": true
     },
     "image_url": "/static/images/cards/the_sealed_throne.webp",
-    "beta_image_url": "/static/images/cards/beta/the_sealed_throne.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -12182,7 +12182,7 @@
       "add_innate": true
     },
     "image_url": "/static/images/cards/tyranny.webp",
-    "beta_image_url": "/static/images/cards/beta/tyranny.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -12226,7 +12226,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/guiding_star.webp",
-    "beta_image_url": "/static/images/cards/beta/guiding_star.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "13ダメージを与える。\nカードを3枚引く。",
@@ -12273,7 +12273,7 @@
       "vigorpower": "+1"
     },
     "image_url": "/static/images/cards/patter.webp",
-    "beta_image_url": "/static/images/cards/beta/patter.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "11[gold]ブロック[/gold]を得る。\n[gold]活力[/gold]3を得る。",
@@ -12312,7 +12312,7 @@
       "damage": "+3"
     },
     "image_url": "/static/images/cards/refract.webp",
-    "beta_image_url": "/static/images/cards/beta/refract.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "12ダメージを2回与える。\n[gold]グラス[/gold]2を[gold]生成[/gold]する。",
@@ -12355,7 +12355,7 @@
     },
     "upgrade": null,
     "image_url": "/static/images/cards/disintegration.webp",
-    "beta_image_url": "/static/images/cards/beta/disintegration.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": false,
     "upgrade_description": null,
@@ -12394,7 +12394,7 @@
       "block": "+3"
     },
     "image_url": "/static/images/cards/colossus.webp",
-    "beta_image_url": "/static/images/cards/beta/colossus.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "8[gold]ブロック[/gold]を得る。\nこのターン、[gold]弱体[/gold]中の敵から受けるダメージが50%減少する。",
@@ -12432,7 +12432,7 @@
       "damage": "+4"
     },
     "image_url": "/static/images/cards/giant_rock.webp",
-    "beta_image_url": "/static/images/cards/beta/giant_rock.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "20ダメージを与える。",
@@ -12468,7 +12468,7 @@
       "add_innate": true
     },
     "image_url": "/static/images/cards/beacon_of_hope.webp",
-    "beta_image_url": "/static/images/cards/beta/beacon_of_hope.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -12516,7 +12516,7 @@
       "remove_ethereal": true
     },
     "image_url": "/static/images/cards/apparition.webp",
-    "beta_image_url": "/static/images/cards/beta/apparition.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -12639,7 +12639,7 @@
       "increase": "+1"
     },
     "image_url": "/static/images/cards/maul.webp",
-    "beta_image_url": "/static/images/cards/beta/maul.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "6ダメージを2回与える。\nこの戦闘中、すべての引き裂きのダメージが2増加する。",
@@ -12723,7 +12723,7 @@
     "vars": null,
     "upgrade": null,
     "image_url": "/static/images/cards/greed.webp",
-    "beta_image_url": "/static/images/cards/beta/greed.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -12807,7 +12807,7 @@
       "block": "+4"
     },
     "image_url": "/static/images/cards/fight_through.webp",
-    "beta_image_url": "/static/images/cards/beta/fight_through.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "17[gold]ブロック[/gold]を得る。\n[gold]負傷[/gold]を2枚[gold]捨て札[/gold]に加える。",
@@ -12861,7 +12861,7 @@
       "damage": "+11"
     },
     "image_url": "/static/images/cards/comet.webp",
-    "beta_image_url": "/static/images/cards/beta/comet.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "44ダメージを与える。\n[gold]脱力[/gold]3を付与する。\n[gold]弱体[/gold]3を付与する。",
@@ -12901,7 +12901,7 @@
       "damage": "+3"
     },
     "image_url": "/static/images/cards/sculpting_strike.webp",
-    "beta_image_url": "/static/images/cards/beta/sculpting_strike.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "12ダメージを与える。\n[gold]手札[/gold]のカード1枚が[gold]エセリアル[/gold]を得る。",
@@ -12977,7 +12977,7 @@
       "block": "+1"
     },
     "image_url": "/static/images/cards/shroud.webp",
-    "beta_image_url": "/static/images/cards/beta/shroud.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "[gold]破滅[/gold]を付与するたび、3[gold]ブロック[/gold]を得る。",
@@ -13057,7 +13057,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/glimpse_beyond.webp",
-    "beta_image_url": "/static/images/cards/beta/glimpse_beyond.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "すべてのプレイヤーは[gold]ソウル[/gold]を4枚[gold]山札[/gold]に加える。",
@@ -13098,7 +13098,7 @@
       "forge": "+2"
     },
     "image_url": "/static/images/cards/conqueror.webp",
-    "beta_image_url": "/static/images/cards/beta/conqueror.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "[gold]鍛造[/gold]5。\nこのターン、[gold]ソヴリン・ブレード[/gold]は対象の敵に2倍のダメージを与える。",
@@ -13212,7 +13212,7 @@
     "vars": null,
     "upgrade": null,
     "image_url": "/static/images/cards/enthralled.webp",
-    "beta_image_url": "/static/images/cards/beta/enthralled.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -13336,7 +13336,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/bundle_of_joy.webp",
-    "beta_image_url": "/static/images/cards/beta/bundle_of_joy.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "ランダムな無色カードを4枚[gold]手札[/gold]に加える。",
@@ -13382,7 +13382,7 @@
     },
     "upgrade": null,
     "image_url": "/static/images/cards/sloth.webp",
-    "beta_image_url": "/static/images/cards/beta/sloth.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": false,
     "upgrade_description": null,
@@ -13501,7 +13501,7 @@
       "cards": "+2"
     },
     "image_url": "/static/images/cards/decisions_decisions.webp",
-    "beta_image_url": "/static/images/cards/beta/decisions_decisions.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "カードを5枚引く。\n[gold]手札[/gold]にあるスキルを1枚選び、それを3回プレイする。",
@@ -13584,7 +13584,7 @@
       "repeat": "+1"
     },
     "image_url": "/static/images/cards/spite.webp",
-    "beta_image_url": "/static/images/cards/beta/spite.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "5ダメージを与える。\nこのターン、HPを失っていた場合、\n3回攻撃する。",
@@ -13626,7 +13626,7 @@
       "remove_exhaust": true
     },
     "image_url": "/static/images/cards/demonic_shield.webp",
-    "beta_image_url": "/static/images/cards/beta/demonic_shield.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -13757,7 +13757,7 @@
     },
     "upgrade": null,
     "image_url": "/static/images/cards/infection.webp",
-    "beta_image_url": "/static/images/cards/beta/infection.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -13806,7 +13806,7 @@
       "outbreakpower": "+4"
     },
     "image_url": "/static/images/cards/outbreak.webp",
-    "beta_image_url": "/static/images/cards/beta/outbreak.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "[gold]毒[/gold]を3回付与するたび、すべての敵に15ダメージを与える。",
@@ -13885,7 +13885,7 @@
       "hploss": "+2"
     },
     "image_url": "/static/images/cards/haunt.webp",
-    "beta_image_url": "/static/images/cards/beta/haunt.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "[gold]ソウル[/gold]をプレイするたび、ランダムな敵がHPを8失う。",
@@ -13923,7 +13923,7 @@
       "block": "+3"
     },
     "image_url": "/static/images/cards/i_am_invincible.webp",
-    "beta_image_url": "/static/images/cards/beta/i_am_invincible.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "13[gold]ブロック[/gold]を得る。\nターン終了時、これが[gold]山札[/gold]の一番上にある場合、自動的にプレイする。",
@@ -13969,7 +13969,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/drum_of_battle.webp",
-    "beta_image_url": "/static/images/cards/beta/drum_of_battle.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "カードを3枚引く。\nターン開始時、[gold]山札[/gold]の一番上のカードを[gold]廃棄[/gold]する。",
@@ -14048,7 +14048,7 @@
       "forge": "+3"
     },
     "image_url": "/static/images/cards/spoils_of_battle.webp",
-    "beta_image_url": "/static/images/cards/beta/spoils_of_battle.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "[gold]鍛造[/gold]8。\nカードを2枚引く。",
@@ -14086,7 +14086,7 @@
     },
     "upgrade": null,
     "image_url": "/static/images/cards/spoils_map.webp",
-    "beta_image_url": "/static/images/cards/beta/spoils_map.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -14170,7 +14170,7 @@
       "block": "+5"
     },
     "image_url": "/static/images/cards/lift.webp",
-    "beta_image_url": "/static/images/cards/beta/lift.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "他のプレイヤー1人が16[gold]ブロック[/gold]を得る。",
@@ -14244,7 +14244,7 @@
     },
     "upgrade": null,
     "image_url": "/static/images/cards/beckon.webp",
-    "beta_image_url": "/static/images/cards/beta/beckon.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -14373,7 +14373,7 @@
       "damage": "+2"
     },
     "image_url": "/static/images/cards/fisticuffs.webp",
-    "beta_image_url": "/static/images/cards/beta/fisticuffs.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "9ダメージを与える。\n与えたダメージに等しい[gold]ブロック[/gold]を得る。",
@@ -14541,7 +14541,7 @@
       "add_retain": true
     },
     "image_url": "/static/images/cards/dredge.webp",
-    "beta_image_url": "/static/images/cards/beta/dredge.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -14587,7 +14587,7 @@
       "extradamage": "+1"
     },
     "image_url": "/static/images/cards/squeeze.webp",
-    "beta_image_url": "/static/images/cards/beta/squeeze.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "[gold]オスティ[/gold]が25ダメージを与える。他のすべての[gold]オスティ[/gold]のアタック1枚につき、追加で6ダメージを与える。",
@@ -14626,7 +14626,7 @@
       "damage": "+10"
     },
     "image_url": "/static/images/cards/devastate.webp",
-    "beta_image_url": "/static/images/cards/beta/devastate.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "40ダメージを与える。",
@@ -14665,7 +14665,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/modded.webp",
-    "beta_image_url": "/static/images/cards/beta/modded.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "オーブスロットを1個得る。\nカードを2枚引く。このカードのコストが1増加する。",
@@ -14780,7 +14780,7 @@
       "blockforstars": "+1"
     },
     "image_url": "/static/images/cards/child_of_the_stars.webp",
-    "beta_image_url": "/static/images/cards/beta/child_of_the_stars.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "[star:1]を消費するたび、消費した[star:1]1つにつき3[gold]ブロック[/gold]を得る。",
@@ -14819,7 +14819,7 @@
       "energy": "+1"
     },
     "image_url": "/static/images/cards/alignment.webp",
-    "beta_image_url": "/static/images/cards/beta/alignment.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "[energy:3]を得る。",
@@ -14862,7 +14862,7 @@
       "strengthloss": "+2"
     },
     "image_url": "/static/images/cards/dying_star.webp",
-    "beta_image_url": "/static/images/cards/beta/dying_star.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "すべての敵に11ダメージを与える。ターン終了時まですべての敵は[gold]筋力[/gold]11を失う。",
@@ -14942,7 +14942,7 @@
       "damage": "+4"
     },
     "image_url": "/static/images/cards/astral_pulse.webp",
-    "beta_image_url": "/static/images/cards/beta/astral_pulse.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "すべての敵に18ダメージを与える。",
@@ -14983,7 +14983,7 @@
       "description_changed": true
     },
     "image_url": "/static/images/cards/hidden_daggers.webp",
-    "beta_image_url": "/static/images/cards/beta/hidden_daggers.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "カードを2枚捨てる。\n[gold]ナイフ+[/gold]を2枚[gold]手札[/gold]に加える。",
@@ -15194,7 +15194,7 @@
       "damage": "+1"
     },
     "image_url": "/static/images/cards/lunar_blast.webp",
-    "beta_image_url": "/static/images/cards/beta/lunar_blast.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "このターンにプレイしたスキル1枚につき、5ダメージを与える。",
@@ -15272,7 +15272,7 @@
       "heal": "+3"
     },
     "image_url": "/static/images/cards/not_yet.webp",
-    "beta_image_url": "/static/images/cards/beta/not_yet.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": false,
     "upgrade_description": "HPを13回復する。",
@@ -15315,7 +15315,7 @@
       "summon": "+3"
     },
     "image_url": "/static/images/cards/afterlife.webp",
-    "beta_image_url": "/static/images/cards/beta/afterlife.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "[gold]召喚[/gold]9。",
@@ -15442,7 +15442,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/brightest_flame.webp",
-    "beta_image_url": "/static/images/cards/beta/brightest_flame.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "[energy:3]を得る。\nカードを3枚引く。\n最大HPを1失う。",
@@ -15480,7 +15480,7 @@
       "block": "+1"
     },
     "image_url": "/static/images/cards/manifest_authority.webp",
-    "beta_image_url": "/static/images/cards/beta/manifest_authority.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "8[gold]ブロック[/gold]を得る。\nランダムな[gold]アップグレード[/gold]済みの無色カードを1枚[gold]手札[/gold]に加える。",
@@ -15616,7 +15616,7 @@
       "strength": "+1"
     },
     "image_url": "/static/images/cards/prowess.webp",
-    "beta_image_url": "/static/images/cards/beta/prowess.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "[gold]筋力[/gold]2を得る。\n[gold]敏捷[/gold]2を得る。",
@@ -15661,7 +15661,7 @@
       "add_innate": true
     },
     "image_url": "/static/images/cards/arsenal.webp",
-    "beta_image_url": "/static/images/cards/beta/arsenal.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -15745,7 +15745,7 @@
       "dansemacabrepower": "+2"
     },
     "image_url": "/static/images/cards/danse_macabre.webp",
-    "beta_image_url": "/static/images/cards/beta/danse_macabre.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "コストが[energy:2]以上のカードをプレイするたび、6[gold]ブロック[/gold]を得る。",
@@ -15825,7 +15825,7 @@
       "block": "+1"
     },
     "image_url": "/static/images/cards/deaths_door.webp",
-    "beta_image_url": "/static/images/cards/beta/deaths_door.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "7[gold]ブロック[/gold]を得る。\nこのターンに[gold]破滅[/gold]を付与していた場合、追加で2回[gold]ブロック[/gold]を得る。",
@@ -15861,7 +15861,7 @@
       "add_retain": true
     },
     "image_url": "/static/images/cards/reaper_form.webp",
-    "beta_image_url": "/static/images/cards/beta/reaper_form.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -15996,7 +15996,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/vicious.webp",
-    "beta_image_url": "/static/images/cards/beta/vicious.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "[gold]弱体[/gold]を付与するたび、カードを2枚引く。",
@@ -16036,7 +16036,7 @@
       "cost": 2
     },
     "image_url": "/static/images/cards/murder.webp",
-    "beta_image_url": "/static/images/cards/beta/murder.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -16083,7 +16083,7 @@
       "lethalitypower": "+25"
     },
     "image_url": "/static/images/cards/lethality.webp",
-    "beta_image_url": "/static/images/cards/beta/lethality.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "毎ターン、最初のアタックは追加で75%のダメージを与える。",
@@ -16225,7 +16225,7 @@
       "poison": "+2"
     },
     "image_url": "/static/images/cards/haze.webp",
-    "beta_image_url": "/static/images/cards/beta/haze.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "すべての敵に[gold]毒[/gold]6を付与する。",
@@ -16341,7 +16341,7 @@
     "vars": null,
     "upgrade": null,
     "image_url": "/static/images/cards/frantic_escape.webp",
-    "beta_image_url": "/static/images/cards/beta/frantic_escape.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": false,
     "upgrade_description": null,
@@ -16478,7 +16478,7 @@
       "crimsonmantlepower": "+2"
     },
     "image_url": "/static/images/cards/crimson_mantle.webp",
-    "beta_image_url": "/static/images/cards/beta/crimson_mantle.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "ターン開始時、HPを1失い、10[gold]ブロック[/gold]を得る。",
@@ -16635,7 +16635,7 @@
       "forge": "+2"
     },
     "image_url": "/static/images/cards/furnace.webp",
-    "beta_image_url": "/static/images/cards/beta/furnace.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "ターン開始時、[gold]鍛造[/gold]6。",
@@ -16874,7 +16874,7 @@
       "blockonexhaust": "+1"
     },
     "image_url": "/static/images/cards/spirit_of_ash.webp",
-    "beta_image_url": "/static/images/cards/beta/spirit_of_ash.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "[gold]エセリアル[/gold]をプレイするたび、5[gold]ブロック[/gold]を得る。",
@@ -16910,7 +16910,7 @@
       "add_innate": true
     },
     "image_url": "/static/images/cards/trash_to_treasure.webp",
-    "beta_image_url": "/static/images/cards/beta/trash_to_treasure.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -17361,7 +17361,7 @@
       "smokestackpower": "+2"
     },
     "image_url": "/static/images/cards/smokestack.webp",
-    "beta_image_url": "/static/images/cards/beta/smokestack.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "状態異常を作成するたび、すべての敵に7ダメージを与える。",
@@ -17402,7 +17402,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/fuel.webp",
-    "beta_image_url": "/static/images/cards/beta/fuel.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "[energy:1]を得る。\nカードを2枚引く。",
@@ -17484,7 +17484,7 @@
       "damage": "+6"
     },
     "image_url": "/static/images/cards/bombardment.webp",
-    "beta_image_url": "/static/images/cards/beta/bombardment.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "24ダメージを与える。\nターン開始時、これが[gold]廃棄札[/gold]にある場合、それをプレイする。",
@@ -17605,7 +17605,7 @@
       "damage": "+5"
     },
     "image_url": "/static/images/cards/the_hunt.webp",
-    "beta_image_url": "/static/images/cards/beta/the_hunt.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": false,
     "upgrade_description": "15ダメージを与える。\n[gold]リーサル[/gold]時、追加のカード報酬を獲得する。",
@@ -17649,7 +17649,7 @@
       "extradamage": "+1"
     },
     "image_url": "/static/images/cards/conflagration.webp",
-    "beta_image_url": "/static/images/cards/beta/conflagration.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "すべての敵に8ダメージを与える。このターンにプレイしたアタック1枚につき、追加で3ダメージを与える。",
@@ -17727,7 +17727,7 @@
       "increase": "+2"
     },
     "image_url": "/static/images/cards/kingly_punch.webp",
-    "beta_image_url": "/static/images/cards/beta/kingly_punch.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "10ダメージを与える。\nこのカードを引くたび、戦闘終了までダメージが6増加する。",
@@ -17767,7 +17767,7 @@
       "energy": "+1"
     },
     "image_url": "/static/images/cards/production.webp",
-    "beta_image_url": "/static/images/cards/beta/production.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "[energy:3]を得る。",
@@ -17939,7 +17939,7 @@
       "stars": "+1"
     },
     "image_url": "/static/images/cards/venerate.webp",
-    "beta_image_url": "/static/images/cards/beta/venerate.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "[star:3]を得る。",
@@ -18066,7 +18066,7 @@
       "energy": "+1"
     },
     "image_url": "/static/images/cards/luminesce.webp",
-    "beta_image_url": "/static/images/cards/beta/luminesce.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "[energy:3]を得る。",
@@ -18239,7 +18239,7 @@
       "cost": 1
     },
     "image_url": "/static/images/cards/unmovable.webp",
-    "beta_image_url": "/static/images/cards/beta/unmovable.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -18369,7 +18369,7 @@
       "calculationbase": "+3"
     },
     "image_url": "/static/images/cards/precise_cut.webp",
-    "beta_image_url": "/static/images/cards/beta/precise_cut.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -18454,7 +18454,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/foregone_conclusion.webp",
-    "beta_image_url": "/static/images/cards/beta/foregone_conclusion.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "次のターン、[gold]山札[/gold]からカードを3枚[gold]手札[/gold]に加える。",
@@ -18494,7 +18494,7 @@
       "energy": "+1"
     },
     "image_url": "/static/images/cards/invoke.webp",
-    "beta_image_url": "/static/images/cards/beta/invoke.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "次のターン、[gold]召喚[/gold]3を行い、[energy:3]を得る。",
@@ -18620,7 +18620,7 @@
       "cost": 1
     },
     "image_url": "/static/images/cards/forbidden_grimoire.webp",
-    "beta_image_url": "/static/images/cards/beta/forbidden_grimoire.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -18663,7 +18663,7 @@
       "damage": "+3"
     },
     "image_url": "/static/images/cards/sow.webp",
-    "beta_image_url": "/static/images/cards/beta/sow.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "すべての敵に11ダメージを与える。",
@@ -18706,7 +18706,7 @@
       "damage": "+6"
     },
     "image_url": "/static/images/cards/ultimate_strike.webp",
-    "beta_image_url": "/static/images/cards/beta/ultimate_strike.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "20ダメージを与える。",
@@ -18746,7 +18746,7 @@
       "block": "+4"
     },
     "image_url": "/static/images/cards/ultimate_defend.webp",
-    "beta_image_url": "/static/images/cards/beta/ultimate_defend.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "15[gold]ブロック[/gold]を得る。",
@@ -18867,7 +18867,7 @@
       "damage": "+4"
     },
     "image_url": "/static/images/cards/shatter.webp",
-    "beta_image_url": "/static/images/cards/beta/shatter.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "すべての敵に15ダメージを与える。\nすべてのオーブを[gold]解放[/gold]する。",
@@ -19037,7 +19037,7 @@
     },
     "upgrade": null,
     "image_url": "/static/images/cards/mind_rot.webp",
-    "beta_image_url": "/static/images/cards/beta/mind_rot.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": false,
     "upgrade_description": null,
@@ -19075,7 +19075,7 @@
       "cost": 0
     },
     "image_url": "/static/images/cards/pagestorm.webp",
-    "beta_image_url": "/static/images/cards/beta/pagestorm.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -19119,7 +19119,7 @@
       "ostydamage": "+5"
     },
     "image_url": "/static/images/cards/sweeping_gaze.webp",
-    "beta_image_url": "/static/images/cards/beta/sweeping_gaze.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "[gold]オスティ[/gold]が、ランダムな敵に15ダメージを与える。",
@@ -19206,7 +19206,7 @@
       "block": "+5"
     },
     "image_url": "/static/images/cards/rally.webp",
-    "beta_image_url": "/static/images/cards/beta/rally.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "すべてのプレイヤーは17[gold]ブロック[/gold]を得る。",
@@ -19253,7 +19253,7 @@
       "stranglepower": "+1"
     },
     "image_url": "/static/images/cards/strangle.webp",
-    "beta_image_url": "/static/images/cards/beta/strangle.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "10ダメージを与える。\nこのターン、カードをプレイするたび、敵はHPを3失う。",
@@ -19291,7 +19291,7 @@
       "damage": "+3"
     },
     "image_url": "/static/images/cards/hang.webp",
-    "beta_image_url": "/static/images/cards/beta/hang.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "13ダメージを与える。\nこの敵に与えるすべての絞首のダメージが2倍になる。",
@@ -19331,7 +19331,7 @@
       "block": "+3"
     },
     "image_url": "/static/images/cards/boost_away.webp",
-    "beta_image_url": "/static/images/cards/beta/boost_away.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "9[gold]ブロック[/gold]を得る。\n[gold]めまい[/gold]を1枚[gold]捨て札[/gold]に加える。",
@@ -19371,7 +19371,7 @@
       "extradamage": "+2"
     },
     "image_url": "/static/images/cards/gang_up.webp",
-    "beta_image_url": "/static/images/cards/beta/gang_up.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "5ダメージを与える。\nこのターン、味方がアタックした回数1回につき、追加で7ダメージを与える。",
@@ -19411,7 +19411,7 @@
       "extrablock": "+2"
     },
     "image_url": "/static/images/cards/fasten.webp",
-    "beta_image_url": "/static/images/cards/beta/fasten.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "防御カードから追加で7[gold]ブロック[/gold]を得る。",
@@ -19669,7 +19669,7 @@
       "dexterity": "+1"
     },
     "image_url": "/static/images/cards/bulk_up.webp",
-    "beta_image_url": "/static/images/cards/beta/bulk_up.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "オーブスロットを1個失う。\n[gold]筋力[/gold]3を得る。\n[gold]敏捷[/gold]3を得る。",
@@ -19862,7 +19862,7 @@
       "corrosivewave": "+1"
     },
     "image_url": "/static/images/cards/corrosive_wave.webp",
-    "beta_image_url": "/static/images/cards/beta/corrosive_wave.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "このターン、カードを1枚引くたび、すべての敵に[gold]毒[/gold]3を付与する。",
@@ -20065,7 +20065,7 @@
     "vars": null,
     "upgrade": null,
     "image_url": "/static/images/cards/spore_mind.webp",
-    "beta_image_url": "/static/images/cards/beta/spore_mind.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -20122,7 +20122,7 @@
       "damage": "+4"
     },
     "image_url": "/static/images/cards/falling_star.webp",
-    "beta_image_url": "/static/images/cards/beta/falling_star.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "12ダメージを与える。\n[gold]脱力[/gold]1を付与する。\n[gold]弱体[/gold]1を付与する。",
@@ -20164,7 +20164,7 @@
       "summon": "+1"
     },
     "image_url": "/static/images/cards/dirge.webp",
-    "beta_image_url": "/static/images/cards/beta/dirge.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "[gold]召喚[/gold]4をX回行う。\n[gold]ソウル+[/gold]をX枚[gold]山札[/gold]に加える。",
@@ -20300,7 +20300,7 @@
       "remove_ethereal": true
     },
     "image_url": "/static/images/cards/void_form.webp",
-    "beta_image_url": "/static/images/cards/beta/void_form.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -20341,7 +20341,7 @@
       "add_innate": true
     },
     "image_url": "/static/images/cards/call_of_the_void.webp",
-    "beta_image_url": "/static/images/cards/beta/call_of_the_void.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -20384,7 +20384,7 @@
     },
     "upgrade": null,
     "image_url": "/static/images/cards/waste_away.webp",
-    "beta_image_url": "/static/images/cards/beta/waste_away.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": false,
     "upgrade_description": null,
@@ -20424,7 +20424,7 @@
       "strengthloss": "+3"
     },
     "image_url": "/static/images/cards/enfeebling_touch.webp",
-    "beta_image_url": "/static/images/cards/beta/enfeebling_touch.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "ターン終了時まで敵は[gold]筋力[/gold]11を失う。",
@@ -20597,7 +20597,7 @@
       "damage": "+2"
     },
     "image_url": "/static/images/cards/helix_drill.webp",
-    "beta_image_url": "/static/images/cards/beta/helix_drill.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "このターン中に支払った[energy:1]1つにつき、5ダメージを与える。",
@@ -20760,7 +20760,7 @@
       "power": "+2"
     },
     "image_url": "/static/images/cards/shockwave.webp",
-    "beta_image_url": "/static/images/cards/beta/shockwave.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "すべての敵に[gold]脱力[/gold]5と[gold]弱体[/gold]5を付与する。",
@@ -20803,7 +20803,7 @@
       "damage": "+4"
     },
     "image_url": "/static/images/cards/collision_course.webp",
-    "beta_image_url": "/static/images/cards/beta/collision_course.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "15ダメージを与える。\n[gold]デブリ[/gold]を1枚[gold]手札[/gold]に加える。",
@@ -20850,7 +20850,7 @@
       "debilitatepower": "+1"
     },
     "image_url": "/static/images/cards/debilitate.webp",
-    "beta_image_url": "/static/images/cards/beta/debilitate.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "12ダメージを与える。\n次の4ターンの間、この敵に対する[gold]弱体[/gold]と[gold]脱力[/gold]の効果が2倍になる。",
@@ -20891,7 +20891,7 @@
       "calculationbase": "+3"
     },
     "image_url": "/static/images/cards/rend.webp",
-    "beta_image_url": "/static/images/cards/beta/rend.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "15ダメージを与える。\n対象の敵に付与しているデバフ1種類につき、追加で8ダメージを与える。",
@@ -20931,7 +20931,7 @@
       "energy": "+1"
     },
     "image_url": "/static/images/cards/hegemony.webp",
-    "beta_image_url": "/static/images/cards/beta/hegemony.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "18ダメージを与える。\n次のターン、[energy:3]を得る。",
@@ -21090,7 +21090,7 @@
       "cost": 0
     },
     "image_url": "/static/images/cards/stratagem.webp",
-    "beta_image_url": "/static/images/cards/beta/stratagem.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -21315,7 +21315,7 @@
       "repeat": "+1"
     },
     "image_url": "/static/images/cards/consuming_shadow.webp",
-    "beta_image_url": "/static/images/cards/beta/consuming_shadow.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "[gold]ダーク[/gold]3を[gold]生成[/gold]する。\nターン終了時、左端のオーブを[gold]解放[/gold]する。",
@@ -21353,7 +21353,7 @@
       "add_retain": true
     },
     "image_url": "/static/images/cards/scrawl.webp",
-    "beta_image_url": "/static/images/cards/beta/scrawl.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -21441,7 +21441,7 @@
       "extradamage": "+1"
     },
     "image_url": "/static/images/cards/supermassive.webp",
-    "beta_image_url": "/static/images/cards/beta/supermassive.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "5ダメージを与える。\nこの戦闘で作成したカード1枚につき、追加で4ダメージを与える。",
@@ -21572,7 +21572,7 @@
       "repeat": "+1"
     },
     "image_url": "/static/images/cards/ricochet.webp",
-    "beta_image_url": "/static/images/cards/beta/ricochet.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "ランダムな敵に3ダメージを5回与える。",
@@ -21752,7 +21752,7 @@
       "remove_exhaust": true
     },
     "image_url": "/static/images/cards/know_thy_place.webp",
-    "beta_image_url": "/static/images/cards/beta/know_thy_place.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -21844,7 +21844,7 @@
       "stars": "+1"
     },
     "image_url": "/static/images/cards/glow.webp",
-    "beta_image_url": "/static/images/cards/beta/glow.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "[star:2]を得る。\nカードを1枚引く。\n次のターン、カードを1枚引く。",
@@ -21923,7 +21923,7 @@
       "forge": "+4"
     },
     "image_url": "/static/images/cards/seeking_edge.webp",
-    "beta_image_url": "/static/images/cards/beta/seeking_edge.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "[gold]鍛造[/gold]11。\n[gold]ソヴリン・ブレード[/gold]がすべての敵にダメージを与えるようになる。",
@@ -21998,7 +21998,7 @@
       "cost": 1
     },
     "image_url": "/static/images/cards/tracking.webp",
-    "beta_image_url": "/static/images/cards/beta/tracking.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -22076,7 +22076,7 @@
       "damage": "+4"
     },
     "image_url": "/static/images/cards/volley.webp",
-    "beta_image_url": "/static/images/cards/beta/volley.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "ランダムな敵に14ダメージをX回与える。",
@@ -22121,7 +22121,7 @@
       "strength": "+3"
     },
     "image_url": "/static/images/cards/coordinate.webp",
-    "beta_image_url": "/static/images/cards/beta/coordinate.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "ターン終了時まで、他のプレイヤー1人に[gold]筋力[/gold]8を付与する。",
@@ -22255,7 +22255,7 @@
       "block": "+3"
     },
     "image_url": "/static/images/cards/lightning_rod.webp",
-    "beta_image_url": "/static/images/cards/beta/lightning_rod.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "7[gold]ブロック[/gold]を得る。\n次の2ターンの間、ターン開始時に[gold]ライトニング[/gold]1を[gold]生成[/gold]する。",
@@ -22291,7 +22291,7 @@
       "cost": 0
     },
     "image_url": "/static/images/cards/nostalgia.webp",
-    "beta_image_url": "/static/images/cards/beta/nostalgia.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -22331,7 +22331,7 @@
       "strengthloss": "+1"
     },
     "image_url": "/static/images/cards/crush_under.webp",
-    "beta_image_url": "/static/images/cards/beta/crush_under.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "すべての敵に8ダメージを与える。ターン終了時まですべての敵は[gold]筋力[/gold]2を失う。",
@@ -22376,7 +22376,7 @@
       "cost": 1
     },
     "image_url": "/static/images/cards/feral.webp",
-    "beta_image_url": "/static/images/cards/beta/feral.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -22975,7 +22975,7 @@
       "cost": 0
     },
     "image_url": "/static/images/cards/seance.webp",
-    "beta_image_url": "/static/images/cards/beta/seance.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -23016,7 +23016,7 @@
       "replay": "+1"
     },
     "image_url": "/static/images/cards/hidden_gem.webp",
-    "beta_image_url": "/static/images/cards/beta/hidden_gem.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": false,
     "upgrade_description": "[gold]山札[/gold]にある[gold]リプレイ[/gold]を持たないランダムなカード1枚が、[gold]リプレイ[/gold]3を得る。",
@@ -23062,7 +23062,7 @@
       "starnextturnpower": "+1"
     },
     "image_url": "/static/images/cards/hidden_cache.webp",
-    "beta_image_url": "/static/images/cards/beta/hidden_cache.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "[star:1]を得る。\n次のターン、[star:4]を得る。",
@@ -23109,7 +23109,7 @@
       "sneakypower": "+1"
     },
     "image_url": "/static/images/cards/sneaky.webp",
-    "beta_image_url": "/static/images/cards/beta/sneaky.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "他のプレイヤーが敵を攻撃するたび、2[gold]ブロック[/gold]を得る。",
@@ -23152,7 +23152,7 @@
       "damage": "+2"
     },
     "image_url": "/static/images/cards/barrage.webp",
-    "beta_image_url": "/static/images/cards/beta/barrage.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "[gold]生成[/gold]されたオーブ1つにつき、7ダメージを与える。",
@@ -23191,7 +23191,7 @@
       "stars": "+1"
     },
     "image_url": "/static/images/cards/convergence.webp",
-    "beta_image_url": "/static/images/cards/beta/convergence.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "次のターン、\n[energy:1]と[star:2]を得る。\nこのターン、[gold]手札[/gold]をすべて[gold]保留[/gold]する。",
@@ -23232,7 +23232,7 @@
       "remove_exhaust": true
     },
     "image_url": "/static/images/cards/voltaic.webp",
-    "beta_image_url": "/static/images/cards/beta/voltaic.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -23403,7 +23403,7 @@
       "cost": 2
     },
     "image_url": "/static/images/cards/demesne.webp",
-    "beta_image_url": "/static/images/cards/beta/demesne.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -23446,7 +23446,7 @@
       "forge": "+3"
     },
     "image_url": "/static/images/cards/summon_forth.webp",
-    "beta_image_url": "/static/images/cards/beta/summon_forth.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "[gold]鍛造[/gold]11。\nあらゆる場所から[gold]ソヴリン・ブレード[/gold]を[gold]手札[/gold]に加える。",
@@ -23650,7 +23650,7 @@
       "ostydamage": "+3"
     },
     "image_url": "/static/images/cards/bone_shards.webp",
-    "beta_image_url": "/static/images/cards/beta/bone_shards.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "[gold]オスティ[/gold]が生存中の場合、すべての敵に12ダメージを与え、12[gold]ブロック[/gold]を得る。\n[gold]オスティ[/gold]は死亡する。",
@@ -23690,7 +23690,7 @@
       "summon": "+2"
     },
     "image_url": "/static/images/cards/legion_of_bone.webp",
-    "beta_image_url": "/static/images/cards/beta/legion_of_bone.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "すべてのプレイヤーは、[gold]召喚[/gold]8。",
@@ -23869,7 +23869,7 @@
       "devourlifepower": "+1"
     },
     "image_url": "/static/images/cards/devour_life.webp",
-    "beta_image_url": "/static/images/cards/beta/devour_life.webp",
+    "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "[gold]ソウル[/gold]をプレイするたび、[gold]召喚[/gold] 2。",
