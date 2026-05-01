@@ -483,21 +483,20 @@ def parse_single_card(
                 else None
             )
         ),
-        # Beta-only art lives in the top-level `backend/static/images/beta/cards/`
-        # tree (established by commit a554dbb). When a beta game version goes
-        # stable, the asset moves out of beta/ into the regular cards/ path —
-        # so this field stays None for any card that's already in stable. Don't
-        # use the legacy nested `cards/beta/` path; it was retired and can
-        # contain stale duplicates of pre-promotion art.
-        "beta_image_url": f"/static/images/beta/cards/{card_id.lower()}.webp"
-        if (
-            STATIC_IMAGES.parent / "beta" / "cards" / f"{card_id.lower()}.webp"
-        ).exists()
+        # Source for the card-page beta-art toggle. Resolves to the
+        # historical archive at `backend/static/images/cards/beta/<id>` —
+        # whatever was the previous stable art before the most recent
+        # game patch (or a duplicate of stable when nothing has changed).
+        # Lets visitors view / download the pre-promotion version of any
+        # re-arted card. Don't switch this to the top-level
+        # `backend/static/images/beta/cards/` tree: that one tracks the
+        # CURRENT beta cycle's art and goes empty between drops, which
+        # silently disables the toggle.
+        "beta_image_url": f"/static/images/cards/beta/{card_id.lower()}.webp"
+        if (STATIC_IMAGES / "beta" / f"{card_id.lower()}.webp").exists()
         else (
-            f"/static/images/beta/cards/{card_id.lower()}.png"
-            if (
-                STATIC_IMAGES.parent / "beta" / "cards" / f"{card_id.lower()}.png"
-            ).exists()
+            f"/static/images/cards/beta/{card_id.lower()}.png"
+            if (STATIC_IMAGES / "beta" / f"{card_id.lower()}.png").exists()
             else None
         ),
         "type_variants": type_variants,
