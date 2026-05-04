@@ -25,6 +25,11 @@ interface AncientPool {
   description: string;
   selection: string;
   pools: Pool[];
+  // Relic IDs this ancient offers as 5 distinct in-game options, one
+  // per character (e.g. Orobas's Sea Glass via DiscoveryTotems —
+  // shows up as Demon/Venom/Gear/Lich/Noble Glass). Sourced from the
+  // ancient_pool_parser, merged into the response by the router.
+  per_character_relics?: string[];
 }
 
 interface RelicInfo {
@@ -33,19 +38,32 @@ interface RelicInfo {
   description: string;
   image_url: string | null;
   rarity: string;
+  // Per-character display-name overrides — only Sea Glass populates
+  // this today. Maps character display name → variant title (e.g.
+  // {Ironclad: "Demon Glass", ...}).
+  name_variants?: Record<string, string> | null;
 }
 
 function RelicPill({
   relic,
   relicData,
   lp,
+  isPerCharacter,
 }: {
   relic: PoolRelic;
   relicData: Record<string, RelicInfo>;
   lp: string;
+  isPerCharacter: boolean;
 }) {
   const info = relicData[relic.id];
   const name = info?.name || relic.id.replace(/_/g, " ").toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase());
+  // Order matches how the game iterates ModelDb.AllCharacters.
+  const charOrder = ["Ironclad", "Silent", "Defect", "Necrobinder", "Regent"];
+  const variants = info?.name_variants
+    ? charOrder
+        .filter((c) => info.name_variants && info.name_variants[c])
+        .map((c) => ({ char: c, name: info.name_variants![c] }))
+    : [];
 
   return (
     <div className="flex items-start gap-3 py-2">
@@ -65,11 +83,25 @@ function RelicPill({
           {name}
         </span>
       </Link>
-      {relic.condition && (
-        <span className="text-xs text-[var(--text-muted)] italic leading-relaxed pt-0.5">
-          {relic.condition}
-        </span>
-      )}
+      <div className="flex flex-col gap-0.5 pt-0.5">
+        {relic.condition && (
+          <span className="text-xs text-[var(--text-muted)] italic leading-relaxed">
+            {relic.condition}
+          </span>
+        )}
+        {isPerCharacter && variants.length > 0 && (
+          <span className="text-xs text-[var(--text-muted)] leading-relaxed">
+            <span className="italic">Shows as 5 separate options:</span>{" "}
+            {variants.map((v, i) => (
+              <span key={v.char}>
+                <span className="text-[var(--accent-gold)]">{v.name}</span>
+                <span className="text-[var(--text-muted)]"> ({v.char})</span>
+                {i < variants.length - 1 ? ", " : ""}
+              </span>
+            ))}
+          </span>
+        )}
+      </div>
     </div>
   );
 }
@@ -126,7 +158,13 @@ function AncientSection({
                 )}
                 <div className="divide-y divide-[var(--border-subtle)]">
                   {pool.relics.map((relic) => (
-                    <RelicPill key={relic.id} relic={relic} relicData={relicData} lp={lp} />
+                    <RelicPill
+                      key={relic.id}
+                      relic={relic}
+                      relicData={relicData}
+                      lp={lp}
+                      isPerCharacter={!!ancient.per_character_relics?.includes(relic.id)}
+                    />
                   ))}
                 </div>
               </div>
