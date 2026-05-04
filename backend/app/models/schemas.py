@@ -113,6 +113,12 @@ class Relic(BaseModel):
     merchant_price: MerchantPrice | None = None
     image_url: str | None = None
     image_variants: dict[str, str] | None = None
+    # Per-character title overrides — only Sea Glass populates this
+    # today (Demon Glass for Ironclad, Venom Glass for Silent, etc.).
+    # Pydantic's response_model would silently strip the field if it
+    # weren't declared here; the parser writes it but FastAPI dropped
+    # it on the way out.
+    name_variants: dict[str, str] | None = None
     notes: list[str] | None = None
     compendium_order: int = 0
 
