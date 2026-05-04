@@ -127,6 +127,11 @@ export interface Relic {
   merchant_price: MerchantPrice | null;
   image_url: string | null;
   image_variants: Record<string, string> | null;
+  // Per-character title overrides — only populated for relics whose
+  // displayed name changes by character (today: just Sea Glass →
+  // Demon/Venom/Gear/Lich/Noble Glass). Keys are character display
+  // names (Ironclad, Silent, Defect, Necrobinder, Regent).
+  name_variants: Record<string, string> | null;
   notes: string[] | null;
   compendium_order: number;
 }
