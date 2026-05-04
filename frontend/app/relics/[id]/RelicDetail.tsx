@@ -150,6 +150,26 @@ export default function RelicDetail({ initialRelic }: { initialRelic?: Relic | n
           <span className="text-[var(--text-muted)] capitalize">{relic.pool}</span>
         </div>
 
+        {/* Per-character display name overrides — Sea Glass renames itself
+            ("Demon Glass" for Ironclad, "Venom Glass" for Silent, etc.).
+            Surfaced as a single line under the rarity/pool row so visitors
+            can find each variant by name without scrolling. */}
+        {relic.name_variants && Object.keys(relic.name_variants).length > 0 && (
+          <div className="mb-6 -mt-2 text-center">
+            <p className="text-xs text-[var(--text-muted)] mb-1">
+              {t("Known as", lang)}:
+            </p>
+            <div className="flex flex-wrap gap-x-3 gap-y-1 justify-center text-sm">
+              {Object.entries(relic.name_variants).map(([char, variantName]) => (
+                <span key={char}>
+                  <span className="text-[var(--accent-gold)]">{variantName}</span>
+                  <span className="text-[var(--text-muted)]"> ({char})</span>
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* Tabs */}
         <div className="flex gap-1 mb-5 border-b border-[var(--border-subtle)]">
           {tabs.map((tb) => (

@@ -143,6 +143,25 @@ def parse_single_relic(
     description_raw = localization.get(f"{relic_id}.description", "")
     flavor = localization.get(f"{relic_id}.flavor", "")
 
+    # Per-character title overrides — Sea Glass renames itself to
+    # "Demon Glass" / "Venom Glass" / "Gear Glass" / "Lich Glass" /
+    # "Noble Glass" depending on which character holds it. Pattern:
+    # `<RELIC>.<CHAR>.title` in `relics.json`. Surfaced as
+    # `name_variants` so detail pages can list alternate names without
+    # parsing localization at render time.
+    NAME_VARIANT_CHARS = {
+        "IRONCLAD": "Ironclad",
+        "SILENT": "Silent",
+        "DEFECT": "Defect",
+        "NECROBINDER": "Necrobinder",
+        "REGENT": "Regent",
+    }
+    name_variants: dict[str, str] = {}
+    for char_key, char_label in NAME_VARIANT_CHARS.items():
+        variant_title = localization.get(f"{relic_id}.{char_key}.title")
+        if variant_title and variant_title != title:
+            name_variants[char_label] = variant_title
+
     # Resolve templates, keep color tags for frontend rendering
     description_resolved = resolve_description(description_raw, all_vars)
     desc_clean = description_resolved
@@ -237,6 +256,7 @@ def parse_single_relic(
         "merchant_price": merchant_price,
         "image_url": image_url,
         "image_variants": image_variants if image_variants else None,
+        "name_variants": name_variants if name_variants else None,
         "notes": notes,
     }
 
