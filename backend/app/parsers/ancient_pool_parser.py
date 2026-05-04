@@ -66,6 +66,20 @@ _RELIC_PATTERNS = (
     re.compile(r"ModelDb\.Relic<(\w+)>"),
 )
 
+# A few relics (today: just SeaGlass) reskin themselves per character.
+# When an event creates one with `relic.CharacterId = ...` inside a
+# `foreach (CharacterModel x in ModelDb.AllCharacters)`, the player
+# actually sees five distinct options on that screen — one for each
+# character variant (Demon/Venom/Gear/Lich/Noble Glass for Sea Glass).
+# Capture this so the parsed pool reflects the in-game option count and
+# the drift check can flag a hand file that lists the relic only once.
+_PER_CHARACTER_FOREACH = re.compile(
+    r"foreach\s*\(\s*CharacterModel\s+\w+\s+in\s+ModelDb\.AllCharacters\s*\)\s*\{(?P<body>.*?)\}",
+    re.DOTALL,
+)
+_RELIC_INSTANCE = re.compile(r"ModelDb\.Relic<(\w+)>\(\)\.ToMutable\(\)")
+_CHARACTER_ID_ASSIGN = re.compile(r"\.CharacterId\s*=\s*\w+\.Id")
+
 
 def parse_ancient_relics(filepath) -> set[str]:
     """Return the set of relic IDs an ancient .cs file can offer."""
@@ -79,11 +93,35 @@ def parse_ancient_relics(filepath) -> set[str]:
     return {class_name_to_id(n) for n in class_names}
 
 
-def parse_all_ancients() -> dict[str, set[str]]:
-    """Walk every known ancient .cs file and collect relic IDs per ancient."""
-    out: dict[str, set[str]] = {}
+def parse_per_character_relics(filepath) -> set[str]:
+    """Return the set of relic IDs that the ancient offers as 5 separate
+    per-character options (the `foreach AllCharacters { relic.CharacterId
+    = x.Id }` shape, e.g. Orobas's DiscoveryTotems pool with Sea Glass)."""
+    if not filepath.exists():
+        return set()
+    content = filepath.read_text(encoding="utf-8")
+    out: set[str] = set()
+    for fe in _PER_CHARACTER_FOREACH.finditer(content):
+        body = fe.group("body")
+        if not _CHARACTER_ID_ASSIGN.search(body):
+            continue
+        for rm in _RELIC_INSTANCE.finditer(body):
+            out.add(class_name_to_id(rm.group(1)))
+    return out
+
+
+def parse_all_ancients() -> dict[str, dict[str, set[str]]]:
+    """Walk every known ancient .cs file. Returns
+    `{ancient_id: {"all": {ids}, "per_character": {ids}}}`. The
+    `per_character` set is a strict subset of `all` and just flags
+    which relics expand to 5 in-game options."""
+    out: dict[str, dict[str, set[str]]] = {}
     for ancient_id, filename in ANCIENT_FILES.items():
-        out[ancient_id] = parse_ancient_relics(EVENTS_DIR / filename)
+        path = EVENTS_DIR / filename
+        out[ancient_id] = {
+            "all": parse_ancient_relics(path),
+            "per_character": parse_per_character_relics(path),
+        }
     return out
 
 
@@ -110,21 +148,28 @@ def load_hand_coded() -> dict[str, set[str]]:
     return out
 
 
-def diff_against_hand_coded(parsed: dict[str, set[str]]) -> list[str]:
+def diff_against_hand_coded(parsed: dict[str, dict[str, set[str]]]) -> list[str]:
     """Return human-readable drift lines comparing parsed vs hand-coded.
 
     Each line names an ancient and lists relic IDs that diverge in
-    either direction. Empty list = no drift; the hand file is in sync
-    with the C# extraction.
+    either direction. Also flags any per-character-expanding relic
+    (e.g. Sea Glass) whose hand-file entry doesn't mention the 5
+    character variants.
     """
     hand = load_hand_coded()
     drift: list[str] = []
     for ancient_id in sorted(set(parsed) | set(hand)):
-        c_set = parsed.get(ancient_id, set())
+        c_set = parsed.get(ancient_id, {}).get("all", set())
+        per_char = parsed.get(ancient_id, {}).get("per_character", set())
         h_set = hand.get(ancient_id, set())
         only_in_c = c_set - h_set
         only_in_h = h_set - c_set
-        if not (only_in_c or only_in_h):
+        # Per-character relics in C# whose hand entry doesn't note
+        # they expand to 5 options. We can't reliably parse the hand
+        # file's free-form `description`/`condition` strings, so just
+        # surface a hint when the relic is on the per-character list.
+        per_char_present = per_char & h_set
+        if not (only_in_c or only_in_h or per_char_present):
             continue
         parts: list[str] = [f"  {ancient_id}:"]
         if only_in_c:
@@ -135,20 +180,31 @@ def diff_against_hand_coded(parsed: dict[str, set[str]]) -> list[str]:
             parts.append(
                 f"    - {len(only_in_h)} in hand file but not in C#: {sorted(only_in_h)}"
             )
+        if per_char_present:
+            parts.append(
+                f"    ! per-character expansion (5 options shown in-game): {sorted(per_char_present)}"
+            )
         drift.append("\n".join(parts))
     return drift
 
 
-def write_parsed_output(parsed: dict[str, set[str]]) -> None:
+def write_parsed_output(parsed: dict[str, dict[str, set[str]]]) -> None:
     """Persist the parsed relic lists to `data/ancient_pools_parsed.json`.
 
-    Written sorted for stable diffs across parse runs. Consumers (CI,
-    review tooling) can compare this file against `ancient_pools.json`
-    without re-running the parser themselves.
+    Written sorted for stable diffs across parse runs. Each ancient
+    entry carries `relics` (every relic the ancient can offer) and
+    `per_character_relics` (the subset that expands to 5 in-game
+    options, one per character). The expanded list lets the relic
+    page cross-reference Sea Glass → Orobas without parsing the C#
+    again, and lets the drift check flag stale hand-file entries.
     """
     out_file = DATA_DIR / "ancient_pools_parsed.json"
     out = [
-        {"id": ancient_id, "relics": sorted(parsed[ancient_id])}
+        {
+            "id": ancient_id,
+            "relics": sorted(parsed[ancient_id]["all"]),
+            "per_character_relics": sorted(parsed[ancient_id]["per_character"]) or None,
+        }
         for ancient_id in sorted(parsed)
     ]
     out_file.parent.mkdir(parents=True, exist_ok=True)
@@ -160,7 +216,7 @@ def write_parsed_output(parsed: dict[str, set[str]]) -> None:
 def main() -> None:
     parsed = parse_all_ancients()
     write_parsed_output(parsed)
-    total = sum(len(v) for v in parsed.values())
+    total = sum(len(v["all"]) for v in parsed.values())
     print(
         f"Parsed {total} relic offerings across {len(parsed)} ancients "
         f"-> data/ancient_pools_parsed.json"

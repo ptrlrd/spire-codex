@@ -14,7 +14,8 @@
       "SNECKO_EYE",
       "SOZU",
       "VELVET_CHOKER"
-    ]
+    ],
+    "per_character_relics": null
   },
   {
     "id": "NEOW",
@@ -44,7 +45,8 @@
       "SMALL_CAPSULE",
       "STONE_HUMIDIFIER",
       "WINGED_BOOTS"
-    ]
+    ],
+    "per_character_relics": null
   },
   {
     "id": "NONUPEIPE",
@@ -59,7 +61,8 @@
       "JEWELRY_BOX",
       "LOOMING_FRUIT",
       "SIGNET_RING"
-    ]
+    ],
+    "per_character_relics": null
   },
   {
     "id": "OROBAS",
@@ -74,6 +77,9 @@
       "SAND_CASTLE",
       "SEA_GLASS",
       "TOUCH_OF_OROBAS"
+    ],
+    "per_character_relics": [
+      "SEA_GLASS"
     ]
   },
   {
@@ -89,7 +95,8 @@
       "PAELS_TEARS",
       "PAELS_TOOTH",
       "PAELS_WING"
-    ]
+    ],
+    "per_character_relics": null
   },
   {
     "id": "TANX",
@@ -104,7 +111,8 @@
       "THROWING_AXE",
       "TRI_BOOMERANG",
       "WAR_HAMMER"
-    ]
+    ],
+    "per_character_relics": null
   },
   {
     "id": "TEZCATARA",
@@ -119,7 +127,8 @@
       "TOY_BOX",
       "VERY_HOT_COCOA",
       "YUMMY_COOKIE"
-    ]
+    ],
+    "per_character_relics": null
   },
   {
     "id": "VAKUU",
@@ -134,6 +143,7 @@
       "PRESERVED_FOG",
       "SERE_TALON",
       "WHISPERING_EARRING"
-    ]
+    ],
+    "per_character_relics": null
   }
 ]
