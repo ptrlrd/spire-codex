@@ -20,6 +20,12 @@ function resolveClanImages(html: string): string {
 /** Convert the BBCode that Steam still emits in some posts to HTML. */
 function bbcodeToHtml(input: string): string {
   let s = input;
+  // Lists need real parsing because Steam patch notes nest them inside
+  // items (e.g. [*]Header[list][*]sub1[*]sub2[/list]) and a flat regex
+  // pass produces sibling `<ul>`s — visually flat instead of indented.
+  // Convert lists FIRST so the per-item content can still flow through
+  // the inline-formatting passes below.
+  s = convertLists(s);
   // Headings: [h1]Foo[/h1] -> <h2>Foo</h2> (we cap at h2 since the page
   // already renders the article title as h1)
   s = s.replaceAll(/\[h1\]([\s\S]*?)\[\/h1\]/g, "<h2>$1</h2>");
@@ -30,12 +36,6 @@ function bbcodeToHtml(input: string): string {
   s = s.replaceAll(/\[i\]([\s\S]*?)\[\/i\]/g, "<em>$1</em>");
   s = s.replaceAll(/\[u\]([\s\S]*?)\[\/u\]/g, "<u>$1</u>");
   s = s.replaceAll(/\[strike\]([\s\S]*?)\[\/strike\]/g, "<s>$1</s>");
-  // Lists
-  s = s.replaceAll(/\[list\]/g, "<ul>");
-  s = s.replaceAll(/\[\/list\]/g, "</ul>");
-  s = s.replaceAll(/\[olist\]/g, "<ol>");
-  s = s.replaceAll(/\[\/olist\]/g, "</ol>");
-  s = s.replaceAll(/\[\*\]\s*([^\[\n]+)/g, "<li>$1</li>");
   // Links — [url=https://...]label[/url] and bare [url]https://[/url]
   s = s.replaceAll(
     /\[url=([^\]]+)\]([\s\S]*?)\[\/url\]/g,
@@ -59,6 +59,89 @@ function bbcodeToHtml(input: string): string {
   return s;
 }
 
+/** Convert `[list]` / `[olist]` blocks to nested `<ul>` / `<ol>` with
+ * proper item containment.
+ *
+ * BBCode shape Steam emits for sub-bullets:
+ *
+ *   [list]
+ *   [*]Outer item
+ *   [list]
+ *   [*]Inner item
+ *   [/list]
+ *   [/list]
+ *
+ * The nested `[list]` is meant to live INSIDE the outer item, so the
+ * generated HTML should be `<ul><li>Outer item<ul><li>Inner item</li></ul></li></ul>`,
+ * not two sibling `<ul>`s. The previous flat regex pass produced the
+ * sibling shape, which most browsers render at the same indent level —
+ * sub-bullets visually disappear into the outer list.
+ *
+ * We walk the string once with a depth-tracking parser. Each list level
+ * accumulates items; when we see a nested `[list]`, we recurse and the
+ * resulting markup is appended to the current item's content.
+ */
+function convertLists(input: string): string {
+  // Tokenize on the BBCode list controls. Anything else is plain text
+  // that belongs to the surrounding context (the current item, or the
+  // top-level document if we're outside any list).
+  const tokenRe = /\[(list|olist)\]|\[\/(list|olist)\]|\[\*\]/gi;
+  type Frame = { tag: "ul" | "ol"; items: string[]; current: string };
+  const root: string[] = [];
+  const stack: Frame[] = [];
+  let cursor = 0;
+  // Helper: append text to wherever we currently are (current list item
+  // when inside a list, top-level fragment when outside).
+  const appendText = (text: string) => {
+    if (!text) return;
+    if (stack.length === 0) {
+      root.push(text);
+      return;
+    }
+    stack[stack.length - 1].current += text;
+  };
+  // Helper: close the current item (push it to the frame's items array)
+  // and reset the in-progress buffer. No-op if there is no current item.
+  const flushItem = () => {
+    if (stack.length === 0) return;
+    const frame = stack[stack.length - 1];
+    if (frame.current.trim() === "" && frame.items.length === 0) return;
+    if (frame.current.length > 0) {
+      frame.items.push(`<li>${frame.current.trim()}</li>`);
+      frame.current = "";
+    }
+  };
+  let m: RegExpExecArray | null;
+  while ((m = tokenRe.exec(input)) !== null) {
+    appendText(input.slice(cursor, m.index));
+    const token = m[0].toLowerCase();
+    if (token === "[list]" || token === "[olist]") {
+      stack.push({ tag: token === "[list]" ? "ul" : "ol", items: [], current: "" });
+    } else if (token === "[/list]" || token === "[/olist]") {
+      flushItem();
+      const frame = stack.pop();
+      if (frame) {
+        const html = `<${frame.tag}>${frame.items.join("")}</${frame.tag}>`;
+        appendText(html);
+      }
+    } else if (token === "[*]") {
+      flushItem();
+      // The next item content starts now; nothing to push yet.
+    }
+    cursor = m.index + m[0].length;
+  }
+  // Trailing text after the last token.
+  appendText(input.slice(cursor));
+  // Defensive: if the post left lists unclosed, flush them anyway so we
+  // don't lose content.
+  while (stack.length > 0) {
+    flushItem();
+    const frame = stack.pop()!;
+    appendText(`<${frame.tag}>${frame.items.join("")}</${frame.tag}>`);
+  }
+  return root.join("");
+}
+
 /** Strip script/iframe/object/embed regardless of attributes — defensive. */
 function stripDangerousTags(html: string): string {
   return html
@@ -74,12 +157,120 @@ function stripDangerousTags(html: string): string {
     .replaceAll(/javascript:/gi, "");
 }
 
-/** Convert bare line breaks in plain-text Steam posts to paragraph tags. */
+// Block-level HTML tags we treat as "paragraph siblings" — text between
+// them gets wrapped in `<p>` so prose actually breaks across paragraphs
+// instead of running into a wall. `<img>` and `<hr>` are voids; the rest
+// have open/close pairs that may nest (Steam patch notes routinely have
+// `<ul>` inside `<ul>` for sub-points), so we walk the string with a
+// depth counter instead of using a non-greedy regex (which would close on
+// the first inner `</ul>` and orphan the outer one).
+const BLOCK_TAGS = [
+  "p",
+  "div",
+  "h1",
+  "h2",
+  "h3",
+  "h4",
+  "h5",
+  "h6",
+  "ul",
+  "ol",
+  "blockquote",
+  "pre",
+  "table",
+];
+const VOID_BLOCK_TAGS = ["img", "hr"];
+
+type BlockSpan = { start: number; end: number };
+
+/** Walk `html` and return the byte ranges of every top-level block element.
+ * Nested same-name blocks are absorbed by the outer span (depth-counted),
+ * so a `<ul>...<ul>...</ul>...</ul>` returns one span covering both. */
+function findBlockSpans(html: string): BlockSpan[] {
+  const spans: BlockSpan[] = [];
+  // Single regex matches any open block tag, any close block tag, or a void.
+  // We use the match offsets to drive the walk; `lastIndex` advances past
+  // each token. The capture group tells us which kind we hit.
+  const tagRe = new RegExp(
+    `<(/?)\\s*(${[...BLOCK_TAGS, ...VOID_BLOCK_TAGS].join("|")})\\b[^>]*?(/?)>`,
+    "gi",
+  );
+  // Stack of currently-open block tags (lowercased name + start offset).
+  const stack: { name: string; start: number }[] = [];
+  let m: RegExpExecArray | null;
+  while ((m = tagRe.exec(html)) !== null) {
+    const isClose = m[1] === "/";
+    const name = m[2].toLowerCase();
+    const isSelfClose = m[3] === "/" || VOID_BLOCK_TAGS.includes(name);
+    const start = m.index;
+    const end = m.index + m[0].length;
+    if (isSelfClose && !isClose) {
+      // <img> / <hr> at the top level becomes its own span.
+      if (stack.length === 0) spans.push({ start, end });
+      continue;
+    }
+    if (!isClose) {
+      stack.push({ name, start });
+      continue;
+    }
+    // Close tag. Pop the matching open. If the stack is empty we ignore
+    // the stray close (malformed input — be defensive, don't blow up).
+    while (stack.length > 0 && stack[stack.length - 1].name !== name) {
+      stack.pop();
+    }
+    if (stack.length === 0) continue;
+    const open = stack.pop()!;
+    if (stack.length === 0) {
+      // We just closed a top-level block; record the full span.
+      spans.push({ start: open.start, end });
+    }
+  }
+  return spans;
+}
+
+/** Wrap inter-block text in `<p>` tags so paragraphs render as paragraphs.
+ *
+ * Steam patch notes mix BBCode block tags (converted upstream to `<h4>`,
+ * `<ul>`, `<img>`) with prose paragraphs separated only by `\n\n`. Without
+ * this step the prose sits as raw text inside the article wrapper and
+ * the browser collapses every blank line — what should be a list of
+ * paragraphs reads as one giant blob.
+ *
+ * Algorithm: locate every top-level block-element span (depth-aware so
+ * nested `<ul>`s don't trick the walker), keep them verbatim, and wrap
+ * the inter-block text regions in `<p>` (with `\n` → `<br/>` for soft
+ * breaks within a paragraph). Empty/whitespace-only regions are dropped.
+ */
 function paragraphify(html: string): string {
-  if (/<p|<div|<h[1-6]|<ul|<ol|<blockquote|<pre/.test(html)) return html;
-  return html
+  if (!html) return html;
+  const spans = findBlockSpans(html);
+  if (spans.length === 0) {
+    return wrapTextChunk(html) || html;
+  }
+  const out: string[] = [];
+  let cursor = 0;
+  for (const span of spans) {
+    if (span.start > cursor) {
+      out.push(wrapTextChunk(html.slice(cursor, span.start)));
+    }
+    out.push(html.slice(span.start, span.end));
+    cursor = span.end;
+  }
+  if (cursor < html.length) {
+    out.push(wrapTextChunk(html.slice(cursor)));
+  }
+  return out.join("");
+}
+
+/** Split a non-block text region on blank lines and wrap each chunk in
+ * `<p>`. Single newlines become `<br/>` so author line breaks survive. */
+function wrapTextChunk(chunk: string): string {
+  if (!chunk.trim()) return "";
+  return chunk
     .split(/\n{2,}/)
-    .map((p) => `<p>${p.trim().replaceAll("\n", "<br/>")}</p>`)
+    .map((p) => p.trim())
+    .filter(Boolean)
+    .map((p) => `<p>${p.replaceAll("\n", "<br/>")}</p>`)
     .join("\n");
 }
 
