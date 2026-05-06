@@ -164,6 +164,7 @@ async def claim_runs_endpoint(request: Request):
 
 
 @router.get("/list", tags=["Runs"])
+@limiter.limit("120/minute")
 def list_runs(
     request: Request,
     character: str | None = None,
@@ -236,6 +237,7 @@ def list_runs(
 
 
 @router.get("/leaderboard", tags=["Runs"])
+@limiter.limit("120/minute")
 def get_leaderboard(
     request: Request,
     category: str = "fastest",
@@ -343,6 +345,7 @@ def get_shared_run(run_hash: str, request: Request):
 
 
 @router.get("/stats", tags=["Runs"])
+@limiter.limit("120/minute")
 def get_community_stats(
     request: Request,
     character: str | None = None,

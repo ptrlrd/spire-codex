@@ -195,6 +195,20 @@ export default function Footer() {
           {t("Submit Feedback", lang)}
         </button>
         <span className="text-[var(--border-subtle)]" aria-hidden>·</span>
+        <Link
+          href="/privacy"
+          className="hover:text-[var(--accent-gold)] transition-colors"
+        >
+          Privacy
+        </Link>
+        <span className="text-[var(--border-subtle)]" aria-hidden>·</span>
+        <Link
+          href="/terms"
+          className="hover:text-[var(--accent-gold)] transition-colors"
+        >
+          Terms
+        </Link>
+        <span className="text-[var(--border-subtle)]" aria-hidden>·</span>
         <a
           href={IS_BETA ? "https://spire-codex.com" : "https://beta.spire-codex.com"}
           className="hover:text-[var(--accent-gold)] transition-colors"
