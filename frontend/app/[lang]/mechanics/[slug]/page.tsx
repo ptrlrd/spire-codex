@@ -3,15 +3,41 @@ import { notFound } from "next/navigation";
 import { SITE_URL, SITE_NAME } from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
 import { buildBreadcrumbJsonLd, buildDetailPageJsonLd } from "@/lib/jsonld";
-import { MECHANIC_SECTIONS, getSectionBySlug } from "@/app/mechanics/sections";
 import Link from "next/link";
-import MechanicContent from "@/app/mechanics/[slug]/MechanicContent";
+import MechanicMarkdown from "@/app/mechanics/[slug]/MechanicMarkdown";
 import { isValidLang, SUPPORTED_LANGS } from "@/lib/languages";
 import { t } from "@/lib/ui-translations";
+import type { MechanicSectionMeta } from "@/app/mechanics/page";
+
+const API_INTERNAL =
+  process.env.API_INTERNAL_URL ||
+  process.env.NEXT_PUBLIC_API_URL ||
+  "http://localhost:8000";
+
+interface MechanicSectionDetail extends MechanicSectionMeta {
+  body_markdown: string;
+}
+
+async function fetchSectionList(): Promise<MechanicSectionMeta[]> {
+  const res = await fetch(`${API_INTERNAL}/api/mechanics/sections`, {
+    next: { revalidate: 300 },
+  });
+  if (!res.ok) return [];
+  return (await res.json()) as MechanicSectionMeta[];
+}
+
+async function fetchSection(slug: string): Promise<MechanicSectionDetail | null> {
+  const res = await fetch(`${API_INTERNAL}/api/mechanics/sections/${slug}`, {
+    next: { revalidate: 300 },
+  });
+  if (!res.ok) return null;
+  return (await res.json()) as MechanicSectionDetail;
+}
 
 export async function generateStaticParams() {
+  const sections = await fetchSectionList();
   return SUPPORTED_LANGS.flatMap((lang) =>
-    MECHANIC_SECTIONS.map((s) => ({ lang, slug: s.slug })),
+    sections.map((s) => ({ lang, slug: s.slug })),
   );
 }
 
@@ -22,7 +48,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { lang, slug } = await params;
   if (!isValidLang(lang)) return {};
-  const section = getSectionBySlug(slug);
+  const section = await fetchSection(slug);
   if (!section) return { title: `${t("Not Found", lang)} | ${SITE_NAME}` };
   const title = `${section.title} - Slay the Spire 2 | ${SITE_NAME}`;
   return {
@@ -41,7 +67,7 @@ export default async function LangMechanicDetailPage({
 }) {
   const { lang, slug } = await params;
   if (!isValidLang(lang)) return null;
-  const section = getSectionBySlug(slug);
+  const section = await fetchSection(slug);
   if (!section) notFound();
 
   const jsonLd = [
@@ -76,7 +102,7 @@ export default async function LangMechanicDetailPage({
         <span className="text-[var(--accent-gold)]">{section.title}</span>
       </h1>
       <p className="text-sm text-[var(--text-muted)] mb-8">{section.description}</p>
-      <MechanicContent slug={slug} />
+      <MechanicMarkdown body={section.body_markdown} />
     </div>
   );
 }

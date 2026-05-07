@@ -3,139 +3,47 @@ import { notFound } from "next/navigation";
 import { SITE_URL, SITE_NAME } from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
 import { buildBreadcrumbJsonLd, buildDetailPageJsonLd } from "@/lib/jsonld";
-import { MECHANIC_SECTIONS, getSectionBySlug } from "../sections";
 import Link from "next/link";
-import MechanicContent, {
-  type CharacterStatsRow,
-  type CardRarityConstants,
-  type EncounterGoldConstants,
-  type AscensionHelperConstants,
-  type CombatModifiers,
-  type MonsterScalingRow,
-} from "./MechanicContent";
+import MechanicMarkdown from "./MechanicMarkdown";
+import type { MechanicSectionMeta } from "../page";
 
-const API_INTERNAL = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+const API_INTERNAL =
+  process.env.API_INTERNAL_URL ||
+  process.env.NEXT_PUBLIC_API_URL ||
+  "http://localhost:8000";
 
-interface ApiCharacter {
-  id: string;
-  name: string;
-  starting_hp: number;
-  starting_gold: number;
-  starting_deck?: string[];
-  orb_slots?: number;
+interface MechanicSectionDetail extends MechanicSectionMeta {
+  body_markdown: string;
 }
 
-// Pull the 5 characters from /api/characters when the slug needs them.
-// Server-side fetch with 5-min revalidation matches the merchant page
-// pattern. Falls back to undefined on network failure so MechanicContent
-// uses its inline fallback table.
-// Pull the card-rarity bucket out of `/api/mechanics/constants` so the
-// card-rarity page renders from C# constants instead of hand-typed
-// percentages. Same revalidation + graceful-fallback shape as the
-// character-stats fetcher above.
-// Single fetch for `/api/mechanics/constants` — returns the whole
-// payload so callers can pick whichever bucket(s) they need without
-// firing multiple round-trips. Pages that only consume one bucket
-// destructure inline at the call site below.
-type MechanicsConstants = {
-  card_rarity_odds?: CardRarityConstants;
-  encounter_gold_rewards?: EncounterGoldConstants;
-  ascension_helper?: AscensionHelperConstants;
-  ascension_levels?: string[];
-  combat_modifiers?: CombatModifiers;
-};
-
-async function fetchMechanicsConstants(): Promise<MechanicsConstants | undefined> {
-  try {
-    const res = await fetch(`${API_INTERNAL}/api/mechanics/constants`, {
-      next: { revalidate: 300 },
-    });
-    if (!res.ok) return undefined;
-    return (await res.json()) as MechanicsConstants;
-  } catch {
-    return undefined;
-  }
+async function fetchSectionList(): Promise<MechanicSectionMeta[]> {
+  const res = await fetch(`${API_INTERNAL}/api/mechanics/sections`, {
+    next: { revalidate: 300 },
+  });
+  if (!res.ok) return [];
+  return (await res.json()) as MechanicSectionMeta[];
 }
 
-// Pull the bestiary down for the enemy-ascension-scaling page. Trims
-// the payload to just the fields the table renders so the React tree
-// doesn't carry attack patterns, encounters, innate powers, or images
-// that the page never reads. Same revalidation + graceful-fallback
-// shape as the other fetchers above.
-interface ApiMonsterMove {
-  name: string;
-  damage?: { normal?: number | null; ascension?: number | null; hit_count?: number | null } | null;
-}
-interface ApiMonster {
-  id: string;
-  name: string;
-  type?: string | null;
-  min_hp?: number | null;
-  max_hp?: number | null;
-  min_hp_ascension?: number | null;
-  max_hp_ascension?: number | null;
-  moves?: ApiMonsterMove[] | null;
-}
-
-async function fetchMonsterScaling(): Promise<MonsterScalingRow[] | undefined> {
-  try {
-    const res = await fetch(`${API_INTERNAL}/api/monsters`, {
-      next: { revalidate: 300 },
-    });
-    if (!res.ok) return undefined;
-    const monsters = (await res.json()) as ApiMonster[];
-    return monsters.map((m) => ({
-      id: m.id,
-      name: m.name,
-      type: m.type ?? "Normal",
-      min_hp: m.min_hp ?? null,
-      max_hp: m.max_hp ?? null,
-      min_hp_ascension: m.min_hp_ascension ?? null,
-      max_hp_ascension: m.max_hp_ascension ?? null,
-      moves: (m.moves ?? []).map((mv) => ({
-        name: mv.name,
-        damage_normal: mv.damage?.normal ?? null,
-        damage_ascension: mv.damage?.ascension ?? null,
-        hit_count: mv.damage?.hit_count ?? null,
-      })),
-    }));
-  } catch {
-    return undefined;
-  }
-}
-
-async function fetchCharacterStats(): Promise<CharacterStatsRow[] | undefined> {
-  try {
-    const res = await fetch(`${API_INTERNAL}/api/characters`, {
-      next: { revalidate: 300 },
-    });
-    if (!res.ok) return undefined;
-    const characters = (await res.json()) as ApiCharacter[];
-    // Display order matches what the page used to hand-code.
-    const order = ["IRONCLAD", "SILENT", "DEFECT", "NECROBINDER", "REGENT"];
-    return characters
-      .filter((c) => order.includes(c.id))
-      .sort((a, b) => order.indexOf(a.id) - order.indexOf(b.id))
-      .map((c) => ({
-        id: c.id,
-        name: c.name,
-        starting_hp: c.starting_hp,
-        starting_gold: c.starting_gold,
-        deck_size: c.starting_deck?.length ?? 0,
-        orb_slots: c.orb_slots ?? 0,
-      }));
-  } catch {
-    return undefined;
-  }
+async function fetchSection(slug: string): Promise<MechanicSectionDetail | null> {
+  const res = await fetch(`${API_INTERNAL}/api/mechanics/sections/${slug}`, {
+    next: { revalidate: 300 },
+  });
+  if (!res.ok) return null;
+  return (await res.json()) as MechanicSectionDetail;
 }
 
 export async function generateStaticParams() {
-  return MECHANIC_SECTIONS.map((s) => ({ slug: s.slug }));
+  const sections = await fetchSectionList();
+  return sections.map((s) => ({ slug: s.slug }));
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
   const { slug } = await params;
-  const section = getSectionBySlug(slug);
+  const section = await fetchSection(slug);
   if (!section) return { title: `Not Found | ${SITE_NAME}` };
   const title = `${section.title} - Slay the Spire 2 | ${SITE_NAME}`;
   return {
@@ -147,9 +55,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
-export default async function MechanicDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function MechanicDetailPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
   const { slug } = await params;
-  const section = getSectionBySlug(slug);
+  const section = await fetchSection(slug);
   if (!section) notFound();
 
   const jsonLd = [
@@ -184,31 +96,7 @@ export default async function MechanicDetailPage({ params }: { params: Promise<{
         <span className="text-[var(--accent-gold)]">{section.title}</span>
       </h1>
       <p className="text-sm text-[var(--text-muted)] mb-8">{section.description}</p>
-      {await (async () => {
-        // Slugs that need parsed mechanics constants share one fetch
-        // so the page makes at most one /api/mechanics/constants call
-        // even if multiple buckets are needed. Character-stats has its
-        // own dedicated /api/characters fetch since it's a different
-        // data source.
-        const needsMechanics = ["card-rarity", "gold-rewards", "ascension-modifiers", "combat-mechanics"].includes(slug);
-        const [mechanics, characterStats, monsterScaling] = await Promise.all([
-          needsMechanics ? fetchMechanicsConstants() : Promise.resolve(undefined),
-          slug === "character-stats" ? fetchCharacterStats() : Promise.resolve(undefined),
-          slug === "enemy-ascension-scaling" ? fetchMonsterScaling() : Promise.resolve(undefined),
-        ]);
-        return (
-          <MechanicContent
-            slug={slug}
-            characterStats={characterStats}
-            cardRarity={slug === "card-rarity" ? mechanics?.card_rarity_odds : undefined}
-            encounterGold={slug === "gold-rewards" ? mechanics?.encounter_gold_rewards : undefined}
-            ascensionHelper={slug === "gold-rewards" ? mechanics?.ascension_helper : undefined}
-            ascensionLevels={slug === "ascension-modifiers" ? mechanics?.ascension_levels : undefined}
-            combatModifiers={slug === "combat-mechanics" ? mechanics?.combat_modifiers : undefined}
-            monsterScaling={monsterScaling}
-          />
-        );
-      })()}
+      <MechanicMarkdown body={section.body_markdown} />
     </div>
   );
 }
