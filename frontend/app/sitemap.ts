@@ -111,9 +111,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })
   );
 
-  // Mechanics detail pages
-  const { MECHANIC_SECTIONS } = await import("./mechanics/sections");
-  const mechanicsEntries: MetadataRoute.Sitemap = MECHANIC_SECTIONS.map((s) => ({
+  // Mechanics detail pages — fetched from /api/mechanics/sections so
+  // adding/removing a slug only requires a markdown file in
+  // data/mechanics_pages/, no sitemap edit.
+  type MechanicSectionMeta = { slug: string };
+  const mechanicsRes = await fetch(`${API}/api/mechanics/sections`, {
+    next: { revalidate: 300 },
+  }).catch(() => null);
+  const mechanicSections: MechanicSectionMeta[] = mechanicsRes && mechanicsRes.ok
+    ? ((await mechanicsRes.json()) as MechanicSectionMeta[])
+    : [];
+  const mechanicsEntries: MetadataRoute.Sitemap = mechanicSections.map((s) => ({
     url: `${SITE_URL}/mechanics/${s.slug}`,
     lastModified: now,
     changeFrequency: "monthly" as const,

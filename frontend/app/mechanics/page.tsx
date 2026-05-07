@@ -2,8 +2,20 @@ import type { Metadata } from "next";
 import { SITE_URL, SITE_NAME } from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
 import { buildBreadcrumbJsonLd, buildCollectionPageJsonLd } from "@/lib/jsonld";
-import { MECHANIC_SECTIONS } from "./sections";
 import Link from "next/link";
+
+const API_INTERNAL =
+  process.env.API_INTERNAL_URL ||
+  process.env.NEXT_PUBLIC_API_URL ||
+  "http://localhost:8000";
+
+export interface MechanicSectionMeta {
+  slug: string;
+  title: string;
+  description: string;
+  category: "mechanics" | "secrets";
+  order: number;
+}
 
 export const metadata: Metadata = {
   title: `Slay the Spire 2 Game Mechanics - Drop Rates, Combat & Map Data | ${SITE_NAME}`,
@@ -19,9 +31,18 @@ export const metadata: Metadata = {
   },
 };
 
-export default function MechanicsPage() {
-  const mechanics = MECHANIC_SECTIONS.filter((s) => s.category === "mechanics");
-  const secrets = MECHANIC_SECTIONS.filter((s) => s.category === "secrets");
+async function fetchSections(): Promise<MechanicSectionMeta[]> {
+  const res = await fetch(`${API_INTERNAL}/api/mechanics/sections`, {
+    next: { revalidate: 300 },
+  });
+  if (!res.ok) return [];
+  return (await res.json()) as MechanicSectionMeta[];
+}
+
+export default async function MechanicsPage() {
+  const sections = await fetchSections();
+  const mechanics = sections.filter((s) => s.category === "mechanics");
+  const secrets = sections.filter((s) => s.category === "secrets");
 
   const jsonLd = [
     buildBreadcrumbJsonLd([
@@ -32,7 +53,7 @@ export default function MechanicsPage() {
       name: "Slay the Spire 2 Game Mechanics",
       description: "Complete game mechanics data extracted from the source code.",
       path: "/mechanics",
-      items: MECHANIC_SECTIONS.map((s) => ({ name: s.title, path: `/mechanics/${s.slug}` })),
+      items: sections.map((s) => ({ name: s.title, path: `/mechanics/${s.slug}` })),
     }),
   ];
 

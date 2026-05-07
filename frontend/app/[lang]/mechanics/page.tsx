@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import JsonLd from "@/app/components/JsonLd";
 import { buildBreadcrumbJsonLd, buildCollectionPageJsonLd } from "@/lib/jsonld";
-import { MECHANIC_SECTIONS } from "@/app/mechanics/sections";
 import Link from "next/link";
 import {
   isValidLang,
@@ -13,8 +12,22 @@ import {
 } from "@/lib/languages";
 import { SITE_URL, SITE_NAME } from "@/lib/seo";
 import { t } from "@/lib/ui-translations";
+import type { MechanicSectionMeta } from "@/app/mechanics/page";
+
+const API_INTERNAL =
+  process.env.API_INTERNAL_URL ||
+  process.env.NEXT_PUBLIC_API_URL ||
+  "http://localhost:8000";
 
 const CATEGORY = "mechanics";
+
+async function fetchSections(): Promise<MechanicSectionMeta[]> {
+  const res = await fetch(`${API_INTERNAL}/api/mechanics/sections`, {
+    next: { revalidate: 300 },
+  });
+  if (!res.ok) return [];
+  return (await res.json()) as MechanicSectionMeta[];
+}
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
@@ -46,8 +59,9 @@ export default async function LangMechanicsPage({ params }: { params: Promise<{ 
   const { lang } = await params;
   if (!isValidLang(lang)) return null;
 
-  const mechanics = MECHANIC_SECTIONS.filter((s) => s.category === "mechanics");
-  const secrets = MECHANIC_SECTIONS.filter((s) => s.category === "secrets");
+  const sections = await fetchSections();
+  const mechanics = sections.filter((s) => s.category === "mechanics");
+  const secrets = sections.filter((s) => s.category === "secrets");
 
   const jsonLd = [
     buildBreadcrumbJsonLd([
@@ -58,7 +72,7 @@ export default async function LangMechanicsPage({ params }: { params: Promise<{ 
       name: `Slay the Spire 2 ${t("Game Mechanics", lang)}`,
       description: t("mechanics_tagline", lang),
       path: `/${lang}/${CATEGORY}`,
-      items: MECHANIC_SECTIONS.map((s) => ({ name: s.title, path: `/${lang}/${CATEGORY}/${s.slug}` })),
+      items: sections.map((s) => ({ name: s.title, path: `/${lang}/${CATEGORY}/${s.slug}` })),
     }),
   ];
 
