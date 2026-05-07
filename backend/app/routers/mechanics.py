@@ -1,15 +1,22 @@
-"""Mechanics constants API.
+"""Mechanics constants + per-page content API.
 
-Serves `data/mechanics_constants.json` produced by
-`mechanics_constants_parser.py`. The shape is language-agnostic
-(probabilities + thresholds + enum names), so this router doesn't
-run translation. Honors the version ContextVar so beta deployments
-can ship adjusted balance numbers without touching stable.
+Two responsibilities live in this router:
 
-Frontend `/mechanics/<slug>` pages consume this instead of
-hardcoding probabilities and formulas — closes the silent-drift
-class of bug we kept hitting (e.g. card-rarity page showing 1.5%
-when the actual value is 1.49%).
+* `/api/mechanics/constants` — serves `data/mechanics_constants.json`
+  produced by `mechanics_constants_parser.py`. The shape is
+  language-agnostic (probabilities + thresholds + enum names), so this
+  router doesn't run translation. Honors the version ContextVar so beta
+  deployments can ship adjusted balance numbers without touching stable.
+
+* `/api/mechanics/sections` and `/api/mechanics/sections/{slug}` — serve
+  the 27 `/mechanics/<slug>` pages as markdown documents with template
+  tokens already resolved against the current constants + bestiary +
+  character data. Built so the Overwolf overlay can render the same
+  reference content the website does without re-implementing the prose.
+
+Frontend `/mechanics/<slug>` pages consume `/constants` directly today;
+once the markdown migration is wired up the frontend will switch to
+`/sections/{slug}` and we'll drop the per-slug JSX.
 """
 
 import json
@@ -17,6 +24,7 @@ import json
 from fastapi import APIRouter, HTTPException, Request
 
 from ..services.data_service import DATA_DIR, _resolve_base, _get_version
+from ..services import mechanics_pages
 
 router = APIRouter(prefix="/api/mechanics", tags=["Mechanics"])
 
@@ -49,3 +57,28 @@ def get_mechanics_constants(request: Request) -> dict:
             detail="mechanics_constants.json not found — run backend/app/parsers/parse_all.py",
         )
     return constants
+
+
+@router.get("/sections", tags=["Mechanics"])
+def list_mechanic_sections(request: Request) -> list[dict]:
+    """Index of all mechanics pages — `{slug, title, description, category, order}`.
+
+    Sorted by frontmatter `order` then slug; the overlay can group on
+    `category` ("mechanics" | "secrets") to mirror the website's split.
+    """
+    return mechanics_pages.list_sections()
+
+
+@router.get("/sections/{slug}", tags=["Mechanics"])
+def get_mechanic_section(slug: str, request: Request) -> dict:
+    """One mechanics page as markdown.
+
+    `body_markdown` has all `{{constants...}}` and `{{table:...}}` tokens
+    already resolved, so the overlay only needs a markdown renderer to
+    display it — no need to fan out to `/api/characters` or
+    `/api/monsters` separately.
+    """
+    section = mechanics_pages.get_section(slug)
+    if section is None:
+        raise HTTPException(status_code=404, detail=f"Unknown mechanics slug: {slug}")
+    return section
