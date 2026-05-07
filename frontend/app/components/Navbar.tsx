@@ -81,6 +81,8 @@ const NAV_GROUPS: NavGroup[] = [
       { href: "/changelog", label: "Changelog" },
       { href: "/thank-you", label: "Thank You" },
       { href: "https://ko-fi.com/yitsy", label: "Ko-fi" },
+      { href: "/privacy", label: "Privacy" },
+      { href: "/terms", label: "Terms" },
     ],
   },
   {
