@@ -188,9 +188,7 @@ async def callback(request: Request) -> HTMLResponse:
     match = re.search(r"/openid/id/(\d+)$", claimed_id)
     if not match:
         session.error = f"Unexpected claimed_id: {claimed_id}"
-        return _close_page(
-            error="Couldn't read the SteamID from Steam's response."
-        )
+        return _close_page(error="Couldn't read the SteamID from Steam's response.")
 
     steamid = match.group(1)
     session.steamid = steamid
