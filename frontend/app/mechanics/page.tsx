@@ -32,11 +32,20 @@ export const metadata: Metadata = {
 };
 
 async function fetchSections(): Promise<MechanicSectionMeta[]> {
-  const res = await fetch(`${API_INTERNAL}/api/mechanics/sections`, {
-    next: { revalidate: 300 },
-  });
-  if (!res.ok) return [];
-  return (await res.json()) as MechanicSectionMeta[];
+  // Tolerates ECONNREFUSED — the Docker frontend build runs `npm run build`
+  // before the backend container exists, and Next.js will still try to
+  // statically render this page. Returning [] lets the build succeed; the
+  // page renders empty in the build output and is hydrated on first
+  // post-deploy request.
+  try {
+    const res = await fetch(`${API_INTERNAL}/api/mechanics/sections`, {
+      next: { revalidate: 300 },
+    });
+    if (!res.ok) return [];
+    return (await res.json()) as MechanicSectionMeta[];
+  } catch {
+    return [];
+  }
 }
 
 export default async function MechanicsPage() {

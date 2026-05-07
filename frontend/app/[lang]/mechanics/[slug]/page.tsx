@@ -5,7 +5,7 @@ import JsonLd from "@/app/components/JsonLd";
 import { buildBreadcrumbJsonLd, buildDetailPageJsonLd } from "@/lib/jsonld";
 import Link from "next/link";
 import MechanicMarkdown from "@/app/mechanics/[slug]/MechanicMarkdown";
-import { isValidLang, SUPPORTED_LANGS } from "@/lib/languages";
+import { isValidLang } from "@/lib/languages";
 import { t } from "@/lib/ui-translations";
 import type { MechanicSectionMeta } from "@/app/mechanics/page";
 
@@ -18,27 +18,18 @@ interface MechanicSectionDetail extends MechanicSectionMeta {
   body_markdown: string;
 }
 
-async function fetchSectionList(): Promise<MechanicSectionMeta[]> {
-  const res = await fetch(`${API_INTERNAL}/api/mechanics/sections`, {
-    next: { revalidate: 300 },
-  });
-  if (!res.ok) return [];
-  return (await res.json()) as MechanicSectionMeta[];
-}
-
 async function fetchSection(slug: string): Promise<MechanicSectionDetail | null> {
-  const res = await fetch(`${API_INTERNAL}/api/mechanics/sections/${slug}`, {
-    next: { revalidate: 300 },
-  });
-  if (!res.ok) return null;
-  return (await res.json()) as MechanicSectionDetail;
-}
-
-export async function generateStaticParams() {
-  const sections = await fetchSectionList();
-  return SUPPORTED_LANGS.flatMap((lang) =>
-    sections.map((s) => ({ lang, slug: s.slug })),
-  );
+  // See note in app/mechanics/[slug]/page.tsx — generateStaticParams
+  // dropped, fetch hardened against build-time ECONNREFUSED.
+  try {
+    const res = await fetch(`${API_INTERNAL}/api/mechanics/sections/${slug}`, {
+      next: { revalidate: 300 },
+    });
+    if (!res.ok) return null;
+    return (await res.json()) as MechanicSectionDetail;
+  } catch {
+    return null;
+  }
 }
 
 export async function generateMetadata({

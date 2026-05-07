@@ -22,11 +22,17 @@ const API_INTERNAL =
 const CATEGORY = "mechanics";
 
 async function fetchSections(): Promise<MechanicSectionMeta[]> {
-  const res = await fetch(`${API_INTERNAL}/api/mechanics/sections`, {
-    next: { revalidate: 300 },
-  });
-  if (!res.ok) return [];
-  return (await res.json()) as MechanicSectionMeta[];
+  // See note in app/mechanics/page.tsx — backend isn't reachable during
+  // the Docker frontend build. Empty list is the safe fallback.
+  try {
+    const res = await fetch(`${API_INTERNAL}/api/mechanics/sections`, {
+      next: { revalidate: 300 },
+    });
+    if (!res.ok) return [];
+    return (await res.json()) as MechanicSectionMeta[];
+  } catch {
+    return [];
+  }
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
