@@ -360,6 +360,19 @@ app.include_router(news.router)
 app.include_router(merchant.router)
 app.include_router(mechanics.router)
 app.include_router(auth_steam.router)
+# Overlay-direct OpenID flow uses /auth/steam-popup as Steam's return_to.
+# This is intentionally outside /api/* — it's a user-facing HTML page,
+# not a JSON API — so it's mounted at the app level rather than under
+# the auth_steam router's /api/auth/steam prefix.
+from fastapi.responses import HTMLResponse  # noqa: E402
+
+app.add_api_route(
+    "/auth/steam-popup",
+    auth_steam.steam_popup,
+    methods=["GET"],
+    response_class=HTMLResponse,
+    include_in_schema=False,
+)
 
 
 @app.get("/api/languages", tags=["Languages"])

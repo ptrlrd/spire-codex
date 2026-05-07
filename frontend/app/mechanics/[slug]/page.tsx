@@ -16,25 +16,21 @@ interface MechanicSectionDetail extends MechanicSectionMeta {
   body_markdown: string;
 }
 
-async function fetchSectionList(): Promise<MechanicSectionMeta[]> {
-  const res = await fetch(`${API_INTERNAL}/api/mechanics/sections`, {
-    next: { revalidate: 300 },
-  });
-  if (!res.ok) return [];
-  return (await res.json()) as MechanicSectionMeta[];
-}
-
 async function fetchSection(slug: string): Promise<MechanicSectionDetail | null> {
-  const res = await fetch(`${API_INTERNAL}/api/mechanics/sections/${slug}`, {
-    next: { revalidate: 300 },
-  });
-  if (!res.ok) return null;
-  return (await res.json()) as MechanicSectionDetail;
-}
-
-export async function generateStaticParams() {
-  const sections = await fetchSectionList();
-  return sections.map((s) => ({ slug: s.slug }));
+  // Tolerates ECONNREFUSED so the Docker frontend build doesn't fail when
+  // the backend container isn't running yet. Pages are rendered on demand
+  // post-deploy with the `revalidate` cache below — same pattern as every
+  // other entity detail page (cards, relics, monsters, etc.) which never
+  // had generateStaticParams in the first place.
+  try {
+    const res = await fetch(`${API_INTERNAL}/api/mechanics/sections/${slug}`, {
+      next: { revalidate: 300 },
+    });
+    if (!res.ok) return null;
+    return (await res.json()) as MechanicSectionDetail;
+  } catch {
+    return null;
+  }
 }
 
 export async function generateMetadata({
