@@ -134,9 +134,9 @@ export default function TermsPage() {
         <section>
           <h2 className="text-xl font-semibold text-[var(--text-primary)] mb-2">Governing law</h2>
           <p>
-            These terms are governed by the laws of the State of Indiana, United States, without regard to its
-            conflict-of-laws principles. Any disputes will be resolved in the state or federal courts located
-            in Indiana, and you consent to that venue.
+            These terms are governed by the laws of the State of California, United States, without regard to
+            its conflict-of-laws principles. Any disputes will be resolved in the state or federal courts
+            located in California, and you consent to that venue.
           </p>
         </section>
 
