@@ -333,6 +333,75 @@ def _html_escape(text: str) -> str:
     )
 
 
+# ── Static popup (overlay-direct OpenID flow) ────────────────────────────
+#
+# Distinct from the /start /callback /poll flow above. That flow has the
+# spire-codex backend act as the OpenID relying party. The overlay can
+# also do OpenID directly with its own localhost listener as the relying
+# party — but Overwolf's `web.createServer` can't write a custom HTTP
+# response, so the user's browser would land on a blank page after
+# Steam returns. Routing the return_to through this static popup
+# instead lets us greet the user, beacon the openid params back to the
+# overlay's localhost listener, and try to auto-close.
+
+
+async def steam_popup(request: Request) -> HTMLResponse:
+    """Static return-page for the overlay's localhost OpenID flow.
+
+    Reads the `openid.*` params + `localhost_port` from the query string,
+    forwards everything except `localhost_port` to
+    `http://localhost:<port>/callback?...` via an `<img>` beacon, shows a
+    "you can close this tab" message, and best-effort `window.close()`s.
+    No server-side state — multi-worker safe by definition.
+    """
+    html = """<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Spire Codex — signed in</title>
+  <style>
+    html, body { margin: 0; padding: 0; height: 100%; background: #16181d;
+      color: #e6e6e6; font-family: -apple-system, BlinkMacSystemFont,
+      "Segoe UI", sans-serif; display: flex; align-items: center;
+      justify-content: center; }
+    .card { text-align: center; padding: 40px; max-width: 420px; }
+    h1 { color: #d7a84a; margin: 0 0 12px; font-size: 24px; }
+    p { color: #e6e6e6; margin: 0 0 8px; line-height: 1.5; }
+    .hint { color: #8d94a1; font-size: 13px; margin-top: 14px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Signed in</h1>
+    <p>Returning you to Spire Codex…</p>
+    <p class="hint">You can close this tab.</p>
+  </div>
+  <script>
+    (function () {
+      var search = window.location.search || "";
+      var params = new URLSearchParams(search);
+      var port = params.get("localhost_port");
+      // Strip our own localhost_port param before forwarding so Steam's
+      // signed openid.* set is preserved exactly.
+      params.delete("localhost_port");
+      var forwarded = params.toString();
+      if (port && /^\\d{1,5}$/.test(port) && forwarded) {
+        // Browsers special-case http://localhost as a secure context,
+        // so this image beacon from HTTPS works without mixed-content
+        // blocking. Fire-and-forget — we never read the response.
+        var img = new Image();
+        img.src = "http://localhost:" + port + "/callback?" + forwarded;
+      }
+      // window.close() is blocked in some browsers when the tab wasn't
+      // opened via JS. Best-effort — friendly fallback message stays.
+      setTimeout(function () { window.close(); }, 1200);
+    })();
+  </script>
+</body>
+</html>"""
+    return HTMLResponse(content=html)
+
+
 # Schemas — exposed for /openapi.json + clients that want to import them.
 # The endpoints above return raw dicts (faster + same wire shape), but
 # OpenAPI consumers can reference these.
