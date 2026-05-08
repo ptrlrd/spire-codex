@@ -1,0 +1,2191 @@
+{
+  "app_id": 2868840,
+  "game_version": "0.105.0",
+  "build_id": "",
+  "tag": "0.105.0",
+  "date": "2026-05-07",
+  "title": "Beta v0.105.0",
+  "from_ref": "data-beta/v0.104.0/eng",
+  "to_ref": "data-beta/v0.105.0/eng",
+  "summary": {
+    "added": 8,
+    "removed": 7,
+    "changed": 148
+  },
+  "categories": [
+    {
+      "id": "cards",
+      "name": "Cards",
+      "old_count": 576,
+      "new_count": 577,
+      "added": [
+        {
+          "id": "WITHER",
+          "name": "Wither",
+          "cost": 1,
+          "damage": 2,
+          "type": "Status",
+          "rarity": "Status"
+        }
+      ],
+      "changed": [
+        {
+          "id": "BULWARK",
+          "name": "Bulwark",
+          "changes": [
+            {
+              "field": "block",
+              "old": "13",
+              "new": "12"
+            },
+            {
+              "field": "description",
+              "old": "Gain 13 [gold]Block[/gold].\n[gold]Forge[/gold] 10.",
+              "new": "Gain 12 [gold]Block[/gold].\n[gold]Forge[/gold] 10."
+            },
+            {
+              "field": "upgrade_description",
+              "old": "Gain 16 [gold]Block[/gold].\n[gold]Forge[/gold] 13.",
+              "new": "Gain 15 [gold]Block[/gold].\n[gold]Forge[/gold] 13."
+            },
+            {
+              "field": "vars.Block",
+              "old": "13",
+              "new": "12"
+            }
+          ]
+        },
+        {
+          "id": "CRESCENT_SPEAR",
+          "name": "Crescent Spear",
+          "changes": [
+            {
+              "field": "damage",
+              "old": "6",
+              "new": "8"
+            },
+            {
+              "field": "description",
+              "old": "Deal 6 damage.\nDeals 2 additional damage for ALL your cards that have a [star...",
+              "new": "Deal 8 damage.\nDeals 2 additional damage for ALL your cards that have a [star..."
+            },
+            {
+              "field": "upgrade_description",
+              "old": "Deal 6 damage.\nDeals 3 additional damage for ALL your cards that have a [star...",
+              "new": "Deal 8 damage.\nDeals 3 additional damage for ALL your cards that have a [star..."
+            },
+            {
+              "field": "vars.CalculatedDamage",
+              "old": "6",
+              "new": "8"
+            },
+            {
+              "field": "vars.CalculationBase",
+              "old": "6",
+              "new": "8"
+            }
+          ]
+        },
+        {
+          "id": "DISINTEGRATION",
+          "name": "Disintegration",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "572",
+              "new": "573"
+            }
+          ]
+        },
+        {
+          "id": "FUEL",
+          "name": "Fuel",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "562",
+              "new": "563"
+            }
+          ]
+        },
+        {
+          "id": "GIANT_ROCK",
+          "name": "Giant Rock",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "563",
+              "new": "564"
+            }
+          ]
+        },
+        {
+          "id": "HYPERBEAM",
+          "name": "Hyperbeam",
+          "changes": [
+            {
+              "field": "damage",
+              "old": "26",
+              "new": "28"
+            },
+            {
+              "field": "description",
+              "old": "Deal 26 damage to ALL enemies.\nLose 3 [gold]Focus[/gold].",
+              "new": "Deal 28 damage to ALL enemies.\nLose 3 [gold]Focus[/gold]."
+            },
+            {
+              "field": "upgrade_description",
+              "old": "Deal 34 damage to ALL enemies.\nLose 3 [gold]Focus[/gold].",
+              "new": "Deal 36 damage to ALL enemies.\nLose 3 [gold]Focus[/gold]."
+            },
+            {
+              "field": "vars.Damage",
+              "old": "26",
+              "new": "28"
+            }
+          ]
+        },
+        {
+          "id": "LUMINESCE",
+          "name": "Luminesce",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "564",
+              "new": "565"
+            }
+          ]
+        },
+        {
+          "id": "MAD_SCIENCE",
+          "name": "Mad Science",
+          "changes": [
+            {
+              "field": "description_raw",
+              "old": "{CardType:choose(Attack|Skill|Power):Deal {Damage:diff()} damage{Violence: {V...",
+              "new": "{CardType:choose(Attack|Skill|Power):Deal {Damage:diff()} damage{Violence: {V..."
+            }
+          ]
+        },
+        {
+          "id": "MIND_ROT",
+          "name": "Mind Rot",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "573",
+              "new": "574"
+            }
+          ]
+        },
+        {
+          "id": "MINION_DIVE_BOMB",
+          "name": "Minion Dive Bomb",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "565",
+              "new": "566"
+            }
+          ]
+        },
+        {
+          "id": "MINION_SACRIFICE",
+          "name": "Minion Sacrifice",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "566",
+              "new": "567"
+            }
+          ]
+        },
+        {
+          "id": "MINION_STRIKE",
+          "name": "Minion Strike",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "567",
+              "new": "568"
+            }
+          ]
+        },
+        {
+          "id": "PATTER",
+          "name": "Patter",
+          "changes": [
+            {
+              "field": "block",
+              "old": "9",
+              "new": "8"
+            },
+            {
+              "field": "description",
+              "old": "Gain 9 [gold]Block[/gold].\nGain 2 [gold]Vigor[/gold].",
+              "new": "Gain 8 [gold]Block[/gold].\nGain 2 [gold]Vigor[/gold]."
+            },
+            {
+              "field": "upgrade_description",
+              "old": "Gain 11 [gold]Block[/gold].\nGain 3 [gold]Vigor[/gold].",
+              "new": "Gain 10 [gold]Block[/gold].\nGain 3 [gold]Vigor[/gold]."
+            },
+            {
+              "field": "vars.Block",
+              "old": "9",
+              "new": "8"
+            }
+          ]
+        },
+        {
+          "id": "ROYALTIES",
+          "name": "Royalties",
+          "changes": [
+            {
+              "field": "upgrade.gold",
+              "old": "+5",
+              "new": "+10"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "At the end of combat, gain 35 [gold]Gold[/gold].",
+              "new": "At the end of combat, gain 40 [gold]Gold[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "SHATTER",
+          "name": "Shatter",
+          "changes": [
+            {
+              "field": "description",
+              "old": "Deal 11 damage to ALL enemies.\n[gold]Evoke[/gold] all of your Orbs.",
+              "new": "Deal 11 damage to ALL enemies.\n[gold]Evoke[/gold] all of your Orbs twice."
+            },
+            {
+              "field": "description_raw",
+              "old": "Deal {Damage:diff()} damage to ALL enemies.\n[gold]Evoke[/gold] all of your Orbs.",
+              "new": "Deal {Damage:diff()} damage to ALL enemies.\n[gold]Evoke[/gold] all of your Or..."
+            },
+            {
+              "field": "upgrade_description",
+              "old": "Deal 15 damage to ALL enemies.\n[gold]Evoke[/gold] all of your Orbs.",
+              "new": "Deal 15 damage to ALL enemies.\n[gold]Evoke[/gold] all of your Orbs twice."
+            }
+          ]
+        },
+        {
+          "id": "SHIV",
+          "name": "Shiv",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "568",
+              "new": "569"
+            }
+          ]
+        },
+        {
+          "id": "SLOTH",
+          "name": "Sloth",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "574",
+              "new": "575"
+            }
+          ]
+        },
+        {
+          "id": "SOUL",
+          "name": "Soul",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "569",
+              "new": "570"
+            }
+          ]
+        },
+        {
+          "id": "SOVEREIGN_BLADE",
+          "name": "Sovereign Blade",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "570",
+              "new": "571"
+            }
+          ]
+        },
+        {
+          "id": "SWEEPING_GAZE",
+          "name": "Sweeping Gaze",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "571",
+              "new": "572"
+            }
+          ]
+        },
+        {
+          "id": "SWORD_SAGE",
+          "name": "Sword Sage",
+          "changes": [
+            {
+              "field": "description",
+              "old": "[gold]Sovereign Blade[/gold] now hits an additional time.",
+              "new": "[gold]Sovereign Blade[/gold] gains [gold]Replay[/gold] 1."
+            },
+            {
+              "field": "description_raw",
+              "old": "[gold]Sovereign Blade[/gold] now hits an additional time.",
+              "new": "[gold]Sovereign Blade[/gold] gains [gold]Replay[/gold] {SwordSagePower:diff()}."
+            }
+          ]
+        },
+        {
+          "id": "TESLA_COIL",
+          "name": "Tesla Coil",
+          "changes": [
+            {
+              "field": "description_raw",
+              "old": "Deal {Damage:diff()} damage.\nTrigger all [gold]Lightning[/gold] against the e...",
+              "new": "Deal {Damage:diff()} damage.\nTrigger all [gold]Lightning[/gold] against the e..."
+            },
+            {
+              "field": "upgrade.damage",
+              "old": "+3",
+              "new": "+1"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "Deal 6 damage.\nTrigger all [gold]Lightning[/gold] against the enemy.",
+              "new": "Deal 4 damage.\nTrigger all [gold]Lightning[/gold] against the enemy twice."
+            }
+          ]
+        },
+        {
+          "id": "UPROAR",
+          "name": "Uproar",
+          "changes": [
+            {
+              "field": "damage",
+              "old": "5",
+              "new": "6"
+            },
+            {
+              "field": "description",
+              "old": "Deal 5 damage twice.\nPlay a random Attack from your [gold]Draw Pile[/gold].",
+              "new": "Deal 6 damage twice.\nPlay a random Attack from your [gold]Draw Pile[/gold]."
+            },
+            {
+              "field": "upgrade_description",
+              "old": "Deal 7 damage twice.\nPlay a random Attack from your [gold]Draw Pile[/gold].",
+              "new": "Deal 8 damage twice.\nPlay a random Attack from your [gold]Draw Pile[/gold]."
+            },
+            {
+              "field": "vars.Damage",
+              "old": "5",
+              "new": "6"
+            }
+          ]
+        },
+        {
+          "id": "WASTE_AWAY",
+          "name": "Waste Away",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "575",
+              "new": "576"
+            }
+          ]
+        },
+        {
+          "id": "WOUND",
+          "name": "Wound",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "561",
+              "new": "562"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "relics",
+      "name": "Relics",
+      "old_count": 293,
+      "new_count": 296,
+      "added": [
+        {
+          "id": "FISHING_ROD",
+          "name": "Fishing Rod",
+          "rarity": "Ancient Relic"
+        },
+        {
+          "id": "KALEIDOSCOPE",
+          "name": "Kaleidoscope",
+          "rarity": "Ancient Relic"
+        },
+        {
+          "id": "SILKEN_TRESS",
+          "name": "Silken Tress",
+          "rarity": "Ancient Relic"
+        }
+      ],
+      "changed": [
+        {
+          "id": "BIG_MUSHROOM",
+          "name": "Big Mushroom",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "258",
+              "new": "261"
+            }
+          ]
+        },
+        {
+          "id": "BING_BONG",
+          "name": "Bing Bong",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "259",
+              "new": "262"
+            }
+          ]
+        },
+        {
+          "id": "BONE_TEA",
+          "name": "Bone Tea",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "261",
+              "new": "264"
+            }
+          ]
+        },
+        {
+          "id": "BYRDPIP",
+          "name": "Byrdpip",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "262",
+              "new": "265"
+            }
+          ]
+        },
+        {
+          "id": "CHOSEN_CHEESE",
+          "name": "The Chosen Cheese",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "287",
+              "new": "290"
+            }
+          ]
+        },
+        {
+          "id": "CIRCLET",
+          "name": "Circlet",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "292",
+              "new": "295"
+            }
+          ]
+        },
+        {
+          "id": "DARKSTONE_PERIAPT",
+          "name": "Darkstone Periapt",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "263",
+              "new": "266"
+            }
+          ]
+        },
+        {
+          "id": "DAUGHTER_OF_THE_WIND",
+          "name": "Daughter of the Wind",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "264",
+              "new": "267"
+            }
+          ]
+        },
+        {
+          "id": "DREAM_CATCHER",
+          "name": "Dream Catcher",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "265",
+              "new": "268"
+            }
+          ]
+        },
+        {
+          "id": "EMBER_TEA",
+          "name": "Ember Tea",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "266",
+              "new": "269"
+            }
+          ]
+        },
+        {
+          "id": "FAKE_ANCHOR",
+          "name": "Anchor???",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "257",
+              "new": "260"
+            }
+          ]
+        },
+        {
+          "id": "FAKE_BLOOD_VIAL",
+          "name": "Blood Vial???",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "260",
+              "new": "263"
+            }
+          ]
+        },
+        {
+          "id": "FAKE_HAPPY_FLOWER",
+          "name": "Happy Flower???",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "271",
+              "new": "274"
+            }
+          ]
+        },
+        {
+          "id": "FAKE_LEES_WAFFLE",
+          "name": "Lee's Waffle???",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "273",
+              "new": "276"
+            }
+          ]
+        },
+        {
+          "id": "FAKE_MANGO",
+          "name": "Mango???",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "275",
+              "new": "278"
+            }
+          ]
+        },
+        {
+          "id": "FAKE_MERCHANTS_RUG",
+          "name": "The Merchant's Rug???",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "288",
+              "new": "291"
+            }
+          ]
+        },
+        {
+          "id": "FAKE_ORICHALCUM",
+          "name": "Orichalcum???",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "278",
+              "new": "281"
+            }
+          ]
+        },
+        {
+          "id": "FAKE_SNECKO_EYE",
+          "name": "Snecko Eye???",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "281",
+              "new": "284"
+            }
+          ]
+        },
+        {
+          "id": "FAKE_STRIKE_DUMMY",
+          "name": "Strike Dummy???",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "282",
+              "new": "285"
+            }
+          ]
+        },
+        {
+          "id": "FAKE_VENERABLE_TEA_SET",
+          "name": "Venerable Tea Set???",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "289",
+              "new": "292"
+            }
+          ]
+        },
+        {
+          "id": "FORGOTTEN_SOUL",
+          "name": "Forgotten Soul",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "267",
+              "new": "270"
+            }
+          ]
+        },
+        {
+          "id": "FRAGRANT_MUSHROOM",
+          "name": "Fragrant Mushroom",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "268",
+              "new": "271"
+            }
+          ]
+        },
+        {
+          "id": "FRESNEL_LENS",
+          "name": "Fresnel Lens",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "269",
+              "new": "272"
+            }
+          ]
+        },
+        {
+          "id": "FUR_COAT",
+          "name": "Fur Coat",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "185",
+              "new": "186"
+            }
+          ]
+        },
+        {
+          "id": "GLASS_EYE",
+          "name": "Glass Eye",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "186",
+              "new": "187"
+            }
+          ]
+        },
+        {
+          "id": "GLITTER",
+          "name": "Glitter",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "187",
+              "new": "188"
+            }
+          ]
+        },
+        {
+          "id": "GOLDEN_COMPASS",
+          "name": "Golden Compass",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "188",
+              "new": "189"
+            }
+          ]
+        },
+        {
+          "id": "GOLDEN_PEARL",
+          "name": "Golden Pearl",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "189",
+              "new": "190"
+            }
+          ]
+        },
+        {
+          "id": "HAND_DRILL",
+          "name": "Hand Drill",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "270",
+              "new": "273"
+            }
+          ]
+        },
+        {
+          "id": "HEFTY_TABLET",
+          "name": "Hefty Tablet",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "190",
+              "new": "191"
+            }
+          ]
+        },
+        {
+          "id": "HISTORY_COURSE",
+          "name": "History Course",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "272",
+              "new": "275"
+            }
+          ]
+        },
+        {
+          "id": "INFUSED_CORE",
+          "name": "Infused Core",
+          "changes": [
+            {
+              "field": "description",
+              "old": "At the start of each combat, [gold]Channel[/gold] [blue]3[/blue] [gold]Lightn...",
+              "new": "At the start of each combat, [gold]Channel[/gold] [blue]3[/blue] [gold]Lightn..."
+            },
+            {
+              "field": "description_raw",
+              "old": "At the start of each combat, [gold]Channel[/gold] [blue]{Lightning}[/blue] [g...",
+              "new": "At the start of each combat, [gold]Channel[/gold] [blue]{Lightning}[/blue] [g..."
+            }
+          ]
+        },
+        {
+          "id": "IRON_CLUB",
+          "name": "Iron Club",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "191",
+              "new": "192"
+            }
+          ]
+        },
+        {
+          "id": "JEWELED_MASK",
+          "name": "Jeweled Mask",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "192",
+              "new": "193"
+            }
+          ]
+        },
+        {
+          "id": "JEWELRY_BOX",
+          "name": "Jewelry Box",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "193",
+              "new": "194"
+            }
+          ]
+        },
+        {
+          "id": "LARGE_CAPSULE",
+          "name": "Large Capsule",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "194",
+              "new": "196"
+            }
+          ]
+        },
+        {
+          "id": "LAVA_ROCK",
+          "name": "Lava Rock",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "195",
+              "new": "197"
+            }
+          ]
+        },
+        {
+          "id": "LEAD_PAPERWEIGHT",
+          "name": "Lead Paperweight",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "196",
+              "new": "198"
+            }
+          ]
+        },
+        {
+          "id": "LEAFY_POULTICE",
+          "name": "Leafy Poultice",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "197",
+              "new": "199"
+            }
+          ]
+        },
+        {
+          "id": "LOOMING_FRUIT",
+          "name": "Looming Fruit",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "198",
+              "new": "200"
+            },
+            {
+              "field": "image_variants.Cornucopia",
+              "old": "none",
+              "new": "/static/images/relics/looming_fruit.webp"
+            },
+            {
+              "field": "image_variants.Fruit",
+              "old": "none",
+              "new": "/static/images/relics/looming_fruit_2.webp"
+            },
+            {
+              "field": "notes[0]",
+              "old": "none",
+              "new": "Looming Fruit ships two icons (Cornucopia and Fruit). The game picks one per ..."
+            },
+            {
+              "field": "notes[1]",
+              "old": "none",
+              "new": "Both variants are functionally identical — same +31 Max HP effect — and the c..."
+            }
+          ]
+        },
+        {
+          "id": "LORDS_PARASOL",
+          "name": "Lord's Parasol",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "199",
+              "new": "201"
+            }
+          ]
+        },
+        {
+          "id": "LOST_COFFER",
+          "name": "Lost Coffer",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "200",
+              "new": "202"
+            }
+          ]
+        },
+        {
+          "id": "LOST_WISP",
+          "name": "Lost Wisp",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "274",
+              "new": "277"
+            }
+          ]
+        },
+        {
+          "id": "MASSIVE_SCROLL",
+          "name": "Massive Scroll",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "201",
+              "new": "203"
+            }
+          ]
+        },
+        {
+          "id": "MAW_BANK",
+          "name": "Maw Bank",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "276",
+              "new": "279"
+            }
+          ]
+        },
+        {
+          "id": "MEAT_CLEAVER",
+          "name": "Meat Cleaver",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "202",
+              "new": "204"
+            }
+          ]
+        },
+        {
+          "id": "MR_STRUGGLES",
+          "name": "Mr. Struggles",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "277",
+              "new": "280"
+            }
+          ]
+        },
+        {
+          "id": "MUSIC_BOX",
+          "name": "Music Box",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "203",
+              "new": "205"
+            }
+          ]
+        },
+        {
+          "id": "NEOWS_BONES",
+          "name": "Neow's Bones",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "204",
+              "new": "206"
+            }
+          ]
+        },
+        {
+          "id": "NEOWS_TALISMAN",
+          "name": "Neow's Talisman",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "205",
+              "new": "207"
+            }
+          ]
+        },
+        {
+          "id": "NEOWS_TORMENT",
+          "name": "Neow's Torment",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "206",
+              "new": "208"
+            }
+          ]
+        },
+        {
+          "id": "NEW_LEAF",
+          "name": "New Leaf",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "207",
+              "new": "209"
+            }
+          ]
+        },
+        {
+          "id": "NUTRITIOUS_OYSTER",
+          "name": "Nutritious Oyster",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "208",
+              "new": "210"
+            }
+          ]
+        },
+        {
+          "id": "NUTRITIOUS_SOUP",
+          "name": "Nutritious Soup",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "209",
+              "new": "211"
+            }
+          ]
+        },
+        {
+          "id": "PAELS_BLOOD",
+          "name": "Pael's Blood",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "210",
+              "new": "212"
+            }
+          ]
+        },
+        {
+          "id": "PAELS_CLAW",
+          "name": "Pael's Claw",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "211",
+              "new": "213"
+            }
+          ]
+        },
+        {
+          "id": "PAELS_EYE",
+          "name": "Pael's Eye",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "212",
+              "new": "214"
+            }
+          ]
+        },
+        {
+          "id": "PAELS_FLESH",
+          "name": "Pael's Flesh",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "213",
+              "new": "215"
+            }
+          ]
+        },
+        {
+          "id": "PAELS_GROWTH",
+          "name": "Pael's Growth",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "214",
+              "new": "216"
+            }
+          ]
+        },
+        {
+          "id": "PAELS_HORN",
+          "name": "Pael's Horn",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "215",
+              "new": "217"
+            }
+          ]
+        },
+        {
+          "id": "PAELS_LEGION",
+          "name": "Pael's Legion",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "216",
+              "new": "218"
+            }
+          ]
+        },
+        {
+          "id": "PAELS_TEARS",
+          "name": "Pael's Tears",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "217",
+              "new": "219"
+            }
+          ]
+        },
+        {
+          "id": "PAELS_TOOTH",
+          "name": "Pael's Tooth",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "218",
+              "new": "220"
+            }
+          ]
+        },
+        {
+          "id": "PAELS_WING",
+          "name": "Pael's Wing",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "219",
+              "new": "221"
+            }
+          ]
+        },
+        {
+          "id": "PANDORAS_BOX",
+          "name": "Pandora's Box",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "220",
+              "new": "222"
+            }
+          ]
+        },
+        {
+          "id": "PHIAL_HOLSTER",
+          "name": "Phial Holster",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "221",
+              "new": "223"
+            }
+          ]
+        },
+        {
+          "id": "PHILOSOPHERS_STONE",
+          "name": "Philosopher's Stone",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "222",
+              "new": "224"
+            }
+          ]
+        },
+        {
+          "id": "POLLINOUS_CORE",
+          "name": "Pollinous Core",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "279",
+              "new": "282"
+            }
+          ]
+        },
+        {
+          "id": "POMANDER",
+          "name": "Pomander",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "223",
+              "new": "225"
+            }
+          ]
+        },
+        {
+          "id": "PRECARIOUS_SHEARS",
+          "name": "Precarious Shears",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "224",
+              "new": "226"
+            }
+          ]
+        },
+        {
+          "id": "PRECISE_SCISSORS",
+          "name": "Precise Scissors",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "225",
+              "new": "227"
+            }
+          ]
+        },
+        {
+          "id": "PRESERVED_FOG",
+          "name": "Preserved Fog",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "226",
+              "new": "228"
+            }
+          ]
+        },
+        {
+          "id": "PRISMATIC_GEM",
+          "name": "Prismatic Gem",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "227",
+              "new": "229"
+            }
+          ]
+        },
+        {
+          "id": "PUMPKIN_CANDLE",
+          "name": "Pumpkin Candle",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "228",
+              "new": "230"
+            },
+            {
+              "field": "description",
+              "old": "Gain [energy:1] at the start of each turn. Extinguishes at the start of [gold...",
+              "new": "Gain [energy:1] at the start of each turn. Extinguishes after [blue]5[/blue] ..."
+            },
+            {
+              "field": "description_raw",
+              "old": "Gain {Energy:energyIcons()} at the start of each turn. Extinguishes at the st...",
+              "new": "Gain {Energy:energyIcons()} at the start of each turn. Extinguishes after [bl..."
+            }
+          ]
+        },
+        {
+          "id": "RADIANT_PEARL",
+          "name": "Radiant Pearl",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "229",
+              "new": "231"
+            }
+          ]
+        },
+        {
+          "id": "ROYAL_POISON",
+          "name": "Royal Poison",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "280",
+              "new": "283"
+            }
+          ]
+        },
+        {
+          "id": "RUNIC_PYRAMID",
+          "name": "Runic Pyramid",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "230",
+              "new": "232"
+            }
+          ]
+        },
+        {
+          "id": "SAI",
+          "name": "Sai",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "231",
+              "new": "233"
+            }
+          ]
+        },
+        {
+          "id": "SAND_CASTLE",
+          "name": "Sand Castle",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "232",
+              "new": "234"
+            }
+          ]
+        },
+        {
+          "id": "SCROLL_BOXES",
+          "name": "Scroll Boxes",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "233",
+              "new": "235"
+            }
+          ]
+        },
+        {
+          "id": "SEAL_OF_GOLD",
+          "name": "Seal of Gold",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "235",
+              "new": "237"
+            }
+          ]
+        },
+        {
+          "id": "SEA_GLASS",
+          "name": "Sea Glass",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "234",
+              "new": "236"
+            },
+            {
+              "field": "name_variants.Defect",
+              "old": "none",
+              "new": "Gear Glass"
+            },
+            {
+              "field": "name_variants.Ironclad",
+              "old": "none",
+              "new": "Demon Glass"
+            },
+            {
+              "field": "name_variants.Necrobinder",
+              "old": "none",
+              "new": "Lich Glass"
+            },
+            {
+              "field": "name_variants.Regent",
+              "old": "none",
+              "new": "Noble Glass"
+            },
+            {
+              "field": "name_variants.Silent",
+              "old": "none",
+              "new": "Venom Glass"
+            }
+          ]
+        },
+        {
+          "id": "SERE_TALON",
+          "name": "Sere Talon",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "236",
+              "new": "238"
+            }
+          ]
+        },
+        {
+          "id": "SIGNET_RING",
+          "name": "Signet Ring",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "237",
+              "new": "239"
+            }
+          ]
+        },
+        {
+          "id": "SILVER_CRUCIBLE",
+          "name": "Silver Crucible",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "238",
+              "new": "241"
+            }
+          ]
+        },
+        {
+          "id": "SMALL_CAPSULE",
+          "name": "Small Capsule",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "239",
+              "new": "242"
+            }
+          ]
+        },
+        {
+          "id": "SNECKO_EYE",
+          "name": "Snecko Eye",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "240",
+              "new": "243"
+            }
+          ]
+        },
+        {
+          "id": "SOZU",
+          "name": "Sozu",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "241",
+              "new": "244"
+            }
+          ]
+        },
+        {
+          "id": "SPIKED_GAUNTLETS",
+          "name": "Spiked Gauntlets",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "242",
+              "new": "245"
+            }
+          ]
+        },
+        {
+          "id": "STONE_HUMIDIFIER",
+          "name": "Stone Humidifier",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "243",
+              "new": "246"
+            }
+          ]
+        },
+        {
+          "id": "STORYBOOK",
+          "name": "Storybook",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "244",
+              "new": "247"
+            }
+          ]
+        },
+        {
+          "id": "SWORD_OF_JADE",
+          "name": "Sword of Jade",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "283",
+              "new": "286"
+            }
+          ]
+        },
+        {
+          "id": "SWORD_OF_STONE",
+          "name": "Sword of Stone",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "284",
+              "new": "287"
+            }
+          ]
+        },
+        {
+          "id": "TANXS_WHISTLE",
+          "name": "Tanx's Whistle",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "245",
+              "new": "248"
+            }
+          ]
+        },
+        {
+          "id": "TEA_OF_DISCOURTESY",
+          "name": "Tea of Discourtesy",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "285",
+              "new": "288"
+            }
+          ]
+        },
+        {
+          "id": "THE_BOOT",
+          "name": "The Boot",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "286",
+              "new": "289"
+            }
+          ]
+        },
+        {
+          "id": "THROWING_AXE",
+          "name": "Throwing Axe",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "246",
+              "new": "249"
+            }
+          ]
+        },
+        {
+          "id": "TOASTY_MITTENS",
+          "name": "Toasty Mittens",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "247",
+              "new": "250"
+            }
+          ]
+        },
+        {
+          "id": "TOUCH_OF_OROBAS",
+          "name": "Touch of Orobas",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "248",
+              "new": "251"
+            }
+          ]
+        },
+        {
+          "id": "TOY_BOX",
+          "name": "Toy Box",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "249",
+              "new": "252"
+            }
+          ]
+        },
+        {
+          "id": "TRI_BOOMERANG",
+          "name": "Tri-Boomerang",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "250",
+              "new": "253"
+            }
+          ]
+        },
+        {
+          "id": "VELVET_CHOKER",
+          "name": "Velvet Choker",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "251",
+              "new": "254"
+            }
+          ]
+        },
+        {
+          "id": "VERY_HOT_COCOA",
+          "name": "Very Hot Cocoa",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "252",
+              "new": "255"
+            }
+          ]
+        },
+        {
+          "id": "WAR_HAMMER",
+          "name": "War Hammer",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "253",
+              "new": "256"
+            }
+          ]
+        },
+        {
+          "id": "WHISPERING_EARRING",
+          "name": "Whispering Earring",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "254",
+              "new": "257"
+            }
+          ]
+        },
+        {
+          "id": "WINGED_BOOTS",
+          "name": "Winged Boots",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "255",
+              "new": "258"
+            }
+          ]
+        },
+        {
+          "id": "WONGOS_MYSTERY_TICKET",
+          "name": "Wongo's Mystery Ticket",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "291",
+              "new": "294"
+            }
+          ]
+        },
+        {
+          "id": "WONGO_CUSTOMER_APPRECIATION_BADGE",
+          "name": "Wongo Customer Appreciation Badge",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "290",
+              "new": "293"
+            }
+          ]
+        },
+        {
+          "id": "YUMMY_COOKIE",
+          "name": "Yummy Cookie",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "256",
+              "new": "259"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "monsters",
+      "name": "Monsters",
+      "old_count": 115,
+      "new_count": 115,
+      "added": [
+        {
+          "id": "AEONGLASS",
+          "name": "Aeonglass",
+          "min_hp": 512
+        }
+      ],
+      "removed": [
+        {
+          "id": "DOORMAKER",
+          "name": "Doormaker"
+        }
+      ],
+      "changed": [
+        {
+          "id": "AXEBOT",
+          "name": "Axebot",
+          "changes": [
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "Bot Buddies",
+              "new": "Axebot"
+            }
+          ]
+        },
+        {
+          "id": "CUBEX_CONSTRUCT",
+          "name": "Cubex Construct",
+          "changes": [
+            {
+              "field": "attack_pattern.states[SUBMERGE_MOVE].id",
+              "old": "SUBMERGE_MOVE",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[SUBMERGE_MOVE].move_id",
+              "old": "SUBMERGE",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[SUBMERGE_MOVE].next",
+              "old": "CHARGE_UP_MOVE",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[SUBMERGE_MOVE].type",
+              "old": "move",
+              "new": "none"
+            },
+            {
+              "field": "moves[SUBMERGE].block",
+              "old": "15",
+              "new": "none"
+            },
+            {
+              "field": "moves[SUBMERGE].id",
+              "old": "SUBMERGE",
+              "new": "none"
+            },
+            {
+              "field": "moves[SUBMERGE].intent",
+              "old": "Defend",
+              "new": "none"
+            },
+            {
+              "field": "moves[SUBMERGE].name",
+              "old": "Submerge",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "EYE_WITH_TEETH",
+          "name": "Eye with Teeth",
+          "changes": [
+            {
+              "field": "name",
+              "old": "Eye With Teeth",
+              "new": "Eye with Teeth"
+            }
+          ]
+        },
+        {
+          "id": "HAUNTED_SHIP",
+          "name": "Haunted Ship",
+          "changes": [
+            {
+              "field": "moves[HAUNT].intent",
+              "old": "Status",
+              "new": "Debuff + Status"
+            },
+            {
+              "field": "moves[RAMMING_SPEED].intent",
+              "old": "Attack + Debuff",
+              "new": "Attack"
+            }
+          ]
+        },
+        {
+          "id": "SOUL_FYSH",
+          "name": "Soul Fysh",
+          "changes": [
+            {
+              "field": "damage_values.Scream.ascension",
+              "old": "12",
+              "new": "15"
+            },
+            {
+              "field": "damage_values.Scream.normal",
+              "old": "11",
+              "new": "13"
+            },
+            {
+              "field": "moves[SCREAM].damage.ascension",
+              "old": "12",
+              "new": "15"
+            },
+            {
+              "field": "moves[SCREAM].damage.normal",
+              "old": "11",
+              "new": "13"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "enchantments",
+      "name": "Enchantments",
+      "old_count": 22,
+      "new_count": 22,
+      "changed": [
+        {
+          "id": "INKY",
+          "name": "Inky",
+          "changes": [
+            {
+              "field": "description",
+              "old": "This card deals [blue]2[/blue] additional damage and applies [blue]1[/blue] [...",
+              "new": "This card deals [blue]1[/blue] additional damage and applies [blue]1[/blue] [..."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "encounters",
+      "name": "Encounters",
+      "old_count": 87,
+      "new_count": 87,
+      "added": [
+        {
+          "id": "AEONGLASS_BOSS",
+          "name": "Aeonglass",
+          "act": "Act 3 - Glory"
+        }
+      ],
+      "removed": [
+        {
+          "id": "DOORMAKER_BOSS",
+          "name": "The Doormaker"
+        }
+      ],
+      "changed": [
+        {
+          "id": "AXEBOTS_NORMAL",
+          "name": "Axebot",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "[b]The Adventurer[/b] was dismembered by some [gold]Bot Buddies[/gold].",
+              "new": "[b]The Adventurer[/b] was dismembered by an [gold]Axebot[/gold]."
+            },
+            {
+              "field": "name",
+              "old": "Bot Buddies",
+              "new": "Axebot"
+            }
+          ]
+        },
+        {
+          "id": "FOGMOG_NORMAL",
+          "name": "Fogmog",
+          "changes": [
+            {
+              "field": "monsters[EYE_WITH_TEETH].name",
+              "old": "Eye With Teeth",
+              "new": "Eye with Teeth"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "events",
+      "name": "Events",
+      "old_count": 66,
+      "new_count": 66,
+      "changed": [
+        {
+          "id": "NEOW",
+          "name": "Neow",
+          "changes": [
+            {
+              "field": "relics[2]",
+              "old": "GOLDEN_PEARL",
+              "new": "FISHING_ROD"
+            },
+            {
+              "field": "relics[3]",
+              "old": "LEAD_PAPERWEIGHT",
+              "new": "GOLDEN_PEARL"
+            },
+            {
+              "field": "relics[4]",
+              "old": "LOST_COFFER",
+              "new": "KALEIDOSCOPE"
+            },
+            {
+              "field": "relics[5]",
+              "old": "NEOWS_TORMENT",
+              "new": "LEAD_PAPERWEIGHT"
+            },
+            {
+              "field": "relics[6]",
+              "old": "NEW_LEAF",
+              "new": "LOST_COFFER"
+            },
+            {
+              "field": "relics[7]",
+              "old": "PRECISE_SCISSORS",
+              "new": "MASSIVE_SCROLL"
+            },
+            {
+              "field": "relics[8]",
+              "old": "PHIAL_HOLSTER",
+              "new": "NEOWS_TORMENT"
+            },
+            {
+              "field": "relics[9]",
+              "old": "WINGED_BOOTS",
+              "new": "NEW_LEAF"
+            },
+            {
+              "field": "relics[10]",
+              "old": "MASSIVE_SCROLL",
+              "new": "PHIAL_HOLSTER"
+            },
+            {
+              "field": "relics[11]",
+              "old": "LAVA_ROCK",
+              "new": "PRECISE_SCISSORS"
+            },
+            {
+              "field": "relics[12]",
+              "old": "NEOWS_TALISMAN",
+              "new": "SILKEN_TRESS"
+            },
+            {
+              "field": "relics[13]",
+              "old": "NUTRITIOUS_OYSTER",
+              "new": "WINGED_BOOTS"
+            },
+            {
+              "field": "relics[14]",
+              "old": "POMANDER",
+              "new": "LAVA_ROCK"
+            },
+            {
+              "field": "relics[15]",
+              "old": "SMALL_CAPSULE",
+              "new": "NEOWS_TALISMAN"
+            },
+            {
+              "field": "relics[16]",
+              "old": "STONE_HUMIDIFIER",
+              "new": "NUTRITIOUS_OYSTER"
+            },
+            {
+              "field": "relics[17]",
+              "old": "CURSED_PEARL",
+              "new": "POMANDER"
+            },
+            {
+              "field": "relics[18]",
+              "old": "HEFTY_TABLET",
+              "new": "SMALL_CAPSULE"
+            },
+            {
+              "field": "relics[19]",
+              "old": "LARGE_CAPSULE",
+              "new": "STONE_HUMIDIFIER"
+            },
+            {
+              "field": "relics[20]",
+              "old": "LEAFY_POULTICE",
+              "new": "CURSED_PEARL"
+            },
+            {
+              "field": "relics[21]",
+              "old": "PRECARIOUS_SHEARS",
+              "new": "HEFTY_TABLET"
+            },
+            {
+              "field": "relics[22]",
+              "old": "SILVER_CRUCIBLE",
+              "new": "LARGE_CAPSULE"
+            },
+            {
+              "field": "relics[23]",
+              "old": "NEOWS_BONES",
+              "new": "LEAFY_POULTICE"
+            },
+            {
+              "field": "relics[24]",
+              "old": "SCROLL_BOXES",
+              "new": "NEOWS_BONES"
+            },
+            {
+              "field": "relics[25]",
+              "old": "none",
+              "new": "PRECARIOUS_SHEARS"
+            },
+            {
+              "field": "relics[26]",
+              "old": "none",
+              "new": "SILVER_CRUCIBLE"
+            },
+            {
+              "field": "relics[27]",
+              "old": "none",
+              "new": "SCROLL_BOXES"
+            }
+          ]
+        },
+        {
+          "id": "TEZCATARA",
+          "name": "Tezcatara",
+          "changes": [
+            {
+              "field": "relics[5]",
+              "old": "SEAL_OF_GOLD",
+              "new": "TOASTY_MITTENS"
+            },
+            {
+              "field": "relics[6]",
+              "old": "TOASTY_MITTENS",
+              "new": "GOLDEN_COMPASS"
+            },
+            {
+              "field": "relics[7]",
+              "old": "GOLDEN_COMPASS",
+              "new": "PUMPKIN_CANDLE"
+            },
+            {
+              "field": "relics[8]",
+              "old": "PUMPKIN_CANDLE",
+              "new": "TOY_BOX"
+            },
+            {
+              "field": "relics[9]",
+              "old": "TOY_BOX",
+              "new": "SEAL_OF_GOLD"
+            }
+          ]
+        },
+        {
+          "id": "WAR_HISTORIAN_REPY",
+          "name": "War Historian, Repy",
+          "changes": [
+            {
+              "field": "pages[EXTRA_UNLOCK_CAGE].description",
+              "old": "none",
+              "new": "You hear [green]Repy[/green] let out a sigh of relief as you pull out the spa..."
+            },
+            {
+              "field": "pages[EXTRA_UNLOCK_CAGE].id",
+              "old": "none",
+              "new": "EXTRA_UNLOCK_CAGE"
+            },
+            {
+              "field": "pages[EXTRA_UNLOCK_CHEST].description",
+              "old": "none",
+              "new": "As [green]Repy[/green] walks away, you use your spare key to open the chest."
+            },
+            {
+              "field": "pages[EXTRA_UNLOCK_CHEST].id",
+              "old": "none",
+              "new": "EXTRA_UNLOCK_CHEST"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "powers",
+      "name": "Powers",
+      "old_count": 258,
+      "new_count": 257,
+      "added": [
+        {
+          "id": "EBB",
+          "name": "Ebb",
+          "type": "Debuff"
+        },
+        {
+          "id": "WITHERING_PRESENCE",
+          "name": "Withering Presence",
+          "type": "Buff"
+        }
+      ],
+      "removed": [
+        {
+          "id": "GRASP",
+          "name": "Grasp"
+        },
+        {
+          "id": "HUNGER",
+          "name": "Hunger"
+        },
+        {
+          "id": "SCRUTINY",
+          "name": "Scrutiny"
+        }
+      ],
+      "changed": [
+        {
+          "id": "FLANKING",
+          "name": "Flanking",
+          "changes": [
+            {
+              "field": "description",
+              "old": "Other allies deal [blue]2x[/blue] more attack damage to this enemy this turn.",
+              "new": "Other allies deal [blue]2x[/blue] the attack damage to this enemy this turn."
+            }
+          ]
+        },
+        {
+          "id": "HARD_TO_KILL",
+          "name": "Hard to Kill",
+          "changes": [
+            {
+              "field": "description",
+              "old": "Reduce all damage taken and HP lost by [gold]this creature[/gold] to [blue]9[...",
+              "new": "Reduce all damage taken and HP lost by [gold]this creature[/gold] to [blue][A..."
+            },
+            {
+              "field": "description_raw",
+              "old": "Reduce all damage taken and HP lost by [gold]{OwnerName}[/gold] to [blue]9[/b...",
+              "new": "Reduce all damage taken and HP lost by [gold]{OwnerName}[/gold] to [blue]{Amo..."
+            }
+          ]
+        },
+        {
+          "id": "SWORD_SAGE",
+          "name": "Sword Sage",
+          "changes": [
+            {
+              "field": "description",
+              "old": "[gold]Sovereign Blade[/gold] now hits [blue]1[/blue] additional time.",
+              "new": "[gold]Sovereign Blade[/gold] gains [gold]Replay[/gold] [blue]1[/blue]."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "afflictions",
+      "name": "Afflictions",
+      "old_count": 8,
+      "new_count": 6,
+      "removed": [
+        {
+          "id": "DEVOURED",
+          "name": "Devoured"
+        },
+        {
+          "id": "WEIGHTED",
+          "name": "Weighted"
+        }
+      ]
+    }
+  ]
+}

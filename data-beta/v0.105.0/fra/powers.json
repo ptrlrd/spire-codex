@@ -1,0 +1,2572 @@
+[
+  {
+    "id": "ACCELERANT",
+    "name": "Accélérant",
+    "description": "Les dégâts du [gold]Poison[/gold] se déclenchent une fois supplémentaire.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/accelerant_power.webp"
+  },
+  {
+    "id": "ACCURACY",
+    "name": "Précision",
+    "description": "Les [gold]Surins[/gold] infligent des dégâts supplémentaires.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/accuracy_power.webp"
+  },
+  {
+    "id": "ADAPTABLE",
+    "name": "Adaptable",
+    "description": "Lorsque [gold]this creature[/gold] est vaincu, il revient à la vie encore plus puissant.",
+    "description_raw": "Lorsque [gold]{OwnerName}[/gold] est vaincu, il revient à la vie encore plus puissant.",
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/adaptable_power.webp"
+  },
+  {
+    "id": "AFTERIMAGE",
+    "name": "Image rémanente",
+    "description": "Lorsque vous jouez une carte, gagnez [blue]1[/blue] d'[gold]Armure[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/afterimage_power.webp"
+  },
+  {
+    "id": "AGGRESSION",
+    "name": "Agression",
+    "description": "Au début de votre tour, placez une Attaque aléatoire depuis votre [gold]Défausse[/gold] dans votre [gold]Main[/gold] et [gold]Améliorez[/gold]-la pour le restant du combat.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/aggression_power.webp"
+  },
+  {
+    "id": "ANTICIPATE",
+    "name": "Temporary Dexterity",
+    "description": "Gagnez de la [gold]Dextérité[/gold] jusqu'à la fin de ce tour.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/anticipate_power.webp"
+  },
+  {
+    "id": "ARSENAL",
+    "name": "Arsenal",
+    "description": "Lorsque vous créez une carte, gagnez [blue]1[/blue] de [gold]Force[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/arsenal_power.webp"
+  },
+  {
+    "id": "ARTIFACT",
+    "name": "Artéfact",
+    "description": "[gold]Intercepte[/gold] les effets néfastes.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/artifact_power.webp"
+  },
+  {
+    "id": "ASLEEP",
+    "name": "Endormi",
+    "description": "Se réveille lorsqu'il perd des PV, ou bien dans [blue]2[/blue] tours.",
+    "description_raw": "Se réveille lorsqu'il perd des PV, ou bien {Amount:plural:au prochain tour|dans [blue]{}[/blue] tours}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/asleep_power.webp"
+  },
+  {
+    "id": "AUTOMATION",
+    "name": "Automatisation",
+    "description": "Toutes les [blue]10[/blue] cartes que vous piochez, gagnez [energy:1].",
+    "description_raw": "Toutes les [blue]{BaseCards}[/blue] cartes que vous piochez, gagnez {Amount:energyIcons()}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/automation_power.webp"
+  },
+  {
+    "id": "BACK_ATTACK_LEFT",
+    "name": "Dos tourné",
+    "description": "Inflige [blue]50%[/blue] de dégâts supplémentaires lorsqu'il vous attaque de dos.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/back_attack_left_power.webp"
+  },
+  {
+    "id": "BACK_ATTACK_RIGHT",
+    "name": "Dos tourné",
+    "description": "Inflige [blue]50%[/blue] de dégâts supplémentaires lorsqu'il vous attaque de dos.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/back_attack_right_power.webp"
+  },
+  {
+    "id": "BARRICADE",
+    "name": "Barricade",
+    "description": "L'[gold]Armure[/gold] persiste au début de votre tour.",
+    "description_raw": "L'[gold]Armure[/gold] persiste au début {ApplierName.StringValue:cond:du tour de [gold]{OwnerName}[/gold]|de votre tour}.",
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/barricade_power.webp"
+  },
+  {
+    "id": "BATTLEWORN_DUMMY_TIME_LIMIT",
+    "name": "Limite de temps",
+    "description": "Il vous reste [blue]3[/blue] tours pour vaincre le Mannequin d'entraînement.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/battleworn_dummy_time_limit_power.webp"
+  },
+  {
+    "id": "BEACON_OF_HOPE",
+    "name": "Balise d'espoir",
+    "description": "Lorsque vous gagnez de l'[gold]Armure[/gold] pendant votre tour, les autres joueurs en gagnent la moitié.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/beacon_of_hope_power.webp"
+  },
+  {
+    "id": "BIASED_COGNITION",
+    "name": "Biais cognitif",
+    "description": "Au début de votre tour, perdez [blue]1[/blue] de [gold]Focalisation[/gold].",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/biased_cognition_power.webp"
+  },
+  {
+    "id": "BLACK_HOLE",
+    "name": "Trou noir",
+    "description": "Lorsque vous dépensez ou que vous gagnez [star:1], infligez [blue]3[/blue] dégâts à TOUS les ennemis.",
+    "description_raw": "Lorsque vous dépensez ou que vous gagnez {singleStarIcon}, infligez [blue]3[/blue] dégâts à TOUS les ennemis.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/black_hole_power.webp"
+  },
+  {
+    "id": "BLOCK_NEXT_TURN",
+    "name": "Armure au prochain tour",
+    "description": "Au début de votre prochain tour, gagnez [blue]4[/blue] d'[gold]Armure[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/block_next_turn_power.webp"
+  },
+  {
+    "id": "BLUR",
+    "name": "Trouble",
+    "description": "Votre [gold]Armure[/gold] persiste au début de vos 2 prochains tours.",
+    "description_raw": "Votre [gold]Armure[/gold] persiste au début de {Amount:plural:votre prochain tour|vos {} prochains tours}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/blur_power.webp"
+  },
+  {
+    "id": "BORROWED_TIME",
+    "name": "Sursis",
+    "description": "Les cartes coûtent [energy:1] de plus ce tour.",
+    "description_raw": "Les cartes coûtent {Amount:energyIcons()} de plus ce tour.",
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/borrowed_time_power.webp"
+  },
+  {
+    "id": "BUFFER",
+    "name": "Tampon",
+    "description": "Intercepte les [blue]2[/blue] prochaines pertes de PV.",
+    "description_raw": "Intercepte {Amount:plural:la prochaine perte|les [blue]{}[/blue] prochaines pertes} de PV.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/buffer_power.webp"
+  },
+  {
+    "id": "BURROWED",
+    "name": "Enfoui",
+    "description": "L'[gold]Armure[/gold] persiste au début du tour de [gold]this creature[/gold]. Sera [gold]Étourdi[/gold] si toute l'[gold]Armure[/gold] est perdue.",
+    "description_raw": "L'[gold]Armure[/gold] persiste au début du tour de [gold]{OwnerName}[/gold]. Sera [gold]Étourdi[/gold] si toute l'[gold]Armure[/gold] est perdue.",
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/burrowed_power.webp"
+  },
+  {
+    "id": "BURST",
+    "name": "Déflagration",
+    "description": "Les [blue]2[/blue] prochaines Compétences que vous jouez ce tour sont jouées une fois supplémentaire.",
+    "description_raw": "{Amount:plural:La prochaine Compétence|Les [blue]{}[/blue] prochaines Compétences} que vous jouez ce tour {Amount:plural:est jouée|sont jouées} une fois supplémentaire.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/burst_power.webp"
+  },
+  {
+    "id": "CALAMITY",
+    "name": "Calamité",
+    "description": "Lorsque vous jouez une Attaque, ajoutez [blue]2[/blue] Attaques aléatoires à votre [gold]Main[/gold].",
+    "description_raw": "Lorsque vous jouez une Attaque, ajoutez {Amount:plural:une Attaque aléatoire|[blue]{}[/blue] Attaques aléatoires} à votre [gold]Main[/gold].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/calamity_power.webp"
+  },
+  {
+    "id": "CALCIFY",
+    "name": "Calcification",
+    "description": "Les attaques de [gold]Titos[/gold] infligent des dégâts supplémentaires.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/calcify_power.webp"
+  },
+  {
+    "id": "CALL_OF_THE_VOID",
+    "name": "Appel du néant",
+    "description": "Au début de votre tour, ajoutez [blue]1[/blue] carte aléatoire à votre [gold]Main[/gold]. Elle gagne [gold]Éthéré[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/call_of_the_void_power.webp"
+  },
+  {
+    "id": "CHAINS_OF_BINDING",
+    "name": "Entraves",
+    "description": "Les [blue]3[/blue] premières cartes piochées chaque tour sont Affligées par [gold]Entrave[/gold].",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/chains_of_binding_power.webp"
+  },
+  {
+    "id": "CHILD_OF_THE_STARS",
+    "name": "Enfant des étoiles",
+    "description": "Gagnez [blue]1[/blue] d'[gold]Armure[/gold] pour chaque [star:1] dépensée.",
+    "description_raw": "Gagnez [blue]1[/blue] d'[gold]Armure[/gold] pour chaque {singleStarIcon} dépensée.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/child_of_the_stars_power.webp"
+  },
+  {
+    "id": "CLARITY",
+    "name": "Clarté",
+    "description": "Au début de vos [blue]2[/blue] prochains tours, piochez [blue]1[/blue] carte supplémentaire.",
+    "description_raw": "Au début de {Amount:plural:votre prochain tour|vos [blue]{}[/blue] prochains tours}, piochez [blue]1[/blue] carte supplémentaire.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/clarity_power.webp"
+  },
+  {
+    "id": "COLOSSUS",
+    "name": "Colosse",
+    "description": "Les dégâts que vous subissez des ennemis [gold]Vulnérables[/gold] sont réduits de [blue]50%[/blue] pour les [blue]2[/blue] prochains tours.",
+    "description_raw": "Les dégâts que vous subissez des ennemis [gold]Vulnérables[/gold] sont réduits de [blue]{DamageDecrease:percentLess()}%[/blue] {Amount:plural:pendant ce tour|pour les [blue]{}[/blue] prochains tours}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/colossus_power.webp"
+  },
+  {
+    "id": "CONFUSED",
+    "name": "Désorienté",
+    "description": "Les cartes que vous piochez ont un coût aléatoire entre[blue]0[/blue] et [blue]3[/blue].",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/confused_power.webp"
+  },
+  {
+    "id": "CONQUEROR",
+    "name": "Conquérant",
+    "description": "[gold]Lame Souveraine[/gold] inflige le double de dégâts à [gold]this creature[/gold] pour les [blue]2[/blue] prochains tours.",
+    "description_raw": "[gold]Lame Souveraine[/gold] inflige le double de dégâts à [gold]{OwnerName}[/gold] {Amount:plural:pendant ce tour|pour les [blue]{}[/blue] prochains tours}.",
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/conqueror_power.webp"
+  },
+  {
+    "id": "CONSTRICT",
+    "name": "Étreinte",
+    "description": "Si l'Étrangleur est en vie, vous subissez [blue]2[/blue] dégâts à la fin de votre tour.",
+    "description_raw": "Si l'Étrangleur est en vie, vous subissez {Amount:plural:[blue]{}[/blue] dégât|[blue]{}[/blue] dégâts} à la fin de votre tour.",
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/constrict_power.webp"
+  },
+  {
+    "id": "CONSUMING_SHADOW",
+    "name": "Ombre dévorante",
+    "description": "À la fin de votre tour, [gold]Activez[/gold] vos [blue]2[/blue] Orbes le plus à gauche.",
+    "description_raw": "À la fin de votre tour, [gold]Activez[/gold] {Amount:plural:votre Orbe|vos [blue]{}[/blue] Orbes} le plus à gauche.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/consuming_shadow_power.webp"
+  },
+  {
+    "id": "COOLANT",
+    "name": "Liquide de refroidissement",
+    "description": "Au début de votre tour, gagnez [blue]3[/blue] d'[gold]Armure[/gold] pour chaque Orbe différent que vous possédez.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/coolant_power.webp"
+  },
+  {
+    "id": "COORDINATE",
+    "name": "Temporary Strength",
+    "description": "Gagnez de la [gold]Force[/gold] jusqu'à la fin de ce tour.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/coordinate_power.webp"
+  },
+  {
+    "id": "CORROSIVE_WAVE",
+    "name": "Vague corrosive",
+    "description": "Lorsque vous piochez une carte pendant ce tour, appliquez [blue]2[/blue] de [gold]Poison[/gold] à TOUS les ennemis.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/corrosive_wave_power.webp"
+  },
+  {
+    "id": "CORRUPTION",
+    "name": "Corruption",
+    "description": "Vos Compétences coûtent [blue]0[/blue].\nLorsque vous jouez une Compétence, [gold]Épuisez[/gold]-la.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/corruption_power.webp"
+  },
+  {
+    "id": "COUNTDOWN",
+    "name": "Décompte",
+    "description": "Au début de votre tour, appliquez [blue]6[/blue] de [gold]Fatalité[/gold] à un ennemi aléatoire.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/countdown_power.webp"
+  },
+  {
+    "id": "COVERED",
+    "name": "Protection",
+    "description": "Un(e) allié(e) vous protège et interceptera toutes les attaques dirigées contre vous.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/covered_power.webp"
+  },
+  {
+    "id": "CRAB_RAGE",
+    "name": "Crabe furieux",
+    "description": "Lorsqu'un allié périt, [gold]this creature[/gold] gagne [blue]6[/blue] de [gold]Force[/gold] et [blue]99[/blue] d'[gold]Armure[/gold].",
+    "description_raw": "Lorsqu'un allié périt, [gold]{OwnerName}[/gold] gagne [blue]{StrengthPower}[/blue] de [gold]Force[/gold] et [blue]{Block}[/blue] d'[gold]Armure[/gold].",
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/crab_rage_power.webp"
+  },
+  {
+    "id": "CREATIVE_AI",
+    "name": "IA créative",
+    "description": "Au début de votre tour, ajoutez [blue]2[/blue] Pouvoirs aléatoires à votre [gold]Main[/gold].",
+    "description_raw": "Au début de votre tour, ajoutez {Amount:plural:un Pouvoir aléatoire|[blue]{}[/blue] Pouvoirs aléatoires} à votre [gold]Main[/gold].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/creative_ai_power.webp"
+  },
+  {
+    "id": "CRIMSON_MANTLE",
+    "name": "Manteau pourpre",
+    "description": "Au début de votre tour, perdez [blue]0[/blue] PV et gagnez [blue][Amount][/blue] d'[gold]Armure[/gold].",
+    "description_raw": "Au début de votre tour, perdez [blue]{SelfDamage}[/blue] PV et gagnez [blue]{Amount}[/blue] d'[gold]Armure[/gold].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/crimson_mantle_power.webp"
+  },
+  {
+    "id": "CRUELTY",
+    "name": "Cruauté",
+    "description": "Les ennemis [gold]Vulnérables[/gold] subissent des dégâts supplémentaires.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/cruelty_power.webp"
+  },
+  {
+    "id": "CRUSH_UNDER",
+    "name": "Temporary Strength Down",
+    "description": "Perdez de la [gold]Force[/gold] jusqu'à la fin de ce tour.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/crush_under_power.webp"
+  },
+  {
+    "id": "CURIOUS",
+    "name": "Curiosité",
+    "description": "Les Pouvoirs coûtent [blue]1[/blue] [energy:1] en moins.",
+    "description_raw": "Les Pouvoirs coûtent [blue]1[/blue] {energyPrefix:energyIcons(1)} en moins.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/curious_power.webp"
+  },
+  {
+    "id": "CURL_UP",
+    "name": "En boule",
+    "description": "Lorsqu'il subit des dégâts, se roule en boule et gagne de l'Armure. (Une fois par combat)",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/curl_up_power.webp"
+  },
+  {
+    "id": "DAMPEN",
+    "name": "Atténuation",
+    "description": "Tant que le Chevalier-mage est en vie, TOUTES vos cartes perdent leur [gold]Amélioration[/gold].",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "None",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/dampen_power.webp"
+  },
+  {
+    "id": "DANSE_MACABRE",
+    "name": "Danse Macabre",
+    "description": "Lorsque vous jouez une carte qui coûte [energy:2] d'Énergie ou plus, gagnez [blue][Amount][/blue] [gold]Armure[/gold].",
+    "description_raw": "Lorsque vous jouez une carte qui coûte {Energy:energyIcons()} d'Énergie ou plus, gagnez [blue]{Amount}[/blue] [gold]Armure[/gold].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/danse_macabre_power.webp"
+  },
+  {
+    "id": "DARK_EMBRACE",
+    "name": "Sombre étreinte",
+    "description": "Lorsqu'une carte est [gold]Épuisée[/gold], piochez [blue]1[/blue] carte.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/dark_embrace_power.webp"
+  },
+  {
+    "id": "DARK_SHACKLES",
+    "name": "Temporary Strength Down",
+    "description": "Perdez de la [gold]Force[/gold] jusqu'à la fin de ce tour.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/dark_shackles_power.webp"
+  },
+  {
+    "id": "DEBILITATE",
+    "name": "Amoindrir",
+    "description": "Les effets de [gold]Vulnérable[/gold] et [gold]Affaibli[/gold] sont doublés pendant les [blue]2[/blue] prochains tours.",
+    "description_raw": "Les effets de [gold]Vulnérable[/gold] et [gold]Affaibli[/gold] sont doublés pendant {Amount:plural:ce tour|les [blue]{}[/blue] prochains tours}.",
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/debilitate_power.webp"
+  },
+  {
+    "id": "DEMESNE",
+    "name": "Domaine",
+    "description": "Au début de votre tour, gagnez [blue]1[/blue] d'[gold]Énergie[/gold] et piochez [blue]1[/blue] carte supplémentaire.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/demesne_power.webp"
+  },
+  {
+    "id": "DEMISE",
+    "name": "Trépas",
+    "description": "À la fin de son tour, [gold]this creature[/gold] perd [blue][Amount][/blue] PV.",
+    "description_raw": "À la fin de son tour, [gold]{OwnerName}[/gold] perd [blue]{Amount}[/blue] PV.",
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/demise_power.webp"
+  },
+  {
+    "id": "DEMON_FORM",
+    "name": "Forme démoniaque",
+    "description": "Au début de votre tour, gagnez [blue]2[/blue] de [gold]Force[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/demon_form_power.webp"
+  },
+  {
+    "id": "DEVOUR_LIFE",
+    "name": "Dévoration de vie",
+    "description": "Lorsque vous jouez une [gold]Âme[/gold], [gold]Invoquez[/gold] pour [blue]1[/blue].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/devour_life_power.webp"
+  },
+  {
+    "id": "DEXTERITY",
+    "name": "Dextérité",
+    "description": "Augmente l'[gold]Armure[/gold] conférée par vos cartes de [blue][/blue].",
+    "description_raw": "{Amount:cond:<0?Diminue|Augmente} l'[gold]Armure[/gold] conférée par vos cartes de [blue]{Amount:abs()}[/blue].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": true,
+    "image_url": "/static/images/powers/dexterity_power.webp"
+  },
+  {
+    "id": "DIAMOND_DIADEM",
+    "name": "Diadème de diamant",
+    "description": "Les ennemis infligent [blue]50%[/blue] de dégâts en moins pendant ce tour.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/diamond_diadem_power.webp"
+  },
+  {
+    "id": "DIE_FOR_YOU",
+    "name": "Ma vie pour toi",
+    "description": "[gold]Titos[/gold] intercepte tous les dégâts d'attaque (sauf les dégâts bloqués par l'Armure).",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/die_for_you_power.webp"
+  },
+  {
+    "id": "DISINTEGRATION",
+    "name": "Désintégration",
+    "description": "À la fin de votre tour, subissez [blue]5[/blue] dégâts.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/disintegration_power.webp"
+  },
+  {
+    "id": "DOOM",
+    "name": "Fatalité",
+    "description": "À la fin du tour adverse, si [gold]this creature[/gold] possède [blue][Amount][/blue] PV ou moins, il périt.",
+    "description_raw": "À la fin du tour {OnPlayer:du joueur|adverse}, si [gold]{OwnerName}[/gold] possède [blue]{Amount}[/blue] PV ou moins, il périt.",
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/doom_power.webp"
+  },
+  {
+    "id": "DOUBLE_DAMAGE",
+    "name": "Dégâts doublés",
+    "description": "Pendant les [blue]2[/blue] prochains tours, les Attaques infligent le double de dégâts.",
+    "description_raw": "{Amount:plural:Pendant ce tour|Pendant les [blue]{}[/blue] prochains tours}, les Attaques infligent le double de dégâts.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/double_damage_power.webp"
+  },
+  {
+    "id": "DRAW_CARDS_NEXT_TURN",
+    "name": "Pioche au prochain tour",
+    "description": "Au début de votre prochain tour, piochez [blue]1[/blue] carte supplémentaire.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/draw_cards_next_turn_power.webp"
+  },
+  {
+    "id": "DUPLICATION",
+    "name": "Duplication",
+    "description": "Vos [blue]2[/blue] prochaines cartes sont jouées une fois supplémentaire.",
+    "description_raw": "{Amount:plural:Votre prochaine carte est jouée|Vos [blue]{}[/blue] prochaines cartes sont jouées} une fois supplémentaire.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/duplication_power.webp"
+  },
+  {
+    "id": "DYING_STAR",
+    "name": "Temporary Strength Down",
+    "description": "Perdez de la [gold]Force[/gold] jusqu'à la fin de ce tour.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/dying_star_power.webp"
+  },
+  {
+    "id": "EBB",
+    "name": "EbbPower",
+    "description": "Perdez [blue]3[/blue] de [gold]Force[/gold] et [blue]3[/blue] de [gold]Dextérité[/gold] pendant ce tour.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/ebb_power.png"
+  },
+  {
+    "id": "ECHO_FORM",
+    "name": "Forme résonnante",
+    "description": "Les [blue]2[/blue] premières cartes que vous jouez chaque tour sont jouées une fois supplémentaire.",
+    "description_raw": "{Amount:plural:La première carte que vous jouez chaque tour est jouée|Les [blue]{}[/blue] premières cartes que vous jouez chaque tour sont jouées} une fois supplémentaire.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/echo_form_power.webp"
+  },
+  {
+    "id": "ENERGY_NEXT_TURN",
+    "name": "Énergie au prochain tour",
+    "description": "Gagnez de l'[gold]Énergie[/gold] supplémentaire au prochain tour.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/energy_next_turn_power.webp"
+  },
+  {
+    "id": "ENFEEBLING_TOUCH",
+    "name": "Temporary Strength Down",
+    "description": "Perdez de la [gold]Force[/gold] jusqu'à la fin de ce tour.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/enfeebling_touch_power.webp"
+  },
+  {
+    "id": "ENRAGE",
+    "name": "Enragé",
+    "description": "Lorsque vous jouez une Compétence, gagne [blue]2[/blue] de [gold]Force[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/enrage_power.webp"
+  },
+  {
+    "id": "ENTROPY",
+    "name": "Entropie",
+    "description": "Au début de votre tour, [gold]Transformez[/gold] [blue]1[/blue] carte de votre [gold]Main[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/entropy_power.webp"
+  },
+  {
+    "id": "ENVENOM",
+    "name": "Envenimer",
+    "description": "Lorsque vous infligez des dégâts d'attaque non-bloqués par de l'Armure, vous appliquez [blue]1[/blue] de [gold]Poison[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/envenom_power.webp"
+  },
+  {
+    "id": "ESCAPE_ARTIST",
+    "name": "Roi de l'évasion",
+    "description": "Tente de fuir le combat dans [blue]2[/blue] tours.",
+    "description_raw": "Tente de fuir le combat {Amount:plural:ce tour|dans [blue]{}[/blue] tours}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/escape_artist_power.webp"
+  },
+  {
+    "id": "FAN_OF_KNIVES",
+    "name": "Éventail de couteaux",
+    "description": "Les [gold]Surins[/gold] atteignent TOUS les ennemis.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/fan_of_knives_power.webp"
+  },
+  {
+    "id": "FASTEN",
+    "name": "Bien attaché",
+    "description": "Gagnez [blue]4[/blue] d'[gold]Armure[/gold] supplémentaire avec vos Défenses.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/fasten_power.webp"
+  },
+  {
+    "id": "FEEDING_FRENZY",
+    "name": "Temporary Strength",
+    "description": "Gagnez de la [gold]Force[/gold] jusqu'à la fin de ce tour.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/feeding_frenzy_power.webp"
+  },
+  {
+    "id": "FEEL_NO_PAIN",
+    "name": "Ignorer la douleur",
+    "description": "Lorsqu'une carte est Épuisée, gagnez [blue]3[/blue] d'[gold]Armure[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/feel_no_pain_power.webp"
+  },
+  {
+    "id": "FERAL",
+    "name": "Sauvagerie",
+    "description": "Les [blue]2[/blue] premières fois de chaque tour que vous jouez une Attaque coûtant 0[energy:1], celle-ci retourne dans votre [gold]Main[/gold].",
+    "description_raw": "{Amount:plural:La première fois|Les [blue]{}[/blue] premières fois} de chaque tour que vous jouez une Attaque coûtant 0{energyPrefix:energyIcons(1)}, celle-ci retourne dans votre [gold]Main[/gold].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/feral_power.webp"
+  },
+  {
+    "id": "FLAME_BARRIER",
+    "name": "Barrière de flammes",
+    "description": "Les attaques qui vous ciblent pendant ce tour renvoient [blue]4[/blue] dégâts à l'ennemi.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/flame_barrier_power.webp"
+  },
+  {
+    "id": "FLANKING",
+    "name": "Encerclement",
+    "description": "Les autres alliés infligent [blue]2x[/blue] plus de dégâts d'attaque à cet ennemi pendant ce tour.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/flanking_power.webp"
+  },
+  {
+    "id": "FLEX_POTION",
+    "name": "Temporary Strength",
+    "description": "Gagnez de la [gold]Force[/gold] jusqu'à la fin de ce tour.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/flex_potion_power.webp"
+  },
+  {
+    "id": "FLUTTER",
+    "name": "Battement d'ailes",
+    "description": "Subit [blue]50%[/blue] de dégâts d'Attaque en moins. Infligez-lui des dégâts d'attaque [blue][Amount][/blue] fois pour l'[gold]Étourdir[/gold].",
+    "description_raw": "Subit [blue]{DamageDecrease}%[/blue] de dégâts d'Attaque en moins. Infligez-lui des dégâts d'attaque [blue]{Amount}[/blue] {Amount:plural:fois|fois} pour l'[gold]Étourdir[/gold].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/flutter_power.webp"
+  },
+  {
+    "id": "FOCUS",
+    "name": "Focalisation",
+    "description": "Augmente l'efficacité des Orbes de [blue][/blue].",
+    "description_raw": "{Amount:cond:<0?Diminue|Augmente} l'efficacité des Orbes de [blue]{Amount:abs()}[/blue].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": true,
+    "image_url": "/static/images/powers/focus_power.webp"
+  },
+  {
+    "id": "FOCUSED_STRIKE",
+    "name": "Temporary Focus",
+    "description": "Gagnez [gold]Focalisation[/gold] jusqu'à la fin de ce tour.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/focused_strike_power.webp"
+  },
+  {
+    "id": "FORBIDDEN_GRIMOIRE",
+    "name": "Grimoire interdit",
+    "description": "À la fin du combat, retirez une carte de votre [gold]Deck[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/forbidden_grimoire_power.webp"
+  },
+  {
+    "id": "FOREGONE_CONCLUSION",
+    "name": "Couru d'avance",
+    "description": "Au prochain tour, placez [blue]3[/blue] cartes de votre [gold]Pioche[/gold] dans votre [gold]Main[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/foregone_conclusion_power.webp"
+  },
+  {
+    "id": "FRAIL",
+    "name": "Fragilisé",
+    "description": "Réduit de [blue]25%[/blue] l'[gold]Armure[/gold] conférée par les cartes.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/frail_power.webp"
+  },
+  {
+    "id": "FREE_ATTACK",
+    "name": "Attaque gratuite",
+    "description": "Vos [blue]2[/blue] prochaines Attaques coûtent [blue]0[/blue] [energy:1].",
+    "description_raw": "{Amount:plural:Votre prochaine Attaque coûte|Vos [blue]{}[/blue] prochaines Attaques coûtent} [blue]0[/blue] {energyPrefix:energyIcons(1)}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/free_attack_power.webp"
+  },
+  {
+    "id": "FREE_POWER",
+    "name": "Pouvoir gratuit",
+    "description": "Les [blue]2[/blue] prochains Pouvoirs que vous jouez coûtent [blue]0[/blue] [energy:1].",
+    "description_raw": "{Amount:plural:Le prochain Pouvoir que vous jouez coûte|Les [blue]{}[/blue] prochains Pouvoirs que vous jouez coûtent} [blue]0[/blue] {energyPrefix:energyIcons(1)}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/free_power_power.webp"
+  },
+  {
+    "id": "FREE_SKILL",
+    "name": "Compétence gratuite",
+    "description": "Les [blue]2[/blue] prochaines Compétences que vous jouez coûtent [blue]0[/blue] [energy:1].",
+    "description_raw": "{Amount:plural:La prochaine Compétence que vous jouez coûte|Les [blue]{}[/blue] prochaines Compétences que vous jouez coûtent} [blue]0[/blue] {energyPrefix:energyIcons(1)}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/free_skill_power.webp"
+  },
+  {
+    "id": "FRIENDSHIP",
+    "name": "Amitié",
+    "description": "Gagnez [energy:1] au début de chaque tour.",
+    "description_raw": "Gagnez {Amount:energyIcons()} au début de chaque tour.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/friendship_power.webp"
+  },
+  {
+    "id": "FURNACE",
+    "name": "Fournaise",
+    "description": "Au début de votre tour, [gold]Forgez[/gold] [blue]5[/blue].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/furnace_power.webp"
+  },
+  {
+    "id": "GALVANIC",
+    "name": "Galvanisé",
+    "description": "Les Pouvoirs sont Affligés par [gold]Galvanique[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/galvanic_power.webp"
+  },
+  {
+    "id": "GENESIS",
+    "name": "Genèse",
+    "description": "Au début de votre tour, gagnez [star:1].",
+    "description_raw": "Au début de votre tour, gagnez {Amount:starIcons()}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/genesis_power.webp"
+  },
+  {
+    "id": "GIGANTIFICATION",
+    "name": "Géantification",
+    "description": "Les [blue]2[/blue] prochaines Attaques que vous jouez infligent le triple de dégâts.",
+    "description_raw": "{Amount:plural:La prochaine Attaque que vous jouez inflige|Les [blue]{}[/blue] prochaines Attaques que vous jouez infligent} le triple de dégâts.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/gigantification_power.webp"
+  },
+  {
+    "id": "GRAVITY",
+    "name": "Gravité",
+    "description": "Lorsque vous jouez une carte pendant ce tour, infligez [blue]2[/blue] dégâts à TOUS les ennemis.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/gravity_power.webp"
+  },
+  {
+    "id": "GUARDED",
+    "name": "Abrité",
+    "description": "Les dégâts subis des ennemis sont réduits de moitié.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/guarded_power.webp"
+  },
+  {
+    "id": "HAILSTORM",
+    "name": "Pluie de grêlons",
+    "description": "À la fin de votre tour, si vous avez un [gold]Orbe glaciaire[/gold], infligez [blue]6[/blue] dégâts à TOUS les ennemis.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/hailstorm_power.webp"
+  },
+  {
+    "id": "HAMMER_TIME",
+    "name": "L'heure du marteau",
+    "description": "Lorsque vous [gold]Forgez[/gold], tous vos alliés [gold]Forgent[/gold] également.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/hammer_time_power.webp"
+  },
+  {
+    "id": "HANG",
+    "name": "Pendaison",
+    "description": "Les [gold]Pendaisons[/gold] infligent [blue]2[/blue] fois plus de dégâts à cet ennemi.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/hang_power.webp"
+  },
+  {
+    "id": "HARD_TO_KILL",
+    "name": "Dur à cuire",
+    "description": "Tous les dégâts subis ou PV perdus par [gold]this creature[/gold] sont réduits à [blue][Amount][/blue].",
+    "description_raw": "Tous les dégâts subis ou PV perdus par [gold]{OwnerName}[/gold] sont réduits à [blue]{Amount}[/blue].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/hard_to_kill_power.webp"
+  },
+  {
+    "id": "HARDENED_SHELL",
+    "name": "Carapace endurcie",
+    "description": "[gold]This creature[/gold] ne peut pas perdre plus de [blue][Amount][/blue] PV en un tour.",
+    "description_raw": "[gold]{OwnerName}[/gold] ne peut pas perdre plus de [blue]{Amount}[/blue] PV en un tour.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/hardened_shell_power.webp"
+  },
+  {
+    "id": "HATCH",
+    "name": "Éclosion",
+    "description": "Éclot au bout de [blue]X[/blue] tours.",
+    "description_raw": "Éclot au bout de X tours.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/hatch_power.webp"
+  },
+  {
+    "id": "HAUNT",
+    "name": "Hanter",
+    "description": "Lorsque vous jouez une [gold]Âme[/gold], un ennemi aléatoire perd [blue]3[/blue] PV.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/haunt_power.webp"
+  },
+  {
+    "id": "HEIST",
+    "name": "Cambriolage",
+    "description": "Lorsqu'il est tué, vous récupérez toutes vos [gold]Pièces d'or[/gold] volées.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/heist_power.webp"
+  },
+  {
+    "id": "HELICAL_DART",
+    "name": "Temporary Dexterity",
+    "description": "Gagnez de la [gold]Dextérité[/gold] jusqu'à la fin de ce tour.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/helical_dart_power.webp"
+  },
+  {
+    "id": "HELLO_WORLD",
+    "name": "Hello World",
+    "description": "Au début de votre tour, ajoutez [blue]1[/blue] carte Commune aléatoire à votre [gold]Main[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/hello_world_power.webp"
+  },
+  {
+    "id": "HELLRAISER",
+    "name": "Soulèvement infernal",
+    "description": "Lorsque vous piochez une carte contenant « Frappe », elle est jouée sur un ennemi aléatoire.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/hellraiser_power.webp"
+  },
+  {
+    "id": "HEX",
+    "name": "Sortilège",
+    "description": "Tant que Chevalier spectral est en vie, TOUTES vos cartes sont [gold]Éthérées[/gold].",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/hex_power.webp"
+  },
+  {
+    "id": "HIGH_VOLTAGE",
+    "name": "Voltage élevé",
+    "description": "Au début de son tour, [gold]this creature[/gold] gagne [blue][Amount][/blue] de [gold]Force[/gold].",
+    "description_raw": "Au début de son tour, [gold]{OwnerName}[/gold] gagne [blue]{Amount}[/blue] de [gold]Force[/gold].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/high_voltage_power.webp"
+  },
+  {
+    "id": "HOTFIX",
+    "name": "Temporary Focus",
+    "description": "Gagnez [gold]Focalisation[/gold] jusqu'à la fin de ce tour.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/hotfix_power.webp"
+  },
+  {
+    "id": "ILLUSION",
+    "name": "Illusion",
+    "description": "Si cette créature périt, elle se régénère au prochain tour avec tous ses PV.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/illusion_power.webp"
+  },
+  {
+    "id": "IMBALANCED",
+    "name": "Déséquilibre",
+    "description": "Si les attaques de [gold]this creature[/gold] sont entièrement bloquées par de l'Armure, il est [gold]Étourdi[/gold].",
+    "description_raw": "Si les attaques de [gold]{OwnerName}[/gold] sont entièrement bloquées {IsMultiplayer:par l'Armure de n'importe quel joueur|par de l'Armure}, il est [gold]Étourdi[/gold].",
+    "type": "Debuff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/imbalanced_power.webp"
+  },
+  {
+    "id": "IMPROVEMENT",
+    "name": "Amélioration",
+    "description": "À la fin du combat, [gold]Améliorez[/gold] une carte aléatoire.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/improvement_power.webp"
+  },
+  {
+    "id": "INFERNO",
+    "name": "Inferno",
+    "description": "Au début de votre tour, perdez [blue]0[/blue] PV. Lorsque vous perdez des PV pendant votre tour, infligez [blue][Amount][/blue] dégâts à TOUS les ennemis.",
+    "description_raw": "Au début de votre tour, perdez [blue]{SelfDamage}[/blue] PV. Lorsque vous perdez des PV pendant votre tour, infligez [blue]{Amount}[/blue] dégâts à TOUS les ennemis.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/inferno_power.webp"
+  },
+  {
+    "id": "INFESTED",
+    "name": "Infesté",
+    "description": "Lorsque cette créature périt, elle invoque... quelque chose.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/infested_power.webp"
+  },
+  {
+    "id": "INFINITE_BLADES",
+    "name": "Lames infinies",
+    "description": "Au début de votre tour, ajoutez [blue]2[/blue] [gold]Surins[/gold] à votre [gold]Main[/gold].",
+    "description_raw": "Au début de votre tour, ajoutez {Amount:plural:un [gold]Surin[/gold]|[blue]{}[/blue] [gold]Surins[/gold]} à votre [gold]Main[/gold].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/infinite_blades_power.webp"
+  },
+  {
+    "id": "INTANGIBLE",
+    "name": "Intangible",
+    "description": "Réduit tous les dégâts subis et PV perdus à [blue]1[/blue] pendant ce tour.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/intangible_power.webp"
+  },
+  {
+    "id": "INTERCEPT",
+    "name": "Interposition",
+    "description": "Vous protégez un allié. Toutes les attaques qui le ciblent sont redirigées vers vous.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/intercept_power.webp"
+  },
+  {
+    "id": "ITERATION",
+    "name": "Itération",
+    "description": "La première fois que vous piochez une carte Statut chaque tour, vous piochez plus de cartes.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/iteration_power.webp"
+  },
+  {
+    "id": "JUGGERNAUT",
+    "name": "Mastodonte",
+    "description": "Lorsque vous gagnez de l'[gold]Armure[/gold], infligez [blue]5[/blue] dégâts à un ennemi aléatoire.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/juggernaut_power.webp"
+  },
+  {
+    "id": "JUGGLING",
+    "name": "Jonglage",
+    "description": "Ajoutez une copie de la troisième Attaque que vous jouez chaque tour à votre [gold]Main[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/juggling_power.webp"
+  },
+  {
+    "id": "KNOCKDOWN",
+    "name": "À terre",
+    "description": "Cette créature subit [blue][Amount][/blue] fois les dégâts infligés par les autres joueurs pendant ce tour.",
+    "description_raw": "Cette créature subit [blue]{Amount}[/blue] fois les dégâts infligés par les autres joueurs pendant ce tour.",
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/knockdown_power.webp"
+  },
+  {
+    "id": "LEADERSHIP",
+    "name": "Inspiration",
+    "description": "Tous les autres alliés infligent [blue]1[/blue] dégât supplémentaire.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/leadership_power.webp"
+  },
+  {
+    "id": "LETHALITY",
+    "name": "Létalité",
+    "description": "La première Attaque jouée chaque tour inflige 50% de dégâts supplémentaires.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/lethality_power.webp"
+  },
+  {
+    "id": "LIGHTNING_ROD",
+    "name": "Paratonnerre",
+    "description": "Au début de vos [blue]2[/blue] prochains tours, [gold]Canalisez[/gold] [blue]1[/blue] [gold]Orbe kéraunique[/gold].",
+    "description_raw": "Au début de {Amount:plural:votre prochain tour|vos [blue]{}[/blue] prochains tours}, [gold]Canalisez[/gold] [blue]1[/blue] [gold]Orbe kéraunique[/gold].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/lightning_rod_power.webp"
+  },
+  {
+    "id": "LOOP",
+    "name": "Boucle",
+    "description": "Au début de votre tour, déclenchez la capacité passive de votre prochain Orbe.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/loop_power.webp"
+  },
+  {
+    "id": "MACHINE_LEARNING",
+    "name": "Machine Learning",
+    "description": "Au début de votre tour, piochez [blue]1[/blue] carte supplémentaire.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/machine_learning_power.webp"
+  },
+  {
+    "id": "MAGIC_BOMB",
+    "name": "Bombe magique",
+    "description": "Subissez [blue]20[/blue] dégâts à la fin de votre tour. Se dissipe à la mort du Chevalier-mage.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/magic_bomb_power.webp"
+  },
+  {
+    "id": "MANGLE",
+    "name": "Temporary Strength Down",
+    "description": "Perdez de la [gold]Force[/gold] jusqu'à la fin de ce tour.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/mangle_power.webp"
+  },
+  {
+    "id": "MASTER_PLANNER",
+    "name": "Grands desseins",
+    "description": "Lorsque vous jouez une compétence, elle gagne [gold]Ruse[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/master_planner_power.webp"
+  },
+  {
+    "id": "MAYHEM",
+    "name": "Grabuge",
+    "description": "Au début de votre tour, jouez les [blue]2[/blue] cartes du dessus de votre [gold]Pioche[/gold].",
+    "description_raw": "Au début de votre tour, jouez {Amount:plural:la carte|les [blue]{}[/blue] cartes} du dessus de votre [gold]Pioche[/gold].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/mayhem_power.webp"
+  },
+  {
+    "id": "MIND_ROT",
+    "name": "Délabrement mental",
+    "description": "Piochez [blue]1[/blue] carte en moins chaque tour.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/mind_rot_power.webp"
+  },
+  {
+    "id": "MINION",
+    "name": "Sbire",
+    "description": "Les sbires fuient le combat sans leur chef.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/minion_power.webp"
+  },
+  {
+    "id": "MONARCHS_GAZE",
+    "name": "Regard monarchique",
+    "description": "Lorsque vous attaquez un ennemi, sa [gold]Force[/gold] est réduite de [blue]1[/blue] pendant ce tour.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/monarchs_gaze_power.webp"
+  },
+  {
+    "id": "MONARCHS_GAZE_STRENGTH_DOWN",
+    "name": "Temporary Strength Down",
+    "description": "Perdez de la [gold]Force[/gold] jusqu'à la fin de ce tour.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/monarchs_gaze_strength_down_power.webp"
+  },
+  {
+    "id": "MONOLOGUE",
+    "name": "Monologue",
+    "description": "Lorsque vous jouez une carte pendant ce tour, vous gagnez [blue]1[/blue] de [gold]Force[/gold] jusqu'à la fin du tour.\nConfère actuellement [blue]0[/blue] de [gold]Force[/gold].",
+    "description_raw": "Lorsque vous jouez une carte pendant ce tour, vous gagnez [blue]{StrengthPower}[/blue] de [gold]Force[/gold] jusqu'à la fin du tour.\nConfère actuellement [blue]{StrengthApplied}[/blue] de [gold]Force[/gold].",
+    "type": "Buff",
+    "stack_type": "None",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/monologue_power.webp"
+  },
+  {
+    "id": "NECRO_MASTERY",
+    "name": "Maîtrise nécrologique",
+    "description": "Lorsque [gold]Titos[/gold] perd des PV, TOUS les ennemis en perdent le même montant.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/necro_mastery_power.webp"
+  },
+  {
+    "id": "NEMESIS",
+    "name": "Némésis",
+    "description": "À la fin de tous les deux tours, gagne [gold]Intangible[/gold] [blue]1[/blue].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/nemesis_power.webp"
+  },
+  {
+    "id": "NEUROSURGE",
+    "name": "Influx neuronal",
+    "description": "Au début de votre tour, appliquez [blue]3[/blue] de [gold]Fatalité[/gold] à vous-même.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/neurosurge_power.webp"
+  },
+  {
+    "id": "NIGHTMARE",
+    "name": "Cauchemar",
+    "description": "Ajoutez [blue]2 cartes[/blue] [gold][Card][/gold] à votre [gold]Main[/gold] au prochain tour.",
+    "description_raw": "Ajoutez {Amount:plural:une carte|[blue]{} cartes[/blue]} [gold]{Card}[/gold] à votre [gold]Main[/gold] au prochain tour.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/nightmare_power.webp"
+  },
+  {
+    "id": "NO_BLOCK",
+    "name": "Pas d'Armure",
+    "description": "Vos cartes ne vous confèrent plus d'[gold]Armure[/gold] pendant [blue]2[/blue] tours.",
+    "description_raw": "Vos cartes ne vous confèrent plus d'[gold]Armure[/gold] pendant {Amount:plural:[blue]{}[/blue] tour|[blue]{}[/blue] tours}.",
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/no_block_power.webp"
+  },
+  {
+    "id": "NO_DRAW",
+    "name": "Pas de pioche",
+    "description": "Vous ne pouvez plus piocher de cartes pendant ce tour.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/no_draw_power.webp"
+  },
+  {
+    "id": "NO_ENERGY_GAIN",
+    "name": "Pas de gain d'Énergie",
+    "description": "Vous ne pouvez plus gagner d'[energy:1] ce tour.",
+    "description_raw": "Vous ne pouvez plus gagner d'{energyPrefix:energyIcons(1)} ce tour.",
+    "type": "Debuff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/no_energy_gain_power.webp"
+  },
+  {
+    "id": "NOSTALGIA",
+    "name": "Nostalgie",
+    "description": "Les 2 premières Attaques ou Compétences que vous jouez chaque tour sont placées sur le dessus de votre [gold]Pioche[/gold].",
+    "description_raw": "{Amount:plural:La première Attaque ou Compétence|Les {} premières Attaques ou Compétences} que vous jouez chaque tour {Amount:plural:est placée|sont placées} sur le dessus de votre [gold]Pioche[/gold].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/nostalgia_power.webp"
+  },
+  {
+    "id": "NOXIOUS_FUMES",
+    "name": "Vapeurs toxiques",
+    "description": "Au début de votre tour, appliquez [blue]2[/blue] de [gold]Poison[/gold] à TOUS les ennemis.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/noxious_fumes_power.webp"
+  },
+  {
+    "id": "OBLIVION",
+    "name": "Oblitération",
+    "description": "Lorsque vous jouez une carte, cet ennemi reçoit [blue]1[/blue] de [gold]Fatalité[/gold].",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/oblivion_power.webp"
+  },
+  {
+    "id": "ONE_TWO_PUNCH",
+    "name": "Droite-gauche",
+    "description": "Les [blue]2[/blue] prochaines Attaques que vous jouez ce tour sont jouées une fois supplémentaire.",
+    "description_raw": "{Amount:plural:La prochaine Attaque|Les [blue]{}[/blue] prochaines Attaques} que vous jouez ce tour {Amount:plural:est jouée|sont jouées} une fois supplémentaire.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/one_two_punch_power.webp"
+  },
+  {
+    "id": "ORBIT",
+    "name": "Orbite",
+    "description": "Tous les [energy:4] que vous dépensez, vous gagnez [energy:1].",
+    "description_raw": "Tous les {Energy:energyIcons()} que vous dépensez, vous gagnez {Amount:energyIcons()}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/orbit_power.webp"
+  },
+  {
+    "id": "OUTBREAK",
+    "name": "Épidémie",
+    "description": "Toutes les [blue]3[/blue] fois que vous appliquez du [gold]Poison[/gold], infligez [blue][Amount][/blue] dégâts à TOUS les ennemis.",
+    "description_raw": "Toutes les [blue]{Repeat}[/blue] fois que vous appliquez du [gold]Poison[/gold], infligez [blue]{Amount}[/blue] dégâts à TOUS les ennemis.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/outbreak_power.webp"
+  },
+  {
+    "id": "PAGESTORM",
+    "name": "Pluie de papier",
+    "description": "Lorsque vous piochez une carte [gold]Éthérée[/gold], piochez [blue]1[/blue] carte.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/pagestorm_power.webp"
+  },
+  {
+    "id": "PAINFUL_STABS",
+    "name": "Coups de poignard",
+    "description": "Mélangez [blue]1[/blue] [gold]Plaie[/gold] à votre [gold]Défausse[/gold] chaque fois que vous subissez des dégâts non-bloqués par de l'Armure.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/painful_stabs_power.webp"
+  },
+  {
+    "id": "PALE_BLUE_DOT",
+    "name": "Point bleu pâle",
+    "description": "Si vous jouez au moins [blue]5[/blue] cartes en un seul tour, piochez [blue][Amount][/blue] cartes supplémentaires au début de votre prochain tour.",
+    "description_raw": "Si vous jouez au moins [blue]{CardPlay}[/blue] cartes en un seul tour, piochez [blue]{Amount}[/blue] {Amount:plural:carte supplémentaire|cartes supplémentaires} au début de votre prochain tour.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/pale_blue_dot_power.webp"
+  },
+  {
+    "id": "PANACHE",
+    "name": "Panache",
+    "description": "Si vous jouez [blue]5[/blue] cartes de plus pendant ce tour, infligez [blue][Amount][/blue] dégâts à TOUS les ennemis.",
+    "description_raw": "Si vous jouez [blue]{CardsLeft}[/blue] {CardsLeft:plural:carte|cartes} de plus pendant ce tour, infligez [blue]{Amount}[/blue] dégâts à TOUS les ennemis.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/panache_power.webp"
+  },
+  {
+    "id": "PAPER_CUTS",
+    "name": "Blessures débilitantes",
+    "description": "Lorsque [gold]this creature[/gold] vous inflige des dégâts non-bloqués par de l'Armure, vous perdez [blue][Amount][/blue] [gold]PV Max[/gold].",
+    "description_raw": "Lorsque [gold]{OwnerName}[/gold] vous inflige des dégâts non-bloqués par de l'Armure, vous perdez [blue]{Amount}[/blue] [gold]PV Max[/gold].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/paper_cuts_power.webp"
+  },
+  {
+    "id": "PARRY",
+    "name": "Parade",
+    "description": "[gold]Lame souveraine[/gold] confère désormais de l'[gold]Armure[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/parry_power.webp"
+  },
+  {
+    "id": "PERSONAL_HIVE",
+    "name": "Ruche corporelle",
+    "description": "Lorsque cet ennemi subit des dégâts d'Attaque, ajoutez [blue][blue]X[/blue][/blue] [gold]Hébété[/gold] à votre [gold]Pioche[/gold].",
+    "description_raw": "Lorsque cet ennemi subit des dégâts d'Attaque, ajoutez [blue]X[/blue] [gold]Hébété[/gold] à votre [gold]Pioche[/gold].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/personal_hive_power.webp"
+  },
+  {
+    "id": "PHANTOM_BLADES",
+    "name": "Lames fantomatiques",
+    "description": "Les [gold]Surins[/gold] gagnent [gold]Retenue[/gold].\nLe premier [gold]Surin[/gold] que vous jouez chaque tour inflige [blue]9[/blue] dégâts supplémentaires.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/phantom_blades_power.webp"
+  },
+  {
+    "id": "PIERCING_WAIL",
+    "name": "Temporary Strength Down",
+    "description": "Perdez de la [gold]Force[/gold] jusqu'à la fin de ce tour.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/piercing_wail_power.webp"
+  },
+  {
+    "id": "PILLAR_OF_CREATION",
+    "name": "Pilier de la Création",
+    "description": "Lorsque vous créez une carte, gagnez [blue]5[/blue] d'[gold]Armure[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/pillar_of_creation_power.webp"
+  },
+  {
+    "id": "PLATING",
+    "name": "Blindage",
+    "description": "À la fin de votre tour, gagnez [blue][Amount][/blue] d'[gold]Armure[/gold]. Le [gold]Blindage[/gold] diminue de [blue]1[/blue] au début de votre tour.",
+    "description_raw": "À la fin de votre tour, gagnez [blue]{Amount}[/blue] d'[gold]Armure[/gold]. Le [gold]Blindage[/gold] diminue de [blue]{Decrement}[/blue] au début de votre tour.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/plating_power.webp"
+  },
+  {
+    "id": "PLOW",
+    "name": "Cavalcade",
+    "description": "La première fois que [gold]this creature[/gold] passe la barre des [blue][Amount][/blue] PV, il est [gold]Étourdi[/gold] et perd sa [gold]Force[/gold].",
+    "description_raw": "La première fois que [gold]{OwnerName}[/gold] passe la barre des [blue]{Amount}[/blue] PV, il est [gold]Étourdi[/gold] et perd sa [gold]Force[/gold].",
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/plow_power.webp"
+  },
+  {
+    "id": "POISON",
+    "name": "Poison",
+    "description": "Les créatures empoisonnées perdent des PV au début de leur tour. Chaque tour, le Poison diminue de [blue]1[/blue].",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/poison_power.webp"
+  },
+  {
+    "id": "POSSESS_SPEED",
+    "name": "Vol de Dextérité",
+    "description": "Lorsque cette créature périt, la [gold]Dextérité[/gold] volée au joueur est restituée.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/possess_speed_power.webp"
+  },
+  {
+    "id": "POSSESS_STRENGTH",
+    "name": "Vol de Force",
+    "description": "Lorsque cette créature périt, toute la [gold]Force[/gold] volée au joueur est restituée.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/possess_strength_power.webp"
+  },
+  {
+    "id": "PREP_TIME",
+    "name": "Préparatifs",
+    "description": "Au début de votre tour, gagnez [blue]4[/blue] de [gold]Vigueur[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/prep_time_power.webp"
+  },
+  {
+    "id": "PYRE",
+    "name": "Bûcher",
+    "description": "Gagnez [energy:1] au début de chaque tour.",
+    "description_raw": "Gagnez {Amount:energyIcons()} au début de chaque tour.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/pyre_power.webp"
+  },
+  {
+    "id": "RADIANCE",
+    "name": "Radiance",
+    "description": "Gagnez [energy:1] supplémentaire pendant les [blue]2[/blue] prochains tours.",
+    "description_raw": "Gagnez {Energy:energyIcons()} supplémentaire {Amount:plural:au prochain tour|pendant les [blue]{}[/blue] prochains tours}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/radiance_power.webp"
+  },
+  {
+    "id": "RAGE",
+    "name": "Rage",
+    "description": "Lorsque vous jouez une Attaque pendant ce tour, gagnez [blue]3[/blue] d'[gold]Armure[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/rage_power.webp"
+  },
+  {
+    "id": "RAMPART",
+    "name": "Rempart",
+    "description": "Au début du tour du joueur, Opérateur de tourelle gagne [blue]25[/blue] d'[gold]Armure[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/rampart_power.webp"
+  },
+  {
+    "id": "RAVENOUS",
+    "name": "Affamé",
+    "description": "Lorsqu'un ennemi périt, Putrilimace le dévore. Elle est [gold]Étourdie[/gold] et gagne [blue]1[/blue] de [gold]Force[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/ravenous_power.webp"
+  },
+  {
+    "id": "REAPER_FORM",
+    "name": "Forme de la Faucheuse",
+    "description": "Lorsqu'une Attaque inflige des dégâts, appliquez [blue]2[/blue] fois ce montant de [gold]Fatalité[/gold].",
+    "description_raw": "Lorsqu'une Attaque inflige des dégâts, appliquez {Amount:plural:le même montant|[blue]{}[/blue] fois ce montant} de [gold]Fatalité[/gold].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/reaper_form_power.webp"
+  },
+  {
+    "id": "REATTACH",
+    "name": "Reconnexion",
+    "description": "Se régénère au bout de [blue]2[/blue] tours avec [blue]25[/blue] PV si un autre tronçon est encore en vie.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/reattach_power.webp"
+  },
+  {
+    "id": "REBOUND",
+    "name": "Rebond",
+    "description": "Les [blue]2[/blue] prochaines cartes que vous jouez ce tour sont placées sur le dessus de votre [gold]Pioche[/gold].",
+    "description_raw": "{Amount:plural:La prochaine carte|Les [blue]{}[/blue] prochaines cartes} que vous jouez ce tour {Amount:plural:est placée|sont placées} sur le dessus de votre [gold]Pioche[/gold].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/rebound_power.webp"
+  },
+  {
+    "id": "REFLECT",
+    "name": "Armure réfléchissante",
+    "description": "Les dégâts bloqués avec de l'Armure sont réfléchis contre l'attaquant.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/reflect_power.webp"
+  },
+  {
+    "id": "REGEN",
+    "name": "Régénération",
+    "description": "[gold]Régénération[/gold] guérit vos PV à la fin de votre tour. Chaque tour, la quantité de [gold]Régénération[/gold] diminue de [blue]1[/blue].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/regen_power.webp"
+  },
+  {
+    "id": "REPTILE_TRINKET",
+    "name": "Temporary Strength",
+    "description": "Gagnez de la [gold]Force[/gold] jusqu'à la fin de ce tour.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/reptile_trinket_power.webp"
+  },
+  {
+    "id": "RETAIN_HAND",
+    "name": "Main retenue",
+    "description": "[gold]Retenez[/gold] votre [gold]Main[/gold] pendant les [blue]2[/blue] prochains tours.",
+    "description_raw": "[gold]Retenez[/gold] votre [gold]Main[/gold] {Amount:plural:ce tour|pendant les [blue]{}[/blue] prochains tours}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/retain_hand_power.webp"
+  },
+  {
+    "id": "RINGING",
+    "name": "Résonnant",
+    "description": "Vous ne pouvez jouer que [blue]1[/blue] carte ce tour.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/ringing_power.webp"
+  },
+  {
+    "id": "RITUAL",
+    "name": "Rituel",
+    "description": "Gagnez de la [gold]Force[/gold] à la fin de votre tour.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/ritual_power.webp"
+  },
+  {
+    "id": "ROLLING_BOULDER",
+    "name": "Pierre qui roule",
+    "description": "Au début de votre tour, infligez [blue][Amount][/blue] dégâts à TOUS les ennemis et augmentez ces dégâts de [blue]5[/blue].",
+    "description_raw": "Au début de votre tour, infligez [blue]{Amount}[/blue] dégâts à TOUS les ennemis et augmentez ces dégâts de [blue]{Damage}[/blue].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/rolling_boulder_power.webp"
+  },
+  {
+    "id": "ROYALTIES",
+    "name": "Royalties",
+    "description": "À la fin du combat, obtenez [blue]25[/blue] [gold]Pièces d'or[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/royalties_power.webp"
+  },
+  {
+    "id": "RUPTURE",
+    "name": "Rupture",
+    "description": "Lorsque vous perdez des PV pendant votre tour, gagnez [blue]1[/blue] de [gold]Force[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/rupture_power.webp"
+  },
+  {
+    "id": "SANDPIT",
+    "name": "Sables mouvants",
+    "description": "Dans [blue]2[/blue] tours, vous vous ferez dévorer, et vous périrez.",
+    "description_raw": "{Amount:plural:Quand l'[gold]Insatiable[/gold] débutera son tour|Dans [blue]{}[/blue] tours}, vous vous ferez dévorer, et vous périrez.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/sandpit_power.webp"
+  },
+  {
+    "id": "SEEKING_EDGE",
+    "name": "Lame chercheuse",
+    "description": "[gold]Lame souveraine[/gold] touche désormais TOUS les ennemis.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/seeking_edge_power.webp"
+  },
+  {
+    "id": "SELF_FORMING_CLAY",
+    "name": "Argile autoformante",
+    "description": "Gagnez [blue]3[/blue] d'[gold]Armure[/gold] au prochain tour.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/self_forming_clay_power.webp"
+  },
+  {
+    "id": "SENTRY_MODE",
+    "name": "Sentinelle",
+    "description": "Au début de votre tour, ajoutez [blue]1[/blue] [gold]Balayage optique[/gold] à votre [gold]Main[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/sentry_mode_power.webp"
+  },
+  {
+    "id": "SERPENT_FORM",
+    "name": "Forme du serpent",
+    "description": "Lorsque vous jouez une carte, infligez [blue]4[/blue] dégâts à un ennemi aléatoire.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/serpent_form_power.webp"
+  },
+  {
+    "id": "SETUP_STRIKE",
+    "name": "Temporary Strength",
+    "description": "Gagnez de la [gold]Force[/gold] jusqu'à la fin de ce tour.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/setup_strike_power.webp"
+  },
+  {
+    "id": "SHACKLING_POTION",
+    "name": "Temporary Strength Down",
+    "description": "Perdez de la [gold]Force[/gold] jusqu'à la fin de ce tour.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/shackling_potion_power.webp"
+  },
+  {
+    "id": "SHADOW_STEP",
+    "name": "Pas de l'ombre",
+    "description": "Lors des [blue]2[/blue] prochains tours après le tour actuel, vos Attaques infligeront le double de dégâts.",
+    "description_raw": "{Amount:plural:Lors du prochain tour|Lors des [blue]{}[/blue] prochains tours après le tour actuel}, vos Attaques infligeront le double de dégâts.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/shadow_step_power.webp"
+  },
+  {
+    "id": "SHADOWMELD",
+    "name": "Camouflage",
+    "description": "Doublez l'[gold]Armure[/gold] que vous gagnez pendant ce tour [blue]2[/blue] fois.",
+    "description_raw": "Doublez l'[gold]Armure[/gold] que vous gagnez pendant ce tour{Amount:plural:| [blue]{}[/blue] fois}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/shadowmeld_power.webp"
+  },
+  {
+    "id": "SHRIEK",
+    "name": "Hurlement",
+    "description": "La première fois que [gold]this creature[/gold] passe la barre des [blue][Amount][/blue] PV, elle est [gold]Étourdie[/gold].",
+    "description_raw": "La première fois que [gold]{OwnerName}[/gold] passe la barre des [blue]{Amount}[/blue] PV, elle est [gold]Étourdie[/gold].",
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": true,
+    "image_url": "/static/images/powers/shriek_power.webp"
+  },
+  {
+    "id": "SHRINK",
+    "name": "Rétrécissement",
+    "description": "Les Attaques de [gold]this creature[/gold] infligent [blue]30%[/blue] de dégâts en moins.",
+    "description_raw": "{ApplierName.StringValue:cond:tant que {} est en vie, vos Attaques|Les Attaques de [gold]{OwnerName}[/gold]} infligent [blue]{DamageDecrease}%[/blue] de dégâts en moins{Amount:cond:==1? au prochain tour|>1? pendant les [blue]{}[/blue] prochains tours|}.",
+    "type": "Debuff",
+    "stack_type": "None",
+    "allow_negative": true,
+    "image_url": "/static/images/powers/shrink_power.webp"
+  },
+  {
+    "id": "SHROUD",
+    "name": "Voile",
+    "description": "Lorsque vous appliquez de la [gold]Fatalité[/gold], gagnez [blue]3[/blue] d'[gold]Armure[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/shroud_power.webp"
+  },
+  {
+    "id": "SIC_EM",
+    "name": "À l'attaque !",
+    "description": "Lorsque [gold]Titos[/gold] touche cet ennemi pendant ce tour, [gold]Invoquez[/gold] pour [blue]3[/blue].",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/sic_em_power.webp"
+  },
+  {
+    "id": "SIGNAL_BOOST",
+    "name": "Signal amplifié",
+    "description": "Les [blue]2[/blue] prochains Pouvoirs que vous jouez sont joués une fois de plus.",
+    "description_raw": "{Amount:plural:Le prochain Pouvoir que vous jouez est joué|Les [blue]{}[/blue] prochains Pouvoirs que vous jouez sont joués} une fois de plus.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/signal_boost_power.webp"
+  },
+  {
+    "id": "SKITTISH",
+    "name": "Peureux",
+    "description": "La première fois de chaque tour que [gold]this creature[/gold] est touché, il gagne [blue][Amount][/blue] d'[gold]Armure[/gold].",
+    "description_raw": "La première fois de chaque tour que [gold]{OwnerName}[/gold] est touché, il gagne [blue]{Amount}[/blue] d'[gold]Armure[/gold].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/skittish_power.webp"
+  },
+  {
+    "id": "SLEIGHT_OF_FLESH",
+    "name": "Tour de chair",
+    "description": "Lorsque vous appliquez un effet néfaste sur un ennemi, celui-ci subit [blue]13[/blue] dégâts.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/sleight_of_flesh_power.webp"
+  },
+  {
+    "id": "SLIPPERY",
+    "name": "Glissant",
+    "description": "Les [blue]2[/blue] prochaines fois que [gold]this creature[/gold] doit perdre des PV, elle perd seulement [blue]1[/blue] PV.",
+    "description_raw": "{Amount:plural:La prochaine fois|Les [blue]{}[/blue] prochaines fois} que [gold]{OwnerName}[/gold] doit perdre des PV, elle perd seulement [blue]1[/blue] PV.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/slippery_power.webp"
+  },
+  {
+    "id": "SLOTH",
+    "name": "Paresse",
+    "description": "Vous ne pouvez jouer plus de [blue]3[/blue] cartes par tour.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/sloth_power.webp"
+  },
+  {
+    "id": "SLOW",
+    "name": "Ralenti",
+    "description": "Chaque fois que vous jouez une carte, cet ennemi subit [blue]10%[/blue] de dégâts d'Attaque supplémentaires pendant ce tour.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/slow_power.webp"
+  },
+  {
+    "id": "SLUMBER",
+    "name": "Endormi",
+    "description": "Se réveille au bout d'un certain nombre de tours ou après avoir perdu des PV 3 fois.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/slumber_power.webp"
+  },
+  {
+    "id": "SMOGGY",
+    "name": "Enfumé",
+    "description": "Vous ne pouvez jouer qu'[blue]1[/blue] seule Compétence par tour.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/smoggy_power.webp"
+  },
+  {
+    "id": "SMOKESTACK",
+    "name": "Cheminée",
+    "description": "Lorsque vous créez un Statut, infligez des dégâts à TOUS les ennemis.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/smokestack_power.webp"
+  },
+  {
+    "id": "SNEAKY",
+    "name": "Furtivité",
+    "description": "Lorsqu'un allié attaque un ennemi, gagnez [blue]1[/blue] d'[gold]Armure[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/sneaky_power.webp"
+  },
+  {
+    "id": "SOAR",
+    "name": "Envol",
+    "description": "Dégâts d'attaque subis réduits de [blue]50%[/blue] jusqu'à ce que cette créature atterrisse.",
+    "description_raw": "Dégâts d'attaque subis réduits de [blue]{DamageDecrease}%[/blue] jusqu'à ce que cette créature atterrisse.",
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/soar_power.webp"
+  },
+  {
+    "id": "SPECTRUM_SHIFT",
+    "name": "Spectre visible",
+    "description": "Au début de votre tour, ajoutez [blue]1[/blue] carte Incolore aléatoire à votre [gold]Main[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/spectrum_shift_power.webp"
+  },
+  {
+    "id": "SPEED_POTION",
+    "name": "Temporary Dexterity",
+    "description": "Gagnez de la [gold]Dextérité[/gold] jusqu'à la fin de ce tour.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/speed_potion_power.webp"
+  },
+  {
+    "id": "SPEEDSTER",
+    "name": "Excès de vitesse",
+    "description": "Lorsque vous piochez une carte pendant votre tour, infligez [blue]1[/blue] dégât à TOUS les ennemis.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/speedster_power.webp"
+  },
+  {
+    "id": "SPINNER",
+    "name": "Tisserand",
+    "description": "Au début de votre tour, [gold]Canalisez[/gold] [blue]1[/blue] [gold]Orbe vitreux[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/spinner_power.webp"
+  },
+  {
+    "id": "SPIRIT_OF_ASH",
+    "name": "Esprit des cendres",
+    "description": "Lorsque vous jouez une carte [gold]Éthérée[/gold], gagnez [blue]4[/blue] d'[gold]Armure[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/spirit_of_ash_power.webp"
+  },
+  {
+    "id": "STAMPEDE",
+    "name": "Ruée",
+    "description": "À la fin de votre tour, [blue]1[/blue] Attaque aléatoire de votre [gold]Main[/gold] est jouée sur un ennemi aléatoire.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/stampede_power.webp"
+  },
+  {
+    "id": "STAR_NEXT_TURN",
+    "name": "Étoile au prochain tour",
+    "description": "Gagnez 1 [star:1] au prochain tour.",
+    "description_raw": "Gagnez 1 {singleStarIcon} au prochain tour.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/star_next_turn_power.webp"
+  },
+  {
+    "id": "STEAM_ERUPTION",
+    "name": "Éruption de vapeur",
+    "description": "Quand le Géant de la Cascade meurt, il vous inflige des dégâts à la fin de votre prochain tour.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/steam_eruption_power.webp"
+  },
+  {
+    "id": "STOCK",
+    "name": "Stock",
+    "description": "Lorsque cette créature est vaincue, un nouvel Hachebot est invoqué à sa place.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/stock_power.webp"
+  },
+  {
+    "id": "STORM",
+    "name": "Tempête",
+    "description": "Lorsque vous jouez un Pouvoir, [gold]Canalisez[/gold] [blue]1[/blue] [gold]Orbe kéraunique[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/storm_power.webp"
+  },
+  {
+    "id": "STRANGLE",
+    "name": "Strangulation",
+    "description": "Lorsque vous jouez une carte pendant ce tour, cet ennemi perd [blue]2[/blue] PV.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/strangle_power.webp"
+  },
+  {
+    "id": "STRATAGEM",
+    "name": "Stratagème",
+    "description": "Lorsque vous mélangez votre [gold]Pioche[/gold], choisissez [blue]1[/blue] carte de la pile à ajouter à votre [gold]Main[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/stratagem_power.webp"
+  },
+  {
+    "id": "STRENGTH",
+    "name": "Force",
+    "description": "Augmente les dégâts des attaques de [blue][/blue].",
+    "description_raw": "{Amount:cond:<0?Diminue|Augmente} les dégâts des attaques de [blue]{Amount:abs()}[/blue].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": true,
+    "image_url": "/static/images/powers/strength_power.webp"
+  },
+  {
+    "id": "SUBROUTINE",
+    "name": "Sous-programme",
+    "description": "Lorsque vous jouez un Pouvoir, gagnez [blue]1[/blue] [energy:1].",
+    "description_raw": "Lorsque vous jouez un Pouvoir, gagnez [blue]1[/blue] {energyPrefix:energyIcons(1)}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/subroutine_power.webp"
+  },
+  {
+    "id": "SUCK",
+    "name": "Succion",
+    "description": "Lorsque [gold]this creature[/gold] inflige des dégâts non-bloqués par l'Armure, il gagne [blue][Amount][/blue] de [gold]Force[/gold].",
+    "description_raw": "Lorsque [gold]{OwnerName}[/gold] inflige des dégâts non-bloqués par l'Armure, il gagne [blue]{Amount}[/blue] de [gold]Force[/gold].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/suck_power.webp"
+  },
+  {
+    "id": "SUMMON_NEXT_TURN",
+    "name": "Invocation au prochain tour",
+    "description": "Au début de votre prochain tour, [gold]Invoquez[/gold] pour [blue]2[/blue].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/summon_next_turn_power.webp"
+  },
+  {
+    "id": "SURPRISE",
+    "name": "Surprise",
+    "description": "Quelque chose ne va pas chez cette créature...",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/surprise_power.webp"
+  },
+  {
+    "id": "SURROUNDED",
+    "name": "Encerclé",
+    "description": "Recevez [blue]50%[/blue] de dégâts supplémentaires si vous êtes attaqué(e) de dos. Utilisez des cartes ou des potions ciblées pour changer d'orientation.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/surrounded_power.webp"
+  },
+  {
+    "id": "SWIPE",
+    "name": "Chapardage",
+    "description": "Lorsque vous tuez cet ennemi, la carte volée vous est restituée.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/swipe_power.webp"
+  },
+  {
+    "id": "SWORD_SAGE",
+    "name": "Sage à l'épée",
+    "description": "[gold]Lame Souveraine[/gold] gagne [gold]Écho[/gold] [blue]1[/blue].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/sword_sage_power.webp"
+  },
+  {
+    "id": "SYNCHRONIZE",
+    "name": "Temporary Focus",
+    "description": "Gagnez [gold]Focalisation[/gold] jusqu'à la fin de ce tour.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/synchronize_power.webp"
+  },
+  {
+    "id": "TAG_TEAM",
+    "name": "Relais",
+    "description": "La prochaine Attaque jouée par un allié sur cet ennemi est jouée une fois.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/tag_team_power.webp"
+  },
+  {
+    "id": "TANGLED",
+    "name": "Paralysie",
+    "description": "Les Attaques coûtent [energy:1] de plus pendant les 2 prochains tours.",
+    "description_raw": "Les Attaques coûtent {Amount:energyIcons()} de plus pendant {Amount:plural:ce tour|les {} prochains tours}.",
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/tangled_power.webp"
+  },
+  {
+    "id": "TANK",
+    "name": "Tank",
+    "description": "Vous subissez le double des dégâts infligés par les ennemis. Vos alliés subissent la moitié des dégâts infligés par les ennemis.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/tank_power.webp"
+  },
+  {
+    "id": "TENDER",
+    "name": "Décomposition",
+    "description": "Lorsque vous jouez une carte, perdez [blue]1[/blue] de [gold]Force[/gold] et [blue]1[/blue] de [gold]Dextérité[/gold] pendant ce tour.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/tender_power.webp"
+  },
+  {
+    "id": "TERRITORIAL",
+    "name": "Territorial",
+    "description": "À la fin de son tour, gagne [blue]1[/blue] de [gold]Force[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/territorial_power.webp"
+  },
+  {
+    "id": "THE_BOMB",
+    "name": "La Bombe",
+    "description": "Dans [blue]3[/blue] tours, infligez [blue]40[/blue] dégâts à TOUS les ennemis.",
+    "description_raw": "{Amount:plural:À la fin de ce tour|Dans [blue]{}[/blue] tours}, infligez [blue]{Damage}[/blue] dégâts à TOUS les ennemis.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/the_bomb_power.webp"
+  },
+  {
+    "id": "THE_GAMBIT",
+    "name": "La manœuvre",
+    "description": "Si vous subissez des dégâts non-bloqués par l'Armure pendant ce combat, vous périssez.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Single",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/the_gambit_power.webp"
+  },
+  {
+    "id": "THE_HUNT",
+    "name": "La Traque",
+    "description": "Obtenez [blue]1[/blue] récompense de carte supplémentaire à la fin du combat.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/the_hunt_power.webp"
+  },
+  {
+    "id": "THE_SEALED_THRONE",
+    "name": "Le trône scellé",
+    "description": "Lorsque vous jouez une carte, gagnez [star:1].",
+    "description_raw": "Lorsque vous jouez une carte, gagnez {Amount:starIcons()}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/the_sealed_throne_power.webp"
+  },
+  {
+    "id": "THIEVERY",
+    "name": "Larbin",
+    "description": "Vole des [gold]Pièces d'or[/gold] lorsqu'il attaque.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/thievery_power.webp"
+  },
+  {
+    "id": "THORNS",
+    "name": "Épines",
+    "description": "Lorsqu'une attaque vous touche, infligez des dégâts en retour.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/thorns_power.webp"
+  },
+  {
+    "id": "THUNDER",
+    "name": "Tonnerre",
+    "description": "Lorsque vous [gold]Activez un Orbe kéraunique[/gold], infligez [blue]8[/blue] dégâts à chaque ennemi touché.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/thunder_power.webp"
+  },
+  {
+    "id": "TOOLS_OF_THE_TRADE",
+    "name": "Savoir-faire",
+    "description": "Au début de votre tour, piochez [blue]1[/blue] carte et défaussez [blue]1[/blue] carte.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/tools_of_the_trade_power.webp"
+  },
+  {
+    "id": "TORIC_TOUGHNESS",
+    "name": "Ténacité torique",
+    "description": "Gagnez [blue]5[/blue] d'[gold]Armure[/gold] au début des [blue]2[/blue] prochains tours.",
+    "description_raw": "Gagnez [blue]{Block:diff()}[/blue] d'[gold]Armure[/gold] au début {Amount:plural:du prochain tour|des [blue]{}[/blue] prochains tours}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/toric_toughness_power.webp"
+  },
+  {
+    "id": "TRACKING",
+    "name": "Pistage",
+    "description": "Les ennemis [gold]Affaiblis[/gold] subissent [blue]2[/blue] fois plus de dégâts des Attaques.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/tracking_power.webp"
+  },
+  {
+    "id": "TRASH_TO_TREASURE",
+    "name": "Revalorisation",
+    "description": "Lorsque vous créez un Statut, [gold]Canalisez[/gold] [blue]2[/blue] Orbes aléatoires.",
+    "description_raw": "Lorsque vous créez un Statut, [gold]Canalisez[/gold] {Amount:plural:[blue]{}[/blue] Orbe aléatoire|[blue]{}[/blue] Orbes aléatoires}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/trash_to_treasure_power.webp"
+  },
+  {
+    "id": "TYRANNY",
+    "name": "Tyrannie",
+    "description": "Au début de votre tour, piochez [blue]2[/blue] cartes et [gold]Épuisez[/gold] [blue]2[/blue] cartes de votre [gold]Main[/gold].",
+    "description_raw": "Au début de votre tour, piochez {Amount:plural:[blue]{}[/blue] carte|[blue]{}[/blue] cartes} et [gold]Épuisez[/gold] {Amount:plural:[blue]{}[/blue] carte|[blue]{}[/blue] cartes} de votre [gold]Main[/gold].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/tyranny_power.webp"
+  },
+  {
+    "id": "UNMOVABLE",
+    "name": "Inflexible",
+    "description": "Les [blue]2[/blue] premières fois qu'une carte vous confère de l'[gold]Armure[/gold] chaque tour, doublez-en la quantité.",
+    "description_raw": "{Amount:plural:La première|Les [blue]{}[/blue] premières} fois qu'une carte vous confère de l'[gold]Armure[/gold] chaque tour, doublez-en la quantité.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/unmovable_power.webp"
+  },
+  {
+    "id": "VEILPIERCER",
+    "name": "Perce-voile",
+    "description": "Les [blue]2[/blue] prochaines cartes [gold]Éthérées[/gold] que vous jouez coûtent [blue]0[/blue].",
+    "description_raw": "{Amount:plural:La prochaine carte [gold]Éthérée[/gold]|Les [blue]{}[/blue] prochaines cartes [gold]Éthérées[/gold]} que vous jouez {Amount:plural:coûte|coûtent} [blue]0[/blue].",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/veilpiercer_power.webp"
+  },
+  {
+    "id": "VICIOUS",
+    "name": "Vicieux",
+    "description": "Lorsque vous appliquez [gold]Vulnérable[/gold], piochez [blue]1[/blue] carte.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/vicious_power.webp"
+  },
+  {
+    "id": "VIGOR",
+    "name": "Vigueur",
+    "description": "La prochaine Attaque de [gold]this creature[/gold] inflige [blue][Amount][/blue] dégâts supplémentaires.",
+    "description_raw": "{OnPlayer:Votre prochaine Attaque|La prochaine Attaque de [gold]{OwnerName}[/gold]} inflige [blue]{Amount}[/blue] dégâts supplémentaires.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/vigor_power.webp"
+  },
+  {
+    "id": "VITAL_SPARK",
+    "name": "Étincelle vitale",
+    "description": "La première fois que [gold]this creature[/gold] subit des dégâts d'Attaque chaque tour, l'attaquant gagne [energy:1].",
+    "description_raw": "La première fois que [gold]{OwnerName}[/gold] subit des dégâts d'Attaque chaque tour, l'attaquant gagne {Energy:energyIcons()}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/vital_spark_power.webp"
+  },
+  {
+    "id": "VOID_FORM",
+    "name": "Forme du néant",
+    "description": "Les [blue]2[/blue] premières cartes que vous jouez chaque tour coûtent [blue]0[/blue].",
+    "description_raw": "{Amount:plural:La première carte|Les [blue]{}[/blue] premières cartes} que vous jouez chaque tour {Amount:plural:coûte [blue]0[/blue]|coûtent [blue]0[/blue]}.",
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/void_form_power.webp"
+  },
+  {
+    "id": "VULNERABLE",
+    "name": "Vulnérable",
+    "description": "Subissez [blue]50%[/blue] de dégâts d'Attaque supplémentaires pendant [blue][Amount][/blue] tours.",
+    "description_raw": "Subissez [blue]{DamageIncrease:percentMore()}%[/blue] de dégâts d'Attaque supplémentaires pendant [blue]{Amount}[/blue] {Amount:plural:tour|tours}.",
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/vulnerable_power.webp"
+  },
+  {
+    "id": "WASTE_AWAY",
+    "name": "Périssable",
+    "description": "Gagnez [blue]1[/blue] d'[gold]Énergie[/gold] en moins chaque tour.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/waste_away_power.webp"
+  },
+  {
+    "id": "WEAK",
+    "name": "Affaibli",
+    "description": "Les créatures Affaiblies infligent [blue]25%[/blue] de dégâts d'Attaque en moins.",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/weak_power.webp"
+  },
+  {
+    "id": "WELL_LAID_PLANS",
+    "name": "Préméditation",
+    "description": "À la fin de votre tour, [gold]Retenez[/gold] jusqu'à [blue]1[/blue] carte.",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/well_laid_plans_power.webp"
+  },
+  {
+    "id": "WITHERING_PRESENCE",
+    "name": "Présence érosive",
+    "description": "Toutes les [blue]4[/blue] cartes non Statut que vous jouez, ajoutez une [gold]Érosion[/gold] dans votre [gold]Main[/gold].",
+    "description_raw": null,
+    "type": "Buff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/withering_presence_power.png"
+  },
+  {
+    "id": "WRAITH_FORM",
+    "name": "Forme spectrale",
+    "description": "Au début de votre tour, perdez [blue]1[/blue] de [gold]Dextérité[/gold].",
+    "description_raw": null,
+    "type": "Debuff",
+    "stack_type": "Counter",
+    "allow_negative": null,
+    "image_url": "/static/images/powers/wraith_form_power.webp"
+  }
+]

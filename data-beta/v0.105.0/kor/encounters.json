@@ -1,0 +1,1546 @@
+[
+  {
+    "id": "AEONGLASS_BOSS",
+    "name": "영겁의 모래시계",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "AEONGLASS",
+        "name": "영겁의 모래시계"
+      }
+    ],
+    "loss_text": "[gold]영겁의 모래시계[/gold]는 [b]The Adventurer[/b]의 방해를 친절하게 받아들이지 않았습니다."
+  },
+  {
+    "id": "AXEBOTS_NORMAL",
+    "name": "잘라봇",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "AXEBOT",
+        "name": "잘라봇"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]는 [gold]잘라봇[/gold]에 의해 절단되었습니다."
+  },
+  {
+    "id": "BATTLEWORN_DUMMY_EVENT_ENCOUNTER",
+    "name": "전투로 손상된 훈련 인형",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
+      {
+        "id": "BATTLE_FRIEND_V1",
+        "name": "전투 친구 V1.0"
+      },
+      {
+        "id": "BATTLE_FRIEND_V2",
+        "name": "전투 친구 V2.0"
+      },
+      {
+        "id": "BATTLE_FRIEND_V3",
+        "name": "전투 친구 V3.0"
+      }
+    ],
+    "loss_text": "왠지는 알 수 없지만 [gold]전투로 손상된 훈련 인형[/gold]가 [b]The Adventurer[/b]를 처치했습니다???"
+  },
+  {
+    "id": "BOWLBUGS_NORMAL",
+    "name": "그릇벌레 무리",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Workers"
+    ],
+    "monsters": [
+      {
+        "id": "BOWLBUG_EGG",
+        "name": "그릇벌레 (알)"
+      },
+      {
+        "id": "BOWLBUG_NECTAR",
+        "name": "그릇벌레 (꿀)"
+      },
+      {
+        "id": "BOWLBUG_ROCK",
+        "name": "그릇벌레 (바위)"
+      },
+      {
+        "id": "BOWLBUG_SILK",
+        "name": "그릇벌레 (실크)"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]는 분주한 [gold]그릇벌레 무리[/gold]에 의해 저지되었습니다."
+  },
+  {
+    "id": "BOWLBUGS_WEAK",
+    "name": "그릇벌레들",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Workers"
+    ],
+    "monsters": [
+      {
+        "id": "BOWLBUG_EGG",
+        "name": "그릇벌레 (알)"
+      },
+      {
+        "id": "BOWLBUG_NECTAR",
+        "name": "그릇벌레 (꿀)"
+      },
+      {
+        "id": "BOWLBUG_ROCK",
+        "name": "그릇벌레 (바위)"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]는 분주한 [gold]그릇벌레들[/gold]에 의해 저지되었습니다."
+  },
+  {
+    "id": "BYGONE_EFFIGY_ELITE",
+    "name": "옛 시대의 우상",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "BYGONE_EFFIGY",
+        "name": "옛 시대의 우상"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]는 [gold]옛 시대의 우상[/gold]에 의해 반으로 잘렸습니다."
+  },
+  {
+    "id": "BYRDONIS_ELITE",
+    "name": "섀도니스",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "BYRDONIS",
+        "name": "섀도니스"
+      }
+    ],
+    "loss_text": "[gold]섀도니스[/gold]는 [b]The Adventurer[/b]로부터 자신의 아이들을 보호했습니다."
+  },
+  {
+    "id": "CEREMONIAL_BEAST_BOSS",
+    "name": "의식의 신수",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "CEREMONIAL_BEAST",
+        "name": "의식의 신수"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]는 [gold]의식의 신수[/gold]에 의해 안식에 들었습니다."
+  },
+  {
+    "id": "CHOMPERS_NORMAL",
+    "name": "자동인형 한 쌍",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Chomper"
+    ],
+    "monsters": [
+      {
+        "id": "CHOMPER",
+        "name": "먹깨비"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]는 [gold]자동인형 한 쌍[/gold]에 의해 잘근잘근 씹혀 죽었습니다."
+  },
+  {
+    "id": "CONSTRUCT_MENAGERIE_NORMAL",
+    "name": "구조체 집단",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "CUBEX_CONSTRUCT",
+        "name": "큐브형 구조체"
+      },
+      {
+        "id": "PUNCH_CONSTRUCT",
+        "name": "권투형 구조체"
+      }
+    ],
+    "loss_text": "[gold]구조체 집단[/gold]이 [b]The Adventurer[/b]를 으깨버렸습니다."
+  },
+  {
+    "id": "CORPSE_SLUGS_NORMAL",
+    "name": "많은 시체 민달팽이들",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": [
+      "Slugs"
+    ],
+    "monsters": [
+      {
+        "id": "CORPSE_SLUG",
+        "name": "시체 민달팽이"
+      }
+    ],
+    "loss_text": "[gold]많은 시체 민달팽이들[/gold]이 [b]The Adventurer[/b]를 마음껏 먹어치웠습니다."
+  },
+  {
+    "id": "CORPSE_SLUGS_WEAK",
+    "name": "시체 민달팽이들",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 1 - Underdocks",
+    "tags": [
+      "Slugs"
+    ],
+    "monsters": [
+      {
+        "id": "CORPSE_SLUG",
+        "name": "시체 민달팽이"
+      }
+    ],
+    "loss_text": "[gold]시체 민달팽이들[/gold]이 [b]The Adventurer[/b]를 마음껏 먹어치웠습니다."
+  },
+  {
+    "id": "CUBEX_CONSTRUCT_NORMAL",
+    "name": "큐브형 구조체",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "CUBEX_CONSTRUCT",
+        "name": "큐브형 구조체"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]는 [gold]큐브형 구조체[/gold]의 레이저에 의해 사망했습니다."
+  },
+  {
+    "id": "CULTISTS_NORMAL",
+    "name": "광신자들",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "CALCIFIED_CULTIST",
+        "name": "석회화된 광신자"
+      },
+      {
+        "id": "DAMP_CULTIST",
+        "name": "흠뻑 젖은 광신자"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]는 [gold]광신자들[/gold]에 의해 살해당했습니다. [sine]까아아악[/sine]..."
+  },
+  {
+    "id": "DECIMILLIPEDE_ELITE",
+    "name": "만각지네",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "DECIMILLIPEDE_SEGMENT_BACK",
+        "name": "Decimillipede Segment Back"
+      },
+      {
+        "id": "DECIMILLIPEDE_SEGMENT_FRONT",
+        "name": "Decimillipede Segment Front"
+      },
+      {
+        "id": "DECIMILLIPEDE_SEGMENT_MIDDLE",
+        "name": "Decimillipede Segment Middle"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]는 [gold]만각지네[/gold]의 영역에서 살아남지 못했습니다."
+  },
+  {
+    "id": "DENSE_VEGETATION_EVENT_ENCOUNTER",
+    "name": "꿈틀벌레들",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
+      {
+        "id": "WRIGGLER",
+        "name": "꿈틀벌레"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]는 [gold]꿈틀벌레들[/gold]에게 감염되었습니다."
+  },
+  {
+    "id": "DEVOTED_SCULPTOR_WEAK",
+    "name": "열정적인 조각가",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "DEVOTED_SCULPTOR",
+        "name": "열정적인 조각가"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]는 [gold]열정적인 조각가[/gold]에 의해 산산조각이 났습니다."
+  },
+  {
+    "id": "ENTOMANCER_ELITE",
+    "name": "곤충술사",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "ENTOMANCER",
+        "name": "곤충술사"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]는 [gold]곤충술사[/gold]의 벌침에 쏘여 사망했습니다."
+  },
+  {
+    "id": "EXOSKELETONS_NORMAL",
+    "name": "많은 갑각충들",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Exoskeletons"
+    ],
+    "monsters": [
+      {
+        "id": "EXOSKELETON",
+        "name": "갑각충"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]는 [gold]많은 갑각충들[/gold]에 의해 뼈와 살이 분리되었습니다."
+  },
+  {
+    "id": "EXOSKELETONS_WEAK",
+    "name": "갑각충들",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Exoskeletons"
+    ],
+    "monsters": [
+      {
+        "id": "EXOSKELETON",
+        "name": "갑각충"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]는 [gold]갑각충들[/gold]에 의해 뼈와 살이 분리되었습니다."
+  },
+  {
+    "id": "FABRICATOR_NORMAL",
+    "name": "조립 전문가",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "FABRICATOR",
+        "name": "조립 전문가"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]는 [gold]조립 전문가[/gold]의 로봇들에게 지져졌습니다."
+  },
+  {
+    "id": "FAKE_MERCHANT_EVENT_ENCOUNTER",
+    "name": "상?인",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
+      {
+        "id": "FAKE_MERCHANT_MONSTER",
+        "name": "상?인"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]는 [gold][b]상?인[/b][/gold]의 분노를 마주했습니다."
+  },
+  {
+    "id": "FLYCONID_NORMAL",
+    "name": "버섯과 슬라임",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Mushroom",
+      "Slimes"
+    ],
+    "monsters": [
+      {
+        "id": "FLYCONID",
+        "name": "날개버섯"
+      },
+      {
+        "id": "LEAF_SLIME_M",
+        "name": "나뭇잎 슬라임 (중)"
+      },
+      {
+        "id": "TWIG_SLIME_M",
+        "name": "가지 슬라임 (중)"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]는 [gold]버섯과 슬라임[/gold]에게 흡수되었습니다."
+  },
+  {
+    "id": "FOGMOG_NORMAL",
+    "name": "현혹버섯",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "EYE_WITH_TEETH",
+        "name": "톱니눈"
+      },
+      {
+        "id": "FOGMOG",
+        "name": "현혹버섯"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]는 [gold]현혹버섯[/gold]의 환상에 의해 집중하지 못했습니다."
+  },
+  {
+    "id": "FOSSIL_STALKER_NORMAL",
+    "name": "화석 매복자",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "FOSSIL_STALKER",
+        "name": "화석 매복자"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]는 [gold]화석 매복자[/gold]에게 습격당했습니다."
+  },
+  {
+    "id": "FROG_KNIGHT_NORMAL",
+    "name": "개구리 기사",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "FROG_KNIGHT",
+        "name": "개구리 기사"
+      }
+    ],
+    "loss_text": "용맹한 [gold]개구리 기사[/gold]가 [b]The Adventurer[/b]에게 승리했습니다."
+  },
+  {
+    "id": "FUZZY_WURM_CRAWLER_WEAK",
+    "name": "복슬지렁이",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Crawler"
+    ],
+    "monsters": [
+      {
+        "id": "FUZZY_WURM_CRAWLER",
+        "name": "복슬지렁이"
+      }
+    ],
+    "loss_text": "[gold]복슬지렁이[/gold]가 [b]The Adventurer[/b]에게 침을 뱉었습니다."
+  },
+  {
+    "id": "GLOBE_HEAD_NORMAL",
+    "name": "고독한 구체 머리",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "GLOBE_HEAD",
+        "name": "구체 머리"
+      }
+    ],
+    "loss_text": "[gold]고독한 구체 머리[/gold]는 [b]The Adventurer[/b]를 감전시켰습니다."
+  },
+  {
+    "id": "GREMLIN_MERC_NORMAL",
+    "name": "트렌치코트를 입은 그렘린 두 마리",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "FAT_GREMLIN",
+        "name": "뚱뚱한 그렘린"
+      },
+      {
+        "id": "GREMLIN_MERC",
+        "name": "그렘린 용병"
+      },
+      {
+        "id": "SNEAKY_GREMLIN",
+        "name": "교활한 그렘린"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]는 [gold]트렌치코트를 입은 그렘린 두 마리[/gold]에게 털렸습니다."
+  },
+  {
+    "id": "HAUNTED_SHIP_NORMAL",
+    "name": "유령선",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "HAUNTED_SHIP",
+        "name": "유령선"
+      }
+    ],
+    "loss_text": "[gold]유령선[/gold]은 [b]The Adventurer[/b]를 마구 짓밟았습니다."
+  },
+  {
+    "id": "HUNTER_KILLER_NORMAL",
+    "name": "사냥꾼 살해자",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "HUNTER_KILLER",
+        "name": "사냥꾼 살해자"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]는 [gold]사냥꾼 살해자[/gold]에 의해 뼈와 살이 분리되었습니다."
+  },
+  {
+    "id": "INFESTED_PRISMS_ELITE",
+    "name": "감염된 프리즘",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "INFESTED_PRISM",
+        "name": "감염된 프리즘"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]는 [gold]감염된 프리즘[/gold]에 의해 저지당했습니다."
+  },
+  {
+    "id": "INKLETS_NORMAL",
+    "name": "잉클릿",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "INKLET",
+        "name": "잉클릿"
+      }
+    ],
+    "loss_text": "[gold]잉클릿[/gold]들은 [b]The Adventurer[/b]를 통과시키지 않았습니다."
+  },
+  {
+    "id": "KAISER_CRAB_BOSS",
+    "name": "황제 게",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "CRUSHER",
+        "name": "분쇄자"
+      },
+      {
+        "id": "ROCKET",
+        "name": "로켓"
+      }
+    ],
+    "loss_text": "[gold]황제 게[/gold]는 [b]The Adventurer[/b]를 사방에서 공격했습니다."
+  },
+  {
+    "id": "KNIGHTS_ELITE",
+    "name": "기사 패거리",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": [
+      "Knights"
+    ],
+    "monsters": [
+      {
+        "id": "FLAIL_KNIGHT",
+        "name": "철퇴 기사"
+      },
+      {
+        "id": "MAGI_KNIGHT",
+        "name": "마법 기사"
+      },
+      {
+        "id": "SPECTRAL_KNIGHT",
+        "name": "유령 기사"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]는 [gold]기사 패거리[/gold]에 의해 살해당했습니다."
+  },
+  {
+    "id": "KNOWLEDGE_DEMON_BOSS",
+    "name": "지식의 악마",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "KNOWLEDGE_DEMON",
+        "name": "지식의 악마"
+      }
+    ],
+    "loss_text": "[gold]지식의 악마[/gold]는 [b]The Adventurer[/b]에게 압도적인 지식의 저주를 내렸습니다."
+  },
+  {
+    "id": "LAGAVULIN_MATRIARCH_BOSS",
+    "name": "라가불린 대모",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "LAGAVULIN_MATRIARCH",
+        "name": "라가불린 대모"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]는 [gold]라가불린 대모[/gold]에게 반으로 썰렸습니다."
+  },
+  {
+    "id": "LIVING_FOG_NORMAL",
+    "name": "사악한 가스",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "GAS_BOMB",
+        "name": "가스 폭탄"
+      },
+      {
+        "id": "LIVING_FOG",
+        "name": "살아있는 안개"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]는 [gold]사악한 가스[/gold]의 악취를 견디지 못했습니다."
+  },
+  {
+    "id": "LOUSE_PROGENITOR_NORMAL",
+    "name": "태초의 공벌레",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "LOUSE_PROGENITOR",
+        "name": "태초의 공벌레"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]는 [gold]태초의 공벌레[/gold]에 의해 무력화되었습니다."
+  },
+  {
+    "id": "MAWLER_NORMAL",
+    "name": "장수아귀",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "MAWLER",
+        "name": "장수아귀"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]는 [gold]장수아귀[/gold]의 맛있는 한 끼 식사가 되었습니다."
+  },
+  {
+    "id": "MECHA_KNIGHT_ELITE",
+    "name": "기계 기사",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "MECHA_KNIGHT",
+        "name": "기계 기사"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]는 [gold]기계 기사[/gold]에게 찔리고 불태워졌습니다."
+  },
+  {
+    "id": "MYSTERIOUS_KNIGHT_EVENT_ENCOUNTER",
+    "name": "수수께끼의 기사",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
+      {
+        "id": "MYSTERIOUS_KNIGHT",
+        "name": "수수께끼의 기사"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]는 [gold]수수께끼의 기사[/gold]의 열쇠를 가져가려고 했습니다."
+  },
+  {
+    "id": "MYTES_NORMAL",
+    "name": "진듸기 무리",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "MYTE",
+        "name": "진듸기"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]는 [gold]진듸기 무리[/gold]에게 둘러싸였습니다."
+  },
+  {
+    "id": "NIBBITS_NORMAL",
+    "name": "깨작이 한 쌍",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "NIBBIT",
+        "name": "깨작이"
+      }
+    ],
+    "loss_text": "[gold]깨작이 한 쌍[/gold]이 [b]The Adventurer[/b]를 두들겨 팼습니다."
+  },
+  {
+    "id": "NIBBITS_WEAK",
+    "name": "외톨이 깨작이",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Nibbit"
+    ],
+    "monsters": [
+      {
+        "id": "NIBBIT",
+        "name": "깨작이"
+      }
+    ],
+    "loss_text": "[gold]외톨이 깨작이[/gold]가 [b]The Adventurer[/b]를 두들겨 팼습니다."
+  },
+  {
+    "id": "OVERGROWTH_CRAWLERS",
+    "name": "과성장 지렁이들",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Shrinker",
+      "Crawler"
+    ],
+    "monsters": [
+      {
+        "id": "FUZZY_WURM_CRAWLER",
+        "name": "복슬지렁이"
+      },
+      {
+        "id": "SHRINKER_BEETLE",
+        "name": "압축벌레"
+      }
+    ],
+    "loss_text": "[gold]과성장 지렁이들[/gold]이 [b]The Adventurer[/b]를 마음껏 먹어치웠습니다."
+  },
+  {
+    "id": "OVICOPTER_NORMAL",
+    "name": "산란비충",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "OVICOPTER",
+        "name": "산란비충"
+      },
+      {
+        "id": "TOUGH_EGG",
+        "name": "튼튼한 알"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]는 [gold]산란비충[/gold]의 자식들을 위한 먹이가 되었습니다."
+  },
+  {
+    "id": "OWL_MAGISTRATE_NORMAL",
+    "name": "올빼미 판관",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "OWL_MAGISTRATE",
+        "name": "올빼미 판관"
+      }
+    ],
+    "loss_text": "[gold]올빼미 판관[/gold]에 의해 [b]The Adventurer[/b]의 사형이 선고되었습니다."
+  },
+  {
+    "id": "PHANTASMAL_GARDENERS_ELITE",
+    "name": "허깨비 정원사들",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "PHANTASMAL_GARDENER",
+        "name": "허깨비 정원사"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]는 [gold]허깨비 정원사들[/gold]에 의해 안식에 들었습니다."
+  },
+  {
+    "id": "PHROG_PARASITE_ELITE",
+    "name": "게구리 기생체",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "PHROG_PARASITE",
+        "name": "게구리 기생체"
+      },
+      {
+        "id": "WRIGGLER",
+        "name": "꿈틀벌레"
+      }
+    ],
+    "loss_text": "[gold]게구리 기생체[/gold]는 [b]The Adventurer[/b]에게로 자신의 군체를 확장시켰습니다."
+  },
+  {
+    "id": "PUNCH_CONSTRUCT_NORMAL",
+    "name": "권투형 구조체",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "PUNCH_CONSTRUCT",
+        "name": "권투형 구조체"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]는 [gold]권투형 구조체[/gold]와 주먹다짐을 했습니다."
+  },
+  {
+    "id": "PUNCH_OFF_EVENT_ENCOUNTER",
+    "name": "권투형 구조체들",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
+      {
+        "id": "PUNCH_CONSTRUCT",
+        "name": "권투형 구조체"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]는 두 [gold]권투형 구조체들[/gold]의 싸움을 방해했습니다."
+  },
+  {
+    "id": "QUEEN_BOSS",
+    "name": "여왕",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "QUEEN",
+        "name": "여왕"
+      },
+      {
+        "id": "TORCH_HEAD_AMALGAM",
+        "name": "횃불머리 융합체"
+      }
+    ],
+    "loss_text": "[gold]여왕[/gold]은 [b]The Adventurer[/b]의 일부를 그녀의 수집품에 추가했습니다."
+  },
+  {
+    "id": "RUBY_RAIDERS_NORMAL",
+    "name": "루비 습격자",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "ASSASSIN_RUBY_RAIDER",
+        "name": "암살 습격자"
+      },
+      {
+        "id": "AXE_RUBY_RAIDER",
+        "name": "도끼 습격자"
+      },
+      {
+        "id": "BRUTE_RUBY_RAIDER",
+        "name": "난폭한 습격자"
+      },
+      {
+        "id": "CROSSBOW_RUBY_RAIDER",
+        "name": "크로스보우 습격자"
+      },
+      {
+        "id": "TRACKER_RUBY_RAIDER",
+        "name": "추적 습격자"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]는 [gold]루비 습격자[/gold] 무리에게 집단 구타를 당했습니다."
+  },
+  {
+    "id": "SCROLLS_OF_BITING_NORMAL",
+    "name": "수많은 물어뜯는 두루마리",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": [
+      "Scrolls"
+    ],
+    "monsters": [
+      {
+        "id": "SCROLL_OF_BITING",
+        "name": "물어뜯는 두루마리"
+      }
+    ],
+    "loss_text": "[gold]수많은 물어뜯는 두루마리[/gold]들은 [b]The Adventurer[/b]를 갈기갈기 찢어버렸습니다."
+  },
+  {
+    "id": "SCROLLS_OF_BITING_WEAK",
+    "name": "물어뜯는 두루마리",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 3 - Glory",
+    "tags": [
+      "Scrolls"
+    ],
+    "monsters": [
+      {
+        "id": "SCROLL_OF_BITING",
+        "name": "물어뜯는 두루마리"
+      }
+    ],
+    "loss_text": "[gold]물어뜯는 두루마리[/gold]들은 [b]The Adventurer[/b]를 갈기갈기 찢어버렸습니다."
+  },
+  {
+    "id": "SEAPUNK_NORMAL",
+    "name": "지하 선착장 야생동물",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": [
+      "Seapunk"
+    ],
+    "monsters": [
+      {
+        "id": "CALCIFIED_CULTIST",
+        "name": "석회화된 광신자"
+      },
+      {
+        "id": "SEAPUNK",
+        "name": "불량 해초"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]는 [gold]지하 선착장 야생동물[/gold]들에게 패배했습니다."
+  },
+  {
+    "id": "SEAPUNK_WEAK",
+    "name": "불량 해초",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 1 - Underdocks",
+    "tags": [
+      "Seapunk"
+    ],
+    "monsters": [
+      {
+        "id": "SEAPUNK",
+        "name": "불량 해초"
+      }
+    ],
+    "loss_text": "[gold]불량 해초[/gold]는 [b]The Adventurer[/b]를 때려눕혔습니다."
+  },
+  {
+    "id": "SEWER_CLAM_NORMAL",
+    "name": "시궁창 조개",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SEWER_CLAM",
+        "name": "시궁창 조개"
+      }
+    ],
+    "loss_text": "[gold]시궁창 조개[/gold]는 [b]The Adventurer[/b]를 통째로 삼켜버렸습니다."
+  },
+  {
+    "id": "SHRINKER_BEETLE_WEAK",
+    "name": "압축벌레",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Shrinker"
+    ],
+    "monsters": [
+      {
+        "id": "SHRINKER_BEETLE",
+        "name": "압축벌레"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]는 [gold]압축벌레[/gold]의 간식이 됐습니다."
+  },
+  {
+    "id": "SKULKING_COLONY_ELITE",
+    "name": "잠행 군체",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SKULKING_COLONY",
+        "name": "잠행 군체"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]는 [gold]잠행 군체[/gold]에 흡수당했습니다."
+  },
+  {
+    "id": "SLIMED_BERSERKER_NORMAL",
+    "name": "슬라임 광전사",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SLIMED_BERSERKER",
+        "name": "슬라임 광전사"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]는 [gold]슬라임 광전사[/gold]에게 흡수되었습니다."
+  },
+  {
+    "id": "SLIMES_NORMAL",
+    "name": "슬라임 무리",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Slimes"
+    ],
+    "monsters": [
+      {
+        "id": "LEAF_SLIME_M",
+        "name": "나뭇잎 슬라임 (중)"
+      },
+      {
+        "id": "LEAF_SLIME_S",
+        "name": "나뭇잎 슬라임 (소)"
+      },
+      {
+        "id": "TWIG_SLIME_M",
+        "name": "가지 슬라임 (중)"
+      },
+      {
+        "id": "TWIG_SLIME_S",
+        "name": "가지 슬라임 (소)"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]는 [gold]슬라임 무리[/gold]에 의해 쓰러졌습니다."
+  },
+  {
+    "id": "SLIMES_WEAK",
+    "name": "슬라임 집단",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Slimes"
+    ],
+    "monsters": [
+      {
+        "id": "LEAF_SLIME_M",
+        "name": "나뭇잎 슬라임 (중)"
+      },
+      {
+        "id": "LEAF_SLIME_S",
+        "name": "나뭇잎 슬라임 (소)"
+      },
+      {
+        "id": "TWIG_SLIME_M",
+        "name": "가지 슬라임 (중)"
+      },
+      {
+        "id": "TWIG_SLIME_S",
+        "name": "가지 슬라임 (소)"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]는 [gold]슬라임 집단[/gold]에 의해 쓰러졌습니다."
+  },
+  {
+    "id": "SLITHERING_STRANGLER_NORMAL",
+    "name": "교살마와 친구",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "LEAF_SLIME_M",
+        "name": "나뭇잎 슬라임 (중)"
+      },
+      {
+        "id": "LEAF_SLIME_S",
+        "name": "나뭇잎 슬라임 (소)"
+      },
+      {
+        "id": "SLITHERING_STRANGLER",
+        "name": "미끈거리는 교살마"
+      },
+      {
+        "id": "SNAPPING_JAXFRUIT",
+        "name": "포식성 잭스프루트"
+      },
+      {
+        "id": "TWIG_SLIME_M",
+        "name": "가지 슬라임 (중)"
+      },
+      {
+        "id": "TWIG_SLIME_S",
+        "name": "가지 슬라임 (소)"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]는 [gold]교살마와 친구[/gold]에 의해 질식사했습니다."
+  },
+  {
+    "id": "SLUDGE_SPINNER_WEAK",
+    "name": "오물팽이",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SLUDGE_SPINNER",
+        "name": "오물팽이"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]는 [gold]오물팽이[/gold]를 이길 수 없었습니다."
+  },
+  {
+    "id": "SLUMBERING_BEETLE_NORMAL",
+    "name": "잠자리 파티",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Workers"
+    ],
+    "monsters": [
+      {
+        "id": "BOWLBUG_ROCK",
+        "name": "그릇벌레 (바위)"
+      },
+      {
+        "id": "BOWLBUG_SILK",
+        "name": "그릇벌레 (실크)"
+      },
+      {
+        "id": "SLUMBERING_BEETLE",
+        "name": "잠자는 딱정벌레"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]는 [gold]잠자리 파티[/gold]를 방해했습니다."
+  },
+  {
+    "id": "SNAPPING_JAXFRUIT_NORMAL",
+    "name": "과성장 식물",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Mushroom"
+    ],
+    "monsters": [
+      {
+        "id": "FLYCONID",
+        "name": "날개버섯"
+      },
+      {
+        "id": "SNAPPING_JAXFRUIT",
+        "name": "포식성 잭스프루트"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]는 [gold]과성장 식물[/gold]들과 충돌했습니다."
+  },
+  {
+    "id": "SOUL_FYSH_BOSS",
+    "name": "영혼 물교기",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SOUL_FYSH",
+        "name": "영혼 물교기"
+      }
+    ],
+    "loss_text": "[gold]영혼 물교기[/gold]는 [b]The Adventurer[/b]를 파멸로 이끌었습니다."
+  },
+  {
+    "id": "SOUL_NEXUS_ELITE",
+    "name": "영혼 결합체",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SOUL_NEXUS",
+        "name": "영혼 결합체"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]는 잊힌 전장에서 [gold]영혼 결합체[/gold]에 의해 사망했습니다."
+  },
+  {
+    "id": "SPINY_TOAD_NORMAL",
+    "name": "가시두꺼비",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SPINY_TOAD",
+        "name": "가시두꺼비"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]는 [gold]가시두꺼비[/gold]의 가시를 뚫지 못했습니다."
+  },
+  {
+    "id": "TERROR_EEL_ELITE",
+    "name": "공포 장어",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "TERROR_EEL",
+        "name": "공포 장어"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]에게 [gold]공포 장어[/gold]는 너무 무서웠습니다."
+  },
+  {
+    "id": "TEST_SUBJECT_BOSS",
+    "name": "실험체",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "TEST_SUBJECT",
+        "name": "실험체 #C{Count}"
+      }
+    ],
+    "loss_text": "[gold]실험체[/gold]는 충성스럽게 [b]The Adventurer[/b]로부터 자신의 주인들을 지켰습니다."
+  },
+  {
+    "id": "THE_ARCHITECT_EVENT_ENCOUNTER",
+    "name": "아키텍트",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
+      {
+        "id": "ARCHITECT",
+        "name": "아키텍트"
+      }
+    ],
+    "loss_text": "봐선 안되는 것이었습니다."
+  },
+  {
+    "id": "THE_INSATIABLE_BOSS",
+    "name": "탐",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "THE_INSATIABLE",
+        "name": "탐"
+      }
+    ],
+    "loss_text": "[gold]탐[/gold]은 [b]The Adventurer[/b]를 먹어치웠습니다. 그리고 아직도 굶주려 있습니다..."
+  },
+  {
+    "id": "THE_KIN_BOSS",
+    "name": "혈족",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "KIN_FOLLOWER",
+        "name": "혈족 추종자"
+      },
+      {
+        "id": "KIN_PRIEST",
+        "name": "혈족 사제"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]는 [gold]혈족[/gold]의 뛰어난 전략에 의해 완패했습니다."
+  },
+  {
+    "id": "THE_LOST_AND_FORGOTTEN_NORMAL",
+    "name": "사라진 자와 잊힌 자",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "THE_FORGOTTEN",
+        "name": "잊힌 자"
+      },
+      {
+        "id": "THE_LOST",
+        "name": "사라진 자"
+      }
+    ],
+    "loss_text": "[gold]사라진 자와 잊힌 자[/gold]는 [b]The Adventurer[/b]의 삶의 의지를 빼앗았습니다."
+  },
+  {
+    "id": "THE_OBSCURA_NORMAL",
+    "name": "영사자",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "THE_OBSCURA",
+        "name": "영사자"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]는 [gold]영사자[/gold]와 그것의 환영에 의해 박살났습니다."
+  },
+  {
+    "id": "THIEVING_HOPPER_WEAK",
+    "name": "폴짝이 도적",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Thieves"
+    ],
+    "monsters": [
+      {
+        "id": "THIEVING_HOPPER",
+        "name": "폴짝이 도적"
+      }
+    ],
+    "loss_text": "[gold]폴짝이 도적[/gold]은 [b]The Adventurer[/b]를 털어먹었습니다."
+  },
+  {
+    "id": "TOADPOLES_WEAK",
+    "name": "올챙이들",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "TOADPOLE",
+        "name": "올챙이"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]는 [gold]올챙이들[/gold]을 처리하지 못했습니다."
+  },
+  {
+    "id": "TUNNELER_NORMAL",
+    "name": "땅굴 2인조",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": [
+      "Burrower",
+      "Chomper"
+    ],
+    "monsters": [
+      {
+        "id": "CHOMPER",
+        "name": "먹깨비"
+      },
+      {
+        "id": "TUNNELER",
+        "name": "땅굴충"
+      }
+    ],
+    "loss_text": "[gold]땅굴 2인조[/gold]는 [b]The Adventurer[/b]를 끝장냈습니다."
+  },
+  {
+    "id": "TUNNELER_WEAK",
+    "name": "땅굴충",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Burrower"
+    ],
+    "monsters": [
+      {
+        "id": "TUNNELER",
+        "name": "땅굴충"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]는 [gold]땅굴충[/gold]에게 얻어맞았습니다."
+  },
+  {
+    "id": "TURRET_OPERATOR_WEAK",
+    "name": "포탑 사수",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "LIVING_SHIELD",
+        "name": "살아있는 방패"
+      },
+      {
+        "id": "TURRET_OPERATOR",
+        "name": "포탑 사수"
+      }
+    ],
+    "loss_text": "[gold]포탑 사수[/gold]는 [b]The Adventurer[/b]를 벌집으로 만들었습니다."
+  },
+  {
+    "id": "TWO_TAILED_RATS_NORMAL",
+    "name": "두꼬리쥐들",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "TWO_TAILED_RAT",
+        "name": "두꼬리쥐"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]는 [gold]두꼬리쥐들[/gold]에게 둘러싸였습니다."
+  },
+  {
+    "id": "VANTOM_BOSS",
+    "name": "밴텀",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "VANTOM",
+        "name": "밴텀"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]는 [gold]밴텀[/gold]에 의해 잉클릿으로 변해버렸습니다."
+  },
+  {
+    "id": "VINE_SHAMBLER_NORMAL",
+    "name": "휘청거리는 덩굴",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "VINE_SHAMBLER",
+        "name": "휘청거리는 덩굴"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]는 [gold]휘청거리는 덩굴[/gold]로부터 도망칠 수 없었습니다."
+  },
+  {
+    "id": "WATERFALL_GIANT_BOSS",
+    "name": "폭포 거인",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "WATERFALL_GIANT",
+        "name": "폭포 거인"
+      }
+    ],
+    "loss_text": "[gold]폭포 거인[/gold]은 [b]The Adventurer[/b]로부터 지하 선착장을 정화했습니다."
+  }
+]

@@ -1,0 +1,44 @@
+[
+  {
+    "id": "BOUND",
+    "name": "束縛",
+    "description": "1ターンにプレイできる[gold]束縛[/gold]状態のカードは[blue]1[/blue]枚のみ。ターン終了時に[gold]束縛[/gold]は解除される。",
+    "extra_card_text": "束縛",
+    "is_stackable": false
+  },
+  {
+    "id": "ENTANGLED",
+    "name": "絡みつき",
+    "description": "コストが[energy:1]増加する。",
+    "extra_card_text": "絡みつき",
+    "is_stackable": false
+  },
+  {
+    "id": "GALVANIZED",
+    "name": "帯電",
+    "description": "このカードをプレイした時、[blue]X[/blue]ダメージを受ける。",
+    "extra_card_text": "Xダメージを受ける。",
+    "is_stackable": true
+  },
+  {
+    "id": "HEXED",
+    "name": "呪詛",
+    "description": "このカードに[gold]エセリアル[/gold]を付与する。",
+    "extra_card_text": null,
+    "is_stackable": false
+  },
+  {
+    "id": "RINGING",
+    "name": "鳴動",
+    "description": "このターン、カードを[blue]1[/blue]枚しかプレイできない。",
+    "extra_card_text": "鳴動",
+    "is_stackable": false
+  },
+  {
+    "id": "SMOG",
+    "name": "スモッグ",
+    "description": "このターン、これ以上[gold]スキル[/gold]をプレイできない。ターン終了時に解除される。",
+    "extra_card_text": null,
+    "is_stackable": false
+  }
+]

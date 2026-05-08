@@ -1,0 +1,68 @@
+[
+  {
+    "id": "LEVEL_00",
+    "level": 0,
+    "name": "Sans ascension",
+    "description": "Jouer sans modificateurs d'Ascension."
+  },
+  {
+    "id": "LEVEL_01",
+    "level": 1,
+    "name": "Invasion d'Élite",
+    "description": "Les [gold]Élites[/gold] apparaissent plus fréquemment."
+  },
+  {
+    "id": "LEVEL_02",
+    "level": 2,
+    "name": "Voyageur fatigué",
+    "description": "Les Anciens ne soignent plus que [blue]80%[/blue] de vos PV manquants."
+  },
+  {
+    "id": "LEVEL_03",
+    "level": 3,
+    "name": "Précarité",
+    "description": "Les ennemis et les coffres donnent [blue]25%[/blue] moins de [gold]Pièces d'or[/gold]."
+  },
+  {
+    "id": "LEVEL_04",
+    "level": 4,
+    "name": "Ceinture serrée",
+    "description": "Chaque partie commence avec 1 emplacement de potion en moins."
+  },
+  {
+    "id": "LEVEL_05",
+    "level": 5,
+    "name": "Fléau de l'ascendant",
+    "description": "Chaque partie commence avec une [red]Malédiction[/red]."
+  },
+  {
+    "id": "LEVEL_06",
+    "level": 6,
+    "name": "Inflation",
+    "description": "Retirer des cartes de votre deck chez le Marchand coûte plus cher."
+  },
+  {
+    "id": "LEVEL_07",
+    "level": 7,
+    "name": "Pénurie",
+    "description": "Les cartes Rares et les cartes Améliorées apparaissent moins souvent."
+  },
+  {
+    "id": "LEVEL_08",
+    "level": 8,
+    "name": "Ennemis coriaces",
+    "description": "Tous les ennemis sont plus difficiles à vaincre."
+  },
+  {
+    "id": "LEVEL_09",
+    "level": 9,
+    "name": "Ennemis meurtriers",
+    "description": "Les ennemis possèdent des attaques plus dangereuses."
+  },
+  {
+    "id": "LEVEL_10",
+    "level": 10,
+    "name": "Double boss",
+    "description": "L'Acte 3 comporte deux Boss au lieu d'un seul."
+  }
+]

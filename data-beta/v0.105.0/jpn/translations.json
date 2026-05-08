@@ -1,0 +1,74 @@
+{
+  "card_types": {
+    "Attack": "アタック",
+    "Skill": "スキル",
+    "Power": "パワー",
+    "Status": "状態異常",
+    "Curse": "呪い",
+    "Quest": "クエスト"
+  },
+  "card_rarities": {
+    "Basic": "ベーシック",
+    "Common": "コモン",
+    "Uncommon": "アンコモン",
+    "Rare": "レア",
+    "Ancient": "エンシェント",
+    "Event": "イベント",
+    "Token": "トークン",
+    "Status": "状態異常",
+    "Curse": "呪い",
+    "Quest": "クエスト"
+  },
+  "relic_rarities": {
+    "Starter": "レリック（スターター）",
+    "Common": "レリック（コモン）",
+    "Uncommon": "レリック（アンコモン）",
+    "Rare": "レリック（レア）",
+    "Ancient": "レリック（エンシェント）",
+    "Event": "レリック（イベント）",
+    "Shop": "レリック（ショップ）"
+  },
+  "potion_rarities": {
+    "Common": "ポーション（コモン）",
+    "Uncommon": "ポーション（アンコモン）",
+    "Rare": "ポーション（レア）",
+    "Event": "ポーション（イベント）",
+    "Token": "トークン"
+  },
+  "keywords": {
+    "ETERNAL": "永劫",
+    "ETHEREAL": "エセリアル",
+    "EXHAUST": "廃棄",
+    "INNATE": "天賦",
+    "RETAIN": "保留",
+    "SLY": "スライ",
+    "UNPLAYABLE": "プレイ不可"
+  },
+  "sections": {
+    "cards": "カードライブラリ",
+    "characters": "Characters",
+    "relics": "レリック一覧",
+    "monsters": "モンスター図鑑",
+    "potions": "ポーションラボ",
+    "enchantments": "Enchantments",
+    "encounters": "Encounters",
+    "events": "Events",
+    "powers": "Powers",
+    "timeline": "年代記",
+    "images": "Images",
+    "reference": "Reference"
+  },
+  "section_descs": {
+    "cards": "スパイアで発見した全カードを確認する。",
+    "relics": "これまでのプレイで入手した、様々なレリックやアーティファクトを確認する。",
+    "monsters": "スパイアで遭遇した全モンスターを確認する。",
+    "potions": "これまでにスパイアで発見した全ポーションを確認する。"
+  },
+  "character_names": {
+    "ironclad": "アイアンクラッド",
+    "silent": "サイレント",
+    "defect": "ディフェクト",
+    "necrobinder": "ネクロバインダー",
+    "regent": "リージェント"
+  }
+}

@@ -1,0 +1,170 @@
+[
+  {
+    "id": "BLOCK",
+    "name": "Blok",
+    "description": "Pochłania otrzymywane obrażenia do następnej tury.",
+    "category": "combat"
+  },
+  {
+    "id": "CARD_REWARD",
+    "name": "Łupy",
+    "description": "Pakiet [blue]3[/blue] losowych kart. Możesz dodać [blue]1[/blue] z nich do swojej [gold]talii[/gold].",
+    "category": "progression"
+  },
+  {
+    "id": "CHANNELING",
+    "name": "Załadowanie",
+    "description": "Umieszcza Sferę w pierwsze wolne miejsce. Jeżeli nie masz wolnych miejsc, twoja pierwsza Sfera zostaje [gold]Wyładowana[/gold].",
+    "category": "combat"
+  },
+  {
+    "id": "COOK",
+    "name": "Gotuj",
+    "description": "[gold]Usuń[/gold] [blue]2[/blue] karty z [gold]talii[/gold] i zyskaj [green]9[/green] maks. PŻ w [gold]Obozowisku[/gold].",
+    "category": "mechanics"
+  },
+  {
+    "id": "DECK",
+    "name": "Talia",
+    "description": "Wyświetl wszystkie karty w swojej talii.",
+    "category": "zones"
+  },
+  {
+    "id": "DISCARD_PILE",
+    "name": "Stos kart odrzuconych",
+    "description": "Jeżeli stos rozgrywający jest pusty, stos kart odrzuconych zostanie do niego wtasowany.\n\nKliknij, aby wyświetlić karty na stosie kart odrzuconych.",
+    "category": "zones"
+  },
+  {
+    "id": "DRAW_PILE",
+    "name": "Stos rozgrywający",
+    "description": "Na początku każdej tury\ndobierasz stąd [blue]5[/blue] kart.\n\nKliknij, aby wyświetlić (potasowane) karty na stosie rozgrywającym.",
+    "category": "zones"
+  },
+  {
+    "id": "ENERGY",
+    "name": "Energia",
+    "description": "Energia jest używana do zagrywania kart z [gold]ręki[/gold].",
+    "category": "combat"
+  },
+  {
+    "id": "EVOKE",
+    "name": "Wyładowanie",
+    "description": "Pochłoń swoją pierwszą Sferę i aktywuj jej efekt Wyładowania.",
+    "category": "combat"
+  },
+  {
+    "id": "EXHAUST_PILE",
+    "name": "Wyczerpane karty",
+    "description": "Kliknij, aby wyświetlić karty Wyczerpane w tej walce.",
+    "category": "zones"
+  },
+  {
+    "id": "FATAL",
+    "name": "Uśmiercenie",
+    "description": "Efekt karty aktywuje się po zabiciu przeciwnika, który nie jest pomagierem.",
+    "category": "combat"
+  },
+  {
+    "id": "FORGE",
+    "name": "Wykuj",
+    "description": "Gdy zagrasz kartę z [gold]Wykuj[/gold] po raz pierwszy w walce, dodaj [gold]Niebańskie Ostrze[/gold] do [gold]ręki[/gold]. Zwiększ obrażenia zadawane przez [gold]Niebiańskie Ostrze[/gold].",
+    "category": "mechanics"
+  },
+  {
+    "id": "HIT_POINTS",
+    "name": "Punkty Życia (PŻ)",
+    "description": "Kiedy skończą ci się PŻ, umierasz.",
+    "category": "progression"
+  },
+  {
+    "id": "LINKED_REWARDS",
+    "name": "Połączone Łupy",
+    "description": "Możesz wybrać tylko [blue]1[/blue] opcję z tego zestawu.",
+    "category": "progression"
+  },
+  {
+    "id": "MONEY_POUCH",
+    "name": "Złoto",
+    "description": "Pokazuje, ile posiadasz Złota. Jest ono główną walutą w Iglicy.",
+    "category": "progression"
+  },
+  {
+    "id": "POTION_SLOT",
+    "name": "Miejsce na Miksturę",
+    "description": "W trakcie walki używaj mikstur do zyskiwania [green]wzmocnień[/green] lub do [red]osłabiania[/red] przeciwników.",
+    "category": "progression"
+  },
+  {
+    "id": "REPLAY",
+    "name": "Powtórka",
+    "description": "Karta jest zagrywana dodatkowy raz.",
+    "category": "mechanics"
+  },
+  {
+    "id": "ROOM_ANCIENT",
+    "name": "Starożytny",
+    "description": "W tym pomieszczeniu przebywa Starożytny.\n\nOtrzymasz od niego specjalne wzmocnienia, drogocenne skarby oraz przydatną wiedzę.",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_BOSS",
+    "name": "Boss",
+    "description": "Najgroźniejszy przeciwnik.\n\nZa jego pokonanie dostaniesz się do następnego Aktu.",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_ELITE",
+    "name": "Elitarny",
+    "description": "Potężni przeciwnicy okupują to pomieszczenie.\n\nZa ich pokonanie otrzymasz [gold]Artefakt[/gold].",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_ENEMY",
+    "name": "Przeciwnik",
+    "description": "Przeciwnicy okupują to pomieszczenie.",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_EVENT",
+    "name": "Wydarzenie",
+    "description": "W tym pomieszczeniu dzieje się coś niespotykanego...",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_MERCHANT",
+    "name": "Handlarz",
+    "description": "W tym pomieszczeniu spotkasz Handlarza sprzedającego różnorodne towary.\n\nMożesz tutaj wydać całe ciężko zarobione [gold]Złoto[/gold]!",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_REST",
+    "name": "Obozowisko",
+    "description": "W tym pomieszczeniu możesz [green]przywrócić[/green] utracone PŻ lub [gold]Ulepszyć[/gold] kartę.",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_TREASURE",
+    "name": "Skarb",
+    "description": "W tym pomieszczeniu znajdziesz [gold]Artefakty[/gold] oraz [gold]Złoto[/gold].",
+    "category": "rooms"
+  },
+  {
+    "id": "STUN",
+    "name": "Ogłuszenie",
+    "description": "Uniemożliwia przeciwnikowi wykonanie akcji w jego następnej turze.",
+    "category": "combat"
+  },
+  {
+    "id": "SUMMON",
+    "name": "Przywołaj",
+    "description": "Przywołaj [gold]Kostka[/gold].\nJeżeli jest już przywołany, zwiększ jego maks. PŻ w tej walce.",
+    "category": "mechanics"
+  },
+  {
+    "id": "TRANSFORM",
+    "name": "Zmiana",
+    "description": "Zmienione karty stają się losowymi kartami o dowolnej rzadkości.",
+    "category": "mechanics"
+  }
+]

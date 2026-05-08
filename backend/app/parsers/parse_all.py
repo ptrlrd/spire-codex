@@ -42,10 +42,16 @@ def parse_language(lang: str):
     parse_cards(lang)
     parse_characters(lang)
     parse_relics(lang)
+    # Encounters must run before monsters: monster_parser reads the
+    # parsed encounters.json to back-link "this monster appears in
+    # encounter X" into each monster record. Running them out of order
+    # silently nulled every monster's `encounters` field on the first
+    # pass against a fresh data dir — caught when cutting beta v0.105.0
+    # against an empty data-beta/v0.105.0/.
+    parse_encounters(lang)
     parse_monsters(lang)
     parse_potions(lang)
     parse_enchantments(lang)
-    parse_encounters(lang)
     parse_events(lang)
     parse_powers(lang)
     parse_keywords_etc(lang)
