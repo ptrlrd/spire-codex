@@ -6,7 +6,13 @@ from pathlib import Path
 from description_resolver import resolve_description, extract_vars_from_source
 
 from orphan_filter import is_orphan
-from parser_paths import BASE, DECOMPILED, loc_dir as _loc_dir, data_dir as _data_dir
+from parser_paths import (
+    BASE,
+    DECOMPILED,
+    loc_dir as _loc_dir,
+    data_dir as _data_dir,
+    resolve_image_url,
+)
 
 RELICS_DIR = DECOMPILED / "MegaCrit.Sts2.Core.Models.Relics"
 RELIC_POOLS_DIR = DECOMPILED / "MegaCrit.Sts2.Core.Models.RelicPools"
@@ -202,14 +208,11 @@ def parse_single_relic(
     # Pool/character
     pool = relic_pools.get(class_name, "shared")
 
-    # Image URL — prefer WebP, fall back to PNG
+    # Image URL — version-aware via resolve_image_url (per-version beta
+    # asset → stable canonical fallback). Returns None when neither has
+    # the file.
     relic_base = relic_id.lower()
-    image_file = STATIC_IMAGES / f"{relic_base}.webp"
-    if not image_file.exists():
-        image_file = STATIC_IMAGES / f"{relic_base}.png"
-    image_url = (
-        f"/static/images/relics/{image_file.name}" if image_file.exists() else None
-    )
+    image_url = resolve_image_url("relics", relic_base)
 
     # Character-specific image variants (e.g., Yummy Cookie has 5 variants)
     VARIANT_SUFFIXES = {
@@ -221,11 +224,9 @@ def parse_single_relic(
     }
     image_variants = {}
     for suffix, char_name in VARIANT_SUFFIXES.items():
-        variant_file = STATIC_IMAGES / f"{relic_base}_{suffix}.webp"
-        if not variant_file.exists():
-            variant_file = STATIC_IMAGES / f"{relic_base}_{suffix}.png"
-        if variant_file.exists():
-            image_variants[char_name] = f"/static/images/relics/{variant_file.name}"
+        variant_url = resolve_image_url("relics", f"{relic_base}_{suffix}")
+        if variant_url:
+            image_variants[char_name] = variant_url
 
     # Looming Fruit ships two icons (cornucopia + bare fruit) and the
     # game picks one per save based on `UniqueId % 2 == 0` in
@@ -233,13 +234,11 @@ def parse_single_relic(
     # each, which leads to "wrong icon" reports — surface both so the
     # detail page's variant picker shows them as alternates.
     if class_name == "LoomingFruit":
-        cornucopia_url = f"/static/images/relics/{relic_base}.webp"
-        fruit_file = STATIC_IMAGES / f"{relic_base}_2.webp"
-        if not fruit_file.exists():
-            fruit_file = STATIC_IMAGES / f"{relic_base}_2.png"
-        if fruit_file.exists():
+        cornucopia_url = resolve_image_url("relics", relic_base)
+        fruit_url = resolve_image_url("relics", f"{relic_base}_2")
+        if cornucopia_url and fruit_url:
             image_variants["Cornucopia"] = cornucopia_url
-            image_variants["Fruit"] = f"/static/images/relics/{fruit_file.name}"
+            image_variants["Fruit"] = fruit_url
 
     # Per-relic notes — see _load_relic_notes() docstring for why this
     # lives in `data/relic_notes.json` and not inline.

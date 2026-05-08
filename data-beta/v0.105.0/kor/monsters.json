@@ -81,7 +81,7 @@
       ],
       "description": "감쇠 → 눈 레이저 → 강도 증가 → repeat"
     },
-    "image_url": null,
+    "image_url": "/static/data-beta/v0.105.0/images/monsters/aeonglass.webp",
     "beta_image_url": null
   },
   {
@@ -698,7 +698,7 @@
       ],
       "description": "Starts with 박치기"
     },
-    "image_url": "/static/images/monsters/bowlbug_rock.webp",
+    "image_url": "/static/data-beta/v0.105.0/images/monsters/bowlbug_rock.webp",
     "beta_image_url": null
   },
   {
@@ -1374,7 +1374,7 @@
       ],
       "description": ""
     },
-    "image_url": "/static/images/monsters/corpse_slug.webp",
+    "image_url": "/static/data-beta/v0.105.0/images/monsters/corpse_slug.webp",
     "beta_image_url": null
   },
   {

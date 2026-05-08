@@ -5673,7 +5673,7 @@
       "Damage": 2
     },
     "upgrade": null,
-    "image_url": null,
+    "image_url": "/static/data-beta/v0.105.0/images/cards/wither.webp",
     "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,

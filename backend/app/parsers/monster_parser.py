@@ -5,7 +5,13 @@ import re
 from pathlib import Path
 
 from orphan_filter import is_orphan
-from parser_paths import BASE, DECOMPILED, loc_dir as _loc_dir, data_dir as _data_dir
+from parser_paths import (
+    BASE,
+    DECOMPILED,
+    loc_dir as _loc_dir,
+    data_dir as _data_dir,
+    resolve_image_url,
+)
 
 MONSTERS_DIR = DECOMPILED / "MegaCrit.Sts2.Core.Models.Monsters"
 ENCOUNTERS_DIR = DECOMPILED / "MegaCrit.Sts2.Core.Models.Encounters"
@@ -1092,12 +1098,8 @@ def parse_single_monster(
         "MYSTERIOUS_KNIGHT": "flail_knight",
     }
     img_name = IMAGE_ALIASES.get(monster_id, monster_id.lower())
-    image_file = IMAGES_DIR / f"{img_name}.webp"
-    if not image_file.exists():
-        image_file = IMAGES_DIR / f"{img_name}.png"
-    image_url = (
-        f"/static/images/monsters/{image_file.name}" if image_file.exists() else None
-    )
+    # Version-aware: per-version beta asset → stable canonical fallback.
+    image_url = resolve_image_url("monsters", img_name)
 
     # Beta/concept art toggle — checks `monsters/beta/` (the historical
     # archive that drives the monster-page beta-art toggle, same role as

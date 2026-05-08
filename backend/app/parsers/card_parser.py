@@ -9,7 +9,13 @@ from description_resolver import (
 )
 
 from orphan_filter import is_orphan
-from parser_paths import BASE, DECOMPILED, loc_dir as _loc_dir, data_dir as _data_dir
+from parser_paths import (
+    BASE,
+    DECOMPILED,
+    loc_dir as _loc_dir,
+    data_dir as _data_dir,
+    resolve_image_url,
+)
 
 CARDS_DIR = DECOMPILED / "MegaCrit.Sts2.Core.Models.Cards"
 POOLS_DIR = DECOMPILED / "MegaCrit.Sts2.Core.Models.CardPools"
@@ -399,15 +405,11 @@ def parse_single_card(
                 v_entry["damage"] = damage
             elif vtype == "Skill" and block:
                 v_entry["block"] = block
-            # Variant-specific image
+            # Variant-specific image — version-aware via resolve_image_url.
             variant_base = f"{card_id.lower()}_{vtype.lower()}"
-            variant_img = (
-                f"{variant_base}.webp"
-                if (STATIC_IMAGES / f"{variant_base}.webp").exists()
-                else f"{variant_base}.png"
-            )
-            if (STATIC_IMAGES / variant_img).exists():
-                v_entry["image_url"] = f"/static/images/cards/{variant_img}"
+            variant_url = resolve_image_url("cards", variant_base)
+            if variant_url:
+                v_entry["image_url"] = variant_url
             # Rider sub-variants
             riders = []
             for rider in RIDERS.get(vtype, []):
@@ -472,16 +474,11 @@ def parse_single_card(
         "spawns_cards": spawns_cards,
         "vars": all_vars if all_vars else None,
         "upgrade": {},
-        "image_url": f"/static/images/cards/{card_id.lower()}.webp"
-        if (STATIC_IMAGES / f"{card_id.lower()}.webp").exists()
-        else (
-            f"/static/images/cards/{card_id.lower()}.png"
-            if (STATIC_IMAGES / f"{card_id.lower()}.png").exists()
-            else (
-                type_variants[card_type.lower()].get("image_url")
-                if type_variants and card_type.lower() in type_variants
-                else None
-            )
+        "image_url": resolve_image_url("cards", card_id.lower())
+        or (
+            type_variants[card_type.lower()].get("image_url")
+            if type_variants and card_type.lower() in type_variants
+            else None
         ),
         # Source for the card-page beta-art toggle. Resolves to the
         # historical archive at `backend/static/images/cards/beta/<id>` —
@@ -491,7 +488,9 @@ def parse_single_card(
         # re-arted card. Don't switch this to the top-level
         # `backend/static/images/beta/cards/` tree: that one tracks the
         # CURRENT beta cycle's art and goes empty between drops, which
-        # silently disables the toggle.
+        # silently disables the toggle. Stays at the stable canonical
+        # path (no per-version override) — this field is a stable-side
+        # comparison archive, not a beta-version asset.
         "beta_image_url": f"/static/images/cards/beta/{card_id.lower()}.webp"
         if (STATIC_IMAGES / "beta" / f"{card_id.lower()}.webp").exists()
         else (

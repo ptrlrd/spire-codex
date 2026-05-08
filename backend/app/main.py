@@ -449,6 +449,28 @@ def root(request: Request):
     }
 
 
+# Per-version beta asset tree. The beta deployment mounts `./data-beta`
+# at `/data` (see docker-compose.beta.yml), so DATA_DIR resolves to that
+# tree on the beta backend. Exposing it under `/static/data-beta` lets
+# version-aware image URLs (e.g.
+# `/static/data-beta/v0.105.0/images/cards/wither.webp`) resolve without
+# any extra routing layer. Registered BEFORE `/static` so Starlette's
+# in-order route matching reaches the more-specific prefix first
+# (otherwise the broader `/static` mount catches every URL and the
+# StaticFiles 404 short-circuits before this mount sees the request).
+# On the stable backend DATA_DIR is the unversioned `./data` tree (no
+# `vX.Y.Z/` subdirs), so this mount adds no useful URLs but is
+# harmless — its contents mirror what the API already serves as JSON.
+_BETA_ASSETS_DIR = Path(
+    os.environ.get("DATA_DIR", Path(__file__).resolve().parents[1] / "data")
+)
+if _BETA_ASSETS_DIR.exists():
+    app.mount(
+        "/static/data-beta",
+        StaticFiles(directory=str(_BETA_ASSETS_DIR)),
+        name="data-beta-static",
+    )
+
 STATIC_DIR = Path(__file__).resolve().parents[1] / "static"
 if STATIC_DIR.exists():
     app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")

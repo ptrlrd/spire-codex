@@ -657,7 +657,7 @@
     "type": "Debuff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/ebb_power.png"
+    "image_url": "/static/data-beta/v0.105.0/images/powers/ebb_power.webp"
   },
   {
     "id": "ECHO_FORM",
@@ -2557,7 +2557,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/withering_presence_power.png"
+    "image_url": "/static/data-beta/v0.105.0/images/powers/withering_presence_power.webp"
   },
   {
     "id": "WRAITH_FORM",

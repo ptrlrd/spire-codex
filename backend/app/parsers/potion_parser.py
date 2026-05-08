@@ -6,7 +6,13 @@ from pathlib import Path
 from description_resolver import resolve_description, extract_vars_from_source
 
 from orphan_filter import is_orphan
-from parser_paths import BASE, DECOMPILED, loc_dir as _loc_dir, data_dir as _data_dir
+from parser_paths import (
+    BASE,
+    DECOMPILED,
+    loc_dir as _loc_dir,
+    data_dir as _data_dir,
+    resolve_image_url,
+)
 
 POTIONS_DIR = DECOMPILED / "MegaCrit.Sts2.Core.Models.Potions"
 STATIC_IMAGES = BASE / "backend" / "static" / "images" / "potions"
@@ -55,14 +61,9 @@ def parse_single_potion(filepath: Path, localization: dict) -> dict | None:
     description_resolved = resolve_description(description_raw, all_vars)
     desc_clean = description_resolved
 
-    # Image URL — prefer WebP, fall back to PNG
-    potion_base = potion_id.lower()
-    image_file = STATIC_IMAGES / f"{potion_base}.webp"
-    if not image_file.exists():
-        image_file = STATIC_IMAGES / f"{potion_base}.png"
-    image_url = (
-        f"/static/images/potions/{image_file.name}" if image_file.exists() else None
-    )
+    # Image URL — version-aware (per-version beta asset → stable
+    # canonical fallback).
+    image_url = resolve_image_url("potions", potion_id.lower())
 
     return {
         "id": potion_id,

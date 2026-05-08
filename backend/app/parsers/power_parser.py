@@ -6,7 +6,13 @@ from pathlib import Path
 from description_resolver import resolve_description, extract_vars_from_source
 
 from orphan_filter import is_orphan
-from parser_paths import DECOMPILED, RAW_DIR, loc_dir as _loc_dir, data_dir as _data_dir
+from parser_paths import (
+    DECOMPILED,
+    RAW_DIR,
+    loc_dir as _loc_dir,
+    data_dir as _data_dir,
+    resolve_image_url,
+)
 
 POWERS_DIR = DECOMPILED / "MegaCrit.Sts2.Core.Models.Powers"
 CARDS_DIR = DECOMPILED / "MegaCrit.Sts2.Core.Models.Cards"
@@ -279,17 +285,15 @@ def parse_single_power(filepath: Path, localization: dict) -> dict | None:
 
     desc_clean = _polish_power_description(description_resolved)
 
-    # Resolve image URL — prefer WebP from static dir, fall back to PNG from raw
-    image_url = None
+    # Resolve image URL — version-aware (per-version beta asset → stable
+    # canonical fallback). The icon stem is what differs between powers
+    # (alias map handles a few oddballs); resolve_image_url knows where
+    # to look.
     if power_id in IMAGE_ALIASES:
-        icon_name = IMAGE_ALIASES[power_id]
+        icon_stem = Path(IMAGE_ALIASES[power_id]).stem
     else:
-        icon_name = f"{power_id.lower()}_power.png"
-    webp_name = Path(icon_name).with_suffix(".webp").name
-    if (POWERS_STATIC / webp_name).exists():
-        image_url = f"/static/images/powers/{webp_name}"
-    elif (POWERS_IMAGES / icon_name).exists():
-        image_url = f"/static/images/powers/{icon_name}"
+        icon_stem = f"{power_id.lower()}_power"
+    image_url = resolve_image_url("powers", icon_stem)
 
     return {
         "id": power_id,
