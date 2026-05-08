@@ -8,7 +8,7 @@
     "card_type": null,
     "applicable_to": null,
     "is_stackable": false,
-    "image_url": "/static/images/enchantments/adroit.png"
+    "image_url": "/static/images/enchantments/adroit.webp"
   },
   {
     "id": "CLONE",
@@ -19,7 +19,7 @@
     "card_type": null,
     "applicable_to": null,
     "is_stackable": false,
-    "image_url": "/static/images/enchantments/clone.png"
+    "image_url": "/static/images/enchantments/clone.webp"
   },
   {
     "id": "CORRUPTED",
@@ -30,7 +30,7 @@
     "card_type": "Attack",
     "applicable_to": null,
     "is_stackable": false,
-    "image_url": "/static/images/enchantments/corrupted.png"
+    "image_url": "/static/images/enchantments/corrupted.webp"
   },
   {
     "id": "GLAM",
@@ -41,7 +41,7 @@
     "card_type": null,
     "applicable_to": null,
     "is_stackable": false,
-    "image_url": "/static/images/enchantments/glam.png"
+    "image_url": "/static/images/enchantments/glam.webp"
   },
   {
     "id": "GOOPY",
@@ -52,7 +52,7 @@
     "card_type": null,
     "applicable_to": "Defend cards",
     "is_stackable": false,
-    "image_url": "/static/images/enchantments/goopy.png"
+    "image_url": "/static/images/enchantments/goopy.webp"
   },
   {
     "id": "IMBUED",
@@ -63,7 +63,7 @@
     "card_type": "Skill",
     "applicable_to": null,
     "is_stackable": false,
-    "image_url": "/static/images/enchantments/imbued.png"
+    "image_url": "/static/images/enchantments/imbued.webp"
   },
   {
     "id": "INKY",
@@ -74,7 +74,7 @@
     "card_type": null,
     "applicable_to": null,
     "is_stackable": false,
-    "image_url": "/static/images/enchantments/inky.png"
+    "image_url": "/static/images/enchantments/inky.webp"
   },
   {
     "id": "INSTINCT",
@@ -85,7 +85,7 @@
     "card_type": "Attack",
     "applicable_to": null,
     "is_stackable": false,
-    "image_url": "/static/images/enchantments/instinct.png"
+    "image_url": "/static/images/enchantments/instinct.webp"
   },
   {
     "id": "MOMENTUM",
@@ -96,7 +96,7 @@
     "card_type": "Attack",
     "applicable_to": null,
     "is_stackable": false,
-    "image_url": "/static/images/enchantments/momentum.png"
+    "image_url": "/static/images/enchantments/momentum.webp"
   },
   {
     "id": "NIMBLE",
@@ -107,7 +107,7 @@
     "card_type": null,
     "applicable_to": "cards that gain Block",
     "is_stackable": false,
-    "image_url": "/static/images/enchantments/nimble.png"
+    "image_url": "/static/images/enchantments/nimble.webp"
   },
   {
     "id": "PERFECT_FIT",
@@ -118,7 +118,7 @@
     "card_type": null,
     "applicable_to": null,
     "is_stackable": false,
-    "image_url": "/static/images/enchantments/perfect_fit.png"
+    "image_url": "/static/images/enchantments/perfect_fit.webp"
   },
   {
     "id": "ROYALLY_APPROVED",
@@ -129,7 +129,7 @@
     "card_type": "Attack, Skill",
     "applicable_to": null,
     "is_stackable": false,
-    "image_url": "/static/images/enchantments/royally_approved.png"
+    "image_url": "/static/images/enchantments/royally_approved.webp"
   },
   {
     "id": "SHARP",
@@ -140,7 +140,7 @@
     "card_type": "Attack",
     "applicable_to": null,
     "is_stackable": false,
-    "image_url": "/static/images/enchantments/sharp.png"
+    "image_url": "/static/images/enchantments/sharp.webp"
   },
   {
     "id": "SLITHER",
@@ -151,7 +151,7 @@
     "card_type": null,
     "applicable_to": null,
     "is_stackable": false,
-    "image_url": "/static/images/enchantments/slither.png"
+    "image_url": "/static/images/enchantments/slither.webp"
   },
   {
     "id": "SLUMBERING_ESSENCE",
@@ -162,7 +162,7 @@
     "card_type": null,
     "applicable_to": null,
     "is_stackable": false,
-    "image_url": "/static/images/enchantments/slumbering_essence.png"
+    "image_url": "/static/images/enchantments/slumbering_essence.webp"
   },
   {
     "id": "SOULS_POWER",
@@ -173,7 +173,7 @@
     "card_type": null,
     "applicable_to": "cards with Exhaust",
     "is_stackable": false,
-    "image_url": "/static/images/enchantments/souls_power.png"
+    "image_url": "/static/images/enchantments/souls_power.webp"
   },
   {
     "id": "SOWN",
@@ -184,7 +184,7 @@
     "card_type": null,
     "applicable_to": null,
     "is_stackable": false,
-    "image_url": "/static/images/enchantments/sown.png"
+    "image_url": "/static/images/enchantments/sown.webp"
   },
   {
     "id": "SPIRAL",
@@ -195,7 +195,7 @@
     "card_type": null,
     "applicable_to": "Basic Strike, Defend cards",
     "is_stackable": false,
-    "image_url": "/static/images/enchantments/spiral.png"
+    "image_url": "/static/images/enchantments/spiral.webp"
   },
   {
     "id": "STEADY",
@@ -206,7 +206,7 @@
     "card_type": null,
     "applicable_to": null,
     "is_stackable": false,
-    "image_url": "/static/images/enchantments/steady.png"
+    "image_url": "/static/images/enchantments/steady.webp"
   },
   {
     "id": "SWIFT",
@@ -217,7 +217,7 @@
     "card_type": null,
     "applicable_to": null,
     "is_stackable": false,
-    "image_url": "/static/images/enchantments/swift.png"
+    "image_url": "/static/images/enchantments/swift.webp"
   },
   {
     "id": "TEZCATARAS_EMBER",
@@ -228,7 +228,7 @@
     "card_type": null,
     "applicable_to": null,
     "is_stackable": false,
-    "image_url": "/static/images/enchantments/tezcataras_ember.png"
+    "image_url": "/static/images/enchantments/tezcataras_ember.webp"
   },
   {
     "id": "VIGOROUS",
@@ -239,6 +239,6 @@
     "card_type": "Attack",
     "applicable_to": null,
     "is_stackable": false,
-    "image_url": "/static/images/enchantments/vigorous.png"
+    "image_url": "/static/images/enchantments/vigorous.webp"
   }
 ]

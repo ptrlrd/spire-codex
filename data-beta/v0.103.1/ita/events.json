@@ -540,7 +540,9 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": "Davanti a te scorgi una scena epica.\nVedi 3 statue di colori diversi su una pedana, impegnate in un [jitter][red]acceso dibattito[/red][/jitter] sulle implicazioni filosofiche del colore.\n\nMentre le ascolti, hai la sensazione che la domanda più importante ricada su quale sia il colore [gold]MIGLIORE[/gold].\n\nIntervieni dando la tua opinione.",
-    "preconditions": null,
+    "preconditions": [
+      "Requires more than one character unlocked"
+    ],
     "options": [
       {
         "id": "DEFECT",

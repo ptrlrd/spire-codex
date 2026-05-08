@@ -7,7 +7,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/accelerant_power.png"
+    "image_url": "/static/images/powers/accelerant_power.webp"
   },
   {
     "id": "ACCURACY",
@@ -17,7 +17,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/accuracy_power.png"
+    "image_url": "/static/images/powers/accuracy_power.webp"
   },
   {
     "id": "ADAPTABLE",
@@ -27,7 +27,7 @@
     "type": "Buff",
     "stack_type": "Single",
     "allow_negative": null,
-    "image_url": "/static/images/powers/adaptable_power.png"
+    "image_url": "/static/images/powers/adaptable_power.webp"
   },
   {
     "id": "AFTERIMAGE",
@@ -37,7 +37,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/afterimage_power.png"
+    "image_url": "/static/images/powers/afterimage_power.webp"
   },
   {
     "id": "AGGRESSION",
@@ -47,7 +47,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/aggression_power.png"
+    "image_url": "/static/images/powers/aggression_power.webp"
   },
   {
     "id": "ANTICIPATE",
@@ -57,7 +57,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/anticipate_power.png"
+    "image_url": "/static/images/powers/anticipate_power.webp"
   },
   {
     "id": "ARSENAL",
@@ -67,7 +67,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/arsenal_power.png"
+    "image_url": "/static/images/powers/arsenal_power.webp"
   },
   {
     "id": "ARTIFACT",
@@ -77,7 +77,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/artifact_power.png"
+    "image_url": "/static/images/powers/artifact_power.webp"
   },
   {
     "id": "ASLEEP",
@@ -87,7 +87,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/asleep_power.png"
+    "image_url": "/static/images/powers/asleep_power.webp"
   },
   {
     "id": "AUTOMATION",
@@ -97,7 +97,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/automation_power.png"
+    "image_url": "/static/images/powers/automation_power.webp"
   },
   {
     "id": "BACK_ATTACK_LEFT",
@@ -107,7 +107,7 @@
     "type": "Buff",
     "stack_type": "Single",
     "allow_negative": null,
-    "image_url": "/static/images/powers/back_attack_left_power.png"
+    "image_url": "/static/images/powers/back_attack_left_power.webp"
   },
   {
     "id": "BACK_ATTACK_RIGHT",
@@ -117,7 +117,7 @@
     "type": "Buff",
     "stack_type": "Single",
     "allow_negative": null,
-    "image_url": "/static/images/powers/back_attack_right_power.png"
+    "image_url": "/static/images/powers/back_attack_right_power.webp"
   },
   {
     "id": "BARRICADE",
@@ -127,7 +127,7 @@
     "type": "Buff",
     "stack_type": "Single",
     "allow_negative": null,
-    "image_url": "/static/images/powers/barricade_power.png"
+    "image_url": "/static/images/powers/barricade_power.webp"
   },
   {
     "id": "BATTLEWORN_DUMMY_TIME_LIMIT",
@@ -137,7 +137,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/battleworn_dummy_time_limit_power.png"
+    "image_url": "/static/images/powers/battleworn_dummy_time_limit_power.webp"
   },
   {
     "id": "BEACON_OF_HOPE",
@@ -147,7 +147,7 @@
     "type": "Buff",
     "stack_type": "Single",
     "allow_negative": null,
-    "image_url": "/static/images/powers/beacon_of_hope_power.png"
+    "image_url": "/static/images/powers/beacon_of_hope_power.webp"
   },
   {
     "id": "BIASED_COGNITION",
@@ -157,7 +157,7 @@
     "type": "Debuff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/biased_cognition_power.png"
+    "image_url": "/static/images/powers/biased_cognition_power.webp"
   },
   {
     "id": "BLACK_HOLE",
@@ -167,7 +167,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/black_hole_power.png"
+    "image_url": "/static/images/powers/black_hole_power.webp"
   },
   {
     "id": "BLOCK_NEXT_TURN",
@@ -177,7 +177,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/block_next_turn_power.png"
+    "image_url": "/static/images/powers/block_next_turn_power.webp"
   },
   {
     "id": "BLUR",
@@ -187,17 +187,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/blur_power.png"
-  },
-  {
-    "id": "BORROWED_TIME",
-    "name": "BorrowedTimePower",
-    "description": "",
-    "description_raw": null,
-    "type": "Debuff",
-    "stack_type": "Counter",
-    "allow_negative": null,
-    "image_url": "/static/images/powers/borrowed_time_power.png"
+    "image_url": "/static/images/powers/blur_power.webp"
   },
   {
     "id": "BUFFER",
@@ -207,7 +197,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/buffer_power.png"
+    "image_url": "/static/images/powers/buffer_power.webp"
   },
   {
     "id": "BURROWED",
@@ -217,7 +207,7 @@
     "type": "Buff",
     "stack_type": "Single",
     "allow_negative": null,
-    "image_url": "/static/images/powers/burrowed_power.png"
+    "image_url": "/static/images/powers/burrowed_power.webp"
   },
   {
     "id": "BURST",
@@ -227,7 +217,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/burst_power.png"
+    "image_url": "/static/images/powers/burst_power.webp"
   },
   {
     "id": "CALAMITY",
@@ -237,7 +227,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/calamity_power.png"
+    "image_url": "/static/images/powers/calamity_power.webp"
   },
   {
     "id": "CALCIFY",
@@ -247,7 +237,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/calcify_power.png"
+    "image_url": "/static/images/powers/calcify_power.webp"
   },
   {
     "id": "CALL_OF_THE_VOID",
@@ -257,7 +247,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/call_of_the_void_power.png"
+    "image_url": "/static/images/powers/call_of_the_void_power.webp"
   },
   {
     "id": "CHAINS_OF_BINDING",
@@ -267,7 +257,7 @@
     "type": "Debuff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/chains_of_binding_power.png"
+    "image_url": "/static/images/powers/chains_of_binding_power.webp"
   },
   {
     "id": "CHILD_OF_THE_STARS",
@@ -277,7 +267,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/child_of_the_stars_power.png"
+    "image_url": "/static/images/powers/child_of_the_stars_power.webp"
   },
   {
     "id": "CLARITY",
@@ -287,7 +277,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/clarity_power.png"
+    "image_url": "/static/images/powers/clarity_power.webp"
   },
   {
     "id": "COLOSSUS",
@@ -297,7 +287,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/colossus_power.png"
+    "image_url": "/static/images/powers/colossus_power.webp"
   },
   {
     "id": "CONFUSED",
@@ -307,7 +297,7 @@
     "type": "Debuff",
     "stack_type": "Single",
     "allow_negative": null,
-    "image_url": "/static/images/powers/confused_power.png"
+    "image_url": "/static/images/powers/confused_power.webp"
   },
   {
     "id": "CONQUEROR",
@@ -317,27 +307,17 @@
     "type": "Debuff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/conqueror_power.png"
-  },
-  {
-    "id": "CONSTRICT",
-    "name": "ConstrictPower",
-    "description": "",
-    "description_raw": null,
-    "type": "Debuff",
-    "stack_type": "Counter",
-    "allow_negative": null,
-    "image_url": "/static/images/powers/constrict_power.png"
+    "image_url": "/static/images/powers/conqueror_power.webp"
   },
   {
     "id": "CONSUMING_SHADOW",
     "name": "ConsumingShadowPower",
     "description": "ตอนจบเทิร์น [gold]ปล่อยพลัง[/gold]ลูกแก้วลูกซ้ายสุด",
-    "description_raw": null,
+    "description_raw": "ตอนจบเทิร์น [gold]ปล่อยพลัง[/gold]ลูกแก้วลูกซ้ายสุด{Amount:choose(1):|[blue] {}[/blue] ลูก}",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/consuming_shadow_power.png"
+    "image_url": "/static/images/powers/consuming_shadow_power.webp"
   },
   {
     "id": "COOLANT",
@@ -347,7 +327,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/coolant_power.png"
+    "image_url": "/static/images/powers/coolant_power.webp"
   },
   {
     "id": "COORDINATE",
@@ -357,7 +337,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/coordinate_power.png"
+    "image_url": "/static/images/powers/coordinate_power.webp"
   },
   {
     "id": "CORROSIVE_WAVE",
@@ -367,7 +347,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/corrosive_wave_power.png"
+    "image_url": "/static/images/powers/corrosive_wave_power.webp"
   },
   {
     "id": "CORRUPTION",
@@ -377,7 +357,7 @@
     "type": "Buff",
     "stack_type": "Single",
     "allow_negative": null,
-    "image_url": "/static/images/powers/corruption_power.png"
+    "image_url": "/static/images/powers/corruption_power.webp"
   },
   {
     "id": "COUNTDOWN",
@@ -387,7 +367,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/countdown_power.png"
+    "image_url": "/static/images/powers/countdown_power.webp"
   },
   {
     "id": "COVERED",
@@ -397,7 +377,7 @@
     "type": "Buff",
     "stack_type": "Single",
     "allow_negative": null,
-    "image_url": "/static/images/powers/covered_power.png"
+    "image_url": "/static/images/powers/covered_power.webp"
   },
   {
     "id": "CRAB_RAGE",
@@ -407,7 +387,7 @@
     "type": "Buff",
     "stack_type": "Single",
     "allow_negative": null,
-    "image_url": "/static/images/powers/crab_rage_power.png"
+    "image_url": "/static/images/powers/crab_rage_power.webp"
   },
   {
     "id": "CREATIVE_AI",
@@ -417,7 +397,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/creative_ai_power.png"
+    "image_url": "/static/images/powers/creative_ai_power.webp"
   },
   {
     "id": "CRIMSON_MANTLE",
@@ -427,7 +407,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/crimson_mantle_power.png"
+    "image_url": "/static/images/powers/crimson_mantle_power.webp"
   },
   {
     "id": "CRUELTY",
@@ -437,7 +417,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/cruelty_power.png"
+    "image_url": "/static/images/powers/cruelty_power.webp"
   },
   {
     "id": "CRUSH_UNDER",
@@ -447,7 +427,7 @@
     "type": "Debuff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/crush_under_power.png"
+    "image_url": "/static/images/powers/crush_under_power.webp"
   },
   {
     "id": "CURIOUS",
@@ -457,7 +437,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/curious_power.png"
+    "image_url": "/static/images/powers/curious_power.webp"
   },
   {
     "id": "CURL_UP",
@@ -467,7 +447,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/curl_up_power.png"
+    "image_url": "/static/images/powers/curl_up_power.webp"
   },
   {
     "id": "DAMPEN",
@@ -477,7 +457,7 @@
     "type": "Debuff",
     "stack_type": "None",
     "allow_negative": null,
-    "image_url": "/static/images/powers/dampen_power.png"
+    "image_url": "/static/images/powers/dampen_power.webp"
   },
   {
     "id": "DANSE_MACABRE",
@@ -487,7 +467,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/danse_macabre_power.png"
+    "image_url": "/static/images/powers/danse_macabre_power.webp"
   },
   {
     "id": "DARK_EMBRACE",
@@ -497,7 +477,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/dark_embrace_power.png"
+    "image_url": "/static/images/powers/dark_embrace_power.webp"
   },
   {
     "id": "DARK_SHACKLES",
@@ -507,17 +487,17 @@
     "type": "Debuff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/dark_shackles_power.png"
+    "image_url": "/static/images/powers/dark_shackles_power.webp"
   },
   {
     "id": "DEBILITATE",
     "name": "DebilitatePower",
-    "description": "[gold]จุดอ่อน[/gold]และ[gold]ความอ่อนแอ[/gold]มีผล 2 เท่า เป็นเวลา [blue]2[/blue] เทิร์น",
-    "description_raw": null,
+    "description": "[gold]จุดอ่อน[/gold]และ[gold]ความอ่อนแอ[/gold]มีผล 2 เท่าในเทิร์นนี้",
+    "description_raw": "[gold]จุดอ่อน[/gold]และ[gold]ความอ่อนแอ[/gold]มีผล 2 เท่า{Amount:choose(1):ในเทิร์นนี้| เป็นเวลา [blue]{}[/blue] เทิร์น}",
     "type": "Debuff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/debilitate_power.png"
+    "image_url": "/static/images/powers/debilitate_power.webp"
   },
   {
     "id": "DEMESNE",
@@ -527,7 +507,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/demesne_power.png"
+    "image_url": "/static/images/powers/demesne_power.webp"
   },
   {
     "id": "DEMISE",
@@ -537,7 +517,7 @@
     "type": "Debuff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/demise_power.png"
+    "image_url": "/static/images/powers/demise_power.webp"
   },
   {
     "id": "DEMON_FORM",
@@ -547,7 +527,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/demon_form_power.png"
+    "image_url": "/static/images/powers/demon_form_power.webp"
   },
   {
     "id": "DEVOUR_LIFE",
@@ -557,17 +537,17 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/devour_life_power.png"
+    "image_url": "/static/images/powers/devour_life_power.webp"
   },
   {
     "id": "DEXTERITY",
     "name": "ความชำนาญ",
-    "description": "ความชำนาญทำให้ได้รับ[gold]บล็อก[/gold]จากการ์ดมากขึ้น",
-    "description_raw": null,
+    "description": "ได้รับ[gold]บล็อก[/gold]จากการ์ดมากขึ้น [blue][/blue]",
+    "description_raw": "ได้รับ[gold]บล็อก[/gold]จากการ์ด{Amount:cond:<0?ลดลง|มากขึ้น} [blue]{Amount:abs()}[/blue]",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": true,
-    "image_url": "/static/images/powers/dexterity_power.png"
+    "image_url": "/static/images/powers/dexterity_power.webp"
   },
   {
     "id": "DIAMOND_DIADEM",
@@ -577,7 +557,7 @@
     "type": "Buff",
     "stack_type": "Single",
     "allow_negative": null,
-    "image_url": "/static/images/powers/diamond_diadem_power.png"
+    "image_url": "/static/images/powers/diamond_diadem_power.webp"
   },
   {
     "id": "DIE_FOR_YOU",
@@ -587,7 +567,7 @@
     "type": "Buff",
     "stack_type": "Single",
     "allow_negative": null,
-    "image_url": "/static/images/powers/die_for_you_power.png"
+    "image_url": "/static/images/powers/die_for_you_power.webp"
   },
   {
     "id": "DISINTEGRATION",
@@ -597,7 +577,7 @@
     "type": "Debuff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/disintegration_power.png"
+    "image_url": "/static/images/powers/disintegration_power.webp"
   },
   {
     "id": "DOOM",
@@ -607,17 +587,17 @@
     "type": "Debuff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/doom_power.png"
+    "image_url": "/static/images/powers/doom_power.webp"
   },
   {
     "id": "DOUBLE_DAMAGE",
     "name": "ความเสียหาย 2 เท่า",
     "description": "ในเทิร์นนี้ การ์ดโจมตีสร้างความเสียหาย 2 เท่า",
-    "description_raw": null,
+    "description_raw": "{Amount:choose(1):ในเทิร์นนี้|เป็นเวลา [blue]{}[/blue] เทิร์น} การ์ดโจมตีสร้างความเสียหาย 2 เท่า",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/double_damage_power.png"
+    "image_url": "/static/images/powers/double_damage_power.webp"
   },
   {
     "id": "DRAW_CARDS_NEXT_TURN",
@@ -627,7 +607,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/draw_cards_next_turn_power.png"
+    "image_url": "/static/images/powers/draw_cards_next_turn_power.webp"
   },
   {
     "id": "DRUM_OF_BATTLE",
@@ -637,17 +617,17 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/drum_of_battle_power.png"
+    "image_url": "/static/images/powers/drum_of_battle_power.webp"
   },
   {
     "id": "DUPLICATION",
     "name": "DuplicationPower",
-    "description": "การ์ดใบต่อจะถูกเล่นซ้ำอีกครั้ง",
-    "description_raw": null,
+    "description": "การ์ดใบต่อไปจะถูกเล่นซ้ำอีกครั้ง",
+    "description_raw": "การ์ด{Amount:choose(1):| [blue]{}[/blue] }ใบต่อไปจะถูกเล่นซ้ำอีกครั้ง",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/duplication_power.png"
+    "image_url": "/static/images/powers/duplication_power.webp"
   },
   {
     "id": "DYING_STAR",
@@ -657,17 +637,17 @@
     "type": "Debuff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/dying_star_power.png"
+    "image_url": "/static/images/powers/dying_star_power.webp"
   },
   {
     "id": "ECHO_FORM",
     "name": "ร่างกังวาน",
     "description": "การ์ดใบแรกที่เล่นในแต่ละเทิร์นจะถูกเล่นเพิ่มอีกครั้ง",
-    "description_raw": null,
+    "description_raw": "การ์ด{Amount:choose(1):| [blue]{}[/blue] }ใบแรกที่เล่นในแต่ละเทิร์นจะถูกเล่นเพิ่มอีกครั้ง",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/echo_form_power.png"
+    "image_url": "/static/images/powers/echo_form_power.webp"
   },
   {
     "id": "ENERGY_NEXT_TURN",
@@ -677,7 +657,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/energy_next_turn_power.png"
+    "image_url": "/static/images/powers/energy_next_turn_power.webp"
   },
   {
     "id": "ENFEEBLING_TOUCH",
@@ -687,7 +667,7 @@
     "type": "Debuff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/enfeebling_touch_power.png"
+    "image_url": "/static/images/powers/enfeebling_touch_power.webp"
   },
   {
     "id": "ENRAGE",
@@ -697,7 +677,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/enrage_power.png"
+    "image_url": "/static/images/powers/enrage_power.webp"
   },
   {
     "id": "ENTROPY",
@@ -707,7 +687,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/entropy_power.png"
+    "image_url": "/static/images/powers/entropy_power.webp"
   },
   {
     "id": "ENVENOM",
@@ -717,17 +697,17 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/envenom_power.png"
+    "image_url": "/static/images/powers/envenom_power.webp"
   },
   {
     "id": "ESCAPE_ARTIST",
     "name": "EscapeArtistPower",
-    "description": "หนีจากการต่อสู้หลังผ่านไป 4 เทิร์น",
-    "description_raw": null,
+    "description": "พยายามหนีจากการต่อสู้หลังจบเทิร์นนี้",
+    "description_raw": "พยายามหนีจากการต่อสู้หลัง{Amount:choose(1):จบเทิร์นนี้|ผ่านไป [blue]{}[/blue] เทิร์น}",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/escape_artist_power.png"
+    "image_url": "/static/images/powers/escape_artist_power.webp"
   },
   {
     "id": "FAN_OF_KNIVES",
@@ -737,7 +717,7 @@
     "type": "Buff",
     "stack_type": "Single",
     "allow_negative": null,
-    "image_url": "/static/images/powers/fan_of_knives_power.png"
+    "image_url": "/static/images/powers/fan_of_knives_power.webp"
   },
   {
     "id": "FASTEN",
@@ -747,7 +727,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/fasten_power.png"
+    "image_url": "/static/images/powers/fasten_power.webp"
   },
   {
     "id": "FEEDING_FRENZY",
@@ -757,7 +737,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/feeding_frenzy_power.png"
+    "image_url": "/static/images/powers/feeding_frenzy_power.webp"
   },
   {
     "id": "FEEL_NO_PAIN",
@@ -767,17 +747,17 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/feel_no_pain_power.png"
+    "image_url": "/static/images/powers/feel_no_pain_power.webp"
   },
   {
     "id": "FERAL",
     "name": "FeralPower",
     "description": "การ์ดโจมตีค่าร่าย 0[energy:1] ที่คุณเล่นครั้งแรกในแต่ละเทิร์น นำกลับขึ้น[gold]มือ[/gold]",
-    "description_raw": "การ์ดโจมตีค่าร่าย 0{energyPrefix:energyIcons(1)} ที่คุณเล่นครั้งแรกในแต่ละเทิร์น นำกลับขึ้น[gold]มือ[/gold]",
+    "description_raw": "การ์ดโจมตีค่าร่าย 0{energyPrefix:energyIcons(1)} ที่คุณเล่น{Amount:choose(1):|[blue]{}[/blue] }ครั้งแรกในแต่ละเทิร์น นำกลับขึ้น[gold]มือ[/gold]",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/feral_power.png"
+    "image_url": "/static/images/powers/feral_power.webp"
   },
   {
     "id": "FLAME_BARRIER",
@@ -787,7 +767,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/flame_barrier_power.png"
+    "image_url": "/static/images/powers/flame_barrier_power.webp"
   },
   {
     "id": "FLANKING",
@@ -797,7 +777,7 @@
     "type": "Debuff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/flanking_power.png"
+    "image_url": "/static/images/powers/flanking_power.webp"
   },
   {
     "id": "FLEX_POTION",
@@ -807,7 +787,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/flex_potion_power.png"
+    "image_url": "/static/images/powers/flex_potion_power.webp"
   },
   {
     "id": "FLUTTER",
@@ -817,17 +797,17 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/flutter_power.png"
+    "image_url": "/static/images/powers/flutter_power.webp"
   },
   {
     "id": "FOCUS",
     "name": "โฟกัส",
-    "description": "เพิ่มผลลัพธ์ของลูกแก้ว",
-    "description_raw": null,
+    "description": "ผลลัพธ์ของลูกแก้วเพิ่มขึ้น [blue][/blue]",
+    "description_raw": "ผลลัพธ์ของลูกแก้ว{Amount:cond:<0?ลดลง|เพิ่มขึ้น} [blue]{Amount:abs()}[/blue]",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": true,
-    "image_url": "/static/images/powers/focus_power.png"
+    "image_url": "/static/images/powers/focus_power.webp"
   },
   {
     "id": "FOCUSED_STRIKE",
@@ -837,7 +817,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/focused_strike_power.png"
+    "image_url": "/static/images/powers/focused_strike_power.webp"
   },
   {
     "id": "FORBIDDEN_GRIMOIRE",
@@ -847,7 +827,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/forbidden_grimoire_power.png"
+    "image_url": "/static/images/powers/forbidden_grimoire_power.webp"
   },
   {
     "id": "FOREGONE_CONCLUSION",
@@ -857,7 +837,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/foregone_conclusion_power.png"
+    "image_url": "/static/images/powers/foregone_conclusion_power.webp"
   },
   {
     "id": "FRAIL",
@@ -867,7 +847,7 @@
     "type": "Debuff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/frail_power.png"
+    "image_url": "/static/images/powers/frail_power.webp"
   },
   {
     "id": "FREE_ATTACK",
@@ -877,7 +857,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/free_attack_power.png"
+    "image_url": "/static/images/powers/free_attack_power.webp"
   },
   {
     "id": "FREE_POWER",
@@ -887,7 +867,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/free_power_power.png"
+    "image_url": "/static/images/powers/free_power_power.webp"
   },
   {
     "id": "FREE_SKILL",
@@ -897,17 +877,17 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/free_skill_power.png"
+    "image_url": "/static/images/powers/free_skill_power.webp"
   },
   {
     "id": "FRIENDSHIP",
     "name": "มิตรภาพ",
-    "description": "ตอนเริ่มต้นเทิร์น ได้รับ [blue]1[/blue] [gold]พลังงาน[/gold]",
-    "description_raw": null,
+    "description": "ตอนเริ่มต้นเทิร์น ได้รับ [energy:1]",
+    "description_raw": "ตอนเริ่มต้นเทิร์น ได้รับ {Amount:energyIcons()}",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/friendship_power.png"
+    "image_url": "/static/images/powers/friendship_power.webp"
   },
   {
     "id": "FURNACE",
@@ -917,7 +897,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/furnace_power.png"
+    "image_url": "/static/images/powers/furnace_power.webp"
   },
   {
     "id": "GALVANIC",
@@ -927,47 +907,27 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/galvanic_power.png"
+    "image_url": "/static/images/powers/galvanic_power.webp"
   },
   {
     "id": "GENESIS",
     "name": "GenesisPower",
     "description": "ตอนเริ่มต้นเทิร์น ได้รับ [star:1]",
-    "description_raw": "ตอนเริ่มต้นเทิร์น ได้รับ {singleStarIcon}",
+    "description_raw": "ตอนเริ่มต้นเทิร์น ได้รับ {Amount:starIcons()}",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/genesis_power.png"
+    "image_url": "/static/images/powers/genesis_power.webp"
   },
   {
     "id": "GIGANTIFICATION",
     "name": "GigantificationPower",
     "description": "การ์ดโจมตีใบถัดไปจะสร้างความเสียหาย 3 เท่า",
-    "description_raw": null,
+    "description_raw": "การ์ดโจมตี{Amount:choose(1):| [blue]{}[/blue] }ใบถัดไปจะสร้างความเสียหาย 3 เท่า",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/gigantification_power.png"
-  },
-  {
-    "id": "GRAPPLE",
-    "name": "GrapplePower",
-    "description": "",
-    "description_raw": null,
-    "type": "Debuff",
-    "stack_type": "Counter",
-    "allow_negative": null,
-    "image_url": "/static/images/powers/grapple_power.png"
-  },
-  {
-    "id": "GRASP",
-    "name": "GraspPower",
-    "description": "",
-    "description_raw": null,
-    "type": "Buff",
-    "stack_type": "Single",
-    "allow_negative": null,
-    "image_url": "/static/images/powers/grasp_power.png"
+    "image_url": "/static/images/powers/gigantification_power.webp"
   },
   {
     "id": "GRAVITY",
@@ -977,7 +937,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/gravity_power.png"
+    "image_url": "/static/images/powers/gravity_power.webp"
   },
   {
     "id": "GUARDED",
@@ -987,7 +947,7 @@
     "type": "Buff",
     "stack_type": "Single",
     "allow_negative": null,
-    "image_url": "/static/images/powers/guarded_power.png"
+    "image_url": "/static/images/powers/guarded_power.webp"
   },
   {
     "id": "HAILSTORM",
@@ -997,7 +957,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/hailstorm_power.png"
+    "image_url": "/static/images/powers/hailstorm_power.webp"
   },
   {
     "id": "HAMMER_TIME",
@@ -1007,7 +967,7 @@
     "type": "Buff",
     "stack_type": "Single",
     "allow_negative": null,
-    "image_url": "/static/images/powers/hammer_time_power.png"
+    "image_url": "/static/images/powers/hammer_time_power.webp"
   },
   {
     "id": "HANG",
@@ -1017,7 +977,7 @@
     "type": "Debuff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/hang_power.png"
+    "image_url": "/static/images/powers/hang_power.webp"
   },
   {
     "id": "HARD_TO_KILL",
@@ -1027,27 +987,27 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/hard_to_kill_power.png"
+    "image_url": "/static/images/powers/hard_to_kill_power.webp"
   },
   {
     "id": "HARDENED_SHELL",
     "name": "HardenedShellPower",
-    "description": "[gold]this creature[/gold] ไม่สามารถเสียเกิน [blue][Amount][/blue] HP ในแต่ละเทิร์น",
+    "description": "[gold]This creature[/gold] ไม่สามารถเสียเกิน [blue][Amount][/blue] HP ในแต่ละเทิร์น",
     "description_raw": "[gold]{OwnerName}[/gold] ไม่สามารถเสียเกิน [blue]{Amount}[/blue] HP ในแต่ละเทิร์น",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/hardened_shell_power.png"
+    "image_url": "/static/images/powers/hardened_shell_power.webp"
   },
   {
     "id": "HATCH",
     "name": "ฟักไข่",
-    "description": "ฟักไข่หลังผ่านไป X เทิร์น",
-    "description_raw": null,
+    "description": "ฟักไข่หลังผ่านไป [blue]X[/blue] เทิร์น",
+    "description_raw": "ฟักไข่หลังผ่านไป X เทิร์น",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/hatch_power.png"
+    "image_url": "/static/images/powers/hatch_power.webp"
   },
   {
     "id": "HAUNT",
@@ -1057,7 +1017,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/haunt_power.png"
+    "image_url": "/static/images/powers/haunt_power.webp"
   },
   {
     "id": "HEIST",
@@ -1067,7 +1027,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/heist_power.png"
+    "image_url": "/static/images/powers/heist_power.webp"
   },
   {
     "id": "HELICAL_DART",
@@ -1077,7 +1037,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/helical_dart_power.png"
+    "image_url": "/static/images/powers/helical_dart_power.webp"
   },
   {
     "id": "HELLO_WORLD",
@@ -1087,7 +1047,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/hello_world_power.png"
+    "image_url": "/static/images/powers/hello_world_power.webp"
   },
   {
     "id": "HELLRAISER",
@@ -1097,7 +1057,7 @@
     "type": "Buff",
     "stack_type": "Single",
     "allow_negative": null,
-    "image_url": "/static/images/powers/hellraiser_power.png"
+    "image_url": "/static/images/powers/hellraiser_power.webp"
   },
   {
     "id": "HEX",
@@ -1107,7 +1067,7 @@
     "type": "Debuff",
     "stack_type": "Single",
     "allow_negative": null,
-    "image_url": "/static/images/powers/hex_power.png"
+    "image_url": "/static/images/powers/hex_power.webp"
   },
   {
     "id": "HIGH_VOLTAGE",
@@ -1117,7 +1077,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/high_voltage_power.png"
+    "image_url": "/static/images/powers/high_voltage_power.webp"
   },
   {
     "id": "HOTFIX",
@@ -1127,17 +1087,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/hotfix_power.png"
-  },
-  {
-    "id": "HUNGER",
-    "name": "HungerPower",
-    "description": "",
-    "description_raw": null,
-    "type": "Buff",
-    "stack_type": "Single",
-    "allow_negative": null,
-    "image_url": "/static/images/powers/hunger_power.png"
+    "image_url": "/static/images/powers/hotfix_power.webp"
   },
   {
     "id": "ILLUSION",
@@ -1147,7 +1097,7 @@
     "type": "Buff",
     "stack_type": "Single",
     "allow_negative": null,
-    "image_url": "/static/images/powers/illusion_power.png"
+    "image_url": "/static/images/powers/illusion_power.webp"
   },
   {
     "id": "IMBALANCED",
@@ -1157,7 +1107,7 @@
     "type": "Debuff",
     "stack_type": "Single",
     "allow_negative": null,
-    "image_url": "/static/images/powers/imbalanced_power.png"
+    "image_url": "/static/images/powers/imbalanced_power.webp"
   },
   {
     "id": "IMPROVEMENT",
@@ -1167,7 +1117,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/improvement_power.png"
+    "image_url": "/static/images/powers/improvement_power.webp"
   },
   {
     "id": "INFERNO",
@@ -1177,7 +1127,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/inferno_power.png"
+    "image_url": "/static/images/powers/inferno_power.webp"
   },
   {
     "id": "INFESTED",
@@ -1187,7 +1137,7 @@
     "type": "Buff",
     "stack_type": "Single",
     "allow_negative": null,
-    "image_url": "/static/images/powers/infested_power.png"
+    "image_url": "/static/images/powers/infested_power.webp"
   },
   {
     "id": "INFINITE_BLADES",
@@ -1197,7 +1147,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/infinite_blades_power.png"
+    "image_url": "/static/images/powers/infinite_blades_power.webp"
   },
   {
     "id": "INTANGIBLE",
@@ -1207,7 +1157,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/intangible_power.png"
+    "image_url": "/static/images/powers/intangible_power.webp"
   },
   {
     "id": "INTERCEPT",
@@ -1217,7 +1167,7 @@
     "type": "Buff",
     "stack_type": "Single",
     "allow_negative": null,
-    "image_url": "/static/images/powers/intercept_power.png"
+    "image_url": "/static/images/powers/intercept_power.webp"
   },
   {
     "id": "ITERATION",
@@ -1227,7 +1177,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/iteration_power.png"
+    "image_url": "/static/images/powers/iteration_power.webp"
   },
   {
     "id": "JUGGERNAUT",
@@ -1237,7 +1187,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/juggernaut_power.png"
+    "image_url": "/static/images/powers/juggernaut_power.webp"
   },
   {
     "id": "JUGGLING",
@@ -1247,7 +1197,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/juggling_power.png"
+    "image_url": "/static/images/powers/juggling_power.webp"
   },
   {
     "id": "KNOCKDOWN",
@@ -1257,7 +1207,7 @@
     "type": "Debuff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/knockdown_power.png"
+    "image_url": "/static/images/powers/knockdown_power.webp"
   },
   {
     "id": "LEADERSHIP",
@@ -1267,7 +1217,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/leadership_power.png"
+    "image_url": "/static/images/powers/leadership_power.webp"
   },
   {
     "id": "LETHALITY",
@@ -1277,7 +1227,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/lethality_power.png"
+    "image_url": "/static/images/powers/lethality_power.webp"
   },
   {
     "id": "LIGHTNING_ROD",
@@ -1287,7 +1237,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/lightning_rod_power.png"
+    "image_url": "/static/images/powers/lightning_rod_power.webp"
   },
   {
     "id": "LOOP",
@@ -1297,7 +1247,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/loop_power.png"
+    "image_url": "/static/images/powers/loop_power.webp"
   },
   {
     "id": "MACHINE_LEARNING",
@@ -1307,7 +1257,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/machine_learning_power.png"
+    "image_url": "/static/images/powers/machine_learning_power.webp"
   },
   {
     "id": "MAGIC_BOMB",
@@ -1317,7 +1267,7 @@
     "type": "Debuff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/magic_bomb_power.png"
+    "image_url": "/static/images/powers/magic_bomb_power.webp"
   },
   {
     "id": "MANGLE",
@@ -1327,7 +1277,7 @@
     "type": "Debuff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/mangle_power.png"
+    "image_url": "/static/images/powers/mangle_power.webp"
   },
   {
     "id": "MASTER_PLANNER",
@@ -1337,17 +1287,17 @@
     "type": "Buff",
     "stack_type": "Single",
     "allow_negative": null,
-    "image_url": "/static/images/powers/master_planner_power.png"
+    "image_url": "/static/images/powers/master_planner_power.webp"
   },
   {
     "id": "MAYHEM",
     "name": "ความโกลาหล",
     "description": "ตอนเริ่มต้นเทิร์น เล่นการ์ดใบบนสุดของ[gold]กองจั่ว[/gold]",
-    "description_raw": null,
+    "description_raw": "ตอนเริ่มต้นเทิร์น เล่นการ์ด{Amount:choose(1):| [blue]{}[/blue] }ใบบนสุดของ[gold]กองจั่ว[/gold]",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/mayhem_power.png"
+    "image_url": "/static/images/powers/mayhem_power.webp"
   },
   {
     "id": "MIND_ROT",
@@ -1357,7 +1307,7 @@
     "type": "Debuff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/mind_rot_power.png"
+    "image_url": "/static/images/powers/mind_rot_power.webp"
   },
   {
     "id": "MINION",
@@ -1367,7 +1317,7 @@
     "type": "Buff",
     "stack_type": "Single",
     "allow_negative": null,
-    "image_url": "/static/images/powers/minion_power.png"
+    "image_url": "/static/images/powers/minion_power.webp"
   },
   {
     "id": "MONARCHS_GAZE",
@@ -1377,7 +1327,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/monarchs_gaze_power.png"
+    "image_url": "/static/images/powers/monarchs_gaze_power.webp"
   },
   {
     "id": "MONARCHS_GAZE_STRENGTH_DOWN",
@@ -1387,7 +1337,7 @@
     "type": "Debuff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/monarchs_gaze_strength_down_power.png"
+    "image_url": "/static/images/powers/monarchs_gaze_strength_down_power.webp"
   },
   {
     "id": "MONOLOGUE",
@@ -1397,17 +1347,17 @@
     "type": "Buff",
     "stack_type": "None",
     "allow_negative": null,
-    "image_url": "/static/images/powers/monologue_power.png"
+    "image_url": "/static/images/powers/monologue_power.webp"
   },
   {
     "id": "NECRO_MASTERY",
     "name": "NecroMasteryPower",
     "description": "ทุกครั้งที่[gold]Osty[/gold]เสีย HP ศัตรูทั้งหมดเสีย HP ตามจำนวนนั้นด้วย",
-    "description_raw": null,
+    "description_raw": "ทุกครั้งที่[gold]Osty[/gold]เสีย HP ศัตรูทั้งหมดเสีย HP {Amount:choose(1):ตาม|[blue]{Amount}[/blue] เท่าของ}จำนวนนั้นด้วย",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/necro_mastery_power.png"
+    "image_url": "/static/images/powers/necro_mastery_power.webp"
   },
   {
     "id": "NEMESIS",
@@ -1417,7 +1367,7 @@
     "type": "Buff",
     "stack_type": "Single",
     "allow_negative": null,
-    "image_url": "/static/images/powers/nemesis_power.png"
+    "image_url": "/static/images/powers/nemesis_power.webp"
   },
   {
     "id": "NEUROSURGE",
@@ -1427,7 +1377,7 @@
     "type": "Debuff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/neurosurge_power.png"
+    "image_url": "/static/images/powers/neurosurge_power.webp"
   },
   {
     "id": "NIGHTMARE",
@@ -1437,7 +1387,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/nightmare_power.png"
+    "image_url": "/static/images/powers/nightmare_power.webp"
   },
   {
     "id": "NO_BLOCK",
@@ -1447,7 +1397,7 @@
     "type": "Debuff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/no_block_power.png"
+    "image_url": "/static/images/powers/no_block_power.webp"
   },
   {
     "id": "NO_DRAW",
@@ -1457,27 +1407,17 @@
     "type": "Debuff",
     "stack_type": "Single",
     "allow_negative": null,
-    "image_url": "/static/images/powers/no_draw_power.png"
-  },
-  {
-    "id": "NO_ENERGY_GAIN",
-    "name": "NoEnergyGainPower",
-    "description": "",
-    "description_raw": null,
-    "type": "Debuff",
-    "stack_type": "Single",
-    "allow_negative": null,
-    "image_url": "/static/images/powers/no_energy_gain_power.png"
+    "image_url": "/static/images/powers/no_draw_power.webp"
   },
   {
     "id": "NOSTALGIA",
     "name": "NostalgiaPower",
     "description": "การ์ดโจมตีหรือทักษะใบแรกที่คุณเล่นในแต่ละเทิร์นจะถูกนำไปวางใบบนสุดของ[gold]กองจั่ว[/gold]",
-    "description_raw": null,
+    "description_raw": "การ์ดโจมตีหรือทักษะ{Amount:choose(1):| {} }ใบแรกที่คุณเล่นในแต่ละเทิร์นจะถูกนำไปวางใบบนสุดของ[gold]กองจั่ว[/gold]",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/nostalgia_power.png"
+    "image_url": "/static/images/powers/nostalgia_power.webp"
   },
   {
     "id": "NOXIOUS_FUMES",
@@ -1487,7 +1427,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/noxious_fumes_power.png"
+    "image_url": "/static/images/powers/noxious_fumes_power.webp"
   },
   {
     "id": "OBLIVION",
@@ -1497,17 +1437,17 @@
     "type": "Debuff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/oblivion_power.png"
+    "image_url": "/static/images/powers/oblivion_power.webp"
   },
   {
     "id": "ONE_TWO_PUNCH",
     "name": "OneTwoPunchPower",
     "description": "การ์ดโจมตีใบถัดไปจะถูกเล่นอีกครั้งในเทิร์นนี้",
-    "description_raw": null,
+    "description_raw": "การ์ดโจมตี{Amount:choose(1):| [blue]{}[/blue] }ใบถัดไปจะถูกเล่นอีกครั้งในเทิร์นนี้",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/one_two_punch_power.png"
+    "image_url": "/static/images/powers/one_two_punch_power.webp"
   },
   {
     "id": "ORBIT",
@@ -1517,7 +1457,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/orbit_power.png"
+    "image_url": "/static/images/powers/orbit_power.webp"
   },
   {
     "id": "OUTBREAK",
@@ -1527,7 +1467,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/outbreak_power.png"
+    "image_url": "/static/images/powers/outbreak_power.webp"
   },
   {
     "id": "PAGESTORM",
@@ -1537,7 +1477,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/pagestorm_power.png"
+    "image_url": "/static/images/powers/pagestorm_power.webp"
   },
   {
     "id": "PAINFUL_STABS",
@@ -1547,7 +1487,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/painful_stabs_power.png"
+    "image_url": "/static/images/powers/painful_stabs_power.webp"
   },
   {
     "id": "PALE_BLUE_DOT",
@@ -1557,7 +1497,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/pale_blue_dot_power.png"
+    "image_url": "/static/images/powers/pale_blue_dot_power.webp"
   },
   {
     "id": "PANACHE",
@@ -1567,7 +1507,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/panache_power.png"
+    "image_url": "/static/images/powers/panache_power.webp"
   },
   {
     "id": "PAPER_CUTS",
@@ -1577,7 +1517,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/paper_cuts_power.png"
+    "image_url": "/static/images/powers/paper_cuts_power.webp"
   },
   {
     "id": "PARRY",
@@ -1587,7 +1527,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/parry_power.png"
+    "image_url": "/static/images/powers/parry_power.webp"
   },
   {
     "id": "PERSONAL_HIVE",
@@ -1597,7 +1537,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/personal_hive_power.png"
+    "image_url": "/static/images/powers/personal_hive_power.webp"
   },
   {
     "id": "PHANTOM_BLADES",
@@ -1607,7 +1547,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/phantom_blades_power.png"
+    "image_url": "/static/images/powers/phantom_blades_power.webp"
   },
   {
     "id": "PIERCING_WAIL",
@@ -1617,7 +1557,7 @@
     "type": "Debuff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/piercing_wail_power.png"
+    "image_url": "/static/images/powers/piercing_wail_power.webp"
   },
   {
     "id": "PILLAR_OF_CREATION",
@@ -1627,7 +1567,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/pillar_of_creation_power.png"
+    "image_url": "/static/images/powers/pillar_of_creation_power.webp"
   },
   {
     "id": "PLATING",
@@ -1637,7 +1577,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/plating_power.png"
+    "image_url": "/static/images/powers/plating_power.webp"
   },
   {
     "id": "PLOW",
@@ -1647,7 +1587,7 @@
     "type": "Debuff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/plow_power.png"
+    "image_url": "/static/images/powers/plow_power.webp"
   },
   {
     "id": "POISON",
@@ -1657,7 +1597,7 @@
     "type": "Debuff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/poison_power.png"
+    "image_url": "/static/images/powers/poison_power.webp"
   },
   {
     "id": "POSSESS_SPEED",
@@ -1667,7 +1607,7 @@
     "type": "Buff",
     "stack_type": "Single",
     "allow_negative": null,
-    "image_url": "/static/images/powers/possess_speed_power.png"
+    "image_url": "/static/images/powers/possess_speed_power.webp"
   },
   {
     "id": "POSSESS_STRENGTH",
@@ -1677,7 +1617,7 @@
     "type": "Buff",
     "stack_type": "Single",
     "allow_negative": null,
-    "image_url": "/static/images/powers/possess_strength_power.png"
+    "image_url": "/static/images/powers/possess_strength_power.webp"
   },
   {
     "id": "PREP_TIME",
@@ -1687,17 +1627,17 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/prep_time_power.png"
+    "image_url": "/static/images/powers/prep_time_power.webp"
   },
   {
     "id": "PYRE",
     "name": "PyrePower",
-    "description": "ตอนเริ่มต้นเทิร์น ได้รับ [blue]1[/blue] [gold]พลังงาน[/gold]",
-    "description_raw": null,
+    "description": "ตอนเริ่มต้นเทิร์น ได้รับ [energy:1]",
+    "description_raw": "ตอนเริ่มต้นเทิร์น ได้รับ {Amount:energyIcons()}",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/pyre_power.png"
+    "image_url": "/static/images/powers/pyre_power.webp"
   },
   {
     "id": "RADIANCE",
@@ -1707,7 +1647,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/radiance_power.png"
+    "image_url": "/static/images/powers/radiance_power.webp"
   },
   {
     "id": "RAGE",
@@ -1717,7 +1657,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/rage_power.png"
+    "image_url": "/static/images/powers/rage_power.webp"
   },
   {
     "id": "RAMPART",
@@ -1727,7 +1667,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/rampart_power.png"
+    "image_url": "/static/images/powers/rampart_power.webp"
   },
   {
     "id": "RAVENOUS",
@@ -1737,17 +1677,17 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/ravenous_power.png"
+    "image_url": "/static/images/powers/ravenous_power.webp"
   },
   {
     "id": "REAPER_FORM",
     "name": "ร่างยมทูต",
     "description": "ทุกครั้งที่สร้างความเสียหายจากการโจมตี สร้าง[gold]อายุขัย[/gold]ตามจำนวนนั้นด้วย",
-    "description_raw": null,
+    "description_raw": "ทุกครั้งที่สร้างความเสียหายจากการโจมตี สร้าง[gold]อายุขัย[/gold]{Amount:choose(1):ตาม| [blue]{}[/blue] เท่าของ}จำนวนนั้นด้วย",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/reaper_form_power.png"
+    "image_url": "/static/images/powers/reaper_form_power.webp"
   },
   {
     "id": "REATTACH",
@@ -1757,17 +1697,17 @@
     "type": "Buff",
     "stack_type": "Single",
     "allow_negative": null,
-    "image_url": "/static/images/powers/reattach_power.png"
+    "image_url": "/static/images/powers/reattach_power.webp"
   },
   {
     "id": "REBOUND",
     "name": "ดีดกลับ",
-    "description": "นำการ์ดใบถัดไปที่คุณเล่นไปไว้บนสุดของ[gold]กองจั่ว[/gold]",
-    "description_raw": null,
+    "description": "นำการ์ดใบถัดไปที่คุณเล่นในเทิร์นนี้ไปไว้บนสุดของ[gold]กองจั่ว[/gold]",
+    "description_raw": "นำการ์ด{Amount:choose(1):| [blue]{}[/blue] }ใบถัดไปที่คุณเล่นในเทิร์นนี้ไปไว้บนสุดของ[gold]กองจั่ว[/gold]",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/rebound_power.png"
+    "image_url": "/static/images/powers/rebound_power.webp"
   },
   {
     "id": "REFLECT",
@@ -1777,7 +1717,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/reflect_power.png"
+    "image_url": "/static/images/powers/reflect_power.webp"
   },
   {
     "id": "REGEN",
@@ -1787,7 +1727,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/regen_power.png"
+    "image_url": "/static/images/powers/regen_power.webp"
   },
   {
     "id": "REPTILE_TRINKET",
@@ -1797,7 +1737,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/reptile_trinket_power.png"
+    "image_url": "/static/images/powers/reptile_trinket_power.webp"
   },
   {
     "id": "RETAIN_HAND",
@@ -1807,7 +1747,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/retain_hand_power.png"
+    "image_url": "/static/images/powers/retain_hand_power.webp"
   },
   {
     "id": "RINGING",
@@ -1817,7 +1757,7 @@
     "type": "Debuff",
     "stack_type": "Single",
     "allow_negative": null,
-    "image_url": "/static/images/powers/ringing_power.png"
+    "image_url": "/static/images/powers/ringing_power.webp"
   },
   {
     "id": "RITUAL",
@@ -1827,7 +1767,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/ritual_power.png"
+    "image_url": "/static/images/powers/ritual_power.webp"
   },
   {
     "id": "ROLLING_BOULDER",
@@ -1837,7 +1777,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/rolling_boulder_power.png"
+    "image_url": "/static/images/powers/rolling_boulder_power.webp"
   },
   {
     "id": "ROYALTIES",
@@ -1847,7 +1787,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/royalties_power.png"
+    "image_url": "/static/images/powers/royalties_power.webp"
   },
   {
     "id": "RUPTURE",
@@ -1857,7 +1797,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/rupture_power.png"
+    "image_url": "/static/images/powers/rupture_power.webp"
   },
   {
     "id": "SANDPIT",
@@ -1867,17 +1807,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/sandpit_power.png"
-  },
-  {
-    "id": "SCRUTINY",
-    "name": "ScrutinyPower",
-    "description": "",
-    "description_raw": null,
-    "type": "Buff",
-    "stack_type": "Single",
-    "allow_negative": null,
-    "image_url": "/static/images/powers/scrutiny_power.png"
+    "image_url": "/static/images/powers/sandpit_power.webp"
   },
   {
     "id": "SEEKING_EDGE",
@@ -1887,7 +1817,7 @@
     "type": "Buff",
     "stack_type": "Single",
     "allow_negative": null,
-    "image_url": "/static/images/powers/seeking_edge_power.png"
+    "image_url": "/static/images/powers/seeking_edge_power.webp"
   },
   {
     "id": "SELF_FORMING_CLAY",
@@ -1897,7 +1827,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/self_forming_clay_power.png"
+    "image_url": "/static/images/powers/self_forming_clay_power.webp"
   },
   {
     "id": "SENTRY_MODE",
@@ -1907,7 +1837,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/sentry_mode_power.png"
+    "image_url": "/static/images/powers/sentry_mode_power.webp"
   },
   {
     "id": "SERPENT_FORM",
@@ -1917,7 +1847,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/serpent_form_power.png"
+    "image_url": "/static/images/powers/serpent_form_power.webp"
   },
   {
     "id": "SETUP_STRIKE",
@@ -1927,7 +1857,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/setup_strike_power.png"
+    "image_url": "/static/images/powers/setup_strike_power.webp"
   },
   {
     "id": "SHACKLING_POTION",
@@ -1937,27 +1867,27 @@
     "type": "Debuff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/shackling_potion_power.png"
+    "image_url": "/static/images/powers/shackling_potion_power.webp"
   },
   {
     "id": "SHADOW_STEP",
     "name": "ShadowStepPower",
-    "description": "เทิร์นถัดไป สร้างความเสียหายจากการโจมตีเป็น 2 เท่า",
-    "description_raw": null,
+    "description": "เทิร์นถัดไปสร้างความเสียหายจากการโจมตีเป็น 2 เท่า",
+    "description_raw": "เทิร์นถัดไป{Amount:choose(1):|อีก [blue]{}[/blue] เทิร์นหลังจากเทิร์นนี้ }สร้างความเสียหายจากการโจมตีเป็น 2 เท่า",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/shadow_step_power.png"
+    "image_url": "/static/images/powers/shadow_step_power.webp"
   },
   {
     "id": "SHADOWMELD",
     "name": "ShadowmeldPower",
-    "description": "ในเทิร์นนี้ ได้รับ[gold]บล็อก[/gold] 2 เท่า",
-    "description_raw": null,
+    "description": "ในเทิร์นนี้ ได้รับ[gold]บล็อก[/gold]เพิ่มเป็น 2 เท่า",
+    "description_raw": "ในเทิร์นนี้ ได้รับ[gold]บล็อก[/gold]เพิ่มเป็น 2 เท่า{Amount:choose(1):| จำนวน [blue]{}[/blue] ครั้ง}",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/shadowmeld_power.png"
+    "image_url": "/static/images/powers/shadowmeld_power.webp"
   },
   {
     "id": "SHRIEK",
@@ -1967,7 +1897,7 @@
     "type": "Debuff",
     "stack_type": "Counter",
     "allow_negative": true,
-    "image_url": "/static/images/powers/shriek_power.png"
+    "image_url": "/static/images/powers/shriek_power.webp"
   },
   {
     "id": "SHRINK",
@@ -1977,7 +1907,7 @@
     "type": "Debuff",
     "stack_type": "None",
     "allow_negative": true,
-    "image_url": "/static/images/powers/shrink_power.png"
+    "image_url": "/static/images/powers/shrink_power.webp"
   },
   {
     "id": "SHROUD",
@@ -1987,7 +1917,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/shroud_power.png"
+    "image_url": "/static/images/powers/shroud_power.webp"
   },
   {
     "id": "SIC_EM",
@@ -1997,17 +1927,17 @@
     "type": "Debuff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/sic_em_power.png"
+    "image_url": "/static/images/powers/sic_em_power.webp"
   },
   {
     "id": "SIGNAL_BOOST",
     "name": "SignalBoostPower",
     "description": "การ์ดพลังใบถัดไปจะถูกเล่นอีกครั้ง",
-    "description_raw": null,
+    "description_raw": "การ์ดพลัง{Amount:choose(1):| [blue]{}[/blue] }ใบถัดไปจะถูกเล่นอีกครั้ง",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/signal_boost_power.png"
+    "image_url": "/static/images/powers/signal_boost_power.webp"
   },
   {
     "id": "SKITTISH",
@@ -2017,7 +1947,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/skittish_power.png"
+    "image_url": "/static/images/powers/skittish_power.webp"
   },
   {
     "id": "SLEIGHT_OF_FLESH",
@@ -2027,17 +1957,17 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/sleight_of_flesh_power.png"
+    "image_url": "/static/images/powers/sleight_of_flesh_power.webp"
   },
   {
     "id": "SLIPPERY",
     "name": "SlipperyPower",
-    "description": "timeครั้งถัดไปที่ [gold]this creature[/gold] จะเสีย HP มันจะเสียแค่ [blue]1[/blue] HP แทน",
+    "description": "Timeครั้งถัดไปที่ [gold]this creature[/gold] จะเสีย HP มันจะเสียแค่ [blue]1[/blue] HP แทน",
     "description_raw": "{Amount:choose(1):time|[blue]{}[/blue] }ครั้งถัดไปที่ [gold]{OwnerName}[/gold] จะเสีย HP มันจะเสียแค่ [blue]1[/blue] HP แทน",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/slippery_power.png"
+    "image_url": "/static/images/powers/slippery_power.webp"
   },
   {
     "id": "SLOTH",
@@ -2047,7 +1977,7 @@
     "type": "Debuff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/sloth_power.png"
+    "image_url": "/static/images/powers/sloth_power.webp"
   },
   {
     "id": "SLOW",
@@ -2057,7 +1987,7 @@
     "type": "Debuff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/slow_power.png"
+    "image_url": "/static/images/powers/slow_power.webp"
   },
   {
     "id": "SLUMBER",
@@ -2067,7 +1997,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/slumber_power.png"
+    "image_url": "/static/images/powers/slumber_power.webp"
   },
   {
     "id": "SMOGGY",
@@ -2077,7 +2007,7 @@
     "type": "Debuff",
     "stack_type": "Single",
     "allow_negative": null,
-    "image_url": "/static/images/powers/smoggy_power.png"
+    "image_url": "/static/images/powers/smoggy_power.webp"
   },
   {
     "id": "SMOKESTACK",
@@ -2087,7 +2017,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/smokestack_power.png"
+    "image_url": "/static/images/powers/smokestack_power.webp"
   },
   {
     "id": "SNEAKY",
@@ -2097,7 +2027,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/sneaky_power.png"
+    "image_url": "/static/images/powers/sneaky_power.webp"
   },
   {
     "id": "SOAR",
@@ -2107,7 +2037,7 @@
     "type": "Buff",
     "stack_type": "Single",
     "allow_negative": null,
-    "image_url": "/static/images/powers/soar_power.png"
+    "image_url": "/static/images/powers/soar_power.webp"
   },
   {
     "id": "SPECTRUM_SHIFT",
@@ -2117,7 +2047,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/spectrum_shift_power.png"
+    "image_url": "/static/images/powers/spectrum_shift_power.webp"
   },
   {
     "id": "SPEED_POTION",
@@ -2127,7 +2057,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/speed_potion_power.png"
+    "image_url": "/static/images/powers/speed_potion_power.webp"
   },
   {
     "id": "SPEEDSTER",
@@ -2137,7 +2067,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/speedster_power.png"
+    "image_url": "/static/images/powers/speedster_power.webp"
   },
   {
     "id": "SPINNER",
@@ -2147,7 +2077,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/spinner_power.png"
+    "image_url": "/static/images/powers/spinner_power.webp"
   },
   {
     "id": "SPIRIT_OF_ASH",
@@ -2157,7 +2087,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/spirit_of_ash_power.png"
+    "image_url": "/static/images/powers/spirit_of_ash_power.webp"
   },
   {
     "id": "STAMPEDE",
@@ -2167,7 +2097,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/stampede_power.png"
+    "image_url": "/static/images/powers/stampede_power.webp"
   },
   {
     "id": "STAR_NEXT_TURN",
@@ -2177,7 +2107,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/star_next_turn_power.png"
+    "image_url": "/static/images/powers/star_next_turn_power.webp"
   },
   {
     "id": "STEAM_ERUPTION",
@@ -2187,7 +2117,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/steam_eruption_power.png"
+    "image_url": "/static/images/powers/steam_eruption_power.webp"
   },
   {
     "id": "STOCK",
@@ -2197,7 +2127,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/stock_power.png"
+    "image_url": "/static/images/powers/stock_power.webp"
   },
   {
     "id": "STORM",
@@ -2207,7 +2137,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/storm_power.png"
+    "image_url": "/static/images/powers/storm_power.webp"
   },
   {
     "id": "STRANGLE",
@@ -2217,7 +2147,7 @@
     "type": "Debuff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/strangle_power.png"
+    "image_url": "/static/images/powers/strangle_power.webp"
   },
   {
     "id": "STRATAGEM",
@@ -2227,17 +2157,17 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/stratagem_power.png"
+    "image_url": "/static/images/powers/stratagem_power.webp"
   },
   {
     "id": "STRENGTH",
     "name": "ความแข็งแรง",
-    "description": "ความแข็งแรงเพิ่มความเสียหายจากการโจมตี",
-    "description_raw": null,
+    "description": "ความเสียหายจากการโจมตีเพิ่มขึ้น [blue][/blue]",
+    "description_raw": "ความเสียหายจากการโจมตี{Amount:cond:<0?ลดลง|เพิ่มขึ้น} [blue]{Amount:abs()}[/blue]",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": true,
-    "image_url": "/static/images/powers/strength_power.png"
+    "image_url": "/static/images/powers/strength_power.webp"
   },
   {
     "id": "SUBROUTINE",
@@ -2247,7 +2177,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/subroutine_power.png"
+    "image_url": "/static/images/powers/subroutine_power.webp"
   },
   {
     "id": "SUCK",
@@ -2257,7 +2187,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/suck_power.png"
+    "image_url": "/static/images/powers/suck_power.webp"
   },
   {
     "id": "SUMMON_NEXT_TURN",
@@ -2267,7 +2197,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/summon_next_turn_power.png"
+    "image_url": "/static/images/powers/summon_next_turn_power.webp"
   },
   {
     "id": "SURPRISE",
@@ -2277,7 +2207,7 @@
     "type": "Buff",
     "stack_type": "Single",
     "allow_negative": null,
-    "image_url": "/static/images/powers/surprise_power.png"
+    "image_url": "/static/images/powers/surprise_power.webp"
   },
   {
     "id": "SURROUNDED",
@@ -2287,7 +2217,7 @@
     "type": "Debuff",
     "stack_type": "Single",
     "allow_negative": null,
-    "image_url": "/static/images/powers/surrounded_power.png"
+    "image_url": "/static/images/powers/surrounded_power.webp"
   },
   {
     "id": "SWIPE",
@@ -2297,7 +2227,7 @@
     "type": "Buff",
     "stack_type": "Single",
     "allow_negative": null,
-    "image_url": "/static/images/powers/swipe_power.png"
+    "image_url": "/static/images/powers/swipe_power.webp"
   },
   {
     "id": "SWORD_SAGE",
@@ -2307,7 +2237,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/sword_sage_power.png"
+    "image_url": "/static/images/powers/sword_sage_power.webp"
   },
   {
     "id": "SYNCHRONIZE",
@@ -2317,7 +2247,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/synchronize_power.png"
+    "image_url": "/static/images/powers/synchronize_power.webp"
   },
   {
     "id": "TAG_TEAM",
@@ -2327,17 +2257,17 @@
     "type": "Debuff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/tag_team_power.png"
+    "image_url": "/static/images/powers/tag_team_power.webp"
   },
   {
     "id": "TANGLED",
     "name": "TangledPower",
-    "description": "การ์ดโจมตีค่าร่ายเพิ่ม [blue]1[/blue] [gold]พลังงาน[/gold]ในเทิร์นนี้",
-    "description_raw": null,
+    "description": "การ์ดโจมตีค่าร่ายเพิ่ม [energy:1] ในเทิร์นนี้",
+    "description_raw": "การ์ดโจมตีค่าร่ายเพิ่ม {Amount:energyIcons()} {Amount:choose(1):ในเทิร์นนี้|เป็นเวลา {} เทิร์น}",
     "type": "Debuff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/tangled_power.png"
+    "image_url": "/static/images/powers/tangled_power.webp"
   },
   {
     "id": "TANK",
@@ -2347,7 +2277,7 @@
     "type": "Buff",
     "stack_type": "Single",
     "allow_negative": null,
-    "image_url": "/static/images/powers/tank_power.png"
+    "image_url": "/static/images/powers/tank_power.webp"
   },
   {
     "id": "TENDER",
@@ -2357,7 +2287,7 @@
     "type": "Debuff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/tender_power.png"
+    "image_url": "/static/images/powers/tender_power.webp"
   },
   {
     "id": "TERRITORIAL",
@@ -2367,7 +2297,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/territorial_power.png"
+    "image_url": "/static/images/powers/territorial_power.webp"
   },
   {
     "id": "THE_BOMB",
@@ -2377,7 +2307,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/the_bomb_power.png"
+    "image_url": "/static/images/powers/the_bomb_power.webp"
   },
   {
     "id": "THE_GAMBIT",
@@ -2387,7 +2317,7 @@
     "type": "Debuff",
     "stack_type": "Single",
     "allow_negative": null,
-    "image_url": "/static/images/powers/the_gambit_power.png"
+    "image_url": "/static/images/powers/the_gambit_power.webp"
   },
   {
     "id": "THE_HUNT",
@@ -2397,17 +2327,17 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/the_hunt_power.png"
+    "image_url": "/static/images/powers/the_hunt_power.webp"
   },
   {
     "id": "THE_SEALED_THRONE",
     "name": "TheSealedThronePower",
     "description": "ทุกครั้งที่คุณเล่นการ์ด ได้รับ [star:1]",
-    "description_raw": "ทุกครั้งที่คุณเล่นการ์ด ได้รับ {singleStarIcon}",
+    "description_raw": "ทุกครั้งที่คุณเล่นการ์ด ได้รับ {Amount:starIcons()}",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/the_sealed_throne_power.png"
+    "image_url": "/static/images/powers/the_sealed_throne_power.webp"
   },
   {
     "id": "THIEVERY",
@@ -2417,7 +2347,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/thievery_power.png"
+    "image_url": "/static/images/powers/thievery_power.webp"
   },
   {
     "id": "THORNS",
@@ -2427,7 +2357,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/thorns_power.png"
+    "image_url": "/static/images/powers/thorns_power.webp"
   },
   {
     "id": "THUNDER",
@@ -2437,7 +2367,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/thunder_power.png"
+    "image_url": "/static/images/powers/thunder_power.webp"
   },
   {
     "id": "TOOLS_OF_THE_TRADE",
@@ -2447,17 +2377,17 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/tools_of_the_trade_power.png"
+    "image_url": "/static/images/powers/tools_of_the_trade_power.webp"
   },
   {
     "id": "TORIC_TOUGHNESS",
     "name": "ToricToughnessPower",
-    "description": "ได้รับ [blue]0[/blue] [gold]บล็อก[/gold]ตอนเริ่มต้นเทิร์น เป็นเวลา [blue][Amount][/blue] เทิร์น",
+    "description": "ได้รับ [blue]5[/blue] [gold]บล็อก[/gold]ตอนเริ่มต้นเทิร์น เป็นเวลา [blue]2[/blue] เทิร์น",
     "description_raw": "ได้รับ [blue]{Block:diff()}[/blue] [gold]บล็อก[/gold]ตอนเริ่มต้นเทิร์น เป็นเวลา [blue]{Amount}[/blue] เทิร์น",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/toric_toughness_power.png"
+    "image_url": "/static/images/powers/toric_toughness_power.webp"
   },
   {
     "id": "TRACKING",
@@ -2467,7 +2397,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/tracking_power.png"
+    "image_url": "/static/images/powers/tracking_power.webp"
   },
   {
     "id": "TRASH_TO_TREASURE",
@@ -2477,7 +2407,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/trash_to_treasure_power.png"
+    "image_url": "/static/images/powers/trash_to_treasure_power.webp"
   },
   {
     "id": "TYRANNY",
@@ -2487,17 +2417,17 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/tyranny_power.png"
+    "image_url": "/static/images/powers/tyranny_power.webp"
   },
   {
     "id": "UNMOVABLE",
     "name": "UnmovablePower",
     "description": "ครั้งแรกที่คุณได้รับ[gold]บล็อก[/gold]จากการ์ดในแต่ละเทิร์น ได้รับผลนั้น 2 เท่า",
-    "description_raw": null,
+    "description_raw": "{Amount:choose(1):|[blue]{}[/blue] }ครั้งแรกที่คุณได้รับ[gold]บล็อก[/gold]จากการ์ดในแต่ละเทิร์น ได้รับผลนั้น 2 เท่า",
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/unmovable_power.png"
+    "image_url": "/static/images/powers/unmovable_power.webp"
   },
   {
     "id": "VEILPIERCER",
@@ -2507,7 +2437,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/veilpiercer_power.png"
+    "image_url": "/static/images/powers/veilpiercer_power.webp"
   },
   {
     "id": "VICIOUS",
@@ -2517,7 +2447,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/vicious_power.png"
+    "image_url": "/static/images/powers/vicious_power.webp"
   },
   {
     "id": "VIGOR",
@@ -2527,7 +2457,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/vigor_power.png"
+    "image_url": "/static/images/powers/vigor_power.webp"
   },
   {
     "id": "VITAL_SPARK",
@@ -2537,7 +2467,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/vital_spark_power.png"
+    "image_url": "/static/images/powers/vital_spark_power.webp"
   },
   {
     "id": "VOID_FORM",
@@ -2547,7 +2477,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/void_form_power.png"
+    "image_url": "/static/images/powers/void_form_power.webp"
   },
   {
     "id": "VULNERABLE",
@@ -2557,7 +2487,7 @@
     "type": "Debuff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/vulnerable_power.png"
+    "image_url": "/static/images/powers/vulnerable_power.webp"
   },
   {
     "id": "WASTE_AWAY",
@@ -2567,7 +2497,7 @@
     "type": "Debuff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/waste_away_power.png"
+    "image_url": "/static/images/powers/waste_away_power.webp"
   },
   {
     "id": "WEAK",
@@ -2577,7 +2507,7 @@
     "type": "Debuff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/weak_power.png"
+    "image_url": "/static/images/powers/weak_power.webp"
   },
   {
     "id": "WELL_LAID_PLANS",
@@ -2587,7 +2517,7 @@
     "type": "Buff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/well_laid_plans_power.png"
+    "image_url": "/static/images/powers/well_laid_plans_power.webp"
   },
   {
     "id": "WRAITH_FORM",
@@ -2597,6 +2527,6 @@
     "type": "Debuff",
     "stack_type": "Counter",
     "allow_negative": null,
-    "image_url": "/static/images/powers/wraith_form_power.png"
+    "image_url": "/static/images/powers/wraith_form_power.webp"
   }
 ]

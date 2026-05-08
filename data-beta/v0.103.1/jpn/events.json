@@ -540,7 +540,9 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": "目の前に、なんとも壮大な光景が広がっている。\n演台にそびえ立つ3色の彫像が、色彩の持つ哲学的意味について[jitter][red]白熱した議論[/red][/jitter]を交わしている。\n\n話に耳を傾けてみると、彼らにとっての最大の争点は「果たしてどの色が真に[gold]“至高”[/gold]であるか」ということらしい。\n\nあなたは議論に割って入り、自説を披露することにした。",
-    "preconditions": null,
+    "preconditions": [
+      "Requires more than one character unlocked"
+    ],
     "options": [
       {
         "id": "DEFECT",

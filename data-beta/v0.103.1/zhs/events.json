@@ -540,7 +540,9 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": "在你面前的是一幕颇为宏伟的景象。\n你看到三座不同颜色的石像耸立在高台之上，正就色彩的哲学内涵展开[jitter][red]激烈的争论[/red][/jitter]。\n\n随着你的倾听，你感觉到眼下最核心的议题是，究竟哪种颜色才是[gold][b]最棒的[/b][/gold]。\n\n你加入其中，表达了你的见解。",
-    "preconditions": null,
+    "preconditions": [
+      "Requires more than one character unlocked"
+    ],
     "options": [
       {
         "id": "DEFECT",

@@ -540,7 +540,9 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": "Przed tobą dość urzekający widok.\nWysokie posągi o trzech różnych kolorach prowadzą [jitter][red]gorącą debatę[/red][/jitter] o filozoficznych implikacjach koloru.\n\nPrzysłuchując się zażartej dyskusji, odnosisz wrażenie, że cały spór tak naprawdę toczy się o to, który kolor jest [gold]NAJLEPSZY[/gold].\n\nDorzucasz swoją opinię na ten temat.",
-    "preconditions": null,
+    "preconditions": [
+      "Requires more than one character unlocked"
+    ],
     "options": [
       {
         "id": "DEFECT",

@@ -440,25 +440,7 @@
         ]
       }
     ],
-    "image_url": "/static/images/characters/char_select_defect.png"
-  },
-  {
-    "id": "DEPRECATED_CHARACTER",
-    "name": "Deprecated Character",
-    "description": "",
-    "starting_hp": 1000,
-    "starting_gold": 99,
-    "max_energy": 100,
-    "orb_slots": null,
-    "starting_deck": [],
-    "starting_relics": [],
-    "unlocks_after": null,
-    "gender": "Neutral",
-    "color": "gold",
-    "dialogue_color": null,
-    "quotes": null,
-    "dialogues": null,
-    "image_url": "/static/images/characters/char_select_deprecated_character.png"
+    "image_url": "/static/images/characters/char_select_defect.webp"
   },
   {
     "id": "IRONCLAD",
@@ -870,7 +852,7 @@
         ]
       }
     ],
-    "image_url": "/static/images/characters/char_select_ironclad.png"
+    "image_url": "/static/images/characters/char_select_ironclad.webp"
   },
   {
     "id": "NECROBINDER",
@@ -1384,7 +1366,7 @@
         ]
       }
     ],
-    "image_url": "/static/images/characters/char_select_necrobinder.png"
+    "image_url": "/static/images/characters/char_select_necrobinder.webp"
   },
   {
     "id": "REGENT",
@@ -1892,7 +1874,7 @@
         ]
       }
     ],
-    "image_url": "/static/images/characters/char_select_regent.png"
+    "image_url": "/static/images/characters/char_select_regent.webp"
   },
   {
     "id": "SILENT",
@@ -2338,6 +2320,6 @@
         ]
       }
     ],
-    "image_url": "/static/images/characters/char_select_silent.png"
+    "image_url": "/static/images/characters/char_select_silent.webp"
   }
 ]

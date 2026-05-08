@@ -485,7 +485,9 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": "เบื้องหน้าของคุณเป็นทัศนียภาพแสนอลังการ\nคุณเห็นรูปปั้น 3 สีไม่ซ้ำกันตั้งอยู่บนแท่น กำลัง[jitter][red]ถกเถียงกันอย่างดุเดือด[/red][/jitter]เกี่ยวกับนัยยะเชิงปรัชญาของสีสัน\n\nพอฟังดู คุณก็พอจับประเด็นได้ว่า คำถามที่สำคัญที่สุดคือ สีไหน[gold]ดีที่สุด[/gold]\n\nคุณจึงแทรกความคิดเห็นของตัวเองเข้าไป",
-    "preconditions": null,
+    "preconditions": [
+      "Requires more than one character unlocked"
+    ],
     "options": [
       {
         "id": "DEFECT",

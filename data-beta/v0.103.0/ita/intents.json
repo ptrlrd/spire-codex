@@ -3,84 +3,84 @@
     "id": "ATTACK",
     "name": "Aggressività",
     "description": "Questo nemico si appresta ad [gold]attaccare[/gold] {IsMultiplayer:tutti |}e infliggere [blue]{Damage}[/blue] di danno{Repeat:plural:| [blue]{}[/blue] volte}.",
-    "image_url": "/static/images/intents/attack.png"
+    "image_url": "/static/images/intents/attack.webp"
   },
   {
     "id": "BUFF",
     "name": "Rafforzamento",
     "description": "Questo nemico si appresta a usare un [gold]effetto positivo[/gold].",
-    "image_url": "/static/images/intents/buff.png"
+    "image_url": "/static/images/intents/buff.webp"
   },
   {
     "id": "CARD_DEBUFF",
     "name": "Malvagità",
     "description": "Questo nemico si appresta ad applicare [gold]afflizioni[/gold] sulle tue carte.",
-    "image_url": "/static/images/intents/card_debuff.png"
+    "image_url": "/static/images/intents/card_debuff.webp"
   },
   {
     "id": "DEATH_BLOW",
     "name": "Attacco mortale",
     "description": "Questa creatura vuole farti morire insieme a essa. Ti attaccherà e infliggerà [blue]{Damage}[/blue] di danno prima di essere sconfitta.",
-    "image_url": "/static/images/intents/death_blow.png"
+    "image_url": "/static/images/intents/death_blow.webp"
   },
   {
     "id": "DEBUFF",
     "name": "Strategia",
     "description": "Questo nemico si appresta ad applicarti un [gold]effetto negativo[/gold].",
-    "image_url": "/static/images/intents/debuff.png"
+    "image_url": "/static/images/intents/debuff.webp"
   },
   {
     "id": "DEBUFF_STRONG",
     "name": "Strategia",
     "description": "Questo nemico si appresta ad applicarti un potente [gold]effetto negativo[/gold].",
-    "image_url": "/static/images/intents/debuff_strong.png"
+    "image_url": "/static/images/intents/debuff_strong.webp"
   },
   {
     "id": "DEFEND",
     "name": "Prudenza",
     "description": "Questo nemico si appresta a [gold]bloccare[/gold] durante il suo turno.",
-    "image_url": "/static/images/intents/defend.png"
+    "image_url": "/static/images/intents/defend.webp"
   },
   {
     "id": "ESCAPE",
     "name": "Codardia",
     "description": "Questo nemico si appresta a [gold]fuggire[/gold].",
-    "image_url": "/static/images/intents/escape.png"
+    "image_url": "/static/images/intents/escape.webp"
   },
   {
     "id": "HEAL",
     "name": "Guarigione",
     "description": "Questo nemico si appresta a [gold]curarsi[/gold].",
-    "image_url": "/static/images/intents/heal.png"
+    "image_url": "/static/images/intents/heal.webp"
   },
   {
     "id": "SLEEP",
     "name": "Letargo",
     "description": "Questo nemico non farà nulla durante il suo turno.",
-    "image_url": "/static/images/intents/sleep.png"
+    "image_url": "/static/images/intents/sleep.webp"
   },
   {
     "id": "STATUS",
     "name": "Strategia",
     "description": "Questo nemico si appresta a darti [blue]{CardCount}[/blue] {CardCount:plural:carta|carte} [gold]Stato[/gold].",
-    "image_url": "/static/images/intents/status.png"
+    "image_url": "/static/images/intents/status.webp"
   },
   {
     "id": "STUN",
     "name": "Stordimento",
     "description": "Questo nemico non può agire durante il suo prossimo turno.",
-    "image_url": "/static/images/intents/stun.png"
+    "image_url": "/static/images/intents/stun.webp"
   },
   {
     "id": "SUMMON",
     "name": "Invocazione",
     "description": "Questo nemico si appresta a invocare dei [gold]mostri[/gold].",
-    "image_url": "/static/images/intents/summon.png"
+    "image_url": "/static/images/intents/summon.webp"
   },
   {
     "id": "UNKNOWN",
     "name": "Incognita",
     "description": "Le intenzioni del nemico sono [gold]sconosciute[/gold].",
-    "image_url": "/static/images/intents/unknown.png"
+    "image_url": "/static/images/intents/unknown.webp"
   }
 ]

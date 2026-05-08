@@ -540,7 +540,9 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": "Ante ti aparece una escena de proporciones épicas.\nVes tres estatuas de colores distintos que se alzan frente a un estrado. Parecen estar teniendo un [jitter][red]debate muy acalorado[/red][/jitter] acerca de las implicaciones filosóficas del color.\n\nEscuchas sus palabras durante un rato y llegas a la conclusión de que la pregunta más importante es qué color es [gold]EL MEJOR[/gold].\n\nLes haces saber cuál es tu opinión al respecto.",
-    "preconditions": null,
+    "preconditions": [
+      "Requires more than one character unlocked"
+    ],
     "options": [
       {
         "id": "DEFECT",

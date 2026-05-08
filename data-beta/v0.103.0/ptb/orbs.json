@@ -4,41 +4,34 @@
     "name": "Trevas",
     "description": "[gold]Passiva:[/gold] No final do turno, aumenta o dano desta Orbe em [blue]6[/blue].\n[gold]Evocar:[/gold] Causa [blue]6[/blue] de dano ao inimigo com menos PV.",
     "description_raw": "[gold]Passiva:[/gold] No final do turno, aumenta o dano desta Orbe em [blue]{Passive}[/blue].\n[gold]Evocar:[/gold] Causa [blue]{Evoke}[/blue] de dano ao inimigo com menos PV.",
-    "image_url": "/static/images/orbs/dark_orb.png"
+    "image_url": "/static/images/orbs/dark_orb.webp"
   },
   {
     "id": "FROST_ORB",
     "name": "Gelo",
     "description": "[gold]Passiva:[/gold] No final do turno, receba [blue]2[/blue] de [gold]Proteção[/gold].\n[gold]Evocar:[/gold] Receba [blue]5[/blue] de [gold]Proteção[/gold].",
     "description_raw": "[gold]Passiva:[/gold] No final do turno, receba [blue]{Passive}[/blue] de [gold]Proteção[/gold].\n[gold]Evocar:[/gold] Receba [blue]{Evoke}[/blue] de [gold]Proteção[/gold].",
-    "image_url": "/static/images/orbs/frost_orb.png"
+    "image_url": "/static/images/orbs/frost_orb.webp"
   },
   {
     "id": "GLASS_ORB",
     "name": "Vidro",
     "description": "[gold]Passiva:[/gold] No final do turno, causa [blue]4[/blue] de dano a TODOS os inimigos e reduz o valor desta orbe em [blue]1[/blue].\n[gold]Evocar:[/gold] Causa [blue]8[/blue] de dano a TODOS os inimigos.",
     "description_raw": "[gold]Passiva:[/gold] No final do turno, causa [blue]{Passive}[/blue] de dano a TODOS os inimigos e reduz o valor desta orbe em [blue]1[/blue].\n[gold]Evocar:[/gold] Causa [blue]{Evoke}[/blue] de dano a TODOS os inimigos.",
-    "image_url": "/static/images/orbs/glass_orb.png"
+    "image_url": "/static/images/orbs/glass_orb.webp"
   },
   {
     "id": "LIGHTNING_ORB",
     "name": "Relâmpago",
     "description": "[gold]Passiva:[/gold] No final do turno, causa [blue]3[/blue] de dano a um inimigo aleatório.\n[gold]Evocar:[/gold] Causa [blue]8[/blue] de dano a um inimigo aleatório.",
     "description_raw": "[gold]Passiva:[/gold] No final do turno, causa [blue]{Passive}[/blue] de dano a um inimigo aleatório.\n[gold]Evocar:[/gold] Causa [blue]{Evoke}[/blue] de dano a um inimigo aleatório.",
-    "image_url": "/static/images/orbs/lightning_orb.png"
-  },
-  {
-    "id": "MOCK_COMBAT_CLEANUP_ORB",
-    "name": "Mock Combat Cleanup",
-    "description": "",
-    "description_raw": null,
-    "image_url": null
+    "image_url": "/static/images/orbs/lightning_orb.webp"
   },
   {
     "id": "PLASMA_ORB",
     "name": "Plasma",
     "description": "[gold]Passiva:[/gold] No início do turno,\nreceba [energy:1].\n[gold]Evocar:[/gold] Receba [energy:2].\nPlasma não é afetado por [gold]Foco[/gold].",
     "description_raw": "[gold]Passiva:[/gold] No início do turno,\nreceba {energyPrefix:energyIcons(1)}.\n[gold]Evocar:[/gold] Receba {energyPrefix:energyIcons(2)}.\nPlasma não é afetado por [gold]Foco[/gold].",
-    "image_url": "/static/images/orbs/plasma_orb.png"
+    "image_url": "/static/images/orbs/plasma_orb.webp"
   }
 ]

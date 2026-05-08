@@ -540,7 +540,9 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": "당신의 눈앞에 꽤나 멋진 광경이 펼쳐집니다.\n당신은 우뚝 서있는 세 가지 색의 동상들이 단상에 서서, 색채의 철학적 의미에 관해 [jitter][red]열띤 토론[/red][/jitter]을 벌이고 있는 모습을 목격합니다.\n\n논쟁을 듣고 있자니, 현재 그들에게 있어 가장 중요한 의문은 진실로 [gold]가장 위대한[/gold] 색은 어떤 색인가에 관한 것으로 보입니다.\n\n당신도 스스로 생각하는 바를 그들에게 말합니다.",
-    "preconditions": null,
+    "preconditions": [
+      "Requires more than one character unlocked"
+    ],
     "options": [
       {
         "id": "DEFECT",

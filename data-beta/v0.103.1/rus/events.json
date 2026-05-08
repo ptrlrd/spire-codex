@@ -540,7 +540,9 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": "Перед вами разворачивается любопытная сцена.\nТри разноцветные статуи [jitter][red]оживленно спорят[/red][/jitter] об истинном значении цвета.\n\nЧем дольше вы их слушаете, тем больше понимаете, что суть спора сводится к одному вопросу: какой цвет [gold]лучше всех[/gold]?\n\nВы решаете поделиться своим мнением.",
-    "preconditions": null,
+    "preconditions": [
+      "Requires more than one character unlocked"
+    ],
     "options": [
       {
         "id": "DEFECT",

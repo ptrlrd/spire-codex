@@ -39,7 +39,7 @@
       ],
       "description": "Always uses Nothing"
     },
-    "image_url": "/static/images/monsters/architect.png",
+    "image_url": "/static/images/monsters/architect.webp",
     "beta_image_url": null
   },
   {
@@ -91,7 +91,7 @@
       ],
       "description": "Always uses Killshot"
     },
-    "image_url": "/static/images/monsters/assassin_ruby_raider.png",
+    "image_url": "/static/images/monsters/assassin_ruby_raider.webp",
     "beta_image_url": null
   },
   {
@@ -179,7 +179,7 @@
       ],
       "description": "Swing 1 → Swing 2 → Big Swing → repeat"
     },
-    "image_url": "/static/images/monsters/axe_ruby_raider.png",
+    "image_url": "/static/images/monsters/axe_ruby_raider.webp",
     "beta_image_url": null
   },
   {
@@ -308,7 +308,7 @@
       ],
       "description": "Starts with Boot Up"
     },
-    "image_url": "/static/images/monsters/axebot.png",
+    "image_url": "/static/images/monsters/axebot.webp",
     "beta_image_url": null
   },
   {
@@ -351,7 +351,7 @@
       ],
       "description": ""
     },
-    "image_url": "/static/images/monsters/battle_friend_v1.png",
+    "image_url": "/static/images/monsters/battle_friend_v1.webp",
     "beta_image_url": null
   },
   {
@@ -394,7 +394,7 @@
       ],
       "description": ""
     },
-    "image_url": "/static/images/monsters/battle_friend_v2.png",
+    "image_url": "/static/images/monsters/battle_friend_v2.webp",
     "beta_image_url": null
   },
   {
@@ -437,7 +437,7 @@
       ],
       "description": ""
     },
-    "image_url": "/static/images/monsters/battle_friend_v3.png",
+    "image_url": "/static/images/monsters/battle_friend_v3.webp",
     "beta_image_url": null
   },
   {
@@ -497,7 +497,7 @@
       ],
       "description": "Always uses Bite"
     },
-    "image_url": "/static/images/monsters/bowlbug_egg.png",
+    "image_url": "/static/images/monsters/bowlbug_egg.webp",
     "beta_image_url": null
   },
   {
@@ -586,7 +586,7 @@
       ],
       "description": "Thrash → Buff → Thrash2 → repeat"
     },
-    "image_url": "/static/images/monsters/bowlbug_nectar.png",
+    "image_url": "/static/images/monsters/bowlbug_nectar.webp",
     "beta_image_url": null
   },
   {
@@ -667,7 +667,7 @@
       ],
       "description": "Starts with Headbutt"
     },
-    "image_url": "/static/images/monsters/bowlbug_rock.png",
+    "image_url": "/static/images/monsters/bowlbug_rock.webp",
     "beta_image_url": null
   },
   {
@@ -744,7 +744,7 @@
       ],
       "description": ""
     },
-    "image_url": "/static/images/monsters/bowlbug_silk.png",
+    "image_url": "/static/images/monsters/bowlbug_silk.webp",
     "beta_image_url": null
   },
   {
@@ -812,7 +812,7 @@
       ],
       "description": "Always uses Beat"
     },
-    "image_url": "/static/images/monsters/brute_ruby_raider.png",
+    "image_url": "/static/images/monsters/brute_ruby_raider.webp",
     "beta_image_url": null
   },
   {
@@ -904,7 +904,7 @@
       ],
       "description": "Initial Sleep → Wake → Slashes → repeat"
     },
-    "image_url": "/static/images/monsters/bygone_effigy.png",
+    "image_url": "/static/images/monsters/bygone_effigy.webp",
     "beta_image_url": null
   },
   {
@@ -978,7 +978,7 @@
       ],
       "description": "Swoop → Peck → repeat"
     },
-    "image_url": "/static/images/monsters/byrdonis.png",
+    "image_url": "/static/images/monsters/byrdonis.webp",
     "beta_image_url": null
   },
   {
@@ -1013,7 +1013,7 @@
       ],
       "description": ""
     },
-    "image_url": "/static/images/monsters/byrdpip.png",
+    "image_url": "/static/images/monsters/byrdpip.webp",
     "beta_image_url": null
   },
   {
@@ -1059,14 +1059,14 @@
         "encounter_id": "CULTISTS_NORMAL",
         "encounter_name": "Cultists Normal",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       },
       {
         "encounter_id": "SEAPUNK_NORMAL",
         "encounter_name": "สิ่งมีชีวิตในท่าเรือเบื้องล่าง",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       }
     ],
@@ -1088,7 +1088,7 @@
       ],
       "description": "Always uses Incantation"
     },
-    "image_url": "/static/images/monsters/calcified_cultist.png",
+    "image_url": "/static/images/monsters/calcified_cultist.webp",
     "beta_image_url": null
   },
   {
@@ -1240,7 +1240,7 @@
       ],
       "description": "Stamp → Plow → repeat"
     },
-    "image_url": "/static/images/monsters/ceremonial_beast.png",
+    "image_url": "/static/images/monsters/ceremonial_beast.webp",
     "beta_image_url": null
   },
   {
@@ -1288,7 +1288,7 @@
         "encounter_id": "TUNNELER_NORMAL",
         "encounter_name": "Tunneler Normal",
         "room_type": "Monster",
-        "act": "Act 2 - Hive",
+        "act": null,
         "is_weak": false
       }
     ],
@@ -1310,7 +1310,7 @@
       ],
       "description": ""
     },
-    "image_url": "/static/images/monsters/chomper.png",
+    "image_url": "/static/images/monsters/chomper.webp",
     "beta_image_url": null
   },
   {
@@ -1369,14 +1369,14 @@
         "encounter_id": "CORPSE_SLUGS_NORMAL",
         "encounter_name": "ฝูงทากศพ",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       },
       {
         "encounter_id": "CORPSE_SLUGS_WEAK",
         "encounter_name": "ทากศพ",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": true
       }
     ],
@@ -1412,7 +1412,7 @@
       ],
       "description": ""
     },
-    "image_url": "/static/images/monsters/corpse_slug.png",
+    "image_url": "/static/images/monsters/corpse_slug.webp",
     "beta_image_url": null
   },
   {
@@ -1474,7 +1474,7 @@
       ],
       "description": ""
     },
-    "image_url": "/static/images/monsters/crossbow_ruby_raider.png",
+    "image_url": "/static/images/monsters/crossbow_ruby_raider.webp",
     "beta_image_url": null
   },
   {
@@ -1616,7 +1616,7 @@
       ],
       "description": "Thrash → Enlarging Strike → Bug Sting → Adapt → Guarded Strike → repeat"
     },
-    "image_url": "/static/images/monsters/crusher.png",
+    "image_url": "/static/images/monsters/crusher.webp",
     "beta_image_url": null
   },
   {
@@ -1755,7 +1755,7 @@
       ],
       "description": "Charge Up → Repeater → Repeater Move 2 → Expel Blast → repeat"
     },
-    "image_url": "/static/images/monsters/cubex_construct.png",
+    "image_url": "/static/images/monsters/cubex_construct.webp",
     "beta_image_url": null
   },
   {
@@ -1801,7 +1801,7 @@
         "encounter_id": "CULTISTS_NORMAL",
         "encounter_name": "Cultists Normal",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       }
     ],
@@ -1823,7 +1823,7 @@
       ],
       "description": "Always uses Incantation"
     },
-    "image_url": "/static/images/monsters/damp_cultist.png",
+    "image_url": "/static/images/monsters/damp_cultist.webp",
     "beta_image_url": null
   },
   {
@@ -1949,7 +1949,7 @@
       ],
       "description": ""
     },
-    "image_url": "/static/images/monsters/decimillipede.png",
+    "image_url": "/static/images/monsters/decimillipede.webp",
     "beta_image_url": null
   },
   {
@@ -2010,7 +2010,7 @@
       ],
       "description": "Always uses Forbidden Incantation"
     },
-    "image_url": "/static/images/monsters/devoted_sculptor.png",
+    "image_url": "/static/images/monsters/devoted_sculptor.webp",
     "beta_image_url": null
   },
   {
@@ -2120,8 +2120,8 @@
       ],
       "description": "Dramatic Open → Hunger → Scrutiny → Grasp → repeat"
     },
-    "image_url": "/static/images/monsters/doormaker.png",
-    "beta_image_url": "/static/images/monsters/beta/door_maker_placeholder_2.png"
+    "image_url": "/static/images/monsters/doormaker.webp",
+    "beta_image_url": "/static/images/monsters/beta/door_maker_placeholder_2.webp"
   },
   {
     "id": "ENTOMANCER",
@@ -2220,7 +2220,7 @@
       ],
       "description": "Always uses Bees"
     },
-    "image_url": "/static/images/monsters/entomancer.png",
+    "image_url": "/static/images/monsters/entomancer.webp",
     "beta_image_url": null
   },
   {
@@ -2352,9 +2352,9 @@
           ]
         }
       ],
-      "description": "then random: Skitter (no repeat), Mandible (no repeat); then conditional: Skitter (if base.Creature.SlotName == \"first\") / Mandible (if base.Creature.SlotName == \"second\") / Enrage (if base.Creature.SlotName == \"third\") / Rand (if base.Creature.SlotName == \"fourth\")"
+      "description": "then random: Skitter (no repeat), Mandible (no repeat); then conditional: Skitter (if in first slot) / Mandible (if in second slot) / Enrage (if in third slot) / Rand (if in fourth slot)"
     },
-    "image_url": "/static/images/monsters/exoskeleton.png",
+    "image_url": "/static/images/monsters/exoskeleton.webp",
     "beta_image_url": null
   },
   {
@@ -2397,7 +2397,7 @@
       ],
       "description": "Always uses Distract"
     },
-    "image_url": "/static/images/monsters/eye_with_teeth.png",
+    "image_url": "/static/images/monsters/eye_with_teeth.webp",
     "beta_image_url": null
   },
   {
@@ -2507,9 +2507,9 @@
           ]
         }
       ],
-      "description": "then random: Fabricate, Fabricating Strike; then conditional: Rand (if CanFabricate) / Disintegrate (if !CanFabricate)"
+      "description": "then random: Fabricate, Fabricating Strike; then conditional: Rand (if can fabricate) / Disintegrate (if cannot fabricate)"
     },
-    "image_url": "/static/images/monsters/fabricator.png",
+    "image_url": "/static/images/monsters/fabricator.webp",
     "beta_image_url": null
   },
   {
@@ -2632,7 +2632,7 @@
       ],
       "description": "Starts with Swipe"
     },
-    "image_url": "/static/images/monsters/fake_merchant.png",
+    "image_url": "/static/images/monsters/fake_merchant.webp",
     "beta_image_url": null
   },
   {
@@ -2662,7 +2662,7 @@
         "encounter_id": "GREMLIN_MERC_NORMAL",
         "encounter_name": "Gremlin Merc Normal",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       }
     ],
@@ -2684,7 +2684,7 @@
       ],
       "description": "Always uses Spawned"
     },
-    "image_url": "/static/images/monsters/fat_gremlin.png",
+    "image_url": "/static/images/monsters/fat_gremlin.webp",
     "beta_image_url": null
   },
   {
@@ -2785,7 +2785,7 @@
       ],
       "description": "Starts with Ram"
     },
-    "image_url": "/static/images/monsters/flail_knight.png",
+    "image_url": "/static/images/monsters/flail_knight.webp",
     "beta_image_url": null
   },
   {
@@ -2902,7 +2902,7 @@
       ],
       "description": ""
     },
-    "image_url": "/static/images/monsters/flyconid.png",
+    "image_url": "/static/images/monsters/flyconid.webp",
     "beta_image_url": null
   },
   {
@@ -3029,7 +3029,7 @@
       ],
       "description": "Starts with Illusion, then random: Swipe Random (no repeat, 40%), Headbutt (no repeat, 60%)"
     },
-    "image_url": "/static/images/monsters/fogmog.png",
+    "image_url": "/static/images/monsters/fogmog.webp",
     "beta_image_url": null
   },
   {
@@ -3098,7 +3098,7 @@
         "encounter_id": "FOSSIL_STALKER_NORMAL",
         "encounter_name": "Fossil Stalker Normal",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       }
     ],
@@ -3138,7 +3138,7 @@
       ],
       "description": "Starts with Latch"
     },
-    "image_url": "/static/images/monsters/fossil_stalker.png",
+    "image_url": "/static/images/monsters/fossil_stalker.webp",
     "beta_image_url": null
   },
   {
@@ -3271,9 +3271,9 @@
           ]
         }
       ],
-      "description": "Starts: Tongue Lash → Strike Down Evil → For The Queen; then conditional: Tongue Lash (if HasBeetleCharged || base.Creature.CurrentHp >= base.Creature.MaxHp / 2) / Beetle Charge (if !HasBeetleCharged && base.Creature.CurrentHp < base.Creature.MaxHp / 2)"
+      "description": "Starts: Tongue Lash → Strike Down Evil → For The Queen; then conditional: Tongue Lash (if HasBeetleCharged || CurrentHp >= MaxHp / 2) / Beetle Charge (if !HasBeetleCharged && CurrentHp < MaxHp / 2)"
     },
-    "image_url": "/static/images/monsters/frog_knight.png",
+    "image_url": "/static/images/monsters/frog_knight.webp",
     "beta_image_url": null
   },
   {
@@ -3363,7 +3363,7 @@
       ],
       "description": "Always uses First Acid Goop"
     },
-    "image_url": "/static/images/monsters/fuzzy_wurm_crawler.png",
+    "image_url": "/static/images/monsters/fuzzy_wurm_crawler.webp",
     "beta_image_url": null
   },
   {
@@ -3397,7 +3397,7 @@
         "encounter_id": "LIVING_FOG_NORMAL",
         "encounter_name": "Living Fog Normal",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       }
     ],
@@ -3414,7 +3414,7 @@
       ],
       "description": "Always uses Explode"
     },
-    "image_url": "/static/images/monsters/gas_bomb.png",
+    "image_url": "/static/images/monsters/gas_bomb.webp",
     "beta_image_url": null
   },
   {
@@ -3520,7 +3520,7 @@
       ],
       "description": "Shocking Slap → Thunder Strike → Galvanic Burst → repeat"
     },
-    "image_url": "/static/images/monsters/orb_head.png",
+    "image_url": "/static/images/monsters/orb_head.webp",
     "beta_image_url": null
   },
   {
@@ -3598,7 +3598,7 @@
         "encounter_id": "GREMLIN_MERC_NORMAL",
         "encounter_name": "Gremlin Merc Normal",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       }
     ],
@@ -3628,7 +3628,7 @@
       ],
       "description": "Gimme → Double Smash → Hehe → repeat"
     },
-    "image_url": "/static/images/monsters/gremlin_merc.png",
+    "image_url": "/static/images/monsters/gremlin_merc.webp",
     "beta_image_url": null
   },
   {
@@ -3664,7 +3664,7 @@
       ],
       "description": "Always uses Guard"
     },
-    "image_url": "/static/images/monsters/guardbot.png",
+    "image_url": "/static/images/monsters/guardbot.webp",
     "beta_image_url": null
   },
   {
@@ -3738,7 +3738,7 @@
         "encounter_id": "HAUNTED_SHIP_NORMAL",
         "encounter_name": "เรือผีสิง",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       }
     ],
@@ -3784,7 +3784,7 @@
       ],
       "description": "Starts with Haunt"
     },
-    "image_url": "/static/images/monsters/haunted_ship.png",
+    "image_url": "/static/images/monsters/haunted_ship.webp",
     "beta_image_url": null
   },
   {
@@ -3885,7 +3885,7 @@
       ],
       "description": "Starts with Tenderizing Goop"
     },
-    "image_url": "/static/images/monsters/hunter_killer.png",
+    "image_url": "/static/images/monsters/hunter_killer.webp",
     "beta_image_url": null
   },
   {
@@ -3997,7 +3997,7 @@
       ],
       "description": "Jab → Radiate → พายุลมกรด → Pulsate → repeat"
     },
-    "image_url": "/static/images/monsters/infested_prism.png",
+    "image_url": "/static/images/monsters/infested_prism.webp",
     "beta_image_url": null
   },
   {
@@ -4127,7 +4127,7 @@
       ],
       "description": "Starts: Whirlwind → Jab; then random: Jab, Whirlwind (no repeat); then random: Piercing Gaze (no repeat), Whirlwind (no repeat)"
     },
-    "image_url": "/static/images/monsters/inklet.png",
+    "image_url": "/static/images/monsters/inklet.webp",
     "beta_image_url": null
   },
   {
@@ -4218,7 +4218,7 @@
       ],
       "description": "Power Dance → Quick Slash → Boomerang → repeat"
     },
-    "image_url": "/static/images/monsters/kin_follower.png",
+    "image_url": "/static/images/monsters/kin_follower.webp",
     "beta_image_url": null
   },
   {
@@ -4342,7 +4342,7 @@
       ],
       "description": "Orb Of Frailty → Orb Of Weakness → Beam → Ritual → repeat"
     },
-    "image_url": "/static/images/monsters/kin_priest.png",
+    "image_url": "/static/images/monsters/kin_priest.webp",
     "beta_image_url": null
   },
   {
@@ -4465,9 +4465,9 @@
           ]
         }
       ],
-      "description": "Starts: Curse Of Knowledge → Slap → Knowledge Overwhelming → Ponder; then conditional: Curse Of Knowledge (if _curseOfKnowledgeCounter < 3) / Slap (if _curseOfKnowledgeCounter >= 3)"
+      "description": "Starts: Curse Of Knowledge → Slap → Knowledge Overwhelming → Ponder; then conditional: Curse Of Knowledge (if curse of knowledge counter < 3) / Slap (if curse of knowledge counter >= 3)"
     },
-    "image_url": "/static/images/monsters/knowledge_demon.png",
+    "image_url": "/static/images/monsters/knowledge_demon.webp",
     "beta_image_url": null
   },
   {
@@ -4547,7 +4547,7 @@
         "encounter_id": "LAGAVULIN_MATRIARCH_BOSS",
         "encounter_name": "นางพญาลากาวูลิน",
         "room_type": "Boss",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       }
     ],
@@ -4593,7 +4593,7 @@
       ],
       "description": "Starts with Sleep"
     },
-    "image_url": "/static/images/monsters/lagavulin_matriarch.png",
+    "image_url": "/static/images/monsters/lagavulin_matriarch.webp",
     "beta_image_url": null
   },
   {
@@ -4677,7 +4677,7 @@
       ],
       "description": "Sticky Shot → Clump Shot → repeat"
     },
-    "image_url": "/static/images/monsters/leaf_slime_m.png",
+    "image_url": "/static/images/monsters/leaf_slime_m.webp",
     "beta_image_url": null
   },
   {
@@ -4764,7 +4764,7 @@
       ],
       "description": ""
     },
-    "image_url": "/static/images/monsters/leaf_slime_s.png",
+    "image_url": "/static/images/monsters/leaf_slime_s.webp",
     "beta_image_url": null
   },
   {
@@ -4831,7 +4831,7 @@
         "encounter_id": "LIVING_FOG_NORMAL",
         "encounter_name": "Living Fog Normal",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       }
     ],
@@ -4861,7 +4861,7 @@
       ],
       "description": "Advanced Gas → Bloat → Super Gas Blast → repeat"
     },
-    "image_url": "/static/images/monsters/living_smog.png",
+    "image_url": "/static/images/monsters/living_smog.webp",
     "beta_image_url": null
   },
   {
@@ -4940,18 +4940,18 @@
           "branches": [
             {
               "move_id": "SHIELD_SLAM",
-              "condition": "GetAllyCount("
+              "condition": "GetAllyCount() > 0"
             },
             {
               "move_id": "SMASH",
-              "condition": "GetAllyCount("
+              "condition": "GetAllyCount() == 0"
             }
           ]
         }
       ],
-      "description": "Starts with Shield Slam; then conditional: Shield Slam (if GetAllyCount() / Smash (if GetAllyCount()"
+      "description": "Starts with Shield Slam; then conditional: Shield Slam (if has allies) / Smash (if no allies)"
     },
-    "image_url": "/static/images/monsters/living_shield.png",
+    "image_url": "/static/images/monsters/living_shield.webp",
     "beta_image_url": null
   },
   {
@@ -5052,7 +5052,7 @@
       ],
       "description": "Always uses Web Cannon"
     },
-    "image_url": "/static/images/monsters/louse_progenitor.png",
+    "image_url": "/static/images/monsters/louse_progenitor.webp",
     "beta_image_url": null
   },
   {
@@ -5166,7 +5166,7 @@
       ],
       "description": "First Power Shield → Dampen → Ram → Prep → Magic Bomb → repeat"
     },
-    "image_url": "/static/images/monsters/magi_knight.png",
+    "image_url": "/static/images/monsters/magi_knight.webp",
     "beta_image_url": null
   },
   {
@@ -5283,7 +5283,7 @@
       ],
       "description": "Starts with Claw; then random: Rip And Tear (no repeat), Roar (once), Claw (no repeat)"
     },
-    "image_url": "/static/images/monsters/mawler.png",
+    "image_url": "/static/images/monsters/mawler.webp",
     "beta_image_url": null
   },
   {
@@ -5386,7 +5386,7 @@
       ],
       "description": "Charge → Flamethrower → Windup → Heavy Cleave → repeat"
     },
-    "image_url": "/static/images/monsters/mecha_knight.png",
+    "image_url": "/static/images/monsters/mecha_knight.webp",
     "beta_image_url": null
   },
   {
@@ -5487,9 +5487,9 @@
           ]
         }
       ],
-      "description": "then conditional: Toxic (if base.Creature.SlotName == \"first\") / Suck (if base.Creature.SlotName == \"second\")"
+      "description": "then conditional: Toxic (if in first slot) / Suck (if in second slot)"
     },
-    "image_url": "/static/images/monsters/myte.png",
+    "image_url": "/static/images/monsters/myte.webp",
     "beta_image_url": null
   },
   {
@@ -5589,22 +5589,22 @@
           "branches": [
             {
               "move_id": "BUTT",
-              "condition": "((Nibbit"
+              "condition": "((Nibbit)base.Creature.Monster).IsAlone"
             },
             {
               "move_id": "HISS",
-              "condition": "!((Nibbit"
+              "condition": "!((Nibbit)base.Creature.Monster).IsFront"
             },
             {
               "move_id": "SLICE",
-              "condition": "((Nibbit"
+              "condition": "((Nibbit)base.Creature.Monster).IsFront"
             }
           ]
         }
       ],
-      "description": "then conditional: Butt (if ((Nibbit) / Hiss (if !((Nibbit) / Slice (if ((Nibbit)"
+      "description": "then conditional: Butt (if alone) / Hiss (if not in front) / Slice (if in front)"
     },
-    "image_url": "/static/images/monsters/nibbit.png",
+    "image_url": "/static/images/monsters/nibbit.webp",
     "beta_image_url": null
   },
   {
@@ -5639,7 +5639,7 @@
       ],
       "description": "Always uses Noise"
     },
-    "image_url": "/static/images/monsters/noisebot.png",
+    "image_url": "/static/images/monsters/noisebot.webp",
     "beta_image_url": null
   },
   {
@@ -5674,7 +5674,7 @@
       ],
       "description": ""
     },
-    "image_url": "/static/images/monsters/osty.png",
+    "image_url": "/static/images/monsters/osty.webp",
     "beta_image_url": null
   },
   {
@@ -5793,9 +5793,9 @@
           ]
         }
       ],
-      "description": "Starts: Lay Eggs → Smash → Tenderizer; then conditional: Lay Eggs (if CanLay) / Nutritional Paste (if !CanLay)"
+      "description": "Starts: Lay Eggs → Smash → Tenderizer; then conditional: Lay Eggs (if can lay) / Nutritional Paste (if cannot lay)"
     },
-    "image_url": "/static/images/monsters/ovicopter.png",
+    "image_url": "/static/images/monsters/ovicopter.webp",
     "beta_image_url": null
   },
   {
@@ -5912,7 +5912,7 @@
       ],
       "description": "Magistrate Scrutiny → Peck Assault → Judicial Flight → Verdict → repeat"
     },
-    "image_url": "/static/images/monsters/owl_magistrate.png",
+    "image_url": "/static/images/monsters/owl_magistrate.webp",
     "beta_image_url": null
   },
   {
@@ -5947,8 +5947,8 @@
       ],
       "description": ""
     },
-    "image_url": "/static/images/monsters/paels_legion.png",
-    "beta_image_url": "/static/images/monsters/beta/paels_legion.png"
+    "image_url": "/static/images/monsters/paels_legion.webp",
+    "beta_image_url": "/static/images/monsters/beta/paels_legion.webp"
   },
   {
     "id": "PARAFRIGHT",
@@ -5991,7 +5991,7 @@
       ],
       "description": "Always uses Slam"
     },
-    "image_url": "/static/images/monsters/parafright.png",
+    "image_url": "/static/images/monsters/parafright.webp",
     "beta_image_url": null
   },
   {
@@ -6064,7 +6064,7 @@
         "encounter_id": "PHANTASMAL_GARDENERS_ELITE",
         "encounter_name": "Phantasmal Gardeners Elite",
         "room_type": "Elite",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       }
     ],
@@ -6126,9 +6126,9 @@
           ]
         }
       ],
-      "description": "then conditional: Flail (if base.Creature.SlotName == \"first\") / Bite (if base.Creature.SlotName == \"second\") / Lash (if base.Creature.SlotName == \"third\") / Enlarge (if base.Creature.SlotName == \"fourth\")"
+      "description": "then conditional: Flail (if in first slot) / Bite (if in second slot) / Lash (if in third slot) / Enlarge (if in fourth slot)"
     },
-    "image_url": "/static/images/monsters/phantasmal_gardener.png",
+    "image_url": "/static/images/monsters/phantasmal_gardener.webp",
     "beta_image_url": null
   },
   {
@@ -6198,7 +6198,7 @@
       ],
       "description": "Starts: Infect → Lash"
     },
-    "image_url": "/static/images/monsters/phrog_parasite.png",
+    "image_url": "/static/images/monsters/phrog_parasite.webp",
     "beta_image_url": null
   },
   {
@@ -6267,7 +6267,7 @@
         "encounter_id": "PUNCH_CONSTRUCT_NORMAL",
         "encounter_name": "จักรกลชกต่อย",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       },
       {
@@ -6304,7 +6304,7 @@
       ],
       "description": ""
     },
-    "image_url": "/static/images/monsters/punch_construct.png",
+    "image_url": "/static/images/monsters/punch_construct.webp",
     "beta_image_url": null
   },
   {
@@ -6479,9 +6479,9 @@
           ]
         }
       ],
-      "description": "Starts: Puppet Strings → Your Mine; then conditional: Burn Bright For Me (if !HasAmalgamDied) / Off With Your Head (if HasAmalgamDied); then conditional: Burn Bright For Me (if !HasAmalgamDied) / Off With Your Head (if HasAmalgamDied)"
+      "description": "Starts: Puppet Strings → Your Mine; then conditional: Burn Bright For Me (if does not have amalgam died) / Off With Your Head (if has amalgam died); then conditional: Burn Bright For Me (if does not have amalgam died) / Off With Your Head (if has amalgam died)"
     },
-    "image_url": "/static/images/monsters/queen.png",
+    "image_url": "/static/images/monsters/queen.webp",
     "beta_image_url": null
   },
   {
@@ -6600,7 +6600,7 @@
       ],
       "description": "Targeting Reticle → Precision Beam → Charge Up → Laser → Recharge → repeat"
     },
-    "image_url": "/static/images/monsters/rocket.png",
+    "image_url": "/static/images/monsters/rocket.webp",
     "beta_image_url": null
   },
   {
@@ -6703,7 +6703,7 @@
       ],
       "description": ""
     },
-    "image_url": "/static/images/monsters/scroll_of_biting.png",
+    "image_url": "/static/images/monsters/scroll_of_biting.webp",
     "beta_image_url": null
   },
   {
@@ -6763,14 +6763,14 @@
         "encounter_id": "SEAPUNK_NORMAL",
         "encounter_name": "สิ่งมีชีวิตในท่าเรือเบื้องล่าง",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       },
       {
         "encounter_id": "SEAPUNK_WEAK",
         "encounter_name": "หร่ายเล",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": true
       }
     ],
@@ -6800,7 +6800,7 @@
       ],
       "description": "ลูกเตะทะเล → Spinning Kick → เรอฟองน้ำ → repeat"
     },
-    "image_url": "/static/images/monsters/seapunk.png",
+    "image_url": "/static/images/monsters/seapunk.webp",
     "beta_image_url": null
   },
   {
@@ -6846,7 +6846,7 @@
         "encounter_id": "SEWER_CLAM_NORMAL",
         "encounter_name": "Sewer Clam Normal",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       }
     ],
@@ -6868,7 +6868,7 @@
       ],
       "description": ""
     },
-    "image_url": "/static/images/monsters/sewer_clam.png",
+    "image_url": "/static/images/monsters/sewer_clam.webp",
     "beta_image_url": null
   },
   {
@@ -6957,7 +6957,7 @@
       ],
       "description": "Shrinker → Chomp → Stomp → repeat"
     },
-    "image_url": "/static/images/monsters/shrinker_beetle.png",
+    "image_url": "/static/images/monsters/shrinker_beetle.webp",
     "beta_image_url": null
   },
   {
@@ -7040,7 +7040,7 @@
         "encounter_id": "SKULKING_COLONY_ELITE",
         "encounter_name": "Skulking Colony Elite",
         "room_type": "Elite",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       }
     ],
@@ -7076,7 +7076,7 @@
       ],
       "description": "Smash → Zoom → Inertia → Piercing Stabs → repeat"
     },
-    "image_url": "/static/images/monsters/skulkling_colomy.png",
+    "image_url": "/static/images/monsters/skulkling_colomy.webp",
     "beta_image_url": null
   },
   {
@@ -7181,7 +7181,7 @@
       ],
       "description": "Always uses Vomit Ichor"
     },
-    "image_url": "/static/images/monsters/slimed_berserker.png",
+    "image_url": "/static/images/monsters/slimed_berserker.webp",
     "beta_image_url": null
   },
   {
@@ -7281,7 +7281,7 @@
       ],
       "description": "Starts with Constrict"
     },
-    "image_url": "/static/images/monsters/slithering_strangler.png",
+    "image_url": "/static/images/monsters/slithering_strangler.webp",
     "beta_image_url": null
   },
   {
@@ -7355,7 +7355,7 @@
         "encounter_id": "SLUDGE_SPINNER_WEAK",
         "encounter_name": "Sludge Spinner Weak",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": true
       }
     ],
@@ -7395,7 +7395,7 @@
       ],
       "description": "Starts with Oil Spray"
     },
-    "image_url": "/static/images/monsters/sludge_spinner.png",
+    "image_url": "/static/images/monsters/sludge_spinner.webp",
     "beta_image_url": null
   },
   {
@@ -7475,7 +7475,7 @@
       ],
       "description": "Starts with Snore"
     },
-    "image_url": "/static/images/monsters/slumbering_beetle.png",
+    "image_url": "/static/images/monsters/slumbering_beetle.webp",
     "beta_image_url": null
   },
   {
@@ -7541,7 +7541,7 @@
       ],
       "description": "Always uses Energy Orb"
     },
-    "image_url": "/static/images/monsters/snapping_jaxfruit.png",
+    "image_url": "/static/images/monsters/snapping_jaxfruit.webp",
     "beta_image_url": null
   },
   {
@@ -7580,7 +7580,7 @@
         "encounter_id": "GREMLIN_MERC_NORMAL",
         "encounter_name": "Gremlin Merc Normal",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       }
     ],
@@ -7602,7 +7602,7 @@
       ],
       "description": "Always uses Spawned"
     },
-    "image_url": "/static/images/monsters/sneaky_gremlin.png",
+    "image_url": "/static/images/monsters/sneaky_gremlin.webp",
     "beta_image_url": null
   },
   {
@@ -7686,7 +7686,7 @@
         "encounter_id": "SOUL_FYSH_BOSS",
         "encounter_name": "Soul Fysh Boss",
         "room_type": "Boss",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       }
     ],
@@ -7728,7 +7728,7 @@
       ],
       "description": "Beckon → De Gas → Gaze → Fade → Scream → repeat"
     },
-    "image_url": "/static/images/monsters/soul_fysh.png",
+    "image_url": "/static/images/monsters/soul_fysh.webp",
     "beta_image_url": null
   },
   {
@@ -7859,7 +7859,7 @@
       ],
       "description": "Starts with Soul Burn; then random: Soul Burn (no repeat), Maelstrom (no repeat), Drain Life (no repeat)"
     },
-    "image_url": "/static/images/monsters/soul_nexus.png",
+    "image_url": "/static/images/monsters/soul_nexus.webp",
     "beta_image_url": null
   },
   {
@@ -7955,7 +7955,7 @@
       ],
       "description": "Starts: Hex → Soul Slash"
     },
-    "image_url": "/static/images/monsters/spectral_knight.png",
+    "image_url": "/static/images/monsters/spectral_knight.webp",
     "beta_image_url": null
   },
   {
@@ -8044,7 +8044,7 @@
       ],
       "description": "Protruding Spikes → Spike Explosion → Tongue Lash → repeat"
     },
-    "image_url": "/static/images/monsters/spiny_toad.png",
+    "image_url": "/static/images/monsters/spiny_toad.webp",
     "beta_image_url": null
   },
   {
@@ -8095,7 +8095,7 @@
       ],
       "description": "Always uses Stab"
     },
-    "image_url": "/static/images/monsters/stabbot.png",
+    "image_url": "/static/images/monsters/stabbot.webp",
     "beta_image_url": null
   },
   {
@@ -8168,7 +8168,7 @@
         "encounter_id": "TERROR_EEL_ELITE",
         "encounter_name": "Terror Eel Elite",
         "room_type": "Elite",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       }
     ],
@@ -8210,7 +8210,7 @@
       ],
       "description": "Crash → Thrashmove → repeat"
     },
-    "image_url": "/static/images/monsters/terror_eel.png",
+    "image_url": "/static/images/monsters/terror_eel.webp",
     "beta_image_url": null
   },
   {
@@ -8405,9 +8405,9 @@
           ]
         }
       ],
-      "description": "Starts: Bite → Skull Bash; then conditional: Multi Claw (if Respawns < 2) / Phase3 Lacerate (if Respawns >= 2)"
+      "description": "Starts: Bite → Skull Bash; then conditional: Multi Claw (if respawns < 2) / Phase3 Lacerate (if respawns >= 2)"
     },
-    "image_url": "/static/images/monsters/test_subject.png",
+    "image_url": "/static/images/monsters/test_subject.webp",
     "beta_image_url": null
   },
   {
@@ -8492,7 +8492,7 @@
       ],
       "description": "Smash → Beam → Barrage → repeat"
     },
-    "image_url": "/static/images/monsters/the_adversary_placeholder.png",
+    "image_url": "/static/images/monsters/the_adversary_placeholder.webp",
     "beta_image_url": null
   },
   {
@@ -8577,7 +8577,7 @@
       ],
       "description": "Crash → Flame Beam → Barrage → repeat"
     },
-    "image_url": "/static/images/monsters/the_adversary_placeholder.png",
+    "image_url": "/static/images/monsters/the_adversary_placeholder.webp",
     "beta_image_url": null
   },
   {
@@ -8662,7 +8662,7 @@
       ],
       "description": "Bash → Flame Beam → Barrage → repeat"
     },
-    "image_url": "/static/images/monsters/the_adversary_placeholder.png",
+    "image_url": "/static/images/monsters/the_adversary_placeholder.webp",
     "beta_image_url": null
   },
   {
@@ -8722,7 +8722,7 @@
       ],
       "description": "Always uses Miasma"
     },
-    "image_url": "/static/images/monsters/the_forgotten.png",
+    "image_url": "/static/images/monsters/the_forgotten.webp",
     "beta_image_url": null
   },
   {
@@ -8840,7 +8840,7 @@
       ],
       "description": "Liquify Ground → Thrash Move 1 → Lunging Bite → Salivate → Thrash Move 2 → repeat"
     },
-    "image_url": "/static/images/monsters/the_insatiable.png",
+    "image_url": "/static/images/monsters/the_insatiable.webp",
     "beta_image_url": null
   },
   {
@@ -8910,7 +8910,7 @@
       ],
       "description": "Always uses Debilitating Smog"
     },
-    "image_url": "/static/images/monsters/the_lost.png",
+    "image_url": "/static/images/monsters/the_lost.webp",
     "beta_image_url": null
   },
   {
@@ -9014,7 +9014,7 @@
       ],
       "description": "Starts with Illusion"
     },
-    "image_url": "/static/images/monsters/the_obscura.png",
+    "image_url": "/static/images/monsters/the_obscura.webp",
     "beta_image_url": null
   },
   {
@@ -9133,7 +9133,7 @@
       ],
       "description": "Thievery → Flutter → Hat Trick → Nab → Escape → repeat"
     },
-    "image_url": "/static/images/monsters/thieving_hopper.png",
+    "image_url": "/static/images/monsters/thieving_hopper.webp",
     "beta_image_url": null
   },
   {
@@ -9194,7 +9194,7 @@
         "encounter_id": "TOADPOLES_WEAK",
         "encounter_name": "Toadpoles Weak",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": true
       }
     ],
@@ -9227,18 +9227,18 @@
           "branches": [
             {
               "move_id": "WHIRL",
-              "condition": "!((Toadpole"
+              "condition": "!((Toadpole)base.Creature.Monster).IsFront"
             },
             {
               "move_id": "SPIKEN",
-              "condition": "((Toadpole"
+              "condition": "((Toadpole)base.Creature.Monster).IsFront"
             }
           ]
         }
       ],
-      "description": "then conditional: Whirl (if !((Toadpole) / Spiken (if ((Toadpole)"
+      "description": "then conditional: Whirl (if not in front) / Spiken (if in front)"
     },
-    "image_url": "/static/images/monsters/toadpole.png",
+    "image_url": "/static/images/monsters/toadpole.webp",
     "beta_image_url": null
   },
   {
@@ -9360,7 +9360,7 @@
       ],
       "description": "Tackle 1 → Tackle 2 → Beam → Tackle 3 → Tackle 4 → repeat"
     },
-    "image_url": "/static/images/monsters/amalgam.png",
+    "image_url": "/static/images/monsters/amalgam.webp",
     "beta_image_url": null
   },
   {
@@ -9421,7 +9421,7 @@
       ],
       "description": "Always uses Hatch"
     },
-    "image_url": "/static/images/monsters/tough_egg.png",
+    "image_url": "/static/images/monsters/tough_egg.webp",
     "beta_image_url": null
   },
   {
@@ -9492,7 +9492,7 @@
       ],
       "description": "Always uses Track"
     },
-    "image_url": "/static/images/monsters/tracker_ruby_raider.png",
+    "image_url": "/static/images/monsters/tracker_ruby_raider.webp",
     "beta_image_url": null
   },
   {
@@ -9557,7 +9557,7 @@
         "encounter_id": "TUNNELER_NORMAL",
         "encounter_name": "Tunneler Normal",
         "room_type": "Monster",
-        "act": "Act 2 - Hive",
+        "act": null,
         "is_weak": false
       },
       {
@@ -9600,7 +9600,7 @@
       ],
       "description": "Bite → Burrow → Below Move 1 → repeat"
     },
-    "image_url": "/static/images/monsters/tunneler.png",
+    "image_url": "/static/images/monsters/tunneler.webp",
     "beta_image_url": null
   },
   {
@@ -9688,7 +9688,7 @@
       ],
       "description": "Unload Move 1 → Unload Move 2 → Reload → repeat"
     },
-    "image_url": "/static/images/monsters/turret_operator.png",
+    "image_url": "/static/images/monsters/turret_operator.webp",
     "beta_image_url": null
   },
   {
@@ -9782,7 +9782,7 @@
       ],
       "description": "Starts with Sticky Shot"
     },
-    "image_url": "/static/images/monsters/twig_slime_m.png",
+    "image_url": "/static/images/monsters/twig_slime_m.webp",
     "beta_image_url": null
   },
   {
@@ -9848,7 +9848,7 @@
       ],
       "description": "Always uses Butt"
     },
-    "image_url": "/static/images/monsters/twig_slime_s.png",
+    "image_url": "/static/images/monsters/twig_slime_s.webp",
     "beta_image_url": null
   },
   {
@@ -9912,7 +9912,7 @@
         "encounter_id": "TWO_TAILED_RATS_NORMAL",
         "encounter_name": "Two Tailed Rats Normal",
         "room_type": "Monster",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       }
     ],
@@ -9958,7 +9958,7 @@
       ],
       "description": ""
     },
-    "image_url": "/static/images/monsters/two_tailed_rat.png",
+    "image_url": "/static/images/monsters/two_tailed_rat.webp",
     "beta_image_url": null
   },
   {
@@ -10068,7 +10068,7 @@
       ],
       "description": "Ink Blot → Inky Lance → Dismember → Prepare → repeat"
     },
-    "image_url": "/static/images/monsters/vantom.png",
+    "image_url": "/static/images/monsters/vantom.webp",
     "beta_image_url": null
   },
   {
@@ -10167,7 +10167,7 @@
       ],
       "description": "Swipe → Grasping Vines → Chomp → repeat"
     },
-    "image_url": "/static/images/monsters/vine_shambler.png",
+    "image_url": "/static/images/monsters/vine_shambler.webp",
     "beta_image_url": null
   },
   {
@@ -10303,7 +10303,7 @@
         "encounter_id": "WATERFALL_GIANT_BOSS",
         "encounter_name": "ยักษ์น้ำตก",
         "room_type": "Boss",
-        "act": "Underdocks",
+        "act": "Act 1 - Underdocks",
         "is_weak": false
       }
     ],
@@ -10364,7 +10364,7 @@
       ],
       "description": "Pressurize → Stomp → Ram → Siphon → Pressure Gun → Pressure Up → repeat"
     },
-    "image_url": "/static/images/monsters/waterfall_giant.png",
+    "image_url": "/static/images/monsters/waterfall_giant.webp",
     "beta_image_url": null
   },
   {
@@ -10474,7 +10474,7 @@
       ],
       "description": ""
     },
-    "image_url": "/static/images/monsters/wriggler.png",
+    "image_url": "/static/images/monsters/wriggler.webp",
     "beta_image_url": null
   },
   {
@@ -10518,7 +10518,7 @@
       ],
       "description": "Always uses Zap"
     },
-    "image_url": "/static/images/monsters/zapbot.png",
+    "image_url": "/static/images/monsters/zapbot.webp",
     "beta_image_url": null
   },
   {
@@ -10608,7 +10608,7 @@
         "is_weak": false
       }
     ],
-    "image_url": "/static/images/monsters/decimillipede_segment_back.png"
+    "image_url": "/static/images/monsters/decimillipede_segment_back.webp"
   },
   {
     "id": "DECIMILLIPEDE_SEGMENT_FRONT",
@@ -10697,7 +10697,7 @@
         "is_weak": false
       }
     ],
-    "image_url": "/static/images/monsters/decimillipede_segment_front.png"
+    "image_url": "/static/images/monsters/decimillipede_segment_front.webp"
   },
   {
     "id": "DECIMILLIPEDE_SEGMENT_MIDDLE",
@@ -10786,7 +10786,7 @@
         "is_weak": false
       }
     ],
-    "image_url": "/static/images/monsters/decimillipede_segment_middle.png"
+    "image_url": "/static/images/monsters/decimillipede_segment_middle.webp"
   },
   {
     "id": "MYSTERIOUS_KNIGHT",
@@ -10850,7 +10850,7 @@
         "is_weak": false
       }
     ],
-    "image_url": "/static/images/monsters/flail_knight.png",
+    "image_url": "/static/images/monsters/flail_knight.webp",
     "innate_powers": [
       {
         "power_id": "STRENGTH",

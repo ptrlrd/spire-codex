@@ -711,7 +711,7 @@
         }
       ]
     },
-    "image_url": "/static/images/misc/ancients/darv.png",
+    "image_url": "/static/images/misc/ancients/darv.webp",
     "relics": [
       "DUSTY_TOME",
       "ASTROLABE",
@@ -1019,7 +1019,7 @@
     "name": "พ่อค้า???",
     "type": "Shared",
     "act": null,
-    "description": "วางไว้ชั่วคราว",
+    "description": "A suspicious merchant offers 9 fake relics at 42–58 gold each. Throwing a [gold]Foul Potion[/gold] starts a fight against The Merchant??? (165 HP). Winning rewards [gold]Fake Merchant's Rug[/gold] plus all unsold relics.",
     "preconditions": [
       "Act 2+",
       "Single player only",
@@ -1289,7 +1289,7 @@
         }
       ]
     },
-    "image_url": "/static/images/misc/ancients/neow.png",
+    "image_url": "/static/images/misc/ancients/neow.webp",
     "relics": [
       "ARCANE_SCROLL",
       "BOOMING_CONCH",
@@ -1336,7 +1336,7 @@
         }
       ]
     },
-    "image_url": "/static/images/misc/ancients/nonupeipe.png",
+    "image_url": "/static/images/misc/ancients/nonupeipe.webp",
     "relics": [
       "BLESSED_ANTLER",
       "BRILLIANT_SCARF",
@@ -1368,7 +1368,7 @@
         }
       ]
     },
-    "image_url": "/static/images/misc/ancients/orobas.png",
+    "image_url": "/static/images/misc/ancients/orobas.webp",
     "relics": [
       "ELECTRIC_SHRYMP",
       "GLASS_EYE",
@@ -1391,7 +1391,7 @@
     "preconditions": null,
     "options": null,
     "pages": null,
-    "image_url": "/static/images/misc/ancients/pael.png",
+    "image_url": "/static/images/misc/ancients/pael.webp",
     "relics": [
       "PAELS_CLAW",
       "PAELS_TOOTH",
@@ -2318,7 +2318,7 @@
     "preconditions": null,
     "options": null,
     "pages": null,
-    "image_url": "/static/images/misc/ancients/tanx.png",
+    "image_url": "/static/images/misc/ancients/tanx.webp",
     "relics": [
       "CLAWS",
       "CROSSBOW",
@@ -2380,7 +2380,7 @@
     "preconditions": null,
     "options": null,
     "pages": null,
-    "image_url": "/static/images/misc/ancients/tezcatara.png",
+    "image_url": "/static/images/misc/ancients/tezcatara.webp",
     "relics": [
       "NUTRITIOUS_SOUP",
       "VERY_HOT_COCOA",
@@ -2403,7 +2403,7 @@
     "preconditions": null,
     "options": null,
     "pages": null,
-    "image_url": "/static/images/monsters/architect.png"
+    "image_url": "/static/images/monsters/architect.webp"
   },
   {
     "id": "THE_FUTURE_OF_POTIONS",
@@ -2753,7 +2753,7 @@
     "preconditions": null,
     "options": null,
     "pages": null,
-    "image_url": "/static/images/misc/ancients/vakuu.png",
+    "image_url": "/static/images/misc/ancients/vakuu.webp",
     "relics": [
       "BLOOD_SOAKED_ROSE",
       "WHISPERING_EARRING",

@@ -540,7 +540,9 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": "Vor dir liegt ein ziemlich spektakulärer Anblick.\nDu siehst 3 verschiedenfarbige Statuen über einem Podium aufragen, die eine [jitter][red]hitzige Debatte[/red][/jitter] über die philosophischen Bedeutungen von Farbe führen.\n\nBeim Zuhören bekommst du das Gefühl, dass gerade die wichtigste Frage ist, welche Farbe wirklich [gold]DIE BESTE[/gold] ist.\n\nDu mischst dich mit deinen Gedanken ein.",
-    "preconditions": null,
+    "preconditions": [
+      "Requires more than one character unlocked"
+    ],
     "options": [
       {
         "id": "DEFECT",

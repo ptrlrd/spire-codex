@@ -540,7 +540,9 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": "Devant vous se dresse un spectacle épique.\nPerchées sur un dais, 3 statues de couleurs différentes sont engagées dans un [jitter][red]débat enflammé[/red][/jitter] portant sur les implications philosophiques du concept de la couleur.\n\nÀ mesure que vous écoutez, vous comprenez que l’enjeu réel de la discussion consiste à déterminer laquelle des couleurs est [gold]LA MEILLEURE[/gold].\n\nVous intervenez pour donner votre avis.",
-    "preconditions": null,
+    "preconditions": [
+      "Requires more than one character unlocked"
+    ],
     "options": [
       {
         "id": "DEFECT",

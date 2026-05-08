@@ -540,7 +540,9 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": "Diante de você, uma visão épica.\nTrês estátuas de cores distintas erguem-se em um altar. Elas [jitter][red]debatem fervorosamente[/red][/jitter] sobre as implicações filosóficas das cores.\n\nConforme escuta, você entende que a questão discutida no momento seria sobre qual cor definitivamente é [gold]A MELHOR DE TODAS[/gold].\n\nVocê decide compartilhar seus pensamentos e participar da conversa.",
-    "preconditions": null,
+    "preconditions": [
+      "Requires more than one character unlocked"
+    ],
     "options": [
       {
         "id": "DEFECT",

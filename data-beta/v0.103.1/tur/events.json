@@ -540,7 +540,9 @@
     "type": "Event",
     "act": "Act 2 - Hive",
     "description": "Karşında hayli epik bir manzara duruyor.\nBir platformun üzerinde yükselen üç farklı renkteki heykelin, rengin felsefi sonuçları üzerine [jitter][red]hararetli bir tartışmaya[/red][/jitter] girdiğini görüyorsun.\n\nKulak kabarttıkça, ortadaki en önemli sorunun aslında hangisinin gerçekten [gold]EN İYİ[/gold] renk olduğu üzerine olduğunu anlıyorsun.\n\nSen de fikirlerinle lafa karışırsın.",
-    "preconditions": null,
+    "preconditions": [
+      "Requires more than one character unlocked"
+    ],
     "options": [
       {
         "id": "DEFECT",

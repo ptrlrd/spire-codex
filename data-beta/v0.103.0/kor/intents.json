@@ -3,84 +3,84 @@
     "id": "ATTACK",
     "name": "공격",
     "description": "이 적은 {IsMultiplayer:모두를 |}[blue]{Damage}[/blue]의 피해로{Repeat:choose(1):| [blue]{}[/blue]번} [gold]공격[/gold]하려고 합니다.",
-    "image_url": "/static/images/intents/attack.png"
+    "image_url": "/static/images/intents/attack.webp"
   },
   {
     "id": "BUFF",
     "name": "강화",
     "description": "이 적은 [gold]이로운 효과[/gold]를 사용하려고 합니다.",
-    "image_url": "/static/images/intents/buff.png"
+    "image_url": "/static/images/intents/buff.webp"
   },
   {
     "id": "CARD_DEBUFF",
     "name": "악의",
     "description": "이 적은 당신의 카드에 [gold]고난[/gold]을 부여하려고 합니다.",
-    "image_url": "/static/images/intents/card_debuff.png"
+    "image_url": "/static/images/intents/card_debuff.webp"
   },
   {
     "id": "DEATH_BLOW",
     "name": "죽음의 일격",
     "description": "이 생물은 파괴되기 전에 당신에게 피해를 [blue]{Damage}[/blue] 주며 함께 쓰러지려고 합니다.",
-    "image_url": "/static/images/intents/death_blow.png"
+    "image_url": "/static/images/intents/death_blow.webp"
   },
   {
     "id": "DEBUFF",
     "name": "전략",
     "description": "이 적은 당신에게 [gold]해로운 효과[/gold]를 부여하려고 합니다.",
-    "image_url": "/static/images/intents/debuff.png"
+    "image_url": "/static/images/intents/debuff.webp"
   },
   {
     "id": "DEBUFF_STRONG",
     "name": "전략",
     "description": "이 적은 당신에게 강력한 [gold]해로운 효과[/gold]를 부여하려고 합니다.",
-    "image_url": "/static/images/intents/debuff_strong.png"
+    "image_url": "/static/images/intents/debuff_strong.webp"
   },
   {
     "id": "DEFEND",
     "name": "방어",
     "description": "이 적은 이번 턴에 [gold]방어도[/gold]를 얻으려고 합니다.",
-    "image_url": "/static/images/intents/defend.png"
+    "image_url": "/static/images/intents/defend.webp"
   },
   {
     "id": "ESCAPE",
     "name": "비겁",
     "description": "이 적은 [gold]도망[/gold]치려고 합니다.",
-    "image_url": "/static/images/intents/escape.png"
+    "image_url": "/static/images/intents/escape.webp"
   },
   {
     "id": "HEAL",
     "name": "회복",
     "description": "이 적은 체력을 [gold]회복[/gold]하려고 합니다.",
-    "image_url": "/static/images/intents/heal.png"
+    "image_url": "/static/images/intents/heal.webp"
   },
   {
     "id": "SLEEP",
     "name": "자는 중",
     "description": "이 적은 이번 턴에 아무것도 하지 않습니다.",
-    "image_url": "/static/images/intents/sleep.png"
+    "image_url": "/static/images/intents/sleep.webp"
   },
   {
     "id": "STATUS",
     "name": "전략",
     "description": "이 적은 당신에게 [gold]상태이상[/gold] 카드를 [blue]{CardCount}[/blue]장 주려고 합니다.",
-    "image_url": "/static/images/intents/status.png"
+    "image_url": "/static/images/intents/status.webp"
   },
   {
     "id": "STUN",
     "name": "기절",
     "description": "이 적은 다음 턴에 행동할 수 없습니다.",
-    "image_url": "/static/images/intents/stun.png"
+    "image_url": "/static/images/intents/stun.webp"
   },
   {
     "id": "SUMMON",
     "name": "소환",
     "description": "이 적은 [gold]몬스터[/gold]를 소환하려고 합니다.",
-    "image_url": "/static/images/intents/summon.png"
+    "image_url": "/static/images/intents/summon.webp"
   },
   {
     "id": "UNKNOWN",
     "name": "미지",
     "description": "이 적의 의도는 [gold]알 수 없습니다[/gold].",
-    "image_url": "/static/images/intents/unknown.png"
+    "image_url": "/static/images/intents/unknown.webp"
   }
 ]

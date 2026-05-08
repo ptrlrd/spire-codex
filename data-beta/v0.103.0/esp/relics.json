@@ -7,8 +7,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia infrecuente",
     "pool": "shared",
-    "image_url": "/static/images/relics/ornamental_fan.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/ornamental_fan.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 40
   },
@@ -20,8 +27,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia rara",
     "pool": "shared",
-    "image_url": "/static/images/relics/sturdy_clamp.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/sturdy_clamp.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 80
   },
@@ -33,8 +47,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/biiig_hug.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/biiig_hug.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 160
   },
@@ -46,8 +63,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia infrecuente",
     "pool": "shared",
-    "image_url": "/static/images/relics/letter_opener.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/letter_opener.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 41
   },
@@ -59,8 +83,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/fur_coat.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/fur_coat.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 161
   },
@@ -72,8 +99,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia común",
     "pool": "shared",
-    "image_url": "/static/images/relics/centennial_puzzle.png",
+    "merchant_price": {
+      "base": 175,
+      "min": 149,
+      "max": 201
+    },
+    "image_url": "/static/images/relics/centennial_puzzle.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 10
   },
@@ -85,8 +119,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia infrecuente",
     "pool": "shared",
-    "image_url": "/static/images/relics/reptile_trinket.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/reptile_trinket.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 42
   },
@@ -98,8 +139,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia infrecuente",
     "pool": "shared",
-    "image_url": "/static/images/relics/akabeko.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/akabeko.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 43
   },
@@ -111,8 +159,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/paels_wing.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/paels_wing.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 162
   },
@@ -124,8 +175,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia de eventos",
     "pool": "shared",
-    "image_url": "/static/images/relics/maw_bank.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/maw_bank.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 257
   },
@@ -137,8 +191,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Tienda de reliquias",
     "pool": "shared",
-    "image_url": "/static/images/relics/dingy_rug.png",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
+    "image_url": "/static/images/relics/dingy_rug.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 130
   },
@@ -150,8 +211,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia de eventos",
     "pool": "shared",
-    "image_url": "/static/images/relics/forgotten_soul.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/forgotten_soul.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 258
   },
@@ -163,8 +227,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia común",
     "pool": "shared",
-    "image_url": "/static/images/relics/regal_pillow.png",
+    "merchant_price": {
+      "base": 175,
+      "min": 149,
+      "max": 201
+    },
+    "image_url": "/static/images/relics/regal_pillow.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 11
   },
@@ -176,8 +247,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Tienda de reliquias",
     "pool": "shared",
-    "image_url": "/static/images/relics/wing_charm.png",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
+    "image_url": "/static/images/relics/wing_charm.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 131
   },
@@ -189,8 +267,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia común",
     "pool": "shared",
-    "image_url": "/static/images/relics/anchor.png",
+    "merchant_price": {
+      "base": 175,
+      "min": 149,
+      "max": 201
+    },
+    "image_url": "/static/images/relics/anchor.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 12
   },
@@ -202,8 +287,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia rara",
     "pool": "shared",
-    "image_url": "/static/images/relics/rainbow_ring.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/rainbow_ring.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 81
   },
@@ -215,8 +307,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/signet_ring.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/signet_ring.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 163
   },
@@ -228,8 +323,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia básica",
     "pool": "silent",
-    "image_url": "/static/images/relics/ring_of_the_drake.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/ring_of_the_drake.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Starter",
     "compendium_order": 0
   },
@@ -241,8 +339,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia básica",
     "pool": "silent",
-    "image_url": "/static/images/relics/ring_of_the_snake.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/ring_of_the_snake.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Starter",
     "compendium_order": 1
   },
@@ -254,8 +355,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/lost_coffer.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/lost_coffer.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 164
   },
@@ -267,8 +371,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia infrecuente",
     "pool": "ironclad",
-    "image_url": "/static/images/relics/self_forming_clay.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/self_forming_clay.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 44
   },
@@ -280,8 +391,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia rara",
     "pool": "shared",
-    "image_url": "/static/images/relics/art_of_war.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/art_of_war.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 82
   },
@@ -293,8 +411,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/astrolabe.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/astrolabe.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 165
   },
@@ -306,8 +427,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia de eventos",
     "pool": "shared",
-    "image_url": "/static/images/relics/dream_catcher.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/dream_catcher.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 259
   },
@@ -319,8 +443,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia infrecuente",
     "pool": "shared",
-    "image_url": "/static/images/relics/vambrace.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/vambrace.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 45
   },
@@ -332,8 +463,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Tienda de reliquias",
     "pool": "ironclad",
-    "image_url": "/static/images/relics/brimstone.png",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
+    "image_url": "/static/images/relics/brimstone.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 132
   },
@@ -345,8 +483,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/crossbow.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/crossbow.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 166
   },
@@ -358,8 +499,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia común",
     "pool": "shared",
-    "image_url": "/static/images/relics/amethyst_aubergine.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/amethyst_aubergine.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 13
   },
@@ -371,8 +515,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia infrecuente",
     "pool": "shared",
-    "image_url": "/static/images/relics/joss_paper.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/joss_paper.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 46
   },
@@ -384,8 +535,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia de eventos",
     "pool": "shared",
-    "image_url": "/static/images/relics/bing_bong.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/bing_bong.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 260
   },
@@ -397,8 +551,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia común",
     "pool": "shared",
-    "image_url": "/static/images/relics/meal_ticket.png",
+    "merchant_price": {
+      "base": 175,
+      "min": 149,
+      "max": 201
+    },
+    "image_url": "/static/images/relics/meal_ticket.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 14
   },
@@ -410,8 +571,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia de eventos",
     "pool": "shared",
-    "image_url": "/static/images/relics/wongos_mystery_ticket.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/wongos_mystery_ticket.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 261
   },
@@ -423,8 +587,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia común",
     "pool": "shared",
-    "image_url": "/static/images/relics/bag_of_marbles.png",
+    "merchant_price": {
+      "base": 175,
+      "min": 149,
+      "max": 201
+    },
+    "image_url": "/static/images/relics/bag_of_marbles.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 15
   },
@@ -436,8 +607,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia común",
     "pool": "shared",
-    "image_url": "/static/images/relics/bag_of_preparation.png",
+    "merchant_price": {
+      "base": 175,
+      "min": 149,
+      "max": 201
+    },
+    "image_url": "/static/images/relics/bag_of_preparation.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 16
   },
@@ -449,8 +627,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia infrecuente",
     "pool": "shared",
-    "image_url": "/static/images/relics/bowler_hat.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/bowler_hat.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 47
   },
@@ -462,8 +643,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia de eventos",
     "pool": "shared",
-    "image_url": "/static/images/relics/the_boot.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/the_boot.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 262
   },
@@ -475,8 +659,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/beautiful_bracelet.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/beautiful_bracelet.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 167
   },
@@ -488,8 +675,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia rara",
     "pool": "shared",
-    "image_url": "/static/images/relics/cloak_clasp.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/cloak_clasp.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 83
   },
@@ -501,8 +695,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/golden_compass.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/golden_compass.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 168
   },
@@ -514,8 +711,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/brilliant_scarf.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/brilliant_scarf.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 169
   },
@@ -527,8 +727,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia infrecuente",
     "pool": "shared",
-    "image_url": "/static/images/relics/tiny_mailbox.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/tiny_mailbox.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 48
   },
@@ -540,8 +747,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/tri_boomerang.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/tri_boomerang.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 170
   },
@@ -553,8 +763,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia infrecuente",
     "pool": "defect",
-    "image_url": "/static/images/relics/gold_plated_cables.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/gold_plated_cables.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 49
   },
@@ -566,8 +783,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/pandoras_box.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/pandoras_box.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 171
   },
@@ -579,8 +799,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Tienda de reliquias",
     "pool": "shared",
-    "image_url": "/static/images/relics/toolbox.png",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
+    "image_url": "/static/images/relics/toolbox.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 133
   },
@@ -592,8 +819,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/toy_box.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/toy_box.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": [
+      "Wax Relics are pulled from the normal relic pool — any non-Ancient relic can be waxed.",
+      "Wax Relic rarity: 50% Common, 33% Uncommon, 17% Rare (standard relic rarity roll).",
+      "All wax relics melt after 12 total combats, then Toy Box is used up."
+    ],
     "rarity_key": "Ancient",
     "compendium_order": 172
   },
@@ -605,8 +839,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/scroll_boxes.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/scroll_boxes.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 173
   },
@@ -618,8 +855,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia rara",
     "pool": "shared",
-    "image_url": "/static/images/relics/vexing_puzzlebox.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/vexing_puzzlebox.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 84
   },
@@ -631,8 +875,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/music_box.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/music_box.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 174
   },
@@ -644,8 +891,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia común",
     "pool": "ironclad",
-    "image_url": "/static/images/relics/red_skull.png",
+    "merchant_price": {
+      "base": 175,
+      "min": 149,
+      "max": 201
+    },
+    "image_url": "/static/images/relics/red_skull.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 17
   },
@@ -657,8 +911,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Tienda de reliquias",
     "pool": "shared",
-    "image_url": "/static/images/relics/cauldron.png",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
+    "image_url": "/static/images/relics/cauldron.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 134
   },
@@ -670,8 +931,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia rara",
     "pool": "shared",
-    "image_url": "/static/images/relics/stone_calendar.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/stone_calendar.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 85
   },
@@ -683,8 +951,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/calling_bell.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/calling_bell.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 175
   },
@@ -696,8 +967,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia rara",
     "pool": "shared",
-    "image_url": "/static/images/relics/chandelier.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/chandelier.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 86
   },
@@ -709,8 +987,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia infrecuente",
     "pool": "shared",
-    "image_url": "/static/images/relics/candelabra.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/candelabra.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 50
   },
@@ -722,8 +1007,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/distinguished_cape.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/distinguished_cape.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 176
   },
@@ -735,8 +1023,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/booming_conch.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/booming_conch.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 177
   },
@@ -748,8 +1039,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia infrecuente",
     "pool": "shared",
-    "image_url": "/static/images/relics/lasting_candy.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/lasting_candy.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 51
   },
@@ -761,8 +1059,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia rara",
     "pool": "shared",
-    "image_url": "/static/images/relics/meat_on_the_bone.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/meat_on_the_bone.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 87
   },
@@ -774,8 +1079,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/paels_flesh.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/paels_flesh.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 178
   },
@@ -787,8 +1095,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/sand_castle.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/sand_castle.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 179
   },
@@ -800,8 +1111,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/leafy_poultice.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/leafy_poultice.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 180
   },
@@ -813,8 +1127,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia rara",
     "pool": "defect",
-    "image_url": "/static/images/relics/power_cell.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/power_cell.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 88
   },
@@ -826,8 +1147,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia rara",
     "pool": "ironclad",
-    "image_url": "/static/images/relics/charons_ashes.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/charons_ashes.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 89
   },
@@ -839,8 +1167,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia rara",
     "pool": "defect",
-    "image_url": "/static/images/relics/emotion_chip.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/emotion_chip.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 90
   },
@@ -852,8 +1187,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/very_hot_cocoa.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/very_hot_cocoa.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 181
   },
@@ -865,8 +1203,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia común",
     "pool": "shared",
-    "image_url": "/static/images/relics/potion_belt.png",
+    "merchant_price": {
+      "base": 175,
+      "min": 149,
+      "max": 201
+    },
+    "image_url": "/static/images/relics/potion_belt.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 18
   },
@@ -878,8 +1223,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia de eventos",
     "pool": "shared",
-    "image_url": "/static/images/relics/history_course.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/history_course.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 263
   },
@@ -891,8 +1239,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/alchemical_coffer.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/alchemical_coffer.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 182
   },
@@ -904,8 +1255,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia rara",
     "pool": "shared",
-    "image_url": "/static/images/relics/lizard_tail.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/lizard_tail.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 91
   },
@@ -917,8 +1275,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Tienda de reliquias",
     "pool": "defect",
-    "image_url": "/static/images/relics/runic_capacitor.png",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
+    "image_url": "/static/images/relics/runic_capacitor.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 135
   },
@@ -930,8 +1295,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/blessed_antler.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/blessed_antler.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 183
   },
@@ -943,8 +1311,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia infrecuente",
     "pool": "shared",
-    "image_url": "/static/images/relics/horn_cleat.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/horn_cleat.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 52
   },
@@ -956,8 +1331,17 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/looming_fruit.png",
-    "image_variants": null,
+    "merchant_price": null,
+    "image_url": "/static/images/relics/looming_fruit.webp",
+    "image_variants": {
+      "Cornucopia": "/static/images/relics/looming_fruit.webp",
+      "Fruit": "/static/images/relics/looming_fruit_2.webp"
+    },
+    "name_variants": null,
+    "notes": [
+      "Looming Fruit ships two icons (Cornucopia and Fruit). The game picks one per save based on whether your save's UniqueId ends in an even or odd digit, so half the playerbase sees each variant.",
+      "Both variants are functionally identical — same +31 Max HP effect — and the choice is permanent for a given save file. Use the toggle above to preview the one your save shows."
+    ],
     "rarity_key": "Ancient",
     "compendium_order": 184
   },
@@ -969,8 +1353,11 @@
     "flavor": "Una reliquia curiosa que aparece cuando hay un problema dentro de la [gold]Torre[/gold] o cuando no hay más reliquias por descubrir.",
     "rarity": "Reliquia",
     "pool": "shared",
-    "image_url": "/static/images/relics/circlet.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/circlet.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "None",
     "compendium_order": 292
   },
@@ -982,8 +1369,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/silver_crucible.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/silver_crucible.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 185
   },
@@ -995,8 +1385,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia común",
     "pool": "silent",
-    "image_url": "/static/images/relics/snecko_skull.png",
+    "merchant_price": {
+      "base": 175,
+      "min": 149,
+      "max": 201
+    },
+    "image_url": "/static/images/relics/snecko_skull.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 19
   },
@@ -1008,8 +1405,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/meat_cleaver.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/meat_cleaver.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 186
   },
@@ -1021,8 +1421,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia infrecuente",
     "pool": "necrobinder",
-    "image_url": "/static/images/relics/book_repair_knife.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/book_repair_knife.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 53
   },
@@ -1034,8 +1441,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia infrecuente",
     "pool": "shared",
-    "image_url": "/static/images/relics/ripple_basin.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/ripple_basin.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 54
   },
@@ -1047,8 +1461,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/paels_horn.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/paels_horn.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 187
   },
@@ -1060,8 +1477,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia infrecuente",
     "pool": "shared",
-    "image_url": "/static/images/relics/gremlin_horn.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/gremlin_horn.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 55
   },
@@ -1073,8 +1497,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/large_capsule.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/large_capsule.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 188
   },
@@ -1086,8 +1513,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/small_capsule.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/small_capsule.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 189
   },
@@ -1099,8 +1529,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Tienda de reliquias",
     "pool": "shared",
-    "image_url": "/static/images/relics/punch_dagger.png",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
+    "image_url": "/static/images/relics/punch_dagger.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 136
   },
@@ -1112,8 +1549,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia rara",
     "pool": "silent",
-    "image_url": "/static/images/relics/helical_dart.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/helical_dart.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 92
   },
@@ -1125,8 +1569,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia básica",
     "pool": "regent",
-    "image_url": "/static/images/relics/divine_right.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/divine_right.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Starter",
     "compendium_order": 2
   },
@@ -1138,8 +1585,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia básica",
     "pool": "regent",
-    "image_url": "/static/images/relics/divine_destiny.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/divine_destiny.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Starter",
     "compendium_order": 3
   },
@@ -1151,8 +1601,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/diamond_diadem.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/diamond_diadem.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 190
   },
@@ -1164,8 +1617,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia infrecuente",
     "pool": "shared",
-    "image_url": "/static/images/relics/tuning_fork.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/tuning_fork.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 56
   },
@@ -1177,8 +1637,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/archaic_tooth.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/archaic_tooth.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 191
   },
@@ -1190,8 +1653,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/paels_tooth.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/paels_tooth.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 192
   },
@@ -1203,8 +1669,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia rara",
     "pool": "shared",
-    "image_url": "/static/images/relics/razor_tooth.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/razor_tooth.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 93
   },
@@ -1216,8 +1689,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia común",
     "pool": "defect",
-    "image_url": "/static/images/relics/data_disk.png",
+    "merchant_price": {
+      "base": 175,
+      "min": 149,
+      "max": 201
+    },
+    "image_url": "/static/images/relics/data_disk.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 20
   },
@@ -1229,8 +1709,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/ectoplasm.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/ectoplasm.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 193
   },
@@ -1242,8 +1725,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia infrecuente",
     "pool": "silent",
-    "image_url": "/static/images/relics/twisted_funnel.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/twisted_funnel.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 57
   },
@@ -1255,8 +1745,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Tienda de reliquias",
     "pool": "shared",
-    "image_url": "/static/images/relics/mystic_lighter.png",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
+    "image_url": "/static/images/relics/mystic_lighter.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 137
   },
@@ -1268,8 +1765,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Tienda de reliquias",
     "pool": "regent",
-    "image_url": "/static/images/relics/vitruvian_minion.png",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
+    "image_url": "/static/images/relics/vitruvian_minion.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 138
   },
@@ -1281,8 +1785,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia común",
     "pool": "shared",
-    "image_url": "/static/images/relics/bronze_scales.png",
+    "merchant_price": {
+      "base": 175,
+      "min": 149,
+      "max": 201
+    },
+    "image_url": "/static/images/relics/bronze_scales.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 21
   },
@@ -1294,8 +1805,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia infrecuente",
     "pool": "shared",
-    "image_url": "/static/images/relics/parrying_shield.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/parrying_shield.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 58
   },
@@ -1307,8 +1825,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia de eventos",
     "pool": "shared",
-    "image_url": "/static/images/relics/sword_of_jade.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/sword_of_jade.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 264
   },
@@ -1320,8 +1841,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia de eventos",
     "pool": "shared",
-    "image_url": "/static/images/relics/sword_of_stone.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/sword_of_stone.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 265
   },
@@ -1333,8 +1857,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Tienda de reliquias",
     "pool": "shared",
-    "image_url": "/static/images/relics/dollys_mirror.png",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
+    "image_url": "/static/images/relics/dollys_mirror.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 139
   },
@@ -1346,8 +1877,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia rara",
     "pool": "shared",
-    "image_url": "/static/images/relics/white_beast_statue.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/white_beast_statue.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 94
   },
@@ -1359,8 +1897,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia rara",
     "pool": "shared",
-    "image_url": "/static/images/relics/white_star.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/white_star.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 95
   },
@@ -1372,8 +1917,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/black_star.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/black_star.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 194
   },
@@ -1385,8 +1933,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia común",
     "pool": "shared",
-    "image_url": "/static/images/relics/lantern.png",
+    "merchant_price": {
+      "base": 175,
+      "min": 149,
+      "max": 201
+    },
+    "image_url": "/static/images/relics/lantern.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 22
   },
@@ -1398,8 +1953,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia rara",
     "pool": "shared",
-    "image_url": "/static/images/relics/gambling_chip.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/gambling_chip.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 96
   },
@@ -1411,8 +1973,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia básica",
     "pool": "necrobinder",
-    "image_url": "/static/images/relics/phylactery_unbound.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/phylactery_unbound.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Starter",
     "compendium_order": 4
   },
@@ -1424,8 +1989,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia básica",
     "pool": "necrobinder",
-    "image_url": "/static/images/relics/bound_phylactery.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/bound_phylactery.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Starter",
     "compendium_order": 5
   },
@@ -1437,8 +2005,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia común",
     "pool": "necrobinder",
-    "image_url": "/static/images/relics/bone_flute.png",
+    "merchant_price": {
+      "base": 175,
+      "min": 149,
+      "max": 201
+    },
+    "image_url": "/static/images/relics/bone_flute.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 23
   },
@@ -1450,8 +2025,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia común",
     "pool": "shared",
-    "image_url": "/static/images/relics/happy_flower.png",
+    "merchant_price": {
+      "base": 175,
+      "min": 149,
+      "max": 201
+    },
+    "image_url": "/static/images/relics/happy_flower.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 24
   },
@@ -1463,8 +2045,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia común",
     "pool": "shared",
-    "image_url": "/static/images/relics/strawberry.png",
+    "merchant_price": {
+      "base": 175,
+      "min": 149,
+      "max": 201
+    },
+    "image_url": "/static/images/relics/strawberry.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 25
   },
@@ -1476,8 +2065,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia de eventos",
     "pool": "shared",
-    "image_url": "/static/images/relics/lost_wisp.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/lost_wisp.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 266
   },
@@ -1489,8 +2081,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia rara",
     "pool": "shared",
-    "image_url": "/static/images/relics/bellows.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/bellows.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 97
   },
@@ -1502,14 +2101,17 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/yummy_cookie.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/yummy_cookie.webp",
     "image_variants": {
-      "Ironclad": "/static/images/relics/yummy_cookie_ironclad.png",
-      "Silent": "/static/images/relics/yummy_cookie_silent.png",
-      "Defect": "/static/images/relics/yummy_cookie_defect.png",
-      "Necrobinder": "/static/images/relics/yummy_cookie_necrobinder.png",
-      "Regent": "/static/images/relics/yummy_cookie_regent.png"
+      "Ironclad": "/static/images/relics/yummy_cookie_ironclad.webp",
+      "Silent": "/static/images/relics/yummy_cookie_silent.webp",
+      "Defect": "/static/images/relics/yummy_cookie_defect.webp",
+      "Necrobinder": "/static/images/relics/yummy_cookie_necrobinder.webp",
+      "Regent": "/static/images/relics/yummy_cookie_regent.webp"
     },
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 195
   },
@@ -1521,8 +2123,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/velvet_choker.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/velvet_choker.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 196
   },
@@ -1534,8 +2139,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/paels_claw.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/paels_claw.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 197
   },
@@ -1547,8 +2155,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/sere_talon.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/sere_talon.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 198
   },
@@ -1560,8 +2171,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/claws.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/claws.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 199
   },
@@ -1573,8 +2187,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/iron_club.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/iron_club.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 200
   },
@@ -1586,8 +2203,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/prismatic_gem.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/prismatic_gem.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 201
   },
@@ -1599,8 +2219,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/massive_scroll.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/massive_scroll.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 202
   },
@@ -1612,8 +2235,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia común",
     "pool": "shared",
-    "image_url": "/static/images/relics/gorget.png",
+    "merchant_price": {
+      "base": 175,
+      "min": 149,
+      "max": 201
+    },
+    "image_url": "/static/images/relics/gorget.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 26
   },
@@ -1625,8 +2255,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia rara",
     "pool": "silent",
-    "image_url": "/static/images/relics/paper_krane.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/paper_krane.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 98
   },
@@ -1638,8 +2275,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/spiked_gauntlets.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/spiked_gauntlets.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 203
   },
@@ -1651,8 +2291,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/throwing_axe.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/throwing_axe.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 204
   },
@@ -1664,8 +2307,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Tienda de reliquias",
     "pool": "shared",
-    "image_url": "/static/images/relics/belt_buckle.png",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
+    "image_url": "/static/images/relics/belt_buckle.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 140
   },
@@ -1677,8 +2327,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia rara",
     "pool": "shared",
-    "image_url": "/static/images/relics/ice_cream.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/ice_cream.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 99
   },
@@ -1690,8 +2347,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/delicate_frond.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/delicate_frond.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 205
   },
@@ -1703,8 +2363,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia de eventos",
     "pool": "shared",
-    "image_url": "/static/images/relics/daughter_of_the_wind.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/daughter_of_the_wind.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 267
   },
@@ -1716,8 +2379,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/new_leaf.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/new_leaf.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 206
   },
@@ -1729,8 +2395,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Tienda de reliquias",
     "pool": "shared",
-    "image_url": "/static/images/relics/sling_of_courage.png",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
+    "image_url": "/static/images/relics/sling_of_courage.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 141
   },
@@ -1742,8 +2415,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia de eventos",
     "pool": "shared",
-    "image_url": "/static/images/relics/fragrant_mushroom.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/fragrant_mushroom.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 268
   },
@@ -1755,8 +2431,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia de eventos",
     "pool": "shared",
-    "image_url": "/static/images/relics/big_mushroom.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/big_mushroom.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 269
   },
@@ -1768,8 +2447,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia rara",
     "pool": "shared",
-    "image_url": "/static/images/relics/frozen_egg.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/frozen_egg.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 100
   },
@@ -1781,8 +2467,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia rara",
     "pool": "shared",
-    "image_url": "/static/images/relics/molten_egg.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/molten_egg.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 101
   },
@@ -1794,8 +2487,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia rara",
     "pool": "shared",
-    "image_url": "/static/images/relics/toxic_egg.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/toxic_egg.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 102
   },
@@ -1807,8 +2507,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/stone_humidifier.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/stone_humidifier.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 207
   },
@@ -1820,8 +2523,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Tienda de reliquias",
     "pool": "shared",
-    "image_url": "/static/images/relics/burning_sticks.png",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
+    "image_url": "/static/images/relics/burning_sticks.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 142
   },
@@ -1833,8 +2543,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia de eventos",
     "pool": "shared",
-    "image_url": "/static/images/relics/wongo_customer_appreciation_badge.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/wongo_customer_appreciation_badge.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 270
   },
@@ -1846,8 +2559,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia de eventos",
     "pool": "shared",
-    "image_url": "/static/images/relics/byrdpip.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/byrdpip.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 271
   },
@@ -1859,8 +2575,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Tienda de reliquias",
     "pool": "shared",
-    "image_url": "/static/images/relics/screaming_flagon.png",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
+    "image_url": "/static/images/relics/screaming_flagon.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 143
   },
@@ -1872,8 +2595,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/empty_cage.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/empty_cage.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 208
   },
@@ -1885,8 +2611,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/jewelry_box.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/jewelry_box.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 209
   },
@@ -1898,8 +2627,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia común",
     "pool": "shared",
-    "image_url": "/static/images/relics/venerable_tea_set.png",
+    "merchant_price": {
+      "base": 175,
+      "min": 149,
+      "max": 201
+    },
+    "image_url": "/static/images/relics/venerable_tea_set.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 27
   },
@@ -1911,8 +2647,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Tienda de reliquias",
     "pool": "shared",
-    "image_url": "/static/images/relics/kifuda.png",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
+    "image_url": "/static/images/relics/kifuda.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 144
   },
@@ -1924,8 +2667,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia rara",
     "pool": "shared",
-    "image_url": "/static/images/relics/kunai.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/kunai.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 103
   },
@@ -1937,8 +2687,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia infrecuente",
     "pool": "shared",
-    "image_url": "/static/images/relics/kusarigama.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/kusarigama.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 59
   },
@@ -1950,8 +2707,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia común",
     "pool": "shared",
-    "image_url": "/static/images/relics/festive_popper.png",
+    "merchant_price": {
+      "base": 175,
+      "min": 149,
+      "max": 201
+    },
+    "image_url": "/static/images/relics/festive_popper.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 28
   },
@@ -1963,8 +2727,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/paels_legion.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/paels_legion.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 210
   },
@@ -1976,8 +2743,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia rara",
     "pool": "ironclad",
-    "image_url": "/static/images/relics/demon_tongue.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/demon_tongue.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 104
   },
@@ -1989,8 +2763,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia de eventos",
     "pool": "shared",
-    "image_url": "/static/images/relics/fresnel_lens.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/fresnel_lens.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 272
   },
@@ -2002,8 +2779,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/storybook.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/storybook.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 211
   },
@@ -2015,8 +2795,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia común",
     "pool": "shared",
-    "image_url": "/static/images/relics/book_of_five_rings.png",
+    "merchant_price": {
+      "base": 175,
+      "min": 149,
+      "max": 201
+    },
+    "image_url": "/static/images/relics/book_of_five_rings.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 29
   },
@@ -2028,8 +2815,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia rara",
     "pool": "necrobinder",
-    "image_url": "/static/images/relics/ivory_tile.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/ivory_tile.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 105
   },
@@ -2041,8 +2835,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/paels_tears.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/paels_tears.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 212
   },
@@ -2054,8 +2851,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Tienda de reliquias",
     "pool": "shared",
-    "image_url": "/static/images/relics/lava_lamp.png",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
+    "image_url": "/static/images/relics/lava_lamp.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 145
   },
@@ -2067,8 +2871,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia rara",
     "pool": "shared",
-    "image_url": "/static/images/relics/unsettling_lamp.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/unsettling_lamp.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 106
   },
@@ -2080,8 +2891,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/electric_shrymp.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/electric_shrymp.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 213
   },
@@ -2093,8 +2907,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/driftwood.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/driftwood.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 214
   },
@@ -2106,8 +2923,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia rara",
     "pool": "shared",
-    "image_url": "/static/images/relics/mango.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/mango.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 107
   },
@@ -2119,8 +2943,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia rara",
     "pool": "shared",
-    "image_url": "/static/images/relics/mummified_hand.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/mummified_hand.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 108
   },
@@ -2132,8 +2963,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia común",
     "pool": "regent",
-    "image_url": "/static/images/relics/fencing_manual.png",
+    "merchant_price": {
+      "base": 175,
+      "min": 149,
+      "max": 201
+    },
+    "image_url": "/static/images/relics/fencing_manual.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 30
   },
@@ -2145,8 +2983,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia rara",
     "pool": "necrobinder",
-    "image_url": "/static/images/relics/bookmark.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/bookmark.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 109
   },
@@ -2158,8 +3003,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/war_hammer.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/war_hammer.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 215
   },
@@ -2171,8 +3019,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Tienda de reliquias",
     "pool": "shared",
-    "image_url": "/static/images/relics/gnarled_hammer.png",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
+    "image_url": "/static/images/relics/gnarled_hammer.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 146
   },
@@ -2184,8 +3039,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia rara",
     "pool": "regent",
-    "image_url": "/static/images/relics/orange_dough.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/orange_dough.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 110
   },
@@ -2197,8 +3059,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia rara",
     "pool": "defect",
-    "image_url": "/static/images/relics/metronome.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/metronome.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 111
   },
@@ -2210,8 +3079,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Tienda de reliquias",
     "pool": "shared",
-    "image_url": "/static/images/relics/miniature_tent.png",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
+    "image_url": "/static/images/relics/miniature_tent.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 147
   },
@@ -2223,8 +3099,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia infrecuente",
     "pool": "shared",
-    "image_url": "/static/images/relics/miniature_cannon.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/miniature_cannon.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 60
   },
@@ -2236,8 +3119,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia rara",
     "pool": "regent",
-    "image_url": "/static/images/relics/mini_regent.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/mini_regent.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 112
   },
@@ -2249,8 +3139,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/toasty_mittens.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/toasty_mittens.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 216
   },
@@ -2262,8 +3155,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia rara",
     "pool": "shared",
-    "image_url": "/static/images/relics/old_coin.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/old_coin.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 113
   },
@@ -2275,8 +3171,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia común",
     "pool": "shared",
-    "image_url": "/static/images/relics/strike_dummy.png",
+    "merchant_price": {
+      "base": 175,
+      "min": 149,
+      "max": 201
+    },
+    "image_url": "/static/images/relics/strike_dummy.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 31
   },
@@ -2288,8 +3191,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/jeweled_mask.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/jeweled_mask.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 217
   },
@@ -2301,8 +3207,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia infrecuente",
     "pool": "necrobinder",
-    "image_url": "/static/images/relics/funerary_mask.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/funerary_mask.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 61
   },
@@ -2314,8 +3227,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia común",
     "pool": "shared",
-    "image_url": "/static/images/relics/red_mask.png",
+    "merchant_price": {
+      "base": 175,
+      "min": 149,
+      "max": 201
+    },
+    "image_url": "/static/images/relics/red_mask.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 32
   },
@@ -2327,8 +3247,11 @@
     "flavor": "",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": null,
+    "merchant_price": null,
+    "image_url": "/static/images/relics/neows_bones.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 218
   },
@@ -2340,8 +3263,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/preserved_fog.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/preserved_fog.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 219
   },
@@ -2353,8 +3279,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia infrecuente",
     "pool": "shared",
-    "image_url": "/static/images/relics/nunchaku.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/nunchaku.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 62
   },
@@ -2366,8 +3299,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia básica",
     "pool": "defect",
-    "image_url": "/static/images/relics/cracked_core.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/cracked_core.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Starter",
     "compendium_order": 6
   },
@@ -2379,8 +3315,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia básica",
     "pool": "defect",
-    "image_url": "/static/images/relics/infused_core.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/infused_core.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Starter",
     "compendium_order": 7
   },
@@ -2392,8 +3331,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia de eventos",
     "pool": "shared",
-    "image_url": "/static/images/relics/pollinous_core.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/pollinous_core.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 273
   },
@@ -2405,8 +3347,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/paels_eye.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/paels_eye.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 220
   },
@@ -2418,8 +3363,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/snecko_eye.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/snecko_eye.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 221
   },
@@ -2431,8 +3379,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/glass_eye.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/glass_eye.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 222
   },
@@ -2444,8 +3395,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia infrecuente",
     "pool": "shared",
-    "image_url": "/static/images/relics/orichalcum.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/orichalcum.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 63
   },
@@ -2457,8 +3415,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/nutritious_oyster.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/nutritious_oyster.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 223
   },
@@ -2470,8 +3431,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia rara",
     "pool": "shared",
-    "image_url": "/static/images/relics/shovel.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/shovel.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 114
   },
@@ -2483,8 +3451,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Tienda de reliquias",
     "pool": "shared",
-    "image_url": "/static/images/relics/bread.png",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
+    "image_url": "/static/images/relics/bread.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 148
   },
@@ -2496,8 +3471,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia infrecuente",
     "pool": "shared",
-    "image_url": "/static/images/relics/pantograph.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/pantograph.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 64
   },
@@ -2509,8 +3491,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/choices_paradox.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/choices_paradox.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 224
   },
@@ -2522,8 +3507,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia rara",
     "pool": "regent",
-    "image_url": "/static/images/relics/lunar_pastry.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/lunar_pastry.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 115
   },
@@ -2535,8 +3527,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/whispering_earring.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/whispering_earring.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 225
   },
@@ -2548,8 +3543,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia infrecuente",
     "pool": "shared",
-    "image_url": "/static/images/relics/pear.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/pear.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 65
   },
@@ -2561,8 +3563,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/arcane_scroll.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/arcane_scroll.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 226
   },
@@ -2574,8 +3579,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Tienda de reliquias",
     "pool": "silent",
-    "image_url": "/static/images/relics/ninja_scroll.png",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
+    "image_url": "/static/images/relics/ninja_scroll.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 149
   },
@@ -2587,8 +3599,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia de eventos",
     "pool": "shared",
-    "image_url": "/static/images/relics/darkstone_periapt.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/darkstone_periapt.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 274
   },
@@ -2600,8 +3615,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/golden_pearl.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/golden_pearl.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 227
   },
@@ -2613,8 +3631,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/cursed_pearl.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/cursed_pearl.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 228
   },
@@ -2626,8 +3647,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/radiant_pearl.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/radiant_pearl.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 229
   },
@@ -2639,8 +3663,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia infrecuente",
     "pool": "shared",
-    "image_url": "/static/images/relics/permafrost.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/permafrost.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 66
   },
@@ -2652,8 +3683,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia rara",
     "pool": "shared",
-    "image_url": "/static/images/relics/girya.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/girya.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 116
   },
@@ -2665,8 +3703,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia infrecuente",
     "pool": "shared",
-    "image_url": "/static/images/relics/lucky_fysh.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/lucky_fysh.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 67
   },
@@ -2678,8 +3719,11 @@
     "flavor": "",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": null,
+    "merchant_price": null,
+    "image_url": "/static/images/relics/phial_holster.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 230
   },
@@ -2691,8 +3735,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia común",
     "pool": "shared",
-    "image_url": "/static/images/relics/whetstone.png",
+    "merchant_price": {
+      "base": 175,
+      "min": 149,
+      "max": 201
+    },
+    "image_url": "/static/images/relics/whetstone.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 33
   },
@@ -2704,8 +3755,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia común",
     "pool": "shared",
-    "image_url": "/static/images/relics/oddly_smooth_stone.png",
+    "merchant_price": {
+      "base": 175,
+      "min": 149,
+      "max": 201
+    },
+    "image_url": "/static/images/relics/oddly_smooth_stone.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 34
   },
@@ -2717,8 +3775,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/philosophers_stone.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/philosophers_stone.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 231
   },
@@ -2730,8 +3791,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia rara",
     "pool": "shared",
-    "image_url": "/static/images/relics/game_piece.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/game_piece.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 117
   },
@@ -2743,8 +3811,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia infrecuente",
     "pool": "shared",
-    "image_url": "/static/images/relics/sparkling_rouge.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/sparkling_rouge.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 68
   },
@@ -2756,8 +3831,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia común",
     "pool": "shared",
-    "image_url": "/static/images/relics/war_paint.png",
+    "merchant_price": {
+      "base": 175,
+      "min": 149,
+      "max": 201
+    },
+    "image_url": "/static/images/relics/war_paint.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 35
   },
@@ -2769,8 +3851,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/runic_pyramid.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/runic_pyramid.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 232
   },
@@ -2782,8 +3867,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/lead_paperweight.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/lead_paperweight.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 233
   },
@@ -2795,8 +3883,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Tienda de reliquias",
     "pool": "shared",
-    "image_url": "/static/images/relics/dragon_fruit.png",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
+    "image_url": "/static/images/relics/dragon_fruit.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 150
   },
@@ -2808,8 +3903,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Tienda de reliquias",
     "pool": "shared",
-    "image_url": "/static/images/relics/orrery.png",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
+    "image_url": "/static/images/relics/orrery.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 151
   },
@@ -2821,8 +3923,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia infrecuente",
     "pool": "shared",
-    "image_url": "/static/images/relics/planisphere.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/planisphere.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 69
   },
@@ -2834,8 +3943,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia infrecuente",
     "pool": "shared",
-    "image_url": "/static/images/relics/eternal_feather.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/eternal_feather.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 70
   },
@@ -2847,8 +3963,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia infrecuente",
     "pool": "shared",
-    "image_url": "/static/images/relics/pen_nib.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/pen_nib.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 71
   },
@@ -2860,8 +3983,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia infrecuente",
     "pool": "regent",
-    "image_url": "/static/images/relics/galactic_dust.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/galactic_dust.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 72
   },
@@ -2873,8 +4003,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/pomander.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/pomander.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 234
   },
@@ -2886,8 +4019,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia común",
     "pool": "shared",
-    "image_url": "/static/images/relics/juzu_bracelet.png",
+    "merchant_price": {
+      "base": 175,
+      "min": 149,
+      "max": 201
+    },
+    "image_url": "/static/images/relics/juzu_bracelet.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 36
   },
@@ -2899,8 +4039,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/glitter.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/glitter.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 235
   },
@@ -2912,8 +4055,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia común",
     "pool": "shared",
-    "image_url": "/static/images/relics/pendulum.png",
+    "merchant_price": {
+      "base": 175,
+      "min": 149,
+      "max": 201
+    },
+    "image_url": "/static/images/relics/pendulum.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 37
   },
@@ -2925,8 +4075,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia de eventos",
     "pool": "shared",
-    "image_url": "/static/images/relics/chosen_cheese.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/chosen_cheese.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 275
   },
@@ -2938,8 +4091,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia infrecuente",
     "pool": "regent",
-    "image_url": "/static/images/relics/regalite.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/regalite.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 73
   },
@@ -2951,8 +4111,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia rara",
     "pool": "shared",
-    "image_url": "/static/images/relics/pocketwatch.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/pocketwatch.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 118
   },
@@ -2964,8 +4131,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia infrecuente",
     "pool": "shared",
-    "image_url": "/static/images/relics/mercury_hourglass.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/mercury_hourglass.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 74
   },
@@ -2977,8 +4151,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia rara",
     "pool": "shared",
-    "image_url": "/static/images/relics/beating_remnant.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/beating_remnant.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 119
   },
@@ -2990,8 +4171,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia rara",
     "pool": "shared",
-    "image_url": "/static/images/relics/the_courier.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/the_courier.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 120
   },
@@ -3003,8 +4187,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia infrecuente",
     "pool": "ironclad",
-    "image_url": "/static/images/relics/paper_phrog.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/paper_phrog.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 75
   },
@@ -3016,8 +4207,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/lava_rock.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/lava_rock.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 236
   },
@@ -3029,8 +4223,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia infrecuente",
     "pool": "shared",
-    "image_url": "/static/images/relics/stone_cracker.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/stone_cracker.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 76
   },
@@ -3042,8 +4243,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/blood_soaked_rose.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/blood_soaked_rose.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 237
   },
@@ -3055,8 +4259,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia rara",
     "pool": "shared",
-    "image_url": "/static/images/relics/prayer_wheel.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/prayer_wheel.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 121
   },
@@ -3068,8 +4279,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/sai.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/sai.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 238
   },
@@ -3081,8 +4295,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia básica",
     "pool": "ironclad",
-    "image_url": "/static/images/relics/burning_blood.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/burning_blood.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Starter",
     "compendium_order": 8
   },
@@ -3094,8 +4311,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia básica",
     "pool": "ironclad",
-    "image_url": "/static/images/relics/black_blood.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/black_blood.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Starter",
     "compendium_order": 9
   },
@@ -3107,8 +4327,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/paels_blood.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/paels_blood.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 239
   },
@@ -3120,8 +4343,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia infrecuente",
     "pool": "shared",
-    "image_url": "/static/images/relics/petrified_toad.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/petrified_toad.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 77
   },
@@ -3133,8 +4363,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/seal_of_gold.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/seal_of_gold.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 240
   },
@@ -3146,8 +4379,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Tienda de reliquias",
     "pool": "shared",
-    "image_url": "/static/images/relics/royal_stamp.png",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
+    "image_url": "/static/images/relics/royal_stamp.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 152
   },
@@ -3159,8 +4399,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Tienda de reliquias",
     "pool": "shared",
-    "image_url": "/static/images/relics/ghost_seed.png",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
+    "image_url": "/static/images/relics/ghost_seed.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 153
   },
@@ -3172,8 +4419,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia rara",
     "pool": "shared",
-    "image_url": "/static/images/relics/shuriken.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/shuriken.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 122
   },
@@ -3185,8 +4439,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Tienda de reliquias",
     "pool": "necrobinder",
-    "image_url": "/static/images/relics/undying_sigil.png",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
+    "image_url": "/static/images/relics/undying_sigil.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 154
   },
@@ -3198,8 +4459,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/tanxs_whistle.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/tanxs_whistle.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 241
   },
@@ -3211,8 +4475,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia rara",
     "pool": "necrobinder",
-    "image_url": "/static/images/relics/big_hat.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/big_hat.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 123
   },
@@ -3224,8 +4495,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/lords_parasol.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/lords_parasol.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 242
   },
@@ -3237,8 +4511,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/nutritious_soup.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/nutritious_soup.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 243
   },
@@ -3250,8 +4527,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/sozu.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/sozu.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 244
   },
@@ -3263,8 +4543,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia de eventos",
     "pool": "shared",
-    "image_url": "/static/images/relics/mr_struggles.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/mr_struggles.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 276
   },
@@ -3276,8 +4559,15 @@
     "flavor": "ADVERTENCIA: no la combines con azúcar, flores ni muchos colores.",
     "rarity": "Tienda de reliquias",
     "pool": "shared",
-    "image_url": "/static/images/relics/chemical_x.png",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
+    "image_url": "/static/images/relics/chemical_x.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 155
   },
@@ -3289,8 +4579,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/hefty_tablet.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/hefty_tablet.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 245
   },
@@ -3302,8 +4595,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia de eventos",
     "pool": "shared",
-    "image_url": "/static/images/relics/hand_drill.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/hand_drill.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 277
   },
@@ -3315,8 +4611,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/neows_talisman.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/neows_talisman.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 246
   },
@@ -3328,8 +4627,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Tienda de reliquias",
     "pool": "shared",
-    "image_url": "/static/images/relics/membership_card.png",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
+    "image_url": "/static/images/relics/membership_card.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 156
   },
@@ -3341,8 +4647,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/precarious_shears.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/precarious_shears.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 247
   },
@@ -3354,8 +4663,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/precise_scissors.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/precise_scissors.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 248
   },
@@ -3367,8 +4679,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia rara",
     "pool": "shared",
-    "image_url": "/static/images/relics/captains_wheel.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/captains_wheel.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 124
   },
@@ -3380,8 +4699,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia infrecuente",
     "pool": "silent",
-    "image_url": "/static/images/relics/tingsha.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/tingsha.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 78
   },
@@ -3393,8 +4719,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/dusty_tome.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/dusty_tome.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 249
   },
@@ -3406,8 +4735,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/touch_of_orobas.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/touch_of_orobas.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 250
   },
@@ -3419,8 +4751,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/neows_torment.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/neows_torment.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 251
   },
@@ -3432,8 +4767,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Tienda de reliquias",
     "pool": "shared",
-    "image_url": "/static/images/relics/ringing_triangle.png",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
+    "image_url": "/static/images/relics/ringing_triangle.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 157
   },
@@ -3445,8 +4787,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia rara",
     "pool": "shared",
-    "image_url": "/static/images/relics/unceasing_top.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/unceasing_top.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 125
   },
@@ -3458,8 +4807,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/paels_growth.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/paels_growth.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 252
   },
@@ -3471,8 +4823,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia de eventos",
     "pool": "shared",
-    "image_url": "/static/images/relics/ember_tea.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/ember_tea.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 278
   },
@@ -3484,8 +4839,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia de eventos",
     "pool": "shared",
-    "image_url": "/static/images/relics/bone_tea.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/bone_tea.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 279
   },
@@ -3497,8 +4855,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia de eventos",
     "pool": "shared",
-    "image_url": "/static/images/relics/tea_of_discourtesy.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/tea_of_discourtesy.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 280
   },
@@ -3510,8 +4871,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia común",
     "pool": "shared",
-    "image_url": "/static/images/relics/vajra.png",
+    "merchant_price": {
+      "base": 175,
+      "min": 149,
+      "max": 201
+    },
+    "image_url": "/static/images/relics/vajra.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 38
   },
@@ -3523,8 +4891,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia rara",
     "pool": "shared",
-    "image_url": "/static/images/relics/tungsten_rod.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/tungsten_rod.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 126
   },
@@ -3536,8 +4911,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/pumpkin_candle.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/pumpkin_candle.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 253
   },
@@ -3549,8 +4927,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia rara",
     "pool": "silent",
-    "image_url": "/static/images/relics/tough_bandages.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/tough_bandages.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 127
   },
@@ -3562,8 +4947,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia de eventos",
     "pool": "shared",
-    "image_url": "/static/images/relics/royal_poison.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/royal_poison.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 281
   },
@@ -3575,8 +4963,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia común",
     "pool": "shared",
-    "image_url": "/static/images/relics/blood_vial.png",
+    "merchant_price": {
+      "base": 175,
+      "min": 149,
+      "max": 201
+    },
+    "image_url": "/static/images/relics/blood_vial.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 39
   },
@@ -3588,8 +4983,17 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/sea_glass.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/sea_glass.webp",
     "image_variants": null,
+    "name_variants": {
+      "Ironclad": "Vidrio de demonio",
+      "Silent": "Vidrio de veneno",
+      "Defect": "Vidrio de constructo",
+      "Necrobinder": "Vidrio de liche",
+      "Regent": "Vidrio de noble"
+    },
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 254
   },
@@ -3601,8 +5005,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": "/static/images/relics/fiddle.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/fiddle.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 255
   },
@@ -3614,8 +5021,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia infrecuente",
     "pool": "defect",
-    "image_url": "/static/images/relics/symbiotic_virus.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/symbiotic_virus.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 79
   },
@@ -3627,8 +5041,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Tienda de reliquias",
     "pool": "shared",
-    "image_url": "/static/images/relics/lees_waffle.png",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
+    "image_url": "/static/images/relics/lees_waffle.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 158
   },
@@ -3640,8 +5061,11 @@
     "flavor": "",
     "rarity": "Reliquia ancestral",
     "pool": "shared",
-    "image_url": null,
+    "merchant_price": null,
+    "image_url": "/static/images/relics/winged_boots.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 256
   },
@@ -3653,8 +5077,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia rara",
     "pool": "ironclad",
-    "image_url": "/static/images/relics/ruined_helmet.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/ruined_helmet.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 128
   },
@@ -3666,8 +5097,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia rara",
     "pool": "shared",
-    "image_url": "/static/images/relics/intimidating_helmet.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/intimidating_helmet.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 129
   },
@@ -3679,8 +5117,11 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia de eventos",
     "pool": "shared",
-    "image_url": "/static/images/relics/fake_merchants_rug.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/fake_merchants_rug.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 282
   },
@@ -3692,8 +5133,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia de eventos",
     "pool": "shared",
-    "image_url": "/static/images/relics/fake_anchor.png",
+    "merchant_price": {
+      "base": 50,
+      "min": 42,
+      "max": 57
+    },
+    "image_url": "/static/images/relics/fake_anchor.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 283
   },
@@ -3705,8 +5153,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia de eventos",
     "pool": "shared",
-    "image_url": "/static/images/relics/fake_happy_flower.png",
+    "merchant_price": {
+      "base": 50,
+      "min": 42,
+      "max": 57
+    },
+    "image_url": "/static/images/relics/fake_happy_flower.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 284
   },
@@ -3718,8 +5173,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia de eventos",
     "pool": "shared",
-    "image_url": "/static/images/relics/fake_venerable_tea_set.png",
+    "merchant_price": {
+      "base": 50,
+      "min": 42,
+      "max": 57
+    },
+    "image_url": "/static/images/relics/fake_venerable_tea_set.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 285
   },
@@ -3731,8 +5193,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia de eventos",
     "pool": "shared",
-    "image_url": "/static/images/relics/fake_mango.png",
+    "merchant_price": {
+      "base": 50,
+      "min": 42,
+      "max": 57
+    },
+    "image_url": "/static/images/relics/fake_mango.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 286
   },
@@ -3744,8 +5213,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia de eventos",
     "pool": "shared",
-    "image_url": "/static/images/relics/fake_strike_dummy.png",
+    "merchant_price": {
+      "base": 50,
+      "min": 42,
+      "max": 57
+    },
+    "image_url": "/static/images/relics/fake_strike_dummy.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 287
   },
@@ -3757,8 +5233,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia de eventos",
     "pool": "shared",
-    "image_url": "/static/images/relics/fake_snecko_eye.png",
+    "merchant_price": {
+      "base": 50,
+      "min": 42,
+      "max": 57
+    },
+    "image_url": "/static/images/relics/fake_snecko_eye.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 288
   },
@@ -3770,8 +5253,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia de eventos",
     "pool": "shared",
-    "image_url": "/static/images/relics/fake_orichalcum.png",
+    "merchant_price": {
+      "base": 50,
+      "min": 42,
+      "max": 57
+    },
+    "image_url": "/static/images/relics/fake_orichalcum.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 289
   },
@@ -3783,8 +5273,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia de eventos",
     "pool": "shared",
-    "image_url": "/static/images/relics/fake_blood_vial.png",
+    "merchant_price": {
+      "base": 50,
+      "min": 42,
+      "max": 57
+    },
+    "image_url": "/static/images/relics/fake_blood_vial.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 290
   },
@@ -3796,8 +5293,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Reliquia de eventos",
     "pool": "shared",
-    "image_url": "/static/images/relics/fake_lees_waffle.png",
+    "merchant_price": {
+      "base": 50,
+      "min": 42,
+      "max": 57
+    },
+    "image_url": "/static/images/relics/fake_lees_waffle.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 291
   },
@@ -3809,8 +5313,15 @@
     "flavor": "[red]Los detalles de esta reliquia se revelarán en el futuro...[/red]",
     "rarity": "Tienda de reliquias",
     "pool": "shared",
-    "image_url": "/static/images/relics/the_abacus.png",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
+    "image_url": "/static/images/relics/the_abacus.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 159
   }

@@ -4,41 +4,34 @@
     "name": "Ciemność",
     "description": "[gold]Umiejętność bierna:[/gold] Na koniec tury zwiększ obrażenia zadawane przez Sferę o [blue]6[/blue] pkt.\n[gold]Wyładowanie:[/gold] Zadaj [blue]6[/blue] pkt. obrażeń przeciwnikowi z najmniejszą liczbą PŻ.",
     "description_raw": "[gold]Umiejętność bierna:[/gold] Na koniec tury zwiększ obrażenia zadawane przez Sferę o [blue]{Passive}[/blue] pkt.\n[gold]Wyładowanie:[/gold] Zadaj [blue]{Evoke}[/blue] pkt. obrażeń przeciwnikowi z najmniejszą liczbą PŻ.",
-    "image_url": "/static/images/orbs/dark_orb.png"
+    "image_url": "/static/images/orbs/dark_orb.webp"
   },
   {
     "id": "FROST_ORB",
     "name": "Mróz",
     "description": "[gold]Umiejętność bierna:[/gold] Na koniec tury zyskaj [blue]2[/blue] pkt. [gold]Bloku[/gold].\n[gold]Wyładowanie:[/gold] Zyskaj [blue]5[/blue] pkt. [gold]Bloku[/gold].",
     "description_raw": "[gold]Umiejętność bierna:[/gold] Na koniec tury zyskaj [blue]{Passive}[/blue] pkt. [gold]Bloku[/gold].\n[gold]Wyładowanie:[/gold] Zyskaj [blue]{Evoke}[/blue] pkt. [gold]Bloku[/gold].",
-    "image_url": "/static/images/orbs/frost_orb.png"
+    "image_url": "/static/images/orbs/frost_orb.webp"
   },
   {
     "id": "GLASS_ORB",
     "name": "Szkło",
     "description": "[gold]Umiejętność pasywna:[/gold] Na koniec tury zadaj [blue]4[/blue] pkt. obrażeń WSZYSTKIM przeciwnikom i zmniejsz wartość Sfery o [blue]1[/blue] pkt.\n[gold]Wyładowanie:[/gold] Zadaj [blue]8[/blue] pkt. obrażeń WSZYSTKIM przeciwnikom.",
     "description_raw": "[gold]Umiejętność pasywna:[/gold] Na koniec tury zadaj [blue]{Passive}[/blue] pkt. obrażeń WSZYSTKIM przeciwnikom i zmniejsz wartość Sfery o [blue]1[/blue] pkt.\n[gold]Wyładowanie:[/gold] Zadaj [blue]{Evoke}[/blue] pkt. obrażeń WSZYSTKIM przeciwnikom.",
-    "image_url": "/static/images/orbs/glass_orb.png"
+    "image_url": "/static/images/orbs/glass_orb.webp"
   },
   {
     "id": "LIGHTNING_ORB",
     "name": "Grom",
     "description": "[gold]Umiejętność pasywna:[/gold] Na koniec tury zadaj [blue]3[/blue] pkt. obrażeń losowemu przeciwnikowi.\n[gold]Wyładowanie:[/gold] Zadaj [blue]8[/blue] pkt. obrażeń losowemu przeciwnikowi.",
     "description_raw": "[gold]Umiejętność pasywna:[/gold] Na koniec tury zadaj [blue]{Passive}[/blue] pkt. obrażeń losowemu przeciwnikowi.\n[gold]Wyładowanie:[/gold] Zadaj [blue]{Evoke}[/blue] pkt. obrażeń losowemu przeciwnikowi.",
-    "image_url": "/static/images/orbs/lightning_orb.png"
-  },
-  {
-    "id": "MOCK_COMBAT_CLEANUP_ORB",
-    "name": "Mock Combat Cleanup",
-    "description": "",
-    "description_raw": null,
-    "image_url": null
+    "image_url": "/static/images/orbs/lightning_orb.webp"
   },
   {
     "id": "PLASMA_ORB",
     "name": "Plazma",
     "description": "[gold]Umiejętność pasywna:[/gold] Na początku tury\nzyskaj [energy:1].\n[gold]Wyładowanie:[/gold] Zyskaj [energy:2].\n[gold]Skupienie[/gold] nie wpływa na Plazmę.",
     "description_raw": "[gold]Umiejętność pasywna:[/gold] Na początku tury\nzyskaj {energyPrefix:energyIcons(1)}.\n[gold]Wyładowanie:[/gold] Zyskaj {energyPrefix:energyIcons(2)}.\n[gold]Skupienie[/gold] nie wpływa na Plazmę.",
-    "image_url": "/static/images/orbs/plasma_orb.png"
+    "image_url": "/static/images/orbs/plasma_orb.webp"
   }
 ]

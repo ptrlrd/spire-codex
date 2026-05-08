@@ -4,41 +4,34 @@
     "name": "Oscuridad",
     "description": "[gold]Pasiva:[/gold] al final del turno, aumenta el daño de este Orbe en [blue]6[/blue].\n[gold]Descarga:[/gold] inflige [blue]6[/blue] de daño al enemigo con menos PV.",
     "description_raw": "[gold]Pasiva:[/gold] al final del turno, aumenta el daño de este Orbe en [blue]{Passive}[/blue].\n[gold]Descarga:[/gold] inflige [blue]{Evoke}[/blue] de daño al enemigo con menos PV.",
-    "image_url": "/static/images/orbs/dark_orb.png"
+    "image_url": "/static/images/orbs/dark_orb.webp"
   },
   {
     "id": "FROST_ORB",
     "name": "Escarcha",
     "description": "[gold]Pasiva:[/gold] al final del turno, gana [blue]2[/blue] de [gold]Bloqueo[/gold].\n[gold]Descarga:[/gold] gana [blue]5[/blue] de [gold]Bloqueo[/gold].",
     "description_raw": "[gold]Pasiva:[/gold] al final del turno, gana [blue]{Passive}[/blue] de [gold]Bloqueo[/gold].\n[gold]Descarga:[/gold] gana [blue]{Evoke}[/blue] de [gold]Bloqueo[/gold].",
-    "image_url": "/static/images/orbs/frost_orb.png"
+    "image_url": "/static/images/orbs/frost_orb.webp"
   },
   {
     "id": "GLASS_ORB",
     "name": "Cristal",
     "description": "[gold]Pasiva:[/gold] al final del turno, inflige [blue]4[/blue] de daño a TODOS los enemigos y reduce el valor de este orbe en [blue]1[/blue].\n[gold]Descarga:[/gold] inflige [blue]8[/blue] de daño a TODOS los enemigos.",
     "description_raw": "[gold]Pasiva:[/gold] al final del turno, inflige [blue]{Passive}[/blue] de daño a TODOS los enemigos y reduce el valor de este orbe en [blue]1[/blue].\n[gold]Descarga:[/gold] inflige [blue]{Evoke}[/blue] de daño a TODOS los enemigos.",
-    "image_url": "/static/images/orbs/glass_orb.png"
+    "image_url": "/static/images/orbs/glass_orb.webp"
   },
   {
     "id": "LIGHTNING_ORB",
     "name": "Relámpago",
     "description": "[gold]Pasiva:[/gold] al final del turno, inflige [blue]3[/blue] de daño a un enemigo aleatorio.\n[gold]Descarga:[/gold] inflige [blue]8[/blue] de daño a un enemigo aleatorio.",
     "description_raw": "[gold]Pasiva:[/gold] al final del turno, inflige [blue]{Passive}[/blue] de daño a un enemigo aleatorio.\n[gold]Descarga:[/gold] inflige [blue]{Evoke}[/blue] de daño a un enemigo aleatorio.",
-    "image_url": "/static/images/orbs/lightning_orb.png"
-  },
-  {
-    "id": "MOCK_COMBAT_CLEANUP_ORB",
-    "name": "Mock Combat Cleanup",
-    "description": "",
-    "description_raw": null,
-    "image_url": null
+    "image_url": "/static/images/orbs/lightning_orb.webp"
   },
   {
     "id": "PLASMA_ORB",
     "name": "Plasma",
     "description": "[gold]Pasiva:[/gold] al comienzo del turno,\ngana [energy:1].\n[gold]Descarga:[/gold] gana [energy:2].\nLa [gold]Concentración[/gold] no afecta al Plasma.",
     "description_raw": "[gold]Pasiva:[/gold] al comienzo del turno,\ngana {energyPrefix:energyIcons(1)}.\n[gold]Descarga:[/gold] gana {energyPrefix:energyIcons(2)}.\nLa [gold]Concentración[/gold] no afecta al Plasma.",
-    "image_url": "/static/images/orbs/plasma_orb.png"
+    "image_url": "/static/images/orbs/plasma_orb.webp"
   }
 ]
