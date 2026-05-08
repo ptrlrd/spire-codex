@@ -1,0 +1,2497 @@
+[
+  {
+    "id": "ABYSSAL_BATHS",
+    "name": "AbyssalBaths",
+    "type": "Event",
+    "act": "Underdocks",
+    "description": "Scopri una stanza appartata.\n\nIl vapore sale da pozze ribollenti di liquido caldo che cambia colore con un ritmo ipnotico. Erbe cirripedi pendono dal soffitto, gocciolando un fluido viscoso che sibila e si contorce quando tocca la superficie. L'aria è pesante, carica di [blue]sale[/blue] e di qualcosa di [green]inconfondibilmente organico [/green].\n\nAvvicinandosi al bordo della piscina più grande, il liquido si increspa. Le acque ribollono più intensamente, come se anticipassero il tuo ingresso.",
+    "preconditions": null,
+    "options": [
+      {
+        "id": "ABSTAIN",
+        "title": "ABSTAIN",
+        "description": "Recuperi [green]10[/green] PV."
+      }
+    ],
+    "pages": [
+      {
+        "id": "ABSTAIN",
+        "description": "Rifiuti la tentazione dell'acqua, raccogliendo invece i sali cristallini che si sono formati lungo i bordi. Mentre te li applichi sulla pelle, le piscine si agitano e schiumano agitate. La temperatura ambiente scende sensibilmente e per un attimo tutte le superfici riflettenti della stanza mostrano una versione di te che sembra incavata e rimpicciolita. Non riesci a scrollarti di dosso la sensazione di esserti perso qualcosa di trasformativo."
+      },
+      {
+        "id": "ALL",
+        "description": null,
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "Rimani",
+            "description": "Ottieni [green]2[/green] PV massimi. Subisci [red]3[/red] danni."
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "Esci dalle terme",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "id": "DEATH_WARNING",
+        "description": "[sine][red]Se resti ancora nell'acqua, morirai.[/red][/sine]",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "Rimani",
+            "description": "[sine][red]Se resti ancora nell'acqua, morirai.[/red][/sine]"
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "Esci dalle terme",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "id": "EXIT_BATHS",
+        "description": "Alla fine il caldo diventa troppo difficile da sopportare ed esci dal bagno."
+      },
+      {
+        "id": "IMMERSE",
+        "description": "Il liquido brucia sulla pelle, gelando [blue][jitter]congelando[/jitter][/blue] e [red][jitter]scottando[/jitter][/red].\n\nSotto la superficie, qualcosa ti sfiora le gambe: viticci? Correnti con uno scopo? Ma quando il dolore si placa, ti senti... in qualche modo più denso. Più consistente. Le acque sembrano mormorare di soddisfazione.",
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "Rimani",
+            "description": "Ottieni [green]2[/green] PV massimi. Subisci [red]4[/red] danni."
+          },
+          {
+            "id": "EXIT_BATHS",
+            "title": "Esci dalle terme",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "id": "INITIAL",
+        "description": "Scopri una stanza appartata.\n\nIl vapore sale da pozze ribollenti di liquido caldo che cambia colore con un ritmo ipnotico. Erbe cirripedi pendono dal soffitto, gocciolando un fluido viscoso che sibila e si contorce quando tocca la superficie. L'aria è pesante, carica di [blue]sale[/blue] e di qualcosa di [green]inconfondibilmente organico [/green].\n\nAvvicinandosi al bordo della piscina più grande, il liquido si increspa. Le acque ribollono più intensamente, come se anticipassero il tuo ingresso.",
+        "options": [
+          {
+            "id": "ABSTAIN",
+            "title": "ABSTAIN",
+            "description": "Recuperi [green]10[/green] PV."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "AMALGAMATOR",
+    "name": "Amalgamator",
+    "type": "Event",
+    "act": "Act 2 - Hive",
+    "description": null,
+    "preconditions": [
+      "Requires 2+ Strikes in deck",
+      "Requires 2+ Defends in deck"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "AROMA_OF_CHAOS",
+    "name": "AromaOfChaos",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "BATTLEWORN_DUMMY",
+    "name": "BattlewornDummy",
+    "type": "Event",
+    "act": "Act 3 - Glory",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "BRAIN_LEECH",
+    "name": "BrainLeech",
+    "type": "Shared",
+    "act": null,
+    "description": null,
+    "preconditions": [
+      "Act 1–2 only"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "BUGSLAYER",
+    "name": "Bugslayer",
+    "type": "Event",
+    "act": "Act 2 - Hive",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "BYRDONIS_NEST",
+    "name": "ByrdonisNest",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": null,
+    "preconditions": [
+      "Cannot have an event pet"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "COLORFUL_PHILOSOPHERS",
+    "name": "ColorfulPhilosophers",
+    "type": "Event",
+    "act": "Act 2 - Hive",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "COLOSSAL_FLOWER",
+    "name": "ColossalFlower",
+    "type": "Event",
+    "act": "Act 2 - Hive",
+    "description": null,
+    "preconditions": [
+      "Requires 19+ HP"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "CRYSTAL_SPHERE",
+    "name": "CrystalSphere",
+    "type": "Shared",
+    "act": null,
+    "description": null,
+    "preconditions": [
+      "Requires 100+ gold",
+      "Act 2+"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "DARV",
+    "name": "Darv",
+    "type": "Ancient",
+    "act": null,
+    "description": "...Ma dove ho messo... Oh!\nVuoi vedere la mia collezione!? Prendi qualsiasi cosa da quella pila laggiù e impiegala bene!",
+    "preconditions": null,
+    "options": null,
+    "pages": null,
+    "epithet": "L'Accumulatore",
+    "dialogue": {
+      "Returning": [
+        {
+          "order": "0-0r",
+          "speaker": "ancient",
+          "text": "Ecco, prendi una di queste gemme dimenticate!"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Ho da fare oggi!\nPrendi quello che vuoi da quella pila!"
+        }
+      ],
+      "Defect": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Lo sai che quasi quasi mi viene voglia di aggiungerti alla mia collezione?"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "<3"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Sembra che tu sia ancora in vita, vediamo se posso potenziarti!"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "Ho conservato quello che aveva trovato il tuo amic... ehm.\nNulla, lascia stare!!!"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "<Suoni inquisitori>"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "Accidenti, fa' come se non avessi detto nulla!"
+        }
+      ],
+      "Ironclad": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Il guerriero ardente è tornato!\nHo qualcosa cucito su misura per te!"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Adoro vederti ridurre in poltiglia gli altri!"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "Custodisco ancora quella tua pesante spada... ma non riesco a trovare nessuno che possa restaurarla"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "Ironclad fissa Darv."
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "Forse l'Architetto ne sa qualcosa."
+        }
+      ],
+      "Necrobinder": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Sembra che tu faccia sul serio. In cosa posso aiutarti?"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "Qualsiasi cosa mi aiuti a uccidere un uomo così detestabile."
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "Bene... dai un'occhiata!"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Stai ancora perseguendo la tua guerra? Non ti fermerò!"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "Questo libro sembra legato a te, però ha molti più anni di te."
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "Come hai fatto a impossesartene?"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "Tutto ciò che è [sine]spaventoso[/sine] finisce sempre nella mia collezione."
+        }
+      ],
+      "Regent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Cosa ti porta qui? Vuoi dare un'occhiata alla mia collezione?"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "Adoro la merce di prima qualità..."
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "Fantastico!"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Hai bisogno di qualcos'altro sua maestà?!"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "Ho qualcosa cucito su misura, per il mio nuovo amico!"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "Sto ascoltando!"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "Te lo darei, ma l'Architetto me l'ha tolto dalle mani!\nAiuta il tuo vecchio amico! Mi faresti un favore?"
+        }
+      ],
+      "Silent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Anche tu torni nella Guglia, eh?\nNon riesci a resistere a quei tesori sbrilluccicanti, eh?!"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Ti darò qualcosa di bello in cambio di quel trofeo!"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "È un peccato che non ti ricordi di tutta la mia generosità!\nSì, sì, lo sai com'è fatta Neow..."
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "..."
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "Bene! Lascia che ti trovi un equipaggiamento ideale per questa resa dei conti!"
+        }
+      ],
+      "First Visit": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "...Ma dove ho messo... Oh!\nVuoi vedere la mia collezione!? Prendi qualsiasi cosa da quella pila laggiù e impiegala bene!"
+        }
+      ]
+    },
+    "image_url": "/static/images/misc/ancients/darv.webp",
+    "relics": [
+      "DUSTY_TOME",
+      "ASTROLABE",
+      "BLACK_STAR",
+      "CALLING_BELL",
+      "EMPTY_CAGE",
+      "PANDORAS_BOX",
+      "RUNIC_PYRAMID",
+      "SNECKO_EYE",
+      "ECTOPLASM",
+      "SOZU",
+      "PHILOSOPHERS_STONE",
+      "VELVET_CHOKER"
+    ]
+  },
+  {
+    "id": "DENSE_VEGETATION",
+    "name": "DenseVegetation",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "DOLL_ROOM",
+    "name": "DollRoom",
+    "type": "Shared",
+    "act": null,
+    "description": null,
+    "preconditions": [
+      "Act 2 only"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "DOORS_OF_LIGHT_AND_DARK",
+    "name": "DoorsOfLightAndDark",
+    "type": "Event",
+    "act": "Underdocks",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "DROWNING_BEACON",
+    "name": "DrowningBeacon",
+    "type": "Event",
+    "act": "Underdocks",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "ENDLESS_CONVEYOR",
+    "name": "EndlessConveyor",
+    "type": "Event",
+    "act": "Underdocks",
+    "description": null,
+    "preconditions": [
+      "Requires 105+ gold"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "FAKE_MERCHANT",
+    "name": "FakeMerchant",
+    "type": "Shared",
+    "act": null,
+    "description": "A suspicious merchant offers 9 fake relics at 42–58 gold each. Throwing a [gold]Foul Potion[/gold] starts a fight against The Merchant??? (165 HP). Winning rewards [gold]Fake Merchant's Rug[/gold] plus all unsold relics.",
+    "preconditions": [
+      "Act 2+",
+      "Single player only",
+      "Requires 100+ gold or a Foul Potion"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "FIELD_OF_MAN_SIZED_HOLES",
+    "name": "FieldOfManSizedHoles",
+    "type": "Event",
+    "act": "Act 2 - Hive",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "GRAVE_OF_THE_FORGOTTEN",
+    "name": "GraveOfTheForgotten",
+    "type": "Event",
+    "act": "Act 3 - Glory",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "HUNGRY_FOR_MUSHROOMS",
+    "name": "HungryForMushrooms",
+    "type": "Event",
+    "act": "Act 3 - Glory",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "INFESTED_AUTOMATON",
+    "name": "InfestedAutomaton",
+    "type": "Event",
+    "act": "Act 2 - Hive",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "JUNGLE_MAZE_ADVENTURE",
+    "name": "JungleMazeAdventure",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "LOST_WISP",
+    "name": "LostWisp",
+    "type": "Event",
+    "act": "Act 2 - Hive",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "LUMINOUS_CHOIR",
+    "name": "LuminousChoir",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": null,
+    "preconditions": [
+      "Requires 100-149 gold"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "MORPHIC_GROVE",
+    "name": "MorphicGrove",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": null,
+    "preconditions": [
+      "Requires 100+ gold"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "NEOW",
+    "name": "Neow",
+    "type": "Ancient",
+    "act": "Act 1 - Overgrowth / Underdocks",
+    "description": "[sine]Ti... ho... ridato... la... vita...\n...alzati...[/sine]",
+    "preconditions": null,
+    "options": null,
+    "pages": null,
+    "epithet": "Madre della resurrezione (Esiliata)",
+    "dialogue": {
+      "Returning": [
+        {
+          "order": "0-0r",
+          "speaker": "ancient",
+          "text": "[sine]...Ciao ... ancora una volta...[/sine]"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "[sine]...Forza...\n...Svegliati...[/sine]"
+        },
+        {
+          "order": "2-0r",
+          "speaker": "ancient",
+          "text": "[sine]... tieni... questa\n...benedizione ... vai...[/sine]"
+        },
+        {
+          "order": "3-0r",
+          "speaker": "ancient",
+          "text": "[sine]... Sei... di... nuovo... in... vita...[/sine]"
+        },
+        {
+          "order": "4-0r",
+          "speaker": "ancient",
+          "text": "[sine]... uccidi... [red][jitter]L'ARCHITETTO[/jitter][/red][/sine]"
+        }
+      ],
+      "Defect": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "[sine]... Costrutto... cosa...\n... sei... diventato...?[/sine]"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "[sine]... lui... può...\n... ripararti... del... tutto...[/sine]"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "[sine]... Non... riesco... a...\nfarti... dimenticare...[/sine]"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "<suoni decisi>"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "[sine]... bene....[/sine]"
+        }
+      ],
+      "Ironclad": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "[sine]... alzati... mio... guerriero...\nè... il... momento... di... combattere... di... nuovo...[/sine]"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "[sine]... sei... ancora... consumato... dalla... rabbia... Bene...[/sine]"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "[sine]... ti... ricordi... la... prima... volta...\nche... sei... venuto... qui... davanti... a... me...[/sine]"
+        },
+        {
+          "order": "2-1",
+          "speaker": "ancient",
+          "text": "[sine]... quanta... rabbia...[/sine]"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "[sine]... veramente... utile...[/sine]"
+        }
+      ],
+      "Necrobinder": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "[sine]... condividiamo... lo... stesso... obiettivo...[/sine]"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "[jitter]HA UCCISO TUTTO CIÒ CHE AMO![/jitter]"
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "[sine]... il... mio... potere... è... tuo...[/sine]"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "[sine]Respira... ancora...[/sine]"
+        },
+        {
+          "order": "2-0",
+          "speaker": "character",
+          "text": "[sine]È... davvero... possibile...?[/sine]"
+        },
+        {
+          "order": "2-1",
+          "speaker": "ancient",
+          "text": "[sine]... [red]Architetto[/red]... si... sta... indebolendo...\n...siamo più... forti...[/sine]"
+        }
+      ],
+      "Regent": [
+        {
+          "order": "0-0",
+          "speaker": "character",
+          "text": "Creatura blu gigante, io sono il futuro [orange]re[/orange]!"
+        },
+        {
+          "order": "0-1",
+          "speaker": "ancient",
+          "text": "[sine] bene...\nci... vedremo... di... nuovo...[/sine]"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "[sine]... di... nuovo...?[/sine]"
+        },
+        {
+          "order": "2-0",
+          "speaker": "character",
+          "text": "[jitter]Perché non riesco a vincere?![/jitter]"
+        },
+        {
+          "order": "2-1",
+          "speaker": "ancient",
+          "text": "[sine]... prendi... questa... benedizione...[/sine]"
+        },
+        {
+          "order": "2-2",
+          "speaker": "character",
+          "text": "... sì, grazie Neow."
+        }
+      ],
+      "Silent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "[sine]... torni... da... fuori?\n... sapevo... che... saresti... tornata...[/sine]"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "[sine]... il... tuo...\n ... trofeo... ti... aspetta...[/sine]"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "[sine]... entrambi... conoscete... l'agonia... della... famiglia...[/sine]"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "..."
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "[sine]... cerchi... ancora... approvazione...?\n...[jitter]RIDICOLO[/jitter]...[/sine]"
+        }
+      ],
+      "First Visit": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "[sine]Ti... ho... ridato... la... vita...\n...alzati...[/sine]"
+        }
+      ]
+    },
+    "image_url": "/static/images/misc/ancients/neow.webp",
+    "relics": [
+      "ARCANE_SCROLL",
+      "BOOMING_CONCH",
+      "POMANDER",
+      "GOLDEN_PEARL",
+      "LEAD_PAPERWEIGHT",
+      "NEW_LEAF",
+      "NEOWS_TORMENT",
+      "PRECISE_SCISSORS",
+      "LOST_COFFER",
+      "NUTRITIOUS_OYSTER",
+      "STONE_HUMIDIFIER",
+      "MASSIVE_SCROLL",
+      "LAVA_ROCK",
+      "SMALL_CAPSULE",
+      "SILVER_CRUCIBLE",
+      "CURSED_PEARL",
+      "LARGE_CAPSULE",
+      "LEAFY_POULTICE",
+      "PRECARIOUS_SHEARS",
+      "SCROLL_BOXES"
+    ]
+  },
+  {
+    "id": "NONUPEIPE",
+    "name": "Nonupeipe",
+    "type": "Ancient",
+    "act": "Act 3 - Glory",
+    "description": "È da un millennio che non ricevo visite!\nNon hai una bella cera. Fammi cercare qualcosa di bello da farti indossare.",
+    "preconditions": null,
+    "options": null,
+    "pages": null,
+    "epithet": "L'incarnazione della fortuna",
+    "dialogue": {
+      "Returning": [
+        {
+          "order": "0-0r",
+          "speaker": "ancient",
+          "text": "In cima ti aspetta la follia. Con il mio potere potrai conquistare la Guglia."
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Hai viaggiato a lungo per incontrarmi!\nAvvicinati, ecco la mia benedizione."
+        }
+      ],
+      "Defect": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Un semplice assemblaggio può davvero essere degno della mia benedizione?\nFatti avanti, Defect. Sarai l'automa più bello di tutti."
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Mia povera macchina arrugginita, lascia che ti rimetta apposto."
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "Di solito non mi piacciono le opere dell'Architetto, ma devo ammettere che mi cominci a piacere."
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "<suono imbarazzato>"
+        }
+      ],
+      "Ironclad": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Ah, Ironclad è finalmente arrivato davanti ai miei occhi..\nFatti avanti e ti conferirò il mio potere."
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Ironclad Ironclad... il regalo che ti ho fatto non era abbastanza?"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "Sei tornato mio campione? Quante volte lo farai?\nNon eri tanto forte da poter eliminare clan interi?"
+        }
+      ],
+      "Necrobinder": [
+        {
+          "order": "0-0",
+          "speaker": "character",
+          "text": "Le tue guardie sono morte, si dice che puoi donare benedizioni per chi desidera la morte dell'Architetto."
+        },
+        {
+          "order": "0-1",
+          "speaker": "ancient",
+          "text": "Apprezzo chi è competente e donerò una parte del mio potere.\nLa prossima volta, non uccidere le mie guardie."
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Un mago ha bisogno di equipaggiamenti raffinati per la battaglia. Fatti avanti, Necrobinder."
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "All'Architetto non piacerà vedere quel tuo [sine]animaletto[/sine]."
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "Intendi Osty? Lui sarà quello che sferrerà il colpo finale."
+        }
+      ],
+      "Regent": [
+        {
+          "order": "0-0",
+          "speaker": "character",
+          "text": "Vorrei avere un'udienza con Nonupeipe!"
+        },
+        {
+          "order": "0-1",
+          "speaker": "ancient",
+          "text": "Che bei vestiti che hai portato da paesi lontani!\nLascia che i tuoi servi ti avvicinino a me e ti donerò la benedizione."
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Benedizioni regali per visitatori di tale rango.\nServi! Preparateci del tè."
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "L'Architetto è andato fuori di senno! Se solo un nobile campione potesse salvarci da questa sciagura..."
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "Non temere! Io, Regent, porrò fine alla follia!\nMa prima, versami del tè!"
+        }
+      ],
+      "Silent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Un ladruncolo si è intrufolato nel mio dominio.\nCredi davvero che non ti abbia visto? Esci allo scoperto!"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "Silent esce dall'ombra..."
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "Una cacciatrice, cosa ti spinge a tornare alla Guglia?\nAvvicinati e accetta queste benedizioni."
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Ho preparato dei regali per te, assassina. Non essere timida"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "Di tutte le sue marionette, tu sei quella che mi ha stupito di più."
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "..."
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "Come sei morta la prima volta? Neow ti ha [sine]trovata[/sine]?\nÈ un peccato che non spiccichi parola."
+        }
+      ],
+      "First Visit": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "È da un millennio che non ricevo visite!\nNon hai una bella cera. Fammi cercare qualcosa di bello da farti indossare."
+        }
+      ]
+    },
+    "image_url": "/static/images/misc/ancients/nonupeipe.webp",
+    "relics": [
+      "BLESSED_ANTLER",
+      "BRILLIANT_SCARF",
+      "DELICATE_FROND",
+      "DIAMOND_DIADEM",
+      "FUR_COAT",
+      "GLITTER",
+      "JEWELRY_BOX",
+      "LOOMING_FRUIT",
+      "SIGNET_RING",
+      "BEAUTIFUL_BRACELET"
+    ]
+  },
+  {
+    "id": "OROBAS",
+    "name": "Orobas",
+    "type": "Ancient",
+    "act": "Act 2 - Hive",
+    "description": "Marionetta marionetta! Fino a qui? Prendi!",
+    "preconditions": null,
+    "options": null,
+    "pages": null,
+    "epithet": "Arcobaleno vivente",
+    "dialogue": {
+      "Returning": [
+        {
+          "order": "0-0r",
+          "speaker": "ancient",
+          "text": "Tieni!!!"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Guarda quante cose belle! Guarda, guarda!"
+        }
+      ],
+      "Defect": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Cosa! Un costrutto servo? Ancora in servizio!\nPerché sei qui? Perché non sei alla fabbrica?"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Che sfere luccicanti! Come funzionano?\n[jitter]Aia![/jitter]"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "Un nucleo rotto? Neow usa i costrutti rotti?\nManipolato?"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "<emette suoni silenziosi>"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "L'Architetto è riuscito a darti una sistemata?"
+        }
+      ],
+      "Ironclad": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Ironclad!? Com'è possibile? Che spavento!"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Hai firmato il contratto? Peché!? Scelta sbagliata? Sì. Errore!"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "Ti augurò la liberà! Sul serio!\nVakuu è cattivo. Molto cattivo! L'Architetto ti ha liberato?"
+        }
+      ],
+      "Necrobinder": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Morto?! Non morto! Perché marionetta? Grande mano!"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "Non sono una marionetta. C'è un uomo che devo uccidere.\nCosa puoi fare per me?"
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "Uccidere non va bene! Prendi! Così è meglio!"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Non morta! Bei regali per te! La violenza è brutta."
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "Niente violenza! Meglio prendere tesori luccicanti... luccicantissimi!"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "La mia missione terminerà solo quando l'Architetto sarà polvere.\nLa violenza è inevitabile."
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "Architetto no cattivo! Perché non parlare? Parlare è meglio! Molto meglio!"
+        }
+      ],
+      "Regent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Viaggiatore! Dallo spazio!? Dove dallo spazio?\nCome dallo spazio? Testa a punta! Piccoli amici!"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "Regent fa un monologo lungo svariate ore."
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "Fantastico! Grandioso! Ancora! Ancora!"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Più storie! Ho trovato questo per te!\nOra dimmi di più!"
+        },
+        {
+          "order": "2-0",
+          "speaker": "character",
+          "text": "Il mio fan numero uno! Orobas, amico!\nChe bello vedere che sei ancora vivo!"
+        },
+        {
+          "order": "2-1",
+          "speaker": "ancient",
+          "text": "Storie?!"
+        },
+        {
+          "order": "2-2",
+          "speaker": "character",
+          "text": "Certo, certo... ma hai trovato dei ninnoli per me?"
+        }
+      ],
+      "Silent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Infezione...? [jitter]PIAGA!?[/jitter] Prendi e vai!"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "[sine]...[/sine]"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Non contagiosa? Letale? L'Architetto ti ha aiutata?"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "Dove sorelle? Sorelle spaventosamente cattive!\nComportati bene! Non fare come le sorelle!"
+        }
+      ],
+      "First Visit": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Marionetta marionetta! Fino a qui? Prendi!"
+        }
+      ]
+    },
+    "image_url": "/static/images/misc/ancients/orobas.webp",
+    "relics": [
+      "ELECTRIC_SHRYMP",
+      "GLASS_EYE",
+      "SAND_CASTLE",
+      "ALCHEMICAL_COFFER",
+      "DRIFTWOOD",
+      "RADIANT_PEARL",
+      "SEA_GLASS",
+      "PRISMATIC_GEM",
+      "TOUCH_OF_OROBAS",
+      "ARCHAIC_TOOTH"
+    ]
+  },
+  {
+    "id": "PAEL",
+    "name": "Pael",
+    "type": "Ancient",
+    "act": "Act 2 - Hive",
+    "description": "È arrivata una marionetta?\nPuoi vedere come sta mio padre? Sono troppo stanco...",
+    "preconditions": null,
+    "options": null,
+    "pages": null,
+    "epithet": "Drago fuso",
+    "dialogue": {
+      "Returning": [
+        {
+          "order": "0-0r",
+          "speaker": "ancient",
+          "text": "Ti do il bentornato. Lascia che la mia carne ti aiuti..."
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Pael sta dormendo. Il suo ronfio fa vibrare la stanza."
+        }
+      ],
+      "Defect": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Automa dall'aria preoccupata, cerchi i tuoi amici?\nLascia che ti aiuti..."
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Anche i costrutti sognano?\nGuardami e copiami..."
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "Ho sognato il tuo amico...\nMio padre può ripristinare [aqua]Flaw[/aqua]..."
+        }
+      ],
+      "Ironclad": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Quanta rabbia proviene dal tuo corpo. Fidati di me e cerca un po' di serenità..."
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Ti ricordi la sensazione che si prova quando si sogna?\nÈ bello dormire..."
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "Devi placare le tue fiamme.\nMio padre può liberarti...[/thinky_dots"
+        }
+      ],
+      "Necrobinder": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Il tuo cuore soffre per cotanta malvagità."
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "Condivideremmo lo stesso dolore se sapessi cosa ho dovuto sopportare."
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "Non c'è pacce sul tuo cammino.\nPrendi una parte di me e allegerisci i tuoi fardelli..."
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Quella con la mano è tornata.\nChe ricordi dolorosi. Prendi la mia forza e vattene..."
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "Uccidere mio [red]padre[/red] non ti porterà serenità."
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "Quella [jitter]cosa[/jitter] sarebbe tuo padre!?"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "Non siamo noi a scegliere la nostra famiglia..."
+        }
+      ],
+      "Regent": [
+        {
+          "order": "0-0",
+          "speaker": "character",
+          "text": "Ehi! Sono Regent.\nEhi? [jitter]EHI!?[/jitter]"
+        },
+        {
+          "order": "0-1",
+          "speaker": "ancient",
+          "text": "Silenzio ora.\nPrendi una parte di me e vai..."
+        },
+        {
+          "order": "1-0r",
+          "speaker": "character",
+          "text": "Sono tornato! Ah, ovviamente stai dormendo.\nVediamo..."
+        },
+        {
+          "order": "2-0",
+          "speaker": "character",
+          "text": "Perché ti arrendi così facilmente?"
+        },
+        {
+          "order": "2-1",
+          "speaker": "ancient",
+          "text": "Perché non condividere quando ho qualcosa in abbondanza?"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "Quando ritornerai, sarò come nuovo.\nDormire è una manna dal cielo..."
+        }
+      ],
+      "Silent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Creatura assassina, qui non c'è spazio per la violenza.\nPrendi una parte di me e trova la serenità..."
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "A caccia di trofei? Certo, prendi una parte di me...\nFarò qualunque cosa per darti conforto..."
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "Mi hai avvelenato...?\nCosa sta per...? zZZzz..."
+        }
+      ],
+      "First Visit": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "È arrivata una marionetta?\nPuoi vedere come sta mio padre? Sono troppo stanco..."
+        }
+      ]
+    },
+    "image_url": "/static/images/misc/ancients/pael.webp",
+    "relics": [
+      "PAELS_CLAW",
+      "PAELS_TOOTH",
+      "PAELS_GROWTH",
+      "PAELS_LEGION",
+      "PAELS_FLESH",
+      "PAELS_HORN",
+      "PAELS_TEARS",
+      "PAELS_WING",
+      "PAELS_EYE",
+      "PAELS_BLOOD"
+    ]
+  },
+  {
+    "id": "POTION_COURIER",
+    "name": "PotionCourier",
+    "type": "Shared",
+    "act": null,
+    "description": null,
+    "preconditions": [
+      "Act 2+"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "PUNCH_OFF",
+    "name": "PunchOff",
+    "type": "Event",
+    "act": "Underdocks",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "RANWID_THE_ELDER",
+    "name": "RanwidTheElder",
+    "type": "Shared",
+    "act": null,
+    "description": null,
+    "preconditions": [
+      "Act 2+",
+      "Requires at least one potion"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "REFLECTIONS",
+    "name": "Reflections",
+    "type": "Event",
+    "act": "Act 3 - Glory",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "RELIC_TRADER",
+    "name": "RelicTrader",
+    "type": "Shared",
+    "act": null,
+    "description": null,
+    "preconditions": [
+      "Act 2+",
+      "Requires 5+ tradeable relics"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "ROOM_FULL_OF_CHEESE",
+    "name": "RoomFullOfCheese",
+    "type": "Shared",
+    "act": null,
+    "description": null,
+    "preconditions": [
+      "Act 1–2 only"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "ROUND_TEA_PARTY",
+    "name": "RoundTeaParty",
+    "type": "Event",
+    "act": "Act 3 - Glory",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "SAPPHIRE_SEED",
+    "name": "SapphireSeed",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "SELF_HELP_BOOK",
+    "name": "SelfHelpBook",
+    "type": "Shared",
+    "act": null,
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "SLIPPERY_BRIDGE",
+    "name": "SlipperyBridge",
+    "type": "Shared",
+    "act": null,
+    "description": null,
+    "preconditions": [
+      "Floor 7+",
+      "Requires removable cards in deck"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "SPIRALING_WHIRLPOOL",
+    "name": "SpiralingWhirlpool",
+    "type": "Event",
+    "act": "Underdocks",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "SPIRIT_GRAFTER",
+    "name": "SpiritGrafter",
+    "type": "Event",
+    "act": "Act 2 - Hive",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "STONE_OF_ALL_TIME",
+    "name": "StoneOfAllTime",
+    "type": "Shared",
+    "act": null,
+    "description": null,
+    "preconditions": [
+      "Act 2 only",
+      "Requires at least one potion"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "SUNKEN_STATUE",
+    "name": "SunkenStatue",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth / Underdocks",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "SUNKEN_TREASURY",
+    "name": "SunkenTreasury",
+    "type": "Event",
+    "act": "Underdocks",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "SYMBIOTE",
+    "name": "Symbiote",
+    "type": "Shared",
+    "act": null,
+    "description": null,
+    "preconditions": [
+      "Act 2+"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "TABLET_OF_TRUTH",
+    "name": "TabletOfTruth",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "TANX",
+    "name": "Tanx",
+    "type": "Ancient",
+    "act": "Act 3 - Glory",
+    "description": "SEI DEBOLE! MA HAI DEL POTENZIALE!\nUSA QUEST'ARMA!",
+    "preconditions": null,
+    "options": null,
+    "pages": null,
+    "epithet": "Re chimera",
+    "dialogue": {
+      "Returning": [
+        {
+          "order": "0-0r",
+          "speaker": "ancient",
+          "text": "COMBATTEREMO QUANDO DIVENTERAI PIÙ FORTE!"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "LE ARMI NON SONO MAI ABBASTANZA!"
+        }
+      ],
+      "Defect": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "COSTRUTTO! NESSUNA ARMA!? TIENI!"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "LE SFERE NON SONO ARMI!"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "AFFRONTAMI, DEFECT!"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "Defect lotta con coraggio."
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "LE SFERE [jitter]SONO[/jitter] ARMI!?"
+        }
+      ],
+      "Ironclad": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "CHE SPADA INCREDIBILE, GUERRIERO! PERÒ UN'ARMA IN PIÙ NON TI FAREBBE MALE!"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "ARMI PER IL GUERRIERO! PRENDI UN'ARMA! COMBATTIAMO!"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "AFFRONTAMI, IRONCLAD!"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "Ironclad affronta Tanx."
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "SÌ! CHE COMBATTIMENTO INCREDIBILE, PRENDI L'ARMA!"
+        }
+      ],
+      "Necrobinder": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "CHE FALCE MERAVIGLIOSA!"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "Sì, è stata creata appositamente per la vendetta."
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "ANCHE ALLA MANO SERVE UN'ARMA!?"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "AFFRONTAMI, OSYY!"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "AFFRONTAMI, NECROBINDER!"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "Necrobinder e Osty affrontano Tanx."
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "CHE LAVORO DI SQUADRA INCREDIBILE! PRENDI UN'ARMA!"
+        }
+      ],
+      "Regent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "ARANCIONE!? COME FA A ESSERE ARANCIONE?"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "Tutti sanno che l'arancione è il colore più regale di tutti!"
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "INCREDIBILE! CHE POTENZA!"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "ESSERE ARANCIONE! SCEGLI UN'ARMA POTENTE!"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "AFFRONTAMI, REGENT!"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "No! Abbiamo combattuto l'ultima volta che sono venuto qui!"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "AFFRONTAMI DI NUOVO!"
+        }
+      ],
+      "Silent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "UNA CACCIATRICE! AFFILERÒ IL TUO ARTIGLIO!"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "PERCHÉ HAI DEI PUGNALI!? SONO INUTILI!"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "AFFRONTAMI, SILENT!"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "Silent scappa e ruba un'arma durante la fuga."
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "DOVE SEI ANDATA!!!"
+        }
+      ],
+      "First Visit": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "SEI DEBOLE! MA HAI DEL POTENZIALE!\nUSA QUEST'ARMA!"
+        }
+      ]
+    },
+    "image_url": "/static/images/misc/ancients/tanx.webp",
+    "relics": [
+      "CLAWS",
+      "CROSSBOW",
+      "IRON_CLUB",
+      "MEAT_CLEAVER",
+      "SAI",
+      "SPIKED_GAUNTLETS",
+      "TANXS_WHISTLE",
+      "THROWING_AXE",
+      "WAR_HAMMER",
+      "TRI_BOOMERANG"
+    ]
+  },
+  {
+    "id": "TEA_MASTER",
+    "name": "TeaMaster",
+    "type": "Shared",
+    "act": null,
+    "description": null,
+    "preconditions": [
+      "Requires 150+ gold",
+      "Act 1–2 only"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "TEZCATARA",
+    "name": "Tezcatara",
+    "type": "Ancient",
+    "act": "Act 2 - Hive",
+    "description": "Oh, finalmente ho ricevuto una visita! Vieni pure!\nCosa può fare Tezcatara per te?",
+    "preconditions": null,
+    "options": null,
+    "pages": null,
+    "epithet": "L'essere che alimenta il fuoco",
+    "dialogue": {
+      "Returning": [
+        {
+          "order": "0-0r",
+          "speaker": "ancient",
+          "text": "Ti do il bentornato. Lascia che [jitter][b]bruci[/b][/jitter] i tuoi difetti."
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Non fare complimenti, vieni pure! Cosa può fare la tua cara Tezcatara per te oggi?"
+        }
+      ],
+      "Defect": [
+        {
+          "order": "0-0",
+          "speaker": "character",
+          "text": "<suono di saluto>"
+        },
+        {
+          "order": "0-1",
+          "speaker": "ancient",
+          "text": "Non se qui per infastidirmi? Che strano e [jitter][b]inusuale[/b][/jitter] piccolo costrutto..."
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Come sarebbe sciocco se fosse stato distrutto da uno dei suoi?"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "Vuoi davvero che ti dia una sistemata?"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "<suono inquisitorio>"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "Beh, se proprio lo [jitter][b]desideri[/b][/jitter]."
+        }
+      ],
+      "Ironclad": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "[jitter][b]Bruci[/b][/jitter] in modo splendido! Forza, vieni!"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Come sei forte! Vieni e mangia qualcosa.\nNon posso [jitter][b]uccidere[/b][/jitter] a stomaco vuoto!"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "Oh, l'Architetto è ancora vivo? Che ne dici di sbrigarti a [jitter][b]ucciderlo[/b][/jitter]?\nTi aspetterò qui!"
+        }
+      ],
+      "Necrobinder": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Cosa ci fa uno scheletro tra queste mura?"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "Il mio obiettivo è semplice. La vendetta per la mia famiglia.\nRaggiungerò la vetta e gliela farò pagare."
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "[jitter][b]Meraviglioso[/b][/jitter]!"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Vieni, vieni! Facciamo bruciare le tue fiamme ancora [jitter][b]di più[/b][/jitter]."
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "Quelle fiamme intorno a te mi ricordano qualcosa di proibito."
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "Cosa sai?"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "So chi ha scritto quel [jitter][b]libro[/b][/jitter]."
+        }
+      ],
+      "Regent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Oh cielo, che visitatore [jitter][b]esotico[/b][/jitter]! Chi saresti tu, caro?"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "Non mi chiamare 'caro'! Devi rivolgerti a me con rispetto, razza di essere... gigantesco!"
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "Come sono sgarbata.\nTezcatara ride di gioia."
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Tu e i tuoi amici siete già tornati?\nTi ho preparato delle [jitter][b]specialità[/b][/jitter]!"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "Ti do il bentornato, mister regalità! Sembra che te la stia cavando alla [jitter][b]grande[/b][/jitter]."
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "Certo! Ho solo avuto dei contrattempi ai piani superiori... come per esempio morire."
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "Tutti noi dobbiamo imparare dai nostri errori."
+        }
+      ],
+      "Silent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Avvicinati, essere silenziosa. Non riesco a vederti bene..."
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "..."
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "Puoi [jitter][b]fidarti[/b][/jitter] di me."
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Che brutta [jitter][b]malattia[/b][/jitter] che hai. Lascia che me ne prenda cura."
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "Ho incontrato le tue sorelle, sai? Sono delle ragazze splendide."
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "..."
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "Oh cara... non hai [jitter][b]combattuto[/b][/jitter] vero?"
+        }
+      ],
+      "First Visit": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Oh, finalmente ho ricevuto una visita! Vieni pure!\nCosa può fare Tezcatara per te?"
+        }
+      ]
+    },
+    "image_url": "/static/images/misc/ancients/tezcatara.webp",
+    "relics": [
+      "NUTRITIOUS_SOUP",
+      "VERY_HOT_COCOA",
+      "YUMMY_COOKIE",
+      "BIIIG_HUG",
+      "STORYBOOK",
+      "SEAL_OF_GOLD",
+      "TOASTY_MITTENS",
+      "GOLDEN_COMPASS",
+      "PUMPKIN_CANDLE",
+      "TOY_BOX"
+    ]
+  },
+  {
+    "id": "THE_ARCHITECT",
+    "name": "L'ARCHITETTO",
+    "type": "Ancient",
+    "act": null,
+    "description": "Quindi è arrivato lo schiavo dell'arcidemone?",
+    "preconditions": null,
+    "options": null,
+    "pages": null,
+    "dialogue": {
+      "Defect": [
+        {
+          "order": "0-0r",
+          "speaker": "ancient",
+          "text": "Cosa ci fai qui?"
+        },
+        {
+          "order": "0-1r",
+          "speaker": "character",
+          "text": "<messagi casuali>"
+        },
+        {
+          "order": "0-2r",
+          "speaker": "ancient",
+          "text": "Ripararti? Creami."
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Hai fatto ritorno? Non ti avevo smontato?"
+        },
+        {
+          "order": "1-1r",
+          "speaker": "character",
+          "text": "<frasi casuali>"
+        },
+        {
+          "order": "1-2r",
+          "speaker": "ancient",
+          "text": "Ripararti? Riparare il tuo amico? Ridicolo."
+        },
+        {
+          "order": "2-0r",
+          "speaker": "ancient",
+          "text": "Come fai a tornare? È opera di Neow?"
+        },
+        {
+          "order": "2-1r",
+          "speaker": "character",
+          "text": "<frasi casuali>"
+        },
+        {
+          "order": "2-2r",
+          "speaker": "ancient",
+          "text": "Che schiocchezza"
+        }
+      ],
+      "Ironclad": [
+        {
+          "order": "0-0r",
+          "speaker": "ancient",
+          "text": "Quindi è arrivato lo schiavo dell'arcidemone?"
+        },
+        {
+          "order": "0-1r",
+          "speaker": "character",
+          "text": "Nemico...\nUccidi..."
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Sei maledetto a combattere per sempre, eh?"
+        },
+        {
+          "order": "1-1r",
+          "speaker": "character",
+          "text": "Architetto... arci... nemico!"
+        },
+        {
+          "order": "1-2r",
+          "speaker": "ancient",
+          "text": "Quantomeno conosci il tuo nome?"
+        },
+        {
+          "order": "2-0r",
+          "speaker": "ancient",
+          "text": "Provo pietà per te."
+        },
+        {
+          "order": "2-1r",
+          "speaker": "character",
+          "text": "Uccidi..."
+        },
+        {
+          "order": "2-2r",
+          "speaker": "ancient",
+          "text": "Torna in basso, Ironclad."
+        }
+      ],
+      "Necrobinder": [
+        {
+          "order": "0-0",
+          "speaker": "character",
+          "text": "ARCHITETTO! Hai ucciso i miei genitori. Hai ucciso il mio amico. Hai ucciso la mia vita! ... E ora sarò io a UCCIDERTI!"
+        },
+        {
+          "order": "0-1",
+          "speaker": "ancient",
+          "text": "Vendetta? No, grazie."
+        },
+        {
+          "order": "1-0r",
+          "speaker": "character",
+          "text": "ARCHITETTO! Hai ucciso i miei genitori. Hai uccico il mio amico. Hai ucciso il mio..."
+        },
+        {
+          "order": "1-1r",
+          "speaker": "ancient",
+          "text": "Non puoi cambiare il passato con la rabbia."
+        },
+        {
+          "order": "2-0r",
+          "speaker": "character",
+          "text": "ARCHITETTO! Hai ucciso i miei genitori. Hai ucciso il mio amico. Hai ucciso la mia VITA!"
+        },
+        {
+          "order": "2-1r",
+          "speaker": "ancient",
+          "text": "Ho fatto ciò che dovevo per mantenere l'ordine."
+        },
+        {
+          "order": "3-0r",
+          "speaker": "character",
+          "text": "ARCHITETTO! Hai ucciso i miei genitori. Hai ucciso il mio amico. Hai ucciso il mio..."
+        },
+        {
+          "order": "3-1r",
+          "speaker": "ancient",
+          "text": "Vita"
+        },
+        {
+          "order": "3-2r",
+          "speaker": "character",
+          "text": "Cosa...? Muori, mostro!"
+        }
+      ],
+      "Regent": [
+        {
+          "order": "0-0",
+          "speaker": "character",
+          "text": "Sono arrivato! Ehi, plebeo! Questa è la vetta?"
+        },
+        {
+          "order": "0-1",
+          "speaker": "ancient",
+          "text": "Ho bisogno di pace..."
+        },
+        {
+          "order": "0-2",
+          "speaker": "character",
+          "text": "Ti insegnerò le buone maniere!"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "character",
+          "text": "Sono tornato!"
+        },
+        {
+          "order": "1-1r",
+          "speaker": "ancient",
+          "text": "Il rumoroso idiota è tornato?"
+        },
+        {
+          "order": "1-2r",
+          "speaker": "character",
+          "text": "Non sono né rumoroso né stupido! Affrontami!"
+        },
+        {
+          "order": "2-0r",
+          "speaker": "character",
+          "text": "Ne ho abbastanza della tua maleducazione!"
+        },
+        {
+          "order": "2-1r",
+          "speaker": "ancient",
+          "text": "Su questo sono d'accordo con te."
+        },
+        {
+          "order": "2-2r",
+          "speaker": "character",
+          "text": "Apriamo le danze!"
+        }
+      ],
+      "Silent": [
+        {
+          "order": "0-0r",
+          "speaker": "ancient",
+          "text": "Non ti presenti nemmeno?"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Da dove vieni?\nCosa cerchi?"
+        },
+        {
+          "order": "2-0r",
+          "speaker": "ancient",
+          "text": "[jitter]Hrrgh![/jitter]\n[jitter][red]MUORI![/red][/jitter]"
+        },
+        {
+          "order": "3-0r",
+          "speaker": "ancient",
+          "text": "Insolente!\n[jitter]SPARISCI![/jitter]"
+        }
+      ]
+    },
+    "image_url": "/static/images/monsters/architect.webp"
+  },
+  {
+    "id": "THE_FUTURE_OF_POTIONS",
+    "name": "TheFutureOfPotions",
+    "type": "Shared",
+    "act": null,
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "THE_LANTERN_KEY",
+    "name": "TheLanternKey",
+    "type": "Event",
+    "act": "Act 2 - Hive",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "THE_LEGENDS_WERE_TRUE",
+    "name": "TheLegendsWereTrue",
+    "type": "Shared",
+    "act": null,
+    "description": null,
+    "preconditions": [
+      "Requires 10+ HP",
+      "Act 1 only"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "THIS_OR_THAT",
+    "name": "ThisOrThat",
+    "type": "Shared",
+    "act": null,
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "TINKER_TIME",
+    "name": "TinkerTime",
+    "type": "Event",
+    "act": "Act 3 - Glory",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "TRASH_HEAP",
+    "name": "TrashHeap",
+    "type": "Event",
+    "act": "Underdocks",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "TRIAL",
+    "name": "Trial",
+    "type": "Event",
+    "act": "Act 3 - Glory",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "UNREST_SITE",
+    "name": "UnrestSite",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": null,
+    "preconditions": [
+      "Requires ≤70% HP"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "VAKUU",
+    "name": "Vakuu",
+    "type": "Ancient",
+    "act": "Act 3 - Glory",
+    "description": "Abbandonati a me e sarai temuto tanto quanto me.",
+    "preconditions": null,
+    "options": null,
+    "pages": null,
+    "epithet": "Il primo demone",
+    "dialogue": {
+      "Returning": [
+        {
+          "order": "0-0r",
+          "speaker": "ancient",
+          "text": "Cerchi la gloria nella Guglia? Ho delle proposte da farti..."
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "143. Sono 143 volte che vieni qui."
+        },
+        {
+          "order": "2-0r",
+          "speaker": "ancient",
+          "text": "Sei consapevole che non finirà [sine]mai[/sine]?"
+        }
+      ],
+      "Defect": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Essere rotto, lascia che ti rimetta a [sine]nuovo[/sine]."
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Non trovi strano che gli altri costrutti ti vogliano morto?"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "Se mi porti il cuore dell'Architetto, ridarò vita al tuo [aqua]compagno[/aqua]."
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "<suono spaventoso>"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "Cos'è più importante? Il tuo creatore o il tuo amico?"
+        }
+      ],
+      "Ironclad": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Prova a immaginare di [sine]vederti[/sine] dopo tanto tempo."
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "[jitter][b]DEMONE SACRO![/b][/jitter]\nCosa mi hai fatto!?"
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "Esattamente ciò che avevi chiesto."
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Le tribù perdute pesano sulla tua anima...?\nVakuu urla ridendo."
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "La mia più grande marionetta... Perché non hai ancora ucciso l'Architetto?"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "Dopo che avrò ucciso l'Architetto, ti [jitter][b]UCCIDERÒ![/b][/jitter]"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "[sine]Sbadiglia[/sine]\nDesidero vederti perire."
+        }
+      ],
+      "Necrobinder": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Entrambi desideriamo la [sine]vendetta[/sine]. Avrà un prezzo da pagare."
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "Accetterò tutto. Farò di tutto per farlo morire."
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "So dove hai preso quella [sine]mano[/sine]."
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "L'Architetto ci ha ferito gravemente a entrambi."
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "Forza, demone. Mostrami i tuoi contratti."
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "Non perdi tempo, vedo. Molto bene..."
+        }
+      ],
+      "Regent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Un essere stellare? All'interno di queste mura maledette?"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "Hai sentito parlare di me?"
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "Sì, credo che possiamo aiutarci."
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Una parte maggiore del mio potere può essere tua a un piccolo prezzo."
+        },
+        {
+          "order": "2-0",
+          "speaker": "character",
+          "text": "Non credo che queste offerte siano vantaggiose. Non sono convinto."
+        },
+        {
+          "order": "2-1",
+          "speaker": "ancient",
+          "text": "Hai letto attentamente i contratti, non è vero?\nLi hai firmati con piena intenzione e responsabilità, no?"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "Non hai intenzione di rispettare la tua parte dell'accordo?\nChe ne dici di un altro contratto? Non è meglio?"
+        }
+      ],
+      "Silent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Killer."
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "[sine]...[/sine]"
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "Non [jitter]finirà[/jitter] bene per te."
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Vakuu mostra i suoi vari contratti a Silent"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "L'Architetto non è abbastanza, uccidi anche le tue sorelle!"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "[sine]...[/sine]"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "Non servono le parole, siamo sulla stessa lunghezza d'onda."
+        }
+      ],
+      "First Visit": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Abbandonati a me e sarai temuto tanto quanto me."
+        }
+      ]
+    },
+    "image_url": "/static/images/misc/ancients/vakuu.webp",
+    "relics": [
+      "BLOOD_SOAKED_ROSE",
+      "WHISPERING_EARRING",
+      "FIDDLE",
+      "PRESERVED_FOG",
+      "SERE_TALON",
+      "DISTINGUISHED_CAPE",
+      "CHOICES_PARADOX",
+      "MUSIC_BOX",
+      "LORDS_PARASOL",
+      "JEWELED_MASK"
+    ]
+  },
+  {
+    "id": "WAR_HISTORIAN_REPY",
+    "name": "WarHistorianRepy",
+    "type": "Shared",
+    "act": null,
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "WATERLOGGED_SCRIPTORIUM",
+    "name": "WaterloggedScriptorium",
+    "type": "Event",
+    "act": "Underdocks",
+    "description": null,
+    "preconditions": [
+      "Requires 65+ gold"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "WELCOME_TO_WONGOS",
+    "name": "WelcomeToWongos",
+    "type": "Shared",
+    "act": null,
+    "description": null,
+    "preconditions": [
+      "Requires 100+ gold",
+      "Act 2 only"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "WELLSPRING",
+    "name": "Wellspring",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "WHISPERING_HOLLOW",
+    "name": "WhisperingHollow",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": null,
+    "preconditions": [
+      "Requires 50+ gold"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "WOOD_CARVINGS",
+    "name": "WoodCarvings",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": null,
+    "preconditions": [
+      "Requires a removable basic card"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "ZEN_WEAVER",
+    "name": "ZenWeaver",
+    "type": "Event",
+    "act": "Act 2 - Hive",
+    "description": null,
+    "preconditions": [
+      "Requires 125+ gold"
+    ],
+    "options": null,
+    "pages": null
+  }
+]

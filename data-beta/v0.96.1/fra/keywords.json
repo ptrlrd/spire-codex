@@ -1,0 +1,37 @@
+[
+  {
+    "id": "ETERNAL",
+    "name": "Éternel",
+    "description": "Ne peuvent être retirées de votre [gold]Deck[/gold] ou transformées."
+  },
+  {
+    "id": "ETHEREAL",
+    "name": "Éthéré",
+    "description": "Si cette carte est dans votre [gold]Main[/gold] à la fin de ce tour, elle [gold]s'épuise[/gold]."
+  },
+  {
+    "id": "EXHAUST",
+    "name": "Épuisement",
+    "description": "Retiré de votre [gold]Deck[/gold] jusqu'à la fin du combat."
+  },
+  {
+    "id": "INNATE",
+    "name": "Inné",
+    "description": "Cette carte commence dans votre [gold]Main[/gold] au début de chaque combat."
+  },
+  {
+    "id": "RETAIN",
+    "name": "Retenue",
+    "description": "Les cartes avec retenue ne sont pas défaussées à la fin de votre tour."
+  },
+  {
+    "id": "SLY",
+    "name": "Ruse",
+    "description": "Si cette carte est défaussée de votre [gold]Main[/gold] avant la fin de votre tour, elle est jouée."
+  },
+  {
+    "id": "UNPLAYABLE",
+    "name": "Injouable",
+    "description": "Les cartes Injouables ne peuvent pas être jouées."
+  }
+]

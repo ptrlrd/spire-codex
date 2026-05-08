@@ -4,34 +4,34 @@
     "name": "Сфера тьмы",
     "description": "[gold]Пассивный эффект:[/gold] повышает свой урон на [blue]6[/blue] в конце хода.\n[gold]Разрядка:[/gold] наносит [blue]6[/blue] урона врагу с наименьшим количеством ОЗ.",
     "description_raw": "[gold]Пассивный эффект:[/gold] повышает свой урон на [blue]{Passive}[/blue] в конце хода.\n[gold]Разрядка:[/gold] наносит [blue]{Evoke}[/blue] урона врагу с наименьшим количеством ОЗ.",
-    "image_url": "/static/images/orbs/dark_orb.png"
+    "image_url": "/static/images/orbs/dark_orb.webp"
   },
   {
     "id": "FROST_ORB",
     "name": "Сфера льда",
     "description": "[gold]Пассивный эффект:[/gold] дает [blue]2[/blue] [gold]защиты[/gold] в конце хода.\n[gold]Разрядка:[/gold] дает [blue]5[/blue] [gold]защиты[/gold].",
     "description_raw": "[gold]Пассивный эффект:[/gold] дает [blue]{Passive}[/blue] [gold]защиты[/gold] в конце хода.\n[gold]Разрядка:[/gold] дает [blue]{Evoke}[/blue] [gold]защиты[/gold].",
-    "image_url": "/static/images/orbs/frost_orb.png"
+    "image_url": "/static/images/orbs/frost_orb.webp"
   },
   {
     "id": "GLASS_ORB",
     "name": "Сфера стекла",
     "description": "[gold]Пассивный эффект:[/gold] в конце хода сфера наносит [blue]4[/blue] урона ВСЕМ врагам и снижает наносимый урон на [blue]1[/blue].\n[gold]Разрядка:[/gold] наносит [blue]8[/blue] урона ВСЕМ врагам.",
     "description_raw": "[gold]Пассивный эффект:[/gold] в конце хода сфера наносит [blue]{Passive}[/blue] урона ВСЕМ врагам и снижает наносимый урон на [blue]1[/blue].\n[gold]Разрядка:[/gold] наносит [blue]{Evoke}[/blue] урона ВСЕМ врагам.",
-    "image_url": "/static/images/orbs/glass_orb.png"
+    "image_url": "/static/images/orbs/glass_orb.webp"
   },
   {
     "id": "LIGHTNING_ORB",
     "name": "Сфера молнии",
     "description": "[gold]Пассивный эффект:[/gold] наносит [blue]3[/blue] урона случайному врагу в конце хода.\n[gold]Разрядка:[/gold] наносит [blue]8[/blue] урона случайному врагу.",
     "description_raw": "[gold]Пассивный эффект:[/gold] наносит [blue]{Passive}[/blue] урона случайному врагу в конце хода.\n[gold]Разрядка:[/gold] наносит [blue]{Evoke}[/blue] урона случайному врагу.",
-    "image_url": "/static/images/orbs/lightning_orb.png"
+    "image_url": "/static/images/orbs/lightning_orb.webp"
   },
   {
     "id": "PLASMA_ORB",
     "name": "Сфера плазмы",
     "description": "[gold]Пассивный эффект:[/gold] дает [energy:1] в начале хода.\n[gold]Разрядка:[/gold] дает [energy:2] независимо от [gold]фокуса[/gold].",
     "description_raw": "[gold]Пассивный эффект:[/gold] дает {energyPrefix:energyIcons(1)} в начале хода.\n[gold]Разрядка:[/gold] дает {energyPrefix:energyIcons(2)} независимо от [gold]фокуса[/gold].",
-    "image_url": "/static/images/orbs/plasma_orb.png"
+    "image_url": "/static/images/orbs/plasma_orb.webp"
   }
 ]

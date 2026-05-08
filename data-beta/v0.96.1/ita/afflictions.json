@@ -1,0 +1,44 @@
+[
+  {
+    "id": "BOUND",
+    "name": "Legata",
+    "description": "Puoi giocare solo [blue]1[/blue] carta [gold]Legata[/gold] in ogni turno. Le carte si [gold]slegano[/gold] al termine del turno.",
+    "extra_card_text": "Legata",
+    "is_stackable": false
+  },
+  {
+    "id": "ENTANGLED",
+    "name": "Intrappolata",
+    "description": "Costa [energy:1] extra.",
+    "extra_card_text": "Intrappolata",
+    "is_stackable": false
+  },
+  {
+    "id": "GALVANIZED",
+    "name": "Galvanizzata",
+    "description": "Subisci [blue]X[/blue] danni quando questa carta viene giocata.",
+    "extra_card_text": "Subisci X danni.",
+    "is_stackable": true
+  },
+  {
+    "id": "HEXED",
+    "name": "Maledetta",
+    "description": "Aggiungi [gold]Evanescenza[/gold] a questa carta.",
+    "extra_card_text": null,
+    "is_stackable": false
+  },
+  {
+    "id": "RINGING",
+    "name": "Risonante",
+    "description": "Puoi giocare solo [blue]1[/blue] carta in questo turno.",
+    "extra_card_text": "Risonante.",
+    "is_stackable": false
+  },
+  {
+    "id": "SMOG",
+    "name": "Contaminata",
+    "description": "Non puoi giocare ulteriori carte [gold]Abilità[/gold] in questo turno. L'effetto si rimuove al termine del turno.",
+    "extra_card_text": null,
+    "is_stackable": false
+  }
+]

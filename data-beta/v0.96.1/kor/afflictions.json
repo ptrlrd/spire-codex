@@ -1,0 +1,44 @@
+[
+  {
+    "id": "BOUND",
+    "name": "구속",
+    "description": "[gold]구속[/gold]된 카드는 매 턴마다 [blue]1[/blue]장만 낼 수 있습니다. 턴 종료 시 카드들의 [gold]구속[/gold]이 풀립니다.",
+    "extra_card_text": "구속",
+    "is_stackable": false
+  },
+  {
+    "id": "ENTANGLED",
+    "name": "속박",
+    "description": "비용이 [energy:1]만큼 증가합니다.",
+    "extra_card_text": "속박",
+    "is_stackable": false
+  },
+  {
+    "id": "GALVANIZED",
+    "name": "전류",
+    "description": "이 카드를 낼 때 피해를 [blue]X[/blue] 입습니다.",
+    "extra_card_text": "피해를 X 입습니다.",
+    "is_stackable": true
+  },
+  {
+    "id": "HEXED",
+    "name": "주박",
+    "description": "이 카드에 [gold]휘발성[/gold]을 추가합니다.",
+    "extra_card_text": null,
+    "is_stackable": false
+  },
+  {
+    "id": "RINGING",
+    "name": "공명",
+    "description": "이번 턴에는 [blue]1[/blue]장의 카드만 낼 수 있습니다.",
+    "extra_card_text": "공명합니다.",
+    "is_stackable": false
+  },
+  {
+    "id": "SMOG",
+    "name": "안개",
+    "description": "이번 턴에는 [gold]스킬[/gold]을 추가로 사용할 수 없습니다. 턴이 끝날 시 사라집니다.",
+    "extra_card_text": null,
+    "is_stackable": false
+  }
+]

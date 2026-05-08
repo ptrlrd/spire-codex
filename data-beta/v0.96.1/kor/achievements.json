@@ -1,0 +1,299 @@
+[
+  {
+    "id": "ALL_CARDS_UPGRADED",
+    "name": "완벽한 덱",
+    "description": "완전히 강화된 덱으로 게임에서 승리하세요.",
+    "category": "run",
+    "character": null,
+    "threshold": null,
+    "condition": "Win with a fully-upgraded deck"
+  },
+  {
+    "id": "ALL_OTHER_ACHIEVEMENTS",
+    "name": "불멸자",
+    "description": "다른 모든 업적을 달성하세요.",
+    "category": "meta",
+    "character": null,
+    "threshold": null,
+    "condition": "Complete all other achievements"
+  },
+  {
+    "id": "CHARACTER_SKILL_IRONCLAD1",
+    "name": "이행된 조약",
+    "description": "한 번의 전투에서 카드를 20장 소멸시키세요.",
+    "category": "character_skill",
+    "character": "Ironclad",
+    "threshold": 20,
+    "condition": "Exhaust 20 cards in a single combat"
+  },
+  {
+    "id": "CHARACTER_SKILL_IRONCLAD2",
+    "name": "가장 무거운 검",
+    "description": "한 번의 공격으로 피해를 999 주세요.",
+    "category": "character_skill",
+    "character": "Ironclad",
+    "threshold": 999,
+    "condition": "Deal 999+ damage in a single hit"
+  },
+  {
+    "id": "CHARACTER_SKILL_NECROBINDER1",
+    "name": "넌 이미 죽어있다",
+    "description": "단일 적에게 종말을 999 부여하세요.",
+    "category": "character_skill",
+    "character": "Necrobinder",
+    "threshold": 999,
+    "condition": "Apply 999+ Doom to a single enemy"
+  },
+  {
+    "id": "CHARACTER_SKILL_NECROBINDER2",
+    "name": "우유",
+    "description": "골골이에게 힘을 50 부여하세요.",
+    "category": "character_skill",
+    "character": "Necrobinder",
+    "threshold": 50,
+    "condition": "Apply 50+ Strength to Osty"
+  },
+  {
+    "id": "CHARACTER_SKILL_REGENT1",
+    "name": "군주의 품격",
+    "description": "999 이상의 피해를 주는 군주의 칼날을 단조하세요.",
+    "category": "character_skill",
+    "character": "Regent",
+    "threshold": 999,
+    "condition": "Forge a Sovereign Blade with 999+ base damage"
+  },
+  {
+    "id": "CHARACTER_SKILL_REGENT2",
+    "name": "드높은 태양",
+    "description": "한 번에 별을 20 보유하세요.",
+    "category": "character_skill",
+    "character": "Regent",
+    "threshold": 20,
+    "condition": "Have 20+ Stars at once"
+  },
+  {
+    "id": "CHARACTER_SKILL_SILENT1",
+    "name": "비열한 교활함",
+    "description": "카드 1장으로 교활 카드를 5장 사용하세요.",
+    "category": "character_skill",
+    "character": "Silent",
+    "threshold": 5,
+    "condition": "Play 5 cards via Sly off a single card play"
+  },
+  {
+    "id": "CHARACTER_SKILL_SILENT2",
+    "name": "몇 방울로도",
+    "description": "단일 적에게 중독을 99 부여하세요.",
+    "category": "character_skill",
+    "character": "Silent",
+    "threshold": 99,
+    "condition": "Apply 99+ Poison to a single enemy"
+  },
+  {
+    "id": "COMPLETE_ACT4",
+    "name": "진정한 끝",
+    "description": "4막을 완료하세요.",
+    "category": "run",
+    "character": null,
+    "threshold": null,
+    "condition": "Complete Act 4"
+  },
+  {
+    "id": "COMPLETE_TIMELINE",
+    "name": "역사가",
+    "description": "연대표를 완성하세요.",
+    "category": "collection",
+    "character": null,
+    "threshold": null,
+    "condition": "Complete the Timeline"
+  },
+  {
+    "id": "DEFEAT_GLORY_ENEMIES",
+    "name": "영광",
+    "description": "영광의 모든 적을 처치하세요.",
+    "category": "combat",
+    "character": null,
+    "threshold": null,
+    "condition": "Defeat every enemy in the Glory"
+  },
+  {
+    "id": "DEFEAT_HIVE_ENEMIES",
+    "name": "군락",
+    "description": "군락의 모든 적을 처치하세요.",
+    "category": "combat",
+    "character": null,
+    "threshold": null,
+    "condition": "Defeat every enemy in the Hive"
+  },
+  {
+    "id": "DEFEAT_ONE_BOSS",
+    "name": "첫 한 걸음",
+    "description": "보스를 처치하세요.",
+    "category": "combat",
+    "character": null,
+    "threshold": null,
+    "condition": "Defeat a boss"
+  },
+  {
+    "id": "DEFEAT_OVERGROWTH_ENEMIES",
+    "name": "과성장",
+    "description": "과성장의 모든 적을 처치하세요.",
+    "category": "combat",
+    "character": null,
+    "threshold": null,
+    "condition": "Defeat every enemy in the Overgrowth"
+  },
+  {
+    "id": "DEFEAT_UNDERDOCKS_ENEMIES",
+    "name": "지하 선착장",
+    "description": "지하 선착장의 모든 적을 처치하세요.",
+    "category": "combat",
+    "character": null,
+    "threshold": null,
+    "condition": "Defeat every enemy in the Underdocks"
+  },
+  {
+    "id": "DEFECT_ASCENSION10",
+    "name": "메아리",
+    "description": "디펙트로 승천 10에서 승리하세요.",
+    "category": "character_ascension",
+    "character": "Defect",
+    "threshold": null,
+    "condition": null
+  },
+  {
+    "id": "DEFECT_WIN",
+    "name": "디펙트",
+    "description": "디펙트로 승리하세요.",
+    "category": "character_win",
+    "character": "Defect",
+    "threshold": null,
+    "condition": null
+  },
+  {
+    "id": "DISCOVER_ALL_CARDS",
+    "name": "수집가",
+    "description": "모든 카드를 발견하세요.",
+    "category": "collection",
+    "character": null,
+    "threshold": null,
+    "condition": "Discover all cards"
+  },
+  {
+    "id": "DISCOVER_ALL_EVENTS",
+    "name": "탐험가",
+    "description": "모든 이벤트를 만나보세요.",
+    "category": "collection",
+    "character": null,
+    "threshold": null,
+    "condition": "Encounter all events"
+  },
+  {
+    "id": "DISCOVER_ALL_RELICS",
+    "name": "고고학자",
+    "description": "모든 유물을 발견하세요.",
+    "category": "collection",
+    "character": null,
+    "threshold": null,
+    "condition": "Discover all relics"
+  },
+  {
+    "id": "FLOOR_TEN_THOUSAND",
+    "name": "수많은 계단",
+    "description": "10,000층을 등반하세요.",
+    "category": "collection",
+    "character": null,
+    "threshold": 10000,
+    "condition": "Climb 10,000 floors total"
+  },
+  {
+    "id": "IRONCLAD_ASCENSION10",
+    "name": "악마",
+    "description": "아이언클래드로 승천 10에서 승리하세요.",
+    "category": "character_ascension",
+    "character": "Ironclad",
+    "threshold": null,
+    "condition": null
+  },
+  {
+    "id": "IRONCLAD_WIN",
+    "name": "아이언클래드",
+    "description": "아이언클래드로 승리하세요.",
+    "category": "character_win",
+    "character": "Ironclad",
+    "threshold": null,
+    "condition": null
+  },
+  {
+    "id": "NECROBINDER_ASCENSION10",
+    "name": "리치",
+    "description": "네크로바인더로 승천 10에서 승리하세요.",
+    "category": "character_ascension",
+    "character": "Necrobinder",
+    "threshold": null,
+    "condition": null
+  },
+  {
+    "id": "NECROBINDER_WIN",
+    "name": "네크로바인더",
+    "description": "네크로바인더로 승리하세요.",
+    "category": "character_win",
+    "character": "Necrobinder",
+    "threshold": null,
+    "condition": null
+  },
+  {
+    "id": "NO_RELIC_WIN",
+    "name": "유물 따위는 장식입니다",
+    "description": "아무 유물도 획득하지 않고 게임에서 승리하세요.",
+    "category": "run",
+    "character": null,
+    "threshold": null,
+    "condition": "Win without obtaining any relics"
+  },
+  {
+    "id": "PLAY20_CARDS_SINGLE_TURN",
+    "name": "재밌는 카드 게임",
+    "description": "한 턴에 카드를 20장 사용하세요.",
+    "category": "combat",
+    "character": null,
+    "threshold": 20,
+    "condition": "Play 20 cards in a single turn"
+  },
+  {
+    "id": "REGENT_ASCENSION10",
+    "name": "군주",
+    "description": "리젠트로 승천 10에서 승리하세요.",
+    "category": "character_ascension",
+    "character": "Regent",
+    "threshold": null,
+    "condition": null
+  },
+  {
+    "id": "REGENT_WIN",
+    "name": "리젠트",
+    "description": "리젠트로 승리하세요.",
+    "category": "character_win",
+    "character": "Regent",
+    "threshold": null,
+    "condition": null
+  },
+  {
+    "id": "SILENT_ASCENSION10",
+    "name": "유령",
+    "description": "사일런트로 승천 10에서 승리하세요.",
+    "category": "character_ascension",
+    "character": "Silent",
+    "threshold": null,
+    "condition": null
+  },
+  {
+    "id": "SILENT_WIN",
+    "name": "사일런트",
+    "description": "사일런트로 승리하세요.",
+    "category": "character_win",
+    "character": "Silent",
+    "threshold": null,
+    "condition": null
+  }
+]

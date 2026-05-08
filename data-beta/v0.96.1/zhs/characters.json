@@ -1,0 +1,963 @@
+[
+  {
+    "id": "DEFECT",
+    "name": "故障机器人",
+    "description": "一具不停改造自己来生存下去的自动机械。\n在不得不战斗时，它会使用充能球科技来作战。",
+    "starting_hp": 75,
+    "starting_gold": 99,
+    "max_energy": 3,
+    "orb_slots": 3,
+    "starting_deck": [
+      "StrikeDefect",
+      "StrikeDefect",
+      "StrikeDefect",
+      "StrikeDefect",
+      "DefendDefect",
+      "DefendDefect",
+      "DefendDefect",
+      "DefendDefect",
+      "Zap",
+      "Dualcast"
+    ],
+    "starting_relics": [
+      "CrackedCore"
+    ],
+    "unlocks_after": "Necrobinder",
+    "gender": "Neutral",
+    "color": "blue",
+    "dialogue_color": "new",
+    "quotes": {
+      "event_death_prevention": "为了我的朋友们，我必须活下去！",
+      "gold_monologue": "[sine]这些金币可以用来交换零件……[/sine]",
+      "aroma_principle": "[sine][blue]1100 0011 1100 0011……[/blue][/sine]",
+      "banter_alive": "^AHD2N@@iiW_P？",
+      "banter_dead": "……",
+      "unlock_text": "用[pink]？？？[/pink]进行一局游戏来解锁这个角色。",
+      "cards_modifier_title": "故障机器人卡牌",
+      "cards_modifier_description": "故障机器人的卡牌现在会出现在奖励和商店中。"
+    },
+    "dialogues": [
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "我和你说啊，你这块大型垃圾还真是挺好看的，你知道吧？"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]……构造体…\n……活得… 很久…… 是吗……[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]……那个 ..[red]建筑师[/red]...\n....创造了.... 你们两个...[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "你需要一些升级。\n时尚意味上的升级 >:)"
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "所以——你能不能，留下来看守我的别墅呢？拜～托啦？"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]*抱歉地摇头*[/font_size][/i]"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "*欧洛巴斯十分吃惊，竟有防水的构造体？*"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]困扰的自动机，在找你的朋友吗？\n让我来帮忙……[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]构造体会做梦吗？\n看着我，模仿我……[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "故障了是吗？特兹卡塔拉当然可以帮助一个可怜的迷路构造体了。"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "可悲的机器人啊，吾人颇为赏识你的陪伴。\n我们两个，皆是被 他 所抛弃了。"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "如果你把建筑师的心脏带给我，我就恢复你的[aqua]同伴[/aqua]。"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]*签下契约*[/font_size][/i]"
+          }
+        ]
+      }
+    ],
+    "image_url": "/static/images/characters/char_select_defect.webp"
+  },
+  {
+    "id": "IRONCLAD",
+    "name": "铁甲战士",
+    "description": "铁甲军团最后的士兵。\n并非出自自身的意愿，用刀剑与烈焰击溃敌人们。",
+    "starting_hp": 80,
+    "starting_gold": 99,
+    "max_energy": 3,
+    "orb_slots": null,
+    "starting_deck": [
+      "StrikeIronclad",
+      "StrikeIronclad",
+      "StrikeIronclad",
+      "StrikeIronclad",
+      "StrikeIronclad",
+      "DefendIronclad",
+      "DefendIronclad",
+      "DefendIronclad",
+      "DefendIronclad",
+      "Bash"
+    ],
+    "starting_relics": [
+      "BurningBlood"
+    ],
+    "unlocks_after": null,
+    "gender": "Masculine",
+    "color": "red",
+    "dialogue_color": "new",
+    "quotes": {
+      "event_death_prevention": "我的队伍还需要我。",
+      "gold_monologue": "[sine]这些财富可以充实部落的军库……[/sine]",
+      "aroma_principle": "[sine][red]疼痛算得了什么，我的敌人们必须死。[/red][/sine]",
+      "banter_alive": "快点。",
+      "banter_dead": "……",
+      "cards_modifier_title": "铁甲战士卡牌",
+      "cards_modifier_description": "铁甲战士的卡牌现在会出现在奖励和商店中。"
+    },
+    "dialogues": [
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]…是时候…… 再次……\n……战斗了…… 战士啊……[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]……光荣的… 铁甲战士……\n…荣耀 等待着……[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "*一名恶魔战士……欧洛巴斯很吃惊，真是有趣。*"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "*欧洛巴斯可以看看你的剑吗？多么有趣的武器。*"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]你包含着如此的愤怒。从我这里取走一些，找到一些平静……[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]你还记得做梦的感觉吗？\n睡觉是件好事……[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "多么残暴的怒火！是施行暴力的时间了！"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "收下我的力量！！摧毁你的敌人吧！"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "啊呀，你[jitter][b]燃烧[/b][/jitter]得真美！进来，进来！"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "你是个多么强壮的男孩啊！来，吃点东西吧。\n空着肚子可没法[jitter][b]杀戮[/b][/jitter]！"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "失落的部落们是否仍让你感到沉重……？\n[i][font_size=22]瓦库狂笑。[/font_size][/i]"
+          }
+        ]
+      }
+    ],
+    "image_url": "/static/images/characters/char_select_ironclad.webp"
+  },
+  {
+    "id": "NECROBINDER",
+    "name": "亡灵契约师",
+    "description": "一位出生在尖塔的巫妖，正在寻求复仇。\n战斗中会召唤她可靠的左手[gold]奥斯提[/gold]。",
+    "starting_hp": 66,
+    "starting_gold": 99,
+    "max_energy": 3,
+    "orb_slots": null,
+    "starting_deck": [
+      "StrikeNecrobinder",
+      "StrikeNecrobinder",
+      "StrikeNecrobinder",
+      "StrikeNecrobinder",
+      "DefendNecrobinder",
+      "DefendNecrobinder",
+      "DefendNecrobinder",
+      "DefendNecrobinder",
+      "Bodyguard",
+      "Unleash"
+    ],
+    "starting_relics": [
+      "BoundPhylactery"
+    ],
+    "unlocks_after": "Regent",
+    "gender": "Feminine",
+    "color": "purple",
+    "dialogue_color": "new",
+    "quotes": {
+      "event_death_prevention": "我的朋友们可不能没有我。",
+      "gold_monologue": "[sine]或许我终于可以买几双鞋子了……[/sine]",
+      "aroma_principle": "[sine][purple]他们的仇一定要报……我不会动摇……[/purple][/sine]",
+      "banter_alive": "再等几天也行……",
+      "banter_dead": "……",
+      "unlock_text": "用[orange]？？？[/orange]进行一局游戏来解锁这个角色。",
+      "cards_modifier_title": "亡灵契约师卡牌",
+      "cards_modifier_description": "亡灵契约师的卡牌现在会出现在奖励和商店中。"
+    },
+    "dialogues": [
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "我是达弗，我收集财宝！你有财宝吗！？快给我！！"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "除了对复仇的渴望，我再无它物！让我过去！"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "好嘛好嘛！那你选个东西吧！\n要是找到有意思的东西再回来哈！！"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "骷髅姑娘！！找到了点厉害的东西可以帮到你\n*达弗在包裹里翻找着*"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]……一个… 孩子……？\n…接受…… 这份… 力量吧…！[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "*一名巫妖……欧洛巴斯有些害怕。*"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "*不死的代价值得吗？和欧洛巴斯分享你的感受吧。*"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]如此的恶意涂满你的心。[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]带着那只手回来了。\n痛苦的回忆。拿走我的力量然后离开……[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]杀死[red]父亲[/red]不会带来平静。[/thinky_dots]"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "你称那个[jitter]东西[/jitter]为你的父亲！？"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[thinky_dots]我们无法选择自己的家人……[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "一堆骨头？？那你显然需要我的力量！"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "没有肌腱，没有肉，没有蛋白质！你靠什么战斗？？"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "进来吧，进来！让你的火焰燃烧得更[jitter][b]明亮[/b][/jitter]。"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "建筑师严重地伤害了我们俩。"
+          }
+        ]
+      }
+    ],
+    "image_url": "/static/images/characters/char_select_necrobinder.webp"
+  },
+  {
+    "id": "REGENT",
+    "name": "储君",
+    "description": "群星王座的继承人。\n拥有宇宙的力量，但总是让他的仆从们去做各种事情。",
+    "starting_hp": 75,
+    "starting_gold": 99,
+    "max_energy": 3,
+    "orb_slots": null,
+    "starting_deck": [
+      "StrikeRegent",
+      "StrikeRegent",
+      "StrikeRegent",
+      "StrikeRegent",
+      "DefendRegent",
+      "DefendRegent",
+      "DefendRegent",
+      "DefendRegent",
+      "FallingStar",
+      "Venerate"
+    ],
+    "starting_relics": [
+      "DivineRight"
+    ],
+    "unlocks_after": "Silent",
+    "gender": "Masculine",
+    "color": "orange",
+    "dialogue_color": "new",
+    "quotes": {
+      "event_death_prevention": "为了我的队伍，我必须活下去！！",
+      "gold_monologue": "[sine]我可以用这来征召一支不是白痴的军队……[/sine]",
+      "aroma_principle": "[sine][orange]我是下一任群星之王……[/orange][/sine]",
+      "banter_alive": "我等着！！",
+      "banter_dead": "……",
+      "unlock_text": "用[green]？？？[/green]进行一局游戏来解锁这个角色。",
+      "cards_modifier_title": "储君卡牌",
+      "cards_modifier_description": "储君的卡牌现在会出现在奖励和商店中。"
+    },
+    "dialogues": [
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "你这人长得奇形怪状的，身上有没有带着闪闪亮的东西啊？"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "我既不奇形怪状，也不是人……\n我乃是储君！！"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "别挡道！我有财宝要找！！"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "不行！"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "*哐当*"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]……我把你…… 带来[/sine]——"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "*群星之间的访客吗？和欧洛巴斯说说星星的事情吧。*"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "*和欧洛巴斯说说星达里斯的事情，欧洛巴斯需要知道更多。*"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "你好！我是储君。\n你好？？[jitter]你好！？[/jitter]"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "[thinky_dots]现在安静下来。\n拿走我的一部分，然后上路吧……[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "我回来了！啊，你当然在睡觉。\n让我看看这里……"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "你为什么把自己送出去？"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "[thinky_dots]当我有大量的血肉时，为什么不给呢？[/thinky_dots]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[thinky_dots]当你回来时，我会重新补充。\n这就是睡眠的作用……[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "你和伟大的坦克斯一样，也是橙色！？？"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "众所周知，橙色是最符合帝王的颜色！"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "橙色了不起！威风凛凛！！"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "啊呀呀，真是个[sine]稀奇[/sine]的访客！你是什么呀，亲爱的？"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "我不是什么亲爱的！对我说话得尊重一点，大个子女人！"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "我的礼数都到哪里去了？\n[i][font_size=22]特兹卡塔拉高兴地咯咯笑。[/font_size][/i]"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "欢迎回来，高贵的男孩！看起来你在外头做得很[jitter][b]棒[/b][/jitter]呢。"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "还是一直叫我“王室男孩”……啊，算了。见到你我也很高兴。"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "不想。"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "……"
+          }
+        ]
+      }
+    ],
+    "image_url": "/static/images/characters/char_select_regent.webp"
+  },
+  {
+    "id": "SILENT",
+    "name": "静默猎手",
+    "description": "一位来自尖塔之外的女猎手。\n随时准备刀刺与毒杀任何拦路者。",
+    "starting_hp": 70,
+    "starting_gold": 99,
+    "max_energy": 3,
+    "orb_slots": null,
+    "starting_deck": [
+      "StrikeSilent",
+      "StrikeSilent",
+      "StrikeSilent",
+      "StrikeSilent",
+      "StrikeSilent",
+      "DefendSilent",
+      "DefendSilent",
+      "DefendSilent",
+      "DefendSilent",
+      "DefendSilent",
+      "Neutralize",
+      "Survivor"
+    ],
+    "starting_relics": [
+      "RingOfTheSnake"
+    ],
+    "unlocks_after": null,
+    "gender": "Feminine",
+    "color": "green",
+    "dialogue_color": "new",
+    "quotes": {
+      "event_death_prevention": "活下去才能继续狩猎……",
+      "gold_monologue": "[sine]我的姐妹们一定会为这些财富感到骄傲……[/sine]",
+      "aroma_principle": "[sine][green]……狩猎……证明……属于……[/green][/sine]",
+      "banter_alive": "[sine]……[/sine]",
+      "banter_dead": "……",
+      "unlock_text": "进行一局游戏来解锁这个角色。",
+      "cards_modifier_title": "静默猎手卡牌",
+      "cards_modifier_description": "静默猎手的卡牌现在会出现在奖励和商店中。"
+    },
+    "dialogues": [
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "嘿嘿嘿……闪闪亮，闪闪亮！哇啊！你在这儿多久了！？"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "呃，那就，那里的几个东西你随便挑一个走吧。"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "……   …"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "好，那我就走了……没问题吧？还是说……？没问题嗯……"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]……你又… 回来了…… 是吗？[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]……你的…\n ……战利品… 在等你……[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "*不说话的人吶，给欧洛巴斯看看你杀死过的生物吧。*"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]杀戮的生物，这里不需要暴力。\n拿走我的一部分，找到平静……[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]猎取战利品？当然，拿走我的一部分……\n无论什么能让你舒适……[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "是猎手！我会把你细小的利爪磨得更利！！"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "弱小的绿色人类啊！成为站在巅峰的掠食者吧！"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "哎呀你好啊绿色的小家伙！你那么可爱，我都想一口把你给吃了吶！"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "你得了很严重的[jitter][b]疾病[/b][/jitter]呢。让我来照顾你吧。"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[i][font_size=22]瓦库向寂静者展示他的各种契约。[/font_size][/i]"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "建筑师还不够，也把你的姐妹们杀了吧！"
+          }
+        ]
+      }
+    ],
+    "image_url": "/static/images/characters/char_select_silent.webp"
+  }
+]

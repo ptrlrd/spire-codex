@@ -5,7 +5,7 @@
     "description": "[gold]Saldırı[/gold] içeren tüm kartlar bu savaş boyunca [blue]1[/blue] [gold]Yeniden Oyna[/gold] elde eder.",
     "description_raw": "[gold]Saldırı[/gold] içeren tüm kartlar bu savaş boyunca [blue]1[/blue] [gold]Yeniden Oyna[/gold] elde eder.",
     "rarity": "Nadir",
-    "image_url": "/static/images/potions/soldiers_stew.png",
+    "image_url": "/static/images/potions/soldiers_stew.webp",
     "rarity_key": "Rare",
     "compendium_order": 40,
     "pool": "ironclad"
@@ -16,7 +16,7 @@
     "description": "[blue]20[/blue] hasar ver.",
     "description_raw": "[blue]{Damage}[/blue] hasar ver.",
     "rarity": "Yaygın",
-    "image_url": "/static/images/potions/fire_potion.png",
+    "image_url": "/static/images/potions/fire_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 0,
     "pool": "shared"
@@ -27,7 +27,7 @@
     "description": "[blue]1[/blue] [gold]Kuvvet[/gold] ve [blue]1[/blue] [gold]Çeviklik[/gold] elde et.",
     "description_raw": "[blue]{StrengthPower}[/blue] [gold]Kuvvet[/gold] ve [blue]{DexterityPower}[/blue] [gold]Çeviklik[/gold] elde et.",
     "rarity": "Az Yaygın",
-    "image_url": "/static/images/potions/fysh_oil.png",
+    "image_url": "/static/images/potions/fysh_oil.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 20,
     "pool": "shared"
@@ -38,7 +38,7 @@
     "description": "[gold]El[/gold]'ine eklemek için rastgele [blue]3[/blue] Beceri kartından [blue]1[/blue] tanesini seç. Bu tur oynaması ücretsiz olur.",
     "description_raw": "[gold]El[/gold]'ine eklemek için rastgele [blue]3[/blue] Beceri kartından [blue]1[/blue] tanesini seç. Bu tur oynaması ücretsiz olur.",
     "rarity": "Yaygın",
-    "image_url": "/static/images/potions/skill_potion.png",
+    "image_url": "/static/images/potions/skill_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 1,
     "pool": "shared"
@@ -49,7 +49,7 @@
     "description": "[blue]1[/blue] kart çek. Sonraki [blue]3[/blue] turunun başında fazladan [blue]1[/blue] kart çek.",
     "description_raw": "[blue]{Cards}[/blue] {Cards:plural:kart|kart} çek. Sonraki {ClarityPower:plural:turunun başında|[blue]{}[/blue] turunun başında} fazladan [blue]1[/blue] kart çek.",
     "rarity": "Az Yaygın",
-    "image_url": "/static/images/potions/clarity.png",
+    "image_url": "/static/images/potions/clarity.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 21,
     "pool": "shared"
@@ -60,7 +60,7 @@
     "description": "[blue]12[/blue] [gold]Blok[/gold] elde et.",
     "description_raw": "[blue]{Block}[/blue] [gold]Blok[/gold] elde et.",
     "rarity": "Yaygın",
-    "image_url": "/static/images/potions/block_potion.png",
+    "image_url": "/static/images/potions/block_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 2,
     "pool": "shared"
@@ -71,7 +71,7 @@
     "description": "Düşmanın saldırıları sonraki [blue]4[/blue] tur için %[blue]30[/blue] daha az hasar verir.",
     "description_raw": "Düşmanın saldırıları {Repeat:plural:sonraki tur|sonraki [blue]{}[/blue] tur} için %[blue]{DamageDecrease}[/blue] daha az hasar verir.",
     "rarity": "Nadir",
-    "image_url": "/static/images/potions/beetle_juice.png",
+    "image_url": "/static/images/potions/beetle_juice.webp",
     "rarity_key": "Rare",
     "compendium_order": 41,
     "pool": "shared"
@@ -82,7 +82,7 @@
     "description": "[gold]Çekme Deste[/gold]'nin en üstündeki [blue]3[/blue] kartı oyna.",
     "description_raw": "[gold]Çekme Deste[/gold]'nin en üstündeki [blue]{Repeat}[/blue] kartı oyna.",
     "rarity": "Nadir",
-    "image_url": "/static/images/potions/distilled_chaos.png",
+    "image_url": "/static/images/potions/distilled_chaos.webp",
     "rarity_key": "Rare",
     "compendium_order": 42,
     "pool": "shared"
@@ -93,7 +93,7 @@
     "description": "[gold]El[/gold]'inden bir kart seç. Bu savaş boyunca oynaması ücretsiz olur.",
     "description_raw": "[gold]El[/gold]'inden bir kart seç. Bu savaş boyunca oynaması ücretsiz olur.",
     "rarity": "Az Yaygın",
-    "image_url": "/static/images/potions/touch_of_insanity.png",
+    "image_url": "/static/images/potions/touch_of_insanity.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 22,
     "pool": "shared"
@@ -104,7 +104,7 @@
     "description": "[blue]7[/blue] [gold]Zırh[/gold] elde et.",
     "description_raw": "[blue]{PlatingPower}[/blue] [gold]Zırh[/gold] elde et.",
     "rarity": "Az Yaygın",
-    "image_url": "/static/images/potions/heart_of_iron.png",
+    "image_url": "/static/images/potions/heart_of_iron.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 23,
     "pool": "shared"
@@ -115,7 +115,7 @@
     "description": "Savaşın sonuna kadar [gold]El[/gold]'indeki tüm kartları [gold]Geliştir[/gold].",
     "description_raw": "Savaşın sonuna kadar [gold]El[/gold]'indeki tüm kartları [gold]Geliştir[/gold].",
     "rarity": "Az Yaygın",
-    "image_url": "/static/images/potions/blessing_of_the_forge.png",
+    "image_url": "/static/images/potions/blessing_of_the_forge.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 24,
     "pool": "shared"
@@ -126,7 +126,7 @@
     "description": "[blue]2[/blue] tur boyunca [gold]El[/gold]'ini [gold]Sakla[/gold].",
     "description_raw": "[blue]{Repeat}[/blue] {Repeat:plural:tur|tur} boyunca [gold]El[/gold]'ini [gold]Sakla[/gold].",
     "rarity": "Az Yaygın",
-    "image_url": "/static/images/potions/stable_serum.png",
+    "image_url": "/static/images/potions/stable_serum.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 25,
     "pool": "shared"
@@ -137,7 +137,7 @@
     "description": "Boş iksir yuvalarını rastgele iksirlerle doldur.",
     "description_raw": "Boş iksir yuvalarını rastgele iksirlerle doldur.",
     "rarity": "Nadir",
-    "image_url": "/static/images/potions/entropic_brew.png",
+    "image_url": "/static/images/potions/entropic_brew.webp",
     "rarity_key": "Rare",
     "compendium_order": 43,
     "pool": "shared"
@@ -148,7 +148,7 @@
     "description": "Bir sonraki oynayacağın Saldırı kartı üç kat fazla hasar verir.",
     "description_raw": "Bir sonraki oynayacağın Saldırı kartı üç kat fazla hasar verir.",
     "rarity": "Nadir",
-    "image_url": "/static/images/potions/gigantification_potion.png",
+    "image_url": "/static/images/potions/gigantification_potion.webp",
     "rarity_key": "Rare",
     "compendium_order": 44,
     "pool": "shared"
@@ -159,7 +159,7 @@
     "description": "[energy:2] elde et.",
     "description_raw": "{Energy:energyIcons()} elde et.",
     "rarity": "Yaygın",
-    "image_url": "/static/images/potions/energy_potion.png",
+    "image_url": "/static/images/potions/energy_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 3,
     "pool": "shared"
@@ -170,7 +170,7 @@
     "description": "[blue]5[/blue] [gold]Kuvvet[/gold] elde et. Turunun sonunda [blue]5[/blue] [gold]Kuvvet[/gold] kaybet.",
     "description_raw": "[blue]{StrengthPower}[/blue] [gold]Kuvvet[/gold] elde et. Turunun sonunda [blue]{StrengthPower}[/blue] [gold]Kuvvet[/gold] kaybet.",
     "rarity": "Yaygın",
-    "image_url": "/static/images/potions/flex_potion.png",
+    "image_url": "/static/images/potions/flex_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 4,
     "pool": "shared"
@@ -181,7 +181,7 @@
     "description": "[gold]El[/gold]'ine eklemek için rastgele [blue]3[/blue] Güç kartından [blue]1[/blue] tanesini seç. Bu tur oynaması ücretsiz olur.",
     "description_raw": "[gold]El[/gold]'ine eklemek için rastgele [blue]3[/blue] Güç kartından [blue]1[/blue] tanesini seç. Bu tur oynaması ücretsiz olur.",
     "rarity": "Yaygın",
-    "image_url": "/static/images/potions/power_potion.png",
+    "image_url": "/static/images/potions/power_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 5,
     "pool": "shared"
@@ -192,7 +192,7 @@
     "description": "[energy:1] elde et. [blue]2[/blue] kart çek.",
     "description_raw": "{Energy:energyIcons()} elde et. [blue]{Cards}[/blue] {Cards:plural:kart|kart} çek.",
     "rarity": "Az Yaygın",
-    "image_url": "/static/images/potions/cure_all.png",
+    "image_url": "/static/images/potions/cure_all.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 26,
     "pool": "shared"
@@ -203,7 +203,7 @@
     "description": "[gold]El[/gold]'ine [blue]2[/blue] [gold]Ruh[/gold] ekle.",
     "description_raw": "[gold]El[/gold]'ine [blue]{Cards}[/blue] [gold]{Cards:plural:Ruh|Ruh}[/gold] ekle.",
     "rarity": "Nadir",
-    "image_url": "/static/images/potions/pot_of_ghouls.png",
+    "image_url": "/static/images/potions/pot_of_ghouls.webp",
     "rarity_key": "Rare",
     "compendium_order": 45,
     "pool": "necrobinder"
@@ -214,7 +214,7 @@
     "description": "[blue]3[/blue] kart çek.",
     "description_raw": "[blue]{Cards}[/blue] {Cards:plural:kart|kart} çek.",
     "rarity": "Yaygın",
-    "image_url": "/static/images/potions/swift_potion.png",
+    "image_url": "/static/images/potions/swift_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 6,
     "pool": "shared"
@@ -225,7 +225,7 @@
     "description": "[gold]El[/gold]'ini [gold]Tüket[/gold]. [blue]10[/blue] kart çek.",
     "description_raw": "[gold]El[/gold]'ini [gold]Tüket[/gold]. [blue]{Cards}[/blue] kart çek.",
     "rarity": "Etkinlik",
-    "image_url": "/static/images/potions/glowwater_potion.png",
+    "image_url": "/static/images/potions/glowwater_potion.webp",
     "rarity_key": "Event",
     "compendium_order": 60,
     "pool": "event"
@@ -236,7 +236,7 @@
     "description": "[energy:1] elde et. Sonraki [blue]3[/blue] turunun başında fazladan [energy:1] elde et.",
     "description_raw": "{Energy:energyIcons()} elde et. Sonraki [blue]{RadiancePower}[/blue] {RadiancePower:plural:turunun|turunun} başında fazladan {energyPrefix:energyIcons(1)} elde et.",
     "rarity": "Az Yaygın",
-    "image_url": "/static/images/potions/radiant_tincture.png",
+    "image_url": "/static/images/potions/radiant_tincture.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 27,
     "pool": "shared"
@@ -247,7 +247,7 @@
     "description": "[blue]33[/blue] [gold]Kader[/gold] uygula.",
     "description_raw": "[blue]{DoomPower}[/blue] [gold]Kader[/gold] uygula.",
     "rarity": "Yaygın",
-    "image_url": "/static/images/potions/potion_of_doom.png",
+    "image_url": "/static/images/potions/potion_of_doom.webp",
     "rarity_key": "Common",
     "compendium_order": 7,
     "pool": "necrobinder"
@@ -258,7 +258,7 @@
     "description": "Maksimum CP’nin [green]%20[/green] kadarını iyileştir.",
     "description_raw": "Maksimum CP’nin [green]%{HealPercent}[/green] kadarını iyileştir.",
     "rarity": "Yaygın",
-    "image_url": "/static/images/potions/blood_potion.png",
+    "image_url": "/static/images/potions/blood_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 8,
     "pool": "ironclad"
@@ -269,7 +269,7 @@
     "description": "[blue]2[/blue] [gold]Küre Yuvası[/gold] elde et.",
     "description_raw": "[blue]{Repeat}[/blue] [gold]Küre {Repeat:plural:Yuvası|Yuvası}[/gold] elde et.",
     "rarity": "Az Yaygın",
-    "image_url": "/static/images/potions/potion_of_capacity.png",
+    "image_url": "/static/images/potions/potion_of_capacity.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 28,
     "pool": "defect"
@@ -280,7 +280,7 @@
     "description": "Her bir [gold]Küre Yuva[/gold]'n için bir [gold]Karanlık[/gold] [gold]Oluştur[/gold].",
     "description_raw": "Her bir [gold]Küre Yuva[/gold]'n için bir [gold]Karanlık[/gold] [gold]Oluştur[/gold].",
     "rarity": "Nadir",
-    "image_url": "/static/images/potions/essence_of_darkness.png",
+    "image_url": "/static/images/potions/essence_of_darkness.webp",
     "rarity_key": "Rare",
     "compendium_order": 46,
     "pool": "defect"
@@ -291,7 +291,7 @@
     "description": "[blue]1[/blue] [gold]Soyutluk[/gold] elde et.",
     "description_raw": "[blue]1[/blue] [gold]Soyutluk[/gold] elde et.",
     "rarity": "Nadir",
-    "image_url": "/static/images/potions/ghost_in_a_jar.png",
+    "image_url": "/static/images/potions/ghost_in_a_jar.webp",
     "rarity_key": "Rare",
     "compendium_order": 47,
     "pool": "silent"
@@ -302,7 +302,7 @@
     "description": "[blue]15[/blue] [gold]Çağır[/gold].",
     "description_raw": "[blue]{Summon}[/blue] [gold]Çağır[/gold].",
     "rarity": "Az Yaygın",
-    "image_url": "/static/images/potions/bone_brew.png",
+    "image_url": "/static/images/potions/bone_brew.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 29,
     "pool": "necrobinder"
@@ -313,7 +313,7 @@
     "description": "[gold]El[/gold]'ine [blue]3[/blue] [gold]Geliştirilmiş[/gold] Renksiz kart ekle.",
     "description_raw": "[gold]El[/gold]'ine [blue]{Cards}[/blue] [gold]Geliştirilmiş[/gold] Renksiz {Cards:plural:kart|kart} ekle.",
     "rarity": "Nadir",
-    "image_url": "/static/images/potions/cosmic_concoction.png",
+    "image_url": "/static/images/potions/cosmic_concoction.webp",
     "rarity_key": "Rare",
     "compendium_order": 48,
     "pool": "regent"
@@ -324,7 +324,7 @@
     "description": "[blue]15[/blue] [gold]Döv[/gold].",
     "description_raw": "[blue]{Forge}[/blue] [gold]Döv[/gold].",
     "rarity": "Az Yaygın",
-    "image_url": "/static/images/potions/kings_courage.png",
+    "image_url": "/static/images/potions/kings_courage.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 30,
     "pool": "regent"
@@ -335,7 +335,7 @@
     "description": "İstediğin sayıda kartı elinden çıkar ve aynı sayıda kart çek.",
     "description_raw": "İstediğin sayıda kartı elinden çıkar ve aynı sayıda kart çek.",
     "rarity": "Az Yaygın",
-    "image_url": "/static/images/potions/gamblers_brew.png",
+    "image_url": "/static/images/potions/gamblers_brew.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 31,
     "pool": "shared"
@@ -346,7 +346,7 @@
     "description": "[gold]El[/gold]'ine [blue]3[/blue] [gold]Geliştirilmiş Kama[/gold] ekle.",
     "description_raw": "[gold]El[/gold]'ine [blue]{Cards}[/blue] [gold]Geliştirilmiş {Cards:plural:Kama|Kama}[/gold] ekle.",
     "rarity": "Az Yaygın",
-    "image_url": "/static/images/potions/cunning_potion.png",
+    "image_url": "/static/images/potions/cunning_potion.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 32,
     "pool": "silent"
@@ -357,7 +357,7 @@
     "description": "[blue]2[/blue] [gold]Kuvvet[/gold] elde et.",
     "description_raw": "[blue]{StrengthPower}[/blue] [gold]Kuvvet[/gold] elde et.",
     "rarity": "Yaygın",
-    "image_url": "/static/images/potions/strength_potion.png",
+    "image_url": "/static/images/potions/strength_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 9,
     "pool": "shared"
@@ -368,7 +368,7 @@
     "description": "[gold]El[/gold]'indeki istediğin sayıda kartı [gold]Tüket[/gold].",
     "description_raw": "[gold]El[/gold]'indeki istediğin sayıda kartı [gold]Tüket[/gold].",
     "rarity": "Az Yaygın",
-    "image_url": "/static/images/potions/ashwater.png",
+    "image_url": "/static/images/potions/ashwater.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 33,
     "pool": "ironclad"
@@ -379,7 +379,7 @@
     "description": "[blue]1[/blue] [gold]Ritüel[/gold] elde et.",
     "description_raw": "[blue]{RitualPower}[/blue] [gold]Ritüel[/gold] elde et.",
     "rarity": "Nadir",
-    "image_url": "/static/images/potions/mazaleths_gift.png",
+    "image_url": "/static/images/potions/mazaleths_gift.webp",
     "rarity_key": "Rare",
     "compendium_order": 49,
     "pool": "shared"
@@ -390,7 +390,7 @@
     "description": "[blue]5[/blue] Maksimum CP elde et.",
     "description_raw": "[blue]{MaxHp}[/blue] Maksimum CP elde et.",
     "rarity": "Nadir",
-    "image_url": "/static/images/potions/fruit_juice.png",
+    "image_url": "/static/images/potions/fruit_juice.webp",
     "rarity_key": "Rare",
     "compendium_order": 50,
     "pool": "shared"
@@ -401,7 +401,7 @@
     "description": "TÜM düşmanlara [blue]1[/blue] [gold]Zayıf[/gold] ve [blue]1[/blue] [gold]Savunmasız[/gold] uygula.",
     "description_raw": "TÜM düşmanlara [blue]{WeakPower:diff()}[/blue] [gold]Zayıf[/gold] ve [blue]{VulnerablePower:diff()}[/blue] [gold]Savunmasız[/gold] uygula.",
     "rarity": "Az Yaygın",
-    "image_url": "/static/images/potions/potion_of_binding.png",
+    "image_url": "/static/images/potions/potion_of_binding.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 34,
     "pool": "shared"
@@ -412,7 +412,7 @@
     "description": "[blue]2[/blue] [gold]Odak[/gold] elde et.",
     "description_raw": "[blue]{FocusPower}[/blue] [gold]Odak[/gold] elde et.",
     "rarity": "Yaygın",
-    "image_url": "/static/images/potions/focus_potion.png",
+    "image_url": "/static/images/potions/focus_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 10,
     "pool": "defect"
@@ -423,7 +423,7 @@
     "description": "[gold]El[/gold]'ine rastgele bir Saldırı, Beceri ve Güç kartı ekle. Bu tur oynanmaları ücretsiz olur.",
     "description_raw": "[gold]El[/gold]'ine rastgele bir Saldırı, Beceri ve Güç kartı ekle. Bu tur oynanmaları ücretsiz olur.",
     "rarity": "Nadir",
-    "image_url": "/static/images/potions/orobic_acid.png",
+    "image_url": "/static/images/potions/orobic_acid.webp",
     "rarity_key": "Rare",
     "compendium_order": 51,
     "pool": "shared"
@@ -434,7 +434,7 @@
     "description": "TÜM düşmanlara [blue]10[/blue] hasar ver.",
     "description_raw": "TÜM düşmanlara [blue]{Damage}[/blue] hasar ver.",
     "rarity": "Yaygın",
-    "image_url": "/static/images/potions/explosive_ampoule.png",
+    "image_url": "/static/images/potions/explosive_ampoule.webp",
     "rarity_key": "Common",
     "compendium_order": 11,
     "pool": "shared"
@@ -445,7 +445,7 @@
     "description": "[gold]El[/gold]'ine eklemek için rastgele [blue]3[/blue] Renksiz karttan [blue]1[/blue] tanesini seç. Bu tur oynaması ücretsiz olur.",
     "description_raw": "[gold]El[/gold]'ine eklemek için rastgele [blue]3[/blue] Renksiz karttan [blue]1[/blue] tanesini seç. Bu tur oynaması ücretsiz olur.",
     "rarity": "Yaygın",
-    "image_url": "/static/images/potions/colorless_potion.png",
+    "image_url": "/static/images/potions/colorless_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 12,
     "pool": "shared"
@@ -456,7 +456,7 @@
     "description": "Rastgele [blue]3[/blue] Saldırı kartından [blue]1[/blue] tanesini [gold]El[/gold]'ine ekle. Bu tur oynaması ücretsiz olur.",
     "description_raw": "Rastgele [blue]3[/blue] Saldırı kartından [blue]1[/blue] tanesini [gold]El[/gold]'ine ekle. Bu tur oynaması ücretsiz olur.",
     "rarity": "Yaygın",
-    "image_url": "/static/images/potions/attack_potion.png",
+    "image_url": "/static/images/potions/attack_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 13,
     "pool": "shared"
@@ -467,7 +467,7 @@
     "description": "[blue]3[/blue] [gold]Savunmasız[/gold] uygula.",
     "description_raw": "[blue]{VulnerablePower}[/blue] [gold]Savunmasız[/gold] uygula.",
     "rarity": "Yaygın",
-    "image_url": "/static/images/potions/vulnerable_potion.png",
+    "image_url": "/static/images/potions/vulnerable_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 14,
     "pool": "shared"
@@ -478,7 +478,7 @@
     "description": "[gold]Blok[/gold]'unu üç katına çıkar.",
     "description_raw": "[gold]Blok[/gold]'unu üç katına çıkar.",
     "rarity": "Az Yaygın",
-    "image_url": "/static/images/potions/fortifier.png",
+    "image_url": "/static/images/potions/fortifier.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 35,
     "pool": "shared"
@@ -489,7 +489,7 @@
     "description": "[blue]7[/blue] kart çek. Bu turda [gold]El[/gold]'indeki kartların maliyetini rastgele değiştir.",
     "description_raw": "[blue]{Cards}[/blue] kart çek. Bu turda [gold]El[/gold]'indeki kartların maliyetini rastgele değiştir.",
     "rarity": "Nadir",
-    "image_url": "/static/images/potions/snecko_oil.png",
+    "image_url": "/static/images/potions/snecko_oil.webp",
     "rarity_key": "Rare",
     "compendium_order": 52,
     "pool": "shared"
@@ -500,7 +500,7 @@
     "description": "[blue]3[/blue] [gold]Diken[/gold] elde et.",
     "description_raw": "[blue]{ThornsPower}[/blue] [gold]Diken[/gold] elde et.",
     "rarity": "Az Yaygın",
-    "image_url": "/static/images/potions/liquid_bronze.png",
+    "image_url": "/static/images/potions/liquid_bronze.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 36,
     "pool": "shared"
@@ -511,7 +511,7 @@
     "description": "[gold]Atık Deste[/gold]'nden [gold]El[/gold]'ine bir kart koy. Bu tur maliyeti [blue]0[/blue] [energy:1] olur.",
     "description_raw": "[gold]Atık Deste[/gold]'nden [gold]El[/gold]'ine bir kart koy. Bu tur maliyeti [blue]0[/blue] {energyPrefix:energyIcons(1)} olur.",
     "rarity": "Nadir",
-    "image_url": "/static/images/potions/liquid_memories.png",
+    "image_url": "/static/images/potions/liquid_memories.webp",
     "rarity_key": "Rare",
     "compendium_order": 53,
     "pool": "shared"
@@ -522,7 +522,7 @@
     "description": "Düşman, her bir turunun sonunda [blue]9[/blue] CP kaybeder.",
     "description_raw": "Düşman, her bir turunun sonunda [blue]{Demise}[/blue] CP kaybeder.",
     "rarity": "Az Yaygın",
-    "image_url": "/static/images/potions/powdered_demise.png",
+    "image_url": "/static/images/potions/powdered_demise.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 37,
     "pool": "shared"
@@ -533,7 +533,7 @@
     "description": "[green]5[/green] [gold]Yenilenme[/gold] elde et.",
     "description_raw": "[green]{RegenPower}[/green] [gold]Yenilenme[/gold] elde et.",
     "rarity": "Az Yaygın",
-    "image_url": "/static/images/potions/regen_potion.png",
+    "image_url": "/static/images/potions/regen_potion.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 38,
     "pool": "shared"
@@ -544,7 +544,7 @@
     "description": "[star:3] elde et.",
     "description_raw": "{Stars:starIcons()} elde et.",
     "rarity": "Yaygın",
-    "image_url": "/static/images/potions/star_potion.png",
+    "image_url": "/static/images/potions/star_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 15,
     "pool": "regent"
@@ -555,7 +555,7 @@
     "description": "[blue]3[/blue] [gold]Zayıf[/gold] uygula.",
     "description_raw": "[blue]{WeakPower}[/blue] [gold]Zayıf[/gold] uygula.",
     "rarity": "Yaygın",
-    "image_url": "/static/images/potions/weak_potion.png",
+    "image_url": "/static/images/potions/weak_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 16,
     "pool": "shared"
@@ -566,7 +566,7 @@
     "description": "[blue]6[/blue] [gold]Zehir[/gold] uygula.",
     "description_raw": "[blue]{PoisonPower}[/blue] [gold]Zehir[/gold] uygula.",
     "rarity": "Yaygın",
-    "image_url": "/static/images/potions/poison_potion.png",
+    "image_url": "/static/images/potions/poison_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 17,
     "pool": "silent"
@@ -577,7 +577,7 @@
     "description": "TÜM düşmanlar bu turda [blue]7[/blue] [gold]Kuvvet[/gold] kaybeder.",
     "description_raw": "TÜM düşmanlar bu turda [blue]{StrengthPower}[/blue] [gold]Kuvvet[/gold] kaybeder.",
     "rarity": "Nadir",
-    "image_url": "/static/images/potions/shackling_potion.png",
+    "image_url": "/static/images/potions/shackling_potion.webp",
     "rarity_key": "Rare",
     "compendium_order": 54,
     "pool": "shared"
@@ -588,7 +588,7 @@
     "description": "[blue]2[/blue] [gold]Çeviklik[/gold] elde et.",
     "description_raw": "[blue]{DexterityPower}[/blue] [gold]Çeviklik[/gold] elde et.",
     "rarity": "Yaygın",
-    "image_url": "/static/images/potions/dexterity_potion.png",
+    "image_url": "/static/images/potions/dexterity_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 18,
     "pool": "shared"
@@ -599,7 +599,7 @@
     "description": "[blue]5[/blue] [gold]Çeviklik[/gold] elde et. Turunun sonunda [blue]5[/blue] [gold]Çeviklik[/gold] kaybet.",
     "description_raw": "[blue]{DexterityPower}[/blue] [gold]Çeviklik[/gold] elde et. Turunun sonunda [blue]{DexterityPower}[/blue] [gold]Çeviklik[/gold] kaybet.",
     "rarity": "Yaygın",
-    "image_url": "/static/images/potions/speed_potion.png",
+    "image_url": "/static/images/potions/speed_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 19,
     "pool": "shared"
@@ -610,7 +610,7 @@
     "description": "Bu tur sonraki oynadığın kart bir kez daha oynanır.",
     "description_raw": "Bu tur sonraki oynadığın kart bir kez daha oynanır.",
     "rarity": "Az Yaygın",
-    "image_url": "/static/images/potions/duplicator.png",
+    "image_url": "/static/images/potions/duplicator.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 39,
     "pool": "shared"
@@ -621,7 +621,7 @@
     "description": "[gold]Çekme Deste[/gold]'nden bir kartı seç ve onu [gold]El[/gold]'ine ekle.",
     "description_raw": "[gold]Çekme Deste[/gold]'nden bir kartı seç ve onu [gold]El[/gold]'ine ekle.",
     "rarity": "Nadir",
-    "image_url": "/static/images/potions/droplet_of_precognition.png",
+    "image_url": "/static/images/potions/droplet_of_precognition.webp",
     "rarity_key": "Rare",
     "compendium_order": 55,
     "pool": "shared"
@@ -632,7 +632,7 @@
     "description": "[blue]15[/blue] hasar ver.",
     "description_raw": "[blue]{Damage}[/blue] hasar ver.",
     "rarity": "Token",
-    "image_url": "/static/images/potions/potion_shaped_rock.png",
+    "image_url": "/static/images/potions/potion_shaped_rock.webp",
     "rarity_key": "Token",
     "compendium_order": 62,
     "pool": "shared"
@@ -643,7 +643,7 @@
     "description": "HERKESE [blue]12[/blue] hasar ver.\nAyrıca [blue]100[/blue] [gold]Altın[/gold] elde etmek için [gold]Tüccar[/gold]'a da fırlatılabilir.",
     "description_raw": "HERKESE [blue]{Damage}[/blue] hasar ver.\nAyrıca [blue]{Gold}[/blue] [gold]Altın[/gold] elde etmek için [gold]Tüccar[/gold]'a da fırlatılabilir.",
     "rarity": "Etkinlik",
-    "image_url": "/static/images/potions/foul_potion.png",
+    "image_url": "/static/images/potions/foul_potion.webp",
     "rarity_key": "Event",
     "compendium_order": 61,
     "pool": "event"
@@ -654,7 +654,7 @@
     "description": "[blue]1[/blue] [gold]Tampon[/gold] elde et.",
     "description_raw": "[blue]{BufferPower}[/blue] [gold]Tampon[/gold] elde et.",
     "rarity": "Nadir",
-    "image_url": "/static/images/potions/lucky_tonic.png",
+    "image_url": "/static/images/potions/lucky_tonic.webp",
     "rarity_key": "Rare",
     "compendium_order": 56,
     "pool": "shared"
@@ -665,7 +665,7 @@
     "description": "[blue]10[/blue] [gold]Blok[/gold] elde et. Bir sonraki turda [blue]10[/blue] [gold]Blok[/gold] elde et.",
     "description_raw": "[blue]{Block:diff()}[/blue] [gold]Blok[/gold] elde et. Bir sonraki turda [blue]{Block:diff()}[/blue] [gold]Blok[/gold] elde et.",
     "rarity": "Nadir",
-    "image_url": "/static/images/potions/ship_in_a_bottle.png",
+    "image_url": "/static/images/potions/ship_in_a_bottle.webp",
     "rarity_key": "Rare",
     "compendium_order": 57,
     "pool": "shared"
@@ -676,7 +676,7 @@
     "description": "Ölmek yerine bu iksiri harcar ve Maksimum CP'nin [blue]%30[/blue]'una kadar iyileşirsin.",
     "description_raw": "Ölmek yerine bu iksiri harcar ve Maksimum CP'nin [blue]%30[/blue]'una kadar iyileşirsin.",
     "rarity": "Nadir",
-    "image_url": "/static/images/potions/fairy_in_a_bottle.png",
+    "image_url": "/static/images/potions/fairy_in_a_bottle.webp",
     "rarity_key": "Rare",
     "compendium_order": 58,
     "pool": "shared"
@@ -687,7 +687,7 @@
     "description": "TÜM kartlarını [gold]Çekme Deste[/gold]'ne karıştır. [blue]5[/blue] kart çek.",
     "description_raw": "TÜM kartlarını [gold]Çekme Deste[/gold]'ne karıştır. [blue]{Cards}[/blue] {Cards:plural:kart|kart} çek.",
     "rarity": "Nadir",
-    "image_url": "/static/images/potions/bottled_potential.png",
+    "image_url": "/static/images/potions/bottled_potential.webp",
     "rarity_key": "Rare",
     "compendium_order": 59,
     "pool": "shared"

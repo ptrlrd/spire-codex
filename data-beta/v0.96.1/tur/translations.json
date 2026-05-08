@@ -1,0 +1,74 @@
+{
+  "card_types": {
+    "Attack": "Saldırı",
+    "Skill": "Beceri",
+    "Power": "Güç",
+    "Status": "Durum",
+    "Curse": "Lanet",
+    "Quest": "Görev"
+  },
+  "card_rarities": {
+    "Basic": "Temel",
+    "Common": "Yaygın",
+    "Uncommon": "Az Yaygın",
+    "Rare": "Nadir",
+    "Ancient": "Kadim",
+    "Event": "Etkinlik",
+    "Token": "Token",
+    "Status": "Durum",
+    "Curse": "Lanet",
+    "Quest": "Görev"
+  },
+  "relic_rarities": {
+    "Starter": "Başlangıç Kalıntısı",
+    "Common": "Yaygın Kalıntı",
+    "Uncommon": "Az Yaygın Kalıntı",
+    "Rare": "Nadir Kalıntı",
+    "Ancient": "Kadim Kalıntı",
+    "Event": "Etkinlik Kalıntısı",
+    "Shop": "Mağaza Kalıntısı"
+  },
+  "potion_rarities": {
+    "Common": "Yaygın",
+    "Uncommon": "Az Yaygın",
+    "Rare": "Nadir",
+    "Event": "Etkinlik",
+    "Token": "Token"
+  },
+  "keywords": {
+    "ETERNAL": "Sonsuz",
+    "ETHEREAL": "Ruhani",
+    "EXHAUST": "Tüket",
+    "INNATE": "Yerleşik",
+    "RETAIN": "Sakla",
+    "SLY": "Sinsi",
+    "UNPLAYABLE": "Oynanamaz"
+  },
+  "sections": {
+    "cards": "Kart Kütüphanesi",
+    "characters": "Characters",
+    "relics": "Kalıntı Koleksiyonu",
+    "monsters": "Yaratık Ansiklopedisi",
+    "potions": "İksir Laboratuvarı",
+    "enchantments": "Enchantments",
+    "encounters": "Encounters",
+    "events": "Events",
+    "powers": "Powers",
+    "timeline": "Zaman Çizelgesi",
+    "images": "Images",
+    "reference": "Reference"
+  },
+  "section_descs": {
+    "cards": "Spire boyunca karşılaştığın tüm kartları gör.",
+    "relics": "Oyunların sırasında elde ettiğin çeşitli ıvır zıvırları ve eserleri incele.",
+    "monsters": "Spire boyunca karşılaştığın tüm düşmanları gör.",
+    "potions": "Spire'a tırmanırken bulunan sayısız iksiri gözlemle."
+  },
+  "character_names": {
+    "ironclad": "Demirkaplı",
+    "silent": "Sessiz",
+    "defect": "Arıza",
+    "necrobinder": "Ölübağlayan",
+    "regent": "Naip"
+  }
+}

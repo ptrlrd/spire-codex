@@ -1,0 +1,82 @@
+[
+  {
+    "id": "ALL_STAR",
+    "name": "Yıldız Oyuncu",
+    "description": "[blue]5[/blue] [gold]renksiz kartla[/gold] başla."
+  },
+  {
+    "id": "BIG_GAME_HUNTER",
+    "name": "Büyük Av Peşinde",
+    "description": "Elit düşmanlar Spire'a akın eder ve artık daha iyi ödüller düşürür."
+  },
+  {
+    "id": "BINARY",
+    "name": "İkili",
+    "description": "[gold]Kart ödülleri[/gold] artık yalnızca [blue]2[/blue] kart içerir."
+  },
+  {
+    "id": "CURSED_RUN",
+    "name": "Lanetli Oyun",
+    "description": "Her Sahne'nin başlangıcında destene rastgele bir [red]Lanet[/red] ekle."
+  },
+  {
+    "id": "DEADLY_EVENTS",
+    "name": "Ölümcül Etkinlikler",
+    "description": "Artık bilinmeyen odalarda Elitler olabilir; fakat Hazine odası barındırma ihtimalleri de artar."
+  },
+  {
+    "id": "DRAFT",
+    "name": "Taslak",
+    "description": "Başlangıç destenin yerini alması için [blue]10[/blue] [gold]kart ödülü[/gold] seç."
+  },
+  {
+    "id": "FLIGHT",
+    "name": "Uçuş",
+    "description": "Bir sonraki gideceğin odayı seçerken odaların arasındaki yolu göz ardı edebilirsin."
+  },
+  {
+    "id": "HOARDER",
+    "name": "İstifçi",
+    "description": "Destene her kart eklediğinde, buna ek olarak [blue]2[/blue] kopya daha eklenir. Tüccar’da artık destenden kart kaldıramazsın."
+  },
+  {
+    "id": "INSANITY",
+    "name": "Delilik",
+    "description": "[blue]30[/blue] karttan oluşan rastgele bir desteyle başla."
+  },
+  {
+    "id": "MIDAS",
+    "name": "Midas",
+    "description": "Düşmanlar [blue]%200[/blue] daha fazla altın düşürür; fakat [gold]Dinlenme Yerleri[/gold]'nde artık kart Geliştiremezsin."
+  },
+  {
+    "id": "MURDEROUS",
+    "name": "Ölümcül",
+    "description": "Her savaşa [blue]3[/blue] [gold]Kuvvet[/gold] ile başla. Tüm düşmanlar savaşa [blue]3[/blue] [gold]Kuvvet[/gold] ile başlar."
+  },
+  {
+    "id": "NIGHT_TERRORS",
+    "name": "Gece Dehşetleri",
+    "description": "[gold]Dinlenme Yerleri[/gold]'nde dinlenmek bütün CP'ni doldurur; fakat her seferinde [red]5[/red] Maksimum CP kaybedersin."
+  },
+  {
+    "id": "SEALED_DECK",
+    "name": "Mühürlü Deste",
+    "description": "Başlangıç destenin yerini alması için [blue]30[/blue] karttan [blue]10[/blue] tanesini seç."
+  },
+  {
+    "id": "SPECIALIZED",
+    "name": "Uzmanlaşmış",
+    "description": "Bir kartın [blue]5[/blue] kopyasıyla başla."
+  },
+  {
+    "id": "TERMINAL",
+    "name": "Hasta",
+    "description": "Her yeni bir odaya girdiğinde [red]1[/red] Maksimum CP kaybet. Her savaşa [blue]5[/blue] [gold]Kaplama[/gold] ile başla."
+  },
+  {
+    "id": "VINTAGE",
+    "name": "Antik",
+    "description": "Sıradan düşmanlar kart yerine kalıntı düşürür."
+  }
+]

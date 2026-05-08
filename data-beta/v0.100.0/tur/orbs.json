@@ -4,34 +4,34 @@
     "name": "Karanlık",
     "description": "[gold]Pasif:[/gold] Turunun sonunda bu Küre'nin hasarını [blue]6[/blue] artır.\n[gold]Tetikle:[/gold] En düşük CP'ye sahip düşmana [blue]6[/blue] hasar ver.",
     "description_raw": "[gold]Pasif:[/gold] Turunun sonunda bu Küre'nin hasarını [blue]{Passive}[/blue] artır.\n[gold]Tetikle:[/gold] En düşük CP'ye sahip düşmana [blue]{Evoke}[/blue] hasar ver.",
-    "image_url": "/static/images/orbs/dark_orb.png"
+    "image_url": "/static/images/orbs/dark_orb.webp"
   },
   {
     "id": "FROST_ORB",
     "name": "Buz",
     "description": "[gold]Pasif:[/gold] Turunun sonunda [blue]2[/blue] [gold]Blok[/gold] elde et.\n[gold]Tetikle:[/gold] [blue]5[/blue] [gold]Blok[/gold] elde et.",
     "description_raw": "[gold]Pasif:[/gold] Turunun sonunda [blue]{Passive}[/blue] [gold]Blok[/gold] elde et.\n[gold]Tetikle:[/gold] [blue]{Evoke}[/blue] [gold]Blok[/gold] elde et.",
-    "image_url": "/static/images/orbs/frost_orb.png"
+    "image_url": "/static/images/orbs/frost_orb.webp"
   },
   {
     "id": "GLASS_ORB",
     "name": "Cam",
     "description": "[gold]Pasif:[/gold] Turunun sonunda TÜM düşmanlara [blue]4[/blue] hasar ver ve bu kürenin değerini [blue]1[/blue] azalt.\n[gold]Tetikle:[/gold] TÜM düşmanlara [blue]8[/blue] hasar ver.",
     "description_raw": "[gold]Pasif:[/gold] Turunun sonunda TÜM düşmanlara [blue]{Passive}[/blue] hasar ver ve bu kürenin değerini [blue]1[/blue] azalt.\n[gold]Tetikle:[/gold] TÜM düşmanlara [blue]{Evoke}[/blue] hasar ver.",
-    "image_url": "/static/images/orbs/glass_orb.png"
+    "image_url": "/static/images/orbs/glass_orb.webp"
   },
   {
     "id": "LIGHTNING_ORB",
     "name": "Yıldırım",
     "description": "[gold]Pasif:[/gold] Turunun sonunda rastgele bir düşmana [blue]3[/blue] hasar ver.\n[gold]Tetikle:[/gold] Rastgele bir düşmana [blue]8[/blue] hasar ver.",
     "description_raw": "[gold]Pasif:[/gold] Turunun sonunda rastgele bir düşmana [blue]{Passive}[/blue] hasar ver.\n[gold]Tetikle:[/gold] Rastgele bir düşmana [blue]{Evoke}[/blue] hasar ver.",
-    "image_url": "/static/images/orbs/lightning_orb.png"
+    "image_url": "/static/images/orbs/lightning_orb.webp"
   },
   {
     "id": "PLASMA_ORB",
     "name": "Plazma",
     "description": "[gold]Pasif:[/gold] Turunun başında\n[energy:1] elde et.\n[gold]Tetikle:[/gold] [energy:2] elde et.\nPlazma, [gold]Odak[/gold]'tan etkilenmez.",
     "description_raw": "[gold]Pasif:[/gold] Turunun başında\n{energyPrefix:energyIcons(1)} elde et.\n[gold]Tetikle:[/gold] {energyPrefix:energyIcons(2)} elde et.\nPlazma, [gold]Odak[/gold]'tan etkilenmez.",
-    "image_url": "/static/images/orbs/plasma_orb.png"
+    "image_url": "/static/images/orbs/plasma_orb.webp"
   }
 ]

@@ -1,0 +1,299 @@
+[
+  {
+    "id": "ALL_CARDS_UPGRADED",
+    "name": "El mazo perfecto",
+    "description": "Gana una partida con todas las cartas de tu mazo mejoradas.",
+    "category": "run",
+    "character": null,
+    "threshold": null,
+    "condition": "Win with a fully-upgraded deck"
+  },
+  {
+    "id": "ALL_OTHER_ACHIEVEMENTS",
+    "name": "Eternidad",
+    "description": "Completa todos los logros.",
+    "category": "meta",
+    "character": null,
+    "threshold": null,
+    "condition": "Complete all other achievements"
+  },
+  {
+    "id": "CHARACTER_SKILL_IRONCLAD1",
+    "name": "Pacto cumplido",
+    "description": "Agota 20 cartas en un solo combate.",
+    "category": "character_skill",
+    "character": "Ironclad",
+    "threshold": 20,
+    "condition": "Exhaust 20 cards in a single combat"
+  },
+  {
+    "id": "CHARACTER_SKILL_IRONCLAD2",
+    "name": "Tajo infernal",
+    "description": "Inflige 999 de daño con un solo golpe.",
+    "category": "character_skill",
+    "character": "Ironclad",
+    "threshold": 999,
+    "condition": "Deal 999+ damage in a single hit"
+  },
+  {
+    "id": "CHARACTER_SKILL_NECROBINDER1",
+    "name": "Condena eterna",
+    "description": "Aplica 999 de Condena a un solo enemigo.",
+    "category": "character_skill",
+    "character": "Necrobinder",
+    "threshold": 999,
+    "condition": "Apply 999+ Doom to a single enemy"
+  },
+  {
+    "id": "CHARACTER_SKILL_NECROBINDER2",
+    "name": "Leche rica en calcio",
+    "description": "Otorga 50 de Fuerza a Nudillos.",
+    "category": "character_skill",
+    "character": "Necrobinder",
+    "threshold": 50,
+    "condition": "Apply 50+ Strength to Osty"
+  },
+  {
+    "id": "CHARACTER_SKILL_REGENT1",
+    "name": "Una espada digna de un rey",
+    "description": "Forja una Espada del soberano que inflija al menos 999 de daño.",
+    "category": "character_skill",
+    "character": "Regent",
+    "threshold": 999,
+    "condition": "Forge a Sovereign Blade with 999+ base damage"
+  },
+  {
+    "id": "CHARACTER_SKILL_REGENT2",
+    "name": "Lluvia de estrellas",
+    "description": "Ten 20 estrellas a la vez.",
+    "category": "character_skill",
+    "character": "Regent",
+    "threshold": 20,
+    "condition": "Have 20+ Stars at once"
+  },
+  {
+    "id": "CHARACTER_SKILL_SILENT1",
+    "name": "Astucia furtiva",
+    "description": "Usa una sola carta para jugar 5 cartas con Astucia.",
+    "category": "character_skill",
+    "character": "Silent",
+    "threshold": 5,
+    "condition": "Play 5 cards via Sly off a single card play"
+  },
+  {
+    "id": "CHARACTER_SKILL_SILENT2",
+    "name": "Relación tóxica",
+    "description": "Aplica 99 de Veneno a un solo enemigo.",
+    "category": "character_skill",
+    "character": "Silent",
+    "threshold": 99,
+    "condition": "Apply 99+ Poison to a single enemy"
+  },
+  {
+    "id": "COMPLETE_ACT4",
+    "name": "Final verdadero",
+    "description": "Completa el Acto 4.",
+    "category": "run",
+    "character": null,
+    "threshold": null,
+    "condition": "Complete Act 4"
+  },
+  {
+    "id": "COMPLETE_TIMELINE",
+    "name": "Cronista",
+    "description": "Completa la Cronología.",
+    "category": "collection",
+    "character": null,
+    "threshold": null,
+    "condition": "Complete the Timeline"
+  },
+  {
+    "id": "DEFEAT_GLORY_ENEMIES",
+    "name": "La Gloria",
+    "description": "Derrota a todos los enemigos en Gloria.",
+    "category": "combat",
+    "character": null,
+    "threshold": null,
+    "condition": "Defeat every enemy in the Glory"
+  },
+  {
+    "id": "DEFEAT_HIVE_ENEMIES",
+    "name": "La Colmena",
+    "description": "Derrota a todos los enemigos en la Colmena.",
+    "category": "combat",
+    "character": null,
+    "threshold": null,
+    "condition": "Defeat every enemy in the Hive"
+  },
+  {
+    "id": "DEFEAT_ONE_BOSS",
+    "name": "El primero de muchos",
+    "description": "Derrota a un Jefe.",
+    "category": "combat",
+    "character": null,
+    "threshold": null,
+    "condition": "Defeat a boss"
+  },
+  {
+    "id": "DEFEAT_OVERGROWTH_ENEMIES",
+    "name": "La Espesura",
+    "description": "Derrota a todos los enemigos en la Espesura.",
+    "category": "combat",
+    "character": null,
+    "threshold": null,
+    "condition": "Defeat every enemy in the Overgrowth"
+  },
+  {
+    "id": "DEFEAT_UNDERDOCKS_ENEMIES",
+    "name": "Los Muelles sombríos",
+    "description": "Derrota a todos los enemigos en los Muelles sombríos.",
+    "category": "combat",
+    "character": null,
+    "threshold": null,
+    "condition": "Defeat every enemy in the Underdocks"
+  },
+  {
+    "id": "DEFECT_ASCENSION10",
+    "name": "Eco",
+    "description": "Completa la Ascensión 10 con el Defectuoso.",
+    "category": "character_ascension",
+    "character": "Defect",
+    "threshold": null,
+    "condition": null
+  },
+  {
+    "id": "DEFECT_WIN",
+    "name": "El Defectuoso",
+    "description": "Gana una partida con el Defectuoso.",
+    "category": "character_win",
+    "character": "Defect",
+    "threshold": null,
+    "condition": null
+  },
+  {
+    "id": "DISCOVER_ALL_CARDS",
+    "name": "Coleccionista",
+    "description": "Descubre todas las cartas.",
+    "category": "collection",
+    "character": null,
+    "threshold": null,
+    "condition": "Discover all cards"
+  },
+  {
+    "id": "DISCOVER_ALL_EVENTS",
+    "name": "Amante de la exploración",
+    "description": "Descubre todos los eventos.",
+    "category": "collection",
+    "character": null,
+    "threshold": null,
+    "condition": "Encounter all events"
+  },
+  {
+    "id": "DISCOVER_ALL_RELICS",
+    "name": "Arqueología",
+    "description": "Descubre todas las reliquias.",
+    "category": "collection",
+    "character": null,
+    "threshold": null,
+    "condition": "Discover all relics"
+  },
+  {
+    "id": "FLOOR_TEN_THOUSAND",
+    "name": "Escaleras infinitas",
+    "description": "Asciende 10 000 pisos.",
+    "category": "collection",
+    "character": null,
+    "threshold": 10000,
+    "condition": "Climb 10,000 floors total"
+  },
+  {
+    "id": "IRONCLAD_ASCENSION10",
+    "name": "Demonio",
+    "description": "Completa la Ascensión 10 con el Blindado.",
+    "category": "character_ascension",
+    "character": "Ironclad",
+    "threshold": null,
+    "condition": null
+  },
+  {
+    "id": "IRONCLAD_WIN",
+    "name": "El Blindado",
+    "description": "Gana una partida con el Blindado.",
+    "category": "character_win",
+    "character": "Ironclad",
+    "threshold": null,
+    "condition": null
+  },
+  {
+    "id": "NECROBINDER_ASCENSION10",
+    "name": "Liche",
+    "description": "Completa la Ascensión 10 con la Vinculahuesos.",
+    "category": "character_ascension",
+    "character": "Necrobinder",
+    "threshold": null,
+    "condition": null
+  },
+  {
+    "id": "NECROBINDER_WIN",
+    "name": "La Vinculahuesos",
+    "description": "Gana con la Vinculahuesos.",
+    "category": "character_win",
+    "character": "Necrobinder",
+    "threshold": null,
+    "condition": null
+  },
+  {
+    "id": "NO_RELIC_WIN",
+    "name": "Materialismo innecesario",
+    "description": "Gana una partida sin obtener reliquias.",
+    "category": "run",
+    "character": null,
+    "threshold": null,
+    "condition": "Win without obtaining any relics"
+  },
+  {
+    "id": "PLAY20_CARDS_SINGLE_TURN",
+    "name": "Huracán de cartas",
+    "description": "Juega 20 cartas en un solo turno.",
+    "category": "combat",
+    "character": null,
+    "threshold": 20,
+    "condition": "Play 20 cards in a single turn"
+  },
+  {
+    "id": "REGENT_ASCENSION10",
+    "name": "Monarca",
+    "description": "Completa la Ascensión 10 con el Regente.",
+    "category": "character_ascension",
+    "character": "Regent",
+    "threshold": null,
+    "condition": null
+  },
+  {
+    "id": "REGENT_WIN",
+    "name": "El Regente",
+    "description": "Gana una partida con el Regente.",
+    "category": "character_win",
+    "character": "Regent",
+    "threshold": null,
+    "condition": null
+  },
+  {
+    "id": "SILENT_ASCENSION10",
+    "name": "Espectro silente",
+    "description": "Completa la Ascensión 10 con la Silenciosa.",
+    "category": "character_ascension",
+    "character": "Silent",
+    "threshold": null,
+    "condition": null
+  },
+  {
+    "id": "SILENT_WIN",
+    "name": "La Silenciosa",
+    "description": "Gana una partida con la Silenciosa.",
+    "category": "character_win",
+    "character": "Silent",
+    "threshold": null,
+    "condition": null
+  }
+]

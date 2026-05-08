@@ -177,7 +177,7 @@
     "name": "Muchas putribabosas",
     "room_type": "Monster",
     "is_weak": false,
-    "act": "Underdocks",
+    "act": "Act 1 - Underdocks",
     "tags": [
       "Slugs"
     ],
@@ -194,7 +194,7 @@
     "name": "Putribabosas",
     "room_type": "Monster",
     "is_weak": true,
-    "act": "Underdocks",
+    "act": "Act 1 - Underdocks",
     "tags": [
       "Slugs"
     ],
@@ -226,7 +226,7 @@
     "name": "sectarios",
     "room_type": "Monster",
     "is_weak": false,
-    "act": "Underdocks",
+    "act": "Act 1 - Underdocks",
     "tags": null,
     "monsters": [
       {
@@ -441,7 +441,7 @@
     "name": "acechafósil",
     "room_type": "Monster",
     "is_weak": false,
-    "act": "Underdocks",
+    "act": "Act 1 - Underdocks",
     "tags": null,
     "monsters": [
       {
@@ -503,7 +503,7 @@
     "name": "Dos gremlins en una gabardina",
     "room_type": "Monster",
     "is_weak": false,
-    "act": "Underdocks",
+    "act": "Act 1 - Underdocks",
     "tags": null,
     "monsters": [
       {
@@ -526,7 +526,7 @@
     "name": "barco embrujado",
     "room_type": "Monster",
     "is_weak": false,
-    "act": "Underdocks",
+    "act": "Act 1 - Underdocks",
     "tags": null,
     "monsters": [
       {
@@ -645,7 +645,7 @@
     "name": "Matriarca lagavulín",
     "room_type": "Boss",
     "is_weak": false,
-    "act": "Underdocks",
+    "act": "Act 1 - Underdocks",
     "tags": null,
     "monsters": [
       {
@@ -660,7 +660,7 @@
     "name": "gas malvado",
     "room_type": "Monster",
     "is_weak": false,
-    "act": "Underdocks",
+    "act": "Act 1 - Underdocks",
     "tags": null,
     "monsters": [
       {
@@ -842,7 +842,7 @@
     "name": "anguila espectral",
     "room_type": "Elite",
     "is_weak": false,
-    "act": "Underdocks",
+    "act": "Act 1 - Underdocks",
     "tags": null,
     "monsters": [
       {
@@ -876,7 +876,7 @@
     "name": "constructo pugilista",
     "room_type": "Monster",
     "is_weak": false,
-    "act": "Underdocks",
+    "act": "Act 1 - Underdocks",
     "tags": null,
     "monsters": [
       {
@@ -990,7 +990,7 @@
     "name": "rufián marino",
     "room_type": "Monster",
     "is_weak": true,
-    "act": "Underdocks",
+    "act": "Act 1 - Underdocks",
     "tags": [
       "Seapunk"
     ],
@@ -1007,7 +1007,7 @@
     "name": "cloacalmeja",
     "room_type": "Monster",
     "is_weak": false,
-    "act": "Underdocks",
+    "act": "Act 1 - Underdocks",
     "tags": null,
     "monsters": [
       {
@@ -1039,7 +1039,7 @@
     "name": "colonia furtiva",
     "room_type": "Elite",
     "is_weak": false,
-    "act": "Underdocks",
+    "act": "Act 1 - Underdocks",
     "tags": null,
     "monsters": [
       {
@@ -1162,7 +1162,7 @@
     "name": "caracofango",
     "room_type": "Monster",
     "is_weak": true,
-    "act": "Underdocks",
+    "act": "Act 1 - Underdocks",
     "tags": null,
     "monsters": [
       {
@@ -1223,7 +1223,7 @@
     "name": "Phezánima",
     "room_type": "Boss",
     "is_weak": false,
-    "act": "Underdocks",
+    "act": "Act 1 - Underdocks",
     "tags": null,
     "monsters": [
       {
@@ -1268,7 +1268,7 @@
     "name": "anguila ominosa",
     "room_type": "Elite",
     "is_weak": false,
-    "act": "Underdocks",
+    "act": "Act 1 - Underdocks",
     "tags": null,
     "monsters": [
       {
@@ -1398,7 +1398,7 @@
     "name": "fauna de Muelles Funestos",
     "room_type": "Monster",
     "is_weak": false,
-    "act": "Underdocks",
+    "act": "Act 1 - Underdocks",
     "tags": null,
     "monsters": [
       {
@@ -1417,7 +1417,7 @@
     "name": "ranacuajos",
     "room_type": "Monster",
     "is_weak": true,
-    "act": "Underdocks",
+    "act": "Act 1 - Underdocks",
     "tags": null,
     "monsters": [
       {
@@ -1494,7 +1494,7 @@
     "name": "ratas bicola",
     "room_type": "Monster",
     "is_weak": false,
-    "act": "Underdocks",
+    "act": "Act 1 - Underdocks",
     "tags": null,
     "monsters": [
       {
@@ -1539,7 +1539,7 @@
     "name": "Titán cascadoso",
     "room_type": "Boss",
     "is_weak": false,
-    "act": "Underdocks",
+    "act": "Act 1 - Underdocks",
     "tags": null,
     "monsters": [
       {

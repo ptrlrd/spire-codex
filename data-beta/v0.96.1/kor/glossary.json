@@ -1,0 +1,170 @@
+[
+  {
+    "id": "BLOCK",
+    "name": "방어도",
+    "description": "다음 턴까지 피해를 방어합니다.",
+    "category": "combat"
+  },
+  {
+    "id": "CARD_REWARD",
+    "name": "카드 보상",
+    "description": "[blue]3[/blue]장의 무작위 카드로 구성된 팩입니다. 카드 [blue]1[/blue]장을 선택해 [gold]덱[/gold]에 추가할 수 있습니다.",
+    "category": "progression"
+  },
+  {
+    "id": "CHANNELING",
+    "name": "영창",
+    "description": "영창 시, 처음으로 비어있는 슬롯에 구체가 들어갑니다. 비어있는 슬롯이 없다면, 제일 처음으로 넣었던 구체가 자동적으로 [gold]발현[/gold]되어 공간을 만들어냅니다.",
+    "category": "combat"
+  },
+  {
+    "id": "COOK",
+    "name": "요리",
+    "description": "[gold]휴식 장소[/gold]에서 [gold]덱[/gold]에서 카드를 [blue]2[/blue]장 [gold]제거[/gold]하고 최대 체력을 [green]9[/green] 얻습니다.",
+    "category": "mechanics"
+  },
+  {
+    "id": "DECK",
+    "name": "덱",
+    "description": "덱에 있는 모든 카드를 확인합니다.",
+    "category": "zones"
+  },
+  {
+    "id": "DISCARD_PILE",
+    "name": "버린 카드 더미",
+    "description": "뽑을 카드 더미가 비어있다면, 버린 카드 더미를 뽑을 카드 더미에 섞어 넣습니다.\n\n버린 카드 더미의 카드들을 보려면 클릭하세요.",
+    "category": "zones"
+  },
+  {
+    "id": "DRAW_PILE",
+    "name": "뽑을 카드 더미",
+    "description": "매 턴 시작 시,\n여기에서 [blue]5[/blue]장의 카드를 뽑습니다.\n\n뽑을 카드 더미의 카드들을 보려면 클릭하세요 (섞여있음).",
+    "category": "zones"
+  },
+  {
+    "id": "ENERGY",
+    "name": "에너지",
+    "description": "에너지는 [gold]손[/gold]에서 카드를 사용하는 데에 소모됩니다.",
+    "category": "combat"
+  },
+  {
+    "id": "EVOKE",
+    "name": "발현",
+    "description": "가장 오른쪽에 있는 구체를 소모한 뒤 발현 효과를 사용합니다.",
+    "category": "combat"
+  },
+  {
+    "id": "EXHAUST_PILE",
+    "name": "소멸된 카드",
+    "description": "이번 전투 동안 소멸된 카드들을 보려면 클릭하세요.",
+    "category": "zones"
+  },
+  {
+    "id": "FATAL",
+    "name": "치명타",
+    "description": "하수인이 아닌 적을 처치할 때마다 발동됩니다.",
+    "category": "combat"
+  },
+  {
+    "id": "FORGE",
+    "name": "단조",
+    "description": "매 전투마다 처음으로 [gold]단조[/gold] 시, [gold]군주의 칼날[/gold]을 [gold]손[/gold]으로 가져옵니다. 이후 단조 시 [gold]군주의 칼날[/gold]의 피해량이 증가합니다.",
+    "category": "mechanics"
+  },
+  {
+    "id": "HIT_POINTS",
+    "name": "체력",
+    "description": "체력을 모두 잃으면 사망합니다.",
+    "category": "progression"
+  },
+  {
+    "id": "LINKED_REWARDS",
+    "name": "연결된 보상",
+    "description": "이 세트에서 [blue]1[/blue]개의 보상만을 선택할 수 있습니다.",
+    "category": "progression"
+  },
+  {
+    "id": "MONEY_POUCH",
+    "name": "골드",
+    "description": "보유한 골드의 양을 표시합니다. 골드는 첨탑 내에서 사용되는 화폐입니다.",
+    "category": "progression"
+  },
+  {
+    "id": "POTION_SLOT",
+    "name": "포션 슬롯",
+    "description": "전투 도중 포션을 사용해, [green]보너스[/green] 효과를 얻거나 적을 [red]방해[/red]하세요.",
+    "category": "progression"
+  },
+  {
+    "id": "REPLAY",
+    "name": "재사용",
+    "description": "이 카드를 추가로 사용합니다.",
+    "category": "mechanics"
+  },
+  {
+    "id": "ROOM_ANCIENT",
+    "name": "고대의 존재",
+    "description": "(PLACEHOLDER) 고대의 존재",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_BOSS",
+    "name": "보스",
+    "description": "해당 지역에서 가장 치명적인 적입니다.\n\n보스를 처치 시 다음 막으로 진행할 수 있게 됩니다.",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_ELITE",
+    "name": "엘리트",
+    "description": "이 방에는 강력한 적들이 기다리고 있습니다.\n\n엘리트들을 처치 시 보상으로 [gold]유물[/gold]을 받을 수 있습니다.",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_ENEMY",
+    "name": "적",
+    "description": "적대적인 존재들이 기다리고 있는 방입니다.",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_EVENT",
+    "name": "이벤트",
+    "description": "이 방에서는 특이한 일들이 발생합니다...",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_MERCHANT",
+    "name": "상점",
+    "description": "이 방에서는 신비로운 상인이 자신의 물건들을 판매합니다.\n\n열심히 모은 [gold]골드[/gold]를 여기에서 사용해보세요!",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_REST",
+    "name": "휴식 장소",
+    "description": "이 방에 들러 약간의 체력을 [green]회복[/green]하거나 카드를 [gold]강화[/gold]해보세요.",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_TREASURE",
+    "name": "보물 방",
+    "description": "모두가 탐내는 이 방에서는 [gold]유물[/gold]과 [gold]골드[/gold]를 얻을 수 있습니다.",
+    "category": "rooms"
+  },
+  {
+    "id": "STUN",
+    "name": "기절",
+    "description": "적이 다음 턴에 어떤 행동도 할 수 없게 합니다.",
+    "category": "combat"
+  },
+  {
+    "id": "SUMMON",
+    "name": "소환",
+    "description": "[gold]골골이[/gold]를 소환합니다.\n이미 소환되어 있었다면, 이번 전투 동안 골골이의 최대 체력이 증가합니다.",
+    "category": "mechanics"
+  },
+  {
+    "id": "TRANSFORM",
+    "name": "변화",
+    "description": "카드를 변화시킬 시, 무작위 희귀도의 카드로 변합니다.",
+    "category": "mechanics"
+  }
+]

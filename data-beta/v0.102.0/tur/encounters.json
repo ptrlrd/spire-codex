@@ -177,7 +177,7 @@
     "name": "Birçok Ceset Yiyen Sümüklü Böcek",
     "room_type": "Monster",
     "is_weak": false,
-    "act": "Underdocks",
+    "act": "Act 1 - Underdocks",
     "tags": [
       "Slugs"
     ],
@@ -194,7 +194,7 @@
     "name": "Ceset Yiyen Sümüklü Böcekler",
     "room_type": "Monster",
     "is_weak": true,
-    "act": "Underdocks",
+    "act": "Act 1 - Underdocks",
     "tags": [
       "Slugs"
     ],
@@ -226,7 +226,7 @@
     "name": "Tarikatçılar",
     "room_type": "Monster",
     "is_weak": false,
-    "act": "Underdocks",
+    "act": "Act 1 - Underdocks",
     "tags": null,
     "monsters": [
       {
@@ -437,7 +437,7 @@
     "name": "Pusan Fosil",
     "room_type": "Monster",
     "is_weak": false,
-    "act": "Underdocks",
+    "act": "Act 1 - Underdocks",
     "tags": null,
     "monsters": [
       {
@@ -499,7 +499,7 @@
     "name": "Paltolu İki Gremlin",
     "room_type": "Monster",
     "is_weak": false,
-    "act": "Underdocks",
+    "act": "Act 1 - Underdocks",
     "tags": null,
     "monsters": [
       {
@@ -522,7 +522,7 @@
     "name": "Lanetli Gemi",
     "room_type": "Monster",
     "is_weak": false,
-    "act": "Underdocks",
+    "act": "Act 1 - Underdocks",
     "tags": null,
     "monsters": [
       {
@@ -641,7 +641,7 @@
     "name": "Anne Lagavulin",
     "room_type": "Boss",
     "is_weak": false,
-    "act": "Underdocks",
+    "act": "Act 1 - Underdocks",
     "tags": null,
     "monsters": [
       {
@@ -656,7 +656,7 @@
     "name": "Kötü Bir Gaz",
     "room_type": "Monster",
     "is_weak": false,
-    "act": "Underdocks",
+    "act": "Act 1 - Underdocks",
     "tags": null,
     "monsters": [
       {
@@ -838,7 +838,7 @@
     "name": "Bahçe Yılan Balıkları",
     "room_type": "Elite",
     "is_weak": false,
-    "act": "Underdocks",
+    "act": "Act 1 - Underdocks",
     "tags": null,
     "monsters": [
       {
@@ -872,7 +872,7 @@
     "name": "Yumruklayan Yapı",
     "room_type": "Monster",
     "is_weak": false,
-    "act": "Underdocks",
+    "act": "Act 1 - Underdocks",
     "tags": null,
     "monsters": [
       {
@@ -986,7 +986,7 @@
     "name": "Dip Rıhtımlar'ın Yaban Hayatı",
     "room_type": "Monster",
     "is_weak": false,
-    "act": "Underdocks",
+    "act": "Act 1 - Underdocks",
     "tags": [
       "Seapunk"
     ],
@@ -1007,7 +1007,7 @@
     "name": "Deniz Haydutu",
     "room_type": "Monster",
     "is_weak": true,
-    "act": "Underdocks",
+    "act": "Act 1 - Underdocks",
     "tags": [
       "Seapunk"
     ],
@@ -1024,7 +1024,7 @@
     "name": "Kanalizasyon İstiridyesi",
     "room_type": "Monster",
     "is_weak": false,
-    "act": "Underdocks",
+    "act": "Act 1 - Underdocks",
     "tags": null,
     "monsters": [
       {
@@ -1056,7 +1056,7 @@
     "name": "Saklanan Koloni",
     "room_type": "Elite",
     "is_weak": false,
-    "act": "Underdocks",
+    "act": "Act 1 - Underdocks",
     "tags": null,
     "monsters": [
       {
@@ -1179,7 +1179,7 @@
     "name": "Çamurdöner",
     "room_type": "Monster",
     "is_weak": true,
-    "act": "Underdocks",
+    "act": "Act 1 - Underdocks",
     "tags": null,
     "monsters": [
       {
@@ -1240,7 +1240,7 @@
     "name": "Ruh Baluğu",
     "room_type": "Boss",
     "is_weak": false,
-    "act": "Underdocks",
+    "act": "Act 1 - Underdocks",
     "tags": null,
     "monsters": [
       {
@@ -1285,7 +1285,7 @@
     "name": "Korkunç Yılan Balığı",
     "room_type": "Elite",
     "is_weak": false,
-    "act": "Underdocks",
+    "act": "Act 1 - Underdocks",
     "tags": null,
     "monsters": [
       {
@@ -1415,7 +1415,7 @@
     "name": "İribaşlar",
     "room_type": "Monster",
     "is_weak": true,
-    "act": "Underdocks",
+    "act": "Act 1 - Underdocks",
     "tags": null,
     "monsters": [
       {
@@ -1488,7 +1488,7 @@
     "name": "İki Kuyruklu Fareler",
     "room_type": "Monster",
     "is_weak": false,
-    "act": "Underdocks",
+    "act": "Act 1 - Underdocks",
     "tags": null,
     "monsters": [
       {
@@ -1533,7 +1533,7 @@
     "name": "Akarsu Devi",
     "room_type": "Boss",
     "is_weak": false,
-    "act": "Underdocks",
+    "act": "Act 1 - Underdocks",
     "tags": null,
     "monsters": [
       {

@@ -16,7 +16,15 @@
     ],
     "damage_values": null,
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "THE_ARCHITECT_EVENT_ENCOUNTER",
+        "encounter_name": "Mimar",
+        "room_type": "Monster",
+        "act": null,
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "cycle",
@@ -31,7 +39,7 @@
       ],
       "description": "Always uses Hiçbir Şey"
     },
-    "image_url": "/static/images/monsters/architect.png",
+    "image_url": "/static/images/monsters/architect.webp",
     "beta_image_url": null
   },
   {
@@ -60,7 +68,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "RUBY_RAIDERS_NORMAL",
+        "encounter_name": "Yakut Yağmacıları",
+        "room_type": "Monster",
+        "act": "Act 1 - Overgrowth",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "cycle",
@@ -75,7 +91,7 @@
       ],
       "description": "Always uses Öldürücü Vuruş"
     },
-    "image_url": "/static/images/monsters/assassin_ruby_raider.png",
+    "image_url": "/static/images/monsters/assassin_ruby_raider.webp",
     "beta_image_url": null
   },
   {
@@ -128,7 +144,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "RUBY_RAIDERS_NORMAL",
+        "encounter_name": "Yakut Yağmacıları",
+        "room_type": "Monster",
+        "act": "Act 1 - Overgrowth",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "cycle",
@@ -155,7 +179,7 @@
       ],
       "description": "Swing 1 → Swing 2 → Büyük Savuruş → repeat"
     },
-    "image_url": "/static/images/monsters/axe_ruby_raider.png",
+    "image_url": "/static/images/monsters/axe_ruby_raider.webp",
     "beta_image_url": null
   },
   {
@@ -238,7 +262,15 @@
     "block_values": {
       "bootUp": 10
     },
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "AXEBOTS_NORMAL",
+        "encounter_name": "Bot Ahbaplar",
+        "room_type": "Monster",
+        "act": "Act 3 - Glory",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "random",
@@ -276,7 +308,7 @@
       ],
       "description": "Starts with Başlat"
     },
-    "image_url": "/static/images/monsters/axebot.png",
+    "image_url": "/static/images/monsters/axebot.webp",
     "beta_image_url": null
   },
   {
@@ -296,7 +328,15 @@
     ],
     "damage_values": null,
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "BATTLEWORN_DUMMY_EVENT_ENCOUNTER",
+        "encounter_name": "Savaşta Yıpranmış Manken",
+        "room_type": "Monster",
+        "act": null,
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "cycle",
@@ -311,7 +351,7 @@
       ],
       "description": ""
     },
-    "image_url": "/static/images/monsters/battle_friend_v1.png",
+    "image_url": "/static/images/monsters/battle_friend_v1.webp",
     "beta_image_url": null
   },
   {
@@ -331,7 +371,15 @@
     ],
     "damage_values": null,
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "BATTLEWORN_DUMMY_EVENT_ENCOUNTER",
+        "encounter_name": "Savaşta Yıpranmış Manken",
+        "room_type": "Monster",
+        "act": null,
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "cycle",
@@ -346,7 +394,7 @@
       ],
       "description": ""
     },
-    "image_url": "/static/images/monsters/battle_friend_v2.png",
+    "image_url": "/static/images/monsters/battle_friend_v2.webp",
     "beta_image_url": null
   },
   {
@@ -366,7 +414,15 @@
     ],
     "damage_values": null,
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "BATTLEWORN_DUMMY_EVENT_ENCOUNTER",
+        "encounter_name": "Savaşta Yıpranmış Manken",
+        "room_type": "Monster",
+        "act": null,
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "cycle",
@@ -381,7 +437,7 @@
       ],
       "description": ""
     },
-    "image_url": "/static/images/monsters/battle_friend_v3.png",
+    "image_url": "/static/images/monsters/battle_friend_v3.webp",
     "beta_image_url": null
   },
   {
@@ -411,7 +467,29 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "BOWLBUGS_NORMAL",
+        "encounter_name": "Çanakböceği Sürüsü",
+        "room_type": "Monster",
+        "act": "Act 2 - Hive",
+        "is_weak": false
+      },
+      {
+        "encounter_id": "BOWLBUGS_WEAK",
+        "encounter_name": "Çanakböcekleri",
+        "room_type": "Monster",
+        "act": "Act 2 - Hive",
+        "is_weak": true
+      },
+      {
+        "encounter_id": "TUNNELER_NORMAL",
+        "encounter_name": "Tünel Kazan İkili",
+        "room_type": "Monster",
+        "act": "Act 2 - Hive",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "cycle",
@@ -426,7 +504,7 @@
       ],
       "description": "Always uses Isır"
     },
-    "image_url": "/static/images/monsters/bowlbug_egg.png",
+    "image_url": "/static/images/monsters/bowlbug_egg.webp",
     "beta_image_url": null
   },
   {
@@ -473,7 +551,22 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "BOWLBUGS_NORMAL",
+        "encounter_name": "Çanakböceği Sürüsü",
+        "room_type": "Monster",
+        "act": "Act 2 - Hive",
+        "is_weak": false
+      },
+      {
+        "encounter_id": "BOWLBUGS_WEAK",
+        "encounter_name": "Çanakböcekleri",
+        "room_type": "Monster",
+        "act": "Act 2 - Hive",
+        "is_weak": true
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "cycle",
@@ -500,7 +593,7 @@
       ],
       "description": "Saldır → Güçlendir → Saldır → repeat"
     },
-    "image_url": "/static/images/monsters/bowlbug_nectar.png",
+    "image_url": "/static/images/monsters/bowlbug_nectar.webp",
     "beta_image_url": null
   },
   {
@@ -534,7 +627,29 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "BOWLBUGS_NORMAL",
+        "encounter_name": "Çanakböceği Sürüsü",
+        "room_type": "Monster",
+        "act": "Act 2 - Hive",
+        "is_weak": false
+      },
+      {
+        "encounter_id": "BOWLBUGS_WEAK",
+        "encounter_name": "Çanakböcekleri",
+        "room_type": "Monster",
+        "act": "Act 2 - Hive",
+        "is_weak": true
+      },
+      {
+        "encounter_id": "SLUMBERING_BEETLE_NORMAL",
+        "encounter_name": "Uyku Partisi",
+        "room_type": "Monster",
+        "act": "Act 2 - Hive",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "conditional",
@@ -559,7 +674,7 @@
       ],
       "description": "Starts with Kafa At"
     },
-    "image_url": "/static/images/monsters/bowlbug_rock.png",
+    "image_url": "/static/images/monsters/bowlbug_rock.webp",
     "beta_image_url": null
   },
   {
@@ -602,7 +717,29 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "BOWLBUGS_NORMAL",
+        "encounter_name": "Çanakböceği Sürüsü",
+        "room_type": "Monster",
+        "act": "Act 2 - Hive",
+        "is_weak": false
+      },
+      {
+        "encounter_id": "SLUMBERING_BEETLE_NORMAL",
+        "encounter_name": "Uyku Partisi",
+        "room_type": "Monster",
+        "act": "Act 2 - Hive",
+        "is_weak": false
+      },
+      {
+        "encounter_id": "TUNNELER_NORMAL",
+        "encounter_name": "Tünel Kazan İkili",
+        "room_type": "Monster",
+        "act": "Act 2 - Hive",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "cycle",
@@ -621,7 +758,7 @@
       ],
       "description": ""
     },
-    "image_url": "/static/images/monsters/bowlbug_silk.png",
+    "image_url": "/static/images/monsters/bowlbug_silk.webp",
     "beta_image_url": null
   },
   {
@@ -662,7 +799,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "RUBY_RAIDERS_NORMAL",
+        "encounter_name": "Yakut Yağmacıları",
+        "room_type": "Monster",
+        "act": "Act 1 - Overgrowth",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "cycle",
@@ -681,7 +826,7 @@
       ],
       "description": "Always uses Döv"
     },
-    "image_url": "/static/images/monsters/brute_ruby_raider.png",
+    "image_url": "/static/images/monsters/brute_ruby_raider.webp",
     "beta_image_url": null
   },
   {
@@ -732,7 +877,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "BYGONE_EFFIGY_ELITE",
+        "encounter_name": "Mazinin Heykeli",
+        "room_type": "Elite",
+        "act": "Act 1 - Overgrowth",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "cycle",
@@ -765,7 +918,7 @@
       ],
       "description": "Initial Sleep → Wake → Kesikler → repeat"
     },
-    "image_url": "/static/images/monsters/bygone_effigy.png",
+    "image_url": "/static/images/monsters/bygone_effigy.webp",
     "beta_image_url": null
   },
   {
@@ -810,7 +963,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "BYRDONIS_ELITE",
+        "encounter_name": "Guşdeniz",
+        "room_type": "Elite",
+        "act": "Act 1 - Overgrowth",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "cycle",
@@ -831,7 +992,7 @@
       ],
       "description": "Swoop → Gagala → repeat"
     },
-    "image_url": "/static/images/monsters/byrdonis.png",
+    "image_url": "/static/images/monsters/byrdonis.webp",
     "beta_image_url": null
   },
   {
@@ -866,7 +1027,7 @@
       ],
       "description": ""
     },
-    "image_url": "/static/images/monsters/byrdpip.png",
+    "image_url": "/static/images/monsters/byrdpip.webp",
     "beta_image_url": null
   },
   {
@@ -907,7 +1068,22 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "CULTISTS_NORMAL",
+        "encounter_name": "Tarikatçılar",
+        "room_type": "Monster",
+        "act": "Act 1 - Underdocks",
+        "is_weak": false
+      },
+      {
+        "encounter_id": "TOADPOLES_NORMAL",
+        "encounter_name": "Dip Rıhtımlar'ın Vahşi Yaşamı",
+        "room_type": "Monster",
+        "act": "Act 1 - Underdocks",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "cycle",
@@ -926,7 +1102,7 @@
       ],
       "description": "Always uses Sihirli Söz"
     },
-    "image_url": "/static/images/monsters/calcified_cultist.png",
+    "image_url": "/static/images/monsters/calcified_cultist.webp",
     "beta_image_url": null
   },
   {
@@ -1024,7 +1200,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "CEREMONIAL_BEAST_BOSS",
+        "encounter_name": "Mukaddes Yaratık",
+        "room_type": "Boss",
+        "act": "Act 1 - Overgrowth",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "cycle",
@@ -1070,7 +1254,7 @@
       ],
       "description": "Tepin → Ezerek Geç → repeat"
     },
-    "image_url": "/static/images/monsters/ceremonial_beast.png",
+    "image_url": "/static/images/monsters/ceremonial_beast.webp",
     "beta_image_url": null
   },
   {
@@ -1106,7 +1290,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "CHOMPERS_NORMAL",
+        "encounter_name": "Bir Otomaton İkilisi",
+        "room_type": "Monster",
+        "act": "Act 2 - Hive",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "cycle",
@@ -1125,7 +1317,7 @@
       ],
       "description": ""
     },
-    "image_url": "/static/images/monsters/chomper.png",
+    "image_url": "/static/images/monsters/chomper.webp",
     "beta_image_url": null
   },
   {
@@ -1179,7 +1371,22 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "CORPSE_SLUGS_NORMAL",
+        "encounter_name": "Birçok Ceset Yiyen Sümüklü Böcek",
+        "room_type": "Monster",
+        "act": "Act 1 - Underdocks",
+        "is_weak": false
+      },
+      {
+        "encounter_id": "CORPSE_SLUGS_WEAK",
+        "encounter_name": "Ceset Yiyen Sümüklü Böcekler",
+        "room_type": "Monster",
+        "act": "Act 1 - Underdocks",
+        "is_weak": true
+      }
+    ],
     "innate_powers": [
       {
         "power_id": "RAVENOUS",
@@ -1212,7 +1419,7 @@
       ],
       "description": ""
     },
-    "image_url": "/static/images/monsters/corpse_slug.png",
+    "image_url": "/static/images/monsters/corpse_slug.webp",
     "beta_image_url": null
   },
   {
@@ -1247,7 +1454,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "RUBY_RAIDERS_NORMAL",
+        "encounter_name": "Yakut Yağmacıları",
+        "room_type": "Monster",
+        "act": "Act 1 - Overgrowth",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "cycle",
@@ -1266,7 +1481,7 @@
       ],
       "description": ""
     },
-    "image_url": "/static/images/monsters/crossbow_ruby_raider.png",
+    "image_url": "/static/images/monsters/crossbow_ruby_raider.webp",
     "beta_image_url": null
   },
   {
@@ -1361,7 +1576,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "KAISER_CRAB_BOSS",
+        "encounter_name": "Kayzer Yengeç",
+        "room_type": "Boss",
+        "act": "Act 2 - Hive",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "cycle",
@@ -1400,7 +1623,7 @@
       ],
       "description": "Saldır → Büyüten Saldırı → Böcek Sokması → Adapte Ol → Korunmuş Saldırı → repeat"
     },
-    "image_url": "/static/images/monsters/crusher.png",
+    "image_url": "/static/images/monsters/crusher.webp",
     "beta_image_url": null
   },
   {
@@ -1485,7 +1708,22 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "CONSTRUCT_MENAGERIE_NORMAL",
+        "encounter_name": "Yapı Koleksiyonu",
+        "room_type": "Monster",
+        "act": "Act 3 - Glory",
+        "is_weak": false
+      },
+      {
+        "encounter_id": "CUBEX_CONSTRUCT_NORMAL",
+        "encounter_name": "Kübiks Yapı",
+        "room_type": "Monster",
+        "act": "Act 1 - Overgrowth",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "cycle",
@@ -1524,7 +1762,7 @@
       ],
       "description": "Enerji Topla → Repeater → Repeater Move 2 → Expel Blast → repeat"
     },
-    "image_url": "/static/images/monsters/cubex_construct.png",
+    "image_url": "/static/images/monsters/cubex_construct.webp",
     "beta_image_url": null
   },
   {
@@ -1565,7 +1803,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "CULTISTS_NORMAL",
+        "encounter_name": "Tarikatçılar",
+        "room_type": "Monster",
+        "act": "Act 1 - Underdocks",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "cycle",
@@ -1584,7 +1830,7 @@
       ],
       "description": "Always uses Sihirli Sözler"
     },
-    "image_url": "/static/images/monsters/damp_cultist.png",
+    "image_url": "/static/images/monsters/damp_cultist.webp",
     "beta_image_url": null
   },
   {
@@ -1710,7 +1956,7 @@
       ],
       "description": ""
     },
-    "image_url": "/static/images/monsters/decimillipede.png",
+    "image_url": "/static/images/monsters/decimillipede.webp",
     "beta_image_url": null
   },
   {
@@ -1744,7 +1990,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "DEVOTED_SCULPTOR_WEAK",
+        "encounter_name": "Kendini Adamış Heykeltıraş",
+        "room_type": "Monster",
+        "act": "Act 3 - Glory",
+        "is_weak": true
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "cycle",
@@ -1763,7 +2017,7 @@
       ],
       "description": "Always uses Forbidden Incantation"
     },
-    "image_url": "/static/images/monsters/devoted_sculptor.png",
+    "image_url": "/static/images/monsters/devoted_sculptor.webp",
     "beta_image_url": null
   },
   {
@@ -1830,7 +2084,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "DOORMAKER_BOSS",
+        "encounter_name": "Kapı Ustası",
+        "room_type": "Boss",
+        "act": "Act 3 - Glory",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "cycle",
@@ -1856,8 +2118,8 @@
       ],
       "description": ""
     },
-    "image_url": "/static/images/monsters/door.png",
-    "beta_image_url": "/static/images/monsters/beta/door.png"
+    "image_url": "/static/images/monsters/door.webp",
+    "beta_image_url": "/static/images/monsters/beta/door.webp"
   },
   {
     "id": "DOORMAKER",
@@ -1910,7 +2172,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "DOORMAKER_BOSS",
+        "encounter_name": "Kapı Ustası",
+        "room_type": "Boss",
+        "act": "Act 3 - Glory",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "cycle",
@@ -1937,8 +2207,8 @@
       ],
       "description": "What Is It → Beam → Get Back In → repeat"
     },
-    "image_url": "/static/images/monsters/doormaker.png",
-    "beta_image_url": "/static/images/monsters/beta/door_maker_placeholder_2.png"
+    "image_url": "/static/images/monsters/doormaker.webp",
+    "beta_image_url": "/static/images/monsters/beta/door_maker_placeholder_2.webp"
   },
   {
     "id": "ENTOMANCER",
@@ -2004,7 +2274,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "ENTOMANCER_ELITE",
+        "encounter_name": "Böcek Büyücüsü",
+        "room_type": "Elite",
+        "act": "Act 2 - Hive",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "cycle",
@@ -2029,7 +2307,7 @@
       ],
       "description": "Always uses Arılaaaar!"
     },
-    "image_url": "/static/images/monsters/entomancer.png",
+    "image_url": "/static/images/monsters/entomancer.webp",
     "beta_image_url": null
   },
   {
@@ -2083,7 +2361,22 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "EXOSKELETONS_NORMAL",
+        "encounter_name": "Birçok Zırhkabuk",
+        "room_type": "Monster",
+        "act": "Act 2 - Hive",
+        "is_weak": false
+      },
+      {
+        "encounter_id": "EXOSKELETONS_WEAK",
+        "encounter_name": "Zırhkabuklar",
+        "room_type": "Monster",
+        "act": "Act 2 - Hive",
+        "is_weak": true
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "mixed",
@@ -2146,9 +2439,9 @@
           ]
         }
       ],
-      "description": "then random: Sıçra (no repeat), Mandible (no repeat); then conditional: Sıçra (if base.Creature.SlotName == \"first\") / Mandible (if base.Creature.SlotName == \"second\") / Sinirlen (if base.Creature.SlotName == \"third\") / Rand (if base.Creature.SlotName == \"fourth\")"
+      "description": "then random: Sıçra (no repeat), Mandible (no repeat); then conditional: Sıçra (if in first slot) / Mandible (if in second slot) / Sinirlen (if in third slot) / Rand (if in fourth slot)"
     },
-    "image_url": "/static/images/monsters/exoskeleton.png",
+    "image_url": "/static/images/monsters/exoskeleton.webp",
     "beta_image_url": null
   },
   {
@@ -2168,7 +2461,15 @@
     ],
     "damage_values": null,
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "FOGMOG_NORMAL",
+        "encounter_name": "Gaztar",
+        "room_type": "Monster",
+        "act": "Act 1 - Overgrowth",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "cycle",
@@ -2183,7 +2484,7 @@
       ],
       "description": "Always uses Dikkatini Dağıt"
     },
-    "image_url": "/static/images/monsters/eye_with_teeth.png",
+    "image_url": "/static/images/monsters/eye_with_teeth.webp",
     "beta_image_url": null
   },
   {
@@ -2230,7 +2531,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "FABRICATOR_NORMAL",
+        "encounter_name": "İmalatçı",
+        "room_type": "Monster",
+        "act": "Act 3 - Glory",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "mixed",
@@ -2285,9 +2594,9 @@
           ]
         }
       ],
-      "description": "then random: Üret, Fabricating Strike; then conditional: Rand (if CanFabricate) / Parçalarına Ayır (if !CanFabricate)"
+      "description": "then random: Üret, Fabricating Strike; then conditional: Rand (if can fabricate) / Parçalarına Ayır (if cannot fabricate)"
     },
-    "image_url": "/static/images/monsters/fabricator.png",
+    "image_url": "/static/images/monsters/fabricator.webp",
     "beta_image_url": null
   },
   {
@@ -2359,7 +2668,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "FAKE_MERCHANT_EVENT_ENCOUNTER",
+        "encounter_name": "Tüccar???",
+        "room_type": "Monster",
+        "act": null,
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "random",
@@ -2402,7 +2719,7 @@
       ],
       "description": "Starts with Çiz"
     },
-    "image_url": "/static/images/monsters/fake_merchant.png",
+    "image_url": "/static/images/monsters/fake_merchant.webp",
     "beta_image_url": null
   },
   {
@@ -2427,7 +2744,15 @@
     ],
     "damage_values": null,
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "GREMLIN_MERC_NORMAL",
+        "encounter_name": "Paltolu İki Gremlin",
+        "room_type": "Monster",
+        "act": "Act 1 - Underdocks",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "cycle",
@@ -2446,7 +2771,7 @@
       ],
       "description": "Always uses Spawned"
     },
-    "image_url": "/static/images/monsters/fat_gremlin.png",
+    "image_url": "/static/images/monsters/fat_gremlin.webp",
     "beta_image_url": null
   },
   {
@@ -2502,7 +2827,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "KNIGHTS_ELITE",
+        "encounter_name": "Şövalye Çetesi",
+        "room_type": "Elite",
+        "act": "Act 3 - Glory",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "random",
@@ -2539,7 +2872,7 @@
       ],
       "description": "Starts with Ez"
     },
-    "image_url": "/static/images/monsters/flail_knight.png",
+    "image_url": "/static/images/monsters/flail_knight.webp",
     "beta_image_url": null
   },
   {
@@ -2604,7 +2937,22 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "FLYCONID_NORMAL",
+        "encounter_name": "Mantar ve Balçık",
+        "room_type": "Monster",
+        "act": "Act 1 - Overgrowth",
+        "is_weak": false
+      },
+      {
+        "encounter_id": "SNAPPING_JAXFRUIT_NORMAL",
+        "encounter_name": "Aşırı Yeşerme Bitkileri",
+        "room_type": "Monster",
+        "act": "Act 1 - Overgrowth",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "random",
@@ -2641,7 +2989,7 @@
       ],
       "description": ""
     },
-    "image_url": "/static/images/monsters/flyconid.png",
+    "image_url": "/static/images/monsters/flyconid.webp",
     "beta_image_url": null
   },
   {
@@ -2711,7 +3059,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "FOGMOG_NORMAL",
+        "encounter_name": "Gaztar",
+        "room_type": "Monster",
+        "act": "Act 1 - Overgrowth",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "random",
@@ -2760,7 +3116,7 @@
       ],
       "description": "Starts with Illusion, then random: Swipe Random (no repeat, 40%), Headbutt (no repeat, 60%)"
     },
-    "image_url": "/static/images/monsters/fogmog.png",
+    "image_url": "/static/images/monsters/fogmog.webp",
     "beta_image_url": null
   },
   {
@@ -2824,7 +3180,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "FOSSIL_STALKER_NORMAL",
+        "encounter_name": "Pusan Fosil",
+        "room_type": "Monster",
+        "act": "Act 1 - Underdocks",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "random",
@@ -2861,7 +3225,7 @@
       ],
       "description": "Starts with Tutun"
     },
-    "image_url": "/static/images/monsters/fossil_stalker.png",
+    "image_url": "/static/images/monsters/fossil_stalker.webp",
     "beta_image_url": null
   },
   {
@@ -2935,7 +3299,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "FROG_KNIGHT_NORMAL",
+        "encounter_name": "Kurbağa Şövalye",
+        "room_type": "Monster",
+        "act": "Act 3 - Glory",
+        "is_weak": false
+      }
+    ],
     "innate_powers": [
       {
         "power_id": "PLATING",
@@ -2986,9 +3358,9 @@
           ]
         }
       ],
-      "description": "Starts: Dil Kamçısı → Kötülüğe Darbe → Kraliçe İçin; then conditional: Dil Kamçısı (if HasBeetleCharged || base.Creature.CurrentHp >= base.Creature.MaxHp / 2) / Böcek Hücumu (if !HasBeetleCharged && base.Creature.CurrentHp < base.Creature.MaxHp / 2)"
+      "description": "Starts: Dil Kamçısı → Kötülüğe Darbe → Kraliçe İçin; then conditional: Dil Kamçısı (if HasBeetleCharged || CurrentHp >= MaxHp / 2) / Böcek Hücumu (if !HasBeetleCharged && CurrentHp < MaxHp / 2)"
     },
-    "image_url": "/static/images/monsters/frog_knight.png",
+    "image_url": "/static/images/monsters/frog_knight.webp",
     "beta_image_url": null
   },
   {
@@ -3038,7 +3410,22 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "FUZZY_WURM_CRAWLER_WEAK",
+        "encounter_name": "Tüylü Müylü Sürüngen",
+        "room_type": "Monster",
+        "act": "Act 1 - Overgrowth",
+        "is_weak": true
+      },
+      {
+        "encounter_id": "OVERGROWTH_CRAWLERS",
+        "encounter_name": "Aşırı Yeşerme Böcekleri",
+        "room_type": "Monster",
+        "act": "Act 1 - Overgrowth",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "cycle",
@@ -3063,7 +3450,7 @@
       ],
       "description": "Always uses First Acid Goop"
     },
-    "image_url": "/static/images/monsters/fuzzy_wurm_crawler.png",
+    "image_url": "/static/images/monsters/fuzzy_wurm_crawler.webp",
     "beta_image_url": null
   },
   {
@@ -3092,7 +3479,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "LIVING_FOG_NORMAL",
+        "encounter_name": "Kötü Bir Gaz",
+        "room_type": "Monster",
+        "act": "Act 1 - Underdocks",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "cycle",
@@ -3106,7 +3501,7 @@
       ],
       "description": "Always uses Patla"
     },
-    "image_url": "/static/images/monsters/gas_bomb.png",
+    "image_url": "/static/images/monsters/gas_bomb.webp",
     "beta_image_url": null
   },
   {
@@ -3177,7 +3572,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "GLOBE_HEAD_NORMAL",
+        "encounter_name": "Yalnız Küre Kafa",
+        "room_type": "Monster",
+        "act": "Act 3 - Glory",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "cycle",
@@ -3204,7 +3607,7 @@
       ],
       "description": "Şok Edici Tokat → Thunder Strike → Galvanic Burst → repeat"
     },
-    "image_url": "/static/images/monsters/orb_head.png",
+    "image_url": "/static/images/monsters/orb_head.webp",
     "beta_image_url": null
   },
   {
@@ -3277,7 +3680,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "GREMLIN_MERC_NORMAL",
+        "encounter_name": "Paltolu İki Gremlin",
+        "room_type": "Monster",
+        "act": "Act 1 - Underdocks",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "cycle",
@@ -3304,7 +3715,7 @@
       ],
       "description": "Ceple → Çifte Eziş → Hihi → repeat"
     },
-    "image_url": "/static/images/monsters/gremlin_merc.png",
+    "image_url": "/static/images/monsters/gremlin_merc.webp",
     "beta_image_url": null
   },
   {
@@ -3340,7 +3751,7 @@
       ],
       "description": "Always uses Koru"
     },
-    "image_url": "/static/images/monsters/guardbot.png",
+    "image_url": "/static/images/monsters/guardbot.webp",
     "beta_image_url": null
   },
   {
@@ -3419,7 +3830,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "HAUNTED_SHIP_NORMAL",
+        "encounter_name": "Lanetli Gemi",
+        "room_type": "Monster",
+        "act": "Act 1 - Underdocks",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "random",
@@ -3462,7 +3881,7 @@
       ],
       "description": "Starts with Ezici Hız"
     },
-    "image_url": "/static/images/monsters/haunted_ship.png",
+    "image_url": "/static/images/monsters/haunted_ship.webp",
     "beta_image_url": null
   },
   {
@@ -3518,7 +3937,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "HUNTER_KILLER_NORMAL",
+        "encounter_name": "Avcı Katili",
+        "room_type": "Monster",
+        "act": "Act 2 - Hive",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "random",
@@ -3555,7 +3982,7 @@
       ],
       "description": "Starts with Aşındırıcı Kusmuk"
     },
-    "image_url": "/static/images/monsters/hunter_killer.png",
+    "image_url": "/static/images/monsters/hunter_killer.webp",
     "beta_image_url": null
   },
   {
@@ -3626,7 +4053,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "INFESTED_PRISMS_ELITE",
+        "encounter_name": "İstila Edilmiş Prizma",
+        "room_type": "Elite",
+        "act": "Act 2 - Hive",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "cycle",
@@ -3659,7 +4094,7 @@
       ],
       "description": "Batır → Işık Saç → Kasırga → Titreş → repeat"
     },
-    "image_url": "/static/images/monsters/infested_prism.png",
+    "image_url": "/static/images/monsters/infested_prism.webp",
     "beta_image_url": null
   },
   {
@@ -3716,7 +4151,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "INKLETS_NORMAL",
+        "encounter_name": "Mürekkepçikler",
+        "room_type": "Monster",
+        "act": "Act 1 - Overgrowth",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "random",
@@ -3781,7 +4224,7 @@
       ],
       "description": "Starts: Whirlwind → Yumruk; then random: Yumruk, Whirlwind (no repeat); then random: Delici Bakış (no repeat), Whirlwind (no repeat)"
     },
-    "image_url": "/static/images/monsters/inklet.png",
+    "image_url": "/static/images/monsters/inklet.webp",
     "beta_image_url": null
   },
   {
@@ -3837,7 +4280,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "THE_KIN_BOSS",
+        "encounter_name": "Kabile",
+        "room_type": "Boss",
+        "act": "Act 1 - Overgrowth",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "cycle",
@@ -3864,7 +4315,7 @@
       ],
       "description": "Power Dance → Quick Slash → Boomerang → repeat"
     },
-    "image_url": "/static/images/monsters/kin_follower.png",
+    "image_url": "/static/images/monsters/kin_follower.webp",
     "beta_image_url": null
   },
   {
@@ -3947,7 +4398,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "THE_KIN_BOSS",
+        "encounter_name": "Kabile",
+        "room_type": "Boss",
+        "act": "Act 1 - Overgrowth",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "cycle",
@@ -3980,7 +4439,7 @@
       ],
       "description": "Orb Of Frailty → Orb Of Weakness → Beam → Ritual → repeat"
     },
-    "image_url": "/static/images/monsters/kin_priest.png",
+    "image_url": "/static/images/monsters/kin_priest.webp",
     "beta_image_url": null
   },
   {
@@ -4050,7 +4509,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "KNOWLEDGE_DEMON_BOSS",
+        "encounter_name": "Bilgi Şeytanı",
+        "room_type": "Boss",
+        "act": "Act 2 - Hive",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "conditional",
@@ -4095,9 +4562,9 @@
           ]
         }
       ],
-      "description": "Starts: Bilginin Laneti → Slap → Ezici Bilgi → Düşün; then conditional: Bilginin Laneti (if _curseOfKnowledgeCounter < 3) / Slap (if _curseOfKnowledgeCounter >= 3)"
+      "description": "Starts: Bilginin Laneti → Slap → Ezici Bilgi → Düşün; then conditional: Bilginin Laneti (if curse of knowledge counter < 3) / Slap (if curse of knowledge counter >= 3)"
     },
-    "image_url": "/static/images/monsters/knowledge_demon.png",
+    "image_url": "/static/images/monsters/knowledge_demon.webp",
     "beta_image_url": null
   },
   {
@@ -4172,7 +4639,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "LAGAVULIN_MATRIARCH_BOSS",
+        "encounter_name": "Anne Lagavulin",
+        "room_type": "Boss",
+        "act": "Act 1 - Underdocks",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "conditional",
@@ -4215,7 +4690,7 @@
       ],
       "description": "Starts with Uyu"
     },
-    "image_url": "/static/images/monsters/lagavulin_matriarch.png",
+    "image_url": "/static/images/monsters/lagavulin_matriarch.webp",
     "beta_image_url": null
   },
   {
@@ -4249,7 +4724,36 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "FLYCONID_NORMAL",
+        "encounter_name": "Mantar ve Balçık",
+        "room_type": "Monster",
+        "act": "Act 1 - Overgrowth",
+        "is_weak": false
+      },
+      {
+        "encounter_id": "SLIMES_NORMAL",
+        "encounter_name": "Balçık Sürüsü",
+        "room_type": "Monster",
+        "act": "Act 1 - Overgrowth",
+        "is_weak": false
+      },
+      {
+        "encounter_id": "SLIMES_WEAK",
+        "encounter_name": "Bir Grup Balçık",
+        "room_type": "Monster",
+        "act": "Act 1 - Overgrowth",
+        "is_weak": true
+      },
+      {
+        "encounter_id": "SLITHERING_STRANGLER_NORMAL",
+        "encounter_name": "Boğucu ve Dostu",
+        "room_type": "Monster",
+        "act": "Act 1 - Overgrowth",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "cycle",
@@ -4270,7 +4774,7 @@
       ],
       "description": "Yapışkan Atış → Balçık Atışı → repeat"
     },
-    "image_url": "/static/images/monsters/leaf_slime_m.png",
+    "image_url": "/static/images/monsters/leaf_slime_m.webp",
     "beta_image_url": null
   },
   {
@@ -4304,7 +4808,29 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "SLIMES_NORMAL",
+        "encounter_name": "Balçık Sürüsü",
+        "room_type": "Monster",
+        "act": "Act 1 - Overgrowth",
+        "is_weak": false
+      },
+      {
+        "encounter_id": "SLIMES_WEAK",
+        "encounter_name": "Bir Grup Balçık",
+        "room_type": "Monster",
+        "act": "Act 1 - Overgrowth",
+        "is_weak": true
+      },
+      {
+        "encounter_id": "SLITHERING_STRANGLER_NORMAL",
+        "encounter_name": "Boğucu ve Dostu",
+        "room_type": "Monster",
+        "act": "Act 1 - Overgrowth",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "random",
@@ -4335,7 +4861,7 @@
       ],
       "description": ""
     },
-    "image_url": "/static/images/monsters/leaf_slime_s.png",
+    "image_url": "/static/images/monsters/leaf_slime_s.webp",
     "beta_image_url": null
   },
   {
@@ -4397,7 +4923,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "LIVING_FOG_NORMAL",
+        "encounter_name": "Kötü Bir Gaz",
+        "room_type": "Monster",
+        "act": "Act 1 - Underdocks",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "cycle",
@@ -4424,7 +4958,7 @@
       ],
       "description": "Advanced Gas → Üfür → Super Gas Blast → repeat"
     },
-    "image_url": "/static/images/monsters/living_smog.png",
+    "image_url": "/static/images/monsters/living_smog.webp",
     "beta_image_url": null
   },
   {
@@ -4471,7 +5005,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "TURRET_OPERATOR_WEAK",
+        "encounter_name": "Taret Operatörü",
+        "room_type": "Monster",
+        "act": "Act 3 - Glory",
+        "is_weak": true
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "conditional",
@@ -4495,18 +5037,18 @@
           "branches": [
             {
               "move_id": "SHIELD_SLAM",
-              "condition": "GetAllyCount("
+              "condition": "GetAllyCount() > 0"
             },
             {
               "move_id": "SMASH",
-              "condition": "GetAllyCount("
+              "condition": "GetAllyCount() == 0"
             }
           ]
         }
       ],
-      "description": "Starts with Kalkan Vuruşu; then conditional: Kalkan Vuruşu (if GetAllyCount() / Smash (if GetAllyCount()"
+      "description": "Starts with Kalkan Vuruşu; then conditional: Kalkan Vuruşu (if has allies) / Smash (if no allies)"
     },
-    "image_url": "/static/images/monsters/living_shield.png",
+    "image_url": "/static/images/monsters/living_shield.webp",
     "beta_image_url": null
   },
   {
@@ -4568,7 +5110,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "LOUSE_PROGENITOR_NORMAL",
+        "encounter_name": "Bitlerin Atası",
+        "room_type": "Monster",
+        "act": "Act 2 - Hive",
+        "is_weak": false
+      }
+    ],
     "innate_powers": [
       {
         "power_id": "CURL_UP",
@@ -4599,7 +5149,7 @@
       ],
       "description": "Always uses Ağ Topu"
     },
-    "image_url": "/static/images/monsters/louse_progenitor.png",
+    "image_url": "/static/images/monsters/louse_progenitor.webp",
     "beta_image_url": null
   },
   {
@@ -4666,7 +5216,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "KNIGHTS_ELITE",
+        "encounter_name": "Şövalye Çetesi",
+        "room_type": "Elite",
+        "act": "Act 3 - Glory",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "cycle",
@@ -4705,7 +5263,7 @@
       ],
       "description": "First Power Shield → Dampen → Deş → Prep → Büyü Bombası → repeat"
     },
-    "image_url": "/static/images/monsters/magi_knight.png",
+    "image_url": "/static/images/monsters/magi_knight.webp",
     "beta_image_url": null
   },
   {
@@ -4761,7 +5319,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "MAWLER_NORMAL",
+        "encounter_name": "Yırtançene",
+        "room_type": "Monster",
+        "act": "Act 1 - Overgrowth",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "random",
@@ -4814,7 +5380,7 @@
       ],
       "description": "Starts with Pençe; then random: Parçalayıp Kopar (no repeat), Kükre (once), Pençe (no repeat)"
     },
-    "image_url": "/static/images/monsters/mawler.png",
+    "image_url": "/static/images/monsters/mawler.webp",
     "beta_image_url": null
   },
   {
@@ -4876,7 +5442,15 @@
     "block_values": {
       "windup": 15
     },
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "MECHA_KNIGHT_ELITE",
+        "encounter_name": "Meka Şövalye",
+        "room_type": "Elite",
+        "act": "Act 3 - Glory",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "cycle",
@@ -4909,7 +5483,7 @@
       ],
       "description": "Atıl → Alev Makinesi → Güç Topla → Ağır Darbe → repeat"
     },
-    "image_url": "/static/images/monsters/mecha_knight.png",
+    "image_url": "/static/images/monsters/mecha_knight.webp",
     "beta_image_url": null
   },
   {
@@ -4963,7 +5537,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "MYTES_NORMAL",
+        "encounter_name": "Mayt Sürüsü",
+        "room_type": "Monster",
+        "act": "Act 2 - Hive",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "conditional",
@@ -5002,9 +5584,9 @@
           ]
         }
       ],
-      "description": "then conditional: Toksik Atış (if base.Creature.SlotName == \"first\") / Em (if base.Creature.SlotName == \"second\")"
+      "description": "then conditional: Toksik Atış (if in first slot) / Em (if in second slot)"
     },
-    "image_url": "/static/images/monsters/myte.png",
+    "image_url": "/static/images/monsters/myte.webp",
     "beta_image_url": null
   },
   {
@@ -5059,7 +5641,22 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "NIBBITS_NORMAL",
+        "encounter_name": "Bir Çift Kemirbağa",
+        "room_type": "Monster",
+        "act": "Act 1 - Overgrowth",
+        "is_weak": false
+      },
+      {
+        "encounter_id": "NIBBITS_WEAK",
+        "encounter_name": "Yalnız Bir Kemirbağa",
+        "room_type": "Monster",
+        "act": "Act 1 - Overgrowth",
+        "is_weak": true
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "conditional",
@@ -5089,22 +5686,22 @@
           "branches": [
             {
               "move_id": "BUTT",
-              "condition": "((Nibbit"
+              "condition": "((Nibbit)base.Creature.Monster).IsAlone"
             },
             {
               "move_id": "HISS",
-              "condition": "!((Nibbit"
+              "condition": "!((Nibbit)base.Creature.Monster).IsFront"
             },
             {
               "move_id": "SLICE",
-              "condition": "((Nibbit"
+              "condition": "((Nibbit)base.Creature.Monster).IsFront"
             }
           ]
         }
       ],
-      "description": "then conditional: Toslama (if ((Nibbit) / Tıslama (if !((Nibbit) / Slice (if ((Nibbit)"
+      "description": "then conditional: Toslama (if alone) / Tıslama (if not in front) / Slice (if in front)"
     },
-    "image_url": "/static/images/monsters/nibbit.png",
+    "image_url": "/static/images/monsters/nibbit.webp",
     "beta_image_url": null
   },
   {
@@ -5139,7 +5736,7 @@
       ],
       "description": "Always uses Gürültü"
     },
-    "image_url": "/static/images/monsters/noisebot.png",
+    "image_url": "/static/images/monsters/noisebot.webp",
     "beta_image_url": null
   },
   {
@@ -5174,7 +5771,7 @@
       ],
       "description": ""
     },
-    "image_url": "/static/images/monsters/osty.png",
+    "image_url": "/static/images/monsters/osty.webp",
     "beta_image_url": null
   },
   {
@@ -5240,7 +5837,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "OVICOPTER_NORMAL",
+        "encounter_name": "Kuluçkopter",
+        "room_type": "Monster",
+        "act": "Act 2 - Hive",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "conditional",
@@ -5285,9 +5890,9 @@
           ]
         }
       ],
-      "description": "Starts: Yumurtla → Ez → Aşındırıcı; then conditional: Yumurtla (if CanLay) / Besleyici Lapa (if !CanLay)"
+      "description": "Starts: Yumurtla → Ez → Aşındırıcı; then conditional: Yumurtla (if can lay) / Besleyici Lapa (if cannot lay)"
     },
-    "image_url": "/static/images/monsters/ovicopter.png",
+    "image_url": "/static/images/monsters/ovicopter.webp",
     "beta_image_url": null
   },
   {
@@ -5363,7 +5968,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "OWL_MAGISTRATE_NORMAL",
+        "encounter_name": "Yargıç Baykuş",
+        "room_type": "Monster",
+        "act": "Act 3 - Glory",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "cycle",
@@ -5396,7 +6009,7 @@
       ],
       "description": "Yargıç Gözlemi → Gaga Saldırısı → Adli Uçuş → Karar → repeat"
     },
-    "image_url": "/static/images/monsters/owl_magistrate.png",
+    "image_url": "/static/images/monsters/owl_magistrate.webp",
     "beta_image_url": null
   },
   {
@@ -5431,8 +6044,8 @@
       ],
       "description": ""
     },
-    "image_url": "/static/images/monsters/paels_legion.png",
-    "beta_image_url": "/static/images/monsters/beta/paels_legion.png"
+    "image_url": "/static/images/monsters/paels_legion.webp",
+    "beta_image_url": "/static/images/monsters/beta/paels_legion.webp"
   },
   {
     "id": "PARAFRIGHT",
@@ -5475,7 +6088,7 @@
       ],
       "description": "Always uses Ez"
     },
-    "image_url": "/static/images/monsters/parafright.png",
+    "image_url": "/static/images/monsters/parafright.webp",
     "beta_image_url": null
   },
   {
@@ -5543,7 +6156,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "PHANTASMAL_GARDENERS_ELITE",
+        "encounter_name": "Bahçe Yılan Balıkları",
+        "room_type": "Elite",
+        "act": "Act 1 - Underdocks",
+        "is_weak": false
+      }
+    ],
     "innate_powers": [
       {
         "power_id": "SKITTISH",
@@ -5602,9 +6223,9 @@
           ]
         }
       ],
-      "description": "then conditional: Vur (if base.Creature.SlotName == \"first\") / Isır (if base.Creature.SlotName == \"second\") / Dil Kamçısı (if base.Creature.SlotName == \"third\") / Büyü (if base.Creature.SlotName == \"fourth\")"
+      "description": "then conditional: Vur (if in first slot) / Isır (if in second slot) / Dil Kamçısı (if in third slot) / Büyü (if in fourth slot)"
     },
-    "image_url": "/static/images/monsters/phantasmal_gardener.png",
+    "image_url": "/static/images/monsters/phantasmal_gardener.webp",
     "beta_image_url": null
   },
   {
@@ -5640,7 +6261,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "PHROG_PARASITE_ELITE",
+        "encounter_name": "Parazitli Gurbağa",
+        "room_type": "Elite",
+        "act": "Act 1 - Overgrowth",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "random",
@@ -5666,7 +6295,7 @@
       ],
       "description": "Starts: Bulaştır → Kırbaç"
     },
-    "image_url": "/static/images/monsters/phrog_parasite.png",
+    "image_url": "/static/images/monsters/phrog_parasite.webp",
     "beta_image_url": null
   },
   {
@@ -5723,7 +6352,29 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "CONSTRUCT_MENAGERIE_NORMAL",
+        "encounter_name": "Yapı Koleksiyonu",
+        "room_type": "Monster",
+        "act": "Act 3 - Glory",
+        "is_weak": false
+      },
+      {
+        "encounter_id": "PUNCH_CONSTRUCT_NORMAL",
+        "encounter_name": "Yumruklayan Yapı",
+        "room_type": "Monster",
+        "act": "Act 1 - Underdocks",
+        "is_weak": false
+      },
+      {
+        "encounter_id": "PUNCH_OFF_EVENT_ENCOUNTER",
+        "encounter_name": "Yumruklayan Yapılar",
+        "room_type": "Monster",
+        "act": null,
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "cycle",
@@ -5750,7 +6401,7 @@
       ],
       "description": ""
     },
-    "image_url": "/static/images/monsters/punch_construct.png",
+    "image_url": "/static/images/monsters/punch_construct.webp",
     "beta_image_url": null
   },
   {
@@ -5846,7 +6497,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "QUEEN_BOSS",
+        "encounter_name": "Kraliçe",
+        "room_type": "Boss",
+        "act": "Act 3 - Glory",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "conditional",
@@ -5917,9 +6576,9 @@
           ]
         }
       ],
-      "description": "Starts: Puppet Strings → Your Mine; then conditional: Benim İçin Yan (if !HasAmalgamDied) / Kelleni Alırım (if HasAmalgamDied); then conditional: Benim İçin Yan (if !HasAmalgamDied) / Kelleni Alırım (if HasAmalgamDied)"
+      "description": "Starts: Puppet Strings → Your Mine; then conditional: Benim İçin Yan (if does not have amalgam died) / Kelleni Alırım (if has amalgam died); then conditional: Benim İçin Yan (if does not have amalgam died) / Kelleni Alırım (if has amalgam died)"
     },
-    "image_url": "/static/images/monsters/queen.png",
+    "image_url": "/static/images/monsters/queen.webp",
     "beta_image_url": null
   },
   {
@@ -5991,7 +6650,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "KAISER_CRAB_BOSS",
+        "encounter_name": "Kayzer Yengeç",
+        "room_type": "Boss",
+        "act": "Act 2 - Hive",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "cycle",
@@ -6030,7 +6697,7 @@
       ],
       "description": "Hedef Göstergesi → Odak Işını → Güç Topla → Lazer → Yeniden Doldur → repeat"
     },
-    "image_url": "/static/images/monsters/rocket.png",
+    "image_url": "/static/images/monsters/rocket.webp",
     "beta_image_url": null
   },
   {
@@ -6086,7 +6753,22 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "SCROLLS_OF_BITING_NORMAL",
+        "encounter_name": "Birçok Isırma Parşömeni",
+        "room_type": "Monster",
+        "act": "Act 3 - Glory",
+        "is_weak": false
+      },
+      {
+        "encounter_id": "SCROLLS_OF_BITING_WEAK",
+        "encounter_name": "Isırma Parşömenleri",
+        "room_type": "Monster",
+        "act": "Act 3 - Glory",
+        "is_weak": true
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "random",
@@ -6118,7 +6800,7 @@
       ],
       "description": ""
     },
-    "image_url": "/static/images/monsters/scroll_of_biting.png",
+    "image_url": "/static/images/monsters/scroll_of_biting.webp",
     "beta_image_url": null
   },
   {
@@ -6173,7 +6855,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "SEAPUNK_WEAK",
+        "encounter_name": "Deniz Haydutu",
+        "room_type": "Monster",
+        "act": "Act 1 - Underdocks",
+        "is_weak": true
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "cycle",
@@ -6200,7 +6890,7 @@
       ],
       "description": "Deniz Tekmesi → Dönen Tekme → Baloncuk Geğiriği → repeat"
     },
-    "image_url": "/static/images/monsters/seapunk.png",
+    "image_url": "/static/images/monsters/seapunk.webp",
     "beta_image_url": null
   },
   {
@@ -6241,7 +6931,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "SEWER_CLAM_NORMAL",
+        "encounter_name": "Kanalizasyon İstiridyesi",
+        "room_type": "Monster",
+        "act": "Act 1 - Underdocks",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "cycle",
@@ -6260,7 +6958,7 @@
       ],
       "description": ""
     },
-    "image_url": "/static/images/monsters/sewer_clam.png",
+    "image_url": "/static/images/monsters/sewer_clam.webp",
     "beta_image_url": null
   },
   {
@@ -6307,7 +7005,22 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "OVERGROWTH_CRAWLERS",
+        "encounter_name": "Aşırı Yeşerme Böcekleri",
+        "room_type": "Monster",
+        "act": "Act 1 - Overgrowth",
+        "is_weak": false
+      },
+      {
+        "encounter_id": "SHRINKER_BEETLE_WEAK",
+        "encounter_name": "Küçültücü Böcek",
+        "room_type": "Monster",
+        "act": "Act 1 - Overgrowth",
+        "is_weak": true
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "cycle",
@@ -6334,7 +7047,7 @@
       ],
       "description": "Küçültme → Isır → Ez → repeat"
     },
-    "image_url": "/static/images/monsters/shrinker_beetle.png",
+    "image_url": "/static/images/monsters/shrinker_beetle.webp",
     "beta_image_url": null
   },
   {
@@ -6404,7 +7117,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "SKULKING_COLONY_ELITE",
+        "encounter_name": "Saklanan Koloni",
+        "room_type": "Elite",
+        "act": "Act 1 - Underdocks",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "cycle",
@@ -6437,7 +7158,7 @@
       ],
       "description": "Smash → Hızlan → Eylemsizlik → Süper Yengeç → repeat"
     },
-    "image_url": "/static/images/monsters/skulkling_colomy.png",
+    "image_url": "/static/images/monsters/skulkling_colomy.webp",
     "beta_image_url": null
   },
   {
@@ -6503,7 +7224,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "SLIMED_BERSERKER_NORMAL",
+        "encounter_name": "Balçıklanmış Vahşi Savaşçı",
+        "room_type": "Monster",
+        "act": "Act 3 - Glory",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "cycle",
@@ -6534,7 +7263,7 @@
       ],
       "description": "Always uses Vomit Ichor"
     },
-    "image_url": "/static/images/monsters/slimed_berserker.png",
+    "image_url": "/static/images/monsters/slimed_berserker.webp",
     "beta_image_url": null
   },
   {
@@ -6589,7 +7318,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "SLITHERING_STRANGLER_NORMAL",
+        "encounter_name": "Boğucu ve Dostu",
+        "room_type": "Monster",
+        "act": "Act 1 - Overgrowth",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "random",
@@ -6626,7 +7363,7 @@
       ],
       "description": "Starts with Boğ"
     },
-    "image_url": "/static/images/monsters/slithering_strangler.png",
+    "image_url": "/static/images/monsters/slithering_strangler.webp",
     "beta_image_url": null
   },
   {
@@ -6695,7 +7432,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "SLUDGE_SPINNER_WEAK",
+        "encounter_name": "Çamurdöner",
+        "room_type": "Monster",
+        "act": "Act 1 - Underdocks",
+        "is_weak": true
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "random",
@@ -6732,7 +7477,7 @@
       ],
       "description": "Starts with Yağ Spreyi"
     },
-    "image_url": "/static/images/monsters/sludge_spinner.png",
+    "image_url": "/static/images/monsters/sludge_spinner.webp",
     "beta_image_url": null
   },
   {
@@ -6773,7 +7518,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "SLUMBERING_BEETLE_NORMAL",
+        "encounter_name": "Uyku Partisi",
+        "room_type": "Monster",
+        "act": "Act 2 - Hive",
+        "is_weak": false
+      }
+    ],
     "innate_powers": [
       {
         "power_id": "PLATING",
@@ -6804,7 +7557,7 @@
       ],
       "description": "Starts with Horla"
     },
-    "image_url": "/static/images/monsters/slumbering_beetle.png",
+    "image_url": "/static/images/monsters/slumbering_beetle.webp",
     "beta_image_url": null
   },
   {
@@ -6840,7 +7593,22 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "SLITHERING_STRANGLER_NORMAL",
+        "encounter_name": "Boğucu ve Dostu",
+        "room_type": "Monster",
+        "act": "Act 1 - Overgrowth",
+        "is_weak": false
+      },
+      {
+        "encounter_id": "SNAPPING_JAXFRUIT_NORMAL",
+        "encounter_name": "Aşırı Yeşerme Bitkileri",
+        "room_type": "Monster",
+        "act": "Act 1 - Overgrowth",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "cycle",
@@ -6855,7 +7623,7 @@
       ],
       "description": "Always uses Enerji Küresi"
     },
-    "image_url": "/static/images/monsters/snapping_jaxfruit.png",
+    "image_url": "/static/images/monsters/snapping_jaxfruit.webp",
     "beta_image_url": null
   },
   {
@@ -6889,7 +7657,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "GREMLIN_MERC_NORMAL",
+        "encounter_name": "Paltolu İki Gremlin",
+        "room_type": "Monster",
+        "act": "Act 1 - Underdocks",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "cycle",
@@ -6908,7 +7684,7 @@
       ],
       "description": "Always uses Spawned"
     },
-    "image_url": "/static/images/monsters/sneaky_gremlin.png",
+    "image_url": "/static/images/monsters/sneaky_gremlin.webp",
     "beta_image_url": null
   },
   {
@@ -6987,7 +7763,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "SOUL_FYSH_BOSS",
+        "encounter_name": "Ruh Baluğu",
+        "room_type": "Boss",
+        "act": "Act 1 - Underdocks",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "cycle",
@@ -7026,7 +7810,7 @@
       ],
       "description": "Beckon → Gazını Al → Gaze → Fade → Çığlık At → repeat"
     },
-    "image_url": "/static/images/monsters/soul_fysh.png",
+    "image_url": "/static/images/monsters/soul_fysh.webp",
     "beta_image_url": null
   },
   {
@@ -7096,7 +7880,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "SOUL_NEXUS_ELITE",
+        "encounter_name": "Ruh Bileşiği",
+        "room_type": "Elite",
+        "act": "Act 3 - Glory",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "random",
@@ -7149,7 +7941,7 @@
       ],
       "description": "Starts with Ruh Yanışı; then random: Ruh Yanışı (no repeat), Girdap (no repeat), Yaşam Em (no repeat)"
     },
-    "image_url": "/static/images/monsters/soul_nexus.png",
+    "image_url": "/static/images/monsters/soul_nexus.webp",
     "beta_image_url": null
   },
   {
@@ -7205,7 +7997,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "KNIGHTS_ELITE",
+        "encounter_name": "Şövalye Çetesi",
+        "room_type": "Elite",
+        "act": "Act 3 - Glory",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "random",
@@ -7237,7 +8037,7 @@
       ],
       "description": "Starts: Büyü → Ruh Kesişi"
     },
-    "image_url": "/static/images/monsters/spectral_knight.png",
+    "image_url": "/static/images/monsters/spectral_knight.webp",
     "beta_image_url": null
   },
   {
@@ -7291,7 +8091,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "SPINY_TOAD_NORMAL",
+        "encounter_name": "Dikenli Kurbağa",
+        "room_type": "Monster",
+        "act": "Act 2 - Hive",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "cycle",
@@ -7318,7 +8126,7 @@
       ],
       "description": "Diken Çıkar → Diken Patlaması → Dil Kamçısı → repeat"
     },
-    "image_url": "/static/images/monsters/spiny_toad.png",
+    "image_url": "/static/images/monsters/spiny_toad.webp",
     "beta_image_url": null
   },
   {
@@ -7369,7 +8177,7 @@
       ],
       "description": "Always uses Sapla"
     },
-    "image_url": "/static/images/monsters/stabbot.png",
+    "image_url": "/static/images/monsters/stabbot.webp",
     "beta_image_url": null
   },
   {
@@ -7437,7 +8245,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "TERROR_EEL_ELITE",
+        "encounter_name": "Korkunç Yılan Balığı",
+        "room_type": "Elite",
+        "act": "Act 1 - Underdocks",
+        "is_weak": false
+      }
+    ],
     "innate_powers": [
       {
         "power_id": "SHRIEK",
@@ -7476,7 +8292,7 @@
       ],
       "description": "Crash → Thrashmove → repeat"
     },
-    "image_url": "/static/images/monsters/terror_eel.png",
+    "image_url": "/static/images/monsters/terror_eel.webp",
     "beta_image_url": null
   },
   {
@@ -7606,7 +8422,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "TEST_SUBJECT_BOSS",
+        "encounter_name": "Denek",
+        "room_type": "Boss",
+        "act": "Act 3 - Glory",
+        "is_weak": false
+      }
+    ],
     "innate_powers": [
       {
         "power_id": "ENRAGE",
@@ -7682,9 +8506,9 @@
           ]
         }
       ],
-      "description": "Starts: Bite → Skull Bash; then conditional: Multi Claw (if Respawns < 2) / Phase3 Lacerate (if Respawns >= 2)"
+      "description": "Starts: Bite → Skull Bash; then conditional: Multi Claw (if respawns < 2) / Phase3 Lacerate (if respawns >= 2)"
     },
-    "image_url": "/static/images/monsters/test_subject.png",
+    "image_url": "/static/images/monsters/test_subject.webp",
     "beta_image_url": null
   },
   {
@@ -7769,7 +8593,7 @@
       ],
       "description": "Ez → Işın → Bombardıman → repeat"
     },
-    "image_url": "/static/images/monsters/the_adversary_placeholder.png",
+    "image_url": "/static/images/monsters/the_adversary_placeholder.webp",
     "beta_image_url": null
   },
   {
@@ -7854,7 +8678,7 @@
       ],
       "description": "Çarp → Ateş Işını → Bombardıman → repeat"
     },
-    "image_url": "/static/images/monsters/the_adversary_placeholder.png",
+    "image_url": "/static/images/monsters/the_adversary_placeholder.webp",
     "beta_image_url": null
   },
   {
@@ -7939,7 +8763,7 @@
       ],
       "description": "Göçürt → Ateş Işını → Bombardıman → repeat"
     },
-    "image_url": "/static/images/monsters/the_adversary_placeholder.png",
+    "image_url": "/static/images/monsters/the_adversary_placeholder.webp",
     "beta_image_url": null
   },
   {
@@ -7981,7 +8805,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "THE_LOST_AND_FORGOTTEN_NORMAL",
+        "encounter_name": "Kayıp ve Unutulmuş",
+        "room_type": "Monster",
+        "act": "Act 3 - Glory",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "cycle",
@@ -8000,7 +8832,7 @@
       ],
       "description": "Always uses Zehirli Hava"
     },
-    "image_url": "/static/images/monsters/the_forgotten.png",
+    "image_url": "/static/images/monsters/the_forgotten.webp",
     "beta_image_url": null
   },
   {
@@ -8071,7 +8903,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "THE_INSATIABLE_BOSS",
+        "encounter_name": "Doyumsuz",
+        "room_type": "Boss",
+        "act": "Act 2 - Hive",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "cycle",
@@ -8110,7 +8950,7 @@
       ],
       "description": "Zemini Sıvılaştır → Thrash Move 1 → Atılıp Isır → Salya Akıt → Thrash Move 2 → repeat"
     },
-    "image_url": "/static/images/monsters/the_insatiable.png",
+    "image_url": "/static/images/monsters/the_insatiable.webp",
     "beta_image_url": null
   },
   {
@@ -8153,7 +8993,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "THE_LOST_AND_FORGOTTEN_NORMAL",
+        "encounter_name": "Kayıp ve Unutulmuş",
+        "room_type": "Monster",
+        "act": "Act 3 - Glory",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "cycle",
@@ -8172,7 +9020,7 @@
       ],
       "description": "Always uses Zayıflatan Duman"
     },
-    "image_url": "/static/images/monsters/the_lost.png",
+    "image_url": "/static/images/monsters/the_lost.webp",
     "beta_image_url": null
   },
   {
@@ -8225,7 +9073,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "THE_OBSCURA_NORMAL",
+        "encounter_name": "Belirsiz",
+        "room_type": "Monster",
+        "act": "Act 2 - Hive",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "random",
@@ -8268,7 +9124,7 @@
       ],
       "description": "Starts with İlüzyon"
     },
-    "image_url": "/static/images/monsters/the_obscura.png",
+    "image_url": "/static/images/monsters/the_obscura.webp",
     "beta_image_url": null
   },
   {
@@ -8340,7 +9196,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "THIEVING_HOPPER_WEAK",
+        "encounter_name": "Hırsız Çekirge",
+        "room_type": "Monster",
+        "act": "Act 2 - Hive",
+        "is_weak": true
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "cycle",
@@ -8379,7 +9243,7 @@
       ],
       "description": "Hırsızlık → Çırpın → Alçak Hamle → Aşır → Kaç → repeat"
     },
-    "image_url": "/static/images/monsters/thieving_hopper.png",
+    "image_url": "/static/images/monsters/thieving_hopper.webp",
     "beta_image_url": null
   },
   {
@@ -8435,7 +9299,22 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "TOADPOLES_NORMAL",
+        "encounter_name": "Dip Rıhtımlar'ın Vahşi Yaşamı",
+        "room_type": "Monster",
+        "act": "Act 1 - Underdocks",
+        "is_weak": false
+      },
+      {
+        "encounter_id": "TOADPOLES_WEAK",
+        "encounter_name": "İribaşlar",
+        "room_type": "Monster",
+        "act": "Act 1 - Underdocks",
+        "is_weak": true
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "conditional",
@@ -8465,18 +9344,18 @@
           "branches": [
             {
               "move_id": "WHIRL",
-              "condition": "!((Toadpole"
+              "condition": "!((Toadpole)base.Creature.Monster).IsFront"
             },
             {
               "move_id": "SPIKEN",
-              "condition": "((Toadpole"
+              "condition": "((Toadpole)base.Creature.Monster).IsFront"
             }
           ]
         }
       ],
-      "description": "then conditional: Fırıl Fırıl Dön (if !((Toadpole) / Diken Çıkar (if ((Toadpole)"
+      "description": "then conditional: Fırıl Fırıl Dön (if not in front) / Diken Çıkar (if in front)"
     },
-    "image_url": "/static/images/monsters/toadpole.png",
+    "image_url": "/static/images/monsters/toadpole.webp",
     "beta_image_url": null
   },
   {
@@ -8551,7 +9430,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "QUEEN_BOSS",
+        "encounter_name": "Kraliçe",
+        "room_type": "Boss",
+        "act": "Act 3 - Glory",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "cycle",
@@ -8590,7 +9477,7 @@
       ],
       "description": "Tackle 1 → Tackle 2 → Beam → Tackle 3 → Tackle 4 → repeat"
     },
-    "image_url": "/static/images/monsters/amalgam.png",
+    "image_url": "/static/images/monsters/amalgam.webp",
     "beta_image_url": null
   },
   {
@@ -8624,7 +9511,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "OVICOPTER_NORMAL",
+        "encounter_name": "Kuluçkopter",
+        "room_type": "Monster",
+        "act": "Act 2 - Hive",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "cycle",
@@ -8643,7 +9538,7 @@
       ],
       "description": "Always uses KULUÇKAYA YATIR"
     },
-    "image_url": "/static/images/monsters/tough_egg.png",
+    "image_url": "/static/images/monsters/tough_egg.webp",
     "beta_image_url": null
   },
   {
@@ -8687,7 +9582,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "RUBY_RAIDERS_NORMAL",
+        "encounter_name": "Yakut Yağmacıları",
+        "room_type": "Monster",
+        "act": "Act 1 - Overgrowth",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "cycle",
@@ -8706,7 +9609,7 @@
       ],
       "description": "Always uses İzini Sür"
     },
-    "image_url": "/static/images/monsters/tracker_ruby_raider.png",
+    "image_url": "/static/images/monsters/tracker_ruby_raider.webp",
     "beta_image_url": null
   },
   {
@@ -8766,7 +9669,22 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "TUNNELER_NORMAL",
+        "encounter_name": "Tünel Kazan İkili",
+        "room_type": "Monster",
+        "act": "Act 2 - Hive",
+        "is_weak": false
+      },
+      {
+        "encounter_id": "TUNNELER_WEAK",
+        "encounter_name": "Tünelci",
+        "room_type": "Monster",
+        "act": "Act 2 - Hive",
+        "is_weak": true
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "cycle",
@@ -8799,7 +9717,7 @@
       ],
       "description": "Isır → Gömül → Below Move 1 → repeat"
     },
-    "image_url": "/static/images/monsters/tunneler.png",
+    "image_url": "/static/images/monsters/tunneler.webp",
     "beta_image_url": null
   },
   {
@@ -8852,7 +9770,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "TURRET_OPERATOR_WEAK",
+        "encounter_name": "Taret Operatörü",
+        "room_type": "Monster",
+        "act": "Act 3 - Glory",
+        "is_weak": true
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "cycle",
@@ -8879,7 +9805,7 @@
       ],
       "description": "Unload Move 1 → Unload Move 2 → Reload → repeat"
     },
-    "image_url": "/static/images/monsters/turret_operator.png",
+    "image_url": "/static/images/monsters/turret_operator.webp",
     "beta_image_url": null
   },
   {
@@ -8913,7 +9839,36 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "FLYCONID_NORMAL",
+        "encounter_name": "Mantar ve Balçık",
+        "room_type": "Monster",
+        "act": "Act 1 - Overgrowth",
+        "is_weak": false
+      },
+      {
+        "encounter_id": "SLIMES_NORMAL",
+        "encounter_name": "Balçık Sürüsü",
+        "room_type": "Monster",
+        "act": "Act 1 - Overgrowth",
+        "is_weak": false
+      },
+      {
+        "encounter_id": "SLIMES_WEAK",
+        "encounter_name": "Bir Grup Balçık",
+        "room_type": "Monster",
+        "act": "Act 1 - Overgrowth",
+        "is_weak": true
+      },
+      {
+        "encounter_id": "SLITHERING_STRANGLER_NORMAL",
+        "encounter_name": "Boğucu ve Dostu",
+        "room_type": "Monster",
+        "act": "Act 1 - Overgrowth",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "random",
@@ -8944,7 +9899,7 @@
       ],
       "description": "Starts with Yapışkan Atış"
     },
-    "image_url": "/static/images/monsters/twig_slime_m.png",
+    "image_url": "/static/images/monsters/twig_slime_m.webp",
     "beta_image_url": null
   },
   {
@@ -8973,7 +9928,29 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "SLIMES_NORMAL",
+        "encounter_name": "Balçık Sürüsü",
+        "room_type": "Monster",
+        "act": "Act 1 - Overgrowth",
+        "is_weak": false
+      },
+      {
+        "encounter_id": "SLIMES_WEAK",
+        "encounter_name": "Bir Grup Balçık",
+        "room_type": "Monster",
+        "act": "Act 1 - Overgrowth",
+        "is_weak": true
+      },
+      {
+        "encounter_id": "SLITHERING_STRANGLER_NORMAL",
+        "encounter_name": "Boğucu ve Dostu",
+        "room_type": "Monster",
+        "act": "Act 1 - Overgrowth",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "cycle",
@@ -8988,7 +9965,7 @@
       ],
       "description": "Always uses Butt"
     },
-    "image_url": "/static/images/monsters/twig_slime_s.png",
+    "image_url": "/static/images/monsters/twig_slime_s.webp",
     "beta_image_url": null
   },
   {
@@ -9047,7 +10024,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "TWO_TAILED_RATS_NORMAL",
+        "encounter_name": "İki Kuyruklu Fareler",
+        "room_type": "Monster",
+        "act": "Act 1 - Underdocks",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "random",
@@ -9090,7 +10075,7 @@
       ],
       "description": ""
     },
-    "image_url": "/static/images/monsters/two_tailed_rat.png",
+    "image_url": "/static/images/monsters/two_tailed_rat.webp",
     "beta_image_url": null
   },
   {
@@ -9159,7 +10144,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "VANTOM_BOSS",
+        "encounter_name": "Vantom",
+        "room_type": "Boss",
+        "act": "Act 1 - Overgrowth",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "cycle",
@@ -9192,7 +10185,7 @@
       ],
       "description": "Mürekkep Lekesi → Mürekkepli Mızrak → Parçalara Ayır → Hazırlan → repeat"
     },
-    "image_url": "/static/images/monsters/vantom.png",
+    "image_url": "/static/images/monsters/vantom.webp",
     "beta_image_url": null
   },
   {
@@ -9256,7 +10249,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "VINE_SHAMBLER_NORMAL",
+        "encounter_name": "Sarmaşık Yığını",
+        "room_type": "Monster",
+        "act": "Act 1 - Overgrowth",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "cycle",
@@ -9283,7 +10284,7 @@
       ],
       "description": "Çiz → Saran Sarmaşıklar → Isır → repeat"
     },
-    "image_url": "/static/images/monsters/vine_shambler.png",
+    "image_url": "/static/images/monsters/vine_shambler.webp",
     "beta_image_url": null
   },
   {
@@ -9414,7 +10415,15 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "WATERFALL_GIANT_BOSS",
+        "encounter_name": "Akarsu Devi",
+        "room_type": "Boss",
+        "act": "Act 1 - Underdocks",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "cycle",
@@ -9472,7 +10481,7 @@
       ],
       "description": "Basınç Uygula → Ez → Ez → Su Akıt → Basınçlı Su → Pressure Up → repeat"
     },
-    "image_url": "/static/images/monsters/waterfall_giant.png",
+    "image_url": "/static/images/monsters/waterfall_giant.webp",
     "beta_image_url": null
   },
   {
@@ -9518,7 +10527,22 @@
       }
     },
     "block_values": null,
-    "encounters": null,
+    "encounters": [
+      {
+        "encounter_id": "DENSE_VEGETATION_EVENT_ENCOUNTER",
+        "encounter_name": "Kımıldaklar",
+        "room_type": "Monster",
+        "act": null,
+        "is_weak": false
+      },
+      {
+        "encounter_id": "PHROG_PARASITE_ELITE",
+        "encounter_name": "Parazitli Gurbağa",
+        "room_type": "Elite",
+        "act": "Act 1 - Overgrowth",
+        "is_weak": false
+      }
+    ],
     "innate_powers": null,
     "attack_pattern": {
       "type": "conditional",
@@ -9567,7 +10591,7 @@
       ],
       "description": ""
     },
-    "image_url": "/static/images/monsters/wriggler.png",
+    "image_url": "/static/images/monsters/wriggler.webp",
     "beta_image_url": null
   },
   {
@@ -9611,7 +10635,7 @@
       ],
       "description": "Always uses Çarp"
     },
-    "image_url": "/static/images/monsters/zapbot.png",
+    "image_url": "/static/images/monsters/zapbot.webp",
     "beta_image_url": null
   },
   {
@@ -9692,8 +10716,16 @@
       }
     },
     "block_values": null,
-    "encounters": null,
-    "image_url": "/static/images/monsters/decimillipede_segment_back.png"
+    "encounters": [
+      {
+        "encounter_id": "DECIMILLIPEDE_ELITE",
+        "encounter_name": "Ondabirayak",
+        "room_type": "Elite",
+        "act": "Act 2 - Hive",
+        "is_weak": false
+      }
+    ],
+    "image_url": "/static/images/monsters/decimillipede_segment_back.webp"
   },
   {
     "id": "DECIMILLIPEDE_SEGMENT_FRONT",
@@ -9773,8 +10805,16 @@
       }
     },
     "block_values": null,
-    "encounters": null,
-    "image_url": "/static/images/monsters/decimillipede_segment_front.png"
+    "encounters": [
+      {
+        "encounter_id": "DECIMILLIPEDE_ELITE",
+        "encounter_name": "Ondabirayak",
+        "room_type": "Elite",
+        "act": "Act 2 - Hive",
+        "is_weak": false
+      }
+    ],
+    "image_url": "/static/images/monsters/decimillipede_segment_front.webp"
   },
   {
     "id": "DECIMILLIPEDE_SEGMENT_MIDDLE",
@@ -9854,8 +10894,16 @@
       }
     },
     "block_values": null,
-    "encounters": null,
-    "image_url": "/static/images/monsters/decimillipede_segment_middle.png"
+    "encounters": [
+      {
+        "encounter_id": "DECIMILLIPEDE_ELITE",
+        "encounter_name": "Ondabirayak",
+        "room_type": "Elite",
+        "act": "Act 2 - Hive",
+        "is_weak": false
+      }
+    ],
+    "image_url": "/static/images/monsters/decimillipede_segment_middle.webp"
   },
   {
     "id": "MYSTERIOUS_KNIGHT",
@@ -9910,8 +10958,16 @@
       }
     },
     "block_values": null,
-    "encounters": null,
-    "image_url": "/static/images/monsters/flail_knight.png",
+    "encounters": [
+      {
+        "encounter_id": "MYSTERIOUS_KNIGHT_EVENT_ENCOUNTER",
+        "encounter_name": "Gizemli Şövalye",
+        "room_type": "Monster",
+        "act": null,
+        "is_weak": false
+      }
+    ],
+    "image_url": "/static/images/monsters/flail_knight.webp",
     "innate_powers": [
       {
         "power_id": "STRENGTH",

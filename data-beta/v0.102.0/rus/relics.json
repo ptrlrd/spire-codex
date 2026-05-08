@@ -7,11 +7,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия из магазина",
     "pool": "shared",
-    "image_url": "/static/images/relics/membership_card.png",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
+    "image_url": "/static/images/relics/membership_card.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
-    "compendium_order": 130,
-    "merchant_price": null
+    "compendium_order": 130
   },
   {
     "id": "AKABEKO",
@@ -21,11 +27,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Необычная реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/akabeko.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/akabeko.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 40,
-    "merchant_price": null
+    "compendium_order": 40
   },
   {
     "id": "DIAMOND_DIADEM",
@@ -35,11 +47,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/diamond_diadem.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/diamond_diadem.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 160,
-    "merchant_price": null
+    "compendium_order": 160
   },
   {
     "id": "ALCHEMICAL_COFFER",
@@ -49,11 +63,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/alchemical_coffer.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/alchemical_coffer.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 161,
-    "merchant_price": null
+    "compendium_order": 161
   },
   {
     "id": "AMETHYST_AUBERGINE",
@@ -63,11 +79,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Обычная реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/amethyst_aubergine.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/amethyst_aubergine.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
-    "compendium_order": 10,
-    "merchant_price": null
+    "compendium_order": 10
   },
   {
     "id": "UNDYING_SIGIL",
@@ -77,11 +95,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия из магазина",
     "pool": "necrobinder",
-    "image_url": "/static/images/relics/undying_sigil.png",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
+    "image_url": "/static/images/relics/undying_sigil.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
-    "compendium_order": 131,
-    "merchant_price": null
+    "compendium_order": 131
   },
   {
     "id": "DARKSTONE_PERIAPT",
@@ -91,11 +115,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия за событие",
     "pool": "shared",
-    "image_url": "/static/images/relics/darkstone_periapt.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/darkstone_periapt.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 254,
-    "merchant_price": null
+    "compendium_order": 254
   },
   {
     "id": "VENERABLE_TEA_SET",
@@ -105,11 +131,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Обычная реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/venerable_tea_set.png",
+    "merchant_price": {
+      "base": 175,
+      "min": 149,
+      "max": 201
+    },
+    "image_url": "/static/images/relics/venerable_tea_set.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
-    "compendium_order": 11,
-    "merchant_price": null
+    "compendium_order": 11
   },
   {
     "id": "FAKE_VENERABLE_TEA_SET",
@@ -119,15 +151,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия за событие",
     "pool": "shared",
-    "image_url": "/static/images/relics/fake_venerable_tea_set.png",
-    "image_variants": null,
-    "rarity_key": "Event",
-    "compendium_order": 255,
     "merchant_price": {
       "base": 50,
       "min": 42,
       "max": 57
-    }
+    },
+    "image_url": "/static/images/relics/fake_venerable_tea_set.webp",
+    "image_variants": null,
+    "name_variants": null,
+    "notes": null,
+    "rarity_key": "Event",
+    "compendium_order": 255
   },
   {
     "id": "CROSSBOW",
@@ -137,11 +171,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/crossbow.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/crossbow.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 162,
-    "merchant_price": null
+    "compendium_order": 162
   },
   {
     "id": "FRAGRANT_MUSHROOM",
@@ -151,11 +187,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия за событие",
     "pool": "shared",
-    "image_url": "/static/images/relics/fragrant_mushroom.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/fragrant_mushroom.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 256,
-    "merchant_price": null
+    "compendium_order": 256
   },
   {
     "id": "ASTROLABE",
@@ -165,11 +203,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/astrolabe.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/astrolabe.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 163,
-    "merchant_price": null
+    "compendium_order": 163
   },
   {
     "id": "PRESERVED_FOG",
@@ -179,11 +219,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/preserved_fog.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/preserved_fog.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 164,
-    "merchant_price": null
+    "compendium_order": 164
   },
   {
     "id": "VELVET_CHOKER",
@@ -193,11 +235,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/velvet_choker.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/velvet_choker.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 165,
-    "merchant_price": null
+    "compendium_order": 165
   },
   {
     "id": "POWER_CELL",
@@ -207,11 +251,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Редкая реликвия",
     "pool": "defect",
-    "image_url": "/static/images/relics/power_cell.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/power_cell.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 80,
-    "merchant_price": null
+    "compendium_order": 80
   },
   {
     "id": "WHITE_STAR",
@@ -221,11 +271,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Редкая реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/white_star.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/white_star.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 81,
-    "merchant_price": null
+    "compendium_order": 81
   },
   {
     "id": "BING_BONG",
@@ -235,11 +291,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия за событие",
     "pool": "shared",
-    "image_url": "/static/images/relics/bing_bong.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/bing_bong.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 257,
-    "merchant_price": null
+    "compendium_order": 257
   },
   {
     "id": "BURNING_STICKS",
@@ -249,11 +307,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия из магазина",
     "pool": "shared",
-    "image_url": "/static/images/relics/burning_sticks.png",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
+    "image_url": "/static/images/relics/burning_sticks.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
-    "compendium_order": 132,
-    "merchant_price": null
+    "compendium_order": 132
   },
   {
     "id": "BLESSED_ANTLER",
@@ -263,11 +327,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/blessed_antler.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/blessed_antler.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 166,
-    "merchant_price": null
+    "compendium_order": 166
   },
   {
     "id": "GLITTER",
@@ -277,11 +343,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/glitter.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/glitter.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 167,
-    "merchant_price": null
+    "compendium_order": 167
   },
   {
     "id": "LOST_WISP",
@@ -291,11 +359,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия за событие",
     "pool": "shared",
-    "image_url": "/static/images/relics/lost_wisp.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/lost_wisp.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 258,
-    "merchant_price": null
+    "compendium_order": 258
   },
   {
     "id": "WAR_PAINT",
@@ -305,11 +375,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Обычная реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/war_paint.png",
+    "merchant_price": {
+      "base": 175,
+      "min": 149,
+      "max": 201
+    },
+    "image_url": "/static/images/relics/war_paint.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
-    "compendium_order": 12,
-    "merchant_price": null
+    "compendium_order": 12
   },
   {
     "id": "DIVINE_DESTINY",
@@ -319,11 +395,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Начальная реликвия",
     "pool": "regent",
-    "image_url": "/static/images/relics/divine_destiny.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/divine_destiny.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Starter",
-    "compendium_order": 0,
-    "merchant_price": null
+    "compendium_order": 0
   },
   {
     "id": "DIVINE_RIGHT",
@@ -333,11 +411,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Начальная реликвия",
     "pool": "regent",
-    "image_url": "/static/images/relics/divine_right.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/divine_right.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Starter",
-    "compendium_order": 1,
-    "merchant_price": null
+    "compendium_order": 1
   },
   {
     "id": "LARGE_CAPSULE",
@@ -347,11 +427,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/large_capsule.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/large_capsule.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 168,
-    "merchant_price": null
+    "compendium_order": 168
   },
   {
     "id": "BIG_MUSHROOM",
@@ -361,11 +443,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия за событие",
     "pool": "shared",
-    "image_url": "/static/images/relics/big_mushroom.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/big_mushroom.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 259,
-    "merchant_price": null
+    "compendium_order": 259
   },
   {
     "id": "JUZU_BRACELET",
@@ -375,11 +459,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Обычная реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/juzu_bracelet.png",
+    "merchant_price": {
+      "base": 175,
+      "min": 149,
+      "max": 201
+    },
+    "image_url": "/static/images/relics/juzu_bracelet.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
-    "compendium_order": 13,
-    "merchant_price": null
+    "compendium_order": 13
   },
   {
     "id": "BRONZE_SCALES",
@@ -389,11 +479,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Обычная реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/bronze_scales.png",
+    "merchant_price": {
+      "base": 175,
+      "min": 149,
+      "max": 201
+    },
+    "image_url": "/static/images/relics/bronze_scales.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
-    "compendium_order": 14,
-    "merchant_price": null
+    "compendium_order": 14
   },
   {
     "id": "PAPER_KRANE",
@@ -403,11 +499,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Редкая реликвия",
     "pool": "silent",
-    "image_url": "/static/images/relics/paper_krane.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/paper_krane.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 82,
-    "merchant_price": null
+    "compendium_order": 82
   },
   {
     "id": "PAPER_PHROG",
@@ -417,11 +519,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Необычная реликвия",
     "pool": "ironclad",
-    "image_url": "/static/images/relics/paper_phrog.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/paper_phrog.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 41,
-    "merchant_price": null
+    "compendium_order": 41
   },
   {
     "id": "VAJRA",
@@ -431,11 +539,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Обычная реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/vajra.png",
+    "merchant_price": {
+      "base": 175,
+      "min": 149,
+      "max": 201
+    },
+    "image_url": "/static/images/relics/vajra.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
-    "compendium_order": 15,
-    "merchant_price": null
+    "compendium_order": 15
   },
   {
     "id": "LEES_WAFFLE",
@@ -445,11 +559,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия из магазина",
     "pool": "shared",
-    "image_url": "/static/images/relics/lees_waffle.png",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
+    "image_url": "/static/images/relics/lees_waffle.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
-    "compendium_order": 133,
-    "merchant_price": null
+    "compendium_order": 133
   },
   {
     "id": "FAKE_LEES_WAFFLE",
@@ -459,15 +579,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия за событие",
     "pool": "shared",
-    "image_url": "/static/images/relics/fake_lees_waffle.png",
-    "image_variants": null,
-    "rarity_key": "Event",
-    "compendium_order": 260,
     "merchant_price": {
       "base": 50,
       "min": 42,
       "max": 57
-    }
+    },
+    "image_url": "/static/images/relics/fake_lees_waffle.webp",
+    "image_variants": null,
+    "name_variants": null,
+    "notes": null,
+    "rarity_key": "Event",
+    "compendium_order": 260
   },
   {
     "id": "DINGY_RUG",
@@ -477,11 +599,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия из магазина",
     "pool": "shared",
-    "image_url": "/static/images/relics/dingy_rug.png",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
+    "image_url": "/static/images/relics/dingy_rug.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
-    "compendium_order": 134,
-    "merchant_price": null
+    "compendium_order": 134
   },
   {
     "id": "ETERNAL_FEATHER",
@@ -491,11 +619,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Необычная реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/eternal_feather.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/eternal_feather.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 42,
-    "merchant_price": null
+    "compendium_order": 42
   },
   {
     "id": "UNCEASING_TOP",
@@ -505,11 +639,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Редкая реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/unceasing_top.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/unceasing_top.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 83,
-    "merchant_price": null
+    "compendium_order": 83
   },
   {
     "id": "CHEMICAL_X",
@@ -519,11 +659,17 @@
     "flavor": "ВНИМАНИЕ! Не добавлять сладости, пряности и прочие радости.",
     "rarity": "Реликвия из магазина",
     "pool": "shared",
-    "image_url": "/static/images/relics/chemical_x.png",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
+    "image_url": "/static/images/relics/chemical_x.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
-    "compendium_order": 135,
-    "merchant_price": null
+    "compendium_order": 135
   },
   {
     "id": "SYMBIOTIC_VIRUS",
@@ -533,11 +679,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Необычная реликвия",
     "pool": "defect",
-    "image_url": "/static/images/relics/symbiotic_virus.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/symbiotic_virus.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 43,
-    "merchant_price": null
+    "compendium_order": 43
   },
   {
     "id": "VITRUVIAN_MINION",
@@ -547,11 +699,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия из магазина",
     "pool": "regent",
-    "image_url": "/static/images/relics/vitruvian_minion.png",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
+    "image_url": "/static/images/relics/vitruvian_minion.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
-    "compendium_order": 136,
-    "merchant_price": null
+    "compendium_order": 136
   },
   {
     "id": "YUMMY_COOKIE",
@@ -561,17 +719,19 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/yummy_cookie.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/yummy_cookie.webp",
     "image_variants": {
-      "Ironclad": "/static/images/relics/yummy_cookie_ironclad.png",
-      "Silent": "/static/images/relics/yummy_cookie_silent.png",
-      "Defect": "/static/images/relics/yummy_cookie_defect.png",
-      "Necrobinder": "/static/images/relics/yummy_cookie_necrobinder.png",
-      "Regent": "/static/images/relics/yummy_cookie_regent.png"
+      "Ironclad": "/static/images/relics/yummy_cookie_ironclad.webp",
+      "Silent": "/static/images/relics/yummy_cookie_silent.webp",
+      "Defect": "/static/images/relics/yummy_cookie_defect.webp",
+      "Necrobinder": "/static/images/relics/yummy_cookie_necrobinder.webp",
+      "Regent": "/static/images/relics/yummy_cookie_regent.webp"
     },
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 169,
-    "merchant_price": null
+    "compendium_order": 169
   },
   {
     "id": "RIPPLE_BASIN",
@@ -581,11 +741,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Необычная реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/ripple_basin.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/ripple_basin.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 44,
-    "merchant_price": null
+    "compendium_order": 44
   },
   {
     "id": "TUNGSTEN_ROD",
@@ -595,11 +761,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Редкая реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/tungsten_rod.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/tungsten_rod.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 84,
-    "merchant_price": null
+    "compendium_order": 84
   },
   {
     "id": "LAVA_ROCK",
@@ -609,11 +781,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/lava_rock.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/lava_rock.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 170,
-    "merchant_price": null
+    "compendium_order": 170
   },
   {
     "id": "DISTINGUISHED_CAPE",
@@ -623,11 +797,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/distinguished_cape.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/distinguished_cape.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 171,
-    "merchant_price": null
+    "compendium_order": 171
   },
   {
     "id": "HELICAL_DART",
@@ -637,11 +813,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Редкая реликвия",
     "pool": "silent",
-    "image_url": "/static/images/relics/helical_dart.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/helical_dart.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 85,
-    "merchant_price": null
+    "compendium_order": 85
   },
   {
     "id": "GALACTIC_DUST",
@@ -651,11 +833,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Необычная реликвия",
     "pool": "regent",
-    "image_url": "/static/images/relics/galactic_dust.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/galactic_dust.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 45,
-    "merchant_price": null
+    "compendium_order": 45
   },
   {
     "id": "GIRYA",
@@ -665,11 +853,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Редкая реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/girya.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/girya.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 86,
-    "merchant_price": null
+    "compendium_order": 86
   },
   {
     "id": "PAELS_EYE",
@@ -679,11 +873,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/paels_eye.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/paels_eye.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 172,
-    "merchant_price": null
+    "compendium_order": 172
   },
   {
     "id": "SNECKO_EYE",
@@ -693,11 +889,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/snecko_eye.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/snecko_eye.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 173,
-    "merchant_price": null
+    "compendium_order": 173
   },
   {
     "id": "FAKE_SNECKO_EYE",
@@ -707,15 +905,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия за событие",
     "pool": "shared",
-    "image_url": "/static/images/relics/fake_snecko_eye.png",
-    "image_variants": null,
-    "rarity_key": "Event",
-    "compendium_order": 261,
     "merchant_price": {
       "base": 50,
       "min": 42,
       "max": 57
-    }
+    },
+    "image_url": "/static/images/relics/fake_snecko_eye.webp",
+    "image_variants": null,
+    "name_variants": null,
+    "notes": null,
+    "rarity_key": "Event",
+    "compendium_order": 261
   },
   {
     "id": "GORGET",
@@ -725,11 +925,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Обычная реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/gorget.png",
+    "merchant_price": {
+      "base": 175,
+      "min": 149,
+      "max": 201
+    },
+    "image_url": "/static/images/relics/gorget.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
-    "compendium_order": 16,
-    "merchant_price": null
+    "compendium_order": 16
   },
   {
     "id": "SCREAMING_FLAGON",
@@ -739,11 +945,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия из магазина",
     "pool": "shared",
-    "image_url": "/static/images/relics/screaming_flagon.png",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
+    "image_url": "/static/images/relics/screaming_flagon.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
-    "compendium_order": 137,
-    "merchant_price": null
+    "compendium_order": 137
   },
   {
     "id": "HEFTY_TABLET",
@@ -753,11 +965,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/hefty_tablet.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/hefty_tablet.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 174,
-    "merchant_price": null
+    "compendium_order": 174
   },
   {
     "id": "TEA_OF_DISCOURTESY",
@@ -767,11 +981,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия за событие",
     "pool": "shared",
-    "image_url": "/static/images/relics/tea_of_discourtesy.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/tea_of_discourtesy.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 262,
-    "merchant_price": null
+    "compendium_order": 262
   },
   {
     "id": "PEAR",
@@ -781,11 +997,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Необычная реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/pear.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/pear.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 46,
-    "merchant_price": null
+    "compendium_order": 46
   },
   {
     "id": "DELICATE_FROND",
@@ -795,11 +1017,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/delicate_frond.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/delicate_frond.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 175,
-    "merchant_price": null
+    "compendium_order": 175
   },
   {
     "id": "DATA_DISK",
@@ -809,11 +1033,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Обычная реликвия",
     "pool": "defect",
-    "image_url": "/static/images/relics/data_disk.png",
+    "merchant_price": {
+      "base": 175,
+      "min": 149,
+      "max": 201
+    },
+    "image_url": "/static/images/relics/data_disk.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
-    "compendium_order": 17,
-    "merchant_price": null
+    "compendium_order": 17
   },
   {
     "id": "MASSIVE_SCROLL",
@@ -823,11 +1053,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/massive_scroll.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/massive_scroll.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 176,
-    "merchant_price": null
+    "compendium_order": 176
   },
   {
     "id": "LASTING_CANDY",
@@ -837,11 +1069,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Необычная реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/lasting_candy.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/lasting_candy.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 47,
-    "merchant_price": null
+    "compendium_order": 47
   },
   {
     "id": "DAUGHTER_OF_THE_WIND",
@@ -851,11 +1089,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия за событие",
     "pool": "shared",
-    "image_url": "/static/images/relics/daughter_of_the_wind.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/daughter_of_the_wind.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 263,
-    "merchant_price": null
+    "compendium_order": 263
   },
   {
     "id": "DRAGON_FRUIT",
@@ -865,11 +1105,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия из магазина",
     "pool": "shared",
-    "image_url": "/static/images/relics/dragon_fruit.png",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
+    "image_url": "/static/images/relics/dragon_fruit.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
-    "compendium_order": 138,
-    "merchant_price": null
+    "compendium_order": 138
   },
   {
     "id": "ARCHAIC_TOOTH",
@@ -879,11 +1125,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/archaic_tooth.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/archaic_tooth.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 177,
-    "merchant_price": null
+    "compendium_order": 177
   },
   {
     "id": "STONE_CRACKER",
@@ -893,11 +1141,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Необычная реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/stone_cracker.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/stone_cracker.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 48,
-    "merchant_price": null
+    "compendium_order": 48
   },
   {
     "id": "IRON_CLUB",
@@ -907,11 +1161,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/iron_club.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/iron_club.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 178,
-    "merchant_price": null
+    "compendium_order": 178
   },
   {
     "id": "MYSTIC_LIGHTER",
@@ -921,11 +1177,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия из магазина",
     "pool": "shared",
-    "image_url": "/static/images/relics/mystic_lighter.png",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
+    "image_url": "/static/images/relics/mystic_lighter.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
-    "compendium_order": 139,
-    "merchant_price": null
+    "compendium_order": 139
   },
   {
     "id": "WONGOS_MYSTERY_TICKET",
@@ -935,11 +1197,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия за событие",
     "pool": "shared",
-    "image_url": "/static/images/relics/wongos_mystery_ticket.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/wongos_mystery_ticket.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 264,
-    "merchant_price": null
+    "compendium_order": 264
   },
   {
     "id": "PERMAFROST",
@@ -949,11 +1213,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Необычная реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/permafrost.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/permafrost.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 49,
-    "merchant_price": null
+    "compendium_order": 49
   },
   {
     "id": "FROZEN_EGG",
@@ -963,11 +1233,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Редкая реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/frozen_egg.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/frozen_egg.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 87,
-    "merchant_price": null
+    "compendium_order": 87
   },
   {
     "id": "BOUND_PHYLACTERY",
@@ -977,11 +1253,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Начальная реликвия",
     "pool": "necrobinder",
-    "image_url": "/static/images/relics/bound_phylactery.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/bound_phylactery.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Starter",
-    "compendium_order": 2,
-    "merchant_price": null
+    "compendium_order": 2
   },
   {
     "id": "RAZOR_TOOTH",
@@ -991,11 +1269,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Редкая реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/razor_tooth.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/razor_tooth.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 88,
-    "merchant_price": null
+    "compendium_order": 88
   },
   {
     "id": "INFUSED_CORE",
@@ -1005,11 +1289,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Начальная реликвия",
     "pool": "defect",
-    "image_url": "/static/images/relics/infused_core.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/infused_core.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Starter",
-    "compendium_order": 3,
-    "merchant_price": null
+    "compendium_order": 3
   },
   {
     "id": "RINGING_TRIANGLE",
@@ -1019,11 +1305,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия из магазина",
     "pool": "shared",
-    "image_url": "/static/images/relics/ringing_triangle.png",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
+    "image_url": "/static/images/relics/ringing_triangle.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
-    "compendium_order": 140,
-    "merchant_price": null
+    "compendium_order": 140
   },
   {
     "id": "DOLLYS_MIRROR",
@@ -1033,11 +1325,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия из магазина",
     "pool": "shared",
-    "image_url": "/static/images/relics/dollys_mirror.png",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
+    "image_url": "/static/images/relics/dollys_mirror.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
-    "compendium_order": 141,
-    "merchant_price": null
+    "compendium_order": 141
   },
   {
     "id": "WONGO_CUSTOMER_APPRECIATION_BADGE",
@@ -1047,11 +1345,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия за событие",
     "pool": "shared",
-    "image_url": "/static/images/relics/wongo_customer_appreciation_badge.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/wongo_customer_appreciation_badge.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 265,
-    "merchant_price": null
+    "compendium_order": 265
   },
   {
     "id": "GOLDEN_PEARL",
@@ -1061,11 +1361,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/golden_pearl.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/golden_pearl.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 179,
-    "merchant_price": null
+    "compendium_order": 179
   },
   {
     "id": "SEAL_OF_GOLD",
@@ -1075,11 +1377,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/seal_of_gold.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/seal_of_gold.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 180,
-    "merchant_price": null
+    "compendium_order": 180
   },
   {
     "id": "GOLDEN_COMPASS",
@@ -1089,11 +1393,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/golden_compass.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/golden_compass.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 181,
-    "merchant_price": null
+    "compendium_order": 181
   },
   {
     "id": "LORDS_PARASOL",
@@ -1103,11 +1409,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/lords_parasol.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/lords_parasol.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 182,
-    "merchant_price": null
+    "compendium_order": 182
   },
   {
     "id": "IVORY_TILE",
@@ -1117,11 +1425,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Редкая реликвия",
     "pool": "necrobinder",
-    "image_url": "/static/images/relics/ivory_tile.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/ivory_tile.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 89,
-    "merchant_price": null
+    "compendium_order": 89
   },
   {
     "id": "GAME_PIECE",
@@ -1131,11 +1445,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Редкая реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/game_piece.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/game_piece.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 90,
-    "merchant_price": null
+    "compendium_order": 90
   },
   {
     "id": "CHOSEN_CHEESE",
@@ -1145,11 +1465,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия за событие",
     "pool": "shared",
-    "image_url": "/static/images/relics/chosen_cheese.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/chosen_cheese.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 266,
-    "merchant_price": null
+    "compendium_order": 266
   },
   {
     "id": "PAELS_GROWTH",
@@ -1159,11 +1481,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/paels_growth.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/paels_growth.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 183,
-    "merchant_price": null
+    "compendium_order": 183
   },
   {
     "id": "BRILLIANT_SCARF",
@@ -1173,11 +1497,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/brilliant_scarf.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/brilliant_scarf.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 184,
-    "merchant_price": null
+    "compendium_order": 184
   },
   {
     "id": "JEWELED_MASK",
@@ -1187,11 +1513,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/jeweled_mask.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/jeweled_mask.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 185,
-    "merchant_price": null
+    "compendium_order": 185
   },
   {
     "id": "TWISTED_FUNNEL",
@@ -1201,11 +1529,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Необычная реликвия",
     "pool": "silent",
-    "image_url": "/static/images/relics/twisted_funnel.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/twisted_funnel.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 50,
-    "merchant_price": null
+    "compendium_order": 50
   },
   {
     "id": "GNARLED_HAMMER",
@@ -1215,11 +1549,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия из магазина",
     "pool": "shared",
-    "image_url": "/static/images/relics/gnarled_hammer.png",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
+    "image_url": "/static/images/relics/gnarled_hammer.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
-    "compendium_order": 142,
-    "merchant_price": null
+    "compendium_order": 142
   },
   {
     "id": "ART_OF_WAR",
@@ -1229,11 +1569,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Редкая реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/art_of_war.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/art_of_war.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 91,
-    "merchant_price": null
+    "compendium_order": 91
   },
   {
     "id": "SERE_TALON",
@@ -1243,11 +1589,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/sere_talon.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/sere_talon.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 186,
-    "merchant_price": null
+    "compendium_order": 186
   },
   {
     "id": "STONE_CALENDAR",
@@ -1257,11 +1605,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Редкая реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/stone_calendar.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/stone_calendar.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 92,
-    "merchant_price": null
+    "compendium_order": 92
   },
   {
     "id": "STONE_HUMIDIFIER",
@@ -1271,11 +1625,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/stone_humidifier.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/stone_humidifier.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 187,
-    "merchant_price": null
+    "compendium_order": 187
   },
   {
     "id": "TUNING_FORK",
@@ -1285,11 +1641,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Необычная реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/tuning_fork.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/tuning_fork.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 51,
-    "merchant_price": null
+    "compendium_order": 51
   },
   {
     "id": "CANDELABRA",
@@ -1299,11 +1661,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Необычная реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/candelabra.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/candelabra.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 52,
-    "merchant_price": null
+    "compendium_order": 52
   },
   {
     "id": "CAPTAINS_WHEEL",
@@ -1313,11 +1681,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Редкая реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/captains_wheel.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/captains_wheel.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 93,
-    "merchant_price": null
+    "compendium_order": 93
   },
   {
     "id": "POCKETWATCH",
@@ -1327,11 +1701,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Редкая реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/pocketwatch.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/pocketwatch.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 94,
-    "merchant_price": null
+    "compendium_order": 94
   },
   {
     "id": "TOUCH_OF_OROBAS",
@@ -1341,11 +1721,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/touch_of_orobas.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/touch_of_orobas.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 188,
-    "merchant_price": null
+    "compendium_order": 188
   },
   {
     "id": "KIFUDA",
@@ -1355,11 +1737,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия из магазина",
     "pool": "shared",
-    "image_url": "/static/images/relics/kifuda.png",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
+    "image_url": "/static/images/relics/kifuda.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
-    "compendium_order": 143,
-    "merchant_price": null
+    "compendium_order": 143
   },
   {
     "id": "STRAWBERRY",
@@ -1369,11 +1757,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Обычная реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/strawberry.png",
+    "merchant_price": {
+      "base": 175,
+      "min": 149,
+      "max": 201
+    },
+    "image_url": "/static/images/relics/strawberry.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
-    "compendium_order": 18,
-    "merchant_price": null
+    "compendium_order": 18
   },
   {
     "id": "PAELS_TOOTH",
@@ -1383,11 +1777,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/paels_tooth.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/paels_tooth.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 189,
-    "merchant_price": null
+    "compendium_order": 189
   },
   {
     "id": "BOOK_OF_FIVE_RINGS",
@@ -1397,11 +1793,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Обычная реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/book_of_five_rings.png",
+    "merchant_price": {
+      "base": 175,
+      "min": 149,
+      "max": 201
+    },
+    "image_url": "/static/images/relics/book_of_five_rings.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
-    "compendium_order": 19,
-    "merchant_price": null
+    "compendium_order": 19
   },
   {
     "id": "BOOKMARK",
@@ -1411,11 +1813,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Редкая реликвия",
     "pool": "necrobinder",
-    "image_url": "/static/images/relics/bookmark.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/bookmark.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 95,
-    "merchant_price": null
+    "compendium_order": 95
   },
   {
     "id": "FAKE_MERCHANTS_RUG",
@@ -1425,11 +1833,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия за событие",
     "pool": "shared",
-    "image_url": "/static/images/relics/fake_merchants_rug.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/fake_merchants_rug.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 267,
-    "merchant_price": null
+    "compendium_order": 267
   },
   {
     "id": "PAELS_CLAW",
@@ -1439,11 +1849,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/paels_claw.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/paels_claw.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 190,
-    "merchant_price": null
+    "compendium_order": 190
   },
   {
     "id": "CLAWS",
@@ -1453,11 +1865,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/claws.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/claws.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 191,
-    "merchant_price": null
+    "compendium_order": 191
   },
   {
     "id": "RING_OF_THE_SNAKE",
@@ -1467,11 +1881,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Начальная реликвия",
     "pool": "silent",
-    "image_url": "/static/images/relics/ring_of_the_snake.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/ring_of_the_snake.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Starter",
-    "compendium_order": 4,
-    "merchant_price": null
+    "compendium_order": 4
   },
   {
     "id": "RING_OF_THE_DRAKE",
@@ -1481,11 +1897,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Начальная реликвия",
     "pool": "silent",
-    "image_url": "/static/images/relics/ring_of_the_drake.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/ring_of_the_drake.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Starter",
-    "compendium_order": 5,
-    "merchant_price": null
+    "compendium_order": 5
   },
   {
     "id": "ROYAL_STAMP",
@@ -1495,11 +1913,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия из магазина",
     "pool": "shared",
-    "image_url": "/static/images/relics/royal_stamp.png",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
+    "image_url": "/static/images/relics/royal_stamp.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
-    "compendium_order": 144,
-    "merchant_price": null
+    "compendium_order": 144
   },
   {
     "id": "REGAL_PILLOW",
@@ -1509,11 +1933,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Обычная реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/regal_pillow.png",
+    "merchant_price": {
+      "base": 175,
+      "min": 149,
+      "max": 201
+    },
+    "image_url": "/static/images/relics/regal_pillow.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
-    "compendium_order": 20,
-    "merchant_price": null
+    "compendium_order": 20
   },
   {
     "id": "ROYAL_POISON",
@@ -1523,11 +1953,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия за событие",
     "pool": "shared",
-    "image_url": "/static/images/relics/royal_poison.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/royal_poison.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 268,
-    "merchant_price": null
+    "compendium_order": 268
   },
   {
     "id": "BONE_TEA",
@@ -1537,11 +1969,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия за событие",
     "pool": "shared",
-    "image_url": "/static/images/relics/bone_tea.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/bone_tea.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 269,
-    "merchant_price": null
+    "compendium_order": 269
   },
   {
     "id": "BONE_FLUTE",
@@ -1551,11 +1985,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Обычная реликвия",
     "pool": "necrobinder",
-    "image_url": "/static/images/relics/bone_flute.png",
+    "merchant_price": {
+      "base": 175,
+      "min": 149,
+      "max": 201
+    },
+    "image_url": "/static/images/relics/bone_flute.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
-    "compendium_order": 21,
-    "merchant_price": null
+    "compendium_order": 21
   },
   {
     "id": "CAULDRON",
@@ -1565,11 +2005,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия из магазина",
     "pool": "shared",
-    "image_url": "/static/images/relics/cauldron.png",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
+    "image_url": "/static/images/relics/cauldron.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
-    "compendium_order": 145,
-    "merchant_price": null
+    "compendium_order": 145
   },
   {
     "id": "BEAUTIFUL_BRACELET",
@@ -1579,11 +2025,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/beautiful_bracelet.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/beautiful_bracelet.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 192,
-    "merchant_price": null
+    "compendium_order": 192
   },
   {
     "id": "RED_MASK",
@@ -1593,11 +2041,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Обычная реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/red_mask.png",
+    "merchant_price": {
+      "base": 175,
+      "min": 149,
+      "max": 201
+    },
+    "image_url": "/static/images/relics/red_mask.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
-    "compendium_order": 22,
-    "merchant_price": null
+    "compendium_order": 22
   },
   {
     "id": "RED_SKULL",
@@ -1607,11 +2061,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Обычная реликвия",
     "pool": "ironclad",
-    "image_url": "/static/images/relics/red_skull.png",
+    "merchant_price": {
+      "base": 175,
+      "min": 149,
+      "max": 201
+    },
+    "image_url": "/static/images/relics/red_skull.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
-    "compendium_order": 23,
-    "merchant_price": null
+    "compendium_order": 23
   },
   {
     "id": "TOUGH_BANDAGES",
@@ -1621,11 +2081,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Редкая реликвия",
     "pool": "silent",
-    "image_url": "/static/images/relics/tough_bandages.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/tough_bandages.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 96,
-    "merchant_price": null
+    "compendium_order": 96
   },
   {
     "id": "PAELS_BLOOD",
@@ -1635,11 +2101,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/paels_blood.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/paels_blood.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 193,
-    "merchant_price": null
+    "compendium_order": 193
   },
   {
     "id": "PAELS_WING",
@@ -1649,11 +2117,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/paels_wing.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/paels_wing.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 194,
-    "merchant_price": null
+    "compendium_order": 194
   },
   {
     "id": "WING_CHARM",
@@ -1663,11 +2133,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия из магазина",
     "pool": "shared",
-    "image_url": "/static/images/relics/wing_charm.png",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
+    "image_url": "/static/images/relics/wing_charm.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
-    "compendium_order": 146,
-    "merchant_price": null
+    "compendium_order": 146
   },
   {
     "id": "KUNAI",
@@ -1677,11 +2153,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Редкая реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/kunai.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/kunai.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 97,
-    "merchant_price": null
+    "compendium_order": 97
   },
   {
     "id": "THE_COURIER",
@@ -1691,11 +2173,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Редкая реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/the_courier.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/the_courier.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 98,
-    "merchant_price": null
+    "compendium_order": 98
   },
   {
     "id": "KUSARIGAMA",
@@ -1705,11 +2189,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Необычная реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/kusarigama.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/kusarigama.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 53,
-    "merchant_price": null
+    "compendium_order": 53
   },
   {
     "id": "LAVA_LAMP",
@@ -1719,11 +2209,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия из магазина",
     "pool": "shared",
-    "image_url": "/static/images/relics/lava_lamp.png",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
+    "image_url": "/static/images/relics/lava_lamp.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
-    "compendium_order": 147,
-    "merchant_price": null
+    "compendium_order": 147
   },
   {
     "id": "PAELS_LEGION",
@@ -1733,11 +2229,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/paels_legion.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/paels_legion.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 195,
-    "merchant_price": null
+    "compendium_order": 195
   },
   {
     "id": "HISTORY_COURSE",
@@ -1747,11 +2245,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия за событие",
     "pool": "shared",
-    "image_url": "/static/images/relics/history_course.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/history_course.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 270,
-    "merchant_price": null
+    "compendium_order": 270
   },
   {
     "id": "DREAM_CATCHER",
@@ -1761,11 +2261,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия за событие",
     "pool": "shared",
-    "image_url": "/static/images/relics/dream_catcher.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/dream_catcher.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 271,
-    "merchant_price": null
+    "compendium_order": 271
   },
   {
     "id": "SHOVEL",
@@ -1775,11 +2277,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Редкая реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/shovel.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/shovel.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 99,
-    "merchant_price": null
+    "compendium_order": 99
   },
   {
     "id": "LUNAR_PASTRY",
@@ -1789,11 +2297,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Редкая реликвия",
     "pool": "regent",
-    "image_url": "/static/images/relics/lunar_pastry.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/lunar_pastry.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 100,
-    "merchant_price": null
+    "compendium_order": 100
   },
   {
     "id": "ARCANE_SCROLL",
@@ -1803,11 +2317,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/arcane_scroll.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/arcane_scroll.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 196,
-    "merchant_price": null
+    "compendium_order": 196
   },
   {
     "id": "SMALL_CAPSULE",
@@ -1817,11 +2333,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/small_capsule.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/small_capsule.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 197,
-    "merchant_price": null
+    "compendium_order": 197
   },
   {
     "id": "MANGO",
@@ -1831,11 +2349,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Редкая реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/mango.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/mango.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 101,
-    "merchant_price": null
+    "compendium_order": 101
   },
   {
     "id": "FAKE_MANGO",
@@ -1845,15 +2369,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия за событие",
     "pool": "shared",
-    "image_url": "/static/images/relics/fake_mango.png",
-    "image_variants": null,
-    "rarity_key": "Event",
-    "compendium_order": 272,
     "merchant_price": {
       "base": 50,
       "min": 42,
       "max": 57
-    }
+    },
+    "image_url": "/static/images/relics/fake_mango.webp",
+    "image_variants": null,
+    "name_variants": null,
+    "notes": null,
+    "rarity_key": "Event",
+    "compendium_order": 272
   },
   {
     "id": "PENDULUM",
@@ -1863,11 +2389,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Обычная реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/pendulum.png",
+    "merchant_price": {
+      "base": 175,
+      "min": 149,
+      "max": 201
+    },
+    "image_url": "/static/images/relics/pendulum.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
-    "compendium_order": 24,
-    "merchant_price": null
+    "compendium_order": 24
   },
   {
     "id": "BIIIG_HUG",
@@ -1877,11 +2409,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/biiig_hug.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/biiig_hug.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 198,
-    "merchant_price": null
+    "compendium_order": 198
   },
   {
     "id": "THROWING_AXE",
@@ -1891,11 +2425,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/throwing_axe.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/throwing_axe.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 199,
-    "merchant_price": null
+    "compendium_order": 199
   },
   {
     "id": "METRONOME",
@@ -1905,11 +2441,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Редкая реликвия",
     "pool": "defect",
-    "image_url": "/static/images/relics/metronome.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/metronome.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 102,
-    "merchant_price": null
+    "compendium_order": 102
   },
   {
     "id": "BELLOWS",
@@ -1919,11 +2461,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Редкая реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/bellows.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/bellows.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 103,
-    "merchant_price": null
+    "compendium_order": 103
   },
   {
     "id": "BAG_OF_MARBLES",
@@ -1933,11 +2481,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Обычная реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/bag_of_marbles.png",
+    "merchant_price": {
+      "base": 175,
+      "min": 149,
+      "max": 201
+    },
+    "image_url": "/static/images/relics/bag_of_marbles.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
-    "compendium_order": 25,
-    "merchant_price": null
+    "compendium_order": 25
   },
   {
     "id": "MINI_REGENT",
@@ -1947,11 +2501,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Редкая реликвия",
     "pool": "regent",
-    "image_url": "/static/images/relics/mini_regent.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/mini_regent.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 104,
-    "merchant_price": null
+    "compendium_order": 104
   },
   {
     "id": "MINIATURE_TENT",
@@ -1961,11 +2521,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия из магазина",
     "pool": "shared",
-    "image_url": "/static/images/relics/miniature_tent.png",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
+    "image_url": "/static/images/relics/miniature_tent.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
-    "compendium_order": 148,
-    "merchant_price": null
+    "compendium_order": 148
   },
   {
     "id": "MINIATURE_CANNON",
@@ -1975,11 +2541,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Необычная реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/miniature_cannon.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/miniature_cannon.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 54,
-    "merchant_price": null
+    "compendium_order": 54
   },
   {
     "id": "ORRERY",
@@ -1989,11 +2561,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия из магазина",
     "pool": "shared",
-    "image_url": "/static/images/relics/orrery.png",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
+    "image_url": "/static/images/relics/orrery.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
-    "compendium_order": 149,
-    "merchant_price": null
+    "compendium_order": 149
   },
   {
     "id": "MR_STRUGGLES",
@@ -2003,11 +2581,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия за событие",
     "pool": "shared",
-    "image_url": "/static/images/relics/mr_struggles.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/mr_struggles.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 273,
-    "merchant_price": null
+    "compendium_order": 273
   },
   {
     "id": "THE_BOOT",
@@ -2017,11 +2597,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия за событие",
     "pool": "shared",
-    "image_url": "/static/images/relics/the_boot.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/the_boot.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 274,
-    "merchant_price": null
+    "compendium_order": 274
   },
   {
     "id": "PRAYER_WHEEL",
@@ -2031,11 +2613,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Редкая реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/prayer_wheel.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/prayer_wheel.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 105,
-    "merchant_price": null
+    "compendium_order": 105
   },
   {
     "id": "WAR_HAMMER",
@@ -2045,11 +2633,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/war_hammer.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/war_hammer.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 200,
-    "merchant_price": null
+    "compendium_order": 200
   },
   {
     "id": "ICE_CREAM",
@@ -2059,11 +2649,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Редкая реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/ice_cream.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/ice_cream.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 106,
-    "merchant_price": null
+    "compendium_order": 106
   },
   {
     "id": "SEA_GLASS",
@@ -2073,11 +2669,19 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/sea_glass.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/sea_glass.webp",
     "image_variants": null,
+    "name_variants": {
+      "Ironclad": "Демоническое стеклышко",
+      "Silent": "Ядовитое стеклышко",
+      "Defect": "Механическое стеклышко",
+      "Necrobinder": "Костяное стеклышко",
+      "Regent": "Роскошное стеклышко"
+    },
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 201,
-    "merchant_price": null
+    "compendium_order": 201
   },
   {
     "id": "UNSETTLING_LAMP",
@@ -2087,11 +2691,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Редкая реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/unsettling_lamp.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/unsettling_lamp.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 107,
-    "merchant_price": null
+    "compendium_order": 107
   },
   {
     "id": "VEXING_PUZZLEBOX",
@@ -2101,11 +2711,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Редкая реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/vexing_puzzlebox.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/vexing_puzzlebox.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 108,
-    "merchant_price": null
+    "compendium_order": 108
   },
   {
     "id": "MUSIC_BOX",
@@ -2115,11 +2731,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/music_box.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/music_box.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 202,
-    "merchant_price": null
+    "compendium_order": 202
   },
   {
     "id": "MUMMIFIED_HAND",
@@ -2129,11 +2747,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Редкая реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/mummified_hand.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/mummified_hand.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 109,
-    "merchant_price": null
+    "compendium_order": 109
   },
   {
     "id": "MEAT_ON_THE_BONE",
@@ -2143,11 +2767,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Редкая реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/meat_on_the_bone.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/meat_on_the_bone.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 110,
-    "merchant_price": null
+    "compendium_order": 110
   },
   {
     "id": "TOOLBOX",
@@ -2157,11 +2787,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия из магазина",
     "pool": "shared",
-    "image_url": "/static/images/relics/toolbox.png",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
+    "image_url": "/static/images/relics/toolbox.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
-    "compendium_order": 150,
-    "merchant_price": null
+    "compendium_order": 150
   },
   {
     "id": "NUTRITIOUS_SOUP",
@@ -2171,11 +2807,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/nutritious_soup.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/nutritious_soup.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 203,
-    "merchant_price": null
+    "compendium_order": 203
   },
   {
     "id": "PRECISE_SCISSORS",
@@ -2185,11 +2823,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/precise_scissors.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/precise_scissors.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 204,
-    "merchant_price": null
+    "compendium_order": 204
   },
   {
     "id": "PEN_NIB",
@@ -2199,11 +2839,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Необычная реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/pen_nib.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/pen_nib.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 55,
-    "merchant_price": null
+    "compendium_order": 55
   },
   {
     "id": "VAMBRACE",
@@ -2213,11 +2859,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Необычная реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/vambrace.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/vambrace.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 56,
-    "merchant_price": null
+    "compendium_order": 56
   },
   {
     "id": "PHYLACTERY_UNBOUND",
@@ -2227,11 +2879,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Начальная реликвия",
     "pool": "necrobinder",
-    "image_url": "/static/images/relics/phylactery_unbound.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/phylactery_unbound.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Starter",
-    "compendium_order": 6,
-    "merchant_price": null
+    "compendium_order": 6
   },
   {
     "id": "SWORD_OF_JADE",
@@ -2241,11 +2895,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия за событие",
     "pool": "shared",
-    "image_url": "/static/images/relics/sword_of_jade.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/sword_of_jade.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 275,
-    "merchant_price": null
+    "compendium_order": 275
   },
   {
     "id": "LETTER_OPENER",
@@ -2255,11 +2911,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Необычная реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/letter_opener.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/letter_opener.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 57,
-    "merchant_price": null
+    "compendium_order": 57
   },
   {
     "id": "NUNCHAKU",
@@ -2269,11 +2931,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Необычная реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/nunchaku.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/nunchaku.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 58,
-    "merchant_price": null
+    "compendium_order": 58
   },
   {
     "id": "DRIFTWOOD",
@@ -2283,11 +2951,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/driftwood.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/driftwood.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 205,
-    "merchant_price": null
+    "compendium_order": 205
   },
   {
     "id": "CIRCLET",
@@ -2297,11 +2967,13 @@
     "flavor": "Любопытная реликвия, которая встречается, если в [gold]Шпиле[/gold] что-то пошло не так, либо все возможные реликвии уже найдены.",
     "rarity": "Реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/circlet.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/circlet.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "None",
-    "compendium_order": 289,
-    "merchant_price": null
+    "compendium_order": 289
   },
   {
     "id": "PETRIFIED_TOAD",
@@ -2311,11 +2983,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Необычная реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/petrified_toad.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/petrified_toad.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 59,
-    "merchant_price": null
+    "compendium_order": 59
   },
   {
     "id": "SWORD_OF_STONE",
@@ -2325,11 +3003,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия за событие",
     "pool": "shared",
-    "image_url": "/static/images/relics/sword_of_stone.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/sword_of_stone.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 276,
-    "merchant_price": null
+    "compendium_order": 276
   },
   {
     "id": "BLOOD_SOAKED_ROSE",
@@ -2339,11 +3019,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/blood_soaked_rose.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/blood_soaked_rose.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 206,
-    "merchant_price": null
+    "compendium_order": 206
   },
   {
     "id": "ORANGE_DOUGH",
@@ -2353,11 +3035,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Редкая реликвия",
     "pool": "regent",
-    "image_url": "/static/images/relics/orange_dough.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/orange_dough.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 111,
-    "merchant_price": null
+    "compendium_order": 111
   },
   {
     "id": "ORICHALCUM",
@@ -2367,11 +3055,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Необычная реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/orichalcum.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/orichalcum.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 60,
-    "merchant_price": null
+    "compendium_order": 60
   },
   {
     "id": "FAKE_ORICHALCUM",
@@ -2381,15 +3075,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия за событие",
     "pool": "shared",
-    "image_url": "/static/images/relics/fake_orichalcum.png",
-    "image_variants": null,
-    "rarity_key": "Event",
-    "compendium_order": 277,
     "merchant_price": {
       "base": 50,
       "min": 42,
       "max": 57
-    }
+    },
+    "image_url": "/static/images/relics/fake_orichalcum.webp",
+    "image_variants": null,
+    "name_variants": null,
+    "notes": null,
+    "rarity_key": "Event",
+    "compendium_order": 277
   },
   {
     "id": "RADIANT_PEARL",
@@ -2399,11 +3095,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/radiant_pearl.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/radiant_pearl.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 207,
-    "merchant_price": null
+    "compendium_order": 207
   },
   {
     "id": "VERY_HOT_COCOA",
@@ -2413,11 +3111,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/very_hot_cocoa.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/very_hot_cocoa.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 208,
-    "merchant_price": null
+    "compendium_order": 208
   },
   {
     "id": "PANTOGRAPH",
@@ -2427,11 +3127,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Необычная реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/pantograph.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/pantograph.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 61,
-    "merchant_price": null
+    "compendium_order": 61
   },
   {
     "id": "CHOICES_PARADOX",
@@ -2441,11 +3147,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/choices_paradox.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/choices_paradox.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 209,
-    "merchant_price": null
+    "compendium_order": 209
   },
   {
     "id": "PARRYING_SHIELD",
@@ -2455,11 +3163,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Необычная реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/parrying_shield.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/parrying_shield.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 62,
-    "merchant_price": null
+    "compendium_order": 62
   },
   {
     "id": "MAW_BANK",
@@ -2469,11 +3183,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия за событие",
     "pool": "shared",
-    "image_url": "/static/images/relics/maw_bank.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/maw_bank.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 278,
-    "merchant_price": null
+    "compendium_order": 278
   },
   {
     "id": "BOOK_REPAIR_KNIFE",
@@ -2483,11 +3199,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Необычная реликвия",
     "pool": "necrobinder",
-    "image_url": "/static/images/relics/book_repair_knife.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/book_repair_knife.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 63,
-    "merchant_price": null
+    "compendium_order": 63
   },
   {
     "id": "SIGNET_RING",
@@ -2497,11 +3219,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/signet_ring.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/signet_ring.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 210,
-    "merchant_price": null
+    "compendium_order": 210
   },
   {
     "id": "SAND_CASTLE",
@@ -2511,11 +3235,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/sand_castle.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/sand_castle.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 211,
-    "merchant_price": null
+    "compendium_order": 211
   },
   {
     "id": "NUTRITIOUS_OYSTER",
@@ -2525,11 +3251,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/nutritious_oyster.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/nutritious_oyster.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 212,
-    "merchant_price": null
+    "compendium_order": 212
   },
   {
     "id": "PLANISPHERE",
@@ -2539,11 +3267,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Необычная реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/planisphere.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/planisphere.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 64,
-    "merchant_price": null
+    "compendium_order": 64
   },
   {
     "id": "PAELS_FLESH",
@@ -2553,11 +3287,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/paels_flesh.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/paels_flesh.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 213,
-    "merchant_price": null
+    "compendium_order": 213
   },
   {
     "id": "STRIKE_DUMMY",
@@ -2567,11 +3303,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Обычная реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/strike_dummy.png",
+    "merchant_price": {
+      "base": 175,
+      "min": 149,
+      "max": 201
+    },
+    "image_url": "/static/images/relics/strike_dummy.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
-    "compendium_order": 26,
-    "merchant_price": null
+    "compendium_order": 26
   },
   {
     "id": "FAKE_STRIKE_DUMMY",
@@ -2581,15 +3323,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия за событие",
     "pool": "shared",
-    "image_url": "/static/images/relics/fake_strike_dummy.png",
-    "image_variants": null,
-    "rarity_key": "Event",
-    "compendium_order": 279,
     "merchant_price": {
       "base": 50,
       "min": 42,
       "max": 57
-    }
+    },
+    "image_url": "/static/images/relics/fake_strike_dummy.webp",
+    "image_variants": null,
+    "name_variants": null,
+    "notes": null,
+    "rarity_key": "Event",
+    "compendium_order": 279
   },
   {
     "id": "FUNERARY_MASK",
@@ -2599,11 +3343,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Необычная реликвия",
     "pool": "necrobinder",
-    "image_url": "/static/images/relics/funerary_mask.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/funerary_mask.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 65,
-    "merchant_price": null
+    "compendium_order": 65
   },
   {
     "id": "ODDLY_SMOOTH_STONE",
@@ -2613,11 +3363,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Обычная реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/oddly_smooth_stone.png",
+    "merchant_price": {
+      "base": 175,
+      "min": 149,
+      "max": 201
+    },
+    "image_url": "/static/images/relics/oddly_smooth_stone.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
-    "compendium_order": 27,
-    "merchant_price": null
+    "compendium_order": 27
   },
   {
     "id": "FORGOTTEN_SOUL",
@@ -2627,11 +3383,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия за событие",
     "pool": "shared",
-    "image_url": "/static/images/relics/forgotten_soul.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/forgotten_soul.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 280,
-    "merchant_price": null
+    "compendium_order": 280
   },
   {
     "id": "GOLD_PLATED_CABLES",
@@ -2641,11 +3399,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Необычная реликвия",
     "pool": "defect",
-    "image_url": "/static/images/relics/gold_plated_cables.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/gold_plated_cables.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 66,
-    "merchant_price": null
+    "compendium_order": 66
   },
   {
     "id": "POMANDER",
@@ -2655,11 +3419,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/pomander.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/pomander.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 214,
-    "merchant_price": null
+    "compendium_order": 214
   },
   {
     "id": "FENCING_MANUAL",
@@ -2669,11 +3435,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Обычная реликвия",
     "pool": "regent",
-    "image_url": "/static/images/relics/fencing_manual.png",
+    "merchant_price": {
+      "base": 175,
+      "min": 149,
+      "max": 201
+    },
+    "image_url": "/static/images/relics/fencing_manual.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
-    "compendium_order": 28,
-    "merchant_price": null
+    "compendium_order": 28
   },
   {
     "id": "TINY_MAILBOX",
@@ -2683,11 +3455,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Необычная реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/tiny_mailbox.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/tiny_mailbox.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 67,
-    "merchant_price": null
+    "compendium_order": 67
   },
   {
     "id": "POTION_BELT",
@@ -2697,11 +3475,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Обычная реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/potion_belt.png",
+    "merchant_price": {
+      "base": 175,
+      "min": 149,
+      "max": 201
+    },
+    "image_url": "/static/images/relics/potion_belt.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
-    "compendium_order": 29,
-    "merchant_price": null
+    "compendium_order": 29
   },
   {
     "id": "FESTIVE_POPPER",
@@ -2711,11 +3495,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Обычная реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/festive_popper.png",
+    "merchant_price": {
+      "base": 175,
+      "min": 149,
+      "max": 201
+    },
+    "image_url": "/static/images/relics/festive_popper.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
-    "compendium_order": 30,
-    "merchant_price": null
+    "compendium_order": 30
   },
   {
     "id": "CHARONS_ASHES",
@@ -2725,11 +3515,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Редкая реликвия",
     "pool": "ironclad",
-    "image_url": "/static/images/relics/charons_ashes.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/charons_ashes.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 112,
-    "merchant_price": null
+    "compendium_order": 112
   },
   {
     "id": "SLING_OF_COURAGE",
@@ -2739,11 +3535,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия из магазина",
     "pool": "shared",
-    "image_url": "/static/images/relics/sling_of_courage.png",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
+    "image_url": "/static/images/relics/sling_of_courage.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
-    "compendium_order": 151,
-    "merchant_price": null
+    "compendium_order": 151
   },
   {
     "id": "PRISMATIC_GEM",
@@ -2753,11 +3555,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/prismatic_gem.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/prismatic_gem.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 215,
-    "merchant_price": null
+    "compendium_order": 215
   },
   {
     "id": "GHOST_SEED",
@@ -2767,11 +3571,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия из магазина",
     "pool": "shared",
-    "image_url": "/static/images/relics/ghost_seed.png",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
+    "image_url": "/static/images/relics/ghost_seed.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
-    "compendium_order": 152,
-    "merchant_price": null
+    "compendium_order": 152
   },
   {
     "id": "CALLING_BELL",
@@ -2781,11 +3591,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/calling_bell.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/calling_bell.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 216,
-    "merchant_price": null
+    "compendium_order": 216
   },
   {
     "id": "LUCKY_FYSH",
@@ -2795,11 +3607,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Необычная реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/lucky_fysh.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/lucky_fysh.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 68,
-    "merchant_price": null
+    "compendium_order": 68
   },
   {
     "id": "TOASTY_MITTENS",
@@ -2809,11 +3623,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/toasty_mittens.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/toasty_mittens.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 217,
-    "merchant_price": null
+    "compendium_order": 217
   },
   {
     "id": "CURSED_PEARL",
@@ -2823,11 +3639,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/cursed_pearl.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/cursed_pearl.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 218,
-    "merchant_price": null
+    "compendium_order": 218
   },
   {
     "id": "STURDY_CLAMP",
@@ -2837,11 +3655,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Редкая реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/sturdy_clamp.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/sturdy_clamp.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 113,
-    "merchant_price": null
+    "compendium_order": 113
   },
   {
     "id": "BELT_BUCKLE",
@@ -2851,11 +3675,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия из магазина",
     "pool": "shared",
-    "image_url": "/static/images/relics/belt_buckle.png",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
+    "image_url": "/static/images/relics/belt_buckle.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
-    "compendium_order": 153,
-    "merchant_price": null
+    "compendium_order": 153
   },
   {
     "id": "BYRDPIP",
@@ -2865,11 +3695,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия за событие",
     "pool": "shared",
-    "image_url": "/static/images/relics/byrdpip.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/byrdpip.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 281,
-    "merchant_price": null
+    "compendium_order": 281
   },
   {
     "id": "BLOOD_VIAL",
@@ -2879,11 +3711,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Обычная реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/blood_vial.png",
+    "merchant_price": {
+      "base": 175,
+      "min": 149,
+      "max": 201
+    },
+    "image_url": "/static/images/relics/blood_vial.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
-    "compendium_order": 31,
-    "merchant_price": null
+    "compendium_order": 31
   },
   {
     "id": "FAKE_BLOOD_VIAL",
@@ -2893,15 +3731,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия за событие",
     "pool": "shared",
-    "image_url": "/static/images/relics/fake_blood_vial.png",
-    "image_variants": null,
-    "rarity_key": "Event",
-    "compendium_order": 282,
     "merchant_price": {
       "base": 50,
       "min": 42,
       "max": 57
-    }
+    },
+    "image_url": "/static/images/relics/fake_blood_vial.webp",
+    "image_variants": null,
+    "name_variants": null,
+    "notes": null,
+    "rarity_key": "Event",
+    "compendium_order": 282
   },
   {
     "id": "BEATING_REMNANT",
@@ -2911,11 +3751,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Редкая реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/beating_remnant.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/beating_remnant.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 114,
-    "merchant_price": null
+    "compendium_order": 114
   },
   {
     "id": "EMPTY_CAGE",
@@ -2925,11 +3771,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/empty_cage.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/empty_cage.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 219,
-    "merchant_price": null
+    "compendium_order": 219
   },
   {
     "id": "BURNING_BLOOD",
@@ -2939,11 +3787,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Начальная реликвия",
     "pool": "ironclad",
-    "image_url": "/static/images/relics/burning_blood.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/burning_blood.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Starter",
-    "compendium_order": 7,
-    "merchant_price": null
+    "compendium_order": 7
   },
   {
     "id": "DUSTY_TOME",
@@ -2953,11 +3803,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/dusty_tome.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/dusty_tome.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 220,
-    "merchant_price": null
+    "compendium_order": 220
   },
   {
     "id": "POLLINOUS_CORE",
@@ -2967,11 +3819,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия за событие",
     "pool": "shared",
-    "image_url": "/static/images/relics/pollinous_core.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/pollinous_core.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 283,
-    "merchant_price": null
+    "compendium_order": 283
   },
   {
     "id": "RAINBOW_RING",
@@ -2981,11 +3835,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Редкая реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/rainbow_ring.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/rainbow_ring.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 115,
-    "merchant_price": null
+    "compendium_order": 115
   },
   {
     "id": "PRECARIOUS_SHEARS",
@@ -2995,11 +3855,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/precarious_shears.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/precarious_shears.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 221,
-    "merchant_price": null
+    "compendium_order": 221
   },
   {
     "id": "MEAT_CLEAVER",
@@ -3009,11 +3871,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/meat_cleaver.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/meat_cleaver.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 222,
-    "merchant_price": null
+    "compendium_order": 222
   },
   {
     "id": "MOLTEN_EGG",
@@ -3023,11 +3887,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Редкая реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/molten_egg.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/molten_egg.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 116,
-    "merchant_price": null
+    "compendium_order": 116
   },
   {
     "id": "FRESNEL_LENS",
@@ -3037,11 +3907,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия за событие",
     "pool": "shared",
-    "image_url": "/static/images/relics/fresnel_lens.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/fresnel_lens.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 284,
-    "merchant_price": null
+    "compendium_order": 284
   },
   {
     "id": "REGALITE",
@@ -3051,11 +3923,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Необычная реликвия",
     "pool": "regent",
-    "image_url": "/static/images/relics/regalite.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/regalite.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 69,
-    "merchant_price": null
+    "compendium_order": 69
   },
   {
     "id": "JOSS_PAPER",
@@ -3065,11 +3943,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Необычная реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/joss_paper.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/joss_paper.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 70,
-    "merchant_price": null
+    "compendium_order": 70
   },
   {
     "id": "PAELS_HORN",
@@ -3079,11 +3963,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/paels_horn.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/paels_horn.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 223,
-    "merchant_price": null
+    "compendium_order": 223
   },
   {
     "id": "GREMLIN_HORN",
@@ -3093,11 +3979,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Необычная реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/gremlin_horn.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/gremlin_horn.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 71,
-    "merchant_price": null
+    "compendium_order": 71
   },
   {
     "id": "MERCURY_HOURGLASS",
@@ -3107,11 +3999,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Необычная реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/mercury_hourglass.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/mercury_hourglass.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 72,
-    "merchant_price": null
+    "compendium_order": 72
   },
   {
     "id": "RUNIC_PYRAMID",
@@ -3121,11 +4019,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/runic_pyramid.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/runic_pyramid.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 224,
-    "merchant_price": null
+    "compendium_order": 224
   },
   {
     "id": "RUNIC_CAPACITOR",
@@ -3135,11 +4035,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия из магазина",
     "pool": "defect",
-    "image_url": "/static/images/relics/runic_capacitor.png",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
+    "image_url": "/static/images/relics/runic_capacitor.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
-    "compendium_order": 154,
-    "merchant_price": null
+    "compendium_order": 154
   },
   {
     "id": "HAND_DRILL",
@@ -3149,11 +4055,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия за событие",
     "pool": "shared",
-    "image_url": "/static/images/relics/hand_drill.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/hand_drill.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 285,
-    "merchant_price": null
+    "compendium_order": 285
   },
   {
     "id": "SAI",
@@ -3163,11 +4071,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/sai.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/sai.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 225,
-    "merchant_price": null
+    "compendium_order": 225
   },
   {
     "id": "SELF_FORMING_CLAY",
@@ -3177,11 +4087,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Необычная реликвия",
     "pool": "ironclad",
-    "image_url": "/static/images/relics/self_forming_clay.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/self_forming_clay.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 73,
-    "merchant_price": null
+    "compendium_order": 73
   },
   {
     "id": "SPARKLING_ROUGE",
@@ -3191,11 +4107,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Необычная реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/sparkling_rouge.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/sparkling_rouge.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 74,
-    "merchant_price": null
+    "compendium_order": 74
   },
   {
     "id": "LEAD_PAPERWEIGHT",
@@ -3205,11 +4127,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/lead_paperweight.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/lead_paperweight.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 226,
-    "merchant_price": null
+    "compendium_order": 226
   },
   {
     "id": "TANXS_WHISTLE",
@@ -3219,11 +4143,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/tanxs_whistle.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/tanxs_whistle.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 227,
-    "merchant_price": null
+    "compendium_order": 227
   },
   {
     "id": "NINJA_SCROLL",
@@ -3233,11 +4159,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия из магазина",
     "pool": "silent",
-    "image_url": "/static/images/relics/ninja_scroll.png",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
+    "image_url": "/static/images/relics/ninja_scroll.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
-    "compendium_order": 155,
-    "merchant_price": null
+    "compendium_order": 155
   },
   {
     "id": "BRIMSTONE",
@@ -3247,11 +4179,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия из магазина",
     "pool": "ironclad",
-    "image_url": "/static/images/relics/brimstone.png",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
+    "image_url": "/static/images/relics/brimstone.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
-    "compendium_order": 156,
-    "merchant_price": null
+    "compendium_order": 156
   },
   {
     "id": "SILVER_CRUCIBLE",
@@ -3261,11 +4199,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/silver_crucible.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/silver_crucible.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 228,
-    "merchant_price": null
+    "compendium_order": 228
   },
   {
     "id": "STORYBOOK",
@@ -3275,11 +4215,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/storybook.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/storybook.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 229,
-    "merchant_price": null
+    "compendium_order": 229
   },
   {
     "id": "FIDDLE",
@@ -3289,11 +4231,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/fiddle.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/fiddle.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 230,
-    "merchant_price": null
+    "compendium_order": 230
   },
   {
     "id": "PAELS_TEARS",
@@ -3303,11 +4247,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/paels_tears.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/paels_tears.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 231,
-    "merchant_price": null
+    "compendium_order": 231
   },
   {
     "id": "SOZU",
@@ -3317,11 +4263,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/sozu.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/sozu.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 232,
-    "merchant_price": null
+    "compendium_order": 232
   },
   {
     "id": "RUINED_HELMET",
@@ -3331,11 +4279,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Редкая реликвия",
     "pool": "ironclad",
-    "image_url": "/static/images/relics/ruined_helmet.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/ruined_helmet.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 117,
-    "merchant_price": null
+    "compendium_order": 117
   },
   {
     "id": "OLD_COIN",
@@ -3345,11 +4299,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Редкая реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/old_coin.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/old_coin.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 118,
-    "merchant_price": null
+    "compendium_order": 118
   },
   {
     "id": "WHITE_BEAST_STATUE",
@@ -3359,11 +4315,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Редкая реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/white_beast_statue.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/white_beast_statue.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 119,
-    "merchant_price": null
+    "compendium_order": 119
   },
   {
     "id": "GLASS_EYE",
@@ -3373,11 +4335,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/glass_eye.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/glass_eye.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 233,
-    "merchant_price": null
+    "compendium_order": 233
   },
   {
     "id": "CENTENNIAL_PUZZLE",
@@ -3387,11 +4351,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Обычная реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/centennial_puzzle.png",
+    "merchant_price": {
+      "base": 175,
+      "min": 149,
+      "max": 201
+    },
+    "image_url": "/static/images/relics/centennial_puzzle.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
-    "compendium_order": 32,
-    "merchant_price": null
+    "compendium_order": 32
   },
   {
     "id": "BAG_OF_PREPARATION",
@@ -3401,11 +4371,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Обычная реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/bag_of_preparation.png",
+    "merchant_price": {
+      "base": 175,
+      "min": 149,
+      "max": 201
+    },
+    "image_url": "/static/images/relics/bag_of_preparation.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
-    "compendium_order": 33,
-    "merchant_price": null
+    "compendium_order": 33
   },
   {
     "id": "HAPPY_FLOWER",
@@ -3415,11 +4391,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Обычная реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/happy_flower.png",
+    "merchant_price": {
+      "base": 175,
+      "min": 149,
+      "max": 201
+    },
+    "image_url": "/static/images/relics/happy_flower.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
-    "compendium_order": 34,
-    "merchant_price": null
+    "compendium_order": 34
   },
   {
     "id": "FAKE_HAPPY_FLOWER",
@@ -3429,15 +4411,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия за событие",
     "pool": "shared",
-    "image_url": "/static/images/relics/fake_happy_flower.png",
-    "image_variants": null,
-    "rarity_key": "Event",
-    "compendium_order": 286,
     "merchant_price": {
       "base": 50,
       "min": 42,
       "max": 57
-    }
+    },
+    "image_url": "/static/images/relics/fake_happy_flower.webp",
+    "image_variants": null,
+    "name_variants": null,
+    "notes": null,
+    "rarity_key": "Event",
+    "compendium_order": 286
   },
   {
     "id": "THE_ABACUS",
@@ -3447,11 +4431,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия из магазина",
     "pool": "shared",
-    "image_url": "/static/images/relics/the_abacus.png",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
+    "image_url": "/static/images/relics/the_abacus.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
-    "compendium_order": 157,
-    "merchant_price": null
+    "compendium_order": 157
   },
   {
     "id": "SHURIKEN",
@@ -3461,11 +4451,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Редкая реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/shuriken.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/shuriken.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 120,
-    "merchant_price": null
+    "compendium_order": 120
   },
   {
     "id": "NEOWS_TALISMAN",
@@ -3475,11 +4471,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/neows_talisman.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/neows_talisman.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 234,
-    "merchant_price": null
+    "compendium_order": 234
   },
   {
     "id": "REPTILE_TRINKET",
@@ -3489,11 +4487,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Необычная реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/reptile_trinket.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/reptile_trinket.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 75,
-    "merchant_price": null
+    "compendium_order": 75
   },
   {
     "id": "MEAL_TICKET",
@@ -3503,11 +4507,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Обычная реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/meal_ticket.png",
+    "merchant_price": {
+      "base": 175,
+      "min": 149,
+      "max": 201
+    },
+    "image_url": "/static/images/relics/meal_ticket.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
-    "compendium_order": 35,
-    "merchant_price": null
+    "compendium_order": 35
   },
   {
     "id": "TINGSHA",
@@ -3517,11 +4527,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Необычная реликвия",
     "pool": "silent",
-    "image_url": "/static/images/relics/tingsha.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/tingsha.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 76,
-    "merchant_price": null
+    "compendium_order": 76
   },
   {
     "id": "WHETSTONE",
@@ -3531,11 +4547,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Обычная реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/whetstone.png",
+    "merchant_price": {
+      "base": 175,
+      "min": 149,
+      "max": 201
+    },
+    "image_url": "/static/images/relics/whetstone.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
-    "compendium_order": 36,
-    "merchant_price": null
+    "compendium_order": 36
   },
   {
     "id": "LEAFY_POULTICE",
@@ -3545,11 +4567,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/leafy_poultice.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/leafy_poultice.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 235,
-    "merchant_price": null
+    "compendium_order": 235
   },
   {
     "id": "CRACKED_CORE",
@@ -3559,11 +4583,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Начальная реликвия",
     "pool": "defect",
-    "image_url": "/static/images/relics/cracked_core.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/cracked_core.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Starter",
-    "compendium_order": 8,
-    "merchant_price": null
+    "compendium_order": 8
   },
   {
     "id": "TRI_BOOMERANG",
@@ -3573,11 +4599,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/tri_boomerang.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/tri_boomerang.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 236,
-    "merchant_price": null
+    "compendium_order": 236
   },
   {
     "id": "BOOMING_CONCH",
@@ -3587,11 +4615,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/booming_conch.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/booming_conch.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 237,
-    "merchant_price": null
+    "compendium_order": 237
   },
   {
     "id": "PUMPKIN_CANDLE",
@@ -3601,11 +4631,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/pumpkin_candle.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/pumpkin_candle.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 238,
-    "merchant_price": null
+    "compendium_order": 238
   },
   {
     "id": "PUNCH_DAGGER",
@@ -3615,11 +4647,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия из магазина",
     "pool": "shared",
-    "image_url": "/static/images/relics/punch_dagger.png",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
+    "image_url": "/static/images/relics/punch_dagger.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
-    "compendium_order": 158,
-    "merchant_price": null
+    "compendium_order": 158
   },
   {
     "id": "LOOMING_FRUIT",
@@ -3629,11 +4667,19 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/looming_fruit.png",
-    "image_variants": null,
+    "merchant_price": null,
+    "image_url": "/static/images/relics/looming_fruit.webp",
+    "image_variants": {
+      "Cornucopia": "/static/images/relics/looming_fruit.webp",
+      "Fruit": "/static/images/relics/looming_fruit_2.webp"
+    },
+    "name_variants": null,
+    "notes": [
+      "Looming Fruit ships two icons (Cornucopia and Fruit). The game picks one per save based on whether your save's UniqueId ends in an even or odd digit, so half the playerbase sees each variant.",
+      "Both variants are functionally identical — same +31 Max HP effect — and the choice is permanent for a given save file. Use the toggle above to preview the one your save shows."
+    ],
     "rarity_key": "Ancient",
-    "compendium_order": 239,
-    "merchant_price": null
+    "compendium_order": 239
   },
   {
     "id": "NEOWS_TORMENT",
@@ -3643,11 +4689,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/neows_torment.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/neows_torment.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 240,
-    "merchant_price": null
+    "compendium_order": 240
   },
   {
     "id": "ORNAMENTAL_FAN",
@@ -3657,11 +4705,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Необычная реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/ornamental_fan.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/ornamental_fan.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 77,
-    "merchant_price": null
+    "compendium_order": 77
   },
   {
     "id": "INTIMIDATING_HELMET",
@@ -3671,11 +4725,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Редкая реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/intimidating_helmet.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/intimidating_helmet.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 121,
-    "merchant_price": null
+    "compendium_order": 121
   },
   {
     "id": "LOST_COFFER",
@@ -3685,11 +4745,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/lost_coffer.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/lost_coffer.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 241,
-    "merchant_price": null
+    "compendium_order": 241
   },
   {
     "id": "CLOAK_CLASP",
@@ -3699,11 +4761,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Редкая реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/cloak_clasp.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/cloak_clasp.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 122,
-    "merchant_price": null
+    "compendium_order": 122
   },
   {
     "id": "PHILOSOPHERS_STONE",
@@ -3713,11 +4781,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/philosophers_stone.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/philosophers_stone.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 242,
-    "merchant_price": null
+    "compendium_order": 242
   },
   {
     "id": "GAMBLING_CHIP",
@@ -3727,11 +4797,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Редкая реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/gambling_chip.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/gambling_chip.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 123,
-    "merchant_price": null
+    "compendium_order": 123
   },
   {
     "id": "LANTERN",
@@ -3741,11 +4817,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Обычная реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/lantern.png",
+    "merchant_price": {
+      "base": 175,
+      "min": 149,
+      "max": 201
+    },
+    "image_url": "/static/images/relics/lantern.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
-    "compendium_order": 37,
-    "merchant_price": null
+    "compendium_order": 37
   },
   {
     "id": "LIZARD_TAIL",
@@ -3755,11 +4837,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Редкая реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/lizard_tail.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/lizard_tail.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 124,
-    "merchant_price": null
+    "compendium_order": 124
   },
   {
     "id": "BREAD",
@@ -3769,11 +4857,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия из магазина",
     "pool": "shared",
-    "image_url": "/static/images/relics/bread.png",
+    "merchant_price": {
+      "base": 200,
+      "min": 170,
+      "max": 230
+    },
+    "image_url": "/static/images/relics/bread.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
-    "compendium_order": 159,
-    "merchant_price": null
+    "compendium_order": 159
   },
   {
     "id": "SNECKO_SKULL",
@@ -3783,11 +4877,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Обычная реликвия",
     "pool": "silent",
-    "image_url": "/static/images/relics/snecko_skull.png",
+    "merchant_price": {
+      "base": 175,
+      "min": 149,
+      "max": 201
+    },
+    "image_url": "/static/images/relics/snecko_skull.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
-    "compendium_order": 38,
-    "merchant_price": null
+    "compendium_order": 38
   },
   {
     "id": "BLACK_STAR",
@@ -3797,11 +4897,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/black_star.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/black_star.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 243,
-    "merchant_price": null
+    "compendium_order": 243
   },
   {
     "id": "BLACK_BLOOD",
@@ -3811,11 +4913,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Начальная реликвия",
     "pool": "ironclad",
-    "image_url": "/static/images/relics/black_blood.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/black_blood.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Starter",
-    "compendium_order": 9,
-    "merchant_price": null
+    "compendium_order": 9
   },
   {
     "id": "EMOTION_CHIP",
@@ -3825,11 +4929,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Редкая реликвия",
     "pool": "defect",
-    "image_url": "/static/images/relics/emotion_chip.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/emotion_chip.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 125,
-    "merchant_price": null
+    "compendium_order": 125
   },
   {
     "id": "NEW_LEAF",
@@ -3839,11 +4949,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/new_leaf.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/new_leaf.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 244,
-    "merchant_price": null
+    "compendium_order": 244
   },
   {
     "id": "CHANDELIER",
@@ -3853,11 +4965,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Редкая реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/chandelier.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/chandelier.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 126,
-    "merchant_price": null
+    "compendium_order": 126
   },
   {
     "id": "HORN_CLEAT",
@@ -3867,11 +4985,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Необычная реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/horn_cleat.png",
+    "merchant_price": {
+      "base": 225,
+      "min": 191,
+      "max": 259
+    },
+    "image_url": "/static/images/relics/horn_cleat.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 78,
-    "merchant_price": null
+    "compendium_order": 78
   },
   {
     "id": "WHISPERING_EARRING",
@@ -3881,11 +5005,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/whispering_earring.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/whispering_earring.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 245,
-    "merchant_price": null
+    "compendium_order": 245
   },
   {
     "id": "SPIKED_GAUNTLETS",
@@ -3895,11 +5021,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/spiked_gauntlets.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/spiked_gauntlets.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 246,
-    "merchant_price": null
+    "compendium_order": 246
   },
   {
     "id": "BIG_HAT",
@@ -3909,11 +5037,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Редкая реликвия",
     "pool": "necrobinder",
-    "image_url": "/static/images/relics/big_hat.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/big_hat.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 127,
-    "merchant_price": null
+    "compendium_order": 127
   },
   {
     "id": "JEWELRY_BOX",
@@ -3923,11 +5057,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/jewelry_box.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/jewelry_box.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 247,
-    "merchant_price": null
+    "compendium_order": 247
   },
   {
     "id": "BOWLER_HAT",
@@ -3937,11 +5073,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Необычная реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/bowler_hat.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/bowler_hat.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
-    "compendium_order": 79,
-    "merchant_price": null
+    "compendium_order": 79
   },
   {
     "id": "FUR_COAT",
@@ -3951,11 +5089,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/fur_coat.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/fur_coat.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 248,
-    "merchant_price": null
+    "compendium_order": 248
   },
   {
     "id": "ECTOPLASM",
@@ -3965,11 +5105,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/ectoplasm.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/ectoplasm.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 249,
-    "merchant_price": null
+    "compendium_order": 249
   },
   {
     "id": "ELECTRIC_SHRYMP",
@@ -3979,11 +5121,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/electric_shrymp.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/electric_shrymp.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 250,
-    "merchant_price": null
+    "compendium_order": 250
   },
   {
     "id": "TOXIC_EGG",
@@ -3993,11 +5137,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Редкая реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/toxic_egg.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/toxic_egg.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 128,
-    "merchant_price": null
+    "compendium_order": 128
   },
   {
     "id": "DEMON_TONGUE",
@@ -4007,11 +5157,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Редкая реликвия",
     "pool": "ironclad",
-    "image_url": "/static/images/relics/demon_tongue.png",
+    "merchant_price": {
+      "base": 275,
+      "min": 234,
+      "max": 316
+    },
+    "image_url": "/static/images/relics/demon_tongue.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
-    "compendium_order": 129,
-    "merchant_price": null
+    "compendium_order": 129
   },
   {
     "id": "ANCHOR",
@@ -4021,11 +5177,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Обычная реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/anchor.png",
+    "merchant_price": {
+      "base": 175,
+      "min": 149,
+      "max": 201
+    },
+    "image_url": "/static/images/relics/anchor.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
-    "compendium_order": 39,
-    "merchant_price": null
+    "compendium_order": 39
   },
   {
     "id": "FAKE_ANCHOR",
@@ -4035,15 +5197,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия за событие",
     "pool": "shared",
-    "image_url": "/static/images/relics/fake_anchor.png",
-    "image_variants": null,
-    "rarity_key": "Event",
-    "compendium_order": 287,
     "merchant_price": {
       "base": 50,
       "min": 42,
       "max": 57
-    }
+    },
+    "image_url": "/static/images/relics/fake_anchor.webp",
+    "image_variants": null,
+    "name_variants": null,
+    "notes": null,
+    "rarity_key": "Event",
+    "compendium_order": 287
   },
   {
     "id": "EMBER_TEA",
@@ -4053,11 +5217,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Реликвия за событие",
     "pool": "shared",
-    "image_url": "/static/images/relics/ember_tea.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/ember_tea.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
-    "compendium_order": 288,
-    "merchant_price": null
+    "compendium_order": 288
   },
   {
     "id": "PANDORAS_BOX",
@@ -4067,11 +5233,13 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/pandoras_box.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/pandoras_box.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 251,
-    "merchant_price": null
+    "compendium_order": 251
   },
   {
     "id": "TOY_BOX",
@@ -4081,11 +5249,17 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/toy_box.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/toy_box.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": [
+      "Wax Relics are pulled from the normal relic pool — any non-Ancient relic can be waxed.",
+      "Wax Relic rarity: 50% Common, 33% Uncommon, 17% Rare (standard relic rarity roll).",
+      "All wax relics melt after 12 total combats, then Toy Box is used up."
+    ],
     "rarity_key": "Ancient",
-    "compendium_order": 252,
-    "merchant_price": null
+    "compendium_order": 252
   },
   {
     "id": "SCROLL_BOXES",
@@ -4095,10 +5269,12 @@
     "flavor": "[red]Подробности об этой реликвии станут известны в будущем…[/red]",
     "rarity": "Древняя реликвия",
     "pool": "shared",
-    "image_url": "/static/images/relics/scroll_boxes.png",
+    "merchant_price": null,
+    "image_url": "/static/images/relics/scroll_boxes.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
-    "compendium_order": 253,
-    "merchant_price": null
+    "compendium_order": 253
   }
 ]

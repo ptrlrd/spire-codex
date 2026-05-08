@@ -177,7 +177,7 @@
     "name": "多数の屍ナメクジ",
     "room_type": "Monster",
     "is_weak": false,
-    "act": "Underdocks",
+    "act": "Act 1 - Underdocks",
     "tags": [
       "Slugs"
     ],
@@ -194,7 +194,7 @@
     "name": "屍ナメクジ",
     "room_type": "Monster",
     "is_weak": true,
-    "act": "Underdocks",
+    "act": "Act 1 - Underdocks",
     "tags": [
       "Slugs"
     ],
@@ -226,7 +226,7 @@
     "name": "狂信者たち",
     "room_type": "Monster",
     "is_weak": false,
-    "act": "Underdocks",
+    "act": "Act 1 - Underdocks",
     "tags": null,
     "monsters": [
       {
@@ -441,7 +441,7 @@
     "name": "化石のストーカー",
     "room_type": "Monster",
     "is_weak": false,
-    "act": "Underdocks",
+    "act": "Act 1 - Underdocks",
     "tags": null,
     "monsters": [
       {
@@ -503,7 +503,7 @@
     "name": "トレンチコートのグレムリン",
     "room_type": "Monster",
     "is_weak": false,
-    "act": "Underdocks",
+    "act": "Act 1 - Underdocks",
     "tags": null,
     "monsters": [
       {
@@ -526,7 +526,7 @@
     "name": "幽霊船",
     "room_type": "Monster",
     "is_weak": false,
-    "act": "Underdocks",
+    "act": "Act 1 - Underdocks",
     "tags": null,
     "monsters": [
       {
@@ -645,7 +645,7 @@
     "name": "ラガヴーリン・メイトリアーク",
     "room_type": "Boss",
     "is_weak": false,
-    "act": "Underdocks",
+    "act": "Act 1 - Underdocks",
     "tags": null,
     "monsters": [
       {
@@ -660,7 +660,7 @@
     "name": "邪悪なガス",
     "room_type": "Monster",
     "is_weak": false,
-    "act": "Underdocks",
+    "act": "Act 1 - Underdocks",
     "tags": null,
     "monsters": [
       {
@@ -842,7 +842,7 @@
     "name": "幻影蟲",
     "room_type": "Elite",
     "is_weak": false,
-    "act": "Underdocks",
+    "act": "Act 1 - Underdocks",
     "tags": null,
     "monsters": [
       {
@@ -876,7 +876,7 @@
     "name": "パンチマシーン",
     "room_type": "Monster",
     "is_weak": false,
-    "act": "Underdocks",
+    "act": "Act 1 - Underdocks",
     "tags": null,
     "monsters": [
       {
@@ -990,7 +990,7 @@
     "name": "シーパンク",
     "room_type": "Monster",
     "is_weak": true,
-    "act": "Underdocks",
+    "act": "Act 1 - Underdocks",
     "tags": [
       "Seapunk"
     ],
@@ -1007,7 +1007,7 @@
     "name": "下水貝",
     "room_type": "Monster",
     "is_weak": false,
-    "act": "Underdocks",
+    "act": "Act 1 - Underdocks",
     "tags": null,
     "monsters": [
       {
@@ -1039,7 +1039,7 @@
     "name": "蠢く群生体",
     "room_type": "Elite",
     "is_weak": false,
-    "act": "Underdocks",
+    "act": "Act 1 - Underdocks",
     "tags": null,
     "monsters": [
       {
@@ -1162,7 +1162,7 @@
     "name": "スラッジスピナー",
     "room_type": "Monster",
     "is_weak": true,
-    "act": "Underdocks",
+    "act": "Act 1 - Underdocks",
     "tags": null,
     "monsters": [
       {
@@ -1223,7 +1223,7 @@
     "name": "ソウルフィッシュ",
     "room_type": "Boss",
     "is_weak": false,
-    "act": "Underdocks",
+    "act": "Act 1 - Underdocks",
     "tags": null,
     "monsters": [
       {
@@ -1268,7 +1268,7 @@
     "name": "テラーウツボ",
     "room_type": "Elite",
     "is_weak": false,
-    "act": "Underdocks",
+    "act": "Act 1 - Underdocks",
     "tags": null,
     "monsters": [
       {
@@ -1398,7 +1398,7 @@
     "name": "地下水路の生物",
     "room_type": "Monster",
     "is_weak": false,
-    "act": "Underdocks",
+    "act": "Act 1 - Underdocks",
     "tags": null,
     "monsters": [
       {
@@ -1417,7 +1417,7 @@
     "name": "ヒキジャクシ",
     "room_type": "Monster",
     "is_weak": true,
-    "act": "Underdocks",
+    "act": "Act 1 - Underdocks",
     "tags": null,
     "monsters": [
       {
@@ -1494,7 +1494,7 @@
     "name": "双尾のネズミ",
     "room_type": "Monster",
     "is_weak": false,
-    "act": "Underdocks",
+    "act": "Act 1 - Underdocks",
     "tags": null,
     "monsters": [
       {
@@ -1539,7 +1539,7 @@
     "name": "滝の巨人",
     "room_type": "Boss",
     "is_weak": false,
-    "act": "Underdocks",
+    "act": "Act 1 - Underdocks",
     "tags": null,
     "monsters": [
       {

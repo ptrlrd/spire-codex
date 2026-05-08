@@ -1,0 +1,37 @@
+[
+  {
+    "id": "ETERNAL",
+    "name": "Sonsuz",
+    "description": "Dönüştürülemez veya [gold]Deste[/gold]'nden çıkarılamaz."
+  },
+  {
+    "id": "ETHEREAL",
+    "name": "Ruhani",
+    "description": "Eğer bu kart turun sonunda [gold]El[/gold]'inde kalırsa [gold]Tüketilir[/gold]."
+  },
+  {
+    "id": "EXHAUST",
+    "name": "Tüket",
+    "description": "Savaşın sonuna kadar kaldırılır."
+  },
+  {
+    "id": "INNATE",
+    "name": "Yerleşik",
+    "description": "Her savaşa [gold]El[/gold]'inde bu kartla başla."
+  },
+  {
+    "id": "RETAIN",
+    "name": "Sakla",
+    "description": "Saklanan kartlar tur sonunda elden çıkarılmaz."
+  },
+  {
+    "id": "SLY",
+    "name": "Sinsi",
+    "description": "Bu kartı turun bitmeden [gold]El[/gold]'inden çıkartırsan ücretsiz oynarsın."
+  },
+  {
+    "id": "UNPLAYABLE",
+    "name": "Oynanamaz",
+    "description": "Bu kart Oynanamaz."
+  }
+]

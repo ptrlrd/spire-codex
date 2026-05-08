@@ -1,0 +1,68 @@
+[
+  {
+    "id": "LEVEL_00",
+    "level": 0,
+    "name": "Sem Ascensão",
+    "description": "Jogue sem nenhum modificador de Ascensão."
+  },
+  {
+    "id": "LEVEL_01",
+    "level": 1,
+    "name": "Elites em Massa",
+    "description": "[gold]Elites[/gold] surgem com mais frequência."
+  },
+  {
+    "id": "LEVEL_02",
+    "level": 2,
+    "name": "Viajante Exausto",
+    "description": "Ancestrais curam apenas [blue]80%[/blue] de seus PV perdidos."
+  },
+  {
+    "id": "LEVEL_03",
+    "level": 3,
+    "name": "Pobreza",
+    "description": "Inimigos e Baús de Tesouro concedem [blue]25%[/blue] menos [gold]Ouro[/gold]."
+  },
+  {
+    "id": "LEVEL_04",
+    "level": 4,
+    "name": "Cinturão Apertado",
+    "description": "Inicie cada partida com um 1 espaço de poções a menos."
+  },
+  {
+    "id": "LEVEL_05",
+    "level": 5,
+    "name": "Ruína do Ascendente",
+    "description": "Inicie cada partida com uma [red]Maldição[/red]."
+  },
+  {
+    "id": "LEVEL_06",
+    "level": 6,
+    "name": "Trevas",
+    "description": "Menos Locais de Descanso."
+  },
+  {
+    "id": "LEVEL_07",
+    "level": 7,
+    "name": "Escassez",
+    "description": "Cartas Raras e Aprimoradas aparecem com menos frequência."
+  },
+  {
+    "id": "LEVEL_08",
+    "level": 8,
+    "name": "Inimigos Robustos",
+    "description": "Todos os inimigos são mais difíceis de derrotar."
+  },
+  {
+    "id": "LEVEL_09",
+    "level": 9,
+    "name": "Inimigos Mortais",
+    "description": "Todos os inimigos têm ataques mais letais."
+  },
+  {
+    "id": "LEVEL_10",
+    "level": 10,
+    "name": "Dupla Chefia",
+    "description": "Lute contra dois chefes no final do Ato 3."
+  }
+]

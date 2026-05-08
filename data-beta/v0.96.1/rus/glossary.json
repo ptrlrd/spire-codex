@@ -1,0 +1,170 @@
+[
+  {
+    "id": "BLOCK",
+    "name": "Защита",
+    "description": "Предотвращает урон до следующего хода.",
+    "category": "combat"
+  },
+  {
+    "id": "CARD_REWARD",
+    "name": "Наградная карта",
+    "description": "Набор из [blue]3[/blue] случайных карт. Вы можете выбрать [blue]1[/blue] из них, чтобы добавить в [gold]колоду[/gold].",
+    "category": "progression"
+  },
+  {
+    "id": "CHANNELING",
+    "name": "Зарядка сфер",
+    "description": "Заряженные сферы попадают в первую пустую ячейку. Если пустых ячеек нет, первая сфера автоматически [gold]разряжается[/gold], освобождая место.",
+    "category": "combat"
+  },
+  {
+    "id": "COOK",
+    "name": "Приготовить",
+    "description": "[gold]Удалите[/gold] [blue]2[/blue] карты из своей [gold]колоды[/gold] и получите [green]9[/green] максимальных ОЗ в [gold]лагере[/gold].",
+    "category": "mechanics"
+  },
+  {
+    "id": "DECK",
+    "name": "Колода",
+    "description": "Показывает все карты в вашей колоде.",
+    "category": "zones"
+  },
+  {
+    "id": "DISCARD_PILE",
+    "name": "Стопка сброса",
+    "description": "Если стопка добора пуста, в нее замешивается стопка сброса.\n\nНажмите, чтобы посмотреть карты в стопке сброса.",
+    "category": "zones"
+  },
+  {
+    "id": "DRAW_PILE",
+    "name": "Стопка добора",
+    "description": "В начале каждого вашего хода вы берете\n[blue]5[/blue] карт из этой стопки.\n\nНажмите, чтобы посмотреть карты в стопке добора (в перемешанном виде).",
+    "category": "zones"
+  },
+  {
+    "id": "ENERGY",
+    "name": "Энергия",
+    "description": "Энергия используется, чтобы разыгрывать карты в [gold]руке[/gold].",
+    "category": "combat"
+  },
+  {
+    "id": "EVOKE",
+    "name": "Разрядка сфер",
+    "description": "Самая правая сфера будет разряжена: она будет поглощена и разыграется эффект ее разрядки.",
+    "category": "combat"
+  },
+  {
+    "id": "EXHAUST_PILE",
+    "name": "Сожженные карты",
+    "description": "Нажмите, чтобы увидеть сожженные в этом бою карты.",
+    "category": "zones"
+  },
+  {
+    "id": "FATAL",
+    "name": "Казнь",
+    "description": "Срабатывает, если эта карта убивает врага, не являющегося приспешником.",
+    "category": "combat"
+  },
+  {
+    "id": "FORGE",
+    "name": "Ковка",
+    "description": "Когда вы [gold]куете[/gold] первый раз в бою, в вашу [gold]руку[/gold] будет добавлен [gold]Клинок монарха[/gold]. Затем ковка повышает урон [gold]Клинка монарха[/gold].",
+    "category": "mechanics"
+  },
+  {
+    "id": "HIT_POINTS",
+    "name": "Очки здоровья (ОЗ)",
+    "description": "Если ОЗ закончатся, вы погибните.",
+    "category": "progression"
+  },
+  {
+    "id": "LINKED_REWARDS",
+    "name": "Связанные награды",
+    "description": "Из этого набора можно выбрать только [blue]1[/blue] награду.",
+    "category": "progression"
+  },
+  {
+    "id": "MONEY_POUCH",
+    "name": "Золото",
+    "description": "Количество вашего золота. Золото — основная валюта в Шпиле.",
+    "category": "progression"
+  },
+  {
+    "id": "POTION_SLOT",
+    "name": "Место для зелья",
+    "description": "Используйте зелья во время боя, чтобы получить [green]бонусы[/green] или [red]навредить[/red] врагам.",
+    "category": "progression"
+  },
+  {
+    "id": "REPLAY",
+    "name": "Повтор",
+    "description": "Карта разыгрывается дополнительный раз.",
+    "category": "mechanics"
+  },
+  {
+    "id": "ROOM_ANCIENT",
+    "name": "Древний",
+    "description": "(PLACEHOLDER) Древний",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_BOSS",
+    "name": "Босс",
+    "description": "Самый смертоносный враг в округе.\n\nПобеда над ним позволит перейти в следующий акт.",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_ELITE",
+    "name": "Элитный враг",
+    "description": "В этих комнатах находятся могучие враги.\n\nОдержав над ними победу, вы заработаете [gold]реликвию[/gold].",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_ENEMY",
+    "name": "Враг",
+    "description": "В этих комнатах находятся враги.",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_EVENT",
+    "name": "Событие",
+    "description": "В этих комнатах случаются причудливые вещи…",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_MERCHANT",
+    "name": "Магазин",
+    "description": "В этих комнатах таинственный Торговец продает свои товары.\n\nЗдесь можно потратить свое честно заработанное [gold]золото[/gold]!",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_REST",
+    "name": "Лагерь",
+    "description": "Здесь можно остановиться, чтобы [green]восполнить[/green] немного ОЗ или [gold]улучшить[/gold] карту.",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_TREASURE",
+    "name": "Сокровищница",
+    "description": "В этих заветных комнатах вас ждут [gold]реликвии[/gold] и [gold]золото[/gold].",
+    "category": "rooms"
+  },
+  {
+    "id": "STUN",
+    "name": "Оглушение",
+    "description": "Оглушенный враг пропускает свой следующий ход.",
+    "category": "combat"
+  },
+  {
+    "id": "SUMMON",
+    "name": "Призвать",
+    "description": "Призывает [gold]Костю[/gold].\nЕсли он уже призван, повышает его максимальные ОЗ в этом бою.",
+    "category": "mechanics"
+  },
+  {
+    "id": "TRANSFORM",
+    "name": "Преобразование",
+    "description": "Преобразованная карта превращается в случайную карту случайной редкости.",
+    "category": "mechanics"
+  }
+]

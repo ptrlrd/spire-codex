@@ -1,0 +1,159 @@
+[
+  {
+    "id": "DEFECT",
+    "name": "Defect",
+    "description": "",
+    "starting_hp": 75,
+    "starting_gold": 99,
+    "max_energy": 3,
+    "orb_slots": 3,
+    "starting_deck": [
+      "StrikeDefect",
+      "StrikeDefect",
+      "StrikeDefect",
+      "StrikeDefect",
+      "DefendDefect",
+      "DefendDefect",
+      "DefendDefect",
+      "DefendDefect",
+      "Zap",
+      "Dualcast"
+    ],
+    "starting_relics": [
+      "CrackedCore"
+    ],
+    "unlocks_after": "Necrobinder",
+    "gender": "Neutral",
+    "color": "blue",
+    "dialogue_color": "new",
+    "quotes": null,
+    "dialogues": null,
+    "image_url": "/static/images/characters/char_select_defect.webp"
+  },
+  {
+    "id": "IRONCLAD",
+    "name": "Ironclad",
+    "description": "",
+    "starting_hp": 80,
+    "starting_gold": 99,
+    "max_energy": 3,
+    "orb_slots": null,
+    "starting_deck": [
+      "StrikeIronclad",
+      "StrikeIronclad",
+      "StrikeIronclad",
+      "StrikeIronclad",
+      "StrikeIronclad",
+      "DefendIronclad",
+      "DefendIronclad",
+      "DefendIronclad",
+      "DefendIronclad",
+      "Bash"
+    ],
+    "starting_relics": [
+      "BurningBlood"
+    ],
+    "unlocks_after": null,
+    "gender": "Masculine",
+    "color": "red",
+    "dialogue_color": "new",
+    "quotes": null,
+    "dialogues": null,
+    "image_url": "/static/images/characters/char_select_ironclad.webp"
+  },
+  {
+    "id": "NECROBINDER",
+    "name": "Necrobinder",
+    "description": "",
+    "starting_hp": 66,
+    "starting_gold": 99,
+    "max_energy": 3,
+    "orb_slots": null,
+    "starting_deck": [
+      "StrikeNecrobinder",
+      "StrikeNecrobinder",
+      "StrikeNecrobinder",
+      "StrikeNecrobinder",
+      "DefendNecrobinder",
+      "DefendNecrobinder",
+      "DefendNecrobinder",
+      "DefendNecrobinder",
+      "Bodyguard",
+      "Unleash"
+    ],
+    "starting_relics": [
+      "BoundPhylactery"
+    ],
+    "unlocks_after": "Regent",
+    "gender": "Feminine",
+    "color": "purple",
+    "dialogue_color": "new",
+    "quotes": null,
+    "dialogues": null,
+    "image_url": "/static/images/characters/char_select_necrobinder.webp"
+  },
+  {
+    "id": "REGENT",
+    "name": "Regent",
+    "description": "",
+    "starting_hp": 75,
+    "starting_gold": 99,
+    "max_energy": 3,
+    "orb_slots": null,
+    "starting_deck": [
+      "StrikeRegent",
+      "StrikeRegent",
+      "StrikeRegent",
+      "StrikeRegent",
+      "DefendRegent",
+      "DefendRegent",
+      "DefendRegent",
+      "DefendRegent",
+      "FallingStar",
+      "Venerate"
+    ],
+    "starting_relics": [
+      "DivineRight"
+    ],
+    "unlocks_after": "Silent",
+    "gender": "Masculine",
+    "color": "orange",
+    "dialogue_color": "new",
+    "quotes": null,
+    "dialogues": null,
+    "image_url": "/static/images/characters/char_select_regent.webp"
+  },
+  {
+    "id": "SILENT",
+    "name": "Silent",
+    "description": "",
+    "starting_hp": 70,
+    "starting_gold": 99,
+    "max_energy": 3,
+    "orb_slots": null,
+    "starting_deck": [
+      "StrikeSilent",
+      "StrikeSilent",
+      "StrikeSilent",
+      "StrikeSilent",
+      "StrikeSilent",
+      "DefendSilent",
+      "DefendSilent",
+      "DefendSilent",
+      "DefendSilent",
+      "DefendSilent",
+      "Neutralize",
+      "Survivor"
+    ],
+    "starting_relics": [
+      "RingOfTheSnake"
+    ],
+    "unlocks_after": null,
+    "gender": "Feminine",
+    "color": "green",
+    "dialogue_color": "new",
+    "quotes": null,
+    "dialogues": null,
+    "image_url": "/static/images/characters/char_select_silent.webp"
+  }
+]

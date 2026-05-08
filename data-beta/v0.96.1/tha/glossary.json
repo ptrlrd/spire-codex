@@ -1,0 +1,170 @@
+[
+  {
+    "id": "BLOCK",
+    "name": "บล็อก",
+    "description": "ป้องกันความเสียหาย จนกว่าจะถึงเทิร์นหน้า",
+    "category": "combat"
+  },
+  {
+    "id": "CARD_REWARD",
+    "name": "รางวัลการ์ด",
+    "description": "ซองบรรจุ [blue]3[/blue] การ์ดแบบสุ่ม คุณสามารถเลือกเพิ่ม [blue]1[/blue] การ์ดเข้า[gold]กองการ์ด[/gold]ได้",
+    "category": "progression"
+  },
+  {
+    "id": "CHANNELING",
+    "name": "ปลุกเสก",
+    "description": "การปลุกเสกลูกแก้ว จะเก็บที่ช่องแรกที่ว่างอยู่ ถ้าไม่เหลือช่องว่าง ลูกแก้วแรกจะถูก[gold]ปล่อยพลัง[/gold]โดยอัตโนมัติเพื่อรองรับลูกใหม่",
+    "category": "combat"
+  },
+  {
+    "id": "COOK",
+    "name": "ปรุงอาหาร",
+    "description": "[gold]กำจัด[/gold] [blue]2[/blue] การ์ดจาก[gold]กองการ์ด[/gold] แล้วได้รับ [green]9[/green] HP สูงสุด ที่ [gold]จุดพัก[/gold]",
+    "category": "mechanics"
+  },
+  {
+    "id": "DECK",
+    "name": "กองการ์ด",
+    "description": "ดูการ์ดทั้งหมดในกองการ์ด",
+    "category": "zones"
+  },
+  {
+    "id": "DISCARD_PILE",
+    "name": "กองทิ้ง",
+    "description": "ถ้ากองจั่วหมด กองทิ้งจะถูกสับกลับมาเป็นกองจั่ว\n\nคลิกเพื่อดูการ์ดในกองทิ้ง",
+    "category": "zones"
+  },
+  {
+    "id": "DRAW_PILE",
+    "name": "กองจั่ว",
+    "description": "ตอนเริ่มแต่ละเทิร์น\nจั่ว [blue]5[/blue] การ์ดจากที่นี่\n\nคลิกเพื่อดูการ์ดในกองจั่ว (ไม่เรียงลำดับ)",
+    "category": "zones"
+  },
+  {
+    "id": "ENERGY",
+    "name": "พลังงาน",
+    "description": "พลังงานจะถูกใช้เพื่อร่ายการ์ดจาก[gold]มือ[/gold]",
+    "category": "combat"
+  },
+  {
+    "id": "EVOKE",
+    "name": "ปล่อยพลัง",
+    "description": "สูบพลังลูกแก้วขวาสุดเพื่อปล่อยพลังของลูกแก้วนั้น",
+    "category": "combat"
+  },
+  {
+    "id": "EXHAUST_PILE",
+    "name": "กองสลาย",
+    "description": "คลิกเพื่อดูการ์ดที่สลายไปในการต่อสู้นี้",
+    "category": "zones"
+  },
+  {
+    "id": "FATAL",
+    "name": "สังหาร",
+    "description": "ทำงานเมื่อการ์ดนี้สังหารศัตรูที่ไม่ใช่ลูกน้อง",
+    "category": "combat"
+  },
+  {
+    "id": "FORGE",
+    "name": "หลอมสร้าง",
+    "description": "ครั้งแรกที่คุณ[gold]หลอมสร้าง[/gold]ในแต่ละการต่อสู้ เพิ่ม[gold]พระแสงอาญาสิทธิ์[/gold]ใส่[gold]มือ[/gold] เพิ่มความเสียหายให้เพิ่มเติมให้[gold]พระแสงอาญาสิทธิ์[/gold]",
+    "category": "mechanics"
+  },
+  {
+    "id": "HIT_POINTS",
+    "name": "พลังชีวิต",
+    "description": "ถ้า HP หมด คุณจะตาย",
+    "category": "progression"
+  },
+  {
+    "id": "LINKED_REWARDS",
+    "name": "รางวัลร่วม",
+    "description": "เลือกได้แค่ [blue]1[/blue] รางวัลจากเซ็ตนี้",
+    "category": "progression"
+  },
+  {
+    "id": "MONEY_POUCH",
+    "name": "ทอง",
+    "description": "จำนวนทองที่มี ซึ่งเป็นค่าเงินในสไปร์",
+    "category": "progression"
+  },
+  {
+    "id": "POTION_SLOT",
+    "name": "ช่องเก็บขวดยา",
+    "description": "ใช้ขวดยาระหว่างต่อสู้เพื่อรับ[green]โบนัส[/green]หรือ[red]ขัดขวาง[/red]ศัตรู",
+    "category": "progression"
+  },
+  {
+    "id": "REPLAY",
+    "name": "เล่นซ้ำ",
+    "description": "เล่นการ์ดนี้ซ้ำอีกครั้ง",
+    "category": "mechanics"
+  },
+  {
+    "id": "ROOM_ANCIENT",
+    "name": "เทพโบราณ",
+    "description": "(PLACEHOLDER) เทพโบราณ",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_BOSS",
+    "name": "บอส",
+    "description": "ศัตรูที่อันตรายที่สุดในพื้นที่\n\nหากกำจัดได้ จะเปิดทางไปยังองก์ต่อไป",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_ELITE",
+    "name": "ลูกพี่",
+    "description": "ศัตรูทรงพลังอยู่ในห้องนี้\n\nหากกำจัดได้ จะได้รับ[gold]เครื่องราง[/gold]เป็นรางวัล",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_ENEMY",
+    "name": "ศัตรู",
+    "description": "ศัตรูอยู่ในห้องนี้",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_EVENT",
+    "name": "เหตุการณ์",
+    "description": "มีสิ่งผิดปกติเกิดขึ้นในห้องนี้...",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_MERCHANT",
+    "name": "ร้านค้า",
+    "description": "พ่อค้าลึกลับจะขายสินค้าในห้องนี้\n\nนำ[gold]ทอง[/gold]มาจับจ่ายได้ที่นี่!",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_REST",
+    "name": "จุดพัก",
+    "description": "แวะห้องนี้เพื่อ[green]ฟื้นฟู[/green] HP บางส่วน หรือ [gold]พัฒนา[/gold]การ์ด",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_TREASURE",
+    "name": "ห้องสมบัติ",
+    "description": "[gold]ทอง[/gold]และ[gold]เครื่องราง[/gold]มากมายอยู่ในห้องนี้",
+    "category": "rooms"
+  },
+  {
+    "id": "STUN",
+    "name": "ทำให้สตัน",
+    "description": "หยุดการกระทำของศัตรูในเทิร์นหน้าของมัน",
+    "category": "combat"
+  },
+  {
+    "id": "SUMMON",
+    "name": "อัญเชิญ",
+    "description": "อัญเชิญ [gold]Osty[/gold]\nถ้าอัญเชิญไว้แล้ว เพิ่ม HP สูงสุดให้เขาสำหรับการต่อสู้นี้",
+    "category": "mechanics"
+  },
+  {
+    "id": "TRANSFORM",
+    "name": "แปรสภาพ",
+    "description": "การ์ดที่ถูกแปรสภาพจะกลายเป็นการ์ดแบบสุ่มจากทุกความหายาก",
+    "category": "mechanics"
+  }
+]

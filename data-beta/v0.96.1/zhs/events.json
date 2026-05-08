@@ -1,0 +1,1475 @@
+[
+  {
+    "id": "ABYSSAL_BATHS",
+    "name": "AbyssalBaths",
+    "type": "Event",
+    "act": "Underdocks",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "AMALGAMATOR",
+    "name": "Amalgamator",
+    "type": "Event",
+    "act": "Act 2 - Hive",
+    "description": null,
+    "preconditions": [
+      "Requires 2+ Strikes in deck",
+      "Requires 2+ Defends in deck"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "AROMA_OF_CHAOS",
+    "name": "AromaOfChaos",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "BATTLEWORN_DUMMY",
+    "name": "BattlewornDummy",
+    "type": "Event",
+    "act": "Act 3 - Glory",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "BRAIN_LEECH",
+    "name": "BrainLeech",
+    "type": "Shared",
+    "act": null,
+    "description": null,
+    "preconditions": [
+      "Act 1–2 only"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "BUGSLAYER",
+    "name": "Bugslayer",
+    "type": "Event",
+    "act": "Act 2 - Hive",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "BYRDONIS_NEST",
+    "name": "ByrdonisNest",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": null,
+    "preconditions": [
+      "Cannot have an event pet"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "COLORFUL_PHILOSOPHERS",
+    "name": "ColorfulPhilosophers",
+    "type": "Event",
+    "act": "Act 2 - Hive",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "COLOSSAL_FLOWER",
+    "name": "ColossalFlower",
+    "type": "Event",
+    "act": "Act 2 - Hive",
+    "description": null,
+    "preconditions": [
+      "Requires 19+ HP"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "CRYSTAL_SPHERE",
+    "name": "CrystalSphere",
+    "type": "Shared",
+    "act": null,
+    "description": null,
+    "preconditions": [
+      "Requires 100+ gold",
+      "Act 2+"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "DARV",
+    "name": "达弗",
+    "type": "Ancient",
+    "act": null,
+    "description": "收垃圾的？没错没错！\n带上点吧，谢谢，好了回见哈。",
+    "preconditions": null,
+    "options": null,
+    "pages": null,
+    "epithet": "囤积者",
+    "dialogue": {
+      "Returning": [
+        {
+          "order": "0-0r",
+          "speaker": "ancient",
+          "text": "收垃圾的？没错没错！\n带上点吧，谢谢，好了回见哈。"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "……我把那东西放哪儿……喔！\n是来看我的收藏吗！？那边那堆里随便挑一个吧！"
+        }
+      ],
+      "Defect": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "我和你说啊，你这块大型垃圾还真是挺好看的，你知道吧？"
+        }
+      ],
+      "Necrobinder": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "我是达弗，我收集财宝！你有财宝吗！？快给我！！"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "除了对复仇的渴望，我再无它物！让我过去！"
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "好嘛好嘛！那你选个东西吧！\n要是找到有意思的东西再回来哈！！"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "骷髅姑娘！！找到了点厉害的东西可以帮到你\n*达弗在包裹里翻找着*"
+        }
+      ],
+      "Regent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "你这人长得奇形怪状的，身上有没有带着闪闪亮的东西啊？"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "我既不奇形怪状，也不是人……\n我乃是储君！！"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "别挡道！我有财宝要找！！"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "不行！"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "*哐当*"
+        }
+      ],
+      "Silent": [
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "嘿嘿嘿……闪闪亮，闪闪亮！哇啊！你在这儿多久了！？"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "呃，那就，那里的几个东西你随便挑一个走吧。"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "……   …"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "好，那我就走了……没问题吧？还是说……？没问题嗯……"
+        }
+      ],
+      "First Visit": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "收垃圾的？没错没错！\n带上点吧，谢谢，好了回见哈。"
+        }
+      ]
+    },
+    "image_url": "/static/images/misc/ancients/darv.webp",
+    "relics": [
+      "DUSTY_TOME",
+      "ASTROLABE",
+      "BLACK_STAR",
+      "CALLING_BELL",
+      "EMPTY_CAGE",
+      "PANDORAS_BOX",
+      "RUNIC_PYRAMID",
+      "SNECKO_EYE",
+      "ECTOPLASM",
+      "SOZU",
+      "PHILOSOPHERS_STONE",
+      "VELVET_CHOKER"
+    ]
+  },
+  {
+    "id": "DENSE_VEGETATION",
+    "name": "DenseVegetation",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "DOLL_ROOM",
+    "name": "DollRoom",
+    "type": "Shared",
+    "act": null,
+    "description": null,
+    "preconditions": [
+      "Act 2 only"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "DOORS_OF_LIGHT_AND_DARK",
+    "name": "DoorsOfLightAndDark",
+    "type": "Event",
+    "act": "Underdocks",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "DROWNING_BEACON",
+    "name": "DrowningBeacon",
+    "type": "Event",
+    "act": "Underdocks",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "ENDLESS_CONVEYOR",
+    "name": "EndlessConveyor",
+    "type": "Event",
+    "act": "Underdocks",
+    "description": null,
+    "preconditions": [
+      "Requires 105+ gold"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "FAKE_MERCHANT",
+    "name": "FakeMerchant",
+    "type": "Shared",
+    "act": null,
+    "description": "A suspicious merchant offers 9 fake relics at 42–58 gold each. Throwing a [gold]Foul Potion[/gold] starts a fight against The Merchant??? (165 HP). Winning rewards [gold]Fake Merchant's Rug[/gold] plus all unsold relics.",
+    "preconditions": [
+      "Act 2+",
+      "Single player only",
+      "Requires 100+ gold or a Foul Potion"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "FIELD_OF_MAN_SIZED_HOLES",
+    "name": "FieldOfManSizedHoles",
+    "type": "Event",
+    "act": "Act 2 - Hive",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "GRAVE_OF_THE_FORGOTTEN",
+    "name": "GraveOfTheForgotten",
+    "type": "Event",
+    "act": "Act 3 - Glory",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "HUNGRY_FOR_MUSHROOMS",
+    "name": "HungryForMushrooms",
+    "type": "Event",
+    "act": "Act 3 - Glory",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "INFESTED_AUTOMATON",
+    "name": "InfestedAutomaton",
+    "type": "Event",
+    "act": "Act 2 - Hive",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "JUNGLE_MAZE_ADVENTURE",
+    "name": "JungleMazeAdventure",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "LOST_WISP",
+    "name": "LostWisp",
+    "type": "Event",
+    "act": "Act 2 - Hive",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "LUMINOUS_CHOIR",
+    "name": "LuminousChoir",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": null,
+    "preconditions": [
+      "Requires 100-149 gold"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "MORPHIC_GROVE",
+    "name": "MorphicGrove",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": null,
+    "preconditions": [
+      "Requires 100+ gold"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "NEOW",
+    "name": "涅奥",
+    "type": "Ancient",
+    "act": "Act 1 - Overgrowth / Underdocks",
+    "description": "[sine]……再次…… ……问好………[/sine]",
+    "preconditions": null,
+    "options": null,
+    "pages": null,
+    "epithet": "复生之母（被放逐）",
+    "dialogue": {
+      "Returning": [
+        {
+          "order": "0-0r",
+          "speaker": "ancient",
+          "text": "[sine]……再次…… ……问好………[/sine]"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "[sine]……醒来……\n…醒来………[/sine]"
+        },
+        {
+          "order": "2-0r",
+          "speaker": "ancient",
+          "text": "[sine]…收下……这份……\n…祝福…… …去吧……[/sine]"
+        }
+      ],
+      "Defect": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "[sine]……构造体…\n……活得… 很久…… 是吗……[/sine]"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "[sine]……那个 ..[red]建筑师[/red]...\n....创造了.... 你们两个...[/sine]"
+        }
+      ],
+      "Ironclad": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "[sine]…是时候…… 再次……\n……战斗了…… 战士啊……[/sine]"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "[sine]……光荣的… 铁甲战士……\n…荣耀 等待着……[/sine]"
+        }
+      ],
+      "Necrobinder": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "[sine]……一个… 孩子……？\n…接受…… 这份… 力量吧…！[/sine]"
+        }
+      ],
+      "Regent": [
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "[sine]……我把你…… 带来[/sine]——"
+        }
+      ],
+      "Silent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "[sine]……你又… 回来了…… 是吗？[/sine]"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "[sine]……你的…\n ……战利品… 在等你……[/sine]"
+        }
+      ],
+      "First Visit": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "[sine]……再次…… ……问好………[/sine]"
+        }
+      ]
+    },
+    "image_url": "/static/images/misc/ancients/neow.webp",
+    "relics": [
+      "ARCANE_SCROLL",
+      "BOOMING_CONCH",
+      "POMANDER",
+      "GOLDEN_PEARL",
+      "LEAD_PAPERWEIGHT",
+      "NEW_LEAF",
+      "NEOWS_TORMENT",
+      "PRECISE_SCISSORS",
+      "LOST_COFFER",
+      "NUTRITIOUS_OYSTER",
+      "STONE_HUMIDIFIER",
+      "MASSIVE_SCROLL",
+      "LAVA_ROCK",
+      "SMALL_CAPSULE",
+      "SILVER_CRUCIBLE",
+      "CURSED_PEARL",
+      "LARGE_CAPSULE",
+      "LEAFY_POULTICE",
+      "PRECARIOUS_SHEARS",
+      "SCROLL_BOXES"
+    ]
+  },
+  {
+    "id": "NONUPEIPE",
+    "name": "诺奴佩普",
+    "type": "Ancient",
+    "act": "Act 3 - Glory",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null,
+    "epithet": "魅之女神",
+    "dialogue": {
+      "Defect": [
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "你需要一些升级。\n时尚意味上的升级 >:)"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "所以——你能不能，留下来看守我的别墅呢？拜～托啦？"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "*抱歉地摇头*"
+        }
+      ]
+    },
+    "image_url": "/static/images/misc/ancients/nonupeipe.webp",
+    "relics": [
+      "BLESSED_ANTLER",
+      "BRILLIANT_SCARF",
+      "DELICATE_FROND",
+      "DIAMOND_DIADEM",
+      "FUR_COAT",
+      "GLITTER",
+      "JEWELRY_BOX",
+      "LOOMING_FRUIT",
+      "SIGNET_RING",
+      "BEAUTIFUL_BRACELET"
+    ]
+  },
+  {
+    "id": "OROBAS",
+    "name": "欧洛巴斯",
+    "type": "Ancient",
+    "act": "Act 2 - Hive",
+    "description": "*一名恶魔战士……欧洛巴斯很吃惊，真是有趣。*",
+    "preconditions": null,
+    "options": null,
+    "pages": null,
+    "epithet": "活体虹光",
+    "dialogue": {
+      "Returning": [
+        {
+          "order": "0-0r",
+          "speaker": "ancient",
+          "text": "*又是你。欧洛巴斯因为这次意外的到访而喜悦。*"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "*又是你。欧洛巴斯因为这次意外的到访而喜悦。*"
+        }
+      ],
+      "Defect": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "*欧洛巴斯十分吃惊，竟有防水的构造体？*"
+        }
+      ],
+      "Ironclad": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "*一名恶魔战士……欧洛巴斯很吃惊，真是有趣。*"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "*欧洛巴斯可以看看你的剑吗？多么有趣的武器。*"
+        }
+      ],
+      "Necrobinder": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "*一名巫妖……欧洛巴斯有些害怕。*"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "*不死的代价值得吗？和欧洛巴斯分享你的感受吧。*"
+        }
+      ],
+      "Regent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "*群星之间的访客吗？和欧洛巴斯说说星星的事情吧。*"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "*和欧洛巴斯说说星达里斯的事情，欧洛巴斯需要知道更多。*"
+        }
+      ],
+      "Silent": [
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "*不说话的人吶，给欧洛巴斯看看你杀死过的生物吧。*"
+        }
+      ]
+    },
+    "image_url": "/static/images/misc/ancients/orobas.webp",
+    "relics": [
+      "ELECTRIC_SHRYMP",
+      "GLASS_EYE",
+      "SAND_CASTLE",
+      "ALCHEMICAL_COFFER",
+      "DRIFTWOOD",
+      "RADIANT_PEARL",
+      "SEA_GLASS",
+      "PRISMATIC_GEM",
+      "TOUCH_OF_OROBAS",
+      "ARCHAIC_TOOTH"
+    ]
+  },
+  {
+    "id": "PAEL",
+    "name": "佩尔",
+    "type": "Ancient",
+    "act": "Act 2 - Hive",
+    "description": "有傀儡来了吗？\n能不能去查看一下父亲？我太累了……",
+    "preconditions": null,
+    "options": null,
+    "pages": null,
+    "epithet": "融化巨龙",
+    "dialogue": {
+      "Returning": [
+        {
+          "order": "0-0r",
+          "speaker": "ancient",
+          "text": "有傀儡来了吗？\n能不能去查看一下父亲？我太累了……"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "欢迎回来，朋友。让我的血肉来帮助你……"
+        }
+      ],
+      "Defect": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "困扰的自动机，在找你的朋友吗？\n让我来帮忙……"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "构造体会做梦吗？\n看着我，模仿我……"
+        }
+      ],
+      "Ironclad": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "你包含着如此的愤怒。从我这里取走一些，找到一些平静……"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "你还记得做梦的感觉吗？\n睡觉是件好事……"
+        }
+      ],
+      "Necrobinder": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "如此的恶意涂满你的心。"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "带着那只手回来了。\n痛苦的回忆。拿走我的力量然后离开……"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "杀死[red]父亲[/red]不会带来平静。"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "你称那个[jitter]东西[/jitter]为你的父亲！？"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "我们无法选择自己的家人……"
+        }
+      ],
+      "Regent": [
+        {
+          "order": "0-0",
+          "speaker": "character",
+          "text": "你好！我是储君。\n你好？？[jitter]你好！？[/jitter]"
+        },
+        {
+          "order": "0-1",
+          "speaker": "ancient",
+          "text": "现在安静下来。\n拿走我的一部分，然后上路吧……"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "character",
+          "text": "我回来了！啊，你当然在睡觉。\n让我看看这里……"
+        },
+        {
+          "order": "2-0",
+          "speaker": "character",
+          "text": "你为什么把自己送出去？"
+        },
+        {
+          "order": "2-1",
+          "speaker": "ancient",
+          "text": "当我有大量的血肉时，为什么不给呢？"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "当你回来时，我会重新补充。\n这就是睡眠的作用……"
+        }
+      ],
+      "Silent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "杀戮的生物，这里不需要暴力。\n拿走我的一部分，找到平静……"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "猎取战利品？当然，拿走我的一部分……\n无论什么能让你舒适……"
+        }
+      ],
+      "First Visit": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "有傀儡来了吗？\n能不能去查看一下父亲？我太累了……"
+        }
+      ]
+    },
+    "image_url": "/static/images/misc/ancients/pael.webp",
+    "relics": [
+      "PAELS_CLAW",
+      "PAELS_TOOTH",
+      "PAELS_GROWTH",
+      "PAELS_LEGION",
+      "PAELS_FLESH",
+      "PAELS_HORN",
+      "PAELS_TEARS",
+      "PAELS_WING",
+      "PAELS_EYE",
+      "PAELS_BLOOD"
+    ]
+  },
+  {
+    "id": "POTION_COURIER",
+    "name": "PotionCourier",
+    "type": "Shared",
+    "act": null,
+    "description": null,
+    "preconditions": [
+      "Act 2+"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "PUNCH_OFF",
+    "name": "PunchOff",
+    "type": "Event",
+    "act": "Underdocks",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "RANWID_THE_ELDER",
+    "name": "RanwidTheElder",
+    "type": "Shared",
+    "act": null,
+    "description": null,
+    "preconditions": [
+      "Act 2+",
+      "Requires at least one potion"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "REFLECTIONS",
+    "name": "Reflections",
+    "type": "Event",
+    "act": "Act 3 - Glory",
+    "description": null,
+    "preconditions": null,
+    "options": [
+      {
+        "id": "TOUCH_A_MIRROR",
+        "title": "TOUCH_A_MIRROR",
+        "description": "[red]降级[/red][blue]2[/blue]张随机卡牌。[green]升级[/green][blue]4[/blue]张随机卡牌。"
+      }
+    ],
+    "pages": null
+  },
+  {
+    "id": "RELIC_TRADER",
+    "name": "RelicTrader",
+    "type": "Shared",
+    "act": null,
+    "description": null,
+    "preconditions": [
+      "Act 2+",
+      "Requires 5+ tradeable relics"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "ROOM_FULL_OF_CHEESE",
+    "name": "RoomFullOfCheese",
+    "type": "Shared",
+    "act": null,
+    "description": null,
+    "preconditions": [
+      "Act 1–2 only"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "ROUND_TEA_PARTY",
+    "name": "RoundTeaParty",
+    "type": "Event",
+    "act": "Act 3 - Glory",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "SAPPHIRE_SEED",
+    "name": "SapphireSeed",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "SELF_HELP_BOOK",
+    "name": "SelfHelpBook",
+    "type": "Shared",
+    "act": null,
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "SLIPPERY_BRIDGE",
+    "name": "SlipperyBridge",
+    "type": "Shared",
+    "act": null,
+    "description": null,
+    "preconditions": [
+      "Floor 7+",
+      "Requires removable cards in deck"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "SPIRALING_WHIRLPOOL",
+    "name": "SpiralingWhirlpool",
+    "type": "Event",
+    "act": "Underdocks",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "SPIRIT_GRAFTER",
+    "name": "SpiritGrafter",
+    "type": "Event",
+    "act": "Act 2 - Hive",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "STONE_OF_ALL_TIME",
+    "name": "StoneOfAllTime",
+    "type": "Shared",
+    "act": null,
+    "description": null,
+    "preconditions": [
+      "Act 2 only",
+      "Requires at least one potion"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "SUNKEN_STATUE",
+    "name": "SunkenStatue",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth / Underdocks",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "SUNKEN_TREASURY",
+    "name": "SunkenTreasury",
+    "type": "Event",
+    "act": "Underdocks",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "SYMBIOTE",
+    "name": "Symbiote",
+    "type": "Shared",
+    "act": null,
+    "description": null,
+    "preconditions": [
+      "Act 2+"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "TABLET_OF_TRUTH",
+    "name": "TabletOfTruth",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "TANX",
+    "name": "坦克斯",
+    "type": "Ancient",
+    "act": "Act 3 - Glory",
+    "description": "收下我的力量，去吧，杀戮！",
+    "preconditions": null,
+    "options": null,
+    "pages": null,
+    "epithet": "嵌合兽之王",
+    "dialogue": {
+      "Returning": [
+        {
+          "order": "0-0r",
+          "speaker": "ancient",
+          "text": "收下我的力量，去吧，杀戮！"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "今天，必有浴血之战！"
+        }
+      ],
+      "Ironclad": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "多么残暴的怒火！是施行暴力的时间了！"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "收下我的力量！！摧毁你的敌人吧！"
+        }
+      ],
+      "Necrobinder": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "一堆骨头？？那你显然需要我的力量！"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "没有肌腱，没有肉，没有蛋白质！你靠什么战斗？？"
+        }
+      ],
+      "Regent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "你和伟大的坦克斯一样，也是橙色！？？"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "众所周知，橙色是最符合帝王的颜色！"
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "橙色了不起！威风凛凛！！"
+        }
+      ],
+      "Silent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "是猎手！我会把你细小的利爪磨得更利！！"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "弱小的绿色人类啊！成为站在巅峰的掠食者吧！"
+        }
+      ],
+      "First Visit": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "收下我的力量，去吧，杀戮！"
+        }
+      ]
+    },
+    "image_url": "/static/images/misc/ancients/tanx.webp",
+    "relics": [
+      "CLAWS",
+      "CROSSBOW",
+      "IRON_CLUB",
+      "MEAT_CLEAVER",
+      "SAI",
+      "SPIKED_GAUNTLETS",
+      "TANXS_WHISTLE",
+      "THROWING_AXE",
+      "WAR_HAMMER",
+      "TRI_BOOMERANG"
+    ]
+  },
+  {
+    "id": "TEA_MASTER",
+    "name": "TeaMaster",
+    "type": "Shared",
+    "act": null,
+    "description": null,
+    "preconditions": [
+      "Requires 150+ gold",
+      "Act 1–2 only"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "TEZCATARA",
+    "name": "特兹卡塔拉",
+    "type": "Ancient",
+    "act": "Act 2 - Hive",
+    "description": "你好啊，小家伙！特兹卡塔拉一定好好照顾你，你会好起来的。",
+    "preconditions": null,
+    "options": null,
+    "pages": null,
+    "epithet": "饲火者",
+    "dialogue": {
+      "Returning": [
+        {
+          "order": "0-0r",
+          "speaker": "ancient",
+          "text": "你好啊，小家伙！特兹卡塔拉一定好好照顾你，你会好起来的。"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "欢迎回来，小可爱。让我来[jitter][b]烧掉[/b][/jitter]你的缺点。"
+        }
+      ],
+      "Defect": [
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "故障了是吗？特兹卡塔拉当然可以帮助一个可怜的迷路构造体了。"
+        }
+      ],
+      "Ironclad": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "啊呀，你[jitter][b]燃烧[/b][/jitter]得真美！进来，进来！"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "你是个多么强壮的男孩啊！来，吃点东西吧。\n空着肚子可没法[jitter][b]杀戮[/b][/jitter]！"
+        }
+      ],
+      "Necrobinder": [
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "进来吧，进来！让你的火焰燃烧得更[jitter][b]明亮[/b][/jitter]。"
+        }
+      ],
+      "Regent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "啊呀呀，真是个[sine]稀奇[/sine]的访客！你是什么呀，亲爱的？"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "我不是什么亲爱的！对我说话得尊重一点，大个子女人！"
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "我的礼数都到哪里去了？\n特兹卡塔拉高兴地咯咯笑。"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "欢迎回来，高贵的男孩！看起来你在外头做得很[jitter][b]棒[/b][/jitter]呢。"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "还是一直叫我“王室男孩”……啊，算了。见到你我也很高兴。"
+        }
+      ],
+      "Silent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "哎呀你好啊绿色的小家伙！你那么可爱，我都想一口把你给吃了吶！"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "你得了很严重的[jitter][b]疾病[/b][/jitter]呢。让我来照顾你吧。"
+        }
+      ],
+      "First Visit": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "你好啊，小家伙！特兹卡塔拉一定好好照顾你，你会好起来的。"
+        }
+      ]
+    },
+    "image_url": "/static/images/misc/ancients/tezcatara.webp",
+    "relics": [
+      "NUTRITIOUS_SOUP",
+      "VERY_HOT_COCOA",
+      "YUMMY_COOKIE",
+      "BIIIG_HUG",
+      "STORYBOOK",
+      "SEAL_OF_GOLD",
+      "TOASTY_MITTENS",
+      "GOLDEN_COMPASS",
+      "PUMPKIN_CANDLE",
+      "TOY_BOX"
+    ]
+  },
+  {
+    "id": "THE_ARCHITECT",
+    "name": "TheArchitect",
+    "type": "Ancient",
+    "act": null,
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null,
+    "image_url": "/static/images/monsters/architect.webp"
+  },
+  {
+    "id": "THE_FUTURE_OF_POTIONS",
+    "name": "TheFutureOfPotions",
+    "type": "Shared",
+    "act": null,
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "THE_LANTERN_KEY",
+    "name": "TheLanternKey",
+    "type": "Event",
+    "act": "Act 2 - Hive",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "THE_LEGENDS_WERE_TRUE",
+    "name": "TheLegendsWereTrue",
+    "type": "Shared",
+    "act": null,
+    "description": null,
+    "preconditions": [
+      "Requires 10+ HP",
+      "Act 1 only"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "THIS_OR_THAT",
+    "name": "ThisOrThat",
+    "type": "Shared",
+    "act": null,
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "TINKER_TIME",
+    "name": "TinkerTime",
+    "type": "Event",
+    "act": "Act 3 - Glory",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "TRASH_HEAP",
+    "name": "TrashHeap",
+    "type": "Event",
+    "act": "Underdocks",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "TRIAL",
+    "name": "Trial",
+    "type": "Event",
+    "act": "Act 3 - Glory",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "UNREST_SITE",
+    "name": "UnrestSite",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": null,
+    "preconditions": [
+      "Requires ≤70% HP"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "VAKUU",
+    "name": "瓦库",
+    "type": "Ancient",
+    "act": "Act 3 - Glory",
+    "description": "在尖塔中追寻荣耀是么？吾人有一个提案给你……",
+    "preconditions": null,
+    "options": null,
+    "pages": null,
+    "epithet": "常在者",
+    "dialogue": {
+      "Returning": [
+        {
+          "order": "0-0r",
+          "speaker": "ancient",
+          "text": "在尖塔中追寻荣耀是么？吾人有一个提案给你……"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "[sine]吾人将揭示你沉睡的潜能……\n你将获得不朽……[/sine]"
+        },
+        {
+          "order": "2-0r",
+          "speaker": "ancient",
+          "text": "[sine]吾人将揭示你沉睡的潜能……\n你将获得不朽……[/sine]"
+        }
+      ],
+      "Defect": [
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "可悲的机器人啊，吾人颇为赏识你的陪伴。\n我们两个，皆是被 他 所抛弃了。"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "如果你把建筑师的心脏带给我，我就恢复你的[aqua]同伴[/aqua]。"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "*签下契约*"
+        }
+      ],
+      "Ironclad": [
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "失落的部落们是否仍让你感到沉重……？\n瓦库狂笑。"
+        }
+      ],
+      "Necrobinder": [
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "建筑师严重地伤害了我们俩。"
+        }
+      ],
+      "Regent": [
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "不想。"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "……"
+        }
+      ],
+      "Silent": [
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "瓦库向寂静者展示他的各种契约。"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "建筑师还不够，也把你的姐妹们杀了吧！"
+        }
+      ],
+      "First Visit": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "在尖塔中追寻荣耀是么？吾人有一个提案给你……"
+        }
+      ]
+    },
+    "image_url": "/static/images/misc/ancients/vakuu.webp",
+    "relics": [
+      "BLOOD_SOAKED_ROSE",
+      "WHISPERING_EARRING",
+      "FIDDLE",
+      "PRESERVED_FOG",
+      "SERE_TALON",
+      "DISTINGUISHED_CAPE",
+      "CHOICES_PARADOX",
+      "MUSIC_BOX",
+      "LORDS_PARASOL",
+      "JEWELED_MASK"
+    ]
+  },
+  {
+    "id": "WAR_HISTORIAN_REPY",
+    "name": "WarHistorianRepy",
+    "type": "Shared",
+    "act": null,
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "WATERLOGGED_SCRIPTORIUM",
+    "name": "WaterloggedScriptorium",
+    "type": "Event",
+    "act": "Underdocks",
+    "description": null,
+    "preconditions": [
+      "Requires 65+ gold"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "WELCOME_TO_WONGOS",
+    "name": "WelcomeToWongos",
+    "type": "Shared",
+    "act": null,
+    "description": null,
+    "preconditions": [
+      "Requires 100+ gold",
+      "Act 2 only"
+    ],
+    "options": [
+      {
+        "id": "MYSTERY_BOX",
+        "title": "MYSTERY_BOX",
+        "description": "支付[red]300[/red][gold]金币[/gold]。在[blue]5[/blue]场战斗后获得[blue]3[/blue]个随机[gold]遗物[/gold]。"
+      }
+    ],
+    "pages": null
+  },
+  {
+    "id": "WELLSPRING",
+    "name": "Wellspring",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "WHISPERING_HOLLOW",
+    "name": "WhisperingHollow",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": null,
+    "preconditions": [
+      "Requires 50+ gold"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "WOOD_CARVINGS",
+    "name": "WoodCarvings",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": null,
+    "preconditions": [
+      "Requires a removable basic card"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "ZEN_WEAVER",
+    "name": "ZenWeaver",
+    "type": "Event",
+    "act": "Act 2 - Hive",
+    "description": null,
+    "preconditions": [
+      "Requires 125+ gold"
+    ],
+    "options": null,
+    "pages": null
+  }
+]

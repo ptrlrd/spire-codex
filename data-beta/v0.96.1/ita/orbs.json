@@ -1,0 +1,37 @@
+[
+  {
+    "id": "DARK_ORB",
+    "name": "Oscurità",
+    "description": "[gold]Effetto passivo:[/gold] al termine del turno, aumenta i danni di questa Sfera di [blue]6[/blue].\n[gold]Evoca:[/gold] infligge [blue]6[/blue] danni al nemico con PV più bassi.",
+    "description_raw": "[gold]Effetto passivo:[/gold] al termine del turno, aumenta i danni di questa Sfera di [blue]{Passive}[/blue].\n[gold]Evoca:[/gold] infligge [blue]{Evoke}[/blue] danni al nemico con PV più bassi.",
+    "image_url": "/static/images/orbs/dark_orb.webp"
+  },
+  {
+    "id": "FROST_ORB",
+    "name": "Ghiaccio",
+    "description": "[gold]Effetto passivo:[/gold] al termine del turno, ottieni [blue]2[/blue] [gold]Blocco[/gold].\n[gold]Evoca:[/gold] ottieni [blue]5[/blue] [gold]Blocco[/gold].",
+    "description_raw": "[gold]Effetto passivo:[/gold] al termine del turno, ottieni [blue]{Passive}[/blue] [gold]Blocco[/gold].\n[gold]Evoca:[/gold] ottieni [blue]{Evoke}[/blue] [gold]Blocco[/gold].",
+    "image_url": "/static/images/orbs/frost_orb.webp"
+  },
+  {
+    "id": "GLASS_ORB",
+    "name": "Vetro",
+    "description": "[gold]Effetto passivo:[/gold] al termine del turno, infliggi [blue]4[/blue] danni a TUTTI i nemici e riduce il valore di questa Sfera di [blue]1[/blue].\n[gold]Evocazione:[/gold] infliggi [blue]8[/blue] danni a TUTTI i nemici.",
+    "description_raw": "[gold]Effetto passivo:[/gold] al termine del turno, infliggi [blue]{Passive}[/blue] danni a TUTTI i nemici e riduce il valore di questa Sfera di [blue]1[/blue].\n[gold]Evocazione:[/gold] infliggi [blue]{Evoke}[/blue] danni a TUTTI i nemici.",
+    "image_url": "/static/images/orbs/glass_orb.webp"
+  },
+  {
+    "id": "LIGHTNING_ORB",
+    "name": "Fulmine",
+    "description": "[gold]Effetto passivo:[/gold] al termine del turno, infliggi danni [blue]3[/blue] a un nemico casuale.\n[gold]Evocazione:[/gold] infliggi [blue]8[/blue] danni a un nemico casuale.",
+    "description_raw": "[gold]Effetto passivo:[/gold] al termine del turno, infliggi danni [blue]{Passive}[/blue] a un nemico casuale.\n[gold]Evocazione:[/gold] infliggi [blue]{Evoke}[/blue] danni a un nemico casuale.",
+    "image_url": "/static/images/orbs/lightning_orb.webp"
+  },
+  {
+    "id": "PLASMA_ORB",
+    "name": "Plasma",
+    "description": "[gold]Effetto passivo:[/gold] all'inizio del turno\nottieni [energy:1].\n[gold]Evocazione:[/gold] ottieni [energy:2].\nPlasma non è influenzato da [gold]Focus[/gold].",
+    "description_raw": "[gold]Effetto passivo:[/gold] all'inizio del turno\nottieni {energyPrefix:energyIcons(1)}.\n[gold]Evocazione:[/gold] ottieni {energyPrefix:energyIcons(2)}.\nPlasma non è influenzato da [gold]Focus[/gold].",
+    "image_url": "/static/images/orbs/plasma_orb.webp"
+  }
+]

@@ -46,7 +46,7 @@
         ]
       }
     ],
-    "image_url": "/static/images/characters/char_select_defect.png"
+    "image_url": "/static/images/characters/char_select_defect.webp"
   },
   {
     "id": "IRONCLAD",
@@ -81,7 +81,7 @@
       "cards_modifier_description": "การ์ดนักรบเกราะเหล็กจะปรากฏในรางวัลและร้านค้าแล้ว"
     },
     "dialogues": null,
-    "image_url": "/static/images/characters/char_select_ironclad.png"
+    "image_url": "/static/images/characters/char_select_ironclad.webp"
   },
   {
     "id": "NECROBINDER",
@@ -116,7 +116,7 @@
       "cards_modifier_description": "การ์ด Necrobinder จะปรากฏในรางวัลและร้านค้าแล้ว"
     },
     "dialogues": null,
-    "image_url": "/static/images/characters/char_select_necrobinder.png"
+    "image_url": "/static/images/characters/char_select_necrobinder.webp"
   },
   {
     "id": "REGENT",
@@ -163,7 +163,7 @@
         ]
       }
     ],
-    "image_url": "/static/images/characters/char_select_regent.png"
+    "image_url": "/static/images/characters/char_select_regent.webp"
   },
   {
     "id": "SILENT",
@@ -247,6 +247,6 @@
         ]
       }
     ],
-    "image_url": "/static/images/characters/char_select_silent.png"
+    "image_url": "/static/images/characters/char_select_silent.webp"
   }
 ]
