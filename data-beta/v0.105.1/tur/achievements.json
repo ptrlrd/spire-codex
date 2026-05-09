@@ -1,0 +1,299 @@
+[
+  {
+    "id": "ALL_CARDS_UPGRADED",
+    "name": "Mükemmel Deste",
+    "description": "Tamamen geliştirilmiş bir desteyle bir Oyun kazan.",
+    "category": "run",
+    "character": null,
+    "threshold": null,
+    "condition": "Win with a fully-upgraded deck"
+  },
+  {
+    "id": "ALL_OTHER_ACHIEVEMENTS",
+    "name": "Ebedi Varlık",
+    "description": "Diğer bütün başarımları kazan.",
+    "category": "meta",
+    "character": null,
+    "threshold": null,
+    "condition": "Complete all other achievements"
+  },
+  {
+    "id": "CHARACTER_SKILL_IRONCLAD1",
+    "name": "Anlaşma Tamamlandı",
+    "description": "Tek bir savaş esnasında 20 kart tüket.",
+    "category": "character_skill",
+    "character": "Ironclad",
+    "threshold": 20,
+    "condition": "Exhaust 20 cards in a single combat"
+  },
+  {
+    "id": "CHARACTER_SKILL_IRONCLAD2",
+    "name": "En Ağır Kılıç",
+    "description": "Tek bir vuruşta 999 Hasar ver.",
+    "category": "character_skill",
+    "character": "Ironclad",
+    "threshold": 999,
+    "condition": "Deal 999+ damage in a single hit"
+  },
+  {
+    "id": "CHARACTER_SKILL_NECROBINDER1",
+    "name": "Zaten Öldün",
+    "description": "Tek bir düşmana 999 Kader uygula.",
+    "category": "character_skill",
+    "character": "Necrobinder",
+    "threshold": 999,
+    "condition": "Apply 999+ Doom to a single enemy"
+  },
+  {
+    "id": "CHARACTER_SKILL_NECROBINDER2",
+    "name": "Süt",
+    "description": "Osti'ye 50 Kuvvet uygula.",
+    "category": "character_skill",
+    "character": "Necrobinder",
+    "threshold": 50,
+    "condition": "Apply 50+ Strength to Osty"
+  },
+  {
+    "id": "CHARACTER_SKILL_REGENT1",
+    "name": "Krallara Layık Kılıç",
+    "description": "En az 999 hasar veren bir Egemen Kılıcı döv.",
+    "category": "character_skill",
+    "character": "Regent",
+    "threshold": 999,
+    "condition": "Forge a Sovereign Blade with 999+ base damage"
+  },
+  {
+    "id": "CHARACTER_SKILL_REGENT2",
+    "name": "Gökyüzündeki Güneşler",
+    "description": "Tek bir seferde 20 Yıldız'a sahip ol.",
+    "category": "character_skill",
+    "character": "Regent",
+    "threshold": 20,
+    "condition": "Have 20+ Stars at once"
+  },
+  {
+    "id": "CHARACTER_SKILL_SILENT1",
+    "name": "Kurnaz Tilki",
+    "description": "Tek bir karttaki Kurnaz ile beş kart oyna.",
+    "category": "character_skill",
+    "character": "Silent",
+    "threshold": 5,
+    "condition": "Play 5 cards via Sly off a single card play"
+  },
+  {
+    "id": "CHARACTER_SKILL_SILENT2",
+    "name": "Birkaç Damla",
+    "description": "Tek bir düşmana 99 Zehir uygula.",
+    "category": "character_skill",
+    "character": "Silent",
+    "threshold": 99,
+    "condition": "Apply 99+ Poison to a single enemy"
+  },
+  {
+    "id": "COMPLETE_ACT4",
+    "name": "Nihai Son",
+    "description": "4. Sahne'yi tamamla.",
+    "category": "run",
+    "character": null,
+    "threshold": null,
+    "condition": "Complete Act 4"
+  },
+  {
+    "id": "COMPLETE_TIMELINE",
+    "name": "Tarihçi",
+    "description": "Zaman Çizelgesi'ni tamamla.",
+    "category": "collection",
+    "character": null,
+    "threshold": null,
+    "condition": "Complete the Timeline"
+  },
+  {
+    "id": "DEFEAT_GLORY_ENEMIES",
+    "name": "İhtişam",
+    "description": "İhtişam'daki tüm düşmanları yen.",
+    "category": "combat",
+    "character": null,
+    "threshold": null,
+    "condition": "Defeat every enemy in the Glory"
+  },
+  {
+    "id": "DEFEAT_HIVE_ENEMIES",
+    "name": "Kovan",
+    "description": "Kovan'daki tüm düşmanları yen.",
+    "category": "combat",
+    "character": null,
+    "threshold": null,
+    "condition": "Defeat every enemy in the Hive"
+  },
+  {
+    "id": "DEFEAT_ONE_BOSS",
+    "name": "Bu Daha Başlangıç",
+    "description": "Bir Boss'u yen.",
+    "category": "combat",
+    "character": null,
+    "threshold": null,
+    "condition": "Defeat a boss"
+  },
+  {
+    "id": "DEFEAT_OVERGROWTH_ENEMIES",
+    "name": "Aşırı Yeşerme",
+    "description": "Aşırı Yeşerme'deki tüm düşmanları yen.",
+    "category": "combat",
+    "character": null,
+    "threshold": null,
+    "condition": "Defeat every enemy in the Overgrowth"
+  },
+  {
+    "id": "DEFEAT_UNDERDOCKS_ENEMIES",
+    "name": "Dip Rıhtımlar",
+    "description": "Dip Rıhtımlar'daki tüm düşmanları yen.",
+    "category": "combat",
+    "character": null,
+    "threshold": null,
+    "condition": "Defeat every enemy in the Underdocks"
+  },
+  {
+    "id": "DEFECT_ASCENSION10",
+    "name": "Yankı",
+    "description": "Arıza olarak Yükseliş 10'u yen.",
+    "category": "character_ascension",
+    "character": "Defect",
+    "threshold": null,
+    "condition": null
+  },
+  {
+    "id": "DEFECT_WIN",
+    "name": "Arıza",
+    "description": "Arıza olarak kazan.",
+    "category": "character_win",
+    "character": "Defect",
+    "threshold": null,
+    "condition": null
+  },
+  {
+    "id": "DISCOVER_ALL_CARDS",
+    "name": "Koleksiyoncu",
+    "description": "Tüm Kartları keşfet.",
+    "category": "collection",
+    "character": null,
+    "threshold": null,
+    "condition": "Discover all cards"
+  },
+  {
+    "id": "DISCOVER_ALL_EVENTS",
+    "name": "Kâşif",
+    "description": "Tüm Etkinliklerle karşılaş.",
+    "category": "collection",
+    "character": null,
+    "threshold": null,
+    "condition": "Encounter all events"
+  },
+  {
+    "id": "DISCOVER_ALL_RELICS",
+    "name": "Arkeolog",
+    "description": "Tüm Kalıntıları keşfet.",
+    "category": "collection",
+    "character": null,
+    "threshold": null,
+    "condition": "Discover all relics"
+  },
+  {
+    "id": "FLOOR_TEN_THOUSAND",
+    "name": "Tonla Merdiven",
+    "description": "10.000 kat tırman.",
+    "category": "collection",
+    "character": null,
+    "threshold": 10000,
+    "condition": "Climb 10,000 floors total"
+  },
+  {
+    "id": "IRONCLAD_ASCENSION10",
+    "name": "Şeytan",
+    "description": "Demirkaplı olarak Yükseliş 10'u yen.",
+    "category": "character_ascension",
+    "character": "Ironclad",
+    "threshold": null,
+    "condition": null
+  },
+  {
+    "id": "IRONCLAD_WIN",
+    "name": "Demirkaplı",
+    "description": "Demirkaplı olarak kazan.",
+    "category": "character_win",
+    "character": "Ironclad",
+    "threshold": null,
+    "condition": null
+  },
+  {
+    "id": "NECROBINDER_ASCENSION10",
+    "name": "Lich",
+    "description": "Ölübağlayan olarak Yükseliş 10'u yen.",
+    "category": "character_ascension",
+    "character": "Necrobinder",
+    "threshold": null,
+    "condition": null
+  },
+  {
+    "id": "NECROBINDER_WIN",
+    "name": "Ölübağlayan",
+    "description": "Ölübağlayan olarak kazan.",
+    "category": "character_win",
+    "character": "Necrobinder",
+    "threshold": null,
+    "condition": null
+  },
+  {
+    "id": "NO_RELIC_WIN",
+    "name": "Gereksiz Kalabalık",
+    "description": "Hiçbir kalıntı elde etmeden bir Oyun kazan.",
+    "category": "run",
+    "character": null,
+    "threshold": null,
+    "condition": "Win without obtaining any relics"
+  },
+  {
+    "id": "PLAY20_CARDS_SINGLE_TURN",
+    "name": "Kart Oynamak Ne Eğlenceliymiş",
+    "description": "Tek turda 20 kart oyna.",
+    "category": "combat",
+    "character": null,
+    "threshold": 20,
+    "condition": "Play 20 cards in a single turn"
+  },
+  {
+    "id": "REGENT_ASCENSION10",
+    "name": "Hükümdar",
+    "description": "Naip olarak Yükseliş 10'u yen.",
+    "category": "character_ascension",
+    "character": "Regent",
+    "threshold": null,
+    "condition": null
+  },
+  {
+    "id": "REGENT_WIN",
+    "name": "Naip",
+    "description": "Naip olarak kazan.",
+    "category": "character_win",
+    "character": "Regent",
+    "threshold": null,
+    "condition": null
+  },
+  {
+    "id": "SILENT_ASCENSION10",
+    "name": "Hayalet",
+    "description": "Sessiz olarak Yükseliş 10'u yen.",
+    "category": "character_ascension",
+    "character": "Silent",
+    "threshold": null,
+    "condition": null
+  },
+  {
+    "id": "SILENT_WIN",
+    "name": "Sessiz",
+    "description": "Sessiz olarak kazan.",
+    "category": "character_win",
+    "character": "Silent",
+    "threshold": null,
+    "condition": null
+  }
+]

@@ -1,0 +1,42 @@
+[
+  {
+    "id": "ETERNAL",
+    "name": "Wieczna",
+    "description": "Karta nie może być zmieniona ani usunięta z twojej [gold]talii[/gold]."
+  },
+  {
+    "id": "ETHEREAL",
+    "name": "Eteryczna",
+    "description": "Jeżeli trzymasz tę kartę w [gold]ręce[/gold] pod koniec tury, [gold]Wyczerp[/gold] ją."
+  },
+  {
+    "id": "EXHAUST",
+    "name": "Wyczerpanie",
+    "description": "Karta zostaje usunięta do końca walki."
+  },
+  {
+    "id": "INNATE",
+    "name": "Startowa",
+    "description": "Zaczynasz walkę z tą kartą w [gold]ręce[/gold]."
+  },
+  {
+    "id": "PERIOD",
+    "name": "Period",
+    "description": ""
+  },
+  {
+    "id": "RETAIN",
+    "name": "Zachowanie",
+    "description": "Zachowane karty nie są odrzucane pod koniec tury."
+  },
+  {
+    "id": "SLY",
+    "name": "Chytra",
+    "description": "Jeśli odrzucisz tę kartę z [gold]ręki[/gold] przed zakończeniem tury, zagraj ją za darmo."
+  },
+  {
+    "id": "UNPLAYABLE",
+    "name": "Niezagrywalna",
+    "description": "Niezagrywalnych kart nie można zagrać."
+  }
+]

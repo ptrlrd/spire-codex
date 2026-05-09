@@ -1,0 +1,44 @@
+[
+  {
+    "id": "BOUND",
+    "name": "Gebunden",
+    "description": "Nur [blue]1[/blue] [gold]Gebundene[/gold] Karte kann pro Zug gespielt werden. Am Ende des Zuges verlieren Karten [gold]Gebunden[/gold].",
+    "extra_card_text": "Gebunden",
+    "is_stackable": false
+  },
+  {
+    "id": "ENTANGLED",
+    "name": "Verfangen",
+    "description": "Kostet [energy:1] mehr.",
+    "extra_card_text": "Verfangen",
+    "is_stackable": false
+  },
+  {
+    "id": "GALVANIZED",
+    "name": "Galvanisiert",
+    "description": "Nimm [blue]X[/blue] Schaden, wenn diese Karte ausgespielt wird.",
+    "extra_card_text": "Nimm X Schaden.",
+    "is_stackable": true
+  },
+  {
+    "id": "HEXED",
+    "name": "Verflucht",
+    "description": "Gibt dieser Karte [gold]Flüchtig[/gold].",
+    "extra_card_text": null,
+    "is_stackable": false
+  },
+  {
+    "id": "RINGING",
+    "name": "Klingeln",
+    "description": "Du kannst in diesem Zug nur [blue]1[/blue] Karte spielen.",
+    "extra_card_text": "Klingeln.",
+    "is_stackable": false
+  },
+  {
+    "id": "SMOG",
+    "name": "Vernebelt",
+    "description": "Du kannst in diesem Zug keine [gold]Fertigkeiten[/gold] mehr spielen. Löst sich am Ende des Zuges auf.",
+    "extra_card_text": null,
+    "is_stackable": false
+  }
+]

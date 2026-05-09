@@ -1,0 +1,44 @@
+[
+  {
+    "id": "BOUND",
+    "name": "Uwięzienie",
+    "description": "W każdej turze można zagrać tylko [blue]1[/blue] [gold]Uwięzioną[/gold] kartę. Karty zostają [gold]Uwolnione[/gold] pod koniec tury.",
+    "extra_card_text": "Uwięzienie",
+    "is_stackable": false
+  },
+  {
+    "id": "ENTANGLED",
+    "name": "Zaplątanie",
+    "description": "Karta kosztuje dodatkowy [energy:1].",
+    "extra_card_text": "Zaplątanie",
+    "is_stackable": false
+  },
+  {
+    "id": "GALVANIZED",
+    "name": "Zelektryzowanie",
+    "description": "Otrzymaj [blue]X[/blue] pkt. obrażeń, gdy ta karta zostanie zagrana.",
+    "extra_card_text": "Otrzymaj X pkt. obrażeń.",
+    "is_stackable": true
+  },
+  {
+    "id": "HEXED",
+    "name": "Zaczarowanie",
+    "description": "Dodaj [gold]Eteryczna[/gold] do tej karty.",
+    "extra_card_text": null,
+    "is_stackable": false
+  },
+  {
+    "id": "RINGING",
+    "name": "Dzwonienie",
+    "description": "W tej turze możesz zagrać tylko [blue]1[/blue] kartę.",
+    "extra_card_text": "Dzwonienie.",
+    "is_stackable": false
+  },
+  {
+    "id": "SMOG",
+    "name": "Smog",
+    "description": "W tej turze nie możesz już zagrać [gold]Umiejętności[/gold]. Znika pod koniec tury.",
+    "extra_card_text": null,
+    "is_stackable": false
+  }
+]

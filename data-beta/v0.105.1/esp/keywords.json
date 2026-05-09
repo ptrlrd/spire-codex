@@ -1,0 +1,42 @@
+[
+  {
+    "id": "ETERNAL",
+    "name": "Inmutabilidad",
+    "description": "No se puede quitar ni transformar de tu [gold]mazo[/gold]."
+  },
+  {
+    "id": "ETHEREAL",
+    "name": "Evanescencia",
+    "description": "Si esta carta está en tu [gold]mano[/gold] al final de este turno, se [gold]agota[/gold]."
+  },
+  {
+    "id": "EXHAUST",
+    "name": "Agotamiento",
+    "description": "Se quita esta carta hasta el final del combate."
+  },
+  {
+    "id": "INNATE",
+    "name": "Innatismo",
+    "description": "Comienza cada combate con esta carta en tu [gold]mano[/gold]."
+  },
+  {
+    "id": "PERIOD",
+    "name": "Period",
+    "description": ""
+  },
+  {
+    "id": "RETAIN",
+    "name": "Retención",
+    "description": "Las cartas retenidas no se descartan al final del turno."
+  },
+  {
+    "id": "SLY",
+    "name": "Astucia",
+    "description": "Si descartas esta carta de tu [gold]mano[/gold] antes de que termine tu turno, se juega sin costo."
+  },
+  {
+    "id": "UNPLAYABLE",
+    "name": "Injugabilidad",
+    "description": "No puedes usar cartas injugables."
+  }
+]

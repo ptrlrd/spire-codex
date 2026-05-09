@@ -1,0 +1,74 @@
+{
+  "card_types": {
+    "Attack": "Ataque",
+    "Skill": "Habilidad",
+    "Power": "Poder",
+    "Status": "Estado",
+    "Curse": "Maldición",
+    "Quest": "Misión"
+  },
+  "card_rarities": {
+    "Basic": "Básica",
+    "Common": "Común",
+    "Uncommon": "Poco común",
+    "Rare": "Rara",
+    "Ancient": "Antiguo",
+    "Event": "Evento",
+    "Token": "Ficha",
+    "Status": "Estado",
+    "Curse": "Maldición",
+    "Quest": "Misión"
+  },
+  "relic_rarities": {
+    "Starter": "Reliquia básica",
+    "Common": "Reliquia común",
+    "Uncommon": "Reliquia poco común",
+    "Rare": "Reliquia rara",
+    "Ancient": "Reliquia antigua",
+    "Event": "Reliquia de evento",
+    "Shop": "Tienda de reliquias"
+  },
+  "potion_rarities": {
+    "Common": "Común",
+    "Uncommon": "Poco común",
+    "Rare": "Rara",
+    "Event": "de Evento",
+    "Token": "Ficha"
+  },
+  "keywords": {
+    "ETERNAL": "Eterna",
+    "ETHEREAL": "Etérea",
+    "EXHAUST": "Agotamiento",
+    "INNATE": "Innata",
+    "RETAIN": "Retención",
+    "SLY": "Astucia",
+    "UNPLAYABLE": "Injugable"
+  },
+  "sections": {
+    "cards": "Biblioteca de cartas",
+    "characters": "Characters",
+    "relics": "Colección de reliquias",
+    "monsters": "Bestiario",
+    "potions": "Laboratorio de pociones",
+    "enchantments": "Enchantments",
+    "encounters": "Encounters",
+    "events": "Events",
+    "powers": "Powers",
+    "timeline": "Cronología",
+    "images": "Images",
+    "reference": "Reference"
+  },
+  "section_descs": {
+    "cards": "Consulta todas las cartas que has encontrado en la Torre.",
+    "relics": "Consulta todas las reliquias y artefactos que has encontrado en la Torre.",
+    "monsters": "Consulta todos los enemigos que has encontrado en la Torre.",
+    "potions": "Consulta todas las pociones que has encontrado en la Torre."
+  },
+  "character_names": {
+    "ironclad": "El Blindado",
+    "silent": "La Silenciosa",
+    "defect": "El Defectuoso",
+    "necrobinder": "La Vinculahuesos",
+    "regent": "El Regente"
+  }
+}
