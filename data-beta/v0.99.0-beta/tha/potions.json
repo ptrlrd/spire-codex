@@ -5,7 +5,7 @@
     "description": "การโจมตีของศัตรูสร้างความเสียหายน้อยลง [blue]30%[/blue] เป็นเวลา [blue]4[/blue] เทิร์น",
     "description_raw": "การโจมตีของศัตรูสร้างความเสียหายน้อยลง [blue]{DamageDecrease}%[/blue] {Repeat:plural:ในเทิร์นถัดไป|เป็นเวลา [blue]{}[/blue] เทิร์น}",
     "rarity": "หายาก",
-    "image_url": "/static/images/potions/beetle_juice.png",
+    "image_url": "/static/images/potions/beetle_juice.webp",
     "rarity_key": "Rare",
     "compendium_order": 40,
     "pool": "shared"
@@ -16,7 +16,7 @@
     "description": "[gold]อัญเชิญ[/gold] [blue]15[/blue]",
     "description_raw": "[gold]อัญเชิญ[/gold] [blue]{Summon}[/blue]",
     "rarity": "ไม่ธรรมดา",
-    "image_url": "/static/images/potions/bone_brew.png",
+    "image_url": "/static/images/potions/bone_brew.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 20,
     "pool": "necrobinder"
@@ -27,7 +27,7 @@
     "description": "สร้างความเสียหาย [blue]12[/blue] ใส่ทุกสิ่ง\nสามารถขว้างใส่[gold]พ่อค้า[/gold]เพื่อ [blue]100[/blue] [gold]ทอง[/gold]แทนได้",
     "description_raw": "สร้างความเสียหาย [blue]{Damage}[/blue] ใส่ทุกสิ่ง\nสามารถขว้างใส่[gold]พ่อค้า[/gold]เพื่อ [blue]{Gold}[/blue] [gold]ทอง[/gold]แทนได้",
     "rarity": "เหตุการณ์",
-    "image_url": "/static/images/potions/foul_potion.png",
+    "image_url": "/static/images/potions/foul_potion.webp",
     "rarity_key": "Event",
     "compendium_order": 60,
     "pool": "event"
@@ -38,7 +38,7 @@
     "description": "ได้รับ [blue]1[/blue] [gold]ความแข็งแรง[/gold] และ [blue]1[/blue] [gold]ความชำนาญ[/gold]",
     "description_raw": "ได้รับ [blue]{StrengthPower}[/blue] [gold]ความแข็งแรง[/gold] และ [blue]{DexterityPower}[/blue] [gold]ความชำนาญ[/gold]",
     "rarity": "ไม่ธรรมดา",
-    "image_url": "/static/images/potions/fysh_oil.png",
+    "image_url": "/static/images/potions/fysh_oil.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 21,
     "pool": "shared"
@@ -49,7 +49,7 @@
     "description": "[gold]หลอมสร้าง[/gold] [blue]15[/blue]",
     "description_raw": "[gold]หลอมสร้าง[/gold] [blue]{Forge}[/blue]",
     "rarity": "ไม่ธรรมดา",
-    "image_url": "/static/images/potions/kings_courage.png",
+    "image_url": "/static/images/potions/kings_courage.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 22,
     "pool": "regent"
@@ -60,7 +60,7 @@
     "description": "ได้รับ [blue]1[/blue] [gold]พิธีกรรม[/gold]",
     "description_raw": "ได้รับ [blue]{RitualPower}[/blue] [gold]พิธีกรรม[/gold]",
     "rarity": "หายาก",
-    "image_url": "/static/images/potions/mazaleths_gift.png",
+    "image_url": "/static/images/potions/mazaleths_gift.webp",
     "rarity_key": "Rare",
     "compendium_order": 41,
     "pool": "shared"
@@ -71,7 +71,7 @@
     "description": "เพิ่มการ์ดโจมตี, ทักษะ, และพลังอย่างละ 1 ใบแบบสุ่มใส่[gold]มือ[/gold] การ์ดเหล่านั้นเล่นได้ฟรีในเทิร์นนี้",
     "description_raw": "เพิ่มการ์ดโจมตี, ทักษะ, และพลังอย่างละ 1 ใบแบบสุ่มใส่[gold]มือ[/gold] การ์ดเหล่านั้นเล่นได้ฟรีในเทิร์นนี้",
     "rarity": "หายาก",
-    "image_url": "/static/images/potions/orobic_acid.png",
+    "image_url": "/static/images/potions/orobic_acid.webp",
     "rarity_key": "Rare",
     "compendium_order": 42,
     "pool": "shared"
@@ -82,7 +82,7 @@
     "description": "ได้รับ [energy:1] และได้รับเพิ่มอีก [energy:1] ตอนเริ่มต้นเทิร์น เป็นเวลา [blue]3[/blue] เทิร์น",
     "description_raw": "ได้รับ {Energy:energyIcons()} และได้รับเพิ่มอีก {energyPrefix:energyIcons(1)} ตอนเริ่มต้นเทิร์น เป็นเวลา [blue]{RadiancePower}[/blue] เทิร์น",
     "rarity": "ไม่ธรรมดา",
-    "image_url": "/static/images/potions/radiant_tincture.png",
+    "image_url": "/static/images/potions/radiant_tincture.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 23,
     "pool": "shared"
@@ -93,7 +93,7 @@
     "description": "[gold]คงสภาพ[/gold]ทั้ง[gold]มือ[/gold]เป็นเวลา [blue]2[/blue] เทิร์น",
     "description_raw": "[gold]คงสภาพ[/gold]ทั้ง[gold]มือ[/gold]เป็นเวลา [blue]{Repeat}[/blue] เทิร์น",
     "rarity": "ไม่ธรรมดา",
-    "image_url": "/static/images/potions/stable_serum.png",
+    "image_url": "/static/images/potions/stable_serum.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 24,
     "pool": "shared"
@@ -104,7 +104,7 @@
     "description": "นำการ์ด 1 ใบจาก[gold]กองทิ้ง[/gold]ขึ้น[gold]มือ[/gold] มันมีค่าร่าย [blue]0[/blue] [energy:1] ในเทิร์นนี้",
     "description_raw": "นำการ์ด 1 ใบจาก[gold]กองทิ้ง[/gold]ขึ้น[gold]มือ[/gold] มันมีค่าร่าย [blue]0[/blue] {energyPrefix:energyIcons(1)} ในเทิร์นนี้",
     "rarity": "หายาก",
-    "image_url": "/static/images/potions/liquid_memories.png",
+    "image_url": "/static/images/potions/liquid_memories.webp",
     "rarity_key": "Rare",
     "compendium_order": 43,
     "pool": "shared"
@@ -115,7 +115,7 @@
     "description": "[gold]สลาย[/gold]การ์ดกี่ใบก็ได้ใน[gold]มือ[/gold]",
     "description_raw": "[gold]สลาย[/gold]การ์ดกี่ใบก็ได้ใน[gold]มือ[/gold]",
     "rarity": "ไม่ธรรมดา",
-    "image_url": "/static/images/potions/ashwater.png",
+    "image_url": "/static/images/potions/ashwater.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 25,
     "pool": "ironclad"
@@ -126,7 +126,7 @@
     "description": "ได้รับ [blue]5[/blue] HP สูงสุด",
     "description_raw": "ได้รับ [blue]{MaxHp}[/blue] HP สูงสุด",
     "rarity": "หายาก",
-    "image_url": "/static/images/potions/fruit_juice.png",
+    "image_url": "/static/images/potions/fruit_juice.webp",
     "rarity_key": "Rare",
     "compendium_order": 44,
     "pool": "shared"
@@ -137,7 +137,7 @@
     "description": "จั่ว [blue]7[/blue] การ์ด สุ่มค่าร่ายของการ์ดใน[gold]มือ[/gold]ทั้งหมดในเทิร์นนี้",
     "description_raw": "จั่ว [blue]{Cards}[/blue] การ์ด สุ่มค่าร่ายของการ์ดใน[gold]มือ[/gold]ทั้งหมดในเทิร์นนี้",
     "rarity": "หายาก",
-    "image_url": "/static/images/potions/snecko_oil.png",
+    "image_url": "/static/images/potions/snecko_oil.webp",
     "rarity_key": "Rare",
     "compendium_order": 45,
     "pool": "shared"
@@ -148,7 +148,7 @@
     "description": "ได้รับ[gold]ช่องเก็บลูกแก้ว[/gold] [blue]2[/blue] ช่อง",
     "description_raw": "ได้รับ[gold]ช่องเก็บลูกแก้ว[/gold] [blue]{Repeat}[/blue] ช่อง",
     "rarity": "ไม่ธรรมดา",
-    "image_url": "/static/images/potions/potion_of_capacity.png",
+    "image_url": "/static/images/potions/potion_of_capacity.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 26,
     "pool": "defect"
@@ -159,7 +159,7 @@
     "description": "ได้รับ [blue]2[/blue] [gold]ความชำนาญ[/gold]",
     "description_raw": "ได้รับ [blue]{DexterityPower}[/blue] [gold]ความชำนาญ[/gold]",
     "rarity": "ธรรมดา",
-    "image_url": "/static/images/potions/dexterity_potion.png",
+    "image_url": "/static/images/potions/dexterity_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 0,
     "pool": "shared"
@@ -170,7 +170,7 @@
     "description": "สร้าง [blue]3[/blue] [gold]ความอ่อนแอ[/gold]",
     "description_raw": "สร้าง [blue]{WeakPower}[/blue] [gold]ความอ่อนแอ[/gold]",
     "rarity": "ธรรมดา",
-    "image_url": "/static/images/potions/weak_potion.png",
+    "image_url": "/static/images/potions/weak_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 1,
     "pool": "shared"
@@ -181,7 +181,7 @@
     "description": "ได้รับ [blue]5[/blue] [gold]ความชำนาญ[/gold] ตอนจบเทิร์นเสีย [blue]5[/blue] [gold]ความชำนาญ[/gold]",
     "description_raw": "ได้รับ [blue]{DexterityPower}[/blue] [gold]ความชำนาญ[/gold] ตอนจบเทิร์นเสีย [blue]{DexterityPower}[/blue] [gold]ความชำนาญ[/gold]",
     "rarity": "ธรรมดา",
-    "image_url": "/static/images/potions/speed_potion.png",
+    "image_url": "/static/images/potions/speed_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 2,
     "pool": "shared"
@@ -192,7 +192,7 @@
     "description": "ได้รับ [blue]2[/blue] [gold]ความแข็งแรง[/gold]",
     "description_raw": "ได้รับ [blue]{StrengthPower}[/blue] [gold]ความแข็งแรง[/gold]",
     "rarity": "ธรรมดา",
-    "image_url": "/static/images/potions/strength_potion.png",
+    "image_url": "/static/images/potions/strength_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 3,
     "pool": "shared"
@@ -203,7 +203,7 @@
     "description": "ในเทิร์นนี้ การ์ดถัดไปจะถูกเล่นซ้ำอีกครั้ง",
     "description_raw": "ในเทิร์นนี้ การ์ดถัดไปจะถูกเล่นซ้ำอีกครั้ง",
     "rarity": "ไม่ธรรมดา",
-    "image_url": "/static/images/potions/duplicator.png",
+    "image_url": "/static/images/potions/duplicator.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 27,
     "pool": "shared"
@@ -214,7 +214,7 @@
     "description": "สร้าง [blue]3[/blue] [gold]จุดอ่อน[/gold]",
     "description_raw": "สร้าง [blue]{VulnerablePower}[/blue] [gold]จุดอ่อน[/gold]",
     "rarity": "ธรรมดา",
-    "image_url": "/static/images/potions/vulnerable_potion.png",
+    "image_url": "/static/images/potions/vulnerable_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 4,
     "pool": "shared"
@@ -225,7 +225,7 @@
     "description": "จั่ว [blue]3[/blue] การ์ด",
     "description_raw": "จั่ว [blue]{Cards}[/blue] การ์ด",
     "rarity": "ธรรมดา",
-    "image_url": "/static/images/potions/swift_potion.png",
+    "image_url": "/static/images/potions/swift_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 5,
     "pool": "shared"
@@ -236,7 +236,7 @@
     "description": "ได้รับ [star:3]",
     "description_raw": "ได้รับ {Stars:starIcons()}",
     "rarity": "ธรรมดา",
-    "image_url": "/static/images/potions/star_potion.png",
+    "image_url": "/static/images/potions/star_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 6,
     "pool": "regent"
@@ -247,7 +247,7 @@
     "description": "เลือกการ์ดทักษะ [blue]1[/blue] จาก [blue]3[/blue] ใบที่ถูกสุ่มมาเพื่อเพิ่มใส่[gold]มือ[/gold] การ์ดนั้นเล่นได้ฟรีในเทิร์นนี้",
     "description_raw": "เลือกการ์ดทักษะ [blue]1[/blue] จาก [blue]3[/blue] ใบที่ถูกสุ่มมาเพื่อเพิ่มใส่[gold]มือ[/gold] การ์ดนั้นเล่นได้ฟรีในเทิร์นนี้",
     "rarity": "ธรรมดา",
-    "image_url": "/static/images/potions/skill_potion.png",
+    "image_url": "/static/images/potions/skill_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 7,
     "pool": "shared"
@@ -258,7 +258,7 @@
     "description": "ได้รับ [blue]12[/blue] [gold]บล็อก[/gold]",
     "description_raw": "ได้รับ [blue]{Block}[/blue] [gold]บล็อก[/gold]",
     "rarity": "ธรรมดา",
-    "image_url": "/static/images/potions/block_potion.png",
+    "image_url": "/static/images/potions/block_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 8,
     "pool": "shared"
@@ -269,7 +269,7 @@
     "description": "สร้าง [blue]1[/blue] [gold]ความอ่อนแอ[/gold] และ [blue]1[/blue] [gold]จุดอ่อน[/gold] ใส่ศัตรูทั้งหมด",
     "description_raw": "สร้าง [blue]{WeakPower:diff()}[/blue] [gold]ความอ่อนแอ[/gold] และ [blue]{VulnerablePower:diff()}[/blue] [gold]จุดอ่อน[/gold] ใส่ศัตรูทั้งหมด",
     "rarity": "ไม่ธรรมดา",
-    "image_url": "/static/images/potions/potion_of_binding.png",
+    "image_url": "/static/images/potions/potion_of_binding.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 28,
     "pool": "shared"
@@ -280,7 +280,7 @@
     "description": "เลือกการ์ดพลัง [blue]1[/blue] จาก [blue]3[/blue] ใบที่ถูกสุ่มมาเพื่อเพิ่มใส่[gold]มือ[/gold] การ์ดนั้นเล่นได้ฟรีในเทิร์นนี้",
     "description_raw": "เลือกการ์ดพลัง [blue]1[/blue] จาก [blue]3[/blue] ใบที่ถูกสุ่มมาเพื่อเพิ่มใส่[gold]มือ[/gold] การ์ดนั้นเล่นได้ฟรีในเทิร์นนี้",
     "rarity": "ธรรมดา",
-    "image_url": "/static/images/potions/power_potion.png",
+    "image_url": "/static/images/potions/power_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 9,
     "pool": "shared"
@@ -291,7 +291,7 @@
     "description": "ได้รับ [energy:2]",
     "description_raw": "ได้รับ {Energy:energyIcons()}",
     "rarity": "ธรรมดา",
-    "image_url": "/static/images/potions/energy_potion.png",
+    "image_url": "/static/images/potions/energy_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 10,
     "pool": "shared"
@@ -302,7 +302,7 @@
     "description": "ศัตรูทั้งหมดเสีย [blue]7[/blue] [gold]ความแข็งแรง[/gold]ในเทิร์นนี้",
     "description_raw": "ศัตรูทั้งหมดเสีย [blue]{StrengthPower}[/blue] [gold]ความแข็งแรง[/gold]ในเทิร์นนี้",
     "rarity": "หายาก",
-    "image_url": "/static/images/potions/shackling_potion.png",
+    "image_url": "/static/images/potions/shackling_potion.webp",
     "rarity_key": "Rare",
     "compendium_order": 46,
     "pool": "shared"
@@ -313,7 +313,7 @@
     "description": "สร้าง [blue]6[/blue] [gold]พิษ[/gold]",
     "description_raw": "สร้าง [blue]{PoisonPower}[/blue] [gold]พิษ[/gold]",
     "rarity": "ธรรมดา",
-    "image_url": "/static/images/potions/poison_potion.png",
+    "image_url": "/static/images/potions/poison_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 11,
     "pool": "silent"
@@ -324,7 +324,7 @@
     "description": "ได้รับ [green]5[/green] [gold]การฟื้นพลัง[/gold]",
     "description_raw": "ได้รับ [green]{RegenPower}[/green] [gold]การฟื้นพลัง[/gold]",
     "rarity": "ไม่ธรรมดา",
-    "image_url": "/static/images/potions/regen_potion.png",
+    "image_url": "/static/images/potions/regen_potion.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 29,
     "pool": "shared"
@@ -335,7 +335,7 @@
     "description": "ได้รับ [energy:1] จั่ว [blue]2[/blue] การ์ด",
     "description_raw": "ได้รับ {Energy:energyIcons()} จั่ว [blue]{Cards}[/blue] การ์ด",
     "rarity": "ไม่ธรรมดา",
-    "image_url": "/static/images/potions/cure_all.png",
+    "image_url": "/static/images/potions/cure_all.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 30,
     "pool": "shared"
@@ -346,7 +346,7 @@
     "description": "การ์ดโจมตีใบถัดไปจะสร้างความเสียหาย 3 เท่า",
     "description_raw": "การ์ดโจมตีใบถัดไปจะสร้างความเสียหาย 3 เท่า",
     "rarity": "หายาก",
-    "image_url": "/static/images/potions/gigantification_potion.png",
+    "image_url": "/static/images/potions/gigantification_potion.webp",
     "rarity_key": "Rare",
     "compendium_order": 47,
     "pool": "shared"
@@ -357,7 +357,7 @@
     "description": "เพิ่ม[gold]มีดสั้นพัฒนาแล้ว[/gold] [blue]3[/blue] ใบใส่[gold]มือ[/gold]",
     "description_raw": "เพิ่ม[gold]มีดสั้นพัฒนาแล้ว[/gold] [blue]{Cards}[/blue] ใบใส่[gold]มือ[/gold]",
     "rarity": "ไม่ธรรมดา",
-    "image_url": "/static/images/potions/cunning_potion.png",
+    "image_url": "/static/images/potions/cunning_potion.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 31,
     "pool": "silent"
@@ -368,7 +368,7 @@
     "description": "สร้าง [blue]33[/blue] [gold]อายุขัย[/gold]",
     "description_raw": "สร้าง [blue]{DoomPower}[/blue] [gold]อายุขัย[/gold]",
     "rarity": "ธรรมดา",
-    "image_url": "/static/images/potions/potion_of_doom.png",
+    "image_url": "/static/images/potions/potion_of_doom.webp",
     "rarity_key": "Common",
     "compendium_order": 12,
     "pool": "necrobinder"
@@ -379,7 +379,7 @@
     "description": "เติมช่องเก็บขวดยาที่ว่างทั้งหมดด้วยขวดยาแบบสุ่ม",
     "description_raw": "เติมช่องเก็บขวดยาที่ว่างทั้งหมดด้วยขวดยาแบบสุ่ม",
     "rarity": "หายาก",
-    "image_url": "/static/images/potions/entropic_brew.png",
+    "image_url": "/static/images/potions/entropic_brew.webp",
     "rarity_key": "Rare",
     "compendium_order": 48,
     "pool": "shared"
@@ -390,7 +390,7 @@
     "description": "ได้รับ [blue]5[/blue] [gold]ความแข็งแรง[/gold] ตอนจบเทิร์นเสีย [blue]5[/blue] [gold]ความแข็งแรง[/gold]",
     "description_raw": "ได้รับ [blue]{StrengthPower}[/blue] [gold]ความแข็งแรง[/gold] ตอนจบเทิร์นเสีย [blue]{StrengthPower}[/blue] [gold]ความแข็งแรง[/gold]",
     "rarity": "ธรรมดา",
-    "image_url": "/static/images/potions/flex_potion.png",
+    "image_url": "/static/images/potions/flex_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 13,
     "pool": "shared"
@@ -401,7 +401,7 @@
     "description": "[gold]สลาย[/gold]ทั้ง[gold]มือ[/gold] จั่ว [blue]10[/blue] การ์ด",
     "description_raw": "[gold]สลาย[/gold]ทั้ง[gold]มือ[/gold] จั่ว [blue]{Cards}[/blue] การ์ด",
     "rarity": "เหตุการณ์",
-    "image_url": "/static/images/potions/glowwater_potion.png",
+    "image_url": "/static/images/potions/glowwater_potion.webp",
     "rarity_key": "Event",
     "compendium_order": 61,
     "pool": "event"
@@ -412,7 +412,7 @@
     "description": "[gold]บล็อก[/gold]ของคุณกลายเป็น 3 เท่า",
     "description_raw": "[gold]บล็อก[/gold]ของคุณกลายเป็น 3 เท่า",
     "rarity": "ไม่ธรรมดา",
-    "image_url": "/static/images/potions/fortifier.png",
+    "image_url": "/static/images/potions/fortifier.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 32,
     "pool": "shared"
@@ -423,7 +423,7 @@
     "description": "ทิ้งการ์ดกี่ใบก็ได้ แล้วจั่วการ์ดตามจำนวนนั้น",
     "description_raw": "ทิ้งการ์ดกี่ใบก็ได้ แล้วจั่วการ์ดตามจำนวนนั้น",
     "rarity": "ไม่ธรรมดา",
-    "image_url": "/static/images/potions/gamblers_brew.png",
+    "image_url": "/static/images/potions/gamblers_brew.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 33,
     "pool": "shared"
@@ -434,7 +434,7 @@
     "description": "เลือกการ์ดโจมตี [blue]1[/blue] จาก [blue]3[/blue] ใบที่ถูกสุ่มมาเพื่อเพิ่มใส่[gold]มือ[/gold] การ์ดนั้นเล่นได้ฟรีในเทิร์นนี้",
     "description_raw": "เลือกการ์ดโจมตี [blue]1[/blue] จาก [blue]3[/blue] ใบที่ถูกสุ่มมาเพื่อเพิ่มใส่[gold]มือ[/gold] การ์ดนั้นเล่นได้ฟรีในเทิร์นนี้",
     "rarity": "ธรรมดา",
-    "image_url": "/static/images/potions/attack_potion.png",
+    "image_url": "/static/images/potions/attack_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 14,
     "pool": "shared"
@@ -445,7 +445,7 @@
     "description": "ได้รับ [blue]2[/blue] [gold]โฟกัส[/gold]",
     "description_raw": "ได้รับ [blue]{FocusPower}[/blue] [gold]โฟกัส[/gold]",
     "rarity": "ธรรมดา",
-    "image_url": "/static/images/potions/focus_potion.png",
+    "image_url": "/static/images/potions/focus_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 15,
     "pool": "defect"
@@ -456,7 +456,7 @@
     "description": "ฟื้นฟู [green]20%[/green] ของ HP สูงสุด",
     "description_raw": "ฟื้นฟู [green]{HealPercent}%[/green] ของ HP สูงสุด",
     "rarity": "ธรรมดา",
-    "image_url": "/static/images/potions/blood_potion.png",
+    "image_url": "/static/images/potions/blood_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 16,
     "pool": "ironclad"
@@ -467,7 +467,7 @@
     "description": "สร้างความเสียหาย [blue]20[/blue]",
     "description_raw": "สร้างความเสียหาย [blue]{Damage}[/blue]",
     "rarity": "ธรรมดา",
-    "image_url": "/static/images/potions/fire_potion.png",
+    "image_url": "/static/images/potions/fire_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 17,
     "pool": "shared"
@@ -478,7 +478,7 @@
     "description": "เลือกการ์ดไร้สี [blue]1[/blue] จาก [blue]3[/blue] ใบที่ถูกสุ่มมาเพื่อเพิ่มใส่[gold]มือ[/gold] การ์ดนั้นเล่นได้ฟรีในเทิร์นนี้",
     "description_raw": "เลือกการ์ดไร้สี [blue]1[/blue] จาก [blue]3[/blue] ใบที่ถูกสุ่มมาเพื่อเพิ่มใส่[gold]มือ[/gold] การ์ดนั้นเล่นได้ฟรีในเทิร์นนี้",
     "rarity": "ธรรมดา",
-    "image_url": "/static/images/potions/colorless_potion.png",
+    "image_url": "/static/images/potions/colorless_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 18,
     "pool": "shared"
@@ -489,7 +489,7 @@
     "description": "ศัตรูเสีย [blue]9[/blue] HP ตอนจบเทิร์นของมัน",
     "description_raw": "ศัตรูเสีย [blue]{Demise}[/blue] HP ตอนจบเทิร์นของมัน",
     "rarity": "ไม่ธรรมดา",
-    "image_url": "/static/images/potions/powdered_demise.png",
+    "image_url": "/static/images/potions/powdered_demise.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 34,
     "pool": "shared"
@@ -500,7 +500,7 @@
     "description": "ได้รับ [blue]1[/blue] [gold]ไร้ตัวตน[/gold]",
     "description_raw": "ได้รับ [blue]1[/blue] [gold]ไร้ตัวตน[/gold]",
     "rarity": "หายาก",
-    "image_url": "/static/images/potions/ghost_in_a_jar.png",
+    "image_url": "/static/images/potions/ghost_in_a_jar.webp",
     "rarity_key": "Rare",
     "compendium_order": 49,
     "pool": "silent"
@@ -511,7 +511,7 @@
     "description": "[gold]พัฒนา[/gold]การ์ดทั้งหมดใน[gold]มือ[/gold]จนจบการต่อสู้",
     "description_raw": "[gold]พัฒนา[/gold]การ์ดทั้งหมดใน[gold]มือ[/gold]จนจบการต่อสู้",
     "rarity": "ไม่ธรรมดา",
-    "image_url": "/static/images/potions/blessing_of_the_forge.png",
+    "image_url": "/static/images/potions/blessing_of_the_forge.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 35,
     "pool": "shared"
@@ -522,7 +522,7 @@
     "description": "เมื่อคุณต้องตาย ทิ้งขวดยานี้แทน แล้วฟื้นฟู [blue]30%[/blue] ของ HP สูงสุด",
     "description_raw": "เมื่อคุณต้องตาย ทิ้งขวดยานี้แทน แล้วฟื้นฟู [blue]30%[/blue] ของ HP สูงสุด",
     "rarity": "หายาก",
-    "image_url": "/static/images/potions/fairy_in_a_bottle.png",
+    "image_url": "/static/images/potions/fairy_in_a_bottle.webp",
     "rarity_key": "Rare",
     "compendium_order": 50,
     "pool": "shared"
@@ -533,7 +533,7 @@
     "description": "ได้รับ [blue]1[/blue] [gold]ม่านกันชน[/gold]",
     "description_raw": "ได้รับ [blue]{BufferPower}[/blue] [gold]ม่านกันชน[/gold]",
     "rarity": "หายาก",
-    "image_url": "/static/images/potions/lucky_tonic.png",
+    "image_url": "/static/images/potions/lucky_tonic.webp",
     "rarity_key": "Rare",
     "compendium_order": 51,
     "pool": "shared"
@@ -544,7 +544,7 @@
     "description": "เพิ่มการ์ด[gold]พัฒนาแล้ว[/gold] [blue]3[/blue] ใบใส่[gold]มือ[/gold]",
     "description_raw": "เพิ่มการ์ด[gold]พัฒนาแล้ว[/gold] [blue]{Cards}[/blue] ใบใส่[gold]มือ[/gold]",
     "rarity": "หายาก",
-    "image_url": "/static/images/potions/cosmic_concoction.png",
+    "image_url": "/static/images/potions/cosmic_concoction.webp",
     "rarity_key": "Rare",
     "compendium_order": 52,
     "pool": "regent"
@@ -555,7 +555,7 @@
     "description": "สับการ์ดทั้งหมดเข้า[gold]กองจั่ว[/gold] แล้วจั่ว [blue]5[/blue] การ์ด",
     "description_raw": "สับการ์ดทั้งหมดเข้า[gold]กองจั่ว[/gold] แล้วจั่ว [blue]{Cards}[/blue] {Cards:plural:การ์ด|การ์ด}",
     "rarity": "หายาก",
-    "image_url": "/static/images/potions/bottled_potential.png",
+    "image_url": "/static/images/potions/bottled_potential.webp",
     "rarity_key": "Rare",
     "compendium_order": 53,
     "pool": "shared"
@@ -566,7 +566,7 @@
     "description": "การ์ดทั้งหมดที่มีคำว่า[gold]จู่โจม[/gold]ได้รับ[gold]เล่นซ้ำ[/gold] [blue]1[/blue] ในการต่อสู้นี้",
     "description_raw": "การ์ดทั้งหมดที่มีคำว่า[gold]จู่โจม[/gold]ได้รับ[gold]เล่นซ้ำ[/gold] [blue]1[/blue] ในการต่อสู้นี้",
     "rarity": "หายาก",
-    "image_url": "/static/images/potions/soldiers_stew.png",
+    "image_url": "/static/images/potions/soldiers_stew.webp",
     "rarity_key": "Rare",
     "compendium_order": 54,
     "pool": "ironclad"
@@ -577,7 +577,7 @@
     "description": "เลือกการ์ด 1 ใบใน[gold]มือ[/gold]เพื่อทำให้ค่าร่ายเป็น [blue]0[/blue] จนจบการต่อสู้",
     "description_raw": "เลือกการ์ด 1 ใบใน[gold]มือ[/gold]เพื่อทำให้ค่าร่ายเป็น [blue]0[/blue] จนจบการต่อสู้",
     "rarity": "ไม่ธรรมดา",
-    "image_url": "/static/images/potions/touch_of_insanity.png",
+    "image_url": "/static/images/potions/touch_of_insanity.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 36,
     "pool": "shared"
@@ -588,7 +588,7 @@
     "description": "ได้รับ [blue]3[/blue] [gold]หนาม[/gold]",
     "description_raw": "ได้รับ [blue]{ThornsPower}[/blue] [gold]หนาม[/gold]",
     "rarity": "ไม่ธรรมดา",
-    "image_url": "/static/images/potions/liquid_bronze.png",
+    "image_url": "/static/images/potions/liquid_bronze.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 37,
     "pool": "shared"
@@ -599,7 +599,7 @@
     "description": "จั่วการ์ด [blue]1[/blue] ใบ และตอนเริ่มต้นเทิร์นถัดไป จั่วการ์ดเพิ่ม [blue]1[/blue] ใบ เป็นเวลา [blue]3[/blue] เทิร์น",
     "description_raw": "จั่วการ์ด [blue]{Cards}[/blue] ใบ และตอนเริ่มต้นเทิร์นถัดไป จั่วการ์ดเพิ่ม [blue]1[/blue] ใบ เป็นเวลา {ClarityPower:plural:1 เทิร์น|[blue]{}[/blue] เทิร์น}",
     "rarity": "ไม่ธรรมดา",
-    "image_url": "/static/images/potions/clarity.png",
+    "image_url": "/static/images/potions/clarity.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 38,
     "pool": "shared"
@@ -610,7 +610,7 @@
     "description": "เลือกการ์ด 1 ใบจาก[gold]กองจั่ว[/gold]เพื่อนำขึ้น[gold]มือ[/gold]",
     "description_raw": "เลือกการ์ด 1 ใบจาก[gold]กองจั่ว[/gold]เพื่อนำขึ้น[gold]มือ[/gold]",
     "rarity": "หายาก",
-    "image_url": "/static/images/potions/droplet_of_precognition.png",
+    "image_url": "/static/images/potions/droplet_of_precognition.webp",
     "rarity_key": "Rare",
     "compendium_order": 55,
     "pool": "shared"
@@ -621,7 +621,7 @@
     "description": "สร้างความเสียหาย [blue]10[/blue] ใส่ศัตรูทั้งหมด",
     "description_raw": "สร้างความเสียหาย [blue]{Damage}[/blue] ใส่ศัตรูทั้งหมด",
     "rarity": "ธรรมดา",
-    "image_url": "/static/images/potions/explosive_ampoule.png",
+    "image_url": "/static/images/potions/explosive_ampoule.webp",
     "rarity_key": "Common",
     "compendium_order": 19,
     "pool": "shared"
@@ -632,7 +632,7 @@
     "description": "",
     "description_raw": "",
     "rarity": "ไม่ธรรมดา",
-    "image_url": "/static/images/potions/heart_of_iron.png",
+    "image_url": "/static/images/potions/heart_of_iron.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 39,
     "pool": "shared"
@@ -643,7 +643,7 @@
     "description": "สร้างความเสียหาย [blue]15[/blue]",
     "description_raw": "สร้างความเสียหาย [blue]{Damage}[/blue]",
     "rarity": "โทเคน",
-    "image_url": "/static/images/potions/potion_shaped_rock.png",
+    "image_url": "/static/images/potions/potion_shaped_rock.webp",
     "rarity_key": "Token",
     "compendium_order": 62,
     "pool": "shared"
@@ -654,7 +654,7 @@
     "description": "ได้รับ [blue]10[/blue] [gold]บล็อก[/gold] และเทิร์นถัดไปได้รับ [blue]10[/blue] [gold]บล็อก[/gold]",
     "description_raw": "ได้รับ [blue]{Block:diff()}[/blue] [gold]บล็อก[/gold] และเทิร์นถัดไปได้รับ [blue]{Block:diff()}[/blue] [gold]บล็อก[/gold]",
     "rarity": "หายาก",
-    "image_url": "/static/images/potions/ship_in_a_bottle.png",
+    "image_url": "/static/images/potions/ship_in_a_bottle.webp",
     "rarity_key": "Rare",
     "compendium_order": 56,
     "pool": "shared"
@@ -665,7 +665,7 @@
     "description": "[gold]ปลุกเสก[/gold] 1 [gold]ความมืด[/gold]ตามจำนวน[gold]ช่องเก็บลูกแก้ว[/gold]",
     "description_raw": "[gold]ปลุกเสก[/gold] 1 [gold]ความมืด[/gold]ตามจำนวน[gold]ช่องเก็บลูกแก้ว[/gold]",
     "rarity": "หายาก",
-    "image_url": "/static/images/potions/essence_of_darkness.png",
+    "image_url": "/static/images/potions/essence_of_darkness.webp",
     "rarity_key": "Rare",
     "compendium_order": 57,
     "pool": "defect"
@@ -676,7 +676,7 @@
     "description": "เล่นการ์ดใบบนสุดของ[gold]กองจั่ว[/gold] จำนวน [blue]3[/blue] ใบ",
     "description_raw": "เล่นการ์ดใบบนสุดของ[gold]กองจั่ว[/gold] จำนวน [blue]{Repeat}[/blue] ใบ",
     "rarity": "หายาก",
-    "image_url": "/static/images/potions/distilled_chaos.png",
+    "image_url": "/static/images/potions/distilled_chaos.webp",
     "rarity_key": "Rare",
     "compendium_order": 58,
     "pool": "shared"
@@ -687,7 +687,7 @@
     "description": "เพิ่ม[gold]Soul[/gold] [blue]2[/blue] ใบใส่[gold]มือ[/gold]",
     "description_raw": "เพิ่ม[gold]Soul[/gold] [blue]{Cards}[/blue] ใบใส่[gold]มือ[/gold]",
     "rarity": "หายาก",
-    "image_url": "/static/images/potions/pot_of_ghouls.png",
+    "image_url": "/static/images/potions/pot_of_ghouls.webp",
     "rarity_key": "Rare",
     "compendium_order": 59,
     "pool": "necrobinder"

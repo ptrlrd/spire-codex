@@ -1,0 +1,482 @@
+[
+  {
+    "id": "BIG_DECK",
+    "name": "大きなデッキ",
+    "description": "[blue]40[/blue]枚以上のデッキでゲームをクリア。",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "大きなデッキ",
+        "description": "[blue]40[/blue]枚以上のデッキでゲームをクリア。"
+      },
+      {
+        "rarity": "silver",
+        "title": "巨大なデッキ",
+        "description": "[blue]60[/blue]枚以上のデッキでゲームをクリア。"
+      },
+      {
+        "rarity": "gold",
+        "title": "怪物級デッキ",
+        "description": "[blue]100[/blue]枚以上のデッキでゲームをクリア。"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_big_deck.png"
+  },
+  {
+    "id": "CCCCOMBO",
+    "name": "コ・コ・コ・コンボォー！",
+    "description": "1ターンに[blue]20[/blue]枚のカードをプレイ。",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "コ・コ・コ・コンボォー！",
+        "description": "1ターンに[blue]20[/blue]枚のカードをプレイ。"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_ccccombo.png"
+  },
+  {
+    "id": "CURSES",
+    "name": "祟りじゃ！",
+    "description": "[blue]5[/blue]枚以上の[red]呪い[/red]を所持してゲームをクリア。",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "祟りじゃ！",
+        "description": "[blue]5[/blue]枚以上の[red]呪い[/red]を所持してゲームをクリア。"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_curses.png"
+  },
+  {
+    "id": "DAMAGE_LEADER",
+    "name": "ダメージリーダー",
+    "description": "マルチプレイで最も多くのダメージを敵に与えた。",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "ダメージリーダー",
+        "description": "マルチプレイで最も多くのダメージを敵に与えた。"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_damage_leader.png"
+  },
+  {
+    "id": "DEBUFFER",
+    "name": "デバッファー",
+    "description": "マルチプレイで最も多くのデバフを付与した。",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "デバッファー",
+        "description": "マルチプレイで最も多くのデバフを付与した。"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_debuffer.png"
+  },
+  {
+    "id": "DOUBLE_SNECKO",
+    "name": "ダブルスネッコ",
+    "description": "本物とニセモノ、両方のスネッコアイを獲得。",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "ダブルスネッコ",
+        "description": "本物とニセモノ、両方のスネッコアイを獲得。"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_double_snecko.png"
+  },
+  {
+    "id": "ELITE",
+    "name": "エリートハンター",
+    "description": "エリートを[blue]3[/blue]体以上倒した。",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "エリートハンター",
+        "description": "エリートを[blue]3[/blue]体以上倒した。"
+      },
+      {
+        "rarity": "silver",
+        "title": "エリートキラー",
+        "description": "エリートを[blue]6[/blue]体以上倒した。"
+      },
+      {
+        "rarity": "gold",
+        "title": "エリートスレイヤー",
+        "description": "エリートを[blue]9[/blue]体以上倒した。"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_elite.png"
+  },
+  {
+    "id": "FAMISHED",
+    "name": "腹ペコ",
+    "description": "最大HPが初期HPの半分未満まで減った状態でゲームをクリア。",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "腹ペコ",
+        "description": "最大HPが初期HPの半分未満まで減った状態でゲームをクリア。"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_famished.png"
+  },
+  {
+    "id": "FAVORITE_CARD",
+    "name": "愛用の1枚",
+    "description": "1度の攻略中に、1枚のカードを[blue]100[/blue]回以上プレイしてゲームをクリア。",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "愛用の1枚",
+        "description": "1度の攻略中に、1枚のカードを[blue]100[/blue]回以上プレイしてゲームをクリア。"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_favorite_card.png"
+  },
+  {
+    "id": "GLUTTON",
+    "name": "お腹いっぱい",
+    "description": "最大HPが[blue]15[/blue]以上増加した状態でゲームをクリア。",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "お腹いっぱい",
+        "description": "最大HPが[blue]15[/blue]以上増加した状態でゲームをクリア。"
+      },
+      {
+        "rarity": "silver",
+        "title": "腹八分目",
+        "description": "最大HPが[blue]30[/blue]以上増加した状態でゲームをクリア。"
+      },
+      {
+        "rarity": "gold",
+        "title": "暴食",
+        "description": "バカげたほど高い最大HP（[blue]50[/blue]以上増加）でゲームをクリア。"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_glutton.png"
+  },
+  {
+    "id": "HEALER",
+    "name": "癒し手",
+    "description": "味方を1回治療。",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "癒し手",
+        "description": "味方を1回治療。"
+      },
+      {
+        "rarity": "silver",
+        "title": "ヒーラー",
+        "description": "味方を2回治療。"
+      },
+      {
+        "rarity": "gold",
+        "title": "医者",
+        "description": "味方を何度も治療（[blue]3[/blue]回以上）。"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_healer.png"
+  },
+  {
+    "id": "HIGHLANDER",
+    "name": "ハイランダー",
+    "description": "デッキ内に同じカードが1枚もない状態でゲームをクリア（スターターを除く）。",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "ハイランダー",
+        "description": "デッキ内に同じカードが1枚もない状態でゲームをクリア（スターターを除く）。"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_highlander.png"
+  },
+  {
+    "id": "HONED",
+    "name": "鋭敏",
+    "description": "同じカードが[blue]5[/blue]枚以上入ったデッキでゲームをクリア（スターターを除く）。",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "鋭敏",
+        "description": "同じカードが[blue]5[/blue]枚以上入ったデッキでゲームをクリア（スターターを除く）。"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_honed.png"
+  },
+  {
+    "id": "ILIKESHINY",
+    "name": "ピカピカ大好き",
+    "description": "レリックを[blue]25[/blue]個以上集めた。",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "ピカピカ大好き",
+        "description": "レリックを[blue]25[/blue]個以上集めた。"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_ilikeshiny.png"
+  },
+  {
+    "id": "KACHING",
+    "name": "毎度あり！",
+    "description": "商人のショップで合計[blue]1,000[/blue][gold]ゴールド[/gold]以上を支払った。",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "毎度あり！",
+        "description": "商人のショップで合計[blue]1,000[/blue][gold]ゴールド[/gold]以上を支払った。"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_kaching.png"
+  },
+  {
+    "id": "MONEY_MONEY",
+    "name": "マネー、マネー",
+    "description": "[blue]200[/blue][gold]ゴールド[/gold]以上を所持してゲームをクリア。",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "マネー、マネー",
+        "description": "[blue]200[/blue][gold]ゴールド[/gold]以上を所持してゲームをクリア。"
+      },
+      {
+        "rarity": "silver",
+        "title": "お金の雨",
+        "description": "[blue]400[/blue][gold]ゴールド[/gold]以上を所持してゲームをクリア。"
+      },
+      {
+        "rarity": "gold",
+        "title": "ゴールド大好き",
+        "description": "[blue]600[/blue][gold]ゴールド[/gold]以上を所持してゲームをクリア。"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_money_money.png"
+  },
+  {
+    "id": "MYSTERY_MACHINE",
+    "name": "ミステリーマシン",
+    "description": "？部屋を[blue]15[/blue]回以上訪れた。",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "ミステリーマシン",
+        "description": "？部屋を[blue]15[/blue]回以上訪れた。"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_mystery_machine.png"
+  },
+  {
+    "id": "PERFECT",
+    "name": "無傷",
+    "description": "HPを失うことなくボスを倒した。",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "無傷",
+        "description": "HPを失うことなくボスを倒した。"
+      },
+      {
+        "rarity": "silver",
+        "title": "至高",
+        "description": "HPを失うことなくボスを[blue]2[/blue]体倒した。"
+      },
+      {
+        "rarity": "gold",
+        "title": "パーフェクト",
+        "description": "HPを失うことなくボスを[blue]3[/blue]体倒した。"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_perfect.png"
+  },
+  {
+    "id": "RESTFUL",
+    "name": "安息",
+    "description": "訪れた全ての休憩所で「休憩」を選択してゲームをクリア。",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "安息",
+        "description": "訪れた全ての休憩所で「休憩」を選択してゲームをクリア。"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_restful.png"
+  },
+  {
+    "id": "RESTLESS",
+    "name": "不眠不休",
+    "description": "一度も休憩することなくゲームをクリア。",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "不眠不休",
+        "description": "一度も休憩することなくゲームをクリア。"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_restless.png"
+  },
+  {
+    "id": "SPEEDY",
+    "name": "迅速",
+    "description": "[blue]50[/blue]分以内にゲームをクリア。",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "迅速",
+        "description": "[blue]50[/blue]分以内にゲームをクリア。"
+      },
+      {
+        "rarity": "silver",
+        "title": "韋駄天",
+        "description": "[blue]40[/blue]分以内にゲームをクリア。"
+      },
+      {
+        "rarity": "gold",
+        "title": "電光石火",
+        "description": "[blue]30[/blue]分以内にゲームをクリア。"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_speedy.png"
+  },
+  {
+    "id": "TABLET",
+    "name": "真実の石板",
+    "description": "最大HP[blue]1[/blue]の状態でゲームをクリア。",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "真実の石板",
+        "description": "最大HP[blue]1[/blue]の状態でゲームをクリア。"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_tablet.png"
+  },
+  {
+    "id": "TEAM_PLAYER",
+    "name": "チームプレイヤー",
+    "description": "デッキに入っているマルチプレイ専用カードが[blue]3[/blue]枚以上。",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "チームプレイヤー",
+        "description": "デッキに入っているマルチプレイ専用カードが[blue]3[/blue]枚以上。"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_team_player.png"
+  },
+  {
+    "id": "TINY_DECK",
+    "name": "小さなデッキ",
+    "description": "[blue]20[/blue]枚以下のデッキでゲームをクリア。",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "小さなデッキ",
+        "description": "[blue]20[/blue]枚以下のデッキでゲームをクリア。"
+      },
+      {
+        "rarity": "silver",
+        "title": "極薄デッキ",
+        "description": "[blue]10[/blue]枚以下のデッキでゲームをクリア。"
+      },
+      {
+        "rarity": "gold",
+        "title": "限界圧縮",
+        "description": "[blue]5[/blue]枚以下のデッキでゲームをクリア。"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_tiny_deck.png"
+  },
+  {
+    "id": "WHOMPER",
+    "name": "痛恨の一撃",
+    "description": "1枚のアタックで[blue]100[/blue]ダメージ以上を与える。",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "痛恨の一撃",
+        "description": "1枚のアタックで[blue]100[/blue]ダメージ以上を与える。"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_whomper.png"
+  }
+]

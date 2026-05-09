@@ -1,0 +1,74 @@
+{
+  "card_types": {
+    "Attack": "攻击",
+    "Skill": "技能",
+    "Power": "能力",
+    "Status": "状态",
+    "Curse": "诅咒",
+    "Quest": "任务"
+  },
+  "card_rarities": {
+    "Basic": "基础",
+    "Common": "普通",
+    "Uncommon": "罕见",
+    "Rare": "稀有",
+    "Ancient": "先古",
+    "Event": "事件",
+    "Token": "衍生",
+    "Status": "状态",
+    "Curse": "诅咒",
+    "Quest": "任务"
+  },
+  "relic_rarities": {
+    "Starter": "初始遗物",
+    "Common": "普通遗物",
+    "Uncommon": "罕见遗物",
+    "Rare": "稀有遗物",
+    "Ancient": "先古遗物",
+    "Event": "事件遗物",
+    "Shop": "商店遗物"
+  },
+  "potion_rarities": {
+    "Common": "普通药水",
+    "Uncommon": "罕见药水",
+    "Rare": "稀有药水",
+    "Event": "事件药水",
+    "Token": "Token"
+  },
+  "keywords": {
+    "ETERNAL": "永恒",
+    "ETHEREAL": "虚无",
+    "EXHAUST": "消耗",
+    "INNATE": "固有",
+    "RETAIN": "保留",
+    "SLY": "奇巧",
+    "UNPLAYABLE": "不能被打出"
+  },
+  "sections": {
+    "cards": "卡牌总览",
+    "characters": "Characters",
+    "relics": "Relics",
+    "monsters": "Monsters",
+    "potions": "药水研究所",
+    "enchantments": "Enchantments",
+    "encounters": "Encounters",
+    "events": "Events",
+    "powers": "Powers",
+    "timeline": "Timeline",
+    "images": "Images",
+    "reference": "Reference"
+  },
+  "section_descs": {
+    "cards": "",
+    "relics": "",
+    "monsters": "",
+    "potions": ""
+  },
+  "character_names": {
+    "ironclad": "铁甲战士",
+    "silent": "静默猎手",
+    "defect": "故障机器人",
+    "necrobinder": "亡灵契约师",
+    "regent": "储君"
+  }
+}

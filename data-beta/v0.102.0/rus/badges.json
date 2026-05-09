@@ -1,0 +1,482 @@
+[
+  {
+    "id": "BIG_DECK",
+    "name": "Большая колода",
+    "description": "Вы победили с колодой из [blue]40[/blue] и более карт.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Большая колода",
+        "description": "Вы победили с колодой из [blue]40[/blue] и более карт."
+      },
+      {
+        "rarity": "silver",
+        "title": "Огромная колода",
+        "description": "Вы победили с колодой из [blue]60[/blue] и более карт."
+      },
+      {
+        "rarity": "gold",
+        "title": "Чудовищная колода",
+        "description": "Вы победили с колодой из [blue]100[/blue] и более карт."
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_big_deck.png"
+  },
+  {
+    "id": "CCCCOMBO",
+    "name": "К-к-к-Комбо",
+    "description": "Вы разыграли [blue]20[/blue] карт за один ход.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "К-к-к-Комбо",
+        "description": "Вы разыграли [blue]20[/blue] карт за один ход."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_ccccombo.png"
+  },
+  {
+    "id": "CURSES",
+    "name": "Черт побери!",
+    "description": "Вы победили с колодой содержащей [blue]5[/blue] и более [red]проклятий[/red].",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Черт побери!",
+        "description": "Вы победили с колодой содержащей [blue]5[/blue] и более [red]проклятий[/red]."
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_curses.png"
+  },
+  {
+    "id": "DAMAGE_LEADER",
+    "name": "Верзила",
+    "description": "Вы нанесли больше всех урона в совместной вылазке.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Верзила",
+        "description": "Вы нанесли больше всех урона в совместной вылазке."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": true,
+    "image_url": "/static/images/badges/badge_damage_leader.png"
+  },
+  {
+    "id": "DEBUFFER",
+    "name": "Самый токсичный",
+    "description": "Вы наложили больше всего отрицательных эффектов в совместной вылазке.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Самый токсичный",
+        "description": "Вы наложили больше всего отрицательных эффектов в совместной вылазке."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": true,
+    "image_url": "/static/images/badges/badge_debuffer.png"
+  },
+  {
+    "id": "DOUBLE_SNECKO",
+    "name": "Двойной Змекко",
+    "description": "Вы нашли и фальшивый и настоящий глаз Змекко.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Двойной Змекко",
+        "description": "Вы нашли и фальшивый и настоящий глаз Змекко."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_double_snecko.png"
+  },
+  {
+    "id": "ELITE",
+    "name": "Охотник за элитой",
+    "description": "Вы убили [blue]3[/blue] и более элитных врагов.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Охотник за элитой",
+        "description": "Вы убили [blue]3[/blue] и более элитных врагов."
+      },
+      {
+        "rarity": "silver",
+        "title": "Истребитель элит",
+        "description": "Вы убили [blue]6[/blue] и более элитных врагов."
+      },
+      {
+        "rarity": "gold",
+        "title": "Гильотина",
+        "description": "Вы убили [blue]9[/blue] и более элитных врагов."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_elite.png"
+  },
+  {
+    "id": "FAMISHED",
+    "name": "Изможденный",
+    "description": "Вы победили с макс. ОЗ меньше чем половина вашего стартового запаса.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Изможденный",
+        "description": "Вы победили с макс. ОЗ меньше чем половина вашего стартового запаса."
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_famished.png"
+  },
+  {
+    "id": "FAVORITE_CARD",
+    "name": "Любимая карта",
+    "description": "Вы победили, а также вы разыграли одну и ту же карту [blue]100[/blue] и более раз.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Любимая карта",
+        "description": "Вы победили, а также вы разыграли одну и ту же карту [blue]100[/blue] и более раз."
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_favorite_card.png"
+  },
+  {
+    "id": "GLUTTON",
+    "name": "Накормленный",
+    "description": "Вы победили и ваш макс. ОЗ был увеличен на [blue]15[/blue] и более.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Накормленный",
+        "description": "Вы победили и ваш макс. ОЗ был увеличен на [blue]15[/blue] и более."
+      },
+      {
+        "rarity": "silver",
+        "title": "Как не в себя",
+        "description": "Вы победили и ваш макс. ОЗ был увеличен на [blue]30[/blue] и более."
+      },
+      {
+        "rarity": "gold",
+        "title": "Обжора",
+        "description": "Вы победили и ваш макс. ОЗ был увеличен на [blue]50[/blue] и более."
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_glutton.png"
+  },
+  {
+    "id": "HEALER",
+    "name": "Лекарь",
+    "description": "Вы вылечили союзника хотя бы один раз.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Лекарь",
+        "description": "Вы вылечили союзника хотя бы один раз."
+      },
+      {
+        "rarity": "silver",
+        "title": "Целитель",
+        "description": "Вы вылечили союзника два раза."
+      },
+      {
+        "rarity": "gold",
+        "title": "Доктор",
+        "description": "Раз за разом, вы лечили ваших союзников ([blue]3[/blue] и более раза)."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": true,
+    "image_url": "/static/images/badges/badge_healer.png"
+  },
+  {
+    "id": "HIGHLANDER",
+    "name": "Горец",
+    "description": "Вы победили с колодой, где каждая карта встречается не более 1 раза (за исключением стартовых карт).",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Горец",
+        "description": "Вы победили с колодой, где каждая карта встречается не более 1 раза (за исключением стартовых карт)."
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_highlander.png"
+  },
+  {
+    "id": "HONED",
+    "name": "Сфокусированный",
+    "description": "Вы победили с колодой, где есть [blue]5[/blue] копий одной карты (за исключением стартовых карт).",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Сфокусированный",
+        "description": "Вы победили с колодой, где есть [blue]5[/blue] копий одной карты (за исключением стартовых карт)."
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_honed.png"
+  },
+  {
+    "id": "ILIKESHINY",
+    "name": "Сорока",
+    "description": "Вы собрали [blue]25[/blue] и более реликвий.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Сорока",
+        "description": "Вы собрали [blue]25[/blue] и более реликвий."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_ilikeshiny.png"
+  },
+  {
+    "id": "KACHING",
+    "name": "Транжира",
+    "description": "Вы потратили [blue]1,000[/blue] и более [gold]золота[/gold] на товары Торговца.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Транжира",
+        "description": "Вы потратили [blue]1,000[/blue] и более [gold]золота[/gold] на товары Торговца."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_kaching.png"
+  },
+  {
+    "id": "MONEY_MONEY",
+    "name": "Деньги деньги дребеденьги",
+    "description": "Вы победили с [blue]200[/blue] и более [gold]золота[/gold] в запасе.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Деньги деньги дребеденьги",
+        "description": "Вы победили с [blue]200[/blue] и более [gold]золота[/gold] в запасе."
+      },
+      {
+        "rarity": "silver",
+        "title": "Скряга",
+        "description": "Вы победили с [blue]400[/blue] и более [gold]золота[/gold] в запасе."
+      },
+      {
+        "rarity": "gold",
+        "title": "Скупердяй",
+        "description": "Вы победили с [blue]600[/blue] и более [gold]золота[/gold] в запасе."
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_money_money.png"
+  },
+  {
+    "id": "MYSTERY_MACHINE",
+    "name": "Детектив",
+    "description": "Вы посетили [blue]15[/blue] и более ? комнат.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Детектив",
+        "description": "Вы посетили [blue]15[/blue] и более ? комнат."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_mystery_machine.png"
+  },
+  {
+    "id": "PERFECT",
+    "name": "Безупречный",
+    "description": "Вы победили босса не потеряв ОЗ.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Безупречный",
+        "description": "Вы победили босса не потеряв ОЗ."
+      },
+      {
+        "rarity": "silver",
+        "title": "Превосходный",
+        "description": "Вы победили [blue]2[/blue] босса не потеряв ОЗ."
+      },
+      {
+        "rarity": "gold",
+        "title": "Идеальный",
+        "description": "Вы победили [blue]3[/blue] босса не потеряв ОЗ."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_perfect.png"
+  },
+  {
+    "id": "RESTFUL",
+    "name": "Соня",
+    "description": "Вы победили, отдохнув в каждом лагере.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Соня",
+        "description": "Вы победили, отдохнув в каждом лагере."
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_restful.png"
+  },
+  {
+    "id": "RESTLESS",
+    "name": "Бессонница",
+    "description": "Вы победили, ни разу не отдохнув лагере.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Бессонница",
+        "description": "Вы победили, ни разу не отдохнув лагере."
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_restless.png"
+  },
+  {
+    "id": "SPEEDY",
+    "name": "Спринтер",
+    "description": "Вы одолели вылазку за [blue]50[/blue] минут или быстрее.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Спринтер",
+        "description": "Вы одолели вылазку за [blue]50[/blue] минут или быстрее."
+      },
+      {
+        "rarity": "silver",
+        "title": "Гонщик",
+        "description": "Вы одолели вылазку за [blue]40[/blue] минут или быстрее."
+      },
+      {
+        "rarity": "gold",
+        "title": "Скорость света",
+        "description": "Вы одолели вылазку за [blue]30[/blue] минут или быстрее."
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_speedy.png"
+  },
+  {
+    "id": "TABLET",
+    "name": "Скрижаль истины",
+    "description": "Вы победили с [blue]1[/blue] макс. ОЗ.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Скрижаль истины",
+        "description": "Вы победили с [blue]1[/blue] макс. ОЗ."
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_tablet.png"
+  },
+  {
+    "id": "TEAM_PLAYER",
+    "name": "Командный игрок",
+    "description": "В вашей колоде было [blue]3[/blue] и более карт встречающихся только в совместной игре.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Командный игрок",
+        "description": "В вашей колоде было [blue]3[/blue] и более карт встречающихся только в совместной игре."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": true,
+    "image_url": "/static/images/badges/badge_team_player.png"
+  },
+  {
+    "id": "TINY_DECK",
+    "name": "Малая колода",
+    "description": "Вы победили с колодой из [blue]20[/blue] и менее карт.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Малая колода",
+        "description": "Вы победили с колодой из [blue]20[/blue] и менее карт."
+      },
+      {
+        "rarity": "silver",
+        "title": "Мелкая колода",
+        "description": "Вы победили с колодой из [blue]10[/blue] и менее карт."
+      },
+      {
+        "rarity": "gold",
+        "title": "Малюсенькая колода",
+        "description": "Вы победили с колодой из [blue]5[/blue] и менее карт."
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_tiny_deck.png"
+  },
+  {
+    "id": "WHOMPER",
+    "name": "Крушитель",
+    "description": "Вы нанесли [blue]100[/blue] и более урона за одну атаку.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Крушитель",
+        "description": "Вы нанесли [blue]100[/blue] и более урона за одну атаку."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_whomper.png"
+  }
+]

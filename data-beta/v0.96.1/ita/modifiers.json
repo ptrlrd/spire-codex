@@ -1,0 +1,82 @@
+[
+  {
+    "id": "ALL_STAR",
+    "name": "Scala di grigi",
+    "description": "Inizi con [blue]5[/blue] [gold]carte incolori[/gold]."
+  },
+  {
+    "id": "BIG_GAME_HUNTER",
+    "name": "Caccia grossa",
+    "description": "I nemici Élite invadono la Guglia e ti fanno ottenere ricompense migliori."
+  },
+  {
+    "id": "BINARY",
+    "name": "Codice binario",
+    "description": "Le [gold]ricompense delle carte[/gold] ora contengono solo [blue]2[/blue] carte."
+  },
+  {
+    "id": "CURSED_RUN",
+    "name": "Partita maledetta",
+    "description": "All'inizio di ogni Atto, aggiungi una [red]Maledizione[/red] casuale al tuo mazzo."
+  },
+  {
+    "id": "DEADLY_EVENTS",
+    "name": "Eventi mortali",
+    "description": "Le stanze sconosciute ora contengono i nemici Élite, ma è più probabile che contengano Stanze del tesoro."
+  },
+  {
+    "id": "DRAFT",
+    "name": "Selezione",
+    "description": "Scegli [blue]10[/blue] [gold]ricompense delle carte[/gold] per sostituire il tuo mazzo iniziale."
+  },
+  {
+    "id": "FLIGHT",
+    "name": "Volo",
+    "description": "Puoi ignorare i percorsi quando scegli la stanza successiva da esplorare."
+  },
+  {
+    "id": "HOARDER",
+    "name": "Accumulo",
+    "description": "Ogni volta che aggiungi una carta al tuo mazzo, aggiungi [blue]2[/blue] copie aggiuntive. Non puoi più rimuovere carte dal tuo mazzo presso il mercante."
+  },
+  {
+    "id": "INSANITY",
+    "name": "Pazzia",
+    "description": "Inizia con un mazzo casuale di [blue]30[/blue] carte."
+  },
+  {
+    "id": "MIDAS",
+    "name": "Re Mida",
+    "description": "I nemici ti fanno ottenere il [blue]200%[/blue] d'oro in più, ma non puoi più forgiare nei [gold]luoghi di riposo[/gold]."
+  },
+  {
+    "id": "MURDEROUS",
+    "name": "Omicida",
+    "description": "Inizia ogni combattimento con [blue]3[/blue] di [gold]Forza[/gold]. Tutti i nemici iniziano a combattere con [blue]3[/blue] di [gold]Forza[/gold]."
+  },
+  {
+    "id": "NIGHT_TERRORS",
+    "name": "Terrori notturni",
+    "description": "Riposarti presso i [gold]luoghi di riposo[/gold] guarisce tutti i tuoi PV, ma costa [red]5[/red] PV massimi."
+  },
+  {
+    "id": "SEALED_DECK",
+    "name": "Mazzo sigillato",
+    "description": "Scegli [blue]10[/blue] carte tra [blue]30[/blue] disponibili con cui sostituire il tuo mazzo iniziale."
+  },
+  {
+    "id": "SPECIALIZED",
+    "name": "Specializzazione",
+    "description": "Inizi con [blue]5[/blue] copie di una singola carta."
+  },
+  {
+    "id": "TERMINAL",
+    "name": "Terminal",
+    "description": "Ogni volta che entri in una nuova stanza, perdi [red]1[/red] PV massimo. Inizi ogni combattimento con [blue]5[/blue] di [gold]Placcatura[/gold]."
+  },
+  {
+    "id": "VINTAGE",
+    "name": "Vintage",
+    "description": "I nemici normali ti fanno ottenere reliquie invece di carte."
+  }
+]

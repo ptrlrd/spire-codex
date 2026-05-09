@@ -38,3 +38,7 @@ history-of-runs/
 #Analysis Docs
 Spire_Codex_Growth_Strategy*
 data/card_builder.db
+
+# Card composite renderer spike — local only, do not commit
+tools/card-renderer/
+backend/static/images/cards/composite/

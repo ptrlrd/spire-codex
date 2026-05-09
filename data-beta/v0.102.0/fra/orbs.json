@@ -4,34 +4,34 @@
     "name": "Orbe ténébreux",
     "description": "[gold]Passif :[/gold] À la fin du tour, les dégâts de cet Orbe augmentent de [blue]6[/blue].\n[gold]Activation :[/gold] Infligez [blue]6[/blue] dégâts à l'ennemi ayant le moins de PV.",
     "description_raw": "[gold]Passif :[/gold] À la fin du tour, les dégâts de cet Orbe augmentent de [blue]{Passive}[/blue].\n[gold]Activation :[/gold] Infligez [blue]{Evoke}[/blue] dégâts à l'ennemi ayant le moins de PV.",
-    "image_url": "/static/images/orbs/dark_orb.png"
+    "image_url": "/static/images/orbs/dark_orb.webp"
   },
   {
     "id": "FROST_ORB",
     "name": "Orbe glaciaire",
     "description": "[gold]Passif :[/gold] À la fin du tour, gagnez [blue]2[/blue] d'[gold]Armure[/gold].\n[gold]Activation :[/gold] Gagnez [blue]5[/blue] d'[gold]Armure[/gold].",
     "description_raw": "[gold]Passif :[/gold] À la fin du tour, gagnez [blue]{Passive}[/blue] d'[gold]Armure[/gold].\n[gold]Activation :[/gold] Gagnez [blue]{Evoke}[/blue] d'[gold]Armure[/gold].",
-    "image_url": "/static/images/orbs/frost_orb.png"
+    "image_url": "/static/images/orbs/frost_orb.webp"
   },
   {
     "id": "GLASS_ORB",
     "name": "Orbe vitreux",
     "description": "[gold]Passif :[/gold] À la fin du tour, infligez [blue]4[/blue] dégâts à TOUS les ennemis et réduisez la valeur de cet orbe de [blue]1[/blue].\n[gold]Activation :[/gold] Infligez [blue]8[/blue] dégâts à TOUS les ennemis.",
     "description_raw": "[gold]Passif :[/gold] À la fin du tour, infligez [blue]{Passive}[/blue] dégâts à TOUS les ennemis et réduisez la valeur de cet orbe de [blue]1[/blue].\n[gold]Activation :[/gold] Infligez [blue]{Evoke}[/blue] dégâts à TOUS les ennemis.",
-    "image_url": "/static/images/orbs/glass_orb.png"
+    "image_url": "/static/images/orbs/glass_orb.webp"
   },
   {
     "id": "LIGHTNING_ORB",
     "name": "Orbe kéraunique",
     "description": "[gold]Passif :[/gold] À la fin du tour, infligez [blue]3[/blue] dégâts à un ennemi aléatoire.\n[gold]Activation :[/gold] Infligez [blue]8[/blue] dégâts à un ennemi aléatoire.",
     "description_raw": "[gold]Passif :[/gold] À la fin du tour, infligez [blue]{Passive}[/blue] dégâts à un ennemi aléatoire.\n[gold]Activation :[/gold] Infligez [blue]{Evoke}[/blue] dégâts à un ennemi aléatoire.",
-    "image_url": "/static/images/orbs/lightning_orb.png"
+    "image_url": "/static/images/orbs/lightning_orb.webp"
   },
   {
     "id": "PLASMA_ORB",
     "name": "Orbe Plasmique",
     "description": "[gold]Passif :[/gold] Au début de votre tour,\ngagnez [energy:1].\n[gold]Activation :[/gold] Gagnez [energy:2].\nN'est pas affecté par la [gold]Focalisation[/gold].",
     "description_raw": "[gold]Passif :[/gold] Au début de votre tour,\ngagnez {energyPrefix:energyIcons(1)}.\n[gold]Activation :[/gold] Gagnez {energyPrefix:energyIcons(2)}.\nN'est pas affecté par la [gold]Focalisation[/gold].",
-    "image_url": "/static/images/orbs/plasma_orb.png"
+    "image_url": "/static/images/orbs/plasma_orb.webp"
   }
 ]

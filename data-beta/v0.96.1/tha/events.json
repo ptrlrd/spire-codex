@@ -1,0 +1,2207 @@
+[
+  {
+    "id": "ABYSSAL_BATHS",
+    "name": "AbyssalBaths",
+    "type": "Event",
+    "act": "Underdocks",
+    "description": null,
+    "preconditions": null,
+    "options": [
+      {
+        "id": "IMMERSE",
+        "title": "IMMERSE",
+        "description": "ได้รับ [green]2[/green] HP สูงสุด ได้รับความเสียหาย [red]3[/red]"
+      },
+      {
+        "id": "ABSTAIN",
+        "title": "ABSTAIN",
+        "description": "ฟื้นฟู [green]10[/green] HP"
+      }
+    ],
+    "pages": [
+      {
+        "id": "ALL",
+        "description": null,
+        "options": [
+          {
+            "id": "LINGER",
+            "title": "LINGER",
+            "description": "ได้รับ [green]2[/green] HP สูงสุด ได้รับความเสียหาย [red]3[/red]"
+          }
+        ]
+      },
+      {
+        "id": "INITIAL",
+        "description": null,
+        "options": [
+          {
+            "id": "IMMERSE",
+            "title": "IMMERSE",
+            "description": "ได้รับ [green]2[/green] HP สูงสุด ได้รับความเสียหาย [red]3[/red]"
+          },
+          {
+            "id": "ABSTAIN",
+            "title": "ABSTAIN",
+            "description": "ฟื้นฟู [green]10[/green] HP"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "AMALGAMATOR",
+    "name": "Amalgamator",
+    "type": "Event",
+    "act": "Act 2 - Hive",
+    "description": null,
+    "preconditions": [
+      "Requires 2+ Strikes in deck",
+      "Requires 2+ Defends in deck"
+    ],
+    "options": [
+      {
+        "id": "COMBINE_STRIKES",
+        "title": "COMBINE_STRIKES",
+        "description": "กำจัด[gold]จู่โจม[/gold] [blue]2[/blue] ใบ เพิ่ม[gold]UltimateStrike[/gold]เข้า[gold]กองการ์ด[/gold]"
+      },
+      {
+        "id": "COMBINE_DEFENDS",
+        "title": "COMBINE_DEFENDS",
+        "description": "กำจัด[gold]ป้องกัน[/gold] [blue]2[/blue] ใบ เพิ่ม[gold]UltimateDefend[/gold]เข้า[gold]กองการ์ด[/gold]"
+      }
+    ],
+    "pages": null
+  },
+  {
+    "id": "AROMA_OF_CHAOS",
+    "name": "AromaOfChaos",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": null,
+    "preconditions": null,
+    "options": [
+      {
+        "id": "LET_GO",
+        "title": "LET_GO",
+        "description": "[gold]แปรสภาพ[/gold]การ์ด 1 ใบใน[gold]กองการ์ด[/gold]"
+      }
+    ],
+    "pages": null
+  },
+  {
+    "id": "BATTLEWORN_DUMMY",
+    "name": "หุ่นฝึกซ้อมโชกโชน",
+    "type": "Event",
+    "act": "Act 3 - Glory",
+    "description": "พอคุณเข้าใกล้ มันก็เริ่มสั่นและประกายไฟก็สว่างวาบขึ้นทันที!\n\n“[jitter]ตืดดด![/jitter] ได้เวลาซ้อม!!! คุณมีเวลา [blue]3 เทิร์น[/blue]ในการเอาชนะฉัน!\nเลือกการตั้งค่า ไม่งั้นเจอ[red]ความอัปยศถึงตาย[/red]\nมีตัวเลือกดังต่อไปนี้:”\n\nหลังจบข้อความน่ากลัวแล้ว หุ่นก็บรรจงอ่านคำชี้แจงให้ฟังอย่างละเอียด\n\nคุณจะเลือกอะไร?",
+    "preconditions": null,
+    "options": [
+      {
+        "id": "SETTING_1",
+        "title": "การตั้งค่า 1",
+        "description": "ต่อสู้กับหุ่นฝึกซ้อม [blue]75[/blue] HP จัดหา[gold]ขวดยา[/gold] [blue]1[/blue] ขวดแบบสุ่ม"
+      },
+      {
+        "id": "SETTING_2",
+        "title": "การตั้งค่า 2",
+        "description": "ต่อสู้กับหุ่นฝึกซ้อม [blue]150[/blue] HP พัฒนาการ์ด [blue]2[/blue] ใบแบบสุ่ม"
+      },
+      {
+        "id": "SETTING_3",
+        "title": "การตั้งค่า 3",
+        "description": "ต่อสู้กับหุ่นฝึกซ้อม [blue]300[/blue] HP ได้รับ[gold]เครื่องราง[/gold] 1 ชิ้นแบบสุ่ม"
+      }
+    ],
+    "pages": [
+      {
+        "id": "DEFEAT",
+        "description": "“[jitter][red]อ่อนแอ!![/red][/jitter]\nรับรู้ความอัปยศแล้ว!”\n\nหุ่นเงียบไปสักพักหนึ่ง จากนั้น—\n\n“ครั้งหน้าก็เลือกระดับง่ายกว่านี้หน่อยนะ สวัสดี”"
+      },
+      {
+        "id": "INITIAL",
+        "description": "พอคุณเข้าใกล้ มันก็เริ่มสั่นและประกายไฟก็สว่างวาบขึ้นทันที!\n\n“[jitter]ตืดดด![/jitter] ได้เวลาซ้อม!!! คุณมีเวลา [blue]3 เทิร์น[/blue]ในการเอาชนะฉัน!\nเลือกการตั้งค่า ไม่งั้นเจอ[red]ความอัปยศถึงตาย[/red]\nมีตัวเลือกดังต่อไปนี้:”\n\nหลังจบข้อความน่ากลัวแล้ว หุ่นก็บรรจงอ่านคำชี้แจงให้ฟังอย่างละเอียด\n\nคุณจะเลือกอะไร?",
+        "options": [
+          {
+            "id": "SETTING_1",
+            "title": "การตั้งค่า 1",
+            "description": "ต่อสู้กับหุ่นฝึกซ้อม [blue]75[/blue] HP จัดหา[gold]ขวดยา[/gold] [blue]1[/blue] ขวดแบบสุ่ม"
+          },
+          {
+            "id": "SETTING_2",
+            "title": "การตั้งค่า 2",
+            "description": "ต่อสู้กับหุ่นฝึกซ้อม [blue]150[/blue] HP พัฒนาการ์ด [blue]2[/blue] ใบแบบสุ่ม"
+          },
+          {
+            "id": "SETTING_3",
+            "title": "การตั้งค่า 3",
+            "description": "ต่อสู้กับหุ่นฝึกซ้อม [blue]300[/blue] HP ได้รับ[gold]เครื่องราง[/gold] 1 ชิ้นแบบสุ่ม"
+          }
+        ]
+      },
+      {
+        "id": "VICTORY",
+        "description": "“[jitter]ผ่านการทดสอบ![/jitter]\nคุณเพียบพร้อมที่จะปกป้อง[gold]โรงงาน[/gold]แห่งนี้ให้พ้นจากผู้รุกรานแล้ว!! อย่าลืมดื่มน้ำหลังซ้อมเสร็จ!”"
+      }
+    ]
+  },
+  {
+    "id": "BRAIN_LEECH",
+    "name": "ปลิงสมอง",
+    "type": "Shared",
+    "act": null,
+    "description": "[jitter]*จี๊ด*[/jitter]\n\nคุณรู้สึกถึงความเจ็บแปลบบริเวณศีรษะ และมีความคิดพุ่งเข้าหัวคุณ\n\n[purple][sine]“แบ่งปันความรู้กันไหม???”[/sine][/purple]\n\nคุณไม่แน่ใจว่าควรทำอย่างไร...",
+    "preconditions": [
+      "Act 1–2 only"
+    ],
+    "options": [
+      {
+        "id": "SHARE_KNOWLEDGE",
+        "title": "แบ่งปันความรู้",
+        "description": "เลือกการ์ด [blue]1[/blue] จาก [blue]5[/blue] ใบที่ถูกสุ่มมาเพื่อเพิ่มเข้า[gold]กองการ์ด[/gold]"
+      },
+      {
+        "id": "RIP",
+        "title": "ดึงปลิงออก",
+        "description": "เสีย [red]5[/red] HP ได้รับรางวัลการ์ดไร้สี 1 ใบ"
+      }
+    ],
+    "pages": [
+      {
+        "id": "INITIAL",
+        "description": "[jitter]*จี๊ด*[/jitter]\n\nคุณรู้สึกถึงความเจ็บแปลบบริเวณศีรษะ และมีความคิดพุ่งเข้าหัวคุณ\n\n[purple][sine]“แบ่งปันความรู้กันไหม???”[/sine][/purple]\n\nคุณไม่แน่ใจว่าควรทำอย่างไร...",
+        "options": [
+          {
+            "id": "SHARE_KNOWLEDGE",
+            "title": "แบ่งปันความรู้",
+            "description": "เลือกการ์ด [blue]1[/blue] จาก [blue]5[/blue] ใบที่ถูกสุ่มมาเพื่อเพิ่มเข้า[gold]กองการ์ด[/gold]"
+          },
+          {
+            "id": "RIP",
+            "title": "ดึงปลิงออก",
+            "description": "เสีย [red]5[/red] HP ได้รับรางวัลการ์ดไร้สี 1 ใบ"
+          }
+        ]
+      },
+      {
+        "id": "RIP",
+        "description": "คุณ[jitter]ดึงปลิงออกจากศีรษะ[/jitter]อย่างรุนแรงและขว้างมันออกไปไกลโพ้น!\n\nมีเสียงเกิดขึ้นในหัวของคุณ:\n[purple][sine]“ม่ายยยยยยยยยยยยยยยย....”"
+      },
+      {
+        "id": "SHARE_KNOWLEDGE",
+        "description": "[purple][sine]“ความคิดช่างสลับซับซ้อน เปี่ยมด้วยความรู้และความโอ้อวดอะไรเช่นนี้!\nเป็นอาหารอุดมสมบูรณ์สำหรับการบำรุงสมองอย่างแท้จริง!”[/sine][/purple]\n\nสิ่งมีชีวิตตนนั้นพึงพอใจ หลุดออกมา และคลานจากไป\nคุณ[blue]ตกตะลึง[/blue]"
+      }
+    ]
+  },
+  {
+    "id": "BUGSLAYER",
+    "name": "ผู้สังหารแมลง",
+    "type": "Event",
+    "act": "Act 2 - Hive",
+    "description": "ขณะที่คุณจัดการกับ[jitter][red]ฝูงแมลงก้าวร้าว[/red][/jitter] ทันใดนั้นคุณก็สังเกตเห็น[gold]นักรบแข็งแกร่งทรงพลัง[/gold]ซึ่งต่อสู้ร่วมกับคุณมาโดยตลอด!\n\nฝูงแมลงสัมผัสได้ถึงความพ่ายแพ้ จึงกระจายตัวไป คุณหันไปหาสหายร่วมรบ\n“เจ้าอยากได้คำแนะนำในการกำจัดแมลงชั้นต่ำพวกนี้หรือไม่?”\n\nช่างสุภาพอะไรเช่นนี้ คุณพยักหน้าตอบรับข้อเสนอของเขา",
+    "preconditions": null,
+    "options": [
+      {
+        "id": "EXTERMINATION",
+        "title": "เรียนวิชาล้างผลาญ",
+        "description": "เพิ่ม[gold]Exterminate[/gold]เข้า[gold]กองการ์ด[/gold]"
+      },
+      {
+        "id": "SQUASH",
+        "title": "เรียนวิชาบดขยี้",
+        "description": "เพิ่ม[gold]Squash[/gold]เข้า[gold]กองการ์ด[/gold]"
+      }
+    ],
+    "pages": [
+      {
+        "id": "DONE",
+        "description": "ร่างนั้นพยักหน้าให้คุณอย่างเงียบๆ แล้วจากไป"
+      },
+      {
+        "id": "EXTERMINATION",
+        "description": "“เจ้าอยากเรียน[gold]วิชาล้างผลาญ[/gold]สินะ ดีมาก...”\n\nเขาเงียบไปครู่หนึ่ง พิจารณาว่าจะสอนคุณอย่างไรจึงจะดีที่สุด...\n\n[jitter]“จงดูให้ดี! นี่คือวิชาของข้า!!”[/jitter]\nเขาโอ้อวดพร้อมยกกระป๋อง[green]ยาฆ่าแมลง[/green]ขึ้นมา"
+      },
+      {
+        "id": "INITIAL",
+        "description": "ขณะที่คุณจัดการกับ[jitter][red]ฝูงแมลงก้าวร้าว[/red][/jitter] ทันใดนั้นคุณก็สังเกตเห็น[gold]นักรบแข็งแกร่งทรงพลัง[/gold]ซึ่งต่อสู้ร่วมกับคุณมาโดยตลอด!\n\nฝูงแมลงสัมผัสได้ถึงความพ่ายแพ้ จึงกระจายตัวไป คุณหันไปหาสหายร่วมรบ\n“เจ้าอยากได้คำแนะนำในการกำจัดแมลงชั้นต่ำพวกนี้หรือไม่?”\n\nช่างสุภาพอะไรเช่นนี้ คุณพยักหน้าตอบรับข้อเสนอของเขา",
+        "options": [
+          {
+            "id": "EXTERMINATION",
+            "title": "เรียนวิชาล้างผลาญ",
+            "description": "เพิ่ม[gold]Exterminate[/gold]เข้า[gold]กองการ์ด[/gold]"
+          },
+          {
+            "id": "SQUASH",
+            "title": "เรียนวิชาบดขยี้",
+            "description": "เพิ่ม[gold]Squash[/gold]เข้า[gold]กองการ์ด[/gold]"
+          }
+        ]
+      },
+      {
+        "id": "SQUASH",
+        "description": "“เจ้าอยากเรียน[gold]วิชาบดขยี้[/gold]สินะ ดีมาก...”\n\nเขาเงียบไปครู่หนึ่ง พิจารณาว่าจะสอนคุณอย่างไรจึงจะดีที่สุด...\n\n[jitter]“จงดูให้ดี! นี่คือวิชาของข้า!!”[/jitter]\nเขาโอ้อวดพร้อมเหยียบลงไปที่แมลงยักษ์"
+      }
+    ]
+  },
+  {
+    "id": "BYRDONIS_NEST",
+    "name": "ByrdonisNest",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": null,
+    "preconditions": [
+      "Cannot have an event pet"
+    ],
+    "options": [
+      {
+        "id": "EAT",
+        "title": "กินไข่",
+        "description": "ได้รับ [blue]7[/blue] HP สูงสุด"
+      },
+      {
+        "id": "TAKE",
+        "title": "เก็บไข่",
+        "description": "เพิ่ม[gold]ByrdonisEgg[/gold]เข้า[gold]กองการ์ด[/gold]"
+      }
+    ],
+    "pages": [
+      {
+        "id": "EAT",
+        "description": "คุณตอกไข่และกินเข้าไป\nอาหารเช้าแสนอร่อย"
+      },
+      {
+        "id": "INITIAL",
+        "description": null,
+        "options": [
+          {
+            "id": "EAT",
+            "title": "กินไข่",
+            "description": "ได้รับ [blue]7[/blue] HP สูงสุด"
+          },
+          {
+            "id": "TAKE",
+            "title": "เก็บไข่",
+            "description": "เพิ่ม[gold]ByrdonisEgg[/gold]เข้า[gold]กองการ์ด[/gold]"
+          }
+        ]
+      },
+      {
+        "id": "TAKE",
+        "description": "คุณค่อยๆ ช้อนไข่ขึ้นมาแล้วเก็บเข้าตัว โดยคิดว่ามันอาจ[green]ฟัก[/green]ออกมาเป็นอะไรบางอย่างที่มีประโยชน์ในอนาคต"
+      }
+    ]
+  },
+  {
+    "id": "COLORFUL_PHILOSOPHERS",
+    "name": "เหล่าปราชญ์มากสีสัน",
+    "type": "Event",
+    "act": "Act 2 - Hive",
+    "description": "เบื้องหน้าของคุณเป็นทัศนียภาพแสนอลังการ\nคุณเห็นรูปปั้น 3 สีไม่ซ้ำกันตั้งอยู่บนแท่น กำลัง[jitter][red]ถกเถียงกันอย่างดุเดือด[/red][/jitter]เกี่ยวกับนัยยะเชิงปรัชญาของสีสัน\n\nพอฟังดู คุณก็พอจับประเด็นได้ว่า คำถามที่สำคัญที่สุดคือ สีไหน[gold]ดีที่สุด[/gold]\n\nคุณจึงแทรกความคิดเห็นของตัวเองเข้าไป",
+    "preconditions": null,
+    "options": [
+      {
+        "id": "DEFECT",
+        "title": "ฟ้า",
+        "description": "ได้รับการ์ดนักเวทแปรพักตร์ [blue]3[/blue] ใบ"
+      },
+      {
+        "id": "IRONCLAD",
+        "title": "แดง",
+        "description": "ได้รับการ์ดนักรบเกราะเหล็ก [blue]3[/blue] ใบ"
+      },
+      {
+        "id": "NECROBINDER",
+        "title": "ชมพู",
+        "description": "ได้รับการ์ดของNecrobinder [blue]3[/blue] ใบ"
+      },
+      {
+        "id": "REGENT",
+        "title": "ส้ม",
+        "description": "ได้รับการ์ดของRegent [blue]3[/blue] ใบ"
+      },
+      {
+        "id": "SILENT",
+        "title": "เขียว",
+        "description": "ได้รับการ์ดนักฆ่าแห่งความเงียบ [blue]3[/blue] ใบ"
+      }
+    ],
+    "pages": [
+      {
+        "id": "DONE",
+        "description": "ดูเหมือนว่าความคิดเห็นของคุณจะไม่ได้รับการยอมรับ รูปปั้นเหล่านั้นกลับมาถกเถียงกันอย่างไม่รู้จบอีกครั้ง"
+      },
+      {
+        "id": "INITIAL",
+        "description": "เบื้องหน้าของคุณเป็นทัศนียภาพแสนอลังการ\nคุณเห็นรูปปั้น 3 สีไม่ซ้ำกันตั้งอยู่บนแท่น กำลัง[jitter][red]ถกเถียงกันอย่างดุเดือด[/red][/jitter]เกี่ยวกับนัยยะเชิงปรัชญาของสีสัน\n\nพอฟังดู คุณก็พอจับประเด็นได้ว่า คำถามที่สำคัญที่สุดคือ สีไหน[gold]ดีที่สุด[/gold]\n\nคุณจึงแทรกความคิดเห็นของตัวเองเข้าไป",
+        "options": [
+          {
+            "id": "DEFECT",
+            "title": "ฟ้า",
+            "description": "ได้รับการ์ดนักเวทแปรพักตร์ [blue]3[/blue] ใบ"
+          },
+          {
+            "id": "IRONCLAD",
+            "title": "แดง",
+            "description": "ได้รับการ์ดนักรบเกราะเหล็ก [blue]3[/blue] ใบ"
+          },
+          {
+            "id": "NECROBINDER",
+            "title": "ชมพู",
+            "description": "ได้รับการ์ดของNecrobinder [blue]3[/blue] ใบ"
+          },
+          {
+            "id": "REGENT",
+            "title": "ส้ม",
+            "description": "ได้รับการ์ดของRegent [blue]3[/blue] ใบ"
+          },
+          {
+            "id": "SILENT",
+            "title": "เขียว",
+            "description": "ได้รับการ์ดนักฆ่าแห่งความเงียบ [blue]3[/blue] ใบ"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "COLOSSAL_FLOWER",
+    "name": "ColossalFlower",
+    "type": "Event",
+    "act": "Act 2 - Hive",
+    "description": "มี[green]ดอกไม้มหึมา[/green]เติบโตอยู่บน[red][jitter]กองภูเขากระดูก[/jitter][/red]\n\nในขณะที่[sine]กลีบดอกเปลี่ยนสีได้[/sine]กำลังขยับเป็นช่วงๆ คุณก็สัมผัสได้ว่ามี[aqua]กองเกสรทรงพลัง[/aqua]อยู่ใจกลาง แต่กลีบดอกที่ขยับขึ้นลงอยู่นั้น[red]แหลมคมมาก[/red]และคาดเดาไม่ได้\n\nคุณสามารถเก็บ[gold]น้ำหวานทองคำ[/gold]ได้ แต่รางวัล ณ ใจกลางก็เย้ายวนใจเหลือเกิน...",
+    "preconditions": [
+      "Requires 19+ HP"
+    ],
+    "options": [
+      {
+        "id": "EXTRACT_CURRENT_PRIZE_1",
+        "title": "สกัดน้ำหวาน",
+        "description": "ได้รับ [blue]35[/blue] [gold]ทอง[/gold]"
+      },
+      {
+        "id": "REACH_DEEPER_1",
+        "title": "ลึกเข้าไปอีก",
+        "description": "เข้าไปลึกขึ้นอีก เสีย [red]5[/red] HP"
+      }
+    ],
+    "pages": [
+      {
+        "id": "EXTRACT_CURRENT_PRIZE",
+        "description": "คุณเก็บ[gold]น้ำหวาน[/gold]จากเนื้อของดอกไม้อย่างระมัดระวัง\nกลีบดอกไม้เรืองแสงด้วยความโกรธ"
+      },
+      {
+        "id": "EXTRACT_INSTEAD",
+        "description": "ร่างกายทั้งตัวของคุณชาและยับเยินไปหมด เพราะ[purple]พิษ[/purple], [red]หนาม[/red], และ[green]ใบ[/green]\nพอได้แล้ว\n\nคุณเก็บ[gold]ก้อนน้ำหวานคุณภาพดี[/gold]เข้าตัวและถอยไป"
+      },
+      {
+        "id": "INITIAL",
+        "description": "มี[green]ดอกไม้มหึมา[/green]เติบโตอยู่บน[red][jitter]กองภูเขากระดูก[/jitter][/red]\n\nในขณะที่[sine]กลีบดอกเปลี่ยนสีได้[/sine]กำลังขยับเป็นช่วงๆ คุณก็สัมผัสได้ว่ามี[aqua]กองเกสรทรงพลัง[/aqua]อยู่ใจกลาง แต่กลีบดอกที่ขยับขึ้นลงอยู่นั้น[red]แหลมคมมาก[/red]และคาดเดาไม่ได้\n\nคุณสามารถเก็บ[gold]น้ำหวานทองคำ[/gold]ได้ แต่รางวัล ณ ใจกลางก็เย้ายวนใจเหลือเกิน...",
+        "options": [
+          {
+            "id": "EXTRACT_CURRENT_PRIZE_1",
+            "title": "สกัดน้ำหวาน",
+            "description": "ได้รับ [blue]35[/blue] [gold]ทอง[/gold]"
+          },
+          {
+            "id": "REACH_DEEPER_1",
+            "title": "ลึกเข้าไปอีก",
+            "description": "เข้าไปลึกขึ้นอีก เสีย [red]5[/red] HP"
+          }
+        ]
+      },
+      {
+        "id": "REACH_DEEPER_1",
+        "description": null,
+        "options": [
+          {
+            "id": "EXTRACT_CURRENT_PRIZE_2",
+            "title": "สกัดน้ำหวาน",
+            "description": "ได้รับ [blue]75[/blue] [gold]ทอง[/gold]"
+          },
+          {
+            "id": "REACH_DEEPER_2",
+            "title": "ลึกเข้าไปอีก",
+            "description": "เข้าไปลึกกว่าเดิม เสีย [red]6[/red] HP"
+          }
+        ]
+      },
+      {
+        "id": "REACH_DEEPER_2",
+        "description": null,
+        "options": [
+          {
+            "id": "EXTRACT_INSTEAD",
+            "title": "สกัดน้ำหวาน",
+            "description": "ได้รับ [blue]135[/blue] [gold]ทอง[/gold]"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "CRYSTAL_SPHERE",
+    "name": "CrystalSphere",
+    "type": "Shared",
+    "act": null,
+    "description": null,
+    "preconditions": [
+      "Requires 100+ gold",
+      "Act 2+"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "DARV",
+    "name": "Darv",
+    "type": "Ancient",
+    "act": null,
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null,
+    "image_url": "/static/images/misc/ancients/darv.webp",
+    "relics": [
+      "DUSTY_TOME",
+      "ASTROLABE",
+      "BLACK_STAR",
+      "CALLING_BELL",
+      "EMPTY_CAGE",
+      "PANDORAS_BOX",
+      "RUNIC_PYRAMID",
+      "SNECKO_EYE",
+      "ECTOPLASM",
+      "SOZU",
+      "PHILOSOPHERS_STONE",
+      "VELVET_CHOKER"
+    ]
+  },
+  {
+    "id": "DENSE_VEGETATION",
+    "name": "DenseVegetation",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": null,
+    "preconditions": null,
+    "options": [
+      {
+        "id": "TRUDGE_ON",
+        "title": "TRUDGE_ON",
+        "description": "กำจัดการ์ด 1 ใบจาก[gold]กองการ์ด[/gold] เสีย [red]11[/red] HP"
+      },
+      {
+        "id": "REST",
+        "title": "พักผ่อน",
+        "description": "ฟื้นฟู [green]30% Max[/green] HP และต่อสู้[red]ศัตรู[/red]กลุ่มหนึ่ง"
+      }
+    ],
+    "pages": [
+      {
+        "id": "INITIAL",
+        "description": null,
+        "options": [
+          {
+            "id": "TRUDGE_ON",
+            "title": "TRUDGE_ON",
+            "description": "กำจัดการ์ด 1 ใบจาก[gold]กองการ์ด[/gold] เสีย [red]11[/red] HP"
+          },
+          {
+            "id": "REST",
+            "title": "พักผ่อน",
+            "description": "ฟื้นฟู [green]30% Max[/green] HP และต่อสู้[red]ศัตรู[/red]กลุ่มหนึ่ง"
+          }
+        ]
+      },
+      {
+        "id": "REST",
+        "description": null,
+        "options": [
+          {
+            "id": "FIGHT",
+            "title": "ต่อสู้!",
+            "description": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "DOLL_ROOM",
+    "name": "ห้องตุ๊กตา",
+    "type": "Shared",
+    "act": null,
+    "description": null,
+    "preconditions": [
+      "Act 2 only"
+    ],
+    "options": [
+      {
+        "id": "RANDOM",
+        "title": "เลือกแบบสุ่ม",
+        "description": "ได้รับ[gold]เครื่องรางตุ๊กตา[/gold] 1 ชิ้นแบบสุ่ม"
+      },
+      {
+        "id": "TAKE_SOME_TIME",
+        "title": "ขอเวลาสักพัก",
+        "description": "เสีย [red]5[/red] HP เลือก[gold]เครื่องรางตุ๊กตา[/gold] [blue]1[/blue] จาก [blue]2[/blue] ชิ้น"
+      },
+      {
+        "id": "EXAMINE",
+        "title": "ตรวจสอบแต่ละชิ้นแล้วเลือกให้ดีที่สุด",
+        "description": "เสีย [red]15[/red] HP เลือก[gold]เครื่องรางตุ๊กตา[/gold] [blue]1[/blue] จาก [blue]3[/blue] ชิ้น"
+      }
+    ],
+    "pages": [
+      {
+        "id": "INITIAL",
+        "description": null,
+        "options": [
+          {
+            "id": "RANDOM",
+            "title": "เลือกแบบสุ่ม",
+            "description": "ได้รับ[gold]เครื่องรางตุ๊กตา[/gold] 1 ชิ้นแบบสุ่ม"
+          },
+          {
+            "id": "TAKE_SOME_TIME",
+            "title": "ขอเวลาสักพัก",
+            "description": "เสีย [red]5[/red] HP เลือก[gold]เครื่องรางตุ๊กตา[/gold] [blue]1[/blue] จาก [blue]2[/blue] ชิ้น"
+          },
+          {
+            "id": "EXAMINE",
+            "title": "ตรวจสอบแต่ละชิ้นแล้วเลือกให้ดีที่สุด",
+            "description": "เสีย [red]15[/red] HP เลือก[gold]เครื่องรางตุ๊กตา[/gold] [blue]1[/blue] จาก [blue]3[/blue] ชิ้น"
+          }
+        ]
+      },
+      {
+        "id": "TAKE",
+        "description": null,
+        "options": [
+          {
+            "id": "TAKE",
+            "title": "TAKE",
+            "description": "ได้รับ[gold]a random Relic[/gold]"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "DOORS_OF_LIGHT_AND_DARK",
+    "name": "ประตูแห่งแสงและความมืด",
+    "type": "Event",
+    "act": "Underdocks",
+    "description": null,
+    "preconditions": null,
+    "options": [
+      {
+        "id": "LIGHT",
+        "title": "ประตูแห่งแสง",
+        "description": "[gold]พัฒนา[/gold]การ์ด [blue]2[/blue] ใบแบบสุ่ม"
+      },
+      {
+        "id": "DARK",
+        "title": "ประตูแห่งความมืด",
+        "description": "กำจัดการ์ด [blue]1[/blue]ใบใน[gold]กองการ์ด[/gold]"
+      }
+    ],
+    "pages": null
+  },
+  {
+    "id": "DROWNING_BEACON",
+    "name": "DrowningBeacon",
+    "type": "Event",
+    "act": "Underdocks",
+    "description": null,
+    "preconditions": null,
+    "options": [
+      {
+        "id": "BOTTLE",
+        "title": "BOTTLE",
+        "description": "จัดหา [aqua]น้ำยาเรืองแสง[/aqua]"
+      },
+      {
+        "id": "CLIMB",
+        "title": "CLIMB",
+        "description": "ได้รับ[gold]FresnelLens[/gold] เสีย [red]13[/red] HP สูงสุด"
+      }
+    ],
+    "pages": null
+  },
+  {
+    "id": "ENDLESS_CONVEYOR",
+    "name": "EndlessConveyor",
+    "type": "Event",
+    "act": "Underdocks",
+    "description": null,
+    "preconditions": [
+      "Requires 105+ gold"
+    ],
+    "options": [
+      {
+        "id": "OBSERVE_CHEF",
+        "title": "OBSERVE_CHEF",
+        "description": "[gold]พัฒนา[/gold]การ์ด 1 ใบใน[gold]กองการ์ด[/gold] แบบสุ่ม"
+      }
+    ],
+    "pages": null
+  },
+  {
+    "id": "FAKE_MERCHANT",
+    "name": "พ่อค้า???",
+    "type": "Shared",
+    "act": null,
+    "description": "A suspicious merchant offers 9 fake relics at 42–58 gold each. Throwing a [gold]Foul Potion[/gold] starts a fight against The Merchant??? (165 HP). Winning rewards [gold]Fake Merchant's Rug[/gold] plus all unsold relics.",
+    "preconditions": [
+      "Act 2+",
+      "Single player only",
+      "Requires 100+ gold or a Foul Potion"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "FIELD_OF_MAN_SIZED_HOLES",
+    "name": "FieldOfManSizedHoles",
+    "type": "Event",
+    "act": "Act 2 - Hive",
+    "description": null,
+    "preconditions": null,
+    "options": [
+      {
+        "id": "RESIST",
+        "title": "RESIST",
+        "description": "กำจัดการ์ด [blue]2[/blue] ใบจาก[gold]กองการ์ด[/gold] เพิ่ม[red]จำกัดฐานะ[/red]เข้า[gold]กองการ์ด[/gold]"
+      },
+      {
+        "id": "ENTER_YOUR_HOLE",
+        "title": "ENTER_YOUR_HOLE",
+        "description": "[gold]ร่ายมนตร์[/gold]ใส่การ์ด 1 ใบด้วย[purple]มนตร์เหมาะเหม็ง[/purple]"
+      }
+    ],
+    "pages": null
+  },
+  {
+    "id": "GRAVE_OF_THE_FORGOTTEN",
+    "name": "GraveOfTheForgotten",
+    "type": "Event",
+    "act": "Act 3 - Glory",
+    "description": null,
+    "preconditions": null,
+    "options": [
+      {
+        "id": "CONFRONT_LOCKED",
+        "title": "ล็อก",
+        "description": "ไม่สามารถ[purple]ร่ายมนตร์[/purple]ได้เพราะคุณไม่มีการ์ดที่มี[gold]สลาย[/gold]"
+      },
+      {
+        "id": "CONFRONT",
+        "title": "เผชิญหน้ากับความจริง",
+        "description": "เพิ่ม[red]ความเสื่อมสลาย[/red]เข้า[gold]กองการ์ด[/gold] [gold]ร่ายมนตร์[/gold]การ์ด 1 ใบที่มี[gold]สลาย[/gold]ด้วย[purple]มนตร์พลังวิญญาณ[/purple]"
+      },
+      {
+        "id": "ACCEPT",
+        "title": "ยอมรับForgottenSoul",
+        "description": "ได้รับ[gold]ForgottenSoul[/gold]"
+      }
+    ],
+    "pages": null
+  },
+  {
+    "id": "HUNGRY_FOR_MUSHROOMS",
+    "name": "HungryForMushrooms",
+    "type": "Event",
+    "act": "Act 3 - Glory",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "INFESTED_AUTOMATON",
+    "name": "InfestedAutomaton",
+    "type": "Event",
+    "act": "Act 2 - Hive",
+    "description": null,
+    "preconditions": null,
+    "options": [
+      {
+        "id": "STUDY",
+        "title": "STUDY",
+        "description": "ได้รับการ์ด[gold]พลัง[/gold] 1 ใบแบบสุ่ม"
+      },
+      {
+        "id": "TOUCH_CORE",
+        "title": "TOUCH_CORE",
+        "description": "ได้รับ[gold]การ์ดค่าร่าย 0[/gold] 1 ใบแบบสุ่ม"
+      }
+    ],
+    "pages": null
+  },
+  {
+    "id": "JUNGLE_MAZE_ADVENTURE",
+    "name": "ผจญภัยเขาวงกตดงดิบ",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": null,
+    "preconditions": null,
+    "options": [
+      {
+        "id": "SOLO_QUEST",
+        "title": "SOLO_QUEST",
+        "description": "ได้รับ [blue]135-165[/blue] [gold]ทอง[/gold] เสีย [red]18[/red] HP"
+      },
+      {
+        "id": "JOIN_FORCES",
+        "title": "JOIN_FORCES",
+        "description": "ได้รับ [blue]35-65[/blue] [gold]ทอง[/gold]"
+      }
+    ],
+    "pages": null
+  },
+  {
+    "id": "LOST_WISP",
+    "name": "LostWisp",
+    "type": "Event",
+    "act": "Act 2 - Hive",
+    "description": null,
+    "preconditions": null,
+    "options": [
+      {
+        "id": "CLAIM",
+        "title": "CLAIM",
+        "description": "เพิ่ม[red]ความเสื่อมสลาย[/red]เข้า[gold]กองการ์ด[/gold] ได้รับ[gold]LostWisp[/gold]"
+      },
+      {
+        "id": "SEARCH",
+        "title": "ค้นหาบริเวณรอบข้าง",
+        "description": "ได้รับ [blue]45-75[/blue] [gold]ทอง[/gold]"
+      }
+    ],
+    "pages": null
+  },
+  {
+    "id": "LUMINOUS_CHOIR",
+    "name": "LuminousChoir",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": null,
+    "preconditions": [
+      "Requires 100-149 gold"
+    ],
+    "options": [
+      {
+        "id": "REACH_INTO_THE_FLESH",
+        "title": "REACH_INTO_THE_FLESH",
+        "description": "กำจัดการ์ด [blue]2[/blue] ใบจาก[gold]กองการ์ด[/gold] เพิ่ม[red]Spore Mind[/red]เข้า[gold]กองการ์ด[/gold]"
+      },
+      {
+        "id": "OFFER_TRIBUTE",
+        "title": "OFFER_TRIBUTE",
+        "description": "จ่าย [red]100-149[/red] [gold]ทอง[/gold] ได้รับ[gold]เครื่องราง[/gold] 1 ชิ้นแบบสุ่ม"
+      },
+      {
+        "id": "OFFER_TRIBUTE_LOCKED",
+        "title": "ล็อก",
+        "description": "ต้องการ [blue]100-149[/blue] [gold]ทอง[/gold]"
+      }
+    ],
+    "pages": null
+  },
+  {
+    "id": "MORPHIC_GROVE",
+    "name": "MorphicGrove",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": null,
+    "preconditions": [
+      "Requires 100+ gold"
+    ],
+    "options": [
+      {
+        "id": "GROUP",
+        "title": "GROUP",
+        "description": "เสีย [red]100[/red] [gold]ทอง[/gold] [gold]แปรสภาพ[/gold]การ์ด [blue]2[/blue] ใบ"
+      },
+      {
+        "id": "LONER",
+        "title": "LONER",
+        "description": "ได้รับ [green]5[/green] HP สูงสุด­"
+      }
+    ],
+    "pages": null
+  },
+  {
+    "id": "NEOW",
+    "name": "Neow",
+    "type": "Ancient",
+    "act": "Act 1 - Overgrowth / Underdocks",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null,
+    "image_url": "/static/images/misc/ancients/neow.webp",
+    "relics": [
+      "ARCANE_SCROLL",
+      "BOOMING_CONCH",
+      "POMANDER",
+      "GOLDEN_PEARL",
+      "LEAD_PAPERWEIGHT",
+      "NEW_LEAF",
+      "NEOWS_TORMENT",
+      "PRECISE_SCISSORS",
+      "LOST_COFFER",
+      "NUTRITIOUS_OYSTER",
+      "STONE_HUMIDIFIER",
+      "MASSIVE_SCROLL",
+      "LAVA_ROCK",
+      "SMALL_CAPSULE",
+      "SILVER_CRUCIBLE",
+      "CURSED_PEARL",
+      "LARGE_CAPSULE",
+      "LEAFY_POULTICE",
+      "PRECARIOUS_SHEARS",
+      "SCROLL_BOXES"
+    ]
+  },
+  {
+    "id": "NONUPEIPE",
+    "name": "Nonupeipe",
+    "type": "Ancient",
+    "act": "Act 3 - Glory",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null,
+    "image_url": "/static/images/misc/ancients/nonupeipe.webp",
+    "relics": [
+      "BLESSED_ANTLER",
+      "BRILLIANT_SCARF",
+      "DELICATE_FROND",
+      "DIAMOND_DIADEM",
+      "FUR_COAT",
+      "GLITTER",
+      "JEWELRY_BOX",
+      "LOOMING_FRUIT",
+      "SIGNET_RING",
+      "BEAUTIFUL_BRACELET"
+    ]
+  },
+  {
+    "id": "OROBAS",
+    "name": "Orobas",
+    "type": "Ancient",
+    "act": "Act 2 - Hive",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null,
+    "image_url": "/static/images/misc/ancients/orobas.webp",
+    "relics": [
+      "ELECTRIC_SHRYMP",
+      "GLASS_EYE",
+      "SAND_CASTLE",
+      "ALCHEMICAL_COFFER",
+      "DRIFTWOOD",
+      "RADIANT_PEARL",
+      "SEA_GLASS",
+      "PRISMATIC_GEM",
+      "TOUCH_OF_OROBAS",
+      "ARCHAIC_TOOTH"
+    ]
+  },
+  {
+    "id": "PAEL",
+    "name": "Pael",
+    "type": "Ancient",
+    "act": "Act 2 - Hive",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null,
+    "image_url": "/static/images/misc/ancients/pael.webp",
+    "relics": [
+      "PAELS_CLAW",
+      "PAELS_TOOTH",
+      "PAELS_GROWTH",
+      "PAELS_LEGION",
+      "PAELS_FLESH",
+      "PAELS_HORN",
+      "PAELS_TEARS",
+      "PAELS_WING",
+      "PAELS_EYE",
+      "PAELS_BLOOD"
+    ]
+  },
+  {
+    "id": "POTION_COURIER",
+    "name": "PotionCourier",
+    "type": "Shared",
+    "act": null,
+    "description": null,
+    "preconditions": [
+      "Act 2+"
+    ],
+    "options": [
+      {
+        "id": "RANSACK",
+        "title": "RANSACK",
+        "description": "จัดหา[gold]ขวดยาไม่ธรรมดา[/gold] [blue]1[/blue] ขวดแบบสุ่ม"
+      }
+    ],
+    "pages": null
+  },
+  {
+    "id": "PUNCH_OFF",
+    "name": "PunchOff",
+    "type": "Event",
+    "act": "Underdocks",
+    "description": null,
+    "preconditions": null,
+    "options": [
+      {
+        "id": "NAB",
+        "title": "NAB",
+        "description": "เพิ่ม[red]Injury[/red]เข้า[gold]กองการ์ด[/gold] ได้รับ[gold]เครื่องราง[/gold] 1 ชิ้นแบบสุ่ม"
+      },
+      {
+        "id": "I_CAN_TAKE_THEM",
+        "title": "ฉันเอาอยู่",
+        "description": "ต่อสู้พวกมันเพื่อ[gold]รางวัลที่ดีขึ้น[/gold]"
+      }
+    ],
+    "pages": [
+      {
+        "id": "INITIAL",
+        "description": null,
+        "options": [
+          {
+            "id": "NAB",
+            "title": "NAB",
+            "description": "เพิ่ม[red]Injury[/red]เข้า[gold]กองการ์ด[/gold] ได้รับ[gold]เครื่องราง[/gold] 1 ชิ้นแบบสุ่ม"
+          },
+          {
+            "id": "I_CAN_TAKE_THEM",
+            "title": "ฉันเอาอยู่",
+            "description": "ต่อสู้พวกมันเพื่อ[gold]รางวัลที่ดีขึ้น[/gold]"
+          }
+        ]
+      },
+      {
+        "id": "I_CAN_TAKE_THEM",
+        "description": null,
+        "options": [
+          {
+            "id": "FIGHT",
+            "title": "ต่อสู้",
+            "description": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "RANWID_THE_ELDER",
+    "name": "RanwidTheElder",
+    "type": "Shared",
+    "act": null,
+    "description": null,
+    "preconditions": [
+      "Act 2+",
+      "Requires at least one potion"
+    ],
+    "options": [
+      {
+        "id": "POTION",
+        "title": "ให้Potion",
+        "description": "ได้รับ[gold]เครื่องราง[/gold] 1 ชิ้นแบบสุ่ม"
+      },
+      {
+        "id": "GOLD",
+        "title": "ให้ 100 ทอง",
+        "description": "ได้รับ[gold]เครื่องราง[/gold] 1 ชิ้นแบบสุ่ม"
+      },
+      {
+        "id": "RELIC",
+        "title": "ให้Relic",
+        "description": "ได้รับ[gold]เครื่องราง[/gold] [blue]2[/blue] ชิ้นแบบสุ่ม"
+      }
+    ],
+    "pages": null
+  },
+  {
+    "id": "REFLECTIONS",
+    "name": "ภาพสะท้อน นอท้ะสพาภ",
+    "type": "Event",
+    "act": "Act 3 - Glory",
+    "description": null,
+    "preconditions": null,
+    "options": [
+      {
+        "id": "TOUCH_A_MIRROR",
+        "title": "สัมผัสกระจก",
+        "description": "[red]ย้อนการพัฒนา[/red]การ์ด [blue]2[/blue] ใบแบบสุ่ม [green]พัฒนา[/green]การ์ด [blue]4[/blue] ใบแบบสุ่ม"
+      },
+      {
+        "id": "SHATTER",
+        "title": "ทุบให้แตก",
+        "description": "ทำสำเนาทั้ง[gold]กองการ์ด[/gold] ได้รับ[purple]โชคร้าย[/purple]"
+      }
+    ],
+    "pages": null
+  },
+  {
+    "id": "RELIC_TRADER",
+    "name": "วาณิชเครื่องราง",
+    "type": "Shared",
+    "act": null,
+    "description": null,
+    "preconditions": [
+      "Act 2+",
+      "Requires 5+ tradeable relics"
+    ],
+    "options": [
+      {
+        "id": "TOP",
+        "title": "เอาอันบน",
+        "description": "แลก[gold]one of your Relics[/gold]เป็น[gold]a random Relic[/gold]"
+      },
+      {
+        "id": "MIDDLE",
+        "title": "เอาอันกลาง",
+        "description": "แลก[gold]one of your Relics[/gold]เป็น[gold]a random Relic[/gold]"
+      },
+      {
+        "id": "BOTTOM",
+        "title": "เอาอันล่าง",
+        "description": "แลก[gold]one of your Relics[/gold]เป็น[gold]a random Relic[/gold]"
+      }
+    ],
+    "pages": null
+  },
+  {
+    "id": "ROOM_FULL_OF_CHEESE",
+    "name": "ห้องที่เต็มไปด้วยชีส",
+    "type": "Shared",
+    "act": null,
+    "description": null,
+    "preconditions": [
+      "Act 1–2 only"
+    ],
+    "options": [
+      {
+        "id": "GORGE",
+        "title": "GORGE",
+        "description": "เลือกการ์ด[gold]ธรรมดา[/gold] [blue]2[/blue] จากที่สุ่มมา[blue]8[/blue] ใบเพื่อเพิ่มเข้า[gold]กองการ์ด[/gold]"
+      },
+      {
+        "id": "SEARCH",
+        "title": "ค้นหา",
+        "description": "เสีย [red]14[/red] HP ได้รับ[gold]ชีสที่ถูกเลือก[/gold]"
+      }
+    ],
+    "pages": [
+      {
+        "id": "GORGE",
+        "description": null
+      },
+      {
+        "id": "INITIAL",
+        "description": null,
+        "options": [
+          {
+            "id": "GORGE",
+            "title": "GORGE",
+            "description": "เลือกการ์ด[gold]ธรรมดา[/gold] [blue]2[/blue] จากที่สุ่มมา[blue]8[/blue] ใบเพื่อเพิ่มเข้า[gold]กองการ์ด[/gold]"
+          },
+          {
+            "id": "SEARCH",
+            "title": "ค้นหา",
+            "description": "เสีย [red]14[/red] HP ได้รับ[gold]ชีสที่ถูกเลือก[/gold]"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ROUND_TEA_PARTY",
+    "name": "RoundTeaParty",
+    "type": "Event",
+    "act": "Act 3 - Glory",
+    "description": null,
+    "preconditions": null,
+    "options": [
+      {
+        "id": "ENJOY_TEA",
+        "title": "ดื่มด่ำกับชา",
+        "description": "ได้รับ[red]RoyalPoison[/red] [green]ฟื้นฟู HP จนเต็ม[/green]"
+      },
+      {
+        "id": "PICK_FIGHT",
+        "title": "PICK_FIGHT",
+        "description": "เสีย [red]11[/red] HP ได้รับ[gold]เครื่องราง[/gold] 1 ชิ้นแบบสุ่ม"
+      }
+    ],
+    "pages": null
+  },
+  {
+    "id": "SAPPHIRE_SEED",
+    "name": "SapphireSeed",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": null,
+    "preconditions": null,
+    "options": [
+      {
+        "id": "EAT",
+        "title": "EAT",
+        "description": "ฟื้นฟู [green]9[/green] HP [gold]พัฒนา[/gold]การ์ด 1 ใบใน[gold]กองการ์ด[/gold]"
+      },
+      {
+        "id": "PLANT",
+        "title": "PLANT",
+        "description": "[gold]ร่ายมนตร์[/gold]ใส่การ์ด 1 ใบด้วย[purple]มนตร์หว่านเมล็ด[/purple]"
+      }
+    ],
+    "pages": null
+  },
+  {
+    "id": "SELF_HELP_BOOK",
+    "name": "หนังสือพัฒนาตัวเอง",
+    "type": "Shared",
+    "act": null,
+    "description": null,
+    "preconditions": null,
+    "options": [
+      {
+        "id": "READ_THE_BACK",
+        "title": "อ่านปกหลัง",
+        "description": "เลือกการ์ดโจมตี 1 ใบเพื่อ[gold]ร่ายมนตร์[/gold]ด้วย[purple]มนตร์แหลมคม[/purple] [blue]2[/blue]"
+      },
+      {
+        "id": "READ_THE_BACK_LOCKED",
+        "title": "ล็อก",
+        "description": "คุณไม่มีการ์ดโจมตีให้[gold]ร่ายมนตร์[/gold]ใส่"
+      },
+      {
+        "id": "READ_PASSAGE",
+        "title": "สุ่มอ่าน 1 ย่อหน้า",
+        "description": "เลือกการ์ดทักษะ 1 ใบเพื่อ[gold]ร่ายมนตร์[/gold]ด้วย[purple]มนตร์ปราดเปรียว[/purple] [blue]2[/blue]"
+      },
+      {
+        "id": "READ_PASSAGE_LOCKED",
+        "title": "ล็อก",
+        "description": "คุณไม่มีการ์ดทักษะให้[gold]ร่ายมนตร์[/gold]ใส่"
+      },
+      {
+        "id": "READ_ENTIRE_BOOK",
+        "title": "อ่านทั้งเล่ม",
+        "description": "เลือกการ์ดพลัง 1 ใบเพื่อ[gold]ร่ายมนตร์[/gold]ด้วย[purple]มนตร์ฉับพลัน[/purple] [blue]2[/blue]"
+      },
+      {
+        "id": "READ_ENTIRE_BOOK_LOCKED",
+        "title": "ล็อก",
+        "description": "คุณไม่มีการ์ดพลังให้[gold]ร่ายมนตร์[/gold]ใส่"
+      },
+      {
+        "id": "NO_OPTIONS",
+        "title": "NO_OPTIONS",
+        "description": "คุณไม่มีการ์ดให้ร่ายมนตร์ใส่"
+      }
+    ],
+    "pages": null
+  },
+  {
+    "id": "SLIPPERY_BRIDGE",
+    "name": "สะพานลื่น",
+    "type": "Shared",
+    "act": null,
+    "description": null,
+    "preconditions": [
+      "Floor 7+",
+      "Requires removable cards in deck"
+    ],
+    "options": [
+      {
+        "id": "OVERCOME",
+        "title": "พิชิต",
+        "description": "[red]a random Card[/red]ถูกกำจัดออกจาก[gold]กองการ์ด[/gold]"
+      },
+      {
+        "id": "HOLD_ON_0",
+        "title": "จับไว้",
+        "description": "เสีย [red]3[/red] HP สุ่มการ์ดในตัวเลือกด้านบน"
+      }
+    ],
+    "pages": [
+      {
+        "id": "HOLD_ON_0",
+        "description": null,
+        "options": [
+          {
+            "id": "HOLD_ON_1",
+            "title": "จับไว้",
+            "description": "เสีย [red]4[/red] HP สุ่มการ์ดในตัวเลือกด้านบน"
+          }
+        ]
+      },
+      {
+        "id": "HOLD_ON_1",
+        "description": "ยัง... ยัง... [jitter]ไหววววว!!!![/jitter]",
+        "options": [
+          {
+            "id": "HOLD_ON_2",
+            "title": "จับไว้",
+            "description": "เสีย [red]5[/red] HP สุ่มการ์ดในตัวเลือกด้านบน"
+          }
+        ]
+      },
+      {
+        "id": "HOLD_ON_2",
+        "description": "[sine]อ๊ากกกก!?!!![/sine]",
+        "options": [
+          {
+            "id": "HOLD_ON_3",
+            "title": "จับไว้",
+            "description": "เสีย [red]6[/red] HP สุ่มการ์ดในตัวเลือกด้านบน"
+          }
+        ]
+      },
+      {
+        "id": "HOLD_ON_3",
+        "description": "[jitter][b]ฉันทำได้!!![/b][/jitter]",
+        "options": [
+          {
+            "id": "HOLD_ON_4",
+            "title": "จับไว้",
+            "description": "เสีย [red]7[/red] HP สุ่มการ์ดในตัวเลือกด้านบน"
+          }
+        ]
+      },
+      {
+        "id": "HOLD_ON_4",
+        "description": "[gold][b][jitter][b]ม่ายยยยยยยย[/b][/jitter][/b][/gold]",
+        "options": [
+          {
+            "id": "HOLD_ON_5",
+            "title": "จับไว้",
+            "description": "เสีย [red]8[/red] HP สุ่มการ์ดในตัวเลือกด้านบน"
+          }
+        ]
+      },
+      {
+        "id": "HOLD_ON_5",
+        "description": "[red][b][jitter][b]ฉันทำอะไรอยู่เนี่ย!?[/b][/jitter][/b][/red]",
+        "options": [
+          {
+            "id": "HOLD_ON_6",
+            "title": "จับไว้",
+            "description": "เสีย [red]9[/red] HP สุ่มการ์ดในตัวเลือกด้านบน"
+          }
+        ]
+      },
+      {
+        "id": "HOLD_ON_6",
+        "description": "[red][b][jitter][b]!!!!!!!!!!!!!... !!!\n\n!!!!!!!! !!!!!!!!!!!?? !!!!!!!!![/b][/jitter][/b][/red]",
+        "options": [
+          {
+            "id": "HOLD_ON_LOOP",
+            "title": "จับไว้",
+            "description": "เสีย [red]10[/red] HP สุ่มการ์ดในตัวเลือกด้านบน"
+          }
+        ]
+      },
+      {
+        "id": "HOLD_ON_LOOP",
+        "description": "ผู้พัฒนาอยากบอกคุณว่า ไม่ได้ทำข้อความให้ผู้เล่นที่ทนได้นานขนาดนี้ ขออภัยในความไม่สะดวก",
+        "options": [
+          {
+            "id": "HOLD_ON_LOOP",
+            "title": "จับไว้",
+            "description": "เสีย [red]11+[/red] HP สุ่มการ์ดในตัวเลือกด้านบน"
+          }
+        ]
+      },
+      {
+        "id": "INITIAL",
+        "description": null,
+        "options": [
+          {
+            "id": "OVERCOME",
+            "title": "พิชิต",
+            "description": "[red]a random Card[/red]ถูกกำจัดออกจาก[gold]กองการ์ด[/gold]"
+          },
+          {
+            "id": "HOLD_ON_0",
+            "title": "จับไว้",
+            "description": "เสีย [red]3[/red] HP สุ่มการ์ดในตัวเลือกด้านบน"
+          }
+        ]
+      },
+      {
+        "id": "OVERCOME",
+        "description": "เกลียดสะพานจังเลยว่ะ"
+      }
+    ]
+  },
+  {
+    "id": "SPIRALING_WHIRLPOOL",
+    "name": "SpiralingWhirlpool",
+    "type": "Event",
+    "act": "Underdocks",
+    "description": null,
+    "preconditions": null,
+    "options": [
+      {
+        "id": "OBSERVE",
+        "title": "สังเกต",
+        "description": "[gold]ร่ายมนตร์[/gold] [gold]จู่โจม[/gold]หรือ[gold]ป้องกัน[/gold]ด้วย[purple]Spiral[/purple]"
+      },
+      {
+        "id": "DRINK",
+        "title": "ดื่ม",
+        "description": "ฟื้นฟู [green]33% Max[/green] HP"
+      }
+    ],
+    "pages": null
+  },
+  {
+    "id": "SPIRIT_GRAFTER",
+    "name": "SpiritGrafter",
+    "type": "Event",
+    "act": "Act 2 - Hive",
+    "description": null,
+    "preconditions": null,
+    "options": [
+      {
+        "id": "LET_IT_IN",
+        "title": "ให้มันเข้ามา",
+        "description": "ฟื้นฟู [green]25[/green] HP เพิ่ม[gold]Metamorphosis[/gold]เข้า[gold]กองการ์ด[/gold]"
+      },
+      {
+        "id": "REJECTION",
+        "title": "ปฏิเสธ",
+        "description": "เสีย [red]9[/red] HP กำจัดการ์ด 1 ใบจาก[gold]กองการ์ด[/gold]"
+      }
+    ],
+    "pages": null
+  },
+  {
+    "id": "STONE_OF_ALL_TIME",
+    "name": "StoneOfAllTime",
+    "type": "Shared",
+    "act": null,
+    "description": null,
+    "preconditions": [
+      "Act 2 only",
+      "Requires at least one potion"
+    ],
+    "options": [
+      {
+        "id": "LIFT",
+        "title": "ดื่มแล้วยก",
+        "description": "เสีย [red]a random Potion[/red] ได้รับ [blue]10[/blue] HP สูงสุด"
+      },
+      {
+        "id": "LIFT_LOCKED",
+        "title": "ล็อก",
+        "description": "ตัองการขวดยา 1 ขวด"
+      },
+      {
+        "id": "PUSH_LOCKED",
+        "title": "ล็อก",
+        "description": "ตัองการการ์ดโจมตี 1 ใบ"
+      },
+      {
+        "id": "PUSH",
+        "title": "ผลัก",
+        "description": "เสีย [red]6[/red] HP [gold]ร่ายมนตร์[/gold]การ์ดโจมตี 1 ใบด้วย[purple]Vigorous[/purple] [blue]8[/blue]"
+      }
+    ],
+    "pages": null
+  },
+  {
+    "id": "SUNKEN_STATUE",
+    "name": "SunkenStatue",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth / Underdocks",
+    "description": null,
+    "preconditions": null,
+    "options": [
+      {
+        "id": "GRAB_SWORD",
+        "title": "GRAB_SWORD",
+        "description": "ได้รับ[gold]SwordOfStone[/gold]"
+      },
+      {
+        "id": "DIVE_INTO_WATER",
+        "title": "DIVE_INTO_WATER",
+        "description": "ได้รับ [blue]101-121[/blue] [gold]ทอง[/gold] เสีย [red]7[/red] HP"
+      }
+    ],
+    "pages": null
+  },
+  {
+    "id": "SUNKEN_TREASURY",
+    "name": "SunkenTreasury",
+    "type": "Event",
+    "act": "Underdocks",
+    "description": null,
+    "preconditions": null,
+    "options": [
+      {
+        "id": "FIRST_CHEST",
+        "title": "กล่องสมบัติใบแรก",
+        "description": "ได้รับ [blue]52-67[/blue] [gold]ทอง[/gold]"
+      },
+      {
+        "id": "SECOND_CHEST",
+        "title": "กล่องสมบัติใบที่ 2",
+        "description": "ได้รับ [blue]303-363[/blue] [gold]ทอง[/gold] ได้รับ[red]Greed[/red]"
+      }
+    ],
+    "pages": [
+      {
+        "id": "FIRST_CHEST",
+        "description": "ใช่แล้ว มี[gold]ทอง[/gold]อยู่ในนั้น"
+      },
+      {
+        "id": "INITIAL",
+        "description": null,
+        "options": [
+          {
+            "id": "FIRST_CHEST",
+            "title": "กล่องสมบัติใบแรก",
+            "description": "ได้รับ [blue]52-67[/blue] [gold]ทอง[/gold]"
+          },
+          {
+            "id": "SECOND_CHEST",
+            "title": "กล่องสมบัติใบที่ 2",
+            "description": "ได้รับ [blue]303-363[/blue] [gold]ทอง[/gold] ได้รับ[red]Greed[/red]"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "SYMBIOTE",
+    "name": "Symbiote",
+    "type": "Shared",
+    "act": null,
+    "description": null,
+    "preconditions": [
+      "Act 2+"
+    ],
+    "options": [
+      {
+        "id": "APPROACH_LOCKED",
+        "title": "ล็อก",
+        "description": "คุณไม่มีการ์ดโจมตีที่สามารถร่ายมนตร์ใส่ได้"
+      },
+      {
+        "id": "APPROACH",
+        "title": "APPROACH",
+        "description": "[gold]ร่ายมนตร์[/gold]การ์ดโจมตี 1 ใบด้วย[purple]มนตร์ผุพัง[/purple]"
+      },
+      {
+        "id": "KILL_WITH_FIRE",
+        "title": "KILL_WITH_FIRE",
+        "description": "เลือกการ์ด 1 ใบเพื่อ[gold]แปรสภาพ[/gold]"
+      }
+    ],
+    "pages": null
+  },
+  {
+    "id": "TABLET_OF_TRUTH",
+    "name": "TabletOfTruth",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": null,
+    "preconditions": null,
+    "options": [
+      {
+        "id": "DECIPHER_1",
+        "title": "ถอดรหัส",
+        "description": "เสีย [red]3[/red] HP สูงสุด [gold]พัฒนา[/gold]การ์ด 1 ใบแบบสุ่ม"
+      },
+      {
+        "id": "SMASH",
+        "title": "SMASH",
+        "description": "ฟื้นฟู [green]20[/green] HP"
+      }
+    ],
+    "pages": [
+      {
+        "id": "DECIPHER",
+        "description": null,
+        "options": [
+          {
+            "id": "GIVE_UP",
+            "title": "ยอมแพ้",
+            "description": "เลิกอ่านแล้วจากไป"
+          }
+        ]
+      },
+      {
+        "id": "DECIPHER_1",
+        "description": null,
+        "options": [
+          {
+            "id": "DECIPHER",
+            "title": "ถอดรหัสต่อไป",
+            "description": "เสีย [red]3[/red] HP สูงสุด [gold]พัฒนา[/gold]การ์ด 1 ใบแบบสุ่ม"
+          }
+        ]
+      },
+      {
+        "id": "DECIPHER_2",
+        "description": null,
+        "options": [
+          {
+            "id": "DECIPHER",
+            "title": "พยายามถอดรหัสต่อ",
+            "description": "เสีย [red]3[/red] HP สูงสุด [gold]พัฒนา[/gold]การ์ด 1 ใบแบบสุ่ม"
+          }
+        ]
+      },
+      {
+        "id": "DECIPHER_3",
+        "description": null,
+        "options": [
+          {
+            "id": "DECIPHER",
+            "title": "พยายาม ถอด รหัส ต่อ ไป",
+            "description": "เสีย [red]3[/red] HP สูงสุด [gold]พัฒนา[/gold]การ์ด 1 ใบแบบสุ่ม"
+          }
+        ]
+      },
+      {
+        "id": "DECIPHER_4",
+        "description": null,
+        "options": [
+          {
+            "id": "DECIPHER",
+            "title": "DECIPHER",
+            "description": "Set Max HP to [red]1[/red]. [gold]Upgrade ALL[/gold] cards."
+          }
+        ]
+      },
+      {
+        "id": "INITIAL",
+        "description": null,
+        "options": [
+          {
+            "id": "DECIPHER_1",
+            "title": "ถอดรหัส",
+            "description": "เสีย [red]3[/red] HP สูงสุด [gold]พัฒนา[/gold]การ์ด 1 ใบแบบสุ่ม"
+          },
+          {
+            "id": "SMASH",
+            "title": "SMASH",
+            "description": "ฟื้นฟู [green]20[/green] HP"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "TANX",
+    "name": "Tanx",
+    "type": "Ancient",
+    "act": "Act 3 - Glory",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null,
+    "image_url": "/static/images/misc/ancients/tanx.webp",
+    "relics": [
+      "CLAWS",
+      "CROSSBOW",
+      "IRON_CLUB",
+      "MEAT_CLEAVER",
+      "SAI",
+      "SPIKED_GAUNTLETS",
+      "TANXS_WHISTLE",
+      "THROWING_AXE",
+      "WAR_HAMMER",
+      "TRI_BOOMERANG"
+    ]
+  },
+  {
+    "id": "TEA_MASTER",
+    "name": "TeaMaster",
+    "type": "Shared",
+    "act": null,
+    "description": null,
+    "preconditions": [
+      "Requires 150+ gold",
+      "Act 1–2 only"
+    ],
+    "options": [
+      {
+        "id": "BONE_TEA",
+        "title": "BONE_TEA",
+        "description": "จ่าย [red]50[/red] [gold]ทอง[/gold] ตอนเริ่มต้นการต่อสู้ในอีก [blue]{}[/blue] ครั้ง [gold]พัฒนา[/gold]มือเริ่มต้น"
+      },
+      {
+        "id": "BONE_TEA_LOCKED",
+        "title": "ล็อก",
+        "description": "ต้องการ [blue]50[/blue] [gold]ทอง[/gold]"
+      },
+      {
+        "id": "EMBER_TEA",
+        "title": "EMBER_TEA",
+        "description": "จ่าย [red]150[/red] [gold]ทอง[/gold] ตอนเริ่มต้นอีก [blue]5[/blue] การต่อสู้ ได้รับ [blue]2[/blue] [gold]ความแข็งแรง[/gold]"
+      },
+      {
+        "id": "EMBER_TEA_LOCKED",
+        "title": "ล็อก",
+        "description": "ต้องการ [blue]150[/blue] [gold]ทอง[/gold]"
+      },
+      {
+        "id": "TEA_OF_DISCOURTESY",
+        "title": "TEA_OF_DISCOURTESY",
+        "description": "ตอนเริ่มต้นการต่อสู้ถัดไป สับ[gold]ความมึนงง[/gold] [blue]2[/blue] ใบเข้า[gold]กองจั่ว[/gold]"
+      }
+    ],
+    "pages": null
+  },
+  {
+    "id": "TEZCATARA",
+    "name": "Tezcatara",
+    "type": "Ancient",
+    "act": "Act 2 - Hive",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null,
+    "image_url": "/static/images/misc/ancients/tezcatara.webp",
+    "relics": [
+      "NUTRITIOUS_SOUP",
+      "VERY_HOT_COCOA",
+      "YUMMY_COOKIE",
+      "BIIIG_HUG",
+      "STORYBOOK",
+      "SEAL_OF_GOLD",
+      "TOASTY_MITTENS",
+      "GOLDEN_COMPASS",
+      "PUMPKIN_CANDLE",
+      "TOY_BOX"
+    ]
+  },
+  {
+    "id": "THE_ARCHITECT",
+    "name": "TheArchitect",
+    "type": "Ancient",
+    "act": null,
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null,
+    "image_url": "/static/images/monsters/architect.webp"
+  },
+  {
+    "id": "THE_FUTURE_OF_POTIONS",
+    "name": "TheFutureOfPotions",
+    "type": "Shared",
+    "act": null,
+    "description": null,
+    "preconditions": null,
+    "options": [
+      {
+        "id": "POTION",
+        "title": "ใส่ขวดยาCommon",
+        "description": "เสีย[gold]a Potion[/gold] ได้รับ[gold]SkillCommon[/gold]แบบพัฒนาแล้ว"
+      }
+    ],
+    "pages": null
+  },
+  {
+    "id": "THE_LANTERN_KEY",
+    "name": "TheLanternKey",
+    "type": "Event",
+    "act": "Act 2 - Hive",
+    "description": null,
+    "preconditions": null,
+    "options": [
+      {
+        "id": "RETURN_THE_KEY",
+        "title": "คืนกุญแจ",
+        "description": "ได้รับ [blue]100[/blue] [gold]ทอง[/gold]"
+      },
+      {
+        "id": "KEEP_THE_KEY",
+        "title": "เก็บกุญแจไว้",
+        "description": "ต่อสู้เพื่อชิงกุญแจ"
+      }
+    ],
+    "pages": null
+  },
+  {
+    "id": "THE_LEGENDS_WERE_TRUE",
+    "name": "TheLegendsWereTrue",
+    "type": "Shared",
+    "act": null,
+    "description": null,
+    "preconditions": [
+      "Requires 10+ HP",
+      "Act 1 only"
+    ],
+    "options": [
+      {
+        "id": "SLOWLY_FIND_AN_EXIT",
+        "title": "ค่อยๆ หาทางออก",
+        "description": "เสีย [red]8[/red] HP จัดหา[gold]ขวดยา[/gold] [blue]1[/blue] ขวดแบบสุ่ม"
+      }
+    ],
+    "pages": null
+  },
+  {
+    "id": "THIS_OR_THAT",
+    "name": "อันนี้หรืออันนั้น?",
+    "type": "Shared",
+    "act": null,
+    "description": null,
+    "preconditions": null,
+    "options": [
+      {
+        "id": "PLAIN",
+        "title": "อันนี้",
+        "description": "เสีย [red]6[/red] HP ได้รับ [blue]41-68[/blue] [gold]ทอง[/gold]"
+      },
+      {
+        "id": "ORNATE",
+        "title": "อันนั้น",
+        "description": "เพิ่ม[red]ความซุ่มซ่าม[/red]เข้า[gold]กองการ์ด[/gold] ได้รับ[gold]เครื่องราง[/gold] 1 ชิ้นแบบสุ่ม"
+      }
+    ],
+    "pages": null
+  },
+  {
+    "id": "TINKER_TIME",
+    "name": "TinkerTime",
+    "type": "Event",
+    "act": "Act 3 - Glory",
+    "description": null,
+    "preconditions": null,
+    "options": [
+      {
+        "id": "CHOOSE_CARD_TYPE",
+        "title": "CHOOSE_CARD_TYPE",
+        "description": "สร้างการ์ดขึ้นมาเองเพื่อเพิ่มเข้า[gold]กองการ์ด[/gold]"
+      }
+    ],
+    "pages": [
+      {
+        "id": "CHOOSE_CARD_TYPE",
+        "description": null,
+        "options": [
+          {
+            "id": "ATTACK",
+            "title": "อาวุธ",
+            "description": "ทำการ์ดโจมตีที่มีความสามารถพิเศษ สร้างความเสียหาย [blue]12[/blue]"
+          },
+          {
+            "id": "SKILL",
+            "title": "เครื่องป้องกัน",
+            "description": "สร้างการ์ดทักษะที่มีความสามารถพิเศษ ได้รับ [blue]8[/blue] [gold]บล็อก[/gold]"
+          },
+          {
+            "id": "POWER",
+            "title": "อุปกรณ์",
+            "description": "สร้างการ์ดพลังที่มีความสามารถพิเศษ"
+          }
+        ]
+      },
+      {
+        "id": "CHOOSE_RIDER",
+        "description": null,
+        "options": [
+          {
+            "id": "SAPPING",
+            "title": "SAPPING",
+            "description": "สร้าง [blue]2[/blue] [gold]ความอ่อนแอ[/gold] สร้าง [blue]2[/blue] [gold]จุดอ่อน[/gold]"
+          },
+          {
+            "id": "VIOLENCE",
+            "title": "VIOLENCE",
+            "description": "โจมตีเพิ่ม [blue]2[/blue] ครั้ง"
+          },
+          {
+            "id": "CHOKING",
+            "title": "CHOKING",
+            "description": "ทุกครั้งที่คุณเล่นการ์ดในเทิร์นนี้ ศัตรูเสีย [blue]6[/blue] HP"
+          },
+          {
+            "id": "ENERGIZED",
+            "title": "ENERGIZED",
+            "description": "ได้รับ [energy:2]"
+          },
+          {
+            "id": "WISDOM",
+            "title": "WISDOM",
+            "description": "จั่วการ์ด [blue]3[/blue] ใบ"
+          },
+          {
+            "id": "CHAOS",
+            "title": "CHAOS",
+            "description": "เพิ่มการ์ด 1 ใบแบบสุ่มใส่[gold]มือ[/gold] มันมีค่าร่าย [blue]0[/blue] [energy:1] ในเทิร์นนี้"
+          },
+          {
+            "id": "EXPERTISE",
+            "title": "ความช่ำชอง",
+            "description": "ได้รับ [blue]2[/blue] [gold]ความแข็งแรง[/gold] ได้รับ [blue]2[/blue] [gold]ความชำนาญ[/gold]"
+          },
+          {
+            "id": "CURIOUS",
+            "title": "CURIOUS",
+            "description": "การ์ดพลังมีค่าร่ายลดลง [blue]1[/blue] [energy:1]"
+          },
+          {
+            "id": "IMPROVEMENT",
+            "title": "การปรับปรุง",
+            "description": "ตอนจบการต่อสู้ [gold]พัฒนา[/gold]การ์ด 1 ใบแบบสุ่ม"
+          }
+        ]
+      },
+      {
+        "id": "INITIAL",
+        "description": null,
+        "options": [
+          {
+            "id": "CHOOSE_CARD_TYPE",
+            "title": "CHOOSE_CARD_TYPE",
+            "description": "สร้างการ์ดขึ้นมาเองเพื่อเพิ่มเข้า[gold]กองการ์ด[/gold]"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "TRASH_HEAP",
+    "name": "TrashHeap",
+    "type": "Event",
+    "act": "Underdocks",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "TRIAL",
+    "name": "Trial",
+    "type": "Event",
+    "act": "Act 3 - Glory",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": [
+      {
+        "id": "MERCHANT",
+        "description": null,
+        "options": [
+          {
+            "id": "GUILTY",
+            "title": "ตัดสิน: มีความผิด",
+            "description": "เพิ่ม[red]Regret[/red]เข้า[gold]กองการ์ด[/gold] ได้รับ[gold]เครื่องราง[/gold] [blue]2[/blue] ชิ้นแบบสุ่ม"
+          },
+          {
+            "id": "INNOCENT",
+            "title": "ตัดสิน: บริสุทธิ์",
+            "description": "เพิ่ม[red]Shame[/red]เข้า[gold]กองการ์ด[/gold] [gold]พัฒนา[/gold]การ์ด [blue]2[/blue] ใบ"
+          }
+        ]
+      },
+      {
+        "id": "NOBLE",
+        "description": null,
+        "options": [
+          {
+            "id": "GUILTY",
+            "title": "ตัดสิน: มีความผิด",
+            "description": "ฟื้นฟู [green]10[/green] HP"
+          },
+          {
+            "id": "INNOCENT",
+            "title": "ตัดสิน: บริสุทธิ์",
+            "description": "เพิ่ม[red]Regret[/red]เข้า[gold]กองการ์ด[/gold] ได้รับ [blue]300[/blue] [gold]ทอง[/gold]"
+          }
+        ]
+      },
+      {
+        "id": "NONDESCRIPT",
+        "description": null,
+        "options": [
+          {
+            "id": "GUILTY",
+            "title": "ตัดสิน: มีความผิด",
+            "description": "เพิ่ม[red]Doubt[/red]เข้า[gold]กองการ์ด[/gold] ได้รับรางวัลการ์ด [blue]2[/blue] ครั้ง"
+          },
+          {
+            "id": "INNOCENT",
+            "title": "ตัดสิน: บริสุทธิ์",
+            "description": "เพิ่ม[red]Doubt[/red]เข้า[gold]กองการ์ด[/gold] [gold]แปรสภาพ[/gold]การ์ด [blue]2[/blue] ใบ"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "UNREST_SITE",
+    "name": "UnrestSite",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": null,
+    "preconditions": [
+      "Requires ≤70% HP"
+    ],
+    "options": [
+      {
+        "id": "REST",
+        "title": "ก็จะพักผ่อนอยู่ดี",
+        "description": "[green]ฟื้นฟู HP จนเต็ม[/green] ได้รับ[red]Poor Sleep[/red]"
+      },
+      {
+        "id": "KILL",
+        "title": "KILL",
+        "description": "[red]เสีย 8 HP สูงสุด[/red] ได้รับ[gold]เครื่องราง[/gold]แบบสุ่ม"
+      }
+    ],
+    "pages": null
+  },
+  {
+    "id": "VAKUU",
+    "name": "Vakuu",
+    "type": "Ancient",
+    "act": "Act 3 - Glory",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null,
+    "image_url": "/static/images/misc/ancients/vakuu.webp",
+    "relics": [
+      "BLOOD_SOAKED_ROSE",
+      "WHISPERING_EARRING",
+      "FIDDLE",
+      "PRESERVED_FOG",
+      "SERE_TALON",
+      "DISTINGUISHED_CAPE",
+      "CHOICES_PARADOX",
+      "MUSIC_BOX",
+      "LORDS_PARASOL",
+      "JEWELED_MASK"
+    ]
+  },
+  {
+    "id": "WAR_HISTORIAN_REPY",
+    "name": "WarHistorianRepy",
+    "type": "Shared",
+    "act": null,
+    "description": null,
+    "preconditions": null,
+    "options": [
+      {
+        "id": "UNLOCK_CAGE",
+        "title": "ปลดล็อกกรง",
+        "description": "เสีย[gold]Lantern Key[/gold] ได้รับ[gold]History Course[/gold]"
+      },
+      {
+        "id": "UNLOCK_CHEST",
+        "title": "ปลดล็อกกล่องสมบัติ",
+        "description": "เสีย[gold]Lantern Key[/gold] จัดหา[gold]ขวดยา[/gold] [blue]2[/blue] ขวดแบบสุ่ม ได้รับ[gold]เครื่องราง[/gold] [blue]2[/blue] ชิ้นแบบสุ่ม"
+      }
+    ],
+    "pages": null
+  },
+  {
+    "id": "WATERLOGGED_SCRIPTORIUM",
+    "name": "WaterloggedScriptorium",
+    "type": "Event",
+    "act": "Underdocks",
+    "description": null,
+    "preconditions": [
+      "Requires 65+ gold"
+    ],
+    "options": [
+      {
+        "id": "BLOODY_INK",
+        "title": "BLOODY_INK",
+        "description": "ได้รับ [green]6[/green] HP สูงสุด"
+      },
+      {
+        "id": "TENTACLE_QUILL",
+        "title": "TENTACLE_QUILL",
+        "description": "จ่าย [red]65[/red] [gold]ทอง[/gold] [gold]ร่ายมนตร์[/gold]การ์ด 1 ใบด้วย[purple]Steady[/purple]"
+      },
+      {
+        "id": "TENTACLE_QUILL_LOCKED",
+        "title": "ล็อก",
+        "description": "ต้องการ [blue]65[/blue] [gold]ทอง[/gold]"
+      },
+      {
+        "id": "PRICKLY_SPONGE",
+        "title": "PRICKLY_SPONGE",
+        "description": "จ่าย [red]155[/red] [gold]ทอง[/gold] [gold]ร่ายมนตร์[/gold]การ์ด [blue]2[/blue] ใบด้วย[purple]Steady[/purple]"
+      },
+      {
+        "id": "PRICKLY_SPONGE_LOCKED",
+        "title": "ล็อก",
+        "description": "ต้องการ [blue]155[/blue] [gold]ทอง[/gold]"
+      }
+    ],
+    "pages": null
+  },
+  {
+    "id": "WELCOME_TO_WONGOS",
+    "name": "WelcomeToWongos",
+    "type": "Shared",
+    "act": null,
+    "description": null,
+    "preconditions": [
+      "Requires 100+ gold",
+      "Act 2 only"
+    ],
+    "options": [
+      {
+        "id": "BARGAIN_BIN",
+        "title": "BARGAIN_BIN",
+        "description": "จ่าย [red]100[/red] [gold]ทอง[/gold] ได้รับ[gold]เครื่องรางธรรมดา[/gold] [blue]1[/blue] ชิ้นแบบสุ่ม"
+      },
+      {
+        "id": "BARGAIN_BIN_LOCKED",
+        "title": "ล็อก",
+        "description": "ต้องการ [blue]100[/blue] [gold]ทอง[/gold]"
+      },
+      {
+        "id": "FEATURED_ITEM",
+        "title": "FEATURED_ITEM",
+        "description": "จ่าย [red]200[/red] [gold]ทอง[/gold] ได้รับ[gold]a random Relic[/gold]"
+      },
+      {
+        "id": "FEATURED_ITEM_LOCKED",
+        "title": "ล็อก",
+        "description": "ต้องการ [blue]200[/blue] [gold]ทอง[/gold]"
+      },
+      {
+        "id": "MYSTERY_BOX",
+        "title": "MYSTERY_BOX",
+        "description": "จ่าย [red]300[/red] [gold]ทอง[/gold] ได้รับ[gold]เครื่องราง[/gold] [blue]3[/blue] ชิ้นแบบสุ่ม หลังจาก [blue]5[/blue] การต่อสู้"
+      },
+      {
+        "id": "MYSTERY_BOX_LOCKED",
+        "title": "ล็อก",
+        "description": "ต้องการ [blue]300[/blue] [gold]ทอง[/gold]"
+      }
+    ],
+    "pages": null
+  },
+  {
+    "id": "WELLSPRING",
+    "name": "Wellspring",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": null,
+    "preconditions": null,
+    "options": [
+      {
+        "id": "BOTTLE",
+        "title": "BOTTLE",
+        "description": "จัดหา[gold]ขวดยา[/gold] [blue]1[/blue] ขวดแบบสุ่ม"
+      },
+      {
+        "id": "BATHE",
+        "title": "BATHE",
+        "description": "กำจัดการ์ด [blue]1[/blue] ใบจาก[gold]กองการ์ด[/gold] เพิ่ม[red]Guilty[/red] [blue]1[/blue] ใบเข้า[gold]กองการ์ด[/gold]"
+      }
+    ],
+    "pages": null
+  },
+  {
+    "id": "WHISPERING_HOLLOW",
+    "name": "WhisperingHollow",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": null,
+    "preconditions": [
+      "Requires 50+ gold"
+    ],
+    "options": [
+      {
+        "id": "GOLD",
+        "title": "GOLD",
+        "description": "เสีย [red]50[/red] [gold]ทอง[/gold] จัดหา[gold]ขวดยา[/gold] [blue]2[/blue] ขวดแบบสุ่ม"
+      },
+      {
+        "id": "HUG",
+        "title": "กอดต้นไม้",
+        "description": "เสีย [red]9[/red] HP เลือกการ์ด 1 ใบเพื่อ[gold]แปรสภาพ[/gold]"
+      }
+    ],
+    "pages": null
+  },
+  {
+    "id": "WOOD_CARVINGS",
+    "name": "ไม้แกะสลัก",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": null,
+    "preconditions": [
+      "Requires a removable basic card"
+    ],
+    "options": [
+      {
+        "id": "BIRD",
+        "title": "นก",
+        "description": "เลือกการ์ดเริ่มต้น [blue]1[/blue] ใบเพื่อ[gold]แปรสภาพ[/gold]ให้เป็น[gold]Peck[/gold]"
+      },
+      {
+        "id": "SNAKE",
+        "title": "งู",
+        "description": "[gold]ร่ายมนตร์[/gold]การ์ด [blue]1[/blue] ใบด้วย[purple]มนตร์อสรพิษ[/purple]"
+      },
+      {
+        "id": "SNAKE_LOCKED",
+        "title": "ล็อก",
+        "description": ""
+      },
+      {
+        "id": "TORUS",
+        "title": "TORUS",
+        "description": "เลือกการ์ดเริ่มต้น [blue]1[/blue] ใบเพื่อ[gold]แปรสภาพ[/gold]ให้เป็น[gold]ToricToughness[/gold]"
+      }
+    ],
+    "pages": null
+  },
+  {
+    "id": "ZEN_WEAVER",
+    "name": "ZenWeaver",
+    "type": "Event",
+    "act": "Act 2 - Hive",
+    "description": null,
+    "preconditions": [
+      "Requires 125+ gold"
+    ],
+    "options": [
+      {
+        "id": "BREATHING_TECHNIQUES",
+        "title": "BREATHING_TECHNIQUES",
+        "description": "จ่าย [red]50[/red] [gold]ทอง[/gold] เพิ่ม[gold]Enlightenment[/gold] [blue]2[/blue] ใบเข้า[gold]กองการ์ด[/gold]"
+      },
+      {
+        "id": "EMOTIONAL_AWARENESS",
+        "title": "EMOTIONAL_AWARENESS",
+        "description": "จ่าย [red]125[/red] [gold]ทอง[/gold] กำจัดการ์ด [blue]1[/blue] ใบจาก[gold]กองการ์ด[/gold]"
+      },
+      {
+        "id": "ARACHNID_ACUPUNCTURE",
+        "title": "ARACHNID_ACUPUNCTURE",
+        "description": "จ่าย [red]250[/red] [gold]ทอง[/gold] กำจัดการ์ด [blue]2[/blue] ใบจาก[gold]กองการ์ด[/gold]"
+      },
+      {
+        "id": "LOCKED",
+        "title": "ล็อก",
+        "description": "[gold]ทอง[/gold]ไม่เพียงพอ"
+      }
+    ],
+    "pages": null
+  }
+]

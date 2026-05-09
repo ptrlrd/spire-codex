@@ -1,0 +1,36 @@
+{
+  "app_id": 2868840,
+  "game_version": "0.105.1",
+  "build_id": "",
+  "tag": "0.105.1",
+  "date": "2026-05-08",
+  "title": "Beta v0.105.1 — Aeonglass hotfix",
+  "from_ref": "data-beta/v0.105.0/eng",
+  "to_ref": "data-beta/v0.105.1/eng",
+  "summary": {
+    "added": 0,
+    "removed": 0,
+    "changed": 1
+  },
+  "categories": [
+    {
+      "id": "monsters",
+      "name": "Monsters",
+      "old_count": 115,
+      "new_count": 115,
+      "changed": [
+        {
+          "id": "AEONGLASS",
+          "name": "Aeonglass",
+          "changes": [
+            {
+              "field": "moves[EBB].intent",
+              "old": "Attack + Buff",
+              "new": "Attack + Debuff"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

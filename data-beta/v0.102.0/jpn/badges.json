@@ -1,0 +1,118 @@
+[
+  {
+    "id": "BIG_DECK",
+    "name": "大きなデッキ",
+    "description": "[blue]40[/blue]枚以上のデッキでゲームをクリアする。",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "大きなデッキ",
+        "description": "[blue]40[/blue]枚以上のデッキでゲームをクリアする。"
+      },
+      {
+        "rarity": "silver",
+        "title": "",
+        "description": "[blue]60[/blue]枚以上のデッキでゲームをクリア。"
+      },
+      {
+        "rarity": "gold",
+        "title": "",
+        "description": "[blue]100[/blue]枚以上のデッキでゲームをクリア。"
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_big_deck.png"
+  },
+  {
+    "id": "CCCCOMBO",
+    "name": "コ・コ・コ・コンボォー！",
+    "description": "1ターンに[blue]20[/blue]枚のカードをプレイした。",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "コ・コ・コ・コンボォー！",
+        "description": "1ターンに[blue]20[/blue]枚のカードをプレイした。"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_ccccombo.png"
+  },
+  {
+    "id": "CURSES",
+    "name": "呪われた！",
+    "description": "[blue]5[/blue]枚以上の[red]呪い[/red]を所持してゲームをクリア。",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "呪われた！",
+        "description": "[blue]5[/blue]枚以上の[red]呪い[/red]を所持してゲームをクリア。"
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_curses.png"
+  },
+  {
+    "id": "DAMAGE_LEADER",
+    "name": "ダメージリーダー",
+    "description": "マルチプレイで最も多く敵にダメージを与えた。",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "ダメージリーダー",
+        "description": "マルチプレイで最も多く敵にダメージを与えた。"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": true,
+    "image_url": "/static/images/badges/badge_damage_leader.png"
+  },
+  {
+    "id": "DEBUFFER",
+    "name": "デバッファー",
+    "description": "マルチプレイで一番多くデバフを付与した。",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "デバッファー",
+        "description": "マルチプレイで一番多くデバフを付与した。"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": true,
+    "image_url": "/static/images/badges/badge_debuffer.png"
+  },
+  {
+    "id": "ELITE",
+    "name": "エリートハンター",
+    "description": "エリートを[blue]3[/blue]体以上倒した。",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "エリートハンター",
+        "description": "エリートを[blue]3[/blue]体以上倒した。"
+      },
+      {
+        "rarity": "silver",
+        "title": "エリートキラー",
+        "description": "エリートを[blue]6[/blue]体以上倒した。"
+      },
+      {
+        "rarity": "gold",
+        "title": "エリートスレイヤー",
+        "description": "エリートを[blue]9[/blue]体以上倒した。"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_elite.png"
+  }
+]

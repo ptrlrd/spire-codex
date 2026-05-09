@@ -1,0 +1,42 @@
+[
+  {
+    "id": "ETERNAL",
+    "name": "Ewig",
+    "description": "Kann aus deinem [gold]Deck[/gold] nicht entfernt oder transformiert werden."
+  },
+  {
+    "id": "ETHEREAL",
+    "name": "Flüchtig",
+    "description": "Wenn du diese Karte am Ende dieses Zuges auf deiner [gold]Hand[/gold] hältst, wird sie [gold]Erschöpft[/gold]."
+  },
+  {
+    "id": "EXHAUST",
+    "name": "Erschöpft",
+    "description": "Wird bis zum Ende des Kampfes entfernt."
+  },
+  {
+    "id": "INNATE",
+    "name": "Angeboren",
+    "description": "Beginne jeden Kampf mit dieser Karte auf deiner [gold]Hand[/gold]."
+  },
+  {
+    "id": "PERIOD",
+    "name": "Period",
+    "description": ""
+  },
+  {
+    "id": "RETAIN",
+    "name": "Behalten",
+    "description": "Behaltene Karten werden am Ende des Zuges nicht abgeworfen."
+  },
+  {
+    "id": "SLY",
+    "name": "Listig",
+    "description": "Falls diese Karte vor dem Ende deines Zuges aus deiner [gold]Hand[/gold] abgeworfen wird, spiele sie kostenlos aus."
+  },
+  {
+    "id": "UNPLAYABLE",
+    "name": "Unspielbar",
+    "description": "Unspielbare Karten können nicht ausgespielt werden."
+  }
+]

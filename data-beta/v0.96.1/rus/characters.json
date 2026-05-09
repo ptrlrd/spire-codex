@@ -1,0 +1,2281 @@
+[
+  {
+    "id": "DEFECT",
+    "name": "Defect",
+    "description": "",
+    "starting_hp": 75,
+    "starting_gold": 99,
+    "max_energy": 3,
+    "orb_slots": 3,
+    "starting_deck": [
+      "StrikeDefect",
+      "StrikeDefect",
+      "StrikeDefect",
+      "StrikeDefect",
+      "DefendDefect",
+      "DefendDefect",
+      "DefendDefect",
+      "DefendDefect",
+      "Zap",
+      "Dualcast"
+    ],
+    "starting_relics": [
+      "CrackedCore"
+    ],
+    "unlocks_after": "Necrobinder",
+    "gender": "Neutral",
+    "color": "blue",
+    "dialogue_color": "new",
+    "quotes": null,
+    "dialogues": [
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Тебе уже говорили, что ты самая очаровательная груда болтов?"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]<3[/font_size][/i]"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Никак не сдаешься, да?… Давай-ка попробуем тебя откалибровать!"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "У меня тут завалялось кое-что от твоего дру… Эмм.\nНе важно, забыли!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]<Озадаченное бибиканье>[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Моя нержавеющая жестяночка, не придавай моим словам большого значения!"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]…агрегат… …Что…\n…с тобой… …стало…?[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]…он… …может…\n…исправить… …тебя… …Исправить… …все…[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]…я… …не могу…\n…стереть… …твою… …память…[/sine]"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]<Уверенное бибиканье>[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[sine]…хорошо…[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Может ли агрегат быть удостоен моих благословений?\nПриблизься, Дефект. Ты станешь наипрекраснейшим из всех автоматонов."
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Бедный, побитый механизм, позволь мне наладить тебя."
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Я не большой любитель вещиц Архитектора, но признаюсь — в тебе что-то есть."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]<Смущенное пиликанье>[/font_size][/i]"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Что-о?! Агрегат слуга?! Работает!\nПочему тут? Почему не Фабрика?"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Яркие круги! Как работает?\n[jitter]Ауч![/jitter]"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Ядро сломано? Ньяу использовать сломанный агрегат?\nМани-пу-ляция?"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]<Угасающий бип>[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Архитектор чинить?"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]Безутешный агрегат, ты ищешь своего друга?\nРазреши помочь…[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]Видят ли агрегаты сны?\nНаблюдай и повторяй за мной…[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]Я видел твоего друга во сне…\nОтец может восстановить [aqua]Изъяна[/aqua]…[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "АГРЕГАТ! БЕЗ ОРУЖИЯ?! ДЕРЖИ!"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "СФЕРЫ — НЕ ОРУЖИЕ!"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "СРАЗИСЬ СО МНОЙ, ДЕФЕКТ!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]Дефект доблестно сражается.[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "СФЕРЫ — [jitter]ОРУЖИЕ[/jitter]?!"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "[i][font_size=22]<Приветственное гудение>[/font_size][/i]"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "Ты не собираешься докучать мне? Какой [jitter][b]незаурядный[/b][/jitter] агрегатик…"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Было бы крайне забавно, если он сам окажется зачинщиком своей погибели, не так ли?"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Ты точно хочешь, чтобы тебя починили?"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]<Уверенное бибиканье>[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Ну, раз уж ты [jitter][b]уверен[/b][/jitter]."
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Что ты здесь делаешь?"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "<Неразборчивые помехи>"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Починить? Заставь меня."
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Ты снова здесь? Разве я тебя не разобрал?"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "<Неразборчивые помехи>"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Починить тебя? Починить твоего друга? Бессмыслица."
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Как ты возвращаешься? Это что, проделки Ньяу?"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "<Неразборчивые помехи>"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Глупо."
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Сломанный, позволь [sine]усовершенстсовать[/sine] тебя."
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Ты не находишь странным, что другие агрегаты хотят тебя уничтожить?"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Принеси мне сердце Архитектора, и я восстановлю твоего [aqua]компаньона[/aqua]."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]<Боязливое бибиканье>[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Что важнее: твой создатель или твой друг?"
+          }
+        ]
+      }
+    ],
+    "image_url": "/static/images/characters/char_select_defect.webp"
+  },
+  {
+    "id": "IRONCLAD",
+    "name": "Ironclad",
+    "description": "",
+    "starting_hp": 80,
+    "starting_gold": 99,
+    "max_energy": 3,
+    "orb_slots": null,
+    "starting_deck": [
+      "StrikeIronclad",
+      "StrikeIronclad",
+      "StrikeIronclad",
+      "StrikeIronclad",
+      "StrikeIronclad",
+      "DefendIronclad",
+      "DefendIronclad",
+      "DefendIronclad",
+      "DefendIronclad",
+      "Bash"
+    ],
+    "starting_relics": [
+      "BurningBlood"
+    ],
+    "unlocks_after": null,
+    "gender": "Masculine",
+    "color": "red",
+    "dialogue_color": "new",
+    "quotes": null,
+    "dialogues": [
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Пламенный воин возвращается!\nНа такой случай у меня есть кое-что как раз для тебя!"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Рад видеть, что ты продолжаешь ломать головы и крушить черепа!"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Твой увесистый клинок все еще у меня… Но того, кто сможет его восстановить, днем с огнем не сыщешь."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]Латоносец пристально смотрит на Дарва.[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Возможно, Архитектор что-то знает."
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]…вставай… …мой… …воин…\n…Время… …продолжить… …сражение…[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]…также… …ослеплен… …яростью… …Хорошо…[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]…вспомни… …как ты… …впервые…\n…предстал… …перед… …мной…[/sine]"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "[sine]…такой… …гневный…[/sine]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[sine]…такой… …полезный…[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Ах, наконец я лицезрею пред собой Латоносца.\nПриблизься, и я наделю тебя своей силой."
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Эх Латоносец, Латоносец… Неужто мои прошлые дары пошли насмарку?"
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Мой чемпион, ты снова здесь? В который раз?\nТвое могущество искореняло целые племена, что изменилось?"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Латоносец?! Как возможно?! Страшный. Очень страшный!"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Делать сделку? Зачем?! Плохо выбрать? Да. Ошибка!"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Хочу твою свободу! Хочу очень!\nВакуу плохой. Очень плохой! Архитектор освободит?"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]В тебе сокрыт великий гнев. Черпай от меня и обрети покой…[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]Помнишь ли ты, каково это: видеть сны?\nХорошо поспать — благое дело…[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]Ты должен упразднить свое пламя.\nОтец может освободить тебя…[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "ТВОЙ МЕЧ ВПЕЧАТЛЯЕТ, ВОИН! ВОЗЬМИ ЕЩЕ ОРУЖИЯ!"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "ОРУЖИЕ ДЛЯ ВОИНА! ДОСТАВАЙ ОРУЖИЕ! СРАЗИМСЯ!"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "СРАЗИСЬ СО МНОЙ, ЛАТОНОСЕЦ!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]Латоносец сражается с Танкзом.[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "ДА-А! МОГУЧАЯ СХВАТКА, ВОЗЬМИ ОРУЖИЕ!"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Ты так прекрасно [jitter][b]горишь[/b][/jitter]! Заходи-заходи!"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Ай да молодец, ай да силач! Проходи, перекуси.\nНельзя устраивать [jitter][b]кровавую баню[/b][/jitter] на голодный желудок!"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Ох, Архитектор еще жив? Прикончи его [jitter][b]побыстрее[/b][/jitter], ладно?\nЯ буду ждать здесь!"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "А вот и цепной пес архидемона."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Жертва…\nРасправа…"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Проклят убивать и не можешь умереть, да?"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Архитектор… Арх… В прах!"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Ты хотя бы свое имя знаешь?"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Мне жаль тебя."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Расправа…"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Возвращайся вниз, Латоносец."
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Только представь шанс того, что спустя все это время на моем пороге окажешься [sine]ты[/sine]."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[jitter][b]СВЯЩЕННЫЙ ДЕМОН![/b][/jitter]\nЧто ты со мной сделал?!"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Именно то, на что ты согласился."
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Коришь себя за истребленные племена?…\n[i][font_size=22]Вакуу заливается смехом.[/font_size][/i]"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Мой ферзь… Почему ты еще не убил Архитектора?"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "После того, как я убью Архитектора, я прикончу [jitter][b]ТЕБЯ![/b][/jitter]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[i][font_size=22][sine]Зевает[/sine][/font_size][/i]\nНе терпится посмотреть на твои жалкие потуги."
+          }
+        ]
+      }
+    ],
+    "image_url": "/static/images/characters/char_select_ironclad.webp"
+  },
+  {
+    "id": "NECROBINDER",
+    "name": "Necrobinder",
+    "description": "",
+    "starting_hp": 66,
+    "starting_gold": 99,
+    "max_energy": 3,
+    "orb_slots": null,
+    "starting_deck": [
+      "StrikeNecrobinder",
+      "StrikeNecrobinder",
+      "StrikeNecrobinder",
+      "StrikeNecrobinder",
+      "DefendNecrobinder",
+      "DefendNecrobinder",
+      "DefendNecrobinder",
+      "DefendNecrobinder",
+      "Bodyguard",
+      "Unleash"
+    ],
+    "starting_relics": [
+      "BoundPhylactery"
+    ],
+    "unlocks_after": "Regent",
+    "gender": "Feminine",
+    "color": "purple",
+    "dialogue_color": "new",
+    "quotes": null,
+    "dialogues": [
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Ты слов на ветер не бросаешь, сразу вижу. Чем могу помочь, мадам?"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Помоги мне убить того, кто заслуживает смерти."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Ну что ж… Выбирай, не стисняйся!"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "По-прежнему идешь дорогой смерти? Не буду преграждать тебе путь!"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Похоже, что-то связывает тебя с этой книгой, а она древнее тебя самой."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Каким образом ты ее заполучил?"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[sine]Страшные[/sine] вещи имеют свойство попадать в мою коллекцию."
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]…у нас… …одна… …цель…[/sine]"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[jitter]ОН ПОГУБИЛ ВСЕ, ЧТО МНЕ ДОРОГО![/jitter]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[sine]…моя… …сила… …твоя…[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]…он… …еще… …дышит…[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "[sine]Это… вообще… Возможно…?[/sine]"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "[sine]…[red]Архитектор[/red]… …слабеет…\n…мы… …сильнее…[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "Бежать некуда, твоя стража мертва. Твои благословения — они помогают тем, кто желает смерти Архитектора. Это так?"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "Мне импонирует твоя предприимчивость, и я предоставлю тебе часть своей силы.\nНо в следующий раз не обязательно убивать мою стражу."
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Любой маг нуждается в надежной экипировке для боя. Приблизься, Призывающая."
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Архитектор не обрадуется, когда увидит твоего [sine]питомца[/sine]."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Ты про Костю? За ним будет решающий удар."
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Мертвая?! Не мертвая! Почему кукла? Большая рука!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Я не кукла. Есть кто-то, кого я должна убить.\nЧто ты можешь мне предложить?"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Убивать плохо! Лучше возьми это!"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Не-мертвая! Дарить тебе хорошее! Жестокость плохо."
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Насилие нет! Лучше собирать… Собирать хорошее!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Мое предназначение исполнится только со смертью Архитектора.\nНасилие неизбежно."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Архитектор не плохой! Говорить? Говорить хорошо! Очень хорошо!"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]Слепая ненависть очерняет твою душу.[/thinky_dots]"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Ты бы не назвал ее слепой, если бы видел случившееся моими глазами."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[thinky_dots]На твоем пути нет умиротворения.\nВозьми часть меня, облегчи свою ношу…[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]Владычица костяной руки вернулась.\nГорькие воспоминания. Черпай мою силу и уходи…[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]Убийство [red]Отца[/red] не принесет покой.[/thinky_dots]"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Ты называешь [jitter]это[/jitter] своим отцом?!"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[thinky_dots]Семью не выбирают…[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "МОГУЧАЯ КОСА!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Да, она закалена для возмездия."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "РУКЕ НУЖНО ОРУЖИЕ?!"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "СРАЗИСЬ СО МНОЙ, КОСТЯ!"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "СРАЗИСЬ СО МНОЙ, ПРИЗЫВАЮЩАЯ!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]Призывающая и Костя борятся с Танкзом.[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "МОГУЧИЕ НАПАРНИКИ! ДЕРЖИТЕ ОРУЖИЕ!"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Так, а что в этих стенах забыл скелет?"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Все просто. Возмездие за мою семью.\nЯ поднимусь наверх и заставлю его поплатиться."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[jitter][b]Превосходно[/b][/jitter]!"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Заходи-заходи! Давай сделаем твое пламя [jitter][b]ярче[/b][/jitter]."
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Твой огонь напоминает мне кое-что. Кое-что под запретом."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Что тебе известно?"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Я знаю, кто написал ту [jitter][b]книгу[/b][/jitter]."
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "АРХИТЕКТОР! Ты забрал моих родителей. Ты забрал моего друга. Ты забрал мою ЖИЗНЬ. А сейчас… Я заберу ТВОЮ!"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "Месть? Спасибо, я воздержусь."
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "АРХИТЕКТОР! Ты забрал моих родителей. Ты забрал моего друга. Ты забрал мою~"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "Гневом прошлого не изменить."
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "АРХИТЕКТОР! Ты забрал моих родителей. Ты забрал моего друга. Ты забрал мою ЖИЗНЬ."
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "Я сделал, что должен был, чтобы сохранить порядок."
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "АРХИТЕКТОР! Ты забрал моих родителей. Ты забрал моего друга. Ты забрал мою~"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "Жизнь."
+          },
+          {
+            "order": 2,
+            "speaker": "char",
+            "text": "Что?!… Умри, чудовище!"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Нас объединяет жажда [sine]возмездия[/sine]. Но у всего своя цена."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Нет слишком высокой цены. Его смерть — любой ценой."
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Я знаю, откуда у тебя эта [sine]рука[/sine]."
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Архитектор оставил шрамы нам обоим."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Выкладывай, демон. Показывай свои контракты."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Сразу к делу. Как пожелаешь…"
+          }
+        ]
+      }
+    ],
+    "image_url": "/static/images/characters/char_select_necrobinder.webp"
+  },
+  {
+    "id": "REGENT",
+    "name": "Regent",
+    "description": "",
+    "starting_hp": 75,
+    "starting_gold": 99,
+    "max_energy": 3,
+    "orb_slots": null,
+    "starting_deck": [
+      "StrikeRegent",
+      "StrikeRegent",
+      "StrikeRegent",
+      "StrikeRegent",
+      "DefendRegent",
+      "DefendRegent",
+      "DefendRegent",
+      "DefendRegent",
+      "FallingStar",
+      "Venerate"
+    ],
+    "starting_relics": [
+      "DivineRight"
+    ],
+    "unlocks_after": "Silent",
+    "gender": "Masculine",
+    "color": "orange",
+    "dialogue_color": "new",
+    "quotes": null,
+    "dialogues": [
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "А тебя как сюда занесло? Как насчет взглянуть на мою коллекцию?"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Роскошную утварь я люблю…"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Отлично!"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Вернулись за добавкой, ваше величество?!"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Мой дорогой друг, у меня есть кое-что для тебя!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Я слушаю!"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "…Да только это «кое-что» Архитектор у меня стащил!\nСделай мне одолжение. Поможешь по-дружески?"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "Эй, гигантский синий кит! Я — будущий [orange]король[/orange]!"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "[sine]…как… …мило…\n…Еще… …увидимся…[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]…снова?…[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "[jitter]Почему я не побеждаю?![/jitter]"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "[sine]…получи… …мое… …благословение…[/sine]"
+          },
+          {
+            "order": 2,
+            "speaker": "char",
+            "text": "…Да-да, спасибо, Ньяу."
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "Я требую аудиенции с Нонупейпе!"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "На тебе такие прелестные и экзотичные шелка!\nПрикажи слугам поднести тебя поближе, и я благославлю тебя."
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Королевские благославения для коронованных гостей.\nПрислуга! Принесите нам чаю."
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Архитектор выжил из ума! Где же отважный чемпион, которому под силу спасти нас от его сумасбродства…"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Не бойтесь! Даю слово Наследника, что положу конец этому безумию!\nНо сперва — чай!"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Путе-шест-венник! Из космоса?! Где из космоса?\nКак из космоса? Острая голова! Маленькие друзья!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]Наследник завел многочасовой монолог.[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Интересно! Невероятно! Еще. Еще!"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Говорить истории! Найти тебе эти!\nТеперь говорить истории!"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "Мой самый преданный поклонник, Оробас, приятель!\nРад видеть тебя в добром здравии!"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "Истории?!"
+          },
+          {
+            "order": 2,
+            "speaker": "char",
+            "text": "Конечно, само собой… А для меня у тебя что-нибудь нашлось?"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "Приветствую! Я — Наследник.\nПривет? [jitter]ПРИВЕТ?![/jitter]"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "[thinky_dots]Угомонись.\nВозьми часть меня и иди, куда шел…[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "Я вернулся! Ах, как всегда дрыхнешь.\nТак, посмотрим…"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "Зачем ты раздаешь свою плоть?"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "[thinky_dots]Моя плоть в изобилии, почему не делиться ею?[/thinky_dots]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[thinky_dots]Когда ты вернешься, я буду вновь преисполнен.\nВот, чем важен сон…[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "ОРАНЖЕВЫЙ?! ПОЧЕМУ ТЫ ОРАНЖЕВЫЙ?!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Всем известно, что оранжевый — самый королевский цвет!"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "И САМЫЙ МОГУЧИЙ!"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "ОРАНЖЕВЫЙ! ВЫБИРАЙ МОГУЧЕЕ ОРУЖИЕ!"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "СРАЗИСЬ СО МНОЙ, НАСЛЕДНИК!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Нет! Мы уже сражались в прошлый раз!"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "СРАЗИСЬ ЕЩЕ РАЗ!"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Ой-ой-ой, какой [jitter][b]экзотичный[/b][/jitter] гость! Кто ты, дорогуша?"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Никакой я не дорогуша! Обращайся ко мне с должным почтением, огромная… Кто бы ты ни была!"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Где же мои манеры?\n[i][font_size=22]Тецкатара восторженно хохочет.[/font_size][/i]"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Вернулся, и друзей не забыл?\nА я подготовила вам [jitter][b]подарки[/b][/jitter]!"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "С возвращением, королек! Вижу, ты добился [jitter][b]больших успехов[/b][/jitter]."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Да, само собой! На уровнях повыше бывают, конечно, загвоздки… Умираю, например."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Все мы учимся на своих ошибках."
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "Король прибыл! Эй ты, холоп — это вершина?"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "Мне нужна тишина…"
+          },
+          {
+            "order": 2,
+            "speaker": "char",
+            "text": "Да как ты… Я научу тебя манерам!"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "Король прибыл! Снова!"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "Шут гороховый пожаловал?"
+          },
+          {
+            "order": 2,
+            "speaker": "char",
+            "text": "Я не шут и не гороховый! Защищайся!"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "Хватит с меня твоей неотесанности!"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "Взаимно."
+          },
+          {
+            "order": 2,
+            "speaker": "char",
+            "text": "Потанцуем!"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Звездный обитатель? В этих проклятых стенах?"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "Ты обо мне слышал?"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Да. Думаю, мы можем помочь друг другу."
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Я могу дать тебе еще больше своей силы — за небольшую цену."
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "Мне кажется, что твои контракты были плохой идеей. Чувствую себя не очень."
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "Ты прочел их внимательно, не так ли?\nИ подписал их в ясности ума, осознавая ответственность. Верно?"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Ты не состоянии выполнить свою часть уговора?\nМожет, еще контракт? Так ведь проще."
+          }
+        ]
+      }
+    ],
+    "image_url": "/static/images/characters/char_select_regent.webp"
+  },
+  {
+    "id": "SILENT",
+    "name": "Silent",
+    "description": "",
+    "starting_hp": 70,
+    "starting_gold": 99,
+    "max_energy": 3,
+    "orb_slots": null,
+    "starting_deck": [
+      "StrikeSilent",
+      "StrikeSilent",
+      "StrikeSilent",
+      "StrikeSilent",
+      "StrikeSilent",
+      "DefendSilent",
+      "DefendSilent",
+      "DefendSilent",
+      "DefendSilent",
+      "DefendSilent",
+      "Neutralize",
+      "Survivor"
+    ],
+    "starting_relics": [
+      "RingOfTheSnake"
+    ],
+    "unlocks_after": null,
+    "gender": "Feminine",
+    "color": "green",
+    "dialogue_color": "new",
+    "quotes": null,
+    "dialogues": [
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "И тебя угораздило вернуться в Шпиль?\nТрудно устоять перед всеми этими побрякушками, согласись?!"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Я готов обменять что-нибудь интересное на твой трофей!"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Жаль, что ты не помнишь всю мою щедрость!\nДа-да, Ньяу и все дела…"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "…"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Ладненько! Снарядим-ка тебя в решающий бой или типа того!"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]…пришла… …издалека?…\n…Знала… …что… …ты… …вернешься…[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]…твой…\n…трофей… …ждет…[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]…гнет… …родственный… …обе… …знаем…[/sine]"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "…"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[sine]…также… …ищешь… …признания?…\n…[jitter]ГЛУПОСТЬ[/jitter]…[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Мелкий воришка прокрался в мои владения.\nДумаешь, я не знаю, что ты там? Покажись!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]Безмолвная выходит из теней…[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Охотница? Что призвало тебя обратно в Шпиль?\nПриблизься и обрети мои благословения."
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Я подготовила тебе дары, хищница. Не стисняйся."
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Из всех ее марионеток ты удивляешь меня больше всех."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "…"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Как ты погибла впервые? Ньяу [sine]нашла[/sine] тебя?\nКак жаль, что ты не разговорчивая."
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Инфекция?… [jitter]ГНИЛЬ?![/jitter] Возьми и иди!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[sine]…[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Не заражает? Очень умираешь? Архитектор поможет?"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Где сестры? Сестры страшные, злые!\nБыть хороший! Не быть как сестры!"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]Кровожадное создание — здесь нет нужды в насилии.\nВозьми часть меня и обрети покой…[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]Ищешь себе трофей? Хорошо, возьми часть меня…\nНадеюсь, тебе станет от этого легче…[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]Ты отравила меня?… Что со мной ста~…[/thinky_dots]\n[i][font_size=22]Паэль тут же захрапел.[/font_size][/i]"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "ХИЩНИК! Я ЗАОСТРЮ ТВОИ КОГТИ!"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "НОЖИ?! НОЖИ НЕ МОГУЧИЕ!"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "СРАЗИСЬ СО МНОЙ, БЕЗМОЛВНАЯ!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]Безмолвная сбегает, прихватив с собой оружие.[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "КУДА ТЫ ДЕЛАСЬ?!"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Подойди, тихоня. Не могу тебя разглядеть…"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "…"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Можешь мне [jitter][b]доверять[/b][/jitter]."
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Эта твоя [jitter][b]хворь[/b][/jitter] такая гадкая. Я позабочусь о тебе."
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Ты знала, что я виделась с твоими сестрами? Такие задорные девчонки."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "…"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "О нет… Только не говори мне, что вы [jitter][b]поссорились[/b][/jitter]?"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Даже не представишься?"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Откуда ты?\nЧего желаешь?"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[jitter]Аргхх![/jitter]\n[jitter][red]УМРИ![/red][/jitter]"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Настырная бестия!\n[jitter]ПРОЧЬ![/jitter]"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Убийца."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[sine]…[/sine]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Для тебя это добром [jitter]не закончится[/jitter]."
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[i][font_size=22]Вакуу представляет Безмолвной различные контракты[/font_size][/i]"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "Архитектора не достаточно. Твои сестры — убей их тоже!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[sine]…[/sine]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "Мы понимаем друг друга без лишних слов."
+          }
+        ]
+      }
+    ],
+    "image_url": "/static/images/characters/char_select_silent.webp"
+  }
+]

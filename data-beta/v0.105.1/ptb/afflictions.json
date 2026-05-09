@@ -1,0 +1,44 @@
+[
+  {
+    "id": "BOUND",
+    "name": "Restrição",
+    "description": "Apenas [blue]1[/blue] carta com [gold]Restrição[/gold] pode ser jogada por turno. Cartas perdem [gold]Restrição[/gold] no final do turno.",
+    "extra_card_text": "Restrição",
+    "is_stackable": false
+  },
+  {
+    "id": "ENTANGLED",
+    "name": "Emaranhada",
+    "description": "Custa [energy:1] adicional.",
+    "extra_card_text": "Emaranhada",
+    "is_stackable": false
+  },
+  {
+    "id": "GALVANIZED",
+    "name": "Galvanização",
+    "description": "Sofra [blue]X[/blue] de dano quando esta carta é jogada.",
+    "extra_card_text": "Sofra X de dano.",
+    "is_stackable": true
+  },
+  {
+    "id": "HEXED",
+    "name": "Enfeitiçada",
+    "description": "Adiciona [gold]Etérea[/gold] a esta carta.",
+    "extra_card_text": null,
+    "is_stackable": false
+  },
+  {
+    "id": "RINGING",
+    "name": "Ressonante",
+    "description": "Você só pode jogar [blue]1[/blue] carta neste turno.",
+    "extra_card_text": "Ressonante.",
+    "is_stackable": false
+  },
+  {
+    "id": "SMOG",
+    "name": "Poluição",
+    "description": "Você não pode jogar [gold]Técnicas[/gold] adicionais neste turno. É removida no final do turno.",
+    "extra_card_text": null,
+    "is_stackable": false
+  }
+]

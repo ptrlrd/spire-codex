@@ -1,0 +1,74 @@
+{
+  "card_types": {
+    "Attack": "공격",
+    "Skill": "스킬",
+    "Power": "파워",
+    "Status": "상태이상",
+    "Curse": "저주",
+    "Quest": "퀘스트"
+  },
+  "card_rarities": {
+    "Basic": "기본",
+    "Common": "일반",
+    "Uncommon": "고급",
+    "Rare": "희귀",
+    "Ancient": "고대의 존재",
+    "Event": "이벤트",
+    "Token": "토큰",
+    "Status": "상태이상",
+    "Curse": "저주",
+    "Quest": "퀘스트"
+  },
+  "relic_rarities": {
+    "Starter": "시작 유물",
+    "Common": "일반 유물",
+    "Uncommon": "고급 유물",
+    "Rare": "희귀 유물",
+    "Ancient": "고대 유물",
+    "Event": "이벤트 유물",
+    "Shop": "상점 유물"
+  },
+  "potion_rarities": {
+    "Common": "일반",
+    "Uncommon": "고급",
+    "Rare": "희귀",
+    "Event": "이벤트",
+    "Token": "토큰"
+  },
+  "keywords": {
+    "ETERNAL": "영구",
+    "ETHEREAL": "휘발성",
+    "EXHAUST": "소멸",
+    "INNATE": "선천성",
+    "RETAIN": "보존",
+    "SLY": "교활",
+    "UNPLAYABLE": "사용불가"
+  },
+  "sections": {
+    "cards": "카드 목록",
+    "characters": "Characters",
+    "relics": "유물 모음집",
+    "monsters": "몬스터 도감",
+    "potions": "포션 연구실",
+    "enchantments": "Enchantments",
+    "encounters": "Encounters",
+    "events": "Events",
+    "powers": "Powers",
+    "timeline": "연대표",
+    "images": "Images",
+    "reference": "Reference"
+  },
+  "section_descs": {
+    "cards": "첨탑에서 만난 모든 카드들을 확인해보세요.",
+    "relics": "도전 중에 얻은 다양한 장신구와 유물들을 살펴보세요.",
+    "monsters": "첨탑에서 만난 모든 적들을 확인해보세요.",
+    "potions": "첨탑을 오르며 발견한 다양한 포션들을 관찰해보세요."
+  },
+  "character_names": {
+    "ironclad": "아이언클래드",
+    "silent": "사일런트",
+    "defect": "디펙트",
+    "necrobinder": "네크로바인더",
+    "regent": "리젠트"
+  }
+}

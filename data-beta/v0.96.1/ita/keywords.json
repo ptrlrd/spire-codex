@@ -1,0 +1,37 @@
+[
+  {
+    "id": "ETERNAL",
+    "name": "Eternità",
+    "description": "Non può essere trasformata o rimossa dal tuo [gold]mazzo[/gold]."
+  },
+  {
+    "id": "ETHEREAL",
+    "name": "Evanescenza",
+    "description": "Se questa carta è nella tua [gold]mano[/gold] al termine di questo turno, diventa [gold]esaurita[/gold]."
+  },
+  {
+    "id": "EXHAUST",
+    "name": "Esaurimento",
+    "description": "Viene rimossa fino al termine del combattimento."
+  },
+  {
+    "id": "INNATE",
+    "name": "Innatismo",
+    "description": "Inizi ogni combattimento con questa carta nella tua [gold]mano[/gold]."
+  },
+  {
+    "id": "RETAIN",
+    "name": "Conservazione",
+    "description": "Le carte con Conservazione non vengono scartate al termine del turno."
+  },
+  {
+    "id": "SLY",
+    "name": "Astuzia",
+    "description": "Se questa carta viene scartata dalla tua [gold]mano[/gold] prima della fine del tuo turno, giocala senza nessun costo."
+  },
+  {
+    "id": "UNPLAYABLE",
+    "name": "Ingiocabilità",
+    "description": "Le carte con Ingiocabilità non possono essere usate."
+  }
+]

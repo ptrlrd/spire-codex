@@ -4,34 +4,34 @@
     "name": "암흑",
     "description": "[gold]지속:[/gold] 턴 종료 시, 이 구체의 피해량이 [blue]6[/blue] 증가합니다.\n[gold]발현:[/gold] 체력이 가장 낮은 적에게 피해를 [blue]6[/blue] 줍니다.",
     "description_raw": "[gold]지속:[/gold] 턴 종료 시, 이 구체의 피해량이 [blue]{Passive}[/blue] 증가합니다.\n[gold]발현:[/gold] 체력이 가장 낮은 적에게 피해를 [blue]{Evoke}[/blue] 줍니다.",
-    "image_url": "/static/images/orbs/dark_orb.png"
+    "image_url": "/static/images/orbs/dark_orb.webp"
   },
   {
     "id": "FROST_ORB",
     "name": "냉기",
     "description": "[gold]지속:[/gold] 턴 종료 시, [gold]방어도[/gold]를 [blue]2[/blue] 얻습니다.\n[gold]발현:[/gold] [gold]방어도[/gold]를 [blue]5[/blue] 얻습니다.",
     "description_raw": "[gold]지속:[/gold] 턴 종료 시, [gold]방어도[/gold]를 [blue]{Passive}[/blue] 얻습니다.\n[gold]발현:[/gold] [gold]방어도[/gold]를 [blue]{Evoke}[/blue] 얻습니다.",
-    "image_url": "/static/images/orbs/frost_orb.png"
+    "image_url": "/static/images/orbs/frost_orb.webp"
   },
   {
     "id": "GLASS_ORB",
     "name": "유리",
     "description": "[gold]지속:[/gold] 턴 종료 시, 모든 적에게 피해를 [blue]4[/blue] 주고 이 구체의 수치를 [blue]1[/blue] 줄입니다.\n[gold]발현:[/gold] 모든 적에게 피해를 [blue]8[/blue] 줍니다.",
     "description_raw": "[gold]지속:[/gold] 턴 종료 시, 모든 적에게 피해를 [blue]{Passive}[/blue] 주고 이 구체의 수치를 [blue]1[/blue] 줄입니다.\n[gold]발현:[/gold] 모든 적에게 피해를 [blue]{Evoke}[/blue] 줍니다.",
-    "image_url": "/static/images/orbs/glass_orb.png"
+    "image_url": "/static/images/orbs/glass_orb.webp"
   },
   {
     "id": "LIGHTNING_ORB",
     "name": "전기",
     "description": "[gold]지속:[/gold] 턴 종료 시, 무작위 적에게 피해를 [blue]3[/blue] 줍니다.\n[gold]발현:[/gold] 무작위 적에게 피해를 [blue]8[/blue] 줍니다.",
     "description_raw": "[gold]지속:[/gold] 턴 종료 시, 무작위 적에게 피해를 [blue]{Passive}[/blue] 줍니다.\n[gold]발현:[/gold] 무작위 적에게 피해를 [blue]{Evoke}[/blue] 줍니다.",
-    "image_url": "/static/images/orbs/lightning_orb.png"
+    "image_url": "/static/images/orbs/lightning_orb.webp"
   },
   {
     "id": "PLASMA_ORB",
     "name": "플라즈마",
     "description": "[gold]지속:[/gold] 턴 시작 시,\n[energy:1]를 얻습니다.\n[gold]발현:[/gold] [energy:2]를 얻습니다.\n플라즈마는 [gold]밀집[/gold]의 영향을 받지 않습니다.",
     "description_raw": "[gold]지속:[/gold] 턴 시작 시,\n{energyPrefix:energyIcons(1)}를 얻습니다.\n[gold]발현:[/gold] {energyPrefix:energyIcons(2)}를 얻습니다.\n플라즈마는 [gold]밀집[/gold]의 영향을 받지 않습니다.",
-    "image_url": "/static/images/orbs/plasma_orb.png"
+    "image_url": "/static/images/orbs/plasma_orb.webp"
   }
 ]

@@ -1,0 +1,82 @@
+[
+  {
+    "id": "ALL_STAR",
+    "name": "올스타",
+    "description": "[gold]무색 카드[/gold]를 [blue]5[/blue]장 얻고 시작합니다."
+  },
+  {
+    "id": "BIG_GAME_HUNTER",
+    "name": "나 이런 사냥꾼이야",
+    "description": "엘리트가 첨탑에 바글거리며 더 좋은 보상을 줍니다."
+  },
+  {
+    "id": "BINARY",
+    "name": "양자택일",
+    "description": "[gold]카드 보상[/gold]의 선택지가 [blue]2[/blue]장으로 줄어듭니다."
+  },
+  {
+    "id": "CURSED_RUN",
+    "name": "저주받은 도전",
+    "description": "매 막 시작 시, 내 덱에 무작위 [red]저주[/red]를 추가합니다."
+  },
+  {
+    "id": "DEADLY_EVENTS",
+    "name": "위험천만한 이벤트",
+    "description": "미지 방에 이제 엘리트가 등장할 수 있게 되지만, 보물 방이 등장할 확률도 증가합니다."
+  },
+  {
+    "id": "DRAFT",
+    "name": "드래프트",
+    "description": "[gold]카드 보상[/gold]을 [blue]10[/blue]번 선택해 시작 덱과 교체합니다."
+  },
+  {
+    "id": "FLIGHT",
+    "name": "비행",
+    "description": "이동할 다음 방을 선택할 때 경로를 무시할 수 있습니다."
+  },
+  {
+    "id": "HOARDER",
+    "name": "저장 강박증",
+    "description": "덱에 카드를 추가할 때마다, [blue]2[/blue]장의 복사본을 함께 추가합니다. 더 이상 상인을 통해 덱에서 카드를 제거할 수 없습니다."
+  },
+  {
+    "id": "INSANITY",
+    "name": "정신 이상",
+    "description": "[blue]30[/blue]장의 무작위 카드로 구성된 덱으로 시작합니다."
+  },
+  {
+    "id": "MIDAS",
+    "name": "마이더스",
+    "description": "적들이 [blue]200%[/blue] 더 많은 골드를 보상으로 제공하지만, [gold]휴식 장소[/gold]에서 더 이상 재련을 선택할 수 없습니다."
+  },
+  {
+    "id": "MURDEROUS",
+    "name": "살의",
+    "description": "매 전투 시작 시 [gold]힘[/gold]을 [blue]3[/blue] 얻습니다. 모든 적이 전투 시작 시 [gold]힘[/gold]을 [blue]3[/blue] 얻습니다."
+  },
+  {
+    "id": "NIGHT_TERRORS",
+    "name": "밤의 공포",
+    "description": "[gold]휴식 장소[/gold]에서 휴식을 선택 시 체력이 모두 회복되지만, 최대 체력이 [red]5[/red] 감소합니다."
+  },
+  {
+    "id": "SEALED_DECK",
+    "name": "실드 덱",
+    "description": "[blue]30[/blue]장의 카드 중 [blue]10[/blue]장을 선택해 시작 덱과 교체합니다."
+  },
+  {
+    "id": "SPECIALIZED",
+    "name": "전문화",
+    "description": "단일 카드의 복사본 [blue]5[/blue]장을 지닌 채로 시작합니다."
+  },
+  {
+    "id": "TERMINAL",
+    "name": "불치병",
+    "description": "새로운 방에 입장할 때마다 최대 체력을 [red]1[/red] 잃습니다. 매 전투 시작 시 [gold]판금[/gold]을 [blue]5[/blue] 얻습니다."
+  },
+  {
+    "id": "VINTAGE",
+    "name": "고전적",
+    "description": "일반 적들의 보상으로 카드가 아닌 유물을 받습니다."
+  }
+]

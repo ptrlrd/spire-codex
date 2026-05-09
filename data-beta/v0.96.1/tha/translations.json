@@ -1,0 +1,74 @@
+{
+  "card_types": {
+    "Attack": "โจมตี",
+    "Skill": "ทักษะ",
+    "Power": "พลัง",
+    "Status": "สถานะ",
+    "Curse": "คำสาป",
+    "Quest": "ภารกิจ"
+  },
+  "card_rarities": {
+    "Basic": "พื้นฐาน",
+    "Common": "ธรรมดา",
+    "Uncommon": "ไม่ธรรมดา",
+    "Rare": "หายาก",
+    "Ancient": "เทพโบราณ",
+    "Event": "เหตุการณ์",
+    "Token": "โทเคน",
+    "Status": "สถานะ",
+    "Curse": "คำสาป",
+    "Quest": "ภารกิจ"
+  },
+  "relic_rarities": {
+    "Starter": "เครื่องรางเริ่มต้น",
+    "Common": "เครื่องรางธรรมดา",
+    "Uncommon": "เครื่องรางไม่ธรรมดา",
+    "Rare": "เครื่องรางหายาก",
+    "Ancient": "เครื่องรางเทพโบราณ",
+    "Event": "เครื่องรางเหตุการณ์",
+    "Shop": "เครื่องรางร้านค้า"
+  },
+  "potion_rarities": {
+    "Common": "ขวดยาธรรมดา",
+    "Uncommon": "ขวดยาไม่ธรรมดา",
+    "Rare": "ขวดยาหายาก",
+    "Event": "ขวดยาเหตุการณ์",
+    "Token": "Token"
+  },
+  "keywords": {
+    "ETERNAL": "นิรันดร์",
+    "ETHEREAL": "กึ่งสลาย",
+    "EXHAUST": "สลาย",
+    "INNATE": "ติดตัว",
+    "RETAIN": "คงสภาพ",
+    "SLY": "เล่ห์เหลี่ยม",
+    "UNPLAYABLE": "ถูกผนึก"
+  },
+  "sections": {
+    "cards": "คลังการ์ด",
+    "characters": "Characters",
+    "relics": "คลังเครื่องราง",
+    "monsters": "คลังอสูร",
+    "potions": "ห้องทดลองยา",
+    "enchantments": "Enchantments",
+    "encounters": "Encounters",
+    "events": "Events",
+    "powers": "Powers",
+    "timeline": "เส้นเวลา",
+    "images": "Images",
+    "reference": "Reference"
+  },
+  "section_descs": {
+    "cards": "ดูการ์ดทั้งหมดที่คุณเจอทั่วทั้งสไปร์",
+    "relics": "ตรวจสอบเครื่องรางต่างๆ ที่พบเจอมา",
+    "monsters": "ดูศัตรูทั้งหมดที่คุณเจอทั่วทั้งสไปร์",
+    "potions": "ดูขวดยาต่างๆ ที่เจอทั่วทั้งสไปร์"
+  },
+  "character_names": {
+    "ironclad": "นักรบเกราะเหล็ก",
+    "silent": "นักฆ่าแห่งความเงียบ",
+    "defect": "นักเวทแปรพักตร์",
+    "necrobinder": "Necrobinder",
+    "regent": "Regent"
+  }
+}

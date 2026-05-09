@@ -1,0 +1,2423 @@
+[
+  {
+    "id": "ABYSSAL_BATHS",
+    "name": "AbyssalBaths",
+    "type": "Event",
+    "act": "Underdocks",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "AMALGAMATOR",
+    "name": "Amalgamator",
+    "type": "Event",
+    "act": "Act 2 - Hive",
+    "description": null,
+    "preconditions": [
+      "Requires 2+ Strikes in deck",
+      "Requires 2+ Defends in deck"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "AROMA_OF_CHAOS",
+    "name": "AromaOfChaos",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "BATTLEWORN_DUMMY",
+    "name": "BattlewornDummy",
+    "type": "Event",
+    "act": "Act 3 - Glory",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "BRAIN_LEECH",
+    "name": "BrainLeech",
+    "type": "Shared",
+    "act": null,
+    "description": null,
+    "preconditions": [
+      "Act 1–2 only"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "BUGSLAYER",
+    "name": "Bugslayer",
+    "type": "Event",
+    "act": "Act 2 - Hive",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "BYRDONIS_NEST",
+    "name": "ByrdonisNest",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": null,
+    "preconditions": [
+      "Cannot have an event pet"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "COLORFUL_PHILOSOPHERS",
+    "name": "ColorfulPhilosophers",
+    "type": "Event",
+    "act": "Act 2 - Hive",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "COLOSSAL_FLOWER",
+    "name": "ColossalFlower",
+    "type": "Event",
+    "act": "Act 2 - Hive",
+    "description": null,
+    "preconditions": [
+      "Requires 19+ HP"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "CRYSTAL_SPHERE",
+    "name": "CrystalSphere",
+    "type": "Shared",
+    "act": null,
+    "description": null,
+    "preconditions": [
+      "Requires 100+ gold",
+      "Act 2+"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "DARV",
+    "name": "Дарв",
+    "type": "Ancient",
+    "act": null,
+    "description": "…Где же этот… Ой!\nИнтересует моя коллекция?! Возьми что-нибудь из той кучи — используй с умом!",
+    "preconditions": null,
+    "options": null,
+    "pages": null,
+    "epithet": "Антиквар",
+    "dialogue": {
+      "Returning": [
+        {
+          "order": "0-0r",
+          "speaker": "ancient",
+          "text": "Вот, возьми с собой одну из этих позабытых диковин!"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "У меня сегодня много дел!\nВон та куча — бери что хочешь!"
+        }
+      ],
+      "Defect": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Тебе уже говорили, что ты самая очаровательная груда болтов?"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "<3"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Никак не сдаешься, да?… Давай-ка попробуем тебя откалибровать!"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "У меня тут завалялось кое-что от твоего дру… Эмм.\nНе важно, забыли!"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "<Озадаченное бибиканье>"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "Моя нержавеющая жестяночка, не придавай моим словам большого значения!"
+        }
+      ],
+      "Ironclad": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Пламенный воин возвращается!\nНа такой случай у меня есть кое-что как раз для тебя!"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Рад видеть, что ты продолжаешь ломать головы и крушить черепа!"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "Твой увесистый клинок все еще у меня… Но того, кто сможет его восстановить, днем с огнем не сыщешь."
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "Латоносец пристально смотрит на Дарва."
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "Возможно, Архитектор что-то знает."
+        }
+      ],
+      "Necrobinder": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Ты слов на ветер не бросаешь, сразу вижу. Чем могу помочь, мадам?"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "Помоги мне убить того, кто заслуживает смерти."
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "Ну что ж… Выбирай, не стисняйся!"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "По-прежнему идешь дорогой смерти? Не буду преграждать тебе путь!"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "Похоже, что-то связывает тебя с этой книгой, а она древнее тебя самой."
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "Каким образом ты ее заполучил?"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "[sine]Страшные[/sine] вещи имеют свойство попадать в мою коллекцию."
+        }
+      ],
+      "Regent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "А тебя как сюда занесло? Как насчет взглянуть на мою коллекцию?"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "Роскошную утварь я люблю…"
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "Отлично!"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Вернулись за добавкой, ваше величество?!"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "Мой дорогой друг, у меня есть кое-что для тебя!"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "Я слушаю!"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "…Да только это «кое-что» Архитектор у меня стащил!\nСделай мне одолжение. Поможешь по-дружески?"
+        }
+      ],
+      "Silent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "И тебя угораздило вернуться в Шпиль?\nТрудно устоять перед всеми этими побрякушками, согласись?!"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Я готов обменять что-нибудь интересное на твой трофей!"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "Жаль, что ты не помнишь всю мою щедрость!\nДа-да, Ньяу и все дела…"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "…"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "Ладненько! Снарядим-ка тебя в решающий бой или типа того!"
+        }
+      ],
+      "First Visit": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "…Где же этот… Ой!\nИнтересует моя коллекция?! Возьми что-нибудь из той кучи — используй с умом!"
+        }
+      ]
+    },
+    "image_url": "/static/images/misc/ancients/darv.webp",
+    "relics": [
+      "DUSTY_TOME",
+      "ASTROLABE",
+      "BLACK_STAR",
+      "CALLING_BELL",
+      "EMPTY_CAGE",
+      "PANDORAS_BOX",
+      "RUNIC_PYRAMID",
+      "SNECKO_EYE",
+      "ECTOPLASM",
+      "SOZU",
+      "PHILOSOPHERS_STONE",
+      "VELVET_CHOKER"
+    ]
+  },
+  {
+    "id": "DENSE_VEGETATION",
+    "name": "DenseVegetation",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "DOLL_ROOM",
+    "name": "DollRoom",
+    "type": "Shared",
+    "act": null,
+    "description": null,
+    "preconditions": [
+      "Act 2 only"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "DOORS_OF_LIGHT_AND_DARK",
+    "name": "DoorsOfLightAndDark",
+    "type": "Event",
+    "act": "Underdocks",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "DROWNING_BEACON",
+    "name": "DrowningBeacon",
+    "type": "Event",
+    "act": "Underdocks",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "ENDLESS_CONVEYOR",
+    "name": "EndlessConveyor",
+    "type": "Event",
+    "act": "Underdocks",
+    "description": null,
+    "preconditions": [
+      "Requires 105+ gold"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "FAKE_MERCHANT",
+    "name": "FakeMerchant",
+    "type": "Shared",
+    "act": null,
+    "description": "A suspicious merchant offers 9 fake relics at 42–58 gold each. Throwing a [gold]Foul Potion[/gold] starts a fight against The Merchant??? (165 HP). Winning rewards [gold]Fake Merchant's Rug[/gold] plus all unsold relics.",
+    "preconditions": [
+      "Act 2+",
+      "Single player only",
+      "Requires 100+ gold or a Foul Potion"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "FIELD_OF_MAN_SIZED_HOLES",
+    "name": "FieldOfManSizedHoles",
+    "type": "Event",
+    "act": "Act 2 - Hive",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "GRAVE_OF_THE_FORGOTTEN",
+    "name": "GraveOfTheForgotten",
+    "type": "Event",
+    "act": "Act 3 - Glory",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "HUNGRY_FOR_MUSHROOMS",
+    "name": "HungryForMushrooms",
+    "type": "Event",
+    "act": "Act 3 - Glory",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "INFESTED_AUTOMATON",
+    "name": "InfestedAutomaton",
+    "type": "Event",
+    "act": "Act 2 - Hive",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "JUNGLE_MAZE_ADVENTURE",
+    "name": "JungleMazeAdventure",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "LOST_WISP",
+    "name": "LostWisp",
+    "type": "Event",
+    "act": "Act 2 - Hive",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "LUMINOUS_CHOIR",
+    "name": "LuminousChoir",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": null,
+    "preconditions": [
+      "Requires 100-149 gold"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "MORPHIC_GROVE",
+    "name": "MorphicGrove",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": null,
+    "preconditions": [
+      "Requires 100+ gold"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "NEOW",
+    "name": "Ньяу",
+    "type": "Ancient",
+    "act": "Act 1 - Overgrowth / Underdocks",
+    "description": "[sine]…я… …исправила… …тебя…\n…Ступай… …выше…[/sine]",
+    "preconditions": null,
+    "options": null,
+    "pages": null,
+    "epithet": "Праматерь воскрешения (в изгнании)",
+    "dialogue": {
+      "Returning": [
+        {
+          "order": "0-0r",
+          "speaker": "ancient",
+          "text": "[sine]…здравствуй… …вновь…[/sine]"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "[sine]…пробудись…\n…Пробудись…[/sine]"
+        },
+        {
+          "order": "2-0r",
+          "speaker": "ancient",
+          "text": "[sine]…получи… …мое…\n…благословение… …Ступай…[/sine]"
+        },
+        {
+          "order": "3-0r",
+          "speaker": "ancient",
+          "text": "[sine]…я… …вернула… …тебя…[/sine]"
+        },
+        {
+          "order": "4-0r",
+          "speaker": "ancient",
+          "text": "[sine]…убей… [red][jitter]АРХИТЕКТОРА[/jitter][/red][/sine]"
+        }
+      ],
+      "Defect": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "[sine]…агрегат… …Что…\n…с тобой… …стало…?[/sine]"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "[sine]…он… …может…\n…исправить… …тебя… …Исправить… …все…[/sine]"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "[sine]…я… …не могу…\n…стереть… …твою… …память…[/sine]"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "<Уверенное бибиканье>"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "[sine]…хорошо…[/sine]"
+        }
+      ],
+      "Ironclad": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "[sine]…вставай… …мой… …воин…\n…Время… …продолжить… …сражение…[/sine]"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "[sine]…также… …ослеплен… …яростью… …Хорошо…[/sine]"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "[sine]…вспомни… …как ты… …впервые…\n…предстал… …перед… …мной…[/sine]"
+        },
+        {
+          "order": "2-1",
+          "speaker": "ancient",
+          "text": "[sine]…такой… …гневный…[/sine]"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "[sine]…такой… …полезный…[/sine]"
+        }
+      ],
+      "Necrobinder": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "[sine]…у нас… …одна… …цель…[/sine]"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "[jitter]ОН ПОГУБИЛ ВСЕ, ЧТО МНЕ ДОРОГО![/jitter]"
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "[sine]…моя… …сила… …твоя…[/sine]"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "[sine]…он… …еще… …дышит…[/sine]"
+        },
+        {
+          "order": "2-0",
+          "speaker": "character",
+          "text": "[sine]Это… вообще… Возможно…?[/sine]"
+        },
+        {
+          "order": "2-1",
+          "speaker": "ancient",
+          "text": "[sine]…[red]Архитектор[/red]… …слабеет…\n…мы… …сильнее…[/sine]"
+        }
+      ],
+      "Regent": [
+        {
+          "order": "0-0",
+          "speaker": "character",
+          "text": "Эй, гигантский синий кит! Я — будущий [orange]король[/orange]!"
+        },
+        {
+          "order": "0-1",
+          "speaker": "ancient",
+          "text": "[sine]…как… …мило…\n…Еще… …увидимся…[/sine]"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "[sine]…снова?…[/sine]"
+        },
+        {
+          "order": "2-0",
+          "speaker": "character",
+          "text": "[jitter]Почему я не побеждаю?![/jitter]"
+        },
+        {
+          "order": "2-1",
+          "speaker": "ancient",
+          "text": "[sine]…получи… …мое… …благословение…[/sine]"
+        },
+        {
+          "order": "2-2",
+          "speaker": "character",
+          "text": "…Да-да, спасибо, Ньяу."
+        }
+      ],
+      "Silent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "[sine]…пришла… …издалека?…\n…Знала… …что… …ты… …вернешься…[/sine]"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "[sine]…твой…\n…трофей… …ждет…[/sine]"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "[sine]…гнет… …родственный… …обе… …знаем…[/sine]"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "…"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "[sine]…также… …ищешь… …признания?…\n…[jitter]ГЛУПОСТЬ[/jitter]…[/sine]"
+        }
+      ],
+      "First Visit": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "[sine]…я… …исправила… …тебя…\n…Ступай… …выше…[/sine]"
+        }
+      ]
+    },
+    "image_url": "/static/images/misc/ancients/neow.webp",
+    "relics": [
+      "ARCANE_SCROLL",
+      "BOOMING_CONCH",
+      "POMANDER",
+      "GOLDEN_PEARL",
+      "LEAD_PAPERWEIGHT",
+      "NEW_LEAF",
+      "NEOWS_TORMENT",
+      "PRECISE_SCISSORS",
+      "LOST_COFFER",
+      "NUTRITIOUS_OYSTER",
+      "STONE_HUMIDIFIER",
+      "MASSIVE_SCROLL",
+      "LAVA_ROCK",
+      "SMALL_CAPSULE",
+      "SILVER_CRUCIBLE",
+      "CURSED_PEARL",
+      "LARGE_CAPSULE",
+      "LEAFY_POULTICE",
+      "PRECARIOUS_SHEARS",
+      "SCROLL_BOXES"
+    ]
+  },
+  {
+    "id": "NONUPEIPE",
+    "name": "Нонупейпе",
+    "type": "Ancient",
+    "act": "Act 3 - Glory",
+    "description": "У меня не было гостей тысячу лет!\n Этот блеклый антураж тебе не идет, давай подберем наряд поживописнее.",
+    "preconditions": null,
+    "options": null,
+    "pages": null,
+    "epithet": "Вершит свою удачу",
+    "dialogue": {
+      "Returning": [
+        {
+          "order": "0-0r",
+          "speaker": "ancient",
+          "text": "Безумие ждет на вершине. Обрети мою силу и рассеки путь сквозь."
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Твой путь ко мне был тернист и долог!\nПриблизься, получи мое благословение."
+        }
+      ],
+      "Defect": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Может ли агрегат быть удостоен моих благословений?\nПриблизься, Дефект. Ты станешь наипрекраснейшим из всех автоматонов."
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Бедный, побитый механизм, позволь мне наладить тебя."
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "Я не большой любитель вещиц Архитектора, но признаюсь — в тебе что-то есть."
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "<Смущенное пиликанье>"
+        }
+      ],
+      "Ironclad": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Ах, наконец я лицезрею пред собой Латоносца.\nПриблизься, и я наделю тебя своей силой."
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Эх Латоносец, Латоносец… Неужто мои прошлые дары пошли насмарку?"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "Мой чемпион, ты снова здесь? В который раз?\nТвое могущество искореняло целые племена, что изменилось?"
+        }
+      ],
+      "Necrobinder": [
+        {
+          "order": "0-0",
+          "speaker": "character",
+          "text": "Бежать некуда, твоя стража мертва. Твои благословения — они помогают тем, кто желает смерти Архитектора. Это так?"
+        },
+        {
+          "order": "0-1",
+          "speaker": "ancient",
+          "text": "Мне импонирует твоя предприимчивость, и я предоставлю тебе часть своей силы.\nНо в следующий раз не обязательно убивать мою стражу."
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Любой маг нуждается в надежной экипировке для боя. Приблизься, Призывающая."
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "Архитектор не обрадуется, когда увидит твоего [sine]питомца[/sine]."
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "Ты про Костю? За ним будет решающий удар."
+        }
+      ],
+      "Regent": [
+        {
+          "order": "0-0",
+          "speaker": "character",
+          "text": "Я требую аудиенции с Нонупейпе!"
+        },
+        {
+          "order": "0-1",
+          "speaker": "ancient",
+          "text": "На тебе такие прелестные и экзотичные шелка!\nПрикажи слугам поднести тебя поближе, и я благославлю тебя."
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Королевские благославения для коронованных гостей.\nПрислуга! Принесите нам чаю."
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "Архитектор выжил из ума! Где же отважный чемпион, которому под силу спасти нас от его сумасбродства…"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "Не бойтесь! Даю слово Наследника, что положу конец этому безумию!\nНо сперва — чай!"
+        }
+      ],
+      "Silent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Мелкий воришка прокрался в мои владения.\nДумаешь, я не знаю, что ты там? Покажись!"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "Безмолвная выходит из теней…"
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "Охотница? Что призвало тебя обратно в Шпиль?\nПриблизься и обрети мои благословения."
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Я подготовила тебе дары, хищница. Не стисняйся."
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "Из всех ее марионеток ты удивляешь меня больше всех."
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "…"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "Как ты погибла впервые? Ньяу [sine]нашла[/sine] тебя?\nКак жаль, что ты не разговорчивая."
+        }
+      ],
+      "First Visit": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "У меня не было гостей тысячу лет!\n Этот блеклый антураж тебе не идет, давай подберем наряд поживописнее."
+        }
+      ]
+    },
+    "image_url": "/static/images/misc/ancients/nonupeipe.webp",
+    "relics": [
+      "BLESSED_ANTLER",
+      "BRILLIANT_SCARF",
+      "DELICATE_FROND",
+      "DIAMOND_DIADEM",
+      "FUR_COAT",
+      "GLITTER",
+      "JEWELRY_BOX",
+      "LOOMING_FRUIT",
+      "SIGNET_RING",
+      "BEAUTIFUL_BRACELET"
+    ]
+  },
+  {
+    "id": "OROBAS",
+    "name": "Оробас",
+    "type": "Ancient",
+    "act": "Act 2 - Hive",
+    "description": "Кукла, кукла! Так высоко?! Возьми, возьми-возьми!",
+    "preconditions": null,
+    "options": null,
+    "pages": null,
+    "epithet": "Живущая радуга",
+    "dialogue": {
+      "Returning": [
+        {
+          "order": "0-0r",
+          "speaker": "ancient",
+          "text": "Возьми!"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Нашел хорошее! Смотри-смотри!"
+        }
+      ],
+      "Defect": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Что-о?! Агрегат слуга?! Работает!\nПочему тут? Почему не Фабрика?"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Яркие круги! Как работает?\n[jitter]Ауч![/jitter]"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "Ядро сломано? Ньяу использовать сломанный агрегат?\nМани-пу-ляция?"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "<Угасающий бип>"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "Архитектор чинить?"
+        }
+      ],
+      "Ironclad": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Латоносец?! Как возможно?! Страшный. Очень страшный!"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Делать сделку? Зачем?! Плохо выбрать? Да. Ошибка!"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "Хочу твою свободу! Хочу очень!\nВакуу плохой. Очень плохой! Архитектор освободит?"
+        }
+      ],
+      "Necrobinder": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Мертвая?! Не мертвая! Почему кукла? Большая рука!"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "Я не кукла. Есть кто-то, кого я должна убить.\nЧто ты можешь мне предложить?"
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "Убивать плохо! Лучше возьми это!"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Не-мертвая! Дарить тебе хорошее! Жестокость плохо."
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "Насилие нет! Лучше собирать… Собирать хорошее!"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "Мое предназначение исполнится только со смертью Архитектора.\nНасилие неизбежно."
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "Архитектор не плохой! Говорить? Говорить хорошо! Очень хорошо!"
+        }
+      ],
+      "Regent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Путе-шест-венник! Из космоса?! Где из космоса?\nКак из космоса? Острая голова! Маленькие друзья!"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "Наследник завел многочасовой монолог."
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "Интересно! Невероятно! Еще. Еще!"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Говорить истории! Найти тебе эти!\nТеперь говорить истории!"
+        },
+        {
+          "order": "2-0",
+          "speaker": "character",
+          "text": "Мой самый преданный поклонник, Оробас, приятель!\nРад видеть тебя в добром здравии!"
+        },
+        {
+          "order": "2-1",
+          "speaker": "ancient",
+          "text": "Истории?!"
+        },
+        {
+          "order": "2-2",
+          "speaker": "character",
+          "text": "Конечно, само собой… А для меня у тебя что-нибудь нашлось?"
+        }
+      ],
+      "Silent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Инфекция?… [jitter]ГНИЛЬ?![/jitter] Возьми и иди!"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "[sine]…[/sine]"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Не заражает? Очень умираешь? Архитектор поможет?"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "Где сестры? Сестры страшные, злые!\nБыть хороший! Не быть как сестры!"
+        }
+      ],
+      "First Visit": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Кукла, кукла! Так высоко?! Возьми, возьми-возьми!"
+        }
+      ]
+    },
+    "image_url": "/static/images/misc/ancients/orobas.webp",
+    "relics": [
+      "ELECTRIC_SHRYMP",
+      "GLASS_EYE",
+      "SAND_CASTLE",
+      "ALCHEMICAL_COFFER",
+      "DRIFTWOOD",
+      "RADIANT_PEARL",
+      "SEA_GLASS",
+      "PRISMATIC_GEM",
+      "TOUCH_OF_OROBAS",
+      "ARCHAIC_TOOTH"
+    ]
+  },
+  {
+    "id": "PAEL",
+    "name": "Паэль",
+    "type": "Ancient",
+    "act": "Act 2 - Hive",
+    "description": "Марионетка, здесь?\nТы можешь проведать Отца? Я слишком устал…",
+    "preconditions": null,
+    "options": null,
+    "pages": null,
+    "epithet": "Тающий дракон",
+    "dialogue": {
+      "Returning": [
+        {
+          "order": "0-0r",
+          "speaker": "ancient",
+          "text": "Добро пожаловать, друг. Пусть моя плоть принесет тебе пользу…"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Паэль в глубоком сне. От его храпа содрогаются стены."
+        }
+      ],
+      "Defect": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Безутешный агрегат, ты ищешь своего друга?\nРазреши помочь…"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Видят ли агрегаты сны?\nНаблюдай и повторяй за мной…"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "Я видел твоего друга во сне…\nОтец может восстановить [aqua]Изъяна[/aqua]…"
+        }
+      ],
+      "Ironclad": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "В тебе сокрыт великий гнев. Черпай от меня и обрети покой…"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Помнишь ли ты, каково это: видеть сны?\nХорошо поспать — благое дело…"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "Ты должен упразднить свое пламя.\nОтец может освободить тебя…"
+        }
+      ],
+      "Necrobinder": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Слепая ненависть очерняет твою душу."
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "Ты бы не назвал ее слепой, если бы видел случившееся моими глазами."
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "На твоем пути нет умиротворения.\nВозьми часть меня, облегчи свою ношу…"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Владычица костяной руки вернулась.\nГорькие воспоминания. Черпай мою силу и уходи…"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "Убийство [red]Отца[/red] не принесет покой."
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "Ты называешь [jitter]это[/jitter] своим отцом?!"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "Семью не выбирают…"
+        }
+      ],
+      "Regent": [
+        {
+          "order": "0-0",
+          "speaker": "character",
+          "text": "Приветствую! Я — Наследник.\nПривет? [jitter]ПРИВЕТ?![/jitter]"
+        },
+        {
+          "order": "0-1",
+          "speaker": "ancient",
+          "text": "Угомонись.\nВозьми часть меня и иди, куда шел…"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "character",
+          "text": "Я вернулся! Ах, как всегда дрыхнешь.\nТак, посмотрим…"
+        },
+        {
+          "order": "2-0",
+          "speaker": "character",
+          "text": "Зачем ты раздаешь свою плоть?"
+        },
+        {
+          "order": "2-1",
+          "speaker": "ancient",
+          "text": "Моя плоть в изобилии, почему не делиться ею?"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "Когда ты вернешься, я буду вновь преисполнен.\nВот, чем важен сон…"
+        }
+      ],
+      "Silent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Кровожадное создание — здесь нет нужды в насилии.\nВозьми часть меня и обрети покой…"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Ищешь себе трофей? Хорошо, возьми часть меня…\nНадеюсь, тебе станет от этого легче…"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "Ты отравила меня?… Что со мной ста~…\nПаэль тут же захрапел."
+        }
+      ],
+      "First Visit": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Марионетка, здесь?\nТы можешь проведать Отца? Я слишком устал…"
+        }
+      ]
+    },
+    "image_url": "/static/images/misc/ancients/pael.webp",
+    "relics": [
+      "PAELS_CLAW",
+      "PAELS_TOOTH",
+      "PAELS_GROWTH",
+      "PAELS_LEGION",
+      "PAELS_FLESH",
+      "PAELS_HORN",
+      "PAELS_TEARS",
+      "PAELS_WING",
+      "PAELS_EYE",
+      "PAELS_BLOOD"
+    ]
+  },
+  {
+    "id": "POTION_COURIER",
+    "name": "PotionCourier",
+    "type": "Shared",
+    "act": null,
+    "description": null,
+    "preconditions": [
+      "Act 2+"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "PUNCH_OFF",
+    "name": "PunchOff",
+    "type": "Event",
+    "act": "Underdocks",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "RANWID_THE_ELDER",
+    "name": "RanwidTheElder",
+    "type": "Shared",
+    "act": null,
+    "description": null,
+    "preconditions": [
+      "Act 2+",
+      "Requires at least one potion"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "REFLECTIONS",
+    "name": "Reflections",
+    "type": "Event",
+    "act": "Act 3 - Glory",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "RELIC_TRADER",
+    "name": "RelicTrader",
+    "type": "Shared",
+    "act": null,
+    "description": null,
+    "preconditions": [
+      "Act 2+",
+      "Requires 5+ tradeable relics"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "ROOM_FULL_OF_CHEESE",
+    "name": "RoomFullOfCheese",
+    "type": "Shared",
+    "act": null,
+    "description": null,
+    "preconditions": [
+      "Act 1–2 only"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "ROUND_TEA_PARTY",
+    "name": "RoundTeaParty",
+    "type": "Event",
+    "act": "Act 3 - Glory",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "SAPPHIRE_SEED",
+    "name": "SapphireSeed",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "SELF_HELP_BOOK",
+    "name": "SelfHelpBook",
+    "type": "Shared",
+    "act": null,
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "SLIPPERY_BRIDGE",
+    "name": "SlipperyBridge",
+    "type": "Shared",
+    "act": null,
+    "description": null,
+    "preconditions": [
+      "Floor 7+",
+      "Requires removable cards in deck"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "SPIRALING_WHIRLPOOL",
+    "name": "SpiralingWhirlpool",
+    "type": "Event",
+    "act": "Underdocks",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "SPIRIT_GRAFTER",
+    "name": "SpiritGrafter",
+    "type": "Event",
+    "act": "Act 2 - Hive",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "STONE_OF_ALL_TIME",
+    "name": "StoneOfAllTime",
+    "type": "Shared",
+    "act": null,
+    "description": null,
+    "preconditions": [
+      "Act 2 only",
+      "Requires at least one potion"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "SUNKEN_STATUE",
+    "name": "SunkenStatue",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth / Underdocks",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "SUNKEN_TREASURY",
+    "name": "SunkenTreasury",
+    "type": "Event",
+    "act": "Underdocks",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "SYMBIOTE",
+    "name": "Symbiote",
+    "type": "Shared",
+    "act": null,
+    "description": null,
+    "preconditions": [
+      "Act 2+"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "TABLET_OF_TRUTH",
+    "name": "TabletOfTruth",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "TANX",
+    "name": "Танкз",
+    "type": "Ancient",
+    "act": "Act 3 - Glory",
+    "description": "Я ЧУЮ СЛАБОСТЬ! НО ТАКЖЕ МОГУЧИЙ ПОТЕНЦИАЛ!\nИСПОЛЬЗУЙ ЭТО ОРУЖИЕ!",
+    "preconditions": null,
+    "options": null,
+    "pages": null,
+    "epithet": "Король-химера",
+    "dialogue": {
+      "Returning": [
+        {
+          "order": "0-0r",
+          "speaker": "ancient",
+          "text": "СТАНЬ СИЛЬНЕЕ, ЧТОБЫ МЫ МОГЛИ СРАЗИТЬСЯ!"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "МНОГО ОРУЖИЯ НЕ БЫВАЕТ!"
+        }
+      ],
+      "Defect": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "АГРЕГАТ! БЕЗ ОРУЖИЯ?! ДЕРЖИ!"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "СФЕРЫ — НЕ ОРУЖИЕ!"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "СРАЗИСЬ СО МНОЙ, ДЕФЕКТ!"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "Дефект доблестно сражается."
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "СФЕРЫ — [jitter]ОРУЖИЕ[/jitter]?!"
+        }
+      ],
+      "Ironclad": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "ТВОЙ МЕЧ ВПЕЧАТЛЯЕТ, ВОИН! ВОЗЬМИ ЕЩЕ ОРУЖИЯ!"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "ОРУЖИЕ ДЛЯ ВОИНА! ДОСТАВАЙ ОРУЖИЕ! СРАЗИМСЯ!"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "СРАЗИСЬ СО МНОЙ, ЛАТОНОСЕЦ!"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "Латоносец сражается с Танкзом."
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "ДА-А! МОГУЧАЯ СХВАТКА, ВОЗЬМИ ОРУЖИЕ!"
+        }
+      ],
+      "Necrobinder": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "МОГУЧАЯ КОСА!"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "Да, она закалена для возмездия."
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "РУКЕ НУЖНО ОРУЖИЕ?!"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "СРАЗИСЬ СО МНОЙ, КОСТЯ!"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "СРАЗИСЬ СО МНОЙ, ПРИЗЫВАЮЩАЯ!"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "Призывающая и Костя борятся с Танкзом."
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "МОГУЧИЕ НАПАРНИКИ! ДЕРЖИТЕ ОРУЖИЕ!"
+        }
+      ],
+      "Regent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "ОРАНЖЕВЫЙ?! ПОЧЕМУ ТЫ ОРАНЖЕВЫЙ?!"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "Всем известно, что оранжевый — самый королевский цвет!"
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "И САМЫЙ МОГУЧИЙ!"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "ОРАНЖЕВЫЙ! ВЫБИРАЙ МОГУЧЕЕ ОРУЖИЕ!"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "СРАЗИСЬ СО МНОЙ, НАСЛЕДНИК!"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "Нет! Мы уже сражались в прошлый раз!"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "СРАЗИСЬ ЕЩЕ РАЗ!"
+        }
+      ],
+      "Silent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "ХИЩНИК! Я ЗАОСТРЮ ТВОИ КОГТИ!"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "НОЖИ?! НОЖИ НЕ МОГУЧИЕ!"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "СРАЗИСЬ СО МНОЙ, БЕЗМОЛВНАЯ!"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "Безмолвная сбегает, прихватив с собой оружие."
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "КУДА ТЫ ДЕЛАСЬ?!"
+        }
+      ],
+      "First Visit": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Я ЧУЮ СЛАБОСТЬ! НО ТАКЖЕ МОГУЧИЙ ПОТЕНЦИАЛ!\nИСПОЛЬЗУЙ ЭТО ОРУЖИЕ!"
+        }
+      ]
+    },
+    "image_url": "/static/images/misc/ancients/tanx.webp",
+    "relics": [
+      "CLAWS",
+      "CROSSBOW",
+      "IRON_CLUB",
+      "MEAT_CLEAVER",
+      "SAI",
+      "SPIKED_GAUNTLETS",
+      "TANXS_WHISTLE",
+      "THROWING_AXE",
+      "WAR_HAMMER",
+      "TRI_BOOMERANG"
+    ]
+  },
+  {
+    "id": "TEA_MASTER",
+    "name": "TeaMaster",
+    "type": "Shared",
+    "act": null,
+    "description": null,
+    "preconditions": [
+      "Requires 150+ gold",
+      "Act 1–2 only"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "TEZCATARA",
+    "name": "Тецкатара",
+    "type": "Ancient",
+    "act": "Act 2 - Hive",
+    "description": "Ой, гости! Заходи, дорогуша!\nЧем Тецкатара может тебе помочь?",
+    "preconditions": null,
+    "options": null,
+    "pages": null,
+    "epithet": "Хранительница огня",
+    "dialogue": {
+      "Returning": [
+        {
+          "order": "0-0r",
+          "speaker": "ancient",
+          "text": "С возвращением, дорогуша. Позволь мне [jitter][b]сжечь[/b][/jitter] твои изъяны."
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Заходи, солнышко! Чем Тецкатара может угодить тебе сегодня?"
+        }
+      ],
+      "Defect": [
+        {
+          "order": "0-0",
+          "speaker": "character",
+          "text": "<Приветственное гудение>"
+        },
+        {
+          "order": "0-1",
+          "speaker": "ancient",
+          "text": "Ты не собираешься докучать мне? Какой [jitter][b]незаурядный[/b][/jitter] агрегатик…"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Было бы крайне забавно, если он сам окажется зачинщиком своей погибели, не так ли?"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "Ты точно хочешь, чтобы тебя починили?"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "<Уверенное бибиканье>"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "Ну, раз уж ты [jitter][b]уверен[/b][/jitter]."
+        }
+      ],
+      "Ironclad": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Ты так прекрасно [jitter][b]горишь[/b][/jitter]! Заходи-заходи!"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Ай да молодец, ай да силач! Проходи, перекуси.\nНельзя устраивать [jitter][b]кровавую баню[/b][/jitter] на голодный желудок!"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "Ох, Архитектор еще жив? Прикончи его [jitter][b]побыстрее[/b][/jitter], ладно?\nЯ буду ждать здесь!"
+        }
+      ],
+      "Necrobinder": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Так, а что в этих стенах забыл скелет?"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "Все просто. Возмездие за мою семью.\nЯ поднимусь наверх и заставлю его поплатиться."
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "[jitter][b]Превосходно[/b][/jitter]!"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Заходи-заходи! Давай сделаем твое пламя [jitter][b]ярче[/b][/jitter]."
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "Твой огонь напоминает мне кое-что. Кое-что под запретом."
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "Что тебе известно?"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "Я знаю, кто написал ту [jitter][b]книгу[/b][/jitter]."
+        }
+      ],
+      "Regent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Ой-ой-ой, какой [jitter][b]экзотичный[/b][/jitter] гость! Кто ты, дорогуша?"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "Никакой я не дорогуша! Обращайся ко мне с должным почтением, огромная… Кто бы ты ни была!"
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "Где же мои манеры?\nТецкатара восторженно хохочет."
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Вернулся, и друзей не забыл?\nА я подготовила вам [jitter][b]подарки[/b][/jitter]!"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "С возвращением, королек! Вижу, ты добился [jitter][b]больших успехов[/b][/jitter]."
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "Да, само собой! На уровнях повыше бывают, конечно, загвоздки… Умираю, например."
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "Все мы учимся на своих ошибках."
+        }
+      ],
+      "Silent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Подойди, тихоня. Не могу тебя разглядеть…"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "…"
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "Можешь мне [jitter][b]доверять[/b][/jitter]."
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Эта твоя [jitter][b]хворь[/b][/jitter] такая гадкая. Я позабочусь о тебе."
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "Ты знала, что я виделась с твоими сестрами? Такие задорные девчонки."
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "…"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "О нет… Только не говори мне, что вы [jitter][b]поссорились[/b][/jitter]?"
+        }
+      ],
+      "First Visit": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Ой, гости! Заходи, дорогуша!\nЧем Тецкатара может тебе помочь?"
+        }
+      ]
+    },
+    "image_url": "/static/images/misc/ancients/tezcatara.webp",
+    "relics": [
+      "NUTRITIOUS_SOUP",
+      "VERY_HOT_COCOA",
+      "YUMMY_COOKIE",
+      "BIIIG_HUG",
+      "STORYBOOK",
+      "SEAL_OF_GOLD",
+      "TOASTY_MITTENS",
+      "GOLDEN_COMPASS",
+      "PUMPKIN_CANDLE",
+      "TOY_BOX"
+    ]
+  },
+  {
+    "id": "THE_ARCHITECT",
+    "name": "Архитектор",
+    "type": "Ancient",
+    "act": null,
+    "description": "А вот и цепной пес архидемона.",
+    "preconditions": null,
+    "options": null,
+    "pages": null,
+    "dialogue": {
+      "Defect": [
+        {
+          "order": "0-0r",
+          "speaker": "ancient",
+          "text": "Что ты здесь делаешь?"
+        },
+        {
+          "order": "0-1r",
+          "speaker": "character",
+          "text": "<Неразборчивые помехи>"
+        },
+        {
+          "order": "0-2r",
+          "speaker": "ancient",
+          "text": "Починить? Заставь меня."
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Ты снова здесь? Разве я тебя не разобрал?"
+        },
+        {
+          "order": "1-1r",
+          "speaker": "character",
+          "text": "<Неразборчивые помехи>"
+        },
+        {
+          "order": "1-2r",
+          "speaker": "ancient",
+          "text": "Починить тебя? Починить твоего друга? Бессмыслица."
+        },
+        {
+          "order": "2-0r",
+          "speaker": "ancient",
+          "text": "Как ты возвращаешься? Это что, проделки Ньяу?"
+        },
+        {
+          "order": "2-1r",
+          "speaker": "character",
+          "text": "<Неразборчивые помехи>"
+        },
+        {
+          "order": "2-2r",
+          "speaker": "ancient",
+          "text": "Глупо."
+        }
+      ],
+      "Ironclad": [
+        {
+          "order": "0-0r",
+          "speaker": "ancient",
+          "text": "А вот и цепной пес архидемона."
+        },
+        {
+          "order": "0-1r",
+          "speaker": "character",
+          "text": "Жертва…\nРасправа…"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Проклят убивать и не можешь умереть, да?"
+        },
+        {
+          "order": "1-1r",
+          "speaker": "character",
+          "text": "Архитектор… Арх… В прах!"
+        },
+        {
+          "order": "1-2r",
+          "speaker": "ancient",
+          "text": "Ты хотя бы свое имя знаешь?"
+        },
+        {
+          "order": "2-0r",
+          "speaker": "ancient",
+          "text": "Мне жаль тебя."
+        },
+        {
+          "order": "2-1r",
+          "speaker": "character",
+          "text": "Расправа…"
+        },
+        {
+          "order": "2-2r",
+          "speaker": "ancient",
+          "text": "Возвращайся вниз, Латоносец."
+        }
+      ],
+      "Necrobinder": [
+        {
+          "order": "0-0",
+          "speaker": "character",
+          "text": "АРХИТЕКТОР! Ты забрал моих родителей. Ты забрал моего друга. Ты забрал мою ЖИЗНЬ. А сейчас… Я заберу ТВОЮ!"
+        },
+        {
+          "order": "0-1",
+          "speaker": "ancient",
+          "text": "Месть? Спасибо, я воздержусь."
+        },
+        {
+          "order": "1-0r",
+          "speaker": "character",
+          "text": "АРХИТЕКТОР! Ты забрал моих родителей. Ты забрал моего друга. Ты забрал мою~"
+        },
+        {
+          "order": "1-1r",
+          "speaker": "ancient",
+          "text": "Гневом прошлого не изменить."
+        },
+        {
+          "order": "2-0r",
+          "speaker": "character",
+          "text": "АРХИТЕКТОР! Ты забрал моих родителей. Ты забрал моего друга. Ты забрал мою ЖИЗНЬ."
+        },
+        {
+          "order": "2-1r",
+          "speaker": "ancient",
+          "text": "Я сделал, что должен был, чтобы сохранить порядок."
+        },
+        {
+          "order": "3-0r",
+          "speaker": "character",
+          "text": "АРХИТЕКТОР! Ты забрал моих родителей. Ты забрал моего друга. Ты забрал мою~"
+        },
+        {
+          "order": "3-1r",
+          "speaker": "ancient",
+          "text": "Жизнь."
+        },
+        {
+          "order": "3-2r",
+          "speaker": "character",
+          "text": "Что?!… Умри, чудовище!"
+        }
+      ],
+      "Regent": [
+        {
+          "order": "0-0",
+          "speaker": "character",
+          "text": "Король прибыл! Эй ты, холоп — это вершина?"
+        },
+        {
+          "order": "0-1",
+          "speaker": "ancient",
+          "text": "Мне нужна тишина…"
+        },
+        {
+          "order": "0-2",
+          "speaker": "character",
+          "text": "Да как ты… Я научу тебя манерам!"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "character",
+          "text": "Король прибыл! Снова!"
+        },
+        {
+          "order": "1-1r",
+          "speaker": "ancient",
+          "text": "Шут гороховый пожаловал?"
+        },
+        {
+          "order": "1-2r",
+          "speaker": "character",
+          "text": "Я не шут и не гороховый! Защищайся!"
+        },
+        {
+          "order": "2-0r",
+          "speaker": "character",
+          "text": "Хватит с меня твоей неотесанности!"
+        },
+        {
+          "order": "2-1r",
+          "speaker": "ancient",
+          "text": "Взаимно."
+        },
+        {
+          "order": "2-2r",
+          "speaker": "character",
+          "text": "Потанцуем!"
+        }
+      ],
+      "Silent": [
+        {
+          "order": "0-0r",
+          "speaker": "ancient",
+          "text": "Даже не представишься?"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Откуда ты?\nЧего желаешь?"
+        },
+        {
+          "order": "2-0r",
+          "speaker": "ancient",
+          "text": "[jitter]Аргхх![/jitter]\n[jitter][red]УМРИ![/red][/jitter]"
+        },
+        {
+          "order": "3-0r",
+          "speaker": "ancient",
+          "text": "Настырная бестия!\n[jitter]ПРОЧЬ![/jitter]"
+        }
+      ]
+    },
+    "image_url": "/static/images/monsters/architect.webp"
+  },
+  {
+    "id": "THE_FUTURE_OF_POTIONS",
+    "name": "TheFutureOfPotions",
+    "type": "Shared",
+    "act": null,
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "THE_LANTERN_KEY",
+    "name": "TheLanternKey",
+    "type": "Event",
+    "act": "Act 2 - Hive",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "THE_LEGENDS_WERE_TRUE",
+    "name": "TheLegendsWereTrue",
+    "type": "Shared",
+    "act": null,
+    "description": null,
+    "preconditions": [
+      "Requires 10+ HP",
+      "Act 1 only"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "THIS_OR_THAT",
+    "name": "ThisOrThat",
+    "type": "Shared",
+    "act": null,
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "TINKER_TIME",
+    "name": "TinkerTime",
+    "type": "Event",
+    "act": "Act 3 - Glory",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "TRASH_HEAP",
+    "name": "TrashHeap",
+    "type": "Event",
+    "act": "Underdocks",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "TRIAL",
+    "name": "Trial",
+    "type": "Event",
+    "act": "Act 3 - Glory",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "UNREST_SITE",
+    "name": "UnrestSite",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": null,
+    "preconditions": [
+      "Requires ≤70% HP"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "VAKUU",
+    "name": "Вакуу",
+    "type": "Ancient",
+    "act": "Act 3 - Glory",
+    "description": "Отдайся мне, и ты будешь вселять в сердца такой же страх, как я.",
+    "preconditions": null,
+    "options": null,
+    "pages": null,
+    "epithet": "Первый демон",
+    "dialogue": {
+      "Returning": [
+        {
+          "order": "0-0r",
+          "speaker": "ancient",
+          "text": "Покоритель Шпиля в поисках величия? У меня для тебя предложение…"
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "143. 143 раз ты поднимаешься сюда."
+        },
+        {
+          "order": "2-0r",
+          "speaker": "ancient",
+          "text": "Ты же понимаешь, это [sine]никогда[/sine] не кончится?"
+        }
+      ],
+      "Defect": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Сломанный, позволь [sine]усовершенстсовать[/sine] тебя."
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Ты не находишь странным, что другие агрегаты хотят тебя уничтожить?"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "Принеси мне сердце Архитектора, и я восстановлю твоего [aqua]компаньона[/aqua]."
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "<Боязливое бибиканье>"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "Что важнее: твой создатель или твой друг?"
+        }
+      ],
+      "Ironclad": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Только представь шанс того, что спустя все это время на моем пороге окажешься [sine]ты[/sine]."
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "[jitter][b]СВЯЩЕННЫЙ ДЕМОН![/b][/jitter]\nЧто ты со мной сделал?!"
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "Именно то, на что ты согласился."
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Коришь себя за истребленные племена?…\nВакуу заливается смехом."
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "Мой ферзь… Почему ты еще не убил Архитектора?"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "После того, как я убью Архитектора, я прикончу [jitter][b]ТЕБЯ![/b][/jitter]"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "[sine]Зевает[/sine]\nНе терпится посмотреть на твои жалкие потуги."
+        }
+      ],
+      "Necrobinder": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Нас объединяет жажда [sine]возмездия[/sine]. Но у всего своя цена."
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "Нет слишком высокой цены. Его смерть — любой ценой."
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Я знаю, откуда у тебя эта [sine]рука[/sine]."
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "Архитектор оставил шрамы нам обоим."
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "Выкладывай, демон. Показывай свои контракты."
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "Сразу к делу. Как пожелаешь…"
+        }
+      ],
+      "Regent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Звездный обитатель? В этих проклятых стенах?"
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "Ты обо мне слышал?"
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "Да. Думаю, мы можем помочь друг другу."
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Я могу дать тебе еще больше своей силы — за небольшую цену."
+        },
+        {
+          "order": "2-0",
+          "speaker": "character",
+          "text": "Мне кажется, что твои контракты были плохой идеей. Чувствую себя не очень."
+        },
+        {
+          "order": "2-1",
+          "speaker": "ancient",
+          "text": "Ты прочел их внимательно, не так ли?\nИ подписал их в ясности ума, осознавая ответственность. Верно?"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "Ты не состоянии выполнить свою часть уговора?\nМожет, еще контракт? Так ведь проще."
+        }
+      ],
+      "Silent": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Убийца."
+        },
+        {
+          "order": "0-1",
+          "speaker": "character",
+          "text": "[sine]…[/sine]"
+        },
+        {
+          "order": "0-2",
+          "speaker": "ancient",
+          "text": "Для тебя это добром [jitter]не закончится[/jitter]."
+        },
+        {
+          "order": "1-0r",
+          "speaker": "ancient",
+          "text": "Вакуу представляет Безмолвной различные контракты"
+        },
+        {
+          "order": "2-0",
+          "speaker": "ancient",
+          "text": "Архитектора не достаточно. Твои сестры — убей их тоже!"
+        },
+        {
+          "order": "2-1",
+          "speaker": "character",
+          "text": "[sine]…[/sine]"
+        },
+        {
+          "order": "2-2",
+          "speaker": "ancient",
+          "text": "Мы понимаем друг друга без лишних слов."
+        }
+      ],
+      "First Visit": [
+        {
+          "order": "0-0",
+          "speaker": "ancient",
+          "text": "Отдайся мне, и ты будешь вселять в сердца такой же страх, как я."
+        }
+      ]
+    },
+    "image_url": "/static/images/misc/ancients/vakuu.webp",
+    "relics": [
+      "BLOOD_SOAKED_ROSE",
+      "WHISPERING_EARRING",
+      "FIDDLE",
+      "PRESERVED_FOG",
+      "SERE_TALON",
+      "DISTINGUISHED_CAPE",
+      "CHOICES_PARADOX",
+      "MUSIC_BOX",
+      "LORDS_PARASOL",
+      "JEWELED_MASK"
+    ]
+  },
+  {
+    "id": "WAR_HISTORIAN_REPY",
+    "name": "WarHistorianRepy",
+    "type": "Shared",
+    "act": null,
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "WATERLOGGED_SCRIPTORIUM",
+    "name": "WaterloggedScriptorium",
+    "type": "Event",
+    "act": "Underdocks",
+    "description": null,
+    "preconditions": [
+      "Requires 65+ gold"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "WELCOME_TO_WONGOS",
+    "name": "WelcomeToWongos",
+    "type": "Shared",
+    "act": null,
+    "description": null,
+    "preconditions": [
+      "Requires 100+ gold",
+      "Act 2 only"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "WELLSPRING",
+    "name": "Wellspring",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": null,
+    "preconditions": null,
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "WHISPERING_HOLLOW",
+    "name": "WhisperingHollow",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": null,
+    "preconditions": [
+      "Requires 50+ gold"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "WOOD_CARVINGS",
+    "name": "WoodCarvings",
+    "type": "Event",
+    "act": "Act 1 - Overgrowth",
+    "description": null,
+    "preconditions": [
+      "Requires a removable basic card"
+    ],
+    "options": null,
+    "pages": null
+  },
+  {
+    "id": "ZEN_WEAVER",
+    "name": "ZenWeaver",
+    "type": "Event",
+    "act": "Act 2 - Hive",
+    "description": null,
+    "preconditions": [
+      "Requires 125+ gold"
+    ],
+    "options": null,
+    "pages": null
+  }
+]

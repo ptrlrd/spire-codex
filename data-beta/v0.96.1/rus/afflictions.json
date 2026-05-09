@@ -1,0 +1,44 @@
+[
+  {
+    "id": "BOUND",
+    "name": "Печать",
+    "description": "Каждый ход можно разыграть только [blue]1[/blue] [gold]запечатанную[/gold] карту. [gold]Печать[/gold] снимается в конце хода.",
+    "extra_card_text": "Запечатана",
+    "is_stackable": false
+  },
+  {
+    "id": "ENTANGLED",
+    "name": "Путы",
+    "description": "Стоит на [energy:1] больше.",
+    "extra_card_text": "Запутана",
+    "is_stackable": false
+  },
+  {
+    "id": "GALVANIZED",
+    "name": "Гальванизация",
+    "description": "Вы получите [blue]X[/blue] урона, если разыграете эту карту.",
+    "extra_card_text": "Вы получите X урона.",
+    "is_stackable": true
+  },
+  {
+    "id": "HEXED",
+    "name": "Сглаз",
+    "description": "Карта становится [gold]эфирной[/gold].",
+    "extra_card_text": null,
+    "is_stackable": false
+  },
+  {
+    "id": "RINGING",
+    "name": "Звон в ушах",
+    "description": "Вы можете разыграть только [blue]1[/blue] карту в этом ходу.",
+    "extra_card_text": "Звон в ушах.",
+    "is_stackable": false
+  },
+  {
+    "id": "SMOG",
+    "name": "Смог",
+    "description": "Вы больше не сможете разыгрывать [gold]Навыки[/gold] в этом ходу. Рассеивается в конце хода.",
+    "extra_card_text": null,
+    "is_stackable": false
+  }
+]

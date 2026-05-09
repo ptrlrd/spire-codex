@@ -8,8 +8,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/paels_wing.png",
+    "image_url": "/static/images/relics/paels_wing.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 160
   },
@@ -22,12 +24,14 @@
     "rarity": "Relique du Marchand",
     "pool": "shared",
     "merchant_price": {
-      "base": 225,
-      "min": 191,
-      "max": 259
+      "base": 200,
+      "min": 170,
+      "max": 230
     },
-    "image_url": "/static/images/relics/wing_charm.png",
+    "image_url": "/static/images/relics/wing_charm.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 130
   },
@@ -40,12 +44,14 @@
     "rarity": "Relique inhabituelle",
     "pool": "shared",
     "merchant_price": {
-      "base": 250,
-      "min": 212,
-      "max": 288
+      "base": 225,
+      "min": 191,
+      "max": 259
     },
-    "image_url": "/static/images/relics/akabeko.png",
+    "image_url": "/static/images/relics/akabeko.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 40
   },
@@ -58,8 +64,10 @@
     "rarity": "Relique d'événement",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/darkstone_periapt.png",
+    "image_url": "/static/images/relics/darkstone_periapt.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 252
   },
@@ -72,12 +80,14 @@
     "rarity": "Relique commune",
     "pool": "shared",
     "merchant_price": {
-      "base": 200,
-      "min": 170,
-      "max": 230
+      "base": 175,
+      "min": 149,
+      "max": 201
     },
-    "image_url": "/static/images/relics/anchor.png",
+    "image_url": "/static/images/relics/anchor.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 10
   },
@@ -94,8 +104,10 @@
       "min": 42,
       "max": 57
     },
-    "image_url": "/static/images/relics/fake_anchor.png",
+    "image_url": "/static/images/relics/fake_anchor.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 253
   },
@@ -108,12 +120,14 @@
     "rarity": "Relique rare",
     "pool": "shared",
     "merchant_price": {
-      "base": 300,
-      "min": 255,
-      "max": 345
+      "base": 275,
+      "min": 234,
+      "max": 316
     },
-    "image_url": "/static/images/relics/rainbow_ring.png",
+    "image_url": "/static/images/relics/rainbow_ring.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 80
   },
@@ -126,8 +140,10 @@
     "rarity": "Relique de base",
     "pool": "silent",
     "merchant_price": null,
-    "image_url": "/static/images/relics/ring_of_the_drake.png",
+    "image_url": "/static/images/relics/ring_of_the_drake.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Starter",
     "compendium_order": 0
   },
@@ -140,8 +156,10 @@
     "rarity": "Relique de base",
     "pool": "silent",
     "merchant_price": null,
-    "image_url": "/static/images/relics/ring_of_the_snake.png",
+    "image_url": "/static/images/relics/ring_of_the_snake.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Starter",
     "compendium_order": 1
   },
@@ -154,8 +172,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/signet_ring.png",
+    "image_url": "/static/images/relics/signet_ring.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 161
   },
@@ -168,8 +188,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/crossbow.png",
+    "image_url": "/static/images/relics/crossbow.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 162
   },
@@ -182,12 +204,14 @@
     "rarity": "Relique inhabituelle",
     "pool": "ironclad",
     "merchant_price": {
-      "base": 250,
-      "min": 212,
-      "max": 288
+      "base": 225,
+      "min": 191,
+      "max": 259
     },
-    "image_url": "/static/images/relics/self_forming_clay.png",
+    "image_url": "/static/images/relics/self_forming_clay.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 41
   },
@@ -200,8 +224,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/astrolabe.png",
+    "image_url": "/static/images/relics/astrolabe.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 163
   },
@@ -214,8 +240,10 @@
     "rarity": "Relique d'événement",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/dream_catcher.png",
+    "image_url": "/static/images/relics/dream_catcher.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 254
   },
@@ -228,12 +256,14 @@
     "rarity": "Relique commune",
     "pool": "shared",
     "merchant_price": {
-      "base": 200,
-      "min": 170,
-      "max": 230
+      "base": 175,
+      "min": 149,
+      "max": 201
     },
-    "image_url": "/static/images/relics/amethyst_aubergine.png",
+    "image_url": "/static/images/relics/amethyst_aubergine.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 11
   },
@@ -246,12 +276,14 @@
     "rarity": "Relique rare",
     "pool": "silent",
     "merchant_price": {
-      "base": 300,
-      "min": 255,
-      "max": 345
+      "base": 275,
+      "min": 234,
+      "max": 316
     },
-    "image_url": "/static/images/relics/tough_bandages.png",
+    "image_url": "/static/images/relics/tough_bandages.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 81
   },
@@ -264,12 +296,14 @@
     "rarity": "Relique rare",
     "pool": "shared",
     "merchant_price": {
-      "base": 300,
-      "min": 255,
-      "max": 345
+      "base": 275,
+      "min": 234,
+      "max": 316
     },
-    "image_url": "/static/images/relics/captains_wheel.png",
+    "image_url": "/static/images/relics/captains_wheel.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 82
   },
@@ -282,12 +316,14 @@
     "rarity": "Relique inhabituelle",
     "pool": "shared",
     "merchant_price": {
-      "base": 250,
-      "min": 212,
-      "max": 288
+      "base": 225,
+      "min": 191,
+      "max": 259
     },
-    "image_url": "/static/images/relics/ripple_basin.png",
+    "image_url": "/static/images/relics/ripple_basin.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 42
   },
@@ -300,12 +336,14 @@
     "rarity": "Relique inhabituelle",
     "pool": "shared",
     "merchant_price": {
-      "base": 250,
-      "min": 212,
-      "max": 288
+      "base": 225,
+      "min": 191,
+      "max": 259
     },
-    "image_url": "/static/images/relics/joss_paper.png",
+    "image_url": "/static/images/relics/joss_paper.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 43
   },
@@ -318,8 +356,10 @@
     "rarity": "Relique d'événement",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/bing_bong.png",
+    "image_url": "/static/images/relics/bing_bong.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 255
   },
@@ -332,8 +372,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/blessed_antler.png",
+    "image_url": "/static/images/relics/blessed_antler.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 164
   },
@@ -346,8 +388,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/driftwood.png",
+    "image_url": "/static/images/relics/driftwood.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 165
   },
@@ -360,12 +404,14 @@
     "rarity": "Relique rare",
     "pool": "shared",
     "merchant_price": {
-      "base": 300,
-      "min": 255,
-      "max": 345
+      "base": 275,
+      "min": 234,
+      "max": 316
     },
-    "image_url": "/static/images/relics/lasting_candy.png",
+    "image_url": "/static/images/relics/lasting_candy.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 83
   },
@@ -378,8 +424,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/whispering_earring.png",
+    "image_url": "/static/images/relics/whispering_earring.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 166
   },
@@ -392,12 +440,14 @@
     "rarity": "Relique rare",
     "pool": "shared",
     "merchant_price": {
-      "base": 300,
-      "min": 255,
-      "max": 345
+      "base": 275,
+      "min": 234,
+      "max": 316
     },
-    "image_url": "/static/images/relics/cloak_clasp.png",
+    "image_url": "/static/images/relics/cloak_clasp.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 84
   },
@@ -410,12 +460,14 @@
     "rarity": "Relique du Marchand",
     "pool": "shared",
     "merchant_price": {
-      "base": 225,
-      "min": 191,
-      "max": 259
+      "base": 200,
+      "min": 170,
+      "max": 230
     },
-    "image_url": "/static/images/relics/belt_buckle.png",
+    "image_url": "/static/images/relics/belt_buckle.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 131
   },
@@ -428,12 +480,14 @@
     "rarity": "Relique inhabituelle",
     "pool": "shared",
     "merchant_price": {
-      "base": 250,
-      "min": 212,
-      "max": 288
+      "base": 225,
+      "min": 191,
+      "max": 259
     },
-    "image_url": "/static/images/relics/parrying_shield.png",
+    "image_url": "/static/images/relics/parrying_shield.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 44
   },
@@ -446,8 +500,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/golden_compass.png",
+    "image_url": "/static/images/relics/golden_compass.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 167
   },
@@ -460,8 +516,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/pandoras_box.png",
+    "image_url": "/static/images/relics/pandoras_box.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 168
   },
@@ -474,8 +532,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/music_box.png",
+    "image_url": "/static/images/relics/music_box.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 169
   },
@@ -488,12 +548,14 @@
     "rarity": "Relique du Marchand",
     "pool": "shared",
     "merchant_price": {
-      "base": 225,
-      "min": 191,
-      "max": 259
+      "base": 200,
+      "min": 170,
+      "max": 230
     },
-    "image_url": "/static/images/relics/toolbox.png",
+    "image_url": "/static/images/relics/toolbox.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 132
   },
@@ -506,12 +568,14 @@
     "rarity": "Relique commune",
     "pool": "shared",
     "merchant_price": {
-      "base": 200,
-      "min": 170,
-      "max": 230
+      "base": 175,
+      "min": 149,
+      "max": 201
     },
-    "image_url": "/static/images/relics/juzu_bracelet.png",
+    "image_url": "/static/images/relics/juzu_bracelet.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 12
   },
@@ -524,8 +588,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/beautiful_bracelet.png",
+    "image_url": "/static/images/relics/beautiful_bracelet.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 170
   },
@@ -538,12 +604,14 @@
     "rarity": "Relique inhabituelle",
     "pool": "shared",
     "merchant_price": {
-      "base": 250,
-      "min": 212,
-      "max": 288
+      "base": 225,
+      "min": 191,
+      "max": 259
     },
-    "image_url": "/static/images/relics/vambrace.png",
+    "image_url": "/static/images/relics/vambrace.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 45
   },
@@ -556,12 +624,14 @@
     "rarity": "Relique inhabituelle",
     "pool": "shared",
     "merchant_price": {
-      "base": 250,
-      "min": 212,
-      "max": 288
+      "base": 225,
+      "min": 191,
+      "max": 259
     },
-    "image_url": "/static/images/relics/reptile_trinket.png",
+    "image_url": "/static/images/relics/reptile_trinket.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 46
   },
@@ -574,12 +644,14 @@
     "rarity": "Relique du Marchand",
     "pool": "shared",
     "merchant_price": {
-      "base": 225,
-      "min": 191,
-      "max": 259
+      "base": 200,
+      "min": 170,
+      "max": 230
     },
-    "image_url": "/static/images/relics/mystic_lighter.png",
+    "image_url": "/static/images/relics/mystic_lighter.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 133
   },
@@ -592,8 +664,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/preserved_fog.png",
+    "image_url": "/static/images/relics/preserved_fog.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 171
   },
@@ -606,12 +680,14 @@
     "rarity": "Relique du Marchand",
     "pool": "shared",
     "merchant_price": {
-      "base": 225,
-      "min": 191,
-      "max": 259
+      "base": 200,
+      "min": 170,
+      "max": 230
     },
-    "image_url": "/static/images/relics/burning_sticks.png",
+    "image_url": "/static/images/relics/burning_sticks.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 134
   },
@@ -624,8 +700,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/empty_cage.png",
+    "image_url": "/static/images/relics/empty_cage.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 172
   },
@@ -638,8 +716,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/alchemical_coffer.png",
+    "image_url": "/static/images/relics/alchemical_coffer.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 173
   },
@@ -652,8 +732,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/scroll_boxes.png",
+    "image_url": "/static/images/relics/scroll_boxes.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 174
   },
@@ -666,8 +748,14 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/toy_box.png",
+    "image_url": "/static/images/relics/toy_box.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": [
+      "Wax Relics are pulled from the normal relic pool — any non-Ancient relic can be waxed.",
+      "Wax Relic rarity: 50% Common, 33% Uncommon, 17% Rare (standard relic rarity roll).",
+      "All wax relics melt after 12 total combats, then Toy Box is used up."
+    ],
     "rarity_key": "Ancient",
     "compendium_order": 175
   },
@@ -680,12 +768,14 @@
     "rarity": "Relique rare",
     "pool": "shared",
     "merchant_price": {
-      "base": 300,
-      "min": 255,
-      "max": 345
+      "base": 275,
+      "min": 234,
+      "max": 316
     },
-    "image_url": "/static/images/relics/stone_calendar.png",
+    "image_url": "/static/images/relics/stone_calendar.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 85
   },
@@ -698,12 +788,14 @@
     "rarity": "Relique inhabituelle",
     "pool": "shared",
     "merchant_price": {
-      "base": 250,
-      "min": 212,
-      "max": 288
+      "base": 225,
+      "min": 191,
+      "max": 259
     },
-    "image_url": "/static/images/relics/candelabra.png",
+    "image_url": "/static/images/relics/candelabra.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 47
   },
@@ -716,12 +808,14 @@
     "rarity": "Relique inhabituelle",
     "pool": "shared",
     "merchant_price": {
-      "base": 250,
-      "min": 212,
-      "max": 288
+      "base": 225,
+      "min": 191,
+      "max": 259
     },
-    "image_url": "/static/images/relics/miniature_cannon.png",
+    "image_url": "/static/images/relics/miniature_cannon.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 48
   },
@@ -734,8 +828,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/distinguished_cape.png",
+    "image_url": "/static/images/relics/distinguished_cape.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 176
   },
@@ -748,12 +844,14 @@
     "rarity": "Relique du Marchand",
     "pool": "shared",
     "merchant_price": {
-      "base": 225,
-      "min": 191,
-      "max": 259
+      "base": 200,
+      "min": 170,
+      "max": 230
     },
-    "image_url": "/static/images/relics/membership_card.png",
+    "image_url": "/static/images/relics/membership_card.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 135
   },
@@ -766,12 +864,14 @@
     "rarity": "Relique rare",
     "pool": "ironclad",
     "merchant_price": {
-      "base": 300,
-      "min": 255,
-      "max": 345
+      "base": 275,
+      "min": 234,
+      "max": 316
     },
-    "image_url": "/static/images/relics/ruined_helmet.png",
+    "image_url": "/static/images/relics/ruined_helmet.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 86
   },
@@ -784,12 +884,14 @@
     "rarity": "Relique rare",
     "pool": "shared",
     "merchant_price": {
-      "base": 300,
-      "min": 255,
-      "max": 345
+      "base": 275,
+      "min": 234,
+      "max": 316
     },
-    "image_url": "/static/images/relics/intimidating_helmet.png",
+    "image_url": "/static/images/relics/intimidating_helmet.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 87
   },
@@ -802,12 +904,14 @@
     "rarity": "Relique rare",
     "pool": "shared",
     "merchant_price": {
-      "base": 300,
-      "min": 255,
-      "max": 345
+      "base": 275,
+      "min": 234,
+      "max": 316
     },
-    "image_url": "/static/images/relics/vexing_puzzlebox.png",
+    "image_url": "/static/images/relics/vexing_puzzlebox.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 88
   },
@@ -820,8 +924,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/leafy_poultice.png",
+    "image_url": "/static/images/relics/leafy_poultice.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 177
   },
@@ -834,12 +940,14 @@
     "rarity": "Relique commune",
     "pool": "shared",
     "merchant_price": {
-      "base": 200,
-      "min": 170,
-      "max": 230
+      "base": 175,
+      "min": 149,
+      "max": 201
     },
-    "image_url": "/static/images/relics/potion_belt.png",
+    "image_url": "/static/images/relics/potion_belt.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 13
   },
@@ -852,12 +960,14 @@
     "rarity": "Relique rare",
     "pool": "ironclad",
     "merchant_price": {
-      "base": 300,
-      "min": 255,
-      "max": 345
+      "base": 275,
+      "min": 234,
+      "max": 316
     },
-    "image_url": "/static/images/relics/charons_ashes.png",
+    "image_url": "/static/images/relics/charons_ashes.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 89
   },
@@ -870,8 +980,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/paels_flesh.png",
+    "image_url": "/static/images/relics/paels_flesh.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 178
   },
@@ -884,8 +996,10 @@
     "rarity": "Relique d'événement",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/fragrant_mushroom.png",
+    "image_url": "/static/images/relics/fragrant_mushroom.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 256
   },
@@ -898,12 +1012,14 @@
     "rarity": "Relique rare",
     "pool": "shared",
     "merchant_price": {
-      "base": 300,
-      "min": 255,
-      "max": 345
+      "base": 275,
+      "min": 234,
+      "max": 316
     },
-    "image_url": "/static/images/relics/chandelier.png",
+    "image_url": "/static/images/relics/chandelier.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 90
   },
@@ -916,12 +1032,14 @@
     "rarity": "Relique inhabituelle",
     "pool": "shared",
     "merchant_price": {
-      "base": 250,
-      "min": 212,
-      "max": 288
+      "base": 225,
+      "min": 191,
+      "max": 259
     },
-    "image_url": "/static/images/relics/bowler_hat.png",
+    "image_url": "/static/images/relics/bowler_hat.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 49
   },
@@ -934,12 +1052,14 @@
     "rarity": "Relique du Marchand",
     "pool": "shared",
     "merchant_price": {
-      "base": 225,
-      "min": 191,
-      "max": 259
+      "base": 200,
+      "min": 170,
+      "max": 230
     },
-    "image_url": "/static/images/relics/cauldron.png",
+    "image_url": "/static/images/relics/cauldron.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 136
   },
@@ -952,8 +1072,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/very_hot_cocoa.png",
+    "image_url": "/static/images/relics/very_hot_cocoa.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 179
   },
@@ -966,8 +1088,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/sand_castle.png",
+    "image_url": "/static/images/relics/sand_castle.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 180
   },
@@ -980,8 +1104,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/precise_scissors.png",
+    "image_url": "/static/images/relics/precise_scissors.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 181
   },
@@ -994,8 +1120,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/calling_bell.png",
+    "image_url": "/static/images/relics/calling_bell.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 182
   },
@@ -1008,8 +1136,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/jewelry_box.png",
+    "image_url": "/static/images/relics/jewelry_box.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 183
   },
@@ -1022,8 +1152,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/lost_coffer.png",
+    "image_url": "/static/images/relics/lost_coffer.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 184
   },
@@ -1036,12 +1168,14 @@
     "rarity": "Relique du Marchand",
     "pool": "shared",
     "merchant_price": {
-      "base": 225,
-      "min": 191,
-      "max": 259
+      "base": 200,
+      "min": 170,
+      "max": 230
     },
-    "image_url": "/static/images/relics/chemical_x.png",
+    "image_url": "/static/images/relics/chemical_x.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 137
   },
@@ -1054,12 +1188,14 @@
     "rarity": "Relique du Marchand",
     "pool": "defect",
     "merchant_price": {
-      "base": 225,
-      "min": 191,
-      "max": 259
+      "base": 200,
+      "min": 170,
+      "max": 230
     },
-    "image_url": "/static/images/relics/runic_capacitor.png",
+    "image_url": "/static/images/relics/runic_capacitor.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 138
   },
@@ -1072,8 +1208,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/booming_conch.png",
+    "image_url": "/static/images/relics/booming_conch.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 185
   },
@@ -1086,8 +1224,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/paels_horn.png",
+    "image_url": "/static/images/relics/paels_horn.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 186
   },
@@ -1100,12 +1240,14 @@
     "rarity": "Relique inhabituelle",
     "pool": "shared",
     "merchant_price": {
-      "base": 250,
-      "min": 212,
-      "max": 288
+      "base": 225,
+      "min": 191,
+      "max": 259
     },
-    "image_url": "/static/images/relics/gremlin_horn.png",
+    "image_url": "/static/images/relics/gremlin_horn.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 50
   },
@@ -1118,12 +1260,14 @@
     "rarity": "Relique inhabituelle",
     "pool": "shared",
     "merchant_price": {
-      "base": 250,
-      "min": 212,
-      "max": 288
+      "base": 225,
+      "min": 191,
+      "max": 259
     },
-    "image_url": "/static/images/relics/letter_opener.png",
+    "image_url": "/static/images/relics/letter_opener.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 51
   },
@@ -1136,8 +1280,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/meat_cleaver.png",
+    "image_url": "/static/images/relics/meat_cleaver.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 187
   },
@@ -1150,12 +1296,14 @@
     "rarity": "Relique inhabituelle",
     "pool": "necrobinder",
     "merchant_price": {
-      "base": 250,
-      "min": 212,
-      "max": 288
+      "base": 225,
+      "min": 191,
+      "max": 259
     },
-    "image_url": "/static/images/relics/book_repair_knife.png",
+    "image_url": "/static/images/relics/book_repair_knife.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 52
   },
@@ -1168,12 +1316,14 @@
     "rarity": "Relique inhabituelle",
     "pool": "shared",
     "merchant_price": {
-      "base": 250,
-      "min": 212,
-      "max": 288
+      "base": 225,
+      "min": 191,
+      "max": 259
     },
-    "image_url": "/static/images/relics/petrified_toad.png",
+    "image_url": "/static/images/relics/petrified_toad.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 53
   },
@@ -1186,8 +1336,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/silver_crucible.png",
+    "image_url": "/static/images/relics/silver_crucible.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 188
   },
@@ -1200,8 +1352,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/electric_shrymp.png",
+    "image_url": "/static/images/relics/electric_shrymp.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 189
   },
@@ -1214,12 +1368,14 @@
     "rarity": "Relique commune",
     "pool": "silent",
     "merchant_price": {
-      "base": 200,
-      "min": 170,
-      "max": 230
+      "base": 175,
+      "min": 149,
+      "max": 201
     },
-    "image_url": "/static/images/relics/snecko_skull.png",
+    "image_url": "/static/images/relics/snecko_skull.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 14
   },
@@ -1232,12 +1388,14 @@
     "rarity": "Relique commune",
     "pool": "ironclad",
     "merchant_price": {
-      "base": 200,
-      "min": 170,
-      "max": 230
+      "base": 175,
+      "min": 149,
+      "max": 201
     },
-    "image_url": "/static/images/relics/red_skull.png",
+    "image_url": "/static/images/relics/red_skull.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 15
   },
@@ -1250,12 +1408,14 @@
     "rarity": "Relique rare",
     "pool": "shared",
     "merchant_price": {
-      "base": 300,
-      "min": 255,
-      "max": 345
+      "base": 275,
+      "min": 234,
+      "max": 316
     },
-    "image_url": "/static/images/relics/ice_cream.png",
+    "image_url": "/static/images/relics/ice_cream.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 91
   },
@@ -1268,12 +1428,14 @@
     "rarity": "Relique inhabituelle",
     "pool": "defect",
     "merchant_price": {
-      "base": 250,
-      "min": 212,
-      "max": 288
+      "base": 225,
+      "min": 191,
+      "max": 259
     },
-    "image_url": "/static/images/relics/gold_plated_cables.png",
+    "image_url": "/static/images/relics/gold_plated_cables.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 54
   },
@@ -1286,8 +1448,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/archaic_tooth.png",
+    "image_url": "/static/images/relics/archaic_tooth.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 190
   },
@@ -1300,8 +1464,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/paels_tooth.png",
+    "image_url": "/static/images/relics/paels_tooth.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 191
   },
@@ -1314,12 +1480,14 @@
     "rarity": "Relique rare",
     "pool": "shared",
     "merchant_price": {
-      "base": 300,
-      "min": 255,
-      "max": 345
+      "base": 275,
+      "min": 234,
+      "max": 316
     },
-    "image_url": "/static/images/relics/razor_tooth.png",
+    "image_url": "/static/images/relics/razor_tooth.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 92
   },
@@ -1332,8 +1500,10 @@
     "rarity": "Relique de base",
     "pool": "regent",
     "merchant_price": null,
-    "image_url": "/static/images/relics/divine_destiny.png",
+    "image_url": "/static/images/relics/divine_destiny.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Starter",
     "compendium_order": 2
   },
@@ -1346,8 +1516,10 @@
     "rarity": "Relique",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/circlet.png",
+    "image_url": "/static/images/relics/circlet.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "None",
     "compendium_order": 287
   },
@@ -1360,8 +1532,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/diamond_diadem.png",
+    "image_url": "/static/images/relics/diamond_diadem.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 192
   },
@@ -1374,12 +1548,14 @@
     "rarity": "Relique inhabituelle",
     "pool": "shared",
     "merchant_price": {
-      "base": 250,
-      "min": 212,
-      "max": 288
+      "base": 225,
+      "min": 191,
+      "max": 259
     },
-    "image_url": "/static/images/relics/tuning_fork.png",
+    "image_url": "/static/images/relics/tuning_fork.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 55
   },
@@ -1392,12 +1568,14 @@
     "rarity": "Relique commune",
     "pool": "defect",
     "merchant_price": {
-      "base": 200,
-      "min": 170,
-      "max": 230
+      "base": 175,
+      "min": 149,
+      "max": 201
     },
-    "image_url": "/static/images/relics/data_disk.png",
+    "image_url": "/static/images/relics/data_disk.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 16
   },
@@ -1410,8 +1588,10 @@
     "rarity": "Relique de base",
     "pool": "regent",
     "merchant_price": null,
-    "image_url": "/static/images/relics/divine_right.png",
+    "image_url": "/static/images/relics/divine_right.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Starter",
     "compendium_order": 3
   },
@@ -1424,14 +1604,16 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/yummy_cookie.png",
+    "image_url": "/static/images/relics/yummy_cookie.webp",
     "image_variants": {
-      "Ironclad": "/static/images/relics/yummy_cookie_ironclad.png",
-      "Silent": "/static/images/relics/yummy_cookie_silent.png",
-      "Defect": "/static/images/relics/yummy_cookie_defect.png",
-      "Necrobinder": "/static/images/relics/yummy_cookie_necrobinder.png",
-      "Regent": "/static/images/relics/yummy_cookie_regent.png"
+      "Ironclad": "/static/images/relics/yummy_cookie_ironclad.webp",
+      "Silent": "/static/images/relics/yummy_cookie_silent.webp",
+      "Defect": "/static/images/relics/yummy_cookie_defect.webp",
+      "Necrobinder": "/static/images/relics/yummy_cookie_necrobinder.webp",
+      "Regent": "/static/images/relics/yummy_cookie_regent.webp"
     },
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 193
   },
@@ -1444,8 +1626,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/ectoplasm.png",
+    "image_url": "/static/images/relics/ectoplasm.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 194
   },
@@ -1458,8 +1642,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/choices_paradox.png",
+    "image_url": "/static/images/relics/choices_paradox.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 195
   },
@@ -1472,12 +1658,14 @@
     "rarity": "Relique inhabituelle",
     "pool": "silent",
     "merchant_price": {
-      "base": 250,
-      "min": 212,
-      "max": 288
+      "base": 225,
+      "min": 191,
+      "max": 259
     },
-    "image_url": "/static/images/relics/twisted_funnel.png",
+    "image_url": "/static/images/relics/twisted_funnel.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 56
   },
@@ -1490,8 +1678,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/paels_growth.png",
+    "image_url": "/static/images/relics/paels_growth.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 196
   },
@@ -1504,12 +1694,14 @@
     "rarity": "Relique inhabituelle",
     "pool": "shared",
     "merchant_price": {
-      "base": 250,
-      "min": 212,
-      "max": 288
+      "base": 225,
+      "min": 191,
+      "max": 259
     },
-    "image_url": "/static/images/relics/sparkling_rouge.png",
+    "image_url": "/static/images/relics/sparkling_rouge.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 57
   },
@@ -1522,8 +1714,10 @@
     "rarity": "Relique d'événement",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/lost_wisp.png",
+    "image_url": "/static/images/relics/lost_wisp.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 257
   },
@@ -1536,8 +1730,10 @@
     "rarity": "Relique d'événement",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/daughter_of_the_wind.png",
+    "image_url": "/static/images/relics/daughter_of_the_wind.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 258
   },
@@ -1550,12 +1746,14 @@
     "rarity": "Relique commune",
     "pool": "shared",
     "merchant_price": {
-      "base": 200,
-      "min": 170,
-      "max": 230
+      "base": 175,
+      "min": 149,
+      "max": 201
     },
-    "image_url": "/static/images/relics/blood_vial.png",
+    "image_url": "/static/images/relics/blood_vial.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 17
   },
@@ -1572,8 +1770,10 @@
       "min": 42,
       "max": 57
     },
-    "image_url": "/static/images/relics/fake_blood_vial.png",
+    "image_url": "/static/images/relics/fake_blood_vial.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 259
   },
@@ -1586,12 +1786,14 @@
     "rarity": "Relique commune",
     "pool": "shared",
     "merchant_price": {
-      "base": 200,
-      "min": 170,
-      "max": 230
+      "base": 175,
+      "min": 149,
+      "max": 201
     },
-    "image_url": "/static/images/relics/happy_flower.png",
+    "image_url": "/static/images/relics/happy_flower.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 18
   },
@@ -1608,8 +1810,10 @@
       "min": 42,
       "max": 57
     },
-    "image_url": "/static/images/relics/fake_happy_flower.png",
+    "image_url": "/static/images/relics/fake_happy_flower.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 260
   },
@@ -1622,12 +1826,14 @@
     "rarity": "Relique rare",
     "pool": "silent",
     "merchant_price": {
-      "base": 300,
-      "min": 255,
-      "max": 345
+      "base": 275,
+      "min": 234,
+      "max": 316
     },
-    "image_url": "/static/images/relics/helical_dart.png",
+    "image_url": "/static/images/relics/helical_dart.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 93
   },
@@ -1640,12 +1846,14 @@
     "rarity": "Relique commune",
     "pool": "necrobinder",
     "merchant_price": {
-      "base": 200,
-      "min": 170,
-      "max": 230
+      "base": 175,
+      "min": 149,
+      "max": 201
     },
-    "image_url": "/static/images/relics/bone_flute.png",
+    "image_url": "/static/images/relics/bone_flute.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 19
   },
@@ -1658,8 +1866,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/precarious_shears.png",
+    "image_url": "/static/images/relics/precarious_shears.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 197
   },
@@ -1672,8 +1882,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/delicate_frond.png",
+    "image_url": "/static/images/relics/delicate_frond.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 198
   },
@@ -1686,12 +1898,14 @@
     "rarity": "Relique commune",
     "pool": "shared",
     "merchant_price": {
-      "base": 200,
-      "min": 170,
-      "max": 230
+      "base": 175,
+      "min": 149,
+      "max": 201
     },
-    "image_url": "/static/images/relics/strawberry.png",
+    "image_url": "/static/images/relics/strawberry.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 20
   },
@@ -1704,8 +1918,10 @@
     "rarity": "Relique d'événement",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/chosen_cheese.png",
+    "image_url": "/static/images/relics/chosen_cheese.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 261
   },
@@ -1718,12 +1934,14 @@
     "rarity": "Relique du Marchand",
     "pool": "shared",
     "merchant_price": {
-      "base": 225,
-      "min": 191,
-      "max": 259
+      "base": 200,
+      "min": 170,
+      "max": 230
     },
-    "image_url": "/static/images/relics/sling_of_courage.png",
+    "image_url": "/static/images/relics/sling_of_courage.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 139
   },
@@ -1736,12 +1954,14 @@
     "rarity": "Relique du Marchand",
     "pool": "shared",
     "merchant_price": {
-      "base": 225,
-      "min": 191,
-      "max": 259
+      "base": 200,
+      "min": 170,
+      "max": 230
     },
-    "image_url": "/static/images/relics/dragon_fruit.png",
+    "image_url": "/static/images/relics/dragon_fruit.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 140
   },
@@ -1754,8 +1974,16 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/looming_fruit.png",
-    "image_variants": null,
+    "image_url": "/static/images/relics/looming_fruit.webp",
+    "image_variants": {
+      "Cornucopia": "/static/images/relics/looming_fruit.webp",
+      "Fruit": "/static/images/relics/looming_fruit_2.webp"
+    },
+    "name_variants": null,
+    "notes": [
+      "Looming Fruit ships two icons (Cornucopia and Fruit). The game picks one per save based on whether your save's UniqueId ends in an even or odd digit, so half the playerbase sees each variant.",
+      "Both variants are functionally identical — same +31 Max HP effect — and the choice is permanent for a given save file. Use the toggle above to preview the one your save shows."
+    ],
     "rarity_key": "Ancient",
     "compendium_order": 199
   },
@@ -1768,8 +1996,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/spiked_gauntlets.png",
+    "image_url": "/static/images/relics/spiked_gauntlets.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 200
   },
@@ -1782,12 +2012,14 @@
     "rarity": "Relique du Marchand",
     "pool": "shared",
     "merchant_price": {
-      "base": 225,
-      "min": 191,
-      "max": 259
+      "base": 200,
+      "min": 170,
+      "max": 230
     },
-    "image_url": "/static/images/relics/lees_waffle.png",
+    "image_url": "/static/images/relics/lees_waffle.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 141
   },
@@ -1804,8 +2036,10 @@
       "min": 42,
       "max": 57
     },
-    "image_url": "/static/images/relics/fake_lees_waffle.png",
+    "image_url": "/static/images/relics/fake_lees_waffle.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 262
   },
@@ -1818,12 +2052,14 @@
     "rarity": "Relique rare",
     "pool": "shared",
     "merchant_price": {
-      "base": 300,
-      "min": 255,
-      "max": 345
+      "base": 275,
+      "min": 234,
+      "max": 316
     },
-    "image_url": "/static/images/relics/girya.png",
+    "image_url": "/static/images/relics/girya.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 94
   },
@@ -1836,12 +2072,14 @@
     "rarity": "Relique commune",
     "pool": "shared",
     "merchant_price": {
-      "base": 200,
-      "min": 170,
-      "max": 230
+      "base": 175,
+      "min": 149,
+      "max": 201
     },
-    "image_url": "/static/images/relics/gorget.png",
+    "image_url": "/static/images/relics/gorget.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 21
   },
@@ -1854,8 +2092,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/iron_club.png",
+    "image_url": "/static/images/relics/iron_club.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 201
   },
@@ -1868,12 +2108,14 @@
     "rarity": "Relique du Marchand",
     "pool": "shared",
     "merchant_price": {
-      "base": 225,
-      "min": 191,
-      "max": 259
+      "base": 200,
+      "min": 170,
+      "max": 230
     },
-    "image_url": "/static/images/relics/ghost_seed.png",
+    "image_url": "/static/images/relics/ghost_seed.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 142
   },
@@ -1886,12 +2128,14 @@
     "rarity": "Relique rare",
     "pool": "necrobinder",
     "merchant_price": {
-      "base": 300,
-      "min": 255,
-      "max": 345
+      "base": 275,
+      "min": 234,
+      "max": 316
     },
-    "image_url": "/static/images/relics/big_hat.png",
+    "image_url": "/static/images/relics/big_hat.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 95
   },
@@ -1904,8 +2148,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/large_capsule.png",
+    "image_url": "/static/images/relics/large_capsule.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 202
   },
@@ -1918,8 +2164,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/paels_claw.png",
+    "image_url": "/static/images/relics/paels_claw.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 203
   },
@@ -1932,8 +2180,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/claws.png",
+    "image_url": "/static/images/relics/claws.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 204
   },
@@ -1946,8 +2196,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/dusty_tome.png",
+    "image_url": "/static/images/relics/dusty_tome.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 205
   },
@@ -1960,8 +2212,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/biiig_hug.png",
+    "image_url": "/static/images/relics/biiig_hug.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 206
   },
@@ -1974,8 +2228,10 @@
     "rarity": "Relique d'événement",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/big_mushroom.png",
+    "image_url": "/static/images/relics/big_mushroom.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 263
   },
@@ -1988,12 +2244,14 @@
     "rarity": "Relique rare",
     "pool": "silent",
     "merchant_price": {
-      "base": 300,
-      "min": 255,
-      "max": 345
+      "base": 275,
+      "min": 234,
+      "max": 316
     },
-    "image_url": "/static/images/relics/paper_krane.png",
+    "image_url": "/static/images/relics/paper_krane.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 96
   },
@@ -2006,8 +2264,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/throwing_axe.png",
+    "image_url": "/static/images/relics/throwing_axe.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 207
   },
@@ -2020,8 +2280,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/stone_humidifier.png",
+    "image_url": "/static/images/relics/stone_humidifier.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 208
   },
@@ -2034,8 +2296,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/nutritious_oyster.png",
+    "image_url": "/static/images/relics/nutritious_oyster.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 209
   },
@@ -2048,12 +2312,14 @@
     "rarity": "Relique rare",
     "pool": "shared",
     "merchant_price": {
-      "base": 300,
-      "min": 255,
-      "max": 345
+      "base": 275,
+      "min": 234,
+      "max": 316
     },
-    "image_url": "/static/images/relics/gambling_chip.png",
+    "image_url": "/static/images/relics/gambling_chip.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 97
   },
@@ -2066,8 +2332,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/prismatic_gem.png",
+    "image_url": "/static/images/relics/prismatic_gem.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 210
   },
@@ -2080,12 +2348,14 @@
     "rarity": "Relique du Marchand",
     "pool": "shared",
     "merchant_price": {
-      "base": 225,
-      "min": 191,
-      "max": 259
+      "base": 200,
+      "min": 170,
+      "max": 230
     },
-    "image_url": "/static/images/relics/kifuda.png",
+    "image_url": "/static/images/relics/kifuda.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 143
   },
@@ -2098,12 +2368,14 @@
     "rarity": "Relique inhabituelle",
     "pool": "ironclad",
     "merchant_price": {
-      "base": 250,
-      "min": 212,
-      "max": 288
+      "base": 225,
+      "min": 191,
+      "max": 259
     },
-    "image_url": "/static/images/relics/paper_phrog.png",
+    "image_url": "/static/images/relics/paper_phrog.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 58
   },
@@ -2116,12 +2388,14 @@
     "rarity": "Relique rare",
     "pool": "shared",
     "merchant_price": {
-      "base": 300,
-      "min": 255,
-      "max": 345
+      "base": 275,
+      "min": 234,
+      "max": 316
     },
-    "image_url": "/static/images/relics/kunai.png",
+    "image_url": "/static/images/relics/kunai.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 98
   },
@@ -2134,12 +2408,14 @@
     "rarity": "Relique inhabituelle",
     "pool": "shared",
     "merchant_price": {
-      "base": 250,
-      "min": 212,
-      "max": 288
+      "base": 225,
+      "min": 191,
+      "max": 259
     },
-    "image_url": "/static/images/relics/kusarigama.png",
+    "image_url": "/static/images/relics/kusarigama.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 59
   },
@@ -2152,12 +2428,14 @@
     "rarity": "Relique du Marchand",
     "pool": "shared",
     "merchant_price": {
-      "base": 225,
-      "min": 191,
-      "max": 259
+      "base": 200,
+      "min": 170,
+      "max": 230
     },
-    "image_url": "/static/images/relics/the_abacus.png",
+    "image_url": "/static/images/relics/the_abacus.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 144
   },
@@ -2170,12 +2448,14 @@
     "rarity": "Relique rare",
     "pool": "shared",
     "merchant_price": {
-      "base": 300,
-      "min": 255,
-      "max": 345
+      "base": 275,
+      "min": 234,
+      "max": 316
     },
-    "image_url": "/static/images/relics/art_of_war.png",
+    "image_url": "/static/images/relics/art_of_war.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 99
   },
@@ -2188,8 +2468,10 @@
     "rarity": "Relique d'événement",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/the_boot.png",
+    "image_url": "/static/images/relics/the_boot.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 264
   },
@@ -2202,12 +2484,14 @@
     "rarity": "Relique rare",
     "pool": "shared",
     "merchant_price": {
-      "base": 300,
-      "min": 255,
-      "max": 345
+      "base": 275,
+      "min": 234,
+      "max": 316
     },
-    "image_url": "/static/images/relics/unsettling_lamp.png",
+    "image_url": "/static/images/relics/unsettling_lamp.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 100
   },
@@ -2220,12 +2504,14 @@
     "rarity": "Relique du Marchand",
     "pool": "shared",
     "merchant_price": {
-      "base": 225,
-      "min": 191,
-      "max": 259
+      "base": 200,
+      "min": 170,
+      "max": 230
     },
-    "image_url": "/static/images/relics/lava_lamp.png",
+    "image_url": "/static/images/relics/lava_lamp.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 145
   },
@@ -2238,12 +2524,14 @@
     "rarity": "Relique rare",
     "pool": "ironclad",
     "merchant_price": {
-      "base": 300,
-      "min": 255,
-      "max": 345
+      "base": 275,
+      "min": 234,
+      "max": 316
     },
-    "image_url": "/static/images/relics/demon_tongue.png",
+    "image_url": "/static/images/relics/demon_tongue.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 101
   },
@@ -2256,12 +2544,14 @@
     "rarity": "Relique commune",
     "pool": "shared",
     "merchant_price": {
-      "base": 200,
-      "min": 170,
-      "max": 230
+      "base": 175,
+      "min": 149,
+      "max": 201
     },
-    "image_url": "/static/images/relics/lantern.png",
+    "image_url": "/static/images/relics/lantern.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 22
   },
@@ -2274,8 +2564,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/pumpkin_candle.png",
+    "image_url": "/static/images/relics/pumpkin_candle.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 211
   },
@@ -2288,8 +2580,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/paels_tears.png",
+    "image_url": "/static/images/relics/paels_tears.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 212
   },
@@ -2302,12 +2596,14 @@
     "rarity": "Relique rare",
     "pool": "shared",
     "merchant_price": {
-      "base": 300,
-      "min": 255,
-      "max": 345
+      "base": 275,
+      "min": 234,
+      "max": 316
     },
-    "image_url": "/static/images/relics/the_courier.png",
+    "image_url": "/static/images/relics/the_courier.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 102
   },
@@ -2320,8 +2616,10 @@
     "rarity": "Relique d'événement",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/fake_merchants_rug.png",
+    "image_url": "/static/images/relics/fake_merchants_rug.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 265
   },
@@ -2334,8 +2632,10 @@
     "rarity": "Relique d'événement",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/fresnel_lens.png",
+    "image_url": "/static/images/relics/fresnel_lens.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 266
   },
@@ -2348,8 +2648,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/storybook.png",
+    "image_url": "/static/images/relics/storybook.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 213
   },
@@ -2362,12 +2664,14 @@
     "rarity": "Relique commune",
     "pool": "shared",
     "merchant_price": {
-      "base": 200,
-      "min": 170,
-      "max": 230
+      "base": 175,
+      "min": 149,
+      "max": 201
     },
-    "image_url": "/static/images/relics/book_of_five_rings.png",
+    "image_url": "/static/images/relics/book_of_five_rings.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 23
   },
@@ -2380,8 +2684,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/paels_legion.png",
+    "image_url": "/static/images/relics/paels_legion.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 214
   },
@@ -2394,12 +2700,14 @@
     "rarity": "Relique rare",
     "pool": "shared",
     "merchant_price": {
-      "base": 300,
-      "min": 255,
-      "max": 345
+      "base": 275,
+      "min": 234,
+      "max": 316
     },
-    "image_url": "/static/images/relics/mummified_hand.png",
+    "image_url": "/static/images/relics/mummified_hand.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 103
   },
@@ -2412,12 +2720,14 @@
     "rarity": "Relique rare",
     "pool": "shared",
     "merchant_price": {
-      "base": 300,
-      "min": 255,
-      "max": 345
+      "base": 275,
+      "min": 234,
+      "max": 316
     },
-    "image_url": "/static/images/relics/mango.png",
+    "image_url": "/static/images/relics/mango.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 104
   },
@@ -2434,8 +2744,10 @@
       "min": 42,
       "max": 57
     },
-    "image_url": "/static/images/relics/fake_mango.png",
+    "image_url": "/static/images/relics/fake_mango.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 267
   },
@@ -2448,12 +2760,14 @@
     "rarity": "Relique commune",
     "pool": "shared",
     "merchant_price": {
-      "base": 200,
-      "min": 170,
-      "max": 230
+      "base": 175,
+      "min": 149,
+      "max": 201
     },
-    "image_url": "/static/images/relics/strike_dummy.png",
+    "image_url": "/static/images/relics/strike_dummy.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 24
   },
@@ -2470,8 +2784,10 @@
       "min": 42,
       "max": 57
     },
-    "image_url": "/static/images/relics/fake_strike_dummy.png",
+    "image_url": "/static/images/relics/fake_strike_dummy.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 268
   },
@@ -2484,8 +2800,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/fur_coat.png",
+    "image_url": "/static/images/relics/fur_coat.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 215
   },
@@ -2498,8 +2816,10 @@
     "rarity": "Relique d'événement",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/history_course.png",
+    "image_url": "/static/images/relics/history_course.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 269
   },
@@ -2512,12 +2832,14 @@
     "rarity": "Relique commune",
     "pool": "regent",
     "merchant_price": {
-      "base": 200,
-      "min": 170,
-      "max": 230
+      "base": 175,
+      "min": 149,
+      "max": 201
     },
-    "image_url": "/static/images/relics/fencing_manual.png",
+    "image_url": "/static/images/relics/fencing_manual.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 25
   },
@@ -2530,12 +2852,14 @@
     "rarity": "Relique rare",
     "pool": "necrobinder",
     "merchant_price": {
-      "base": 300,
-      "min": 255,
-      "max": 345
+      "base": 275,
+      "min": 234,
+      "max": 316
     },
-    "image_url": "/static/images/relics/bookmark.png",
+    "image_url": "/static/images/relics/bookmark.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 105
   },
@@ -2548,8 +2872,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/war_hammer.png",
+    "image_url": "/static/images/relics/war_hammer.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 216
   },
@@ -2562,12 +2888,14 @@
     "rarity": "Relique du Marchand",
     "pool": "shared",
     "merchant_price": {
-      "base": 225,
-      "min": 191,
-      "max": 259
+      "base": 200,
+      "min": 170,
+      "max": 230
     },
-    "image_url": "/static/images/relics/gnarled_hammer.png",
+    "image_url": "/static/images/relics/gnarled_hammer.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 146
   },
@@ -2580,12 +2908,14 @@
     "rarity": "Relique inhabituelle",
     "pool": "shared",
     "merchant_price": {
-      "base": 250,
-      "min": 212,
-      "max": 288
+      "base": 225,
+      "min": 191,
+      "max": 259
     },
-    "image_url": "/static/images/relics/stone_cracker.png",
+    "image_url": "/static/images/relics/stone_cracker.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 60
   },
@@ -2598,12 +2928,14 @@
     "rarity": "Relique inhabituelle",
     "pool": "necrobinder",
     "merchant_price": {
-      "base": 250,
-      "min": 212,
-      "max": 288
+      "base": 225,
+      "min": 191,
+      "max": 259
     },
-    "image_url": "/static/images/relics/funerary_mask.png",
+    "image_url": "/static/images/relics/funerary_mask.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 61
   },
@@ -2616,12 +2948,14 @@
     "rarity": "Relique inhabituelle",
     "pool": "shared",
     "merchant_price": {
-      "base": 250,
-      "min": 212,
-      "max": 288
+      "base": 225,
+      "min": 191,
+      "max": 259
     },
-    "image_url": "/static/images/relics/red_mask.png",
+    "image_url": "/static/images/relics/red_mask.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 62
   },
@@ -2634,8 +2968,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/jeweled_mask.png",
+    "image_url": "/static/images/relics/jeweled_mask.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 217
   },
@@ -2648,12 +2984,14 @@
     "rarity": "Relique rare",
     "pool": "regent",
     "merchant_price": {
-      "base": 300,
-      "min": 255,
-      "max": 345
+      "base": 275,
+      "min": 234,
+      "max": 316
     },
-    "image_url": "/static/images/relics/mini_regent.png",
+    "image_url": "/static/images/relics/mini_regent.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 106
   },
@@ -2666,12 +3004,14 @@
     "rarity": "Relique commune",
     "pool": "shared",
     "merchant_price": {
-      "base": 200,
-      "min": 170,
-      "max": 230
+      "base": 175,
+      "min": 149,
+      "max": 201
     },
-    "image_url": "/static/images/relics/tiny_mailbox.png",
+    "image_url": "/static/images/relics/tiny_mailbox.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 26
   },
@@ -2684,12 +3024,14 @@
     "rarity": "Relique du Marchand",
     "pool": "shared",
     "merchant_price": {
-      "base": 225,
-      "min": 191,
-      "max": 259
+      "base": 200,
+      "min": 170,
+      "max": 230
     },
-    "image_url": "/static/images/relics/dollys_mirror.png",
+    "image_url": "/static/images/relics/dollys_mirror.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 147
   },
@@ -2702,8 +3044,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/toasty_mittens.png",
+    "image_url": "/static/images/relics/toasty_mittens.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 218
   },
@@ -2716,8 +3060,10 @@
     "rarity": "Relique d'événement",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/mr_struggles.png",
+    "image_url": "/static/images/relics/mr_struggles.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 270
   },
@@ -2730,12 +3076,14 @@
     "rarity": "Relique rare",
     "pool": "shared",
     "merchant_price": {
-      "base": 300,
-      "min": 255,
-      "max": 345
+      "base": 275,
+      "min": 234,
+      "max": 316
     },
-    "image_url": "/static/images/relics/pocketwatch.png",
+    "image_url": "/static/images/relics/pocketwatch.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 107
   },
@@ -2748,12 +3096,14 @@
     "rarity": "Relique rare",
     "pool": "shared",
     "merchant_price": {
-      "base": 300,
-      "min": 255,
-      "max": 345
+      "base": 275,
+      "min": 234,
+      "max": 316
     },
-    "image_url": "/static/images/relics/prayer_wheel.png",
+    "image_url": "/static/images/relics/prayer_wheel.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 108
   },
@@ -2766,12 +3116,14 @@
     "rarity": "Relique rare",
     "pool": "defect",
     "merchant_price": {
-      "base": 300,
-      "min": 255,
-      "max": 345
+      "base": 275,
+      "min": 234,
+      "max": 316
     },
-    "image_url": "/static/images/relics/metronome.png",
+    "image_url": "/static/images/relics/metronome.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 109
   },
@@ -2784,8 +3136,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/new_leaf.png",
+    "image_url": "/static/images/relics/new_leaf.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 219
   },
@@ -2798,8 +3152,10 @@
     "rarity": "Relique de base",
     "pool": "defect",
     "merchant_price": null,
-    "image_url": "/static/images/relics/cracked_core.png",
+    "image_url": "/static/images/relics/cracked_core.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Starter",
     "compendium_order": 4
   },
@@ -2812,8 +3168,10 @@
     "rarity": "Relique de base",
     "pool": "defect",
     "merchant_price": null,
-    "image_url": "/static/images/relics/infused_core.png",
+    "image_url": "/static/images/relics/infused_core.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Starter",
     "compendium_order": 5
   },
@@ -2826,8 +3184,10 @@
     "rarity": "Relique d'événement",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/pollinous_core.png",
+    "image_url": "/static/images/relics/pollinous_core.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 271
   },
@@ -2840,12 +3200,14 @@
     "rarity": "Relique inhabituelle",
     "pool": "shared",
     "merchant_price": {
-      "base": 250,
-      "min": 212,
-      "max": 288
+      "base": 225,
+      "min": 191,
+      "max": 259
     },
-    "image_url": "/static/images/relics/nunchaku.png",
+    "image_url": "/static/images/relics/nunchaku.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 63
   },
@@ -2858,8 +3220,10 @@
     "rarity": "Relique d'événement",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/byrdpip.png",
+    "image_url": "/static/images/relics/byrdpip.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 272
   },
@@ -2872,12 +3236,14 @@
     "rarity": "Relique commune",
     "pool": "shared",
     "merchant_price": {
-      "base": 200,
-      "min": 170,
-      "max": 230
+      "base": 175,
+      "min": 149,
+      "max": 201
     },
-    "image_url": "/static/images/relics/regal_pillow.png",
+    "image_url": "/static/images/relics/regal_pillow.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 27
   },
@@ -2890,12 +3256,14 @@
     "rarity": "Relique inhabituelle",
     "pool": "shared",
     "merchant_price": {
-      "base": 250,
-      "min": 212,
-      "max": 288
+      "base": 225,
+      "min": 191,
+      "max": 259
     },
-    "image_url": "/static/images/relics/orichalcum.png",
+    "image_url": "/static/images/relics/orichalcum.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 64
   },
@@ -2912,8 +3280,10 @@
       "min": 42,
       "max": 57
     },
-    "image_url": "/static/images/relics/fake_orichalcum.png",
+    "image_url": "/static/images/relics/fake_orichalcum.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 273
   },
@@ -2926,12 +3296,14 @@
     "rarity": "Relique rare",
     "pool": "shared",
     "merchant_price": {
-      "base": 300,
-      "min": 255,
-      "max": 345
+      "base": 275,
+      "min": 234,
+      "max": 316
     },
-    "image_url": "/static/images/relics/meat_on_the_bone.png",
+    "image_url": "/static/images/relics/meat_on_the_bone.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 110
   },
@@ -2944,8 +3316,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/glitter.png",
+    "image_url": "/static/images/relics/glitter.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 220
   },
@@ -2958,12 +3332,14 @@
     "rarity": "Relique du Marchand",
     "pool": "shared",
     "merchant_price": {
-      "base": 225,
-      "min": 191,
-      "max": 259
+      "base": 200,
+      "min": 170,
+      "max": 230
     },
-    "image_url": "/static/images/relics/bread.png",
+    "image_url": "/static/images/relics/bread.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 148
   },
@@ -2976,12 +3352,14 @@
     "rarity": "Relique inhabituelle",
     "pool": "shared",
     "merchant_price": {
-      "base": 250,
-      "min": 212,
-      "max": 288
+      "base": 225,
+      "min": 191,
+      "max": 259
     },
-    "image_url": "/static/images/relics/pantograph.png",
+    "image_url": "/static/images/relics/pantograph.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 65
   },
@@ -2994,8 +3372,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/lords_parasol.png",
+    "image_url": "/static/images/relics/lords_parasol.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 221
   },
@@ -3008,8 +3388,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/arcane_scroll.png",
+    "image_url": "/static/images/relics/arcane_scroll.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 222
   },
@@ -3022,12 +3404,14 @@
     "rarity": "Relique du Marchand",
     "pool": "silent",
     "merchant_price": {
-      "base": 225,
-      "min": 191,
-      "max": 259
+      "base": 200,
+      "min": 170,
+      "max": 230
     },
-    "image_url": "/static/images/relics/ninja_scroll.png",
+    "image_url": "/static/images/relics/ninja_scroll.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 149
   },
@@ -3040,8 +3424,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/massive_scroll.png",
+    "image_url": "/static/images/relics/massive_scroll.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 223
   },
@@ -3054,12 +3440,14 @@
     "rarity": "Relique commune",
     "pool": "shared",
     "merchant_price": {
-      "base": 200,
-      "min": 170,
-      "max": 230
+      "base": 175,
+      "min": 149,
+      "max": 201
     },
-    "image_url": "/static/images/relics/war_paint.png",
+    "image_url": "/static/images/relics/war_paint.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 28
   },
@@ -3072,12 +3460,14 @@
     "rarity": "Relique rare",
     "pool": "shared",
     "merchant_price": {
-      "base": 300,
-      "min": 255,
-      "max": 345
+      "base": 275,
+      "min": 234,
+      "max": 316
     },
-    "image_url": "/static/images/relics/shovel.png",
+    "image_url": "/static/images/relics/shovel.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 111
   },
@@ -3090,12 +3480,14 @@
     "rarity": "Relique commune",
     "pool": "shared",
     "merchant_price": {
-      "base": 200,
-      "min": 170,
-      "max": 230
+      "base": 175,
+      "min": 149,
+      "max": 201
     },
-    "image_url": "/static/images/relics/pendulum.png",
+    "image_url": "/static/images/relics/pendulum.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 29
   },
@@ -3108,8 +3500,10 @@
     "rarity": "Relique d'événement",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/hand_drill.png",
+    "image_url": "/static/images/relics/hand_drill.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 274
   },
@@ -3122,12 +3516,14 @@
     "rarity": "Relique commune",
     "pool": "shared",
     "merchant_price": {
-      "base": 200,
-      "min": 170,
-      "max": 230
+      "base": 175,
+      "min": 149,
+      "max": 201
     },
-    "image_url": "/static/images/relics/permafrost.png",
+    "image_url": "/static/images/relics/permafrost.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 30
   },
@@ -3140,8 +3536,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/golden_pearl.png",
+    "image_url": "/static/images/relics/golden_pearl.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 224
   },
@@ -3154,8 +3552,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/cursed_pearl.png",
+    "image_url": "/static/images/relics/cursed_pearl.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 225
   },
@@ -3168,8 +3568,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/radiant_pearl.png",
+    "image_url": "/static/images/relics/radiant_pearl.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 226
   },
@@ -3182,8 +3584,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/small_capsule.png",
+    "image_url": "/static/images/relics/small_capsule.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 227
   },
@@ -3196,8 +3600,10 @@
     "rarity": "Relique de base",
     "pool": "necrobinder",
     "merchant_price": null,
-    "image_url": "/static/images/relics/phylactery_unbound.png",
+    "image_url": "/static/images/relics/phylactery_unbound.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Starter",
     "compendium_order": 6
   },
@@ -3210,8 +3616,10 @@
     "rarity": "Relique de base",
     "pool": "necrobinder",
     "merchant_price": null,
-    "image_url": "/static/images/relics/bound_phylactery.png",
+    "image_url": "/static/images/relics/bound_phylactery.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Starter",
     "compendium_order": 7
   },
@@ -3224,12 +3632,14 @@
     "rarity": "Relique du Marchand",
     "pool": "shared",
     "merchant_price": {
-      "base": 225,
-      "min": 191,
-      "max": 259
+      "base": 200,
+      "min": 170,
+      "max": 230
     },
-    "image_url": "/static/images/relics/screaming_flagon.png",
+    "image_url": "/static/images/relics/screaming_flagon.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 150
   },
@@ -3242,8 +3652,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/philosophers_stone.png",
+    "image_url": "/static/images/relics/philosophers_stone.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 228
   },
@@ -3256,8 +3668,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/lava_rock.png",
+    "image_url": "/static/images/relics/lava_rock.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 229
   },
@@ -3270,12 +3684,14 @@
     "rarity": "Relique commune",
     "pool": "shared",
     "merchant_price": {
-      "base": 200,
-      "min": 170,
-      "max": 230
+      "base": 175,
+      "min": 149,
+      "max": 201
     },
-    "image_url": "/static/images/relics/whetstone.png",
+    "image_url": "/static/images/relics/whetstone.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 31
   },
@@ -3288,12 +3704,14 @@
     "rarity": "Relique commune",
     "pool": "shared",
     "merchant_price": {
-      "base": 200,
-      "min": 170,
-      "max": 230
+      "base": 175,
+      "min": 149,
+      "max": 201
     },
-    "image_url": "/static/images/relics/oddly_smooth_stone.png",
+    "image_url": "/static/images/relics/oddly_smooth_stone.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 32
   },
@@ -3306,12 +3724,14 @@
     "rarity": "Relique rare",
     "pool": "defect",
     "merchant_price": {
-      "base": 300,
-      "min": 255,
-      "max": 345
+      "base": 275,
+      "min": 234,
+      "max": 316
     },
-    "image_url": "/static/images/relics/power_cell.png",
+    "image_url": "/static/images/relics/power_cell.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 112
   },
@@ -3324,12 +3744,14 @@
     "rarity": "Relique rare",
     "pool": "shared",
     "merchant_price": {
-      "base": 300,
-      "min": 255,
-      "max": 345
+      "base": 275,
+      "min": 234,
+      "max": 316
     },
-    "image_url": "/static/images/relics/sturdy_clamp.png",
+    "image_url": "/static/images/relics/sturdy_clamp.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 113
   },
@@ -3342,8 +3764,10 @@
     "rarity": "Relique d'événement",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/wongo_customer_appreciation_badge.png",
+    "image_url": "/static/images/relics/wongo_customer_appreciation_badge.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 275
   },
@@ -3356,12 +3780,14 @@
     "rarity": "Relique rare",
     "pool": "shared",
     "merchant_price": {
-      "base": 300,
-      "min": 255,
-      "max": 345
+      "base": 275,
+      "min": 234,
+      "max": 316
     },
-    "image_url": "/static/images/relics/game_piece.png",
+    "image_url": "/static/images/relics/game_piece.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 114
   },
@@ -3374,12 +3800,14 @@
     "rarity": "Relique rare",
     "pool": "shared",
     "merchant_price": {
-      "base": 300,
-      "min": 255,
-      "max": 345
+      "base": 275,
+      "min": 234,
+      "max": 316
     },
-    "image_url": "/static/images/relics/old_coin.png",
+    "image_url": "/static/images/relics/old_coin.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 115
   },
@@ -3392,12 +3820,14 @@
     "rarity": "Relique inhabituelle",
     "pool": "shared",
     "merchant_price": {
-      "base": 250,
-      "min": 212,
-      "max": 288
+      "base": 225,
+      "min": 191,
+      "max": 259
     },
-    "image_url": "/static/images/relics/planisphere.png",
+    "image_url": "/static/images/relics/planisphere.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 66
   },
@@ -3410,12 +3840,14 @@
     "rarity": "Relique du Marchand",
     "pool": "shared",
     "merchant_price": {
-      "base": 225,
-      "min": 191,
-      "max": 259
+      "base": 200,
+      "min": 170,
+      "max": 230
     },
-    "image_url": "/static/images/relics/orrery.png",
+    "image_url": "/static/images/relics/orrery.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 151
   },
@@ -3428,12 +3860,14 @@
     "rarity": "Relique inhabituelle",
     "pool": "shared",
     "merchant_price": {
-      "base": 250,
-      "min": 212,
-      "max": 288
+      "base": 225,
+      "min": 191,
+      "max": 259
     },
-    "image_url": "/static/images/relics/eternal_feather.png",
+    "image_url": "/static/images/relics/eternal_feather.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 67
   },
@@ -3446,12 +3880,14 @@
     "rarity": "Relique du Marchand",
     "pool": "shared",
     "merchant_price": {
-      "base": 225,
-      "min": 191,
-      "max": 259
+      "base": 200,
+      "min": 170,
+      "max": 230
     },
-    "image_url": "/static/images/relics/punch_dagger.png",
+    "image_url": "/static/images/relics/punch_dagger.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 152
   },
@@ -3464,12 +3900,14 @@
     "rarity": "Relique inhabituelle",
     "pool": "shared",
     "merchant_price": {
-      "base": 250,
-      "min": 212,
-      "max": 288
+      "base": 225,
+      "min": 191,
+      "max": 259
     },
-    "image_url": "/static/images/relics/pen_nib.png",
+    "image_url": "/static/images/relics/pen_nib.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 68
   },
@@ -3482,12 +3920,14 @@
     "rarity": "Relique inhabituelle",
     "pool": "shared",
     "merchant_price": {
-      "base": 250,
-      "min": 212,
-      "max": 288
+      "base": 225,
+      "min": 191,
+      "max": 259
     },
-    "image_url": "/static/images/relics/pear.png",
+    "image_url": "/static/images/relics/pear.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 69
   },
@@ -3500,8 +3940,10 @@
     "rarity": "Relique d'événement",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/royal_poison.png",
+    "image_url": "/static/images/relics/royal_poison.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 276
   },
@@ -3514,12 +3956,14 @@
     "rarity": "Relique inhabituelle",
     "pool": "shared",
     "merchant_price": {
-      "base": 250,
-      "min": 212,
-      "max": 288
+      "base": 225,
+      "min": 191,
+      "max": 259
     },
-    "image_url": "/static/images/relics/lucky_fysh.png",
+    "image_url": "/static/images/relics/lucky_fysh.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 70
   },
@@ -3532,8 +3976,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/pomander.png",
+    "image_url": "/static/images/relics/pomander.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 230
   },
@@ -3546,12 +3992,14 @@
     "rarity": "Relique inhabituelle",
     "pool": "regent",
     "merchant_price": {
-      "base": 250,
-      "min": 212,
-      "max": 288
+      "base": 225,
+      "min": 191,
+      "max": 259
     },
-    "image_url": "/static/images/relics/galactic_dust.png",
+    "image_url": "/static/images/relics/galactic_dust.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 71
   },
@@ -3564,8 +4012,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/lead_paperweight.png",
+    "image_url": "/static/images/relics/lead_paperweight.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 231
   },
@@ -3578,12 +4028,14 @@
     "rarity": "Relique rare",
     "pool": "defect",
     "merchant_price": {
-      "base": 300,
-      "min": 255,
-      "max": 345
+      "base": 275,
+      "min": 234,
+      "max": 316
     },
-    "image_url": "/static/images/relics/emotion_chip.png",
+    "image_url": "/static/images/relics/emotion_chip.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 116
   },
@@ -3596,12 +4048,14 @@
     "rarity": "Relique commune",
     "pool": "shared",
     "merchant_price": {
-      "base": 200,
-      "min": 170,
-      "max": 230
+      "base": 175,
+      "min": 149,
+      "max": 201
     },
-    "image_url": "/static/images/relics/centennial_puzzle.png",
+    "image_url": "/static/images/relics/centennial_puzzle.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 33
   },
@@ -3614,8 +4068,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/runic_pyramid.png",
+    "image_url": "/static/images/relics/runic_pyramid.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 232
   },
@@ -3628,12 +4084,14 @@
     "rarity": "Relique rare",
     "pool": "regent",
     "merchant_price": {
-      "base": 300,
-      "min": 255,
-      "max": 345
+      "base": 275,
+      "min": 234,
+      "max": 316
     },
-    "image_url": "/static/images/relics/orange_dough.png",
+    "image_url": "/static/images/relics/orange_dough.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 117
   },
@@ -3646,12 +4104,14 @@
     "rarity": "Relique rare",
     "pool": "regent",
     "merchant_price": {
-      "base": 300,
-      "min": 255,
-      "max": 345
+      "base": 275,
+      "min": 234,
+      "max": 316
     },
-    "image_url": "/static/images/relics/lunar_pastry.png",
+    "image_url": "/static/images/relics/lunar_pastry.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 118
   },
@@ -3664,12 +4124,14 @@
     "rarity": "Relique commune",
     "pool": "shared",
     "merchant_price": {
-      "base": 200,
-      "min": 170,
-      "max": 230
+      "base": 175,
+      "min": 149,
+      "max": 201
     },
-    "image_url": "/static/images/relics/festive_popper.png",
+    "image_url": "/static/images/relics/festive_popper.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 34
   },
@@ -3682,12 +4144,14 @@
     "rarity": "Relique rare",
     "pool": "shared",
     "merchant_price": {
-      "base": 300,
-      "min": 255,
-      "max": 345
+      "base": 275,
+      "min": 234,
+      "max": 316
     },
-    "image_url": "/static/images/relics/lizard_tail.png",
+    "image_url": "/static/images/relics/lizard_tail.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 119
   },
@@ -3700,8 +4164,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/velvet_choker.png",
+    "image_url": "/static/images/relics/velvet_choker.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 233
   },
@@ -3714,8 +4180,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/blood_soaked_rose.png",
+    "image_url": "/static/images/relics/blood_soaked_rose.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 234
   },
@@ -3728,12 +4196,14 @@
     "rarity": "Relique inhabituelle",
     "pool": "regent",
     "merchant_price": {
-      "base": 250,
-      "min": 212,
-      "max": 288
+      "base": 225,
+      "min": 191,
+      "max": 259
     },
-    "image_url": "/static/images/relics/regalite.png",
+    "image_url": "/static/images/relics/regalite.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 72
   },
@@ -3746,12 +4216,14 @@
     "rarity": "Relique inhabituelle",
     "pool": "shared",
     "merchant_price": {
-      "base": 250,
-      "min": 212,
-      "max": 288
+      "base": 225,
+      "min": 191,
+      "max": 259
     },
-    "image_url": "/static/images/relics/mercury_hourglass.png",
+    "image_url": "/static/images/relics/mercury_hourglass.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 73
   },
@@ -3764,12 +4236,14 @@
     "rarity": "Relique inhabituelle",
     "pool": "shared",
     "merchant_price": {
-      "base": 250,
-      "min": 212,
-      "max": 288
+      "base": 225,
+      "min": 191,
+      "max": 259
     },
-    "image_url": "/static/images/relics/bag_of_marbles.png",
+    "image_url": "/static/images/relics/bag_of_marbles.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 74
   },
@@ -3782,12 +4256,14 @@
     "rarity": "Relique commune",
     "pool": "shared",
     "merchant_price": {
-      "base": 200,
-      "min": 170,
-      "max": 230
+      "base": 175,
+      "min": 149,
+      "max": 201
     },
-    "image_url": "/static/images/relics/bag_of_preparation.png",
+    "image_url": "/static/images/relics/bag_of_preparation.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 35
   },
@@ -3800,8 +4276,10 @@
     "rarity": "Relique de base",
     "pool": "ironclad",
     "merchant_price": null,
-    "image_url": "/static/images/relics/burning_blood.png",
+    "image_url": "/static/images/relics/burning_blood.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Starter",
     "compendium_order": 8
   },
@@ -3814,8 +4292,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/paels_blood.png",
+    "image_url": "/static/images/relics/paels_blood.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 235
   },
@@ -3828,8 +4308,10 @@
     "rarity": "Relique de base",
     "pool": "ironclad",
     "merchant_price": null,
-    "image_url": "/static/images/relics/black_blood.png",
+    "image_url": "/static/images/relics/black_blood.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Starter",
     "compendium_order": 9
   },
@@ -3842,8 +4324,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/sai.png",
+    "image_url": "/static/images/relics/sai.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 236
   },
@@ -3856,12 +4340,14 @@
     "rarity": "Relique du Marchand",
     "pool": "regent",
     "merchant_price": {
-      "base": 225,
-      "min": 191,
-      "max": 259
+      "base": 200,
+      "min": 170,
+      "max": 230
     },
-    "image_url": "/static/images/relics/vitruvian_minion.png",
+    "image_url": "/static/images/relics/vitruvian_minion.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 153
   },
@@ -3874,8 +4360,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/seal_of_gold.png",
+    "image_url": "/static/images/relics/seal_of_gold.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 237
   },
@@ -3888,12 +4376,14 @@
     "rarity": "Relique du Marchand",
     "pool": "necrobinder",
     "merchant_price": {
-      "base": 225,
-      "min": 191,
-      "max": 259
+      "base": 200,
+      "min": 170,
+      "max": 230
     },
-    "image_url": "/static/images/relics/undying_sigil.png",
+    "image_url": "/static/images/relics/undying_sigil.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 154
   },
@@ -3906,12 +4396,14 @@
     "rarity": "Relique du Marchand",
     "pool": "shared",
     "merchant_price": {
-      "base": 225,
-      "min": 191,
-      "max": 259
+      "base": 200,
+      "min": 170,
+      "max": 230
     },
-    "image_url": "/static/images/relics/royal_stamp.png",
+    "image_url": "/static/images/relics/royal_stamp.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 155
   },
@@ -3924,8 +4416,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/sere_talon.png",
+    "image_url": "/static/images/relics/sere_talon.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 238
   },
@@ -3938,12 +4432,14 @@
     "rarity": "Relique commune",
     "pool": "shared",
     "merchant_price": {
-      "base": 200,
-      "min": 170,
-      "max": 230
+      "base": 175,
+      "min": 149,
+      "max": 201
     },
-    "image_url": "/static/images/relics/venerable_tea_set.png",
+    "image_url": "/static/images/relics/venerable_tea_set.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 36
   },
@@ -3960,8 +4456,10 @@
       "min": 42,
       "max": 57
     },
-    "image_url": "/static/images/relics/fake_venerable_tea_set.png",
+    "image_url": "/static/images/relics/fake_venerable_tea_set.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 277
   },
@@ -3974,12 +4472,14 @@
     "rarity": "Relique rare",
     "pool": "shared",
     "merchant_price": {
-      "base": 300,
-      "min": 255,
-      "max": 345
+      "base": 275,
+      "min": 234,
+      "max": 316
     },
-    "image_url": "/static/images/relics/shuriken.png",
+    "image_url": "/static/images/relics/shuriken.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 120
   },
@@ -3992,8 +4492,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/tanxs_whistle.png",
+    "image_url": "/static/images/relics/tanxs_whistle.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 239
   },
@@ -4006,12 +4508,14 @@
     "rarity": "Relique inhabituelle",
     "pool": "shared",
     "merchant_price": {
-      "base": 250,
-      "min": 212,
-      "max": 288
+      "base": 225,
+      "min": 191,
+      "max": 259
     },
-    "image_url": "/static/images/relics/bellows.png",
+    "image_url": "/static/images/relics/bellows.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 75
   },
@@ -4024,12 +4528,14 @@
     "rarity": "Relique du Marchand",
     "pool": "ironclad",
     "merchant_price": {
-      "base": 225,
-      "min": 191,
-      "max": 259
+      "base": 200,
+      "min": 170,
+      "max": 230
     },
-    "image_url": "/static/images/relics/brimstone.png",
+    "image_url": "/static/images/relics/brimstone.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 156
   },
@@ -4042,8 +4548,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/nutritious_soup.png",
+    "image_url": "/static/images/relics/nutritious_soup.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 240
   },
@@ -4056,8 +4564,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/sozu.png",
+    "image_url": "/static/images/relics/sozu.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 241
   },
@@ -4070,12 +4580,14 @@
     "rarity": "Relique rare",
     "pool": "shared",
     "merchant_price": {
-      "base": 300,
-      "min": 255,
-      "max": 345
+      "base": 275,
+      "min": 234,
+      "max": 316
     },
-    "image_url": "/static/images/relics/white_beast_statue.png",
+    "image_url": "/static/images/relics/white_beast_statue.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 121
   },
@@ -4088,12 +4600,14 @@
     "rarity": "Relique du Marchand",
     "pool": "shared",
     "merchant_price": {
-      "base": 225,
-      "min": 191,
-      "max": 259
+      "base": 200,
+      "min": 170,
+      "max": 230
     },
-    "image_url": "/static/images/relics/dingy_rug.png",
+    "image_url": "/static/images/relics/dingy_rug.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 157
   },
@@ -4106,12 +4620,14 @@
     "rarity": "Relique inhabituelle",
     "pool": "shared",
     "merchant_price": {
-      "base": 250,
-      "min": 212,
-      "max": 288
+      "base": 225,
+      "min": 191,
+      "max": 259
     },
-    "image_url": "/static/images/relics/horn_cleat.png",
+    "image_url": "/static/images/relics/horn_cleat.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 76
   },
@@ -4124,12 +4640,14 @@
     "rarity": "Relique du Marchand",
     "pool": "shared",
     "merchant_price": {
-      "base": 225,
-      "min": 191,
-      "max": 259
+      "base": 200,
+      "min": 170,
+      "max": 230
     },
-    "image_url": "/static/images/relics/miniature_tent.png",
+    "image_url": "/static/images/relics/miniature_tent.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 158
   },
@@ -4142,8 +4660,10 @@
     "rarity": "Relique d'événement",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/bone_tea.png",
+    "image_url": "/static/images/relics/bone_tea.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 278
   },
@@ -4156,8 +4676,10 @@
     "rarity": "Relique d'événement",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/ember_tea.png",
+    "image_url": "/static/images/relics/ember_tea.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 279
   },
@@ -4170,8 +4692,10 @@
     "rarity": "Relique d'événement",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/tea_of_discourtesy.png",
+    "image_url": "/static/images/relics/tea_of_discourtesy.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 280
   },
@@ -4184,8 +4708,10 @@
     "rarity": "Relique d'événement",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/wongos_mystery_ticket.png",
+    "image_url": "/static/images/relics/wongos_mystery_ticket.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 281
   },
@@ -4198,12 +4724,14 @@
     "rarity": "Relique commune",
     "pool": "shared",
     "merchant_price": {
-      "base": 200,
-      "min": 170,
-      "max": 230
+      "base": 175,
+      "min": 149,
+      "max": 201
     },
-    "image_url": "/static/images/relics/meal_ticket.png",
+    "image_url": "/static/images/relics/meal_ticket.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 37
   },
@@ -4216,12 +4744,14 @@
     "rarity": "Relique rare",
     "pool": "shared",
     "merchant_price": {
-      "base": 300,
-      "min": 255,
-      "max": 345
+      "base": 275,
+      "min": 234,
+      "max": 316
     },
-    "image_url": "/static/images/relics/tungsten_rod.png",
+    "image_url": "/static/images/relics/tungsten_rod.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 122
   },
@@ -4234,12 +4764,14 @@
     "rarity": "Relique inhabituelle",
     "pool": "silent",
     "merchant_price": {
-      "base": 250,
-      "min": 212,
-      "max": 288
+      "base": 225,
+      "min": 191,
+      "max": 259
     },
-    "image_url": "/static/images/relics/tingsha.png",
+    "image_url": "/static/images/relics/tingsha.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 77
   },
@@ -4252,8 +4784,10 @@
     "rarity": "Relique d'événement",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/maw_bank.png",
+    "image_url": "/static/images/relics/maw_bank.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 282
   },
@@ -4266,8 +4800,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/touch_of_orobas.png",
+    "image_url": "/static/images/relics/touch_of_orobas.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 242
   },
@@ -4280,12 +4816,14 @@
     "rarity": "Relique rare",
     "pool": "shared",
     "merchant_price": {
-      "base": 300,
-      "min": 255,
-      "max": 345
+      "base": 275,
+      "min": 234,
+      "max": 316
     },
-    "image_url": "/static/images/relics/unceasing_top.png",
+    "image_url": "/static/images/relics/unceasing_top.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 123
   },
@@ -4298,8 +4836,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/neows_torment.png",
+    "image_url": "/static/images/relics/neows_torment.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 243
   },
@@ -4312,8 +4852,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/tri_boomerang.png",
+    "image_url": "/static/images/relics/tri_boomerang.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 244
   },
@@ -4326,12 +4868,14 @@
     "rarity": "Relique du Marchand",
     "pool": "shared",
     "merchant_price": {
-      "base": 225,
-      "min": 191,
-      "max": 259
+      "base": 200,
+      "min": 170,
+      "max": 230
     },
-    "image_url": "/static/images/relics/ringing_triangle.png",
+    "image_url": "/static/images/relics/ringing_triangle.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Shop",
     "compendium_order": 159
   },
@@ -4344,12 +4888,14 @@
     "rarity": "Relique rare",
     "pool": "necrobinder",
     "merchant_price": {
-      "base": 300,
-      "min": 255,
-      "max": 345
+      "base": 275,
+      "min": 234,
+      "max": 316
     },
-    "image_url": "/static/images/relics/ivory_tile.png",
+    "image_url": "/static/images/relics/ivory_tile.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 124
   },
@@ -4362,12 +4908,14 @@
     "rarity": "Relique commune",
     "pool": "shared",
     "merchant_price": {
-      "base": 200,
-      "min": 170,
-      "max": 230
+      "base": 175,
+      "min": 149,
+      "max": 201
     },
-    "image_url": "/static/images/relics/vajra.png",
+    "image_url": "/static/images/relics/vajra.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 38
   },
@@ -4380,8 +4928,16 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/sea_glass.png",
+    "image_url": "/static/images/relics/sea_glass.webp",
     "image_variants": null,
+    "name_variants": {
+      "Ironclad": "Verre démoniaque",
+      "Silent": "Verre de venin",
+      "Defect": "Verre engrenage",
+      "Necrobinder": "Verre de la Liche",
+      "Regent": "Verre noble"
+    },
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 245
   },
@@ -4394,12 +4950,14 @@
     "rarity": "Relique rare",
     "pool": "shared",
     "merchant_price": {
-      "base": 300,
-      "min": 255,
-      "max": 345
+      "base": 275,
+      "min": 234,
+      "max": 316
     },
-    "image_url": "/static/images/relics/beating_remnant.png",
+    "image_url": "/static/images/relics/beating_remnant.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 125
   },
@@ -4412,8 +4970,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/fiddle.png",
+    "image_url": "/static/images/relics/fiddle.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 246
   },
@@ -4426,12 +4986,14 @@
     "rarity": "Relique inhabituelle",
     "pool": "defect",
     "merchant_price": {
-      "base": 250,
-      "min": 212,
-      "max": 288
+      "base": 225,
+      "min": 191,
+      "max": 259
     },
-    "image_url": "/static/images/relics/symbiotic_virus.png",
+    "image_url": "/static/images/relics/symbiotic_virus.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 78
   },
@@ -4444,8 +5006,10 @@
     "rarity": "Relique d'événement",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/forgotten_soul.png",
+    "image_url": "/static/images/relics/forgotten_soul.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 283
   },
@@ -4458,12 +5022,14 @@
     "rarity": "Relique commune",
     "pool": "shared",
     "merchant_price": {
-      "base": 200,
-      "min": 170,
-      "max": 230
+      "base": 175,
+      "min": 149,
+      "max": 201
     },
-    "image_url": "/static/images/relics/bronze_scales.png",
+    "image_url": "/static/images/relics/bronze_scales.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Common",
     "compendium_order": 39
   },
@@ -4476,8 +5042,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/brilliant_scarf.png",
+    "image_url": "/static/images/relics/brilliant_scarf.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 247
   },
@@ -4490,8 +5058,10 @@
     "rarity": "Relique d'événement",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/sword_of_jade.png",
+    "image_url": "/static/images/relics/sword_of_jade.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 284
   },
@@ -4504,8 +5074,10 @@
     "rarity": "Relique d'événement",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/sword_of_stone.png",
+    "image_url": "/static/images/relics/sword_of_stone.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 285
   },
@@ -4518,12 +5090,14 @@
     "rarity": "Relique rare",
     "pool": "shared",
     "merchant_price": {
-      "base": 300,
-      "min": 255,
-      "max": 345
+      "base": 275,
+      "min": 234,
+      "max": 316
     },
-    "image_url": "/static/images/relics/white_star.png",
+    "image_url": "/static/images/relics/white_star.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 126
   },
@@ -4536,8 +5110,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/black_star.png",
+    "image_url": "/static/images/relics/black_star.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 248
   },
@@ -4550,12 +5126,14 @@
     "rarity": "Relique inhabituelle",
     "pool": "shared",
     "merchant_price": {
-      "base": 250,
-      "min": 212,
-      "max": 288
+      "base": 225,
+      "min": 191,
+      "max": 259
     },
-    "image_url": "/static/images/relics/ornamental_fan.png",
+    "image_url": "/static/images/relics/ornamental_fan.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Uncommon",
     "compendium_order": 79
   },
@@ -4568,8 +5146,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/paels_eye.png",
+    "image_url": "/static/images/relics/paels_eye.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 249
   },
@@ -4582,8 +5162,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/snecko_eye.png",
+    "image_url": "/static/images/relics/snecko_eye.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 250
   },
@@ -4600,8 +5182,10 @@
       "min": 42,
       "max": 57
     },
-    "image_url": "/static/images/relics/fake_snecko_eye.png",
+    "image_url": "/static/images/relics/fake_snecko_eye.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Event",
     "compendium_order": 286
   },
@@ -4614,8 +5198,10 @@
     "rarity": "Relique d'Ancien",
     "pool": "shared",
     "merchant_price": null,
-    "image_url": "/static/images/relics/glass_eye.png",
+    "image_url": "/static/images/relics/glass_eye.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Ancient",
     "compendium_order": 251
   },
@@ -4628,12 +5214,14 @@
     "rarity": "Relique rare",
     "pool": "shared",
     "merchant_price": {
-      "base": 300,
-      "min": 255,
-      "max": 345
+      "base": 275,
+      "min": 234,
+      "max": 316
     },
-    "image_url": "/static/images/relics/molten_egg.png",
+    "image_url": "/static/images/relics/molten_egg.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 127
   },
@@ -4646,12 +5234,14 @@
     "rarity": "Relique rare",
     "pool": "shared",
     "merchant_price": {
-      "base": 300,
-      "min": 255,
-      "max": 345
+      "base": 275,
+      "min": 234,
+      "max": 316
     },
-    "image_url": "/static/images/relics/frozen_egg.png",
+    "image_url": "/static/images/relics/frozen_egg.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 128
   },
@@ -4664,12 +5254,14 @@
     "rarity": "Relique rare",
     "pool": "shared",
     "merchant_price": {
-      "base": 300,
-      "min": 255,
-      "max": 345
+      "base": 275,
+      "min": 234,
+      "max": 316
     },
-    "image_url": "/static/images/relics/toxic_egg.png",
+    "image_url": "/static/images/relics/toxic_egg.webp",
     "image_variants": null,
+    "name_variants": null,
+    "notes": null,
     "rarity_key": "Rare",
     "compendium_order": 129
   }

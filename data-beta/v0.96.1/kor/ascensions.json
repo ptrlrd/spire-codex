@@ -1,0 +1,68 @@
+[
+  {
+    "id": "LEVEL_00",
+    "level": 0,
+    "name": "승천 없음",
+    "description": "승천 모드 없이 플레이."
+  },
+  {
+    "id": "LEVEL_01",
+    "level": 1,
+    "name": "몰려드는 엘리트",
+    "description": "[gold]엘리트[/gold]가 더 많이 발생합니다."
+  },
+  {
+    "id": "LEVEL_02",
+    "level": 2,
+    "name": "지친 여행자",
+    "description": "고대의 존재가 잃은 체력의 [blue]80%[/blue]만을 회복시켜줍니다."
+  },
+  {
+    "id": "LEVEL_03",
+    "level": 3,
+    "name": "빈곤",
+    "description": "적과 보물 상자가 보상으로 주는 [gold]골드[/gold]가 [blue]25%[/blue] 감소합니다."
+  },
+  {
+    "id": "LEVEL_04",
+    "level": 4,
+    "name": "동여맨 벨트",
+    "description": "포션 슬롯이 1칸 줄어든 상태로 시작합니다."
+  },
+  {
+    "id": "LEVEL_05",
+    "level": 5,
+    "name": "등반자의 골칫거리",
+    "description": "[red]저주받은[/red] 상태로 시작합니다."
+  },
+  {
+    "id": "LEVEL_06",
+    "level": 6,
+    "name": "어둠",
+    "description": "휴식 장소가 줄어듭니다."
+  },
+  {
+    "id": "LEVEL_07",
+    "level": 7,
+    "name": "결핍",
+    "description": "희귀 카드와 강화된 카드가 더 적게 등장합니다."
+  },
+  {
+    "id": "LEVEL_08",
+    "level": 8,
+    "name": "질긴 적들",
+    "description": "모든 적이 더 질긴 생존력을 지닙니다."
+  },
+  {
+    "id": "LEVEL_09",
+    "level": 9,
+    "name": "지독한 적들",
+    "description": "모든 적이 더 치명적인 공격을 가합니다."
+  },
+  {
+    "id": "LEVEL_10",
+    "level": 10,
+    "name": "더블 보스",
+    "description": "3막 종료 시 두 마리의 보스와 전투합니다."
+  }
+]

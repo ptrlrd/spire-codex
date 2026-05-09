@@ -1,0 +1,82 @@
+[
+  {
+    "id": "ALL_STAR",
+    "name": "Escala de grises",
+    "description": "Empieza con [blue]5[/blue] [gold]cartas incoloras[/gold]."
+  },
+  {
+    "id": "BIG_GAME_HUNTER",
+    "name": "Caza mayor",
+    "description": "Los enemigos Élites son más comunes y otorgan mejores recompensas."
+  },
+  {
+    "id": "BINARY",
+    "name": "Código binario",
+    "description": "Las [gold]recompensas de cartas[/gold] ahora contienen solo [blue]2[/blue] cartas."
+  },
+  {
+    "id": "CURSED_RUN",
+    "name": "Partida maldita",
+    "description": "Al comienzo de cada Acto, añade una [red]Maldición[/red] aleatoria a tu mazo."
+  },
+  {
+    "id": "DEADLY_EVENTS",
+    "name": "Eventos mortales",
+    "description": "Las salas desconocidas ahora pueden contener Élites, pero también tienen una mayor probabilidad de contener Tesoros."
+  },
+  {
+    "id": "DRAFT",
+    "name": "Selección",
+    "description": "Elige [blue]10[/blue] [gold]recompensas de cartas[/gold] para reemplazar a tu mazo inicial."
+  },
+  {
+    "id": "FLIGHT",
+    "name": "Vuelo",
+    "description": "Puedes ignorar los caminos al elegir la sala a la que desplazarte."
+  },
+  {
+    "id": "HOARDER",
+    "name": "Acaparador",
+    "description": "Siempre que añadas una carta a tu mazo, añade [blue]2[/blue] copias adicionales. Ya no puedes eliminar cartas de tu mazo en el Comerciante."
+  },
+  {
+    "id": "INSANITY",
+    "name": "Locura",
+    "description": "Comienza con un mazo aleatorio de [blue]30[/blue] cartas."
+  },
+  {
+    "id": "MIDAS",
+    "name": "Midas",
+    "description": "Los enemigos sueltan un [blue]200 %[/blue] más de oro, pero ya no puedes Forjar en los [gold]Lugares de descanso[/gold]."
+  },
+  {
+    "id": "MURDEROUS",
+    "name": "Esteroides",
+    "description": "Tanto tú como todos tus enemigos comenzáis cada combate con [blue]3[/blue] de [gold]Fuerza[/gold]."
+  },
+  {
+    "id": "NIGHT_TERRORS",
+    "name": "Terrores nocturnos",
+    "description": "Descansar en [gold]Lugares de descanso[/gold] cura todos tus PV, pero cuesta [red]5[/red] PV máx."
+  },
+  {
+    "id": "SEALED_DECK",
+    "name": "Mazo sellado",
+    "description": "Elige [blue]10[/blue] de entre [blue]30[/blue] cartas para reemplazar tu mazo inicial."
+  },
+  {
+    "id": "SPECIALIZED",
+    "name": "Especialista",
+    "description": "Empieza con [blue]5[/blue] copias de una misma carta."
+  },
+  {
+    "id": "TERMINAL",
+    "name": "Terminal",
+    "description": "Cuando entras en una sala nueva, pierde [red]1[/red] PV máx. Comienza cada combate con [blue]5[/blue] de [gold]Blindaje[/gold]."
+  },
+  {
+    "id": "VINTAGE",
+    "name": "Clásico",
+    "description": "Los enemigos normales sueltan reliquias en vez de cartas."
+  }
+]

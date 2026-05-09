@@ -934,7 +934,7 @@
         }
       ]
     },
-    "image_url": "/static/images/misc/ancients/darv.png",
+    "image_url": "/static/images/misc/ancients/darv.webp",
     "relics": [
       "DUSTY_TOME",
       "ASTROLABE",
@@ -1877,7 +1877,7 @@
         }
       ]
     },
-    "image_url": "/static/images/misc/ancients/neow.png",
+    "image_url": "/static/images/misc/ancients/neow.webp",
     "relics": [
       "ARCANE_SCROLL",
       "BOOMING_CONCH",
@@ -1887,13 +1887,12 @@
       "NEOWS_TORMENT",
       "NEW_LEAF",
       "PRECISE_SCISSORS",
-      "PHIAL_HOLSTER",
-      "WINGED_BOOTS",
-      "MASSIVE_SCROLL",
       "LAVA_ROCK",
+      "MASSIVE_SCROLL",
       "NEOWS_TALISMAN",
       "NUTRITIOUS_OYSTER",
       "POMANDER",
+      "SILVER_CRUCIBLE",
       "SMALL_CAPSULE",
       "STONE_HUMIDIFIER",
       "CURSED_PEARL",
@@ -1901,8 +1900,6 @@
       "LARGE_CAPSULE",
       "LEAFY_POULTICE",
       "PRECARIOUS_SHEARS",
-      "SILVER_CRUCIBLE",
-      "NEOWS_BONES",
       "SCROLL_BOXES"
     ]
   },
@@ -2067,7 +2064,7 @@
         }
       ]
     },
-    "image_url": "/static/images/misc/ancients/nonupeipe.png",
+    "image_url": "/static/images/misc/ancients/nonupeipe.webp",
     "relics": [
       "BLESSED_ANTLER",
       "BRILLIANT_SCARF",
@@ -2252,7 +2249,7 @@
         }
       ]
     },
-    "image_url": "/static/images/misc/ancients/orobas.png",
+    "image_url": "/static/images/misc/ancients/orobas.webp",
     "relics": [
       "ELECTRIC_SHRYMP",
       "GLASS_EYE",
@@ -2417,7 +2414,7 @@
         }
       ]
     },
-    "image_url": "/static/images/misc/ancients/pael.png",
+    "image_url": "/static/images/misc/ancients/pael.webp",
     "relics": [
       "PAELS_CLAW",
       "PAELS_TOOTH",
@@ -3121,7 +3118,7 @@
       {
         "id": "OBSERVE",
         "title": "Observe",
-        "description": "[gold]Enchant[/gold] a Basic [gold]Strike[/gold] or [gold]Defend[/gold] with [purple]Spiral[/purple]."
+        "description": "[gold]Enchant[/gold] a [gold]Strike[/gold] or [gold]Defend[/gold] with [purple]Spiral[/purple]."
       },
       {
         "id": "DRINK",
@@ -3141,7 +3138,7 @@
           {
             "id": "OBSERVE",
             "title": "Observe",
-            "description": "[gold]Enchant[/gold] a Basic [gold]Strike[/gold] or [gold]Defend[/gold] with [purple]Spiral[/purple]."
+            "description": "[gold]Enchant[/gold] a [gold]Strike[/gold] or [gold]Defend[/gold] with [purple]Spiral[/purple]."
           },
           {
             "id": "DRINK",
@@ -3712,7 +3709,7 @@
         }
       ]
     },
-    "image_url": "/static/images/misc/ancients/tanx.png",
+    "image_url": "/static/images/misc/ancients/tanx.webp",
     "relics": [
       "CLAWS",
       "CROSSBOW",
@@ -3996,7 +3993,7 @@
         }
       ]
     },
-    "image_url": "/static/images/misc/ancients/tezcatara.png",
+    "image_url": "/static/images/misc/ancients/tezcatara.webp",
     "relics": [
       "NUTRITIOUS_SOUP",
       "VERY_HOT_COCOA",
@@ -4226,7 +4223,7 @@
         }
       ]
     },
-    "image_url": "/static/images/monsters/architect.png"
+    "image_url": "/static/images/monsters/architect.webp"
   },
   {
     "id": "THE_FUTURE_OF_POTIONS",
@@ -4945,7 +4942,7 @@
         }
       ]
     },
-    "image_url": "/static/images/misc/ancients/vakuu.png",
+    "image_url": "/static/images/misc/ancients/vakuu.webp",
     "relics": [
       "BLOOD_SOAKED_ROSE",
       "WHISPERING_EARRING",

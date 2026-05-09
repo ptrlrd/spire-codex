@@ -1,0 +1,44 @@
+[
+  {
+    "id": "BOUND",
+    "name": "Ligada",
+    "description": "Solo puedes jugar [blue]1[/blue] carta [gold]Ligada[/gold] por turno. Las cartas dejan de estar [gold]Ligadas[/gold] al final del turno.",
+    "extra_card_text": "Ligada",
+    "is_stackable": false
+  },
+  {
+    "id": "ENTANGLED",
+    "name": "Enredada",
+    "description": "Cuesta 1 [energy:1] más.",
+    "extra_card_text": "Enredada",
+    "is_stackable": false
+  },
+  {
+    "id": "GALVANIZED",
+    "name": "Galvanismo",
+    "description": "Recibe [blue]X[/blue] de daño al jugar esta carta.",
+    "extra_card_text": "Recibe X de daño.",
+    "is_stackable": true
+  },
+  {
+    "id": "HEXED",
+    "name": "Embrujada",
+    "description": "Otorga [gold]Etérea[/gold] a esta carta.",
+    "extra_card_text": null,
+    "is_stackable": false
+  },
+  {
+    "id": "RINGING",
+    "name": "Tañido",
+    "description": "Solo puedes jugar [blue]1[/blue] carta este turno.",
+    "extra_card_text": "Tañido",
+    "is_stackable": false
+  },
+  {
+    "id": "SMOG",
+    "name": "Polución",
+    "description": "No puedes jugar más [gold]Habilidades[/gold] este turno. Desaparece al final del turno.",
+    "extra_card_text": null,
+    "is_stackable": false
+  }
+]

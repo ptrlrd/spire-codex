@@ -1,0 +1,68 @@
+[
+  {
+    "id": "LEVEL_00",
+    "level": 0,
+    "name": "Nessuna Ascensione",
+    "description": "Gioca senza modificatori di Ascensione."
+  },
+  {
+    "id": "LEVEL_01",
+    "level": 1,
+    "name": "Invasione élite",
+    "description": "I nemici [gold]Élite[/gold] compaiono più spesso."
+  },
+  {
+    "id": "LEVEL_02",
+    "level": 2,
+    "name": "Viaggio stancante",
+    "description": "Gli Antichi ripristinano solo l'[blue]80%[/blue] dei tuoi PV mancanti."
+  },
+  {
+    "id": "LEVEL_03",
+    "level": 3,
+    "name": "Povertà",
+    "description": "I nemici e le casse del tesoro offrono il [blue]25%[/blue] in meno [gold]d'oro[/gold]."
+  },
+  {
+    "id": "LEVEL_04",
+    "level": 4,
+    "name": "Stringere la cinghia",
+    "description": "Inizi ogni partita con 1 slot pozione in meno."
+  },
+  {
+    "id": "LEVEL_05",
+    "level": 5,
+    "name": "Ascensione maledetta",
+    "description": "Inizi ogni partita con una [red]Maledizione[/red]."
+  },
+  {
+    "id": "LEVEL_06",
+    "level": 6,
+    "name": "A corto di sonno",
+    "description": "Meno luoghi di riposo."
+  },
+  {
+    "id": "LEVEL_07",
+    "level": 7,
+    "name": "Scarsità",
+    "description": "Le carte rare e potenziate compaiono con meno frequenza."
+  },
+  {
+    "id": "LEVEL_08",
+    "level": 8,
+    "name": "Nemici resistenti",
+    "description": "Tutti i nemici sono più difficili da uccidere."
+  },
+  {
+    "id": "LEVEL_09",
+    "level": 9,
+    "name": "Nemici mortali",
+    "description": "Tutti i nemici sferrano attacchi più forti."
+  },
+  {
+    "id": "LEVEL_10",
+    "level": 10,
+    "name": "Boss doppi",
+    "description": "Affronta due boss al termine dell'Atto 3."
+  }
+]

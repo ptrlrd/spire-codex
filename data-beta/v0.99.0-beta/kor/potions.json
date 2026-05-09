@@ -5,7 +5,7 @@
     "description": "[gold]방어도[/gold]를 3배로 만듭니다.",
     "description_raw": "[gold]방어도[/gold]를 3배로 만듭니다.",
     "rarity": "고급",
-    "image_url": "/static/images/potions/fortifier.png",
+    "image_url": "/static/images/potions/fortifier.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 20,
     "pool": "shared"
@@ -16,7 +16,7 @@
     "description": "다음에 사용하는 공격 카드의 피해량이 3배로 증가합니다.",
     "description_raw": "다음에 사용하는 공격 카드의 피해량이 3배로 증가합니다.",
     "rarity": "희귀",
-    "image_url": "/static/images/potions/gigantification_potion.png",
+    "image_url": "/static/images/potions/gigantification_potion.webp",
     "rarity_key": "Rare",
     "compendium_order": 40,
     "pool": "shared"
@@ -27,7 +27,7 @@
     "description": "무작위 공격 카드 [blue]3[/blue]장 중 [blue]1[/blue]장을 선택해 [gold]손[/gold]으로 가져옵니다. 이번 턴 동안 그 카드를 비용 없이 사용할 수 있습니다.",
     "description_raw": "무작위 공격 카드 [blue]3[/blue]장 중 [blue]1[/blue]장을 선택해 [gold]손[/gold]으로 가져옵니다. 이번 턴 동안 그 카드를 비용 없이 사용할 수 있습니다.",
     "rarity": "일반",
-    "image_url": "/static/images/potions/attack_potion.png",
+    "image_url": "/static/images/potions/attack_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 0,
     "pool": "shared"
@@ -38,7 +38,7 @@
     "description": "최대 체력을 [blue]5[/blue] 얻습니다.",
     "description_raw": "최대 체력을 [blue]{MaxHp}[/blue] 얻습니다.",
     "rarity": "희귀",
-    "image_url": "/static/images/potions/fruit_juice.png",
+    "image_url": "/static/images/potions/fruit_juice.webp",
     "rarity_key": "Rare",
     "compendium_order": 41,
     "pool": "shared"
@@ -49,7 +49,7 @@
     "description": "[gold]손[/gold]에서 카드를 1장 선택합니다. 이번 전투 동안 그 카드를 비용 없이 사용할 수 있습니다.",
     "description_raw": "[gold]손[/gold]에서 카드를 1장 선택합니다. 이번 전투 동안 그 카드를 비용 없이 사용할 수 있습니다.",
     "rarity": "고급",
-    "image_url": "/static/images/potions/touch_of_insanity.png",
+    "image_url": "/static/images/potions/touch_of_insanity.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 21,
     "pool": "shared"
@@ -60,7 +60,7 @@
     "description": "[energy:1]를 얻습니다. 다음 [blue]3[/blue]턴 동안 추가로 [energy:1]를 얻습니다.",
     "description_raw": "{Energy:energyIcons()}를 얻습니다. 다음 [blue]{RadiancePower}[/blue]턴 동안 추가로 {energyPrefix:energyIcons(1)}를 얻습니다.",
     "rarity": "고급",
-    "image_url": "/static/images/potions/radiant_tincture.png",
+    "image_url": "/static/images/potions/radiant_tincture.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 22,
     "pool": "shared"
@@ -71,7 +71,7 @@
     "description": "[gold]강화[/gold]된 [gold]단도[/gold]를 [blue]3[/blue]장 [gold]손[/gold]으로 가져옵니다.",
     "description_raw": "[gold]강화[/gold]된 [gold]단도[/gold]를 [blue]{Cards}[/blue]장 [gold]손[/gold]으로 가져옵니다.",
     "rarity": "고급",
-    "image_url": "/static/images/potions/cunning_potion.png",
+    "image_url": "/static/images/potions/cunning_potion.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 23,
     "pool": "silent"
@@ -82,7 +82,7 @@
     "description": "[gold]영혼[/gold]을 [blue]2[/blue]장 [gold]손[/gold]으로 가져옵니다.",
     "description_raw": "[gold]영혼[/gold]을 [blue]{Cards}[/blue]장 [gold]손[/gold]으로 가져옵니다.",
     "rarity": "희귀",
-    "image_url": "/static/images/potions/pot_of_ghouls.png",
+    "image_url": "/static/images/potions/pot_of_ghouls.webp",
     "rarity_key": "Rare",
     "compendium_order": 42,
     "pool": "necrobinder"
@@ -93,7 +93,7 @@
     "description": "[gold]불가침[/gold]을 [blue]1[/blue] 얻습니다.",
     "description_raw": "[gold]불가침[/gold]을 [blue]1[/blue] 얻습니다.",
     "rarity": "희귀",
-    "image_url": "/static/images/potions/ghost_in_a_jar.png",
+    "image_url": "/static/images/potions/ghost_in_a_jar.webp",
     "rarity_key": "Rare",
     "compendium_order": 43,
     "pool": "silent"
@@ -104,7 +104,7 @@
     "description": "원하는 만큼 카드를 버리고 버린 만큼 카드를 뽑습니다.",
     "description_raw": "원하는 만큼 카드를 버리고 버린 만큼 카드를 뽑습니다.",
     "rarity": "고급",
-    "image_url": "/static/images/potions/gamblers_brew.png",
+    "image_url": "/static/images/potions/gamblers_brew.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 24,
     "pool": "shared"
@@ -115,7 +115,7 @@
     "description": "다음 턴에 적이 가하는 공격의 피해량이 [blue]30%[/blue] 감소합니다.",
     "description_raw": "{Repeat:choose(1):다음 턴에|다음 [blue]{}[/blue]턴 동안} 적이 가하는 공격의 피해량이 [blue]{DamageDecrease}%[/blue] 감소합니다.",
     "rarity": "희귀",
-    "image_url": "/static/images/potions/beetle_juice.png",
+    "image_url": "/static/images/potions/beetle_juice.webp",
     "rarity_key": "Rare",
     "compendium_order": 44,
     "pool": "shared"
@@ -126,7 +126,7 @@
     "description": "[gold]의식[/gold]을 [blue]1[/blue] 얻습니다.",
     "description_raw": "[gold]의식[/gold]을 [blue]{RitualPower}[/blue] 얻습니다.",
     "rarity": "희귀",
-    "image_url": "/static/images/potions/mazaleths_gift.png",
+    "image_url": "/static/images/potions/mazaleths_gift.webp",
     "rarity_key": "Rare",
     "compendium_order": 45,
     "pool": "shared"
@@ -137,7 +137,7 @@
     "description": "카드를 [blue]1[/blue]장 뽑습니다. 다음 턴 시작 시, 카드를 추가로 [blue]1[/blue]장 뽑습니다.",
     "description_raw": "카드를 [blue]{Cards}[/blue]장 뽑습니다. 다음 {ClarityPower:choose(1):턴|[blue]{}[/blue]턴} 시작 시, 카드를 추가로 [blue]1[/blue]장 뽑습니다.",
     "rarity": "고급",
-    "image_url": "/static/images/potions/clarity.png",
+    "image_url": "/static/images/potions/clarity.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 25,
     "pool": "shared"
@@ -148,7 +148,7 @@
     "description": "[gold]힘[/gold]을 [blue]5[/blue] 얻습니다. 내 턴 종료 시 [gold]힘[/gold]을 [blue]5[/blue] 잃습니다.",
     "description_raw": "[gold]힘[/gold]을 [blue]{StrengthPower}[/blue] 얻습니다. 내 턴 종료 시 [gold]힘[/gold]을 [blue]{StrengthPower}[/blue] 잃습니다.",
     "rarity": "일반",
-    "image_url": "/static/images/potions/flex_potion.png",
+    "image_url": "/static/images/potions/flex_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 1,
     "pool": "shared"
@@ -159,7 +159,7 @@
     "description": "[energy:1]를 얻습니다. 카드를 [blue]2[/blue]장 뽑습니다.",
     "description_raw": "{Energy:energyIcons()}를 얻습니다. 카드를 [blue]{Cards}[/blue]장 뽑습니다.",
     "rarity": "고급",
-    "image_url": "/static/images/potions/cure_all.png",
+    "image_url": "/static/images/potions/cure_all.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 26,
     "pool": "shared"
@@ -170,7 +170,7 @@
     "description": "무작위 무색 카드 [blue]3[/blue]장 중 [blue]1[/blue]장을 선택해 [gold]손[/gold]으로 가져옵니다. 이번 턴 동안 그 카드를 비용 없이 사용할 수 있습니다.",
     "description_raw": "무작위 무색 카드 [blue]3[/blue]장 중 [blue]1[/blue]장을 선택해 [gold]손[/gold]으로 가져옵니다. 이번 턴 동안 그 카드를 비용 없이 사용할 수 있습니다.",
     "rarity": "일반",
-    "image_url": "/static/images/potions/colorless_potion.png",
+    "image_url": "/static/images/potions/colorless_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 2,
     "pool": "shared"
@@ -181,7 +181,7 @@
     "description": "[gold]판금[/gold]을 [blue]7[/blue] 얻습니다.",
     "description_raw": "[gold]판금[/gold]을 [blue]{PlatingPower}[/blue] 얻습니다.",
     "rarity": "고급",
-    "image_url": "/static/images/potions/heart_of_iron.png",
+    "image_url": "/static/images/potions/heart_of_iron.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 27,
     "pool": "shared"
@@ -192,7 +192,7 @@
     "description": "[gold]힘[/gold]을 [blue]1[/blue] 얻고 [gold]민첩[/gold]을 [blue]1[/blue] 얻습니다.",
     "description_raw": "[gold]힘[/gold]을 [blue]{StrengthPower}[/blue] 얻고 [gold]민첩[/gold]을 [blue]{DexterityPower}[/blue] 얻습니다.",
     "rarity": "고급",
-    "image_url": "/static/images/potions/fysh_oil.png",
+    "image_url": "/static/images/potions/fysh_oil.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 28,
     "pool": "shared"
@@ -203,7 +203,7 @@
     "description": "[gold]민첩[/gold]을 [blue]2[/blue] 얻습니다.",
     "description_raw": "[gold]민첩[/gold]을 [blue]{DexterityPower}[/blue] 얻습니다.",
     "rarity": "일반",
-    "image_url": "/static/images/potions/dexterity_potion.png",
+    "image_url": "/static/images/potions/dexterity_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 3,
     "pool": "shared"
@@ -214,7 +214,7 @@
     "description": "[gold]밀집[/gold]을 [blue]2[/blue] 얻습니다.",
     "description_raw": "[gold]밀집[/gold]을 [blue]{FocusPower}[/blue] 얻습니다.",
     "rarity": "일반",
-    "image_url": "/static/images/potions/focus_potion.png",
+    "image_url": "/static/images/potions/focus_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 4,
     "pool": "defect"
@@ -225,7 +225,7 @@
     "description": "[gold]손[/gold]에 있는 모든 카드를 [gold]소멸[/gold]시킵니다. 카드를 [blue]10[/blue]장 뽑습니다.",
     "description_raw": "[gold]손[/gold]에 있는 모든 카드를 [gold]소멸[/gold]시킵니다. 카드를 [blue]{Cards}[/blue]장 뽑습니다.",
     "rarity": "이벤트",
-    "image_url": "/static/images/potions/glowwater_potion.png",
+    "image_url": "/static/images/potions/glowwater_potion.webp",
     "rarity_key": "Event",
     "compendium_order": 60,
     "pool": "event"
@@ -236,7 +236,7 @@
     "description": "[gold]방어도[/gold]를 [blue]12[/blue] 얻습니다.",
     "description_raw": "[gold]방어도[/gold]를 [blue]{Block}[/blue] 얻습니다.",
     "rarity": "일반",
-    "image_url": "/static/images/potions/block_potion.png",
+    "image_url": "/static/images/potions/block_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 5,
     "pool": "shared"
@@ -247,7 +247,7 @@
     "description": "[star:3]을 얻습니다.",
     "description_raw": "{Stars:starIcons()}을 얻습니다.",
     "rarity": "일반",
-    "image_url": "/static/images/potions/star_potion.png",
+    "image_url": "/static/images/potions/star_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 6,
     "pool": "regent"
@@ -258,7 +258,7 @@
     "description": "모든 카드를 [gold]뽑을 카드 더미[/gold]에 섞어넣습니다. 카드를 [blue]5[/blue]장 뽑습니다.",
     "description_raw": "모든 카드를 [gold]뽑을 카드 더미[/gold]에 섞어넣습니다. 카드를 [blue]{Cards}[/blue]장 뽑습니다.",
     "rarity": "희귀",
-    "image_url": "/static/images/potions/bottled_potential.png",
+    "image_url": "/static/images/potions/bottled_potential.webp",
     "rarity_key": "Rare",
     "compendium_order": 46,
     "pool": "shared"
@@ -269,7 +269,7 @@
     "description": "[gold]방어도[/gold]를 [blue]10[/blue] 얻습니다. 다음 턴에 [gold]방어도[/gold]를 [blue]10[/blue] 얻습니다.",
     "description_raw": "[gold]방어도[/gold]를 [blue]{Block:diff()}[/blue] 얻습니다. 다음 턴에 [gold]방어도[/gold]를 [blue]{Block:diff()}[/blue] 얻습니다.",
     "rarity": "희귀",
-    "image_url": "/static/images/potions/ship_in_a_bottle.png",
+    "image_url": "/static/images/potions/ship_in_a_bottle.webp",
     "rarity_key": "Rare",
     "compendium_order": 47,
     "pool": "shared"
@@ -280,7 +280,7 @@
     "description": "사망 시, 그 대신 이 포션이 버려지고 최대 체력의 [blue]30%[/blue]만큼 체력을 회복합니다.",
     "description_raw": "사망 시, 그 대신 이 포션이 버려지고 최대 체력의 [blue]30%[/blue]만큼 체력을 회복합니다.",
     "rarity": "희귀",
-    "image_url": "/static/images/potions/fairy_in_a_bottle.png",
+    "image_url": "/static/images/potions/fairy_in_a_bottle.webp",
     "rarity_key": "Rare",
     "compendium_order": 48,
     "pool": "shared"
@@ -291,7 +291,7 @@
     "description": "이번 전투 동안 이름에 [gold]타격[/gold]이 포함된 카드가 [gold]재사용[/gold]을 [blue]1[/blue] 얻습니다.",
     "description_raw": "이번 전투 동안 이름에 [gold]타격[/gold]이 포함된 카드가 [gold]재사용[/gold]을 [blue]1[/blue] 얻습니다.",
     "rarity": "희귀",
-    "image_url": "/static/images/potions/soldiers_stew.png",
+    "image_url": "/static/images/potions/soldiers_stew.webp",
     "rarity_key": "Rare",
     "compendium_order": 49,
     "pool": "ironclad"
@@ -302,7 +302,7 @@
     "description": "이번 턴에 사용하는 다음 카드가 1번 추가로 사용됩니다.",
     "description_raw": "이번 턴에 사용하는 다음 카드가 1번 추가로 사용됩니다.",
     "rarity": "고급",
-    "image_url": "/static/images/potions/duplicator.png",
+    "image_url": "/static/images/potions/duplicator.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 29,
     "pool": "shared"
@@ -313,7 +313,7 @@
     "description": "[gold]소환[/gold] [blue]15[/blue].",
     "description_raw": "[gold]소환[/gold] [blue]{Summon}[/blue].",
     "rarity": "고급",
-    "image_url": "/static/images/potions/bone_brew.png",
+    "image_url": "/static/images/potions/bone_brew.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 30,
     "pool": "necrobinder"
@@ -324,7 +324,7 @@
     "description": "[gold]민첩[/gold]을 [blue]5[/blue] 얻습니다. 내 턴 종료 시 [gold]민첩[/gold]을 [blue]5[/blue] 잃습니다.",
     "description_raw": "[gold]민첩[/gold]을 [blue]{DexterityPower}[/blue] 얻습니다. 내 턴 종료 시 [gold]민첩[/gold]을 [blue]{DexterityPower}[/blue] 잃습니다.",
     "rarity": "일반",
-    "image_url": "/static/images/potions/speed_potion.png",
+    "image_url": "/static/images/potions/speed_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 7,
     "pool": "shared"
@@ -335,7 +335,7 @@
     "description": "이번 턴 동안 모든 적이 [gold]힘[/gold]을 [blue]7[/blue] 잃습니다.",
     "description_raw": "이번 턴 동안 모든 적이 [gold]힘[/gold]을 [blue]{StrengthPower}[/blue] 잃습니다.",
     "rarity": "희귀",
-    "image_url": "/static/images/potions/shackling_potion.png",
+    "image_url": "/static/images/potions/shackling_potion.webp",
     "rarity_key": "Rare",
     "compendium_order": 50,
     "pool": "shared"
@@ -346,7 +346,7 @@
     "description": "모든 적에게 [gold]약화[/gold]를 [blue]1[/blue], [gold]취약[/gold]을 [blue]1[/blue] 부여합니다.",
     "description_raw": "모든 적에게 [gold]약화[/gold]를 [blue]{WeakPower:diff()}[/blue], [gold]취약[/gold]을 [blue]{VulnerablePower:diff()}[/blue] 부여합니다.",
     "rarity": "고급",
-    "image_url": "/static/images/potions/potion_of_binding.png",
+    "image_url": "/static/images/potions/potion_of_binding.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 31,
     "pool": "shared"
@@ -357,7 +357,7 @@
     "description": "[gold]구체 슬롯[/gold]을 [blue]2[/blue]개 얻습니다.",
     "description_raw": "[gold]구체 슬롯[/gold]을 [blue]{Repeat}[/blue]개 얻습니다.",
     "rarity": "고급",
-    "image_url": "/static/images/potions/potion_of_capacity.png",
+    "image_url": "/static/images/potions/potion_of_capacity.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 32,
     "pool": "defect"
@@ -368,7 +368,7 @@
     "description": "카드를 [blue]7[/blue]장 뽑습니다. 이번 턴 동안 [gold]손[/gold]에 있는 카드의 비용을 무작위로 변경합니다.",
     "description_raw": "카드를 [blue]{Cards}[/blue]장 뽑습니다. 이번 턴 동안 [gold]손[/gold]에 있는 카드의 비용을 무작위로 변경합니다.",
     "rarity": "희귀",
-    "image_url": "/static/images/potions/snecko_oil.png",
+    "image_url": "/static/images/potions/snecko_oil.webp",
     "rarity_key": "Rare",
     "compendium_order": 51,
     "pool": "shared"
@@ -379,7 +379,7 @@
     "description": "무작위 스킬 카드 [blue]3[/blue]장 중 [blue]1[/blue]장을 선택해 [gold]손[/gold]으로 가져옵니다. 이번 턴 동안 그 카드를 비용 없이 사용할 수 있습니다.",
     "description_raw": "무작위 스킬 카드 [blue]3[/blue]장 중 [blue]1[/blue]장을 선택해 [gold]손[/gold]으로 가져옵니다. 이번 턴 동안 그 카드를 비용 없이 사용할 수 있습니다.",
     "rarity": "일반",
-    "image_url": "/static/images/potions/skill_potion.png",
+    "image_url": "/static/images/potions/skill_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 8,
     "pool": "shared"
@@ -390,7 +390,7 @@
     "description": "카드를 [blue]3[/blue]장 뽑습니다.",
     "description_raw": "카드를 [blue]{Cards}[/blue]장 뽑습니다.",
     "rarity": "일반",
-    "image_url": "/static/images/potions/swift_potion.png",
+    "image_url": "/static/images/potions/swift_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 9,
     "pool": "shared"
@@ -401,7 +401,7 @@
     "description": "[gold]손[/gold]에 있는 카드를 [blue]2[/blue]턴 동안 [gold]보존[/gold]합니다.",
     "description_raw": "[gold]손[/gold]에 있는 카드를 [blue]{Repeat}[/blue]턴 동안 [gold]보존[/gold]합니다.",
     "rarity": "고급",
-    "image_url": "/static/images/potions/stable_serum.png",
+    "image_url": "/static/images/potions/stable_serum.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 33,
     "pool": "shared"
@@ -412,7 +412,7 @@
     "description": "모든 [gold]구체 슬롯[/gold]에 [gold]암흑[/gold]을 [gold]영창[/gold]합니다.",
     "description_raw": "모든 [gold]구체 슬롯[/gold]에 [gold]암흑[/gold]을 [gold]영창[/gold]합니다.",
     "rarity": "희귀",
-    "image_url": "/static/images/potions/essence_of_darkness.png",
+    "image_url": "/static/images/potions/essence_of_darkness.webp",
     "rarity_key": "Rare",
     "compendium_order": 52,
     "pool": "defect"
@@ -423,7 +423,7 @@
     "description": "[gold]버린 카드 더미[/gold]에서 카드를 1장 선택해 [gold]손[/gold]으로 가져옵니다. 이번 턴 동안 그 카드의 비용이 [blue]0[/blue] [energy:1]이 됩니다.",
     "description_raw": "[gold]버린 카드 더미[/gold]에서 카드를 1장 선택해 [gold]손[/gold]으로 가져옵니다. 이번 턴 동안 그 카드의 비용이 [blue]0[/blue] {energyPrefix:energyIcons(1)}이 됩니다.",
     "rarity": "희귀",
-    "image_url": "/static/images/potions/liquid_memories.png",
+    "image_url": "/static/images/potions/liquid_memories.webp",
     "rarity_key": "Rare",
     "compendium_order": 53,
     "pool": "shared"
@@ -434,7 +434,7 @@
     "description": "[gold]가시[/gold]를 [blue]3[/blue] 얻습니다.",
     "description_raw": "[gold]가시[/gold]를 [blue]{ThornsPower}[/blue] 얻습니다.",
     "rarity": "고급",
-    "image_url": "/static/images/potions/liquid_bronze.png",
+    "image_url": "/static/images/potions/liquid_bronze.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 34,
     "pool": "shared"
@@ -445,7 +445,7 @@
     "description": "[gold]약화[/gold]를 [blue]3[/blue] 부여합니다.",
     "description_raw": "[gold]약화[/gold]를 [blue]{WeakPower}[/blue] 부여합니다.",
     "rarity": "일반",
-    "image_url": "/static/images/potions/weak_potion.png",
+    "image_url": "/static/images/potions/weak_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 10,
     "pool": "shared"
@@ -456,7 +456,7 @@
     "description": "[energy:2]를 얻습니다.",
     "description_raw": "{Energy:energyIcons()}를 얻습니다.",
     "rarity": "일반",
-    "image_url": "/static/images/potions/energy_potion.png",
+    "image_url": "/static/images/potions/energy_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 11,
     "pool": "shared"
@@ -467,7 +467,7 @@
     "description": "비어있는 모든 포션 슬롯을 무작위 포션으로 채웁니다.",
     "description_raw": "비어있는 모든 포션 슬롯을 무작위 포션으로 채웁니다.",
     "rarity": "희귀",
-    "image_url": "/static/images/potions/entropic_brew.png",
+    "image_url": "/static/images/potions/entropic_brew.webp",
     "rarity_key": "Rare",
     "compendium_order": 54,
     "pool": "shared"
@@ -478,7 +478,7 @@
     "description": "모든 대상에게 피해를 [blue]12[/blue] 줍니다.\n[gold]상인[/gold]에게도 던질 수 있으며, 상인에게 던질 시 피해를 주는 대신 [gold]골드[/gold]를 [blue]100[/blue] 얻습니다.",
     "description_raw": "모든 대상에게 피해를 [blue]{Damage}[/blue] 줍니다.\n[gold]상인[/gold]에게도 던질 수 있으며, 상인에게 던질 시 피해를 주는 대신 [gold]골드[/gold]를 [blue]{Gold}[/blue] 얻습니다.",
     "rarity": "이벤트",
-    "image_url": "/static/images/potions/foul_potion.png",
+    "image_url": "/static/images/potions/foul_potion.webp",
     "rarity_key": "Event",
     "compendium_order": 61,
     "pool": "event"
@@ -489,7 +489,7 @@
     "description": "[gold]뽑을 카드 더미[/gold]에서 카드를 1장 선택해 [gold]손[/gold]으로 가져옵니다.",
     "description_raw": "[gold]뽑을 카드 더미[/gold]에서 카드를 1장 선택해 [gold]손[/gold]으로 가져옵니다.",
     "rarity": "희귀",
-    "image_url": "/static/images/potions/droplet_of_precognition.png",
+    "image_url": "/static/images/potions/droplet_of_precognition.webp",
     "rarity_key": "Rare",
     "compendium_order": 55,
     "pool": "shared"
@@ -500,7 +500,7 @@
     "description": "무작위 공격, 스킬, 파워 카드를 [gold]손[/gold]으로 가져옵니다. 이번 턴 동안 그 카드들을 비용 없이 사용할 수 있습니다.",
     "description_raw": "무작위 공격, 스킬, 파워 카드를 [gold]손[/gold]으로 가져옵니다. 이번 턴 동안 그 카드들을 비용 없이 사용할 수 있습니다.",
     "rarity": "희귀",
-    "image_url": "/static/images/potions/orobic_acid.png",
+    "image_url": "/static/images/potions/orobic_acid.webp",
     "rarity_key": "Rare",
     "compendium_order": 56,
     "pool": "shared"
@@ -511,7 +511,7 @@
     "description": "[gold]단조[/gold] [blue]15[/blue].",
     "description_raw": "[gold]단조[/gold] [blue]{Forge}[/blue].",
     "rarity": "고급",
-    "image_url": "/static/images/potions/kings_courage.png",
+    "image_url": "/static/images/potions/kings_courage.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 35,
     "pool": "regent"
@@ -522,7 +522,7 @@
     "description": "[gold]강화[/gold]된 무색 카드를 [blue]3[/blue]장 [gold]손[/gold]으로 가져옵니다.",
     "description_raw": "[gold]강화[/gold]된 무색 카드를 [blue]{Cards}[/blue]장 [gold]손[/gold]으로 가져옵니다.",
     "rarity": "희귀",
-    "image_url": "/static/images/potions/cosmic_concoction.png",
+    "image_url": "/static/images/potions/cosmic_concoction.webp",
     "rarity_key": "Rare",
     "compendium_order": 57,
     "pool": "regent"
@@ -533,7 +533,7 @@
     "description": "[gold]손[/gold]에 있는 모든 카드를 남은 전투 동안 [gold]강화[/gold]합니다.",
     "description_raw": "[gold]손[/gold]에 있는 모든 카드를 남은 전투 동안 [gold]강화[/gold]합니다.",
     "rarity": "고급",
-    "image_url": "/static/images/potions/blessing_of_the_forge.png",
+    "image_url": "/static/images/potions/blessing_of_the_forge.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 36,
     "pool": "shared"
@@ -544,7 +544,7 @@
     "description": "[gold]재생[/gold]을 [green]5[/green] 얻습니다.",
     "description_raw": "[gold]재생[/gold]을 [green]{RegenPower}[/green] 얻습니다.",
     "rarity": "고급",
-    "image_url": "/static/images/potions/regen_potion.png",
+    "image_url": "/static/images/potions/regen_potion.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 37,
     "pool": "shared"
@@ -555,7 +555,7 @@
     "description": "[gold]손[/gold]에 있는 카드를 원하는 만큼 [gold]소멸[/gold]시킵니다.",
     "description_raw": "[gold]손[/gold]에 있는 카드를 원하는 만큼 [gold]소멸[/gold]시킵니다.",
     "rarity": "고급",
-    "image_url": "/static/images/potions/ashwater.png",
+    "image_url": "/static/images/potions/ashwater.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 38,
     "pool": "ironclad"
@@ -566,7 +566,7 @@
     "description": "[gold]뽑을 카드 더미[/gold] 위에서부터 [blue]3[/blue]장의 카드를 사용합니다.",
     "description_raw": "[gold]뽑을 카드 더미[/gold] 위에서부터 [blue]{Repeat}[/blue]장의 카드를 사용합니다.",
     "rarity": "희귀",
-    "image_url": "/static/images/potions/distilled_chaos.png",
+    "image_url": "/static/images/potions/distilled_chaos.webp",
     "rarity_key": "Rare",
     "compendium_order": 58,
     "pool": "shared"
@@ -577,7 +577,7 @@
     "description": "[gold]종말[/gold]을 [blue]33[/blue] 부여합니다.",
     "description_raw": "[gold]종말[/gold]을 [blue]{DoomPower}[/blue] 부여합니다.",
     "rarity": "일반",
-    "image_url": "/static/images/potions/potion_of_doom.png",
+    "image_url": "/static/images/potions/potion_of_doom.webp",
     "rarity_key": "Common",
     "compendium_order": 12,
     "pool": "necrobinder"
@@ -588,7 +588,7 @@
     "description": "적의 턴 종료 시 적이 체력을 [blue]9[/blue] 잃습니다.",
     "description_raw": "적의 턴 종료 시 적이 체력을 [blue]{Demise}[/blue] 잃습니다.",
     "rarity": "고급",
-    "image_url": "/static/images/potions/powdered_demise.png",
+    "image_url": "/static/images/potions/powdered_demise.webp",
     "rarity_key": "Uncommon",
     "compendium_order": 39,
     "pool": "shared"
@@ -599,7 +599,7 @@
     "description": "[gold]중독[/gold]을 [blue]6[/blue] 부여합니다.",
     "description_raw": "[gold]중독[/gold]을 [blue]{PoisonPower}[/blue] 부여합니다.",
     "rarity": "일반",
-    "image_url": "/static/images/potions/poison_potion.png",
+    "image_url": "/static/images/potions/poison_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 13,
     "pool": "silent"
@@ -610,7 +610,7 @@
     "description": "[gold]취약[/gold]을 [blue]3[/blue] 부여합니다.",
     "description_raw": "[gold]취약[/gold]을 [blue]{VulnerablePower}[/blue] 부여합니다.",
     "rarity": "일반",
-    "image_url": "/static/images/potions/vulnerable_potion.png",
+    "image_url": "/static/images/potions/vulnerable_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 14,
     "pool": "shared"
@@ -621,7 +621,7 @@
     "description": "무작위 파워 카드 [blue]3[/blue]장 중 [blue]1[/blue]장을 선택해 [gold]손[/gold]으로 가져옵니다. 이번 턴 동안 그 카드를 비용 없이 사용할 수 있습니다.",
     "description_raw": "무작위 파워 카드 [blue]3[/blue]장 중 [blue]1[/blue]장을 선택해 [gold]손[/gold]으로 가져옵니다. 이번 턴 동안 그 카드를 비용 없이 사용할 수 있습니다.",
     "rarity": "일반",
-    "image_url": "/static/images/potions/power_potion.png",
+    "image_url": "/static/images/potions/power_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 15,
     "pool": "shared"
@@ -632,7 +632,7 @@
     "description": "피해를 [blue]15[/blue] 줍니다.",
     "description_raw": "피해를 [blue]{Damage}[/blue] 줍니다.",
     "rarity": "토큰",
-    "image_url": "/static/images/potions/potion_shaped_rock.png",
+    "image_url": "/static/images/potions/potion_shaped_rock.webp",
     "rarity_key": "Token",
     "compendium_order": 62,
     "pool": "shared"
@@ -643,7 +643,7 @@
     "description": "모든 적에게 피해를 [blue]10[/blue] 줍니다.",
     "description_raw": "모든 적에게 피해를 [blue]{Damage}[/blue] 줍니다.",
     "rarity": "일반",
-    "image_url": "/static/images/potions/explosive_ampoule.png",
+    "image_url": "/static/images/potions/explosive_ampoule.webp",
     "rarity_key": "Common",
     "compendium_order": 16,
     "pool": "shared"
@@ -654,7 +654,7 @@
     "description": "최대 체력의 [green]20%[/green]만큼 체력을 회복합니다.",
     "description_raw": "최대 체력의 [green]{HealPercent}%[/green]만큼 체력을 회복합니다.",
     "rarity": "일반",
-    "image_url": "/static/images/potions/blood_potion.png",
+    "image_url": "/static/images/potions/blood_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 17,
     "pool": "ironclad"
@@ -665,7 +665,7 @@
     "description": "[gold]버퍼[/gold]를 [blue]1[/blue] 얻습니다.",
     "description_raw": "[gold]버퍼[/gold]를 [blue]{BufferPower}[/blue] 얻습니다.",
     "rarity": "희귀",
-    "image_url": "/static/images/potions/lucky_tonic.png",
+    "image_url": "/static/images/potions/lucky_tonic.webp",
     "rarity_key": "Rare",
     "compendium_order": 59,
     "pool": "shared"
@@ -676,7 +676,7 @@
     "description": "피해를 [blue]20[/blue] 줍니다.",
     "description_raw": "피해를 [blue]{Damage}[/blue] 줍니다.",
     "rarity": "일반",
-    "image_url": "/static/images/potions/fire_potion.png",
+    "image_url": "/static/images/potions/fire_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 18,
     "pool": "shared"
@@ -687,7 +687,7 @@
     "description": "[gold]힘[/gold]을 [blue]2[/blue] 얻습니다.",
     "description_raw": "[gold]힘[/gold]을 [blue]{StrengthPower}[/blue] 얻습니다.",
     "rarity": "일반",
-    "image_url": "/static/images/potions/strength_potion.png",
+    "image_url": "/static/images/potions/strength_potion.webp",
     "rarity_key": "Common",
     "compendium_order": 19,
     "pool": "shared"

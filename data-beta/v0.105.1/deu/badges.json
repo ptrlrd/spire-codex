@@ -1,0 +1,482 @@
+[
+  {
+    "id": "BIG_DECK",
+    "name": "Großes Deck",
+    "description": "Mit einem Deck aus [blue]40[/blue] oder mehr Karten gewonnen.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Großes Deck",
+        "description": "Mit einem Deck aus [blue]40[/blue] oder mehr Karten gewonnen."
+      },
+      {
+        "rarity": "silver",
+        "title": "Riesiges Deck",
+        "description": "Mit einem Deck aus [blue]60[/blue] oder mehr Karten gewonnen."
+      },
+      {
+        "rarity": "gold",
+        "title": "Monster-Deck",
+        "description": "Mit einem Deck aus [blue]100[/blue] oder mehr Karten gewonnen."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_big_deck.png"
+  },
+  {
+    "id": "CCCCOMBO",
+    "name": "K-k-k-Kombo",
+    "description": "[blue]20[/blue] Karten in einem Zug gespielt.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "K-k-k-Kombo",
+        "description": "[blue]20[/blue] Karten in einem Zug gespielt."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_ccccombo.png"
+  },
+  {
+    "id": "CURSES",
+    "name": "Verflucht!",
+    "description": "Mit [blue]5[/blue] oder mehr [red]Flüchen[/red] gewonnen.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Verflucht!",
+        "description": "Mit [blue]5[/blue] oder mehr [red]Flüchen[/red] gewonnen."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_curses.png"
+  },
+  {
+    "id": "DAMAGE_LEADER",
+    "name": "Meister-Schaden",
+    "description": "Im Mehrspielermodus den meisten Schaden an Gegnern verursacht.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Meister-Schaden",
+        "description": "Im Mehrspielermodus den meisten Schaden an Gegnern verursacht."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_damage_leader.png"
+  },
+  {
+    "id": "DEBUFFER",
+    "name": "Debuffer:in",
+    "description": "Im Mehrspielermodus die meisten Debuffs angewandt.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Debuffer:in",
+        "description": "Im Mehrspielermodus die meisten Debuffs angewandt."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_debuffer.png"
+  },
+  {
+    "id": "DOUBLE_SNECKO",
+    "name": "Doppel-Snecko",
+    "description": "Sowohl das falsche als auch das echte Sneckoauge erhalten.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Doppel-Snecko",
+        "description": "Sowohl das falsche als auch das echte Sneckoauge erhalten."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_double_snecko.png"
+  },
+  {
+    "id": "ELITE",
+    "name": "Eliten-Jäger:in",
+    "description": "[blue]3[/blue] oder mehr Eliten getötet.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Eliten-Jäger:in",
+        "description": "[blue]3[/blue] oder mehr Eliten getötet."
+      },
+      {
+        "rarity": "silver",
+        "title": "Eliten-Mörder:in",
+        "description": "[blue]6[/blue] oder mehr Eliten getötet."
+      },
+      {
+        "rarity": "gold",
+        "title": "Eliten-Bezwinger:in",
+        "description": "[blue]9[/blue] oder mehr Eliten getötet."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_elite.png"
+  },
+  {
+    "id": "FAMISHED",
+    "name": "Ausgehungert",
+    "description": "Mit max. TP reduziert auf weniger als die Hälfte deiner Start-TP gewonnen.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Ausgehungert",
+        "description": "Mit max. TP reduziert auf weniger als die Hälfte deiner Start-TP gewonnen."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_famished.png"
+  },
+  {
+    "id": "FAVORITE_CARD",
+    "name": "Lieblingskarte",
+    "description": "Einen Run gewonnen und eine einzelne Karte mehr als [blue]100[/blue] Mal gespielt.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Lieblingskarte",
+        "description": "Einen Run gewonnen und eine einzelne Karte mehr als [blue]100[/blue] Mal gespielt."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_favorite_card.png"
+  },
+  {
+    "id": "GLUTTON",
+    "name": "Gut genährt",
+    "description": "Einen Run mit [blue]15[/blue] oder mehr erhöhten max. TP gewonnen.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Gut genährt",
+        "description": "Einen Run mit [blue]15[/blue] oder mehr erhöhten max. TP gewonnen."
+      },
+      {
+        "rarity": "silver",
+        "title": "Vollgestopft",
+        "description": "Einen Run mit [blue]30[/blue] oder mehr erhöhten max. TP gewonnen."
+      },
+      {
+        "rarity": "gold",
+        "title": "Vielfraß",
+        "description": "Einen Run mit absurd hohen max. TP gewonnen (um [blue]50[/blue] oder mehr erhöht)."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_glutton.png"
+  },
+  {
+    "id": "HEALER",
+    "name": "Versorger:in",
+    "description": "Einmal einen Verbündeten versorgt.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Versorger:in",
+        "description": "Einmal einen Verbündeten versorgt."
+      },
+      {
+        "rarity": "silver",
+        "title": "Heiler:in",
+        "description": "Zweimal einen Verbündeten versorgt."
+      },
+      {
+        "rarity": "gold",
+        "title": "Doktor:in",
+        "description": "Verbündete wieder und wieder versorgt (mindestens [blue]3[/blue] Mal)."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_healer.png"
+  },
+  {
+    "id": "HIGHLANDER",
+    "name": "Highlander",
+    "description": "Mit einem Deck gewonnen, das keine Karte doppelt enthält (außer Startkarten).",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Highlander",
+        "description": "Mit einem Deck gewonnen, das keine Karte doppelt enthält (außer Startkarten)."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_highlander.png"
+  },
+  {
+    "id": "HONED",
+    "name": "Feinschliff",
+    "description": "Mit einem Deck gewonnen, das [blue]5[/blue] oder mehr von derselben Karte enthält (außer Startkarten).",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Feinschliff",
+        "description": "Mit einem Deck gewonnen, das [blue]5[/blue] oder mehr von derselben Karte enthält (außer Startkarten)."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_honed.png"
+  },
+  {
+    "id": "ILIKESHINY",
+    "name": "Ich mag's glänzend",
+    "description": "[blue]25[/blue] oder mehr Relikte angehäuft.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Ich mag's glänzend",
+        "description": "[blue]25[/blue] oder mehr Relikte angehäuft."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_ilikeshiny.png"
+  },
+  {
+    "id": "KACHING",
+    "name": "Ka-Tsching!",
+    "description": "Mehr als [blue]1.000[/blue] [gold]Gold[/gold] beim Händler ausgegeben.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Ka-Tsching!",
+        "description": "Mehr als [blue]1.000[/blue] [gold]Gold[/gold] beim Händler ausgegeben."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_kaching.png"
+  },
+  {
+    "id": "MONEY_MONEY",
+    "name": "Geld, Geld!",
+    "description": "Mit [blue]200[/blue] [gold]Gold[/gold] oder mehr gewonnen.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Geld, Geld!",
+        "description": "Mit [blue]200[/blue] [gold]Gold[/gold] oder mehr gewonnen."
+      },
+      {
+        "rarity": "silver",
+        "title": "Geldregen",
+        "description": "Mit [blue]400[/blue] [gold]Gold[/gold] oder mehr gewonnen."
+      },
+      {
+        "rarity": "gold",
+        "title": "Ich mag Gold",
+        "description": "Mit [blue]600[/blue] [gold]Gold[/gold] oder mehr gewonnen."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_money_money.png"
+  },
+  {
+    "id": "MYSTERY_MACHINE",
+    "name": "Wundermaschine",
+    "description": "Zu [blue]15[/blue] oder mehr ?-Räumen gereist.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Wundermaschine",
+        "description": "Zu [blue]15[/blue] oder mehr ?-Räumen gereist."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_mystery_machine.png"
+  },
+  {
+    "id": "PERFECT",
+    "name": "Tadellos",
+    "description": "Einen Boss besiegt, ohne TP zu verlieren.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Tadellos",
+        "description": "Einen Boss besiegt, ohne TP zu verlieren."
+      },
+      {
+        "rarity": "silver",
+        "title": "Unangefochten",
+        "description": "[blue]2[/blue] Bosse besiegt, ohne TP zu verlieren."
+      },
+      {
+        "rarity": "gold",
+        "title": "Perfekt",
+        "description": "[blue]3[/blue] Bosse besiegt, ohne TP zu verlieren."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_perfect.png"
+  },
+  {
+    "id": "RESTFUL",
+    "name": "Erholsam",
+    "description": "Einen Run gewonnen, bei dem du dich an jedem Lagerfeuer ausgeruht hast.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Erholsam",
+        "description": "Einen Run gewonnen, bei dem du dich an jedem Lagerfeuer ausgeruht hast."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_restful.png"
+  },
+  {
+    "id": "RESTLESS",
+    "name": "Ruhelos",
+    "description": "Einen Run gewonnen, ohne einmal auszuruhen.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Ruhelos",
+        "description": "Einen Run gewonnen, ohne einmal auszuruhen."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_restless.png"
+  },
+  {
+    "id": "SPEEDY",
+    "name": "Geschwind",
+    "description": "Einen Run unter [blue]50[/blue] Minuten gewonnen.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Geschwind",
+        "description": "Einen Run unter [blue]50[/blue] Minuten gewonnen."
+      },
+      {
+        "rarity": "silver",
+        "title": "Geschwinder",
+        "description": "Einen Run unter [blue]40[/blue] Minuten gewonnen."
+      },
+      {
+        "rarity": "gold",
+        "title": "Am geschwindesten",
+        "description": "Einen Run unter [blue]30[/blue] Minuten gewonnen."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_speedy.png"
+  },
+  {
+    "id": "TABLET",
+    "name": "Tafel der Wahrheit",
+    "description": "Mit nur [blue]1[/blue] max. TP gewonnen.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Tafel der Wahrheit",
+        "description": "Mit nur [blue]1[/blue] max. TP gewonnen."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_tablet.png"
+  },
+  {
+    "id": "TEAM_PLAYER",
+    "name": "Teamarbeit",
+    "description": "Deck enthielt [blue]3[/blue] oder mehr Multiplayer-exklusive Karten.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Teamarbeit",
+        "description": "Deck enthielt [blue]3[/blue] oder mehr Multiplayer-exklusive Karten."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_team_player.png"
+  },
+  {
+    "id": "TINY_DECK",
+    "name": "Kleines Deck",
+    "description": "Mit einem Deck aus [blue]20[/blue] oder weniger Karten gewonnen.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Kleines Deck",
+        "description": "Mit einem Deck aus [blue]20[/blue] oder weniger Karten gewonnen."
+      },
+      {
+        "rarity": "silver",
+        "title": "Winziges Deck",
+        "description": "Mit einem Deck aus [blue]10[/blue] oder weniger Karten gewonnen."
+      },
+      {
+        "rarity": "gold",
+        "title": "Klitzeklein",
+        "description": "Mit einem Deck aus [blue]5[/blue] oder weniger Karten gewonnen."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_tiny_deck.png"
+  },
+  {
+    "id": "WHOMPER",
+    "name": "Zermalmt",
+    "description": "Mehr als [blue]100[/blue] Schaden mit einem einzelnen Angriff zugefügt.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Zermalmt",
+        "description": "Mehr als [blue]100[/blue] Schaden mit einem einzelnen Angriff zugefügt."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_whomper.png"
+  }
+]

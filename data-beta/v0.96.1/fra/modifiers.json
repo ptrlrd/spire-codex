@@ -1,0 +1,82 @@
+[
+  {
+    "id": "ALL_STAR",
+    "name": "Club des cinq",
+    "description": "Commencez la partie avec [blue]5[/blue] [gold]cartes incolores[/gold]."
+  },
+  {
+    "id": "BIG_GAME_HUNTER",
+    "name": "Chasseur de gros gibier",
+    "description": "La Tour est envahie d'ennemis d'Élite qui pourvoient de meilleures récompenses."
+  },
+  {
+    "id": "BINARY",
+    "name": "Binaire",
+    "description": "Les [gold]récompenses de cartes[/gold] ne proposent plus que [blue]2[/blue] options."
+  },
+  {
+    "id": "CURSED_RUN",
+    "name": "Partie maudite",
+    "description": "Au début de chaque Acte, une [red]Malédiction[/red] aléatoire s'ajoute à votre deck."
+  },
+  {
+    "id": "DEADLY_EVENTS",
+    "name": "Événements d'extrême",
+    "description": "Les salles mystère (?) peuvent contenir des ennemis d'Élite, mais ont plus de chances de contenir un coffre trésor."
+  },
+  {
+    "id": "DRAFT",
+    "name": "Préparatifs",
+    "description": "Choisissez parmi [blue]10[/blue] [gold]récompenses de cartes[/gold] pour remplacer votre deck de départ."
+  },
+  {
+    "id": "FLIGHT",
+    "name": "Vol d'oizo",
+    "description": "Le choix de la salle suivante n'est plus limité par les trajets dessinés sur le plan."
+  },
+  {
+    "id": "HOARDER",
+    "name": "Collectionniste",
+    "description": "Lorsque vous ajoutez une carte à votre deck, vous en ajoutez [blue]2[/blue] copies supplémentaires. Vous ne pouvez plus retirer de cartes de votre deck chez le Marchand."
+  },
+  {
+    "id": "INSANITY",
+    "name": "Folie",
+    "description": "Commencez la partie avec un deck aléatoire de [blue]30[/blue] cartes."
+  },
+  {
+    "id": "MIDAS",
+    "name": "Midas",
+    "description": "Vous ramassez [blue]200%[/blue] de plus d'or sur les ennemis, mais vous ne pouvez plus Forger aux [gold]Sites de repos[/gold]."
+  },
+  {
+    "id": "MURDEROUS",
+    "name": "Meurtrier",
+    "description": "Vous débutez chaque combat avec [blue]3[/blue] [gold]Force[/gold]. Tous les ennemis débutent les combats avec [blue]3[/blue] [gold]Force[/gold]."
+  },
+  {
+    "id": "NIGHT_TERRORS",
+    "name": "Terreurs nocturnes",
+    "description": "L'option Repos aux [gold]Sites de repos[/gold] soigne tous vos PV, mais coûte [red]5[/red] PV Max."
+  },
+  {
+    "id": "SEALED_DECK",
+    "name": "Deck scellé",
+    "description": "Choisissez [blue]10[/blue] cartes parmi [blue]30[/blue] pour remplacer votre deck de départ."
+  },
+  {
+    "id": "SPECIALIZED",
+    "name": "Spécialisation",
+    "description": "Commencez la partie avec [blue]5[/blue] copies de la même card."
+  },
+  {
+    "id": "TERMINAL",
+    "name": "Terminal",
+    "description": "Chaque fois que vous entrez dans une salle, vous perdez [red]1[/red] PV Max. Débutez chaque combat avec [blue]5[/blue] [gold]Blindage[/gold]."
+  },
+  {
+    "id": "VINTAGE",
+    "name": "Vintage",
+    "description": "Les ennemis normaux donnent des reliques à la place des récompenses de cartes."
+  }
+]

@@ -1,0 +1,152 @@
+[
+  {
+    "id": "DARV",
+    "relics": [
+      "ASTROLABE",
+      "BLACK_STAR",
+      "CALLING_BELL",
+      "DUSTY_TOME",
+      "ECTOPLASM",
+      "EMPTY_CAGE",
+      "PANDORAS_BOX",
+      "PHILOSOPHERS_STONE",
+      "RUNIC_PYRAMID",
+      "SNECKO_EYE",
+      "SOZU",
+      "VELVET_CHOKER"
+    ],
+    "per_character_relics": null
+  },
+  {
+    "id": "NEOW",
+    "relics": [
+      "ARCANE_SCROLL",
+      "BOOMING_CONCH",
+      "CURSED_PEARL",
+      "FISHING_ROD",
+      "GOLDEN_PEARL",
+      "HEFTY_TABLET",
+      "KALEIDOSCOPE",
+      "LARGE_CAPSULE",
+      "LAVA_ROCK",
+      "LEAD_PAPERWEIGHT",
+      "LEAFY_POULTICE",
+      "LOST_COFFER",
+      "MASSIVE_SCROLL",
+      "NEOWS_BONES",
+      "NEOWS_TALISMAN",
+      "NEOWS_TORMENT",
+      "NEW_LEAF",
+      "NUTRITIOUS_OYSTER",
+      "PHIAL_HOLSTER",
+      "POMANDER",
+      "PRECARIOUS_SHEARS",
+      "PRECISE_SCISSORS",
+      "SCROLL_BOXES",
+      "SILKEN_TRESS",
+      "SILVER_CRUCIBLE",
+      "SMALL_CAPSULE",
+      "STONE_HUMIDIFIER",
+      "WINGED_BOOTS"
+    ],
+    "per_character_relics": null
+  },
+  {
+    "id": "NONUPEIPE",
+    "relics": [
+      "BEAUTIFUL_BRACELET",
+      "BLESSED_ANTLER",
+      "BRILLIANT_SCARF",
+      "DELICATE_FROND",
+      "DIAMOND_DIADEM",
+      "FUR_COAT",
+      "GLITTER",
+      "JEWELRY_BOX",
+      "LOOMING_FRUIT",
+      "SIGNET_RING"
+    ],
+    "per_character_relics": null
+  },
+  {
+    "id": "OROBAS",
+    "relics": [
+      "ALCHEMICAL_COFFER",
+      "ARCHAIC_TOOTH",
+      "DRIFTWOOD",
+      "ELECTRIC_SHRYMP",
+      "GLASS_EYE",
+      "PRISMATIC_GEM",
+      "RADIANT_PEARL",
+      "SAND_CASTLE",
+      "SEA_GLASS",
+      "TOUCH_OF_OROBAS"
+    ],
+    "per_character_relics": [
+      "SEA_GLASS"
+    ]
+  },
+  {
+    "id": "PAEL",
+    "relics": [
+      "PAELS_BLOOD",
+      "PAELS_CLAW",
+      "PAELS_EYE",
+      "PAELS_FLESH",
+      "PAELS_GROWTH",
+      "PAELS_HORN",
+      "PAELS_LEGION",
+      "PAELS_TEARS",
+      "PAELS_TOOTH",
+      "PAELS_WING"
+    ],
+    "per_character_relics": null
+  },
+  {
+    "id": "TANX",
+    "relics": [
+      "CLAWS",
+      "CROSSBOW",
+      "IRON_CLUB",
+      "MEAT_CLEAVER",
+      "SAI",
+      "SPIKED_GAUNTLETS",
+      "TANXS_WHISTLE",
+      "THROWING_AXE",
+      "TRI_BOOMERANG",
+      "WAR_HAMMER"
+    ],
+    "per_character_relics": null
+  },
+  {
+    "id": "TEZCATARA",
+    "relics": [
+      "BIIIG_HUG",
+      "GOLDEN_COMPASS",
+      "NUTRITIOUS_SOUP",
+      "PUMPKIN_CANDLE",
+      "SEAL_OF_GOLD",
+      "STORYBOOK",
+      "TOASTY_MITTENS",
+      "TOY_BOX",
+      "VERY_HOT_COCOA",
+      "YUMMY_COOKIE"
+    ],
+    "per_character_relics": null
+  },
+  {
+    "id": "VAKUU",
+    "relics": [
+      "BLOOD_SOAKED_ROSE",
+      "CHOICES_PARADOX",
+      "DISTINGUISHED_CAPE",
+      "FIDDLE",
+      "JEWELED_MASK",
+      "LORDS_PARASOL",
+      "MUSIC_BOX",
+      "PRESERVED_FOG",
+      "SERE_TALON",
+      "WHISPERING_EARRING"
+    ],
+    "per_character_relics": null
+  }
+]

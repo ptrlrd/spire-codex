@@ -1,0 +1,16 @@
+{
+  "gid": "1830163047256473",
+  "title": "Beta Hotfix Patch Notes - v0.103.1",
+  "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1830163047256473",
+  "is_external_url": true,
+  "author": "demileaf",
+  "contents": "Hey Slayers, we've got a quick beta branch hotfix for you today! There won't be a big beta patch this week, but you can expect the beta content, changes, and fixes to come to the main branch soon.\n\n[b]BUG FIXES:[/b]\n\n[b]General:[/b]\n[list]\n[*]Fixed occasional crash when upgrading a card at rest site\n[*]Fixed crash that would sometimes occur when entering rooms\n[list]\n[*]When transitioning between rooms, old assets were being freed immediately while the game was still rendering them on screen. This caused rare crashes to desktop, most often when entering events, shops, or campsites. The fix defers the actual freeing to the end of the frame, after rendering is complete.\n[/list]\n[*]Fixed an issue with the Game Over screen after discovering multiple enemies while playing in Polish\n[*]Fixed rare combat errors that could occur when re-entering combat\n[*]Fixed softlock on run histories from older versions of the game\n[*][b]Not Yet[/b] card can no longer be generated in combat by effects like Skill Potion\n[*]Score is now correct when at Ascension 10\n[/list]\n[b]Multiplayer:[/b]\n[list]\n[*][b]Colorful Philosophers[/b] event can no longer be encountered if a player has only Ironclad unlocked\n[*]Fixed curse mismatching when some players would take [b]Neow's Bones[/b] relic\n[*]Fixed state divergence when [b]Neow's Bones[/b] relic would trigger multiple reward screens\n[*]Fixed not being able to load into a Daily multiplayer run\n[/list]",
+  "feedlabel": "Community Announcements",
+  "feedname": "steam_community_announcements",
+  "feed_type": 1,
+  "tags": [
+    "patchnotes"
+  ],
+  "date": 1776311557,
+  "appid": 2868840
+}

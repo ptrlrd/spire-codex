@@ -1,0 +1,170 @@
+[
+  {
+    "id": "BLOCK",
+    "name": "Block",
+    "description": "Until next turn, prevents damage.",
+    "category": "combat"
+  },
+  {
+    "id": "CARD_REWARD",
+    "name": "Card Reward",
+    "description": "A pack of [blue]3[/blue] random cards. You may choose [blue]1[/blue] to add to your [gold]Deck[/gold].",
+    "category": "progression"
+  },
+  {
+    "id": "CHANNELING",
+    "name": "Channel",
+    "description": "Channeling an Orb puts it into your first empty slot. If you have no empty slots, your first Orb is automatically [gold]Evoked[/gold] to make room.",
+    "category": "combat"
+  },
+  {
+    "id": "COOK",
+    "name": "Cook",
+    "description": "[gold]Remove[/gold] [blue]2[/blue] cards from your [gold]Deck[/gold] and gain [green]9[/green] Max HP at a [gold]Rest Site[/gold].",
+    "category": "mechanics"
+  },
+  {
+    "id": "DECK",
+    "name": "Deck",
+    "description": "View all of the cards in your deck.",
+    "category": "zones"
+  },
+  {
+    "id": "DISCARD_PILE",
+    "name": "Discard Pile",
+    "description": "If your draw pile is empty, the discard pile is shuffled into the draw pile.\n\nClick to view the cards in your discard pile.",
+    "category": "zones"
+  },
+  {
+    "id": "DRAW_PILE",
+    "name": "Draw Pile",
+    "description": "At the start of each turn,\n[blue]5[/blue] cards are drawn from here.\n\nClick to view the cards in your draw pile (shuffled).",
+    "category": "zones"
+  },
+  {
+    "id": "ENERGY",
+    "name": "Energy",
+    "description": "Energy is used to play cards from your [gold]Hand[/gold].",
+    "category": "combat"
+  },
+  {
+    "id": "EVOKE",
+    "name": "Evoke",
+    "description": "Consume your rightmost Orb and use its Evoke effect.",
+    "category": "combat"
+  },
+  {
+    "id": "EXHAUST_PILE",
+    "name": "Exhausted Cards",
+    "description": "Click to view cards Exhausted this combat.",
+    "category": "zones"
+  },
+  {
+    "id": "FATAL",
+    "name": "Fatal",
+    "description": "Triggers whenever this card kills a non-minion enemy.",
+    "category": "combat"
+  },
+  {
+    "id": "FORGE",
+    "name": "Forge",
+    "description": "The first time you [gold]Forge[/gold] each combat, add [gold]Sovereign Blade[/gold] to your [gold]Hand[/gold]. Adds additional damage to [gold]Sovereign Blade[/gold].",
+    "category": "mechanics"
+  },
+  {
+    "id": "HIT_POINTS",
+    "name": "Hit Points",
+    "description": "If you run out of HP, you die.",
+    "category": "progression"
+  },
+  {
+    "id": "LINKED_REWARDS",
+    "name": "Linked Rewards",
+    "description": "You can only select [blue]1[/blue] reward from this set.",
+    "category": "progression"
+  },
+  {
+    "id": "MONEY_POUCH",
+    "name": "Gold",
+    "description": "How much Gold you have. Gold is the currency within the Spire.",
+    "category": "progression"
+  },
+  {
+    "id": "POTION_SLOT",
+    "name": "Potion Slot",
+    "description": "Use potions during combat to gain [green]bonuses[/green] or [red]hinder[/red] enemies.",
+    "category": "progression"
+  },
+  {
+    "id": "REPLAY",
+    "name": "Replay",
+    "description": "Plays this card an additional time.",
+    "category": "mechanics"
+  },
+  {
+    "id": "ROOM_ANCIENT",
+    "name": "Ancient",
+    "description": "(PLACEHOLDER) Ancient",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_BOSS",
+    "name": "Boss",
+    "description": "The deadliest foe in the area.\n\nDefeating them will let you proceed to the next Act.",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_ELITE",
+    "name": "Elite",
+    "description": "Powerful foes are in these rooms.\n\nDefeating them will reward you a [gold]Relic[/gold].",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_ENEMY",
+    "name": "Enemy",
+    "description": "Hostile enemies reside in these rooms.",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_EVENT",
+    "name": "Event",
+    "description": "Something unusual occurs in these rooms...",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_MERCHANT",
+    "name": "Shop",
+    "description": "The mysterious Merchant sells his wares in these rooms.\n\nSpend your well-earned [gold]Gold[/gold] here!",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_REST",
+    "name": "Rest Site",
+    "description": "Stop by these rooms to [green]Heal[/green] some HP or [gold]Upgrade[/gold] a card.",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_TREASURE",
+    "name": "Treasure Room",
+    "description": "[gold]Relics[/gold] and [gold]Gold[/gold] can be found in these coveted rooms.",
+    "category": "rooms"
+  },
+  {
+    "id": "STUN",
+    "name": "Stun",
+    "description": "Prevent the enemy from acting on its next turn.",
+    "category": "combat"
+  },
+  {
+    "id": "SUMMON",
+    "name": "Summon",
+    "description": "Summon [gold]Osty[/gold].\nIf already summoned, raise his Max HP for this combat.",
+    "category": "mechanics"
+  },
+  {
+    "id": "TRANSFORM",
+    "name": "Transform",
+    "description": "Transformed cards become a random card of any rarity.",
+    "category": "mechanics"
+  }
+]

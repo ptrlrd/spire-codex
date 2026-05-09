@@ -1,0 +1,66 @@
+{
+  "card_types": {
+    "Attack": "Attack",
+    "Skill": "Skill",
+    "Power": "Power",
+    "Status": "Status",
+    "Curse": "Curse",
+    "Quest": "Quest"
+  },
+  "card_rarities": {
+    "Basic": "Basic",
+    "Common": "Common",
+    "Uncommon": "Uncommon",
+    "Rare": "Rare",
+    "Ancient": "Ancient",
+    "Event": "Event",
+    "Token": "Token",
+    "Status": "Status",
+    "Curse": "Curse",
+    "Quest": "Quest"
+  },
+  "relic_rarities": {
+    "Starter": "Starter",
+    "Common": "Common",
+    "Uncommon": "Uncommon",
+    "Rare": "Rare",
+    "Ancient": "Ancient",
+    "Event": "Event",
+    "Shop": "Shop"
+  },
+  "potion_rarities": {
+    "Common": "Common",
+    "Uncommon": "Uncommon",
+    "Rare": "Rare",
+    "Event": "Event",
+    "Token": "Token"
+  },
+  "keywords": {},
+  "sections": {
+    "cards": "Cards",
+    "characters": "Characters",
+    "relics": "Relics",
+    "monsters": "Monsters",
+    "potions": "Potions",
+    "enchantments": "Enchantments",
+    "encounters": "Encounters",
+    "events": "Events",
+    "powers": "Powers",
+    "timeline": "Timeline",
+    "images": "Images",
+    "reference": "Reference"
+  },
+  "section_descs": {
+    "cards": "",
+    "relics": "",
+    "monsters": "",
+    "potions": ""
+  },
+  "character_names": {
+    "ironclad": "Ironclad",
+    "silent": "Silent",
+    "defect": "Defect",
+    "necrobinder": "Necrobinder",
+    "regent": "Regent"
+  }
+}

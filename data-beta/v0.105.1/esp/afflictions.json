@@ -1,0 +1,44 @@
+[
+  {
+    "id": "BOUND",
+    "name": "Vínculo",
+    "description": "Solo puedes jugar [blue]1[/blue] carta con [gold]Vínculo[/gold] en cada turno. [gold]Vínculo[/gold] desaparece de las cartas al final del turno.",
+    "extra_card_text": "Vínculo",
+    "is_stackable": false
+  },
+  {
+    "id": "ENTANGLED",
+    "name": "Enredo",
+    "description": "Cuesta un punto adicional de [energy:1].",
+    "extra_card_text": "Enredo",
+    "is_stackable": false
+  },
+  {
+    "id": "GALVANIZED",
+    "name": "Galvanismo",
+    "description": "Recibes [blue]X[/blue] de daño cuando juegas esta carta.",
+    "extra_card_text": "Recibes X de daño.",
+    "is_stackable": true
+  },
+  {
+    "id": "HEXED",
+    "name": "Maleficio",
+    "description": "Agrega [gold]Evanescencia[/gold] a esta carta.",
+    "extra_card_text": null,
+    "is_stackable": false
+  },
+  {
+    "id": "RINGING",
+    "name": "Vibración",
+    "description": "Solo puedes jugar [blue]1[/blue] carta durante este turno.",
+    "extra_card_text": "Vibración",
+    "is_stackable": false
+  },
+  {
+    "id": "SMOG",
+    "name": "Contaminación",
+    "description": "No puedes jugar [gold]habilidades[/gold] extra en este turno. El efecto desaparece al final del turno.",
+    "extra_card_text": null,
+    "is_stackable": false
+  }
+]
