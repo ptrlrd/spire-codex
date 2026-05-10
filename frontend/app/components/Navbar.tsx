@@ -75,14 +75,14 @@ const NAV_GROUPS: NavGroup[] = [
     links: [
       { href: "/showcase", label: "Showcase" },
       { href: "/knowledge-demon", label: "Knowledge Demon" },
+      { href: "/developers", label: "Developers" },
+      { href: `${API_BASE}/docs`, label: "API" },
     ],
   },
   {
     label: "About",
     links: [
       { href: "/about", label: "Spire Codex" },
-      { href: "/developers", label: "Developers" },
-      { href: `${API_BASE}/docs`, label: "API" },
       { href: "/changelog", label: "Changelog" },
       { href: "/thank-you", label: "Thank You" },
       { href: "https://ko-fi.com/yitsy", label: "Ko-fi" },
