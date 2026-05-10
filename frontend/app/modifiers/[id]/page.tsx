@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     if (!res.ok) return { title: "Modifier Not Found - Spire Codex" };
     const modifier = await res.json();
     const desc = stripTags(modifier.description || "");
-    const title = `Slay the Spire 2 Modifier - ${modifier.name} | Spire Codex`;
+    const title = `Slay the Spire 2 (STS2) Modifier - ${modifier.name} | Spire Codex`;
     const metaDesc = `${modifier.name} is a run modifier in Slay the Spire 2: ${desc}`;
     return {
       title,

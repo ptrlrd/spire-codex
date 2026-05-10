@@ -31,7 +31,7 @@ export default async function RelicsPage() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <JsonLd data={jsonLd} />
       <h1 className="text-3xl font-bold mb-2">
-        <span className="text-[var(--accent-gold)]">Slay the Spire 2 Relics</span>
+        <span className="text-[var(--accent-gold)]">Slay the Spire 2 (STS2) Relics</span>
       </h1>
       <p className="text-sm text-[var(--text-muted)] mb-6">
         Browse every relic across Ironclad, Silent, Defect, Necrobinder, and Regent. Filter by rarity and character pool.

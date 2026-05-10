@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const desc = stripTags(data.description);
 
   if (type === "keyword") {
-    const title = `Slay the Spire 2 Keyword - ${data.name} | Spire Codex`;
+    const title = `Slay the Spire 2 (STS2) Keyword - ${data.name} | Spire Codex`;
     const metaDesc = `${data.name} is a card keyword in Slay the Spire 2: ${desc}`;
     return {
       title,
@@ -47,7 +47,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
   }
 
-  const title = `Slay the Spire 2 Term - ${data.name} | Spire Codex`;
+  const title = `Slay the Spire 2 (STS2) Term - ${data.name} | Spire Codex`;
   const metaDesc = `${data.name} is a game term in Slay the Spire 2: ${desc}`;
   return {
     title,

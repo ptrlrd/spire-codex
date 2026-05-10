@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const monster = await res.json();
     const hpText = monster.min_hp ? `${monster.min_hp}${monster.max_hp && monster.max_hp !== monster.min_hp ? `\u2013${monster.max_hp}` : ""} HP` : "";
     const desc = `${monster.type} monster${hpText ? ` \u00b7 ${hpText}` : ""}`;
-    const title = `Slay the Spire 2 Monster - ${monster.name} - ${monster.type} | Spire Codex`;
+    const title = `Slay the Spire 2 (STS2) Monster - ${monster.name} - ${monster.type} | Spire Codex`;
     const metaDesc = `${monster.name} is a ${monster.type} monster in Slay the Spire 2. ${hpText ? `${hpText}.` : ""} ${monster.moves ? `${monster.moves.length} moves.` : ""}`;
     return {
       title,

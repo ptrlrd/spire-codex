@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Slay the Spire 2 Keywords - All Card Keywords | Spire Codex",
+  title: "Slay the Spire 2 (STS2) Keywords - All Card Keywords | Spire Codex",
   description:
-    "Browse all card keywords in Slay the Spire 2 (StS2) — Exhaust, Ethereal, Innate, Retain, Sly, Eternal, and more. See every card with each keyword.",
+    "Browse all card keywords in Slay the Spire 2 (STS2) — Exhaust, Ethereal, Innate, Retain, Sly, Eternal, and more. See every card with each keyword.",
   openGraph: {
-    title: "Slay the Spire 2 Keywords - All Card Keywords | Spire Codex",
+    title: "Slay the Spire 2 (STS2) Keywords - All Card Keywords | Spire Codex",
     description:
-      "Browse all card keywords in Slay the Spire 2 (StS2) — Exhaust, Ethereal, Innate, Retain, Sly, Eternal, and more.",
+      "Browse all card keywords in Slay the Spire 2 (STS2) — Exhaust, Ethereal, Innate, Retain, Sly, Eternal, and more.",
   },
   alternates: { canonical: "/keywords" },
 };

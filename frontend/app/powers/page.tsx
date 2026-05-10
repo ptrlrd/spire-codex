@@ -30,7 +30,7 @@ export default async function PowersPage() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <JsonLd data={jsonLd} />
       <h1 className="text-3xl font-bold mb-2">
-        <span className="text-[var(--accent-gold)]">Slay the Spire 2 Powers</span>
+        <span className="text-[var(--accent-gold)]">Slay the Spire 2 (STS2) Powers</span>
       </h1>
       <p className="text-sm text-[var(--text-muted)] mb-6">
         Browse every power in Slay the Spire 2 — buffs, debuffs, and neutral effects. Filter by type and stack behavior.

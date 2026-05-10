@@ -18,14 +18,14 @@ export const revalidate = 1800;
 // format used across the rest of the site (see /changelog, /cards, /relics, etc.).
 // The visible page tagline below is separate marketing copy.
 export const metadata: Metadata = {
-  title: `Slay the Spire 2 News - Patch Notes & Announcements | ${SITE_NAME}`,
+  title: `Slay the Spire 2 (STS2) News - Patch Notes & Announcements | ${SITE_NAME}`,
   description:
-    "Slay the Spire 2 (StS2) patch notes, dev announcements, and press coverage. Track every Mega Crit update plus external articles from PCGamesN, RPS, and more.",
+    "Slay the Spire 2 (STS2) patch notes, dev announcements, and press coverage. Track every Mega Crit update plus external articles from PCGamesN, RPS, and more.",
   alternates: { canonical: `${SITE_URL}/news` },
   openGraph: {
-    title: `Slay the Spire 2 News - Patch Notes & Announcements | ${SITE_NAME}`,
+    title: `Slay the Spire 2 (STS2) News - Patch Notes & Announcements | ${SITE_NAME}`,
     description:
-      "Slay the Spire 2 (StS2) patch notes, dev announcements, and press coverage. Track every Mega Crit update plus external articles from PCGamesN, RPS, and more.",
+      "Slay the Spire 2 (STS2) patch notes, dev announcements, and press coverage. Track every Mega Crit update plus external articles from PCGamesN, RPS, and more.",
     url: `${SITE_URL}/news`,
     siteName: SITE_NAME,
     type: "website",

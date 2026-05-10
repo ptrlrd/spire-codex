@@ -10,11 +10,11 @@ export async function generateMetadata(): Promise<Metadata> {
     // Fall back to the baseline count if the API is unreachable at build time.
   }
   return {
-    title: "Slay the Spire 2 Events - All In-Game Events | Spire Codex",
-    description: `Slay the Spire 2 (StS2) events — browse all ${count} shrine events, Ancient encounters, and story events. View choices, dialogue, relic offerings, and outcomes for every event.`,
+    title: "Slay the Spire 2 (STS2) Events - All In-Game Events | Spire Codex",
+    description: `Slay the Spire 2 (STS2) events — browse all ${count} shrine events, Ancient encounters, and story events. View choices, dialogue, relic offerings, and outcomes for every event.`,
     openGraph: {
-      title: "Slay the Spire 2 Events - All In-Game Events | Spire Codex",
-      description: `Slay the Spire 2 (StS2) events — browse all ${count} shrine events, Ancient encounters, and story events with choices, dialogue, and outcomes.`,
+      title: "Slay the Spire 2 (STS2) Events - All In-Game Events | Spire Codex",
+      description: `Slay the Spire 2 (STS2) events — browse all ${count} shrine events, Ancient encounters, and story events with choices, dialogue, and outcomes.`,
     },
     alternates: { canonical: "/events" },
   };

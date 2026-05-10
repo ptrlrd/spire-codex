@@ -46,14 +46,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const nameA = CHAR_NAMES[parsed.a];
   const nameB = CHAR_NAMES[parsed.b];
-  const title = `Slay the Spire 2 ${nameA} vs ${nameB} - Character Comparison | Spire Codex`;
+  const title = `Slay the Spire 2 (STS2) ${nameA} vs ${nameB} - Character Comparison | Spire Codex`;
   const description = `Compare ${nameA} and ${nameB} in Slay the Spire 2. Side-by-side stats, card pool breakdowns by type and rarity, keyword distributions, and starting decks.`;
 
   return {
     title,
     description,
     openGraph: {
-      title: `Slay the Spire 2 ${nameA} vs ${nameB} - Character Comparison | Spire Codex`,
+      title: `Slay the Spire 2 (STS2) ${nameA} vs ${nameB} - Character Comparison | Spire Codex`,
       description,
     },
     twitter: { card: "summary_large_image" },

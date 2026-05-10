@@ -32,7 +32,7 @@ export default async function GuidesPage() {
       <JsonLd data={jsonLd} />
       <div className="flex items-start justify-between mb-2">
         <h1 className="text-3xl font-bold">
-          <span className="text-[var(--accent-gold)]">Slay the Spire 2 Guides</span>
+          <span className="text-[var(--accent-gold)]">Slay the Spire 2 (STS2) Guides</span>
         </h1>
         <Link
           href="/guides/submit"

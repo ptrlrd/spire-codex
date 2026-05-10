@@ -62,7 +62,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const desc = stripTags(badge.description);
   const subtype = badge.tiered ? "Tiered" : "Badge";
-  const title = `Slay the Spire 2 Badge - ${badge.name} - ${subtype} | Spire Codex`;
+  const title = `Slay the Spire 2 (STS2) Badge - ${badge.name} - ${subtype} | Spire Codex`;
   const metaDesc = `${badge.name} run-end badge in Slay the Spire 2: ${desc}`;
   return {
     title,

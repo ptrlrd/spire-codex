@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     if (!res.ok) return { title: "Potion Not Found - Spire Codex" };
     const potion = await res.json();
     const desc = stripTags(potion.description || "");
-    const title = `Slay the Spire 2 Potion - ${potion.name} - ${potion.rarity} | Spire Codex`;
+    const title = `Slay the Spire 2 (STS2) Potion - ${potion.name} - ${potion.rarity} | Spire Codex`;
     const metaDesc = `${potion.name} is a ${potion.rarity} potion in Slay the Spire 2: ${desc}`;
     return {
       title,

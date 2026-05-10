@@ -121,7 +121,7 @@ export default async function MerchantPage() {
   const jsonLd = [
     ...buildDetailPageJsonLd({
       name: "Merchant Guide",
-      description: "Complete Slay the Spire 2 (StS2) merchant price guide with card, relic, and potion costs, card removal pricing, and Fake Merchant relic details.",
+      description: "Complete Slay the Spire 2 (STS2) merchant price guide with card, relic, and potion costs, card removal pricing, and Fake Merchant relic details.",
       path: "/merchant",
       category: "Guide",
       breadcrumbs: [

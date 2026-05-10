@@ -23,14 +23,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return { title: "Not Found - Spire Codex" };
   }
 
-  const title = `Slay the Spire 2 ${entry.label} - Browse Cards | Spire Codex`;
+  const title = `Slay the Spire 2 (STS2) ${entry.label} - Browse Cards | Spire Codex`;
   const description = entry.description;
 
   return {
     title,
     description,
     openGraph: {
-      title: `Slay the Spire 2 ${entry.label} | Spire Codex`,
+      title: `Slay the Spire 2 (STS2) ${entry.label} | Spire Codex`,
       description,
     },
     twitter: { card: "summary_large_image" },

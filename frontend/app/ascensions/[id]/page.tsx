@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     if (!res.ok) return { title: "Ascension Not Found - Spire Codex" };
     const asc = await res.json();
     const desc = stripTags(asc.description);
-    const title = `Slay the Spire 2 Ascension - Level ${asc.level} - ${asc.name} | Spire Codex`;
+    const title = `Slay the Spire 2 (STS2) Ascension - Level ${asc.level} - ${asc.name} | Spire Codex`;
     const metaDesc = `Ascension ${asc.level} (${asc.name}) in Slay the Spire 2: ${desc}`;
     return {
       title,
