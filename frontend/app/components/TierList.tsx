@@ -1,6 +1,12 @@
 import Link from "next/link";
 
-const API_PUBLIC = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+// Use ?? not || — production sets NEXT_PUBLIC_API_URL="" intentionally
+// so URLs resolve same-origin (nginx proxies /static to the backend
+// container). With ||, the empty string is falsy and the fallback
+// triggers, baking "http://localhost:8000" into every <img src> the
+// server renders. ?? only triggers on null/undefined, so the empty
+// string passes through and image URLs become relative ("/static/…").
+const API_PUBLIC = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
 export interface TierEntity {
   id: string;
