@@ -98,13 +98,17 @@ export default function LanguageSelector() {
       <button
         ref={buttonRef}
         onClick={() => setOpen(!open)}
-        className="inline-flex items-center gap-1.5 h-9 px-3 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] text-sm text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:border-[var(--border-accent)] transition-colors"
-        aria-label="Select language"
+        // Mobile (< sm): icon-only square so it doesn't crowd the right
+        // cluster next to the burger. sm+: shows the 2-letter code
+        // (EN / JP / DE) alongside the globe so the active language is
+        // visible without opening the menu.
+        className="inline-flex items-center gap-0 sm:gap-1.5 h-9 w-9 sm:w-auto sm:px-3 justify-center rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] text-sm text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:border-[var(--border-accent)] transition-colors"
+        aria-label={`Select language (current: ${CODE_TO_SHORT[lang] || "EN"})`}
       >
         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
         </svg>
-        <span className="text-xs font-medium">{CODE_TO_SHORT[lang] || "EN"}</span>
+        <span className="hidden sm:inline text-xs font-medium">{CODE_TO_SHORT[lang] || "EN"}</span>
       </button>
 
       {open && (
