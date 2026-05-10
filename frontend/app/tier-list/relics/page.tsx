@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { SITE_URL, SITE_NAME } from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
-import { buildBreadcrumbJsonLd } from "@/lib/jsonld";
+import { buildBreadcrumbJsonLd, buildCollectionPageJsonLd } from "@/lib/jsonld";
 import TierList, { type TierEntity } from "@/app/components/TierList";
 
 const API_INTERNAL = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
@@ -39,10 +39,10 @@ export async function generateMetadata({ searchParams }: PageProps): Promise<Met
   const pool = sp.pool?.toLowerCase();
   const poolLabel = POOL_FILTERS.find((p) => p.value === pool)?.label;
   const scope = poolLabel && pool ? `${poolLabel} Relic` : "Relic";
-  const title = `Slay the Spire 2 ${scope} Tier List - Ranked S to F | ${SITE_NAME}`;
+  const title = `STS2 ${scope} Tier List - Slay the Spire 2 Relics Ranked | ${SITE_NAME}`;
   const description = pool
-    ? `${poolLabel} relic tier list for Slay the Spire 2. Every relic in the ${pool} pool ranked S through F by community win rate.`
-    : "Every Slay the Spire 2 relic ranked S through F. Codex Score from community-submitted run win rates with Bayesian shrinkage.";
+    ? `${poolLabel} relic tier list for Slay the Spire 2 (STS2). Every relic in the ${pool} pool ranked S through F by community win rate.`
+    : "Every Slay the Spire 2 (STS2) relic ranked S through F. Codex Score from community-submitted run win rates with Bayesian shrinkage.";
   const path = `/tier-list/relics${pool ? `?pool=${pool}` : ""}`;
   return {
     title,
@@ -82,13 +82,31 @@ export default async function RelicsTierListPage({ searchParams }: PageProps) {
 
   const poolLabel = POOL_FILTERS.find((p) => p.value === pool)?.label;
   const heading = poolLabel && pool ? `${poolLabel} Relic Tier List` : "Relic Tier List";
+  const path = `/tier-list/relics${pool ? `?pool=${pool}` : ""}`;
+
+  // Top-30 by score for ItemList JSON-LD — gives Google a structured
+  // ranked list it can render as carousel-style rich results.
+  const rankedItems = [...entities]
+    .filter((e) => e.score != null)
+    .sort((a, b) => (b.score ?? 0) - (a.score ?? 0))
+    .slice(0, 30)
+    .map((e) => ({
+      name: e.name,
+      path: `/relics/${e.id.toLowerCase()}`,
+    }));
 
   const jsonLd = [
     buildBreadcrumbJsonLd([
       { name: "Home", href: "/" },
       { name: "Tier List", href: "/tier-list" },
-      { name: heading, href: `/tier-list/relics${pool ? `?pool=${pool}` : ""}` },
+      { name: heading, href: path },
     ]),
+    buildCollectionPageJsonLd({
+      name: heading,
+      description: `Slay the Spire 2 (STS2) ${heading.toLowerCase()} ranked by Codex Score from community-submitted run win rates.`,
+      path,
+      items: rankedItems,
+    }),
   ];
 
   return (
