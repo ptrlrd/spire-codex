@@ -100,6 +100,13 @@ export default function EntityRunStats({ entityType, entityId, entityName }: Pro
             </div>
             <div>
               {stats.win_rate}% win rate vs {stats.baseline_win_rate}% baseline
+              {" · "}
+              <Link
+                href="/leaderboards/scoring"
+                className="text-[var(--accent-gold)]/80 hover:text-[var(--accent-gold)] hover:underline"
+              >
+                how is this calculated?
+              </Link>
             </div>
           </div>
         </div>
