@@ -165,7 +165,7 @@ export default function CardsClient({ initialCards }: { initialCards: Card[] }) 
         ]}
       />
 
-      <CardGrid cards={sortedCards} scores={scores} />
+      <CardGrid cards={sortedCards} />
     </>
   );
 }
