@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { cachedFetch } from "@/lib/fetch-cache";
+import ScoreBadge from "@/app/components/ScoreBadge";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -21,6 +22,8 @@ interface EntityStats {
   win_rate: number;
   pick_rate: number;
   total_runs: number;
+  baseline_win_rate: number;
+  score: number | null;
   by_character: CharacterRow[];
   last_submitted_at: string | null;
   last_run_hash: string | null;
@@ -84,6 +87,24 @@ export default function EntityRunStats({ entityType, entityId, entityName }: Pro
 
   return (
     <div className="space-y-5">
+      {/* Codex Score hero — single 0-100 badge that summarizes the
+          entity's community-meta strength. Bayesian-shrunk so low-N
+          entities sit near neutral instead of saturating S/F tiers.
+          See `_compute_score` in run_entity_stats.py for the formula. */}
+      {stats.score != null && (
+        <div className="flex items-center gap-3 pb-4 border-b border-[var(--border-subtle)]">
+          <ScoreBadge score={stats.score} size="lg" showNumber />
+          <div className="text-xs text-[var(--text-muted)] leading-snug">
+            <div className="text-[var(--text-secondary)] font-semibold mb-0.5">
+              Codex Score
+            </div>
+            <div>
+              {stats.win_rate}% win rate vs {stats.baseline_win_rate}% baseline
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Prose summary — also serves as crawlable SEO body content. */}
       <p className="text-sm leading-relaxed text-[var(--text-secondary)]">
         {empty ? (

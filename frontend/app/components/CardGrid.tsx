@@ -6,6 +6,7 @@ import type { Card } from "@/lib/api";
 import { getCardDisplayModel } from "@/lib/card-display";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
 import RichDescription from "./RichDescription";
+import ScoreBadge from "./ScoreBadge";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -49,7 +50,7 @@ function renderDescription(card: Card, text: string): React.ReactNode {
   return <RichDescription text={normalizedText} energyIcon={energyIcon} />;
 }
 
-function CardItem({ card }: { card: Card }) {
+function CardItem({ card, score }: { card: Card; score?: number | null }) {
   const lp = useLangPrefix();
   const [upgraded, setUpgraded] = useState(false);
   const [betaArt, setBetaArt] = useState(false);
@@ -88,6 +89,7 @@ function CardItem({ card }: { card: Card }) {
           {card.name}{isUpgraded && <span className="text-emerald-400">+</span>}
         </h3>
         <div className="ml-2 flex-shrink-0 flex items-center gap-1">
+          <ScoreBadge score={score} size="sm" />
           <span className={`inline-flex items-center justify-center w-7 h-7 rounded-full bg-[var(--bg-primary)] border text-sm font-bold ${
             isUpgraded && display.upgrade?.cost != null ? "border-emerald-700/50 text-emerald-400" : "border-[var(--border-subtle)] text-[var(--accent-gold)]"
           }`}>
@@ -163,11 +165,22 @@ function CardItem({ card }: { card: Card }) {
   );
 }
 
-export default function CardGrid({ cards }: { cards: Card[] }) {
+export default function CardGrid({
+  cards,
+  scores,
+}: {
+  cards: Card[];
+  /** Optional: map of upper-cased card ID → Codex Score. */
+  scores?: Record<string, { score: number | null }>;
+}) {
   return (
     <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4">
       {cards.map((card) => (
-        <CardItem key={card.id} card={card} />
+        <CardItem
+          key={card.id}
+          card={card}
+          score={scores?.[card.id.toUpperCase()]?.score}
+        />
       ))}
     </div>
   );

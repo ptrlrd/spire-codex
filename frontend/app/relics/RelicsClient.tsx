@@ -9,6 +9,8 @@ import SearchFilter from "../components/SearchFilter";
 import RichDescription from "../components/RichDescription";
 import { useLanguage } from "../contexts/LanguageContext";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
+import { useEntityScores } from "@/lib/use-entity-scores";
+import ScoreBadge from "@/app/components/ScoreBadge";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -42,6 +44,7 @@ const poolOptions = [
 ];
 
 const sortOptions = [
+  { label: "Top tier", value: "score" },
   { label: "A → Z", value: "az" },
   { label: "Z → A", value: "za" },
   { label: "Compendium", value: "compendium" },
@@ -92,13 +95,25 @@ export default function RelicsClient({ initialRelics }: { initialRelics: Relic[]
       .then(setRelics);
   }, [rarity, pool, search, lang]);
 
+  const scores = useEntityScores("relics");
+
   const sortedRelics = useMemo(() => {
     const sorted = [...relics];
     if (sort === "az") sorted.sort((a, b) => a.name.localeCompare(b.name));
     else if (sort === "za") sorted.sort((a, b) => b.name.localeCompare(a.name));
     else if (sort === "compendium") sorted.sort((a, b) => a.compendium_order - b.compendium_order);
+    else if (sort === "score") {
+      // Score-sort: scored entities desc, unscored sink to bottom in
+      // compendium order so the list stays stable as new runs land.
+      sorted.sort((a, b) => {
+        const sa = scores[a.id.toUpperCase()]?.score ?? -1;
+        const sb = scores[b.id.toUpperCase()]?.score ?? -1;
+        if (sb !== sa) return sb - sa;
+        return a.compendium_order - b.compendium_order;
+      });
+    }
     return sorted;
-  }, [relics, sort]);
+  }, [relics, sort, scores]);
 
   return (
     <>
@@ -148,10 +163,11 @@ export default function RelicsClient({ initialRelics }: { initialRelics: Relic[]
                   />
                 )}
                 <div className="flex-1 min-w-0">
-                  <div className="flex items-start justify-between mb-2">
+                  <div className="flex items-start justify-between gap-2 mb-2">
                     <h3 className="font-semibold text-[var(--text-primary)] leading-tight">
                       {relic.name}
                     </h3>
+                    <ScoreBadge score={scores[relic.id.toUpperCase()]?.score} size="sm" />
                   </div>
                   <div className="flex items-center gap-2 mb-3 text-xs">
                     <span className={style.split(" ").slice(1).join(" ")}>

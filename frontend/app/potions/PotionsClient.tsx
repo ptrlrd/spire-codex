@@ -9,6 +9,8 @@ import SearchFilter from "../components/SearchFilter";
 import RichDescription from "../components/RichDescription";
 import { useLanguage } from "../contexts/LanguageContext";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
+import { useEntityScores } from "@/lib/use-entity-scores";
+import ScoreBadge from "@/app/components/ScoreBadge";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -35,6 +37,7 @@ const poolOptions = [
 ];
 
 const sortOptions = [
+  { label: "Top tier", value: "score" },
   { label: "A → Z", value: "az" },
   { label: "Z → A", value: "za" },
   { label: "Compendium", value: "compendium" },
@@ -87,13 +90,23 @@ export default function PotionsClient({ initialPotions }: { initialPotions: Poti
       .finally(() => setLoading(false));
   }, [rarity, search, pool, lang]);
 
+  const scores = useEntityScores("potions");
+
   const sortedPotions = useMemo(() => {
     const sorted = [...potions];
     if (sort === "az") sorted.sort((a, b) => a.name.localeCompare(b.name));
     else if (sort === "za") sorted.sort((a, b) => b.name.localeCompare(a.name));
     else if (sort === "compendium") sorted.sort((a, b) => a.compendium_order - b.compendium_order);
+    else if (sort === "score") {
+      sorted.sort((a, b) => {
+        const sa = scores[a.id.toUpperCase()]?.score ?? -1;
+        const sb = scores[b.id.toUpperCase()]?.score ?? -1;
+        if (sb !== sa) return sb - sa;
+        return a.compendium_order - b.compendium_order;
+      });
+    }
     return sorted;
-  }, [potions, sort]);
+  }, [potions, sort, scores]);
 
   return (
     <>
@@ -148,10 +161,11 @@ export default function PotionsClient({ initialPotions }: { initialPotions: Poti
                     />
                   )}
                   <div className="flex-1 min-w-0">
-                    <div className="flex items-start justify-between mb-2">
+                    <div className="flex items-start justify-between gap-2 mb-2">
                       <h3 className="font-semibold text-[var(--text-primary)] leading-tight">
                         {potion.name}
                       </h3>
+                      <ScoreBadge score={scores[potion.id.toUpperCase()]?.score} size="sm" />
                     </div>
                     <span
                       className={`text-xs ${style.split(" ").slice(1).join(" ")} mb-3 inline-block`}
