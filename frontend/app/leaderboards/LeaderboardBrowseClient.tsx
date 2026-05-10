@@ -221,11 +221,18 @@ export default function LeaderboardBrowseClient() {
       {/* Leaderboard tabs content */}
       {isLeaderboard && (
         <>
-          {/* Character filter toggle buttons */}
+          {/* Character filter toggle buttons.
+              Mobile (<sm): icon-only square chips so 5 characters + "All"
+              fit one row even on a 360px viewport. The localized name
+              ("Sentinelle de fer" etc.) was the worst offender — French/
+              German/Polish characters spilled the row to two lines on
+              every phone breakpoint. Tooltip + aria-label preserve the
+              name semantics for screen readers. sm+ shows name as before. */}
           <div className="flex flex-wrap gap-2 mb-4">
             <button
               onClick={() => setLbChar("")}
-              className={`text-sm px-3 py-1.5 rounded-lg border transition-colors ${
+              aria-label={t("All", lang)}
+              className={`text-sm h-9 sm:h-auto sm:px-3 sm:py-1.5 px-3 rounded-lg border transition-colors ${
                 lbChar === ""
                   ? "bg-[var(--accent-gold)] text-[var(--bg-primary)] border-[var(--accent-gold)]"
                   : "bg-[var(--bg-primary)] border-[var(--border-subtle)] text-[var(--text-muted)] hover:text-[var(--text-primary)]"
@@ -237,7 +244,9 @@ export default function LeaderboardBrowseClient() {
               <button
                 key={ch}
                 onClick={() => setLbChar(ch.toUpperCase())}
-                className={`text-sm px-3 py-1.5 rounded-lg border transition-colors ${
+                title={charName(ch)}
+                aria-label={charName(ch)}
+                className={`flex items-center justify-center gap-1.5 h-9 sm:h-auto px-2 sm:px-3 sm:py-1.5 rounded-lg border transition-colors ${
                   lbChar === ch.toUpperCase()
                     ? "border-transparent text-[var(--bg-primary)]"
                     : "bg-[var(--bg-primary)] border-[var(--border-subtle)] text-[var(--text-muted)] hover:text-[var(--text-primary)]"
@@ -248,7 +257,15 @@ export default function LeaderboardBrowseClient() {
                     : undefined
                 }
               >
-                {charName(ch)}
+                <img
+                  src={`${API}/static/images/characters/char_select_${ch.toLowerCase()}.webp`}
+                  alt=""
+                  aria-hidden
+                  className="w-6 h-6 object-contain flex-shrink-0"
+                  loading="lazy"
+                  crossOrigin="anonymous"
+                />
+                <span className="hidden sm:inline text-sm">{charName(ch)}</span>
               </button>
             ))}
           </div>

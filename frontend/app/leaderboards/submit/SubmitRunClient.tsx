@@ -314,57 +314,83 @@ export default function SubmitRunClient() {
       </p>
 
       <div className="space-y-4">
-        {/* Username */}
+        {/* Username — full width on mobile, fixed-width on sm+ where the
+            sparse layout looked goofy with a 100% input. */}
         <input
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value.slice(0, 25))}
           placeholder={t("Username (optional)", lang)}
           maxLength={25}
-          className="px-3 py-2 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] text-sm focus:outline-none focus:border-[var(--accent-gold)] w-48"
+          className="px-3 py-2 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] text-sm focus:outline-none focus:border-[var(--accent-gold)] w-full sm:w-48"
         />
 
-        {/* File Upload with drag-and-drop */}
+        {/* File Upload with drag-and-drop. Mobile gets shorter padding
+            (p-4 instead of p-6) and the path-help is collapsed into a
+            <details> so the long save-game paths don't blow up the
+            viewport. Mobile also gets a touch-friendly button copy
+            since drag-and-drop is desktop-only. */}
         <div
           onDragEnter={handleDragEnter}
           onDragOver={handleDragOver}
           onDragLeave={handleDragLeave}
           onDrop={handleDrop}
-          className={`bg-[var(--bg-card)] rounded-xl p-6 text-center transition-colors ${
+          className={`bg-[var(--bg-card)] rounded-xl p-4 sm:p-6 text-center transition-colors ${
             isDragging
               ? "border-2 border-solid border-[var(--accent-gold)] bg-[var(--accent-gold)]/5"
               : "border border-dashed border-[var(--border-accent)]"
           }`}
         >
-          <p className="text-sm text-[var(--text-secondary)] mb-1">
+          <p className="text-sm text-[var(--text-secondary)] mb-3">
             {isDragging
               ? t("Drop files here...", lang)
-              : t("Drag & drop .run files here, or click to select", lang)}
+              : (
+                <>
+                  <span className="hidden sm:inline">{t("Drag & drop .run files here, or click to select", lang)}</span>
+                  <span className="sm:hidden">{t("Tap below to choose .run files", lang)}</span>
+                </>
+              )}
           </p>
-          <div className="text-left mb-3 space-y-1 text-xs text-[var(--text-muted)]">
-            <p>
-              <strong className="text-[var(--text-secondary)]">Windows:</strong>{" "}
-              <code className="bg-[var(--bg-primary)] px-1 rounded">
-                %AppData%/SlayTheSpire2/steam/&lt;steamid&gt;/profile1/saves/history
-              </code>
-            </p>
-            <p>
-              <strong className="text-[var(--text-secondary)]">macOS:</strong>{" "}
-              <code className="bg-[var(--bg-primary)] px-1 rounded">
-                ~/Library/Application
-                Support/SlayTheSpire2/steam/&lt;steamid&gt;/profile1/saves/history
-              </code>
-            </p>
-            <p>
-              <strong className="text-[var(--text-secondary)]">
-                Linux / Steam Deck:
-              </strong>{" "}
-              <code className="bg-[var(--bg-primary)] px-1 rounded">
-                ~/.local/share/SlayTheSpire2/steam/&lt;steamid&gt;/profile1/saves/history
-              </code>
-            </p>
-          </div>
-          <label className="inline-block px-5 py-2 rounded-lg text-sm font-medium bg-[var(--accent-gold)] text-[var(--bg-primary)] hover:opacity-90 transition-opacity cursor-pointer">
+
+          <details className="text-left mb-3 text-xs text-[var(--text-muted)] group">
+            <summary className="cursor-pointer text-[var(--text-secondary)] hover:text-[var(--text-primary)] inline-flex items-center gap-1 select-none">
+              <svg
+                aria-hidden
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                className="w-3.5 h-3.5 transition-transform -rotate-90 group-open:rotate-0"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 11.168l3.71-3.938a.75.75 0 1 1 1.08 1.04l-4.25 4.5a.75.75 0 0 1-1.08 0l-4.25-4.5a.75.75 0 0 1 .02-1.06z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              {t("Where are my run files?", lang)}
+            </summary>
+            <div className="mt-2 space-y-1.5">
+              <div>
+                <strong className="text-[var(--text-secondary)] block sm:inline">Windows</strong>
+                <code className="block sm:inline sm:ml-1 mt-0.5 sm:mt-0 bg-[var(--bg-primary)] px-1.5 py-0.5 rounded break-all">
+                  %AppData%/SlayTheSpire2/steam/&lt;steamid&gt;/profile1/saves/history
+                </code>
+              </div>
+              <div>
+                <strong className="text-[var(--text-secondary)] block sm:inline">macOS</strong>
+                <code className="block sm:inline sm:ml-1 mt-0.5 sm:mt-0 bg-[var(--bg-primary)] px-1.5 py-0.5 rounded break-all">
+                  ~/Library/Application Support/SlayTheSpire2/steam/&lt;steamid&gt;/profile1/saves/history
+                </code>
+              </div>
+              <div>
+                <strong className="text-[var(--text-secondary)] block sm:inline">Linux / Steam Deck</strong>
+                <code className="block sm:inline sm:ml-1 mt-0.5 sm:mt-0 bg-[var(--bg-primary)] px-1.5 py-0.5 rounded break-all">
+                  ~/.local/share/SlayTheSpire2/steam/&lt;steamid&gt;/profile1/saves/history
+                </code>
+              </div>
+            </div>
+          </details>
+
+          <label className="inline-block w-full sm:w-auto px-5 py-2.5 sm:py-2 rounded-lg text-sm font-medium bg-[var(--accent-gold)] text-[var(--bg-primary)] hover:opacity-90 transition-opacity cursor-pointer">
             {t("Choose Files", lang)}
             <input
               ref={fileInputRef}
@@ -430,7 +456,7 @@ export default function SubmitRunClient() {
           <button
             onClick={parseRun}
             disabled={!jsonInput.trim()}
-            className="mt-2 px-5 py-2 rounded-lg text-sm font-medium bg-[var(--accent-gold)] text-[var(--bg-primary)] hover:opacity-90 transition-opacity disabled:opacity-50"
+            className="mt-2 w-full sm:w-auto px-5 py-2.5 sm:py-2 rounded-lg text-sm font-medium bg-[var(--accent-gold)] text-[var(--bg-primary)] hover:opacity-90 transition-opacity disabled:opacity-50"
           >
             {t("Analyze Run", lang)}
           </button>
