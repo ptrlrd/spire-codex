@@ -136,6 +136,27 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }));
 
+  // Tier list filter variants — each is its own indexable URL with
+  // its own generateMetadata title + canonical, so they need their
+  // own sitemap entries to surface in search. Targets long-tail
+  // queries like "ironclad tier list", "necrobinder relic tier list".
+  const TIER_CARD_COLORS = ["ironclad", "silent", "defect", "necrobinder", "regent", "colorless"];
+  const TIER_RELIC_POOLS = ["shared", "ironclad", "silent", "defect", "necrobinder", "regent"];
+  const tierListVariants: MetadataRoute.Sitemap = [
+    ...TIER_CARD_COLORS.map((c) => ({
+      url: `${SITE_URL}/tier-list/cards?color=${c}`,
+      lastModified: now,
+      changeFrequency: "daily" as const,
+      priority: 0.8,
+    })),
+    ...TIER_RELIC_POOLS.map((p) => ({
+      url: `${SITE_URL}/tier-list/relics?pool=${p}`,
+      lastModified: now,
+      changeFrequency: "daily" as const,
+      priority: 0.8,
+    })),
+  ];
+
   // Card browse pages (programmatic SEO)
   const browseEntries: MetadataRoute.Sitemap = ALL_BROWSE_SLUGS.map((slug) => ({
     url: `${SITE_URL}/cards/browse/${slug}`,
@@ -179,5 +200,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }))
   );
 
-  return [...staticEntries, ...mechanicsEntries, ...browseEntries, ...langListEntries, ...langDetailEntries, ...dynamicResults.flat()];
+  return [...staticEntries, ...mechanicsEntries, ...tierListVariants, ...browseEntries, ...langListEntries, ...langDetailEntries, ...dynamicResults.flat()];
 }
