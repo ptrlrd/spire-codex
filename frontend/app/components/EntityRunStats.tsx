@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { cachedFetch } from "@/lib/fetch-cache";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
@@ -90,9 +91,9 @@ export default function EntityRunStats({ entityType, entityId, entityName }: Pro
             {entityName} hasn&apos;t appeared in any submitted community run yet
             (across {stats.total_runs.toLocaleString()} total runs tracked).
             Submit a run that includes it via{" "}
-            <a href="/leaderboards/submit" className="text-[var(--accent-gold)] hover:underline">
+            <Link href="/leaderboards/submit" className="text-[var(--accent-gold)] hover:underline">
               the runs page
-            </a>{" "}
+            </Link>{" "}
             to seed this section.
           </>
         ) : (
@@ -113,12 +114,12 @@ export default function EntityRunStats({ entityType, entityId, entityName }: Pro
             {stats.last_run_hash && (
               <>
                 {" "}in run{" "}
-                <a
+                <Link
                   href={`/runs/shared/${stats.last_run_hash}`}
                   className="text-[var(--accent-gold)] hover:underline font-mono text-xs"
                 >
                   #{stats.last_run_hash.slice(0, 8)}
-                </a>
+                </Link>
               </>
             )}
             .
