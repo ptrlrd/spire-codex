@@ -118,8 +118,12 @@ export default function SiteSwitcher() {
   const current = allEntries.find((e) => e.isCurrent);
   const others = allEntries.filter((e) => !e.isCurrent);
 
+  // min-w on the beta button so first-paint "beta" → post-fetch
+  // "beta v0.105.1" doesn't widen the navbar after the /api/versions
+  // fetch resolves. The width shift was pushing the mobile burger
+  // dropdown past the viewport edge on narrow screens.
   const buttonClasses = IS_BETA
-    ? "h-9 px-3 rounded-lg text-xs font-semibold bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 hover:bg-emerald-500/25"
+    ? "h-9 px-3 min-w-[7.5rem] rounded-lg text-xs font-semibold bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 hover:bg-emerald-500/25"
     : "h-9 px-3 rounded-lg text-xs font-semibold bg-[var(--accent-gold)]/15 text-[var(--accent-gold)] border border-[var(--accent-gold)]/30 hover:bg-[var(--accent-gold)]/25";
 
   const currentLabel = current?.label ?? (IS_BETA ? "beta" : "main");

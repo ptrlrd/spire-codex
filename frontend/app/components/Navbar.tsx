@@ -306,11 +306,17 @@ export default function Navbar() {
               </svg>
             </button>
 
-            {/* Dropdown menu */}
+            {/* Dropdown menu — `right-0` anchors to the burger's relative
+                parent. Layout shifts (e.g. the SiteSwitcher button text
+                growing on beta after /api/versions resolves) used to push
+                the parent past the viewport edge, dragging the dropdown
+                off-screen. The `max-w-[calc(100vw-1rem)]` clamps the
+                dropdown width to viewport-minus-1rem so even if the
+                anchor drifts, the menu stays reachable. */}
             {open && (
               <div
                 ref={menuRef}
-                className="absolute right-0 top-full mt-2 w-48 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] shadow-xl shadow-black/30 max-h-[calc(100vh-5rem)] overflow-y-auto"
+                className="absolute right-0 top-full mt-2 w-48 max-w-[calc(100vw-1rem)] rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] shadow-xl shadow-black/30 max-h-[calc(100vh-5rem)] overflow-y-auto"
               >
                 {/* Home link */}
                 <div className="py-1">
