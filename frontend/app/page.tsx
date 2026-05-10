@@ -14,10 +14,10 @@ import { SITE_NAME, IS_BETA } from "@/lib/seo";
 
 const API = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
-const title = `${SITE_NAME} - Slay the Spire 2 ${IS_BETA ? "Beta " : ""}Database, Wiki & Guide`;
+const title = `${SITE_NAME} - Slay the Spire 2 (STS2) ${IS_BETA ? "Beta " : ""}Database, Wiki & Guide`;
 const description = IS_BETA
-  ? "Beta preview of upcoming Slay the Spire 2 content. Browse new cards, relics, characters, monsters, potions, events, powers, and more."
-  : "The complete Slay the Spire 2 database. Browse all cards, relics, characters, monsters, potions, events, powers, and more. Filter by character, rarity, and type.";
+  ? "Beta preview of upcoming Slay the Spire 2 (STS2) content. Browse new cards, relics, characters, monsters, potions, events, powers, and more."
+  : "The complete Slay the Spire 2 (STS2) database. Browse all cards, relics, characters, monsters, potions, events, powers, and more. Filter by character, rarity, and type.";
 
 export const metadata: Metadata = {
   title,

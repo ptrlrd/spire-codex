@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     if (!res.ok) return { title: "Power Not Found - Spire Codex" };
     const power = await res.json();
     const desc = stripTags(power.description || "");
-    const title = `Slay the Spire 2 Power - ${power.name} - ${power.type} | Spire Codex`;
+    const title = `Slay the Spire 2 (STS2) Power - ${power.name} - ${power.type} | Spire Codex`;
     const metaDesc = `${power.name} is a ${power.type} power in Slay the Spire 2: ${desc}`;
     return {
       title,

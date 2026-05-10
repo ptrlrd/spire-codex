@@ -46,7 +46,7 @@ export default async function TimelinePage() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <JsonLd data={jsonLd} />
       <h1 className="text-3xl font-bold mb-2">
-        <span className="text-[var(--accent-gold)]">Slay the Spire 2 Timeline</span>
+        <span className="text-[var(--accent-gold)]">Slay the Spire 2 (STS2) Timeline</span>
       </h1>
       <p className="text-sm text-[var(--text-muted)] mb-6">
         Explore the full Slay the Spire 2 timeline across every epoch, story arc, and era. Track story progression, unlockable cards, relics, and potions.

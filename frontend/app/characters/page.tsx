@@ -29,7 +29,7 @@ export default async function CharactersPage() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <JsonLd data={jsonLd} />
       <h1 className="text-3xl font-bold mb-2">
-        <span className="text-[var(--accent-gold)]">Slay the Spire 2 Characters</span>
+        <span className="text-[var(--accent-gold)]">Slay the Spire 2 (STS2) Characters</span>
       </h1>
       <p className="text-sm text-[var(--text-muted)] mb-6">
         All playable characters in Slay the Spire 2 — view starting decks, relics, HP, gold, energy, and more.

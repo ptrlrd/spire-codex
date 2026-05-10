@@ -176,8 +176,7 @@ export default async function TierListIndex() {
       <JsonLd data={jsonLd} />
 
       <h1 className="text-3xl font-bold mb-2">
-        <span className="text-[var(--accent-gold)]">Slay the Spire 2 Tier List</span>
-        <span className="text-[var(--text-muted)] text-xl ml-2">(STS2)</span>
+        <span className="text-[var(--accent-gold)]">Slay the Spire 2 (STS2) Tier List</span>
       </h1>
       <p className="text-sm text-[var(--text-muted)] mb-2">
         Updated <time dateTime={new Date().toISOString()}>{updatedDate}</time> · Scores rebuild every 30 minutes.

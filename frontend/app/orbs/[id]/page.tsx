@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     if (!res.ok) return { title: "Orb Not Found - Spire Codex" };
     const orb = await res.json();
     const desc = stripTags(orb.description || "");
-    const title = `Slay the Spire 2 Orb - ${orb.name} | Spire Codex`;
+    const title = `Slay the Spire 2 (STS2) Orb - ${orb.name} | Spire Codex`;
     const metaDesc = `${orb.name} is an orb in Slay the Spire 2: ${desc}`;
     return {
       title,

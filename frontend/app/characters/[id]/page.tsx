@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     if (!res.ok) return { title: "Character Not Found - Spire Codex" };
     const char = await res.json();
     const desc = stripTags(char.description || "");
-    const title = `Slay the Spire 2 Character - ${char.name} | Spire Codex`;
+    const title = `Slay the Spire 2 (STS2) Character - ${char.name} | Spire Codex`;
     const metaDesc = `${char.name} is a playable character in Slay the Spire 2. ${char.starting_hp ? `${char.starting_hp} HP, ${char.max_energy} Energy.` : ""} ${desc}`;
     return {
       title,
