@@ -6,6 +6,7 @@ import { cachedFetch } from "@/lib/fetch-cache";
 import { useLanguage } from "@/app/contexts/LanguageContext";
 import { t } from "@/lib/ui-translations";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
+import HoverTooltip from "@/app/components/HoverTooltip";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -13,6 +14,7 @@ interface RelatedItem {
   id: string;
   name: string;
   image_url?: string | null;
+  description?: string | null;
 }
 
 type RouteSegment =
@@ -107,26 +109,20 @@ export default function RelatedItems({
               <h4 className="text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)] mb-2">
                 {group.label}
               </h4>
-              <div className="flex flex-wrap gap-2">
+              <ul className="space-y-1">
                 {group.items.map((item) => (
-                  <Link
-                    key={item.id}
-                    href={`${lp}/${route}/${item.id.toLowerCase()}`}
-                    className="flex items-center gap-2 px-2.5 py-1.5 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] hover:border-[var(--border-accent)] transition-colors text-xs"
-                  >
-                    {item.image_url && (
-                      <img
-                        src={`${API}${item.image_url}`}
-                        alt={item.name}
-                        className="w-6 h-6 object-contain"
-                        loading="lazy"
-                        crossOrigin="anonymous"
-                      />
-                    )}
-                    <span className="text-[var(--text-secondary)]">{item.name}</span>
-                  </Link>
+                  <li key={item.id}>
+                    <HoverTooltip title={item.name} content={item.description}>
+                      <Link
+                        href={`${lp}/${route}/${item.id.toLowerCase()}`}
+                        className="text-sm text-[var(--text-secondary)] hover:text-[var(--accent-gold)] transition-colors"
+                      >
+                        {item.name}
+                      </Link>
+                    </HoverTooltip>
+                  </li>
                 ))}
-              </div>
+              </ul>
             </div>
           ))}
         </div>

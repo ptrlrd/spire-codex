@@ -7,6 +7,7 @@ import { cachedFetch } from "@/lib/fetch-cache";
 import { useLanguage } from "@/app/contexts/LanguageContext";
 import { t } from "@/lib/ui-translations";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
+import HoverTooltip from "@/app/components/HoverTooltip";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -93,27 +94,20 @@ export default function RelatedCards({ currentId, keywords, tags, color }: Relat
               <h4 className="text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)] mb-2">
                 {group.label}
               </h4>
-              <div className="flex flex-wrap gap-2">
+              <ul className="space-y-1">
                 {group.cards.map((card) => (
-                  <Link
-                    key={card.id}
-                    href={`${lp}/cards/${card.id.toLowerCase()}`}
-                    className="flex items-center gap-2 px-2.5 py-1.5 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] hover:border-[var(--border-accent)] transition-colors text-xs"
-                  >
-                    {card.image_url && (
-                      <img
-                        src={`${API}${card.image_url}`}
-                        alt={card.name}
-                        className="w-6 h-6 object-contain"
-                        loading="lazy"
-                        crossOrigin="anonymous"
-                      />
-                    )}
-                    <span className="text-[var(--text-secondary)]">{card.name}</span>
-                    <span className="text-[var(--text-muted)]">{card.cost}</span>
-                  </Link>
+                  <li key={card.id}>
+                    <HoverTooltip title={card.name} content={card.description}>
+                      <Link
+                        href={`${lp}/cards/${card.id.toLowerCase()}`}
+                        className="text-sm text-[var(--text-secondary)] hover:text-[var(--accent-gold)] transition-colors"
+                      >
+                        {card.name}
+                      </Link>
+                    </HoverTooltip>
+                  </li>
                 ))}
-              </div>
+              </ul>
             </div>
           ))}
         </div>
