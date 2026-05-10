@@ -46,6 +46,12 @@ def _pages_dir() -> Path:
     so a single language-agnostic source tree mirrors the current state. When
     translations land we can introduce per-lang directories without changing
     the API shape.
+
+    Beta vs stable: mechanics prose isn't versioned by game build, so both
+    deploys read from the same `data/mechanics_pages/` tree. The beta
+    docker-compose mounts the stable dir at `/data/mechanics_pages` directly
+    (overlaying the `./data-beta:/data` mount), so this resolver can stay
+    DATA_DIR-relative for both deploys.
     """
     return DATA_DIR / "mechanics_pages"
 

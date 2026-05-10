@@ -6,6 +6,10 @@ services:
     container_name: spire-codex-beta-backend
     volumes:
       - ./data-beta:/data
+      # Mechanics prose isn't versioned by game build — overlay the
+      # stable canonical dir on top of the data-beta mount so the beta
+      # backend serves the same mechanics pages as stable.
+      - ./data/mechanics_pages:/data/mechanics_pages:ro
       - ./.secrets:/secrets:ro
     environment:
       - DATA_DIR=/data
