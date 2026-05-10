@@ -9,6 +9,7 @@ import { cachedFetch } from "@/lib/fetch-cache";
 import { useLanguage } from "../../contexts/LanguageContext";
 import LocalizedNames from "@/app/components/LocalizedNames";
 import EntityHistory from "@/app/components/EntityHistory";
+import EntityProse from "@/app/components/EntityProse";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
@@ -108,6 +109,12 @@ export default function PowerDetail({ initialPower }: { initialPower?: Power | n
             <RichDescription text={power.description} />
           </div>
         )}
+
+        {/* Programmatic prose block — adds factual context using
+            already-localized fields (name, type, stack_type) plus a
+            count of cards that apply this power. Pushes the page past
+            Google's "thin content" floor without per-language work. */}
+        <EntityProse kind="power" power={power} appliedByCount={relatedCards.length} />
 
         {relatedCards.length > 0 && (
           <div className="mt-6 pt-5 border-t border-[var(--border-subtle)]">

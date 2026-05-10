@@ -11,6 +11,7 @@ import { t } from "@/lib/ui-translations";
 import LocalizedNames from "@/app/components/LocalizedNames";
 import EntityHistory from "@/app/components/EntityHistory";
 import RelatedItems from "@/app/components/RelatedItems";
+import EntityProse from "@/app/components/EntityProse";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
@@ -136,9 +137,16 @@ export default function PotionDetail({ initialPotion }: { initialPotion?: Potion
 
         {/* ===== Overview Tab ===== */}
         {tab === "overview" && (
-          <div className="text-[var(--text-secondary)] leading-relaxed">
-            <RichDescription text={potion.description} />
-          </div>
+          <>
+            <div className="text-[var(--text-secondary)] leading-relaxed">
+              <RichDescription text={potion.description} />
+            </div>
+            {/* Programmatic prose block — adds factual context using
+                already-localized fields (rarity, pool, name) plus
+                merchant pricing tiers, pushing the page past Google's
+                "thin content" floor without per-language translation. */}
+            <EntityProse kind="potion" potion={potion} />
+          </>
         )}
 
         {/* ===== Details Tab ===== */}

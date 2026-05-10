@@ -11,6 +11,7 @@ import { t } from "@/lib/ui-translations";
 import LocalizedNames from "@/app/components/LocalizedNames";
 import EntityHistory from "@/app/components/EntityHistory";
 import RelatedItems from "@/app/components/RelatedItems";
+import EntityProse from "@/app/components/EntityProse";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
@@ -200,6 +201,12 @@ export default function RelicDetail({ initialRelic }: { initialRelic?: Relic | n
                 <RichDescription text={relic.flavor} />
               </div>
             )}
+
+            {/* Programmatic prose block — adds 60-100 words of factual
+                contextual content per page from already-localized
+                fields, pushing the page past Google's "thin content"
+                floor without needing per-language translations. */}
+            <EntityProse kind="relic" relic={relic} />
           </>
         )}
 
