@@ -115,7 +115,10 @@ export default function EntityRunStats({ entityType, entityId, entityName }: Pro
               <>
                 {" "}in run{" "}
                 <Link
-                  href={`/runs/shared/${stats.last_run_hash}`}
+                  // Frontend route is /runs/<hash>; the /shared/ segment
+                  // exists only on the backend API (/api/runs/shared/<hash>)
+                  // and was an early copy-paste mistake here.
+                  href={`/runs/${stats.last_run_hash}`}
                   className="text-[var(--accent-gold)] hover:underline font-mono text-xs"
                 >
                   #{stats.last_run_hash.slice(0, 8)}
