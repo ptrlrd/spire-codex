@@ -116,6 +116,30 @@ app.state.limiter = limiter
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
 
+# Pre-warm the per-entity run-stats cache in a background thread on
+# startup so the first user request to /api/runs/stats/<type>/<id>
+# doesn't block on a 5-10s walk of every submitted run JSON. Run in
+# the background so container readiness probes don't have to wait on
+# it; beta deploys (no run submissions) skip the warm-up.
+@app.on_event("startup")
+def _warm_run_entity_stats() -> None:
+    if IS_BETA_BACKEND:
+        return
+    import threading
+
+    from .services.run_entity_stats import _build_cache
+
+    def _warm():
+        try:
+            _build_cache()
+        except Exception:
+            # Best-effort warm-up — if it fails, the lazy first-request
+            # path still rebuilds correctly.
+            pass
+
+    threading.Thread(target=_warm, daemon=True, name="run-stats-warmup").start()
+
+
 _VERSION_RE = re.compile(r"^v?\d+\.\d+")
 
 
