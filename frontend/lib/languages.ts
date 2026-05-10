@@ -43,21 +43,27 @@ export const LANG_NAMES: Record<LangCode, string> = {
   zhs: "简体中文",
 };
 
-/** Localized "Slay the Spire 2" game name for meta descriptions */
+/**
+ * Localized "Slay the Spire 2" game name. Includes "(STS2)" inline
+ * because the abbreviation is universal — players across every locale
+ * type "sts2" into Google. Threaded through every [lang] page's title,
+ * meta description, JSON-LD, and H1 via the `gameName` variable, so
+ * this single source ships the abbreviation to all 52+ localized pages.
+ */
 export const LANG_GAME_NAME: Record<LangCode, string> = {
-  deu: "Slay the Spire 2",
-  esp: "Slay the Spire 2",
-  fra: "Slay the Spire 2",
-  ita: "Slay the Spire 2",
-  jpn: "スレイ・ザ・スパイア2",
-  kor: "슬레이 더 스파이어 2",
-  pol: "Slay the Spire 2",
-  ptb: "Slay the Spire 2",
-  rus: "Slay the Spire 2",
-  spa: "Slay the Spire 2",
-  tha: "Slay the Spire 2",
-  tur: "Slay the Spire 2",
-  zhs: "杀戮尖塔2",
+  deu: "Slay the Spire 2 (STS2)",
+  esp: "Slay the Spire 2 (STS2)",
+  fra: "Slay the Spire 2 (STS2)",
+  ita: "Slay the Spire 2 (STS2)",
+  jpn: "スレイ・ザ・スパイア2 (STS2)",
+  kor: "슬레이 더 스파이어 2 (STS2)",
+  pol: "Slay the Spire 2 (STS2)",
+  ptb: "Slay the Spire 2 (STS2)",
+  rus: "Slay the Spire 2 (STS2)",
+  spa: "Slay the Spire 2 (STS2)",
+  tha: "Slay the Spire 2 (STS2)",
+  tur: "Slay the Spire 2 (STS2)",
+  zhs: "杀戮尖塔2 (STS2)",
 };
 
 /** Localized "Database" for title/descriptions */
