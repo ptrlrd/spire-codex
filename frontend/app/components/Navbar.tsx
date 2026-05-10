@@ -19,7 +19,7 @@ interface NavGroup {
   links: { href: string; label: string }[];
 }
 
-const BETA_HIDDEN = new Set(["/guides", "/showcase", "/leaderboards", "/leaderboards/submit", "/leaderboards/stats"]);
+const BETA_HIDDEN = new Set(["/guides", "/showcase", "/leaderboards", "/leaderboards/submit", "/leaderboards/stats", "/leaderboards/scoring"]);
 
 // Routes that should only highlight on exact match (not prefix match)
 const EXACT_MATCH = new Set(["/leaderboards"]);
@@ -68,6 +68,7 @@ const NAV_GROUPS: NavGroup[] = [
       { href: "/leaderboards", label: "Leaderboards" },
       { href: "/leaderboards/submit", label: "Submit a Run" },
       { href: "/leaderboards/stats", label: "Stats" },
+      { href: "/leaderboards/scoring", label: "Scoring" },
     ],
   },
   {
