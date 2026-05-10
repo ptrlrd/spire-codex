@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { SITE_URL, SITE_NAME } from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
-import { buildBreadcrumbJsonLd } from "@/lib/jsonld";
+import { buildBreadcrumbJsonLd, buildCollectionPageJsonLd } from "@/lib/jsonld";
 import TierList, { type TierEntity } from "@/app/components/TierList";
 
 const API_INTERNAL = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
@@ -21,13 +21,13 @@ interface ScoresMap {
 }
 
 export const metadata: Metadata = {
-  title: `Slay the Spire 2 Potion Tier List - All 63 Potions Ranked | ${SITE_NAME}`,
+  title: `STS2 Potion Tier List - All 63 Slay the Spire 2 Potions Ranked | ${SITE_NAME}`,
   description:
-    "Every Slay the Spire 2 potion ranked S through F by community win rate. Codex Score with Bayesian shrinkage. Updated every 30 minutes.",
+    "Every Slay the Spire 2 (STS2) potion ranked S through F by community win rate. Codex Score with Bayesian shrinkage. Updated every 30 minutes.",
   alternates: { canonical: `${SITE_URL}/tier-list/potions` },
   openGraph: {
-    title: `Slay the Spire 2 Potion Tier List | ${SITE_NAME}`,
-    description: "Every potion ranked S through F by community win-rate data.",
+    title: `STS2 Potion Tier List | ${SITE_NAME}`,
+    description: "Every Slay the Spire 2 potion ranked S through F by community win-rate data.",
     url: `${SITE_URL}/tier-list/potions`,
     siteName: SITE_NAME,
     type: "website",
@@ -58,12 +58,29 @@ export default async function PotionsTierListPage() {
     score: scores[p.id.toUpperCase()]?.score ?? null,
   }));
 
+  // Top-30 by score for ItemList JSON-LD — gives Google a structured
+  // ranked list it can render as carousel-style rich results.
+  const rankedItems = [...entities]
+    .filter((e) => e.score != null)
+    .sort((a, b) => (b.score ?? 0) - (a.score ?? 0))
+    .slice(0, 30)
+    .map((e) => ({
+      name: e.name,
+      path: `/potions/${e.id.toLowerCase()}`,
+    }));
+
   const jsonLd = [
     buildBreadcrumbJsonLd([
       { name: "Home", href: "/" },
       { name: "Tier List", href: "/tier-list" },
       { name: "Potion Tier List", href: "/tier-list/potions" },
     ]),
+    buildCollectionPageJsonLd({
+      name: "Potion Tier List",
+      description: "Every Slay the Spire 2 (STS2) potion ranked by Codex Score from community-submitted run win rates.",
+      path: "/tier-list/potions",
+      items: rankedItems,
+    }),
   ];
 
   return (

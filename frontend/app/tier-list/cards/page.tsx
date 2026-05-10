@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { SITE_URL, SITE_NAME } from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
-import { buildBreadcrumbJsonLd } from "@/lib/jsonld";
+import { buildBreadcrumbJsonLd, buildCollectionPageJsonLd } from "@/lib/jsonld";
 import TierList, { type TierEntity } from "@/app/components/TierList";
 
 const API_INTERNAL = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
@@ -39,10 +39,12 @@ export async function generateMetadata({ searchParams }: PageProps): Promise<Met
   const color = sp.color?.toLowerCase();
   const charLabel = COLOR_FILTERS.find((c) => c.value === color)?.label;
   const scope = charLabel && color ? `${charLabel} Cards` : "Cards";
-  const title = `Slay the Spire 2 ${scope} Tier List - Ranked S to F | ${SITE_NAME}`;
+  // Title leads with STS2 abbreviation + full game name to capture both
+  // query phrasings ("sts2 tier list" vs "slay the spire 2 tier list").
+  const title = `STS2 ${scope} Tier List - Slay the Spire 2 Cards Ranked | ${SITE_NAME}`;
   const description = color
-    ? `${charLabel} card tier list for Slay the Spire 2. Every ${charLabel?.toLowerCase()} card ranked S through F based on community win-rate data.`
-    : "Every Slay the Spire 2 card ranked S through F. Tier list driven by Codex Score — community-submitted run win rates with Bayesian shrinkage.";
+    ? `${charLabel} card tier list for Slay the Spire 2 (STS2). Every ${charLabel?.toLowerCase()} card ranked S through F based on community win-rate data.`
+    : "Every Slay the Spire 2 (STS2) card ranked S through F. Tier list driven by Codex Score — community-submitted run win rates with Bayesian shrinkage.";
   const path = `/tier-list/cards${color ? `?color=${color}` : ""}`;
   return {
     title,
@@ -92,13 +94,32 @@ export default async function CardsTierListPage({ searchParams }: PageProps) {
 
   const charLabel = COLOR_FILTERS.find((c) => c.value === color)?.label;
   const heading = charLabel && color ? `${charLabel} Card Tier List` : "Card Tier List";
+  const path = `/tier-list/cards${color ? `?color=${color}` : ""}`;
+
+  // Top-30 by score for the ItemList JSON-LD — gives Google a structured
+  // ranked list it can render as carousel-style rich results. Capped at
+  // 30 because longer ItemLists inflate the JSON without much SEO gain.
+  const rankedItems = [...entities]
+    .filter((e) => e.score != null)
+    .sort((a, b) => (b.score ?? 0) - (a.score ?? 0))
+    .slice(0, 30)
+    .map((e) => ({
+      name: e.name,
+      path: `/cards/${e.id.toLowerCase()}`,
+    }));
 
   const jsonLd = [
     buildBreadcrumbJsonLd([
       { name: "Home", href: "/" },
       { name: "Tier List", href: "/tier-list" },
-      { name: heading, href: `/tier-list/cards${color ? `?color=${color}` : ""}` },
+      { name: heading, href: path },
     ]),
+    buildCollectionPageJsonLd({
+      name: heading,
+      description: `Slay the Spire 2 (STS2) ${heading.toLowerCase()} ranked by Codex Score from community-submitted run win rates.`,
+      path,
+      items: rankedItems,
+    }),
   ];
 
   return (
