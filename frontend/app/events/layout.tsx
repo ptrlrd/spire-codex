@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { buildLanguageAlternates } from "@/lib/seo";
 import { api } from "@/lib/api";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -16,7 +17,7 @@ export async function generateMetadata(): Promise<Metadata> {
       title: "Slay the Spire 2 (STS2) Events - All In-Game Events | Spire Codex",
       description: `Slay the Spire 2 (STS2) events — browse all ${count} shrine events, Ancient encounters, and story events with choices, dialogue, and outcomes.`,
     },
-    alternates: { canonical: "/events" },
+    alternates: { canonical: "/events", languages: buildLanguageAlternates("/events") },
   };
 }
 

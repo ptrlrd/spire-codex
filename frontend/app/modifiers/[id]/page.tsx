@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import ModifierDetail from "./ModifierDetail";
-import { stripTags } from "@/lib/seo";
+import { stripTags, buildLanguageAlternates} from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 
@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         description: metaDesc,
       },
       twitter: { card: "summary_large_image" },
-      alternates: { canonical: `/modifiers/${id}` },
+      alternates: { canonical: `/modifiers/${id}`, languages: buildLanguageAlternates(`/modifiers/${id}`) },
     };
   } catch {
     return { title: "Spire Codex - Slay the Spire 2 Database" };

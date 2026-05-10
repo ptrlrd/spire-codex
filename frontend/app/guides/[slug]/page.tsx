@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import type { Guide } from "@/lib/api";
-import { SITE_URL, SITE_NAME, stripTags } from "@/lib/seo";
+import { SITE_URL, SITE_NAME, stripTags, buildLanguageAlternates} from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd } from "@/lib/jsonld";
 import GuideDetail from "./GuideDetail";

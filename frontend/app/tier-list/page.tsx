@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { SITE_URL, SITE_NAME } from "@/lib/seo";
+import { SITE_URL, SITE_NAME, buildLanguageAlternates} from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
 import { buildBreadcrumbJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 import ScoreBadge from "@/app/components/ScoreBadge";
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   title: `STS2 Tier List - Slay the Spire 2 Cards, Relics & Potions Ranked | ${SITE_NAME}`,
   description:
     "STS2 / Slay the Spire 2 tier list ranking every card, relic, and potion S through F. Codex Score from community win rates. Updated daily after every patch.",
-  alternates: { canonical: `${SITE_URL}/tier-list` },
+  alternates: { canonical: `${SITE_URL}/tier-list`, languages: buildLanguageAlternates(`/tier-list`) },
   openGraph: {
     title: `STS2 Tier List | ${SITE_NAME}`,
     description: "Every Slay the Spire 2 card, relic, and potion ranked S → F based on community win-rate data.",

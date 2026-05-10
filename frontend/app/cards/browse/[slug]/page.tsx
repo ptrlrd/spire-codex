@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { buildLanguageAlternates } from "@/lib/seo";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import type { Card } from "@/lib/api";
@@ -34,7 +35,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description,
     },
     twitter: { card: "summary_large_image" },
-    alternates: { canonical: `/cards/browse/${slug}` },
+    alternates: { canonical: `/cards/browse/${slug}`, languages: buildLanguageAlternates(`/cards/browse/${slug}`) },
   };
 }
 

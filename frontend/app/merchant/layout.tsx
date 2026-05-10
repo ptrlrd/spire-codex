@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { buildLanguageAlternates } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Slay the Spire 2 (STS2) Merchant Guide - Shop Prices & Fake Merchant | Spire Codex",
@@ -9,7 +10,7 @@ export const metadata: Metadata = {
     description:
       "Complete merchant price guide for Slay the Spire 2. Card, relic, and potion costs by rarity. Fake Merchant relic effects.",
   },
-  alternates: { canonical: "/merchant" },
+  alternates: { canonical: "/merchant", languages: buildLanguageAlternates("/merchant") },
 };
 
 export default function Layout({ children }: { children: React.ReactNode }) {

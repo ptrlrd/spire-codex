@@ -10,7 +10,7 @@ import HomeFAQ from "./components/HomeFAQ";
 import JsonLd from "./components/JsonLd";
 import SearchTrigger from "./components/SearchTrigger";
 import { buildWebSiteJsonLd, buildVideoGameJsonLd } from "@/lib/jsonld";
-import { SITE_NAME, IS_BETA } from "@/lib/seo";
+import { SITE_NAME, IS_BETA, buildLanguageAlternates } from "@/lib/seo";
 
 const API = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
@@ -26,6 +26,7 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image", title, description },
   alternates: {
     canonical: "/",
+    languages: buildLanguageAlternates("/"),
   },
 };
 
