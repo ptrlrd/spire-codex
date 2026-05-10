@@ -13,6 +13,7 @@ import { t } from "@/lib/ui-translations";
 import LocalizedNames from "@/app/components/LocalizedNames";
 import EntityHistory from "@/app/components/EntityHistory";
 import RelatedCards from "@/app/components/RelatedCards";
+import EntityRunStats from "@/app/components/EntityRunStats";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
@@ -147,7 +148,7 @@ function getMerchantPriceRange(rarity: string, color: string): { min: number; ma
   return { min: Math.floor(base * 0.95), max: Math.ceil(base * 1.05) };
 }
 
-type Tab = "overview" | "details" | "info";
+type Tab = "overview" | "details" | "stats" | "info";
 
 export default function CardDetail({ initialCard }: { initialCard?: Card | null } = {}) {
   const params = useParams();
@@ -275,6 +276,7 @@ export default function CardDetail({ initialCard }: { initialCard?: Card | null 
   const tabs: { key: Tab; label: string }[] = [
     { key: "overview", label: t("Overview", lang) },
     { key: "details", label: t("Details", lang) },
+    { key: "stats", label: t("Stats", lang) },
     { key: "info", label: t("Info", lang) },
   ];
 
@@ -556,6 +558,11 @@ export default function CardDetail({ initialCard }: { initialCard?: Card | null 
                 color={card.color}
               />
             </>
+          )}
+
+          {/* ===== Stats Tab — community run aggregates ===== */}
+          {tab === "stats" && card && (
+            <EntityRunStats entityType="cards" entityId={id} entityName={card.name} />
           )}
 
           {/* ===== Info Tab ===== */}

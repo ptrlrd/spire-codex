@@ -12,6 +12,7 @@ import LocalizedNames from "@/app/components/LocalizedNames";
 import EntityHistory from "@/app/components/EntityHistory";
 import RelatedItems from "@/app/components/RelatedItems";
 import EntityProse from "@/app/components/EntityProse";
+import EntityRunStats from "@/app/components/EntityRunStats";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
@@ -27,7 +28,7 @@ const rarityColorMap: Record<string, string> = {
 };
 
 
-type Tab = "overview" | "details" | "info";
+type Tab = "overview" | "details" | "stats" | "info";
 
 export default function RelicDetail({ initialRelic }: { initialRelic?: Relic | null } = {}) {
   const { id } = useParams<{ id: string }>();
@@ -82,6 +83,7 @@ export default function RelicDetail({ initialRelic }: { initialRelic?: Relic | n
   const tabs: { key: Tab; label: string }[] = [
     { key: "overview", label: t("Overview", lang) },
     { key: "details", label: t("Details", lang) },
+    { key: "stats", label: t("Stats", lang) },
     { key: "info", label: t("Info", lang) },
   ];
 
@@ -244,6 +246,11 @@ export default function RelicDetail({ initialRelic }: { initialRelic?: Relic | n
               </div>
             )}
           </>
+        )}
+
+        {/* ===== Stats Tab — community run aggregates ===== */}
+        {tab === "stats" && (
+          <EntityRunStats entityType="relics" entityId={id} entityName={relic.name} />
         )}
 
         {/* ===== Info Tab ===== */}
