@@ -159,9 +159,17 @@ export default function PotionDetail({ initialPotion }: { initialPotion?: Potion
                 <h3 className="text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)] mb-2">
                   {t("Merchant Price", lang)}
                 </h3>
-                <span className="text-sm px-3 py-1 rounded border bg-amber-950/30 text-[var(--accent-gold)] border-amber-900/30">
-                  {priceRange.min}–{priceRange.max} Gold
-                </span>
+                <div className="flex items-center gap-2 text-sm">
+                  <img
+                    src={`${API}/static/images/ui/rewards/reward_icon_money.webp`}
+                    alt="Gold"
+                    className="w-5 h-5"
+                    crossOrigin="anonymous"
+                  />
+                  <span className="text-[var(--accent-gold)] font-medium">
+                    {priceRange.min}–{priceRange.max}
+                  </span>
+                </div>
               </div>
             ) : (
               <p className="text-sm text-[var(--text-muted)]">

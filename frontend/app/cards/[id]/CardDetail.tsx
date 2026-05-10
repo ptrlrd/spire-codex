@@ -14,6 +14,7 @@ import LocalizedNames from "@/app/components/LocalizedNames";
 import EntityHistory from "@/app/components/EntityHistory";
 import RelatedCards from "@/app/components/RelatedCards";
 import EntityRunStats from "@/app/components/EntityRunStats";
+import HoverTooltip from "@/app/components/HoverTooltip";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
@@ -508,45 +509,58 @@ export default function CardDetail({ initialCard }: { initialCard?: Card | null 
           {/* ===== Details Tab ===== */}
           {tab === "details" && (
             <>
-              {/* Merchant Price */}
+              {/* Merchant Price — bare gold-icon + range, no pill box */}
               {priceRange && (
                 <div className="mb-5">
                   <h3 className="text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)] mb-2">
                     {t("Merchant Price", lang)}
                   </h3>
-                  <span className="text-sm px-3 py-1 rounded border bg-amber-950/30 text-[var(--accent-gold)] border-amber-900/30">
-                    {priceRange.min}–{priceRange.max} Gold
-                  </span>
-                  {card.color === "colorless" && (
-                    <span className="text-xs text-[var(--text-muted)] ml-2">
-                      (15% colorless markup)
+                  <div className="flex items-center gap-2 text-sm">
+                    <img
+                      src={`${API}/static/images/ui/rewards/reward_icon_money.webp`}
+                      alt="Gold"
+                      className="w-5 h-5"
+                      crossOrigin="anonymous"
+                    />
+                    <span className="text-[var(--accent-gold)] font-medium">
+                      {priceRange.min}–{priceRange.max}
                     </span>
-                  )}
+                    {card.color === "colorless" && (
+                      <span className="text-xs text-[var(--text-muted)]">
+                        (15% colorless markup)
+                      </span>
+                    )}
+                  </div>
                 </div>
               )}
 
-              {/* Powers Applied */}
+              {/* Powers Applied — vertical list, hyperlinked, hover tooltip */}
               {card.powers_applied && card.powers_applied.length > 0 && (
                 <div className="mb-5">
                   <h3 className="text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)] mb-2">
                     {t("Powers Applied", lang)}
                   </h3>
-                  <div className="flex flex-wrap gap-2">
+                  <ul className="space-y-1">
                     {card.powers_applied.map((pa) => {
                       const powerName = pa.power_key || pa.power;
                       const powerId = powerName.replace(/([A-Z])/g, "_$1").replace(/^_/, "").toUpperCase();
+                      const prettyName = pa.power.replace(/([A-Z])/g, " $1").trim();
+                      const data = powerData[pa.power.toLowerCase()];
                       return (
-                        <Link
-                          key={pa.power}
-                          href={`${lp}/powers/${powerId}`}
-                          className="text-xs px-2.5 py-1 rounded bg-purple-950/40 text-purple-300 border border-purple-900/30 hover:border-purple-700/50 hover:bg-purple-950/60 transition-colors"
-                        >
-                          {pa.power.replace(/([A-Z])/g, " $1").trim()}
-                          {pa.amount ? ` ${pa.amount}` : ""}
-                        </Link>
+                        <li key={pa.power}>
+                          <HoverTooltip title={prettyName} content={data?.description}>
+                            <Link
+                              href={`${lp}/powers/${powerId}`}
+                              className="text-sm text-[var(--text-secondary)] hover:text-[var(--accent-gold)] transition-colors"
+                            >
+                              {prettyName}
+                              {pa.amount ? ` ${pa.amount}` : ""}
+                            </Link>
+                          </HoverTooltip>
+                        </li>
                       );
                     })}
-                  </div>
+                  </ul>
                 </div>
               )}
 
