@@ -8,10 +8,12 @@ import CardGrid from "../components/CardGrid";
 import SearchFilter from "../components/SearchFilter";
 import { useLanguage } from "../contexts/LanguageContext";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
+import { useEntityScores } from "@/lib/use-entity-scores";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
 const sortOptions = [
+  { label: "Top tier", value: "score" },
   { label: "A → Z", value: "az" },
   { label: "Z → A", value: "za" },
   { label: "Compendium", value: "compendium" },
@@ -107,13 +109,23 @@ export default function CardsClient({ initialCards }: { initialCards: Card[] }) 
       .then(setCards);
   }, [color, type, rarity, keyword, search, lang]);
 
+  const scores = useEntityScores("cards");
+
   const sortedCards = useMemo(() => {
     const sorted = [...cards];
     if (sort === "az") sorted.sort((a, b) => a.name.localeCompare(b.name));
     else if (sort === "za") sorted.sort((a, b) => b.name.localeCompare(a.name));
     else if (sort === "compendium") sorted.sort((a, b) => a.compendium_order - b.compendium_order);
+    else if (sort === "score") {
+      sorted.sort((a, b) => {
+        const sa = scores[a.id.toUpperCase()]?.score ?? -1;
+        const sb = scores[b.id.toUpperCase()]?.score ?? -1;
+        if (sb !== sa) return sb - sa;
+        return a.compendium_order - b.compendium_order;
+      });
+    }
     return sorted;
-  }, [cards, sort]);
+  }, [cards, sort, scores]);
 
   return (
     <>
@@ -153,7 +165,7 @@ export default function CardsClient({ initialCards }: { initialCards: Card[] }) 
         ]}
       />
 
-      <CardGrid cards={sortedCards} />
+      <CardGrid cards={sortedCards} scores={scores} />
     </>
   );
 }

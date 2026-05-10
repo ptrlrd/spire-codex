@@ -39,6 +39,16 @@ _PREFIX_TO_TYPE = {
     "POTION": "potions",
 }
 
+# Codex Score formula constants — see _compute_score for derivation.
+# PRIOR_WEIGHT is how many "virtual baseline picks" we add to every
+# entity to shrink low-N noise toward the global mean. 50 means a
+# 5-pick perfect-record card lands ~mid-tier, not S-tier. SCALE_RANGE
+# is the win-rate delta (vs baseline) that maps to the edges of the
+# 0-100 scale; ±15pp covers the full real-world spread without making
+# moderate over/underperformers saturate.
+_SCORE_PRIOR_WEIGHT = 50
+_SCORE_SCALE_RANGE = 0.15
+
 _CACHE_TTL_SECONDS = 30 * 60  # 30 minutes
 _RUNS_DIR = (
     Path(os.environ.get("DATA_DIR", Path(__file__).resolve().parents[3] / "data"))
@@ -191,6 +201,58 @@ def _maybe_rebuild() -> None:
             _building = False
 
 
+def _baseline_win_rate() -> float:
+    """Global win rate across every submitted run, or 0.5 if empty."""
+    total = _global_totals["total_runs"]
+    if not total:
+        return 0.5
+    return _global_totals["total_wins"] / total
+
+
+def _compute_score(wins: int, picks: int, baseline: float) -> int | None:
+    """0-100 Codex Score for an entity.
+
+    Step 1 — Bayesian shrinkage: blend the entity's wins/picks with
+    `_SCORE_PRIOR_WEIGHT` virtual picks at the baseline win rate. This
+    keeps a 5-pick card at 100% win rate from outranking a 500-pick
+    card at 60% (the high-confidence one wins).
+
+    Step 2 — Map the shrunk delta to 0-100. baseline → 50 (neutral),
+    +SCORE_SCALE_RANGE → 100 (S-tier), -SCORE_SCALE_RANGE → 0 (F-tier).
+    Clamped — saturating cards genuinely belong at the edges.
+    """
+    if picks <= 0:
+        return None
+    shrunk = (wins + baseline * _SCORE_PRIOR_WEIGHT) / (picks + _SCORE_PRIOR_WEIGHT)
+    delta = shrunk - baseline
+    raw = (delta / _SCORE_SCALE_RANGE + 1) * 50
+    return max(0, min(100, round(raw)))
+
+
+def get_all_entity_scores(entity_type: str) -> dict[str, dict[str, Any]]:
+    """All entities of one type, keyed by ID, with score + counts.
+
+    Drives list-page tier sorting and the (planned) tooltip-widget
+    score badge — fetched once by the client and cached locally instead
+    of N round-trips to /stats/{type}/{id}.
+    """
+    _maybe_rebuild()
+    baseline = _baseline_win_rate()
+    out: dict[str, dict[str, Any]] = {}
+    for (etype, eid), agg in _cache.items():
+        if etype != entity_type:
+            continue
+        picks = agg["picks"]
+        wins = agg["wins"]
+        out[eid] = {
+            "score": _compute_score(wins, picks, baseline),
+            "picks": picks,
+            "wins": wins,
+            "win_rate": round(wins / picks * 100, 1) if picks else 0.0,
+        }
+    return out
+
+
 def get_entity_stats(entity_type: str, entity_id: str) -> dict[str, Any] | None:
     """Public accessor — returns the aggregate for one entity or None.
 
@@ -221,6 +283,7 @@ def get_entity_stats(entity_type: str, entity_id: str) -> dict[str, Any] | None:
         )
     ]
     total_runs = _global_totals["total_runs"]
+    baseline = _baseline_win_rate()
     return {
         "entity_type": entity_type,
         "entity_id": entity_id.upper(),
@@ -229,6 +292,8 @@ def get_entity_stats(entity_type: str, entity_id: str) -> dict[str, Any] | None:
         "win_rate": round(wins / picks * 100, 1) if picks else 0.0,
         "pick_rate": round(picks / total_runs * 100, 1) if total_runs else 0.0,
         "total_runs": total_runs,
+        "baseline_win_rate": round(baseline * 100, 1),
+        "score": _compute_score(wins, picks, baseline),
         "by_character": by_character,
         "last_submitted_at": agg["last_submitted_at"],
         "last_run_hash": agg["last_run_hash"],

@@ -8,7 +8,7 @@ from fastapi import APIRouter, HTTPException, Request
 from slowapi import Limiter
 from slowapi.util import get_remote_address
 from ..services.runs_db import submit_run, get_stats, claim_runs
-from ..services.run_entity_stats import get_entity_stats
+from ..services.run_entity_stats import get_all_entity_scores, get_entity_stats
 from ..metrics import (
     run_submissions,
     run_character,
@@ -374,11 +374,30 @@ def get_entity_run_stats(request: Request, entity_type: str, entity_id: str):
             "win_rate": 0.0,
             "pick_rate": 0.0,
             "total_runs": 0,
+            "baseline_win_rate": 0.0,
+            "score": None,
             "by_character": [],
             "last_submitted_at": None,
             "last_run_hash": None,
         }
     return stats
+
+
+@router.get("/scores/{entity_type}", tags=["Runs"])
+@limiter.limit("60/minute")
+def get_entity_scores(request: Request, entity_type: str):
+    """All Codex Scores for one entity type, keyed by ID.
+
+    Used by list pages to render the score column / sort by tier
+    without N round-trips to /stats/{type}/{id}. Cached at the same
+    TTL as the per-entity stats since both derive from the same walk.
+    """
+    if entity_type not in _ENTITY_STATS_TYPES:
+        raise HTTPException(
+            status_code=400,
+            detail=f"entity_type must be one of {sorted(_ENTITY_STATS_TYPES)}",
+        )
+    return get_all_entity_scores(entity_type)
 
 
 @router.get("/stats", tags=["Runs"])
