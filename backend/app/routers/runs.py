@@ -8,6 +8,7 @@ from fastapi import APIRouter, HTTPException, Request
 from slowapi import Limiter
 from slowapi.util import get_remote_address
 from ..services.runs_db import submit_run, get_stats, claim_runs
+from ..services.run_entity_stats import get_entity_stats
 from ..metrics import (
     run_submissions,
     run_character,
@@ -342,6 +343,42 @@ def get_shared_run(run_hash: str, request: Request):
                     return json.load(f)
 
     raise HTTPException(status_code=404, detail="Run data not available")
+
+
+# Per-entity run stats — drives the "Stats" tab on each detail page.
+# Aggregates which runs picked a specific relic / card / potion, the
+# win rate when picked, the per-character distribution, and the most
+# recent submission. Cache is precomputed in process memory; first
+# request after TTL expiry blocks for the rebuild (a few seconds).
+_ENTITY_STATS_TYPES = {"relics", "cards", "potions"}
+
+
+@router.get("/stats/{entity_type}/{entity_id}", tags=["Runs"])
+@limiter.limit("120/minute")
+def get_entity_run_stats(request: Request, entity_type: str, entity_id: str):
+    if entity_type not in _ENTITY_STATS_TYPES:
+        raise HTTPException(
+            status_code=400,
+            detail=f"entity_type must be one of {sorted(_ENTITY_STATS_TYPES)}",
+        )
+    stats = get_entity_stats(entity_type, entity_id)
+    if stats is None:
+        # Entity hasn't appeared in any submitted run yet — return a
+        # zero-filled stub so the UI can render "No runs yet" gracefully
+        # without a separate not-found branch.
+        return {
+            "entity_type": entity_type,
+            "entity_id": entity_id.upper(),
+            "picks": 0,
+            "wins": 0,
+            "win_rate": 0.0,
+            "pick_rate": 0.0,
+            "total_runs": 0,
+            "by_character": [],
+            "last_submitted_at": None,
+            "last_run_hash": None,
+        }
+    return stats
 
 
 @router.get("/stats", tags=["Runs"])
