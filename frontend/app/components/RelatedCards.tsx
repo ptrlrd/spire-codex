@@ -26,18 +26,20 @@ export default function RelatedCards({ currentId, keywords, tags, color }: Relat
   const { lang } = useLanguage();
   const lp = useLangPrefix();
   const [groups, setGroups] = useState<RelatedGroup[]>([]);
-  const [open, setOpen] = useState(false);
 
+  // Fetch on mount (not on toggle) so the related-card <Link>s sit in
+  // the rendered DOM at first paint. Googlebot doesn't click toggles,
+  // and this component is a critical internal-linking hub for the
+  // localized card detail pages — those were stuck in GSC's
+  // "Crawled - currently not indexed" bucket because they had no
+  // outbound crawl paths.
   useEffect(() => {
-    if (!open || groups.length > 0) return;
-
     const fetches: Promise<RelatedGroup>[] = [];
 
-    // Fetch cards sharing each keyword
     if (keywords?.length) {
       for (const kw of keywords) {
         fetches.push(
-          cachedFetch<Card[]>(`${API}/api/cards?keyword=${encodeURIComponent(kw)}`).then(
+          cachedFetch<Card[]>(`${API}/api/cards?keyword=${encodeURIComponent(kw)}&lang=${lang}`).then(
             (cards) => ({
               label: `${kw} cards`,
               cards: cards.filter((c) => c.id !== currentId.toUpperCase()).slice(0, 8),
@@ -47,11 +49,10 @@ export default function RelatedCards({ currentId, keywords, tags, color }: Relat
       }
     }
 
-    // Fetch cards sharing each tag
     if (tags?.length) {
       for (const tag of tags) {
         fetches.push(
-          cachedFetch<Card[]>(`${API}/api/cards?tag=${encodeURIComponent(tag)}`).then(
+          cachedFetch<Card[]>(`${API}/api/cards?tag=${encodeURIComponent(tag)}&lang=${lang}`).then(
             (cards) => ({
               label: `${tag} cards`,
               cards: cards.filter((c) => c.id !== currentId.toUpperCase()).slice(0, 8),
@@ -64,21 +65,18 @@ export default function RelatedCards({ currentId, keywords, tags, color }: Relat
     Promise.all(fetches).then((results) =>
       setGroups(results.filter((g) => g.cards.length > 0))
     );
-  }, [open, currentId, keywords, tags, color, groups.length]);
+  }, [currentId, keywords, tags, color, lang]);
 
   if (!keywords?.length && !tags?.length) return null;
 
   return (
-    <div className="mt-6">
-      <button
-        onClick={() => setOpen(!open)}
-        className="text-sm text-[var(--text-muted)] hover:text-[var(--text-secondary)] transition-colors flex items-center gap-1"
-      >
+    <details className="mt-6 group" open>
+      <summary className="text-sm text-[var(--text-muted)] hover:text-[var(--text-secondary)] transition-colors flex items-center gap-1 cursor-pointer list-none">
         <svg
           aria-hidden
           viewBox="0 0 20 20"
           fill="currentColor"
-          className={`w-4 h-4 transition-transform ${open ? "" : "-rotate-90"}`}
+          className="w-4 h-4 transition-transform -rotate-90 group-open:rotate-0"
         >
           <path
             fillRule="evenodd"
@@ -87,8 +85,8 @@ export default function RelatedCards({ currentId, keywords, tags, color }: Relat
           />
         </svg>
         {t("Related Cards", lang)}
-      </button>
-      {open && groups.length > 0 && (
+      </summary>
+      {groups.length > 0 ? (
         <div className="mt-3 space-y-4">
           {groups.map((group) => (
             <div key={group.label}>
@@ -119,10 +117,9 @@ export default function RelatedCards({ currentId, keywords, tags, color }: Relat
             </div>
           ))}
         </div>
+      ) : (
+        <p className="text-xs text-[var(--text-muted)] mt-2">Loading…</p>
       )}
-      {open && groups.length === 0 && (
-        <p className="text-xs text-[var(--text-muted)] mt-2">Loading...</p>
-      )}
-    </div>
+    </details>
   );
 }

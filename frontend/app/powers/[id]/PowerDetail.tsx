@@ -118,7 +118,9 @@ export default function PowerDetail({ initialPower }: { initialPower?: Power | n
               {relatedCards.map((card) => (
                 <Link
                   key={card.id}
-                  href={`${lp}/cards/${card.id}`}
+                  // Card route uses lowercase IDs everywhere — uppercase
+                  // here would 404 on follow.
+                  href={`${lp}/cards/${card.id.toLowerCase()}`}
                   className="text-xs px-2.5 py-1 rounded bg-[var(--bg-primary)] text-[var(--text-secondary)] border border-[var(--border-subtle)] hover:border-[var(--accent-gold)]/40 hover:text-[var(--text-primary)] transition-colors"
                 >
                   {card.name}

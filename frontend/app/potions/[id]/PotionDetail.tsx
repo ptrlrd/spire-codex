@@ -10,6 +10,7 @@ import { useLanguage } from "../../contexts/LanguageContext";
 import { t } from "@/lib/ui-translations";
 import LocalizedNames from "@/app/components/LocalizedNames";
 import EntityHistory from "@/app/components/EntityHistory";
+import RelatedItems from "@/app/components/RelatedItems";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
@@ -167,6 +168,27 @@ export default function PotionDetail({ initialPotion }: { initialPotion?: Potion
             <EntityHistory entityType="potions" entityId={id} />
           </>
         )}
+
+        {/* Related-potions block sits outside the tabs so it's always
+            visible — gives Google a crawl path to siblings (same rarity
+            and pool) and adds 30+ extra word-equivalents per page. */}
+        <RelatedItems
+          currentId={id}
+          route="potions"
+          heading="Related Potions"
+          groups={[
+            {
+              label: `${potion.rarity} potions`,
+              path: `/api/potions?rarity=${encodeURIComponent(potion.rarity)}&lang=${lang}`,
+            },
+            ...(potion.pool
+              ? [{
+                  label: `${potion.pool} pool`,
+                  path: `/api/potions?pool=${encodeURIComponent(potion.pool)}&lang=${lang}`,
+                }]
+              : []),
+          ]}
+        />
       </div>
     </div>
   );
