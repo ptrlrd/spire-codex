@@ -10,7 +10,6 @@ import RichDescription from "../components/RichDescription";
 import { useLanguage } from "../contexts/LanguageContext";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
 import { useEntityScores } from "@/lib/use-entity-scores";
-import ScoreBadge from "@/app/components/ScoreBadge";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -161,11 +160,10 @@ export default function PotionsClient({ initialPotions }: { initialPotions: Poti
                     />
                   )}
                   <div className="flex-1 min-w-0">
-                    <div className="flex items-start justify-between gap-2 mb-2">
+                    <div className="flex items-start justify-between mb-2">
                       <h3 className="font-semibold text-[var(--text-primary)] leading-tight">
                         {potion.name}
                       </h3>
-                      <ScoreBadge score={scores[potion.id.toUpperCase()]?.score} size="sm" />
                     </div>
                     <span
                       className={`text-xs ${style.split(" ").slice(1).join(" ")} mb-3 inline-block`}
