@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { buildLanguageAlternates } from "@/lib/seo";
 import { api } from "@/lib/api";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -16,7 +17,7 @@ export async function generateMetadata(): Promise<Metadata> {
       title: "Slay the Spire 2 (STS2) Encounters - All Combat Encounters | Spire Codex",
       description: `Slay the Spire 2 (STS2) encounters — browse all ${count} combat encounters including normal fights, elites, and bosses.`,
     },
-    alternates: { canonical: "/encounters" },
+    alternates: { canonical: "/encounters", languages: buildLanguageAlternates("/encounters") },
   };
 }
 

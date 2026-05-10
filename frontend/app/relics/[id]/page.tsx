@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import RelicDetail from "./RelicDetail";
-import { stripTags } from "@/lib/seo";
+import { stripTags, buildLanguageAlternates} from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 
@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         images: relic.image_url ? [{ url: `${API_PUBLIC}${relic.image_url}` }] : [],
       },
       twitter: { card: "summary_large_image" },
-      alternates: { canonical: `/relics/${id}` },
+      alternates: { canonical: `/relics/${id}`, languages: buildLanguageAlternates(`/relics/${id}`) },
     };
   } catch {
     return { title: "Spire Codex - Slay the Spire 2 Database" };

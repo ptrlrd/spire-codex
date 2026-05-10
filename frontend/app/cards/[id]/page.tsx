@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import CardDetail from "./CardDetail";
-import { stripTags, stripTagsFlat } from "@/lib/seo";
+import { stripTags, stripTagsFlat, buildLanguageAlternates} from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 
@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         images: card.image_url ? [{ url: `${API_PUBLIC}${card.image_url}` }] : [],
       },
       twitter: { card: "summary_large_image" },
-      alternates: { canonical: `/cards/${id}` },
+      alternates: { canonical: `/cards/${id}`, languages: buildLanguageAlternates(`/cards/${id}`) },
     };
   } catch {
     return { title: "Spire Codex - Slay the Spire 2 Database" };

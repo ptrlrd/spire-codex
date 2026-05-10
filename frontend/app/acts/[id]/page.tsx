@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import ActDetail from "./ActDetail";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd } from "@/lib/jsonld";
-import { stripTags } from "@/lib/seo";
+import { stripTags, buildLanguageAlternates} from "@/lib/seo";
 
 export const dynamic = "force-dynamic";
 
@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: desc,
       openGraph: { title, description: desc },
       twitter: { card: "summary_large_image" },
-      alternates: { canonical: `/acts/${id}` },
+      alternates: { canonical: `/acts/${id}`, languages: buildLanguageAlternates(`/acts/${id}`) },
     };
   } catch {
     return { title: "Spire Codex - Slay the Spire 2 Database" };

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { buildLanguageAlternates } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Slay the Spire 2 (STS2) Badges - Run-End Awards | Spire Codex",
@@ -9,7 +10,7 @@ export const metadata: Metadata = {
     description:
       "All run-end badges in Slay the Spire 2 — see every badge, what it requires, and which are multiplayer-only.",
   },
-  alternates: { canonical: "/badges" },
+  alternates: { canonical: "/badges", languages: buildLanguageAlternates("/badges") },
 };
 
 export default function BadgesLayout({

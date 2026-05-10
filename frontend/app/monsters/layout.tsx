@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { buildLanguageAlternates } from "@/lib/seo";
 import { api } from "@/lib/api";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -16,7 +17,7 @@ export async function generateMetadata(): Promise<Metadata> {
       title: "Slay the Spire 2 (STS2) Monsters - Complete Monster List | Spire Codex",
       description: `Slay the Spire 2 (STS2) monsters — browse all ${count} normals, elites, and bosses. View HP, moves, and ascension scaling.`,
     },
-    alternates: { canonical: "/monsters" },
+    alternates: { canonical: "/monsters", languages: buildLanguageAlternates("/monsters") },
   };
 }
 

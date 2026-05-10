@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { SITE_URL, SITE_NAME } from "@/lib/seo";
+import { SITE_URL, SITE_NAME, buildLanguageAlternates} from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
 import { buildBreadcrumbJsonLd, buildCollectionPageJsonLd } from "@/lib/jsonld";
 import TierList, { type TierEntity } from "@/app/components/TierList";
@@ -49,7 +49,7 @@ export async function generateMetadata({ searchParams }: PageProps): Promise<Met
   return {
     title,
     description,
-    alternates: { canonical: `${SITE_URL}${path}` },
+    alternates: { canonical: `${SITE_URL}${path}`, languages: buildLanguageAlternates(`${path}`) },
     openGraph: {
       title,
       description,

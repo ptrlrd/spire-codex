@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import AscensionDetail from "./AscensionDetail";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
-import { stripTags } from "@/lib/seo";
+import { stripTags, buildLanguageAlternates} from "@/lib/seo";
 
 export const dynamic = "force-dynamic";
 
@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: metaDesc,
       openGraph: { title, description: metaDesc },
       twitter: { card: "summary_large_image" },
-      alternates: { canonical: `/ascensions/${id}` },
+      alternates: { canonical: `/ascensions/${id}`, languages: buildLanguageAlternates(`/ascensions/${id}`) },
     };
   } catch {
     return { title: "Spire Codex - Slay the Spire 2 Database" };

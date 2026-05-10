@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { buildLanguageAlternates } from "@/lib/seo";
 import { api } from "@/lib/api";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -16,7 +17,7 @@ export async function generateMetadata(): Promise<Metadata> {
       title: "Slay the Spire 2 (STS2) Potions - Complete Potion List | Spire Codex",
       description: `Browse all ${count} Slay the Spire 2 (STS2) potions. Filter by rarity and character pool.`,
     },
-    alternates: { canonical: "/potions" },
+    alternates: { canonical: "/potions", languages: buildLanguageAlternates("/potions") },
   };
 }
 

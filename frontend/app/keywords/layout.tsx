@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { buildLanguageAlternates } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Slay the Spire 2 (STS2) Keywords - All Card Keywords | Spire Codex",
@@ -9,7 +10,7 @@ export const metadata: Metadata = {
     description:
       "Browse all card keywords in Slay the Spire 2 (STS2) — Exhaust, Ethereal, Innate, Retain, Sly, Eternal, and more.",
   },
-  alternates: { canonical: "/keywords" },
+  alternates: { canonical: "/keywords", languages: buildLanguageAlternates("/keywords") },
 };
 
 export default function KeywordsLayout({

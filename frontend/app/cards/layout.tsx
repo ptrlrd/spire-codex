@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { buildLanguageAlternates } from "@/lib/seo";
 import { api } from "@/lib/api";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -16,7 +17,7 @@ export async function generateMetadata(): Promise<Metadata> {
       title: "Slay the Spire 2 (STS2) Cards - Complete Card List | Spire Codex",
       description: `Browse all ${count} Slay the Spire 2 (STS2) cards. Filter by character, type, rarity, and keywords.`,
     },
-    alternates: { canonical: "/cards" },
+    alternates: { canonical: "/cards", languages: buildLanguageAlternates("/cards") },
   };
 }
 

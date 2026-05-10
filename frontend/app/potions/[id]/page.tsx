@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import PotionDetail from "./PotionDetail";
-import { stripTags } from "@/lib/seo";
+import { stripTags, buildLanguageAlternates} from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 
@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         images: potion.image_url ? [{ url: `${API_PUBLIC}${potion.image_url}` }] : [],
       },
       twitter: { card: "summary_large_image" },
-      alternates: { canonical: `/potions/${id}` },
+      alternates: { canonical: `/potions/${id}`, languages: buildLanguageAlternates(`/potions/${id}`) },
     };
   } catch {
     return { title: "Spire Codex - Slay the Spire 2 Database" };
