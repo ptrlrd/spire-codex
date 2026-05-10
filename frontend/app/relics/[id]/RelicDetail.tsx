@@ -10,6 +10,8 @@ import { useLanguage } from "../../contexts/LanguageContext";
 import { t } from "@/lib/ui-translations";
 import LocalizedNames from "@/app/components/LocalizedNames";
 import EntityHistory from "@/app/components/EntityHistory";
+import RelatedItems from "@/app/components/RelatedItems";
+import EntityProse from "@/app/components/EntityProse";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
@@ -199,6 +201,12 @@ export default function RelicDetail({ initialRelic }: { initialRelic?: Relic | n
                 <RichDescription text={relic.flavor} />
               </div>
             )}
+
+            {/* Programmatic prose block — adds 60-100 words of factual
+                contextual content per page from already-localized
+                fields, pushing the page past Google's "thin content"
+                floor without needing per-language translations. */}
+            <EntityProse kind="relic" relic={relic} />
           </>
         )}
 
@@ -245,6 +253,26 @@ export default function RelicDetail({ initialRelic }: { initialRelic?: Relic | n
             <EntityHistory entityType="relics" entityId={id} />
           </>
         )}
+
+        {/* Related-relics block sits outside the tabs so it's always
+            visible — gives Google a crawl path to siblings (same pool +
+            same rarity) and adds 30+ extra word-equivalents of indexed
+            content to what was a thin detail page. */}
+        <RelatedItems
+          currentId={id}
+          route="relics"
+          heading="Related Relics"
+          groups={[
+            {
+              label: `${relic.pool} relics`,
+              path: `/api/relics?pool=${encodeURIComponent(relic.pool)}&lang=${lang}`,
+            },
+            {
+              label: `${relic.rarity} relics`,
+              path: `/api/relics?rarity=${encodeURIComponent(relic.rarity)}&lang=${lang}`,
+            },
+          ]}
+        />
       </div>
     </div>
   );

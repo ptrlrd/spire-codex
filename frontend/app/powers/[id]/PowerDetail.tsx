@@ -9,6 +9,7 @@ import { cachedFetch } from "@/lib/fetch-cache";
 import { useLanguage } from "../../contexts/LanguageContext";
 import LocalizedNames from "@/app/components/LocalizedNames";
 import EntityHistory from "@/app/components/EntityHistory";
+import EntityProse from "@/app/components/EntityProse";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
@@ -109,6 +110,12 @@ export default function PowerDetail({ initialPower }: { initialPower?: Power | n
           </div>
         )}
 
+        {/* Programmatic prose block — adds factual context using
+            already-localized fields (name, type, stack_type) plus a
+            count of cards that apply this power. Pushes the page past
+            Google's "thin content" floor without per-language work. */}
+        <EntityProse kind="power" power={power} appliedByCount={relatedCards.length} />
+
         {relatedCards.length > 0 && (
           <div className="mt-6 pt-5 border-t border-[var(--border-subtle)]">
             <h3 className="text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)] mb-2">
@@ -118,7 +125,9 @@ export default function PowerDetail({ initialPower }: { initialPower?: Power | n
               {relatedCards.map((card) => (
                 <Link
                   key={card.id}
-                  href={`${lp}/cards/${card.id}`}
+                  // Card route uses lowercase IDs everywhere — uppercase
+                  // here would 404 on follow.
+                  href={`${lp}/cards/${card.id.toLowerCase()}`}
                   className="text-xs px-2.5 py-1 rounded bg-[var(--bg-primary)] text-[var(--text-secondary)] border border-[var(--border-subtle)] hover:border-[var(--accent-gold)]/40 hover:text-[var(--text-primary)] transition-colors"
                 >
                   {card.name}
