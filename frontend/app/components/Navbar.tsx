@@ -63,11 +63,16 @@ const NAV_GROUPS: NavGroup[] = [
     ],
   },
   {
-    label: "Tools",
+    label: "Stats",
     links: [
       { href: "/leaderboards", label: "Leaderboards" },
       { href: "/leaderboards/submit", label: "Submit a Run" },
       { href: "/leaderboards/stats", label: "Stats" },
+    ],
+  },
+  {
+    label: "Tools",
+    links: [
       { href: "/showcase", label: "Showcase" },
       { href: "/knowledge-demon", label: "Knowledge Demon" },
     ],
