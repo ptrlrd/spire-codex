@@ -22,6 +22,22 @@ order: 3
 
 > **Bosses roll just like monsters.** The reward switch in `RewardsSet.GenerateRewardsForRoom` calls the same `RollForPotionAndAddTo` path for `Monster`, `Elite`, and `Boss`. Bosses don't get the Elite bonus, so they roll against the bare pity counter, and the result *does* move the counter ±10% like any other combat.
 
+### Elite drops create hidden pity state
+
+A subtle consequence of the bonus being decoupled from the pity check: **after a potion drops from an Elite, you can't tell which direction your pity counter moved.** Walking through the three roll outcomes:
+
+| Roll lands at... | Drop? | Pity moves |
+|---|------:|------:|
+| `num < currentValue` | ✅ | **−10%** |
+| `currentValue ≤ num < currentValue + 0.125` | ✅ | **+10%** |
+| `num ≥ currentValue + 0.125` | ❌ | **+10%** |
+
+Both successful-drop cases look identical to the player — you just see a potion. But internally, the pity counter is now in one of two states 20 percentage points apart. For Normal monsters and Bosses (no bonus zone), `drop ⇒ pity went down` and `no-drop ⇒ pity went up` are clean inverses. Elites break that.
+
+The asymmetry has a real gameplay implication: **the lower your pity is going into an Elite, the more likely a drop is from the bonus zone** (because most of the bare counter is below your random roll), so **pity ticks UP despite the drop**. Counter-intuitive but mechanically correct.
+
+If you're trying to time potion drops around predictable pity movements, prefer routing through Normal/Boss fights where the signal is unambiguous.
+
 ## Rarity Distribution
 
 | Rarity | Chance |
