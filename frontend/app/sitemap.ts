@@ -28,6 +28,14 @@ const STATIC_PAGES = [
   { path: "/leaderboards", priority: 0.7, changeFrequency: "daily" as const },
   { path: "/leaderboards/submit", priority: 0.6, changeFrequency: "monthly" as const },
   { path: "/leaderboards/stats", priority: 0.8, changeFrequency: "daily" as const },
+  { path: "/leaderboards/scoring", priority: 0.6, changeFrequency: "monthly" as const },
+  // Tier list — high priority, daily changefreq because scores update
+  // every 30 minutes as new runs arrive. Per-character variants are
+  // crawled via the in-DOM filter <Link>s on /tier-list/cards.
+  { path: "/tier-list", priority: 0.9, changeFrequency: "daily" as const },
+  { path: "/tier-list/cards", priority: 0.9, changeFrequency: "daily" as const },
+  { path: "/tier-list/relics", priority: 0.9, changeFrequency: "daily" as const },
+  { path: "/tier-list/potions", priority: 0.8, changeFrequency: "daily" as const },
   { path: "/compare", priority: 0.6, changeFrequency: "weekly" as const },
   { path: "/showcase", priority: 0.5, changeFrequency: "monthly" as const },
   { path: "/developers", priority: 0.5, changeFrequency: "monthly" as const },
