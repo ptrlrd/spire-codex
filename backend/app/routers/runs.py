@@ -290,6 +290,55 @@ def get_leaderboard(
         }
 
 
+@router.get("/leaderboard/rank/{run_hash}", tags=["Runs"])
+@limiter.limit("120/minute")
+def get_run_rank(request: Request, run_hash: str, category: str = "fastest"):
+    """Rank of a single winning run within its character's leaderboard.
+
+    Ordering matches `/leaderboard`:
+    - `fastest`: `run_time ASC` — rank = (wins by char with run_time < this) + 1
+    - `highest_ascension`: `ascension DESC, run_time ASC` — rank = (wins by char
+      with higher ascension, or same ascension and faster) + 1
+
+    Returns `{"rank": None}` for losses, missing hashes, or abandoned runs so
+    the caller can render "DNF" / "—" uniformly.
+    """
+    from ..services.runs_db import get_conn
+
+    with get_conn() as conn:
+        row = conn.execute(
+            "SELECT win, character, run_time, ascension FROM runs WHERE run_hash = ?",
+            [run_hash],
+        ).fetchone()
+        if not row or not row["win"]:
+            return {"rank": None}
+
+        if category == "highest_ascension":
+            ahead = conn.execute(
+                """
+                SELECT COUNT(*) AS c FROM runs
+                WHERE win = 1 AND character = ?
+                  AND (ascension > ? OR (ascension = ? AND run_time < ?))
+            """,
+                [
+                    row["character"],
+                    row["ascension"],
+                    row["ascension"],
+                    row["run_time"],
+                ],
+            ).fetchone()["c"]
+        else:
+            ahead = conn.execute(
+                """
+                SELECT COUNT(*) AS c FROM runs
+                WHERE win = 1 AND character = ?
+                  AND run_time < ?
+            """,
+                [row["character"], row["run_time"]],
+            ).fetchone()["c"]
+        return {"rank": ahead + 1, "category": category}
+
+
 @router.get("/versions", tags=["Runs"])
 def get_run_versions(request: Request):
     """Return distinct build_id values from submitted runs."""
