@@ -78,7 +78,8 @@ If a card description, damage value, or relic effect is wrong:
 ### Run Data / Meta
 - Run submission and stats use SQLite (`data/runs.db`, not committed)
 - Schema and queries are in `backend/app/services/runs_db.py`
-- The meta page is at `frontend/app/meta/`
+- The meta page is at `frontend/app/meta/` (redirects to `/leaderboards/stats`)
+- **Codex Score** lives in `backend/app/services/run_entity_stats.py` — Bayesian-shrunk win rate per entity → 0–100 score → S/A/B/C/D/F tier. Pre-warmed on startup. Exposed at `GET /api/runs/scores/{type}` (`cards`/`relics`/`potions`) and surfaced via the `ScoreBadge`/`EntityRunStats`/`TierList` components. Methodology page at `/leaderboards/scoring`.
 
 ### Game Mechanics
 - Static content pages at `frontend/app/mechanics/`

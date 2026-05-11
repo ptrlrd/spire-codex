@@ -38,6 +38,12 @@ Runs at **http://localhost:3000**. Requires the backend running on port 8000.
 | `/images` | Browsable game assets with ZIP download |
 | `/changelog` | Data diffs between game updates |
 | `/about` | Project info, live stats, pipeline visualization |
+| `/tier-list` | Codex Score tier-list hub (cards / relics / potions) |
+| `/tier-list/[type]` | S → F tier rows for one entity type, sourced from `/api/runs/scores/{type}` |
+| `/leaderboards/scoring` | Codex Score methodology — Bayesian shrinkage, prior weight, tier cutoffs |
+| `/news` | Mirrored Steam announcements feed |
+| `/news/[gid]` | Single Steam announcement — sanitized BBCode body, NewsArticle JSON-LD |
+| `/runs/[hash]` | Shared run — in-game-style summary with "by {username}" link |
 
 ## Key Components
 
@@ -48,6 +54,9 @@ Runs at **http://localhost:3000**. Requires the backend running on port 8000.
 - **`JsonLd.tsx`** — Server component rendering `<script type="application/ld+json">` blocks
 - **`Navbar.tsx`** — Navigation with search trigger
 - **`Footer.tsx`** — Footer with feedback modal
+- **`ScoreBadge.tsx`** — S/A/B/C/D/F tier pill (sm/md/lg)
+- **`EntityRunStats.tsx`** — Detail-page Stats tab — score hero badge + prose summary + recent runs links
+- **`TierList.tsx`** — Visual S→F tier rows for `/tier-list/{cards,relics,potions}`
 
 ## SEO
 
@@ -73,7 +82,11 @@ Every page includes structured data and meta tags:
 
 Sitemaps use ISR (`revalidate: 3600`) so they regenerate hourly at runtime — this is critical because the backend API isn't available during the Docker build. Entity entries include `images` for Google Image search indexing.
 
-Shared utilities in `lib/seo.ts` (stripTags, SITE_URL, SITE_NAME) and `lib/jsonld.ts` (schema builders for BreadcrumbList, CollectionPage, Article, WebSite).
+Shared utilities in `lib/seo.ts` (stripTags, SITE_URL, SITE_NAME, `buildLanguageAlternates(path)`) and `lib/jsonld.ts` (schema builders for BreadcrumbList, CollectionPage, Article, NewsArticle, WebSite).
+
+**Title format (standardized)**: `"Slay the Spire 2 (sts2) {Page Title} | Spire Codex"`. Run pages use `"{username} - {char} - Ascension {N} {win/loss} - Slay the Spire 2 (sts2) | Spire Codex"`. "(sts2)" is inline so cross-locale `sts2 tier list` / `sts2 card list` queries match.
+
+**Bidirectional hreflang**: English root pages emit alternates for all 13 locales + `x-default` via `buildLanguageAlternates(path)`. Fixes the GSC "Crawled - not indexed" cluster where Google was treating localized pages as duplicates without back-references.
 
 ## Environment Variables
 

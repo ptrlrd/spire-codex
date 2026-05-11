@@ -187,6 +187,9 @@ spire-codex/
 | Knowledge Demon | `/knowledge-demon` | Discord 机器人介绍页 —— 斜杠命令、版务功能、加入服务器入口 |
 | 新闻 | `/news` | 镜像 Steam 公告流；canonical 链接回 Steam，作为补充而非重复 |
 | 单条新闻 | `/news/[gid]` | 单篇 Steam 公告，BBCode 内容已净化，并附 `NewsArticle` JSON-LD |
+| 梯度表 | `/tier-list` | Codex Score 梯度表入口（卡牌 / 遗物 / 药水） |
+| 梯度表详情 | `/tier-list/[type]` | 单一实体类型的 S→F 等级展示，数据来自 `/api/runs/scores/{type}` |
+| 评分说明 | `/leaderboards/scoring` | Codex Score 方法论页面 —— 贝叶斯收缩、先验权重、分级阈值 |
 
 ## API 端点
 
@@ -245,8 +248,12 @@ spire-codex/
 | `POST /api/guides` | 提交攻略（代理到 Discord） | — |
 | `POST /api/runs` | 提交一个 run（`.run` 文件 JSON） | `username` |
 | `GET /api/runs/list` | 已提交 runs 列表 | `character`, `win`, `username`, `page`, `limit` |
-| `GET /api/runs/shared/{hash}` | 通过 hash 获取完整 run 数据 | — |
+| `GET /api/runs/shared/{hash}` | 通过 hash 获取完整 run 数据（会合并数据库中的 `username`） | — |
 | `GET /api/runs/stats` | 聚合后的社区统计 | `character`, `win`, `ascension`, `game_mode`, `players` |
+| `GET /api/runs/scores/{type}` | 各实体的 Codex Score（贝叶斯收缩胜率得分 + S/A/B/C/D/F 等级） | `type` 取值 `cards`/`relics`/`potions` |
+| `GET /api/news` | Steam 公告 + 社区新闻（本地归档；超出 Steam 滑动窗口仍可访问） | `feed_type`, `feedname`, `tag`, `since`, `search`, `limit`, `offset` |
+| `GET /api/news/{gid}` | 单篇新闻文章（原始 HTML / BBCode 正文） | — |
+| `GET /api/merchant/config` | 自动提取的商人价格配置 | — |
 | `POST /api/feedback` | 提交反馈（代理到 Discord） | — |
 
 每个 IP 每分钟限流 **60 次请求**。反馈和攻略提交接口每个 IP 每分钟限制 **3–5 次**。交互式文档位于 `/docs`（Swagger UI）。
@@ -637,12 +644,13 @@ Spire Codex 使用 **`1.X.Y`** 语义化版本规则：
 
 ## SEO
 
-- **结构化数据（JSON-LD）**：首页使用 WebSite + VideoGame，列表页使用 CollectionPage + ItemList，详情页使用 Article + BreadcrumbList + FAQPage，开发者页使用 SoftwareApplication
-- **标题格式**：`"Slay the Spire 2 [Topic] - [Descriptor] | Spire Codex"` —— 全站统一
-- **站点地图**：位于 `/sitemap.xml` 的扁平 XML，使用 `force-dynamic`（服务端动态渲染，而非构建时生成）。共约 20,000+ 个 URL，包含实体详情页、浏览矩阵页以及所有实体类型的多语言详情页
-- **国际化 SEO**：为 13 种非英语语言提供 `/{lang}/` 路由，并配置 hreflang alternates
-- **程序化 SEO**：在 `/cards/browse/` 下提供 41 个卡牌浏览页面（如 rare-attacks、ironclad-skills 等）
-- **站内链接**：能力 ↔ 卡牌、遭遇 → 怪物、卡牌关键词 → 关键词中心页、怪物行动 → 能力页（带 tooltip）、章节页 → 遭遇 / 事件、所有参考实体均可点击
+- **结构化数据（JSON-LD）**：首页使用 WebSite + VideoGame，列表页使用 CollectionPage + ItemList，详情页使用 Article + BreadcrumbList + FAQPage，开发者页使用 SoftwareApplication，新闻详情页使用 NewsArticle
+- **标题格式**：`"Slay the Spire 2 (sts2) {Page Title} | Spire Codex"` —— 全站统一。共享 run 使用 `"{username} - {char} - Ascension {N} {win/loss} - Slay the Spire 2 (sts2) | Spire Codex"`。把 "(sts2)" 内联进标题，使各语言下的 `sts2 tier list` / `sts2 card list` 等查询都能命中。
+- **站点地图**：位于 `/sitemap.xml` 的扁平 XML，使用 `force-dynamic`（服务端动态渲染，而非构建时生成）。共约 20,000+ 个 URL，包含实体详情页、浏览矩阵页、梯度表页、评分方法论页、`runs/[hash]` 详情，以及所有实体类型的多语言详情页
+- **国际化 SEO**：为 13 种非英语语言提供 `/{lang}/` 路由，并配置**双向** hreflang alternates —— 英文根页面也会通过 `lib/seo.ts` 中的 `buildLanguageAlternates(path)` 输出全部 13 个语言的 alternate 以及 `x-default`（修复 GSC 中「已抓取但未编入索引」聚类问题，此前 Google 把缺少反向引用的本地化页面当作重复内容）
+- **程序化 SEO**：在 `/cards/browse/` 下提供 41 个卡牌浏览页面（如 rare-attacks、ironclad-skills 等），加上 3 个梯度表页面（`/tier-list/{cards,relics,potions}`）
+- **本地化 EntityProse**：详情页注入按语言定制的短段落，避免不同语言下相同英文正文被 GSC 当作重复内容
+- **站内链接**：能力 ↔ 卡牌、遭遇 → 怪物、卡牌关键词 → 关键词中心页、怪物行动 → 能力页（带 tooltip）、章节页 → 遭遇 / 事件、梯度表行 → 实体详情页 Stats 标签、所有参考实体均可点击
 - **Open Graph 与 Twitter Cards**：为每个实体单独生成 OG 图片，`summary_large_image` Twitter 卡片
 - **Canonical URL**：每个页面都会声明 canonical URL
 
@@ -691,6 +699,8 @@ Spire Codex 使用 **`1.X.Y`** 语义化版本规则：
 - ~~事件前置条件~~ ✅ —— 25 个事件，条件来自 C# 源码中 IsAllowed() 的解析
 - ~~Beta 多版本浏览~~ ✅ —— 版本下拉框，保留所有历史 beta，并支持查看 changelog
 - ~~Discord 机器人~~ ✅ —— [Knowledge Demon](https://bot.spire-codex.com)：每个实体都有斜杠命令（`/card`、`/relic`、`/monster`、`/potion`、`/character`、`/event`、`/power`、`/enchantment`、`/lookup`、`/meta`），支持 Steam 新闻 RSS，外加从 [Kernel](https://github.com/ptrlrd/kernel) 派生的完整版务工具集
+- ~~Codex Score 与梯度表~~ ✅ —— 基于社区 run 数据，使用**贝叶斯收缩**计算每个实体的评分：`shrunk = (wins + PRIOR_WEIGHT × baseline) / (n + PRIOR_WEIGHT)`，再缩放到 0–100 并映射到 S/A/B/C/D/F。可避免小样本噪声（一张只打过 1 局且胜的卡不会拿到 S，而是回归先验）。FastAPI 启动时预热缓存。在详情页 Stats 标签通过 `ScoreBadge` 展示，并在 `/tier-list/{cards,relics,potions}` 单独陈列，方法论页面位于 `/leaderboards/scoring`。
+- ~~详情页 Stats 标签~~ ✅ —— `EntityRunStats` 提供得分徽章 + 文字总结 + 最近 run 链接。
 - **构筑编辑器** —— 可交互式牌组理论构筑
 - **数据库后端** —— 用 SQLite / PostgreSQL 替换 JSON 加载
 
