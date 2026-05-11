@@ -12,10 +12,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params;
   try {
     const res = await fetch(`${API_INTERNAL}/api/afflictions/${id}`);
-    if (!res.ok) return { title: "Affliction Not Found - Spire Codex" };
+    if (!res.ok) return { title: "Affliction Not Found - Slay the Spire 2 (sts2) | Spire Codex" };
     const affliction = await res.json();
     const desc = stripTags(affliction.description || "");
-    const title = `Slay the Spire 2 (STS2) Affliction - ${affliction.name} | Spire Codex`;
+    const title = `Affliction - ${affliction.name} - Slay the Spire 2 (sts2) | Spire Codex`;
     const metaDesc = `${affliction.name} is an affliction in Slay the Spire 2: ${desc}`;
     return {
       title,
@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       alternates: { canonical: `/afflictions/${id}`, languages: buildLanguageAlternates(`/afflictions/${id}`) },
     };
   } catch {
-    return { title: "Spire Codex - Slay the Spire 2 Database" };
+    return { title: "Database - Slay the Spire 2 (sts2) | Spire Codex" };
   }
 }
 

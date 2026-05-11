@@ -58,11 +58,11 @@ async function fetchBadge(id: string): Promise<Badge | null> {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params;
   const badge = await fetchBadge(id);
-  if (!badge) return { title: "Badge Not Found - Spire Codex" };
+  if (!badge) return { title: "Badge Not Found - Slay the Spire 2 (sts2) | Spire Codex" };
 
   const desc = stripTags(badge.description);
   const subtype = badge.tiered ? "Tiered" : "Badge";
-  const title = `Slay the Spire 2 (STS2) Badge - ${badge.name} - ${subtype} | Spire Codex`;
+  const title = `Badge - ${badge.name} - ${subtype} - Slay the Spire 2 (sts2) | Spire Codex`;
   const metaDesc = `${badge.name} run-end badge in Slay the Spire 2: ${desc}`;
   return {
     title,

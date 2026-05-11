@@ -22,7 +22,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: `${SITE_NAME} - Slay the Spire 2 Database`,
+  title: `Database - Slay the Spire 2 (sts2) | ${SITE_NAME}`,
   description:
     "A comprehensive database for Slay the Spire 2 — browse cards, relics, characters, monsters, and potions.",
   icons: {

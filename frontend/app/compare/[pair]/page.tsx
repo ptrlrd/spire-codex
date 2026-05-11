@@ -42,18 +42,18 @@ type Props = { params: Promise<{ pair: string }> };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { pair } = await params;
   const parsed = parsePair(pair);
-  if (!parsed) return { title: "Comparison Not Found - Spire Codex" };
+  if (!parsed) return { title: "Comparison Not Found - Slay the Spire 2 (sts2) | Spire Codex" };
 
   const nameA = CHAR_NAMES[parsed.a];
   const nameB = CHAR_NAMES[parsed.b];
-  const title = `Slay the Spire 2 (STS2) ${nameA} vs ${nameB} - Character Comparison | Spire Codex`;
+  const title = `${nameA} vs ${nameB} - Character Comparison - Slay the Spire 2 (sts2) | Spire Codex`;
   const description = `Compare ${nameA} and ${nameB} in Slay the Spire 2. Side-by-side stats, card pool breakdowns by type and rarity, keyword distributions, and starting decks.`;
 
   return {
     title,
     description,
     openGraph: {
-      title: `Slay the Spire 2 (STS2) ${nameA} vs ${nameB} - Character Comparison | Spire Codex`,
+      title: `${nameA} vs ${nameB} - Character Comparison - Slay the Spire 2 (sts2) | Spire Codex`,
       description,
     },
     twitter: { card: "summary_large_image" },

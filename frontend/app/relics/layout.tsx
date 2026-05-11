@@ -11,11 +11,11 @@ export async function generateMetadata(): Promise<Metadata> {
     // Fall back to the baseline count if the API is unreachable at build time.
   }
   return {
-    title: "Slay the Spire 2 (STS2) Relics - Complete Relic List | Spire Codex",
-    description: `Browse all ${count} Slay the Spire 2 (STS2) relics. Filter by rarity (Common, Uncommon, Rare, Shop, Event, Ancient) and character pool (Ironclad, Silent, Defect, Necrobinder, Regent). View relic effects, flavor text, and images.`,
+    title: "Relics - Complete Relic List - Slay the Spire 2 (sts2) | Spire Codex",
+    description: `Browse all ${count} Slay the Spire 2 (sts2) relics. Filter by rarity (Common, Uncommon, Rare, Shop, Event, Ancient) and character pool (Ironclad, Silent, Defect, Necrobinder, Regent). View relic effects, flavor text, and images.`,
     openGraph: {
-      title: "Slay the Spire 2 (STS2) Relics - Complete Relic List | Spire Codex",
-      description: `Browse all ${count} Slay the Spire 2 (STS2) relics. Filter by rarity and character pool. View relic effects and images.`,
+      title: "Relics - Complete Relic List - Slay the Spire 2 (sts2) | Spire Codex",
+      description: `Browse all ${count} Slay the Spire 2 (sts2) relics. Filter by rarity and character pool. View relic effects and images.`,
     },
     alternates: { canonical: "/relics", languages: buildLanguageAlternates("/relics") },
   };

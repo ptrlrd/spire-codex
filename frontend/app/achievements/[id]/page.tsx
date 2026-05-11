@@ -12,10 +12,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params;
   try {
     const res = await fetch(`${API_INTERNAL}/api/achievements/${id}`);
-    if (!res.ok) return { title: "Achievement Not Found - Spire Codex" };
+    if (!res.ok) return { title: "Achievement Not Found - Slay the Spire 2 (sts2) | Spire Codex" };
     const achievement = await res.json();
     const desc = stripTags(achievement.description || "");
-    const title = `Slay the Spire 2 (STS2) Achievement - ${achievement.name} | Spire Codex`;
+    const title = `Achievement - ${achievement.name} - Slay the Spire 2 (sts2) | Spire Codex`;
     const metaDesc = `${achievement.name} is an achievement in Slay the Spire 2: ${desc}`;
     return {
       title,
@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       alternates: { canonical: `/achievements/${id}`, languages: buildLanguageAlternates(`/achievements/${id}`) },
     };
   } catch {
-    return { title: "Spire Codex - Slay the Spire 2 Database" };
+    return { title: "Database - Slay the Spire 2 (sts2) | Spire Codex" };
   }
 }
 

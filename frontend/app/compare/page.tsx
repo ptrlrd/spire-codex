@@ -49,7 +49,7 @@ export default function ComparePage() {
     buildCollectionPageJsonLd({
       name: "Slay the Spire 2 Character Comparisons",
       description:
-        "Compare all Slay the Spire 2 (STS2) characters side by side. Stats, card pools, keywords, and starting decks.",
+        "Compare all Slay the Spire 2 (sts2) characters side by side. Stats, card pools, keywords, and starting decks.",
       path: "/compare",
       items: pairs.map((p) => ({
         name: `${p.a.name} vs ${p.b.name}`,

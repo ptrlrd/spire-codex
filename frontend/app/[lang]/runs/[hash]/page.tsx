@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   try {
     const res = await fetch(`${API_INTERNAL}/api/runs/shared/${hash}`);
-    if (!res.ok) return { title: "Run Not Found - Spire Codex" };
+    if (!res.ok) return { title: "Run Not Found - Slay the Spire 2 (sts2) | Spire Codex" };
     const run = await res.json();
     const char = run.players?.[0]?.character?.replace("CHARACTER.", "") || "";
     const resultKey = run.win

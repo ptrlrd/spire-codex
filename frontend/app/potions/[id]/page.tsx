@@ -13,10 +13,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params;
   try {
     const res = await fetch(`${API_INTERNAL}/api/potions/${id}`);
-    if (!res.ok) return { title: "Potion Not Found - Spire Codex" };
+    if (!res.ok) return { title: "Potion Not Found - Slay the Spire 2 (sts2) | Spire Codex" };
     const potion = await res.json();
     const desc = stripTags(potion.description || "");
-    const title = `Slay the Spire 2 (STS2) Potion - ${potion.name} - ${potion.rarity} | Spire Codex`;
+    const title = `Potion - ${potion.name} - ${potion.rarity} - Slay the Spire 2 (sts2) | Spire Codex`;
     const metaDesc = `${potion.name} is a ${potion.rarity} potion in Slay the Spire 2: ${desc}`;
     return {
       title,
@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       alternates: { canonical: `/potions/${id}`, languages: buildLanguageAlternates(`/potions/${id}`) },
     };
   } catch {
-    return { title: "Spire Codex - Slay the Spire 2 Database" };
+    return { title: "Database - Slay the Spire 2 (sts2) | Spire Codex" };
   }
 }
 

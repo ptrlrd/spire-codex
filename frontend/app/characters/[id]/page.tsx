@@ -13,10 +13,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params;
   try {
     const res = await fetch(`${API_INTERNAL}/api/characters/${id}`);
-    if (!res.ok) return { title: "Character Not Found - Spire Codex" };
+    if (!res.ok) return { title: "Character Not Found - Slay the Spire 2 (sts2) | Spire Codex" };
     const char = await res.json();
     const desc = stripTags(char.description || "");
-    const title = `Slay the Spire 2 (STS2) Character - ${char.name} | Spire Codex`;
+    const title = `Character - ${char.name} - Slay the Spire 2 (sts2) | Spire Codex`;
     const metaDesc = `${char.name} is a playable character in Slay the Spire 2. ${char.starting_hp ? `${char.starting_hp} HP, ${char.max_energy} Energy.` : ""} ${desc}`;
     return {
       title,
@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       alternates: { canonical: `/characters/${id}` },
     };
   } catch {
-    return { title: "Spire Codex - Slay the Spire 2 Database" };
+    return { title: "Database - Slay the Spire 2 (sts2) | Spire Codex" };
   }
 }
 

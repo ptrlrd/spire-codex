@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!isValidLang(lang)) return {};
   try {
     const res = await fetch(`${API_INTERNAL}/api/orbs/${id}?lang=${lang}`);
-    if (!res.ok) return { title: "Orb Not Found - Spire Codex" };
+    if (!res.ok) return { title: "Orb Not Found - Slay the Spire 2 (sts2) | Spire Codex" };
     const entity = await res.json();
     const desc = stripTags(entity.description || "");
     const langCode = lang as LangCode;

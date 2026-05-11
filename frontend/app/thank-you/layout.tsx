@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Slay the Spire 2 (STS2) Database - Thank You | Spire Codex",
+  title: "Database - Thank You - Slay the Spire 2 (sts2) | Spire Codex",
   description:
     "Thank you to the Spire Codex community — Ko-fi supporters, contributors, and everyone who's helped report bugs, share the site, and make this project what it is.",
   openGraph: {
-    title: "Slay the Spire 2 (STS2) Database - Thank You | Spire Codex",
+    title: "Database - Thank You - Slay the Spire 2 (sts2) | Spire Codex",
     description:
       "Thank you to the Spire Codex community of supporters and contributors.",
   },
