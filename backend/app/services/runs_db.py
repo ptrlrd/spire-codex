@@ -394,32 +394,42 @@ def get_stats(
     Exact match on the sanitized username the run was submitted with.
     """
     with get_conn() as conn:
-        # Build WHERE clause
-        conditions = []
-        params: list = []
-        if character:
-            conditions.append("r.character = ?")
-            params.append(character.upper())
+        # Build WHERE clause. Track non-character conditions separately so the
+        # per-character breakdown (`char_stats`) can drop the character filter
+        # while still respecting everything else (username, win, ascension,
+        # game_mode, players). Without this, /api/runs/stats?username=peter
+        # returns the global per-character breakdown — every uploader's runs.
+        non_char_conditions: list[str] = []
+        non_char_params: list = []
         if win == "true":
-            conditions.append("r.win = 1")
+            non_char_conditions.append("r.win = 1")
         elif win == "false":
-            conditions.append("r.win = 0 AND r.was_abandoned = 0")
+            non_char_conditions.append("r.win = 0 AND r.was_abandoned = 0")
         elif win == "abandoned":
-            conditions.append("r.was_abandoned = 1")
+            non_char_conditions.append("r.was_abandoned = 1")
         if ascension is not None and ascension != "":
-            conditions.append("r.ascension = ?")
-            params.append(int(ascension))
+            non_char_conditions.append("r.ascension = ?")
+            non_char_params.append(int(ascension))
         if game_mode:
-            conditions.append("r.game_mode = ?")
-            params.append(game_mode)
+            non_char_conditions.append("r.game_mode = ?")
+            non_char_params.append(game_mode)
         if players == "single":
-            conditions.append("r.player_count = 1")
+            non_char_conditions.append("r.player_count = 1")
         elif players == "multi":
-            conditions.append("r.player_count > 1")
+            non_char_conditions.append("r.player_count > 1")
         if username:
-            conditions.append("r.username = ?")
-            params.append(username)
+            non_char_conditions.append("r.username = ?")
+            non_char_params.append(username)
+
+        conditions: list[str] = list(non_char_conditions)
+        params: list = list(non_char_params)
+        if character:
+            conditions.insert(0, "r.character = ?")
+            params.insert(0, character.upper())
         where = ("WHERE " + " AND ".join(conditions)) if conditions else ""
+        where_no_char = (
+            "WHERE " + " AND ".join(non_char_conditions) if non_char_conditions else ""
+        )
 
         total = conn.execute(
             f"SELECT COUNT(*) as c FROM runs r {where}", params
@@ -448,11 +458,18 @@ def get_stats(
             f"SELECT COUNT(*) as c FROM runs r {abandoned_where}", params
         ).fetchone()["c"]
 
-        # Win rate by character (always unfiltered by character for the overview)
-        char_stats = conn.execute("""
-            SELECT character, COUNT(*) as total, SUM(win) as wins
-            FROM runs GROUP BY character ORDER BY total DESC
-        """).fetchall()
+        # Win rate by character. Always unfiltered by character (the breakdown
+        # has one row per character) but respects all other filters — most
+        # importantly `username`, so the per-user Stats tab in the desktop app
+        # gets that user's runs, not the global pool.
+        char_stats = conn.execute(
+            f"""
+            SELECT r.character, COUNT(*) as total, SUM(r.win) as wins
+            FROM runs r {where_no_char}
+            GROUP BY r.character ORDER BY total DESC
+        """,
+            non_char_params,
+        ).fetchall()
 
         # Card pick rates — ALL cards, not just top N
         pick_rates = conn.execute(
