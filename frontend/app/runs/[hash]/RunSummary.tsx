@@ -90,6 +90,9 @@ interface Run {
   modifiers?: string[];
   map_point_history?: MapPoint[][];
   players: Player[];
+  /** Attached server-side from the runs DB row (not in the on-disk
+   *  run JSON). Missing for anonymous submissions. */
+  username?: string;
 }
 
 const RARITY_ORDER = ["Starter", "Common", "Uncommon", "Rare", "Ancient", "Event", "Token", "Status", "Curse", "Quest"];
@@ -242,6 +245,17 @@ export default function RunSummary({ run, player, cardData, relicData, potionDat
           <IconStat icon={`${API}/static/images/ui/top_bar/top_bar_ascension.webp`} alt="Ascension" value={`A${run.ascension}`} color="var(--accent-gold)" />
         )}
         <div className="w-full sm:w-auto sm:ml-auto text-left sm:text-right text-xs text-[var(--text-muted)] leading-tight">
+          {run.username && (
+            <div className="truncate">
+              <Link
+                href={`${lp}/leaderboards?tab=browse&user=${encodeURIComponent(run.username)}`}
+                className="text-[var(--text-secondary)] hover:text-[var(--accent-gold)] hover:underline"
+                title={t("View all runs by this player", lang)}
+              >
+                {t("by", lang)} <span className="font-medium text-[var(--text-primary)]">{run.username}</span>
+              </Link>
+            </div>
+          )}
           {run.start_time && <div className="truncate">{formatDate(run.start_time)}</div>}
           {run.seed && (
             <div className="truncate">

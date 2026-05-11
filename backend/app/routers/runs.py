@@ -308,15 +308,31 @@ def get_run_versions(request: Request):
 # against this single endpoint and pegging the worker at 100% CPU.
 @limiter.limit("60/minute")
 def get_shared_run(run_hash: str, request: Request):
-    """Retrieve a shared run by its hash."""
+    """Retrieve a shared run by its hash, merged with DB-side username.
+
+    The on-disk run JSON is the immutable client-submitted blob — it does
+    not contain the submitter's username, since users may attach a name
+    AFTER submitting via /api/runs/claim. The username lives in the
+    SQLite runs row. Without merging, /shared dropped usernames entirely
+    even though /api/runs/list happily reported them.
+    """
+    from ..services.runs_db import get_conn
+
+    def _attach_username(blob: dict) -> dict:
+        with get_conn() as conn:
+            row = conn.execute(
+                "SELECT username FROM runs WHERE run_hash = ?", (run_hash,)
+            ).fetchone()
+            if row and row["username"]:
+                blob["username"] = row["username"]
+        return blob
+
     cached = _load_run_blob(run_hash)
     if cached is not None:
-        return json.loads(cached)
+        return _attach_username(json.loads(cached))
 
     # Fallback for multiplayer: find the run in DB, get its seed/start_time,
     # then look for any sibling player's file with the same seed
-    from ..services.runs_db import get_conn
-
     with get_conn() as conn:
         row = conn.execute(
             "SELECT seed, character FROM runs WHERE run_hash = ?", (run_hash,)
@@ -340,7 +356,7 @@ def get_shared_run(run_hash: str, request: Request):
                 # on this and subsequent requests.
                 _load_run_blob.cache_clear()
                 with open(run_file, "r", encoding="utf-8") as f:
-                    return json.load(f)
+                    return _attach_username(json.load(f))
 
     raise HTTPException(status_code=404, detail="Run data not available")
 
