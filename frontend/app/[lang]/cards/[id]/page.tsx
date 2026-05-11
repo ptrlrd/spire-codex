@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!isValidLang(lang)) return {};
   try {
     const res = await fetch(`${API_INTERNAL}/api/cards/${id}?lang=${lang}`);
-    if (!res.ok) return { title: "Card Not Found - Spire Codex" };
+    if (!res.ok) return { title: "Card Not Found - Slay the Spire 2 (sts2) | Spire Codex" };
     const card = await res.json();
     const langCode = lang as LangCode;
     const gameName = LANG_GAME_NAME[langCode];

@@ -13,10 +13,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params;
   try {
     const res = await fetch(`${API_INTERNAL}/api/relics/${id}`);
-    if (!res.ok) return { title: "Relic Not Found - Spire Codex" };
+    if (!res.ok) return { title: "Relic Not Found - Slay the Spire 2 (sts2) | Spire Codex" };
     const relic = await res.json();
     const desc = stripTags(relic.description || "");
-    const title = `Slay the Spire 2 (STS2) Relic - ${relic.name} - ${relic.rarity} | Spire Codex`;
+    const title = `Relic - ${relic.name} - ${relic.rarity} - Slay the Spire 2 (sts2) | Spire Codex`;
     const metaDesc = `${relic.name} is a ${relic.rarity} relic in Slay the Spire 2: ${desc}`;
     return {
       title,
@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       alternates: { canonical: `/relics/${id}`, languages: buildLanguageAlternates(`/relics/${id}`) },
     };
   } catch {
-    return { title: "Spire Codex - Slay the Spire 2 Database" };
+    return { title: "Database - Slay the Spire 2 (sts2) | Spire Codex" };
   }
 }
 

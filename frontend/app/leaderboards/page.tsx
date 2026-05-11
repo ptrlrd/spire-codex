@@ -6,7 +6,7 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   title: "Leaderboards - Slay the Spire 2 | Spire Codex",
   description:
-    "Browse community-submitted Slay the Spire 2 (STS2) runs. Filter by character, ascension level, and outcome. View leaderboards and detailed run breakdowns.",
+    "Browse community-submitted Slay the Spire 2 (sts2) runs. Filter by character, ascension level, and outcome. View leaderboards and detailed run breakdowns.",
 };
 
 export default function ToolsPage() {

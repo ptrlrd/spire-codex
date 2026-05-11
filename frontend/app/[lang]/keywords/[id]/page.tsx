@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!isValidLang(lang)) return {};
   try {
     const res = await fetch(`${API_INTERNAL}/api/keywords/${id}?lang=${lang}`);
-    if (!res.ok) return { title: "Keyword Not Found - Spire Codex" };
+    if (!res.ok) return { title: "Keyword Not Found - Slay the Spire 2 (sts2) | Spire Codex" };
     const kw = await res.json();
     const desc = stripTags(kw.description);
     const langCode = lang as LangCode;

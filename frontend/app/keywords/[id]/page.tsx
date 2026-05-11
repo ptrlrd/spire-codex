@@ -27,13 +27,13 @@ async function fetchKeywordOrGlossary(id: string) {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params;
   const result = await fetchKeywordOrGlossary(id);
-  if (!result) return { title: "Term Not Found - Spire Codex" };
+  if (!result) return { title: "Term Not Found - Slay the Spire 2 (sts2) | Spire Codex" };
 
   const { type, data } = result;
   const desc = stripTags(data.description);
 
   if (type === "keyword") {
-    const title = `Slay the Spire 2 (STS2) Keyword - ${data.name} | Spire Codex`;
+    const title = `Keyword - ${data.name} - Slay the Spire 2 (sts2) | Spire Codex`;
     const metaDesc = `${data.name} is a card keyword in Slay the Spire 2: ${desc}`;
     return {
       title,
@@ -47,7 +47,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
   }
 
-  const title = `Slay the Spire 2 (STS2) Term - ${data.name} | Spire Codex`;
+  const title = `Term - ${data.name} - Slay the Spire 2 (sts2) | Spire Codex`;
   const metaDesc = `${data.name} is a game term in Slay the Spire 2: ${desc}`;
   return {
     title,

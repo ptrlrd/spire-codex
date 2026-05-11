@@ -15,12 +15,12 @@ export const metadata: Metadata = {
   // match either query phrasing — the actual SERPs we're targeting use
   // both. Order chosen so the abbreviation lands inside the truncation
   // window on mobile (Google trims at ~60 chars on phones).
-  title: `STS2 Tier List - Slay the Spire 2 Cards, Relics & Potions Ranked | ${SITE_NAME}`,
+  title: `Tier List - Cards, Relics & Potions Ranked - Slay the Spire 2 (sts2) | ${SITE_NAME}`,
   description:
-    "STS2 / Slay the Spire 2 tier list ranking every card, relic, and potion S through F. Codex Score from community win rates. Updated daily after every patch.",
+    "Slay the Spire 2 (sts2) tier list ranking every card, relic, and potion S through F. Codex Score from community win rates. Updated daily after every patch.",
   alternates: { canonical: `${SITE_URL}/tier-list`, languages: buildLanguageAlternates(`/tier-list`) },
   openGraph: {
-    title: `STS2 Tier List | ${SITE_NAME}`,
+    title: `Tier List - Slay the Spire 2 (sts2) | ${SITE_NAME}`,
     description: "Every Slay the Spire 2 card, relic, and potion ranked S → F based on community win-rate data.",
     url: `${SITE_URL}/tier-list`,
     siteName: SITE_NAME,
@@ -176,7 +176,7 @@ export default async function TierListIndex() {
       <JsonLd data={jsonLd} />
 
       <h1 className="text-3xl font-bold mb-2">
-        <span className="text-[var(--accent-gold)]">Slay the Spire 2 (STS2) Tier List</span>
+        <span className="text-[var(--accent-gold)]">Slay the Spire 2 (sts2) Tier List</span>
       </h1>
       <p className="text-sm text-[var(--text-muted)] mb-2">
         Updated <time dateTime={new Date().toISOString()}>{updatedDate}</time> · Scores rebuild every 30 minutes.

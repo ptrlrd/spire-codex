@@ -13,10 +13,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params;
   try {
     const res = await fetch(`${API_INTERNAL}/api/events/${id}`);
-    if (!res.ok) return { title: "Event Not Found - Spire Codex" };
+    if (!res.ok) return { title: "Event Not Found - Slay the Spire 2 (sts2) | Spire Codex" };
     const event = await res.json();
     const desc = stripTags(event.description || "");
-    const title = `Slay the Spire 2 (STS2) Event - ${event.name} - ${event.type} | Spire Codex`;
+    const title = `Event - ${event.name} - ${event.type} - Slay the Spire 2 (sts2) | Spire Codex`;
     const metaDesc = `${event.name} is a ${event.type} event in Slay the Spire 2${event.act ? ` (${event.act})` : ""}: ${desc}`;
     return {
       title,
@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       alternates: { canonical: `/events/${id}` },
     };
   } catch {
-    return { title: "Spire Codex - Slay the Spire 2 Database" };
+    return { title: "Database - Slay the Spire 2 (sts2) | Spire Codex" };
   }
 }
 

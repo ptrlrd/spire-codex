@@ -44,7 +44,7 @@ export default async function BadgesPage() {
     buildCollectionPageJsonLd({
       name: "Slay the Spire 2 Badges",
       description:
-        "All run-end badges in Slay the Spire 2 (STS2) — Bronze, Silver, and Gold tier mini-achievements awarded on the Game Over screen.",
+        "All run-end badges in Slay the Spire 2 (sts2) — Bronze, Silver, and Gold tier mini-achievements awarded on the Game Over screen.",
       path: "/badges",
       items: badges.map((b) => ({
         name: b.name,
@@ -57,7 +57,7 @@ export default async function BadgesPage() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <JsonLd data={jsonLd} />
       <h1 className="text-3xl font-bold mb-2">
-        <span className="text-[var(--accent-gold)]">Slay the Spire 2 (STS2) Badges</span>
+        <span className="text-[var(--accent-gold)]">Slay the Spire 2 (sts2) Badges</span>
       </h1>
       <p className="text-sm text-[var(--text-muted)] mb-6">
         Run-end badges are mini-achievements awarded on the Game Over screen.

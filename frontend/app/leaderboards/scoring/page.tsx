@@ -6,12 +6,12 @@ import { buildBreadcrumbJsonLd } from "@/lib/jsonld";
 import ScoreBadge from "@/app/components/ScoreBadge";
 
 export const metadata: Metadata = {
-  title: `Slay the Spire 2 (STS2) Codex Score - How Tier Ratings Work | ${SITE_NAME}`,
+  title: `Codex Score - How Tier Ratings Work - Slay the Spire 2 (sts2) | ${SITE_NAME}`,
   description:
     "How the Codex Score rates every Slay the Spire 2 card, relic, and potion. Bayesian-shrunk win-rate formula, tier bands (S through F), and methodology behind the community-meta ratings.",
   alternates: { canonical: `${SITE_URL}/leaderboards/scoring`, languages: buildLanguageAlternates(`/leaderboards/scoring`) },
   openGraph: {
-    title: `Codex Score Methodology | ${SITE_NAME}`,
+    title: `Codex Score Methodology - Slay the Spire 2 (sts2) | ${SITE_NAME}`,
     description:
       "How we compute the 0-100 community-meta score on every card / relic / potion. Bayesian shrinkage, tier bands, formula breakdown.",
     url: `${SITE_URL}/leaderboards/scoring`,

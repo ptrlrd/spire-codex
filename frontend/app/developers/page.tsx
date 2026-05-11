@@ -7,13 +7,13 @@ import TinyCard, { TINY_CARD_POOL_COLOR, TINY_CARD_BANNER_COLOR } from "@/app/co
 const API_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://spire-codex.com";
 
 export const metadata: Metadata = {
-  title: "Slay the Spire 2 (STS2) Developer API & Tooltip Widget | Spire Codex",
+  title: "Developer API & Tooltip Widget - Slay the Spire 2 (sts2) | Spire Codex",
   description:
-    "Integrate Slay the Spire 2 (STS2) game data into your projects. Public REST API with 22+ endpoints, embeddable tooltip widget, and multi-language support.",
+    "Integrate Slay the Spire 2 (sts2) game data into your projects. Public REST API with 22+ endpoints, embeddable tooltip widget, and multi-language support.",
   openGraph: {
-    title: "Slay the Spire 2 (STS2) Developer API & Tooltip Widget | Spire Codex",
+    title: "Developer API & Tooltip Widget - Slay the Spire 2 (sts2) | Spire Codex",
     description:
-      "Public REST API and embeddable tooltip widget for Slay the Spire 2 (STS2) game data.",
+      "Public REST API and embeddable tooltip widget for Slay the Spire 2 (sts2) game data.",
   },
   alternates: { canonical: "/developers" },
 };

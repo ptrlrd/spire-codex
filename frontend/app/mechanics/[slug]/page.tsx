@@ -40,7 +40,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const section = await fetchSection(slug);
-  if (!section) return { title: `Not Found | ${SITE_NAME}` };
+  if (!section) return { title: `Not Found - Slay the Spire 2 (sts2) | ${SITE_NAME}` };
   const title = `${section.title} - Slay the Spire 2 | ${SITE_NAME}`;
   return {
     title,

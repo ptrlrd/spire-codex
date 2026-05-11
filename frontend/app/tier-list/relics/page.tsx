@@ -39,10 +39,10 @@ export async function generateMetadata({ searchParams }: PageProps): Promise<Met
   const pool = sp.pool?.toLowerCase();
   const poolLabel = POOL_FILTERS.find((p) => p.value === pool)?.label;
   const scope = poolLabel && pool ? `${poolLabel} Relic` : "Relic";
-  const title = `STS2 ${scope} Tier List - Slay the Spire 2 Relics Ranked | ${SITE_NAME}`;
+  const title = `${scope} Tier List - Relics Ranked - Slay the Spire 2 (sts2) | ${SITE_NAME}`;
   const description = pool
-    ? `${poolLabel} relic tier list for Slay the Spire 2 (STS2). Every relic in the ${pool} pool ranked S through F by community win rate.`
-    : "Every Slay the Spire 2 (STS2) relic ranked S through F. Codex Score from community-submitted run win rates with Bayesian shrinkage.";
+    ? `${poolLabel} relic tier list for Slay the Spire 2 (sts2). Every relic in the ${pool} pool ranked S through F by community win rate.`
+    : "Every Slay the Spire 2 (sts2) relic ranked S through F. Codex Score from community-submitted run win rates with Bayesian shrinkage.";
   const path = `/tier-list/relics${pool ? `?pool=${pool}` : ""}`;
   return {
     title,
@@ -103,7 +103,7 @@ export default async function RelicsTierListPage({ searchParams }: PageProps) {
     ]),
     buildCollectionPageJsonLd({
       name: heading,
-      description: `Slay the Spire 2 (STS2) ${heading.toLowerCase()} ranked by Codex Score from community-submitted run win rates.`,
+      description: `Slay the Spire 2 (sts2) ${heading.toLowerCase()} ranked by Codex Score from community-submitted run win rates.`,
       path,
       items: rankedItems,
     }),

@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lang, pair } = await params;
   if (!isValidLang(lang)) return {};
   const parsed = parsePair(pair);
-  if (!parsed) return { title: "Comparison Not Found - Spire Codex" };
+  if (!parsed) return { title: "Comparison Not Found - Slay the Spire 2 (sts2) | Spire Codex" };
 
   const langCode = lang as LangCode;
   const gameName = LANG_GAME_NAME[langCode];

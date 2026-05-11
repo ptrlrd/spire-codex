@@ -12,10 +12,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params;
   try {
     const res = await fetch(`${API_INTERNAL}/api/modifiers/${id}`);
-    if (!res.ok) return { title: "Modifier Not Found - Spire Codex" };
+    if (!res.ok) return { title: "Modifier Not Found - Slay the Spire 2 (sts2) | Spire Codex" };
     const modifier = await res.json();
     const desc = stripTags(modifier.description || "");
-    const title = `Slay the Spire 2 (STS2) Modifier - ${modifier.name} | Spire Codex`;
+    const title = `Modifier - ${modifier.name} - Slay the Spire 2 (sts2) | Spire Codex`;
     const metaDesc = `${modifier.name} is a run modifier in Slay the Spire 2: ${desc}`;
     return {
       title,
@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       alternates: { canonical: `/modifiers/${id}`, languages: buildLanguageAlternates(`/modifiers/${id}`) },
     };
   } catch {
-    return { title: "Spire Codex - Slay the Spire 2 Database" };
+    return { title: "Database - Slay the Spire 2 (sts2) | Spire Codex" };
   }
 }
 

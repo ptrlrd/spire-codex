@@ -21,17 +21,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const entry = SLUG_MAP[slug];
   if (!entry) {
-    return { title: "Not Found - Spire Codex" };
+    return { title: "Not Found - Slay the Spire 2 (sts2) | Spire Codex" };
   }
 
-  const title = `Slay the Spire 2 (STS2) ${entry.label} - Browse Cards | Spire Codex`;
+  const title = `${entry.label} - Browse Cards - Slay the Spire 2 (sts2) | Spire Codex`;
   const description = entry.description;
 
   return {
     title,
     description,
     openGraph: {
-      title: `Slay the Spire 2 (STS2) ${entry.label} | Spire Codex`,
+      title: `${entry.label} - Slay the Spire 2 (sts2) | Spire Codex`,
       description,
     },
     twitter: { card: "summary_large_image" },

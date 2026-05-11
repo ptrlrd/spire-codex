@@ -13,10 +13,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params;
   try {
     const res = await fetch(`${API_INTERNAL}/api/powers/${id}`);
-    if (!res.ok) return { title: "Power Not Found - Spire Codex" };
+    if (!res.ok) return { title: "Power Not Found - Slay the Spire 2 (sts2) | Spire Codex" };
     const power = await res.json();
     const desc = stripTags(power.description || "");
-    const title = `Slay the Spire 2 (STS2) Power - ${power.name} - ${power.type} | Spire Codex`;
+    const title = `Power - ${power.name} - ${power.type} - Slay the Spire 2 (sts2) | Spire Codex`;
     const metaDesc = `${power.name} is a ${power.type} power in Slay the Spire 2: ${desc}`;
     return {
       title,
@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       alternates: { canonical: `/powers/${id}`, languages: buildLanguageAlternates(`/powers/${id}`) },
     };
   } catch {
-    return { title: "Spire Codex - Slay the Spire 2 Database" };
+    return { title: "Database - Slay the Spire 2 (sts2) | Spire Codex" };
   }
 }
 

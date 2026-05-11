@@ -13,11 +13,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params;
   try {
     const res = await fetch(`${API_INTERNAL}/api/cards/${id}`);
-    if (!res.ok) return { title: "Card Not Found - Spire Codex" };
+    if (!res.ok) return { title: "Card Not Found - Slay the Spire 2 (sts2) | Spire Codex" };
     const card = await res.json();
     const desc = stripTags(card.description || "");
     const color = (card.color || "").replace(/^\w/, (c: string) => c.toUpperCase());
-    const title = `Slay the Spire 2 (STS2) Card - ${card.name} - ${card.rarity} ${card.type} | Spire Codex`;
+    const title = `Card - ${card.name} - ${card.rarity} ${card.type} - Slay the Spire 2 (sts2) | Spire Codex`;
     const descFlat = stripTagsFlat(card.description || "");
     const keywords = card.keywords?.length ? ` ${card.keywords.join(". ")}.` : "";
     const metaDesc = `${card.name} is a ${card.cost ?? "X"} cost ${card.rarity} ${card.type} used by ${color}.\n${descFlat}${keywords}`;
@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       alternates: { canonical: `/cards/${id}`, languages: buildLanguageAlternates(`/cards/${id}`) },
     };
   } catch {
-    return { title: "Spire Codex - Slay the Spire 2 Database" };
+    return { title: "Database - Slay the Spire 2 (sts2) | Spire Codex" };
   }
 }
 

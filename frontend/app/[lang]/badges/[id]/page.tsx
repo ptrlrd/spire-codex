@@ -63,7 +63,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!isValidLang(lang)) return {};
 
   const badge = await fetchBadge(id, lang);
-  if (!badge) return { title: "Badge Not Found - Spire Codex" };
+  if (!badge) return { title: "Badge Not Found - Slay the Spire 2 (sts2) | Spire Codex" };
 
   const desc = stripTags(badge.description);
   const langCode = lang as LangCode;

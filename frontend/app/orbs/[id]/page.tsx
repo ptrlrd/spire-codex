@@ -12,10 +12,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params;
   try {
     const res = await fetch(`${API_INTERNAL}/api/orbs/${id}`);
-    if (!res.ok) return { title: "Orb Not Found - Spire Codex" };
+    if (!res.ok) return { title: "Orb Not Found - Slay the Spire 2 (sts2) | Spire Codex" };
     const orb = await res.json();
     const desc = stripTags(orb.description || "");
-    const title = `Slay the Spire 2 (STS2) Orb - ${orb.name} | Spire Codex`;
+    const title = `Orb - ${orb.name} - Slay the Spire 2 (sts2) | Spire Codex`;
     const metaDesc = `${orb.name} is an orb in Slay the Spire 2: ${desc}`;
     return {
       title,
@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       alternates: { canonical: `/orbs/${id}`, languages: buildLanguageAlternates(`/orbs/${id}`) },
     };
   } catch {
-    return { title: "Spire Codex - Slay the Spire 2 Database" };
+    return { title: "Database - Slay the Spire 2 (sts2) | Spire Codex" };
   }
 }
 

@@ -11,7 +11,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   try {
     const res = await fetch(`${API}/api/guides/${slug}`, { next: { revalidate: 300 } });
-    if (!res.ok) return { title: `Guide Not Found | ${SITE_NAME}` };
+    if (!res.ok) return { title: `Guide Not Found - Slay the Spire 2 (sts2) | ${SITE_NAME}` };
     const guide: Guide = await res.json();
     const title = `${guide.title} - Slay the Spire 2 Guide | ${SITE_NAME}`;
     const description = stripTags(guide.summary);
@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       twitter: { card: "summary", title, description },
     };
   } catch {
-    return { title: `Guide | ${SITE_NAME}` };
+    return { title: `Guide - Slay the Spire 2 (sts2) | ${SITE_NAME}` };
   }
 }
 
