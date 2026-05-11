@@ -123,7 +123,7 @@ Constants:
 - `PRIOR_WEIGHT = 50` — pulls low-sample entries toward the baseline
 - `SCALE_RANGE = 0.15` — a 15-point swing in shrunk win rate is the full 0–100 scale
 
-Tier cutoffs: **S** ≥85, **A** 70–85, **B** 55–70, **C** 40–55, **D** 25–40, **F** <25.
+Tier cutoffs (from `frontend/app/components/ScoreBadge.tsx::scoreToTier`): **S** ≥90, **A** 78–89, **B** 65–77, **C** 50–64, **D** 35–49, **F** <35.
 
 `get_all_entity_scores(entity_type)` returns the full table for one type. Results are cached and pre-warmed on FastAPI startup via `_warm_run_entity_stats()` in `main.py` (background thread, so app boot isn't blocked).
 
