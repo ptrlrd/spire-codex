@@ -54,6 +54,8 @@ interface CommunityStats {
   total_wins: number;
   total_abandoned: number;
   win_rate: number;
+  unique_players: number;
+  total_cards_picked: number;
   filters: {
     character: string | null;
     win: string | null;
@@ -63,6 +65,7 @@ interface CommunityStats {
   };
   characters: { character: string; total: number; wins: number; win_rate: number }[];
   ascensions: { level: number; total: number; wins: number; win_rate: number }[];
+  winning_cards_by_character?: Record<string, { card_id: string; count: number }[]>;
   top_cards: {
     card_id: string;
     count: number;
@@ -607,7 +610,14 @@ export default function StatsClient() {
         </div>
       ) : (
         <>
-          {tab === "overview" && <OverviewTab stats={stats} onCharacterClick={setCharacter} lang={lang} />}
+          {tab === "overview" && (
+            <OverviewTab
+              stats={stats}
+              onCharacterClick={setCharacter}
+              lang={lang}
+              lp={lp}
+            />
+          )}
           {tab === "cards" && (
             <CardsTab
               rows={filteredCards}
@@ -666,10 +676,12 @@ function OverviewTab({
   stats,
   onCharacterClick,
   lang,
+  lp,
 }: {
   stats: CommunityStats;
   onCharacterClick: (c: string) => void;
   lang: string;
+  lp: string;
 }) {
   const losses =
     (stats.total_runs || 0) - (stats.total_wins || 0) - (stats.total_abandoned || 0);
@@ -679,26 +691,42 @@ function OverviewTab({
   return (
     <div className="space-y-4">
       <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5">
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 text-center">
           <div className="bg-[var(--bg-primary)] rounded-lg p-3">
-            <div className="text-2xl font-bold text-[var(--text-primary)]">
-              {stats.total_runs}
+            <div className="text-2xl font-bold text-[var(--text-primary)] tabular-nums">
+              {stats.total_runs.toLocaleString()}
             </div>
             <div className="text-xs text-[var(--text-muted)]">{t("Runs", lang)}</div>
           </div>
           <div className="bg-[var(--bg-primary)] rounded-lg p-3">
-            <div className="text-2xl font-bold text-emerald-400">{stats.total_wins}</div>
+            <div className="text-2xl font-bold text-emerald-400 tabular-nums">
+              {stats.total_wins.toLocaleString()}
+            </div>
             <div className="text-xs text-[var(--text-muted)]">{t("Wins", lang)}</div>
           </div>
           <div className="bg-[var(--bg-primary)] rounded-lg p-3">
-            <div className="text-2xl font-bold text-red-400">{losses}</div>
+            <div className="text-2xl font-bold text-red-400 tabular-nums">
+              {losses.toLocaleString()}
+            </div>
             <div className="text-xs text-[var(--text-muted)]">{t("Losses", lang)}</div>
           </div>
           <div className="bg-[var(--bg-primary)] rounded-lg p-3">
-            <div className="text-2xl font-bold text-[var(--accent-gold)]">
+            <div className="text-2xl font-bold text-[var(--accent-gold)] tabular-nums">
               {stats.win_rate}%
             </div>
             <div className="text-xs text-[var(--text-muted)]">{t("Win %", lang)}</div>
+          </div>
+          <div className="bg-[var(--bg-primary)] rounded-lg p-3">
+            <div className="text-2xl font-bold text-[var(--text-primary)] tabular-nums">
+              {(stats.unique_players ?? 0).toLocaleString()}
+            </div>
+            <div className="text-xs text-[var(--text-muted)]">Named players</div>
+          </div>
+          <div className="bg-[var(--bg-primary)] rounded-lg p-3">
+            <div className="text-2xl font-bold text-[var(--text-primary)] tabular-nums">
+              {(stats.total_cards_picked ?? 0).toLocaleString()}
+            </div>
+            <div className="text-xs text-[var(--text-muted)]">Cards picked</div>
           </div>
         </div>
       </div>
@@ -799,6 +827,64 @@ function OverviewTab({
           </table>
         </div>
       )}
+
+      {/* Top winning cards per character — community-wide signal of
+          which cards anchor winning decks for each archetype. Always
+          unfiltered: collapses to a tautology if narrowed to one
+          character, so we hide it when the user has filtered down. */}
+      {!stats.filters.character &&
+        stats.winning_cards_by_character &&
+        Object.keys(stats.winning_cards_by_character).length > 0 && (
+          <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5">
+            <h2 className="text-sm font-semibold text-[var(--text-muted)] uppercase tracking-wide mb-1">
+              Top winning cards by character
+            </h2>
+            <p className="text-xs text-[var(--text-muted)] mb-3">
+              The five most-frequent cards in winning decks per character. Community-wide; filters above don&apos;t apply here.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-3">
+              {CHARACTERS.map((char) => {
+                const rows = stats.winning_cards_by_character?.[char] ?? [];
+                if (rows.length === 0) return null;
+                const color = CHAR_COLORS[char] || "var(--text-muted)";
+                return (
+                  <div
+                    key={char}
+                    className="bg-[var(--bg-primary)] rounded-lg p-3 border border-[var(--border-subtle)]"
+                  >
+                    <div
+                      className="text-xs font-semibold uppercase tracking-wider mb-2"
+                      style={{ color }}
+                    >
+                      {displayName(`CHARACTER.${char}`)}
+                    </div>
+                    <ol className="space-y-1 text-sm">
+                      {rows.map((c, i) => (
+                        <li
+                          key={c.card_id}
+                          className="flex items-baseline justify-between gap-2"
+                        >
+                          <Link
+                            href={`${lp ? `/${lp}` : ""}/cards/${c.card_id.toLowerCase()}`}
+                            className="text-[var(--text-secondary)] hover:text-[var(--accent-gold)] hover:underline truncate"
+                          >
+                            <span className="text-[var(--text-muted)] mr-1">
+                              {i + 1}.
+                            </span>
+                            {displayName(`CARD.${c.card_id}`)}
+                          </Link>
+                          <span className="text-[10px] text-[var(--text-muted)] font-mono tabular-nums shrink-0">
+                            {c.count}
+                          </span>
+                        </li>
+                      ))}
+                    </ol>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
     </div>
   );
 }

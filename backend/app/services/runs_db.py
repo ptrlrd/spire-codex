@@ -572,6 +572,60 @@ def get_stats(
         win_card_map = {r["card_id"]: r["count"] for r in win_cards}
         loss_card_map = {r["card_id"]: r["count"] for r in loss_cards}
 
+        # Total distinct claimed players (non-NULL usernames). Anonymous
+        # submissions are counted in total_runs but not here.
+        unique_players = (
+            conn.execute(
+                f"SELECT COUNT(DISTINCT r.username) AS c FROM runs r {where}"
+                + (" AND " if where else "WHERE ")
+                + "r.username IS NOT NULL AND r.username != ''",
+                params,
+            ).fetchone()["c"]
+            or 0
+        )
+
+        # Total card-reward decisions where the player took a card. Useful
+        # context for the per-card pick rates (denominator scale).
+        total_cards_picked = (
+            conn.execute(
+                f"""
+                SELECT COALESCE(SUM(cc.was_picked), 0) AS c
+                FROM run_card_choices cc JOIN runs r ON cc.run_id = r.id
+                {where}
+            """,
+                params,
+            ).fetchone()["c"]
+            or 0
+        )
+
+        # Top 5 most-common cards in winning decks, broken down per
+        # character. Intentionally ignores all WHERE filters — this is the
+        # community-meta archetype-overview panel; the rest of the response
+        # already gives the filtered view. SQLite window function
+        # `ROW_NUMBER() OVER (PARTITION BY character ORDER BY count DESC)`
+        # selects the top 5 per character in a single query.
+        winning_cards_by_char_raw = conn.execute("""
+            WITH per_char AS (
+                SELECT r.character,
+                       rc.card_id,
+                       COUNT(*) AS count,
+                       ROW_NUMBER() OVER (
+                           PARTITION BY r.character
+                           ORDER BY COUNT(*) DESC
+                       ) AS rn
+                FROM run_cards rc JOIN runs r ON rc.run_id = r.id
+                WHERE r.win = 1
+                GROUP BY r.character, rc.card_id
+            )
+            SELECT character, card_id, count FROM per_char WHERE rn <= 5
+            ORDER BY character, rn
+        """).fetchall()
+        winning_cards_by_character: dict[str, list[dict]] = {}
+        for row in winning_cards_by_char_raw:
+            winning_cards_by_character.setdefault(row["character"], []).append(
+                {"card_id": row["card_id"], "count": row["count"]}
+            )
+
         # Potion stats (filtered)
         try:
             potion_stats = conn.execute(
@@ -596,6 +650,9 @@ def get_stats(
             "total_wins": wins,
             "total_abandoned": abandoned,
             "win_rate": round(wins / total * 100, 1) if total > 0 else 0,
+            "unique_players": unique_players,
+            "total_cards_picked": total_cards_picked,
+            "winning_cards_by_character": winning_cards_by_character,
             "filters": {
                 "character": character,
                 "win": win,
