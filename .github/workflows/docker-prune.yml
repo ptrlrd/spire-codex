@@ -1,0 +1,65 @@
+name: Docker prune
+
+# Reclaims disk on the prod host. Every CI deploy pulls a new image SHA
+# under the same `:latest` / `:beta` tag, leaving the previous SHA as a
+# dangling image — Docker never garbage-collects on its own. Over weeks
+# of deploys that's tens of GB.
+#
+# What this prunes (safe):
+#   - stopped containers
+#   - dangling images (untagged layers)
+#   - build cache older than 24h
+#   - unused networks
+#
+# What this deliberately does NOT prune:
+#   - volumes (`docker volume prune`) — would wipe runs.db, news archive,
+#     guides, every bind-mounted file. Never automate this.
+#   - `image prune -a` — would also drop base images currently not in a
+#     running container, forcing a full re-pull on next deploy.
+
+on:
+  workflow_dispatch: {}
+  schedule:
+    # Every 6h at :20 past — clear of news-refresh (`0 * * * *`) and
+    # runs-db-backup (`15 3 * * *`).
+    - cron: "20 */6 * * *"
+
+concurrency:
+  group: docker-prune
+  cancel-in-progress: false
+
+jobs:
+  prune:
+    name: Prune Docker on prod host
+    runs-on: self-hosted
+    steps:
+      - name: SSH — prune
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            set -euo pipefail
+
+            echo "=== before ==="
+            docker system df
+            echo ""
+
+            # Stopped containers — left behind by `compose up -d` after
+            # an image upgrade swaps the running container.
+            docker container prune -f
+
+            # Dangling images — the main reclaim target.
+            docker image prune -f
+
+            # Build cache older than 24h. Prod doesn't normally build,
+            # but ad-hoc `compose --build` calls leave cache behind.
+            docker builder prune -af --filter "until=24h"
+
+            # Unused networks (recreated by compose on demand).
+            docker network prune -f
+
+            echo ""
+            echo "=== after ==="
+            docker system df
