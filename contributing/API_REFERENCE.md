@@ -66,6 +66,7 @@ All data endpoints accept `?lang=` (default: `eng`). Rate limited to 60 req/min 
 | `GET /api/runs/shared/{hash}` | GET | Retrieve a shared run by hash. Response merges `username` from `runs.db` so the shared-run page can render "by {username}" without a second round trip. |
 | `GET /api/runs/leaderboard` | GET | Ranked wins-only leaderboard. Filters: `category` (`fastest`, `highest_ascension`), `character`, `page`, `limit` |
 | `GET /api/runs/scores/{type}` | GET | Codex Score per entity. `type` ∈ `cards` / `relics` / `potions`. Returns `{ id, score (0–100), tier (S/A/B/C/D/F), wins, losses, n }[]`. Bayesian-shrunk win rate; pre-warmed on FastAPI startup. See `services/run_entity_stats.py` and `/leaderboards/scoring` for the formula. |
+| `GET /api/runs/card-stats/{card_id}` | GET | Detailed per-card community stats — powers the card detail-page Stats tab. Returns `pick_rate`, `skip_rate`, `win_rate_when_in_deck`, `avg_copies_winning` / `_all`, `upgrade_rate`, `avg_ascension_picked`, plus `top_synergies` (top 5 cards most often co-present in winning decks). Computed on-demand from `run_cards` + `run_card_choices`. |
 | `GET /api/runs/versions` | GET | Distinct `build_id` values across submitted runs — powers the version filter dropdown |
 
 ## Utility

@@ -476,6 +476,22 @@ _STATS_CACHE_TTL_SECONDS = 60
 _stats_cache: dict[tuple, tuple[float, dict]] = {}
 
 
+@router.get("/card-stats/{card_id}", tags=["Runs"])
+@limiter.limit("120/minute")
+def get_card_run_stats(request: Request, card_id: str):
+    """Detailed per-card community stats for the card detail-page Stats tab.
+
+    Richer than the bulk Codex Score feed — adds win rate when in deck,
+    pick/skip rate, avg copies in winning decks, upgrade rate, avg
+    ascension picked at, and the top 5 synergy cards. 5-min TTL cache
+    in services/runs_db.py so the synergy self-join doesn't repeat per
+    pageview.
+    """
+    from ..services.runs_db import get_card_stats
+
+    return get_card_stats(card_id.upper())
+
+
 @router.get("/stats", tags=["Runs"])
 @limiter.limit("120/minute")
 def get_community_stats(
