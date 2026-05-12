@@ -129,7 +129,7 @@ def load_stories(lang: str = DEFAULT_LANG) -> list[dict]:
 
 
 def load_acts(lang: str = DEFAULT_LANG) -> list[dict]:
-    return _load_json(lang, "acts")
+    return [a for a in _load_json(lang, "acts") if a.get("id") != "DEPRECATED_ACT"]
 
 
 def load_ascensions(lang: str = DEFAULT_LANG) -> list[dict]:

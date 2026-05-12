@@ -69,6 +69,8 @@ def parse_all_acts(loc_dir: Path) -> list[dict]:
     localization = load_localization(loc_dir)
     acts = []
     for filepath in sorted(ACTS_DIR.glob("*.cs")):
+        if filepath.stem == "DeprecatedAct":
+            continue
         acts.append(parse_act(filepath, localization))
     return acts
 

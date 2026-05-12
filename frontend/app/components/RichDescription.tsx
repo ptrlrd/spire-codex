@@ -257,6 +257,12 @@ const VALID_TAGS = new Set([
  * that can't be resolved statically.
  */
 function cleanTemplateVars(text: string): string {
+  // The literal {} appears inside SmartFormat plural branches as the var's
+  // value placeholder (e.g. {Repeat:plural:| [blue]{}[/blue] times}). Resolve
+  // it to the same blue "X" we use for runtime-dynamic numeric vars before the
+  // plural regex runs — otherwise its [^}]* plural capture stops at the inner
+  // closing brace and leaks the trailing literal as "{ times}" on the page.
+  text = text.replace(/\{\}/g, "[blue]X[/blue]");
   // Handle {Var:plural:singular|plural} → plural
   text = text.replace(/\{(\w+):plural:([^|}]*)\|([^}]*)\}/g, (_m, _v, _s, p) => p);
   // Handle {IsMultiplayer:A|B} → B (second option)
