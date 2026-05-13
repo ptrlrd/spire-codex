@@ -52,6 +52,7 @@ from .routers import (
     merchant,
     mechanics,
     auth_steam,
+    uninstall,
 )
 from .services.data_service import get_stats, load_translation_maps, current_version
 from .dependencies import get_lang, VALID_LANGUAGES, LANGUAGE_NAMES
@@ -369,6 +370,7 @@ app.include_router(stories.router)
 app.include_router(images.router)
 app.include_router(changelogs.router)
 app.include_router(feedback.router)
+app.include_router(uninstall.router)
 app.include_router(acts.router)
 app.include_router(ascensions.router)
 app.include_router(names.router)
