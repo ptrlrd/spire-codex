@@ -18,6 +18,7 @@ export default function robots(): MetadataRoute.Robots {
           "/api/",       // backend JSON + download endpoints
           "/static/",    // static asset trees (CDN-served)
           "/_next/",     // Next.js build output (already not indexable but explicit)
+          "/uninstall",  // Overwolf post-uninstall survey — entered only by the OW client
         ],
       },
     ],
