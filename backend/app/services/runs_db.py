@@ -106,6 +106,39 @@ def init_db():
 
             CREATE INDEX IF NOT EXISTS idx_run_potions_potion ON run_potions(potion_id);
             CREATE INDEX IF NOT EXISTS idx_run_potions_run ON run_potions(run_id);
+
+            -- Per-encounter rows for "win rate vs monster X" / "deadliest
+            -- encounter" / "damage taken vs Y" queries. Populated at
+            -- submit_run() time from map_point_history.rooms[]. Backfill
+            -- script: tools/backfill_run_encounters.py for runs landed
+            -- before this table existed.
+            CREATE TABLE IF NOT EXISTS run_encounters (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                run_id INTEGER NOT NULL REFERENCES runs(id),
+                encounter_id TEXT NOT NULL,
+                act_id TEXT,
+                room_type TEXT,
+                floor INTEGER,
+                damage_taken INTEGER NOT NULL DEFAULT 0,
+                turns_taken INTEGER NOT NULL DEFAULT 0,
+                won_fight INTEGER NOT NULL DEFAULT 1
+            );
+
+            -- monster_ids is a list per encounter (encounters can host
+            -- multiple monsters). Normalized into its own table so
+            -- "win rate vs MONSTER" doesn't need json_each() and stays
+            -- indexable. PRIMARY KEY collapses duplicate refs within
+            -- the same encounter row to a single entry.
+            CREATE TABLE IF NOT EXISTS run_encounter_monsters (
+                encounter_row_id INTEGER NOT NULL REFERENCES run_encounters(id),
+                monster_id TEXT NOT NULL,
+                PRIMARY KEY (encounter_row_id, monster_id)
+            );
+
+            CREATE INDEX IF NOT EXISTS idx_run_encounters_encounter ON run_encounters(encounter_id);
+            CREATE INDEX IF NOT EXISTS idx_run_encounters_run ON run_encounters(run_id);
+            CREATE INDEX IF NOT EXISTS idx_run_encounter_monsters_monster
+                ON run_encounter_monsters(monster_id);
         """)
 
         # Migrations — add columns to existing tables
@@ -148,6 +181,104 @@ def clean_id(raw_id: str) -> str:
         if raw_id.startswith(prefix):
             return raw_id[len(prefix) :]
     return raw_id
+
+
+def extract_run_encounters(
+    data: dict,
+    player_id: int,
+    is_win: bool,
+    is_abandoned: bool,
+) -> list[dict]:
+    """Walk map_point_history and yield per-encounter rows.
+
+    Each combat room becomes one row: (encounter_id, monster_ids,
+    act_id, room_type, floor, damage_taken, turns_taken, won_fight).
+
+    Won-fight heuristic: every combat encounter is a win except the
+    *last* combat room of a non-win, non-abandoned run whose encounter
+    id matches `killed_by_encounter`. Abandoned runs leave the final
+    encounter as won_fight=1 since the player quit out rather than
+    losing the fight.
+
+    Exported so tools/backfill_run_encounters.py can replay archived
+    run JSONs through the same logic without going through submit_run.
+    """
+    acts = data.get("acts", [])
+    map_history = data.get("map_point_history", [])
+    killed_by = clean_id(data.get("killed_by_encounter", "")) or None
+
+    # Pass 1: collect every combat room scoped to this player.
+    combat_rooms: list[tuple[int, int, dict, dict]] = []
+    for act_idx, act_floors in enumerate(map_history):
+        for floor_idx, floor in enumerate(act_floors):
+            for ps in floor.get("player_stats", []):
+                if ps.get("player_id") and ps["player_id"] != player_id:
+                    continue
+                for room in floor.get("rooms", []):
+                    if room.get("room_type") in {"monster", "elite", "boss"}:
+                        combat_rooms.append((act_idx, floor_idx, room, ps))
+
+    if not combat_rooms:
+        return []
+
+    encounters: list[dict] = []
+    last_idx = len(combat_rooms) - 1
+    for i, (act_idx, floor_idx, room, ps) in enumerate(combat_rooms):
+        encounter_id = clean_id(room.get("model_id", "")) or ""
+        if not encounter_id:
+            continue
+        monster_ids = sorted({clean_id(m) for m in room.get("monster_ids", []) if m})
+        act_raw = acts[act_idx] if act_idx < len(acts) else None
+        won = 1
+        if (
+            i == last_idx
+            and not is_win
+            and not is_abandoned
+            and killed_by
+            and encounter_id == killed_by
+        ):
+            won = 0
+        encounters.append(
+            {
+                "encounter_id": encounter_id,
+                "monster_ids": monster_ids,
+                "act_id": clean_id(act_raw) if act_raw else None,
+                "room_type": room.get("room_type"),
+                "floor": floor_idx + 1,
+                "damage_taken": int(ps.get("damage_taken", 0) or 0),
+                "turns_taken": int(room.get("turns_taken", 0) or 0),
+                "won_fight": won,
+            }
+        )
+    return encounters
+
+
+def _insert_run_encounters(conn, run_id: int, encounters: list[dict]) -> None:
+    """Write parsed encounter rows + their monster join entries."""
+    for enc in encounters:
+        cursor = conn.execute(
+            """INSERT INTO run_encounters
+               (run_id, encounter_id, act_id, room_type, floor,
+                damage_taken, turns_taken, won_fight)
+               VALUES (?, ?, ?, ?, ?, ?, ?, ?)""",
+            (
+                run_id,
+                enc["encounter_id"],
+                enc["act_id"],
+                enc["room_type"],
+                enc["floor"],
+                enc["damage_taken"],
+                enc["turns_taken"],
+                enc["won_fight"],
+            ),
+        )
+        enc_row_id = cursor.lastrowid
+        for monster_id in enc["monster_ids"]:
+            conn.execute(
+                """INSERT OR IGNORE INTO run_encounter_monsters
+                   (encounter_row_id, monster_id) VALUES (?, ?)""",
+                (enc_row_id, monster_id),
+            )
 
 
 def submit_run(data: dict, username: str | None = None) -> dict:
@@ -334,6 +465,22 @@ def _submit_player_run(
                 "INSERT INTO run_potions (run_id, potion_id, was_picked, was_used) VALUES (?, ?, ?, ?)",
                 (run_id, pid, int(was_picked), was_used),
             )
+
+        # Per-encounter rows for /api/runs/monster-stats and the
+        # forthcoming Stats tab on /monsters/[id]. Failures here must
+        # not roll back the run row — the encounters table is a
+        # downstream analytics surface, not a primary record. Backfill
+        # script picks up anything that fails to parse here.
+        try:
+            encounters = extract_run_encounters(
+                data,
+                player_id=player_id,
+                is_win=bool(data.get("win", False)),
+                is_abandoned=bool(was_abandoned),
+            )
+            _insert_run_encounters(conn, run_id, encounters)
+        except Exception:
+            pass
 
     return {"success": True, "run_id": run_id, "run_hash": run_hash}
 
