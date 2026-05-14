@@ -161,14 +161,42 @@ class VersionMiddleware(BaseHTTPMiddleware):
 
 
 class CORSStaticMiddleware(BaseHTTPMiddleware):
-    """Add CORS headers and cache headers to all responses."""
+    """Add CORS + Cache-Control headers.
+
+    Cloudflare's edge respects origin Cache-Control as authoritative. Without
+    explicit headers it falls back to a ~4h heuristic for static assets, which
+    combined with ~200 PoPs caching per-file per-region produced ~75 req/sec of
+    backend traffic just refilling /static across the planet. The split below
+    pins each path class to a TTL appropriate to how often the content can
+    actually change:
+
+      /static/*    immutable, 1y           — sprite/image filenames are stable;
+                                             re-renders are rare and handled by
+                                             a manual CF purge on the affected
+                                             path.
+      /api/runs/*  s-maxage=30             — user-submitted runs need to appear
+                                             in lists/leaderboards within a
+                                             minute, not an hour.
+      /api/*       s-maxage=3600           — entity data only changes on deploy
+                                             (every few days). Browsers still
+                                             revalidate every 5 min via max-age.
+
+    Cache headers are only applied to successful GETs. Caching 4xx/5xx on
+    /static would prevent recovery by simply uploading the missing file.
+    """
 
     async def dispatch(self, request: Request, call_next):
         response = await call_next(request)
         response.headers["Access-Control-Allow-Origin"] = "*"
-        # Cache API GET responses for 5 minutes (data changes only on redeploy)
-        if request.method == "GET" and request.url.path.startswith("/api/"):
-            response.headers["Cache-Control"] = "public, max-age=300"
+        if request.method != "GET" or response.status_code >= 400:
+            return response
+        path = request.url.path
+        if path.startswith("/static/"):
+            response.headers["Cache-Control"] = "public, max-age=31536000, immutable"
+        elif path.startswith("/api/runs/"):
+            response.headers["Cache-Control"] = "public, max-age=30, s-maxage=30"
+        elif path.startswith("/api/"):
+            response.headers["Cache-Control"] = "public, max-age=300, s-maxage=3600"
         return response
 
 
