@@ -33,9 +33,11 @@ const OUTPUT_DIR = path.resolve(
   "../../backend/static/images/monsters"
 );
 
-const OUTPUT_SIZE = 512; // final output image size
+const OUTPUT_WIDTH = 512; // final output image size
+const OUTPUT_HEIGHT = 512; // final output image size
 const SUPERSAMPLE = 2;  // render at Nx and downscale to hide triangle seams
-const RENDER_SIZE = OUTPUT_SIZE * SUPERSAMPLE;
+const RENDER_WIDTH = OUTPUT_WIDTH * SUPERSAMPLE;
+const RENDER_HEIGHT = OUTPUT_HEIGHT * SUPERSAMPLE;
 const PADDING = 20 * SUPERSAMPLE;
 
 /** Minimal Texture wrapper for node-canvas Image */
@@ -190,12 +192,12 @@ async function renderMonster(monsterDir, monsterName) {
   const skelHeight = maxY - minY;
 
   // Calculate canvas size to fit with padding, maintaining aspect ratio
-  const availableSize = RENDER_SIZE - PADDING * 2;
+  const availableSize = RENDER_WIDTH - PADDING * 2;
   const scale = Math.min(availableSize / skelWidth, availableSize / skelHeight);
 
   // Render skeleton (with automatic slot-by-slot fallback for complex meshes)
-  const imgData = renderSkeleton(skeleton, RENDER_SIZE, scale, minX, minY, maxX, maxY);
-  const buffer = imageDataToPng(imgData, RENDER_SIZE, OUTPUT_SIZE);
+  const imgData = renderSkeleton(skeleton, RENDER_WIDTH, RENDER_HEIGHT, scale, minX, minY, maxX, maxY);
+  const buffer = imageDataToPng(imgData, RENDER_WIDTH, RENDER_HEIGHT, OUTPUT_WIDTH, OUTPUT_HEIGHT);
 
   // Save to PNG
   fs.mkdirSync(OUTPUT_DIR, { recursive: true });
