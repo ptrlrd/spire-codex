@@ -47,16 +47,19 @@ Spire Codex is a comprehensive database for Slay the Spire 2, built by reverse-e
 ## File Map
 
 ```
-backend/app/main.py              → App entry, router registration
-backend/app/routers/             → API endpoints (one file per entity)
-backend/app/models/schemas.py    → Pydantic models
-backend/app/services/runs_db.py  → SQLite runs database
-backend/app/parsers/             → C# → JSON parsers
-frontend/app/layout.tsx          → Root layout (navbar, footer, providers)
-frontend/app/globals.css         → CSS variables, theme
-frontend/lib/api.ts              → API client + TypeScript interfaces
-frontend/lib/ui-translations.ts  → Manual UI translations
-frontend/app/components/         → Shared components
+backend/app/main.py                       → App entry, router registration, `_warm_run_entity_stats()` startup pre-warm
+backend/app/routers/                      → API endpoints (one file per entity)
+backend/app/models/schemas.py             → Pydantic models
+backend/app/services/runs_db.py           → SQLite runs database
+backend/app/services/run_entity_stats.py  → Codex Score — Bayesian-shrunk win rate per entity, S/A/B/C/D/F tier
+backend/app/parsers/                      → C# → JSON parsers
+frontend/app/layout.tsx                   → Root layout (navbar, footer, providers)
+frontend/app/globals.css                  → CSS variables, theme
+frontend/lib/api.ts                       → API client + TypeScript interfaces
+frontend/lib/seo.ts                       → SITE_URL, SITE_NAME, `buildLanguageAlternates(path)` for bidirectional hreflang
+frontend/lib/use-entity-scores.ts         → Hook — bulk Codex Scores per type via `/api/runs/scores/{type}`
+frontend/lib/ui-translations.ts           → Manual UI translations
+frontend/app/components/                  → Shared components (incl. ScoreBadge, EntityRunStats, TierList)
 ```
 
 ## See Also

@@ -99,14 +99,17 @@ The frontend `RichDescription` component renders these.
 - Rare: 143-158 gold (base 150)
 
 ### Relics
-- Common: 170-230 gold. Shop: 191-259. Uncommon: 213-288. Rare: 255-345.
-- Fake Merchant: all 50 gold flat
+Major Update #1 (v0.103.2) reduced every relic base by 25g:
+- Common: 149-201 (base 175). Shop: 170-230 (base 200). Uncommon: 191-259 (base 225). Rare: 234-316 (base 275).
+- Fake Merchant: all 50 gold flat (10 fakes — `IsAllowedInShops => false`)
+- Blacklisted from regular shop: The Courier, Old Coin, Lucky Fysh, Bowler Hat, Amethyst Aubergine (last three added in MU#1)
 
 ### Potions
 - Common: 48-53. Uncommon: 71-79. Rare: 95-105.
 
 ### Card Removal
 - 75 + 25 × removals used (no RNG)
+- Ascension 6+ — Inflation: 100 + 50 × removals used (replaced Gloom / 1-fewer-rest-site in Major Update #1)
 
 ## Versioning
 

@@ -196,6 +196,9 @@ spire-codex/
 | Knowledge Demon | `/knowledge-demon` | Info page for the Discord bot — slash commands, moderation features, install CTA |
 | News | `/news` | Mirrored Steam announcements feed; canonical links back to Steam so it's additive, not duplicative |
 | News article | `/news/[gid]` | Single Steam announcement with sanitized BBCode body and `NewsArticle` JSON-LD |
+| Tier List | `/tier-list` | Codex Score tier-list hub (S → F tiers) for cards / relics / potions |
+| Tier List Detail | `/tier-list/[type]` | Visual S/A/B/C/D/F rows for one entity type, sourced from `/api/runs/scores/{type}` |
+| Scoring | `/leaderboards/scoring` | Codex Score methodology page — Bayesian shrinkage, prior weight, scale range, tier cutoffs |
 
 ## API Endpoints
 
@@ -256,10 +259,14 @@ All data endpoints accept an optional `?lang=` query parameter (default: `eng`).
 | `POST /api/guides` | Submit guide (proxied to Discord) | — |
 | `POST /api/runs` | Submit a run (.run file JSON) | `username` |
 | `GET /api/runs/list` | List submitted runs | `character`, `win`, `username`, `seed`, `build_id`, `sort`, `page`, `limit` |
-| `GET /api/runs/shared/{hash}` | Full run data by hash | — |
+| `GET /api/runs/shared/{hash}` | Full run data by hash (merges `username` from DB) | — |
 | `GET /api/runs/stats` | Aggregated community stats | `character`, `win`, `ascension`, `game_mode`, `players` |
 | `GET /api/runs/leaderboard` | Ranked wins-only leaderboard | `category` (`fastest`, `highest_ascension`), `character`, `page`, `limit` |
+| `GET /api/runs/scores/{type}` | Codex Score (Bayesian-shrunk win-rate score + S/A/B/C/D/F tier) per entity | `type` = `cards`/`relics`/`potions` |
 | `GET /api/runs/versions` | Distinct game versions across submitted runs | — |
+| `GET /api/news` | Steam announcements + community news (locally archived) | `feed_type`, `feedname`, `tag`, `since`, `search`, `limit`, `offset` |
+| `GET /api/news/{gid}` | Single news article (raw HTML/BBCode body) | — |
+| `GET /api/merchant/config` | Auto-extracted merchant pricing config | — |
 | `POST /api/feedback` | Submit feedback (proxied to Discord) | — |
 | `GET /api/versions` | Available data versions (beta multi-version) | — |
 
@@ -666,12 +673,13 @@ Examples: `v1.0.0` = initial release, `v1.0.1` = our bug fixes, `v1.1.0` = first
 
 ## SEO
 
-- **Structured data (JSON-LD)**: WebSite + VideoGame (home), CollectionPage + ItemList (list pages), Article + BreadcrumbList + FAQPage (detail pages), SoftwareApplication (developers)
-- **Title format**: `"Slay the Spire 2 [Topic] - [Descriptor] | Spire Codex"` — standardized across all pages
-- **Sitemap**: Flat XML at `/sitemap.xml` with `force-dynamic` (renders server-side, not build-time). ~20,000+ URLs including entity detail pages, browse matrix pages, and i18n detail pages for all entity types
-- **International SEO**: `/{lang}/` routes for 13 non-English languages with hreflang alternates
-- **Programmatic SEO**: 41 card browse pages at `/cards/browse/` (rare-attacks, ironclad-skills, etc.)
-- **Internal linking**: Powers ↔ cards, encounters → monsters, card keywords → keyword hub pages, monster moves → power pages (with tooltips), act pages → encounters/events, every reference entity clickable
+- **Structured data (JSON-LD)**: WebSite + VideoGame (home), CollectionPage + ItemList (list pages), Article + BreadcrumbList + FAQPage (detail pages), SoftwareApplication (developers), NewsArticle (news/[gid])
+- **Title format**: `"Slay the Spire 2 (sts2) {Page Title} | Spire Codex"` — standardized across all pages. Runs use `"{username} - {char} - Ascension {N} {win/loss} - Slay the Spire 2 (sts2) | Spire Codex"`. "(sts2)" inline so cross-locale `sts2 tier list` / `sts2 card list` queries match.
+- **Sitemap**: Flat XML at `/sitemap.xml` with `force-dynamic` (renders server-side, not build-time). ~20,000+ URLs including entity detail pages, browse matrix pages, tier-list pages, scoring methodology, runs/[hash] detail, and i18n mirrors for all entity types
+- **International SEO**: `/{lang}/` routes for 13 non-English languages with **bidirectional** hreflang alternates — English root pages also emit alternates for every locale + `x-default` via `buildLanguageAlternates(path)` in `lib/seo.ts` (fixes the GSC "Crawled - not indexed" duplicate-content cluster where Google was treating localized pages as duplicates without back-references)
+- **Programmatic SEO**: 41 card browse pages at `/cards/browse/` (rare-attacks, ironclad-skills, etc.) + 3 tier-list pages (`/tier-list/{cards,relics,potions}`)
+- **Locale-aware EntityProse**: Detail pages render a short locale-specific paragraph instead of identical English bodies in every locale
+- **Internal linking**: Powers ↔ cards, encounters → monsters, card keywords → keyword hub pages, monster moves → power pages (with tooltips), act pages → encounters/events, tier-list rows → entity detail Stats tab
 - **Open Graph & Twitter Cards**: Per-entity OG images, `summary_large_image` Twitter cards
 - **Canonical URLs**: Every page declares a canonical URL
 
@@ -716,6 +724,8 @@ Full docs: [spire-codex.com/developers](https://spire-codex.com/developers)
 - ~~Event preconditions~~ ✅ — 25 events with IsAllowed() conditions parsed from C# source
 - ~~Multi-version beta browsing~~ ✅ — Version dropdown, all past betas preserved and browsable with changelogs
 - ~~Discord bot~~ ✅ — [Knowledge Demon](https://bot.spire-codex.com): slash commands for every entity (`/card`, `/relic`, `/monster`, `/potion`, `/character`, `/event`, `/power`, `/enchantment`, `/lookup`, `/meta`), Steam-news RSS, plus a full moderation toolkit forked from [Kernel](https://github.com/ptrlrd/kernel)
+- ~~Codex Score & Tier List~~ ✅ — Per-entity grade computed from community runs using **Bayesian shrinkage**: `shrunk = (wins + PRIOR_WEIGHT × baseline) / (n + PRIOR_WEIGHT)`, then scaled to 0–100 and mapped to S/A/B/C/D/F. Prevents tiny-sample noise (a 1-game card going 1/1 doesn't get an S — it regresses to the prior). Pre-warmed on backend startup. Surfaced as `ScoreBadge` on detail-page Stats tab, dedicated tier-list pages, and methodology page at `/leaderboards/scoring`.
+- ~~Detail-page Stats tab~~ ✅ — Score hero badge + prose summary + recent runs links via `EntityRunStats`.
 - **Deck builder** — Interactive deck theorycrafting
 - **Database backend** — Replace JSON loading with SQLite/PostgreSQL
 

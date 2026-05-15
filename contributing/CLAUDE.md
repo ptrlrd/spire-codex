@@ -42,9 +42,13 @@ spire-codex/
         entity_history.py    # Per-entity version history from changelogs
         changelogs.py        # Changelog API
         guides.py            # Guides (list, detail, Discord webhook submission)
-        runs.py              # Run submission + community stats + shared runs
+        runs.py              # Run submission + community stats + shared runs + Codex Score (`/api/runs/scores/{type}`)
+        news.py              # Steam news passthrough — list + detail (`/api/news`, `/api/news/{gid}`)
+        merchant.py          # Merchant pricing config (auto-extracted constants)
+        unlocks.py versions.py
         images.py feedback.py
-      services/              # data_service (loads JSON, lru_cache)
+      services/              # data_service (loads JSON, lru_cache, ContextVar version-aware loading)
+        run_entity_stats.py  # Codex Score — Bayesian-shrunk win-rate per entity, S/A/B/C/D/F tier; pre-warmed on startup
       parsers/               # C# -> JSON parsers
         card_parser.py       # Cards with DynamicVars, upgrades, compendium_order
         character_parser.py
@@ -85,9 +89,14 @@ spire-codex/
       leaderboards/page.tsx  # Three-tab browser — Fastest Wins, Highest Ascension, Browse Runs
       leaderboards/submit/   # Drag-and-drop .run upload
       leaderboards/stats/    # Ranked-table stats (cards/relics/potions/encounters pick + win rates)
-      runs/[hash]/           # Shared-run detail — in-game-style summary with TinyCard grid, clickable map nodes
+      leaderboards/scoring/  # Codex Score methodology page (Bayesian shrinkage explainer)
+      tier-list/page.tsx     # Codex Score tier-list hub (cards/relics/potions)
+      tier-list/[type]/      # Visual S→F tier rows per entity type
+      runs/[hash]/           # Shared-run detail — "by {username}" link + in-game-style summary with TinyCard grid, clickable map nodes
       runs/page.tsx          # Redirect to /leaderboards (old URL preserved)
       meta/page.tsx          # Redirect to /leaderboards/stats (old URL preserved)
+      news/page.tsx          # Steam news list (mirrored archive)
+      news/[gid]/page.tsx    # Single Steam news article — NewsArticle JSON-LD, canonical → Steam, BBCode-sanitized body
       showcase/page.tsx      # Community project gallery
       developers/page.tsx    # API docs, widget docs, data exports
       timeline/page.tsx reference/page.tsx images/page.tsx
@@ -107,15 +116,21 @@ spire-codex/
         LocalizedNames.tsx   # Collapsible cross-language name display
         EntityHistory.tsx    # Collapsible version history timeline
         RelatedCards.tsx     # Cards sharing keywords/tags
+        ScoreBadge.tsx       # S/A/B/C/D/F tier letter pill (sm/md/lg) — detail-page Stats tab + tier-list rows
+        EntityRunStats.tsx   # Detail-page Stats tab — score hero badge + prose summary + recent runs links
+        TierList.tsx         # Visual S→F tier rows for /tier-list/{cards,relics,potions}
       runs/[hash]/
         RunSummary.tsx       # In-game-style summary — stats bar + act rows + relic strip + TinyCard grid
         RunPills.tsx         # CardPill / RelicPill / PotionPill — hover tooltips with full entity info
         SharedRunClient.tsx  # Run hash loader + top-level layout
     lib/
-      api.ts                # API client + TypeScript interfaces (with compendium_order)
-      seo.ts                # stripTags, SITE_URL, SITE_NAME, DEFAULT_OG_IMAGE
-      jsonld.ts             # JSON-LD builders (BreadcrumbList, CollectionPage, Article, WebSite, VideoGame, FAQPage, SoftwareApplication)
+      api.ts                # API client + TypeScript interfaces (with compendium_order); `getStats` + `getStatsBounded` (3s AbortSignal.timeout for `generateMetadata`)
+      seo.ts                # stripTags, SITE_URL, SITE_NAME, DEFAULT_OG_IMAGE, `buildLanguageAlternates(path)` → hreflang map for 13 locales + x-default + English self-reference
+      jsonld.ts             # JSON-LD builders (BreadcrumbList, CollectionPage, Article, NewsArticle, WebSite, VideoGame, FAQPage, SoftwareApplication)
+      steam-news.ts         # Steam HTML/BBCode → safe HTML sanitizer for /news
+      merchant-config.ts    # Loader + helpers for /api/merchant/config with hardcoded fallback for build-time
       fetch-cache.ts        # Client-side in-memory fetch cache (5min TTL)
+      use-entity-scores.ts  # Client hook — bulk Codex Scores per entity type
       languages.ts          # i18n config — 13 language codes, hreflang mappings, native names
     public/widget/
       spire-codex-tooltip.js   # Embeddable tooltip widget — all 13 entity types
@@ -178,11 +193,17 @@ spire-codex/
 - `GET /api/changelogs` / `GET /api/changelogs/{tag}` — Version changelogs
 - `GET /api/guides?category=&difficulty=&tag=&search=` / `GET /api/guides/{slug}` — Guides
 - `POST /api/guides` — Guide submission (Discord webhook, rate-limited)
-- `POST /api/runs` — Run submission / `GET /api/runs/list` (filters: character, win, username, seed, build_id, sort, page, limit) / `GET /api/runs/shared/{hash}` / `GET /api/runs/stats`
+- `POST /api/runs` — Run submission / `GET /api/runs/list` (filters: character, win, username, seed, build_id, sort, page, limit) / `GET /api/runs/shared/{hash}` (merges `username` from DB) / `GET /api/runs/stats`
 - `GET /api/runs/leaderboard` — ranked wins-only list (category: fastest|highest_ascension, character, page, limit)
+- `GET /api/runs/scores/{type}` — Bulk Codex Scores for cards/relics/potions (Bayesian-shrunk win rate → 0–100 → S/A/B/C/D/F)
 - `GET /api/runs/versions` — distinct build_ids across submitted runs
+- `GET /api/news?feed_type=&feedname=&tag=&since=&search=&limit=&offset=` / `GET /api/news/{gid}` — Steam announcements (locally archived)
+- `GET /api/merchant/config` — Auto-extracted merchant pricing
+- `GET /api/versions` — Available data versions (beta multi-version browsing)
+- `GET /api/unlocks` — Aggregated unlockables grouped by type
 - `GET /api/languages` / `GET /api/translations`
 - All endpoints accept `?lang=` (default: eng) — 14 languages supported
+- Beta endpoints accept `?version=` for multi-version browsing
 - Docs: `http://localhost:8000/docs`
 
 ## Merchant Pricing (from decompiled C#)
@@ -205,12 +226,13 @@ spire-codex/
 ### Shop Inventory: 5 character cards (2 ATK, 2 SKL, 1 PWR) + 2 colorless (UNC, RARE) + 3 relics + 3 potions + removal
 
 ## SEO
-- **Structured data**: JSON-LD on all pages — WebSite + VideoGame (home), CollectionPage+ItemList (list pages), Article+BreadcrumbList+FAQPage (detail pages), SoftwareApplication (developers)
-- **Title format**: `"Slay the Spire 2 [Topic] - [Descriptor] | Spire Codex"` — standardized across all pages
-- **Sitemap**: Flat XML at `/sitemap.xml`, `force-dynamic` (renders server-side, not build-time). ~1,500+ URLs including browse pages and i18n landing pages
-- **International SEO**: `/{lang}/` routes for 13 non-English languages with hreflang alternates
-- **Programmatic SEO**: 41 card browse pages at `/cards/browse/` (rare-attacks, ironclad-skills, etc.)
-- **Internal linking**: Powers ↔ cards, encounters → monsters, card keywords → keyword hub pages
+- **Structured data**: JSON-LD on all pages — WebSite + VideoGame (home), CollectionPage+ItemList (list pages), Article+BreadcrumbList+FAQPage (detail pages), SoftwareApplication (developers), NewsArticle (news/[gid])
+- **Title format**: `"Slay the Spire 2 (sts2) {Page Title} | Spire Codex"` — standardized. Runs use `"{username} - {char} - Ascension {N} {win/loss} - Slay the Spire 2 (sts2) | Spire Codex"`. "(sts2)" inline so cross-locale `sts2 tier list` / `sts2 card list` queries match.
+- **Sitemap**: Flat XML at `/sitemap.xml`, `force-dynamic` (renders server-side, not build-time). ~20,000+ URLs including browse pages, tier-list pages, scoring methodology, `runs/[hash]` detail, and i18n landing pages
+- **International SEO**: `/{lang}/` routes for 13 non-English languages with **bidirectional** hreflang alternates — English root pages also emit alternates for all locales + `x-default` via `buildLanguageAlternates(path)` in `lib/seo.ts` (fixes GSC "Crawled - not indexed" duplicate-content cluster)
+- **Programmatic SEO**: 41 card browse pages at `/cards/browse/` + 3 tier-list pages
+- **Locale-aware EntityProse**: avoids cross-locale identical English bodies that GSC flagged as duplicates
+- **Internal linking**: Powers ↔ cards, encounters → monsters, card keywords → keyword hub pages, tier-list rows → entity detail Stats tab
 - **Alt text**: All images include "Slay the Spire 2 {Category}"
 
 ## Embeddable Widgets
@@ -306,7 +328,7 @@ Parallel deployment for Steam beta branch data. Uses same codebase/images but se
 
 ## Versioning
 Uses `1.X.Y` — 1=codex major, X=bumps on Mega Crit game patch, Y=our fixes/improvements.
-Current: **v1.0.20**
+Current: **v1.1.1** (X bumped on game v0.103.2 / Major Update #1; Y rolled with i18n + badges + smoke renders + changelog guard)
 
 ## Known Limitations
 - 6 monsters lack images entirely (Crusher, Doormaker, Flyconid, Ovicopter, Rocket, Decimillipede)
@@ -348,9 +370,14 @@ Current: **v1.0.20**
 - ~~Monster attack patterns~~ ✅ — cycle/random/conditional move-machine parsing from `GenerateMoveStateMachine`
 - ~~Multi-version beta browsing~~ ✅ — versioned `data-beta/vX.Y.Z/` dirs with `latest` symlink, version-aware loader
 - ~~Leaderboards + run browser revamp~~ ✅ — `/leaderboards` 3-tab page (Fastest Wins, Highest Ascension, Browse), drag-and-drop submit, ranked-table stats replacing `/meta`, filter by seed/username/character/win/version/sort
-- ~~In-game-style run summary~~ ✅ — `/runs/[hash]` mimics the end-of-run screen with map-node rows, clickable encounter/event links, tiny-card deck grid
+- ~~In-game-style run summary~~ ✅ — `/runs/[hash]` mimics the end-of-run screen with map-node rows, clickable encounter/event links, tiny-card deck grid; shows "by {username}" link
 - ~~TinyCard primitive + docs~~ ✅ — shared React component reproducing the in-game card thumbnail; live preview + recipes on `/developers`
 - ~~Search bar redesign~~ ✅ — hero search on home, middle-of-nav on other pages, icon-only on mobile
+- ~~Codex Score & Tier List~~ ✅ — Bayesian-shrunk win-rate per entity, S/A/B/C/D/F tiers, dedicated tier-list pages, methodology page at `/leaderboards/scoring`. Pre-warmed on FastAPI startup so first request isn't a cold cache.
+- ~~Detail-page Stats tab~~ ✅ — score hero badge + prose summary + recent runs via `EntityRunStats`
+- ~~Bidirectional hreflang~~ ✅ — English root pages emit alternates for 13 locales + x-default via `buildLanguageAlternates`
+- ~~News mirror~~ ✅ — `/news` mirrors Steam's announcement feed with locally archived `data/news/{gid}.json` so the archive survives Steam's sliding window
+- ~~Unified SEO title format~~ ✅ — `"Slay the Spire 2 (sts2) {Page Title} | Spire Codex"`
 - i18n refactor — migrate from manual t() calls to `next-intl` for complete translation coverage
   - Known gaps: compare graphs (keyword matching), merchant prose, about/changelog content, scattered client component strings
   - Current t() approach doesn't scale — hundreds of strings across dozens of components

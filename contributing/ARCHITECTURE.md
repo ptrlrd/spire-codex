@@ -19,9 +19,10 @@ The game is built with Godot 4 but all logic is in a C#/.NET 8 DLL, not GDScript
 ## Backend (`backend/`)
 
 - **FastAPI** with Pydantic schemas, slowapi rate limiting, GZip compression
-- **25+ routers** in `app/routers/` — one per entity type + guides, runs, feedback
-- **Data service** loads JSON from `data/{lang}/` with LRU caching
+- **25+ routers** in `app/routers/` — one per entity type + guides, runs, feedback, news, merchant
+- **Data service** loads JSON from `data/{lang}/` with LRU caching; `VersionMiddleware` reads `?version=` and threads it through via `ContextVar`
 - **SQLite** (`data/runs.db`) for community run submissions
+- **Run entity stats service** (`app/services/run_entity_stats.py`) — computes the Codex Score (Bayesian-shrunk win rate → 0–100 → S/A/B/C/D/F tier) per card/relic/potion. Pre-warmed on FastAPI startup by `_warm_run_entity_stats()` in `main.py` so the first request isn't a cold cache.
 - **Static images** served from `backend/static/images/`
 
 ### Parsers (`backend/app/parsers/`)
@@ -66,9 +67,15 @@ Each parser reads decompiled C# source + localization JSON and outputs structure
 | `lib/api.ts` | API client + all TypeScript interfaces |
 | `lib/ui-translations.ts` | Manual UI string translations for 13 languages |
 | `lib/use-lang-prefix.ts` | Hook for language-aware URL construction |
+| `lib/seo.ts` | `buildLanguageAlternates(path)` returns the hreflang map for all 13 locales + `x-default`. Used in `generateMetadata` for both English root pages and `/{lang}/` mirrors so the alternates are bidirectional (fixes GSC duplicate-content cluster). |
+| `lib/use-entity-scores.ts` | Client hook — bulk-fetches Codex Scores per entity type via `/api/runs/scores/{type}`. |
+| `lib/steam-news.ts` | Steam HTML/BBCode → safe HTML sanitizer for `/news` (resolves `{STEAM_CLAN_IMAGE}`, BBCode → HTML, strips scripts/iframes/event handlers). |
 | `app/globals.css` | CSS variables — colors, theme |
 | `app/components/RichDescription.tsx` | BBCode tag renderer for game text |
 | `app/components/CardGrid.tsx` | Card grid with inline icons |
+| `app/components/ScoreBadge.tsx` | S/A/B/C/D/F tier pill (sm/md/lg) used on detail Stats tabs and tier-list rows. |
+| `app/components/EntityRunStats.tsx` | Detail-page Stats tab — score hero badge + prose summary + recent runs links. |
+| `app/components/TierList.tsx` | Visual S→F rows for `/tier-list/{cards,relics,potions}`. |
 | `app/contexts/LanguageContext.tsx` | i18n state from URL path |
 
 ### Color System
@@ -93,11 +100,38 @@ All endpoints accept `?lang=` (default: `eng`). Responses are GZip-compressed wi
 
 - **List endpoints**: `GET /api/cards`, `GET /api/monsters`, etc. with filters
 - **Detail endpoints**: `GET /api/cards/{id}`, `GET /api/monsters/{id}`, etc.
-- **Runs**: `POST /api/runs` (submit), `GET /api/runs/stats` (aggregated meta), `GET /api/runs/list` (browse — accepts `seed`, `build_id`, `sort` filters), `GET /api/runs/leaderboard` (ranked wins-only), `GET /api/runs/versions` (distinct game versions), `GET /api/runs/shared/{hash}` (shared run detail)
+- **Runs**: `POST /api/runs` (submit), `GET /api/runs/stats` (aggregated meta), `GET /api/runs/list` (browse — accepts `seed`, `build_id`, `sort` filters), `GET /api/runs/leaderboard` (ranked wins-only), `GET /api/runs/versions` (distinct game versions), `GET /api/runs/shared/{hash}` (shared run detail — merges `username` from `runs.db` so the shared-run page can show "by {username}"), `GET /api/runs/scores/{type}` (Codex Score per entity)
 - **Guides**: `GET /api/guides` (list with filters), `GET /api/guides/{slug}` (detail), `POST /api/guides` (Discord webhook submission)
+- **News**: `GET /api/news`, `GET /api/news/{gid}` — Steam announcement archive (`data/news/{gid}.json`, survives Steam's sliding window)
+- **Merchant config**: `GET /api/merchant/config` — auto-extracted from C# pricing constants
 - **Docs**: `http://localhost:8000/docs` (Swagger UI)
 
 Filter parameters always use English values regardless of language.
+
+## Codex Score
+
+Per-entity grade derived from community-submitted runs. Lives in `backend/app/services/run_entity_stats.py`.
+
+The raw observed win rate is unstable for small samples (a card that's only appeared in 1 game and won would otherwise rank S). To prevent this, we **shrink** the observed rate toward a baseline (the global community win rate) using a Bayesian prior:
+
+```
+shrunk_rate = (wins + PRIOR_WEIGHT × baseline) / (n + PRIOR_WEIGHT)
+score = clamp((shrunk_rate - baseline) / SCALE_RANGE × 50 + 50, 0, 100)
+```
+
+Constants:
+- `PRIOR_WEIGHT = 50` — pulls low-sample entries toward the baseline
+- `SCALE_RANGE = 0.15` — a 15-point swing in shrunk win rate is the full 0–100 scale
+
+Tier cutoffs (from `frontend/app/components/ScoreBadge.tsx::scoreToTier`): **S** ≥90, **A** 78–89, **B** 65–77, **C** 50–64, **D** 35–49, **F** <35.
+
+`get_all_entity_scores(entity_type)` returns the full table for one type. Results are cached and pre-warmed on FastAPI startup via `_warm_run_entity_stats()` in `main.py` (background thread, so app boot isn't blocked).
+
+Surfaces:
+- `GET /api/runs/scores/{type}` — bulk feed for tier-list pages
+- `ScoreBadge` on entity detail Stats tab (`EntityRunStats`)
+- `/tier-list/{cards,relics,potions}` — visual S→F rows
+- `/leaderboards/scoring` — methodology page (explains the formula above for end users)
 
 ## Localization
 
