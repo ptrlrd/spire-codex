@@ -232,26 +232,40 @@ _ENTITY_TYPES = frozenset(
 )
 
 
-def _error_label(path: str) -> str:
-    """Bucket a request path into a bounded set of labels for api_errors.
+def _normalize_path(request: Request) -> str:
+    """Collapse a request path to a bounded label for Prometheus.
 
-    Prometheus counter labels live forever, so using the raw path meant
-    any scraper enumerating unique URLs could grow the metric without
-    limit until the container OOM-killed. This collapses the two known
-    unbounded surfaces — static assets and entity detail routes — into
-    a small constant set while leaving named API paths (`/api/runs`,
-    `/api/guides/submit`) alone so real 4xx signal is still
-    distinguishable.
+    Prometheus label values live for the lifetime of the process, and the
+    cost of every scrape grows with the number of distinct label
+    combinations across every series — so any path containing a free
+    parameter (a run hash, a news gid, a card id, a static-asset filename)
+    has to be templated before it's used as a label, otherwise the metric
+    silently grows until /metrics serialization eats real CPU. We saw this
+    burn ~3 CPU cores at ~40 req/sec because `spire_codex_response_size_bytes`
+    had ~4,000 series spread across raw paths.
+
+    Strategy: prefer FastAPI's matched route template (eg
+    `/api/cards/{card_id}`) because the router has already done the
+    templating work. Fall back to a coarse bucket for paths the router
+    didn't match (StaticFiles mounts, 404s, scraper noise).
     """
+    route = request.scope.get("route")
+    if route is not None:
+        path_template = getattr(route, "path", None)
+        if path_template:
+            return path_template
+    path = request.url.path
     if path.startswith("/static/"):
         return "/static/"
-    if path.startswith("/api/"):
-        parts = path.strip("/").split("/")
-        if len(parts) >= 3 and parts[1] in _ENTITY_TYPES:
-            return f"/api/{parts[1]}/{{id}}"
-        return path
     if path.startswith("/widget/"):
         return "/widget/"
+    if path.startswith("/api/"):
+        # Unmatched /api/* — likely a 404 or scraped URL. Collapse to the
+        # leaf segment to keep cardinality bounded without losing all signal.
+        parts = path.strip("/").split("/")
+        if len(parts) >= 2:
+            return f"/api/{parts[1]}/*"
+        return "/api/*"
     return "other"
 
 
@@ -270,19 +284,15 @@ class RequestLoggingMiddleware(BaseHTTPMiddleware):
             requests_in_flight.dec()
         elapsed_ms = (time.perf_counter() - start) * 1000
 
-        # Response size tracking
+        # Response size tracking — must use the templated path (eg
+        # `/api/cards/{card_id}`), not the raw URL, otherwise every
+        # unique id/hash/gid creates a fresh series. See _normalize_path.
+        normalized = _normalize_path(request)
         content_length = response.headers.get("content-length")
         if content_length:
-            path = request.url.path
-            # Normalize detail paths: /api/cards/BASH -> /api/cards/{id}
-            parts = path.strip("/").split("/")
-            if len(parts) >= 3 and parts[0] == "api" and parts[1] in _ENTITY_TYPES:
-                endpoint = f"/api/{parts[1]}/{{id}}"
-            else:
-                endpoint = path
             response_size.labels(
                 method=request.method,
-                endpoint=endpoint,
+                endpoint=normalized,
             ).observe(int(content_length))
 
         # Track language and version usage
@@ -331,13 +341,13 @@ class RequestLoggingMiddleware(BaseHTTPMiddleware):
         # turned every unique URL (e.g. every scraped `/static/...` 404)
         # into its own time series. Scrapers hitting thousands of unique
         # URLs bloated the counter and pegged memory/CPU until the
-        # container OOM-killed. Normalize the label to a small fixed set
-        # so cardinality is bounded regardless of traffic.
+        # container OOM-killed. _normalize_path collapses to a bounded
+        # template set regardless of traffic.
         if response.status_code >= 400:
             api_errors.labels(
                 status_code=str(response.status_code),
                 method=request.method,
-                path=_error_label(path),
+                path=normalized,
             ).inc()
             # Skip per-line WARNING logs for 404s on `/static/` — a
             # scrape burst can emit hundreds per second of identical-shape
