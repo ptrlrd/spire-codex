@@ -65,8 +65,7 @@ export function renderSkeleton(skeleton, renderWidth, renderHeight, scale, minX,
 }
 
 function renderSlotBySlot(skeleton, renderWidth, renderHeight, scale, cx, cy) {
-  // TODO: Not sure how to generalize this, may use the max of the height and width.
-  const compPixels = new Uint8ClampedArray(renderWidth * renderWidth * 4);
+  const compPixels = new Uint8ClampedArray(renderWidth * renderHeight * 4);
 
   for (const slot of skeleton.drawOrder) {
     const att = slot.getAttachment();

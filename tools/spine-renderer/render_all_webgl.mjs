@@ -16,7 +16,8 @@ const BASE = path.resolve(__dirname, "../..");
 const ANIM_ROOT = path.join(BASE, "extraction/raw/animations");
 const OUTPUT_ROOT = path.join(BASE, "backend/static/images/renders");
 
-const OUTPUT_SIZE = 512;
+const OUTPUT_WIDTH = 512;
+const OUTPUT_HEIGHT = 512;
 const IDLE_NAMES = ["idle_loop", "idle", "Idle_loop", "Idle", "rest_idle", "rest_loop", "loop", "animation"];
 const SHADOW_NAMES = ["shadow", "shadow2", "shadow_v2", "ground", "ground_shadow"];
 const HIDDEN_SLOTS = ["smoketex", "smoke_tex", "smokeplacholder", "smoke_placeholder", "megatail", "megablade"];
@@ -36,7 +37,7 @@ function findAllSkels(dir) {
 const spineCorePath = path.join(__dirname, "node_modules/@esotericsoftware/spine-webgl/dist/iife/spine-webgl.js");
 const spineCoreCode = fs.readFileSync(spineCorePath, "utf-8");
 
-async function renderSkel(page, skelPath, outPath, outputSize) {
+async function renderSkel(page, skelPath, outPath, outputWidth, outputHeight) {
   const dir = path.dirname(skelPath);
   const skelName = path.basename(skelPath, ".skel");
   const atlasPath = path.join(dir, skelName + ".atlas");
@@ -71,7 +72,7 @@ async function renderSkel(page, skelPath, outPath, outputSize) {
   });
 
   const result = await page.evaluate(async (params) => {
-    const { skelB64, atlasB64, textureData, outputSize, idleNames, shadowNames, hiddenSlots, spineCoreCode } = params;
+    const { skelB64, atlasB64, textureData, outputWidth, outputHeight, idleNames, shadowNames, hiddenSlots, spineCoreCode } = params;
 
     if (!window.spine) {
       eval(spineCoreCode.replace(/^"use strict";\s*var spine\s*=/, "window.spine ="));
@@ -79,8 +80,8 @@ async function renderSkel(page, skelPath, outPath, outputSize) {
     const spine = window.spine;
 
     const canvas = document.createElement("canvas");
-    canvas.width = outputSize;
-    canvas.height = outputSize;
+    canvas.width = outputWidth;
+    canvas.height = outputHeight;
     document.body.appendChild(canvas);
 
     const gl = canvas.getContext("webgl2", { alpha: true, premultipliedAlpha: false, preserveDrawingBuffer: true })
@@ -175,17 +176,17 @@ async function renderSkel(page, skelPath, outPath, outputSize) {
     if (!isFinite(minX)) return { error: "no bounds" };
 
     const sw = maxX - minX, sh = maxY - minY;
-    const padding = outputSize * 0.04;
-    const avail = outputSize - padding * 2;
+    const padding = outputWidth * 0.04;
+    const avail = outputWidth - padding * 2;
     const scale = Math.min(avail / sw, avail / sh);
     const cx = (minX + maxX) / 2, cy = (minY + maxY) / 2;
 
     mvp.ortho2d(
-      cx - outputSize / (2 * scale), cy - outputSize / (2 * scale),
-      outputSize / scale, outputSize / scale
+      cx - outputWidth / (2 * scale), cy - outputHeight / (2 * scale),
+      outputWidth / scale, outputHeight / scale
     );
 
-    gl.viewport(0, 0, outputSize, outputSize);
+    gl.viewport(0, 0, outputWidth, outputWidth);
     gl.clearColor(0, 0, 0, 0);
     gl.clear(gl.COLOR_BUFFER_BIT);
     gl.enable(gl.BLEND);
@@ -210,14 +211,14 @@ async function renderSkel(page, skelPath, outPath, outputSize) {
     batcher.end();
     shader.unbind();
 
-    const pixels = new Uint8Array(outputSize * outputSize * 4);
-    gl.readPixels(0, 0, outputSize, outputSize, gl.RGBA, gl.UNSIGNED_BYTE, pixels);
+    const pixels = new Uint8Array(outputWidth * outputHeight * 4);
+    gl.readPixels(0, 0, outputWidth, outputHeight, gl.RGBA, gl.UNSIGNED_BYTE, pixels);
 
     // Flip vertically
     const flipped = new Uint8Array(pixels.length);
-    const rowSize = outputSize * 4;
-    for (let y = 0; y < outputSize; y++) {
-      flipped.set(pixels.subarray((outputSize - 1 - y) * rowSize, (outputSize - y) * rowSize), y * rowSize);
+    const rowSize = outputWidth * 4;
+    for (let y = 0; y < outputWidth; y++) {
+      flipped.set(pixels.subarray((outputWidth - 1 - y) * rowSize, (outputWidth - y) * rowSize), y * rowSize);
     }
 
     // Check if anything was actually rendered
@@ -225,7 +226,7 @@ async function renderSkel(page, skelPath, outPath, outputSize) {
     for (let i = 3; i < flipped.length; i += 4) {
       if (flipped[i] > 0) nonTransparent++;
     }
-    if (nonTransparent < outputSize * outputSize * 0.001) {
+    if (nonTransparent < outputWidth * outputWidth * 0.001) {
       return { error: "no bounds (blank render)" };
     }
 
@@ -235,7 +236,7 @@ async function renderSkel(page, skelPath, outPath, outputSize) {
       size: `${sw.toFixed(0)}x${sh.toFixed(0)}`,
     };
   }, {
-    skelB64, atlasB64, textureData, outputSize,
+    skelB64, atlasB64, textureData, outputWidth, outputHeight,
     idleNames: IDLE_NAMES, shadowNames: SHADOW_NAMES, hiddenSlots: HIDDEN_SLOTS, spineCoreCode,
   });
 
@@ -245,9 +246,9 @@ async function renderSkel(page, skelPath, outPath, outputSize) {
   fs.mkdirSync(path.dirname(outPath), { recursive: true });
 
   // Write PNG via node-canvas
-  const pngCanvas = createCanvas(outputSize, outputSize);
+  const pngCanvas = createCanvas(outputWidth, outputHeight);
   const pngCtx = pngCanvas.getContext("2d");
-  const imgData = pngCtx.createImageData(outputSize, outputSize);
+  const imgData = pngCtx.createImageData(outputWidth, outputHeight);
   imgData.data.set(rawBuffer);
   pngCtx.putImageData(imgData, 0, 0);
   fs.writeFileSync(outPath, pngCanvas.toBuffer("image/png"));
@@ -255,7 +256,7 @@ async function renderSkel(page, skelPath, outPath, outputSize) {
   // Write WebP via sharp
   const webpPath = outPath.replace(/\.png$/, ".webp");
   const webpBuffer = await sharp(rawBuffer, {
-    raw: { width: outputSize, height: outputSize, channels: 4 },
+    raw: { width: outputWidth, height: outputHeight, channels: 4 },
   }).webp({ quality: 90 }).toBuffer();
   fs.writeFileSync(webpPath, webpBuffer);
 
@@ -291,7 +292,7 @@ async function main() {
     const outPath = path.join(OUTPUT_ROOT, relDir, skelName + ".png");
     const label = path.join(relDir, skelName);
 
-    const result = await renderSkel(page, skelPath, outPath, OUTPUT_SIZE);
+    const result = await renderSkel(page, skelPath, outPath, OUTPUT_WIDTH, OUTPUT_HEIGHT);
     if (result.status === "ok") {
       console.log(`  OK  ${label} (${result.size})`);
       ok++;
