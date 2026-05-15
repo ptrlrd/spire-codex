@@ -53,6 +53,7 @@ from .routers import (
     mechanics,
     auth_steam,
     uninstall,
+    qa_feedback,
 )
 from .services.data_service import get_stats, load_translation_maps, current_version
 from .dependencies import get_lang, VALID_LANGUAGES, LANGUAGE_NAMES
@@ -409,6 +410,7 @@ app.include_router(images.router)
 app.include_router(changelogs.router)
 app.include_router(feedback.router)
 app.include_router(uninstall.router)
+app.include_router(qa_feedback.router)
 app.include_router(acts.router)
 app.include_router(ascensions.router)
 app.include_router(names.router)
@@ -538,5 +540,19 @@ if _BETA_ASSETS_DIR.exists():
 STATIC_DIR = Path(__file__).resolve().parents[1] / "static"
 if STATIC_DIR.exists():
     app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")
+
+# Temporary card-render QA mount. Wires up only when the operator sets
+# QA_DIR to a real directory (typically rsync'd onto the host volume at
+# /data/qa). `html=True` makes `/qa/` serve index.html so the modal
+# review page is the entry point. Designed to be deleted after the audit
+# completes — unset QA_DIR or drop the rendered files to disable.
+QA_DIR_PATH = Path(os.environ.get("QA_DIR", ""))
+if str(QA_DIR_PATH) and QA_DIR_PATH.exists() and QA_DIR_PATH.is_dir():
+    app.mount(
+        "/qa",
+        StaticFiles(directory=str(QA_DIR_PATH), html=True),
+        name="qa",
+    )
+    logger.info("QA mount enabled at /qa → %s", QA_DIR_PATH)
 
 logger.info("Spire Codex API ready")

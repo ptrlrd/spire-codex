@@ -19,6 +19,10 @@ services:
       - GITHUB_APP_INSTALLATION_ID=${GITHUB_APP_INSTALLATION_ID:-}
       - GITHUB_APP_REPO=${GITHUB_APP_REPO:-}
       - GITHUB_APP_PRIVATE_KEY_PATH=${GITHUB_APP_PRIVATE_KEY_PATH:-/secrets/knowledge-demon.private-key.pem}
+      # Card-render QA mount. Set to /data/qa once the rendered PNGs +
+      # index.html are rsync'd onto the host volume. Empty/missing →
+      # the /qa endpoint isn't registered.
+      - QA_DIR=${QA_DIR:-}
     networks:
       - nginx_web-network
     logging:
