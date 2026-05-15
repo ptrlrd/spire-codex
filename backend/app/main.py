@@ -175,6 +175,13 @@ class CORSStaticMiddleware(BaseHTTPMiddleware):
                                              re-renders are rare and handled by
                                              a manual CF purge on the affected
                                              path.
+      /qa/*        max-age=86400            — temporary card-render QA mount.
+                                             ~576 normal + ~543 upgrade PNGs at
+                                             ~1 MB each is heavy on first paint;
+                                             a day of cache makes follow-up
+                                             reviews near-instant. When new
+                                             renders are rsync'd, manually
+                                             purge /qa/* on CF.
       /api/runs/*  s-maxage=30             — user-submitted runs need to appear
                                              in lists/leaderboards within a
                                              minute, not an hour.
@@ -194,6 +201,10 @@ class CORSStaticMiddleware(BaseHTTPMiddleware):
         path = request.url.path
         if path.startswith("/static/"):
             response.headers["Cache-Control"] = "public, max-age=31536000, immutable"
+        elif path.startswith("/qa/"):
+            response.headers["Cache-Control"] = (
+                "public, max-age=86400, s-maxage=86400, stale-while-revalidate=86400"
+            )
         elif path.startswith("/api/runs/"):
             response.headers["Cache-Control"] = "public, max-age=30, s-maxage=30"
         elif path.startswith("/api/"):
