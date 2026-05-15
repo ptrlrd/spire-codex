@@ -36,6 +36,10 @@ services:
       # so the flip is explicit per host:
       #   TURSO_LOCAL_REPLICA=/data/runs-replica.db
       - TURSO_LOCAL_REPLICA=${TURSO_LOCAL_REPLICA:-}
+      # Shared-secret gate for /api/admin/* endpoints (searches analytics,
+      # destructive ops later). Empty → endpoints return 503 "not
+      # configured" rather than silent 401s.
+      - ADMIN_TOKEN=${ADMIN_TOKEN:-}
     networks:
       - nginx_web-network
     logging:
