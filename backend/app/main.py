@@ -53,8 +53,10 @@ from .routers import (
     mechanics,
     auth_steam,
     uninstall,
+    admin_searches,
 )
 from .services.data_service import get_stats, load_translation_maps, current_version
+from .services import searches_db
 from .dependencies import get_lang, VALID_LANGUAGES, LANGUAGE_NAMES
 from prometheus_fastapi_instrumentator import Instrumentator
 
@@ -312,8 +314,22 @@ class RequestLoggingMiddleware(BaseHTTPMiddleware):
                 elif len(parts) == 2:
                     # List view: /api/cards
                     entity_list_views.labels(entity_type=etype).inc()
-                    if request.query_params.get("search"):
+                    search_q = request.query_params.get("search")
+                    if search_q:
                         search_queries.labels(entity_type=etype).inc()
+                        # Persist the query text for analytics. Prometheus
+                        # can only carry the count by entity_type (label
+                        # cardinality), so the actual strings live in
+                        # searches.db where they can be aggregated for
+                        # "what do people search for that we don't have".
+                        searches_db.log_search(
+                            query=search_q,
+                            entity_type=etype,
+                            lang=request.query_params.get("lang") or "eng",
+                            ip_hash=searches_db.hash_ip(
+                                request.client.host if request.client else None
+                            ),
+                        )
 
             # Compare views
             if len(parts) == 3 and parts[1] == "compare":
@@ -399,6 +415,7 @@ app.include_router(images.router)
 app.include_router(changelogs.router)
 app.include_router(feedback.router)
 app.include_router(uninstall.router)
+app.include_router(admin_searches.router)
 app.include_router(acts.router)
 app.include_router(ascensions.router)
 app.include_router(names.router)

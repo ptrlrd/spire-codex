@@ -24,6 +24,7 @@ services:
       - GITHUB_APP_INSTALLATION_ID=${GITHUB_APP_INSTALLATION_ID:-}
       - GITHUB_APP_REPO=${GITHUB_APP_REPO:-}
       - GITHUB_APP_PRIVATE_KEY_PATH=${GITHUB_APP_PRIVATE_KEY_PATH:-/secrets/knowledge-demon.private-key.pem}
+      - ADMIN_TOKEN=${ADMIN_TOKEN:-}
     networks:
       - nginx_web-network
     logging:
