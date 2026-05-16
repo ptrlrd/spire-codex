@@ -188,6 +188,12 @@ class CORSStaticMiddleware(BaseHTTPMiddleware):
       /api/*       s-maxage=3600           — entity data only changes on deploy
                                              (every few days). Browsers still
                                              revalidate every 5 min via max-age.
+      /metrics     no-store                 — Prometheus scrapes the public URL
+      /health      no-store                   every 30s; CF's default 4h
+                                             heuristic was freezing the scrape
+                                             on a 4h-old snapshot, making
+                                             counters appear stuck and gauges
+                                             rewind on cache refresh.
 
     Cache headers are only applied to successful GETs. Caching 4xx/5xx on
     /static would prevent recovery by simply uploading the missing file.
@@ -205,6 +211,8 @@ class CORSStaticMiddleware(BaseHTTPMiddleware):
             response.headers["Cache-Control"] = (
                 "public, max-age=86400, s-maxage=86400, stale-while-revalidate=86400"
             )
+        elif path in ("/metrics", "/health"):
+            response.headers["Cache-Control"] = "no-store"
         elif path.startswith("/api/runs/"):
             response.headers["Cache-Control"] = "public, max-age=30, s-maxage=30"
         elif path.startswith("/api/"):
