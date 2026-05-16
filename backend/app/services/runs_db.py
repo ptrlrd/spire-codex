@@ -1,12 +1,20 @@
-"""SQLite database for community run data."""
+"""Community run database — local SQLite or Turso (libSQL).
 
-import json
+Connection strategy: when TURSO_URL is set, `get_conn()` returns a
+libsql_experimental connection (drop-in sqlite3 API) pointed at Turso.
+Otherwise it falls back to the legacy local SQLite file at DATA_DIR/runs.db.
+
+This lets us flip a single host to Turso by setting an env var, with no
+changes at call sites. Once Turso has proven stable in prod, the sqlite
+fallback and the data/runs.db volume mount can be removed.
+"""
+
 import hashlib
-import sqlite3
-from pathlib import Path
-from contextlib import contextmanager
-
+import json
 import os
+import sqlite3
+from contextlib import contextmanager
+from pathlib import Path
 
 # Use DATA_DIR env var (Docker) or fall back to project data/
 _data_dir = Path(
@@ -21,13 +29,85 @@ def get_db_path() -> Path:
     return DB_PATH
 
 
+def _using_turso() -> bool:
+    """Single source of truth for "are we on Turso right now". Trimmed so
+    an accidental TURSO_URL=" " doesn't half-activate the libsql path.
+    """
+    return bool(os.environ.get("TURSO_URL", "").strip())
+
+
+class _DictRowCursor:
+    """Wraps a libsql cursor so fetchone()/fetchall() return dicts. The
+    underlying Connection in libsql_experimental doesn't accept a
+    `row_factory` attribute (it's a Rust-backed object), so we adapt at
+    the cursor level instead. Dict semantics match what sqlite3.Row gave
+    us, which the rest of this module relies on (`row["run_hash"]`).
+    """
+
+    def __init__(self, cursor):
+        self._cursor = cursor
+
+    def _to_dict(self, row):
+        if row is None:
+            return None
+        desc = self._cursor.description or ()
+        return {d[0]: row[i] for i, d in enumerate(desc)}
+
+    def fetchone(self):
+        return self._to_dict(self._cursor.fetchone())
+
+    def fetchall(self):
+        return [self._to_dict(r) for r in self._cursor.fetchall()]
+
+    def __iter__(self):
+        for row in self._cursor:
+            yield self._to_dict(row)
+
+    def __getattr__(self, name):
+        return getattr(self._cursor, name)
+
+
+class _DictRowConn:
+    """Wraps a libsql Connection so every .execute() returns a
+    _DictRowCursor. Everything else (commit, rollback, close,
+    executescript, executemany) passes through to the wrapped connection.
+    """
+
+    def __init__(self, conn):
+        self._conn = conn
+
+    def execute(self, *args, **kwargs):
+        return _DictRowCursor(self._conn.execute(*args, **kwargs))
+
+    def __getattr__(self, name):
+        return getattr(self._conn, name)
+
+
 @contextmanager
 def get_conn():
-    """Get a database connection with WAL mode for concurrent reads."""
-    conn = sqlite3.connect(str(get_db_path()), timeout=10)
-    conn.row_factory = sqlite3.Row
-    conn.execute("PRAGMA journal_mode=WAL")
-    conn.execute("PRAGMA foreign_keys=ON")
+    """Yield a DB connection. Commits on clean exit, rolls back on exception.
+    Routes to Turso when TURSO_URL is set, local SQLite otherwise.
+    """
+    if _using_turso():
+        # Lazy import so dev environments that haven't pip-installed
+        # libsql can still run on the sqlite path. Using the official
+        # `libsql` package (not `libsql-experimental`, which ships an
+        # empty cursor.description and breaks dict-row mapping).
+        import libsql
+
+        raw = libsql.connect(
+            os.environ["TURSO_URL"],
+            auth_token=os.environ.get("TURSO_AUTH_TOKEN", ""),
+        )
+        conn = _DictRowConn(raw)
+        # Skip PRAGMA journal_mode=WAL — Turso handles concurrency
+        # natively, and the pragma would burn a network round-trip.
+        # Foreign keys are enforced by default on Turso.
+    else:
+        conn = sqlite3.connect(str(get_db_path()), timeout=10)
+        conn.row_factory = sqlite3.Row
+        conn.execute("PRAGMA journal_mode=WAL")
+        conn.execute("PRAGMA foreign_keys=ON")
     try:
         yield conn
         conn.commit()
