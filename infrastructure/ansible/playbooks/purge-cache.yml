@@ -1,0 +1,72 @@
+---
+# Purge Cloudflare cache via API. Faster than the dashboard for the
+# things you purge often (/qa/* after re-rendering, specific URLs after
+# bad cache).
+#
+#   ansible-playbook playbooks/purge-cache.yml -e 'urls=["https://spire-codex.com/qa/"]'
+#   ansible-playbook playbooks/purge-cache.yml -e everything=true
+#
+# Prereqs:
+#   - 1Password item with CF API token at op://Spire Codex/Cloudflare/api_token
+#     (token needs Zone.Cache Purge permission for the spire-codex.com zone)
+#   - Zone ID stored at op://Spire Codex/Cloudflare/zone_id
+
+- name: Purge Cloudflare cache
+  hosts: localhost
+  gather_facts: false
+  vars:
+    everything: false
+    urls: []
+  tasks:
+    - name: Fetch CF API token from 1Password
+      command: op read "op://Spire Codex/Cloudflare/api_token"
+      register: cf_token
+      changed_when: false
+      no_log: true
+
+    - name: Fetch CF zone ID from 1Password
+      command: op read "op://Spire Codex/Cloudflare/zone_id"
+      register: cf_zone
+      changed_when: false
+      no_log: true
+
+    - name: Purge everything (whole zone — uses one of 5 daily on Free)
+      uri:
+        url: "https://api.cloudflare.com/client/v4/zones/{{ cf_zone.stdout }}/purge_cache"
+        method: POST
+        headers:
+          Authorization: "Bearer {{ cf_token.stdout }}"
+          Content-Type: application/json
+        body_format: json
+        body:
+          purge_everything: true
+        status_code: 200
+      when: everything | bool
+      register: purge_all
+      no_log: true
+
+    - name: Purge specific URLs
+      uri:
+        url: "https://api.cloudflare.com/client/v4/zones/{{ cf_zone.stdout }}/purge_cache"
+        method: POST
+        headers:
+          Authorization: "Bearer {{ cf_token.stdout }}"
+          Content-Type: application/json
+        body_format: json
+        body:
+          files: "{{ urls }}"
+        status_code: 200
+      when: not (everything | bool) and urls | length > 0
+      register: purge_urls
+      no_log: true
+
+    - name: Report
+      debug:
+        msg: >
+          {% if everything | bool %}
+          Purged entire spire-codex.com zone ✓
+          {% elif urls | length > 0 %}
+          Purged {{ urls | length }} URL(s) ✓: {{ urls | join(', ') }}
+          {% else %}
+          Nothing purged — pass `-e everything=true` or `-e 'urls=["...","..."]'`
+          {% endif %}

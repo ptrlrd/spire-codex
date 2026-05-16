@@ -1,0 +1,102 @@
+---
+# Reclaim disk on each origin. Docker images + old containers +
+# container logs (Docker's JSON log files) all accumulate quietly until
+# the day a deploy fails with "no space left on device" and you have to
+# scramble at 2am. This playbook does the standard pruning + truncates
+# container logs.
+#
+# Usage:
+#   ansible-playbook playbooks/clean-disk.yml                    # safe defaults
+#   ansible-playbook playbooks/clean-disk.yml -e prune_volumes=true  # also nuke unused volumes
+#   ansible-playbook playbooks/clean-disk.yml -e log_max_mb=10       # truncate logs > 10 MB
+#
+# Safe by default:
+#   - Prunes dangling images (untagged layers)
+#   - Prunes stopped containers
+#   - Prunes build cache
+#   - Truncates container JSON logs over `log_max_mb` (default 100)
+#
+# Opt-in (set explicitly):
+#   - Volume pruning (could nuke anonymous volumes from old images —
+#     bind mounts under /var/www/spire-codex/data are unaffected)
+#
+# Reports docker disk usage before and after so you can see how much
+# was reclaimed.
+
+- name: Prune docker + truncate container logs on each origin
+  hosts: prod_origins
+  become: true
+  gather_facts: false
+  vars:
+    prune_volumes: false
+    log_max_mb: 100
+
+  tasks:
+    - name: Disk usage BEFORE
+      shell: |
+        echo "=== docker system df ==="
+        docker system df
+        echo
+        echo "=== root filesystem ==="
+        df -h /
+      register: before
+      changed_when: false
+
+    - name: Show before state
+      debug:
+        msg: "{{ inventory_hostname }} BEFORE:\n{{ before.stdout }}"
+
+    - name: Prune dangling images
+      command: docker image prune -f
+      register: image_prune
+      changed_when: "'Total reclaimed space' in image_prune.stdout and '0B' not in image_prune.stdout"
+
+    - name: Prune stopped containers
+      command: docker container prune -f
+      register: container_prune
+      changed_when: "'Total reclaimed space' in container_prune.stdout and '0B' not in container_prune.stdout"
+
+    - name: Prune build cache
+      command: docker builder prune -af
+      register: builder_prune
+      changed_when: "'Total' in builder_prune.stdout and '0B' not in builder_prune.stdout"
+
+    - name: Prune unused volumes (opt-in)
+      command: docker volume prune -f
+      register: volume_prune
+      changed_when: "'Total reclaimed space' in volume_prune.stdout and '0B' not in volume_prune.stdout"
+      when: prune_volumes | bool
+
+    - name: Find oversize container log files
+      shell: |
+        find /var/lib/docker/containers -name "*-json.log" -size +{{ log_max_mb }}M
+      register: big_logs
+      changed_when: false
+
+    - name: Truncate oversize container logs
+      shell: ": > {{ item }}"
+      loop: "{{ big_logs.stdout_lines }}"
+      when: big_logs.stdout_lines | length > 0
+      register: truncated
+
+    - name: Disk usage AFTER
+      shell: |
+        echo "=== docker system df ==="
+        docker system df
+        echo
+        echo "=== root filesystem ==="
+        df -h /
+      register: after
+      changed_when: false
+
+    - name: Summary
+      debug:
+        msg: |
+          {{ inventory_hostname }}:
+            Images pruned:    {{ image_prune.stdout_lines | select('search', 'reclaimed') | first | default('(none)') }}
+            Containers:       {{ container_prune.stdout_lines | select('search', 'reclaimed') | first | default('(none)') }}
+            Build cache:      {{ builder_prune.stdout_lines | select('search', 'Total') | first | default('(none)') }}
+            Volumes:          {{ (volume_prune.stdout_lines | select('search', 'reclaimed') | first | default('(skipped)')) if prune_volumes else '(skipped — pass -e prune_volumes=true to enable)' }}
+            Logs truncated:   {{ big_logs.stdout_lines | length }} file(s) over {{ log_max_mb }}MB
+          --- AFTER ---
+          {{ after.stdout }}

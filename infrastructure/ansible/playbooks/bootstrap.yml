@@ -1,0 +1,122 @@
+---
+# First-time setup for a fresh origin. Installs docker, clones the
+# repo, creates required paths, pulls the standalone nginx image, and
+# leaves the host ready for sync-secrets.yml + sync-config.yml +
+# deploy.yml.
+#
+# Prereqs:
+#   - The host is already in inventory.yml (add it BEFORE running)
+#   - SSH key works (`ansible <hostname> -m ping` succeeds)
+#   - The remote_user has passwordless sudo configured
+#
+# Usage:
+#   ansible-playbook playbooks/bootstrap.yml --limit <new-host>
+#
+# Idempotent — re-running on an existing host is a no-op for everything
+# that's already there.
+
+- name: Bootstrap a fresh spire-codex origin
+  hosts: prod_origins
+  gather_facts: true
+  become: true
+  tasks:
+    - name: Install docker (Amazon Linux 2023)
+      dnf:
+        name:
+          - docker
+          - git
+          - rsync
+          - tar
+        state: present
+      when: ansible_os_family == 'RedHat'
+
+    - name: Install docker (Debian/Ubuntu)
+      apt:
+        name:
+          - docker.io
+          - git
+          - rsync
+          - tar
+        state: present
+        update_cache: true
+      when: ansible_os_family == 'Debian'
+
+    - name: Enable + start docker
+      systemd:
+        name: docker
+        enabled: true
+        state: started
+
+    - name: Add deploy user to docker group (no sudo needed for docker commands)
+      user:
+        name: "{{ ansible_user }}"
+        groups: docker
+        append: true
+
+    - name: Install docker-compose plugin (v2 via package manager)
+      shell: |
+        if ! docker compose version >/dev/null 2>&1; then
+          mkdir -p /usr/local/lib/docker/cli-plugins
+          curl -SL https://github.com/docker/compose/releases/latest/download/docker-compose-linux-x86_64 \
+            -o /usr/local/lib/docker/cli-plugins/docker-compose
+          chmod +x /usr/local/lib/docker/cli-plugins/docker-compose
+        fi
+      args:
+        creates: /usr/local/lib/docker/cli-plugins/docker-compose
+
+    - name: Ensure spire-codex working dir exists
+      file:
+        path: "{{ spire_codex_dir }}"
+        state: directory
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
+        mode: '0755'
+
+    - name: Clone spire-codex repo (if not already)
+      become_user: "{{ ansible_user }}"
+      git:
+        repo: https://github.com/ptrlrd/spire-codex.git
+        dest: "{{ spire_codex_dir }}"
+        version: main
+        update: false   # don't yank latest on bootstrap — let deploy.yml do that
+
+    - name: Ensure host data dirs exist
+      file:
+        path: "{{ item }}"
+        state: directory
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
+        mode: '0755'
+      loop:
+        - "{{ spire_codex_dir }}/data"
+        - "{{ spire_codex_dir }}/data/qa"
+        - "{{ spire_codex_dir }}/data/runs"
+        - "{{ spire_codex_dir }}/data/guides"
+        - /data/nginx/nginx
+        - "{{ spire_codex_dir }}/.secrets"
+
+    - name: Stub .env (sync-secrets.yml will replace with real one)
+      copy:
+        dest: "{{ spire_codex_dir }}/.env"
+        content: |
+          # Placeholder — populated by `ansible-playbook playbooks/sync-secrets.yml`
+          QA_DIR=/data/qa
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
+        mode: '0600'
+        force: false   # don't overwrite if one already exists
+
+    - name: Pull standalone nginx image
+      become_user: "{{ ansible_user }}"
+      command: docker pull nginx:alpine
+      register: nginx_pull
+      changed_when: "'Downloaded newer image' in nginx_pull.stdout"
+
+    - name: Done — next steps
+      debug:
+        msg: |
+          Host bootstrapped. Now run, against this host only:
+            ansible-playbook playbooks/sync-secrets.yml --limit {{ inventory_hostname }}
+            ansible-playbook playbooks/sync-config.yml  --limit {{ inventory_hostname }}
+            ansible-playbook playbooks/deploy.yml       --limit {{ inventory_hostname }}
+          Then add this origin to the Cloudflare Load Balancer pool.

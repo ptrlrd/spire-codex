@@ -1,0 +1,53 @@
+---
+# Surgical container recycle on every origin without re-pulling images.
+# Use when you've changed .env (after sync-secrets.yml) or just want
+# to bounce containers without doing a full deploy.
+#
+#   ansible-playbook playbooks/restart.yml                    # backend only
+#   ansible-playbook playbooks/restart.yml -e svc=frontend    # frontend
+#   ansible-playbook playbooks/restart.yml -e svc=nginx       # standalone nginx
+#   ansible-playbook playbooks/restart.yml -e svc=all         # everything
+
+- name: Recycle containers
+  hosts: prod_origins
+  gather_facts: false
+  vars:
+    svc: backend   # override with -e svc=<frontend|nginx|all>
+  tasks:
+    - name: Restart backend
+      become: true
+      command: docker compose -f {{ compose_file }} restart backend
+      args:
+        chdir: "{{ spire_codex_dir }}"
+      when: svc in ['backend', 'all']
+
+    - name: Restart frontend
+      become: true
+      command: docker compose -f {{ compose_file }} restart frontend
+      args:
+        chdir: "{{ spire_codex_dir }}"
+      when: svc in ['frontend', 'all']
+
+    - name: Restart standalone nginx
+      become: true
+      command: docker restart {{ nginx_container }}
+      when: svc in ['nginx', 'all']
+
+    - name: Wait for backend to settle
+      pause:
+        seconds: 4
+      when: svc in ['backend', 'all']
+
+    - name: Tail recent backend logs to confirm health
+      become: true
+      command: docker compose -f {{ compose_file }} logs backend --tail 20
+      args:
+        chdir: "{{ spire_codex_dir }}"
+      register: post_restart_logs
+      changed_when: false
+      when: svc in ['backend', 'all']
+
+    - name: Show backend startup lines
+      debug:
+        msg: "{{ post_restart_logs.stdout_lines | select('search', 'QA mount|Spire Codex API ready|ERROR') | list }}"
+      when: svc in ['backend', 'all']

@@ -1,0 +1,61 @@
+---
+# Pull latest backend + frontend images and recreate containers on
+# every prod origin. Run after a code merge that triggered a CI
+# image build, or whenever you want to force-pull latest.
+#
+#   cd infrastructure/ansible
+#   ansible-playbook playbooks/deploy.yml
+#
+# Verifies the QA mount log line shows up so you know /qa survived
+# the restart. If it doesn't, the QA_DIR env or the rsync drifted —
+# run sync-config.yml first.
+
+- name: Pull latest images and recreate prod containers
+  hosts: prod_origins
+  gather_facts: false
+  tasks:
+    - name: Pull latest backend image
+      become: true
+      command: docker compose -f {{ compose_file }} pull backend frontend
+      args:
+        chdir: "{{ spire_codex_dir }}"
+      register: pull_result
+      changed_when: "'Pulled' in pull_result.stdout"
+
+    - name: Recreate backend + frontend containers
+      become: true
+      command: docker compose -f {{ compose_file }} up -d --force-recreate backend frontend
+      args:
+        chdir: "{{ spire_codex_dir }}"
+
+    - name: Wait a beat for backend to settle
+      pause:
+        seconds: 5
+
+    - name: Grab recent backend logs
+      become: true
+      command: docker compose -f {{ compose_file }} logs backend --tail 50
+      args:
+        chdir: "{{ spire_codex_dir }}"
+      register: backend_logs
+      changed_when: false
+
+    - name: Confirm QA mount registered (warn if missing)
+      debug:
+        msg: >
+          {% set qa_line = backend_logs.stdout_lines | select('search', 'QA mount enabled') | list %}
+          {% if qa_line %}
+          ✓ {{ qa_line | first }}
+          {% else %}
+          ✗ QA mount NOT registered. Check QA_DIR + that /data/qa exists. Run sync-config.yml.
+          {% endif %}
+
+    - name: Confirm backend is ready
+      debug:
+        msg: >
+          {% set ready_line = backend_logs.stdout_lines | select('search', 'Spire Codex API ready') | list %}
+          {% if ready_line %}
+          ✓ {{ ready_line | first }}
+          {% else %}
+          ✗ Backend did not log 'Spire Codex API ready'. Check `docker compose logs backend` manually.
+          {% endif %}

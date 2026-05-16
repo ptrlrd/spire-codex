@@ -1,0 +1,100 @@
+---
+# Roll back to a previous Docker image tag when a deploy goes sideways.
+# Doesn't edit docker-compose.prod.yml — retags the requested SHA as
+# `:latest` locally on each host, then recreates containers. Next time
+# you run `deploy.yml` it'll re-pull `:latest` from Docker Hub, which
+# is still the broken image, so this is a HOLD measure: roll back here,
+# then fix forward (revert PR / new release) so :latest on Hub is good
+# again.
+#
+# Usage:
+#   # Find a known-good tag (git SHA or release tag pushed to Hub):
+#   docker pull ptrlrd/spire-codex-backend:158cf27a
+#
+#   ansible-playbook playbooks/rollback.yml -e tag=158cf27a
+#   ansible-playbook playbooks/rollback.yml -e tag=158cf27a -e service=frontend
+#   ansible-playbook playbooks/rollback.yml -e tag=158cf27a -e service=both
+#
+# After rollback, run verify.yml to confirm the rolled-back version
+# is healthy across all origins.
+
+- name: Roll back Docker image to a known-good tag
+  hosts: prod_origins
+  gather_facts: false
+  vars:
+    service: backend       # backend | frontend | both
+    image_backend: ptrlrd/spire-codex-backend
+    image_frontend: ptrlrd/spire-codex-frontend
+  tasks:
+    - name: Validate required `tag` was provided
+      assert:
+        that:
+          - tag is defined
+          - tag | length > 0
+        fail_msg: |
+          Missing `tag`. Pass with -e tag=<git-sha-or-release-tag>.
+          Find a known-good tag on Docker Hub or in CI artifacts.
+
+    - name: Pull rollback backend image
+      become: true
+      command: docker pull {{ image_backend }}:{{ tag }}
+      when: service in ['backend', 'both']
+
+    - name: Pull rollback frontend image
+      become: true
+      command: docker pull {{ image_frontend }}:{{ tag }}
+      when: service in ['frontend', 'both']
+
+    - name: Retag rollback backend as :latest (so compose picks it up)
+      become: true
+      command: docker tag {{ image_backend }}:{{ tag }} {{ image_backend }}:latest
+      when: service in ['backend', 'both']
+
+    - name: Retag rollback frontend as :latest
+      become: true
+      command: docker tag {{ image_frontend }}:{{ tag }} {{ image_frontend }}:latest
+      when: service in ['frontend', 'both']
+
+    - name: Recreate backend container
+      become: true
+      command: docker compose -f {{ compose_file }} up -d --force-recreate backend
+      args:
+        chdir: "{{ spire_codex_dir }}"
+      when: service in ['backend', 'both']
+
+    - name: Recreate frontend container
+      become: true
+      command: docker compose -f {{ compose_file }} up -d --force-recreate frontend
+      args:
+        chdir: "{{ spire_codex_dir }}"
+      when: service in ['frontend', 'both']
+
+    - name: Wait for backend to settle
+      pause:
+        seconds: 5
+      when: service in ['backend', 'both']
+
+    - name: Capture image SHA each container is now running
+      become: true
+      shell: |
+        docker inspect spire-codex-backend --format '{% raw %}{{.Image}}{% endraw %}' 2>/dev/null || true
+        docker inspect spire-codex-frontend --format '{% raw %}{{.Image}}{% endraw %}' 2>/dev/null || true
+      register: running_images
+      changed_when: false
+
+    - name: Show what's running on each host
+      debug:
+        msg: |
+          {{ inventory_hostname }} now running:
+          {{ running_images.stdout }}
+
+    - name: Reminder
+      run_once: true
+      delegate_to: localhost
+      debug:
+        msg: |
+          Rolled back to `{{ tag }}` on {{ ansible_play_hosts | length }} host(s).
+          Next `deploy.yml` run will re-pull :latest from Docker Hub, so:
+            1. Run `verify.yml` to confirm rollback is healthy
+            2. Fix-forward on main (revert PR or new release) so :latest is good again
+            3. Then `deploy.yml` to clean up

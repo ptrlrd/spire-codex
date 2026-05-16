@@ -1,0 +1,35 @@
+---
+# Quick health check on primary's Litestream after a config push.
+# Prints unit status + last 30 log lines so we can spot auth failures
+# or replication errors fast.
+#
+# Usage:
+#   ./bin/op-ansible playbooks/check-litestream.yml --limit primary
+
+- name: Check Litestream health
+  hosts: prod_origins
+  gather_facts: false
+  tasks:
+    - name: Service status
+      become: true
+      shell: |
+        systemctl is-active litestream || true
+        echo "---"
+        systemctl status litestream --no-pager 2>&1 | head -15
+      register: status
+      changed_when: false
+
+    - name: Recent journal
+      become: true
+      shell: journalctl -u litestream --no-pager -n 30 2>&1
+      register: logs
+      changed_when: false
+
+    - name: Show
+      debug:
+        msg: |
+          === STATUS ===
+          {{ status.stdout }}
+
+          === LAST 30 LOG LINES ===
+          {{ logs.stdout }}

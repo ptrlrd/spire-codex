@@ -1,0 +1,49 @@
+---
+# Fetch recent backend (or any service) logs from every origin into
+# local files for grep'ing without SSH-tab-juggling.
+#
+#   ansible-playbook playbooks/tail-logs.yml                # backend, last 500
+#   ansible-playbook playbooks/tail-logs.yml -e svc=frontend
+#   ansible-playbook playbooks/tail-logs.yml -e lines=2000
+#
+# Output:
+#   ~/spire-codex-logs/<host>-<service>-<timestamp>.log
+
+- name: Pull container logs from all origins
+  hosts: prod_origins
+  gather_facts: false
+  vars:
+    svc: backend
+    lines: 500
+    log_root: "{{ lookup('env', 'HOME') }}/spire-codex-logs"
+    timestamp: "{{ lookup('pipe','date +%Y%m%dT%H%M%S') }}"
+
+  tasks:
+    - name: Create local logs dir
+      delegate_to: localhost
+      become: false
+      run_once: true
+      file:
+        path: "{{ log_root }}"
+        state: directory
+        mode: '0755'
+
+    - name: Grab logs from {{ svc }}
+      become: true
+      command: docker compose -f {{ compose_file }} logs {{ svc }} --tail {{ lines }} --no-color
+      args:
+        chdir: "{{ spire_codex_dir }}"
+      register: svc_logs
+      changed_when: false
+
+    - name: Write logs locally
+      delegate_to: localhost
+      become: false
+      copy:
+        content: "{{ svc_logs.stdout }}"
+        dest: "{{ log_root }}/{{ inventory_hostname }}-{{ svc }}-{{ timestamp }}.log"
+        mode: '0644'
+
+    - name: Done
+      debug:
+        msg: "Saved {{ svc_logs.stdout_lines | length }} lines → {{ log_root }}/{{ inventory_hostname }}-{{ svc }}-{{ timestamp }}.log"

@@ -1,0 +1,142 @@
+---
+# Restore a backup tarball (from backup.yml) onto an origin. DESTRUCTIVE
+# — overwrites the live data/ directory. Requires explicit `confirm=yes`
+# to actually run, otherwise it's dry-run.
+#
+# Usage (dry-run — shows what would happen):
+#   ansible-playbook playbooks/dr-restore.yml \
+#     -e tarball=~/spire-codex-backups/primary-20260516T103000.tar.gz \
+#     -e target=primary
+#
+# Usage (commit):
+#   ansible-playbook playbooks/dr-restore.yml \
+#     -e tarball=~/spire-codex-backups/primary-20260516T103000.tar.gz \
+#     -e target=primary \
+#     -e confirm=yes
+#
+# Strongly recommend: stop CF LB or pull `target` out of the pool before
+# restore. Restoring on a host that's still serving traffic is fine if
+# the tarball is recent, but you'll lose any writes between snapshot time
+# and now.
+
+- name: Restore data from backup tarball
+  hosts: prod_origins
+  gather_facts: false
+  serial: 1
+  vars:
+    confirm: "no"
+    remote_tarball: /tmp/spire-codex-restore.tar.gz
+    pre_restore_backup: "/tmp/spire-codex-prerestore-{{ lookup('pipe','date +%Y%m%dT%H%M%S') }}.tar.gz"
+
+  tasks:
+    - name: Validate `tarball` was provided
+      assert:
+        that:
+          - tarball is defined
+          - tarball | length > 0
+        fail_msg: |
+          Missing `tarball`. Pass with -e tarball=<path-to-local-backup>.
+
+    - name: Validate `target` is set (single host)
+      assert:
+        that:
+          - target is defined
+          - target == inventory_hostname
+        fail_msg: |
+          dr-restore.yml runs per-host. Pass -e target=<hostname> matching
+          one host in inventory. Got target={{ target | default('') }},
+          current host={{ inventory_hostname }}.
+      when: target is defined
+
+    - name: Skip this host (target filter)
+      meta: end_host
+      when: target is defined and target != inventory_hostname
+
+    - name: Verify local tarball exists
+      delegate_to: localhost
+      become: false
+      stat:
+        path: "{{ tarball }}"
+      register: local_tarball
+      failed_when: not local_tarball.stat.exists
+
+    - name: Show what will happen (dry-run)
+      debug:
+        msg: |
+          Would restore:
+            From  : {{ tarball }} ({{ (local_tarball.stat.size / 1024 / 1024) | round(1) }} MB)
+            To    : {{ spire_codex_dir }}/data on {{ inventory_hostname }}
+            Backup of pre-restore state → {{ pre_restore_backup }} on remote
+          To actually run, re-invoke with -e confirm=yes
+      when: confirm != "yes"
+
+    - name: Bail out unless confirmed
+      meta: end_play
+      when: confirm != "yes"
+
+    # ---- below only runs when confirm=yes ----
+
+    - name: Upload tarball to remote /tmp
+      copy:
+        src: "{{ tarball }}"
+        dest: "{{ remote_tarball }}"
+        mode: '0600'
+
+    - name: Snapshot current data/ before nuking (safety net)
+      become: true
+      command: >
+        tar -czf {{ pre_restore_backup }}
+          --exclude='data/qa/*'
+          --exclude='*.tmp'
+          -C {{ spire_codex_dir }} data
+      changed_when: false
+
+    - name: Stop backend (so no writes mid-restore)
+      become: true
+      command: docker compose -f {{ compose_file }} stop backend
+      args:
+        chdir: "{{ spire_codex_dir }}"
+
+    - name: Wipe existing data/ (excluding qa/ — that's renderer-driven, not user data)
+      become: true
+      shell: |
+        find {{ spire_codex_dir }}/data \
+          -mindepth 1 -maxdepth 1 \
+          -not -name 'qa' \
+          -exec rm -rf {} +
+      changed_when: true
+
+    - name: Extract backup over data/
+      become: true
+      unarchive:
+        src: "{{ remote_tarball }}"
+        dest: "{{ spire_codex_dir }}"
+        remote_src: true
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
+    - name: Restart backend
+      become: true
+      command: docker compose -f {{ compose_file }} up -d backend
+      args:
+        chdir: "{{ spire_codex_dir }}"
+
+    - name: Wait for backend to settle
+      pause:
+        seconds: 5
+
+    - name: Clean up uploaded tarball (keep pre_restore_backup though — safety)
+      become: true
+      file:
+        path: "{{ remote_tarball }}"
+        state: absent
+
+    - name: Done — summary
+      debug:
+        msg: |
+          Restored on {{ inventory_hostname }}.
+          Pre-restore snapshot kept at {{ pre_restore_backup }} (clean up
+          manually after you've verified the restore worked).
+          Next steps:
+            1. Run verify.yml to confirm services are healthy
+            2. Re-add this origin to CF LB pool (if you pulled it before restore)
+            3. Once stable, `ssh ... 'rm {{ pre_restore_backup }}'`

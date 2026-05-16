@@ -1,0 +1,99 @@
+---
+# Render /etc/litestream.yml from files/litestream.yml.tpl + 1Password
+# secrets, push to host, restart litestream.service.
+#
+# Usage:
+#   ./bin/op-ansible playbooks/sync-litestream.yml --limit primary
+#
+# IMPORTANT: defaults to --limit primary. Don't run against secondary
+# without thinking — its systemd unit isn't installed, the config would
+# clobber primary's B2 stream, and we're killing Litestream entirely
+# after Turso cutover anyway.
+#
+# After this runs:
+#   - /etc/litestream.yml on primary contains rotated B2 creds
+#   - systemd restarts the unit, picks up new config
+#   - Local /tmp render is wiped before exit (no secret residue)
+
+- name: Render litestream.yml from 1Password and push to primary
+  hosts: prod_origins
+  gather_facts: false
+  vars:
+    local_template: "{{ playbook_dir }}/../files/litestream.yml.tpl"
+    remote_config: /etc/litestream.yml
+
+  tasks:
+    # Freeze the per-host scratch path ONCE. If you template it inline
+    # via `lookup('pipe','echo $$')` in vars:, each reference forks a
+    # new shell and gets a different PID — write and read end up on
+    # different paths.
+    - name: Compute local rendered path (per-host, stable across tasks)
+      set_fact:
+        local_rendered: "/tmp/spire-codex-litestream.{{ lookup('pipe','echo $$') }}.{{ inventory_hostname }}.yml"
+
+    - name: Safety check — refuse to touch secondary unless --extra-vars allow_secondary=yes
+      assert:
+        that:
+          - inventory_hostname == 'primary' or (allow_secondary | default('no')) == 'yes'
+        fail_msg: |
+          Refusing to sync Litestream config to {{ inventory_hostname }}.
+          Both prod origins are configured to write to the same B2 path,
+          so enabling Litestream on a second host would clobber the first.
+          If you really mean to do this, re-run with:
+            -e allow_secondary=yes
+
+    - name: Confirm `op` CLI works (vault list)
+      delegate_to: localhost
+      become: false
+      run_once: true
+      command: op vault list
+      changed_when: false
+      no_log: true
+
+    - name: Render litestream.yml via `op inject`
+      delegate_to: localhost
+      become: false
+      command: op inject --in-file "{{ local_template }}" --out-file "{{ local_rendered }}" --force
+      changed_when: false
+      no_log: true
+
+    - name: Sanity check — assert no unresolved 1P references in rendered file
+      delegate_to: localhost
+      become: false
+      # `op inject` errors on unresolvable refs, so this is just
+      # belt-and-suspenders against template typos. Inverted logic:
+      # we WANT no match. `grep -q` rc=0 means "found op:/" → bad.
+      shell: |
+        if grep -q "op:/" "{{ local_rendered }}"; then
+          echo "Unresolved 1Password references found in rendered litestream config" >&2
+          exit 1
+        fi
+      register: render_check
+      changed_when: false
+
+    - name: Push rendered litestream.yml (mode 0600, root-owned)
+      become: true
+      copy:
+        src: "{{ local_rendered }}"
+        dest: "{{ remote_config }}"
+        owner: root
+        group: root
+        mode: '0600'
+      no_log: true
+      notify: restart litestream
+
+    - name: Wipe local rendered file immediately
+      delegate_to: localhost
+      become: false
+      file:
+        path: "{{ local_rendered }}"
+        state: absent
+      changed_when: false
+
+  handlers:
+    - name: restart litestream
+      become: true
+      systemd:
+        name: litestream
+        state: restarted
+        daemon_reload: false
