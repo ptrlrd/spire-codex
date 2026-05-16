@@ -1,0 +1,48 @@
+---
+# Stop + disable the litestream systemd unit. Used to silence the
+# journal spam from the B2 free-tier rate-limit, and to draw a clear
+# line: from this point on, the local SQLite snapshot we already
+# captured is the canonical pre-Turso copy. Nothing is being streamed
+# anywhere offsite until Turso takes over writes.
+#
+# Defaults to primary only — secondary's unit was never running.
+#
+# Usage:
+#   ./bin/op-ansible playbooks/stop-litestream.yml --limit primary
+#
+# To bring it back later (e.g., to re-test or if Turso migration is
+# delayed):
+#   ./bin/op-ansible playbooks/sync-litestream.yml --limit primary
+
+- name: Stop + disable litestream on prod origins
+  hosts: prod_origins
+  gather_facts: false
+  tasks:
+    - name: Stop and disable litestream.service
+      become: true
+      systemd:
+        name: litestream
+        state: stopped
+        enabled: false
+      register: litestream_stop
+      failed_when:
+        - litestream_stop is failed
+        # systemd module raises on "no such unit" — that's fine for
+        # secondary which never had one installed.
+        - "'Could not find the requested service' not in (litestream_stop.msg | default(''))"
+
+    - name: Confirm it's down
+      become: true
+      shell: |
+        systemctl is-active litestream 2>&1 || true
+        echo "---"
+        systemctl is-enabled litestream 2>&1 || true
+      register: post_stop
+      changed_when: false
+
+    - name: Show
+      debug:
+        msg: |
+          {{ inventory_hostname }}:
+            active   = {{ post_stop.stdout_lines[0] }}
+            enabled  = {{ post_stop.stdout_lines[2] }}

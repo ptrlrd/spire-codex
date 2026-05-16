@@ -1,0 +1,91 @@
+---
+# Snapshot user-generated data (runs.db + JSON run files + guides +
+# showcase config) from each origin into a local tarball on your Mac.
+# Run before risky migrations or as a scheduled cron.
+#
+#   ansible-playbook playbooks/backup.yml
+#
+# Output:
+#   ~/spire-codex-backups/<host>-<timestamp>.tar.gz
+#
+# Future: add S3 upload — set `backup_s3_bucket` in group_vars and
+# uncomment the upload task at the bottom.
+
+- name: Snapshot prod data to local backups
+  hosts: prod_origins
+  gather_facts: false
+  vars:
+    backup_root: "{{ lookup('env', 'HOME') }}/spire-codex-backups"
+    timestamp: "{{ ansible_date_time.iso8601_basic_short | default(lookup('pipe','date +%Y%m%dT%H%M%S')) }}"
+    remote_tarball: "/tmp/spire-codex-data-{{ inventory_hostname }}-{{ timestamp }}.tar.gz"
+
+  tasks:
+    - name: Create local backup dir
+      delegate_to: localhost
+      become: false
+      run_once: true
+      file:
+        path: "{{ backup_root }}"
+        state: directory
+        mode: '0755'
+
+    - name: Tar up data dir on origin (excludes /qa to save space)
+      become: true
+      command: >
+        tar -czf {{ remote_tarball }}
+          --exclude='data/qa/*'
+          --exclude='data/qa'
+          --exclude='*.tmp'
+          -C {{ spire_codex_dir }} data
+      changed_when: false
+
+    - name: Show tarball size
+      become: true
+      stat:
+        path: "{{ remote_tarball }}"
+      register: tarball_stat
+
+    - name: Tarball summary
+      debug:
+        msg: "{{ inventory_hostname }}: {{ (tarball_stat.stat.size / 1024 / 1024) | round(1) }} MB"
+
+    - name: Fetch tarball to local backup dir
+      fetch:
+        src: "{{ remote_tarball }}"
+        dest: "{{ backup_root }}/{{ inventory_hostname }}-{{ timestamp }}.tar.gz"
+        flat: true
+
+    - name: Remove remote tarball
+      become: true
+      file:
+        path: "{{ remote_tarball }}"
+        state: absent
+
+    # --- Optional S3 upload (uncomment + set backup_s3_bucket) -----------
+    # - name: Upload to S3
+    #   delegate_to: localhost
+    #   become: false
+    #   amazon.aws.s3_object:
+    #     bucket: "{{ backup_s3_bucket }}"
+    #     object: "spire-codex/{{ inventory_hostname }}-{{ timestamp }}.tar.gz"
+    #     src: "{{ backup_root }}/{{ inventory_hostname }}-{{ timestamp }}.tar.gz"
+    #     mode: put
+
+- name: Cleanup old local backups (keep last 14 days)
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Find backups older than 14 days
+      find:
+        paths: "{{ lookup('env', 'HOME') }}/spire-codex-backups"
+        age: 14d
+        patterns: '*.tar.gz'
+      register: old_backups
+
+    - name: Delete old backups
+      file:
+        path: "{{ item.path }}"
+        state: absent
+      loop: "{{ old_backups.files }}"
+      loop_control:
+        label: "{{ item.path | basename }}"

@@ -1,0 +1,13 @@
+---
+# Quick connectivity smoke test. SSH'es to every host, runs the ping
+# module, reports success/failure. Good first thing to run after
+# editing inventory or rotating keys.
+#
+#   ./bin/op-ansible playbooks/ping.yml
+
+- name: Ping every prod origin
+  hosts: prod_origins
+  gather_facts: false
+  tasks:
+    - name: Ping
+      ping:

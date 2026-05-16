@@ -1,0 +1,78 @@
+#!/usr/bin/env bash
+# Fetch the SSH deploy key from 1Password into a tempfile, run
+# ansible-playbook against it, and delete the tempfile on exit.
+# The key never persists on disk longer than one playbook run.
+#
+# Usage (drop-in replacement for `ansible-playbook`):
+#
+#   ./bin/op-ansible playbooks/verify.yml
+#   ./bin/op-ansible playbooks/sync-config.yml --limit primary --check
+#
+# Default key ref:
+#   op://Spire Codex/AWS/private key
+#
+# Override per-invocation with $SPIRE_SSH_KEY_REF:
+#
+#   SPIRE_SSH_KEY_REF="op://Spire Codex/Some Other Key/value" \
+#     ./bin/op-ansible playbooks/verify.yml
+#
+# Prereqs:
+#   - 1Password desktop app open + "Integrate with 1Password CLI" enabled
+#     (Settings → Developer). No `op signin` needed.
+
+set -euo pipefail
+
+KEY_REF="${SPIRE_SSH_KEY_REF:-op://Spire Codex/AWS/private key}"
+USER_REF="${SPIRE_REMOTE_USER_REF:-op://Spire Codex/AWS Credentials/user}"
+
+# Fetch the SSH username from 1Password too, so neither the username
+# nor the key filename leaks via git or your shell history.
+SPIRE_REMOTE_USER="$(op read "$USER_REF")"
+export SPIRE_REMOTE_USER
+
+# mktemp with 0600 perms by default on macOS / GNU coreutils. Belt + suspenders:
+TEMP_KEY="$(mktemp -t spire-ansible-key.XXXXXX)"
+chmod 600 "$TEMP_KEY"
+
+# Wipe the key file no matter how we exit — clean exit, Ctrl-C, error,
+# even if a playbook crashes mid-run.
+cleanup() {
+  if [[ -f "$TEMP_KEY" ]]; then
+    # Best-effort overwrite before unlink. macOS's shred is gone, so just
+    # zero it; the deletion is what actually matters.
+    : > "$TEMP_KEY" 2>/dev/null || true
+    rm -f "$TEMP_KEY"
+  fi
+}
+trap cleanup EXIT INT TERM
+
+# Pull the key. `op read` is silent on success. If it fails (vault
+# unlocked? item exists? field name match?) it writes a clear error to
+# stderr and exits non-zero — set -e bails before we touch ansible.
+op read "$KEY_REF" > "$TEMP_KEY"
+
+# Sanity check: the file should look like an OpenSSH private key.
+if ! head -1 "$TEMP_KEY" | grep -q "BEGIN .* PRIVATE KEY"; then
+  echo "Error: content fetched from $KEY_REF does not look like an SSH private key." >&2
+  echo "Check the item/field name in 1Password." >&2
+  exit 1
+fi
+
+cd "$(dirname "$0")/.."
+
+# Render inventory.yml from inventory.yml.tpl + 1Password every run.
+# The template has 1Password references for the origin IPs (Cloudflare-
+# shielded — should NOT live in git); the rendered file is gitignored.
+# Re-rendering each run keeps the local copy in sync with whatever IPs
+# are currently in 1Password (e.g., after rotating a Lightsail static IP).
+if [[ -f inventory.yml.tpl ]]; then
+  op inject --in-file inventory.yml.tpl --out-file inventory.yml --force >/dev/null
+fi
+
+# Hand off to ansible-playbook.
+#  - SPIRE_SSH_KEY is read by ansible.cfg's private_key_file directive.
+#  - User is passed via `-u` (CLI flag) rather than env var, so playbook
+#    runs without the wrapper fail fast on SSH instead of silently
+#    succeeding and corrupting downstream chown tasks with a literal
+#    `${SPIRE_REMOTE_USER}` string.
+SPIRE_SSH_KEY="$TEMP_KEY" exec ansible-playbook -u "$SPIRE_REMOTE_USER" "$@"

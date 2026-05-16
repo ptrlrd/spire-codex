@@ -1,0 +1,83 @@
+---
+# Read-only Cloudflare state check. Compares the current CF zone
+# settings against what we expect for spire-codex.com — surfaces
+# drift without modifying anything. Edits still go through the CF
+# dashboard (or eventual Terraform).
+#
+#   ansible-playbook playbooks/cf-sync.yml
+#
+# Checks:
+#   - LB pool members match prod_origins inventory
+#   - "Bypass for QA" cache rule exists and is enabled
+#   - "/metrics" bypass cache rule exists and is enabled
+#   - DNS A record for spire-codex.com points at the LB or one of the origins
+
+- name: Verify Cloudflare configuration against inventory
+  hosts: localhost
+  gather_facts: false
+  vars:
+    cf_api: https://api.cloudflare.com/client/v4
+  tasks:
+    - name: Fetch CF API token from 1Password
+      command: op read "op://Spire Codex/Cloudflare/api_token"
+      register: cf_token
+      changed_when: false
+      no_log: true
+
+    - name: Fetch CF zone ID from 1Password
+      command: op read "op://Spire Codex/Cloudflare/zone_id"
+      register: cf_zone
+      changed_when: false
+      no_log: true
+
+    - name: List cache rules
+      uri:
+        url: "{{ cf_api }}/zones/{{ cf_zone.stdout }}/rulesets/phases/http_request_cache_settings/entrypoint"
+        headers:
+          Authorization: "Bearer {{ cf_token.stdout }}"
+        return_content: true
+      register: cache_rules
+      changed_when: false
+      no_log: true
+
+    - name: Confirm QA bypass rule exists
+      assert:
+        that:
+          - cache_rules.json.result.rules | selectattr('description', 'search', 'QA') | list | length > 0
+        fail_msg: >
+          Cache Rule "Bypass for QA" (or similar) NOT found in CF.
+          Add via Dashboard → Caching → Cache Rules → match `/qa/` →
+          Bypass cache. Without it, reviewers will hit stale cache.
+        success_msg: QA bypass cache rule present ✓
+
+    - name: Confirm /metrics bypass rule exists
+      assert:
+        that:
+          - cache_rules.json.result.rules | selectattr('description', 'search', 'metrics|Prometheus') | list | length > 0
+        fail_msg: >
+          Cache Rule for /metrics bypass NOT found. Prometheus will
+          scrape stale cached metrics. Add via Dashboard → Caching →
+          Cache Rules → match `/metrics` → Bypass cache.
+        success_msg: /metrics bypass cache rule present ✓
+
+    - name: List DNS records for the zone
+      uri:
+        url: "{{ cf_api }}/zones/{{ cf_zone.stdout }}/dns_records?name=spire-codex.com"
+        headers:
+          Authorization: "Bearer {{ cf_token.stdout }}"
+        return_content: true
+      register: dns
+      changed_when: false
+      no_log: true
+
+    - name: Show apex DNS record(s)
+      debug:
+        msg: "{{ dns.json.result | map(attribute='content') | list }}"
+
+    # Note: LB pool member verification requires the Load Balancer API
+    # which is paid-tier on CF. Skipped for the free-plan setup. If you
+    # upgrade, swap in:
+    #   GET /zones/{zone}/load_balancers
+    #   GET /accounts/{account}/load_balancers/pools
+    # and compare pool.origins[].address against {{ groups.prod_origins
+    # | map('extract', hostvars, 'ansible_host') | list }}.

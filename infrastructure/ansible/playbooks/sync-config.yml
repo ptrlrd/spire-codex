@@ -1,0 +1,77 @@
+---
+# Push nginx config + QA assets to all prod origins so they stay in
+# parity. Run after editing nginx.conf, after re-rendering QA cards,
+# or whenever you suspect a host has drifted.
+#
+#   cd infrastructure/ansible
+#   ansible-playbook playbooks/sync-config.yml
+#
+# Idempotent — re-running with no changes is a no-op.
+
+- name: Sync nginx config + QA assets to all prod origins
+  hosts: prod_origins
+  gather_facts: false
+  tasks:
+    # Fetch the metrics-monitor allow-list IP from 1Password. Used by
+    # nginx.conf.j2 in /metrics, /health, and the access-log skip map.
+    # Kept out of git because — while not a credential — it identifies
+    # the third-party monitoring service we use (low-grade fingerprint).
+    - name: Fetch metrics-monitor IP from 1Password
+      set_fact:
+        metrics_monitor_ip: "{{ lookup('pipe', 'op read \"op://Spire Codex/Server/IP Address\"') }}"
+      no_log: true
+
+    - name: Ensure QA host directory exists
+      become: true
+      file:
+        path: "{{ remote_qa_dir }}"
+        state: directory
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
+        mode: '0755'
+
+    - name: Ensure QA_DIR is set in compose .env
+      become: true
+      lineinfile:
+        path: "{{ spire_codex_dir }}/.env"
+        regexp: '^QA_DIR='
+        line: 'QA_DIR=/data/qa'
+        create: false
+      notify: recreate backend
+
+    - name: Render + push nginx.conf (per-host origin_label from inventory)
+      become: true
+      template:
+        src: ../templates/nginx.conf.j2
+        dest: "{{ remote_nginx_conf }}"
+        owner: root
+        group: root
+        mode: '0644'
+      notify: restart nginx
+
+    - name: Sync QA assets (rsync --delete, excluding renderer junk)
+      synchronize:
+        src: "{{ local_qa_dir }}/"
+        dest: "{{ remote_qa_dir }}/"
+        delete: true
+        # Reuse the multiplexed SSH socket from ansible.cfg's ssh_args
+        # instead of opening a fresh connection. Default synchronize
+        # behavior is `ssh -S none` which bypasses the control master —
+        # that's what kept tripping Lightsail's port-22 rate limit.
+        use_ssh_args: true
+        rsync_opts:
+          - "--exclude=_report.json"
+          - "--exclude=_preview.html"
+          - "--exclude=_tmp_*"
+          - "--exclude=*.html.bak"
+
+  handlers:
+    - name: restart nginx
+      become: true
+      command: docker restart {{ nginx_container }}
+
+    - name: recreate backend
+      become: true
+      command: docker compose -f {{ compose_file }} up -d --force-recreate {{ backend_service }}
+      args:
+        chdir: "{{ spire_codex_dir }}"

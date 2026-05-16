@@ -42,3 +42,8 @@ data/card_builder.db
 # Card composite renderer spike — local only, do not commit
 tools/card-renderer/
 backend/static/images/cards/composite/
+
+# Ansible — inventory.yml is rendered from inventory.yml.tpl + 1Password
+# at runtime by bin/op-ansible. Origin IPs are CF-shielded; keep them
+# out of git.
+infrastructure/ansible/inventory.yml

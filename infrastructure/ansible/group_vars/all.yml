@@ -1,0 +1,31 @@
+# Variables shared across every playbook + host. Per-host overrides
+# go in inventory.yml or host_vars/<hostname>.yml.
+
+# Local repo root (where ansible-playbook is being invoked from). Used
+# to find files we push up — nginx.conf, QA assets, etc.
+local_repo: "{{ playbook_dir }}/../../.."
+local_qa_dir: "{{ local_repo }}/tools/card-renderer/output/all"
+
+# Remote paths. These are stable across hosts because docker-compose
+# mounts ./data:/data and we run compose from spire_codex_dir.
+remote_qa_dir: /var/www/spire-codex/data/qa
+remote_nginx_conf: /data/nginx/nginx/nginx.conf
+
+# Container names. nginx is a standalone container (NOT part of the
+# spire-codex compose project), so we manage it with raw docker
+# commands rather than docker compose.
+nginx_container: web-server
+backend_service: backend
+
+# Default compose file. Override per-invocation with:
+#   ansible-playbook playbooks/deploy.yml -e compose_file=docker-compose.beta.yml
+# Inventory defines `prod_compose_file` + `beta_compose_file` separately so
+# both are available; this picks prod as the everyday default.
+compose_file: "{{ prod_compose_file }}"
+
+# 1Password CLI integration. `op inject` reads a template containing
+# op://<vault>/<item>/<field> references and resolves each one against
+# your signed-in 1Password account. Run `op signin` once on your Mac
+# before invoking sync-secrets.yml.
+env_template_path: "{{ playbook_dir }}/../files/.env.tpl"
+remote_env_path: "{{ spire_codex_dir }}/.env"

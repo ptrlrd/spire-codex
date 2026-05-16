@@ -1,0 +1,112 @@
+---
+# Smoke test every critical endpoint on every origin, then through
+# Cloudflare. Compares responses across origins to catch split-routing
+# (the exact thing that motivated this whole Ansible setup).
+#
+#   ansible-playbook playbooks/verify.yml
+#
+# Exit code is non-zero if any check fails — safe to run from CI as a
+# post-deploy gate.
+
+- name: Verify each origin individually (bypass Cloudflare)
+  hosts: prod_origins
+  gather_facts: false
+  tasks:
+    - name: GET /health from origin (200 = we're whitelisted, 403 = nginx is up & enforcing)
+      uri:
+        url: http://localhost/health
+        headers:
+          Host: spire-codex.com
+        status_code: [200, 403]
+      register: health
+      changed_when: false
+
+    - name: GET /api/stats from origin (must 200, JSON)
+      uri:
+        url: http://localhost/api/stats
+        headers:
+          Host: spire-codex.com
+        status_code: 200
+        return_content: true
+      register: stats
+      changed_when: false
+
+    - name: GET /qa/ from origin (must 200, NOT Next.js)
+      uri:
+        url: http://localhost/qa/
+        headers:
+          Host: spire-codex.com
+        status_code: 200
+        return_content: true
+      register: qa
+      changed_when: false
+      failed_when: >
+        qa.status != 200 or
+        'Next.js' in (qa.content | default(''))[:5000] or
+        'x-powered-by' in (qa | to_json)
+
+    - name: GET /qa/abrasive.webp from origin (must 200)
+      uri:
+        url: http://localhost/qa/abrasive.webp
+        headers:
+          Host: spire-codex.com
+        status_code: 200
+      register: webp
+      changed_when: false
+
+    - name: Capture per-host results
+      set_fact:
+        host_check:
+          health: "{{ health.status }}"
+          api_stats: "{{ stats.status }}"
+          qa_index: "{{ qa.status }}"
+          qa_webp: "{{ webp.status }}"
+
+- name: Verify through Cloudflare (LB + cache)
+  hosts: localhost
+  gather_facts: false
+  vars:
+    cf_base: https://spire-codex.com
+  tasks:
+    - name: Hit /qa/ 6 times via CF — every response should be 200 + backend-served
+      uri:
+        url: "{{ cf_base }}/qa/?ansible-verify={{ ansible_date_time.iso8601_micro | default(item) }}"
+        status_code: 200
+        return_content: true
+      register: cf_qa
+      changed_when: false
+      loop: [1, 2, 3, 4, 5, 6]
+
+    - name: Confirm none of the /qa/ responses came from Next.js
+      assert:
+        that:
+          - "'Next.js' not in (item.content | default(''))[:5000]"
+        fail_msg: >
+          /qa/ returned a Next.js response via Cloudflare. One of the
+          origins is mis-routing. Re-run sync-config.yml, restart the
+          nginx container on each host, and purge CF cache.
+        success_msg: All 6 /qa/ requests served by backend ✓
+      loop: "{{ cf_qa.results }}"
+      loop_control:
+        label: "attempt {{ ansible_loop.index | default('?') }}"
+
+    - name: Hit /api/stats via CF
+      uri:
+        url: "{{ cf_base }}/api/stats"
+        status_code: 200
+      changed_when: false
+
+    - name: Hit /metrics via CF (should be reachable from the metric monitor IP)
+      uri:
+        url: "{{ cf_base }}/metrics"
+        status_code: [200, 403]   # 403 if your IP isn't whitelisted in nginx
+        return_content: false
+      changed_when: false
+
+- name: Summary
+  hosts: prod_origins
+  gather_facts: false
+  tasks:
+    - name: Per-host status
+      debug:
+        msg: "{{ inventory_hostname }}: {{ host_check }}"

@@ -1,0 +1,41 @@
+---
+# Find where Litestream is configured + what it's replicating to.
+# Read-only — just looks at config files and running containers.
+#
+# Usage:
+#   ./bin/op-ansible playbooks/inspect-litestream.yml
+
+- name: Inspect Litestream config across prod origins
+  hosts: prod_origins
+  gather_facts: false
+  tasks:
+    - name: Look for litestream config in common paths
+      shell: |
+        set +e
+        echo "=== /etc/litestream.yml ==="
+        ls -la /etc/litestream.yml 2>/dev/null && cat /etc/litestream.yml 2>/dev/null
+        echo
+        echo "=== /etc/litestream/ ==="
+        ls -la /etc/litestream/ 2>/dev/null
+        echo
+        echo "=== litestream containers ==="
+        docker ps --filter "name=litestream" --format "{{ '{{' }}.Names{{ '}}' }}: {{ '{{' }}.Image{{ '}}' }} ({{ '{{' }}.Status{{ '}}' }})" 2>/dev/null
+        echo
+        echo "=== litestream env in compose ==="
+        grep -rE "(litestream|LITESTREAM|REPLICA_URL|S3_BUCKET)" {{ spire_codex_dir }}/docker-compose*.yml 2>/dev/null | grep -v '^Binary' || echo "  (no matches in compose files)"
+        echo
+        echo "=== litestream binaries ==="
+        which litestream 2>/dev/null || echo "  no litestream in PATH"
+        echo
+        echo "=== systemd unit ==="
+        systemctl status litestream --no-pager 2>/dev/null | head -10 || echo "  no systemd unit"
+        echo
+        echo "=== running processes ==="
+        ps -eo pid,user,cmd | grep -i litestream | grep -v grep || echo "  no litestream process"
+      register: litestream_recon
+      changed_when: false
+      failed_when: false
+
+    - name: Show findings
+      debug:
+        msg: "{{ litestream_recon.stdout_lines }}"

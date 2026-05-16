@@ -1,0 +1,107 @@
+---
+# Pull an atomic snapshot of runs.db from every prod origin into
+# ~/spire-codex-backups/runs-db/<host>-<timestamp>.db on your PC.
+#
+# Uses `sqlite3 .backup` (NOT a raw file copy) so the snapshot is safe
+# even if the backend is mid-write. Also prints row count + latest
+# timestamp per host so you can see how far the two origins have drifted.
+#
+# Usage:
+#   ./bin/op-ansible playbooks/fetch-runs-db.yml
+#
+# Compare results:
+#   ls -la ~/spire-codex-backups/runs-db/
+#   sqlite3 ~/spire-codex-backups/runs-db/primary-*.db   'SELECT COUNT(*), MAX(submitted_at) FROM runs;'
+#   sqlite3 ~/spire-codex-backups/runs-db/secondary-*.db 'SELECT COUNT(*), MAX(submitted_at) FROM runs;'
+#
+# Notes:
+#   - The two origins have been writing independently to their own local
+#     SQLite files since CF LB started splitting traffic. Expect drift.
+#   - This is the canonical pre-Turso snapshot. After seeding Turso and
+#     cutting over the backend, any rows written between snapshot time
+#     and cutover are LOST (they live on whichever origin happened to
+#     receive them). Schedule the cutover during a quiet window.
+
+- name: Snapshot runs.db from every prod origin
+  hosts: prod_origins
+  gather_facts: false
+  vars:
+    local_dir: "{{ lookup('env','HOME') }}/spire-codex-backups/runs-db"
+    remote_db: "{{ spire_codex_dir }}/data/runs.db"
+
+  tasks:
+    # Freeze the timestamp ONCE per host so the .backup target and the
+    # downstream chown/fetch tasks all reference the same filename.
+    # Using `lookup('pipe','date …')` directly in a `vars:` block
+    # re-evaluates on every reference — you can lose a second between
+    # tasks and end up chown'ing a path that doesn't exist.
+    - name: Freeze snapshot timestamp + derived paths
+      set_fact:
+        timestamp: "{{ lookup('pipe','date +%Y%m%dT%H%M%S') }}"
+      run_once: false # per-host, so primary + secondary get distinct stamps
+
+    - name: Compute snapshot paths
+      set_fact:
+        remote_snapshot: "/tmp/runs-snapshot-{{ timestamp }}.db"
+        local_snapshot: "{{ local_dir }}/{{ inventory_hostname }}-{{ timestamp }}.db"
+
+    - name: Ensure local backup dir exists
+      delegate_to: localhost
+      become: false
+      run_once: true
+      file:
+        path: "{{ local_dir }}"
+        state: directory
+        mode: "0700"
+
+    - name: Verify remote runs.db exists
+      stat:
+        path: "{{ remote_db }}"
+      register: remote_db_stat
+      failed_when: not remote_db_stat.stat.exists
+
+    - name: Take atomic SQLite snapshot via .backup
+      # `sqlite3 source ".backup dest"` is the only safe way to copy a
+      # live SQLite file — handles WAL, active writers, torn pages.
+      become: true
+      command: sqlite3 {{ remote_db }} ".backup {{ remote_snapshot }}"
+      changed_when: true
+
+    - name: Make snapshot readable by the deploy user (was created as root)
+      become: true
+      file:
+        path: "{{ remote_snapshot }}"
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
+        mode: "0644"
+
+    - name: Get row count + latest submission timestamp from snapshot
+      command: sqlite3 {{ remote_snapshot }} "SELECT COUNT(*) || '|' || COALESCE(MAX(submitted_at),'<empty>') FROM runs;"
+      register: snapshot_stats
+      changed_when: false
+
+    - name: Show snapshot stats per host
+      debug:
+        msg: |
+          {{ inventory_hostname }}:
+            rows           = {{ snapshot_stats.stdout.split('|')[0] }}
+            latest_run     = {{ snapshot_stats.stdout.split('|')[1] }}
+            snapshot size  = {{ remote_db_stat.stat.size | int // 1024 }} KB (approx; live file)
+
+    - name: Fetch snapshot to local
+      fetch:
+        src: "{{ remote_snapshot }}"
+        dest: "{{ local_snapshot }}"
+        flat: true
+
+    - name: Clean up remote snapshot
+      become: true
+      file:
+        path: "{{ remote_snapshot }}"
+        state: absent
+
+    - name: Done — local copy location
+      debug:
+        msg: |
+          Saved snapshot of {{ inventory_hostname }} to:
+            {{ local_snapshot }}

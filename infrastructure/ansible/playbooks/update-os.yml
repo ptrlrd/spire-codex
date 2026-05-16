@@ -1,0 +1,63 @@
+---
+# OS-level package updates + optional reboot. Run quarterly or after
+# a CVE announcement.
+#
+#   ansible-playbook playbooks/update-os.yml                  # update, no reboot
+#   ansible-playbook playbooks/update-os.yml -e reboot=true   # update + reboot if kernel changed
+#
+# Updates are rolled one host at a time (`serial: 1`) so traffic
+# doesn't drop if both origins reboot simultaneously.
+
+- name: OS package updates
+  hosts: prod_origins
+  become: true
+  serial: 1
+  gather_facts: true
+  vars:
+    reboot: false
+  tasks:
+    - name: Update all packages (Amazon Linux / Fedora)
+      dnf:
+        name: '*'
+        state: latest
+      when: ansible_os_family == 'RedHat'
+      register: dnf_update
+
+    - name: Update all packages (Debian/Ubuntu)
+      apt:
+        upgrade: dist
+        update_cache: true
+      when: ansible_os_family == 'Debian'
+      register: apt_update
+
+    - name: Check if a reboot is needed (RHEL family)
+      command: needs-restarting -r
+      register: needs_restart_rhel
+      changed_when: false
+      failed_when: false
+      when: ansible_os_family == 'RedHat'
+
+    - name: Check if a reboot is needed (Debian family)
+      stat:
+        path: /var/run/reboot-required
+      register: needs_restart_deb
+      when: ansible_os_family == 'Debian'
+
+    - name: Reboot if requested and needed
+      reboot:
+        msg: Reboot after OS package update
+        connect_timeout: 5
+        reboot_timeout: 600
+        post_reboot_delay: 30
+      when: >
+        (reboot | bool) and
+        (
+          (ansible_os_family == 'RedHat' and needs_restart_rhel.rc != 0) or
+          (ansible_os_family == 'Debian' and needs_restart_deb.stat.exists | default(false))
+        )
+
+    - name: Wait for docker to come back after reboot
+      wait_for:
+        path: /var/run/docker.sock
+        timeout: 60
+      when: reboot | bool
