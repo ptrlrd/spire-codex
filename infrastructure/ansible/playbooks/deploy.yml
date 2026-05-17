@@ -14,6 +14,22 @@
   hosts: prod_origins
   gather_facts: false
   tasks:
+    # Git pull keeps the host's docker-compose.prod.yml + any other
+    # tracked config in sync with main. If you're iterating locally and
+    # rely on changes that aren't yet on origin/main, run sync-config
+    # first (or a targeted file push) — this task will overwrite local
+    # divergence on the host.
+    - name: Pull latest main into spire-codex working tree
+      become: true
+      become_user: "{{ ansible_user }}"
+      git:
+        repo: https://github.com/ptrlrd/spire-codex.git
+        dest: "{{ spire_codex_dir }}"
+        version: main
+        update: true
+      register: git_pull
+      changed_when: git_pull.before != git_pull.after
+
     - name: Pull latest backend image
       become: true
       command: docker compose -f {{ compose_file }} pull backend frontend

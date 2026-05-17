@@ -23,6 +23,11 @@ services:
       # index.html are rsync'd onto the host volume. Empty/missing →
       # the /qa endpoint isn't registered.
       - QA_DIR=${QA_DIR:-}
+      # Turso (libSQL) — services/runs_db.py uses Turso when TURSO_URL
+      # is set, falls back to local SQLite otherwise. Empty defaults
+      # mean a host with no .env entry stays on the legacy local path.
+      - TURSO_URL=${TURSO_URL:-}
+      - TURSO_AUTH_TOKEN=${TURSO_AUTH_TOKEN:-}
     networks:
       - nginx_web-network
     logging:
