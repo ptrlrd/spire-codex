@@ -30,3 +30,11 @@ UNINSTALL_FORWARD_FROM=op://Spire Codex/Resend/forward_from
 
 # Admin endpoints token (gates /api/admin/*)
 ADMIN_TOKEN=op://Spire Codex/Admin Token/value
+
+# Turso (libSQL) — community run database.
+# Backend's services/runs_db.py uses Turso when TURSO_URL is set,
+# falls back to local SQLite otherwise. Leave both unset on a host
+# to keep it on the legacy local path (current prod default during
+# the migration window).
+TURSO_URL=op://Spire Codex/Turso/url
+TURSO_AUTH_TOKEN=op://Spire Codex/Turso/token
