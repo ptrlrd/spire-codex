@@ -95,10 +95,37 @@ def get_conn():
         # empty cursor.description and breaks dict-row mapping).
         import libsql
 
-        raw = libsql.connect(
-            os.environ["TURSO_URL"],
-            auth_token=os.environ.get("TURSO_AUTH_TOKEN", ""),
-        )
+        # Embedded replica mode: when TURSO_LOCAL_REPLICA is set to a
+        # filesystem path, libsql keeps a local SQLite copy of the
+        # database and syncs it from Turso in the background. All reads
+        # hit the local file (zero Turso row-reads metered — the whole
+        # point of moving here). Writes still go to Turso, then
+        # propagate back to this replica on the next sync tick.
+        #
+        # Unset → direct mode (every query is a network round-trip,
+        # every row read is metered). Kept as a fallback because the
+        # first time this code runs we want it to be flippable per host
+        # via the .env file rather than a code change.
+        local_replica = os.environ.get("TURSO_LOCAL_REPLICA", "").strip()
+        if local_replica:
+            raw = libsql.connect(
+                local_replica,
+                sync_url=os.environ["TURSO_URL"],
+                auth_token=os.environ.get("TURSO_AUTH_TOKEN", ""),
+                # 30s sync is a reasonable balance for our case: writes
+                # from one origin appear on the other origin's reads
+                # within half a minute, which is fine for community
+                # stats and run-share flows (the run hash is immediately
+                # available to the submitter via the response; only
+                # third-party viewers of a shared URL would notice the
+                # window, and session affinity pins them anyway).
+                sync_interval=30,
+            )
+        else:
+            raw = libsql.connect(
+                os.environ["TURSO_URL"],
+                auth_token=os.environ.get("TURSO_AUTH_TOKEN", ""),
+            )
         conn = _DictRowConn(raw)
         # Skip PRAGMA journal_mode=WAL — Turso handles concurrency
         # natively, and the pragma would burn a network round-trip.

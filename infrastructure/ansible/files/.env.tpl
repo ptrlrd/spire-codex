@@ -42,3 +42,9 @@ ADMIN_TOKEN=op://Spire Codex/Admin Token/value
 # the migration window).
 TURSO_URL=op://Spire Codex/Turso/url
 TURSO_AUTH_TOKEN=op://Spire Codex/Turso/token
+
+# Embedded replica path. When set, backend keeps a local SQLite copy
+# of the Turso DB, syncing in the background. All reads hit the local
+# file (zero Turso row-reads metered — collapses our cost line).
+# Writes still go to Turso. Leave commented to use direct mode.
+TURSO_LOCAL_REPLICA=/data/runs-replica.db
