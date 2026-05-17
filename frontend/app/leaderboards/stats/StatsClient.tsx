@@ -585,7 +585,7 @@ export default function StatsClient() {
       </div>
 
       {/* Tab bar */}
-      <div className="flex gap-1 mb-6 border-b border-[var(--border-subtle)] overflow-x-auto">
+      <div className="flex gap-1 mb-6 border-b border-[var(--border-subtle)] overflow-x-auto no-scrollbar">
         {TABS.map((t) => (
           <button
             key={t.key}

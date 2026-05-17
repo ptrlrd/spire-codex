@@ -2,6 +2,7 @@
 
 import json
 import os
+import time
 from functools import lru_cache
 from pathlib import Path
 from fastapi import APIRouter, HTTPException, Request
@@ -465,6 +466,16 @@ def get_entity_scores(request: Request, entity_type: str):
     return get_all_entity_scores(entity_type)
 
 
+# In-process TTL cache for /stats. Aggregations are expensive (full
+# scan + GROUP BY on the runs table — was ~2.5s against Turso pre-cache)
+# and the data only changes when a new run is submitted, so a short
+# TTL collapses bursts of identical reads into a single round-trip.
+# Per-filter-combo keying so a logged-in user filtering by their own
+# username still gets a personal cache slot.
+_STATS_CACHE_TTL_SECONDS = 60
+_stats_cache: dict[tuple, tuple[float, dict]] = {}
+
+
 @router.get("/stats", tags=["Runs"])
 @limiter.limit("120/minute")
 def get_community_stats(
@@ -479,7 +490,18 @@ def get_community_stats(
     """Get aggregated run stats. Community-wide by default; pass
     `username` to narrow to a single uploader (used by the Spire
     Compendium desktop app for its per-user Stats tab)."""
-    return get_stats(
+    cache_key = (character, win, ascension, game_mode, players, username)
+    now = time.monotonic()
+    hit = _stats_cache.get(cache_key)
+    if hit and now - hit[0] < _STATS_CACHE_TTL_SECONDS:
+        return hit[1]
+    # GC expired entries while we're touching the dict — keeps it small
+    # without a separate sweeper task.
+    for k in [
+        k for k, (t, _) in _stats_cache.items() if now - t >= _STATS_CACHE_TTL_SECONDS
+    ]:
+        del _stats_cache[k]
+    result = get_stats(
         character=character,
         win=win,
         ascension=ascension,
@@ -487,3 +509,5 @@ def get_community_stats(
         players=players,
         username=username,
     )
+    _stats_cache[cache_key] = (now, result)
+    return result
