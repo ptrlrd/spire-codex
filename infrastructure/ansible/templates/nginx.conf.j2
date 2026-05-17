@@ -226,6 +226,28 @@ server {
           return 200 "ok\n";
       }
 
+      # Per-origin Prometheus scrape. The main spire-codex.com block
+      # also exposes /metrics, but scraping it goes through CF LB and
+      # round-robins origins — Prometheus then can't tell them apart.
+      # Scraping origin.spire-codex.com + origin-backup.spire-codex.com
+      # gives per-host data points.
+      location /metrics {
+          allow {{ metrics_monitor_ip }};
+          deny all;
+          proxy_pass http://spire-codex-backend:8000/metrics;
+          proxy_http_version 1.1;
+          proxy_set_header Host $host;
+          proxy_set_header X-Real-IP $remote_addr;
+      }
+
+      location /health {
+          allow {{ metrics_monitor_ip }};
+          deny all;
+          proxy_pass http://spire-codex-backend:8000/health;
+          proxy_http_version 1.1;
+          proxy_set_header Host $host;
+      }
+
       location / {
           add_header Content-Type text/html;
           add_header X-Origin "{{ origin_label }}" always;
