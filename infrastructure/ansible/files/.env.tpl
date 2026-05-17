@@ -1,9 +1,13 @@
 # Spire Codex prod .env template — rendered by `op inject` at deploy time.
 #
-# Lines containing op://<vault>/<item>/<field> are resolved from 1Password.
-# Plain values are kept as-is. Update the field names below to match your
-# actual 1Password item layout (right-click any field in the 1Password app
-# and "Copy Secret Reference" to get the exact path).
+# Lines using a 1Password secret reference (vault/item/field path) are
+# resolved at render time. Plain values are kept as-is. Update the
+# field names below to match your actual 1Password item layout
+# (right-click any field in the 1Password app and "Copy Secret
+# Reference" to get the exact path).
+#
+# NOTE: don't put a literal "op:" + "//" sequence in any comment in this
+# file — op-inject parses every occurrence and bails on malformed ones.
 #
 # This file is safe to commit — only the resolved-at-runtime version
 # (written to /tmp during the playbook run, deleted immediately after)
@@ -24,9 +28,9 @@ FEEDBACK_WEBHOOK_URL=op://Spire Codex/Discord Webhooks/feedback
 GUIDE_WEBHOOK_URL=op://Spire Codex/Discord Webhooks/guide
 
 # Resend (email forwarding for uninstall feedback)
-RESEND_API_KEY=op://Spire Codex/Resend/api_key
-UNINSTALL_FORWARD_TO=op://Spire Codex/Resend/forward_to
-UNINSTALL_FORWARD_FROM=op://Spire Codex/Resend/forward_from
+RESEND_API_KEY=op://Spire Codex/Resend/api-key
+UNINSTALL_FORWARD_TO=op://Spire Codex/Resend/forward-to
+UNINSTALL_FORWARD_FROM=op://Spire Codex/Resend/forward-from
 
 # Admin endpoints token (gates /api/admin/*)
 ADMIN_TOKEN=op://Spire Codex/Admin Token/value
