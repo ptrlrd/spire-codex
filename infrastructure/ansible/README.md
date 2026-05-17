@@ -144,7 +144,7 @@ comment in the template is the seatbelt.
 
 ### `deploy.yml` — pull latest images, recreate containers
 
-Run after merging a PR that ships new backend/frontend images.
+Run after merging a PR that triggered a CI image build.
 
 ```bash
 ./bin/op-ansible playbooks/deploy.yml
@@ -152,9 +152,16 @@ Run after merging a PR that ships new backend/frontend images.
 
 What it does:
 
+- `git pull origin main` in `/var/www/spire-codex` so the host has
+  the latest `docker-compose.prod.yml` and any other tracked config
 - `docker compose pull backend frontend` on every host
 - `docker compose up -d --force-recreate backend frontend`
 - Confirms backend logged `QA mount enabled` and `Spire Codex API ready`
+
+Deploy is **manual** — the GitHub Actions workflow only builds and
+pushes images now. Running this playbook is the explicit "land the
+new image on prod" step until the toolkit is wired into a CI runner
+that has SSH + 1Password access.
 
 ### `sync-secrets.yml` — render `.env` from 1Password and push to hosts
 

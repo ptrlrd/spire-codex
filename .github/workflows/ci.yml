@@ -148,43 +148,18 @@ jobs:
             ptrlrd/spire-codex-frontend:beta
             ptrlrd/spire-codex-frontend:beta-${{ github.sha }}
 
-  # ── Deploy stable ───────────────────────────────────────
-  deploy-stable:
-    name: Deploy stable
-    runs-on: self-hosted
-    needs: [build-stable]
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    steps:
-      - name: Deploy stable via SSH
-        uses: appleboy/ssh-action@v1
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            cd /var/www/spire-codex
-            git pull
-            docker compose -f docker-compose.prod.yml pull
-            docker compose -f docker-compose.prod.yml down
-            docker compose -f docker-compose.prod.yml up -d
-            echo "Stable deployed at $(date)"
-
-  # ── Deploy beta ─────────────────────────────────────────
-  deploy-beta:
-    name: Deploy beta
-    runs-on: self-hosted
-    needs: [build-beta]
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    steps:
-      - name: Deploy beta via SSH
-        uses: appleboy/ssh-action@v1
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            cd /var/www/spire-codex
-            docker compose -f docker-compose.beta.yml pull
-            docker compose -f docker-compose.beta.yml down
-            docker compose -f docker-compose.beta.yml up -d
-            echo "Beta deployed at $(date)"
+  # ── Deploy ──────────────────────────────────────────────
+  # Deploys are intentionally MANUAL via Ansible until we wire the
+  # toolkit into CI properly (needs a runner with SSH key + 1Password
+  # access, which we don't have yet).
+  #
+  # After this workflow's build jobs publish new images to Docker Hub,
+  # run from your laptop:
+  #
+  #   cd infrastructure/ansible
+  #   ./bin/op-ansible playbooks/deploy.yml          # both prod origins
+  #   ./bin/op-ansible playbooks/deploy.yml -e compose_file=docker-compose.beta.yml
+  #
+  # Ansible's deploy.yml hits BOTH origins (the old GHA step only hit
+  # one), does a git pull so docker-compose.prod.yml stays in sync,
+  # and confirms the QA mount + "API ready" log lines after restart.
