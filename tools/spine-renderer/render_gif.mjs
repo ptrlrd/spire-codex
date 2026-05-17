@@ -53,7 +53,8 @@ const HIDDEN_SLOTS = [
 async function main() {
   const skelDir = path.resolve(process.argv[2] || "");
   const outputPath = path.resolve(process.argv[3] || "output.gif");
-  const outputSize = parseInt(process.argv[4] || "256");
+  const outputWidth = parseInt(process.argv[4] || "256");
+  const outputHeight = parseInt(process.argv[5] || "256");
   const fpsArg = process.argv.find(a => a.startsWith("--fps="));
   const fps = fpsArg ? parseInt(fpsArg.split("=")[1]) : 20;
   const whiteMode = process.argv.includes("--white");
@@ -83,7 +84,7 @@ async function main() {
     textureData[tf] = fs.readFileSync(path.join(skelDir, tf)).toString("base64");
   }
 
-  console.log(`Rendering ${skelName} as GIF at ${outputSize}x${outputSize}, ${fps}fps...`);
+  console.log(`Rendering ${skelName} as GIF at ${outputWidth}x${outputHeight}, ${fps}fps...`);
   console.log(`  Textures: ${textureFiles.join(", ")}`);
 
   const browser = await chromium.launch({ headless: true, channel: "chrome" });
@@ -95,9 +96,9 @@ async function main() {
   if (isStreamFormat) {
     fs.mkdirSync(framesDir, { recursive: true });
     await page.exposeFunction("__saveFrame", (idx, pixels) => {
-      const pngCanvas = createCanvas(outputSize, outputSize);
+      const pngCanvas = createCanvas(outputWidth, outputHeight);
       const pCtx = pngCanvas.getContext("2d");
-      const imgData = pCtx.createImageData(outputSize, outputSize);
+      const imgData = pCtx.createImageData(outputWidth, outputHeight);
       imgData.data.set(new Uint8ClampedArray(pixels));
       pCtx.putImageData(imgData, 0, 0);
       fs.writeFileSync(path.join(framesDir, `frame_${String(idx).padStart(4, "0")}.png`), pngCanvas.toBuffer("image/png"));
@@ -108,7 +109,7 @@ async function main() {
   const spineCoreCode = fs.readFileSync(spineCorePath, "utf-8");
 
   const result = await page.evaluate(async (params) => {
-    const { skelB64, atlasB64, textureData, outputSize, fps, streamFrames, idleNames, shadowNames, hiddenSlots, whiteMode, skinName, animOverride, spineCoreCode } = params;
+    const { skelB64, atlasB64, textureData, outputWidth, outputHeight, fps, streamFrames, idleNames, shadowNames, hiddenSlots, whiteMode, skinName, animOverride, spineCoreCode } = params;
 
     eval(spineCoreCode.replace(/^"use strict";\s*var spine\s*=/, "window.spine ="));
     const spine = window.spine;
@@ -249,14 +250,14 @@ async function main() {
       renderer.draw(batcher, skeleton);
       batcher.end();
 
-      const pixels = new Uint8Array(outputSize * outputSize * 4);
-      gl.readPixels(0, 0, outputSize, outputSize, gl.RGBA, gl.UNSIGNED_BYTE, pixels);
+      const pixels = new Uint8Array(outputWidth * outputHeight * 4);
+      gl.readPixels(0, 0, outputSize, outputHeight, gl.RGBA, gl.UNSIGNED_BYTE, pixels);
 
       // Flip vertically
-      const flipped = new Uint8Array(outputSize * outputSize * 4);
-      const rowSize = outputSize * 4;
-      for (let row = 0; row < outputSize; row++) {
-        flipped.set(pixels.subarray((outputSize - 1 - row) * rowSize, (outputSize - row) * rowSize), row * rowSize);
+      const flipped = new Uint8Array(outputWidth * outputHeight * 4);
+      const rowSize = outputWidth * 4;
+      for (let row = 0; row < outputWidth; row++) {
+        flipped.set(pixels.subarray((outputWidth - 1 - row) * rowSize, (outputWidth - row) * rowSize), row * rowSize);
       }
 
       // White mode
@@ -280,7 +281,7 @@ async function main() {
 
     return { frames: streamFrames ? [] : frames, frameCount, duration };
   }, {
-    skelB64, atlasB64, textureData, outputSize, fps,
+    skelB64, atlasB64, textureData, outputWidth, outputHeight, fps,
     streamFrames: outputPath.endsWith(".webp") || outputPath.endsWith(".apng"),
     idleNames: IDLE_NAMES, shadowNames: SHADOW_NAMES, hiddenSlots: HIDDEN_SLOTS,
     whiteMode, skinName, animOverride, spineCoreCode,
@@ -298,10 +299,10 @@ async function main() {
     if (!isStreamFormat) {
       // Fallback: save frames from memory
       fs.mkdirSync(tmpDir, { recursive: true });
-      const pngCanvas2 = createCanvas(outputSize, outputSize);
+      const pngCanvas2 = createCanvas(outputWidth, outputHeight);
       const pCtx2 = pngCanvas2.getContext("2d");
       for (let f = 0; f < result.frameCount; f++) {
-        const imgData = pCtx2.createImageData(outputSize, outputSize);
+        const imgData = pCtx2.createImageData(outputWidth, outputHeight);
         imgData.data.set(new Uint8ClampedArray(result.frames[f]));
         pCtx2.putImageData(imgData, 0, 0);
         fs.writeFileSync(path.join(tmpDir, `frame_${String(f).padStart(4, "0")}.png`), pngCanvas2.toBuffer("image/png"));
@@ -323,17 +324,17 @@ imgs[0].save('${outputPath}', save_all=True, append_images=imgs[1:], duration=${
     fs.rmdirSync(tmpDir);
   } else {
     // Encode GIF
-    const encoder = new GIFEncoder(outputSize, outputSize, "neuquant", true);
+    const encoder = new GIFEncoder(outputWidth, outputHeight, "neuquant", true);
     encoder.setDelay(Math.round(1000 / fps));
     encoder.setRepeat(0);
     encoder.setTransparent(0x000000);
     encoder.start();
 
-    const gifCanvas = createCanvas(outputSize, outputSize);
+    const gifCanvas = createCanvas(outputWidth, outputHeight);
     const ctx = gifCanvas.getContext("2d");
 
     for (let f = 0; f < result.frameCount; f++) {
-      const imgData = ctx.createImageData(outputSize, outputSize);
+      const imgData = ctx.createImageData(outputWidth, outputHeight);
       imgData.data.set(new Uint8ClampedArray(result.frames[f]));
       ctx.putImageData(imgData, 0, 0);
       encoder.addFrame(ctx);

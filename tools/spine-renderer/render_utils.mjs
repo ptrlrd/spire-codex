@@ -21,16 +21,16 @@ const BLANK_PNG_THRESHOLD = 2000; // bytes — a blank 512x512 transparent PNG i
  * First tries normal all-at-once rendering. If the result is blank (clip path
  * corruption), falls back to slot-by-slot compositing.
  */
-export function renderSkeleton(skeleton, renderSize, scale, minX, minY, maxX, maxY) {
+export function renderSkeleton(skeleton, renderWidth, renderHeight, scale, minX, minY, maxX, maxY) {
   const cx = (minX + maxX) / 2;
   const cy = (minY + maxY) / 2;
 
   // Try normal render first
-  const canvas = createCanvas(renderSize, renderSize);
+  const canvas = createCanvas(renderWidth, renderHeight);
   const ctx = canvas.getContext("2d");
-  ctx.clearRect(0, 0, renderSize, renderSize);
+  ctx.clearRect(0, 0, renderWidth, renderHeight);
   ctx.save();
-  ctx.translate(renderSize / 2, renderSize / 2);
+  ctx.translate(renderWidth / 2, renderHeight / 2);
   ctx.scale(scale, -scale);
   ctx.translate(-cx, -cy);
   const renderer = new SkeletonRenderer(ctx);
@@ -39,7 +39,7 @@ export function renderSkeleton(skeleton, renderSize, scale, minX, minY, maxX, ma
   ctx.restore();
 
   // Check pixel count via getImageData (bypasses clip corruption)
-  const imgData = ctx.getImageData(0, 0, renderSize, renderSize);
+  const imgData = ctx.getImageData(0, 0, renderWidth, renderHeight);
   let nonTransparent = 0;
   for (let i = 3; i < imgData.data.length; i += 4) {
     if (imgData.data[i] > 0) nonTransparent++;
@@ -54,18 +54,18 @@ export function renderSkeleton(skeleton, renderSize, scale, minX, minY, maxX, ma
     // OOM — canvas state corrupted
   }
 
-  if (bufferOk && nonTransparent > renderSize * renderSize * 0.01) {
+  if (bufferOk && nonTransparent > renderWidth * renderWidth * 0.01 && nonTransparent > renderHeight * renderHeight * 0.01) {
     // Normal render succeeded — copy pixels to fresh canvas to be safe
     return imgData;
   }
 
   // Fallback: slot-by-slot compositing
   console.log("    (using slot-by-slot fallback renderer)");
-  return renderSlotBySlot(skeleton, renderSize, scale, cx, cy);
+  return renderSlotBySlot(skeleton, renderWidth, scale, cx, cy);
 }
 
-function renderSlotBySlot(skeleton, renderSize, scale, cx, cy) {
-  const compPixels = new Uint8ClampedArray(renderSize * renderSize * 4);
+function renderSlotBySlot(skeleton, renderWidth, renderHeight, scale, cx, cy) {
+  const compPixels = new Uint8ClampedArray(renderWidth * renderHeight * 4);
 
   for (const slot of skeleton.drawOrder) {
     const att = slot.getAttachment();
@@ -82,10 +82,10 @@ function renderSlotBySlot(skeleton, renderSize, scale, cx, cy) {
     }
 
     // Render this single slot
-    const tempCanvas = createCanvas(renderSize, renderSize);
+    const tempCanvas = createCanvas(renderWidth, renderHeight);
     const tempCtx = tempCanvas.getContext("2d");
     tempCtx.save();
-    tempCtx.translate(renderSize / 2, renderSize / 2);
+    tempCtx.translate(renderWidth / 2, renderHeight / 2);
     tempCtx.scale(scale, -scale);
     tempCtx.translate(-cx, -cy);
     const renderer = new SkeletonRenderer(tempCtx);
@@ -97,7 +97,7 @@ function renderSlotBySlot(skeleton, renderSize, scale, cx, cy) {
     for (const { slot: s, att: a } of saved) s.setAttachment(a);
 
     // Alpha-composite raw pixels (source-over blending)
-    const src = tempCtx.getImageData(0, 0, renderSize, renderSize).data;
+    const src = tempCtx.getImageData(0, 0, renderWidth, renderHeight).data;
     for (let i = 0; i < src.length; i += 4) {
       const sa = src[i + 3] / 255;
       if (sa === 0) continue;
@@ -112,9 +112,9 @@ function renderSlotBySlot(skeleton, renderSize, scale, cx, cy) {
   }
 
   // Return as ImageData
-  const resultCanvas = createCanvas(renderSize, renderSize);
+  const resultCanvas = createCanvas(renderWidth, renderHeight);
   const resultCtx = resultCanvas.getContext("2d");
-  const resultData = resultCtx.createImageData(renderSize, renderSize);
+  const resultData = resultCtx.createImageData(renderWidth, renderHeight);
   resultData.data.set(compPixels);
   return resultData;
 }
@@ -257,21 +257,21 @@ function blurSeams(imgData, width) {
 /**
  * Convert ImageData to a downscaled PNG buffer.
  */
-export function imageDataToPng(imgData, renderSize, outputSize) {
+export function imageDataToPng(imgData, renderWidth, renderHeight, outputWidth, outputHeight) {
   // Fix triangle seam artifacts then blur seam areas before downscaling
-  fillSeams(imgData, renderSize);
-  blurSeams(imgData, renderSize);
+  fillSeams(imgData, renderWidth);
+  blurSeams(imgData, renderWidth);
 
-  const fullCanvas = createCanvas(renderSize, renderSize);
+  const fullCanvas = createCanvas(renderWidth, renderHeight);
   const fullCtx = fullCanvas.getContext("2d");
   fullCtx.putImageData(imgData, 0, 0);
 
-  if (renderSize === outputSize) {
+  if (renderWidth === outputWidth) {
     return fullCanvas.toBuffer("image/png");
   }
 
-  const outCanvas = createCanvas(outputSize, outputSize);
+  const outCanvas = createCanvas(outputWidth, outputHeight);
   const outCtx = outCanvas.getContext("2d");
-  outCtx.drawImage(fullCanvas, 0, 0, outputSize, outputSize);
+  outCtx.drawImage(fullCanvas, 0, 0, outputWidth, outputHeight);
   return outCanvas.toBuffer("image/png");
 }

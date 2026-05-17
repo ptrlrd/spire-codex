@@ -18,9 +18,11 @@ const BASE = path.resolve(import.meta.dirname, "../..");
 const ANIM_ROOT = path.join(BASE, "extraction/raw/animations");
 const OUTPUT_ROOT = path.join(BASE, "backend/static/images/renders");
 
-const OUTPUT_SIZE = 512;
+const OUTPUT_WIDTH = 512;
+const OUTPUT_HEIGHT = 512;
 const SUPERSAMPLE = 3;
-const RENDER_SIZE = OUTPUT_SIZE * SUPERSAMPLE;
+const RENDER_WIDTH = OUTPUT_WIDTH * SUPERSAMPLE;
+const RENDER_HEIGHT = OUTPUT_HEIGHT * SUPERSAMPLE;
 const PADDING = 20 * SUPERSAMPLE;
 const SHADOW_NAMES = new Set(["shadow", "shadow2", "ground", "ground_shadow"]);
 const IDLE_NAMES = ["idle_loop", "idle", "Idle_loop", "Idle", "rest_idle", "rest_loop", "loop", "animation"];
@@ -125,12 +127,13 @@ async function renderSkel(skelPath, outPath) {
   }
 
   const sw = maxX - minX, sh = maxY - minY;
-  const avail = RENDER_SIZE - PADDING * 2;
+  // TODO: Generalize this.
+  const avail = RENDER_WIDTH - PADDING * 2;
   const scale = Math.min(avail / sw, avail / sh);
 
   // Render skeleton (with automatic slot-by-slot fallback for complex meshes)
-  const imgData = renderSkeleton(skeleton, RENDER_SIZE, scale, minX, minY, maxX, maxY);
-  const buffer = imageDataToPng(imgData, RENDER_SIZE, OUTPUT_SIZE);
+  const imgData = renderSkeleton(skeleton, RENDER_WIDTH, RENDER_HEIGHT, scale, minX, minY, maxX, maxY);
+  const buffer = imageDataToPng(imgData, RENDER_WIDTH, RENDER_HEIGHT, OUTPUT_WIDTH, OUTPUT_HEIGHT);
 
   fs.mkdirSync(path.dirname(outPath), { recursive: true });
   fs.writeFileSync(outPath, buffer);

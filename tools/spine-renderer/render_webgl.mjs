@@ -75,7 +75,8 @@ const SMOKE_PALETTES = {
 async function main() {
   const skelDir = path.resolve(process.argv[2] || "");
   const outputPath = path.resolve(process.argv[3] || "output.png");
-  const outputSize = parseInt(process.argv[4] || "2048");
+  const outputWidth = parseInt(process.argv[4] || "2048");
+  const outputHeight = parseInt(process.argv[5] || "2048");
   // Optional: --only-slots=stroke to only render slots matching a pattern
   const onlySlotsArg = process.argv.find(a => a.startsWith("--only-slots="));
   const onlySlots = onlySlotsArg ? onlySlotsArg.split("=")[1] : null;
@@ -125,7 +126,7 @@ async function main() {
     }
   }
 
-  console.log(`Rendering ${skelName} at ${outputSize}x${outputSize} via WebGL...`);
+  console.log(`Rendering ${skelName} at ${outputWidth}x${outputHeight} via WebGL...`);
   console.log(`  Textures: ${pngFiles.join(", ")}`);
 
   const browser = await chromium.launch({
@@ -141,7 +142,7 @@ async function main() {
   const spineCoreCode = fs.readFileSync(spineCorePath, "utf-8");
 
   const result = await page.evaluate(async (params) => {
-    const { skelB64, atlasB64, textureData, outputSize, idleNames, shadowNames, hiddenSlots, smokePlaceholderPages, smokePalettes, onlySlots, whiteMode, skinName, animOverride, animTime, spineCoreCode } = params;
+    const { skelB64, atlasB64, textureData, outputWidth, outputHeight, idleNames, shadowNames, hiddenSlots, smokePlaceholderPages, smokePalettes, onlySlots, whiteMode, skinName, animOverride, animTime, spineCoreCode } = params;
 
     // Load spine-webgl — IIFE uses `var spine = (...)()`, make it global
     eval(spineCoreCode.replace(/^"use strict";\s*var spine\s*=/, "window.spine ="));
@@ -149,8 +150,8 @@ async function main() {
 
     // Create WebGL canvas
     const canvas = document.createElement("canvas");
-    canvas.width = outputSize;
-    canvas.height = outputSize;
+    canvas.width = outputWidth;
+    canvas.height = outputHeight;
     document.body.appendChild(canvas);
 
     const gl = canvas.getContext("webgl2", { alpha: true, premultipliedAlpha: false, preserveDrawingBuffer: true })
@@ -159,7 +160,7 @@ async function main() {
 
     // Create spine WebGL context
     const mvp = new spine.Matrix4();
-    mvp.ortho2d(0, 0, outputSize, outputSize);
+    mvp.ortho2d(0, 0, outputWidth, outputHeight);
 
     const shader = spine.Shader.newTwoColoredTextured(gl);
     const batcher = new spine.PolygonBatcher(gl);
@@ -343,8 +344,9 @@ async function main() {
 
     const sw = maxX - minX;
     const sh = maxY - minY;
-    const padding = outputSize * 0.05;
-    const avail = outputSize - padding * 2;
+    // TODO: Generalize this.
+    const padding = outputWidth * 0.05;
+    const avail = outputWidth - padding * 2;
     const scale = Math.min(avail / sw, avail / sh);
 
     const cx = (minX + maxX) / 2;
@@ -352,14 +354,14 @@ async function main() {
 
     // Set up orthographic projection centered on skeleton
     mvp.ortho2d(
-      cx - outputSize / (2 * scale),
-      cy - outputSize / (2 * scale),
-      outputSize / scale,
-      outputSize / scale
+      cx - outputWidth / (2 * scale),
+      cy - outputHeight / (2 * scale),
+      outputWidth / scale,
+      outputWidth / scale
     );
 
     // Clear and render
-    gl.viewport(0, 0, outputSize, outputSize);
+    gl.viewport(0, 0, outputWidth, outputHeight);
     gl.clearColor(0, 0, 0, 0);
     gl.clear(gl.COLOR_BUFFER_BIT);
 
@@ -408,14 +410,14 @@ async function main() {
     shader.unbind();
 
     // Read pixels
-    const pixels = new Uint8Array(outputSize * outputSize * 4);
-    gl.readPixels(0, 0, outputSize, outputSize, gl.RGBA, gl.UNSIGNED_BYTE, pixels);
+    const pixels = new Uint8Array(outputWidth * outputHeight * 4);
+    gl.readPixels(0, 0, outputWidth, outputWidth, gl.RGBA, gl.UNSIGNED_BYTE, pixels);
 
     // WebGL pixels are bottom-up, flip vertically
     const flipped = new Uint8Array(pixels.length);
-    const rowSize = outputSize * 4;
-    for (let y = 0; y < outputSize; y++) {
-      const srcRow = (outputSize - 1 - y) * rowSize;
+    const rowSize = outputWidth * 4;
+    for (let y = 0; y < outputWidth; y++) {
+      const srcRow = (outputWidth - 1 - y) * rowSize;
       const dstRow = y * rowSize;
       flipped.set(pixels.subarray(srcRow, srcRow + rowSize), dstRow);
     }
@@ -431,7 +433,8 @@ async function main() {
     skelB64,
     atlasB64,
     textureData,
-    outputSize,
+    outputWidth: outputWidth,
+    outputHeight: outputHeight,
     idleNames: IDLE_NAMES,
     shadowNames: SHADOW_NAMES,
     hiddenSlots: HIDDEN_SLOTS,
@@ -473,14 +476,14 @@ async function main() {
 
   if (isWebp) {
     const buffer = await sharp(rawBuffer, {
-      raw: { width: outputSize, height: outputSize, channels: 4 },
+      raw: { width: outputWidth, height: outputHeight, channels: 4 },
     }).webp({ quality: 90 }).toBuffer();
     fs.writeFileSync(outputPath, buffer);
     console.log(`  Saved: ${outputPath} (${(buffer.length / 1024).toFixed(0)} KB)`);
   } else {
-    const pngCanvas = createCanvas(outputSize, outputSize);
+    const pngCanvas = createCanvas(outputWidth, outputHeight);
     const pngCtx = pngCanvas.getContext("2d");
-    const imgData = pngCtx.createImageData(outputSize, outputSize);
+    const imgData = pngCtx.createImageData(outputWidth, outputHeight);
     imgData.data.set(pixelData);
     pngCtx.putImageData(imgData, 0, 0);
     const buffer = pngCanvas.toBuffer("image/png");
