@@ -42,6 +42,13 @@ body {
 ::-webkit-scrollbar-thumb { background: var(--border-accent); border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
 
+/* `.no-scrollbar` — keep horizontal/vertical scrollability but hide
+   the scrollbar chrome. Use on tab strips and other UI where the
+   scrollbar is only there as a small-viewport escape hatch and the
+   bar itself adds visual noise on desktop. */
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
 /* Rich text effects — matches game's [sine] and [jitter] tags */
 @keyframes rich-sine {
   0%, 100% { transform: translateY(0); }
