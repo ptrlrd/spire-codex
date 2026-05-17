@@ -94,6 +94,14 @@ http {
 
       location /metrics {
           allow {{ metrics_monitor_ip }};
+          # Direct-IP traffic (origin.spire-codex.com, origin-backup,
+          # Prometheus scraping bare-host /metrics) gets SNAT'd by
+          # Docker's userland-proxy to the bridge gateway, so nginx
+          # never sees the real source IP. Allowing the private bridge
+          # range lets the per-origin Prometheus scrape land — anyone
+          # NOT on the host's docker bridge still gets denied. Long-
+          # term fix is a bearer token instead of IP allow-listing.
+          allow 172.16.0.0/12;
           deny all;
           proxy_pass http://spire-codex-backend:8000/metrics;
           proxy_http_version 1.1;
@@ -103,6 +111,14 @@ http {
 
       location /health {
           allow {{ metrics_monitor_ip }};
+          # Direct-IP traffic (origin.spire-codex.com, origin-backup,
+          # Prometheus scraping bare-host /metrics) gets SNAT'd by
+          # Docker's userland-proxy to the bridge gateway, so nginx
+          # never sees the real source IP. Allowing the private bridge
+          # range lets the per-origin Prometheus scrape land — anyone
+          # NOT on the host's docker bridge still gets denied. Long-
+          # term fix is a bearer token instead of IP allow-listing.
+          allow 172.16.0.0/12;
           deny all;
           proxy_pass http://spire-codex-backend:8000/health;
           proxy_http_version 1.1;
@@ -233,6 +249,14 @@ server {
       # gives per-host data points.
       location /metrics {
           allow {{ metrics_monitor_ip }};
+          # Direct-IP traffic (origin.spire-codex.com, origin-backup,
+          # Prometheus scraping bare-host /metrics) gets SNAT'd by
+          # Docker's userland-proxy to the bridge gateway, so nginx
+          # never sees the real source IP. Allowing the private bridge
+          # range lets the per-origin Prometheus scrape land — anyone
+          # NOT on the host's docker bridge still gets denied. Long-
+          # term fix is a bearer token instead of IP allow-listing.
+          allow 172.16.0.0/12;
           deny all;
           proxy_pass http://spire-codex-backend:8000/metrics;
           proxy_http_version 1.1;
@@ -242,6 +266,14 @@ server {
 
       location /health {
           allow {{ metrics_monitor_ip }};
+          # Direct-IP traffic (origin.spire-codex.com, origin-backup,
+          # Prometheus scraping bare-host /metrics) gets SNAT'd by
+          # Docker's userland-proxy to the bridge gateway, so nginx
+          # never sees the real source IP. Allowing the private bridge
+          # range lets the per-origin Prometheus scrape land — anyone
+          # NOT on the host's docker bridge still gets denied. Long-
+          # term fix is a bearer token instead of IP allow-listing.
+          allow 172.16.0.0/12;
           deny all;
           proxy_pass http://spire-codex-backend:8000/health;
           proxy_http_version 1.1;
