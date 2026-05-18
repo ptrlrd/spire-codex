@@ -75,6 +75,7 @@ const NAV_GROUPS: NavGroup[] = [
   {
     label: "Tools",
     links: [
+      { href: "/overlay", label: "Overlay (Overwolf)" },
       { href: "/showcase", label: "Showcase" },
       { href: "/knowledge-demon", label: "Knowledge Demon" },
       { href: "/developers", label: "Developers" },

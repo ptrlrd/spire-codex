@@ -228,34 +228,80 @@ export default function HomeClient({ initialStats, initialTranslations }: HomeCl
         </div>
       </section>
 
-      {/* Stats grid */}
+      {/* Stats grid. The Overlay promo is injected after the first 3
+          cards so it lands as the second row of the grid (full-width via
+          col-span). CSS grid auto-places items row-major, so wrapping
+          the promo at position 3 just works. */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {sections.map((s) => (
-            <Link
-              key={s.href}
-              href={`${langPrefix}${s.href}`}
-              className="group relative overflow-hidden rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-card)] hover:bg-[var(--bg-card-hover)] transition-all hover:border-[var(--border-accent)] hover:shadow-xl hover:shadow-black/20"
-            >
-              <div
-                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity"
-                style={{ background: `linear-gradient(to bottom right, ${s.color}4d, transparent)` }}
-              />
-              <div className="relative p-6">
-                <div className="flex items-baseline justify-between mb-3">
-                  <h2 className="text-xl font-semibold text-[var(--text-primary)] group-hover:text-[var(--accent-gold)] transition-colors">
-                    {sectionKey(s.key)}
-                  </h2>
-                  {s.count != null && (
-                    <span className="text-2xl font-bold" style={{ color: s.color }}>
-                      {s.count}
-                    </span>
-                  )}
+          {sections.flatMap((s, i) => {
+            const card = (
+              <Link
+                key={s.href}
+                href={`${langPrefix}${s.href}`}
+                className="group relative overflow-hidden rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-card)] hover:bg-[var(--bg-card-hover)] transition-all hover:border-[var(--border-accent)] hover:shadow-xl hover:shadow-black/20"
+              >
+                <div
+                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity"
+                  style={{ background: `linear-gradient(to bottom right, ${s.color}4d, transparent)` }}
+                />
+                <div className="relative p-6">
+                  <div className="flex items-baseline justify-between mb-3">
+                    <h2 className="text-xl font-semibold text-[var(--text-primary)] group-hover:text-[var(--accent-gold)] transition-colors">
+                      {sectionKey(s.key)}
+                    </h2>
+                    {s.count != null && (
+                      <span className="text-2xl font-bold" style={{ color: s.color }}>
+                        {s.count}
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-sm text-[var(--text-secondary)]">{sectionDesc(s.key)}</p>
                 </div>
-                <p className="text-sm text-[var(--text-secondary)]">{sectionDesc(s.key)}</p>
-              </div>
-            </Link>
-          ))}
+              </Link>
+            );
+            if (i === 3) {
+              return [
+                <Link
+                  key="overlay-promo"
+                  href={`${langPrefix}/overlay`}
+                  className="group relative overflow-hidden rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-card)] hover:bg-[var(--bg-card-hover)] hover:border-[var(--accent-gold)] hover:shadow-xl hover:shadow-black/20 transition-all flex flex-col sm:flex-row items-stretch sm:col-span-2 lg:col-span-3"
+                >
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity bg-gradient-to-r from-[var(--accent-gold)]/15 via-transparent to-transparent" />
+                  <div className="relative bg-black sm:w-48 flex-shrink-0">
+                    <img
+                      src="/overwolf-logo.png"
+                      alt="Overwolf"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="relative flex-1 p-6">
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="text-xs font-semibold uppercase tracking-wider text-[var(--accent-gold)]">
+                        New
+                      </span>
+                      <span className="text-xs text-[var(--text-muted)]">
+                        Overwolf companion app
+                      </span>
+                    </div>
+                    <h2 className="text-xl font-semibold text-[var(--text-primary)] group-hover:text-[var(--accent-gold)] transition-colors mb-2">
+                      Spire Codex Overlay
+                    </h2>
+                    <p className="text-sm text-[var(--text-secondary)] mb-3">
+                      In-game lookup for cards, relics, monsters and events,
+                      plus a live run tracker that reads your save as you
+                      play.
+                    </p>
+                    <span className="inline-flex items-center gap-1 text-sm font-medium text-[var(--accent-gold)]">
+                      Learn more <span aria-hidden>→</span>
+                    </span>
+                  </div>
+                </Link>,
+                card,
+              ];
+            }
+            return [card];
+          })}
         </div>
       </section>
     </>

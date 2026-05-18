@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import DonationBanner from "./components/DonationBanner";
+import OverwolfBanner from "./components/OverwolfBanner";
 import Footer from "./components/Footer";
 import GlobalSearch from "./components/GlobalSearch";
 import { Suspense } from "react";
@@ -58,6 +59,7 @@ export default function RootLayout({
             <BetaVersionProvider>
               <Navbar />
               <div className="pt-16">
+                <OverwolfBanner />
                 <DonationBanner />
                 {/* tabIndex=-1 lets Navbar's main.focus() (PR #142) clear
                     focus-within from the dropdown after route changes. The

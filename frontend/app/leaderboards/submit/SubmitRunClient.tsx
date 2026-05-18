@@ -352,57 +352,55 @@ export default function SubmitRunClient() {
               )}
           </p>
 
-          <details className="text-left mb-3 text-xs text-[var(--text-muted)] group">
-            <summary className="cursor-pointer text-[var(--text-secondary)] hover:text-[var(--text-primary)] inline-flex items-center gap-1 select-none">
-              <svg
-                aria-hidden
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                className="w-3.5 h-3.5 transition-transform -rotate-90 group-open:rotate-0"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 11.168l3.71-3.938a.75.75 0 1 1 1.08 1.04l-4.25 4.5a.75.75 0 0 1-1.08 0l-4.25-4.5a.75.75 0 0 1 .02-1.06z"
-                  clipRule="evenodd"
-                />
-              </svg>
-              {t("Where are my run files?", lang)}
-            </summary>
-            <div className="mt-2 space-y-1.5">
-              <div>
-                <strong className="text-[var(--text-secondary)] block sm:inline">Windows</strong>
-                <code className="block sm:inline sm:ml-1 mt-0.5 sm:mt-0 bg-[var(--bg-primary)] px-1.5 py-0.5 rounded break-all">
-                  %AppData%/SlayTheSpire2/steam/&lt;steamid&gt;/profile1/saves/history
-                </code>
-              </div>
-              <div>
-                <strong className="text-[var(--text-secondary)] block sm:inline">macOS</strong>
-                <code className="block sm:inline sm:ml-1 mt-0.5 sm:mt-0 bg-[var(--bg-primary)] px-1.5 py-0.5 rounded break-all">
-                  ~/Library/Application Support/SlayTheSpire2/steam/&lt;steamid&gt;/profile1/saves/history
-                </code>
-              </div>
-              <div>
-                <strong className="text-[var(--text-secondary)] block sm:inline">Linux / Steam Deck</strong>
-                <code className="block sm:inline sm:ml-1 mt-0.5 sm:mt-0 bg-[var(--bg-primary)] px-1.5 py-0.5 rounded break-all">
-                  ~/.local/share/SlayTheSpire2/steam/&lt;steamid&gt;/profile1/saves/history
-                </code>
-              </div>
-            </div>
-          </details>
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-center gap-2 sm:gap-3">
+            <a
+              href="https://www.overwolf.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center w-full sm:w-auto px-5 py-2.5 sm:py-2 rounded-lg text-sm font-medium bg-[var(--accent-gold)] text-[var(--bg-primary)] hover:opacity-90 transition-opacity"
+            >
+              Download Overwolf Companion App
+            </a>
+            <label className="inline-flex items-center justify-center w-full sm:w-auto px-5 py-2.5 sm:py-2 rounded-lg text-sm font-medium bg-[var(--bg-primary)] text-[var(--text-primary)] border border-[var(--border-accent)] hover:bg-[var(--bg-card-hover)] transition-colors cursor-pointer">
+              {t("Choose Files", lang)}
+              <input
+                ref={fileInputRef}
+                type="file"
+                multiple
+                accept=".run,.json"
+                className="hidden"
+                onChange={(e) =>
+                  e.target.files && handleFileUpload(e.target.files)
+                }
+              />
+            </label>
+          </div>
 
-          <label className="inline-block w-full sm:w-auto px-5 py-2.5 sm:py-2 rounded-lg text-sm font-medium bg-[var(--accent-gold)] text-[var(--bg-primary)] hover:opacity-90 transition-opacity cursor-pointer">
-            {t("Choose Files", lang)}
-            <input
-              ref={fileInputRef}
-              type="file"
-              multiple
-              accept=".run,.json"
-              className="hidden"
-              onChange={(e) =>
-                e.target.files && handleFileUpload(e.target.files)
-              }
-            />
-          </label>
+          {/* File paths — kept visible (not collapsed) so users can find
+              their .run files without digging through a disclosure. */}
+          <div className="mt-4 pt-4 border-t border-[var(--border-subtle)] text-left text-xs text-[var(--text-muted)] space-y-1.5">
+            <p className="text-[var(--text-secondary)] mb-2">
+              {t("Your .run files live here:", lang)}
+            </p>
+            <div>
+              <strong className="text-[var(--text-secondary)] block sm:inline">Windows</strong>
+              <code className="block sm:inline sm:ml-1 mt-0.5 sm:mt-0 bg-[var(--bg-primary)] px-1.5 py-0.5 rounded break-all">
+                %AppData%/SlayTheSpire2/steam/&lt;steamid&gt;/profile1/saves/history
+              </code>
+            </div>
+            <div>
+              <strong className="text-[var(--text-secondary)] block sm:inline">macOS</strong>
+              <code className="block sm:inline sm:ml-1 mt-0.5 sm:mt-0 bg-[var(--bg-primary)] px-1.5 py-0.5 rounded break-all">
+                ~/Library/Application Support/SlayTheSpire2/steam/&lt;steamid&gt;/profile1/saves/history
+              </code>
+            </div>
+            <div>
+              <strong className="text-[var(--text-secondary)] block sm:inline">Linux / Steam Deck</strong>
+              <code className="block sm:inline sm:ml-1 mt-0.5 sm:mt-0 bg-[var(--bg-primary)] px-1.5 py-0.5 rounded break-all">
+                ~/.local/share/SlayTheSpire2/steam/&lt;steamid&gt;/profile1/saves/history
+              </code>
+            </div>
+          </div>
           {uploadProgress && (
             <div className="mt-4">
               <div className="w-full bg-[var(--bg-primary)] rounded-full h-2 mb-2">
