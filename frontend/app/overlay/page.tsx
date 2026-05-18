@@ -1,4 +1,4 @@
-const OVERWOLF_STORE_URL = "https://www.overwolf.com/";
+const OVERWOLF_STORE_URL = "https://www.overwolf.com/app/ptrlrd-spire_codex";
 
 const FEATURES = [
   "In-game lookup for cards, relics, potions, monsters, events, and powers — all backed by the live Spire Codex API, so the data matches every patch",

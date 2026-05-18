@@ -354,7 +354,7 @@ export default function SubmitRunClient() {
 
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-center gap-2 sm:gap-3">
             <a
-              href="https://www.overwolf.com/"
+              href="https://www.overwolf.com/app/ptrlrd-spire_codex"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center w-full sm:w-auto px-5 py-2.5 sm:py-2 rounded-lg text-sm font-medium bg-[var(--accent-gold)] text-[var(--bg-primary)] hover:opacity-90 transition-opacity"
