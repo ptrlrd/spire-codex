@@ -27,19 +27,15 @@ services:
       # index.html are rsync'd onto the host volume. Empty/missing →
       # the /qa endpoint isn't registered.
       - QA_DIR=${QA_DIR:-}
-      # Turso (libSQL) — services/runs_db.py uses Turso when TURSO_URL
-      # is set, falls back to local SQLite otherwise. Empty defaults
-      # mean a host with no .env entry stays on the legacy local path.
-      - TURSO_URL=${TURSO_URL:-}
-      - TURSO_AUTH_TOKEN=${TURSO_AUTH_TOKEN:-}
-      # Embedded replica mode: when set to a path on the mounted /data
-      # volume, libsql keeps a local SQLite copy of the Turso DB and
-      # syncs it in the background. All reads hit the local file (no
-      # Turso row-reads metered), writes still go to Turso. Empty/
-      # missing → direct mode (the original behaviour). Opt-in via .env
-      # so the flip is explicit per host:
-      #   TURSO_LOCAL_REPLICA=/data/runs-replica.db
-      - TURSO_LOCAL_REPLICA=${TURSO_LOCAL_REPLICA:-}
+      # Turso (libSQL) — rolled back after Overwolf launch surfaced
+      # multi-second tail latency on POST /api/runs (network round-trip
+      # per write was untenable under burst). Hardcoded empty so
+      # _using_turso() returns False and runs_db.py uses the local
+      # /data/runs.db SQLite path. .env still has the op:// refs
+      # populated in case we want to flip back later.
+      - TURSO_URL=
+      - TURSO_AUTH_TOKEN=
+      - TURSO_LOCAL_REPLICA=
     networks:
       - nginx_web-network
     logging:
