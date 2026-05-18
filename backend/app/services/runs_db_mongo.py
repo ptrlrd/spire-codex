@@ -367,8 +367,14 @@ def _item_stats_pipeline(field: str) -> list[dict]:
     losses), distinct runs, distinct winning runs — all in one pass,
     no $addToSet.
 
-    Pattern: dedupe (run, item) via $group, then $group by item with
-    summed counts. Avoids the memory-blowup of $addToSet on _id sets.
+    Pattern: dedupe (run, item) via $group, project the item id out
+    of the composite key, then $group by item with summed counts.
+
+    The intermediate $project is necessary — referencing $_id.item
+    directly in a subsequent $group._id was producing un-deduped
+    results (Mongo seemed to be treating the composite object key as
+    opaque). $project re-shapes the doc with `item` as a flat field
+    so the second $group keys cleanly.
     """
     return [
         {"$unwind": f"${field}"},
@@ -381,10 +387,19 @@ def _item_stats_pipeline(field: str) -> list[dict]:
                 "copies": {"$sum": 1},
             }
         },
+        # Flatten the composite _id so the next $group keys cleanly.
+        {
+            "$project": {
+                "_id": 0,
+                "item": "$_id.item",
+                "win": 1,
+                "copies": 1,
+            }
+        },
         # Second pass: per item, sum across runs.
         {
             "$group": {
-                "_id": "$_id.item",
+                "_id": "$item",
                 "count": {"$sum": "$copies"},  # total copies across all runs
                 "in_wins": {
                     "$sum": {"$cond": ["$win", "$copies", 0]}
@@ -520,14 +535,33 @@ def get_stats(
         ]
     )
 
+    # $limit 1000 caps the doc size — the materialized stats_summary
+    # collection has a 16MB BSON ceiling, and even a clean run with
+    # ~600 distinct cards wants headroom. The frontend never paginates
+    # past the top ~50 anyway.
     cards = agg(
-        [{"$match": match}, *_item_stats_pipeline("deck"), {"$sort": {"count": -1}}]
+        [
+            {"$match": match},
+            *_item_stats_pipeline("deck"),
+            {"$sort": {"count": -1}},
+            {"$limit": 1000},
+        ]
     )
     relics = agg(
-        [{"$match": match}, *_item_stats_pipeline("relics"), {"$sort": {"count": -1}}]
+        [
+            {"$match": match},
+            *_item_stats_pipeline("relics"),
+            {"$sort": {"count": -1}},
+            {"$limit": 1000},
+        ]
     )
     potions_owned_list = agg(
-        [{"$match": match}, *_item_stats_pipeline("potions"), {"$sort": {"count": -1}}]
+        [
+            {"$match": match},
+            *_item_stats_pipeline("potions"),
+            {"$sort": {"count": -1}},
+            {"$limit": 1000},
+        ]
     )
     potion_owned = {r["_id"]: r for r in potions_owned_list}
 
