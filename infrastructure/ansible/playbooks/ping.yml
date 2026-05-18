@@ -5,8 +5,8 @@
 #
 #   ./bin/op-ansible playbooks/ping.yml
 
-- name: Ping every prod origin
-  hosts: prod_origins
+- name: Ping every prod host (app + db)
+  hosts: prod_origins:db_origins
   gather_facts: false
   tasks:
     - name: Ping

@@ -24,14 +24,40 @@
   gather_facts: true
   become: true
   tasks:
-    - name: Install docker (Amazon Linux 2023)
+    # AlmaLinux ships podman-docker (a shim that provides `docker` as
+    # an alias for `podman`). It conflicts with real docker-ce, so we
+    # explicitly evict it before installing the docker-ce stack.
+    # Amazon Linux 2023 doesn't ship the shim — this task is a no-op
+    # there.
+    - name: Remove podman-docker shim if present (AlmaLinux)
+      dnf:
+        name: podman-docker
+        state: absent
+      when: ansible_os_family == 'RedHat'
+
+    - name: Add docker-ce repo (RedHat family — AlmaLinux + AL2023)
+      yum_repository:
+        name: docker-ce-stable
+        description: Docker CE Stable
+        baseurl: https://download.docker.com/linux/centos/$releasever/$basearch/stable
+        gpgcheck: true
+        gpgkey: https://download.docker.com/linux/centos/gpg
+        enabled: true
+      when: ansible_os_family == 'RedHat'
+
+    - name: Install docker-ce + tools (RedHat family)
       dnf:
         name:
-          - docker
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+          - docker-buildx-plugin
+          - docker-compose-plugin
           - git
           - rsync
           - tar
         state: present
+        allowerasing: true   # let it kick podman-docker out cleanly
       when: ansible_os_family == 'RedHat'
 
     - name: Install docker (Debian/Ubuntu)
@@ -77,7 +103,10 @@
         mode: '0755'
 
     - name: Clone spire-codex repo (if not already)
-      become_user: "{{ ansible_user }}"
+      # become_user templates BEFORE facts gather, so `{{ ansible_user }}`
+      # would be undefined here. Use the env var the op-ansible wrapper
+      # already exports (same pattern as deploy.yml).
+      become_user: "{{ lookup('env', 'SPIRE_REMOTE_USER') }}"
       git:
         repo: https://github.com/ptrlrd/spire-codex.git
         dest: "{{ spire_codex_dir }}"
@@ -111,7 +140,7 @@
         force: false   # don't overwrite if one already exists
 
     - name: Pull standalone nginx image
-      become_user: "{{ ansible_user }}"
+      become_user: "{{ lookup('env', 'SPIRE_REMOTE_USER') }}"
       command: docker pull nginx:alpine
       register: nginx_pull
       changed_when: "'Downloaded newer image' in nginx_pull.stdout"
