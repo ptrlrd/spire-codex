@@ -454,101 +454,94 @@ def get_stats(
             },
         }
 
-    # Single $facet pipeline — reads the matched docs once, computes
-    # every aggregation in parallel branches. Mongo's planner can
-    # optimise the shared $match.
-    facet = list(
-        coll.aggregate(
-            [
-                {"$match": match},
-                {
-                    "$facet": {
-                        "totals": [
-                            {
-                                "$group": {
-                                    "_id": None,
-                                    "wins": {"$sum": {"$cond": ["$win", 1, 0]}},
-                                    "abandoned": {
-                                        "$sum": {"$cond": ["$was_abandoned", 1, 0]}
-                                    },
-                                }
-                            }
-                        ],
-                        "ascensions": [
-                            {
-                                "$group": {
-                                    "_id": "$ascension",
-                                    "total": {"$sum": 1},
-                                    "wins": {"$sum": {"$cond": ["$win", 1, 0]}},
-                                }
-                            },
-                            {"$sort": {"_id": 1}},
-                        ],
-                        "deaths": [
-                            {
-                                "$match": {
-                                    "win": False,
-                                    "killed_by": {"$ne": None},
-                                }
-                            },
-                            {"$group": {"_id": "$killed_by", "count": {"$sum": 1}}},
-                            {"$sort": {"count": -1}},
-                            {"$limit": 10},
-                        ],
-                        "pick_rates": [
-                            {"$unwind": "$card_choices"},
-                            {
-                                "$group": {
-                                    "_id": "$card_choices.card_id",
-                                    "offered": {"$sum": 1},
-                                    "picked": {
-                                        "$sum": {
-                                            "$cond": [
-                                                "$card_choices.was_picked",
-                                                1,
-                                                0,
-                                            ]
-                                        }
-                                    },
-                                }
-                            },
-                        ],
-                        "cards": _item_stats_pipeline("deck")
-                        + [{"$sort": {"count": -1}}],
-                        "relics": _item_stats_pipeline("relics")
-                        + [{"$sort": {"count": -1}}],
-                        "potions_owned": _item_stats_pipeline("potions")
-                        + [{"$sort": {"count": -1}}],
-                        # Potion choice + use telemetry needs to keep
-                        # `picked` and `used` semantics from the source
-                        # docs — separate branch (the item stats above
-                        # treats potions as a deck-like multiset).
-                        "potions_picked_used": [
-                            {"$unwind": "$potions"},
-                            {
-                                "$group": {
-                                    "_id": "$potions.id",
-                                    "picked": {
-                                        "$sum": {"$cond": ["$potions.was_picked", 1, 0]}
-                                    },
-                                    "offered": {"$sum": 1},
-                                    "used": {
-                                        "$sum": {"$cond": ["$potions.was_used", 1, 0]}
-                                    },
-                                }
-                            },
-                        ],
-                    }
-                },
-            ],
-            allowDiskUse=True,
-        )
+    # Separate aggregations. $facet would be tidier but its hard 100MB
+    # cap on combined intermediate state blew up on our scale
+    # (allowDiskUse doesn't help $facet). Each independent aggregate
+    # gets its own 100MB budget + can spill to disk via allowDiskUse.
+    def agg(pipeline: list[dict]) -> list[dict]:
+        return list(coll.aggregate(pipeline, allowDiskUse=True))
+
+    totals_rows = agg(
+        [
+            {"$match": match},
+            {
+                "$group": {
+                    "_id": None,
+                    "wins": {"$sum": {"$cond": ["$win", 1, 0]}},
+                    "abandoned": {"$sum": {"$cond": ["$was_abandoned", 1, 0]}},
+                }
+            },
+        ]
     )
-    result = facet[0] if facet else {}
+    totals_row = totals_rows[0] if totals_rows else {}
+    wins = totals_row.get("wins", 0)
+    abandoned = totals_row.get("abandoned", 0)
+
+    asc_stats = agg(
+        [
+            {"$match": match},
+            {
+                "$group": {
+                    "_id": "$ascension",
+                    "total": {"$sum": 1},
+                    "wins": {"$sum": {"$cond": ["$win", 1, 0]}},
+                }
+            },
+            {"$sort": {"_id": 1}},
+        ]
+    )
+
+    deaths = agg(
+        [
+            {"$match": {**match, "win": False, "killed_by": {"$ne": None}}},
+            {"$group": {"_id": "$killed_by", "count": {"$sum": 1}}},
+            {"$sort": {"count": -1}},
+            {"$limit": 10},
+        ]
+    )
+
+    pick_rates = agg(
+        [
+            {"$match": match},
+            {"$unwind": "$card_choices"},
+            {
+                "$group": {
+                    "_id": "$card_choices.card_id",
+                    "offered": {"$sum": 1},
+                    "picked": {"$sum": {"$cond": ["$card_choices.was_picked", 1, 0]}},
+                }
+            },
+        ]
+    )
+
+    cards = agg(
+        [{"$match": match}, *_item_stats_pipeline("deck"), {"$sort": {"count": -1}}]
+    )
+    relics = agg(
+        [{"$match": match}, *_item_stats_pipeline("relics"), {"$sort": {"count": -1}}]
+    )
+    potions_owned_list = agg(
+        [{"$match": match}, *_item_stats_pipeline("potions"), {"$sort": {"count": -1}}]
+    )
+    potion_owned = {r["_id"]: r for r in potions_owned_list}
+
+    potion_pu = agg(
+        [
+            {"$match": match},
+            {"$unwind": "$potions"},
+            {
+                "$group": {
+                    "_id": "$potions.id",
+                    "picked": {"$sum": {"$cond": ["$potions.was_picked", 1, 0]}},
+                    "offered": {"$sum": 1},
+                    "used": {"$sum": {"$cond": ["$potions.was_used", 1, 0]}},
+                }
+            },
+        ]
+    )
 
     # Per-character breakdown runs against match_no_char (drops the
     # character filter so the breakdown has one row per character).
-    # Kept outside the $facet because the $match differs.
     char_stats = list(
         coll.aggregate(
             [
@@ -564,17 +557,6 @@ def get_stats(
             ]
         )
     )
-
-    totals_row = (result.get("totals") or [{}])[0]
-    wins = totals_row.get("wins", 0)
-    abandoned = totals_row.get("abandoned", 0)
-    asc_stats = result.get("ascensions", [])
-    deaths = result.get("deaths", [])
-    pick_rates = result.get("pick_rates", [])
-    cards = result.get("cards", [])
-    relics = result.get("relics", [])
-    potion_owned = {r["_id"]: r for r in result.get("potions_owned", [])}
-    potion_pu = result.get("potions_picked_used", [])
 
     return {
         "total_runs": total,
