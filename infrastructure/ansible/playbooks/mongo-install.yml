@@ -1,0 +1,183 @@
+---
+# One-shot Mongo install for the secondary Lightsail box.
+#
+# Prereqs:
+#   - Secondary has already been resized to >=8GB Lightsail bundle.
+#   - Spire-codex app containers on secondary are stopped (this box is
+#     no longer an app origin — see docker-compose down step below).
+#   - 1Password has the following entries populated:
+#       op://Spire Codex/MongoDB/admin-user        (default: admin)
+#       op://Spire Codex/MongoDB/admin-password    (strong, 32+ chars)
+#       op://Spire Codex/MongoDB/app-user          (default: app)
+#       op://Spire Codex/MongoDB/app-password      (strong, 32+ chars)
+#       op://Spire Codex/MongoDB/keyfile           (openssl rand -base64 756)
+#
+# Usage:
+#   cd infrastructure/ansible
+#   ./bin/op-ansible playbooks/mongo-install.yml --limit secondary
+#
+# Idempotent — re-running just verifies state, doesn't reset data.
+
+- name: Install MongoDB single-node replica set on secondary
+  hosts: secondary
+  gather_facts: false
+  vars:
+    mongo_dir: /var/www/spire-codex
+    replica_set_name: spire-rs
+    db_name: spire_codex
+
+  tasks:
+    - name: Stop legacy spire-codex containers (this box is Mongo-only now)
+      become: true
+      command: docker compose -f docker-compose.prod.yml down
+      args:
+        chdir: "{{ mongo_dir }}"
+      ignore_errors: true   # may already be down
+
+    - name: Pull MongoDB admin creds from 1Password
+      delegate_to: localhost
+      become: false
+      run_once: true
+      block:
+        - command: op read "op://Spire Codex/MongoDB/admin-user"
+          register: op_admin_user
+          changed_when: false
+          no_log: true
+        - command: op read "op://Spire Codex/MongoDB/admin-password"
+          register: op_admin_pass
+          changed_when: false
+          no_log: true
+        - command: op read "op://Spire Codex/MongoDB/app-user"
+          register: op_app_user
+          changed_when: false
+          no_log: true
+        - command: op read "op://Spire Codex/MongoDB/app-password"
+          register: op_app_pass
+          changed_when: false
+          no_log: true
+        - command: op read "op://Spire Codex/MongoDB/keyfile"
+          register: op_keyfile
+          changed_when: false
+          no_log: true
+
+    - name: Ensure mongo data directory exists
+      become: true
+      file:
+        path: "{{ mongo_dir }}/mongo-data"
+        state: directory
+        owner: "999"          # mongo container UID
+        group: "999"
+        mode: '0755'
+
+    - name: Drop the replica-set keyfile (root-owned, 0600, mongo container UID)
+      become: true
+      copy:
+        content: "{{ op_keyfile.stdout }}"
+        dest: "{{ mongo_dir }}/mongo-keyfile"
+        owner: "999"
+        group: "999"
+        mode: '0400'
+      no_log: true
+
+    - name: Render docker-compose.mongo.env (Mongo admin creds for first-boot init)
+      become: true
+      copy:
+        content: |
+          MONGO_ADMIN_USER={{ op_admin_user.stdout }}
+          MONGO_ADMIN_PASS={{ op_admin_pass.stdout }}
+        dest: "{{ mongo_dir }}/.env.mongo"
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
+        mode: '0600'
+      no_log: true
+
+    - name: Pull the latest spire-codex repo (gets docker-compose.mongo.yml)
+      become: true
+      become_user: "{{ lookup('env', 'SPIRE_REMOTE_USER') }}"
+      git:
+        repo: https://github.com/ptrlrd/spire-codex.git
+        dest: "{{ mongo_dir }}"
+        version: main
+        update: true
+        force: true
+
+    - name: Start MongoDB container
+      become: true
+      command: docker compose --env-file .env.mongo -f docker-compose.mongo.yml up -d
+      args:
+        chdir: "{{ mongo_dir }}"
+
+    - name: Wait for Mongo to accept connections (auth not required for ping)
+      become: true
+      shell: |
+        for i in $(seq 1 30); do
+          docker exec spire-codex-mongo mongosh --quiet --eval "db.adminCommand('ping')" && exit 0
+          sleep 2
+        done
+        exit 1
+      register: ping
+      changed_when: false
+
+    - name: Initiate the replica set (idempotent — fails harmlessly if already initiated)
+      become: true
+      shell: |
+        docker exec spire-codex-mongo mongosh \
+          -u "{{ op_admin_user.stdout }}" \
+          -p "{{ op_admin_pass.stdout }}" \
+          --authenticationDatabase admin \
+          --quiet \
+          --eval 'try { rs.status() } catch(e) { rs.initiate({ _id: "{{ replica_set_name }}", members: [{ _id: 0, host: "localhost:27017" }] }) }'
+      register: rs_init
+      changed_when: "'newlyAdded' in rs_init.stdout or 'ok: 1' in rs_init.stdout"
+      no_log: true
+
+    - name: Wait for primary election (rs becomes a PRIMARY, not just SECONDARY/STARTUP)
+      become: true
+      shell: |
+        for i in $(seq 1 30); do
+          state=$(docker exec spire-codex-mongo mongosh \
+            -u "{{ op_admin_user.stdout }}" \
+            -p "{{ op_admin_pass.stdout }}" \
+            --authenticationDatabase admin \
+            --quiet --eval 'rs.status().myState' 2>/dev/null | tr -d '[:space:]')
+          if [ "$state" = "1" ]; then exit 0; fi
+          sleep 2
+        done
+        exit 1
+      changed_when: false
+      no_log: true
+
+    - name: Create the app user with read+write on spire_codex DB
+      become: true
+      shell: |
+        docker exec spire-codex-mongo mongosh \
+          -u "{{ op_admin_user.stdout }}" \
+          -p "{{ op_admin_pass.stdout }}" \
+          --authenticationDatabase admin \
+          --quiet \
+          --eval 'try {
+            db.getSiblingDB("{{ db_name }}").createUser({
+              user: "{{ op_app_user.stdout }}",
+              pwd: "{{ op_app_pass.stdout }}",
+              roles: [{ role: "readWrite", db: "{{ db_name }}" }]
+            })
+          } catch(e) {
+            if (e.codeName !== "DuplicateKey") throw e;
+            db.getSiblingDB("{{ db_name }}").updateUser("{{ op_app_user.stdout }}", {
+              pwd: "{{ op_app_pass.stdout }}",
+              roles: [{ role: "readWrite", db: "{{ db_name }}" }]
+            })
+          }'
+      register: create_user
+      changed_when: "'Successfully' in create_user.stdout or 'ok: 1' in create_user.stdout"
+      no_log: true
+
+    - name: Final status
+      debug:
+        msg: |
+          MongoDB ready on this box.
+          Replica set: {{ replica_set_name }}
+          DB: {{ db_name }}
+          App user: {{ op_app_user.stdout }}
+          Connection string template (for primary's .env):
+            mongodb://{{ op_app_user.stdout }}:<password>@<this-box-ip>:27017/{{ db_name }}?authSource={{ db_name }}&replicaSet={{ replica_set_name }}

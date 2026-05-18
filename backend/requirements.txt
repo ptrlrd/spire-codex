@@ -10,3 +10,4 @@ sentry-sdk[fastapi]==2.19.2
 prometheus-fastapi-instrumentator==7.0.2
 pyjwt[crypto]==2.10.1
 libsql==0.1.11
+pymongo==4.10.1

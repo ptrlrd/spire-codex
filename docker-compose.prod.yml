@@ -27,15 +27,16 @@ services:
       # index.html are rsync'd onto the host volume. Empty/missing →
       # the /qa endpoint isn't registered.
       - QA_DIR=${QA_DIR:-}
-      # Turso (libSQL) — rolled back after Overwolf launch surfaced
-      # multi-second tail latency on POST /api/runs (network round-trip
-      # per write was untenable under burst). Hardcoded empty so
-      # _using_turso() returns False and runs_db.py uses the local
-      # /data/runs.db SQLite path. .env still has the op:// refs
-      # populated in case we want to flip back later.
+      # Turso (libSQL) — retired post-Overwolf-launch (round-trip per
+      # write was untenable under burst). Hardcoded empty so the
+      # libsql path stays off.
       - TURSO_URL=
       - TURSO_AUTH_TOKEN=
       - TURSO_LOCAL_REPLICA=
+      # MongoDB — when MONGO_URL is set, runs_db.py uses the Mongo
+      # path. Falls through to local /data/runs.db SQLite otherwise
+      # (the current state while the migration is in progress).
+      - MONGO_URL=${MONGO_URL:-}
     networks:
       - nginx_web-network
     logging:

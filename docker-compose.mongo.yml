@@ -1,0 +1,51 @@
+name: spire-codex-mongo
+
+# MongoDB on the secondary box. Single-node replica set so we can use
+# transactions + we can grow to 3 nodes later without re-bootstrapping.
+# Bind only to the docker bridge; the Lightsail firewall is what
+# actually gates external access to port 27017 (allow only the primary
+# box's static IP).
+
+services:
+  mongo:
+    image: mongo:7.0
+    container_name: spire-codex-mongo
+    restart: unless-stopped
+    command:
+      - "--replSet"
+      - "spire-rs"
+      - "--bind_ip_all"
+      - "--auth"
+      - "--keyFile"
+      - "/etc/mongo/keyfile"
+      - "--wiredTigerCacheSizeGB"
+      - "4"
+    ports:
+      # Bind on all interfaces; Lightsail firewall rule restricts to
+      # primary's IP. If you ever co-locate Mongo with the app on the
+      # same box, drop this and use a UNIX socket instead.
+      - "27017:27017"
+    volumes:
+      - ./mongo-data:/data/db
+      - ./mongo-keyfile:/etc/mongo/keyfile:ro
+    environment:
+      # First-run only — these create the admin user before --auth
+      # kicks in. After the first init, ignored.
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_ADMIN_USER:-admin}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_ADMIN_PASS}
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "5"
+    healthcheck:
+      test:
+        - CMD
+        - mongosh
+        - "--quiet"
+        - "--eval"
+        - "db.adminCommand('ping')"
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
