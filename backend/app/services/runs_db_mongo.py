@@ -532,19 +532,21 @@ def get_stats(
                     "picked": {"$sum": {"$cond": ["$card_choices.was_picked", 1, 0]}},
                 }
             },
+            {"$sort": {"offered": -1}},
+            {"$limit": 100},
         ]
     )
 
-    # $limit 1000 caps the doc size — the materialized stats_summary
-    # collection has a 16MB BSON ceiling, and even a clean run with
-    # ~600 distinct cards wants headroom. The frontend never paginates
-    # past the top ~50 anyway.
+    # $limit 100 caps the doc size — frontend never paginates past
+    # ~50; this keeps the materialized doc under 1MB and JSON
+    # serialization sub-100ms on the user path. (Previous 1000 cap
+    # produced an 8MB response that took 1-4s to serialize.)
     cards = agg(
         [
             {"$match": match},
             *_item_stats_pipeline("deck"),
             {"$sort": {"count": -1}},
-            {"$limit": 1000},
+            {"$limit": 100},
         ]
     )
     relics = agg(
@@ -552,7 +554,7 @@ def get_stats(
             {"$match": match},
             *_item_stats_pipeline("relics"),
             {"$sort": {"count": -1}},
-            {"$limit": 1000},
+            {"$limit": 100},
         ]
     )
     potions_owned_list = agg(
@@ -560,7 +562,7 @@ def get_stats(
             {"$match": match},
             *_item_stats_pipeline("potions"),
             {"$sort": {"count": -1}},
-            {"$limit": 1000},
+            {"$limit": 100},
         ]
     )
     potion_owned = {r["_id"]: r for r in potions_owned_list}
