@@ -12,7 +12,6 @@ from fastapi.staticfiles import StaticFiles
 from starlette.middleware.base import BaseHTTPMiddleware
 from pathlib import Path
 from slowapi import Limiter, _rate_limit_exceeded_handler
-from slowapi.util import get_remote_address
 from slowapi.errors import RateLimitExceeded
 
 from .routers import (
@@ -56,7 +55,7 @@ from .routers import (
     qa_feedback,
 )
 from .services.data_service import get_stats, load_translation_maps, current_version
-from .dependencies import get_lang, VALID_LANGUAGES, LANGUAGE_NAMES
+from .dependencies import client_ip, get_lang, VALID_LANGUAGES, LANGUAGE_NAMES
 from prometheus_fastapi_instrumentator import Instrumentator
 
 from .metrics import (
@@ -106,7 +105,12 @@ if SENTRY_DSN:
 # without requiring every client to set `?version=latest`.
 IS_BETA_BACKEND = os.environ.get("DISABLE_RUN_SUBMISSIONS") == "1"
 
-limiter = Limiter(key_func=get_remote_address, default_limits=["60/minute"])
+# Default 300/minute (5 rps) per *real* visitor IP — generous enough
+# for honest browsing + embedded tooltip widgets that fan out to several
+# /api/* lookups per page, low enough to choke off scraping. Endpoints
+# that want a tighter cap (guide submission, auth, feedback) declare
+# `@limiter.limit(...)` at the router level and override this default.
+limiter = Limiter(key_func=client_ip, default_limits=["300/minute"])
 
 app = FastAPI(
     title="Spire Codex API",

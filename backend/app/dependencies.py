@@ -1,6 +1,32 @@
 """Shared FastAPI dependencies."""
 
-from fastapi import Query
+from fastapi import Query, Request
+from slowapi.util import get_remote_address
+
+
+def client_ip(request: Request) -> str:
+    """Resolve the real visitor IP behind Cloudflare → nginx → uvicorn.
+
+    `slowapi.get_remote_address` reads `request.client.host`, which is
+    the upstream proxy — the nginx-container's bridge address — not
+    the real visitor. Every user shares one bucket and the default
+    limit trips fleet-wide.
+
+    nginx already trusts Cloudflare's IP ranges and rewrites
+    `$remote_addr` from `CF-Connecting-IP`, then forwards it as
+    `X-Real-IP`. Prefer that, fall back to `CF-Connecting-IP` directly
+    (in case nginx is bypassed), then the first hop in
+    `X-Forwarded-For`, and finally `request.client.host` for local dev.
+    """
+    h = request.headers
+    real = h.get("x-real-ip") or h.get("cf-connecting-ip")
+    if real:
+        return real.strip()
+    xff = h.get("x-forwarded-for")
+    if xff:
+        return xff.split(",", 1)[0].strip()
+    return get_remote_address(request)
+
 
 VALID_LANGUAGES = {
     "deu",

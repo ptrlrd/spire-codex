@@ -41,12 +41,13 @@ from fastapi import APIRouter, HTTPException, Request
 from fastapi.responses import HTMLResponse, JSONResponse
 from pydantic import BaseModel
 from slowapi import Limiter
-from slowapi.util import get_remote_address
+
+from ..dependencies import client_ip
 
 logger = logging.getLogger("spire-codex.auth")
 
 router = APIRouter(prefix="/api/auth/steam", tags=["Auth"])
-limiter = Limiter(key_func=get_remote_address)
+limiter = Limiter(key_func=client_ip)
 
 # Sessions live for 5 min — generous enough for the user to bounce off
 # Steam's login (saved password autofill, 2FA, etc.) and short enough
