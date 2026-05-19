@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import AncientsClient from "./AncientsClient";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: "Ancient Relic Pools - All Ancient Offerings - Slay the Spire 2 (sts2) | Spire Codex",

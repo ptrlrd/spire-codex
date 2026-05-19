@@ -8,7 +8,9 @@ import ScoreBadge from "@/app/components/ScoreBadge";
 const API_INTERNAL = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 const API_PUBLIC = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
-export const dynamic = "force-dynamic";
+// Tier-list hub: scores refresh on the backend every 60s, so 5min
+// HTML cache is comfortably fresh and lets CF serve from edge.
+export const revalidate = 300;
 
 export const metadata: Metadata = {
   // Title leads with both abbreviated ("STS2") and full game name to

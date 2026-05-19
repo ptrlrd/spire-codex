@@ -7,7 +7,7 @@ import TierList, { type TierEntity } from "@/app/components/TierList";
 
 const API_INTERNAL = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 300;
 
 interface ApiPotion {
   id: string;

@@ -7,7 +7,9 @@ import TierList, { type TierEntity } from "@/app/components/TierList";
 
 const API_INTERNAL = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
-export const dynamic = "force-dynamic"; // scores update every 30 minutes
+// Scores refresh on the backend every 60s; 5min HTML cache keeps
+// edge responses sub-25ms without showing painfully stale data.
+export const revalidate = 300;
 
 interface ApiCard {
   id: string;

@@ -5,7 +5,7 @@ import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd } from "@/lib/jsonld";
 import CompareDetail from "./CompareDetail";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
 
 const API_INTERNAL =
   process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
