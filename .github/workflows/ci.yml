@@ -34,8 +34,16 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
-          cache-dependency-path: frontend/package-lock.json
+          # No `cache: npm` here on purpose. Self-hosted runners give
+          # us free compute, but setup-node's npm cache still uploads
+          # ~/.npm to GitHub-managed storage (Next.js + sharp + swc
+          # cross-platform binaries makes it ~350 MiB per cache, and
+          # we'd blow through the 500 MiB plan quota with one cache on
+          # main and another on a feature branch). The runner has fast
+          # internet — `npm ci` re-fetching costs ~30s vs paying for
+          # storage overage. If we ever need this back, store the
+          # cache on the runner host (persistent volume) instead of
+          # uploading it.
 
       - run: npm ci
 
