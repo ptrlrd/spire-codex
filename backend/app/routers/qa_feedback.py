@@ -21,12 +21,13 @@ import httpx
 from fastapi import APIRouter, HTTPException, Request
 from pydantic import BaseModel, Field
 from slowapi import Limiter
-from slowapi.util import get_remote_address
+
+from ..dependencies import client_ip
 
 logger = logging.getLogger(__name__)
 
 router = APIRouter(prefix="/api/qa-feedback", tags=["Feedback"])
-limiter = Limiter(key_func=get_remote_address)
+limiter = Limiter(key_func=client_ip)
 
 
 class QAFeedback(BaseModel):

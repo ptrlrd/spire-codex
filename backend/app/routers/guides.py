@@ -9,7 +9,8 @@ import httpx
 from fastapi import APIRouter, HTTPException, Request
 from pydantic import BaseModel
 from slowapi import Limiter
-from slowapi.util import get_remote_address
+
+from ..dependencies import client_ip
 from ..models.schemas import GuideSummary, Guide
 from ..services.data_service import load_guides
 from ..metrics import guide_submissions
@@ -18,7 +19,7 @@ router = APIRouter(prefix="/api/guides", tags=["Guides"])
 
 WEBHOOK_URL = os.environ.get("GUIDE_WEBHOOK_URL", "")
 
-limiter = Limiter(key_func=get_remote_address)
+limiter = Limiter(key_func=client_ip)
 
 
 @router.get("", response_model=list[GuideSummary])
