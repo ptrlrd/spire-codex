@@ -35,12 +35,25 @@ Wraps existing service-layer functions:
 - /api/admin/ops/refresh-entity-scores → calls run_entity_stats._build_cache()
 - /api/admin/ops/refresh-news          → invokes news_parser inline (or via webhook)
 
-## Maintenance banner
+## Site-wide banner — covers announcements + maintenance + incidents
 
-Tiny Mongo doc `app_config.banner` with {message, level, expires_at}.
-Frontend layout reads this at SSR time and renders a top banner if
-present + unexpired. Set via this endpoint, vacated by deletion or
-TTL expiry.
+One Mongo doc `app_config.banner` with `{message, level,
+expires_at, link?}`. Frontend layout reads this at SSR time and
+renders a top banner if present + unexpired. Set via this endpoint,
+vacated by deletion or TTL expiry.
+
+The `level` field carries the editorial intent:
+- `level: "info"`  — patch / feature announcement
+                     ("Major Update #2 just dropped — see changelog →")
+- `level: "warn"`  — degraded state
+                     ("Run submissions paused for ~5min during DB migration")
+- `level: "error"` — incident in progress
+                     ("Stats are stale — investigating")
+
+Same endpoint, same data model, three visual treatments on the
+frontend. Operator picks the level; `expires_at` enforces a
+self-vacating window so an announcement doesn't sit on the page
+forever if you forget to clear it.
 """
 
 from __future__ import annotations
@@ -115,19 +128,29 @@ async def refresh_news(request: Request):
     raise HTTPException(status_code=501, detail="Not implemented yet")
 
 
-# ── Maintenance banner ───────────────────────────────────────
+# ── Site-wide banner (announcements + maintenance + incidents) ──
 @router.get("/banner")
 async def get_banner(request: Request):
     """Current banner (if any). Frontend layout reads the public-side
     of this via /api/banner (separate, unauthenticated) — admin GET
-    returns the same shape plus internal metadata."""
+    returns the same shape plus internal metadata (created_by, etc.)."""
     raise HTTPException(status_code=501, detail="Not implemented yet")
 
 
 @router.put("/banner")
 async def set_banner(request: Request):
-    """Body: `{"message": "...", "level": "info|warn", "expires_at": "ISO"}`.
-    Banner auto-vanishes after `expires_at`."""
+    """Body shape:
+        {
+          "message": "Major Update #2 just dropped — see changelog →",
+          "level":   "info" | "warn" | "error",
+          "expires_at": "2026-05-21T00:00:00Z",
+          "link":    "/changelog#1.0.7"      // optional, clickable
+        }
+    Banner auto-vanishes after `expires_at` so an announcement
+    doesn't outlive its relevance if you forget to clear it. Use
+    `level: "info"` for patch announcements, `warn` for degraded
+    state, `error` for active incidents — frontend renders three
+    visual treatments."""
     raise HTTPException(status_code=501, detail="Not implemented yet")
 
 
