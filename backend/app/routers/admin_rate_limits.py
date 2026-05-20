@@ -43,29 +43,15 @@ TODO before merging the follow-up:
 
 from __future__ import annotations
 
-from fastapi import APIRouter, HTTPException, Request
+from fastapi import APIRouter, Depends, HTTPException, Request
 
-router = APIRouter(prefix="/api/admin/rate-limits", tags=["Admin"])
+from ..dependencies import require_admin
 
-
-def require_admin_token(request: Request) -> str:
-    """Reject any request without a matching X-Admin-Token header.
-
-    Lives here (rather than as a shared dependency) until we have a
-    second admin router that needs it; at that point promote to
-    `app/dependencies.py::require_admin`.
-    """
-    from ..services.rate_limits_store import _admin_token_from_env
-
-    expected = _admin_token_from_env()
-    if not expected:
-        # No token configured = the endpoint stays unreachable. Better
-        # than silently disabling auth.
-        raise HTTPException(status_code=503, detail="Admin disabled")
-    presented = request.headers.get("x-admin-token", "")
-    if presented != expected:
-        raise HTTPException(status_code=401, detail="Bad admin token")
-    return "ok"
+router = APIRouter(
+    prefix="/api/admin/rate-limits",
+    tags=["Admin"],
+    dependencies=[Depends(require_admin)],
+)
 
 
 # Slugs each decorated endpoint will register itself under. The
@@ -96,7 +82,6 @@ def list_limits(request: Request):
         ]
       }
     """
-    require_admin_token(request)
     # TODO: implement once REGISTRY is populated.
     raise HTTPException(status_code=501, detail="Not implemented yet")
 
@@ -104,7 +89,6 @@ def list_limits(request: Request):
 @router.put("/{slug}")
 async def set_limit(slug: str, request: Request):
     """Set a runtime override. Body: `{"limit": "3000/hour"}`."""
-    require_admin_token(request)
     # TODO: validate slug ∈ REGISTRY, validate body.limit parses,
     # call rate_limits_store.set_override.
     raise HTTPException(status_code=501, detail="Not implemented yet")
@@ -113,6 +97,5 @@ async def set_limit(slug: str, request: Request):
 @router.delete("/{slug}")
 def clear_limit(slug: str, request: Request):
     """Revert a slug to its hardcoded default."""
-    require_admin_token(request)
     # TODO: call rate_limits_store.clear_override.
     raise HTTPException(status_code=501, detail="Not implemented yet")
