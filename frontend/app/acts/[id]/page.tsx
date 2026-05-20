@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import ActDetail from "./ActDetail";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd } from "@/lib/jsonld";
+import { redirectMissingEntity } from "@/lib/redirect-helpers";
 import { stripTags, buildLanguageAlternates} from "@/lib/seo";
 
 export const dynamic = "force-static";
@@ -37,6 +38,7 @@ export default async function Page({ params }: Props) {
   const { id } = await params;
   let jsonLd = null;
   let act = null;
+  let apiUnreachable = false;
   try {
     const res = await fetch(`${API_INTERNAL}/api/acts/${id}`, {
       next: { revalidate: 3600 },
@@ -55,7 +57,10 @@ export default async function Page({ params }: Props) {
         ],
       });
     }
-  } catch {}
+  } catch {
+    apiUnreachable = true;
+  }
+  if (!act && !apiUnreachable) redirectMissingEntity("acts", id);
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}

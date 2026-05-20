@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { permanentRedirect } from "next/navigation";
 import type { Character, Card } from "@/lib/api";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd } from "@/lib/jsonld";
@@ -82,21 +83,9 @@ export default async function Page({ params }: Props) {
   if (!isValidLang(lang)) return null;
   const parsed = parsePair(pair);
 
+  // Invalid pair slug → 308 back to the locale's /compare hub.
   if (!parsed) {
-    return (
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <h1 className="text-3xl font-bold mb-4 text-[var(--accent-gold)]">
-          Comparison Not Found
-        </h1>
-        <p className="text-[var(--text-muted)]">
-          Invalid comparison pair. Please choose a valid character pair from the{" "}
-          <a href={`/${lang}/compare`} className="text-[var(--accent-gold)] underline">
-            comparisons page
-          </a>
-          .
-        </p>
-      </div>
-    );
+    permanentRedirect(`/${lang}/compare`);
   }
 
   const [dataA, dataB] = await Promise.all([

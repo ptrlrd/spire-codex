@@ -3,6 +3,7 @@ import EpochDetail from "./EpochDetail";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 import { stripTags } from "@/lib/seo";
+import { redirectMissingEntity } from "@/lib/redirect-helpers";
 
 export const dynamic = "force-dynamic";
 
@@ -38,6 +39,7 @@ export default async function Page({ params }: Props) {
   const { id } = await params;
   let jsonLd = null;
   let epoch = null;
+  let apiUnreachable = false;
   try {
     const res = await fetch(`${API_INTERNAL}/api/epochs/${id}`);
     if (res.ok) {
@@ -59,7 +61,10 @@ export default async function Page({ params }: Props) {
       ]);
       jsonLd = [...detailJsonLd, faqJsonLd];
     }
-  } catch {}
+  } catch {
+    apiUnreachable = true;
+  }
+  if (!epoch && !apiUnreachable) redirectMissingEntity("timeline", id);
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}

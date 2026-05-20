@@ -3,6 +3,7 @@ import EncounterDetail from "./EncounterDetail";
 import { stripTags } from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
+import { redirectMissingEntity } from "@/lib/redirect-helpers";
 
 const API_INTERNAL = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 const API_PUBLIC = process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_API_URL || "";
@@ -38,6 +39,7 @@ export default async function Page({ params }: Props) {
   const { id } = await params;
   let jsonLd = null;
   let encounter = null;
+  let apiUnreachable = false;
   try {
     const res = await fetch(`${API_INTERNAL}/api/encounters/${id}`);
     if (res.ok) {
@@ -62,7 +64,10 @@ export default async function Page({ params }: Props) {
       ];
       jsonLd = [...detailJsonLd, buildFAQPageJsonLd(faqQuestions)];
     }
-  } catch {}
+  } catch {
+    apiUnreachable = true;
+  }
+  if (!encounter && !apiUnreachable) redirectMissingEntity("encounters", id);
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}

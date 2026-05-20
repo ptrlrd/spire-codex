@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import AscensionDetail from "./AscensionDetail";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
+import { redirectMissingEntity } from "@/lib/redirect-helpers";
 import { stripTags, buildLanguageAlternates} from "@/lib/seo";
 
 export const dynamic = "force-static";
@@ -38,6 +39,7 @@ export default async function Page({ params }: Props) {
   const { id } = await params;
   let jsonLd = null;
   let asc = null;
+  let apiUnreachable = false;
   try {
     const res = await fetch(`${API_INTERNAL}/api/ascensions/${id}`, {
       next: { revalidate: 3600 },
@@ -61,7 +63,10 @@ export default async function Page({ params }: Props) {
       ]);
       jsonLd = [...detailJsonLd, faqJsonLd];
     }
-  } catch {}
+  } catch {
+    apiUnreachable = true;
+  }
+  if (!asc && !apiUnreachable) redirectMissingEntity("ascensions", id);
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound, redirect } from "next/navigation";
+import { redirect, permanentRedirect } from "next/navigation";
 import JsonLd from "@/app/components/JsonLd";
 import { buildBreadcrumbJsonLd } from "@/lib/jsonld";
 import { SITE_URL, SITE_NAME } from "@/lib/seo";
@@ -98,7 +98,10 @@ export default async function NewsArticlePage({
   const { slug } = await params;
   const joined = joinSlug(slug);
   const gid = gidFromSlug(joined);
-  if (!gid) notFound();
+  // Slug doesn't contain a gid — 308 back to the news index so any
+  // crawl equity from the bad path lands on a live page rather than
+  // a 404.
+  if (!gid) permanentRedirect("/news");
 
   // The canonical shape is `/news/{gid}` — clean, shareable, and stable.
   // If the caller used the older encoded-URL form (or anything else that
@@ -109,7 +112,12 @@ export default async function NewsArticlePage({
   }
 
   const article = await fetchItem(gid);
-  if (!article) notFound();
+  // Archive miss — 308 back to /news so we transfer link equity to the
+  // list page rather than serving a hard 404. Most legitimate misses
+  // are stale Google cache entries for articles Steam has rotated off
+  // and we never archived; sending them to /news keeps the entries in
+  // our domain's "alive" set.
+  if (!article) permanentRedirect("/news");
 
   const html = sanitizeSteamNews(article.contents ?? "");
   const date = formatNewsDate(article.date);

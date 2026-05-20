@@ -3,6 +3,7 @@ import OrbDetail from "./OrbDetail";
 import { stripTags, buildLanguageAlternates} from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
+import { redirectMissingEntity } from "@/lib/redirect-helpers";
 
 const API_INTERNAL = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
@@ -36,6 +37,7 @@ export default async function Page({ params }: Props) {
   const { id } = await params;
   let jsonLd = null;
   let orb = null;
+  let apiUnreachable = false;
   try {
     const res = await fetch(`${API_INTERNAL}/api/orbs/${id}`);
     if (res.ok) {
@@ -57,7 +59,10 @@ export default async function Page({ params }: Props) {
       ];
       jsonLd = [...detailJsonLd, buildFAQPageJsonLd(faqQuestions)];
     }
-  } catch {}
+  } catch {
+    apiUnreachable = true;
+  }
+  if (!orb && !apiUnreachable) redirectMissingEntity("orbs", id);
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}

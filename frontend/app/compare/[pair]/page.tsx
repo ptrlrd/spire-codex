@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { permanentRedirect } from "next/navigation";
 import type { Character, Card } from "@/lib/api";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd } from "@/lib/jsonld";
@@ -85,21 +85,11 @@ export default async function Page({ params }: Props) {
   const { pair } = await params;
   const parsed = parsePair(pair);
 
+  // Invalid pair slug → 308 back to /compare. The slug grammar is
+  // strictly `{charA}-vs-{charB}` from a fixed set of five characters,
+  // so anything else is a stale URL we'd rather forward equity from.
   if (!parsed) {
-    return (
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <h1 className="text-3xl font-bold mb-4 text-[var(--accent-gold)]">
-          Comparison Not Found
-        </h1>
-        <p className="text-[var(--text-muted)]">
-          Invalid comparison pair. Please choose a valid character pair from the{" "}
-          <Link href="/compare" className="text-[var(--accent-gold)] underline">
-            comparisons page
-          </Link>
-          .
-        </p>
-      </div>
-    );
+    permanentRedirect("/compare");
   }
 
   const [dataA, dataB] = await Promise.all([

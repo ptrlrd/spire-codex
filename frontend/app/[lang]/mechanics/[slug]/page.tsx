@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
 import { SITE_URL, SITE_NAME } from "@/lib/seo";
+import { redirectMissingEntity } from "@/lib/redirect-helpers";
 import JsonLd from "@/app/components/JsonLd";
 import { buildBreadcrumbJsonLd, buildDetailPageJsonLd } from "@/lib/jsonld";
 import Link from "next/link";
@@ -59,7 +59,7 @@ export default async function LangMechanicDetailPage({
   const { lang, slug } = await params;
   if (!isValidLang(lang)) return null;
   const section = await fetchSection(slug);
-  if (!section) notFound();
+  if (!section) redirectMissingEntity("mechanics", slug, lang);
 
   const jsonLd = [
     buildBreadcrumbJsonLd([

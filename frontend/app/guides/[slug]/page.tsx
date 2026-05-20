@@ -4,6 +4,7 @@ import { SITE_URL, SITE_NAME, stripTags, buildLanguageAlternates} from "@/lib/se
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd } from "@/lib/jsonld";
 import GuideDetail from "./GuideDetail";
+import { redirectMissingEntity } from "@/lib/redirect-helpers";
 
 const API = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
@@ -30,10 +31,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 export default async function GuideDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   let guide: Guide | null = null;
+  let apiUnreachable = false;
   try {
     const res = await fetch(`${API}/api/guides/${slug}`, { next: { revalidate: 300 } });
     if (res.ok) guide = await res.json();
-  } catch {}
+  } catch {
+    apiUnreachable = true;
+  }
+  if (!guide && !apiUnreachable) redirectMissingEntity("guides", slug);
 
   const jsonLd = guide
     ? buildDetailPageJsonLd({

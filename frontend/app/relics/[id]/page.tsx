@@ -3,6 +3,7 @@ import RelicDetail from "./RelicDetail";
 import { stripTags, buildLanguageAlternates} from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
+import { redirectMissingEntity } from "@/lib/redirect-helpers";
 
 // Relic data only changes on deploy. force-static + revalidate
 // keeps Next.js from auto-marking the page dynamic just because we
@@ -46,6 +47,7 @@ export default async function Page({ params }: Props) {
   const { id } = await params;
   let jsonLd = null;
   let relic = null;
+  let apiUnreachable = false;
   try {
     const res = await fetch(`${API_INTERNAL}/api/relics/${id}`, {
       next: { revalidate: 3600 },
@@ -72,7 +74,10 @@ export default async function Page({ params }: Props) {
       ];
       jsonLd = [...detailJsonLd, buildFAQPageJsonLd(faqQuestions)];
     }
-  } catch {}
+  } catch {
+    apiUnreachable = true;
+  }
+  if (!relic && !apiUnreachable) redirectMissingEntity("relics", id);
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}

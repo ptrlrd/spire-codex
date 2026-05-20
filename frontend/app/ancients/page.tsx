@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { buildLanguageAlternates } from "@/lib/seo";
 import AncientsClient from "./AncientsClient";
 
 export const revalidate = 3600;
@@ -7,6 +8,7 @@ export const metadata: Metadata = {
   title: "Ancient Relic Pools - All Ancient Offerings - Slay the Spire 2 (sts2) | Spire Codex",
   description:
     "Complete relic pool data for all 8 Ancients in Slay the Spire 2: Neow, Tezcatara, Pael, Orobas, Darv, Nonupeipe, Tanx, and Vakuu. See every relic they can offer and the conditions.",
+  alternates: { canonical: "/ancients", languages: buildLanguageAlternates("/ancients") },
 };
 
 export default function AncientsPage() {

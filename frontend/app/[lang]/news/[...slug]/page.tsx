@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound, redirect } from "next/navigation";
+import { redirect, permanentRedirect } from "next/navigation";
 import JsonLd from "@/app/components/JsonLd";
 import { buildBreadcrumbJsonLd } from "@/lib/jsonld";
 import { SITE_URL, SITE_NAME } from "@/lib/seo";
@@ -82,7 +82,9 @@ export default async function LangNewsArticlePage({
   if (!isValidLang(lang)) return null;
   const joined = joinSlug(slug);
   const gid = gidFromSlug(joined);
-  if (!gid) notFound();
+  // Slug doesn't contain a gid → 308 back to the locale's news index
+  // so any equity from the stale URL lands on a live page.
+  if (!gid) permanentRedirect(`/${lang}/news`);
 
   // Canonical shape is `/{lang}/news/{gid}`. Older encoded-URL inbound
   // links 308-redirect here.
@@ -91,7 +93,9 @@ export default async function LangNewsArticlePage({
   }
 
   const article = await fetchItem(gid);
-  if (!article) notFound();
+  // Archive miss → 308 to the news index for the same reason
+  // (Steam-rotated articles we never archived, etc.).
+  if (!article) permanentRedirect(`/${lang}/news`);
 
   const html = sanitizeSteamNews(article.contents ?? "");
   const date = formatNewsDate(article.date);

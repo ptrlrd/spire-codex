@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   title: `News - Patch Notes & Announcements - Slay the Spire 2 (sts2) | ${SITE_NAME}`,
   description:
     "Slay the Spire 2 (sts2) patch notes, dev announcements, and press coverage. Track every Mega Crit update plus external articles from PCGamesN, RPS, and more.",
-  alternates: { canonical: `${SITE_URL}/news` },
+  alternates: { canonical: "/news", languages: buildLanguageAlternates("/news") },
   openGraph: {
     title: `News - Patch Notes & Announcements - Slay the Spire 2 (sts2) | ${SITE_NAME}`,
     description:

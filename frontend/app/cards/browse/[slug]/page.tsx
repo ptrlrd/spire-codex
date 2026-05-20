@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { buildLanguageAlternates } from "@/lib/seo";
-import { notFound } from "next/navigation";
+import { permanentRedirect } from "next/navigation";
 import Link from "next/link";
 import type { Card } from "@/lib/api";
 import JsonLd from "@/app/components/JsonLd";
@@ -63,8 +63,11 @@ export default async function BrowsePage({ params }: Props) {
   const { slug } = await params;
   const entry = SLUG_MAP[slug];
 
+  // Unknown browse slug → 308 back to /cards. The slug map is the
+  // exhaustive list of valid filters; anything else is a stale URL
+  // we'd rather forward equity from than 404.
   if (!entry) {
-    notFound();
+    permanentRedirect("/cards");
   }
 
   const cards = await fetchFilteredCards(entry.params);

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { buildLanguageAlternates } from "@/lib/seo";
 import SharedRunClient from "./SharedRunClient";
 
 export const dynamic = "force-dynamic";
@@ -11,7 +12,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { hash } = await params;
   try {
     const res = await fetch(`${API_INTERNAL}/api/runs/shared/${hash}`);
-    if (!res.ok) return { title: "Run Not Found - Slay the Spire 2 (sts2) | Spire Codex" };
+    if (!res.ok) {
+      return {
+        title: "Run Not Found - Slay the Spire 2 (sts2) | Spire Codex",
+        alternates: { canonical: `/runs/${hash}`, languages: buildLanguageAlternates(`/runs/${hash}`) },
+      };
+    }
     const run = await res.json();
     const rawChar = run.players?.[0]?.character?.replace("CHARACTER.", "") || "Unknown";
     // Title-case the enum-style value ("NECROBINDER" → "Necrobinder").
@@ -24,9 +30,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return {
       title: `${username} - ${char} - Ascension ${ascension} ${result} - Slay the Spire 2 (sts2) | Spire Codex`,
       description: `${username}'s ${result === "win" ? "victorious" : result} ${char} run at Ascension ${ascension}. ${run.players?.[0]?.deck?.length || 0} cards, ${run.players?.[0]?.relics?.length || 0} relics.`,
+      alternates: { canonical: `/runs/${hash}`, languages: buildLanguageAlternates(`/runs/${hash}`) },
     };
   } catch {
-    return { title: "Run Viewer - Slay the Spire 2 (sts2) | Spire Codex" };
+    return {
+      title: "Run Viewer - Slay the Spire 2 (sts2) | Spire Codex",
+      alternates: { canonical: `/runs/${hash}`, languages: buildLanguageAlternates(`/runs/${hash}`) },
+    };
   }
 }
 

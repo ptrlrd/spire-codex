@@ -6,6 +6,7 @@ import { buildDetailPageJsonLd } from "@/lib/jsonld";
 import GuideDetail from "@/app/guides/[slug]/GuideDetail";
 import { isValidLang } from "@/lib/languages";
 import { t } from "@/lib/ui-translations";
+import { redirectMissingEntity } from "@/lib/redirect-helpers";
 
 const API = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
@@ -48,10 +49,14 @@ export default async function LangGuideDetailPage({
   const { lang, slug } = await params;
   if (!isValidLang(lang)) return null;
   let guide: Guide | null = null;
+  let apiUnreachable = false;
   try {
     const res = await fetch(`${API}/api/guides/${slug}`, { next: { revalidate: 300 } });
     if (res.ok) guide = await res.json();
-  } catch {}
+  } catch {
+    apiUnreachable = true;
+  }
+  if (!guide && !apiUnreachable) redirectMissingEntity("guides", slug, lang);
 
   const jsonLd = guide
     ? buildDetailPageJsonLd({

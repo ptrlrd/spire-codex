@@ -3,6 +3,7 @@ import KeywordDetail from "./KeywordDetail";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 import { stripTags } from "@/lib/seo";
+import { redirectMissingEntity } from "@/lib/redirect-helpers";
 
 export const dynamic = "force-dynamic";
 
@@ -10,24 +11,53 @@ const API_INTERNAL = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API
 
 type Props = { params: Promise<{ id: string }> };
 
-async function fetchKeywordOrGlossary(id: string) {
+// Shape of the keyword/glossary row returned by the API. Mirrors
+// the `Keyword`/`GlossaryTerm` interfaces in `KeywordDetail.tsx` —
+// the client component is the source of truth, so we type the data
+// payload loosely here and let TS narrow on the consumer side.
+interface KeywordRow {
+  id: string;
+  name: string;
+  description: string;
+}
+interface GlossaryRow extends KeywordRow {
+  category: string;
+}
+
+async function fetchKeywordOrGlossary(
+  id: string,
+): Promise<
+  | { type: "keyword"; data: KeywordRow }
+  | { type: "glossary"; data: GlossaryRow }
+  | { type: "not-found" }
+  | { type: "unreachable" }
+> {
+  let unreachable = false;
   // Try keyword first
   try {
     const res = await fetch(`${API_INTERNAL}/api/keywords/${id}`);
-    if (res.ok) return { type: "keyword" as const, data: await res.json() };
-  } catch {}
+    if (res.ok) return { type: "keyword", data: await res.json() };
+    // Non-2xx (e.g. 404): backend is up but the slug isn't a keyword.
+    // Fall through to glossary check.
+  } catch {
+    unreachable = true;
+  }
   // Fall back to glossary
   try {
     const res = await fetch(`${API_INTERNAL}/api/glossary/${id}`);
-    if (res.ok) return { type: "glossary" as const, data: await res.json() };
-  } catch {}
-  return null;
+    if (res.ok) return { type: "glossary", data: await res.json() };
+  } catch {
+    unreachable = true;
+  }
+  return unreachable ? { type: "unreachable" } : { type: "not-found" };
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params;
   const result = await fetchKeywordOrGlossary(id);
-  if (!result) return { title: "Term Not Found - Slay the Spire 2 (sts2) | Spire Codex" };
+  if (result.type === "not-found" || result.type === "unreachable") {
+    return { title: "Term Not Found - Slay the Spire 2 (sts2) | Spire Codex" };
+  }
 
   const { type, data } = result;
   const desc = stripTags(data.description);
@@ -65,8 +95,13 @@ export default async function Page({ params }: Props) {
   const { id } = await params;
   const result = await fetchKeywordOrGlossary(id);
 
+  // Unknown term → 308 back to the keywords hub. Skip the redirect on
+  // backend-unreachable so we don't 308-storm the hub on outages —
+  // the client-side `KeywordDetail` will retry on mount.
+  if (result.type === "not-found") redirectMissingEntity("keywords", id);
+
   let jsonLd = null;
-  if (result) {
+  if (result.type === "keyword" || result.type === "glossary") {
     const { type, data } = result;
     const desc = stripTags(data.description);
 
@@ -106,10 +141,15 @@ export default async function Page({ params }: Props) {
     }
   }
 
+  // Narrow the result to the shape `KeywordDetail` accepts (it doesn't
+  // know about our internal "not-found" / "unreachable" tags).
+  const initialResult =
+    result.type === "keyword" || result.type === "glossary" ? result : null;
+
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
-      <KeywordDetail initialResult={result} />
+      <KeywordDetail initialResult={initialResult} />
     </>
   );
 }

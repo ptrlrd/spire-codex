@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound } from "next/navigation";
 import JsonLd from "@/app/components/JsonLd";
+import { redirectMissingEntity } from "@/lib/redirect-helpers";
 import RichDescription from "@/app/components/RichDescription";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 import { stripTags } from "@/lib/seo";
@@ -82,7 +82,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function BadgePage({ params }: Props) {
   const { id } = await params;
   const badge = await fetchBadge(id);
-  if (!badge) notFound();
+  // Unknown badge ID → 308 back to the badges hub so search engines
+  // forward link equity to the parent page instead of dumping it on a
+  // 404. `fetchBadge` already returns null on both unreachable-backend
+  // *and* 404 responses, but a hot list page is a better landing for
+  // either case than a dead end.
+  if (!badge) redirectMissingEntity("badges", id);
 
   const desc = stripTags(badge.description);
   const detailJsonLd = buildDetailPageJsonLd({

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
 import { SITE_URL, SITE_NAME, buildLanguageAlternates} from "@/lib/seo";
+import { redirectMissingEntity } from "@/lib/redirect-helpers";
 import JsonLd from "@/app/components/JsonLd";
 import { buildBreadcrumbJsonLd, buildDetailPageJsonLd } from "@/lib/jsonld";
 import Link from "next/link";
@@ -58,7 +58,7 @@ export default async function MechanicDetailPage({
 }) {
   const { slug } = await params;
   const section = await fetchSection(slug);
-  if (!section) notFound();
+  if (!section) redirectMissingEntity("mechanics", slug);
 
   const jsonLd = [
     buildBreadcrumbJsonLd([

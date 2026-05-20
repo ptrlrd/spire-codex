@@ -3,6 +3,7 @@ import CardDetail from "./CardDetail";
 import { stripTags, stripTagsFlat, buildLanguageAlternates} from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
+import { redirectMissingEntity } from "@/lib/redirect-helpers";
 
 // 1h on-demand ISR. force-static + revalidate forces Next.js to
 // cache even with async-params pages — without it, Next 15+ sees
@@ -52,6 +53,7 @@ export default async function Page({ params }: Props) {
   const { id } = await params;
   let jsonLd = null;
   let card = null;
+  let apiUnreachable = false;
   try {
     const res = await fetch(`${API_INTERNAL}/api/cards/${id}`, {
       next: { revalidate: 3600 },
@@ -82,7 +84,16 @@ export default async function Page({ params }: Props) {
       }
       jsonLd = [...detailJsonLd, buildFAQPageJsonLd(faqQuestions)];
     }
-  } catch {}
+  } catch {
+    // Network / DNS / backend-down. Don't redirect blindly here — if
+    // the backend is offline we'd send every detail page request into
+    // a 308 storm at the hub. Fall through to render the client
+    // component, which has its own retry-on-mount + Not Found UI.
+    apiUnreachable = true;
+  }
+  // 308 unknown IDs to the cards list so search engines transfer
+  // link equity and humans land on something useful.
+  if (!card && !apiUnreachable) redirectMissingEntity("cards", id);
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}

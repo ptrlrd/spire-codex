@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { buildLanguageAlternates } from "@/lib/seo";
 import ModifiersClient from "./ModifiersClient";
 
 // Pure client component, no fetches — pre-rendered at build time and
@@ -8,6 +9,7 @@ export const metadata: Metadata = {
   title: "Custom Mode Modifiers - All Modifiers - Slay the Spire 2 (sts2) | Spire Codex",
   description:
     "All 16 custom mode modifiers in Slay the Spire 2. See effects, deck replacement rules, Neow interactions, and gameplay impacts for Draft, Sealed Deck, Insanity, and more.",
+  alternates: { canonical: "/modifiers", languages: buildLanguageAlternates("/modifiers") },
 };
 
 export default function ModifiersPage() {
