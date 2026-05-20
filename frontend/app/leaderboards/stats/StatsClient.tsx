@@ -261,6 +261,12 @@ export default function StatsClient() {
   const [character, setCharacter] = useState("");
   const [winFilter, setWinFilter] = useState("");
   const [ascension, setAscension] = useState("");
+  // Single-player vs multiplayer vs all. Empty string = all (default —
+  // stats include both pools). Matches the backend `?players=` filter
+  // on /api/runs/stats. Multiplayer runs are stored as one document
+  // per player (player_count > 1), so leaving the filter off gives
+  // the full population.
+  const [players, setPlayers] = useState<"" | "single" | "multi">("");
 
   // Tabs
   const [tab, setTab] = useState<TopTab>("overview");
@@ -341,12 +347,13 @@ export default function StatsClient() {
     if (character) params.set("character", character);
     if (winFilter) params.set("win", winFilter);
     if (ascension) params.set("ascension", ascension);
+    if (players) params.set("players", players);
     setLoading(true);
     fetch(`${API}/api/runs/stats?${params}`)
       .then((r) => (r.ok ? r.json() : null))
       .then((d) => setStats(d))
       .finally(() => setLoading(false));
-  }, [character, winFilter, ascension]);
+  }, [character, winFilter, ascension, players]);
 
   const imgBaseFor = (id: string) => (betaIds.has(id) ? BETA_API : API);
 
@@ -539,6 +546,34 @@ export default function StatsClient() {
         </Link>{" "}
         to contribute.
       </p>
+
+      {/* Player-mode toggle — visually identical to LeaderboardBrowseClient's
+          mode pills (same wrapper, padding, colors) so the two pages
+          read as one design language. "All" is the default here
+          because aggregate stats are most useful when not artificially
+          narrowed; leaderboards default to "single" because rankings
+          across SP/MP pools aren't comparable. */}
+      <div className="flex flex-wrap items-center gap-3 mb-6">
+        <div className="inline-flex gap-1 p-1 rounded-lg bg-[var(--bg-card)] border border-[var(--border-subtle)]">
+          {([
+            { value: "" as const, label: t("All", lang) },
+            { value: "single" as const, label: t("Single Player", lang) },
+            { value: "multi" as const, label: t("Multiplayer", lang) },
+          ]).map(({ value, label }) => (
+            <button
+              key={value || "all"}
+              onClick={() => setPlayers(value)}
+              className={`px-4 py-1.5 text-sm font-medium rounded transition-colors ${
+                players === value
+                  ? "bg-[var(--accent-gold)] text-[var(--bg-primary)]"
+                  : "text-[var(--text-muted)] hover:text-[var(--text-primary)]"
+              }`}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
+      </div>
 
       {/* Global filter bar */}
       <div className="flex flex-wrap gap-2 mb-5">

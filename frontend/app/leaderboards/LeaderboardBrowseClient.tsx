@@ -75,7 +75,7 @@ interface BrowseRun {
 }
 
 type Tab = "fastest" | "highest_ascension" | "browse";
-type Mode = "single" | "multi";
+type Mode = "" | "single" | "multi";
 // `gameMode` mirrors the backend `game_mode` column. Empty string = no
 // filter (all modes). Default is "standard" since custom-seed and daily
 // runs aren't time-comparable to the canonical ladder.
@@ -87,7 +87,9 @@ function tabFromParam(value: string | null): Tab {
 }
 
 function modeFromParam(value: string | null): Mode {
-  return value === "multi" ? "multi" : "single";
+  if (value === "multi") return "multi";
+  if (value === "all" || value === "") return "";
+  return "single";
 }
 
 function gameModeFromParam(value: string | null): GameMode {
@@ -170,7 +172,7 @@ export default function LeaderboardBrowseClient() {
     setLbLoading(true);
     const params = new URLSearchParams();
     params.set("category", tab);
-    params.set("players", mode);
+    if (mode) params.set("players", mode);
     if (gameMode) params.set("game_mode", gameMode);
     if (lbChar) params.set("character", lbChar);
     params.set("page", String(lbPage));
@@ -202,7 +204,7 @@ export default function LeaderboardBrowseClient() {
   useEffect(() => {
     if (tab !== "browse") return;
     const params = new URLSearchParams();
-    params.set("players", mode);
+    if (mode) params.set("players", mode);
     if (gameMode) params.set("game_mode", gameMode);
     if (browseChar) params.set("character", browseChar);
     if (browseWin) params.set("win", browseWin);
@@ -240,17 +242,21 @@ export default function LeaderboardBrowseClient() {
           read from disjoint pools. */}
       <div className="flex flex-wrap items-center gap-3 mb-6">
         <div className="inline-flex gap-1 p-1 rounded-lg bg-[var(--bg-card)] border border-[var(--border-subtle)]">
-          {(["single", "multi"] as Mode[]).map((m) => (
+          {([
+            { value: "" as Mode, label: t("All", lang) },
+            { value: "single" as Mode, label: t("Single Player", lang) },
+            { value: "multi" as Mode, label: t("Multiplayer", lang) },
+          ]).map(({ value, label }) => (
             <button
-              key={m}
-              onClick={() => setMode(m)}
+              key={value || "all"}
+              onClick={() => setMode(value)}
               className={`px-4 py-1.5 text-sm font-medium rounded transition-colors ${
-                mode === m
+                mode === value
                   ? "bg-[var(--accent-gold)] text-[var(--bg-primary)]"
                   : "text-[var(--text-muted)] hover:text-[var(--text-primary)]"
               }`}
             >
-              {m === "single" ? t("Single Player", lang) : t("Multiplayer", lang)}
+              {label}
             </button>
           ))}
         </div>
