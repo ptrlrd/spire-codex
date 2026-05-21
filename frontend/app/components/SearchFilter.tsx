@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import { useLanguage } from "@/app/contexts/LanguageContext";
 import { t } from "@/lib/ui-translations";
 
@@ -42,13 +43,34 @@ export default function SearchFilter({
   extra,
 }: SearchFilterProps) {
   const { lang } = useLanguage();
+
+  // Decouple input value from upstream `search` state so each keystroke
+  // doesn't re-trigger the parent's URL update + API fetch (which caused
+  // the typing flicker on /cards, /relics, /potions, etc. — issue #274).
+  // Local `draft` advances immediately; `onSearchChange` fires 200ms after
+  // typing stabilizes. External `search` prop changes (e.g. URL → state
+  // sync on mount, or a clear-filter button) flow back into the draft.
+  const [draft, setDraft] = useState(search);
+  const onSearchChangeRef = useRef(onSearchChange);
+  useEffect(() => {
+    onSearchChangeRef.current = onSearchChange;
+  });
+  useEffect(() => {
+    setDraft(search);
+  }, [search]);
+  useEffect(() => {
+    if (draft === search) return;
+    const timer = setTimeout(() => onSearchChangeRef.current(draft), 200);
+    return () => clearTimeout(timer);
+  }, [draft, search]);
+
   return (
     <div className="flex flex-wrap gap-2 items-center mb-6">
       <div className="relative flex-1 min-w-[140px]">
         <input
           type="text"
-          value={search}
-          onChange={(e) => onSearchChange(e.target.value)}
+          value={draft}
+          onChange={(e) => setDraft(e.target.value)}
           placeholder={placeholder}
           className="w-full px-4 py-2.5 bg-[var(--bg-card)] border border-[var(--border-subtle)] rounded-lg text-[var(--text-primary)] placeholder-[var(--text-muted)] focus:outline-none focus:border-[var(--accent-gold)]/50 transition-colors text-sm"
         />
