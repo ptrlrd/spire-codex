@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import ActDetail from "./ActDetail";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd } from "@/lib/jsonld";
-import { stripTags, buildLanguageAlternates} from "@/lib/seo";
+import { stripTags, clipMetaDescription, buildLanguageAlternates, DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/seo";
 
 export const dynamic = "force-static";
 export const revalidate = 3600;
@@ -20,12 +20,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     if (!res.ok) return { title: "Act Not Found - Slay the Spire 2 (sts2) | Spire Codex" };
     const act = await res.json();
     const title = `Act - ${act.name} - Slay the Spire 2 (sts2) | Spire Codex`;
-    const desc = `${act.name} in Slay the Spire 2: ${act.num_rooms || "?"} rooms, ${act.bosses.length} bosses, ${act.encounters.length} encounters, ${act.events.length} events.`;
+    const desc = clipMetaDescription(
+      `Slay the Spire 2 act — ${act.name}. ${act.num_rooms || "?"} rooms, ${act.bosses.length} bosses, ${act.encounters.length} encounters, ${act.events.length} events.`,
+    );
     return {
       title,
       description: desc,
-      openGraph: { title, description: desc },
-      twitter: { card: "summary_large_image" },
+      openGraph: {
+        type: "article",
+        siteName: SITE_NAME,
+        url: `${SITE_URL}/acts/${id}`,
+        title,
+        description: desc,
+        images: [{ url: DEFAULT_OG_IMAGE }],
+      },
+      twitter: { card: "summary_large_image", title, description: desc },
       alternates: { canonical: `/acts/${id}`, languages: buildLanguageAlternates(`/acts/${id}`) },
     };
   } catch {

@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import JsonLd from "@/app/components/JsonLd";
 import RichDescription from "@/app/components/RichDescription";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
-import { stripTags } from "@/lib/seo";
+import { stripTags, stripTagsFlat, clipMetaDescription, buildLanguageAlternates, SITE_NAME, SITE_URL } from "@/lib/seo";
 import type { Badge } from "@/lib/api";
 
 export const dynamic = "force-dynamic";
@@ -60,22 +60,27 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const badge = await fetchBadge(id);
   if (!badge) return { title: "Badge Not Found - Slay the Spire 2 (sts2) | Spire Codex" };
 
-  const desc = stripTags(badge.description);
+  const desc = stripTagsFlat(badge.description);
   const subtype = badge.tiered ? "Tiered" : "Badge";
   const title = `Badge - ${badge.name} - ${subtype} - Slay the Spire 2 (sts2) | Spire Codex`;
-  const metaDesc = `${badge.name} run-end badge in Slay the Spire 2: ${desc}`;
+  const metaDesc = clipMetaDescription(
+    `Slay the Spire 2 ${subtype.toLowerCase()} run-end badge — ${badge.name}${desc ? `: ${desc}` : ""}`,
+  );
   return {
     title,
     description: metaDesc,
     openGraph: {
+      type: "article",
+      siteName: SITE_NAME,
+      url: `${SITE_URL}/badges/${id}`,
       title,
       description: metaDesc,
       images: badge.image_url
         ? [{ url: `${ABSOLUTE_BASE}${badge.image_url}` }]
         : [],
     },
-    twitter: { card: "summary_large_image" },
-    alternates: { canonical: `/badges/${id}` },
+    twitter: { card: "summary_large_image", title, description: metaDesc },
+    alternates: { canonical: `/badges/${id}`, languages: buildLanguageAlternates(`/badges/${id}`) },
   };
 }
 

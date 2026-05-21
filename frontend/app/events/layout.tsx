@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { buildLanguageAlternates } from "@/lib/seo";
+import { buildLanguageAlternates, DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/seo";
 import { api } from "@/lib/api";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -10,13 +10,20 @@ export async function generateMetadata(): Promise<Metadata> {
   } catch {
     // Fall back to the baseline count if the API is unreachable at build time.
   }
+  const title = "Events - All In-Game Events - Slay the Spire 2 (sts2) | Spire Codex";
+  const ogDesc = `Slay the Spire 2 (sts2) events — browse all ${count} shrine events, Ancient encounters, and story events with choices, dialogue, and outcomes.`;
   return {
-    title: "Events - All In-Game Events - Slay the Spire 2 (sts2) | Spire Codex",
-    description: `Slay the Spire 2 (sts2) events — browse all ${count} shrine events, Ancient encounters, and story events. View choices, dialogue, relic offerings, and outcomes for every event.`,
+    title,
+    description: `All ${count} Slay the Spire 2 (sts2) events — shrines, Ancients, and story beats. Choices, dialogue, relic offerings, and every outcome path.`,
     openGraph: {
-      title: "Events - All In-Game Events - Slay the Spire 2 (sts2) | Spire Codex",
-      description: `Slay the Spire 2 (sts2) events — browse all ${count} shrine events, Ancient encounters, and story events with choices, dialogue, and outcomes.`,
+      type: "website",
+      siteName: SITE_NAME,
+      url: `${SITE_URL}/events`,
+      title,
+      description: ogDesc,
+      images: [{ url: DEFAULT_OG_IMAGE }],
     },
+    twitter: { card: "summary_large_image", title, description: ogDesc },
     alternates: { canonical: "/events", languages: buildLanguageAlternates("/events") },
   };
 }

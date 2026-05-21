@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import PotionDetail from "./PotionDetail";
-import { stripTags, buildLanguageAlternates} from "@/lib/seo";
+import { stripTags, stripTagsFlat, clipMetaDescription, buildLanguageAlternates, SITE_NAME, SITE_URL } from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 
@@ -15,18 +15,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const res = await fetch(`${API_INTERNAL}/api/potions/${id}`);
     if (!res.ok) return { title: "Potion Not Found - Slay the Spire 2 (sts2) | Spire Codex" };
     const potion = await res.json();
-    const desc = stripTags(potion.description || "");
+    const desc = stripTagsFlat(potion.description || "");
     const title = `Potion - ${potion.name} - ${potion.rarity} - Slay the Spire 2 (sts2) | Spire Codex`;
-    const metaDesc = `${potion.name} is a ${potion.rarity} potion in Slay the Spire 2: ${desc}`;
+    const metaDesc = clipMetaDescription(
+      `Slay the Spire 2 ${potion.rarity} potion — ${potion.name}${desc ? `: ${desc}` : ""}`,
+    );
     return {
       title,
       description: metaDesc,
       openGraph: {
+        type: "article",
+        siteName: SITE_NAME,
+        url: `${SITE_URL}/potions/${id}`,
         title,
         description: metaDesc,
         images: potion.image_url ? [{ url: `${API_PUBLIC}${potion.image_url}` }] : [],
       },
-      twitter: { card: "summary_large_image" },
+      twitter: { card: "summary_large_image", title, description: metaDesc },
       alternates: { canonical: `/potions/${id}`, languages: buildLanguageAlternates(`/potions/${id}`) },
     };
   } catch {

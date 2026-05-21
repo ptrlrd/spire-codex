@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import ActDetail from "@/app/acts/[id]/ActDetail";
-import { SITE_URL } from "@/lib/seo";
+import { clipMetaDescription, DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd } from "@/lib/jsonld";
 import { isValidLang, LANG_HREFLANG, LANG_NAMES, LANG_GAME_NAME, SUPPORTED_LANGS, type LangCode } from "@/lib/languages";
@@ -21,13 +21,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const langCode = lang as LangCode;
     const gameName = LANG_GAME_NAME[langCode];
     const title = `${gameName} ${act.name} - Act Guide | Spire Codex (${LANG_NAMES[langCode]})`;
-    const desc = `${act.name} in ${gameName}: ${act.num_rooms || "?"} rooms, ${act.bosses.length} bosses, ${act.encounters.length} encounters.`;
+    const desc = clipMetaDescription(
+      `${gameName} act — ${act.name}. ${act.num_rooms || "?"} rooms, ${act.bosses.length} bosses, ${act.encounters.length} encounters.`,
+    );
     const languages: Record<string, string> = { "en": `${SITE_URL}/acts/${id}`, "x-default": `${SITE_URL}/acts/${id}` };
     for (const code of SUPPORTED_LANGS) languages[LANG_HREFLANG[code]] = `${SITE_URL}/${code}/acts/${id}`;
     return {
       title, description: desc,
-      openGraph: { title, description: desc, locale: LANG_HREFLANG[langCode] },
-      twitter: { card: "summary_large_image" },
+      openGraph: {
+        type: "article",
+        siteName: SITE_NAME,
+        url: `${SITE_URL}/${lang}/acts/${id}`,
+        title,
+        description: desc,
+        locale: LANG_HREFLANG[langCode],
+        images: [{ url: DEFAULT_OG_IMAGE }],
+      },
+      twitter: { card: "summary_large_image", title, description: desc },
       alternates: { canonical: `/${lang}/acts/${id}`, languages },
     };
   } catch {
@@ -38,6 +48,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function Page({ params }: Props) {
   const { lang, id } = await params;
   if (!isValidLang(lang)) return null;
+  const langCode = lang as LangCode;
   let jsonLd = null;
   let act = null;
   try {
@@ -54,6 +65,7 @@ export default async function Page({ params }: Props) {
           { name: "Reference", href: `/${lang}/reference` },
           { name: act.name, href: `/${lang}/acts/${id}` },
         ],
+        inLanguage: LANG_HREFLANG[langCode],
       });
     }
   } catch {}

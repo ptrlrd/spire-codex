@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import EventDetail from "./EventDetail";
-import { stripTags } from "@/lib/seo";
+import { stripTags, stripTagsFlat, clipMetaDescription, buildLanguageAlternates, SITE_NAME, SITE_URL } from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 
@@ -15,19 +15,24 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const res = await fetch(`${API_INTERNAL}/api/events/${id}`);
     if (!res.ok) return { title: "Event Not Found - Slay the Spire 2 (sts2) | Spire Codex" };
     const event = await res.json();
-    const desc = stripTags(event.description || "");
+    const desc = stripTagsFlat(event.description || "");
     const title = `Event - ${event.name} - ${event.type} - Slay the Spire 2 (sts2) | Spire Codex`;
-    const metaDesc = `${event.name} is a ${event.type} event in Slay the Spire 2${event.act ? ` (${event.act})` : ""}: ${desc}`;
+    const metaDesc = clipMetaDescription(
+      `Slay the Spire 2 ${event.type} event — ${event.name}${event.act ? ` (${event.act})` : ""}${desc ? `: ${desc}` : ""}`,
+    );
     return {
       title,
       description: metaDesc,
       openGraph: {
+        type: "article",
+        siteName: SITE_NAME,
+        url: `${SITE_URL}/events/${id}`,
         title,
         description: metaDesc,
         images: event.image_url ? [{ url: `${API_PUBLIC}${event.image_url}` }] : [],
       },
-      twitter: { card: "summary_large_image" },
-      alternates: { canonical: `/events/${id}` },
+      twitter: { card: "summary_large_image", title, description: metaDesc },
+      alternates: { canonical: `/events/${id}`, languages: buildLanguageAlternates(`/events/${id}`) },
     };
   } catch {
     return { title: "Database - Slay the Spire 2 (sts2) | Spire Codex" };

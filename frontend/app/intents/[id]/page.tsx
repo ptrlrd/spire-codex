@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import IntentDetail from "./IntentDetail";
-import { stripTags } from "@/lib/seo";
+import { stripTags, stripTagsFlat, clipMetaDescription, buildLanguageAlternates, DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 
@@ -14,18 +14,24 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const res = await fetch(`${API_INTERNAL}/api/intents/${id}`);
     if (!res.ok) return { title: "Intent Not Found - Slay the Spire 2 (sts2) | Spire Codex" };
     const intent = await res.json();
-    const desc = stripTags(intent.description || "");
+    const desc = stripTagsFlat(intent.description || "");
     const title = `Intent - ${intent.name} - Slay the Spire 2 (sts2) | Spire Codex`;
-    const metaDesc = `${intent.name} is a monster intent in Slay the Spire 2: ${desc}`;
+    const metaDesc = clipMetaDescription(
+      `Slay the Spire 2 monster intent — ${intent.name}${desc ? `: ${desc}` : ""}`,
+    );
     return {
       title,
       description: metaDesc,
       openGraph: {
+        type: "article",
+        siteName: SITE_NAME,
+        url: `${SITE_URL}/intents/${id}`,
         title,
         description: metaDesc,
+        images: [{ url: DEFAULT_OG_IMAGE }],
       },
-      twitter: { card: "summary_large_image" },
-      alternates: { canonical: `/intents/${id}` },
+      twitter: { card: "summary_large_image", title, description: metaDesc },
+      alternates: { canonical: `/intents/${id}`, languages: buildLanguageAlternates(`/intents/${id}`) },
     };
   } catch {
     return { title: "Database - Slay the Spire 2 (sts2) | Spire Codex" };

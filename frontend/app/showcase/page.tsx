@@ -1,5 +1,7 @@
 import { promises as fs } from "fs";
 import path from "path";
+import JsonLd from "@/app/components/JsonLd";
+import { buildBreadcrumbJsonLd, buildCollectionPageJsonLd } from "@/lib/jsonld";
 
 export const dynamic = "force-dynamic";
 
@@ -41,8 +43,26 @@ async function getShowcaseData(): Promise<ShowcaseProject[]> {
 export default async function ShowcasePage() {
   const projects = await getShowcaseData();
 
+  const jsonLd = [
+    buildBreadcrumbJsonLd([
+      { name: "Home", href: "/" },
+      { name: "Showcase", href: "/showcase" },
+    ]),
+    buildCollectionPageJsonLd({
+      name: "Spire Codex Community Showcase",
+      description:
+        "Projects and tools built with the Spire Codex API — bots, widgets, apps, and content for the Slay the Spire 2 community.",
+      path: "/showcase",
+      // Project URLs are external (Discord, GitHub, third-party hosts),
+      // so we don't pass them as ItemList entries — the schema's
+      // ListItem URLs are auto-prefixed with SITE_URL. The
+      // CollectionPage shell is still valuable on its own.
+    }),
+  ];
+
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <JsonLd data={jsonLd} />
       <h1 className="text-3xl font-bold text-[var(--text-primary)] mb-2">
         Community Showcase
       </h1>

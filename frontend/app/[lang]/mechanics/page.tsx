@@ -10,7 +10,7 @@ import {
   SUPPORTED_LANGS,
   type LangCode,
 } from "@/lib/languages";
-import { SITE_URL, SITE_NAME } from "@/lib/seo";
+import { SITE_URL, SITE_NAME, DEFAULT_OG_IMAGE } from "@/lib/seo";
 import { t } from "@/lib/ui-translations";
 import type { MechanicSectionMeta } from "@/app/mechanics/page";
 
@@ -56,7 +56,16 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   return {
     title,
     description,
-    openGraph: { title, description, url: `${SITE_URL}/${lang}/${CATEGORY}`, siteName: SITE_NAME, type: "website", locale: LANG_HREFLANG[langCode] },
+    openGraph: {
+      title,
+      description,
+      url: `${SITE_URL}/${lang}/${CATEGORY}`,
+      siteName: SITE_NAME,
+      type: "website",
+      locale: LANG_HREFLANG[langCode],
+      images: [{ url: DEFAULT_OG_IMAGE }],
+    },
+    twitter: { card: "summary_large_image", title, description },
     alternates: { canonical: `${SITE_URL}/${lang}/${CATEGORY}`, languages },
   };
 }
@@ -64,6 +73,8 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 export default async function LangMechanicsPage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
   if (!isValidLang(lang)) return null;
+
+  const langCode = lang as LangCode;
 
   const sections = await fetchSections();
   const mechanics = sections.filter((s) => s.category === "mechanics");
@@ -79,6 +90,7 @@ export default async function LangMechanicsPage({ params }: { params: Promise<{ 
       description: t("mechanics_tagline", lang),
       path: `/${lang}/${CATEGORY}`,
       items: sections.map((s) => ({ name: s.title, path: `/${lang}/${CATEGORY}/${s.slug}` })),
+      inLanguage: LANG_HREFLANG[langCode],
     }),
   ];
 

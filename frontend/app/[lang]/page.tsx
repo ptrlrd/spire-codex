@@ -11,7 +11,7 @@ import JsonLd from "@/app/components/JsonLd";
 import SearchTrigger from "@/app/components/SearchTrigger";
 import { buildWebSiteJsonLd, buildVideoGameJsonLd } from "@/lib/jsonld";
 import { t } from "@/lib/ui-translations";
-import { SITE_URL, IS_BETA } from "@/lib/seo";
+import { SITE_URL, SITE_NAME, IS_BETA, HOME_OG_IMAGE } from "@/lib/seo";
 import {
   isValidLang,
   LANG_GAME_NAME,
@@ -52,7 +52,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   const nativeName = LANG_NAMES[langCode];
 
   const title = `Spire Codex - ${gameName} ${dbWord} (${nativeName})`;
-  const description = `${gameName} ${dbWord} — Spire Codex. ${nativeName}.`;
+  const description = `${gameName} ${dbWord} (${nativeName}) — Spire Codex. Browse cards, relics, characters, monsters, potions, events, and powers.`;
 
   const languages: Record<string, string> = {
     "en": `${SITE_URL}/`,
@@ -62,11 +62,28 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     languages[LANG_HREFLANG[code]] = `${SITE_URL}/${code}`;
   }
 
+  // Mirror `/page.tsx`: localized landing pages also use the bare-logo
+  // OG asset rather than the branded composition that detail/list
+  // pages inherit from layout.tsx.
+  const homeOgImage = { url: HOME_OG_IMAGE, width: 2006, height: 2251 };
+
   return {
     title,
     description,
-    openGraph: { title, description, locale: LANG_HREFLANG[langCode] },
-    twitter: { card: "summary_large_image", title, description },
+    openGraph: {
+      type: "website",
+      siteName: SITE_NAME,
+      title,
+      description,
+      locale: LANG_HREFLANG[langCode],
+      images: [homeOgImage],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [HOME_OG_IMAGE],
+    },
     alternates: { canonical: `/${lang}`, languages },
   };
 }

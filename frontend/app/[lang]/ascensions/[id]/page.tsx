@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import AscensionDetail from "@/app/ascensions/[id]/AscensionDetail";
-import { stripTags, SITE_URL } from "@/lib/seo";
+import { stripTags, stripTagsFlat, clipMetaDescription, DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 import { isValidLang, LANG_HREFLANG, LANG_NAMES, LANG_GAME_NAME, SUPPORTED_LANGS, type LangCode } from "@/lib/languages";
@@ -18,16 +18,28 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const res = await fetch(`${API_INTERNAL}/api/ascensions/${id}?lang=${lang}`);
     if (!res.ok) return { title: "Ascension Not Found - Slay the Spire 2 (sts2) | Spire Codex" };
     const asc = await res.json();
-    const desc = stripTags(asc.description);
+    const desc = stripTagsFlat(asc.description);
     const langCode = lang as LangCode;
     const gameName = LANG_GAME_NAME[langCode];
     const title = `${gameName} Ascension ${asc.level}: ${asc.name} | Spire Codex (${LANG_NAMES[langCode]})`;
+    const description = clipMetaDescription(
+      `${gameName} Ascension ${asc.level} — ${asc.name}${desc ? `: ${desc}` : ""}`,
+    );
     const languages: Record<string, string> = { "en": `${SITE_URL}/ascensions/${id}`, "x-default": `${SITE_URL}/ascensions/${id}` };
     for (const code of SUPPORTED_LANGS) languages[LANG_HREFLANG[code]] = `${SITE_URL}/${code}/ascensions/${id}`;
     return {
-      title, description: `Ascension ${asc.level} (${asc.name}) in ${gameName}: ${desc}`,
-      openGraph: { title, description: `Ascension ${asc.level}: ${desc}`, locale: LANG_HREFLANG[langCode] },
-      twitter: { card: "summary_large_image" },
+      title,
+      description,
+      openGraph: {
+        type: "article",
+        siteName: SITE_NAME,
+        url: `${SITE_URL}/${lang}/ascensions/${id}`,
+        title,
+        description,
+        locale: LANG_HREFLANG[langCode],
+        images: [{ url: DEFAULT_OG_IMAGE }],
+      },
+      twitter: { card: "summary_large_image", title, description },
       alternates: { canonical: `/${lang}/ascensions/${id}`, languages },
     };
   } catch {
@@ -57,6 +69,7 @@ export default async function Page({ params }: Props) {
           { name: "Reference", href: `/${lang}/reference` },
           { name: `Ascension ${asc.level}`, href: `/${lang}/ascensions/${id}` },
         ],
+        inLanguage: LANG_HREFLANG[langCode],
       });
       const faqJsonLd = buildFAQPageJsonLd([
         { question: `What does Ascension ${asc.level} do in ${gameName}?`, answer: desc },

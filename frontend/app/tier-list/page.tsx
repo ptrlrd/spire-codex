@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { SITE_URL, SITE_NAME, buildLanguageAlternates} from "@/lib/seo";
+import { SITE_URL, SITE_NAME, DEFAULT_OG_IMAGE, buildLanguageAlternates } from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
-import { buildBreadcrumbJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
+import { buildBreadcrumbJsonLd, buildCollectionPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 import ScoreBadge from "@/app/components/ScoreBadge";
 
 const API_INTERNAL = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
@@ -27,6 +27,12 @@ export const metadata: Metadata = {
     url: `${SITE_URL}/tier-list`,
     siteName: SITE_NAME,
     type: "website",
+    images: [{ url: DEFAULT_OG_IMAGE }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `Tier List - Slay the Spire 2 (sts2) | ${SITE_NAME}`,
+    description: "Every Slay the Spire 2 card, relic, and potion ranked S → F based on community win-rate data.",
   },
 };
 
@@ -164,6 +170,13 @@ export default async function TierListIndex() {
       { name: "Home", href: "/" },
       { name: "Tier List", href: "/tier-list" },
     ]),
+    buildCollectionPageJsonLd({
+      name: "Slay the Spire 2 Tier List",
+      description:
+        "Every card, relic, and potion in Slay the Spire 2 ranked S through F using community win-rate data.",
+      path: "/tier-list",
+      items: SECTIONS.map((s) => ({ name: s.label, path: s.href })),
+    }),
     buildFAQPageJsonLd(faqs),
   ];
 

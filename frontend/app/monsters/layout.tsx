@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { buildLanguageAlternates } from "@/lib/seo";
+import { buildLanguageAlternates, DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/seo";
 import { api } from "@/lib/api";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -10,13 +10,20 @@ export async function generateMetadata(): Promise<Metadata> {
   } catch {
     // Fall back to the baseline count if the API is unreachable at build time.
   }
+  const title = "Monsters - Complete Monster List - Slay the Spire 2 (sts2) | Spire Codex";
+  const ogDesc = `Slay the Spire 2 (sts2) monsters — browse all ${count} normals, elites, and bosses. View HP, moves, and ascension scaling.`;
   return {
-    title: "Monsters - Complete Monster List - Slay the Spire 2 (sts2) | Spire Codex",
-    description: `Slay the Spire 2 (sts2) monsters — browse all ${count} normals, elites, and bosses. View HP values, moves, damage stats, and ascension scaling.`,
+    title,
+    description: `All ${count} Slay the Spire 2 (sts2) monsters — normals, elites, and bosses. HP ranges, attack patterns, innate powers, and ascension scaling.`,
     openGraph: {
-      title: "Monsters - Complete Monster List - Slay the Spire 2 (sts2) | Spire Codex",
-      description: `Slay the Spire 2 (sts2) monsters — browse all ${count} normals, elites, and bosses. View HP, moves, and ascension scaling.`,
+      type: "website",
+      siteName: SITE_NAME,
+      url: `${SITE_URL}/monsters`,
+      title,
+      description: ogDesc,
+      images: [{ url: DEFAULT_OG_IMAGE }],
     },
+    twitter: { card: "summary_large_image", title, description: ogDesc },
     alternates: { canonical: "/monsters", languages: buildLanguageAlternates("/monsters") },
   };
 }

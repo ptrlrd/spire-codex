@@ -1,7 +1,7 @@
 import Link from "next/link";
 import JsonLd from "@/app/components/JsonLd";
 import RichDescription from "@/app/components/RichDescription";
-import { buildCollectionPageJsonLd } from "@/lib/jsonld";
+import { buildBreadcrumbJsonLd, buildCollectionPageJsonLd } from "@/lib/jsonld";
 
 // force-dynamic so the page SSRs at runtime instead of getting baked
 // into the Docker image at build time. The build container has no

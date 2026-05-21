@@ -1,14 +1,22 @@
 import type { Metadata } from "next";
+import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/seo";
+
+const title = "Cards - Browse by Category - Slay the Spire 2 (sts2) | Spire Codex";
+const ogDesc = "Browse Slay the Spire 2 cards by type, rarity, character, and keyword.";
 
 export const metadata: Metadata = {
-  title: "Cards - Browse by Category - Slay the Spire 2 (sts2) | Spire Codex",
+  title,
   description:
-    "Browse Slay the Spire 2 cards by type, rarity, character, and keyword. Find all Attack, Skill, and Power cards across Ironclad, Silent, Defect, Necrobinder, and Regent.",
+    "Filtered card collections for Slay the Spire 2 (sts2) — 41 curated lists by type, rarity, character, and keyword (Attack, Skill, Power, Rare, Ironclad, more).",
   openGraph: {
-    title: "Cards - Browse by Category - Slay the Spire 2 (sts2) | Spire Codex",
-    description:
-      "Browse Slay the Spire 2 cards by type, rarity, character, and keyword.",
+    type: "website",
+    siteName: SITE_NAME,
+    url: `${SITE_URL}/cards/browse`,
+    title,
+    description: ogDesc,
+    images: [{ url: DEFAULT_OG_IMAGE }],
   },
+  twitter: { card: "summary_large_image", title, description: ogDesc },
   alternates: {
     canonical: "/cards/browse",
   },

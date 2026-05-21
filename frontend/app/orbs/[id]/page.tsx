@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import OrbDetail from "./OrbDetail";
-import { stripTags, buildLanguageAlternates} from "@/lib/seo";
+import { stripTags, stripTagsFlat, clipMetaDescription, buildLanguageAlternates, DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 
@@ -14,17 +14,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const res = await fetch(`${API_INTERNAL}/api/orbs/${id}`);
     if (!res.ok) return { title: "Orb Not Found - Slay the Spire 2 (sts2) | Spire Codex" };
     const orb = await res.json();
-    const desc = stripTags(orb.description || "");
+    const desc = stripTagsFlat(orb.description || "");
     const title = `Orb - ${orb.name} - Slay the Spire 2 (sts2) | Spire Codex`;
-    const metaDesc = `${orb.name} is an orb in Slay the Spire 2: ${desc}`;
+    const metaDesc = clipMetaDescription(
+      `Slay the Spire 2 orb — ${orb.name}${desc ? `: ${desc}` : ""}`,
+    );
     return {
       title,
       description: metaDesc,
       openGraph: {
+        type: "article",
+        siteName: SITE_NAME,
+        url: `${SITE_URL}/orbs/${id}`,
         title,
         description: metaDesc,
+        images: [{ url: DEFAULT_OG_IMAGE }],
       },
-      twitter: { card: "summary_large_image" },
+      twitter: { card: "summary_large_image", title, description: metaDesc },
       alternates: { canonical: `/orbs/${id}`, languages: buildLanguageAlternates(`/orbs/${id}`) },
     };
   } catch {

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { buildLanguageAlternates } from "@/lib/seo";
+import { buildLanguageAlternates, DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/seo";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import type { Card } from "@/lib/api";
@@ -35,10 +35,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title,
     description,
     openGraph: {
+      type: "website",
+      siteName: SITE_NAME,
+      url: `${SITE_URL}/cards/browse/${slug}`,
       title: `${entry.label} - Slay the Spire 2 (sts2) | Spire Codex`,
       description,
+      images: [{ url: DEFAULT_OG_IMAGE }],
     },
-    twitter: { card: "summary_large_image" },
+    twitter: { card: "summary_large_image", title: `${entry.label} - Slay the Spire 2 (sts2) | Spire Codex`, description },
     alternates: { canonical: `/cards/browse/${slug}`, languages: buildLanguageAlternates(`/cards/browse/${slug}`) },
   };
 }

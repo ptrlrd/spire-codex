@@ -9,8 +9,10 @@ import {
   SUPPORTED_LANGS,
   type LangCode,
 } from "@/lib/languages";
-import { SITE_URL } from "@/lib/seo";
+import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/seo";
 import { t } from "@/lib/ui-translations";
+import JsonLd from "@/app/components/JsonLd";
+import { buildBreadcrumbJsonLd, buildCollectionPageJsonLd } from "@/lib/jsonld";
 
 export const dynamic = "force-dynamic";
 
@@ -53,7 +55,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   const nativeName = LANG_NAMES[langCode];
 
   const title = `${gameName} ${t(CATEGORY_LABEL, lang)} | Spire Codex (${nativeName})`;
-  const description = `Projects and tools built with the Spire Codex API. ${nativeName}.`;
+  const description = `${gameName} community projects (${nativeName}). Bots, widgets, apps, and tools built with the Spire Codex API by the Slay the Spire 2 community.`;
 
   const languages: Record<string, string> = {
     "en": `${SITE_URL}/${CATEGORY}`,
@@ -67,10 +69,15 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     title,
     description,
     openGraph: {
+      type: "website",
+      siteName: SITE_NAME,
+      url: `${SITE_URL}/${lang}/${CATEGORY}`,
       title,
       description,
       locale: LANG_HREFLANG[langCode],
+      images: [{ url: DEFAULT_OG_IMAGE }],
     },
+    twitter: { card: "summary_large_image", title, description },
     alternates: {
       canonical: `/${lang}/${CATEGORY}`,
       languages,
@@ -81,11 +88,28 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 export default async function LangShowcasePage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
   if (!isValidLang(lang)) return null;
+  const langCode = lang as LangCode;
+  const gameName = LANG_GAME_NAME[langCode];
 
   const projects = await getShowcaseData();
 
+  const jsonLd = [
+    buildBreadcrumbJsonLd([
+      { name: t("Home", lang), href: `/${lang}` },
+      { name: t("Community Showcase", lang), href: `/${lang}/showcase` },
+    ]),
+    buildCollectionPageJsonLd({
+      name: `${gameName} ${t("Community Showcase", lang)}`,
+      description: `${gameName} community projects — bots, widgets, apps, and tools built with the Spire Codex API.`,
+      path: `/${lang}/showcase`,
+      items: projects.map((p) => ({ name: p.name, path: `/${lang}/showcase` })),
+      inLanguage: LANG_HREFLANG[langCode],
+    }),
+  ];
+
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <JsonLd data={jsonLd} />
       <h1 className="text-3xl font-bold text-[var(--text-primary)] mb-2">
         {t("Community Showcase", lang)}
       </h1>

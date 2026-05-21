@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import AscensionDetail from "./AscensionDetail";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
-import { stripTags, buildLanguageAlternates} from "@/lib/seo";
+import { stripTags, stripTagsFlat, clipMetaDescription, buildLanguageAlternates, DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/seo";
 
 export const dynamic = "force-static";
 export const revalidate = 3600;
@@ -19,14 +19,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     });
     if (!res.ok) return { title: "Ascension Not Found - Slay the Spire 2 (sts2) | Spire Codex" };
     const asc = await res.json();
-    const desc = stripTags(asc.description);
+    const desc = stripTagsFlat(asc.description);
     const title = `Ascension - Level ${asc.level} - ${asc.name} - Slay the Spire 2 (sts2) | Spire Codex`;
-    const metaDesc = `Ascension ${asc.level} (${asc.name}) in Slay the Spire 2: ${desc}`;
+    const metaDesc = clipMetaDescription(
+      `Slay the Spire 2 Ascension ${asc.level} — ${asc.name}${desc ? `: ${desc}` : ""}`,
+    );
     return {
       title,
       description: metaDesc,
-      openGraph: { title, description: metaDesc },
-      twitter: { card: "summary_large_image" },
+      openGraph: {
+        type: "article",
+        siteName: SITE_NAME,
+        url: `${SITE_URL}/ascensions/${id}`,
+        title,
+        description: metaDesc,
+        images: [{ url: DEFAULT_OG_IMAGE }],
+      },
+      twitter: { card: "summary_large_image", title, description: metaDesc },
       alternates: { canonical: `/ascensions/${id}`, languages: buildLanguageAlternates(`/ascensions/${id}`) },
     };
   } catch {

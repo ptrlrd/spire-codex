@@ -11,7 +11,7 @@ import {
   SUPPORTED_LANGS,
   type LangCode,
 } from "@/lib/languages";
-import { SITE_URL } from "@/lib/seo";
+import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/seo";
 import { t } from "@/lib/ui-translations";
 
 export const dynamic = "force-dynamic";
@@ -53,7 +53,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   const nativeName = LANG_NAMES[langCode];
 
   const title = `${gameName} Card ${t(CATEGORY_LABEL, lang)} | Spire Codex (${nativeName})`;
-  const description = `${gameName} Card ${t(CATEGORY_LABEL, lang)} — Spire Codex. ${nativeName}.`;
+  const description = `${gameName} Card ${t(CATEGORY_LABEL, lang)} (${nativeName}). Every keyword and game term — Exhaust, Ethereal, Innate, Retain, Sly, Eternal, and more, with all cards using each.`;
 
   const languages: Record<string, string> = {
     "en": `${SITE_URL}/${CATEGORY}`,
@@ -67,10 +67,15 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     title,
     description,
     openGraph: {
+      type: "website",
+      siteName: SITE_NAME,
+      url: `${SITE_URL}/${lang}/${CATEGORY}`,
       title,
       description,
       locale: LANG_HREFLANG[langCode],
+      images: [{ url: DEFAULT_OG_IMAGE }],
     },
+    twitter: { card: "summary_large_image", title, description },
     alternates: {
       canonical: `/${lang}/${CATEGORY}`,
       languages,
@@ -108,6 +113,7 @@ export default async function LangKeywordsPage({ params }: { params: Promise<{ l
       description: `All card keywords in ${gameName}.`,
       path: `/${lang}/${CATEGORY}`,
       items: keywords.map((k) => ({ name: k.name, path: `/keywords/${k.id.toLowerCase()}` })),
+      inLanguage: LANG_HREFLANG[langCode],
     }),
   ];
 

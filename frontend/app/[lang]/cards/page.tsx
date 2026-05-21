@@ -13,7 +13,7 @@ import {
   SUPPORTED_LANGS,
   type LangCode,
 } from "@/lib/languages";
-import { SITE_URL } from "@/lib/seo";
+import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/seo";
 import { t } from "@/lib/ui-translations";
 
 export const dynamic = "force-dynamic";
@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   const nativeName = LANG_NAMES[langCode];
 
   const title = `${gameName} ${cardsWord} | Spire Codex (${nativeName})`;
-  const description = `${gameName} ${cardsWord} — Spire Codex. ${nativeName}.`;
+  const description = `${gameName} ${cardsWord} (${nativeName}). Every card across Ironclad, Silent, Defect, Necrobinder, and Regent — art, stats, upgrades, and keywords.`;
 
   const languages: Record<string, string> = {
     "en": `${SITE_URL}/cards`,
@@ -44,10 +44,15 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     title,
     description,
     openGraph: {
+      type: "website",
+      siteName: SITE_NAME,
+      url: `${SITE_URL}/${lang}/cards`,
       title,
       description,
       locale: LANG_HREFLANG[langCode],
+      images: [{ url: DEFAULT_OG_IMAGE }],
     },
+    twitter: { card: "summary_large_image", title, description },
     alternates: {
       canonical: `/${lang}/cards`,
       languages,
@@ -81,6 +86,7 @@ export default async function LangCardsPage({ params }: { params: Promise<{ lang
       description: `Browse every card across Ironclad, Silent, Defect, Necrobinder, and Regent.`,
       path: `/${lang}/cards`,
       items: cards.map((c) => ({ name: c.name, path: `/cards/${c.id.toLowerCase()}` })),
+      inLanguage: LANG_HREFLANG[langCode],
     }),
   ];
 

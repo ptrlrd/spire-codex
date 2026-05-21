@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { buildLanguageAlternates } from "@/lib/seo";
+import { buildLanguageAlternates, DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/seo";
 import { api } from "@/lib/api";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -10,13 +10,20 @@ export async function generateMetadata(): Promise<Metadata> {
   } catch {
     // Fall back to the baseline count if the API is unreachable at build time.
   }
+  const title = "Powers - Complete Power List - Slay the Spire 2 (sts2) | Spire Codex";
+  const ogDesc = `Browse all ${count} Slay the Spire 2 (sts2) powers — buffs, debuffs, and neutral effects. Filter by type and stack behavior.`;
   return {
-    title: "Powers - Complete Power List - Slay the Spire 2 (sts2) | Spire Codex",
-    description: `Browse all ${count} Slay the Spire 2 (sts2) powers — buffs, debuffs, and neutral effects. Filter by type and stack behavior. View descriptions, icons, and details for every power.`,
+    title,
+    description: `All ${count} Slay the Spire 2 (sts2) powers — buffs, debuffs, and neutral effects. Filter by type and stack behavior. Icons and full descriptions.`,
     openGraph: {
-      title: "Powers - Complete Power List - Slay the Spire 2 (sts2) | Spire Codex",
-      description: `Browse all ${count} Slay the Spire 2 (sts2) powers — buffs, debuffs, and neutral effects. Filter by type and stack behavior.`,
+      type: "website",
+      siteName: SITE_NAME,
+      url: `${SITE_URL}/powers`,
+      title,
+      description: ogDesc,
+      images: [{ url: DEFAULT_OG_IMAGE }],
     },
+    twitter: { card: "summary_large_image", title, description: ogDesc },
     alternates: { canonical: "/powers", languages: buildLanguageAlternates("/powers") },
   };
 }

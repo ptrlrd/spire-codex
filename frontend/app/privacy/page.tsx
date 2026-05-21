@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { SITE_NAME } from "@/lib/seo";
+import { SITE_NAME, SITE_URL, DEFAULT_OG_IMAGE } from "@/lib/seo";
+import JsonLd from "@/app/components/JsonLd";
+import { buildBreadcrumbJsonLd } from "@/lib/jsonld";
 
 const title = `Privacy Policy | ${SITE_NAME}`;
 const description =
@@ -9,16 +11,28 @@ const description =
 export const metadata: Metadata = {
   title,
   description,
-  openGraph: { title, description },
-  twitter: { card: "summary", title, description },
+  openGraph: {
+    type: "website",
+    siteName: SITE_NAME,
+    url: `${SITE_URL}/privacy`,
+    title,
+    description,
+    images: [{ url: DEFAULT_OG_IMAGE }],
+  },
+  twitter: { card: "summary_large_image", title, description },
   alternates: { canonical: "/privacy" },
 };
 
 const LAST_UPDATED = "May 6, 2026";
 
 export default function PrivacyPage() {
+  const jsonLd = buildBreadcrumbJsonLd([
+    { name: "Home", href: "/" },
+    { name: "Privacy Policy", href: "/privacy" },
+  ]);
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <JsonLd data={jsonLd} />
       <h1 className="text-3xl font-bold mb-2">
         <span className="text-[var(--accent-gold)]">Privacy</span>{" "}
         <span className="text-[var(--text-primary)]">Policy</span>

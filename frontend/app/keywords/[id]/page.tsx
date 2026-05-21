@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import KeywordDetail from "./KeywordDetail";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
-import { stripTags } from "@/lib/seo";
+import { stripTags, stripTagsFlat, clipMetaDescription, buildLanguageAlternates, DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/seo";
 
 export const dynamic = "force-dynamic";
 
@@ -30,34 +30,46 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!result) return { title: "Term Not Found - Slay the Spire 2 (sts2) | Spire Codex" };
 
   const { type, data } = result;
-  const desc = stripTags(data.description);
+  const desc = stripTagsFlat(data.description);
 
   if (type === "keyword") {
     const title = `Keyword - ${data.name} - Slay the Spire 2 (sts2) | Spire Codex`;
-    const metaDesc = `${data.name} is a card keyword in Slay the Spire 2: ${desc}`;
+    const metaDesc = clipMetaDescription(
+      `Slay the Spire 2 card keyword — ${data.name}${desc ? `: ${desc}` : ""} See every card that uses ${data.name}.`,
+    );
     return {
       title,
       description: metaDesc,
       openGraph: {
+        type: "article",
+        siteName: SITE_NAME,
+        url: `${SITE_URL}/keywords/${id}`,
         title,
         description: metaDesc,
+        images: [{ url: DEFAULT_OG_IMAGE }],
       },
-      twitter: { card: "summary_large_image" },
-      alternates: { canonical: `/keywords/${id}` },
+      twitter: { card: "summary_large_image", title, description: metaDesc },
+      alternates: { canonical: `/keywords/${id}`, languages: buildLanguageAlternates(`/keywords/${id}`) },
     };
   }
 
   const title = `Term - ${data.name} - Slay the Spire 2 (sts2) | Spire Codex`;
-  const metaDesc = `${data.name} is a game term in Slay the Spire 2: ${desc}`;
+  const metaDesc = clipMetaDescription(
+    `Slay the Spire 2 game term — ${data.name}${desc ? `: ${desc}` : ""}`,
+  );
   return {
     title,
     description: metaDesc,
     openGraph: {
+      type: "article",
+      siteName: SITE_NAME,
+      url: `${SITE_URL}/keywords/${id}`,
       title,
       description: metaDesc,
+      images: [{ url: DEFAULT_OG_IMAGE }],
     },
-    twitter: { card: "summary_large_image" },
-    alternates: { canonical: `/keywords/${id}` },
+    twitter: { card: "summary_large_image", title, description: metaDesc },
+    alternates: { canonical: `/keywords/${id}`, languages: buildLanguageAlternates(`/keywords/${id}`) },
   };
 }
 

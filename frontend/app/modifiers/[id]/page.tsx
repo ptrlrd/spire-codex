@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import ModifierDetail from "./ModifierDetail";
-import { stripTags, buildLanguageAlternates} from "@/lib/seo";
+import { stripTags, stripTagsFlat, clipMetaDescription, buildLanguageAlternates, DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 
@@ -14,17 +14,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const res = await fetch(`${API_INTERNAL}/api/modifiers/${id}`);
     if (!res.ok) return { title: "Modifier Not Found - Slay the Spire 2 (sts2) | Spire Codex" };
     const modifier = await res.json();
-    const desc = stripTags(modifier.description || "");
+    const desc = stripTagsFlat(modifier.description || "");
     const title = `Modifier - ${modifier.name} - Slay the Spire 2 (sts2) | Spire Codex`;
-    const metaDesc = `${modifier.name} is a run modifier in Slay the Spire 2: ${desc}`;
+    const metaDesc = clipMetaDescription(
+      `Slay the Spire 2 custom-run modifier — ${modifier.name}${desc ? `: ${desc}` : ""}`,
+    );
     return {
       title,
       description: metaDesc,
       openGraph: {
+        type: "article",
+        siteName: SITE_NAME,
+        url: `${SITE_URL}/modifiers/${id}`,
         title,
         description: metaDesc,
+        images: [{ url: DEFAULT_OG_IMAGE }],
       },
-      twitter: { card: "summary_large_image" },
+      twitter: { card: "summary_large_image", title, description: metaDesc },
       alternates: { canonical: `/modifiers/${id}`, languages: buildLanguageAlternates(`/modifiers/${id}`) },
     };
   } catch {

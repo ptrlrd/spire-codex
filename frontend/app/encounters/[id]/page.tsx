@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import EncounterDetail from "./EncounterDetail";
-import { stripTags } from "@/lib/seo";
+import { stripTags, clipMetaDescription, DEFAULT_OG_IMAGE, buildLanguageAlternates, SITE_NAME, SITE_URL } from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 
@@ -16,18 +16,26 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     if (!res.ok) return { title: "Encounter Not Found - Slay the Spire 2 (sts2) | Spire Codex" };
     const encounter = await res.json();
     const title = `Encounter - ${encounter.name} - ${encounter.room_type} - Slay the Spire 2 (sts2) | Spire Codex`;
-    const metaDesc = encounter.monsters?.length
-      ? `${encounter.name} is a ${encounter.room_type} encounter in Slay the Spire 2 featuring ${encounter.monsters.map((m: { name: string }) => m.name).join(", ")}.`
-      : `${encounter.name} is a ${encounter.room_type} encounter in Slay the Spire 2.`;
+    const monsterList = encounter.monsters?.length
+      ? ` Monsters: ${encounter.monsters.map((m: { name: string }) => m.name).join(", ")}.`
+      : "";
+    const actText = encounter.act ? ` (${encounter.act})` : "";
+    const metaDesc = clipMetaDescription(
+      `Slay the Spire 2 ${encounter.room_type} encounter — ${encounter.name}${actText}.${monsterList}`,
+    );
     return {
       title,
       description: metaDesc,
       openGraph: {
+        type: "article",
+        siteName: SITE_NAME,
+        url: `${SITE_URL}/encounters/${id}`,
         title,
         description: metaDesc,
+        images: [{ url: DEFAULT_OG_IMAGE }],
       },
-      twitter: { card: "summary_large_image" },
-      alternates: { canonical: `/encounters/${id}` },
+      twitter: { card: "summary_large_image", title, description: metaDesc },
+      alternates: { canonical: `/encounters/${id}`, languages: buildLanguageAlternates(`/encounters/${id}`) },
     };
   } catch {
     return { title: "Database - Slay the Spire 2 (sts2) | Spire Codex" };

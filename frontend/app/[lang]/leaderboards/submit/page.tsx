@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import JsonLd from "@/app/components/JsonLd";
+import { buildBreadcrumbJsonLd } from "@/lib/jsonld";
 import SubmitRunClient from "@/app/leaderboards/submit/SubmitRunClient";
 import {
   isValidLang,
@@ -8,7 +10,7 @@ import {
   SUPPORTED_LANGS,
   type LangCode,
 } from "@/lib/languages";
-import { SITE_URL } from "@/lib/seo";
+import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/seo";
 import { t } from "@/lib/ui-translations";
 
 export const dynamic = "force-dynamic";
@@ -38,7 +40,16 @@ export async function generateMetadata({
   return {
     title,
     description,
-    openGraph: { title, description, locale: LANG_HREFLANG[langCode] },
+    openGraph: {
+      type: "website",
+      siteName: SITE_NAME,
+      url: `${SITE_URL}/${lang}/leaderboards/submit`,
+      title,
+      description,
+      locale: LANG_HREFLANG[langCode],
+      images: [{ url: DEFAULT_OG_IMAGE }],
+    },
+    twitter: { card: "summary_large_image", title, description },
     alternates: { canonical: `/${lang}/leaderboards/submit`, languages },
   };
 }
@@ -50,5 +61,15 @@ export default async function LangSubmitRunPage({
 }) {
   const { lang } = await params;
   if (!isValidLang(lang)) return null;
-  return <SubmitRunClient />;
+  const jsonLd = buildBreadcrumbJsonLd([
+    { name: t("Home", lang), href: `/${lang}` },
+    { name: t("Leaderboards", lang), href: `/${lang}/leaderboards` },
+    { name: t("Submit a Run", lang), href: `/${lang}/leaderboards/submit` },
+  ]);
+  return (
+    <>
+      <JsonLd data={jsonLd} />
+      <SubmitRunClient />
+    </>
+  );
 }

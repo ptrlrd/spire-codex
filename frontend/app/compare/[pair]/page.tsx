@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { Character, Card } from "@/lib/api";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd } from "@/lib/jsonld";
+import { DEFAULT_OG_IMAGE, buildLanguageAlternates, SITE_NAME, SITE_URL } from "@/lib/seo";
 import CompareDetail from "./CompareDetail";
 
 export const dynamic = "force-static";
@@ -54,11 +55,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title,
     description,
     openGraph: {
+      type: "article",
+      siteName: SITE_NAME,
+      url: `${SITE_URL}/compare/${pair}`,
       title: `${nameA} vs ${nameB} - Character Comparison - Slay the Spire 2 (sts2) | Spire Codex`,
       description,
+      images: [{ url: DEFAULT_OG_IMAGE }],
     },
-    twitter: { card: "summary_large_image" },
-    alternates: { canonical: `/compare/${pair}` },
+    twitter: { card: "summary_large_image", title: `${nameA} vs ${nameB} - Character Comparison - Slay the Spire 2 (sts2) | Spire Codex`, description },
+    alternates: { canonical: `/compare/${pair}`, languages: buildLanguageAlternates(`/compare/${pair}`) },
   };
 }
 

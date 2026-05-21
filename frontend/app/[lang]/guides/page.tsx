@@ -13,7 +13,7 @@ import {
   SUPPORTED_LANGS,
   type LangCode,
 } from "@/lib/languages";
-import { SITE_URL } from "@/lib/seo";
+import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/seo";
 import { t } from "@/lib/ui-translations";
 
 const API = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
@@ -42,7 +42,16 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   return {
     title,
     description,
-    openGraph: { title, description, locale: LANG_HREFLANG[langCode] },
+    openGraph: {
+      type: "website",
+      siteName: SITE_NAME,
+      url: `${SITE_URL}/${lang}/${CATEGORY}`,
+      title,
+      description,
+      locale: LANG_HREFLANG[langCode],
+      images: [{ url: DEFAULT_OG_IMAGE }],
+    },
+    twitter: { card: "summary_large_image", title, description },
     alternates: { canonical: `/${lang}/${CATEGORY}`, languages },
   };
 }
@@ -50,6 +59,8 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 export default async function LangGuidesPage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
   if (!isValidLang(lang)) return null;
+
+  const langCode = lang as LangCode;
 
   let guides: GuideSummary[] = [];
   try {
@@ -67,6 +78,7 @@ export default async function LangGuidesPage({ params }: { params: Promise<{ lan
       description: t("guides_tagline", lang),
       path: `/${lang}/guides`,
       items: guides.map((g) => ({ name: g.title, path: `/${lang}/guides/${g.slug}` })),
+      inLanguage: LANG_HREFLANG[langCode],
     }),
   ];
 

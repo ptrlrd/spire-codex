@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import PowerDetail from "./PowerDetail";
-import { stripTags, buildLanguageAlternates} from "@/lib/seo";
+import { stripTags, stripTagsFlat, clipMetaDescription, buildLanguageAlternates, SITE_NAME, SITE_URL } from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 
@@ -15,18 +15,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const res = await fetch(`${API_INTERNAL}/api/powers/${id}`);
     if (!res.ok) return { title: "Power Not Found - Slay the Spire 2 (sts2) | Spire Codex" };
     const power = await res.json();
-    const desc = stripTags(power.description || "");
+    const desc = stripTagsFlat(power.description || "");
     const title = `Power - ${power.name} - ${power.type} - Slay the Spire 2 (sts2) | Spire Codex`;
-    const metaDesc = `${power.name} is a ${power.type} power in Slay the Spire 2: ${desc}`;
+    const metaDesc = clipMetaDescription(
+      `Slay the Spire 2 ${power.type} power — ${power.name}${desc ? `: ${desc}` : ""}`,
+    );
     return {
       title,
       description: metaDesc,
       openGraph: {
+        type: "article",
+        siteName: SITE_NAME,
+        url: `${SITE_URL}/powers/${id}`,
         title,
         description: metaDesc,
         images: power.image_url ? [{ url: `${API_PUBLIC}${power.image_url}` }] : [],
       },
-      twitter: { card: "summary_large_image" },
+      twitter: { card: "summary_large_image", title, description: metaDesc },
       alternates: { canonical: `/powers/${id}`, languages: buildLanguageAlternates(`/powers/${id}`) },
     };
   } catch {

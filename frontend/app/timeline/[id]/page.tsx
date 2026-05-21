@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import EpochDetail from "./EpochDetail";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
-import { stripTags } from "@/lib/seo";
+import { stripTags, stripTagsFlat, clipMetaDescription, buildLanguageAlternates, DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/seo";
 
 export const dynamic = "force-dynamic";
 
@@ -16,18 +16,24 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const res = await fetch(`${API_INTERNAL}/api/epochs/${id}`);
     if (!res.ok) return { title: "Epoch Not Found - Slay the Spire 2 (sts2) | Spire Codex" };
     const epoch = await res.json();
-    const desc = stripTags(epoch.description || "");
+    const desc = stripTagsFlat(epoch.description || "");
     const title = `Timeline - ${epoch.title} - Slay the Spire 2 (sts2) | Spire Codex`;
-    const metaDesc = `${epoch.title} is a timeline epoch in Slay the Spire 2: ${desc.slice(0, 150)}`;
+    const metaDesc = clipMetaDescription(
+      `Slay the Spire 2 timeline epoch — ${epoch.title}${desc ? `: ${desc}` : ""}`,
+    );
     return {
       title,
       description: metaDesc,
       openGraph: {
+        type: "article",
+        siteName: SITE_NAME,
+        url: `${SITE_URL}/timeline/${id}`,
         title,
         description: metaDesc,
+        images: [{ url: DEFAULT_OG_IMAGE }],
       },
-      twitter: { card: "summary_large_image" },
-      alternates: { canonical: `/timeline/${id}` },
+      twitter: { card: "summary_large_image", title, description: metaDesc },
+      alternates: { canonical: `/timeline/${id}`, languages: buildLanguageAlternates(`/timeline/${id}`) },
     };
   } catch {
     return { title: "Database - Slay the Spire 2 (sts2) | Spire Codex" };

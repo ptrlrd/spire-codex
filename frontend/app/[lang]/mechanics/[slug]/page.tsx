@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { SITE_URL, SITE_NAME } from "@/lib/seo";
+import { SITE_URL, SITE_NAME, DEFAULT_OG_IMAGE, clipMetaDescription } from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
-import { buildBreadcrumbJsonLd, buildDetailPageJsonLd } from "@/lib/jsonld";
+import { buildDetailPageJsonLd } from "@/lib/jsonld";
 import Link from "next/link";
 import MechanicMarkdown from "@/app/mechanics/[slug]/MechanicMarkdown";
-import { isValidLang } from "@/lib/languages";
+import { isValidLang, LANG_HREFLANG, type LangCode } from "@/lib/languages";
 import { t } from "@/lib/ui-translations";
 import type { MechanicSectionMeta } from "@/app/mechanics/page";
 
@@ -42,12 +42,21 @@ export async function generateMetadata({
   const section = await fetchSection(slug);
   if (!section) return { title: `${t("Not Found", lang)} | ${SITE_NAME}` };
   const title = `${section.title} - Slay the Spire 2 | ${SITE_NAME}`;
+  const description = clipMetaDescription(section.description);
   return {
     title,
-    description: section.description,
+    description,
     alternates: { canonical: `${SITE_URL}/${lang}/mechanics/${slug}` },
-    openGraph: { title, description: section.description, url: `${SITE_URL}/${lang}/mechanics/${slug}`, siteName: SITE_NAME, type: "article" },
-    twitter: { card: "summary", title, description: section.description },
+    openGraph: {
+      title,
+      description,
+      url: `${SITE_URL}/${lang}/mechanics/${slug}`,
+      siteName: SITE_NAME,
+      type: "article",
+      locale: LANG_HREFLANG[lang as LangCode],
+      images: [{ url: DEFAULT_OG_IMAGE }],
+    },
+    twitter: { card: "summary_large_image", title, description },
   };
 }
 
@@ -58,27 +67,24 @@ export default async function LangMechanicDetailPage({
 }) {
   const { lang, slug } = await params;
   if (!isValidLang(lang)) return null;
+  const langCode = lang as LangCode;
   const section = await fetchSection(slug);
   if (!section) notFound();
 
-  const jsonLd = [
-    buildBreadcrumbJsonLd([
+  // buildDetailPageJsonLd already appends a BreadcrumbList from `breadcrumbs`,
+  // so we don't emit a separate buildBreadcrumbJsonLd here.
+  const jsonLd = buildDetailPageJsonLd({
+    name: `${section.title} - Slay the Spire 2`,
+    description: section.description,
+    path: `/${lang}/mechanics/${slug}`,
+    category: section.category === "secrets" ? "Secrets & Trivia" : "Game Mechanics",
+    breadcrumbs: [
       { name: t("Home", lang), href: `/${lang}` },
       { name: t("Mechanics", lang), href: `/${lang}/mechanics` },
       { name: section.title, href: `/${lang}/mechanics/${slug}` },
-    ]),
-    ...buildDetailPageJsonLd({
-      name: `${section.title} - Slay the Spire 2`,
-      description: section.description,
-      path: `/${lang}/mechanics/${slug}`,
-      category: section.category === "secrets" ? "Secrets & Trivia" : "Game Mechanics",
-      breadcrumbs: [
-        { name: t("Home", lang), href: `/${lang}` },
-        { name: t("Mechanics", lang), href: `/${lang}/mechanics` },
-        { name: section.title, href: `/${lang}/mechanics/${slug}` },
-      ],
-    }),
-  ];
+    ],
+    inLanguage: LANG_HREFLANG[langCode],
+  });
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">

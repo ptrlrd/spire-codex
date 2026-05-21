@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import CardDetail from "./CardDetail";
-import { stripTags, stripTagsFlat, buildLanguageAlternates} from "@/lib/seo";
+import { stripTags, stripTagsFlat, clipMetaDescription, buildLanguageAlternates, SITE_NAME, SITE_URL } from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 
@@ -30,17 +30,22 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const color = (card.color || "").replace(/^\w/, (c: string) => c.toUpperCase());
     const title = `Card - ${card.name} - ${card.rarity} ${card.type} - Slay the Spire 2 (sts2) | Spire Codex`;
     const descFlat = stripTagsFlat(card.description || "");
-    const keywords = card.keywords?.length ? ` ${card.keywords.join(". ")}.` : "";
-    const metaDesc = `${card.name} is a ${card.cost ?? "X"} cost ${card.rarity} ${card.type} used by ${color}.\n${descFlat}${keywords}`;
+    const keywords = card.keywords?.length ? ` Keywords: ${card.keywords.join(", ")}.` : "";
+    const metaDesc = clipMetaDescription(
+      `Slay the Spire 2 card — ${card.name} (${card.cost ?? "X"}-cost ${card.rarity} ${card.type}, ${color}). ${descFlat}${keywords}`,
+    );
     return {
       title,
       description: metaDesc,
       openGraph: {
+        type: "article",
+        siteName: SITE_NAME,
+        url: `${SITE_URL}/cards/${id}`,
         title,
         description: metaDesc,
         images: card.image_url ? [{ url: `${API_PUBLIC}${card.image_url}` }] : [],
       },
-      twitter: { card: "summary_large_image" },
+      twitter: { card: "summary_large_image", title, description: metaDesc },
       alternates: { canonical: `/cards/${id}`, languages: buildLanguageAlternates(`/cards/${id}`) },
     };
   } catch {

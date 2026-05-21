@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import JsonLd from "@/app/components/JsonLd";
 import RichDescription from "@/app/components/RichDescription";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
-import { stripTags, SITE_URL } from "@/lib/seo";
+import { stripTags, stripTagsFlat, clipMetaDescription, SITE_NAME, SITE_URL } from "@/lib/seo";
 import {
   isValidLang,
   LANG_HREFLANG,
@@ -65,12 +65,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const badge = await fetchBadge(id, lang);
   if (!badge) return { title: "Badge Not Found - Slay the Spire 2 (sts2) | Spire Codex" };
 
-  const desc = stripTags(badge.description);
+  const desc = stripTagsFlat(badge.description);
   const langCode = lang as LangCode;
   const gameName = LANG_GAME_NAME[langCode];
   const nativeName = LANG_NAMES[langCode];
   const title = `${gameName} ${t("Badges", lang)} - ${badge.name} | Spire Codex (${nativeName})`;
-  const metaDesc = `${badge.name} — ${desc}`;
+  const metaDesc = clipMetaDescription(
+    `${gameName} run-end badge — ${badge.name}${desc ? `: ${desc}` : ""}`,
+  );
 
   const languages: Record<string, string> = {
     en: `${SITE_URL}/badges/${id}`,
@@ -84,6 +86,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title,
     description: metaDesc,
     openGraph: {
+      type: "article",
+      siteName: SITE_NAME,
+      url: `${SITE_URL}/${lang}/badges/${id}`,
       title,
       description: metaDesc,
       images: badge.image_url
@@ -91,7 +96,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         : [],
       locale: LANG_HREFLANG[langCode],
     },
-    twitter: { card: "summary_large_image" },
+    twitter: { card: "summary_large_image", title, description: metaDesc },
     alternates: { canonical: `/${lang}/badges/${id}`, languages },
   };
 }
@@ -99,6 +104,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function LangBadgePage({ params }: Props) {
   const { lang, id } = await params;
   if (!isValidLang(lang)) return null;
+
+  const langCode = lang as LangCode;
 
   const badge = await fetchBadge(id, lang);
   if (!badge) notFound();
@@ -115,11 +122,12 @@ export default async function LangBadgePage({ params }: Props) {
       { name: t("Badges", lang), href: `/${lang}/badges` },
       { name: badge.name, href: `/${lang}/badges/${id}` },
     ],
+    inLanguage: LANG_HREFLANG[langCode],
   });
 
   const faqQuestions = [
     {
-      question: `${badge.name}?`,
+      question: `What is the "${badge.name}" badge in Slay the Spire 2?`,
       answer: desc || badge.name,
     },
   ];

@@ -8,8 +8,10 @@ import {
   SUPPORTED_LANGS,
   type LangCode,
 } from "@/lib/languages";
-import { SITE_URL } from "@/lib/seo";
+import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/seo";
 import { t } from "@/lib/ui-translations";
+import JsonLd from "@/app/components/JsonLd";
+import { buildBreadcrumbJsonLd, buildCollectionPageJsonLd } from "@/lib/jsonld";
 
 export const dynamic = "force-dynamic";
 
@@ -25,7 +27,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   const nativeName = LANG_NAMES[langCode];
 
   const title = `${gameName} ${t(CATEGORY_LABEL, lang)} | Spire Codex (${nativeName})`;
-  const description = `Ancient relic pools and offerings for ${gameName}. ${nativeName}.`;
+  const description = `${gameName} Ancient relic pools (${nativeName}). Every offering and condition for all 8 Ancients — Neow, Tezcatara, Pael, Orobas, Darv, Nonupeipe, and more.`;
 
   const languages: Record<string, string> = {
     en: `${SITE_URL}/${CATEGORY}`,
@@ -38,7 +40,16 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   return {
     title,
     description,
-    openGraph: { title, description, locale: LANG_HREFLANG[langCode] },
+    openGraph: {
+      type: "website",
+      siteName: SITE_NAME,
+      url: `${SITE_URL}/${lang}/${CATEGORY}`,
+      title,
+      description,
+      locale: LANG_HREFLANG[langCode],
+      images: [{ url: DEFAULT_OG_IMAGE }],
+    },
+    twitter: { card: "summary_large_image", title, description },
     alternates: { canonical: `/${lang}/${CATEGORY}`, languages },
   };
 }
@@ -46,5 +57,24 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 export default async function LangAncientsPage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
   if (!isValidLang(lang)) return null;
-  return <AncientsClient />;
+  const langCode = lang as LangCode;
+  const gameName = LANG_GAME_NAME[langCode];
+  const jsonLd = [
+    buildBreadcrumbJsonLd([
+      { name: t("Home", lang), href: `/${lang}` },
+      { name: t("Ancients", lang), href: `/${lang}/ancients` },
+    ]),
+    buildCollectionPageJsonLd({
+      name: `${gameName} Ancient Relic Pools`,
+      description: `Relic pools for all 8 ${gameName} Ancients — every offering and the conditions required to receive it.`,
+      path: `/${lang}/ancients`,
+      inLanguage: LANG_HREFLANG[langCode],
+    }),
+  ];
+  return (
+    <>
+      <JsonLd data={jsonLd} />
+      <AncientsClient />
+    </>
+  );
 }

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import JsonLd from "@/app/components/JsonLd";
 import { buildBreadcrumbJsonLd, buildCollectionPageJsonLd } from "@/lib/jsonld";
-import { SITE_URL, SITE_NAME } from "@/lib/seo";
+import { SITE_URL, SITE_NAME, DEFAULT_OG_IMAGE } from "@/lib/seo";
 import type { NewsArticle, NewsListResponse } from "@/lib/api";
 import { newsExcerpt, formatNewsDate, newsSlugForArticle } from "@/lib/steam-news";
 import {
@@ -61,7 +61,16 @@ export async function generateMetadata({
   return {
     title,
     description,
-    openGraph: { title, description, locale: LANG_HREFLANG[langCode], type: "website" },
+    openGraph: {
+      type: "website",
+      siteName: SITE_NAME,
+      url: `${SITE_URL}/${lang}/news`,
+      title,
+      description,
+      locale: LANG_HREFLANG[langCode],
+      images: [{ url: DEFAULT_OG_IMAGE }],
+    },
+    twitter: { card: "summary_large_image", title, description },
     alternates: { canonical: `${SITE_URL}/${lang}/news`, languages },
   };
 }
@@ -87,6 +96,7 @@ export default async function LangNewsPage({
 }) {
   const { lang } = await params;
   if (!isValidLang(lang)) return null;
+  const langCode = lang as LangCode;
   const sp = await searchParams;
   const activeTab = tabFromParam(sp.tab);
   const tabConfig = TABS.find((tb) => tb.key === activeTab) ?? TABS[0];
@@ -105,6 +115,7 @@ export default async function LangNewsPage({
       items: items
         .slice(0, 50)
         .map((n) => ({ name: n.title, path: newsSlugForArticle(n.gid, `/${lang}/news`) })),
+        inLanguage: LANG_HREFLANG[langCode],
     }),
   ];
 

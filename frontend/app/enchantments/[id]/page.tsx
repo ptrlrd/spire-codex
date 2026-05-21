@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import EnchantmentDetail from "./EnchantmentDetail";
-import { stripTags, buildLanguageAlternates} from "@/lib/seo";
+import { stripTags, stripTagsFlat, clipMetaDescription, buildLanguageAlternates, SITE_NAME, SITE_URL } from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 
@@ -15,18 +15,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const res = await fetch(`${API_INTERNAL}/api/enchantments/${id}`);
     if (!res.ok) return { title: "Enchantment Not Found - Slay the Spire 2 (sts2) | Spire Codex" };
     const enchantment = await res.json();
-    const desc = stripTags(enchantment.description || "");
+    const desc = stripTagsFlat(enchantment.description || "");
     const title = `Enchantment - ${enchantment.name} - Slay the Spire 2 (sts2) | Spire Codex`;
-    const metaDesc = `${enchantment.name} is an enchantment in Slay the Spire 2: ${desc}`;
+    const metaDesc = clipMetaDescription(
+      `Slay the Spire 2 card enchantment — ${enchantment.name}${desc ? `: ${desc}` : ""}`,
+    );
     return {
       title,
       description: metaDesc,
       openGraph: {
+        type: "article",
+        siteName: SITE_NAME,
+        url: `${SITE_URL}/enchantments/${id}`,
         title,
         description: metaDesc,
         images: enchantment.image_url ? [{ url: `${API_PUBLIC}${enchantment.image_url}` }] : [],
       },
-      twitter: { card: "summary_large_image" },
+      twitter: { card: "summary_large_image", title, description: metaDesc },
       alternates: { canonical: `/enchantments/${id}`, languages: buildLanguageAlternates(`/enchantments/${id}`) },
     };
   } catch {

@@ -9,7 +9,7 @@ import {
   SUPPORTED_LANGS,
   type LangCode,
 } from "@/lib/languages";
-import { SITE_URL } from "@/lib/seo";
+import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/seo";
 import { t } from "@/lib/ui-translations";
 
 export const dynamic = "force-dynamic";
@@ -42,10 +42,15 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     title,
     description,
     openGraph: {
+      type: "website",
+      siteName: SITE_NAME,
+      url: `${SITE_URL}/${lang}/${CATEGORY}`,
       title,
       description,
       locale: LANG_HREFLANG[langCode],
+      images: [{ url: DEFAULT_OG_IMAGE }],
     },
+    twitter: { card: "summary_large_image", title, description },
     alternates: {
       canonical: `/${lang}/${CATEGORY}`,
       languages,
@@ -80,6 +85,7 @@ export default async function LangMerchantPage({ params }: { params: Promise<{ l
         { name: "Home", href: `/${lang}` },
         { name: "Merchant Guide", href: `/${lang}/merchant` },
       ],
+      inLanguage: LANG_HREFLANG[langCode],
     }),
     buildFAQPageJsonLd([
       { question: `How much do cards cost at the merchant in ${gameName}?`, answer: "Common cards cost 48-53 gold, Uncommon 71-79 gold, Rare 143-158 gold. Colorless cards have a 15% markup. One random card is on sale for half price." },

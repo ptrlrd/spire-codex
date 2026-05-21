@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import JsonLd from "@/app/components/JsonLd";
 import { buildSoftwareApplicationJsonLd, buildBreadcrumbJsonLd } from "@/lib/jsonld";
-import { IS_BETA } from "@/lib/seo";
+import { IS_BETA, SITE_NAME, SITE_URL, DEFAULT_OG_IMAGE } from "@/lib/seo";
 import TinyCard, { TINY_CARD_POOL_COLOR, TINY_CARD_BANNER_COLOR } from "@/app/components/TinyCard";
 
 const API_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://spire-codex.com";
@@ -11,9 +11,18 @@ export const metadata: Metadata = {
   description:
     "Integrate Slay the Spire 2 (sts2) game data into your projects. Public REST API with 22+ endpoints, embeddable tooltip widget, and multi-language support.",
   openGraph: {
+    type: "website",
+    siteName: SITE_NAME,
+    url: `${SITE_URL}/developers`,
     title: "Developer API & Tooltip Widget - Slay the Spire 2 (sts2) | Spire Codex",
     description:
       "Public REST API and embeddable tooltip widget for Slay the Spire 2 (sts2) game data.",
+    images: [{ url: DEFAULT_OG_IMAGE }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Developer API & Tooltip Widget - Slay the Spire 2 (sts2) | Spire Codex",
+    description: "Public REST API and embeddable tooltip widget for Slay the Spire 2 (sts2) game data.",
   },
   alternates: { canonical: "/developers" },
 };

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { buildLanguageAlternates } from "@/lib/seo";
+import { buildLanguageAlternates, DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/seo";
 import { api } from "@/lib/api";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -10,13 +10,20 @@ export async function generateMetadata(): Promise<Metadata> {
   } catch {
     // Fall back to the baseline count if the API is unreachable at build time.
   }
+  const title = "Encounters - All Combat Encounters - Slay the Spire 2 (sts2) | Spire Codex";
+  const ogDesc = `Slay the Spire 2 (sts2) encounters — browse all ${count} combat encounters including normal fights, elites, and bosses.`;
   return {
-    title: "Encounters - All Combat Encounters - Slay the Spire 2 (sts2) | Spire Codex",
-    description: `Slay the Spire 2 (sts2) encounters — browse all ${count} combat encounters including normal fights, elites, and bosses. View monster compositions, act assignments, and room types.`,
+    title,
+    description: `All ${count} Slay the Spire 2 (sts2) encounters — normal fights, elites, and bosses. Monster compositions, act placement, and room types.`,
     openGraph: {
-      title: "Encounters - All Combat Encounters - Slay the Spire 2 (sts2) | Spire Codex",
-      description: `Slay the Spire 2 (sts2) encounters — browse all ${count} combat encounters including normal fights, elites, and bosses.`,
+      type: "website",
+      siteName: SITE_NAME,
+      url: `${SITE_URL}/encounters`,
+      title,
+      description: ogDesc,
+      images: [{ url: DEFAULT_OG_IMAGE }],
     },
+    twitter: { card: "summary_large_image", title, description: ogDesc },
     alternates: { canonical: "/encounters", languages: buildLanguageAlternates("/encounters") },
   };
 }

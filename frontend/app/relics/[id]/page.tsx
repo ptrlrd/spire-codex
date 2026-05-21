@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import RelicDetail from "./RelicDetail";
-import { stripTags, buildLanguageAlternates} from "@/lib/seo";
+import { stripTags, stripTagsFlat, clipMetaDescription, buildLanguageAlternates, SITE_NAME, SITE_URL } from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 
@@ -23,18 +23,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     });
     if (!res.ok) return { title: "Relic Not Found - Slay the Spire 2 (sts2) | Spire Codex" };
     const relic = await res.json();
-    const desc = stripTags(relic.description || "");
+    const desc = stripTagsFlat(relic.description || "");
     const title = `Relic - ${relic.name} - ${relic.rarity} - Slay the Spire 2 (sts2) | Spire Codex`;
-    const metaDesc = `${relic.name} is a ${relic.rarity} relic in Slay the Spire 2: ${desc}`;
+    const metaDesc = clipMetaDescription(
+      `Slay the Spire 2 ${relic.rarity} relic — ${relic.name}${desc ? `: ${desc}` : ""}`,
+    );
     return {
       title,
       description: metaDesc,
       openGraph: {
+        type: "article",
+        siteName: SITE_NAME,
+        url: `${SITE_URL}/relics/${id}`,
         title,
         description: metaDesc,
         images: relic.image_url ? [{ url: `${API_PUBLIC}${relic.image_url}` }] : [],
       },
-      twitter: { card: "summary_large_image" },
+      twitter: { card: "summary_large_image", title, description: metaDesc },
       alternates: { canonical: `/relics/${id}`, languages: buildLanguageAlternates(`/relics/${id}`) },
     };
   } catch {

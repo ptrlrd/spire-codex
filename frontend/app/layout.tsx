@@ -10,7 +10,7 @@ import GlobalSearch from "./components/GlobalSearch";
 import { Suspense } from "react";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import { BetaVersionProvider } from "./contexts/BetaVersionContext";
-import { SITE_NAME, SITE_URL } from "@/lib/seo";
+import { SITE_NAME, SITE_URL, DEFAULT_OG_IMAGE } from "@/lib/seo";
 
 // Self-hosted Umami analytics. Both values are public-by-design — the
 // browser fetches the script + sends the website ID on every page
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: `Database - Slay the Spire 2 (sts2) | ${SITE_NAME}`,
   description:
-    "A comprehensive database for Slay the Spire 2 — browse cards, relics, characters, monsters, and potions.",
+    "Fan-built database for Slay the Spire 2 (sts2). Browse cards, relics, monsters, potions, events, powers, plus run stats and tier lists.",
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "32x32" },
@@ -53,7 +53,10 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     siteName: "Spire Codex",
-    images: [{ url: "/og-image.png", width: 1200, height: 630 }],
+    // Default social card for every page that doesn't set its own
+    // `openGraph.images`. Home pages override to the bare logo;
+    // entity detail pages override to the entity sprite.
+    images: [{ url: DEFAULT_OG_IMAGE, width: 3000, height: 3000 }],
   },
   twitter: {
     card: "summary_large_image",

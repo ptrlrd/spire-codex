@@ -13,7 +13,7 @@ import {
   SUPPORTED_LANGS,
   type LangCode,
 } from "@/lib/languages";
-import { SITE_URL } from "@/lib/seo";
+import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/seo";
 import { t } from "@/lib/ui-translations";
 
 export const dynamic = "force-dynamic";
@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   const nativeName = LANG_NAMES[langCode];
 
   const title = `${gameName} ${relicsWord} | Spire Codex (${nativeName})`;
-  const description = `${gameName} ${relicsWord} — Spire Codex. ${nativeName}.`;
+  const description = `${gameName} ${relicsWord} (${nativeName}). Every relic by rarity and character pool — effects, flavor text, shop prices, and upgraded starters.`;
 
   const languages: Record<string, string> = {
     "en": `${SITE_URL}/relics`,
@@ -44,10 +44,15 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     title,
     description,
     openGraph: {
+      type: "website",
+      siteName: SITE_NAME,
+      url: `${SITE_URL}/${lang}/relics`,
       title,
       description,
       locale: LANG_HREFLANG[langCode],
+      images: [{ url: DEFAULT_OG_IMAGE }],
     },
+    twitter: { card: "summary_large_image", title, description },
     alternates: {
       canonical: `/${lang}/relics`,
       languages,
@@ -81,6 +86,7 @@ export default async function LangRelicsPage({ params }: { params: Promise<{ lan
       description: `Browse every relic across all rarities and character pools.`,
       path: `/${lang}/relics`,
       items: relics.map((r) => ({ name: r.name, path: `/relics/${r.id.toLowerCase()}` })),
+      inLanguage: LANG_HREFLANG[langCode],
     }),
   ];
 

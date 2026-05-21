@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import AchievementDetail from "@/app/achievements/[id]/AchievementDetail";
-import { stripTags, SITE_URL } from "@/lib/seo";
+import { stripTags, DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL, stripTagsFlat, clipMetaDescription } from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 import { isValidLang, LANG_HREFLANG, LANG_NAMES, LANG_GAME_NAME, SUPPORTED_LANGS, type LangCode } from "@/lib/languages";
@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const res = await fetch(`${API_INTERNAL}/api/achievements/${id}?lang=${lang}`);
     if (!res.ok) return { title: "Achievement Not Found - Slay the Spire 2 (sts2) | Spire Codex" };
     const entity = await res.json();
-    const desc = stripTags(entity.description || "");
+    const desc = stripTagsFlat(entity.description || "");
     const langCode = lang as LangCode;
     const gameName = LANG_GAME_NAME[langCode];
     const name = entity.name || id;
@@ -27,9 +27,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     for (const code of SUPPORTED_LANGS) languages[LANG_HREFLANG[code]] = `${SITE_URL}/${code}/achievements/${id}`;
     return {
       title,
-      description: desc || `${name} - ${gameName}`,
-      openGraph: { title, description: desc || `${name} - ${gameName}`, locale: LANG_HREFLANG[langCode] },
-      twitter: { card: "summary_large_image" },
+      description: clipMetaDescription(`${gameName} achievement — ${name}${desc ? `: ${desc}` : ""}`),
+      openGraph: {
+        type: "article",
+        siteName: SITE_NAME,
+        url: `${SITE_URL}/${lang}/achievements/${id}`,
+        title,
+        description: clipMetaDescription(`${gameName} achievement — ${name}${desc ? `: ${desc}` : ""}`),
+        locale: LANG_HREFLANG[langCode],
+        images: [{ url: DEFAULT_OG_IMAGE }],
+      },
+      twitter: { card: "summary_large_image", title, description: clipMetaDescription(`${gameName} achievement — ${name}${desc ? `: ${desc}` : ""}`) },
       alternates: { canonical: `/${lang}/achievements/${id}`, languages },
     };
   } catch {
@@ -40,6 +48,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function Page({ params }: Props) {
   const { lang, id } = await params;
   if (!isValidLang(lang)) return null;
+  const langCode = lang as LangCode;
   let jsonLd = null;
   let data = null;
   try {
@@ -52,8 +61,11 @@ export default async function Page({ params }: Props) {
         name, description: desc || name, path: `/${lang}/achievements/${id}`,
         category: "Achievement",
         breadcrumbs: [{ name: "Home", href: `/${lang}` }, { name: "Reference", href: `/${lang}/reference` }, { name, href: `/${lang}/achievements/${id}` }],
+        inLanguage: LANG_HREFLANG[langCode],
       });
-      jsonLd = [...detailJsonLd, buildFAQPageJsonLd([{ question: `${name}?`, answer: desc || name }])];
+      jsonLd = [...detailJsonLd, buildFAQPageJsonLd([
+        { question: `How do you unlock the "${name}" achievement in Slay the Spire 2?`, answer: desc || name },
+      ])];
     }
   } catch {}
   return (

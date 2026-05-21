@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import JsonLd from "@/app/components/JsonLd";
 import { buildBreadcrumbJsonLd, buildCollectionPageJsonLd } from "@/lib/jsonld";
-import { SITE_URL, SITE_NAME, buildLanguageAlternates} from "@/lib/seo";
+import { SITE_URL, SITE_NAME, DEFAULT_OG_IMAGE, buildLanguageAlternates } from "@/lib/seo";
 import type { NewsArticle, NewsListResponse } from "@/lib/api";
 import { newsExcerpt, formatNewsDate, newsSlugForArticle } from "@/lib/steam-news";
 
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   title: `News - Patch Notes & Announcements - Slay the Spire 2 (sts2) | ${SITE_NAME}`,
   description:
     "Slay the Spire 2 (sts2) patch notes, dev announcements, and press coverage. Track every Mega Crit update plus external articles from PCGamesN, RPS, and more.",
-  alternates: { canonical: `${SITE_URL}/news` },
+  alternates: { canonical: `${SITE_URL}/news`, languages: buildLanguageAlternates("/news") },
   openGraph: {
     title: `News - Patch Notes & Announcements - Slay the Spire 2 (sts2) | ${SITE_NAME}`,
     description:
@@ -27,6 +27,13 @@ export const metadata: Metadata = {
     url: `${SITE_URL}/news`,
     siteName: SITE_NAME,
     type: "website",
+    images: [{ url: DEFAULT_OG_IMAGE }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `News - Patch Notes & Announcements - Slay the Spire 2 (sts2) | ${SITE_NAME}`,
+    description: "Slay the Spire 2 (sts2) patch notes, dev announcements, and press coverage. Track every Mega Crit update plus external articles from PCGamesN, RPS, and more.",
+    images: [DEFAULT_OG_IMAGE],
   },
 };
 

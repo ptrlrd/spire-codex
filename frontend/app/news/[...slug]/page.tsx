@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import JsonLd from "@/app/components/JsonLd";
-import { buildBreadcrumbJsonLd } from "@/lib/jsonld";
+import { buildBreadcrumbJsonLd, buildNewsArticleJsonLd } from "@/lib/jsonld";
 import { SITE_URL, SITE_NAME } from "@/lib/seo";
 import type { NewsArticle } from "@/lib/api";
+import { DEFAULT_OG_IMAGE } from "@/lib/seo";
 import {
   sanitizeSteamNews,
   newsExcerpt,
@@ -12,6 +13,7 @@ import {
   gidFromSlug,
   newsSlugForArticle,
   canonicalSteamUrl,
+  firstNewsImage,
 } from "@/lib/steam-news";
 
 const API = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
@@ -85,8 +87,9 @@ export async function generateMetadata({
       type: "article",
       publishedTime: new Date(article.date * 1000).toISOString(),
       authors: article.author ? [article.author] : undefined,
+      images: [{ url: firstNewsImage(article.contents) ?? DEFAULT_OG_IMAGE }],
     },
-    twitter: { card: "summary_large_image", title: article.title, description },
+    twitter: { card: "summary_large_image", title: article.title, description, images: [firstNewsImage(article.contents) ?? DEFAULT_OG_IMAGE] },
   };
 }
 
@@ -123,23 +126,18 @@ export default async function NewsArticlePage({
       { name: "News", href: "/news" },
       { name: article.title, href: onSitePath },
     ]),
-    {
-      "@context": "https://schema.org",
-      "@type": "NewsArticle",
+    buildNewsArticleJsonLd({
       headline: article.title,
       description,
       datePublished: publishedIso,
-      dateModified: publishedIso,
-      author: article.author
-        ? { "@type": "Person", name: article.author }
-        : { "@type": "Organization", name: article.feedlabel || "Mega Crit" },
-      publisher: { "@type": "Organization", name: "Mega Crit" },
-      mainEntityOfPage: { "@type": "WebPage", "@id": canonicalSteamUrl(article.gid) },
-      isBasedOn: article.url,
-      url: `${SITE_URL}${onSitePath}`,
+      author: article.author ?? null,
+      feedlabel: article.feedlabel ?? null,
+      externalCanonical: canonicalSteamUrl(article.gid),
+      externalUrl: article.url,
+      path: onSitePath,
       inLanguage: "en",
-      about: { "@type": "VideoGame", name: "Slay the Spire 2" },
-    },
+      imageUrl: firstNewsImage(article.contents) ?? undefined,
+    }),
   ];
 
   return (

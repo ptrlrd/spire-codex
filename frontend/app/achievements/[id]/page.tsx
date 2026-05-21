@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import AchievementDetail from "./AchievementDetail";
-import { stripTags, buildLanguageAlternates} from "@/lib/seo";
+import { stripTags, stripTagsFlat, clipMetaDescription, buildLanguageAlternates, DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 
@@ -14,17 +14,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const res = await fetch(`${API_INTERNAL}/api/achievements/${id}`);
     if (!res.ok) return { title: "Achievement Not Found - Slay the Spire 2 (sts2) | Spire Codex" };
     const achievement = await res.json();
-    const desc = stripTags(achievement.description || "");
+    const desc = stripTagsFlat(achievement.description || "");
     const title = `Achievement - ${achievement.name} - Slay the Spire 2 (sts2) | Spire Codex`;
-    const metaDesc = `${achievement.name} is an achievement in Slay the Spire 2: ${desc}`;
+    const metaDesc = clipMetaDescription(
+      `Slay the Spire 2 achievement — ${achievement.name}${desc ? `: ${desc}` : ""}`,
+    );
     return {
       title,
       description: metaDesc,
       openGraph: {
+        type: "article",
+        siteName: SITE_NAME,
+        url: `${SITE_URL}/achievements/${id}`,
         title,
         description: metaDesc,
+        images: [{ url: DEFAULT_OG_IMAGE }],
       },
-      twitter: { card: "summary_large_image" },
+      twitter: { card: "summary_large_image", title, description: metaDesc },
       alternates: { canonical: `/achievements/${id}`, languages: buildLanguageAlternates(`/achievements/${id}`) },
     };
   } catch {

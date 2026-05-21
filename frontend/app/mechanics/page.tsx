@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { SITE_URL, SITE_NAME, buildLanguageAlternates} from "@/lib/seo";
+import { SITE_URL, SITE_NAME, DEFAULT_OG_IMAGE, buildLanguageAlternates } from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
 import { buildBreadcrumbJsonLd, buildCollectionPageJsonLd } from "@/lib/jsonld";
 import Link from "next/link";
@@ -20,14 +20,21 @@ export interface MechanicSectionMeta {
 export const metadata: Metadata = {
   title: `Game Mechanics - Drop Rates, Combat & Map Data - Slay the Spire 2 (sts2) | ${SITE_NAME}`,
   description:
-    "Complete game mechanics for Slay the Spire 2. Card rarity odds, relic distribution, potion chances, gold rewards, map generation, combat formulas, secrets, and more — all extracted from the game's source code.",
-  alternates: { canonical: `${SITE_URL}/mechanics` },
+    "Slay the Spire 2 (sts2) mechanics — card and relic drop rates, gold rewards, map generation, combat formulas, and secrets. Pulled straight from the game's source.",
+  alternates: { canonical: `${SITE_URL}/mechanics`, languages: buildLanguageAlternates("/mechanics") },
   openGraph: {
     title: `Game Mechanics - Slay the Spire 2 (sts2) | ${SITE_NAME}`,
     description: "Every drop rate, reward chance, and game formula extracted from the source code.",
     url: `${SITE_URL}/mechanics`,
     siteName: SITE_NAME,
     type: "website",
+    images: [{ url: DEFAULT_OG_IMAGE }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `Game Mechanics - Slay the Spire 2 (sts2) | ${SITE_NAME}`,
+    description: "Every drop rate, reward chance, and game formula extracted from the source code.",
+    images: [DEFAULT_OG_IMAGE],
   },
 };
 

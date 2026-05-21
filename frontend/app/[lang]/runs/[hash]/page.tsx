@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import JsonLd from "@/app/components/JsonLd";
+import { buildDetailPageJsonLd } from "@/lib/jsonld";
 import SharedRunClient from "@/app/runs/[hash]/SharedRunClient";
 import {
   isValidLang,
@@ -8,7 +10,7 @@ import {
   SUPPORTED_LANGS,
   type LangCode,
 } from "@/lib/languages";
-import { SITE_URL } from "@/lib/seo";
+import { clipMetaDescription, DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/seo";
 import { t } from "@/lib/ui-translations";
 
 export const dynamic = "force-dynamic";
@@ -41,7 +43,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const result = t(resultKey, lang);
 
     const title = `${char} ${result} — ${gameName} | Spire Codex (${nativeName})`;
-    const description = `${result}, ${gameName} — ${t("Ascension", lang)} ${run.ascension || 0}`;
+    const username = (run.username || "").trim() || "Anonymous";
+    const description = clipMetaDescription(
+      `${gameName} — ${username}'s ${char} ${result.toLowerCase()} at ${t("Ascension", lang)} ${run.ascension || 0}.`,
+    );
 
     const languages: Record<string, string> = {
       en: `${SITE_URL}/runs/${hash}`,
@@ -54,7 +59,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return {
       title,
       description,
-      openGraph: { title, description, locale: LANG_HREFLANG[langCode] },
+      openGraph: {
+        type: "article",
+        siteName: SITE_NAME,
+        url: `${SITE_URL}/${lang}/runs/${hash}`,
+        title,
+        description,
+        locale: LANG_HREFLANG[langCode],
+        images: [{ url: DEFAULT_OG_IMAGE }],
+      },
+      twitter: { card: "summary_large_image", title, description },
       alternates: { canonical: `/${lang}/runs/${hash}`, languages },
     };
   } catch {
@@ -62,8 +76,47 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
+interface SharedRun {
+  win?: boolean;
+  was_abandoned?: boolean;
+  username?: string | null;
+  ascension?: number;
+  players?: { character?: string }[];
+}
+
 export default async function LangSharedRunPage({ params }: Props) {
-  const { lang } = await params;
+  const { lang, hash } = await params;
   if (!isValidLang(lang)) return null;
-  return <SharedRunClient />;
+  const langCode = lang as LangCode;
+  let jsonLd: ReturnType<typeof buildDetailPageJsonLd> | null = null;
+  try {
+    const res = await fetch(`${API_INTERNAL}/api/runs/shared/${hash}`);
+    if (res.ok) {
+      const run = (await res.json()) as SharedRun;
+      const rawChar = run.players?.[0]?.character?.replace("CHARACTER.", "") || "Unknown";
+      const char = rawChar.charAt(0) + rawChar.slice(1).toLowerCase();
+      const username = run.username?.trim() || "Anonymous";
+      const ascension = run.ascension ?? 0;
+      const resultKey = run.win ? "Victory" : run.was_abandoned ? "Abandoned" : "Defeat";
+      const result = t(resultKey, lang);
+      jsonLd = buildDetailPageJsonLd({
+        name: `${username} - ${char} - ${t("Ascension", lang)} ${ascension} ${result}`,
+        description: `${username}'s ${char} run at ${t("Ascension", lang)} ${ascension} in Slay the Spire 2.`,
+        path: `/${lang}/runs/${hash}`,
+        category: "Run",
+        breadcrumbs: [
+          { name: t("Home", lang), href: `/${lang}` },
+          { name: t("Leaderboards", lang), href: `/${lang}/leaderboards` },
+          { name: `${username} - ${char}`, href: `/${lang}/runs/${hash}` },
+        ],
+        inLanguage: LANG_HREFLANG[langCode],
+      });
+    }
+  } catch {}
+  return (
+    <>
+      {jsonLd && <JsonLd data={jsonLd} />}
+      <SharedRunClient />
+    </>
+  );
 }

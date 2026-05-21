@@ -14,7 +14,7 @@ import {
   SUPPORTED_LANGS,
   type LangCode,
 } from "@/lib/languages";
-import { SITE_URL } from "@/lib/seo";
+import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/seo";
 import { t } from "@/lib/ui-translations";
 import type { Badge } from "@/lib/api";
 
@@ -59,10 +59,15 @@ export async function generateMetadata({
     title,
     description,
     openGraph: {
+      type: "website",
+      siteName: SITE_NAME,
+      url: `${SITE_URL}/${lang}/badges`,
       title,
       description,
       locale: LANG_HREFLANG[langCode],
+      images: [{ url: DEFAULT_OG_IMAGE }],
     },
+    twitter: { card: "summary_large_image", title, description },
     alternates: {
       canonical: `/${lang}/badges`,
       languages,
@@ -106,6 +111,7 @@ export default async function LangBadgesPage({
         name: b.name,
         path: `/${lang}/badges/${b.id.toLowerCase()}`,
       })),
+      inLanguage: LANG_HREFLANG[langCode],
     }),
   ];
 

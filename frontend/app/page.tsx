@@ -10,14 +10,14 @@ import HomeFAQ from "./components/HomeFAQ";
 import JsonLd from "./components/JsonLd";
 import SearchTrigger from "./components/SearchTrigger";
 import { buildWebSiteJsonLd, buildVideoGameJsonLd } from "@/lib/jsonld";
-import { SITE_NAME, IS_BETA, buildLanguageAlternates } from "@/lib/seo";
+import { SITE_NAME, IS_BETA, buildLanguageAlternates, HOME_OG_IMAGE } from "@/lib/seo";
 
 const API = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
 const title = `${IS_BETA ? "Beta " : ""}Database, Wiki & Guide - Slay the Spire 2 (sts2) | ${SITE_NAME}`;
 const description = IS_BETA
   ? "Beta preview of upcoming Slay the Spire 2 (sts2) content. Browse new cards, relics, characters, monsters, potions, events, powers, and more."
-  : "The complete Slay the Spire 2 (sts2) database. Browse all cards, relics, characters, monsters, potions, events, powers, and more. Filter by character, rarity, and type.";
+  : "The complete Slay the Spire 2 (sts2) database. Browse cards, relics, characters, monsters, potions, events, and powers. Filter by character, rarity, and keyword.";
 
 // ISR with 60s revalidation. The HTML caches at CF edge for 60s so
 // most visits return without hitting Next.js at all. After 60s the
@@ -32,11 +32,21 @@ const description = IS_BETA
 // the next cache slot.
 export const revalidate = 60;
 
+// Home uses the bare-logo OG asset (transparent background, just the
+// silent + cultist mark) so the landing card reads as a logo, while
+// every other page inherits the branded composition from layout.tsx.
+const homeOgImage = { url: HOME_OG_IMAGE, width: 2006, height: 2251 };
+
 export const metadata: Metadata = {
   title,
   description,
-  openGraph: { title, description },
-  twitter: { card: "summary_large_image", title, description },
+  openGraph: { type: "website", siteName: SITE_NAME, title, description, images: [homeOgImage] },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    images: [HOME_OG_IMAGE],
+  },
   alternates: {
     canonical: "/",
     languages: buildLanguageAlternates("/"),

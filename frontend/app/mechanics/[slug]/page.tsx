@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { SITE_URL, SITE_NAME, buildLanguageAlternates} from "@/lib/seo";
+import { SITE_URL, SITE_NAME, DEFAULT_OG_IMAGE, clipMetaDescription, buildLanguageAlternates} from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
-import { buildBreadcrumbJsonLd, buildDetailPageJsonLd } from "@/lib/jsonld";
+import { buildDetailPageJsonLd } from "@/lib/jsonld";
 import Link from "next/link";
 import MechanicMarkdown from "./MechanicMarkdown";
 import type { MechanicSectionMeta } from "../page";
@@ -42,12 +42,20 @@ export async function generateMetadata({
   const section = await fetchSection(slug);
   if (!section) return { title: `Not Found - Slay the Spire 2 (sts2) | ${SITE_NAME}` };
   const title = `${section.title} - Slay the Spire 2 | ${SITE_NAME}`;
+  const description = clipMetaDescription(section.description);
   return {
     title,
-    description: section.description,
+    description,
     alternates: { canonical: `${SITE_URL}/mechanics/${slug}` },
-    openGraph: { title, description: section.description, url: `${SITE_URL}/mechanics/${slug}`, siteName: SITE_NAME, type: "article" },
-    twitter: { card: "summary", title, description: section.description },
+    openGraph: {
+      title,
+      description,
+      url: `${SITE_URL}/mechanics/${slug}`,
+      siteName: SITE_NAME,
+      type: "article",
+      images: [{ url: DEFAULT_OG_IMAGE }],
+    },
+    twitter: { card: "summary_large_image", title, description },
   };
 }
 
@@ -60,24 +68,20 @@ export default async function MechanicDetailPage({
   const section = await fetchSection(slug);
   if (!section) notFound();
 
-  const jsonLd = [
-    buildBreadcrumbJsonLd([
+  // buildDetailPageJsonLd already appends a BreadcrumbList from `breadcrumbs`,
+  // so we don't emit a separate buildBreadcrumbJsonLd here (would have
+  // duplicated the BreadcrumbList entity in Search Console).
+  const jsonLd = buildDetailPageJsonLd({
+    name: `${section.title} - Slay the Spire 2`,
+    description: section.description,
+    path: `/mechanics/${slug}`,
+    category: section.category === "secrets" ? "Secrets & Trivia" : "Game Mechanics",
+    breadcrumbs: [
       { name: "Home", href: "/" },
       { name: "Mechanics", href: "/mechanics" },
       { name: section.title, href: `/mechanics/${slug}` },
-    ]),
-    ...buildDetailPageJsonLd({
-      name: `${section.title} - Slay the Spire 2`,
-      description: section.description,
-      path: `/mechanics/${slug}`,
-      category: section.category === "secrets" ? "Secrets & Trivia" : "Game Mechanics",
-      breadcrumbs: [
-        { name: "Home", href: "/" },
-        { name: "Mechanics", href: "/mechanics" },
-        { name: section.title, href: `/mechanics/${slug}` },
-      ],
-    }),
-  ];
+    ],
+  });
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">

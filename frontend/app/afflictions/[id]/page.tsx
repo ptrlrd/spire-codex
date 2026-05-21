@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import AfflictionDetail from "./AfflictionDetail";
-import { stripTags, buildLanguageAlternates} from "@/lib/seo";
+import { stripTags, stripTagsFlat, clipMetaDescription, buildLanguageAlternates, DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 
@@ -14,17 +14,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const res = await fetch(`${API_INTERNAL}/api/afflictions/${id}`);
     if (!res.ok) return { title: "Affliction Not Found - Slay the Spire 2 (sts2) | Spire Codex" };
     const affliction = await res.json();
-    const desc = stripTags(affliction.description || "");
+    const desc = stripTagsFlat(affliction.description || "");
     const title = `Affliction - ${affliction.name} - Slay the Spire 2 (sts2) | Spire Codex`;
-    const metaDesc = `${affliction.name} is an affliction in Slay the Spire 2: ${desc}`;
+    const metaDesc = clipMetaDescription(
+      `Slay the Spire 2 affliction — ${affliction.name}${desc ? `: ${desc}` : ""}`,
+    );
     return {
       title,
       description: metaDesc,
       openGraph: {
+        type: "article",
+        siteName: SITE_NAME,
+        url: `${SITE_URL}/afflictions/${id}`,
         title,
         description: metaDesc,
+        images: [{ url: DEFAULT_OG_IMAGE }],
       },
-      twitter: { card: "summary_large_image" },
+      twitter: { card: "summary_large_image", title, description: metaDesc },
       alternates: { canonical: `/afflictions/${id}`, languages: buildLanguageAlternates(`/afflictions/${id}`) },
     };
   } catch {

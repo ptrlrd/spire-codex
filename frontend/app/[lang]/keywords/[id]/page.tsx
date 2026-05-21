@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import KeywordDetail from "@/app/keywords/[id]/KeywordDetail";
-import { stripTags, SITE_URL } from "@/lib/seo";
+import { stripTags, DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL, stripTagsFlat, clipMetaDescription } from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 import { isValidLang, LANG_HREFLANG, LANG_NAMES, LANG_GAME_NAME, SUPPORTED_LANGS, type LangCode } from "@/lib/languages";
@@ -28,11 +28,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title,
       description: `${desc} Browse all ${kw.name} cards in ${gameName}.`,
       openGraph: {
+        type: "article",
+        siteName: SITE_NAME,
+        url: `${SITE_URL}/${lang}/keywords/${id}`,
         title: `${gameName} ${kw.name} Cards | Spire Codex (${LANG_NAMES[langCode]})`,
         description: `${desc} Browse all ${kw.name} cards in ${gameName}.`,
         locale: LANG_HREFLANG[langCode],
+        images: [{ url: DEFAULT_OG_IMAGE }],
       },
-      twitter: { card: "summary_large_image" },
+      twitter: { card: "summary_large_image", title: `${gameName} ${kw.name} Cards | Spire Codex (${LANG_NAMES[langCode]})`, description: `${desc} Browse all ${kw.name} cards in ${gameName}.` },
       alternates: { canonical: `/${lang}/keywords/${id}`, languages },
     };
   } catch {
@@ -62,6 +66,7 @@ export default async function Page({ params }: Props) {
           { name: "Keywords", href: `/${lang}/keywords` },
           { name: kw.name, href: `/${lang}/keywords/${id}` },
         ],
+        inLanguage: LANG_HREFLANG[langCode],
       });
       const faqJsonLd = buildFAQPageJsonLd([
         { question: `What does ${kw.name} do in ${gameName}?`, answer: desc },

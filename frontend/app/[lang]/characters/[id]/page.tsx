@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import CharacterDetail from "@/app/characters/[id]/CharacterDetail";
-import { stripTags, SITE_URL } from "@/lib/seo";
+import { stripTags, SITE_NAME, SITE_URL, stripTagsFlat, clipMetaDescription } from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 import { isValidLang, LANG_HREFLANG, LANG_NAMES, LANG_GAME_NAME, SUPPORTED_LANGS, type LangCode } from "@/lib/languages";
@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const res = await fetch(`${API_INTERNAL}/api/characters/${id}?lang=${lang}`);
     if (!res.ok) return { title: "Character Not Found - Slay the Spire 2 (sts2) | Spire Codex" };
     const entity = await res.json();
-    const desc = stripTags(entity.description || "");
+    const desc = stripTagsFlat(entity.description || "");
     const langCode = lang as LangCode;
     const gameName = LANG_GAME_NAME[langCode];
     const name = entity.name || entity.title || id;
@@ -28,9 +28,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     for (const code of SUPPORTED_LANGS) languages[LANG_HREFLANG[code]] = `${SITE_URL}/${code}/characters/${id}`;
     return {
       title,
-      description: desc || `${name} - ${gameName}`,
-      openGraph: { title, description: desc || `${name} - ${gameName}`, locale: LANG_HREFLANG[langCode], images: entity.image_url ? [{ url: `${API_PUBLIC}${entity.image_url}` }] : [] },
-      twitter: { card: "summary_large_image" },
+      description: clipMetaDescription(`${gameName} playable character — ${name}${desc ? `: ${desc}` : ""}`),
+      openGraph: {
+        type: "article",
+        siteName: SITE_NAME,
+        url: `${SITE_URL}/${lang}/characters/${id}`,
+        title,
+        description: clipMetaDescription(`${gameName} playable character — ${name}${desc ? `: ${desc}` : ""}`),
+        locale: LANG_HREFLANG[langCode],
+        images: entity.image_url ? [{ url: `${API_PUBLIC}${entity.image_url}` }] : [],
+      },
+      twitter: { card: "summary_large_image", title, description: clipMetaDescription(`${gameName} playable character — ${name}${desc ? `: ${desc}` : ""}`) },
       alternates: { canonical: `/${lang}/characters/${id}`, languages },
     };
   } catch {
@@ -41,6 +49,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function Page({ params }: Props) {
   const { lang, id } = await params;
   if (!isValidLang(lang)) return null;
+  const langCode = lang as LangCode;
   let jsonLd = null;
   let data = null;
   try {
@@ -53,8 +62,12 @@ export default async function Page({ params }: Props) {
         name, description: desc || name, path: `/${lang}/characters/${id}`,
         imageUrl: data.image_url ? `${API_PUBLIC}${data.image_url}` : undefined, category: "Character",
         breadcrumbs: [{ name: "Home", href: `/${lang}` }, { name: "Characters", href: `/${lang}/characters` }, { name, href: `/${lang}/characters/${id}` }],
+        inLanguage: LANG_HREFLANG[langCode],
       });
-      jsonLd = [...detailJsonLd, buildFAQPageJsonLd([{ question: `${name}?`, answer: desc || name }])];
+      jsonLd = [...detailJsonLd, buildFAQPageJsonLd([
+        { question: `Who is ${name} in Slay the Spire 2?`, answer: desc || name },
+        { question: `How do you play ${name} in Slay the Spire 2?`, answer: `${name} is a playable character in Slay the Spire 2 with a unique starting deck and relics.` },
+      ])];
     }
   } catch {}
   return (

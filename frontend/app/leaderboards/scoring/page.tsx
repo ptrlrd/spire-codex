@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { SITE_URL, SITE_NAME, buildLanguageAlternates} from "@/lib/seo";
+import { SITE_URL, SITE_NAME, DEFAULT_OG_IMAGE, buildLanguageAlternates } from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
-import { buildBreadcrumbJsonLd } from "@/lib/jsonld";
+import { buildBreadcrumbJsonLd, buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 import ScoreBadge from "@/app/components/ScoreBadge";
 
 export const metadata: Metadata = {
   title: `Codex Score - How Tier Ratings Work - Slay the Spire 2 (sts2) | ${SITE_NAME}`,
   description:
-    "How the Codex Score rates every Slay the Spire 2 card, relic, and potion. Bayesian-shrunk win-rate formula, tier bands (S through F), and methodology behind the community-meta ratings.",
+    "How Codex Score ranks every Slay the Spire 2 (sts2) card, relic, and potion. Bayesian-shrunk win rate, S-through-F tier bands, and full formula methodology.",
   alternates: { canonical: `${SITE_URL}/leaderboards/scoring`, languages: buildLanguageAlternates(`/leaderboards/scoring`) },
   openGraph: {
     title: `Codex Score Methodology - Slay the Spire 2 (sts2) | ${SITE_NAME}`,
@@ -17,6 +17,12 @@ export const metadata: Metadata = {
     url: `${SITE_URL}/leaderboards/scoring`,
     siteName: SITE_NAME,
     type: "article",
+    images: [{ url: DEFAULT_OG_IMAGE }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `Codex Score Methodology - Slay the Spire 2 (sts2) | ${SITE_NAME}`,
+    description: "How we compute the 0-100 community-meta score on every card / relic / potion. Bayesian shrinkage, tier bands, formula breakdown.",
   },
 };
 
@@ -50,13 +56,41 @@ const TIERS = [
 ];
 
 export default function ScoringPage() {
-  const jsonLd = [
-    buildBreadcrumbJsonLd([
+  const articleAndBreadcrumb = buildDetailPageJsonLd({
+    name: "Codex Score — Slay the Spire 2 Tier Rating Methodology",
+    description:
+      "How Codex Score ranks every Slay the Spire 2 card, relic, and potion. Bayesian-shrunk win rate, S-through-F tier bands, and full formula methodology.",
+    path: "/leaderboards/scoring",
+    category: "Game Mechanics",
+    breadcrumbs: [
       { name: "Home", href: "/" },
-      { name: "Stats", href: "/leaderboards/stats" },
+      { name: "Leaderboards", href: "/leaderboards" },
       { name: "Codex Score", href: "/leaderboards/scoring" },
-    ]),
-  ];
+    ],
+  });
+  const faqJsonLd = buildFAQPageJsonLd([
+    {
+      question: "What is the Codex Score in Slay the Spire 2?",
+      answer:
+        "The Codex Score is a 0–100 community meta score for every card, relic, and potion in Slay the Spire 2. It is computed from the win rate of community-submitted runs that included the entity, shrunk toward the global baseline using Bayesian methods to prevent low-sample noise.",
+    },
+    {
+      question: "How is the Slay the Spire 2 tier list score calculated?",
+      answer:
+        "The score has two stages: Bayesian shrinkage (shrunk = (wins + baseline·50) / (picks + 50)) to prevent a 5-pick perfect card from outranking a 500-pick reliable one, then a linear map from win-rate-vs-baseline to the 0–100 scale. Scores above 90 earn an S tier; below 35 earns F.",
+    },
+    {
+      question: "What do the S, A, B, C, D, F tier grades mean?",
+      answer:
+        "S (90–100) is genuinely elite. A (78–89) is reliable and strong. B (65–77) is above average. C (50–64) is average — most entities live here. D (35–49) is niche or filler. F (0–34) actively pulls runs toward losses.",
+    },
+    {
+      question: "How often does the Codex Score update?",
+      answer:
+        "Scores rebuild every 30 minutes on the server as new community runs are submitted. The tier list reflects the current meta after the most recent game patch.",
+    },
+  ]);
+  const jsonLd = [...articleAndBreadcrumb, faqJsonLd];
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">

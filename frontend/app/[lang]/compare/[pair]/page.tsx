@@ -4,7 +4,7 @@ import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd } from "@/lib/jsonld";
 import CompareDetail from "@/app/compare/[pair]/CompareDetail";
 import { isValidLang, LANG_HREFLANG, LANG_NAMES, LANG_GAME_NAME, SUPPORTED_LANGS, type LangCode } from "@/lib/languages";
-import { SITE_URL } from "@/lib/seo";
+import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/seo";
 
 export const dynamic = "force-dynamic";
 
@@ -51,8 +51,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title,
     description,
-    openGraph: { title, description, locale: LANG_HREFLANG[langCode] },
-    twitter: { card: "summary_large_image" },
+    openGraph: {
+      type: "article",
+      siteName: SITE_NAME,
+      url: `${SITE_URL}/${lang}/compare/${pair}`,
+      title,
+      description,
+      locale: LANG_HREFLANG[langCode],
+      images: [{ url: DEFAULT_OG_IMAGE }],
+    },
+    twitter: { card: "summary_large_image", title, description },
     alternates: { canonical: `/${lang}/compare/${pair}`, languages },
   };
 }
@@ -121,6 +129,7 @@ export default async function Page({ params }: Props) {
         { name: "Compare", href: `/${lang}/compare` },
         { name: `${nameA} vs ${nameB}`, href: `/${lang}/compare/${pair}` },
       ],
+      inLanguage: LANG_HREFLANG[langCode],
     });
   }
 

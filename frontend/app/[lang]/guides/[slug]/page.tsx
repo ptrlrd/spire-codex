@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import type { Guide } from "@/lib/api";
-import { SITE_URL, SITE_NAME, stripTags } from "@/lib/seo";
+import { SITE_URL, SITE_NAME, DEFAULT_OG_IMAGE, stripTags, stripTagsFlat, clipMetaDescription } from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
-import { buildDetailPageJsonLd } from "@/lib/jsonld";
+import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 import GuideDetail from "@/app/guides/[slug]/GuideDetail";
 import { isValidLang } from "@/lib/languages";
 import { t } from "@/lib/ui-translations";
@@ -21,7 +21,7 @@ export async function generateMetadata({
     if (!res.ok) return { title: `${t("Not Found", lang)} | ${SITE_NAME}` };
     const guide: Guide = await res.json();
     const title = `${guide.title} - Slay the Spire 2 ${t("Guides", lang)} | ${SITE_NAME}`;
-    const description = stripTags(guide.summary);
+    const description = clipMetaDescription(stripTagsFlat(guide.summary || ""));
     return {
       title,
       description,
@@ -32,8 +32,9 @@ export async function generateMetadata({
         url: `${SITE_URL}/${lang}/guides/${slug}`,
         siteName: SITE_NAME,
         type: "article",
+        images: [{ url: DEFAULT_OG_IMAGE }],
       },
-      twitter: { card: "summary", title, description },
+      twitter: { card: "summary_large_image", title, description },
     };
   } catch {
     return { title: `${t("Guides", lang)} | ${SITE_NAME}` };
@@ -54,17 +55,29 @@ export default async function LangGuideDetailPage({
   } catch {}
 
   const jsonLd = guide
-    ? buildDetailPageJsonLd({
-        name: guide.title,
-        description: guide.summary,
-        path: `/${lang}/guides/${slug}`,
-        category: guide.category,
-        breadcrumbs: [
-          { name: t("Home", lang), href: `/${lang}` },
-          { name: t("Guides", lang), href: `/${lang}/guides` },
-          { name: guide.title, href: `/${lang}/guides/${slug}` },
-        ],
-      })
+    ? [
+        ...buildDetailPageJsonLd({
+          name: guide.title,
+          description: guide.summary,
+          path: `/${lang}/guides/${slug}`,
+          category: guide.category,
+          breadcrumbs: [
+            { name: t("Home", lang), href: `/${lang}` },
+            { name: t("Guides", lang), href: `/${lang}/guides` },
+            { name: guide.title, href: `/${lang}/guides/${slug}` },
+          ],
+        }),
+        buildFAQPageJsonLd([
+          {
+            question: `What does "${guide.title}" cover?`,
+            answer: guide.summary || `A Slay the Spire 2 guide on ${guide.category}.`,
+          },
+          {
+            question: "Where can I find more Slay the Spire 2 guides?",
+            answer: "Browse all community guides at spire-codex.com/guides — filtered by category, difficulty, and character.",
+          },
+        ]),
+      ]
     : [];
 
   return (
