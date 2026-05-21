@@ -93,9 +93,13 @@ fi
 if [ -n "$DISCORD_URL" ]; then
   PR_URL=$(cat "$STATE_DIR/last-pr-url" 2>/dev/null || echo "(no PR opened)")
   VERSION=$(cat "$STATE_DIR/last-version" 2>/dev/null || echo "$NEW_BUILDID")
-  MSG="**New StS2 beta detected**: \`$VERSION\` (buildid $NEW_BUILDID)\nPR: $PR_URL"
+  # <@99656376954916864> = peter — explicit mention so the message escalates
+  # to a phone push notification, not just a passive channel message.
+  MSG="<@99656376954916864> **New StS2 beta detected**: \`$VERSION\` (buildid $NEW_BUILDID)\nPR: $PR_URL"
+  # allowed_mentions.parse=["users"] is what actually causes Discord to ring
+  # the user — without it, the <@id> renders as text and skips the ping.
   curl -s -X POST -H "Content-Type: application/json" \
-    -d "$(printf '{"content":"%s"}' "${MSG//\"/\\\"}")" \
+    -d "$(printf '{"content":"%s","allowed_mentions":{"parse":["users"]}}' "${MSG//\"/\\\"}")" \
     "$DISCORD_URL" >> "$LOG" 2>&1 || log "discord notify failed (non-fatal)"
 fi
 
