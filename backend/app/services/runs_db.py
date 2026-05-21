@@ -13,6 +13,7 @@ import hashlib
 import json
 import os
 import sqlite3
+import time
 from contextlib import contextmanager
 from pathlib import Path
 
@@ -827,6 +828,135 @@ def get_stats(
             ],
             "deadliest": [
                 {"encounter": r["killed_by"], "count": r["count"]} for r in deaths
+            ],
+        }
+
+
+# Per-card-stats cache. The self-join in get_card_stats() (run_cards × run_cards
+# for synergy detection) is the heaviest query in the codebase, and with 576
+# cards each backed by a detail page, browse traffic can easily fire one call
+# per page view. 5-minute TTL collapses bursts to a single rebuild without
+# making any individual card's stats noticeably stale (community win rates
+# move on the order of hours, not minutes).
+_CARD_STATS_TTL_SECONDS = 300
+_card_stats_cache: dict[str, tuple[float, dict]] = {}
+
+
+def get_card_stats(card_id: str) -> dict:
+    """Detailed per-card stats from community runs.
+
+    Powers the Stats tab on card detail pages — richer than the bulk
+    Codex Score feed since each card detail page only loads one. SQL
+    aggregations run on-demand (no precompute) because each detail page
+    hit is bounded by browse traffic, the queries are well-indexed, and
+    the answer changes as runs accumulate.
+
+    Cached in-memory per card_id (5 min TTL). The self-join for synergies
+    is otherwise expensive enough that a popular card page could dominate
+    backend latency. Cache eviction happens inline on access.
+    """
+    now = time.monotonic()
+    hit = _card_stats_cache.get(card_id)
+    if hit and now - hit[0] < _CARD_STATS_TTL_SECONDS:
+        return hit[1]
+    # GC expired entries on the fly so the dict doesn't grow unbounded.
+    for k in [
+        k
+        for k, (t, _) in _card_stats_cache.items()
+        if now - t >= _CARD_STATS_TTL_SECONDS
+    ]:
+        del _card_stats_cache[k]
+    result = _get_card_stats_uncached(card_id)
+    _card_stats_cache[card_id] = (now, result)
+    return result
+
+
+def _get_card_stats_uncached(card_id: str) -> dict:
+    """Original synchronous body of get_card_stats. Separated so the cached
+    wrapper can stay readable.
+
+    Returns:
+      n_runs_with_card / n_wins_with_card / win_rate_when_in_deck
+      n_offered / n_picked / pick_rate / skip_rate
+      avg_copies_winning / avg_copies_all
+      upgrade_rate
+      avg_ascension_picked
+      top_synergies: [{card_id, co_runs}]  -- cards most often co-present
+                                              in winning decks with this one
+    """
+    with get_conn() as conn:
+        agg = conn.execute(
+            """
+            SELECT
+              (SELECT COUNT(DISTINCT rc.run_id) FROM run_cards rc
+                 WHERE rc.card_id = ?) AS n_runs_with_card,
+              (SELECT COUNT(DISTINCT rc.run_id) FROM run_cards rc
+                 JOIN runs r ON rc.run_id = r.id
+                 WHERE rc.card_id = ? AND r.win = 1) AS n_wins_with_card,
+              (SELECT COUNT(*) FROM run_card_choices
+                 WHERE card_id = ?) AS n_offered,
+              (SELECT COALESCE(SUM(was_picked), 0) FROM run_card_choices
+                 WHERE card_id = ?) AS n_picked,
+              (SELECT 1.0 * SUM(upgraded) / COUNT(*) FROM run_cards
+                 WHERE card_id = ?) AS upgrade_rate,
+              (SELECT 1.0 * COUNT(*) / NULLIF(COUNT(DISTINCT rc.run_id), 0)
+                 FROM run_cards rc JOIN runs r ON rc.run_id = r.id
+                 WHERE rc.card_id = ? AND r.win = 1) AS avg_copies_winning,
+              (SELECT 1.0 * COUNT(*) / NULLIF(COUNT(DISTINCT run_id), 0)
+                 FROM run_cards WHERE card_id = ?) AS avg_copies_all,
+              (SELECT 1.0 * SUM(r.ascension) / NULLIF(COUNT(*), 0)
+                 FROM run_card_choices rc JOIN runs r ON rc.run_id = r.id
+                 WHERE rc.card_id = ? AND rc.was_picked = 1) AS avg_ascension_picked
+        """,
+            [card_id] * 8,
+        ).fetchone()
+
+        # Synergy: cards most often co-present in winning decks with this one.
+        # Self-join on run_cards is bounded by the rows for `card_id` (typically
+        # a few thousand), then fans out to that run's other cards (~30 each).
+        synergies = conn.execute(
+            """
+            SELECT rc2.card_id AS card_id, COUNT(DISTINCT rc1.run_id) AS co_runs
+            FROM run_cards rc1
+            JOIN run_cards rc2
+              ON rc1.run_id = rc2.run_id AND rc1.card_id != rc2.card_id
+            JOIN runs r ON rc1.run_id = r.id
+            WHERE rc1.card_id = ? AND r.win = 1
+            GROUP BY rc2.card_id
+            ORDER BY co_runs DESC
+            LIMIT 5
+        """,
+            [card_id],
+        ).fetchall()
+
+        n_runs = agg["n_runs_with_card"] or 0
+        n_wins = agg["n_wins_with_card"] or 0
+        n_offered = agg["n_offered"] or 0
+        n_picked = agg["n_picked"] or 0
+
+        return {
+            "card_id": card_id,
+            "n_runs_with_card": n_runs,
+            "n_wins_with_card": n_wins,
+            "win_rate_when_in_deck": round(n_wins / n_runs, 4) if n_runs else None,
+            "n_offered": n_offered,
+            "n_picked": n_picked,
+            "pick_rate": round(n_picked / n_offered, 4) if n_offered else None,
+            "skip_rate": round(1 - n_picked / n_offered, 4) if n_offered else None,
+            "avg_copies_winning": round(agg["avg_copies_winning"], 2)
+            if agg["avg_copies_winning"]
+            else None,
+            "avg_copies_all": round(agg["avg_copies_all"], 2)
+            if agg["avg_copies_all"]
+            else None,
+            "upgrade_rate": round(agg["upgrade_rate"], 4)
+            if agg["upgrade_rate"] is not None
+            else None,
+            "avg_ascension_picked": round(agg["avg_ascension_picked"], 2)
+            if agg["avg_ascension_picked"] is not None
+            else None,
+            "top_synergies": [
+                {"card_id": s["card_id"], "co_runs": s["co_runs"]} for s in synergies
             ],
         }
 

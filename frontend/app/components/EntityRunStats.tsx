@@ -29,6 +29,37 @@ interface EntityStats {
   last_run_hash: string | null;
 }
 
+interface SynergyRow {
+  card_id: string;
+  co_runs: number;
+}
+
+interface CardStats {
+  card_id: string;
+  n_runs_with_card: number;
+  n_wins_with_card: number;
+  win_rate_when_in_deck: number | null;
+  n_offered: number;
+  n_picked: number;
+  pick_rate: number | null;
+  skip_rate: number | null;
+  avg_copies_winning: number | null;
+  avg_copies_all: number | null;
+  upgrade_rate: number | null;
+  avg_ascension_picked: number | null;
+  top_synergies: SynergyRow[];
+}
+
+function prettyId(id: string): string {
+  // CARD_ID like "STRIKE_IRONCLAD" → "Strike Ironclad". Cheap title-case
+  // without a name-lookup round-trip.
+  return id
+    .toLowerCase()
+    .split("_")
+    .map((w) => (w ? w[0].toUpperCase() + w.slice(1) : w))
+    .join(" ");
+}
+
 interface Props {
   entityType: "relics" | "cards" | "potions";
   entityId: string;
@@ -55,6 +86,32 @@ function relativeTime(iso: string | null): string {
   return `${Math.floor(months / 12)}y ago`;
 }
 
+function StatTile({
+  label,
+  value,
+  sub,
+}: {
+  label: string;
+  value: string;
+  sub?: string;
+}) {
+  return (
+    <div className="rounded border border-[var(--border-subtle)] bg-[var(--bg-primary)]/40 px-3 py-2">
+      <div className="text-[10px] uppercase tracking-wider text-[var(--text-muted)] mb-0.5">
+        {label}
+      </div>
+      <div className="text-lg font-semibold text-[var(--text-primary)] tabular-nums">
+        {value}
+      </div>
+      {sub && (
+        <div className="text-[10px] text-[var(--text-muted)] mt-0.5 tabular-nums">
+          {sub}
+        </div>
+      )}
+    </div>
+  );
+}
+
 function characterPretty(c: string): string {
   // Names from the runs DB are uppercase enum values (IRONCLAD,
   // NECROBINDER). Title-case for display.
@@ -71,9 +128,18 @@ function characterPretty(c: string): string {
  */
 export default function EntityRunStats({ entityType, entityId, entityName }: Props) {
   const [stats, setStats] = useState<EntityStats | null>(null);
+  const [cardStats, setCardStats] = useState<CardStats | null>(null);
 
   useEffect(() => {
     cachedFetch<EntityStats>(`${API}/api/runs/stats/${entityType}/${entityId}`).then(setStats);
+    // Card detail pages get an additional richer aggregate (pick/skip, copies,
+    // synergies). Relics/potions have less interesting per-entity data so we
+    // skip the round-trip for them. Non-card entityType doesn't reset
+    // cardStats — the render block is gated on entityType === "cards" anyway,
+    // and the conditional setState would trip react-hooks/set-state-in-effect.
+    if (entityType === "cards") {
+      cachedFetch<CardStats>(`${API}/api/runs/card-stats/${entityId}`).then(setCardStats);
+    }
   }, [entityType, entityId]);
 
   if (!stats) {
@@ -157,6 +223,89 @@ export default function EntityRunStats({ entityType, entityId, entityName }: Pro
           </>
         )}
       </p>
+
+      {/* Card-specific aggregates: pick/skip rates, copies in winning decks,
+          upgrade rate, ascension trend, and top synergy cards from winning
+          decks. Only rendered for entityType==="cards" and only when we have
+          enough samples to be useful. */}
+      {entityType === "cards" && cardStats && cardStats.n_runs_with_card > 0 && (
+        <div className="space-y-3">
+          <h3 className="text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)]">
+            Card stats
+          </h3>
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+            {cardStats.pick_rate != null && (
+              <StatTile
+                label="Pick rate when offered"
+                value={`${Math.round(cardStats.pick_rate * 100)}%`}
+                sub={`${cardStats.n_picked.toLocaleString()} / ${cardStats.n_offered.toLocaleString()}`}
+              />
+            )}
+            {cardStats.skip_rate != null && (
+              <StatTile
+                label="Skip rate"
+                value={`${Math.round(cardStats.skip_rate * 100)}%`}
+              />
+            )}
+            {cardStats.win_rate_when_in_deck != null && (
+              <StatTile
+                label="Win rate when in deck"
+                value={`${Math.round(cardStats.win_rate_when_in_deck * 100)}%`}
+                sub={`${cardStats.n_wins_with_card.toLocaleString()} / ${cardStats.n_runs_with_card.toLocaleString()} runs`}
+              />
+            )}
+            {cardStats.avg_copies_winning != null && (
+              <StatTile
+                label="Avg copies (winning)"
+                value={cardStats.avg_copies_winning.toFixed(2)}
+                sub={
+                  cardStats.avg_copies_all != null
+                    ? `vs ${cardStats.avg_copies_all.toFixed(2)} overall`
+                    : undefined
+                }
+              />
+            )}
+            {cardStats.upgrade_rate != null && (
+              <StatTile
+                label="Upgrade rate"
+                value={`${Math.round(cardStats.upgrade_rate * 100)}%`}
+              />
+            )}
+            {cardStats.avg_ascension_picked != null && (
+              <StatTile
+                label="Avg ascension picked at"
+                value={cardStats.avg_ascension_picked.toFixed(1)}
+              />
+            )}
+          </div>
+
+          {cardStats.top_synergies.length > 0 && (
+            <div>
+              <h4 className="text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)] mb-2 mt-4">
+                Most paired with (winning decks)
+              </h4>
+              <ul className="space-y-1 text-sm">
+                {cardStats.top_synergies.map((s) => (
+                  <li
+                    key={s.card_id}
+                    className="flex items-center justify-between border-b border-[var(--border-subtle)] last:border-b-0 py-1.5"
+                  >
+                    <Link
+                      href={`/cards/${s.card_id.toLowerCase()}`}
+                      className="text-[var(--text-secondary)] hover:text-[var(--accent-gold)] hover:underline"
+                    >
+                      {prettyId(s.card_id)}
+                    </Link>
+                    <span className="text-xs text-[var(--text-muted)] font-mono tabular-nums">
+                      {s.co_runs.toLocaleString()} winning runs
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+      )}
 
       {/* Per-character breakdown table — hidden when empty. */}
       {!empty && stats.by_character.length > 0 && (
