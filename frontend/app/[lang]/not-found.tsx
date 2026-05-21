@@ -20,9 +20,8 @@ export const metadata: Metadata = {
     "The page you were looking for doesn't exist on Spire Codex. Redirecting you home.",
   alternates: { canonical: SITE_URL },
   robots: { index: false, follow: true },
-  other: {
-    "http-equiv:refresh": "3;url=/",
-  },
+  // meta-refresh emitted inline below — `metadata.other` would render
+  // it as `<meta name="..."`, not `<meta http-equiv="...">`.
 };
 
 export default function LangNotFound() {

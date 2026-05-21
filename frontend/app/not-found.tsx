@@ -27,13 +27,9 @@ export const metadata: Metadata = {
     "The page you were looking for doesn't exist on Spire Codex. Redirecting you home.",
   alternates: { canonical: SITE_URL },
   robots: { index: false, follow: true },
-  // Ask the browser to bounce to / after a short delay. Crawlers
-  // ignore meta-refresh for indexing decisions (they go by the
-  // canonical + the response code) but humans get a friendlier
-  // experience.
-  other: {
-    "http-equiv:refresh": "3;url=/",
-  },
+  // NOTE: The browser meta-refresh is emitted directly in JSX below.
+  // Next.js's `metadata.other` would render as `<meta name="..."`,
+  // not `<meta http-equiv="...">`, so it has to be inline.
 };
 
 export default function NotFound() {
