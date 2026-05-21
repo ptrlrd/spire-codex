@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import Link from "next/link";
 import type { Card } from "@/lib/api";
 import RichDescription from "@/app/components/RichDescription";
@@ -153,7 +153,6 @@ type Tab = "overview" | "details" | "stats" | "info";
 
 export default function CardDetail({ initialCard }: { initialCard?: Card | null } = {}) {
   const params = useParams();
-  const router = useRouter();
   const id = params.id as string;
   const { lang } = useLanguage();
 
@@ -283,12 +282,12 @@ export default function CardDetail({ initialCard }: { initialCard?: Card | null 
 
   return (
     <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <button
-        onClick={() => router.back()}
+      <Link
+        href={`${lp}/cards`}
         className="inline-flex items-center gap-1 text-sm text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors mb-6"
       >
         &larr; {t("Back to", lang)} {t("Cards", lang)}
-      </button>
+      </Link>
 
       <div
         className={`bg-[var(--bg-card)] rounded-2xl border-2 ${
