@@ -35,13 +35,17 @@ import sys
 import time
 from pathlib import Path
 
-# Allow running as a module from anywhere under /var/www/spire-codex.
+# Script lives at backend/app/backfill_run_encounters_mongo.py so it gets
+# baked into the backend Docker image alongside the rest of `app/`.
+# Inside the container the WORKDIR is /app, so `from app.services...`
+# resolves directly. For local development from the repo root, we add
+# backend/ to sys.path so the same import path works.
 HERE = Path(__file__).resolve().parent
-ROOT = HERE.parent
-if str(ROOT) not in sys.path:
-    sys.path.insert(0, str(ROOT))
+BACKEND_DIR = HERE.parent
+if str(BACKEND_DIR) not in sys.path:
+    sys.path.insert(0, str(BACKEND_DIR))
 
-from backend.app.services.runs_db_mongo import _get_collection  # noqa: E402
+from app.services.runs_db_mongo import _get_collection  # noqa: E402
 
 
 def _runs_dir() -> Path:
@@ -50,7 +54,7 @@ def _runs_dir() -> Path:
     project tree for local dev)."""
     candidates = [
         Path(os.environ.get("DATA_DIR", "")) / "runs",
-        ROOT / "data" / "runs",
+        BACKEND_DIR.parent / "data" / "runs",
         Path("/data/runs"),
     ]
     for c in candidates:
