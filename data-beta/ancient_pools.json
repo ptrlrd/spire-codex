@@ -10,10 +10,12 @@
         "description": "One relic is chosen at random from this pool as the curse option.",
         "relics": [
           { "id": "CURSED_PEARL", "condition": null },
+          { "id": "HEFTY_TABLET", "condition": null },
           { "id": "LARGE_CAPSULE", "condition": null },
           { "id": "LEAFY_POULTICE", "condition": null },
+          { "id": "NEOWS_BONES", "condition": null },
           { "id": "PRECARIOUS_SHEARS", "condition": null },
-          { "id": "SCROLL_BOXES", "condition": "Player has cards that can form bundles" },
+          { "id": "SILKEN_TRESS", "condition": null },
           { "id": "SILVER_CRUCIBLE", "condition": "Single player only" }
         ]
       },
@@ -21,20 +23,26 @@
         "name": "Positive Pool",
         "description": "Two relics are chosen at random. Some relics are excluded based on which curse was selected.",
         "relics": [
-          { "id": "ARCANE_SCROLL", "condition": null },
+          { "id": "ARCANE_SCROLL", "condition": "Excluded if Hefty Tablet is the curse option" },
           { "id": "BOOMING_CONCH", "condition": null },
-          { "id": "POMANDER", "condition": null },
-          { "id": "LEAD_PAPERWEIGHT", "condition": null },
-          { "id": "NEOWS_TORMENT", "condition": null },
-          { "id": "LOST_COFFER", "condition": null },
+          { "id": "FISHING_ROD", "condition": null },
           { "id": "GOLDEN_PEARL", "condition": "Excluded if Cursed Pearl is the curse option" },
-          { "id": "PRECISE_SCISSORS", "condition": "Excluded if Precarious Shears is the curse option" },
+          { "id": "KALEIDOSCOPE", "condition": null },
+          { "id": "LEAD_PAPERWEIGHT", "condition": null },
+          { "id": "LOST_COFFER", "condition": null },
+          { "id": "MASSIVE_SCROLL", "condition": "Multiplayer only" },
+          { "id": "NEOWS_TORMENT", "condition": null },
           { "id": "NEW_LEAF", "condition": "Excluded if Leafy Poultice is the curse option" },
-          { "id": "NUTRITIOUS_OYSTER", "condition": "50% chance (vs Stone Humidifier)" },
-          { "id": "STONE_HUMIDIFIER", "condition": "50% chance (vs Nutritious Oyster)" },
+          { "id": "PHIAL_HOLSTER", "condition": null },
+          { "id": "PRECISE_SCISSORS", "condition": "Excluded if Precarious Shears is the curse option" },
+          { "id": "SCROLL_BOXES", "condition": "Player has cards that can form bundles" },
+          { "id": "WINGED_BOOTS", "condition": null },
           { "id": "LAVA_ROCK", "condition": "50% chance (vs Small Capsule); excluded if Large Capsule is the curse option" },
           { "id": "SMALL_CAPSULE", "condition": "50% chance (vs Lava Rock); excluded if Large Capsule is the curse option" },
-          { "id": "MASSIVE_SCROLL", "condition": "Multiplayer only" }
+          { "id": "NEOWS_TALISMAN", "condition": "50% chance (vs Pomander)" },
+          { "id": "POMANDER", "condition": "50% chance (vs Neow's Talisman)" },
+          { "id": "NUTRITIOUS_OYSTER", "condition": "50% chance (vs Stone Humidifier)" },
+          { "id": "STONE_HUMIDIFIER", "condition": "50% chance (vs Nutritious Oyster)" }
         ]
       }
     ]
