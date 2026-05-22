@@ -183,32 +183,44 @@ async function main() {
 
     console.log(`  Animation: ${animName}, duration: ${duration.toFixed(2)}s, frames: ${frameCount}`);
 
-    // Compute bounds
-    skeleton.updateWorldTransform(spine.Physics.reset);
-    state.update(0); state.apply(skeleton);
-    skeleton.updateWorldTransform(spine.Physics.update);
-
+    // Compute bounds across the WHOLE animation, not just frame 0. Sampling
+    // a single pose was fine for idle loops but underbounded action anims —
+    // an attack swing reaches further than the idle silhouette, so a frame-0
+    // scale crops the swing off-canvas.
     let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
-    for (const slot of skeleton.slots) {
-      const att = slot.getAttachment();
-      if (!att || !att.computeWorldVertices) continue;
-      const sn = slot.data.name.toLowerCase();
-      if (shadowNames.includes(sn)) continue;
-      const verts = new Float32Array(1000);
-      try {
-        if (att instanceof spine.RegionAttachment) {
-          att.computeWorldVertices(slot, verts, 0, 2);
-          for (let i = 0; i < 8; i += 2) { minX = Math.min(minX, verts[i]); maxX = Math.max(maxX, verts[i]); minY = Math.min(minY, verts[i+1]); maxY = Math.max(maxY, verts[i+1]); }
-        } else {
-          const nf = att.worldVerticesLength || 8;
-          att.computeWorldVertices(slot, 0, nf, verts, 0, 2);
-          for (let i = 0; i < nf; i += 2) { minX = Math.min(minX, verts[i]); maxX = Math.max(maxX, verts[i]); minY = Math.min(minY, verts[i+1]); maxY = Math.max(maxY, verts[i+1]); }
-        }
-      } catch {}
+    const sampleFrames = Math.max(frameCount, 24);
+    for (let f = 0; f < sampleFrames; f++) {
+      const t = (f / sampleFrames) * duration;
+      skeleton.setToSetupPose();
+      state.setAnimation(0, animName, false);
+      state.update(t);
+      state.apply(skeleton);
+      skeleton.updateWorldTransform(spine.Physics.update);
+      for (const slot of skeleton.slots) {
+        const att = slot.getAttachment();
+        if (!att || !att.computeWorldVertices) continue;
+        const sn = slot.data.name.toLowerCase();
+        if (shadowNames.includes(sn)) continue;
+        const verts = new Float32Array(1000);
+        try {
+          if (att instanceof spine.RegionAttachment) {
+            att.computeWorldVertices(slot, verts, 0, 2);
+            for (let i = 0; i < 8; i += 2) { minX = Math.min(minX, verts[i]); maxX = Math.max(maxX, verts[i]); minY = Math.min(minY, verts[i+1]); maxY = Math.max(maxY, verts[i+1]); }
+          } else {
+            const nf = att.worldVerticesLength || 8;
+            att.computeWorldVertices(slot, 0, nf, verts, 0, 2);
+            for (let i = 0; i < nf; i += 2) { minX = Math.min(minX, verts[i]); maxX = Math.max(maxX, verts[i]); minY = Math.min(minY, verts[i+1]); maxY = Math.max(maxY, verts[i+1]); }
+          }
+        } catch {}
+      }
     }
+    // Restart the animation cleanly for the actual render pass.
+    state.setAnimation(0, animName, true);
 
     const bw = maxX - minX, bh = maxY - minY;
-    const scale = Math.min(outputSize / bw, outputSize / bh) * 0.9;
+    // 0.85 leaves a touch of breathing room around the widest extent so
+    // the silhouette doesn't kiss the canvas edge.
+    const scale = Math.min(outputSize / bw, outputSize / bh) * 0.85;
     const cx = (minX + maxX) / 2, cy = (minY + maxY) / 2;
 
     const mvp = new spine.Matrix4();
