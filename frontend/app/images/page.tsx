@@ -185,7 +185,7 @@ export default function ImagesPage() {
       {betaVersions.length > 0 && (
         <div className="flex items-center gap-2 mb-8 text-sm">
           <label htmlFor="beta-version" className="text-[var(--text-muted)]">
-            Steam Beta version:
+            Game version:
           </label>
           <select
             id="beta-version"
@@ -198,7 +198,7 @@ export default function ImagesPage() {
             ))}
           </select>
           <span className="text-xs text-[var(--text-muted)]">
-            (only affects the &ldquo;Steam Beta&rdquo; categories below)
+            (main = current production game; vX.Y.Z = archived Steam beta)
           </span>
         </div>
       )}

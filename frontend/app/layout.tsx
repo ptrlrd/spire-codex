@@ -14,18 +14,26 @@ import { SITE_NAME, SITE_URL, DEFAULT_OG_IMAGE } from "@/lib/seo";
 
 // Self-hosted Umami analytics. Both values are public-by-design — the
 // browser fetches the script + sends the website ID on every page
-// view — so there's no secret to manage. Hardcoding them as constants
-// dodges Next.js's static-prerender trap: pages exporting
-// `force-static` (most of the site) bake the layout at Docker build
-// time, when runtime env vars aren't reachable, which silently strips
-// the script tag from every prerendered page.
+// view — so there's no secret to manage.
 //
-// Local-dev pollution is handled at the Umami side, not here — the
-// website is configured with `spire-codex.com` as its allowed domain
-// so pings from `localhost:3000` are rejected by Umami before they
-// land in the stats.
+// `UMAMI_WEBSITE_ID` reads NEXT_PUBLIC_UMAMI_WEBSITE_ID, a BUILD-TIME
+// env var injected by frontend/Dockerfile via a build ARG. CI passes
+// the stable Umami property's UUID to the stable image build and the
+// beta property's UUID to the beta image build, so beta.spire-codex.com
+// reports into its own Umami dashboard separate from the stable site.
+// The fallback constant keeps `npm run dev` working without env setup.
+//
+// Don't switch this to a runtime env var: pages exporting
+// `force-static` (most of the site) bake the layout at Docker build
+// time, after which runtime env changes aren't reachable, which would
+// silently strip the script tag from every prerendered page.
+//
+// Local-dev pollution is handled at the Umami side, not here — each
+// website is configured with its own allowed domain so pings from
+// `localhost:3000` are rejected before they land in the stats.
 const UMAMI_SRC = "https://analytics.spire-codex.com/script.js";
-const UMAMI_WEBSITE_ID = "715a2b92-5064-4369-9d33-cdd1c0ea8f93";
+const UMAMI_WEBSITE_ID =
+  process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID || "715a2b92-5064-4369-9d33-cdd1c0ea8f93";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
