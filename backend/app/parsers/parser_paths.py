@@ -96,7 +96,9 @@ def resolve_image_url(entity_type: str, name_stem: str) -> str | None:
     `monsters`) — substring matches the on-disk layout exactly.
     """
     if BETA_VERSION:
-        per_version_png = STATIC_IMAGES_DIR / "beta" / BETA_VERSION / entity_type / f"{name_stem}.png"
+        per_version_png = (
+            STATIC_IMAGES_DIR / "beta" / BETA_VERSION / entity_type / f"{name_stem}.png"
+        )
         if per_version_png.exists():
             return f"/static/images/beta/{BETA_VERSION}/{entity_type}/{name_stem}.webp"
 
