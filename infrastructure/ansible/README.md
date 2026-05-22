@@ -1,305 +1,178 @@
 # spire-codex Ansible
 
-Playbooks for keeping the two prod origins in parity, plus the
-day-to-day deploy / restore / housekeeping toolkit. Born out of an
-evening of "I changed it on one origin, why is half the traffic 404ing"
-debugging.
+Playbooks for managing the DigitalOcean prod box (FastAPI + Next.js + nginx + co-located MongoDB). One-shot deploys, hourly auto-deploy installer, beta-site management, and the housekeeping toolkit.
 
-Everything sensitive (SSH key, SSH username, origin IPs, third-party
-credentials) lives in 1Password and is fetched at runtime. Nothing
-secret or identifying lands in git.
+Everything sensitive (SSH keys, usernames, IPs, third-party credentials) lives in 1Password and is fetched at runtime via the wrapper script. Nothing secret or identifying lands in git.
+
+## Host
+
+Single DigitalOcean droplet (`primary`). Runs everything: stable + beta backend containers, stable + beta frontend containers, nginx, Litestream, and Mongo (co-located, talks to the backend over the private IP). Both `spire-codex.com` and `beta.spire-codex.com` DNS to this box. The Cloudflare load balancer was retired with the migration and the previous AWS Lightsail hosts are gone.
 
 ## Setup (one-time)
 
-1. Install ansible on your Mac:
+1. Install ansible + 1Password CLI on your Mac:
 
    ```bash
    brew install ansible
-   ```
-
-2. Install + sign in to the 1Password CLI:
-
-   ```bash
    brew install --cask 1password-cli
    ```
 
-   Then enable the desktop-app integration so you don't need a manual
-   `op signin` each session: **1Password desktop → Settings → Developer
-   → "Integrate with 1Password CLI"**. Touch ID / system password unlocks
-   the vault when needed.
+2. Enable the 1Password CLI desktop integration so Touch ID unlocks the vault: **1Password desktop → Settings → Developer → "Integrate with 1Password CLI"**.
 
-   Confirm it works:
-
-   ```bash
-   op vault list      # should list "Spire Codex" among others
-   ```
-
-3. Render your local `inventory.yml` + smoke-test SSH:
+3. Smoke-test SSH:
 
    ```bash
    cd infrastructure/ansible
-   ./bin/op-ansible playbooks/ping.yml
+   ./bin/do-ansible playbooks/ping.yml
    ```
 
-   The wrapper renders `inventory.yml` from `inventory.yml.tpl` (pulling
-   origin IPs from 1Password), fetches the SSH deploy key into a
-   tempfile, fetches the SSH username, and runs the playbook. You
-   should see two green `ok: [primary]` / `ok: [secondary]` lines.
+## Wrapper
 
-## How the wrapper works
+`bin/do-ansible` renders `inventory.yml` from `inventory.yml.tpl` (via `op inject` resolving the DO IP from 1Password), fetches the SSH key + username from `op://Spire Codex/Digital Ocean/private key` + `Digital Ocean Credentials/user` into tempfiles, and exec's `ansible-playbook`. Tempfiles wipe on any exit.
 
-`./bin/op-ansible` is a thin shell script that turns a 1Password-backed
-environment into a `ansible-playbook` invocation:
+> `bin/op-ansible` still exists as a generic wrapper but the legacy AWS Lightsail items it referenced are gone. Don't use it.
 
-- Renders `inventory.yml` from `inventory.yml.tpl` via `op inject`
-  (resolves the origin-IP references). The rendered file is gitignored.
-- Reads the SSH deploy key from 1Password into a `mktemp` 0600 file,
-  passes it via `$SPIRE_SSH_KEY` (which `ansible.cfg` references).
-  Wipes the tempfile on any exit — clean, Ctrl-C, crash.
-- Reads the SSH username from 1Password and passes it via `-u <user>`
-  so it never lives in `ansible.cfg`, your shell history, or git.
-- Exec's `ansible-playbook` with whatever args you passed.
+> Touch ID gotcha: when the desktop app auto-locks, `op` calls block waiting for a touch. Unattended runs (cron, CI) cannot resolve `op://` refs. That's why the autodeploy cron (below) sources its credentials from a plain `/etc/spire-codex/cf-purge.env` on the box instead of 1Password.
 
-Default 1Password references:
+## Playbooks
 
-| Used for | Reference |
+### Day-to-day
+
+| Playbook | When |
 |---|---|
-| SSH private key | `op://Spire Codex/AWS/private key` |
-| SSH username | `op://Spire Codex/AWS Credentials/user` |
-| Primary origin IP | `op://Spire Codex/AWS Credentials/Primary IP` |
-| Secondary origin IP | `op://Spire Codex/AWS Credentials/Secondary IP` |
+| `ping.yml` | Connectivity smoke test |
+| `deploy.yml` | Pull latest stable images + recreate containers. `-e compose_file=docker-compose.beta.yml` for beta. |
+| `install-autodeploy.yml` | One-time setup of the hourly auto-deploy cron on the DO box. Re-run after any change to `files/autodeploy.sh`. |
+| `restart.yml` | Bounce a container without re-pulling |
+| `verify.yml` | Post-deploy smoke test |
+| `tail-logs.yml` | Pull recent container logs |
 
-Override the key/user references per invocation with
-`SPIRE_SSH_KEY_REF` / `SPIRE_REMOTE_USER_REF` env vars.
+### Config + secrets
 
-> **Heads up:** running plain `ansible-playbook` directly (without the
-> wrapper) will fail — `remote_user` is intentionally not set in
-> `ansible.cfg`, so SSH attempts use your local username, and
-> `{{ ansible_user }}` in playbooks won't resolve. Always go through
-> the wrapper.
-
-## Playbooks at a glance
-
-| Playbook | When to run |
+| Playbook | When |
 |---|---|
-| `ping.yml` | Smoke-test connectivity to every origin |
-| `bootstrap.yml` | First-time setup for a new origin (docker, repo, mkdir, base images) |
-| `sync-secrets.yml` | Rotated a secret in 1Password, or added a new env var to `files/.env.tpl` |
-| `sync-config.yml` | Edited `templates/nginx.conf.j2` or re-rendered QA cards locally |
-| `sync-litestream.yml` | Rotated B2 credentials, or rolling out a new Litestream config |
-| `deploy.yml` | Merged a PR that built new backend/frontend images on Docker Hub |
-| `restart.yml` | Bounce a container without re-pulling images |
-| `verify.yml` | Post-deploy smoke test — fails loudly if any origin or path breaks |
-| `tail-logs.yml` | Pull recent container logs from every origin in one place |
-| `backup.yml` | Snapshot user-generated data (runs.db, runs/, guides/) before risky migrations |
-| `fetch-runs-db.yml` | Pull atomic SQLite snapshots of `runs.db` from every origin (uses `sqlite3 .backup`) |
-| `check-litestream.yml` | Health check + recent journal for the Litestream service |
-| `stop-litestream.yml` | Stop + disable the Litestream systemd unit |
-| `inspect-litestream.yml` | Read-only recon — where does Litestream live, what's it configured to replicate |
-| `purge-cache.yml` | Clear Cloudflare cache after a re-rsync, or on demand |
-| `update-os.yml` | Quarterly OS patching, rolled one host at a time |
-| `cf-sync.yml` | Read-only check that CF state (cache rules, DNS) matches what we expect |
-| `rollback.yml` | Pin a previous Docker image tag locally and recreate (HOLD until fix-forward) |
-| `dr-restore.yml` | Restore a `backup.yml` tarball onto an origin (destructive, requires `confirm=yes`) |
-| `clean-disk.yml` | `docker prune` + truncate container logs. Run quarterly or when disk hits 80% |
+| `sync-config.yml` | Pushed nginx config / QA cards |
+| `sync-secrets.yml` | Rotated a secret in 1Password or added a new env var to `files/.env.tpl` |
+| `sync-litestream.yml` | Rotated B2 credentials |
 
-## Playbook deep-dives
+### Data + recovery
 
-### `sync-config.yml` — push nginx config + QA assets
+| Playbook | When |
+|---|---|
+| `backup.yml` | Snapshot runs.db + runs/ + guides/ before a risky migration |
+| `fetch-runs-db.yml` | Pull atomic SQLite snapshots from the DO box (uses `sqlite3 .backup`) |
+| `dr-restore.yml` | Restore a backup tarball (destructive; requires `confirm=yes`) |
+### Mongo (co-located on the DO box)
 
-Run after editing `templates/nginx.conf.j2` or re-rendering QA cards locally.
+| Playbook | When |
+|---|---|
+| `mongo-install.yml` | Provision the Mongo daemon (re-run safe; useful when bootstrapping a replacement box) |
+| `mongo-backup.yml` | Snapshot the Mongo data dir |
 
-```bash
-./bin/op-ansible playbooks/sync-config.yml
-```
+### Housekeeping
 
-What it does:
+| Playbook | When |
+|---|---|
+| `clean-disk.yml` | `docker prune` + log truncation. Run when disk hits 80% or quarterly. |
+| `update-os.yml` | OS package updates |
+| `cf-sync.yml` | Read-only check that CF state matches inventory |
+| `purge-cache.yml` | CF cache purge via API |
+| `rollback.yml` | Pin a previous Docker image tag |
+| `bootstrap.yml` | First-time setup for a new origin |
 
-- Fetches the metrics-monitor allow-list IP from 1Password
-  (`op://Spire Codex/Server/IP Address`)
-- Ensures `/var/www/spire-codex/data/qa/` exists on every host
-- Sets `QA_DIR=/data/qa` in each host's compose `.env`
-- Renders `templates/nginx.conf.j2` per-host (substituting in the
-  per-host `origin_label` from inventory + the metrics IP)
-- Pushes the rendered config to `/data/nginx/nginx/nginx.conf`
-- Rsyncs `tools/card-renderer/output/all/` → `/var/www/spire-codex/data/qa/`
-- Restarts nginx if its config changed
-- Recreates backend if `.env` changed
+## Auto-deploy cron
 
-Idempotent — re-running with no changes is a no-op.
+`install-autodeploy.yml` installs `/usr/local/bin/spire-codex-autodeploy` + a cron entry at `/etc/cron.d/spire-codex-autodeploy` that fires every hour at :03. Each tick:
 
-**Important coupling with Cloudflare Load Balancer:** the test-origin
-`server` block in `templates/nginx.conf.j2` must keep
-`origin.spire-codex.com` and `origin-backup.spire-codex.com` in its
-`server_name` list. Those hostnames resolve directly (grey-cloud) to
-primary and secondary respectively, and CF LB's HTTP monitor probes
-`/healthz` on port 80 against both. The `/healthz` location is only
-defined inside that test-origin block — if you ever drop one of the
-hostnames, nginx falls through to `default_server` (no `/healthz`
-defined there), the probe returns 404, and CF marks the pool member
-down within ~1 minute. Site stays up because traffic shifts to the
-other origin, but you'll get a "DOWN" email from `noreply@notify.cloudflare.com`.
-We hit this exact mode once during the initial drift sweep — the inline
-comment in the template is the seatbelt.
+1. `git pull` in `/var/www/spire-codex`
+2. If HEAD advanced and changes are not purely `data/news/*`: `docker compose pull` + `up -d --force-recreate` for both `docker-compose.prod.yml` and `docker-compose.beta.yml`
+3. CF cache purge (token + zone live in `/etc/spire-codex/cf-purge.env` on the box, mode 600, root-only)
 
-### `deploy.yml` — pull latest images, recreate containers
-
-Run after merging a PR that triggered a CI image build.
+News-only updates (`data/news/*.json`) skip the recreate — the backend mounts `./data:/data` so the news API re-reads from disk on every request, no restart needed.
 
 ```bash
-./bin/op-ansible playbooks/deploy.yml
+# Run the cron manually (don't want to wait for :03)
+ssh DO_BOX 'sudo /usr/local/bin/spire-codex-autodeploy'
+
+# Watch the log
+ssh DO_BOX 'tail -f /var/log/spire-codex-autodeploy.log'
 ```
 
-What it does:
-
-- `git pull origin main` in `/var/www/spire-codex` so the host has
-  the latest `docker-compose.prod.yml` and any other tracked config
-- `docker compose pull backend frontend` on every host
-- `docker compose up -d --force-recreate backend frontend`
-- Confirms backend logged `QA mount enabled` and `Spire Codex API ready`
-
-Deploy is **manual** — the GitHub Actions workflow only builds and
-pushes images now. Running this playbook is the explicit "land the
-new image on prod" step until the toolkit is wired into a CI runner
-that has SSH + 1Password access.
-
-### `sync-secrets.yml` — render `.env` from 1Password and push to hosts
-
-Run after rotating a secret in 1Password or adding a new env var to
-`files/.env.tpl`.
+Install / refresh (after any change to the script or cron timing):
 
 ```bash
-./bin/op-ansible playbooks/sync-secrets.yml
+CF_TOKEN=$(op read 'op://Spire Codex/Cloudflare/API Token') \
+CF_ZONE=$(op read 'op://Spire Codex/Cloudflare/Zone ID') \
+./bin/do-ansible playbooks/install-autodeploy.yml
 ```
 
-What it does:
+## Stable vs beta
 
-- Renders `files/.env.tpl` locally via `op inject` (resolves
-  `op://Vault/Item/field` references into real secret values)
-- Pushes the resolved `.env` to each host at `/var/www/spire-codex/.env`
-  with mode 0600
-- Deletes the local rendered file immediately after the push — secrets
-  never persist on your Mac longer than the playbook run
-- Recreates backend so the new env values take effect
-
-Add a new secret:
-
-1. Add the item/field in 1Password (`Spire Codex` vault by convention)
-2. Add a line to `files/.env.tpl`: `NEW_VAR=op://Spire Codex/your-item/your-field`
-3. Run the playbook
-
-### `sync-litestream.yml` — push rotated B2 creds + restart unit
-
-Renders `files/litestream.yml.tpl` via `op inject` and pushes the
-resolved config to `/etc/litestream.yml` on primary. Restarts the
-`litestream.service` systemd unit so the new credentials take effect.
+Both stacks run on the DO box. Stable uses `docker-compose.prod.yml`, beta uses `docker-compose.beta.yml`. Container names are namespaced (`spire-codex-backend` vs `spire-codex-beta-backend`).
 
 ```bash
-./bin/op-ansible playbooks/sync-litestream.yml --limit primary
+# Stable deploy (default)
+./bin/do-ansible playbooks/deploy.yml
+
+# Beta deploy
+./bin/do-ansible playbooks/deploy.yml -e compose_file=docker-compose.beta.yml
 ```
 
-By default refuses to touch secondary (both origins point at the same
-B2 bucket/path — running Litestream on both would clobber). Override
-with `-e allow_secondary=yes` only if you know what you're doing.
+The autodeploy cron handles both stacks on each tick — manual beta deploys are only needed when you want to force-pull immediately (right after a hand-built image push, etc.).
 
-### `fetch-runs-db.yml` — atomic SQLite snapshots
+## What this does NOT manage
 
-Pulls a consistent snapshot of `runs.db` from each origin into
-`~/spire-codex-backups/runs-db/<host>-<timestamp>.db`. Uses
-`sqlite3 .backup` (NOT a raw file copy) so the snapshot is safe even
-mid-write. Prints row counts + latest submission timestamp per host so
-you can see how far the origins have drifted.
+- **Cloudflare config** — Cache Rules, DNS records, page rules. Managed through the CF dashboard.
+- **Container image builds** — GitHub Actions / Docker Hub. Ansible only pulls pre-built images.
+- **Steam beta extraction** — `tools/beta-watch/` runs on your Mac via launchd. See that directory's README.
+- **Frontend Umami website ID injection** — baked at Docker build time from GitHub Actions secrets (`UMAMI_WEBSITE_ID` for stable, `UMAMI_BETA_WEBSITE_ID` for beta).
 
-```bash
-./bin/op-ansible playbooks/fetch-runs-db.yml
-```
+## Common gotchas
 
-## Prod vs beta
-
-Inventory defines both `prod_compose_file` and `beta_compose_file` per
-host. Default playbook target is prod; switch to beta on any invocation:
-
-```bash
-# Prod (default)
-./bin/op-ansible playbooks/deploy.yml
-
-# Beta
-./bin/op-ansible playbooks/deploy.yml -e compose_file=docker-compose.beta.yml
-```
-
-## Workflow
-
-**Most common — sync everything that's changed:**
-
-```bash
-./bin/op-ansible playbooks/sync-config.yml
-```
-
-**Code deploy + QA re-render in one go:**
-
-```bash
-./bin/op-ansible playbooks/deploy.yml playbooks/sync-config.yml
-```
-
-**Target one host only** (for debugging):
-
-```bash
-./bin/op-ansible playbooks/sync-config.yml --limit primary
-./bin/op-ansible playbooks/sync-config.yml --limit secondary
-```
-
-**Dry-run** (show what would change without doing it):
-
-```bash
-./bin/op-ansible playbooks/sync-config.yml --check --diff
-```
-
-## What this does NOT manage (intentionally)
-
-- **Cloudflare config** — Cache Rules, LB pool members, Page Rules, DNS.
-  Still managed through the CF dashboard. Worth Terraforming eventually.
-- **Container image building** — that's GitHub Actions / Docker Hub.
-  Ansible just pulls the already-built images.
-- **OS-level provisioning** beyond `bootstrap.yml` — security updates,
-  hand-rolled user setup, anything that touched the host before this
-  toolkit existed.
+- **Plain `ansible-playbook ...` fails** — `remote_user` isn't set in `ansible.cfg`. Always go through `bin/do-ansible`.
+- **Container name conflict on beta deploy** — if a previous `up -d` was interrupted, you'll see `Container "/xxx_spire-codex-beta-backend" is already in use`. Fix with `docker rm -f spire-codex-beta-backend` on the box, then re-run the deploy.
+- **nginx Docker DNS gotcha** — the beta nginx block uses a static `proxy_pass` to the container name. Do not switch to the `set $var ... resolver` pattern — it pins to a stale Docker DNS entry after a container recreate.
 
 ## Files
 
 ```
 infrastructure/ansible/
-├── ansible.cfg              # Ansible defaults (inventory, SSH socket reuse, etc.)
-├── inventory.yml.tpl        # Origin hosts — IPs resolved from 1Password at render
-├── inventory.yml            # gitignored — rendered by bin/op-ansible at runtime
+├── ansible.cfg
+├── inventory.yml.tpl        # Origin IPs as op:// refs, resolved at render
+├── inventory.yml            # gitignored — rendered by the wrapper
 ├── bin/
-│   └── op-ansible           # Wrapper: renders inventory, fetches SSH key+user from 1P
-├── group_vars/
-│   └── all.yml              # Shared paths + container names + template locations
+│   ├── do-ansible           # DigitalOcean wrapper (use this)
+│   └── op-ansible           # Generic wrapper (legacy; the AWS items it pointed at are gone)
 ├── files/
-│   ├── .env.tpl             # .env template with op:// refs (rendered at deploy)
-│   └── litestream.yml.tpl   # Litestream config template (op:// refs for B2 creds)
+│   ├── .env.tpl
+│   ├── litestream.yml.tpl
+│   ├── autodeploy.sh
+│   └── spire-codex-autodeploy.cron
 ├── templates/
-│   └── nginx.conf.j2        # Jinja template — per-host origin_label + metrics IP
+│   └── nginx.conf.j2
 ├── playbooks/
 │   ├── ping.yml             # Connectivity smoke test
-│   ├── bootstrap.yml        # New origin first-time setup
-│   ├── sync-secrets.yml     # Render .env from 1Password and push
-│   ├── sync-config.yml      # nginx render + /data/qa rsync
-│   ├── sync-litestream.yml  # Push rotated B2 creds + restart unit
 │   ├── deploy.yml           # docker compose pull + recreate
-│   ├── restart.yml          # Surgical container recycle
-│   ├── verify.yml           # Post-deploy smoke test
-│   ├── tail-logs.yml        # Pull container logs locally
-│   ├── backup.yml           # Snapshot runs.db + runs/ + guides/ to ~/spire-codex-backups
-│   ├── fetch-runs-db.yml    # Atomic sqlite3 .backup snapshots from each origin
-│   ├── check-litestream.yml # Health check + recent journal
-│   ├── stop-litestream.yml  # Stop + disable Litestream systemd unit
-│   ├── inspect-litestream.yml # Read-only recon of Litestream install
-│   ├── purge-cache.yml      # CF cache purge via API
-│   ├── update-os.yml        # OS package updates (rolling)
-│   ├── cf-sync.yml          # Verify CF state matches inventory
-│   ├── rollback.yml         # Pin a previous image tag
-│   ├── dr-restore.yml       # Restore a backup tarball (destructive)
-│   └── clean-disk.yml       # docker prune + truncate container logs
+│   ├── install-autodeploy.yml  # One-time autodeploy cron install
+│   ├── restart.yml
+│   ├── verify.yml
+│   ├── sync-config.yml
+│   ├── sync-secrets.yml
+│   ├── sync-litestream.yml
+│   ├── backup.yml
+│   ├── fetch-runs-db.yml
+│   ├── dr-restore.yml
+│   ├── mongo-install.yml
+│   ├── mongo-backup.yml
+│   ├── clean-disk.yml
+│   ├── update-os.yml
+│   ├── cf-sync.yml
+│   ├── purge-cache.yml
+│   ├── rollback.yml
+│   ├── bootstrap.yml
+│   ├── check-litestream.yml
+│   ├── stop-litestream.yml
+│   ├── inspect-litestream.yml
+│   └── tail-logs.yml
 └── README.md
 ```

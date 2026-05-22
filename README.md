@@ -254,8 +254,9 @@ All data endpoints accept an optional `?lang=` query parameter (default: `eng`).
 | `GET /api/stats` | Entity counts across all categories | `lang` |
 | `GET /api/languages` | Available languages with display names | — |
 | `GET /api/translations` | Translation maps for filter values and UI strings | `lang` |
-| `GET /api/images` | Image categories with file lists | — |
-| `GET /api/images/{category}/download` | ZIP download of image category | — |
+| `GET /api/images` | Image categories with file lists. Beta-prefixed categories accept `?version=`. | — |
+| `GET /api/images/beta/versions` | Available beta image archive versions + `latest` symlink target | — |
+| `GET /api/images/{category}/download` | ZIP download of image category. Beta categories accept `?version=`. | — |
 | `GET /api/changelogs` | Changelog summaries (all versions) | — |
 | `GET /api/changelogs/{tag}` | Full changelog for a version tag | — |
 | `GET /api/guides` | Community guides | `category`, `difficulty`, `tag`, `search` |
@@ -482,7 +483,9 @@ Files under `data/changelogs/` are write-once historical records. `.github/workf
 
 ### CI/CD (GitHub Actions)
 
-Pushes to `main` trigger `.github/workflows/ci.yml` which runs secret scanning, linting (ESLint, TypeScript, ruff), builds Docker images, pushes to Docker Hub, and deploys to production via SSH. Self-hosted K8s runner.
+Pushes to `main` trigger `.github/workflows/ci.yml` (self-hosted K8s runner). The workflow runs secret scanning, ESLint + TypeScript checks, ruff lint + format, then builds + pushes Docker images for both stable (`:latest`) and beta (`:beta`) tags. The Umami `NEXT_PUBLIC_UMAMI_WEBSITE_ID` is injected per-tag from the `UMAMI_WEBSITE_ID` / `UMAMI_BETA_WEBSITE_ID` repo secrets so each site reports into its own analytics property.
+
+CI does **not** deploy — that's the autodeploy cron on the DO box (see below).
 
 > **Note:** `.forgejo/workflows/build.yml` is retained as a fallback CI config (buildah-based) but is not currently active.
 
@@ -514,51 +517,54 @@ Auto-detects Apple Silicon and cross-compiles to `linux/amd64` via `docker build
 
 ### Production
 
+Stable and beta both run on the same DigitalOcean box (post-Overwolf-launch architecture; CF load balancer retired). The secondary Lightsail host now runs MongoDB.
+
+**Autodeploy** — an hourly cron on the DO box runs `/usr/local/bin/spire-codex-autodeploy` at :03 every hour. Each tick `git pull`s, and if HEAD advanced beyond `data/news/*` (data-only news refreshes skip the recreate since the news API reads from a bind mount), it pulls new Docker images and force-recreates the containers for both stable and beta. Cloudflare cache is purged at the end. Logs at `/var/log/spire-codex-autodeploy.log`. See [`infrastructure/ansible/README.md`](infrastructure/ansible/README.md) for install instructions.
+
+**Manual deploy** (force an immediate refresh, e.g. right after a hand-built image push):
+
 ```bash
-# Pull and restart on production server:
-docker compose -f docker-compose.prod.yml pull
-docker compose -f docker-compose.prod.yml up -d
+cd infrastructure/ansible
+./bin/do-ansible playbooks/deploy.yml                                      # stable
+./bin/do-ansible playbooks/deploy.yml -e compose_file=docker-compose.beta.yml  # beta
 ```
 
-Production data is bind-mounted (`./data:/data:ro`). Container restart required after data changes.
+Production data is bind-mounted (`./data:/data:ro` for frontend, RW for backend). The backend re-reads news + run state on every request, so updates to `data/news/*.json` don't need a container restart.
 
 ### Beta Site (beta.spire-codex.com)
 
-A parallel deployment serving data from the Steam beta branch, with multi-version browsing support. Users can switch between any past beta version via a dropdown in the navbar. All versions are kept permanently.
+Parallel deployment serving data from the Steam `public-beta` branch with multi-version browsing. The main site's `/images` selector also lists every archived beta version (`main`, `v0.106.0`, `v0.105.1`, ...) — the beta site itself locks the dropdown to its current build.
 
 **Architecture**: `VersionMiddleware` reads `?version=` from the query string, stores it in a Python `ContextVar`, and `data_service.py` reads it when loading JSON — zero changes to any of the 20+ router files. Frontend uses `BetaVersionContext` + `VersionSelector` dropdown, and `fetch-cache.ts` transparently appends `&version=X` to all API calls.
 
-**Data layout**: `data-beta/v0.102.0/eng/`, `data-beta/v0.103.0/eng/`, with a `latest` symlink. Each version has its own `changelogs/` directory.
+**Data layout**: `data-beta/v0.102.0/eng/`, ..., `data-beta/v0.106.0/eng/`, with a `latest` symlink. Each version has its own `changelogs/` directory. Beta image archives mirror the same layout at `backend/static/images/beta/<version>/{cards,monsters,misc,ui,vfx}/`.
+
+**Automated ingest** — `tools/beta-watch/` runs as a launchd job on the dev Mac (cadence: Thursdays 15:00–22:45, every 15 min). On detecting a new buildid from SteamCMD's `public-beta` branch, it runs the full pipeline (Godot RE Tools → ilspycmd → `parse_all.py` → `diff_data.py` → `sync-images.sh` per-version) and opens an `auto/beta-<version>` PR. See [`tools/beta-watch/README.md`](tools/beta-watch/README.md) for install + ops.
+
+**Manual ingest** (when the watcher misses or for backfills):
 
 ```bash
-# 1. Opt into Steam beta branch (StS2 → Properties → Betas)
+# 1. Opt into Steam beta branch (StS2 → Properties → Betas), pick "public-beta"
 
 # 2. Extract and decompile beta game files
 "/Applications/Godot RE Tools.app/Contents/MacOS/Godot RE Tools" --headless \
   "--recover=<path_to_pck>" "--output=extraction/beta/raw"
 ~/.dotnet/tools/ilspycmd -p -o extraction/beta/decompiled "<path_to_dll>"
 
-# 3. Parse into versioned directory
+# 3. Parse + sync images into versioned dirs
 cd backend/app/parsers
-EXTRACTION_DIR=extraction/beta DATA_DIR=data-beta/v0.103.0 python3 parse_all.py
+EXTRACTION_DIR=../../extraction/beta DATA_DIR=../../data-beta/v0.106.0 python3 parse_all.py
+VERSION=v0.106.0 ../../tools/beta-watch/sync-images.sh
 
 # 4. Generate changelog (previous → new version)
-python3 tools/diff_data.py data-beta/v0.102.0/eng data-beta/v0.103.0/eng \
-  --format json --output-dir data-beta/v0.103.0/changelogs \
-  --game-version "0.103.0" --title "Beta v0.103.0"
+python3 tools/diff_data.py data-beta/v0.105.1/eng data-beta/v0.106.0/eng \
+  --format json --output-dir data-beta/v0.106.0/changelogs \
+  --game-version "0.106.0" --title "Beta v0.106.0"
 
-# 5. Update latest symlink
-cd data-beta && rm latest && ln -sf v0.103.0 latest
-
-# 6. Build and push beta Docker images
-python3 tools/deploy.py --beta
-
-# 7. Start beta on server
-docker compose -f docker-compose.beta.yml pull
-docker compose -f docker-compose.beta.yml up -d
+# (The latest symlink and PR are handled by sync-images.sh + git commits.)
 ```
 
-The parsers support `EXTRACTION_DIR` and `DATA_DIR` environment variables via `parser_paths.py`, allowing the same parser code to target either stable or beta sources.
+The parsers support `EXTRACTION_DIR` and `DATA_DIR` env vars via `parser_paths.py`. Once the PR merges, the next autodeploy tick pulls + restarts both stacks.
 
 ## Spine Renderer
 

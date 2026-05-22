@@ -75,10 +75,13 @@ All data endpoints accept `?lang=` (default: `eng`). Rate limited to 60 req/min 
 | `GET /api/stats` | Entity counts across all categories |
 | `GET /api/languages` | Available languages |
 | `GET /api/translations` | Translation maps for filters and UI strings |
-| `GET /api/images` | Image categories with file lists |
-| `GET /api/images/{category}/download` | ZIP download of image category |
+| `GET /api/images` | Image categories with file lists. Beta-prefixed categories accept `?version=`. |
+| `GET /api/images/beta/versions` | Available beta image archive versions (newest-first) + the `latest` symlink target. `main` is included as a synthetic entry that maps the beta-* categories to the stable image tree. |
+| `GET /api/images/{category}/download` | ZIP download of image category. Beta categories accept `?version=` to scope the zip to a specific patch. |
 | `GET /api/changelogs` | Changelog summaries |
 | `GET /api/changelogs/{tag}` | Full changelog for a version |
+| `GET /api/versions` | Available data versions (drives the beta-site version selector) |
+| `GET /api/unlocks` | Aggregated unlockables grouped by entity type with epoch + score thresholds |
 | `GET /api/news` | Steam announcements + community news (locally archived). Filters: `feed_type`, `feedname`, `tag`, `since`, `search`, `limit`, `offset` |
 | `GET /api/news/{gid}` | Single Steam news article with raw HTML/BBCode body |
 | `GET /api/merchant/config` | Merchant pricing config (auto-extracted from C#: card/potion/relic prices, removal tiers, blacklist) |
