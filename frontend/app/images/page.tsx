@@ -178,11 +178,14 @@ export default function ImagesPage() {
         Browse and download game assets. Click a category to view, or download as a zip pack.
       </p>
 
-      {/* Beta version picker — only renders when the backend exposes the
-          /api/images/beta/versions endpoint AND there's at least one
-          versioned ingest on disk. Categories prefixed with "Steam Beta"
-          re-fetch when this changes. */}
-      {betaVersions.length > 0 && (
+      {/* Version picker — only renders on the main site. Beta site
+          (beta.spire-codex.com) intentionally hides the dropdown so the
+          page reflects exactly what that branch ships; cross-version
+          browsing belongs on the main site. NEXT_PUBLIC_SITE_URL is
+          baked at build time (different per Docker image), so this
+          check resolves once at module-eval, not per-request. */}
+      {betaVersions.length > 0 &&
+        !(process.env.NEXT_PUBLIC_SITE_URL || "").includes("beta.spire-codex.com") && (
         <div className="flex items-center gap-2 mb-8 text-sm">
           <label htmlFor="beta-version" className="text-[var(--text-muted)]">
             Game version:
