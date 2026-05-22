@@ -328,6 +328,14 @@ def _submit_player_run(
         "relics": relics,
         "potions": potions,
         "card_choices": card_choices,
+        # Per-room history needed for the encounter-stats aggregation
+        # (`/api/runs/encounter-stats`). Stored as the original 2D
+        # array (acts → rooms) so the agg can `$unwind` it without a
+        # reshape. Each room dict carries at minimum model_id,
+        # room_type, damage_taken, turns_taken — the full submitted
+        # JSON has more fields we don't need at aggregation time, so
+        # we keep the projection narrow to bound doc size.
+        "map_point_history": data.get("map_point_history", []),
     }
 
     coll = _get_collection()
