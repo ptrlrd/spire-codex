@@ -82,6 +82,12 @@ cp "$PCK" "$REPO/extraction/beta/archives/sts2-$VERSION.pck"
   DATA_DIR="$DATA_OUT" \
   python3 parse_all.py)
 
+# --- 6a. Sync new images into backend/static/images/beta/. The /images
+# page is a monetization surface, so dragging stale assets between
+# patches costs traffic + trust. sync-images mirrors every image
+# category and prunes anything Mega Crit cut.
+"$REPO/tools/beta-watch/sync-images.sh"
+
 # --- 7. Diff against the previous beta to make a changelog ---
 PREV=$(ls -1d "$REPO/data-beta"/v*/ 2>/dev/null | grep -v "/$VERSION/" \
        | sort -V | tail -1 | sed 's:/$::' | xargs -n1 basename || true)
