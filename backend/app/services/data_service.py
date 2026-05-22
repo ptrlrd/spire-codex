@@ -217,6 +217,15 @@ def load_translation_maps(lang: str = DEFAULT_LANG) -> dict:
 
 @lru_cache(maxsize=1)
 def count_images() -> int:
+    """Count served images, ignoring per-version beta archive duplicates.
+
+    `static/images/beta/v0.106.0/`, `static/images/beta/v0.105.1/`, etc.
+    are alternate snapshots of the same image set across patches — they
+    each carry ~1,200 files. Counting them all balloons the home-page
+    "Images" stat to a misleading 10K+. Skip every `beta/vX.Y.Z/` subtree
+    so the count reflects the canonical view (current production + the
+    `beta/latest` symlink target).
+    """
     images_dir = (
         Path(
             os.environ.get("STATIC_DIR", Path(__file__).resolve().parents[2] / "static")
@@ -225,7 +234,18 @@ def count_images() -> int:
     )
     if not images_dir.exists():
         return 0
-    return sum(1 for _ in images_dir.rglob("*.png"))
+
+    count = 0
+    for png in images_dir.rglob("*.png"):
+        # Skip the entire `beta/` subtree — it holds per-version archive
+        # snapshots that duplicate the stable image set, plus a `latest`
+        # symlink that does the same. Counting them turns the stat into
+        # an alternate-snapshot multiplier rather than a real total.
+        rel_parts = png.relative_to(images_dir).parts
+        if rel_parts and rel_parts[0] == "beta":
+            continue
+        count += 1
+    return count
 
 
 def get_available_versions() -> list[dict]:
