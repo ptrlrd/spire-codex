@@ -15,6 +15,7 @@ REPO="${SPIRE_REPO:-/var/www/spire-codex}"
 LOG="${SPIRE_AUTODEPLOY_LOG:-/var/log/spire-codex-autodeploy.log}"
 CF_ENV="${SPIRE_CF_ENV:-/etc/spire-codex/cf-purge.env}"
 COMPOSE_FILE="${SPIRE_COMPOSE_FILE:-docker-compose.prod.yml}"
+BETA_COMPOSE_FILE="${SPIRE_BETA_COMPOSE_FILE:-docker-compose.beta.yml}"
 
 # Self-installing log file (cron runs as root the first time, so this
 # creates a root-owned file — subsequent appends just work).
@@ -59,18 +60,30 @@ else
 fi
 
 if [ "$RECREATE" = "1" ]; then
-  # Pull + restart. `--force-recreate` ensures the container picks up
-  # the new image even if compose thinks the config is unchanged.
-  docker compose -f "$COMPOSE_FILE" pull backend frontend >> "$LOG" 2>&1
-  docker compose -f "$COMPOSE_FILE" up -d --force-recreate backend frontend >> "$LOG" 2>&1
+  # Pull + restart both stable AND beta. `--force-recreate` ensures the
+  # container picks up the new image even if compose thinks the config
+  # is unchanged. Beta runs on the same box (separate containers via
+  # docker-compose.beta.yml) so a missed beta deploy was a recurring
+  # operational gap — folding it into autodeploy closes that loop.
+  for f in "$COMPOSE_FILE" "$BETA_COMPOSE_FILE"; do
+    [ -f "$REPO/$f" ] || { log "compose file $f missing, skipping"; continue; }
+    log "  deploying $f"
+    docker compose -f "$f" pull backend frontend >> "$LOG" 2>&1
+    docker compose -f "$f" up -d --force-recreate backend frontend >> "$LOG" 2>&1
+  done
 
   # Settle. 5s is enough for FastAPI startup; longer waits don't help.
   sleep 5
 
   if docker compose -f "$COMPOSE_FILE" logs --tail 50 backend 2>/dev/null | grep -q "Spire Codex API ready"; then
-    log "✓ backend ready"
+    log "✓ stable backend ready"
   else
-    log "✗ backend did NOT log 'Spire Codex API ready' — manual check required"
+    log "✗ stable backend did NOT log 'Spire Codex API ready' — manual check required"
+  fi
+  if docker compose -f "$BETA_COMPOSE_FILE" logs --tail 50 backend 2>/dev/null | grep -q "Spire Codex API ready"; then
+    log "✓ beta backend ready"
+  else
+    log "✗ beta backend did NOT log 'Spire Codex API ready' — manual check required"
   fi
 fi
 
