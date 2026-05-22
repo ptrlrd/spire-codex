@@ -1,0 +1,11 @@
+# Spire Codex auto-deploy. Polls origin/main hourly; if HEAD advanced,
+# pulls Docker images, recreates containers, purges CF cache. See
+# /usr/local/bin/spire-codex-autodeploy and /var/log/spire-codex-autodeploy.log.
+#
+# Cron is fine for an hourly cadence — no need for systemd timer
+# complexity. Run at :03 so we don't collide with monitoring/backup jobs
+# that tend to fire on the hour.
+SHELL=/bin/bash
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+3 * * * * root /usr/local/bin/spire-codex-autodeploy
