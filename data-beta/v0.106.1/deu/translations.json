@@ -1,0 +1,74 @@
+{
+  "card_types": {
+    "Attack": "Angriff",
+    "Skill": "Fertigkeit",
+    "Power": "Macht",
+    "Status": "Status",
+    "Curse": "Fluch",
+    "Quest": "Auftrag"
+  },
+  "card_rarities": {
+    "Basic": "Basis",
+    "Common": "Gewöhnlich",
+    "Uncommon": "Ungewöhnlich",
+    "Rare": "Selten",
+    "Ancient": "Ahnen",
+    "Event": "Ereignis",
+    "Token": "Token",
+    "Status": "Status",
+    "Curse": "Fluch",
+    "Quest": "Auftrag"
+  },
+  "relic_rarities": {
+    "Starter": "Startrelikt",
+    "Common": "Gewöhnliches Relikt",
+    "Uncommon": "Ungewöhnliches Relikt",
+    "Rare": "Seltenes Relikt",
+    "Ancient": "Ahnen-Relikt",
+    "Event": "Ereignis-Relikt",
+    "Shop": "Laden-Relikt"
+  },
+  "potion_rarities": {
+    "Common": "Gewöhnlich",
+    "Uncommon": "Ungewöhnlich",
+    "Rare": "Selten",
+    "Event": "Ereignis",
+    "Token": "Token"
+  },
+  "keywords": {
+    "ETERNAL": "Ewig",
+    "ETHEREAL": "Flüchtig",
+    "EXHAUST": "Erschöpft",
+    "INNATE": "Angeboren",
+    "RETAIN": "Behalten",
+    "SLY": "Listig",
+    "UNPLAYABLE": "Unspielbar"
+  },
+  "sections": {
+    "cards": "Kartenbibliothek",
+    "characters": "Characters",
+    "relics": "Reliktsammlung",
+    "monsters": "Bestiarium",
+    "potions": "Tranklabor",
+    "enchantments": "Enchantments",
+    "encounters": "Encounters",
+    "events": "Events",
+    "powers": "Powers",
+    "timeline": "Zeitstrahl",
+    "images": "Images",
+    "reference": "Reference"
+  },
+  "section_descs": {
+    "cards": "Sieh alle Karten, die du im Spire entdeckt hast.",
+    "relics": "Untersuche all die in deinen Runs gesammelten Schmuckstücke und Artefakte.",
+    "monsters": "Sieh alle Gegner, denen du im Spire begegnet bist.",
+    "potions": "Betrachte die zahlreichen Tränke, die man beim Erklimmen des Spire findet."
+  },
+  "character_names": {
+    "ironclad": "Der Eiserne",
+    "silent": "Die Stille",
+    "defect": "Das Defekte",
+    "necrobinder": "Die Totenbinderin",
+    "regent": "Der Regent"
+  }
+}

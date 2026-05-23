@@ -1,0 +1,37 @@
+[
+  {
+    "id": "DARK_ORB",
+    "name": "Schatten",
+    "description": "[gold]Passiv:[/gold] Erhöhe am Ende deines Zuges den Schaden dieses Orbs um [blue]6[/blue].\n[gold]Entladen:[/gold] Füge dem Gegner mit den wenigsten TP [blue]6[/blue] Schaden zu.",
+    "description_raw": "[gold]Passiv:[/gold] Erhöhe am Ende deines Zuges den Schaden dieses Orbs um [blue]{Passive}[/blue].\n[gold]Entladen:[/gold] Füge dem Gegner mit den wenigsten TP [blue]{Evoke}[/blue] Schaden zu.",
+    "image_url": "/static/images/orbs/dark_orb.webp"
+  },
+  {
+    "id": "FROST_ORB",
+    "name": "Frost",
+    "description": "[gold]Passiv:[/gold] Erhalte am Ende deines Zuges [blue]2[/blue] [gold]Block[/gold].\n[gold]Entladen:[/gold] Erhalte [blue]5[/blue] [gold]Block[/gold].",
+    "description_raw": "[gold]Passiv:[/gold] Erhalte am Ende deines Zuges [blue]{Passive}[/blue] [gold]Block[/gold].\n[gold]Entladen:[/gold] Erhalte [blue]{Evoke}[/blue] [gold]Block[/gold].",
+    "image_url": "/static/images/orbs/frost_orb.webp"
+  },
+  {
+    "id": "GLASS_ORB",
+    "name": "Glas",
+    "description": "[gold]Passiv:[/gold] Füge am Ende deines Zuges ALLEN Gegnern [blue]4[/blue] Schaden zu und reduziere den Wert dieses Orbs um [blue]1[/blue].\n[gold]Entladen:[/gold] Füge ALLEN Gegnern [blue]8[/blue] Schaden zu.",
+    "description_raw": "[gold]Passiv:[/gold] Füge am Ende deines Zuges ALLEN Gegnern [blue]{Passive}[/blue] Schaden zu und reduziere den Wert dieses Orbs um [blue]1[/blue].\n[gold]Entladen:[/gold] Füge ALLEN Gegnern [blue]{Evoke}[/blue] Schaden zu.",
+    "image_url": "/static/images/orbs/glass_orb.webp"
+  },
+  {
+    "id": "LIGHTNING_ORB",
+    "name": "Blitz",
+    "description": "[gold]Passiv:[/gold] Füge am Ende deines Zuges einem zufälligen Gegner [blue]3[/blue] Schaden zu.\n[gold]Entladen:[/gold] Füge einem zufälligen Gegner [blue]8[/blue] Schaden zu.",
+    "description_raw": "[gold]Passiv:[/gold] Füge am Ende deines Zuges einem zufälligen Gegner [blue]{Passive}[/blue] Schaden zu.\n[gold]Entladen:[/gold] Füge einem zufälligen Gegner [blue]{Evoke}[/blue] Schaden zu.",
+    "image_url": "/static/images/orbs/lightning_orb.webp"
+  },
+  {
+    "id": "PLASMA_ORB",
+    "name": "Plasma",
+    "description": "[gold]Passiv:[/gold] Erhalte zu Beginn deines Zuges [energy:1].\n[gold]Entladen:[/gold] Erhalte [energy:2].\nPlasma wird durch [gold]Focus[/gold] nicht beeinflusst.",
+    "description_raw": "[gold]Passiv:[/gold] Erhalte zu Beginn deines Zuges {energyPrefix:energyIcons(1)}.\n[gold]Entladen:[/gold] Erhalte {energyPrefix:energyIcons(2)}.\nPlasma wird durch [gold]Focus[/gold] nicht beeinflusst.",
+    "image_url": "/static/images/orbs/plasma_orb.webp"
+  }
+]

@@ -1,0 +1,482 @@
+[
+  {
+    "id": "BIG_DECK",
+    "name": "Duża talia",
+    "description": "Wygrano talią złożoną z przynajmniej [blue]40[/blue] kart.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Duża talia",
+        "description": "Wygrano talią złożoną z przynajmniej [blue]40[/blue] kart."
+      },
+      {
+        "rarity": "silver",
+        "title": "Wielka talia",
+        "description": "Wygrano talią złożoną z przynajmniej [blue]60[/blue] kart."
+      },
+      {
+        "rarity": "gold",
+        "title": "Gigantyczna talia",
+        "description": "Wygrano talią złożoną z przynajmniej [blue]100[/blue] kart."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_big_deck.png"
+  },
+  {
+    "id": "CCCCOMBO",
+    "name": "K-k-k-Kombo",
+    "description": "Zagrano [blue]20[/blue] kart w jednej turze.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "K-k-k-Kombo",
+        "description": "Zagrano [blue]20[/blue] kart w jednej turze."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_ccccombo.png"
+  },
+  {
+    "id": "CURSES",
+    "name": "Klątwa pokoleniowa",
+    "description": "Wygrano z przynajmniej [blue]5[/blue] [red]Klątwami[/red].",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Klątwa pokoleniowa",
+        "description": "Wygrano z przynajmniej [blue]5[/blue] [red]Klątwami[/red]."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_curses.png"
+  },
+  {
+    "id": "DAMAGE_LEADER",
+    "name": "Czempion Demedża",
+    "description": "Zadano najwięcej obrażeń przeciwnikom w trybie wieloosobowym.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Czempion Demedża",
+        "description": "Zadano najwięcej obrażeń przeciwnikom w trybie wieloosobowym."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_damage_leader.png"
+  },
+  {
+    "id": "DEBUFFER",
+    "name": "Czempion Efektów Specjalnych",
+    "description": "Nałożono najwięcej Osłabień w trybie wieloosobowym.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Czempion Efektów Specjalnych",
+        "description": "Nałożono najwięcej Osłabień w trybie wieloosobowym."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_debuffer.png"
+  },
+  {
+    "id": "DOUBLE_SNECKO",
+    "name": "Dwa Wonsze",
+    "description": "Otrzymano zarówno prawdziwe, jak i podrabiane Oko Wonsza.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Dwa Wonsze",
+        "description": "Otrzymano zarówno prawdziwe, jak i podrabiane Oko Wonsza."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_double_snecko.png"
+  },
+  {
+    "id": "ELITE",
+    "name": "Elitarny Łowca",
+    "description": "Zabito przynajmniej [blue]3[/blue] Elitarnych przeciwników.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Elitarny Łowca",
+        "description": "Zabito przynajmniej [blue]3[/blue] Elitarnych przeciwników."
+      },
+      {
+        "rarity": "silver",
+        "title": "Elitarny Zabójca",
+        "description": "Zabito przynajmniej [blue]6[/blue] Elitarnych przeciwników."
+      },
+      {
+        "rarity": "gold",
+        "title": "Elitarny Pogromca",
+        "description": "Zabito przynajmniej [blue]9[/blue] Elitarnych przeciwników."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_elite.png"
+  },
+  {
+    "id": "FAMISHED",
+    "name": "Wygłodzony podróżnik",
+    "description": "Wygrano z przynajmniej dwukrotnie zmniejszonymi maks. PŻ.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Wygłodzony podróżnik",
+        "description": "Wygrano z przynajmniej dwukrotnie zmniejszonymi maks. PŻ."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_famished.png"
+  },
+  {
+    "id": "FAVORITE_CARD",
+    "name": "Ulubiona karta",
+    "description": "Wygrano po zagraniu jednej karty ponad [blue]100[/blue] razy.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Ulubiona karta",
+        "description": "Wygrano po zagraniu jednej karty ponad [blue]100[/blue] razy."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_favorite_card.png"
+  },
+  {
+    "id": "GLUTTON",
+    "name": "Dobrze odżywiony podróżnik",
+    "description": "Wygrano z maks. PŻ zwiększonymi o przynajmniej [blue]15[/blue] pkt.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Dobrze odżywiony podróżnik",
+        "description": "Wygrano z maks. PŻ zwiększonymi o przynajmniej [blue]15[/blue] pkt."
+      },
+      {
+        "rarity": "silver",
+        "title": "Napchany podróżnik",
+        "description": "Wygrano z maks. PŻ zwiększonymi o przynajmniej [blue]30[/blue] pkt."
+      },
+      {
+        "rarity": "gold",
+        "title": "Obżarty podróżnik",
+        "description": "Wygrano z absurdalnie wielką liczbą maks. PŻ (zwiększone o przynajmniej [blue]50[/blue] pkt.)."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_glutton.png"
+  },
+  {
+    "id": "HEALER",
+    "name": "Znachor",
+    "description": "Uleczono sojusznika raz.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Znachor",
+        "description": "Uleczono sojusznika raz."
+      },
+      {
+        "rarity": "silver",
+        "title": "Ratownik",
+        "description": "Uleczono sojusznika dwa razy."
+      },
+      {
+        "rarity": "gold",
+        "title": "Lekarz",
+        "description": "Uleczono sojuszników wiele razy (przynajmniej [blue]3[/blue] razy)."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_healer.png"
+  },
+  {
+    "id": "HIGHLANDER",
+    "name": "Góral",
+    "description": "Wygrano talią, w której nie ma dwóch takich samych kart (nie obejmuje kart Startowych).",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Góral",
+        "description": "Wygrano talią, w której nie ma dwóch takich samych kart (nie obejmuje kart Startowych)."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_highlander.png"
+  },
+  {
+    "id": "HONED",
+    "name": "Perfekcja",
+    "description": "Wygrano z przynajmniej [blue]5[/blue] kopiami karty (nie licząc kart Startowych).",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Perfekcja",
+        "description": "Wygrano z przynajmniej [blue]5[/blue] kopiami karty (nie licząc kart Startowych)."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_honed.png"
+  },
+  {
+    "id": "ILIKESHINY",
+    "name": "Lubię świecące",
+    "description": "Zgromadzono przynajmniej [blue]25[/blue] artefaktów.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Lubię świecące",
+        "description": "Zgromadzono przynajmniej [blue]25[/blue] artefaktów."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_ilikeshiny.png"
+  },
+  {
+    "id": "KACHING",
+    "name": "BRZDĘK!",
+    "description": "Wydano przynajmniej [blue]1 000[/blue] szt. [gold]Złota[/gold] u Handlarza.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "BRZDĘK!",
+        "description": "Wydano przynajmniej [blue]1 000[/blue] szt. [gold]Złota[/gold] u Handlarza."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_kaching.png"
+  },
+  {
+    "id": "MONEY_MONEY",
+    "name": "Kasa, kasa, kasa",
+    "description": "Wygrano z przynajmniej [blue]200[/blue] szt. [gold]Złota[/gold].",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Kasa, kasa, kasa",
+        "description": "Wygrano z przynajmniej [blue]200[/blue] szt. [gold]Złota[/gold]."
+      },
+      {
+        "rarity": "silver",
+        "title": "Piniondz wszendzie!!",
+        "description": "Wygrano z przynajmniej [blue]400[/blue] szt. [gold]Złota[/gold]."
+      },
+      {
+        "rarity": "gold",
+        "title": "Lubię Złoto",
+        "description": "Wygrano z przynajmniej [blue]600[/blue] szt. [gold]Złota[/gold]."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_money_money.png"
+  },
+  {
+    "id": "MYSTERY_MACHINE",
+    "name": "Maszyna losująca",
+    "description": "Odwiedzono przynajmniej [blue]15[/blue] nieznanych (?) pomieszczeń.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Maszyna losująca",
+        "description": "Odwiedzono przynajmniej [blue]15[/blue] nieznanych (?) pomieszczeń."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_mystery_machine.png"
+  },
+  {
+    "id": "PERFECT",
+    "name": "Bezbłędne zwycięstwo",
+    "description": "Pokonano bossa bez otrzymania obrażeń.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Bezbłędne zwycięstwo",
+        "description": "Pokonano bossa bez otrzymania obrażeń."
+      },
+      {
+        "rarity": "silver",
+        "title": "Wielkie zwycięstwo",
+        "description": "Pokonano [blue]2[/blue] bossów bez otrzymania obrażeń."
+      },
+      {
+        "rarity": "gold",
+        "title": "Perfekcyjne zwycięstwo",
+        "description": "Pokonano [blue]3[/blue] bossów bez otrzymania obrażeń."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_perfect.png"
+  },
+  {
+    "id": "RESTFUL",
+    "name": "Wypoczęty podróżnik",
+    "description": "Wygrano odpoczywając w każdym Obozowisku.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Wypoczęty podróżnik",
+        "description": "Wygrano odpoczywając w każdym Obozowisku."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_restful.png"
+  },
+  {
+    "id": "RESTLESS",
+    "name": "Niewyspany podróżnik",
+    "description": "Wygrano bez odpoczywania w Obozowisku.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Niewyspany podróżnik",
+        "description": "Wygrano bez odpoczywania w Obozowisku."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_restless.png"
+  },
+  {
+    "id": "SPEEDY",
+    "name": "Szybki Bill",
+    "description": "Wygrano w mniej niż [blue]50[/blue] minut.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Szybki Bill",
+        "description": "Wygrano w mniej niż [blue]50[/blue] minut."
+      },
+      {
+        "rarity": "silver",
+        "title": "Szybki i wściekły",
+        "description": "Wygrano w mniej niż [blue]40[/blue] minut."
+      },
+      {
+        "rarity": "gold",
+        "title": "Jestem szybkością",
+        "description": "Wygrano w mniej niż [blue]30[/blue] minut."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_speedy.png"
+  },
+  {
+    "id": "TABLET",
+    "name": "Tabliczka Prawdy",
+    "description": "Wygrano tylko z [blue]1[/blue] maks. PŻ.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Tabliczka Prawdy",
+        "description": "Wygrano tylko z [blue]1[/blue] maks. PŻ."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_tablet.png"
+  },
+  {
+    "id": "TEAM_PLAYER",
+    "name": "Czempion Drużyny",
+    "description": "Talia zawierała przynajmniej [blue]3[/blue] karty z trybu wieloosobowego.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Czempion Drużyny",
+        "description": "Talia zawierała przynajmniej [blue]3[/blue] karty z trybu wieloosobowego."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_team_player.png"
+  },
+  {
+    "id": "TINY_DECK",
+    "name": "Mała talia",
+    "description": "Wygrano talią złożoną z maksymalnie [blue]20[/blue] kart.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Mała talia",
+        "description": "Wygrano talią złożoną z maksymalnie [blue]20[/blue] kart."
+      },
+      {
+        "rarity": "silver",
+        "title": "Maleńka talia",
+        "description": "Wygrano talią złożoną z maksymalnie [blue]10[/blue] kart."
+      },
+      {
+        "rarity": "gold",
+        "title": "Minimalistyczna talia",
+        "description": "Wygrano talią złożoną z maksymalnie [blue]5[/blue] kart."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_tiny_deck.png"
+  },
+  {
+    "id": "WHOMPER",
+    "name": "Strzał z hukiem",
+    "description": "Zadano więcej niż [blue]100[/blue] pkt. obrażeń jednym atakiem.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Strzał z hukiem",
+        "description": "Zadano więcej niż [blue]100[/blue] pkt. obrażeń jednym atakiem."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_whomper.png"
+  }
+]

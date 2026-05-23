@@ -1,0 +1,482 @@
+[
+  {
+    "id": "BIG_DECK",
+    "name": "Gros deck",
+    "description": "Partie remportée avec un deck de [blue]40[/blue] cartes ou plus.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Gros deck",
+        "description": "Partie remportée avec un deck de [blue]40[/blue] cartes ou plus."
+      },
+      {
+        "rarity": "silver",
+        "title": "Énorme deck",
+        "description": "Partie remportée avec un deck de [blue]60[/blue] cartes ou plus."
+      },
+      {
+        "rarity": "gold",
+        "title": "Deck monstrueux",
+        "description": "Partie remportée avec un deck de [blue]100[/blue] cartes ou plus."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_big_deck.png"
+  },
+  {
+    "id": "CCCCOMBO",
+    "name": "C-c-c-combo",
+    "description": "[blue]20[/blue] cartes jouées en un seul tour.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "C-c-c-combo",
+        "description": "[blue]20[/blue] cartes jouées en un seul tour."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_ccccombo.png"
+  },
+  {
+    "id": "CURSES",
+    "name": "Maudit !",
+    "description": "Partie remportée avec [blue]5[/blue] [red]Malédictions[/red] ou plus.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Maudit !",
+        "description": "Partie remportée avec [blue]5[/blue] [red]Malédictions[/red] ou plus."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_curses.png"
+  },
+  {
+    "id": "DAMAGE_LEADER",
+    "name": "Meneur de dégâts",
+    "description": "A infligé le plus de dégâts aux ennemis en multijoueur.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Meneur de dégâts",
+        "description": "A infligé le plus de dégâts aux ennemis en multijoueur."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_damage_leader.png"
+  },
+  {
+    "id": "DEBUFFER",
+    "name": "Ensorceleur",
+    "description": "A appliqué le plus d'effets néfastes en multijoueur.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Ensorceleur",
+        "description": "A appliqué le plus d'effets néfastes en multijoueur."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_debuffer.png"
+  },
+  {
+    "id": "DOUBLE_SNECKO",
+    "name": "Double geckobra",
+    "description": "A obtenu le vrai et le faux Œil de geckobra.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Double geckobra",
+        "description": "A obtenu le vrai et le faux Œil de geckobra."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_double_snecko.png"
+  },
+  {
+    "id": "ELITE",
+    "name": "Chasseur d'Élites",
+    "description": "Au moins [blue]3[/blue] Élites vaincus.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Chasseur d'Élites",
+        "description": "Au moins [blue]3[/blue] Élites vaincus."
+      },
+      {
+        "rarity": "silver",
+        "title": "Tueur d'Élites",
+        "description": "Au moins [blue]6[/blue] Élites vaincus."
+      },
+      {
+        "rarity": "gold",
+        "title": "Pourfendeur d'Élites",
+        "description": "Au moins [blue]9[/blue] Élites vaincus."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_elite.png"
+  },
+  {
+    "id": "FAMISHED",
+    "name": "Affamé",
+    "description": "Partie remportée avec les PV Max à moins de la moitié des PV Max de départ.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Affamé",
+        "description": "Partie remportée avec les PV Max à moins de la moitié des PV Max de départ."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_famished.png"
+  },
+  {
+    "id": "FAVORITE_CARD",
+    "name": "Carte favorite",
+    "description": "Partie remportée en ayant joué une même carte plus de [blue]100[/blue] fois.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Carte favorite",
+        "description": "Partie remportée en ayant joué une même carte plus de [blue]100[/blue] fois."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_favorite_card.png"
+  },
+  {
+    "id": "GLUTTON",
+    "name": "Bien nourri",
+    "description": "Partie remportée avec les PV Max augmentés de [blue]15[/blue] ou plus.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Bien nourri",
+        "description": "Partie remportée avec les PV Max augmentés de [blue]15[/blue] ou plus."
+      },
+      {
+        "rarity": "silver",
+        "title": "Repu",
+        "description": "Partie remportée avec les PV Max augmentés de [blue]30[/blue] ou plus."
+      },
+      {
+        "rarity": "gold",
+        "title": "Glouton",
+        "description": "Partie remportée avec les PV Max absurdement élevés (augmentés de [blue]50[/blue] ou plus)."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_glutton.png"
+  },
+  {
+    "id": "HEALER",
+    "name": "Soigneur",
+    "description": "A soigné un allié une fois.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Soigneur",
+        "description": "A soigné un allié une fois."
+      },
+      {
+        "rarity": "silver",
+        "title": "Guérisseur",
+        "description": "A soigné un allié deux fois."
+      },
+      {
+        "rarity": "gold",
+        "title": "Médecin",
+        "description": "A soigné des alliés encore et encore (au moins [blue]3[/blue] fois)."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_healer.png"
+  },
+  {
+    "id": "HIGHLANDER",
+    "name": "Highlander",
+    "description": "Partie remportée avec un deck n'incluant aucune carte en double (hormis les cartes basiques).",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Highlander",
+        "description": "Partie remportée avec un deck n'incluant aucune carte en double (hormis les cartes basiques)."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_highlander.png"
+  },
+  {
+    "id": "HONED",
+    "name": "Affûté",
+    "description": "Partie remportée avec un deck contenant au moins [blue]5[/blue] copies d'une même carte (hormis les cartes basiques).",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Affûté",
+        "description": "Partie remportée avec un deck contenant au moins [blue]5[/blue] copies d'une même carte (hormis les cartes basiques)."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_honed.png"
+  },
+  {
+    "id": "ILIKESHINY",
+    "name": "J'aime ce qui brille",
+    "description": "Au moins [blue]25[/blue] reliques collectées.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "J'aime ce qui brille",
+        "description": "Au moins [blue]25[/blue] reliques collectées."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_ilikeshiny.png"
+  },
+  {
+    "id": "KACHING",
+    "name": "Gling-gling !",
+    "description": "Plus de [blue]1000[/blue] [gold]Pièces d'or[/gold] dépensées chez le Marchand.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Gling-gling !",
+        "description": "Plus de [blue]1000[/blue] [gold]Pièces d'or[/gold] dépensées chez le Marchand."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_kaching.png"
+  },
+  {
+    "id": "MONEY_MONEY",
+    "name": "Plein les poches",
+    "description": "Partie remportée avec [blue]200[/blue] [gold]Pièces d'or[/gold] ou plus.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Plein les poches",
+        "description": "Partie remportée avec [blue]200[/blue] [gold]Pièces d'or[/gold] ou plus."
+      },
+      {
+        "rarity": "silver",
+        "title": "Il pleut des pièces",
+        "description": "Partie remportée avec [blue]400[/blue] [gold]Pièces d'or[/gold] ou plus."
+      },
+      {
+        "rarity": "gold",
+        "title": "L'or, j'adore",
+        "description": "Partie remportée avec [blue]600[/blue] [gold]Pièces d'or[/gold] ou plus."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_money_money.png"
+  },
+  {
+    "id": "MYSTERY_MACHINE",
+    "name": "Machine à mystères",
+    "description": "Au moins [blue]15[/blue] salles ? visitées.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Machine à mystères",
+        "description": "Au moins [blue]15[/blue] salles ? visitées."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_mystery_machine.png"
+  },
+  {
+    "id": "PERFECT",
+    "name": "Sans faute",
+    "description": "A vaincu un boss sans perdre de PV.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Sans faute",
+        "description": "A vaincu un boss sans perdre de PV."
+      },
+      {
+        "rarity": "silver",
+        "title": "Suprême",
+        "description": "A vaincu [blue]2[/blue] boss sans perdre de PV."
+      },
+      {
+        "rarity": "gold",
+        "title": "Parfait",
+        "description": "A vaincu [blue]3[/blue] boss sans perdre de PV."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_perfect.png"
+  },
+  {
+    "id": "RESTFUL",
+    "name": "Reposant",
+    "description": "Partie remportée en se reposant à chaque Site de repos.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Reposant",
+        "description": "Partie remportée en se reposant à chaque Site de repos."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_restful.png"
+  },
+  {
+    "id": "RESTLESS",
+    "name": "Infatigable",
+    "description": "Partie remportée sans jamais se reposer.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Infatigable",
+        "description": "Partie remportée sans jamais se reposer."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_restless.png"
+  },
+  {
+    "id": "SPEEDY",
+    "name": "Rapide",
+    "description": "Partie remportée en moins de [blue]50[/blue] minutes.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Rapide",
+        "description": "Partie remportée en moins de [blue]50[/blue] minutes."
+      },
+      {
+        "rarity": "silver",
+        "title": "Véloce",
+        "description": "Partie remportée en moins de [blue]40[/blue] minutes."
+      },
+      {
+        "rarity": "gold",
+        "title": "Éclair",
+        "description": "Partie remportée en moins de [blue]30[/blue] minutes."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_speedy.png"
+  },
+  {
+    "id": "TABLET",
+    "name": "Tablette de vérité",
+    "description": "Partie remportée avec seulement [blue]1[/blue] PV Max.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Tablette de vérité",
+        "description": "Partie remportée avec seulement [blue]1[/blue] PV Max."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_tablet.png"
+  },
+  {
+    "id": "TEAM_PLAYER",
+    "name": "Esprit d'équipe",
+    "description": "Deck comportant au moins [blue]3[/blue] cartes exclusives au multijoueur.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Esprit d'équipe",
+        "description": "Deck comportant au moins [blue]3[/blue] cartes exclusives au multijoueur."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_team_player.png"
+  },
+  {
+    "id": "TINY_DECK",
+    "name": "Petit deck",
+    "description": "Partie remportée avec un deck de [blue]20[/blue] cartes ou moins.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Petit deck",
+        "description": "Partie remportée avec un deck de [blue]20[/blue] cartes ou moins."
+      },
+      {
+        "rarity": "silver",
+        "title": "Mini deck",
+        "description": "Partie remportée avec un deck de [blue]10[/blue] cartes ou moins."
+      },
+      {
+        "rarity": "gold",
+        "title": "Micro deck",
+        "description": "Partie remportée avec un deck de [blue]5[/blue] cartes ou moins."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_tiny_deck.png"
+  },
+  {
+    "id": "WHOMPER",
+    "name": "Coup de massue",
+    "description": "A infligé plus de [blue]100[/blue] dégâts en une seule attaque.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Coup de massue",
+        "description": "A infligé plus de [blue]100[/blue] dégâts en une seule attaque."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_whomper.png"
+  }
+]

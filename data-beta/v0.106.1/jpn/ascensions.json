@@ -1,0 +1,68 @@
+[
+  {
+    "id": "LEVEL_00",
+    "level": 0,
+    "name": "アセンションなし",
+    "description": "アセンションの変更要素なしでプレイする。"
+  },
+  {
+    "id": "LEVEL_01",
+    "level": 1,
+    "name": "エリートの群れ",
+    "description": "[gold]エリート[/gold]の出現率が上昇する。"
+  },
+  {
+    "id": "LEVEL_02",
+    "level": 2,
+    "name": "疲れ果てた旅人",
+    "description": "エンシェントによる回復量が、減少HPの[blue]80%[/blue]に低下する。"
+  },
+  {
+    "id": "LEVEL_03",
+    "level": 3,
+    "name": "貧困",
+    "description": "敵と宝箱から得られる[gold]ゴールド[/gold]が[blue]25%[/blue]減少する。"
+  },
+  {
+    "id": "LEVEL_04",
+    "level": 4,
+    "name": "きつめのベルト",
+    "description": "ポーションスロットが1つ少ない状態でプレイを開始する。"
+  },
+  {
+    "id": "LEVEL_05",
+    "level": 5,
+    "name": "アセンダーの災厄",
+    "description": "プレイ開始時、[red]呪い[/red]を受ける。"
+  },
+  {
+    "id": "LEVEL_06",
+    "level": 6,
+    "name": "インフレ",
+    "description": "商人でデッキからカードを削除する費用が増加する。"
+  },
+  {
+    "id": "LEVEL_07",
+    "level": 7,
+    "name": "枯渇",
+    "description": "レアおよびアップグレード済みカードの出現率が下がる。"
+  },
+  {
+    "id": "LEVEL_08",
+    "level": 8,
+    "name": "頑強なる敵",
+    "description": "すべての敵の耐久力が上昇する。"
+  },
+  {
+    "id": "LEVEL_09",
+    "level": 9,
+    "name": "凶悪なる敵",
+    "description": "すべての敵の攻撃が激化する。"
+  },
+  {
+    "id": "LEVEL_10",
+    "level": 10,
+    "name": "ダブル・ボス",
+    "description": "第3層の最後に戦うボスが2体になる。"
+  }
+]

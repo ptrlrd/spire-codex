@@ -1,0 +1,170 @@
+[
+  {
+    "id": "BLOCK",
+    "name": "ブロック",
+    "description": "次のターンまで、受けるダメージを防ぐ。",
+    "category": "combat"
+  },
+  {
+    "id": "CARD_REWARD",
+    "name": "カード報酬",
+    "description": "ランダムなカード[blue]3[/blue]枚が入ったパック。この中から[blue]1[/blue]枚を選んで[gold]デッキ[/gold]に追加できる。",
+    "category": "progression"
+  },
+  {
+    "id": "CHANNELING",
+    "name": "生成",
+    "description": "オーブを生成すると、1番目の空きスロットに配置される。空きがない場合は、スロットを空けるため、1番目のオーブを自動的に[gold]解放[/gold]する。",
+    "category": "combat"
+  },
+  {
+    "id": "COOK",
+    "name": "料理",
+    "description": "[gold]休憩所[/gold]で[gold]デッキ[/gold]からカードを[blue]2[/blue]枚[gold]削除[/gold]し、最大HPが[green]9[/green]増加する。",
+    "category": "mechanics"
+  },
+  {
+    "id": "DECK",
+    "name": "デッキ",
+    "description": "デッキ内のすべてのカードを確認する。",
+    "category": "zones"
+  },
+  {
+    "id": "DISCARD_PILE",
+    "name": "捨て札",
+    "description": "山札が空になると、捨て札がシャッフルされて新たな山札になる。\n\nクリックすると捨て札のカードを確認できる。",
+    "category": "zones"
+  },
+  {
+    "id": "DRAW_PILE",
+    "name": "山札",
+    "description": "毎ターンの開始時に、\nここから[blue]5[/blue]枚のカードを引く。\n\nクリックすると山札のカードを確認できる（表示は順不同）。",
+    "category": "zones"
+  },
+  {
+    "id": "ENERGY",
+    "name": "エナジー",
+    "description": "エナジーは[gold]手札[/gold]からカードをプレイするために使用する。",
+    "category": "combat"
+  },
+  {
+    "id": "EVOKE",
+    "name": "解放",
+    "description": "右端のオーブを消費し、その解放効果を発動する。",
+    "category": "combat"
+  },
+  {
+    "id": "EXHAUST_PILE",
+    "name": "廃棄札",
+    "description": "クリックするとこの戦闘で廃棄されたカードを確認できる。",
+    "category": "zones"
+  },
+  {
+    "id": "FATAL",
+    "name": "リーサル",
+    "description": "このカードでミニオン以外の敵を倒したときに発動する。",
+    "category": "combat"
+  },
+  {
+    "id": "FORGE",
+    "name": "鍛造",
+    "description": "各戦闘で初めて[gold]鍛造[/gold]を行った時、[gold]ソヴリン・ブレード[/gold]を1枚[gold]手札[/gold]に加える。[gold]ソヴリン・ブレード[/gold]のダメージを増加させる。",
+    "category": "mechanics"
+  },
+  {
+    "id": "HIT_POINTS",
+    "name": "ヒットポイント",
+    "description": "HPがゼロになると死亡する。",
+    "category": "progression"
+  },
+  {
+    "id": "LINKED_REWARDS",
+    "name": "リンク報酬",
+    "description": "この組み合わせからは、報酬を[blue]1[/blue]つしか。",
+    "category": "progression"
+  },
+  {
+    "id": "MONEY_POUCH",
+    "name": "ゴールド",
+    "description": "所持しているゴールドの量。ゴールドはスパイア内での通貨だ。",
+    "category": "progression"
+  },
+  {
+    "id": "POTION_SLOT",
+    "name": "ポーションスロット",
+    "description": "戦闘中にポーションを使用することで、[green]有利な効果[/green]を得たり、敵を[red]妨害[/red]したりできる。",
+    "category": "progression"
+  },
+  {
+    "id": "REPLAY",
+    "name": "リプレイ",
+    "description": "このカードを追加でプレイする。",
+    "category": "mechanics"
+  },
+  {
+    "id": "ROOM_ANCIENT",
+    "name": "エンシェント",
+    "description": "エンシェントがいる部屋\n\n彼らは素晴らしい恩寵、宝物、そして知識を授けてくれる",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_BOSS",
+    "name": "ボス",
+    "description": "このエリアで最も危険な敵。\n\n打ち倒すことで、次の層へ進むことができる。",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_ELITE",
+    "name": "エリート",
+    "description": "強敵が待ち受ける部屋。\n\n倒せば、報酬として[gold]レリック[/gold]を1個獲得できる。",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_ENEMY",
+    "name": "敵",
+    "description": "敵が待ち受ける部屋。",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_EVENT",
+    "name": "イベント",
+    "description": "この部屋では何か奇妙な出来事が起こる……",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_MERCHANT",
+    "name": "ショップ",
+    "description": "謎めいた商人が品物を売っている部屋。\n\n稼いだ[gold]ゴールド[/gold]で買い物をしよう!",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_REST",
+    "name": "休憩所",
+    "description": "HPを[green]回復[/green]したり、カードを1枚[gold]アップグレード[/gold]できる部屋。",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_TREASURE",
+    "name": "宝箱",
+    "description": "[gold]レリック[/gold]や[gold]ゴールド[/gold]が手に入る、誰もが羨む部屋。",
+    "category": "rooms"
+  },
+  {
+    "id": "STUN",
+    "name": "スタン",
+    "description": "次のターン、敵の行動を封じる。",
+    "category": "combat"
+  },
+  {
+    "id": "SUMMON",
+    "name": "召喚",
+    "description": "[gold]オスティ[/gold]を召喚する。\nすでに召喚されている場合、この戦闘中、彼の最大HPを増加させる。",
+    "category": "mechanics"
+  },
+  {
+    "id": "TRANSFORM",
+    "name": "変化",
+    "description": "変化したカードは、いずれかのレアリティのランダムなカードになる。",
+    "category": "mechanics"
+  }
+]

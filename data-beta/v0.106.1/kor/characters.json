@@ -1,0 +1,2325 @@
+[
+  {
+    "id": "DEFECT",
+    "name": "디펙트",
+    "description": "생존을 위해 끊임없이 스스로를 개조하는\n자동인형입니다.\n반드시 싸워야 하는 순간이 찾아온다면 자신의 구체\n기술을 발휘합니다.",
+    "starting_hp": 75,
+    "starting_gold": 99,
+    "max_energy": 3,
+    "orb_slots": 3,
+    "starting_deck": [
+      "StrikeDefect",
+      "StrikeDefect",
+      "StrikeDefect",
+      "StrikeDefect",
+      "DefendDefect",
+      "DefendDefect",
+      "DefendDefect",
+      "DefendDefect",
+      "Zap",
+      "Dualcast"
+    ],
+    "starting_relics": [
+      "CrackedCore"
+    ],
+    "unlocks_after": "Necrobinder",
+    "gender": "Neutral",
+    "color": "blue",
+    "dialogue_color": "new",
+    "quotes": {
+      "event_death_prevention": "친구들을 위해 살아남아야 해!",
+      "gold_monologue": "[sine]이 돈이면 새로운 부품을 살 수 있겠어...[/sine]",
+      "aroma_principle": "[sine][blue]1100 0011 1100 0011...[/blue][/sine]",
+      "banter_alive": "[jitter]0x54494D45 0x204C494D 0x49542045 0x58434545 0x00444544[/jitter]",
+      "banter_dead": "...",
+      "unlock_text": "이 캐릭터를 해금하려면 [pink]{Prerequisite}[/pink]로 게임을 한 번 플레이하세요.",
+      "cards_modifier_title": "디펙트 카드",
+      "cards_modifier_description": "이제 디펙트 카드가 보상과 상점에 등장합니다."
+    },
+    "dialogues": [
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "자네 참 멋진 고철 덩어리라는 거 알지?"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]<3[/font_size][/i]"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "아직도 버티고 있구만... 어디 개선할 게 있는지 한번 보자고!"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "내가 가지고 있던 게 있는데, 자네 친구의 어... 음.\n아냐, 신경 쓰지 말라고!!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]<호기심 많은 삡 소리>[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "고물 덩어리 친구, 방금 한 말은 다 잊어버려!"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]...구조체여.. 대체...\n....뭐가.. 된 거지...?[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]...그는.. 너를...\n....모든 것을.. 고칠 수.. ...있다....[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]...나는.. 너의... ..기억을...\n...지울 수는.. 없다....[/sine]"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]<결의에 가득 찬 삡 소리>[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[sine]...좋다....[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "구조체가 감히 제 축복을 받을 자격이 있을까요?\n이리로 오세요, 디펙트. 모든 자동인형들 중 가장 아름다운 존재로 만들어 드리겠습니다."
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "가련한 망가진 기계여, 제가 그대를 다듬어드리죠."
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "아키텍트의 피조물은 좋아하지 않는 편이지만, 그대는 점점 마음에 드는 것 같네요."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]<쑥스러워하는 삐빅 소리>[/font_size][/i]"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "뭐야! 하인 구조체?! 아직 움직인다!!\n왜 여기? 왜 공장 아니다??"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "빛나는 구체! 어떻게 작동한다?\n[jitter]아야!![/jitter]"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "핵 망가졌다? 니오우 망가진 구조체 썼다?\n조종당한다?"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]<침착한 삡 소리>[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "아키텍트 너 고친다?"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]곤경에 빠진 자동인형이여, 친구를 찾고 있나?\n내가 도와주지...[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]구조체도 꿈을 꾸는가?\n나를 보고 따라해 보도록...[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]그대의 친구에 관한 꿈을 꿨지...\n아버지는 [aqua]플로[/aqua]를 부활시킬 수 있다네...[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "구조체! 무기가 없나!? 이걸 가져가라!"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "구체는 무기가 아니다!!"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "나와 싸워라, 디펙트!!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]디펙트는 용맹하게 싸웁니다.[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[jitter]구체[/jitter]가 무기라고!?"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "[i][font_size=22]<인사의 삡 소리>[/font_size][/i]"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "날 귀찮게 하러 온 게 아니라고? 참 [jitter][b]별난[/b][/jitter] 꼬마 구조체구나..."
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "그가 본인이 만든 피조물에 의해 무너진다면 얼마나 우스꽝스러울까?"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "정말로 고쳐지기를 원하는 거니?"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]<호기심 많은 삡 소리>[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "글쎄, 네가 정말로 [jitter][b]확신[/b][/jitter]한다면."
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "여기서 뭘 하고 있는 거지?"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "<알아듣기 힘든 무작위 문장>"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "널 수리하라고? 그럴 마음이 들게 해봐."
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "돌아온 건가? 분해해 버린 줄 알았는데?"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "<알아듣기 힘든 무작위 문장>"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "너를 고쳐? 네 친구를 고치라고? 웃기는 소리군."
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "어떻게 계속 돌아오는 거지? 니오우의 짓인가?"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "<알아듣기 힘든 무작위 문장>"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "멍청하군."
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "망가진 자여, 내가 너를 [sine]완성[/sine]시켜주마."
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "같은 구조체들이 너의 죽음을 원한다는 게 이상하게 느껴지나?"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "아키텍트의 심장을 가져온다면, 너의 [aqua]친구[/aqua]를 복원시켜주마."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]<공포에 떠는 삡 소리>[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "뭐가 더 중요하지? 너의 창조자, 아니면 너의 친구?"
+          }
+        ]
+      }
+    ],
+    "image_url": "/static/images/characters/char_select_defect.webp"
+  },
+  {
+    "id": "IRONCLAD",
+    "name": "아이언클래드",
+    "description": "아이언클래드의 마지막 병사입니다.\n자신의 의지와는 관계없이 검과 불꽃으로 적들을\n짓밟습니다.",
+    "starting_hp": 80,
+    "starting_gold": 99,
+    "max_energy": 3,
+    "orb_slots": null,
+    "starting_deck": [
+      "StrikeIronclad",
+      "StrikeIronclad",
+      "StrikeIronclad",
+      "StrikeIronclad",
+      "StrikeIronclad",
+      "DefendIronclad",
+      "DefendIronclad",
+      "DefendIronclad",
+      "DefendIronclad",
+      "Bash"
+    ],
+    "starting_relics": [
+      "BurningBlood"
+    ],
+    "unlocks_after": null,
+    "gender": "Masculine",
+    "color": "red",
+    "dialogue_color": "new",
+    "quotes": {
+      "event_death_prevention": "동료들이 아직 나를 필요로 하고 있어.",
+      "gold_monologue": "[sine]이 재물이라면 우리 부족의 무기고를 더 채울 수 있겠어...[/sine]",
+      "aroma_principle": "[sine][red]고통은 무의미해. 내 적들은 모두 죽는다.[/red][/sine]",
+      "banter_alive": "서둘러라.",
+      "banter_dead": "...",
+      "cards_modifier_title": "아이언클래드 카드",
+      "cards_modifier_description": "이제 아이언클래드 카드가 보상과 상점에 등장합니다."
+    },
+    "dialogues": [
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "불타는 전사가 돌아왔구만!\n자네에게 딱 맞는 게 있지!"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "아직도 멀쩡히 살아서 박살내고 다니는 걸 보니 반갑구만!"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "자네의 그 무거운 검은 아직 붙들고 있긴 한데... 복원시켜줄 사람은 아직 찾지 못했다네."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]아이언클래드가 다브를 응시합니다.[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "아키텍트라면 뭔가 알고 있을지도 모르지."
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]..일어나라.. 나의.. 전사여...\n..다시... 싸울...시간이다...[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]..여전히.. 분노에.. 사로잡혀 있군... 좋아...[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]..첫.. 모습을.. 기억하고..있다\n…네가 ..내 앞에...왔었지..[/sine]"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "[sine]..정말..용맹하고...[/sine]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[sine]...정말..유용했지...[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "아, 드디어 제 앞에 아이언클래드가 찾아왔군요.\n앞으로 오시면 제 힘을 입혀드리도록 하겠어요."
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "오, 아이언클래드... 제가 전에 줬던 선물로는 부족했나요?"
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "또 돌아왔군요, 나의 전사? 이번이 몇 번째죠?\n예전엔 일족 하나쯤은 쓸어버릴 만큼 강하지 않으셨던가요?"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "아이언클래드!? 어떻게 했다?? 무섭다. 너무 무섭다!!"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "계약자? 왜!? 나쁜 선택? 그래. 실수!"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "자유를 바란다!! 엄청 바란다!\n바쿠 나쁘다. 완전 나쁘다!! 아키텍트 널 자유롭게 한다?"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]그대는 굉장한 분노를 품고 있군. 내 일부를 가져가 평안을 찾을 수 있기를...[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]꿈을 꾸는 기분이 어땠는지는 기억하고 있나?\n잠을 자는데 도움이 되지...[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]그대는 스스로의 불꽃을 억눌러야 하네.\n아버지는 그대를 해방시킬 수 있지...[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "인상적인 검이군, 전사여! 하지만 무기가 부족하다!"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "전사를 위한 무기다! 무기를 집어라! 싸우자!"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "나와 싸워라, 아이언클래드!!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]아이언클래드는 탄스와 싸웁니다.[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "그래애애!! 위대한 전투다, 무기를 들어라!"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "참 예쁘게 [jitter][b]불타고[/b][/jitter] 있구나! 안으로 들어오렴!"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "정말 튼튼한 꼬마구나! 이리 와서 뭐 좀 먹으렴.\n빈속으로는 [jitter][b]살육[/b][/jitter]을 할 수 없는 법이란다!"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "오, 아키텍트가 아직 살아있다고? 그를 [jitter][b]빨리[/b][/jitter] 죽여줄 수 있겠니?\n나는 여기서 기다리고 있으마!"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "대악마의 노예가 드디어 행차하신 건가?"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "적...\n죽인다..."
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "끊임없이 싸우는 저주라도 받은 건가?"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "아키텍트... 나의... 원수!!"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "네 이름은 알고 있긴 한 거냐?"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "불쌍한 것."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "죽인다..."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "밑바닥으로 돌아가라, 아이언클래드."
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "이렇게 오랜 세월이 지나 [sine]너[/sine]를 다시 보게 될 줄이야."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[jitter][b]신성한 악마놈![/b][/jitter]\n나한테 무슨 짓을 한 거냐!?"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "정확히 네가 원했던 것이지."
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "잃어버린 부족이 너를 짓누르고 있나...?\n[i][font_size=22]바쿠가 폭소를 터뜨립니다.[/font_size][/i]"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "내 꼭두각시의 꼭두각시여... 왜 아직도 아키텍트를 죽이지 못한 거지?"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "아키텍트를 죽인 다음에는, [jitter][b]네 녀석[/b][/jitter]도 죽여주마!"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[i][font_size=22][sine]하품한다[/sine][/font_size][/i]\n너의 실패를 기쁜 마음으로 기다리마."
+          }
+        ]
+      }
+    ],
+    "image_url": "/static/images/characters/char_select_ironclad.webp"
+  },
+  {
+    "id": "NECROBINDER",
+    "name": "네크로바인더",
+    "description": "복수를 갈구하는 첨탑에서 태어난 리치입니다.\n전투에서는 그녀의 믿음직한 왼손, [gold]골골이[/gold]를 불러냅니다.",
+    "starting_hp": 66,
+    "starting_gold": 99,
+    "max_energy": 3,
+    "orb_slots": null,
+    "starting_deck": [
+      "StrikeNecrobinder",
+      "StrikeNecrobinder",
+      "StrikeNecrobinder",
+      "StrikeNecrobinder",
+      "DefendNecrobinder",
+      "DefendNecrobinder",
+      "DefendNecrobinder",
+      "DefendNecrobinder",
+      "Bodyguard",
+      "Unleash"
+    ],
+    "starting_relics": [
+      "BoundPhylactery"
+    ],
+    "unlocks_after": "Regent",
+    "gender": "Feminine",
+    "color": "purple",
+    "dialogue_color": "new",
+    "quotes": {
+      "event_death_prevention": "내가 없으면 친구들은 살아남지 못할 거야.",
+      "gold_monologue": "[sine]잘만 하면 드디어 신발을 살 수 있을지도...[/sine]",
+      "aroma_principle": "[sine][purple]그들에게 심판을... 나는 꺾이지 않겠다...[/purple][/sine]",
+      "banter_alive": "언제 끝나려나...",
+      "banter_dead": "...",
+      "unlock_text": "이 캐릭터를 해금하려면 [orange]{Prerequisite}[/orange]로 게임을 한 번 플레이하세요.",
+      "cards_modifier_title": "네크로바인더 카드",
+      "cards_modifier_description": "이제 네크로바인더 카드가 보상과 상점에 등장합니다."
+    },
+    "dialogues": [
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "딱 보니 꽤 진지한 타입이구만. 뭘 도와드릴까, 아가씨?"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "그 역겨운 놈을 쓰러뜨리는 데 도움이 된다면 뭐든 하지."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "그럼 좋아... 한 번 확인해 보라고!"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "아직도 살기가 등등하구만? 막지는 않겠네!"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "이 책, 자네랑 인연이 있어 보이는구만. 자네보다 오래된 책이라네."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "대체 어떻게 그 책을 손에 넣은 거지?"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[sine]무서운[/sine] 것들은 결국 내 수집품에 합류하게 되더군."
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]...우리의.... 목표는... ..같은 것 같군....[/sine]"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[jitter]그는 내가 사랑하는 모든 걸 죽였다!![/jitter]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[sine]...내 힘을..... 너에게 주마...[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]그는... 아직.. ....살아 있다...[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "[sine]어떻게... 이게.. ...가능한... 거지...?[/sine]"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "[sine]... [red]아키텍트[/red]는.... ..약해지고....\n..우리는.... 강해진다...[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "네 경비병들은 죽었어. 아키텍트의 죽음을 바라는 자들에게 네가 축복을 내려준다는 소문이 있던데."
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "유능한 분들을 좋아해서, 제 힘을 조금 나누어 드리고 있긴 하답니다.\n다음부턴 제 경비들은 죽이지 말아 주시길."
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "마법사에겐 전투를 위한 훌륭한 옷차림이 필요한 법이죠. 앞으로 오세요, 네크로바인더."
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "아키텍트가 그대의 그 [sine]애완동물[/sine]을 보면 썩 기뻐하진 않겠군요."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "골골이를 말하는 거야? 골골이는 마지막 일격을 가할 친구가 될 거야."
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "죽었다?! 안 죽었다! 왜 꼭두각시? 커다란 손!!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "난 꼭두각시가 아니야. 반드시 죽여야 할 사내가 있지.\n너는 날 뭘 도와줄 수 있지?"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "죽이는 거 나쁘다!! 대신 이거 받는다!"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "안 죽은 사람! 좋은 선물 있다!! 폭력 나쁘다."
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "폭력 안된다! 대신 반짝이는 거 모은다... 반짝!!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "내 사명은 아키텍트가 존재하지 않을 때에만 끝날 것이다.\n폭력은 피할 수 없어."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "아키텍트 안 나쁘다! 혹시 대화한다? 대화 좋다!! 완전 좋다!"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]짙은 악의가 그대의 마음을 물들이고 있군.[/thinky_dots]"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "내가 어떤 일을 겪었는지 안다면, 너도 나와 같은 처지가 됐을 거다."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[thinky_dots]그대의 앞길에는 평화가 없군.\n내 일부를 가져가 그 짐을 덜도록...[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]손과 함께하는 자가 돌아왔구나.\n고통스러운 기억들이군. 내 힘을 갖고 떠나도록...[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots][red]아버지[/red]를 죽여도 평화는 찾아오지 않는다.[/thinky_dots]"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[jitter]그걸[/jitter] 아버지라고 부르는 건가?"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[thinky_dots]가족을 선택할 수는 없는 법이지...[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "정말 강력한 낫이군!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "그래, 복수를 위해 특별히 만든 거거든."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "그 손에게도 무기가 필요한가!?"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "나와 싸워라, 골골이!!"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "나와 싸워라, 네크로바인더!!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]네크로바인더와 골골이가 탄스와 난투극을 벌입니다.[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "엄청난 팀워크군!! 무기를 받아라!"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "이 장벽 안에 해골이라니, 뭘 하고 있는 거니?"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "내 목표는 단순해. 가족의 복수지.\n정상에 도달해 그에게 죗값을 치르게 할 거야."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[jitter][b]경이롭구나[/b][/jitter]!"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "안으로 들어오렴! 네 불꽃을 더 [jitter][b]밝게[/b][/jitter] 만들어보자꾸나."
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "네 주위를 둘러싼 저 불꽃이 금지된 무언가를 떠올리게 하는구나."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "뭘 알고 있는 거지?"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "누가 그 [jitter][b]책[/b][/jitter]을 썼는지 알고 있지."
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "아키텍트! 너는 내 부모를 죽였다. 내 친구를 죽였다. 내 목숨도 앗아갔지! ...이젠 내가 널 죽여주마!"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "복수라는 건가? 사양하도록 하지."
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "아키텍트! 너는 내 부모를 죽였다. 내 친구를 죽였다. 내 목숨도-"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "분노로는 과거를 바꿀 수 없다."
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "아키텍트! 너는 내 부모를 죽였다. 내 친구를 죽였다. 내 목숨도 앗아갔지-"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "질서를 유지하기 위해 내가 해야 할 일을 했을 뿐이다."
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "아키텍트! 너는 내 부모를 죽였다. 내 친구를 죽였다. 심지어-"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "네 목숨도 앗아갔지"
+          },
+          {
+            "order": 2,
+            "speaker": "char",
+            "text": "뭐라고...?! 죽어라, 괴물아!"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "우리는 둘 다 [sine]복수[/sine]를 원하지. 그에 맞는 대가를 치러야 할 거야."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "그를 죽이기 위해서라면 어떤 대가라도 치를 것이다."
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "그 [sine]손[/sine]을 어디서 얻었는지 알고 있다."
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "아키텍트는 우리 둘 모두에게 깊은 상처를 남겼지."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "서두르도록 하지, 악마여. 계약서를 보여라."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "바로 본론으로 들어가는군. 좋아..."
+          }
+        ]
+      }
+    ],
+    "image_url": "/static/images/characters/char_select_necrobinder.webp"
+  },
+  {
+    "id": "REGENT",
+    "name": "리젠트",
+    "description": "별의 왕좌를 계승하는 존재입니다.\n우주적인 힘을 다루지만 실질적인 일은 하수인들이\n처리합니다.",
+    "starting_hp": 75,
+    "starting_gold": 99,
+    "max_energy": 3,
+    "orb_slots": null,
+    "starting_deck": [
+      "StrikeRegent",
+      "StrikeRegent",
+      "StrikeRegent",
+      "StrikeRegent",
+      "DefendRegent",
+      "DefendRegent",
+      "DefendRegent",
+      "DefendRegent",
+      "FallingStar",
+      "Venerate"
+    ],
+    "starting_relics": [
+      "DivineRight"
+    ],
+    "unlocks_after": "Silent",
+    "gender": "Masculine",
+    "color": "orange",
+    "dialogue_color": "new",
+    "quotes": {
+      "event_death_prevention": "내가 죽으면 이 녀석들도 끝이다!!",
+      "gold_monologue": "[sine]좀 총명한 놈들을 부릴 수 있겠군...[/sine]",
+      "aroma_principle": "[sine][orange]나는 별의 다음 왕이 될 자다...[/orange][/sine]",
+      "banter_alive": "기다리고 있다!!",
+      "banter_dead": "...",
+      "unlock_text": "이 캐릭터를 해금하려면 [green]{Prerequisite}[/green]로 게임을 한 번 플레이하세요.",
+      "cards_modifier_title": "리젠트 카드",
+      "cards_modifier_description": "이제 리젠트 카드가 보상과 상점에 등장합니다."
+    },
+    "dialogues": [
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "자네 같은 사람이 여기에서 뭘 하는 거지? 내 수집품들이나 한 번 보겠나?"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "고급 물건은 즐기는 편이지…"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "좋아!"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "더 필요한 게 있으신가요, 전하?!"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "내 새 친구에게 줄 선물이 하나 있지!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "설명하시게!"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "주고 싶었는데, 아키텍트가 가져가버렸지 뭔가!!\n이 친구 좀 도와주게! 내 부탁함세."
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "거대한 푸른 생명체여, 이몸은 [orange]왕[/orange]이 될 존재시니라!"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "[sine]..귀엽군...\n...나를... 다시.. ..만나게... ...될 거다....[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]...또 보는군..?[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "[jitter]왜 이길 수가 없는 거지?![/jitter]"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "[sine]...이.. 축복을... ..받아라...[/sine]"
+          },
+          {
+            "order": 2,
+            "speaker": "char",
+            "text": "...그래, 고맙구나 니오우."
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "노누파이페를 알현하고자 한다!"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "먼 이국에서 이토록 아름다운 예복을 가져오시다니!\n하수인들에게 말해 가까이 오시면 그대에게 축복을 내리겠습니다."
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "고귀한 방문객에게는 고귀한 축복을 내려야겠죠.\n시종들아! 우리를 위한 차를 준비하거라."
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "아키텍트는 미쳐 버렸어요! 고결한 전사만이 우리를 이 곤경에서 구원할 수 있을 텐데..."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "두려워 말라! 이몸, 리젠트가 저 광기를 끝낼 자이니!\n일단, 차를 내오도록!"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "여행자! 우주에서!? 우주 어디에서?\n우주에서 어떻게? 뾰족 머리! 작은 친구들!!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]리젠트는 몇 시간 동안 계속해서 독백합니다.[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "신난다! 인상적이다!! 더! 더!!!"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "더 많은 이야기! 이거 너 위해 찾았다!\n이제 이야기 더 말한다!"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "이몸의 최고의 팬! 내 친구, 오로바스여!\n아직 살아있는 모습을 보니 정말 반갑군!"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "이야기?!"
+          },
+          {
+            "order": 2,
+            "speaker": "char",
+            "text": "물론, 준비되어 있지... 그런데 이몸에게 줄 장신구는 찾았나?"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "안녕하신가! 이몸이 리젠트이니라.\n이봐?? [jitter]안 들리나!?[/jitter]"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "[thinky_dots]부디 정숙하시게.\n내 일부를 가지고 그대의 길을 나아가길…[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "돌아왔노라! 아, 당연하게도 잠들어 있군.\n어디 보자..."
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "왜 스스로를 내어주는 거지?"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "[thinky_dots]살점은 넘치도록 많은데, 내어주지 않을 이유가 있나?[/thinky_dots]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[thinky_dots]그대가 돌아올 때, 난 다시 채워져있겠지.\n그것이 잠의 역할이니...[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "주황색!? 어떻게 이게 주황색이지!??"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "주황색이 가장 왕에 걸맞는 색이란 건 누구나 아는 사실이지!"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "믿을 수 없군! 정말 강력하다!!"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "주황색 존재여!! 강력한 무기를 선택하라!"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "나와 싸워라, 리젠트!!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "안돼! 지난번에 여기 왔을 때 이미 싸웠지 않나!"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "나와 다시 싸워라!!"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "어머, 정말 [jitter][b]이국적인[/b][/jitter] 방문객이구나! 누구인지 물어봐도 될까, 아가?"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "이몸은 '아가'가 아니다! 예의를 갖춰라, 거대한...인간 비스무리한 무언가여!"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "내가 무례했나 보구나!\n[i][font_size=22]테즈카타라가 기쁘게 낄낄거립니다.[/font_size][/i]"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "너희들, 또 돌아왔구나?\n너희를 위한 [jitter][b]간식[/b][/jitter]을 만들어뒀단다!"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "돌아왔구나, 고귀한 아이야! 밖에서는 꽤 [jitter][b]잘해내고[/b][/jitter] 있는 것 같던데 말이야."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "물론이지! 위층에서 아주 사소한 문제들이 좀 있었을 뿐... 이를테면 죽는다든가."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "누구나 실수를 통해 배워야 하는 법이지."
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "이몸이 왔노라! 이봐, 거기 평민! 여기가 정상인가?"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "조용히 해라..."
+          },
+          {
+            "order": 2,
+            "speaker": "char",
+            "text": "예절을 좀 가르쳐줘야겠군!"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "다시 찾아왔노라!"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "시끄러운 멍청이가 돌아왔나?"
+          },
+          {
+            "order": 2,
+            "speaker": "char",
+            "text": "이몸은 시끄럽지도, 멍청하지도 않다! 이몸과 싸워라!"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "네 무례한 태도는 이제 지긋지긋하다!"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "그것만큼은 우리 생각이 같군."
+          },
+          {
+            "order": 2,
+            "speaker": "char",
+            "text": "싸워 보자고!"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "별에서 온 존재라니? 이 저주받은 성벽 안에?"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "이몸을 알고 있나?"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "그래, 우리가 서로를 도울 수 있을 것 같군."
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "약간의 대가만 치르면, 더 많은 힘을 가져갈 수 있다."
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "좋지 않은 거래인 것 같은데. 기분이 영 좋지 않아."
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "계약서는 충분히 읽어봤을 텐데?\n온전한 이해와 책임 하에 서명한 것 아닌가?"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "계약 조건을 지키지 않을 셈인가?\n계약을 하나 더 하는 건 어때? 그게 더 낫지 않겠어?"
+          }
+        ]
+      }
+    ],
+    "image_url": "/static/images/characters/char_select_regent.webp"
+  },
+  {
+    "id": "SILENT",
+    "name": "사일런트",
+    "description": "첨탑 외부에서 찾아온 사냥꾼입니다.\n앞길을 가로막는 모두를 찌르고 중독시킬 준비가\n되어 있습니다.",
+    "starting_hp": 70,
+    "starting_gold": 99,
+    "max_energy": 3,
+    "orb_slots": null,
+    "starting_deck": [
+      "StrikeSilent",
+      "StrikeSilent",
+      "StrikeSilent",
+      "StrikeSilent",
+      "StrikeSilent",
+      "DefendSilent",
+      "DefendSilent",
+      "DefendSilent",
+      "DefendSilent",
+      "DefendSilent",
+      "Neutralize",
+      "Survivor"
+    ],
+    "starting_relics": [
+      "RingOfTheSnake"
+    ],
+    "unlocks_after": null,
+    "gender": "Feminine",
+    "color": "green",
+    "dialogue_color": "new",
+    "quotes": {
+      "event_death_prevention": "다음 사냥을 위해 살아남아야 한다...",
+      "gold_monologue": "[sine]자매들이 이 재물을 자랑스러워하겠군...[/sine]",
+      "aroma_principle": "[sine][green]...사냥... 증명... 소유...[/green][/sine]",
+      "banter_alive": "[sine]...[/sine]",
+      "banter_dead": "...",
+      "unlock_text": "이 캐릭터를 해금하려면 게임을 한 번 플레이하세요.",
+      "cards_modifier_title": "사일런트 카드",
+      "cards_modifier_description": "이제 사일런트 카드가 보상과 상점에 등장합니다."
+    },
+    "dialogues": [
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "그래, 자네도 다시 첨탑으로 돌아왔구만?\n이 빛나는 것들은 도저히 참을 수가 없지?!"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "그 전리품과 맞바꿀 만한 좋은 걸 하나 준비했다네!"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "내 인심을 기억하지 못하고 있다니 유감이군!\n그래, 니오우가 어떤 녀석인지는 알고 있지..."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "..."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "자! 최종 결전인지 뭔지 아무튼 일단 장비부터 갖춰보자고!"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]...바깥에서.. 돌아온... 건가?\n..네가… 올 것을… 알고 있었다…[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]…너의..\n ...전리품이.. 기다린다...[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]..너와 나...모두..가족의..아픔을..알고 있지...[/sine]"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "..."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[sine]..아직도…인정을..원하는 건가…?\n...[jitter]멍청하군[/jitter]…[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "하찮은 도둑 하나가 제 영역에 숨어들었군요.\n제가 못 봤을 거라 생각하는 건가요? 모습을 드러내세요!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]사일런트가 그림자 밖으로 걸어나옵니다...[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "사냥꾼이여, 무엇이 그대를 다시 이 첨탑으로 불러들인 거죠?\n이리 와 이 축복을 두르도록 하세요."
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "암살자여, 특별한 선물을 마련했으니 부디 사양하지 마시길."
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "그녀의 모든 꼭두각시 중, 그대가 가장 저를 놀라게 하는군요."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "..."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "그대의 첫 번째 삶은 어땠나요? 니오우가 그대를 [sine]찾아냈나요[/sine]?\n말을 하지 않는 게 아쉽군요."
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "감염...? [jitter]역병!?[/jitter] 가지고 간다!!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[sine]...[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "전염성 아니다? 많이 죽는다? 아키텍트 너 돕는다?"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "자매 어디 있나? 무섭고 비열한 자매들!\n좋은 사람 된다! 자매처럼 안 된다!"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]살의에 가득 찬 존재여, 여기서는 싸울 필요가 없다네.\n내 일부를 가져가 평화를 얻기를...[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]전리품을 원한다고? 좋아, 내 일부를 가져가시게...\n그대가 위안을 얻을 수 있다면...[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]나에게 독을 주입한 건가...?\n이건 대체 무슨...? zZZzz...[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "사냥꾼이로군! 네 발톱을 날카롭게 벼려주마!"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "왜 단검이냐!! 약해빠졌군!"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "나와 싸워라, 사일런트!!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]사일런트는 도망쳤고, 자리를 벗어나던 중에 무기 하나를 훔쳤습니다.[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "어디로 간 거냐!!!"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "조용한 아이야, 더 가까이 오렴. 잘 보이지 않는구나..."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "..."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "나를 [jitter][b]믿어도[/b][/jitter] 좋단다."
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "정말 지독한 [jitter][b]병[/b][/jitter]에 걸렸구나. 내가 보살펴주마."
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "너의 자매들을 만난 적이 있는데, 알고 있니? 정말 사랑스러운 소녀들이었단다."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "..."
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "어머나 세상에... 설마 [jitter][b]싸우고[/b][/jitter] 온 건 아니겠지?"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "소개조차 하지 않는 건가?"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "어디서 왔지?\n대체 목적이 뭐냐?"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[jitter]으으윽![/jitter]\n[jitter][red]죽어라!![/red][/jitter]"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "성가신 자식!\n[jitter]썩 꺼져라!![/jitter]"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "살인자."
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[sine]...[/sine]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "좋게 [jitter]끝나진[/jitter] 않을 거다."
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[i][font_size=22]바쿠가 사일런트에게 다양한 계약서를 보여줍니다[/font_size][/i]"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "아키텍트만으로는 부족해, 너의 자매들도 죽여라!"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[sine]...[/sine]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "말할 것도 없이, 우린 같은 부류군."
+          }
+        ]
+      }
+    ],
+    "image_url": "/static/images/characters/char_select_silent.webp"
+  }
+]

@@ -1,0 +1,170 @@
+[
+  {
+    "id": "BLOCK",
+    "name": "Bloqueo",
+    "description": "Previene el daño hasta el siguiente turno.",
+    "category": "combat"
+  },
+  {
+    "id": "CARD_REWARD",
+    "name": "Recompensa de cartas",
+    "description": "Un paquete de [blue]3[/blue] cartas aleatorias. Puedes elegir [blue]1[/blue] y añadirla a tu [gold]Mazo[/gold].",
+    "category": "progression"
+  },
+  {
+    "id": "CHANNELING",
+    "name": "Invocar",
+    "description": "Al Invocar un Orbe, este se coloca en el primer espacio libre. Si no tienes espacios libres, tu primer Orbe se [gold]Descarga[/gold] para hacer espacio.",
+    "category": "combat"
+  },
+  {
+    "id": "COOK",
+    "name": "Cocinar",
+    "description": "[gold]Elimina[/gold] [blue]2[/blue] cartas de tu [gold]Mazo[/gold] y gana [green]9[/green] PV máx. en los [gold]Lugares de descanso[/gold].",
+    "category": "mechanics"
+  },
+  {
+    "id": "DECK",
+    "name": "Mazo",
+    "description": "Consulta todas las cartas de tu mazo.",
+    "category": "zones"
+  },
+  {
+    "id": "DISCARD_PILE",
+    "name": "Pila de descarte",
+    "description": "Si tu Pila de robo está vacía, la Pila de descarte se baraja y se coloca en la Pila de robo.\n\nHaz clic para ver las cartas en tu Pila de descarte.",
+    "category": "zones"
+  },
+  {
+    "id": "DRAW_PILE",
+    "name": "Pila de robo",
+    "description": "Al comienzo de cada turno,\nrobas [blue]5[/blue] cartas de esta pila.\n\nHaz clic para ver las cartas de tu Pila de robo (bajaradas).",
+    "category": "zones"
+  },
+  {
+    "id": "ENERGY",
+    "name": "Energía",
+    "description": "La Energía se usa para jugar las cartas de tu [gold]Mano[/gold].",
+    "category": "combat"
+  },
+  {
+    "id": "EVOKE",
+    "name": "Descargar",
+    "description": "Consume el Orbe situado más a la derecha y activa su efecto de Descargar.",
+    "category": "combat"
+  },
+  {
+    "id": "EXHAUST_PILE",
+    "name": "Cartas Agotadas",
+    "description": "Haz clic para ver las cartas Agotadas durante este combate.",
+    "category": "zones"
+  },
+  {
+    "id": "FATAL",
+    "name": "Letal",
+    "description": "Se activa cuando esta carta mata a un enemigo que no sea un esbirro.",
+    "category": "combat"
+  },
+  {
+    "id": "FORGE",
+    "name": "Forjar",
+    "description": "La primera vez que [gold]Forjes[/gold] cada combate, añade [gold]Espada del soberano[/gold] a tu [gold]Mano[/gold]. [gold]Forjar[/gold] añade daño adicional a [gold]Espada del soberano[/gold].",
+    "category": "mechanics"
+  },
+  {
+    "id": "HIT_POINTS",
+    "name": "Puntos de Vida",
+    "description": "Si te quedas sin PV, mueres.",
+    "category": "progression"
+  },
+  {
+    "id": "LINKED_REWARDS",
+    "name": "Recompensas vinculadas",
+    "description": "Solo puedes seleccionar [blue]1[/blue] de estas recompensas.",
+    "category": "progression"
+  },
+  {
+    "id": "MONEY_POUCH",
+    "name": "Oro",
+    "description": "La cantidad de Oro que tienes. El Oro es la moneda que se usa en la Torre.",
+    "category": "progression"
+  },
+  {
+    "id": "POTION_SLOT",
+    "name": "Espacio de poción",
+    "description": "Usa pociones durante el combate para ganar [green]bonificaciones[/green] o [red]perjudicar[/red] a los enemigos.",
+    "category": "progression"
+  },
+  {
+    "id": "REPLAY",
+    "name": "Repetición",
+    "description": "Juega esta carta una vez más.",
+    "category": "mechanics"
+  },
+  {
+    "id": "ROOM_ANCIENT",
+    "name": "Antiguo",
+    "description": "Los Antiguos residen en estas salas.\n\nConceden bonificaciones, tesoros y conocimiento increíbles.",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_BOSS",
+    "name": "Jefe",
+    "description": "El enemigo más poderoso de esta zona.\n\nDerrotarlo te permitirá continuar al siguiente Acto.",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_ELITE",
+    "name": "Élite",
+    "description": "En esta sala te esperan enemigos muy poderosos.\n\nAl derrotarlos, conseguirás una [gold]Reliquia[/gold].",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_ENEMY",
+    "name": "Enemigo",
+    "description": "En estas salas te esperan enemigos hostiles.",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_EVENT",
+    "name": "Evento",
+    "description": "En estas salas ocurren cosas inusuales...",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_MERCHANT",
+    "name": "Tienda",
+    "description": "En estas salas, el Comerciante vende sus mercancías.\n\n¡Gasta el [gold]Oro[/gold] que has conseguido aquí!",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_REST",
+    "name": "Lugar de descanso",
+    "description": "En estas salas puedes [green]Recuperar[/green] PV o [gold]Mejorar[/gold] una carta.",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_TREASURE",
+    "name": "Sala del tesoro",
+    "description": "En estas codiciadas salas puedes encontrar [gold]Reliquias[/gold] y [gold]Oro[/gold].",
+    "category": "rooms"
+  },
+  {
+    "id": "STUN",
+    "name": "Aturdimiento",
+    "description": "Evita que el enemigo actúe en su siguiente turno.",
+    "category": "combat"
+  },
+  {
+    "id": "SUMMON",
+    "name": "Vincular",
+    "description": "Invoca a [gold]Nudillos[/gold].\nSi ya está invocado, aumenta sus PV máx. durante este combate.",
+    "category": "mechanics"
+  },
+  {
+    "id": "TRANSFORM",
+    "name": "Transformar",
+    "description": "Al transformar una carta, esta se convierte en una carta aleatoria de cualquier rareza.",
+    "category": "mechanics"
+  }
+]

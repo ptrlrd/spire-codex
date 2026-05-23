@@ -1,0 +1,482 @@
+[
+  {
+    "id": "BIG_DECK",
+    "name": "Baralho Grande",
+    "description": "Venceu uma partida com um baralho contendo [blue]40[/blue] cartas ou mais.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Baralho Grande",
+        "description": "Venceu uma partida com um baralho contendo [blue]40[/blue] cartas ou mais."
+      },
+      {
+        "rarity": "silver",
+        "title": "Baralho Imenso",
+        "description": "Venceu uma partida com um baralho contendo [blue]60[/blue] cartas ou mais."
+      },
+      {
+        "rarity": "gold",
+        "title": "Baralho Monstruoso",
+        "description": "Venceu uma partida com um baralho contendo [blue]100[/blue] cartas ou mais."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_big_deck.png"
+  },
+  {
+    "id": "CCCCOMBO",
+    "name": "C-c-c-Combo",
+    "description": "Jogou [blue]20[/blue] cartas em um único turno.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "C-c-c-Combo",
+        "description": "Jogou [blue]20[/blue] cartas em um único turno."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_ccccombo.png"
+  },
+  {
+    "id": "CURSES",
+    "name": "Maldito Seja!",
+    "description": "Venceu uma partida com [blue]5[/blue] [red]Maldições[/red] ou mais.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Maldito Seja!",
+        "description": "Venceu uma partida com [blue]5[/blue] [red]Maldições[/red] ou mais."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_curses.png"
+  },
+  {
+    "id": "DAMAGE_LEADER",
+    "name": "Liderança de Dano",
+    "description": "Causou a maior quantidade de dano a inimigos em modo multijogador.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Liderança de Dano",
+        "description": "Causou a maior quantidade de dano a inimigos em modo multijogador."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_damage_leader.png"
+  },
+  {
+    "id": "DEBUFFER",
+    "name": "Flagelo",
+    "description": "Aplicou a maior quantidade de Efeitos Negativos em modo multijogador.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Flagelo",
+        "description": "Aplicou a maior quantidade de Efeitos Negativos em modo multijogador."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_debuffer.png"
+  },
+  {
+    "id": "DOUBLE_SNECKO",
+    "name": "De Olho na Serpentixa",
+    "description": "Obteve olhos de Serpertixa verdadeiros e falsos ao mesmo tempo.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "De Olho na Serpentixa",
+        "description": "Obteve olhos de Serpertixa verdadeiros e falsos ao mesmo tempo."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_double_snecko.png"
+  },
+  {
+    "id": "ELITE",
+    "name": "Caça a Elites",
+    "description": "Derrotou [blue]3[/blue] Elites ou mais.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Caça a Elites",
+        "description": "Derrotou [blue]3[/blue] Elites ou mais."
+      },
+      {
+        "rarity": "silver",
+        "title": "Extermínio de Elites",
+        "description": "Derrotou [blue]6[/blue] Elites ou mais."
+      },
+      {
+        "rarity": "gold",
+        "title": "Aniquilação de Elites",
+        "description": "Derrotou [blue]9[/blue] Elites ou mais."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_elite.png"
+  },
+  {
+    "id": "FAMISHED",
+    "name": "Escassez",
+    "description": "Venceu uma partida com os PV Máximos reduzidos a menos da metade dos PV iniciais.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Escassez",
+        "description": "Venceu uma partida com os PV Máximos reduzidos a menos da metade dos PV iniciais."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_famished.png"
+  },
+  {
+    "id": "FAVORITE_CARD",
+    "name": "Carta Favorita",
+    "description": "Venceu uma partida jogando a mesma carta mais de [blue]100[/blue] vezes.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Carta Favorita",
+        "description": "Venceu uma partida jogando a mesma carta mais de [blue]100[/blue] vezes."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_favorite_card.png"
+  },
+  {
+    "id": "GLUTTON",
+    "name": "Abundância",
+    "description": "Venceu uma partida com [blue]15[/blue] ou mais PV Máximos adicionais.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Abundância",
+        "description": "Venceu uma partida com [blue]15[/blue] ou mais PV Máximos adicionais."
+      },
+      {
+        "rarity": "silver",
+        "title": "Fartura",
+        "description": "Venceu uma partida com [blue]30[/blue] ou mais PV Máximos adicionais."
+      },
+      {
+        "rarity": "gold",
+        "title": "Glutonaria",
+        "description": "Venceu uma partida com [blue]50[/blue] ou mais PV Máximos adicionais."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_glutton.png"
+  },
+  {
+    "id": "HEALER",
+    "name": "Altruísta",
+    "description": "Restaurou um aliado uma vez.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Altruísta",
+        "description": "Restaurou um aliado uma vez."
+      },
+      {
+        "rarity": "silver",
+        "title": "Socorrista",
+        "description": "Restaurou um aliado duas vezes."
+      },
+      {
+        "rarity": "gold",
+        "title": "Experiência em Medicina",
+        "description": "Restaurou aliados ao menos [blue]3[/blue] vezes."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_healer.png"
+  },
+  {
+    "id": "HIGHLANDER",
+    "name": "Highlander",
+    "description": "Venceu uma partida sem cartas repetidas em seu baralho (excluindo cartas iniciais).",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Highlander",
+        "description": "Venceu uma partida sem cartas repetidas em seu baralho (excluindo cartas iniciais)."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_highlander.png"
+  },
+  {
+    "id": "HONED",
+    "name": "Especialização",
+    "description": "Venceu uma partida com [blue]5[/blue] cópias ou mais da mesma carta em seu baralho (excluindo cartas iniciais).",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Especialização",
+        "description": "Venceu uma partida com [blue]5[/blue] cópias ou mais da mesma carta em seu baralho (excluindo cartas iniciais)."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_honed.png"
+  },
+  {
+    "id": "ILIKESHINY",
+    "name": "Materialista",
+    "description": "Acumulou [blue]25[/blue] relíquias ou mais.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Materialista",
+        "description": "Acumulou [blue]25[/blue] relíquias ou mais."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_ilikeshiny.png"
+  },
+  {
+    "id": "KACHING",
+    "name": "Volte Sempre!",
+    "description": "Gastou mais de [blue]1.000[/blue] de [gold]Ouro[/gold] ao encontrar o Mercador.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Volte Sempre!",
+        "description": "Gastou mais de [blue]1.000[/blue] de [gold]Ouro[/gold] ao encontrar o Mercador."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_kaching.png"
+  },
+  {
+    "id": "MONEY_MONEY",
+    "name": "Educação Financeira",
+    "description": "Venceu uma partida com [blue]200[/blue] ou mais de [gold]Ouro[/gold].",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Educação Financeira",
+        "description": "Venceu uma partida com [blue]200[/blue] ou mais de [gold]Ouro[/gold]."
+      },
+      {
+        "rarity": "silver",
+        "title": "Investimentos",
+        "description": "Venceu uma partida com [blue]400[/blue] ou mais de [gold]Ouro[/gold]."
+      },
+      {
+        "rarity": "gold",
+        "title": "Grandes Fortunas",
+        "description": "Venceu uma partida com [blue]600[/blue] ou mais de [gold]Ouro[/gold]."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_money_money.png"
+  },
+  {
+    "id": "MYSTERY_MACHINE",
+    "name": "Atração por Mistérios",
+    "description": "Visitou [blue]15[/blue] salas de \"?\" ou mais.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Atração por Mistérios",
+        "description": "Visitou [blue]15[/blue] salas de \"?\" ou mais."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_mystery_machine.png"
+  },
+  {
+    "id": "PERFECT",
+    "name": "Sem Falhas",
+    "description": "Derrotou um chefe sem perder nenhum PV.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Sem Falhas",
+        "description": "Derrotou um chefe sem perder nenhum PV."
+      },
+      {
+        "rarity": "silver",
+        "title": "Excelência",
+        "description": "Derrotou [blue]2[/blue] chefes sem perder nenhum PV."
+      },
+      {
+        "rarity": "gold",
+        "title": "Perfeição",
+        "description": "Derrotou [blue]3[/blue] chefes sem perder nenhum PV."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_perfect.png"
+  },
+  {
+    "id": "RESTFUL",
+    "name": "Tranquilidade",
+    "description": "Venceu uma partida descansando a cada Local de Descanso.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Tranquilidade",
+        "description": "Venceu uma partida descansando a cada Local de Descanso."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_restful.png"
+  },
+  {
+    "id": "RESTLESS",
+    "name": "Inquietação",
+    "description": "Venceu uma partida sem nunca descansar.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Inquietação",
+        "description": "Venceu uma partida sem nunca descansar."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_restless.png"
+  },
+  {
+    "id": "SPEEDY",
+    "name": "Agilidade",
+    "description": "Venceu uma partida em menos de [blue]50[/blue] minutos.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Agilidade",
+        "description": "Venceu uma partida em menos de [blue]50[/blue] minutos."
+      },
+      {
+        "rarity": "silver",
+        "title": "Rapidez",
+        "description": "Venceu uma partida em menos de [blue]40[/blue] minutos."
+      },
+      {
+        "rarity": "gold",
+        "title": "Velocista",
+        "description": "Venceu uma partida em menos de [blue]30[/blue] minutos."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_speedy.png"
+  },
+  {
+    "id": "TABLET",
+    "name": "Tabuleta da Verdade",
+    "description": "Vence uma partida com apenas [blue]1[/blue] PV Máximo.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Tabuleta da Verdade",
+        "description": "Vence uma partida com apenas [blue]1[/blue] PV Máximo."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_tablet.png"
+  },
+  {
+    "id": "TEAM_PLAYER",
+    "name": "Trabalho em Equipe",
+    "description": "Construiu um baralho contendo [blue]3[/blue] cartas exclusivas de multijogador ou mais.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Trabalho em Equipe",
+        "description": "Construiu um baralho contendo [blue]3[/blue] cartas exclusivas de multijogador ou mais."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_team_player.png"
+  },
+  {
+    "id": "TINY_DECK",
+    "name": "Baralho Pequeno",
+    "description": "Venceu uma partida com um baralho contendo [blue]20[/blue] cartas ou menos.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Baralho Pequeno",
+        "description": "Venceu uma partida com um baralho contendo [blue]20[/blue] cartas ou menos."
+      },
+      {
+        "rarity": "silver",
+        "title": "Baralho Miúdo",
+        "description": "Venceu uma partida com um baralho contendo [blue]10[/blue] cartas ou menos."
+      },
+      {
+        "rarity": "gold",
+        "title": "Baralho Minúsculo",
+        "description": "Venceu uma partida com um baralho contendo [blue]5[/blue] cartas ou menos."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_tiny_deck.png"
+  },
+  {
+    "id": "WHOMPER",
+    "name": "Colossal",
+    "description": "Causou mais de [blue]100[/blue] de dano em um único ataque.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Colossal",
+        "description": "Causou mais de [blue]100[/blue] de dano em um único ataque."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_whomper.png"
+  }
+]

@@ -1,0 +1,74 @@
+{
+  "card_types": {
+    "Attack": "Atak",
+    "Skill": "Umiej.",
+    "Power": "Moc",
+    "Status": "Stan",
+    "Curse": "Klątwa",
+    "Quest": "Misja"
+  },
+  "card_rarities": {
+    "Basic": "Zwykła",
+    "Common": "Pospolita",
+    "Uncommon": "Niepospolita",
+    "Rare": "Rzadka",
+    "Ancient": "Starożytna",
+    "Event": "Unikalna",
+    "Token": "Specjalna",
+    "Status": "Stan",
+    "Curse": "Klątwa",
+    "Quest": "Misja"
+  },
+  "relic_rarities": {
+    "Starter": "Startowy Artefakt",
+    "Common": "Pospolity Artefakt",
+    "Uncommon": "Niepospolity Artefakt",
+    "Rare": "Rzadki Artefakt",
+    "Ancient": "Starożytny Artefakt",
+    "Event": "Specjalny Artefakt",
+    "Shop": "Zakupiony Artefakt"
+  },
+  "potion_rarities": {
+    "Common": "Pospolita",
+    "Uncommon": "Niepospolita",
+    "Rare": "Rzadka",
+    "Event": "Unikalna",
+    "Token": "Specjalna"
+  },
+  "keywords": {
+    "ETERNAL": "Wieczna",
+    "ETHEREAL": "Eteryczna",
+    "EXHAUST": "Wyczerpanie",
+    "INNATE": "Startowa",
+    "RETAIN": "Zachowanie",
+    "SLY": "Chytra",
+    "UNPLAYABLE": "Niezagrywalna"
+  },
+  "sections": {
+    "cards": "Kolekcja kart",
+    "characters": "Characters",
+    "relics": "Zbiór Artefaktów",
+    "monsters": "Bestiariusz",
+    "potions": "Laboratorium Mikstur",
+    "enchantments": "Enchantments",
+    "encounters": "Encounters",
+    "events": "Events",
+    "powers": "Powers",
+    "timeline": "Oś Czasu",
+    "images": "Images",
+    "reference": "Reference"
+  },
+  "section_descs": {
+    "cards": "Wyświetl wszystkie karty znalezione w Iglicy.",
+    "relics": "Przyjrzyj się przeróżnym błyskotkom i artefaktom zdobytym podczas wypraw.",
+    "monsters": "Rzuć okiem na wszystkich przeciwników napotkanych w Iglicy.",
+    "potions": "Zbadaj liczne mikstury znalezione podczas wspinaczki po Iglicy."
+  },
+  "character_names": {
+    "ironclad": "Pancernik",
+    "silent": "Zjawa",
+    "defect": "Defekt",
+    "necrobinder": "Nekromantka",
+    "regent": "Monarcha"
+  }
+}

@@ -1,0 +1,68 @@
+[
+  {
+    "id": "LEVEL_00",
+    "level": 0,
+    "name": "Bez Wyniesienia",
+    "description": "Graj bez utrudnień Wyniesienia."
+  },
+  {
+    "id": "LEVEL_01",
+    "level": 1,
+    "name": "Elitarna horda",
+    "description": "[gold]Elitarni przeciwnicy[/gold] pojawiają się częściej."
+  },
+  {
+    "id": "LEVEL_02",
+    "level": 2,
+    "name": "Strudzony podróżnik",
+    "description": "Starożytni przywracają tylko [blue]80%[/blue] brakujących PŻ."
+  },
+  {
+    "id": "LEVEL_03",
+    "level": 3,
+    "name": "Bieda",
+    "description": "Przeciwnicy i Skarby upuszczają [blue]25%[/blue] mniej [gold]Złota[/gold]."
+  },
+  {
+    "id": "LEVEL_04",
+    "level": 4,
+    "name": "Ciasny pas",
+    "description": "Zaczynasz wyprawę z jednym miejscem na miksturę mniej."
+  },
+  {
+    "id": "LEVEL_05",
+    "level": 5,
+    "name": "Zmora wyniesionego",
+    "description": "Zaczynasz wyprawę z [red]Klątwą[/red]."
+  },
+  {
+    "id": "LEVEL_06",
+    "level": 6,
+    "name": "Inflacja",
+    "description": "Usuwanie kart z talii u Handlarza jest droższe."
+  },
+  {
+    "id": "LEVEL_07",
+    "level": 7,
+    "name": "Niedobór",
+    "description": "Rzadkie i Ulepszone karty pojawiają się rzadziej."
+  },
+  {
+    "id": "LEVEL_08",
+    "level": 8,
+    "name": "Wytrzymali przeciwnicy",
+    "description": "Wszyscy przeciwnicy są wytrzymalsi."
+  },
+  {
+    "id": "LEVEL_09",
+    "level": 9,
+    "name": "Zabójczy przeciwnicy",
+    "description": "Wszyscy przeciwnicy zadają większe obrażenia."
+  },
+  {
+    "id": "LEVEL_10",
+    "level": 10,
+    "name": "Podwójny boss",
+    "description": "Walczysz z dwoma bossami na koniec Aktu 3."
+  }
+]

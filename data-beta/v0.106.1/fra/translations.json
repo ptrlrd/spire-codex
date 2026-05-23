@@ -1,0 +1,74 @@
+{
+  "card_types": {
+    "Attack": "Attaque",
+    "Skill": "Compétence",
+    "Power": "Pouvoir",
+    "Status": "Statut",
+    "Curse": "Malédiction",
+    "Quest": "Quête"
+  },
+  "card_rarities": {
+    "Basic": "Basique",
+    "Common": "Commun",
+    "Uncommon": "Inhabituel",
+    "Rare": "Rare",
+    "Ancient": "Ancien",
+    "Event": "Événement",
+    "Token": "Généré",
+    "Status": "Statut",
+    "Curse": "Malédiction",
+    "Quest": "Quête"
+  },
+  "relic_rarities": {
+    "Starter": "Relique de base",
+    "Common": "Relique commune",
+    "Uncommon": "Relique inhabituelle",
+    "Rare": "Relique rare",
+    "Ancient": "Relique d'Ancien",
+    "Event": "Relique d'événement",
+    "Shop": "Relique du Marchand"
+  },
+  "potion_rarities": {
+    "Common": "Commun",
+    "Uncommon": "Inhabituel",
+    "Rare": "Rare",
+    "Event": "Événement",
+    "Token": "Généré"
+  },
+  "keywords": {
+    "ETERNAL": "Éternel",
+    "ETHEREAL": "Éthéré",
+    "EXHAUST": "Épuisement",
+    "INNATE": "Inné",
+    "RETAIN": "Retenue",
+    "SLY": "Ruse",
+    "UNPLAYABLE": "Injouable"
+  },
+  "sections": {
+    "cards": "Bibliothèque",
+    "characters": "Characters",
+    "relics": "Reliquaire",
+    "monsters": "Bestiaire",
+    "potions": "Laboratoire",
+    "enchantments": "Enchantments",
+    "encounters": "Encounters",
+    "events": "Events",
+    "powers": "Powers",
+    "timeline": "Frise temporelle",
+    "images": "Images",
+    "reference": "Reference"
+  },
+  "section_descs": {
+    "cards": "Consultez toutes les cartes que vous avez trouvées dans la Tour.",
+    "relics": "Examinez les breloques et artéfacts que vous avez obtenus au cours de vos parties.",
+    "monsters": "Visionnez tous les ennemis que vous avez rencontrés dans la Tour.",
+    "potions": "Inspectez les potions que vous avez découvertes dans la Tour."
+  },
+  "character_names": {
+    "ironclad": "Le Soldat de Fer",
+    "silent": "La Silencieuse",
+    "defect": "Le Défectueux",
+    "necrobinder": "La Tisse-Mort",
+    "regent": "Le Régent"
+  }
+}

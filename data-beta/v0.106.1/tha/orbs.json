@@ -1,0 +1,37 @@
+[
+  {
+    "id": "DARK_ORB",
+    "name": "ความมืด",
+    "description": "[gold]ต่อเนื่อง:[/gold] ตอนจบเทิร์น เพิ่มความเสียหายให้ลูกแก้วนี้ [blue]6[/blue]\n[gold]ปล่อยพลัง:[/gold] สร้างความเสียหาย [blue]6[/blue] ใส่ศัตรูที่เหลือ HP น้อยที่สุด",
+    "description_raw": "[gold]ต่อเนื่อง:[/gold] ตอนจบเทิร์น เพิ่มความเสียหายให้ลูกแก้วนี้ [blue]{Passive}[/blue]\n[gold]ปล่อยพลัง:[/gold] สร้างความเสียหาย [blue]{Evoke}[/blue] ใส่ศัตรูที่เหลือ HP น้อยที่สุด",
+    "image_url": "/static/images/orbs/dark_orb.webp"
+  },
+  {
+    "id": "FROST_ORB",
+    "name": "น้ำแข็ง",
+    "description": "[gold]ต่อเนื่อง:[/gold] ตอนจบเทิร์น ได้รับ [blue]2[/blue] [gold]บล็อก[/gold]\n[gold]ปล่อยพลัง:[/gold] ได้รับ [blue]5[/blue] [gold]บล็อก[/gold]",
+    "description_raw": "[gold]ต่อเนื่อง:[/gold] ตอนจบเทิร์น ได้รับ [blue]{Passive}[/blue] [gold]บล็อก[/gold]\n[gold]ปล่อยพลัง:[/gold] ได้รับ [blue]{Evoke}[/blue] [gold]บล็อก[/gold]",
+    "image_url": "/static/images/orbs/frost_orb.webp"
+  },
+  {
+    "id": "GLASS_ORB",
+    "name": "แก้ว",
+    "description": "[gold]ต่อเนื่อง:[/gold] ตอนจบเทิร์น สร้างความเสียหาย [blue]4[/blue] ใส่ศัตรูทั้งหมด และลดพลังลง [blue]1[/blue]\n[gold]ปล่อยพลัง:[/gold] สร้างความเสียหาย [blue]8[/blue] ใส่ศัตรูทั้งหมด",
+    "description_raw": "[gold]ต่อเนื่อง:[/gold] ตอนจบเทิร์น สร้างความเสียหาย [blue]{Passive}[/blue] ใส่ศัตรูทั้งหมด และลดพลังลง [blue]1[/blue]\n[gold]ปล่อยพลัง:[/gold] สร้างความเสียหาย [blue]{Evoke}[/blue] ใส่ศัตรูทั้งหมด",
+    "image_url": "/static/images/orbs/glass_orb.webp"
+  },
+  {
+    "id": "LIGHTNING_ORB",
+    "name": "สายฟ้า",
+    "description": "[gold]ต่อเนื่อง:[/gold] ตอนจบเทิร์น สร้างความเสียหาย [blue]3[/blue] ใส่ศัตรู 1 ตัวแบบสุ่ม\n[gold]ปล่อยพลัง:[/gold] สร้างความเสียหาย [blue]8[/blue] ใส่ศัตรู 1 ตัวแบบสุ่ม",
+    "description_raw": "[gold]ต่อเนื่อง:[/gold] ตอนจบเทิร์น สร้างความเสียหาย [blue]{Passive}[/blue] ใส่ศัตรู 1 ตัวแบบสุ่ม\n[gold]ปล่อยพลัง:[/gold] สร้างความเสียหาย [blue]{Evoke}[/blue] ใส่ศัตรู 1 ตัวแบบสุ่ม",
+    "image_url": "/static/images/orbs/lightning_orb.webp"
+  },
+  {
+    "id": "PLASMA_ORB",
+    "name": "พลาสมา",
+    "description": "[gold]ต่อเนื่อง:[/gold] ตอนเริ่มต้นเทิร์น\nได้รับ [energy:1]\n[gold]ปล่อยพลัง:[/gold] ได้รับ [energy:2]\nพลาสมาไม่ได้รับผลจาก[gold]โฟกัส[/gold]",
+    "description_raw": "[gold]ต่อเนื่อง:[/gold] ตอนเริ่มต้นเทิร์น\nได้รับ {energyPrefix:energyIcons(1)}\n[gold]ปล่อยพลัง:[/gold] ได้รับ {energyPrefix:energyIcons(2)}\nพลาสมาไม่ได้รับผลจาก[gold]โฟกัส[/gold]",
+    "image_url": "/static/images/orbs/plasma_orb.webp"
+  }
+]

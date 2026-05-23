@@ -1,0 +1,74 @@
+{
+  "card_types": {
+    "Attack": "Ataque",
+    "Skill": "Técnica",
+    "Power": "Poder",
+    "Status": "Condição",
+    "Curse": "Maldição",
+    "Quest": "Missão"
+  },
+  "card_rarities": {
+    "Basic": "Básica",
+    "Common": "Comum",
+    "Uncommon": "Incomum",
+    "Rare": "Rara",
+    "Ancient": "Ancestral",
+    "Event": "Evento",
+    "Token": "Ficha",
+    "Status": "Condição",
+    "Curse": "Maldição",
+    "Quest": "Missão"
+  },
+  "relic_rarities": {
+    "Starter": "Relíquia Inicial",
+    "Common": "Relíquia Comum",
+    "Uncommon": "Relíquia Incomum",
+    "Rare": "Relíquia Rara",
+    "Ancient": "Relíquia Ancestral",
+    "Event": "Relíquia de Evento",
+    "Shop": "Relíquia de Loja"
+  },
+  "potion_rarities": {
+    "Common": "Comum",
+    "Uncommon": "Incomum",
+    "Rare": "Rara",
+    "Event": "Evento",
+    "Token": "Ficha"
+  },
+  "keywords": {
+    "ETERNAL": "Perpétua",
+    "ETHEREAL": "Etérea",
+    "EXHAUST": "Exaurir",
+    "INNATE": "Inata",
+    "RETAIN": "Manter",
+    "SLY": "Sagaz",
+    "UNPLAYABLE": "Injogável"
+  },
+  "sections": {
+    "cards": "Biblioteca de Cartas",
+    "characters": "Characters",
+    "relics": "Coleção de Relíquias",
+    "monsters": "Bestiário",
+    "potions": "Laboratório de Poções",
+    "enchantments": "Enchantments",
+    "encounters": "Encounters",
+    "events": "Events",
+    "powers": "Powers",
+    "timeline": "Linha do Tempo",
+    "images": "Images",
+    "reference": "Reference"
+  },
+  "section_descs": {
+    "cards": "Veja todas as cartas que você encontrou no Pináculo.",
+    "relics": "Examine os variados amuletos e artefatos obtidos durante suas partidas.",
+    "monsters": "Analise todos os inimigos que você encontrou no Pináculo.",
+    "potions": "Observe as inúmeras poções encontradas ao subir o Pináculo."
+  },
+  "character_names": {
+    "ironclad": "O Rígido",
+    "silent": "A Sorrateira",
+    "defect": "O Defeituoso",
+    "necrobinder": "A Necroartífice",
+    "regent": "O Regente"
+  }
+}

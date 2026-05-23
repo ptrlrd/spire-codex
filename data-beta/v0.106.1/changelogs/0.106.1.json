@@ -1,0 +1,5364 @@
+{
+  "app_id": 2868840,
+  "game_version": "0.106.1",
+  "build_id": "",
+  "tag": "0.106.1",
+  "date": "2026-05-22",
+  "title": "Beta v0.106.1",
+  "from_ref": "data-beta/v0.106.0/eng",
+  "to_ref": "data-beta/v0.106.1/eng",
+  "summary": {
+    "added": 0,
+    "removed": 0,
+    "changed": 149
+  },
+  "categories": [
+    {
+      "id": "cards",
+      "name": "Cards",
+      "old_count": 577,
+      "new_count": 577,
+      "changed": [
+        {
+          "id": "ASCENDERS_BANE",
+          "name": "Ascender's Bane",
+          "changes": [
+            {
+              "field": "keywords[0]",
+              "old": "Ethereal",
+              "new": "none"
+            },
+            {
+              "field": "keywords[1]",
+              "old": "Unplayable",
+              "new": "none"
+            },
+            {
+              "field": "keywords[2]",
+              "old": "Eternal",
+              "new": "none"
+            },
+            {
+              "field": "keywords_key[0]",
+              "old": "Ethereal",
+              "new": "none"
+            },
+            {
+              "field": "keywords_key[1]",
+              "old": "Unplayable",
+              "new": "none"
+            },
+            {
+              "field": "keywords_key[2]",
+              "old": "Eternal",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "FOLLY",
+          "name": "Folly",
+          "changes": [
+            {
+              "field": "keywords[0]",
+              "old": "Innate",
+              "new": "none"
+            },
+            {
+              "field": "keywords[1]",
+              "old": "Ethereal",
+              "new": "none"
+            },
+            {
+              "field": "keywords[2]",
+              "old": "Unplayable",
+              "new": "none"
+            },
+            {
+              "field": "keywords[3]",
+              "old": "Eternal",
+              "new": "none"
+            },
+            {
+              "field": "keywords_key[0]",
+              "old": "Innate",
+              "new": "none"
+            },
+            {
+              "field": "keywords_key[1]",
+              "old": "Ethereal",
+              "new": "none"
+            },
+            {
+              "field": "keywords_key[2]",
+              "old": "Unplayable",
+              "new": "none"
+            },
+            {
+              "field": "keywords_key[3]",
+              "old": "Eternal",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "GENETIC_ALGORITHM",
+          "name": "Genetic Algorithm",
+          "changes": [
+            {
+              "field": "block",
+              "old": "1",
+              "new": "none"
+            },
+            {
+              "field": "description",
+              "old": "Gain 1 [gold]Block[/gold].\nPermanently increase this card's [gold]Block[/gold...",
+              "new": "Gain X [gold]Block[/gold].\nPermanently increase this card's [gold]Block[/gold..."
+            },
+            {
+              "field": "upgrade_description",
+              "old": "Gain 1 [gold]Block[/gold].\nPermanently increase this card's [gold]Block[/gold...",
+              "new": "Gain X [gold]Block[/gold].\nPermanently increase this card's [gold]Block[/gold..."
+            },
+            {
+              "field": "vars.Block",
+              "old": "1",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "MAD_SCIENCE",
+          "name": "Mad Science",
+          "changes": [
+            {
+              "field": "type_variants.attack.image_url",
+              "old": "/static/images/beta/v0.106.0/cards/mad_science_attack.webp",
+              "new": "/static/images/beta/v0.106.1/cards/mad_science_attack.webp"
+            },
+            {
+              "field": "type_variants.power.image_url",
+              "old": "/static/images/beta/v0.106.0/cards/mad_science_power.webp",
+              "new": "/static/images/beta/v0.106.1/cards/mad_science_power.webp"
+            },
+            {
+              "field": "type_variants.skill.image_url",
+              "old": "/static/images/beta/v0.106.0/cards/mad_science_skill.webp",
+              "new": "/static/images/beta/v0.106.1/cards/mad_science_skill.webp"
+            }
+          ]
+        },
+        {
+          "id": "SUMMON_FORTH",
+          "name": "Summon Forth",
+          "changes": [
+            {
+              "field": "spawns_cards[0]",
+              "old": "SOVEREIGN_BLADE",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "THE_SCYTHE",
+          "name": "The Scythe",
+          "changes": [
+            {
+              "field": "damage",
+              "old": "13",
+              "new": "none"
+            },
+            {
+              "field": "description",
+              "old": "Deal 13 damage.\nPermanently increase this card's damage by 3.",
+              "new": "Deal X damage.\nPermanently increase this card's damage by 3."
+            },
+            {
+              "field": "upgrade_description",
+              "old": "Deal 13 damage.\nPermanently increase this card's damage by 4.",
+              "new": "Deal X damage.\nPermanently increase this card's damage by 4."
+            },
+            {
+              "field": "vars.Damage",
+              "old": "13",
+              "new": "none"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "relics",
+      "name": "Relics",
+      "old_count": 296,
+      "new_count": 296,
+      "changed": [
+        {
+          "id": "BLACK_BLOOD",
+          "name": "Black Blood",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "ironclad",
+              "new": "shared"
+            }
+          ]
+        },
+        {
+          "id": "BONE_TEA",
+          "name": "Bone Tea",
+          "changes": [
+            {
+              "field": "description",
+              "old": "At the start of the next combat, [gold]Upgrade[/gold] your starting hand.",
+              "new": "At the start of the next [blue]2[/blue] combats, [gold]Upgrade[/gold] your st..."
+            }
+          ]
+        },
+        {
+          "id": "DIVINE_DESTINY",
+          "name": "Divine Destiny",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "regent",
+              "new": "shared"
+            }
+          ]
+        },
+        {
+          "id": "EMBER_TEA",
+          "name": "Ember Tea",
+          "changes": [
+            {
+              "field": "description",
+              "old": "At the start of the next [blue]5[/blue] combats, gain [blue]2[/blue] [gold]St...",
+              "new": "At the start of the next [blue]2[/blue] combats, gain [blue]2[/blue] [gold]St..."
+            }
+          ]
+        },
+        {
+          "id": "INFUSED_CORE",
+          "name": "Infused Core",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "defect",
+              "new": "shared"
+            }
+          ]
+        },
+        {
+          "id": "LOOMING_FRUIT",
+          "name": "Looming Fruit",
+          "changes": [
+            {
+              "field": "image_variants.Cornucopia",
+              "old": "/static/images/beta/v0.106.0/relics/looming_fruit.webp",
+              "new": "/static/images/beta/v0.106.1/relics/looming_fruit.webp"
+            },
+            {
+              "field": "image_variants.Fruit",
+              "old": "/static/images/beta/v0.106.0/relics/looming_fruit_2.webp",
+              "new": "/static/images/beta/v0.106.1/relics/looming_fruit_2.webp"
+            }
+          ]
+        },
+        {
+          "id": "PHYLACTERY_UNBOUND",
+          "name": "Phylactery Unbound",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "necrobinder",
+              "new": "shared"
+            }
+          ]
+        },
+        {
+          "id": "RING_OF_THE_DRAKE",
+          "name": "Ring of the Drake",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "silent",
+              "new": "shared"
+            }
+          ]
+        },
+        {
+          "id": "YUMMY_COOKIE",
+          "name": "Yummy Cookie",
+          "changes": [
+            {
+              "field": "image_variants.Defect",
+              "old": "/static/images/beta/v0.106.0/relics/yummy_cookie_defect.webp",
+              "new": "/static/images/beta/v0.106.1/relics/yummy_cookie_defect.webp"
+            },
+            {
+              "field": "image_variants.Ironclad",
+              "old": "/static/images/beta/v0.106.0/relics/yummy_cookie_ironclad.webp",
+              "new": "/static/images/beta/v0.106.1/relics/yummy_cookie_ironclad.webp"
+            },
+            {
+              "field": "image_variants.Regent",
+              "old": "/static/images/beta/v0.106.0/relics/yummy_cookie_regent.webp",
+              "new": "/static/images/beta/v0.106.1/relics/yummy_cookie_regent.webp"
+            },
+            {
+              "field": "image_variants.Silent",
+              "old": "/static/images/beta/v0.106.0/relics/yummy_cookie_silent.webp",
+              "new": "/static/images/beta/v0.106.1/relics/yummy_cookie_silent.webp"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "monsters",
+      "name": "Monsters",
+      "old_count": 115,
+      "new_count": 115,
+      "changed": [
+        {
+          "id": "AEONGLASS",
+          "name": "Aeonglass",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Ebb → Eye Lasers → Increasing Intensity → repeat",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "EBB",
+              "new": "none"
+            },
+            {
+              "field": "moves[EBB].powers[0].amount",
+              "old": "3",
+              "new": "none"
+            },
+            {
+              "field": "moves[EBB].powers[0].power_id",
+              "old": "EBB",
+              "new": "none"
+            },
+            {
+              "field": "moves[EBB].powers[0].target",
+              "old": "player",
+              "new": "none"
+            },
+            {
+              "field": "moves[INCREASING_INTENSITY].block",
+              "old": "33",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "ARCHITECT",
+          "name": "The Architect",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Always uses Nothing",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "NOTHING",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "ASSASSIN_RUBY_RAIDER",
+          "name": "Assassin Raider",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Always uses Killshot",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "KILLSHOT",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "AXEBOT",
+          "name": "Axebot",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Always uses Boot Up",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "BOOT_UP",
+              "new": "none"
+            },
+            {
+              "field": "damage_values.OneTwo.hit_count",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[BOOT_UP].block",
+              "old": "10",
+              "new": "none"
+            },
+            {
+              "field": "moves[BOOT_UP].powers[0].amount",
+              "old": "3",
+              "new": "none"
+            },
+            {
+              "field": "moves[BOOT_UP].powers[0].power_id",
+              "old": "STRENGTH",
+              "new": "none"
+            },
+            {
+              "field": "moves[BOOT_UP].powers[0].target",
+              "old": "self",
+              "new": "none"
+            },
+            {
+              "field": "moves[HAMMER_UPPERCUT].powers[0].amount",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[HAMMER_UPPERCUT].powers[0].power_id",
+              "old": "WEAK",
+              "new": "none"
+            },
+            {
+              "field": "moves[HAMMER_UPPERCUT].powers[0].target",
+              "old": "player",
+              "new": "none"
+            },
+            {
+              "field": "moves[HAMMER_UPPERCUT].powers[1].amount",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[HAMMER_UPPERCUT].powers[1].power_id",
+              "old": "FRAIL",
+              "new": "none"
+            },
+            {
+              "field": "moves[HAMMER_UPPERCUT].powers[1].target",
+              "old": "player",
+              "new": "none"
+            },
+            {
+              "field": "moves[ONE_TWO].damage.hit_count",
+              "old": "2",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "AXE_RUBY_RAIDER",
+          "name": "Axe Raider",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Swing 1 → Swing 2 → Big Swing → repeat",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "SWING_1",
+              "new": "none"
+            },
+            {
+              "field": "moves[BIG_SWING].damage.ascension",
+              "old": "13",
+              "new": "6"
+            },
+            {
+              "field": "moves[BIG_SWING].damage.normal",
+              "old": "12",
+              "new": "5"
+            },
+            {
+              "field": "moves[SWING_1].block",
+              "old": "5",
+              "new": "none"
+            },
+            {
+              "field": "moves[SWING_2].block",
+              "old": "5",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "BOWLBUG_EGG",
+          "name": "Bowlbug (Egg)",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Always uses Bite",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "BITE",
+              "new": "none"
+            },
+            {
+              "field": "moves[BITE].block",
+              "old": "7",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "BOWLBUG_NECTAR",
+          "name": "Bowlbug (Nectar)",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Thrash → Buff → Thrash2 → repeat",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "THRASH",
+              "new": "none"
+            },
+            {
+              "field": "moves[BUFF].powers[0].amount",
+              "old": "15",
+              "new": "none"
+            },
+            {
+              "field": "moves[BUFF].powers[0].power_id",
+              "old": "STRENGTH",
+              "new": "none"
+            },
+            {
+              "field": "moves[BUFF].powers[0].target",
+              "old": "self",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "BOWLBUG_ROCK",
+          "name": "Bowlbug (Rock)",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Starts with Headbutt",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "HEADBUTT",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "BOWLBUG_SILK",
+          "name": "Bowlbug (Silk)",
+          "changes": [
+            {
+              "field": "damage_values.Thrash.hit_count",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[THRASH].damage.hit_count",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[TOXIC_SPIT].powers[0].amount",
+              "old": "1",
+              "new": "none"
+            },
+            {
+              "field": "moves[TOXIC_SPIT].powers[0].power_id",
+              "old": "WEAK",
+              "new": "none"
+            },
+            {
+              "field": "moves[TOXIC_SPIT].powers[0].target",
+              "old": "player",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "BRUTE_RUBY_RAIDER",
+          "name": "Brute Raider",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Always uses Beat",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "BEAT",
+              "new": "none"
+            },
+            {
+              "field": "moves[ROAR].powers[0].amount",
+              "old": "3",
+              "new": "none"
+            },
+            {
+              "field": "moves[ROAR].powers[0].power_id",
+              "old": "STRENGTH",
+              "new": "none"
+            },
+            {
+              "field": "moves[ROAR].powers[0].target",
+              "old": "self",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "BYGONE_EFFIGY",
+          "name": "Bygone Effigy",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Sleep → Wake → Slashes → repeat",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "SLEEP",
+              "new": "none"
+            },
+            {
+              "field": "moves[WAKE].powers[0].amount",
+              "old": "10",
+              "new": "none"
+            },
+            {
+              "field": "moves[WAKE].powers[0].power_id",
+              "old": "STRENGTH",
+              "new": "none"
+            },
+            {
+              "field": "moves[WAKE].powers[0].target",
+              "old": "self",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "BYRDONIS",
+          "name": "Byrdonis",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Swoop → Peck → repeat",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "SWOOP",
+              "new": "none"
+            },
+            {
+              "field": "damage_values.Peck.hit_count",
+              "old": "3",
+              "new": "none"
+            },
+            {
+              "field": "moves[PECK].damage.hit_count",
+              "old": "3",
+              "new": "none"
+            },
+            {
+              "field": "moves[PECK].damage.hit_count_ascension",
+              "old": "3",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "CALCIFIED_CULTIST",
+          "name": "Calcified Cultist",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Always uses Incantation",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "INCANTATION",
+              "new": "none"
+            },
+            {
+              "field": "moves[INCANTATION].powers[0].amount",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[INCANTATION].powers[0].power_id",
+              "old": "RITUAL",
+              "new": "none"
+            },
+            {
+              "field": "moves[INCANTATION].powers[0].target",
+              "old": "self",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "CEREMONIAL_BEAST",
+          "name": "Ceremonial Beast",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Stamp → Plow → repeat",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "STAMP",
+              "new": "none"
+            },
+            {
+              "field": "moves[BEAST_CRY].powers[0].amount",
+              "old": "1",
+              "new": "none"
+            },
+            {
+              "field": "moves[BEAST_CRY].powers[0].power_id",
+              "old": "RINGING",
+              "new": "none"
+            },
+            {
+              "field": "moves[BEAST_CRY].powers[0].target",
+              "old": "player",
+              "new": "none"
+            },
+            {
+              "field": "moves[CRUSH].powers[0].amount",
+              "old": "3",
+              "new": "none"
+            },
+            {
+              "field": "moves[CRUSH].powers[0].power_id",
+              "old": "STRENGTH",
+              "new": "none"
+            },
+            {
+              "field": "moves[CRUSH].powers[0].target",
+              "old": "self",
+              "new": "none"
+            },
+            {
+              "field": "moves[PLOW].powers[0].amount",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[PLOW].powers[0].power_id",
+              "old": "STRENGTH",
+              "new": "none"
+            },
+            {
+              "field": "moves[PLOW].powers[0].target",
+              "old": "self",
+              "new": "none"
+            },
+            {
+              "field": "moves[STAMP].powers[0].amount",
+              "old": "150",
+              "new": "none"
+            },
+            {
+              "field": "moves[STAMP].powers[0].power_id",
+              "old": "PLOW",
+              "new": "none"
+            },
+            {
+              "field": "moves[STAMP].powers[0].target",
+              "old": "self",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "CHOMPER",
+          "name": "Chomper",
+          "changes": [
+            {
+              "field": "damage_values.Clamp.hit_count",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[CLAMP].damage.hit_count",
+              "old": "2",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "CORPSE_SLUG",
+          "name": "Corpse Slug",
+          "changes": [
+            {
+              "field": "damage_values.WhipSlap.hit_count",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[GOOP].powers[0].amount",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[GOOP].powers[0].power_id",
+              "old": "FRAIL",
+              "new": "none"
+            },
+            {
+              "field": "moves[GOOP].powers[0].target",
+              "old": "player",
+              "new": "none"
+            },
+            {
+              "field": "moves[WHIP_SLAP].damage.hit_count",
+              "old": "2",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "CROSSBOW_RUBY_RAIDER",
+          "name": "Crossbow Raider",
+          "changes": [
+            {
+              "field": "moves[RELOAD].block",
+              "old": "3",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "CRUSHER",
+          "name": "Crusher",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Thrash → Enlarging Strike → Bug Sting → Adapt → Guarded Strike → repeat",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "THRASH",
+              "new": "none"
+            },
+            {
+              "field": "damage_values.BugSting.hit_count",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[ADAPT].powers[0].amount",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[ADAPT].powers[0].power_id",
+              "old": "STRENGTH",
+              "new": "none"
+            },
+            {
+              "field": "moves[ADAPT].powers[0].target",
+              "old": "self",
+              "new": "none"
+            },
+            {
+              "field": "moves[BUG_STING].damage.hit_count",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[BUG_STING].powers[0].amount",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[BUG_STING].powers[0].power_id",
+              "old": "WEAK",
+              "new": "none"
+            },
+            {
+              "field": "moves[BUG_STING].powers[0].target",
+              "old": "player",
+              "new": "none"
+            },
+            {
+              "field": "moves[BUG_STING].powers[1].amount",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[BUG_STING].powers[1].power_id",
+              "old": "FRAIL",
+              "new": "none"
+            },
+            {
+              "field": "moves[BUG_STING].powers[1].target",
+              "old": "player",
+              "new": "none"
+            },
+            {
+              "field": "moves[GUARDED_STRIKE].block",
+              "old": "18",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "CUBEX_CONSTRUCT",
+          "name": "Cubex Construct",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Charge Up → Repeater Blast → Repeater Blast Move 2 → Expel → repeat",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "CHARGE_UP",
+              "new": "none"
+            },
+            {
+              "field": "damage_values.Expel.hit_count",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[CHARGE_UP].powers[0].amount",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[CHARGE_UP].powers[0].power_id",
+              "old": "STRENGTH",
+              "new": "none"
+            },
+            {
+              "field": "moves[CHARGE_UP].powers[0].target",
+              "old": "self",
+              "new": "none"
+            },
+            {
+              "field": "moves[EXPEL].damage.hit_count",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[REPEATER_BLAST].powers[0].amount",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[REPEATER_BLAST].powers[0].power_id",
+              "old": "STRENGTH",
+              "new": "none"
+            },
+            {
+              "field": "moves[REPEATER_BLAST].powers[0].target",
+              "old": "self",
+              "new": "none"
+            },
+            {
+              "field": "moves[REPEATER_BLAST_MOVE_2].powers[0].amount",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[REPEATER_BLAST_MOVE_2].powers[0].power_id",
+              "old": "STRENGTH",
+              "new": "none"
+            },
+            {
+              "field": "moves[REPEATER_BLAST_MOVE_2].powers[0].target",
+              "old": "self",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "DAMP_CULTIST",
+          "name": "Damp Cultist",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Always uses Incantation",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "INCANTATION",
+              "new": "none"
+            },
+            {
+              "field": "moves[INCANTATION].powers[0].amount",
+              "old": "5",
+              "new": "none"
+            },
+            {
+              "field": "moves[INCANTATION].powers[0].power_id",
+              "old": "RITUAL",
+              "new": "none"
+            },
+            {
+              "field": "moves[INCANTATION].powers[0].target",
+              "old": "self",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "DECIMILLIPEDE_SEGMENT",
+          "name": "Decimillipede",
+          "changes": [
+            {
+              "field": "damage_values.Writhe.hit_count",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[BULK].powers[0].amount",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[BULK].powers[0].power_id",
+              "old": "STRENGTH",
+              "new": "none"
+            },
+            {
+              "field": "moves[BULK].powers[0].target",
+              "old": "self",
+              "new": "none"
+            },
+            {
+              "field": "moves[CONSTRICT].powers[0].amount",
+              "old": "1",
+              "new": "none"
+            },
+            {
+              "field": "moves[CONSTRICT].powers[0].power_id",
+              "old": "WEAK",
+              "new": "none"
+            },
+            {
+              "field": "moves[CONSTRICT].powers[0].target",
+              "old": "player",
+              "new": "none"
+            },
+            {
+              "field": "moves[WRITHE].damage.hit_count",
+              "old": "2",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "DECIMILLIPEDE_SEGMENT_BACK",
+          "name": "Decimillipede Segment (Back)",
+          "changes": [
+            {
+              "field": "damage_values.Writhe.hit_count",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[BULK].powers[0].amount",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[BULK].powers[0].power_id",
+              "old": "STRENGTH",
+              "new": "none"
+            },
+            {
+              "field": "moves[BULK].powers[0].target",
+              "old": "self",
+              "new": "none"
+            },
+            {
+              "field": "moves[CONSTRICT].powers[0].amount",
+              "old": "1",
+              "new": "none"
+            },
+            {
+              "field": "moves[CONSTRICT].powers[0].power_id",
+              "old": "WEAK",
+              "new": "none"
+            },
+            {
+              "field": "moves[CONSTRICT].powers[0].target",
+              "old": "player",
+              "new": "none"
+            },
+            {
+              "field": "moves[WRITHE].damage.hit_count",
+              "old": "2",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "DECIMILLIPEDE_SEGMENT_FRONT",
+          "name": "Decimillipede Segment (Front)",
+          "changes": [
+            {
+              "field": "damage_values.Writhe.hit_count",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[BULK].powers[0].amount",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[BULK].powers[0].power_id",
+              "old": "STRENGTH",
+              "new": "none"
+            },
+            {
+              "field": "moves[BULK].powers[0].target",
+              "old": "self",
+              "new": "none"
+            },
+            {
+              "field": "moves[CONSTRICT].powers[0].amount",
+              "old": "1",
+              "new": "none"
+            },
+            {
+              "field": "moves[CONSTRICT].powers[0].power_id",
+              "old": "WEAK",
+              "new": "none"
+            },
+            {
+              "field": "moves[CONSTRICT].powers[0].target",
+              "old": "player",
+              "new": "none"
+            },
+            {
+              "field": "moves[WRITHE].damage.hit_count",
+              "old": "2",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "DECIMILLIPEDE_SEGMENT_MIDDLE",
+          "name": "Decimillipede Segment (Middle)",
+          "changes": [
+            {
+              "field": "damage_values.Writhe.hit_count",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[BULK].powers[0].amount",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[BULK].powers[0].power_id",
+              "old": "STRENGTH",
+              "new": "none"
+            },
+            {
+              "field": "moves[BULK].powers[0].target",
+              "old": "self",
+              "new": "none"
+            },
+            {
+              "field": "moves[CONSTRICT].powers[0].amount",
+              "old": "1",
+              "new": "none"
+            },
+            {
+              "field": "moves[CONSTRICT].powers[0].power_id",
+              "old": "WEAK",
+              "new": "none"
+            },
+            {
+              "field": "moves[CONSTRICT].powers[0].target",
+              "old": "player",
+              "new": "none"
+            },
+            {
+              "field": "moves[WRITHE].damage.hit_count",
+              "old": "2",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "DEVOTED_SCULPTOR",
+          "name": "Devoted Sculptor",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Always uses Forbidden Incantation",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "FORBIDDEN_INCANTATION",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "ENTOMANCER",
+          "name": "Entomancer",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Always uses Beeeees!",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "BEES",
+              "new": "none"
+            },
+            {
+              "field": "damage_values.Bees.hit_count",
+              "old": "7",
+              "new": "none"
+            },
+            {
+              "field": "moves[BEES].damage.hit_count",
+              "old": "7",
+              "new": "none"
+            },
+            {
+              "field": "moves[BEES].damage.hit_count_ascension",
+              "old": "8",
+              "new": "none"
+            },
+            {
+              "field": "moves[PHEROMONE_SPIT].powers[0].amount",
+              "old": "1",
+              "new": "none"
+            },
+            {
+              "field": "moves[PHEROMONE_SPIT].powers[0].power_id",
+              "old": "PERSONAL_HIVE",
+              "new": "none"
+            },
+            {
+              "field": "moves[PHEROMONE_SPIT].powers[0].target",
+              "old": "self",
+              "new": "none"
+            },
+            {
+              "field": "moves[PHEROMONE_SPIT].powers[1].amount",
+              "old": "1",
+              "new": "none"
+            },
+            {
+              "field": "moves[PHEROMONE_SPIT].powers[1].power_id",
+              "old": "STRENGTH",
+              "new": "none"
+            },
+            {
+              "field": "moves[PHEROMONE_SPIT].powers[1].target",
+              "old": "self",
+              "new": "none"
+            },
+            {
+              "field": "moves[PHEROMONE_SPIT].powers[2].amount",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[PHEROMONE_SPIT].powers[2].power_id",
+              "old": "STRENGTH",
+              "new": "none"
+            },
+            {
+              "field": "moves[PHEROMONE_SPIT].powers[2].target",
+              "old": "self",
+              "new": "none"
+            },
+            {
+              "field": "moves[SPEAR].damage.ascension",
+              "old": "20",
+              "new": "none"
+            },
+            {
+              "field": "moves[SPEAR].damage.normal",
+              "old": "18",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "EXOSKELETON",
+          "name": "Exoskeleton",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "then random: Skitter (no repeat), Mandibles (no repeat); then conditional: Sk...",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "INIT_MOVE",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[INIT_MOVE].branches[0].condition",
+              "old": "base.Creature.SlotName == \"first\"",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[INIT_MOVE].branches[0].move_id",
+              "old": "SKITTER",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[INIT_MOVE].branches[1].condition",
+              "old": "base.Creature.SlotName == \"second\"",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[INIT_MOVE].branches[1].move_id",
+              "old": "MANDIBLES",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[INIT_MOVE].branches[2].condition",
+              "old": "base.Creature.SlotName == \"third\"",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[INIT_MOVE].branches[2].move_id",
+              "old": "ENRAGE",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[INIT_MOVE].branches[3].condition",
+              "old": "base.Creature.SlotName == \"fourth\"",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[INIT_MOVE].branches[3].move_id",
+              "old": "RAND",
+              "new": "none"
+            },
+            {
+              "field": "moves[ENRAGE].powers[0].amount",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[ENRAGE].powers[0].power_id",
+              "old": "STRENGTH",
+              "new": "none"
+            },
+            {
+              "field": "moves[ENRAGE].powers[0].target",
+              "old": "self",
+              "new": "none"
+            },
+            {
+              "field": "moves[SKITTER].damage.hit_count",
+              "old": "3",
+              "new": "none"
+            },
+            {
+              "field": "moves[SKITTER].damage.hit_count_ascension",
+              "old": "4",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "EYE_WITH_TEETH",
+          "name": "Eye with Teeth",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Always uses Distract",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "DISTRACT",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "FABRICATOR",
+          "name": "Fabricator",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "then random: Fabricate, Fabricating Strike; then conditional: Rand (if can fa...",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "fabricateBranch",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[fabricateBranch].branches[0].condition",
+              "old": "CanFabricate",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[fabricateBranch].branches[0].move_id",
+              "old": "RAND",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[fabricateBranch].branches[1].condition",
+              "old": "!CanFabricate",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[fabricateBranch].branches[1].move_id",
+              "old": "DISINTEGRATE",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "FAKE_MERCHANT_MONSTER",
+          "name": "The Merchant???",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Starts with Swipe",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "SWIPE",
+              "new": "none"
+            },
+            {
+              "field": "moves[ENRAGE].powers[0].amount",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[ENRAGE].powers[0].power_id",
+              "old": "STRENGTH",
+              "new": "none"
+            },
+            {
+              "field": "moves[ENRAGE].powers[0].target",
+              "old": "self",
+              "new": "none"
+            },
+            {
+              "field": "moves[THROW_RELIC].powers[0].amount",
+              "old": "1",
+              "new": "none"
+            },
+            {
+              "field": "moves[THROW_RELIC].powers[0].power_id",
+              "old": "FRAIL",
+              "new": "none"
+            },
+            {
+              "field": "moves[THROW_RELIC].powers[0].target",
+              "old": "player",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "FAT_GREMLIN",
+          "name": "Fat Gremlin",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Always uses Wake Up",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "SPAWNED",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "FLAIL_KNIGHT",
+          "name": "Flail Knight",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Starts with Ram",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "RAM",
+              "new": "none"
+            },
+            {
+              "field": "damage_values.Flail.hit_count",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[FLAIL].damage.hit_count",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[WAR_CHANT].powers[0].amount",
+              "old": "3",
+              "new": "none"
+            },
+            {
+              "field": "moves[WAR_CHANT].powers[0].power_id",
+              "old": "STRENGTH",
+              "new": "none"
+            },
+            {
+              "field": "moves[WAR_CHANT].powers[0].target",
+              "old": "self",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "FLYCONID",
+          "name": "Flyconid",
+          "changes": [
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "INITIAL",
+              "new": "none"
+            },
+            {
+              "field": "moves[FRAIL_SPORES].powers[0].amount",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[FRAIL_SPORES].powers[0].power_id",
+              "old": "FRAIL",
+              "new": "none"
+            },
+            {
+              "field": "moves[FRAIL_SPORES].powers[0].target",
+              "old": "player",
+              "new": "none"
+            },
+            {
+              "field": "moves[VULNERABLE_SPORES].powers[0].amount",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[VULNERABLE_SPORES].powers[0].power_id",
+              "old": "VULNERABLE",
+              "new": "none"
+            },
+            {
+              "field": "moves[VULNERABLE_SPORES].powers[0].target",
+              "old": "player",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "FOGMOG",
+          "name": "Fogmog",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Starts with Illusory Spores, then random: Swipe Random (no repeat, 40%), Head...",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "ILLUSION",
+              "new": "none"
+            },
+            {
+              "field": "moves[SWIPE].powers[0].amount",
+              "old": "1",
+              "new": "none"
+            },
+            {
+              "field": "moves[SWIPE].powers[0].power_id",
+              "old": "STRENGTH",
+              "new": "none"
+            },
+            {
+              "field": "moves[SWIPE].powers[0].target",
+              "old": "self",
+              "new": "none"
+            },
+            {
+              "field": "moves[SWIPE_RANDOM].powers[0].amount",
+              "old": "1",
+              "new": "none"
+            },
+            {
+              "field": "moves[SWIPE_RANDOM].powers[0].power_id",
+              "old": "STRENGTH",
+              "new": "none"
+            },
+            {
+              "field": "moves[SWIPE_RANDOM].powers[0].target",
+              "old": "self",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "FOSSIL_STALKER",
+          "name": "Fossil Stalker",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Starts with Latch",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "LATCH",
+              "new": "none"
+            },
+            {
+              "field": "damage_values.Lash.hit_count",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[LASH].damage.hit_count",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[TACKLE].powers[0].amount",
+              "old": "1",
+              "new": "none"
+            },
+            {
+              "field": "moves[TACKLE].powers[0].power_id",
+              "old": "FRAIL",
+              "new": "none"
+            },
+            {
+              "field": "moves[TACKLE].powers[0].target",
+              "old": "player",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "FROG_KNIGHT",
+          "name": "Frog Knight",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Starts: Tongue Lash → Strike Down Evil → For the Queen; then conditional: Ton...",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "TONGUE_LASH",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[HALF_HEALTH].branches[0].condition",
+              "old": "HasBeetleCharged || base.Creature.CurrentHp >= base.Creature.MaxHp / 2",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[HALF_HEALTH].branches[0].move_id",
+              "old": "TONGUE_LASH",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[HALF_HEALTH].branches[1].condition",
+              "old": "!HasBeetleCharged && base.Creature.CurrentHp < base.Creature.MaxHp / 2",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[HALF_HEALTH].branches[1].move_id",
+              "old": "BEETLE_CHARGE",
+              "new": "none"
+            },
+            {
+              "field": "moves[FOR_THE_QUEEN].powers[0].amount",
+              "old": "5",
+              "new": "none"
+            },
+            {
+              "field": "moves[FOR_THE_QUEEN].powers[0].power_id",
+              "old": "STRENGTH",
+              "new": "none"
+            },
+            {
+              "field": "moves[FOR_THE_QUEEN].powers[0].target",
+              "old": "self",
+              "new": "none"
+            },
+            {
+              "field": "moves[TONGUE_LASH].powers[0].amount",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[TONGUE_LASH].powers[0].power_id",
+              "old": "FRAIL",
+              "new": "none"
+            },
+            {
+              "field": "moves[TONGUE_LASH].powers[0].target",
+              "old": "player",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "FUZZY_WURM_CRAWLER",
+          "name": "Fuzzy Wurm Crawler",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Always uses First Acid Goop",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "FIRST_ACID_GOOP",
+              "new": "none"
+            },
+            {
+              "field": "moves[INHALE].powers[0].amount",
+              "old": "7",
+              "new": "none"
+            },
+            {
+              "field": "moves[INHALE].powers[0].power_id",
+              "old": "STRENGTH",
+              "new": "none"
+            },
+            {
+              "field": "moves[INHALE].powers[0].target",
+              "old": "self",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "GAS_BOMB",
+          "name": "Gas Bomb",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Always uses Explode",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "EXPLODE",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "GLOBE_HEAD",
+          "name": "Globe Head",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Shocking Slap → Channel Lightning → Galvanic Burst → repeat",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "SHOCKING_SLAP",
+              "new": "none"
+            },
+            {
+              "field": "damage_values.ThunderStrike.hit_count",
+              "old": "3",
+              "new": "none"
+            },
+            {
+              "field": "moves[GALVANIC_BURST].powers[0].amount",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[GALVANIC_BURST].powers[0].power_id",
+              "old": "STRENGTH",
+              "new": "none"
+            },
+            {
+              "field": "moves[GALVANIC_BURST].powers[0].target",
+              "old": "self",
+              "new": "none"
+            },
+            {
+              "field": "moves[SHOCKING_SLAP].powers[0].amount",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[SHOCKING_SLAP].powers[0].power_id",
+              "old": "FRAIL",
+              "new": "none"
+            },
+            {
+              "field": "moves[SHOCKING_SLAP].powers[0].target",
+              "old": "player",
+              "new": "none"
+            },
+            {
+              "field": "moves[THUNDER_STRIKE].damage.hit_count",
+              "old": "3",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "GREMLIN_MERC",
+          "name": "Gremlin Merc",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Gimme → Double Smash → Hehe → repeat",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "GIMME",
+              "new": "none"
+            },
+            {
+              "field": "damage_values.DoubleSmash.hit_count",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "damage_values.Gimme.hit_count",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[DOUBLE_SMASH].damage.hit_count",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[DOUBLE_SMASH].powers[0].amount",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[DOUBLE_SMASH].powers[0].power_id",
+              "old": "WEAK",
+              "new": "none"
+            },
+            {
+              "field": "moves[DOUBLE_SMASH].powers[0].target",
+              "old": "player",
+              "new": "none"
+            },
+            {
+              "field": "moves[GIMME].damage.hit_count",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[HEHE].powers[0].amount",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[HEHE].powers[0].power_id",
+              "old": "STRENGTH",
+              "new": "none"
+            },
+            {
+              "field": "moves[HEHE].powers[0].target",
+              "old": "self",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "GUARDBOT",
+          "name": "Guardbot",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Always uses Guard",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "GUARD",
+              "new": "none"
+            },
+            {
+              "field": "moves[GUARD].block",
+              "old": "15",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "HAUNTED_SHIP",
+          "name": "Haunted Ship",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Haunt → Swipe → Stomp → repeat",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "HAUNT",
+              "new": "none"
+            },
+            {
+              "field": "damage_values.Stomp.hit_count",
+              "old": "3",
+              "new": "none"
+            },
+            {
+              "field": "moves[HAUNT].powers[0].amount",
+              "old": "3",
+              "new": "none"
+            },
+            {
+              "field": "moves[HAUNT].powers[0].power_id",
+              "old": "WEAK",
+              "new": "none"
+            },
+            {
+              "field": "moves[HAUNT].powers[0].target",
+              "old": "player",
+              "new": "none"
+            },
+            {
+              "field": "moves[STOMP].damage.hit_count",
+              "old": "3",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "HUNTER_KILLER",
+          "name": "Hunter Killer",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Starts with Tenderizing Goop",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "TENDERIZING_GOOP",
+              "new": "none"
+            },
+            {
+              "field": "damage_values.Puncture.hit_count",
+              "old": "3",
+              "new": "none"
+            },
+            {
+              "field": "moves[PUNCTURE].damage.hit_count",
+              "old": "3",
+              "new": "none"
+            },
+            {
+              "field": "moves[TENDERIZING_GOOP].powers[0].amount",
+              "old": "1",
+              "new": "none"
+            },
+            {
+              "field": "moves[TENDERIZING_GOOP].powers[0].power_id",
+              "old": "TENDER",
+              "new": "none"
+            },
+            {
+              "field": "moves[TENDERIZING_GOOP].powers[0].target",
+              "old": "player",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "INFESTED_PRISM",
+          "name": "Infested Prism",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Jab → Radiate → Whirlwind → Pulsate → repeat",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "JAB",
+              "new": "none"
+            },
+            {
+              "field": "damage_values.Whirlwind.hit_count",
+              "old": "3",
+              "new": "none"
+            },
+            {
+              "field": "moves[PULSATE].block",
+              "old": "20",
+              "new": "none"
+            },
+            {
+              "field": "moves[PULSATE].powers[0].amount",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[PULSATE].powers[0].power_id",
+              "old": "VITAL_SPARK",
+              "new": "none"
+            },
+            {
+              "field": "moves[PULSATE].powers[0].target",
+              "old": "self",
+              "new": "none"
+            },
+            {
+              "field": "moves[RADIATE].block",
+              "old": "11",
+              "new": "none"
+            },
+            {
+              "field": "moves[WHIRLWIND].damage.hit_count",
+              "old": "3",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "INKLET",
+          "name": "Inklet",
+          "changes": [
+            {
+              "field": "damage_values.Whirlwind.hit_count",
+              "old": "3",
+              "new": "none"
+            },
+            {
+              "field": "moves[WHIRLWIND].damage.hit_count",
+              "old": "3",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "KIN_FOLLOWER",
+          "name": "Kin Follower",
+          "changes": [
+            {
+              "field": "damage_values.Boomerang.hit_count",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[BOOMERANG].damage.hit_count",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[POWER_DANCE].powers[0].amount",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[POWER_DANCE].powers[0].power_id",
+              "old": "STRENGTH",
+              "new": "none"
+            },
+            {
+              "field": "moves[POWER_DANCE].powers[0].target",
+              "old": "self",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "KIN_PRIEST",
+          "name": "Kin Priest",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Orb of Frailty → Orb of Weakness → Soul Beam → Dark Ritual → repeat",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "ORB_OF_FRAILTY",
+              "new": "none"
+            },
+            {
+              "field": "damage_values.Beam.hit_count",
+              "old": "3",
+              "new": "none"
+            },
+            {
+              "field": "moves[BEAM].damage.hit_count",
+              "old": "3",
+              "new": "none"
+            },
+            {
+              "field": "moves[ORB_OF_FRAILTY].powers[0].amount",
+              "old": "1",
+              "new": "none"
+            },
+            {
+              "field": "moves[ORB_OF_FRAILTY].powers[0].power_id",
+              "old": "FRAIL",
+              "new": "none"
+            },
+            {
+              "field": "moves[ORB_OF_FRAILTY].powers[0].target",
+              "old": "player",
+              "new": "none"
+            },
+            {
+              "field": "moves[ORB_OF_WEAKNESS].powers[0].amount",
+              "old": "1",
+              "new": "none"
+            },
+            {
+              "field": "moves[ORB_OF_WEAKNESS].powers[0].power_id",
+              "old": "WEAK",
+              "new": "none"
+            },
+            {
+              "field": "moves[ORB_OF_WEAKNESS].powers[0].target",
+              "old": "player",
+              "new": "none"
+            },
+            {
+              "field": "moves[RITUAL].powers[0].amount",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[RITUAL].powers[0].power_id",
+              "old": "STRENGTH",
+              "new": "none"
+            },
+            {
+              "field": "moves[RITUAL].powers[0].target",
+              "old": "self",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "KNOWLEDGE_DEMON",
+          "name": "Knowledge Demon",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Starts: Curse of Knowledge → Slap → Knowledge Overwhelming → Ponder; then con...",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "CURSE_OF_KNOWLEDGE",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[CurseOfKnowledgeBranch].branches[0].condition",
+              "old": "_curseOfKnowledgeCounter < 3",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[CurseOfKnowledgeBranch].branches[0].move_id",
+              "old": "CURSE_OF_KNOWLEDGE",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[CurseOfKnowledgeBranch].branches[1].condition",
+              "old": "_curseOfKnowledgeCounter >= 3",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[CurseOfKnowledgeBranch].branches[1].move_id",
+              "old": "SLAP",
+              "new": "none"
+            },
+            {
+              "field": "damage_values.KnowledgeOverwhelming.hit_count",
+              "old": "3",
+              "new": "none"
+            },
+            {
+              "field": "moves[KNOWLEDGE_OVERWHELMING].damage.hit_count",
+              "old": "3",
+              "new": "none"
+            },
+            {
+              "field": "moves[PONDER].heal",
+              "old": "30",
+              "new": "none"
+            },
+            {
+              "field": "moves[PONDER].powers[0].amount",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[PONDER].powers[0].power_id",
+              "old": "STRENGTH",
+              "new": "none"
+            },
+            {
+              "field": "moves[PONDER].powers[0].target",
+              "old": "self",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "LAGAVULIN_MATRIARCH",
+          "name": "Lagavulin Matriarch",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Starts with Sleep",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "SLEEP",
+              "new": "none"
+            },
+            {
+              "field": "damage_values.Disembowel.hit_count",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[DISEMBOWEL].damage.hit_count",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[SLASH2].block",
+              "old": "12",
+              "new": "none"
+            },
+            {
+              "field": "moves[SLASH2].damage.ascension",
+              "old": "14",
+              "new": "21"
+            },
+            {
+              "field": "moves[SLASH2].damage.normal",
+              "old": "12",
+              "new": "19"
+            },
+            {
+              "field": "moves[SOUL_SIPHON].powers[0].amount",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[SOUL_SIPHON].powers[0].power_id",
+              "old": "STRENGTH",
+              "new": "none"
+            },
+            {
+              "field": "moves[SOUL_SIPHON].powers[0].target",
+              "old": "self",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "LEAF_SLIME_M",
+          "name": "Leaf Slime (M)",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Sticky Shot → Clump Shot → repeat",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "STICKY_SHOT",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "LEAF_SLIME_S",
+          "name": "Leaf Slime (S)",
+          "changes": [
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "RAND",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "LIVING_FOG",
+          "name": "Living Fog",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Advanced Gas → Bloat → Super Gas Blast → repeat",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "ADVANCED_GAS",
+              "new": "none"
+            },
+            {
+              "field": "moves[ADVANCED_GAS].powers[0].amount",
+              "old": "1",
+              "new": "none"
+            },
+            {
+              "field": "moves[ADVANCED_GAS].powers[0].power_id",
+              "old": "SMOGGY",
+              "new": "none"
+            },
+            {
+              "field": "moves[ADVANCED_GAS].powers[0].target",
+              "old": "player",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "LIVING_SHIELD",
+          "name": "Living Shield",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Starts with Shield Slam; then conditional: Shield Slam (if has allies) / Smas...",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "SHIELD_SLAM",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[SHIELD_SLAM_BRANCH].branches[0].condition",
+              "old": "GetAllyCount() > 0",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[SHIELD_SLAM_BRANCH].branches[0].move_id",
+              "old": "SHIELD_SLAM",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[SHIELD_SLAM_BRANCH].branches[1].condition",
+              "old": "GetAllyCount() == 0",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[SHIELD_SLAM_BRANCH].branches[1].move_id",
+              "old": "SMASH",
+              "new": "none"
+            },
+            {
+              "field": "moves[SMASH].powers[0].amount",
+              "old": "3",
+              "new": "none"
+            },
+            {
+              "field": "moves[SMASH].powers[0].power_id",
+              "old": "STRENGTH",
+              "new": "none"
+            },
+            {
+              "field": "moves[SMASH].powers[0].target",
+              "old": "self",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "LOUSE_PROGENITOR",
+          "name": "Louse Progenitor",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Always uses Web Cannon",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "WEB_CANNON",
+              "new": "none"
+            },
+            {
+              "field": "moves[CURL_AND_GROW].block",
+              "old": "14",
+              "new": "none"
+            },
+            {
+              "field": "moves[CURL_AND_GROW].powers[0].amount",
+              "old": "5",
+              "new": "none"
+            },
+            {
+              "field": "moves[CURL_AND_GROW].powers[0].power_id",
+              "old": "STRENGTH",
+              "new": "none"
+            },
+            {
+              "field": "moves[CURL_AND_GROW].powers[0].target",
+              "old": "self",
+              "new": "none"
+            },
+            {
+              "field": "moves[WEB_CANNON].powers[0].amount",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[WEB_CANNON].powers[0].power_id",
+              "old": "FRAIL",
+              "new": "none"
+            },
+            {
+              "field": "moves[WEB_CANNON].powers[0].target",
+              "old": "player",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "MAGI_KNIGHT",
+          "name": "Magi Knight",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Power Shield → Dampen → Ram → Prep → Magic Bomb → repeat",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "POWER_SHIELD",
+              "new": "none"
+            },
+            {
+              "field": "moves[POWER_SHIELD].block",
+              "old": "5",
+              "new": "none"
+            },
+            {
+              "field": "moves[PREP].block",
+              "old": "5",
+              "new": "none"
+            },
+            {
+              "field": "moves[RAM].damage.ascension",
+              "old": "11",
+              "new": "none"
+            },
+            {
+              "field": "moves[RAM].damage.normal",
+              "old": "10",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "MAWLER",
+          "name": "Mawler",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Starts with Claw; then random: Rip and Tear (no repeat), Roar (once), Claw (n...",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "CLAW",
+              "new": "none"
+            },
+            {
+              "field": "damage_values.Claw.hit_count",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[CLAW].damage.hit_count",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[ROAR].powers[0].amount",
+              "old": "3",
+              "new": "none"
+            },
+            {
+              "field": "moves[ROAR].powers[0].power_id",
+              "old": "VULNERABLE",
+              "new": "none"
+            },
+            {
+              "field": "moves[ROAR].powers[0].target",
+              "old": "player",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "MECHA_KNIGHT",
+          "name": "Mecha Knight",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Charge → Flamethrower → Windup → Heavy Cleave → repeat",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "CHARGE",
+              "new": "none"
+            },
+            {
+              "field": "moves[WINDUP].block",
+              "old": "15",
+              "new": "none"
+            },
+            {
+              "field": "moves[WINDUP].powers[0].amount",
+              "old": "5",
+              "new": "none"
+            },
+            {
+              "field": "moves[WINDUP].powers[0].power_id",
+              "old": "STRENGTH",
+              "new": "none"
+            },
+            {
+              "field": "moves[WINDUP].powers[0].target",
+              "old": "self",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "MYSTERIOUS_KNIGHT",
+          "name": "Mysterious Knight",
+          "changes": [
+            {
+              "field": "damage_values.Flail.hit_count",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[FLAIL].damage.hit_count",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[WAR_CHANT].powers[0].amount",
+              "old": "3",
+              "new": "none"
+            },
+            {
+              "field": "moves[WAR_CHANT].powers[0].power_id",
+              "old": "STRENGTH",
+              "new": "none"
+            },
+            {
+              "field": "moves[WAR_CHANT].powers[0].target",
+              "old": "self",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "MYTE",
+          "name": "Myte",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "then conditional: Toxic Cornucopia (if in first slot) / Suck (if in second slot)",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "INIT_MOVE",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[INIT_MOVE].branches[0].condition",
+              "old": "base.Creature.SlotName == \"first\"",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[INIT_MOVE].branches[0].move_id",
+              "old": "TOXIC",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[INIT_MOVE].branches[1].condition",
+              "old": "base.Creature.SlotName == \"second\"",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[INIT_MOVE].branches[1].move_id",
+              "old": "SUCK",
+              "new": "none"
+            },
+            {
+              "field": "moves[SUCK].powers[0].amount",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[SUCK].powers[0].power_id",
+              "old": "STRENGTH",
+              "new": "none"
+            },
+            {
+              "field": "moves[SUCK].powers[0].target",
+              "old": "self",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "NIBBIT",
+          "name": "Nibbit",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "then conditional: Butt (if alone) / Hiss (if not in front) / Slice (if in front)",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "INIT_MOVE",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[INIT_MOVE].branches[0].condition",
+              "old": "((Nibbit)base.Creature.Monster).IsAlone",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[INIT_MOVE].branches[0].move_id",
+              "old": "BUTT",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[INIT_MOVE].branches[1].condition",
+              "old": "!((Nibbit)base.Creature.Monster).IsFront",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[INIT_MOVE].branches[1].move_id",
+              "old": "HISS",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[INIT_MOVE].branches[2].condition",
+              "old": "((Nibbit)base.Creature.Monster).IsFront",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[INIT_MOVE].branches[2].move_id",
+              "old": "SLICE",
+              "new": "none"
+            },
+            {
+              "field": "moves[HISS].powers[0].amount",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[HISS].powers[0].power_id",
+              "old": "STRENGTH",
+              "new": "none"
+            },
+            {
+              "field": "moves[HISS].powers[0].target",
+              "old": "self",
+              "new": "none"
+            },
+            {
+              "field": "moves[SLICE].block",
+              "old": "5",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "NOISEBOT",
+          "name": "Noisebot",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Always uses Noise",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "NOISE",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "OVICOPTER",
+          "name": "Ovicopter",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Starts: Lay Eggs → Smash → Tenderizer; then conditional: Lay Eggs (if can lay...",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "LAY_EGGS",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[SUMMON_BRANCH_STATE].branches[0].condition",
+              "old": "CanLay",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[SUMMON_BRANCH_STATE].branches[0].move_id",
+              "old": "LAY_EGGS",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[SUMMON_BRANCH_STATE].branches[1].condition",
+              "old": "!CanLay",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[SUMMON_BRANCH_STATE].branches[1].move_id",
+              "old": "NUTRITIONAL_PASTE",
+              "new": "none"
+            },
+            {
+              "field": "moves[LAY_EGGS].powers[0].amount",
+              "old": "1",
+              "new": "none"
+            },
+            {
+              "field": "moves[LAY_EGGS].powers[0].power_id",
+              "old": "MINION",
+              "new": "none"
+            },
+            {
+              "field": "moves[LAY_EGGS].powers[0].target",
+              "old": "self",
+              "new": "none"
+            },
+            {
+              "field": "moves[NUTRITIONAL_PASTE].powers[0].amount",
+              "old": "3",
+              "new": "none"
+            },
+            {
+              "field": "moves[NUTRITIONAL_PASTE].powers[0].power_id",
+              "old": "STRENGTH",
+              "new": "none"
+            },
+            {
+              "field": "moves[NUTRITIONAL_PASTE].powers[0].target",
+              "old": "self",
+              "new": "none"
+            },
+            {
+              "field": "moves[TENDERIZER].powers[0].amount",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[TENDERIZER].powers[0].power_id",
+              "old": "VULNERABLE",
+              "new": "none"
+            },
+            {
+              "field": "moves[TENDERIZER].powers[0].target",
+              "old": "player",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "OWL_MAGISTRATE",
+          "name": "Owl Magistrate",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Magistrate Scrutiny → Peck Assault → Judicial Flight → Verdict → repeat",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "MAGISTRATE_SCRUTINY",
+              "new": "none"
+            },
+            {
+              "field": "damage_values.PeckAssault.hit_count",
+              "old": "6",
+              "new": "none"
+            },
+            {
+              "field": "moves[JUDICIAL_FLIGHT].powers[0].amount",
+              "old": "1",
+              "new": "none"
+            },
+            {
+              "field": "moves[JUDICIAL_FLIGHT].powers[0].power_id",
+              "old": "SOAR",
+              "new": "none"
+            },
+            {
+              "field": "moves[JUDICIAL_FLIGHT].powers[0].target",
+              "old": "self",
+              "new": "none"
+            },
+            {
+              "field": "moves[PECK_ASSAULT].damage.hit_count",
+              "old": "6",
+              "new": "none"
+            },
+            {
+              "field": "moves[VERDICT].powers[0].amount",
+              "old": "4",
+              "new": "none"
+            },
+            {
+              "field": "moves[VERDICT].powers[0].power_id",
+              "old": "VULNERABLE",
+              "new": "none"
+            },
+            {
+              "field": "moves[VERDICT].powers[0].target",
+              "old": "player",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "PARAFRIGHT",
+          "name": "Parafright",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Always uses Slam",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "SLAM",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "PHANTASMAL_GARDENER",
+          "name": "Phantasmal Gardener",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "then conditional: Flail (if in first slot) / Bite (if in second slot) / Lash ...",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "INIT_MOVE",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[INIT_MOVE].branches[0].condition",
+              "old": "base.Creature.SlotName == \"first\"",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[INIT_MOVE].branches[0].move_id",
+              "old": "FLAIL",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[INIT_MOVE].branches[1].condition",
+              "old": "base.Creature.SlotName == \"second\"",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[INIT_MOVE].branches[1].move_id",
+              "old": "BITE",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[INIT_MOVE].branches[2].condition",
+              "old": "base.Creature.SlotName == \"third\"",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[INIT_MOVE].branches[2].move_id",
+              "old": "LASH",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[INIT_MOVE].branches[3].condition",
+              "old": "base.Creature.SlotName == \"fourth\"",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[INIT_MOVE].branches[3].move_id",
+              "old": "ENLARGE",
+              "new": "none"
+            },
+            {
+              "field": "damage_values.Flail.hit_count",
+              "old": "3",
+              "new": "none"
+            },
+            {
+              "field": "moves[ENLARGE].powers[0].amount",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[ENLARGE].powers[0].power_id",
+              "old": "STRENGTH",
+              "new": "none"
+            },
+            {
+              "field": "moves[ENLARGE].powers[0].target",
+              "old": "self",
+              "new": "none"
+            },
+            {
+              "field": "moves[FLAIL].damage.hit_count",
+              "old": "3",
+              "new": "none"
+            },
+            {
+              "field": "moves[FLAIL].damage.hit_count_ascension",
+              "old": "3",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "PHROG_PARASITE",
+          "name": "Phrog Parasite",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Starts: Infect → Lash",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "INFECT",
+              "new": "none"
+            },
+            {
+              "field": "damage_values.Lash.hit_count",
+              "old": "4",
+              "new": "none"
+            },
+            {
+              "field": "moves[LASH].damage.hit_count",
+              "old": "4",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "PUNCH_CONSTRUCT",
+          "name": "Punch Construct",
+          "changes": [
+            {
+              "field": "damage_values.FastPunch.hit_count",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[FAST_PUNCH].damage.hit_count",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[FAST_PUNCH].powers[0].amount",
+              "old": "1",
+              "new": "none"
+            },
+            {
+              "field": "moves[FAST_PUNCH].powers[0].power_id",
+              "old": "FRAIL",
+              "new": "none"
+            },
+            {
+              "field": "moves[FAST_PUNCH].powers[0].target",
+              "old": "player",
+              "new": "none"
+            },
+            {
+              "field": "moves[READY].block",
+              "old": "10",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "QUEEN",
+          "name": "Queen",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Starts: Puppet Strings → You Are Mine; then conditional: Burn Bright for Me (...",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "PUPPET_STRINGS",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[BURN_BRIGHT_FOR_ME_BRANCH].branches[0].condition",
+              "old": "!HasAmalgamDied",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[BURN_BRIGHT_FOR_ME_BRANCH].branches[0].move_id",
+              "old": "BURN_BRIGHT_FOR_ME",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[BURN_BRIGHT_FOR_ME_BRANCH].branches[1].condition",
+              "old": "HasAmalgamDied",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[BURN_BRIGHT_FOR_ME_BRANCH].branches[1].move_id",
+              "old": "OFF_WITH_YOUR_HEAD",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[YOURE_MINE_NOW_BRANCH].branches[0].condition",
+              "old": "!HasAmalgamDied",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[YOURE_MINE_NOW_BRANCH].branches[0].move_id",
+              "old": "BURN_BRIGHT_FOR_ME",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[YOURE_MINE_NOW_BRANCH].branches[1].condition",
+              "old": "HasAmalgamDied",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[YOURE_MINE_NOW_BRANCH].branches[1].move_id",
+              "old": "OFF_WITH_YOUR_HEAD",
+              "new": "none"
+            },
+            {
+              "field": "damage_values.OffWithYourHead.hit_count",
+              "old": "5",
+              "new": "none"
+            },
+            {
+              "field": "moves[BURN_BRIGHT_FOR_ME].block",
+              "old": "20",
+              "new": "none"
+            },
+            {
+              "field": "moves[ENRAGE].powers[0].amount",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[ENRAGE].powers[0].power_id",
+              "old": "STRENGTH",
+              "new": "none"
+            },
+            {
+              "field": "moves[ENRAGE].powers[0].target",
+              "old": "self",
+              "new": "none"
+            },
+            {
+              "field": "moves[OFF_WITH_YOUR_HEAD].damage.hit_count",
+              "old": "5",
+              "new": "none"
+            },
+            {
+              "field": "moves[PUPPET_STRINGS].powers[0].amount",
+              "old": "3",
+              "new": "none"
+            },
+            {
+              "field": "moves[PUPPET_STRINGS].powers[0].power_id",
+              "old": "CHAINS_OF_BINDING",
+              "new": "none"
+            },
+            {
+              "field": "moves[PUPPET_STRINGS].powers[0].target",
+              "old": "player",
+              "new": "none"
+            },
+            {
+              "field": "moves[YOU_ARE_MINE].powers[0].amount",
+              "old": "99",
+              "new": "none"
+            },
+            {
+              "field": "moves[YOU_ARE_MINE].powers[0].power_id",
+              "old": "FRAIL",
+              "new": "none"
+            },
+            {
+              "field": "moves[YOU_ARE_MINE].powers[0].target",
+              "old": "player",
+              "new": "none"
+            },
+            {
+              "field": "moves[YOU_ARE_MINE].powers[1].amount",
+              "old": "99",
+              "new": "none"
+            },
+            {
+              "field": "moves[YOU_ARE_MINE].powers[1].power_id",
+              "old": "WEAK",
+              "new": "none"
+            },
+            {
+              "field": "moves[YOU_ARE_MINE].powers[1].target",
+              "old": "player",
+              "new": "none"
+            },
+            {
+              "field": "moves[YOU_ARE_MINE].powers[2].amount",
+              "old": "99",
+              "new": "none"
+            },
+            {
+              "field": "moves[YOU_ARE_MINE].powers[2].power_id",
+              "old": "VULNERABLE",
+              "new": "none"
+            },
+            {
+              "field": "moves[YOU_ARE_MINE].powers[2].target",
+              "old": "player",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "ROCKET",
+          "name": "Rocket",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Targeting Reticle → Precision Beam → Charge Up → Laser → Recharge → repeat",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "TARGETING_RETICLE",
+              "new": "none"
+            },
+            {
+              "field": "moves[CHARGE_UP].powers[0].amount",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[CHARGE_UP].powers[0].power_id",
+              "old": "STRENGTH",
+              "new": "none"
+            },
+            {
+              "field": "moves[CHARGE_UP].powers[0].target",
+              "old": "self",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "SCROLL_OF_BITING",
+          "name": "Scroll of Biting",
+          "changes": [
+            {
+              "field": "damage_values.Chew.hit_count",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[CHEW].damage.hit_count",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[MORE_TEETH].powers[0].amount",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[MORE_TEETH].powers[0].power_id",
+              "old": "STRENGTH",
+              "new": "none"
+            },
+            {
+              "field": "moves[MORE_TEETH].powers[0].target",
+              "old": "self",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "SEAPUNK",
+          "name": "Seapunk",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Sea Kick → Spinning Kick → Bubble Burp → repeat",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "SEA_KICK",
+              "new": "none"
+            },
+            {
+              "field": "damage_values.SpinningKick.hit_count",
+              "old": "4",
+              "new": "none"
+            },
+            {
+              "field": "moves[BUBBLE_BURP].block",
+              "old": "7",
+              "new": "none"
+            },
+            {
+              "field": "moves[BUBBLE_BURP].powers[0].amount",
+              "old": "1",
+              "new": "none"
+            },
+            {
+              "field": "moves[BUBBLE_BURP].powers[0].power_id",
+              "old": "STRENGTH",
+              "new": "none"
+            },
+            {
+              "field": "moves[BUBBLE_BURP].powers[0].target",
+              "old": "self",
+              "new": "none"
+            },
+            {
+              "field": "moves[SPINNING_KICK].damage.hit_count",
+              "old": "4",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "SEWER_CLAM",
+          "name": "Sewer Clam",
+          "changes": [
+            {
+              "field": "moves[PRESSURIZE].powers[0].amount",
+              "old": "4",
+              "new": "none"
+            },
+            {
+              "field": "moves[PRESSURIZE].powers[0].power_id",
+              "old": "STRENGTH",
+              "new": "none"
+            },
+            {
+              "field": "moves[PRESSURIZE].powers[0].target",
+              "old": "self",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "SHRINKER_BEETLE",
+          "name": "Shrinker Beetle",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Shrinker → Chomp → Stomp → repeat",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "SHRINKER",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "SKULKING_COLONY",
+          "name": "Skulking Colony",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Zoom → Zoom Move 2 → Inertia → Piercing Stabs → repeat",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "ZOOM",
+              "new": "none"
+            },
+            {
+              "field": "damage_values.PiercingStabs.hit_count",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[INERTIA].powers[0].amount",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[INERTIA].powers[0].power_id",
+              "old": "STRENGTH",
+              "new": "none"
+            },
+            {
+              "field": "moves[INERTIA].powers[0].target",
+              "old": "self",
+              "new": "none"
+            },
+            {
+              "field": "moves[PIERCING_STABS].damage.hit_count",
+              "old": "2",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "SLIMED_BERSERKER",
+          "name": "Slimed Berserker",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Always uses Vomit Ichor",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "VOMIT_ICHOR",
+              "new": "none"
+            },
+            {
+              "field": "damage_values.Pummeling.hit_count",
+              "old": "4",
+              "new": "none"
+            },
+            {
+              "field": "moves[FURIOUS_PUMMELING].damage.hit_count",
+              "old": "4",
+              "new": "none"
+            },
+            {
+              "field": "moves[LEECHING_HUG].powers[0].amount",
+              "old": "3",
+              "new": "none"
+            },
+            {
+              "field": "moves[LEECHING_HUG].powers[0].power_id",
+              "old": "WEAK",
+              "new": "none"
+            },
+            {
+              "field": "moves[LEECHING_HUG].powers[0].target",
+              "old": "player",
+              "new": "none"
+            },
+            {
+              "field": "moves[LEECHING_HUG].powers[1].amount",
+              "old": "3",
+              "new": "none"
+            },
+            {
+              "field": "moves[LEECHING_HUG].powers[1].power_id",
+              "old": "STRENGTH",
+              "new": "none"
+            },
+            {
+              "field": "moves[LEECHING_HUG].powers[1].target",
+              "old": "self",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "SLITHERING_STRANGLER",
+          "name": "Slithering Strangler",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Starts with Constrict",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "CONSTRICT",
+              "new": "none"
+            },
+            {
+              "field": "moves[CONSTRICT].powers[0].amount",
+              "old": "3",
+              "new": "none"
+            },
+            {
+              "field": "moves[CONSTRICT].powers[0].power_id",
+              "old": "CONSTRICT",
+              "new": "none"
+            },
+            {
+              "field": "moves[CONSTRICT].powers[0].target",
+              "old": "player",
+              "new": "none"
+            },
+            {
+              "field": "moves[THWACK].block",
+              "old": "5",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "SLUDGE_SPINNER",
+          "name": "Sludge Spinner",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Starts with Oil Spray",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "OIL_SPRAY",
+              "new": "none"
+            },
+            {
+              "field": "moves[OIL_SPRAY].powers[0].amount",
+              "old": "1",
+              "new": "none"
+            },
+            {
+              "field": "moves[OIL_SPRAY].powers[0].power_id",
+              "old": "WEAK",
+              "new": "none"
+            },
+            {
+              "field": "moves[OIL_SPRAY].powers[0].target",
+              "old": "player",
+              "new": "none"
+            },
+            {
+              "field": "moves[RAGE].powers[0].amount",
+              "old": "3",
+              "new": "none"
+            },
+            {
+              "field": "moves[RAGE].powers[0].power_id",
+              "old": "STRENGTH",
+              "new": "none"
+            },
+            {
+              "field": "moves[RAGE].powers[0].target",
+              "old": "self",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "SLUMBERING_BEETLE",
+          "name": "Slumbering Beetle",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Starts with Snore",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "SNORE",
+              "new": "none"
+            },
+            {
+              "field": "moves[ROLL_OUT].damage.ascension",
+              "old": "18",
+              "new": "none"
+            },
+            {
+              "field": "moves[ROLL_OUT].damage.normal",
+              "old": "16",
+              "new": "none"
+            },
+            {
+              "field": "moves[ROLL_OUT].powers[0].amount",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[ROLL_OUT].powers[0].power_id",
+              "old": "STRENGTH",
+              "new": "none"
+            },
+            {
+              "field": "moves[ROLL_OUT].powers[0].target",
+              "old": "self",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "SNAPPING_JAXFRUIT",
+          "name": "Snapping Jaxfruit",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Always uses Energy Orb",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "ENERGY_ORB",
+              "new": "none"
+            },
+            {
+              "field": "moves[ENERGY_ORB].powers[0].amount",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[ENERGY_ORB].powers[0].power_id",
+              "old": "STRENGTH",
+              "new": "none"
+            },
+            {
+              "field": "moves[ENERGY_ORB].powers[0].target",
+              "old": "self",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "SNEAKY_GREMLIN",
+          "name": "Sneaky Gremlin",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Always uses Wake Up",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "SPAWNED",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "SOUL_FYSH",
+          "name": "Soul Fysh",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Beckon → De-Gas → Gaze → Fade → Scream → repeat",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "BECKON",
+              "new": "none"
+            },
+            {
+              "field": "moves[FADE].powers[0].amount",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[FADE].powers[0].power_id",
+              "old": "INTANGIBLE",
+              "new": "none"
+            },
+            {
+              "field": "moves[FADE].powers[0].target",
+              "old": "self",
+              "new": "none"
+            },
+            {
+              "field": "moves[SCREAM].powers[0].amount",
+              "old": "3",
+              "new": "none"
+            },
+            {
+              "field": "moves[SCREAM].powers[0].power_id",
+              "old": "VULNERABLE",
+              "new": "none"
+            },
+            {
+              "field": "moves[SCREAM].powers[0].target",
+              "old": "player",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "SOUL_NEXUS",
+          "name": "Soul Nexus",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Starts with Soul Burn; then random: Soul Burn (no repeat), Maelstrom (no repe...",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "SOUL_BURN",
+              "new": "none"
+            },
+            {
+              "field": "damage_values.Maelstrom.hit_count",
+              "old": "4",
+              "new": "none"
+            },
+            {
+              "field": "moves[DRAIN_LIFE].powers[0].amount",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[DRAIN_LIFE].powers[0].power_id",
+              "old": "VULNERABLE",
+              "new": "none"
+            },
+            {
+              "field": "moves[DRAIN_LIFE].powers[0].target",
+              "old": "player",
+              "new": "none"
+            },
+            {
+              "field": "moves[DRAIN_LIFE].powers[1].amount",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[DRAIN_LIFE].powers[1].power_id",
+              "old": "WEAK",
+              "new": "none"
+            },
+            {
+              "field": "moves[DRAIN_LIFE].powers[1].target",
+              "old": "player",
+              "new": "none"
+            },
+            {
+              "field": "moves[MAELSTROM].damage.hit_count",
+              "old": "4",
+              "new": "none"
+            },
+            {
+              "field": "moves[MAELSTROM].damage.hit_count_ascension",
+              "old": "4",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "SPECTRAL_KNIGHT",
+          "name": "Spectral Knight",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Starts: Hex → Soul Slash",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "HEX",
+              "new": "none"
+            },
+            {
+              "field": "damage_values.SoulFlame.hit_count",
+              "old": "3",
+              "new": "none"
+            },
+            {
+              "field": "moves[HEX].powers[0].amount",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[HEX].powers[0].power_id",
+              "old": "HEX",
+              "new": "none"
+            },
+            {
+              "field": "moves[HEX].powers[0].target",
+              "old": "self",
+              "new": "none"
+            },
+            {
+              "field": "moves[SOUL_FLAME].damage.hit_count",
+              "old": "3",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "SPINY_TOAD",
+          "name": "Spiny Toad",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Protruding Spikes → Spike Explosion → Tongue Lash → repeat",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "PROTRUDING_SPIKES",
+              "new": "none"
+            },
+            {
+              "field": "moves[PROTRUDING_SPIKES].powers[0].amount",
+              "old": "5",
+              "new": "none"
+            },
+            {
+              "field": "moves[PROTRUDING_SPIKES].powers[0].power_id",
+              "old": "THORNS",
+              "new": "none"
+            },
+            {
+              "field": "moves[PROTRUDING_SPIKES].powers[0].target",
+              "old": "self",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "STABBOT",
+          "name": "Stabbot",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Always uses Stab",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "STAB",
+              "new": "none"
+            },
+            {
+              "field": "moves[STAB].powers[0].amount",
+              "old": "1",
+              "new": "none"
+            },
+            {
+              "field": "moves[STAB].powers[0].power_id",
+              "old": "FRAIL",
+              "new": "none"
+            },
+            {
+              "field": "moves[STAB].powers[0].target",
+              "old": "player",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "TERROR_EEL",
+          "name": "Terror Eel",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Crash → Thrash → repeat",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "CRASH",
+              "new": "none"
+            },
+            {
+              "field": "damage_values.Thrash.hit_count",
+              "old": "3",
+              "new": "none"
+            },
+            {
+              "field": "moves[TERROR].powers[0].amount",
+              "old": "99",
+              "new": "none"
+            },
+            {
+              "field": "moves[TERROR].powers[0].power_id",
+              "old": "VULNERABLE",
+              "new": "none"
+            },
+            {
+              "field": "moves[TERROR].powers[0].target",
+              "old": "player",
+              "new": "none"
+            },
+            {
+              "field": "moves[THRASH].damage.hit_count",
+              "old": "3",
+              "new": "none"
+            },
+            {
+              "field": "moves[THRASH].powers[0].amount",
+              "old": "6",
+              "new": "none"
+            },
+            {
+              "field": "moves[THRASH].powers[0].power_id",
+              "old": "VIGOR",
+              "new": "none"
+            },
+            {
+              "field": "moves[THRASH].powers[0].target",
+              "old": "self",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "TEST_SUBJECT",
+          "name": "Test Subject #C14",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Starts: Bite → Skull Bash; then conditional: Multi-Claw (if respawns < 2) / L...",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "BITE",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[REVIVE_BRANCH].branches[0].condition",
+              "old": "Respawns < 2",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[REVIVE_BRANCH].branches[0].move_id",
+              "old": "MULTI_CLAW",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[REVIVE_BRANCH].branches[1].condition",
+              "old": "Respawns >= 2",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[REVIVE_BRANCH].branches[1].move_id",
+              "old": "PHASE3_LACERATE",
+              "new": "none"
+            },
+            {
+              "field": "damage_values.Phase3Lacerate.hit_count",
+              "old": "3",
+              "new": "none"
+            },
+            {
+              "field": "moves[BURNING_GROWL].powers[0].amount",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[BURNING_GROWL].powers[0].power_id",
+              "old": "STRENGTH",
+              "new": "none"
+            },
+            {
+              "field": "moves[BURNING_GROWL].powers[0].target",
+              "old": "self",
+              "new": "none"
+            },
+            {
+              "field": "moves[PHASE3_LACERATE].damage.hit_count",
+              "old": "3",
+              "new": "none"
+            },
+            {
+              "field": "moves[RESPAWN].powers[0].amount",
+              "old": "1",
+              "new": "none"
+            },
+            {
+              "field": "moves[RESPAWN].powers[0].power_id",
+              "old": "PAINFUL_STABS",
+              "new": "none"
+            },
+            {
+              "field": "moves[RESPAWN].powers[0].target",
+              "old": "self",
+              "new": "none"
+            },
+            {
+              "field": "moves[RESPAWN].powers[1].amount",
+              "old": "1",
+              "new": "none"
+            },
+            {
+              "field": "moves[RESPAWN].powers[1].power_id",
+              "old": "NEMESIS",
+              "new": "none"
+            },
+            {
+              "field": "moves[RESPAWN].powers[1].target",
+              "old": "self",
+              "new": "none"
+            },
+            {
+              "field": "moves[SKULL_BASH].powers[0].amount",
+              "old": "1",
+              "new": "none"
+            },
+            {
+              "field": "moves[SKULL_BASH].powers[0].power_id",
+              "old": "VULNERABLE",
+              "new": "none"
+            },
+            {
+              "field": "moves[SKULL_BASH].powers[0].target",
+              "old": "player",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "THE_ADVERSARY_MK_ONE",
+          "name": "The Adversary Mk 1",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Smash → Beam → Barrage → repeat",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "SMASH",
+              "new": "none"
+            },
+            {
+              "field": "damage_values.Barrage.hit_count",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[BARRAGE].damage.hit_count",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[BARRAGE].powers[0].amount",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[BARRAGE].powers[0].power_id",
+              "old": "STRENGTH",
+              "new": "none"
+            },
+            {
+              "field": "moves[BARRAGE].powers[0].target",
+              "old": "self",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "THE_ADVERSARY_MK_THREE",
+          "name": "The Adversary Mk 3",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Crash → Flame Beam → Barrage → repeat",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "CRASH",
+              "new": "none"
+            },
+            {
+              "field": "damage_values.Barrage.hit_count",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[BARRAGE].damage.hit_count",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[BARRAGE].powers[0].amount",
+              "old": "4",
+              "new": "none"
+            },
+            {
+              "field": "moves[BARRAGE].powers[0].power_id",
+              "old": "STRENGTH",
+              "new": "none"
+            },
+            {
+              "field": "moves[BARRAGE].powers[0].target",
+              "old": "self",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "THE_ADVERSARY_MK_TWO",
+          "name": "The Adversary Mk 2",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Bash → Flame Beam → Barrage → repeat",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "BASH",
+              "new": "none"
+            },
+            {
+              "field": "damage_values.Barrage.hit_count",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[BARRAGE].damage.hit_count",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[BARRAGE].powers[0].amount",
+              "old": "3",
+              "new": "none"
+            },
+            {
+              "field": "moves[BARRAGE].powers[0].power_id",
+              "old": "STRENGTH",
+              "new": "none"
+            },
+            {
+              "field": "moves[BARRAGE].powers[0].target",
+              "old": "self",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "THE_FORGOTTEN",
+          "name": "The Forgotten",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Always uses Miasma",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "MIASMA",
+              "new": "none"
+            },
+            {
+              "field": "moves[MIASMA].block",
+              "old": "8",
+              "new": "none"
+            },
+            {
+              "field": "moves[MIASMA].powers[0].amount",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[MIASMA].powers[0].power_id",
+              "old": "DEXTERITY",
+              "new": "none"
+            },
+            {
+              "field": "moves[MIASMA].powers[0].target",
+              "old": "self",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "THE_INSATIABLE",
+          "name": "The Insatiable",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Liquify Ground → Thrash → Lunging Bite → Salivate → Thrash Move 2 → repeat",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "LIQUIFY_GROUND",
+              "new": "none"
+            },
+            {
+              "field": "damage_values.Thrash.hit_count",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[SALIVATE].powers[0].amount",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[SALIVATE].powers[0].power_id",
+              "old": "STRENGTH",
+              "new": "none"
+            },
+            {
+              "field": "moves[SALIVATE].powers[0].target",
+              "old": "self",
+              "new": "none"
+            },
+            {
+              "field": "moves[THRASH].damage.hit_count",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[THRASH_MOVE_2].damage.hit_count",
+              "old": "2",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "THE_LOST",
+          "name": "The Lost",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Always uses Debilitating Smog",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "DEBILITATING_SMOG",
+              "new": "none"
+            },
+            {
+              "field": "damage_values.EyeLasers.hit_count",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[DEBILITATING_SMOG].powers[0].amount",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[DEBILITATING_SMOG].powers[0].power_id",
+              "old": "STRENGTH",
+              "new": "none"
+            },
+            {
+              "field": "moves[DEBILITATING_SMOG].powers[0].target",
+              "old": "self",
+              "new": "none"
+            },
+            {
+              "field": "moves[EYE_LASERS].damage.hit_count",
+              "old": "2",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "THE_OBSCURA",
+          "name": "The Obscura",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Starts with Illusion",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "ILLUSION",
+              "new": "none"
+            },
+            {
+              "field": "moves[HARDENING_STRIKE].block",
+              "old": "6",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "THIEVING_HOPPER",
+          "name": "Thieving Hopper",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Thievery → Flutter → Hat Trick → Nab → Escape → repeat",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "THIEVERY",
+              "new": "none"
+            },
+            {
+              "field": "moves[FLUTTER].powers[0].amount",
+              "old": "5",
+              "new": "none"
+            },
+            {
+              "field": "moves[FLUTTER].powers[0].power_id",
+              "old": "FLUTTER",
+              "new": "none"
+            },
+            {
+              "field": "moves[FLUTTER].powers[0].target",
+              "old": "self",
+              "new": "none"
+            },
+            {
+              "field": "moves[THIEVERY].damage.ascension",
+              "old": "19",
+              "new": "none"
+            },
+            {
+              "field": "moves[THIEVERY].damage.normal",
+              "old": "17",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "TOADPOLE",
+          "name": "Toadpole",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "then conditional: Whirl (if not in front) / Spiken (if in front)",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "INIT_MOVE",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[INIT_MOVE].branches[0].condition",
+              "old": "!((Toadpole)base.Creature.Monster).IsFront",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[INIT_MOVE].branches[0].move_id",
+              "old": "WHIRL",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[INIT_MOVE].branches[1].condition",
+              "old": "((Toadpole)base.Creature.Monster).IsFront",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[INIT_MOVE].branches[1].move_id",
+              "old": "SPIKEN",
+              "new": "none"
+            },
+            {
+              "field": "damage_values.SpikeSpit.hit_count",
+              "old": "3",
+              "new": "none"
+            },
+            {
+              "field": "moves[SPIKEN].powers[0].amount",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[SPIKEN].powers[0].power_id",
+              "old": "THORNS",
+              "new": "none"
+            },
+            {
+              "field": "moves[SPIKEN].powers[0].target",
+              "old": "self",
+              "new": "none"
+            },
+            {
+              "field": "moves[SPIKE_SPIT].damage.hit_count",
+              "old": "3",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "TORCH_HEAD_AMALGAM",
+          "name": "Torch Head Amalgam",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Tackle → Tackle 2 → Beam → Tackle 3 → Tackle 4 → repeat",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "TACKLE",
+              "new": "none"
+            },
+            {
+              "field": "damage_values.SoulBeam.hit_count",
+              "old": "3",
+              "new": "none"
+            },
+            {
+              "field": "moves[BEAM].damage.ascension",
+              "old": "8",
+              "new": "none"
+            },
+            {
+              "field": "moves[BEAM].damage.hit_count",
+              "old": "3",
+              "new": "none"
+            },
+            {
+              "field": "moves[BEAM].damage.normal",
+              "old": "8",
+              "new": "none"
+            },
+            {
+              "field": "moves[TACKLE_3].damage.ascension",
+              "old": "15",
+              "new": "19"
+            },
+            {
+              "field": "moves[TACKLE_3].damage.normal",
+              "old": "14",
+              "new": "18"
+            },
+            {
+              "field": "moves[TACKLE_4].damage.ascension",
+              "old": "15",
+              "new": "19"
+            },
+            {
+              "field": "moves[TACKLE_4].damage.normal",
+              "old": "14",
+              "new": "18"
+            }
+          ]
+        },
+        {
+          "id": "TOUGH_EGG",
+          "name": "Tough Egg",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Always uses Hatch",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "HATCH",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "TRACKER_RUBY_RAIDER",
+          "name": "Tracker Raider",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Always uses Track",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "TRACK",
+              "new": "none"
+            },
+            {
+              "field": "damage_values.Hounds.hit_count",
+              "old": "8",
+              "new": "none"
+            },
+            {
+              "field": "moves[HOUNDS].damage.hit_count",
+              "old": "8",
+              "new": "none"
+            },
+            {
+              "field": "moves[HOUNDS].damage.hit_count_ascension",
+              "old": "9",
+              "new": "none"
+            },
+            {
+              "field": "moves[TRACK].powers[0].amount",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[TRACK].powers[0].power_id",
+              "old": "FRAIL",
+              "new": "none"
+            },
+            {
+              "field": "moves[TRACK].powers[0].target",
+              "old": "player",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "TUNNELER",
+          "name": "Tunneler",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Bite → Burrow → Attack from Below → repeat",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "BITE",
+              "new": "none"
+            },
+            {
+              "field": "moves[BURROW].block",
+              "old": "32",
+              "new": "none"
+            },
+            {
+              "field": "moves[BURROW].powers[0].amount",
+              "old": "1",
+              "new": "none"
+            },
+            {
+              "field": "moves[BURROW].powers[0].power_id",
+              "old": "BURROWED",
+              "new": "none"
+            },
+            {
+              "field": "moves[BURROW].powers[0].target",
+              "old": "self",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "TURRET_OPERATOR",
+          "name": "Turret Operator",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Unload! → Unload Move 2 → Reload → repeat",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "UNLOAD",
+              "new": "none"
+            },
+            {
+              "field": "damage_values.Fire.hit_count",
+              "old": "5",
+              "new": "none"
+            },
+            {
+              "field": "moves[RELOAD].powers[0].amount",
+              "old": "1",
+              "new": "none"
+            },
+            {
+              "field": "moves[RELOAD].powers[0].power_id",
+              "old": "STRENGTH",
+              "new": "none"
+            },
+            {
+              "field": "moves[RELOAD].powers[0].target",
+              "old": "self",
+              "new": "none"
+            },
+            {
+              "field": "moves[UNLOAD].damage.ascension",
+              "old": "4",
+              "new": "none"
+            },
+            {
+              "field": "moves[UNLOAD].damage.hit_count",
+              "old": "5",
+              "new": "none"
+            },
+            {
+              "field": "moves[UNLOAD].damage.normal",
+              "old": "3",
+              "new": "none"
+            },
+            {
+              "field": "moves[UNLOAD_MOVE_2].damage.ascension",
+              "old": "4",
+              "new": "none"
+            },
+            {
+              "field": "moves[UNLOAD_MOVE_2].damage.hit_count",
+              "old": "5",
+              "new": "none"
+            },
+            {
+              "field": "moves[UNLOAD_MOVE_2].damage.normal",
+              "old": "3",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "TWIG_SLIME_M",
+          "name": "Twig Slime (M)",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Starts with Sticky Shot",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "STICKY_SHOT",
+              "new": "none"
+            },
+            {
+              "field": "moves[POKEY_POUNCE].damage.ascension",
+              "old": "12",
+              "new": "none"
+            },
+            {
+              "field": "moves[POKEY_POUNCE].damage.normal",
+              "old": "11",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "TWIG_SLIME_S",
+          "name": "Twig Slime (S)",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Always uses Tackle",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "TACKLE",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "TWO_TAILED_RAT",
+          "name": "Two-Tailed Rat",
+          "changes": [
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "RAND",
+              "new": "none"
+            },
+            {
+              "field": "moves[SCREECH].powers[0].amount",
+              "old": "1",
+              "new": "none"
+            },
+            {
+              "field": "moves[SCREECH].powers[0].power_id",
+              "old": "FRAIL",
+              "new": "none"
+            },
+            {
+              "field": "moves[SCREECH].powers[0].target",
+              "old": "player",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "VANTOM",
+          "name": "Vantom",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Ink Blot → Inky Lance → Dismember → Prepare → repeat",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "INK_BLOT",
+              "new": "none"
+            },
+            {
+              "field": "damage_values.InkyLance.hit_count",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[INKY_LANCE].damage.hit_count",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[PREPARE].powers[0].amount",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[PREPARE].powers[0].power_id",
+              "old": "STRENGTH",
+              "new": "none"
+            },
+            {
+              "field": "moves[PREPARE].powers[0].target",
+              "old": "self",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "VINE_SHAMBLER",
+          "name": "Vine Shambler",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Swipe → Grasping Vines → Chomp → repeat",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "SWIPE",
+              "new": "none"
+            },
+            {
+              "field": "damage_values.Swipe.hit_count",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[GRASPING_VINES].powers[0].amount",
+              "old": "1",
+              "new": "none"
+            },
+            {
+              "field": "moves[GRASPING_VINES].powers[0].power_id",
+              "old": "TANGLED",
+              "new": "none"
+            },
+            {
+              "field": "moves[GRASPING_VINES].powers[0].target",
+              "old": "player",
+              "new": "none"
+            },
+            {
+              "field": "moves[SWIPE].damage.hit_count",
+              "old": "2",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "WATERFALL_GIANT",
+          "name": "Waterfall Giant",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Pressurize → Stomp → Ram → Siphon → Pressure Gun → Pressure Up → repeat",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "PRESSURIZE",
+              "new": "none"
+            },
+            {
+              "field": "moves[PRESSURE_GUN].powers[0].amount",
+              "old": "3",
+              "new": "none"
+            },
+            {
+              "field": "moves[PRESSURE_GUN].powers[0].power_id",
+              "old": "STEAM_ERUPTION",
+              "new": "none"
+            },
+            {
+              "field": "moves[PRESSURE_GUN].powers[0].target",
+              "old": "self",
+              "new": "none"
+            },
+            {
+              "field": "moves[PRESSURE_UP].powers[0].amount",
+              "old": "3",
+              "new": "none"
+            },
+            {
+              "field": "moves[PRESSURE_UP].powers[0].power_id",
+              "old": "STEAM_ERUPTION",
+              "new": "none"
+            },
+            {
+              "field": "moves[PRESSURE_UP].powers[0].target",
+              "old": "self",
+              "new": "none"
+            },
+            {
+              "field": "moves[PRESSURIZE].powers[0].amount",
+              "old": "15",
+              "new": "none"
+            },
+            {
+              "field": "moves[PRESSURIZE].powers[0].power_id",
+              "old": "STEAM_ERUPTION",
+              "new": "none"
+            },
+            {
+              "field": "moves[PRESSURIZE].powers[0].target",
+              "old": "self",
+              "new": "none"
+            },
+            {
+              "field": "moves[RAM].powers[0].amount",
+              "old": "3",
+              "new": "none"
+            },
+            {
+              "field": "moves[RAM].powers[0].power_id",
+              "old": "STEAM_ERUPTION",
+              "new": "none"
+            },
+            {
+              "field": "moves[RAM].powers[0].target",
+              "old": "self",
+              "new": "none"
+            },
+            {
+              "field": "moves[SIPHON].powers[0].amount",
+              "old": "3",
+              "new": "none"
+            },
+            {
+              "field": "moves[SIPHON].powers[0].power_id",
+              "old": "STEAM_ERUPTION",
+              "new": "none"
+            },
+            {
+              "field": "moves[SIPHON].powers[0].target",
+              "old": "self",
+              "new": "none"
+            },
+            {
+              "field": "moves[STOMP].powers[0].amount",
+              "old": "1",
+              "new": "none"
+            },
+            {
+              "field": "moves[STOMP].powers[0].power_id",
+              "old": "WEAK",
+              "new": "none"
+            },
+            {
+              "field": "moves[STOMP].powers[0].target",
+              "old": "player",
+              "new": "none"
+            },
+            {
+              "field": "moves[STOMP].powers[1].amount",
+              "old": "3",
+              "new": "none"
+            },
+            {
+              "field": "moves[STOMP].powers[1].power_id",
+              "old": "STEAM_ERUPTION",
+              "new": "none"
+            },
+            {
+              "field": "moves[STOMP].powers[1].target",
+              "old": "self",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "WRIGGLER",
+          "name": "Wriggler",
+          "changes": [
+            {
+              "field": "attack_pattern.states[INIT_MOVE].branches[0].condition",
+              "old": "base.Creature.SlotName == \"wriggler1\"",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[INIT_MOVE].branches[0].move_id",
+              "old": "NASTY_BITE",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[INIT_MOVE].branches[1].condition",
+              "old": "base.Creature.SlotName == \"wriggler2\"",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[INIT_MOVE].branches[1].move_id",
+              "old": "WRIGGLE",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[INIT_MOVE].branches[2].condition",
+              "old": "base.Creature.SlotName == \"wriggler3\"",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[INIT_MOVE].branches[2].move_id",
+              "old": "NASTY_BITE",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[INIT_MOVE].branches[3].condition",
+              "old": "base.Creature.SlotName == \"wriggler4\"",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[INIT_MOVE].branches[3].move_id",
+              "old": "WRIGGLE",
+              "new": "none"
+            },
+            {
+              "field": "moves[WRIGGLE].powers[0].amount",
+              "old": "2",
+              "new": "none"
+            },
+            {
+              "field": "moves[WRIGGLE].powers[0].power_id",
+              "old": "STRENGTH",
+              "new": "none"
+            },
+            {
+              "field": "moves[WRIGGLE].powers[0].target",
+              "old": "self",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "ZAPBOT",
+          "name": "Zapbot",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Always uses Zap",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "ZAP",
+              "new": "none"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "enchantments",
+      "name": "Enchantments",
+      "old_count": 22,
+      "new_count": 22,
+      "changed": [
+        {
+          "id": "ADROIT",
+          "name": "Adroit",
+          "changes": [
+            {
+              "field": "description",
+              "old": "Gain [blue]X[/blue] [gold]Block[/gold].",
+              "new": "Gain [blue]0[/blue] [gold]Block[/gold]."
+            },
+            {
+              "field": "extra_card_text",
+              "old": "Gain X [gold]Block[/gold].",
+              "new": "Gain 0 [gold]Block[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "GOOPY",
+          "name": "Goopy",
+          "changes": [
+            {
+              "field": "applicable_to",
+              "old": "Defend cards",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "SOWN",
+          "name": "Sown",
+          "changes": [
+            {
+              "field": "description",
+              "old": "The first time you play this card each combat, gain [energy:X].",
+              "new": "The first time you play this card each combat, gain [energy:1]."
+            },
+            {
+              "field": "extra_card_text",
+              "old": "Gain [energy:X].",
+              "new": "Gain [energy:1]."
+            }
+          ]
+        },
+        {
+          "id": "SPIRAL",
+          "name": "Spiral",
+          "changes": [
+            {
+              "field": "applicable_to",
+              "old": "Basic Strike, Defend cards",
+              "new": "Basic"
+            }
+          ]
+        },
+        {
+          "id": "SWIFT",
+          "name": "Swift",
+          "changes": [
+            {
+              "field": "description",
+              "old": "The first time you play this card, draw [blue]X[/blue] cards.",
+              "new": "The first time you play this card, draw [blue][Amount][/blue] cards."
+            },
+            {
+              "field": "extra_card_text",
+              "old": "Draw X cards the first time this is played.",
+              "new": "Draw [Amount] cards the first time this is played."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "events",
+      "name": "Events",
+      "old_count": 66,
+      "new_count": 66,
+      "changed": [
+        {
+          "id": "COLORFUL_PHILOSOPHERS",
+          "name": "Colorful Philosophers",
+          "changes": [
+            {
+              "field": "preconditions[0]",
+              "old": "Requires more than one character unlocked",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "COLOSSAL_FLOWER",
+          "name": "Colossal Flower",
+          "changes": [
+            {
+              "field": "options[EXTRACT_CURRENT_PRIZE_1].description",
+              "old": "Gain [blue]35[/blue] [gold]Gold[/gold].",
+              "new": "Gain [blue][Prize][/blue] [gold]Gold[/gold]."
+            },
+            {
+              "field": "pages[INITIAL].options[EXTRACT_CURRENT_PRIZE_1].description",
+              "old": "Gain [blue]35[/blue] [gold]Gold[/gold].",
+              "new": "Gain [blue][Prize][/blue] [gold]Gold[/gold]."
+            },
+            {
+              "field": "pages[REACH_DEEPER_1].options[EXTRACT_CURRENT_PRIZE_2].description",
+              "old": "Gain [blue]75[/blue] [gold]Gold[/gold].",
+              "new": "Gain [blue][Prize][/blue] [gold]Gold[/gold]."
+            },
+            {
+              "field": "pages[REACH_DEEPER_2].options[EXTRACT_INSTEAD].description",
+              "old": "Gain [blue]135[/blue] [gold]Gold[/gold].",
+              "new": "Gain [blue][Prize][/blue] [gold]Gold[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "CRYSTAL_SPHERE",
+          "name": "Crystal Sphere",
+          "changes": [
+            {
+              "field": "options[UNCOVER_FUTURE].description",
+              "old": "Pay [red]51-99[/red] [gold]Gold[/gold]. [purple]Divine[/purple] [blue]3[/blue...",
+              "new": "Pay [red]50[/red] [gold]Gold[/gold]. [purple]Divine[/purple] [blue]3[/blue] t..."
+            },
+            {
+              "field": "pages[INITIAL].options[UNCOVER_FUTURE].description",
+              "old": "Pay [red]51-99[/red] [gold]Gold[/gold]. [purple]Divine[/purple] [blue]3[/blue...",
+              "new": "Pay [red]50[/red] [gold]Gold[/gold]. [purple]Divine[/purple] [blue]3[/blue] t..."
+            }
+          ]
+        },
+        {
+          "id": "DENSE_VEGETATION",
+          "name": "Dense Vegetation",
+          "changes": [
+            {
+              "field": "options[TRUDGE_ON].description",
+              "old": "Gain [blue]61-99[/blue] [gold]Gold[/gold]. Lose [red]8[/red] HP.",
+              "new": "Gain [blue]0[/blue] [gold]Gold[/gold]. Lose [red]8[/red] HP."
+            },
+            {
+              "field": "pages[INITIAL].options[TRUDGE_ON].description",
+              "old": "Gain [blue]61-99[/blue] [gold]Gold[/gold]. Lose [red]8[/red] HP.",
+              "new": "Gain [blue]0[/blue] [gold]Gold[/gold]. Lose [red]8[/red] HP."
+            }
+          ]
+        },
+        {
+          "id": "FAKE_MERCHANT",
+          "name": "The Merchant???",
+          "changes": [
+            {
+              "field": "preconditions[1]",
+              "old": "Single player only",
+              "new": "Requires 100+ gold or a Foul Potion"
+            },
+            {
+              "field": "preconditions[2]",
+              "old": "Requires 100+ gold or a Foul Potion",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "JUNGLE_MAZE_ADVENTURE",
+          "name": "Jungle Maze Adventure",
+          "changes": [
+            {
+              "field": "options[JOIN_FORCES].description",
+              "old": "Gain [blue]35-65[/blue] [gold]Gold[/gold].",
+              "new": "Gain [blue]50[/blue] [gold]Gold[/gold]."
+            },
+            {
+              "field": "options[SOLO_QUEST].description",
+              "old": "Gain [blue]135-165[/blue] [gold]Gold[/gold]. Lose [red]18[/red] HP.",
+              "new": "Gain [blue]150[/blue] [gold]Gold[/gold]. Lose [red]18[/red] HP."
+            },
+            {
+              "field": "pages[INITIAL].options[JOIN_FORCES].description",
+              "old": "Gain [blue]35-65[/blue] [gold]Gold[/gold].",
+              "new": "Gain [blue]50[/blue] [gold]Gold[/gold]."
+            },
+            {
+              "field": "pages[INITIAL].options[SOLO_QUEST].description",
+              "old": "Gain [blue]135-165[/blue] [gold]Gold[/gold]. Lose [red]18[/red] HP.",
+              "new": "Gain [blue]150[/blue] [gold]Gold[/gold]. Lose [red]18[/red] HP."
+            }
+          ]
+        },
+        {
+          "id": "LOST_WISP",
+          "name": "The Lost Wisp",
+          "changes": [
+            {
+              "field": "options[SEARCH].description",
+              "old": "Gain [blue]45-75[/blue] [gold]Gold[/gold].",
+              "new": "Gain [blue]60[/blue] [gold]Gold[/gold]."
+            },
+            {
+              "field": "pages[INITIAL].options[SEARCH].description",
+              "old": "Gain [blue]45-75[/blue] [gold]Gold[/gold].",
+              "new": "Gain [blue]60[/blue] [gold]Gold[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "LUMINOUS_CHOIR",
+          "name": "Luminous Choir",
+          "changes": [
+            {
+              "field": "options[OFFER_TRIBUTE].description",
+              "old": "Pay [red]100-149[/red] [gold]Gold[/gold]. Obtain a random [gold]Relic[/gold].",
+              "new": "Pay [red]149[/red] [gold]Gold[/gold]. Obtain a random [gold]Relic[/gold]."
+            },
+            {
+              "field": "options[OFFER_TRIBUTE_LOCKED].description",
+              "old": "Requires [blue]100-149[/blue] [gold]Gold[/gold].",
+              "new": "Requires [blue]149[/blue] [gold]Gold[/gold]."
+            },
+            {
+              "field": "pages[INITIAL].options[OFFER_TRIBUTE].description",
+              "old": "Pay [red]100-149[/red] [gold]Gold[/gold]. Obtain a random [gold]Relic[/gold].",
+              "new": "Pay [red]149[/red] [gold]Gold[/gold]. Obtain a random [gold]Relic[/gold]."
+            },
+            {
+              "field": "pages[INITIAL].options[OFFER_TRIBUTE_LOCKED].description",
+              "old": "Requires [blue]100-149[/blue] [gold]Gold[/gold].",
+              "new": "Requires [blue]149[/blue] [gold]Gold[/gold]."
+            },
+            {
+              "field": "preconditions[0]",
+              "old": "Requires 100-149 gold",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "RANWID_THE_ELDER",
+          "name": "Ranwid the Elder",
+          "changes": [
+            {
+              "field": "preconditions[1]",
+              "old": "Requires at least one potion",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "RELIC_TRADER",
+          "name": "Relic Trader",
+          "changes": [
+            {
+              "field": "preconditions[1]",
+              "old": "Requires 5+ tradeable relics",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "SPIRALING_WHIRLPOOL",
+          "name": "Spiraling Whirlpool",
+          "changes": [
+            {
+              "field": "options[DRINK].description",
+              "old": "Heal [green]33% Max[/green] HP.",
+              "new": "Heal [green]0[/green] HP."
+            },
+            {
+              "field": "pages[INITIAL].options[DRINK].description",
+              "old": "Heal [green]33% Max[/green] HP.",
+              "new": "Heal [green]0[/green] HP."
+            }
+          ]
+        },
+        {
+          "id": "STONE_OF_ALL_TIME",
+          "name": "Stone of All Time",
+          "changes": [
+            {
+              "field": "preconditions[1]",
+              "old": "Requires at least one potion",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "SUNKEN_STATUE",
+          "name": "The Sunken Statue",
+          "changes": [
+            {
+              "field": "options[DIVE_INTO_WATER].description",
+              "old": "Gain [blue]101-121[/blue] [gold]Gold[/gold]. Lose [red]7[/red] HP.",
+              "new": "Gain [blue]111[/blue] [gold]Gold[/gold]. Lose [red]7[/red] HP."
+            },
+            {
+              "field": "pages[INITIAL].options[DIVE_INTO_WATER].description",
+              "old": "Gain [blue]101-121[/blue] [gold]Gold[/gold]. Lose [red]7[/red] HP.",
+              "new": "Gain [blue]111[/blue] [gold]Gold[/gold]. Lose [red]7[/red] HP."
+            }
+          ]
+        },
+        {
+          "id": "SUNKEN_TREASURY",
+          "name": "Sunken Treasury",
+          "changes": [
+            {
+              "field": "options[FIRST_CHEST].description",
+              "old": "Gain [blue]52-67[/blue] [gold]Gold[/gold].",
+              "new": "Gain [blue]60[/blue] [gold]Gold[/gold]."
+            },
+            {
+              "field": "options[SECOND_CHEST].description",
+              "old": "Gain [blue]303-363[/blue] [gold]Gold[/gold]. Receive [red]Greed[/red].",
+              "new": "Gain [blue]333[/blue] [gold]Gold[/gold]. Receive [red]Greed[/red]."
+            },
+            {
+              "field": "pages[INITIAL].options[FIRST_CHEST].description",
+              "old": "Gain [blue]52-67[/blue] [gold]Gold[/gold].",
+              "new": "Gain [blue]60[/blue] [gold]Gold[/gold]."
+            },
+            {
+              "field": "pages[INITIAL].options[SECOND_CHEST].description",
+              "old": "Gain [blue]303-363[/blue] [gold]Gold[/gold]. Receive [red]Greed[/red].",
+              "new": "Gain [blue]333[/blue] [gold]Gold[/gold]. Receive [red]Greed[/red]."
+            }
+          ]
+        },
+        {
+          "id": "TEA_MASTER",
+          "name": "Tea Master",
+          "changes": [
+            {
+              "field": "options[BONE_TEA].description",
+              "old": "Pay [red]50[/red] [gold]Gold[/gold]. At the start of the next combat, [gold]U...",
+              "new": "Pay [red]50[/red] [gold]Gold[/gold]. At the start of the next [blue]2[/blue] ..."
+            },
+            {
+              "field": "options[EMBER_TEA].description",
+              "old": "Pay [red]150[/red] [gold]Gold[/gold]. At the start of the next [blue]5[/blue]...",
+              "new": "Pay [red]150[/red] [gold]Gold[/gold]. At the start of the next [blue]2[/blue]..."
+            },
+            {
+              "field": "pages[INITIAL].options[BONE_TEA].description",
+              "old": "Pay [red]50[/red] [gold]Gold[/gold]. At the start of the next combat, [gold]U...",
+              "new": "Pay [red]50[/red] [gold]Gold[/gold]. At the start of the next [blue]2[/blue] ..."
+            },
+            {
+              "field": "pages[INITIAL].options[EMBER_TEA].description",
+              "old": "Pay [red]150[/red] [gold]Gold[/gold]. At the start of the next [blue]5[/blue]...",
+              "new": "Pay [red]150[/red] [gold]Gold[/gold]. At the start of the next [blue]2[/blue]..."
+            }
+          ]
+        },
+        {
+          "id": "THIS_OR_THAT",
+          "name": "This or That?",
+          "changes": [
+            {
+              "field": "options[PLAIN].description",
+              "old": "Lose [red]6[/red] HP. Gain [blue]41-68[/blue] [gold]Gold[/gold].",
+              "new": "Lose [red]6[/red] HP. Gain [blue]0[/blue] [gold]Gold[/gold]."
+            },
+            {
+              "field": "pages[INITIAL].options[PLAIN].description",
+              "old": "Lose [red]6[/red] HP. Gain [blue]41-68[/blue] [gold]Gold[/gold].",
+              "new": "Lose [red]6[/red] HP. Gain [blue]0[/blue] [gold]Gold[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "UNREST_SITE",
+          "name": "Unrest Site",
+          "changes": [
+            {
+              "field": "preconditions[0]",
+              "old": "Requires ≤70% HP",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "WHISPERING_HOLLOW",
+          "name": "Whispering Hollow",
+          "changes": [
+            {
+              "field": "options[GOLD].description",
+              "old": "Lose [red]26-44[/red] [gold]Gold[/gold]. Procure [blue]2[/blue] random [gold]...",
+              "new": "Lose [red]35[/red] [gold]Gold[/gold]. Procure [blue]2[/blue] random [gold]Pot..."
+            },
+            {
+              "field": "pages[INITIAL].options[GOLD].description",
+              "old": "Lose [red]26-44[/red] [gold]Gold[/gold]. Procure [blue]2[/blue] random [gold]...",
+              "new": "Lose [red]35[/red] [gold]Gold[/gold]. Procure [blue]2[/blue] random [gold]Pot..."
+            }
+          ]
+        },
+        {
+          "id": "ZEN_WEAVER",
+          "name": "Zen Weaver",
+          "changes": [
+            {
+              "field": "preconditions[0]",
+              "old": "Requires 125+ gold",
+              "new": "none"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "powers",
+      "name": "Powers",
+      "old_count": 258,
+      "new_count": 258,
+      "changed": [
+        {
+          "id": "TAINTED",
+          "name": "Tainted",
+          "changes": [
+            {
+              "field": "description",
+              "old": "Take [blue][Amount][/blue] additional damage from Attacks this turn.",
+              "new": "Take additional damage from Attacks this turn."
+            },
+            {
+              "field": "description_raw",
+              "old": "Take [blue]{Amount}[/blue] additional damage from Attacks this turn.",
+              "new": "none"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

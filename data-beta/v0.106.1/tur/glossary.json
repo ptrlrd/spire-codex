@@ -1,0 +1,170 @@
+[
+  {
+    "id": "BLOCK",
+    "name": "Blok",
+    "description": "Bir sonraki tura kadar hasarı engeller.",
+    "category": "combat"
+  },
+  {
+    "id": "CARD_REWARD",
+    "name": "Kart Ödülü",
+    "description": "Rastgele [blue]3[/blue] karttan oluşan bir paket. [gold]Deste[/gold]'ne eklemek için [blue]1[/blue] kart seçebilirsin.",
+    "category": "progression"
+  },
+  {
+    "id": "CHANNELING",
+    "name": "Oluştur",
+    "description": "Bir Küre Oluşturduğunda, Küre ilk boş yuvaya yerleştirilir. Boş yuva yoksa, yer açmak için ilk Küren otomatik olarak [gold]Tetiklenir[/gold].",
+    "category": "combat"
+  },
+  {
+    "id": "COOK",
+    "name": "Pişir",
+    "description": "Bir [gold]Dinlenme Yeri[/gold]'nde [gold]Deste[/gold]'nden [blue]2[/blue] kart [gold]çıkar[/gold] ve [green]9[/green] Maksimum CP elde et.",
+    "category": "mechanics"
+  },
+  {
+    "id": "DECK",
+    "name": "Deste",
+    "description": "Destendeki tüm kartları göster.",
+    "category": "zones"
+  },
+  {
+    "id": "DISCARD_PILE",
+    "name": "Atık Destesi",
+    "description": "Eğer çekme desten boşsa, atık desten çekme destene karıştırılır.\n\nAtık destendeki kartları göstermek için tıkla.",
+    "category": "zones"
+  },
+  {
+    "id": "DRAW_PILE",
+    "name": "Çekme Destesi",
+    "description": "Her turun başında\nburadan [blue]5[/blue] kart çekilir.\n\nKarışık sırayla dizilmiş çekme desteni göstermek için tıkla.",
+    "category": "zones"
+  },
+  {
+    "id": "ENERGY",
+    "name": "Enerji",
+    "description": "Enerji, [gold]El[/gold]'indeki kartları oynamak için kullanılır.",
+    "category": "combat"
+  },
+  {
+    "id": "EVOKE",
+    "name": "Tetikle",
+    "description": "En sağdaki Küre'ni tüket ve etkisini Tetikle.",
+    "category": "combat"
+  },
+  {
+    "id": "EXHAUST_PILE",
+    "name": "Tüketilen Kartlar",
+    "description": "Bu savaşta Tüketilen kartları göstermek için tıkla.",
+    "category": "zones"
+  },
+  {
+    "id": "FATAL",
+    "name": "Ölümcül",
+    "description": "Bu kart, yancı olmayan bir düşmanı öldürdüğünde tetiklenir.",
+    "category": "combat"
+  },
+  {
+    "id": "FORGE",
+    "name": "Döv",
+    "description": "Her savaşta ilk kez [gold]Dövdüğünde[/gold] [gold]El[/gold]'ine [gold]Egemen Kılıcı[/gold]'nı eklersin. [gold]Egemen Kılıcı[/gold]'na fazladan hasar ekler.",
+    "category": "mechanics"
+  },
+  {
+    "id": "HIT_POINTS",
+    "name": "Can Puanı",
+    "description": "Sahip olduğun CP biterse ölürsün.",
+    "category": "progression"
+  },
+  {
+    "id": "LINKED_REWARDS",
+    "name": "Bağlı Ödüller",
+    "description": "Bu gruptan sadece [blue]1[/blue] ödül seçebilirsin.",
+    "category": "progression"
+  },
+  {
+    "id": "MONEY_POUCH",
+    "name": "Altın",
+    "description": "Sahip olduğun Altın miktarı. Altın, Spire içindeki para birimidir.",
+    "category": "progression"
+  },
+  {
+    "id": "POTION_SLOT",
+    "name": "İksir Yuvası",
+    "description": "Savaş esnasında iksirlerini kullanarak [green]bonus[/green] elde et veya düşmanları [red]zayıflat[/red].",
+    "category": "progression"
+  },
+  {
+    "id": "REPLAY",
+    "name": "Yeniden Oyna",
+    "description": "Bu kartı fazladan bir kez daha oynar.",
+    "category": "mechanics"
+  },
+  {
+    "id": "ROOM_ANCIENT",
+    "name": "Kadim",
+    "description": "Bu odalar Kadimlere ev sahipliği yapar.\n\nSana eşi benzeri görülmemiş nimetleri, hazineleri ve bilgeliklerini sunarlar.",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_BOSS",
+    "name": "Boss",
+    "description": "Bu bölgedeki en ölümcül düşman.\n\nOnları alt etmek, bir sonraki Sahne'ye geçmeni sağlayacak.",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_ELITE",
+    "name": "Elit",
+    "description": "Bu odalarda güçlü düşmanlar bulunur.\n\nOnları alt etmek, sana bir [gold]Kalıntı[/gold] kazandırır.",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_ENEMY",
+    "name": "Düşman",
+    "description": "Bu odalarda saldırgan düşmanlar bulunur.",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_EVENT",
+    "name": "Etkinlik",
+    "description": "Bu odalarda sıra dışı şeyler yaşanır...",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_MERCHANT",
+    "name": "Dükkan",
+    "description": "Esrarengiz Tüccar, bu odalarda mallarını satar.\n\nKazandığın [gold]Altın[/gold]’ı burada harca!",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_REST",
+    "name": "Dinlenme Yeri",
+    "description": "Bu odalara uğrayarak bir miktar CP [green]İyileştir[/green] veya bir kartı [gold]Geliştir[/gold].",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_TREASURE",
+    "name": "Hazine Odası",
+    "description": "Bu gözde odalarda [gold]Kalıntılar[/gold] ve [gold]Altın[/gold] bulunabilir.",
+    "category": "rooms"
+  },
+  {
+    "id": "STUN",
+    "name": "Sersemlet",
+    "description": "Düşmanın bir sonraki turunda hamle yapmasını engelle.",
+    "category": "combat"
+  },
+  {
+    "id": "SUMMON",
+    "name": "Çağır",
+    "description": "[gold]Osti[/gold]'yi çağır.\nEğer önceden çağrılmışsa, bu savaş için Maksimum CP'sini artır.",
+    "category": "mechanics"
+  },
+  {
+    "id": "TRANSFORM",
+    "name": "Dönüştür",
+    "description": "Dönüştürülen kartlar, herhangi bir nadirlikte rastgele bir karta dönüşür.",
+    "category": "mechanics"
+  }
+]

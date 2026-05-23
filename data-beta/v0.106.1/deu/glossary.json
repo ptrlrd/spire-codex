@@ -1,0 +1,170 @@
+[
+  {
+    "id": "BLOCK",
+    "name": "Block",
+    "description": "Verhindert Schaden bis zum nächsten Zug.",
+    "category": "combat"
+  },
+  {
+    "id": "CARD_REWARD",
+    "name": "Kartenbelohnung",
+    "description": "Ein Paket aus [blue]3[/blue] zufälligen Karten. Du kannst [blue]1[/blue] davon wählen und in dein [gold]Deck[/gold] nehmen.",
+    "category": "progression"
+  },
+  {
+    "id": "CHANNELING",
+    "name": "Erschaffen",
+    "description": "Wenn du einen Orb erschaffst, kommt er in deinen ersten leeren Slot. Falls du keine leeren Slots hast, wird dein erster Orb automatisch [gold]Entladen[/gold], um Platz zu machen.",
+    "category": "combat"
+  },
+  {
+    "id": "COOK",
+    "name": "Kochen",
+    "description": "[gold]Entferne[/gold] an einem [gold]Lagerfeuer[/gold] [blue]2[/blue] Karten aus deinem [gold]Deck[/gold] und erhalte [green]9[/green] max. TP.",
+    "category": "mechanics"
+  },
+  {
+    "id": "DECK",
+    "name": "Deck",
+    "description": "Sieh alle Karten in deinem Deck an.",
+    "category": "zones"
+  },
+  {
+    "id": "DISCARD_PILE",
+    "name": "Abwurfstapel",
+    "description": "Wenn dein Nachziehstapel leer ist, wird der Abwurfstapel in den Nachziehstapel gemischt.\n\nKlicke, um die Karten in deinem Abwurfstapel zu sehen.",
+    "category": "zones"
+  },
+  {
+    "id": "DRAW_PILE",
+    "name": "Nachziehstapel",
+    "description": "Zu Beginn jedes Zuges werden\n[blue]5[/blue] Karten von hier gezogen.\n\nKlicke, um die Karten in deinem Nachziehstapel anzusehen (gemischt).",
+    "category": "zones"
+  },
+  {
+    "id": "ENERGY",
+    "name": "Energie",
+    "description": "Energie wird genutzt, um [gold]Handkarten[/gold] zu spielen.",
+    "category": "combat"
+  },
+  {
+    "id": "EVOKE",
+    "name": "Entladen",
+    "description": "Verbrauche deinen vordersten Orb und nutze seinen Entlade-Effekt.",
+    "category": "combat"
+  },
+  {
+    "id": "EXHAUST_PILE",
+    "name": "Erschöpfte Karten",
+    "description": "Klicke, um Karten zu sehen, die in diesem Kampf Erschöpft wurden.",
+    "category": "zones"
+  },
+  {
+    "id": "FATAL",
+    "name": "Tödlich",
+    "description": "Wird ausgelöst, wenn diese Karte einen Gegner tötet, der kein Untertan ist.",
+    "category": "combat"
+  },
+  {
+    "id": "FORGE",
+    "name": "Schmieden",
+    "description": "Wenn du zum ersten Mal in einem Kampf [gold]Schmiedest[/gold], erhalte [gold]Hoheitsklinge[/gold] auf deine [gold]Hand[/gold]. Erhöht den Schaden der [gold]Hoheitsklinge[/gold].",
+    "category": "mechanics"
+  },
+  {
+    "id": "HIT_POINTS",
+    "name": "Trefferpunkte",
+    "description": "Wenn dir die TP ausgehen, stirbst du.",
+    "category": "progression"
+  },
+  {
+    "id": "LINKED_REWARDS",
+    "name": "Verbundene Belohnungen",
+    "description": "Du kannst nur [blue]1[/blue] Belohnung aus diesem Set wählen.",
+    "category": "progression"
+  },
+  {
+    "id": "MONEY_POUCH",
+    "name": "Gold",
+    "description": "Wie viel Gold du hast. Gold ist die Währung im Spire.",
+    "category": "progression"
+  },
+  {
+    "id": "POTION_SLOT",
+    "name": "Trank-Slot",
+    "description": "Nutze Tränke während des Kampfes, um [green]Vorteile[/green] zu bekommen oder Gegner zu [red]behindern[/red].",
+    "category": "progression"
+  },
+  {
+    "id": "REPLAY",
+    "name": "Erneut Spielen",
+    "description": "Spielt diese Karte ein weiteres Mal.",
+    "category": "mechanics"
+  },
+  {
+    "id": "ROOM_ANCIENT",
+    "name": "Ahne",
+    "description": "Ahnen bewohnen diese Räume.\n\nSie gewähren unglaubliche Vorteile, Schätze und Wissen.",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_BOSS",
+    "name": "Boss",
+    "description": "Der tödlichste Feind in der Gegend.\n\nIhn zu besiegen, erlaubt dir, in den nächsten Akt fortzuschreiten.",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_ELITE",
+    "name": "Elite",
+    "description": "Mächtige Feinde sind in diesen Räumen.\n\nSie zu besiegen, wird dich mit einem [gold]Relikt[/gold] belohnen.",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_ENEMY",
+    "name": "Gegner",
+    "description": "Feindlich gesinnte Gegner hausen in diesen Räumen.",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_EVENT",
+    "name": "Ereignis",
+    "description": "Etwas ungewöhnliches geschieht in diesen Räumen...",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_MERCHANT",
+    "name": "Laden",
+    "description": "Der geheimnisvolle Händler verkauft seine Waren in diesen Räumen.\n\nGib dein wohlverdientes [gold]Gold[/gold] hier aus!",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_REST",
+    "name": "Lagerfeuer",
+    "description": "Halte in diesen Räumen an, um ein paar TP zu [green]heilen[/green] oder eine Karte zu [gold]verbessern[/gold].",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_TREASURE",
+    "name": "Schatzraum",
+    "description": "[gold]Relikte[/gold] und [gold]Gold[/gold] können in diesen begehrten Räumen gefunden werden.",
+    "category": "rooms"
+  },
+  {
+    "id": "STUN",
+    "name": "Betäuben",
+    "description": "Verhindere, dass der Gegner in seinem nächsten Zug etwas macht.",
+    "category": "combat"
+  },
+  {
+    "id": "SUMMON",
+    "name": "Beschwören",
+    "description": "Beschwöre [gold]Osty[/gold].\nFalls er schon beschworen ist, erhöhe seine max. TP für diesen Kampf.",
+    "category": "mechanics"
+  },
+  {
+    "id": "TRANSFORM",
+    "name": "Transformieren",
+    "description": "Transformierte Karten werden zu einer zufälligen Karte einer zufälligen Seltenheit.",
+    "category": "mechanics"
+  }
+]
