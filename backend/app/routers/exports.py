@@ -41,68 +41,42 @@ _RUNS_DIR = (
     / "runs"
 )
 
-_MONGO_PROJECTION = {
-    "_id": 1,
-    "seed": 1,
-    "character": 1,
-    "win": 1,
-    "was_abandoned": 1,
-    "ascension": 1,
-    "game_mode": 1,
-    "player_count": 1,
-    "run_time": 1,
-    "floors_reached": 1,
-    "acts_completed": 1,
-    "killed_by": 1,
-    "deck_size": 1,
-    "relic_count": 1,
-    "username": 1,
-    "build_id": 1,
-    "submitted_at": 1,
-    "deck": 1,
-    "relics": 1,
-    "potions": 1,
-    "card_choices": 1,
-    "map_point_history": 1,
-}
+OFFICIAL_CHARACTERS = {"IRONCLAD", "SILENT", "DEFECT", "NECROBINDER", "REGENT"}
 
 
-def _iter_runs_mongo():
+def _official_run_hashes() -> list[str]:
+    """Get hashes of runs with official characters from Mongo."""
     from ..services.runs_db_mongo import _get_collection
 
     coll = _get_collection()
-    cursor = coll.find({}, _MONGO_PROJECTION, no_cursor_timeout=True)
+    cursor = coll.find(
+        {"character": {"$in": list(OFFICIAL_CHARACTERS)}},
+        {"_id": 1},
+        no_cursor_timeout=True,
+    )
     try:
-        for doc in cursor:
-            doc["run_hash"] = doc.pop("_id", None)
-            yield doc
+        return [doc["_id"] for doc in cursor]
     finally:
         cursor.close()
 
 
-def _iter_runs_sqlite():
-    if not _RUNS_DIR.exists():
-        return
-    for f in sorted(_RUNS_DIR.glob("*.json")):
-        try:
-            with open(f, "r", encoding="utf-8") as fh:
-                doc = json.load(fh)
-            doc.setdefault("run_hash", f.stem)
-            yield doc
-        except (json.JSONDecodeError, OSError):
-            continue
-
-
 def _stream_runs_jsonl():
-    using_mongo = bool(os.environ.get("MONGO_URL", "").strip())
-    source = _iter_runs_mongo() if using_mongo else _iter_runs_sqlite()
+    hashes = _official_run_hashes()
 
     buf = io.BytesIO()
     gz = gzip.GzipFile(fileobj=buf, mode="wb")
 
-    for doc in source:
-        line = json.dumps(doc, default=str, ensure_ascii=False) + "\n"
-        gz.write(line.encode("utf-8"))
+    for run_hash in hashes:
+        run_file = _RUNS_DIR / f"{run_hash}.json"
+        if not run_file.exists():
+            continue
+        try:
+            raw = run_file.read_text(encoding="utf-8").strip()
+            json.loads(raw)
+        except (json.JSONDecodeError, OSError):
+            continue
+        gz.write(raw.encode("utf-8"))
+        gz.write(b"\n")
         if buf.tell() > 65536:
             gz.flush()
             yield buf.getvalue()
@@ -122,8 +96,9 @@ def _stream_runs_jsonl():
 def export_runs(request: Request):
     """Bulk export of all submitted runs as gzipped JSONL.
 
-    Each line is one JSON object with run_hash, character, win,
-    map_point_history, deck, relics, card_choices, and other fields.
+    Each line is the full raw game JSON as submitted by the client,
+    including players, map_point_history, acts, deck, relics, and
+    card_choices. Only runs with official characters are included.
     """
     run_exports.inc()
     return StreamingResponse(
