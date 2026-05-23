@@ -128,6 +128,11 @@ data_exports = Counter(
     ["lang"],
 )
 
+run_exports = Counter(
+    "spire_codex_run_exports_total",
+    "Bulk run data export downloads",
+)
+
 # ── Compare pages ───────────────────────────────────────────
 compare_views = Counter(
     "spire_codex_compare_views_total",
