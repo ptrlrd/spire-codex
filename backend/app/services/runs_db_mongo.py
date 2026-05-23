@@ -37,6 +37,9 @@ import json
 import os
 import time
 from contextlib import contextmanager
+
+OFFICIAL_CHARACTERS = {"IRONCLAD", "SILENT", "DEFECT", "NECROBINDER", "REGENT"}
+
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
@@ -943,6 +946,7 @@ def get_stats(
                 else 0,
             }
             for r in char_stats
+            if r["_id"] in OFFICIAL_CHARACTERS
         ],
         "ascensions": [
             {

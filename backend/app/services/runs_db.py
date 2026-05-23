@@ -13,6 +13,9 @@ import hashlib
 import json
 import os
 import sqlite3
+
+OFFICIAL_CHARACTERS = {"IRONCLAD", "SILENT", "DEFECT", "NECROBINDER", "REGENT"}
+
 from contextlib import contextmanager
 from pathlib import Path
 
@@ -770,6 +773,7 @@ def get_stats(
                     else 0,
                 }
                 for r in char_stats
+                if r["character"] in OFFICIAL_CHARACTERS
             ],
             "ascensions": [
                 {
