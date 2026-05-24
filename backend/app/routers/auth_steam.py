@@ -65,6 +65,9 @@ class _Session:
     created_at: float
     steamid: Optional[str] = None
     persona_name: Optional[str] = None
+    user_id: Optional[str] = None
+    token: Optional[str] = None
+    needs_email: bool = False
     error: Optional[str] = None
 
 
@@ -199,11 +202,25 @@ async def callback(request: Request) -> HTMLResponse:
     persona = await _fetch_persona_name(steamid)
     session.persona_name = persona
 
+    # Create or find user doc and issue JWT
+    try:
+        from ..services.users_db import find_or_create_by_steam
+        from ..services.auth_jwt import create_token
+
+        user = find_or_create_by_steam(steamid, persona)
+        session.user_id = user["_id"]
+        session.token = create_token(user_id=user["_id"], steam_id=steamid)
+        session.needs_email = not user.get("email")
+    except Exception as exc:
+        logger.warning("steam-auth user creation failed: %s", exc)
+        # Non-fatal: auth still succeeded, just no persistent user yet
+
     logger.info(
-        "steam-auth ok session=%s steamid=%s persona=%s",
+        "steam-auth ok session=%s steamid=%s persona=%s user=%s",
         session_id[:8],
         steamid,
         persona,
+        session.user_id,
     )
     return _close_page(name=persona, steamid=steamid)
 
@@ -239,9 +256,19 @@ async def poll(session_id: str) -> JSONResponse:
         "status": "ok",
         "steamid": session.steamid,
         "persona_name": session.persona_name,
+        "user_id": session.user_id,
+        "token": session.token,
+        "needs_email": session.needs_email,
     }
     _sessions.pop(session_id, None)
-    return JSONResponse(payload)
+
+    response = JSONResponse(payload)
+    if session.token:
+        from ..services.auth_jwt import set_auth_cookie
+
+        set_auth_cookie(response, session.token)
+
+    return response
 
 
 async def _fetch_persona_name(steamid: str) -> Optional[str]:

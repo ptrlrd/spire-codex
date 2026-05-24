@@ -141,6 +141,7 @@ def _ensure_indexes(coll) -> None:
     coll.create_index([("deck.id", ASCENDING)])
     coll.create_index([("relics.id", ASCENDING)])
     coll.create_index([("killed_by", ASCENDING)])
+    coll.create_index([("user_id", ASCENDING), ("submitted_at", DESCENDING)])
 
 
 # ── helpers (mirrors of the sqlite module) ──────────────────────────────
@@ -1372,3 +1373,69 @@ def find_sibling_hashes(run_hash: str) -> list[str]:
         return []
     siblings = coll.find({"seed": row["seed"], "_id": {"$ne": run_hash}}, {"_id": 1})
     return [s["_id"] for s in siblings]
+
+
+# ── User run ownership ──────────────────────────────────────────────────
+
+
+def get_user_runs(
+    user_id: str,
+    page: int = 1,
+    limit: int = 50,
+) -> dict:
+    coll = _get_collection()
+    from bson import ObjectId
+
+    match = {"user_id": ObjectId(user_id), "deleted_at": None}
+    total = coll.count_documents(match)
+    skip = (page - 1) * limit
+
+    rows = list(
+        coll.find(match, {"raw": 0})
+        .sort("submitted_at", DESCENDING)
+        .skip(skip)
+        .limit(limit)
+    )
+
+    runs = []
+    for r in rows:
+        runs.append(
+            {
+                "run_hash": r["_id"],
+                "character": r.get("character"),
+                "win": r.get("win"),
+                "was_abandoned": r.get("was_abandoned"),
+                "ascension": r.get("ascension"),
+                "game_mode": r.get("game_mode"),
+                "player_count": r.get("player_count"),
+                "floors_reached": r.get("floors_reached"),
+                "killed_by": r.get("killed_by"),
+                "username": r.get("username"),
+                "submitted_at": r.get("submitted_at"),
+            }
+        )
+
+    return {"runs": runs, "total": total, "page": page, "limit": limit}
+
+
+def soft_delete_run(run_hash: str, user_id: str) -> dict:
+    coll = _get_collection()
+
+    run = coll.find_one({"_id": run_hash}, {"user_id": 1, "deleted_at": 1})
+    if not run:
+        return {"error": "Run not found"}
+
+    run_owner = run.get("user_id")
+    if not run_owner or str(run_owner) != user_id:
+        return {"error": "You do not own this run"}
+
+    if run.get("deleted_at"):
+        return {"success": True}
+
+    from datetime import datetime, timezone
+
+    coll.update_one(
+        {"_id": run_hash},
+        {"$set": {"deleted_at": datetime.now(timezone.utc)}},
+    )
+    return {"success": True}

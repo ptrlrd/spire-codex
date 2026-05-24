@@ -7,6 +7,7 @@ import LanguageSelector from "./LanguageSelector";
 import SearchTrigger from "./SearchTrigger";
 import SiteSwitcher from "./SiteSwitcher";
 import { useLanguage } from "@/app/contexts/LanguageContext";
+import { useAuth } from "@/app/contexts/AuthContext";
 import { t } from "@/lib/ui-translations";
 import { IS_BETA } from "@/lib/seo";
 
@@ -116,10 +117,14 @@ export default function Navbar() {
   const langPrefix = currentLang ? `/${currentLang}` : "";
   const strippedPath = currentLang ? pathname.replace(`/${currentLang}`, "") || "/" : pathname;
   const isHome = strippedPath === "/";
+  const { user, loading: authLoading, loginSteam, loginDiscord, logout } = useAuth();
   const [open, setOpen] = useState(false);
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [expandedGroups, setExpandedGroups] = useState<Set<string>>(new Set());
   const menuRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
+  const userMenuRef = useRef<HTMLDivElement>(null);
+  const userButtonRef = useRef<HTMLButtonElement>(null);
 
   // Auto-expand the group containing the active page
   useEffect(() => {
@@ -131,7 +136,7 @@ export default function Navbar() {
     }
   }, [pathname]);
 
-  // Close menu when clicking outside
+  // Close menus when clicking outside
   useEffect(() => {
     function handleClick(e: MouseEvent) {
       if (
@@ -143,14 +148,24 @@ export default function Navbar() {
       ) {
         setOpen(false);
       }
+      if (
+        userMenuOpen &&
+        userMenuRef.current &&
+        !userMenuRef.current.contains(e.target as Node) &&
+        userButtonRef.current &&
+        !userButtonRef.current.contains(e.target as Node)
+      ) {
+        setUserMenuOpen(false);
+      }
     }
     document.addEventListener("mousedown", handleClick);
     return () => document.removeEventListener("mousedown", handleClick);
-  }, [open]);
+  }, [open, userMenuOpen]);
 
-  // Close menu on route change
+  // Close menus on route change
   useEffect(() => {
     setOpen(false);
+    setUserMenuOpen(false);
     // Clear nav focus after navigation so focus-within dropdowns close
     // (keyboard support preserved). preventScroll matters: without it the
     // browser scrolls <main> into view, which on small screens jumps past
@@ -298,7 +313,105 @@ export default function Navbar() {
               </div>
             )}
 
-          {/* Burger button — hidden at lg+ where the secondary nav row below takes over */}
+          {/* User menu */}
+          {!authLoading && (
+            <div className="relative">
+              <button
+                ref={userButtonRef}
+                onClick={() => {
+                  if (user) {
+                    setUserMenuOpen(!userMenuOpen);
+                  }
+                }}
+                className="inline-flex items-center justify-center h-9 min-w-[2.25rem] px-1.5 sm:px-2 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-accent)] transition-colors gap-1.5"
+                aria-label={user ? "Account menu" : "Sign in"}
+              >
+                <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+                {user ? (
+                  <span className="hidden sm:inline text-xs font-medium truncate max-w-[80px]">
+                    {user.username || "Account"}
+                  </span>
+                ) : null}
+              </button>
+
+              {/* Signed-out: login options */}
+              {!user && !userMenuOpen && (
+                <div
+                  className="absolute right-0 top-full mt-2 w-44 max-w-[calc(100vw-1rem)] rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] shadow-xl shadow-black/30 p-1.5 hidden"
+                  id="login-options"
+                />
+              )}
+
+              {!user && (
+                <button
+                  onClick={() => setUserMenuOpen(!userMenuOpen)}
+                  className="absolute inset-0 w-full h-full opacity-0"
+                  aria-label="Sign in options"
+                  tabIndex={-1}
+                />
+              )}
+
+              {userMenuOpen && !user && (
+                <div
+                  ref={userMenuRef}
+                  className="absolute right-0 top-full mt-2 w-44 max-w-[calc(100vw-1rem)] rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] shadow-xl shadow-black/30 p-1.5 z-50"
+                >
+                  <p className="px-2.5 py-1.5 text-xs text-[var(--text-tertiary)] font-medium">Sign in with</p>
+                  <button
+                    onClick={() => { setUserMenuOpen(false); loginSteam(); }}
+                    className="w-full flex items-center gap-2 px-2.5 py-2 text-sm rounded-md hover:bg-[var(--bg-card)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
+                  >
+                    <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658a3.387 3.387 0 0 1 1.912-.593c.064 0 .127.003.19.007l2.862-4.146v-.058a4.533 4.533 0 0 1 4.53-4.53 4.533 4.533 0 0 1 4.53 4.53 4.533 4.533 0 0 1-4.53 4.53h-.106l-4.08 2.91c0 .053.003.107.003.161a3.4 3.4 0 0 1-3.4 3.4 3.404 3.404 0 0 1-3.367-2.936L.256 15.21C1.542 20.2 6.218 24 11.979 24 18.627 24 24 18.627 24 11.979 24 5.373 18.627 0 11.979 0z"/></svg>
+                    Steam
+                  </button>
+                  <button
+                    onClick={() => { setUserMenuOpen(false); loginDiscord(); }}
+                    className="w-full flex items-center gap-2 px-2.5 py-2 text-sm rounded-md hover:bg-[var(--bg-card)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
+                  >
+                    <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
+                    Discord
+                  </button>
+                </div>
+              )}
+
+              {/* Signed-in: account dropdown */}
+              {userMenuOpen && user && (
+                <div
+                  ref={userMenuRef}
+                  className="absolute right-0 top-full mt-2 w-48 max-w-[calc(100vw-1rem)] rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] shadow-xl shadow-black/30 p-1.5 z-50"
+                >
+                  <div className="px-2.5 py-1.5 border-b border-[var(--border-subtle)] mb-1">
+                    <p className="text-sm font-medium text-[var(--text-primary)] truncate">{user.username || "User"}</p>
+                    {user.email && <p className="text-xs text-[var(--text-tertiary)] truncate">{user.email}</p>}
+                  </div>
+                  <Link
+                    href={`${langPrefix}/profile`}
+                    onClick={() => setUserMenuOpen(false)}
+                    className="flex items-center gap-2 px-2.5 py-2 text-sm rounded-md hover:bg-[var(--bg-card)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
+                  >
+                    Profile
+                  </Link>
+                  <Link
+                    href={`${langPrefix}/settings`}
+                    onClick={() => setUserMenuOpen(false)}
+                    className="flex items-center gap-2 px-2.5 py-2 text-sm rounded-md hover:bg-[var(--bg-card)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
+                  >
+                    Settings
+                  </Link>
+                  <button
+                    onClick={() => { setUserMenuOpen(false); logout(); }}
+                    className="w-full flex items-center gap-2 px-2.5 py-2 text-sm rounded-md hover:bg-[var(--bg-card)] text-red-400 hover:text-red-300 transition-colors"
+                  >
+                    Sign Out
+                  </button>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* Burger button -- hidden at lg+ where the secondary nav row below takes over */}
           <div className="relative lg:hidden">
             <button
               ref={buttonRef}
