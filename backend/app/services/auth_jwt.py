@@ -60,7 +60,13 @@ def set_auth_cookie(response: JSONResponse, token: str) -> None:
 
 
 def clear_auth_cookie(response: JSONResponse) -> None:
-    response.delete_cookie(key=_COOKIE_NAME, path="/")
+    is_prod = os.environ.get("ENVIRONMENT", "").lower() in ("production", "prod")
+    response.delete_cookie(
+        key=_COOKIE_NAME,
+        path="/",
+        secure=is_prod,
+        samesite="lax",
+    )
 
 
 def get_current_user(request: Request) -> dict | None:
