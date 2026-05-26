@@ -5,7 +5,7 @@ export function imageUrl(path: string | null | undefined): string {
   if (!path) return "";
   if (path.startsWith("http")) return path;
   if (CDN_URL && path.startsWith("/static/images/")) {
-    return `${CDN_URL}${path.replace("/static/images/", "/").replace(/\.webp$/, ".png")}`;
+    return `${CDN_URL}${path.replace("/static/images/", "/")}`;
   }
   return `${API}${path}`;
 }
