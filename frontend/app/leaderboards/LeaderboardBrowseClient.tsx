@@ -8,6 +8,7 @@ import { useLanguage } from "@/app/contexts/LanguageContext";
 import { t } from "@/lib/ui-translations";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
+import { imageUrl } from "@/lib/image-url";
 
 function cleanId(id: string): string {
   return id.replace(/^(CHARACTER|CARD|RELIC|ENCOUNTER|EVENT|MONSTER|ACT|POTION)\./, "");
@@ -345,7 +346,7 @@ export default function LeaderboardBrowseClient() {
                 }
               >
                 <img
-                  src={`${API}/static/images/characters/character_icon_${ch.toLowerCase()}.webp`}
+                  src={imageUrl(`/static/images/characters/character_icon_${ch.toLowerCase()}.webp`)}
                   alt=""
                   aria-hidden
                   className="w-6 h-6 object-contain flex-shrink-0"

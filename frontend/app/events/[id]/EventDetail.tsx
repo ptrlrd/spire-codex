@@ -8,6 +8,7 @@ import RichDescription from "@/app/components/RichDescription";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { useLanguage } from "../../contexts/LanguageContext";
 import LocalizedNames from "@/app/components/LocalizedNames";
+import { imageUrl } from "@/lib/image-url";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -130,7 +131,7 @@ export default function EventDetail({ initialEvent }: { initialEvent?: GameEvent
         {event.image_url && (
           <div className="flex justify-center mb-4">
             <img
-              src={`${API}${event.image_url}`}
+              src={imageUrl(event.image_url)}
               alt={`${event.name} - Slay the Spire 2 Event`}
               className="w-20 h-20 object-contain"
               crossOrigin="anonymous"
@@ -242,7 +243,7 @@ export default function EventDetail({ initialEvent }: { initialEvent?: GameEvent
                   >
                     {relic?.image_url && (
                       <img
-                        src={`${API}${relic.image_url}`}
+                        src={imageUrl(relic.image_url)}
                         alt={`${relic.name} - Slay the Spire 2 Relic`}
                         className="w-8 h-8 object-contain flex-shrink-0"
                         crossOrigin="anonymous"

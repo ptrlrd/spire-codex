@@ -13,6 +13,7 @@ import EntityHistory from "@/app/components/EntityHistory";
 import RelatedItems from "@/app/components/RelatedItems";
 import EntityProse from "@/app/components/EntityProse";
 import EntityRunStats from "@/app/components/EntityRunStats";
+import { imageUrl } from "@/lib/image-url";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
@@ -98,7 +99,7 @@ export default function PotionDetail({ initialPotion }: { initialPotion?: Potion
         {potion.image_url && (
           <div className="flex justify-center mb-6">
             <img
-              src={`${API}${potion.image_url}`}
+              src={imageUrl(potion.image_url)}
               alt={`${potion.name} - Slay the Spire 2 Potion`}
               className="w-24 h-24 object-contain"
               crossOrigin="anonymous"
@@ -161,7 +162,7 @@ export default function PotionDetail({ initialPotion }: { initialPotion?: Potion
                 </h3>
                 <div className="flex items-center gap-2 text-sm">
                   <img
-                    src={`${API}/static/images/ui/rewards/reward_icon_money.webp`}
+                    src={imageUrl("/static/images/ui/rewards/reward_icon_money.webp")}
                     alt="Gold"
                     className="w-5 h-5"
                     crossOrigin="anonymous"

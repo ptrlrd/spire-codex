@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { ALL_BROWSE_SLUGS } from "./cards/browse/slug-map";
 import { SUPPORTED_LANGS } from "@/lib/languages";
+import { imageUrl } from "@/lib/image-url";
 
 export const dynamic = "force-dynamic";
 
@@ -164,7 +165,7 @@ const DYNAMIC_ROUTES = [
 
 async function fetchEntities(endpoint: string): Promise<EntityWithImage[]> {
   try {
-    const res = await fetch(`${API}${endpoint}`);
+    const res = await fetch(imageUrl(endpoint));
     if (!res.ok) return [];
     return res.json();
   } catch {
@@ -264,7 +265,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       };
 
       if (entity.image_url) {
-        entry.images = [`${API_PUBLIC}${entity.image_url}`];
+        entry.images = [imageUrl(entity.image_url)];
       }
 
       return entry;

@@ -9,6 +9,7 @@ import SearchFilter from "../components/SearchFilter";
 import RichDescription from "../components/RichDescription";
 import { useLanguage } from "../contexts/LanguageContext";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
+import { imageUrl } from "@/lib/image-url";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -216,7 +217,7 @@ export default function EventsClient({ initialEvents }: { initialEvents: GameEve
                 <div className="flex items-start gap-3">
                   {event.image_url && (
                     <img
-                      src={`${API}${event.image_url}`}
+                      src={imageUrl(event.image_url)}
                       alt={`${event.name} - Slay the Spire 2 Event`}
                       className="w-10 h-10 object-contain flex-shrink-0"
                       crossOrigin="anonymous"
@@ -346,7 +347,7 @@ export default function EventsClient({ initialEvents }: { initialEvents: GameEve
                         >
                           {relic?.image_url && (
                             <img
-                              src={`${API}${relic.image_url}`}
+                              src={imageUrl(relic.image_url)}
                               alt={`${relic.name} - Slay the Spire 2 Relic`}
                               className="w-8 h-8 object-contain flex-shrink-0"
                               crossOrigin="anonymous"

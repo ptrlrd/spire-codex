@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import Link from "next/link";
 import { useAuth } from "@/app/contexts/AuthContext";
 import { useToast } from "@/app/components/Toast";
+import RunFileHelp from "@/app/components/RunFileHelp";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -193,15 +194,14 @@ export default function ProfileClient() {
           {uploading ? (
             <p className="text-[var(--text-secondary)]">Uploading...</p>
           ) : (
-            <>
-              <p className="text-[var(--text-primary)] font-medium mb-1">
-                Drop .run files here or click to browse
-              </p>
-              <p className="text-xs text-[var(--text-tertiary)]">
-                Windows: %APPDATA%/SlayTheSpire2/runs/ &middot; Mac: ~/Library/Application Support/SlayTheSpire2/runs/
-              </p>
-            </>
+            <p className="text-[var(--text-primary)] font-medium">
+              Drop .run files here or click to browse
+            </p>
           )}
+        </div>
+
+        <div className="mt-4">
+          <RunFileHelp />
         </div>
 
         {uploadResults && uploadResults.length > 0 && (

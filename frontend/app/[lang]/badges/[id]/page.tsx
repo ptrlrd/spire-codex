@@ -15,6 +15,7 @@ import {
 } from "@/lib/languages";
 import { t } from "@/lib/ui-translations";
 import type { Badge } from "@/lib/api";
+import { imageUrl } from "@/lib/image-url";
 
 export const dynamic = "force-dynamic";
 
@@ -92,7 +93,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title,
       description: metaDesc,
       images: badge.image_url
-        ? [{ url: `${ABSOLUTE_BASE}${badge.image_url}` }]
+        ? [{ url: imageUrl(badge.image_url) }]
         : [],
       locale: LANG_HREFLANG[langCode],
     },
@@ -118,7 +119,7 @@ export default async function LangBadgePage({ params }: Props) {
     name: badge.name,
     description: desc || `${badge.name}`,
     path: `/${lang}/badges/${id}`,
-    imageUrl: badge.image_url ? `${ABSOLUTE_BASE}${badge.image_url}` : undefined,
+    imageUrl: badge.image_url ? imageUrl(badge.image_url) : undefined,
     category: "Badge",
     breadcrumbs: [
       { name: t("Home", lang), href: `/${lang}` },
@@ -152,7 +153,7 @@ export default async function LangBadgePage({ params }: Props) {
         {badge.image_url && (
           <div className="flex justify-center mb-6">
             <img
-              src={`${STATIC_BASE}${badge.image_url}`}
+              src={imageUrl(badge.image_url)}
               alt={`${badge.name} badge`}
               className="w-24 h-24 object-contain"
             />

@@ -10,6 +10,7 @@ import RichDescription from "../components/RichDescription";
 import { useLanguage } from "../contexts/LanguageContext";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
 import { useEntityScores } from "@/lib/use-entity-scores";
+import { imageUrl } from "@/lib/image-url";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -152,7 +153,7 @@ export default function PotionsClient({ initialPotions }: { initialPotions: Poti
                 <div className="flex gap-3">
                   {potion.image_url && (
                     <img
-                      src={`${API}${potion.image_url}`}
+                      src={imageUrl(potion.image_url)}
                       alt={`${potion.name} - Slay the Spire 2 Potion`}
                       className="w-12 h-12 object-contain flex-shrink-0"
                       loading="lazy"

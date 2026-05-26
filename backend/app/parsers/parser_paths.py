@@ -42,6 +42,10 @@ else:
 # Stable canonical asset tree — fallback when no per-version asset exists.
 STATIC_IMAGES_DIR = BASE / "backend" / "static" / "images"
 
+# CDN base URL — when set, image URLs are absolute (e.g. https://cdn.spire-codex.com).
+# When unset, URLs are relative paths served from the backend (e.g. /static/images/...).
+CDN_BASE_URL = os.environ.get("CDN_BASE_URL", "").rstrip("/")
+
 
 def _detect_beta_version() -> str | None:
     """If DATA_DIR is `data-beta/vX.Y.Z[...]`, return that version segment.
@@ -100,14 +104,24 @@ def resolve_image_url(entity_type: str, name_stem: str) -> str | None:
             STATIC_IMAGES_DIR / "beta" / BETA_VERSION / entity_type / f"{name_stem}.png"
         )
         if per_version_png.exists():
+            if CDN_BASE_URL:
+                return (
+                    f"{CDN_BASE_URL}/beta/{BETA_VERSION}/{entity_type}/{name_stem}.webp"
+                )
             return f"/static/images/beta/{BETA_VERSION}/{entity_type}/{name_stem}.webp"
 
         legacy_beta_png = DATA_DIR / "images" / entity_type / f"{name_stem}.png"
         if legacy_beta_png.exists():
+            if CDN_BASE_URL:
+                return (
+                    f"{CDN_BASE_URL}/beta/{BETA_VERSION}/{entity_type}/{name_stem}.webp"
+                )
             return f"/static/data-beta/{BETA_VERSION}/images/{entity_type}/{name_stem}.webp"
 
     stable_png = STATIC_IMAGES_DIR / entity_type / f"{name_stem}.png"
     if stable_png.exists():
+        if CDN_BASE_URL:
+            return f"{CDN_BASE_URL}/{entity_type}/{name_stem}.webp"
         return f"/static/images/{entity_type}/{name_stem}.webp"
 
     return None

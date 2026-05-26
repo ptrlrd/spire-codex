@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { imageUrl } from "@/lib/image-url";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -261,7 +262,7 @@ export default function ImagesPage() {
                         >
                           <div className="flex items-center justify-center p-2">
                             <img
-                              src={`${API}${img.url}`}
+                              src={imageUrl(img.url)}
                               alt={img.filename.replace(/\.(png|webp|gif|jpe?g)$/i, "").replace(/_/g, " ")}
                               crossOrigin="anonymous"
                               loading="lazy"

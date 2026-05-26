@@ -4,6 +4,7 @@ import { stripTags, stripTagsFlat, clipMetaDescription, buildLanguageAlternates,
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 import { redirectMissingEntity } from "@/lib/redirect-helpers";
+import { imageUrl } from "@/lib/image-url";
 
 const API_INTERNAL = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 const API_PUBLIC = process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_API_URL || "";
@@ -30,7 +31,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         url: `${SITE_URL}/potions/${id}`,
         title,
         description: metaDesc,
-        images: potion.image_url ? [{ url: `${API_PUBLIC}${potion.image_url}` }] : [],
+        images: potion.image_url ? [{ url: imageUrl(potion.image_url) }] : [],
       },
       twitter: { card: "summary_large_image", title, description: metaDesc },
       alternates: { canonical: `/potions/${id}`, languages: buildLanguageAlternates(`/potions/${id}`) },
@@ -54,7 +55,7 @@ export default async function Page({ params }: Props) {
         name: potion.name,
         description: desc || `${potion.name} potion from Slay the Spire 2`,
         path: `/potions/${id}`,
-        imageUrl: potion.image_url ? `${API_PUBLIC}${potion.image_url}` : undefined,
+        imageUrl: potion.image_url ? imageUrl(potion.image_url) : undefined,
         category: "Potion",
         breadcrumbs: [
           { name: "Home", href: "/" },

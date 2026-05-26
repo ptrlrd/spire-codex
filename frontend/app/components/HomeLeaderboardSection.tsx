@@ -19,8 +19,10 @@ const RUNS_API = IS_BETA ? "https://spire-codex.com" : API;
 // leaks into the SSR'd HTML.
 const PUBLIC_API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
+import { imageUrl } from "@/lib/image-url";
+
 function characterIcon(character: string): string {
-  return `${PUBLIC_API}/static/images/characters/character_icon_${character.toLowerCase()}.webp`;
+  return imageUrl(`/static/images/characters/character_icon_${character.toLowerCase()}.webp`);
 }
 
 const REVALIDATE = 300;

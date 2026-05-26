@@ -8,6 +8,7 @@ import { useLangPrefix } from "@/lib/use-lang-prefix";
 import RichDescription from "@/app/components/RichDescription";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
+import { imageUrl } from "@/lib/image-url";
 
 interface UnlockEntity {
   id: string;
@@ -65,7 +66,7 @@ function EntityCard({ entity, type, lp }: { entity: UnlockEntity; type: string; 
     >
       {entity.image_url && (
         <img
-          src={`${API}${entity.image_url}`}
+          src={imageUrl(entity.image_url)}
           alt={entity.name}
           className="w-8 h-8 object-contain flex-shrink-0"
           crossOrigin="anonymous"
@@ -206,7 +207,7 @@ export default function UnlocksClient() {
                 className="flex items-center gap-3 px-3 py-3 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] hover:border-[var(--accent-gold)]/50 transition-colors group"
               >
                 <img
-                  src={`${API}/static/images/characters/combat_${char.id.toLowerCase()}.webp`}
+                  src={imageUrl(`/static/images/characters/combat_${char.id.toLowerCase()}.webp`)}
                   alt={char.name}
                   className="w-12 h-12 object-contain flex-shrink-0"
                   crossOrigin="anonymous"

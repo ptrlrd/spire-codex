@@ -7,6 +7,7 @@ import { useLanguage } from "@/app/contexts/LanguageContext";
 import { t } from "@/lib/ui-translations";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
 import HoverTooltip from "@/app/components/HoverTooltip";
+import { imageUrl } from "@/lib/image-url";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -73,7 +74,7 @@ export default function RelatedItems({
     const upper = currentId.toUpperCase();
     Promise.all(
       groups.map(async ({ label, path, limit = 12 }) => {
-        const items = await cachedFetch<RelatedItem[]>(`${API}${path}`).catch(() => []);
+        const items = await cachedFetch<RelatedItem[]>(imageUrl(path)).catch(() => []);
         return {
           label,
           items: items

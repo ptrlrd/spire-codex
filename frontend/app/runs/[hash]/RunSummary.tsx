@@ -24,7 +24,8 @@ import {
 export type { PotionInfo };
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
-const ICON_BASE = `${API}/static/images/ui/run_history`;
+import { imageUrl } from "@/lib/image-url";
+const ICON_BASE = imageUrl("/static/images/ui/run_history");
 
 interface DeckCard {
   id: string;
@@ -200,7 +201,7 @@ export default function RunSummary({ run, player, cardData, relicData, potionDat
   const finalStats = lastPlayerStats(run);
   const totalFloors = (run.map_point_history ?? []).reduce((sum, act) => sum + act.length, 0);
   const charSlug = cleanId(player.character).toLowerCase();
-  const charIcon = `${API}/static/images/characters/character_icon_${charSlug}.webp`;
+  const charIcon = imageUrl(`/static/images/characters/character_icon_${charSlug}.webp`);
   const potionSlots = player.max_potion_slot_count ?? 3;
   const playerPotions = player.potions ?? [];
 
@@ -236,13 +237,13 @@ export default function RunSummary({ run, player, cardData, relicData, potionDat
             crossOrigin="anonymous"
           />
         </Link>
-        <IconStat icon={`${API}/static/images/ui/top_bar/top_bar_heart.webp`} alt="HP" value={`${finalStats?.current_hp ?? "?"}/${finalStats?.max_hp ?? "?"}`} color="var(--color-ironclad)" />
-        <IconStat icon={`${API}/static/images/ui/top_bar/top_bar_gold.webp`} alt="Gold" value={finalStats?.current_gold ?? "?"} color="var(--accent-gold)" />
+        <IconStat icon={imageUrl("/static/images/ui/top_bar/top_bar_heart.webp")} alt="HP" value={`${finalStats?.current_hp ?? "?"}/${finalStats?.max_hp ?? "?"}`} color="var(--color-ironclad)" />
+        <IconStat icon={imageUrl("/static/images/ui/top_bar/top_bar_gold.webp")} alt="Gold" value={finalStats?.current_gold ?? "?"} color="var(--accent-gold)" />
         <PotionSlots potions={playerPotions} total={potionSlots} potionData={potionData} lp={lp} />
-        <IconStat icon={`${API}/static/images/ui/top_bar/top_bar_map.webp`} alt="Floor" value={totalFloors} />
-        <IconStat icon={`${API}/static/images/ui/top_bar/timer_icon.webp`} alt="Time" value={formatTime(run.run_time ?? 0)} />
+        <IconStat icon={imageUrl("/static/images/ui/top_bar/top_bar_map.webp")} alt="Floor" value={totalFloors} />
+        <IconStat icon={imageUrl("/static/images/ui/top_bar/timer_icon.webp")} alt="Time" value={formatTime(run.run_time ?? 0)} />
         {(run.ascension ?? 0) > 0 && (
-          <IconStat icon={`${API}/static/images/ui/top_bar/top_bar_ascension.webp`} alt="Ascension" value={`A${run.ascension}`} color="var(--accent-gold)" />
+          <IconStat icon={imageUrl("/static/images/ui/top_bar/top_bar_ascension.webp")} alt="Ascension" value={`A${run.ascension}`} color="var(--accent-gold)" />
         )}
         <div className="w-full sm:w-auto sm:ml-auto text-left sm:text-right text-xs text-[var(--text-muted)] leading-tight">
           {run.username && (
@@ -309,7 +310,7 @@ export default function RunSummary({ run, player, cardData, relicData, potionDat
               >
                 {info?.image_url ? (
                   <img
-                    src={`${API}${info.image_url}`}
+                    src={imageUrl(info.image_url)}
                     alt={info.name}
                     className="w-full h-full object-contain p-0.5"
                     crossOrigin="anonymous"
@@ -537,7 +538,7 @@ function PotionSlots({
           >
             {info?.image_url ? (
               <img
-                src={`${API}${info.image_url}`}
+                src={imageUrl(info.image_url)}
                 alt={info.name}
                 className="w-5 h-5 object-contain"
                 crossOrigin="anonymous"

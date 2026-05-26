@@ -6,6 +6,7 @@ import RichDescription from "@/app/components/RichDescription";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 import { stripTags, stripTagsFlat, clipMetaDescription, buildLanguageAlternates, SITE_NAME, SITE_URL } from "@/lib/seo";
 import type { Badge } from "@/lib/api";
+import { imageUrl } from "@/lib/image-url";
 
 export const dynamic = "force-dynamic";
 
@@ -76,7 +77,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title,
       description: metaDesc,
       images: badge.image_url
-        ? [{ url: `${ABSOLUTE_BASE}${badge.image_url}` }]
+        ? [{ url: imageUrl(badge.image_url) }]
         : [],
     },
     twitter: { card: "summary_large_image", title, description: metaDesc },
@@ -99,7 +100,7 @@ export default async function BadgePage({ params }: Props) {
     name: badge.name,
     description: desc || `${badge.name} run-end badge from Slay the Spire 2`,
     path: `/badges/${id}`,
-    imageUrl: badge.image_url ? `${ABSOLUTE_BASE}${badge.image_url}` : undefined,
+    imageUrl: badge.image_url ? imageUrl(badge.image_url) : undefined,
     category: "Badge",
     breadcrumbs: [
       { name: "Home", href: "/" },
@@ -144,7 +145,7 @@ export default async function BadgePage({ params }: Props) {
         {badge.image_url && (
           <div className="flex justify-center mb-6">
             <img
-              src={`${STATIC_BASE}${badge.image_url}`}
+              src={imageUrl(badge.image_url)}
               alt={`Slay the Spire 2 ${badge.name} badge`}
               className="w-24 h-24 object-contain"
             />

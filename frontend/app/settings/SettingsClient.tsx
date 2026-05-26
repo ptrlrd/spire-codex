@@ -150,7 +150,7 @@ export default function SettingsClient() {
           <button
             onClick={saveUsername}
             disabled={!usernameChanged || saving === "username" || usernameAvailable === false}
-            className="px-4 py-2 text-sm font-medium rounded-lg bg-[var(--border-accent)] text-[var(--bg-primary)] hover:opacity-90 disabled:opacity-30 transition-opacity shrink-0"
+            className="px-4 py-2 text-sm font-medium rounded-lg bg-[var(--border-accent)] text-white hover:opacity-90 disabled:opacity-30 transition-opacity shrink-0"
           >
             {saving === "username" ? "Saving..." : "Save"}
           </button>
@@ -174,7 +174,7 @@ export default function SettingsClient() {
           <button
             onClick={saveEmail}
             disabled={!emailChanged || saving === "email"}
-            className="px-4 py-2 text-sm font-medium rounded-lg bg-[var(--border-accent)] text-[var(--bg-primary)] hover:opacity-90 disabled:opacity-30 transition-opacity shrink-0"
+            className="px-4 py-2 text-sm font-medium rounded-lg bg-[var(--border-accent)] text-white hover:opacity-90 disabled:opacity-30 transition-opacity shrink-0"
           >
             {saving === "email" ? "Saving..." : "Save"}
           </button>

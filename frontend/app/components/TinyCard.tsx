@@ -16,8 +16,9 @@ import type { CSSProperties } from "react";
  * `CardPoolModel.DeckEntryCardColor`). See /developers for the full recipe.
  */
 
-const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
-const BASE = `${API}/static/images/ui/run_history_card`;
+import { imageUrl } from "@/lib/image-url";
+
+const BASE = imageUrl("/static/images/ui/run_history_card");
 
 // CardPoolModel.DeckEntryCardColor — one per character/pool.
 export const TINY_CARD_POOL_COLOR: Record<string, string> = {

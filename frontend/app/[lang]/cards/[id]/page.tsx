@@ -5,6 +5,7 @@ import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 import { isValidLang, LANG_HREFLANG, LANG_NAMES, LANG_GAME_NAME, SUPPORTED_LANGS, type LangCode } from "@/lib/languages";
 import { redirectMissingEntity } from "@/lib/redirect-helpers";
+import { imageUrl } from "@/lib/image-url";
 
 export const dynamic = "force-dynamic";
 
@@ -41,7 +42,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         title,
         description: metaDesc,
         locale: LANG_HREFLANG[langCode],
-        images: card.image_url ? [{ url: `${API_PUBLIC}${card.image_url}` }] : [],
+        images: card.image_url ? [{ url: imageUrl(card.image_url) }] : [],
       },
       twitter: { card: "summary_large_image", title, description: metaDesc },
       alternates: { canonical: `/${lang}/cards/${id}`, languages },
@@ -65,7 +66,7 @@ export default async function Page({ params }: Props) {
       const desc = stripTags(card.description || "");
       const detailJsonLd = buildDetailPageJsonLd({
         name: card.name, description: desc || card.name, path: `/${lang}/cards/${id}`,
-        imageUrl: card.image_url ? `${API_PUBLIC}${card.image_url}` : undefined, category: "Card",
+        imageUrl: card.image_url ? imageUrl(card.image_url) : undefined, category: "Card",
         breadcrumbs: [{ name: "Home", href: `/${lang}` }, { name: "Cards", href: `/${lang}/cards` }, { name: card.name, href: `/${lang}/cards/${id}` }],
         inLanguage: LANG_HREFLANG[langCode],
       });

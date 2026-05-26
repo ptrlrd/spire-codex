@@ -10,6 +10,7 @@ import { useLangPrefix } from "@/lib/use-lang-prefix";
 import RichDescription from "@/app/components/RichDescription";
 import LocalizedNames from "@/app/components/LocalizedNames";
 import EntityHistory from "@/app/components/EntityHistory";
+import { imageUrl } from "@/lib/image-url";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -82,7 +83,7 @@ function PowerPill({
           <div className="flex items-center gap-2 mb-1.5">
             {power.image_url && (
               <img
-                src={`${API}${power.image_url}`}
+                src={imageUrl(power.image_url)}
                 alt=""
                 className="w-6 h-6 object-contain"
                 crossOrigin="anonymous"
@@ -291,7 +292,7 @@ export default function MonsterDetail({ initialMonster }: { initialMonster?: Mon
       {monster.image_url && (
         <div className="mb-6">
           <img
-            src={`${API}${betaArt && monster.beta_image_url ? monster.beta_image_url : monster.image_url}`}
+            src={imageUrl(betaArt && monster.beta_image_url ? monster.beta_image_url : monster.image_url)}
             alt={`${monster.name} - Slay the Spire 2 Monster`}
             className="mx-auto max-h-80 object-contain"
             crossOrigin="anonymous"

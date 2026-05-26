@@ -17,6 +17,7 @@ import {
 import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/seo";
 import { t } from "@/lib/ui-translations";
 import type { Badge } from "@/lib/api";
+import { imageUrl } from "@/lib/image-url";
 
 export const dynamic = "force-dynamic";
 
@@ -190,7 +191,7 @@ function BadgeCard({ badge, lang }: { badge: Badge; lang: string }) {
     >
       {badge.image_url && (
         <img
-          src={`${STATIC_BASE}${badge.image_url}`}
+          src={imageUrl(badge.image_url)}
           alt={`${badge.name} badge`}
           className="w-14 h-14 object-contain shrink-0"
           loading="lazy"

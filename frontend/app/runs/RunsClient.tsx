@@ -7,6 +7,7 @@ import { useLanguage } from "@/app/contexts/LanguageContext";
 import { t } from "@/lib/ui-translations";
 import { cachedFetch } from "@/lib/fetch-cache";
 import RichDescription from "../components/RichDescription";
+import { imageUrl } from "@/lib/image-url";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -62,7 +63,7 @@ function CardPill({
         <div className="absolute z-50 bottom-full left-1/2 -translate-x-1/2 mb-2 w-56 p-3 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] shadow-xl pointer-events-none">
           <div className="flex items-start gap-2 mb-1.5">
             {info.image_url && (
-              <img src={`${API}${info.image_url}`} alt="" className="w-10 h-10 object-cover rounded" crossOrigin="anonymous" />
+              <img src={imageUrl(info.image_url)} alt="" className="w-10 h-10 object-cover rounded" crossOrigin="anonymous" />
             )}
             <div className="min-w-0">
               <div className="font-semibold text-xs text-[var(--text-primary)] truncate">{info.name}</div>
@@ -107,7 +108,7 @@ function RelicPill({
         <div className="absolute z-50 bottom-full left-1/2 -translate-x-1/2 mb-2 w-56 p-3 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] shadow-xl pointer-events-none">
           <div className="flex items-start gap-2 mb-1.5">
             {info.image_url && (
-              <img src={`${API}${info.image_url}`} alt="" className="w-8 h-8 object-contain" crossOrigin="anonymous" />
+              <img src={imageUrl(info.image_url)} alt="" className="w-8 h-8 object-contain" crossOrigin="anonymous" />
             )}
             <div className="min-w-0">
               <div className="font-semibold text-xs text-[var(--text-primary)] truncate">{info.name}</div>

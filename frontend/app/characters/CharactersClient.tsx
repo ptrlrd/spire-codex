@@ -9,6 +9,7 @@ import { useLanguage } from "../contexts/LanguageContext";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
+import { imageUrl } from "@/lib/image-url";
 
 function toUpperSnake(s: string): string {
   return s.replace(/([a-z0-9])([A-Z])/g, "$1_$2").toUpperCase();
@@ -94,7 +95,7 @@ const [characters, setCharacters] = useState<Character[]>(initialCharacters);
                 {char.name}
               </h2>
               <img
-                src={`${API}/static/images/characters/character_icon_${char.id.toLowerCase()}.webp`}
+                src={imageUrl(`/static/images/characters/character_icon_${char.id.toLowerCase()}.webp`)}
                 alt={`${char.name} - Slay the Spire 2 Character`}
                 className="w-10 h-10 rounded-full object-cover border-2 border-[var(--border-subtle)] ml-auto flex-shrink-0"
                 loading="lazy"

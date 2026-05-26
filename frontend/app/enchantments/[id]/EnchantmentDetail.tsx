@@ -11,6 +11,7 @@ import { t } from "@/lib/ui-translations";
 import LocalizedNames from "@/app/components/LocalizedNames";
 import EntityHistory from "@/app/components/EntityHistory";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
+import { imageUrl } from "@/lib/image-url";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -77,7 +78,7 @@ export default function EnchantmentDetail({ initialEnchantment }: { initialEncha
         {enchantment.image_url && (
           <div className="flex justify-center mb-6">
             <img
-              src={`${API}${enchantment.image_url}`}
+              src={imageUrl(enchantment.image_url)}
               alt={`${enchantment.name} - Slay the Spire 2 Enchantment`}
               className="w-24 h-24 object-contain"
               crossOrigin="anonymous"
