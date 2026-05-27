@@ -392,9 +392,35 @@ export default function SubmitRunClient() {
             {t("Drop files here...", lang)}
           </p>
         ) : (
-          <p className="text-[var(--text-primary)] font-medium">
+          <p className="text-[var(--text-primary)] font-medium mb-3">
             Drop .run files here or click to browse
           </p>
+        )}
+
+        {!isDragging && (
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-center gap-2 sm:gap-3" onClick={(e) => e.stopPropagation()}>
+            <a
+              href="https://www.overwolf.com/app/ptrlrd-spire_codex"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center w-full sm:w-auto px-5 py-2.5 sm:py-2 rounded-lg text-sm font-medium bg-[var(--accent-gold)] text-white hover:opacity-90 transition-opacity"
+            >
+              Download Overwolf Companion App
+            </a>
+            <label className="inline-flex items-center justify-center w-full sm:w-auto px-5 py-2.5 sm:py-2 rounded-lg text-sm font-medium bg-[var(--bg-primary)] text-[var(--text-primary)] border border-[var(--border-accent)] hover:bg-[var(--bg-card-hover)] transition-colors cursor-pointer">
+              {t("Choose Files", lang)}
+              <input
+                type="file"
+                multiple
+                accept=".run,.json"
+                className="hidden"
+                onChange={(e) => {
+                  if (e.target.files) handleFileUpload(e.target.files);
+                  e.target.value = "";
+                }}
+              />
+            </label>
+          </div>
         )}
 
         {uploadProgress && (

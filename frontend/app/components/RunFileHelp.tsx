@@ -7,18 +7,7 @@ export default function RunFileHelp() {
   const { lang } = useLanguage();
 
   return (
-    <div className="text-left text-xs text-[var(--text-muted)] space-y-3" onClick={(e) => e.stopPropagation()}>
-      <div className="flex flex-col sm:flex-row sm:items-center gap-2">
-        <a
-          href="https://www.overwolf.com/app/ptrlrd-spire_codex"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center justify-center w-full sm:w-auto px-4 py-2 rounded-lg text-sm font-medium bg-[var(--accent-gold)] text-[var(--bg-primary)] hover:opacity-90 transition-opacity"
-        >
-          Download Overwolf Companion App
-        </a>
-      </div>
-
+    <div className="text-left text-xs text-[var(--text-muted)]" onClick={(e) => e.stopPropagation()}>
       <div className="space-y-1.5">
         <p className="text-[var(--text-secondary)]">
           {t("Your .run files live here:", lang)}
