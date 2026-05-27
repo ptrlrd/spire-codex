@@ -177,6 +177,22 @@ async def delete_run(run_hash: str, request: Request):
     return {"success": True}
 
 
+@router.get("/stats")
+@limiter.limit("10/minute")
+async def user_stats(request: Request):
+    user = require_user(request)
+    username = user.get("username")
+    if not username:
+        return {"total_runs": 0}
+
+    if not os.environ.get("MONGO_URL", "").strip():
+        return {"total_runs": 0}
+
+    from ..services.runs_db_mongo import get_stats
+
+    return get_stats(username=username)
+
+
 @router.post("/runs/upload")
 @limiter.limit("10/minute")
 async def upload_runs(request: Request, files: list[UploadFile] = File(...)):

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useAuth } from "@/app/contexts/AuthContext";
 import { useToast } from "@/app/components/Toast";
 import RunDropZone from "@/app/components/RunDropZone";
+import ProfileStats from "@/app/components/ProfileStats";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -290,6 +291,12 @@ export default function ProfileClient() {
             )}
           </>
         )}
+      </section>
+
+      {/* Personal Stats */}
+      <section>
+        <h2 className="text-lg font-semibold text-[var(--text-primary)] mb-3">Your Stats</h2>
+        <ProfileStats />
       </section>
     </div>
   );
