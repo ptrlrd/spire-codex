@@ -60,14 +60,36 @@ All data endpoints accept `?lang=` (default: `eng`). Rate limited to 60 req/min 
 
 | Endpoint | Method | Description |
 |----------|--------|-------------|
-| `POST /api/runs` | POST | Submit a run. Optional `?username=` param (25 char max) |
+| `POST /api/runs` | POST | Submit a run. Optional `?username=` param (32 char max) |
 | `GET /api/runs/stats` | GET | Aggregated community stats. Filters: `character`, `win`, `ascension`, `game_mode`, `players` |
-| `GET /api/runs/list` | GET | Browse runs. Filters: `character`, `win`, `username`, `seed` (LIKE), `build_id`, `sort` (`date`, `time_asc`, `time_desc`, `ascension_desc`), `page`, `limit` |
-| `GET /api/runs/shared/{hash}` | GET | Retrieve a shared run by hash. Response merges `username` from `runs.db` so the shared-run page can render "by {username}" without a second round trip. |
-| `GET /api/runs/leaderboard` | GET | Ranked wins-only leaderboard. Filters: `category` (`fastest`, `highest_ascension`), `character`, `page`, `limit` |
-| `GET /api/runs/scores/{type}` | GET | Codex Score per entity. `type` ∈ `cards` / `relics` / `potions`. Returns `{ id, score (0–100), tier (S/A/B/C/D/F), wins, losses, n }[]`. Bayesian-shrunk win rate; pre-warmed on FastAPI startup. See `services/run_entity_stats.py` and `/leaderboards/scoring` for the formula. |
+| `GET /api/runs/list` | GET | Browse runs. Filters: `character`, `win`, `username`, `seed` (LIKE), `build_id`, `build_ids` (comma list), `players` (`single`/`multi`), `game_mode`, `ascension`, `ascension_min`, `ascension_max`, `card`, `relic` (exact id; comma-separated = AND), `today`, `sort` (`date`, `time_asc`, `time_desc`, `ascension_desc`), `page`, `limit` |
+| `GET /api/runs/shared/{hash}` | GET | Retrieve a shared run by hash. Response merges `username` from the runs DB so the shared-run page can render "by {username}" without a second round trip. |
+| `GET /api/runs/leaderboard` | GET | Ranked wins-only leaderboard. Filters: `category` (`fastest`, `highest_ascension`), `character`, `players`, `game_mode`, `today`, `page`, `limit` |
+| `GET /api/runs/leaderboard/rank/{hash}` | GET | Rank of one winning run within its ladder. `category` filter. |
+| `POST /api/runs/claim` | POST | Body `{ username, hashes: [] }` — attaches a username to previously-submitted runs (only rows with a null/empty username). |
+| `GET /api/runs/scores/{type}` | GET | Codex Score per entity. `type` ∈ `cards` / `relics` / `potions`. Returns `{ id, score (0–100), tier (S/A/B/C/D/F), wins, losses, n }[]`. Bayesian-shrunk win rate graded against the per-type average, materialized to MongoDB by a single leader and read by all workers. See `services/run_entity_stats.py` and `/leaderboards/scoring`. |
 | `GET /api/runs/encounter-stats` | GET | Per-encounter aggregation. Query params: `act` (comma-separated 1/2/3), `room_type` (comma-separated monster/elite/boss), `multiplayer` (`only`/`exclude`), `page`, `limit` (max 200, default 50). Returns `{ encounters: [{ encounter_id, act, room_type, total, fatal, avg_damage, avg_turns, characters: [{ character, total, fatal, avg_damage, avg_turns }] }], page, limit, total, has_next }`. Mongo-only; returns empty when no Mongo backend is configured. |
 | `GET /api/runs/versions` | GET | Distinct `build_id` values across submitted runs — powers the version filter dropdown |
+
+## User Accounts
+
+Cookie/JWT session. Sign in with Steam (OpenID) or Discord (OAuth). Requires `MONGO_URL` + the auth env vars (`JWT_SECRET`, `DISCORD_CLIENT_ID/SECRET`, `FRONTEND_URL`, `SPIRE_CODEX_PUBLIC_BASE`).
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `GET /api/auth/me` | GET | Current user, or 401 |
+| `GET /api/auth/steam/redirect` | GET | Begin Steam OpenID flow |
+| `GET /api/auth/discord/start` | GET | Begin Discord OAuth flow |
+| `POST /api/auth/logout` | POST | Clear the session cookie |
+| `POST /api/auth/set-cookie` | POST | Exchange a token for an httpOnly cookie (cross-origin dev) |
+| `PATCH /api/auth/username` | PATCH | Update username (32 char max, 3 changes/day) |
+| `PATCH /api/auth/email` | PATCH | Update email |
+| `GET /api/auth/runs` | GET | The user's runs (paginated) |
+| `POST /api/auth/runs/upload` | POST | Multi-file `.run` upload, claimed to the user |
+| `DELETE /api/auth/runs/{hash}` | DELETE | Soft-delete one of the user's runs |
+| `GET /api/auth/stats` | GET | Per-user aggregated stats (profile page) |
+| `GET /api/auth/personal-bests` | GET | Fastest solo/co-op, highest ascension, today's + all-time daily |
+| `GET /api/auth/competitive` | GET | Today's daily leaderboard, per-best global rank, win rate vs community |
 
 ## Utility
 
