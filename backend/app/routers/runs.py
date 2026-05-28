@@ -681,9 +681,21 @@ def start_stats_refresher() -> None:
                     refresh_stats_summary,
                     try_acquire_refresh_lease,
                 )
+                from ..services.run_entity_stats import (
+                    refresh_entity_stats_snapshot,
+                )
 
                 if try_acquire_refresh_lease():
                     refresh_stats_summary()
+                    # Rebuild the shared entity-stats snapshot (tier-list
+                    # / Codex Score source) on the same leader-only loop.
+                    # Internally throttled, so this is a no-op find_one
+                    # most cycles and only walks the run files every
+                    # ~10 min on one worker.
+                    try:
+                        refresh_entity_stats_snapshot()
+                    except Exception:
+                        pass
             except Exception:
                 # SQLite path or transient failure — sleep and retry.
                 pass
