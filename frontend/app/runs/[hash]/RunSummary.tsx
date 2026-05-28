@@ -249,7 +249,7 @@ export default function RunSummary({ run, player, cardData, relicData, potionDat
           {run.username && (
             <div className="truncate">
               <Link
-                href={`${lp}/leaderboards?tab=browse&user=${encodeURIComponent(run.username)}`}
+                href={`${lp}/runs?username=${encodeURIComponent(run.username)}`}
                 className="text-[var(--text-secondary)] hover:text-[var(--accent-gold)] hover:underline"
                 title={t("View all runs by this player", lang)}
               >

@@ -1217,8 +1217,14 @@ def list_runs(
     seed: str | None = None,
     sort: str | None = None,
     build_id: str | None = None,
+    build_ids: str | None = None,
     players: str | None = None,
     game_mode: str | None = None,
+    ascension: int | None = None,
+    ascension_min: int | None = None,
+    ascension_max: int | None = None,
+    card: str | None = None,
+    relic: str | None = None,
     today: bool = False,
     page: int = 1,
     limit: int = 50,
@@ -1237,7 +1243,9 @@ def list_runs(
         q["username"] = {"$regex": username, "$options": "i"}
     if seed:
         q["seed"] = {"$regex": seed, "$options": "i"}
-    if build_id:
+    if build_ids:
+        q["build_id"] = {"$in": [b for b in build_ids.split(",") if b]}
+    elif build_id:
         q["build_id"] = build_id
     if players == "single":
         q["player_count"] = 1
@@ -1245,6 +1253,31 @@ def list_runs(
         q["player_count"] = {"$gt": 1}
     if game_mode:
         q["game_mode"] = game_mode
+    if ascension is not None:
+        q["ascension"] = ascension
+    elif ascension_min is not None or ascension_max is not None:
+        asc_range: dict[str, int] = {}
+        if ascension_min is not None:
+            asc_range["$gte"] = ascension_min
+        if ascension_max is not None:
+            asc_range["$lte"] = ascension_max
+        q["ascension"] = asc_range
+    if card:
+        cards = [
+            c.strip().upper().replace(" ", "_") for c in card.split(",") if c.strip()
+        ]
+        if len(cards) == 1:
+            q["deck.id"] = cards[0]
+        elif cards:
+            q["deck.id"] = {"$all": cards}
+    if relic:
+        relics_f = [
+            r.strip().upper().replace(" ", "_") for r in relic.split(",") if r.strip()
+        ]
+        if len(relics_f) == 1:
+            q["relics.id"] = relics_f[0]
+        elif relics_f:
+            q["relics.id"] = {"$all": relics_f}
     if today:
         today_start = datetime.now(timezone.utc).replace(
             hour=0, minute=0, second=0, microsecond=0

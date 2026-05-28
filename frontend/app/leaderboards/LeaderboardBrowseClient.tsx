@@ -258,14 +258,18 @@ export default function LeaderboardBrowseClient() {
   const TABS: { key: Tab; label: string; shortLabel: string }[] = [
     { key: "fastest", label: t("Fastest Wins", lang), shortLabel: t("Fastest", lang) },
     { key: "highest_ascension", label: t("Highest Ascension", lang), shortLabel: t("Ascension", lang) },
-    { key: "browse", label: t("Browse Runs", lang), shortLabel: t("Browse", lang) },
   ];
 
   const isLeaderboard = tab !== "browse";
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h1 className="text-3xl font-bold text-[var(--accent-gold)] mb-4">{t("Leaderboards", lang)}</h1>
+      <div className="flex items-end justify-between mb-4">
+        <h1 className="text-3xl font-bold text-[var(--accent-gold)]">{t("Leaderboards", lang)}</h1>
+        <Link href={`${lp}/runs`} className="text-xs text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors">
+          {t("Browse Runs", lang)} →
+        </Link>
+      </div>
 
       {/* Single vs Multi mode toggle — these are tracked separately in
           the runs collection (player_count == 1 vs > 1) and a fast
@@ -301,15 +305,21 @@ export default function LeaderboardBrowseClient() {
           {([
             { value: "standard" as GameMode, label: t("Standard", lang) },
             { value: "daily" as GameMode, label: t("Daily", lang) },
-            { value: "daily_today" as GameMode, label: t("Today", lang) },
             { value: "custom" as GameMode, label: t("Custom", lang) },
             { value: "" as GameMode, label: t("All Modes", lang) },
           ]).map(({ value, label }) => (
             <button
               key={value || "all"}
-              onClick={() => setGameMode(value)}
+              onClick={() => {
+                // Leaving Daily clears the daily_today sub-filter
+                if (gameMode === "daily_today" && value !== "daily") {
+                  setGameMode(value);
+                } else {
+                  setGameMode(value);
+                }
+              }}
               className={`px-3 py-1.5 text-sm font-medium rounded transition-colors ${
-                gameMode === value
+                (gameMode === value) || (value === "daily" && gameMode === "daily_today")
                   ? "bg-[var(--accent-gold)] text-[var(--bg-primary)]"
                   : "text-[var(--text-muted)] hover:text-[var(--text-primary)]"
               }`}
@@ -318,6 +328,20 @@ export default function LeaderboardBrowseClient() {
             </button>
           ))}
         </div>
+
+        {/* Today sub-filter — only visible under Daily mode */}
+        {(gameMode === "daily" || gameMode === "daily_today") && (
+          <button
+            onClick={() => setGameMode(gameMode === "daily_today" ? "daily" : "daily_today")}
+            className={`px-3 py-1.5 text-sm font-medium rounded-lg border transition-colors ${
+              gameMode === "daily_today"
+                ? "bg-[var(--accent-gold)] text-[var(--bg-primary)] border-[var(--accent-gold)]"
+                : "bg-[var(--bg-primary)] border-[var(--border-subtle)] text-[var(--text-muted)] hover:text-[var(--text-primary)]"
+            }`}
+          >
+            {t("Today", lang)}
+          </button>
+        )}
       </div>
 
       {/* Tabs */}
