@@ -82,6 +82,9 @@ function parseQuery(q: string): {
   const filters: Record<string, string> = {};
   const tokens = q.match(/(\w+):"[^"]+"|\w+:[\S]+|[^\s]+/g) || [];
   const restTokens: string[] = [];
+  // card/relic accumulate across repeated tokens AND comma-separated values
+  const appendMulti = (existing: string | undefined, value: string) =>
+    existing ? `${existing},${value}` : value;
   for (const tok of tokens) {
     const m = /^([a-z]+):"?([^"]+)"?$/i.exec(tok);
     if (!m) {
@@ -98,8 +101,8 @@ function parseQuery(q: string): {
     else if (["mode", "gamemode"].includes(key)) filters.mode = value;
     else if (["result", "win"].includes(key)) filters.result = value;
     else if (["players", "p"].includes(key)) filters.players = value;
-    else if (["card"].includes(key)) filters.card = value;
-    else if (["relic"].includes(key)) filters.relic = value;
+    else if (["card", "cards"].includes(key)) filters.card = appendMulti(filters.card, value);
+    else if (["relic", "relics"].includes(key)) filters.relic = appendMulti(filters.relic, value);
     else restTokens.push(tok);
   }
   return { filters, rest: restTokens.join(" ").trim() };
@@ -310,7 +313,7 @@ export default function BrowseRunsClient() {
           className="w-full text-sm px-4 py-2.5 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)]"
         />
         <p className="mt-1.5 text-[10px] text-[var(--text-tertiary)]">
-          Expressions: <code>user:name</code>, <code>char:ironclad</code>, <code>asc:10</code> or <code>asc:3-7</code>, <code>card:bash</code>, <code>relic:burning_blood</code>, <code>version:v0.106.0</code> or <code>version:v0.104.0-v0.106.0</code>, <code>seed:abc</code>, <code>mode:daily</code>, <code>result:win</code>, <code>players:single</code>
+          Expressions: <code>user:name</code>, <code>char:ironclad</code>, <code>asc:10</code> or <code>asc:3-7</code>, <code>card:bash,anger</code>, <code>relic:burning_blood</code> (combine for AND), <code>version:v0.106.0</code> or <code>version:v0.104.0-v0.106.0</code>, <code>seed:abc</code>, <code>mode:daily</code>, <code>result:win</code>, <code>players:single</code>
         </p>
       </div>
 

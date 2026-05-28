@@ -1263,9 +1263,21 @@ def list_runs(
             asc_range["$lte"] = ascension_max
         q["ascension"] = asc_range
     if card:
-        q["deck.id"] = card.strip().upper().replace(" ", "_")
+        cards = [
+            c.strip().upper().replace(" ", "_") for c in card.split(",") if c.strip()
+        ]
+        if len(cards) == 1:
+            q["deck.id"] = cards[0]
+        elif cards:
+            q["deck.id"] = {"$all": cards}
     if relic:
-        q["relics.id"] = relic.strip().upper().replace(" ", "_")
+        relics_f = [
+            r.strip().upper().replace(" ", "_") for r in relic.split(",") if r.strip()
+        ]
+        if len(relics_f) == 1:
+            q["relics.id"] = relics_f[0]
+        elif relics_f:
+            q["relics.id"] = {"$all": relics_f}
     if today:
         today_start = datetime.now(timezone.utc).replace(
             hour=0, minute=0, second=0, microsecond=0
