@@ -9,6 +9,7 @@ import SearchFilter from "../components/SearchFilter";
 import RichDescription from "../components/RichDescription";
 import { useLanguage } from "../contexts/LanguageContext";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
+import { imageUrl } from "@/lib/image-url";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -93,7 +94,7 @@ export default function EnchantmentsClient({ initialEnchantments }: { initialEnc
             <div className="flex items-start gap-3 mb-2">
               {ench.image_url && (
                 <img
-                  src={`${API}${ench.image_url}`}
+                  src={imageUrl(ench.image_url)}
                   alt={`${ench.name} enchantment icon`}
                   className="w-10 h-10 object-contain flex-shrink-0"
                   loading="lazy"

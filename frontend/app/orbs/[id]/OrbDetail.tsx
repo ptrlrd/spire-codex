@@ -11,6 +11,7 @@ import { t } from "@/lib/ui-translations";
 import LocalizedNames from "@/app/components/LocalizedNames";
 import EntityHistory from "@/app/components/EntityHistory";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
+import { imageUrl } from "@/lib/image-url";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -63,7 +64,7 @@ export default function OrbDetail({ initialOrb }: { initialOrb?: Orb | null } = 
         {orb.image_url && (
           <div className="flex justify-center mb-4">
             <img
-              src={`${API}${orb.image_url}`}
+              src={imageUrl(orb.image_url)}
               alt={`${orb.name} - Slay the Spire 2 Orb`}
               className="w-16 h-16 object-contain"
               crossOrigin="anonymous"

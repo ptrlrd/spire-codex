@@ -16,6 +16,7 @@ import { cachedFetch } from "@/lib/fetch-cache";
 import RichDescription from "../components/RichDescription";
 import { useLanguage } from "../contexts/LanguageContext";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
+import { imageUrl } from "@/lib/image-url";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -189,7 +190,7 @@ export default function ReferenceClient({
           <div className="flex items-start gap-3">
             {orb.image_url && (
               <img
-                src={`${API}${orb.image_url}`}
+                src={imageUrl(orb.image_url)}
                 alt={orb.name}
                 className="w-10 h-10 object-contain flex-shrink-0 mt-0.5"
                 crossOrigin="anonymous"
@@ -249,7 +250,7 @@ export default function ReferenceClient({
           <div className="flex items-start gap-3">
             {intent.image_url && (
               <img
-                src={`${API}${intent.image_url}`}
+                src={imageUrl(intent.image_url)}
                 alt={intent.name}
                 className="w-10 h-10 object-contain flex-shrink-0 mt-0.5"
                 crossOrigin="anonymous"

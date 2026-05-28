@@ -48,8 +48,8 @@ data/
   guides.json   Parsed guide data
   ancient_pools.json
   showcase.json
-  runs.db       SQLite (not committed)
-  runs/         Shared run JSONs (not committed)
+  runs.db       Legacy SQLite fallback, not committed (run metadata now lives in MongoDB)
+  runs/         Submitted run JSONs, not committed (deck/relic source for Codex Score)
 ```
 
 ## Parsing Data

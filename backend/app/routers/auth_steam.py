@@ -38,7 +38,7 @@ from typing import Optional
 
 import httpx
 from fastapi import APIRouter, HTTPException, Request
-from fastapi.responses import HTMLResponse, JSONResponse
+from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse
 from pydantic import BaseModel
 from slowapi import Limiter
 
@@ -65,6 +65,9 @@ class _Session:
     created_at: float
     steamid: Optional[str] = None
     persona_name: Optional[str] = None
+    user_id: Optional[str] = None
+    token: Optional[str] = None
+    needs_email: bool = False
     error: Optional[str] = None
 
 
@@ -143,6 +146,30 @@ async def start(request: Request) -> dict:
     }
 
 
+@router.get("/redirect")
+@limiter.limit("20/minute")
+async def redirect_to_steam(request: Request):
+    """Direct browser redirect to Steam login. For mobile and popup-blocked flows."""
+    sid = _new_session()
+    base = _public_base(request)
+    return_to = f"{base}/api/auth/steam/callback?session={sid}"
+    realm = base + "/"
+
+    params = {
+        "openid.ns": "http://specs.openid.net/auth/2.0",
+        "openid.mode": "checkid_setup",
+        "openid.return_to": return_to,
+        "openid.realm": realm,
+        "openid.identity": "http://specs.openid.net/auth/2.0/identifier_select",
+        "openid.claimed_id": "http://specs.openid.net/auth/2.0/identifier_select",
+    }
+    login_url = "https://steamcommunity.com/openid/login?" + urllib.parse.urlencode(
+        params
+    )
+    logger.info("steam-auth redirect session=%s", sid[:8])
+    return RedirectResponse(login_url)
+
+
 @router.get("/callback", response_class=HTMLResponse)
 async def callback(request: Request) -> HTMLResponse:
     """Steam-OpenID return URL. Validates with Steam and stores the result."""
@@ -150,9 +177,10 @@ async def callback(request: Request) -> HTMLResponse:
     session_id = qs.get("session", "")
     session = _sessions.get(session_id)
     if not session:
-        return _close_page(
-            error="This sign-in link has expired. Try again from the overlay."
-        )
+        import os
+
+        frontend = os.environ.get("FRONTEND_URL", "").strip() or _public_base(request)
+        return RedirectResponse(f"{frontend}/profile")
 
     # OpenID response can also be `cancel` if the user bailed.
     mode = qs.get("openid.mode")
@@ -199,12 +227,44 @@ async def callback(request: Request) -> HTMLResponse:
     persona = await _fetch_persona_name(steamid)
     session.persona_name = persona
 
+    # Create or find user doc and issue JWT
+    try:
+        from ..services.users_db import find_or_create_by_steam
+        from ..services.auth_jwt import create_token
+
+        user = find_or_create_by_steam(steamid, persona)
+        session.user_id = user["_id"]
+        session.token = create_token(user_id=user["_id"], steam_id=steamid)
+        session.needs_email = not user.get("email")
+    except Exception as exc:
+        logger.warning("steam-auth user creation failed: %s", exc)
+        # Non-fatal: auth still succeeded, just no persistent user yet
+
     logger.info(
-        "steam-auth ok session=%s steamid=%s persona=%s",
+        "steam-auth ok session=%s steamid=%s persona=%s user=%s",
         session_id[:8],
         steamid,
         persona,
+        session.user_id,
     )
+
+    # Redirect to frontend with token in URL. The frontend reads
+    # the token param and calls a backend endpoint to set the cookie
+    # on the correct origin. In production (same domain) the cookie
+    # approach works directly; in local dev (different ports) we need
+    # this token handoff.
+    if session.token:
+        import os
+
+        frontend = os.environ.get("FRONTEND_URL", "").strip() or _public_base(request)
+        _sessions.pop(session_id, None)
+        response = RedirectResponse(
+            f"{frontend}/profile?auth=steam&token={session.token}"
+        )
+        response.headers["Cache-Control"] = "no-store, no-cache"
+        response.headers["Pragma"] = "no-cache"
+        return response
+
     return _close_page(name=persona, steamid=steamid)
 
 
@@ -239,9 +299,19 @@ async def poll(session_id: str) -> JSONResponse:
         "status": "ok",
         "steamid": session.steamid,
         "persona_name": session.persona_name,
+        "user_id": session.user_id,
+        "token": session.token,
+        "needs_email": session.needs_email,
     }
     _sessions.pop(session_id, None)
-    return JSONResponse(payload)
+
+    response = JSONResponse(payload)
+    if session.token:
+        from ..services.auth_jwt import set_auth_cookie
+
+        set_auth_cookie(response, session.token)
+
+    return response
 
 
 async def _fetch_persona_name(steamid: str) -> Optional[str]:

@@ -3,6 +3,7 @@
 import { useState, type ReactNode } from "react";
 import Link from "next/link";
 import RichDescription from "@/app/components/RichDescription";
+import { imageUrl } from "@/lib/image-url";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -83,7 +84,7 @@ export function CardPill({
           <div className="flex items-start gap-2 mb-1.5">
             {info.image_url && (
               <img
-                src={`${API}${info.image_url}`}
+                src={imageUrl(info.image_url)}
                 alt=""
                 className="w-10 h-10 object-cover rounded"
                 crossOrigin="anonymous"
@@ -137,7 +138,7 @@ export function RelicPill({
           <div className="flex items-start gap-2 mb-1.5">
             {info.image_url && (
               <img
-                src={`${API}${info.image_url}`}
+                src={imageUrl(info.image_url)}
                 alt=""
                 className="w-8 h-8 object-contain"
                 crossOrigin="anonymous"
@@ -186,7 +187,7 @@ export function PotionPill({
           <div className="flex items-start gap-2 mb-1.5">
             {info.image_url && (
               <img
-                src={`${API}${info.image_url}`}
+                src={imageUrl(info.image_url)}
                 alt=""
                 className="w-8 h-8 object-contain"
                 crossOrigin="anonymous"

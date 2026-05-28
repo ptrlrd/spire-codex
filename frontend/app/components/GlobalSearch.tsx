@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useLanguage } from "../contexts/LanguageContext";
 import { buildApiUrl } from "@/lib/fetch-cache";
 import { t } from "@/lib/ui-translations";
+import { imageUrl } from "@/lib/image-url";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -92,9 +93,9 @@ const CATEGORIES: CategoryConfig[] = [
   {
     label: "Images",
     endpoint: "/api/images/search",
-    linkFn: (item) => `${API}${item.url}`,
+    linkFn: (item) => imageUrl(item.url as string),
     subtitleFn: (item) => (item.category_name ? String(item.category_name) : ""),
-    thumbFn: (item) => `${API}${item.url}`,
+    thumbFn: (item) => imageUrl(item.url as string),
     openExternal: true,
   },
 ];

@@ -11,6 +11,7 @@ import LocalizedNames from "@/app/components/LocalizedNames";
 import EntityHistory from "@/app/components/EntityHistory";
 import EntityProse from "@/app/components/EntityProse";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
+import { imageUrl } from "@/lib/image-url";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -86,7 +87,7 @@ export default function PowerDetail({ initialPower }: { initialPower?: Power | n
         {power.image_url && (
           <div className="flex justify-center mb-6">
             <img
-              src={`${API}${power.image_url}`}
+              src={imageUrl(power.image_url)}
               alt={`${power.name} - Slay the Spire 2 Power`}
               className="w-24 h-24 object-contain"
               crossOrigin="anonymous"

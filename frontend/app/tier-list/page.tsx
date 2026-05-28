@@ -4,6 +4,7 @@ import { SITE_URL, SITE_NAME, DEFAULT_OG_IMAGE, buildLanguageAlternates } from "
 import JsonLd from "@/app/components/JsonLd";
 import { buildBreadcrumbJsonLd, buildCollectionPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 import ScoreBadge from "@/app/components/ScoreBadge";
+import { imageUrl } from "@/lib/image-url";
 
 const API_INTERNAL = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 const API_PUBLIC = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
@@ -256,7 +257,7 @@ export default async function TierListIndex() {
                       >
                         {ent.image_url && (
                           <img
-                            src={`${API_PUBLIC}${ent.image_url}`}
+                            src={imageUrl(ent.image_url)}
                             alt={ent.name}
                             className="w-12 h-12 object-contain"
                             loading="lazy"

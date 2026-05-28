@@ -188,9 +188,12 @@ spire-codex/
 | Guides | `/guides` | Community strategy guides with search/filter |
 | Guide Detail | `/guides/[slug]` | Full guide with markdown rendering + tooltip widget |
 | Submit Guide | `/guides/submit` | Guide submission form (Discord webhook) |
-| Leaderboards | `/leaderboards` | Three-tab browser: Fastest Wins, Highest Ascension, Browse Runs (search by seed/username, filter by character/win/loss/game version) |
-| Submit a Run | `/leaderboards/submit` | Drag-and-drop `.run` upload, JSON paste fallback, upload progress |
+| Leaderboards | `/leaderboards` | Fastest Wins and Highest Ascension ladders with single/co-op and game-mode filters (standard / daily / Today / custom). All filter state is in the URL so any view is shareable |
+| Browse Runs | `/runs` | Full run browser with an expression search bar (`user:`, `char:`, `asc:` ranges, `card:`/`relic:` multi-value AND, `version:` ranges, `mode:`, `result:`, `players:`) plus dropdown filters, sort, and shareable URLs |
+| Submit a Run | `/leaderboards/submit` | Drag-and-drop `.run` upload with Overwolf companion link, Steam/Discord sign-in to auto-associate runs, and your recent runs |
 | Stats | `/leaderboards/stats` | Ranked tables (pick rate, win rate, count) for cards, relics, potions, encounters. Filter by character / ascension / outcome |
+| Profile | `/profile` | Signed-in user's stats (top cards/relics/potions, character breakdown), personal bests, competitive comparison (today's daily leaderboard, global ranks, win rate vs community), and run management |
+| Settings | `/settings` | Account settings: username, email, linked Steam/Discord |
 | Shared Run | `/runs/[hash]` | In-game-style victory/defeat summary with clickable map-node icons, relic strip, and tiny-card grid |
 | Reference | `/reference` | All items clickable — acts, ascensions, keywords, orbs, afflictions, intents, modifiers, achievements |
 | Images | `/images` | Browsable game assets with ZIP download per category |
@@ -263,17 +266,35 @@ All data endpoints accept an optional `?lang=` query parameter (default: `eng`).
 | `GET /api/guides/{slug}` | Single guide (with markdown content) | — |
 | `POST /api/guides` | Submit guide (proxied to Discord) | — |
 | `POST /api/runs` | Submit a run (.run file JSON) | `username` |
-| `GET /api/runs/list` | List submitted runs | `character`, `win`, `username`, `seed`, `build_id`, `sort`, `page`, `limit` |
+| `GET /api/runs/list` | List/browse submitted runs | `character`, `win`, `username`, `seed`, `build_id`, `build_ids`, `players`, `game_mode`, `ascension`, `ascension_min`, `ascension_max`, `card`, `relic`, `today`, `sort`, `page`, `limit` |
 | `GET /api/runs/shared/{hash}` | Full run data by hash (merges `username` from DB) | — |
 | `GET /api/runs/stats` | Aggregated community stats | `character`, `win`, `ascension`, `game_mode`, `players` |
-| `GET /api/runs/leaderboard` | Ranked wins-only leaderboard | `category` (`fastest`, `highest_ascension`), `character`, `page`, `limit` |
+| `GET /api/runs/leaderboard` | Ranked wins-only leaderboard | `category` (`fastest`, `highest_ascension`), `character`, `players`, `game_mode`, `today`, `page`, `limit` |
+| `GET /api/runs/leaderboard/rank/{hash}` | Rank of a single winning run within its ladder | `category` |
 | `GET /api/runs/scores/{type}` | Codex Score (Bayesian-shrunk win-rate score + S/A/B/C/D/F tier) per entity | `type` = `cards`/`relics`/`potions` |
+| `GET /api/runs/encounter-stats` | Per-encounter aggregates (appearance, fatal rate, avg damage/turns) | `act`, `room_type`, `multiplayer`, `page`, `limit` |
+| `POST /api/runs/claim` | Attach a username to previously-submitted runs by hash | — |
 | `GET /api/runs/versions` | Distinct game versions across submitted runs | — |
+| `GET /api/exports/{lang}` | ZIP of all entity JSON for one language | `lang` |
 | `GET /api/news` | Steam announcements + community news (locally archived) | `feed_type`, `feedname`, `tag`, `since`, `search`, `limit`, `offset` |
 | `GET /api/news/{gid}` | Single news article (raw HTML/BBCode body) | — |
 | `GET /api/merchant/config` | Auto-extracted merchant pricing config | — |
 | `POST /api/feedback` | Submit feedback (proxied to Discord) | — |
 | `GET /api/versions` | Available data versions (beta multi-version) | — |
+
+**User accounts** (cookie/JWT session; sign in with Steam or Discord):
+
+| Endpoint | Description |
+|---|---|
+| `GET /api/auth/me` | Current signed-in user |
+| `GET /api/auth/steam/redirect` | Start Steam OpenID sign-in |
+| `GET /api/auth/discord/start` | Start Discord OAuth sign-in |
+| `POST /api/auth/logout` | Clear the session cookie |
+| `PATCH /api/auth/username` / `PATCH /api/auth/email` | Update profile fields |
+| `GET /api/auth/runs` / `POST /api/auth/runs/upload` / `DELETE /api/auth/runs/{hash}` | List, upload, and remove the user's runs |
+| `GET /api/auth/stats` | Per-user aggregated stats (profile page) |
+| `GET /api/auth/personal-bests` | Fastest solo/co-op, highest ascension, today's and all-time daily |
+| `GET /api/auth/competitive` | Today's daily leaderboard, global ranks, win rate vs community |
 
 Rate limited to **60 requests per minute** per IP. Feedback and guide submission limited to **3-5 per minute** per IP. Interactive docs at `/docs` (Swagger UI).
 
@@ -362,6 +383,25 @@ docker compose up --build
 ```
 
 Starts both services (backend on 8000, frontend on 3000).
+
+### Environment variables
+
+The core read-only API needs no configuration. The optional features below are
+enabled by env vars (set in the backend's environment or the compose file):
+
+| Variable | Used by | Notes |
+|---|---|---|
+| `MONGO_URL` | Backend | Runs database (community stats, leaderboards, accounts). When unset, the backend falls back to the legacy SQLite path (`data/runs.db`). |
+| `JWT_SECRET` | Backend | Signs user-account session tokens. |
+| `DISCORD_CLIENT_ID`, `DISCORD_CLIENT_SECRET` | Backend | Discord OAuth sign-in. |
+| `FRONTEND_URL`, `SPIRE_CODEX_PUBLIC_BASE` | Backend | OAuth redirect / return URLs. |
+| `ENVIRONMENT` | Backend | `production` toggles secure-cookie behavior. |
+| `NEXT_PUBLIC_API_URL` | Frontend (build) | API base; empty in prod so images/data resolve same-origin. |
+| `NEXT_PUBLIC_CDN_URL` | Frontend (build) | When set (e.g. `https://cdn.spire-codex.com`), images load from the CDN instead of `/static`. |
+| `NEXT_PUBLIC_SITE_URL` | Frontend (build) | Canonical site URL for metadata. |
+
+User accounts and the CDN are off by default, so the project runs end-to-end
+without any of these.
 
 ## Update Pipeline
 
@@ -746,9 +786,13 @@ Thanks to **vesper-arch**, **terracubist**, **U77654**, **Purple Aspired Dreamin
 ## Tech Stack
 
 - **Backend**: Python, FastAPI, Pydantic, slowapi, GZip compression
+- **Runs database**: MongoDB (community stats, leaderboards, user accounts), with a materialized `stats_summary` collection and a leader-elected background refresher. Legacy SQLite path kept as an offline fallback.
+- **Accounts**: Steam OpenID + Discord OAuth, JWT session cookies
 - **Frontend**: Next.js 16 (App Router), TypeScript, Tailwind CSS, 14-language support
+- **Images/CDN**: Cloudflare R2 served via `cdn.spire-codex.com` (webp)
+- **Analytics & observability**: self-hosted Umami, Prometheus + node-exporter
 - **Spine Renderer**: Node.js, Playwright, @esotericsoftware/spine-webgl (WebGL via headless Chrome)
-- **Infrastructure**: Docker, GitHub Actions CI (self-hosted K8s runner), SSH deploy
+- **Infrastructure**: Docker, GitHub Actions CI (self-hosted runner) with registry-backed BuildKit cache, Ansible/SSH deploy
 - **Tools**: Python (update pipeline, changelog diffing, image copying)
 
 ## License

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { useLanguage } from "../contexts/LanguageContext";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
+import { imageUrl } from "@/lib/image-url";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -73,7 +74,7 @@ function RelicPill({
       >
         {info?.image_url && (
           <img
-            src={`${API}${info.image_url}`}
+            src={imageUrl(info.image_url)}
             alt={name}
             className="w-8 h-8 object-contain"
             crossOrigin="anonymous"

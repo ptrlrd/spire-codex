@@ -8,6 +8,7 @@ import { cachedFetch } from "@/lib/fetch-cache";
 import SearchFilter from "../components/SearchFilter";
 import { useLanguage } from "../contexts/LanguageContext";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
+import { imageUrl } from "@/lib/image-url";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -124,7 +125,7 @@ export default function MonstersClient({ initialMonsters }: { initialMonsters: M
             {monster.image_url && (
               <div className="mb-3 -mx-4 -mt-4">
                 <img
-                  src={`${API}${monster.image_url}`}
+                  src={imageUrl(monster.image_url)}
                   alt={`${monster.name} - Slay the Spire 2 Monster`}
                   className="w-full h-40 object-contain rounded-t-lg"
                   loading="lazy"

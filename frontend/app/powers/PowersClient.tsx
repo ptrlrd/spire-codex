@@ -8,6 +8,7 @@ import SearchFilter from "../components/SearchFilter";
 import RichDescription from "../components/RichDescription";
 import { useLanguage } from "../contexts/LanguageContext";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
+import { imageUrl } from "@/lib/image-url";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -91,7 +92,7 @@ const [powers, setPowers] = useState<Power[]>(initialPowers);
                 <div className="flex items-center gap-2">
                   {power.image_url && (
                     <img
-                      src={`${API}${power.image_url}`}
+                      src={imageUrl(power.image_url)}
                       alt=""
                       className="w-8 h-8 object-contain flex-shrink-0"
                       crossOrigin="anonymous"

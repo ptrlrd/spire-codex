@@ -4,6 +4,7 @@ import { stripTags, stripTagsFlat, clipMetaDescription, buildLanguageAlternates,
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 import { redirectMissingEntity } from "@/lib/redirect-helpers";
+import { imageUrl } from "@/lib/image-url";
 
 // Relic data only changes on deploy. force-static + revalidate
 // keeps Next.js from auto-marking the page dynamic just because we
@@ -38,7 +39,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         url: `${SITE_URL}/relics/${id}`,
         title,
         description: metaDesc,
-        images: relic.image_url ? [{ url: `${API_PUBLIC}${relic.image_url}` }] : [],
+        images: relic.image_url ? [{ url: imageUrl(relic.image_url) }] : [],
       },
       twitter: { card: "summary_large_image", title, description: metaDesc },
       alternates: { canonical: `/relics/${id}`, languages: buildLanguageAlternates(`/relics/${id}`) },
@@ -64,7 +65,7 @@ export default async function Page({ params }: Props) {
         name: relic.name,
         description: desc || `${relic.name} relic from Slay the Spire 2`,
         path: `/relics/${id}`,
-        imageUrl: relic.image_url ? `${API_PUBLIC}${relic.image_url}` : undefined,
+        imageUrl: relic.image_url ? imageUrl(relic.image_url) : undefined,
         category: "Relic",
         breadcrumbs: [
           { name: "Home", href: "/" },

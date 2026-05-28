@@ -1,0 +1,63 @@
+{
+  "app_id": 2868840,
+  "game_version": "1.1.3",
+  "build_id": "",
+  "tag": "1.1.3",
+  "date": "2026-05-28",
+  "title": "User accounts, MongoDB migration, Codex Score tier lists, Cloudflare CDN, encounter stats, runs browser, and self-hosted analytics",
+  "from_ref": "v1.1.2",
+  "to_ref": "current",
+  "summary": {
+    "added": 0,
+    "removed": 0,
+    "changed": 0
+  },
+  "features": [
+    "A huge thank you to MegaCrit for showcasing Spire Codex, and to everyone submitting their runs: we just passed 100,000 runs uploaded. Every run makes the community stats, leaderboards, and Codex Score tiers sharper. This release is for you.",
+    "User accounts: sign in with Steam or Discord. New profile page with personal stats (top cards, relics, potions, character breakdown), personal bests (fastest solo, fastest co-op, highest ascension, today's and all-time fastest daily climb), and a competitive comparison section (today's daily-climb leaderboard, your global rank on each personal best, and your win rate versus the community per character). Claim and upload .run files to attach them to your account. (PR #350 and follow-ups)",
+    "MongoDB migration: the runs database (community stats, leaderboards, and stored runs) moved off SQLite to MongoDB so it scales with submission volume. Batched inserts on submit and a backup job for the runs data. (PRs #296, #293, #146)",
+    "Codex Score and tier lists: every card, relic, and potion now carries a 0-100 Codex Score derived from community win rates with Bayesian shrinkage so low-pick outliers don't dominate. Full S-through-F tier-list pages for cards, relics, and potions, with per-character and per-pool variants and a scoring explainer. Scores are graded against the per-type average rather than the global run win rate, so the tiers spread across S-F instead of piling into S. (PRs for Codex Score, tier list, scoring explainer, and #368)",
+    "Image delivery moved to a Cloudflare R2 CDN at cdn.spire-codex.com, serving webp. Frontend and backend resolve image URLs through the CDN when configured and fall back to local paths in dev. (PRs #352, #353, #354, #355)",
+    "Browse Runs page at /runs: an expression search bar (user:name, char:ironclad, asc:10 or asc:3-7 ranges, card:bash,anger and relic:akabeko with AND matching, version:v0.104.0-v0.106.0 ranges, mode:daily, result:win, players:single) plus dropdown filters, sort options, and shareable URLs for every filter combination. (PR #365 and follow-ups)",
+    "Encounter stats: per-encounter aggregates (appearance counts, win rates, gold and ascension context) surfaced from the runs data. (PRs #336, #337, #340)",
+    "Leaderboards: single-player vs co-op toggle, game-mode filter (standard, daily, custom), a Today filter under daily, run-rank lookup, and fully shareable URLs so you can link any view. (PRs #300, #306)",
+    "Bulk data exports: download all entity JSON per language as a ZIP, plus a runs export. (PRs #344, #347)",
+    "Self-hosted Umami analytics replacing the third-party script. (PRs #303, #304)",
+    "Observability: Prometheus node exporter, MongoDB and data-load instrumentation, per-origin metrics, and a multiprocess metrics fix for the multi-worker backend. (PRs #305, #302, #297)",
+    "Beta automation: per-version beta image sync and assets, a beta-watch pipeline, and an autodeploy cron so new beta builds ingest and ship without manual steps. (PRs #322, #326, #328, #329, #325)",
+    "New data pipelines: merchant config, mechanics constants, ancient relic pools, scaling mechanics, and character stats are now parsed from the source and served from the API. (PRs #171, and merchant/mechanics/scaling parsers)",
+    "SEO sweep: canonical URLs and hreflang alternates across pages, a metadata sweep, internal linking, a keyword sweep, and a consistent title format. (PRs #312, #314, #313, and follow-ups)",
+    "Live news refresh so the news vertical updates automatically. (PR #127)",
+    "Navbar and branding: Discord and Patreon quick links, white logo on mobile, Contact merged into About, official Discord symbol, and a favicon rebrand. (PRs #364, #294, and follow-ups)",
+    "Entity-stats cache is now materialized to MongoDB and rebuilt by a single leader process, so the multi-worker backend stops re-walking the run files on every worker and the tier list stays consistent under load. (PR #369)",
+    "Hardened rate limiting across endpoints with correct real-client-IP handling behind the proxy. (PRs #309, #298)",
+    "Community showcase additions: ClaudePlaysTheSpire and Spire Wrapped. (PRs #148 and follow-ups)",
+    "License and public API terms pages. (PR #147)",
+    "Username length raised to 32 characters to match Steam display names, so long names no longer get truncated and lose their run history."
+  ],
+  "fixes": [
+    "Run submission no longer double-fires when a file is dropped on the page, which previously logged a clean upload as part-duplicate.",
+    "Run validation reports which fields are missing or empty so unparseable .run files are easier to diagnose.",
+    "Community stats: official-characters filtering on the home page, username filter and per-character breakdowns on run stats, and a stats cache warmup.",
+    "Encounter stats backfill and a missing-location unwind in the aggregation pipeline.",
+    "Image resolver and image counts corrected; nginx redirect for legacy compendium character-icon paths.",
+    "News deduplication and refresh running under the correct bot identity in production.",
+    "Mobile fixes: leaderboard submit layout, stats overflow, dropdowns staying open, and the language globe selector.",
+    "Monster parser: power context argument and conditional-paren truncation in descriptions.",
+    "Keywords page prerenders at build time; reference page no longer points at a deprecated act.",
+    "Sitemap pruned of dead URLs and extended with tier-list variants.",
+    "CardGrid renders rich text tags correctly; relic related-items no longer double-label.",
+    "Rate-limited shared-run endpoint and corrected shared-run username display.",
+    "Beta version metric is environment-based and no longer inflates metric cardinality from static 404s.",
+    "Tri-boomerang pool condition, looming-fruit variants, and main-focus outline / scroll-past-banner behavior."
+  ],
+  "api_changes": [
+    "New authenticated endpoints under /api/auth: me, steam and discord sign-in redirects, set-cookie, username and email updates, runs, runs/upload, stats, personal-bests, and competitive.",
+    "New /api/runs/scores/{entity_type} returns Codex Scores for every card, relic, or potion, keyed by id.",
+    "New /api/runs/encounter-stats for per-encounter aggregates and /api/runs/leaderboard/rank/{run_hash} for a single run's rank.",
+    "New /api/runs/claim attaches a username to previously-submitted runs, and /api/exports/{lang} returns a ZIP of all entity JSON for a language.",
+    "/api/runs/list and /api/runs/leaderboard gained players, game_mode, today, ascension (with ascension_min and ascension_max ranges), card, relic, and build_ids filters.",
+    "Backend now runs on MongoDB when MONGO_URL is set; the SQLite path remains as a fallback."
+  ],
+  "categories": []
+}

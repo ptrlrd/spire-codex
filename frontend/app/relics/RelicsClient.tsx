@@ -10,6 +10,7 @@ import RichDescription from "../components/RichDescription";
 import { useLanguage } from "../contexts/LanguageContext";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
 import { useEntityScores } from "@/lib/use-entity-scores";
+import { imageUrl } from "@/lib/image-url";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -154,7 +155,7 @@ export default function RelicsClient({ initialRelics }: { initialRelics: Relic[]
               <div className="flex gap-3">
                 {relic.image_url && (
                   <img
-                    src={`${API}${relic.image_url}`}
+                    src={imageUrl(relic.image_url)}
                     alt={`${relic.name} - Slay the Spire 2 Relic`}
                     className="w-12 h-12 object-contain flex-shrink-0"
                     loading="lazy"

@@ -4,6 +4,8 @@ import { stripTags, stripTagsFlat, clipMetaDescription, buildLanguageAlternates,
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 
+import { imageUrl } from "@/lib/image-url";
+
 const API_INTERNAL = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 const API_PUBLIC = process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_API_URL || "";
 
@@ -30,7 +32,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         url: `${SITE_URL}/characters/${id}`,
         title,
         description: metaDesc,
-        images: [{ url: `${API_PUBLIC}/static/images/characters/combat_${char.id.toLowerCase()}.webp` }],
+        images: [{ url: imageUrl(`/static/images/characters/combat_${char.id.toLowerCase()}.webp`) }],
       },
       twitter: { card: "summary_large_image", title, description: metaDesc },
       alternates: { canonical: `/characters/${id}`, languages: buildLanguageAlternates(`/characters/${id}`) },
@@ -53,7 +55,7 @@ export default async function Page({ params }: Props) {
         name: char.name,
         description: desc || `${char.name} from Slay the Spire 2`,
         path: `/characters/${id}`,
-        imageUrl: `${API_PUBLIC}/static/images/characters/combat_${char.id.toLowerCase()}.webp`,
+        imageUrl: imageUrl(`/static/images/characters/combat_${char.id.toLowerCase()}.webp`),
         category: "Character",
         breadcrumbs: [
           { name: "Home", href: "/" },

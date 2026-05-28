@@ -7,6 +7,8 @@ import LanguageSelector from "./LanguageSelector";
 import SearchTrigger from "./SearchTrigger";
 import SiteSwitcher from "./SiteSwitcher";
 import { useLanguage } from "@/app/contexts/LanguageContext";
+import { useAuth } from "@/app/contexts/AuthContext";
+import DiscordIcon from "./DiscordIcon";
 import { t } from "@/lib/ui-translations";
 import { IS_BETA } from "@/lib/seo";
 
@@ -67,6 +69,7 @@ const NAV_GROUPS: NavGroup[] = [
     links: [
       { href: "/tier-list", label: "Tier List" },
       { href: "/leaderboards", label: "Leaderboards" },
+      { href: "/runs", label: "Browse Runs" },
       { href: "/leaderboards/submit", label: "Submit a Run" },
       { href: "/leaderboards/stats", label: "Stats" },
       { href: "/leaderboards/encounters", label: "Encounters" },
@@ -92,16 +95,8 @@ const NAV_GROUPS: NavGroup[] = [
       { href: "https://ko-fi.com/yitsy", label: "Ko-fi" },
       { href: "/privacy", label: "Privacy" },
       { href: "/terms", label: "Terms" },
-    ],
-  },
-  {
-    label: "Contact",
-    links: [
       { href: "https://discord.gg/xMsTBeh", label: "Discord" },
       { href: "https://github.com/ptrlrd/spire-codex", label: "GitHub" },
-      // Hash anchor (no leading slash): Footer listens for `#feedback`
-      // and opens the existing feedback modal in place, so the link
-      // works on any page without a full-page nav back to home.
       { href: "#feedback", label: "Feedback" },
       { href: "mailto:media@spire-codex.com", label: "Email" },
     ],
@@ -116,10 +111,14 @@ export default function Navbar() {
   const langPrefix = currentLang ? `/${currentLang}` : "";
   const strippedPath = currentLang ? pathname.replace(`/${currentLang}`, "") || "/" : pathname;
   const isHome = strippedPath === "/";
+  const { user, loading: authLoading, loginSteam, loginDiscord, logout } = useAuth();
   const [open, setOpen] = useState(false);
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [expandedGroups, setExpandedGroups] = useState<Set<string>>(new Set());
   const menuRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
+  const userMenuRef = useRef<HTMLDivElement>(null);
+  const userButtonRef = useRef<HTMLButtonElement>(null);
 
   // Auto-expand the group containing the active page
   useEffect(() => {
@@ -131,7 +130,7 @@ export default function Navbar() {
     }
   }, [pathname]);
 
-  // Close menu when clicking outside
+  // Close menus when clicking outside
   useEffect(() => {
     function handleClick(e: MouseEvent) {
       if (
@@ -143,14 +142,24 @@ export default function Navbar() {
       ) {
         setOpen(false);
       }
+      if (
+        userMenuOpen &&
+        userMenuRef.current &&
+        !userMenuRef.current.contains(e.target as Node) &&
+        userButtonRef.current &&
+        !userButtonRef.current.contains(e.target as Node)
+      ) {
+        setUserMenuOpen(false);
+      }
     }
     document.addEventListener("mousedown", handleClick);
     return () => document.removeEventListener("mousedown", handleClick);
-  }, [open]);
+  }, [open, userMenuOpen]);
 
-  // Close menu on route change
+  // Close menus on route change
   useEffect(() => {
     setOpen(false);
+    setUserMenuOpen(false);
     // Clear nav focus after navigation so focus-within dropdowns close
     // (keyboard support preserved). preventScroll matters: without it the
     // browser scrolls <main> into view, which on small screens jumps past
@@ -173,13 +182,19 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between gap-3 sm:gap-4 h-16">
           <Link href={`${langPrefix}/`} className="flex items-center gap-2 shrink-0">
-            <span className="text-xl font-bold text-[var(--accent-gold)]">
+            <img
+              src="/spire-codex-white-final.png"
+              alt="Spire Codex"
+              className="h-8 w-auto sm:hidden"
+            />
+            <span className="hidden sm:inline text-xl font-bold text-[var(--accent-gold)]">
               SPIRE
             </span>
-            <span className="text-xl font-light text-[var(--text-primary)]">
+            <span className="hidden sm:inline text-xl font-light text-[var(--text-primary)]">
               CODEX
             </span>
           </Link>
+
 
           {/* Desktop nav — lg+ only. Single-row mega-menu pattern: each
               group button opens a multi-column panel below the row. Pure
@@ -281,11 +296,26 @@ export default function Navbar() {
           )}
 
           <div className="flex items-center gap-2 shrink-0">
-            {/* Unified site + version switcher. Replaces the old
-                site-toggle button plus the beta-only `VersionSelector`
-                — one dropdown that lists `main` and every beta version,
-                with the current view filtered out. Colour reflects
-                which site you're on (gold = main, emerald = beta). */}
+            <a
+              href="https://discord.gg/xMsTBeh"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden sm:flex text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors"
+              aria-label="Discord"
+            >
+              <DiscordIcon className="w-5 h-5" />
+            </a>
+            <a
+              href="https://www.patreon.com/cw/SpireCodex"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden sm:flex text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors"
+              aria-label="Patreon"
+            >
+              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M14.82 2.41c3.96 0 7.18 3.24 7.18 7.21 0 3.96-3.22 7.18-7.18 7.18-3.97 0-7.21-3.22-7.21-7.18 0-3.97 3.24-7.21 7.21-7.21M2 21.6h3.5V2.41H2V21.6z" />
+              </svg>
+            </a>
             <SiteSwitcher />
             <LanguageSelector />
 
@@ -298,7 +328,105 @@ export default function Navbar() {
               </div>
             )}
 
-          {/* Burger button — hidden at lg+ where the secondary nav row below takes over */}
+          {/* User menu */}
+          {!authLoading && (
+            <div className="relative">
+              <button
+                ref={userButtonRef}
+                onClick={() => {
+                  if (user) {
+                    setUserMenuOpen(!userMenuOpen);
+                  }
+                }}
+                className="inline-flex items-center justify-center h-9 min-w-[2.25rem] px-1.5 sm:px-2 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-accent)] transition-colors gap-1.5"
+                aria-label={user ? "Account menu" : "Sign in"}
+              >
+                <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+                {user ? (
+                  <span className="hidden sm:inline text-xs font-medium truncate max-w-[80px]">
+                    {user.username || "Account"}
+                  </span>
+                ) : null}
+              </button>
+
+              {/* Signed-out: login options */}
+              {!user && !userMenuOpen && (
+                <div
+                  className="absolute right-0 top-full mt-2 w-44 max-w-[calc(100vw-1rem)] rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] shadow-xl shadow-black/30 p-1.5 hidden"
+                  id="login-options"
+                />
+              )}
+
+              {!user && (
+                <button
+                  onClick={() => setUserMenuOpen(!userMenuOpen)}
+                  className="absolute inset-0 w-full h-full opacity-0"
+                  aria-label="Sign in options"
+                  tabIndex={-1}
+                />
+              )}
+
+              {userMenuOpen && !user && (
+                <div
+                  ref={userMenuRef}
+                  className="absolute right-0 top-full mt-2 w-44 max-w-[calc(100vw-1rem)] rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] shadow-xl shadow-black/30 p-1.5 z-50"
+                >
+                  <p className="px-2.5 py-1.5 text-xs text-[var(--text-tertiary)] font-medium">Sign in with</p>
+                  <button
+                    onClick={() => { setUserMenuOpen(false); loginSteam(); }}
+                    className="w-full flex items-center gap-2 px-2.5 py-2 text-sm rounded-md hover:bg-[var(--bg-card)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
+                  >
+                    <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658a3.387 3.387 0 0 1 1.912-.593c.064 0 .127.003.19.007l2.862-4.146v-.058a4.533 4.533 0 0 1 4.53-4.53 4.533 4.533 0 0 1 4.53 4.53 4.533 4.533 0 0 1-4.53 4.53h-.106l-4.08 2.91c0 .053.003.107.003.161a3.4 3.4 0 0 1-3.4 3.4 3.404 3.404 0 0 1-3.367-2.936L.256 15.21C1.542 20.2 6.218 24 11.979 24 18.627 24 24 18.627 24 11.979 24 5.373 18.627 0 11.979 0z"/></svg>
+                    Steam
+                  </button>
+                  <button
+                    onClick={() => { setUserMenuOpen(false); loginDiscord(); }}
+                    className="w-full flex items-center gap-2 px-2.5 py-2 text-sm rounded-md hover:bg-[var(--bg-card)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
+                  >
+                    <DiscordIcon className="w-4 h-4 shrink-0" />
+                    Discord
+                  </button>
+                </div>
+              )}
+
+              {/* Signed-in: account dropdown */}
+              {userMenuOpen && user && (
+                <div
+                  ref={userMenuRef}
+                  className="absolute right-0 top-full mt-2 w-48 max-w-[calc(100vw-1rem)] rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] shadow-xl shadow-black/30 p-1.5 z-50"
+                >
+                  <div className="px-2.5 py-1.5 border-b border-[var(--border-subtle)] mb-1">
+                    <p className="text-sm font-medium text-[var(--text-primary)] truncate">{user.username || "User"}</p>
+                    {user.email && <p className="text-xs text-[var(--text-tertiary)] truncate">{user.email}</p>}
+                  </div>
+                  <Link
+                    href={`${langPrefix}/profile`}
+                    onClick={() => setUserMenuOpen(false)}
+                    className="flex items-center gap-2 px-2.5 py-2 text-sm rounded-md hover:bg-[var(--bg-card)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
+                  >
+                    Profile
+                  </Link>
+                  <Link
+                    href={`${langPrefix}/settings`}
+                    onClick={() => setUserMenuOpen(false)}
+                    className="flex items-center gap-2 px-2.5 py-2 text-sm rounded-md hover:bg-[var(--bg-card)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
+                  >
+                    Settings
+                  </Link>
+                  <button
+                    onClick={() => { setUserMenuOpen(false); logout(); }}
+                    className="w-full flex items-center gap-2 px-2.5 py-2 text-sm rounded-md hover:bg-[var(--bg-card)] text-red-400 hover:text-red-300 transition-colors"
+                  >
+                    Sign Out
+                  </button>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* Burger button -- hidden at lg+ where the secondary nav row below takes over */}
           <div className="relative lg:hidden">
             <button
               ref={buttonRef}
@@ -406,6 +534,30 @@ export default function Navbar() {
                     </div>
                   );
                 })}
+
+                {/* Discord + Patreon quick links */}
+                <div className="border-t border-[var(--border-subtle)] flex items-center justify-center gap-6 p-3">
+                  <a
+                    href="https://discord.gg/xMsTBeh"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Discord"
+                    className="text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors"
+                  >
+                    <DiscordIcon className="w-6 h-6" />
+                  </a>
+                  <a
+                    href="https://www.patreon.com/cw/SpireCodex"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Patreon"
+                    className="text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors"
+                  >
+                    <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M14.82 2.41c3.96 0 7.18 3.24 7.18 7.21 0 3.96-3.22 7.18-7.18 7.18-3.97 0-7.21-3.22-7.21-7.18 0-3.97 3.24-7.21 7.21-7.21M2 21.6h3.5V2.41H2V21.6z" />
+                    </svg>
+                  </a>
+                </div>
               </div>
             )}
           </div>

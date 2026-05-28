@@ -9,6 +9,7 @@ import { cachedFetch } from "@/lib/fetch-cache";
 import { useLanguage } from "../../contexts/LanguageContext";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
+import { imageUrl } from "@/lib/image-url";
 
 function toUpperSnake(s: string): string {
   return s.replace(/([a-z0-9])([A-Z])/g, "$1_$2").toUpperCase();
@@ -153,7 +154,7 @@ export default function CharacterDetail({ initialCharacter }: { initialCharacter
       <div className={`rounded-xl border-2 ${style.border} bg-gradient-to-br ${style.bg} to-transparent bg-[var(--bg-card)] p-6 mb-8`}>
         <div className="flex flex-col sm:flex-row items-center gap-6">
           <img
-            src={`${API}/static/images/characters/combat_${char.id.toLowerCase()}.webp`}
+            src={imageUrl(`/static/images/characters/combat_${char.id.toLowerCase()}.webp`)}
             alt={`${char.name} - Slay the Spire 2 Character`}
             className="w-48 h-48 object-contain"
             crossOrigin="anonymous"
@@ -220,7 +221,7 @@ export default function CharacterDetail({ initialCharacter }: { initialCharacter
               >
                 {cardData?.image_url && (
                   <img
-                    src={`${API}${cardData.image_url}`}
+                    src={imageUrl(cardData.image_url)}
                     alt={`${cardData.name} - Slay the Spire 2 Card`}
                     className="w-10 h-10 object-contain"
                     crossOrigin="anonymous"
@@ -256,7 +257,7 @@ export default function CharacterDetail({ initialCharacter }: { initialCharacter
               >
                 {relicData?.image_url && (
                   <img
-                    src={`${API}${relicData.image_url}`}
+                    src={imageUrl(relicData.image_url)}
                     alt={`${relicData.name} - Slay the Spire 2 Relic`}
                     className="w-10 h-10 object-contain"
                     crossOrigin="anonymous"
@@ -312,7 +313,7 @@ export default function CharacterDetail({ initialCharacter }: { initialCharacter
                       >
                         {card.image_url && (
                           <img
-                            src={`${API}${card.image_url}`}
+                            src={imageUrl(card.image_url)}
                             alt={`${card.name} - Slay the Spire 2 Card`}
                             className="w-8 h-8 object-contain flex-shrink-0"
                             crossOrigin="anonymous"
@@ -361,7 +362,7 @@ export default function CharacterDetail({ initialCharacter }: { initialCharacter
                 >
                   {relic.image_url && (
                     <img
-                      src={`${API}${relic.image_url}`}
+                      src={imageUrl(relic.image_url)}
                       alt={`${relic.name} - Slay the Spire 2 Relic`}
                       className="w-10 h-10 object-contain flex-shrink-0"
                       crossOrigin="anonymous"

@@ -22,8 +22,9 @@ The game is built with Godot 4 but all logic is in a C#/.NET 8 DLL, not GDScript
 - **25+ routers** in `app/routers/` — one per entity type + guides, runs, feedback, news, merchant
 - **Data service** loads JSON from `data/{lang}/` with LRU caching; `VersionMiddleware` reads `?version=` and threads it through via `ContextVar`
 - **MongoDB** (self-hosted single-node replica set on the DB origin) for community run submissions. Materialized `stats_summary` collection populated by a background refresher (one worker via a Mongo TTL lease) — API handlers read the precomputed doc in sub-millisecond time. SQLite (`data/runs.db`) is kept as the offline-fallback codepath in `services/runs_db.py` when `MONGO_URL` is unset.
-- **Run entity stats service** (`app/services/run_entity_stats.py`) — computes the Codex Score (Bayesian-shrunk win rate → 0–100 → S/A/B/C/D/F tier) per card/relic/potion. Pre-warmed on FastAPI startup by `_warm_run_entity_stats()` in `main.py` so the first request isn't a cold cache.
-- **Static images** served from `backend/static/images/`
+- **Run entity stats service** (`app/services/run_entity_stats.py`) — computes the Codex Score (Bayesian-shrunk win rate, graded against the per-type average → 0–100 → S/A/B/C/D/F tier) per card/relic/potion. The heavy 100k-file walk runs in a single leader process (same stats-refresher lease) and is materialized to the `entity_stats_snapshot` collection; every worker reads that shared snapshot rather than re-walking the run files.
+- **User accounts** (`app/routers/auth.py`, `services/auth_jwt.py`, `services/users_db.py`) — Steam OpenID + Discord OAuth, JWT session cookies, profile stats, personal bests, and competitive comparison. Users + their claimed runs live in MongoDB. Needs `JWT_SECRET`, `DISCORD_CLIENT_ID/SECRET`, `FRONTEND_URL`, `SPIRE_CODEX_PUBLIC_BASE`.
+- **Static images** served from `backend/static/images/` in dev; in production they're served from a Cloudflare R2 CDN at `cdn.spire-codex.com` (webp). `resolve_image_url` emits CDN URLs when `CDN_BASE_URL` is set; the frontend rewrites `/static/images/` to `NEXT_PUBLIC_CDN_URL` at build time.
 
 ### Parsers (`backend/app/parsers/`)
 

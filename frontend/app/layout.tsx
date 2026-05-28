@@ -10,6 +10,8 @@ import GlobalSearch from "./components/GlobalSearch";
 import { Suspense } from "react";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import { BetaVersionProvider } from "./contexts/BetaVersionContext";
+import { AuthProvider } from "./contexts/AuthContext";
+import { ToastProvider } from "./components/Toast";
 import { SITE_NAME, SITE_URL, DEFAULT_OG_IMAGE } from "@/lib/seo";
 
 // Self-hosted Umami analytics. Both values are public-by-design — the
@@ -84,6 +86,8 @@ export default function RootLayout({
         <LanguageProvider>
           <Suspense>
             <BetaVersionProvider>
+              <AuthProvider>
+              <ToastProvider>
               <Navbar />
               <div className="pt-16">
                 <OverwolfBanner />
@@ -98,6 +102,8 @@ export default function RootLayout({
               </div>
               <Footer />
               <GlobalSearch />
+              </ToastProvider>
+              </AuthProvider>
             </BetaVersionProvider>
           </Suspense>
         </LanguageProvider>

@@ -52,6 +52,8 @@ from .routers import (
     merchant,
     mechanics,
     auth_steam,
+    auth_discord,
+    auth,
     uninstall,
     qa_feedback,
 )
@@ -423,12 +425,22 @@ app.add_middleware(VersionMiddleware)
 app.add_middleware(RequestLoggingMiddleware)
 app.add_middleware(CORSStaticMiddleware)
 app.add_middleware(GZipMiddleware, minimum_size=1000)
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+_cors_origins = os.environ.get("CORS_ORIGINS", "").strip()
+if _cors_origins:
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=_cors_origins.split(","),
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
+else:
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=["*"],
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
 
 # ── Prometheus metrics ────────────────────────────────────────
 Instrumentator(
@@ -473,6 +485,8 @@ app.include_router(news.router)
 app.include_router(merchant.router)
 app.include_router(mechanics.router)
 app.include_router(auth_steam.router)
+app.include_router(auth_discord.router)
+app.include_router(auth.router)
 # Overlay-direct OpenID flow uses /auth/steam-popup as Steam's return_to.
 # This is intentionally outside /api/* — it's a user-facing HTML page,
 # not a JSON API — so it's mounted at the app level rather than under

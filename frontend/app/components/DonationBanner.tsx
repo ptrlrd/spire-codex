@@ -4,6 +4,7 @@ import { useState, useEffect, type ReactNode } from "react";
 import Link from "next/link";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
+import { imageUrl } from "@/lib/image-url";
 
 interface RotatingBanner {
   ancient: string;
@@ -137,7 +138,7 @@ function KofiBanner({ onDismiss }: { onDismiss: () => void }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex items-center justify-between gap-4">
         <div className="flex items-center gap-3">
           <img
-            src={`${API}/static/images/misc/ancients/nonupeipe.webp`}
+            src={imageUrl("/static/images/misc/ancients/nonupeipe.webp")}
             alt="Nonupeipe"
             className="w-8 h-8 object-contain flex-shrink-0 hidden sm:block"
             crossOrigin="anonymous"
@@ -181,7 +182,7 @@ function AncientBanner({ banner, onDismiss }: { banner: RotatingBanner; onDismis
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex items-center justify-between gap-4">
         <div className="flex items-center gap-3">
           <img
-            src={`${API}/static/images/misc/ancients/${banner.image}`}
+            src={imageUrl(`/static/images/misc/ancients/${banner.image}`)}
             alt={banner.ancient}
             className="w-8 h-8 object-contain flex-shrink-0 hidden sm:block"
             crossOrigin="anonymous"

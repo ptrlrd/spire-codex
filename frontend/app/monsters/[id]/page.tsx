@@ -3,6 +3,7 @@ import MonsterDetail from "./MonsterDetail";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 import { clipMetaDescription, buildLanguageAlternates, SITE_NAME, SITE_URL } from "@/lib/seo";
+import { imageUrl } from "@/lib/image-url";
 
 export const dynamic = "force-static";
 export const revalidate = 3600;
@@ -36,7 +37,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         url: `${SITE_URL}/monsters/${id}`,
         title,
         description: metaDesc,
-        images: monster.image_url ? [{ url: `${API_PUBLIC}${monster.image_url}` }] : [],
+        images: monster.image_url ? [{ url: imageUrl(monster.image_url) }] : [],
       },
       twitter: { card: "summary_large_image", title, description: metaDesc },
       alternates: { canonical: `/monsters/${id}`, languages: buildLanguageAlternates(`/monsters/${id}`) },
@@ -62,7 +63,7 @@ export default async function Page({ params }: Props) {
         name: monster.name,
         description: desc,
         path: `/monsters/${id}`,
-        imageUrl: monster.image_url ? `${API_PUBLIC}${monster.image_url}` : undefined,
+        imageUrl: monster.image_url ? imageUrl(monster.image_url) : undefined,
         category: "Monster",
         breadcrumbs: [
           { name: "Home", href: "/" },

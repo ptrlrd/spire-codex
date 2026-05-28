@@ -11,6 +11,7 @@ import { t } from "@/lib/ui-translations";
 import LocalizedNames from "@/app/components/LocalizedNames";
 import EntityHistory from "@/app/components/EntityHistory";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
+import { imageUrl } from "@/lib/image-url";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -63,7 +64,7 @@ export default function IntentDetail({ initialIntent }: { initialIntent?: Intent
         {intent.image_url && (
           <div className="flex justify-center mb-4">
             <img
-              src={`${API}${intent.image_url}`}
+              src={imageUrl(intent.image_url)}
               alt={`${intent.name} - Slay the Spire 2 Intent`}
               className="w-16 h-16 object-contain"
               crossOrigin="anonymous"

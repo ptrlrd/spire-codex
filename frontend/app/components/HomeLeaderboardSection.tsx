@@ -19,8 +19,10 @@ const RUNS_API = IS_BETA ? "https://spire-codex.com" : API;
 // leaks into the SSR'd HTML.
 const PUBLIC_API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
+import { imageUrl } from "@/lib/image-url";
+
 function characterIcon(character: string): string {
-  return `${PUBLIC_API}/static/images/characters/character_icon_${character.toLowerCase()}.webp`;
+  return imageUrl(`/static/images/characters/character_icon_${character.toLowerCase()}.webp`);
 }
 
 const REVALIDATE = 300;
@@ -200,7 +202,7 @@ export default async function HomeLeaderboardSection({
               )}
             </h3>
             <Link
-              href={`${lbBase}?tab=browse`}
+              href={runsBase}
               className="shrink-0 inline-flex items-center gap-1 text-xs font-medium text-[var(--text-secondary)] hover:text-[var(--accent-gold)] transition-colors"
             >
               <span>{t("View more", lang)}</span>
@@ -256,7 +258,7 @@ export default async function HomeLeaderboardSection({
               {t("Recent Runs", lang)}
             </h3>
             <Link
-              href={`${lbBase}?tab=browse`}
+              href={runsBase}
               className="shrink-0 inline-flex items-center gap-1 text-xs font-medium text-[var(--text-secondary)] hover:text-[var(--accent-gold)] transition-colors"
             >
               <span>{t("View more", lang)}</span>

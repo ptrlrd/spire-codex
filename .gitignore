@@ -41,6 +41,11 @@ data/card_builder.db
 
 # Card composite renderer spike — local only, do not commit
 tools/card-renderer/
+
+# webp image assets — served from the Cloudflare R2 / S3 CDN, not git.
+# PNG sources stay tracked; webp is generated and uploaded to the CDN.
+backend/static/images/**/*.webp
+data-beta/**/*.webp
 backend/static/images/cards/composite/
 
 # Ansible — inventory.yml is rendered from inventory.yml.tpl + 1Password

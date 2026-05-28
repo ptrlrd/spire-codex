@@ -11,6 +11,7 @@ import { t } from "@/lib/ui-translations";
 const LANG_CODES = new Set(["deu", "esp", "fra", "ita", "jpn", "kor", "pol", "ptb", "rus", "spa", "tha", "tur", "zhs"]);
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
+import { imageUrl } from "@/lib/image-url";
 
 interface Translations {
   sections?: Record<string, string>;
@@ -211,7 +212,7 @@ export default function HomeClient({ initialStats, initialTranslations }: HomeCl
                 />
                 <div className="relative aspect-square flex items-end justify-center overflow-hidden">
                   <img
-                    src={`${API}/static/images/characters/combat_${char.id}.webp`}
+                    src={imageUrl(`/static/images/characters/combat_${char.id}.webp`)}
                     alt={`${charName} - Slay the Spire 2 Character`}
                     className="w-full h-full object-contain p-1 sm:p-2 group-hover:scale-105 transition-transform duration-300"
                     crossOrigin="anonymous"

@@ -24,6 +24,17 @@ services:
       - GITHUB_APP_INSTALLATION_ID=${GITHUB_APP_INSTALLATION_ID:-}
       - GITHUB_APP_REPO=${GITHUB_APP_REPO:-}
       - GITHUB_APP_PRIVATE_KEY_PATH=${GITHUB_APP_PRIVATE_KEY_PATH:-/secrets/knowledge-demon.private-key.pem}
+      # User accounts (Steam/Discord OAuth + JWT sessions). Values live
+      # in the host .env; passed through so the auth endpoints work.
+      # NOTE: sign-in also needs MONGO_URL (the user store lives in
+      # Mongo). Left off here on purpose so beta keeps its read-only
+      # data-beta backend — add MONGO_URL if beta accounts are wanted.
+      - JWT_SECRET=${JWT_SECRET:-}
+      - DISCORD_CLIENT_ID=${DISCORD_CLIENT_ID:-}
+      - DISCORD_CLIENT_SECRET=${DISCORD_CLIENT_SECRET:-}
+      - FRONTEND_URL=${FRONTEND_URL:-https://beta.spire-codex.com}
+      - SPIRE_CODEX_PUBLIC_BASE=${SPIRE_CODEX_PUBLIC_BASE:-https://beta.spire-codex.com}
+      - ENVIRONMENT=${ENVIRONMENT:-production}
     networks:
       - nginx_web-network
     logging:

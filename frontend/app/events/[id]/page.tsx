@@ -4,6 +4,7 @@ import { stripTags, stripTagsFlat, clipMetaDescription, buildLanguageAlternates,
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 import { redirectMissingEntity } from "@/lib/redirect-helpers";
+import { imageUrl } from "@/lib/image-url";
 
 const API_INTERNAL = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 const API_PUBLIC = process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_API_URL || "";
@@ -30,7 +31,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         url: `${SITE_URL}/events/${id}`,
         title,
         description: metaDesc,
-        images: event.image_url ? [{ url: `${API_PUBLIC}${event.image_url}` }] : [],
+        images: event.image_url ? [{ url: imageUrl(event.image_url) }] : [],
       },
       twitter: { card: "summary_large_image", title, description: metaDesc },
       alternates: { canonical: `/events/${id}`, languages: buildLanguageAlternates(`/events/${id}`) },
@@ -54,7 +55,7 @@ export default async function Page({ params }: Props) {
         name: event.name,
         description: desc || `${event.name} event from Slay the Spire 2`,
         path: `/events/${id}`,
-        imageUrl: event.image_url ? `${API_PUBLIC}${event.image_url}` : undefined,
+        imageUrl: event.image_url ? imageUrl(event.image_url) : undefined,
         category: "Event",
         breadcrumbs: [
           { name: "Home", href: "/" },

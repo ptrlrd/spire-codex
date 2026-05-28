@@ -7,14 +7,17 @@ served from `/api/runs/stats/{entity_type}/{entity_id}` to power the
 "Stats" tab on each detail page.
 
 Cache strategy:
-- First request triggers a full walk of `data/runs/*.json` joined
-  against the runs DB (for character, win, submitted_at, run_hash).
-- Result lives in process memory keyed by (entity_type, entity_id).
-- TTL is `_CACHE_TTL_SECONDS`; a request after expiry kicks off a
-  rebuild. Rebuild is single-shot (a re-entry while building gets the
-  stale snapshot and skips the rebuild).
-- Run submissions are infrequent enough that a 30-minute TTL is fine
-  without invalidation hooks.
+- The heavy walk of `data/runs/*.json` (100k+ files) runs in a SINGLE
+  leader process via the existing stats-refresher Mongo lease, and the
+  result is persisted to the `entity_stats_snapshot` collection.
+- Every worker reads that shared snapshot into process memory (keyed by
+  (entity_type, entity_id)) instead of walking the files itself. This
+  is what stops N workers each pegging a CPU rebuilding the same data
+  and serving inconsistent (some empty) tier lists.
+- Workers reload the snapshot every `_SNAPSHOT_LOAD_SECONDS`; the leader
+  rebuilds it every `_SNAPSHOT_REBUILD_SECONDS`.
+- On the SQLite path (no Mongo) there's no shared snapshot, so each
+  process builds locally on demand — fine at that scale.
 """
 
 from __future__ import annotations
@@ -24,6 +27,7 @@ import logging
 import os
 import threading
 import time
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Iterable
 
@@ -43,19 +47,30 @@ _PREFIX_TO_TYPE = {
 
 # Codex Score formula constants — see _compute_score for derivation.
 # PRIOR_WEIGHT is how many "virtual baseline picks" we add to every
-# entity to shrink low-N noise toward the global mean. 50 means a
+# entity to shrink low-N noise toward the baseline. 50 means a
 # 5-pick perfect-record card lands ~mid-tier, not S-tier. SCALE_RANGE
-# is the win-rate delta (vs baseline) that maps to the edges of the
-# 0-100 scale; ±15pp covers the full real-world spread without making
-# moderate over/underperformers saturate.
+# is the win-rate delta (vs the per-type baseline) that maps to the
+# edges of the 0-100 scale; ±15pp covers the real-world spread of card/
+# relic win rates around the per-type average without saturating
+# moderate over/underperformers.
 _SCORE_PRIOR_WEIGHT = 50
 _SCORE_SCALE_RANGE = 0.15
 
-_CACHE_TTL_SECONDS = 30 * 60  # 30 minutes
 _RUNS_DIR = (
     Path(os.environ.get("DATA_DIR", Path(__file__).resolve().parents[3] / "data"))
     / "runs"
 )
+
+# Materialized-snapshot config. The expensive 100k-file walk runs in a
+# SINGLE leader process (via the existing stats-refresher lease) and is
+# persisted to Mongo. Every worker reads that shared snapshot instead of
+# walking the files itself — this is what stops N workers each pegging a
+# CPU rebuilding the same data. Mirrors the stats_summary pattern.
+SNAPSHOT_COLLECTION_NAME = "entity_stats_snapshot"
+# Leader rebuilds the heavy walk at most this often.
+_SNAPSHOT_REBUILD_SECONDS = 10 * 60
+# Workers reload the snapshot from Mongo this often (cheap read).
+_SNAPSHOT_LOAD_SECONDS = 5 * 60
 
 # In-memory cache: { (entity_type, entity_id): aggregate_dict }
 # `_cache_built_at` is the unix timestamp of the last full rebuild.
@@ -64,6 +79,13 @@ _RUNS_DIR = (
 _lock = threading.Lock()
 _cache: dict[tuple[str, str], dict[str, Any]] = {}
 _global_totals: dict[str, int] = {"total_runs": 0, "total_wins": 0}
+# Pick-weighted average win-rate per entity type (cards/relics/potions).
+# Used as the scoring baseline instead of the global run win rate: an
+# entity is graded against the typical entity OF ITS TYPE, not against
+# the global run win rate. The global rate is dragged down by abandoned
+# / early-quit runs that contain almost no entities, which pushed nearly
+# every card and relic above baseline and piled everything into S-tier.
+_type_baselines: dict[str, float] = {}
 _cache_built_at: float = 0.0
 _building: bool = False
 
@@ -109,8 +131,11 @@ def _walk_run_entities(blob: dict) -> Iterable[tuple[str, str]]:
                 yield stripped
 
 
-def _build_cache() -> None:
-    """Walk every run JSON + DB row, populate the per-entity aggregate."""
+def _build_cache_data() -> tuple[dict, dict, dict]:
+    """Walk every run JSON + DB row and return (cache, totals,
+    type_baselines) WITHOUT mutating module globals. The heavy 100k-file
+    walk lives here so the leader refresher can compute + persist a
+    snapshot, and the in-process fallback can reuse the same logic."""
     new_cache: dict[tuple[str, str], dict[str, Any]] = {}
     new_totals = {"total_runs": 0, "total_wins": 0}
 
@@ -203,29 +228,177 @@ def _build_cache() -> None:
                 agg["last_submitted_at"] = submitted
                 agg["last_run_hash"] = run_hash
 
-    global _cache, _cache_built_at, _global_totals
-    _cache = new_cache
-    _global_totals = new_totals
+    # Per-type baselines: pick-weighted average win rate across all
+    # entities of each type. Computed once per rebuild so scoring reads
+    # are O(1).
+    type_totals: dict[str, dict[str, int]] = {}
+    for (etype, _), agg in new_cache.items():
+        tt = type_totals.setdefault(etype, {"wins": 0, "picks": 0})
+        tt["wins"] += agg["wins"]
+        tt["picks"] += agg["picks"]
+    new_type_baselines = {
+        etype: (tt["wins"] / tt["picks"]) if tt["picks"] else 0.5
+        for etype, tt in type_totals.items()
+    }
+    return new_cache, new_totals, new_type_baselines
+
+
+def _apply_cache(cache: dict, totals: dict, baselines: dict) -> None:
+    """Swap freshly-built (or snapshot-loaded) data into module globals."""
+    global _cache, _cache_built_at, _global_totals, _type_baselines
+    _cache = cache
+    _global_totals = totals
+    _type_baselines = baselines
     _cache_built_at = time.time()
+
+
+def _build_cache() -> None:
+    """Local fallback: build from files and apply to globals in-process.
+
+    Only used when the Mongo snapshot is unavailable (SQLite path, or a
+    cold start before the leader has written the first snapshot)."""
+    cache, totals, baselines = _build_cache_data()
+    _apply_cache(cache, totals, baselines)
     logger.info(
-        "run-entity-stats cache rebuilt: %d entities across %d runs",
-        len(new_cache),
-        new_totals["total_runs"],
+        "run-entity-stats cache rebuilt (local): %d entities across %d runs",
+        len(cache),
+        totals["total_runs"],
     )
+
+
+# ── Shared Mongo snapshot ────────────────────────────────────────────────
+
+
+def _snapshot_coll():
+    from .runs_db_mongo import _get_collection
+
+    return _get_collection().database[SNAPSHOT_COLLECTION_NAME]
+
+
+def _persist_snapshot(cache: dict, totals: dict, baselines: dict) -> None:
+    """Write the built cache to Mongo as one doc per entity type plus a
+    meta doc. Entities are stored as arrays (not dicts) so entity IDs
+    never collide with Mongo field-name restrictions."""
+    coll = _snapshot_coll()
+    by_type: dict[str, list] = {}
+    for (etype, eid), agg in cache.items():
+        by_type.setdefault(etype, []).append(
+            {
+                "id": eid,
+                "picks": agg["picks"],
+                "wins": agg["wins"],
+                "by_character": [
+                    {"character": ch, "picks": s["picks"], "wins": s["wins"]}
+                    for ch, s in agg["by_character"].items()
+                ],
+                "last_submitted_at": agg["last_submitted_at"],
+                "last_run_hash": agg["last_run_hash"],
+            }
+        )
+    now = datetime.now(timezone.utc)
+    for etype, entities in by_type.items():
+        coll.replace_one(
+            {"_id": etype},
+            {"_id": etype, "entities": entities, "updated_at": now},
+            upsert=True,
+        )
+    coll.replace_one(
+        {"_id": "__meta__"},
+        {
+            "_id": "__meta__",
+            "global_totals": totals,
+            "type_baselines": baselines,
+            "entity_types": list(by_type.keys()),
+            "built_at": now,
+        },
+        upsert=True,
+    )
+
+
+def _load_snapshot() -> bool:
+    """Load the shared snapshot from Mongo into module globals. Returns
+    False if no snapshot exists yet (caller falls back to local build)."""
+    coll = _snapshot_coll()
+    meta = coll.find_one({"_id": "__meta__"})
+    if not meta:
+        return False
+    new_cache: dict[tuple[str, str], dict[str, Any]] = {}
+    for etype in meta.get("entity_types", []):
+        doc = coll.find_one({"_id": etype})
+        if not doc:
+            continue
+        for e in doc.get("entities", []):
+            by_char = {
+                c["character"]: {"picks": c["picks"], "wins": c["wins"]}
+                for c in e.get("by_character", [])
+            }
+            new_cache[(etype, e["id"])] = {
+                "picks": e["picks"],
+                "wins": e["wins"],
+                "by_character": by_char,
+                "last_submitted_at": e.get("last_submitted_at"),
+                "last_run_hash": e.get("last_run_hash"),
+            }
+    _apply_cache(
+        new_cache,
+        meta.get("global_totals", {"total_runs": 0, "total_wins": 0}),
+        meta.get("type_baselines", {}),
+    )
+    return True
+
+
+def refresh_entity_stats_snapshot() -> int:
+    """Leader-only: rebuild the cache from run files and persist it to
+    Mongo for every worker to read. Skips the heavy walk if the existing
+    snapshot is younger than _SNAPSHOT_REBUILD_SECONDS. Returns the
+    entity count written (0 if skipped)."""
+    coll = _snapshot_coll()
+    meta = coll.find_one({"_id": "__meta__"}, {"built_at": 1})
+    if meta and meta.get("built_at"):
+        built = meta["built_at"]
+        if built.tzinfo is None:
+            built = built.replace(tzinfo=timezone.utc)
+        if (datetime.now(timezone.utc) - built).total_seconds() < (
+            _SNAPSHOT_REBUILD_SECONDS
+        ):
+            return 0  # snapshot still fresh
+
+    cache, totals, baselines = _build_cache_data()
+    _persist_snapshot(cache, totals, baselines)
+    _apply_cache(cache, totals, baselines)
+    logger.info(
+        "entity-stats snapshot rebuilt: %d entities across %d runs",
+        len(cache),
+        totals["total_runs"],
+    )
+    return len(cache)
 
 
 def _maybe_rebuild() -> None:
     global _building
     age = time.time() - _cache_built_at
-    if age < _CACHE_TTL_SECONDS:
+    if age < _SNAPSHOT_LOAD_SECONDS:
         return
     with _lock:
         if _building:
             return
-        if time.time() - _cache_built_at < _CACHE_TTL_SECONDS:
+        if time.time() - _cache_built_at < _SNAPSHOT_LOAD_SECONDS:
             return
         _building = True
     try:
+        # On the Mongo path, request threads NEVER walk the run files.
+        # They only load the shared snapshot the leader refresher builds.
+        # If the snapshot doesn't exist yet (cold start before the first
+        # leader cycle), we leave the cache as-is and let the next read
+        # pick it up once the refresher has written it — a few seconds of
+        # an empty tier list beats every worker pegging a CPU.
+        if _USING_MONGO:
+            try:
+                _load_snapshot()
+            except Exception as e:
+                logger.warning("entity-stats snapshot load failed: %s", e)
+            return
+        # SQLite path: no shared snapshot, build locally.
         _build_cache()
     finally:
         with _lock:
@@ -238,6 +411,15 @@ def _baseline_win_rate() -> float:
     if not total:
         return 0.5
     return _global_totals["total_wins"] / total
+
+
+def _type_baseline(entity_type: str) -> float:
+    """Pick-weighted average win rate across entities of one type.
+
+    This is the scoring baseline: an entity is graded relative to the
+    typical entity of its type. Falls back to the global run win rate
+    if the type hasn't been aggregated yet (cold cache)."""
+    return _type_baselines.get(entity_type, _baseline_win_rate())
 
 
 def _compute_score(wins: int, picks: int, baseline: float) -> int | None:
@@ -268,7 +450,7 @@ def get_all_entity_scores(entity_type: str) -> dict[str, dict[str, Any]]:
     of N round-trips to /stats/{type}/{id}.
     """
     _maybe_rebuild()
-    baseline = _baseline_win_rate()
+    baseline = _type_baseline(entity_type)
     out: dict[str, dict[str, Any]] = {}
     for (etype, eid), agg in _cache.items():
         if etype != entity_type:
@@ -314,7 +496,7 @@ def get_entity_stats(entity_type: str, entity_id: str) -> dict[str, Any] | None:
         )
     ]
     total_runs = _global_totals["total_runs"]
-    baseline = _baseline_win_rate()
+    baseline = _type_baseline(entity_type)
     return {
         "entity_type": entity_type,
         "entity_id": entity_id.upper(),

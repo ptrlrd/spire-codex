@@ -13,6 +13,7 @@ import { t } from "@/lib/ui-translations";
 import LocalizedNames from "@/app/components/LocalizedNames";
 import EntityHistory from "@/app/components/EntityHistory";
 import RelatedCards from "@/app/components/RelatedCards";
+import { imageUrl } from "@/lib/image-url";
 import EntityRunStats from "@/app/components/EntityRunStats";
 import HoverTooltip from "@/app/components/HoverTooltip";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
@@ -300,7 +301,7 @@ export default function CardDetail({ initialCard }: { initialCard?: Card | null 
         {imgUrl && (
           <div className="bg-black/40 rounded-t-2xl overflow-hidden">
             <img
-              src={`${API}${imgUrl}`}
+              src={imageUrl(imgUrl)}
               alt={`${card.name} - Slay the Spire 2 Card`}
               className="w-full object-contain max-h-80"
               crossOrigin="anonymous"
@@ -329,7 +330,7 @@ export default function CardDetail({ initialCard }: { initialCard?: Card | null 
                 <span className="inline-flex items-center gap-0.5 px-2 py-1 rounded-full bg-[var(--bg-primary)] border border-amber-700/40 text-sm font-bold text-amber-300">
                   {card.is_x_star_cost ? "X" : card.star_cost}
                   <img
-                    src={`${API}/static/images/icons/star_icon.webp`}
+                    src={imageUrl("/static/images/icons/star_icon.webp")}
                     alt="star"
                     className="w-4 h-4"
                     crossOrigin="anonymous"
@@ -516,7 +517,7 @@ export default function CardDetail({ initialCard }: { initialCard?: Card | null 
                   </h3>
                   <div className="flex items-center gap-2 text-sm">
                     <img
-                      src={`${API}/static/images/ui/rewards/reward_icon_money.webp`}
+                      src={imageUrl("/static/images/ui/rewards/reward_icon_money.webp")}
                       alt="Gold"
                       className="w-5 h-5"
                       crossOrigin="anonymous"

@@ -57,3 +57,8 @@ MONGO_URL=op://Spire Codex/MongoDB/connection-string
 # consumed by docker-compose.umami.yml only.
 UMAMI_DB_PASSWORD=op://Spire Codex/Umami/db_password
 UMAMI_APP_SECRET=op://Spire Codex/Umami/app_secret
+
+# User accounts (Steam + Discord OAuth, JWT sessions)
+JWT_SECRET=op://Spire Codex/Auth/jwt-secret
+DISCORD_CLIENT_ID=op://Spire Codex/Discord OAuth/client-id
+DISCORD_CLIENT_SECRET=op://Spire Codex/Discord OAuth/client-secret

@@ -8,6 +8,7 @@ import { useLangPrefix } from "@/lib/use-lang-prefix";
 import RichDescription from "./RichDescription";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
+import { imageUrl } from "@/lib/image-url";
 
 const colorMap: Record<string, string> = {
   ironclad: "border-[var(--color-ironclad)]/60 hover:border-[var(--color-ironclad)]",
@@ -96,7 +97,7 @@ function CardItem({ card }: { card: Card }) {
           {(card.star_cost != null || card.is_x_star_cost) && (
             <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-full bg-[var(--bg-primary)] border border-amber-700/40 text-xs font-bold text-amber-300">
               {card.is_x_star_cost ? "X" : card.star_cost}
-              <img src={`${API_BASE}/static/images/icons/star_icon.webp`}
+              <img src={imageUrl("/static/images/icons/star_icon.webp")}
                 alt="star" className="w-3.5 h-3.5" crossOrigin="anonymous" />
             </span>
           )}

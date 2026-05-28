@@ -90,7 +90,7 @@ async def submit_run_endpoint(request: Request, username: str | None = None):
     if username:
         import re
 
-        sanitized = re.sub(r"[^a-zA-Z0-9_\- ]", "", username.strip())[:25].strip()
+        sanitized = re.sub(r"[^a-zA-Z0-9_\- ]", "", username.strip())[:32].strip()
         clean_username = sanitized or None
 
     result = submit_run(data, username=clean_username)
@@ -156,7 +156,7 @@ async def claim_runs_endpoint(request: Request):
 
     import re
 
-    sanitized = re.sub(r"[^a-zA-Z0-9_\- ]", "", raw_username.strip())[:25].strip()
+    sanitized = re.sub(r"[^a-zA-Z0-9_\- ]", "", raw_username.strip())[:32].strip()
     if not sanitized:
         raise HTTPException(
             status_code=400, detail="username is empty after sanitization"
@@ -192,6 +192,13 @@ def list_runs(
     build_id: str | None = None,
     players: str | None = None,
     game_mode: str | None = None,
+    ascension: int | None = None,
+    ascension_min: int | None = None,
+    ascension_max: int | None = None,
+    build_ids: str | None = None,
+    card: str | None = None,
+    relic: str | None = None,
+    today: bool = False,
     page: int = 1,
     limit: int = 50,
 ):
@@ -206,8 +213,15 @@ def list_runs(
             seed=seed,
             sort=sort,
             build_id=build_id,
+            build_ids=build_ids,
             players=players,
             game_mode=game_mode,
+            ascension=ascension,
+            ascension_min=ascension_min,
+            ascension_max=ascension_max,
+            card=card,
+            relic=relic,
+            today=today,
             page=page,
             limit=limit,
         )
@@ -286,6 +300,7 @@ def get_leaderboard(
     character: str | None = None,
     players: str | None = None,
     game_mode: str | None = None,
+    today: bool = False,
     page: int = 1,
     limit: int = 50,
 ):
@@ -308,6 +323,7 @@ def get_leaderboard(
             character=character,
             players=players,
             game_mode=game_mode,
+            today=today,
             page=page,
             limit=limit,
         )
@@ -665,9 +681,21 @@ def start_stats_refresher() -> None:
                     refresh_stats_summary,
                     try_acquire_refresh_lease,
                 )
+                from ..services.run_entity_stats import (
+                    refresh_entity_stats_snapshot,
+                )
 
                 if try_acquire_refresh_lease():
                     refresh_stats_summary()
+                    # Rebuild the shared entity-stats snapshot (tier-list
+                    # / Codex Score source) on the same leader-only loop.
+                    # Internally throttled, so this is a no-op find_one
+                    # most cycles and only walks the run files every
+                    # ~10 min on one worker.
+                    try:
+                        refresh_entity_stats_snapshot()
+                    except Exception:
+                        pass
             except Exception:
                 # SQLite path or transient failure — sleep and retry.
                 pass

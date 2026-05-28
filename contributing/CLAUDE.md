@@ -86,14 +86,16 @@ spire-codex/
       guides/page.tsx        # Community guides list with search/filter
       guides/[slug]/         # Guide detail with markdown rendering + tooltip widget
       guides/submit/         # Guide submission form → Discord webhook
-      leaderboards/page.tsx  # Three-tab browser — Fastest Wins, Highest Ascension, Browse Runs
+      leaderboards/page.tsx  # Fastest Wins + Highest Ascension ladders (single/co-op, game-mode + Today filters, shareable URLs)
       leaderboards/submit/   # Drag-and-drop .run upload
       leaderboards/stats/    # Ranked-table stats (cards/relics/potions/encounters pick + win rates)
       leaderboards/scoring/  # Codex Score methodology page (Bayesian shrinkage explainer)
       tier-list/page.tsx     # Codex Score tier-list hub (cards/relics/potions)
       tier-list/[type]/      # Visual S→F tier rows per entity type
       runs/[hash]/           # Shared-run detail — "by {username}" link + in-game-style summary with TinyCard grid, clickable map nodes
-      runs/page.tsx          # Redirect to /leaderboards (old URL preserved)
+      runs/page.tsx          # Browse Runs — expression search bar + filters + shareable URLs
+      profile/page.tsx       # Signed-in user profile — stats, personal bests, competitive comparison, run management
+      settings/page.tsx      # Account settings (username, email, linked Steam/Discord)
       meta/page.tsx          # Redirect to /leaderboards/stats (old URL preserved)
       news/page.tsx          # Steam news list (mirrored archive)
       news/[gid]/page.tsx    # Single Steam news article — NewsArticle JSON-LD, canonical → Steam, BBCode-sanitized body
@@ -152,8 +154,8 @@ spire-codex/
     changelogs/             # Version changelogs with per-entity diffs
     guides/                 # Markdown guide files with YAML frontmatter
     guides.json             # Parsed guide data
-    runs/                   # Submitted run JSON files (per player hash)
-    runs.db                 # SQLite database for run metadata
+    runs/                   # Submitted run JSON files (per player hash) — deck/relic data read by the Codex Score builder
+    runs.db                 # Legacy SQLite (fallback when MONGO_URL unset; run metadata now lives in MongoDB)
     showcase.json           # Community project gallery data
   docker-compose.yml        # Local dev
   docker-compose.prod.yml   # Production (Docker Hub images + nginx network)
@@ -195,8 +197,11 @@ spire-codex/
 - `POST /api/guides` — Guide submission (Discord webhook, rate-limited)
 - `POST /api/runs` — Run submission / `GET /api/runs/list` (filters: character, win, username, seed, build_id, sort, page, limit) / `GET /api/runs/shared/{hash}` (merges `username` from DB) / `GET /api/runs/stats`
 - `GET /api/runs/leaderboard` — ranked wins-only list (category: fastest|highest_ascension, character, page, limit)
-- `GET /api/runs/scores/{type}` — Bulk Codex Scores for cards/relics/potions (Bayesian-shrunk win rate → 0–100 → S/A/B/C/D/F)
+- `GET /api/runs/scores/{type}` — Bulk Codex Scores for cards/relics/potions (Bayesian-shrunk win rate → 0–100 → S/A/B/C/D/F; materialized to Mongo by a single leader)
+- `GET /api/runs/leaderboard/rank/{hash}` — rank of one winning run; `POST /api/runs/claim` — attach username to prior runs
+- `GET /api/runs/encounter-stats` — per-encounter aggregates (Mongo-only)
 - `GET /api/runs/versions` — distinct build_ids across submitted runs
+- `/api/auth/*` — user accounts: Steam/Discord sign-in, `me`, `runs`, `runs/upload`, `stats`, `personal-bests`, `competitive` (cookie/JWT session)
 - `GET /api/news?feed_type=&feedname=&tag=&since=&search=&limit=&offset=` / `GET /api/news/{gid}` — Steam announcements (locally archived)
 - `GET /api/merchant/config` — Auto-extracted merchant pricing
 - `GET /api/versions` — Available data versions (beta multi-version browsing)
@@ -328,7 +333,7 @@ Parallel deployment for Steam beta branch data. Uses same codebase/images but se
 
 ## Versioning
 Uses `1.X.Y` — 1=codex major, X=bumps on Mega Crit game patch, Y=our fixes/improvements.
-Current: **v1.1.1** (X bumped on game v0.103.2 / Major Update #1; Y rolled with i18n + badges + smoke renders + changelog guard)
+Current: **v1.1.3** (Y rolled with user accounts, MongoDB migration, Codex Score tier lists, Cloudflare CDN, encounter stats, the /runs browser, and self-hosted analytics)
 
 ## Known Limitations
 - 6 monsters lack images entirely (Crusher, Doormaker, Flyconid, Ovicopter, Rocket, Decimillipede)
@@ -382,7 +387,9 @@ Current: **v1.1.1** (X bumped on game v0.103.2 / Major Update #1; Y rolled with 
   - Known gaps: compare graphs (keyword matching), merchant prose, about/changelog content, scattered client component strings
   - Current t() approach doesn't scale — hundreds of strings across dozens of components
   - `next-intl` handles URL-based locale detection, server/client components, centralized message files
-- Discord bot (card lookup, patch alerts)
+- ~~Database instead of JSON files for runs~~ ✅ — MongoDB (community stats, leaderboards, accounts); materialized `stats_summary` + `entity_stats_snapshot` collections via a leader-elected refresher
+- ~~User accounts~~ ✅ — Steam OpenID + Discord OAuth, JWT sessions, profile stats, personal bests, competitive comparison, run claiming/upload
+- ~~Discord bot (card lookup)~~ ✅ — Knowledge Demon (see /knowledge-demon)
+- ~~CDN for images~~ ✅ — Cloudflare R2 at `cdn.spire-codex.com` (webp)
 - Deck builder / run simulator
-- Database (SQLite/Postgres) instead of JSON files
-- User accounts with deck/run sharing
+- Patreon-to-account linking for supporter perks

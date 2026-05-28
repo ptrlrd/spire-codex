@@ -5,6 +5,7 @@ import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 import { isValidLang, LANG_HREFLANG, LANG_NAMES, LANG_GAME_NAME, SUPPORTED_LANGS, type LangCode } from "@/lib/languages";
 import { redirectMissingEntity } from "@/lib/redirect-helpers";
+import { imageUrl } from "@/lib/image-url";
 
 export const dynamic = "force-dynamic";
 
@@ -37,7 +38,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         title,
         description: clipMetaDescription(`${gameName} potion — ${name}${desc ? `: ${desc}` : ""}`),
         locale: LANG_HREFLANG[langCode],
-        images: entity.image_url ? [{ url: `${API_PUBLIC}${entity.image_url}` }] : [],
+        images: entity.image_url ? [{ url: imageUrl(entity.image_url) }] : [],
       },
       twitter: { card: "summary_large_image", title, description: clipMetaDescription(`${gameName} potion — ${name}${desc ? `: ${desc}` : ""}`) },
       alternates: { canonical: `/${lang}/potions/${id}`, languages },
@@ -62,7 +63,7 @@ export default async function Page({ params }: Props) {
       const name = data.name || data.title || id;
       const detailJsonLd = buildDetailPageJsonLd({
         name, description: desc || name, path: `/${lang}/potions/${id}`,
-        imageUrl: data.image_url ? `${API_PUBLIC}${data.image_url}` : undefined, category: "Potion",
+        imageUrl: data.image_url ? imageUrl(data.image_url) : undefined, category: "Potion",
         breadcrumbs: [{ name: "Home", href: `/${lang}` }, { name: "Potions", href: `/${lang}/potions` }, { name, href: `/${lang}/potions/${id}` }],
         inLanguage: LANG_HREFLANG[langCode],
       });

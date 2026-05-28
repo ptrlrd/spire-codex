@@ -8,6 +8,7 @@ import { useLanguage } from "@/app/contexts/LanguageContext";
 import { t } from "@/lib/ui-translations";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
+import { imageUrl } from "@/lib/image-url";
 
 function cleanId(id: string): string {
   return id.replace(/^(CHARACTER|CARD|RELIC|ENCOUNTER|EVENT|MONSTER|ACT|POTION)\./, "");
@@ -79,7 +80,7 @@ type Mode = "" | "single" | "multi";
 // `gameMode` mirrors the backend `game_mode` column. Empty string = no
 // filter (all modes). Default is "standard" since custom-seed and daily
 // runs aren't time-comparable to the canonical ladder.
-type GameMode = "" | "standard" | "daily" | "custom";
+type GameMode = "" | "standard" | "daily" | "daily_today" | "custom";
 
 function tabFromParam(value: string | null): Tab {
   if (value === "browse" || value === "highest_ascension") return value;
@@ -93,7 +94,7 @@ function modeFromParam(value: string | null): Mode {
 }
 
 function gameModeFromParam(value: string | null): GameMode {
-  if (value === "daily" || value === "custom" || value === "") return value;
+  if (value === "daily" || value === "daily_today" || value === "custom" || value === "") return value;
   if (value === "all") return "";
   return "standard";
 }
@@ -115,7 +116,7 @@ export default function LeaderboardBrowseClient() {
   const [gameMode, setGameMode] = useState<GameMode>(() => gameModeFromParam(searchParams.get("game_mode")));
 
   // --- Leaderboard state ---
-  const [lbChar, setLbChar] = useState("");
+  const [lbChar, setLbChar] = useState(() => searchParams.get("character") || "");
   const [lbPage, setLbPage] = useState(1);
   const [lbEntries, setLbEntries] = useState<LeaderboardEntry[]>([]);
   const [lbTotal, setLbTotal] = useState(0);
@@ -123,11 +124,11 @@ export default function LeaderboardBrowseClient() {
   const [lbLoading, setLbLoading] = useState(false);
 
   // --- Browse state ---
-  const [browseChar, setBrowseChar] = useState("");
-  const [browseWin, setBrowseWin] = useState("");
-  const [browseUser, setBrowseUser] = useState("");
+  const [browseChar, setBrowseChar] = useState(() => searchParams.get("browse_character") || "");
+  const [browseWin, setBrowseWin] = useState(() => searchParams.get("win") || "");
+  const [browseUser, setBrowseUser] = useState(() => searchParams.get("username") || "");
   const [browseSeed, setBrowseSeed] = useState("");
-  const [browseBuildId, setBrowseBuildId] = useState("");
+  const [browseBuildId, setBrowseBuildId] = useState(() => searchParams.get("build_id") || "");
   const [browseSort, setBrowseSort] = useState("date");
   const [browsePage, setBrowsePage] = useState(1);
   const [runList, setRunList] = useState<BrowseRun[]>([]);
@@ -140,7 +141,12 @@ export default function LeaderboardBrowseClient() {
   useEffect(() => {
     fetch(`${API}/api/runs/versions`)
       .then((r) => (r.ok ? r.json() : { versions: [] }))
-      .then((data) => setVersions(data.versions || []))
+      .then((data) => {
+        const filtered = (data.versions || [])
+          .filter((v: string) => !v.toLowerCase().includes("nonreleased"))
+          .sort((a: string, b: string) => b.localeCompare(a, undefined, { numeric: true }));
+        setVersions(filtered);
+      })
       .catch(() => {});
   }, []);
 
@@ -163,6 +169,22 @@ export default function LeaderboardBrowseClient() {
     return charNames[id.toUpperCase()] ?? displayName(`CHARACTER.${id}`);
   }
 
+  // Sync state to URL so links are shareable and back button works
+  useEffect(() => {
+    const params = new URLSearchParams();
+    if (tab !== "fastest") params.set("tab", tab);
+    if (mode) params.set("mode", mode);
+    if (gameMode && gameMode !== "standard") params.set("game_mode", gameMode);
+    if (lbChar) params.set("character", lbChar);
+    if (browseChar) params.set("browse_character", browseChar);
+    if (browseWin) params.set("win", browseWin);
+    if (browseUser) params.set("username", browseUser);
+    if (browseBuildId) params.set("build_id", browseBuildId);
+    const qs = params.toString();
+    const url = qs ? `${window.location.pathname}?${qs}` : window.location.pathname;
+    window.history.replaceState(null, "", url);
+  }, [tab, mode, gameMode, lbChar, browseChar, browseWin, browseUser, browseBuildId]);
+
   // Reset leaderboard page when filters change
   useEffect(() => { setLbPage(1); }, [tab, lbChar, mode, gameMode]);
 
@@ -173,7 +195,12 @@ export default function LeaderboardBrowseClient() {
     const params = new URLSearchParams();
     params.set("category", tab);
     if (mode) params.set("players", mode);
-    if (gameMode) params.set("game_mode", gameMode);
+    if (gameMode === "daily_today") {
+      params.set("game_mode", "daily");
+      params.set("today", "true");
+    } else if (gameMode) {
+      params.set("game_mode", gameMode);
+    }
     if (lbChar) params.set("character", lbChar);
     params.set("page", String(lbPage));
     params.set("limit", "20");
@@ -205,7 +232,12 @@ export default function LeaderboardBrowseClient() {
     if (tab !== "browse") return;
     const params = new URLSearchParams();
     if (mode) params.set("players", mode);
-    if (gameMode) params.set("game_mode", gameMode);
+    if (gameMode === "daily_today") {
+      params.set("game_mode", "daily");
+      params.set("today", "true");
+    } else if (gameMode) {
+      params.set("game_mode", gameMode);
+    }
     if (browseChar) params.set("character", browseChar);
     if (browseWin) params.set("win", browseWin);
     if (browseUser) params.set("username", browseUser);
@@ -226,14 +258,18 @@ export default function LeaderboardBrowseClient() {
   const TABS: { key: Tab; label: string; shortLabel: string }[] = [
     { key: "fastest", label: t("Fastest Wins", lang), shortLabel: t("Fastest", lang) },
     { key: "highest_ascension", label: t("Highest Ascension", lang), shortLabel: t("Ascension", lang) },
-    { key: "browse", label: t("Browse Runs", lang), shortLabel: t("Browse", lang) },
   ];
 
   const isLeaderboard = tab !== "browse";
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h1 className="text-3xl font-bold text-[var(--accent-gold)] mb-4">{t("Leaderboards", lang)}</h1>
+      <div className="flex items-end justify-between mb-4">
+        <h1 className="text-3xl font-bold text-[var(--accent-gold)]">{t("Leaderboards", lang)}</h1>
+        <Link href={`${lp}/runs`} className="text-xs text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors">
+          {t("Browse Runs", lang)} →
+        </Link>
+      </div>
 
       {/* Single vs Multi mode toggle — these are tracked separately in
           the runs collection (player_count == 1 vs > 1) and a fast
@@ -274,9 +310,16 @@ export default function LeaderboardBrowseClient() {
           ]).map(({ value, label }) => (
             <button
               key={value || "all"}
-              onClick={() => setGameMode(value)}
+              onClick={() => {
+                // Leaving Daily clears the daily_today sub-filter
+                if (gameMode === "daily_today" && value !== "daily") {
+                  setGameMode(value);
+                } else {
+                  setGameMode(value);
+                }
+              }}
               className={`px-3 py-1.5 text-sm font-medium rounded transition-colors ${
-                gameMode === value
+                (gameMode === value) || (value === "daily" && gameMode === "daily_today")
                   ? "bg-[var(--accent-gold)] text-[var(--bg-primary)]"
                   : "text-[var(--text-muted)] hover:text-[var(--text-primary)]"
               }`}
@@ -285,6 +328,20 @@ export default function LeaderboardBrowseClient() {
             </button>
           ))}
         </div>
+
+        {/* Today sub-filter — only visible under Daily mode */}
+        {(gameMode === "daily" || gameMode === "daily_today") && (
+          <button
+            onClick={() => setGameMode(gameMode === "daily_today" ? "daily" : "daily_today")}
+            className={`px-3 py-1.5 text-sm font-medium rounded-lg border transition-colors ${
+              gameMode === "daily_today"
+                ? "bg-[var(--accent-gold)] text-[var(--bg-primary)] border-[var(--accent-gold)]"
+                : "bg-[var(--bg-primary)] border-[var(--border-subtle)] text-[var(--text-muted)] hover:text-[var(--text-primary)]"
+            }`}
+          >
+            {t("Today", lang)}
+          </button>
+        )}
       </div>
 
       {/* Tabs */}
@@ -345,7 +402,7 @@ export default function LeaderboardBrowseClient() {
                 }
               >
                 <img
-                  src={`${API}/static/images/characters/character_icon_${ch.toLowerCase()}.webp`}
+                  src={imageUrl(`/static/images/characters/character_icon_${ch.toLowerCase()}.webp`)}
                   alt=""
                   aria-hidden
                   className="w-6 h-6 object-contain flex-shrink-0"

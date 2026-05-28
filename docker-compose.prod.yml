@@ -53,6 +53,14 @@ services:
       # path. Falls through to local /data/runs.db SQLite otherwise
       # (the current state while the migration is in progress).
       - MONGO_URL=${MONGO_URL:-}
+      # User accounts (Steam/Discord OAuth + JWT sessions). Values live
+      # in the host .env; passed through so the auth endpoints work.
+      - JWT_SECRET=${JWT_SECRET:-}
+      - DISCORD_CLIENT_ID=${DISCORD_CLIENT_ID:-}
+      - DISCORD_CLIENT_SECRET=${DISCORD_CLIENT_SECRET:-}
+      - FRONTEND_URL=${FRONTEND_URL:-https://spire-codex.com}
+      - SPIRE_CODEX_PUBLIC_BASE=${SPIRE_CODEX_PUBLIC_BASE:-https://spire-codex.com}
+      - ENVIRONMENT=${ENVIRONMENT:-production}
       # prometheus_client multiprocess mode. Set in the env (not the
       # CMD) so it's exported into every worker as a real env var
       # before prometheus_client is imported. The dir is recreated +

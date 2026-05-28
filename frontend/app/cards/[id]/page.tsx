@@ -4,6 +4,7 @@ import { stripTags, stripTagsFlat, clipMetaDescription, buildLanguageAlternates,
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 import { redirectMissingEntity } from "@/lib/redirect-helpers";
+import { imageUrl } from "@/lib/image-url";
 
 // 1h on-demand ISR. force-static + revalidate forces Next.js to
 // cache even with async-params pages — without it, Next 15+ sees
@@ -44,7 +45,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         url: `${SITE_URL}/cards/${id}`,
         title,
         description: metaDesc,
-        images: card.image_url ? [{ url: `${API_PUBLIC}${card.image_url}` }] : [],
+        images: card.image_url ? [{ url: imageUrl(card.image_url) }] : [],
       },
       twitter: { card: "summary_large_image", title, description: metaDesc },
       alternates: { canonical: `/cards/${id}`, languages: buildLanguageAlternates(`/cards/${id}`) },
@@ -70,7 +71,7 @@ export default async function Page({ params }: Props) {
         name: card.name,
         description: desc || `${card.name} card from Slay the Spire 2`,
         path: `/cards/${id}`,
-        imageUrl: card.image_url ? `${API_PUBLIC}${card.image_url}` : undefined,
+        imageUrl: card.image_url ? imageUrl(card.image_url) : undefined,
         category: "Card",
         breadcrumbs: [
           { name: "Home", href: "/" },

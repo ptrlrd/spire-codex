@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { imageUrl } from "@/lib/image-url";
 
 // Use ?? not || — production sets NEXT_PUBLIC_API_URL="" intentionally
 // so URLs resolve same-origin (nginx proxies /static to the backend
@@ -139,7 +140,7 @@ export default function TierList({ route, entities, showUnrated = true }: TierLi
               >
                 {ent.image_url ? (
                   <img
-                    src={`${API_PUBLIC}${ent.image_url}`}
+                    src={imageUrl(ent.image_url)}
                     alt={ent.name}
                     className="w-12 h-12 sm:w-14 sm:h-14 object-contain"
                     loading="lazy"

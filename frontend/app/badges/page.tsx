@@ -6,6 +6,7 @@ import {
   buildCollectionPageJsonLd,
 } from "@/lib/jsonld";
 import type { Badge } from "@/lib/api";
+import { imageUrl } from "@/lib/image-url";
 
 export const dynamic = "force-dynamic";
 
@@ -128,7 +129,7 @@ function BadgeCard({ badge }: { badge: Badge }) {
     >
       {badge.image_url && (
         <img
-          src={`${STATIC_BASE}${badge.image_url}`}
+          src={imageUrl(badge.image_url)}
           alt={`Slay the Spire 2 ${badge.name} badge`}
           className="w-14 h-14 object-contain shrink-0"
           loading="lazy"

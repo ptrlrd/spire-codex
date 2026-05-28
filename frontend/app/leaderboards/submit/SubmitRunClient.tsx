@@ -2,35 +2,51 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
 import { useLanguage } from "@/app/contexts/LanguageContext";
+import { useAuth } from "@/app/contexts/AuthContext";
 import { t } from "@/lib/ui-translations";
 import { IS_BETA } from "@/lib/seo";
+import RunDropZone from "@/app/components/RunDropZone";
+import DiscordIcon from "@/app/components/DiscordIcon";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
+
+interface Run {
+  run_hash: string;
+  character: string;
+  win: boolean;
+  was_abandoned: boolean;
+  ascension: number;
+  floors_reached: number;
+  submitted_at: string;
+}
+
+const CHARACTER_COLORS: Record<string, string> = {
+  IRONCLAD: "#d53b27",
+  SILENT: "#23935b",
+  DEFECT: "#3873a9",
+  NECROBINDER: "#bf5a85",
+  REGENT: "#f07c1e",
+};
 
 export default function SubmitRunClient() {
   const router = useRouter();
   const lp = useLangPrefix();
   const { lang } = useLanguage();
-  const [jsonInput, setJsonInput] = useState("");
+  const { user, loading: authLoading, loginSteam, loginDiscord } = useAuth();
   const [error, setError] = useState("");
   const [username, setUsername] = useState("");
+  const [runs, setRuns] = useState<Run[]>([]);
+  const [runsTotal, setRunsTotal] = useState(0);
+  const [runsLoading, setRunsLoading] = useState(false);
   const [uploadProgress, setUploadProgress] = useState<{
     total: number;
     done: number;
     dupes: number;
     errors: number;
   } | null>(null);
-  const [isDragging, setIsDragging] = useState(false);
-  const dragCounter = useRef(0);
-  const fileInputRef = useRef<HTMLInputElement>(null);
-  // Belt-and-suspenders against any source of double-fire on the upload
-  // path (the dropzone-vs-document race the native stopImmediatePropagation
-  // kills above, plus button double-click, retry, etc.). A ref instead of
-  // useState so the guard sees the latest value without waiting for a
-  // re-render — back-to-back drops fire the second handler before React
-  // commits any state from the first.
   const uploadInFlight = useRef(false);
 
   function isValidRunFile(data: any): boolean {
@@ -175,101 +191,26 @@ export default function SubmitRunClient() {
     [username, lp, router]
   );
 
-  function parseRun() {
-    setError("");
+  const fetchRuns = useCallback(async () => {
+    setRunsLoading(true);
     try {
-      const data = JSON.parse(jsonInput);
-      if (!data.players || !data.map_point_history || !Array.isArray(data.acts)) {
-        setError(
-          t("submit_invalid_run", lang)
-        );
-        return;
+      const res = await fetch(`${API}/api/auth/runs?page=1&limit=5`, {
+        credentials: "include",
+      });
+      if (res.ok) {
+        const data = await res.json();
+        setRuns(data.runs || []);
+        setRunsTotal(data.total || 0);
       }
-      // Submit and redirect
-      const submitUrl = username.trim()
-        ? `${API}/api/runs?username=${encodeURIComponent(username.trim())}`
-        : `${API}/api/runs`;
-      fetch(submitUrl, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: jsonInput,
-      })
-        .then((r) => r.json().catch(() => null))
-        .then((d) => {
-          if (d?.run_hash) {
-            router.push(`${lp}/runs/${d.run_hash}`);
-          }
-        })
-        .catch(() => {});
-    } catch {
-      setError(
-        "Invalid JSON. Make sure you pasted the full contents of the .run file."
-      );
-    }
-  }
-
-  // Drag-and-drop handlers for the upload area
-  const handleDragEnter = useCallback((e: React.DragEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    dragCounter.current++;
-    setIsDragging(true);
-  }, []);
-
-  const handleDragOver = useCallback((e: React.DragEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-  }, []);
-
-  const handleDragLeave = useCallback((e: React.DragEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    dragCounter.current--;
-    if (dragCounter.current === 0) {
-      setIsDragging(false);
+    } catch {} finally {
+      setRunsLoading(false);
     }
   }, []);
 
-  const handleDrop = useCallback(
-    (e: React.DragEvent) => {
-      e.preventDefault();
-      e.stopPropagation();
-      // The page-level `document.addEventListener("drop", …)` below also
-      // calls handleFileUpload so drops anywhere on the page are captured.
-      // React's `e.stopPropagation()` only stops further synthetic handlers
-      // — the underlying native event still bubbles past React's root to
-      // the document listener, which fires handleFileUpload a second time.
-      // Each file then gets POSTed twice: the first request inserts, the
-      // second comes back marked `duplicate`, and the UI shows "0 submitted,
-      // 2 skipped" for what was actually a clean two-file upload.
-      e.nativeEvent.stopImmediatePropagation();
-      dragCounter.current = 0;
-      setIsDragging(false);
-      if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
-        handleFileUpload(e.dataTransfer.files);
-      }
-    },
-    [handleFileUpload]
-  );
-
-  // Page-level drop handling so drops work anywhere on the page
   useEffect(() => {
-    const handleDocDragOver = (e: DragEvent) => {
-      e.preventDefault();
-    };
-    const handleDocDrop = (e: DragEvent) => {
-      e.preventDefault();
-      if (e.dataTransfer?.files && e.dataTransfer.files.length > 0) {
-        handleFileUpload(e.dataTransfer.files);
-      }
-    };
-    document.addEventListener("dragover", handleDocDragOver);
-    document.addEventListener("drop", handleDocDrop);
-    return () => {
-      document.removeEventListener("dragover", handleDocDragOver);
-      document.removeEventListener("drop", handleDocDrop);
-    };
-  }, [handleFileUpload]);
+    if (user) fetchRuns();
+  }, [user, fetchRuns]);
+
 
   // Run submissions are server-side rejected on beta (the backend returns
   // 403 with "Submit to spire-codex.com instead"). The Navbar already
@@ -305,165 +246,122 @@ export default function SubmitRunClient() {
   }
 
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h1 className="text-3xl font-bold mb-2">
-        <span className="text-[var(--accent-gold)]">{t("Submit a Run", lang)}</span>
-      </h1>
-      <p className="text-sm text-[var(--text-muted)] mb-6">
-        {t("submit_tagline", lang)}
-      </p>
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+      <div>
+        <h1 className="text-3xl font-bold mb-2">
+          <span className="text-[var(--accent-gold)]">{t("Submit a Run", lang)}</span>
+        </h1>
+        <p className="text-sm text-[var(--text-muted)]">
+          {t("submit_tagline", lang)}
+        </p>
+      </div>
 
-      <div className="space-y-4">
-        {/* Username — full width on mobile, fixed-width on sm+ where the
-            sparse layout looked goofy with a 100% input. */}
+      {/* Sign in prompt */}
+      {!authLoading && !user && (
+        <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4 sm:p-5">
+          <p className="text-sm text-[var(--text-secondary)] mb-3">
+            Sign in to automatically associate runs with your account.
+          </p>
+          <div className="flex flex-wrap gap-2">
+            <button
+              onClick={loginSteam}
+              className="inline-flex items-center gap-2 px-4 py-2 text-sm rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-card-hover)] transition-colors"
+            >
+              <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658a3.387 3.387 0 0 1 1.912-.593c.064 0 .127.003.19.007l2.862-4.146v-.058a4.533 4.533 0 0 1 4.53-4.53 4.533 4.533 0 0 1 4.53 4.53 4.533 4.533 0 0 1-4.53 4.53h-.106l-4.08 2.91c0 .053.003.107.003.161a3.4 3.4 0 0 1-3.4 3.4 3.404 3.404 0 0 1-3.367-2.936L.256 15.21C1.542 20.2 6.218 24 11.979 24 18.627 24 24 18.627 24 11.979 24 5.373 18.627 0 11.979 0z"/></svg>
+              Steam
+            </button>
+            <button
+              onClick={loginDiscord}
+              className="inline-flex items-center gap-2 px-4 py-2 text-sm rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-card-hover)] transition-colors"
+            >
+              <DiscordIcon className="w-4 h-4 shrink-0" />
+              Discord
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Username input (only when not signed in) */}
+      {!user && (
         <input
           type="text"
           value={username}
-          onChange={(e) => setUsername(e.target.value.slice(0, 25))}
+          onChange={(e) => setUsername(e.target.value.slice(0, 32))}
           placeholder={t("Username (optional)", lang)}
-          maxLength={25}
+          maxLength={32}
           className="px-3 py-2 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] text-sm focus:outline-none focus:border-[var(--accent-gold)] w-full sm:w-48"
         />
+      )}
 
-        {/* File Upload with drag-and-drop. Mobile gets shorter padding
-            (p-4 instead of p-6) and the path-help is collapsed into a
-            <details> so the long save-game paths don't blow up the
-            viewport. Mobile also gets a touch-friendly button copy
-            since drag-and-drop is desktop-only. */}
-        <div
-          onDragEnter={handleDragEnter}
-          onDragOver={handleDragOver}
-          onDragLeave={handleDragLeave}
-          onDrop={handleDrop}
-          className={`bg-[var(--bg-card)] rounded-xl p-4 sm:p-6 text-center transition-colors ${
-            isDragging
-              ? "border-2 border-solid border-[var(--accent-gold)] bg-[var(--accent-gold)]/5"
-              : "border border-dashed border-[var(--border-accent)]"
-          }`}
-        >
-          <p className="text-sm text-[var(--text-secondary)] mb-3">
-            {isDragging
-              ? t("Drop files here...", lang)
-              : (
-                <>
-                  <span className="hidden sm:inline">{t("Drag & drop .run files here, or click to select", lang)}</span>
-                  <span className="sm:hidden">{t("Tap below to choose .run files", lang)}</span>
-                </>
-              )}
-          </p>
+      <RunDropZone onFiles={handleFileUpload} uploadProgress={uploadProgress} />
 
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-center gap-2 sm:gap-3">
-            <a
-              href="https://www.overwolf.com/app/ptrlrd-spire_codex"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center w-full sm:w-auto px-5 py-2.5 sm:py-2 rounded-lg text-sm font-medium bg-[var(--accent-gold)] text-[var(--bg-primary)] hover:opacity-90 transition-opacity"
-            >
-              Download Overwolf Companion App
-            </a>
-            <label className="inline-flex items-center justify-center w-full sm:w-auto px-5 py-2.5 sm:py-2 rounded-lg text-sm font-medium bg-[var(--bg-primary)] text-[var(--text-primary)] border border-[var(--border-accent)] hover:bg-[var(--bg-card-hover)] transition-colors cursor-pointer">
-              {t("Choose Files", lang)}
-              <input
-                ref={fileInputRef}
-                type="file"
-                multiple
-                accept=".run,.json"
-                className="hidden"
-                onChange={(e) =>
-                  e.target.files && handleFileUpload(e.target.files)
-                }
-              />
-            </label>
+      {error && (
+        <p className="text-[var(--color-ironclad)] text-sm">{error}</p>
+      )}
+
+      {/* Your Runs (signed in only) */}
+      {user && (
+        <section>
+          <div className="flex items-center justify-between mb-3">
+            <h2 className="text-lg font-semibold text-[var(--text-primary)]">
+              Your Runs {runsTotal > 0 && <span className="text-sm font-normal text-[var(--text-tertiary)]">({runsTotal})</span>}
+            </h2>
+            {runsTotal > 5 && (
+              <Link
+                href={`${lp}/profile`}
+                className="text-xs text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
+              >
+                View all
+              </Link>
+            )}
           </div>
 
-          {/* File paths — kept visible (not collapsed) so users can find
-              their .run files without digging through a disclosure. */}
-          <div className="mt-4 pt-4 border-t border-[var(--border-subtle)] text-left text-xs text-[var(--text-muted)] space-y-1.5">
-            <p className="text-[var(--text-secondary)] mb-2">
-              {t("Your .run files live here:", lang)}
+          {runsLoading ? (
+            <div className="space-y-2">
+              {[...Array(3)].map((_, i) => (
+                <div key={i} className="h-12 bg-[var(--bg-card)] rounded animate-pulse" />
+              ))}
+            </div>
+          ) : runs.length === 0 ? (
+            <p className="text-sm text-[var(--text-secondary)] py-4">
+              No runs yet. Upload .run files above to get started.
             </p>
-            <div>
-              <strong className="text-[var(--text-secondary)] block sm:inline">Windows</strong>
-              <code className="block sm:inline sm:ml-1 mt-0.5 sm:mt-0 bg-[var(--bg-primary)] px-1.5 py-0.5 rounded break-all">
-                %AppData%/SlayTheSpire2/steam/&lt;steamid&gt;/profile1/saves/history
-              </code>
-            </div>
-            <div>
-              <strong className="text-[var(--text-secondary)] block sm:inline">macOS</strong>
-              <code className="block sm:inline sm:ml-1 mt-0.5 sm:mt-0 bg-[var(--bg-primary)] px-1.5 py-0.5 rounded break-all">
-                ~/Library/Application Support/SlayTheSpire2/steam/&lt;steamid&gt;/profile1/saves/history
-              </code>
-            </div>
-            <div>
-              <strong className="text-[var(--text-secondary)] block sm:inline">Linux / Steam Deck</strong>
-              <code className="block sm:inline sm:ml-1 mt-0.5 sm:mt-0 bg-[var(--bg-primary)] px-1.5 py-0.5 rounded break-all">
-                ~/.local/share/SlayTheSpire2/steam/&lt;steamid&gt;/profile1/saves/history
-              </code>
-            </div>
-          </div>
-          {uploadProgress && (
-            <div className="mt-4">
-              <div className="w-full bg-[var(--bg-primary)] rounded-full h-2 mb-2">
-                <div
-                  className="h-2 rounded-full bg-[var(--accent-gold)] transition-all"
-                  style={{
-                    width: `${(uploadProgress.done / uploadProgress.total) * 100}%`,
-                  }}
-                />
-              </div>
-              <p className="text-xs text-[var(--text-muted)]">
-                {uploadProgress.done === uploadProgress.total ? (
-                  <>
-                    {t("Done!", lang)}{" "}
-                    {uploadProgress.total -
-                      uploadProgress.dupes -
-                      uploadProgress.errors}{" "}
-                    {t("submitted", lang)}
-                    {uploadProgress.dupes > 0 && (
-                      <>, {uploadProgress.dupes} {t("duplicates skipped", lang)}</>
-                    )}
-                    {uploadProgress.errors > 0 && (
-                      <>, {uploadProgress.errors} {t("invalid", lang)}</>
-                    )}
-                  </>
-                ) : (
-                  <>
-                    {t("Processing", lang)} {uploadProgress.done} {t("of", lang)}{" "}
-                    {uploadProgress.total}...
-                  </>
-                )}
-              </p>
+          ) : (
+            <div className="space-y-1.5">
+              {runs.map((run) => (
+                <Link
+                  key={run.run_hash}
+                  href={`${lp}/runs/${run.run_hash}`}
+                  className="flex items-center gap-2 sm:gap-3 px-3 py-2.5 rounded-lg bg-[var(--bg-card)] border border-[var(--border-subtle)] text-sm hover:bg-[var(--bg-card-hover)] transition-colors"
+                >
+                  <span
+                    className="w-2 h-2 rounded-full shrink-0"
+                    style={{ backgroundColor: CHARACTER_COLORS[run.character] || "#888" }}
+                  />
+                  <span className="font-medium text-[var(--text-primary)] w-20 sm:w-24 truncate">
+                    {run.character}
+                  </span>
+                  <span className={`shrink-0 text-xs px-1.5 py-0.5 rounded ${
+                    run.win
+                      ? "bg-green-500/15 text-green-400"
+                      : run.was_abandoned
+                        ? "bg-yellow-500/15 text-yellow-400"
+                        : "bg-red-500/15 text-red-400"
+                  }`}>
+                    {run.win ? "W" : run.was_abandoned ? "A" : "L"}
+                  </span>
+                  <span className="text-[var(--text-tertiary)] text-xs hidden sm:inline">
+                    A{run.ascension}
+                  </span>
+                  <span className="text-[var(--text-tertiary)] text-xs hidden sm:inline">
+                    F{run.floors_reached}
+                  </span>
+                </Link>
+              ))}
             </div>
           )}
-        </div>
-
-        {/* Or paste JSON */}
-        <div className="relative">
-          <div className="absolute inset-x-0 top-0 flex items-center justify-center -mt-2">
-            <span className="bg-[var(--bg-primary)] px-3 text-xs text-[var(--text-muted)]">
-              {t("or paste JSON", lang)}
-            </span>
-          </div>
-          <textarea
-            value={jsonInput}
-            onChange={(e) => setJsonInput(e.target.value)}
-            placeholder='{"acts":["ACT.OVERGROWTH"...],"ascension":0,...}'
-            rows={6}
-            className="w-full px-4 py-3 pt-5 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] text-sm font-mono focus:outline-none focus:border-[var(--accent-gold)] resize-none"
-          />
-          <button
-            onClick={parseRun}
-            disabled={!jsonInput.trim()}
-            className="mt-2 w-full sm:w-auto px-5 py-2.5 sm:py-2 rounded-lg text-sm font-medium bg-[var(--accent-gold)] text-[var(--bg-primary)] hover:opacity-90 transition-opacity disabled:opacity-50"
-          >
-            {t("Analyze Run", lang)}
-          </button>
-        </div>
-
-        {error && (
-          <p className="text-[var(--color-ironclad)] text-sm">{error}</p>
-        )}
-      </div>
+        </section>
+      )}
     </div>
   );
 }
