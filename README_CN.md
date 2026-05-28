@@ -121,7 +121,7 @@ spire-codex/
 │   ├── guides/                 # 带 YAML frontmatter 的 Markdown 指南文件
 │   ├── guides.json             # 解析后的指南数据
 │   ├── runs/                   # 用户提交的 run JSON 文件（按玩家 hash）
-│   └── runs.db                 # 存储 run 元数据的 SQLite 数据库
+│   └── runs.db                 # 旧版 SQLite 回退（run 元数据现已迁移至 MongoDB）
 ├── extraction/                 # 原始游戏文件（未提交）
 │   ├── raw/                    # 通过 GDRE 提取出的 Godot 项目（stable）
 │   ├── decompiled/             # ILSpy 输出（stable）
@@ -177,8 +177,13 @@ spire-codex/
 | 指南 | `/guides` | 社区策略指南，支持搜索 / 筛选 |
 | 指南详情 | `/guides/[slug]` | 完整指南，支持 Markdown 渲染和 tooltip 组件 |
 | 提交指南 | `/guides/submit` | 指南提交表单（Discord webhook） |
-| Runs | `/runs` | 社区 run 浏览器，支持角色 / 胜负筛选 |
-| Meta | `/meta` | 来自用户提交 runs 的实时社区统计 |
+| 排行榜 | `/leaderboards` | 最快通关与最高进阶榜单，支持单人 / 合作与游戏模式筛选（标准 / 每日 / 今日 / 自定义）。所有筛选状态写入 URL，任意视图均可分享 |
+| 浏览 Runs | `/runs` | 完整的 run 浏览器，带表达式搜索栏（`user:`、`char:`、`asc:` 区间、`card:`/`relic:` 多值 AND、`version:` 区间、`mode:`、`result:`、`players:`），外加下拉筛选、排序与可分享 URL |
+| 提交 Run | `/leaderboards/submit` | 拖放上传 `.run`，含 Overwolf 伴侣应用链接、Steam/Discord 登录以自动关联 run，以及你最近的 runs |
+| 统计 | `/leaderboards/stats` | 卡牌 / 遗物 / 药水 / 遭遇战的排名表（选取率、胜率、计数），可按角色 / 进阶 / 结果筛选 |
+| 个人档案 | `/profile` | 登录用户的统计（常用卡牌 / 遗物 / 药水、角色分布）、个人最佳、竞技对比（今日每日榜、全球排名、对比社区胜率）及 run 管理 |
+| 设置 | `/settings` | 账户设置：用户名、邮箱、已绑定的 Steam/Discord |
+| 共享 Run | `/runs/[hash]` | 游戏内风格的胜利 / 失败总结，含可点击的地图节点图标、遗物条与迷你卡牌网格 |
 | 参考 | `/reference` | 所有条目可点击 —— 章节、进阶等级、关键词、充能球、苦难、意图、修饰器、成就 |
 | 图片 | `/images` | 可浏览的游戏素材，支持按类别下载 ZIP |
 | 更新日志 | `/changelog` | 游戏更新之间的数据差异 |
@@ -247,14 +252,33 @@ spire-codex/
 | `GET /api/guides/{slug}` | 单篇攻略（含 Markdown 内容） | — |
 | `POST /api/guides` | 提交攻略（代理到 Discord） | — |
 | `POST /api/runs` | 提交一个 run（`.run` 文件 JSON） | `username` |
-| `GET /api/runs/list` | 已提交 runs 列表 | `character`, `win`, `username`, `page`, `limit` |
+| `GET /api/runs/list` | 浏览已提交的 runs | `character`, `win`, `username`, `seed`, `build_id`, `build_ids`, `players`, `game_mode`, `ascension`, `ascension_min`, `ascension_max`, `card`, `relic`, `today`, `sort`, `page`, `limit` |
 | `GET /api/runs/shared/{hash}` | 通过 hash 获取完整 run 数据（会合并数据库中的 `username`） | — |
 | `GET /api/runs/stats` | 聚合后的社区统计 | `character`, `win`, `ascension`, `game_mode`, `players` |
+| `GET /api/runs/leaderboard` | 仅胜利的排名榜单 | `category`（`fastest`、`highest_ascension`）、`character`、`players`、`game_mode`、`today`、`page`、`limit` |
+| `GET /api/runs/leaderboard/rank/{hash}` | 单个胜利 run 在榜单中的名次 | `category` |
 | `GET /api/runs/scores/{type}` | 各实体的 Codex Score（贝叶斯收缩胜率得分 + S/A/B/C/D/F 等级） | `type` 取值 `cards`/`relics`/`potions` |
+| `GET /api/runs/encounter-stats` | 各遭遇战聚合（出现次数、致死率、平均伤害 / 回合） | `act`、`room_type`、`multiplayer`、`page`、`limit` |
+| `POST /api/runs/claim` | 通过 hash 把用户名关联到此前提交的 runs | — |
+| `GET /api/exports/{lang}` | 某语言全部实体 JSON 的 ZIP | `lang` |
 | `GET /api/news` | Steam 公告 + 社区新闻（本地归档；超出 Steam 滑动窗口仍可访问） | `feed_type`, `feedname`, `tag`, `since`, `search`, `limit`, `offset` |
 | `GET /api/news/{gid}` | 单篇新闻文章（原始 HTML / BBCode 正文） | — |
 | `GET /api/merchant/config` | 自动提取的商人价格配置 | — |
 | `POST /api/feedback` | 提交反馈（代理到 Discord） | — |
+
+**用户账户**（Cookie/JWT 会话；可用 Steam 或 Discord 登录）：
+
+| 端点 | 说明 |
+|---|---|
+| `GET /api/auth/me` | 当前登录用户 |
+| `GET /api/auth/steam/redirect` | 发起 Steam OpenID 登录 |
+| `GET /api/auth/discord/start` | 发起 Discord OAuth 登录 |
+| `POST /api/auth/logout` | 清除会话 Cookie |
+| `PATCH /api/auth/username` / `PATCH /api/auth/email` | 更新资料字段 |
+| `GET /api/auth/runs` / `POST /api/auth/runs/upload` / `DELETE /api/auth/runs/{hash}` | 列出、上传、删除用户的 runs |
+| `GET /api/auth/stats` | 用户聚合统计（个人档案页） |
+| `GET /api/auth/personal-bests` | 最快单人 / 合作、最高进阶、今日及历史每日 |
+| `GET /api/auth/competitive` | 今日每日榜、全球排名、对比社区胜率 |
 
 每个 IP 每分钟限流 **60 次请求**。反馈和攻略提交接口每个 IP 每分钟限制 **3–5 次**。交互式文档位于 `/docs`（Swagger UI）。
 
@@ -344,6 +368,23 @@ docker compose up --build
 ```
 
 会同时启动两个服务（后端在 8000，前端在 3000）。
+
+### 环境变量
+
+只读核心 API 无需任何配置。下列可选功能由环境变量启用（设置在后端环境或 compose 文件中）：
+
+| 变量 | 使用方 | 说明 |
+|---|---|---|
+| `MONGO_URL` | 后端 | Runs 数据库（社区统计、排行榜、账户）。未设置时回退到旧版 SQLite（`data/runs.db`）。 |
+| `JWT_SECRET` | 后端 | 签发用户账户会话令牌。 |
+| `DISCORD_CLIENT_ID`、`DISCORD_CLIENT_SECRET` | 后端 | Discord OAuth 登录。 |
+| `FRONTEND_URL`、`SPIRE_CODEX_PUBLIC_BASE` | 后端 | OAuth 跳转 / 返回 URL。 |
+| `ENVIRONMENT` | 后端 | `production` 时启用安全 Cookie。 |
+| `NEXT_PUBLIC_API_URL` | 前端（构建期） | API 基址；生产环境留空以同源解析。 |
+| `NEXT_PUBLIC_CDN_URL` | 前端（构建期） | 设置后（如 `https://cdn.spire-codex.com`）图片走 CDN 而非 `/static`。 |
+| `NEXT_PUBLIC_SITE_URL` | 前端（构建期） | 元数据用的规范站点 URL。 |
+
+用户账户与 CDN 默认关闭，因此无需上述任何变量即可端到端运行。
 
 ## 更新流水线
 
@@ -701,8 +742,11 @@ Spire Codex 使用 **`1.X.Y`** 语义化版本规则：
 - ~~Discord 机器人~~ ✅ —— [Knowledge Demon](https://bot.spire-codex.com)：每个实体都有斜杠命令（`/card`、`/relic`、`/monster`、`/potion`、`/character`、`/event`、`/power`、`/enchantment`、`/lookup`、`/meta`），支持 Steam 新闻 RSS，外加从 [Kernel](https://github.com/ptrlrd/kernel) 派生的完整版务工具集
 - ~~Codex Score 与梯度表~~ ✅ —— 基于社区 run 数据，使用**贝叶斯收缩**计算每个实体的评分：`shrunk = (wins + PRIOR_WEIGHT × baseline) / (n + PRIOR_WEIGHT)`，再缩放到 0–100 并映射到 S/A/B/C/D/F。可避免小样本噪声（一张只打过 1 局且胜的卡不会拿到 S，而是回归先验）。FastAPI 启动时预热缓存。在详情页 Stats 标签通过 `ScoreBadge` 展示，并在 `/tier-list/{cards,relics,potions}` 单独陈列，方法论页面位于 `/leaderboards/scoring`。
 - ~~详情页 Stats 标签~~ ✅ —— `EntityRunStats` 提供得分徽章 + 文字总结 + 最近 run 链接。
+- ~~Runs 数据库后端~~ ✅ —— MongoDB（社区统计、排行榜、账户）；通过 leader 选举的刷新器维护物化的 `stats_summary` 与 `entity_stats_snapshot` 集合，未设置 `MONGO_URL` 时回退到 SQLite
+- ~~用户账户~~ ✅ —— Steam OpenID + Discord OAuth、JWT 会话、个人档案统计、个人最佳、竞技对比、run 关联 / 上传
+- ~~图片 CDN~~ ✅ —— Cloudflare R2，经 `cdn.spire-codex.com` 提供（webp）
 - **构筑编辑器** —— 可交互式牌组理论构筑
-- **数据库后端** —— 用 SQLite / PostgreSQL 替换 JSON 加载
+- **Patreon 账户关联** —— 为支持者解锁权益
 
 ## 致谢
 
@@ -711,9 +755,13 @@ Spire Codex 使用 **`1.X.Y`** 语义化版本规则：
 ## 技术栈
 
 - **后端**：Python、FastAPI、Pydantic、slowapi、GZip 压缩
+- **Runs 数据库**：MongoDB（社区统计、排行榜、用户账户），含物化的 `stats_summary` 集合与 leader 选举的后台刷新器；保留 SQLite 作为离线回退
+- **账户**：Steam OpenID + Discord OAuth、JWT 会话 Cookie
 - **前端**：Next.js 16（App Router）、TypeScript、Tailwind CSS、14 语言支持
+- **图片 / CDN**：Cloudflare R2，经 `cdn.spire-codex.com` 提供（webp）
+- **分析与可观测性**：自托管 Umami、Prometheus + node-exporter
 - **Spine 渲染器**：Node.js、Playwright、@esotericsoftware/spine-webgl（通过无头 Chrome 使用 WebGL）
-- **基础设施**：Docker、Forgejo CI、buildah
+- **基础设施**：Docker、GitHub Actions CI（自托管 runner，带 BuildKit 缓存）、Ansible/SSH 部署
 - **工具**：Python（更新流水线、changelog diff、图片复制）
 
 ## 免责声明

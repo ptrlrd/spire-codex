@@ -8,9 +8,12 @@ Spire Codex is a comprehensive database for Slay the Spire 2, built by reverse-e
 
 ## Quick References
 
-- **Backend**: Python 3.12, FastAPI, Pydantic, SQLite
+- **Backend**: Python 3.12, FastAPI, Pydantic
+- **Runs DB**: MongoDB (community stats, leaderboards, accounts); legacy SQLite fallback when `MONGO_URL` is unset
+- **Accounts**: Steam OpenID + Discord OAuth, JWT session cookies
 - **Frontend**: Next.js 16, TypeScript, Tailwind CSS, recharts
-- **Data**: JSON files in `data/{lang}/`, 14 languages
+- **Data**: game-entity JSON files in `data/{lang}/`, 14 languages (runs live in MongoDB)
+- **Images**: Cloudflare R2 CDN (`cdn.spire-codex.com`) when `NEXT_PUBLIC_CDN_URL` is set
 - **API docs**: `http://localhost:8000/docs`
 - **Run locally**: `docker compose up --build`
 
@@ -50,8 +53,10 @@ Spire Codex is a comprehensive database for Slay the Spire 2, built by reverse-e
 backend/app/main.py                       → App entry, router registration, `_warm_run_entity_stats()` startup pre-warm
 backend/app/routers/                      → API endpoints (one file per entity)
 backend/app/models/schemas.py             → Pydantic models
-backend/app/services/runs_db.py           → SQLite runs database
-backend/app/services/run_entity_stats.py  → Codex Score — Bayesian-shrunk win rate per entity, S/A/B/C/D/F tier
+backend/app/services/runs_db.py           → Runs DB dispatcher (Mongo when MONGO_URL set, else SQLite)
+backend/app/services/runs_db_mongo.py      → MongoDB runs store + materialized stats_summary + leader-lease refresher
+backend/app/routers/auth.py                → User accounts (profile, runs, stats, personal-bests, competitive)
+backend/app/services/run_entity_stats.py  → Codex Score — Bayesian-shrunk win rate per entity, S/A/B/C/D/F tier; materialized to Mongo by a single leader
 backend/app/parsers/                      → C# → JSON parsers
 frontend/app/layout.tsx                   → Root layout (navbar, footer, providers)
 frontend/app/globals.css                  → CSS variables, theme
