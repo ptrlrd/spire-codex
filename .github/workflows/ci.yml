@@ -117,6 +117,7 @@ jobs:
             NEXT_PUBLIC_API_URL=
             NEXT_PUBLIC_SITE_URL=https://spire-codex.com
             NEXT_PUBLIC_UMAMI_WEBSITE_ID=${{ secrets.UMAMI_WEBSITE_ID }}
+            NEXT_PUBLIC_CDN_URL=https://cdn.spire-codex.com
           tags: |
             ptrlrd/spire-codex-frontend:latest
             ptrlrd/spire-codex-frontend:${{ github.sha }}
@@ -162,6 +163,7 @@ jobs:
             NEXT_PUBLIC_API_URL=
             NEXT_PUBLIC_SITE_URL=https://beta.spire-codex.com
             NEXT_PUBLIC_UMAMI_WEBSITE_ID=${{ secrets.UMAMI_BETA_WEBSITE_ID }}
+            NEXT_PUBLIC_CDN_URL=https://cdn.spire-codex.com
           tags: |
             ptrlrd/spire-codex-frontend:beta
             ptrlrd/spire-codex-frontend:beta-${{ github.sha }}
