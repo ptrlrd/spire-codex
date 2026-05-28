@@ -202,7 +202,7 @@ export default async function HomeLeaderboardSection({
               )}
             </h3>
             <Link
-              href={`${lbBase}?tab=browse`}
+              href={runsBase}
               className="shrink-0 inline-flex items-center gap-1 text-xs font-medium text-[var(--text-secondary)] hover:text-[var(--accent-gold)] transition-colors"
             >
               <span>{t("View more", lang)}</span>
@@ -258,7 +258,7 @@ export default async function HomeLeaderboardSection({
               {t("Recent Runs", lang)}
             </h3>
             <Link
-              href={`${lbBase}?tab=browse`}
+              href={runsBase}
               className="shrink-0 inline-flex items-center gap-1 text-xs font-medium text-[var(--text-secondary)] hover:text-[var(--accent-gold)] transition-colors"
             >
               <span>{t("View more", lang)}</span>

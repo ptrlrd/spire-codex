@@ -258,14 +258,18 @@ export default function LeaderboardBrowseClient() {
   const TABS: { key: Tab; label: string; shortLabel: string }[] = [
     { key: "fastest", label: t("Fastest Wins", lang), shortLabel: t("Fastest", lang) },
     { key: "highest_ascension", label: t("Highest Ascension", lang), shortLabel: t("Ascension", lang) },
-    { key: "browse", label: t("Browse Runs", lang), shortLabel: t("Browse", lang) },
   ];
 
   const isLeaderboard = tab !== "browse";
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h1 className="text-3xl font-bold text-[var(--accent-gold)] mb-4">{t("Leaderboards", lang)}</h1>
+      <div className="flex items-end justify-between mb-4">
+        <h1 className="text-3xl font-bold text-[var(--accent-gold)]">{t("Leaderboards", lang)}</h1>
+        <Link href={`${lp}/runs`} className="text-xs text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors">
+          {t("Browse Runs", lang)} →
+        </Link>
+      </div>
 
       {/* Single vs Multi mode toggle — these are tracked separately in
           the runs collection (player_count == 1 vs > 1) and a fast
