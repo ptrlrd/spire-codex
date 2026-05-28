@@ -295,12 +295,6 @@ export default function Navbar() {
           )}
 
           <div className="flex items-center gap-2 shrink-0">
-            {/* Unified site + version switcher. Replaces the old
-                site-toggle button plus the beta-only `VersionSelector`
-                — one dropdown that lists `main` and every beta version,
-                with the current view filtered out. Colour reflects
-                which site you're on (gold = main, emerald = beta). */}
-            <SiteSwitcher />
             <a
               href="https://discord.gg/xMsTBeh"
               target="_blank"
@@ -321,6 +315,7 @@ export default function Navbar() {
                 <path d="M14.82 2.41c3.96 0 7.18 3.24 7.18 7.21 0 3.96-3.22 7.18-7.18 7.18-3.97 0-7.21-3.22-7.21-7.18 0-3.97 3.24-7.21 7.21-7.21M2 21.6h3.5V2.41H2V21.6z" />
               </svg>
             </a>
+            <SiteSwitcher />
             <LanguageSelector />
 
             {/* Icon search — visible on mobile (below md) AND at lg+
