@@ -328,8 +328,8 @@ export default function Navbar() {
               </div>
             )}
 
-          {/* User menu */}
-          {!authLoading && (
+          {/* User menu — hidden on beta (accounts are stable-only for now) */}
+          {!authLoading && !IS_BETA && (
             <div className="relative">
               <button
                 ref={userButtonRef}
