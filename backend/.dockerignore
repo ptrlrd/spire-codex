@@ -2,3 +2,7 @@ __pycache__
 *.pyc
 .env
 scripts
+# webp is served from the CDN, not the backend image. Keep it out of
+# the build context so the image only ships PNG sources (used by the
+# /api/images gallery + ZIP downloads).
+**/*.webp
