@@ -305,15 +305,21 @@ export default function LeaderboardBrowseClient() {
           {([
             { value: "standard" as GameMode, label: t("Standard", lang) },
             { value: "daily" as GameMode, label: t("Daily", lang) },
-            { value: "daily_today" as GameMode, label: t("Today", lang) },
             { value: "custom" as GameMode, label: t("Custom", lang) },
             { value: "" as GameMode, label: t("All Modes", lang) },
           ]).map(({ value, label }) => (
             <button
               key={value || "all"}
-              onClick={() => setGameMode(value)}
+              onClick={() => {
+                // Leaving Daily clears the daily_today sub-filter
+                if (gameMode === "daily_today" && value !== "daily") {
+                  setGameMode(value);
+                } else {
+                  setGameMode(value);
+                }
+              }}
               className={`px-3 py-1.5 text-sm font-medium rounded transition-colors ${
-                gameMode === value
+                (gameMode === value) || (value === "daily" && gameMode === "daily_today")
                   ? "bg-[var(--accent-gold)] text-[var(--bg-primary)]"
                   : "text-[var(--text-muted)] hover:text-[var(--text-primary)]"
               }`}
@@ -322,6 +328,20 @@ export default function LeaderboardBrowseClient() {
             </button>
           ))}
         </div>
+
+        {/* Today sub-filter — only visible under Daily mode */}
+        {(gameMode === "daily" || gameMode === "daily_today") && (
+          <button
+            onClick={() => setGameMode(gameMode === "daily_today" ? "daily" : "daily_today")}
+            className={`px-3 py-1.5 text-sm font-medium rounded-lg border transition-colors ${
+              gameMode === "daily_today"
+                ? "bg-[var(--accent-gold)] text-[var(--bg-primary)] border-[var(--accent-gold)]"
+                : "bg-[var(--bg-primary)] border-[var(--border-subtle)] text-[var(--text-muted)] hover:text-[var(--text-primary)]"
+            }`}
+          >
+            {t("Today", lang)}
+          </button>
+        )}
       </div>
 
       {/* Tabs */}
