@@ -13,7 +13,10 @@ COPY static/ static/
 # Overwolf overlay fetches images from the backend, not the CDN yet, so
 # regenerate webp from the tracked PNG sources at build time. (.dockerignore
 # keeps host webp out of the build context; these are built fresh in-image.)
-RUN find static/images -name '*.png' -exec sh -c 'cwebp -q 95 -m 6 -quiet "$0" -o "${0%.png}.webp"' {} \;
+# Run cwebp across all cores -- the serial find -exec left CPUs idle and
+# made this the slowest build step by far.
+RUN find static/images -name '*.png' -print0 \
+    | xargs -0 -P "$(nproc)" -I {} sh -c 'cwebp -q 95 -m 6 -quiet "$1" -o "${1%.png}.webp"' _ {}
 
 EXPOSE 8000
 
