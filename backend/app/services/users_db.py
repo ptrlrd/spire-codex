@@ -4,10 +4,10 @@ Document shape:
 
     {
         "_id": ObjectId,
-        "steam_id": "76561198...",   # unique, sparse
-        "discord_id": "123456...",   # unique, sparse
+        "steam_id": "76561198...",   # unique when set (partial index)
+        "discord_id": "123456...",   # unique when set (partial index)
         "username": "SomeName",
-        "username_lower": "somename",  # unique, for case-insensitive checks
+        "username_lower": "somename",  # unique when set (partial index)
         "email": "user@example.com",
         "username_changes": [ISODate(...)],  # timestamps, max 3 per 24h
         "created_at": ISODate(...),
@@ -23,7 +23,7 @@ from datetime import datetime, timedelta, timezone
 
 from bson import ObjectId
 from pymongo import ASCENDING, MongoClient
-from pymongo.errors import DuplicateKeyError
+from pymongo.errors import DuplicateKeyError, OperationFailure
 
 _client: MongoClient | None = None
 _coll = None
@@ -56,9 +56,38 @@ def _get_collection():
 
 
 def _ensure_indexes(coll) -> None:
-    coll.create_index([("steam_id", ASCENDING)], unique=True, sparse=True)
-    coll.create_index([("discord_id", ASCENDING)], unique=True, sparse=True)
-    coll.create_index([("username_lower", ASCENDING)], unique=True, sparse=True)
+    # These must be unique only when the field is actually set. A sparse
+    # unique index is NOT enough: sparse only skips documents where the
+    # field is absent, but both create paths write explicit nulls (a
+    # Discord-only user has steam_id=None, a Steam-only user has
+    # discord_id=None). Those nulls are indexed, so a sparse unique index
+    # lets only ONE such document exist and the second collides with
+    # E11000 dup key { steam_id: null }. A partial index keyed on
+    # $type:"string" indexes only set values, exempting null/missing.
+    _ensure_partial_unique(coll, "steam_id")
+    _ensure_partial_unique(coll, "discord_id")
+    _ensure_partial_unique(coll, "username_lower")
+
+
+def _ensure_partial_unique(coll, field: str) -> None:
+    """Create a partial unique index on `field`, migrating off the legacy
+    sparse index if present. Idempotent and safe to run from every worker."""
+    name = f"{field}_unique"
+    existing = {idx["name"] for idx in coll.list_indexes()}
+    if name in existing:
+        return
+    legacy = f"{field}_1"
+    if legacy in existing:
+        try:
+            coll.drop_index(legacy)
+        except OperationFailure:
+            pass  # another worker won the race and already dropped it
+    coll.create_index(
+        [(field, ASCENDING)],
+        name=name,
+        unique=True,
+        partialFilterExpression={field: {"$type": "string"}},
+    )
 
 
 def sanitize_username(raw: str) -> str | None:
