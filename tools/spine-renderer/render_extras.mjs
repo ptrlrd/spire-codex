@@ -16,12 +16,17 @@ class NodeTexture extends Texture {
 const BASE = path.resolve("/Users/peterlord/Documents/Projects/spire-codex");
 const ANIM = path.join(BASE, "extraction/raw/animations");
 const IMG = path.join(BASE, "backend/static/images");
-const OUTPUT_SIZE = 512, SS = 2, RS = OUTPUT_SIZE * SS, PAD = 20 * SS;
+const OUTPUT_WIDTH = 512;
+const OUTPUT_HEIGHT = 512;
+const SUPERSAMPLE = 2;
+const RENDER_WIDTH = OUTPUT_WIDTH * SUPERSAMPLE;
+const RENDER_HEIGHT = OUTPUT_HEIGHT * SUPERSAMPLE;
+const PADDING = 20 * SUPERSAMPLE;
 
 async function render(dir, skelName, outPath) {
   const skelPath = path.join(dir, skelName + ".skel");
   const atlasPath = path.join(dir, skelName + ".atlas");
-  
+
   if (!fs.existsSync(skelPath) || !fs.existsSync(atlasPath)) {
     console.log("  SKIP " + skelName + ": missing files");
     return false;
@@ -85,14 +90,14 @@ async function render(dir, skelName, outPath) {
   if (!isFinite(minX)) { console.log("  SKIP " + skelName + ": no bounds"); return false; }
 
   const sw = maxX - minX, sh = maxY - minY;
-  const avail = RS - PAD * 2;
+  const avail = RENDER_WIDTH - PADDING * 2;
   const scale = Math.min(avail / sw, avail / sh);
 
-  const canvas = createCanvas(RS, RS);
+  const canvas = createCanvas(RENDER_WIDTH, RENDER_HEIGHT);
   const ctx = canvas.getContext("2d");
-  ctx.clearRect(0, 0, RS, RS);
+  ctx.clearRect(0, 0, RENDER_WIDTH, RENDER_HEIGHT);
   ctx.save();
-  ctx.translate(RS/2, RS/2);
+  ctx.translate(RENDER_WIDTH/2, RENDER_HEIGHT/2);
   ctx.scale(scale, -scale);
   ctx.translate(-(minX+maxX)/2, -(minY+maxY)/2);
   const renderer = new SkeletonRenderer(ctx);
@@ -100,9 +105,9 @@ async function render(dir, skelName, outPath) {
   renderer.draw(skeleton);
   ctx.restore();
 
-  const out = createCanvas(OUTPUT_SIZE, OUTPUT_SIZE);
+  const out = createCanvas(OUTPUT_WIDTH, OUTPUT_HEIGHT);
   const oc = out.getContext("2d");
-  oc.drawImage(canvas, 0, 0, OUTPUT_SIZE, OUTPUT_SIZE);
+  oc.drawImage(canvas, 0, 0, OUTPUT_WIDTH, OUTPUT_HEIGHT);
 
   fs.mkdirSync(path.dirname(outPath), { recursive: true });
   fs.writeFileSync(outPath, out.toBuffer("image/png"));

@@ -16,9 +16,11 @@ const BASE = path.resolve(import.meta.dirname, "../..");
 const SKEL_DIR = path.join(BASE, "extraction/raw/animations/backgrounds/neow_room");
 const OUTPUT = path.join(BASE, "backend/static/images/misc/neow.png");
 
-const OUTPUT_SIZE = 2048;
+const OUTPUT_WIDTH = 2048;
+const OUTPUT_HEIGHT = 2048;
 const SUPERSAMPLE = 2;
-const RENDER_SIZE = OUTPUT_SIZE * SUPERSAMPLE;
+const RENDER_WIDTH = OUTPUT_WIDTH * SUPERSAMPLE;
+const RENDER_HEIGHT = OUTPUT_HEIGHT * SUPERSAMPLE;
 const PADDING = 40 * SUPERSAMPLE;
 const SHADOW_NAMES = new Set(["shadow", "shadow2", "ground", "ground_shadow"]);
 const IDLE_NAMES = ["idle_loop", "idle", "Idle_loop", "Idle", "rest_idle", "rest_loop", "loop", "animation"];
@@ -103,13 +105,13 @@ async function main() {
   }
 
   const sw = maxX - minX, sh = maxY - minY;
-  const avail = RENDER_SIZE - PADDING * 2;
+  const avail = RENDER_WIDTH - PADDING * 2;
   const scale = Math.min(avail / sw, avail / sh);
   console.log(`  Bounds: ${sw.toFixed(0)}x${sh.toFixed(0)}, scale: ${scale.toFixed(2)}`);
-  console.log(`  Rendering at ${RENDER_SIZE}x${RENDER_SIZE}, output ${OUTPUT_SIZE}x${OUTPUT_SIZE}...`);
+  console.log(`  Rendering at ${RENDER_WIDTH}x${RENDER_HEIGHT}, output ${OUTPUT_WIDTH}x${OUTPUT_WIDTH}...`);
 
-  const imgData = renderSkeleton(skeleton, RENDER_SIZE, scale, minX, minY, maxX, maxY);
-  const buffer = imageDataToPng(imgData, RENDER_SIZE, OUTPUT_SIZE);
+  const imgData = renderSkeleton(skeleton, RENDER_WIDTH, RENDER_HEIGHT, scale, minX, minY, maxX, maxY);
+  const buffer = imageDataToPng(imgData, RENDER_WIDTH, RENDER_HEIGHT, OUTPUT_WIDTH, OUTPUT_HEIGHT);
 
   fs.mkdirSync(path.dirname(OUTPUT), { recursive: true });
   fs.writeFileSync(OUTPUT, buffer);
