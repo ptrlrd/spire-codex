@@ -14,26 +14,20 @@ the relying party. The flow:
 3. The overlay polls `/api/auth/steam/poll/<session_id>` until status
    transitions from `pending` to `ok`, then closes the loop.
 
-Sessions are kept in-memory with a TTL — the relying-party state is
-ephemeral and any persistence belongs in the client (which writes
-steamid + persona to its settings). If the FastAPI process restarts
-mid-flow the user just retries.
-
-Single-worker assumption: the in-memory `_sessions` dict only works
-because the backend Dockerfile launches uvicorn without `--workers`,
-i.e. one process. If that ever changes, swap the store for Redis or
-SQLite — start/callback/poll requests would otherwise land on
-different workers and break the rendezvous.
+Sessions live in `auth_session_store`, which is Mongo-backed (with a TTL
+index) when MONGO_URL is set and an in-memory dict otherwise. The shared
+store matters because production runs uvicorn with `--workers N`:
+start/callback/poll can each land on a different process, so a per-worker
+dict would break the rendezvous (the callback can't find the session
+/start created, and the web flow lands on /profile signed-out). Without
+Mongo (local dev) uvicorn runs a single worker, so the dict is safe.
 """
 
 from __future__ import annotations
 
 import logging
 import re
-import secrets
-import time
 import urllib.parse
-from dataclasses import dataclass
 from typing import Optional
 
 import httpx
@@ -43,55 +37,13 @@ from pydantic import BaseModel
 from slowapi import Limiter
 
 from ..dependencies import client_ip
+from ..services import auth_session_store
+from ..services.auth_session_store import SESSION_TTL_SECONDS
 
 logger = logging.getLogger("spire-codex.auth")
 
 router = APIRouter(prefix="/api/auth/steam", tags=["Auth"])
 limiter = Limiter(key_func=client_ip)
-
-# Sessions live for 5 min — generous enough for the user to bounce off
-# Steam's login (saved password autofill, 2FA, etc.) and short enough
-# that an abandoned session expires before it's discoverable.
-SESSION_TTL_SECONDS = 300
-
-# Token-bucket of unconsumed sessions. Capping the size protects us from
-# someone hammering /start to leak memory; oldest entries eviction-style
-# drop on overflow.
-MAX_SESSIONS = 5000
-
-
-@dataclass
-class _Session:
-    created_at: float
-    steamid: Optional[str] = None
-    persona_name: Optional[str] = None
-    user_id: Optional[str] = None
-    token: Optional[str] = None
-    needs_email: bool = False
-    error: Optional[str] = None
-
-
-_sessions: dict[str, _Session] = {}
-
-
-def _purge_expired() -> None:
-    """Drop sessions older than the TTL. Cheap to run on every access."""
-    cutoff = time.time() - SESSION_TTL_SECONDS
-    stale = [sid for sid, s in _sessions.items() if s.created_at < cutoff]
-    for sid in stale:
-        _sessions.pop(sid, None)
-
-
-def _new_session() -> str:
-    _purge_expired()
-    if len(_sessions) >= MAX_SESSIONS:
-        # Drop the oldest. O(N) but only on rare overflow.
-        oldest = min(_sessions.items(), key=lambda kv: kv[1].created_at)
-        _sessions.pop(oldest[0], None)
-    sid = secrets.token_urlsafe(24)
-    _sessions[sid] = _Session(created_at=time.time())
-    return sid
-
 
 _REALM_ENV_KEY = "SPIRE_CODEX_PUBLIC_BASE"
 
@@ -122,7 +74,7 @@ async def start(request: Request) -> dict:
     The session_id is the rendezvous point — the client polls /poll with
     it, the callback writes the resolved identity into the same slot.
     """
-    sid = _new_session()
+    sid = auth_session_store.create_session()
     base = _public_base(request)
     return_to = f"{base}/api/auth/steam/callback?session={sid}"
     realm = base + "/"
@@ -150,7 +102,7 @@ async def start(request: Request) -> dict:
 @limiter.limit("20/minute")
 async def redirect_to_steam(request: Request):
     """Direct browser redirect to Steam login. For mobile and popup-blocked flows."""
-    sid = _new_session()
+    sid = auth_session_store.create_session()
     base = _public_base(request)
     return_to = f"{base}/api/auth/steam/callback?session={sid}"
     realm = base + "/"
@@ -175,7 +127,7 @@ async def callback(request: Request) -> HTMLResponse:
     """Steam-OpenID return URL. Validates with Steam and stores the result."""
     qs = dict(request.query_params)
     session_id = qs.get("session", "")
-    session = _sessions.get(session_id)
+    session = auth_session_store.get_session(session_id)
     if not session:
         import os
 
@@ -185,10 +137,12 @@ async def callback(request: Request) -> HTMLResponse:
     # OpenID response can also be `cancel` if the user bailed.
     mode = qs.get("openid.mode")
     if mode == "cancel":
-        session.error = "User cancelled sign-in."
+        auth_session_store.update_session(session_id, error="User cancelled sign-in.")
         return _close_page(error="Sign-in cancelled.")
     if mode != "id_res":
-        session.error = f"Unexpected OpenID mode: {mode}"
+        auth_session_store.update_session(
+            session_id, error=f"Unexpected OpenID mode: {mode}"
+        )
         return _close_page(error="Unexpected response from Steam.")
 
     # Verify the signature by replaying the params with check_authentication.
@@ -206,46 +160,62 @@ async def callback(request: Request) -> HTMLResponse:
         )
     except Exception as exc:
         logger.warning("steam-auth verify failed: %s", exc)
-        session.error = f"Could not verify with Steam: {exc}"
+        auth_session_store.update_session(
+            session_id, error=f"Could not verify with Steam: {exc}"
+        )
         return _close_page(error="Steam verification failed. Try again.")
 
     if not verified:
-        session.error = "Steam said the response was not valid."
+        auth_session_store.update_session(
+            session_id, error="Steam said the response was not valid."
+        )
         return _close_page(error="Steam did not validate the response.")
 
     claimed_id = qs.get("openid.claimed_id", "")
     match = re.search(r"/openid/id/(\d+)$", claimed_id)
     if not match:
-        session.error = f"Unexpected claimed_id: {claimed_id}"
+        auth_session_store.update_session(
+            session_id, error=f"Unexpected claimed_id: {claimed_id}"
+        )
         return _close_page(error="Couldn't read the SteamID from Steam's response.")
 
     steamid = match.group(1)
-    session.steamid = steamid
 
     # Best-effort persona name lookup. Public XML is keyless and works for
     # private profiles too — Steam still includes the display name.
     persona = await _fetch_persona_name(steamid)
-    session.persona_name = persona
 
     # Create or find user doc and issue JWT
+    user_id = None
+    token = None
+    needs_email = False
     try:
         from ..services.users_db import find_or_create_by_steam
         from ..services.auth_jwt import create_token
 
         user = find_or_create_by_steam(steamid, persona)
-        session.user_id = user["_id"]
-        session.token = create_token(user_id=user["_id"], steam_id=steamid)
-        session.needs_email = not user.get("email")
+        user_id = user["_id"]
+        token = create_token(user_id=user["_id"], steam_id=steamid)
+        needs_email = not user.get("email")
     except Exception as exc:
         logger.warning("steam-auth user creation failed: %s", exc)
         # Non-fatal: auth still succeeded, just no persistent user yet
+
+    auth_session_store.update_session(
+        session_id,
+        steamid=steamid,
+        persona_name=persona,
+        user_id=user_id,
+        token=token,
+        needs_email=needs_email,
+    )
 
     logger.info(
         "steam-auth ok session=%s steamid=%s persona=%s user=%s",
         session_id[:8],
         steamid,
         persona,
-        session.user_id,
+        user_id,
     )
 
     # Redirect to frontend with token in URL. The frontend reads
@@ -253,14 +223,12 @@ async def callback(request: Request) -> HTMLResponse:
     # on the correct origin. In production (same domain) the cookie
     # approach works directly; in local dev (different ports) we need
     # this token handoff.
-    if session.token:
+    if token:
         import os
 
         frontend = os.environ.get("FRONTEND_URL", "").strip() or _public_base(request)
-        _sessions.pop(session_id, None)
-        response = RedirectResponse(
-            f"{frontend}/profile?auth=steam&token={session.token}"
-        )
+        auth_session_store.pop_session(session_id)
+        response = RedirectResponse(f"{frontend}/profile?auth=steam&token={token}")
         response.headers["Cache-Control"] = "no-store, no-cache"
         response.headers["Pragma"] = "no-cache"
         return response
@@ -278,38 +246,38 @@ async def poll(session_id: str) -> JSONResponse:
       - `error`: explicit failure (cancelled, invalid, etc.).
       - 404: session is unknown or expired.
     """
-    _purge_expired()
-    session = _sessions.get(session_id)
+    session = auth_session_store.get_session(session_id)
     if not session:
         raise HTTPException(status_code=404, detail="session not found or expired")
 
-    if session.error:
+    if session.get("error"):
         # Returning the error and dropping the session — the client should
         # restart with /start rather than re-poll a known-bad slot.
-        msg = session.error
-        _sessions.pop(session_id, None)
+        msg = session["error"]
+        auth_session_store.pop_session(session_id)
         return JSONResponse({"status": "error", "message": msg})
 
-    if session.steamid is None:
+    if session.get("steamid") is None:
         return JSONResponse({"status": "pending"})
 
     # Identity ready. Drop the session so a third party who somehow
     # snooped the session_id can't replay-poll.
+    token = session.get("token")
     payload = {
         "status": "ok",
-        "steamid": session.steamid,
-        "persona_name": session.persona_name,
-        "user_id": session.user_id,
-        "token": session.token,
-        "needs_email": session.needs_email,
+        "steamid": session.get("steamid"),
+        "persona_name": session.get("persona_name"),
+        "user_id": session.get("user_id"),
+        "token": token,
+        "needs_email": session.get("needs_email", False),
     }
-    _sessions.pop(session_id, None)
+    auth_session_store.pop_session(session_id)
 
     response = JSONResponse(payload)
-    if session.token:
+    if token:
         from ..services.auth_jwt import set_auth_cookie
 
-        set_auth_cookie(response, session.token)
+        set_auth_cookie(response, token)
 
     return response
 

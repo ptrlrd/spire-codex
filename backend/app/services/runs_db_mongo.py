@@ -1034,6 +1034,15 @@ def get_stats(
 # to `stats_summary`. API handlers read that single document — O(1).
 
 
+def get_database():
+    """Public handle to the default database, reusing the pooled client.
+
+    Lets other services (e.g. the Steam auth session store) share a
+    Mongo-backed collection without opening a second client.
+    """
+    return _get_collection().database
+
+
 def _summary_coll():
     return _get_collection().database[SUMMARY_COLLECTION_NAME]
 

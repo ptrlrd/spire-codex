@@ -9,8 +9,7 @@ from __future__ import annotations
 
 import logging
 import os
-import secrets
-import time
+import urllib.parse
 
 import httpx
 from fastapi import APIRouter, Request
@@ -18,6 +17,7 @@ from fastapi.responses import RedirectResponse
 from slowapi import Limiter
 
 from ..dependencies import client_ip
+from ..services.auth_jwt import create_oauth_state, verify_oauth_state
 
 logger = logging.getLogger("spire-codex.auth")
 
@@ -28,10 +28,6 @@ _DISCORD_API = "https://discord.com/api/v10"
 _DISCORD_AUTHORIZE = "https://discord.com/api/oauth2/authorize"
 _DISCORD_TOKEN = "https://discord.com/api/oauth2/token"
 
-_STATE_TTL = 300
-_MAX_STATES = 5000
-_states: dict[str, float] = {}
-
 
 def _get_discord_config() -> tuple[str, str]:
     client_id = os.environ.get("DISCORD_CLIENT_ID", "").strip()
@@ -39,13 +35,6 @@ def _get_discord_config() -> tuple[str, str]:
     if not client_id or not client_secret:
         raise RuntimeError("DISCORD_CLIENT_ID and DISCORD_CLIENT_SECRET are required")
     return client_id, client_secret
-
-
-def _purge_states() -> None:
-    cutoff = time.time() - _STATE_TTL
-    stale = [s for s, t in _states.items() if t < cutoff]
-    for s in stale:
-        _states.pop(s, None)
 
 
 def _frontend_url(request: Request) -> str:
@@ -61,13 +50,7 @@ def _frontend_url(request: Request) -> str:
 async def start(request: Request):
     client_id, _ = _get_discord_config()
 
-    _purge_states()
-    if len(_states) >= _MAX_STATES:
-        oldest_key = min(_states, key=_states.get)
-        _states.pop(oldest_key, None)
-
-    state = secrets.token_urlsafe(32)
-    _states[state] = time.time()
+    state = create_oauth_state()
 
     base = _frontend_url(request)
     redirect_uri = f"{base}/api/auth/discord/callback"
@@ -80,7 +63,7 @@ async def start(request: Request):
         "state": state,
         "prompt": "consent",
     }
-    url = f"{_DISCORD_AUTHORIZE}?{'&'.join(f'{k}={v}' for k, v in params.items())}"
+    url = f"{_DISCORD_AUTHORIZE}?{urllib.parse.urlencode(params)}"
     return RedirectResponse(url)
 
 
@@ -91,18 +74,16 @@ async def callback(request: Request):
     error = request.query_params.get("error")
     if error:
         logger.info("discord-auth denied: %s", error)
-        return RedirectResponse(f"{base}/login?error=cancelled")
+        return RedirectResponse(f"{base}/profile?error=cancelled")
 
     code = request.query_params.get("code")
     state = request.query_params.get("state")
 
     if not code or not state:
-        return RedirectResponse(f"{base}/login?error=invalid_response")
+        return RedirectResponse(f"{base}/profile?error=invalid_response")
 
-    _purge_states()
-    if state not in _states:
-        return RedirectResponse(f"{base}/login?error=invalid_session")
-    _states.pop(state, None)
+    if not verify_oauth_state(state):
+        return RedirectResponse(f"{base}/profile?error=invalid_session")
 
     client_id, client_secret = _get_discord_config()
     redirect_uri = f"{base}/api/auth/discord/callback"
@@ -123,15 +104,15 @@ async def callback(request: Request):
             )
         if token_resp.status_code != 200:
             logger.warning("discord token exchange failed: %s", token_resp.text[:200])
-            return RedirectResponse(f"{base}/login?error=discord_failed")
+            return RedirectResponse(f"{base}/profile?error=discord_failed")
 
         token_data = token_resp.json()
         access_token = token_data.get("access_token")
         if not access_token:
-            return RedirectResponse(f"{base}/login?error=discord_failed")
+            return RedirectResponse(f"{base}/profile?error=discord_failed")
     except Exception as exc:
         logger.warning("discord token exchange error: %s", exc)
-        return RedirectResponse(f"{base}/login?error=discord_unavailable")
+        return RedirectResponse(f"{base}/profile?error=discord_unavailable")
 
     # Fetch user info from Discord
     try:
@@ -142,19 +123,19 @@ async def callback(request: Request):
             )
         if user_resp.status_code != 200:
             logger.warning("discord user fetch failed: %s", user_resp.text[:200])
-            return RedirectResponse(f"{base}/login?error=discord_failed")
+            return RedirectResponse(f"{base}/profile?error=discord_failed")
 
         discord_user = user_resp.json()
     except Exception as exc:
         logger.warning("discord user fetch error: %s", exc)
-        return RedirectResponse(f"{base}/login?error=discord_unavailable")
+        return RedirectResponse(f"{base}/profile?error=discord_unavailable")
 
     discord_id = discord_user.get("id")
     discord_username = discord_user.get("global_name") or discord_user.get("username")
     email = discord_user.get("email")
 
     if not discord_id:
-        return RedirectResponse(f"{base}/login?error=discord_failed")
+        return RedirectResponse(f"{base}/profile?error=discord_failed")
 
     # If the user is already logged in (has a valid JWT), link Discord
     # to their existing account instead of creating a new one.
@@ -200,4 +181,4 @@ async def callback(request: Request):
         return response
     except Exception as exc:
         logger.warning("discord-auth user creation failed: %s", exc)
-        return RedirectResponse(f"{base}/login?error=discord_failed")
+        return RedirectResponse(f"{base}/profile?error=discord_failed")
