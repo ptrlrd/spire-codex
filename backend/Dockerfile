@@ -1,7 +1,5 @@
 FROM python:3.12-slim
 
-RUN apt-get update && apt-get install -y --no-install-recommends webp && rm -rf /var/lib/apt/lists/*
-
 WORKDIR /app
 
 COPY requirements.txt .
@@ -9,11 +7,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY app/ app/
 COPY static/ static/
-
-# Overwolf overlay fetches images from the backend, not the CDN yet, so
-# regenerate webp from the tracked PNG sources at build time. (.dockerignore
-# keeps host webp out of the build context; these are built fresh in-image.)
-RUN find static/images -name '*.png' -exec sh -c 'cwebp -q 95 -m 6 -quiet "$0" -o "${0%.png}.webp"' {} \;
 
 EXPOSE 8000
 
