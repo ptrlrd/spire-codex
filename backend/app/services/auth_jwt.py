@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import os
+import secrets
 from datetime import datetime, timedelta, timezone
 
 import jwt
@@ -13,6 +14,8 @@ _JWT_SECRET = os.environ.get("JWT_SECRET", "").strip()
 _JWT_ALGORITHM = "HS256"
 _JWT_EXPIRY_DAYS = 7
 _COOKIE_NAME = "spire_session"
+_STATE_PURPOSE = "oauth_state"
+_STATE_TTL_SECONDS = 600
 
 
 def _get_secret() -> str:
@@ -44,6 +47,33 @@ def decode_token(token: str) -> dict | None:
         return jwt.decode(token, _get_secret(), algorithms=[_JWT_ALGORITHM])
     except (jwt.ExpiredSignatureError, jwt.InvalidTokenError):
         return None
+
+
+def create_oauth_state() -> str:
+    """Signed, self-contained CSRF state for OAuth redirect flows.
+
+    Stateless on purpose: the prod backend runs multiple uvicorn workers,
+    so the /start and /callback requests can land on different processes.
+    A signed token any worker can verify avoids a shared state store.
+    """
+    now = datetime.now(timezone.utc)
+    payload = {
+        "purpose": _STATE_PURPOSE,
+        "nonce": secrets.token_urlsafe(8),
+        "iat": now,
+        "exp": now + timedelta(seconds=_STATE_TTL_SECONDS),
+    }
+    return jwt.encode(payload, _get_secret(), algorithm=_JWT_ALGORITHM)
+
+
+def verify_oauth_state(token: str) -> bool:
+    if not token:
+        return False
+    try:
+        payload = jwt.decode(token, _get_secret(), algorithms=[_JWT_ALGORITHM])
+    except (jwt.ExpiredSignatureError, jwt.InvalidTokenError):
+        return False
+    return payload.get("purpose") == _STATE_PURPOSE
 
 
 def set_auth_cookie(response: JSONResponse, token: str) -> None:
