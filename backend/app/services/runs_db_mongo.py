@@ -90,6 +90,7 @@ def _instrument(operation: str, collection: str = "runs"):
 # Name of the materialized-stats collection. Read by API handlers,
 # written by one worker (whoever holds the refresh lease).
 SUMMARY_COLLECTION_NAME = "stats_summary"
+LEADERBOARD_SUMMARY_COLLECTION_NAME = "leaderboard_summary"
 LEASE_COLLECTION_NAME = "stats_refresher_lease"
 LEASE_DURATION_SECONDS = 90
 
@@ -149,6 +150,31 @@ def _ensure_indexes(coll) -> None:
             ("submitted_at", DESCENDING),
             ("run_time", ASCENDING),
         ]
+    )
+    # Leaderboard sort indexes. The existing (character, win, ascension) helps
+    # filter + sort for the highest_ascension category, but the *fastest*
+    # category sorts by run_time, so without these the query materialized
+    # every win for a character and sorted in memory -- 10+ seconds in prod.
+    coll.create_index(
+        [("character", ASCENDING), ("win", ASCENDING), ("run_time", ASCENDING)],
+        name="char_win_runtime",
+    )
+    coll.create_index(
+        [
+            ("character", ASCENDING),
+            ("win", ASCENDING),
+            ("ascension", DESCENDING),
+            ("run_time", ASCENDING),
+        ],
+        name="char_win_asc_runtime",
+    )
+    coll.create_index(
+        [("win", ASCENDING), ("run_time", ASCENDING)],
+        name="win_runtime",
+    )
+    coll.create_index(
+        [("game_mode", ASCENDING), ("win", ASCENDING), ("run_time", ASCENDING)],
+        name="mode_win_runtime",
     )
 
 
@@ -1047,6 +1073,20 @@ def _summary_coll():
     return _get_collection().database[SUMMARY_COLLECTION_NAME]
 
 
+def _leaderboard_summary_coll():
+    return _get_collection().database[LEADERBOARD_SUMMARY_COLLECTION_NAME]
+
+
+def _leaderboard_key(
+    category: str = "fastest",
+    character: str | None = None,
+) -> str:
+    """Composite cache key for leaderboard_summary docs. Mirrors the
+    HOT_LEADERBOARD_COMBOS shape -- only (category, character) so the
+    common per-character ladder is O(1)."""
+    return f"{category}|{character or '_'}"
+
+
 def _lease_coll():
     return _get_collection().database[LEASE_COLLECTION_NAME]
 
@@ -1115,6 +1155,21 @@ HOT_FILTER_COMBOS: list[dict] = [
 ]
 
 
+# Hot leaderboard combos to materialize into leaderboard_summary.
+# (category, character). Page 1, limit 50, today=False, no players/game_mode
+# filter -- the default ladder view. Other combos fall through to the live
+# query, which the new sort indexes already keep at ~500ms.
+_LEADERBOARD_CATEGORIES = ("fastest", "highest_ascension")
+_LEADERBOARD_CHARACTERS = ("IRONCLAD", "SILENT", "DEFECT", "NECROBINDER", "REGENT")
+HOT_LEADERBOARD_COMBOS: list[dict] = [
+    {"category": cat} for cat in _LEADERBOARD_CATEGORIES
+] + [
+    {"category": cat, "character": ch}
+    for cat in _LEADERBOARD_CATEGORIES
+    for ch in _LEADERBOARD_CHARACTERS
+]
+
+
 def try_acquire_refresh_lease() -> bool:
     """Atomic compare-and-set on the leader-lease doc. Returns True if
     the calling process now holds the lease. Other workers see False
@@ -1169,6 +1224,36 @@ def refresh_stats_summary() -> int:
             written += 1
         except Exception:
             # Best-effort; if one filter combo fails, keep going.
+            pass
+    return written
+
+
+@_instrument("refresh_leaderboard_summary", collection="leaderboard_summary")
+def refresh_leaderboard_summary() -> int:
+    """Compute the hot (category, character) leaderboard combos and write
+    them to leaderboard_summary. Returns count of docs written. Called by
+    the leader-only loop alongside refresh_stats_summary."""
+    summary = _leaderboard_summary_coll()
+    written = 0
+    for combo in HOT_LEADERBOARD_COMBOS:
+        try:
+            result = _leaderboard_live(
+                category=combo.get("category", "fastest"),
+                character=combo.get("character"),
+                players=None,
+                game_mode=None,
+                today=False,
+                page=1,
+                limit=50,
+            )
+            key = _leaderboard_key(
+                category=combo.get("category", "fastest"),
+                character=combo.get("character"),
+            )
+            doc = {**result, "_id": key, "updated_at": datetime.now(timezone.utc)}
+            summary.replace_one({"_id": key}, doc, upsert=True)
+            written += 1
+        except Exception:
             pass
     return written
 
@@ -1329,6 +1414,58 @@ def leaderboard(
     limit: int = 50,
 ) -> dict:
     """Wins-only leaderboard. Mirrors the /api/runs/leaderboard SQLite path.
+
+    Read path:
+      1. Fast path -- if the request matches the materialized (category,
+         character) default view (page 1, limit 50, no today/players/
+         game_mode filter), serve from leaderboard_summary in a single
+         find_one. O(1).
+      2. Live path -- _leaderboard_live runs the count + find + sort
+         directly. The new sort indexes keep this at ~500ms even when the
+         summary doesn't cover the combo.
+    """
+    # Fast path: serve from the materialized summary if this is the
+    # default ladder view and the combo is one we materialize.
+    if (
+        not today
+        and page == 1
+        and limit == 50
+        and players is None
+        and game_mode is None
+    ):
+        try:
+            key = _leaderboard_key(category=category, character=character)
+            doc = _leaderboard_summary_coll().find_one({"_id": key})
+            if doc:
+                doc.pop("_id", None)
+                doc.pop("updated_at", None)
+                return doc
+        except Exception:
+            pass
+
+    return _leaderboard_live(
+        category=category,
+        character=character,
+        players=players,
+        game_mode=game_mode,
+        today=today,
+        page=page,
+        limit=limit,
+    )
+
+
+def _leaderboard_live(
+    category: str = "fastest",
+    character: str | None = None,
+    players: str | None = None,
+    game_mode: str | None = None,
+    today: bool = False,
+    page: int = 1,
+    limit: int = 50,
+) -> dict:
+    """Live leaderboard query -- the original implementation, used directly
+    by refresh_leaderboard_summary and as the fallback when the summary
+    doesn't cover the requested combo (rare players/game_mode/today/page>1).
 
     `players` segregates single-player (player_count == 1) from
     multiplayer (player_count > 1) so a fast 5-room MP run doesn't

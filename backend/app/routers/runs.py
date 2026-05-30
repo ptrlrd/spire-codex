@@ -678,6 +678,7 @@ def start_stats_refresher() -> None:
         while True:
             try:
                 from ..services.runs_db_mongo import (
+                    refresh_leaderboard_summary,
                     refresh_stats_summary,
                     try_acquire_refresh_lease,
                 )
@@ -687,6 +688,14 @@ def start_stats_refresher() -> None:
 
                 if try_acquire_refresh_lease():
                     refresh_stats_summary()
+                    # Pre-compute the default (category, character) ladder
+                    # views into leaderboard_summary. Reads for the common
+                    # combos become O(1) find_one instead of a 500ms
+                    # count+sort. Cheap (~600ms total) and idempotent.
+                    try:
+                        refresh_leaderboard_summary()
+                    except Exception:
+                        pass
                     # Rebuild the shared entity-stats snapshot (tier-list
                     # / Codex Score source) on the same leader-only loop.
                     # Internally throttled, so this is a no-op find_one
