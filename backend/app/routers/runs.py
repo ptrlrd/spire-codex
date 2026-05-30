@@ -765,4 +765,25 @@ def get_community_stats(
         username=username,
     )
     _stats_fallback_cache[cache_key] = (now, result)
+
+    # Lazy write-through to stats_summary so subsequent requests for this
+    # combo -- on any worker -- serve from the materialized view instead
+    # of paying the 5-10s aggregation again. Hot combos still get
+    # overwritten by the periodic refresher; non-hot combos persist until
+    # something else replaces them.
+    try:
+        from ..services.runs_db_mongo import write_stats_summary
+
+        write_stats_summary(
+            result,
+            character=character,
+            win=win,
+            ascension=ascension,
+            game_mode=game_mode,
+            players=players,
+            username=username,
+        )
+    except Exception:
+        pass
+
     return result

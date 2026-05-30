@@ -1173,6 +1173,42 @@ def refresh_stats_summary() -> int:
     return written
 
 
+def write_stats_summary(
+    result: dict,
+    *,
+    character: str | None = None,
+    win: str | None = None,
+    ascension: str | None = None,
+    game_mode: str | None = None,
+    players: str | None = None,
+    username: str | None = None,
+) -> None:
+    """Lazy-cache a live get_stats() result in stats_summary so other
+    workers and future requests can read it without re-aggregating.
+
+    Called from the API handler after a live aggregation hit (i.e. when
+    the requested filter combo isn't in HOT_FILTER_COMBOS and therefore
+    isn't kept warm by the refresher). The next request for the same
+    combo, on any worker, gets it from the summary in a single find_one.
+
+    Best-effort: any failure is swallowed -- this is a write-through
+    cache, not a critical path.
+    """
+    try:
+        key = _filter_key(
+            character=character,
+            win=win,
+            ascension=ascension,
+            game_mode=game_mode,
+            players=players,
+            username=username,
+        )
+        doc = {**result, "_id": key, "updated_at": datetime.now(timezone.utc)}
+        _summary_coll().replace_one({"_id": key}, doc, upsert=True)
+    except Exception:
+        pass
+
+
 # ── Run listing / leaderboard / rank / versions / shared ─────────────────
 # These mirror the inline get_conn() callers in routers/runs.py that
 # previously ran raw SQL. Router dispatches here when MONGO_URL is set.
