@@ -1,7 +1,33 @@
 """Shared FastAPI dependencies."""
 
-from fastapi import Query, Request
+import os
+
+from fastapi import HTTPException, Query, Request
 from slowapi.util import get_remote_address
+
+
+def require_admin(request: Request) -> str:
+    """Reject requests missing a valid `X-Admin-Token` header.
+
+    Used as a FastAPI dependency on every `/api/admin/*` route. The
+    token comes from the `ADMIN_TOKEN` env var (sourced from
+    1Password). If `ADMIN_TOKEN` isn't set, the entire admin surface
+    fails closed (503) — safer than silently allowing through.
+
+    Defense in depth: in production the admin endpoints are also
+    gated by Cloudflare Access OAuth at the edge (see
+    `docker-compose.admin.yml` + `playbooks/admin-install.yml`).
+    Token check is the second layer in case CF Access is ever
+    bypassed or misconfigured. Returns the constant string "ok"
+    so the dependency can be used with `Depends(require_admin)`.
+    """
+    expected = os.environ.get("ADMIN_TOKEN", "").strip()
+    if not expected:
+        raise HTTPException(status_code=503, detail="Admin disabled")
+    presented = request.headers.get("x-admin-token", "")
+    if presented != expected:
+        raise HTTPException(status_code=401, detail="Bad admin token")
+    return "ok"
 
 
 def client_ip(request: Request) -> str:

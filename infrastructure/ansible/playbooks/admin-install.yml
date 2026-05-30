@@ -1,0 +1,78 @@
+---
+# Admin dashboard install — Cloudflare Tunnel + CF Access OAuth gate.
+#
+# SKETCH PLAYBOOK — sequence of operations is fully documented but
+# tasks are still placeholders. Replaces this header with real tasks
+# once the admin container image exists and the CF Tunnel + Access
+# config is created.
+#
+# ─── One-time manual prerequisites ───────────────────────────────
+#
+# 1. Cloudflare Zero Trust → Networks → Tunnels → Create a tunnel.
+#    Name: "spire-codex-admin". CF gives you a connector token (long
+#    string starting with "ey...") — save to 1Password under:
+#      op://Spire Codex/Cloudflare/admin_tunnel_token
+#
+# 2. In the tunnel's Public Hostname tab:
+#      Subdomain: admin
+#      Domain:    spire-codex.com
+#      Service:   http://admin-dashboard:80
+#    CF will auto-create the CNAME for admin.spire-codex.com pointing
+#    at the tunnel.
+#
+# 3. Cloudflare Zero Trust → Access → Applications → Add an application:
+#      Application type: Self-hosted
+#      Application domain: admin.spire-codex.com
+#      Policy: Allow → emails matching im@ptrlrd.com (or a Google /
+#      GitHub identity provider — configurable per your taste).
+#    From this point on, anyone visiting https://admin.spire-codex.com
+#    has to OAuth in before CF will forward the request to the tunnel.
+#
+# 4. Generate a fresh ADMIN_TOKEN (32+ random chars), save to:
+#      op://Spire Codex/Admin Token/value
+#    Add to `infrastructure/ansible/files/.env.tpl` as
+#      ADMIN_TOKEN=op://Spire Codex/Admin Token/value
+#
+# ─── Deploy steps (run from controller) ──────────────────────────
+#
+#   ./bin/do-ansible playbooks/sync-secrets-do.yml --limit do_origin
+#   ./bin/do-ansible playbooks/admin-install.yml   --limit do_origin
+#
+# ─── What the playbook does (when implemented) ───────────────────
+#
+#   1. Pull the admin-dashboard image (after one ships).
+#   2. Inject CLOUDFLARED_TOKEN into the host .env (via sync-secrets).
+#   3. Bring up docker-compose.admin.yml: admin-dashboard +
+#      cloudflared sidecar.
+#   4. Verify the cloudflared container reports "Registered tunnel
+#      connection" within ~10s (`docker logs spire-codex-cloudflared`).
+#   5. Smoke-test from your laptop:
+#        curl https://admin.spire-codex.com → should 302 to CF Access
+#        (after OAuth) → 200 from admin-dashboard.
+#
+# ─── Threat model ────────────────────────────────────────────────
+#
+# Layer 1: CF Access OAuth — only operators in the policy can reach
+#          admin.spire-codex.com at all. Unauthenticated public traffic
+#          stops at CF's edge.
+# Layer 2: X-Admin-Token header — even if CF Access is bypassed
+#          (tunnel cert leak, misconfigured policy), the backend
+#          requires a token on every /api/admin/* call.
+# Layer 3: No published port — admin-dashboard has no host port
+#          mapping. The DO box's firewall doesn't need a new rule.
+#          Only path in is via cloudflared's outbound connection.
+
+- name: Install admin dashboard (sketch)
+  hosts: digital_ocean
+  gather_facts: false
+  become: true
+  tasks:
+    - name: Placeholder — playbook body lands with the real admin image
+      debug:
+        msg: |
+          SKETCH only. See header for the architecture; real tasks
+          arrive when:
+            1. The admin-dashboard image is built + pushed.
+            2. The CF Tunnel is created in the dashboard and its
+               token is saved to 1P.
+            3. /api/admin/rate-limits/* endpoints have bodies.

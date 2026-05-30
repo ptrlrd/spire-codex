@@ -1,0 +1,95 @@
+name: spire-codex-admin
+
+# Admin dashboard container + Cloudflare Tunnel sidecar.
+#
+# This is SKETCH ONLY — committed alongside the backend skeleton in
+# `app/routers/admin_rate_limits.py` to lock in the deployment shape
+# before we write any real UI code.
+#
+# Architecture:
+#
+#   You (browser)
+#     │ OAuth (Google/GitHub via CF Access)
+#     ▼
+#   Cloudflare edge — terminates TLS, checks Access policy
+#     │
+#     ▼
+#   cloudflared (sidecar) — outbound HTTPS to CF, no public port
+#     │
+#     ▼
+#   admin-dashboard — tiny static UI
+#     │ X-Admin-Token header
+#     ▼
+#   spire-codex-backend /api/admin/rate-limits/*  (on nginx_web-network)
+#
+# Why a separate container instead of mounting on the main frontend:
+#  - The main site uses static prerender + edge cache. The admin UI
+#    is dynamic-only and shouldn't share the static pipeline.
+#  - Easier to gate at the network layer — only this container talks
+#    to /api/admin, so the rest of the stack stays clean.
+#  - Disposable: we can rewrite the admin UI without touching the
+#    site.
+#
+# Cloudflare Tunnel pulls double duty here:
+#  - The admin container has no port published to the host (nothing
+#    on the public internet can reach it). cloudflared makes an
+#    outbound connection to Cloudflare and forwards traffic back.
+#  - Cloudflare Access enforces OAuth at the edge; combined with the
+#    X-Admin-Token header check in the backend, we get two
+#    independent gates.
+
+services:
+  admin-dashboard:
+    # TODO: pick a concrete image once we write the UI. Options:
+    #   - nginx serving static HTML+vanilla JS  (lightest)
+    #   - a thin Next.js app                    (consistent with main site)
+    #   - HTMX + minimal Python                 (zero JS build step)
+    # First pass: probably nginx + static.
+    image: ptrlrd/spire-codex-admin:latest
+    container_name: spire-codex-admin
+    restart: unless-stopped
+    environment:
+      # The static UI calls /api/admin/* against this URL. Same
+      # docker DNS as the main frontend uses for backend lookups.
+      - API_INTERNAL_URL=http://spire-codex-backend:8000
+    # NO ports published — only reachable via cloudflared below or
+    # via internal nginx if we ever want a fallback path. This is
+    # the whole point of using Tunnel.
+    networks:
+      - nginx_web-network
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: spire-codex-cloudflared
+    restart: unless-stopped
+    # The tunnel-run subcommand reads $CLOUDFLARED_TOKEN from env and
+    # establishes the persistent outbound connection. The token is
+    # bound to a specific tunnel + ingress config defined in the CF
+    # dashboard (Zero Trust → Networks → Tunnels). See
+    # `infrastructure/ansible/playbooks/admin-install.yml` for the
+    # one-time tunnel-create steps.
+    command: tunnel --no-autoupdate run
+    environment:
+      - TUNNEL_TOKEN=${CLOUDFLARED_TOKEN:-}
+    networks:
+      - nginx_web-network
+    depends_on:
+      - admin-dashboard
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+networks:
+  # Reuse the existing network so cloudflared can dial the
+  # admin-dashboard container by service name DNS, and so the
+  # admin-dashboard container can dial spire-codex-backend the
+  # same way.
+  nginx_web-network:
+    external: true
