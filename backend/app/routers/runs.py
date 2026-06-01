@@ -540,10 +540,12 @@ def get_shared_run(run_hash: str, request: Request):
     using_mongo = bool(os.environ.get("MONGO_URL", "").strip())
 
     # Runs are immutable once submitted (the body never changes; the
-    # username can change but is a single short field added on top), so
-    # this is an ideal cache target. 6h TTL is generous enough that
-    # share links served from cache feel instant, short enough that a
-    # claim or username change propagates within a session.
+    # username can change but is a single short field added on top).
+    # 15 min TTL: long enough to absorb a Discord share-link burst onto
+    # one URL, short enough that a username claim or rename propagates
+    # quickly, and short enough that the cache footprint stays bounded
+    # as the runs collection grows (we don't want every run that's ever
+    # been viewed living in Redis forever).
     from ..services import cache as app_cache
 
     cache_key = f"run:{run_hash}"
@@ -573,7 +575,7 @@ def get_shared_run(run_hash: str, request: Request):
     cached = _load_run_blob(run_hash)
     if cached is not None:
         response = _attach_username(json.loads(cached))
-        app_cache.set_json(cache_key, response, ttl_seconds=21600)
+        app_cache.set_json(cache_key, response, ttl_seconds=900)
         return response
 
     # Fallback for multiplayer: find sibling player runs by seed.
@@ -616,7 +618,7 @@ def get_shared_run(run_hash: str, request: Request):
             _load_run_blob.cache_clear()
             with open(run_file, "r", encoding="utf-8") as f:
                 response = _attach_username(json.load(f))
-            app_cache.set_json(cache_key, response, ttl_seconds=21600)
+            app_cache.set_json(cache_key, response, ttl_seconds=900)
             return response
 
     raise HTTPException(status_code=404, detail="Run data not available")
