@@ -314,7 +314,7 @@ function CardHoverTip({ card, isUpgraded, children }: { card: RelatedCard; isUpg
             {card.image_url && (
               <span className="block bg-black/40">
                 <img
-                  src={`${API_BASE}${card.image_url}`}
+                  src={imageUrl(card.image_url)}
                   alt={`${displayName} - Slay the Spire 2 Card`}
                   className="w-full h-24 object-contain"
                   crossOrigin="anonymous"

@@ -73,7 +73,7 @@ function CardItem({ card }: { card: Card }) {
         return imgUrl ? (
           <div className="mb-3 -mx-4 -mt-4">
             <img
-              src={`${API_BASE}${imgUrl}`}
+              src={imageUrl(imgUrl)}
               alt={`${card.name} - Slay the Spire 2 Card`}
               className="w-full h-32 object-cover rounded-t-lg"
               loading="lazy"
