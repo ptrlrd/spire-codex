@@ -890,20 +890,29 @@ def get_stats(
                 }
             },
             {"$sort": {"offered": -1}},
-            {"$limit": 100},
+            {"$limit": 600},
         ]
     )
 
-    # $limit 100 caps the doc size — frontend never paginates past
-    # ~50; this keeps the materialized doc under 1MB and JSON
-    # serialization sub-100ms on the user path. (Previous 1000 cap
-    # produced an 8MB response that took 1-4s to serialize.)
+    # Per-entity stats caps. Sized to comfortably cover the full live
+    # catalog (576 cards / 293 relics / 63 potions) plus headroom for a
+    # patch's worth of new content. The earlier 100-cap was a JSON-
+    # serialization guard from when /api/runs/stats served live on every
+    # request -- a 1000-cap previously produced an 8MB response that
+    # took 1-4s to serialize. With Redis (PR #388) and the existing
+    # stats_summary materialization in front of this, the doc is
+    # serialized once per refresh cycle and served from cache for every
+    # user request, so the per-request cost no longer scales with the
+    # cap. The Discord-flagged "only 20 ancient relics visible" issue
+    # was the rarity filter slicing the already-capped top-100 -- this
+    # restores the full catalog into the stats so frontend filters can
+    # find their full set.
     cards = agg(
         [
             {"$match": match},
             *_item_stats_pipeline("deck"),
             {"$sort": {"count": -1}},
-            {"$limit": 100},
+            {"$limit": 600},
         ]
     )
     relics = agg(
@@ -911,7 +920,7 @@ def get_stats(
             {"$match": match},
             *_item_stats_pipeline("relics"),
             {"$sort": {"count": -1}},
-            {"$limit": 100},
+            {"$limit": 300},
         ]
     )
     potions_owned_list = agg(
