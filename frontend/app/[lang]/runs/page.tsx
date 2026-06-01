@@ -1,13 +1,11 @@
-import { redirect } from "next/navigation";
-import { isValidLang } from "@/lib/languages";
-import BrowseRunsClient from "../../runs/BrowseRunsClient";
+import { permanentRedirect } from "next/navigation";
 
-export default async function LangRunsPage({
-  params,
-}: {
-  params: Promise<{ lang: string }>;
-}) {
-  const { lang } = await params;
-  if (!isValidLang(lang)) redirect("/runs");
-  return <BrowseRunsClient />;
+export const dynamic = "force-dynamic";
+
+// /<lang>/runs is a localized chrome wrapper around the same Browse Runs
+// data as /runs. Google was bucketing the 13 localized variants as
+// duplicates of the canonical English page. Collapse them with a 301 so
+// the canonical /runs absorbs all the equity.
+export default function LangRunsRedirect() {
+  permanentRedirect("/runs");
 }

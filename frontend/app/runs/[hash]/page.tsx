@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd } from "@/lib/jsonld";
-import { DEFAULT_OG_IMAGE, buildLanguageAlternates, SITE_NAME, SITE_URL } from "@/lib/seo";
+import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/seo";
 import SharedRunClient from "./SharedRunClient";
 
 export const dynamic = "force-dynamic";
@@ -58,7 +58,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       images: [{ url: DEFAULT_OG_IMAGE }],
     },
     twitter: { card: "summary_large_image", title, description },
-    alternates: { canonical: `/runs/${hash}`, languages: buildLanguageAlternates(`/runs/${hash}`) },
+    // No hreflang alternates: a run-share page is inherently English
+    // game data (the same hash points at the same numbers regardless of
+    // locale chrome), so localized variants /<lang>/runs/<hash> read to
+    // Google as near-duplicates of the canonical /runs/<hash>. That was
+    // generating ~5,000 "Duplicate without user-selected canonical"
+    // pages in GSC. Self-canonical only.
+    alternates: { canonical: `/runs/${hash}` },
   };
 }
 

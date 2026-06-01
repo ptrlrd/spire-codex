@@ -47,11 +47,17 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+// Belt-and-suspenders alongside the beta branch in robots.ts. Some bots
+// honor robots.txt only partially; an explicit noindex meta on every
+// beta page makes it impossible for a beta URL to enter the index.
+const IS_BETA = /beta\./i.test(SITE_URL);
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: `Database - Slay the Spire 2 (sts2) | ${SITE_NAME}`,
   description:
     "Fan-built database for Slay the Spire 2 (sts2). Browse cards, relics, monsters, potions, events, powers, plus run stats and tier lists.",
+  ...(IS_BETA && { robots: { index: false, follow: false } }),
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "32x32" },
