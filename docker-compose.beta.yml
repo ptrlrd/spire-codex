@@ -35,6 +35,10 @@ services:
       - FRONTEND_URL=${FRONTEND_URL:-https://beta.spire-codex.com}
       - SPIRE_CODEX_PUBLIC_BASE=${SPIRE_CODEX_PUBLIC_BASE:-https://beta.spire-codex.com}
       - ENVIRONMENT=${ENVIRONMENT:-production}
+      # Redis cache (services.cache). Optional -- the cache is a perf
+      # layer and never load-bearing; if unset, every call falls through
+      # to its data source unchanged.
+      - REDIS_URL=${REDIS_URL:-redis://spire-codex-beta-redis:6379/0}
     networks:
       - nginx_web-network
     logging:
@@ -42,6 +46,29 @@ services:
       options:
         max-size: "10m"
         max-file: "5"
+
+  redis:
+    image: redis:7-alpine
+    container_name: spire-codex-beta-redis
+    command:
+      - redis-server
+      - --maxmemory
+      - 128mb
+      - --maxmemory-policy
+      - allkeys-lru
+      - --appendonly
+      - "no"
+      - --save
+      - ""
+    volumes:
+      - redis-data:/data
+    networks:
+      - nginx_web-network
+    logging:
+      driver: json-file
+      options:
+        max-size: "5m"
+        max-file: "3"
 
   frontend:
     image: ptrlrd/spire-codex-frontend:beta
@@ -64,3 +91,6 @@ services:
 networks:
   nginx_web-network:
     external: true
+
+volumes:
+  redis-data:

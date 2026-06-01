@@ -53,6 +53,11 @@ services:
       # path. Falls through to local /data/runs.db SQLite otherwise
       # (the current state while the migration is in progress).
       - MONGO_URL=${MONGO_URL:-}
+      # Redis cache (services.cache). When set, hot read paths
+      # (stats / leaderboard / shared run / entity scores) serve from
+      # Redis first and fall back to Mongo on miss or any Redis error
+      # -- the cache is purely an optimization, never load-bearing.
+      - REDIS_URL=${REDIS_URL:-redis://redis:6379/0}
       # User accounts (Steam/Discord OAuth + JWT sessions). Values live
       # in the host .env; passed through so the auth endpoints work.
       - JWT_SECRET=${JWT_SECRET:-}
@@ -81,6 +86,39 @@ services:
         max-size: "10m"
         max-file: "5"
 
+  redis:
+    image: redis:7-alpine
+    container_name: spire-codex-redis
+    # 512 MB ceiling with LRU eviction -- the box has 8 GB so this is
+    # plenty of headroom for the cache namespaces (stats, leaderboard,
+    # run hashes, entity scores) without ever pressuring the rest of
+    # the stack. AOF off; the cache is rebuildable from Mongo on miss,
+    # so disk durability would just be I/O overhead for no win.
+    command:
+      - redis-server
+      - --maxmemory
+      - 512mb
+      - --maxmemory-policy
+      - allkeys-lru
+      - --appendonly
+      - "no"
+      - --save
+      - ""
+    volumes:
+      - redis-data:/data
+    networks:
+      - nginx_web-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+    logging:
+      driver: json-file
+      options:
+        max-size: "5m"
+        max-file: "3"
+
   frontend:
     image: ptrlrd/spire-codex-frontend:latest
     container_name: spire-codex-frontend
@@ -102,3 +140,6 @@ services:
 networks:
   nginx_web-network:
     external: true
+
+volumes:
+  redis-data:

@@ -173,3 +173,22 @@ db_operation_duration = Histogram(
     ["operation"],
     buckets=[0.001, 0.005, 0.01, 0.025, 0.05, 0.1, 0.25, 0.5, 1.0, 2.0],
 )
+
+# Redis-backed application cache (services.cache). The namespace label is
+# the first ":"-segment of the key (stats / leaderboard / run / etc.) so
+# we can see which read paths benefit most.
+cache_hits = Counter(
+    "spire_codex_cache_hits_total",
+    "Cache hits",
+    ["namespace"],
+)
+cache_misses = Counter(
+    "spire_codex_cache_misses_total",
+    "Cache misses (treated as a clean fallthrough to the data source)",
+    ["namespace"],
+)
+cache_errors = Counter(
+    "spire_codex_cache_errors_total",
+    "Cache transport / serialization errors (also a clean fallthrough)",
+    ["op"],  # get/set/delete/encode/decode/delete_pattern
+)

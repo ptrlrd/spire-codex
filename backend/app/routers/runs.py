@@ -317,8 +317,18 @@ def get_leaderboard(
     """
     if os.environ.get("MONGO_URL", "").strip():
         from ..services.runs_db_mongo import leaderboard as _lb_mongo
+        from ..services import cache as app_cache
 
-        return _lb_mongo(
+        cache_key = (
+            f"leaderboard:cat={category}|c={character or '_'}|"
+            f"p={players or '_'}|gm={game_mode or '_'}|"
+            f"today={int(bool(today))}|page={page}|limit={limit}"
+        )
+        cached = app_cache.get_json(cache_key)
+        if cached is not None:
+            return cached
+
+        result = _lb_mongo(
             category=category,
             character=character,
             players=players,
@@ -327,6 +337,13 @@ def get_leaderboard(
             page=page,
             limit=limit,
         )
+        # Short TTL: the underlying leaderboard_summary is refreshed every
+        # 60s by the leader-elected loop, so anything stale by more than
+        # one cycle should be considered for re-fetch. Today views and
+        # paginated tails (not in summary) benefit most -- they pay the
+        # ~500ms live cost once per minute instead of every request.
+        app_cache.set_json(cache_key, result, ttl_seconds=60)
+        return result
 
     from ..services.runs_db import get_conn
 
@@ -522,6 +539,18 @@ def get_shared_run(run_hash: str, request: Request):
     """
     using_mongo = bool(os.environ.get("MONGO_URL", "").strip())
 
+    # Runs are immutable once submitted (the body never changes; the
+    # username can change but is a single short field added on top), so
+    # this is an ideal cache target. 6h TTL is generous enough that
+    # share links served from cache feel instant, short enough that a
+    # claim or username change propagates within a session.
+    from ..services import cache as app_cache
+
+    cache_key = f"run:{run_hash}"
+    cached_response = app_cache.get_json(cache_key)
+    if cached_response is not None:
+        return cached_response
+
     def _attach_username(blob: dict) -> dict:
         if using_mongo:
             from ..services.runs_db_mongo import get_username_for_hash
@@ -543,7 +572,9 @@ def get_shared_run(run_hash: str, request: Request):
 
     cached = _load_run_blob(run_hash)
     if cached is not None:
-        return _attach_username(json.loads(cached))
+        response = _attach_username(json.loads(cached))
+        app_cache.set_json(cache_key, response, ttl_seconds=21600)
+        return response
 
     # Fallback for multiplayer: find sibling player runs by seed.
     if using_mongo:
@@ -584,7 +615,9 @@ def get_shared_run(run_hash: str, request: Request):
             shutil.copy2(sib_file, run_file)
             _load_run_blob.cache_clear()
             with open(run_file, "r", encoding="utf-8") as f:
-                return _attach_username(json.load(f))
+                response = _attach_username(json.load(f))
+            app_cache.set_json(cache_key, response, ttl_seconds=21600)
+            return response
 
     raise HTTPException(status_code=404, detail="Run data not available")
 
@@ -641,7 +674,20 @@ def get_entity_scores(request: Request, entity_type: str):
             status_code=400,
             detail=f"entity_type must be one of {sorted(_ENTITY_STATS_TYPES)}",
         )
-    return get_all_entity_scores(entity_type)
+
+    # The underlying snapshot only changes when the leader-only refresher
+    # rebuilds it (~10 min cadence). Cache liberally between rebuilds --
+    # the tier-list and detail-page sort columns hit this constantly.
+    from ..services import cache as app_cache
+
+    cache_key = f"entity_scores:{entity_type}"
+    cached = app_cache.get_json(cache_key)
+    if cached is not None:
+        return cached
+
+    result = get_all_entity_scores(entity_type)
+    app_cache.set_json(cache_key, result, ttl_seconds=300)
+    return result
 
 
 # Stats reads come from the materialized `stats_summary` collection,
@@ -728,11 +774,25 @@ def get_community_stats(
     `username` to narrow to a single uploader.
 
     Read path:
-      1. Try the materialized stats_summary collection (sub-ms).
+      0. Try Redis (sub-ms; shared across workers, no per-process cache miss).
+      1. Try the materialized stats_summary collection (~ms).
       2. If the filter combo isn't in the hot list / hasn't been
          materialized yet, fall through to a process-local TTL cache.
       3. On cache miss, run the live aggregation (slow, ~5-10s).
+    Every miss that produces a result also write-throughs to Redis so
+    the next request -- on any worker -- serves from layer 0.
     """
+    from ..services import cache as app_cache
+
+    cache_key = (
+        f"stats:c={character or '_'}|w={win or '_'}|a={ascension or '_'}|"
+        f"gm={game_mode or '_'}|p={players or '_'}|u={username or '_'}"
+    )
+
+    cached = app_cache.get_json(cache_key)
+    if cached is not None:
+        return cached
+
     # 1. Materialized view path
     try:
         from ..services.runs_db_mongo import read_stats_summary
@@ -746,6 +806,7 @@ def get_community_stats(
             username=username,
         )
         if materialized is not None:
+            app_cache.set_json(cache_key, materialized, ttl_seconds=60)
             return materialized
     except Exception:
         # Not on the Mongo path (SQLite fallback) — keep going.
@@ -794,5 +855,9 @@ def get_community_stats(
         )
     except Exception:
         pass
+
+    # Also write through to Redis so subsequent requests for the same
+    # combo, on any worker, serve from layer 0.
+    app_cache.set_json(cache_key, result, ttl_seconds=60)
 
     return result
