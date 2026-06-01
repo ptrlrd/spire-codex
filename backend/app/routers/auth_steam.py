@@ -197,6 +197,28 @@ async def callback(request: Request) -> HTMLResponse:
         user_id = user["_id"]
         token = create_token(user_id=user["_id"], steam_id=steamid)
         needs_email = not user.get("email")
+
+        # Link any runs the overlay / Compendium submitted under this Steam
+        # ID before the account existed (or before a prior sign-in). Also
+        # matches the account's linked discord_id so either identity surfaces
+        # the same runs. This is what makes runs appear on the profile
+        # without a manual .run upload.
+        if os.environ.get("MONGO_URL", "").strip():
+            try:
+                from ..services.runs_db_mongo import backfill_user_runs
+
+                linked = backfill_user_runs(
+                    user_id,
+                    steam_id=steamid,
+                    discord_id=user.get("discord_id"),
+                    username=user.get("username"),
+                )
+                if linked:
+                    logger.info(
+                        "steam-auth linked %d run(s) to user=%s", linked, user_id
+                    )
+            except Exception as exc:
+                logger.warning("steam-auth run backfill failed: %s", exc)
     except Exception as exc:
         logger.warning("steam-auth user creation failed: %s", exc)
         # Non-fatal: auth still succeeded, just no persistent user yet

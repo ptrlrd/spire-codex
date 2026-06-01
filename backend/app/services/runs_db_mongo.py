@@ -143,6 +143,9 @@ def _ensure_indexes(coll) -> None:
     coll.create_index([("relics.id", ASCENDING)])
     coll.create_index([("killed_by", ASCENDING)])
     coll.create_index([("user_id", ASCENDING), ("submitted_at", DESCENDING)])
+    # Backfill query on sign-in matches runs by submitter steam_id / discord_id.
+    coll.create_index([("steam_id", ASCENDING)])
+    coll.create_index([("discord_id", ASCENDING)])
     coll.create_index(
         [
             ("game_mode", ASCENDING),
@@ -204,9 +207,43 @@ def init_db():
 
 # ── public surface ──────────────────────────────────────────────────────
 @_instrument("submit_run")
-def submit_run(data: dict, username: str | None = None) -> dict:
+def submit_run(
+    data: dict,
+    username: str | None = None,
+    steam_id: str | None = None,
+    discord_id: str | None = None,
+) -> dict:
     """Parse a run and store one document per player. Returns status dict
-    matching the SQLite implementation."""
+    matching the SQLite implementation.
+
+    When ``steam_id`` / ``discord_id`` is provided (the overlay / Compendium
+    pass the signed-in player's SteamID64), the run is tagged with it and,
+    if an account already exists for that identity, linked to it immediately
+    by setting ``user_id`` + ``username`` so it shows up on the owner's
+    profile without a manual claim. Runs submitted before the account
+    existed are linked retroactively by ``backfill_user_runs`` on sign-in."""
+    # Resolve the owning account once (not per player) so a backlog upload
+    # of N runs does a single user lookup rather than N. Steam is checked
+    # first since that's what the game clients send; discord_id is here for
+    # parity so any client that knows it links the same way.
+    linked_user_id = None
+    linked_username = None
+    if steam_id or discord_id:
+        try:
+            from .users_db import get_user_by_steam_id, get_user_by_discord_id
+
+            owner = None
+            if steam_id:
+                owner = get_user_by_steam_id(steam_id)
+            if owner is None and discord_id:
+                owner = get_user_by_discord_id(discord_id)
+            if owner:
+                linked_user_id = owner["_id"]
+                linked_username = owner.get("username")
+        except Exception:
+            # Linking is best-effort; a lookup failure must not drop the run.
+            pass
+
     missing: list[str] = []
     if not data.get("players"):
         missing.append("players")
@@ -239,7 +276,10 @@ def submit_run(data: dict, username: str | None = None) -> dict:
             total_floors,
             killed_by,
             player_count,
-            username,
+            linked_username or username,
+            steam_id,
+            discord_id,
+            linked_user_id,
         )
         results.append(result)
 
@@ -271,9 +311,14 @@ def _submit_player_run(
     killed_by: str | None,
     player_count: int,
     username: str | None,
+    steam_id: str | None = None,
+    discord_id: str | None = None,
+    linked_user_id: str | None = None,
 ) -> dict:
     """One Mongo insert per player. The full nested structure goes into
     a single document — no joins required at query time."""
+    from bson import ObjectId
+
     seed = data.get("seed", "")
     char_raw = player["character"]
     start = data.get("start_time", "")
@@ -359,6 +404,13 @@ def _submit_player_run(
         "deck_size": len(deck),
         "relic_count": len(relics),
         "username": username,
+        # Submitter identity (when the client sends it). Lets a run be linked
+        # to its owner's account on sign-in even if it was submitted
+        # anonymously. user_id is set here when an account already exists for
+        # that identity; otherwise backfill_user_runs fills it in.
+        "steam_id": steam_id,
+        "discord_id": discord_id,
+        "user_id": ObjectId(linked_user_id) if linked_user_id else None,
         "build_id": data.get("build_id"),
         "submitted_at": datetime.now(timezone.utc),
         "deck": deck,
@@ -379,6 +431,29 @@ def _submit_player_run(
     try:
         coll.insert_one(doc)
     except DuplicateKeyError:
+        # The run already exists (commonly: it was submitted anonymously
+        # before the client started sending an identity). Re-submitting with
+        # a steam_id / discord_id becomes a migration path — tag the existing
+        # doc so a later sign-in can link it. Each $set is guarded on the
+        # field being null so we never reassign a run another account owns.
+        if steam_id:
+            coll.update_one(
+                {"_id": run_hash, "steam_id": None},
+                {"$set": {"steam_id": steam_id}},
+            )
+        if discord_id:
+            coll.update_one(
+                {"_id": run_hash, "discord_id": None},
+                {"$set": {"discord_id": discord_id}},
+            )
+        if linked_user_id:
+            owner_set: dict = {"user_id": ObjectId(linked_user_id)}
+            if username:
+                owner_set["username"] = username
+            coll.update_one(
+                {"_id": run_hash, "user_id": None},
+                {"$set": owner_set},
+            )
         return {
             "error": "This run has already been submitted",
             "duplicate": True,
@@ -386,6 +461,46 @@ def _submit_player_run(
         }
 
     return {"success": True, "run_id": run_hash, "run_hash": run_hash}
+
+
+@_instrument("backfill_user_runs")
+def backfill_user_runs(
+    user_id: str,
+    steam_id: str | None = None,
+    discord_id: str | None = None,
+    username: str | None = None,
+) -> int:
+    """Link previously-anonymous runs to an account on sign-in.
+
+    Sets ``user_id`` (and ``username`` when the account has one) on every
+    run tagged with this account's ``steam_id`` or ``discord_id`` that isn't
+    already owned. Passing both matters because an account can link Steam +
+    Discord — signing in either way links runs tagged with the other ID.
+    Returns the number of runs linked. Idempotent — only touches runs whose
+    ``user_id`` is still null, so re-running on every sign-in is cheap."""
+    if not user_id:
+        return 0
+
+    identity_conds: list[dict] = []
+    if steam_id:
+        identity_conds.append({"steam_id": steam_id})
+    if discord_id:
+        identity_conds.append({"discord_id": discord_id})
+    if not identity_conds:
+        return 0
+
+    from bson import ObjectId
+
+    coll = _get_collection()
+    update: dict = {"user_id": ObjectId(user_id)}
+    if username:
+        update["username"] = username
+
+    result = coll.update_many(
+        {"user_id": None, "$or": identity_conds},
+        {"$set": update},
+    )
+    return result.modified_count
 
 
 @_instrument("claim_runs")

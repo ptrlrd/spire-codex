@@ -99,6 +99,33 @@ def validate_email(email: str) -> bool:
     return bool(_EMAIL_RE.match(email.strip()))
 
 
+def get_user_by_steam_id(steam_id: str) -> dict | None:
+    """Look up a user by Steam ID without creating one. Used when a run is
+    submitted with a steam_id so it can be linked to an existing account at
+    submit time. Returns the doc with a stringified _id, or None."""
+    if not steam_id:
+        return None
+    coll = _get_collection()
+    existing = coll.find_one({"steam_id": steam_id})
+    if existing:
+        existing["_id"] = str(existing["_id"])
+        return existing
+    return None
+
+
+def get_user_by_discord_id(discord_id: str) -> dict | None:
+    """Look up a user by Discord ID without creating one. Mirror of
+    get_user_by_steam_id for runs tagged with a discord_id."""
+    if not discord_id:
+        return None
+    coll = _get_collection()
+    existing = coll.find_one({"discord_id": discord_id})
+    if existing:
+        existing["_id"] = str(existing["_id"])
+        return existing
+    return None
+
+
 def find_or_create_by_steam(steam_id: str, persona_name: str | None = None) -> dict:
     coll = _get_collection()
     now = datetime.now(timezone.utc)

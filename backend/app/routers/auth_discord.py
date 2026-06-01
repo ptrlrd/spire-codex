@@ -166,6 +166,28 @@ async def callback(request: Request):
             discord_id=discord_id,
         )
 
+        # Link any runs submitted under this Discord ID — or under the
+        # account's linked Steam ID — before sign-in, so they show on the
+        # profile without a manual .run upload.
+        if os.environ.get("MONGO_URL", "").strip():
+            try:
+                from ..services.runs_db_mongo import backfill_user_runs
+
+                linked = backfill_user_runs(
+                    user["_id"],
+                    steam_id=user.get("steam_id"),
+                    discord_id=discord_id,
+                    username=user.get("username"),
+                )
+                if linked:
+                    logger.info(
+                        "discord-auth linked %d run(s) to user=%s",
+                        linked,
+                        user["_id"],
+                    )
+            except Exception as exc:
+                logger.warning("discord-auth run backfill failed: %s", exc)
+
         needs_email = not user.get("email") and not email
         redirect_path = "/settings" if needs_email else "/settings?linked=discord"
         response = RedirectResponse(f"{base}{redirect_path}")

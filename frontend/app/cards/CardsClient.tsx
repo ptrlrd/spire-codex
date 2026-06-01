@@ -91,6 +91,22 @@ export default function CardsClient({ initialCards }: { initialCards: Card[] }) 
     updateUrl(current);
   }, [search, color, type, rarity, keyword, sort, updateUrl]);
 
+  // Pull the discrete filters back out of the URL whenever it changes from
+  // outside this component — e.g. clicking a "Browse cards by character"
+  // card on the hub above (a same-route navigation that doesn't remount
+  // this client), or browser back/forward. Without this, the URL updated
+  // but the dropdowns and grid never reflected it. Setting state to the
+  // same value is a no-op, so our own setFilterAndUrl writes don't loop.
+  // Search is intentionally excluded: it's a typed input owned locally,
+  // and echoing the URL back into it mid-keystroke would fight the user.
+  useEffect(() => {
+    setColor(searchParams.get("color") || "");
+    setType(searchParams.get("type") || "");
+    setRarity(searchParams.get("rarity") || "");
+    setKeyword(searchParams.get("keyword") || "");
+    setSort(searchParams.get("sort") || "az");
+  }, [searchParams]);
+
   useEffect(() => {
     // Skip the first fetch if we have server data and lang is English with no filters
     if (initialRender.current) {

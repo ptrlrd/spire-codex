@@ -384,7 +384,12 @@ async def upload_runs(request: Request, files: list[UploadFile] = File(...)):
         # Submit the run
         from ..services.runs_db import submit_run
 
-        submit_result = submit_run(data, username=user.get("username"))
+        submit_result = submit_run(
+            data,
+            username=user.get("username"),
+            steam_id=user.get("steam_id"),
+            discord_id=user.get("discord_id"),
+        )
         if submit_result.get("error"):
             if submit_result.get("duplicate"):
                 run_hash = submit_result.get("run_hash", "")

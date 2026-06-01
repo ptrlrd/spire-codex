@@ -17,6 +17,27 @@ const API =
   process.env.NEXT_PUBLIC_API_URL ||
   "http://localhost:8000";
 
+// ISR with 60s revalidation, mirroring the home page. Without a
+// page-level revalidate the build-time render (backend unreachable
+// inside the Docker builder) bakes empty data that never refreshes,
+// which is what zeroed out the card counts below. The inner fetches
+// revalidate faster (30s) so each regen pulls fresh data.
+export const revalidate = 60;
+
+// Fetch JSON with its own try/catch so a failure on one endpoint can't
+// take down the other. Previously both fetches shared one Promise.all +
+// try/catch, so a hiccup on /api/runs/scores/cards left `cards` empty
+// and rendered every count as 0.
+async function fetchJSON<T>(url: string, fallback: T): Promise<T> {
+  try {
+    const res = await fetch(url, { next: { revalidate: 30 } });
+    if (!res.ok) return fallback;
+    return (await res.json()) as T;
+  } catch {
+    return fallback;
+  }
+}
+
 // Character anchors for the "Browse cards by character" hub section.
 // Tagline is short and factual to give Google additional substring
 // matches for character-specific long-tail queries (e.g. "silent cards
@@ -44,23 +65,14 @@ export default async function CardsPage() {
   // step is required for Google to see the intro prose, the top-N
   // section, or the character breakdown -- they're all in the initial
   // response.
-  let cards: Card[] = [];
-  let scores: EntityScore[] = [];
-  try {
-    const [cardsRes, scoresRes] = await Promise.all([
-      fetch(`${API}/api/cards?lang=eng`, { next: { revalidate: 300 } }),
-      fetch(`${API}/api/runs/scores/cards`, { next: { revalidate: 300 } }),
-    ]);
-    if (cardsRes.ok) cards = await cardsRes.json();
-    if (scoresRes.ok) {
-      const raw = (await scoresRes.json()) as Record<string, EntityScore>;
-      scores = Object.values(raw);
-    }
-  } catch {
-    // Falls through to render with empty data; the page still has the
-    // intro prose + character breakdown + FAQ, which is what matters
-    // for SEO.
-  }
+  const [cards, scoresRaw] = await Promise.all([
+    fetchJSON<Card[]>(`${API}/api/cards?lang=eng`, []),
+    fetchJSON<Record<string, EntityScore>>(
+      `${API}/api/runs/scores/cards`,
+      {},
+    ),
+  ]);
+  const scores: EntityScore[] = Object.values(scoresRaw);
 
   const totalCards = cards.length;
   const cardsByCharacter = CHARACTERS.map((char) => ({

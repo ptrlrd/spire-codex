@@ -50,8 +50,17 @@ def _load_run_blob(run_hash: str) -> str | None:
 
 @router.post("", tags=["Runs"])
 @limiter.limit("3000/hour")
-async def submit_run_endpoint(request: Request, username: str | None = None):
+async def submit_run_endpoint(
+    request: Request,
+    username: str | None = None,
+    steam_id: str | None = None,
+    discord_id: str | None = None,
+):
     """Submit a run for community stats. Paste the .run file JSON content. Optional ?username= param.
+
+    Pass ?steam_id=<SteamID64> (the overlay / Compendium send the signed-in
+    player's Steam ID) and/or ?discord_id=<id> to tag the run with its owner
+    so it links to their account on sign-in without a manual claim.
 
     Rate limit: 3000/hour (~50/min sustained, with room for burst). The
     earlier 600/hour ceiling was sized for "a few hundred backlog runs
@@ -93,7 +102,25 @@ async def submit_run_endpoint(request: Request, username: str | None = None):
         sanitized = re.sub(r"[^a-zA-Z0-9_\- ]", "", username.strip())[:32].strip()
         clean_username = sanitized or None
 
-    result = submit_run(data, username=clean_username)
+    # Sanitize steam_id / discord_id — both are digits only (SteamID64 and
+    # Discord snowflake). Drop anything else so a malformed value can't
+    # widen the linkage query.
+    clean_steam_id = None
+    if steam_id:
+        digits = "".join(ch for ch in steam_id if ch.isdigit())
+        clean_steam_id = digits or None
+
+    clean_discord_id = None
+    if discord_id:
+        digits = "".join(ch for ch in discord_id if ch.isdigit())
+        clean_discord_id = digits or None
+
+    result = submit_run(
+        data,
+        username=clean_username,
+        steam_id=clean_steam_id,
+        discord_id=clean_discord_id,
+    )
     if result.get("error"):
         if result.get("duplicate"):
             run_submissions.labels(status="duplicate").inc()

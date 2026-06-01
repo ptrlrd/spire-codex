@@ -259,8 +259,17 @@ def clean_id(raw_id: str) -> str:
     return raw_id
 
 
-def submit_run(data: dict, username: str | None = None) -> dict:
-    """Parse and store a run. Returns status dict."""
+def submit_run(
+    data: dict,
+    username: str | None = None,
+    steam_id: str | None = None,
+    discord_id: str | None = None,
+) -> dict:
+    """Parse and store a run. Returns status dict.
+
+    ``steam_id`` / ``discord_id`` are accepted for signature parity with the
+    Mongo implementation (the production path). The SQLite fallback doesn't
+    track per-account run ownership, so they're ignored here."""
     # Validate structure. Errors call out the specific field so failed
     # batch uploads (issue #151) can be triaged without re-running with
     # a debugger — previously every rejection collapsed to the same
