@@ -259,8 +259,17 @@ def clean_id(raw_id: str) -> str:
     return raw_id
 
 
-def submit_run(data: dict, username: str | None = None) -> dict:
-    """Parse and store a run. Returns status dict."""
+def submit_run(
+    data: dict,
+    username: str | None = None,
+    user_id: str | None = None,
+) -> dict:
+    """Parse and store a run. Returns status dict.
+
+    `user_id` is accepted for signature parity with the Mongo path but the
+    SQLite fallback is legacy and doesn't link runs to accounts.
+    """
+    _ = user_id  # accepted-but-unused on the SQLite path
     # Validate structure. Errors call out the specific field so failed
     # batch uploads (issue #151) can be triaged without re-running with
     # a debugger — previously every rejection collapsed to the same
@@ -479,15 +488,23 @@ def _submit_player_run(
     return {"success": True, "run_id": run_id, "run_hash": run_hash}
 
 
-def claim_runs(username: str, hashes: list[str]) -> dict:
+def claim_runs(
+    username: str,
+    hashes: list[str],
+    user_id: str | None = None,
+) -> dict:
     """Attach `username` to any run rows whose hash matches and whose
     current username is NULL/empty. Rows already claimed by any user
     (including the same one) are left untouched so this can't overwrite.
+
+    `user_id` is accepted for signature parity with the Mongo path but
+    the SQLite fallback is legacy and doesn't link runs to accounts.
 
     Returns a summary: how many rows were updated, how many hashes
     matched a row but were skipped (already claimed), and how many
     hashes didn't match any row at all.
     """
+    _ = user_id  # accepted-but-unused on the SQLite path
     if not hashes:
         return {"claimed": 0, "already_claimed": 0, "unknown": 0}
 

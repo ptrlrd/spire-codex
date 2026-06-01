@@ -204,9 +204,18 @@ def init_db():
 
 # ── public surface ──────────────────────────────────────────────────────
 @_instrument("submit_run")
-def submit_run(data: dict, username: str | None = None) -> dict:
+def submit_run(
+    data: dict,
+    username: str | None = None,
+    user_id: str | None = None,
+) -> dict:
     """Parse a run and store one document per player. Returns status dict
-    matching the SQLite implementation."""
+    matching the SQLite implementation.
+
+    `user_id` ties the run to an authenticated account. When set, a
+    duplicate-hash upload claims an existing unclaimed run to that
+    account instead of just returning `duplicate`.
+    """
     missing: list[str] = []
     if not data.get("players"):
         missing.append("players")
@@ -240,6 +249,7 @@ def submit_run(data: dict, username: str | None = None) -> dict:
             killed_by,
             player_count,
             username,
+            user_id,
         )
         results.append(result)
 
@@ -271,6 +281,7 @@ def _submit_player_run(
     killed_by: str | None,
     player_count: int,
     username: str | None,
+    user_id: str | None = None,
 ) -> dict:
     """One Mongo insert per player. The full nested structure goes into
     a single document — no joins required at query time."""
@@ -359,6 +370,7 @@ def _submit_player_run(
         "deck_size": len(deck),
         "relic_count": len(relics),
         "username": username,
+        "user_id": user_id,
         "build_id": data.get("build_id"),
         "submitted_at": datetime.now(timezone.utc),
         "deck": deck,
@@ -378,37 +390,75 @@ def _submit_player_run(
     coll = _get_collection()
     try:
         coll.insert_one(doc)
+        return {"success": True, "run_id": run_hash, "run_hash": run_hash}
     except DuplicateKeyError:
+        # If the caller is authenticated and the existing row is unclaimed,
+        # attach the account to it instead of just reporting "duplicate".
+        # This is the website-side equivalent of the overlay's /claim flow.
+        if user_id:
+            claim_filter = {
+                "_id": run_hash,
+                "$or": [
+                    {"user_id": {"$in": [None, ""]}},
+                    {"user_id": {"$exists": False}},
+                ],
+            }
+            update_fields: dict[str, Any] = {"user_id": user_id}
+            if username:
+                update_fields["username"] = username
+            res = coll.update_one(claim_filter, {"$set": update_fields})
+            if res.modified_count:
+                return {
+                    "success": True,
+                    "duplicate": True,
+                    "claimed": True,
+                    "run_hash": run_hash,
+                }
         return {
             "error": "This run has already been submitted",
             "duplicate": True,
             "run_hash": run_hash,
         }
 
-    return {"success": True, "run_id": run_hash, "run_hash": run_hash}
-
 
 @_instrument("claim_runs")
-def claim_runs(username: str, hashes: list[str]) -> dict:
-    """Attach `username` to any runs whose _id matches and whose current
-    username is null/empty. Matches the SQLite implementation: never
-    overwrites an existing claim."""
+def claim_runs(
+    username: str,
+    hashes: list[str],
+    user_id: str | None = None,
+) -> dict:
+    """Attach `username` (and optionally `user_id`) to any runs whose _id
+    matches and whose current claim slot is empty. Never overwrites an
+    existing claim.
+
+    Two modes:
+      - Legacy (no `user_id`): matches the Compendium/overlay flow that
+        only knew a username string. "Unclaimed" means no username.
+      - Authenticated (`user_id` set): website flow after sign-in.
+        "Unclaimed" means no user_id, and we set both fields so the run
+        actually shows up on the profile page (which queries by user_id).
+    """
     if not hashes:
         return {"claimed": 0, "already_claimed": 0, "unknown": 0}
 
     coll = _get_collection()
-    existing = list(coll.find({"_id": {"$in": hashes}}, {"_id": 1, "username": 1}))
-    by_hash = {d["_id"]: d.get("username") for d in existing}
+    slot = "user_id" if user_id else "username"
+    existing = list(coll.find({"_id": {"$in": hashes}}, {"_id": 1, slot: 1}))
+    by_hash = {d["_id"]: d.get(slot) for d in existing}
 
-    unclaimed = [h for h, u in by_hash.items() if not u]
+    unclaimed = [h for h, val in by_hash.items() if not val]
     already_claimed = len(by_hash) - len(unclaimed)
     unknown = len(hashes) - len(by_hash)
 
     if unclaimed:
-        coll.update_many(
-            {"_id": {"$in": unclaimed}, "$or": [{"username": None}, {"username": ""}]},
-            {"$set": {"username": username}},
-        )
+        unclaimed_filter = {
+            "_id": {"$in": unclaimed},
+            "$or": [{slot: {"$in": [None, ""]}}, {slot: {"$exists": False}}],
+        }
+        update_fields = {"username": username}
+        if user_id:
+            update_fields["user_id"] = user_id
+        coll.update_many(unclaimed_filter, {"$set": update_fields})
 
     return {
         "claimed": len(unclaimed),

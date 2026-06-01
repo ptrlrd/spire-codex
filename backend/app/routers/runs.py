@@ -93,7 +93,39 @@ async def submit_run_endpoint(request: Request, username: str | None = None):
         sanitized = re.sub(r"[^a-zA-Z0-9_\- ]", "", username.strip())[:32].strip()
         clean_username = sanitized or None
 
-    result = submit_run(data, username=clean_username)
+    # If the upload is coming from a signed-in session, link the run to
+    # the account. Duplicate uploads of a previously anonymous run then
+    # claim it to the account instead of being a no-op (the feature
+    # request: "Uploading duplicate runs previously unclaimed should
+    # claim them to your account").
+    user_id = None
+    try:
+        from ..services.auth_jwt import get_current_user
+
+        current_user = get_current_user(request)
+        if current_user:
+            user_id = current_user["_id"]
+            # Fall back to the account's username if the client didn't
+            # pass one. Prefer the explicit query param so the Compendium
+            # overlay can keep sending its own.
+            if not clean_username:
+                clean_username = current_user.get("username")
+    except Exception:
+        # Auth failures shouldn't block anonymous submission.
+        pass
+
+    result = submit_run(data, username=clean_username, user_id=user_id)
+    # Duplicate that we attached to the current account ("claim on
+    # re-upload"). The original run is already counted in metrics, so
+    # don't re-emit; just tell the client it was claimed.
+    if result.get("claimed"):
+        run_submissions.labels(status="claimed").inc()
+        return {
+            "success": True,
+            "duplicate": True,
+            "claimed": True,
+            "run_hash": result.get("run_hash"),
+        }
     if result.get("error"):
         if result.get("duplicate"):
             run_submissions.labels(status="duplicate").inc()
@@ -150,7 +182,22 @@ async def claim_runs_endpoint(request: Request):
     except Exception:
         raise HTTPException(status_code=400, detail="Invalid JSON body")
 
-    raw_username = payload.get("username")
+    # If the caller is signed in, let the account drive the claim. The
+    # username field becomes optional (we fall back to the account name)
+    # and the runs are linked by user_id, which is what /profile reads.
+    user_id = None
+    account_username = None
+    try:
+        from ..services.auth_jwt import get_current_user
+
+        current_user = get_current_user(request)
+        if current_user:
+            user_id = current_user["_id"]
+            account_username = current_user.get("username")
+    except Exception:
+        pass
+
+    raw_username = payload.get("username") or account_username
     if not raw_username or not isinstance(raw_username, str):
         raise HTTPException(status_code=400, detail="username is required")
 
@@ -177,7 +224,7 @@ async def claim_runs_endpoint(request: Request):
     if not clean_hashes:
         return {"claimed": 0, "already_claimed": 0, "unknown": 0}
 
-    return claim_runs(sanitized, clean_hashes)
+    return claim_runs(sanitized, clean_hashes, user_id=user_id)
 
 
 @router.get("/list", tags=["Runs"])
