@@ -26,6 +26,7 @@ Mongo (local dev) uvicorn runs a single worker, so the dict is safe.
 from __future__ import annotations
 
 import logging
+import os
 import re
 import urllib.parse
 from typing import Optional
@@ -56,8 +57,6 @@ def _public_base(request: Request) -> str:
     the public URL. Override via env if the deployment ever ends up
     behind a proxy that doesn't forward the headers we expect.
     """
-    import os
-
     explicit = os.environ.get(_REALM_ENV_KEY)
     if explicit:
         return explicit.rstrip("/")
@@ -129,8 +128,6 @@ async def callback(request: Request) -> HTMLResponse:
     session_id = qs.get("session", "")
     session = auth_session_store.get_session(session_id)
     if not session:
-        import os
-
         frontend = os.environ.get("FRONTEND_URL", "").strip() or _public_base(request)
         return RedirectResponse(f"{frontend}/profile")
 
@@ -246,8 +243,6 @@ async def callback(request: Request) -> HTMLResponse:
     # approach works directly; in local dev (different ports) we need
     # this token handoff.
     if token:
-        import os
-
         frontend = os.environ.get("FRONTEND_URL", "").strip() or _public_base(request)
         auth_session_store.pop_session(session_id)
         response = RedirectResponse(f"{frontend}/profile?auth=steam&token={token}")
