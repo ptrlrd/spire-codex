@@ -212,6 +212,16 @@ class CORSStaticMiddleware(BaseHTTPMiddleware):
                                              reviews near-instant. When new
                                              renders are rsync'd, manually
                                              purge /qa/* on CF.
+      /api/auth/*  private, no-store        — per-user authed endpoints (profile
+                                             runs, claim flow, sign-in state).
+                                             Without this they fell under the
+                                             /api/* branch below and got
+                                             s-maxage=3600, which let Cloudflare
+                                             cache one user's response and risk
+                                             serving it to another. Today CF
+                                             bypasses on cookie heuristics but
+                                             the origin should declare intent
+                                             explicitly.
       /api/runs/*  s-maxage=30             — user-submitted runs need to appear
                                              in lists/leaderboards within a
                                              minute, not an hour.
@@ -243,6 +253,8 @@ class CORSStaticMiddleware(BaseHTTPMiddleware):
             )
         elif path in ("/metrics", "/health"):
             response.headers["Cache-Control"] = "no-store"
+        elif path.startswith("/api/auth/"):
+            response.headers["Cache-Control"] = "private, no-store"
         elif path.startswith("/api/runs/"):
             response.headers["Cache-Control"] = "public, max-age=30, s-maxage=30"
         elif path.startswith("/api/"):
